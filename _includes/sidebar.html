@@ -1,0 +1,21 @@
+
+<section id="uikit-sidebar">
+    <div class="uikit-logo">
+        <a href="{{ site.baseurl }}">UIkit</a>
+    </div><!-- / logo -->
+
+    <nav id="uikit-nav" role="navigation" class="uikit-nav">
+        <ul>
+            <li>
+                <span class="root">Components</span>
+                <ul>
+                    {% for comp in site.components %}
+                        {% capture current_url %}/{{ sublink.url }}.html{% endcapture %}
+                        <li {% if page.url == current_url %}class="current"{% endif %}><a href="{{ site.baseurl }}{{ comp.url }}">{{ comp.title }}</a></li>
+                    {% endfor %}
+                </ul>
+            </li>
+
+        </ul>
+    </nav><!-- / uikit-nav -->
+</section><!-- / uikit-sidebar -->

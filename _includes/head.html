@@ -1,0 +1,17 @@
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<title>{% if page.title %}{{ page.title | escape }}{% else %}{{ site.title | escape }}{% endif %}</title>
+	<meta name="description" content="{% if page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ site.description }}{% endif %}">
+
+	<!-- LESS -->
+	<link rel="stylesheet/less" type="text/css" href="{{ site.baseurl }}/{{site.less}}/app.less">
+    <link rel="stylesheet/less" type="text/css" href="{{ site.baseurl }}/{{site.less}}/architecture/architecture.less">
+    <script type="text/javascript" src="{{ site.baseurl }}/{{site.js}}/vendor/less.js"></script>
+    <script>less.watch();</script>
+
+	<!-- Page Specific JS -->
+	{{ page.js }}
+	
+</head>

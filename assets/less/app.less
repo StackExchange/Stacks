@@ -1,0 +1,1159 @@
+// --------------------------------------------------------------
+// 	IMPORT
+// --------------------------------------------------------------
+//	As you can see, some of the class names have prefix "uikit-"
+//	to avoid some styling conflicts with stackoverflow/all.less
+//	file which is included below.
+// --------------------------------------------------------------
+// @import "http://cdn.sstatic.net/careers/cso/all.min.css";					// 	Careers
+// @import "http://cdn.sstatic.net/careers/less/views/employers.min.css";		//	Careers -- Employers Only
+@import "http://cdn.sstatic.net/Sites/stackoverflow/all.css";				// 	Core
+//@import "http://cdn.sstatic.net/Shared/Docs/docs.css";						//  Documentation
+
+@import 'vars.less';
+@import 'mixins.less';
+@import 'utilities.less';
+@import 'syntax.less';
+
+// TEMPORARY UNTIL FORMS ARE INTEGRATED
+//@import "careers-grid";
+
+*,
+*:before,
+*:after { box-sizing: content-box; } // i had to overwrite this, because it was coming from careers-grid.less
+
+
+
+// --------------------------------------------------------------
+//	BASIC STYLING
+// --------------------------------------------------------------
+//	Overwriting some basic styles from SO to make UIkit
+//	prettier. :)
+//---------------------------------------------------------------
+
+.less-error-message {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+
+	z-index: 999;
+}
+
+.-row * {
+	box-sizing: border-box;
+}
+
+// --------------------------------------------------------------
+//	SIDEBARS
+// --------------------------------------------------------------
+
+
+#uikit-sidebar {
+	position: fixed; left: 0; top: 0; bottom: 0;
+	width: 240px;
+	height: 100%; overflow-y: auto;
+	background: @white;
+	color: @black;
+	font-size: 13px;
+    box-shadow: 0 0 3px rgba(0,0,0,0.2);
+}
+
+.uikit-logo {
+	padding: 20px 0;
+	a {
+		text-indent: -9999em;
+		width: 240px;
+        height: 58px;
+		display: block;
+		background: white url('../img/architecture.svg');
+	}
+}
+
+#uikit-toc {
+	position: fixed;
+	left: 240px; top: 0; bottom: 0;
+	// background: @black-075;
+	background: @black-050;
+	width: 240px;
+	box-sizing: border-box;
+	border-left: 1px solid @black-100;
+	overflow-y: auto;
+}
+
+
+
+// --------------------------------------------------------------
+//	NAVIGATION
+// --------------------------------------------------------------
+
+#uikit-nav ul {
+	margin-left: 0;
+	list-style: none;
+
+	> li {
+		a, a:visited, .root {
+			display: block;
+			padding: 10px 20px;
+			line-height: 16px;
+		}
+
+		.root {
+			color: #7E8082;
+			text-transform: uppercase;
+			font-size: 11px;
+		}
+
+		a {
+			color: #A2A5A7;
+			&:hover {
+				//color: #fff;
+				background: fadeout(@black-800, 90%);
+			}
+		}
+
+		.uikit-select {
+			padding: 0 20px 0 40px;
+
+			select {
+				width: 100%;
+			}
+		}
+
+	   li {
+		   a {
+			   padding-left: 40px;
+		   }
+
+		   &.current {
+			   a {
+				   background: @black-800;
+				   color: @white;
+				   font-weight: bold;
+			   }
+		   }
+	   }
+
+	   &.current {
+		   > a {
+			   color: @white;
+			   font-weight: bold;
+		   }
+	   }
+	}
+}
+
+#uikit-toc {
+	list-style-type: none;
+	margin: 0; padding: 0;
+
+	ul {
+		list-style-type: none;
+		margin: 0; padding: 0;
+	}
+
+	li {
+		list-style-type: none;
+		margin: 0; padding: 0;
+		a {
+			display: block;
+			color: @black-500;
+			padding: 10px 20px;
+			border-bottom: 1px solid rgba(0,0,0,0.05);
+
+			&:hover {
+				background: rgba(0,0,0,0.05);
+				border-bottom-color: transparent;
+				color: @black;
+			}
+		}
+	}
+
+	li li a { padding-left: 40px; }
+	li li li a { padding-left: 60px; }
+	li li li li a { padding-left: 80px; }
+	li li li li li a { padding-left: 100px; }
+	
+	+ #uikit-content {
+		padding-left: 240px + 240px + 40px;
+	}
+
+	&:empty {
+		display: none;
+
+		+ #uikit-content {
+			padding-left: 240px + 40px;
+		}
+	}
+}
+
+
+
+// ---------------------------------------------------------------
+//	CONTENT
+// ---------------------------------------------------------------
+//	We put there stuff that is needed to correctly display
+//	content on UIkit. Some of the class names have 'uikit-'
+//	prefix just in case there are any conflicts in future.
+// ---------------------------------------------------------------
+
+//	Main Container
+#uikit-content {
+    background: @black-025;
+	padding: 30px 40px 40px 240px+40px;
+    min-height: 100vh;
+    box-sizing: border-box;
+	//max-width: 1060px;
+
+	> header {
+		margin-bottom: 20px;
+		border-bottom: 2px solid @black-100;
+		padding-bottom: 18px;
+		.clearfix();
+
+		h1 {
+			margin-bottom: 0;
+			float: left;
+		}
+
+		.uikit-actions {
+			float: right;
+			margin: 0; padding: 0;
+			list-style-type: none;
+
+			> li {
+				display: inline-block;
+				margin-left: 10px;
+				height: 32px;
+				line-height: 32px;
+				padding-left: 10px;
+				border-left: 1px solid @black-100;
+
+				&:first-child {
+					margin-left: 0; padding-left: 0; border-left: 0;
+				}
+			}
+		}
+	}
+
+	> h2 {
+		padding-top: 10px;
+	}
+}
+
+//	Styling for Sections: Core vs Careers vs Inprogress
+#uikit-content {
+	.uikit-section {
+		> h2, > h3, > h4, > h5, > h6 {
+			&:after {
+				color: #fff;
+				border-radius: 20px;
+				padding: 0 10px;
+				font-size: 11px;
+				font-weight: bold;
+				line-height: 20px;
+				margin-left: 10px;
+				display: inline-block;
+				text-transform: uppercase;
+				position: relative;
+				top: -4px;
+			}
+		}
+
+		//	Custom header and paragraph styling
+		> p,
+		> ul li,
+		> ol li {
+			width: 100%; max-width: 660px;
+			color: @black-750;
+			font-size: 16px;
+			line-height: 1.375;
+		}
+		> h2 {
+			margin-top: 2em;
+			font-size: 24px;
+			line-height: 1.166666667;
+		}
+		> h3 {
+			margin-top: 2em;
+			font-size: 18px;
+			line-height: 1.166666667;
+		}
+
+		> h4 {
+			margin-top: 2em;
+			font-size: 16px;
+			line-height: 1.166666667;
+		}
+
+		&[data-core] {
+			> h2, > h3, > h4, > h5, > h6 {
+				&:after {
+					content: 'core';
+					background: @orange-400;
+				}
+			}
+		}
+
+		&[data-careers] {
+			> h2, > h3, > h4, > h5, > h6 {
+				&:after {
+					content: 'careers';
+					background: @blue-500;
+				}
+			}
+		}
+
+		&[data-core-careers] {
+			> h2, > h3, > h4, > h5, > h6 {
+				&:after {
+					content: 'core & careers';
+					background: @green-400;
+				}
+			}
+		}
+
+		&[data-inprogress] {
+			opacity: 0.25;
+		}
+	}
+}
+
+#uikit-content {
+	> .uikit-section {
+		margin-bottom: 30px;
+	}
+}
+
+//	Intro paragraph
+.uikit-intro {
+	font-size: 17px;
+	line-height: 22px;
+	color: @black-600;
+	margin-bottom: 30px;
+}
+
+
+
+// ---------------------------------------------------------------
+//	CODE & PREVIEW
+// ---------------------------------------------------------------
+
+//	Preview Box
+.uikit-preview {
+	border-radius: 2px;
+	border: 1px solid @black-200;
+	box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+	padding: 30px;
+	margin-bottom: 20px;
+	background: @white;
+	box-sizing: border-box;
+	position: relative;
+	.clearfix();
+
+	&:before {
+		position: absolute; top: 0; right: 0;
+		display: inline-block;
+		padding: 6px 15px;
+		background: rgba(0,0,0,0.05);
+		border-radius: 0 2px 0 2px;
+		text-transform: uppercase;
+		content: "Preview";
+		font-size: 11px;
+		font-weight: bold;
+		color: rgba(0,0,0,0.2);
+	}
+
+	&:hover {
+		&:before {
+			display: none;
+		}
+	}
+
+	&.uikit-contrast {
+		background: @black-600;
+	}
+
+	> hr {
+		margin: 30px -30px;
+		background: #EFF2F5;
+
+		position: relative;
+
+		height: 20px;
+
+		&:before {
+			content: 'Separator';
+			text-transform: uppercase;
+			color: #C3C9CF;
+			font-size: 11px;
+
+			position: absolute;
+			top: 2px;
+			left: 20px;
+		}
+	}
+}
+
+//	Code highlighting
+.highlight {
+	font-family: @code-font-family;
+	border: 1px solid @black-200;
+	border-radius: 2px;
+	margin: 0;
+	line-height: 18px;
+	margin-bottom: 20px;
+
+	pre {
+		margin: 0;
+		padding: 0;
+		background: @black-025;
+
+		code {
+			table {
+				width: 100%;
+
+				td {
+					&.gutter {
+						padding: 5px 10px 5px 0;
+						min-width: 30px;
+						width: 30px;
+						background: rgba(0,0,0,0.05);
+
+						pre {
+							font-size: 11px;
+							color: @black-300;
+							background: transparent;
+						}
+					}
+
+					&.code {
+						padding: 5px 5px 5px 10px;
+					}
+				}
+			}
+		}
+	}
+}
+
+//	Code highlighting with preview box
+.uikit-code {
+	box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+
+	.highlight {
+		margin-bottom: 0;
+		border-radius: 2px 2px 0 0;
+		max-height: 600px;
+		overflow: scroll;
+	}
+
+	.uikit-preview {
+		border-radius: 0 0 2px 2px;
+		box-shadow: none;
+		border-top: 0;
+	}
+	
+	pre {
+		max-height: none; /* pre has a max-height in core's all.css */
+	}
+}
+
+// ---------------------------------------------------------------
+//	PAGE: Code & preview new
+// ---------------------------------------------------------------
+.uikit-unit {
+    display: flex;
+    flex-wrap: wrap;
+    .-text {
+        flex-grow: 1;
+        margin-right: 32px;
+        margin-top: 16px;
+        width: ~"calc(100% - 400px)";
+    }
+    margin-bottom: 32px;
+}
+.uikit-example {
+    .-container {
+        display: flex;
+        width: 300px;
+        background: white;
+        padding: 16px;
+        position: relative;
+        .-code {
+            display: none;
+            margin-right: 16px;
+            background: white;
+            width: 600px;
+            pre {
+                max-height: none; /* pre has a max-height in core's all.css */
+            }            
+            .highlight {
+                margin-bottom: 0;
+            }
+        }
+    }
+    // the checkbox
+    .-reveal-code {
+        display: none;
+        &:checked + .-container {
+            width: auto;
+            .-code {
+                display: block;
+            }
+            .-preview {
+                margin-bottom: 48px;// ensure the button is outside
+            }
+            .-reveal-code-button {
+                opacity: 1;
+                bottom: 16px;
+                right: 16px;
+                background: @forest-200;
+                &:hover {
+                    background: @forest;
+                }
+            }
+        }
+        
+    }
+    
+    .-preview {
+        width: 300px;
+    }
+    .-reveal-code-button {
+        display: block;
+        padding: 8px;
+        background: @forest;
+        border-radius: 3px;
+        color: white;
+        position: absolute;
+        opacity: 0;
+        transition: opacity 0.2s linear;
+        height: 16px;
+        bottom: -24px;
+        right: 8px;
+        z-index: 1;
+        cursor: pointer;
+        box-shadow: 1px 1px 5px rgba(0,0,0,0.2);
+        &:hover {
+            box-shadow: 2px 2px 5px rgba(0,0,0,0.4);
+        }
+    }
+    
+    &:hover .-reveal-code-button {
+        transition: opacity 0.2s 0.2s linear;
+        opacity: 1;
+    }
+    &:before {
+        content: '';
+        clear: both;
+        display: block;
+    }
+}
+
+
+// ---------------------------------------------------------------
+//	PAGE: Files Structure
+// ---------------------------------------------------------------
+
+.tree-structure {
+	margin-left: 0;
+	margin-bottom: 0;
+	list-style-type: none;
+	padding-left: 20px;
+	position: relative;
+	&:before {
+		content: '';
+		position: absolute; left: 0; top: 0;
+		width: 1px; height: ~'calc(100% - 30px)';
+		background: @black-200;
+	}
+
+	ul {
+		margin-left: 0;
+		margin-bottom: 0;
+		padding-left: 28px;
+		list-style-type: none;
+	}
+
+	li:not([class^="L"]) {
+		padding: 5px;
+		position: relative;
+
+		&.has-children {
+			&:before {
+				content: '';
+				position: absolute; left: 13px; top: 30px;
+				width: 1px; height: ~'calc(100% - 30px)';
+				background: @black-200;
+			}
+
+			> ul {
+				li {
+					&:last-child {
+						&:after {
+							content: '';
+							position: absolute; left: -20px; top: 15px;
+							width: 1px; height: 100%;
+							background: #fff;
+						}
+					}
+				}
+			}
+		}
+	}
+
+	.uikit-name {
+		margin-bottom: 5px;
+		position: relative;
+		.clearfix();
+
+		&:before {
+			content: '';
+			position: absolute; left: -24px; top: 9px;
+			width: 15px; height: 1px;
+			background: @black-200;
+		}
+
+		.icon {
+			float: left;
+			width: 18px;
+			height: 18px;
+			margin-right: 10px;
+		}
+
+		strong {
+			line-height: 18px;
+		}
+	}
+
+	small {
+		margin-left: 28px;
+		color: @black-500;
+		font-size: 12px;
+		display: block;
+		margin-bottom: 5px;
+	}
+
+	.icon {
+		float: left;
+		width: 18px; height: 18px;
+		fill: currentColor;
+	}
+
+	// FILES STRUCTURE TREE
+	.icon-folder {
+		fill: #73D0F9;
+	}
+
+	.icon-file {
+		fill: #6286A5;
+	}
+}
+
+
+
+
+// ---------------------------------------------------------------
+//	PAGE: Writing LESS
+// ---------------------------------------------------------------
+
+.dos-dont {
+	border-radius: 3px;
+	box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+	border: 1px solid #d4d6d9;
+	padding: 10px;
+	margin: 0 0 20px 0;
+	list-style: none;
+	display: flex;
+	flex-wrap: wrap;
+
+	> li {
+		margin: 10px;
+		// Dos
+		&:first-of-type {
+			color: @green;
+		}
+
+		// Don't
+		&:last-of-type {
+			color: @red;
+		}
+	}
+
+	ul {
+		list-style: none;
+		margin: 10px 0 0 0;
+		color: initial;
+
+		li:not(:last-child) {
+			margin-bottom: 6px;
+		}
+	}
+
+	pre { margin-bottom: 0; }
+}
+
+
+
+// ---------------------------------------------------------------
+//	PAGE: Tooltips
+// ---------------------------------------------------------------
+
+.tooltips-preview {
+
+	display: flex;
+	flex-wrap: wrap;
+
+	.informative-tooltip {
+		position: relative;
+		margin: 10px;
+
+		&:last-child {
+			margin-bottom: 0;
+		}
+	}
+
+	.left-top, .left-center, .left-bottom,
+	.right-top, .right-center, .right-bottom {
+		width: 100px;
+		height: 50px;
+	}
+}
+
+
+
+
+// ---------------------------------------------------------------
+//	PAGE: Grid
+// ---------------------------------------------------------------
+//  Used to showcase grid layouts and cells
+@grid-core-background:      @orange-050;
+@grid-core-border:          @orange-100;
+@grid-careers-background:   @blue-050;
+@grid-careers-border:       @blue-100;
+.grid-preview {
+	* { box-sizing: border-box; }
+
+	.-row,
+    .row {
+        margin-bottom: 1em;
+
+        .-row,
+        .row {
+            border: 1px solid transparent;
+            margin-bottom: 0;
+            margin-top: -1px;
+            padding: 1.5em;
+        }
+
+        > [class*="-col"]:last-of-type > p,
+        > [class*="col-"]:last-of-type > p { border-right: 1px solid transparent; }
+    }
+
+    p {
+        margin-bottom: 0;
+        padding: 1em;
+        border: 1px solid transparent;
+        border-right: none;
+
+        .col1 &,
+        .col-1 & {
+            padding: 0.5em 0.5em 0.75em;
+            code { font-size: 80%; }
+        }
+    }
+    code {
+        padding: 0;
+        color: @black-800;
+        background-color: transparent;
+    }
+    &.-core {
+        p,
+        .row {
+            background-color: @grid-core-background;
+            border-color: @grid-core-border;
+        }
+
+        .row > [class*="col-"]:last-of-type > p { border-right-color: @grid-core-border; }
+    }
+    &.-careers {
+        p,
+        .-row .-row {
+            background-color: @grid-careers-background;
+            border-color: @grid-careers-border;
+        }
+
+        .-row > [class*="-col"]:last-of-type > p { border-right-color: @grid-careers-border; }
+    }
+
+	.g-row,
+	.g-column {
+		padding: 1em;
+		width: 100%;
+		background-color: @orange-050;
+
+		[class^="g-col"] {
+			font-family: @code-font-family;
+			color: @black-800;
+			width: auto;
+			margin: 0.5em;
+			background-color: @orange-300;
+
+			> div {
+				padding: 1em;
+				width: 100%;
+				border: 1px solid @orange-050; 
+			}
+
+			> .g-row {
+				background-color: @orange-300;
+				[class^="g-col"] {
+					background-color: @orange-500;
+					> div { border-color: @orange-300; }
+				}
+			}
+		}
+	}
+	.g-row + .g-column { margin-top: 2em; }
+
+	.g-row.jc-sp-between .g-col4 {
+		flex-basis: calc(~"33.3333% - 2em");
+		max-width: calc(~"33.3333% - 2em");
+		padding: 1em;
+		> div { height: 42px; }
+	}
+}
+
+
+
+// ---------------------------------------------------------------
+//	PAGE: Colors
+// ---------------------------------------------------------------
+
+.palette {
+	display: flex;
+	flex-wrap: wrap;
+	margin-right: -20px;
+
+	.color {
+		width: ~'calc(100% / 3)';
+		padding: 0 20px 20px 0;
+		box-sizing: border-box;
+
+		header {
+			display: block;
+			height: 100px;
+			box-sizing: border-box;
+			padding: 20px;
+			color: rgba(0,0,0,0.7);
+			border-radius: 4px 4px 0 0;
+		}
+
+		.colors {
+			margin: 0; padding: 0;
+			list-style: none;
+			overflow: hidden;
+			> li {
+				padding: 15px 10px;
+				display: table;
+				box-sizing: border-box;
+				width: 100%;
+				color: rgba(0,0,0,0.7);
+
+				&:last-child {
+					border-radius: 0 0 4px 4px;
+				}
+
+				span {
+					display: table-cell;
+					box-sizing: border-box;
+					white-space: nowrap;
+
+					&.name {
+						font-weight: bold;
+						width: 50px;
+					}
+					&.less {
+						font-family: @code-font-family;
+						width: 140px;
+					}
+					&.value {
+						display: none;
+						font-family: @code-font-family;
+						font-size: 12px;
+
+						&.hex {
+							display: table-cell;
+						}
+					}
+				}
+			}
+		}
+	}
+
+	.contrast, .contrast *, .contrast span {
+		color: rgba(255,255,255,0.7);
+	}
+
+	.code-black { background: @code-black; }
+	.code-gray { background: @code-gray; }
+	.code-blue { background: @code-blue; }
+	.code-maroon { background: @code-maroon; }
+	.code-purple { background: @code-purple; }
+	.code-teal { background: @code-teal; }
+	.code-red { background: @code-red; }
+	
+	.orange-900 { background: @orange-900; }
+	.orange-800 { background: @orange-800; }
+	.orange-700 { background: @orange-700; }
+	.orange-600 { background: @orange-600; }
+	.orange-500 { background: @orange-500; }
+	.orange-400 { background: @orange-400; }
+	.orange-300 { background: @orange-300; }
+	.orange-200 { background: @orange-200; }
+	.orange-100 { background: @orange-100; }
+	.orange-050 { background: @orange-050; }
+	.orange { background: @orange; }
+	
+	.black-900 { background: @black-900; }
+	.black-800 { background: @black-800; }
+	.black-750 { background: @black-750; }
+	.black-700 { background: @black-700; }
+	.black-600 { background: @black-600; }
+	.black-500 { background: @black-500; }
+	.black-400 { background: @black-400; }
+	.black-350 { background: @black-350; }
+	.black-300 { background: @black-300; }
+	.black-200 { background: @black-200; }
+	.black-150 { background: @black-150; }
+	.black-100 { background: @black-100; }
+	.black-075 { background: @black-075; }
+	.black-050 { background: @black-050; }
+	.black-025 { background: @black-025; }
+	.black { background: @black; }
+	
+	.blue-900 { background: @blue-900; }
+	.blue-800 { background: @blue-800; }
+	.blue-700 { background: @blue-700; }
+	.blue-600 { background: @blue-600; }
+	.blue-500 { background: @blue-500; }
+	.blue-400 { background: @blue-400; }
+	.blue-300 { background: @blue-300; }
+	.blue-200 { background: @blue-200; }
+	.blue-100 { background: @blue-100; }
+	.blue-050 { background: @blue-050; }
+	.blue { background: @blue; }
+	
+	.powder-900 { background: @powder-900; }
+	.powder-800 { background: @powder-800; }
+	.powder-700 { background: @powder-700; }
+	.powder-600 { background: @powder-600; }
+	.powder-500 { background: @powder-500; }
+	.powder-400 { background: @powder-400; }
+	.powder-300 { background: @powder-300; }
+	.powder-200 { background: @powder-200; }
+	.powder-100 { background: @powder-100; }
+	.powder-050 { background: @powder-050; }
+	.powder-025 { background: @powder-025; }
+	.powder { background: @powder; }
+	
+	.green-900 { background: @green-900; }
+	.green-800 { background: @green-800; }
+	.green-700 { background: @green-700; }
+	.green-600 { background: @green-600; }
+	.green-500 { background: @green-500; }
+	.green-400 { background: @green-400; }
+	.green-300 { background: @green-300; }
+	.green-200 { background: @green-200; }
+	.green-100 { background: @green-100; }
+	.green-050 { background: @green-050; }
+	.green-025 { background: @green-025; }
+	.green { background: @green; }
+	
+	.forest-900 { background: @forest-900; }
+	.forest-800 { background: @forest-800; }
+	.forest-700 { background: @forest-700; }
+	.forest-600 { background: @forest-600; }
+	.forest-500 { background: @forest-500; }
+	.forest-400 { background: @forest-400; }
+	.forest-300 { background: @forest-300; }
+	.forest-200 { background: @forest-200; }
+	.forest-100 { background: @forest-100; }
+	.forest-050 { background: @forest-050; }
+	.forest { background: @forest; }
+	
+	.yellow-900 { background: @yellow-900; }
+	.yellow-800 { background: @yellow-800; }
+	.yellow-700 { background: @yellow-700; }
+	.yellow-600 { background: @yellow-600; }
+	.yellow-500 { background: @yellow-500; }
+	.yellow-400 { background: @yellow-400; }
+	.yellow-300 { background: @yellow-300; }
+	.yellow-200 { background: @yellow-200; }
+	.yellow-100 { background: @yellow-100; }
+	.yellow-050 { background: @yellow-050; }
+	.yellow { background: @yellow; }
+	
+	.red-900 { background: @red-900; }
+	.red-800 { background: @red-800; }
+	.red-700 { background: @red-700; }
+	.red-600 { background: @red-600; }
+	.red-500 { background: @red-500; }
+	.red-400 { background: @red-400; }
+	.red-300 { background: @red-300; }
+	.red-200 { background: @red-200; }
+	.red-100 { background: @red-100; }
+	.red-050 { background: @red-050; }
+	.red { background: @red; }
+}
+
+body.composer-on {
+	.palette {
+		padding-bottom: 300px;
+	}
+	.colors > li {
+		cursor: crosshair;
+	}
+}
+
+#colors-composer {
+	display: none;
+	position: fixed; bottom: 0; left: 240px; right: 0;
+	max-height: 60vh; min-height: 300px;
+	background: @white;
+	z-index: 3;
+	box-shadow: 0 -1px 5px rgba(0,0,0,0.25), 0 -1px 0 0 rgba(0,0,0,0.1);
+
+	.colors-composer-tools {
+		border-bottom: 1px solid @black-200;
+		ul {
+			padding: 0; margin: 0;
+			list-style-type: none;
+
+			li {
+				display: inline-block;
+
+				label {
+					span {
+						padding: 10px 20px;
+						text-align: center;
+						display: inline-block;
+						border-right: 1px solid @black-100;
+						cursor: pointer;
+
+						small {
+							font-family: @code-font-family;
+							display: block;
+							opacity: 0.75;
+							font-size: 11px;
+						}
+					}
+					input[name="tool"] {
+						.hidden;
+
+						&:checked {
+							& ~ span {
+								font-weight: bold;
+							}
+						}
+					}
+
+				}
+			}
+		}
+	}
+
+	.colors-composer-preview {
+		padding: 50px;
+	}
+
+	.colors-composer-element {
+		padding: 20px;
+		width: 500px;
+		margin: 0 auto;
+		background: #fff;
+		border: 1px solid @black-200;
+	}
+}
+
+
+
+
+// ---------------------------------------------------------------
+//	PAGE: Typography
+// ---------------------------------------------------------------
+.uikit-font {
+	margin-bottom: 20px;
+
+	&:last-child {
+		margin-bottom: 0;
+	}
+
+	small {
+		font-size: 11px;
+		color: @black-300;
+		display: block;
+	}
+
+	span {
+		display: block;
+		line-height: 1;
+		margin-bottom: 10px;
+	}
+
+	&.uikit-font-monospace {
+		span {
+			font-family: @code-font-family;
+		}
+	}
+}
+
+// ---------------------------------------------------------------
+//	PAGE: Form
+// ---------------------------------------------------------------
+.uikit-preview {
+	> .img-upload,
+	> .tag-editor,
+	> .input-group,
+	> form > .input-group,
+	> .button-group,
+	> .option-toggle,
+	> .header-title { width: 75%; }
+} 
+
+
+// ---------------------------------------------------------------
+//	PAGE: Icons
+// ---------------------------------------------------------------
+.uikit-icons {
+	display: flex;
+	flex-flow: row wrap;
+	align-content: center;
+	align-content: stretch;
+
+	.-item {
+		border-radius: 2px;
+		display: flex;
+		flex-direction: column;
+		width: 200px;
+		border: 1px solid @black-200;
+		box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+		margin: 5px;
+		flex-grow: 1;
+		background: @white;
+		box-sizing: border-box;
+
+		i {
+			height: 80px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+
+		code {
+			font-size: 11px;
+			text-align: center;
+			padding: 10px;
+		}
+	}
+}

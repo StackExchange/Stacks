@@ -1,0 +1,64 @@
+{% comment %}
+
+    This include takes a piece of HTML as its .html parameter and outputs it both as a prettified codeblock
+    and as the preview, unless a separate .preview parameter is passed. If you pass a preview parameter, it can
+    either be a string (in which case that's the HTML that will be output) or it can be false, in which case
+    there is no preview at all.
+
+    Usage:
+    
+    {% capture html %}
+    <div class="my-awesome-html">Hello!</div>
+    {% endcapture %}{% include example.html html=html %}
+
+{% endcomment %}
+
+{% comment %}
+    We're capturing the newline character in a variable. We could use a literal directly,
+    but we're being defensive: While it does looks like Jekyll always normalizes line endings to \n
+    no matter what's actually in the file, I'd like to make sure. The below is a poor man's assertion --
+    if NEWLINE doesn't end up being \n, the attempt to include a non-existing file will cause an error.
+{% endcomment %}
+
+{% assign NEWLINE = '
+' %}
+{% assign encoded = NEWLINE | url_encode %}
+{% if encoded != '%0A' %}{% include COULD_NOT_CAPTURE_NEWLINE_CHARACTER_CORRECTLY.html %}{% endif %}
+
+{% comment %}
+    The below finds the minimum indentation, allowing us to dedent the HTML
+    for the prettified display.
+{% endcomment %}
+
+{% assign lines = include.html | split: NEWLINE | %}
+{% assign minindent = -1 %}
+{% for line in lines %}
+    {% assign line = line | strip_newlines %}
+    {% assign strippedlength = line | lstrip | size %}
+    {% if strippedlength > 0 %}
+        {% assign linelength = line | strip_newlines | size %}
+        {% assign indent = linelength | minus: strippedlength %}
+        {% if minindent == -1 or indent < minindent %}
+            {% assign minindent = indent %}
+        {% endif %}
+    {% endif %}
+{% endfor %}
+
+{% capture example_id %}{% increment page-unique-counter %}{% endcapture %}
+
+<div class="uikit-example">
+    <input type="checkbox" class="-reveal-code" id="example-reveal-code-{{ example_id }}">
+    <div class="-container">
+    <div class="-code">
+{% highlight html linenos %}
+{% for line in lines %}
+{% assign line = line | strip_newlines %}{% assign linelength = line | size | minus: minindent %}{{ line | slice: minindent, linelength }}{% endfor %}
+{% endhighlight %}
+    </div>
+    <div class="-preview">
+        {{ include.preview | default: include.html }}
+    <label class="-reveal-code-button" for="example-reveal-code-{{ example_id }}">Toggle HTML source</label>
+    </div>
+
+    </div>
+</div>

@@ -1,0 +1,106 @@
+//
+//  STACK OVERFLOW
+//  UTILITIES
+//  ============================================================================
+//  $  Helpers
+//  ----------------------------------------------------------------------------
+.block          { display: block; }
+.inline-block   { display: inline-block; }
+.dno            { display: none; } // used to easily show/hide PostEditor and Comments
+
+.float-left     { float: left; }
+.float-right    { float: right; }
+
+.vt { vertical-align: top; }
+.vm { vertical-align: middle; }
+
+// fixed width
+.fw {
+    margin-bottom: 4px;
+    width: 100%;
+}
+
+.relative { position: relative; }
+
+//  ----------------------------------------------------------------------------
+//  $  Text
+//  ----------------------------------------------------------------------------
+.help-text {
+    color: @black-500;
+}
+
+.bold { font-weight: 700; }
+
+.help-text,
+.message.text-only {
+    &.has-icon {
+        display: flex;
+        -ms-display: flex;
+
+        [class^='icon'] {
+            flex-shrink: 0;
+            -ms-flex-shrink: 0;
+            margin-right: 5px;
+        }
+
+        .icon-i-orange {
+            position: relative;
+            top: 2px;
+        }
+    }
+}
+
+.success-text   { color: @green-500; }
+.error-text     { color: @red-500; }
+
+.text-left      { text-align: left; }
+.text-right     { text-align: right; }
+.text-centered  { text-align: center; }
+
+//  -----------------------------------------------------------------------------
+//  $  Visibility
+//  -----------------------------------------------------------------------------
+.hidden             { display: none; }
+.hidden-important   { display: none !important; }
+
+//  -----------------------------------------------------------------------------
+//  $$  Retina
+//  -----------------------------------------------------------------------------
+@retina: ~"(-webkit-min-device-pixel-ratio: 1.5), (min--moz-device-pixel-ratio: 1.5), (-o-min-device-pixel-ratio: 3/2), (min-resolution: 1.5dppx)";
+
+.at2x(@path, @w: auto, @h: auto) {
+
+    background-image: url(@path);
+
+    @at2x_path: ~`@{path}.replace(/\.\w+$/, function(match) { return "@2" + match; })`;
+
+    @media @retina {
+        background-image: url("@{at2x_path}");
+        background-size: @w @h;
+    }
+
+}
+
+.at2xFull(@path, @w: auto, @h: auto, @position: top left, @repeat: no-repeat, @bg-color: none) {
+
+    background-image: url(@path);
+    background-position: @position;
+    background-repeat: @repeat;
+    background-color: @bg-color;
+
+    @at2x_path: ~`@{path}.replace(/\.\w+$/, function(match) { return "@2" + match; })`;
+
+    @media @retina {
+        background-image: url("@{at2x_path}");
+        background-size: @w @h;
+    }
+
+}
+
+//  -----------------------------------------------------------------------------
+//  $$  Layout
+//  -----------------------------------------------------------------------------
+.stop-scrolling {
+  height: 100%;
+  overflow: hidden;
+}
