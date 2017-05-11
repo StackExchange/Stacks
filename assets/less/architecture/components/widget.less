@@ -1,7 +1,7 @@
-.a-widget {
-    @a-widget-content-padding: @su-16 - 1px; // subtract 1px for border
-    @a-widget-content-inner-spacing: @su-12;
-    @a-widget-content-outer-spacing: @su-16;
+.s-widget {
+    @s-widget-content-padding: @su-16 - 1px; // subtract 1px for border
+    @s-widget-content-inner-spacing: @su-12;
+    @s-widget-content-outer-spacing: @su-16;
 
     border: 1px solid @black-100;
     border-radius: @br-2;
@@ -36,16 +36,16 @@
     }
 
     > .-header + .-content, .-content:first-child { // (1)
-        margin-top: @a-widget-content-outer-spacing;
+        margin-top: @s-widget-content-outer-spacing;
     }
     .-content:last-child {
-        margin-bottom: @a-widget-content-outer-spacing;
+        margin-bottom: @s-widget-content-outer-spacing;
     }    
     .-content + .-header {
         // This will collapse with the previous content element's bottom margin.
         // In particular this means this relies on the fact that the outer spacing
         // is larger than the inner spacing.
-        margin-top: @a-widget-content-outer-spacing;
+        margin-top: @s-widget-content-outer-spacing;
     }
     &._complex-items > .-content {
         border-top: 1px solid #ecebde; // TODO: What color is this supposed to be?
@@ -61,21 +61,21 @@
         position: relative; //TODO comment (or move to parent?)
         
         & {
-            margin-bottom: @a-widget-content-inner-spacing;
+            margin-bottom: @s-widget-content-inner-spacing;
             // note that the first content element after a header (or if there's no header at all)
             // also needs a top margin; this is handled further above (see "(1)")
         }
-        padding: 0 @a-widget-content-padding;
+        padding: 0 @s-widget-content-padding;
         
         &.is-current {
             &:before {
                 content: '';
                 position: absolute;
-                height: ~"calc(100% +" @a-widget-content-inner-spacing ~")";
+                height: ~"calc(100% +" @s-widget-content-inner-spacing ~")";
                 left: 0;
                 border-left: 3px solid @orange;
                 margin-left: -1px; // the orange selection indicator overlaps with the widget border
-                margin-top: -@a-widget-content-inner-spacing/2;
+                margin-top: -@s-widget-content-inner-spacing/2;
             }
             font-weight: bold;
         }
