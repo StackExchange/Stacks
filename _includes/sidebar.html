@@ -7,6 +7,15 @@
     <nav id="uikit-nav" role="navigation" class="uikit-nav">
         <ul>
             <li>
+                <span class="root">resources</span>
+                <ul>
+                    {% for pages in site.resources %}
+                        {% capture current_url %}/{{ sublink.url }}.html{% endcapture %}
+                        <li {% if page.url == current_url %}class="current"{% endif %}><a href="{{ site.baseurl }}{{ pages.url }}">{{ pages.title }}</a></li>
+                    {% endfor %}
+                </ul>
+            </li>
+            <li>
                 <span class="root">Components</span>
                 <ul>
                     {% for comp in site.components %}
