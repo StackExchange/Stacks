@@ -3,7 +3,11 @@
     @s-widget-content-inner-spacing: @su-12;
     @s-widget-content-outer-spacing: @su-16;
 
-    border: 1px solid @black-100;
+    @s-widget-outer-border-color: @black-150;
+    @s-widget-header-border-color: @black-075;
+    @s-widget-content-separator-color: @black-100;
+
+    border: 1px solid @s-widget-outer-border-color;
     border-radius: @br-2;
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
     font-size: 13px; // TODO: 13px isn't in our size list
@@ -21,8 +25,8 @@
         font-weight: normal;
         color: @black-500;
         padding: @su-12 @su-16;
-        background: #faf9f1; // TODO: What color is this supposed to be?
-        border-bottom: 1px solid #eae6d9; // TODO: What color is this supposed to be?
+        background: @black-025;
+        border-bottom: 1px solid @s-widget-header-border-color;
         
         &._alternate-small-bold {
             font-size: @fs-12;
@@ -32,7 +36,7 @@
     }
     > .-content + .-header {
         // TODO: handle the collapsed case
-        border-top: 1px solid #eae6d9; // TODO: What color is this supposed to be?
+        border-top: 1px solid @s-widget-header-border-color;
     }
 
     > .-header + .-content, .-content:first-child { // (1)
@@ -48,8 +52,8 @@
         margin-top: @s-widget-content-outer-spacing;
     }
     &._complex-items > .-content {
-        border-top: 1px solid #ecebde; // TODO: What color is this supposed to be?
-        padding-top: @su-12;
+        border-top: 1px solid @s-widget-content-separator-color;
+        padding-top: @s-widget-content-inner-spacing;
     }
     &._complex-items > .-content:first-child, &._complex-items > .-header + .-content,  {
         border-top: none;
@@ -80,10 +84,9 @@
             font-weight: bold;
         }
     }
-    > ul.-content {
-        list-style-type: none;
-        padding: 0;
-        margin: 0;
+    
+    > :not(.-content):not(.-header) {
+        .stacks-error('All children of a .s-widget must be .-content or .-header.');
     }
     
 }
