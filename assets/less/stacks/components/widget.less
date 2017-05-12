@@ -3,10 +3,31 @@
     @s-widget-content-inner-spacing: @su-12;
     @s-widget-content-outer-spacing: @su-16;
 
-    @s-widget-outer-border-color: @black-150;
-    @s-widget-header-border-color: @black-075;
-    @s-widget-content-separator-color: @black-100;
+    @s-widget-outer-border-color: @black-100;
+    @s-widget-header-border-color: @black-050;
+    @s-widget-content-separator-color: @black-075;
+    @s-widget-header-background-color: @black-025;
 
+    @s-widget-outer-border-color-blue: @powder-200;
+    @s-widget-header-border-color-blue: @powder-200;
+    @s-widget-content-separator-color-blue: @powder-200;
+    @s-widget-header-background-color-blue: darken(@powder,5%); // would be @powder-150 if that existed
+    @s-widget-content-background-color-blue: @powder-100;
+
+    @s-widget-outer-border-color-yellow: @yellow-300;
+    @s-widget-header-border-color-yellow: @yellow-200;
+    @s-widget-content-separator-color-yellow: @yellow-300;
+    @s-widget-header-background-color-yellow: darken(@yellow,5%); // would be @yellow-150 if that existed
+    @s-widget-content-background-color-yellow: @yellow-100;
+
+    @s-widget-outer-border-color-green: @forest-300;
+    @s-widget-header-border-color-green: @forest-200;
+    @s-widget-content-separator-color-green: @forest-200;
+    @s-widget-header-background-color-green: lighten(@forest,35%); // would be @forest-150 if that existed
+    @s-widget-content-background-color-green: @forest-100;
+
+
+    
     border: 1px solid @s-widget-outer-border-color;
     border-radius: @br-2;
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
@@ -25,7 +46,7 @@
         font-weight: normal;
         color: @black-500;
         padding: @su-12 @su-16;
-        background: @black-025;
+        background: @s-widget-header-background-color;
         border-bottom: 1px solid @s-widget-header-border-color;
         
         &._alternate-small-bold {
@@ -84,6 +105,45 @@
             font-weight: bold;
         }
     }
+    
+    // COLOR ALTERNATIVES
+    // todo: use CSS custom properties for this once we don't care about IE anymore
+    &._alternate-blue {
+        border-color: @s-widget-outer-border-color-blue;
+        background-color: @s-widget-content-background-color-blue;
+        &._complex-items > .-content {
+            border-color: @s-widget-content-separator-color-blue;
+        }
+        > .-header, .-content + .-header {
+            border-color: @s-widget-header-border-color-blue;
+            background-color: @s-widget-header-background-color-blue;
+        }
+    }
+    
+    &._alternate-yellow {
+        border-color: @s-widget-outer-border-color-yellow;
+        background-color: @s-widget-content-background-color-yellow;
+        &._complex-items > .-content {
+            border-color: @s-widget-content-separator-color-yellow;
+        }
+        > .-header, .-content + .-header {
+            border-color: @s-widget-header-border-color-yellow;
+            background-color: @s-widget-header-background-color-yellow;
+        }
+    }    
+    
+    &._alternate-green {
+        border-color: @s-widget-outer-border-color-green;
+        background-color: @s-widget-content-background-color-green;
+        &._complex-items > .-content {
+            border-color: @s-widget-content-separator-color-green;
+        }
+        > .-header, .-content + .-header {
+            border-color: @s-widget-header-border-color-green;
+            background-color: @s-widget-header-background-color-green;
+        }
+    }        
+    
     
     > :not(.-content):not(.-header) {
         .stacks-error('All children of a .s-widget must be .-content or .-header.');
