@@ -34,11 +34,11 @@
         color: @black-500;
     }
     
-    > .-header, .-content {
+    .-header, .-content {
         display: block;
     }
     
-    > .-header {
+    .-header {
         font-size: 15px; // TODO: 15px isn't in our size list
         font-weight: normal;
         color: @black-500;
@@ -52,7 +52,7 @@
         }
         
     }
-    > .-content + .-header {
+    .-content + .-header {
         // TODO: handle the collapsed case
         border-top: 1px solid @s-widget-content-separator-color;
 
@@ -62,7 +62,7 @@
         margin-top: @s-widget-content-outer-spacing;
     }
 
-    > .-header + .-content, .-content:first-child { // (1)
+    .-header + .-content, .-content:first-child { // (1)
         margin-top: @s-widget-content-outer-spacing;
     }
     .-content:last-child {
@@ -83,21 +83,36 @@
             margin-top: -1px;
         }
 
-        > .-content {
+        .-content {
             border-top: 1px solid @s-widget-content-separator-color;
             padding-top: @s-widget-content-outer-spacing;
             padding-bottom: @s-widget-content-outer-spacing;
             margin: 0;
         }
-        > .-header {
+        .-header {
             border-bottom: none; // in a ._complex-items widget, the items provide the border
             border-top: 1px solid @s-widget-content-separator-color;
+            &._collapsing-control {
+                cursor: pointer;
+                &:before {
+                    content: '';
+                    float: right;
+                    border: 5px solid transparent;
+                    border-top-width: 0;
+                    border-bottom-color: @black-200;
+                    margin-top: ~"calc(1.3em / 2 - 2.5px)"; // 1.3 is our standard line height
+                    transition: transform 0.3s ease-out;
+                }
+                &[aria-expanded='true']:before {
+                    transform: rotate(180deg);
+                }
+            }
         }
-        > .-content + .-header {
+        .-content + .-header {
             margin-top: 0;
         }
     }
-    > .-content {
+    .-content {
         
         position: relative; //TODO comment (or move to parent?)
         
@@ -122,15 +137,49 @@
         }
     }
     
+    // see http://stackoverflow.com/a/43965099 for how this works:
+    // TODO: this is very generic, so it probably shouldn't just be used for s-widget
+    .-collapsible-group-wrapper {
+        display: flex;
+        overflow: hidden;
+        &:after {
+            content: '';
+            height: 50px;
+            transition: height 0.3s linear, max-height 0s 0.3s linear;
+            max-height: 0px;
+            flex-basis: 0;
+        }
+        .-collapsible-group {
+            transition: margin-bottom 0.3s cubic-bezier(0, 0, 0, 1);
+            margin-bottom: 0;
+            max-height: 1000000px;            
+            flex-basis: 100%;
+        }
+        &.is-collapsed {
+            .-collapsible-group {
+                margin-bottom: -1500px;
+                transition: margin-bottom 0.3s cubic-bezier(1, 0, 1, 1),
+                            visibility 0s 0.3s, max-height 0s 0.3s;
+                visibility: hidden;
+                max-height: 0;                
+            }
+            &:after {
+                height: 0;
+                transition: height 0.3s linear;
+                max-height: 50px;
+            }
+        }
+    }
+    
     // COLOR ALTERNATIVES
     // todo: use CSS custom properties for this once we don't care about IE anymore
     &._alternate-blue {
         border-color: @s-widget-outer-border-color-blue;
         background-color: @s-widget-content-background-color-blue;
-        &._complex-items > .-content {
+        &._complex-items .-content {
             border-color: @s-widget-content-separator-color-blue;
         }
-        > .-header, .-content + .-header {
+        .-header, .-content + .-header {
             border-color: @s-widget-content-separator-color-blue;
             background-color: @s-widget-header-background-color-blue;
         }
@@ -139,10 +188,10 @@
     &._alternate-yellow {
         border-color: @s-widget-outer-border-color-yellow;
         background-color: @s-widget-content-background-color-yellow;
-        &._complex-items > .-content {
+        &._complex-items .-content {
             border-color: @s-widget-content-separator-color-yellow;
         }
-        > .-header, .-content + .-header {
+        .-header, .-content + .-header {
             border-color: @s-widget-content-separator-color-yellow;
             background-color: @s-widget-header-background-color-yellow;
         }
@@ -151,18 +200,18 @@
     &._alternate-green {
         border-color: @s-widget-outer-border-color-green;
         background-color: @s-widget-content-background-color-green;
-        &._complex-items > .-content {
+        &._complex-items .-content {
             border-color: @s-widget-content-separator-color-green;
         }
-        > .-header, .-content + .-header {
+        .-header, .-content + .-header {
             border-color: @s-widget-content-separator-color-green;
             background-color: @s-widget-header-background-color-green;
         }
     }        
     
     
-    > :not(.-content):not(.-header) {
-        .stacks-error('All children of a .s-widget must be .-content or .-header.');
+    &:not(._complex-items) > :not(.-content):not(.-header) {
+        .stacks-error('All children of a non-complex .s-widget must be .-content or .-header.');
     }
     
 }

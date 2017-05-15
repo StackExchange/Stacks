@@ -44,29 +44,37 @@ title: Widgets
                         <li>so the boundaries are easy to see.</li>
                     </ul>
                 </div>
-                <div class="-content">
-                    <b>This is content.</b>
-                    <ul>
-                        <li>Content can be more complex</li>
-                        <li>than just text.</li>
-                    </ul>
+                <div class="-header _alternate-small-bold _collapsing-control
+                            js-collapsing-control" aria-expanded="false"
+                            aria-controls="collapsible-example"
+                            aria-label="expand this section" tabindex="0">
+                    Expandable section
                 </div>
-                <div class="-header _alternate-small-bold">
-                    Alternate header style
-                </div>
-                <div class="-content">
-                    <b>More complex items should</b>
-                    <ul>
-                        <li>be separated with lines</li>
-                        <li>so the boundaries are easy to see.</li>
-                    </ul>
-                </div>
-                <div class="-content">
-                    <b>This is content.</b>
-                    <ul>
-                        <li>Content can be more complex</li>
-                        <li>than just text.</li>
-                    </ul>
+                <div class="-collapsible-group-wrapper is-collapsed"
+                            id="collapsible-example">
+                    <div class="-collapsible-group">
+                        <div class="-content">
+                            <b>This is content.</b>
+                            <ul>
+                                <li>Content can be more complex</li>
+                                <li>than just text.</li>
+                            </ul>
+                        </div>
+                        <div class="-content">
+                            <b>More complex items should</b>
+                            <ul>
+                                <li>be separated with lines</li>
+                                <li>so the boundaries are easy to see.</li>
+                            </ul>
+                        </div>
+                        <div class="-content">
+                            <b>This is content.</b>
+                            <ul>
+                                <li>Content can be more complex</li>
+                                <li>than just text.</li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
                 <div class="-header _alternate-small-bold">
                     Alternate header style
@@ -177,3 +185,30 @@ title: Widgets
     </div>
     
 </section>
+
+<script type="text/javascript">
+    // TODO: figure out the right way to share JS alongside the LESS
+    window.onload = function () {
+        function toggleCollapsing(e) {
+            if (e.type == "keydown" && e.keyCode != 13) {
+                return;
+            }
+            var expanded = this.getAttribute("aria-expanded") === "true";
+            this.setAttribute("aria-expanded", expanded ? "false" : "true");
+            var l = document.getElementById(this.getAttribute("aria-controls"));
+            if (expanded) {
+                l.classList.add("is-collapsed");
+            } else {
+                l.classList.remove("is-collapsed");
+            }
+            if (e.type === "click") {
+                this.blur();
+            }
+        }
+        var cs = document.getElementsByClassName("js-collapsing-control");
+        for (var i=0; i < cs.length; i++) {
+            cs[i].addEventListener("click", toggleCollapsing);
+            cs[i].addEventListener("keydown", toggleCollapsing);
+        }
+    }
+</script>
