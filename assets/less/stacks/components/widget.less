@@ -98,13 +98,15 @@
                     content: '';
                     float: right;
                     border: 5px solid transparent;
-                    border-top-width: 0;
-                    border-bottom-color: @black-200;
+                    border-bottom-width: 0;
+                    border-top-color: @black-200;
                     margin-top: ~"calc(1.3em / 2 - 2.5px)"; // 1.3 is our standard line height
-                    transition: transform 0.3s ease-out;
+                    transition: transform 0.3s cubic-bezier(0.4, 0.4, 0.6, 1), transform-origin 0.3s cubic-bezier(0.4, 0.4, 0.6, 1);
+                    transform-origin: center 300%;
                 }
                 &[aria-expanded='true']:before {
-                    transform: rotate(180deg);
+                    transform: scaleY(-1);
+                    transform-origin: center center;
                 }
             }
         }
