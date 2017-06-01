@@ -1,0 +1,327 @@
+---
+layout: default
+title: Grid
+description: Core and Career use a Flexbox grid systems. This page reports this grid system. Previously both codebases used separate grid systems, which are reported at the bottom for historical purposes until they are fully removed.
+---
+<section id="grid-flexbox" class="uikit-section" data-core-careers>
+    <h2 class="toc-basic-styles">Basic Grid</h2>
+    <p>The basic grid is created by housing <code>.g-col</code> divs within either a <code>.g-row</code> or <code>.g-column</code>, depending on the how desired flow direction.</p>
+    <div class="uikit-code uikit-has-preview">
+{% highlight html linenos %}
+<div class="g-row">
+    <div class="g-col">...</div>
+    <div class="g-col">...</div>
+</div>
+<div class="g-column">
+    <div class="g-col">...</div>
+    <div class="g-col">...</div>
+</div>  
+{% endhighlight %}
+        <div class="uikit-preview grid-preview">
+            <div class="g-row">
+                <div class="g-col"><div>This is a row column.</div></div>
+                <div class="g-col"><div>This is a row column.</div></div>
+            </div>
+            <div class="g-column">
+                <div class="g-col"><div>This is a column column.</div></div>
+                <div class="g-col"><div>This is a column column.</div></div>
+            </div>
+        </div>
+    </div>
+
+    <h3 id="grid-flexbox-fluid">Fluid Columns</h3>
+    <p>The base <code>.g-col</code> class doesn't declare a column width. Instead it lets the content determine the column widths automatically within the container.</p>
+
+    <div class="uikit-code uikit-has-preview">
+{% highlight html linenos %}
+<div class="g-row">
+    <div class="g-col">...</div>
+    <div class="g-col">...</div>
+</div>
+<div class="g-row">
+    <div class="g-col">...</div>
+    <div class="g-col">...</div>
+    <div class="g-col">...</div>
+</div>
+{% endhighlight %}
+        <div class="uikit-preview grid-preview">
+            <div class="g-row">
+                <div class="g-col"><div>.g-col</div></div>
+                <div class="g-col"><div>.g-col</div></div>
+            </div>
+            <div class="g-row">
+                <div class="g-col"><div>.g-col</div></div>
+                <div class="g-col"><div>.g-col</div></div>
+                <div class="g-col"><div>.g-col</div></div>
+            </div>
+        </div>
+    </div>
+
+    <h3 id="grid-flexbox-mixed">Fluid + Specific Column Grids</h3>
+    <p>You can also mix fluid and specific column grids.</p>
+    <div class="uikit-code uikit-has-preview">
+{% highlight html linenos %}
+<div class="g-row">
+    <div class="g-col2">...</div>
+    <div class="g-col">...</div>
+</div>
+<div class="g-row">
+    <div class="g-col5">...</div>
+    <div class="g-col">...</div>
+    <div class="g-col">...</div>
+</div>
+{% endhighlight %}
+        <div class="uikit-preview grid-preview">
+            <div class="g-row">
+                <div class="g-col2"><div>.g-col2</div></div>
+                <div class="g-col"><div>.g-col</div></div>
+            </div>
+            <div class="g-row">
+                <div class="g-col5"><div>.g-col5</div></div>
+                <div class="g-col"><div>.g-col</div></div>
+                <div class="g-col"><div>.g-col</div></div>
+            </div>
+        </div>
+    </div>
+
+    <h3 id="grid-flexbox-nested">Nested Grids</h3>
+    <p>Grids can be nested within each other as well, allowing you to create unique, custom layouts without needing to reset, override or extend universal styles.</p>
+
+    <div class="uikit-code uikit-has-preview">
+{% highlight html linenos %}
+<div class="g-row">
+    <div class="g-col8">
+        <div class="g-row">
+            <div class="g-col4">...</div>
+            <div class="g-col">...</div>
+        </div>
+    </div>
+    <div class="g-col">...</div>
+</div>
+{% endhighlight %}
+        <div class="uikit-preview grid-preview">
+            <div class="g-row">
+                <div class="g-col8">
+                    <div class="g-row">
+                        <div class="g-col4"><div>.g-col4</div></div>
+                        <div class="g-col"><div>.g-col</div></div>
+                    </div>
+                </div>
+                <div class="g-col">
+                    <div class="g-row">
+                        <div class="g-col"><div>.g-col</div></div>
+                        <div class="g-col"><div>.g-col</div></div>
+                        <div class="g-col"><div>.g-col</div></div>
+                        <div class="g-col"><div>.g-col</div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <h2 id="grid-flexbox-helpers">Helper Classes</h2>
+    <p>In addition to the base grid row and column classes, there are also a number of helper classes available to allow you to customize your grid without needing to creating new CSS.</p>
+
+    <h3>Centering</h3>
+    <div class="uikit-code uikit-has-preview">
+{% highlight html linenos %}
+<div class="g-row g-center">
+    <div class="g-col">...</div>
+</div>
+{% endhighlight %}
+        <div class="uikit-preview grid-preview">
+            <div class="g-row g-center">
+                <div class="g-col" style="flex: 0 200px;"><div>.g-col</div></div>
+            </div>
+        </div>
+    </div>
+    <h3>Centering</h3>
+    <div class="uikit-code uikit-has-preview">
+{% highlight html linenos %}
+<div class="g-row jc-end">
+    ...
+</div>
+<div class="g-row jc-center">
+    ...
+</div>
+<div class="g-row jc-sp-between">
+    ...
+</div>
+<div class="g-row jc-sp-around">
+    ...
+</div>
+<div class="g-row jc-sp-between">
+    <div class="g-col4 ai-start">...</div>
+    <div class="g-col4 ai-center">...</div>
+    <div class="g-col4 ai-end">...</div>
+</div>
+{% endhighlight %}
+        <div class="uikit-preview grid-preview">
+            <div class="g-row jc-end">
+                <div class="g-col2"><div>.g-col2</div></div>
+                <div class="g-col2"><div>.g-col2</div></div>
+                <div class="g-col2"><div>.g-col2</div></div>
+            </div>
+            <div class="g-row jc-center">
+                <div class="g-col2"><div>.g-col2</div></div>
+                <div class="g-col2"><div>.g-col2</div></div>
+                <div class="g-col2"><div>.g-col2</div></div>
+            </div>
+            <div class="g-row jc-sp-between">
+                <div class="g-col2"><div>.g-col2</div></div>
+                <div class="g-col2"><div>.g-col2</div></div>
+                <div class="g-col2"><div>.g-col2</div></div>
+            </div>
+            <div class="g-row jc-sp-around">
+                <div class="g-col2"><div>.g-col2</div></div>
+                <div class="g-col2"><div>.g-col2</div></div>
+                <div class="g-col2"><div>.g-col2</div></div>
+            </div>
+            <div class="g-row jc-sp-between" style="height: 200px;">
+                <div class="g-col4 ai-start"><div>.g-col4</div></div>
+                <div class="g-col4 ai-center"><div>.g-col4</div></div>
+                <div class="g-col4 ai-end"><div>.g-col4</div></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="uikit-section" data-core>
+    <h2 id="toc-without">Without padding</h2>
+    <p>The grid comes with 12 columns. Grid's container needs <code>box-sizing: border-box;</code></p>
+
+    <div class="uikit-code uikit-has-preview">
+{% highlight html linenos %}
+<div class="row">
+    <div class="col-1"></div>
+    <div class="col-1"></div>
+    <div class="col-1"></div>
+    <div class="col-1"></div>
+    <div class="col-1"></div>
+    <div class="col-1"></div>
+    <div class="col-1"></div>
+    <div class="col-1"></div>
+    <div class="col-1"></div>
+    <div class="col-1"></div>
+    <div class="col-1"></div>
+    <div class="col-1"></div>
+</div>
+
+<div class="row">
+    <div class="col-8"></div>
+    <div class="col-4"></div>
+</div>
+
+<div class="row">
+    <div class="col-4"></div>
+    <div class="col-4"></div>
+    <div class="col-4"></div>
+</div>
+{% endhighlight %}
+
+        <div class="uikit-preview grid-preview -core">
+            <div class="row">
+                <div class="col-1"><p><code>.col-1</code></p></div>
+                <div class="col-1"><p><code>.col-1</code></p></div>
+                <div class="col-1"><p><code>.col-1</code></p></div>
+                <div class="col-1"><p><code>.col-1</code></p></div>
+                <div class="col-1"><p><code>.col-1</code></p></div>
+                <div class="col-1"><p><code>.col-1</code></p></div>
+                <div class="col-1"><p><code>.col-1</code></p></div>
+                <div class="col-1"><p><code>.col-1</code></p></div>
+                <div class="col-1"><p><code>.col-1</code></p></div>
+                <div class="col-1"><p><code>.col-1</code></p></div>
+                <div class="col-1"><p><code>.col-1</code></p></div>
+                <div class="col-1"><p><code>.col-1</code></p></div>
+            </div>
+
+            <div class="row">
+                <div class="col-8"><p><code>.col-8</code></p></div>
+                <div class="col-4"><p><code>.col-4</code></p></div>
+            </div>
+
+            <div class="row">
+                <div class="col-4"><p><code>.col-4</code></p></div>
+                <div class="col-4"><p><code>.col-4</code></p></div>
+                <div class="col-4"><p><code>.col-4</code></p></div>
+            </div>
+            <br>
+            <small>(additional styling has been added to visually present grid in example above)</small>
+        </div><!-- / preview -->
+    </div><!-- / uikit-code uikit-has-preview -->
+</section>
+
+<section class="uikit-section" data-core>
+    <h2 id="toc-with-padding">With padding</h2>
+    <p>The grid comes with 12 columns. Grid's container needs <code>box-sizing: border-box;</code>.</p>
+
+    <div class="uikit-code uikit-has-preview">
+{% highlight html linenos %}
+<div class="row">
+    <div class="col-1 with-padding"></div>
+    <div class="col-1 with-padding"></div>
+    <div class="col-1 with-padding"></div>
+    <div class="col-1 with-padding"></div>
+    <div class="col-1 with-padding"></div>
+    <div class="col-1 with-padding"></div>
+    <div class="col-1 with-padding"></div>
+    <div class="col-1 with-padding"></div>
+    <div class="col-1 with-padding"></div>
+    <div class="col-1 with-padding"></div>
+    <div class="col-1 with-padding"></div>
+    <div class="col-1 with-padding"></div>
+</div>
+
+<div class="row">
+    <div class="col-8 with-padding"></div>
+    <div class="col-4 with-padding"></div>
+</div>
+
+<div class="row">
+    <div class="col-4 with-padding"></div>
+    <div class="col-4 with-padding"></div>
+    <div class="col-4 with-padding"></div>
+</div>
+{% endhighlight %}
+
+        <div class="uikit-preview grid-preview -core">
+            <div class="row">
+                <div class="col-1 with-padding"><p><code>.col-1</code></p></div>
+                <div class="col-1 with-padding"><p><code>.col-1</code></p></div>
+                <div class="col-1 with-padding"><p><code>.col-1</code></p></div>
+                <div class="col-1 with-padding"><p><code>.col-1</code></p></div>
+                <div class="col-1 with-padding"><p><code>.col-1</code></p></div>
+                <div class="col-1 with-padding"><p><code>.col-1</code></p></div>
+                <div class="col-1 with-padding"><p><code>.col-1</code></p></div>
+                <div class="col-1 with-padding"><p><code>.col-1</code></p></div>
+                <div class="col-1 with-padding"><p><code>.col-1</code></p></div>
+                <div class="col-1 with-padding"><p><code>.col-1</code></p></div>
+                <div class="col-1 with-padding"><p><code>.col-1</code></p></div>
+                <div class="col-1 with-padding"><p><code>.col-1</code></p></div>
+            </div>
+
+            <div class="row">
+                <div class="col-8 with-padding"><p><code>.col-8</code></p></div>
+                <div class="col-4 with-padding"><p><code>.col-4</code></p></div>
+            </div>
+
+            <div class="row">
+                <div class="col-4 with-padding"><p><code>.col-4</code></p></div>
+                <div class="col-4 with-padding"><p><code>.col-4</code></p></div>
+                <div class="col-4 with-padding"><p><code>.col-4</code></p></div>
+            </div>
+
+            <br>
+            <small>(additional styling has been added to visually present grid in example above)</small>
+        </div><!-- / preview -->
+    </div><!-- / uikit-code uikit-has-preview -->
+</section>
+
+<hr/>
+
+{% include careers-grid/basic-usage.html %}
+{% include careers-grid/columns.html %}
+{% include careers-grid/columns-offsetting.html %}
+{% include careers-grid/columns-nesting.html %}
+{% include careers-grid/columns-ordering.html %}
+{% include careers-grid/gutters.html %}

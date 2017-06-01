@@ -1,0 +1,218 @@
+---
+layout: default
+title: Tooltips
+description: Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel reiciendis dolore reprehenderit fugiat natus, magni quos dicta? Eaque amet nostrum assumenda architecto fugiat dicta ut in voluptate, voluptatem corrupti ducimus!
+---
+
+<section class="uikit-section" data-core>
+    <h2 id="toc-css-only-tooltip">CSS only tooltip</h2>
+    <p>The easiest way to display a tooltip is to use the css only version. The tooltip will automatically takes 100% of its parent's width. You can set a defined size of 200px using <code>.size-200</code>.</p>
+
+    <div class="uikit-code uikit-has-preview">
+{% highlight html linenos %}
+<a href="#" class="button has-tooltip">
+    Trigger tooltip
+    <span class="informative-tooltip display-above">
+        I'm a CSS only tooltip!
+    </span>
+</a>
+
+<a href="#" class="button has-tooltip">
+    200px width tooltip
+    <span class="informative-tooltip display-above size-200">
+        I'm a 200px wide CSS only tooltip!
+    </span>
+</a>
+{% endhighlight %}
+
+        <div class="uikit-preview">
+            <a href="#" class="button has-tooltip">
+                Trigger tooltip
+
+                <span class="informative-tooltip display-above">
+                    I'm a CSS only tooltip!
+                </span>
+            </a>
+
+            <a href="#" class="button has-tooltip">
+                200px width tooltip
+
+                <span class="informative-tooltip display-above size-200">
+                    I'm a 200px wide CSS only tooltip!
+                </span>
+            </a>
+        </div>
+    </div>
+</section>
+
+<section class="uikit-section" data-core>
+    <h2 id="toc-basic-tooltip">Basic tooltip</h2>
+    <p>They need JS in order to be triggered/displayed. You also need to set their size.</p>
+
+    <div class="uikit-code uikit-has-preview">
+{% highlight html linenos %}
+<div class="informative-tooltip arrow up-left">Tooltip up left</div>
+<div class="informative-tooltip arrow up-center">Tooltip up center</div>
+<div class="informative-tooltip arrow up-right">Tooltip up right</div>
+
+<div class="informative-tooltip arrow down-left">Tooltip down left</div>
+<div class="informative-tooltip arrow down-center">Tooltip down center</div>
+<div class="informative-tooltip arrow down-right">Tooltip down right</div>
+
+<div class="informative-tooltip arrow left-top">Tooltip left top</div>
+<div class="informative-tooltip arrow left-center">Tooltip left center</div>
+<div class="informative-tooltip arrow left-bottom">Tooltip left bottom</div>
+
+<div class="informative-tooltip arrow right-top">Tooltip right top</div>
+<div class="informative-tooltip arrow right-center">Tooltip right center</div>
+<div class="informative-tooltip arrow right-bottom">Tooltip right bottom</div>
+{% endhighlight %}
+
+        <div class="uikit-preview tooltips-preview">
+            <div class="informative-tooltip arrow up-left">Tooltip up left</div>
+            <div class="informative-tooltip arrow up-center">Tooltip up center</div>
+            <div class="informative-tooltip arrow up-right">Tooltip up right</div>
+
+            <div class="informative-tooltip arrow down-left">Tooltip down left</div>
+            <div class="informative-tooltip arrow down-center">Tooltip down center</div>
+            <div class="informative-tooltip arrow down-right">Tooltip down right</div>
+
+            <div class="informative-tooltip arrow left-top">Tooltip left top</div>
+            <div class="informative-tooltip arrow left-center">Tooltip left center</div>
+            <div class="informative-tooltip arrow left-bottom">Tooltip left bottom</div>
+
+            <div class="informative-tooltip arrow right-top">Tooltip right top</div>
+            <div class="informative-tooltip arrow right-center">Tooltip right center</div>
+            <div class="informative-tooltip arrow right-bottom">Tooltip right bottom</div>
+        </div>
+    </div>
+</section>
+
+<section class="uikit-section" data-core>
+    <h2 id="toc-css-only-tooltip">Wizard Steps</h2>
+    <p>Used to introduce a number of areas within new views to users.</p>
+
+    <div class="uikit-code uikit-has-preview">
+{% highlight html linenos %}
+<div class="message message-info help-bubble-popup">
+    <div class="message-inner message-tip message-tip-left-top">
+        <div class="message-text">
+            <div class="bubble-message">
+                <div class="structure help-bubble-popup double-pane">
+                    <div class="left-pane">
+                        <h3>Grouped by tag</h3>
+                        <p>Stack Overflow has tags for most technologies - so Documentation is grouped under those existing tags.</p>
+
+                        <div class="next-tip-container">
+                            <a href="#" class="next-tip button">Next Tip</a>
+                            <a href="#" class="got-it button dno">Got It</a>
+                            <span class="dot-container">
+                                <a href="#" class="dot selected"></a>
+                                <a href="#" class="dot"></a>
+                                <a href="#" class="dot"></a>
+                            </span>
+                        </div>
+                        <div class="got-it-container">
+                            <span>Got It?</span>
+                            &nbsp;
+                            <a href="#" data-gps-track="helpbubble.disable" class="turn-tips-off js-gps-track">Turn tips off</a>.
+                        </div>
+                    </div>
+                    <div class="right-pane blue">
+                        <div class="tag-info col-4">
+                            <h3>tag</h3>
+                            <p>documentation topics are grouped by a tag</p>
+                        </div>
+                        <div class="topic-info col-4">
+                            <h3>topic</h3>
+                            <p>examples (and optional remarks) illustrating a subject</p>
+                        </div>
+                        <div class="example-info col-4">
+                            <h3>example</h3>
+                            <p>how to accomplish a task or solve a problem (usually contains code)</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endhighlight %}
+
+        <div class="uikit-preview" style="background-color:rgba(0,0,0,0.1);">
+            <div class="message message-info help-bubble-popup" style="display: block;margin-top:30px;">
+                <div class="message-inner message-tip message-tip-left-top">
+                    <div class="message-text">
+                        <div class="bubble-message">
+                            <div class="structure help-bubble-popup double-pane">
+                                <div class="left-pane">
+                                    <h3>Grouped by tag</h3>
+                                    <p>Stack Overflow has tags for most technologies - so Documentation is grouped under those existing tags.</p>
+
+                                    <div class="next-tip-container">
+                                        <a href="#" class="next-tip button">Next Tip</a>
+                                        <a href="#" class="got-it button dno">Got It</a>
+                                        <span class="dot-container">
+                                            <a href="#" class="dot selected"></a>
+                                            <a href="#" class="dot"></a>
+                                            <a href="#" class="dot"></a>
+                                        </span>
+                                    </div>
+                                    <div class="got-it-container">
+                                        <span>Got It?</span>
+                                        &nbsp;
+                                        <a href="#" data-gps-track="helpbubble.disable" class="turn-tips-off js-gps-track">Turn tips off</a>.
+                                    </div>
+                                </div>
+                                <div class="right-pane blue">
+                                    <div class="tag-info col-4">
+                                        <h3>tag</h3>
+                                        <p>documentation topics are grouped by a tag</p>
+                                    </div>
+                                    <div class="topic-info col-4">
+                                        <h3>topic</h3>
+                                        <p>examples (and optional remarks) illustrating a subject</p>
+                                    </div>
+                                    <div class="example-info col-4">
+                                        <h3>example</h3>
+                                        <p>how to accomplish a task or solve a problem (usually contains code)</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="uikit-section" data-careers>
+    <h2 id="toc-careers-tooltip-hover">Tooltip (On Hover)</h2>
+    <p>To explain an area or feature further.</p>
+
+    <div class="uikit-code uikit-has-preview">
+{% highlight html linenos %}
+<div class="helps -tooltip">
+    <div class="-content">...</div>
+</div>
+{% endhighlight %}
+        <div class="uikit-preview">
+            <img src="{{ site.baseurl }}/{{ site.stickers }}/tooltips-hover.png"/>
+        </div>
+    </div>
+</section>
+
+<section class="uikit-section" data-careers>
+    <h2 id="toc-careers-tooltip-intro">Tooltip (Tour Intro / Modal)</h2>
+    <p>To introduce a new feature wizard. Used only for introducing Recommended Candidates.</p>
+
+    <div class="uikit-code uikit-has-preview">
+{% highlight html linenos %}
+To be added
+{% endhighlight %}
+        <div class="uikit-preview">
+            <img src="{{ site.baseurl }}/{{ site.stickers }}/tooltips-tour-intro.png"/>
+        </div>
+    </div>
+</section>

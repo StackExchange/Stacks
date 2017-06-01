@@ -6,25 +6,35 @@
 
     <nav id="uikit-nav" role="navigation" class="uikit-nav">
         <ul>
-            <li>
-                <span class="root">resources</span>
-                <ul>
-                    {% for pages in site.resources %}
-                        {% capture current_url %}/{{ sublink.url }}.html{% endcapture %}
-                        <li {% if page.url == current_url %}class="current"{% endif %}><a href="{{ site.baseurl }}{{ pages.url }}">{{ pages.title }}</a></li>
-                    {% endfor %}
-                </ul>
-            </li>
-            <li>
-                <span class="root">Components</span>
-                <ul>
-                    {% for comp in site.components %}
-                        {% capture current_url %}/{{ sublink.url }}.html{% endcapture %}
-                        <li {% if page.url == current_url %}class="current"{% endif %}><a href="{{ site.baseurl }}{{ comp.url }}">{{ comp.title }}</a></li>
-                    {% endfor %}
-                </ul>
-            </li>
+            {% for entry in site.data.nav %}
+                {% assign sublinks = entry.sublinks %}
+                {% if sublinks %}
+                    <li>
+                        <span class="root">{{ entry.title }}</span>
+                        <ul>
+                            {% for sublink in sublinks %}
+                                {% capture current_url %}/{{ sublink.url }}.html{% endcapture %}
+                                <li {% if page.url == current_url %}class="current"{% endif %}><a href="{{ site.baseurl }}/{{ sublink.url }}">{{ sublink.title }}</a></li>
+                            {% endfor %}
+                        </ul>
+                    </li>
+                {% else %}
+                    <li}><a href="{{ site.baseurl }}/{{ entry.url }}">{{ entry.title }}</a></li>
+                {% endif %}
+            {% endfor %}
 
+            <li>
+                <span class="root">Show</span>
+                <div class="uikit-select">
+                    <select id="uikit-codebase">
+                        <option value="0" selected>All</option>
+                        <option value="1">Only Core</option>
+                        <option value="2">Core and common</option>
+                        <option value="3">Only Careers</option>
+                        <option value="4">Careers and common</option>
+                    </select>
+                </div>
+            </li>
         </ul>
     </nav><!-- / uikit-nav -->
 </section><!-- / uikit-sidebar -->

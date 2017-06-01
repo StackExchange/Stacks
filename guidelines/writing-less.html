@@ -1,0 +1,221 @@
+---
+layout: default
+title: Writing LESS
+description: Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel reiciendis dolore reprehenderit fugiat natus, magni quos dicta? Eaque amet nostrum assumenda architecto fugiat dicta ut in voluptate, voluptatem corrupti ducimus!
+---
+
+<section class="uikit-section">
+    <h2 id="toc-goals">Goals</h2>
+    <ul>
+        <li>We’re all contributing code in the same or similar way through clearly defined guidelines. (Get on the same page, then we can build upon this more in the future.)</li>
+        <li>Keep the system accessible and simple to the design team and devs outside the design team.</li>
+        <li>Minimize unnecessary visual variation within the design of our product.</li>
+    </ul>
+</section><!-- / uikit-section -->
+
+<section class="uikit-section">
+    <h2 id="toc-guidelines">Guidelines</h2>
+    <ul>
+        <li>Code should be clear and easy to understand by anyone at a glance. The best code is easily maintainable.</li>
+        <li>Do not over abstract the code. Simplicity will allow multiple authors to contribute in a consistent manner, where complexity may cause confusion and fracturing.</li>
+        <li>If you’re going to make a change that impacts everyone, make sure you have a consensus from the team.</li>
+        <li>Componentize. Reuse. Standardize.</li>
+    </ul>
+</section>
+
+<section class="uikit-section">
+    <h2 id="naming-conventions">Naming conventions</h2>
+    <p>Use dashes with no capitalization when you create new classes. You should almost never need to use IDs.</p>
+
+    <section class="uikit-section">
+        <h3 id="toc-class-names">Class names</h3>
+        <ul class="dos-dont">
+            <li>
+                DO
+
+                <ul>
+                    <li>.my-class { }</li>
+                </ul>
+            </li>
+
+            <li>
+                DON'T
+
+                <ul>
+                    <li>.myClass { }</li>
+                    <li>.my_class { }</li>
+                </ul>
+            </li>
+        </ul>
+    </section>
+
+    <section class="uikit-section">
+        <h3 id="toc-image-names">Image names</h3>
+        <p>Images names follow the same naming convention as classes. Image file names are prefixed with their usage.</p>
+
+        <ul class="dos-dont">
+            <li>
+                DO
+
+                <ul>
+                    <li>bg-header.png</li>
+                    <li>icon-home.svg</li>
+                    <li>bg-hero.jpg</li>
+                </ul>
+            </li>
+
+            <li>
+                DON'T
+
+                <ul>
+                    <li>bgHeader.png</li>
+                    <li>iconhome.png</li>
+                    <li>bg_hero.png</li>
+                </ul>
+            </li>
+        </ul>
+    </section>
+</section>
+
+<section class="uikit-section">
+    <h2 id="units">Units</h2>
+
+    <section class="uikit-section">
+        <h3 id="toc-color">Color</h3>
+        <p>When implementing feature styles, you should only be using color variables provided by _vars-colors.less.</p>
+        <p>When adding color variables use hexadecimal values. If an alpha is needed use LESS’s color functions RGBa.</p>
+
+        <ul class="dos-dont">
+            <li>
+                DO
+                <ul>
+                    <li>color: @orange;</li>
+                    <li>color: fade(@orange, 90%);  </li>
+                </ul>
+            </li>
+
+            <li>
+                DON'T
+                <ul>
+                    <li>color: 244, 128, 36</li>
+                </ul>
+            </li>
+        </ul>
+    </section>
+
+    <section class="uikit-section" data-inprogress>
+        <h3 id="toc-font-weight">Font Weight</h3>
+        <p><i style="color:red;">[discussion point: .em, .rem versus px.]</i></p>
+    </section>
+</section>
+
+<section class="uikit-section">
+    <h2 id="toc-componentizing">Componentizing</h2>
+    <p>Consistent use of patterns and style is a main reason the pattern library exists. Whenever possible, user interface elements should to be treated as generic components that can be used everywhere on the site.</p>
+    <p>Components should belong to their own less file. For example, all general button definitions should belong in _buttons.less.</p>
+    <p>Keep class names for modules generic. If you need to add specific styling, add a second area-specific class name, but this should be avoided if possible.</p>
+
+    <ul class="dos-dont">
+        <li>
+            DO
+            <ul>
+                <li>
+{% highlight html linenos %}
+<table cellspacing="0" class="table table-users"></table>
+{% endhighlight %}
+                </li>
+            </ul>
+        </li>
+
+        <li>
+            DON'T
+            <ul>
+                <li>
+{% highlight html linenos %}
+<table cellspacing="0" class="userdata-table"></table>
+{% endhighlight %}
+                </li>
+            </ul>
+        </li>
+    </ul>
+</section>
+
+<section class="uikit-section">
+    <h2 id="toc-name-spacing">Name spacing</h2>
+    <p>Name-spacing should be made at a descriptive, functional level. Not at a page location level. For example, .profile-header could become .header-hero-unit.</p>
+
+    <ul class="dos-dont">
+        <li>
+            DO
+            <ul>
+                <li>.nav, .home-bar</li>
+            </ul>
+        </li>
+
+        <li>
+            DON'T
+            <ul>
+                <li>.nav, .home-nav</li>
+            </ul>
+        </li>
+    </ul>
+</section>
+
+<section class="uikit-section">
+    <h2 id="toc-code-style">Code style</h2>
+
+    <section class="uikit-section">
+        <h3 id="toc-comments">Comments</h3>
+        <p>Use LESS style comments because they are compiled out. They should only be used to clarify code, add to-dos, and organization separate sections of the file.</p>
+
+        <ul class="dos-dont">
+            <li>
+                DO
+                <ul>
+                    <li>// Title of section </li>
+                </ul>
+            </li>
+
+            <li>
+                DON'T
+                <ul>
+                    <li>/* Title of section */</li>
+                    <li>** Title of Section **</li>
+                </ul>
+            </li>
+        </ul>
+    </section>
+
+    <section class="uikit-section" data-inprogress>
+        <h3 id="toc-spacing">Spacing</h3>
+        <p><i style="color:red;">[discussion point]</i></p>
+    </section>
+</section>
+
+<section class="toc-section">
+    <h2 id="toc-variables">Variables</h2>
+    <p>Global variables should go in their own top level .less file. If you’re creating a variable that is specific to a component then the variable should go within the component’s .less file.</p>
+    <p>Use variables only for the most important and reusable styles within the UI. If everything is important, then nothing is.</p>
+    <p>Variables should only be created for the following reasons:</p>
+    <p><b>1 There is a need to refer to the style many times in the .less files.</b></p>
+    <ul class="dos-dont">
+        <li>
+            DO
+            <ul>
+                <li>@link-color</li>
+                <li>(link color is repeated in multiple places in different .less files)</li>
+            </ul>
+        </li>
+
+        <li>
+            DON'T
+            <ul>
+                <li>@button-padding-left</li>
+                <li>(this should be set once and doesn’t need to be reused)</li>
+            </ul>
+        </li>
+    </ul>
+
+    <p><b>2. The value of the property needs to vary in multiple contexts.</b></p>
+    <p>(This is particularly important within the Q&amp;A sites because it allows us to easily adjust things like button colors.)</p>
+</section>

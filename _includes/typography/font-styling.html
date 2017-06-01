@@ -1,0 +1,102 @@
+<section class="uikit-section" data-core>
+    <h2 id="toc-type-styling">Type Styling</h2>
+
+    <section class="uikit-section">
+        <h3 id="toc-headlines">Headlines</h3>
+        <p>Headlines provide signposts for content as well express content priority. Headlines should descend in order. This means that a <code>h3</code> shouldn't precede a <code>h1</code> in the DOM order. The question to ask yourself is, "If this page's CSS didn't load, would this copy hierachy still make sense?"</p>
+        <div class="uikit-code uikit-has-preview">
+{% highlight html linenos %}
+<h1>This is H1 header</h1>
+<h2>This is H2 header</h2>
+<h3>This is H3 header</h3>
+<h4>This is H4 header</h4>
+<h5>This is H5 header</h5>
+<h6>This is H6 header</h6>
+{% endhighlight %}
+            <div class="uikit-preview">
+                <h1>This is H1 header</h1>
+                <h2>This is H2 header</h2>
+                <h3>This is H3 header</h3>
+                <h4>This is H4 header</h4>
+                <h5>This is H5 header</h5>
+                <h6>This is H6 header</h6>
+            </div>
+        </div>
+    </section>
+
+    <section class="uikit-section">
+        <h3 id="toc-paragraphs">Paragraphs</h3>
+        <p>The top design element that we use is written language. Our job is to divide, organize, and interpret this written language so that users can achieve their goals quickly. This is achieved through optmizing typography for "readability, accessibility, usability, and overall ... balance."</p>
+        <div class="uikit-code uikit-has-preview">
+{% highlight html linenos %}
+<p>Lorem ipsum dolor sit amet (...)</p>
+<p>Quos pariatur quaerat totam (...)</p>
+{% endhighlight %}
+            <div class="uikit-preview">
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae debitis officiis esse ipsa quaerat recusandae, repellendus atque! Blanditiis ratione odit ipsam, officiis impedit nemo similique ducimus, labore nisi veritatis quos!</p>
+                <p>Quos pariatur quaerat totam, illo officia omnis ullam recusandae eligendi accusamus architecto sed, quibusdam officiis, corporis hic quisquam. Consequatur doloremque aspernatur, explicabo? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Provident iure blanditiis modi rem voluptate odit assumenda inventore voluptates sint tenetur dolores cupiditate perspiciatis exercitationem voluptatibus, officiis nemo quam doloribus dolorum!</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="uikit-section">
+        <h3 id="toc-blockquotes">Blockquotes</h3>
+        <div class="uikit-code uikit-has-preview">
+{% highlight html linenos %}
+<blockquote>...</blockquote>
+{% endhighlight %}
+            <div class="uikit-preview">
+                <blockquote>So given the importance of software and programmers, you might think they all had wonderful, satisfying jobs that they love...But sadly, we saw that was not universal.</blockquote>
+            </div>
+        </div>
+    </section>
+
+    <section class="uikit-section">
+        <h3 id="toc-code-blocks">Code Blocks</h3>
+        <div class="uikit-code uikit-has-preview">
+{% highlight html linenos %}
+<pre class="lang-cpp prettyprint prettyprinted">
+    <code>...</code>
+</pre>
+{% endhighlight %}
+            <div class="uikit-preview">
+<pre class="lang-cpp prettyprint prettyprinted"><code><span class="com">#include</span><span class="pln"> </span><span class="str">&lt;stdexcept&gt;</span><span class="pln">
+
+    </span><span class="kwd">namespace</span><span class="pln"> gut
+    </span><span class="pun">{</span><span class="pln">
+        </span><span class="kwd">template</span><span class="pun">&lt;</span><span class="kwd">class</span><span class="pln"> T</span><span class="pun">&gt;</span><span class="pln"> </span><span class="kwd">class</span><span class="pln"> handle</span><span class="pun">;</span><span class="pln">
+
+        </span><span class="kwd">class</span><span class="pln"> handle_base
+        </span><span class="pun">{</span><span class="pln">
+        </span><span class="kwd">public</span><span class="pun">:</span><span class="pln">
+            </span><span class="kwd">virtual</span><span class="pln"> </span><span class="pun">~</span><span class="pln">handle_base</span><span class="pun">()</span><span class="pln"> </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">default</span><span class="pun">;</span><span class="pln">
+
+            handle_base</span><span class="pun">()</span><span class="pln"> </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">default</span><span class="pun">;</span><span class="pln">
+            handle_base</span><span class="pun">(</span><span class="pln"> handle_base</span><span class="pun">&amp;&amp;</span><span class="pln"> </span><span class="pun">)</span><span class="pln"> </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">default</span><span class="pun">;</span><span class="pln">
+            handle_base</span><span class="pun">(</span><span class="pln"> handle_base </span><span class="kwd">const</span><span class="pun">&amp;</span><span class="pln"> </span><span class="pun">)</span><span class="pln"> </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">default</span><span class="pun">;</span><span class="pln">
+            handle_base</span><span class="pun">&amp;</span><span class="pln"> </span><span class="kwd">operator</span><span class="pun">=(</span><span class="pln"> handle_base</span><span class="pun">&amp;&amp;</span><span class="pln"> </span><span class="pun">)</span><span class="pln"> </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">default</span><span class="pun">;</span><span class="pln">
+            handle_base</span><span class="pun">&amp;</span><span class="pln"> </span><span class="kwd">operator</span><span class="pun">=(</span><span class="pln"> handle_base </span><span class="kwd">const</span><span class="pun">&amp;</span><span class="pln"> </span><span class="pun">)</span><span class="pln"> </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">default</span><span class="pun">;</span><span class="pln">
+
+            </span><span class="kwd">virtual</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> transfer</span><span class="pun">(</span><span class="pln"> </span><span class="kwd">void</span><span class="pun">*</span><span class="pln"> dst </span><span class="pun">)</span><span class="pln">
+            </span><span class="pun">{</span><span class="pln">
+                </span><span class="kwd">throw</span><span class="pln"> std</span><span class="pun">::</span><span class="pln">runtime_error
+                </span><span class="pun">{</span><span class="pln">
+                    </span><span class="str">"handle_base::transfer( void* ); "</span><span class="pln">
+                    </span><span class="str">"attempted to call base class function"</span><span class="pln">
+                </span><span class="pun">};</span><span class="pln">
+            </span><span class="pun">};</span><span class="pln">
+
+        </span><span class="kwd">protected</span><span class="pun">:</span><span class="pln">
+            handle_base</span><span class="pun">(</span><span class="pln"> </span><span class="kwd">void</span><span class="pun">*</span><span class="pln"> src </span><span class="pun">)</span><span class="pln"> noexcept
+                </span><span class="pun">:</span><span class="pln"> src_</span><span class="pun">{</span><span class="pln"> src </span><span class="pun">}</span><span class="pln">
+            </span><span class="pun">{}</span><span class="pln">
+
+            </span><span class="kwd">void</span><span class="pun">*</span><span class="pln"> src_</span><span class="pun">;</span><span class="pln">
+        </span><span class="pun">};</span><span class="pln">
+    </span><span class="pun">}</span>
+</code></pre>
+<p class="small"><em>(Taken from <a href="http://stackoverflow.com/questions/39376380/how-can-i-polymorphically-store-and-access-different-types-from-the-same-inherit">"How can I polymorphically store and access different types from the same inheritance hierarchy in contiguous memory?"</a>)</em></p>
+            </div>
+        </div>
+    </section>
+</section>
