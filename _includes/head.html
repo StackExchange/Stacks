@@ -5,11 +5,15 @@
 	<title>{% if page.title %}{{ page.title | escape }}{% else %}{{ site.title | escape }}{% endif %}</title>
 	<meta name="description" content="{% if page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ site.description }}{% endif %}">
 
+	<!-- JS Libs -->
+	<script type="text/javascript" src="{{ site.baseurl }}/{{site.js}}/vendor/jquery.js"></script>
+	<script type="text/javascript" src="{{ site.baseurl }}/{{site.js}}/jquery.tokko.js"></script>
+	<script type="text/javascript" src="{{ site.baseurl }}/{{site.js}}/main.js"></script>
+
 	<!-- LESS -->
-	<link rel="stylesheet/less" type="text/css" href="{{ site.baseurl }}/{{site.less}}/app.less">
-    <link rel="stylesheet/less" type="text/css" href="{{ site.baseurl }}/{{site.less}}/stacks/stacks.less">
-    <script type="text/javascript" src="{{ site.baseurl }}/{{site.js}}/vendor/less.js"></script>
-    {% if jekyll.environment == "development" %}<script>less.watch();</script>{% endif %}
+	<link rel="stylesheet/less" type="text/css" href="{{ site.baseurl }}/{{site.css}}/app.less">
+  <script type="text/javascript" src="{{ site.baseurl }}/{{site.js}}/vendor/less.js"></script>
+  {% if jekyll.environment == "development" %}<script>less.watch();</script>{% endif %}
 
 	<!-- Page Specific JS -->
 	{{ page.js }}
