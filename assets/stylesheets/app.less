@@ -8,15 +8,12 @@
 // @import "http://cdn.sstatic.net/careers/cso/all.min.css";					// 	Careers
 // @import "http://cdn.sstatic.net/careers/less/views/employers.min.css";		//	Careers -- Employers Only
 @import "https://cdn.sstatic.net/Sites/stackoverflow/all.css";				// 	Core
-//@import "http://cdn.sstatic.net/Shared/Docs/docs.css";						//  Documentation
+// @import "https://cdn.sstatic.net/Shared/Docs/docs.css";						//  Documentation
 
 @import 'vars.less';
 @import 'mixins.less';
 @import 'utilities.less';
 @import 'syntax.less';
-
-// TEMPORARY UNTIL FORMS ARE INTEGRATED
-//@import "careers-grid";
 
 *,
 *:before,
@@ -53,35 +50,24 @@
 	position: fixed; left: 0; top: 0; bottom: 0;
 	width: 240px;
 	height: 100%; overflow-y: auto;
-	background: @white;
-	color: @black;
+	background: @black;
+	color: @white;
 	font-size: 13px;
-    box-shadow: 0 0 3px rgba(0,0,0,0.2);
 }
 
 .uikit-logo {
-	padding: 20px 0;
-	a {
-		text-indent: -9999em;
-		width: 240px;
-        height: 58px;
-		display: block;
-		background: white url('../img/architecture.svg');
-	}
+	padding: 20px;
 }
 
 #uikit-toc {
 	position: fixed;
 	left: 240px; top: 0; bottom: 0;
-	// background: @black-075;
 	background: @black-050;
 	width: 240px;
 	box-sizing: border-box;
 	border-left: 1px solid @black-100;
 	overflow-y: auto;
 }
-
-
 
 // --------------------------------------------------------------
 //	NAVIGATION
@@ -107,8 +93,8 @@
 		a {
 			color: #A2A5A7;
 			&:hover {
-				//color: #fff;
-				background: fadeout(@black-800, 90%);
+				color: #fff;
+				background: fadeout(@black-800, 70%);
 			}
 		}
 
@@ -199,16 +185,13 @@
 
 //	Main Container
 #uikit-content {
-    background: @black-025;
 	padding: 30px 40px 40px 240px+40px;
-    min-height: 100vh;
-    box-sizing: border-box;
 	//max-width: 1060px;
 
 	> header {
 		margin-bottom: 20px;
 		border-bottom: 2px solid @black-100;
-		padding-bottom: 18px;
+		padding-bottom: 15px;
 		.clearfix();
 
 		h1 {
@@ -439,6 +422,7 @@
 //	Code highlighting with preview box
 .uikit-code {
 	box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+	margin-bottom: 1em;
 
 	.highlight {
 		margin-bottom: 0;
@@ -458,97 +442,6 @@
 	}
 }
 
-// ---------------------------------------------------------------
-//	PAGE: Code & preview new
-// ---------------------------------------------------------------
-.uikit-unit {
-    display: flex;
-    flex-wrap: wrap;
-    .-text {
-        flex-grow: 1;
-        margin-right: 32px;
-        margin-top: 16px;
-        width: ~"calc(100% - 400px)";
-    }
-    margin-bottom: 32px;
-}
-.uikit-example {
-    .-container {
-        display: flex;
-        width: 300px;
-        background: white;
-        padding: 16px;
-        position: relative;
-        .-code {
-            display: none;
-            margin-right: 16px;
-            background: white;
-            width: 600px;
-            pre {
-                max-height: none; /* pre has a max-height in core's all.css */
-            }            
-            .highlight {
-                margin-bottom: 0;
-            }
-        }
-    }
-    // the checkbox
-    .-reveal-code {
-        display: none;
-        &:checked + .-container {
-            width: auto;
-            .-code {
-                display: block;
-            }
-            .-preview {
-                margin-bottom: 48px;// ensure the button is outside
-            }
-            .-reveal-code-button {
-                opacity: 1;
-                bottom: 16px;
-                right: 16px;
-                background: @forest-200;
-                &:hover {
-                    background: @forest;
-                }
-            }
-        }
-        
-    }
-    
-    .-preview {
-        width: 300px;
-    }
-    .-reveal-code-button {
-        display: block;
-        padding: 8px;
-        background: @forest;
-        border-radius: 3px;
-        color: white;
-        position: absolute;
-        opacity: 0;
-        transition: opacity 0.2s linear;
-        height: 16px;
-        bottom: -24px;
-        right: 8px;
-        z-index: 1;
-        cursor: pointer;
-        box-shadow: 1px 1px 5px rgba(0,0,0,0.2);
-        &:hover {
-            box-shadow: 2px 2px 5px rgba(0,0,0,0.4);
-        }
-    }
-    
-    &:hover .-reveal-code-button {
-        transition: opacity 0.2s 0.2s linear;
-        opacity: 1;
-    }
-    &:before {
-        content: '';
-        clear: both;
-        display: block;
-    }
-}
 
 
 // ---------------------------------------------------------------

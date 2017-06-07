@@ -44,21 +44,15 @@
     {% endif %}
 {% endfor %}
 
-{% capture example_id %}{% increment page-unique-counter %}{% endcapture %}
 
-<div class="uikit-example">
-    <input type="checkbox" class="-reveal-code" id="example-reveal-code-{{ example_id }}">
-    <div class="-container">
-    <div class="-code">
+    <div class="uikit-code{% unless include.preview == false %} uikit-has-preview{% endunless %}">
 {% highlight html linenos %}
 {% for line in lines %}
 {% assign line = line | strip_newlines %}{% assign linelength = line | size | minus: minindent %}{{ line | slice: minindent, linelength }}{% endfor %}
 {% endhighlight %}
+        {% unless include.preview == false %}
+            <div class="uikit-preview">
+                {{ include.preview | default: include.html }}
+            </div>
+        {% endunless %}        
     </div>
-    <div class="-preview">
-        {{ include.preview | default: include.html }}
-    <label class="-reveal-code-button" for="example-reveal-code-{{ example_id }}">Toggle HTML source</label>
-    </div>
-
-    </div>
-</div>

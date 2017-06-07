@@ -1,31 +1,29 @@
-{% capture counterval %}{% increment page-unique-counter %}{% endcapture %}{% for i in (0..counterval) %}{% capture dev-null %}{% decrement page-unique-counter %}{% endcapture %}{% endfor %}
-
 <!DOCTYPE html>
 <html lang="en-us">
-    {% include head.html %}
+  {% include head.html %}
 
-    <body>
-        {% include sidebar.html %}
+  <body>
+    {% include sidebar.html %}
 
-        <ul id="uikit-toc"></ul>
+    <ul id="uikit-toc"></ul>
 
-        <main id="uikit-content">
-        	<header>
-        	    <h1>{{ page.title }}</h1>
-                {{ page.header_actions }}
-        	</header>
+    <main id="uikit-content">
+    	<header>
+  	    <h1>{{ page.title }}</h1>
+        {{ page.header_actions }}
+    	</header>
 
-        	{% if page.description %}
-        	    <div class="uikit-intro">
-        	        {{ page.description }}
-        	    </div><!-- / intro -->
-        	{% endif %}
+    	{% if page.description %}
+  	    <div class="uikit-intro">
+	        {{ page.description }}
+  	    </div>
+    	{% endif %}
 
-            {{ content }}
-        </main><!-- / content -->
-    </body>
+      {{ content }}
+    </main>
+  </body>
 
-    {% include footer.html %}
+  {% include footer.html %}
 </html>
 
 
