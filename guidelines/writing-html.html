@@ -1,0 +1,99 @@
+---
+layout: default
+title: Writing HTML
+description: We've tried our best to answer any questions when writing HTML. Hopefully this guide makes the task a little less daunting.
+---
+
+<section class="uikit-section">
+  <h2 id="toc-syntax">Syntax</h2>
+  <ul>
+    <li>Use soft tabs with two spaces. They’re the only way to guarantee code renders the same in any environment.</li>
+    <li>Nested elements should be indented once (two spaces).</li>
+    <li>Always use double quotes, never single quotes, on attributes.</li>
+    <li>Don’t include a trailing slash in self-closing elements—the <a href="http://dev.w3.org/html5/spec-author-view/syntax.html#syntax-start-tag">HTML5 spec</a> says they’re optional.</li>
+    <li>Don’t omit optional closing tags (e.g. <code>&lt;/li&gt;</code> or <code>&lt;/body&gt;</code>).</li>
+    <li>In body copy, use smart punctuation. <code>’</code> instead of <code>'</code>. See <a href="http://smartquotesforsmartpeople.com">Smart Quotes for Smart People</a> for more information.</li>
+    <li>When possible, use sentence case.</li>
+  </ul>
+  
+  {% capture html %}
+  <!DOCTYPE html>
+  <html>
+    <head>
+      <title>Page title</title>
+    </head>
+    <body>
+      <img src="images/company-logo.png" alt="Company">
+      <h1 class="hello-world">’ello, world!</h1>
+    </body>
+  </html>
+  {% endcapture %}{% include example.html html=html preview=false %}
+</section>
+
+<section class="uikit-section">
+  <h2 id="toc-attribute-order">Attribute order</h2>
+  <p>HTML attributes should come in this particular order for easier reading of code.</p>
+  <ol>
+    <li><code>class</code></li>
+    <li><code>id</code>, <code>name</code></li>
+    <li><code>data-*</code></li>
+    <li><code>src</code>, <code>for</code>, <code>type</code>, <code>href</code>, <code>value</code></li>
+    <li><code>title</code>, <code>alt</code></li>
+    <li><code>role</code>, <code>aria-*</code></li>
+  </ol>
+  <p>Classes make for great reusable components, so they come first. Ids are more specific and should be used sparingly (e.g., for in-page bookmarks), so they come second.</p>
+  <p>Classes within the class attribute should follow the same declaration order as our Less does.</p>
+
+  {% capture html %}
+  <a class="..." id="..." data-toggle="modal" href="#">
+    Example link
+  </a>
+
+  <input class="form-control" type="text">
+
+  <img src="..." alt="...">
+  {% endcapture %}{% include example.html html=html preview=false %}
+</section>
+
+<section class="uikit-section">
+  <h2 id="toc-boolean-attributes">Boolean attributes</h2>
+  <p>A boolean attribute is one that needs no declared value. XHTML required you to declare a value, but HTML5 has no such requirement.</p>
+  <p>For further reading, consult the <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/common-microsyntaxes.html#boolean-attributes">WhatWG section on boolean attributes</a>:</p>
+  <blockquote>
+    <p>The presence of a boolean attribute on an element represents the true value, and the absence of the attribute represents the false value.</p>
+  </blockquote>
+  <p>If you <em>must</em> include the attribute's value, and <strong>you don't need to</strong>, follow this WhatWG guideline:</p>
+  <blockquote>
+    <p>If the attribute is present, its value must either be the empty string or [...] the attribute's canonical name, with no leading or trailing whitespace.</p>
+  </blockquote>
+  <p><strong>In short, don't add a value.</strong></p>
+  
+  {% capture html %}
+  <input type="text" disabled>
+
+  <input type="checkbox" value="1" checked>
+
+  <select>
+    <option value="1" selected>1</option>
+  </select>
+  {% endcapture %}{% include example.html html=html preview=false %}
+</section>
+
+<section class="uikit-section">
+  <h2 id="toc-reducing-markup">Reducing markup</h2>
+  <p>Whenever possible, avoid superfluous parent elements when writing HTML. Many times this requires iteration and refactoring, but produces less HTML. Take the following example:</p>
+  {% capture html %}
+  <!-- Not so great -->
+  <span class="avatar">
+    <img src="...">
+  </span>
+
+  <!-- Better -->
+  <img class="avatar" src="...">
+  {% endcapture %}{% include example.html html=html preview=false %}
+</section>
+
+<section class="uikit-section">
+  <h2 id="toc-javascript-generated-markup">Javascript-generated markup</h2>
+  <p>Writing markup in a JavaScript file makes the content harder to find, harder to edit, and less performant. Avoid it whenever possible.</p>
+</section>
