@@ -1,0 +1,138 @@
+---
+layout: default
+title: Writing Less
+description: We've tried our best to answer any questions when writing CSS / Less. Hopefully this guide makes the task a little less daunting.
+---
+
+<section class="uikit-section">
+  <h2 id="toc-syntax">Syntax</h2>
+  <ul>
+    <li>Use soft tabs with two spaces. They're the only way to guarantee code renders the same in any environment.</li>
+    <li>When grouping selectors, keep individual selectors to a single line.</li>
+    <li>Include one space before the opening brace of declaration blocks for legibility.</li>
+    <li>Place closing braces of declaration blocks on a new line.</li>
+    <li>Include one space after <code>:</code> for each declaration.</li>
+    <li>Each declaration should appear on its own line for more accurate error reporting.</li>
+    <li>End all declarations with a semi-colon. The last declaration's is optional, but your code is more error prone without it.</li>
+    <li>Comma-separated property values should include a space after each comma (e.g., <code>box-shadow</code>).</li>
+    <li>Don't include spaces after commas <em>within</em> <code>rgb()</code>, <code>rgba()</code>, <code>hsl()</code>, <code>hsla()</code>, or <code>rect()</code> values. This helps differentiate multiple color values (comma, no space) from multiple property values (comma with space).</li>
+    <li>Don't prefix property values or color parameters with a leading zero (e.g., <code>.5</code> instead of <code>0.5</code> and <code>-.5px</code> instead of <code>-0.5px</code>).</li>
+    <li>Use our pre-defined color variables instead of hard-coding hex values.</li>
+    <li>Quote attribute values in selectors, e.g., <code>input[type="text"]</code>. <a href="http://mathiasbynens.be/notes/unquoted-attribute-values#css">They’re only optional in some cases</a>, and it’s a good practice for consistency.</li>
+    <li>Avoid specifying units for zero values, e.g., <code>margin: 0;</code> instead of <code>margin: 0px;</code>.</li>
+  </ul>
+  <p>Questions on the terms used here? See the <a href="http://en.wikipedia.org/wiki/Cascading_Style_Sheets#Syntax">syntax section of the Cascading Style Sheets article</a> on Wikipedia.</p>
+  
+  {% capture html %}
+  /* Bad CSS */
+  .selector, .selector-secondary, .selector[type=text] {
+      padding:15px;
+      margin:0px 0px 15px;
+    background-color:rgba(0, 0, 0, 0.5);
+    box-shadow:0px 1px 2px #CCC,inset 0 1px 0 #FFFFFF
+  }
+
+  /* Good CSS */
+  .selector,
+  .selector-secondary,
+  .selector[type="text"] {
+    padding: 15px;
+    margin-bottom: 15px;
+    background-color: rgba(0,0,0,.5);
+    box-shadow: 0 1px 2px #ccc, inset 0 1px 0 #fff;
+  }
+  {% endcapture %}{% include example.html html=html preview=false %}
+</section>
+
+<section class="uikit-section">
+  <h2 id="toc-declaration-order">Declaration Order</h2>
+  <p>Related property declarations should be grouped together following the order:</p>
+  <ol>
+    <li>Positioning</li>
+    <li>Box model</li>
+    <li>Typographic</li>
+    <li>Visual</li>
+  </ol>
+  <p>Positioning comes first because it can remove an element from the normal flow of the document and override box model related styles. The box model comes next as it dictates a component's dimensions and placement.</p>
+  <p>Everything else takes place <em>inside</em> the component or without impacting the previous two sections, and thus they come last.</p>
+  <p>For a complete list of properties and their order, please see <a href="http://twitter.github.com/recess">Recess</a>.</p>
+  
+  {% capture html %}
+  .declaration-order {
+    /* Positioning */
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 100;
+
+    /* Box-model */
+    display: block;
+    float: right;
+    width: 100px;
+    height: 100px;
+
+    /* Typography */
+    font: normal 13px "Helvetica Neue", sans-serif;
+    line-height: 1.5;
+    color: #333;
+    text-align: center;
+
+    /* Visual */
+    background-color: #f5f5f5;
+    border: 1px solid #e5e5e5;
+    border-radius: 3px;
+
+    /* Misc */
+    opacity: 1;
+  }
+  {% endcapture %}{% include example.html html=html preview=false %}
+</section>
+
+<section class="uikit-section">
+  <h2 id="toc-shorthand-notation">Shorthand Notation</h2>
+  <p>Strive to limit use of shorthand declarations to instances where you must explicitly set all the available values. Common overused shorthand properties include:</p>
+  <ul>
+    <li><code>padding</code></li>
+    <li><code>margin</code></li>
+    <li><code>font</code></li>
+    <li><code>background</code></li>
+    <li><code>border</code></li>
+    <li><code>border-radius</code></li>
+  </ul>
+  <p>We don't often need to set all the values a shorthand property represents. For example, HTML headings only set top and bottom margin, so when necessary, only override those two values. Excessive use of shorthand properties often leads to sloppier code with unnecessary overrides and unintended side effects.</p>
+  <p>The Mozilla Developer Network has a great article on <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Shorthand_properties">shorthand properties</a> for those unfamiliar with notation and behavior.</p>
+  
+  {% capture html %}
+  /* Bad example */
+  .element {
+    margin: 0 0 10px;
+    background: red;
+    background: url("image.jpg");
+    border-radius: 3px 3px 0 0;
+  }
+
+  /* Good example */
+  .element {
+    margin-bottom: 10px;
+    background-color: red;
+    background-image: url("image.jpg");
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+  }
+  {% endcapture %}{% include example.html html=html preview=false %}
+</section>
+
+<section class="uikit-section">
+  <h2 id="toc-editor-preferences">Editor preferences</h2>
+  <p>Set your editor to the following settings to avoid common code inconsistencies and dirty diffs:</p>
+  <ul>
+    <li>Use soft-tabs set to two spaces.</li>
+    <li>Trim trailing white space on save.</li>
+    <li>Set encoding to UTF-8.</li>
+    <li>Add new line at end of files.</li>
+  </ul>
+  <p>Consider documenting and applying these preferences to your project's <code>.editorconfig</code> file. For an example, see <a href="https://github.com/twbs/bootstrap/blob/master/.editorconfig">the one in Bootstrap</a>. Learn more <a href="http://editorconfig.org">about EditorConfig</a>.</p>
+</section>
+
