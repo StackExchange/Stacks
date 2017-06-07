@@ -1,3 +1,3 @@
 # Stacks
 
-Stacks is the Stack Overflow’s Pattern Design Library.
+Stacks is Stack Overflow’s Pattern Design Library.
