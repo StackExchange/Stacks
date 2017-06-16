@@ -7,17 +7,17 @@ description: We've tried our best to answer any questions when writing CSS / Les
 <section class="uikit-section">
   <h2 id="toc-syntax">Syntax</h2>
   <ul>
-    <li>Use soft tabs with two spaces. They're the only way to guarantee code renders the same in any environment.</li>
-    <li>When grouping selectors, keep individual selectors to a single line.</li>
+    <li>Use soft tabs with two spaces. They’re the only way to guarantee code renders the same in any environment.</li>
+    <li>When grouping selectors, keep individual selectors on their own line.</li>
     <li>Include one space before the opening brace of declaration blocks for legibility.</li>
     <li>Place closing braces of declaration blocks on a new line.</li>
     <li>Include one space after <code>:</code> for each declaration.</li>
     <li>Each declaration should appear on its own line for more accurate error reporting.</li>
-    <li>End all declarations with a semi-colon. The last declaration's is optional, but your code is more error prone without it.</li>
+    <li>End all declarations with a semi-colon. The last declaration’s is optional, but your code is more error prone without it.</li>
     <li>Comma-separated property values should include a space after each comma (e.g., <code>box-shadow</code>).</li>
-    <li>Don't include spaces after commas <em>within</em> <code>rgb()</code>, <code>rgba()</code>, <code>hsl()</code>, <code>hsla()</code>, or <code>rect()</code> values. This helps differentiate multiple color values (comma, no space) from multiple property values (comma with space).</li>
-    <li>Don't prefix property values or color parameters with a leading zero (e.g., <code>.5</code> instead of <code>0.5</code> and <code>-.5px</code> instead of <code>-0.5px</code>).</li>
-    <li>Use our pre-defined color variables instead of hard-coding hex values.</li>
+    <li>Include spaces after commas <em>within</em> <code>rgb()</code>, <code>rgba()</code>, <code>hsl()</code>, <code>hsla()</code>, or <code>rect()</code> values.</li>
+    <li>Prefix property values or color parameters with a leading zero (e.g., <code>.5</code> should be <code>0.5</code> and <code>-.5px</code> should be <code>-0.5px</code>).</li>
+    <li>Use our pre-defined color variables instead of hard-coding hex values where possible.</li>
     <li>Quote attribute values in selectors, e.g., <code>input[type="text"]</code>. <a href="http://mathiasbynens.be/notes/unquoted-attribute-values#css">They’re only optional in some cases</a>, and it’s a good practice for consistency.</li>
     <li>Avoid specifying units for zero values, e.g., <code>margin: 0;</code> instead of <code>margin: 0px;</code>.</li>
   </ul>
@@ -28,7 +28,7 @@ description: We've tried our best to answer any questions when writing CSS / Les
   .selector, .selector-secondary, .selector[type=text] {
       padding:15px;
       margin:0px 0px 15px;
-    background-color:rgba(0, 0, 0, 0.5);
+    background-color:rgba(0,0,0,.5);
     box-shadow:0px 1px 2px #CCC,inset 0 1px 0 #FFFFFF
   }
 
@@ -38,7 +38,7 @@ description: We've tried our best to answer any questions when writing CSS / Les
   .selector[type="text"] {
     padding: 15px;
     margin-bottom: 15px;
-    background-color: rgba(0,0,0,.5);
+    background-color: rgba(0, 0, 0, 0.5);
     box-shadow: 0 1px 2px #ccc, inset 0 1px 0 #fff;
   }
   {% endcapture %}{% include example.html html=html preview=false %}
