@@ -1,0 +1,309 @@
+//
+//  STACK OVERFLOW
+//
+//  GRID
+//
+//  TABLE OF CONTENTS
+//  • VARIABLES
+//  • MIXINS
+//  • GRID ELEMENTS
+//  • GRID SPACING
+//  • MODIFICATIONS
+//
+//  ============================================================================
+//  $   VARIABLES
+//  ----------------------------------------------------------------------------
+@grid-cols: 16;    //  Desired grid columns
+
+
+//  ============================================================================
+//  $   MIXINS
+//  ============================================================================
+//  --  FIXED COLUMN WIDTHS
+//  ----------------------------------------------------------------------------
+.grid-columns(@num, @count: 1) when (@count =< @num) {
+  > .-cell-@{count} {
+    .flex(0 0 auto);
+    flex-basis: (@count * 100% / @num);
+    max-width: (@count * 100% / @num);
+  }
+
+  .grid-columns(@num, (@count + 1));
+}
+
+//  --  GRID GUTTERS
+//  ============================================================================
+//      We need two mixins to properly generate grid gutters:
+//
+//      [1]  Adjusts the fixed column max-width / flex-basis if gutters are present.
+//      [2]  Generate the desired gutters.
+//
+//  ----------------------------------------------------------------------------
+//      [1] Adjust width / flex-basis numbers
+//
+//      HOW IT WORKS:
+//      A quick primer on how this mixin works. The TL;DR is we' using a mixin
+//      guard to creating a loop that'll create all the desired `> .-cell-@{count}`
+//      classes.
+//
+//      The three mixin parameters are:
+//        - @spacing: the desired distance our gutters should be
+//        - @num: the number at which we should stop our loop
+//        - @count: the current column number
+//
+//      The other bit is the mixin guard portion:
+//
+//          when (@count =< @num)
+//
+//      This checks if we should run the mixin. Using a comparison operator,
+//      it's checking to see if the current @count is equal to (=) or less
+//      than (<) the desired @num total. If it is, run the mixin.
+//
+//      Next the mixin runs as normal. Using the @cell-width variable, we
+//      calculate the cell's width. We do this here because we need to use the
+//      CSS calc function and this makes the code a little prettier. Using the
+//      variable, we then update the fixed cell's flex-basis and width.
+//
+//      Finally we call for the mixin again within itself, assigning a new
+//      @count value: the current value + 1. This then fires off the mixin
+//      again, creating a loop until we've generated updated widths for all
+//      of our desired @num.
+//
+//  ----------------------------------------------------------------------------
+.grid-column-spacing(@spacing, @num: @grid-cols, @count: 1) when (@count =< @num) {
+  @cell-width: @count * 100% / @num;
+  @cell-spacing: @spacing * 2;
+
+  > .-cell-@{count} {
+    margin: @spacing;
+    flex-basis: calc(~"@{cell-width} - @{cell-spacing}");
+    max-width: calc(~"@{cell-width} - @{cell-spacing}");
+  }
+
+  .grid-column-spacing(@spacing, @num, (@count + 1));
+}
+
+//  ----------------------------------------------------------------------------
+//      2.  Generate the desired gutters
+//          We halve the spacing value because the spacing value should be the
+//          total space between cells--not the totall applied to each cell,
+//          which would effectively double the desired total.
+//  ----------------------------------------------------------------------------
+.grid-spacing(@spacing) {
+  margin: -(@spacing / 2);
+
+  //  --  FLUID CELLS
+  > .-cell {
+    margin: @spacing / 2;
+  }
+
+  //  --  FIXED WIDTH CELLS
+  //      Now we call for the above mixin [1] to make sure we adjust the default
+  //      widths for the new gutters.
+  .grid-column-spacing(@spacing / 2);
+}
+
+
+//  --  VENDOR SUPPORT
+//  ============================================================================
+//      These mixins are used to add all required vendor prefixes for all
+//      supported browsers. We currently only support the current browser
+//      versions plus the previous version. IE11 is the current exception.
+//      If you need to provide older support, consult the following documents:
+//
+//      Flexbugs: A community-curated list of flexbox issues (mainly IE)
+//      https://github.com/philipwalton/flexbugs
+//
+//      A Guide to Flexbox -- CSS-Tricks.com
+//      https://css-tricks.com/snippets/css/a-guide-to-flexbox/
+//
+//      Flexplorer -- A free Flexbox generator
+//      http://bennettfeely.com/flexplorer/
+//
+//  ----------------------------------------------------------------------------
+//  --  FLEXBOX CONTAINER
+//      Use this on the wrapping parent container on items you want to flex.
+//  ----------------------------------------------------------------------------
+.flexbox() {
+  display: -webkit-flex;
+  display: flex;
+}
+
+//  ----------------------------------------------------------------------------
+//  --  FLEX VALUES
+//      If not set, the default is "1 0 auto". This is shorthand for flex-grow,
+//      flex-shrink, and flex-basis combined. The second and third parameters
+//      are optional. Per Chris Coyier on CSS-Tricks.com, it is recommended
+//      that the shorthand is used over individual properties.
+//
+//      Note that in IE10, the default value is "0 0 auto".
+//  ----------------------------------------------------------------------------
+.flex(@values: 1 0 auto) {
+  -webkit-flex: @values;
+          flex: @values;
+}
+
+//  ----------------------------------------------------------------------------
+//  --  FLEX ORDER
+//      By default items are laid out per their DOM order. The order property
+//      can be used to change the order in which they appear in the container.
+//  ----------------------------------------------------------------------------
+.flex-order(@values) {
+  -webkit-order: @values;
+          order: @values;
+}
+
+//  ----------------------------------------------------------------------------
+//  --  JUSTIFY CONTENT
+//      The default value for this is "flex-start". This property allows you
+//      to change how child items within a parent are positioned.
+//  ----------------------------------------------------------------------------
+.justify-content(@values) {
+  -webkit-justify-content: @values;
+          justify-content: @values;
+}
+
+//  ----------------------------------------------------------------------------
+//  --  FLEX FLOW
+//      This is another shorthand property for flex-direction and flex-wrap.
+//      Default value is "row nowrap".
+//  ----------------------------------------------------------------------------
+.flex-flow(@values: row nowrap) {
+  -webkit-flex-flow: @values;
+          flex-flow: @values;
+}
+
+//  ----------------------------------------------------------------------------
+//  --  ALIGN ITEMS
+//  ----------------------------------------------------------------------------
+.align-items(@values: stretch) {
+  -webkit-align-items: @values;
+          align-items: @values;
+}
+
+
+//  ============================================================================
+//  $   GRID ELEMENTS
+//  ============================================================================
+//      To help simplify our CSS, we create a generic box container. By default
+//      this is a row container, but we can modify the box to become a column.
+//  ----------------------------------------------------------------------------
+.g-box {
+    //  Add box-sizing to anything within the grid
+    &,
+    *,
+    *:after,
+    *:before {
+        box-sizing: border-box;
+    }
+
+    //  Add in the flexbox things for wrapping container
+    .flexbox();
+    .flex();
+    .flex-flow();
+
+    //  Create a generic fluid child cell, but only for direct children
+    > .-cell {
+      .flex(1 0 auto);
+      max-width: 100%;
+    }
+
+    //  Create fixed width cells
+    .grid-columns(@grid-cols);
+}
+
+
+//  ============================================================================
+//  $   GRID SPACING
+//      Insert spaces or gutters in between grid cells
+//  ----------------------------------------------------------------------------
+.g-box {
+  &._sp-2  { .grid-spacing(@su-2); }     //  2px
+  &._sp-4  { .grid-spacing(@su-4); }     //  4px
+  &._sp-8  { .grid-spacing(@su-8); }     //  8px
+  &._sp-12 { .grid-spacing(@su-12); }    //  12px
+  &._sp-16 { .grid-spacing(@su-16); }    //  16px
+  &._sp-24 { .grid-spacing(@su-24); }    //  24px
+  &._sp-32 { .grid-spacing(@su-32); }    //  32px
+  &._sp-48 { .grid-spacing(@su-48); }    //  48px
+  &._sp-64 { .grid-spacing(@su-64); }    //  64px
+}
+
+
+//  ============================================================================
+//  $   MODIFICATIONS
+//      Sometimes you need to adjust how a row or column acts
+//  ----------------------------------------------------------------------------
+.g-box {
+  //  --  Wrap Directions
+  //      For changing the wrapping direction of a parent container
+  //  --------------------------------------------------------------------------
+  &._reverse          { flex-direction: row-reverse;}
+  &._col              { .flex-flow(column nowrap); }
+  &._col._reverse     { flex-direction: column-reverse;}
+  &._wrap             { flex-wrap: wrap; }
+  &._wrap-none        { flex-wrap: nowrap; }
+  &._wrap-reverse     { flex-wrap: wrap-reverse; }
+
+  //  --  Widths
+  //      This applies it to all direct children. Fixed width cells already
+  //      have flex: 0 0 auto; applied to them.
+  //  --------------------------------------------------------------------------
+  &._fl-none {
+    > .-cell {
+      .flex(0 auto);
+    }
+  }
+
+  //  --  Alignment
+  //      For positioning items within parent container
+  //  --------------------------------------------------------------------------
+  //  ._jc- == justify-content
+  //  Defines the child alignment along the parent's main axis
+  &._jc-start         { .justify-content(flex-start); }   //  Default value
+  &._jc-center        { .justify-content(center); }
+  &._jc-end           { .justify-content(flex-end); }
+  &._jc-sp-around     { .justify-content(space-around); }
+  &._jc-sp-between    { .justify-content(space-between); }
+
+  //  ._ai- == align-items
+  //  Defines the default behavior for how child items align along the parent's
+  //  cross axis. Think of it the cross-axis for justify-content.
+  &._ai-start         { .align-items(flex-start); }
+  &._ai-center        { .align-items(center); }
+  &._ai-end           { .align-items(flex-end); }
+  &._ai-stretch       { .align-items(stretch); }         //  Default value
+  &._ai-baseline      { .align-items(baseline); }
+
+  //  ._ac- == align-content
+  //  Aligns the container's lines when there is extra space in the cross-axis.
+  //  Note that this only works when a parent container has more than one line.
+  &._ac-start         { align-content: flex-start; }
+  &._ac-center        { align-content: center; }
+  &._ac-end           { align-content: flex-end; }
+  &._ac-stretch       { align-content: stretch; }        //  Default value
+  &._ac-sp-around     { align-content: space-around; }
+  &._ac-sp-between    { align-content: space-between; }
+
+
+  //  --------------------------------------------------------------------------
+  //  $$  CELLS
+  //      Items which apply only to child cells
+  //  ==========================================================================
+  > .-cell {
+    //  --  Widths
+    &._fl-none        { .flex(0 auto); }
+
+    //  --  Alignment
+    &._as-auto        { align-self: auto; }
+    &._as-start       { align-self: flex-start; }
+    &._as-center      { align-self: center; }
+    &._as-end         { align-self: flex-end; }
+    &._as-stretch     { align-self: stretch; }
+    &._as-baseline    { align-self: baseline; }
+
+    //  --  Ordering
+    &._first          { .flex-order(-1); }
+    &._last           { .flex-order(1); }
+  }
+}

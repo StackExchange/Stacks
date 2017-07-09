@@ -15,6 +15,8 @@
 @import 'utilities.less';
 @import 'syntax.less';
 
+@import "grid-proposed";
+
 *,
 *:before,
 *:after { box-sizing: content-box; } // i had to overwrite this, because it was coming from careers-grid.less
@@ -159,7 +161,7 @@
 	li li li a { padding-left: 60px; }
 	li li li li a { padding-left: 80px; }
 	li li li li li a { padding-left: 100px; }
-	
+
 	+ #uikit-content {
 		padding-left: 240px + 240px + 40px;
 	}
@@ -323,7 +325,7 @@
 // ---------------------------------------------------------------
 
 //	Preview Box
-.uikit-preview {
+.stacks-preview {
 	border-radius: 2px;
 	border: 1px solid @black-200;
 	box-shadow: 0 1px 4px rgba(0,0,0,0.1);
@@ -431,12 +433,12 @@
 		overflow: scroll;
 	}
 
-	.uikit-preview {
+	.stacks-preview {
 		border-radius: 0 0 2px 2px;
 		box-shadow: none;
 		border-top: 0;
 	}
-	
+
 	pre {
 		max-height: none; /* pre has a max-height in core's all.css */
 	}
@@ -620,101 +622,60 @@
 //	PAGE: Grid
 // ---------------------------------------------------------------
 //  Used to showcase grid layouts and cells
-@grid-core-background:      @orange-050;
-@grid-core-border:          @orange-100;
-@grid-careers-background:   @blue-050;
-@grid-careers-border:       @blue-100;
+@grid-background:            @orange-050;
+@grid-cell-background:       @orange-300;
+
 .grid-preview {
-	* { box-sizing: border-box; }
+  font-family: @ff-mono;
+  font-size: @fs-12;
+  color: @black-800;
 
-	.-row,
-    .row {
-        margin-bottom: 1em;
+  &._helper-ac,
+  &._helper-as {
+    .g-box {
+      height: 128px;
+    }
+  }
 
-        .-row,
-        .row {
-            border: 1px solid transparent;
-            margin-bottom: 0;
-            margin-top: -1px;
-            padding: 1.5em;
-        }
+  &._helper-order .grid-wrapper {
+    .-cell:not(._first):not(._last) { opacity: 0.5; }
 
-        > [class*="-col"]:last-of-type > p,
-        > [class*="col-"]:last-of-type > p { border-right: 1px solid transparent; }
+    .g-box._reverse > .-cell { opacity: 1; }
+  }
+
+  .grid-wrapper {
+    margin: @su-24 0;
+    overflow: hidden;
+
+    &:first-of-type { margin-top: 0; }
+    &:last-of-type  { margin-bottom: 0; }
+  }
+
+  .grid-box {
+    .flexbox();
+    .justify-content(center);
+    .align-items(center);
+    height: 100%;
+  }
+
+	.g-box {
+    background-color: @grid-background;
+
+    > .-cell,
+    > [class*="-cell-"] {
+      padding: @su-8;
+      background-color: @grid-cell-background;
     }
 
-    p {
-        margin-bottom: 0;
-        padding: 1em;
-        border: 1px solid transparent;
-        border-right: none;
+    > .g-box {
+      background-color: @grid-cell-background;
 
-        .col1 &,
-        .col-1 & {
-            padding: 0.5em 0.5em 0.75em;
-            code { font-size: 80%; }
-        }
+      > .-cell,
+      > [class*="-cell-"] {
+        background-color: spin(saturate(darken(@grid-cell-background,5%),5%),-5);
+      }
     }
-    code {
-        padding: 0;
-        color: @black-800;
-        background-color: transparent;
-    }
-    &.-core {
-        p,
-        .row {
-            background-color: @grid-core-background;
-            border-color: @grid-core-border;
-        }
-
-        .row > [class*="col-"]:last-of-type > p { border-right-color: @grid-core-border; }
-    }
-    &.-careers {
-        p,
-        .-row .-row {
-            background-color: @grid-careers-background;
-            border-color: @grid-careers-border;
-        }
-
-        .-row > [class*="-col"]:last-of-type > p { border-right-color: @grid-careers-border; }
-    }
-
-	.g-row,
-	.g-column {
-		padding: 1em;
-		width: 100%;
-		background-color: @orange-050;
-
-		[class^="g-col"] {
-			font-family: @code-font-family;
-			color: @black-800;
-			width: auto;
-			margin: 0.5em;
-			background-color: @orange-300;
-
-			> div {
-				padding: 1em;
-				width: 100%;
-				border: 1px solid @orange-050; 
-			}
-
-			> .g-row {
-				background-color: @orange-300;
-				[class^="g-col"] {
-					background-color: @orange-500;
-					> div { border-color: @orange-300; }
-				}
-			}
-		}
-	}
-	.g-row + .g-column { margin-top: 2em; }
-
-	.g-row.jc-sp-between .g-col4 {
-		flex-basis: calc(~"33.3333% - 2em");
-		max-width: calc(~"33.3333% - 2em");
-		padding: 1em;
-		> div { height: 42px; }
-	}
+  }
 }
 
 
@@ -795,7 +756,7 @@
 	.code-purple { background: @code-purple; }
 	.code-teal { background: @code-teal; }
 	.code-red { background: @code-red; }
-	
+
 	.orange-900 { background: @orange-900; }
 	.orange-800 { background: @orange-800; }
 	.orange-700 { background: @orange-700; }
@@ -807,7 +768,7 @@
 	.orange-100 { background: @orange-100; }
 	.orange-050 { background: @orange-050; }
 	.orange { background: @orange; }
-	
+
 	.black-900 { background: @black-900; }
 	.black-800 { background: @black-800; }
 	.black-750 { background: @black-750; }
@@ -824,7 +785,7 @@
 	.black-050 { background: @black-050; }
 	.black-025 { background: @black-025; }
 	.black { background: @black; }
-	
+
 	.blue-900 { background: @blue-900; }
 	.blue-800 { background: @blue-800; }
 	.blue-700 { background: @blue-700; }
@@ -836,7 +797,7 @@
 	.blue-100 { background: @blue-100; }
 	.blue-050 { background: @blue-050; }
 	.blue { background: @blue; }
-	
+
 	.powder-900 { background: @powder-900; }
 	.powder-800 { background: @powder-800; }
 	.powder-700 { background: @powder-700; }
@@ -849,7 +810,7 @@
 	.powder-050 { background: @powder-050; }
 	.powder-025 { background: @powder-025; }
 	.powder { background: @powder; }
-	
+
 	.green-900 { background: @green-900; }
 	.green-800 { background: @green-800; }
 	.green-700 { background: @green-700; }
@@ -862,7 +823,7 @@
 	.green-050 { background: @green-050; }
 	.green-025 { background: @green-025; }
 	.green { background: @green; }
-	
+
 	.forest-900 { background: @forest-900; }
 	.forest-800 { background: @forest-800; }
 	.forest-700 { background: @forest-700; }
@@ -874,7 +835,7 @@
 	.forest-100 { background: @forest-100; }
 	.forest-050 { background: @forest-050; }
 	.forest { background: @forest; }
-	
+
 	.yellow-900 { background: @yellow-900; }
 	.yellow-800 { background: @yellow-800; }
 	.yellow-700 { background: @yellow-700; }
@@ -886,7 +847,7 @@
 	.yellow-100 { background: @yellow-100; }
 	.yellow-050 { background: @yellow-050; }
 	.yellow { background: @yellow; }
-	
+
 	.red-900 { background: @red-900; }
 	.red-800 { background: @red-800; }
 	.red-700 { background: @red-700; }
@@ -1004,7 +965,7 @@ body.composer-on {
 // ---------------------------------------------------------------
 //	PAGE: Form
 // ---------------------------------------------------------------
-.uikit-preview {
+.stacks-preview {
 	> .img-upload,
 	> .tag-editor,
 	> .input-group,
@@ -1012,7 +973,7 @@ body.composer-on {
 	> .button-group,
 	> .option-toggle,
 	> .header-title { width: 75%; }
-} 
+}
 
 
 // ---------------------------------------------------------------
