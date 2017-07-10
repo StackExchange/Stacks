@@ -93,6 +93,7 @@
   margin: -(@spacing / 2);
 
   //  --  FLUID CELLS
+  > .g-box,
   > .-cell {
     margin: @spacing / 2;
   }
@@ -202,7 +203,11 @@
     .flex();
     .flex-flow();
 
-    //  Create a generic fluid child cell, but only for direct children
+    //  --  CELLS
+    //      This creates a eneric fluid child cell, but only for direct children.
+    //      To help reduce on required class names (i.e. .g-box .-cell), when a
+    //      box is nested within another, let it act like a fluid cell.
+    > .g-box,
     > .-cell {
       .flex(1 0 auto);
       max-width: 100%;
@@ -249,7 +254,8 @@
   //      This applies it to all direct children. Fixed width cells already
   //      have flex: 0 0 auto; applied to them.
   //  --------------------------------------------------------------------------
-  &._fl-none {
+  &._fl-0 {
+    > .g-box,
     > .-cell {
       .flex(0 auto);
     }
@@ -292,7 +298,12 @@
   //  ==========================================================================
   > .-cell {
     //  --  Widths
-    &._fl-none        { .flex(0 auto); }
+    &._fl-0            { .flex(0 auto); }
+    &._fl-1            { .flex(1 auto); }
+    &._fl-2            { .flex(2 auto); }
+    &._fl-3            { .flex(3 auto); }
+    &._fl-4            { .flex(4 auto); }
+    &._fl-5            { .flex(5 auto); }
 
     //  --  Alignment
     &._as-auto        { align-self: auto; }

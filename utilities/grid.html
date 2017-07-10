@@ -163,23 +163,23 @@ description: The Stacks grid system, based on Flexbox, provides a flexible scaff
     <div class="uikit-code uikit-has-preview">
 {% highlight html linenos %}
 <div class="g-box">
-    <div class="g-box -cell-11">
+    <div class="g-box">
         <div class="-cell">...</div>
         <div class="-cell">...</div>
     </div>
-    <div class="-cell">...</div>
-    <div class="-cell">...</div>
+    <div class="-cell-2">...</div>
+    <div class="-cell-2">...</div>
 </div>
 {% endhighlight %}
         <div class="stacks-preview grid-preview">
             <div class="grid-wrapper">
                 <div class="g-box _sp-24">
-                    <div class="g-box -cell-11">
+                    <div class="g-box">
                         <div class="-cell"><div class="grid-box">cell</div></div>
                         <div class="-cell"><div class="grid-box">cell</div></div>
                     </div>
-                    <div class="-cell"><div class="grid-box">cell</div></div>
-                    <div class="-cell"><div class="grid-box">cell</div></div>
+                    <div class="-cell-2"><div class="grid-box">cell</div></div>
+                    <div class="-cell-2"><div class="grid-box">cell</div></div>
                 </div>
             </div>
         </div>
@@ -426,32 +426,69 @@ description: The Stacks grid system, based on Flexbox, provides a flexible scaff
         </div>
     </div>
 
-    <h3 id="grid-helpers-width-none">Cell Width: No Flex</h3>
-    <p>This sets the <code>flex-grow</code> cell attribute to <code>0</code>. Normally this value is set to <code>1</code>. This means that a cell's width will be determined only by its content. It will not try to fill the remaining space. This can be applied to either a <code>.g-box</code> container or a <code>.-cell</code> / <code>.-cell-[X]</code> container. When applied to a <code>.g-box</code> container, it applies to all child cells. When applied to a <code>.-cell</code> container, it applies only for that cell.</p>
+    <h3 id="grid-helpers-width-none">Cell Width: Flex Grow</h3>
+    <p>These modifying classes alter the <code>flex-grow</code> property. The default value is <code>1</code>.</p>
+    <p>On parent containers, you can add <code>._fl-0</code>, which will apply to all child cells within it. You can also modify individual cells with the following classes: <code>._fl-0</code>, <code>._fl-1</code>, <code>._fl-2</code>, <code>._fl-3</code>, <code>._fl-4</code>, and <code>._fl-5</code>. What a non-zero number means is you are telling flexbox how large that cell should be in relation to all other cells within that parent.</p>
     <div class="uikit-code uikit-has-preview">
 {% highlight html linenos %}
-<div class="g-box _fl-none">
+<div class="g-box _fl-0">
     <div class="-cell">...</div>
     <div class="-cell">...</div>
 </div>
 <div class="g-box">
-    <div class="-cell _fl-none">...</div>
+    <div class="-cell _fl-0">...</div>
     <div class="-cell">...</div>
+    <div class="-cell _fl-2">...</div>
+</div>
+<div class="g-box">
+    <div class="-cell _fl-0">...</div>
     <div class="-cell">...</div>
+    <div class="-cell _fl-3">...</div>
+</div>
+<div class="g-box">
+    <div class="-cell _fl-0">...</div>
+    <div class="-cell">...</div>
+    <div class="-cell _fl-4">...</div>
+</div>
+<div class="g-box">
+    <div class="-cell _fl-0">...</div>
+    <div class="-cell">...</div>
+    <div class="-cell _fl-5">...</div>
 </div>
 {% endhighlight %}
         <div class="stacks-preview grid-preview">
             <div class="grid-wrapper">
-                <div class="g-box _sp-24 _fl-none">
-                    <div class="-cell"><div class="grid-box">cell</div></div>
-                    <div class="-cell"><div class="grid-box">cell</div></div>
+                <div class="g-box _sp-24 _fl-0">
+                    <div class="-cell"><div class="grid-box">._fl-0 .-cell</div></div>
+                    <div class="-cell"><div class="grid-box">._fl-0 .-cell</div></div>
                 </div>
             </div>
             <div class="grid-wrapper">
                 <div class="g-box _sp-24">
-                    <div class="-cell _fl-none"><div class="grid-box">cell</div></div>
-                    <div class="-cell"><div class="grid-box">cell</div></div>
-                    <div class="-cell"><div class="grid-box">cell</div></div>
+                    <div class="-cell _fl-0"><div class="grid-box">._fl-0</div></div>
+                    <div class="-cell"><div class="grid-box">._fl-1</div></div>
+                    <div class="-cell _fl-2"><div class="grid-box">._fl-2</div></div>
+                </div>
+            </div>
+            <div class="grid-wrapper">
+                <div class="g-box _sp-24">
+                    <div class="-cell _fl-0"><div class="grid-box">._fl-0</div></div>
+                    <div class="-cell"><div class="grid-box">._fl-1</div></div>
+                    <div class="-cell _fl-3"><div class="grid-box">._fl-3</div></div>
+                </div>
+            </div>
+            <div class="grid-wrapper">
+                <div class="g-box _sp-24">
+                    <div class="-cell _fl-0"><div class="grid-box">._fl-0</div></div>
+                    <div class="-cell"><div class="grid-box">._fl-1</div></div>
+                    <div class="-cell _fl-4"><div class="grid-box">._fl-4</div></div>
+                </div>
+            </div>
+            <div class="grid-wrapper">
+                <div class="g-box _sp-24">
+                    <div class="-cell _fl-0"><div class="grid-box">._fl-0</div></div>
+                    <div class="-cell"><div class="grid-box">._fl-1</div></div>
+                    <div class="-cell _fl-5"><div class="grid-box">._fl-5</div></div>
                 </div>
             </div>
         </div>
