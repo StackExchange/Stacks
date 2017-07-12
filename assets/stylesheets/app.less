@@ -10,12 +10,13 @@
 @import "https://cdn.sstatic.net/Sites/stackoverflow/all.css";				// 	Core
 // @import "https://cdn.sstatic.net/Shared/Docs/docs.css";						//  Documentation
 
-@import 'vars.less';
-@import 'mixins.less';
-@import 'utilities.less';
-@import 'syntax.less';
+@import "base/vars.less";
+@import "base/mixins.less";
+@import "base/utilities.less";
+@import "syntax.less";
 
 @import "grid-proposed";
+@import "forms-proposed";
 
 *,
 *:before,
@@ -384,7 +385,7 @@
 
 //	Code highlighting
 .highlight {
-	font-family: @code-font-family;
+	font-family: @ff-mono;
 	border: 1px solid @black-200;
 	border-radius: 2px;
 	margin: 0;
@@ -731,12 +732,12 @@
 						width: 50px;
 					}
 					&.less {
-						font-family: @code-font-family;
+						font-family: @ff-mono;
 						width: 140px;
 					}
 					&.value {
 						display: none;
-						font-family: @code-font-family;
+						font-family: @ff-mono;
 						font-size: 12px;
 
 						&.hex {
@@ -827,18 +828,6 @@
 	.green-025 { background: @green-025; }
 	.green { background: @green; }
 
-	.forest-900 { background: @forest-900; }
-	.forest-800 { background: @forest-800; }
-	.forest-700 { background: @forest-700; }
-	.forest-600 { background: @forest-600; }
-	.forest-500 { background: @forest-500; }
-	.forest-400 { background: @forest-400; }
-	.forest-300 { background: @forest-300; }
-	.forest-200 { background: @forest-200; }
-	.forest-100 { background: @forest-100; }
-	.forest-050 { background: @forest-050; }
-	.forest { background: @forest; }
-
 	.yellow-900 { background: @yellow-900; }
 	.yellow-800 { background: @yellow-800; }
 	.yellow-700 { background: @yellow-700; }
@@ -899,7 +888,7 @@ body.composer-on {
 						cursor: pointer;
 
 						small {
-							font-family: @code-font-family;
+							font-family: @ff-mono;
 							display: block;
 							opacity: 0.75;
 							font-size: 11px;
@@ -960,7 +949,7 @@ body.composer-on {
 
 	&.uikit-font-monospace {
 		span {
-			font-family: @code-font-family;
+			font-family: @ff-mono;
 		}
 	}
 }
