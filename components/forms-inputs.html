@@ -1,0 +1,194 @@
+<section id="inputs" class="uikit-section">
+    <h2 class="toc-basic-styles">Inputs</h2>
+    <p>Text inputs are used to gather various forms of freeform data. They should <em>always</em> be paired with a label. Placeholder text should be used <em>as a content prompt only, <strong>not as a label.</strong></em></p>
+
+    <h3>Basic Input</h3>
+    <div class="uikit-code uikit-has-preview">
+{% highlight html linenos %}
+<label for="example-item" class="-cell f-label">Label</label>
+<input class="-cell f-input" id="example-item" type="text" placeholder="e.g. Why are there 5 bars in the Stack Overflow glyph?" />
+{% endhighlight %}
+        <div class="stacks-preview">
+            <form class="g-box _col _sp-16">
+                <div class="g-box _col _sp-4">
+                    <label for="example-item" class="-cell f-label">Question title</label>
+                    <input class="-cell f-input" id="example-item" type="text" placeholder="e.g. Why are there 5 bars in the Stack Overflow glyph?" />
+                </div>
+                <div class="g-box _col _sp-4">
+                    <label for="example-item" class="-cell f-label">Tags</label>
+                    <input class="-cell f-input" id="example-item" type="text" placeholder="e.g. css, c#, less" disabled />
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <h3 id="input-states">Input States</h3>
+    <p>In cases when you would like validation states attached to an input, you will need to wrap the input with <code>.-row</code> div so the icon can be placed correctly.</p>
+
+    <h4>Warning</h4>
+    <div class="uikit-code uikit-has-preview">
+{% highlight html linenos %}
+<div class="g-box _col _sp-4 has-warning">
+    <label for="example-warning" class="-cell f-label">Username</label>
+    <div class="g-box">
+        <input class="-cell f-input" id="example-warning" type="text" name="" />
+        <span class="-icon"></span>
+    </div>
+    <p class="-cell -message">Caps lock is on!</p>
+</div>
+{% endhighlight %}
+        <div class="stacks-preview">
+            <form>
+                <div class="g-box _col _sp-4 has-warning">
+                    <label for="example-warning" class="-cell f-label">Username</label>
+                    <div class="g-box">
+                        <input class="-cell f-input" id="example-warning" type="text" name="" />
+                        <span class="-icon"></span>
+                    </div>
+                    <p class="-cell -message">Caps lock is on!</p>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <h4>Error</h4>
+    <div class="uikit-code uikit-has-preview">
+{% highlight html linenos %}
+<div class="g-box _col _sp-4 has-error">
+    <label for="example-error" class="-cell f-label">Username</label>
+    <div class="g-box">
+        <input class="-cell f-input" id="example-error" type="text" name="" />
+        <span class="-icon"></span>
+    </div>
+    <p class="-cell -message">That username is already taken.</p>
+</div>
+{% endhighlight %}
+        <div class="stacks-preview">
+            <form>
+                <div class="g-box _col _sp-4 has-error">
+                    <label for="example-error" class="-cell f-label">Username</label>
+                    <div class="g-box">
+                        <input class="-cell f-input" id="example-error" type="text" name="" />
+                        <span class="-icon"></span>
+                    </div>
+                    <p class="-cell -message">That username is already taken.</p>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <h4>Success</h4>
+    <div class="uikit-code uikit-has-preview">
+{% highlight html linenos %}
+<div class="g-box _col _sp-4 is-success">
+    <label for="example-success" class="-cell f-label">Username</label>
+    <div class="g-box">
+        <input class="-cell f-input" id="example-success" type="text" name="" />
+        <span class="-icon"></span>
+    </div>
+    <p class="-cell -message">Congrats! That name is available.</p>
+</div>
+{% endhighlight %}
+        <div class="stacks-preview">
+            <form>
+                <div class="g-box _col _sp-4 is-success">
+                    <label for="example-success" class="-cell f-label">Username</label>
+                    <div class="g-box">
+                        <input class="-cell f-input" id="example-success" type="text" name="" />
+                        <span class="-icon"></span>
+                    </div>
+                    <p class="-cell -message">Congrats! That name is available.</p>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <h3>Input Sizes</h3>
+    <p>These sizes apply not only to <code>.f-input</code>, but also to <code>.f-label</code>, <code>.f-select</code>, and <code>.f-description</code>.</p>
+    <div class="uikit-code uikit-has-preview">
+{% highlight html linenos %}
+<label for="example-item" class="-cell f-label _fs-12">Label</label>
+<input class="-cell f-input _fs-12" id="example-item" type="text" placeholder="e.g. Why are there 5 bars in the Stack Overflow glyph?" />
+...
+<label for="example-item" class="-cell f-label">Label</label>
+<input class="-cell f-input" id="example-item" type="text" placeholder="e.g. Why are there 5 bars in the Stack Overflow glyph?" />
+...
+<label for="example-item" class="-cell f-label _fs-17">Label</label>
+<input class="-cell f-input _fs-17" id="example-item" type="text" placeholder="e.g. Why are there 5 bars in the Stack Overflow glyph?" />
+...
+<label for="example-item" class="-cell f-label _fs-24">Label</label>
+<input class="-cell f-input _fs-24" id="example-item" type="text" placeholder="e.g. Why are there 5 bars in the Stack Overflow glyph?" />
+{% endhighlight %}
+        <div class="stacks-preview">
+            <form class="g-box _col _sp-16">
+                <div class="g-box _col _sp-4">
+                    <label for="example-item" class="-cell f-label _fs-12">Small Label (12px)</label>
+                    <input class="-cell f-input _fs-12" id="example-item" type="text" placeholder="e.g. Why are there 5 bars in the Stack Overflow glyph?" />
+                </div>
+                <div class="g-box _col _sp-4">
+                    <label for="example-item" class="-cell f-label">Default Label (13px)</label>
+                    <input class="-cell f-input" id="example-item" type="text" placeholder="e.g. Why are there 5 bars in the Stack Overflow glyph?" />
+                </div>
+                <div class="g-box _col _sp-4">
+                    <label for="example-item" class="-cell f-label _fs-17">Medium Label (17px)</label>
+                    <input class="-cell f-input _fs-17" id="example-item" type="text" placeholder="e.g. Why are there 5 bars in the Stack Overflow glyph?" />
+                </div>
+                <div class="g-box _col _sp-4">
+                    <label for="example-item" class="-cell f-label _fs-24">Large Label (24px)</label>
+                    <input class="-cell f-input _fs-24" id="example-item" type="text" placeholder="e.g. Why are there 5 bars in the Stack Overflow glyph?" />
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <h3>Textareas</h3>
+    <p>Textareas are used for multi-line content areas.</p>
+    <div class="uikit-code uikit-has-preview">
+{% highlight html linenos %}
+<form>
+    <div class="g-box _col _sp-4">
+        <label class="-cell f-label" for="example-item">Question body</label>
+        <textarea class="-cell f-textarea" id="example-item" placeholder="e.g. The Stack Overflow glyph used to have 6 bars, but now…"></textarea>
+    </div>
+</form>
+{% endhighlight %}
+        <div class="stacks-preview">
+            <form>
+                <div class="g-box _col _sp-4">
+                    <label class="-cell f-label" for="example-item">Question body</label>
+                    <textarea class="-cell f-textarea" id="example-item" placeholder="e.g. The Stack Overflow glyph used to have 6 bars, but now…"></textarea>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+
+<section id="description-copy" class="uikit-section">
+    <h2>Description Copy</h2>
+    <p>When a label or input needs further copy to explain itself sufficiently. This text should be placed directly next to the item it is providing further detail about.</p>
+
+    <h4>Copy Style</h4>
+    <div class="uikit-code uikit-has-preview">
+{% highlight html linenos %}
+<input type="text" id="example-item" class="f-input" placeholder="e.g. Why are there 5 bars in the Stack Overflow glyph?" />
+<p class="f-description">Questions which can have definitive answers are much more likely to answered.</p>
+{% endhighlight %}
+        <div class="stacks-preview">
+            <form>
+                <div class="g-box _col">
+                    <div class="g-box _col">
+                        <label for="example-item" class="-cell f-label">Question title</label>
+                        <p class="-cell f-description"><strong>NOTE:</strong> Opinion-related questions will must likely be closed.</p>
+                    </div>
+                    <div class="g-box _col _sp-4">
+                        <input type="text" id="example-item" class="-cell f-input" placeholder="e.g. Why are there 5 bars in the Stack Overflow glyph?" />
+                        <p class="-cell f-description">Questions which can have definitive answers are much more likely to answered.</p>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <h4>Copy Sizes</h4>
+    <p>The description copy size can be adjusted using the modifying classes outlined within the about <a href="#sizes">input sizes</a> section.</p>
+</section>

@@ -3,52 +3,96 @@
 //  FORMS
 //
 //  TABLE OF CONTENTS
-//  • VARIABLES
-//  • BASE STYLES
-//  • SPECIFIC STYLES
+//  • UNIVERSAL PROPERTIES
+//    - Layout
+//    - Font Styles
+//  • Inputs
+//    - Base Style
+//    - Interaction States
+//    - Textareas
+//    - Select Menus
+//    - File Upload
+//    - Checkboxes & Radios
+//  • LABELS
+//    - Base Style
+//    - Style Modifications
+//    - Status Flag
+//  • TYPE STYLES
+//  • LABELS
 //
 //  ============================================================================
-//  $ VARIABLES
+//  $   UNIVERSAL RESETS
+//      Various properties we need to reset to make everything better.
 //  ----------------------------------------------------------------------------
-@f-padding:                @su-8 @su-16;
-@f-font-size:              @fs-13;
-@f-line-height:            @lh-6;
-@f-color:                  @black-700;
-@f-border:                 @black-150;
-@f-placeholder-color:      @black-150;
-
-@f-border_focused:         @blue-500;
-@f-shadowInner_focused:    @black-050;
-@f-shadowDrop_focused:     fade(@f-border_focused,50%);
-
-
+input,
+input[type="radio"],
+input[type="checkbox"] {
+  margin: unset;
+}
 //  ============================================================================
 //  $   UNIVERSAL PROPERTIES
 //      These are properties which are universally applied to the various
 //      form elements.
 //  ----------------------------------------------------------------------------
+//  $$  LAYOUT
+//  ----------------------------------------------------------------------------
 .f-label,
 .f-input,
 .f-select {
-  //    Now let's reset any previous values that were set.
+  //  [1] Reset previous styles
   min-height: auto;
   margin: 0;
 
-  //    New styles
+  //  [2] Set new properties
   box-sizing: border-box;
   display: inline-flex;
+}
+
+//  $$  FONT STYLES
+//  ----------------------------------------------------------------------------
+.f-label,
+.f-input,
+//  -- TEMPORARY
+textarea.f-input,
+input[type="text"].f-input,
+input[type="password"].f-input,
+input[type="number"].f-input,
+input[type="email"].f-input,
+input[type="url"].f-input,
+input[type="search"].f-input,
+input[type="tel"].f-input,
+input[type="datetime"].f-input,
+//  -- END TEMPORARY
+.f-select > select,
+.f-description {
   font-size: @fs-13;
   line-height: @lh-6;
-  color: @f-color;
+  color: @fc-dark;
+
+  //  --  SIZES
+  //  --------------------------------------------------------------------------
+  &._fs-12  { font-size: @fs-12; }
+  &._fs-17  { font-size: @fs-17; }
+  &._fs-24  { font-size: @fs-24; }
 }
 
 
 //  ============================================================================
-//  $   INPUTS
+//  $  INPUTS
 //  ============================================================================
-//  --  BASE STYLES
+//  $$  BASE STYLE
 //  ----------------------------------------------------------------------------
-.f-input {
+.f-input,
+//  Replace these before implementing. TEMPORARY
+textarea.f-input,
+input[type="text"].f-input,
+input[type="password"].f-input,
+input[type="number"].f-input,
+input[type="email"].f-input,
+input[type="url"].f-input,
+input[type="search"].f-input,
+input[type="tel"].f-input,
+input[type="datetime"].f-input {
   padding: @su-8 @su-12;
   border: 1px solid @black-150;
   border-radius: 0;
@@ -59,389 +103,452 @@
   //  --  PLACEHOLDER
   //  --------------------------------------------------------------------------
   &::-webkit-input-placeholder {
-    color: @f-placeholder-color;
+    color: @black-150;
   }
   &::-moz-placeholder { // FF 18+
-    color: @f-placeholder-color;
+    color: @black-150;
     opacity: 1; // yeap, we need that for firefox
   }
   &:-ms-input-placeholder { // IE
-    color: @f-placeholder-color;
+    color: @black-150;
   }
   &::-ms-input-placeholder { // Edge
-    color: @f-placeholder-color;
+    color: @black-150;
   }
   &::placeholder {
-    color: @f-placeholder-color;
-  }
-
-  //  --  STATES
-  //  --------------------------------------------------------------------------
-  //  :hover
-  &:hover {
-    border-color: fade(@f-border_focused,50%);
-    box-shadow: inset 0 0 2px darken(@f-shadowInner_focused,10%), 0 0 2px fade(@f-shadowDrop_focused,20%);
-  }
-
-  //  :focused
-  &:focus {
-    outline: 0;
-    border-color: @f-border_focused;
-    box-shadow: inset 0 0 4px @f-shadowInner_focused, 0 0 8px @f-shadowDrop_focused;
-  }
-
-  //  --  DISABLED / READONLY STATE
-  &[disabled],
-  &[read-only] {
-    border-color: @black-075;
-    box-shadow: inset 0 0 2px fade(@black-350,10%);
-    background-color: @bgc-lightest;
-    color: @black-350;
-  }
-  &[disabled], &.is-disabled {
-      background-image: url("../../Img/forms/icon-disabled.svg"), none;
-      background-repeat: no-repeat;
-      background-position: right @su-12 center;
-      cursor: not-allowed;
+    color: @black-150;
   }
 }
+
+//  $$  STATES
+//      The many states for inputs and select menus.
+//  ----------------------------------------------------------------------------
+.f-input,
+.f-select > select {
+  //  Hover
+  &:hover {
+    border-color: fade(@blue-500,50%);
+    box-shadow: inset 0 0 2px @black-150, 0 0 2px fade(@blue-500,70%);
+  }
+
+  //  Focus
+  &:focus {
+    outline: 0;
+    border-color: @blue-500;
+    box-shadow: inset 0 0 4px @black-050, 0 0 8px fade(@blue-500,50%);
+  }
+
+  //  Disabled, Read-only
+  &[disabled],
+  &[read-only] {
+    border-color: @brc-lighter;
+    box-shadow: inset 0 0 2px fade(@black-350,10%);
+    background-color: @bgc-lightest;
+    color: @fc-light;
+
+    &:hover {
+      border-color: @brc-lightest;
+      box-shadow: none;
+    }
+  }
+
+  //  Disabled
+  &[disabled] {
+    background-image: url("../../Img/forms/icon-disabled.svg");
+    background-repeat: no-repeat;
+    background-position: right @su-12 center;
+    cursor: not-allowed;
+  }
+}
+
+//  $$  CONNECTED INPUTS
+//      To visually connect inputs together
+//  ----------------------------------------------------------------------------
+.f-input-connect {
+  padding: @su-8 @su-12;
+  line-height: @lh-6;
+
+  //  When we want the gray background
+  &._fill {
+    border: 1px solid @black-150;
+    border-left-width: 0;
+    border-right-width: 0;
+    background-color: @bgc-lightest;
+    color: @fc-medium;
+
+    &._first {
+      border-left-width: 1px;
+    }
+    &._last {
+      border-right-width: 1px;
+    }
+  }
+
+  //  If we want to connect a btn, don't round all the corners
+  &.btn._last {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    color: @white;
+  }
+
+  //  Make labels white-space
+  .f-label {
+    white-space: nowrap;
+  }
+}
+
+//  --  FORM VALIDATION STATES
+//      Validation states will need applied at the wrapping container level.
+//  ----------------------------------------------------------------------------
+.g-box {
+  //  Universal styles
+  &.has-warning,
+  &.has-error,
+  &.is-success {
+    .f-input,
+    .f-select > select {
+      background-position: right @su-12 center;
+      background-repeat: no-repeat;
+    }
+    .f-select > select {
+      background-position: right @su-24 center;
+    }
+  }
+
+  //  --  WARNING
+  &.has-warning {
+    .f-input,
+    .f-select > select {
+      border-color: mix(@yellow-500,@orange-600);
+      background-image: url("../../Img/forms/icon-warning.svg"), none;
+
+      &:hover {
+        border-color: lighten(mix(@yellow-500,@orange-600),10%);
+        box-shadow: inset 0 0 1px @black-100, 0 0 2px @yellow-200;
+      }
+      &:focus {
+        border-color: saturate(mix(@yellow-500,@orange-600),10%);
+        box-shadow: inset 0 0 4px @black-050, 0 0 4px @yellow-200;
+      }
+    }
+
+    .-message {
+      color: darken(saturate(mix(@yellow-500,@orange-600),120%),10%);
+    }
+  }
+
+  //  --  ERROR
+  &.has-error {
+    .f-input,
+    .f-select > select {
+      border-color: @red-400;
+      background-image: url("../../Img/forms/icon-error.svg"), none;
+
+      &:hover {
+        border-color: @red-300;
+        box-shadow: inset 0 0 1px @black-100, 0 0 2px @red-100;
+      }
+      &:focus {
+        border-color: @red-500;
+        box-shadow: inset 0 0 4px @black-050, 0 0 4px @red-200;
+      }
+    }
+
+    .-message {
+      color: @red-500;
+    }
+  }
+
+  //  --  SUCCESS
+  &.is-success {
+    .f-input,
+    .f-select select {
+      border-color: @green-400;
+      background-image: url("../../Img/forms/icon-success.svg"), none;
+
+      &:hover {
+        border-color: @green-300;
+        box-shadow: inset 0 0 1px @black-100, 0 0 2px @green-100;
+      }
+      &:focus {
+        border-color: @green-500;
+        box-shadow: inset 0 0 4px @black-050, 0 0 4px @green-200;
+      }
+    }
+
+    .-message {
+      color: darken(@green-500,5%);
+    }
+  }
+
+  //  --  DISABLED
+  &.is-disabled {
+    opacity: 0.75;
+    cursor: not-allowed;
+
+    .f-select > select {
+      &:before,
+      &:after { opacity: 0.3; }
+    }
+  }
+}
+
+
+//  $$  TEXTAREAS
+//  ----------------------------------------------------------------------------
+textarea.f-input {
+  padding-top: @su-12;
+  padding-bottom: @su-12;
+  height: auto;
+  resize: vertical;
+}
+
+//  $$  SELECT MENUS
+//  ----------------------------------------------------------------------------
+.f-select {
+  position: relative;
+
+  //  --  MENU ARROWS
+  //      To customize the visual appearance of the select menu arrows, we need
+  //      to recreate them on the wrapping .f-select div.
+  //  --------------------------------------------------------------------------
+  &:before,
+  &:after {
+    content: "";
+    position: absolute;
+    right: @su-12;
+    pointer-events: none;
+
+    border-width: 3px;
+    border-style: solid;
+    border-color: @black-700 transparent;
+  }
+  &:before {
+    top: calc(~"50% - 6px");
+    border-top-width: 0;
+    border-bottom-width: 5px;
+  }
+  &:after {
+    top: calc(~"50% + 1px");
+    border-top-width: 5px;
+    border-bottom-width: 0;
+  }
+
+  //  --  MENU
+  //      Now we can style the visual appearance of the select menu;
+  //  --------------------------------------------------------------------------
+  > select {
+    //  [1] Reset the appearance
+    .appearance(none);
+
+    //  [2] Update the styles
+    padding: @su-8 @su-32 @su-8 @su-12;
+    width: 100%;
+    border-radius: @br-2;
+    border: 1px solid @black-150;
+    background-color: @white;
+    transition: border-color 300ms @te-smooth, box-shadow 300ms @te-smooth, background-color 300ms @te-smooth;
+  }
+}
+
+//  $$  FILE UPLOAD
+//  ----------------------------------------------------------------------------
+.f-input-file {
+  display: block;
+  margin: 0;
+  padding: @su-8 0;
+  font-size: @fs-11;
+}
+
+//  $$  CHECKBOXES & RADIOS
+//  ----------------------------------------------------------------------------
+//  --  Variables
+@f-bx-focus:           0 0 2em/13 1px fade(@f-bx-bgc-blue, 50%);
+@f-bx-hover:           0 0 2em/13 1px fade(@f-bx-bgc-blue, 70%);
+@f-bx-bgc-blue:        @blue-500;
+@f-bx-gray:            inset 0 0 0 1px @brc-dark;
+@f-bx-blue:            inset 0 0 0 1px @f-bx-bgc-blue;
+@f-bx-blue_light:      inset 0 0 0 1px fade(@f-bx-bgc-blue,50%);
+@f-bx-white:           inset 0 0 0 3px @white;
+@f-bx-clear:           0 0 0 0 fade(@white,0%);
+
+.f-checkbox,
+.f-radio {
+  //  [1]   Check to see if we can use custom styles, if so reset the defaults
+  //  --------------------------------------------------------------------------
+  @supports (appearance: none) or (-webkit-appearance: none) {
+    .appearance(none);
+
+    &::-ms-check {
+      display: none;
+    }
+
+    //  [2]  Now re-style the checkboxes and radios
+    //  ------------------------------------------------------------------------
+    width: @su-16 - 3;
+    height: @su-16 - 3;
+    background-color: @white;
+    transition: background-color 300ms @te-smooth, border-radius 300ms @te-smooth, box-shadow 300ms @te-smooth;
+    outline: 0;
+    cursor: pointer;
+
+    &:focus {
+      outline: 0;
+    }
+
+    //  Sizes
+    &._sm {
+      width: @su-12;
+      height: @su-12;
+    }
+    &._md {
+      width: @su-16;
+      height: @su-16;
+    }
+    &._lg {
+      width: @su-16 + 3;
+      height: @su-16 + 3;
+    }
+    &._xl {
+      width: @su-24;
+      height: @su-24;
+    }
+  }
+}
+
+//  --   Checkboxes
+//  ----------------------------------------------------------------------------
+.f-checkbox {
+  @supports (appearance: none) or (-webkit-appearance: none) {
+    border-radius: 0;
+    box-shadow: @f-bx-clear, @f-bx-gray;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: contain;
+
+    &:checked {
+      border-radius: @br-2 / 1;
+      box-shadow: @f-bx-blue;
+      background-color: @f-bx-bgc-blue;
+      background-image: url("data:image/svg+xml,%3C%3Fxml%20version%3D%221.0%22%20encoding%3D%22UTF-8%22%3F%3E%0A%3Csvg%20width%3D%2212%22%20height%3D%2212%22%20version%3D%221.1%22%20viewBox%3D%220%200%203.1749997%203.175%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cg%20transform%3D%22translate(-61.232%20-118.44)%22%3E%3Cpath%20d%3D%22m63.682%20119.01-1.1328%201.5957-0.63477-0.45117-0.21094%200.29687%200.93164%200.66211%201.3438-1.8906z%22%20fill%3D%22%23fff%22%20fill-rule%3D%22evenodd%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E");
+
+      &:hover {
+        box-shadow: @f-bx-hover;
+        background-color: darken(@f-bx-bgc-blue,5%);
+      }
+    }
+
+    &:hover {
+      box-shadow: @f-bx-hover, @f-bx-blue_light;
+      background-color: fade(@f-bx-bgc-blue,10%);
+    }
+
+    &:active {
+      box-shadow: @f-bx-blue;
+      background-color: fade(@f-bx-bgc-blue,50%);
+    }
+
+    &:focus {
+      box-shadow: @f-bx-focus, @f-bx-gray;
+
+      &:checked,
+      &:active {
+        box-shadow: @f-bx-focus;
+      }
+      &:active {
+        box-shadow: @f-bx-focus, @f-bx-blue;
+      }
+    }
+  }
+}
+
+//  --   Radio Selects
+//  ----------------------------------------------------------------------------
+.f-radio {
+  @supports (appearance: none) or (-webkit-appearance: none) {
+    border-radius: @br-circle;
+    box-shadow: @f-bx-clear, @f-bx-gray, @f-bx-white;
+
+    &:checked {
+      box-shadow: @f-bx-clear, @f-bx-blue, @f-bx-white;
+      background-color: @f-bx-bgc-blue;
+
+      &:hover {
+        box-shadow: @f-bx-hover, @f-bx-blue, @f-bx-white;
+        background-color: darken(@f-bx-bgc-blue,5%);
+      }
+    }
+
+    &:hover {
+      box-shadow: @f-bx-hover, @f-bx-blue_light, @f-bx-white;
+      background-color: fade(@f-bx-bgc-blue,10%);
+    }
+
+    &:active {
+      box-shadow: @f-bx-clear, @f-bx-blue, @f-bx-white;
+      background-color: fade(@f-bx-bgc-blue,50%);
+    }
+
+    &:focus {
+      box-shadow: @f-bx-focus, @f-bx-gray, @f-bx-white;
+
+      &:checked,
+      &:active {
+        box-shadow: @f-bx-focus, @f-bx-blue, @f-bx-white;
+      }
+    }
+  }
+}
+
+
+//  ============================================================================
+//  $  LABELS
+//  ============================================================================
+.f-label {
+  font-weight: 700;
+  cursor: pointer;
+
+  //  $$  STYLE MODIFICATIONS
+  //  --------------------------------------------------------------------------
+  &._muted {
+    color: @fc-light;
+  }
+
+  //  --  Font Weights
+  //      Sometimes it's necessary to adjust a label's default font-weight.
+  &._fw-400 {
+    font-weight: 400;
+  }
+  &._fw-700 {
+    font-weight: 700;
+  }
+
+  //  $$  LABEL STATUS FLAG
+  //  ----------------------------------------------------------------------------
+  //      Is this form item required or optional? Flag the status for users.
+  //      Default styling is optional.
+  > .-status {
+    font-size: 85%;
+    font-style: italic;
+    font-weight: 400;
+    color: @fc-medium;
+
+    &._required {
+      color: @red-400;
+    }
+  }
+}
+
 
 //  ============================================================================
 //  $ TYPE STYLES
 //  ----------------------------------------------------------------------------
-//  -- Labels
-.f-label {
-  display: inline-flex;
-  margin: 0;
-
-  font-size: @f-font-size;
-  line-height: @f-line-height;
-  font-weight: 700;
-  color: @black-700;
-  cursor: pointer;
-
-  //  --  Styles
-  &._muted    { color: @copy_muted-color; }
-
-  //  --  Sizes
-  &._small    { font-size: @f-font-size - 2; }   //  @fs-12
-  &._medium   { font-size: @f-font-size + 4; }   //  @fs-18
-  &._large    { font-size: @f-font-size + 8; }   //  @fs-22
-
-  &._medium,
-  &._large { font-weight: 400; }
-
-  //  Required / Optional within a label
-  .is-required,
-  .is-optional {
-      display: inline-flex;
-      align-self: flex-end;
-      margin-bottom: @su-2;
-      margin-left: @su-8;
-      font-size: 86%;   //  @fs-12
-      font-style: italic;
-      font-weight: 400;
-  }
-}
-
-//  --  Required / Optional
-p,
-span {
-    &.is-required { color: @red-400; }
-    &.is-optional { color: @black-500; }
-}
-
 //  --  Help Text
-.t-help {
-    margin-top: @su-8 - 2;
-    margin-bottom: @su-12;
-    color: @black-400;
-    font-size: @f-font-size - 2;
-    line-height: @lh-4;   // 16px / 13px
-
-    &._medium { font-size: @f-font-size; }
+.f-description {
+  color: @fc-light;
+  line-height: @lh-4;
 }
 
-
-//  ============================================================================
-//  $ INPUT STYLES
-//  ----------------------------------------------------------------------------
-.f-input {
-    //  --  HOVER STATE
-    &:hover {
-        border-color: fade(@f-border_focused,50%);
-        box-shadow: inset 0 0 2px darken(@f-shadowInner_focused,10%), 0 0 2px fade(@f-shadowDrop_focused,20%);
-    }
-
-    //  --  FOCUSED STATE
-    &:focus {
-        border-color: @f-border_focused;
-        box-shadow: inset 0 0 4px @f-shadowInner_focused, 0 0 5px @f-shadowDrop_focused;
-        outline: 0;
-    }
-
-    //  --  DISABLED / READONLY STATE
-    &[disabled], &.is-disabled,
-    &[read-only], &.is-readonly {
-        border-color: @black-075;
-        box-shadow: inset 0 0 3px fade(@black-350,10%);
-        background-color: @black-050;
-        color: @black-400;
-    }
-    &[disabled], &.is-disabled {
-        background-image: url("../../Img/forms/icon-disabled.svg"), none;
-        background-repeat: no-repeat;
-        background-position: right @su-12 center;
-        cursor: not-allowed;
-    }
-
-    //  --  Sizes
-    &._large {
-        padding-top: @su-16;
-        padding-bottom: @su-16;
-        font-size: @f-font-size + 11;  // @fs-25
-    }
-    &._medium {
-        font-size: @f-font-size + 4;   // @fs-18
-    }
-    &._small {
-        padding-left: @su-12;
-        padding-right: @su-12;
-        font-size: @f-font-size - 2;   // @fs-12
-    }
-}
-
-//  $ TEXTAREA
-//  ----------------------------------------------------------------------------
-textarea.f-input {
-    padding: @su-12;
-    height: auto;
-    resize: vertical;
-}
-
-//  $ SELECTS
-//  ----------------------------------------------------------------------------
-.f-select {
-    position: relative;
-    display: inline-flex;
-
-    // Create custom arrows since appearance removes them.
-    &:before,
-    &:after {
-        content: "";
-        position: absolute;
-        right: 0.75em;
-        pointer-events: none;
-
-        border-width: 3px;
-        border-style: solid;
-        border-color: @f-color transparent;
-    }
-    &:before {
-        top: calc(~"50% - 6px");
-        border-top-width: 0;
-        border-bottom-width: 5px;
-    }
-    &:after {
-        top: calc(~"50% + 1px");
-        border-top-width: 5px;
-        border-bottom-width: 0;
-    }
-
-    > select {
-        .appearance(none);
-        width: 100%;
-        padding: @f-padding;
-        padding-right: 33px;
-
-        font-size: @f-font-size;
-        line-height: @f-line-height;
-        color: @f-color;
-        background-color: @white;
-        border: 1px solid @f-border;
-        border-radius: @br-2;
-        transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out, background-color 0.15s ease-in-out;
-
-        &:hover {
-            border-color: fade(@f-border_focused,50%);
-            box-shadow: inset 0 0 2px darken(@f-shadowInner_focused,10%), 0 0 2px fade(@f-shadowDrop_focused,20%);
-        }
-
-        &:focus {
-            border-color: @f-border_focused;
-            box-shadow: inset 0 0 4px @f-shadowInner_focused, 0 0 5px @f-shadowDrop_focused;
-            outline: 0;
-        }
-    }
-
-    //  Disabled State
-    //  You have to apply this to the wrapping div so the arrows look disabled too.
-    &.is-disabled {
-        &:before,
-        &:after { opacity: 0.3; }
-
-        select {
-            color: lighten(@f-color,45%);
-            background-color: @black-050;
-            border-color: lighten(@f-border,10%);
-
-            &:hover {
-                border-color: lighten(@f-border,10%);
-                box-shadow: none;
-            }
-        }
-    }
-}
-
-//  $ FILE UPLOAD INPUT
-//  ----------------------------------------------------------------------------
-.f-input-file {
-    display: block;
-    margin: 0;
-    padding: @su-8 0;
-    font-size: @fs-11;
-}
-
-
-
-//  ============================================================================
-//  $ CHECKBOXES & RADIO SELECTS
-//  ----------------------------------------------------------------------------
-.f-checkbox,
-.f-radio {
-    //  Because we add margins to the checkbox/radio DOM elements in forms.less,
-    //  we need reset those values.
-    //  TO-DO: Remove the old input styles.
-    input[type="radio"],
-    input[type="checkbox"] { margin: 0; }
-
-    .g-col { .flex-flow(column nowrap); }
-
-    //  Column with the checkbox or radio input
-    > .-input {
-        .flex(none);
-        padding-right: @su-8;
-
-        > input {
-            margin: 0;  // Reset browser
-            &[type="checkbox"] { margin-top: @su-2; }
-
-            &:focus { outline: 0; }
-        }
-    }
-
-    //  Remove bold weight on labels
-    .f-label { font-weight: 400; }
-
-    //  Correct margins & paddings
-    .t-help {
-        margin: @su-2 0;
-        padding-right: 1em;
-    }
-
-    //  --  LAYOUTS
-    //  When you have multiple checkbox or radios next to each other, space them out
-    & + & { margin-top: @su-8; }
-
-    //  When you want to pull a checkbox to the right, use the "._end" modifying class
-    //  on the wrapping ".g-row".
-    &._end .g-col { .flex(0 auto); }
-}
-
-
-//  ============================================================================
-//  $ STATES
-//  ----------------------------------------------------------------------------
-.input-group {
-    box-sizing: border-box;
-
-    //  Message (Generic)
-    .message {
-        display: block;
-        margin-bottom: 0;
-        padding-top: @su-8;
-        padding-bottom: @su-8;
-    }
-
-    //  --  STATE BACKGROUNDS
-    &.has-warning,
-    &.has-error,
-    &.is-success {
-        .f-input,
-        .tag-editor,
-        .autocomplete input,
-        .f-select select {
-            background-position: right @su-12 center;
-            background-repeat: no-repeat;
-        }
-        .f-select select { background-position: right @su-24 center; }
-    }
-
-    //  --  WARNING
-    &.has-warning {
-        .f-input,
-        .f-select select {
-            border-color: mix(@yellow-500,@orange-600);
-            background-image: url("../../Img/forms/icon-warning.svg"), none;
-
-            &:hover {
-                border-color: lighten(mix(@yellow-500,@orange-600),10%);
-                box-shadow: inset 0 0 1px @black-100, 0 0 2px @yellow-200;
-            }
-            &:focus {
-                border-color: saturate(mix(@yellow-500,@orange-600),10%);
-                box-shadow: inset 0 0 4px @black-050, 0 0 4px @yellow-200;
-            }
-        }
-        .message { color: mix(@yellow-500,@orange-600); }
-    }
-
-    //  --  ERROR
-    &.has-error {
-        .f-input,
-        .tag-editor,
-        .autocomplete input,
-        .f-select select {
-            border-color: @red-400;
-            background-image: url("../../Img/forms/icon-error.svg"), none;
-
-            &:hover {
-                border-color: @red-300;
-                box-shadow: inset 0 0 1px @black-100, 0 0 2px @red-100;
-            }
-            &:focus {
-                border-color: @red-500;
-                box-shadow: inset 0 0 4px @black-050, 0 0 4px @red-200;
-            }
-        }
-        .message { color: @red-500; }
-    }
-
-    //  --  SUCCESS
-    &.is-success {
-        .f-input,
-        .f-select select {
-            border-color: @green-400;
-            background-image: url("../../Img/forms/icon-success.svg"), none;
-
-            &:hover {
-                border-color: @green-300;
-                box-shadow: inset 0 0 1px @black-100, 0 0 2px @green-100;
-            }
-            &:focus {
-                border-color: @green-500;
-                box-shadow: inset 0 0 4px @black-050, 0 0 4px @green-200;
-            }
-        }
-        .message { color: darken(@green-500,5%); }
-    }
-
-    //  --  DISABLED
-    &.is-disabled {
-        opacity: 0.5;
-        cursor: not-allowed;
-    }
-}
 
 //  ============================================================================
 //  $ INPUT & BUTTON GROUPS
@@ -489,42 +596,6 @@ textarea.f-input {
         }
     }
 
-    //  Input prepends, appends, and connectors use the same grayed out box
-    //  style. This is the univesal style for it.
-    .-fill {
-        position: relative;
-        .flex(none);
-        align-items: center;
-        padding: @f-padding;
-        color: @black-600;
-
-        background-color: @black-050;
-        border: 1px solid @f-border;
-        border-left-width: 0;
-        border-right-width: 0;
-
-        > label {
-            font-size: inherit;
-            line-height: inherit;
-        }
-
-        //  When we don't want borders or backgrounds
-        &._clean {
-            border-color: transparent;
-            background-color: transparent;
-        }
-
-        //  Ordering
-        &.is-first {
-            .flex-order(-1);
-            border-left-width: 1px;
-        }
-        &.is-last {
-            .flex-order(99);
-            border-right-width: 1px;
-        }
-    }
-
     //  If a select menu is directly against a fill, alter the border-radius
     .-fill + .f-select > select {
         border-top-left-radius: 0;
@@ -559,98 +630,146 @@ textarea.f-input {
     //  Applies top border to the button container
     &.has-border {
         padding-top: @su-16 + @su-8;
-        border-top: 1px solid lighten(@f-border,5%);
+        border-top: 1px solid lighten(@brc-light,5%);
     }
 }
 
 
 //  ============================================================================
-//  $ RADIO TOGGLE
+//  $ OPTION TOGGLE
 //  ----------------------------------------------------------------------------
-.f-radio-toggle {
+.f-option-toggle {
+  //  First hide the radio buttons
+  .f-radio {
+    position: absolute;
+    left: -999em;
+    opacity: 0;
+  }
 
-    // Default Blue Theme
-    .f-label {
-        padding: @f-padding;
-        margin-left: -1px; // TGOAS: Prevents any adjacent vertical border from appearing next to selected item
-        margin-right: -1px; // TGOAS: Prevents any adjacent vertical border from appearing next to selected item
-        border: 1px solid @f-border;
-        background-color: @white;
+  //  Next modifictions to option cells
+  .-option {
+    margin-left: -1px;
+    margin-right: -1px;
 
-        font-weight: 400;
-        line-height: @f-line-height;
-        color: @f-color;
-        text-align: center;
+    //  Round the corners on the first and last elements
+    &:first-of-type .f-label {
+      border-radius: @su-2 0 0 @su-2;
+    }
+    &:last-of-type .f-label {
+      border-radius: 0 @su-2 @su-2 0;
+    }
+  }
 
-        transition: all 600ms @te-smooth;
-        cursor: pointer;
+  //  Style the base label
+  .f-label {
+    padding: @su-8 @su-12;
+    border: 1px solid @brc-light;
+    background-color: @white;
+    color: @fc-medium;
+    transition: all 300ms @te-smooth;
+    cursor: pointer;
+
+    &:hover,
+    &:active {
+      color: @fc-dark;
+      box-shadow: 0 0 8px fade(@powder-600,25%);
+      background-color: @powder-025;
+      border-color: @brc-dark;
+      z-index: 1;
+    }
+  }
+
+  //  If the label is selected, style it accordingly.
+  .f-radio:checked + .f-label {
+    z-index: 2;
+    border-color: @powder-200;
+    box-shadow: 0 0 8px fade(@powder-600,10%);
+    background-color: @powder-100;
+    color: @powder-700;
+
+    &:hover,
+    &:active {
+      box-shadow: 0 0 8px fade(@powder-600,25%);
+      border-color: darken(@powder-200,5%);
+      background-color: darken(@powder-100,5%);
+      color: @powder-800;
+    }
+  }
+
+  //  $$  MODIFICATIONS
+  //  --------------------------------------------------------------------------
+  //  --  Primary
+  //      When the toggle is the only one within a view and we want it to be
+  //      visually dominating for the user.
+  &._primary {
+    .f-label:hover,
+    .f-label:active {
+      color: @blue-700;
+      box-shadow: 0 0 8px fade(@blue-500,25%);
+      background-color: @blue-050;
+    }
+
+    .f-radio:checked + .f-label {
+      border-color: @blue-600;
+      box-shadow: 0 0 8px fade(@blue-500,10%);
+      background-color: @blue-500;
+      color: @white;
+
+      &:hover,
+      &:active {
+        border-color: @blue-700;
+        box-shadow: 0 0 8px fade(@blue-500,25%);
+        background-color: @blue-600;
+        color: @blue-050;
+      }
+    }
+  }
+
+  //  --  Switch
+  //      Used when the toggle represents an "on/off" choice for the user. A
+  //      "off" state must be present to use this modifier.
+  &._switch {
+    .f-label:hover,
+    .f-label:active {
+      border-color: @brc-dark;
+      box-shadow: 0 0 8px fade(@black-600,25%);
+      background-color: @bgc-lightest;
+    }
+
+    .f-radio:checked + .f-label {
+      &:not(._off) {
+        border-color: @green-400;
+        box-shadow: 0 0 8px fade(@green-400,10%);
+        background-color: @green-400;
+        color: @white;
 
         &:hover,
-        &:focus,
         &:active {
-            color: darken(@f-color,10%);
-            background-color: @blue-050;
-            border-color: @blue-200;
-            z-index: 1;
+          border-color: @green-500;
+          box-shadow: 0 0 8px fade(@green-400,25%);
+          background-color: @green-500;
+          color: @green-050;
         }
+      }
+
+      //  When the off state is selected, we don't it green. We want it to be
+      //  gray instead.
+      &._off {
+        border-color: @brc-dark;
+        box-shadow: 0 0 8px fade(@black-800,10%);
+        background-color: @bgc-light;
+        color: @fc-dark;
+
+        &:hover,
+        &:active {
+          border-color: @brc-darker;
+          box-shadow: 0 0 8px fade(@black-800,25%);
+          background-color: @bgc-dark;
+          color: darken(@fc-dark,5%);
+        }
+      }
     }
-
-    input[type="radio"] {
-        position: absolute;
-        left: -9999em;
-        opacity: 0;
-
-        &:checked + .f-label {
-            color: @white;
-            background-color: @blue-500;
-            border-color: @blue-500;
-            pointer-events: none;
-
-            position: relative;
-            z-index: 2; // ensure the borders are not visible on :hover
-        }
-    }
-
-    .g-col {
-        &:first-of-type .f-label {
-            margin-left: 0;
-            border-radius: @br-2 0 0 @br-2;
-        }
-        &:last-of-type .f-label {
-            border-radius: 0 @br-2 @br-2 0;
-        }
-    }
-
-    // Muted Green Theme
-    &._muted {
-        .f-label {
-            border: 1px solid @black-150;
-            background-color: @white;
-            color: @black-400;
-
-            &:hover,
-            &:focus,
-            &:active {
-                color: @black-700;
-                background-color: @black-050;
-                border-color: @black-200;
-            }
-        }
-        input[type="radio"] {
-            &:checked + .f-label {
-                color: @white;
-                background-color: @green-400;
-                border-color: @green-400;
-            }
-            &._off {
-                &:checked + .f-label {
-                    color: @black-500;
-                    background-color: @black-100;
-                    border-color: @black-200;
-                }
-            }
-        }
-    }
+  }
 }
 
 //  ============================================================================
@@ -662,8 +781,8 @@ textarea.f-input {
     &.chosen-container-active {
         border-width: 0;
         .chosen-choices {
-            border-color: @f-border_focused;
-            box-shadow: inset 0 0 4px @f-shadowInner_focused, 0 0 5px @f-shadowDrop_focused;
+            border-color: @blue-500;
+            box-shadow: inset 0 0 4px @black-050, 0 0 5px fade(@blue-500,50%);
         }
     }
 
@@ -673,11 +792,11 @@ textarea.f-input {
         min-height: 38px;
         background-image: none;
         border-radius: @br-2;
-        border-color: @f-border;
+        border-color: @brc-light;
 
         &:hover {
-            border-color: fade(@f-border_focused,50%);
-            box-shadow: inset 0 0 2px darken(@f-shadowInner_focused,10%), 0 0 2px fade(@f-shadowDrop_focused,20%);
+            border-color: fade(@blue-500,50%);
+            box-shadow: inset 0 0 2px darken(@black-050,10%), 0 0 2px fade(fade(@blue-500,50%),20%);
         }
     }
 

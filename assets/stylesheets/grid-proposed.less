@@ -13,7 +13,7 @@
 //  ============================================================================
 //  $   VARIABLES
 //  ----------------------------------------------------------------------------
-@grid-cols: 16;    //  Desired grid columns
+@grid-cols: 12;    //  Desired grid columns
 
 
 //  ============================================================================
@@ -23,12 +23,30 @@
 //  ----------------------------------------------------------------------------
 .grid-columns(@num, @count: 1) when (@count =< @num) {
   > .-cell-@{count} {
-    .flex(0 0 auto);
-    flex-basis: (@count * 100% / @num);
+    .flex(0 0 (@count * 100% / @num));
     max-width: (@count * 100% / @num);
   }
 
   .grid-columns(@num, (@count + 1));
+}
+
+//  --  AUTO FIXED WIDTH CELLS
+//      Automatic adjusting width cells are great. And being able to specify a
+//      cell's width is equally amazing. But sometimes you want to be able to
+//      have all cell's within a box container to be the same width. Instead
+//      stating a fixed cell width, apply a modifying to the box container and
+//      all child elements will automatically be sized.
+//  ----------------------------------------------------------------------------
+.grid-box-columns(@num, @count: 1) when (@count =< @num) {
+  &._cell-@{count} {
+    > .g-box,
+    > .-cell {
+      .flex(1 (@count * 100% / @num));
+      max-width: (@count * 100% / @num);
+    }
+  }
+
+  .grid-box-columns(@num, (@count + 1));
 }
 
 //  --  GRID GUTTERS
@@ -72,12 +90,29 @@
 //  ----------------------------------------------------------------------------
 .grid-column-spacing(@spacing, @num: @grid-cols, @count: 1) when (@count =< @num) {
   @cell-width: @count * 100% / @num;
-  @cell-spacing: @spacing * 2;
 
-  > .-cell-@{count} {
-    margin: @spacing;
-    flex-basis: calc(~"@{cell-width} - @{cell-spacing}");
-    max-width: calc(~"@{cell-width} - @{cell-spacing}");
+  &:not(._col) {
+    margin-left: -(@spacing / 2);
+    margin-right: -(@spacing / 2);
+
+    > .-cell-@{count} {
+      margin-left: @spacing / 2;
+      margin-right: @spacing / 2;
+      flex-basis: calc(~"@{cell-width} - @{spacing}");
+      max-width: calc(~"@{cell-width} - @{spacing}");
+    }
+  }
+
+  &._col {
+    margin-top: -(@spacing / 2);
+    margin-bottom: -(@spacing / 2);
+
+    > .-cell-@{count} {
+      margin-top: @spacing / 2;
+      margin-bottom: @spacing / 2;
+      flex-basis: calc(~"@{cell-width} - @{spacing}");
+      max-width: calc(~"@{cell-width} - @{spacing}");
+    }
   }
 
   .grid-column-spacing(@spacing, @num, (@count + 1));
@@ -90,18 +125,37 @@
 //          which would effectively double the desired total.
 //  ----------------------------------------------------------------------------
 .grid-spacing(@spacing) {
-  margin: -(@spacing / 2);
+  //  Default g-box is a row, so apply the margin only on the left and right
+  //  there initially.
+  &:not(._col) {
+    margin-left: -(@spacing / 2);
+    margin-right: -(@spacing / 2);
 
-  //  --  FLUID CELLS
-  > .g-box,
-  > .-cell {
-    margin: @spacing / 2;
+    //  --  FLUID CELLS
+    > .g-box,
+    > .-cell {
+      margin-left: @spacing / 2;
+      margin-right: @spacing / 2;
+    }
+  }
+
+  //  If the g-box is a column is a box though, apply it to the top and bottom
+  &._col {
+    margin-top: -(@spacing / 2);
+    margin-bottom: -(@spacing / 2);
+
+    //  --  FLUID CELLS
+    > .g-box,
+    > .-cell {
+      margin-top: @spacing / 2;
+      margin-bottom: @spacing / 2;
+    }
   }
 
   //  --  FIXED WIDTH CELLS
   //      Now we call for the above mixin [1] to make sure we adjust the default
   //      widths for the new gutters.
-  .grid-column-spacing(@spacing / 2);
+  .grid-column-spacing(@spacing);
 }
 
 
@@ -190,31 +244,43 @@
 //      this is a row container, but we can modify the box to become a column.
 //  ----------------------------------------------------------------------------
 .g-box {
-    //  Add box-sizing to anything within the grid
-    &,
-    *,
-    *:after,
-    *:before {
-        box-sizing: border-box;
-    }
+  //  Add box-sizing to anything within the grid
+  &,
+  *,
+  *:after,
+  *:before {
+      box-sizing: border-box;
+  }
 
-    //  Add in the flexbox things for wrapping container
-    .flexbox();
-    .flex();
-    .flex-flow();
+  //  Add in the flexbox things for wrapping container
+  .flexbox();
+  .flex();
+  .flex-flow();
 
-    //  --  CELLS
-    //      This creates a eneric fluid child cell, but only for direct children.
-    //      To help reduce on required class names (i.e. .g-box .-cell), when a
-    //      box is nested within another, let it act like a fluid cell.
-    > .g-box,
-    > .-cell {
-      .flex(1 0 auto);
-      max-width: 100%;
-    }
+  //  --  GENERIC AUTO WIDTH CELL
+  //      This creates a generic fluid child cell, but only for direct children.
+  //      To help reduce on required class names (i.e. .g-box .-cell), when a
+  //      box is nested within another, we let it act like a cell.
+  > .g-box,
+  > .-cell {
+    .flex(1 auto);
+    max-width: 100%;
+  }
 
-    //  Create fixed width cells
-    .grid-columns(@grid-cols);
+  //  In order for cells to align and justify content, we need to apply a
+  //  display attribute. "inline-flex" gives us the benefits of "flex", but
+  //  acting more like "inline-block".
+  > [class*="-cell"] {
+    display: inline-flex;
+  }
+
+  //  $$  FIXED WIDTH CELLS
+  //  --------------------------------------------------------------------------
+  .grid-columns(@grid-cols);
+
+  //  $$  AUTO FIXED WIDTH CELLS
+  //  --------------------------------------------------------------------------
+  .grid-box-columns(@grid-cols);
 }
 
 
@@ -239,6 +305,8 @@
 //  $   MODIFICATIONS
 //      Sometimes you need to adjust how a row or column acts
 //  ----------------------------------------------------------------------------
+//  --  These items can ONLY apply to box
+//  ----------------------------------------------------------------------------
 .g-box {
   //  --  Wrap Directions
   //      For changing the wrapping direction of a parent container
@@ -255,12 +323,31 @@
   //      have flex: 0 0 auto; applied to them.
   //  --------------------------------------------------------------------------
   &._fl-0 {
+    &,
     > .g-box,
     > .-cell {
       .flex(0 auto);
     }
   }
 
+  //  --  Alignment
+  //      For positioning items within parent container
+  //  --------------------------------------------------------------------------
+  //  ._ac- == align-content
+  //  Aligns the container's lines when there is extra space in the cross-axis.
+  //  Note that this only works when a parent container has more than one line.
+  &._ac-start         { align-content: flex-start; }
+  &._ac-center        { align-content: center; }
+  &._ac-end           { align-content: flex-end; }
+  &._ac-stretch       { align-content: stretch; }        //  Default value
+  &._ac-sp-around     { align-content: space-around; }
+  &._ac-sp-between    { align-content: space-between; }
+}
+
+//  --  These items can apply to both box and child containers
+//  ----------------------------------------------------------------------------
+.g-box,
+.g-box > [class*="-cell"] {
   //  --  Alignment
   //      For positioning items within parent container
   //  --------------------------------------------------------------------------
@@ -280,41 +367,32 @@
   &._ai-end           { .align-items(flex-end); }
   &._ai-stretch       { .align-items(stretch); }         //  Default value
   &._ai-baseline      { .align-items(baseline); }
+}
 
-  //  ._ac- == align-content
-  //  Aligns the container's lines when there is extra space in the cross-axis.
-  //  Note that this only works when a parent container has more than one line.
-  &._ac-start         { align-content: flex-start; }
-  &._ac-center        { align-content: center; }
-  &._ac-end           { align-content: flex-end; }
-  &._ac-stretch       { align-content: stretch; }        //  Default value
-  &._ac-sp-around     { align-content: space-around; }
-  &._ac-sp-between    { align-content: space-between; }
-
-
+//  --  These items can ONLY apply to child containers
+//  ----------------------------------------------------------------------------
+.g-box > [class*="-cell"] {
   //  --------------------------------------------------------------------------
   //  $$  CELLS
   //      Items which apply only to child cells
   //  ==========================================================================
-  > .-cell {
-    //  --  Widths
-    &._fl-0            { .flex(0 auto); }
-    &._fl-1            { .flex(1 auto); }
-    &._fl-2            { .flex(2 auto); }
-    &._fl-3            { .flex(3 auto); }
-    &._fl-4            { .flex(4 auto); }
-    &._fl-5            { .flex(5 auto); }
+  //  --  Widths
+  &._fl-0            { .flex(0 auto); }
+  &._fl-1            { .flex(1 auto); }
+  &._fl-2            { .flex(2 auto); }
+  &._fl-3            { .flex(3 auto); }
+  &._fl-4            { .flex(4 auto); }
+  &._fl-5            { .flex(5 auto); }
 
-    //  --  Alignment
-    &._as-auto        { align-self: auto; }
-    &._as-start       { align-self: flex-start; }
-    &._as-center      { align-self: center; }
-    &._as-end         { align-self: flex-end; }
-    &._as-stretch     { align-self: stretch; }
-    &._as-baseline    { align-self: baseline; }
+  //  --  Alignment
+  &._as-auto        { align-self: auto; }
+  &._as-start       { align-self: flex-start; }
+  &._as-center      { align-self: center; }
+  &._as-end         { align-self: flex-end; }
+  &._as-stretch     { align-self: stretch; }
+  &._as-baseline    { align-self: baseline; }
 
-    //  --  Ordering
-    &._first          { .flex-order(-1); }
-    &._last           { .flex-order(1); }
-  }
+  //  --  Ordering
+  &._first          { .flex-order(-1); }
+  &._last           { .flex-order(1); }
 }
