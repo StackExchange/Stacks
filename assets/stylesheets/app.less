@@ -7,21 +7,11 @@
 // --------------------------------------------------------------
 // @import "http://cdn.sstatic.net/careers/cso/all.min.css";					// 	Careers
 // @import "http://cdn.sstatic.net/careers/less/views/employers.min.css";		//	Careers -- Employers Only
-@import "https://cdn.sstatic.net/Sites/stackoverflow/all.css";				// 	Core
+// @import "https://cdn.sstatic.net/Sites/stackoverflow/all.css";				// 	Core
 // @import "https://cdn.sstatic.net/Shared/Docs/docs.css";						//  Documentation
 
-@import "base/vars.less";
-@import "base/mixins.less";
-@import "base/utilities.less";
+@import "base.less";
 @import "syntax.less";
-
-@import "base/grid";
-@import "components/forms";
-
-*,
-*:before,
-*:after { box-sizing: content-box; } // i had to overwrite this, because it was coming from careers-grid.less
-
 
 
 // --------------------------------------------------------------
@@ -30,7 +20,6 @@
 //	Overwriting some basic styles from SO to make UIkit
 //	prettier. :)
 //---------------------------------------------------------------
-
 .less-error-message {
 	position: fixed;
 	top: 0;
@@ -164,6 +153,7 @@
 	li li li li li a { padding-left: 100px; }
 
 	+ #uikit-content {
+    box-sizing: content-box;
 		padding-left: 240px + 240px + 40px;
     max-width: 800px;
 	}
@@ -190,8 +180,7 @@
 
 //	Main Container
 #uikit-content {
-	padding: 30px 40px 40px 240px+40px;
-	//max-width: 1060px;
+	padding: 30px 40px 40px 280px;
 
 	> header {
 		margin-bottom: 20px;
