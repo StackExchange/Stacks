@@ -1,395 +1,586 @@
 //
+//  STACK OVERFLOW
 //  BUTTONS
 //
 //  TABLE OF CONTENTS
-//  • VARIABLES
 //  • BASE STYLE
-//  • STYLE VARIATIONS
+//  • STYLE MODIFICATIONS
 //  • LAYOUTS & SIZES
 //
 //  ============================================================================
-//  $   VARIABLES
-//      The base styles are set in _var.less. Each community can reset these
-//      variables within their all.less.
-//  ===========================================================================
+//  $   STYLE MIXIN
+//      I know, I know. ANOTHER MIXIN!?! Well we're doing this because we need
+//      to do some checks to make sure we're adding the right CSS properties.
+//      You should never have to use this mixin, so ignore the man behind
+//      the curtain.
+//  ----------------------------------------------------------------------------
+//      There are a couple properties we need to check so that we add the correct
+//      CSS properties. These properties are box-shadow and background-image.
+//      Both are used by a large enough cohort of SE sites that we're writing
+//      a lot of CSS within community websites. To do this we'll create a
+//      style check mixin.
+//
+//      HOW IT WORKS:
+//      TL;DR is we're using a mixin guard to chcek if the variable value is
+//      NOT "none". If it is not this value, then add the desired CSS property.
+//      Otherwise...don't add it.
+//  ----------------------------------------------------------------------------
+.btn-style(@bgc: @btn-bgc, @fc: @btn-fc, @bxis: @btn-bxis, @bxos: @btn-bxos, @bgg: @btn-bgg) {
+  //  If there's an inset box-shadow color…
+  & when (@bxis = true) {
+    box-shadow: inset 0 1px 0 0 lighten(@bgc,20%), 0 0 0 0 fade(@bxos,0%);
+
+    &:hover {
+      box-shadow: inset 0 1px 0 0 lighten(@bgc,10%), 0 0 8px 0 fade(@bxos,30%);
+    }
+    &:focus {
+      box-shadow: inset 0 1px 0 0 lighten(@bgc,10%), 0 0 12px 0 fade(@bxos,50%);
+    }
+    &[disabled] {
+      box-shadow: none;
+    }
+  }
+  //  …else just do the outer box shadow.
+  & when (@bxis = false) {
+    box-shadow: 0 0 0 0 fade(@bxos,0%);
+
+    &:hover {
+      box-shadow: 0 0 8px 0 fade(@bxos,30%);
+    }
+    &:focus {
+      box-shadow: 0 0 12px 0 fade(@bxos,50%);
+    }
+  }
+
+  //  If there's a background-image…
+  & when (iscolor(@bgg)) {
+    background-image: linear-gradient(to bottom, @bgg, @bgc);
+  }
+
+  //  Lastly check the background color to correctly inverse colors
+  & when (lightness(@bgc) >= 45%) {
+    @brc: @fc;
+    border-color: lighten(@brc,20%);
+
+    &:hover {
+      border-color: fade(@brc,5%);
+      background-color: fade(@fc,5%);
+      color: darken(@fc,10%);
+    }
+    &:focus {
+      border-color: fade(@brc,50%);
+      background-color: fade(@bgc,10%);
+    }
+    &[disabled] {
+      border-color: fade(darken(@brc,10%),30%);
+      background-color: fade(desaturate(@bgc,25%),10%);
+    }
+  }
+  & when (lightness(@bgc) < 55%) {
+    @brc: darken(@bgc,10%);
+    border-color: @brc;
+
+    &:hover {
+      border-color: darken(@brc,5%);
+      background-color: darken(@bgc,5%);
+      color: fadeout(@fc,5%);
+    }
+    &:focus {
+      border-color: darken(@brc,10%);
+      background-color: darken(@bgc,10%);
+    }
+    &[disabled] {
+      border-color: fade(darken(@brc,10%),30%);
+      background-color: fade(@bgc,50%);
+    }
+  }
+
+  background-color: @bgc;
+  color: @fc;
+
+  &[disabled] {
+    color: fade(@fc,80%);
+  }
+}
+
+
+//  ============================================================================
 //  $   BASE STYLE
-//  ---------------------------------------------------------------------------
-input[type="submit"],
-input[type="button"],
-button, .button, .btn, [class*="btn-"] {
-    display: inline-block;
-    position: relative;
-    padding: 0.615384615em 1em;
-    vertical-align: middle;
-    min-height: 2.461538462em;
-    box-sizing: border-box;
+//  ----------------------------------------------------------------------------
+.btn {
+  position: relative;
+  padding: @su-8 @su-12;
 
-    font-weight: @btn-font-weight;
-    font-family: inherit;
-    line-height: 1;
-    text-align: center;
+  border-radius: @btn-br;
+  border: 1px solid transparent;
+
+  font-weight: @btn-fw;
+  font-family: inherit;
+  text-decoration: none;
+  transition: all 300ms @te-smooth;
+
+  cursor: pointer;
+  outline: none;
+  touch-action: manipulation; // Not supported in FF and Safari
+
+  &:hover,
+  &:focus {
     text-decoration: none;
-    background-color: transparent;
-    border-radius: @btn-border-radius;
-    border: @btn-border-width solid transparent;
+  }
 
-    cursor: pointer;
+  &:focus {
     outline: none;
-    touch-action: manipulation; // Not supported in FF and Safari
-    transition: all @btn-transition-duration ease-in;
+  }
 
-    &:hover, &:focus {
-        text-decoration: none;
-        transition: all @btn-transition-duration ease-in-out;
-        outline: none;
+  &[disabled] {
+    box-shadow: none;
+    opacity: 1;
+    cursor: default;
+    pointer-events: none;
+
+    &:hover {
+      box-shadow: none;
     }
-
-    &[disabled], &._disabled {
-        cursor: default;
-        pointer-events: none;
-        box-shadow: none;
-        opacity: 1;
-
-        &:hover {
-            cursor: default;
-            box-shadow: none;
-        }
-    }
+  }
 }
 
 //  =============================================================================
 //  $   BUTTON STYLES / TYPES
 //  =============================================================================
+.btn {
+  //  Default Style
+  .btn-style(@btn-bgc, @btn-fc, false, @btn-bxos, @btn-bgg);
+
+  //  Primary Style
+  &._primary {
+    .btn-style(@btn-primary-bgc, @btn-primary-fc, @btn-bxis, @btn-bxos, @btn-primary-bgg);
+  }
+
+  //  Secondary Style
+  &._secondary {
+    .btn-style(@btn-secondary-bgc, @btn-secondary-fc, @btn-bxis, @btn-bxos, @btn-secondary-bgg);
+  }
+
+  //  Confirmation Style
+  &._confirm {
+    .btn-style(@btn-confirm-bgc, @btn-confirm-fc, @btn-bxis, @btn-bxos, @btn-confirm-bgg);
+  }
+
+  //  Warning Style
+  &._warning {
+    .btn-style(@btn-warning-bgc, @btn-warning-fc, @btn-bxis, @btn-bxos, @btn-warning-bgg);
+  }
+}
+
+//  $$  Default Button Style
+//      The default style makes it look like a generic text link.
+//  -----------------------------------------------------------------------------
+// .btn {
+//   background-color: fade(@btn-bgc,0%);
+//   color: @btn-fc;
+//
+//   &:hover {
+//     box-shadow: 0 0 4px fade(@btn-clr,15%);
+//     background-color: fade(@btn-bgc,5%);
+//   }
+//
+//   &:focus {
+//     border-color: @btn-clr;
+//     box-shadow: 0 0 8px fade(@btn-clr,40%);
+//   }
+//
+//   &[disabled] {
+//     border-color: fade(@btn-clr,10%);
+//     background-color: fade(@btn-bgc,0%);
+//     color: fade(@btn-clr,50%);
+//   }
+// }
+
 //  $$  Primary Button Style
 //  -----------------------------------------------------------------------------
-input[type="submit"],
-input[type="button"],
-button, .button, a.button, a.button:visited,
-.btn {
-    color: @white;
-    background-color: @btn-primary;
-    border-color: darken(@btn-primary,10%);
-    box-shadow: inset 0 1px 0 lighten(@btn-primary,20%);
+// .btn._primary {
+//   background-color: fade(@btn-bgc,0%);
+//   color: @btn-clr;
+//
+//   &:hover {
+//     box-shadow: 0 0 4px fade(@btn-clr,15%);
+//     background-color: fade(@btn-bgc,5%);
+//   }
+//
+//   &:focus {
+//     border-color: @btn-clr;
+//     box-shadow: 0 0 8px fade(@btn-clr,40%);
+//     background-color: fade(@btn-bgc,10%);
+//   }
+//
+//   &[disabled] {
+//     border-color: fade(@btn-clr,10%);
+//     background-color: fade(@btn-bgc,0%);
+//   }
+// }
 
-    &:hover, &:focus {
-        color: fadeout(@white,10%);
-        background-color: darken(@btn-primary,10%);
-        border-color: darken(@btn-primary,20%);
-        box-shadow: inset 0 1px 0 lighten(@btn-primary,10%);
-    }
-    &[disabled], &._disabled {
-        color: @white;
-        background-color: desaturate(lighten(@btn-primary,35%),70%);
-        border-color: desaturate(lighten(@btn-primary,30%),70%);
-    }
-}
+// .btn {
+//     //  --  When you want to turn a clear button red
+//   &.-warning {
+//       color: @btn-warning;
+//       background-color: fade(@btn-warning,0%);
+//       border-color: fade(@btn-warning,0%);
+//
+//       &:hover, &:focus {
+//           color: darken(@btn-warning,10%);
+//           background-color: lighten(@btn-warning,45%);
+//           border-color: lighten(@btn-warning,45%);
+//       }
+//
+//       &[disabled], &._disabled {
+//           color: spin(desaturate(lighten(@btn-warning,15%),95%),5);
+//           background-color: spin(desaturate(lighten(@btn-warning,45%),95%),5);
+//           border-color: spin(desaturate(lighten(@btn-warning,45%),95%),5);
+//       }
+//   }
+//
+//   //  --  When you want to invert the outlined button to white.
+//   //      This is used primarily on darker backgrounds.
+//   &.white, &.-white {
+//       color: @white;
+//       background-color: fade(@white,0%);
+//       border-color: transparent;
+//
+//       &:hover, &:focus {
+//           color: fade(@white,95%);
+//           background-color: fade(@white,5%);
+//           border-color: transparent;
+//       }
+//
+//       &[disabled], &._disabled { opacity: 0.5; }
+//   }
+// }
+
+// .btn--s{
+//   color: @white;
+//   background-color: @btn-primary;
+//   border-color: darken(@btn-primary,10%);
+//   box-shadow: inset 0 1px 0 lighten(@btn-primary,20%);
+//
+//   &:hover, &:focus {
+//       color: fadeout(@white,10%);
+//       background-color: darken(@btn-primary,10%);
+//       border-color: darken(@btn-primary,20%);
+//       box-shadow: inset 0 1px 0 lighten(@btn-primary,10%);
+//   }
+//   &[disabled], &._disabled {
+//       color: @white;
+//       background-color: desaturate(lighten(@btn-primary,35%),70%);
+//       border-color: desaturate(lighten(@btn-primary,30%),70%);
+//   }
+// }
 
 //  -----------------------------------------------------------------------------
 //  $$  Secondary Button Style
 //  -----------------------------------------------------------------------------
-input[type="submit"].btn-secondary,
-input[type="button"].btn-secondary,
-button.btn-secondary,
-.btn-secondary {
-    color: darken(@btn-secondary,50%);
-    background-color: @btn-secondary;
-    border-color: darken(@btn-secondary,20%);
-    box-shadow: inset 0 1px 0 lighten(@btn-secondary,5%);
-
-    &:hover, &:focus {
-        color: darken(@btn-secondary,60%);
-        background-color: darken(@btn-secondary,10%);
-        border-color: darken(@btn-secondary,40%);
-        box-shadow: inset 0 1px 0 @btn-secondary;
-    }
-
-    &[disabled], &._disabled {
-        color: desaturate(darken(@btn-secondary,25%),30%);
-        background-color: spin(desaturate(lighten(@btn-secondary,5%),30%),5);
-        border-color: spin(desaturate(darken(@btn-secondary,5%),30%),5);
-    }
-}
-
-//  -----------------------------------------------------------------------------
-//  $$  Outlined Button Style
-//  -----------------------------------------------------------------------------
-input[type="submit"].btn-outlined,
-input[type="button"].btn-outlined,
-button.btn-outlined,
-.btn-outlined {
-    color: @btn-outlined;
-    background-color: fade(@btn-outlined,0%);
-    border-color: lighten(@btn-outlined,10%);
-    box-shadow: none;
-
-    &:hover, &:focus {
-        color: darken(@btn-outlined,10%);
-        background-color: lighten(@btn-outlined,55%);
-        border-color: @btn-outlined;
-        box-shadow: none;
-    }
-
-    &[disabled], &._disabled {
-        color: spin(desaturate(lighten(@btn-outlined,25%),95%),5);
-        background-color: spin(desaturate(lighten(@btn-outlined,55%),95%),5);
-        border-color: spin(desaturate(lighten(@btn-outlined,45%),95%),10);
-    }
-
-    //  --  When you want to turn the outlined button red
-    &.-warning {
-        color: @btn-warning;
-        background-color: fade(@btn-warning,0%);
-        border-color: lighten(@btn-warning,10%);
-
-        &:hover, &:focus {
-            color: darken(@btn-warning,10%);
-            background-color: lighten(@btn-warning,45%);
-            border-color: @btn-warning;
-        }
-
-        &[disabled], &._disabled {
-            color: spin(desaturate(lighten(@btn-warning,15%),95%),5);
-            background-color: spin(desaturate(lighten(@btn-warning,45%),95%),5);
-            border-color: spin(desaturate(lighten(@btn-warning,35%),95%),10);
-        }
-    }
-
-    //  --  When you want to invert the outlined button to white.
-    //      This is used primarily on darker backgrounds.
-    &.white, &.-white {
-        color: @white;
-        background-color: fade(@white,0%);
-        border-color: @white;
-
-        &:hover, &:focus {
-            color: fade(@white,95%);
-            background-color: fade(@white,10%);
-            border-color: fade(@white,60%);
-        }
-        &[disabled], &._disabled { opacity: 0.5; }
-    }
-
-    //  --  When you want to invert the outlined button to white.
-    //      This is used primarily on darker backgrounds.
-    &.gray, &.-gray {
-        color: @black-400;
-        background-color: @white;
-        border-color: @black-150;
-
-        &:hover, &:focus {
-            background-color: @black-050;
-        }
-        &[disabled], &._disabled {
-            opacity: 0.5;
-        }
-    }
-
-}
-
-//  -----------------------------------------------------------------------------
-//  $$  Clear Button Style
-//  -----------------------------------------------------------------------------
-input[type="submit"].btn-clear,
-input[type="button"].btn-clear,
-button.btn-clear,
-.btn-clear {
-    color: @btn-clear;
-    background-color: fade(@btn-clear,0%);
-    border-color: transparent;
-    box-shadow: none;
-
-    &:hover, &:focus {
-        color: darken(@btn-clear,10%);
-        background-color: fade(@btn-clear,10%);
-        border-color: transparent;
-        box-shadow: none;
-    }
-
-    &[disabled], &._disabled {
-        color: spin(desaturate(lighten(@btn-clear,25%),95%),5);
-        background-color: spin(desaturate(lighten(@btn-clear,55%),95%),5);
-        border-color: transparent;
-    }
-
-    //  --  When you want to turn a clear button red
-    &.-warning {
-        color: @btn-warning;
-        background-color: fade(@btn-warning,0%);
-        border-color: fade(@btn-warning,0%);
-
-        &:hover, &:focus {
-            color: darken(@btn-warning,10%);
-            background-color: lighten(@btn-warning,45%);
-            border-color: lighten(@btn-warning,45%);
-        }
-
-        &[disabled], &._disabled {
-            color: spin(desaturate(lighten(@btn-warning,15%),95%),5);
-            background-color: spin(desaturate(lighten(@btn-warning,45%),95%),5);
-            border-color: spin(desaturate(lighten(@btn-warning,45%),95%),5);
-        }
-    }
-
-    //  --  When you want to invert the outlined button to white.
-    //      This is used primarily on darker backgrounds.
-    &.white, &.-white {
-        color: @white;
-        background-color: fade(@white,0%);
-        border-color: transparent;
-
-        &:hover, &:focus {
-            color: fade(@white,95%);
-            background-color: fade(@white,5%);
-            border-color: transparent;
-        }
-
-        &[disabled], &._disabled { opacity: 0.5; }
-    }
-}
-
-//  -----------------------------------------------------------------------------
-//  $$  Confirm Button Style
-//  -----------------------------------------------------------------------------
-input[type="submit"].btn-confirm,
-input[type="button"].btn-confirm,
-button.btn-confirm,
-.btn-confirm {
-    color: @white;
-    background-color: @btn-confirm;
-    border-color: darken(@btn-confirm,10%);
-    box-shadow: inset 0 1px 0 lighten(@btn-confirm,20%);
-
-    &:hover, &:focus {
-        color: fadeout(@white,10%);
-        background-color: darken(@btn-confirm,10%);
-        border-color: darken(@btn-confirm,20%);
-        box-shadow: inset 0 1px 0 lighten(@btn-confirm,10%);
-    }
-
-    &[disabled], &._disabled {
-        color: desaturate(lighten(@btn-confirm,15%),25%);
-        background-color: desaturate(lighten(@btn-confirm,30%),20%);
-        border-color: desaturate(lighten(@btn-confirm,25%),25%);
-    }
-}
-
-
-//  -----------------------------------------------------------------------------
-//  $$  Warning Button Style
-//  -----------------------------------------------------------------------------
-input[type="submit"].btn-warning,
-input[type="button"].btn-warning,
-button.btn-warning,
-.btn-warning {
-    color: @white;
-    background-color: lighten(@btn-warning,10%);
-    border-color: darken(@btn-warning,10%);
-    box-shadow: inset 0 1px 0 lighten(@btn-warning,30%);
-
-    &:hover, &:focus {
-        color: fadeout(@white,10%);
-        background-color: @btn-warning;
-        border-color: darken(@btn-warning,20%);
-        box-shadow: inset 0 1px 0 lighten(@btn-warning,10%);
-    }
-
-    &[disabled], &._disabled {
-        color: @white;
-        background-color: desaturate(lighten(@btn-warning,25%),30%);
-        border-color: desaturate(lighten(@btn-warning,25%),50%);
-    }
-}
-
-//  -----------------------------------------------------------------------------
-//  $$  Icon Button Style
-//  -----------------------------------------------------------------------------
-input[type="submit"].btn-icon,
-input[type="button"].btn-icon,
-button.btn-icon,
-.btn-icon {
-    padding: 0;
-    color: inherit;
-    background-color: transparent;
-    border-color: transparent;
-    box-shadow: none;
-
-    &:hover, &:focus {
-        color: inherit;
-        background-color: transparent;
-        border-color: transparent;
-        box-shadow: none;
-    }
-
-    &.-gray {
-        color: @black-500;
-        background-color: @black-100;
-        border-color: @black-300;
-
-        &:hover, &:focus {
-            color: @black-600;
-            background-color: @black-150;
-            border-color: @black-350;
-        }
-    }
-}
-
-//  -----------------------------------------------------------------------------
-//  $$  Loaders
-input[type=submit],
-input[type=button],
-button, .button, a.button, a.button:visited,
-.btn, .btn:visited, .btn-secondary, .btn-outlined, .btn-clear, .btn-confirm, .btn-warning, .btn-icon {
-    &.loading {
-        pointer-events: none;
-
-        &:before {
-            //&:extend(.spinner);
-            float: left;
-            left: -4px;
-            content: "";
-        }
-
-        .btn-secondary&:before,
-        .btn-outlined&:before,
-        .btn-clear&:before {
-            border-top-color: @powder-200;
-            border-right-color: @powder-200;
-            border-bottom-color: @powder-200;
-            border-left-color: @powder-400;
-        }
-    }
-}
-
-//  =============================================================================
-//  $  LAYOUT & SIZES
-//  -----------------------------------------------------------------------------
-input[type="submit"],
-input[type="button"],
-button, .button,
-.btn, [class*="btn-"]  {
-    &._block {
-        display: block;
-        margin-bottom: 0.5em;
-        width: 100%;
-
-        & + & { margin-left: 0; }
-    }
-    &._hide { display: none; }
-    &._show { display: inline-block; }
-
-    &._xlarge  { font-size: ceil(@body-font-size * 1.84); }
-    &._large {
-        padding-left: 2em;
-        padding-right: 2em;
-        font-size: ceil(@body-font-size * 1.38);
-    }
-    &._medium  { font-size: ceil(@body-font-size * 1.15); }
-    &._small   { font-size: ceil(@body-font-size * 0.92); }
-
-    &._left    { float: left; }
-    &._right {
-        float: right;
-        margin-right: 2px;
-        &:first-of-type { margin-right: 0; }
-    }
-}
+// input[type="submit"].btn-secondary,
+// input[type="button"].btn-secondary,
+// button.btn-secondary,
+// .btn-secondary {
+//     color: darken(@btn-secondary,50%);
+//     background-color: @btn-secondary;
+//     border-color: darken(@btn-secondary,20%);
+//     box-shadow: inset 0 1px 0 lighten(@btn-secondary,5%);
+//
+//     &:hover, &:focus {
+//         color: darken(@btn-secondary,60%);
+//         background-color: darken(@btn-secondary,10%);
+//         border-color: darken(@btn-secondary,40%);
+//         box-shadow: inset 0 1px 0 @btn-secondary;
+//     }
+//
+//     &[disabled], &._disabled {
+//         color: desaturate(darken(@btn-secondary,25%),30%);
+//         background-color: spin(desaturate(lighten(@btn-secondary,5%),30%),5);
+//         border-color: spin(desaturate(darken(@btn-secondary,5%),30%),5);
+//     }
+// }
+//
+// //  -----------------------------------------------------------------------------
+// //  $$  Outlined Button Style
+// //  -----------------------------------------------------------------------------
+// input[type="submit"].btn-outlined,
+// input[type="button"].btn-outlined,
+// button.btn-outlined,
+// .btn-outlined {
+//     color: @btn-outlined;
+//     background-color: fade(@btn-outlined,0%);
+//     border-color: lighten(@btn-outlined,10%);
+//     box-shadow: none;
+//
+//     &:hover, &:focus {
+//         color: darken(@btn-outlined,10%);
+//         background-color: lighten(@btn-outlined,55%);
+//         border-color: @btn-outlined;
+//         box-shadow: none;
+//     }
+//
+//     &[disabled], &._disabled {
+//         color: spin(desaturate(lighten(@btn-outlined,25%),95%),5);
+//         background-color: spin(desaturate(lighten(@btn-outlined,55%),95%),5);
+//         border-color: spin(desaturate(lighten(@btn-outlined,45%),95%),10);
+//     }
+//
+//     //  --  When you want to turn the outlined button red
+//     &.-warning {
+//         color: @btn-warning;
+//         background-color: fade(@btn-warning,0%);
+//         border-color: lighten(@btn-warning,10%);
+//
+//         &:hover, &:focus {
+//             color: darken(@btn-warning,10%);
+//             background-color: lighten(@btn-warning,45%);
+//             border-color: @btn-warning;
+//         }
+//
+//         &[disabled], &._disabled {
+//             color: spin(desaturate(lighten(@btn-warning,15%),95%),5);
+//             background-color: spin(desaturate(lighten(@btn-warning,45%),95%),5);
+//             border-color: spin(desaturate(lighten(@btn-warning,35%),95%),10);
+//         }
+//     }
+//
+//     //  --  When you want to invert the outlined button to white.
+//     //      This is used primarily on darker backgrounds.
+//     &.white, &.-white {
+//         color: @white;
+//         background-color: fade(@white,0%);
+//         border-color: @white;
+//
+//         &:hover, &:focus {
+//             color: fade(@white,95%);
+//             background-color: fade(@white,10%);
+//             border-color: fade(@white,60%);
+//         }
+//         &[disabled], &._disabled { opacity: 0.5; }
+//     }
+//
+//     //  --  When you want to invert the outlined button to white.
+//     //      This is used primarily on darker backgrounds.
+//     &.gray, &.-gray {
+//         color: @black-400;
+//         background-color: @white;
+//         border-color: @black-150;
+//
+//         &:hover, &:focus {
+//             background-color: @black-050;
+//         }
+//         &[disabled], &._disabled {
+//             opacity: 0.5;
+//         }
+//     }
+//
+// }
+//
+// //  -----------------------------------------------------------------------------
+// //  $$  Clear Button Style
+// //  -----------------------------------------------------------------------------
+// input[type="submit"].btn-clear,
+// input[type="button"].btn-clear,
+// button.btn-clear,
+// .btn-clear {
+//     color: @btn-clear;
+//     background-color: fade(@btn-clear,0%);
+//     border-color: transparent;
+//     box-shadow: none;
+//
+//     &:hover, &:focus {
+//         color: darken(@btn-clear,10%);
+//         background-color: fade(@btn-clear,10%);
+//         border-color: transparent;
+//         box-shadow: none;
+//     }
+//
+//     &[disabled], &._disabled {
+//         color: spin(desaturate(lighten(@btn-clear,25%),95%),5);
+//         background-color: spin(desaturate(lighten(@btn-clear,55%),95%),5);
+//         border-color: transparent;
+//     }
+//
+//     //  --  When you want to turn a clear button red
+//     &.-warning {
+//         color: @btn-warning;
+//         background-color: fade(@btn-warning,0%);
+//         border-color: fade(@btn-warning,0%);
+//
+//         &:hover, &:focus {
+//             color: darken(@btn-warning,10%);
+//             background-color: lighten(@btn-warning,45%);
+//             border-color: lighten(@btn-warning,45%);
+//         }
+//
+//         &[disabled], &._disabled {
+//             color: spin(desaturate(lighten(@btn-warning,15%),95%),5);
+//             background-color: spin(desaturate(lighten(@btn-warning,45%),95%),5);
+//             border-color: spin(desaturate(lighten(@btn-warning,45%),95%),5);
+//         }
+//     }
+//
+//     //  --  When you want to invert the outlined button to white.
+//     //      This is used primarily on darker backgrounds.
+//     &.white, &.-white {
+//         color: @white;
+//         background-color: fade(@white,0%);
+//         border-color: transparent;
+//
+//         &:hover, &:focus {
+//             color: fade(@white,95%);
+//             background-color: fade(@white,5%);
+//             border-color: transparent;
+//         }
+//
+//         &[disabled], &._disabled { opacity: 0.5; }
+//     }
+// }
+//
+// //  -----------------------------------------------------------------------------
+// //  $$  Confirm Button Style
+// //  -----------------------------------------------------------------------------
+// input[type="submit"].btn-confirm,
+// input[type="button"].btn-confirm,
+// button.btn-confirm,
+// .btn-confirm {
+//     color: @white;
+//     background-color: @btn-confirm;
+//     border-color: darken(@btn-confirm,10%);
+//     box-shadow: inset 0 1px 0 lighten(@btn-confirm,20%);
+//
+//     &:hover, &:focus {
+//         color: fadeout(@white,10%);
+//         background-color: darken(@btn-confirm,10%);
+//         border-color: darken(@btn-confirm,20%);
+//         box-shadow: inset 0 1px 0 lighten(@btn-confirm,10%);
+//     }
+//
+//     &[disabled], &._disabled {
+//         color: desaturate(lighten(@btn-confirm,15%),25%);
+//         background-color: desaturate(lighten(@btn-confirm,30%),20%);
+//         border-color: desaturate(lighten(@btn-confirm,25%),25%);
+//     }
+// }
+//
+//
+// //  -----------------------------------------------------------------------------
+// //  $$  Warning Button Style
+// //  -----------------------------------------------------------------------------
+// input[type="submit"].btn-warning,
+// input[type="button"].btn-warning,
+// button.btn-warning,
+// .btn-warning {
+//     color: @white;
+//     background-color: lighten(@btn-warning,10%);
+//     border-color: darken(@btn-warning,10%);
+//     box-shadow: inset 0 1px 0 lighten(@btn-warning,30%);
+//
+//     &:hover, &:focus {
+//         color: fadeout(@white,10%);
+//         background-color: @btn-warning;
+//         border-color: darken(@btn-warning,20%);
+//         box-shadow: inset 0 1px 0 lighten(@btn-warning,10%);
+//     }
+//
+//     &[disabled], &._disabled {
+//         color: @white;
+//         background-color: desaturate(lighten(@btn-warning,25%),30%);
+//         border-color: desaturate(lighten(@btn-warning,25%),50%);
+//     }
+// }
+//
+// //  -----------------------------------------------------------------------------
+// //  $$  Icon Button Style
+// //  -----------------------------------------------------------------------------
+// input[type="submit"].btn-icon,
+// input[type="button"].btn-icon,
+// button.btn-icon,
+// .btn-icon {
+//     padding: 0;
+//     color: inherit;
+//     background-color: transparent;
+//     border-color: transparent;
+//     box-shadow: none;
+//
+//     &:hover, &:focus {
+//         color: inherit;
+//         background-color: transparent;
+//         border-color: transparent;
+//         box-shadow: none;
+//     }
+//
+//     &.-gray {
+//         color: @black-500;
+//         background-color: @black-100;
+//         border-color: @black-300;
+//
+//         &:hover, &:focus {
+//             color: @black-600;
+//             background-color: @black-150;
+//             border-color: @black-350;
+//         }
+//     }
+// }
+//
+// //  -----------------------------------------------------------------------------
+// //  $$  Loaders
+// input[type=submit],
+// input[type=button],
+// button, .button, a.button, a.button:visited,
+// .btn, .btn:visited, .btn-secondary, .btn-outlined, .btn-clear, .btn-confirm, .btn-warning, .btn-icon {
+//     &.loading {
+//         pointer-events: none;
+//
+//         &:before {
+//             //&:extend(.spinner);
+//             float: left;
+//             left: -4px;
+//             content: "";
+//         }
+//
+//         .btn-secondary&:before,
+//         .btn-outlined&:before,
+//         .btn-clear&:before {
+//             border-top-color: @powder-200;
+//             border-right-color: @powder-200;
+//             border-bottom-color: @powder-200;
+//             border-left-color: @powder-400;
+//         }
+//     }
+// }
+//
+// //  =============================================================================
+// //  $  LAYOUT & SIZES
+// //  -----------------------------------------------------------------------------
+// input[type="submit"],
+// input[type="button"],
+// button, .button,
+// .btn, [class*="btn-"]  {
+//     &._block {
+//         display: block;
+//         margin-bottom: 0.5em;
+//         width: 100%;
+//
+//         & + & { margin-left: 0; }
+//     }
+//     &._hide { display: none; }
+//     &._show { display: inline-block; }
+//
+//     &._xlarge  { font-size: ceil(@body-font-size * 1.84); }
+//     &._large {
+//         padding-left: 2em;
+//         padding-right: 2em;
+//         font-size: ceil(@body-font-size * 1.38);
+//     }
+//     &._medium  { font-size: ceil(@body-font-size * 1.15); }
+//     &._small   { font-size: ceil(@body-font-size * 0.92); }
+//
+//     &._left    { float: left; }
+//     &._right {
+//         float: right;
+//         margin-right: 2px;
+//         &:first-of-type { margin-right: 0; }
+//     }
+// }
