@@ -179,9 +179,17 @@
 //  --  FLEXBOX CONTAINER
 //      Use this on the wrapping parent container on items you want to flex.
 //  ----------------------------------------------------------------------------
-.flexbox() {
-  display: -webkit-flex;
-  display: flex;
+.flexbox(@box) {
+  & when (@box = box) {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+  }
+  & when (@box = inline) {
+    display: -webkit-inline-box;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+  }
 }
 
 //  ----------------------------------------------------------------------------
@@ -194,8 +202,9 @@
 //      Note that in IE10, the default value is "0 0 auto".
 //  ----------------------------------------------------------------------------
 .flex(@values: 1 0 auto) {
-  -webkit-flex: @values;
-          flex: @values;
+  -webkit-box-flex: @values;
+          -ms-flex: @values;
+              flex: @values;
 }
 
 //  ----------------------------------------------------------------------------
@@ -206,6 +215,38 @@
 .flex-order(@values) {
   -webkit-order: @values;
           order: @values;
+}
+
+//  ----------------------------------------------------------------------------
+//  --  FLEX DIRECTION
+//      This determines the direction content flows within a parent container.
+//      The default values are row.
+//  ----------------------------------------------------------------------------
+.flex-direction(@dir: row) {
+  & when (@dir = row), (@dir = row-reverse) {
+    -webkit-box-orient: horizontal;
+  }
+  & when (@dir = column), (@dir = column-reverse) {
+    -webkit-box-orient: vertical;
+  }
+  & when (@dir = row), (@dir = column) {
+    -webkit-box-direction: normal;
+  }
+  & when (@dir = row-reverse), (@dir = column-reverse) {
+    -webkit-box-direction: reverse;
+  }
+
+  -ms-flex-direction: @dir;
+      flex-direction: @dir;
+}
+
+//  ----------------------------------------------------------------------------
+//  --  FLEX WRAP
+//      This determines if a parent's child items will wrap or not.
+//  ----------------------------------------------------------------------------
+.flex-wrap(@values) {
+  -ms-flex-wrap: @values;
+      flex-wrap: @values;
 }
 
 //  ----------------------------------------------------------------------------
@@ -253,7 +294,7 @@
   }
 
   //  Add in the flexbox things for wrapping container
-  .flexbox();
+  .flexbox(box);
   .flex();
   .flex-flow();
 
@@ -271,7 +312,7 @@
   //  display attribute. "inline-flex" gives us the benefits of "flex", but
   //  acting more like "inline-block".
   > [class*="-cell"] {
-    display: inline-flex;
+    .flexbox(inline);
   }
 
   //  $$  FIXED WIDTH CELLS
@@ -311,12 +352,12 @@
   //  --  Wrap Directions
   //      For changing the wrapping direction of a parent container
   //  --------------------------------------------------------------------------
-  &._reverse          { flex-direction: row-reverse;}
+  &._reverse          { .flex-direction(row-reverse);}
   &._col              { .flex-flow(column nowrap); }
-  &._col._reverse     { flex-direction: column-reverse;}
-  &._wrap             { flex-wrap: wrap; }
-  &._wrap-none        { flex-wrap: nowrap; }
-  &._wrap-reverse     { flex-wrap: wrap-reverse; }
+  &._col._reverse     { .flex-direction(column-reverse);}
+  &._wrap             { .flex-wrap(wrap); }
+  &._wrap-none        { .flex-wrap(nowrap); }
+  &._wrap-reverse     { .flex-wrap(wrap-reverse); }
 
   //  --  Widths
   //      This applies it to all direct children. Fixed width cells already

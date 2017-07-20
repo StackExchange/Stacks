@@ -505,92 +505,6 @@ textarea.f-input {
   line-height: @lh-4;
 }
 
-
-//  ============================================================================
-//  $ INPUT & BUTTON GROUPS
-//  ----------------------------------------------------------------------------
-.input-group,
-.button-group {
-    *,
-    *:before,
-    *:after { box-sizing: border-box; }
-
-    position: relative;
-    .flexbox();
-}
-
-//  --  INPUT GROUPS
-//      Wrapping <div> that provides ammple white space around a unit of
-//      form elements
-.input-group {
-    .flex-flow(column nowrap);
-    margin-bottom: @su-24;
-
-    //  If an input-group nested within another, remove the bottom margin.
-    & > & { margin-bottom: 0; }
-
-
-    > .f-label {
-        //  If there's a label, we generally want a top margin on the item below.
-        //  But ONLY on labels that are direct children.
-        + * { margin-top: @su-8 - 2; }
-
-        //  Except if help copy follows
-        + .t-help { margin-top: @su-2; }
-
-        //  If an input-group follows a label though, we want that top margin to be greater.
-        + .input-group { margin-top: @su-16; }
-    }
-
-
-    //  Input Group Clusters
-    &._clusters {
-        .g-row + .g-row { margin-top: @su-8; }
-        .input-group {
-            margin-bottom: 0;
-            .f-label { font-weight: 400; }
-        }
-    }
-
-    //  If a select menu is directly against a fill, alter the border-radius
-    .-fill + .f-select > select {
-        border-top-left-radius: 0;
-        border-bottom-left-radius: 0;
-    }
-
-    [class^="btn"].is-last {
-        .flex-order(100);
-        margin-left: -1px;
-        border-top-left-radius: 0;
-        border-bottom-left-radius: 0;
-    }
-}
-
-//  --  BUTTON GROUPS
-//      Wrapping <div> for buttons / actions
-.button-group {
-    [class^="btn"] + [class^="btn"] { margin-left: @su-2; }
-
-    &.g-column {
-        [class^="btn"] + [class^="btn"] {
-            margin-top: @su-8;
-            margin-left: 0;
-        }
-    }
-
-    .t-help {
-        margin-top: @su-12;
-        margin-bottom: 0;
-    }
-
-    //  Applies top border to the button container
-    &.has-border {
-        padding-top: @su-16 + @su-8;
-        border-top: 1px solid lighten(@brc-light,5%);
-    }
-}
-
-
 //  ============================================================================
 //  $ OPTION TOGGLE
 //  ----------------------------------------------------------------------------
@@ -743,7 +657,7 @@ textarea.f-input {
     }
 
     .chosen-choices {
-        .flexbox();
+        //.flexbox();
         padding: 0 1px;
         min-height: 38px;
         background-image: none;
