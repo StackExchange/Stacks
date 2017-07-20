@@ -5,7 +5,7 @@ description: A element which allows users to take action(s).
 ---
 
 <section class="uikit-section" data-core-careers>
-	<h2>Default Styles</h2>
+	<h2>Default Style</h2>
   <p>The default button style is a simple, link styling. When using a <code>button</code> or an <code>a</code> element, be sure to specify a <code>type</code> or <code>role</code>, respectively.</p>
 	<div class="uikit-code uikit-has-preview">
 {% highlight html linenos %}
@@ -24,8 +24,8 @@ description: A element which allows users to take action(s).
 </section>
 
 <section class="uikit-section">
-	<h2>Button Styles</h2>
-  <p>Depending on the actions required within a UI, you may require different button styles to help communicte action, importance, and attract attention. To accomplish these needs, use the following button styles.</p>
+	<h2>Types</h2>
+  <p>Depending on the action required, different button types are provided. Combined with <a href="#styles">button styles</a>, these types help create visual action hierarchy.</p>
 
   <h3>Primary</h3>
   <p>This button style is used to indicate the <em>primary</em> action on a page. In practice you should declare no more than one button as the primary button per a page. The primary style is the loudest button styles we have. To add the primary style, add the <code>._primary</code> modifying class to <code>.btn</code>.</p>
@@ -88,6 +88,63 @@ description: A element which allows users to take action(s).
 	</div>
 </section>
 
+<section class="uikit-section">
+		<h2>Styles</h2>
+		<p class="uikit-intro">By default all <a href="#types">button types</a> have a non-white background and border color. Depending on the community, the button may or may not have an inset box-shadow. However there are times when a particular button type is desired, but we may want the style to be slightly altered based on the page, section or UI context it sits within.</p>
+
+		<h3 id="toc-clear">Clear</h3>
+		<p>This is our base button style. It mimics the a "link" style, but providing a larger click area than a normal textual link. This the most understated style available and should be used on low-level, non-important actions. The goal here is to downplay the button's visual importance.</p>
+		<div class="uikit-code uikit-has-preview">
+{% highlight html linenos %}
+<button class="btn" type="button">Cancel</button>
+<button class="btn _confirm _clear" type="button">Publish</button>
+<button class="btn _warning _clear" type="button">Delete</button>
+{% endhighlight %}
+			<div class="stacks-preview">
+					<button class="btn" type="button">Cancel</button>
+					<button class="btn _confirm _clear" type="button">Publish</button>
+					<button class="btn _warning _clear" type="button">Delete</button>
+			</div>
+		</div>
+
+		<h3>Outline</h3>
+		<p>The outlined button style is most like the <a href="#secondary">secondary button type</a> in visual styling, but visually downplayed slightly. Here we maintain a border color, but we abandon the background and inset shadow colors. This stylistic variation is to be used when a simpler button style is desired—especially in concert with the <a href="#primary">primary button type</a>. This style works best with actions that are secondary or tertiary in importance, or when a button type used at a larger size draws undesired attention within a layout.</p>
+		<div class="uikit-code uikit-has-preview">
+{% highlight html linenos %}
+<button class="btn _outline" type="button">Message User</button>
+<button class="btn _outline _confirm" type="button">Invite Users</button>
+<button class="btn _outline _warning" type="button">Delete Users</button>
+{% endhighlight %}
+				<div class="stacks-preview">
+						<button class="btn _outline" type="button">Message User</button>
+						<button class="btn _outline _confirm" type="button">Invite Users</button>
+						<button class="btn _outline _warning" type="button">Delete Users</button>
+				</div>
+		</div>
+
+		<h3>Inversed</h3>
+		<p>Most buttons within Stack Overflow appear on a white or light background colors. Yet there are instances where buttons may be placed on darker background colors. In these instances, invert the button colors.</p>
+		<div class="uikit-code uikit-has-preview">
+{% highlight html linenos %}
+<button class="btn _inverse" role="button">Link Button</button>
+<button class="btn _outline _inverse" role="button">Link Button</button>
+<button class="btn _confirm _inverse" role="button">Confirm Action</button>
+<button class="btn _confirm _outline _inverse" role="button">Confirm Action</button>
+<button class="btn _warning _inverse" role="button">Warning Action</button>
+<button class="btn _warning _outline _inverse" role="button">Warning Action</button>
+{% endhighlight %}
+			<div class="stacks-preview uikit-contrast">
+					<button class="btn _inverse" role="button">Link Button</button>
+					<button class="btn _outline _inverse" role="button">Link Button</button>
+					<button class="btn _confirm _inverse" role="button">Confirm Action</button>
+					<button class="btn _confirm _outline _inverse" role="button">Confirm Action</button>
+					<button class="btn _warning _inverse" role="button">Warning Action</button>
+					<button class="btn _warning _outline _inverse" role="button">Warning Action</button>
+			</div>
+		</div>
+</section>
+
+
 <section class="uikit-section" data-core>
 	<h2 id="toc-loaders-icons">Loaders / Icons</h2>
 	<p>This is used to add icons into another button type or style.</p>
@@ -109,60 +166,6 @@ description: A element which allows users to take action(s).
 			<button class="btn-clear loading" role="button">Processing data…</button>
 		</div>
 	</div>
-</section>
-
-<section class="uikit-section">
-	<h2 id="toc-styles">Styles</h2>
-	<p class="uikit-intro">By default all button options have filled backgrounds with borders and an inner-shadow. Sometimes buttons need to be downplayed within a design to either help focus attention to a specific action, no action should be primary, or to not draw attention away from other content areas. In these instances, we have two button styles that can be applied to the options above.</p>
-
-	<section class="uikit-section" data-core-careers>
-		<h3 id="toc-outlined">Outlined</h3>
-		<p>Like a secondary button in purpose, this stylistic variation is to be used when you desire an even simpler button style—especially when used in concert with the primary button style. This style works well within small UI actions areas that are tertiary in importance or when a larger button size would draw too much attention to the button.</p>
-		<div class="uikit-code uikit-has-preview">
-{% highlight html linenos %}
-<button class="btn-outlined" role="button">Invite Others</button>
-<button class="btn-outlined" role="button" disabled>Invite Others</button>
-<button class="btn-outlined -warning" role="button">Delete Invitation</button>
-{% endhighlight %}
-			<div class="stacks-preview">
-				<button class="btn-outlined" role="button">Invite Others</button>
-				<button class="btn-outlined" role="button" disabled>Invite Others</button>
-				<button class="btn-outlined -warning" role="button">Delete Invitation</button>
-			</div>
-		</div>
-	</section>
-	<section class="uikit-section" data-core-careers>
-		<h3 id="toc-clear">Clear</h3>
-		<p>Sometimes called “link” buttons, this button style mimics the link style but with the ample click area buttons provide. This style is typically used within a set of actions and you want to downplay the importance of the action. Such as with a “Cancel” or “Discard” action. We don’t want to hide these actions, but we also don’t want to draw undue importance to them.</p>
-		<div class="uikit-code uikit-has-preview">
-{% highlight html linenos %}
-<button class="btn-clear" role="button">Cancel Action</button>
-<button class="btn-clear" role="button" disabled>Cancel Action</button>
-<button class="btn-clear -warning" role="button">Delete Action</button>
-{% endhighlight %}
-			<div class="stacks-preview">
-				<button class="btn-clear" role="button">Cancel Action</button>
-				<button class="btn-clear" role="button" disabled>Cancel Action</button>
-				<button class="btn-clear -warning" role="button">Delete Action</button>
-			</div>
-		</div>
-	</section>
-	<section class="uikit-section" data-core>
-		<h3 id="toc-reversed">Reversed</h3>
-		<p>Most buttons appear on a light background within our product, yet there are instances where buttons may appear on a dark background. In these instances, you can invert the button colors.</p>
-		<div class="uikit-code uikit-has-preview">
-{% highlight html linenos %}
-<button class="btn-outlined -white" role="button">Cancel Action</button>
-<button class="btn-clear -white" role="button">Cancel Action</button>
-<button class="btn-clear -white" role="button" disabled>Cancel Action</button>
-{% endhighlight %}
-			<div class="stacks-preview uikit-contrast">
-				<button class="btn-outlined -white" role="button">Cancel Action</button>
-				<button class="btn-clear -white" role="button">Cancel Action</button>
-				<button class="btn-clear -white" role="button" disabled>Cancel Action</button>
-			</div>
-		</div>
-	</section>
 </section>
 
 <section class="uikit-section" data-core-careers>
