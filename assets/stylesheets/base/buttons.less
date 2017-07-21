@@ -75,29 +75,67 @@
 //      besides false, we apply the border color values. If @brc equals FALSE,
 //      then the border color is transparent.
 //  ----------------------------------------------------------------------------
-.btn-check-brc(@brc: @btn-brc) when not (@brc = false) {
-  border-color: darken(@brc,10%);
+.btn-check-brc(@brc: @btn-brc) {
+  & when not (@brc = false) {
+    border-color: darken(@brc,10%);
 
-  &:hover {
-    border-color: darken(@brc,15%);
+    &:hover {
+      border-color: darken(@brc,15%);
+    }
+    &:focus {
+      border-color: darken(@brc,20%);
+    }
+    &[disabled] {
+      border-color: fade(desaturate(@brc,75%),40%);
+    }
   }
-  &:focus {
-    border-color: darken(@brc,20%);
-  }
-  &[disabled] {
-    border-color: fade(desaturate(@brc,75%),40%);
+  & when (@brc = false) {
+    &,
+    &:hover,
+    &:focus,
+    &[disabled] {
+      border-color: transparent;
+    }
   }
 }
 
 //      MIXIN:
-//      Background Image
+//      Background Image (Gradient)
 //
 //      HOW IT WORKS:
-//      Using a mixin guard we check to see if @btn-bgg is true or false. If
-//      true, then we add in a background image.
+//      Using a mixin guard we check to see if @btn-bgg is TRUE/FALSE, or if
+//      the background value being passed is transparent. If @btn-bgg is TRUE
+//      and if the @bgc value IS NOT transparent, then add the background
+//      gradient to the button.
+//
+//      In any other scenario, reset the background-image to none.
 //  ----------------------------------------------------------------------------
-.btn-check-bgg(@bgg, @bgc) when (@btn-bgg = true) {
-  background-image: linear-gradient(to bottom, @bgg 0%, @bgc 100%);
+.btn-check-bgg(@bgc) {
+
+  //    If @btn-bgg: true; and @bgc is NOT transparent, show gradients.
+  & when not (@bgc = transparent) and (@btn-bgg = true) {
+    background-image: linear-gradient(to bottom, lighten(@bgc,10%) 0%, spin(saturate(@bgc,10%),5) 100%);
+
+    &:hover {
+      background-image: linear-gradient(to bottom, spin(saturate(lighten(@bgc,10%),5%),5) 0%, spin(saturate(@bgc,15%),10) 100%);
+    }
+    &:focus {
+      background-image: linear-gradient(to bottom, spin(saturate(lighten(@bgc,10%),10%),10) 0%, spin(saturate(@bgc,20%),15) 100%);
+    }
+    &[disabled] {
+      background-image: linear-gradient(to bottom, fade(desaturate(lighten(@bgc,10%),75%),50%) 0%, fade(desaturate(@bgc,75%),50%) 100%);
+    }
+  }
+
+  //    If @btn-bgg: false; or if @bgc is transparent, then remove gradients.
+  & when (@bgc = transparent), (@btn-bgg = false) {
+    &,
+    &:hover,
+    &:focus,
+    &[disabled] {
+      background-image: none;
+    }
+  }
 }
 
 //      MIXIN:
@@ -207,6 +245,14 @@
       box-shadow: none;
     }
   }
+
+  //  --  SIZES
+  //  --------------------------------------------------------------------------
+  &._fs-12  { font-size: @fs-12; }
+  &._fs-13  { font-size: @fs-13; }
+  &._fs-15  { font-size: @fs-15; }
+  &._fs-17  { font-size: @fs-17; }
+  &._fs-24  { font-size: @fs-24; }
 }
 
 
@@ -220,7 +266,7 @@
   .btn-check-brc();
   .btn-check-bxs(@btn-bgc,@btn-bxos);
   .btn-bgc(@btn-bgc);
-  .btn-check-bgg(@btn-bgg,@btn-bgc);
+  .btn-check-bgg(transparent);
   .btn-fc(@btn-fc);
 }
 
@@ -230,7 +276,7 @@
   .btn-check-brc(@btn-primary-bgc);
   .btn-check-bxs(@btn-primary-bgc,@btn-bxos);
   .btn-bgc(@btn-primary-bgc);
-  .btn-check-bgg(@btn-primary-bgg,@btn-primary-bgc);
+  .btn-check-bgg(@bgc: @btn-primary-bgc);
   .btn-fc(@btn-primary-fc);
 }
 
@@ -240,7 +286,7 @@
   .btn-check-brc(@btn-secondary-bgc);
   .btn-check-bxs(@btn-secondary-bgc,@btn-bxos);
   .btn-bgc(@btn-secondary-bgc);
-  .btn-check-bgg(@btn-secondary-bgg,@btn-secondary-bgc);
+  .btn-check-bgg(@bgc: @btn-secondary-bgc);
   .btn-fc(@btn-secondary-fc);
 }
 
@@ -250,7 +296,7 @@
   .btn-check-brc(@btn-confirm-bgc);
   .btn-check-bxs(@btn-confirm-bgc,@btn-confirm-bgc);
   .btn-bgc(@btn-confirm-bgc);
-  .btn-check-bgg(@btn-confirm-bgg,@btn-confirm-bgc);
+  .btn-check-bgg(@bgc: @btn-confirm-bgc);
   .btn-fc(@btn-confirm-fc);
 }
 
@@ -260,7 +306,7 @@
   .btn-check-brc(@btn-warning-bgc);
   .btn-check-bxs(@btn-warning-bgc,@btn-warning-bgc);
   .btn-bgc(@btn-warning-bgc);
-  .btn-check-bgg(@btn-warning-bgg,@btn-warning-bgc);
+  .btn-check-bgg(@bgc: @btn-warning-bgc);
   .btn-fc(@btn-warning-fc);
 }
 
@@ -273,18 +319,27 @@
 //      color and only a border.
 //  ----------------------------------------------------------------------------
 .btn._clear {
+  .btn-check-bgg(transparent);
   //  --  Confirm Clear Style
   &._confirm {
-    .btn-check-brc(transparent);
+    .btn-check-brc(false);
     .btn-bgc(fade(@btn-confirm-bgc,0%));
     .btn-fc(@btn-confirm-bgc);
   }
 
   //  --  Warning Clear Style
   &._warning {
-    .btn-check-brc(transparent);
+    .btn-check-brc(false);
     .btn-bgc(fade(@btn-warning-bgc,0%));
     .btn-fc(@btn-warning-bgc);
+  }
+
+  //  --  Muted Style
+  &._muted {
+    .btn-check-brc(false);
+    .btn-check-bxs(false,@black-350);
+    .btn-bgc(fade(@black-350,0%));
+    .btn-fc(@black-600);
   }
 }
 
@@ -296,6 +351,7 @@
   //  --  Base Outline Style
   .btn-check-brc(lighten(@btn-fc,10%));
   .btn-check-bxs(false,@btn-bxos);
+  .btn-check-bgg(transparent);
   .btn-bgc(fade(@btn-fc,0%));
 
   //  --  Confirm Outline Style
@@ -313,6 +369,14 @@
     .btn-bgc(fade(@btn-warning-bgc,0%));
     .btn-fc(darken(@btn-warning-bgc,10%));
   }
+
+  //  --  Muted Style
+  &._muted {
+    .btn-check-brc(@black-100);
+    .btn-check-bxs(false,@black-350);
+    .btn-bgc(fade(@black-350,0%));
+    .btn-fc(@black-600);
+  }
 }
 
 //  $$  Inverse Style
@@ -325,19 +389,11 @@
   .btn-bgc(fade(@white,95%));
   .btn-fc(@btn-fc);
 
-  //  --  Inverse + Outline
-  &._outline {
-    .btn-check-brc(fade(@white,75%));
-    .btn-check-bxs(false,@white);
-    .btn-bgc(fade(@btn-bgc,0%));
-    .btn-fc(@white);
-  }
-
   //  --  Confirm Inverse Style
   &._confirm {
-    .btn-check-brc(transparent);
     .btn-check-bxs(false,@btn-confirm-bgc);
     .btn-bgc(mix(lighten(@btn-confirm-bgc,15%),@white));
+    .btn-check-bgg(lighten(@btn-confirm-bgc,25%));
     .btn-fc(darken(@btn-confirm-bgc,30%));
 
     //  --  Confirm Inverse Outline
@@ -350,9 +406,9 @@
 
   //  --  Warning Inverse Style
   &._warning {
-    .btn-check-brc(transparent);
     .btn-check-bxs(false,@btn-warning-bgc);
     .btn-bgc(mix(lighten(@btn-warning-bgc,15%),@white));
+    .btn-check-bgg(lighten(@btn-warning-bgc,25%));
     .btn-fc(darken(@btn-warning-bgc,20%));
 
     //  --  Confirm Inverse Outline
@@ -362,371 +418,61 @@
       .btn-fc(@white);
     }
   }
+
+  //  --  Inverse + Outline
+  &._outline {
+    .btn-check-brc(fade(@white,75%));
+    .btn-check-bxs(false,@white);
+    .btn-bgc(fade(@btn-bgc,0%));
+    .btn-check-bgg(transparent);
+    .btn-fc(@white);
+  }
 }
 
+//  $$  Loading Icon
+//      Adds a loading icon into the button
+//  ----------------------------------------------------------------------------
+//  --  First the keyframes
+@keyframes spinnerRotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
 
-// .btn {
-//     //  --  When you want to turn a clear button red
-//   &.-warning {
-//       color: @btn-warning;
-//       background-color: fade(@btn-warning,0%);
-//       border-color: fade(@btn-warning,0%);
-//
-//       &:hover, &:focus {
-//           color: darken(@btn-warning,10%);
-//           background-color: lighten(@btn-warning,45%);
-//           border-color: lighten(@btn-warning,45%);
-//       }
-//
-//       &[disabled], &._disabled {
-//           color: spin(desaturate(lighten(@btn-warning,15%),95%),5);
-//           background-color: spin(desaturate(lighten(@btn-warning,45%),95%),5);
-//           border-color: spin(desaturate(lighten(@btn-warning,45%),95%),5);
-//       }
-//   }
-//
-//   //  --  When you want to invert the outlined button to white.
-//   //      This is used primarily on darker backgrounds.
-//   &.white, &.-white {
-//       color: @white;
-//       background-color: fade(@white,0%);
-//       border-color: transparent;
-//
-//       &:hover, &:focus {
-//           color: fade(@white,95%);
-//           background-color: fade(@white,5%);
-//           border-color: transparent;
-//       }
-//
-//       &[disabled], &._disabled { opacity: 0.5; }
-//   }
-// }
+//  --  Next the actual loading spinner
+.btn.is-loading {
+  padding-left: @su-24 + @su-4;
 
-// .btn--s{
-//   color: @white;
-//   background-color: @btn-primary;
-//   border-color: darken(@btn-primary,10%);
-//   box-shadow: inset 0 1px 0 lighten(@btn-primary,20%);
-//
-//   &:hover, &:focus {
-//       color: fadeout(@white,10%);
-//       background-color: darken(@btn-primary,10%);
-//       border-color: darken(@btn-primary,20%);
-//       box-shadow: inset 0 1px 0 lighten(@btn-primary,10%);
-//   }
-//   &[disabled], &._disabled {
-//       color: @white;
-//       background-color: desaturate(lighten(@btn-primary,35%),70%);
-//       border-color: desaturate(lighten(@btn-primary,30%),70%);
-//   }
-// }
+  &:before {
+    content: "";
+    position: absolute;
+    top: calc(~"50% - @{su-8}");
+    margin-left: -(@su-24 - @su-4);
+    width: 14px;
+    height: 14px;
+    border-radius: @br-circle;
+    border: 2px solid transparent;
+    border-left-width: 2px;
 
-//  -----------------------------------------------------------------------------
-//  $$  Secondary Button Style
-//  -----------------------------------------------------------------------------
-// input[type="submit"].btn-secondary,
-// input[type="button"].btn-secondary,
-// button.btn-secondary,
-// .btn-secondary {
-//     color: darken(@btn-secondary,50%);
-//     background-color: @btn-secondary;
-//     border-color: darken(@btn-secondary,20%);
-//     box-shadow: inset 0 1px 0 lighten(@btn-secondary,5%);
-//
-//     &:hover, &:focus {
-//         color: darken(@btn-secondary,60%);
-//         background-color: darken(@btn-secondary,10%);
-//         border-color: darken(@btn-secondary,40%);
-//         box-shadow: inset 0 1px 0 @btn-secondary;
-//     }
-//
-//     &[disabled], &._disabled {
-//         color: desaturate(darken(@btn-secondary,25%),30%);
-//         background-color: spin(desaturate(lighten(@btn-secondary,5%),30%),5);
-//         border-color: spin(desaturate(darken(@btn-secondary,5%),30%),5);
-//     }
-// }
-//
-// //  -----------------------------------------------------------------------------
-// //  $$  Outlined Button Style
-// //  -----------------------------------------------------------------------------
-// input[type="submit"].btn-outlined,
-// input[type="button"].btn-outlined,
-// button.btn-outlined,
-// .btn-outlined {
-//     color: @btn-outlined;
-//     background-color: fade(@btn-outlined,0%);
-//     border-color: lighten(@btn-outlined,10%);
-//     box-shadow: none;
-//
-//     &:hover, &:focus {
-//         color: darken(@btn-outlined,10%);
-//         background-color: lighten(@btn-outlined,55%);
-//         border-color: @btn-outlined;
-//         box-shadow: none;
-//     }
-//
-//     &[disabled], &._disabled {
-//         color: spin(desaturate(lighten(@btn-outlined,25%),95%),5);
-//         background-color: spin(desaturate(lighten(@btn-outlined,55%),95%),5);
-//         border-color: spin(desaturate(lighten(@btn-outlined,45%),95%),10);
-//     }
-//
-//     //  --  When you want to turn the outlined button red
-//     &.-warning {
-//         color: @btn-warning;
-//         background-color: fade(@btn-warning,0%);
-//         border-color: lighten(@btn-warning,10%);
-//
-//         &:hover, &:focus {
-//             color: darken(@btn-warning,10%);
-//             background-color: lighten(@btn-warning,45%);
-//             border-color: @btn-warning;
-//         }
-//
-//         &[disabled], &._disabled {
-//             color: spin(desaturate(lighten(@btn-warning,15%),95%),5);
-//             background-color: spin(desaturate(lighten(@btn-warning,45%),95%),5);
-//             border-color: spin(desaturate(lighten(@btn-warning,35%),95%),10);
-//         }
-//     }
-//
-//     //  --  When you want to invert the outlined button to white.
-//     //      This is used primarily on darker backgrounds.
-//     &.white, &.-white {
-//         color: @white;
-//         background-color: fade(@white,0%);
-//         border-color: @white;
-//
-//         &:hover, &:focus {
-//             color: fade(@white,95%);
-//             background-color: fade(@white,10%);
-//             border-color: fade(@white,60%);
-//         }
-//         &[disabled], &._disabled { opacity: 0.5; }
-//     }
-//
-//     //  --  When you want to invert the outlined button to white.
-//     //      This is used primarily on darker backgrounds.
-//     &.gray, &.-gray {
-//         color: @black-400;
-//         background-color: @white;
-//         border-color: @black-150;
-//
-//         &:hover, &:focus {
-//             background-color: @black-050;
-//         }
-//         &[disabled], &._disabled {
-//             opacity: 0.5;
-//         }
-//     }
-//
-// }
-//
-// //  -----------------------------------------------------------------------------
-// //  $$  Clear Button Style
-// //  -----------------------------------------------------------------------------
-// input[type="submit"].btn-clear,
-// input[type="button"].btn-clear,
-// button.btn-clear,
-// .btn-clear {
-//     color: @btn-clear;
-//     background-color: fade(@btn-clear,0%);
-//     border-color: transparent;
-//     box-shadow: none;
-//
-//     &:hover, &:focus {
-//         color: darken(@btn-clear,10%);
-//         background-color: fade(@btn-clear,10%);
-//         border-color: transparent;
-//         box-shadow: none;
-//     }
-//
-//     &[disabled], &._disabled {
-//         color: spin(desaturate(lighten(@btn-clear,25%),95%),5);
-//         background-color: spin(desaturate(lighten(@btn-clear,55%),95%),5);
-//         border-color: transparent;
-//     }
-//
-//     //  --  When you want to turn a clear button red
-//     &.-warning {
-//         color: @btn-warning;
-//         background-color: fade(@btn-warning,0%);
-//         border-color: fade(@btn-warning,0%);
-//
-//         &:hover, &:focus {
-//             color: darken(@btn-warning,10%);
-//             background-color: lighten(@btn-warning,45%);
-//             border-color: lighten(@btn-warning,45%);
-//         }
-//
-//         &[disabled], &._disabled {
-//             color: spin(desaturate(lighten(@btn-warning,15%),95%),5);
-//             background-color: spin(desaturate(lighten(@btn-warning,45%),95%),5);
-//             border-color: spin(desaturate(lighten(@btn-warning,45%),95%),5);
-//         }
-//     }
-//
-//     //  --  When you want to invert the outlined button to white.
-//     //      This is used primarily on darker backgrounds.
-//     &.white, &.-white {
-//         color: @white;
-//         background-color: fade(@white,0%);
-//         border-color: transparent;
-//
-//         &:hover, &:focus {
-//             color: fade(@white,95%);
-//             background-color: fade(@white,5%);
-//             border-color: transparent;
-//         }
-//
-//         &[disabled], &._disabled { opacity: 0.5; }
-//     }
-// }
-//
-// //  -----------------------------------------------------------------------------
-// //  $$  Confirm Button Style
-// //  -----------------------------------------------------------------------------
-// input[type="submit"].btn-confirm,
-// input[type="button"].btn-confirm,
-// button.btn-confirm,
-// .btn-confirm {
-//     color: @white;
-//     background-color: @btn-confirm;
-//     border-color: darken(@btn-confirm,10%);
-//     box-shadow: inset 0 1px 0 lighten(@btn-confirm,20%);
-//
-//     &:hover, &:focus {
-//         color: fadeout(@white,10%);
-//         background-color: darken(@btn-confirm,10%);
-//         border-color: darken(@btn-confirm,20%);
-//         box-shadow: inset 0 1px 0 lighten(@btn-confirm,10%);
-//     }
-//
-//     &[disabled], &._disabled {
-//         color: desaturate(lighten(@btn-confirm,15%),25%);
-//         background-color: desaturate(lighten(@btn-confirm,30%),20%);
-//         border-color: desaturate(lighten(@btn-confirm,25%),25%);
-//     }
-// }
-//
-//
-// //  -----------------------------------------------------------------------------
-// //  $$  Warning Button Style
-// //  -----------------------------------------------------------------------------
-// input[type="submit"].btn-warning,
-// input[type="button"].btn-warning,
-// button.btn-warning,
-// .btn-warning {
-//     color: @white;
-//     background-color: lighten(@btn-warning,10%);
-//     border-color: darken(@btn-warning,10%);
-//     box-shadow: inset 0 1px 0 lighten(@btn-warning,30%);
-//
-//     &:hover, &:focus {
-//         color: fadeout(@white,10%);
-//         background-color: @btn-warning;
-//         border-color: darken(@btn-warning,20%);
-//         box-shadow: inset 0 1px 0 lighten(@btn-warning,10%);
-//     }
-//
-//     &[disabled], &._disabled {
-//         color: @white;
-//         background-color: desaturate(lighten(@btn-warning,25%),30%);
-//         border-color: desaturate(lighten(@btn-warning,25%),50%);
-//     }
-// }
-//
-// //  -----------------------------------------------------------------------------
-// //  $$  Icon Button Style
-// //  -----------------------------------------------------------------------------
-// input[type="submit"].btn-icon,
-// input[type="button"].btn-icon,
-// button.btn-icon,
-// .btn-icon {
-//     padding: 0;
-//     color: inherit;
-//     background-color: transparent;
-//     border-color: transparent;
-//     box-shadow: none;
-//
-//     &:hover, &:focus {
-//         color: inherit;
-//         background-color: transparent;
-//         border-color: transparent;
-//         box-shadow: none;
-//     }
-//
-//     &.-gray {
-//         color: @black-500;
-//         background-color: @black-100;
-//         border-color: @black-300;
-//
-//         &:hover, &:focus {
-//             color: @black-600;
-//             background-color: @black-150;
-//             border-color: @black-350;
-//         }
-//     }
-// }
-//
-// //  -----------------------------------------------------------------------------
-// //  $$  Loaders
-// input[type=submit],
-// input[type=button],
-// button, .button, a.button, a.button:visited,
-// .btn, .btn:visited, .btn-secondary, .btn-outlined, .btn-clear, .btn-confirm, .btn-warning, .btn-icon {
-//     &.loading {
-//         pointer-events: none;
-//
-//         &:before {
-//             //&:extend(.spinner);
-//             float: left;
-//             left: -4px;
-//             content: "";
-//         }
-//
-//         .btn-secondary&:before,
-//         .btn-outlined&:before,
-//         .btn-clear&:before {
-//             border-top-color: @powder-200;
-//             border-right-color: @powder-200;
-//             border-bottom-color: @powder-200;
-//             border-left-color: @powder-400;
-//         }
-//     }
-// }
-//
-// //  =============================================================================
-// //  $  LAYOUT & SIZES
-// //  -----------------------------------------------------------------------------
-// input[type="submit"],
-// input[type="button"],
-// button, .button,
-// .btn, [class*="btn-"]  {
-//     &._block {
-//         display: block;
-//         margin-bottom: 0.5em;
-//         width: 100%;
-//
-//         & + & { margin-left: 0; }
-//     }
-//     &._hide { display: none; }
-//     &._show { display: inline-block; }
-//
-//     &._xlarge  { font-size: ceil(@body-font-size * 1.84); }
-//     &._large {
-//         padding-left: 2em;
-//         padding-right: 2em;
-//         font-size: ceil(@body-font-size * 1.38);
-//     }
-//     &._medium  { font-size: ceil(@body-font-size * 1.15); }
-//     &._small   { font-size: ceil(@body-font-size * 0.92); }
-//
-//     &._left    { float: left; }
-//     &._right {
-//         float: right;
-//         margin-right: 2px;
-//         &:first-of-type { margin-right: 0; }
-//     }
-// }
+    transform: translateZ(0);
+    animation: spinnerRotate 800ms infinite @te-back-out;
+  }
+
+  &:before,
+  &._clear:before,
+  &._secondary:before,
+  &._outline:before {
+    border-color: @powder-200;
+    border-left-color: @powder-600;
+  }
+
+  &._primary:before,
+  &._confirm:before,
+  &._warning:before {
+    border-color: fade(@white,25%);
+    border-left-color: @white;
+  }
+}
