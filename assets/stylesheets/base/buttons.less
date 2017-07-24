@@ -38,13 +38,13 @@
 //  ----------------------------------------------------------------------------
 .btn-check-bxs(@bxis: transparent, @bxos: transparent, @status: @btn-bxis) {
   & when (@status = true) {
-    box-shadow: inset 0 1px 0 0 lighten(@bxis,20%), 0 0 0 0 fade(@btn-bxos,0%);
+    box-shadow: inset 0 1px 0 0 lighten(@bxis,20%), 0 0 0 0 fade(@bxos,0%);
 
     &:hover {
-      box-shadow: inset 0 1px 0 0 lighten(@bxis,10%), 0 0 8px 0 fade(@btn-bxos,30%);
+      box-shadow: inset 0 1px 0 0 lighten(@bxis,10%), 0 0 8px 0 fade(@bxos,30%);
     }
     &:focus {
-      box-shadow: inset 0 1px 0 0 lighten(@bxis,10%), 0 0 12px 0 fade(@btn-bxos,50%);
+      box-shadow: inset 0 1px 0 0 lighten(@bxis,10%), 0 0 12px 0 fade(@bxos,50%);
     }
     &[disabled] {
       box-shadow: none;
@@ -210,7 +210,7 @@
 //  ============================================================================
 //  $   BASE STYLE
 //  ----------------------------------------------------------------------------
-.btn {
+.button {
   position: relative;
   padding: @su-8 @su-12;
 
@@ -245,14 +245,6 @@
       box-shadow: none;
     }
   }
-
-  //  --  SIZES
-  //  --------------------------------------------------------------------------
-  &._fs-12  { font-size: @fs-12; }
-  &._fs-13  { font-size: @fs-13; }
-  &._fs-15  { font-size: @fs-15; }
-  &._fs-17  { font-size: @fs-17; }
-  &._fs-24  { font-size: @fs-24; }
 }
 
 
@@ -262,7 +254,7 @@
 //  $$  Default Button
 //      The default style makes it look like a generic text link.
 //  ----------------------------------------------------------------------------
-.btn {
+.button {
   .btn-check-brc();
   .btn-check-bxs(@btn-bgc,@btn-bxos);
   .btn-bgc(@btn-bgc);
@@ -272,7 +264,7 @@
 
 //  $$  Primary Button
 //  ----------------------------------------------------------------------------
-.btn._primary {
+.button._primary {
   .btn-check-brc(@btn-primary-bgc);
   .btn-check-bxs(@btn-primary-bgc,@btn-bxos);
   .btn-bgc(@btn-primary-bgc);
@@ -282,7 +274,7 @@
 
 //  $$  Secondary Button
 //  ----------------------------------------------------------------------------
-.btn._secondary {
+.button._secondary {
   .btn-check-brc(@btn-secondary-bgc);
   .btn-check-bxs(@btn-secondary-bgc,@btn-bxos);
   .btn-bgc(@btn-secondary-bgc);
@@ -292,7 +284,7 @@
 
 //  $$  Confirmation Button
 //  ----------------------------------------------------------------------------
-.btn._confirm {
+.button._confirm {
   .btn-check-brc(@btn-confirm-bgc);
   .btn-check-bxs(@btn-confirm-bgc,@btn-confirm-bgc);
   .btn-bgc(@btn-confirm-bgc);
@@ -302,7 +294,7 @@
 
 //  $$  Warning Button
 //  ----------------------------------------------------------------------------
-.btn._warning {
+.button._warning {
   .btn-check-brc(@btn-warning-bgc);
   .btn-check-bxs(@btn-warning-bgc,@btn-warning-bgc);
   .btn-bgc(@btn-warning-bgc);
@@ -318,11 +310,12 @@
 //      Takes the current style and inverts the button so there is no background
 //      color and only a border.
 //  ----------------------------------------------------------------------------
-.btn._clear {
+.button._clear {
   .btn-check-bgg(transparent);
   //  --  Confirm Clear Style
   &._confirm {
     .btn-check-brc(@status: false);
+    .btn-check-bxs(@bxos: @btn-confirm-bgc, @status: false);
     .btn-bgc(fade(@btn-confirm-bgc,0%));
     .btn-fc(@btn-confirm-bgc);
   }
@@ -330,6 +323,7 @@
   //  --  Warning Clear Style
   &._warning {
     .btn-check-brc(@status: false);
+    .btn-check-bxs(@bxos: @btn-warning-bgc, @status: false);
     .btn-bgc(fade(@btn-warning-bgc,0%));
     .btn-fc(@btn-warning-bgc);
   }
@@ -347,7 +341,7 @@
 //      Takes the current style and inverts the button so there is no background
 //      color and only a border.
 //  ----------------------------------------------------------------------------
-.btn._outline {
+.button._outline {
   //  --  Base Outline Style
   .btn-check-brc(lighten(@btn-fc,10%));
   .btn-check-bxs(@bxos: @btn-bxos, @status: false);
@@ -382,7 +376,7 @@
 //  $$  Inverse Style
 //      Inverts the background and font color style
 //  ----------------------------------------------------------------------------
-.btn._inverse {
+.button._inverse {
   //  --  Base Inverse Style
   .btn-check-brc(@status: false);
   .btn-check-bxs(@bxos: @btn-bxos, @status: false);
@@ -443,7 +437,7 @@
 }
 
 //  --  Next the actual loading spinner
-.btn.is-loading {
+.button.is-loading {
   padding-left: @su-24 + @su-4;
 
   &:before {
