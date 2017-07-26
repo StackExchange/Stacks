@@ -36,121 +36,110 @@
 // --------------------------------------------------------------
 //	SIDEBARS
 // --------------------------------------------------------------
-
+#uikit-sidebar,
+#uikit-toc {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  width: 240px;
+  overflow-y: auto;
+  font-size: @fs-13;
+}
 
 #uikit-sidebar {
-	position: fixed; left: 0; top: 0; bottom: 0;
-	width: 240px;
-	height: 100%; overflow-y: auto;
-	background: @black;
+	left: 0;
+	background-color: @black-900;
 	color: @white;
-	font-size: 13px;
 }
 
 .uikit-logo {
-	padding: 20px;
+	padding: @su-24 @su-16;
 }
 
 #uikit-toc {
-	position: fixed;
-	left: 240px; top: 0; bottom: 0;
-	background: @black-050;
-	width: 240px;
-	box-sizing: border-box;
-	border-left: 1px solid @black-100;
-	overflow-y: auto;
+	left: 240px;
+	background-color: @bgc-lightest;
+	border-left: 1px solid @brc-light;
+
 }
 
 // --------------------------------------------------------------
 //	NAVIGATION
 // --------------------------------------------------------------
 
-#uikit-nav ul {
-	margin-left: 0;
-	list-style: none;
+#uikit-nav ul > li {
+  //  Space out sections
+  margin-bottom: @su-12;
 
-	> li {
-		a, a:visited, .root {
-			display: block;
-			padding: 10px 20px;
-			line-height: 16px;
-		}
-
-		.root {
-			color: #7E8082;
-			text-transform: uppercase;
-			font-size: 11px;
-		}
-
-		a {
-			color: #A2A5A7;
-			&:hover {
-				color: #fff;
-				background: fadeout(@black-800, 70%);
-			}
-		}
-
-		.uikit-select {
-			padding: 0 20px 0 40px;
-
-			select {
-				width: 100%;
-			}
-		}
-
-	   li {
-		   a {
-			   padding-left: 40px;
-		   }
-
-		   &.current {
-			   a {
-				   background: @black-800;
-				   color: @white;
-				   font-weight: bold;
-			   }
-		   }
-	   }
-
-	   &.current {
-		   > a {
-			   color: @white;
-			   font-weight: bold;
-		   }
-	   }
+  //  Style links
+  a,
+  .root {
+		display: block;
+		padding: @su-8 @su-16;
+		line-height: @lh-4;
+    transition: all 300ms @te-smooth;
 	}
+
+  a {
+    color: @fc-light;
+    &:hover {
+      color: @white;
+      background-color: fadeout(@black-800, 70%);
+    }
+  }
+
+	.root {
+    padding-top: @su-4;
+    padding-bottom: @su-4;
+		color: @fc-medium;
+		text-transform: uppercase;
+		font-size: @fs-11;
+	}
+
+  //  Nested Menus
+  li {
+    margin-bottom: 0;
+
+    a {
+      //padding-left: @su-24;  // Indent menu item
+    }
+
+    &.current > a {
+      background-color: @black-800;
+    }
+  }
+
+  &.current > a {
+    color: @white;
+    font-weight: bold;
+  }
 }
 
+
 #uikit-toc {
-	list-style-type: none;
-	margin: 0; padding: 0;
+  padding-top: @su-64 + @su-8;
 
-	ul {
-		list-style-type: none;
-		margin: 0; padding: 0;
-	}
+	li a {
+		display: block;
+    padding: @su-12 @su-16;
+    border-bottom: 1px solid @brc-light;
+		color: @fc-medium;
+    transition: all 300ms @te-smooth;
 
-	li {
-		list-style-type: none;
-		margin: 0; padding: 0;
-		a {
-			display: block;
-			color: @black-500;
-			padding: 10px 20px;
-			border-bottom: 1px solid rgba(0,0,0,0.05);
-
-			&:hover {
-				background: rgba(0,0,0,0.05);
-				border-bottom-color: transparent;
-				color: @black;
-			}
+		&:hover {
+      background-color: @bgc-lighter;
+			color: @fc-dark;
 		}
 	}
 
-	li li a { padding-left: 40px; }
-	li li li a { padding-left: 60px; }
-	li li li li a { padding-left: 80px; }
-	li li li li li a { padding-left: 100px; }
+  li:last-of-type a {
+    border-bottom-color: transparent;
+  }
+
+	li li a { padding-left: @su-24; }
+	li li li a { padding-left: @su-32; }
+	li li li li a { padding-left: @su-64; }
+	li li li li li a { padding-left: @su-64 + @su-12; }
 
 	+ #uikit-content {
     box-sizing: content-box;

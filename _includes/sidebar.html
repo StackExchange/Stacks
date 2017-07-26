@@ -11,13 +11,13 @@
   </div>
 
   <nav id="uikit-nav" role="navigation" class="uikit-nav">
-    <ul>
+    <ul class="list-reset">
       {% for entry in site.data.nav %}
         {% assign sublinks = entry.sublinks %}
         {% if sublinks %}
-          <li>
+          <li class="-item">
             <span class="root">{{ entry.title }}</span>
-            <ul>
+            <ul class="list-reset">
                 {% for sublink in sublinks %}
                     {% capture current_url %}/{{ sublink.url }}.html{% endcapture %}
                     <li {% if page.url == current_url %}class="current"{% endif %}><a href="{{ site.baseurl }}/{{ sublink.url }}">{{ sublink.title }}</a></li>
@@ -25,7 +25,7 @@
             </ul>
           </li>
         {% else %}
-          <li}><a href="{{ site.baseurl }}/{{ entry.url }}">{{ entry.title }}</a></li>
+          <li><a href="{{ site.baseurl }}/{{ entry.url }}">{{ entry.title }}</a></li>
         {% endif %}
       {% endfor %}
     </ul>
