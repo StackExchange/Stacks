@@ -27,10 +27,9 @@
 //  ----------------------------------------------------------------------------
 //  $$  FONT STYLES
 //  ----------------------------------------------------------------------------
-.f-label,
-.f-input,
-.f-select > select,
-.f-description {
+.label,
+.input,
+.select > select {
   font-size: @fs-13;
   line-height: @lh-6;
   color: @fc-dark;
@@ -42,7 +41,7 @@
 //  ============================================================================
 //  $$  BASE STYLE
 //  ----------------------------------------------------------------------------
-.f-input {
+.input {
   padding: @su-8 @su-12;
   border: 1px solid @black-150;
   border-radius: 0;
@@ -73,8 +72,8 @@
 //  $$  STATES
 //      The many states for inputs and select menus.
 //  ----------------------------------------------------------------------------
-.f-input,
-.f-select > select {
+.input,
+.select > select {
   //  Hover
   &:hover {
     border-color: fade(@blue-500,50%);
@@ -114,7 +113,7 @@
 //  $$  CONNECTED INPUTS
 //      To visually connect inputs together
 //  ----------------------------------------------------------------------------
-.f-input-connect {
+.input-connect {
   padding: @su-8 @su-12;
   line-height: @lh-6;
 
@@ -134,15 +133,14 @@
     }
   }
 
-  //  If we want to connect a btn that's last, don't round all the corners
-  &.btn._last {
+  //  If we want to connect a button that's last, don't round all the corners
+  &.button._last {
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
-    color: @white;
   }
 
   //  Make labels white-space
-  .f-label {
+  .label {
     white-space: nowrap;
   }
 }
@@ -150,25 +148,25 @@
 //  --  FORM VALIDATION STATES
 //      Validation states will need applied at the wrapping container level.
 //  ----------------------------------------------------------------------------
-.g-box {
+.grid-box {
   //  Universal styles
   &.has-warning,
   &.has-error,
   &.is-success {
-    .f-input,
-    .f-select > select {
+    .input,
+    .select > select {
       background-position: right @su-12 center;
       background-repeat: no-repeat;
     }
-    .f-select > select {
+    .select > select {
       background-position: right @su-24 center;
     }
   }
 
   //  --  WARNING
   &.has-warning {
-    .f-input,
-    .f-select > select {
+    .input,
+    .select > select {
       border-color: mix(@yellow-500,@orange-600);
       background-image: url("../../Img/forms/icon-warning.svg"), none;
 
@@ -189,8 +187,8 @@
 
   //  --  ERROR
   &.has-error {
-    .f-input,
-    .f-select > select {
+    .input,
+    .select > select {
       border-color: @red-400;
       background-image: url("../../Img/forms/icon-error.svg"), none;
 
@@ -211,8 +209,8 @@
 
   //  --  SUCCESS
   &.is-success {
-    .f-input,
-    .f-select select {
+    .input,
+    .select select {
       border-color: @green-400;
       background-image: url("../../Img/forms/icon-success.svg"), none;
 
@@ -236,7 +234,7 @@
     opacity: 0.75;
     cursor: not-allowed;
 
-    .f-select > select {
+    .select > select {
       &:before,
       &:after { opacity: 0.3; }
     }
@@ -246,7 +244,7 @@
 
 //  $$  TEXTAREAS
 //  ----------------------------------------------------------------------------
-textarea.f-input {
+.input._textarea {
   padding-top: @su-12;
   padding-bottom: @su-12;
   height: auto;
@@ -255,12 +253,12 @@ textarea.f-input {
 
 //  $$  SELECT MENUS
 //  ----------------------------------------------------------------------------
-.f-select {
+.select {
   position: relative;
 
   //  --  MENU ARROWS
   //      To customize the visual appearance of the select menu arrows, we need
-  //      to recreate them on the wrapping .f-select div.
+  //      to recreate them on the wrapping .select div.
   //  --------------------------------------------------------------------------
   &:before,
   &:after {
@@ -303,7 +301,7 @@ textarea.f-input {
 
 //  $$  FILE UPLOAD
 //  ----------------------------------------------------------------------------
-.f-input-file {
+.input._file {
   display: block;
   margin: 0;
   padding: @su-8 0;
@@ -313,17 +311,17 @@ textarea.f-input {
 //  $$  CHECKBOXES & RADIOS
 //  ----------------------------------------------------------------------------
 //  --  Variables
-@f-bx-focus:           0 0 2em/13 1px fade(@f-bx-bgc-blue, 50%);
-@f-bx-hover:           0 0 2em/13 1px fade(@f-bx-bgc-blue, 70%);
-@f-bx-bgc-blue:        @blue-500;
-@f-bx-gray:            inset 0 0 0 1px @brc-dark;
-@f-bx-blue:            inset 0 0 0 1px @f-bx-bgc-blue;
-@f-bx-blue_light:      inset 0 0 0 1px fade(@f-bx-bgc-blue,50%);
-@f-bx-white:           inset 0 0 0 3px @white;
-@f-bx-clear:           0 0 0 0 fade(@white,0%);
+@input-ch-rd-focus:           0 0 2em/13 1px fade(@input-ch-rd-bgc-blue, 50%);
+@input-ch-rd-hover:           0 0 2em/13 1px fade(@input-ch-rd-bgc-blue, 70%);
+@input-ch-rd-bgc-blue:        @blue-500;
+@input-ch-rd-gray:            inset 0 0 0 1px @brc-dark;
+@input-ch-rd-blue:            inset 0 0 0 1px @input-ch-rd-bgc-blue;
+@input-ch-rd-blue_light:      inset 0 0 0 1px fade(@input-ch-rd-bgc-blue,50%);
+@input-ch-rd-white:           inset 0 0 0 3px @white;
+@input-ch-rd-clear:           0 0 0 0 fade(@white,0%);
 
-.f-checkbox,
-.f-radio {
+.checkbox,
+.radio {
   //  [1]   Check to see if we can use custom styles, if so reset the defaults
   //  --------------------------------------------------------------------------
   @supports (appearance: none) or (-webkit-appearance: none) {
@@ -368,45 +366,45 @@ textarea.f-input {
 
 //  --   Checkboxes
 //  ----------------------------------------------------------------------------
-.f-checkbox {
+.checkbox {
   @supports (appearance: none) or (-webkit-appearance: none) {
     border-radius: 0;
-    box-shadow: @f-bx-clear, @f-bx-gray;
+    box-shadow: @input-ch-rd-clear, @input-ch-rd-gray;
     background-repeat: no-repeat;
     background-position: center center;
     background-size: contain;
 
     &:checked {
       border-radius: @br-2 / 1;
-      box-shadow: @f-bx-blue;
-      background-color: @f-bx-bgc-blue;
+      box-shadow: @input-ch-rd-blue;
+      background-color: @input-ch-rd-bgc-blue;
       background-image: url("data:image/svg+xml,%3C%3Fxml%20version%3D%221.0%22%20encoding%3D%22UTF-8%22%3F%3E%0A%3Csvg%20width%3D%2212%22%20height%3D%2212%22%20version%3D%221.1%22%20viewBox%3D%220%200%203.1749997%203.175%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cg%20transform%3D%22translate(-61.232%20-118.44)%22%3E%3Cpath%20d%3D%22m63.682%20119.01-1.1328%201.5957-0.63477-0.45117-0.21094%200.29687%200.93164%200.66211%201.3438-1.8906z%22%20fill%3D%22%23fff%22%20fill-rule%3D%22evenodd%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E");
 
       &:hover {
-        box-shadow: @f-bx-hover;
-        background-color: darken(@f-bx-bgc-blue,5%);
+        box-shadow: @input-ch-rd-hover;
+        background-color: darken(@input-ch-rd-bgc-blue,5%);
       }
     }
 
     &:hover {
-      box-shadow: @f-bx-hover, @f-bx-blue_light;
-      background-color: fade(@f-bx-bgc-blue,10%);
+      box-shadow: @input-ch-rd-hover, @input-ch-rd-blue_light;
+      background-color: fade(@input-ch-rd-bgc-blue,10%);
     }
 
     &:active {
-      box-shadow: @f-bx-blue;
-      background-color: fade(@f-bx-bgc-blue,50%);
+      box-shadow: @input-ch-rd-blue;
+      background-color: fade(@input-ch-rd-bgc-blue,50%);
     }
 
     &:focus {
-      box-shadow: @f-bx-focus, @f-bx-gray;
+      box-shadow: @input-ch-rd-focus, @input-ch-rd-gray;
 
       &:checked,
       &:active {
-        box-shadow: @f-bx-focus;
+        box-shadow: @input-ch-rd-focus;
       }
       &:active {
-        box-shadow: @f-bx-focus, @f-bx-blue;
+        box-shadow: @input-ch-rd-focus, @input-ch-rd-blue;
       }
     }
   }
@@ -414,37 +412,37 @@ textarea.f-input {
 
 //  --   Radio Selects
 //  ----------------------------------------------------------------------------
-.f-radio {
+.radio {
   @supports (appearance: none) or (-webkit-appearance: none) {
     border-radius: @br-circle;
-    box-shadow: @f-bx-clear, @f-bx-gray, @f-bx-white;
+    box-shadow: @input-ch-rd-clear, @input-ch-rd-gray, @input-ch-rd-white;
 
     &:checked {
-      box-shadow: @f-bx-clear, @f-bx-blue, @f-bx-white;
-      background-color: @f-bx-bgc-blue;
+      box-shadow: @input-ch-rd-clear, @input-ch-rd-blue, @input-ch-rd-white;
+      background-color: @input-ch-rd-bgc-blue;
 
       &:hover {
-        box-shadow: @f-bx-hover, @f-bx-blue, @f-bx-white;
-        background-color: darken(@f-bx-bgc-blue,5%);
+        box-shadow: @input-ch-rd-hover, @input-ch-rd-blue, @input-ch-rd-white;
+        background-color: darken(@input-ch-rd-bgc-blue,5%);
       }
     }
 
     &:hover {
-      box-shadow: @f-bx-hover, @f-bx-blue_light, @f-bx-white;
-      background-color: fade(@f-bx-bgc-blue,10%);
+      box-shadow: @input-ch-rd-hover, @input-ch-rd-blue_light, @input-ch-rd-white;
+      background-color: fade(@input-ch-rd-bgc-blue,10%);
     }
 
     &:active {
-      box-shadow: @f-bx-clear, @f-bx-blue, @f-bx-white;
-      background-color: fade(@f-bx-bgc-blue,50%);
+      box-shadow: @input-ch-rd-clear, @input-ch-rd-blue, @input-ch-rd-white;
+      background-color: fade(@input-ch-rd-bgc-blue,50%);
     }
 
     &:focus {
-      box-shadow: @f-bx-focus, @f-bx-gray, @f-bx-white;
+      box-shadow: @input-ch-rd-focus, @input-ch-rd-gray, @input-ch-rd-white;
 
       &:checked,
       &:active {
-        box-shadow: @f-bx-focus, @f-bx-blue, @f-bx-white;
+        box-shadow: @input-ch-rd-focus, @input-ch-rd-blue, @input-ch-rd-white;
       }
     }
   }
@@ -454,7 +452,7 @@ textarea.f-input {
 //  ============================================================================
 //  $  LABELS
 //  ============================================================================
-.f-label {
+.label {
   font-weight: 700;
   cursor: pointer;
 
@@ -482,20 +480,11 @@ textarea.f-input {
 
 
 //  ============================================================================
-//  $ TYPE STYLES
-//  ----------------------------------------------------------------------------
-//  --  Help Text
-.f-description {
-  color: @fc-light;
-  line-height: @lh-4;
-}
-
-//  ============================================================================
 //  $ OPTION TOGGLE
 //  ----------------------------------------------------------------------------
-.f-option-toggle {
+.option-toggle {
   //  First hide the radio buttons
-  .f-radio {
+  .radio {
     position: absolute;
     left: -999em;
     opacity: 0;
@@ -507,16 +496,16 @@ textarea.f-input {
     margin-right: -1px;
 
     //  Round the corners on the first and last elements
-    &:first-of-type .f-label {
+    &:first-of-type .label {
       border-radius: @su-2 0 0 @su-2;
     }
-    &:last-of-type .f-label {
+    &:last-of-type .label {
       border-radius: 0 @su-2 @su-2 0;
     }
   }
 
   //  Style the base label
-  .f-label {
+  .label {
     padding: @su-8 @su-12;
     border: 1px solid @brc-light;
     background-color: @white;
@@ -535,7 +524,7 @@ textarea.f-input {
   }
 
   //  If the label is selected, style it accordingly.
-  .f-radio:checked + .f-label {
+  .radio:checked + .label {
     z-index: 2;
     border-color: @powder-200;
     box-shadow: 0 0 8px fade(@powder-600,10%);
@@ -557,14 +546,14 @@ textarea.f-input {
   //      When the toggle is the only one within a view and we want it to be
   //      visually dominating for the user.
   &._primary {
-    .f-label:hover,
-    .f-label:active {
+    .label:hover,
+    .label:active {
       color: @blue-700;
       box-shadow: 0 0 8px fade(@blue-500,25%);
       background-color: @blue-050;
     }
 
-    .f-radio:checked + .f-label {
+    .radio:checked + .label {
       border-color: @blue-600;
       box-shadow: 0 0 8px fade(@blue-500,10%);
       background-color: @blue-500;
@@ -584,14 +573,14 @@ textarea.f-input {
   //      Used when the toggle represents an "on/off" choice for the user. A
   //      "off" state must be present to use this modifier.
   &._switch {
-    .f-label:hover,
-    .f-label:active {
+    .label:hover,
+    .label:active {
       border-color: @brc-dark;
       box-shadow: 0 0 8px fade(@black-600,25%);
       background-color: @bgc-lightest;
     }
 
-    .f-radio:checked + .f-label {
+    .radio:checked + .label {
       &:not(._off) {
         border-color: @green-400;
         box-shadow: 0 0 8px fade(@green-400,10%);
