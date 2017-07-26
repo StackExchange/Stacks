@@ -39,7 +39,7 @@
 //  ----------------------------------------------------------------------------
 .grid-box-columns(@num, @count: 1) when (@count =< @num) {
   &._cell-@{count} {
-    > .g-box,
+    > .grid-box,
     > .-cell {
       .flex(1 (@count * 100% / @num));
       max-width: (@count * 100% / @num);
@@ -125,27 +125,27 @@
 //          which would effectively double the desired total.
 //  ----------------------------------------------------------------------------
 .grid-spacing(@spacing) {
-  //  Default g-box is a row, so apply the margin only on the left and right
+  //  Default grid-box is a row, so apply the margin only on the left and right
   //  there initially.
   &:not(._col) {
     margin-left: -(@spacing / 2);
     margin-right: -(@spacing / 2);
 
     //  --  FLUID CELLS
-    > .g-box,
+    > .grid-box,
     > .-cell {
       margin-left: @spacing / 2;
       margin-right: @spacing / 2;
     }
   }
 
-  //  If the g-box is a column is a box though, apply it to the top and bottom
+  //  If the grid-box is a column is a box though, apply it to the top and bottom
   &._col {
     margin-top: -(@spacing / 2);
     margin-bottom: -(@spacing / 2);
 
     //  --  FLUID CELLS
-    > .g-box,
+    > .grid-box,
     > .-cell {
       margin-top: @spacing / 2;
       margin-bottom: @spacing / 2;
@@ -284,7 +284,7 @@
 //      To help simplify our CSS, we create a generic box container. By default
 //      this is a row container, but we can modify the box to become a column.
 //  ----------------------------------------------------------------------------
-.g-box {
+.grid-box {
   //  Add box-sizing to anything within the grid
   &,
   *,
@@ -300,9 +300,9 @@
 
   //  --  GENERIC AUTO WIDTH CELL
   //      This creates a generic fluid child cell, but only for direct children.
-  //      To help reduce on required class names (i.e. .g-box .-cell), when a
+  //      To help reduce on required class names (i.e. .grid-box .-cell), when a
   //      box is nested within another, we let it act like a cell.
-  > .g-box,
+  > .grid-box,
   > .-cell {
     .flex(1 auto);
     max-width: 100%;
@@ -329,7 +329,7 @@
 //  $   GRID SPACING
 //      Insert spaces or gutters in between grid cells
 //  ----------------------------------------------------------------------------
-.g-box {
+.grid-box {
   &._sp-2  { .grid-spacing(@su-2); }     //  2px
   &._sp-4  { .grid-spacing(@su-4); }     //  4px
   &._sp-8  { .grid-spacing(@su-8); }     //  8px
@@ -348,7 +348,7 @@
 //  ----------------------------------------------------------------------------
 //  --  These items can ONLY apply to box
 //  ----------------------------------------------------------------------------
-.g-box {
+.grid-box {
   //  --  Wrap Directions
   //      For changing the wrapping direction of a parent container
   //  --------------------------------------------------------------------------
@@ -365,7 +365,7 @@
   //  --------------------------------------------------------------------------
   &._fl-0 {
     &,
-    > .g-box,
+    > .grid-box,
     > .-cell {
       .flex(0 auto);
     }
@@ -387,8 +387,8 @@
 
 //  --  These items can apply to both box and child containers
 //  ----------------------------------------------------------------------------
-.g-box,
-.g-box > [class*="-cell"] {
+.grid-box,
+.grid-box > [class*="-cell"] {
   //  --  Alignment
   //      For positioning items within parent container
   //  --------------------------------------------------------------------------
@@ -412,7 +412,7 @@
 
 //  --  These items can ONLY apply to child containers
 //  ----------------------------------------------------------------------------
-.g-box > [class*="-cell"] {
+.grid-box > [class*="-cell"] {
   //  --------------------------------------------------------------------------
   //  $$  CELLS
   //      Items which apply only to child cells

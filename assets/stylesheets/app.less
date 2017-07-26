@@ -632,7 +632,7 @@
 
   &._helper-ac,
   &._helper-as {
-    .g-box {
+    .grid-box {
       height: 128px;
     }
   }
@@ -640,7 +640,7 @@
   &._helper-order .grid-wrapper {
     .-cell:not(._first):not(._last) { opacity: 0.5; }
 
-    .g-box._reverse > .-cell { opacity: 1; }
+    .grid-box._reverse > .-cell { opacity: 1; }
   }
 
   .grid-wrapper {
@@ -651,33 +651,30 @@
     &:last-of-type  { margin-bottom: 0; }
   }
 
-  .grid-box {
+  .example-box {
     .flexbox(box);
     .justify-content(center);
     .align-items(center);
     height: 100%;
   }
 
-	.g-box {
+	.grid-box {
     background-color: @grid-background;
 
-    > .g-box,
-    > .-cell,
-    > [class*="-cell-"] {
+    > .grid-box,
+    > [class*="-cell"] {
       padding: @su-8;
       background-color: @grid-cell-background;
     }
-    > .-cell,
-    > [class*="-cell-"] {
+    > [class*="-cell"] {
       .justify-content(center);
       .align-items(center);
     }
 
-    > .g-box {
+    > .grid-box {
       background-color: @grid-cell-background;
 
-      > .-cell,
-      > [class*="-cell-"] {
+      > [class*="-cell"] {
         background-color: spin(saturate(darken(@grid-cell-background,5%),5%),-5);
       }
     }
