@@ -60,7 +60,6 @@
 	left: 240px;
 	background-color: @bgc-lightest;
 	border-left: 1px solid @brc-light;
-
 }
 
 // --------------------------------------------------------------
@@ -119,11 +118,19 @@
 #uikit-toc {
   padding-top: @su-64 + @su-8;
 
+  //  Reset all submenus
+  ul,
+  li {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+  }
+
 	li a {
 		display: block;
-    padding: @su-12 @su-16;
+    padding: @su-12;
     border-bottom: 1px solid @brc-light;
-		color: @fc-medium;
+		color: @fc-dark;
     transition: all 300ms @te-smooth;
 
 		&:hover {
@@ -131,15 +138,18 @@
 			color: @fc-dark;
 		}
 	}
-
-  li:last-of-type a {
-    border-bottom-color: transparent;
+	li li {
+    a {
+      padding: (@su-8 + @su-2) @su-12 (@su-8 + @su-2) @su-24;
+      color: @fc-medium;
+    }
+    li a {
+      padding: @su-8 @su-12 @su-8 (@su-32 + @su-8);
+      color: lighten(@fc-medium,20%);
+    }
+  	li li a { padding: @su-8 @su-12 @su-8 @su-32; }
+  	li li li a { padding-left: @su-48; }
   }
-
-	li li a { padding-left: @su-24; }
-	li li li a { padding-left: @su-32; }
-	li li li li a { padding-left: @su-64; }
-	li li li li li a { padding-left: @su-64 + @su-12; }
 
 	+ #uikit-content {
     box-sizing: content-box;
