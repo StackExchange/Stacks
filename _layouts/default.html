@@ -3,24 +3,24 @@
   {% include head.html %}
 
   <body>
-    {% include sidebar.html %}
+      <div class="grid-container">
+          {% include nav-primary.html %}
 
-    <ul id="uikit-toc" class="list-reset"></ul>
+          <main id="stacks-content" class="stacks-content p-16 pt-32">
+            <header class="-header">
+              <!-- <h1 class="title-page">{{ page.title }}</h1> -->
+              {{ page.header_actions }}
+            </header>
 
-    <main id="uikit-content">
-    	<header>
-  	    <h1>{{ page.title }}</h1>
-        {{ page.header_actions }}
-    	</header>
+            {% if page.description %}
+              <p class="p-intro">
+                {{ page.description }}
+              </p>
+            {% endif %}
 
-    	{% if page.description %}
-  	    <div class="uikit-intro">
-	        {{ page.description }}
-  	    </div>
-    	{% endif %}
-
-      {{ content }}
-    </main>
+            {{ content }}
+          </main>
+      </div>
   </body>
 
   {% include footer.html %}

@@ -1,0 +1,455 @@
+//
+//  STACKS
+//  All the CSS related to Stacks ONLY.
+//
+//  TABLE OF CONTENTS
+//  • IMPORTS
+//  • UNIVERSAL SETTINGS
+//  • SITE LAYOUT
+//  • CODE STYLE
+//
+//  ============================================================================
+//  $   IMPORTS
+//  ----------------------------------------------------------------------------
+@import "base";            //  These are actual styles used in SO projects
+@import "syntax";
+
+
+//  ============================================================================
+//  $   UNIVERSAL SETTINGS
+//  ----------------------------------------------------------------------------
+svg[role="icon"] {
+  fill: currentColor;
+}
+
+//  ============================================================================
+//  $   SITE LAYOUT
+//  ============================================================================
+//  $   CSS GRID
+//      This is supported by all modern browsers except IE11 and Edge.
+//      IE11 and Edge support the old spec prefixed. Microsoft is working
+//      on shipping the new spec soon. Dated Jun 2017
+//
+//      Official Status:
+//      https://developer.microsoft.com/en-us/microsoft-edge/platform/status/gridupdate/
+//  ============================================================================
+//      Fall forward. If a browser supports CSS Grids, then use the following
+//      CSS. Otherwise they'll ignore it and we can use flexbox instead. This
+//      mainly means IE11 and Edge won't be supported for Grids.
+//  ----------------------------------------------------------------------------
+@content-width:       60em;
+@nav-width-primary:   18em;
+@nav-width-secondary: 14em;
+
+@supports (grid-auto-rows: 1px) {
+  .grid-container {
+    display: grid;
+    grid-template-columns: @nav-width-primary @content-width;
+    grid-template-areas: "nav main";
+    grid-gap: 0;
+    height: 100%;
+
+    //  Specific class names that assign template areas
+    .stacks-content {
+      grid-column: main;
+    }
+    .stacks-nav-primary {
+      grid-column: nav;
+    }
+    .stacks-nav-secondary {
+      grid-column: subnav;
+    }
+
+    .stacks-nav-primary,
+    .stacks-nav-secondary {
+      position: -webkit-sticky; // Needed for Safari
+      position: sticky;
+      top: 0;
+      height: 100vh;
+    }
+
+    //  For when we want a secondary navigation
+    &._nav-secondary {
+      grid-template-columns: @nav-width-primary @nav-width-secondary @content-width;
+      grid-template-areas: "nav subnav main";
+    }
+  }
+}
+
+.stacks-section {
+  padding-top: @su-16;
+  max-width: @content-width; // Needed for Safari
+}
+
+
+//  ============================================================================
+//  $   NAV STYLES
+//  ============================================================================
+//  $$  NAV: RESET LIST
+//  ----------------------------------------------------------------------------
+.nav {
+  &,
+  .-item {
+    .list-reset;
+  }
+}
+
+//  $$  NAV: MENU ITEM
+//  ----------------------------------------------------------------------------
+.nav .-item {
+  //  If a submenu is open…
+  &.is-open {
+    // background-color: @black-050;
+
+    //  Flip icon
+    .-icon {
+      transform: rotate(180deg) translateY(-1px);
+    }
+  }
+
+  //  If a submenu item is active…
+  &.is-active .-link {
+    background-color: @orange-300;
+    color: @white;
+
+    //  Add small extension to the end of the background color…
+    &:before {
+      content: "";
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      right: 0;
+      margin-right: -(@su-8);
+      width: @su-8;
+      background-color: @orange-300;
+    }
+
+    &:hover,
+    &:hover:before {
+      background-color: @orange-400;
+      color: @white;
+    }
+  }
+
+  //  If a submenu item is the last one…
+  &:last-child {
+    padding-bottom: @su-8;
+  }
+}
+
+
+//  $$  NAV: SECTIONS
+//  ----------------------------------------------------------------------------
+.-section {
+  font-size: @fs-12;
+  color: @black-700;
+
+  &:hover {
+    background-color: @black-050;
+    color: @fc-dark;
+  }
+}
+
+//  $$  NAV: LINKS
+//  ----------------------------------------------------------------------------
+.nav .-link {
+  position: relative;
+  padding: @su-4;
+  width: 100%;
+
+  background-color: fade(@black-050,0%);
+  font-size: @fs-13;
+  line-height: @lh-10;
+  color: @black-400;
+  transition: all 300ms @te-smooth-quick;
+
+  &:hover {
+    background-color: fade(@black-050,50%);
+    color: @fc-dark;
+  }
+}
+
+
+//  ============================================================================
+//  $  NESTED NAV
+//  ----------------------------------------------------------------------------
+.nav .nav {
+  .-link {
+    font-size: @fs-12;
+    line-height: @lh-6;
+
+    &:hover {
+      color: @black-600;
+      background-color: @black-050;
+    }
+  }
+}
+
+//  Scrollspy styling
+.stacks-nav-secondary .active {
+  > .-link {
+    box-shadow: inset -2px 0 0 @brc-orange;
+    color: @fc-dark;
+  }
+}
+
+.nav {
+  // Make icons slightly smaller
+  .-icon .svg-icon {
+    width: 12px;
+    height: 12px;
+  }
+}
+
+.-title._border {
+  position: relative;
+
+  &:before {
+    content: "";
+    position: absolute;
+    left: @su-8;
+    bottom: 0;
+    width: @su-24;
+    height: @su-2;
+    background-color: @bgc-darker;
+  }
+}
+
+
+//  ============================================================================
+//  $   TYPE STYLES
+//  ----------------------------------------------------------------------------
+.p-intro {
+  margin: 0 0 1em;
+  font-size: @fs-21;
+  line-height: @lh-4;
+  color: @fc-medium;
+}
+.page-p {
+  font-size: @fs-17;
+  line-height: @lh-4;
+  color: @fc-medium;
+}
+
+//  $$  CONTECT SECTIONS
+//  ============================================================================
+//  --  Content Titles
+//  ----------------------------------------------------------------------------
+.content-section-title {
+  .flexbox(box);
+  .justify-content(space-between);
+  .align-items(center);
+  margin-bottom: 0;
+
+  font-size: @fs-21;
+  line-height: @lh-10;
+  color: @fc-dark;
+
+  .-anchor {
+    .flexbox(inline);
+    .flex(0 auto);
+    .justify-content(center);
+    .align-items(center);
+    width: @su-24;
+    height: @su-24;
+    background-color: @white;
+    color: @fc-light;
+    transition: all 300ms @te-smooth;
+
+    &:hover {
+      background-color: @blue-100;
+      color: @blue-700;
+    }
+  }
+
+  &._subtitle {
+    margin-top: @su-24;
+    font-size: @fs-17;
+    color: @fc-medium;
+  }
+  &._subtitle-sm {
+    font-size: @fs-15;
+    color: lighten(@fc-medium,10%);
+  }
+}
+
+//  --  Content Paragraphs
+//  ----------------------------------------------------------------------------
+.section-p {
+  margin: 0 0 @su-8;
+  font-size: @fs-15;
+  line-height: @lh-4;
+  color: @fc-medium;
+
+  strong {
+    color: @fc-dark;
+  }
+}
+
+//  --   Code Tag
+//  ----------------------------------------------------------------------------
+.code-tag {
+  margin: 0 @su-2;
+  padding: @su-2 (@su-4 + 1) (@su-4 - 1);
+  border-radius: @br-2;
+  box-shadow: inset 1px 1px 0 fade(@red-400,25%), inset -1px -1px 0 fade(@red-400,25%);
+  background-color: fade(@bgc-lightest,75%);
+  font-size: @fs-12;
+  font-weight: 700;
+  color: @red-400;
+}
+
+
+//  ============================================================================
+//  $   CODE STYLES
+//  ----------------------------------------------------------------------------
+.stacks-code-preview {
+  margin-top: @su-16;
+  margin-bottom: @su-32;
+  border-radius: @br-2;
+  border: 1px solid @brc-light;
+  box-shadow: 0 2px 8px fade(@bgc-lightest,50%);
+
+  // Actual code highlight
+  .highlight {
+    // Reset margins
+    &,
+    pre {
+      margin: -1px -1px 0;
+      font-size: @fs-13 + 1;
+      font-family: @ff-mono;
+      line-height: @lh-6;
+      color: #C5C8C6;
+    }
+
+    border-radius: @br-2 @br-2 0 0;
+    box-shadow: inset 32px 0 0 @black-750;
+    background-color: #1D1F21;
+    overflow-y: scroll;
+
+    > pre {
+      padding-top: @su-12;
+      padding-bottom: @su-8;
+    }
+
+    .gutter.gl {
+      position: absolute;
+      padding-right: @su-8;
+      min-width: @su-32;
+
+      pre {
+        color: #7A7D80;
+      }
+    }
+    .code {
+      padding-left: @su-32 + @su-12;
+    }
+  }
+
+  //  Preview area
+  .-preview {
+    padding: @su-24 @su-16;
+  }
+
+  //  If there's no preview. We're only showing code.
+  &._preview-none {
+    border-color: transparent;
+
+    .highlight {
+      border-radius: @br-2;
+    }
+  }
+}
+
+
+//  ============================================================================
+//  $   CARD STYLES
+//  ----------------------------------------------------------------------------
+.card.stacks-preview {
+  //  --   Preview Area
+  .-preview {
+    min-height: 4em;
+    background-color: @black-025;
+    box-shadow: inset 0 -1px 0 @brc-lightest;
+    color: @fc-medium;
+
+    .svg-icon {
+      max-width: 90%;
+    }
+  }
+}
+
+
+//  ============================================================================
+//  $   GRID
+//      Used to showcase grid layouts and cells
+//  ----------------------------------------------------------------------------
+@grid-background:            @orange-050;
+@grid-cell-background:       @orange-300;
+
+.stacks-section .-preview._grid {
+  font-family: @ff-mono;
+  font-size: @fs-12;
+  color: @black-800;
+
+  &._helper-ac,
+  &._helper-as {
+    .grid-box {
+      height: 128px;
+    }
+  }
+
+  &._helper-order .-wrapper {
+    .-cell:not(._first):not(._last) { opacity: 0.5; }
+
+    .grid-box._reverse > .-cell { opacity: 1; }
+  }
+
+  .-wrapper {
+    margin: @su-24 0;
+    overflow: hidden;
+
+    &:first-of-type { margin-top: 0; }
+    &:last-of-type  { margin-bottom: 0; }
+  }
+
+  //  The box shown the grid examples
+  .stacks-grid-example {
+    .flexbox(box);
+    .justify-content(center);
+    .align-items(center);
+    height: 100%;
+  }
+
+	.grid-box {
+    background-color: @grid-background;
+
+    > .grid-box,
+    > [class*="-cell"] {
+      padding: @su-8;
+      background-color: @grid-cell-background;
+    }
+    > [class*="-cell"] {
+      .justify-content(center);
+      .align-items(center);
+    }
+
+    > .grid-box {
+      background-color: @grid-cell-background;
+
+      > [class*="-cell"] {
+        background-color: spin(saturate(darken(@grid-cell-background,5%),5%),-5);
+      }
+    }
+  }
+}
+
+
+//  ============================================================================
+//  $   COLORS
+//  ----------------------------------------------------------------------------
+.stacks-swatch {
+  width: @su-32;
+  height: @su-32;
+  border: 1px solid @black-025;
+}

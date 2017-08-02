@@ -1,0 +1,106 @@
+//
+//  STACK OVERFLOW
+//  UTILITIES
+//
+//  ============================================================================
+//  $  LAYOUT HELPERS
+//  ----------------------------------------------------------------------------
+.ut-ds-block              { display: block !important; }
+.ut-ds-inline             { display: inline !important; }
+.ut-ds-inline-block       { display: inline-block !important; }
+.ut-ds-table              { display: table !important; }
+.ut-ds-table-cell         { display: table-cell !important; }
+.ut-ds-none               { display: none !important; }
+.ut-ds-unset              { display: unset !important; }
+
+.ut-fl-left               { float: left !important; }
+.ut-fl-right              { float: right !important; }
+.ut-fl-clear              { clear: both !important; }
+
+.ut-va-top                { vertical-align: top !important; }
+.ut-va-middle             { vertical-align: middle !important; }
+.ut-va-bottom             { vertical-align: bottom !important; }
+
+.ut-po-absolute           { position: absolute !important; }
+.ut-po-fixed              { position: fixed !important; }
+.ut-po-relative           { position: relative !important; }
+.ut-po-static             { position: static !important; }
+.ut-po-unset              { position: unset !important; }
+
+// fixed width
+.fw {
+    margin-bottom: 4px;
+    width: 100%;
+}
+
+
+//  ----------------------------------------------------------------------------
+//  $  Text
+//  ----------------------------------------------------------------------------
+.help-text {
+    color: @black-500;
+}
+
+.help-text,
+.message.text-only {
+    &.has-icon {
+        display: flex;
+        -ms-display: flex;
+
+        [class^='icon'] {
+            flex-shrink: 0;
+            -ms-flex-shrink: 0;
+            margin-right: 5px;
+        }
+
+        .icon-i-orange {
+            position: relative;
+            top: 2px;
+        }
+    }
+}
+
+.success-text   { color: @green-500; }
+.error-text     { color: @red-500; }
+
+//  -----------------------------------------------------------------------------
+//  $$  Retina
+//  -----------------------------------------------------------------------------
+@retina: ~"(-webkit-min-device-pixel-ratio: 1.5), (min--moz-device-pixel-ratio: 1.5), (-o-min-device-pixel-ratio: 3/2), (min-resolution: 1.5dppx)";
+
+.at2x(@path, @w: auto, @h: auto) {
+
+    background-image: url(@path);
+
+    @at2x_path: ~`@{path}.replace(/\.\w+$/, function(match) { return "@2" + match; })`;
+
+    @media @retina {
+        background-image: url("@{at2x_path}");
+        background-size: @w @h;
+    }
+
+}
+
+.at2xFull(@path, @w: auto, @h: auto, @position: top left, @repeat: no-repeat, @bg-color: none) {
+
+    background-image: url(@path);
+    background-position: @position;
+    background-repeat: @repeat;
+    background-color: @bg-color;
+
+    @at2x_path: ~`@{path}.replace(/\.\w+$/, function(match) { return "@2" + match; })`;
+
+    @media @retina {
+        background-image: url("@{at2x_path}");
+        background-size: @w @h;
+    }
+
+}
+
+//  -----------------------------------------------------------------------------
+//  $$  Layout
+//  -----------------------------------------------------------------------------
+.stop-scrolling {
+  height: 100%;
+  overflow: hidden;
+}

@@ -1,278 +1,171 @@
 ---
-layout: default
+layout: with-secondary-nav
 title: Spacing
 description: Stacks provides atomic classes to override margin and padding.
 ---
-<section id="margin" class="uikit-section">
-    <h2>Margin</h2>
-    <p>Immutable margin utilities are based on our global white space scale. These can dramatically help reduce the size of large stylesheets and allow for greater flexibility and quicker iteration when designing in the browser.</p>
-    <p>Margin should never be declared outside of these utilities. This is meant to help create consistency and avoid magic numbers. If, for some reason, the default white space scale does not suit your design, customize and extend it before use.</p>
-    
-    <h3>Class naming convention</h3>
-    <table class="table mb12">
+<section class="stacks-section">
+    <h2 class="content-section-title">Margin</h2>
+    <p class="section-p">Immutable margin utilities are based on our global white space scale. These can dramatically help reduce the size of large stylesheets and allow for greater flexibility and quicker iteration when designing in the browser.</p>
+    <p class="section-p">Margin should never be declared outside of these utilities. This is meant to help create consistency and avoid magic numbers. If, for some reason, the default white space scale does not suit your design, customize and extend it before use.</p>
+
+    <h3 class="content-section-title _subtitle">Margin Class Convention</h3>
+    <table class="table mb-32">
         <thead>
-            <tr> <th>Shorthand</th> <th>Description</th> </tr>
+            <tr>
+                <th class="-cell-2" scope="col">Abbreviation</th>
+                <th scope="col">Definition</th>
+            </tr>
         </thead>
         <tbody>
-            <tr> <td>m</td> <td>Margin</td> </tr>
-            <tr> <td>t</td> <td>Top</td> </tr>
-            <tr> <td>r</td> <td>Right</td> </tr>
-            <tr> <td>b</td> <td>Bottom</td> </tr>
-            <tr> <td>l</td> <td>Left</td> </tr>
-            <tr> <td>x</td> <td>X-axis (left and right)</td> </tr>
-            <tr> <td>y</td> <td>Y-axis (top and bottom)</td> </tr>
-            <tr> <td>n</td> <td>Negative</td> </tr>
-            <tr> <td>0</td> <td>0 reset</td> </tr>
-            <tr> <td>2</td> <td>margin: 2px</td> </tr>
-            <tr> <td>4</td> <td>margin: 4px</td> </tr>
-            <tr> <td>8</td> <td>margin: 8px</td> </tr>
-            <tr> <td>12</td> <td>margin: 12px</td> </tr>
-            <tr> <td>16</td> <td>margin: 16px</td> </tr>
-            <tr> <td>24</td> <td>margin: 24px</td> </tr>
-            <tr> <td>32</td> <td>margin: 32px</td> </tr>
-            <tr> <td>48</td> <td>margin: 48px</td> </tr>
-            <tr> <td>64</td> <td>margin: 64px</td> </tr>
+            {% for spacing in site.data.spacing-definitions.margin %}
+              <tr>
+                  <th scope="row">{{ spacing.term }}</th>
+                  <td>{{ spacing.define }}</td>
+              </tr>
+            {% endfor %}
         </tbody>
     </table>
-    <p>Negative x-axis margins are used to offset margins and padding of child elements. Margin auto is used to horizontally center block-level elements with a set width.</p>
-    <div class="uikit-code uikit-has-preview">
+
+    <h3 class="content-section-title _subtitle mb-12">Margin Classes</h3>
+    <div class="stacks-code-preview">
 {% highlight css linenos %}
-.m-0  { margin:        0 }
-.mt-0 { margin-top:    0 }
-.mr-0 { margin-right:  0 }
-.mb-0 { margin-bottom: 0 }
-.ml-0 { margin-left:   0 }
-.mx-0 { margin-left:   0; margin-right:  0 }
-.my-0 { margin-top:    0; margin-bottom: 0 }
-
-.m-2  { margin:        @su-2 }
-.mt-2 { margin-top:    @su-2 }
-.mr-2 { margin-right:  @su-2 }
-.mb-2 { margin-bottom: @su-2 }
-.ml-2 { margin-left:   @su-2 }
-.mx-2 { margin-left:   @su-2; margin-right:  @su-2 }
-.my-2 { margin-top:    @su-2; margin-bottom: @su-2 }
-
-.m-4  { margin:        @su-4 }
-.mt-4 { margin-top:    @su-4 }
-.mr-4 { margin-right:  @su-4 }
-.mb-4 { margin-bottom: @su-4 }
-.ml-4 { margin-left:   @su-4 }
-.mx-4 { margin-left:   @su-4; margin-right:  @su-4 }
-.my-4 { margin-top:    @su-4; margin-bottom: @su-4 }
-
-.m-8  { margin:        @su-8 }
-.mt-8 { margin-top:    @su-8 }
-.mr-8 { margin-right:  @su-8 }
-.mb-8 { margin-bottom: @su-8 }
-.ml-8 { margin-left:   @su-8 }
-.mx-8 { margin-left:   @su-8; margin-right:  @su-8 }
-.my-8 { margin-top:    @su-8; margin-bottom: @su-8 }
-
-.m-12  { margin:        @su-12 }
-.mt-12 { margin-top:    @su-12 }
-.mr-12 { margin-right:  @su-12 }
-.mb-12 { margin-bottom: @su-12 }
-.ml-12 { margin-left:   @su-12 }
-.mx-12 { margin-left:   @su-12; margin-right:  @su-12 }
-.my-12 { margin-top:    @su-12; margin-bottom: @su-12 }
-
-.m-16  { margin:        @su-16 }
-.mt-16 { margin-top:    @su-16 }
-.mr-16 { margin-right:  @su-16 }
-.mb-16 { margin-bottom: @su-16 }
-.ml-16 { margin-left:   @su-16 }
-.mx-16 { margin-left:   @su-16; margin-right:  @su-16 }
-.my-16 { margin-top:    @su-16; margin-bottom: @su-16 }
-
-.m-24  { margin:        @su-24 }
-.mt-24 { margin-top:    @su-24 }
-.mr-24 { margin-right:  @su-24 }
-.mb-24 { margin-bottom: @su-24 }
-.ml-24 { margin-left:   @su-24 }
-.mx-24 { margin-left:   @su-24; margin-right:  @su-24 }
-.my-24 { margin-top:    @su-24; margin-bottom: @su-24 }
-
-.m-32  { margin:        @su-32 }
-.mt-32 { margin-top:    @su-32 }
-.mr-32 { margin-right:  @su-32 }
-.mb-32 { margin-bottom: @su-32 }
-.ml-32 { margin-left:   @su-32 }
-.mx-32 { margin-left:   @su-32; margin-right:  @su-32 }
-.my-32 { margin-top:    @su-32; margin-bottom: @su-32 }
-
-.m-48  { margin:        @su-48 }
-.mt-48 { margin-top:    @su-48 }
-.mr-48 { margin-right:  @su-48 }
-.mb-48 { margin-bottom: @su-48 }
-.ml-48 { margin-left:   @su-48 }
-.mx-48 { margin-left:   @su-48; margin-right:  @su-48 }
-.my-48 { margin-top:    @su-48; margin-bottom: @su-48 }
-
-.m-64  { margin:        @su-64 }
-.mt-64 { margin-top:    @su-64 }
-.mr-64 { margin-right:  @su-64 }
-.mb-64 { margin-bottom: @su-64 }
-.ml-64 { margin-left:   @su-64 }
-.mx-64 { margin-left:   @su-64; margin-right:  @su-64 }
-.my-64 { margin-top:    @su-64; margin-bottom: @su-64 }
-
-.mx-n-2  { margin-left: -@su-2; margin-right: -@su-2; }
-.mx-n-4  { margin-left: -@su-4; margin-right: -@su-4; }
-.mx-n-8  { margin-left: -@su-8; margin-right: -@su-8; }
-.mx-n-12 { margin-left: -@su-12; margin-right: -@su-12; }
-.mx-n-16 { margin-left: -@su-16; margin-right: -@su-16; }
-.mx-n-24 { margin-left: -@su-24; margin-right: -@su-24; }
-.mx-n-32 { margin-left: -@su-32; margin-right: -@su-32; }
-.mx-n-48 { margin-left: -@su-48; margin-right: -@su-48; }
-.mx-n-64 { margin-left: -@su-64; margin-right: -@su-64; }
-
-.ml-auto { margin-left: auto }
-.mr-auto { margin-right: auto }
-.mx-auto { margin-left: auto; margin-right: auto; }
+<div class="mt-0 mr-2 mb-4 mr-8">
+  …
+</div>
 {% endhighlight %}
-    </div>
-
-    <h3>Resetting margins</h3>
-    <div class="uikit-code uikit-has-preview">
-{% highlight html linenos %}
-<h1 class="m-0">No margin</h1>
-<h1 class="mt-0">No margin top</h1>
-<h1 class="mb-0">No margin bottom</h1>
-{% endhighlight %}
-        <div class="stacks-preview">
-            <h1 class="m-0">No margin</h1>
-            <h1 class="mt-0">No margin top</h1>
-            <h1 class="mb-0">No margin bottom</h1>
+        <div class="-preview">
+            <div class="mt-0 mr-2 mb-4 ml-8 bg-black-025">
+                Example nested div with different margins and paddings
+            </div>
         </div>
     </div>
+    <table class="table mb-32">
+        <thead>
+            <tr>
+                <th scope="col">Prefix</th>
+                <th scope="col" class="text-ta-center">0</th>
+                <th scope="col" class="text-ta-center">2</th>
+                <th scope="col" class="text-ta-center">4</th>
+                <th scope="col" class="text-ta-center">8</th>
+                <th scope="col" class="text-ta-center">12</th>
+                <th scope="col" class="text-ta-center">16</th>
+                <th scope="col" class="text-ta-center">24</th>
+                <th scope="col" class="text-ta-center">32</th>
+                <th scope="col" class="text-ta-center">48</th>
+                <th scope="col" class="text-ta-center">64</th>
+            </tr>
+        </thead>
+        <tbody>
+          {% for class in site.data.spacing-classes.margin %}
+          {% assign prefix-value = class.values | split: ", " %}
+              <tr>
+                  <th scope="row" class="-cell-1">{{ class.prefix }}</th>
+                  {% for values in prefix-value %}
+                  <td class="text-ta-center"><code class="text-fs-11">.{{ class.prefix }}{{ values }}</code></td>
+                  {% endfor %}
+              </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 
-    <h3>Add spacing</h3>
-    <div class="uikit-code uikit-has-preview">
-{% highlight html linenos %}
-<div class="m-12">Hamburger</div>
-<div class="m-12">Hamburger</div>
-<div class="m-12">Hamburger</div>
-{% endhighlight %}
-        <div class="stacks-preview">
-            <div class="m-12">Hamburger</div>
-            <div class="m-12">Hamburger</div>
-            <div class="m-12">Hamburger</div>
-        </div>
-    </div>
+    <h3 class="content-section-title _subtitle mb-12">Additional Margin Classes</h3>
+    <p class="section-p">In order to the standard margin classes above, there a few additional margin-only classes available: negative margin and auto classes. Negative margin classes apply only to the x-axis (margin-left, margin-right) and can be used to offset margins and padding of child elements. The auto classes apply only to x-axis as well and can be used to reset the left and right margins.</p>
+    <table class="table mb-32">
+        <thead>
+            <tr>
+                <th scope="col" class="-cell-3">Type</th>
+                <th scope="col">Values</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th scope="row">Negative Margin</th>
+                <td>
+                    <code class="text-fs-11">.mx-n-2</code>,
+                    <code class="text-fs-11">.mx-n-4</code>,
+                    <code class="text-fs-11">.mx-n-8</code>,
+                    <code class="text-fs-11">.mx-n-12</code>,
+                    <code class="text-fs-11">.mx-n-16</code>,
+                    <code class="text-fs-11">.mx-n-24</code>,
+                    <code class="text-fs-11">.mx-n-32</code>,
+                    <code class="text-fs-11">.mx-n-48</code>,
+                    <code class="text-fs-11">.mx-n-64</code>
+                </td>
+            </tr>
+            <tr>
+                <th scope="row">Auto Margin</th>
+                <td>
+                    <code class="text-fs-11">.ml-auto</code>,
+                    <code class="text-fs-11">.mr-auto</code>,
+                    <code class="text-fs-11">.mx-auto</code>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </section>
 
-<section id="padding" class="uikit-section">
-    <h2>Padding</h2>
-    <p>Immutable padding utilities are based on a global white space scale defined with custom properties. These can dramatically help reduce the size of large stylesheets and allow for greater flexibility and quicker iteration when designing in the browser.</p>
-    <p>Padding should never be declared outside of these utilities. This is meant to help create consistency and avoid magic numbers. If, for some reason, the default white space scale does not suit your design, customize and extend it before use.</p>
-    
-    <h3>Class naming convention</h3>
-    <table class="table mb12">
+<section class="stacks-section">
+    <h2 class="content-section-title">Padding</h2>
+    <p class="section-p">Immutable padding utilities are based on a global white space scale defined with custom properties. These can dramatically help reduce the size of large stylesheets and allow for greater flexibility and quicker iteration when designing in the browser.</p>
+    <p class="section-p">Padding should never be declared outside of these utilities. This is meant to help create consistency and avoid magic numbers. If, for some reason, the default white space scale does not suit your design, customize and extend it before use.</p>
+
+    <h3 class="content-section-title _subtitle">Padding Class Convention</h3>
+    <table class="table mb-32">
         <thead>
-            <tr> <th>Shorthand</th> <th>Description</th> </tr>
+            <tr>
+                <th class="-cell-2" scope="col">Abbreviation</th>
+                <th scope="col">Definition</th>
+            </tr>
         </thead>
         <tbody>
-            <tr> <td>p</td> <td>Padding</td> </tr>
-            <tr> <td>t</td> <td>Top</td> </tr>
-            <tr> <td>r</td> <td>Right</td> </tr>
-            <tr> <td>b</td> <td>Bottom</td> </tr>
-            <tr> <td>l</td> <td>Left</td> </tr>
-            <tr> <td>x</td> <td>X-axis (left and right)</td> </tr>
-            <tr> <td>y</td> <td>Y-axis (top and bottom)</td> </tr>
-            <tr> <td>0</td> <td>0 reset</td> </tr>
-            <tr> <td>2</td> <td>padding: 2px</td> </tr>
-            <tr> <td>4</td> <td>padding: 4px</td> </tr>
-            <tr> <td>8</td> <td>padding: 8px</td> </tr>
-            <tr> <td>12</td> <td>padding: 12px</td> </tr>
-            <tr> <td>16</td> <td>padding: 16px</td> </tr>
-            <tr> <td>24</td> <td>padding: 24px</td> </tr>
-            <tr> <td>32</td> <td>padding: 32px</td> </tr>
-            <tr> <td>48</td> <td>padding: 48px</td> </tr>
-            <tr> <td>64</td> <td>padding: 64px</td> </tr>
+            {% for spacing in site.data.spacing-definitions.padding %}
+              <tr>
+                  <th scope="row">{{ spacing.term }}</th>
+                  <td>{{ spacing.define }}</td>
+              </tr>
+            {% endfor %}
         </tbody>
     </table>
-    <p>
-    <div class="uikit-code uikit-has-preview">
+
+    <h3 class="content-section-title _subtitle mb-12">Padding Classes</h3>
+    <div class="stacks-code-preview">
 {% highlight css linenos %}
-.p-0  { padding:        0 }
-.pt-0 { padding-top:    0 }
-.pr-0 { padding-right:  0 }
-.pb-0 { padding-bottom: 0 }
-.pl-0 { padding-left:   0 }
-.px-0 { padding-left:   0; padding-right:  0 }
-.py-0 { padding-top:    0; padding-bottom: 0 }
-
-.p-2  { padding:        @su-2 }
-.pt-2 { padding-top:    @su-2 }
-.pr-2 { padding-right:  @su-2 }
-.pb-2 { padding-bottom: @su-2 }
-.pl-2 { padding-left:   @su-2 }
-.px-2 { padding-left:   @su-2; padding-right:  @su-2 }
-.py-2 { padding-top:    @su-2; padding-bottom: @su-2 }
-
-.p-4  { padding:        @su-4 }
-.pt-4 { padding-top:    @su-4 }
-.pr-4 { padding-right:  @su-4 }
-.pb-4 { padding-bottom: @su-4 }
-.pl-4 { padding-left:   @su-4 }
-.px-4 { padding-left:   @su-4; padding-right:  @su-4 }
-.py-4 { padding-top:    @su-4; padding-bottom: @su-4 }
-
-.p-8  { padding:        @su-8 }
-.pt-8 { padding-top:    @su-8 }
-.pr-8 { padding-right:  @su-8 }
-.pb-8 { padding-bottom: @su-8 }
-.pl-8 { padding-left:   @su-8 }
-.px-8 { padding-left:   @su-8; padding-right:  @su-8 }
-.py-8 { padding-top:    @su-8; padding-bottom: @su-8 }
-
-.p-12  { padding:        @su-12 }
-.pt-12 { padding-top:    @su-12 }
-.pr-12 { padding-right:  @su-12 }
-.pb-12 { padding-bottom: @su-12 }
-.pl-12 { padding-left:   @su-12 }
-.px-12 { padding-left:   @su-12; padding-right:  @su-12 }
-.py-12 { padding-top:    @su-12; padding-bottom: @su-12 }
-
-.p-16  { padding:        @su-16 }
-.pt-16 { padding-top:    @su-16 }
-.pr-16 { padding-right:  @su-16 }
-.pb-16 { padding-bottom: @su-16 }
-.pl-16 { padding-left:   @su-16 }
-.px-16 { padding-left:   @su-16; padding-right:  @su-16 }
-.py-16 { padding-top:    @su-16; padding-bottom: @su-16 }
-
-.p-24  { padding:        @su-24 }
-.pt-24 { padding-top:    @su-24 }
-.pr-24 { padding-right:  @su-24 }
-.pb-24 { padding-bottom: @su-24 }
-.pl-24 { padding-left:   @su-24 }
-.px-24 { padding-left:   @su-24; padding-right:  @su-24 }
-.py-24 { padding-top:    @su-24; padding-bottom: @su-24 }
-
-.p-32  { padding:        @su-32 }
-.pt-32 { padding-top:    @su-32 }
-.pr-32 { padding-right:  @su-32 }
-.pb-32 { padding-bottom: @su-32 }
-.pl-32 { padding-left:   @su-32 }
-.px-32 { padding-left:   @su-32; padding-right:  @su-32 }
-.py-32 { padding-top:    @su-32; padding-bottom: @su-32 }
-
-.p-48  { padding:        @su-48 }
-.pt-48 { padding-top:    @su-48 }
-.pr-48 { padding-right:  @su-48 }
-.pb-48 { padding-bottom: @su-48 }
-.pl-48 { padding-left:   @su-48 }
-.px-48 { padding-left:   @su-48; padding-right:  @su-48 }
-.py-48 { padding-top:    @su-48; padding-bottom: @su-48 }
-
-.p-64  { padding:        @su-64 }
-.pt-64 { padding-top:    @su-64 }
-.pr-64 { padding-right:  @su-64 }
-.pb-64 { padding-bottom: @su-64 }
-.pl-64 { padding-left:   @su-64 }
-.px-64 { padding-left:   @su-64; padding-right:  @su-64 }
-.py-64 { padding-top:    @su-64; padding-bottom: @su-64 }
+<div class="pt-12 pr-16 pb-24 pl-32">
+  …
+</div>
 {% endhighlight %}
+        <div class="-preview">
+            <div class="pt-12 pr-16 pb-24 pl-32 bg-black-200">
+                Example nested div with different margins and paddings
+            </div>
+        </div>
+    </div>
+    <table class="table mb-32">
+        <thead>
+            <tr>
+                <th scope="col">Prefix</th>
+                <th scope="col" class="text-ta-center">0</th>
+                <th scope="col" class="text-ta-center">2</th>
+                <th scope="col" class="text-ta-center">4</th>
+                <th scope="col" class="text-ta-center">8</th>
+                <th scope="col" class="text-ta-center">12</th>
+                <th scope="col" class="text-ta-center">16</th>
+                <th scope="col" class="text-ta-center">24</th>
+                <th scope="col" class="text-ta-center">32</th>
+                <th scope="col" class="text-ta-center">48</th>
+                <th scope="col" class="text-ta-center">64</th>
+            </tr>
+        </thead>
+        <tbody>
+          {% for class in site.data.spacing-classes.padding %}
+          {% assign prefix-value = class.values | split: ", " %}
+              <tr>
+                  <th scope="row" class="-cell-1">{{ class.prefix }}</th>
+                  {% for values in prefix-value %}
+                  <td class="text-ta-center"><code class="text-fs-11">.{{ class.prefix }}{{ values }}</code></td>
+                  {% endfor %}
+              </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 </section>
