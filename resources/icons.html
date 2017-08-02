@@ -26,7 +26,7 @@ description: All system icons are inline SVG files, invoked via a Razor helper. 
       {% for icon in icon_sort %}
       <div class="grid-box _col _ds-inline card stacks-preview -item">
           <div class="-cell _fl-2 _jc-center _ai-center p-8 -preview">
-              {% include {{ icon.helper | prepend: "/svg-icons/" | append: ".svg" }} %}
+              {% include_relative {{ icon.helper | prepend: "svg-icons/" | append: ".svg" }} %}
           </div>
           <div class="grid-box _col _fl-0 _ai-center p-8 -content">
               <h2 class="-cell -title text-fs-12 m-0">{{ icon.title }}</h2>
