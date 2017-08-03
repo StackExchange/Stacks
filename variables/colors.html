@@ -68,7 +68,17 @@ description: To avoid specifying color values by hand, we've included a robust s
       <tbody>
           {% for stop in color_stops %}
           <tr class="text-ff-mono text-fs-12">
-              <th scope="row"> <div class="stacks-swatch bg-{{ color.name }}-{{ stop.stop }}"></div></th>
+              <th scope="row">
+                  {% comment %}
+                      Ideally, we'd just say stop.stop < 200, but this doesn't build. Can't compare a string with an integer.
+                      This'll work for now.
+                  {% endcomment %}
+                  {% if stop.stop == 150 or stop.stop == 100 or stop.stop == "075" or stop.stop == "050" or stop.stop == "025" %}
+                      <div class="stacks-swatch bg-{{ color.name }}-{{ stop.stop }} bordered"></div>
+                  {% else %}
+                      <div class="stacks-swatch bg-{{ color.name }}-{{ stop.stop }}"></div>
+                  {% endif %}
+              </th>
               <td>@{{ color.name }}-{{ stop.stop }}</td>
               <td>#{{ stop.hex }}</td>
               <td>{{ stop.rgb }}</td>
@@ -77,7 +87,7 @@ description: To avoid specifying color values by hand, we've included a robust s
           </tr>
           {% endfor %}
           <tr class="text-ff-mono text-fs-12">
-              <th scope="row"> <div class="stacks-swatch bg-white"></div></th>
+              <th scope="row"> <div class="stacks-swatch bg-white bordered"></div></th>
               <td>@white</td>
               <td>#ffffff</td>
               <td>255,255,255</td>
