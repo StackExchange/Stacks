@@ -38,13 +38,12 @@ svg[role="icon"] {
 //      mainly means IE11 and Edge won't be supported for Grids.
 //  ----------------------------------------------------------------------------
 @content-width:       60em;
-@nav-width-primary:   18em;
-@nav-width-secondary: 14em;
+@nav-width:           18em;
 
 @supports (grid-auto-rows: 1px) {
   .grid-container {
     display: grid;
-    grid-template-columns: @nav-width-primary @content-width;
+    grid-template-columns: @nav-width @content-width;
     grid-template-areas: "nav main";
     grid-gap: 0;
     height: 100%;
@@ -70,7 +69,7 @@ svg[role="icon"] {
 
     //  For when we want a secondary navigation
     &._nav-secondary {
-      grid-template-columns: @nav-width-primary @nav-width-secondary @content-width;
+      grid-template-columns: @nav-width @nav-width @content-width;
       grid-template-areas: "nav subnav main";
     }
   }
@@ -379,7 +378,7 @@ svg[role="icon"] {
   &._helper-ac,
   &._helper-as {
     .grid-box {
-      height: 128px;
+      max-height: 128px;
     }
   }
 
@@ -399,31 +398,25 @@ svg[role="icon"] {
 
   //  The box shown the grid examples
   .stacks-grid-example {
-    .flexbox(box);
-    .justify-content(center);
-    .align-items(center);
     height: 100%;
   }
 
 	.grid-box {
     background-color: @grid-background;
 
-    > .grid-box,
-    > [class*="-cell"] {
+    .grid-box,
+    [class*="-cell"] {
       padding: @su-8;
       background-color: @grid-cell-background;
+
+      .grid-box,
+      [class*="-cell"] {
+        background-color: spin(desaturate(darken(@grid-cell-background,5%),5%),-5);
+      }
     }
     > [class*="-cell"] {
       .justify-content(center);
       .align-items(center);
-    }
-
-    > .grid-box {
-      background-color: @grid-cell-background;
-
-      > [class*="-cell"] {
-        background-color: spin(saturate(darken(@grid-cell-background,5%),5%),-5);
-      }
     }
   }
 }
