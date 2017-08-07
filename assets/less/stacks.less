@@ -289,8 +289,6 @@ svg[role="icon"] {
 .stacks-code-preview {
   margin-top: @su-16;
   margin-bottom: @su-32;
-  border-radius: @br-2;
-  border: 1px solid @brc-light;
   box-shadow: 0 2px 8px fade(@bgc-lightest,50%);
 
   // Actual code highlight
@@ -298,40 +296,42 @@ svg[role="icon"] {
     // Reset margins
     &,
     pre {
-      margin: -1px -1px 0;
+      margin: 0;
       font-size: @fs-13 + 1;
       font-family: @ff-mono;
-      line-height: @lh-6;
+      line-height: @lh-6 + .2;
       color: #C5C8C6;
     }
-
-    border-radius: @br-2 @br-2 0 0;
-    box-shadow: inset 32px 0 0 @black-750;
-    background-color: #1D1F21;
-    overflow-y: scroll;
-
+    
     > pre {
-      padding-top: @su-12;
-      padding-bottom: @su-8;
+      background-color: @black-800;
+      border-radius: @br-2 @br-2 0 0;
+      overflow: auto;
     }
 
     .gutter.gl {
-      position: absolute;
+      padding-top: @su-12;
       padding-right: @su-8;
+      padding-bottom: @su-12;
+      background: @black-750;
       min-width: @su-32;
 
       pre {
         color: #7A7D80;
       }
     }
+    
     .code {
-      padding-left: @su-32 + @su-12;
+      padding-left: @su-12;
     }
   }
 
   //  Preview area
   .-preview {
     padding: @su-24 @su-16;
+    border-radius: 0 0 @br-2 @br-2;
+    border: 1px solid @brc-light;
+    border-top: 0;
   }
 
   //  If there's no preview. We're only showing code.
