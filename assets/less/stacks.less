@@ -38,13 +38,12 @@ svg[role="icon"] {
 //      mainly means IE11 and Edge won't be supported for Grids.
 //  ----------------------------------------------------------------------------
 @content-width:       60em;
-@nav-width-primary:   18em;
-@nav-width-secondary: 14em;
+@nav-width:           18em;
 
 @supports (grid-auto-rows: 1px) {
   .grid-container {
     display: grid;
-    grid-template-columns: @nav-width-primary @content-width;
+    grid-template-columns: @nav-width @content-width;
     grid-template-areas: "nav main";
     grid-gap: 0;
     height: 100%;
@@ -70,7 +69,7 @@ svg[role="icon"] {
 
     //  For when we want a secondary navigation
     &._nav-secondary {
-      grid-template-columns: @nav-width-primary @nav-width-secondary @content-width;
+      grid-template-columns: @nav-width @nav-width @content-width;
       grid-template-areas: "nav subnav main";
     }
   }
@@ -218,29 +217,10 @@ svg[role="icon"] {
 
 //  ============================================================================
 //  $   TYPE STYLES
-//  ----------------------------------------------------------------------------
-.p-intro {
-  margin: 0 0 1em;
-  font-size: @fs-21;
-  line-height: @lh-4;
-  color: @fc-medium;
-}
-.page-p {
-  font-size: @fs-17;
-  line-height: @lh-4;
-  color: @fc-medium;
-}
-
-//  $$  CONTECT SECTIONS
 //  ============================================================================
-//  --  Content Titles
+//  $$  TITLES
 //  ----------------------------------------------------------------------------
-.content-section-title {
-  .flexbox(box);
-  .justify-content(space-between);
-  .align-items(center);
-  margin-bottom: 0;
-
+.stacks-title {
   font-size: @fs-21;
   line-height: @lh-10;
   color: @fc-dark;
@@ -263,7 +243,6 @@ svg[role="icon"] {
   }
 
   &._subtitle {
-    margin-top: @su-24;
     font-size: @fs-17;
     color: @fc-medium;
   }
@@ -273,13 +252,17 @@ svg[role="icon"] {
   }
 }
 
-//  --  Content Paragraphs
+//  ============================================================================
+//  $$  PARAGRAPHS
 //  ----------------------------------------------------------------------------
-.section-p {
-  margin: 0 0 @su-8;
-  font-size: @fs-15;
+.stacks-p {
+  margin: 0 0 1em;
   line-height: @lh-4;
   color: @fc-medium;
+
+  &._intro   { font-size: @fs-21; }
+  &._page    { font-size: @fs-17; }
+  &._section { font-size: @fs-15; }
 
   strong {
     color: @fc-dark;
@@ -288,7 +271,7 @@ svg[role="icon"] {
 
 //  --   Code Tag
 //  ----------------------------------------------------------------------------
-.code-tag {
+.stacks-code {
   margin: 0 @su-2;
   padding: @su-2 (@su-4 + 1) (@su-4 - 1);
   border-radius: @br-2;
@@ -395,7 +378,7 @@ svg[role="icon"] {
   &._helper-ac,
   &._helper-as {
     .grid-box {
-      height: 128px;
+      max-height: 128px;
     }
   }
 
@@ -415,32 +398,26 @@ svg[role="icon"] {
 
   //  The box shown the grid examples
   .stacks-grid-example {
-    .flexbox(box);
-    .justify-content(center);
-    .align-items(center);
     height: 100%;
   }
 
   .grid-box {
     background-color: @grid-background;
 
-    > .grid-box,
-    > [class*="-cell"] {
+    .grid-box,
+    [class*="-cell"] {
       padding: @su-8;
       background-color: @grid-cell-background;
+
+      .grid-box,
+      [class*="-cell"] {
+        background-color: spin(desaturate(darken(@grid-cell-background,5%),5%),-5);
+      }
     }
 
     > [class*="-cell"] {
       .justify-content(center);
       .align-items(center);
-    }
-
-    > .grid-box {
-      background-color: @grid-cell-background;
-
-      > [class*="-cell"] {
-        background-color: spin(saturate(darken(@grid-cell-background,5%),5%),-5);
-      }
     }
   }
 }
@@ -452,6 +429,6 @@ svg[role="icon"] {
 .stacks-swatch {
   width: @su-32;
   height: @su-32;
-  border-radius: 3px;
+  border-radius: @br-4;
   box-shadow: inset 0 0 2px fade(@black-900, 30%);
 }
