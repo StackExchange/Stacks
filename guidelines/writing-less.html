@@ -6,7 +6,7 @@ description: We've tried our best to answer any questions when writing CSS / Les
 
 <section class="stacks-section">
   <h2 class="grid-box _jc-sp-between _ai-center mb-0 stacks-title" id="toc-syntax">Syntax</h2>
-  <ul>
+  <ul class="stacks-list _section">
     <li>Use soft tabs with two spaces. They’re the only way to guarantee code renders the same in any environment.</li>
     <li>When grouping selectors, keep individual selectors on their own line.</li>
     <li>Include one space before the opening brace of declaration blocks for legibility.</li>
@@ -22,32 +22,34 @@ description: We've tried our best to answer any questions when writing CSS / Les
     <li>Avoid specifying units for zero values, e.g., <code class="stacks-code">margin: 0;</code> instead of <code class="stacks-code">margin: 0px;</code>.</li>
   </ul>
   <p class="stacks-p _section">Questions on the terms used here? See the <a href="http://en.wikipedia.org/wiki/Cascading_Style_Sheets#Syntax">syntax section of the Cascading Style Sheets article</a> on Wikipedia.</p>
+  
+  <div class="stacks-code-preview _preview-none">
+{% highlight css linenos %}
+/* Bad CSS */
+.selector, .selector-secondary, .selector[type=text] {
+    padding:15px;
+    margin:0px 0px 15px;
+  background-color:rgba(0,0,0,.5);
+  box-shadow:0px 1px 2px #CCC,inset 0 1px 0 #FFFFFF
+}
 
-  {% capture html %}
-  /* Bad CSS */
-  .selector, .selector-secondary, .selector[type=text] {
-      padding:15px;
-      margin:0px 0px 15px;
-    background-color:rgba(0,0,0,.5);
-    box-shadow:0px 1px 2px #CCC,inset 0 1px 0 #FFFFFF
-  }
-
-  /* Good CSS */
-  .selector,
-  .selector-secondary,
-  .selector[type="text"] {
-    padding: 15px;
-    margin-bottom: 15px;
-    background-color: rgba(0, 0, 0, 0.5);
-    box-shadow: 0 1px 2px #ccc, inset 0 1px 0 #fff;
-  }
-  {% endcapture %}{% include example.html html=html preview=false %}
+/* Good CSS */
+.selector,
+.selector-secondary,
+.selector[type="text"] {
+  padding: 15px;
+  margin-bottom: 15px;
+  background-color: rgba(0, 0, 0, 0.5);
+  box-shadow: 0 1px 2px #ccc, inset 0 1px 0 #fff;
+}
+{% endhighlight %}
+  </div>
 </section>
 
 <section class="stacks-section">
   <h2 class="grid-box _jc-sp-between _ai-center mb-0 stacks-title" id="toc-declaration-order">Declaration Order</h2>
   <p class="stacks-p _section">Related property declarations should be grouped together following the order:</p>
-  <ol>
+  <ol class="stacks-list _section">
     <li>Positioning</li>
     <li>Box model</li>
     <li>Typographic</li>
@@ -57,43 +59,45 @@ description: We've tried our best to answer any questions when writing CSS / Les
   <p class="stacks-p _section">Everything else takes place <em>inside</em> the component or without impacting the previous two sections, and thus they come last.</p>
   <p class="stacks-p _section">For a complete list of properties and their order, please see <a href="http://twitter.github.com/recess">Recess</a>.</p>
 
-  {% capture html %}
-  .declaration-order {
-    /* Positioning */
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    z-index: 100;
+  <div class="stacks-code-preview _preview-none">
+{% highlight css linenos %}
+.declaration-order {
+  /* Positioning */
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 100;
 
-    /* Box-model */
-    display: block;
-    float: right;
-    width: 100px;
-    height: 100px;
+  /* Box-model */
+  display: block;
+  float: right;
+  width: 100px;
+  height: 100px;
 
-    /* Typography */
-    font: normal 13px "Helvetica Neue", sans-serif;
-    line-height: 1.5;
-    color: #333;
-    text-align: center;
+  /* Typography */
+  font: normal 13px "Helvetica Neue", sans-serif;
+  line-height: 1.5;
+  color: #333;
+  text-align: center;
 
-    /* Visual */
-    background-color: #f5f5f5;
-    border: 1px solid #e5e5e5;
-    border-radius: 3px;
+  /* Visual */
+  background-color: #f5f5f5;
+  border: 1px solid #e5e5e5;
+  border-radius: 3px;
 
-    /* Misc */
-    opacity: 1;
-  }
-  {% endcapture %}{% include example.html html=html preview=false %}
+  /* Misc */
+  opacity: 1;
+}
+{% endhighlight %}
+  </div>
 </section>
 
 <section class="stacks-section">
   <h2 class="grid-box _jc-sp-between _ai-center mb-0 stacks-title" id="toc-shorthand-notation">Shorthand Notation</h2>
   <p class="stacks-p _section">Strive to limit use of shorthand declarations to instances where you must explicitly set all the available values. Common overused shorthand properties include:</p>
-  <ul>
+  <ul class="stacks-list _section">
     <li><code class="stacks-code">padding</code></li>
     <li><code class="stacks-code">margin</code></li>
     <li><code class="stacks-code">font</code></li>
@@ -104,30 +108,32 @@ description: We've tried our best to answer any questions when writing CSS / Les
   <p class="stacks-p _section">We don't often need to set all the values a shorthand property represents. For example, HTML headings only set top and bottom margin, so when necessary, only override those two values. Excessive use of shorthand properties often leads to sloppier code with unnecessary overrides and unintended side effects.</p>
   <p class="stacks-p _section">The Mozilla Developer Network has a great article on <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Shorthand_properties">shorthand properties</a> for those unfamiliar with notation and behavior.</p>
 
-  {% capture html %}
-  /* Bad example */
-  .element {
-    margin: 0 0 10px;
-    background: red;
-    background: url("image.jpg");
-    border-radius: 3px 3px 0 0;
-  }
+  <div class="stacks-code-preview _preview-none">
+{% highlight css linenos %}
+/* Bad example */
+.element {
+  margin: 0 0 10px;
+  background: red;
+  background: url("image.jpg");
+  border-radius: 3px 3px 0 0;
+}
 
-  /* Good example */
-  .element {
-    margin-bottom: 10px;
-    background-color: red;
-    background-image: url("image.jpg");
-    border-top-left-radius: 3px;
-    border-top-right-radius: 3px;
-  }
-  {% endcapture %}{% include example.html html=html preview=false %}
+/* Good example */
+.element {
+  margin-bottom: 10px;
+  background-color: red;
+  background-image: url("image.jpg");
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+}
+{% endhighlight %}
+  </div>
 </section>
 
 <section class="stacks-section">
   <h2 class="grid-box _jc-sp-between _ai-center mb-0 stacks-title" id="toc-editor-preferences">Editor preferences</h2>
   <p class="stacks-p _section">Set your editor to the following settings to avoid common code inconsistencies and dirty diffs:</p>
-  <ul>
+  <ul class="stacks-list _section">
     <li>Use soft-tabs set to two spaces.</li>
     <li>Trim trailing white space on save.</li>
     <li>Set encoding to UTF-8.</li>

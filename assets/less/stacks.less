@@ -18,7 +18,7 @@
 //  ============================================================================
 //  $   UNIVERSAL SETTINGS
 //  ----------------------------------------------------------------------------
-svg[role="icon"] {
+.svg-icon {
   fill: currentColor;
 }
 
@@ -143,10 +143,10 @@ svg[role="icon"] {
   font-size: @fs-12;
   color: @black-700;
 
-  &:hover {
-    background-color: @black-050;
-    color: @fc-dark;
-  }
+  // &:hover {
+  //   background-color: @black-050;
+  //   color: @fc-dark;
+  // }
 }
 
 //  $$  NAV: LINKS
@@ -269,6 +269,21 @@ svg[role="icon"] {
   }
 }
 
+//  ============================================================================
+//  $$  LISTS
+//  ----------------------------------------------------------------------------
+.stacks-list {
+  margin: 0 0 1em;
+  line-height: @lh-6;
+  color: @fc-medium;
+  
+  &._section { font-size: @fs-15; }
+
+  strong {
+    color: @fc-dark;
+  }
+}
+
 //  --   Code Tag
 //  ----------------------------------------------------------------------------
 .stacks-code {
@@ -299,7 +314,7 @@ svg[role="icon"] {
       margin: 0;
       font-size: @fs-13 + 1;
       font-family: @ff-mono;
-      line-height: @lh-6 + .2;
+      line-height: @lh-10;
       color: #C5C8C6;
     }
     
@@ -335,12 +350,8 @@ svg[role="icon"] {
   }
 
   //  If there's no preview. We're only showing code.
-  &._preview-none {
-    border-color: transparent;
-
-    .highlight {
-      border-radius: @br-2;
-    }
+  &._preview-none .highlight pre {
+    border-radius: 2px;
   }
 }
 

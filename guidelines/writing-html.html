@@ -3,10 +3,9 @@ layout: with-secondary-nav
 title: Writing HTML
 description: We've tried our best to answer any questions when writing HTML. Hopefully this guide makes the task a little less daunting.
 ---
-
 <section class="stacks-section">
   <h2 class="grid-box _jc-sp-between _ai-center mb-0 stacks-title" id="toc-syntax">Syntax</h2>
-  <ul>
+  <ul class="stacks-list _section">
     <li>Use soft tabs with two spaces. They’re the only way to guarantee code renders the same in any environment.</li>
     <li>Nested elements should be indented once (two spaces).</li>
     <li>Always use double quotes, never single quotes, on attributes.</li>
@@ -15,25 +14,27 @@ description: We've tried our best to answer any questions when writing HTML. Hop
     <li>In body copy, use smart punctuation. <code class="stacks-code">’</code> instead of <code class="stacks-code">'</code>. See <a href="http://smartquotesforsmartpeople.com">Smart Quotes for Smart People</a> for more information.</li>
     <li>When possible, use sentence case.</li>
   </ul>
-
-  {% capture html %}
-  <!DOCTYPE html>
-  <html>
-    <head>
-      <title>Page title</title>
-    </head>
-    <body>
-      <img src="images/company-logo.png" alt="Company">
-      <h1 class="hello-world">’ello, world!</h1>
-    </body>
-  </html>
-  {% endcapture %}{% include example.html html=html preview=false %}
+  
+  <div class="stacks-code-preview _preview-none">
+{% highlight html linenos %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Page title</title>
+  </head>
+  <body>
+    <img src="images/company-logo.png" alt="Company">
+    <h1 class="hello-world">Hello, world!</h1>
+  </body>
+</html>
+{% endhighlight %}
+  </div>
 </section>
 
 <section class="stacks-section">
   <h2 class="grid-box _jc-sp-between _ai-center mb-0 stacks-title" id="toc-attribute-order">Attribute order</h2>
   <p class="stacks-p _section">HTML attributes should come in this particular order for easier reading of code.</p>
-  <ol>
+  <ol class="stacks-list _section">
     <li><code class="stacks-code">class</code></li>
     <li><code class="stacks-code">id</code>, <code class="stacks-code">name</code></li>
     <li><code class="stacks-code">data-*</code></li>
@@ -44,15 +45,17 @@ description: We've tried our best to answer any questions when writing HTML. Hop
   <p class="stacks-p _section">Classes make for great reusable components, so they come first. Ids are more specific and should be used sparingly (e.g., for in-page bookmarks), so they come second.</p>
   <p class="stacks-p _section">Classes within the class attribute should follow the same declaration order as our Less does.</p>
 
-  {% capture html %}
-  <a class="..." id="..." data-toggle="modal" href="#">
-    Example link
-  </a>
+  <div class="stacks-code-preview _preview-none">
+{% highlight html linenos %}
+<a class="..." id="..." data-toggle="modal" href="#">
+  Example link
+</a>
 
-  <input class="form-control" type="text">
+<input class="form-control" type="text">
 
-  <img src="..." alt="...">
-  {% endcapture %}{% include example.html html=html preview=false %}
+<img src="..." alt="...">
+{% endhighlight %}
+  </div>
 </section>
 
 <section class="stacks-section">
@@ -68,29 +71,34 @@ description: We've tried our best to answer any questions when writing HTML. Hop
   </blockquote>
   <p class="stacks-p _section"><strong>In short, don't add a value.</strong></p>
 
-  {% capture html %}
-  <input type="text" disabled>
+  <div class="stacks-code-preview _preview-none">
+{% highlight html linenos %}
+<input type="text" disabled>
 
-  <input type="checkbox" value="1" checked>
+<input type="checkbox" value="1" checked>
 
-  <select>
-    <option value="1" selected>1</option>
-  </select>
-  {% endcapture %}{% include example.html html=html preview=false %}
+<select>
+  <option value="1" selected>1</option>
+</select>
+{% endhighlight %}
+  </div>
 </section>
 
 <section class="stacks-section">
   <h2 class="grid-box _jc-sp-between _ai-center mb-0 stacks-title" id="toc-reducing-markup">Reducing markup</h2>
   <p class="stacks-p _section">Whenever possible, avoid superfluous parent elements when writing HTML. Many times this requires iteration and refactoring, but produces less HTML. Take the following example:</p>
-  {% capture html %}
-  <!-- Not so great -->
-  <span class="avatar">
-    <img src="...">
-  </span>
 
-  <!-- Better -->
-  <img class="avatar" src="...">
-  {% endcapture %}{% include example.html html=html preview=false %}
+  <div class="stacks-code-preview _preview-none">
+{% highlight html linenos %}
+<!-- Not so great -->
+<span class="avatar">
+  <img src="...">
+</span>
+
+<!-- Better -->
+<img class="avatar" src="...">
+{% endhighlight %}
+  </div>
 </section>
 
 <section class="stacks-section">
