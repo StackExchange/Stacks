@@ -18,7 +18,7 @@
   }
 
   const GridClass = {
-    GRID_BOX    : "ml-4 grid-box",
+    GRID_BOX    : "ml-2 grid-box",
     GRID_COL    : "_col",
     GRID_CELL   : "-cell"
   }
