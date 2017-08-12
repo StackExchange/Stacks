@@ -90,13 +90,13 @@
   //  Disabled, Read-only
   &[disabled],
   &[read-only] {
-    border-color: @brc-lighter;
+    .bac-black-2;
     box-shadow: inset 0 0 2px fade(@black-350,10%);
     background-color: @bgc-lightest;
     color: @fc-light;
 
     &:hover {
-      border-color: @brc-lightest;
+      .bac-black-1;
       box-shadow: none;
     }
   }
@@ -189,15 +189,15 @@
   &.has-error {
     .input,
     .select > select {
-      border-color: @red-400;
+      .bac-red-2;
       background-image: url("../../Img/forms/icon-error.svg"), none;
 
       &:hover {
-        border-color: @red-300;
+        .bac-red-2;
         box-shadow: inset 0 0 1px @black-100, 0 0 2px @red-100;
       }
       &:focus {
-        border-color: @red-500;
+        .bac-red-3;
         box-shadow: inset 0 0 4px @black-050, 0 0 4px @red-200;
       }
     }
@@ -211,15 +211,15 @@
   &.is-success {
     .input,
     .select select {
-      border-color: @green-400;
+      .bac-green-2;
       background-image: url("../../Img/forms/icon-success.svg"), none;
 
       &:hover {
-        border-color: @green-300;
+        .bac-green-3;
         box-shadow: inset 0 0 1px @black-100, 0 0 2px @green-100;
       }
       &:focus {
-        border-color: @green-500;
+        .bac-green-3;
         box-shadow: inset 0 0 4px @black-050, 0 0 4px @green-200;
       }
     }
@@ -314,7 +314,7 @@
 @input-ch-rd-focus:           0 0 2em/13 1px fade(@input-ch-rd-bgc-blue, 50%);
 @input-ch-rd-hover:           0 0 2em/13 1px fade(@input-ch-rd-bgc-blue, 70%);
 @input-ch-rd-bgc-blue:        @blue-500;
-@input-ch-rd-gray:            inset 0 0 0 1px @brc-dark;
+@input-ch-rd-gray:            inset 0 0 0 1px @black-300;
 @input-ch-rd-blue:            inset 0 0 0 1px @input-ch-rd-bgc-blue;
 @input-ch-rd-blue_light:      inset 0 0 0 1px fade(@input-ch-rd-bgc-blue,50%);
 @input-ch-rd-white:           inset 0 0 0 3px @white;
@@ -517,7 +517,8 @@
   //  Style the base label
   .label {
     padding: @su-3 @su-4;
-    border: 1px solid @brc-light;
+    .ba;
+    .bac-black-2;
     background-color: @white;
     color: @fc-medium;
     transition: all 300ms @te-smooth;
@@ -526,9 +527,9 @@
     &:hover,
     &:active {
       color: @fc-dark;
+      .bac-black-5;
       box-shadow: 0 0 8px fade(@powder-600,25%);
       background-color: @powder-025;
-      border-color: @brc-dark;
       z-index: 1;
     }
   }
@@ -536,7 +537,7 @@
   //  If the label is selected, style it accordingly.
   .radio:checked + .label {
     z-index: 2;
-    border-color: @powder-200;
+    .bac-powder-1;
     box-shadow: 0 0 8px fade(@powder-600,10%);
     background-color: @powder-100;
     color: @powder-700;
@@ -544,7 +545,7 @@
     &:hover,
     &:active {
       box-shadow: 0 0 8px fade(@powder-600,25%);
-      border-color: darken(@powder-200,5%);
+      .bac-powder-2;
       background-color: darken(@powder-100,5%);
       color: @powder-800;
     }
@@ -585,21 +586,21 @@
   &._switch {
     .label:hover,
     .label:active {
-      border-color: @brc-dark;
+      .bac-black-5;
       box-shadow: 0 0 8px fade(@black-600,25%);
       background-color: @bgc-lightest;
     }
 
     .radio:checked + .label {
       &:not(._off) {
-        border-color: @green-400;
+        .bac-green-2;
         box-shadow: 0 0 8px fade(@green-400,10%);
         background-color: @green-400;
         color: @white;
 
         &:hover,
         &:active {
-          border-color: @green-500;
+          .bac-green-3;
           box-shadow: 0 0 8px fade(@green-400,25%);
           background-color: @green-500;
           color: @green-050;
@@ -609,14 +610,14 @@
       //  When the off state is selected, we don't it green. We want it to be
       //  gray instead.
       &._off {
-        border-color: @brc-dark;
+        .bac-black-5;
         box-shadow: 0 0 8px fade(@black-800,10%);
         background-color: @bgc-light;
         color: @fc-dark;
 
         &:hover,
         &:active {
-          border-color: @brc-darker;
+          .bac-black-6;
           box-shadow: 0 0 8px fade(@black-800,25%);
           background-color: @bgc-dark;
           color: darken(@fc-dark,5%);
@@ -635,7 +636,7 @@
     &.chosen-container-active {
         border-width: 0;
         .chosen-choices {
-            border-color: @blue-500;
+            .bac-blue-3;
             box-shadow: inset 0 0 4px @black-050, 0 0 5px fade(@blue-500,50%);
         }
     }
@@ -646,7 +647,7 @@
         min-height: 38px;
         background-image: none;
         border-radius: @br-2;
-        border-color: @brc-light;
+        .bac-black-3;
 
         &:hover {
             border-color: fade(@blue-500,50%);
