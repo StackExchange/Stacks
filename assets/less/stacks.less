@@ -72,6 +72,9 @@
       grid-template-columns: @nav-width @nav-width @content-width;
       grid-template-areas: "nav subnav main";
     }
+    &._home {
+      grid-template-columns: @nav-width 1fr;
+    }
   }
 }
 
@@ -142,20 +145,11 @@
 .-section {
   font-size: @fs-2;
   color: @black-700;
-
-  // &:hover {
-  //   background-color: @black-050;
-  //   color: @fc-dark;
-  // }
 }
 
 //  $$  NAV: LINKS
 //  ----------------------------------------------------------------------------
 .nav .-link {
-  position: relative;
-  padding: @su-2;
-  width: 100%;
-
   background-color: fade(@black-050,0%);
   font-size: @fs-3;
   line-height: @lh-6;
@@ -327,7 +321,7 @@
       line-height: @lh-6;
       color: #C5C8C6;
     }
-    
+
     > pre {
       background-color: @black-800;
       .btr-1;
@@ -345,7 +339,7 @@
         color: #7A7D80;
       }
     }
-    
+
     .code {
       padding-left: @su-4;
     }
@@ -399,15 +393,13 @@
 
   &._helper-ac,
   &._helper-as {
-    .grid-box {
+    .fl {
       max-height: 128px;
     }
   }
 
   &._helper-order .-wrapper {
-    .-cell:not(._first):not(._last) { opacity: 0.5; }
-
-    .grid-box._reverse > .-cell { opacity: 1; }
+    .-cell:not(.fl-first):not(.fl-last) { opacity: 0.5; }
   }
 
   .-wrapper {
@@ -423,15 +415,15 @@
     height: 100%;
   }
 
-  .grid-box {
+  .fl {
     background-color: @grid-background;
 
-    .grid-box,
+    .fl,
     [class*="-cell"] {
       padding: @su-3;
       background-color: @grid-cell-background;
 
-      .grid-box,
+      .fl,
       [class*="-cell"] {
         background-color: spin(desaturate(darken(@grid-cell-background,5%),5%),-5);
       }

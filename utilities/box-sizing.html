@@ -1,0 +1,77 @@
+---
+layout: with-secondary-nav
+title: Box Sizing
+description: Box-sizing atomic classes allow one to determine what is used to determine an element's width or height.
+---
+<section class="stacks-section">
+    <h2 class="fl fl-jc-space-between fl-ai-center mb-12 mt-24 stacks-title">Class Definitions</h2>
+    <table class="table mb-32 _hover">
+        <thead>
+            <tr>
+                <th class="-cell-2" scope="col">Class</th>
+                <th class="-cell-3" scope="col">Output</th>
+                <th scope="col">Define</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for box in site.data.utility-definitions.box-sizing %}
+              <tr>
+                  <th scope="row" class="p-8 text-ff-mono text-fs-12">.{{ box.class }}</th>
+                  <td class="p-8 text-ff-mono text-fs-12">{{ box.output }}</td>
+                  <td>{{ box.define }}</td>
+              </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</section>
+
+<section class="stacks-section">
+    <h2 class="fl fl-jc-space-between fl-ai-center mb-0 mt-24 stacks-title _subtitle">Examples</h2>
+    <div class="stacks-code-preview">
+{% highlight html linenos %}
+<div>…</div>
+<div class="box-content">…</div>
+<div class="box-border">…</div>
+{% endhighlight %}
+        <div class="-preview ps-relative">
+            <div class="fl gs-5 fl-jc-space-between _cell-3 w-100">
+                <div class="fl fl-col bg-orange-100 ba bac-orange-3">
+                    <p class="mt-0 p-12 text-black-800 text-ff-mono"><strong>Parent Container</strong></p>
+                    <div class="fl fl-col box-content w-100 bg-orange-200">
+                        <div class="mt-0 px-12 pt-12 text-black-800 text-ff-mono"><strong>Child Container</strong></div>
+                        <div class="mt-12 px-12 pb-12 text-black-800 text-ff-mono">
+                            <strong>box-sizing: content-box;</strong><br/>
+                            width: 100%;<br/>
+                            padding: 0;<br/>
+                            border-width: 0;
+                        </div>
+                    </div>
+                </div>
+                <div class="fl fl-col bg-orange-100 p-12 ba bac-orange-3">
+                    <p class="mt-0 text-black-800 text-ff-mono"><strong>Parent Container</strong></p>
+                    <div class="fl fl-col box-content w-100 p-12 bg-orange-300 ba baw-1 bac-orange-3">
+                        <div class="mt-0 text-black-800 text-ff-mono"><strong>Child Container</strong></div>
+                        <div class="mt-12 text-black-800 text-ff-mono">
+                            <strong>box-sizing: content-box;</strong><br/>
+                            width: 100%;<br/>
+                            padding: 12px;<br/>
+                            border-width: 1px;
+                        </div>
+                    </div>
+                </div>
+                <div class="fl fl-col bg-orange-100 p-12 ba bac-orange-3">
+                    <p class="mt-0 text-black-800 text-ff-mono"><strong>Parent Container</strong></p>
+                    <div class="fl fl-col box-border w-100 p-12 bg-orange-300 ba baw-1 bac-orange-3">
+                        <div class="mt-0 text-black-800 text-ff-mono"><strong>Child Container</strong></div>
+                        <div class="mt-12 text-black-800 text-ff-mono">
+                            <strong>box-sizing: border-box;</strong><br/>
+                            width: 100%;<br/>
+                            padding: 12px;<br/>
+                            border-width: 1px;
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

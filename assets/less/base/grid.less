@@ -39,7 +39,7 @@
 //  ----------------------------------------------------------------------------
 .grid-box-columns(@num, @count: 1) when (@count =< @num) {
   &._cell-@{count} {
-    > .grid-box,
+    > .fl,
     > .-cell {
       .flex(1 (@count * 100% / @num));
       max-width: (@count * 100% / @num);
@@ -102,7 +102,7 @@
   //   If the wrapping parent container has set the cell width, then adjust
   //   those widths too.
   &._cell-@{count} {
-    > .grid-box,
+    > .fl,
     > .-cell {
       flex-basis: calc(~"@{cell-width} - @{spacing}");
       max-width: calc(~"@{cell-width} - @{spacing}");
@@ -122,7 +122,7 @@
   margin: -(@spacing / 2);
 
   //  --  FLUID CELLS
-  > .grid-box,
+  > .fl,
   > .-cell {
     margin: @spacing / 2;
   }
@@ -259,28 +259,23 @@
 //      To help simplify our CSS, we create a generic box container. By default
 //      this is a row container, but we can modify the box to become a column.
 //  ----------------------------------------------------------------------------
-.grid-box {
+.fl {
   //  Add box-sizing to anything within the grid
   &,
   *,
   *:after,
   *:before {
-      box-sizing: border-box;
+    box-sizing: border-box;
   }
-
-  //  Add in the flexbox things for wrapping container
-  .flexbox(box);
-  .flex();
-  .flex-flow();
 
   //  --  GENERIC AUTO WIDTH CELL
   //      This creates a generic fluid child cell, but only for direct children.
-  //      To help reduce on required class names (i.e. .grid-box .-cell), when a
+  //      To help reduce on required class names (i.e. .grid .-cell), when a
   //      box is nested within another, we let it act like a cell.
-  > .grid-box,
+  > .grid,
   > .-cell {
     .flex(1 auto);
-    max-width: 100%;
+    .wmx-full;
   }
 
   //  $$  FIXED WIDTH CELLS
@@ -297,16 +292,16 @@
 //  $   GRID SPACING
 //      Insert spaces or gutters in between grid cells
 //  ----------------------------------------------------------------------------
-.grid-box {
-  &._sp-1  { .grid-spacing(@su-1); }     //  2px
-  &._sp-2  { .grid-spacing(@su-2); }     //  4px
-  &._sp-3  { .grid-spacing(@su-3); }     //  8px
-  &._sp-4 { .grid-spacing(@su-4); }    //  12px
-  &._sp-5 { .grid-spacing(@su-5); }    //  16px
-  &._sp-6 { .grid-spacing(@su-6); }     //  24px
-  &._sp-7 { .grid-spacing(@su-7); }    //  32px
-  &._sp-8 { .grid-spacing(@su-8); }    //  48px
-  &._sp-9 { .grid-spacing(@su-9); }    //  64px
+.fl {
+  &.gs-1  { .grid-spacing(@su-2); }     //  2px
+  &.gs-2  { .grid-spacing(@su-4); }     //  4px
+  &.gs-3  { .grid-spacing(@su-8); }     //  8px
+  &.gs-4  { .grid-spacing(@su-12); }    //  12px
+  &.gs-5  { .grid-spacing(@su-16); }    //  16px
+  &.gs-6  { .grid-spacing(@su-24); }    //  24px
+  &.gs-7  { .grid-spacing(@su-32); }    //  32px
+  &.gs-8  { .grid-spacing(@su-48); }    //  48px
+  &.gs-9  { .grid-spacing(@su-64); }    //  64px
 }
 
 
@@ -316,103 +311,59 @@
 //  ----------------------------------------------------------------------------
 //  --  These items can ONLY apply to box
 //  ----------------------------------------------------------------------------
-.grid-box {
-  //  --  Display
-  //      For setting the display property of all child elements
-  //  --------------------------------------------------------------------------
-  &._ds-inline > [class*="-cell"]   { .flexbox(inline); }
-  &._ds-block > [class*="-cell"]    { display: block; }
-
-  //  --  Wrap Directions
-  //      For changing the wrapping direction of a parent container
-  //  --------------------------------------------------------------------------
-  &._reverse          { .flex-direction(row-reverse);}
-  &._col              { .flex-flow(column nowrap); }
-  &._col._reverse     { .flex-direction(column-reverse);}
-  &._wrap             { .flex-wrap(wrap); }
-  &._wrap-none        { .flex-wrap(nowrap); }
-  &._wrap-reverse     { .flex-wrap(wrap-reverse); }
-
+.fl {
   //  --  Widths
   //      This applies it to all direct children. Fixed width cells already
   //      have flex: 0 0 auto; applied to them.
   //  --------------------------------------------------------------------------
   &._fl-0 {
     &,
-    > .grid-box,
+    > .fl,
     > .-cell {
       .flex(0 auto);
     }
   }
+  &._fl-1 {
+    &,
+    > .fl,
+    > .-cell {
+      .flex(1 auto);
+    }
+  }
+  &._fl-2 {
+    &,
+    > .fl,
+    > .-cell {
+      .flex(2 auto);
+    }
+  }
+  &._fl-3 {
+    &,
+    > .fl,
+    > .-cell {
+      .flex(3 auto);
+    }
+  }
+  &._fl-4 {
+    &,
+    > .fl,
+    > .-cell {
+      .flex(4 auto);
+    }
+  }
+  &._fl-5 {
+    &,
+    > .fl,
+    > .-cell {
+      .flex(5 auto);
+    }
+  }
 
-  //  --  Alignment
-  //      For positioning items within parent container
-  //  --------------------------------------------------------------------------
-  //  ._ac- == align-content
-  //  Aligns the container's lines when there is extra space in the cross-axis.
-  //  Note that this only works when a parent container has more than one line.
-  &._ac-start         { align-content: flex-start; }
-  &._ac-center        { align-content: center; }
-  &._ac-end           { align-content: flex-end; }
-  &._ac-stretch       { align-content: stretch; }        //  Default value
-  &._ac-sp-around     { align-content: space-around; }
-  &._ac-sp-between    { align-content: space-between; }
-}
-
-//  --  These items can apply to both box and child containers
-//  ----------------------------------------------------------------------------
-.grid-box,
-.grid-box > [class*="-cell"] {
-  //  --  Alignment
-  //      For positioning items within parent container
-  //  --------------------------------------------------------------------------
-  //  ._jc- == justify-content
-  //  Defines the child alignment along the parent's main axis
-  &._jc-start         { .justify-content(flex-start); }   //  Default value
-  &._jc-center        { .justify-content(center); }
-  &._jc-end           { .justify-content(flex-end); }
-  &._jc-sp-around     { .justify-content(space-around); }
-  &._jc-sp-between    { .justify-content(space-between); }
-
-  //  ._ai- == align-items
-  //  Defines the default behavior for how child items align along the parent's
-  //  cross axis. Think of it the cross-axis for justify-content.
-  &._ai-start         { .align-items(flex-start); }
-  &._ai-center        { .align-items(center); }
-  &._ai-end           { .align-items(flex-end); }
-  &._ai-stretch       { .align-items(stretch); }         //  Default value
-  &._ai-baseline      { .align-items(baseline); }
-}
-
-//  --  These items can ONLY apply to child containers
-//  ----------------------------------------------------------------------------
-.grid-box > [class*="-cell"] {
   //  --  Display
-  //      For setting the display property of all child elements
+  //      Be default, child elements don't have a display property assigned.
+  //      Sometimes though we might want to assign one.
   //  --------------------------------------------------------------------------
-  &._ds-inline       { .flexbox(inline); }
-
-  //  --------------------------------------------------------------------------
-  //  $$  CELLS
-  //      Items which apply only to child cells
-  //  ==========================================================================
-  //  --  Widths
-  &._fl-0            { .flex(0 auto); }
-  &._fl-1            { .flex(1 auto); }
-  &._fl-2            { .flex(2 auto); }
-  &._fl-3            { .flex(3 auto); }
-  &._fl-4            { .flex(4 auto); }
-  &._fl-5            { .flex(5 auto); }
-
-  //  --  Alignment
-  &._as-auto        { align-self: auto; }
-  &._as-start       { align-self: flex-start; }
-  &._as-center      { align-self: center; }
-  &._as-end         { align-self: flex-end; }
-  &._as-stretch     { align-self: stretch; }
-  &._as-baseline    { align-self: baseline; }
-
-  //  --  Ordering
-  &._first          { .flex-order(-1); }
-  &._last           { .flex-order(1); }
+  &.fl-inline > [class*="-cell"] {
+    .fl-inline;
+  }
 }
