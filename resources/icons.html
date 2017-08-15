@@ -17,34 +17,20 @@ description: All system icons are inline SVG files, invoked via a Razor helper. 
   </div>
 </section>
 
-<<<<<<< HEAD
 <section class="stacks-section mb7">
-  <h2 class="grid-box _jc-sp-between _ai-center mb0 stacks-title">Icon Set</h2>
+  <h2 class="fl fl-jc-space-between fl-ai-center mb0 stacks-title">Icon Set</h2>
   <p class="text-fs-2 text-c-medium"><em>Last updated August 1, 2017</em></p>
 
-  <div class="grid-box _wrap _sp-3 _cell4 iconset">
-=======
-<section class="stacks-section mb32">
-  <h2 class="fl fl-jc-space-between fl-ai-center mb0 stacks-title">Icon Set</h2>
-  <p class="text-fs-12 text-c-medium"><em>Last updated August 1, 2017</em></p>
-
   <div class="fl fl-wrap gs3 _cell4 iconset">
->>>>>>> master
       {% assign icon_sort = site.data.icons | sort: "title" %}
       {% for icon in icon_sort %}
       <div class="fl fl-col-nowrap fl-inline card stacks-preview -item">
-          <div class="-cell fl2 fl-xy-center pa8 -preview">
+          <div class="-cell fl2 fl-xy-center pa3 -preview">
               {% include_relative {{ icon.helper | prepend: "svg-icons/" | append: ".svg" }} %}
           </div>
-<<<<<<< HEAD
-          <div class="grid-box _col _fl0 _ai-center pa8 -content">
+          <div class="fl fl-col-nowrap fl0 fl-ai-center pa3 -content">
               <h2 class="-cell -title text-fs-2 ma0">{{ icon.title }}</h2>
               <code class="-cell text-fs-1">@Svg.{{ icon.helper }}</code>
-=======
-          <div class="fl fl-col-nowrap fl0 fl-ai-center pa8 -content">
-              <h2 class="-cell -title text-fs-12 ma0">{{ icon.title }}</h2>
-              <code class="-cell text-fs-11">@Svg.{{ icon.helper }}</code>
->>>>>>> master
           </div>
       </div>
       {% endfor %}
