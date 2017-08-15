@@ -3,104 +3,238 @@
 //  UTILITIES
 //
 //  ============================================================================
-//  $  LAYOUT HELPERS
+//  $  DISPLAY
 //  ----------------------------------------------------------------------------
-.ut-ds-block              { display: block !important; }
-.ut-ds-inline             { display: inline !important; }
-.ut-ds-inline-block       { display: inline-block !important; }
-.ut-ds-table              { display: table !important; }
-.ut-ds-table-cell         { display: table-cell !important; }
-.ut-ds-none               { display: none !important; }
-.ut-ds-unset              { display: unset !important; }
+.d-block                  { display: block; }
+.d-inline                 { display: inline !important; }
+.d-inline-block           { display: inline-block !important; }
+.d-table                  { display: table !important; }
+.d-table-cell             { display: table-cell !important; }
+.d-none                   { display: none !important; }
+.d-unset                  { display: unset !important; }
 
-.ut-fl-left               { float: left !important; }
-.ut-fl-right              { float: right !important; }
-.ut-fl-clear              { clear: both !important; }
-
-.ut-va-top                { vertical-align: top !important; }
-.ut-va-middle             { vertical-align: middle !important; }
-.ut-va-bottom             { vertical-align: bottom !important; }
-
-.ut-po-absolute           { position: absolute !important; }
-.ut-po-fixed              { position: fixed !important; }
-.ut-po-relative           { position: relative !important; }
-.ut-po-static             { position: static !important; }
-.ut-po-unset              { position: unset !important; }
-
-// fixed width
-.fw {
-    margin-bottom: 4px;
-    width: 100%;
-}
-
-
+//  ============================================================================
+//  $  FLEXBOX
 //  ----------------------------------------------------------------------------
-//  $  Text
+.fl                       { .flexbox(box); }
+.fl-inline                { .flexbox(inline); }
+
+.fl-row                   { .flex-direction(row); }
+.fl-row-reverse           { .flex-direction(row-reverse); }
+.fl-col                   { .flex-direction(column); }
+.fl-col-reverse           { .flex-direction(column-reverse); }
+
+.fl-wrap                  { .flex-wrap(wrap); }
+.fl-wrap-reverse          { .flex-wrap(wrap-reverse); }
+.fl-wrap-none             { .flex-wrap(none); }
+
+.fl-row-wrap              { .flex-flow(row wrap); }
+.fl-row-nowrap            { .flex-flow(row nowrap); }
+.fl-row-reverse-wrap      { .flex-flow(row-reverse wrap); }
+.fl-row-reverse-nowrap    { .flex-flow(row-reverse nowrap); }
+.fl-col-wrap              { .flex-flow(column wrap); }
+.fl-col-nowrap            { .flex-flow(column nowrap); }
+.fl-col-reverse-wrap      { .flex-flow(column-reverse wrap); }
+.fl-col-reverse-nowrap    { .flex-flow(column-reverse nowrap); }
+
+//  --  Justify Content
+//      Defines the child alignment along the parent's main axis
+.fl-jc-center             { .justify-content(center); }
+.fl-jc-end                { .justify-content(flex-end); }
+.fl-jc-space-around       { .justify-content(space-around); }
+.fl-jc-space-between      { .justify-content(space-between); }
+.fl-jc-start              { .justify-content(flex-start); }
+
+//  --  Align Content
+//      Aligns the container's lines when there is extra space in the
+//      cross-axis. Note that this only works when a parent container
+//      has more than one line.
+.fl-ac-center             { align-content: center; }
+.fl-ac-end                { align-content: flex-end; }
+.fl-ac-space-around       { align-content: space-around; }
+.fl-ac-space-between      { align-content: space-between; }
+.fl-ac-start              { align-content: flex-start; }
+.fl-ac-stretch            { align-content: stretch; }
+
+//  --  Align Items
+//      Defines the default behavior for how child items align along
+//      the parent's cross axis. Think of it the cross-axis for
+//      justify-content.
+.fl-ai-baseline           { .align-items(baseline); }
+.fl-ai-center             { .align-items(center); }
+.fl-ai-end                { .align-items(flex-end); }
+.fl-ai-start              { .align-items(flex-start); }
+.fl-ai-stretch            { .align-items(stretch); }
+
+//  --  Center Items
+//      A common combination of classes is .fl-jc-center and .fl-ai-center.
+//      Use this class when you want both.
+.fl-xy-center             { .fl-jc-center; .fl-ai-center; }
+
+//  --  Align Self
+//      Allows child containers to re-align themselves irregardless
+//      of the parent's main axis direction.
+.fl-as-auto               { align-self: auto; }
+.fl-as-baseline           { align-self: baseline; }
+.fl-as-center             { align-self: center; }
+.fl-as-end                { align-self: flex-end; }
+.fl-as-start              { align-self: flex-start; }
+.fl-as-stretch            { align-self: stretch; }
+
+//  --  Flex Widths
+//      Graduating scale of flex-grow and flex-shrink values
+.fl-0                     { .flex(0 auto) !important; }
+.fl-1                     { .flex(1 auto) !important; }
+.fl-2                     { .flex(2 auto) !important; }
+.fl-3                     { .flex(3 auto) !important; }
+.fl-4                     { .flex(4 auto) !important; }
+.fl-5                     { .flex(5 auto) !important; }
+
+//  --  Ordering
+//      Designate a child container's position.
+.fl-first                 { .flex-order(1); }
+.fl-last                  { .flex-order(-1); }
+
+
+//  $  FLOATS
 //  ----------------------------------------------------------------------------
-.help-text {
-    color: @black-500;
-}
+.float-left               { float: left; }
+.float-right              { float: right; }
+.float-none               { float: none; }
 
-.help-text,
-.message.text-only {
-    &.has-icon {
-        display: flex;
-        -ms-display: flex;
+.clearfix                 { .clearfix(); }
+.clear-left               { clear: left; }
+.clear-right              { clear: right; }
+.clear-both               { clear: both; }
+.clear-none               { clear: none; }
 
-        [class^='icon'] {
-            flex-shrink: 0;
-            -ms-flex-shrink: 0;
-            margin-right: 5px;
-        }
+//  $  BOX SIZING
+//  ----------------------------------------------------------------------------
+.box-content              { box-sizing: content-box !important; }
+.box-border               { box-sizing: border-box !important; }
+.box-unset                { box-sizing: unset !important; }
 
-        .icon-i-orange {
-            position: relative;
-            top: 2px;
-        }
-    }
-}
+//  $  VERTICAL ALIGNMENT
+//  ----------------------------------------------------------------------------
+.va-baseline              { vertical-align: baseline; }
+.va-bottom                { vertical-align: bottom; }
+.va-middle                { vertical-align: middle; }
+.va-sub                   { vertical-align: sub; }
+.va-super                 { vertical-align: super; }
+.va-text-bottom           { vertical-align: text-bottom; }
+.va-text-top              { vertical-align: text-top; }
+.va-top                   { vertical-align: top; }
+.va-unset                 { vertical-align: unset; }
 
-.success-text   { color: @green-500; }
-.error-text     { color: @red-500; }
+//  $  POSITION
+//  ----------------------------------------------------------------------------
+.ps-absolute              { position: absolute; }
+.ps-fixed                 { position: fixed; }
+.ps-relative              { position: relative; }
+.ps-static                { position: static; }
+.ps-sticky                { position: -webkit-sticky; position: sticky; }
+.ps-unset                 { position: unset; }
 
-//  -----------------------------------------------------------------------------
-//  $$  Retina
-//  -----------------------------------------------------------------------------
-@retina: ~"(-webkit-min-device-pixel-ratio: 1.5), (min--moz-device-pixel-ratio: 1.5), (-o-min-device-pixel-ratio: 3/2), (min-resolution: 1.5dppx)";
+//  $  POSITION COORDINATES
+//  ----------------------------------------------------------------------------
+.top-n-100                { top: -100%; }
+.top-n-50                 { top: -50%; }
+.top-0                    { top: 0; }
+.top-50                   { top: 50%; }
+.top-100                  { top: 100%; }
 
-.at2x(@path, @w: auto, @h: auto) {
+.right-n-100              { right: -100%; }
+.right-n-50               { right: -50%; }
+.right-0                  { right: 0; }
+.right-50                 { right: 50%; }
+.right-100                { right: 100%; }
 
-    background-image: url(@path);
+.bottom-n-100             { bottom: -100%; }
+.bottom-n-50              { bottom: -50%; }
+.bottom-0                 { bottom: 0; }
+.bottom-50                { bottom: 50%; }
+.bottom-100               { bottom: 100%; }
 
-    @at2x_path: ~`@{path}.replace(/\.\w+$/, function(match) { return "@2" + match; })`;
+.left-n-100               { left: -100%; }
+.left-n-50                { left: -50%; }
+.left-0                   { left: 0; }
+.left-50                  { left: 50%; }
+.left-100                 { left: 100%; }
 
-    @media @retina {
-        background-image: url("@{at2x_path}");
-        background-size: @w @h;
-    }
+//  $  WIDTH
+//  ----------------------------------------------------------------------------
+.w-0                      { width: 0; }
+.w-10                     { width: 10%; }
+.w-20                     { width: 20%; }
+.w-25                     { width: 25%; }
+.w-30                     { width: 30%; }
+.w-40                     { width: 40%; }
+.w-50                     { width: 50%; }
+.w-60                     { width: 60%; }
+.w-70                     { width: 70%; }
+.w-75                     { width: 75%; }
+.w-80                     { width: 80%; }
+.w-90                     { width: 90%; }
+.w-100                    { width: 100%; }
 
-}
+//  $  MAX-WIDTH
+//  ----------------------------------------------------------------------------
+.wmx-1                    { max-width: 1rem; }
+.wmx-2                    { max-width: 2rem; }
+.wmx-3                    { max-width: 4rem; }
+.wmx-4                    { max-width: 8rem; }
+.wmx-5                    { max-width: 12rem; }
+.wmx-6                    { max-width: 16rem; }
+.wmx-7                    { max-width: 24rem; }
+.wmx-8                    { max-width: 32rem; }
+.wmx-9                    { max-width: 48rem; }
+.wmx-10                   { max-width: 64rem; }
+.wmx-full                 { max-width: 100%; }
 
-.at2xFull(@path, @w: auto, @h: auto, @position: top left, @repeat: no-repeat, @bg-color: none) {
+//  $  HEIGHT
+//  ----------------------------------------------------------------------------
+.h-0                      { height: 0; }
+.h-10                     { height: 10%; }
+.h-20                     { height: 20%; }
+.h-25                     { height: 25%; }
+.h-30                     { height: 30%; }
+.h-40                     { height: 40%; }
+.h-50                     { height: 50%; }
+.h-60                     { height: 60%; }
+.h-70                     { height: 70%; }
+.h-75                     { height: 75%; }
+.h-80                     { height: 80%; }
+.h-90                     { height: 90%; }
+.h-100                    { height: 100%; }
 
-    background-image: url(@path);
-    background-position: @position;
-    background-repeat: @repeat;
-    background-color: @bg-color;
+//  $  MAX-HEIGHT
+//  ----------------------------------------------------------------------------
+.hmx-1                    { max-height: 1rem; }
+.hmx-2                    { max-height: 2rem; }
+.hmx-3                    { max-height: 4rem; }
+.hmx-4                    { max-height: 8rem; }
+.hmx-5                    { max-height: 12rem; }
+.hmx-6                    { max-height: 16rem; }
+.hmx-7                    { max-height: 24rem; }
+.hmx-8                    { max-height: 32rem; }
+.hmx-9                    { max-height: 48rem; }
+.hmx-10                   { max-height: 64rem; }
+.hmx-full                 { max-height: 100%; }
 
-    @at2x_path: ~`@{path}.replace(/\.\w+$/, function(match) { return "@2" + match; })`;
+//  $  OVERFLOW
+//  ----------------------------------------------------------------------------
+.o-auto                   { overflow: auto; }
+.ox-auto                  { overflow-x: auto; }
+.oy-auto                  { overflow-y: auto; }
 
-    @media @retina {
-        background-image: url("@{at2x_path}");
-        background-size: @w @h;
-    }
+.o-hidden                 { overflow: hidden; }
+.ox-hidden                { overflow-x: hidden; }
+.oy-hidden                { overflow-y: hidden; }
 
-}
+.o-scroll                 { overflow: scroll; }
+.ox-scroll                { overflow-x: scroll; }
+.oy-scroll                { overflow-y: scroll; }
 
-//  -----------------------------------------------------------------------------
-//  $$  Layout
-//  -----------------------------------------------------------------------------
-.stop-scrolling {
-  height: 100%;
-  overflow: hidden;
-}
+.o-visible                { overflow: visible; }
+.ox-visible               { overflow-x: visible; }
+.oy-visible               { overflow-y: visible; }

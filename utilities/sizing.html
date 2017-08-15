@@ -1,0 +1,147 @@
+---
+layout: with-secondary-nav
+title: Sizing
+description: Sizing atomic classes allow you to quickly an element's size or max size. Sizing classes provide percentage values and max-sizes are REM values. These should be used when possible to help create consistency.
+---
+<section class="stacks-section">
+    <h2 class="fl fl-jc-space-between fl-ai-center mb-12 mt-24 stacks-title">Class Definitions</h2>
+    <h3 class="fl fl-jc-space-between fl-ai-center mb-12 mt-24 stacks-title _subtitle">Sizes</h3>
+    <table class="table mb-32 _hover">
+        <thead>
+            <tr>
+                <th class="-cell-3" scope="col">Class</th>
+                <th class="-cell-2" scope="col">Width Class</th>
+                <th class="-cell-2" scope="col">Height Class</th>
+                <th scope="col">Output</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for size in site.data.utility-definitions.sizing %}
+              <tr>
+                  <th scope="row" class="p-8 text-ff-mono text-fs-12">.{{ size.class }}</th>
+                  <td class="p-8 text-ff-mono text-fs-12">.w-{{ size.value }}</td>
+                  <td class="p-8 text-ff-mono text-fs-12">.h-{{ size.value }}</td>
+                  <td class="p-8 text-ff-mono text-fs-12">{{ size.value }}%</td>
+              </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <h3 class="fl fl-jc-space-between fl-ai-center mb-12 mt-24 stacks-title _subtitle">Max Sizes</h3>
+    <table class="table mb-32 _hover">
+        <thead>
+            <tr>
+                <th class="-cell-3" scope="col">Class</th>
+                <th class="-cell-2" scope="col">Width Class</th>
+                <th class="-cell-2" scope="col">Height Class</th>
+                <th class="-cell-2" scope="col">Output</th>
+                <th scope="col">Output in Pixels</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for size in site.data.utility-definitions.max-size %}
+            <tr>
+                <th scope="row" class="p-8 text-ff-mono text-fs-12">.{{ size.class }}</th>
+                <td class="p-8 text-ff-mono text-fs-12">.wmx-{{ size.name }}</td>
+                <td class="p-8 text-ff-mono text-fs-12">.hmx-{{ size.name }}</td>
+                {% if size.value == 100 %}
+                    <td class="p-8 text-ff-mono text-fs-12">{{ size.value }}%</td>
+                    <td class="p-8 text-ff-mono text-fs-12 text-black-350">N/A</td>
+                {% else %}
+                    <td class="p-8 text-ff-mono text-fs-12">{{ size.value }}rem</td>
+                    <td class="p-8 text-ff-mono text-fs-12">{{ size.output }}px</td>
+                {% endif %}
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</section>
+
+<section class="stacks-section">
+    <h2 class="fl fl-jc-space-between fl-ai-center mb-0 mt-24 stacks-title _subtitle">Examples</h2>
+    <h3 class="fl fl-jc-space-between fl-ai-center mb-0 mt-4 py-4 stacks-title text-fw-normal text-fs-15 text-black-400 bb bbc-black-3">Width</h3>
+    <div class="stacks-code-preview">
+{% highlight html linenos %}
+<div class="ps-static">…</div>
+<div class="ps-relative">…</div>
+<div class="ps-absolute">…</div>
+<div class="ps-sticky">…</div>
+<div class="ps-fixed">…</div>
+<div class="ps-unset">…</div>
+{% endhighlight %}
+        <div class="-preview ps-relative">
+            <div class="fl gs-2 fl-col-nowrap w-100">
+                <div class="fl">
+                    <div class="p-16 w-100 bg-orange-050 ba bac-orange-1 text-black-800 text-ff-mono">.w-100</div>
+                </div>
+                <div class="fl">
+                    <div class="p-16 mr-2 w-10 bg-orange-050 ba bac-orange-1 text-black-800 text-ff-mono">.w-10</div>
+                    <div class="p-16 ml-2 w-90 bg-orange-050 ba bac-orange-1 text-black-800 text-ff-mono">.w-90</div>
+                </div>
+                <div class="fl">
+                    <div class="p-16 mr-2 w-20 bg-orange-050 ba bac-orange-1 text-black-800 text-ff-mono">.w-20</div>
+                    <div class="p-16 ml-2 w-80 bg-orange-050 ba bac-orange-1 text-black-800 text-ff-mono">.w-80</div>
+                </div>
+                <div class="fl">
+                    <div class="p-16 mr-2 w-25 bg-orange-050 ba bac-orange-1 text-black-800 text-ff-mono">.w-25</div>
+                    <div class="p-16 ml-2 w-75 bg-orange-050 ba bac-orange-1 text-black-800 text-ff-mono">.w-75</div>
+                </div>
+                <div class="fl">
+                    <div class="p-16 mr-2 w-30 bg-orange-050 ba bac-orange-1 text-black-800 text-ff-mono">.w-30</div>
+                    <div class="p-16 ml-2 w-70 bg-orange-050 ba bac-orange-1 text-black-800 text-ff-mono">.w-70</div>
+                </div>
+                <div class="fl">
+                    <div class="p-16 mr-2 w-40 bg-orange-050 ba bac-orange-1 text-black-800 text-ff-mono">.w-40</div>
+                    <div class="p-16 ml-2 w-60 bg-orange-050 ba bac-orange-1 text-black-800 text-ff-mono">.w-60</div>
+                </div>
+                <div class="fl">
+                    <div class="p-16 mr-2 w-50 bg-orange-050 ba bac-orange-1 text-black-800 text-ff-mono">.w-50</div>
+                    <div class="p-16 ml-2 w-50 bg-orange-050 ba bac-orange-1 text-black-800 text-ff-mono">.w-50</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <h3 class="fl fl-jc-space-between fl-ai-center mb-0 mt-4 py-4 stacks-title text-fw-normal text-fs-15 text-black-400 bb bbc-black-3">Height</h3>
+    <div class="stacks-code-preview">
+{% highlight html linenos %}
+<div class="ps-static">…</div>
+<div class="ps-relative">…</div>
+<div class="ps-absolute">…</div>
+<div class="ps-sticky">…</div>
+<div class="ps-fixed">…</div>
+<div class="ps-unset">…</div>
+{% endhighlight %}
+        <div class="-preview ps-relative">
+            <div class="fl fl-inline gs-2 w-100" style="height: 300px;">
+                <div class="-cell fl-col-nowrap">
+                    <div class="p-16 h-100 bg-orange-050 ba bac-orange-1 text-black-800 text-ff-mono">.h-100</div>
+                </div>
+                <div class="-cell fl-col-nowrap">
+                    <div class="px-16 py-8 mb-2 h-10 bg-orange-050 ba bac-orange-1 text-black-800 text-ff-mono">.h-10</div>
+                    <div class="p-16 mt-2 h-90 bg-orange-050 ba bac-orange-1 text-black-800 text-ff-mono">.h-90</div>
+                </div>
+                <div class="-cell fl-col-nowrap">
+                    <div class="p-16 mb-2 h-20 bg-orange-050 ba bac-orange-1 text-black-800 text-ff-mono">.h-20</div>
+                    <div class="p-16 mt-2 h-80 bg-orange-050 ba bac-orange-1 text-black-800 text-ff-mono">.h-80</div>
+                </div>
+                <div class="-cell fl-col-nowrap">
+                    <div class="p-16 mb-2 h-25 bg-orange-050 ba bac-orange-1 text-black-800 text-ff-mono">.h-25</div>
+                    <div class="p-16 mt-2 h-75 bg-orange-050 ba bac-orange-1 text-black-800 text-ff-mono">.h-75</div>
+                </div>
+                <div class="-cell fl-col-nowrap">
+                    <div class="p-16 mb-2 h-30 bg-orange-050 ba bac-orange-1 text-black-800 text-ff-mono">.h-30</div>
+                    <div class="p-16 mt-2 h-70 bg-orange-050 ba bac-orange-1 text-black-800 text-ff-mono">.h-70</div>
+                </div>
+                <div class="-cell fl-col-nowrap">
+                    <div class="p-16 mb-2 h-40 bg-orange-050 ba bac-orange-1 text-black-800 text-ff-mono">.h-40</div>
+                    <div class="p-16 mt-2 h-60 bg-orange-050 ba bac-orange-1 text-black-800 text-ff-mono">.h-60</div>
+                </div>
+                <div class="-cell fl-col-nowrap">
+                    <div class="p-16 mb-2 h-50 bg-orange-050 ba bac-orange-1 text-black-800 text-ff-mono">.h-50</div>
+                    <div class="p-16 mt-2 h-50 bg-orange-050 ba bac-orange-1 text-black-800 text-ff-mono">.h-50</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

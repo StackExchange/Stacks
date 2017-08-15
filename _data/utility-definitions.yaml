@@ -1,0 +1,143 @@
+floats:
+  - class: float-left
+    output: "float: left;"
+    define: "<p class='mt-0'>Indicates that the element must float on the left side of the parent container.</p>"
+  - class: float-right
+    output: "float: right;"
+    define: "<p class='mt-0'>Indicates that the element must float on the right side of the parent container.</p>"
+  - class: float-none
+    output: "float: none;"
+    define: "<p class='mt-0'>Indicates that the element must not float.</p>"
+  - class: clearfix
+    output: ".clearfix();"
+    define: "<p class='mt-0'>This class calls the <code class='p-2 text-ff-mono text-fs-12 bg-black-050'>.clearfix();</code> mixin, which fixes a layout bug. Floating an object takes it out of the DOM order. When all child itmes within a parent container contain a float property then, the parent container will collapse. The <code class='p-2 text-ff-mono text-fs-12 bg-black-050'>.clearfix</code> class forces the parent container to not collapse.</p>"
+  - class: clear-left
+    output: "clear: left;"
+    define: "<p class='mt-0'>Indicates that the element must be moved down to clear past <em>left</em> floats.</p>"
+  - class: clear-right
+    output: "clear: right;"
+    define: "<p class='mt-0'>Indicates that the element must be moved down to clear past <em>right</em> floats.</p>"
+  - class: clear-both
+    output: "clear: both;"
+    define: "<p class='mt-0'>Indicates that the element must be moved down to clear past <em>left and right</em> floats.</p>"
+  - class: clear-none
+    output: "clear: none;"
+    define: "<p class='mt-0'>Indicates that the element is <em>not</em> moved to clear past flaoting elements.</p>"
+
+box-sizing:
+  - class: box-content
+    output: "box-sizing: content-box;"
+    define: "<p class='mt-0'>Indicates that the element's width and height affects only the element's content box, that is the area minus the element's margin, padding, and borders. <em>This is the default browswer value.</em></p>"
+  - class: box-border
+    output: "box-sizing: border-box;"
+    define: "<p class='mt-0'>Indicates that the element's width and height affects the entire element. <emThis is the <strong>preferred</strong> default value for Stacks.</em</p>"
+  - class: box-unset
+    output: "box-sizing: unset;"
+    define: "<p class='mt-0'>Removes the previously set <code class='p-2 text-ff-mono text-fs-12 bg-black-050'>box-sixing</code> value, reverting it back to the initial browser value.</p>"
+
+position:
+  - class: ps-absolute
+    output: "position: absolute;"
+    define: "<p class='mt-0'>Absolutely positions an element. Typically is used in conjunction with <code class='p-2 text-ff-mono text-fs-12 bg-black-050'>top</code>, <code class='p-2 text-ff-mono text-fs-12 bg-black-050'>right</code>, <code class='p-2 text-ff-mono text-fs-12 bg-black-050'>bottom</code>, and <code class='p-2 text-ff-mono text-fs-12 bg-black-050'>left</code> properties.</p><p><em>Note: Absolutely positioning an element takes it out of the DOM flow and puts it automatically above all relatively positioned items which don't have a <code class='p-2 text-ff-mono text-fs-12 bg-black-050'>z-index</code> assigned.</em></p>"
+  - class: ps-fixed
+    output: "position: fixed;"
+    define: "<p class='mt-0'>Fixes an element within the viewport. Typically is used in conjunction with <code class='p-2 text-ff-mono text-fs-12 bg-black-050'>top</code>, <code class='p-2 text-ff-mono text-fs-12 bg-black-050'>right</code>, <code class='p-2 text-ff-mono text-fs-12 bg-black-050'>bottom</code>, and <code class='p-2 text-ff-mono text-fs-12 bg-black-050'>left</code> properties.</p><p><em>Note: Fixing an element's position, like absolute positioning, takes it out of the DOM flow and puts it automatically above all relatively positioned items.</em></p>"
+  - class: ps-relative
+    output: "position: relative;"
+    define: "<p class='mt-0'>Relatively positions an element in relation to elements around it. The <code class='p-2 text-ff-mono text-fs-12 bg-black-050'>top</code> and <code class='p-2 text-ff-mono text-fs-12 bg-black-050'>bottom</code> properties specify the vertical offset from its normal position. In the same way the <code class='p-2 text-ff-mono text-fs-12 bg-black-050'>left</code> and <code class='p-2 text-ff-mono text-fs-12 bg-black-050'>right</code> properties specify the horizontal offset.</p>"
+  - class: ps-static
+    output: "position: static;"
+    define: "<p class='mt-0'>An element is positioned according to the document's flow. The <code class='p-2 text-ff-mono text-fs-12 bg-black-050'>top</code>, <code class='p-2 text-ff-mono text-fs-12 bg-black-050'>right</code>, <code class='p-2 text-ff-mono text-fs-12 bg-black-050'>bottom</code>, <code class='p-2 text-ff-mono text-fs-12 bg-black-050'>left</code>, and <code class='p-2 text-ff-mono text-fs-12 bg-black-050'>z-index</code> properties have <em>no effect</em>.</p><p><strong>This is the default value.</strong></p>"
+  - class: ps-sticky
+    output: "position: sticky;"
+    define: "<p class='mt-0'>An element is positioned according to the document's flow, and then offset relative to its flow root and containing block. This creates a new stacking context.</p><p class='mt-0'><strong class='mb-4'>Notes:</strong><br/>Sticky elements, by design, will not work inside an element with <code class='p-2 text-ff-mono text-fs-12 bg-black-050'>overflow:hidden;</code> or <code class='p-2 text-ff-mono text-fs-12 bg-black-050'>overflow:auto;</code> values.</p><p class='mt-0'>The sticky position is still considered an experimental value and requires a <code class='p-2 text-ff-mono text-fs-12 bg-black-050'>position: -webkit-sticky;</code> vendor prefix for Safari.</p>"
+
+coordinates:
+  - class: "[position]-n-100"
+    output: "top: -100%;"
+    define: Position coordinate which places an element 100% negatively from the stated position in relation to its parent.
+  - class: "[position]-n-50"
+    output: "right: -50%;"
+    define: Top position coordinate which places an element 50% negatively from the stated position in relation to its parent.
+  - class: "[position]-0"
+    output: "bottom: 0;"
+    define: Top position coordinate which aligns an element within its parent from the stated position.
+  - class: "[position]-50"
+    output: "left: 50%;"
+    define: Top position coordinate which places an element 50% positively from the stated position in relation to its parent.
+  - class: "[position]-100"
+    output: "top: 100%;"
+    define: Top position coordinate which places an element 100% positively from the stated position  in relation to its parent.
+
+sizing:
+  - class: "[size]-0"
+    value: 0
+  - class: "[size]-10"
+    value: 10
+  - class: "[size]-20"
+    value: 20
+  - class: "[size]-25"
+    value: 25
+  - class: "[size]-30"
+    value: 30
+  - class: "[size]-40"
+    value: 40
+  - class: "[size]-50"
+    value: 50
+  - class: "[size]-60"
+    value: 60
+  - class: "[size]-70"
+    value: 70
+  - class: "[size]-75"
+    value: 75
+  - class: "[size]-80"
+    value: 80
+  - class: "[size]-90"
+    value: 90
+  - class: "[size]-100"
+    value: 100
+
+max-size:
+  - class: "[max]-1"
+    name: 1
+    value: 1
+    output: 15
+  - class: "[max]-2"
+    name: 2
+    value: 2
+    output: 30
+  - class: "[max]-3"
+    name: 3
+    value: 4
+    output: 60
+  - class: "[max]-4"
+    name: 4
+    value: 8
+    output: 120
+  - class: "[max]-5"
+    name: 5
+    value: 12
+    output: 180
+  - class: "[max]-6"
+    name: 6
+    value: 16
+    output: 240
+  - class: "[max]-7"
+    name: 7
+    value: 24
+    output: 360
+  - class: "[max]-8"
+    name: 8
+    value: 32
+    output: 480
+  - class: "[max]-9"
+    name: 9
+    value: 48
+    output: 720
+  - class: "[max]-10"
+    name: 10
+    value: 64
+    output: 960
+  - class: "[max]-full"
+    name: full
+    value: 100
