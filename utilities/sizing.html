@@ -19,8 +19,8 @@ description: Sizing atomic classes allow you to quickly an element's size or max
             {% for size in site.data.utility-definitions.sizing %}
               <tr class="ff-mono fs2">
                   <th scope="row" class="p3">.{{ size.class }}</th>
-                  <td class="p3">.w-{{ size.value }}</td>
-                  <td class="p3">.h-{{ size.value }}</td>
+                  <td class="p3">.w{{ size.value }}</td>
+                  <td class="p3">.h{{ size.value }}</td>
                   <td class="p3">{{ size.value }}%</td>
               </tr>
             {% endfor %}
@@ -43,8 +43,8 @@ description: Sizing atomic classes allow you to quickly an element's size or max
             <tr class="ff-mono fs2">
                 <th scope="row" class="p3">.{{ size.class }}</th>
                 {% if size.value == 100 %}
-                    <td class="p3">.wmx-{{ size.name }}</td>
-                    <td class="p3">.hmx-{{ size.name }}</td>
+                    <td class="p3">.wmx{{ size.name }}</td>
+                    <td class="p3">.hmx{{ size.name }}</td>
                     <td class="p3">{{ size.value }}%</td>
                     <td class="p3 tc-black-350">N/A</td>
                 {% else %}
