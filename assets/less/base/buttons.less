@@ -217,24 +217,24 @@
 //  $   BASE STYLE
 //  ----------------------------------------------------------------------------
 .button {
-  position: relative;
-  padding: @su3 @su4;
+  .ps-relative;
+  .py3;
+  .px4;
+  .ba;
+  .ff-inherit;
+  .td-none;
 
+  //  Customizable Items
   border-radius: @btn-br;
-  border: 1px solid transparent;
-
   font-weight: @btn-fw;
-  font-family: inherit;
-  text-decoration: none;
   transition: all 300ms @te-smooth;
 
   cursor: pointer;
   outline: none;
-  touch-action: manipulation; // Not supported in FF and Safari
 
   &:hover,
   &:focus {
-    text-decoration: none;
+    .td-none;
   }
 
   &:focus {
@@ -453,26 +453,19 @@
     margin-left: -(@su6 - @su2);
     width: 14px;
     height: 14px;
-    border-radius: @br-circle;
-    border: 2px solid transparent;
-    border-left-width: 2px;
+
+    .bar-circle;
+    .ba;
+    .baw2;
+    .bac-white-2;
+    .blc-white;
 
     transform: translateZ(0);
     animation: spinnerRotate 800ms infinite @te-back-out;
   }
 
-  &:before,
-  &._clear:before,
-  &._secondary:before,
-  &._outline:before {
+  &._dark-loader:before {
     border-color: @powder-200;
     border-left-color: @powder-600;
-  }
-
-  &._primary:before,
-  &._confirm:before,
-  &._warning:before {
-    border-color: fade(@white,25%);
-    border-left-color: @white;
   }
 }
