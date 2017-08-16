@@ -18,7 +18,7 @@
   }
 
   const GridClass = {
-    GRID_BOX    : "ml2 fl",
+    GRID_BOX    : "fl",
     GRID_COL    : "fl-col-nowrap",
     GRID_CELL   : "-cell"
   }

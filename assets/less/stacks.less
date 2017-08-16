@@ -46,7 +46,7 @@
     grid-template-columns: @nav-width @content-width;
     grid-template-areas: "nav main";
     grid-gap: 0;
-    height: 100%;
+    .h100;
 
     //  Specific class names that assign template areas
     .stacks-content {
@@ -79,7 +79,7 @@
 }
 
 .stacks-section {
-  padding-top: @su5;
+  .pt5;
   max-width: @content-width; // Needed for Safari
 }
 
@@ -111,32 +111,36 @@
 
   //  If a submenu item is active…
   &.is-active .-link {
-    background-color: @orange-300;
-    color: @white;
+    .bg-orange-300;
+    .tc-white;
 
     //  Add small extension to the end of the background color…
     &:before {
       content: "";
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      right: 0;
+      .ps-absolute;
+      .top-0;
+      .bottom-0;
+      .right-0;
       margin-right: -(@su3);
       width: @su3;
-      background-color: @orange-300;
+      .bg-orange-300;
     }
 
     &:hover,
     &:hover:before {
-      background-color: @orange-400;
-      color: @white;
+      .bg-orange-400;
+      .tc-white;
     }
   }
 
   //  If a submenu item is the last one…
   &:last-child {
-    padding-bottom: @su3;
+    .pb3;
   }
+}
+
+.nav._secondary .nav .-link {
+  .ml3;
 }
 
 
