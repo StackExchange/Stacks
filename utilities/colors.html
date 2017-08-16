@@ -9,17 +9,17 @@ description: To avoid specifying color values by hand, we've included a robust s
   <div class="fl gs4 _cell4">
     <div class="-cell p4 bg-orange-400 mb4">
       <h2>Orange</h2>
-      <p class="text-ff-mono mb0">@orange-400</p>
+      <p class="ff-mono mb0">@orange-400</p>
     </div>
 
-    <div class="-cell p4 bg-black-900 mb4 text-white">
+    <div class="-cell p4 bg-black-900 mb4 tc-white">
       <h2>Black</h2>
-      <p class="text-ff-mono mb0">@black-900</p>
+      <p class="ff-mono mb0">@black-900</p>
     </div>
 
-    <div class="-cell p4 bg-blue-600 mb4 text-white">
+    <div class="-cell p4 bg-blue-600 mb4 tc-white">
       <h2>Blue</h2>
-      <p class="text-ff-mono mb0">@blue-600</p>
+      <p class="ff-mono mb0">@blue-600</p>
     </div>
   </div>
 </section>
@@ -27,24 +27,24 @@ description: To avoid specifying color values by hand, we've included a robust s
 <section class="stacks-section mb32">
   <h2 class="fl fl-jc-space-between fl-ai-center mb0 stacks-title mb8">Accent Colors</h2>
   <div class="fl gs4 _cell4">
-    <div class="-cell p4 bg-powder-100 mb4 text-powder-900">
+    <div class="-cell p4 bg-powder-100 mb4 tc-powder-900">
       <h2>Powder</h2>
-      <p class="text-ff-mono mb0">@powder-100</p>
+      <p class="ff-mono mb0">@powder-100</p>
     </div>
 
-    <div class="-cell p4 bg-green-400 mb4 text-green-900">
+    <div class="-cell p4 bg-green-400 mb4 tc-green-900">
       <h2>Green</h2>
-      <p class="text-ff-mono mb0">@green-400</p>
+      <p class="ff-mono mb0">@green-400</p>
     </div>
 
-    <div class="-cell p4 bg-yellow-100 mb4 text-yellow-900">
+    <div class="-cell p4 bg-yellow-100 mb4 tc-yellow-900">
       <h2>Yellow</h2>
-      <p class="text-ff-mono mb0">@yellow-100</p>
+      <p class="ff-mono mb0">@yellow-100</p>
     </div>
 
-    <div class="-cell p4 bg-red-500 mb4 text-white">
+    <div class="-cell p4 bg-red-500 mb4 tc-white">
       <h2>Red</h2>
-      <p class="text-ff-mono mb0">@red-500</p>
+      <p class="ff-mono mb0">@red-500</p>
     </div>
   </div>
 </section>
@@ -54,7 +54,7 @@ description: To avoid specifying color values by hand, we've included a robust s
   {% for color in site.data.color-stops %}
   {% assign color_stops = color.stops %}
   <h3 class="fl fl-jc-space-between fl-ai-center mb0 mt6 stacks-title _subtitle">{{ color.name | capitalize }}</h3>
-  <table class="table _hover _condensed ut-va-middle mb6 text-fs-2">
+  <table class="table _hover _condensed ut-va-middle mb6 fs2">
       <thead>
           <tr>
               <th scope="col">Swatch</th>
@@ -67,25 +67,25 @@ description: To avoid specifying color values by hand, we've included a robust s
       </thead>
       <tbody>
           {% for stop in color_stops %}
-          <tr class="text-ff-mono">
+          <tr class="ff-mono">
               <th scope="row">
                   <div class="stacks-swatch bg-{{ color.name }}-{{ stop.stop }}"></div>
               </th>
               <td>@{{ color.name }}-{{ stop.stop }}</td>
               <td>#{{ stop.hex }}</td>
               <td>{{ stop.rgb }}</td>
-              <td>.text-{{ color.name }}-{{ stop.stop }}</td>
+              <td>.tc-{{ color.name }}-{{ stop.stop }}</td>
               <td>.bg-{{ color.name }}-{{ stop.stop }}</td>
           </tr>
           {% endfor %}
-          <tr class="text-ff-mono">
+          <tr class="ff-mono">
               <th scope="row">
                   <div class="stacks-swatch bg-{{ color.name }}-{{ stop.stop }}"></div>
               </th>
               <td>@white</td>
               <td>#FFFFFF</td>
               <td>255,255,255</td>
-              <td>.text-white</td>
+              <td>.tc-white</td>
               <td>.bg-white</td>
           </tr>
       </tbody>
