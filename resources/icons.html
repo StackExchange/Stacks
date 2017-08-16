@@ -5,7 +5,7 @@ description: All system icons are inline SVG files, invoked via a Razor helper. 
 ---
 
 <section class="stacks-section">
-  <h2 class="fl fl-jc-space-between fl-ai-center mb-0 stacks-title">Using the Icon Helper</h2>
+  <h2 class="fl fl-jc-space-between fl-ai-center mb0 stacks-title">Using the Icon Helper</h2>
   <p class="stacks-p _section">The SVG Razor helper function should be used for all system icons in lieu of SVG sprite sheets or raster image assets. This ensures a single source of truth for all icons. The SVG helper is invoked by `@Svg.` and then adding the icon name, like so:</p>
 
   <div class="stacks-code-preview _preview-none">
@@ -17,20 +17,20 @@ description: All system icons are inline SVG files, invoked via a Razor helper. 
   </div>
 </section>
 
-<section class="stacks-section mb-32">
-  <h2 class="fl fl-jc-space-between fl-ai-center mb-0 stacks-title">Icon Set</h2>
-  <p class="text-fs-12 text-c-medium"><em>Last updated August 1, 2017</em></p>
+<section class="stacks-section mb7">
+  <h2 class="fl fl-jc-space-between fl-ai-center mb0 stacks-title">Icon Set</h2>
+  <p class="fs2 tc-medium"><em>Last updated August 1, 2017</em></p>
 
-  <div class="fl fl-wrap gs-3 _cell-4 iconset">
+  <div class="fl fl-wrap gs3 _cell4 iconset">
       {% assign icon_sort = site.data.icons | sort: "title" %}
       {% for icon in icon_sort %}
       <div class="fl fl-col-nowrap fl-inline card stacks-preview -item">
-          <div class="-cell fl-2 fl-xy-center p-8 -preview">
+          <div class="-cell fl2 fl-center p3 -preview">
               {% include_relative {{ icon.helper | prepend: "svg-icons/" | append: ".svg" }} %}
           </div>
-          <div class="fl fl-col-nowrap fl-0 fl-ai-center p-8 -content">
-              <h2 class="-cell -title text-fs-12 m-0">{{ icon.title }}</h2>
-              <code class="-cell text-fs-11">@Svg.{{ icon.helper }}</code>
+          <div class="fl fl-col-nowrap fl0 fl-ai-center p3 -content">
+              <h2 class="-cell -title fs2 m0">{{ icon.title }}</h2>
+              <code class="-cell fs1">@Svg.{{ icon.helper }}</code>
           </div>
       </div>
       {% endfor %}
@@ -38,7 +38,7 @@ description: All system icons are inline SVG files, invoked via a Razor helper. 
 </section>
 
 <section class="stacks-section">
-  <h2 class="fl fl-jc-space-between fl-ai-center mb-0 stacks-title">Need an icon?</h2>
+  <h2 class="fl fl-jc-space-between fl-ai-center mb0 stacks-title">Need an icon?</h2>
   <p class="stacks-p _section">If an icon you need isn't listed above, please do one of the following two options:</p>
   <ol class="stacks-list _section">
     <li><a href="https://gh.stackoverflow.com/Design/Icons/issues/new">Submit a request</a> outlining the desired icon, the icon's intended purposed, and where it will be used.</li>

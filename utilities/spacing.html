@@ -4,15 +4,15 @@ title: Spacing
 description: Stacks provides atomic classes to override margin and padding.
 ---
 <section class="stacks-section">
-    <h2 class="fl fl-jc-space-between fl-ai-center mb-0 stacks-title">Margin</h2>
+    <h2 class="fl fl-jc-space-between fl-ai-center mb0 stacks-title">Margin</h2>
     <p class="stacks-p _section">Immutable margin utilities are based on our global white space scale. These can dramatically help reduce the size of large stylesheets and allow for greater flexibility and quicker iteration when designing in the browser.</p>
     <p class="stacks-p _section">Margin should never be declared outside of these utilities. This is meant to help create consistency and avoid magic numbers. If, for some reason, the default white space scale does not suit your design, customize and extend it before use.</p>
 
-    <h3 class="fl fl-jc-space-between fl-ai-center mb-0 mt-24 stacks-title _subtitle">Margin Class Convention</h3>
-    <table class="table mb-32">
+    <h3 class="fl fl-jc-space-between fl-ai-center mb2 mt6 stacks-title _subtitle">Margin Class Convention</h3>
+    <table class="table mb32">
         <thead>
             <tr>
-                <th class="-cell-2" scope="col">Abbreviation</th>
+                <th class="-cell2" scope="col">Abbreviation</th>
                 <th scope="col">Definition</th>
             </tr>
         </thead>
@@ -26,54 +26,54 @@ description: Stacks provides atomic classes to override margin and padding.
         </tbody>
     </table>
 
-    <h3 class="fl fl-jc-space-between fl-ai-center mb-0 mt-24 stacks-title _subtitle mb-12">Margin Classes</h3>
+    <h3 class="fl fl-jc-space-between fl-ai-center mb4 mt6 stacks-title _subtitle">Margin Classes</h3>
     <div class="stacks-code-preview">
 {% highlight html linenos %}
-<div class="mt-0 mr-2 mb-4 mr-8">
+<div class="mt1 mr2 mb3 mr4">
   …
 </div>
 {% endhighlight %}
         <div class="-preview">
-            <div class="mt-0 mr-2 mb-4 ml-8 bg-black-025">
+            <div class="mt0 mr1 mb2 ml3 bg-black-025">
                 Example nested div with different margins and paddings
             </div>
         </div>
     </div>
-    <table class="table mb-32">
+    <table class="table mb7">
         <thead>
             <tr>
                 <th scope="col">Prefix</th>
-                <th scope="col" class="text-ta-center">0</th>
-                <th scope="col" class="text-ta-center">2</th>
-                <th scope="col" class="text-ta-center">4</th>
-                <th scope="col" class="text-ta-center">8</th>
-                <th scope="col" class="text-ta-center">12</th>
-                <th scope="col" class="text-ta-center">16</th>
-                <th scope="col" class="text-ta-center">24</th>
-                <th scope="col" class="text-ta-center">32</th>
-                <th scope="col" class="text-ta-center">48</th>
-                <th scope="col" class="text-ta-center">64</th>
+                <th scope="col" class="ta-center">0</th>
+                <th scope="col" class="ta-center">2</th>
+                <th scope="col" class="ta-center">4</th>
+                <th scope="col" class="ta-center">8</th>
+                <th scope="col" class="ta-center">12</th>
+                <th scope="col" class="ta-center">16</th>
+                <th scope="col" class="ta-center">24</th>
+                <th scope="col" class="ta-center">32</th>
+                <th scope="col" class="ta-center">48</th>
+                <th scope="col" class="ta-center">64</th>
             </tr>
         </thead>
         <tbody>
           {% for class in site.data.spacing-classes.margin %}
           {% assign prefix-value = class.values | split: ", " %}
               <tr>
-                  <th scope="row" class="-cell-1">{{ class.prefix }}</th>
+                  <th scope="row" class="-cell1">{{ class.prefix }}</th>
                   {% for values in prefix-value %}
-                  <td class="text-ta-center"><code class="text-fs-11">.{{ class.prefix }}{{ values }}</code></td>
+                  <td class="ta-center"><code class="fs1">.{{ class.prefix }}{{ values }}</code></td>
                   {% endfor %}
               </tr>
             {% endfor %}
         </tbody>
     </table>
 
-    <h3 class="fl fl-jc-space-between fl-ai-center mb-0 mt-24 stacks-title _subtitle mb-12">Additional Margin Classes</h3>
+    <h3 class="fl fl-jc-space-between fl-ai-center mb4 mt6 stacks-title _subtitle">Additional Margin Classes</h3>
     <p class="stacks-p _section">In order to the standard margin classes above, there a few additional margin-only classes available: negative margin and auto classes. Negative margin classes apply only to the x-axis (margin-left, margin-right) and can be used to offset margins and padding of child elements. The auto classes apply only to x-axis as well and can be used to reset the left and right margins.</p>
-    <table class="table mb-32">
+    <table class="table mb7">
         <thead>
             <tr>
-                <th scope="col" class="-cell-3">Type</th>
+                <th scope="col" class="-cell3">Type</th>
                 <th scope="col">Values</th>
             </tr>
         </thead>
@@ -81,23 +81,23 @@ description: Stacks provides atomic classes to override margin and padding.
             <tr>
                 <th scope="row">Negative Margin</th>
                 <td>
-                    <code class="text-fs-11">.mx-n-2</code>,
-                    <code class="text-fs-11">.mx-n-4</code>,
-                    <code class="text-fs-11">.mx-n-8</code>,
-                    <code class="text-fs-11">.mx-n-12</code>,
-                    <code class="text-fs-11">.mx-n-16</code>,
-                    <code class="text-fs-11">.mx-n-24</code>,
-                    <code class="text-fs-11">.mx-n-32</code>,
-                    <code class="text-fs-11">.mx-n-48</code>,
-                    <code class="text-fs-11">.mx-n-64</code>
+                    <code class="fs1">.mx-n-2</code>,
+                    <code class="fs1">.mx-n-3</code>,
+                    <code class="fs1">.mx-n-4</code>,
+                    <code class="fs1">.mx-n-5</code>,
+                    <code class="fs1">.mx-n-6</code>,
+                    <code class="fs1">.mx-n-7</code>,
+                    <code class="fs1">.mx-n-8</code>,
+                    <code class="fs1">.mx-n-9</code>
                 </td>
             </tr>
             <tr>
                 <th scope="row">Auto Margin</th>
                 <td>
-                    <code class="text-fs-11">.ml-auto</code>,
-                    <code class="text-fs-11">.mr-auto</code>,
-                    <code class="text-fs-11">.mx-auto</code>
+                    <code class="fs1">.m-auto</code>,
+                    <code class="fs1">.mlauto</code>,
+                    <code class="fs1">.mrauto</code>,
+                    <code class="fs1">.mx-auto</code>
                 </td>
             </tr>
         </tbody>
@@ -105,15 +105,15 @@ description: Stacks provides atomic classes to override margin and padding.
 </section>
 
 <section class="stacks-section">
-    <h2 class="fl fl-jc-space-between fl-ai-center mb-0 stacks-title">Padding</h2>
+    <h2 class="fl fl-jc-space-between fl-ai-center mb0 stacks-title">Padding</h2>
     <p class="stacks-p _section">Immutable padding utilities are based on a global white space scale defined with custom properties. These can dramatically help reduce the size of large stylesheets and allow for greater flexibility and quicker iteration when designing in the browser.</p>
     <p class="stacks-p _section">Padding should never be declared outside of these utilities. This is meant to help create consistency and avoid magic numbers. If, for some reason, the default white space scale does not suit your design, customize and extend it before use.</p>
 
-    <h3 class="fl fl-jc-space-between fl-ai-center mb-0 mt-24 stacks-title _subtitle">Padding Class Convention</h3>
-    <table class="table mb-32">
+    <h3 class="fl fl-jc-space-between fl-ai-center mb0 mt6 stacks-title _subtitle">Padding Class Convention</h3>
+    <table class="table mb32">
         <thead>
             <tr>
-                <th class="-cell-2" scope="col">Abbreviation</th>
+                <th class="-cell2" scope="col">Abbreviation</th>
                 <th scope="col">Definition</th>
             </tr>
         </thead>
@@ -127,42 +127,42 @@ description: Stacks provides atomic classes to override margin and padding.
         </tbody>
     </table>
 
-    <h3 class="fl fl-jc-space-between fl-ai-center mb-0 mt-24 stacks-title _subtitle mb-12">Padding Classes</h3>
+    <h3 class="fl fl-jc-space-between fl-ai-center mb4 mt6 stacks-title _subtitle">Padding Classes</h3>
     <div class="stacks-code-preview">
 {% highlight html linenos %}
-<div class="pt-12 pr-16 pb-24 pl-32">
+<div class="pt4 pr5 pb6 pl7">
   …
 </div>
 {% endhighlight %}
         <div class="-preview">
-            <div class="pt-12 pr-16 pb-24 pl-32 bg-black-200">
+            <div class="pt4 pr5 pb6 pl7 bg-black-200">
                 Example nested div with different margins and paddings
             </div>
         </div>
     </div>
-    <table class="table mb-32">
+    <table class="table mb7">
         <thead>
             <tr>
                 <th scope="col">Prefix</th>
-                <th scope="col" class="text-ta-center">0</th>
-                <th scope="col" class="text-ta-center">2</th>
-                <th scope="col" class="text-ta-center">4</th>
-                <th scope="col" class="text-ta-center">8</th>
-                <th scope="col" class="text-ta-center">12</th>
-                <th scope="col" class="text-ta-center">16</th>
-                <th scope="col" class="text-ta-center">24</th>
-                <th scope="col" class="text-ta-center">32</th>
-                <th scope="col" class="text-ta-center">48</th>
-                <th scope="col" class="text-ta-center">64</th>
+                <th scope="col" class="ta-center">0</th>
+                <th scope="col" class="ta-center">2</th>
+                <th scope="col" class="ta-center">4</th>
+                <th scope="col" class="ta-center">8</th>
+                <th scope="col" class="ta-center">12</th>
+                <th scope="col" class="ta-center">16</th>
+                <th scope="col" class="ta-center">24</th>
+                <th scope="col" class="ta-center">32</th>
+                <th scope="col" class="ta-center">48</th>
+                <th scope="col" class="ta-center">64</th>
             </tr>
         </thead>
         <tbody>
           {% for class in site.data.spacing-classes.padding %}
           {% assign prefix-value = class.values | split: ", " %}
               <tr>
-                  <th scope="row" class="-cell-1">{{ class.prefix }}</th>
+                  <th scope="row" class="-cell1">{{ class.prefix }}</th>
                   {% for values in prefix-value %}
-                  <td class="text-ta-center"><code class="text-fs-11">.{{ class.prefix }}{{ values }}</code></td>
+                  <td class="ta-center"><code class="fs1">.{{ class.prefix }}{{ values }}</code></td>
                   {% endfor %}
               </tr>
             {% endfor %}

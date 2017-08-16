@@ -14,11 +14,11 @@
   const ClassName = {
     MENU        : "nav",
     MENU_ITEM   : "-item",
-    MENU_LINK   : "ps-relative p-4 w-100 -link"
+    MENU_LINK   : "ps-relative p2 w100 -link"
   }
 
   const GridClass = {
-    GRID_BOX    : "ml-4 fl",
+    GRID_BOX    : "ml2 fl",
     GRID_COL    : "fl-col-nowrap",
     GRID_CELL   : "-cell"
   }

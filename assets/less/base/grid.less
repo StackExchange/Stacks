@@ -22,7 +22,7 @@
 //  --  FIXED COLUMN WIDTHS
 //  ----------------------------------------------------------------------------
 .grid-columns(@num, @count: 1) when (@count =< @num) {
-  > .-cell-@{count} {
+  > .-cell@{count} {
     .flex(0 0 (@count * 100% / @num));
     max-width: (@count * 100% / @num);
   }
@@ -38,7 +38,7 @@
 //      all child elements will automatically be sized.
 //  ----------------------------------------------------------------------------
 .grid-box-columns(@num, @count: 1) when (@count =< @num) {
-  &._cell-@{count} {
+  &._cell@{count} {
     > .fl,
     > .-cell {
       .flex(1 (@count * 100% / @num));
@@ -61,7 +61,7 @@
 //
 //      HOW IT WORKS:
 //      A quick primer on how this mixin works. The TL;DR is we' using a mixin
-//      guard to start a loop that'll create all the desired `> .-cell-@{count}`
+//      guard to start a loop that'll create all the desired `> .-cell@{count}`
 //      classes.
 //
 //      The three mixin parameters are:
@@ -93,7 +93,7 @@
 
   margin: -(@spacing / 2);
 
-  > .-cell-@{count} {
+  > .-cell@{count} {
     margin: @spacing / 2;
     flex-basis: calc(~"@{cell-width} - @{spacing}");
     max-width: calc(~"@{cell-width} - @{spacing}");
@@ -101,7 +101,7 @@
 
   //   If the wrapping parent container has set the cell width, then adjust
   //   those widths too.
-  &._cell-@{count} {
+  &._cell@{count} {
     > .fl,
     > .-cell {
       flex-basis: calc(~"@{cell-width} - @{spacing}");
@@ -275,7 +275,7 @@
   > .grid,
   > .-cell {
     .flex(1 auto);
-    .wmx-full;
+    .wmx100;
   }
 
   //  $$  FIXED WIDTH CELLS
@@ -293,15 +293,15 @@
 //      Insert spaces or gutters in between grid cells
 //  ----------------------------------------------------------------------------
 .fl {
-  &.gs-1  { .grid-spacing(@su-2); }     //  2px
-  &.gs-2  { .grid-spacing(@su-4); }     //  4px
-  &.gs-3  { .grid-spacing(@su-8); }     //  8px
-  &.gs-4  { .grid-spacing(@su-12); }    //  12px
-  &.gs-5  { .grid-spacing(@su-16); }    //  16px
-  &.gs-6  { .grid-spacing(@su-24); }    //  24px
-  &.gs-7  { .grid-spacing(@su-32); }    //  32px
-  &.gs-8  { .grid-spacing(@su-48); }    //  48px
-  &.gs-9  { .grid-spacing(@su-64); }    //  64px
+  &.gs1  { .grid-spacing(@su1); }    //  2px
+  &.gs2  { .grid-spacing(@su2); }    //  4px
+  &.gs3  { .grid-spacing(@su3); }    //  8px
+  &.gs4  { .grid-spacing(@su4); }    //  12px
+  &.gs5  { .grid-spacing(@su5); }    //  16px
+  &.gs6  { .grid-spacing(@su6); }    //  24px
+  &.gs7  { .grid-spacing(@su7); }    //  32px
+  &.gs8  { .grid-spacing(@su8); }    //  48px
+  &.gs9  { .grid-spacing(@su9); }    //  64px
 }
 
 
@@ -316,42 +316,42 @@
   //      This applies it to all direct children. Fixed width cells already
   //      have flex: 0 0 auto; applied to them.
   //  --------------------------------------------------------------------------
-  &._fl-0 {
+  &._fl0 {
     &,
     > .fl,
     > .-cell {
       .flex(0 auto);
     }
   }
-  &._fl-1 {
+  &._fl1 {
     &,
     > .fl,
     > .-cell {
       .flex(1 auto);
     }
   }
-  &._fl-2 {
+  &._fl2 {
     &,
     > .fl,
     > .-cell {
       .flex(2 auto);
     }
   }
-  &._fl-3 {
+  &._fl3 {
     &,
     > .fl,
     > .-cell {
       .flex(3 auto);
     }
   }
-  &._fl-4 {
+  &._fl4 {
     &,
     > .fl,
     > .-cell {
       .flex(4 auto);
     }
   }
-  &._fl-5 {
+  &._fl5 {
     &,
     > .fl,
     > .-cell {
