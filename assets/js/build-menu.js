@@ -14,7 +14,7 @@
   const ClassName = {
     MENU        : "nav",
     MENU_ITEM   : "-item",
-    MENU_LINK   : "ps-relative pa2 w100 -link"
+    MENU_LINK   : "ps-relative p2 w100 -link"
   }
 
   const GridClass = {
