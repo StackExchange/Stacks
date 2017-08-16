@@ -42,14 +42,12 @@ description: Sizing atomic classes allow you to quickly an element's size or max
             {% for size in site.data.utility-definitions.max-size %}
             <tr class="ff-mono fs2">
                 <th scope="row" class="p3">.{{ size.class }}</th>
+                <td class="p3">.wmx{{ size.name }}</td>
+                <td class="p3">.hmx{{ size.name }}</td>
                 {% if size.value == 100 %}
-                    <td class="p3">.wmx{{ size.name }}</td>
-                    <td class="p3">.hmx{{ size.name }}</td>
                     <td class="p3">{{ size.value }}%</td>
                     <td class="p3 tc-black-350">N/A</td>
                 {% else %}
-                    <td class="p3">.wmx{{ size.name }}</td>
-                    <td class="p3">.hmx{{ size.name }}</td>
                     <td class="p3">{{ size.value }}rem</td>
                     <td class="p3">{{ size.output }}px</td>
                 {% endif %}
