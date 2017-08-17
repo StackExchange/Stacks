@@ -1,0 +1,375 @@
+//
+//  STACK OVERFLOW
+//
+//  GRID
+//
+//  TABLE OF CONTENTS
+//  • VARIABLES
+//  • MIXINS
+//  • GRID ELEMENTS
+//  • GRID SPACING
+//  • MODIFICATIONS
+//
+//  ============================================================================
+//  $   VARIABLES
+//  ----------------------------------------------------------------------------
+@grid-cols: 12;    //  Desired grid columns
+
+
+//  ============================================================================
+//  $   MIXINS
+//  ============================================================================
+//  --  VENDOR SUPPORT
+//  ============================================================================
+//      These mixins are used to add all required vendor prefixes for all
+//      supported browsers. We currently only support the current browser
+//      versions plus the previous version. IE11 is the current exception.
+//      If you need to provide older support, consult the following documents:
+//
+//      Flexbugs: A community-curated list of flexbox issues (mainly IE)
+//      https://github.com/philipwalton/flexbugs
+//
+//      A Guide to Flexbox -- CSS-Tricks.com
+//      https://css-tricks.com/snippets/css/a-guide-to-flexbox/
+//
+//      Flexplorer -- A free Flexbox generator
+//      http://bennettfeely.com/flexplorer/
+//
+//  ----------------------------------------------------------------------------
+//  --  FLEXBOX CONTAINER
+//      Use this on the wrapping parent container on items you want to flex.
+//  ----------------------------------------------------------------------------
+.flexbox(@box) {
+  & when (@box = box) {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+  }
+  & when (@box = inline) {
+    display: -webkit-inline-box;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+  }
+}
+
+//  ----------------------------------------------------------------------------
+//  --  FLEX VALUES
+//      If not set, the default is "1 0 auto". This is shorthand for flex-grow,
+//      flex-shrink, and flex-basis combined. The second and third parameters
+//      are optional. Per Chris Coyier on CSS-Tricks.com, it is recommended
+//      that the shorthand is used over individual properties.
+//
+//      Note that in IE10, the default value is "0 0 auto".
+//  ----------------------------------------------------------------------------
+.flex(@values: 1 0 auto) {
+  -webkit-box-flex: @values;
+          -ms-flex: @values;
+              flex: @values;
+}
+
+//  ----------------------------------------------------------------------------
+//  --  FLEX ORDER
+//      By default items are laid out per their DOM order. The order property
+//      can be used to change the order in which they appear in the container.
+//  ----------------------------------------------------------------------------
+.flex-order(@values) {
+  -webkit-order: @values;
+          order: @values;
+}
+
+//  ----------------------------------------------------------------------------
+//  --  FLEX DIRECTION
+//      This determines the direction content flows within a parent container.
+//      The default values are row.
+//  ----------------------------------------------------------------------------
+.flex-direction(@dir: row) {
+  & when (@dir = row), (@dir = row-reverse) {
+    -webkit-box-orient: horizontal;
+  }
+  & when (@dir = column), (@dir = column-reverse) {
+    -webkit-box-orient: vertical;
+  }
+  & when (@dir = row), (@dir = column) {
+    -webkit-box-direction: normal;
+  }
+  & when (@dir = row-reverse), (@dir = column-reverse) {
+    -webkit-box-direction: reverse;
+  }
+
+  -ms-flex-direction: @dir;
+      flex-direction: @dir;
+}
+
+//  ----------------------------------------------------------------------------
+//  --  FLEX WRAP
+//      This determines if a parent's child items will wrap or not.
+//  ----------------------------------------------------------------------------
+.flex-wrap(@values) {
+  -ms-flex-wrap: @values;
+      flex-wrap: @values;
+}
+
+//  ----------------------------------------------------------------------------
+//  --  JUSTIFY CONTENT
+//      The default value for this is "flex-start". This property allows you
+//      to change how child items within a parent are positioned.
+//  ----------------------------------------------------------------------------
+.justify-content(@values) {
+  -webkit-justify-content: @values;
+          justify-content: @values;
+}
+
+//  ----------------------------------------------------------------------------
+//  --  FLEX FLOW
+//      This is another shorthand property for flex-direction and flex-wrap.
+//      Default value is "row nowrap".
+//  ----------------------------------------------------------------------------
+.flex-flow(@values: row nowrap) {
+  -webkit-flex-flow: @values;
+          flex-flow: @values;
+}
+
+//  ----------------------------------------------------------------------------
+//  --  ALIGN ITEMS
+//  ----------------------------------------------------------------------------
+.align-items(@values: stretch) {
+  -webkit-align-items: @values;
+          align-items: @values;
+}
+
+//  ============================================================================
+//  --  STACKS SPECIFIC MIXINS
+//  ============================================================================
+//  --  FIXED COLUMN WIDTHS
+//  ----------------------------------------------------------------------------
+.grid-columns(@num, @count: 1) when (@count =< @num) {
+  > .grid-cell-@{count} {
+    .flex(0 0 (@count * 100% / @num));
+    max-width: (@count * 100% / @num);
+  }
+
+  .grid-columns(@num, (@count + 1));
+}
+
+//  --  AUTO FIXED WIDTH CELLS
+//      Automatic adjusting width cells are great. And being able to specify a
+//      cell's width is equally amazing. But sometimes you want to be able to
+//      have all cell's within a box container to be the same width. Instead
+//      stating a fixed cell width, apply a modifying to the box container and
+//      all child elements will automatically be sized.
+//  ----------------------------------------------------------------------------
+.grid-box-columns(@num, @count: 1) when (@count =< @num) {
+  &.cell-@{count} {
+    > .grid,
+    > .grid-cell {
+      .flex(1 (@count * 100% / @num));
+      max-width: (@count * 100% / @num);
+    }
+  }
+
+  .grid-box-columns(@num, (@count + 1));
+}
+
+//  --  GRID GUTTERS
+//  ============================================================================
+//      We need two mixins to properly generate grid gutters:
+//
+//      [1]  Adjusts the fixed column max-width / flex-basis if gutters are present.
+//      [2]  Generate the desired gutters.
+//
+//  ----------------------------------------------------------------------------
+//      [1] Adjust width / flex-basis numbers
+//
+//      HOW IT WORKS:
+//      A quick primer on how this mixin works. The TL;DR is we' using a mixin
+//      guard to start a loop that'll create all the desired `> .-cell-@{count}`
+//      classes.
+//
+//      The three mixin parameters are:
+//        - @spacing: the desired distance our gutters should be
+//        - @num: the number at which we should stop our loop
+//        - @count: the current column number
+//
+//      The other bit is the mixin guard portion:
+//
+//          when (@count =< @num)
+//
+//      This checks if we should run the mixin. Using a comparison operator,
+//      it's checking to see if the current @count is equal to (=) or less
+//      than (<) the desired @num total. If it is, run the mixin.
+//
+//      Next the mixin runs as normal. Using the @cell-width variable, we
+//      calculate the cell's width. We do this here because we need to use the
+//      CSS calc function and this makes the code a little prettier. Using the
+//      variable, we then update the fixed cell's flex-basis and width.
+//
+//      Finally we call for the mixin again within itself, assigning a new
+//      @count value: the current value + 1. This then fires off the mixin
+//      again, creating a loop until we've generated updated widths for all
+//      of our desired @num.
+//
+//  ----------------------------------------------------------------------------
+.grid-column-spacing(@spacing, @num: @grid-cols, @count: 1) when (@count =< @num) {
+  @cell-width: @count * 100% / @num;
+
+  margin: -(@spacing / 2);
+
+  > .grid-cell@{count} {
+    margin: @spacing / 2;
+    flex-basis: calc(~"@{cell-width} - @{spacing}");
+    max-width: calc(~"@{cell-width} - @{spacing}");
+  }
+
+  //   If the wrapping parent container has set the cell width, then adjust
+  //   those widths too.
+  &._cell@{count} {
+    > .grid,
+    > .grid-cell {
+      flex-basis: calc(~"@{cell-width} - @{spacing}");
+      max-width: calc(~"@{cell-width} - @{spacing}");
+    }
+  }
+
+  .grid-column-spacing(@spacing, @num, (@count + 1));
+}
+
+//  ----------------------------------------------------------------------------
+//      2.  Generate the desired gutters
+//          We halve the spacing value because the spacing value should be the
+//          total space between cells--not the total applied to each cell,
+//          which would effectively double the desired total.
+//  ----------------------------------------------------------------------------
+.grid-spacing(@spacing) {
+  margin: -(@spacing / 2);
+
+  //  --  FLUID CELLS
+  > .grid,
+  > .grid-cell {
+    margin: @spacing / 2;
+  }
+
+  //  --  FIXED WIDTH CELLS
+  //      Now we call for the above mixin [1] to make sure we adjust the default
+  //      widths for the new gutters.
+  .grid-column-spacing(@spacing);
+}
+
+
+//  ============================================================================
+//  $   GRID ELEMENTS
+//  ============================================================================
+//      To help simplify our CSS, we create a generic box container. By default
+//      this is a row container, but we can modify the box to become a column.
+//  ----------------------------------------------------------------------------
+.grid {
+  //  Add box-sizing to anything within the grid
+  &,
+  *,
+  *:after,
+  *:before {
+    .box-border;
+  }
+
+  //  Make .grid a flexbox item
+  //  We get flex-flow: row wrap and flex: 1 0 auto by default
+  .fl;
+
+  //  --  GENERIC AUTO WIDTH CELL
+  //      This creates a generic fluid child cell, but only for direct children.
+  //      To help reduce on required class names (i.e. .grid .-cell), when a
+  //      box is nested within another, we let it act like a cell.
+  > .grid,
+  > .grid-cell {
+    .fl1;
+    .wmx100;
+  }
+
+  //  $$  FIXED WIDTH CELLS
+  //  --------------------------------------------------------------------------
+  .grid-columns(@grid-cols);
+
+  //  $$  AUTO FIXED WIDTH CELLS
+  //  --------------------------------------------------------------------------
+  .grid-box-columns(@grid-cols);
+}
+
+
+//  ============================================================================
+//  $   GRID SPACING
+//      Insert spaces or gutters in between grid cells
+//  ----------------------------------------------------------------------------
+.grid {
+  &.gs1  { .grid-spacing(@su1); }    //  2px
+  &.gs2  { .grid-spacing(@su2); }    //  4px
+  &.gs3  { .grid-spacing(@su3); }    //  8px
+  &.gs4  { .grid-spacing(@su4); }    //  12px
+  &.gs5  { .grid-spacing(@su5); }    //  16px
+  &.gs6  { .grid-spacing(@su6); }    //  24px
+  &.gs7  { .grid-spacing(@su7); }    //  32px
+  &.gs8  { .grid-spacing(@su8); }    //  48px
+  &.gs9  { .grid-spacing(@su9); }    //  64px
+}
+
+
+//  ============================================================================
+//  $   MODIFICATIONS
+//      Sometimes you need to adjust how a row or column acts
+//  ----------------------------------------------------------------------------
+//  --  These items can ONLY apply to box
+//  ----------------------------------------------------------------------------
+.grid {
+  //  --  Widths
+  //      This applies it to all direct children. Fixed width cells already
+  //      have flex: 0 0 auto; applied to them.
+  //  --------------------------------------------------------------------------
+  &._fl0 {
+    &,
+    > .grid,
+    > .grid-cell {
+      .fl0;
+    }
+  }
+  &._fl1 {
+    &,
+    > .grid,
+    > .grid-cell {
+      .fl1;
+    }
+  }
+  &._fl2 {
+    &,
+    > .grid,
+    > .grid-cell {
+      .fl2;
+    }
+  }
+  &._fl3 {
+    &,
+    > .grid,
+    > .grid-cell {
+      .fl3;
+    }
+  }
+  &._fl4 {
+    &,
+    > .grid,
+    > .grid-cell {
+      .fl4;
+    }
+  }
+  &._fl5 {
+    &,
+    > .grid,
+    > .grid-cell {
+      .fl5;
+    }
+  }
+
+  //  --  Display
+  //      Be default, child elements don't have a display property assigned.
+  //      Sometimes though we might want to assign one.
+  //  --------------------------------------------------------------------------
+  &.fl-inline > [class*="grid-cell"] {
+    .fl-inline;
+  }
+}
