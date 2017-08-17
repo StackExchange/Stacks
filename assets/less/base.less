@@ -13,32 +13,32 @@
 //      Various properties we need to reset to make everything better.
 //  ----------------------------------------------------------------------------
 //  --  NORMALIZE CSS ACROSS BROWSERS
-@import "base/reset";
-
-//  --  BASE ELEMENTS
-@import "base/vars";
-@import "base/mixins";
-@import "base/utilities";
-@import "base/grid";
-
-@import "base/colors";
-@import "base/borders";
-@import "base/buttons";
-@import "base/forms";
-@import "base/spacing";
-@import "base/tables";
-@import "base/typography";
+@import "utilities/reset";
 
 //  --  COMPONENTS
+@import "components/buttons";
 @import "components/cards";
+@import "components/forms";
 @import "components/navigation";
+@import "components/tables";
+
+//  --  UTILITIES
+//      These come after the components so they will overwrite component
+//      styles as needed.
+@import "utilities/vars";
+@import "utilities/mixins";
+@import "utilities/borders";
+@import "utilities/colors";
+@import "utilities/grid";
+@import "utilities/spacing";
+@import "utilities/typography";
+@import "utilities/utilities";
 
 //  ============================================================================
 //  $   BODY / HTML
 //      Various properties we need to reset to make everything better.
 //  ----------------------------------------------------------------------------
 html {
-  height: 100%;             // Required to dock the footer to the bottom of the window
   min-width: @site-width;   // https://meta.stackoverflow.com/questions/208203/
 }
 
@@ -51,8 +51,6 @@ body {
   }
 
   //  Layout
-  .flexbox(box);
-  .flex-flow(column nowrap);
   min-height: 100%;
   min-width: @site-width + @site-padding;
 
