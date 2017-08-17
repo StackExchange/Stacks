@@ -141,6 +141,7 @@
 
 .nav._secondary .nav .-link {
   .ml3;
+  width: calc(~"100% - @{su3}");
 }
 
 
@@ -388,58 +389,52 @@
 //      Used to showcase grid layouts and cells
 //  ----------------------------------------------------------------------------
 @grid-background:            @orange-050;
-@grid-cellbackground:       @orange-300;
+@grid-cell-background:       @orange-300;
 
-.stacks-section .-preview._grid {
-  font-family: @ff-mono;
-  font-size: @fs2;
-  color: @black-800;
+.stacks-grid {
+  .ff-mono;
+  .fs2;
+  .tc-black-800;
 
-  &._helper-ac,
-  &._helper-as {
-    .fl {
-      max-height: 128px;
-    }
+  &._helper-ac .grid,
+  &._helper-as .grid {
+    max-height: 128px;
   }
 
-  &._helper-order .-wrapper {
-    .-cell:not(.fl-first):not(.fl-last) { opacity: 0.5; }
+  &._helper-order .stacks-grid-wrapper {
+    .grid-cell:not(.fl-first):not(.fl-last) { opacity: 0.5; }
   }
+}
 
-  .-wrapper {
-    margin: @su6 0;
-    overflow: hidden;
+.stacks-grid-wrapper {
+  .my6;
+  .o-hidden;
 
-    &:first-of-type { margin-top: 0; }
-    &:last-of-type  { margin-bottom: 0; }
-  }
+  &:first-of-type { .mt0; }
+  &:last-of-type  { .mb0; }
 
-  //  The box shown the grid examples
-  .stacks-grid-example {
-    height: 100%;
-  }
-
-  .fl {
+  .grid,
+  [class*="grid-cell"] {
+    .p3;
     background-color: @grid-background;
 
-    .fl,
-    [class*="-cell"] {
-      padding: @su3;
-      background-color: @grid-cellbackground;
+    .grid,
+    [class*="grid-cell"] {
+      background-color: @grid-cell-background;
 
-      .fl,
-      [class*="-cell"] {
-        background-color: spin(desaturate(darken(@grid-cellbackground,5%),5%),-5);
+      .grid,
+      [class*="grid-cell"] {
+        background-color: spin(desaturate(darken(@grid-cell-background,5%),5%),-5);
       }
-    }
-
-    > [class*="-cell"] {
-      .justify-content(center);
-      .align-items(center);
     }
   }
 }
 
+.stacks-grid-example {
+  .fl;
+  .fl-center;
+  .h100;
+}
 
 //  ============================================================================
 //  $   COLORS

@@ -14,13 +14,13 @@
   const ClassName = {
     MENU        : "nav",
     MENU_ITEM   : "-item",
-    MENU_LINK   : "ps-relative p2 w100 -link"
+    MENU_LINK   : "ps-relative p2 -link"
   }
 
   const GridClass = {
-    GRID_BOX    : "fl",
+    GRID_BOX    : "grid",
     GRID_COL    : "fl-col-nowrap",
-    GRID_CELL   : "-cell"
+    GRID_CELL   : "grid-cell"
   }
 
   function buildMenu($parent, options) {
