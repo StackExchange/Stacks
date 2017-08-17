@@ -1,0 +1,43 @@
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>{% if page.title %}{{ page.title | escape }}{% else %}{{ site.title | escape }}{% endif %}</title>
+  <meta name="description" content="{% if page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ site.description }}{% endif %}">
+
+  <!-- Favicons -->
+  <link rel="shortcut icon" href="{{ site.baseurl }}/{{ site.ico }}/favicon.ico" sizes="16x16 24x24 32x32 48x48 64x64" />
+  <link rel="apple-touch-icon" href="{{ site.baseurl }}/{{ site.ico }}/favicon-57x57.png" sizes="57x57" />
+  <link rel="apple-touch-icon" href="{{ site.baseurl }}/{{ site.ico }}/favicon-114x114.png" sizes="114x114" />
+  <link rel="apple-touch-icon" href="{{ site.baseurl }}/{{ site.ico }}/favicon-72x72.png" sizes="72x72" />
+  <link rel="apple-touch-icon" href="{{ site.baseurl }}/{{ site.ico }}/favicon-144x144.png" sizes="144x144" />
+  <link rel="apple-touch-icon" href="{{ site.baseurl }}/{{ site.ico }}/favicon-76x76.png" sizes="76x76" />
+  <link rel="apple-touch-icon" href="{{ site.baseurl }}/{{ site.ico }}/favicon-152x152.png" sizes="152x152" />
+  <link rel="apple-touch-icon" href="{{ site.baseurl }}/{{ site.ico }}/favicon-60x60.png" sizes="60x60" />
+  <link rel="apple-touch-icon" href="{{ site.baseurl }}/{{ site.ico }}/favicon-120x120.png" sizes="120x120" />
+  <link rel="apple-touch-icon" href="{{ site.baseurl }}/{{ site.ico }}/favicon-180x180.png" sizes="180x180" />
+  <link rel="icon" type="image/png" href="{{ site.baseurl }}/{{ site.ico }}/favicon-228x228.png" sizes="228x228" />
+  <link rel="icon" type="image/png" href="{{ site.baseurl }}/{{ site.ico }}/favicon-196x196.png" sizes="196x196" />
+  <link rel="icon" type="image/png" href="{{ site.baseurl }}/{{ site.ico }}/favicon-195x195.png" sizes="195x195" />
+  <link rel="icon" type="image/png" href="{{ site.baseurl }}/{{ site.ico }}/favicon-16x16.png" sizes="16x16" />
+  <link rel="icon" type="image/png" href="{{ site.baseurl }}/{{ site.ico }}/favicon-32x32.png" sizes="32x32" />
+  <meta name="msapplication-TileColor" content="#F7F8F8" />
+  <meta name="msapplication-TileImage" content="{{ site.baseurl }}/{{ site.ico }}/favicon-144x144.png" />
+  <meta name="msapplication-config" content="{{ site.baseurl }}/{{ site.ico }}/browserconfig.xml" />
+
+  <!-- JS Libs -->
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous">
+  </script>
+  <script type="text/javascript" src="{{ site.baseurl }}/{{site.js}}/build-menu.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+  <script type="text/javascript" src="{{ site.baseurl }}/{{site.js}}/main.js"></script>
+
+  <!-- LESS -->
+  <link rel="stylesheet/less" type="text/css" href="{{ site.baseurl }}/{{site.css}}/stacks.less">
+  <script type="text/javascript" src="{{ site.baseurl }}/{{site.js}}/third-party/less.js"></script>
+  {% if jekyll.environment == "development" %}<script>less.watch();</script>{% endif %}
+
+  <!-- Page Specific JS -->
+  {{ page.js }}
+
+</head>
