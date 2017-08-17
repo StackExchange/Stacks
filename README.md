@@ -4,12 +4,20 @@ You're looking at Stack Overflow’s CSS and Design Pattern Library. This librar
 
 ### Contributing
 
-Stacks is built using [Jekyll](https://jekyllrb.com) and hosted by GitHub pages. Once your changes are committed to `master`, the site will be rebuilt and hosted at https://gh.stackoverflow.com/pages/Design/Stacks/
+Stacks is built using [Jekyll](https://jekyllrb.com) and hosted internally within Github Enterprise. Once changes are committed or approved and merged into `master`, the site is automatically rebuilt. The website can be viewed at https://gh.stackoverflow.com/pages/Design/Stacks/
 
-To contribute, clone this repository and create a new branch. Open a pull request with your rationale, and the team will review your code and merge it in. Feel free to open pull requests way earlier than you feel comfortable. :sunglasses:
+To contribute, clone this repository and create a new branch. Open a pull request with your rationale and the team will review your code. Feel free to open pull requests way earlier than you feel comfortable. :sunglasses:
 
 ### Installing & previewing locally
 
-To run Stacks locally, open this repo in your Terminal and install Jekyll. To do so, run `gem install jekyll`. This'll install Jekyll and all its dependencies. Once that's installed, you'll want to run Jekyll. Type `jekyll serve`. This will create and serve a local site at http://127.0.0.1:4000/pages/Design/Stacks/. It's an awesome sandbox where you can work on anything without any consequences. Jekyll automatically rebuilds any time it detects a change, though you may still have to refresh your browser window to see them.
+To get started with running **Jekyll** locally, follow the ["Getting Started"](https://gh.stackoverflow.com/Design/SiteStarterPack#getting-started) instructions from the [**Design/SiteStarterPack**](https://gh.stackoverflow.com/Design/SiteStarterPack) repo.
 
-If you get stuck, Jekyll has amazing [documentation](https://jekyllrb.com/docs/home/).
+Once Jekyll is installed, start Jekyll by typing the following into your Terminal window:
+
+```
+jekyll serve -w
+```
+
+This will start your server. You can now visit the site at http://127.0.0.1:4000/pages/Design/Stacks/
+
+If you get stuck, visit [Jekyll's documentation site](https://jekyllrb.com/docs/home/). If you still don't find what you're looking for, you can either [create an issue](https://gh.stackoverflow.com/Design/Stacks/issues/new) or [pop into the **#design-stacks** Slack Channel](https://stackexchange.slack.com/messages/C27RWNQN9/) to ask your question.
