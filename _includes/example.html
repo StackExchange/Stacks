@@ -45,13 +45,13 @@
 {% endfor %}
 
 
-    <div class="uikit-code{% unless include.preview == false %} uikit-has-preview{% endunless %}">
+    <div class="stacks-code-preview{% if include.preview == false %} _preview-none{% endif %}">
 {% highlight html linenos %}
 {% for line in lines %}
 {% assign line = line | strip_newlines %}{% assign linelength = line | size | minus: minindent %}{{ line | slice: minindent, linelength }}{% endfor %}
 {% endhighlight %}
         {% unless include.preview == false %}
-            <div class="uikit-preview">
+            <div class="-preview">
                 {{ include.preview | default: include.html }}
             </div>
         {% endunless %}        
