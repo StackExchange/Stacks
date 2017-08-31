@@ -4,6 +4,10 @@
     and as the preview, unless a separate .preview parameter is passed. If you pass a preview parameter, it can
     either be a string (in which case that's the HTML that will be output) or it can be false, in which case
     there is no preview at all.
+    
+    If the preview and the codeblock use the same HTML (i.e. you did not pass a preview parameter), any line
+    that contains the string "PREVIEW ONLY" (this should probably be in an HTML comment) will be rendered
+    only in the preview, but skipped in the codeblock.
 
     Usage:
     
@@ -35,7 +39,11 @@
 {% for line in lines %}
     {% assign line = line | strip_newlines %}
     {% assign strippedlength = line | lstrip | size %}
-    {% if strippedlength > 0 %}
+    
+    {% comment %} Liquid has no "contains" filter as far as I can tell. {% endcomment %}
+    {% assign removed = line | remove: "PREVIEW ONLY" %}
+    
+    {% if strippedlength > 0 and removed == line %}
         {% assign linelength = line | strip_newlines | size %}
         {% assign indent = linelength | minus: strippedlength %}
         {% if minindent == -1 or indent < minindent %}
@@ -47,8 +55,8 @@
 
     <div class="stacks-code-preview{% if include.preview == false %} _preview-none{% endif %}">
 {% highlight html linenos %}
-{% for line in lines %}
-{% assign line = line | strip_newlines %}{% assign linelength = line | size | minus: minindent %}{{ line | slice: minindent, linelength }}{% endfor %}
+{% for line in lines %}{% assign line = line | strip_newlines %}{% assign linelength = line | size | minus: minindent %}{% assign removed = line | remove: "PREVIEW ONLY" %}{% if removed == line %}{{ line | slice: minindent, linelength }}
+{% endif %}{% endfor %}
 {% endhighlight %}
         {% unless include.preview == false %}
             <div class="-preview">
