@@ -9,10 +9,6 @@
     @br-2: 2px;
     @fs-12: 12px;
     @fs-11: 11px;
-    @forest: #64A05E;
-    @forest-100: lighten(@forest,40%);   // #dfecde
-    @forest-200: lighten(@forest,30%);   // #c1d9be
-    @forest-300: lighten(@forest,20%);   // #a2c69e
     /* END backwards compat */
 
     
@@ -20,25 +16,17 @@
     @s-widget-content-inner-spacing: @su-12; // the spacing between two adjacent simple items
     @s-widget-content-outer-spacing: @su-16; // the spacing at the start/end of a group of simple items, as well as between a complex item and its separator line
 
+    /* default style */
     @s-widget-outer-border-color: @black-100;
     @s-widget-content-separator-color: @black-075;
     @s-widget-header-background-color: @black-025;
+    
+    /* alternative colors */
+    @s-widget-base-color-blue: @powder-100;
+    @s-widget-base-color-yellow: @yellow-100;
+    @s-widget-base-color-green: @green-025;
 
-    @s-widget-outer-border-color-blue: @powder-200;
-    @s-widget-content-separator-color-blue: @powder-200;
-    @s-widget-header-background-color-blue: darken(@powder,5%); // would be @powder-150 if that existed
-    @s-widget-content-background-color-blue: @powder-100;
-
-    @s-widget-outer-border-color-yellow: @yellow-300;
-    @s-widget-content-separator-color-yellow: @yellow-300;
-    @s-widget-header-background-color-yellow: darken(@yellow,5%); // would be @yellow-150 if that existed
-    @s-widget-content-background-color-yellow: @yellow-100;
-
-    @s-widget-outer-border-color-green: @forest-300;
-    @s-widget-content-separator-color-green: @forest-200;
-    @s-widget-header-background-color-green: lighten(@forest,35%); // would be @forest-150 if that existed
-    @s-widget-content-background-color-green: @forest-100;
-
+   
     border: 1px solid @s-widget-outer-border-color;
     border-radius: @br-2;
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
@@ -263,33 +251,38 @@
     .alternate-color(yellow);
     .alternate-color(green);
     
-    .alternate-color(@col) {
+    .alternate-color(@name) {
             
-        &._alternate-@{col} {
-            @border-col: "s-widget-outer-border-color-@{col}";
-            @header-bg-col: "s-widget-header-background-color-@{col}";
-            @content-bg-col: "s-widget-content-background-color-@{col}";
-            @seperator-col: "s-widget-content-separator-color-@{col}";
+        &._alternate-@{name} {
+            @base-col-name: "s-widget-base-color-@{name}";
+            @base-col: @@base-col-name;
             
-            border-color: @@border-col;
-            background-color: @@content-bg-col;
+            @border-col: mix(black, @base-col, 10%);
+            @header-bg-col: mix(black, @base-col, 2%);
+            @content-bg-col: @base-col;
+            @seperator-col: mix(black, @base-col, 7%);
+            @header-text-col: mix(black, @base-col, 55%);
+            
+            border-color: @border-col;
+            background-color: @content-bg-col;
             &._complex-items {
                 .-content {
-                    border-color: @@seperator-col;
+                    border-color: @seperator-col;
                 }
                 &:after {
-                    border-top-color: @@border-col;
+                    border-top-color: @border-col;
                 }
             }
+            .-header {
+                color: @header-text-col;
+            }
             .-header, .-content + .-header {
-                border-color: @@seperator-col;
-                background-color: @@header-bg-col;
+                border-color: @seperator-col;
+                background-color: @header-bg-col;
             }
         }
     }
-    
-   
-    
+
     /*&:not(._complex-items) > :not(.-content):not(.-header) {
         .stacks-error('All children of a non-complex .s-widget must be .-content or .-header.');
     }*/
