@@ -258,42 +258,32 @@
     
     // COLOR ALTERNATIVES
     // todo: use CSS custom properties for this once we don't care about IE anymore
-    &._alternate-blue {
-        border-color: @s-widget-outer-border-color-blue;
-        background-color: @s-widget-content-background-color-blue;
-        &._complex-items .-content {
-            border-color: @s-widget-content-separator-color-blue;
-        }
-        .-header, .-content + .-header {
-            border-color: @s-widget-content-separator-color-blue;
-            background-color: @s-widget-header-background-color-blue;
+
+    .alternate-color(blue);
+    .alternate-color(yellow);
+    .alternate-color(green);
+    
+    .alternate-color(@col) {
+            
+        &._alternate-@{col} {
+            @border-col: "s-widget-outer-border-color-@{col}";
+            @header-bg-col: "s-widget-header-background-color-@{col}";
+            @content-bg-col: "s-widget-content-background-color-@{col}";
+            @seperator-col: "s-widget-content-separator-color-@{col}";
+            
+            border-color: @@border-col;
+            background-color: @@content-bg-col;
+            &._complex-items .-content {
+                border-color: @@seperator-col;
+            }
+            .-header, .-content + .-header {
+                border-color: @@seperator-col;
+                background-color: @@header-bg-col;
+            }
         }
     }
     
-    &._alternate-yellow {
-        border-color: @s-widget-outer-border-color-yellow;
-        background-color: @s-widget-content-background-color-yellow;
-        &._complex-items .-content {
-            border-color: @s-widget-content-separator-color-yellow;
-        }
-        .-header, .-content + .-header {
-            border-color: @s-widget-content-separator-color-yellow;
-            background-color: @s-widget-header-background-color-yellow;
-        }
-    }    
-    
-    &._alternate-green {
-        border-color: @s-widget-outer-border-color-green;
-        background-color: @s-widget-content-background-color-green;
-        &._complex-items .-content {
-            border-color: @s-widget-content-separator-color-green;
-        }
-        .-header, .-content + .-header {
-            border-color: @s-widget-content-separator-color-green;
-            background-color: @s-widget-header-background-color-green;
-        }
-    }        
-    
+   
     
     /*&:not(._complex-items) > :not(.-content):not(.-header) {
         .stacks-error('All children of a non-complex .s-widget must be .-content or .-header.');
