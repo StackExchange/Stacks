@@ -273,8 +273,13 @@
             
             border-color: @@border-col;
             background-color: @@content-bg-col;
-            &._complex-items .-content {
-                border-color: @@seperator-col;
+            &._complex-items {
+                .-content {
+                    border-color: @@seperator-col;
+                }
+                &:after {
+                    border-top-color: @@border-col;
+                }
             }
             .-header, .-content + .-header {
                 border-color: @@seperator-col;
