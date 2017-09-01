@@ -19,16 +19,18 @@ description: Sidebar widgets are widgets that are meant for the sidebar. #TODO: 
                     <a href="#" class="-action">Action</a>
                     Example title
                 </div>
-                <div class="-content">
-                    This is a content item.
-                </div>
-                <div class="-content">
-                    This is another content item.
+                <div class="-content _items">
+                    <div class="-item">
+                        This is a content item.
+                    </div>
+                    <div class="-item">
+                        This is another content item.
+                    </div>                    
                 </div>
             </div>
             <br> <!-- PREVIEW ONLY -->
             
-            <div class="s-widget _complex-items">
+            <div class="s-widget">
                 <div class="-header _alternate-small-bold">
                     <a href="#" class="-action">Action</a>
                     Alternate header style
@@ -107,7 +109,7 @@ description: Sidebar widgets are widgets that are meant for the sidebar. #TODO: 
        
     {% capture html %}
         <div style="width: 300px"><!-- PREVIEW ONLY -->
-            <div class="s-widget _complex-items _alternate-blue">
+            <div class="s-widget _alternate-blue">
                 <div class="-header">
                     Blue
                 </div>
@@ -120,7 +122,7 @@ description: Sidebar widgets are widgets that are meant for the sidebar. #TODO: 
             </div>
             <br><!-- PREVIEW ONLY -->
             
-            <div class="s-widget _complex-items _alternate-yellow">
+            <div class="s-widget _alternate-yellow">
                 <div class="-header">
                     Yellow
                 </div>
@@ -133,7 +135,7 @@ description: Sidebar widgets are widgets that are meant for the sidebar. #TODO: 
             </div>
             <br><!-- PREVIEW ONLY -->
             
-            <div class="s-widget _complex-items _alternate-green">
+            <div class="s-widget _alternate-green">
                 <div class="-header">
                     Green
                 </div>
@@ -162,26 +164,30 @@ description: Sidebar widgets are widgets that are meant for the sidebar. #TODO: 
                 <div class="-header">
                     Personal Information
                 </div>
-                <a class="-content" href="#">
-                    Edit Profile
-                </a>
-                <a class="-content is-current" href="#">
-                    Developer Story Preferences
-                </a>
-                <a class="-content" href="#">
-                    Job Match Preferences
-                </a>
+                <ul class="-content _items">
+                    <li class="-item">
+                        <a href="#">Edit Profile</a>
+                    </li>
+                    <li class="-item is-current">
+                        <a href="#">Developer Story Preferences</a>
+                    </li>
+                    <li class="-item">
+                        <a href="#">Job Match Preferences</a>
+                    </li>
+                </ul>
                 <div class="-header">
                     Site Settings
-                </div>                
-                <a class="-content" href="#">
-                    Preferences
-                </a>
-                <a class="-content" href="#">
-                    Flair
-                </a>
-            </nav>
-        </div>
+                </div>
+                <ul class="-content _items">
+                    <li class="-item">
+                        <a href="#">Preferences</a>
+                    </li>
+                    <li class="-item">
+                        <a href="#">Flair</a>
+                    </li>
+                </ul>                
+            </nav>            
+        </div><!-- PREVIEW ONLY -->
     {% endcapture %}{% include example.html html=html %}
     
 </section>
