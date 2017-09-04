@@ -1,9 +1,208 @@
 ---
-layout: default
+layout: with-secondary-nav
 title: Sidebar Widgets
 description: Sidebar widgets are widgets that are meant for the sidebar. #TODO: actual description
 ---
-<style>ul{margin-bottom: 0;}</style>
+<style>
+    ul {
+        margin-bottom: 0;
+    }
+    .example-avatar {
+        margin-right: 12px;
+        vertical-align: text-bottom;
+    }
+    .example-stats-table { /* TODO: at the very least, <table class="-content _items"> should be supported */
+        border-spacing: 12px;
+        margin: -12px;
+    }
+    .example-stats-table td {
+        padding: 0;
+    }
+    .example-stats-table td:first-child {
+        color: #9199a1;
+    }
+</style>
+
+<section class="stacks-section">
+    <h2 class="grid fl-jc-space-between fl-ai-center mb0 stacks-title">The Basics</h2>
+    
+    <p class="stacks-p _section" markdown="1">
+        In its simplest form, the sidebar widget is an element with class `s-widget` and a child of class `-content`.
+        This sets up a sidebar widget with the appropriate inner spacing, and you can put into it whatever you want.
+    </p>
+    
+    {% capture html %}
+        <div style="width: 300px"><!-- PREVIEW ONLY -->
+            <div class="s-widget">
+                <div class="-content">
+                    <div style="font-size:24px; margin-bottom:8px; line-height:1;">
+                        13,672,187
+                    </div>
+                    questions
+                </div>
+            </div>
+        </div><!-- PREVIEW ONLY -->
+    {% endcapture %}{% include example.html html=html %}
+
+
+    <h3 class="grid fl-jc-space-between fl-ai-center mb0 mt6 stacks-title _subtitle">Simple Items</h3>
+
+    <p class="stacks-p _section" markdown="1">
+        Oftentimes, your widget will be a list of similar, relatively simple items. By giving the `-content` a modifier class
+        `_items`, and giving the items a class of `-item`, the content will be spaced out nicely.
+    </p>
+
+    {% capture html %}
+        <div style="width: 300px"><!-- PREVIEW ONLY -->
+            <div class="s-widget">
+                <div class="-content _items">
+                    <div class="-item">
+                        <img src="https://i.stack.imgur.com/MSY0L.jpg?s=32&amp;g=1" alt="balpha" width="16" height="16" class="example-avatar"><!-- PREVIEW ONLY -->
+                        <img src="..." class="example-avatar"><!-- CODE ONLY -->
+                        <strong>balpha</strong> contributed 6 edits
+                    </div>
+                    <div class="-item">
+                        <img src="https://www.gravatar.com/avatar/13eaa034bcdefa7a6de2776007f43020?s=32&d=identicon&r=PG" alt="Paweł" width="16" height="16" class="example-avatar"><!-- PREVIEW ONLY -->
+                        <img src="..." class="example-avatar"><!-- CODE ONLY -->
+                        <strong>Paweł</strong> contributed 7 edits
+                    </div>
+                    <div class="-item">
+                        <img src="https://i.stack.imgur.com/nf0QA.jpg?s=32&g=1" alt="Aaron Shekey" width="16" height="16" class="example-avatar"><!-- PREVIEW ONLY -->
+                        <img src="..." class="example-avatar"><!-- CODE ONLY -->
+                        <strong>Aaron Shekey</strong> contributed 3 edits
+                    </div>                    
+                </div>
+            </div>
+        </div><!-- PREVIEW ONLY -->
+    {% endcapture %}{% include example.html html=html %}
+
+    <h3 class="grid fl-jc-space-between fl-ai-center mb0 mt6 stacks-title _subtitle">Complex Items</h3>
+
+    <p class="stacks-p _section" markdown="1">
+        If your items are more complex than that, whitespace may not be enough to separate them clearly. In this case instead of a single
+        `-content _items` with multiple `-item`s, use multiple `-content` elements, which will be separated by subtle divider lines.
+    </p>
+
+    {% capture html %}
+        <div style="width: 300px"><!-- PREVIEW ONLY -->
+            <div class="s-widget">
+                <div class="-content grid">
+                    <img src="https://i.stack.imgur.com/MSY0L.jpg?s=64&amp;g=1" alt="balpha" width="32" height="32" class="example-avatar"><!-- PREVIEW ONLY -->
+                    <img src="..." class="example-avatar"><!-- CODE ONLY -->
+                    <div class="lh4">
+                        <strong>balpha</strong><br>
+                        contributed 6 edits<br>
+                        joined 8 months ago
+                    </div>
+                </div>
+                <div class="-content grid">
+                    <img src="https://www.gravatar.com/avatar/13eaa034bcdefa7a6de2776007f43020?s=64&d=identicon&r=P" alt="Paweł" width="32" height="32" class="example-avatar"><!-- PREVIEW ONLY -->
+                    <img src="..." class="example-avatar"><!-- CODE ONLY -->
+                    <div class="lh4">
+                        <strong>Paweł</strong><br>
+                        contributed 7 edits<br>
+                        joined 1 year 10 months ago
+                    </div>
+                </div>
+                <div class="-content grid">
+                    <img src="https://i.stack.imgur.com/nf0QA.jpg?s=64&g=1" alt="Aaron Shekey" width="32" height="32" class="example-avatar"><!-- PREVIEW ONLY -->
+                    <img src="..." class="example-avatar"><!-- CODE ONLY -->
+                    <div class="lh4">
+                        <strong>Aaron Shekey</strong><br>
+                        contributed 3 edits<br>
+                        joined 5 months ago
+                    </div>
+                </div>
+            </div>
+        </div><!-- PREVIEW ONLY -->
+    {% endcapture %}{% include example.html html=html %}
+
+    <h3 class="grid fl-jc-space-between fl-ai-center mb0 mt6 stacks-title _subtitle">Headers</h3>
+
+    <p class="stacks-p _section" markdown="1">
+        The other possible child class is `-header`, which unsurprisingly creates a header. Headers can be used both
+        as a title for the widget, as well as to create several sections inside the widget. The `_alternate-small-bold`
+        modifier is available for headers to modify the text appearance.
+    </p>
+
+    {% capture html %}
+        <div class="grid" style="justify-content: space-between"><div style="width: 300px"><!-- PREVIEW ONLY -->
+            <div class="s-widget">
+                <div class="-header">
+                    Stats
+                </div>
+                <div class="-content">
+                    <table class="example-stats-table">
+                        <tbody>
+                            <tr>
+                                <td>asked</td>
+                                <td>4 years, 4 months ago</td>
+                            </tr>
+                            <tr>
+                                <td>viewed</td>
+                                <td>7,437 times</td>
+                            </tr>
+                            <tr>
+                                <td>active</td>
+                                <td>2 months ago</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            </div><div style="margin-left:32px;width: 300px"><!-- PREVIEW ONLY -->
+            
+            <div class="s-widget">
+                <div class="-header _alternate-small-bold">
+                    Stats
+                </div>
+                <div class="-content">
+                    <table class="example-stats-table">
+                        <tbody><!-- PREVIEW ONLY -->
+                            <tr><!-- PREVIEW ONLY -->
+                                <td>created</td><!-- PREVIEW ONLY -->
+                                <td>9 years, 1 month ago</td><!-- PREVIEW ONLY -->
+                            </tr><!-- PREVIEW ONLY -->
+                            <tr><!-- PREVIEW ONLY -->
+                                <td>viewed</td><!-- PREVIEW ONLY -->
+                                <td>88,020 times</td><!-- PREVIEW ONLY -->
+                            </tr><!-- PREVIEW ONLY -->
+                            <tr><!-- PREVIEW ONLY -->
+                                <td>active</td><!-- PREVIEW ONLY -->
+                                <td>3 days ago</td><!-- PREVIEW ONLY -->
+                            </tr><!-- PREVIEW ONLY -->
+                            <tr><!-- PREVIEW ONLY -->
+                                <td>editors</td><!-- PREVIEW ONLY -->
+                                <td>164</td><!-- PREVIEW ONLY -->
+                            </tr><!-- PREVIEW ONLY -->
+                        </tbody><!-- PREVIEW ONLY -->
+                        ...<!-- CODE ONLY -->
+                    </table>
+                </div>                    
+                <div class="-header _alternate-small-bold">
+                    Recent Hot Answers
+                </div>
+                <ul class="-content _items">
+                    <li class="-item"><a href="#">Currying-in function and ES6 destructing</a></li><!-- PREVIEW ONLY -->
+                    <li class="-item"><a href="#">JSON data concatenate two data </a></li><!-- PREVIEW ONLY -->
+                    <li class="-item"><a href="#">Why addEventListener don`t work </a></li><!-- PREVIEW ONLY -->
+                    <li class="-item"><a href="#">Redux: why using Object.assign if it is not perform deep clone? </a></li><!-- PREVIEW ONLY -->
+                    <li class="-item"><a href="#">Javascript: Why is my optimized loop slower than the more naive one</a></li><!-- PREVIEW ONLY -->
+                    <li class="-item"><a href="#">Currying-in ...</a></li><!-- CODE ONLY -->
+                    <li class="-item"><a href="#">JSON data ...</a></li><!-- CODE ONLY -->
+                    <li class="-item"><a href="#">Why addEventListener ...</a></li><!-- CODE ONLY -->
+                    <li class="-item"><a href="#">Redux: why ...</a></li><!-- CODE ONLY -->
+                    <li class="-item"><a href="#">Javascript: Why ...</a></li><!-- CODE ONLY -->
+                </ul>
+            </div>
+
+        </div></div><!-- PREVIEW ONLY -->
+    {% endcapture %}{% include example.html html=html %}
+    
+</section>    
+    
+<br><br><br><br><br><br><i>(end of real documentation)</i><br><br><br><br><br><br>
+    
 <section class="stacks-section">
     <h2 class="stacks-title">Introduction</h2>
     

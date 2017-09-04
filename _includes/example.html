@@ -7,7 +7,8 @@
     
     If the preview and the codeblock use the same HTML (i.e. you did not pass a preview parameter), any line
     that contains the string "PREVIEW ONLY" (this should probably be in an HTML comment) will be rendered
-    only in the preview, but skipped in the codeblock.
+    only in the preview, but skipped in the codeblock. Conversely, if the line contains "<!-- CODE ONLY -->", it will
+    be rendered in the codeblock, but skipped in the preview (with this particular HTML comment removed).
 
     Usage:
     
@@ -55,12 +56,13 @@
 
     <div class="stacks-code-preview{% if include.preview == false %} _preview-none{% endif %}">
 {% highlight html linenos %}
-{% for line in lines %}{% assign line = line | strip_newlines %}{% assign linelength = line | size | minus: minindent %}{% assign removed = line | remove: "PREVIEW ONLY" %}{% if removed == line %}{{ line | slice: minindent, linelength }}
+{% for line in lines %}{% assign line = line | strip_newlines %}{% assign linelength = line | size | minus: minindent %}{% assign removed = line | remove: "PREVIEW ONLY" %}{% if removed == line %}{{ line | slice: minindent, linelength | remove: "<!-- CODE ONLY -->"}}
 {% endif %}{% endfor %}
 {% endhighlight %}
         {% unless include.preview == false %}
+            {% assign previewlines = include.preview | default: include.html | split: NEWLINE %}
             <div class="-preview">
-                {{ include.preview | default: include.html }}
+                {% for line in previewlines %}{% assign removed = line | remove: "CODE ONLY" %}{% if removed == line %}{{ line }}{% endif %}{% endfor %}
             </div>
         {% endunless %}        
     </div>
