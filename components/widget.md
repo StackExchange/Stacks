@@ -209,7 +209,7 @@ description: Sidebar widgets are widgets that are meant for the sidebar. #TODO: 
         and `_alternate-green`.
     </p>
 
-    <p class="stacks-p _section">
+    <p class="stacks-p _section" markdown="1">
         TODO: guidance on when to use what color
     </p>
     
@@ -268,14 +268,79 @@ description: Sidebar widgets are widgets that are meant for the sidebar. #TODO: 
         </div></div><!-- PREVIEW ONLY -->
     {% endcapture %}{% include example.html html=html %}
     
-    
 </section>
 
+<section class="stacks-section">
+    <h2 class="grid fl-jc-space-between fl-ai-center mb0 stacks-title">Navigation</h2>
+    
+    <p class="stacks-p _section" markdown="1">
+        A common use for sidebar widgets is as a navigation block or table of content, including a highlight
+        of the page that the user is currently looking at.
+    </p>
 
+    <p class="stacks-p _section" markdown="1">
+        The recommended pattern, as shown in the example below, is to make the `s-widget` a `<nav>` element,
+        and for each group of links to create a `<ul>` with the classes `-content _items`, within which each
+        `<li>` is of class `-item`.
+    </p>
+    
+    <p class="stacks-p _section" markdown="1">
+        The currently active navigation item should have the `aria-current` attribute set to `"page"` (if it is a direct
+        link to the very page that the user is looking at) or `"true"` (in all other cases, e.g. if it is a
+        link to a page that is conceptually a parent or the current page). This `aria-current` attribute can be on
+        the `<li>` or on the `<a>`.
+    </p>
 
+    {% capture html %}
+        <div style="width: 300px"><!-- PREVIEW ONLY -->
+            <nav class="s-widget">
+                <div class="-header">
+                    Personal Information
+                </div>
+                <ul class="-content _items">
+                    <li class="-item"><a href="#">Edit Profile</a></li>
+                    <li class="-item" aria-current="page"><a href="#">Developer Story Preferences</a></li><!-- PREVIEW ONLY -->
+                    <li class="-item" aria-current="page"><a href="#">Developer Story ...</a></li><!-- CODE ONLY -->
+                    <li class="-item"><a href="#">Job Match Preferences</a></li>
+                </ul>
+                <div class="-header">
+                    Site Settings
+                </div>
+                <ul class="-content _items">
+                    <li class="-item"><a href="#">Preferences</a></li>
+                    <li class="-item"><a href="#">Flair</a></li>
+                </ul>                
+            </nav>
+        </div><!-- PREVIEW ONLY -->
+    {% endcapture %}{% include example.html html=html %}
 
-
-
+    <p class="stacks-p _section" markdown="1">
+        Multi-level navigation. TODO: explain
+    </p>
+    
+    {% capture html %}
+        <div style="width: 300px"><!-- PREVIEW ONLY -->
+            <nav class="s-widget">
+                <ul class="-content _items">
+                    <li class="-item"><a href="#">Asking</a></li>
+                    <li class="-item"><a href="#">Privileges</a></li>
+                    <li class="-item"><a href="#">Badges</a></li>
+                    <li class="-item">
+                        <a href="#" aria-current="true">Our model</a>
+                        <ul class="-subnav">
+                            <li><a href="#">Be nice</a></li>
+                            <li aria-current="page">
+                                <a href="#">What kind of behavior is expected of users?</a>
+                            </li>
+                            <li><a href="#">How do I find topics I'm interested in?</a></li>
+                        </ul>
+                    </li>
+                    <li class="-item"><a href="#">Reputation &amp; Moderation</a></li>
+                    <li class="-item"><a href="#">Answering</a></li>
+                </ul>
+            </nav>
+        </div><!-- PREVIEW ONLY -->
+    {% endcapture %}{% include example.html html=html %}
 
 
 
@@ -286,7 +351,8 @@ description: Sidebar widgets are widgets that are meant for the sidebar. #TODO: 
 <br><br><br><br><br><br><i>(end of real documentation)</i><br><br><br><br><br><br>
     
 <section class="stacks-section">
-    <h2 class="stacks-title">Introduction</h2>
+    <h2 class="stacks-title">Lorem ipsum stuff &ndash; ignore this</h2>
+    <h3 class="stacks-title">Introduction</h3>
     
     <p class="stacks-p _section">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</p>
     <p class="stacks-p _section">At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor</p>
@@ -295,22 +361,6 @@ description: Sidebar widgets are widgets that are meant for the sidebar. #TODO: 
     
     {% capture html %}
         <div style="width: 300px"><!-- PREVIEW ONLY -->
-            <div class="s-widget">
-                <div class="-header">
-                    <a href="#" class="-action">Action</a>
-                    Example title
-                </div>
-                <div class="-content _items">
-                    <div class="-item">
-                        This is a content item.
-                    </div>
-                    <div class="-item">
-                        This is another content item.
-                    </div>                    
-                </div>
-            </div>
-            <br> <!-- PREVIEW ONLY -->
-            
             <div class="s-widget">
                 <div class="-header _alternate-small-bold">
                     <a href="#" class="-action">Action</a>
@@ -366,138 +416,9 @@ description: Sidebar widgets are widgets that are meant for the sidebar. #TODO: 
                     Alternate header style
                 </div>
             </div>            
-            <br> <!-- PREVIEW ONLY -->
-            
-            <div class="s-widget">
-                <div class="-content">
-                    <div style="font-size:24px; margin-bottom:8px; line-height:1;">
-                        13,672,187
-                    </div>
-                    questions
-                </div>
-            </div>
         </div><!-- PREVIEW ONLY -->
-    {% endcapture %}{% include example.html html=html %}
-</section>
+        {% endcapture %}{% include example.html html=html %}
 
-<section class="stacks-section">
-    <h2 class="stacks-title">Alternative colors</h2>
-    
-    <p class="stacks-p _section">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</p>
-    <p class="stacks-p _section">At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor</p>
-    <p class="stacks-p _section">sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam</p>
-    <p class="stacks-p _section">et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
-       
-    {% capture html %}
-        <div style="width: 300px"><!-- PREVIEW ONLY -->
-            <div class="s-widget _alternate-blue">
-                <div class="-header">
-                    Blue
-                </div>
-                <div class="-content">
-                    This is a content item.
-                </div>
-                <div class="-content">
-                    This is another content item.
-                </div>
-            </div>
-            <br><!-- PREVIEW ONLY -->
-            
-            <div class="s-widget _alternate-yellow">
-                <div class="-header">
-                    Yellow
-                </div>
-                <div class="-content">
-                    This is a content item.
-                </div>
-                <div class="-content">
-                    This is another content item.
-                </div>
-            </div>
-            <br><!-- PREVIEW ONLY -->
-            
-            <div class="s-widget _alternate-green">
-                <div class="-header">
-                    Green
-                </div>
-                <div class="-content">
-                    This is a content item.
-                </div>
-                <div class="-content">
-                    This is another content item.
-                </div>
-            </div>
-        </div><!-- PREVIEW ONLY -->
-    {% endcapture %}{% include example.html html=html %}
-</section>
-
-<section class="stacks-section">
-    <h2 class="stacks-title">Navigation</h2>
-    
-    <p class="stacks-p _section">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</p>
-    <p class="stacks-p _section">At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor</p>
-    <p class="stacks-p _section">sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam</p>
-    <p class="stacks-p _section">et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
-        
-    {% capture html %}
-        <div style="width: 300px"><!-- PREVIEW ONLY -->
-            <nav class="s-widget">
-                <div class="-header">
-                    Personal Information
-                </div>
-                <ul class="-content _items">
-                    <li class="-item">
-                        <a href="#">Edit Profile</a>
-                    </li>
-                    <li class="-item" aria-current="page">
-                        <a href="#">Developer Story Preferences</a>
-                    </li>
-                    <li class="-item">
-                        <a href="#">Job Match Preferences</a>
-                    </li>
-                </ul>
-                <div class="-header">
-                    Site Settings
-                </div>
-                <ul class="-content _items">
-                    <li class="-item">
-                        <a href="#">Preferences</a>
-                    </li>
-                    <li class="-item">
-                        <a href="#">Flair</a>
-                    </li>
-                </ul>                
-            </nav>
-            <br><!-- PREVIEW ONLY -->
-            <nav class="s-widget">
-                <ul class="-content _items">
-                    <li class="-item">
-                        <a href="#">Sample link</a>
-                    </li>
-                    <li class="-item">
-                        <a href="#">Another one</a>
-                    </li>
-                    <li class="-item">
-                        <a href="#" aria-current="true">Currently selected</a>
-                        <ul class="-subnav">
-                            <li><a href="#">2nd level navigation item example a little bit longer why not</a></li>
-                            <li aria-current="true">
-                                <a href="#">And here's selected 2nd level</a>
-                            </li>
-                            <li><a href="#">What is reputation?</a></li>
-                        </ul>
-                    </li>
-                    <li class="-item">
-                        <a href="#">Continue 1st level</a>
-                    </li>
-                    <li class="-item">
-                        <a href="#">Another item</a>
-                    </li>
-                </ul>
-            </nav>
-        </div><!-- PREVIEW ONLY -->
-    {% endcapture %}{% include example.html html=html %}
-    
 </section>
 
 <script type="text/javascript">
