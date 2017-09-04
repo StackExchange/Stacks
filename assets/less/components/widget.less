@@ -94,19 +94,52 @@
             .-item {
                 display: block; // it'll often be a <li>
                 margin: @s-widget-content-inner-spacing 0;
-                &[aria-current="true"], &[aria-current="page"] {
-                    position: relative;
-                    &:before {
-                        content: '';
-                        position: absolute;
-                        height: ~"calc(100% +" @s-widget-content-inner-spacing ~")";
-                        left: 0;
-                        border-left: 3px solid @orange;
-                        margin-left: -@s-widget-content-padding - 1px; // the orange selection indicator overlaps with the widget border
-                        margin-top: -@s-widget-content-inner-spacing/2;
+                &, & > :first-child {
+                    &[aria-current="true"], &[aria-current="page"] {
+                        position: relative;
+                        &:before {
+                            content: '';
+                            position: absolute;
+                            height: ~"calc(100% +" @s-widget-content-inner-spacing ~")";
+                            left: 0;
+                            border-left: 3px solid @orange;
+                            margin-left: -@s-widget-content-padding - 1px; // the orange selection indicator overlaps with the widget border
+                            margin-top: -@s-widget-content-inner-spacing/2;
+                        }
+                        font-weight: bold;
+                        color: @black;
+                        a, a:visited { // TODO: this isn't the best way to go about this. There should be a "is current" highlight without font modification for more complex cases
+                            color: inherit;
+                        }
                     }
-                    font-weight: bold;
-                }               
+                }
+                .-subnav {
+                    list-style-type: none;
+                    padding-left: 0;
+                    li {
+                        padding-left: 16px;
+                        margin-top: 12px;
+
+                        .bullet-arrow(@col) {
+                            @image: '<?xml version="1.0" encoding="UTF-8"?><svg version="1.1" viewBox="0 0 7 10" xmlns="http://www.w3.org/2000/svg"><path d="m0.72153 0.68446 4.1336 4.3077-4.1336 4.3077" fill="none" stroke="@{col}" stroke-width="2"/></svg>';
+                            @encoded-image: escape(@image);
+                            background-image: url("data:image/svg+xml,@{encoded-image}");
+                        }
+                        .bullet-arrow(@black-100);
+                        background-size: auto 10px;
+                        background-repeat: no-repeat;
+                        background-position: 0 ~"calc((1.2em - 10px)/2)";
+
+                        &[aria-current="true"], &[aria-current="page"] {
+                            .bullet-arrow(@orange);
+                            font-weight: bold;
+                            color: @black;
+                            a, a:visited { // TODO: see above
+                                color: inherit;
+                            }
+                        }
+                    }
+                }
             }                    
         }
     }    
