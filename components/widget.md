@@ -126,7 +126,7 @@ description: Sidebar widgets are widgets that are meant for the sidebar. #TODO: 
     </p>
 
     {% capture html %}
-        <div class="grid" style="justify-content: space-between"><div style="width: 300px"><!-- PREVIEW ONLY -->
+        <div class="grid fl-jc-space-between"><div style="width: 300px"><!-- PREVIEW ONLY -->
             <div class="s-widget">
                 <div class="-header">
                     Stats
@@ -199,7 +199,89 @@ description: Sidebar widgets are widgets that are meant for the sidebar. #TODO: 
         </div></div><!-- PREVIEW ONLY -->
     {% endcapture %}{% include example.html html=html %}
     
-</section>    
+</section>
+
+<section class="stacks-section">
+    <h2 class="grid fl-jc-space-between fl-ai-center mb0 stacks-title">Alternative Colors</h2>
+    
+    <p class="stacks-p _section" markdown="1">
+        Three modifier classes are available for changing the background color of an `s-widget`: `_alternate-yellow`, `_alternate-blue`,
+        and `_alternate-green`.
+    </p>
+
+    <p class="stacks-p _section">
+        TODO: guidance on when to use what color
+    </p>
+    
+    {% capture html %}
+        <div class="grid fl-jc-space-between"><div style="width: 300px"><!-- PREVIEW ONLY -->
+            <div class="s-widget _alternate-yellow">
+                <div class="-header _alternate-small-bold">Featured on Meta</div>
+                <ul class="-content _items">
+                    <li class="-item">
+                        <div class="grid">
+                            <img src="https://meta.stackoverflow.com/content/Sites/stackoverflowmeta/img/icon-32.png" alt="Meta Stack Overflow" width="16" height="16" class="mr4"><!-- PREVIEW ONLY -->
+                            <img src="..."><!-- CODE ONLY -->
+                            <a href="#">Sunsetting Documentation</a>
+                        </div>
+                    </li>
+                    <li class="-item">
+                        <div class="grid">
+                            <img src="https://meta.stackoverflow.com/content/Sites/stackoverflowmeta/img/icon-32.png" alt="Meta Stack Overflow" width="16" height="16" class="mr4"><!-- PREVIEW ONLY -->
+                            <img src="..."><!-- CODE ONLY -->
+                            <a href="#">Documentation is read-only. What’s next?</a>
+                        </div>
+                    </li>
+                </ul>
+                <div class="-header _alternate-small-bold">Blog</div>
+                <ul class="-content _items">
+                    <li class="-item"><a href="#">Introducing Channels: Private Q&A for Your Team</a></li><!-- PREVIEW ONLY -->
+                    <li class="-item"><a href="#">Raise Your Voice: Proclaim the Need for Net Neutrality</a></li><!-- PREVIEW ONLY -->
+                    <li class="-item"><a href="#">Introducing Channels: ...</a></li><!-- CODE ONLY -->
+                    <li class="-item"><a href="#">Raise Your Voice: ...</a></li><!-- CODE ONLY -->
+                </ul>
+            </div>
+            </div><div style="width: 300px"><!-- PREVIEW ONLY -->
+            
+            <div class="s-widget _alternate-blue">
+                <div class="-header">Options</div>
+                <div class="-content _items">
+                    <a href="#" class="-item button _primary fl-jc-center" style="display: flex">
+                        Job preferences
+                    </a>
+                    <a href="#" class="-item button _outline fl-jc-center" style="display: flex">
+                        Save as PDF
+                    </a>
+                </div>
+                <div class="-content">
+                    Visibility: Public
+                    <a href="#" class="button _clear">Update privacy</a>
+                </div>
+            </div>
+            <br><!-- PREVIEW ONLY -->
+            
+            <div class="s-widget _alternate-green">
+                <div class="-content">
+                    Your Developer Story is searchable by employers.
+                </div>
+            </div>            
+        </div></div><!-- PREVIEW ONLY -->
+    {% endcapture %}{% include example.html html=html %}
+    
+    
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
     
 <br><br><br><br><br><br><i>(end of real documentation)</i><br><br><br><br><br><br>
     
