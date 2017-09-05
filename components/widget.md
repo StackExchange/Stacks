@@ -12,7 +12,7 @@ description: Sidebar widgets are widgets that are meant for the sidebar. #TODO: 
         vertical-align: text-bottom;
     }
     .post-tag {
-        color: #39739d!important;
+        color: #39739d;
         background-color: #E1ECF4;
         display: inline-block;
         padding: .4em .5em;
