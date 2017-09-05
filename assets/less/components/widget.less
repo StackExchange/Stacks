@@ -81,21 +81,35 @@
             }
         }        
     }
+
+    table.-content._items {
+        border-spacing: @s-widget-content-inner-spacing;
+        border-collapse: separate;
+        padding: (@s-widget-content-outer-spacing - @s-widget-content-inner-spacing) (@s-widget-content-padding - @s-widget-content-inner-spacing);
+        tr.-item {
+            display: table-row;
+            td {
+                padding: 0;
+            }
+        }
+    }
+    .-content:not(table) {
+        &:not(.d-block):not(._items) {
+            display: flex;
+        }
+        &:not(._block-items) .-item:not(.d-block) {
+            display: flex;
+        }
+    }
     
     .-content {
         
         margin: 0;
-        &:not(.d-block) {
-            display: flex;
-        }
         padding: @s-widget-content-outer-spacing @s-widget-content-padding;
         &._items {
             .d-block;
             // the items themselves provide part of the spacing, so the content padding needs to account for that
             padding: (@s-widget-content-outer-spacing - @s-widget-content-inner-spacing) @s-widget-content-padding;
-            &:not(._block-items) .-item:not(.d-block) {
-                display: flex;
-            }
             ._block-items .-item {
                 .d-block;
             }

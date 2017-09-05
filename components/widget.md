@@ -11,16 +11,6 @@ description: Sidebar widgets are widgets that are meant for the sidebar. #TODO: 
         margin-right: 12px;
         vertical-align: text-bottom;
     }
-    .example-stats-table { /* TODO: at the very least, <table class="-content _items"> should be supported */
-        border-spacing: 12px;
-        margin: -12px;
-    }
-    .example-stats-table td {
-        padding: 0;
-    }
-    .example-stats-table td:first-child {
-        color: #9199a1;
-    }
 </style>
 
 <section class="stacks-section">
@@ -85,6 +75,11 @@ description: Sidebar widgets are widgets that are meant for the sidebar. #TODO: 
         </div><!-- PREVIEW ONLY -->
     {% endcapture %}{% include example.html html=html %}
 
+    <p class="stacks-p _section" markdown="1">
+        There is built-in support for `<table>` content. The `<table>` element should have the classes `-content _items`, and the `<tr>`
+        elements should be `-item`. See the [section on headers](#headers) for an example.
+    </p>
+
     <h3 class="grid fl-jc-space-between fl-ai-center mb0 mt6 stacks-title _subtitle">Complex Items</h3>
 
     <p class="stacks-p _section" markdown="1">
@@ -140,24 +135,22 @@ description: Sidebar widgets are widgets that are meant for the sidebar. #TODO: 
                 <div class="-header">
                     Stats
                 </div>
-                <div class="-content">
-                    <table class="example-stats-table">
-                        <tbody>
-                            <tr>
-                                <td>asked</td>
-                                <td>4 years, 4 months ago</td>
-                            </tr>
-                            <tr>
-                                <td>viewed</td>
-                                <td>7,437 times</td>
-                            </tr>
-                            <tr>
-                                <td>active</td>
-                                <td>2 months ago</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
+                <table class="-content _items">
+                    <tbody>
+                        <tr class="-item">
+                            <td class="tc-black-350">asked</td>
+                            <td>4 years, 4 months ago</td>
+                        </tr>
+                        <tr class="-item">
+                            <td class="tc-black-350">viewed</td>
+                            <td>7,437 times</td>
+                        </tr>
+                        <tr class="-item">
+                            <td class="tc-black-350">active</td>
+                            <td>2 months ago</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
             </div><div style="margin-left:32px;width: 300px"><!-- PREVIEW ONLY -->
             
@@ -165,29 +158,27 @@ description: Sidebar widgets are widgets that are meant for the sidebar. #TODO: 
                 <div class="-header _alternate-small-bold">
                     Stats
                 </div>
-                <div class="-content">
-                    <table class="example-stats-table">
-                        <tbody><!-- PREVIEW ONLY -->
-                            <tr><!-- PREVIEW ONLY -->
-                                <td>created</td><!-- PREVIEW ONLY -->
-                                <td>9 years, 1 month ago</td><!-- PREVIEW ONLY -->
-                            </tr><!-- PREVIEW ONLY -->
-                            <tr><!-- PREVIEW ONLY -->
-                                <td>viewed</td><!-- PREVIEW ONLY -->
-                                <td>88,020 times</td><!-- PREVIEW ONLY -->
-                            </tr><!-- PREVIEW ONLY -->
-                            <tr><!-- PREVIEW ONLY -->
-                                <td>active</td><!-- PREVIEW ONLY -->
-                                <td>3 days ago</td><!-- PREVIEW ONLY -->
-                            </tr><!-- PREVIEW ONLY -->
-                            <tr><!-- PREVIEW ONLY -->
-                                <td>editors</td><!-- PREVIEW ONLY -->
-                                <td>164</td><!-- PREVIEW ONLY -->
-                            </tr><!-- PREVIEW ONLY -->
-                        </tbody><!-- PREVIEW ONLY -->
-                        ...<!-- CODE ONLY -->
-                    </table>
-                </div>                    
+                <table class="-content _items">
+                    <tbody><!-- PREVIEW ONLY -->
+                        <tr class="-item"><!-- PREVIEW ONLY -->
+                            <td class="tc-black-350">created</td><!-- PREVIEW ONLY -->
+                            <td>9 years, 1 month ago</td><!-- PREVIEW ONLY -->
+                        </tr><!-- PREVIEW ONLY -->
+                        <tr class="-item"><!-- PREVIEW ONLY -->
+                            <td class="tc-black-350">viewed</td><!-- PREVIEW ONLY -->
+                            <td>88,020 times</td><!-- PREVIEW ONLY -->
+                        </tr><!-- PREVIEW ONLY -->
+                        <tr class="-item"><!-- PREVIEW ONLY -->
+                            <td class="tc-black-350">active</td><!-- PREVIEW ONLY -->
+                            <td>3 days ago</td><!-- PREVIEW ONLY -->
+                        </tr><!-- PREVIEW ONLY -->
+                        <tr class="-item"><!-- PREVIEW ONLY -->
+                            <td class="tc-black-350">editors</td><!-- PREVIEW ONLY -->
+                            <td>164</td><!-- PREVIEW ONLY -->
+                        </tr><!-- PREVIEW ONLY -->
+                    </tbody><!-- PREVIEW ONLY -->
+                    ...<!-- CODE ONLY -->
+                </table>
                 <div class="-header _alternate-small-bold">
                     Recent Hot Answers
                 </div>
