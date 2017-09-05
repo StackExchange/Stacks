@@ -11,6 +11,17 @@ description: Sidebar widgets are widgets that are meant for the sidebar. #TODO: 
         margin-right: 12px;
         vertical-align: text-bottom;
     }
+    .post-tag {
+        color: #39739d!important;
+        background-color: #E1ECF4;
+        display: inline-block;
+        padding: .4em .5em;
+        margin: 4px 4px 4px 0;
+        white-space: nowrap;
+    }
+    .tag-list {
+        margin: -4px -4px -4px 0;
+    }
 </style>
 
 <section class="stacks-section">
@@ -338,7 +349,77 @@ description: Sidebar widgets are widgets that are meant for the sidebar. #TODO: 
         </div><!-- PREVIEW ONLY -->
     {% endcapture %}{% include example.html html=html %}
 
+</section>
 
+<section class="stacks-section">
+    <h2 class="grid fl-jc-space-between fl-ai-center mb0 stacks-title">Header Actions</h2>
+    
+    <p class="stacks-p _section" markdown="1">
+        There is often a need for a header to contain a link or link-like clickable that refers to
+        the whole widget or to the section that this header starts. We call this an "action link",
+        and it's created by adding the class `-action`. 
+    </p>
+    
+    <p class="stacks-p _section" markdown="1">
+        This link must come **before** the header text, otherwise it will not be placed correctly should
+        the header ever wrap to multiple lines.
+    </p>
+    
+    {% capture html %}
+        <div class="grid fl-jc-space-between"><div style="width: 300px"><!-- PREVIEW ONLY -->
+            <div class="s-widget">
+                <div class="-header">
+                    <a class="-action" href="#">
+                        edit
+                    </a>
+                    Favorite Tags
+                </div>
+                <div class="-content">
+                    <div class="tag-list">
+                        <a class="post-tag" href="#">css</a>
+                        <a class="post-tag" href="#">html</a>
+                        <a class="post-tag" href="#">accessibility</a>
+                    </div>
+                </div>
+                <div class="-header">
+                    <a class="-action" href="#">
+                        edit
+                    </a>
+                    Ignored Tags
+                </div>
+                <div class="-content">
+                    <div class="tag-list">
+                        <a class="post-tag" href="#">twitter-bootstrap</a>
+                        <a class="post-tag" href="#">web-component</a>
+                        <a class="post-tag" href="#">internet-explorer</a>
+                    </div>
+                </div>
+            </div>
+        </div><div style="width: 300px"><!-- PREVIEW ONLY -->
+        
+            <div class="s-widget">
+                <div class="-header _alternate-small-bold">
+                    <a class="-action" href="#">
+                        clear
+                    </a>
+                    4 Recent Searchers
+                </div>
+                <table class="-content _items">
+                    <tbody>
+                        <tr class="-item">
+                            <td class="tc-orange ta-right va-top fs1">64</td>
+                            <td><a href="#">remote jobs</a></td>
+                        </tr>
+                        <tr class="-item">
+                            <td class="tc-orange ta-right va-top fs1">238</td>
+                            <td><a href="#">jobs in Berlin, Deutschland (within 20 km)</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>            
+        </div></div><!-- PREVIEW ONLY -->
+    {% endcapture %}{% include example.html html=html %}
+</section>
 
 
 
@@ -416,6 +497,7 @@ description: Sidebar widgets are widgets that are meant for the sidebar. #TODO: 
         {% endcapture %}{% include example.html html=html %}
 
 </section>
+
 
 <script type="text/javascript">
     // TODO: figure out the right way to share JS alongside the LESS
