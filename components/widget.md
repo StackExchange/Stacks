@@ -30,11 +30,14 @@ description: Sidebar widgets are widgets that are meant for the sidebar. #TODO: 
         In its simplest form, the sidebar widget is an element with class `s-widget` and a child of class `-content`.
         This sets up a sidebar widget with the appropriate inner spacing, and you can put into it whatever you want.
     </p>
-    
+
+    <p class="stacks-p _section" markdown="1">
+        By default the content is a flex container. If you require `display: block` instead, add the `d-block` class.
+    </p>    
     {% capture html %}
         <div style="width: 300px"><!-- PREVIEW ONLY -->
             <div class="s-widget">
-                <div class="-content">
+                <div class="-content d-block">
                     <div style="font-size:24px; margin-bottom:8px; line-height:1;">
                         13,672,187
                     </div>
@@ -51,11 +54,17 @@ description: Sidebar widgets are widgets that are meant for the sidebar. #TODO: 
         Oftentimes, your widget will be a list of similar, relatively simple items. By giving the `-content` a modifier class
         `_items`, and giving the items a class of `-item`, the content will be spaced out nicely.
     </p>
-
+    
+    <p class="stacks-p _section" markdown="1">
+        In this case, each item is a flex container by default. If you require `display: block` instead, specifically add
+        the `d-block` class to the `-item`, or add the `_block-items` modifier class to the `-content` to make the change to
+        *all* items.
+    </p>
+    
     {% capture html %}
         <div style="width: 300px"><!-- PREVIEW ONLY -->
             <div class="s-widget">
-                <div class="-content _items">
+                <div class="-content _items _block-items">
                     <div class="-item">
                         <img src="https://i.stack.imgur.com/MSY0L.jpg?s=32&amp;g=1" alt="balpha" width="16" height="16" class="example-avatar"><!-- PREVIEW ONLY -->
                         <img src="..." class="example-avatar"><!-- CODE ONLY -->
@@ -86,7 +95,7 @@ description: Sidebar widgets are widgets that are meant for the sidebar. #TODO: 
     {% capture html %}
         <div style="width: 300px"><!-- PREVIEW ONLY -->
             <div class="s-widget">
-                <div class="-content grid">
+                <div class="-content">
                     <img src="https://i.stack.imgur.com/MSY0L.jpg?s=64&amp;g=1" alt="balpha" width="32" height="32" class="example-avatar"><!-- PREVIEW ONLY -->
                     <img src="..." class="example-avatar"><!-- CODE ONLY -->
                     <div class="lh4">
@@ -95,7 +104,7 @@ description: Sidebar widgets are widgets that are meant for the sidebar. #TODO: 
                         joined 8 months ago
                     </div>
                 </div>
-                <div class="-content grid">
+                <div class="-content">
                     <img src="https://www.gravatar.com/avatar/13eaa034bcdefa7a6de2776007f43020?s=64&d=identicon&r=P" alt="Paweł" width="32" height="32" class="example-avatar"><!-- PREVIEW ONLY -->
                     <img src="..." class="example-avatar"><!-- CODE ONLY -->
                     <div class="lh4">
@@ -104,7 +113,7 @@ description: Sidebar widgets are widgets that are meant for the sidebar. #TODO: 
                         joined 1 year 10 months ago
                     </div>
                 </div>
-                <div class="-content grid">
+                <div class="-content">
                     <img src="https://i.stack.imgur.com/nf0QA.jpg?s=64&g=1" alt="Aaron Shekey" width="32" height="32" class="example-avatar"><!-- PREVIEW ONLY -->
                     <img src="..." class="example-avatar"><!-- CODE ONLY -->
                     <div class="lh4">
@@ -219,18 +228,14 @@ description: Sidebar widgets are widgets that are meant for the sidebar. #TODO: 
                 <div class="-header _alternate-small-bold">Featured on Meta</div>
                 <ul class="-content _items">
                     <li class="-item">
-                        <div class="grid">
-                            <img src="https://meta.stackoverflow.com/content/Sites/stackoverflowmeta/img/icon-32.png" alt="Meta Stack Overflow" width="16" height="16" class="mr4"><!-- PREVIEW ONLY -->
-                            <img src="..."><!-- CODE ONLY -->
-                            <a href="#">Sunsetting Documentation</a>
-                        </div>
+                        <img src="https://meta.stackoverflow.com/content/Sites/stackoverflowmeta/img/icon-32.png" alt="Meta Stack Overflow" width="16" height="16" class="mr4"><!-- PREVIEW ONLY -->
+                        <img src="..."><!-- CODE ONLY -->
+                        <a href="#">Sunsetting Documentation</a>
                     </li>
                     <li class="-item">
-                        <div class="grid">
-                            <img src="https://meta.stackoverflow.com/content/Sites/stackoverflowmeta/img/icon-32.png" alt="Meta Stack Overflow" width="16" height="16" class="mr4"><!-- PREVIEW ONLY -->
-                            <img src="..."><!-- CODE ONLY -->
-                            <a href="#">Documentation is read-only. What’s next?</a>
-                        </div>
+                        <img src="https://meta.stackoverflow.com/content/Sites/stackoverflowmeta/img/icon-32.png" alt="Meta Stack Overflow" width="16" height="16" class="mr4"><!-- PREVIEW ONLY -->
+                        <img src="..."><!-- CODE ONLY -->
+                        <a href="#">Documentation is read-only. What’s next?</a>
                     </li>
                 </ul>
                 <div class="-header _alternate-small-bold">Blog</div>
@@ -246,14 +251,14 @@ description: Sidebar widgets are widgets that are meant for the sidebar. #TODO: 
             <div class="s-widget _alternate-blue">
                 <div class="-header">Options</div>
                 <div class="-content _items">
-                    <a href="#" class="-item button _primary fl-jc-center" style="display: flex">
+                    <a href="#" class="-item button _primary fl-jc-center">
                         Job preferences
                     </a>
-                    <a href="#" class="-item button _outline fl-jc-center" style="display: flex">
+                    <a href="#" class="-item button _outline fl-jc-center">
                         Save as PDF
                     </a>
                 </div>
-                <div class="-content">
+                <div class="-content d-block">
                     Visibility: Public
                     <a href="#" class="button _clear">Update privacy</a>
                 </div>
@@ -325,7 +330,7 @@ description: Sidebar widgets are widgets that are meant for the sidebar. #TODO: 
                     <li class="-item"><a href="#">Asking</a></li>
                     <li class="-item"><a href="#">Privileges</a></li>
                     <li class="-item"><a href="#">Badges</a></li>
-                    <li class="-item">
+                    <li class="-item d-block">
                         <a href="#" aria-current="true">Our model</a>
                         <ul class="-subnav">
                             <li><a href="#">Be nice</a></li>

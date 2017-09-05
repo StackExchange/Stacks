@@ -40,6 +40,7 @@
         border-top: 1px solid @s-widget-content-separator-color;
     }
     
+    
     .-header {
         font-size: 15px; // TODO: 15px isn't in our size list
         font-weight: normal;
@@ -84,14 +85,21 @@
     .-content {
         
         margin: 0;
-
+        &:not(.d-block) {
+            display: flex;
+        }
         padding: @s-widget-content-outer-spacing @s-widget-content-padding;
         &._items {
+            .d-block;
             // the items themselves provide part of the spacing, so the content padding needs to account for that
             padding: (@s-widget-content-outer-spacing - @s-widget-content-inner-spacing) @s-widget-content-padding;
-            
+            &:not(._block-items) .-item:not(.d-block) {
+                display: flex;
+            }
+            ._block-items .-item {
+                .d-block;
+            }
             .-item {
-                display: block; // it'll often be a <li>
                 margin: @s-widget-content-inner-spacing 0;
                 &, & > :first-child {
                     &[aria-current="true"], &[aria-current="page"] {
