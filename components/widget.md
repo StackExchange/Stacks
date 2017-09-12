@@ -416,7 +416,7 @@ description: Sidebar widgets are widgets that are meant for the sidebar. #TODO: 
                     <a class="-action" href="#">
                         clear
                     </a>
-                    4 Recent Searchers
+                    2 Recent Searches
                 </div>
                 <table class="-content _items">
                     <tbody>
@@ -435,89 +435,116 @@ description: Sidebar widgets are widgets that are meant for the sidebar. #TODO: 
     {% endcapture %}{% include example.html html=html %}
 </section>
 
-
-
-
-    
-<br><br><br><br><br><br><i>(end of real documentation)</i><br><br><br><br><br><br>
-    
 <section class="stacks-section">
-    <h2 class="stacks-title">Lorem ipsum stuff &ndash; ignore this</h2>
-    <h3 class="stacks-title">Introduction</h3>
+    <h2 class="grid fl-jc-space-between fl-ai-center mb0 stacks-title">Accordions</h2>
+
+    <p class="stacks-p _section" markdown="1">
+        In order to create an accordion, i.e. to make part of the sidebar widget expandable / collapsible,
+        you can do the following.
+    </p>
     
-    <p class="stacks-p _section">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</p>
-    <p class="stacks-p _section">At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor</p>
-    <p class="stacks-p _section">sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam</p>
-    <p class="stacks-p _section">et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+    <ul class="stacks-list _section">
+        <li>
+            <p class="stacks-p" markdown="1">The `-header` element that controls the accordion needs</p>
+            <ul>
+                <li><p class="stacks-p" markdown="1">a modifier class of `_collapsing-control` in order to display the expander arrow</p></li>
+                <li><p class="stacks-p" markdown="1">An `aria-expanded` attribute with value `true` or `false`; this is not only necessary for
+                    accessiblity, but also controls the rotation of the expander arrow. The value must be in sync with the wrapper's `is-collapsed`
+                    class (see below).</p></li>
+                <li><p class="stacks-p" markdown="1">an `aria-label` attribute that makes it clear that this is a collapsing control, *unless*
+                    this is already clear from the header's text content</p></li>
+                <li><p class="stacks-p" markdown="1">an `aria-controls` attribute whose value is the `id` of the `-collapsible-group-wrapper` (see below)</p></li>
+                <li><p class="stacks-p" markdown="1">a non-negatvie `tabindex`, usually `0`, so it can be focused via keyboard navigation</p></li>
+            </ul>
+        </li>
+        <li>
+            <p class="stacks-p" markdown="1">
+                The (one or more) content elements that are meant to be collapsed must be wrapped in an
+                element of class `-collapsible-group-wrapper`, which has the following properties:
+            </p>
+            <ul>
+                <li><p class="stacks-p" markdown="1">This element must have an `id`, so it can be referred to by the header's
+                    `aria-controls` attribute (see above).</p></li>
+                <li><p class="stacks-p" markdown="1">If (and only if) the accordion is collapsed, this element has the state class
+                    `is-collapsed`. The presence of this class must be synchronized with the header's `aria-expanded` value.</p></li>
+            </ul>
+        </li>
+        <li>
+            <p class="stacks-p" markdown="1">
+                Directly inside this wrapper element there must be an element of class `-collapsible-group`. This can be the same element
+                as the `-content` element (if there's only one content element that is meant to be collapsed), or it can be an additional
+                wrapper element *around* the content element(s).
+            </p>
+        </li>
+    </ul>
+    
+    <p class="stacks-p _section" markdown="1">
+        A note on the examples below: There is an additional `js-collapsing-control` class on the headers. This page includes JavaScript
+        code that correctly handles keyboard and click events on elements with this class. We should eventually make such JavaScript
+        functionality universally available together with the Stacks CSS, but currently this is not the case.
+    </p>    
     
     {% capture html %}
         <div style="width: 300px"><!-- PREVIEW ONLY -->
+        
             <div class="s-widget">
-                <div class="-header _alternate-small-bold">
-                    <a href="#" class="-action">Action</a>
-                    Alternate header style
-                </div>
-                <div class="-content">
-                    <b>This is content.</b>
-                    <ul>
-                        <li>Content can be more complex</li>
-                        <li>than just text.</li>
-                    </ul>
-                </div>
-                <div class="-content">
-                    <b>More complex items should</b>
-                    <ul>
-                        <li>be separated with lines</li>
-                        <li>so the boundaries are easy to see.</li>
-                    </ul>
-                </div>
                 <div class="-header _alternate-small-bold _collapsing-control
-                            js-collapsing-control" aria-expanded="false"
-                            aria-controls="collapsible-example"
-                            aria-label="expand this section" tabindex="0">
-                    Expandable section
+                            js-collapsing-control"
+                            aria-expanded="true"
+                            aria-controls="recent-searches"
+                            aria-label="toggle recent searches"
+                            tabindex="0">
+                    <a class="-action" href="#">
+                        clear
+                    </a>
+                    2 Recent Searches
                 </div>
-                <div class="-collapsible-group-wrapper is-collapsed"
-                            id="collapsible-example">
-                    <div class="-collapsible-group">
-                        <div class="-content">
-                            <b>This is content.</b>
-                            <ul>
-                                <li>Content can be more complex</li>
-                                <li>than just text.</li>
-                            </ul>
-                        </div>
-                        <div class="-content">
-                            <b>More complex items should</b>
-                            <ul>
-                                <li>be separated with lines</li>
-                                <li>so the boundaries are easy to see.</li>
-                            </ul>
-                        </div>
-                        <div class="-content">
-                            <b>This is content.</b>
-                            <ul>
-                                <li>Content can be more complex</li>
-                                <li>than just text.</li>
-                            </ul>
-                        </div>
+                <div class="-collapsible-group-wrapper" id="recent-searches">
+                    <div class="-collapsible-group">                
+                        <table class="-content _items">
+                            <tbody>
+                                <tr class="-item">
+                                    <td class="tc-orange ta-right va-top fs1">64</td>
+                                    <td><a href="#">remote jobs</a></td>
+                                </tr>
+                                <tr class="-item">
+                                    <td class="tc-orange ta-right va-top fs1">238</td>
+                                    <td><a href="#">jobs in Berlin, Deutschland (within 20 km)</a></td><!-- PREVIEW ONLY -->
+                                    <td><a href="#">jobs in Berlin, Deutschland ...</a></td><!-- CODE ONLY -->
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
-                <div class="-header _alternate-small-bold">
-                    Alternate header style
+                <div class="-header _alternate-small-bold _collapsing-control
+                            js-collapsing-control"
+                            aria-expanded="false"
+                            aria-controls="favorites"
+                            aria-label="toggle favorites"
+                            tabindex="0">
+                    0 Favorites
                 </div>
-            </div>            
+                <div class="-collapsible-group-wrapper is-collapsed" id="favorites">
+                    <div class="-content -collapsible-group _items">
+                        <div class="-item">
+                            <i>You have no favorite jobs</i>
+                        </div>
+                    </div>
+                </div>                
+            </div>
         </div><!-- PREVIEW ONLY -->
-        {% endcapture %}{% include example.html html=html %}
-
+    {% endcapture %}{% include example.html html=html %}    
+    
 </section>
-
-
+    
 <script type="text/javascript">
     // TODO: figure out the right way to share JS alongside the LESS
     window.onload = function () {
         function toggleCollapsing(e) {
             if (e.type == "keydown" && (e.keyCode != 13 && e.keyCode != 32)) {
+                return;
+            }
+            if (e.target.classList.contains("-action")) {
                 return;
             }
             var expanded = this.getAttribute("aria-expanded") === "true";
@@ -530,6 +557,8 @@ description: Sidebar widgets are widgets that are meant for the sidebar. #TODO: 
             }
             if (e.type === "click") {
                 this.blur();
+            } else {
+                e.preventDefault();
             }
         }
         var cs = document.getElementsByClassName("js-collapsing-control");
@@ -537,5 +566,5 @@ description: Sidebar widgets are widgets that are meant for the sidebar. #TODO: 
             cs[i].addEventListener("click", toggleCollapsing);
             cs[i].addEventListener("keydown", toggleCollapsing);
         }
-    }
+    };
 </script>
