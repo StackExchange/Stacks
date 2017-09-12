@@ -321,9 +321,23 @@ description: Sidebar widgets are widgets that are meant for the sidebar. #TODO: 
         </div><!-- PREVIEW ONLY -->
     {% endcapture %}{% include example.html html=html %}
 
+    <h3 class="grid fl-jc-space-between fl-ai-center mb0 mt6 stacks-title _subtitle">Second-level navigation</h3>
+
     <p class="stacks-p _section" markdown="1">
-        Multi-level navigation. TODO: explain
+        If you have a second level of navigation, you can add a `<ul>` of class `-subnav` to the top-level item.
+        Highlighting the currently active navigation is a little more constrained in this case:
     </p>
+    
+    <p class="stacks-p _section" markdown="1">
+        If the currently active top-level element has a subnavigation, the top-level `aria-current` **must** be on the
+        `<a>`, *not* the `<li>`.
+    </p>
+    
+    <p class="stacks-p _section" markdown="1">
+        The currently active second-level element **must** have its `aria-current` on the
+        `<li>`, *not* the `<a>`.
+    </p>    
+    
     
     {% capture html %}
         <div style="width: 300px"><!-- PREVIEW ONLY -->
