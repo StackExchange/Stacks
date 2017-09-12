@@ -232,10 +232,23 @@
     // transitioning to scaleY(0) with a timing function that's faster than the height-reducing transitions.
     // This does kinda look like a deliberate effect, even more so if we also transition to transparency
     // (which we therefore do), so I feel it's an okay fallback.
+    //
+    // We still set overflow to hidden in the collapsed state (which also applies to the collapsing transition),
+    // we just can't do that for the expanding transition.
+    //
+    // A major drawback of clip-path is that even though the content is clipped (not visible), it will still
+    // contribute to the document height. This caused a jumping around of the scrollbar (and possibly even
+    // of the viewport) when the collapsible was at the bottom of the page, because once the negative bottom
+    // margin of the -collapsible-group exceeds the actual height, any additional pixels were added on to the
+    // bottom. The fix is to set the -collapsible-group's flex alignment to flex-start, which forces the
+    // (no longer visible) element itself to remain at the top, thereby forcing the excess pixels to be added
+    // above the top, not below the bottom. And because extending content above the document top will not do
+    // anything to the document height, there is no jumping during the transition.
     .-collapsible-group-wrapper {
         @dur: 0.3s;
 
         display: flex;
+        align-items: flex-start; // see comment above
 
         clip-path: polygon(-1000000px -1000000px, 1000000px -1000000px, 1000000px 1000000px, -1000000px 1000000px);
         -webkit-clip-path: polygon(-1000000px -1000000px, 1000000px -1000000px, 1000000px 1000000px, -1000000px 1000000px);
@@ -258,6 +271,7 @@
         &.is-collapsed {
             clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
             -webkit-clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+            overflow: hidden;
             transition: none;
             .-collapsible-group {
                 margin-bottom: -1500px;
