@@ -39,7 +39,7 @@ description: Sidebar widgets are widgets that are meant for the sidebar. #TODO: 
         <div style="width: 300px"><!-- PREVIEW ONLY -->
             <div class="s-widget">
                 <div class="-content d-block">
-                    <div style="font-size:24px; margin-bottom:8px; line-height:1;">
+                    <div class="fs8 mb3 lh1">
                         13,672,187
                     </div>
                     questions
