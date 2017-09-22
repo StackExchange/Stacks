@@ -15,6 +15,26 @@ description: All system icons are inline SVG files, invoked via a Razor helper. 
 </div>
 {% endhighlight %}
   </div>
+  
+  <p class="stacks-p _section">By default, every icon will inherit the color of its parent. To override this and show the icon with its native colors (Our logos, for example), you can include the native class in the helper.</p>
+  
+  <div class="stacks-code-preview _preview-none">
+{% highlight html linenos %}
+<div class="example">
+  @Svg.Logo.With("native")
+</div>
+{% endhighlight %}
+  </div>
+  
+  <p class="stacks-p _section">In fact, our helper supports arbitrary classes as well.</p>
+  
+  <div class="stacks-code-preview _preview-none">
+{% highlight html linenos %}
+<div class="example">
+  @Svg.Logo.With("native js-dropdown-target another-class-name")
+</div>
+{% endhighlight %}
+  </div>
 </section>
 
 <section class="stacks-section mb7">
