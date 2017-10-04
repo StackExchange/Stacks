@@ -3,26 +3,6 @@ layout: with-secondary-nav
 title: Sidebar Widgets
 description: Sidebar widgets are widgets that are meant for the sidebar. #TODO: actual description
 ---
-<style>
-    ul {
-        margin-bottom: 0;
-    }
-    .example-avatar {
-        margin-right: 12px;
-        vertical-align: text-bottom;
-    }
-    .post-tag {
-        color: #39739d;
-        background-color: #E1ECF4;
-        display: inline-block;
-        padding: .4em .5em;
-        margin: 4px 4px 4px 0;
-        white-space: nowrap;
-    }
-    .tag-list {
-        margin: -4px -4px -4px 0;
-    }
-</style>
 
 <section class="stacks-section">
     <h2 class="grid fl-jc-space-between fl-ai-center mb0 stacks-title">The Basics</h2>
@@ -40,6 +20,14 @@ description: Sidebar widgets are widgets that are meant for the sidebar. #TODO: 
 
 
     <h3 class="grid fl-jc-space-between fl-ai-center mb0 mt6 stacks-title _subtitle">Simple Items</h3>
+    
+    <p class="stacks-p _section" markdown="1">
+        Oftentimes, your widget will be a list of similar, relatively simple items. In this example, we maintain the same border styling and padding in its containing box, but include a repeating row of of similar styling.
+    </p>
+    
+    <p class="stacks-p _section" markdown="1">
+        Our rows are constructed with an avatar of vertical text alignment of `va-text-bottom`. These avatars are rounded and include some margin on their right side. Each row is separated by a bottom margin of `mb4`.
+    </p>
     
     {% capture html %}
         <div style="width: 300px"><!-- PREVIEW ONLY -->
