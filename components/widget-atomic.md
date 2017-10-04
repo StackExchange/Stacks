@@ -1,7 +1,7 @@
 ---
 layout: with-secondary-nav
 title: Sidebar Widgets
-description: Sidebar widgets are widgets that are meant for the sidebar. #TODO: actual description
+description: CSS is hard to manage, especially in large projects. Styles are written in a global scope, which is narrowed through complex selectors. Specificity issues, redundancy, bloat, and maintenance can become a nightmare. Atomic CSS enables you to style directly in your views and components, avoiding the headache of managing stylesheets. Instead of declaring a single overarching class, we build our components with a series of small immutable classes. This approach keeps our CSS bundle small and our views flexible.
 ---
 
 <section class="stacks-section">
