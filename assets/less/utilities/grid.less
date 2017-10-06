@@ -159,16 +159,16 @@
 //      stating a fixed cell width, apply a modifying to the box container and
 //      all child elements will automatically be sized.
 //  ----------------------------------------------------------------------------
-.grid-box-columns(@num, @count: 1) when (@count =< @num) {
-    &.cell-@{count} {
+.grid-count-columns(@num, @count: 1) when (@count =< @num) {
+    &.grid-@{count}-col {
         > .grid,
         > .grid-cell {
-            .flex(1 (@count * 100% / @num));
+            flex-basis: (@count * 100% / @num);
             max-width: (@count * 100% / @num);
         }
     }
 
-    .grid-box-columns(@num, (@count + 1));
+    .grid-count-columns(@num, (@count + 1));
 }
 
 //  --  GRID GUTTERS
@@ -220,10 +220,11 @@
         max-width: calc(~"@{cell-width} - @{spacing}");
     }
 
-    //  We allow you to apply a ".cell{count}" class to a grid. If that's applied
-    //  to a parent container that also has a ".grid-cell-{count}", then adjust
-    //  the child ".grid" and ".grid-cell" widths accordingly.
-    &.cell@{count} {
+    //  --  UNIFORM CHILD GRID CELLS
+    //      This class allows you to uniformly state the width of `.grid-cell`
+    //      divs within a `.grid` element. In particular we adjust the flex-basis
+    //      and max-width here to account for gutters.
+    &.grid-@{count}-col {
         > .grid,
         > .grid-cell {
               flex-basis: calc(~"@{cell-width} - @{spacing}");
@@ -234,6 +235,8 @@
     .grid-fixed-cell-row(@spacing, @num, (@count + 1));
 }
 
+//  Since we inherit most of the initial row CSS, we only need to change a few items
+//  for columns. Let's re-use CSS where we can.
 .grid-fixed-cell-column(@spacing, @num: @grid-cols, @count: 1) when (@count =< @num) {
     @cell-width: @count * 100% / @num;
 
@@ -242,19 +245,6 @@
         margin-bottom: @spacing / 2;
         margin-left: 0;
         margin-right: 0;
-        flex-basis: calc(~"@{cell-width} - @{spacing}");
-        max-width: calc(~"@{cell-width} - @{spacing}");
-    }
-
-    //  We allow you to apply a ".cell{count}" class to a grid. If that's applied
-    //  to a parent container that also has a ".grid-cell-{count}", then adjust
-    //  the child ".grid" and ".grid-cell" widths accordingly.
-    &.cell@{count} {
-        > .grid,
-        > .grid-cell {
-              flex-basis: calc(~"@{cell-width} - @{spacing}");
-              max-width: calc(~"@{cell-width} - @{spacing}");
-        }
     }
 
     .grid-fixed-cell-row(@spacing, @num, (@count + 1));
@@ -423,7 +413,7 @@
 
     //  $$  AUTO FIXED WIDTH CELLS
     //  --------------------------------------------------------------------------
-    .grid-box-columns(@grid-cols);
+    .grid-count-columns(@grid-cols);
 }
 
 
