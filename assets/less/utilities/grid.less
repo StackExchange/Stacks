@@ -182,8 +182,8 @@
 //      [1] Adjust width / flex-basis numbers
 //
 //      HOW IT WORKS:
-//      A quick primer on how this mixin works. The TL;DR is we' using a mixin
-//      guard to start a loop that'll create all the desired `> .-cell-@{count}`
+//      A quick primer on how this mixin works. The TL;DR is we're using a mixin
+//      guard to start a loop that'll create all the desired `> .grid-cell-@{count}`
 //      classes.
 //
 //      The three mixin parameters are:
@@ -208,6 +208,12 @@
 //      @count value: the current value + 1. This then fires off the mixin
 //      again, creating a loop until we've generated updated widths for all
 //      of our desired @num.
+//
+//      There are two mixins here:
+//          • "grid-fixed-cell-row" -- This is the baseline mixin.
+//          • "grid-fixed-cell-column" -- When the ".grid" is a column, change
+//             the margins, setting a top and bottom margin instead of left
+//             and right.
 //
 //  ----------------------------------------------------------------------------
 .grid-fixed-cell-row(@spacing, @num: @grid-cols, @count: 1) when (@count =< @num) {
@@ -255,6 +261,10 @@
 //          We halve the spacing value because the spacing value should be the
 //          total space between cells--not the total applied to each cell,
 //          which would effectively double the desired total.
+//
+//          The "when" statements here refer to when we declare it's for a
+//          row (default) or a column. When a column we need to reset the
+//          left and right margins and add in top and bottom margins.
 //  ----------------------------------------------------------------------------
 .grid-spacing(@spacing, @dir) when (@dir = row) {
     margin-left: -(@spacing / 2);
