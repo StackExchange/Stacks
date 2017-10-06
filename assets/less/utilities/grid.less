@@ -240,6 +240,8 @@
     > .grid-cell@{count} {
         margin-top: @spacing / 2;
         margin-bottom: @spacing / 2;
+        margin-left: 0;
+        margin-right: 0;
         flex-basis: calc(~"@{cell-width} - @{spacing}");
         max-width: calc(~"@{cell-width} - @{spacing}");
     }
@@ -284,12 +286,16 @@
 .grid-spacing(@spacing, @dir) when (@dir = column) {
     margin-top: -(@spacing / 2);
     margin-bottom: -(@spacing / 2);
+    margin-left: 0;
+    margin-right: 0;
 
     //  --  FLUID CELLS
     > .grid,
     > .grid-cell {
         margin-top: @spacing / 2;
         margin-bottom: @spacing / 2;
+        margin-left: 0;
+        margin-right: 0;
     }
 
     //  --  FIXED WIDTH CELLS
@@ -437,13 +443,7 @@
     &.gs64  { .grid-spacing(@su9, row); }    //  64px
 
     // If a column
-    &.fl-col,
-    &.fl-col-reverse,
-    &.fl-col-wrap,
-    &.fl-col-nowrap,
-    &.fl-col-reverse,
-    &.fl-col-reverse-wrap,
-    &.fl-col-reverse-nowrap {
+    &[class*="fl-col"] {
         &.gs2   { .grid-spacing(@su1, column); }    //  2px
         &.gs4   { .grid-spacing(@su2, column); }    //  4px
         &.gs8   { .grid-spacing(@su3, column); }    //  8px
