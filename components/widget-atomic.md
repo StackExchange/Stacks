@@ -8,7 +8,7 @@ description: CSS is hard to manage, especially in large projects. Styles are wri
     <h2 class="grid fl-jc-space-between fl-ai-center mb0 stacks-title">The Basics</h2>
     
     <p class="stacks-p _section" markdown="1">
-        In its simplest form, a sidebar widget is rounded bordered box with some padding. This is defined by a combination of atomic classes. `ba` defines a border on all sides with a border color of `bac-black-3`. The border radius is defined by `bar1` and its pattern is added with `p5`. Additional text overrides were added to the question count.
+        In its simplest form, a sidebar widget is rounded bordered box with some padding. This is defined by a combination of atomic classes. `ba` defines a border on all sides with a border color of `bac-black-3`. The border radius is defined by `bar1` and its padding is added with `p5`. Additional text overrides were added to the question count.
     </p>
    
     {% capture html %}
@@ -30,7 +30,7 @@ description: CSS is hard to manage, especially in large projects. Styles are wri
     </p>
     
     <p class="stacks-p _section" markdown="1">
-        Our rows are constructed with an avatar of vertical text alignment of `va-text-bottom`. These avatars are rounded and include some margin on their right side. Each row is separated by a bottom margin of `mb4`.
+        Our rows are constructed with an avatar of vertical text alignment of `va-text-bottom`. These avatars are rounded and include some margin on their right side. Each row, except for the last one, is separated from the next by a bottom margin of `mb4`.
     </p>
     
     {% capture html %}
@@ -58,7 +58,7 @@ description: CSS is hard to manage, especially in large projects. Styles are wri
     <h3 class="grid fl-jc-space-between fl-ai-center mb0 mt6 stacks-title _subtitle">Complex Items</h3>
 
     <p class="stacks-p _section" markdown="1">
-        If your items are more complex than that, whitespace may not be enough to separate them clearly. In this case, we've separated each row by subtle divider lines. We've also applied a more rigid grid structure using our flexbox grid classes.
+        If your items are more complex than that, whitespace may not be enough to separate them clearly. In this case, we've separated the rows with subtle divider lines by giving each row except the last one a bottom border with `bb bbc-black-3`. We've also applied a more rigid grid structure using our flexbox grid classes.
     </p>
 
     {% capture html %}
@@ -98,7 +98,7 @@ description: CSS is hard to manage, especially in large projects. Styles are wri
     <h3 class="grid fl-jc-space-between fl-ai-center mb0 mt6 stacks-title _subtitle">Headers</h3>
     
     <p class="stacks-p _section" markdown="1">
-        Headers can be used as a title for the widget. These headers are defined by their background color of `bg-black-025` and their font size of `fs4`.
+        Headers can be used as a title for the widget. These headers are defined by their background color of `bg-black-025` and their font size of `fs4`. Only if the header is the top element in the widget does it need the `btr1` to match the widget's border radius (equivalently `bbr1` if it's the bottom element).
     </p>
 
     {% capture html %}
