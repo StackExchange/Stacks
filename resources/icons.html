@@ -39,17 +39,16 @@ description: All system icons are inline SVG files, invoked via a Razor helper. 
 
 <section class="stacks-section mb7">
   <h2 class="grid fl-jc-space-between fl-ai-center mb0 stacks-title">Icon Set</h2>
-  <p class="fs2 tc-medium"><em>Last updated August 1, 2017</em></p>
+  <p class="fs2 tc-medium"><em>Last updated October 10, 2017</em></p>
 
   <div class="grid fl-wrap gs3 _cell4 iconset">
-      {% assign icon_sort = site.data.icons | sort: "title" %}
+      {% assign icon_sort = site.data.icons | sort: "helper" %}
       {% for icon in icon_sort %}
       <div class="grid fl-col-nowrap fl-inline card stacks-preview -item">
           <div class="grid-cell fl-2 fl-center p-8 -preview">
               {% include_relative {{ icon.helper | prepend: "svg-icons/" | append: ".svg" }} %}
           </div>
           <div class="grid fl-col-nowrap fl-0 fl-ai-center p-8 -content">
-              <h2 class="grid-cell -title fs2 m0">{{ icon.title }}</h2>
               <code class="grid-cell fs1">@Svg.{{ icon.helper }}</code>
           </div>
       </div>
@@ -64,5 +63,5 @@ description: All system icons are inline SVG files, invoked via a Razor helper. 
     <li><a href="https://gh.stackoverflow.com/Design/Icons/issues/new">Submit a request</a> outlining the desired icon, the icon's intended purposed, and where it will be used.</li>
     <li>If the icon is ready, <a href="https://gh.stackoverflow.com/Design/Icons/compare">submit a pull request</a> to have it to be reviewed. Please be sure to provide the same information as above.</li>
   </ol>
-  <p class="stacks-p _section">If you have further questions, visit the project's Slack channel: #design-stacks.</p>
+  <p class="stacks-p _section">If you have further questions, visit the project's Slack channel: <a href="https://stackexchange.slack.com/messages/C27RWNQN9">#design-stacks</a>.</p>
 </section>
