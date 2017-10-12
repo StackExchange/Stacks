@@ -1,7 +1,7 @@
 ---
 layout: with-secondary-nav
 title: Sidebar Widgets
-description: Sidebar widgets are widgets that are meant for the sidebar. #TODO: actual description
+description: Creating consistent and reusable UI elements is hard. Small CSS utility classes for adjusting simple things like spacing and font sizes can speed up development, but always piecing complex components together from parts leads to inconsistent UX and unreadable and unmaintainable HTML. Building classes for these components, using an established naming scheme like ".parent .-child ._modifier", prevents leaking of styles, isolates the CSS implementation from its use in the views, and makes for more readable HTML.
 ---
 <style>
     ul {
