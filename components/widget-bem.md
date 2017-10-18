@@ -1,7 +1,7 @@
 ---
 layout: with-secondary-nav
 title: Sidebar Widgets
-description: Sidebar widgets are widgets that are meant for the sidebar. #TODO: actual description
+description: Creating consistent and reusable UI elements is hard. Small CSS utility classes for adjusting simple things like spacing and font sizes can speed up development, but always piecing complex components together from parts leads to inconsistent UX and unreadable and unmaintainable HTML. Building classes for these components, using an established naming scheme like ".parent .-child ._modifier", prevents leaking of styles, isolates the CSS implementation from its use in the views, and makes for more readable HTML.
 ---
 <style>
     ul {
@@ -10,6 +10,11 @@ description: Sidebar widgets are widgets that are meant for the sidebar. #TODO: 
     .example-avatar {
         margin-right: 12px;
         vertical-align: text-bottom;
+    }
+    .example-question-count {
+        font-size: 24px;
+        line-height: 1;
+        margin-bottom: 8px;
     }
     .post-tag {
         color: #39739d;
@@ -39,7 +44,7 @@ description: Sidebar widgets are widgets that are meant for the sidebar. #TODO: 
         <div style="width: 300px"><!-- PREVIEW ONLY -->
             <div class="s-widget">
                 <div class="-content d-block">
-                    <div class="fs8 mb3 lh1">
+                    <div class="example-question-count">
                         13,672,187
                     </div>
                     questions
@@ -65,21 +70,21 @@ description: Sidebar widgets are widgets that are meant for the sidebar. #TODO: 
     {% capture html %}
         <div style="width: 300px"><!-- PREVIEW ONLY -->
             <div class="s-widget">
-                <div class="-content _items _block-items">
+                <div class="-content _items">
                     <div class="-item">
                         <img src="https://i.stack.imgur.com/MSY0L.jpg?s=32&amp;g=1" alt="balpha" width="16" height="16" class="example-avatar"><!-- PREVIEW ONLY -->
                         <img src="..." class="example-avatar"><!-- CODE ONLY -->
-                        <strong>balpha</strong> contributed 6 edits
+                        <span><strong>balpha</strong> contributed 6 edits</span>
                     </div>
                     <div class="-item">
                         <img src="https://www.gravatar.com/avatar/13eaa034bcdefa7a6de2776007f43020?s=32&d=identicon&r=PG" alt="Paweł" width="16" height="16" class="example-avatar"><!-- PREVIEW ONLY -->
                         <img src="..." class="example-avatar"><!-- CODE ONLY -->
-                        <strong>Paweł</strong> contributed 7 edits
+                        <span><strong>Paweł</strong> contributed 7 edits</span>
                     </div>
                     <div class="-item">
                         <img src="https://i.stack.imgur.com/nf0QA.jpg?s=32&g=1" alt="Aaron Shekey" width="16" height="16" class="example-avatar"><!-- PREVIEW ONLY -->
                         <img src="..." class="example-avatar"><!-- CODE ONLY -->
-                        <strong>Aaron Shekey</strong> contributed 3 edits
+                        <span><strong>Aaron Shekey</strong> contributed 3 edits</span>
                     </div>                    
                 </div>
             </div>
@@ -136,12 +141,11 @@ description: Sidebar widgets are widgets that are meant for the sidebar. #TODO: 
 
     <p class="stacks-p _section" markdown="1">
         The other possible child class is `-header`, which unsurprisingly creates a header. Headers can be used both
-        as a title for the widget, as well as to create several sections inside the widget. The `_alternate-small-bold`
-        modifier is available for headers to modify the text appearance.
+        as a title for the widget, as well as to create several sections inside the widget.
     </p>
 
     {% capture html %}
-        <div class="grid fl-jc-space-between"><div style="width: 300px"><!-- PREVIEW ONLY -->
+        <div style="width: 300px"><!-- PREVIEW ONLY -->
             <div class="s-widget">
                 <div class="-header">
                     Stats
@@ -163,8 +167,16 @@ description: Sidebar widgets are widgets that are meant for the sidebar. #TODO: 
                     </tbody>
                 </table>
             </div>
-            </div><div style="margin-left:32px;width: 300px"><!-- PREVIEW ONLY -->
-            
+        </div>
+    {% endcapture %}{% include example.html html=html %}
+
+
+    <p class="stacks-p _section" markdown="1">
+        The `_alternate-small-bold` modifier is available for headers to modify the text appearance.
+    </p>
+    
+    {% capture html %}
+        <div style="width: 300px"><!-- PREVIEW ONLY -->
             <div class="s-widget">
                 <div class="-header _alternate-small-bold">
                     Stats
@@ -206,11 +218,12 @@ description: Sidebar widgets are widgets that are meant for the sidebar. #TODO: 
                     <li class="-item"><a href="#">Javascript: Why ...</a></li><!-- CODE ONLY -->
                 </ul>
             </div>
-
-        </div></div><!-- PREVIEW ONLY -->
+        </div><!-- PREVIEW ONLY -->
     {% endcapture %}{% include example.html html=html %}
     
 </section>
+
+{% comment %}
 
 <section class="stacks-section">
     <h2 class="grid fl-jc-space-between fl-ai-center mb0 stacks-title">Alternative Colors</h2>
@@ -568,3 +581,4 @@ description: Sidebar widgets are widgets that are meant for the sidebar. #TODO: 
         }
     };
 </script>
+{% endcomment %}
