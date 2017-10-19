@@ -14,6 +14,57 @@ box-shadow:
   - class: bs-i-l
     output: "box-shadow: inset 0 @su1/2 @su4 0 fade(@black-350, 50%);"
 
+box-sizing:
+  - class: box-content
+    output: "box-sizing: content-box;"
+    define: "<p class='mt0'>Indicates that the element's width and height affects only the element's content box, that is the area minus the element's margin, padding, and borders. <em>This is the default browswer value.</em></p>"
+  - class: box-border
+    output: "box-sizing: border-box;"
+    define: "<p class='mt0'>Indicates that the element's width and height affects the entire element. <emThis is the <strong>preferred</strong> default value for Stacks.</em</p>"
+  - class: box-unset
+    output: "box-sizing: unset;"
+    define: "<p class='mt0'>Removes the previously set <code class='p1 ff-mono fs2 bg-black-050'>box-sixing</code> value, reverting it back to the initial browser value.</p>"
+
+coordinates:
+  - class: "[position]-n-100"
+    output: "top: -100%;"
+    define: Position coordinate which places an element 100% negatively from the stated position in relation to its parent.
+  - class: "[position]-n-50"
+    output: "right: -50%;"
+    define: Top position coordinate which places an element 50% negatively from the stated position in relation to its parent.
+  - class: "[position]-0"
+    output: "bottom: 0;"
+    define: Top position coordinate which aligns an element within its parent from the stated position.
+  - class: "[position]-50"
+    output: "left: 50%;"
+    define: Top position coordinate which places an element 50% positively from the stated position in relation to its parent.
+  - class: "[position]-100"
+    output: "top: 100%;"
+    define: Top position coordinate which places an element 100% positively from the stated position  in relation to its parent.
+
+display:
+  - class: d-block
+    output: "display: block;"
+    define: "<p class='mt0'>This turns any element into a block-level element.</p>"
+  - class: d-inline
+    output: "display: inline;"
+    define: "<p class='mt0'>This turns any element into an inline element that flows like text.</p>"
+  - class: d-inline-block
+    output: "display: inline-block;"
+    define: "<p class='mt0'>This turns any element into a block-level box that will be flowed with surrounding content as if it were a single inline box (behaving much like a replaced element would)</p>"
+  - class: d-table
+    output: "display: table;"
+    define: "<p class='mt0'>This makes your element behave like <code class='p1 ff-mono fs2 bg-black-050'>table</code> HTML elements. It defines a block-level box.</p>"
+  - class: d-table-cell
+    output: "display: table-cell;"
+    define: "<p class='mt0'>These elements behave like <code class='p1 ff-mono fs2 bg-black-050'>td</code> HTML elements.</p>"
+  - class: d-none
+    output: "display: none;"
+    define: "<p class='mt0'>Effectively removes the element from the DOM. Useful for showing / hiding elements.</p>"
+  - class: d-unset
+    output: "display: unset;"
+    define: "<p class='mt0'>Removes any display property from the element.</p>"
+
 floats:
   - class: float-left
     output: "float: left;"
@@ -40,17 +91,51 @@ floats:
     output: "clear: none;"
     define: "<p class='mt0'>Indicates that the element is <em>not</em> moved to clear past flaoting elements.</p>"
 
-box-sizing:
-  - class: box-content
-    output: "box-sizing: content-box;"
-    define: "<p class='mt0'>Indicates that the element's width and height affects only the element's content box, that is the area minus the element's margin, padding, and borders. <em>This is the default browswer value.</em></p>"
-  - class: box-border
-    output: "box-sizing: border-box;"
-    define: "<p class='mt0'>Indicates that the element's width and height affects the entire element. <emThis is the <strong>preferred</strong> default value for Stacks.</em</p>"
-  - class: box-unset
-    output: "box-sizing: unset;"
-    define: "<p class='mt0'>Removes the previously set <code class='p1 ff-mono fs2 bg-black-050'>box-sixing</code> value, reverting it back to the initial browser value.</p>"
-    
+max-size:
+  - class: "[max]1"
+    name: 1
+    value: 1
+    output: 15
+  - class: "[max]2"
+    name: 2
+    value: 2
+    output: 30
+  - class: "[max]3"
+    name: 3
+    value: 4
+    output: 60
+  - class: "[max]4"
+    name: 4
+    value: 8
+    output: 120
+  - class: "[max]5"
+    name: 5
+    value: 12
+    output: 180
+  - class: "[max]6"
+    name: 6
+    value: 16
+    output: 240
+  - class: "[max]7"
+    name: 7
+    value: 24
+    output: 360
+  - class: "[max]8"
+    name: 8
+    value: 32
+    output: 480
+  - class: "[max]9"
+    name: 9
+    value: 48
+    output: 720
+  - class: "[max]10"
+    name: 10
+    value: 64
+    output: 960
+  - class: "[max]100"
+    name: 100
+    value: 100
+
 opacity:
   - class: o0
     output: "opacity: 0;"
@@ -126,46 +211,6 @@ position:
     output: "position: sticky;"
     define: "<p class='mt0'>An element is positioned according to the document's flow, and then offset relative to its flow root and containing block. This creates a new stacking context.</p><p class='mt0'><strong class='mb4'>Notes:</strong><br/>Sticky elements, by design, will not work inside an element with <code class='p1 ff-mono fs2 bg-black-050'>overflow:hidden;</code> or <code class='p1 ff-mono fs2 bg-black-050'>overflow:auto;</code> values.</p><p class='mt0'>The sticky position is still considered an experimental value and requires a <code class='p1 ff-mono fs2 bg-black-050'>position: -webkit-sticky;</code> vendor prefix for Safari.</p>"
 
-display:
-  - class: d-block
-    output: "display: block;"
-    define: "<p class='mt0'>This turns any element into a block-level element.</p>"
-  - class: d-inline
-    output: "display: inline;"
-    define: "<p class='mt0'>This turns any element into an inline element that flows like text.</p>"
-  - class: d-inline-block
-    output: "display: inline-block;"
-    define: "<p class='mt0'>This turns any element into a block-level box that will be flowed with surrounding content as if it were a single inline box (behaving much like a replaced element would)</p>"
-  - class: d-table
-    output: "display: table;"
-    define: "<p class='mt0'>This makes your element behave like <code class='p1 ff-mono fs2 bg-black-050'>table</code> HTML elements. It defines a block-level box.</p>"
-  - class: d-table-cell
-    output: "display: table-cell;"
-    define: "<p class='mt0'>These elements behave like <code class='p1 ff-mono fs2 bg-black-050'>td</code> HTML elements.</p>"
-  - class: d-none
-    output: "display: none;"
-    define: "<p class='mt0'>Effectively removes the element from the DOM. Useful for showing / hiding elements.</p>"
-  - class: d-unset
-    output: "display: unset;"
-    define: "<p class='mt0'>Removes any display property from the element.</p>"
-
-coordinates:
-  - class: "[position]-n-100"
-    output: "top: -100%;"
-    define: Position coordinate which places an element 100% negatively from the stated position in relation to its parent.
-  - class: "[position]-n-50"
-    output: "right: -50%;"
-    define: Top position coordinate which places an element 50% negatively from the stated position in relation to its parent.
-  - class: "[position]-0"
-    output: "bottom: 0;"
-    define: Top position coordinate which aligns an element within its parent from the stated position.
-  - class: "[position]-50"
-    output: "left: 50%;"
-    define: Top position coordinate which places an element 50% positively from the stated position in relation to its parent.
-  - class: "[position]-100"
-    output: "top: 100%;"
-    define: Top position coordinate which places an element 100% positively from the stated position  in relation to its parent.
-
 sizing:
   - class: "[dimension]0"
     value: 0
@@ -194,51 +239,6 @@ sizing:
   - class: "[dimension]100"
     value: 100
 
-max-size:
-  - class: "[max]1"
-    name: 1
-    value: 1
-    output: 15
-  - class: "[max]2"
-    name: 2
-    value: 2
-    output: 30
-  - class: "[max]3"
-    name: 3
-    value: 4
-    output: 60
-  - class: "[max]4"
-    name: 4
-    value: 8
-    output: 120
-  - class: "[max]5"
-    name: 5
-    value: 12
-    output: 180
-  - class: "[max]6"
-    name: 6
-    value: 16
-    output: 240
-  - class: "[max]7"
-    name: 7
-    value: 24
-    output: 360
-  - class: "[max]8"
-    name: 8
-    value: 32
-    output: 480
-  - class: "[max]9"
-    name: 9
-    value: 48
-    output: 720
-  - class: "[max]10"
-    name: 10
-    value: 64
-    output: 960
-  - class: "[max]100"
-    name: 100
-    value: 100
-    
 vertical-alignment:
   - class: "va-baseline"
     output: "vertical-align: baseline;"
