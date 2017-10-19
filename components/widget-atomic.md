@@ -14,7 +14,7 @@ description: CSS is hard to manage, especially in large projects. Styles are wri
     {% capture html %}
         <div style="width: 300px"><!-- PREVIEW ONLY -->
             <div class="ba bac-black-3 bar1 p5">
-                <div class="fs8 mb3 lh1">
+                <div class="fs8 mb8 lh1">
                     13,672,187
                 </div>
                 questions
@@ -23,39 +23,39 @@ description: CSS is hard to manage, especially in large projects. Styles are wri
     {% endcapture %}{% include example.html html=html %}
 
 
-    <h3 class="grid fl-jc-space-between fl-ai-center mb0 mt6 stacks-title _subtitle">Simple Items</h3>
+    <h3 class="grid fl-jc-space-between fl-ai-center mb0 mt24 stacks-title _subtitle">Simple Items</h3>
     
     <p class="stacks-p _section" markdown="1">
         Oftentimes, your widget will be a list of similar, relatively simple items. In this example, we maintain the same border styling and padding in its containing box, but include a repeating row of of similar styling.
     </p>
     
     <p class="stacks-p _section" markdown="1">
-        Our rows are constructed with an avatar of vertical text alignment of `va-text-bottom`. These avatars are rounded and include some margin on their right side. Each row, except for the last one, is separated from the next by a bottom margin of `mb4`.
+        Our rows are constructed with an avatar of vertical text alignment of `va-text-bottom`. These avatars are rounded and include some margin on their right side. Each row, except for the last one, is separated from the next by a bottom margin of `mb12`.
     </p>
     
     {% capture html %}
         <div style="width: 300px"><!-- PREVIEW ONLY -->
             <div class="ba bac-black-3 bar1 p5">
-                <div class="mb4">
-                    <img src="https://i.stack.imgur.com/MSY0L.jpg?s=32&amp;g=1" alt="balpha" width="16" height="16" class="va-text-bottom mr3 bar1"><!-- PREVIEW ONLY -->
-                    <img src="..." class="va-text-bottom mr3 bar1"><!-- CODE ONLY -->
+                <div class="mb12">
+                    <img src="https://i.stack.imgur.com/MSY0L.jpg?s=32&amp;g=1" alt="balpha" width="16" height="16" class="va-text-bottom mr8 bar1"><!-- PREVIEW ONLY -->
+                    <img src="..." class="va-text-bottom mr8 bar1"><!-- CODE ONLY -->
                     <strong>balpha</strong> contributed 6 edits
                 </div>
-                <div class="mb4">
-                    <img src="https://www.gravatar.com/avatar/13eaa034bcdefa7a6de2776007f43020?s=32&d=identicon&r=PG" alt="Paweł" width="16" height="16" class="va-text-bottom mr3 bar1"><!-- PREVIEW ONLY -->
-                    <img src="..." class="va-text-bottom mr3 bar1"><!-- CODE ONLY -->
+                <div class="mb12">
+                    <img src="https://www.gravatar.com/avatar/13eaa034bcdefa7a6de2776007f43020?s=32&d=identicon&r=PG" alt="Paweł" width="16" height="16" class="va-text-bottom mr8 bar1"><!-- PREVIEW ONLY -->
+                    <img src="..." class="va-text-bottom mr8 bar1"><!-- CODE ONLY -->
                     <strong>Paweł</strong> contributed 7 edits
                 </div>
                 <div>
-                    <img src="https://i.stack.imgur.com/nf0QA.jpg?s=32&g=1" alt="Aaron Shekey" width="16" height="16" class="va-text-bottom mr3 bar1"><!-- PREVIEW ONLY -->
-                    <img src="..." class="va-text-bottom mr3 bar1"><!-- CODE ONLY -->
+                    <img src="https://i.stack.imgur.com/nf0QA.jpg?s=32&g=1" alt="Aaron Shekey" width="16" height="16" class="va-text-bottom mr8 bar1"><!-- PREVIEW ONLY -->
+                    <img src="..." class="va-text-bottom mr8 bar1"><!-- CODE ONLY -->
                     <strong>Aaron Shekey</strong> contributed 3 edits
                 </div>
             </div>
         </div><!-- PREVIEW ONLY -->
     {% endcapture %}{% include example.html html=html %}
 
-    <h3 class="grid fl-jc-space-between fl-ai-center mb0 mt6 stacks-title _subtitle">Complex Items</h3>
+    <h3 class="grid fl-jc-space-between fl-ai-center mb0 mt24 stacks-title _subtitle">Complex Items</h3>
 
     <p class="stacks-p _section" markdown="1">
         If your items are more complex than that, whitespace may not be enough to separate them clearly. In this case, we've separated the rows with subtle divider lines by giving each row except the last one a bottom border with `bb bbc-black-3`. We've also applied a more rigid grid structure using our flexbox grid classes.
@@ -65,8 +65,8 @@ description: CSS is hard to manage, especially in large projects. Styles are wri
         <div style="width: 300px"><!-- PREVIEW ONLY -->
             <div class="ba bac-black-3 bar1">
                 <div class="grid _fl0 bb bbc-black-3 p5">
-                    <img src="https://i.stack.imgur.com/MSY0L.jpg?s=64&amp;g=1" alt="balpha" width="32" height="32" class="bar1 grid-cell mr4"><!-- PREVIEW ONLY -->
-                    <img src="..." class="bar1 grid-cell mr4"><!-- CODE ONLY -->
+                    <img src="https://i.stack.imgur.com/MSY0L.jpg?s=64&amp;g=1" alt="balpha" width="32" height="32" class="bar1 grid-cell mr12"><!-- PREVIEW ONLY -->
+                    <img src="..." class="bar1 grid-cell mr12"><!-- CODE ONLY -->
                     <div class="lh4 grid-cell">
                         <strong>balpha</strong><br>
                         contributed 6 edits<br>
@@ -74,8 +74,8 @@ description: CSS is hard to manage, especially in large projects. Styles are wri
                     </div>
                 </div>
                 <div class="grid _fl0 bb bbc-black-3 p5">
-                    <img src="https://www.gravatar.com/avatar/13eaa034bcdefa7a6de2776007f43020?s=64&d=identicon&r=P" alt="Paweł" width="32" height="32" class="bar1 grid-cell mr4"><!-- PREVIEW ONLY -->
-                    <img src="..." class="bar1 grid-cell mr4"><!-- CODE ONLY -->
+                    <img src="https://www.gravatar.com/avatar/13eaa034bcdefa7a6de2776007f43020?s=64&d=identicon&r=P" alt="Paweł" width="32" height="32" class="bar1 grid-cell mr12"><!-- PREVIEW ONLY -->
+                    <img src="..." class="bar1 grid-cell mr12"><!-- CODE ONLY -->
                     <div class="lh4 grid-cell">
                         <strong>Paweł</strong><br>
                         contributed 7 edits<br>
@@ -83,8 +83,8 @@ description: CSS is hard to manage, especially in large projects. Styles are wri
                     </div>
                 </div>
                 <div class="grid _fl0 p5">
-                    <img src="https://i.stack.imgur.com/nf0QA.jpg?s=64&g=1" alt="Aaron Shekey" width="32" height="32" class="bar1 grid-cell mr4"><!-- PREVIEW ONLY -->
-                    <img src="..." class="bar1 grid-cell mr4"><!-- CODE ONLY -->
+                    <img src="https://i.stack.imgur.com/nf0QA.jpg?s=64&g=1" alt="Aaron Shekey" width="32" height="32" class="bar1 grid-cell mr12"><!-- PREVIEW ONLY -->
+                    <img src="..." class="bar1 grid-cell mr12"><!-- CODE ONLY -->
                     <div class="lh4 grid-cell">
                         <strong>Aaron Shekey</strong><br>
                         contributed 3 edits<br>
@@ -95,7 +95,7 @@ description: CSS is hard to manage, especially in large projects. Styles are wri
         </div><!-- PREVIEW ONLY -->
     {% endcapture %}{% include example.html html=html %}
 
-    <h3 class="grid fl-jc-space-between fl-ai-center mb0 mt6 stacks-title _subtitle">Headers</h3>
+    <h3 class="grid fl-jc-space-between fl-ai-center mb0 mt24 stacks-title _subtitle">Headers</h3>
     
     <p class="stacks-p _section" markdown="1">
         Headers can be used as a title for the widget. These headers are defined by their background color of `bg-black-025` and their font size of `fs4`. Only if the header is the top element in the widget does it need the `btr1` to match the widget's border radius (equivalently `bbr1` if it's the bottom element).
@@ -162,15 +162,15 @@ description: CSS is hard to manage, especially in large projects. Styles are wri
                     Recent Hot Answers
                 </div>
                 <ul class="list-ls-none p5 m0">
-                    <li class="mb4"><a href="#" class="tc-black-500">Currying-in function and ES6 destructing</a></li><!-- PREVIEW ONLY -->
-                    <li class="mb4"><a href="#" class="tc-black-500">JSON data concatenate two data </a></li><!-- PREVIEW ONLY -->
-                    <li class="mb4"><a href="#" class="tc-black-500">Why addEventListener don`t work </a></li><!-- PREVIEW ONLY -->
-                    <li class="mb4"><a href="#" class="tc-black-500">Redux: why using Object.assign if it is not perform deep clone? </a></li><!-- PREVIEW ONLY -->
+                    <li class="mb12"><a href="#" class="tc-black-500">Currying-in function and ES6 destructing</a></li><!-- PREVIEW ONLY -->
+                    <li class="mb12"><a href="#" class="tc-black-500">JSON data concatenate two data </a></li><!-- PREVIEW ONLY -->
+                    <li class="mb12"><a href="#" class="tc-black-500">Why addEventListener don`t work </a></li><!-- PREVIEW ONLY -->
+                    <li class="mb12"><a href="#" class="tc-black-500">Redux: why using Object.assign if it is not perform deep clone? </a></li><!-- PREVIEW ONLY -->
                     <li><a href="#" class="tc-black-500">Javascript: Why is my optimized loop slower than the more naive one</a></li><!-- PREVIEW ONLY -->
-                    <li class="mb4"><a href="#" class="tc-black-500">Currying-in ...</a></li><!-- CODE ONLY -->
-                    <li class="mb4"><a href="#" class="tc-black-500">JSON data ...</a></li><!-- CODE ONLY -->
-                    <li class="mb4"><a href="#" class="tc-black-500">Why addEventListener ...</a></li><!-- CODE ONLY -->
-                    <li class="mb4"><a href="#" class="tc-black-500">Redux: why ...</a></li><!-- CODE ONLY -->
+                    <li class="mb12"><a href="#" class="tc-black-500">Currying-in ...</a></li><!-- CODE ONLY -->
+                    <li class="mb12"><a href="#" class="tc-black-500">JSON data ...</a></li><!-- CODE ONLY -->
+                    <li class="mb12"><a href="#" class="tc-black-500">Why addEventListener ...</a></li><!-- CODE ONLY -->
+                    <li class="mb12"><a href="#" class="tc-black-500">Redux: why ...</a></li><!-- CODE ONLY -->
                     <li><a href="#" class="tc-black-500">Javascript: Why ...</a></li><!-- CODE ONLY -->
                 </ul>
             </div>
