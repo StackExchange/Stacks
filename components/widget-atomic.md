@@ -110,15 +110,15 @@ description: CSS is hard to manage, especially in large projects. Styles are wri
                 <table class="p16">
                     <tbody>
                         <tr>
-                            <td class="tc-black-350 pt16 pb8">asked</td>
+                            <td class="tc-black-350 pr16 pb8">asked</td>
                             <td class="pb8">4 years, 4 months ago</td>
                         </tr>
                         <tr>
-                            <td class="tc-black-350 pt16 pb8">viewed</td>
+                            <td class="tc-black-350 pr16 pb8">viewed</td>
                             <td class="pb8">7,437 times</td>
                         </tr>
                         <tr>
-                            <td class="tc-black-350 pt16">active</td>
+                            <td class="tc-black-350 pr16">active</td>
                             <td>2 months ago</td>
                         </tr>
                     </tbody>
@@ -140,20 +140,20 @@ description: CSS is hard to manage, especially in large projects. Styles are wri
                 <table class="p16">
                     <tbody><!-- PREVIEW ONLY -->
                         <tr><!-- PREVIEW ONLY -->
-                            <td class="tc-black-350 pt16 pb8">created</td><!-- PREVIEW ONLY -->
+                            <td class="tc-black-350 pr16 pb8">created</td><!-- PREVIEW ONLY -->
                             <td class="pb8">9 years, 1 month ago</td><!-- PREVIEW ONLY -->
                         </tr><!-- PREVIEW ONLY -->
                         <tr><!-- PREVIEW ONLY -->
-                            <td class="tc-black-350 pt16 pb8">viewed</td><!-- PREVIEW ONLY -->
+                            <td class="tc-black-350 pr16 pb8">viewed</td><!-- PREVIEW ONLY -->
                             <td class="pb8">88,020 times</td><!-- PREVIEW ONLY -->
                         </tr><!-- PREVIEW ONLY -->
                         <tr><!-- PREVIEW ONLY -->
-                            <td class="tc-black-350 pt16 pb8">active</td><!-- PREVIEW ONLY -->
+                            <td class="tc-black-350 pr16 pb8">active</td><!-- PREVIEW ONLY -->
                             <td class="pb8">3 days ago</td><!-- PREVIEW ONLY -->
                         </tr><!-- PREVIEW ONLY -->
                         <tr><!-- PREVIEW ONLY -->
-                            <td class="tc-black-350 pt16 pb8">editors</td><!-- PREVIEW ONLY -->
-                            <td class="pb8">164</td><!-- PREVIEW ONLY -->
+                            <td class="tc-black-350 pr16">editors</td><!-- PREVIEW ONLY -->
+                            <td>164</td><!-- PREVIEW ONLY -->
                         </tr><!-- PREVIEW ONLY -->
                     </tbody><!-- PREVIEW ONLY -->
                     ...<!-- CODE ONLY -->
