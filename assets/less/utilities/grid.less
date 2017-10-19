@@ -163,7 +163,7 @@
     &.grid-@{count}-col {
         > .grid,
         > .grid-cell {
-            flex-basis: (@count * 100% / @num);
+            .flex(0 0 (@count * 100% / @num));
             max-width: (@count * 100% / @num);
         }
     }
@@ -219,21 +219,21 @@
 .grid-fixed-cell-spacing(@spacing, @dir, @num: @grid-cols, @count: 1) when (@count =< @num) {
     @cell-width: @count * 100% / @num;
 
-    & and when (@dir = all) {
-        > .grid-cell@{count} {
+    & when (@dir = all) {
+        > .grid-cell-@{count} {
             margin: @spacing / 2;
         }
     }
 
-    & and when (@dir = row) {
-        > .grid-cell@{count} {
+    & when (@dir = row) {
+        > .grid-cell-@{count} {
             margin-left: @spacing / 2;
             margin-right: @spacing / 2;
         }
     }
 
-    & and when (@dir = column) {
-        > .grid-cell@{count} {
+    & when (@dir = column) {
+        > .grid-cell-@{count} {
             margin-top: @spacing / 2;
             margin-bottom: @spacing / 2;
         }
@@ -384,12 +384,12 @@
 
 //  --  Flex Widths
 //      Graduating scale of flex-grow and flex-shrink values
-.fl0                      { .flex(0 auto); }
-.fl1                      { .flex(1 auto); }
-.fl2                      { .flex(2 auto); }
-.fl3                      { .flex(3 auto); }
-.fl4                      { .flex(4 auto); }
-.fl5                      { .flex(5 auto); }
+.fl0                      { .flex(0 auto) !important; }
+.fl1                      { .flex(1 auto) !important; }
+.fl2                      { .flex(2 auto) !important; }
+.fl3                      { .flex(3 auto) !important; }
+.fl4                      { .flex(4 auto) !important; }
+.fl5                      { .flex(5 auto) !important; }
 
 //  --  Ordering
 //      Designate a child container's position.
