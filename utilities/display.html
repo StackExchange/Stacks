@@ -1,0 +1,59 @@
+---
+layout: with-secondary-nav
+title: Display
+description: Display atomic classes allow you to change an element’s display quickly.
+---
+<section class="stacks-section">
+    <h2 class="grid fl-jc-space-between fl-ai-center mb4 mt6 stacks-title">Display</h2>
+    <h3 class="grid fl-jc-space-between fl-ai-center mb4 mt6 stacks-title _subtitle">Definitions</h3>
+    <table class="table mb7 _hover">
+        <thead>
+            <tr>
+                <th class="-cell2" scope="col">Class</th>
+                <th class="-cell3" scope="col">Output</th>
+                <th scope="col">Definition</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for utility in site.data.utility-definitions.display %}
+              <tr class="fs2">
+                  <th scope="row" class="p-8 ff-mono">.{{ utility.class }}</th>
+                  <td class="p-8 ff-mono">{{ utility.output }}</td>
+                  <td>{{ utility.define }}</td>
+              </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <h3 class="grid fl-jc-space-between fl-ai-center mb0 mt6 stacks-title _subtitle">Examples</h3>
+    <div class="stacks-code-preview">
+{% highlight html linenos %}
+<div class="d-block">…</div>
+<div class="d-inline">…</div>
+<div class="d-inline-block">…</div>
+<div class="d-table">…</div>
+<div class="d-table-cell">…</div>
+<div class="d-none">…</div>
+<div class="d-unset">…</div>
+{% endhighlight %}
+        <div class="-preview">
+            <div class="d-block my2 w20 bg-orange-100 p4 ba bac-orange-3">.d-block</div>
+            <br>
+            <div class="d-inline my2 bg-orange-100 p4 ba bac-orange-3">.d-inline</div>
+            <div class="d-inline my2 bg-orange-100 p4 ba bac-orange-3">.d-inline</div>
+            <div class="d-inline my2 bg-orange-100 p4 ba bac-orange-3">.d-inline</div>
+            <br>
+            <br>
+            <div class="d-inline-block my2 w20 bg-orange-100 p4 ba bac-orange-3">.d-inline-block</div>
+            <div class="d-inline-block my2 w20 bg-orange-100 p4 ba bac-orange-3">.d-inline-block</div>
+            <div class="d-inline-block my2 w20 bg-orange-100 p4 ba bac-orange-3">.d-inline-block</div>
+            
+            <div class="d-table my2 bg-orange-100 p4 ba bac-orange-3">
+                <div class="d-table-cell my2 bg-orange-100 p4 ba bac-orange-3">.d-table-cell inside .d-table</div>
+                <div class="d-table-cell my2 bg-orange-100 p4 ba bac-orange-3">.d-table-cell inside .d-table</div>
+                <div class="d-table-cell my2 bg-orange-100 p4 ba bac-orange-3">.d-table-cell inside .d-table</div>
+            </div>
+            <br>
+        </div>
+    </div>
+</section>
