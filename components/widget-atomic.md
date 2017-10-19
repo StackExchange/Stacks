@@ -8,12 +8,12 @@ description: CSS is hard to manage, especially in large projects. Styles are wri
     <h2 class="grid fl-jc-space-between fl-ai-center mb0 stacks-title">The Basics</h2>
     
     <p class="stacks-p _section" markdown="1">
-        In its simplest form, a sidebar widget is rounded bordered box with some padding. This is defined by a combination of atomic classes. `ba` defines a border on all sides with a border color of `bac-black-3`. The border radius is defined by `bar1` and its padding is added with `p5`. Additional text overrides were added to the question count.
+        In its simplest form, a sidebar widget is rounded bordered box with some padding. This is defined by a combination of atomic classes. `ba` defines a border on all sides with a border color of `bac-black-3`. The border radius is defined by `bar1` and its padding is added with `p16`. Additional text overrides were added to the question count.
     </p>
    
     {% capture html %}
         <div style="width: 300px"><!-- PREVIEW ONLY -->
-            <div class="ba bac-black-3 bar1 p5">
+            <div class="ba bac-black-3 bar1 p16">
                 <div class="fs8 mb8 lh1">
                     13,672,187
                 </div>
@@ -35,7 +35,7 @@ description: CSS is hard to manage, especially in large projects. Styles are wri
     
     {% capture html %}
         <div style="width: 300px"><!-- PREVIEW ONLY -->
-            <div class="ba bac-black-3 bar1 p5">
+            <div class="ba bac-black-3 bar1 p16">
                 <div class="mb12">
                     <img src="https://i.stack.imgur.com/MSY0L.jpg?s=32&amp;g=1" alt="balpha" width="16" height="16" class="va-text-bottom mr8 bar1"><!-- PREVIEW ONLY -->
                     <img src="..." class="va-text-bottom mr8 bar1"><!-- CODE ONLY -->
@@ -64,7 +64,7 @@ description: CSS is hard to manage, especially in large projects. Styles are wri
     {% capture html %}
         <div style="width: 300px"><!-- PREVIEW ONLY -->
             <div class="ba bac-black-3 bar1">
-                <div class="grid _fl0 bb bbc-black-3 p5">
+                <div class="grid _fl0 bb bbc-black-3 p16">
                     <img src="https://i.stack.imgur.com/MSY0L.jpg?s=64&amp;g=1" alt="balpha" width="32" height="32" class="bar1 grid-cell mr12"><!-- PREVIEW ONLY -->
                     <img src="..." class="bar1 grid-cell mr12"><!-- CODE ONLY -->
                     <div class="lh4 grid-cell">
@@ -73,7 +73,7 @@ description: CSS is hard to manage, especially in large projects. Styles are wri
                         joined 8 months ago
                     </div>
                 </div>
-                <div class="grid _fl0 bb bbc-black-3 p5">
+                <div class="grid _fl0 bb bbc-black-3 p16">
                     <img src="https://www.gravatar.com/avatar/13eaa034bcdefa7a6de2776007f43020?s=64&d=identicon&r=P" alt="Paweł" width="32" height="32" class="bar1 grid-cell mr12"><!-- PREVIEW ONLY -->
                     <img src="..." class="bar1 grid-cell mr12"><!-- CODE ONLY -->
                     <div class="lh4 grid-cell">
@@ -82,7 +82,7 @@ description: CSS is hard to manage, especially in large projects. Styles are wri
                         joined 1 year 10 months ago
                     </div>
                 </div>
-                <div class="grid _fl0 p5">
+                <div class="grid _fl0 p16">
                     <img src="https://i.stack.imgur.com/nf0QA.jpg?s=64&g=1" alt="Aaron Shekey" width="32" height="32" class="bar1 grid-cell mr12"><!-- PREVIEW ONLY -->
                     <img src="..." class="bar1 grid-cell mr12"><!-- CODE ONLY -->
                     <div class="lh4 grid-cell">
@@ -104,21 +104,21 @@ description: CSS is hard to manage, especially in large projects. Styles are wri
     {% capture html %}
         <div style="width: 300px"><!-- PREVIEW ONLY -->
             <div class="ba bac-black-3 bar1">
-                <div class="px5 py4 bb bbc-black-3 bg-black-025 btr1 tc-black-500 fs4">
+                <div class="px16 py12 bb bbc-black-3 bg-black-025 btr1 tc-black-500 fs4">
                     Stats
                 </div>
-                <table class="p5">
+                <table class="p16">
                     <tbody>
                         <tr>
-                            <td class="tc-black-350 pr5 pb3">asked</td>
-                            <td class="pb3">4 years, 4 months ago</td>
+                            <td class="tc-black-350 pt16 pb8">asked</td>
+                            <td class="pb8">4 years, 4 months ago</td>
                         </tr>
                         <tr>
-                            <td class="tc-black-350 pr5 pb3">viewed</td>
-                            <td class="pb3">7,437 times</td>
+                            <td class="tc-black-350 pt16 pb8">viewed</td>
+                            <td class="pb8">7,437 times</td>
                         </tr>
                         <tr>
-                            <td class="tc-black-350 pr5">active</td>
+                            <td class="tc-black-350 pt16">active</td>
                             <td>2 months ago</td>
                         </tr>
                     </tbody>
@@ -134,34 +134,34 @@ description: CSS is hard to manage, especially in large projects. Styles are wri
     {% capture html %}
         <div style="width: 300px"><!-- PREVIEW ONLY -->    
             <div class="ba bac-black-3 bar1">
-                <div class="px5 py4 bb bbc-black-3 bg-black-025 btr1 fs2 fw-bold tc-black-500">
+                <div class="px16 py12 bb bbc-black-3 bg-black-025 btr1 fs2 fw-bold tc-black-500">
                     Stats
                 </div>
-                <table class="p5">
+                <table class="p16">
                     <tbody><!-- PREVIEW ONLY -->
                         <tr><!-- PREVIEW ONLY -->
-                            <td class="tc-black-350 pr5 pb3">created</td><!-- PREVIEW ONLY -->
-                            <td class="pb3">9 years, 1 month ago</td><!-- PREVIEW ONLY -->
+                            <td class="tc-black-350 pt16 pb8">created</td><!-- PREVIEW ONLY -->
+                            <td class="pb8">9 years, 1 month ago</td><!-- PREVIEW ONLY -->
                         </tr><!-- PREVIEW ONLY -->
                         <tr><!-- PREVIEW ONLY -->
-                            <td class="tc-black-350 pr5 pb3">viewed</td><!-- PREVIEW ONLY -->
-                            <td class="pb3">88,020 times</td><!-- PREVIEW ONLY -->
+                            <td class="tc-black-350 pt16 pb8">viewed</td><!-- PREVIEW ONLY -->
+                            <td class="pb8">88,020 times</td><!-- PREVIEW ONLY -->
                         </tr><!-- PREVIEW ONLY -->
                         <tr><!-- PREVIEW ONLY -->
-                            <td class="tc-black-350 pr5 pb3">active</td><!-- PREVIEW ONLY -->
-                            <td class="pb3">3 days ago</td><!-- PREVIEW ONLY -->
+                            <td class="tc-black-350 pt16 pb8">active</td><!-- PREVIEW ONLY -->
+                            <td class="pb8">3 days ago</td><!-- PREVIEW ONLY -->
                         </tr><!-- PREVIEW ONLY -->
                         <tr><!-- PREVIEW ONLY -->
-                            <td class="tc-black-350 pr5 pb3">editors</td><!-- PREVIEW ONLY -->
-                            <td class="pb3">164</td><!-- PREVIEW ONLY -->
+                            <td class="tc-black-350 pt16 pb8">editors</td><!-- PREVIEW ONLY -->
+                            <td class="pb8">164</td><!-- PREVIEW ONLY -->
                         </tr><!-- PREVIEW ONLY -->
                     </tbody><!-- PREVIEW ONLY -->
                     ...<!-- CODE ONLY -->
                 </table>
-                <div class="px5 py4 bt btw1 btc-black-3 bb bbc-black-3 bg-black-025 fs2 fw-bold tc-black-500">
+                <div class="px16 py12 bt btw1 btc-black-3 bb bbc-black-3 bg-black-025 fs2 fw-bold tc-black-500">
                     Recent Hot Answers
                 </div>
-                <ul class="list-ls-none p5 m0">
+                <ul class="list-ls-none p16 m0">
                     <li class="mb12"><a href="#" class="tc-black-500">Currying-in function and ES6 destructing</a></li><!-- PREVIEW ONLY -->
                     <li class="mb12"><a href="#" class="tc-black-500">JSON data concatenate two data </a></li><!-- PREVIEW ONLY -->
                     <li class="mb12"><a href="#" class="tc-black-500">Why addEventListener don`t work </a></li><!-- PREVIEW ONLY -->
