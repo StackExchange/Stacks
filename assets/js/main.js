@@ -4,7 +4,6 @@ var UIkit = {
     this.visibleCodebase();          // it lets you select which patterns you gonna see by using <select> in sidebar.
     this.filesStructure();          // simple function for styling that checks if element has children
     this.toggleSubMenu();
-    this.scrollSpy();
 
     var sections = $('.stacks-section > :header');
     if ( sections.length ) {
@@ -75,10 +74,6 @@ var UIkit = {
       $(this).parent().next(".js-subnav-menu").toggleClass("ut-ds-none");
     });
   },
-
-  scrollSpy: function() {
-    $("body").scrollspy({ target: "#stacks-subnav"})
-  }
 }
 
 $(function() {
