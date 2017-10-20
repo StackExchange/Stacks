@@ -9,18 +9,12 @@
             {% assign sublinks = entry.sublinks %}
             {% assign menu-open = "is-open " %}
             {% assign submenu-active = "" %}
-            <!-- {% if page.url contains entry.url %}
-              {% assign menu-open = "is-open " %}
-            {% endif %} -->
 
             {% if sublinks %}
                 <li class="grid fl-col-nowrap _fl0 -item _dropdown {{ menu-open }}js-subnav-section">
                     <span class="grid fl-ac-center p4 mt12 pl24 -section" title="{{ entry.title }}">
                         <span class="grid-cell -label">{{ entry.title }}</span>
-                        <!-- <span class="grid-cell fl-0 _ai-center -icon js-subnav-toggle"><svg role="icon" class="svg-icon iconArrowDown" width="18" height="18" viewBox="0 0 18 18"><path d="M1 5h16l-8 8z"/></svg></span> -->
                     </span>
-                    <!-- To hide menus by default, add this into nav class below: {% unless page.url contains entry.url %}
-                      ut-ds-none{% endunless %} -->
                     <ul class="grid fl-col-nowrap _fl0 fl-inline nav js-subnav-menu">
                         {% for sublink in sublinks %}
                             {% assign pageURL = page.url | remove_first:"/" | remove: ".html" %}
