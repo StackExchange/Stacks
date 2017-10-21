@@ -20,6 +20,7 @@
 //  ----------------------------------------------------------------------------
 .svg-icon {
   fill: currentColor;
+  vertical-align: text-bottom;
 }
 
 //  ============================================================================
@@ -79,7 +80,6 @@
 }
 
 .stacks-section {
-  .pt16;
   max-width: @content-width; // Needed for Safari
 }
 
@@ -109,25 +109,12 @@
     }
   }
 
-  //  If a submenu item is active…
+  //  If a submenu item is active…  
   &.is-active .-link {
     .bg-orange-300;
     .tc-white;
 
-    //  Add small extension to the end of the background color…
-    &:before {
-      content: "";
-      .ps-absolute;
-      .top-0;
-      .bottom-0;
-      .right-0;
-      margin-right: -(@su8);
-      width: @su8;
-      .bg-orange-300;
-    }
-
-    &:hover,
-    &:hover:before {
+    &:hover {
       .bg-orange-400;
       .tc-white;
     }
@@ -140,8 +127,8 @@
 }
 
 .nav._secondary .nav .-link {
-  .ml8;
-  width: calc(~"100% - @{su8}");
+  .pl32;
+  .fs1;
 }
 
 
@@ -156,11 +143,10 @@
 //  ----------------------------------------------------------------------------
 .nav .-link {
   background-color: fade(@black-050,0%);
-  font-size: @fs3;
+  .fs2;
   line-height: @lh6;
   color: @black-400;
-  transition: all 300ms @te-smooth-quick;
-
+  
   &:hover {
     background-color: fade(@black-050,50%);
     color: @fc-dark;
@@ -215,7 +201,7 @@
   &:before {
     content: "";
     position: absolute;
-    left: @su8;
+    left: 0;
     bottom: 0;
     width: @su24;
     height: @su2;
@@ -230,6 +216,7 @@
 //  $$  TITLES
 //  ----------------------------------------------------------------------------
 .stacks-title {
+  .pt32;
   font-size: @fs7;
   line-height: @lh6;
   color: @fc-dark;
@@ -252,6 +239,7 @@
   }
 
   &._subtitle {
+    .mb12;
     font-size: @fs5;
     color: @fc-medium;
   }
@@ -269,7 +257,11 @@
   line-height: @lh3;
   color: @fc-medium;
 
-  &._intro   { font-size: @fs7; }
+  &._intro   {
+    .pt4;
+    .mb0;
+    font-size: @fs7;
+  }
   &._page    { font-size: @fs5; }
   &._section { font-size: @fs4; }
 
@@ -312,8 +304,7 @@
 //  $   CODE STYLES
 //  ----------------------------------------------------------------------------
 .stacks-code-preview {
-  margin-top: @su16;
-  margin-bottom: @su32;
+  .mt16;
   .bs-s;
 
   // Actual code highlight
@@ -443,4 +434,18 @@
 .stacks-swatch {
   width: @su32;
   height: @su32;
+}
+
+//  ============================================================================
+//  $   Help Button
+//  ----------------------------------------------------------------------------
+.button-help {
+  .ps-fixed;
+  bottom: @su32;
+  right: @su32;
+  color: @orange-400;
+  
+  &:hover {
+      color: @orange-600;
+  }
 }
