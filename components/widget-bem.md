@@ -54,7 +54,7 @@ description: Creating consistent and reusable UI elements is hard. Small CSS uti
     {% endcapture %}{% include example.html html=html %}
 
 
-    <h3 class="grid fl-jc-space-between fl-ai-center mb0 mt6 stacks-title _subtitle">Simple Items</h3>
+    <h3 class="grid fl-jc-space-between fl-ai-center mb0 mt24 stacks-title _subtitle">Simple Items</h3>
 
     <p class="stacks-p _section" markdown="1">
         Oftentimes, your widget will be a list of similar, relatively simple items. By giving the `-content` a modifier class
@@ -96,7 +96,7 @@ description: Creating consistent and reusable UI elements is hard. Small CSS uti
         elements should be `-item`. See the [section on headers](#headers) for an example.
     </p>
 
-    <h3 class="grid fl-jc-space-between fl-ai-center mb0 mt6 stacks-title _subtitle">Complex Items</h3>
+    <h3 class="grid fl-jc-space-between fl-ai-center mb0 mt24 stacks-title _subtitle">Complex Items</h3>
 
     <p class="stacks-p _section" markdown="1">
         If your items are more complex than that, whitespace may not be enough to separate them clearly. In this case instead of a single
@@ -137,7 +137,7 @@ description: Creating consistent and reusable UI elements is hard. Small CSS uti
         </div><!-- PREVIEW ONLY -->
     {% endcapture %}{% include example.html html=html %}
 
-    <h3 class="grid fl-jc-space-between fl-ai-center mb0 mt6 stacks-title _subtitle">Headers</h3>
+    <h3 class="grid fl-jc-space-between fl-ai-center mb0 mt24 stacks-title _subtitle">Headers</h3>
 
     <p class="stacks-p _section" markdown="1">
         The other possible child class is `-header`, which unsurprisingly creates a header. Headers can be used both
@@ -243,12 +243,12 @@ description: Creating consistent and reusable UI elements is hard. Small CSS uti
                 <div class="-header _alternate-small-bold">Featured on Meta</div>
                 <ul class="-content _items">
                     <li class="-item">
-                        <img src="https://meta.stackoverflow.com/content/Sites/stackoverflowmeta/img/icon-32.png" alt="Meta Stack Overflow" width="16" height="16" class="mr4"><!-- PREVIEW ONLY -->
+                        <img src="https://meta.stackoverflow.com/content/Sites/stackoverflowmeta/img/icon-32.png" alt="Meta Stack Overflow" width="16" height="16" class="mr12"><!-- PREVIEW ONLY -->
                         <img src="..."><!-- CODE ONLY -->
                         <a href="#">Sunsetting Documentation</a>
                     </li>
                     <li class="-item">
-                        <img src="https://meta.stackoverflow.com/content/Sites/stackoverflowmeta/img/icon-32.png" alt="Meta Stack Overflow" width="16" height="16" class="mr4"><!-- PREVIEW ONLY -->
+                        <img src="https://meta.stackoverflow.com/content/Sites/stackoverflowmeta/img/icon-32.png" alt="Meta Stack Overflow" width="16" height="16" class="mr12"><!-- PREVIEW ONLY -->
                         <img src="..."><!-- CODE ONLY -->
                         <a href="#">Documentation is read-only. What’s next?</a>
                     </li>
@@ -334,7 +334,7 @@ description: Creating consistent and reusable UI elements is hard. Small CSS uti
         </div><!-- PREVIEW ONLY -->
     {% endcapture %}{% include example.html html=html %}
 
-    <h3 class="grid fl-jc-space-between fl-ai-center mb0 mt6 stacks-title _subtitle">Second-level navigation</h3>
+    <h3 class="grid fl-jc-space-between fl-ai-center mb0 mt24 stacks-title _subtitle">Second-level navigation</h3>
 
     <p class="stacks-p _section" markdown="1">
         If you have a second level of navigation, you can add a `<ul>` of class `-subnav` to the top-level item.
