@@ -15,9 +15,9 @@ To get started with running **Jekyll** locally, follow the ["Getting Started"](h
 Once Jekyll is installed, start Jekyll by typing the following into your Terminal window:
 
 ```
-jekyll serve -w
+jekyll serve
 ```
 
-This will start your server. You can now visit the site at http://127.0.0.1:4000/pages/Design/Stacks/
+This will start your server and watch for any changes. You can now visit the site at http://127.0.0.1:4000/pages/Design/Stacks/
 
 If you get stuck, visit [Jekyll's documentation site](https://jekyllrb.com/docs/home/). If you still don't find what you're looking for, you can either [create an issue](https://gh.stackoverflow.com/Design/Stacks/issues/new) or [pop into the **#design-stacks** Slack Channel](https://stackexchange.slack.com/messages/C27RWNQN9/) to ask your question.
