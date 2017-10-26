@@ -40,14 +40,8 @@
   & when (@status = true) {
     box-shadow: inset 0 1px 0 0 lighten(@bxis,20%), 0 0 0 0 fade(@bxos,0%);
 
-    &:hover {
-      box-shadow: inset 0 1px 0 0 lighten(@bxis,10%), 0 0 0 0 fade(@bxos,0%);
-    }
-    &:focus {
-      box-shadow: inset 0 1px 0 0 lighten(@bxis,10%), 0 0 8px 0 fade(@bxos,50%);
-    }
     &:active {
-      box-shadow: inset 0 0 8px 0 darken(@bxis,20%);
+      box-shadow: inset 0 @su2 @su4 0 fade(@black, 20%);
     }
     &[disabled] {
       box-shadow: none;
@@ -85,10 +79,7 @@
   & when (@status = true) {
     border-color: darken(@brc,10%);
 
-    &:hover {
-      border-color: darken(@brc,15%);
-    }
-    &:focus {
+    &:active {
       border-color: darken(@brc,20%);
     }
     &[disabled] {
@@ -170,10 +161,10 @@
 
   & when (alpha(@bgc) > 0) {
     &:hover {
-      background-color: spin(saturate(@bgc,5%),5);
+      background-color: darken(@bgc, 3%);
     }
     &:active {
-      background-color: spin(saturate(@bgc,15%),10);
+      background-color: darken(@bgc, 10%);
     }
     &[disabled] {
       background-color: fade(desaturate(@bgc,75%),50%);
@@ -192,12 +183,6 @@
 .btn-fc(@fc) {
   color: @fc;
 
-  & when (@fc = #FFFFFF) {
-    &:hover,
-    &:focus {
-      color: fadeout(@fc,10%);
-    }
-  }
   & when not (@fc = #FFFFFF) {
     &:hover {
       color: darken(@fc,20%);
@@ -227,7 +212,6 @@
   //  Customizable Items
   border-radius: @btn-br;
   font-weight: @btn-fw;
-  transition: all 300ms @te-smooth;
 
   cursor: pointer;
   outline: none;
