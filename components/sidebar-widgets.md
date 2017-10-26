@@ -170,8 +170,7 @@ description: Creating consistent and reusable UI elements is hard. Small CSS uti
         </div>
     {% endcapture %}{% include example.html html=html %}
 
-
-    <p class="stacks-p _section" markdown="1">
+    <p class="stacks-p _section mt24" markdown="1">
         The `_alternate-small-bold` modifier is available for headers to modify the text appearance.
     </p>
     
