@@ -291,7 +291,7 @@ description: Sidebar widgets are flexible containers that provide a lot of patte
     <h2 class="grid fl-jc-space-between fl-ai-center mb0 stacks-title">Navigation</h2>
     
     <p class="stacks-p _section" markdown="1">
-        A common use for sidebar widgets is as a navigation block or table of content, including a highlight
+        A common use for sidebar widgets is as a navigation block or table of contents, including a highlight
         of the page that the user is currently looking at.
     </p>
 
