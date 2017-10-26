@@ -1,7 +1,7 @@
 ---
 layout: with-secondary-nav
 title: Sidebar Widgets
-description: Creating consistent and reusable UI elements is hard. Small CSS utility classes for adjusting simple things like spacing and font sizes can speed up development, but always piecing complex components together from parts leads to inconsistent UX and unreadable and unmaintainable HTML. Building classes for these components, using an established naming scheme like ".parent .-child ._modifier", prevents leaking of styles, isolates the CSS implementation from its use in the views, and makes for more readable HTML.
+description: Sidebar widgets are flexible containers that provide a lot of patterns that are helpful in a variety of sidebar uses.
 ---
 <style>
     ul {
@@ -222,8 +222,6 @@ description: Creating consistent and reusable UI elements is hard. Small CSS uti
     
 </section>
 
-{% comment %}
-
 <section class="stacks-section">
     <h2 class="grid fl-jc-space-between fl-ai-center mb0 stacks-title">Alternative Colors</h2>
     
@@ -293,7 +291,7 @@ description: Creating consistent and reusable UI elements is hard. Small CSS uti
     <h2 class="grid fl-jc-space-between fl-ai-center mb0 stacks-title">Navigation</h2>
     
     <p class="stacks-p _section" markdown="1">
-        A common use for sidebar widgets is as a navigation block or table of content, including a highlight
+        A common use for sidebar widgets is as a navigation block or table of contents, including a highlight
         of the page that the user is currently looking at.
     </p>
 
@@ -580,4 +578,3 @@ description: Creating consistent and reusable UI elements is hard. Small CSS uti
         }
     };
 </script>
-{% endcomment %}
