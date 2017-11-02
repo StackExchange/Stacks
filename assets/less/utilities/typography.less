@@ -32,48 +32,69 @@ h3,
 h4,
 h5,
 h6 {
-  margin: 0 0 0.5em;
+  margin: 0 0 0.25em;
 }
 
 //  ============================================================================
-//  UTILITY OVERRIDES
-//  Instead of re-adding the same text styles to unique class names, use these
-//  utility classes for commonly used text decorations, sizes, styles,
-//  and colors.
-//  ============================================================================
-//  $   TEXT
-//  ============================================================================
-//  $$  FONT SIZES
+//  $   TEXT SIZES
 //  ----------------------------------------------------------------------------
-.fs1            { font-size: @fs1 !important; }    // 11px
-.fs2            { font-size: @fs2 !important; }    // 12px
-.fs3            { font-size: @fs3 !important; }    // 13px
-.fs4            { font-size: @fs4 !important; }    // 15px
-.fs5            { font-size: @fs5 !important; }    // 17px
-.fs6            { font-size: @fs6 !important; }    // 19px
-.fs7            { font-size: @fs7 !important; }    // 21px
-.fs8            { font-size: @fs8 !important; }    // 24px
-.fs9            { font-size: @fs9 !important; }    // 27px
-.fs10           { font-size: @fs10 !important; }   // 30px
-.fs11           { font-size: @fs11 !important; }   // 34px
-.fs12           { font-size: @fs12 !important; }   // 38px
-.fs13           { font-size: @fs13 !important; }   // 43px
-.fs14           { font-size: @fs14 !important; }   // 49px
+//  First create a REM mixin
+.px-rem(@value) {
+    @rem: unit(@value);
 
+    font-size: @value;                          // Pixel fallback
+    font-size: (@rem / unit(@body-fs)) * 1rem;  //  REM
+}
 
-//  $$  LINE HEIGHTS
+//  Now declare font sizes
+.fs-display4    { .px-rem(@fs99); }
+.fs-display3    { .px-rem(@fs69); }
+.fs-display2    { .px-rem(@fs55); }
+.fs-display1    { .px-rem(@fs43); }
+.fs-headline2   { .px-rem(@fs34); }
+.fs-headline1   { .px-rem(@fs27); }
+.fs-title       { .px-rem(@fs21); }
+.fs-subheading  { .px-rem(@fs19); }
+.fs-body3       { .px-rem(@fs17); }
+.fs-body2       { .px-rem(@fs15); }
+.fs-body1       { .px-rem(@fs13); }
+.fs-caption,
+.fs-category    { .px-rem(@fs12); }
+.fs-fine        { .px-rem(@fs11); }
+
+.fs-category {
+    .fw-bold;
+    .tt-uppercase;
+
+    //  If a top border is desired
+    &.has-border {
+        width: 100%;
+        .py4;
+        .px0;
+        .bt;
+        .btc-black-3;
+    }
+}
+
+//  ============================================================================
+//  $$  TEXT COLORS
 //  ----------------------------------------------------------------------------
-.lh1            { line-height: @lh1 !important; }  // 1
-.lh2            { line-height: @lh2 !important; }  // 1.154
-.lh3            { line-height: @lh3 !important; }  // 1.308
-.lh4            { line-height: @lh4 !important; }  // 1.375
-.lh5            { line-height: @lh5 !important; }  // 1.615
-.lh6            { line-height: @lh6 !important; }  // 1.769
-.lh7            { line-height: @lh7 !important; }  // 1.923
-.lh8            { line-height: @lh8 !important; }  // 2
+.fc-dark        { color: @fc-dark; }
+.fc-medium      { color: @fc-medium; }
+.fc-light       { color: @fc-light; }
 
+//  ============================================================================
+//  $   LINE HEIGHTS
+//  ----------------------------------------------------------------------------
+.lh-xs          { line-height: @lh-xs !important; }
+.lh-s           { line-height: @lh-s !important; }
+.lh-m           { line-height: @lh !important; }
+.lh-l           { line-height: @lh-l !important; }
+.lh-xl          { line-height: @lh-xl !important; }
+.lh-xxl         { line-height: @lh-xxl !important; }
 
-//  $$  TEXT STYLES
+//  ============================================================================
+//  $$  TEXT STYLES & UTILITIES
 //  ----------------------------------------------------------------------------
 //  --  Font Family
 .ff-sans          { font-family: @ff-sans !important; }
@@ -129,25 +150,16 @@ h6 {
 .ww-break-word    { word-wrap: break-word !important; }
 
 
-//  $$  COLORS
-//  ----------------------------------------------------------------------------
-.tc-light          { color: @fc-light !important; }
-.tc-medium         { color: @fc-medium !important; }
-.tc-dark           { color: @fc-dark !important; }
-
-.tc-orange         { color: @orange-400 !important; }
-
-
 //  ============================================================================
 //  $   LISTS
 //  ----------------------------------------------------------------------------
 .list-reset {
-  &,
-  > li {
-    .m0;
-    .p0;
-    .list-ls-none;
-  }
+    &,
+    > li {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
 }
 
 //  --  List Style Types
