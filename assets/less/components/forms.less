@@ -21,52 +21,61 @@
 //  • LABELS
 //
 //  ============================================================================
+//  $   UNIVERSAL PROPERTIES
+//      These are properties which are universally applied to the various
+//      form elements.
+//  ----------------------------------------------------------------------------
+//  $$  FONT STYLES
+//  ----------------------------------------------------------------------------
+.label,
+.input,
+.select > select {
+  .fs3;
+  .lh4;
+  .tc-dark;
+}
+
+
+//  ============================================================================
 //  $  INPUTS
 //  ============================================================================
 //  $$  BASE STYLE
 //  ----------------------------------------------------------------------------
 .input {
-    padding: @su8;
-    width: 100%;
-    border: 1px solid @black-150;
-    border-radius: 0;
-    background-color: @white;
-    box-shadow: inset 0 0 1px fade(@black-350,20%), 0 0 0 fade(@white,0%);
-    font-size: @fs15;
-    transition: all 600ms @te-smooth;
+  .py8;
+  .px12;
+  .ba;
+  .bac-black-4;
+  .bar0;
+  .bg-white;
 
-    //  --  PLACEHOLDER
-    //  ------------------------------------------------------------------------
-    &::-webkit-input-placeholder {
-        color: @black-150;
-    }
-    &::-moz-placeholder { // FF 18+
-        color: @black-150;
-        opacity: 1;
-    }
-    &:-ms-input-placeholder { // IE
-        color: @black-150;
-    }
-    &::-ms-input-placeholder { // Edge
-        color: @black-150;
-    }
-    &::placeholder {
-        color: @black-150;
-    }
+  box-shadow: inset 0 0 1px fade(@black-350,20%), 0 0 0 fade(@white,0%);
+  transition: all 600ms @te-smooth;
+
+  //  --  PLACEHOLDER
+  //  --------------------------------------------------------------------------
+  &::-webkit-input-placeholder {
+    .tc-black-150;
+  }
+  &::-moz-placeholder { // FF 18+
+    .tc-black-150;
+    .o100;
+  }
+  &:-ms-input-placeholder { // IE
+    .tc-black-150;
+  }
+  &::-ms-input-placeholder { // Edge
+    .tc-black-150;
+  }
+  &::placeholder {
+    .tc-black-150;
+  }
 }
 
 .input-icon {
-    position: absolute;
-    top: 25%;
-    right: @su8;
-}
-
-//  $$  MESSAGE
-//      Set some baseline styles
-//  ----------------------------------------------------------------------------
-.input-message {
-    margin: @su4 0 0;
-    font-size: @fs12;
+  .ps-absolute;
+  top: 25%;
+  right: @su8;
 }
 
 
@@ -75,37 +84,37 @@
 //  ----------------------------------------------------------------------------
 .input,
 .select > select {
-    //  Hover
+  //  Hover
+  &:hover {
+    border-color: fade(@blue-500,50%);
+    box-shadow: inset 0 0 2px @black-150, 0 0 2px fade(@blue-500,70%);
+  }
+
+  //  Focus
+  &:focus {
+    .outline-none;
+    border-color: @blue-500;
+    box-shadow: inset 0 0 4px @black-050, 0 0 8px fade(@blue-500,50%);
+  }
+
+  //  Disabled, Read-only
+  &[disabled],
+  &[read-only] {
+    .bac-black-2;
+    box-shadow: inset 0 0 2px fade(@black-350,10%);
+    background-color: @bgc-lightest;
+    .tc-light;
+
     &:hover {
-        border-color: fade(@blue-500,50%);
-        box-shadow: inset 0 0 2px @black-150, 0 0 2px fade(@blue-500,70%);
+      .bac-black-1;
+      .bs-none;
     }
+  }
 
-    //  Focus
-    &:focus {
-        outline: 0;
-        border-color: @blue-500;
-        box-shadow: inset 0 0 4px @black-050, 0 0 8px fade(@blue-500,50%);
-    }
-
-    //  Disabled, Read-only
-    &[disabled],
-    &[read-only] {
-        border-color: @black-075;
-        box-shadow: inset 0 0 2px fade(@black-350,10%);
-        background-color: @bgc-lightest;
-        color: @fc-light;
-
-        &:hover {
-            border-color: @black-050;
-            box-shadow: none;
-        }
-    }
-
-    //  Disabled
-    &[disabled] {
-        cursor: not-allowed;
-    }
+  //  Disabled
+  &[disabled] {
+    cursor: not-allowed;
+  }
 }
 
 //  $$  CONNECTED INPUTS
@@ -113,7 +122,7 @@
 //  ----------------------------------------------------------------------------
 .input-connect {
     padding: @su8 @su12;
-    line-height: @lh;
+    line-height: @lh4;
 
     //  When we want the gray background
     &._fill {
@@ -147,145 +156,149 @@
 //      Validation states will need applied at the wrapping container level.
 //  ----------------------------------------------------------------------------
 .grid {
-    //  --  WARNING
-    &.has-warning {
-        .input,
-        .select > select {
-            border-color: mix(@yellow-500,@orange-600);
+  //  --  WARNING
+  &.has-warning {
+    .input,
+    .select > select {
+      border-color: mix(@yellow-500,@orange-600);
 
-            &:hover {
-                border-color: lighten(mix(@yellow-500,@orange-600),10%);
-                box-shadow: inset 0 0 1px @black-100, 0 0 2px @yellow-200;
-            }
-            &:focus {
-                border-color: saturate(mix(@yellow-500,@orange-600),10%);
-                box-shadow: inset 0 0 4px @black-050, 0 0 4px @yellow-200;
-            }
-        }
-
-        .input-message {
-            color: darken(saturate(mix(@yellow-500,@orange-600),120%),10%);
-        }
+      &:hover {
+        border-color: lighten(mix(@yellow-500,@orange-600),10%);
+        box-shadow: inset 0 0 1px @black-100, 0 0 2px @yellow-200;
+      }
+      &:focus {
+        border-color: saturate(mix(@yellow-500,@orange-600),10%);
+        box-shadow: inset 0 0 4px @black-050, 0 0 4px @yellow-200;
+      }
     }
 
-    //  --  ERROR
-    &.has-error {
-        .input,
-        .select > select {
-            border-color: @red-400;
+    .-message {
+      color: darken(saturate(mix(@yellow-500,@orange-600),120%),10%);
+    }
+  }
 
-            &:hover {
-                border-color: @red-400;
-                box-shadow: inset 0 0 1px @black-100, 0 0 2px @red-100;
-            }
-            &:focus {
-                border-color: @red-600;
-                box-shadow: inset 0 0 4px @black-050, 0 0 4px @red-200;
-            }
-        }
+  //  --  ERROR
+  &.has-error {
+    .input,
+    .select > select {
+      .bac-red-2;
 
-        .input-message {
-            color: @red-500;
-        }
+      &:hover {
+        .bac-red-2;
+        box-shadow: inset 0 0 1px @black-100, 0 0 2px @red-100;
+      }
+      &:focus {
+        .bac-red-3;
+        box-shadow: inset 0 0 4px @black-050, 0 0 4px @red-200;
+      }
     }
 
-    //  --  SUCCESS
-    &.is-success {
-        .input,
-        .select select {
-            border-color: @green-400;
+    .-message {
+      color: @red-500;
+    }
+  }
 
-            &:hover {
-                border-color: @green-600;
-                box-shadow: inset 0 0 1px @black-100, 0 0 2px @green-100;
-            }
-            &:focus {
-                border-color: @green-600;
-                box-shadow: inset 0 0 4px @black-050, 0 0 4px @green-200;
-            }
-        }
+  //  --  SUCCESS
+  &.is-success {
+    .input,
+    .select select {
+      .bac-green-2;
 
-        .input-message {
-            color: darken(@green-500,5%);
-        }
+      &:hover {
+        .bac-green-3;
+        box-shadow: inset 0 0 1px @black-100, 0 0 2px @green-100;
+      }
+      &:focus {
+        .bac-green-3;
+        box-shadow: inset 0 0 4px @black-050, 0 0 4px @green-200;
+      }
     }
 
-    //  --  DISABLED
-    &.is-disabled {
-        .o70;
-        cursor: not-allowed;
-
-        .select > select {
-            &:before,
-            &:after { .o30; }
-        }
+    .-message {
+      color: darken(@green-500,5%);
     }
+  }
+
+  //  --  DISABLED
+  &.is-disabled {
+    .o70;
+    cursor: not-allowed;
+
+    .select > select {
+      &:before,
+      &:after { .o30; }
+    }
+  }
 }
 
 
 //  $$  TEXTAREAS
 //  ----------------------------------------------------------------------------
 .input.textarea {
-    .py12;
-    height: auto;
-    resize: vertical;
+  .py12;
+  height: auto;
+  resize: vertical;
 }
 
 //  $$  SELECT MENUS
 //  ----------------------------------------------------------------------------
 .select {
-    .ps-relative;
+  .ps-relative;
 
-    //  --  MENU ARROWS
-    //      To customize the visual appearance of the select menu arrows, we
-    //      need to recreate them on the wrapping .select div.
-    //  ------------------------------------------------------------------------
-    &:before,
-    &:after {
-        content: "";
-        position: absolute;
-        right: @su12;
-        pointer-events: none;
+  //  --  MENU ARROWS
+  //      To customize the visual appearance of the select menu arrows, we need
+  //      to recreate them on the wrapping .select div.
+  //  --------------------------------------------------------------------------
+  &:before,
+  &:after {
+    content: "";
+    .ps-absolute;
+    right: @su12;
+    pointer-events: none;
 
-        border-width: 3px;
-        border-style: solid;
-        border-color: @black-700 transparent;
-    }
-    &:before {
-        top: calc(~"50% - 6px");
-        border-top-width: 0;
-        border-bottom-width: 5px;
-    }
-    &:after {
-        top: calc(~"50% + 1px");
-        border-top-width: 5px;
-        border-bottom-width: 0;
-    }
+    border-width: 3px;
+    border-style: solid;
+    border-color: @black-700 transparent;
+  }
+  &:before {
+    top: calc(~"50% - 6px");
+    border-top-width: 0;
+    border-bottom-width: 5px;
+  }
+  &:after {
+    top: calc(~"50% + 1px");
+    border-top-width: 5px;
+    border-bottom-width: 0;
+  }
 
-    //  --  MENU
-    //      Now we can style the visual appearance of the select menu;
-    //  ------------------------------------------------------------------------
-    > select {
-        //  [1] Reset the appearance
-        .appearance(none);
+  //  --  MENU
+  //      Now we can style the visual appearance of the select menu;
+  //  --------------------------------------------------------------------------
+  > select {
+    //  [1] Reset the appearance
+    .appearance(none);
 
-        //  [2] Update the styles
-        padding: @su8 @su12;
-        width: 100%;
-        border-radius: @br2;
-        border: 1px solid @black-200;
-        background-color: @white;
-        transition: border-color 300ms @te-smooth, box-shadow 300ms @te-smooth, background-color 300ms @te-smooth;
-    }
+    //  [2] Update the styles
+    .py8;
+    .pt8;
+    .pl12;
+    .w100;
+    .bar2;
+    .ba;
+    .bac-black-4;
+    .bg-white;
+    transition: border-color 300ms @te-smooth, box-shadow 300ms @te-smooth, background-color 300ms @te-smooth;
+  }
 }
 
 //  $$  FILE UPLOAD
 //  ----------------------------------------------------------------------------
 .input._file {
-    display: block;
-    margin: 0;
-    padding: @su8 0;
-    font-size: @fs11;
+  .d-block;
+  .m0;
+  .py8;
+  .px0;
+  .fs1;
 }
 
 //  $$  CHECKBOXES & RADIOS
@@ -302,13 +315,13 @@
 
 .checkbox,
 .radio {
-    //  [1]   Check to see if we can use custom styles, if so reset the defaults
-    //  ------------------------------------------------------------------------
-    @supports (appearance: none) or (-webkit-appearance: none) {
+  //  [1]   Check to see if we can use custom styles, if so reset the defaults
+  //  --------------------------------------------------------------------------
+  @supports (appearance: none) or (-webkit-appearance: none) {
     .appearance(none);
 
     &::-ms-check {
-        display: none;
+      display: none;
     }
 
     //  [2]  Now re-style the checkboxes and radios
@@ -321,25 +334,25 @@
     cursor: pointer;
 
     &:focus {
-        outline: 0;
+      outline: 0;
     }
 
     //  Sizes
     &._sm {
-        width: @su12;
-        height: @su12;
+      width: @su12;
+      height: @su12;
     }
     &._md {
-        width: @su16;
-        height: @su16;
+      width: @su16;
+      height: @su16;
     }
     &._lg {
-        width: @su16 + 3;
-        height: @su16 + 3;
+      width: @su16 + 3;
+      height: @su16 + 3;
     }
     &._xl {
-        width: @su24;
-        height: @su24;
+      width: @su24;
+      height: @su24;
     }
   }
 }
@@ -347,84 +360,84 @@
 //  --   Checkboxes
 //  ----------------------------------------------------------------------------
 .checkbox {
-    @supports (appearance: none) or (-webkit-appearance: none) {
-        border-radius: floor(@br2 / 2);
-        box-shadow: @input-ch-rd-clear, @input-ch-rd-gray;
-        background-repeat: no-repeat;
-        background-position: center center;
-        background-size: contain;
+  @supports (appearance: none) or (-webkit-appearance: none) {
+    border-radius: floor(@br2 / 2);
+    box-shadow: @input-ch-rd-clear, @input-ch-rd-gray;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: contain;
 
-        &:checked {
-            box-shadow: @input-ch-rd-blue;
-            background-color: @input-ch-rd-bgc-blue;
-            background-image: url("data:image/svg+xml,%3C%3Fxml%20version%3D%221.0%22%20encoding%3D%22UTF-8%22%3F%3E%0A%3Csvg%20width%3D%2212%22%20height%3D%2212%22%20version%3D%221.1%22%20viewBox%3D%220%200%203.1749997%203.175%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cg%20transform%3D%22translate(-61.232%20-118.44)%22%3E%3Cpath%20d%3D%22m63.682%20119.01-1.1328%201.5957-0.63477-0.45117-0.21094%200.29687%200.93164%200.66211%201.3438-1.8906z%22%20fill%3D%22%23fff%22%20fill-rule%3D%22evenodd%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E");
+    &:checked {
+      box-shadow: @input-ch-rd-blue;
+      background-color: @input-ch-rd-bgc-blue;
+      background-image: url("data:image/svg+xml,%3C%3Fxml%20version%3D%221.0%22%20encoding%3D%22UTF-8%22%3F%3E%0A%3Csvg%20width%3D%2212%22%20height%3D%2212%22%20version%3D%221.1%22%20viewBox%3D%220%200%203.1749997%203.175%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cg%20transform%3D%22translate(-61.232%20-118.44)%22%3E%3Cpath%20d%3D%22m63.682%20119.01-1.1328%201.5957-0.63477-0.45117-0.21094%200.29687%200.93164%200.66211%201.3438-1.8906z%22%20fill%3D%22%23fff%22%20fill-rule%3D%22evenodd%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E");
 
-            &:hover {
-                box-shadow: @input-ch-rd-hover;
-                background-color: darken(@input-ch-rd-bgc-blue,5%);
-            }
-        }
-
-        &:hover {
-            box-shadow: @input-ch-rd-hover, @input-ch-rd-blue_light;
-            background-color: fade(@input-ch-rd-bgc-blue,10%);
-        }
-
-        &:active {
-            box-shadow: @input-ch-rd-blue;
-            background-color: fade(@input-ch-rd-bgc-blue,50%);
-        }
-
-        &:focus {
-            box-shadow: @input-ch-rd-focus, @input-ch-rd-gray;
-
-            &:checked,
-            &:active {
-                box-shadow: @input-ch-rd-focus;
-            }
-            &:active {
-                box-shadow: @input-ch-rd-focus, @input-ch-rd-blue;
-            }
-        }
+      &:hover {
+        box-shadow: @input-ch-rd-hover;
+        background-color: darken(@input-ch-rd-bgc-blue,5%);
+      }
     }
+
+    &:hover {
+      box-shadow: @input-ch-rd-hover, @input-ch-rd-blue_light;
+      background-color: fade(@input-ch-rd-bgc-blue,10%);
+    }
+
+    &:active {
+      box-shadow: @input-ch-rd-blue;
+      background-color: fade(@input-ch-rd-bgc-blue,50%);
+    }
+
+    &:focus {
+      box-shadow: @input-ch-rd-focus, @input-ch-rd-gray;
+
+      &:checked,
+      &:active {
+        box-shadow: @input-ch-rd-focus;
+      }
+      &:active {
+        box-shadow: @input-ch-rd-focus, @input-ch-rd-blue;
+      }
+    }
+  }
 }
 
 //  --   Radio Selects
 //  ----------------------------------------------------------------------------
 .radio {
-    @supports (appearance: none) or (-webkit-appearance: none) {
-        border-radius: @br-circle;
-        box-shadow: @input-ch-rd-clear, @input-ch-rd-gray, @input-ch-rd-white;
+  @supports (appearance: none) or (-webkit-appearance: none) {
+    border-radius: @br-circle;
+    box-shadow: @input-ch-rd-clear, @input-ch-rd-gray, @input-ch-rd-white;
 
-        &:checked {
-            box-shadow: @input-ch-rd-clear, @input-ch-rd-blue, @input-ch-rd-white;
-            background-color: @input-ch-rd-bgc-blue;
+    &:checked {
+      box-shadow: @input-ch-rd-clear, @input-ch-rd-blue, @input-ch-rd-white;
+      background-color: @input-ch-rd-bgc-blue;
 
-            &:hover {
-                box-shadow: @input-ch-rd-hover, @input-ch-rd-blue, @input-ch-rd-white;
-                background-color: darken(@input-ch-rd-bgc-blue,5%);
-            }
-        }
-
-        &:hover {
-            box-shadow: @input-ch-rd-hover, @input-ch-rd-blue_light, @input-ch-rd-white;
-            background-color: fade(@input-ch-rd-bgc-blue,10%);
-        }
-
-        &:active {
-            box-shadow: @input-ch-rd-clear, @input-ch-rd-blue, @input-ch-rd-white;
-            background-color: fade(@input-ch-rd-bgc-blue,50%);
-        }
-
-        &:focus {
-            box-shadow: @input-ch-rd-focus, @input-ch-rd-gray, @input-ch-rd-white;
-
-            &:checked,
-            &:active {
-                box-shadow: @input-ch-rd-focus, @input-ch-rd-blue, @input-ch-rd-white;
-            }
-        }
+      &:hover {
+        box-shadow: @input-ch-rd-hover, @input-ch-rd-blue, @input-ch-rd-white;
+        background-color: darken(@input-ch-rd-bgc-blue,5%);
+      }
     }
+
+    &:hover {
+      box-shadow: @input-ch-rd-hover, @input-ch-rd-blue_light, @input-ch-rd-white;
+      background-color: fade(@input-ch-rd-bgc-blue,10%);
+    }
+
+    &:active {
+      box-shadow: @input-ch-rd-clear, @input-ch-rd-blue, @input-ch-rd-white;
+      background-color: fade(@input-ch-rd-bgc-blue,50%);
+    }
+
+    &:focus {
+      box-shadow: @input-ch-rd-focus, @input-ch-rd-gray, @input-ch-rd-white;
+
+      &:checked,
+      &:active {
+        box-shadow: @input-ch-rd-focus, @input-ch-rd-blue, @input-ch-rd-white;
+      }
+    }
+  }
 }
 
 
@@ -432,34 +445,39 @@
 //  $  LABELS
 //  ============================================================================
 .label {
-    font-size: @fs15;
-    font-weight: 700;
-    cursor: pointer;
-}
+  .fw-bold;
+  cursor: pointer;
 
-//  $$  LABEL STATUS FLAG
-//  ----------------------------------------------------------------------------
-//      Is this form item required or optional? Flag the status for users.
-//      Default styling is optional.
-.label-status {
+  //  $$  STYLE MODIFICATIONS
+  //  --------------------------------------------------------------------------
+  &._muted {
+    .tc-light;
+  }
+
+  //  $$  LABEL STATUS FLAG
+  //  ----------------------------------------------------------------------------
+  //      Is this form item required or optional? Flag the status for users.
+  //      Default styling is optional.
+  > .-status {
     font-size: 85%;
-    font-style: italic;
-    font-weight: 400;
-    color: @fc-medium;
+    .fs-italic;
+    .fw-normal;
+    .tc-medium;
 
     &._required {
-        color: @red-400;
+      .tc-red-400;
     }
+  }
 }
 
+
 //  ============================================================================
-//  $  TEXT STYLES
-//  ============================================================================
+//  $ TYPE STYLES
+//  ----------------------------------------------------------------------------
 .input-description {
-    margin: 0 0 @su8;
-    font-size: @fs12;
-    line-height: @lh-s;
-    color: @fc-medium;
+  .fs3;
+  .lh3;
+  .tc-light;
 }
 
 
@@ -467,137 +485,139 @@
 //  $ OPTION TOGGLE
 //  ----------------------------------------------------------------------------
 .option-toggle {
-    //  First hide the radio buttons
-    .radio {
-        position: absolute;
-        left: -999em;
-        .o0;
+  //  First hide the radio buttons
+  .radio {
+    .ps-absolute;
+    left: -999em;
+    .o0;
+  }
+
+  //  Next modifictions to option cells
+  .-option {
+    margin-left: -1px;
+    margin-right: -1px;
+
+    //  Round the corners on the first and last elements
+    &:first-of-type .label {
+      .blr1;
+    }
+    &:last-of-type .label {
+      .brr1;
+    }
+  }
+
+  //  Style the base label
+  .label {
+    .py8;
+    .px12;
+    .ba;
+    .bac-black-2;
+    .bg-white;
+    .tc-medium;
+    transition: all 300ms @te-smooth;
+    cursor: pointer;
+
+    &:hover,
+    &:active {
+      .tc-dark;
+      .bac-black-5;
+      box-shadow: 0 0 8px fade(@powder-600,25%);
+      background-color: @powder-025;
+      z-index: 1;
+    }
+  }
+
+  //  If the label is selected, style it accordingly.
+  .radio:checked + .label {
+    z-index: 2;
+    .bac-powder-1;
+    box-shadow: 0 0 8px fade(@powder-600,10%);
+    background-color: @powder-100;
+    color: @powder-700;
+
+    &:hover,
+    &:active {
+      box-shadow: 0 0 8px fade(@powder-600,25%);
+      .bac-powder-2;
+      background-color: darken(@powder-100,5%);
+      color: @powder-800;
+    }
+  }
+
+  //  $$  MODIFICATIONS
+  //  --------------------------------------------------------------------------
+  //  --  Primary
+  //      When the toggle is the only one within a view and we want it to be
+  //      visually dominating for the user.
+  &._primary {
+    .label:hover,
+    .label:active {
+      color: @blue-700;
+      box-shadow: 0 0 8px fade(@blue-500,25%);
+      background-color: @blue-050;
     }
 
-    //  Next modifictions to option cells
-    .-option {
-        margin-left: -1px;
-        margin-right: -1px;
-
-        //  Round the corners on the first and last elements
-        &:first-of-type .label {
-            .blr1;
-        }
-        &:last-of-type .label {
-            .brr1;
-        }
-    }
-
-    //  Style the base label
-    .label {
-        padding: @su8 @su12;
-        border: 1px solid @black-075;
-        background-color: @white;
-        color: @fc-medium;
-        transition: all 300ms @te-smooth;
-        cursor: pointer;
-
-        &:hover,
-        &:active {
-            color: @fc-dark;
-            border-color: @black-150;
-            box-shadow: 0 0 8px fade(@powder-600,25%);
-            background-color: @powder-025;
-            z-index: 1;
-        }
-    }
-
-    //  If the label is selected, style it accordingly.
     .radio:checked + .label {
-        z-index: 2;
-        border-color: @powder-100;
-        box-shadow: 0 0 8px fade(@powder-600,10%);
-        background-color: @powder-100;
-        color: @powder-700;
+      border-color: @blue-600;
+      box-shadow: 0 0 8px fade(@blue-500,10%);
+      background-color: @blue-500;
+      color: @white;
+
+      &:hover,
+      &:active {
+        border-color: @blue-700;
+        box-shadow: 0 0 8px fade(@blue-500,25%);
+        background-color: @blue-600;
+        color: @blue-050;
+      }
+    }
+  }
+
+  //  --  Switch
+  //      Used when the toggle represents an "on/off" choice for the user. A
+  //      "off" state must be present to use this modifier.
+  &._switch {
+    .label:hover,
+    .label:active {
+      .bac-black-5;
+      box-shadow: 0 0 8px fade(@black-600,25%);
+      background-color: @bgc-lightest;
+    }
+
+    .radio:checked + .label {
+      &:not(._off) {
+        .bac-green-2;
+        box-shadow: 0 0 8px fade(@green-400,10%);
+        background-color: @green-400;
+        color: @white;
 
         &:hover,
         &:active {
-            border-color: @powder-400;
-            box-shadow: 0 0 8px fade(@powder-600,25%);
-            background-color: darken(@powder-100,5%);
-            color: @powder-800;
+          .bac-green-3;
+          box-shadow: 0 0 8px fade(@green-400,25%);
+          background-color: @green-500;
+          color: @green-050;
         }
+      }
+
+      //  When the off state is selected, we don't it green. We want it to be
+      //  gray instead.
+      &._off {
+        .bac-black-5;
+        box-shadow: 0 0 8px fade(@black-800,10%);
+        background-color: @bgc-light;
+        color: @fc-dark;
+
+        &:hover,
+        &:active {
+          .bac-black-6;
+          box-shadow: 0 0 8px fade(@black-800,25%);
+          background-color: @bgc-dark;
+          color: darken(@fc-dark,5%);
+        }
+      }
     }
-
-    //  $$  MODIFICATIONS
-    //  --------------------------------------------------------------------------
-    //  --  Primary
-    //      When the toggle is the only one within a view and we want it to be
-    //      visually dominating for the user.
-    &._primary {
-        .label:hover,
-        .label:active {
-            color: @blue-700;
-            box-shadow: 0 0 8px fade(@blue-500,25%);
-            background-color: @blue-050;
-        }
-
-        .radio:checked + .label {
-            border-color: @blue-600;
-            box-shadow: 0 0 8px fade(@blue-500,10%);
-            background-color: @blue-500;
-            color: @white;
-
-            &:hover,
-            &:active {
-                border-color: @blue-700;
-                box-shadow: 0 0 8px fade(@blue-500,25%);
-                background-color: @blue-600;
-                color: @blue-050;
-            }
-        }
-    }
-
-    //  --  Switch
-    //      Used when the toggle represents an "on/off" choice for the user. A
-    //      "off" state must be present to use this modifier.
-    &._switch {
-        .label:hover,
-        .label:active {
-            border: 1px solid @black-800;
-            box-shadow: 0 0 8px fade(@black-600,25%);
-            background-color: @bgc-lightest;
-        }
-
-        .radio:checked + .label {
-            &:not(._off) {
-                border-color: @green-400;
-                box-shadow: 0 0 8px fade(@green-400,10%);
-                background-color: @green-400;
-                color: @white;
-
-                &:hover,
-                &:active {
-                    border-color: @green-600;
-                    box-shadow: 0 0 8px fade(@green-400,25%);
-                    background-color: @green-500;
-                    color: @green-050;
-                }
-            }
-
-            //  When the off state is selected, we don't it green. We want it to be
-            //  gray instead.
-            &._off {
-                border-color: @black-300;
-                box-shadow: 0 0 8px fade(@black-800,10%);
-                background-color: @bgc-light;
-                color: @black-800;
-
-                &:hover,
-                &:active {
-                    border-color: @black-400;
-                    box-shadow: 0 0 8px fade(@black-800,25%);
-                    background-color: @bgc-dark;
-                    color: darken(@black-800,5%);
-                }
-            }
-        }
-    }
+  }
 }
 
 //  ============================================================================
@@ -609,17 +629,18 @@
     &.chosen-container-active {
         border-width: 0;
         .chosen-choices {
-            border-color: @blue-600;
+            .bac-blue-3;
             box-shadow: inset 0 0 4px @black-050, 0 0 5px fade(@blue-500,50%);
         }
     }
 
     .chosen-choices {
+        //.flexbox();
         padding: 0 1px;
         min-height: 38px;
         background-image: none;
         border-radius: @br2;
-        border-color: @black-100;
+        .bac-black-3;
 
         &:hover {
             border-color: fade(@blue-500,50%);
@@ -631,8 +652,8 @@
     .chosen-choices {
         li.search-choice,
         li.search-field {
-            .fl-inline;
-            .fl-ai-center;
+            display: inline-flex;
+            align-items: center;
             margin: @su4 1px;
             padding: @su2 (@su4 + 2);
         }
@@ -642,7 +663,7 @@
             background-image: none;
 
             font-family: @ff-sans;
-            font-size: @fs12;
+            font-size: @fs2;
             color: @powder-600;
             background-color: @powder-100;
             border-color: transparent;

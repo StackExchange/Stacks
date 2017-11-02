@@ -14,7 +14,7 @@
   const ClassName = {
     MENU        : "nav",
     MENU_ITEM   : "-item",
-    MENU_LINK   : "-link"
+    MENU_LINK   : "ps-relative pl24 py4 -link"
   }
 
   const GridClass = {
