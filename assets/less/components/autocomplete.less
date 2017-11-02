@@ -11,18 +11,6 @@
 //  ----------------------------------------------------------------------------
 .autocomplete {
     position: relative;
-
-    .company-tag {
-        margin: 2px;
-        flex-grow: 1;
-
-        .delete-tag {
-            position: absolute;
-            right: 9px;
-            top: ~"calc(50% - 7px)";
-            margin: 0;
-        }
-    }
 }
 
 .autocomplete-suggestions {
@@ -91,94 +79,4 @@
     &:hover {
         background-color: fade(@bgc-lightest,50%);
     }
-}
-
-.autocomplete-category-name,
-.autocomplete-suggestion,
-.autocomplete-default,
-.autocomplete-default {
-padding: 10px;
-}
-// Category
-.autocomplete-category-name {
-    background: #f6f6f7;
-    font-size: 11px;
-    text-transform: uppercase;
-}
-// Single item
-.autocomplete-suggestion {
-    cursor: pointer;
-    display: -ms-flexbox;
-    display: flex;
-    -ms-flex-item-align: center;
-    align-items: center;
-
-    &.parent {
-    }
-
-    &.child {
-        padding-left: 26px;
-        margin-top: -5px;
-        position: relative;
-
-        &:before {
-            content: '';
-            display: inline-block;
-            width: 12px;
-            height: 12px;
-            border-left: 1px solid #b9c1c5;
-            border-bottom: 1px solid #b9c1c5;
-            position: relative;
-            top: -6px;
-            left: -6px;
-        }
-    }
-}
-
-.autocomplete-suggestion,
-.autocomplete-default {
-    &:hover {
-        background: darken(#f6f6f7, 3%);
-        color: @black-900;
-    }
-}
-
-.autocomplete-suggestion-item {
-    max-width: 90%;
-    word-wrap: break-word;
-    overflow: hidden;
-    flex-grow: 1;
-    margin-left: 6px;
-}
-
-.autocomplete-suggestion-image {
-    width: 20px;
-    height: 20px;
-    overflow: hidden;
-    flex-shrink: 0;
-
-    img {
-        max-width: 100%;
-        height: auto;
-    }
-}
-
-.autocomplete-suggestion-match {
-    color: @black-900;
-    font-weight: 700;
-}
-
-.autocomplete-suggestion-url {
-    font-size: 11px;
-    color: @black-200;
-}
-
-.autocomplete-suggestion-count {
-    font-size: 13px;
-    color: @black-350;
-}
-
-.autocomplete-default {
-    border-top: 1px solid @black-150;
-    display: block;
 }
