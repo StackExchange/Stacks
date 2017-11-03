@@ -143,13 +143,32 @@ description: Stacks provides utility classes to override default styling of typo
 <p class="fs-display3">…</p>
 <p class="fs-display4">…</p>
 {% endhighlight %}
-        <div class="-preview grid fl-col-nowrap gs16">
+        <div class="-preview grid fl-col-nowrap gsc16 mt0">
             {% for term in site.data.type-definitions.fontsize %}
             <div class="grid">
                 <div class="grid-cell-2 fc-light fs-caption fw-bold">{{ term.label }}</div>
                 <div class="grid-cell fs-{{ term.term }} lh-xs">{{ term.define }}</div>
             </div>
             {% endfor %}
+        </div>
+    </div>
+
+    <h3 class="grid fl-jc-space-between fl-ai-center stacks-title _subtitle">Category Titles</h3>
+    <p class="stacks-p">Category titles help break content into digestible chunks, but are visually smaller than a traditional headline. They are meta descriptions of a content block. To further visually separate the content block from surrounding items, you can add a <code class="stacks-code">.has-border</code> class.</p>
+    <div class="stacks-code-preview">
+{% highlight html linenos %}
+<p class="fs-category">…</p>
+<p class="fs-category has-border">…</p>
+{% endhighlight %}
+        <div class="-preview grid fl-col-nowrap gsc16 mt0">
+            <div class="grid">
+                <div class="grid-cell-2 fc-light fs-caption fw-bold">Category</div>
+                <div class="grid-cell fs-category lh-xs">Category Title (12px)</div>
+            </div>
+            <div class="grid">
+                <div class="grid-cell-2 fc-light fs-caption fw-bold">Category (Has Border)</div>
+                <div class="grid-cell fs-category has-border lh-xs">Category Title (12px)</div>
+            </div>
         </div>
     </div>
 </section>
