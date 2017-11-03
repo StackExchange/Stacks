@@ -548,7 +548,7 @@ description: Sidebar widgets are flexible containers that provide a lot of patte
 </section>
     
 <script type="text/javascript">
-    // TODO: figure out the right way to share JS alongside the LESS
+    // TODO: figure out the right way to share JS alongside the Less
     window.onload = function () {
         function toggleCollapsing(e) {
             if (e.type == "keydown" && (e.keyCode != 13 && e.keyCode != 32)) {
