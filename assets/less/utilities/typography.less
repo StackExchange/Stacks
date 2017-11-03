@@ -32,48 +32,67 @@ h3,
 h4,
 h5,
 h6 {
-  margin: 0 0 0.5em;
+  margin: 0 0 0.25em;
 }
 
 //  ============================================================================
-//  UTILITY OVERRIDES
-//  Instead of re-adding the same text styles to unique class names, use these
-//  utility classes for commonly used text decorations, sizes, styles,
-//  and colors.
-//  ============================================================================
-//  $   TEXT
-//  ============================================================================
-//  $$  FONT SIZES
+//  $   TEXT SIZES
 //  ----------------------------------------------------------------------------
-.fs1            { font-size: @fs1 !important; }    // 11px
-.fs2            { font-size: @fs2 !important; }    // 12px
-.fs3            { font-size: @fs3 !important; }    // 13px
-.fs4            { font-size: @fs4 !important; }    // 15px
-.fs5            { font-size: @fs5 !important; }    // 17px
-.fs6            { font-size: @fs6 !important; }    // 19px
-.fs7            { font-size: @fs7 !important; }    // 21px
-.fs8            { font-size: @fs8 !important; }    // 24px
-.fs9            { font-size: @fs9 !important; }    // 27px
-.fs10           { font-size: @fs10 !important; }   // 30px
-.fs11           { font-size: @fs11 !important; }   // 34px
-.fs12           { font-size: @fs12 !important; }   // 38px
-.fs13           { font-size: @fs13 !important; }   // 43px
-.fs14           { font-size: @fs14 !important; }   // 49px
+//  First create a REM mixin
+.mx-fs(@value) {
+    @rem: (unit(@value)) / @value;
 
+    font-size: @value;                          // Pixel fallback
+    font-size: ~"@{rem}rem";  //  REM
+}
 
-//  $$  LINE HEIGHTS
+//  Now declare font sizes
+.fs-display4    { .mx-fs(@fs-display4); }
+.fs-display3    { .mx-fs(@fs-display3); }
+.fs-display2    { .mx-fs(@fs-display2); }
+.fs-display1    { .mx-fs(@fs-display1); }
+.fs-headline2   { .mx-fs(@fs-headline2); }
+.fs-headline1   { .mx-fs(@fs-headline1); }
+.fs-title       { .mx-fs(@fs-title); }
+.fs-subheading  { .mx-fs(@fs-subheading); }
+.fs-body3       { .mx-fs(@fs-body3); }
+.fs-body2       { .mx-fs(@fs-body2); }
+.fs-body1       { .mx-fs(@fs-body1); }
+.fs-caption,
+.fs-category    { .mx-fs(@fs-caption); }
+.fs-fine        { .mx-fs(@fs-fine); }
+
+.fs-category {
+    font-weight: 700;
+    text-transform: uppercase;
+
+    //  If a top border is desired
+    &.has-border {
+        padding: @su4 0;
+        width: 100%;
+        border-top: 1px solid @black-100;
+    }
+}
+
+//  ============================================================================
+//  $$  TEXT COLORS
 //  ----------------------------------------------------------------------------
-.lh1            { line-height: @lh1 !important; }  // 1
-.lh2            { line-height: @lh2 !important; }  // 1.154
-.lh3            { line-height: @lh3 !important; }  // 1.308
-.lh4            { line-height: @lh4 !important; }  // 1.375
-.lh5            { line-height: @lh5 !important; }  // 1.615
-.lh6            { line-height: @lh6 !important; }  // 1.769
-.lh7            { line-height: @lh7 !important; }  // 1.923
-.lh8            { line-height: @lh8 !important; }  // 2
+.fc-dark        { color: @fc-dark; }
+.fc-medium      { color: @fc-medium; }
+.fc-light       { color: @fc-light; }
 
+//  ============================================================================
+//  $   LINE HEIGHTS
+//  ----------------------------------------------------------------------------
+.lh-xs          { line-height: @lh-xs !important; }
+.lh-s           { line-height: @lh-s !important; }
+.lh-m           { line-height: @lh !important; }
+.lh-l           { line-height: @lh-l !important; }
+.lh-xl          { line-height: @lh-xl !important; }
+.lh-xxl         { line-height: @lh-xxl !important; }
 
-//  $$  TEXT STYLES
+//  ============================================================================
+//  $$  TEXT STYLES & UTILITIES
 //  ----------------------------------------------------------------------------
 //  --  Font Family
 .ff-sans          { font-family: @ff-sans !important; }
@@ -111,10 +130,10 @@ h6 {
 
 //  --  Text Truncate
 .truncate {
-  .wmx100;
-  .overflow-hidden;
-  .ws-nowrap;
-  text-overflow: ellipsis !important;
+    max-width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis !important;
 }
 
 //  --  Whitespace
@@ -129,25 +148,16 @@ h6 {
 .ww-break-word    { word-wrap: break-word !important; }
 
 
-//  $$  COLORS
-//  ----------------------------------------------------------------------------
-.tc-light          { color: @fc-light !important; }
-.tc-medium         { color: @fc-medium !important; }
-.tc-dark           { color: @fc-dark !important; }
-
-.tc-orange         { color: @orange-400 !important; }
-
-
 //  ============================================================================
 //  $   LISTS
 //  ----------------------------------------------------------------------------
 .list-reset {
-  &,
-  > li {
-    .m0;
-    .p0;
-    .list-ls-none;
-  }
+    &,
+    > li {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
 }
 
 //  --  List Style Types

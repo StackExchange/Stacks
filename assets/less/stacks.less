@@ -19,8 +19,8 @@
 //  $   UNIVERSAL SETTINGS
 //  ----------------------------------------------------------------------------
 .svg-icon {
-  fill: currentColor;
-  vertical-align: bottom; // Make icons play nicely while inline with text by default
+    fill: currentColor;
+    vertical-align: bottom; // Make icons play nicely while inline with text by default
 }
 
 //  ============================================================================
@@ -38,49 +38,51 @@
 //      CSS. Otherwise they'll ignore it and we can use flexbox instead. This
 //      mainly means IE11 and Edge won't be supported for Grids.
 //  ----------------------------------------------------------------------------
-@content-width:       60em;
-@nav-width:           18em;
+@content-width:       (unit(780 / @body-fs)) * 1em;  // Target width: 780px;
+@nav-width:           (unit(234 / @body-fs)) * 1em;  // Target width: 234px;
 
 @supports (grid-auto-rows: 1px) {
-  .grid-container {
-    display: grid;
-    grid-template-columns: @nav-width @content-width;
-    grid-template-areas: "nav main";
-    grid-gap: 0;
-    .h100;
+    .grid-container {
+        display: grid;
+        grid-template-columns: @nav-width @content-width;
+        grid-template-areas: "nav main";
+        grid-gap: 0;
+        height: 100%;
 
-    //  Specific class names that assign template areas
-    .stacks-content {
-      grid-column: main;
-    }
-    .stacks-nav-primary {
-      grid-column: nav;
-    }
-    .stacks-nav-secondary {
-      grid-column: subnav;
-    }
+        //  Specific class names that assign template areas
+        .stacks-content {
+            grid-column: main;
+        }
+        .stacks-nav-primary {
+            grid-column: nav;
+        }
+        .stacks-nav-secondary {
+            grid-column: subnav;
+        }
 
-    .stacks-nav-primary,
-    .stacks-nav-secondary {
-      position: -webkit-sticky; // Needed for Safari
-      position: sticky;
-      top: 0;
-      height: 100vh;
-    }
+        .stacks-nav-primary,
+        .stacks-nav-secondary {
+            position: -webkit-sticky; // Needed for Safari
+            position: sticky;
+            top: 0;
+            height: 100vh;
+        }
 
-    //  For when we want a secondary navigation
-    &._nav-secondary {
-      grid-template-columns: @nav-width @nav-width @content-width;
-      grid-template-areas: "nav subnav main";
+        //  For when we want a secondary navigation
+        &._nav-secondary {
+            grid-template-columns: @nav-width @nav-width @content-width;
+            grid-template-areas: "nav subnav main";
+        }
+        &._home {
+            grid-template-columns: @nav-width 1fr;
+        }
     }
-    &._home {
-      grid-template-columns: @nav-width 1fr;
-    }
-  }
 }
 
 .stacks-section {
-  max-width: @content-width; // Needed for Safari
+    margin-top: @su48;
+    margin-bottom: @su48;
+    max-width: @content-width; // Needed for Safari
 }
 
 
@@ -90,123 +92,92 @@
 //  $$  NAV: RESET LIST
 //  ----------------------------------------------------------------------------
 .nav {
-  &,
-  .-item {
-    .list-reset;
-  }
+    &,
+    .-item {
+        .list-reset;
+    }
+
+    .-link {
+        position: relative;
+        padding: @su4 @su4 @su4 @su24;
+    }
 }
 
 //  $$  NAV: MENU ITEM
 //  ----------------------------------------------------------------------------
 .nav .-item {
-  //  If a submenu is open…
-  &.is-open {
-    // background-color: @black-050;
+    //  If a submenu item is active…
+    &.is-active .-link {
+        background-color: @orange-300;
+        color: @white;
 
-    //  Flip icon
-    .-icon {
-      transform: rotate(180deg) translateY(-1px);
+        &:hover {
+            background-color: @orange-400;
+            color: @white;
+        }
     }
-  }
 
-  //  If a submenu item is active…  
-  &.is-active .-link {
-    .bg-orange-300;
-    .tc-white;
-
-    &:hover {
-      .bg-orange-400;
-      .tc-white;
+    //  If a submenu item is the last one…
+    &:last-child {
+        padding-bottom: @su8;
     }
-  }
-
-  //  If a submenu item is the last one…
-  &:last-child {
-    .pb8;
-  }
 }
-
-.nav._secondary .nav .-link {
-  .pl32;
-  .fs1;
-}
-
 
 //  $$  NAV: SECTIONS
 //  ----------------------------------------------------------------------------
 .-section {
-  font-size: @fs2;
-  color: @black-700;
+    .mx-fs(@fs-caption);
+    color: @fc-medium;
 }
 
 //  $$  NAV: LINKS
 //  ----------------------------------------------------------------------------
-.nav .-link {
-  background-color: fade(@black-050,0%);
-  .fs2;
-  line-height: @lh6;
-  color: @black-400;
-  
-  &:hover {
-    background-color: fade(@black-050,50%);
-    color: @fc-dark;
-  }
+.nav {
+    .-link {
+        background-color: fade(@black-050,0%);
+        .mx-fs(@fs-caption);
+        line-height: @lh-l;
+        color: @fc-light;
+        transition: all 600ms @te-smooth;
+
+        &:hover {
+            background-color: fade(@black-050,50%);
+            color: @fc-dark;
+        }
+    }
+    &._secondary {
+        .-link {
+            color: @fc-medium;
+        }
+        .nav .-link {
+            padding-left: @su32;
+            color: @fc-light;
+        }
+    }
 }
 
-.-repo-meta {
-  a {
+.-repo-meta a {
     color: @black-400;
     transition: all 300ms @te-smooth-quick;
 
     &:hover {
-      color: @fc-dark;
+        color: @fc-dark;
     }
-  }
 }
 
 //  ============================================================================
 //  $  NESTED NAV
 //  ----------------------------------------------------------------------------
-.nav .nav {
-  .-link {
-    font-size: @fs2;
-    line-height: @lh4;
-
-    &:hover {
-      color: @black-600;
-      background-color: @black-050;
-    }
-  }
-}
-
 //  Scrollspy styling
-.stacks-nav-secondary .active {
-  > .-link {
-    box-shadow: inset -2px 0 0 @orange-400;
-    color: @fc-dark;
-  }
-}
+// .stacks-nav-secondary .active > .-link {
+//     box-shadow: inset -2px 0 0 @orange-400;
+//     color: @fc-dark;
+// }
 
-.nav {
-  // Make icons slightly smaller
-  .-icon .svg-icon {
-    width: 12px;
-    height: 12px;
-  }
-}
-
-.-title._border {
-  position: relative;
-
-  &:before {
-    content: "";
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    width: @su24;
-    height: @su2;
-    background-color: @bgc-darker;
-  }
+// Make icons slightly smaller
+.nav .-icon .svg-icon {
+    width: @su12;
+    height: @su12;
 }
 
 
@@ -216,94 +187,113 @@
 //  $$  TITLES
 //  ----------------------------------------------------------------------------
 .stacks-title {
-  .pt32;
-  font-size: @fs7;
-  line-height: @lh6;
-  color: @fc-dark;
+    margin-bottom: 1em;
+    .mx-fs(@fs-headline1);
+    line-height: @lh-l;
+    color: @fc-dark;
 
-  .-anchor {
-    .flexbox(inline);
-    .flex(0 auto);
-    .justify-content(center);
-    .align-items(center);
-    width: @su24;
-    height: @su24;
-    background-color: @white;
-    color: @fc-light;
-    transition: all 300ms @te-smooth;
+    .-anchor {
+        .fl-inline;
+        .fl0;
+        .fl-jc-center;
+        .fl-ai-center;
+        width: @su24;
+        height: @su24;
+        background-color: @white;
+        color: @fc-light;
+        transition: all 300ms @te-smooth;
 
-    &:hover {
-      background-color: @blue-100;
-      color: @blue-700;
+        &:hover {
+            background-color: @blue-100;
+            color: @blue-700;
+        }
     }
-  }
 
-  &._subtitle {
-    .mb12;
-    font-size: @fs5;
-    color: @fc-medium;
-  }
-  &._subtitle-sm {
-    font-size: @fs4;
-    color: lighten(@fc-medium,10%);
-  }
+    &._subtitle {
+        margin-bottom: @su12;
+        .mx-fs(@fs-title);
+        color: @fc-medium;
+    }
+    &._subtitle-sm {
+        .mx-fs(@fs-body3);
+        color: @fc-light;
+    }
+}
+
+.stacks-page-category {
+    position: relative;
+    margin: @su24;
+    padding-bottom: @su8;
+
+    .mx-fs(@fs-caption);
+    text-transform: uppercase;
+    color: @orange-400;
+
+    &:before {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: @su24;
+        height: @su2;
+        background-color: @bgc-darker;
+    }
+
 }
 
 //  ============================================================================
 //  $$  PARAGRAPHS
 //  ----------------------------------------------------------------------------
 .stacks-p {
-  margin-bottom: 1em;
-  line-height: @lh3;
-  color: @fc-medium;
+    margin-top: 0;
+    margin-bottom: 1em;
+    line-height: @lh;
+    color: @fc-medium;
 
-  &._intro   {
-    .pt4;
-    .mb0;
-    font-size: @fs7;
-  }
-  &._page    { font-size: @fs5; }
-  &._section { font-size: @fs4; }
+    &._intro {
+        margin-bottom: @su24;
+        padding-top: @su4;
+        .mx-fs(@fs-title);
+    }
+    &._page    { .mx-fs(@fs-subheading); }
+    &._section { .mx-fs(@fs-body3); }
 
-  strong {
-    color: @fc-dark;
-  }
+    strong {
+        color: @fc-dark;
+    }
 }
 
 //  ============================================================================
 //  $$  LISTS
 //  ----------------------------------------------------------------------------
 .stacks-list {
-  margin: 0 0 1em;
-  line-height: @lh4;
-  color: @fc-medium;
+    margin-bottom: 1em;
+    line-height: @lh;
+    color: @fc-medium;
 
-  &._section { font-size: @fs4; }
+    &._section { .mx-fs(@fs-body3); }
 
-  strong {
-    color: @fc-dark;
-  }
+    strong {
+        color: @fc-dark;
+    }
 }
 
 //  --   Code Tag
 //  ----------------------------------------------------------------------------
 .stacks-code,
 .stacks-p code.highlighter-rouge /* markdown-created code spans */ {
-  .mx2;
-  .my0;
-  .pt2;
-  .pb2;
-  .px4;
-  .bar1;
-  .tc-orange-600;
-  .ff-mono;
-  .fs2;
-  .fw-bold;
-  .va-middle;
-  .bg-orange-050;
-  .ba;
-  .bac-orange-1;
-  .ws-nowrap;
+    margin: 0 @su2;
+    padding: @su2 @su4;
+    border-radius: @br2;
+    border: 1px solid @black-050;
+    background-color: @black-050;
+
+    .mx-fs(@fs-caption);
+    font-family: @ff-mono;
+    color: @fc-medium;
+
+    vertical-align: middle;
+    white-space: nowrap;
 }
 
 
@@ -311,75 +301,75 @@
 //  $   CODE STYLES
 //  ----------------------------------------------------------------------------
 .stacks-code-preview {
-  .mt16;
-  .bs-s;
+    margin-bottom: @su48;
+    box-shadow: 0 @su2 @su8 fade(@black-050, 50%);
 
-  // Actual code highlight
-  .highlight {
-    // Reset margins
-    &,
-    pre {
-      margin: 0;
-      font-size: @fs3 + 1;
-      font-family: @ff-mono;
-      line-height: @lh6;
-      color: #C5C8C6;
+    // Actual code highlight
+    .highlight {
+        // Reset margins
+        &,
+        pre {
+            margin: 0;
+            .mx-fs(@fs-body1);
+            font-family: @ff-mono;
+            line-height: @lh-l;
+            color: #C5C8C6;
+        }
+
+        > pre {
+            background-color: @black-800;
+            border-top-left-radius: @br1;
+            border-top-right-radius: @br1;
+            .btr1;
+            overflow: auto;
+        }
+
+        .gutter.gl {
+            padding-top: @su12;
+            padding-right: @su8;
+            padding-bottom: @su12;
+            background: @black-750;
+            min-width: @su32;
+
+            pre {
+                color: #7A7D80;
+            }
+        }
+
+        .code {
+            padding-left: @su12;
+        }
     }
 
-    > pre {
-      background-color: @black-800;
-      .btr1;
-      overflow: auto;
+    //  Preview area
+    .-preview {
+        padding: @su16;
+        border-bottom-left-radius: @br1;
+        border-bottom-right-radius: @br1;
+        border: 1px solid @black-100;
+        border-top-width: 0;
     }
 
-    .gutter.gl {
-      padding-top: @su12;
-      padding-right: @su8;
-      padding-bottom: @su12;
-      background: @black-750;
-      min-width: @su32;
-
-      pre {
-        color: #7A7D80;
-      }
+    //  If there's no preview. We're only showing code.
+    &._preview-none .highlight pre {
+        border-radius: @br1;
     }
-
-    .code {
-      padding-left: @su12;
-    }
-  }
-
-  //  Preview area
-  .-preview {
-    .p16;
-    .bbr1;
-    .ba;
-    .bac-black-3;
-    .btw0;
-  }
-
-  //  If there's no preview. We're only showing code.
-  &._preview-none .highlight pre {
-    .bar1;
-  }
 }
 
 
 //  ============================================================================
 //  $   CARD STYLES
 //  ----------------------------------------------------------------------------
-.card.stacks-preview {
-  //  --   Preview Area
-  .-preview {
+//  --   Preview Area
+.card.stacks-preview .-preview {
     min-height: 4em;
     background-color: @black-025;
     box-shadow: inset 0 -1px 0 @black-050;
     color: @fc-medium;
 
     .svg-icon {
-      max-width: 90%;
+        max-width: 90%;
     }
-  }
 }
 
 
@@ -391,68 +381,69 @@
 @grid-cell-background:       @orange-300;
 
 .stacks-grid {
-  .ff-mono;
-  .fs2;
-  .tc-black-800;
+    font-family: @ff-mono;
+    .mx-fs(@fs-caption);
+    font-color: @fc-dark;
 
-  &._helper-ac .grid,
-  &._helper-as .grid {
-    max-height: 128px;
-  }
+    &._helper-ac .grid,
+    &._helper-as .grid {
+        max-height: 128px;
+    }
 
-  &._helper-order .stacks-grid-wrapper {
-    .grid-cell:not(.fl-first):not(.fl-last) { opacity: 0.5; }
-  }
+    &._helper-order .stacks-grid-wrapper {
+        .grid-cell:not(.fl-first):not(.fl-last) { opacity: 0.5; }
+    }
 }
 
 .stacks-grid-wrapper {
-  .my24;
-  .overflow-hidden;
+    margin-top: @su24;
+    margin-bottom: @su24;
+    overflow: hidden;
 
-  &:first-of-type { .mt0; }
-  &:last-of-type  { .mb0; }
-
-  .grid,
-  [class*="grid-cell"] {
-    .p8;
-    background-color: @grid-background;
+    &:first-of-type { margin-top: 0; }
+    &:last-of-type  { margin-bottom: 0; }
 
     .grid,
     [class*="grid-cell"] {
-      background-color: @grid-cell-background;
+        padding: @su8;
+        background-color: @grid-background;
 
-      .grid,
-      [class*="grid-cell"] {
-        background-color: spin(desaturate(darken(@grid-cell-background,5%),5%),-5);
-      }
+        .grid,
+        [class*="grid-cell"] {
+            background-color: @grid-cell-background;
+
+            .grid,
+            [class*="grid-cell"] {
+                background-color: spin(desaturate(darken(@grid-cell-background,5%),5%),-5);
+            }
+        }
     }
-  }
 }
 
 .stacks-grid-example {
-  .fl-box;
-  .fl-center;
-  .h100;
+    .fl-box;
+    .fl-center;
+    height: 100%;
 }
 
 //  ============================================================================
 //  $   COLORS
 //  ----------------------------------------------------------------------------
 .stacks-swatch {
-  width: @su32;
-  height: @su32;
+    width: @su32;
+    height: @su32;
 }
 
 //  ============================================================================
 //  $   Help Button
 //  ----------------------------------------------------------------------------
 .button-help {
-  .ps-fixed;
-  bottom: @su32;
-  right: @su32;
-  color: @orange-400;
-  
-  &:hover {
-      color: @orange-600;
-  }
+    position: fixed;
+    bottom: @su32;
+    right: @su32;
+    color: @orange-400;
+
+    &:hover {
+        color: @orange-600;
+    }
 }

@@ -4,7 +4,7 @@ title: Sizing
 description: Sizing utility classes allow you to quickly an element’s size or max size. Sizing classes provide percentage values and max-sizes are REM values. These should be used when possible to help create consistency.
 ---
 <section class="stacks-section">
-    <h2 class="grid fl-jc-space-between fl-ai-center mb12 mt24 stacks-title">Class Definitions</h2>
+    <h2 class="grid fl-jc-space-between fl-ai-center stacks-title">Class Definitions</h2>
     <h3 class="grid fl-jc-space-between fl-ai-center stacks-title _subtitle">Sizes</h3>
     <table class="table mb32 _hover">
         <thead>
@@ -17,7 +17,7 @@ description: Sizing utility classes allow you to quickly an element’s size or 
         </thead>
         <tbody>
             {% for size in site.data.utility-definitions.sizing %}
-              <tr class="ff-mono fs2">
+              <tr class="ff-mono fs-caption">
                   <th scope="row" class="p8">.{{ size.class }}</th>
                   <td class="p8">.w{{ size.value }}</td>
                   <td class="p8">.h{{ size.value }}</td>
@@ -28,7 +28,7 @@ description: Sizing utility classes allow you to quickly an element’s size or 
     </table>
 
     <h3 class="grid fl-jc-space-between fl-ai-center stacks-title _subtitle">Max Sizes</h3>
-    <table class="table mb32 _hover">
+    <table class="table mb48 _hover">
         <thead>
             <tr>
                 <th class="-cell-3" scope="col">Class</th>
@@ -40,13 +40,13 @@ description: Sizing utility classes allow you to quickly an element’s size or 
         </thead>
         <tbody>
             {% for size in site.data.utility-definitions.max-size %}
-            <tr class="ff-mono fs2">
+            <tr class="ff-mono fs-caption">
                 <th scope="row" class="p8">.{{ size.class }}</th>
                 <td class="p8">.wmx{{ size.name }}</td>
                 <td class="p8">.hmx{{ size.name }}</td>
                 {% if size.value == 100 %}
                     <td class="p8">{{ size.value }}%</td>
-                    <td class="p8 tc-black-350">N/A</td>
+                    <td class="p8 fc-black-350">N/A</td>
                 {% else %}
                     <td class="p8">{{ size.value }}rem</td>
                     <td class="p8">{{ size.output }}px</td>
@@ -58,8 +58,8 @@ description: Sizing utility classes allow you to quickly an element’s size or 
 </section>
 
 <section class="stacks-section">
-    <h2 class="grid fl-jc-space-between fl-ai-center mb-0 mt24 stacks-title _subtitle">Examples</h2>
-    <h3 class="grid fl-jc-space-between fl-ai-center mb-0 mt4 py4 stacks-title fw-normal fs4 tc-black-400 bb bbc-black-3">Width</h3>
+    <h2 class="grid fl-jc-space-between fl-ai-center stacks-title _subtitle">Examples</h2>
+    <h4 class="grid fl-jc-space-between fl-ai-center stacks-title _subtitle-sm">Width</h4>
     <div class="stacks-code-preview">
 {% highlight html linenos %}
 <div class="w0">…</div>
@@ -76,8 +76,8 @@ description: Sizing utility classes allow you to quickly an element’s size or 
 <div class="w90">…</div>
 <div class="w100">…</div>
 {% endhighlight %}
-        <div class="-preview ps-relative">
-            <div class="grid gs2 fl-col-nowrap w100 tc-black-800 ff-mono">
+        <div class="-preview ps-relative fs-caption ff-mono">
+            <div class="grid gs2 fl-col-nowrap w100">
                 <div class="grid">
                     <div class="p16 w100 bg-orange-050 ba bac-orange-1">.w100</div>
                 </div>
@@ -109,7 +109,7 @@ description: Sizing utility classes allow you to quickly an element’s size or 
         </div>
     </div>
 
-    <h3 class="grid fl-jc-space-between fl-ai-center mb-0 mt4 py4 stacks-title fw-normal fs4 tc-black-400 bb bbc-black-3">Height</h3>
+    <h4 class="grid fl-jc-space-between fl-ai-center stacks-title _subtitle-sm">Height</h4>
     <div class="stacks-code-preview">
 {% highlight html linenos %}
 <div class="h0">…</div>
@@ -126,8 +126,8 @@ description: Sizing utility classes allow you to quickly an element’s size or 
 <div class="h90">…</div>
 <div class="h100">…</div>
 {% endhighlight %}
-        <div class="-preview ps-relative">
-            <div class="grid fl-inline gs2 w100 tc-black-800 ff-mono" style="height: 300px;">
+        <div class="-preview ps-relative fs-caption ff-mono">
+            <div class="grid fl-inline gs2 w100" style="height: 300px;">
                 <div class="grid-cell fl1 fl-col-nowrap">
                     <div class="p16 h100 bg-orange-050 ba bac-orange-1">.h100</div>
                 </div>

@@ -4,7 +4,7 @@ title: Typography
 description: Stacks provides utility classes to override default styling of typography. Change typographic weights, styles, and alignment with these utility styles.
 ---
 <section id="typography-basic" class="stacks-section">
-    <h2 class="grid fl-jc-space-between fl-ai-center mb0 stacks-title">Basic Styles</h2>
+    <h2 class="grid fl-jc-space-between fl-ai-center stacks-title">Basic Styles</h2>
     <p class="stacks-p _section">These styles should only be used as overrides. They shouldn’t replace standard semantic uses of <code class="stacks-code">strong</code> or <code class="stacks-code">em</code> tags.</p>
     <div class="stacks-code-preview">
 {% highlight html linenos %}
@@ -47,7 +47,7 @@ description: Stacks provides utility classes to override default styling of typo
 </section>
 
 <section id="typography-layout" class="stacks-section">
-    <h2 class="grid fl-jc-space-between fl-ai-center mb0 stacks-title">Layout</h2>
+    <h2 class="grid fl-jc-space-between fl-ai-center stacks-title">Layout</h2>
     <div class="stacks-code-preview">
 {% highlight html linenos %}
 <p class="ta-left">Text Align: Left</p>
@@ -89,7 +89,7 @@ description: Stacks provides utility classes to override default styling of typo
 </section>
 
 <section id="typography-font" class="stacks-section">
-    <h2 class="grid fl-jc-space-between fl-ai-center mb0 stacks-title">Fonts</h2>
+    <h2 class="grid fl-jc-space-between fl-ai-center stacks-title">Fonts</h2>
     <div class="stacks-code-preview">
 {% highlight html linenos %}
 <p class="ff-sans">…</p>
@@ -98,96 +98,121 @@ description: Stacks provides utility classes to override default styling of typo
 <p class="ff-inherit">…</p>
 {% endhighlight %}
         <div class="-preview">
-            <p class="ff-sans fs6">Sans Serif</p>
-            <p class="ff-serif fs6">Serif</p>
-            <p class="ff-mono fs6">Mono</p>
-            <p class="ff-inherit fs6">Inherit</p>
+            <p class="ff-sans fs-subheading">Sans Serif</p>
+            <p class="ff-serif fs-subheading">Serif</p>
+            <p class="ff-mono fs-subheading">Mono</p>
+            <p class="ff-inherit fs-subheading">Inherit</p>
         </div>
     </div>
 </section>
 
 <section id="typography-scale" class="stacks-section">
-    <h2 class="grid fl-jc-space-between fl-ai-center mb0 stacks-title">Type Sizes</h2>
+    <h2 class="grid fl-jc-space-between fl-ai-center stacks-title">Type Sizes</h2>
+    <h3 class="grid fl-jc-space-between fl-ai-center stacks-title _subtitle">Type Class Definitions</h3>
+    <table class="table mb32 _hover">
+        <thead>
+            <tr>
+                <th class="-cell2" scope="col">Class</th>
+                <th scope="col">Size</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for term in site.data.type-definitions.fontsize %}
+              <tr>
+                  <th scope="row"><code class="stacks-code">.fs-{{ term.term }}</code></th>
+                  <td>{{ term.define }}</td>
+              </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <h3 class="grid fl-jc-space-between fl-ai-center stacks-title _subtitle">Type Examples</h3>
     <div class="stacks-code-preview">
 {% highlight html linenos %}
-<p class="fs1">…</p>
-<p class="fs2">…</p>
-<p class="fs3">…</p>
-<p class="fs4">…</p>
-<p class="fs5">…</p>
-<p class="fs6">…</p>
-<p class="fs7">…</p>
-<p class="fs8">…</p>
-<p class="fs9">…</p>
-<p class="fs10">…</p>
-<p class="fs11">…</p>
-<p class="fs12">…</p>
-<p class="fs13">…</p>
-<p class="fs14">…</p>
+<p class="fs-fine">…</p>
+<p class="fs-caption">…</p>
+<p class="fs-body1">…</p>
+<p class="fs-body2">…</p>
+<p class="fs-body3">…</p>
+<p class="fs-subheading">…</p>
+<p class="fs-title">…</p>
+<p class="fs-headline1">…</p>
+<p class="fs-headline2">…</p>
+<p class="fs-display1">…</p>
+<p class="fs-display2">…</p>
+<p class="fs-display3">…</p>
+<p class="fs-display4">…</p>
 {% endhighlight %}
-        <div class="-preview">
-            <p class="fs1"><strong>Font Size:</strong> 11px</p>
-            <p class="fs2"><strong>Font Size:</strong> 12px</p>
-            <p class="fs3"><strong>Font Size:</strong> 13px</p>
-            <p class="fs4"><strong>Font Size:</strong> 15px</p>
-            <p class="fs5"><strong>Font Size:</strong> 17px</p>
-            <p class="fs6"><strong>Font Size:</strong> 19px</p>
-            <p class="fs7"><strong>Font Size:</strong> 21px</p>
-            <p class="fs8"><strong>Font Size:</strong> 24px</p>
-            <p class="fs9"><strong>Font Size:</strong> 27px</p>
-            <p class="fs10"><strong>Font Size:</strong> 30px</p>
-            <p class="fs11"><strong>Font Size:</strong> 34px</p>
-            <p class="fs12"><strong>Font Size:</strong> 38px</p>
-            <p class="fs13"><strong>Font Size:</strong> 43px</p>
-            <p class="fs14"><strong>Font Size:</strong> 49px</p>
+        <div class="-preview grid fl-col-nowrap gsc16 mt0">
+            {% for term in site.data.type-definitions.fontsize %}
+            <div class="grid">
+                <div class="grid-cell-2 fc-light fs-caption fw-bold">{{ term.label }}</div>
+                <div class="grid-cell fs-{{ term.term }} lh-xs">{{ term.define }}</div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <h3 class="grid fl-jc-space-between fl-ai-center stacks-title _subtitle">Category Titles</h3>
+    <p class="stacks-p">Category titles help break content into digestible chunks, but are visually smaller than a traditional headline. They are meta descriptions of a content block. To further visually separate the content block from surrounding items, you can add a <code class="stacks-code">.has-border</code> class.</p>
+    <div class="stacks-code-preview">
+{% highlight html linenos %}
+<p class="fs-category">…</p>
+<p class="fs-category has-border">…</p>
+{% endhighlight %}
+        <div class="-preview grid fl-col-nowrap gsc16 mt0">
+            <div class="grid">
+                <div class="grid-cell-2 fc-light fs-caption fw-bold">Category</div>
+                <div class="grid-cell fs-category lh-xs">Category Title (12px)</div>
+            </div>
+            <div class="grid">
+                <div class="grid-cell-2 fc-light fs-caption fw-bold">Category (Has Border)</div>
+                <div class="grid-cell fs-category has-border lh-xs">Category Title (12px)</div>
+            </div>
         </div>
     </div>
 </section>
 
 <section id="typography-spacing" class="stacks-section">
-    <h2 class="grid fl-jc-space-between fl-ai-center mb0 stacks-title">Type Spacing</h2>
+    <h2 class="grid fl-jc-space-between fl-ai-center stacks-title">Type Spacing</h2>
     <div class="stacks-code-preview">
 {% highlight html linenos %}
-<p class="lh1">…</p>
-<p class="lh2">…</p>
-<p class="lh3">…</p>
-<p class="lh4">…</p>
-<p class="lh5">…</p>
-<p class="lh6">…</p>
-<p class="lh7">…</p>
-<p class="lh8">…</p>
+<p class="lh-xs">…</p>
+<p class="lh-s">…</p>
+<p class="lh-m">…</p>
+<p class="lh-l">…</p>
+<p class="lh-xl">…</p>
+<p class="lh-xxl">…</p>
 {% endhighlight %}
         <div class="-preview">
-            <p class="lh1"><strong>Line Height 1:</strong> This sets the <code class="stacks-code">line-height</code> value to <code class="stacks-code">1</code>. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-            <p class="lh2"><strong>Line Height 2:</strong> This sets the <code class="stacks-code">line-height</code> value to <code class="stacks-code">1.13</code>. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-            <p class="lh3"><strong>Line Height 3:</strong> This sets the <code class="stacks-code">line-height</code> value to <code class="stacks-code">1.26</code>. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-            <p class="lh4"><strong>Line Height 4:</strong> This sets the <code class="stacks-code">line-height</code> value to <code class="stacks-code">1.4</code>. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-            <p class="lh5"><strong>Line Height 5:</strong> This sets the <code class="stacks-code">line-height</code> value to <code class="stacks-code">1.53</code>. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-            <p class="lh6"><strong>Line Height 6:</strong> This sets the <code class="stacks-code">line-height</code> value to <code class="stacks-code">1.67</code>. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-            <p class="lh7"><strong>Line Height 7:</strong> This sets the <code class="stacks-code">line-height</code> value to <code class="stacks-code">1.8</code>. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-            <p class="lh8"><strong>Line Height 8:</strong> This sets the <code class="stacks-code">line-height</code> value to <code class="stacks-code">2</code>. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+            <p class="lh-xs"><strong>Line Height 1:</strong> This sets the <code class="stacks-code">line-height</code> value to <code class="stacks-code">1</code>. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+            <p class="lh-s"><strong>Line Height 2:</strong> This sets the <code class="stacks-code">line-height</code> value to <code class="stacks-code">1.13</code>. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+            <p class="lh-m"><strong>Line Height 3:</strong> This sets the <code class="stacks-code">line-height</code> value to <code class="stacks-code">1.26</code>. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+            <p class="lh-l"><strong>Line Height 4:</strong> This sets the <code class="stacks-code">line-height</code> value to <code class="stacks-code">1.4</code>. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+            <p class="lh-xl"><strong>Line Height 5:</strong> This sets the <code class="stacks-code">line-height</code> value to <code class="stacks-code">1.53</code>. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+            <p class="lh-xxl"><strong>Line Height 6:</strong> This sets the <code class="stacks-code">line-height</code> value to <code class="stacks-code">1.67</code>. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
         </div>
     </div>
 </section>
 
 <section id="typography-scale" class="stacks-section">
-    <h2 class="grid fl-jc-space-between fl-ai-center mb0 stacks-title">Type Colors</h2>
+    <h2 class="grid fl-jc-space-between fl-ai-center stacks-title">Type Colors</h2>
     <div class="stacks-code-preview">
 {% highlight html linenos %}
-<p class="tc-light">…</p>
-<p class="tc-medium">…</p>
-<p class="tc-dark">…</p>
+<p class="fc-light">…</p>
+<p class="fc-medium">…</p>
+<p class="fc-dark">…</p>
 {% endhighlight %}
         <div class="-preview">
-            <p class="tc-light fs4"><strong>Color:</strong> Light</p>
-            <p class="tc-medium fs4"><strong>Color:</strong> Medium</p>
-            <p class="tc-dark fs4"><strong>Color:</strong> Dark</p>
+            <p class="fc-light fs-body2"><strong>Color:</strong> Light</p>
+            <p class="fc-medium fs-body2"><strong>Color:</strong> Medium</p>
+            <p class="fc-dark fs-body2"><strong>Color:</strong> Dark</p>
         </div>
     </div>
 </section>
 
 <section id="typography-list-styling" class="stacks-section">
-    <h2 class="grid fl-jc-space-between fl-ai-center mb0 stacks-title"class="toc-list-styling">List Styling</h2>
+    <h2 class="grid fl-jc-space-between fl-ai-center stacks-title"class="toc-list-styling">List Styling</h2>
     <div class="stacks-code-preview">
 {% highlight html linenos %}
 <ol class="list-reset">

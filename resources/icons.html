@@ -5,7 +5,7 @@ description: All system icons are inline SVG files, invoked via a Razor helper. 
 ---
 
 <section class="stacks-section">
-  <h2 class="grid fl-jc-space-between fl-ai-center mb0 stacks-title">Using the Icon Helper</h2>
+  <h2 class="grid fl-jc-space-between fl-ai-center stacks-title">Using the Icon Helper</h2>
   <p class="stacks-p _section">The SVG Razor helper function should be used for all system icons in lieu of SVG sprite sheets or raster image assets. This ensures a single source of truth for all icons. The SVG helper is invoked by `@Svg.` and then adding the icon name, like so:</p>
 
   <div class="stacks-code-preview _preview-none">
@@ -38,8 +38,8 @@ description: All system icons are inline SVG files, invoked via a Razor helper. 
 </section>
 
 <section class="stacks-section mb32">
-  <h2 class="grid fl-jc-space-between fl-ai-center mb0 stacks-title">Icon Set</h2>
-  <p class="fs2 tc-medium"><em>Last updated October 10, 2017</em></p>
+  <h2 class="grid fl-jc-space-between fl-ai-center stacks-title">Icon Set</h2>
+  <p class="fs-caption fc-medium"><em>Last updated October 10, 2017</em></p>
 
   <div class="grid fl-wrap gs8 grid-4-col iconset">
       {% assign icon_sort = site.data.icons | sort: "helper" %}
@@ -49,7 +49,7 @@ description: All system icons are inline SVG files, invoked via a Razor helper. 
               {% include_relative {{ icon.helper | prepend: "svg-icons/" | append: ".svg" }} %}
           </div>
           <div class="grid fl-col-nowrap fl-0 fl-ai-center p-8 -content">
-              <code class="grid-cell fs1 py8">@Svg.{{ icon.helper }}</code>
+              <code class="grid-cell fs-fine py8">@Svg.{{ icon.helper }}</code>
           </div>
       </div>
       {% endfor %}
@@ -57,7 +57,7 @@ description: All system icons are inline SVG files, invoked via a Razor helper. 
 </section>
 
 <section class="stacks-section">
-  <h2 class="grid fl-jc-space-between fl-ai-center mb0 stacks-title">Need an icon?</h2>
+  <h2 class="grid fl-jc-space-between fl-ai-center stacks-title">Need an icon?</h2>
   <p class="stacks-p _section">If an icon you need isn’t listed above, please do one of the following two options:</p>
   <ol class="stacks-list _section">
     <li><a href="https://gh.stackoverflow.com/Design/Icons/issues/new">Submit a request</a> outlining the desired icon, the icon’s intended purposed, and where it will be used.</li>
