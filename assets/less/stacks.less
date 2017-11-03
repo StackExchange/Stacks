@@ -20,7 +20,7 @@
 //  ----------------------------------------------------------------------------
 .svg-icon {
     fill: currentColor;
-    //vertical-align: bottom; // Make icons play nicely while inline with text by default
+    vertical-align: bottom; // Make icons play nicely while inline with text by default
 }
 
 //  ============================================================================
@@ -106,11 +106,6 @@
 //  $$  NAV: MENU ITEM
 //  ----------------------------------------------------------------------------
 .nav .-item {
-    //  If a submenu is open flip the icon
-    &.is-open .-icon {
-        transform: rotate(180deg) translateY(-1px);
-    }
-
     //  If a submenu item is active…
     &.is-active .-link {
         background-color: @orange-300;
@@ -131,7 +126,7 @@
 //  $$  NAV: SECTIONS
 //  ----------------------------------------------------------------------------
 .-section {
-    font-size: @fs12;
+    .mx-fs(@fs-caption);
     color: @fc-medium;
 }
 
@@ -140,7 +135,7 @@
 .nav {
     .-link {
         background-color: fade(@black-050,0%);
-        font-size: @fs12;
+        .mx-fs(@fs-caption);
         line-height: @lh-l;
         color: @fc-light;
         transition: all 600ms @te-smooth;
@@ -193,7 +188,7 @@
 //  ----------------------------------------------------------------------------
 .stacks-title {
     margin-bottom: 1em;
-    font-size: @fs27;
+    .mx-fs(@fs-headline1);
     line-height: @lh-l;
     color: @fc-dark;
 
@@ -216,11 +211,11 @@
 
     &._subtitle {
         margin-bottom: @su12;
-        font-size: @fs21;
+        .mx-fs(@fs-title);
         color: @fc-medium;
     }
     &._subtitle-sm {
-        font-size: @fs17;
+        .mx-fs(@fs-body3);
         color: @fc-light;
     }
 }
@@ -230,7 +225,7 @@
     margin: @su24;
     padding-bottom: @su8;
 
-    font-size: @fs12;
+    .mx-fs(@fs-caption);
     text-transform: uppercase;
     color: @orange-400;
 
@@ -258,10 +253,10 @@
     &._intro {
         margin-bottom: @su24;
         padding-top: @su4;
-        font-size: @fs21;
+        .mx-fs(@fs-title);
     }
-    &._page    { font-size: @fs19; }
-    &._section { font-size: @fs17; }
+    &._page    { .mx-fs(@fs-subheading); }
+    &._section { .mx-fs(@fs-body3); }
 
     strong {
         color: @fc-dark;
@@ -276,7 +271,7 @@
     line-height: @lh;
     color: @fc-medium;
 
-    &._section { font-size: @fs17; }
+    &._section { .mx-fs(@fs-body3); }
 
     strong {
         color: @fc-dark;
@@ -293,7 +288,7 @@
     border: 1px solid @black-050;
     background-color: @black-050;
 
-    font-size: @fs12;
+    .mx-fs(@fs-caption);
     font-family: @ff-mono;
     color: @fc-medium;
 
@@ -315,7 +310,7 @@
         &,
         pre {
             margin: 0;
-            font-size: @fs13;
+            .mx-fs(@fs-body1);
             font-family: @ff-mono;
             line-height: @lh-l;
             color: #C5C8C6;
@@ -387,7 +382,7 @@
 
 .stacks-grid {
     font-family: @ff-mono;
-    font-size: @fs12;
+    .mx-fs(@fs-caption);
     font-color: @fc-dark;
 
     &._helper-ac .grid,
