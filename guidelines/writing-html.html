@@ -6,8 +6,8 @@ description: We’ve tried our best to answer any questions when writing HTML. H
 <section class="stacks-section">
   <h2 class="grid fl-jc-space-between fl-ai-center stacks-title" id="toc-syntax">Syntax</h2>
   <ul class="stacks-list _section">
-    <li>Use soft tabs with two spaces. They’re the only way to guarantee code renders the same in any environment.</li>
-    <li>Nested elements should be indented once (two spaces).</li>
+    <li>Use soft tabs with four spaces.</li>
+    <li>Nested elements should be indented once (four spaces).</li>
     <li>Always use double quotes, never single quotes, on attributes.</li>
     <li>Don’t include a trailing slash in self-closing elements—the <a href="http://dev.w3.org/html5/spec-author-view/syntax.html#syntax-start-tag">HTML5 spec</a> says they’re optional.</li>
     <li>Don’t omit optional closing tags (e.g. <code class="stacks-code">&lt;/li&gt;</code> or <code class="stacks-code">&lt;/body&gt;</code>).</li>
@@ -19,13 +19,13 @@ description: We’ve tried our best to answer any questions when writing HTML. H
 {% highlight html linenos %}
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Page title</title>
-  </head>
-  <body>
-    <img src="images/company-logo.png" alt="Company">
-    <h1 class="hello-world">Hello, world!</h1>
-  </body>
+    <head>
+      <title>Page title</title>
+    </head>
+    <body>
+        <img src="images/company-logo.png" alt="Company">
+        <h1 class="hello-world">Hello, world!</h1>
+    </body>
 </html>
 {% endhighlight %}
   </div>
@@ -48,7 +48,7 @@ description: We’ve tried our best to answer any questions when writing HTML. H
   <div class="stacks-code-preview _preview-none">
 {% highlight html linenos %}
 <a class="..." id="..." data-toggle="modal" href="#">
-  Example link
+    Example link
 </a>
 
 <input class="form-control" type="text">
@@ -73,12 +73,22 @@ description: We’ve tried our best to answer any questions when writing HTML. H
 
   <div class="stacks-code-preview _preview-none">
 {% highlight html linenos %}
+<!-- Not so great -->
+<input type="text" disabled=disabled>
+
+<input type="checkbox" value="1" checked=checked>
+
+<select>
+    <option value="1" selected="true">1</option>
+</select>
+
+<!-- Better -->
 <input type="text" disabled>
 
 <input type="checkbox" value="1" checked>
 
 <select>
-  <option value="1" selected>1</option>
+    <option value="1" selected>1</option>
 </select>
 {% endhighlight %}
   </div>
@@ -92,7 +102,7 @@ description: We’ve tried our best to answer any questions when writing HTML. H
 {% highlight html linenos %}
 <!-- Not so great -->
 <span class="avatar">
-  <img src="...">
+    <img src="...">
 </span>
 
 <!-- Better -->

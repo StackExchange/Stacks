@@ -4,10 +4,17 @@ title: Writing Less
 description: We’ve tried our best to answer any questions when writing CSS / Less. Hopefully this guide makes the task a little less daunting.
 ---
 
+<section class="stacks-section bg-yellow-100 py12 px16 bar-s ba bac-yellow-3">
+  <p class="fs-title m0">Hold up!</p>
+  <p class="m0">As mentioned in our <a href="{{ "/guidelines/using-stacks" | relative_url }}">usage guide</a>, you <em>probably</em> shouldn’t be writing Less by hand. If you need to write Less, this is how we do it.</p>
+</section>
+
 <section class="stacks-section">
   <h2 class="grid fl-jc-space-between fl-ai-center stacks-title" id="toc-syntax">Syntax</h2>
   <ul class="stacks-list _section">
-    <li>Use soft tabs with two spaces. They’re the only way to guarantee code renders the same in any environment.</li>
+    <li>Use a variable. You shouldn’t be hard-coding pixel values or colors.</li>
+    <li>Use soft tabs with four spaces.</li>
+    <li>When commenting, use <code class="stacks-code">// Double slash</code> comments instead of <code class="stacks-code">/* Slash star */</code>.</li>
     <li>When grouping selectors, keep individual selectors on their own line.</li>
     <li>Include one space before the opening brace of declaration blocks for legibility.</li>
     <li>Place closing braces of declaration blocks on a new line.</li>
@@ -19,7 +26,7 @@ description: We’ve tried our best to answer any questions when writing CSS / L
     <li>Prefix property values or color parameters with a leading zero (e.g., <code class="stacks-code">.5</code> should be <code class="stacks-code">0.5</code> and <code class="stacks-code">-.5px</code> should be <code class="stacks-code">-0.5px</code>).</li>
     <li>Use our pre-defined color variables instead of hard-coding hex values where possible.</li>
     <li>Quote attribute values in selectors, e.g., <code class="stacks-code">input[type="text"]</code>. <a href="http://mathiasbynens.be/notes/unquoted-attribute-values#css">They’re only optional in some cases</a>, and it’s a good practice for consistency.</li>
-    <li>Avoid specifying units for zero values, e.g., <code class="stacks-code">margin: 0;</code> instead of <code class="stacks-code">margin: 0px;</code>.</li>
+    <li>Generally, we should avoid specifying <code class="stacks-code">0</code> as a value, but when doing so avoid specifying units for zero values, e.g., <code class="stacks-code">margin: 0;</code> instead of <code class="stacks-code">margin: 0px;</code>.</li>
   </ul>
   <p class="stacks-p _section">Questions on the terms used here? See the <a href="http://en.wikipedia.org/wiki/Cascading_Style_Sheets#Syntax">syntax section of the Cascading Style Sheets article</a> on Wikipedia.</p>
 
@@ -37,10 +44,9 @@ description: We’ve tried our best to answer any questions when writing CSS / L
 .selector,
 .selector-secondary,
 .selector[type="text"] {
-  padding: 15px;
-  margin-bottom: 15px;
-  background-color: rgba(0, 0, 0, 0.5);
-  box-shadow: 0 1px 2px #ccc, inset 0 1px 0 #fff;
+    padding-bottom: @su12;
+    margin-bottom: @su12;
+    background-color: @black-050;
 }
 {% endhighlight %}
   </div>
@@ -50,45 +56,54 @@ description: We’ve tried our best to answer any questions when writing CSS / L
   <h2 class="grid fl-jc-space-between fl-ai-center stacks-title" id="toc-declaration-order">Declaration Order</h2>
   <p class="stacks-p _section">Related property declarations should be grouped together following the order:</p>
   <ol class="stacks-list _section">
-    <li>Positioning</li>
-    <li>Box model</li>
-    <li>Typographic</li>
-    <li>Visual</li>
+    <li>Generated Content: This is content that you’re injecting into the DOM, like <code class="stacks-code">:before</code> / <code class="stacks-code">:after</code></li>
+    <li>Box Relationships: These declarations determine interplay and relationship of the box to other boxes around it.</li>
+    <li>Box Model: Dimensions of the box.</li>
+    <li>Visual Box: How the box appears.</li>
+    <li>Typography: Font appearance.</li>
+    <li>Changing the Box: These are declarations which change the box such as <code class="stacks-code">animations</code>, <code class="stacks-code">transforms</code>, and <code class="stacks-code">transitions</code>.</li>
+    <li>User Inputs: Finally anything that changes the user’s input tool.</li>
   </ol>
-  <p class="stacks-p _section">Positioning comes first because it can remove an element from the normal flow of the document and override box model related styles. The box model comes next as it dictates a component’s dimensions and placement.</p>
-  <p class="stacks-p _section">Everything else takes place <em>inside</em> the component or without impacting the previous two sections, and thus they come last.</p>
-  <p class="stacks-p _section">For a complete list of properties and their order, please see <a href="http://twitter.github.com/recess">Recess</a>.</p>
+  <p class="stacks-p _section">Josh Hynes from the Stacks team has <a href="https://docs.google.com/presentation/d/1W7MQ-AFptd7r3LrvCjHf86uL9g0RjgcYFaeRUlUbXyE/edit#slide=id.g13b111a9b9_0_133">presented on this topic</a>.</p>
 
   <div class="stacks-code-preview _preview-none">
 {% highlight css linenos %}
 .declaration-order {
-  /* Positioning */
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  z-index: 100;
+    // 1. Generated Content
+    &:before {
+        …
+    }
 
-  /* Box-model */
-  display: block;
-  float: right;
-  width: 100px;
-  height: 100px;
+    // 2. Box Relationships
+    display: flex;
+    justify-content: center;
+    position: relative;
 
-  /* Typography */
-  font: normal 13px "Helvetica Neue", sans-serif;
-  line-height: 1.5;
-  color: #333;
-  text-align: center;
+    // 3. Box Model
+    box-sizing: border-box;
+    margin: @su4;
+    padding: @su12;
+    border: 1px solid @black-150;
+    border-radius: @br1;
 
-  /* Visual */
-  background-color: #f5f5f5;
-  border: 1px solid #e5e5e5;
-  border-radius: 3px;
+    // 4. Visual Box
+    outline: none;
+    background-color: transparent;
 
-  /* Misc */
-  opacity: 1;
+    // 5. Typography
+    font-family: inherit;
+    font-weight: 700;
+    font-size: @fs-body3;
+    line-height: @lh;
+    text-decoration: none;
+    white-space: nowrap;
+    vertical-align: middle;
+
+    // 6. Changing the Box
+    transition: all 600ms @te-smooth;
+
+    // 7. User Inputs
+    cursor: pointer;
 }
 {% endhighlight %}
   </div>
@@ -112,19 +127,19 @@ description: We’ve tried our best to answer any questions when writing CSS / L
 {% highlight css linenos %}
 /* Bad example */
 .element {
-  margin: 0 0 10px;
-  background: red;
-  background: url("image.jpg");
-  border-radius: 3px 3px 0 0;
+    margin: 0 0 10px;
+    background: red;
+    background: url("image.jpg");
+    border-radius: 3px 3px 0 0;
 }
 
-/* Good example */
+/* Better example */
 .element {
-  margin-bottom: 10px;
-  background-color: red;
-  background-image: url("image.jpg");
-  border-top-left-radius: 3px;
-  border-top-right-radius: 3px;
+    margin-bottom: 10px;
+    background-color: red;
+    background-image: url("image.jpg");
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
 }
 {% endhighlight %}
   </div>
@@ -134,10 +149,9 @@ description: We’ve tried our best to answer any questions when writing CSS / L
   <h2 class="grid fl-jc-space-between fl-ai-center stacks-title" id="toc-editor-preferences">Editor preferences</h2>
   <p class="stacks-p _section">Set your editor to the following settings to avoid common code inconsistencies and dirty diffs:</p>
   <ul class="stacks-list _section">
-    <li>Use soft-tabs set to two spaces.</li>
+    <li>Use soft-tabs set to four spaces.</li>
     <li>Trim trailing white space on save.</li>
     <li>Set encoding to UTF-8.</li>
     <li>Add new line at end of files.</li>
   </ul>
-  <p class="stacks-p _section">Consider documenting and applying these preferences to your project’s <code class="stacks-code">.editorconfig</code> file. For an example, see <a href="https://github.com/twbs/bootstrap/blob/master/.editorconfig">the one in Bootstrap</a>. Learn more <a href="http://editorconfig.org">about EditorConfig</a>.</p>
 </section>
