@@ -55,54 +55,54 @@ description: We’ve tried our best to answer any questions when writing CSS / L
   <h2 class="grid fl-jc-space-between fl-ai-center stacks-title" id="toc-declaration-order">Declaration Order</h2>
   <p class="stacks-p _section">Related property declarations should be grouped together following the order:</p>
   <ol class="stacks-list _section">
-    <li>Positioning</li>
-    <li>Box model</li>
-    <li>Typographic</li>
-    <li>Visual</li>
+    <li>Generated Content: This is content that you’re injecting into the DOM, like <code class="stacks-code">:before</code> / <code class="stacks-code">:after</code></li>
+    <li>Box Relationships: These declarations determine interplay and relationship of the box to other boxes around it.</li>
+    <li>Box Model: Dimensions of the box.</li>
+    <li>Visual Box: How the box appears.</li>
+    <li>Typography: Font appearance.</li>
+    <li>Changing the Box: These are declarations which change the box such as <code class="stacks-code">animations</code>, <code class="stacks-code">transforms</code>, and <code class="stacks-code">transitions</code>.</li>
+    <li>User Inputs: Finally anything that changes the user’s input tool.</li>
   </ol>
-  <p class="stacks-p _section">Positioning comes first because it can remove an element from the normal flow of the document and override box model related styles. The box model comes next as it dictates a component’s dimensions and placement.</p>
-  <p class="stacks-p _section">Everything else takes place <em>inside</em> the component or without impacting the previous two sections, and thus they come last.</p>
-  <p class="stacks-p _section">For a complete list of properties and their order, please see <a href="http://twitter.github.com/recess">Recess</a>.</p>
+  <p class="stacks-p _section">Josh Hynes from the Stacks team has <a href="https://docs.google.com/presentation/d/1W7MQ-AFptd7r3LrvCjHf86uL9g0RjgcYFaeRUlUbXyE/edit#slide=id.g13b111a9b9_0_133">presented on this topic</a>.</p>
 
   <div class="stacks-code-preview _preview-none">
 {% highlight css linenos %}
 .declaration-order {
-    /* 
-        Note: MOST of these properties have corresponding Less variables
-        utility classes you should be using. This example is only meant to
-        show property order when writing custom Less.
-    */
-    
-    /* Positioning */
-    position: ;
-    top: ;
-    right: ;
-    bottom: ;
-    left: ;
-    z-index: ;
+    // 1. Generated Content
+    &:before {
+        …
+    }
 
-    /* Box-model */
-    display: ;
-    float: ;
-    width: ;
-    height: ;
+    // 2. Box Relationships
+    display: flex;
+    justify-content: center;
+    position: relative;
 
-    /* Typography */
-    font-style: ;
-    font-weight: ;
-    font-size: ;
-    font-family: ;
-    line-height: ;
-    color: ;
-    text-align: ;
+    // 3. Box Model
+    box-sizing: border-box;
+    margin: @su4;
+    padding: @su12;
+    border: 1px solid @black-150;
+    border-radius: @br1;
 
-    /* Visual */
-    background-color: ;
-    border: 1px solid ;
-    border-radius: ;
+    // 4. Visual Box
+    outline: none;
+    background-color: transparent;
 
-    /* Misc */
-    opacity: ;
+    // 5. Typography
+    font-family: inherit;
+    font-weight: 700;
+    font-size: @fs-body3;
+    line-height: @lh;
+    text-decoration: none;
+    white-space: nowrap;
+    vertical-align: middle;
+
+    // 6. Changing the Box
+    transition: all 600ms @te-smooth;
+
+    // 7. User Inputs
+    cursor: pointer;
 }
 {% endhighlight %}
   </div>
