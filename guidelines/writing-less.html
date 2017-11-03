@@ -4,14 +4,15 @@ title: Writing Less
 description: We’ve tried our best to answer any questions when writing CSS / Less. Hopefully this guide makes the task a little less daunting.
 ---
 
-<section class="stacks-section bg-yellow-100 p12 bar1 ba bac-yellow-3">
-  <p class="fs-title m0">Hold up!</p>  
+<section class="stacks-section bg-yellow-100 py12 px16 bar1 ba bac-yellow-3">
+  <p class="fs-title m0">Hold up!</p>
   <p class="m0">As mentioned in our <a href="{{ "/guidelines/using-stacks" | relative_url }}">usage guide</a>, you <em>probably</em> shouldn’t be writing Less by hand. If you need to write Less, this is how we do it.</p>
 </section>
 
 <section class="stacks-section">
   <h2 class="grid fl-jc-space-between fl-ai-center stacks-title" id="toc-syntax">Syntax</h2>
   <ul class="stacks-list _section">
+    <li>Use a variable. You shouldn’t be hard-coding pixel values or colors.</li>
     <li>Use soft tabs with four spaces.</li>
     <li>When grouping selectors, keep individual selectors on their own line.</li>
     <li>Include one space before the opening brace of declaration blocks for legibility.</li>
@@ -42,10 +43,9 @@ description: We’ve tried our best to answer any questions when writing CSS / L
 .selector,
 .selector-secondary,
 .selector[type="text"] {
-  padding: 15px;
-  margin-bottom: 15px;
-  background-color: rgba(0, 0, 0, 0.5);
-  box-shadow: 0 1px 2px #ccc, inset 0 1px 0 #fff;
+    padding-bottom: @su12;
+    margin-bottom: @su12;
+    background-color: @black-050;
 }
 {% endhighlight %}
   </div>
@@ -67,33 +67,42 @@ description: We’ve tried our best to answer any questions when writing CSS / L
   <div class="stacks-code-preview _preview-none">
 {% highlight css linenos %}
 .declaration-order {
-  /* Positioning */
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  z-index: 100;
+    /* 
+        Note: MOST of these properties have corresponding Less variables
+        utility classes you should be using. This example is only meant to
+        show property order when writing custom Less.
+    */
+    
+    /* Positioning */
+    position: ;
+    top: ;
+    right: ;
+    bottom: ;
+    left: ;
+    z-index: ;
 
-  /* Box-model */
-  display: block;
-  float: right;
-  width: 100px;
-  height: 100px;
+    /* Box-model */
+    display: ;
+    float: ;
+    width: ;
+    height: ;
 
-  /* Typography */
-  font: normal 13px "Helvetica Neue", sans-serif;
-  line-height: 1.5;
-  color: #333;
-  text-align: center;
+    /* Typography */
+    font-style: ;
+    font-weight: ;
+    font-size: ;
+    font-family: ;
+    line-height: ;
+    color: ;
+    text-align: ;
 
-  /* Visual */
-  background-color: #f5f5f5;
-  border: 1px solid #e5e5e5;
-  border-radius: 3px;
+    /* Visual */
+    background-color: ;
+    border: 1px solid ;
+    border-radius: ;
 
-  /* Misc */
-  opacity: 1;
+    /* Misc */
+    opacity: ;
 }
 {% endhighlight %}
   </div>
@@ -117,19 +126,19 @@ description: We’ve tried our best to answer any questions when writing CSS / L
 {% highlight css linenos %}
 /* Bad example */
 .element {
-  margin: 0 0 10px;
-  background: red;
-  background: url("image.jpg");
-  border-radius: 3px 3px 0 0;
+    margin: 0 0 10px;
+    background: red;
+    background: url("image.jpg");
+    border-radius: 3px 3px 0 0;
 }
 
-/* Good example */
+/* Better example */
 .element {
-  margin-bottom: 10px;
-  background-color: red;
-  background-image: url("image.jpg");
-  border-top-left-radius: 3px;
-  border-top-right-radius: 3px;
+    margin-bottom: 10px;
+    background-color: red;
+    background-image: url("image.jpg");
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
 }
 {% endhighlight %}
   </div>
