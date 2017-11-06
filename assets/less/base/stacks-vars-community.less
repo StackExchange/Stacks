@@ -14,9 +14,8 @@
 //  $   BASE COMMUNITY VALUES
 //  ----------------------------------------------------------------------------
 @body-ff:                           @ff-sans;     // Community font-face
-@body-fs:                           @fs-body2;    // Base font size
-@body-lh:                           @lh-l;        // Base line height
-
+@body-fs:                           @fs-body1;    // Base font size
+@body-lh:                           @lh-m;        // Base line height
 
 //  $   <BODY>
 //  ----------------------------------------------------------------------------
@@ -24,6 +23,33 @@
 @body-font-color:                   @black-800;
 @body-font-size:                    @body-fs;
 @body-line-height:                  @body-lh;
+
+
+//  $   TOPBAR
+//  ----------------------------------------------------------------------------
+@topbar-height:                     40px;
+
+@topbar-background:                 @black-800;
+@topbar-font-size:                  14px;
+
+@topbar-search-height:              32px;
+@topbar-search-background:          @black-075;
+@topbar-search-background-focus:    @white;
+@topbar-search-placeholder:         @black-500;
+
+// topbar nav color variables...
+@topbar-link-color:                 @black-200;
+@topbar-link-color-hover:           @black-050;
+@topbar-link-background-hover:      @black-700;
+@topbar-link-color-current:         @white;
+@topbar-link-border-current:        @accent-color;
+
+// topbar secondary nav (icons & .profile-me) color variables
+@topbar-secondary-link-color:               @black-300;
+@topbar-secondary-link-color-hover:         @black-100;
+@topbar-secondary-link-background-hover:    @black-700;
+@topbar-secondary-link-color-active:        @black-700;
+@topbar-secondary-link-background-active:   @black-050;
 
 
 //  $   LAYOUT
@@ -61,14 +87,13 @@
 //  The @type-face sets the community's font-family.
 @type-face:                         @ff-sans;
 
-@selected-color:                    @black-500;
+@selected-color:                    @fc-light;
 @tagged-interesting-color:          #FFEFC6;
-@section-title-color:               @black-700;
-
+@section-title-color:               @fc-medium;
 //  --  Link colors
 //    Typically question titles are the same color as links, but do allow for
 //    them to be changed per community.
-@link-color:                        @blue-600;
+@link-color:                        #4E82C2;
 @link-color-hover:                  #4CA3D7;
 @link-color-visited:                #36649D;
 @question-title-color:              @link-color;
@@ -77,8 +102,8 @@
 
 
 //  $   QUESTION LIST
-//    These are color values for the minicount, answered, and accepted
-//    answer statuses.
+//      These are color values for the minicount, answered, and accepted
+//      answer statuses.
 //  ----------------------------------------------------------------------------
 @answered-color:                    #4C9067;
 @answered-bg-color:                 transparent;
@@ -128,14 +153,31 @@
 @top-notify-box-bgcolor:            #f90;
 @owner-background-color:            @powder-100;
 
+//  --  In addition to customizable backgrounds, we also have the following
+//      set backgrounds. These should be used when possible.
+@bgc-lightest:                      @black-050;
+@bgc-lighter:                       @black-075;
+@bgc-light:                         @black-100;
+@bgc-dark:                          @black-200;
+@bgc-darker:                        @black-300;
+@bgc-darkest:                       @black-350;
 
 //  $   BORDERS
-//    Various border colors throughout a community which we currently
-//    allow to be changed based on the community theme.
+//      Various border colors throughout a community which we currently
+//      allow to be changed based on the community theme.
 //  ----------------------------------------------------------------------------
 @divider-line-color:                @black-075;
 @comment-border:                    @black-050;
 @error-border:                      #dc3d4c;
+//  --  In addition to customizable border colors, we also have the following
+//      set border colors. These should be used when possible.
+@brc-lightest:                      @black-050;
+@brc-lighter:                       @black-075;
+@brc-light:                         @black-100;
+@brc-dark:                          @black-200;
+@brc-darker:                        @black-300;
+@brc-darkest:                       @black-350;
+@brc-orange:                        @orange-400;
 
 
 //  $   BUTTONS
@@ -143,7 +185,21 @@
 //      variable for the CSS property you want to customize, then you can't
 //      customize it.
 //  ----------------------------------------------------------------------------
-//  --   UNIVERSAL PROPERTIES
+//  --  OLD BUTTON VARIABLES
+//      These need to be replaced when `buttons.less` is updated.
+@btn-transition-duration:           0.1s;
+@btn-border-width:                  1px;
+
+//  --  Colors
+@btn-primary:                       @blue-500;
+@btn-secondary:                     @powder-100;
+@btn-outlined:                      darken(@btn-primary,10%);
+@btn-clear:                         @link-color;
+@btn-confirm:                       @green-400;
+@btn-warning:                       @red-500;
+
+//  ----------------------------------------------------------------------------
+//  --   UNIVERSAL PROPERTIES (NEW)
 @btn-fw:                            400;
 @btn-br:                            @br1;
 @btn-brc:                           true;
@@ -248,14 +304,13 @@
 
 //  $   FOOTER
 //  ----------------------------------------------------------------------------
-@footer-background:                 #E9EEF1;
+@footer-background:                 @powder-100;
 @footer-link-color:                 @powder-600;
-@footer-link-bgc:                   #D5E0E7;
-@footer-category-color:             @black-700;
-@footer-link-top-color:             @blue-500;
+@footer-link-color-hover:           @blue-500;
+@footer-title:                      @black-700;
 @footer-copy-color:                 @black-400;
-@footer-fs:                         @fs-caption;
-
+@footer-fs:                         @fs-fine;
+@footer-active-link:                @link-color;
 
 //  ============================================================================
 //  $  OLD VARS (That were in tools.less)
