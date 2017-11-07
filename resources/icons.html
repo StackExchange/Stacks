@@ -44,8 +44,8 @@ description: All system icons are inline SVG files, invoked via a Razor helper. 
   <div class="grid fl-wrap gs8 grid-4-col iconset">
       {% assign icon_sort = site.data.icons | sort: "helper" %}
       {% for icon in icon_sort %}
-      <div class="grid fl-col-nowrap fl-inline card stacks-preview -item">
-          <div class="grid-cell fl-2 fl-center p-8 -preview">
+      <div class="grid fl-col-nowrap card stacks-preview -item">
+          <div class="d-inline-flex grid-cell fl-2 fl-center p-8 -preview">
               {% include_relative {{ icon.helper | prepend: "svg-icons/" | append: ".svg" }} %}
           </div>
           <div class="grid fl-col-nowrap fl-0 fl-ai-center p-8 -content">

@@ -23,135 +23,14 @@
 
 
 //  ============================================================================
-//  $   MIXINS
-//  ============================================================================
-//  --  VENDOR SUPPORT
-//  ============================================================================
-//      These mixins are used to add all required vendor prefixes for all
-//      supported browsers. We currently only support the current browser
-//      versions plus the previous version. IE11 is the current exception.
-//      If you need to provide older support, consult the following documents:
-//
-//      Flexbugs: A community-curated list of flexbox issues (mainly IE)
-//      https://github.com/philipwalton/flexbugs
-//
-//      A Guide to Flexbox -- CSS-Tricks.com
-//      https://css-tricks.com/snippets/css/a-guide-to-flexbox/
-//
-//      Flexplorer -- A free Flexbox generator
-//      http://bennettfeely.com/flexplorer/
-//
-//  ----------------------------------------------------------------------------
-//  --  FLEXBOX CONTAINER
-//      Use this on the wrapping parent container on items you want to flex.
-//  ----------------------------------------------------------------------------
-.flexbox(@box) {
-    & when (@box = box) {
-        display: -webkit-box;
-        display: -ms-flexbox;
-        display: flex;
-    }
-    & when (@box = inline) {
-        display: -webkit-inline-box;
-        display: -ms-inline-flexbox;
-        display: inline-flex;
-    }
-}
-
-//  ----------------------------------------------------------------------------
-//  --  FLEX VALUES
-//      If not set, the default is "1 0 auto". This is shorthand for flex-grow,
-//      flex-shrink, and flex-basis combined. The second and third parameters
-//      are optional. Per Chris Coyier on CSS-Tricks.com, it is recommended
-//      that the shorthand is used over individual properties.
-//
-//      Note that in IE10, the default value is "0 0 auto".
-//  ----------------------------------------------------------------------------
-.flex(@values: 1 0 auto) {
-    -webkit-box-flex: @values;
-            -ms-flex: @values;
-                flex: @values;
-}
-
-//  ----------------------------------------------------------------------------
-//  --  FLEX ORDER
-//      By default items are laid out per their DOM order. The order property
-//      can be used to change the order in which they appear in the container.
-//  ----------------------------------------------------------------------------
-.flex-order(@values) {
-    -webkit-order: @values;
-            order: @values;
-}
-
-//  ----------------------------------------------------------------------------
-//  --  FLEX DIRECTION
-//      This determines the direction content flows within a parent container.
-//      The default values are row.
-//  ----------------------------------------------------------------------------
-.flex-direction(@dir: row) {
-    & when (@dir = row), (@dir = row-reverse) {
-        -webkit-box-orient: horizontal;
-    }
-    & when (@dir = column), (@dir = column-reverse) {
-        -webkit-box-orient: vertical;
-    }
-    & when (@dir = row), (@dir = column) {
-        -webkit-box-direction: normal;
-    }
-    & when (@dir = row-reverse), (@dir = column-reverse) {
-        -webkit-box-direction: reverse;
-    }
-
-    -ms-flex-direction: @dir;
-        flex-direction: @dir;
-}
-
-//  ----------------------------------------------------------------------------
-//  --  FLEX WRAP
-//      This determines if a parent's child items will wrap or not.
-//  ----------------------------------------------------------------------------
-.flex-wrap(@values) {
-  -ms-flex-wrap: @values;
-      flex-wrap: @values;
-}
-
-//  ----------------------------------------------------------------------------
-//  --  JUSTIFY CONTENT
-//      The default value for this is "flex-start". This property allows you
-//      to change how child items within a parent are positioned.
-//  ----------------------------------------------------------------------------
-.justify-content(@values) {
-  -webkit-justify-content: @values;
-          justify-content: @values;
-}
-
-//  ----------------------------------------------------------------------------
-//  --  FLEX FLOW
-//      This is another shorthand property for flex-direction and flex-wrap.
-//      Default value is "row nowrap".
-//  ----------------------------------------------------------------------------
-.flex-flow(@values: row nowrap) {
-  -webkit-flex-flow: @values;
-          flex-flow: @values;
-}
-
-//  ----------------------------------------------------------------------------
-//  --  ALIGN ITEMS
-//  ----------------------------------------------------------------------------
-.align-items(@values: stretch) {
-  -webkit-align-items: @values;
-          align-items: @values;
-}
-
-//  ============================================================================
-//  --  STACKS SPECIFIC MIXINS
+//  --  STACKS GRID MIXINS
 //  ============================================================================
 //  --  FIXED COLUMN WIDTHS
 //  ----------------------------------------------------------------------------
 .grid-columns(@num, @count: 1) when (@count =< @num) {
-    > .grid-cell-@{count} {
-        .flex(0 0 (@count * 100% / @num));
-        max-width: (@count * 100% / @num);
+
+    .grid-cell-@{count} {
+        flex-basis: @count * 100% / @num;
     }
 
     .grid-columns(@num, (@count + 1));
@@ -165,11 +44,10 @@
 //      all child elements will automatically be sized.
 //  ----------------------------------------------------------------------------
 .grid-count-columns(@num, @count: 1) when (@count =< @num) {
-    &.grid-@{count}-col {
+    .grid-@{count}-col {
         > .grid,
         > .grid-cell {
-            .flex(0 0 (@count * 100% / @num));
-            max-width: (@count * 100% / @num);
+            flex-basis: @count * 100% / @num;
         }
     }
 
@@ -257,7 +135,6 @@
     &.grid-@{count}-col > .grid,        // [2]
     &.grid-@{count}-col > .grid-cell {  // [2]
         flex-basis: calc(~"@{cell-width} - @{spacing}");
-        max-width: calc(~"@{cell-width} - @{spacing}");
     }
 
     .grid-fixed-cell-spacing(@spacing, @dir, @num, (@count + 1));
@@ -274,7 +151,7 @@
 //          row (default) or a column. When a column we need to reset the
 //          left and right margins and add in top and bottom margins.
 //  ----------------------------------------------------------------------------
-.grid-spacing(@spacing, @dir) {
+.gutter-spacing(@spacing, @dir) {
     //  --  All directions
     & when (@dir = all) {
         margin: -(@spacing / 2);
@@ -322,39 +199,49 @@
 //  ============================================================================
 //  $  UTILITY CLASSES
 //  ----------------------------------------------------------------------------
-.fl-box                   { .flexbox(box); }
-.fl-inline                { .flexbox(inline); }
+//  --  FLEX DIRECTION
+//      This determines the direction content flows within a parent container.
+//      The default values are row.
+//  ----------------------------------------------------------------------------
+.fl-row                   { flex-direction: row; }
+.fl-row-reverse           { flex-direction: row-reverse; }
+.fl-col                   { flex-direction: column; }
+.fl-col-reverse           { flex-direction: column-reverse; }
 
-.fl-row                   { .flex-direction(row); }
-.fl-row-reverse           { .flex-direction(row-reverse); }
-.fl-col                   { .flex-direction(column); }
-.fl-col-reverse           { .flex-direction(column-reverse); }
+//  --  FLEX WRAP
+//      This determines if a parent's child items will wrap or not.
+//  ----------------------------------------------------------------------------
+.fl-wrap                  { flex-wrap: wrap; }
+.fl-wrap-reverse          { flex-wrap: wrap-reverse; }
+.fl-wrap-none             { flex-wrap: none; }
 
-.fl-wrap                  { .flex-wrap(wrap); }
-.fl-wrap-reverse          { .flex-wrap(wrap-reverse); }
-.fl-wrap-none             { .flex-wrap(none); }
+//  --  FLEX FLOW
+//      This is another shorthand property for flex-direction and flex-wrap.
+//      Default value is "row nowrap".
+//  ----------------------------------------------------------------------------
+.fl-row-wrap              { flex-flow: row wrap; }
+.fl-row-nowrap            { flex-flow: row nowrap; }
+.fl-row-reverse-wrap      { flex-flow: row-reverse wrap; }
+.fl-row-reverse-nowrap    { flex-flow: row-reverse nowrap; }
+.fl-col-wrap              { flex-flow: column wrap; }
+.fl-col-nowrap            { flex-flow: column nowrap; }
+.fl-col-reverse-wrap      { flex-flow: column-reverse wrap; }
+.fl-col-reverse-nowrap    { flex-flow: column-reverse nowrap; }
 
-.fl-row-wrap              { .flex-flow(row wrap); }
-.fl-row-nowrap            { .flex-flow(row nowrap); }
-.fl-row-reverse-wrap      { .flex-flow(row-reverse wrap); }
-.fl-row-reverse-nowrap    { .flex-flow(row-reverse nowrap); }
-.fl-col-wrap              { .flex-flow(column wrap); }
-.fl-col-nowrap            { .flex-flow(column nowrap); }
-.fl-col-reverse-wrap      { .flex-flow(column-reverse wrap); }
-.fl-col-reverse-nowrap    { .flex-flow(column-reverse nowrap); }
-
-//  --  Justify Content
+//  --  JUSTIFY CONTENT
 //      Defines the child alignment along the parent's main axis
-.fl-jc-center             { .justify-content(center); }
-.fl-jc-end                { .justify-content(flex-end); }
-.fl-jc-space-around       { .justify-content(space-around); }
-.fl-jc-space-between      { .justify-content(space-between); }
-.fl-jc-start              { .justify-content(flex-start); }
+//  ----------------------------------------------------------------------------
+.fl-jc-center             { justify-content: center; }
+.fl-jc-end                { justify-content: flex-end; }
+.fl-jc-space-around       { justify-content: space-around; }
+.fl-jc-space-between      { justify-content: space-between; }
+.fl-jc-start              { justify-content: flex-start; }
 
-//  --  Align Content
+//  --  ALIGN CONTENT
 //      Aligns the container's lines when there is extra space in the
 //      cross-axis. Note that this only works when a parent container
 //      has more than one line.
+//  ----------------------------------------------------------------------------
 .fl-ac-center             { align-content: center; }
 .fl-ac-end                { align-content: flex-end; }
 .fl-ac-space-around       { align-content: space-around; }
@@ -362,24 +249,27 @@
 .fl-ac-start              { align-content: flex-start; }
 .fl-ac-stretch            { align-content: stretch; }
 
-//  --  Align Items
+//  --  ALIGN ITEMS
 //      Defines the default behavior for how child items align along
 //      the parent's cross axis. Think of it the cross-axis for
 //      justify-content.
-.fl-ai-baseline           { .align-items(baseline); }
-.fl-ai-center             { .align-items(center); }
-.fl-ai-end                { .align-items(flex-end); }
-.fl-ai-start              { .align-items(flex-start); }
-.fl-ai-stretch            { .align-items(stretch); }
+//  ----------------------------------------------------------------------------
+.fl-ai-baseline           { align-items: baseline; }
+.fl-ai-center             { align-items: center; }
+.fl-ai-end                { align-items: flex-end; }
+.fl-ai-start              { align-items: flex-start; }
+.fl-ai-stretch            { align-items: stretch; }
 
-//  --  Center Items
+//  --  CENTER ITEMS
 //      A common combination of classes is .fl-jc-center and .fl-ai-center.
 //      Use this class when you want both.
+//  ----------------------------------------------------------------------------
 .fl-center                { .fl-jc-center; .fl-ai-center; }
 
-//  --  Align Self
+//  --  ALIGN SELF
 //      Allows child containers to re-align themselves irregardless
 //      of the parent's main axis direction.
+//  ----------------------------------------------------------------------------
 .fl-as-auto               { align-self: auto; }
 .fl-as-baseline           { align-self: baseline; }
 .fl-as-center             { align-self: center; }
@@ -387,19 +277,21 @@
 .fl-as-start              { align-self: flex-start; }
 .fl-as-stretch            { align-self: stretch; }
 
-//  --  Flex Widths
+//  --  FLEX
 //      Graduating scale of flex-grow and flex-shrink values
-.fl0                      { .flex(0 auto) !important; }
-.fl1                      { .flex(1 auto) !important; }
-.fl2                      { .flex(2 auto) !important; }
-.fl3                      { .flex(3 auto) !important; }
-.fl4                      { .flex(4 auto) !important; }
-.fl5                      { .flex(5 auto) !important; }
+//  ----------------------------------------------------------------------------
+.fl0                      { flex: 0 auto; }
+.fl1                      { flex: 1 auto; }
+.fl2                      { flex: 2 auto; }
+.fl3                      { flex: 3 auto; }
+.fl4                      { flex: 4 auto; }
+.fl5                      { flex: 5 auto; }
 
 //  --  Ordering
 //      Designate a child container's position.
-.fl-first                 { .flex-order(-1); }
-.fl-last                  { .flex-order(1); }
+//  ----------------------------------------------------------------------------
+.fl-first                 { order: -1; }
+.fl-last                  { order: 1; }
 
 
 //  ============================================================================
@@ -417,94 +309,69 @@
         .box-border;
     }
 
-    //  Make .grid a flexbox item
-    //  We get flex-flow: row wrap and flex: 1 0 auto by default
-    .flexbox(box);
+    display: flex;
 
-    //  --  GENERIC AUTO WIDTH CELL
-    //      This creates a generic fluid child cell, but only for direct children.
-    //      To help reduce on required class names (i.e. .grid .-cell), when a
-    //      box is nested within another, we let it act like a cell.
-    > .grid,
-    > .grid-cell {
-        .flex(1 auto);
-        max-width: 100%;
+    //  --  UNIVERSAL FLEX WIDTHS
+    //      This applies a flex value it to all of a grid's direct children.
+    //  --------------------------------------------------------------------------
+    &._fl0 {
+        &,
+        > .grid,
+        > .grid-cell {
+            flex: 0 auto;
+        }
     }
-
-    //  $$  FIXED WIDTH CELLS
-    //  --------------------------------------------------------------------------
-    .grid-columns(@grid-cols);
-
-    //  $$  AUTO FIXED WIDTH CELLS
-    //  --------------------------------------------------------------------------
-    .grid-count-columns(@grid-cols);
+    &._fl1 {
+        &,
+        > .grid,
+        > .grid-cell {
+            flex: 1 auto;
+        }
+    }
 }
+
+
+//  $$  FIXED WIDTH CELLS
+//  ----------------------------------------------------------------------------
+.grid-columns(@grid-cols);
+
+//  $$  AUTO FIXED WIDTH CELLS
+//  ----------------------------------------------------------------------------
+.grid-count-columns(@grid-cols);
 
 
 //  ============================================================================
 //  $   GRID SPACING
 //      Insert spaces or gutters in between grid cells
 //  ----------------------------------------------------------------------------
-.grid {
-    //  All directions grid spacing
-    &.gs2    { .grid-spacing(@su2, all); }        //  2px
-    &.gs4    { .grid-spacing(@su4, all); }        //  4px
-    &.gs8    { .grid-spacing(@su8, all); }        //  8px
-    &.gs12   { .grid-spacing(@su12, all); }       //  12px
-    &.gs16   { .grid-spacing(@su16, all); }       //  16px
-    &.gs24   { .grid-spacing(@su24, all); }       //  24px
-    &.gs32   { .grid-spacing(@su32, all); }       //  32px
-    &.gs48   { .grid-spacing(@su48, all); }       //  48px
-    &.gs64   { .grid-spacing(@su64, all); }       //  64px
+.gs2    { .gutter-spacing(@su2, all); }        //  2px
+.gs4    { .gutter-spacing(@su4, all); }        //  4px
+.gs8    { .gutter-spacing(@su8, all); }        //  8px
+.gs12   { .gutter-spacing(@su12, all); }       //  12px
+.gs16   { .gutter-spacing(@su16, all); }       //  16px
+.gs24   { .gutter-spacing(@su24, all); }       //  24px
+.gs32   { .gutter-spacing(@su32, all); }       //  32px
+.gs48   { .gutter-spacing(@su48, all); }       //  48px
+.gs64   { .gutter-spacing(@su64, all); }       //  64px
 
-    //  Row grid spacing
-    &.gsr2   { .grid-spacing(@su2, row); }        //  2px
-    &.gsr4   { .grid-spacing(@su4, row); }        //  4px
-    &.gsr8   { .grid-spacing(@su8, row); }        //  8px
-    &.gsr12  { .grid-spacing(@su12, row); }       //  12px
-    &.gsr16  { .grid-spacing(@su16, row); }       //  16px
-    &.gsr24  { .grid-spacing(@su24, row); }       //  24px
-    &.gsr32  { .grid-spacing(@su32, row); }       //  32px
-    &.gsr48  { .grid-spacing(@su48, row); }       //  48px
-    &.gsr64  { .grid-spacing(@su64, row); }       //  64px
+//  Row grid spacing
+.gsx2   { .gutter-spacing(@su2, row); }        //  2px
+.gsx4   { .gutter-spacing(@su4, row); }        //  4px
+.gsx8   { .gutter-spacing(@su8, row); }        //  8px
+.gsx12  { .gutter-spacing(@su12, row); }       //  12px
+.gsx16  { .gutter-spacing(@su16, row); }       //  16px
+.gsx24  { .gutter-spacing(@su24, row); }       //  24px
+.gsx32  { .gutter-spacing(@su32, row); }       //  32px
+.gsx48  { .gutter-spacing(@su48, row); }       //  48px
+.gsx64  { .gutter-spacing(@su64, row); }       //  64px
 
-    //  Column grid spacing
-    &.gsc2   { .grid-spacing(@su2, column); }     //  2px
-    &.gsc4   { .grid-spacing(@su4, column); }     //  4px
-    &.gsc8   { .grid-spacing(@su8, column); }     //  8px
-    &.gsc12  { .grid-spacing(@su12, column); }    //  12px
-    &.gsc16  { .grid-spacing(@su16, column); }    //  16px
-    &.gsc24  { .grid-spacing(@su24, column); }    //  24px
-    &.gsc32  { .grid-spacing(@su32, column); }    //  32px
-    &.gsc48  { .grid-spacing(@su48, column); }    //  48px
-    &.gsc64  { .grid-spacing(@su64, column); }    //  64px
-}
-
-
-//  ============================================================================
-//  $   MODIFICATIONS
-//      Sometimes you need to adjust how a row or column acts
-//  ----------------------------------------------------------------------------
-//  --  These items can ONLY apply to box
-//  ----------------------------------------------------------------------------
-.grid {
-    //  --  Widths
-    //      This applies it to all direct children. Fixed width cells already
-    //      have flex: 0 0 auto; applied to them.
-    //  --------------------------------------------------------------------------
-    &._fl0 {
-        &,
-        > .grid,
-        > .grid-cell {
-            .flex(0 auto);
-        }
-    }
-
-    //  --  Display
-    //      Be default, child elements don't have a display property assigned.
-    //      Sometimes though we might want to assign one.
-    //  --------------------------------------------------------------------------
-    &.fl-inline > [class*="grid-cell"] {
-        .flexbox(inline);
-    }
-}
+//  Column grid spacing
+.gsy2   { .gutter-spacing(@su2, column); }     //  2px
+.gsy4   { .gutter-spacing(@su4, column); }     //  4px
+.gsy8   { .gutter-spacing(@su8, column); }     //  8px
+.gsy12  { .gutter-spacing(@su12, column); }    //  12px
+.gsy16  { .gutter-spacing(@su16, column); }    //  16px
+.gsy24  { .gutter-spacing(@su24, column); }    //  24px
+.gsy32  { .gutter-spacing(@su32, column); }    //  32px
+.gsy48  { .gutter-spacing(@su48, column); }    //  48px
+.gsy64  { .gutter-spacing(@su64, column); }    //  64px

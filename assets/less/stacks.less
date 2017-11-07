@@ -193,10 +193,9 @@
     color: @fc-dark;
 
     .-anchor {
-        .fl-inline;
+        display: inline-flex;
         .fl0;
-        .fl-jc-center;
-        .fl-ai-center;
+        .fl-center;
         width: @su24;
         height: @su24;
         background-color: @white;
@@ -380,48 +379,27 @@
 @grid-background:            @orange-050;
 @grid-cell-background:       @orange-300;
 
-.stacks-grid {
-    font-family: @ff-mono;
-    .mx-fs(@fs-caption);
-    font-color: @fc-dark;
-
-    &._helper-ac .grid,
-    &._helper-as .grid {
-        max-height: 128px;
-    }
-
-    &._helper-order .stacks-grid-wrapper {
-        .grid-cell:not(.fl-first):not(.fl-last) { opacity: 0.5; }
-    }
-}
-
 .stacks-grid-wrapper {
-    margin-top: @su24;
-    margin-bottom: @su24;
-    overflow: hidden;
+    margin-top: @su8;
+    margin-bottom: @su8;
 
-    &:first-of-type { margin-top: 0; }
-    &:last-of-type  { margin-bottom: 0; }
-
-    .grid,
-    [class*="grid-cell"] {
+    .grid > [class*="grid-"] {
         padding: @su8;
-        background-color: @grid-background;
+        border: 1px solid fade(@orange-400,25%);
+        background-color: fade(@orange-400,15%);
 
-        .grid,
-        [class*="grid-cell"] {
-            background-color: @grid-cell-background;
+        font-family: @ff-mono;
+        .mx-fs(@fs-caption);
+        font-color: @fc-dark;
+    }
 
-            .grid,
-            [class*="grid-cell"] {
-                background-color: spin(desaturate(darken(@grid-cell-background,5%),5%),-5);
-            }
-        }
+    &._background {
+        background-color: fade(@yellow-500,10%);
     }
 }
 
 .stacks-grid-example {
-    .fl-box;
+    display: flex;
     .fl-center;
     height: 100%;
 }

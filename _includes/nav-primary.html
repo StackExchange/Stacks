@@ -15,7 +15,7 @@
                     <span class="grid fl-ac-center p4 mt12 pl24 -section" title="{{ entry.title }}">
                         <span class="grid-cell -label">{{ entry.title }}</span>
                     </span>
-                    <ul class="grid fl-col-nowrap _fl0 fl-inline nav js-subnav-menu">
+                    <ul class="grid fl-col-nowrap nav js-subnav-menu">
                         {% for sublink in sublinks %}
                             {% assign pageURL = page.url | remove_first:"/" | remove: ".html" %}
                             {% if pageURL == sublink.url %}
@@ -24,7 +24,7 @@
                               {% assign submenu-active = "" %}
                             {% endif %}
                             <li class="grid-cell -item{{ submenu-active }}">
-                                <a class="ps-relative p4 pl24 w100 -link" href="{{ sublink.url | relative_url }}" title="{{ sublink.title }}">{{ sublink.title }}</a>
+                                <a class="d-inline-flex ps-relative p4 pl24 w100 -link" href="{{ sublink.url | relative_url }}" title="{{ sublink.title }}">{{ sublink.title }}</a>
                             </li>
                         {% endfor %}
                     </ul>
