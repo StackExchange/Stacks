@@ -1,20 +1,22 @@
 <!DOCTYPE html>
-<html lang="en-us" class="h100">
+<html lang="en-us">
   {% include head.html %}
 
-  <body class="grid fl-col-nowrap ps-relative" data-spy="scroll" data-offset="500" data-target="#stacks-subnav">
-      <div class="grid fl1 grid-container _nav-secondary">
+  <body>
+      <div class="stacks-wrapper">
           {% include nav-primary.html %}
           {% include nav-secondary.html %}
 
-          <main id="stacks-content" class="stacks-content p16 pt32">
-            {% if page.description %}
-              <p class="stacks-p _intro">
-                {{ page.description }}
-              </p>
-            {% endif %}
+          <main class="stacks-content p16 pt32">
+            <div class="mx-auto stacks-body">
+              {% if page.description %}
+                <p class="stacks-p _intro">
+                  {{ page.description }}
+                </p>
+              {% endif %}
 
-            {{ content }}
+              {{ content }}
+            </div>
           </main>
       </div>
   </body>

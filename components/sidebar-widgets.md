@@ -30,7 +30,7 @@ description: Sidebar widgets are flexible containers that provide a lot of patte
 </style>
 
 <section class="stacks-section">
-    <h2 class="grid fl-jc-space-between fl-ai-center mb0 stacks-title">The Basics</h2>
+    <h2 class="grid fl-jc-space-between fl-ai-center stacks-title">The Basics</h2>
     
     <p class="stacks-p _section" markdown="1">
         In its simplest form, the sidebar widget is an element with class `s-widget` and a child of class `-content`.
@@ -54,7 +54,7 @@ description: Sidebar widgets are flexible containers that provide a lot of patte
     {% endcapture %}{% include example.html html=html %}
 
 
-    <h3 class="grid fl-jc-space-between fl-ai-center mb0 mt24 stacks-title _subtitle">Simple Items</h3>
+    <h3 class="grid fl-jc-space-between fl-ai-center stacks-title _subtitle">Simple Items</h3>
 
     <p class="stacks-p _section" markdown="1">
         Oftentimes, your widget will be a list of similar, relatively simple items. By giving the `-content` a modifier class
@@ -96,7 +96,7 @@ description: Sidebar widgets are flexible containers that provide a lot of patte
         elements should be `-item`. See the [section on headers](#headers) for an example.
     </p>
 
-    <h3 class="grid fl-jc-space-between fl-ai-center mb0 mt24 stacks-title _subtitle">Complex Items</h3>
+    <h3 class="grid fl-jc-space-between fl-ai-center stacks-title _subtitle">Complex Items</h3>
 
     <p class="stacks-p _section" markdown="1">
         If your items are more complex than that, whitespace may not be enough to separate them clearly. In this case instead of a single
@@ -137,7 +137,7 @@ description: Sidebar widgets are flexible containers that provide a lot of patte
         </div><!-- PREVIEW ONLY -->
     {% endcapture %}{% include example.html html=html %}
 
-    <h3 class="grid fl-jc-space-between fl-ai-center mb0 mt24 stacks-title _subtitle">Headers</h3>
+    <h3 class="grid fl-jc-space-between fl-ai-center stacks-title _subtitle">Headers</h3>
 
     <p class="stacks-p _section" markdown="1">
         The other possible child class is `-header`, which unsurprisingly creates a header. Headers can be used both
@@ -223,7 +223,7 @@ description: Sidebar widgets are flexible containers that provide a lot of patte
 </section>
 
 <section class="stacks-section">
-    <h2 class="grid fl-jc-space-between fl-ai-center mb0 stacks-title">Alternative Colors</h2>
+    <h2 class="grid fl-jc-space-between fl-ai-center stacks-title">Alternative Colors</h2>
     
     <p class="stacks-p _section" markdown="1">
         Three modifier classes are available for changing the background color of an `s-widget`: `_alternate-yellow`, `_alternate-blue`,
@@ -288,7 +288,7 @@ description: Sidebar widgets are flexible containers that provide a lot of patte
 </section>
 
 <section class="stacks-section">
-    <h2 class="grid fl-jc-space-between fl-ai-center mb0 stacks-title">Navigation</h2>
+    <h2 class="grid fl-jc-space-between fl-ai-center stacks-title">Navigation</h2>
     
     <p class="stacks-p _section" markdown="1">
         A common use for sidebar widgets is as a navigation block or table of contents, including a highlight
@@ -331,7 +331,7 @@ description: Sidebar widgets are flexible containers that provide a lot of patte
         </div><!-- PREVIEW ONLY -->
     {% endcapture %}{% include example.html html=html %}
 
-    <h3 class="grid fl-jc-space-between fl-ai-center mb0 mt24 stacks-title _subtitle">Second-level navigation</h3>
+    <h3 class="grid fl-jc-space-between fl-ai-center stacks-title _subtitle">Second-level navigation</h3>
 
     <p class="stacks-p _section" markdown="1">
         If you have a second level of navigation, you can add a `<ul>` of class `-subnav` to the top-level item.
@@ -376,7 +376,7 @@ description: Sidebar widgets are flexible containers that provide a lot of patte
 </section>
 
 <section class="stacks-section">
-    <h2 class="grid fl-jc-space-between fl-ai-center mb0 stacks-title">Header Actions</h2>
+    <h2 class="grid fl-jc-space-between fl-ai-center stacks-title">Header Actions</h2>
     
     <p class="stacks-p _section" markdown="1">
         There is often a need for a header to contain a link or link-like clickable that refers to
@@ -446,7 +446,7 @@ description: Sidebar widgets are flexible containers that provide a lot of patte
 </section>
 
 <section class="stacks-section">
-    <h2 class="grid fl-jc-space-between fl-ai-center mb0 stacks-title">Accordions</h2>
+    <h2 class="grid fl-jc-space-between fl-ai-center stacks-title">Accordions</h2>
 
     <p class="stacks-p _section" markdown="1">
         In order to create an accordion, i.e. to make part of the sidebar widget expandable / collapsible,
@@ -548,7 +548,7 @@ description: Sidebar widgets are flexible containers that provide a lot of patte
 </section>
     
 <script type="text/javascript">
-    // TODO: figure out the right way to share JS alongside the LESS
+    // TODO: figure out the right way to share JS alongside the Less
     window.onload = function () {
         function toggleCollapsing(e) {
             if (e.type == "keydown" && (e.keyCode != 13 && e.keyCode != 32)) {

@@ -1,0 +1,175 @@
+//
+//  STACK OVERFLOW
+//  TYPOGRAPHY
+//
+//  This CSS comes from Stacks, our CSS & Pattern library for rapidly building
+//  Stack Overflow. https://gh.stackoverflow.com/Design/Stacks
+//
+//  For documentation of all these classes and how to contribute,
+//  https://gh.stackoverflow.com/pages/Design/Stacks/
+//
+//  TABLE OF CONTENTS
+//  • LINKS
+//  • UTILITY OVERRIDES
+//
+//  ============================================================================
+//  $   LINKS
+//  ----------------------------------------------------------------------------
+//  --  BASE
+a {
+  color: @link-color;
+  text-decoration: none;
+  cursor: pointer;
+
+  &:hover,
+  &:active {
+    color: @link-color-hover;
+    text-decoration: none;
+  }
+}
+
+
+//  ============================================================================
+//  $   HEADERS
+//  ----------------------------------------------------------------------------
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0 0 0.25em;
+}
+
+//  ============================================================================
+//  $   TEXT SIZES
+//  ----------------------------------------------------------------------------
+//  First create a REM mixin
+.mx-fs(@value) {
+    @rem: (unit(@value)) / unit(@body-fs);
+
+    font-size: @value;                          // Pixel fallback
+    font-size: ~"@{rem}rem";  //  REM
+}
+
+//  Now declare font sizes
+.fs-display4    { .mx-fs(@fs-display4) !important; }
+.fs-display3    { .mx-fs(@fs-display3) !important; }
+.fs-display2    { .mx-fs(@fs-display2) !important; }
+.fs-display1    { .mx-fs(@fs-display1) !important; }
+.fs-headline2   { .mx-fs(@fs-headline2) !important; }
+.fs-headline1   { .mx-fs(@fs-headline1) !important; }
+.fs-title       { .mx-fs(@fs-title) !important; }
+.fs-subheading  { .mx-fs(@fs-subheading) !important; }
+.fs-body3       { .mx-fs(@fs-body3) !important; }
+.fs-body2       { .mx-fs(@fs-body2) !important; }
+.fs-body1       { .mx-fs(@fs-body1) !important; }
+.fs-caption,
+.fs-category    { .mx-fs(@fs-caption) !important; }
+.fs-fine        { .mx-fs(@fs-fine) !important; }
+
+.fs-category {
+    font-weight: 700;
+    text-transform: uppercase;
+
+    //  If a top border is desired
+    &.has-border {
+        padding: @su4 0;
+        width: 100%;
+        border-top: 1px solid @black-100;
+    }
+}
+
+//  ============================================================================
+//  $$  TEXT COLORS
+//  ----------------------------------------------------------------------------
+.fc-dark        { color: @fc-dark; }
+.fc-medium      { color: @fc-medium; }
+.fc-light       { color: @fc-light; }
+
+//  ============================================================================
+//  $   LINE HEIGHTS
+//  ----------------------------------------------------------------------------
+.lh-xs          { line-height: @lh-xs !important; }
+.lh-s           { line-height: @lh-s !important; }
+.lh-m           { line-height: @lh-m !important; }
+.lh-l           { line-height: @lh-l !important; }
+.lh-xl          { line-height: @lh-xl !important; }
+.lh-xxl         { line-height: @lh-xxl !important; }
+
+//  ============================================================================
+//  $$  TEXT STYLES & UTILITIES
+//  ----------------------------------------------------------------------------
+//  --  Font Family
+.ff-sans          { font-family: @ff-sans !important; }
+.ff-serif         { font-family: @ff-serif !important; }
+.ff-mono          { font-family: @ff-mono !important; }
+.ff-inherit       { font-family: inherit !important; }
+
+//  --  Font Weight
+.fw-normal        { font-weight: 400 !important; }
+.fw-bold          { font-weight: 700 !important; }
+
+//  --  Font Styles
+.fs-normal        { font-style: normal !important; }
+.fs-italic        { font-style: italic !important; }
+.fs-unset         { font-style: unset !important; }
+
+//  --  Text Align
+.ta-left          { text-align: left !important; }
+.ta-center        { text-align: center !important; }
+.ta-right         { text-align: right !important; }
+.ta-justify       { text-align: justify !important; }
+.ta-unset         { text-align: unset !important; }
+
+//  --  Text Decoration
+.td-none          { text-decoration: none !important; }
+.td-dashed        { text-decoration: dashed underline !important; }
+.td-underline     { text-decoration: underline !important; }
+
+//  --  Text Transform
+.tt-capitalize    { text-transform: capitalize !important; }
+.tt-lowercase     { text-transform: lowercase !important; }
+.tt-uppercase     { text-transform: uppercase !important; }
+.tt-none          { text-transform: none !important; }
+.tt-unset         { text-transform: unset !important; }
+
+//  --  Text Truncate
+.truncate {
+    max-width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis !important;
+}
+
+//  --  Whitespace
+.ws-normal        { white-space: normal !important; }
+.ws-nowrap        { white-space: nowrap !important; }
+.ws-pre           { white-space: pre !important; }
+.ws-pre-wrap      { white-space: pre-wrap !important; }
+.ws-pre-line      { white-space: pre-line !important; }
+.ws-unset         { white-space: unset !important; }
+
+//  --  Word Wrap
+.ww-break-word    { word-wrap: break-word !important; }
+
+
+//  ============================================================================
+//  $   LISTS
+//  ----------------------------------------------------------------------------
+.list-reset {
+    &,
+    > li {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+}
+
+//  --  List Style Types
+.list-ls-none          { list-style: none !important; }
+.list-ls-disc          { list-style-type: disc !important; }
+.list-ls-circle        { list-style-type: circle !important; }
+.list-ls-square        { list-style-type: square !important; }
+.list-ls-decimal       { list-style-type: decimal !important; }
+.list-ls-unset         { list-style-type: unset !important; }

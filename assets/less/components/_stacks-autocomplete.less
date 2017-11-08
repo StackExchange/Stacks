@@ -1,0 +1,88 @@
+//
+//  STACK OVERFLOW
+//  AUTOCOMPLETE
+//
+//  This CSS comes from Stacks, our CSS & Pattern library for rapidly building
+//  Stack Overflow. https://gh.stackoverflow.com/Design/Stacks
+//
+//  For documentation of all these classes and how to contribute,
+//  https://gh.stackoverflow.com/pages/Design/Stacks/
+//
+//  TABLE OF CONTENTS
+//  • WRAPPER
+//  • CHILD ITEMS
+//
+//  ============================================================================
+//  $   WRAPPER
+//  ----------------------------------------------------------------------------
+.autocomplete {
+    position: relative;
+}
+
+.autocomplete-suggestions {
+    position: absolute;
+    top: calc(~"100% + @{su2}");
+    left: 0;
+    right: 0;
+    max-height: 24em;   // 350px / 15px (base)
+    box-shadow: 0 @su2 @su8 fade(@black-800,10%);
+    overflow: auto;
+
+    background: @white;
+    border: 1px solid @black-150;
+
+    visibility: hidden;
+    opacity: 0;
+    z-index: @zi-hide;
+    transition: opacity 200ms @te-smooth 0ms, visibility 0s ease 200ms, z-index 0s ease 200ms;
+
+    //  --  States
+    &.is-visible {
+        visibility: visible;
+        opacity: 1;
+        z-index: @zi-popovers;
+        transition: visibility 0s ease 0ms, z-index 0s ease 0ms, opacity 200ms @te-smooth 200ms;
+    }
+}
+
+.autocomplete-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.autocomplete-avatar {
+    width: @su24;
+    height: @su24;
+
+    img {
+        width: 100%;
+    }
+}
+
+.autocomplete-category {
+    margin: 0;
+    padding: @su4 @su8;
+    list-style: none;
+
+    background-color: @bgc-lightest;
+    .mx-fs(@fs-fine);
+    font-weight: 700;
+    text-transform: uppercase;
+    color: @fc-light;
+}
+
+.autocomplete-result {
+    margin-top: @su2;
+    margin-bottom: @su2;
+    padding: @su4 @su8;
+    width: 100%;
+    background-color: fade(@bgc-lightest,0%);
+    .mx-fs(@fs-body1);
+    cursor: pointer;
+    transition: all 600ms @te-smooth;
+
+    &:hover {
+        background-color: fade(@bgc-lightest,50%);
+    }
+}

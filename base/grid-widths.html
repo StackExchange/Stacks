@@ -1,0 +1,207 @@
+<section class="stacks-section">
+    <h2 class="grid fl-jc-space-between fl-ai-center stacks-title">Grid Cells</h2>
+
+    <h3 class="grid fl-jc-space-between fl-ai-center stacks-title _subtitle">Fluid Cells</h3>
+    <p class="stacks-p _section">All flex cells inherit the browser flex default: <code class="stacks-code">flex: 1 0 auto;</code>  This means that by default all cells will be as wide as their content. If you would like a cell or all the cells to fill the remaining space, apply the <code class="stacks-code">.fl1</code> to the cell or <code class="stacks-code">._fl1</code> to the parent.</p>
+
+    <div class="p2 stacks-code-preview">
+{% highlight html linenos %}
+<div class="grid">
+    <div class="grid-cell fl1">...</div>
+    <div class="grid-cell">...</div>
+</div>
+<div class="grid _fl1">
+    <div class="grid-cell">...</div>
+    <div class="grid-cell">...</div>
+    <div class="grid-cell">...</div>
+</div>
+{% endhighlight %}
+        <div class="-preview">
+            <div class="grid gs16 fl-col _fl1">
+                <div class="grid-cell stacks-grid-wrapper">
+                    <div class="grid">
+                        <div class="grid-cell fl1"><div class="stacks-grid-example">.grid-cell.fl1</div></div>
+                        <div class="grid-cell"><div class="stacks-grid-example">.grid-cell</div></div>
+                    </div>
+                </div>
+                <div class="grid-cell stacks-grid-wrapper">
+                    <div class="grid _fl1">
+                        <div class="grid-cell"><div class="stacks-grid-example">.grid-cell</div></div>
+                        <div class="grid-cell"><div class="stacks-grid-example">.grid-cell</div></div>
+                        <div class="grid-cell"><div class="stacks-grid-example">.grid-cell</div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <h3 class="grid fl-jc-space-between fl-ai-center stacks-title _subtitle">Fixed Cells</h3>
+    <p class="stacks-p _section">When you don’t want the cells to automatically adjust, use a fixed width class instead. The fixed cell widths are based on a 12-column grid system.</p>
+    <div class="p2 stacks-code-preview">
+{% highlight html linenos %}
+<div class="grid">
+    <div class="grid-cell-2">...</div>
+    <div class="grid-cell-10">...</div>
+</div>
+<div class="grid">
+    <div class="grid-cell-3">...</div>
+    <div class="grid-cell-6">...</div>
+    <div class="grid-cell-3">...</div>
+</div>
+<div class="grid">
+    <div class="grid-cell-3">...</div>
+    <div class="grid-cell-3">...</div>
+    <div class="grid-cell-3">...</div>
+    <div class="grid-cell-3">...</div>
+</div>
+{% endhighlight %}
+        <div class="-preview">
+            <div class="grid gs16 fl-col _fl1">
+                <div class="grid-cell stacks-grid-wrapper">
+                    <div class="grid">
+                        <div class="grid-cell-2"><div class="stacks-grid-example">.grid-cell-2</div></div>
+                        <div class="grid-cell-10"><div class="stacks-grid-example">.grid-cell-10</div></div>
+                    </div>
+                </div>
+                <div class="grid-cell stacks-grid-wrapper">
+                    <div class="grid">
+                        <div class="grid-cell-3"><div class="stacks-grid-example">.grid-cell-3</div></div>
+                        <div class="grid-cell-6"><div class="stacks-grid-example">.grid-cell-6</div></div>
+                        <div class="grid-cell-3"><div class="stacks-grid-example">.grid-cell-3</div></div>
+                    </div>
+                </div>
+                <div class="grid-cell stacks-grid-wrapper">
+                    <div class="grid">
+                        <div class="grid-cell-3"><div class="stacks-grid-example">.grid-cell-3</div></div>
+                        <div class="grid-cell-3"><div class="stacks-grid-example">.grid-cell-3</div></div>
+                        <div class="grid-cell-3"><div class="stacks-grid-example">.grid-cell-3</div></div>
+                        <div class="grid-cell-3"><div class="stacks-grid-example">.grid-cell-3</div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <h3 class="grid fl-jc-space-between fl-ai-center stacks-title _subtitle">Auto Fixed Width Cells</h3>
+    <p class="stacks-p _section">Automatic adjusting width cells are great. And being able to specify a cell’s width is equally amazing. But sometimes you want to be able to have all cell’s within a box container to be the same width. Instead stating a fixed cell width, apply a modifying to the box container and all child elements will automatically be sized.</p>
+    <div class="p2 stacks-code-preview">
+{% highlight html linenos %}
+<div class="grid grid-8-col">
+    <div class="grid-cell">...</div>
+    <div class="grid-cell">...</div>
+</div>
+<div class="grid grid-6-col">
+    <div class="grid-cell">...</div>
+    <div class="grid-cell">...</div>
+    <div class="grid-cell">...</div>
+</div>
+<div class="grid grid-4-col">
+    <div class="grid-cell">...</div>
+    <div class="grid-cell">...</div>
+    <div class="grid-cell">...</div>
+    <div class="grid-cell">...</div>
+</div>
+{% endhighlight %}
+        <div class="-preview">
+            <div class="grid gs16 fl-col _fl1">
+                <div class="grid-cell stacks-grid-wrapper">
+                    <div class="grid grid-8-col fl-wrap">
+                        <div class="grid-cell"><div class="stacks-grid-example">.grid-cell</div></div>
+                        <div class="grid-cell"><div class="stacks-grid-example">.grid-cell</div></div>
+                    </div>
+                </div>
+                <div class="grid-cell stacks-grid-wrapper">
+                    <div class="grid grid-6-col fl-wrap">
+                        <div class="grid-cell"><div class="stacks-grid-example">Automatic adjusting width cells are great. And being able to specify a cell’s width is equally amazing. But sometimes you want to be able to have all cell’s within a box container to be the same width. Instead stating a fixed cell width, apply a modifying to the box container and all child elements will automatically be sized.</div></div>
+                        <div class="grid-cell"><div class="stacks-grid-example">Automatic adjusting width cells are great. And being able to specify a cell’s width is equally amazing. But sometimes you want to be able to have all cell’s within a box container to be the same width.</div></div>
+                        <div class="grid-cell"><div class="stacks-grid-example">Instead stating a fixed cell width, apply a modifying to the box container and all child elements will automatically be sized.</div></div>
+                    </div>
+                </div>
+                <div class="grid-cell stacks-grid-wrapper">
+                    <div class="grid grid-4-col fl-wrap">
+                        <div class="grid-cell"><div class="stacks-grid-example">.grid-cell</div></div>
+                        <div class="grid-cell"><div class="stacks-grid-example">.grid-cell</div></div>
+                        <div class="grid-cell"><div class="stacks-grid-example">.grid-cell</div></div>
+                        <div class="grid-cell"><div class="stacks-grid-example">.grid-cell</div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <h3 class="grid fl-jc-space-between fl-ai-center stacks-title _subtitle">Mixed Width Cells</h3>
+    <p class="stacks-p _section">You can also mix auto and fixed width cells when you want certain areas locked to a certain size, but the rest of the items can automatically fill the remaining room.</p>
+    <div class="p2 stacks-code-preview">
+{% highlight html linenos %}
+<div class="grid">
+    <div class="grid-cell-4">...</div>
+    <div class="grid-cell fl1">...</div>
+</div>
+<div class="grid _fl1">
+    <div class="grid-cell-8">...</div>
+    <div class="grid-cell">...</div>
+    <div class="grid-cell">...</div>
+</div>
+<div class="grid _fl1">
+    <div class="grid-cell-6">...</div>
+    <div class="grid-cell">...</div>
+    <div class="grid-cell">...</div>
+    <div class="grid-cell">...</div>
+</div>
+{% endhighlight %}
+        <div class="-preview">
+            <div class="grid gs16 fl-col _fl1">
+                <div class="grid-cell stacks-grid-wrapper">
+                    <div class="grid">
+                        <div class="grid-cell-4"><div class="stacks-grid-example">.grid-cell-4</div></div>
+                        <div class="grid-cell fl1"><div class="stacks-grid-example">.grid-cell</div></div>
+                    </div>
+                </div>
+                <div class="grid-cell stacks-grid-wrapper">
+                    <div class="grid _fl1">
+                        <div class="grid-cell-8"><div class="stacks-grid-example">.grid-cell-8</div></div>
+                        <div class="grid-cell"><div class="stacks-grid-example">.grid-cell</div></div>
+                        <div class="grid-cell"><div class="stacks-grid-example">.grid-cell</div></div>
+                    </div>
+                </div>
+                <div class="grid-cell stacks-grid-wrapper">
+                    <div class="grid _fl1">
+                        <div class="grid-cell-6"><div class="stacks-grid-example">.grid-cell-6</div></div>
+                        <div class="grid-cell"><div class="stacks-grid-example">.grid-cell</div></div>
+                        <div class="grid-cell"><div class="stacks-grid-example">.grid-cell</div></div>
+                        <div class="grid-cell"><div class="stacks-grid-example">.grid-cell</div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <h3 class="grid fl-jc-space-between fl-ai-center stacks-title _subtitle">Nested Grids</h3>
+    <p class="stacks-p _section">Grids can be nested within each other. This allows you to create unique, custom layouts without needing to create new, custom code or override existing styles.</p>
+    <div class="p2 stacks-code-preview">
+{% highlight html linenos %}
+<div class="grid">
+    <div class="grid">
+        <div class="grid-cell">...</div>
+        <div class="grid-cell">...</div>
+    </div>
+    <div class="grid-cell-2">...</div>
+    <div class="grid-cell-2">...</div>
+</div>
+{% endhighlight %}
+        <div class="-preview">
+            <div class="grid gs16 fl-col _fl1">
+                <div class="grid-cell stacks-grid-wrapper">
+                    <div class="grid fl1">
+                        <div class="grid gs12 _fl1">
+                            <div class="grid-cell"><div class="stacks-grid-example">.grid-cell</div></div>
+                            <div class="grid-cell"><div class="stacks-grid-example">.grid-cell</div></div>
+                        </div>
+                        <div class="grid-cell-2"><div class="stacks-grid-example">.grid-cell-2</div></div>
+                        <div class="grid-cell-2"><div class="stacks-grid-example">.grid-cell-2</div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

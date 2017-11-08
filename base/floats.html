@@ -1,0 +1,77 @@
+---
+layout: with-secondary-nav
+title: Floats
+description: Float and clear utility classes allow you to change how an element is positioned within the layout. These should be used when possible to help create consistency.
+---
+<section class="stacks-section">
+    <h2 class="grid fl-jc-space-between fl-ai-center stacks-title">Class Definitions</h2>
+    <table class="table mb48 _hover">
+        <thead>
+            <tr>
+                <th class="-cell2" scope="col">Class</th>
+                <th class="-cell2" scope="col">Output</th>
+                <th scope="col">Define</th>
+            </tr>
+        </thead>
+        <tbody class="fs-caption">
+            {% for floats in site.data.utility-definitions.floats %}
+              <tr>
+                  <th scope="row" class="p8 ff-mono ">.{{ floats.class }}</th>
+                  <td class="p8 ff-mono">{{ floats.output }}</td>
+                  <td class="p8">{{ floats.define }}</td>
+              </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</section>
+
+<section class="stacks-section">
+    <h2 class="grid fl-jc-space-between fl-ai-center stacks-title">Examples</h2>
+    <h3 class="grid fl-jc-space-between fl-ai-center stacks-title _subtitle">Floats</h3>
+    <div class="stacks-code-preview">
+{% highlight html linenos %}
+<div class="ps-relative w-100 clearfix">
+    <div class="float-none">…</div>
+    <div class="float-left">…</div>
+    <div class="float-right">…</div>
+</div>
+{% endhighlight %}
+        <div class="-preview ps-relative fs-caption ff-mono">
+            <div class="ps-relative w-100 clearfix fc-black-800 ff-mono">
+                <div class="ps-relative float-none my4 w50 bg-orange-100 p12 ba bac-orange-3">.float-none</div>
+                <div class="ps-relative float-left my4 w25 bg-orange-100 p12 ba bac-orange-3">.float-left</div>
+                <div class="ps-relative float-right my4 w25 bg-orange-100 p12 ba bac-orange-3">.float-right</div>
+            </div>
+        </div>
+    </div>
+
+    <h3 class="grid fl-jc-space-between fl-ai-center stacks-title _subtitle">Clears</h3>
+    <div class="stacks-code-preview">
+{% highlight html linenos %}
+<div class="ps-relative w-100 clearfix">
+    <div class="float-none">…</div>
+    <div class="float-left">…</div>
+    <div class="float-right">…</div>
+</div>
+{% endhighlight %}
+        <div class="-preview fs-caption ff-mono">
+            <div class="fl fl-col gs4">
+                <div class="-cell w-100 clearfix bg-black-050 fc-black-800 ff-mono">
+                    <div class="ps-relative float-left m12 w25 bg-orange-100 p12 ba bac-orange-3">.float-left</div>
+                    <div class="ps-relative float-left m12 w25 bg-orange-100 p12 ba bac-orange-3">.float-left</div>
+                    <div class="ps-relative clear-left m12 w25 bg-orange-100 p12 ba bac-orange-3">.clear-left</div>
+                </div>
+                <div class="-cell w-100 clearfix bg-black-050 fc-black-800 ff-mono">
+                    <div class="ps-relative float-right m12 w25 bg-orange-100 p12 ba bac-orange-3">.float-right</div>
+                    <div class="ps-relative float-right m12 w25 bg-orange-100 p12 ba bac-orange-3">.float-right</div>
+                    <div class="ps-relative clear-right m12 w25 bg-orange-100 p12 ba bac-orange-3">.clear-right</div>
+                </div>
+                <div class="-cell w-100 clearfix bg-black-050 fc-black-800 ff-mono">
+                    <div class="ps-relative float-left m12 w25 bg-orange-100 p12 ba bac-orange-3">.float-left</div>
+                    <div class="ps-relative float-right m12 w25 bg-orange-100 p12 ba bac-orange-3">.float-right</div>
+                    <div class="ps-relative clear-both m12 w25 bg-orange-100 p12 ba bac-orange-3">.clear-both</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

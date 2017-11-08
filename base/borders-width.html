@@ -1,0 +1,40 @@
+<section class="stacks-section">
+    <h2 class="grid fl-jc-space-between fl-ai-center stacks-title">Width</h2>
+    <h3 class="grid fl-jc-space-between fl-ai-center stacks-title _subtitle">Width Class Definitions</h3>
+    <table class="table mb32 _hover">
+        <thead>
+            <tr>
+                <th class="-cell2" scope="col">Abbreviation</th>
+                <th scope="col">Definition</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for border in site.data.borders-definitions.border-width %}
+              <tr>
+                  <th scope="row">{{ border.term }}</th>
+                  <td>{{ border.define }}</td>
+              </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <h3 class="grid fl-jc-space-between fl-ai-center mb0 mt24 stacks-title _subtitle">Width Examples</h3>
+    <div class="stacks-code-preview">
+{% highlight html linenos %}
+<div class="ba baw0">0px</div>
+<div class="bt btw1 btc-orange-3">1px</div>
+<div class="br brw2 brc-orange-3">2px</div>
+<div class="bb bbw3 bbc-orange-3">4px</div>
+<div class="bl blw4 blc-orange-3">8px</div>
+{% endhighlight %}
+        <div class="-preview">
+            <div class="grid w100 gs8">
+                <div class="grid-cell fl-ai-center p12 bg-orange-100 ba baw0">0px border</div>
+                <div class="grid-cell fl-ai-center p12 bg-orange-100 bt btc-orange-3">1px Top Border</div>
+                <div class="grid-cell fl-ai-center p12 bg-orange-100 br brw2 brc-orange-3">2px Right Border</div>
+                <div class="grid-cell fl-ai-center p12 bg-orange-100 bb bbw3 bbc-orange-3">4px Bottom Border</div>
+                <div class="grid-cell fl-ai-center p12 bg-orange-100 bl blw4 blc-orange-3">8px Left Border</div>
+            </div>
+        </div>
+    </div>
+</section>
