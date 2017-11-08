@@ -26,63 +26,35 @@
 //  ============================================================================
 //  $   SITE LAYOUT
 //  ============================================================================
-//  $   CSS GRID
-//      This is supported by all modern browsers except IE11 and Edge.
-//      IE11 and Edge support the old spec prefixed. Microsoft is working
-//      on shipping the new spec soon. Dated Jun 2017
-//
-//      Official Status:
-//      https://developer.microsoft.com/en-us/microsoft-edge/platform/status/gridupdate/
-//  ============================================================================
-//      Fall forward. If a browser supports CSS Grids, then use the following
-//      CSS. Otherwise they'll ignore it and we can use flexbox instead. This
-//      mainly means IE11 and Edge won't be supported for Grids.
-//  ----------------------------------------------------------------------------
-@content-width:       (unit(780 / @body-fs)) * 1em;  // Target width: 780px;
-@nav-width:           (unit(234 / @body-fs)) * 1em;  // Target width: 234px;
 
-@supports (grid-auto-rows: 1px) {
-    .grid-container {
-        display: grid;
-        grid-template-columns: @nav-width @content-width;
-        grid-template-areas: "nav main";
-        grid-gap: 0;
-        height: 100%;
+.stacks-wrapper {
+    min-height: 100vh;
+}
 
-        //  Specific class names that assign template areas
-        .stacks-content {
-            grid-column: main;
-        }
-        .stacks-nav-primary {
-            grid-column: nav;
-        }
-        .stacks-nav-secondary {
-            grid-column: subnav;
-        }
+.stacks-nav-primary {
+    width: 220px;
+}
 
-        .stacks-nav-primary,
-        .stacks-nav-secondary {
-            position: -webkit-sticky; // Needed for Safari
-            position: sticky;
-            top: 0;
-            height: 100vh;
-        }
+.stacks-nav-secondary {
+    left: 220px;
+    width: 220px;
+}
 
-        //  For when we want a secondary navigation
-        &._nav-secondary {
-            grid-template-columns: @nav-width @nav-width @content-width;
-            grid-template-areas: "nav subnav main";
-        }
-        &._home {
-            grid-template-columns: @nav-width 1fr;
-        }
-    }
+.stacks-content {
+    margin-left: 440px;
+}
+
+.stacks-body {
+    max-width: 680px;
+}
+
+.stacks-home {
+    margin-left: 220px;
 }
 
 .stacks-section {
     margin-top: @su48;
     margin-bottom: @su48;
-    max-width: @content-width; // Needed for Safari
 }
 
 
@@ -151,6 +123,7 @@
         }
         .nav .-link {
             padding-left: @su32;
+            padding-right: @su32;
             color: @fc-light;
         }
     }
@@ -246,7 +219,7 @@
 .stacks-p {
     margin-top: 0;
     margin-bottom: 1em;
-    line-height: @lh-m;
+    line-height: @lh-l;
     color: @fc-medium;
 
     &._intro {
@@ -267,7 +240,7 @@
 //  ----------------------------------------------------------------------------
 .stacks-list {
     margin-bottom: 1em;
-    line-height: @lh-m;
+    line-height: @lh-l;
     color: @fc-medium;
 
     &._section { .mx-fs(@fs-body3); }
