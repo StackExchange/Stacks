@@ -4,7 +4,7 @@ You're looking at Stack Overflow’s CSS and Design Pattern Library. This librar
 
 ### Contributing
 
-Stacks is built using [Jekyll](https://jekyllrb.com) and hosted internally within Github Enterprise. Once changes are committed or approved and merged into `master`, the site is automatically rebuilt. The website can be viewed at https://gh.stackoverflow.com/pages/Design/Stacks/
+Stacks is built using [Jekyll](https://jekyllrb.com) and hosted internally within Github Enterprise. Once changes are committed or approved and merged into `master`, the site is automatically rebuilt. The website can be viewed at https://stackoverflow.design
 
 To contribute, clone this repository and create a new branch. Open a pull request with your rationale and the team will review your code. Feel free to open pull requests way earlier than you feel comfortable. :sunglasses:
 
@@ -18,6 +18,6 @@ Once Jekyll is installed, start Jekyll by typing the following into your Termina
 jekyll serve
 ```
 
-This will start your server and watch for any changes. You can now visit the site at http://127.0.0.1:4000/pages/Design/Stacks/
+This will start your server and watch for any changes. You can now visit the site at http://127.0.0.1:4000/
 
 If you get stuck, visit [Jekyll's documentation site](https://jekyllrb.com/docs/home/). If you still don't find what you're looking for, you can either [create an issue](https://gh.stackoverflow.com/Design/Stacks/issues/new) or [pop into the **#design-stacks** Slack Channel](https://stackexchange.slack.com/messages/C27RWNQN9/) to ask your question.
