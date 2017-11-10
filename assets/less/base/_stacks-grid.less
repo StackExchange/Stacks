@@ -27,13 +27,13 @@
 //  ============================================================================
 //  --  FIXED COLUMN WIDTHS
 //  ----------------------------------------------------------------------------
-.grid-columns(@num, @count: 1) when (@count =< @num) {
+.create-fixed-cells(@num, @count: 1) when (@count =< @num) {
 
     .grid-cell-@{count} {
         flex-basis: @count * 100% / @num;
     }
 
-    .grid-columns(@num, (@count + 1));
+    .create-fixed-cells(@num, (@count + 1));
 }
 
 //  --  AUTO FIXED WIDTH CELLS
@@ -43,7 +43,7 @@
 //      stating a fixed cell width, apply a modifying to the box container and
 //      all child elements will automatically be sized.
 //  ----------------------------------------------------------------------------
-.grid-count-columns(@num, @count: 1) when (@count =< @num) {
+.create-grid-count-cols(@num, @count: 1) when (@count =< @num) {
     .grid-@{count}-col {
         > .grid,
         > .grid-cell {
@@ -51,7 +51,7 @@
         }
     }
 
-    .grid-count-columns(@num, (@count + 1));
+    .create-grid-count-cols(@num, (@count + 1));
 }
 
 //  --  GRID GUTTERS
@@ -99,27 +99,11 @@
 //             and right.
 //
 //  ----------------------------------------------------------------------------
-.grid-fixed-cell-spacing(@spacing, @dir, @num: @grid-cols, @count: 1) when (@count =< @num) {
+.grid-fixed-cell-spacing(@spacing, @num: @grid-cols, @count: 1) when (@count =< @num) {
     @cell-width: @count * 100% / @num;
 
-    & when (@dir = all) {
-        > .grid-cell-@{count} {
-            margin: @spacing / 2;
-        }
-    }
-
-    & when (@dir = row) {
-        > .grid-cell-@{count} {
-            margin-left: @spacing / 2;
-            margin-right: @spacing / 2;
-        }
-    }
-
-    & when (@dir = column) {
-        > .grid-cell-@{count} {
-            margin-top: @spacing / 2;
-            margin-bottom: @spacing / 2;
-        }
+    > .grid-cell-@{count} {
+        margin: @spacing / 2;
     }
 
     //  ------------------------------------------------------------------------
@@ -137,7 +121,7 @@
         flex-basis: calc(~"@{cell-width} - @{spacing}");
     }
 
-    .grid-fixed-cell-spacing(@spacing, @dir, @num, (@count + 1));
+    .grid-fixed-cell-spacing(@spacing, @num, (@count + 1));
 }
 
 
@@ -151,48 +135,19 @@
 //          row (default) or a column. When a column we need to reset the
 //          left and right margins and add in top and bottom margins.
 //  ----------------------------------------------------------------------------
-.gutter-spacing(@spacing, @dir) {
-    //  --  All directions
-    & when (@dir = all) {
-        margin: -(@spacing / 2);
+.gutter-spacing(@spacing) {
+    margin: -(@spacing / 2);
 
-        //  --  FLUID CELLS
-        > .grid,
-        > .grid-cell {
-            margin: @spacing / 2;
-        }
-    }
-
-    //  --  Row Spacing
-    & when (@dir = row) {
-        margin-left: -(@spacing / 2);
-        margin-right: -(@spacing / 2);
-
-        //  --  FLUID CELLS
-        > .grid,
-        > .grid-cell {
-            margin-left: @spacing / 2;
-            margin-right: @spacing / 2;
-        }
-    }
-
-    //  --  Column Spacing
-    & when (@dir = column) {
-        margin-top: -(@spacing / 2);
-        margin-bottom: -(@spacing / 2);
-
-        //  --  FLUID CELLS
-        > .grid,
-        > .grid-cell {
-            margin-top: @spacing / 2;
-            margin-bottom: @spacing / 2;
-        }
+    //  --  FLUID CELLS
+    > .grid,
+    > .grid-cell {
+        margin: @spacing / 2;
     }
 
     //  --  FIXED WIDTH CELLS
     //      Now we call for the above mixin [1] to make sure we adjust the default
     //      widths for the new gutters.
-    .grid-fixed-cell-spacing(@spacing, @dir);
+    .grid-fixed-cell-spacing(@spacing);
 }
 
 
@@ -333,45 +288,43 @@
 
 //  $$  FIXED WIDTH CELLS
 //  ----------------------------------------------------------------------------
-.grid-columns(@grid-cols);
+.create-fixed-cells(@grid-cols);
 
 //  $$  AUTO FIXED WIDTH CELLS
 //  ----------------------------------------------------------------------------
-.grid-count-columns(@grid-cols);
+.create-grid-count-cols(@grid-cols);
 
 
 //  ============================================================================
 //  $   GRID SPACING
 //      Insert spaces or gutters in between grid cells
 //  ----------------------------------------------------------------------------
-.gs2    { .gutter-spacing(@su2, all); }        //  2px
-.gs4    { .gutter-spacing(@su4, all); }        //  4px
-.gs8    { .gutter-spacing(@su8, all); }        //  8px
-.gs12   { .gutter-spacing(@su12, all); }       //  12px
-.gs16   { .gutter-spacing(@su16, all); }       //  16px
-.gs24   { .gutter-spacing(@su24, all); }       //  24px
-.gs32   { .gutter-spacing(@su32, all); }       //  32px
-.gs48   { .gutter-spacing(@su48, all); }       //  48px
-.gs64   { .gutter-spacing(@su64, all); }       //  64px
+.gs2    { .gutter-spacing(@su2); }        //  2px
+.gs4    { .gutter-spacing(@su4); }        //  4px
+.gs8    { .gutter-spacing(@su8); }        //  8px
+.gs12   { .gutter-spacing(@su12); }       //  12px
+.gs16   { .gutter-spacing(@su16); }       //  16px
+.gs24   { .gutter-spacing(@su24); }       //  24px
+.gs32   { .gutter-spacing(@su32); }       //  32px
+.gs48   { .gutter-spacing(@su48); }       //  48px
+.gs64   { .gutter-spacing(@su64); }       //  64px
 
-//  Row grid spacing
-.gsx2   { .gutter-spacing(@su2, row); }        //  2px
-.gsx4   { .gutter-spacing(@su4, row); }        //  4px
-.gsx8   { .gutter-spacing(@su8, row); }        //  8px
-.gsx12  { .gutter-spacing(@su12, row); }       //  12px
-.gsx16  { .gutter-spacing(@su16, row); }       //  16px
-.gsx24  { .gutter-spacing(@su24, row); }       //  24px
-.gsx32  { .gutter-spacing(@su32, row); }       //  32px
-.gsx48  { .gutter-spacing(@su48, row); }       //  48px
-.gsx64  { .gutter-spacing(@su64, row); }       //  64px
+//  On rows, remove top and bottom margins
+.gsx {
+    &,
+    > .grid,
+    > .grid-cell,
+    > [class*="grid-cell-"] {
+        .my0;
+    }
+}
 
-//  Column grid spacing
-.gsy2   { .gutter-spacing(@su2, column); }     //  2px
-.gsy4   { .gutter-spacing(@su4, column); }     //  4px
-.gsy8   { .gutter-spacing(@su8, column); }     //  8px
-.gsy12  { .gutter-spacing(@su12, column); }    //  12px
-.gsy16  { .gutter-spacing(@su16, column); }    //  16px
-.gsy24  { .gutter-spacing(@su24, column); }    //  24px
-.gsy32  { .gutter-spacing(@su32, column); }    //  32px
-.gsy48  { .gutter-spacing(@su48, column); }    //  48px
-.gsy64  { .gutter-spacing(@su64, column); }    //  64px
+//  On columns, remove left and right margins
+.gsy {
+    &,
+    > .grid,
+    > .grid-cell,
+    > [class*="grid-cell-"] {
+        .mx0;
+    }
+}
