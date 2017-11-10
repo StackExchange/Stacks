@@ -81,10 +81,10 @@
 //  ----------------------------------------------------------------------------
 .btn-check-brc(@brc: @btn-bgc, @status: @btn-brc) {
   & when (@status = true) {
-    border-color: darken(@brc,10%);
+    border-color: darken(@brc,12%);
 
     &:active {
-      border-color: darken(@brc,20%);
+      border-color: darken(@brc,24%);
     }
     &[disabled] {
       border-color: fade(desaturate(@brc,75%),10%);
@@ -165,10 +165,10 @@
 
   & when (alpha(@bgc) > 0) {
     &:hover {
-      background-color: darken(@bgc, 3%);
+      background-color: darken(@bgc, 8%);
     }
     &:active {
-      background-color: darken(@bgc, 10%);
+      background-color: darken(@bgc, 16%);
     }
     &[disabled] {
       background-color: fade(desaturate(@bgc,75%),50%);
@@ -206,9 +206,8 @@
 //  $   BASE STYLE
 //  ----------------------------------------------------------------------------
 .button {
-  .ps-relative;
-  .py8;
-  .px12;
+  position: relative;
+  padding: @su8 @su12;
   .ba;
   .ff-inherit;
   .td-none;
@@ -311,7 +310,7 @@
   //  --  Confirm Clear Style
   &._confirm {
     .btn-check-brc(@status: false);
-    .btn-check-bxs(@bxos: @btn-confirm-bgc, @status: false);
+    .btn-check-bxs(@bxos:@btn-confirm-bgc, @status: false);
     .btn-bgc(fade(@btn-confirm-bgc,0%));
     .btn-fc(@btn-confirm-bgc);
   }
@@ -447,15 +446,15 @@
     .bar-circle;
     .ba;
     .baw2;
-    .bac-white-2;
-    .blc-white;
+    border-color: fade(@white,20%);
+    border-left-color: @white;
 
     transform: translateZ(0);
     animation: spinnerRotate 800ms infinite @te-back-out;
   }
 
   &._dark-loader:before {
-    border-color: @powder-200;
+    border-color: @powder-300;
     border-left-color: @powder-600;
   }
 }
