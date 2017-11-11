@@ -42,68 +42,57 @@
 //      true/false statement. If TRUE, we add in the variable you pass into
 //      the mixin (@bxis). If @btn-bxis is FALSE, add only the outer box shadow.
 //  ----------------------------------------------------------------------------
-.btn-check-bxs(@bxis: transparent, @bxos: transparent, @status: @btn-bxis) {
-  & when (@status = true) {
-    box-shadow: inset 0 1px 0 0 lighten(@bxis,20%), 0 0 0 0 fade(@bxos,0%);
+.btn-check-bxs(@bxis: transparent, @bxos: @btn-bxos, @status: @btn-bxis) {
+    & when (@status = true) {
+        box-shadow: inset 0 1px 0 0 lighten(@bxis,20%), 0 0 0 0 fade(@bxos,0%);
 
-    &:hover {
-      box-shadow: inset 0 1px 0 0 lighten(@bxis,10%), 0 0 0 0 fade(@bxos,0%);
+        &:hover {
+            box-shadow: inset 0 1px 0 0 lighten(@bxis,5%), 0 0 0 0 fade(@bxos,0%);
+        }
+        &:focus {
+            box-shadow: inset 0 1px 0 0 lighten(@bxis,20%), 0 0 0 @su4 fade(@bxos,20%);
+        }
     }
-    &:focus {
-      box-shadow: inset 0 1px 0 0 lighten(@bxis,10%), 0 0 @su8 0 fade(@bxos,50%);
+
+    & when (@status = false) {
+        box-shadow: 0 0 0 0 fade(@bxos,0%);
+
+        &:hover {
+          box-shadow: 0 0 0 0 fade(@bxos,0%);
+        }
+        &:focus {
+          box-shadow: 0 0 0 @su4 fade(@bxos,20%);
+        }
     }
+
     &:active {
-      box-shadow: inset 0 @su2 @su4 0 fade(darken(@bxis,90%),20%);
+        box-shadow: inset 0 @su2 @su8 0 fade(darken(@bxis,20%),20%);
     }
-    &[disabled] {
-      box-shadow: none;
-    }
-  }
 
-  & when (@status = false) {
-    box-shadow: 0 0 0 0 fade(@bxos,0%);
-
-    &:hover {
-      box-shadow: 0 0 0 0 fade(@bxos,0%);
-    }
-    &:focus {
-      box-shadow: 0 0 8px 0 fade(@bxos,50%);
-    }
-    &:active,
     &[disabled] {
-      box-shadow: none;
+        box-shadow: none;
     }
-  }
 }
 
 //      MIXIN:
 //      Border Color
 //
 //      HOW IT WORKS:
-//      Using a mixin guard we check to see if it's true. The way we determine
-//      this by checking if the @brc value IS NOT false. If it's any other value
-//      besides false, we apply the border color values. If @brc equals FALSE,
-//      then the border color is transparent.
+//      We first check to see if borders are desired on buttons with @btn-brc.
+//      If it's true, then we use the background color by darkening it.
 //  ----------------------------------------------------------------------------
-.btn-check-brc(@brc: @btn-bgc, @status: @btn-brc) {
-  & when (@status = true) {
-    border-color: darken(@brc,12%);
+.btn-check-brc(@brc: @btn-bgc, @status: @btn-brc) when (@status = true) {
+    border-color: darken(@brc,10%);
 
+    &:hover {
+        border-color: darken(@brc,10%);
+    }
     &:active {
-      border-color: darken(@brc,24%);
+        border-color: darken(@brc,20%);
     }
     &[disabled] {
-      border-color: fade(desaturate(@brc,75%),10%);
+        border-color: fade(desaturate(@brc,75%),10%);
     }
-  }
-  & when (@status = false) {
-    &,
-    &:hover,
-    &:focus,
-    &[disabled] {
-      border-color: transparent;
-    }
-  }
 }
 
 //      MIXIN:
@@ -118,7 +107,6 @@
 //      In any other scenario, reset the background-image to none.
 //  ----------------------------------------------------------------------------
 .btn-check-bgg(@bgc) {
-
   //    If @btn-bgg: true; and @bgc is NOT transparent, show gradients.
   & when not (@bgc = transparent) and (@btn-bgg = true) {
     background-image: linear-gradient(to bottom, lighten(@bgc,10%) 0%, spin(saturate(@bgc,10%),5) 100%);
@@ -159,10 +147,10 @@
 
   & when (alpha(@bgc) = 0) {
     &:hover {
-      background-color: fade(spin(saturate(@bgc,5%),5),5%);
+      background-color: fade(spin(saturate(@bgc,5%),5),8%);
     }
     &:active {
-      background-color: fade(spin(saturate(@bgc,15%),10),10%);
+      background-color: fade(spin(saturate(@bgc,15%),10),16%);
     }
     &[disabled] {
       background-color: fade(desaturate(@bgc,90%),20%);
@@ -171,10 +159,10 @@
 
   & when (alpha(@bgc) > 0) {
     &:hover {
-      background-color: darken(@bgc, 8%);
+      background-color: darken(spin(saturate(@bgc,5%),5),8%);
     }
     &:active {
-      background-color: darken(@bgc, 16%);
+      background-color: darken(spin(saturate(@bgc,15%),10),16%);
     }
     &[disabled] {
       background-color: fade(desaturate(@bgc,75%),50%);
@@ -191,20 +179,25 @@
 //      the font color instead.
 //  ----------------------------------------------------------------------------
 .btn-fc(@fc) {
-  color: @fc;
+    color: @fc;
 
-  & when not (@fc = #FFFFFF) {
-    &:hover {
-      color: darken(@fc,20%);
+    & when (@fc = #FFFFFF) {
+        &:hover,
+        &:focus {
+            color: fadeout(@fc,10%);
+        }
     }
-    &:focus {
-      color: darken(@fc,20%);
-    }
-  }
 
-  &[disabled] {
-    color: fade(desaturate(@fc,90%),80%)
-  }
+    & when not (@fc = #FFFFFF) {
+        &:hover,
+        &:focus {
+            color: darken(@fc,20%);
+        }
+    }
+
+    &[disabled] {
+        color: fade(desaturate(@fc,90%),80%)
+    }
 }
 
 
@@ -212,100 +205,101 @@
 //  $   BASE STYLE
 //  ----------------------------------------------------------------------------
 .button {
-  position: relative;
-  padding: @su8 @su12;
-  line-height: 1em; // Normalizes text display between a.button and button.button
-  .ba;
-  .ff-inherit;
-  .td-none;
+    position: relative;
+    padding: 0.8em 1em;
+    border: 1px solid transparent;
+    border-radius: @btn-br;
+    background-color: transparent;
 
-  //  Customizable Items
-  border-radius: @btn-br;
-  font-weight: @btn-fw;
+    font-weight: @btn-fw;
+    font-family: inherit;
+    line-height: 1; // Normalizes text display between a.button and button.button
+    text-decoration: none;
 
-  cursor: pointer;
-  outline: none;
-
-  &:hover,
-  &:focus {
-    .td-none;
-  }
-
-  &:focus {
+    cursor: pointer;
     outline: none;
-  }
+    transition: all 300ms @te-smooth;
 
-  &[disabled] {
-    box-shadow: none;
-    opacity: 1;
-    cursor: default;
-    pointer-events: none;
-
-    &:hover {
-      box-shadow: none;
+    &:hover,
+    &:focus {
+        text-decoration: none;
     }
-  }
-  
-  .svg-icon {
-    // Some magic to keep icons within buttons from expanding their size
-    margin-top: -3px;
-    margin-bottom: -2px;
-  }
+
+    &:focus {
+        outline: none;
+    }
+
+    &[disabled] {
+        opacity: 1;
+        cursor: default;
+        pointer-events: none;
+    }
+
+    //  -- BUTTONS WITH ICONS
+    //  ------------------------------------------------------------------------
+    //  [1] Most svg icons are 18px tall, but the button's line-height is 1 (13px).
+    //      This means we need to off set the margin y-axis so we don't add
+    //      additional height to the button.
+    //
+    //  [2] When you place an icon in a button, the button must have the `.grid`
+    //      class. We add this so we can invoke `.fl-ai-center`. This centers the
+    //      copy with the icon. Then we apply a right margin for gutter spacing.
+    //
+    //  [3] When an icon is placed in a button, it creates trapped whitespace
+    //      to the left of the icon. This is a result of the button padding.
+    //      Again we offset this with a negative left margin to eliminate this
+    //      trapped whitespace.
+    //  ------------------------------------------------------------------------
+    .svg-icon {
+        margin-top: -(@su2 + 1);    // [1]
+        margin-bottom: -(@su2);     // [1]
+        margin-right: @su4 + @su2;  // [2]
+        margin-left: -(@su4);       // [3]
+    }
 }
 
 
 //  ============================================================================
 //  $   BUTTON TYPES
 //  ============================================================================
-//  $$  Default Button
-//      The default style makes it look like a generic text link.
-//  ----------------------------------------------------------------------------
-.button {
-  .btn-check-brc();
-  .btn-check-bxs(@btn-bgc,@btn-bxos,@status:false);
-  .btn-bgc(@btn-bgc);
-  .btn-check-bgg(transparent);
-  .btn-fc(@btn-fc);
-}
-
 //  $$  Primary Button
 //  ----------------------------------------------------------------------------
-.button._primary {
-  .btn-check-brc(@btn-primary-bgc);
-  .btn-check-bxs(@btn-primary-bgc,@btn-bxos);
-  .btn-bgc(@btn-primary-bgc);
-  .btn-check-bgg(@bgc: @btn-primary-bgc);
-  .btn-fc(@btn-primary-fc);
+.button__primary {
+    .btn-check-brc(@btn-primary-bgc);
+    .btn-check-bxs(@btn-primary-bgc);
+    .btn-bgc(@btn-primary-bgc);
+    .btn-check-bgg(@btn-primary-bgc);
+    .btn-fc(@btn-primary-fc);
 }
 
 //  $$  Secondary Button
 //  ----------------------------------------------------------------------------
-.button._secondary {
-  .btn-check-brc(@btn-secondary-bgc);
-  .btn-check-bxs(@btn-secondary-bgc,@btn-bxos);
-  .btn-bgc(@btn-secondary-bgc);
-  .btn-check-bgg(@bgc: @btn-secondary-bgc);
-  .btn-fc(@btn-secondary-fc);
+.button__secondary {
+    .btn-check-brc(@btn-secondary-bgc);
+    .btn-check-bxs(@btn-secondary-bgc);
+    .btn-bgc(@btn-secondary-bgc);
+    .btn-check-bgg(@btn-secondary-bgc);
+    .btn-fc(@btn-secondary-fc);
 }
 
 //  $$  Confirmation Button
 //  ----------------------------------------------------------------------------
-.button._confirm {
-  .btn-check-brc(@btn-confirm-bgc);
-  .btn-check-bxs(@btn-confirm-bgc,@btn-confirm-bgc);
-  .btn-bgc(@btn-confirm-bgc);
-  .btn-check-bgg(@bgc: @btn-confirm-bgc);
-  .btn-fc(@btn-confirm-fc);
+.button__confirm {
+    .btn-check-brc(@btn-confirm-bgc);
+    .btn-check-bxs(@btn-confirm-bgc, @btn-confirm-bgc);
+    .btn-bgc(@btn-confirm-bgc);
+    .btn-check-bgg(@btn-confirm-bgc);
+    .btn-fc(@btn-confirm-fc);
 }
 
 //  $$  Warning Button
 //  ----------------------------------------------------------------------------
-.button._warning {
-  .btn-check-brc(@btn-warning-bgc);
-  .btn-check-bxs(@btn-warning-bgc,@btn-warning-bgc);
-  .btn-bgc(@btn-warning-bgc);
-  .btn-check-bgg(@bgc: @btn-warning-bgc);
-  .btn-fc(@btn-warning-fc);
+.button__warning {
+    .btn-check-brc(@btn-warning-bgc);
+    .btn-check-bxs(@btn-warning-bgc, @btn-warning-bgc);
+    .btn-bgc(@btn-warning-bgc);
+    .btn-check-bgg(@btn-warning-bgc);
+    .btn-fc(@btn-warning-fc);
 }
 
 
@@ -316,48 +310,54 @@
 //      Takes the current style and inverts the button so there is no background
 //      color and only a border.
 //  ----------------------------------------------------------------------------
-.button._clear {
-  .btn-check-bgg(transparent);
-  .btn-check-bxs(@bxos: transparent, @status: false);
+//  $$  Clear Button
+//  ----------------------------------------------------------------------------
+.button__clear {
+    .btn-check-brc();
+    .btn-check-bxs(fade(@btn-bxos,0%));
+    .btn-bgc(@btn-bgc);
+    .btn-check-bgg(transparent);
+    .btn-fc(@btn-fc);
 
-  //  --  Confirm Clear Style
-  &._confirm {
-    .btn-check-brc(@status: false);
-    .btn-check-bxs(@bxos:@btn-confirm-bgc, @status: false);
-    .btn-bgc(fade(@btn-confirm-bgc,0%));
-    .btn-fc(@btn-confirm-bgc);
-  }
+    //  --  Confirm Clear Style
+    &__confirm {
+        .btn-check-brc(@status: false);
+        .btn-check-bxs(@bxos:@btn-confirm-bgc);
+        .btn-bgc(fade(@btn-confirm-bgc,0%));
+        .btn-fc(@btn-confirm-bgc);
+    }
 
-  //  --  Warning Clear Style
-  &._warning {
-    .btn-check-brc(@status: false);
-    .btn-check-bxs(@bxos: @btn-warning-bgc, @status: false);
-    .btn-bgc(fade(@btn-warning-bgc,0%));
-    .btn-fc(@btn-warning-bgc);
-  }
+    //  --  Warning Clear Style
+    &__warning {
+        .btn-check-brc(@status: false);
+        .btn-check-bxs(@bxos: @btn-warning-bgc);
+        .btn-bgc(fade(@btn-warning-bgc,0%));
+        .btn-fc(@btn-warning-bgc);
+    }
 
-  //  --  Muted Style
-  &._muted {
-    .btn-check-brc(@status: false);
-    .btn-check-bxs(@bxos: @black-350, @status: false);
-    .btn-bgc(fade(@black-350,0%));
-    .btn-fc(@black-600);
-  }
+    //  --  Muted Style
+    &__muted {
+        .btn-check-brc(@status: false);
+        .btn-check-bxs(@bxos: @black-350);
+        .btn-bgc(fade(@black-350,0%));
+        .btn-fc(@black-600);
+    }
 }
 
 //  $$  Outlined Style
 //      Takes the current style and inverts the button so there is no background
 //      color and only a border.
 //  ----------------------------------------------------------------------------
-.button._outline {
+.button__outline {
   //  --  Base Outline Style
   .btn-check-brc(lighten(@btn-fc,10%));
   .btn-check-bxs(@bxos: @btn-bxos, @status: false);
   .btn-check-bgg(transparent);
   .btn-bgc(fade(@btn-fc,0%));
+  .btn-fc(@btn-fc);
 
   //  --  Confirm Outline Style
-  &._confirm {
+  &__confirm {
     .btn-check-brc(@btn-confirm-bgc);
     .btn-check-bxs(@bxos: @btn-confirm-bgc, @status: false);
     .btn-bgc(fade(@btn-confirm-bgc,0%));
@@ -365,7 +365,7 @@
   }
 
   //  --  Warning Outline Style
-  &._warning {
+  &__warning {
     .btn-check-brc(@btn-warning-bgc);
     .btn-check-bxs(@bxos: @btn-warning-bgc, @status: false);
     .btn-bgc(fade(@btn-warning-bgc,0%));
@@ -373,7 +373,7 @@
   }
 
   //  --  Muted Style
-  &._muted {
+  &__muted {
     .btn-check-brc(@black-100);
     .btn-check-bxs(@bxos: @black-350, @status: false);
     .btn-bgc(fade(@black-350,0%));
@@ -384,7 +384,7 @@
 //  $$  Inverse Style
 //      Inverts the background and font color style
 //  ----------------------------------------------------------------------------
-.button._inverse {
+.button__inverse {
   //  --  Base Inverse Style
   .btn-check-brc(@status: false);
   .btn-check-bxs(@bxos: @btn-bxos, @status: false);
@@ -392,14 +392,14 @@
   .btn-fc(@btn-fc);
 
   //  --  Confirm Inverse Style
-  &._confirm {
+  &__confirm {
     .btn-check-bxs(@bxos: @btn-confirm-bgc, @status: false);
     .btn-bgc(mix(lighten(@btn-confirm-bgc,15%),@white));
     .btn-check-bgg(lighten(@btn-confirm-bgc,25%));
     .btn-fc(darken(@btn-confirm-bgc,30%));
 
     //  --  Confirm Inverse Outline
-    &._outline {
+    &__outline {
       .btn-check-brc(mix(lighten(@btn-confirm-bgc,30%),@white));
       .btn-bgc(fade(@btn-confirm-bgc,0%));
       .btn-fc(@white);
@@ -407,14 +407,14 @@
   }
 
   //  --  Warning Inverse Style
-  &._warning {
+  &__warning {
     .btn-check-bxs(@bxos: @btn-warning-bgc, @status: false);
     .btn-bgc(mix(lighten(@btn-warning-bgc,15%),@white));
     .btn-check-bgg(lighten(@btn-warning-bgc,25%));
     .btn-fc(darken(@btn-warning-bgc,20%));
 
     //  --  Confirm Inverse Outline
-    &._outline {
+    &__outline {
       .btn-check-brc(mix(lighten(@btn-warning-bgc,30%),@white));
       .btn-bgc(fade(@btn-warning-bgc,0%));
       .btn-fc(@white);
@@ -422,7 +422,7 @@
   }
 
   //  --  Inverse + Outline
-  &._outline {
+  &__outline {
     .btn-check-brc(fade(@white,75%));
     .btn-check-bxs(@bxos: @white, @status: false);
     .btn-bgc(fade(@btn-bgc,0%));
@@ -446,28 +446,26 @@
 
 //  --  Next the actual loading spinner
 .button.is-loading {
-  padding-left: @su24 + @su4;
+    padding-left: @su24 + @su4;
 
-  &:before {
-    content: "";
-    position: absolute;
-    top: calc(~"50% - @{su8}");
-    margin-left: -(@su24 - @su4);
-    width: 14px;
-    height: 14px;
+    &:before {
+        content: "";
+        position: absolute;
+        top: calc(~"50% - @{su8}");
+        margin-left: -(@su24 - @su4);
+        width: 14px;
+        height: 14px;
 
-    .bar-circle;
-    .ba;
-    .baw2;
-    border-color: fade(@white,20%);
-    border-left-color: @white;
+        border-radius: @br-circle;
+        border: 2px solid fade(@white,20%);
+        border-left-color: @white;
 
-    transform: translateZ(0);
-    animation: spinnerRotate 800ms infinite @te-back-out;
-  }
+        transform: translateZ(0);
+        animation: spinnerRotate 800ms infinite @te-back-out;
+    }
 
-  &._dark-loader:before {
-    border-color: @powder-300;
-    border-left-color: @powder-600;
-  }
+    &.is-loading__dark:before {
+        border-color: @powder-300;
+        border-left-color: @powder-600;
+    }
 }
