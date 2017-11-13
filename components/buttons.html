@@ -7,148 +7,153 @@ description: Buttons are user interface elements which allows users to take acti
 
 <section class="stacks-section" data-core-careers>
     <h2 class="grid fl-jc-space-between fl-ai-center stacks-title">Default Style</h2>
-    <p class="stacks-p _section">The default button has no styling attached to it. When using a <code class="stacks-code">button</code> or an <code class="stacks-code">a</code> element, be sure to specify a <code class="stacks-code">type</code> or <code class="stacks-code">role</code>, respectively.</p>
+    <p class="stacks-p _section">The default button is a <em>secondary, clear, and regular</em> button. This means that it has no background, border, background image, or inner box-shadows styles by default. Visually it looks like a link. Since the visual styling is so minimal, it's considered a secondary button type.</p>
+    <p class="stacks-p">When using a <code class="stacks-code">button</code> or an <code class="stacks-code">a</code> element, be sure to specify a <code class="stacks-code">type</code> or <code class="stacks-code">role</code>, respectively.</p>
     <div class="stacks-code-preview">
 {% highlight html linenos %}
-<button class="button" type="button" aria-pressed="false">…</button>
-<a href="#" class="button" role="button" aria-pressed="false">…</a>
-<button class="button" type="button" aria-pressed="false" disabled>…</button>
+<button class="s-btn" type="button" aria-pressed="false">…</button>
+<a href="#" class="s-btn" role="button" aria-pressed="false">…</a>
+<button class="s-btn" type="button" aria-pressed="false" disabled>…</button>
 {% endhighlight %}
         <div class="-preview">
             <div class="grid gs4">
-                <button class="grid-cell button" type="button" aria-pressed="false">Button Button</button>
-                <a href="#" class="grid-cell button" role="button" aria-pressed="false">Link Button</a>
-                <button class="grid-cell button" type="button" aria-pressed="false" disabled>Disabled Button</button>
+                <button class="grid-cell s-btn" type="button" aria-pressed="false">Button Button</button>
+                <a href="#" class="grid-cell s-btn" role="button" aria-pressed="false">Link Button</a>
+                <button class="grid-cell s-btn" type="button" aria-pressed="false" disabled>Disabled Button</button>
             </div>
         </div>
     </div>
 </section>
 
 <section class="stacks-section">
-    <h2 class="grid fl-jc-space-between fl-ai-center stacks-title">Types</h2>
-    <p class="stacks-p _section">Depending on the action required, different button types are provided. Combined with <a href="#styles">button styles</a>, these types help create visual action hierarchy.</p>
+    <h2 class="grid fl-jc-space-between fl-ai-center stacks-title">Options</h2>
+    <p class="stacks-p _section">Depending on the action and the visual importance you would like it to receive in the UI, different classes are combined to create escalating levels of visual importance.</p>
 
     <h3 class="grid fl-jc-space-between fl-ai-center stacks-title _subtitle">Primary</h3>
-    <p class="stacks-p _section">This button style is used to indicate the <em>primary</em> action on a page. In practice you should declare no more than one button as the primary button per a page. The primary style is the loudest button styles we have. To add the primary style, add the <code class="stacks-code">._primary</code> modifying class to <code class="stacks-code">.button</code>.</p>
+    <p class="stacks-p _section">This style visually communicates the most important action on the screen. In practice you should declare this no more than once per a page. It is the most visually strong button style we use. The primary button does not have an outlined or clear style</p>
     <div class="stacks-code-preview">
 {% highlight html linenos %}
-<button class="button button__primary" type="button" aria-pressed="false">…</button>
-<a href="#" class="button button__primary" role="button" aria-pressed="false">…</a>
-<button class="button button__primary" type="button" aria-pressed="false">@Svg.Help</button>
+<button class="s-btn s-btn__primary" type="button" aria-pressed="false">…</button>
+<a href="#" class="s-btn s-btn__primary" role="button" aria-pressed="false">…</a>
+<button class="s-btn s-btn__primary" type="button" aria-pressed="false">@Svg.Help …</button>
 {% endhighlight %}
         <div class="-preview">
             <div class="grid gs4">
-                <button class="grid-cell button button__primary" type="button" aria-pressed="false">Primary Button</button>
-                <button class="grid-cell button button__primary" type="button" aria-pressed="false" disabled>Primary Disabled Button</button>
-                <button class="grid-cell button button__primary" type="button" aria-pressed="false">
+                <button class="grid-cell s-btn s-btn__primary" type="button" aria-pressed="false">Primary</button>
+                <button class="grid-cell s-btn s-btn__primary" type="button" aria-pressed="false" disabled>Primary Disabled</button>
+                <button class="grid-cell s-btn s-btn__primary" type="button" aria-pressed="false">
                     <svg aria-hidden="true" class="svg-icon iconHelp" width="18" height="18" viewBox="0 0 18 18"><path d="M9 1a8 8 0 1 0 0 16A8 8 0 0 0 9 1zm.81 12.13c-.02.71-.55 1.15-1.24 1.13-.66-.02-1.17-.49-1.15-1.2.02-.72.56-1.18 1.22-1.16.7.03 1.2.51 1.17 1.23zM11.77 8a5.8 5.8 0 0 1-1.02.91l-.53.37c-.26.2-.42.43-.5.69a4 4 0 0 0-.09.75c0 .05-.03.16-.18.16H7.88c-.16 0-.18-.1-.18-.15.03-.66.12-1.21.4-1.66a5.29 5.29 0 0 1 1.43-1.22c.16-.12.28-.25.38-.39a1.34 1.34 0 0 0 .02-1.71c-.24-.31-.51-.46-1.03-.46-.51 0-.8.26-1.02.6-.21.33-.18.73-.18 1.1H5.75c0-1.38.35-2.25 1.1-2.76.52-.35 1.17-.5 1.93-.5 1 0 1.79.18 2.49.71.64.5.98 1.18.98 2.12 0 .57-.2 1.05-.48 1.44z"></path></svg>Primary Button with Icon</button>
             </div>
         </div>
     </div>
 
     <h3 class="grid fl-jc-space-between fl-ai-center stacks-title _subtitle">Secondary</h3>
-    <p class="stacks-p _section">This button style is used to indicate important, but <em>secondary</em> actions on a page. To add the secondary style, add the <code class="stacks-code">.button__secondary</code> modifying class to <code class="stacks-code">.button</code>.</p>
+    <p class="stacks-p _section">Any button which is not a primary, confirm, or warning type is considered a secondary button. The secondary status refers to the visual importance we give the buttons. There are three states for a secondary button: a filled state, an outlined state, and a clear state. The clear state is the default style for all buttons.</p>
+    <p class="stacks-p">The filled state is a muted version of <code class="stacks-code">.s-btn__primary</code>. Use the filled style alongside the primary style to help communicate an important, but not as important, action. You should also use this when an action is the main action within a UI group, but none of the UI actions are considered a primary action for the page.</p>
     <div class="stacks-code-preview">
 {% highlight html linenos %}
-<button class="button button__secondary" type="button" aria-pressed="false">…</button>
-<a href="#" class="button button__secondary" role="button" aria-pressed="false">…</a>
+<button class="s-btn" type="button" aria-pressed="false">…</button>
+<button class="s-btn s-btn__outlined" type="button" aria-pressed="false">…</button>
+<a href="#" class="s-btn s-btn__filled" role="button" aria-pressed="false">…</a>
 {% endhighlight %}
         <div class="-preview">
             <div class="grid gs4">
-                <button class="grid-cell button button__secondary" type="button" aria-pressed="false">Secondary Button</button>
-                <button class="grid-cell button button__secondary" type="button" aria-pressed="false" disabled>Secondary Disabled Button</button>
+                <button class="grid-cell s-btn" type="button" aria-pressed="false">Clear Secondary</button>
+                <button class="grid-cell s-btn s-btn__outlined" type="button" aria-pressed="false">Outlined Secondary</button>
+                <button class="grid-cell s-btn s-btn__filled" type="button" aria-pressed="false">Filled Secondary</button>
+                <button class="grid-cell s-btn s-btn__filled" type="button" aria-pressed="false" disabled>Disabled Filled Secondary</button>
             </div>
         </div>
     </div>
 
     <h3 class="grid fl-jc-space-between fl-ai-center stacks-title _subtitle">Confirm</h3>
-    <p class="stacks-p _section">This button style is used to indicate a major action, typically within dedicated workflows such as completing a purchase (checkout), publishing an item, or updating an existing item. To add the confirm style, add the <code class="stacks-code">.button__confirm</code> modifying class to <code class="stacks-code">.button</code>.</p>
+    <p class="stacks-p _section">The confirm button type can act like a primary action, but secondary styles are provided for it as well. It's used primarily for final points in the workflow to communicate accomplishments. Examples would completing a purchase (checkout) or publishing a new item which is done rarely. The confim style is available in three states: filled, outlined, and clear. Clear is the default state.</p>
     <div class="stacks-code-preview">
 {% highlight html linenos %}
-<button class="button button__confirm" type="button" aria-pressed="false">…</button>
-<a href="#" class="button button__confirm" role="button" aria-pressed="false">…</a>
+<button class="s-btn s-btn__confirm" type="button" aria-pressed="false">…</button>
+<button class="s-btn s-btn__confirm s-btn__outlined" type="button" aria-pressed="false">…</button>
+<button class="s-btn s-btn__confirm s-btn__filled" type="button" aria-pressed="false">…</button>
+<button class="s-btn s-btn__confirm s-btn__filled" type="button" aria-pressed="false" disabled>…</button>
 {% endhighlight %}
         <div class="-preview">
             <div class="grid gs4">
-                <button class="grid-cell button button__confirm" type="button" aria-pressed="false">Confirm Button</button>
-                <button class="grid-cell button button__confirm" type="button" aria-pressed="false" disabled>Confirm Disabled Button</button>
+                <button class="grid-cell s-btn s-btn__confirm" type="button" aria-pressed="false">Clear Confirm</button>
+                <button class="grid-cell s-btn s-btn__confirm s-btn__outlined" type="button" aria-pressed="false">Outlined Confirm</button>
+                <button class="grid-cell s-btn s-btn__confirm s-btn__filled" type="button" aria-pressed="false">Filled Confirm</button>
+                <button class="grid-cell s-btn s-btn__confirm s-btn__filled" type="button" aria-pressed="false" disabled>Disabled Filled Confirm</button>
             </div>
         </div>
     </div>
 
     <h3 class="grid fl-jc-space-between fl-ai-center stacks-title _subtitle">Warning</h3>
-    <p class="stacks-p _section">This button style is warn users about a potential negative action such as removing a post, removing a team member, or deleting their account. To add the warning style, add the <code class="stacks-code">.button__warning</code> modifying class to <code class="stacks-code">.button</code>.</p>
+    <p class="stacks-p _section">The warning button type can act like a primary action, but secondary styles are provided for it as well. It's to be used to warn users about a potential negative action such as removing a post, removing a team member, or deleting their account. The warning style is available in three states: filled, outlined, and clear. Clear is the default state.</p>
     <div class="stacks-code-preview">
 {% highlight html linenos %}
-<button class="button button__warning" type="button" aria-pressed="false">…</button>
-<a href="#" class="button button__warning" role="button" aria-pressed="false">…</a>
+<button class="s-btn s-btn__warning" type="button" aria-pressed="false">…</button>
+<button class="s-btn s-btn__warning s-btn__outlined" type="button" aria-pressed="false">…</button>
+<button class="s-btn s-btn__warning s-btn__filled" type="button" aria-pressed="false">…</button>
+<button class="s-btn s-btn__warning s-btn__filled" type="button" aria-pressed="false" disabled>…</button>
 {% endhighlight %}
         <div class="-preview">
             <div class="grid gs4">
-                <button class="grid-cell button button__warning" type="button" aria-pressed="false">Warning Button</button>
-                <button class="grid-cell button button__warning" type="button" aria-pressed="false" disabled>Warning Disabled Button</button>
+                <button class="grid-cell s-btn s-btn__warning" type="button" aria-pressed="false">Clear Warning</button>
+                <button class="grid-cell s-btn s-btn__warning s-btn__outlined" type="button" aria-pressed="false">Outlined Warning</button>
+                <button class="grid-cell s-btn s-btn__warning s-btn__filled" type="button" aria-pressed="false">Filled Warning</button>
+                <button class="grid-cell s-btn s-btn__warning s-btn__filled" type="button" aria-pressed="false" disabled>Disabled Filled Warning</button>
             </div>
         </div>
     </div>
-</section>
 
-<section class="stacks-section">
-    <h2 class="grid fl-jc-space-between fl-ai-center stacks-title">Styles</h2>
-    <p class="stacks-p _section">By default all <a href="#types">button types</a> have a transparent border color. Depending on the community, the button may or may not have an inset box-shadow. However there are times when a particular button type is desired, but we may want the style to be slightly altered based on the page, section or UI context it sits within.</p>
-
-    <h3 class="grid fl-jc-space-between fl-ai-center stacks-title _subtitle">Clear</h3>
-    <p class="stacks-p _section">This mimics our link style, but provides a larger click area and other button styling than a normal text link. This the most understated style available and should be used on low-level, non-important actions such as a "Cancel" button in a sign-up workflow. The goal here is to downplay the button’s visual importance. To add this style, add the <code class="stacks-code">.button__clear</code> modifying class to <code class="stacks-code">.button</code>.</p>
+    <h3 class="grid fl-jc-space-between fl-ai-center stacks-title _subtitle">Muted</h3>
+    <p class="stacks-p _section">The muted button style is a grayscale visual treatment to the secondary visual states. It creates a light gray button style. Typically this is used in layouts with multiple UI actions which are attempting to communicate settings which are turned off. This style is different from a disabled state. It is available in three states: filled, outlined, and clear. Clear is the default state.</p>
     <div class="stacks-code-preview">
 {% highlight html linenos %}
-<button class="button button__clear" type="button">Cancel</button>
-<button class="button button__clear__confirm" type="button">Publish</button>
-<button class="button button__clear__warning" type="button">Delete</button>
-<button class="button button__clear__muted" type="button">Muted Button</button>
+<button class="s-btn s-btn__muted" type="button" aria-pressed="false">…</button>
+<button class="s-btn s-btn__muted s-btn__outlined" type="button" aria-pressed="false">…</button>
+<button class="s-btn s-btn__muted s-btn__filled" type="button" aria-pressed="false">…</button>
+<button class="s-btn s-btn__muted s-btn__filled" type="button" aria-pressed="false" disabled>…</button>
 {% endhighlight %}
         <div class="-preview">
-            <button class="button button__clear" type="button">Cancel</button>
-            <button class="button button__clear__confirm" type="button">Publish</button>
-            <button class="button button__clear__warning" type="button">Delete</button>
-            <button class="button button__clear__muted" type="button">Muted Button</button>
+            <div class="grid gs4">
+                <button class="grid-cell s-btn s-btn__muted" type="button" aria-pressed="false">Clear Muted</button>
+                <button class="grid-cell s-btn s-btn__muted s-btn__outlined" type="button" aria-pressed="false">Outlined Muted</button>
+                <button class="grid-cell s-btn s-btn__muted s-btn__filled" type="button" aria-pressed="false">Filled Muted</button>
+                <button class="grid-cell s-btn s-btn__muted s-btn__filled" type="button" aria-pressed="false" disabled>Disabled Filled Muted</button>
+            </div>
         </div>
     </div>
 
-    <h3 class="grid fl-jc-space-between fl-ai-center stacks-title _subtitle">Outline</h3>
-    <p class="stacks-p _section">The outlined button style is most like the <a href="#secondary">secondary button type</a> in visual styling, but visually downplayed slightly. Here we maintain a border color, but we abandon the background and inset shadow colors. This stylistic variation is to be used when a simpler button style is desired—especially in concert with the <a href="#primary">primary button type</a>. This style works best with actions that are secondary or tertiary in importance, or when a button type used at a larger size draws undesired attention within a layout.</p>
+    <h3 class="grid fl-jc-space-between fl-ai-center stacks-title _subtitle">Inverted</h3>
+    <p class="stacks-p _section">Most of our buttons appear on top of light background colors; yet there are moments where buttons must be placed on colorful or darker background colors. In these instances, apply the <code class="stacks-code">.s-btn__inverted</code> class to invert the button styling.</p>
     <div class="stacks-code-preview">
 {% highlight html linenos %}
-<button class="button button__outline" type="button">Message User</button>
-<button class="button button__outline__confirm" type="button">Invite Users</button>
-<button class="button button__outline__warning" type="button">Delete Users</button>
-<button class="button button__outline__muted" type="button">Muted Button</button>
-{% endhighlight %}
-        <div class="-preview">
-            <button class="button button__outline" type="button">Message User</button>
-            <button class="button button__outline__confirm" type="button">Invite Users</button>
-            <button class="button button__outline__warning" type="button">Delete Users</button>
-            <button class="button button__outline__muted" type="button">Muted Button</button>
-        </div>
-    </div>
-
-    <h3 class="grid fl-jc-space-between fl-ai-center stacks-title _subtitle">Inversed</h3>
-    <p class="stacks-p _section">Most buttons within Stack Overflow appear on a white or light background colors. Yet there are instances where buttons may be placed on darker background colors. In these instances, invert the button colors.</p>
-    <div class="stacks-code-preview">
-{% highlight html linenos %}
-<button class="button button__inverse" role="button">Link Button</button>
-<button class="button button__inverse__outline" role="button">Link Button</button>
-<button class="button button__inverse__confirm" role="button">Confirm Action</button>
-<button class="button button__inverse__confirm__outline" role="button">Confirm Action</button>
-<button class="button button__inverse__warning" role="button">Warning Action</button>
-<button class="button button__inverse__warning__outline" role="button">Warning Action</button>
+<button class="s-btn s-btn__inverted" role="button">Clear Inverted</button>
+<button class="s-btn s-btn__outlined s-btn__inverted" role="button">Outlined Inverted</button>
+<button class="s-btn s-btn__filled s-btn__inverted" role="button">Filled Inverted</button>
+<button class="s-btn s-btn__confirm s-btn__inverted" role="button">Clear Confirm Inverted</button>
+<button class="s-btn s-btn__confirm s-btn__outlined s-btn__inverted" role="button">Outlined Confirm Inverted</button>
+<button class="s-btn s-btn__confirm s-btn__filled s-btn__inverted" role="button">Filled Confirm Inverted</button>
+<button class="s-btn s-btn__warning s-btn__inverted" role="button">Clear Warning Inverted</button>
+<button class="s-btn s-btn__warning s-btn__outlined s-btn__inverted" role="button">Outlined Warning Inverted</button>
+<button class="s-btn s-btn__warning s-btn__filled s-btn__inverted" role="button">Filled Warning Inverted</button>
 {% endhighlight %}
         <div class="-preview bg-black-800" style="border-color: #242629">
-            <div class="grid gs4 fl-wrap">
-                <button class="grid-cell button button__inverse" role="button">Link Button</button>
-                <button class="grid-cell button button__inverse__outline" role="button">Link Button</button>
-                <button class="grid-cell button button__inverse__confirm" role="button">Confirm Action</button>
-                <button class="grid-cell button button__inverse__confirm__outline" role="button">Confirm Action</button>
-                <button class="grid-cell button button__inverse__warning" role="button">Warning Action</button>
-                <button class="grid-cell button button__inverse__warning__outline" role="button">Warning Action</button>
+            <div class="grid gs12 fl-col-nowrap">
+                <div class="grid gs4 fl-wrap">
+                    <button class="grid-cell s-btn s-btn__inverted" role="button">Clear Inverted</button>
+                    <button class="grid-cell s-btn s-btn__outlined s-btn__inverted" role="button">Outlined Inverted</button>
+                    <button class="grid-cell s-btn s-btn__filled s-btn__inverted" role="button">Filled Inverted</button>
+                </div>
+                <div class="grid gs4 fl-wrap">
+                    <button class="grid-cell s-btn s-btn__confirm s-btn__inverted" role="button">Clear Confirm Inverted</button>
+                    <button class="grid-cell s-btn s-btn__confirm s-btn__outlined s-btn__inverted" role="button">Outlined Confirm Inverted</button>
+                    <button class="grid-cell s-btn s-btn__confirm s-btn__filled s-btn__inverted" role="button">Filled Confirm Inverted</button>
+                </div>
+                <div class="grid gs4 fl-wrap">
+                    <button class="grid-cell s-btn s-btn__warning s-btn__inverted" role="button">Clear Warning Inverted</button>
+                    <button class="grid-cell s-btn s-btn__warning s-btn__outlined s-btn__inverted" role="button">Outlined Warning Inverted</button>
+                    <button class="grid-cell s-btn s-btn__warning s-btn__filled s-btn__inverted" role="button">Filled Warning Inverted</button>
+                </div>
             </div>
         </div>
     </div>
@@ -157,21 +162,21 @@ description: Buttons are user interface elements which allows users to take acti
     <p class="stacks-p _section">When you want to show that an action or item is loading within a button.</p>
     <div class="stacks-code-preview">
 {% highlight html linenos %}
-<button class="button button__primary is-loading" type="button">…</button>
-<button class="button button__secondary is-loading" type="button">…</button>
-<button class="button button__confirm is-loading is-loading__dark" type="button">…</button>
-<button class="button button__warning is-loading" type="button">…</button>
-<button class="button button__clear is-loading is-loading__dark" type="button">…</button>
-<button class="button button__outline is-loading is-loading__dark" type="button">…</button>
+<button class="s-btn s-btn__primary is-loading" type="button">…</button>
+<button class="s-btn s-btn__filled is-loading" type="button">…</button>
+<button class="s-btn s-btn__filled s-btn__confirm is-loading__dark" type="button">…</button>
+<button class="s-btn s-btn__filled s-btn__warning is-loading" type="button">…</button>
+<button class="s-btn is-loading__dark" type="button">…</button>
+<button class="s-btn s-btn__outlined is-loading__dark" type="button">…</button>
 {% endhighlight %}
         <div class="-preview">
             <div class="grid gs4 fl-wrap">
-                <button class="grid-cell button button__primary is-loading" type="button">Processing</button>
-                <button class="grid-cell button button__secondary is-loading is-loading__dark" type="button">Processing</button>
-                <button class="grid-cell button button__confirm is-loading" type="button">Uploading</button>
-                <button class="grid-cell button button__warning is-loading" type="button">Deleting</button>
-                <button class="grid-cell button button__clear is-loading is-loading__dark" type="button">Processing</button>
-                <button class="grid-cell button button__outline is-loading is-loading__dark" type="button">Processing</button>
+                <button class="grid-cell s-btn s-btn__primary is-loading" type="button">Processing</button>
+                <button class="grid-cell s-btn s-btn__filled is-loading__dark" type="button">Processing</button>
+                <button class="grid-cell s-btn s-btn__filled s-btn__confirm  is-loading" type="button">Uploading</button>
+                <button class="grid-cell s-btn s-btn__filled s-btn__warning is-loading" type="button">Deleting</button>
+                <button class="grid-cell s-btn is-loading__dark" type="button">Processing</button>
+                <button class="grid-cell s-btn s-btn__outlined is-loading__dark" type="button">Processing</button>
             </div>
         </div>
     </div>
@@ -183,19 +188,19 @@ description: Buttons are user interface elements which allows users to take acti
 
     <div class="stacks-code-preview">
 {% highlight html linenos %}
-<button class="button button__primary fs-caption" type="button">Small</button>
-<button class="button button__primary fs-body1" type="button">Normal</button>
-<button class="button button__primary fs-body2" type="button">Medium</button>
-<button class="button button__primary fs-subheading" type="button">Large</button>
-<button class="button button__primary fs-title" type="button">Extra Large</button>
+<button class="s-btn s-btn__primary fs-caption" type="button">Small</button>
+<button class="s-btn s-btn__primary fs-body1" type="button">Normal</button>
+<button class="s-btn s-btn__primary fs-body2" type="button">Medium</button>
+<button class="s-btn s-btn__primary fs-subheading" type="button">Large</button>
+<button class="s-btn s-btn__primary fs-title" type="button">Extra Large</button>
 {% endhighlight %}
         <div class="-preview">
             <div class="grid gs4 fl-wrap">
-                <button class="grid-cell fl-as-center button button__primary fs-caption" type="button">Small</button>
-                <button class="grid-cell fl-as-center button button__primary fs-body1" type="button">Normal</button>
-                <button class="grid-cell fl-as-center button button__primary fs-body2" type="button">Medium</button>
-                <button class="grid-cell fl-as-center button button__primary fs-subheading" type="button">Large</button>
-                <button class="grid-cell fl-as-center button button__primary fs-title" type="button">Extra Large</button>
+                <button class="grid-cell fl-as-center s-btn s-btn__primary fs-caption" type="button">Small</button>
+                <button class="grid-cell fl-as-center s-btn s-btn__primary fs-body1" type="button">Normal</button>
+                <button class="grid-cell fl-as-center s-btn s-btn__primary fs-body2" type="button">Medium</button>
+                <button class="grid-cell fl-as-center s-btn s-btn__primary fs-subheading" type="button">Large</button>
+                <button class="grid-cell fl-as-center s-btn s-btn__primary fs-title" type="button">Extra Large</button>
             </div>
         </div>
     </div>
@@ -209,14 +214,18 @@ description: Buttons are user interface elements which allows users to take acti
     <p class="stacks-p _section">Most button groups should be ordered from the most important to the least important action, left to right.</p>
     <div class="stacks-code-preview">
 {% highlight html linenos %}
-<button class="button button__primary" type="button">Post Answer</button>
-<button class="button button__secondary" type="button">Preview Answer</button>
-<button class="button button__clear" type="button">Cancel</button>
+<button class="s-btn s-btn__primary" type="button">Post Answer</button>
+<button class="s-btn s-btn__filled" type="button">Save Draft</button>
+<button class="s-btn s-btn__outlined" type="button">Preview</button>
+<button class="s-btn" type="button">Cancel</button>
 {% endhighlight %}
         <div class="-preview">
-            <button class="button button__primary" type="button">Post Answer</button>
-            <button class="button button__secondary" type="button">Preview Answer</button>
-            <button class="button button__clear" type="button">Cancel</button>
+            <div class="grid gs4 fl-wrap">
+                <button class="grid-cell s-btn s-btn__primary" type="button">Post Answer</button>
+                <button class="grid-cell s-btn s-btn__filled" type="button">Save Draft</button>
+                <button class="grid-cell s-btn s-btn__outlined" type="button">Preview</button>
+                <button class="grid-cell s-btn" type="button">Cancel</button>
+            </div>
         </div>
     </div>
 
@@ -224,17 +233,19 @@ description: Buttons are user interface elements which allows users to take acti
     <p class="stacks-p _section">Sometimes the layout dictates that buttons need to be stacked on top of each other. Again, these buttons should be stacked from the most important to the least important, top to bottom.</p>
     <div class="stacks-code-preview">
 {% highlight html linenos %}
-<div class="grid fl-col-nowrap gs2">
-    <button class="grid-cell fl-jc-center button button__primary" type="button">Post Answer</button>
-    <button class="grid-cell fl-jc-center button button__secondary" type="button">Preview Answer</button>
-    <button class="grid-cell fl-jc-center button button__clear" type="button">Cancel</button>
+<div class="grid gs4 fl-col-nowrap">
+    <button class="grid-cell s-btn s-btn__primary" type="button">Post Answer</button>
+    <button class="grid-cell s-btn s-btn__filled" type="button">Save Draft</button>
+    <button class="grid-cell s-btn s-btn__outlined" type="button">Preview</button>
+    <button class="grid-cell s-btn" type="button">Cancel</button>
 </div>
 {% endhighlight %}
         <div class="-preview">
-            <div class="grid fl-col-nowrap gs4">
-                <button class="grid-cell fl-jc-center button button__primary" type="button">Post Answer</button>
-                <button class="grid-cell fl-jc-center button button__secondary" type="button">Preview Answer</button>
-                <button class="grid-cell fl-jc-center button button__clear" type="button">Cancel</button>
+            <div class="grid gs4 fl-col-nowrap">
+                <button class="grid-cell s-btn s-btn__primary" type="button">Post Answer</button>
+                <button class="grid-cell s-btn s-btn__filled" type="button">Save Draft</button>
+                <button class="grid-cell s-btn s-btn__outlined" type="button">Preview</button>
+                <button class="grid-cell s-btn" type="button">Cancel</button>
             </div>
         </div>
     </div>
@@ -243,19 +254,19 @@ description: Buttons are user interface elements which allows users to take acti
     <p class="stacks-p _section">Sometimes the best place for a series of actions is in the same area as the title. In these cases, the buttons should be pulled to the right. Within this instance, the button order should be reversed with the most important action to the far right and the least important action to the far left.</p>
     <div class="stacks-code-preview">
 {% highlight html linenos %}
-<div class="grid _fl0 gs2">
+<div class="grid gs4">
     <h3 class="grid-cell mr-auto fs-title">Write your response</h3>
-    <button class="grid-cell button button__clear" type="button">Cancel</button>
-    <button class="grid-cell button button__secondary" type="button">Preview Answer</button>
-    <button class="grid-cell button button__primary" type="button">Post Answer</button>
+    <button class="grid-cell s-btn" type="button">Cancel</button>
+    <button class="grid-cell s-btn s-btn__filled" type="button">Preview Answer</button>
+    <button class="grid-cell s-btn s-btn__primary" type="button">Post Answer</button>
 </div>
 {% endhighlight %}
         <div class="-preview">
             <div class="grid gs4">
                 <h3 class="grid-cell mr-auto fs-title">Write your response</h3>
-                <button class="grid-cell button button__clear" type="button">Cancel</button>
-                <button class="grid-cell button button__secondary" type="button">Preview Answer</button>
-                <button class="grid-cell button button__primary" type="button">Post Answer</button>
+                <button class="grid-cell s-btn" type="button">Cancel</button>
+                <button class="grid-cell s-btn s-btn__filled" type="button">Preview Answer</button>
+                <button class="grid-cell s-btn s-btn__primary" type="button">Post Answer</button>
             </div>
         </div>
         </div>
