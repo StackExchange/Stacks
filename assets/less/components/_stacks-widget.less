@@ -1,6 +1,6 @@
 //
 //  STACK OVERFLOW
-//  WIDGET
+//  SIDEBAR WIDGET
 //
 //  This CSS comes from Stacks, our CSS & Pattern library for rapidly building
 //  Stack Overflow. https://gh.stackoverflow.com/Design/Stacks
@@ -9,173 +9,45 @@
 //  https://gh.stackoverflow.com/pages/Design/Stacks/
 //
 
-.s-widget {
-    
-    /* BEGIN backwards compat -- these variables existed when this file was last worked on,
-     * but have been removed in the meantime. */
-    @su-16: 16px;
-    @su-12: 12px;
-    @su-8: 8px;
-    @su-4: 4px;
-    @br-2: 2px;
-    @fs-12: 12px;
-    @fs-11: 11px;
-    /* END backwards compat */
+@s-sidebarwidget-content-padding: @su-16 - 1px; // subtract 1px for border
+@s-sidebarwidget-content-inner-spacing: @su-12; // the spacing between two adjacent simple items
+@s-sidebarwidget-content-outer-spacing: @su-16; // the spacing at the start/end of a group of simple items, as well as between a complex item and its separator line
+
+/* default style */
+@s-sidebarwidget-outer-border-color: @black-100;
+@s-sidebarwidget-content-separator-color: @black-075;
+@s-sidebarwidget-header-background-color: @black-025;
+
+/* alternative colors */
+@s-sidebarwidget-base-color-blue: @powder-100;
+@s-sidebarwidget-base-color-yellow: @yellow-100;
+@s-sidebarwidget-base-color-green: @green-025;
+
+/* BEGIN backwards compat -- these variables existed when this file was last worked on,
+ * but have been removed in the meantime. */
+@su-16: 16px;
+@su-12: 12px;
+@su-8: 8px;
+@su-4: 4px;
+@br-2: 2px;
+@fs-12: 12px;
+@fs-11: 11px;
+/* END backwards compat */
+
+
+.s-sidebarwidget {
 
     
-    @s-widget-content-padding: @su-16 - 1px; // subtract 1px for border
-    @s-widget-content-inner-spacing: @su-12; // the spacing between two adjacent simple items
-    @s-widget-content-outer-spacing: @su-16; // the spacing at the start/end of a group of simple items, as well as between a complex item and its separator line
-
-    /* default style */
-    @s-widget-outer-border-color: @black-100;
-    @s-widget-content-separator-color: @black-075;
-    @s-widget-header-background-color: @black-025;
-    
-    /* alternative colors */
-    @s-widget-base-color-blue: @powder-100;
-    @s-widget-base-color-yellow: @yellow-100;
-    @s-widget-base-color-green: @green-025;
-   
-    border: 1px solid @s-widget-outer-border-color;
+    border: 1px solid @s-sidebarwidget-outer-border-color;
     border-radius: @br-2;
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
     font-size: 13px; // TODO: 13px isn't in our size list
     
-    a:not(.button):not(.post-tag):not(.-action) {
+    a:not(.button):not(.s-btn):not(.post-tag):not(.s-sidebarwidget--action) {
         &, &:visited {
             color: @black-500;
         }
     }
-    
-    .-header, .-content {
-        border-top: 1px solid @s-widget-content-separator-color;
-    }
-    
-    
-    .-header {
-        font-size: 15px; // TODO: 15px isn't in our size list
-        font-weight: normal;
-        color: @black-500;
-        padding: @s-widget-content-inner-spacing @s-widget-content-padding;
-        background: @s-widget-header-background-color;
-        
-        &._alternate-small-bold {
-            font-size: @fs-12;
-            font-weight: bold;
-            .-action {
-                line-height: 1.3*@fs-12;  // line-height should be the same as in the outside element, so the header and action baselines line up
-                font-weight: normal;
-            }
-        }
-        
-        .-action {
-            font-size: @fs-11;
-            color: @blue;
-            float: right;
-            margin: 0 0 @su-4 @su-8;
-            line-height: 1.3*15px; // line-height should be the same as in the outside element, so the header and action baselines line up
-        }
-        &._collapsing-control {
-            cursor: pointer;
-            &:before {
-                content: '';
-                float: left;
-                margin-right: @su-12;
-                border: 5px solid transparent;
-                border-right-width: 0;
-                border-left-color: @black-200;
-                margin-top: ~"calc(1.3em / 2 - 5px)"; // 1.3 is our standard line height
-                transition: transform 0.3s cubic-bezier(0.4, 0.4, 0.6, 1);
-            }
-            &[aria-expanded='true']:before {
-                transform: rotate(90deg);
-            }
-        }        
-    }
-
-    table.-content._items {
-        border-spacing: @s-widget-content-inner-spacing;
-        border-collapse: separate;
-        padding: (@s-widget-content-outer-spacing - @s-widget-content-inner-spacing) (@s-widget-content-padding - @s-widget-content-inner-spacing);
-        tr.-item {
-            display: table-row;
-            td {
-                padding: 0;
-            }
-        }
-    }
-    .-content:not(table) {
-        &:not(.d-block):not(._items) {
-            display: flex;
-        }
-        &:not(._block-items) .-item:not(.d-block) {
-            display: flex;
-        }
-    }
-    
-    .-content {
-        
-        margin: 0;
-        padding: @s-widget-content-outer-spacing @s-widget-content-padding;
-        &._items {
-            .d-block;
-            // the items themselves provide part of the spacing, so the content padding needs to account for that
-            padding: (@s-widget-content-outer-spacing - @s-widget-content-inner-spacing) @s-widget-content-padding;
-            ._block-items .-item {
-                .d-block;
-            }
-            .-item {
-                margin: @s-widget-content-inner-spacing 0;
-                &, & > :first-child {
-                    &[aria-current="true"], &[aria-current="page"] {
-                        position: relative;
-                        &:before {
-                            content: '';
-                            position: absolute;
-                            height: ~"calc(100% +" @s-widget-content-inner-spacing ~")";
-                            left: 0;
-                            border-left: 3px solid @orange;
-                            margin-left: -@s-widget-content-padding - 1px; // the orange selection indicator overlaps with the widget border
-                            margin-top: -@s-widget-content-inner-spacing/2;
-                        }
-                        font-weight: bold;
-                        color: @black;
-                        a, a:visited { // TODO: this isn't the best way to go about this. There should be a "is current" highlight without font modification for more complex cases
-                            color: inherit;
-                        }
-                    }
-                }
-                .-subnav {
-                    list-style-type: none;
-                    padding-left: 0;
-                    li {
-                        padding-left: 16px;
-                        margin-top: 12px;
-
-                        .bullet-arrow(@col) {
-                            @image: '<?xml version="1.0" encoding="UTF-8"?><svg version="1.1" viewBox="0 0 7 10" xmlns="http://www.w3.org/2000/svg"><path d="m0.72153 0.68446 4.1336 4.3077-4.1336 4.3077" fill="none" stroke="@{col}" stroke-width="2"/></svg>';
-                            @encoded-image: escape(@image);
-                            background-image: url("data:image/svg+xml,@{encoded-image}");
-                        }
-                        .bullet-arrow(@black-100);
-                        background-size: auto 10px;
-                        background-repeat: no-repeat;
-                        background-position: 0 ~"calc((1.2em - 10px)/2)";
-
-                        &[aria-current="true"], &[aria-current="page"] {
-                            .bullet-arrow(@orange);
-                            font-weight: bold;
-                            color: @black;
-                            a, a:visited { // TODO: see above
-                                color: inherit;
-                            }
-                        }
-                    }
-                }
-            }                    
-        }
-    }    
 
     // We must support things like collapsible (in particular invisble) elements, wrapper elements,
     // etc. Therefore every .-content and .-header must stand on its own; we cannot rely on things
@@ -189,9 +61,9 @@
         margin-top: -1px;
     }
     
-    // However, because of the above, the top item's divider line now sits above the .s-widget's top
+    // However, because of the above, the top item's divider line now sits above the .s-sidebarwidget's top
     // border. We could fix this by using overflow: hidden, but that would constrain users of
-    // .s-widget to never have things like tooltips, autocompletes or the like that reach outside
+    // .s-sidebarwidget to never have things like tooltips, autocompletes or the like that reach outside
     // the widget boundaries.
     // What we do instead is re-create the widget's top border in an absolutely positioned :after,
     // which sits above our item's top border. Technically, a tiny corner of the item's border will
@@ -204,13 +76,13 @@
         left: -1px;
         right: -1px;
         height: 2px + @br-2; // we need 2px border + 2px border radius to have the correct corner shape
-        border-top: 1px solid @s-widget-outer-border-color;
+        border-top: 1px solid @s-sidebarwidget-outer-border-color;
         
         // In order to also perfectly recreate the inner corner shape, our pseudo-element needs
         // the border on all sides. But we can only do that if we're able to hide the bottom part,
         // so this only works in browsers that support clip-path.
         @supports (clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)) or (-webkit-clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)) {
-            border: 1px solid @s-widget-outer-border-color;
+            border: 1px solid @s-sidebarwidget-outer-border-color;
             clip-path: polygon(0% 0%, 100% 0%, 100% 50%, 0% 50%);
             -webkit-clip-path: polygon(0% 0%, 100% 0%, 100% 50%, 0% 50%);
         }
@@ -219,124 +91,266 @@
         pointer-events: none; // if the top item is clickable, then we don't want to prevent clicking the top 2 pixels
     }
     
-    position: relative; // so that it's the positioning parent for the :after
-
- 
+    position: relative; // so that it's the positioning parent for the :after    
+}
     
-    // see http://stackoverflow.com/a/43965099 for how this works:
-    // TODO: this is very generic, so it probably shouldn't just be used for s-widget
+.s-sidebarwidget--header, .s-sidebarwidget--content {
+    border-top: 1px solid @s-sidebarwidget-content-separator-color;
+}
     
-    // Notes on the clip-path stuff: What we would really like is overflow: hidden during the transition,
-    // but not when the element is expanded. Unfortunately, although the CSS spec provides for it, there's
-    // no browser support yet for transitioning non-interpolatable properties, and therefore we cannot say
-    // "change overflow to visible *after* the transition".
-    //
-    // So we use clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%), which is essentially the same
-    // as overflow: hidden, but unlike overflow, clip-path is interpolatable -- but only if the opposite state
-    // is also a polygon, and has the same vertice count. So our version of overflow: visible is a rectangle
-    // of 2x2 million pixels, which should be enough for everybody (TM).
-    //
-    // At the time of writing, clip-path works in Chrome, Firefox Beta, and Safari (with vendor prefix).
-    //
-    // In browsers that do not support this yet, we have to have another way to prevent the collapsible content
-    // from being visible below the bottom edge during the transition, and the best I could come up with is
-    // transitioning to scaleY(0) with a timing function that's faster than the height-reducing transitions.
-    // This does kinda look like a deliberate effect, even more so if we also transition to transparency
-    // (which we therefore do), so I feel it's an okay fallback.
-    //
-    // We still set overflow to hidden in the collapsed state (which also applies to the collapsing transition),
-    // we just can't do that for the expanding transition.
-    //
-    // A major drawback of clip-path is that even though the content is clipped (not visible), it will still
-    // contribute to the document height. This caused a jumping around of the scrollbar (and possibly even
-    // of the viewport) when the collapsible was at the bottom of the page, because once the negative bottom
-    // margin of the -collapsible-group exceeds the actual height, any additional pixels were added on to the
-    // bottom. The fix is to set the -collapsible-group's flex alignment to flex-start, which forces the
-    // (no longer visible) element itself to remain at the top, thereby forcing the excess pixels to be added
-    // above the top, not below the bottom. And because extending content above the document top will not do
-    // anything to the document height, there is no jumping during the transition.
-    .-collapsible-group-wrapper {
-        @dur: 0.3s;
-
-        display: flex;
-        align-items: flex-start; // see comment above
-
-        clip-path: polygon(-1000000px -1000000px, 1000000px -1000000px, 1000000px 1000000px, -1000000px 1000000px);
-        -webkit-clip-path: polygon(-1000000px -1000000px, 1000000px -1000000px, 1000000px 1000000px, -1000000px 1000000px);
-        transition: clip-path 0s @dur, -webkit-clip-path 0s @dur;
-
-        &:after {
-            content: '';
-            height: 50px;
-            transition: height @dur linear, max-height 0s @dur linear;
-            max-height: 0px;
-            flex-basis: 0;
-        }
-        .-collapsible-group {
-            transition: margin-bottom @dur cubic-bezier(0, 0, 0, 1), transform @dur cubic-bezier(1, 0, 1, 1),  opacity @dur cubic-bezier(1, 0, 1, 1);
-            margin-bottom: 0;
-            max-height: 1000000px;            
-            flex-basis: 100%;
-            transform-origin: 0 0;
-        }
-        &.is-collapsed {
-            clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
-            -webkit-clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
-            overflow: hidden;
-            transition: none;
-            .-collapsible-group {
-                margin-bottom: -1500px;
-                transition: margin-bottom @dur cubic-bezier(1, 0, 1, 1),
-                            visibility 0s @dur, max-height 0s @dur, transform @dur cubic-bezier(0, 1, 1, 1), opacity @dur cubic-bezier(0, 1, 1, 1);
-                visibility: hidden;
-                max-height: 0;
-                transform: scaleY(0);
-                opacity: 0;
-                @supports (clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)) or (-webkit-clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)){
-                    transform: none;
-                    opacity: 1;
-                }
-            }
-            &:after {
-                height: 0;
-                transition: height @dur linear;
-                max-height: 50px;
-            }
+    
+.s-sidebarwidget--header {
+    font-size: 15px; // TODO: 15px isn't in our size list
+    font-weight: normal;
+    color: @black-500;
+    padding: @s-sidebarwidget-content-inner-spacing @s-sidebarwidget-content-padding;
+    background: @s-sidebarwidget-header-background-color;
+    
+    &.s-sidebarwidget__small-bold-text {
+        font-size: @fs-12;
+        font-weight: bold;
+        .-action {
+            line-height: 1.3*@fs-12;  // line-height should be the same as in the outside element, so the header and action baselines line up
+            font-weight: normal;
         }
     }
     
-    // COLOR ALTERNATIVES
-    // todo: use CSS custom properties for this once we don't care about IE anymore
-
-    .alternate-color(blue);
-    .alternate-color(yellow);
-    .alternate-color(green);
+    &.s-sidebarwidget__collapsing-control {
+        cursor: pointer;
+        &:before {
+            content: '';
+            float: left;
+            margin-right: @su-12;
+            border: 5px solid transparent;
+            border-right-width: 0;
+            border-left-color: @black-200;
+            margin-top: ~"calc(1.3em / 2 - 5px)"; // 1.3 is our standard line height
+            transition: transform 0.3s cubic-bezier(0.4, 0.4, 0.6, 1);
+        }
+        &[aria-expanded='true']:before {
+            transform: rotate(90deg);
+        }
+    }        
+}
     
-    .alternate-color(@name) {
-            
-        &._alternate-@{name} {
-            @base-col-name: "s-widget-base-color-@{name}";
-            @base-col: @@base-col-name;
-            
-            @border-col: mix(black, @base-col, 10%);
-            @header-bg-col: mix(black, @base-col, 3%);
-            @content-bg-col: @base-col;
-            @seperator-col: mix(black, @base-col, 7%);
-            @header-text-col: mix(black, @base-col, 55%);
-            
-            border-color: @border-col;
-            background-color: @content-bg-col;
+.s-sidebarwidget--action {
+    font-size: @fs-11;
+    color: @blue;
+    float: right;
+    margin: 0 0 @su-4 @su-8;
+    line-height: 1.3*15px; // line-height should be the same as in the outside element, so the header and action baselines line up
+}
 
-            .-header {
-                color: @header-text-col;
-                background-color: @header-bg-col;
+table.s-sidebarwidget--content.s-sidebarwidget__items {
+    border-spacing: @s-sidebarwidget-content-inner-spacing;
+    border-collapse: separate;
+    padding: (@s-sidebarwidget-content-outer-spacing - @s-sidebarwidget-content-inner-spacing) (@s-sidebarwidget-content-padding - @s-sidebarwidget-content-inner-spacing);
+    tr.-item {
+        display: table-row;
+        td {
+            padding: 0;
+        }
+    }
+}
+
+.s-sidebarwidget--content:not(table) {
+    &:not(.s-sidebarwidget__items) {
+        display: flex;
+    }
+    &:not(.s-sidebarwidget__block-items) .s-sidebarwidget--item {
+        display: flex;
+    }
+}
+    
+.s-sidebarwidget--content {
+    margin: 0;
+    padding: @s-sidebarwidget-content-outer-spacing @s-sidebarwidget-content-padding;
+    &.s-sidebarwidget__items {
+        display: block;
+        // the items themselves provide part of the spacing, so the content padding needs to account for that
+        padding: (@s-sidebarwidget-content-outer-spacing - @s-sidebarwidget-content-inner-spacing) @s-sidebarwidget-content-padding;
+        &.s-sidebarwidget__block-items .s-sidebarwidget--item {
+            .d-block;
+        }
+    }
+}
+
+.s-sidebarwidget--item {
+    margin: @s-sidebarwidget-content-inner-spacing 0;
+    &, & > :first-child {
+        &[aria-current="true"], &[aria-current="page"] {
+            position: relative;
+            &:before {
+                content: '';
+                position: absolute;
+                height: ~"calc(100% +" @s-sidebarwidget-content-inner-spacing ~")";
+                left: 0;
+                border-left: 3px solid @orange;
+                margin-left: -@s-sidebarwidget-content-padding - 1px; // the orange selection indicator overlaps with the widget border
+                margin-top: -@s-sidebarwidget-content-inner-spacing/2;
             }
-            .-header, .-content {
-                border-color: @seperator-col;
-            }
-            &:after {
-                border-color: @border-col;
+            font-weight: bold;
+            color: @black;
+            a, a:visited { // TODO: this isn't the best way to go about this. There should be a "is current" highlight without font modification for more complex cases
+                color: inherit;
             }
         }
     }
 }
+.s-sidebarwidget--subnav {
+    list-style-type: none;
+    padding-left: 0;
+    li {
+        padding-left: 16px;
+        margin-top: 12px;
+
+        .bullet-arrow(@col) {
+            @image: '<?xml version="1.0" encoding="UTF-8"?><svg version="1.1" viewBox="0 0 7 10" xmlns="http://www.w3.org/2000/svg"><path d="m0.72153 0.68446 4.1336 4.3077-4.1336 4.3077" fill="none" stroke="@{col}" stroke-width="2"/></svg>';
+            @encoded-image: escape(@image);
+            background-image: url("data:image/svg+xml,@{encoded-image}");
+        }
+        .bullet-arrow(@black-100);
+        background-size: auto 10px;
+        background-repeat: no-repeat;
+        background-position: 0 ~"calc((1.2em - 10px)/2)";
+
+        &[aria-current="true"], &[aria-current="page"] {
+            .bullet-arrow(@orange);
+            font-weight: bold;
+            color: @black;
+            a, a:visited { // TODO: see above
+                color: inherit;
+            }
+        }
+    }
+}
+
+// COLOR ALTERNATIVES
+// todo: use CSS custom properties for this once we don't care about IE anymore
+
+.alternate-color(blue);
+.alternate-color(yellow);
+.alternate-color(green);
+
+.alternate-color(@name) {
+        
+    &.s-sidebarwidget__@{name} {
+        @base-col-name: "s-sidebarwidget-base-color-@{name}";
+        @base-col: @@base-col-name;
+        
+        @border-col: mix(black, @base-col, 10%);
+        @header-bg-col: mix(black, @base-col, 3%);
+        @content-bg-col: @base-col;
+        @seperator-col: mix(black, @base-col, 7%);
+        @header-text-col: mix(black, @base-col, 55%);
+        
+        border-color: @border-col;
+        background-color: @content-bg-col;
+
+        .s-sidebarwidget--header {
+            color: @header-text-col;
+            background-color: @header-bg-col;
+        }
+        .s-sidebarwidget--header, .s-sidebarwidget--content {
+            border-color: @seperator-col;
+        }
+        &:after {
+            border-color: @border-col;
+        }
+    }
+}
+
+
+// see http://stackoverflow.com/a/43965099 for how this works:
+// TODO: this is very generic, so it probably shouldn't just be used for s-sidebarwidget
+
+// Notes on the clip-path stuff: What we would really like is overflow: hidden during the transition,
+// but not when the element is expanded. Unfortunately, although the CSS spec provides for it, there's
+// no browser support yet for transitioning non-interpolatable properties, and therefore we cannot say
+// "change overflow to visible *after* the transition".
+//
+// So we use clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%), which is essentially the same
+// as overflow: hidden, but unlike overflow, clip-path is interpolatable -- but only if the opposite state
+// is also a polygon, and has the same vertice count. So our version of overflow: visible is a rectangle
+// of 2x2 million pixels, which should be enough for everybody (TM).
+//
+// At the time of writing, clip-path works in Chrome, Firefox Beta, and Safari (with vendor prefix).
+//
+// In browsers that do not support this yet, we have to have another way to prevent the collapsible content
+// from being visible below the bottom edge during the transition, and the best I could come up with is
+// transitioning to scaleY(0) with a timing function that's faster than the height-reducing transitions.
+// This does kinda look like a deliberate effect, even more so if we also transition to transparency
+// (which we therefore do), so I feel it's an okay fallback.
+//
+// We still set overflow to hidden in the collapsed state (which also applies to the collapsing transition),
+// we just can't do that for the expanding transition.
+//
+// A major drawback of clip-path is that even though the content is clipped (not visible), it will still
+// contribute to the document height. This caused a jumping around of the scrollbar (and possibly even
+// of the viewport) when the collapsible was at the bottom of the page, because once the negative bottom
+// margin of the -collapsible-group exceeds the actual height, any additional pixels were added on to the
+// bottom. The fix is to set the -collapsible-group's flex alignment to flex-start, which forces the
+// (no longer visible) element itself to remain at the top, thereby forcing the excess pixels to be added
+// above the top, not below the bottom. And because extending content above the document top will not do
+// anything to the document height, there is no jumping during the transition.
+
+@s-collapsible-transition-duration: 0.3s;
+
+.s-collapsible {
+    @s-collapsible-transition-duration: 0.3s;
+
+    display: flex;
+    align-items: flex-start; // see comment above
+
+    clip-path: polygon(-1000000px -1000000px, 1000000px -1000000px, 1000000px 1000000px, -1000000px 1000000px);
+    -webkit-clip-path: polygon(-1000000px -1000000px, 1000000px -1000000px, 1000000px 1000000px, -1000000px 1000000px);
+    transition: clip-path 0s @s-collapsible-transition-duration, -webkit-clip-path 0s @s-collapsible-transition-duration;
+
+    &:after {
+        content: '';
+        height: 50px;
+        transition: height @s-collapsible-transition-duration linear,
+                    max-height 0s @s-collapsible-transition-duration linear;
+        max-height: 0px;
+        flex-basis: 0;
+    }
+}
+
+.s-collapsible--content {
+    transition: margin-bottom @s-collapsible-transition-duration cubic-bezier(0, 0, 0, 1),
+                transform @s-collapsible-transition-duration cubic-bezier(1, 0, 1, 1),
+                opacity @s-collapsible-transition-duration cubic-bezier(1, 0, 1, 1);
+    margin-bottom: 0;
+    max-height: 1000000px;            
+    flex-basis: 100%;
+    transform-origin: 0 0;
+}
+
+.s-collapsible.is-collapsed {
+    clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+    -webkit-clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+    overflow: hidden;
+    transition: none;
+    .s-collapsible--content {
+        margin-bottom: -1500px;
+        transition: margin-bottom @s-collapsible-transition-duration cubic-bezier(1, 0, 1, 1),
+                    visibility 0s @s-collapsible-transition-duration,
+                    max-height 0s @s-collapsible-transition-duration,
+                    transform @s-collapsible-transition-duration cubic-bezier(0, 1, 1, 1),
+                    opacity @s-collapsible-transition-duration cubic-bezier(0, 1, 1, 1);
+        visibility: hidden;
+        max-height: 0;
+        transform: scaleY(0);
+        opacity: 0;
+        @supports (clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)) or (-webkit-clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)){
+            transform: none;
+            opacity: 1;
+        }
+    }
+    &:after {
+        height: 0;
+        transition: height @s-collapsible-transition-duration linear;
+        max-height: 50px;
+    }
+}
+
