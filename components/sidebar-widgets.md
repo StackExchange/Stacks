@@ -30,8 +30,8 @@ description: Sidebar widgets are flexible containers that provide a lot of patte
 </style>
 
 <section class="stacks-section">
-    <h2 class="grid fl-jc-space-between fl-ai-center stacks-title">The Basics</h2>
-    
+    <h2 class="grid jc-spacebetween ai-center stacks-title">The Basics</h2>
+
     <p class="stacks-p _section" markdown="1">
         In its simplest form, the sidebar widget is an element with class `s-sidebarwidget` and a child of class `s-sidebarwidget--content`.
         This sets up a sidebar widget with the appropriate inner spacing, and you can put into it whatever you want.
@@ -39,7 +39,7 @@ description: Sidebar widgets are flexible containers that provide a lot of patte
 
     <p class="stacks-p _section" markdown="1">
         By default the content is a flex container. If you require `display: block` instead, add the `d-block` class.
-    </p>    
+    </p>
     {% capture html %}
         <div style="width: 300px"><!-- PREVIEW ONLY -->
             <div class="s-sidebarwidget">
@@ -54,18 +54,18 @@ description: Sidebar widgets are flexible containers that provide a lot of patte
     {% endcapture %}{% include example.html html=html %}
 
 
-    <h3 class="grid fl-jc-space-between fl-ai-center stacks-title _subtitle">Simple Items</h3>
+    <h3 class="grid jc-spacebetween ai-center stacks-title _subtitle">Simple Items</h3>
 
     <p class="stacks-p _section" markdown="1">
         Oftentimes, your widget will be a list of similar, relatively simple items. By giving the `s-sidebarwidget--content` a modifier class
         `s-sidebarwidget__items`, and giving the items a class of `s-sidebarwidget--item`, the content will be spaced out nicely.
     </p>
-    
+
     <p class="stacks-p _section" markdown="1">
         In this case, each item is a flex container by default. If you require `display: block` instead, specifically add
         the `d-block` class to the `s-sidebarwidget--item`, or add the `s-sidebarwidget__block-items` modifier class to the `s-sidebarwidget--content` to make the change to *all* items.
     </p>
-    
+
     {% capture html %}
         <div style="width: 300px"><!-- PREVIEW ONLY -->
             <div class="s-sidebarwidget">
@@ -84,7 +84,7 @@ description: Sidebar widgets are flexible containers that provide a lot of patte
                         <img src="https://i.stack.imgur.com/nf0QA.jpg?s=32&g=1" alt="Aaron Shekey" width="16" height="16" class="example-avatar"><!-- PREVIEW ONLY -->
                         <img src="..." class="example-avatar"><!-- CODE ONLY -->
                         <span><strong>Aaron Shekey</strong> contributed 3 edits</span>
-                    </div>                    
+                    </div>
                 </div>
             </div>
         </div><!-- PREVIEW ONLY -->
@@ -95,7 +95,7 @@ description: Sidebar widgets are flexible containers that provide a lot of patte
         elements should be `s-sidebarwidget--item`. See the [section on headers](#headers) for an example.
     </p>
 
-    <h3 class="grid fl-jc-space-between fl-ai-center stacks-title _subtitle">Complex Items</h3>
+    <h3 class="grid jc-spacebetween ai-center stacks-title _subtitle">Complex Items</h3>
 
     <p class="stacks-p _section" markdown="1">
         If your items are more complex than that, whitespace may not be enough to separate them clearly. In this case instead of a single
@@ -136,7 +136,7 @@ description: Sidebar widgets are flexible containers that provide a lot of patte
         </div><!-- PREVIEW ONLY -->
     {% endcapture %}{% include example.html html=html %}
 
-    <h3 class="grid fl-jc-space-between fl-ai-center stacks-title _subtitle">Headers</h3>
+    <h3 class="grid jc-spacebetween ai-center stacks-title _subtitle">Headers</h3>
 
     <p class="stacks-p _section" markdown="1">
         Besides `s-sidebarwidget--content`, the other possible child class is `s-sidebarwidget--header`, which unsurprisingly creates a header. Headers can be used both
@@ -172,7 +172,7 @@ description: Sidebar widgets are flexible containers that provide a lot of patte
     <p class="stacks-p _section mt24" markdown="1">
         The `s-sidebarwidget__small-bold-text` modifier is available for headers to modify the text appearance.
     </p>
-    
+
     {% capture html %}
         <div style="width: 300px"><!-- PREVIEW ONLY -->
             <div class="s-sidebarwidget">
@@ -218,12 +218,12 @@ description: Sidebar widgets are flexible containers that provide a lot of patte
             </div>
         </div><!-- PREVIEW ONLY -->
     {% endcapture %}{% include example.html html=html %}
-    
+
 </section>
 
 <section class="stacks-section">
-    <h2 class="grid fl-jc-space-between fl-ai-center stacks-title">Alternative Colors</h2>
-    
+    <h2 class="grid jc-spacebetween ai-center stacks-title">Alternative Colors</h2>
+
     <p class="stacks-p _section" markdown="1">
         Three modifier classes are available for changing the background color of an `s-sidebarwidget`: `s-sidebarwidget__yellow`, `s-sidebarwidget__blue`,
         and `s-sidebarwidget__green`.
@@ -232,9 +232,9 @@ description: Sidebar widgets are flexible containers that provide a lot of patte
     <p class="stacks-p _section" markdown="1">
         TODO: guidance on when to use what color
     </p>
-    
+
     {% capture html %}
-        <div class="grid fl-jc-space-between"><div style="width: 300px"><!-- PREVIEW ONLY -->
+        <div class="grid jc-spacebetween"><div style="width: 300px"><!-- PREVIEW ONLY -->
             <div class="s-sidebarwidget s-sidebarwidget__yellow">
                 <div class="s-sidebarwidget--header s-sidebarwidget__small-bold-text">Featured on Meta</div>
                 <ul class="s-sidebarwidget--content s-sidebarwidget__items">
@@ -258,14 +258,14 @@ description: Sidebar widgets are flexible containers that provide a lot of patte
                 </ul>
             </div>
             </div><div style="width: 300px"><!-- PREVIEW ONLY -->
-            
+
             <div class="s-sidebarwidget s-sidebarwidget__blue">
                 <div class="s-sidebarwidget--header">Options</div>
                 <div class="s-sidebarwidget--content s-sidebarwidget__items">
-                    <a href="#" class="s-sidebarwidget--item s-btn s-btn__primary fl-jc-center">
+                    <a href="#" class="s-sidebarwidget--item s-btn s-btn__primary jc-center">
                         Job preferences
                     </a>
-                    <a href="#" class="s-sidebarwidget--item s-btn s-btn__outlined fl-jc-center">
+                    <a href="#" class="s-sidebarwidget--item s-btn s-btn__outlined jc-center">
                         Save as PDF
                     </a>
                 </div>
@@ -275,20 +275,20 @@ description: Sidebar widgets are flexible containers that provide a lot of patte
                 </div>
             </div>
             <br><!-- PREVIEW ONLY -->
-            
+
             <div class="s-sidebarwidget s-sidebarwidget__green">
                 <div class="s-sidebarwidget--content">
                     Your Developer Story is searchable by employers.
                 </div>
-            </div>            
+            </div>
         </div></div><!-- PREVIEW ONLY -->
     {% endcapture %}{% include example.html html=html %}
-    
+
 </section>
 
 <section class="stacks-section">
-    <h2 class="grid fl-jc-space-between fl-ai-center stacks-title">Navigation</h2>
-    
+    <h2 class="grid jc-spacebetween ai-center stacks-title">Navigation</h2>
+
     <p class="stacks-p _section" markdown="1">
         A common use for sidebar widgets is as a navigation block or table of contents, including a highlight
         of the page that the user is currently looking at.
@@ -299,7 +299,7 @@ description: Sidebar widgets are flexible containers that provide a lot of patte
         and for each group of links to create a `<ul>` with the classes `s-sidebarwidget--content s-sidebarwidget__items`, within which each
         `<li>` is of class `s-sidebarwidget--item`.
     </p>
-    
+
     <p class="stacks-p _section" markdown="1">
         The currently active navigation item should have the `aria-current` attribute set to `"page"` (if it is a direct
         link to the very page that the user is looking at) or `"true"` (in all other cases, e.g. if it is a
@@ -325,29 +325,29 @@ description: Sidebar widgets are flexible containers that provide a lot of patte
                 <ul class="s-sidebarwidget--content s-sidebarwidget__items">
                     <li class="s-sidebarwidget--item"><a href="#">Preferences</a></li>
                     <li class="s-sidebarwidget--item"><a href="#">Flair</a></li>
-                </ul>                
+                </ul>
             </nav>
         </div><!-- PREVIEW ONLY -->
     {% endcapture %}{% include example.html html=html %}
 
-    <h3 class="grid fl-jc-space-between fl-ai-center stacks-title _subtitle">Second-level navigation</h3>
+    <h3 class="grid jc-spacebetween ai-center stacks-title _subtitle">Second-level navigation</h3>
 
     <p class="stacks-p _section" markdown="1">
         If you have a second level of navigation, you can add a `<ul>` of class `-subnav` to the top-level item.
         Highlighting the currently active navigation is a little more constrained in this case:
     </p>
-    
+
     <p class="stacks-p _section" markdown="1">
         If the currently active top-level element has a subnavigation, the top-level `aria-current` **must** be on the
         `<a>`, *not* the `<li>`.
     </p>
-    
+
     <p class="stacks-p _section" markdown="1">
         The currently active second-level element **must** have its `aria-current` on the
         `<li>`, *not* the `<a>`.
-    </p>    
-    
-    
+    </p>
+
+
     {% capture html %}
         <div style="width: 300px"><!-- PREVIEW ONLY -->
             <nav class="s-sidebarwidget">
@@ -375,21 +375,21 @@ description: Sidebar widgets are flexible containers that provide a lot of patte
 </section>
 
 <section class="stacks-section">
-    <h2 class="grid fl-jc-space-between fl-ai-center stacks-title">Header Actions</h2>
-    
+    <h2 class="grid jc-spacebetween ai-center stacks-title">Header Actions</h2>
+
     <p class="stacks-p _section" markdown="1">
         There is often a need for a header to contain a link or link-like clickable that refers to
         the whole widget or to the section that this header starts. We call this an "action link",
-        and it's created by adding the class `s-sidebarwidget--action`. 
+        and it's created by adding the class `s-sidebarwidget--action`.
     </p>
-    
+
     <p class="stacks-p _section" markdown="1">
         This link must come **before** the header text, otherwise it will not be placed correctly should
         the header ever wrap to multiple lines.
     </p>
-    
+
     {% capture html %}
-        <div class="grid fl-jc-space-between"><div style="width: 300px"><!-- PREVIEW ONLY -->
+        <div class="grid jc-spacebetween"><div style="width: 300px"><!-- PREVIEW ONLY -->
             <div class="s-sidebarwidget">
                 <div class="s-sidebarwidget--header">
                     <a class="s-sidebarwidget--action" href="#">
@@ -419,7 +419,7 @@ description: Sidebar widgets are flexible containers that provide a lot of patte
                 </div>
             </div>
         </div><div style="width: 300px"><!-- PREVIEW ONLY -->
-        
+
             <div class="s-sidebarwidget">
                 <div class="s-sidebarwidget--header s-sidebarwidget__small-bold-text">
                     <a class="s-sidebarwidget--action" href="#">
@@ -441,19 +441,19 @@ description: Sidebar widgets are flexible containers that provide a lot of patte
                         </tr>
                     </tbody>
                 </table>
-            </div>            
+            </div>
         </div></div><!-- PREVIEW ONLY -->
     {% endcapture %}{% include example.html html=html %}
 </section>
 
 <section class="stacks-section">
-    <h2 class="grid fl-jc-space-between fl-ai-center stacks-title">Accordions</h2>
+    <h2 class="grid jc-spacebetween ai-center stacks-title">Accordions</h2>
 
     <p class="stacks-p _section" markdown="1">
         In order to create an accordion, i.e. to make part of the sidebar widget expandable / collapsible,
         you can do the following.
     </p>
-    
+
     <ul class="stacks-list _section">
         <li>
             <p class="stacks-p" markdown="1">The `s-sidebarwidget-header` element that controls the accordion needs</p>
@@ -488,16 +488,16 @@ description: Sidebar widgets are flexible containers that provide a lot of patte
             </p>
         </li>
     </ul>
-    
+
     <p class="stacks-p _section" markdown="1">
         A note on the examples below: There is an additional `js-collapsing-control` class on the headers. This page includes JavaScript
         code that correctly handles keyboard and click events on elements with this class. We should eventually make such JavaScript
         functionality universally available together with the Stacks CSS, but currently this is not the case.
-    </p>    
-    
+    </p>
+
     {% capture html %}
         <div style="width: 300px"><!-- PREVIEW ONLY -->
-        
+
             <div class="s-sidebarwidget">
                 <div class="s-sidebarwidget--header s-sidebarwidget__small-bold_text
                             s-sidebarwidget__collapsing-control js-collapsing-control"
@@ -544,13 +544,13 @@ description: Sidebar widgets are flexible containers that provide a lot of patte
                             <i>You have no favorite jobs</i>
                         </div>
                     </div>
-                </div>                
+                </div>
             </div>
         </div><!-- PREVIEW ONLY -->
-    {% endcapture %}{% include example.html html=html %}    
-    
+    {% endcapture %}{% include example.html html=html %}
+
 </section>
-    
+
 <script type="text/javascript">
     // TODO: figure out the right way to share JS alongside the Less
     window.onload = function () {
