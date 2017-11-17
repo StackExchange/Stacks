@@ -1,12 +1,6 @@
 'use strict';
 
 module.exports = function (grunt) {
-
-    // Show elapsed time after tasks run to visualize performance
-    require('time-grunt')(grunt);
-    // Load all Grunt tasks that are listed in package.json automagically
-    require('load-grunt-tasks')(grunt);
-
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
 
@@ -18,22 +12,24 @@ module.exports = function (grunt) {
             jekyllServe: {
                 command: 'jekyll serve'
             }
+        },
+        less: {
+            development: {
+                options: {
+                    paths: ['assets/less']
+                },
+                files: {
+                    'assets/css/stacks.css': 'assets/less/stacks.less'
+                }
+            },
         }
-
     });
 
-    // Register the grunt serve task
-    grunt.registerTask('serve', [
-        'shell:jekyllServe'
-    ]);
+    // Load plugins
+    grunt.loadNpmTasks('grunt-shell');
+    grunt.loadNpmTasks('grunt-contrib-less');
 
-    // Register the grunt build task
-    grunt.registerTask('build', [
-        'shell:jekyllBuild',
-        'sass'
-    ]);
-
-    // Register build as the default task fallback
-    grunt.registerTask('default', 'build');
-
+    // Default task(s).
+    grunt.registerTask('default', ['shell:jekyllServe']);
+    grunt.registerTask('build', ['less']);
 };
