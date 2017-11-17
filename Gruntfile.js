@@ -4,7 +4,7 @@ module.exports = function (grunt) {
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
 
-        // shell commands for use in Grunt tasks
+        // Shell commands for use in Grunt tasks
         shell: {
             jekyllBuild: {
                 command: 'jekyll build'
@@ -13,8 +13,9 @@ module.exports = function (grunt) {
                 command: 'jekyll serve'
             }
         },
+        // Less compilation
         less: {
-            development: {
+            production: {
                 options: {
                     paths: ['assets/less']
                 },
@@ -22,14 +23,33 @@ module.exports = function (grunt) {
                     'assets/css/stacks.css': 'assets/less/stacks.less'
                 }
             },
-        }
+        },
+        // Watch for files to change and run tasks when they do
+        watch: {
+            sass: {
+                files: ['assets/less/*.less'],
+                tasks: ['less']
+            }
+        },
+        // Run tasks in parallel
+        concurrent: {
+            serve: [
+                'less',
+                'watch',
+                'shell:jekyllServe'
+            ],
+            options: {
+                logConcurrentOutput: true
+            }
+        },
     });
 
     // Load plugins
     grunt.loadNpmTasks('grunt-shell');
+    grunt.loadNpmTasks('grunt-concurrent');
     grunt.loadNpmTasks('grunt-contrib-less');
+    grunt.loadNpmTasks('grunt-contrib-watch');
 
     // Default task(s).
-    grunt.registerTask('default', ['shell:jekyllServe']);
-    grunt.registerTask('build', ['less']);
+    grunt.registerTask('default', ['concurrent:serve']);
 };
