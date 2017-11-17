@@ -10,7 +10,11 @@ To contribute, clone this repository and create a new branch. Open a pull reques
 
 ### Running Stacks
 
-Open this repo in your Terminal and type `grunt`.
+Open this repo in your Terminal and type:
+
+```
+grunt
+```
 
 This will start your Jekyll server and watch for any changes you make. You can now visit the site locally at http://127.0.0.1:4000/
 
