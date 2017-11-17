@@ -27,7 +27,7 @@ module.exports = function (grunt) {
         // Watch for files to change and run tasks when they do
         watch: {
             less: {
-                files: ['assets/less/*.less'],
+                files: ['assets/less/**/*.less'],
                 tasks: ['less']
             }
         },
@@ -35,7 +35,7 @@ module.exports = function (grunt) {
         concurrent: {
             serve: [
                 'less',
-                'watch',
+                'watch:less',
                 'shell:jekyllServe'
             ],
             options: {
@@ -50,6 +50,6 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-less');
     grunt.loadNpmTasks('grunt-contrib-watch');
 
-    // Default task(s).
+    // Default task
     grunt.registerTask('default', ['concurrent:serve']);
 };
