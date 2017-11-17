@@ -24,11 +24,23 @@ module.exports = function (grunt) {
                 }
             },
         },
+        // Minify our compiled CSS
+        cssmin: {
+            production: {
+                files: {
+                    'assets/css/stacks.min.css': 'assets/css/stacks.css'
+                }
+            }
+        },
         // Watch for files to change and run tasks when they do
         watch: {
             less: {
                 files: ['assets/less/**/*.less'],
                 tasks: ['less']
+            },
+            css: {
+                files: ['assets/css/stacks.css'],
+                tasks: ['cssmin']
             }
         },
         // Run tasks in parallel
@@ -36,7 +48,9 @@ module.exports = function (grunt) {
             serve: [
                 'less',
                 'watch:less',
-                'shell:jekyllServe'
+                'cssmin',
+                'watch:css',
+                'shell:jekyllServe',
             ],
             options: {
                 logConcurrentOutput: true
@@ -47,6 +61,7 @@ module.exports = function (grunt) {
     // Load plugins
     grunt.loadNpmTasks('grunt-shell');
     grunt.loadNpmTasks('grunt-concurrent');
+    grunt.loadNpmTasks('grunt-contrib-cssmin');
     grunt.loadNpmTasks('grunt-contrib-less');
     grunt.loadNpmTasks('grunt-contrib-watch');
 
