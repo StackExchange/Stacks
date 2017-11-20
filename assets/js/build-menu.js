@@ -19,8 +19,8 @@
 
   const GridClass = {
     GRID_BOX    : "grid",
-    GRID_COL    : "fl-col-nowrap",
-    GRID_CELL   : "grid-cell"
+    GRID_COL    : "ff-column-nowrap",
+    GRID_CELL   : "grid--cell"
   }
 
   function buildMenu($parent, options) {
