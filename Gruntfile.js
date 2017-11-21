@@ -35,7 +35,7 @@ module.exports = function (grunt) {
         // Watch for files to change and run tasks when they do
         watch: {
             less: {
-                files: ['lib/**/*.less'],
+                files: ['lib/**/*.less', 'assets/less/*.less'],
                 tasks: ['less']
             },
             css: {
