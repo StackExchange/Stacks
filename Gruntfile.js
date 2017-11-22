@@ -7,20 +7,32 @@ module.exports = function (grunt) {
         // Shell commands for use in Grunt tasks
         shell: {
             jekyllBuild: {
-                command: 'jekyll build'
+                command: 'jekyll build',
+                options: {
+                    stderr: false,
+                    execOptions: {
+                        cwd: 'docs'
+                    }
+                }
             },
             jekyllServe: {
-                command: 'jekyll serve'
+                command: 'jekyll serve',
+                options: {
+                    stderr: false,
+                    execOptions: {
+                        cwd: 'docs'
+                    }
+                }
             }
         },
         // Less compilation
         less: {
             production: {
                 options: {
-                    paths: ['assets/less']
+                    paths: ['docs/assets/less']
                 },
                 files: {
-                    'assets/css/stacks.css': 'assets/less/stacks.less'
+                    'docs/assets/css/stacks.css': 'docs/assets/less/stacks.less'
                 }
             },
         },
@@ -28,18 +40,18 @@ module.exports = function (grunt) {
         cssmin: {
             production: {
                 files: {
-                    'assets/css/stacks.min.css': 'assets/css/stacks.css'
+                    'docs/assets/css/stacks.min.css': 'docs/assets/css/stacks.css'
                 }
             }
         },
         // Watch for files to change and run tasks when they do
         watch: {
             less: {
-                files: ['lib/**/*.less', 'assets/less/*.less'],
+                files: ['lib/**/*.less', 'docs/assets/less/*.less'],
                 tasks: ['less']
             },
             css: {
-                files: ['assets/css/stacks.css'],
+                files: ['docs/assets/css/stacks.css'],
                 tasks: ['cssmin']
             }
         },
