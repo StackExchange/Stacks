@@ -1,0 +1,100 @@
+---
+layout: with-secondary-nav
+title: Sidebar Widgets
+description: Sidebar widgets are flexible containers that provide a lot of patterns that are helpful in a variety of sidebar uses.
+---
+<style>
+    ul {
+        margin-bottom: 0;
+    }
+    .example-avatar {
+        margin-right: 12px;
+        vertical-align: text-bottom;
+    }
+    .example-question-count {
+        font-size: 24px;
+        line-height: 1;
+        margin-bottom: 8px;
+    }
+    .post-tag {
+        color: #39739d;
+        background-color: #E1ECF4;
+        display: inline-block;
+        padding: .4em .5em;
+        margin: 4px 4px 4px 0;
+        white-space: nowrap;
+    }
+    .tag-list {
+        margin: -4px -4px -4px 0;
+    }
+</style>
+
+<section class="stacks-section">
+    <h2 class="grid jc-spacebetween ai-center stacks-title">The Basics</h2>
+
+    <p class="stacks-p _section">
+        In its simplest form, the sidebar widget is an element with class <code class="stacks-code">s-sidebarwidget</code> and a child of class <code class="stacks-code">s-sidebarwidget--content</code>. This sets up a sidebar widget with the appropriate inner spacing, and you can put into it whatever you want.
+    </p>
+
+    <p class="stacks-p _section">
+        By default the content is a flex container. If you require <code class="stacks-code">display: block</code> instead, add the <code class="stacks-code">d-block</code> class.
+    </p>
+
+    <div class="stacks-code-preview">
+{% highlight html linenos %}
+<div class="s-sidebarwidget">
+    <div class="s-sidebarwidget--content d-block">
+        <div class="example-question-count">
+            13,672,187
+        </div>
+        questions
+    </div>
+</div>
+{% endhighlight %}
+
+        <div class="-preview">
+            <div style="width: 300px">
+                <div class="s-sidebarwidget">
+                    <div class="s-sidebarwidget--content d-block">
+                        <div class="example-question-count">
+                            13,672,187
+                        </div>
+                        questions
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script type="text/javascript">
+    // TODO: figure out the right way to share JS alongside the Less
+    window.onload = function () {
+        function toggleCollapsing(e) {
+            if (e.type == "keydown" && (e.keyCode != 13 && e.keyCode != 32)) {
+                return;
+            }
+            if (e.target.classList.contains("-action")) {
+                return;
+            }
+            var expanded = this.getAttribute("aria-expanded") === "true";
+            this.setAttribute("aria-expanded", expanded ? "false" : "true");
+            var l = document.getElementById(this.getAttribute("aria-controls"));
+            if (expanded) {
+                l.classList.add("is-collapsed");
+            } else {
+                l.classList.remove("is-collapsed");
+            }
+            if (e.type === "click") {
+                this.blur();
+            } else {
+                e.preventDefault();
+            }
+        }
+        var cs = document.getElementsByClassName("js-collapsing-control");
+        for (var i=0; i < cs.length; i++) {
+            cs[i].addEventListener("click", toggleCollapsing);
+            cs[i].addEventListener("keydown", toggleCollapsing);
+        }
+    };
+</script>

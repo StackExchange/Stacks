@@ -7,7 +7,7 @@ module.exports = function (grunt) {
         // Shell commands for use in Grunt tasks
         shell: {
             jekyllBuild: {
-                command: 'jekyll build',
+                command: 'bundle exec jekyll build',
                 options: {
                     stderr: false,
                     execOptions: {
@@ -16,7 +16,7 @@ module.exports = function (grunt) {
                 }
             },
             jekyllServe: {
-                command: 'jekyll serve',
+                command: 'bundle exec jekyll serve',
                 options: {
                     stderr: false,
                     execOptions: {
