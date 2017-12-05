@@ -47,7 +47,7 @@ module.exports = function (grunt) {
         // Watch for files to change and run tasks when they do
         watch: {
             less: {
-                files: ['lib/**/*.less', 'docs/assets/less/*.less'],
+                files: ['lib/**/*.less', 'docs/**/*.less'],
                 tasks: ['less']
             },
             css: {
@@ -79,4 +79,5 @@ module.exports = function (grunt) {
 
     // Default task
     grunt.registerTask('default', ['concurrent:serve']);
+    grunt.registerTask('build', ['less', 'cssmin']);
 };
