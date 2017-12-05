@@ -25,11 +25,14 @@
                             {% assign pageURL = page.url | remove_first:"/" | remove: ".html" %}
                             {% if pageURL == sublink.url %}
                               {% assign submenu-active = " is-active" %}
+                              {% assign submenu-container = "<ul class='fl ff-column-nowrap nav _secondary js-secondary-nav'></ul>" %}
                             {% else %}
                               {% assign submenu-active = "" %}
+                              {% assign submenu-container = "" %}
                             {% endif %}
-                            <li class="-item{{ submenu-active }}">
-                                <a class="d-inline-flex ps-relative w100 -link" href="{{ sublink.url | relative_url }}" title="{{ sublink.title }}">{{ sublink.title }}</a>
+                            <li class="-item">
+                                <a class="d-inline-flex ps-relative w100 -link{{ submenu-active }}" href="{{ sublink.url | relative_url }}" title="{{ sublink.title }}">{{ sublink.title }}</a>
+                                {{ submenu-container }}
                             </li>
                         {% endfor %}
                     </ul>
