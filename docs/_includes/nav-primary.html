@@ -1,19 +1,18 @@
 <nav class="stacks-nav-primary bg-black-025 grid fd-column ps-fixed top-0 bottom-0 br brc-black-2">
     <header class="grid--cell p24 ta-center">
-        <a href="{{ "/" | relative_url }}" title="{{ site.title }}">
-            <svg aria-role="hidden" class="svg-icon iconLogoGlyphMedium mb24 mx-auto" width="32" height="37" viewBox="0 0 32 37"><g><path fill="#BCBBBB" d="M26 33v-9h4v13H0V24h4v9z"/><path d="M23.1 25.99l.68-2.95-16.1-3.35L7 23l16.1 2.99zM9.1 15.2l15 7 1.4-3-15-7-1.4 3zm4.2-7.4L26 18.4l2.1-2.5L15.4 5.3l-2.1 2.5zM21.5 0l-2.7 2 9.9 13.3 2.7-2L21.5 0zM7 30h16v-3H7v3z" fill="#F48024"/></g></svg>
+        <a class="mb24 d-inline-block" href="{{ "/" | relative_url }}" title="{{ site.title }}">
+            <svg aria-role="hidden" class="svg-icon iconLogoGlyphMedium" width="32" height="37" viewBox="0 0 32 37"><g><path fill="#BCBBBB" d="M26 33v-9h4v13H0V24h4v9z"/><path d="M23.1 25.99l.68-2.95-16.1-3.35L7 23l16.1 2.99zM9.1 15.2l15 7 1.4-3-15-7-1.4 3zm4.2-7.4L26 18.4l2.1-2.5L15.4 5.3l-2.1 2.5zM21.5 0l-2.7 2 9.9 13.3 2.7-2L21.5 0zM7 30h16v-3H7v3z" fill="#F48024"/></g></svg>
         </a>
 
         <div class="ps-relative search-bar">
             <input id="searchbox" class="input bar-sm pl32" type="text" placeholder="Search the docs">
-            <svg aria-hidden="true" class="svg-icon iconSearch ps-absolute fc-light" width="18" height="18" viewBox="0 0 18 18"><path d="M12.86 11.32L18 16.5 16.5 18l-5.18-5.14v-.35a7 7 0 1 1 1.19-1.19h.35zM7 12A5 5 0 1 0 7 2a5 5 0 0 0 0 10z"></path></svg>
+            <svg aria-hidden="true" class="svg-icon iconSearch ps-absolute" width="18" height="18" viewBox="0 0 18 18"><path d="M12.86 11.32L18 16.5 16.5 18l-5.18-5.14v-.35a7 7 0 1 1 1.19-1.19h.35zM7 12A5 5 0 1 0 7 2a5 5 0 0 0 0 10z"></path></svg>
         </div>
     </header>
 
-    <ul role="navigation" class="grid--cell fl1 ff-column-nowrap nav pb24 stacks-nav-primary overflowy-auto bt btc-black-2 bb bbc-black-2">
+    <ul role="navigation" class="grid--cell fl1 ff-column-nowrap nav pb16 stacks-nav-primary overflowy-auto bt btc-black-2 bb bbc-black-2">
         {% for entry in site.data.nav %}
             {% assign sublinks = entry.sublinks %}
-            {% assign menu-open = "is-open " %}
             {% assign submenu-active = "" %}
 
             {% if sublinks %}
@@ -44,6 +43,8 @@
     </ul>
 
     <div class="grid--cell ff-sans fs-caption p24 -repo-meta">
-        <a href="https://gh.stackoverflow.com/Design/Stacks">View on GitHub</a>
+        <a href="https://gh.stackoverflow.com/Design/Stacks">
+            <svg aria-hidden="true" class="svg-icon iconGitHub" width="18" height="18" viewBox="0 0 18 18"><path d="M9 1a8 8 0 0 0-2.53 15.59c.4.07.55-.17.55-.38l-.01-1.49c-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.42 7.42 0 0 1 4 0c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48l-.01 2.2c0 .21.15.46.55.38A8.01 8.01 0 0 0 9 1z"></path></svg>
+            Contribute on GitHub</a>
     </div>
 </nav>
