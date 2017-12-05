@@ -3,11 +3,19 @@
 </a>
 
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script>
-<script type="text/javascript">
-    docsearch({
-        apiKey: "09d35fa9def5c025244d5b217778a652",
-        indexName: "stackoverflow_design",
-        inputSelector: "#searchbox",
-        debug: true
+<script type="text/javascript">    
+    var search = docsearch({
+        apiKey: '09d35fa9def5c025244d5b217778a652',
+        indexName: 'stackoverflow_design',
+        inputSelector: '#searchbox',
+        debug: false,
+    });
+
+    search.autocomplete.on('autocomplete:opened', function(e) {
+        $(".stacks-nav-secondary").addClass("z-hide");
+    });
+    
+    search.autocomplete.on('autocomplete:closed', function(e) {
+        $(".stacks-nav-secondary").removeClass("z-hide");
     });
 </script>
