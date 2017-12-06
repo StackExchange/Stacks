@@ -1,5 +1,5 @@
 ---
-layout: with-secondary-nav
+layout: page
 title: Sidebar Widgets
 description: Sidebar widgets are flexible containers that provide a lot of patterns that are helpful in a variety of sidebar uses.
 ---

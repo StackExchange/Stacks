@@ -75,7 +75,7 @@
     return arr[arr.length - 1];
   }
 
-  $.fn.buildMenu = function(otpions) {
+  $.fn.buildMenu = function(options) {
     if(!this.length) return console.error("No element provided to buildMenu!");
 
     return this.each(function() {
