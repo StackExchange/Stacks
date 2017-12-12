@@ -281,16 +281,6 @@
 
 //  $$  CHECKBOXES & RADIOS
 //  ----------------------------------------------------------------------------
-//  --  Variables
-@input-ch-rd-focus:           0 0 2em/13 1px fade(@input-ch-rd-bgc-blue, 50%);
-@input-ch-rd-hover:           0 0 2em/13 1px fade(@input-ch-rd-bgc-blue, 70%);
-@input-ch-rd-bgc-blue:        @blue-500;
-@input-ch-rd-gray:            inset 0 0 0 1px @black-300;
-@input-ch-rd-blue:            inset 0 0 0 1px @input-ch-rd-bgc-blue;
-@input-ch-rd-blue_light:      inset 0 0 0 1px fade(@input-ch-rd-bgc-blue,50%);
-@input-ch-rd-white:           inset 0 0 0 3px @white;
-@input-ch-rd-clear:           0 0 0 0 fade(@white,0%);
-
 .checkbox,
 .radio {
     //  [1]   Check to see if we can use custom styles, if so reset the defaults
@@ -328,18 +318,18 @@
         background-size: contain;
 
         &:checked {
-            border-color: @input-ch-rd-bgc-blue;
-            background-color: @input-ch-rd-bgc-blue;
+            border-color: @blue-500;
+            background-color: @blue-500;
             background-image: url("data:image/svg+xml,%3C%3Fxml%20version%3D%221.0%22%20encoding%3D%22UTF-8%22%3F%3E%0A%3Csvg%20width%3D%2212%22%20height%3D%2212%22%20version%3D%221.1%22%20viewBox%3D%220%200%203.1749997%203.175%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cg%20transform%3D%22translate(-61.232%20-118.44)%22%3E%3Cpath%20d%3D%22m63.682%20119.01-1.1328%201.5957-0.63477-0.45117-0.21094%200.29687%200.93164%200.66211%201.3438-1.8906z%22%20fill%3D%22%23fff%22%20fill-rule%3D%22evenodd%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E");
             
             &:focus {
-                border-color: @input-ch-rd-bgc-blue;
+                border-color: @blue-500;
             }
         }
 
         &:focus {
             border-color: @blue-300;
-            box-shadow: 0 0 0 @su4 fade(@input-ch-rd-bgc-blue, 15%);
+            box-shadow: 0 0 0 @su4 fade(@blue-500, 15%);
         }
     }
 }
@@ -349,35 +339,15 @@
 .radio {
     @supports (appearance: none) or (-webkit-appearance: none) {
         border-radius: @br-circle;
-        box-shadow: @input-ch-rd-clear, @input-ch-rd-gray, @input-ch-rd-white;
 
         &:checked {
-            box-shadow: @input-ch-rd-clear, @input-ch-rd-blue, @input-ch-rd-white;
-            background-color: @input-ch-rd-bgc-blue;
-
-            &:hover {
-                box-shadow: @input-ch-rd-hover, @input-ch-rd-blue, @input-ch-rd-white;
-                background-color: darken(@input-ch-rd-bgc-blue,5%);
-            }
-        }
-
-        &:hover {
-            box-shadow: @input-ch-rd-hover, @input-ch-rd-blue_light, @input-ch-rd-white;
-            background-color: fade(@input-ch-rd-bgc-blue,10%);
-        }
-
-        &:active {
-            box-shadow: @input-ch-rd-clear, @input-ch-rd-blue, @input-ch-rd-white;
-            background-color: fade(@input-ch-rd-bgc-blue,50%);
+            border-color: @blue-500;
+            border-width: 0.30769231em;
+            background-color: @white;
         }
 
         &:focus {
-            box-shadow: @input-ch-rd-focus, @input-ch-rd-gray, @input-ch-rd-white;
-
-            &:checked,
-            &:active {
-                box-shadow: @input-ch-rd-focus, @input-ch-rd-blue, @input-ch-rd-white;
-            }
+            box-shadow: 0 0 0 @su4 fade(@blue-500, 15%);
         }
     }
 }
