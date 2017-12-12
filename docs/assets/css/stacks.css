@@ -1392,13 +1392,13 @@ template {
 .input {
   padding: 8px;
   width: 100%;
+  margin: 0;
   border: 1px solid #c8ccd0;
-  border-radius: 0;
+  border-radius: 3px;
   background-color: #FFF;
   box-shadow: inset 0 0 1px rgba(145, 153, 161, 0.2), 0 0 0 rgba(255, 255, 255, 0);
   font-size: 15px;
   font-size: 1.1538461538461537rem;
-  transition: all 600ms cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 .input::-webkit-input-placeholder {
   color: #c8ccd0;
@@ -1420,6 +1420,7 @@ template {
   position: absolute;
   top: 25%;
   right: 8px;
+  pointer-events: none;
 }
 .input-icon .svg-icon {
   vertical-align: unset;
@@ -1429,16 +1430,11 @@ template {
   font-size: 12px;
   font-size: 0.9230769230769231rem;
 }
-.input:hover,
-.select > select:hover {
-  border-color: rgba(0, 149, 255, 0.5);
-  box-shadow: inset 0 0 2px #c8ccd0, 0 0 2px rgba(0, 149, 255, 0.7);
-}
 .input:focus,
 .select > select:focus {
   outline: 0;
-  border-color: #0095ff;
-  box-shadow: inset 0 0 4px #eff0f1, 0 0 8px rgba(0, 149, 255, 0.5);
+  border-color: #66bfff;
+  box-shadow: inset 0 0 4px #eff0f1, 0 0 0 4px rgba(0, 149, 255, 0.15);
 }
 .input[disabled],
 .select > select[disabled],
@@ -1448,13 +1444,6 @@ template {
   box-shadow: inset 0 0 2px rgba(145, 153, 161, 0.1);
   background-color: #eff0f1;
   color: #6a737c;
-}
-.input[disabled]:hover,
-.select > select[disabled]:hover,
-.input[read-only]:hover,
-.select > select[read-only]:hover {
-  border-color: #eff0f1;
-  box-shadow: none;
 }
 .input[disabled],
 .select > select[disabled] {
@@ -1486,34 +1475,22 @@ template {
 }
 .grid.has-warning .input,
 .grid.has-warning .select > select {
-  border-color: #ed9b0d;
-}
-.grid.has-warning .input:hover,
-.grid.has-warning .select > select:hover {
-  border-color: #f4af39;
-  box-shadow: inset 0 0 1px #d6d9dc, 0 0 2px #ffeea9;
+  border-color: #dcb000;
 }
 .grid.has-warning .input:focus,
 .grid.has-warning .select > select:focus {
-  border-color: #f99e01;
-  box-shadow: inset 0 0 4px #eff0f1, 0 0 4px #ffeea9;
+  box-shadow: inset 0 0 4px #eff0f1, 0 0 0 4px rgba(255, 207, 16, 0.4);
 }
 .grid.has-warning .input-message {
-  color: #c77e00;
+  color: #c19f15;
 }
 .grid.has-error .input,
 .grid.has-error .select > select {
   border-color: #dc3d4c;
 }
-.grid.has-error .input:hover,
-.grid.has-error .select > select:hover {
-  border-color: #dc3d4c;
-  box-shadow: inset 0 0 1px #d6d9dc, 0 0 2px #eec4c8;
-}
 .grid.has-error .input:focus,
 .grid.has-error .select > select:focus {
-  border-color: #9c1724;
-  box-shadow: inset 0 0 4px #eff0f1, 0 0 4px #e59aa1;
+  box-shadow: inset 0 0 4px #eff0f1, 0 0 0 4px rgba(229, 154, 161, 0.4);
 }
 .grid.has-error .input-message {
   color: #C91D2E;
@@ -1522,18 +1499,12 @@ template {
 .grid.is-success .select select {
   border-color: #5fba7d;
 }
-.grid.is-success .input:hover,
-.grid.is-success .select select:hover {
-  border-color: #367d4d;
-  box-shadow: inset 0 0 1px #d6d9dc, 0 0 2px #cae8d4;
-}
 .grid.is-success .input:focus,
 .grid.is-success .select select:focus {
-  border-color: #367d4d;
-  box-shadow: inset 0 0 4px #eff0f1, 0 0 4px #a6d9b7;
+  box-shadow: inset 0 0 4px #eff0f1, 0 0 0 4px rgba(166, 217, 183, 0.4);
 }
 .grid.is-success .input-message {
-  color: #3d8f58;
+  color: #429a5f;
 }
 .grid.is-disabled {
   opacity: 0.7 !important;
@@ -1578,10 +1549,9 @@ template {
   appearance: none;
   padding: 8px 12px;
   width: 100%;
-  border-radius: 5px;
+  border-radius: 3px;
   border: 1px solid #bbc0c4;
   background-color: #FFF;
-  transition: border-color 300ms cubic-bezier(0.165, 0.84, 0.44, 1), box-shadow 300ms cubic-bezier(0.165, 0.84, 0.44, 1), background-color 300ms cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 .input._file {
   display: block;

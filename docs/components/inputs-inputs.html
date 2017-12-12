@@ -5,22 +5,28 @@
     <h3 class="grid jc-spacebetween ai-center stacks-title _subtitle">Basic Input</h3>
     <div class="stacks-code-preview">
 {% highlight html linenos %}
-<label for="example-item" class="grid--cell label">Label</label>
-<input class="grid--cell input" id="example-item" type="text" placeholder="e.g. Why are there 5 bars in the Stack Overflow glyph?" />
+<div class="grid">
+    <label class="grid--cell label" for="example-item">Label</label>
+    <input class="grid--cell input" id="example-item" type="text" placeholder="..." />
+</div>
+
+<div class="grid ps-relative">
+    <label class="grid--cell label" for="example-item">Label</label>
+    <input class="grid--cell input" id="example-item" type="text" placeholder="..." disabled />
+    @Svg.Lock.With("input-icon fc-black-300")
+</div>
 {% endhighlight %}
         <div class="-preview">
             <form class="grid ff-column-nowrap gs16">
                 <div class="grid ff-column-nowrap gs4">
-                    <label for="example-item" class="grid--cell label">Question title</label>
-                    <input class="grid--cell input" id="example-item" type="text" placeholder="e.g. Why are there 5 bars in the Stack Overflow glyph?" />
+                    <label class="grid--cell label" for="example-item1">Question title</label>
+                    <input class="grid--cell input" id="example-item1" type="text" placeholder="What’s your programming question? Be specific." />
                 </div>
                 <div class="grid ff-column-nowrap gs4">
-                    <label for="example-item" class="grid--cell label">Tags</label>
+                    <label class="grid--cell label" for="example-item2">Question title</label>
                     <div class="grid ps-relative">
-                        <input class="grid--cell input" id="example-item" type="text" placeholder="e.g. css, c#, less" disabled />
-                        <div class="input-icon fc-black-300">
-                            <svg role="icon" class="svg-icon iconLock" width="18" height="18" viewBox="0 0 18 18"><path d="M16 9a2 2 0 0 0-2-2V6A5 5 0 0 0 4 6v1a2 2 0 0 0-2 2v6c0 1.1.9 2 2 2h10a2 2 0 0 0 2-2V9zm-7 5a2 2 0 0 1-2-2c0-1.1.9-2 2-2a2 2 0 0 1 2 2 2 2 0 0 1-2 2zm3.1-7H5.9V6a3.1 3.1 0 0 1 6.2 0v1z"/></svg>
-                        </div>
+                        <input class="grid--cell input" id="example-item2" type="text" placeholder="What’s your programming question? Be specific." disabled />
+                        <svg aria-hidden="true" class="svg-icon iconLock input-icon fc-black-300" width="18" height="18" viewBox="0 0 18 18"><path d="M16 9a2 2 0 0 0-2-2V6A5 5 0 0 0 4 6v1a2 2 0 0 0-2 2v6c0 1.1.9 2 2 2h10a2 2 0 0 0 2-2V9zm-7 5a2 2 0 0 1-2-2c0-1.1.9-2 2-2a2 2 0 0 1 2 2 2 2 0 0 1-2 2zm3.1-7H5.9V6a3.1 3.1 0 0 1 6.2 0v1z"></path></svg>
                     </div>
                 </div>
             </form>
@@ -28,18 +34,16 @@
     </div>
 
     <h2 class="grid jc-spacebetween ai-center stacks-title _subtitle">Input States</h2>
-    <p class="stacks-p _section">In cases when you would like validation states attached to an input, you will need to wrap the input with <code class="stacks-code">.-row</code> div so the icon can be placed correctly.</p>
+    <p class="stacks-p _section">In cases when you would like validation states attached to an input, you will need to wrap the input with <code class="stacks-code">.grid</code> div so the icon can be placed correctly.</p>
 
     <h3 class="grid jc-spacebetween ai-center stacks-title _subtitle-sm">Warning</h3>
     <div class="stacks-code-preview">
 {% highlight html linenos %}
 <div class="grid ff-column-nowrap gs4 has-warning">
-    <label for="example-warning" class="grid--cell label">Username</label>
-    <div class="grid ps-relative">
+    <label class="grid--cell label" for="example-warning">Username</label>
+    <div class="grid--cell grid ps-relative">
         <input class="grid--cell input" id="example-warning" type="text" name="" />
-        <span class="input-icon fc-yellow-600">
-            <svg role="icon" class="svg-icon Warning" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18"><path d="M.5 16h17L9 1 .5 16zm9.5-2H8v-2h2v2zm0-3H8V7h2v4z"/></svg>
-        </span>
+        @Svg.Alert("input-icon fc-yellow-600")
     </div>
     <div class="grid--cell">
         <p class="input-message">Caps lock is on!</p>
@@ -49,12 +53,10 @@
         <div class="-preview">
             <form>
                 <div class="grid ff-column-nowrap gs4 has-warning">
-                    <label for="example-warning" class="grid--cell label">Username</label>
-                    <div class="grid ps-relative">
+                    <label class="grid--cell label" for="example-warning">Username</label>
+                    <div class="grid--cell grid ps-relative">
                         <input class="grid--cell input" id="example-warning" type="text" name="" />
-                        <span class="input-icon fc-yellow-600">
-                            <svg role="icon" class="svg-icon Warning" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18"><path d="M.5 16h17L9 1 .5 16zm9.5-2H8v-2h2v2zm0-3H8V7h2v4z"/></svg>
-                        </span>
+                        <svg aria-hidden="true" class="svg-icon iconAlert input-icon fc-yellow-600" width="18" height="18" viewBox="0 0 18 18"><path d="M7.95 2.71c.58-.94 1.52-.94 2.1 0l7.69 12.58c.58.94.15 1.71-.96 1.71H1.22C.1 17-.32 16.23.26 15.29L7.96 2.7zM8 6v5h2V6H8zm0 7v2h2v-2H8z"></path></svg>
                     </div>
                     <div class="grid--cell">
                         <p class="input-message">Caps lock is on!</p>
@@ -68,12 +70,10 @@
     <div class="stacks-code-preview">
 {% highlight html linenos %}
 <div class="grid ff-column-nowrap gs4 has-error">
-    <label for="example-error" class="grid--cell label">Username</label>
+    <label class="grid--cell label" for="example-error">Username</label>
     <div class="grid ps-relative">
-        <input class="grid--cell input" id="example-error" type="text" name="" />
-        <span class="input-icon fc-red-400">
-            <svg role="icon" class="svg-icon iconError" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18"><path d="M9 1.03c-4.42 0-8 3.58-8 8s3.58 8 8 8 8-3.58 8-8-3.58-8-8-8zM10 13H8v-2h2v2zm0-3H8V5h2v5z"/></svg>
-        </span>
+        <input class="grid--cell input" id="example-error" type="text" name="..." />
+        @Svg.AlertCircle.With("input-icon fc-red-400")
     </div>
     <div class="grid--cell">
         <p class="input-message">That username is already taken.</p>
@@ -83,12 +83,10 @@
         <div class="-preview">
             <form>
                 <div class="grid ff-column-nowrap gs4 has-error">
-                    <label for="example-error" class="grid--cell label">Username</label>
-                    <div class="grid ps-relative">
+                    <label class="grid--cell label" for="example-error">Username</label>
+                    <div class="grid--cell grid ps-relative">
                         <input class="grid--cell input" id="example-error" type="text" name="" />
-                        <span class="input-icon fc-red-400">
-                            <svg role="icon" class="svg-icon iconError" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18"><path d="M9 1.03c-4.42 0-8 3.58-8 8s3.58 8 8 8 8-3.58 8-8-3.58-8-8-8zM10 13H8v-2h2v2zm0-3H8V5h2v5z"/></svg>
-                        </span>
+                        <svg aria-hidden="true" class="svg-icon iconAlertCircle input-icon fc-red-400" width="18" height="18" viewBox="0 0 18 18"><path d="M9 17A8 8 0 1 1 9 1a8 8 0 0 1 0 16zM8 4v6h2V4H8zm0 8v2h2v-2H8z"></path></svg>
                     </div>
                     <div class="grid--cell">
                         <p class="input-message">That username is already taken.</p>
@@ -102,12 +100,10 @@
     <div class="stacks-code-preview">
 {% highlight html linenos %}
 <div class="grid ff-column-nowrap gs4 is-success">
-    <label for="example-success" class="grid--cell label">Username</label>
+    <label class="grid--cell label" for="example-success">Username</label>
     <div class="grid ps-relative">
-        <input class="grid--cell input" id="example-success" type="text" name="" />
-        <span class="input-icon fc-green-400">
-            <svg role="icon" class="svg-icon iconCheckmark" width="18" height="18" viewBox="0 0 18 18"><path d="M16 4.41L14.59 3 6 11.59 2.41 8 1 9.41l5 5z"/></svg>
-        </span>
+        <input class="grid--cell input" id="example-success" type="text" name="" value="" />
+        @Svg.Checkmark.With("input-icon fc-green-400")
     </div>
     <div class="grid--cell">
         <p class="input-message">Congrats! That name is available.</p>
@@ -117,12 +113,10 @@
         <div class="-preview">
             <form>
                 <div class="grid ff-column-nowrap gs4 is-success">
-                    <label for="example-success" class="grid--cell label">Username</label>
-                    <div class="grid ps-relative">
+                    <label class="grid--cell label" for="example-success">Username</label>
+                    <div class="grid--cell grid ps-relative">
                         <input class="grid--cell input" id="example-success" type="text" name="" />
-                        <span class="input-icon fc-green-400">
-                            <svg role="icon" class="svg-icon iconCheckmark" width="18" height="18" viewBox="0 0 18 18"><path d="M16 4.41L14.59 3 6 11.59 2.41 8 1 9.41l5 5z"/></svg>
-                        </span>
+                        <svg aria-hidden="true" class="svg-icon iconCheckmark input-icon fc-green-400" width="18" height="18" viewBox="0 0 18 18"><path d="M16 4.41L14.59 3 6 11.59 2.41 8 1 9.41l5 5z"></path></svg>
                     </div>
                     <div class="grid--cell">
                         <p class="input-message">Congrats! That name is available.</p>
@@ -136,34 +130,34 @@
     <p class="stacks-p _section">These sizes apply not only to <code class="stacks-code">.input</code>, but also to <code class="stacks-code">.label</code>, <code class="stacks-code">.select</code>, and <code class="stacks-code">.input-description</code>.</p>
     <div class="stacks-code-preview">
 {% highlight html linenos %}
-<label for="example-item" class="grid--cell label fs-caption">Label</label>
+<label class="grid--cell label fs-caption" for="example-item">Label</label>
 <input class="grid--cell input fs-caption" id="example-item" type="text" placeholder="e.g. Why are there 5 bars in the Stack Overflow glyph?" />
-...
-<label for="example-item" class="grid--cell label fs-body1">Label</label>
+
+<label class="grid--cell label fs-body1" for="example-item">Label</label>
 <input class="grid--cell input fs-body1" id="example-item" type="text" placeholder="e.g. Why are there 5 bars in the Stack Overflow glyph?" />
-...
-<label for="example-item" class="grid--cell label">Label</label>
+
+<label class="grid--cell label" for="example-item">Label</label>
 <input class="grid--cell input" id="example-item" type="text" placeholder="e.g. Why are there 5 bars in the Stack Overflow glyph?" />
-...
-<label for="example-item" class="grid--cell label fs-subheading">Label</label>
+
+<label class="grid--cell label fs-subheading" for="example-item">Label</label>
 <input class="grid--cell input fs-subheading" id="example-item" type="text" placeholder="e.g. Why are there 5 bars in the Stack Overflow glyph?" />
 {% endhighlight %}
         <div class="-preview">
             <form class="grid ff-column-nowrap gs16">
                 <div class="grid ff-column-nowrap gs4">
-                    <label for="example-item" class="grid--cell label fs-caption">Extra Small Label (12px)</label>
-                    <input class="grid--cell input fs-caption" id="example-item" type="text" placeholder="e.g. Why are there 5 bars in the Stack Overflow glyph?" />
+                    <label class="grid--cell label fs-caption" for="example-item4">Extra Small Label (12px)</label>
+                    <input class="grid--cell input fs-caption" id="example-item4" type="text" placeholder="e.g. Why are there 5 bars in the Stack Overflow glyph?" />
                 </div>
                 <div class="grid ff-column-nowrap gs4">
-                    <label for="example-item" class="grid--cell label fs-body1">Small Label (13px)</label>
-                    <input class="grid--cell input fs-body1" id="example-item" type="text" placeholder="e.g. Why are there 5 bars in the Stack Overflow glyph?" />
+                    <label class="grid--cell label fs-body1" for="example-item5">Small Label (13px)</label>
+                    <input class="grid--cell input fs-body1" id="example-item5" type="text" placeholder="e.g. Why are there 5 bars in the Stack Overflow glyph?" />
                 </div>
                 <div class="grid ff-column-nowrap gs4">
-                    <label for="example-item" class="grid--cell label">Default Label (15px)</label>
-                    <input class="grid--cell input" id="example-item" type="text" placeholder="e.g. Why are there 5 bars in the Stack Overflow glyph?" />
+                    <label class="grid--cell label" for="example-item6">Default Label (15px)</label>
+                    <input class="grid--cell input" id="example-item6" type="text" placeholder="e.g. Why are there 5 bars in the Stack Overflow glyph?" />
                 </div>
                 <div class="grid ff-column-nowrap gs4">
-                    <label for="example-item" class="grid--cell label fs-subheading">Large Label (19px)</label>
+                    <label class="grid--cell label fs-subheading" for="example-item">Large Label (19px)</label>
                     <input class="grid--cell input fs-subheading" id="example-item" type="text" placeholder="e.g. Why are there 5 bars in the Stack Overflow glyph?" />
                 </div>
             </form>

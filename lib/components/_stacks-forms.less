@@ -38,9 +38,8 @@
     border: 1px solid @black-150;
     border-radius: @br-sm;
     background-color: @white;
-    box-shadow: inset 0 0 1px fade(@black-350,20%), 0 0 0 fade(@white,0%);
+    box-shadow: inset 0 0 1px fade(@black-350, 20%), 0 0 0 fade(@white, 0%);
     .mx-fs(@fs-body2);
-    transition: all 600ms @te-smooth;
 
     //  --  PLACEHOLDER
     //  ------------------------------------------------------------------------
@@ -66,6 +65,7 @@
     position: absolute;
     top: 25%;
     right: @su8;
+    pointer-events: none;
 
     .svg-icon {
         vertical-align: unset;
@@ -86,31 +86,20 @@
 //  ----------------------------------------------------------------------------
 .input,
 .select > select {
-    //  Hover
-    &:hover {
-        border-color: fade(@blue-500,50%);
-        box-shadow: inset 0 0 2px @black-150, 0 0 2px fade(@blue-500,70%);
-    }
-
     //  Focus
     &:focus {
         outline: 0;
-        border-color: @blue-500;
-        box-shadow: inset 0 0 4px @black-050, 0 0 8px fade(@blue-500,50%);
+        border-color: @blue-300;
+        box-shadow: inset 0 0 4px @black-050, 0 0 0 @su4 fade(@blue-500, 15%);
     }
 
     //  Disabled, Read-only
     &[disabled],
     &[read-only] {
         border-color: @black-075;
-        box-shadow: inset 0 0 2px fade(@black-350,10%);
+        box-shadow: inset 0 0 2px fade(@black-350, 10%);
         background-color: @bgc-lightest;
         color: @fc-light;
-
-        &:hover {
-            border-color: @black-050;
-            box-shadow: none;
-        }
     }
 
     //  Disabled
@@ -162,20 +151,15 @@
     &.has-warning {
         .input,
         .select > select {
-            border-color: mix(@yellow-500,@orange-600);
+            border-color: @yellow-600;
 
-            &:hover {
-                border-color: lighten(mix(@yellow-500,@orange-600),10%);
-                box-shadow: inset 0 0 1px @black-100, 0 0 2px @yellow-200;
-            }
             &:focus {
-                border-color: saturate(mix(@yellow-500,@orange-600),10%);
-                box-shadow: inset 0 0 4px @black-050, 0 0 4px @yellow-200;
+                box-shadow: inset 0 0 4px @black-050, 0 0 0 @su4 fade(@yellow-500, 40%);
             }
         }
 
         .input-message {
-            color: darken(saturate(mix(@yellow-500,@orange-600),120%),10%);
+            color: darken(desaturate(@yellow-600, 20%), 1%);
         }
     }
 
@@ -184,14 +168,9 @@
         .input,
         .select > select {
             border-color: @red-400;
-
-            &:hover {
-                border-color: @red-400;
-                box-shadow: inset 0 0 1px @black-100, 0 0 2px @red-100;
-            }
+            
             &:focus {
-                border-color: @red-600;
-                box-shadow: inset 0 0 4px @black-050, 0 0 4px @red-200;
+                box-shadow: inset 0 0 4px @black-050, 0 0 0 @su4 fade(@red-200, 40%);
             }
         }
 
@@ -205,19 +184,14 @@
         .input,
         .select select {
             border-color: @green-400;
-
-            &:hover {
-                border-color: @green-600;
-                box-shadow: inset 0 0 1px @black-100, 0 0 2px @green-100;
-            }
+            
             &:focus {
-                border-color: @green-600;
-                box-shadow: inset 0 0 4px @black-050, 0 0 4px @green-200;
+                box-shadow: inset 0 0 4px @black-050, 0 0 0 @su4 fade(@green-200, 40%);
             }
         }
 
         .input-message {
-            color: darken(@green-500,5%);
+            color: darken(@green-500, 2%);
         }
     }
 
@@ -286,7 +260,6 @@
         border-radius: @br-sm;
         border: 1px solid @black-200;
         background-color: @white;
-        transition: border-color 300ms @te-smooth, box-shadow 300ms @te-smooth, background-color 300ms @te-smooth;
     }
 }
 
