@@ -428,14 +428,13 @@
         cursor: pointer;
         text-align: center;
         
-        // &:hover,
-        // &:active {
-        //     color: @fc-dark;
-        //     border-color: @black-150;
-        //     background-color: @powder-025;
-        //     z-index: @zi-pop;
-        // }
-        
+        -webkit-touch-callout: none; // iOS Safari
+          -webkit-user-select: none; // Safari
+           -khtml-user-select: none; // Konqueror HTML
+             -moz-user-select: none; // Firefox
+              -ms-user-select: none; // Internet Explorer/Edge
+                  user-select: none; // Non-prefixed version
+
         &:hover {
             background-color: fade(saturate(@black-200,5%),5%);
         }
@@ -453,11 +452,9 @@
     //  --  Primary
     //      When the toggle is the only one within a view and we want it to be
     //      visually dominating for the user.
-    &._primary {
-        .label:hover,
-        .label:active {
+    &.option-toggle__primary {
+        .label:hover {
             color: @blue-700;
-            box-shadow: 0 0 8px fade(@blue-500,25%);
             background-color: @blue-050;
         }
 
@@ -466,59 +463,17 @@
             box-shadow: 0 0 8px fade(@blue-500,10%);
             background-color: @blue-500;
             color: @white;
-
-            &:hover,
-            &:active {
-                border-color: @blue-700;
-                box-shadow: 0 0 8px fade(@blue-500,25%);
-                background-color: @blue-600;
-                color: @blue-050;
-            }
         }
     }
 
     //  --  Switch
-    //      Used when the toggle represents an "on/off" choice for the user. A
-    //      "off" state must be present to use this modifier.
-    &._switch {
-        .label:hover,
-        .label:active {
-            border: 1px solid @black-800;
-            box-shadow: 0 0 8px fade(@black-600,25%);
-            background-color: @bgc-lightest;
-        }
-
+    //      Used when the toggle represents an "on/off" choice for the user.
+    &.option-toggle__switch {
         .radio:checked + .label {
-            &:not(._off) {
+            &:not(.label__off) {
                 border-color: @green-400;
-                box-shadow: 0 0 8px fade(@green-400,10%);
                 background-color: @green-400;
                 color: @white;
-
-                &:hover,
-                &:active {
-                    border-color: @green-600;
-                    box-shadow: 0 0 8px fade(@green-400,25%);
-                    background-color: @green-500;
-                    color: @green-050;
-                }
-            }
-
-            //  When the off state is selected, we don't it green. We want it to be
-            //  gray instead.
-            &._off {
-                border-color: @black-300;
-                box-shadow: 0 0 8px fade(@black-800,10%);
-                background-color: @bgc-light;
-                color: @black-800;
-
-                &:hover,
-                &:active {
-                    border-color: @black-400;
-                    box-shadow: 0 0 8px fade(@black-800,25%);
-                    background-color: @bgc-dark;
-                    color: darken(@black-800,5%);
-                }
             }
         }
     }
