@@ -31,7 +31,7 @@
 //  ============================================================================
 //  $$  BASE STYLE
 //  ----------------------------------------------------------------------------
-.input {
+.s-input {
     padding: 0.8em 1em;
     width: 100%;
     margin: 0;
@@ -63,7 +63,7 @@
     }
 }
 
-.input-icon {
+.s-input-icon {
     position: absolute;
     top: 25%;
     right: @su8;
@@ -77,7 +77,7 @@
 //  $$  MESSAGE
 //      Set some baseline styles
 //  ----------------------------------------------------------------------------
-.input-message {
+.s-input-message {
     margin: @su4 0 0;
     .mx-fs(@fs-caption);
 }
@@ -86,8 +86,8 @@
 //  $$  STATES
 //      The many states for inputs and select menus.
 //  ----------------------------------------------------------------------------
-.input,
-.select > select {
+.s-input,
+.s-select > select {
     //  Focus
     &:focus {
         outline: 0;
@@ -110,49 +110,14 @@
     }
 }
 
-//  $$  CONNECTED INPUTS
-//      To visually connect inputs together
-//  ----------------------------------------------------------------------------
-.input-connect {
-    padding: @su8 @su12;
-    line-height: @lh-m;
-
-    //  When we want the gray background
-    &._fill {
-        border: 1px solid @black-150;
-        border-left-width: 0;
-        border-right-width: 0;
-        background-color: @bgc-lightest;
-        color: @fc-medium;
-
-        &.order-first {
-            border-left-width: 1px;
-        }
-        &.order-last {
-            border-right-width: 1px;
-        }
-    }
-
-    //  If we want to connect a button that's last, don't round all the corners
-    &.button.order-last {
-        border-top-left-radius: 0;
-        border-bottom-left-radius: 0;
-    }
-
-    //  Make labels white-space
-    .label {
-        white-space: nowrap;
-    }
-}
-
 //  --  FORM VALIDATION STATES
 //      Validation states will need applied at the wrapping container level.
 //  ----------------------------------------------------------------------------
 .grid {
     //  --  WARNING
     &.has-warning {
-        .input,
-        .select > select {
+        .s-input,
+        .s-select > select {
             border-color: @yellow-600;
 
             &:focus {
@@ -160,15 +125,15 @@
             }
         }
 
-        .input-message {
+        .s-input-message {
             color: darken(desaturate(@yellow-600, 20%), 1%);
         }
     }
 
     //  --  ERROR
     &.has-error {
-        .input,
-        .select > select {
+        .s-input,
+        .s-select > select {
             border-color: @red-400;
             
             &:focus {
@@ -176,15 +141,15 @@
             }
         }
 
-        .input-message {
+        .s-input-message {
             color: @red-500;
         }
     }
 
     //  --  SUCCESS
     &.is-success {
-        .input,
-        .select select {
+        .s-input,
+        .s-select select {
             border-color: @green-400;
             
             &:focus {
@@ -192,7 +157,7 @@
             }
         }
 
-        .input-message {
+        .s-input-message {
             color: darken(@green-500, 2%);
         }
     }
@@ -202,25 +167,16 @@
         .o70;
         cursor: not-allowed;
 
-        .select > select {
+        .s-select > select {
             &:before,
             &:after { .o30; }
         }
     }
 }
 
-
-//  $$  TEXTAREAS
-//  ----------------------------------------------------------------------------
-.input.textarea {
-    .py12;
-    height: auto;
-    resize: vertical;
-}
-
 //  $$  SELECT MENUS
 //  ----------------------------------------------------------------------------
-.select {
+.s-select {
     position: relative;
 
     //  --  MENU ARROWS
@@ -272,7 +228,7 @@
 
 //  $$  FILE UPLOAD
 //  ----------------------------------------------------------------------------
-.input._file {
+.s-input.s-input__file {
     display: block;
     margin: 0;
     padding: @su8 0;
@@ -281,8 +237,8 @@
 
 //  $$  CHECKBOXES & RADIOS
 //  ----------------------------------------------------------------------------
-.checkbox,
-.radio {
+.s-checkbox,
+.s-radio {
     //  [1]   Check to see if we can use custom styles, if so reset the defaults
     //  ------------------------------------------------------------------------
     @supports (appearance: none) or (-webkit-appearance: none) {
@@ -310,7 +266,7 @@
 
 //  --   Checkboxes
 //  ----------------------------------------------------------------------------
-.checkbox {
+.s-checkbox {
     @supports (appearance: none) or (-webkit-appearance: none) {
         border-radius: @br-sm;
         background-repeat: no-repeat;
@@ -336,7 +292,7 @@
 
 //  --   Radio Selects
 //  ----------------------------------------------------------------------------
-.radio {
+.s-radio {
     @supports (appearance: none) or (-webkit-appearance: none) {
         border-radius: @br-circle;
 
@@ -356,7 +312,7 @@
 //  ============================================================================
 //  $  LABELS
 //  ============================================================================
-.label {
+.s-label {
     .mx-fs(@fs-body2);
     font-weight: 700;
     cursor: pointer;
@@ -366,13 +322,13 @@
 //  ----------------------------------------------------------------------------
 //      Is this form item required or optional? Flag the status for users.
 //      Default styling is optional.
-.label--status {
+.s-label--status {
     font-size: 85%;
     font-style: italic;
     font-weight: 400;
     color: @fc-medium;
 
-    &.label--status__required {
+    &.s-label--status__required {
         color: @red-400;
     }
 }
@@ -380,7 +336,7 @@
 //  ============================================================================
 //  $  TEXT STYLES
 //  ============================================================================
-.input-description {
+.s-input-description {
     margin: 0 0 @su8;
     .mx-fs(@fs-caption);
     line-height: @lh-s;
@@ -390,32 +346,32 @@
 //  ============================================================================
 //  $ OPTION TOGGLE
 //  ----------------------------------------------------------------------------
-.option-toggle {
+.s-option-toggle {
     //  First hide the radio buttons
-    .radio {
+    .s-radio {
         position: absolute;
         left: -999em;
         .o0;
     }
 
     //  Next modifications to option cells
-    .option-toggle--option {
+    .s-option-toggle--option {
         &:not(:first-child) {
             margin-left: -1px;
         }
 
         //  Round the corners on the first and last elements
-        &:first-of-type .label {
+        &:first-of-type .s-label {
             .blr-sm;
         }
 
-        &:last-of-type .label {
+        &:last-of-type .s-label {
             .brr-sm;
         }
     }
 
     //  Style the base label
-    .label {
+    .s-label {
         padding: 0.8em 1em;
         width: 100%;
         margin: 0;
@@ -441,7 +397,7 @@
     }
 
     //  If the label is selected, style it accordingly.
-    .radio:checked + .label {
+    .s-radio:checked + .s-label {
         background-color: @black-100;
         color: @black-700;
         z-index: @zi-pop;
@@ -452,13 +408,13 @@
     //  --  Primary
     //      When the toggle is the only one within a view and we want it to be
     //      visually dominating for the user.
-    &.option-toggle__primary {
-        .label:hover {
+    &.s-option-toggle__primary {
+        .s-label:hover {
             color: @blue-700;
             background-color: @blue-050;
         }
 
-        .radio:checked + .label {
+        .s-radio:checked + .s-label {
             border-color: @blue-600;
             box-shadow: 0 0 8px fade(@blue-500,10%);
             background-color: @blue-500;
@@ -468,9 +424,9 @@
 
     //  --  Switch
     //      Used when the toggle represents an "on/off" choice for the user.
-    &.option-toggle__switch {
-        .radio:checked + .label {
-            &:not(.label__off) {
+    &.s-option-toggle__switch {
+        .s-radio:checked + .s-label {
+            &:not(.s-label__off) {
                 border-color: @green-400;
                 background-color: @green-400;
                 color: @white;
@@ -479,67 +435,31 @@
     }
 }
 
-//  ============================================================================
-//  $ Chosen plugin (JS plugin)
+//  $$  CONNECTED INPUTS
+//      To visually connect inputs together
 //  ----------------------------------------------------------------------------
-.container .chosen-container {
-    margin-top: 0;
+.s-input-connect {
+    padding: 0.8em 1em;
+    line-height: 1;
 
-    &.chosen-container-active {
-        border-width: 0;
-        .chosen-choices {
-            border-color: @blue-600;
-            box-shadow: inset 0 0 4px @black-050, 0 0 5px fade(@blue-500,50%);
+    //  When we want the gray background
+    &.s-input-connect__fill {
+        border: 1px solid @black-150;
+        border-left-width: 0;
+        border-right-width: 0;
+        background-color: @bgc-lightest;
+        color: @fc-medium;
+
+        &.order-first {
+            border-left-width: 1px;
+        }
+        &.order-last {
+            border-right-width: 1px;
         }
     }
 
-    .chosen-choices {
-        padding: 0 1px;
-        min-height: 38px;
-        background-image: none;
-        border-radius: @br-md;
-        border-color: @black-100;
-
-        &:hover {
-            border-color: fade(@blue-500,50%);
-            box-shadow: inset 0 0 2px darken(@black-050,10%), 0 0 2px fade(fade(@blue-500,50%),20%);
-        }
-    }
-
-    //  Restyle tags
-    .chosen-choices {
-        li.search-choice,
-        li.search-field {
-            display: inline-flex;
-            .ai-center;
-            margin: @su4 1px;
-            padding: @su2 (@su4 + 2);
-        }
-        li.search-choice {
-            float: none;
-            box-shadow: none;
-            background-image: none;
-
-            font-family: @ff-sans;
-            .mx-fs(@fs-caption);
-            color: @powder-600;
-            background-color: @powder-100;
-            border-color: transparent;
-            border-radius: @br-md;
-
-            &:first-child { margin-left: 3px; }
-
-            .search-choice-close {
-                position: relative;
-                top: 0;
-                right: -1px;
-                margin-left: @su4;
-                transition: none;
-            }
-        }
-    }
-     li.search-field > input[type="text"] {
-        padding: 0;
-        margin: 0;
+    //  No wrapping on labels
+    .s-label {
+        white-space: nowrap;
     }
 }
