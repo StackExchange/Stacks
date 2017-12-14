@@ -31,15 +31,17 @@
 //  ============================================================================
 //  $$  BASE STYLE
 //  ----------------------------------------------------------------------------
-.input {
-    padding: @su8;
+.s-input {
+    padding: 0.8em 1em;
     width: 100%;
+    margin: 0;
     border: 1px solid @black-150;
-    border-radius: 0;
+    border-radius: @br-sm;
     background-color: @white;
-    box-shadow: inset 0 0 1px fade(@black-350,20%), 0 0 0 fade(@white,0%);
-    .mx-fs(@fs-body2);
-    transition: all 600ms @te-smooth;
+    box-shadow: inset 0 0 1px fade(@black-350, 20%), 0 0 0 fade(@white, 0%);
+    font-family: @ff-sans;
+    font-size: inherit;
+    line-height: 1;
 
     //  --  PLACEHOLDER
     //  ------------------------------------------------------------------------
@@ -61,10 +63,12 @@
     }
 }
 
-.input-icon {
+.s-input-icon {
     position: absolute;
-    top: 25%;
+    top: 50%;
     right: @su8;
+    margin-top: -9px;
+    pointer-events: none;
 
     .svg-icon {
         vertical-align: unset;
@@ -74,7 +78,7 @@
 //  $$  MESSAGE
 //      Set some baseline styles
 //  ----------------------------------------------------------------------------
-.input-message {
+.s-input-message {
     margin: @su4 0 0;
     .mx-fs(@fs-caption);
 }
@@ -83,33 +87,22 @@
 //  $$  STATES
 //      The many states for inputs and select menus.
 //  ----------------------------------------------------------------------------
-.input,
-.select > select {
-    //  Hover
-    &:hover {
-        border-color: fade(@blue-500,50%);
-        box-shadow: inset 0 0 2px @black-150, 0 0 2px fade(@blue-500,70%);
-    }
-
+.s-input,
+.s-select > select {
     //  Focus
     &:focus {
         outline: 0;
-        border-color: @blue-500;
-        box-shadow: inset 0 0 4px @black-050, 0 0 8px fade(@blue-500,50%);
+        border-color: @blue-300;
+        box-shadow: inset 0 0 4px @black-050, 0 0 0 @su4 fade(@blue-500, 15%);
     }
 
     //  Disabled, Read-only
     &[disabled],
     &[read-only] {
         border-color: @black-075;
-        box-shadow: inset 0 0 2px fade(@black-350,10%);
+        box-shadow: inset 0 0 2px fade(@black-350, 10%);
         background-color: @bgc-lightest;
         color: @fc-light;
-
-        &:hover {
-            border-color: @black-050;
-            box-shadow: none;
-        }
     }
 
     //  Disabled
@@ -118,15 +111,338 @@
     }
 }
 
+//  --  FORM VALIDATION STATES
+//      Validation states will need applied at the wrapping container level.
+//  ----------------------------------------------------------------------------
+.grid {
+    //  --  WARNING
+    &.has-warning {
+        .s-input,
+        .s-select > select {
+            border-color: @yellow-600;
+
+            &:focus {
+                box-shadow: inset 0 0 4px @black-050, 0 0 0 @su4 fade(@yellow-500, 40%);
+            }
+        }
+
+        .s-input-message {
+            color: shade(@yellow-600, 10%);
+        }
+    }
+
+    //  --  ERROR
+    &.has-error {
+        .s-input,
+        .s-select > select {
+            border-color: @red-400;
+            
+            &:focus {
+                box-shadow: inset 0 0 4px @black-050, 0 0 0 @su4 fade(@red-200, 40%);
+            }
+        }
+
+        .s-input-message {
+            color: @red-500;
+        }
+    }
+
+    //  --  SUCCESS
+    &.is-success {
+        .s-input,
+        .s-select select {
+            border-color: @green-400;
+            
+            &:focus {
+                box-shadow: inset 0 0 4px @black-050, 0 0 0 @su4 fade(@green-200, 40%);
+            }
+        }
+
+        .s-input-message {
+            color: darken(@green-500, 2%);
+        }
+    }
+
+    //  --  DISABLED
+    &.is-disabled {
+        .o70;
+        cursor: not-allowed;
+
+        .s-select > select {
+            &:before,
+            &:after { .o30; }
+        }
+    }
+}
+
+//  $$  SELECT MENUS
+//  ----------------------------------------------------------------------------
+.s-select {
+    position: relative;
+
+    //  --  MENU ARROWS
+    //      To customize the visual appearance of the select menu arrows, we
+    //      need to recreate them on the wrapping .select div.
+    //  ------------------------------------------------------------------------
+    &:before,
+    &:after {
+        content: "";
+        position: absolute;
+        right: @su12;
+        pointer-events: none;
+
+        border-width: 4px;
+        border-style: solid;
+        border-color: @black-700 transparent;
+    }
+    &:before {
+        top: calc(~"50% - 5px");
+        border-top-width: 0;
+        border-bottom-width: 4px;
+    }
+    &:after {
+        top: calc(~"50% + 1px");
+        border-top-width: 4px;
+        border-bottom-width: 0;
+    }
+
+    //  --  MENU
+    //      Now we can style the visual appearance of the select menu;
+    //  ------------------------------------------------------------------------
+    > select {
+        //  [1] Reset the appearance
+        .appearance(none);
+
+        //  [2] Update the styles
+        padding: 0.8em 1em;
+        padding-right: @su32;
+        width: 100%;
+        height: 100%; // Fill the height of its parent
+        outline: 0;
+        border-radius: @br-sm;
+        border: 1px solid @black-200;
+        background-color: @white;
+        font-family: @ff-sans;
+        line-height: 1;
+    }
+}
+
+//  $$  CHECKBOXES & RADIOS
+//  ----------------------------------------------------------------------------
+.s-checkbox,
+.s-radio {
+    //  [1]   Check to see if we can use custom styles, if so reset the defaults
+    //  ------------------------------------------------------------------------
+    @supports (appearance: none) or (-webkit-appearance: none) {
+    .appearance(none);
+
+    &::-ms-check {
+        display: none;
+    }
+
+    //  [2]  Now re-style the checkboxes and radios
+    //  ------------------------------------------------------------------------
+    width: 1em;
+    height: 1em;
+    border: 1px solid @black-200;
+    background-color: @white;
+    outline: 0;
+    cursor: pointer;
+    vertical-align: middle;
+
+    &:focus {
+        outline: 0;
+    }
+  }
+}
+
+//  --   Checkboxes
+//  ----------------------------------------------------------------------------
+.s-checkbox {
+    @supports (appearance: none) or (-webkit-appearance: none) {
+        border-radius: @br-sm;
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-size: contain;
+
+        &:checked {
+            border-color: @blue-500;
+            background-color: @blue-500;
+            background-image: url("data:image/svg+xml,%3Csvg width='11' height='11' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M10 3.41L8.59 2 4 6.59 2.41 5 1 6.41l3 3z' fill='%23fff'/%3E%3C/svg%3E");
+
+            &:focus {
+                border-color: @blue-500;
+            }
+        }
+
+        &:focus {
+            border-color: @blue-300;
+            box-shadow: 0 0 0 @su4 fade(@blue-500, 15%);
+        }
+    }
+}
+
+//  --   Radio Selects
+//  ----------------------------------------------------------------------------
+.s-radio {
+    @supports (appearance: none) or (-webkit-appearance: none) {
+        border-radius: @br-circle;
+
+        &:checked {
+            border-color: @blue-500;
+            border-width: 0.30769231em;
+            background-color: @white;
+        }
+
+        &:focus {
+            box-shadow: 0 0 0 @su4 fade(@blue-500, 15%);
+        }
+    }
+}
+
+
+//  ============================================================================
+//  $  LABELS
+//  ============================================================================
+.s-label {
+    .mx-fs(@fs-body2);
+    font-weight: 700;
+    cursor: pointer;
+}
+
+//  $$  LABEL STATUS FLAG
+//  ----------------------------------------------------------------------------
+//      Is this form item required or optional? Flag the status for users.
+//      Default styling is optional.
+.s-label--status {
+    padding: @su2 @su8;
+    font-size: @fs-caption;
+    font-style: italic;
+    font-weight: 400;
+    vertical-align: text-bottom;
+    background-color: @black-050;
+    .bar-pill;
+
+    &.s-label--status__required {
+        color: @white;
+        font-style: normal;
+        background-color: @red-500;
+    }
+}
+
+//  ============================================================================
+//  $  TEXT STYLES
+//  ============================================================================
+.s-input-description {
+    margin: 0 0 @su8;
+    .mx-fs(@fs-caption);
+    line-height: @lh-s;
+    color: @fc-medium;
+}
+
+//  ============================================================================
+//  $ OPTION TOGGLE
+//  ----------------------------------------------------------------------------
+.s-option-toggle {
+    //  First hide the radio buttons
+    .s-radio {
+        position: absolute;
+        left: -999em;
+        .o0;
+    }
+
+    //  Next modifications to option cells
+    .s-option-toggle--option {
+        &:not(:first-child) {
+            margin-left: -1px;
+        }
+
+        //  Round the corners on the first and last elements
+        &:first-of-type .s-label {
+            .blr-sm;
+        }
+
+        &:last-of-type .s-label {
+            .brr-sm;
+        }
+    }
+
+    //  Style the base label
+    .s-label {
+        padding: 0.8em 1em;
+        width: 100%;
+        margin: 0;
+        border: 1px solid @black-150;
+        background-color: @white;
+        font-family: inherit;
+        font-size: inherit;
+        font-weight: 400;
+        line-height: 1;
+        cursor: pointer;
+        text-align: center;
+        
+        -webkit-touch-callout: none; // iOS Safari
+          -webkit-user-select: none; // Safari
+           -khtml-user-select: none; // Konqueror HTML
+             -moz-user-select: none; // Firefox
+              -ms-user-select: none; // Internet Explorer/Edge
+                  user-select: none; // Non-prefixed version
+
+        &:hover {
+            background-color: fade(saturate(@black-200,5%),5%);
+        }
+    }
+
+    //  If the label is selected, style it accordingly.
+    .s-radio:checked + .s-label {
+        background-color: @black-100;
+        box-shadow: inset 0 @su2 @su2+@su4 0 fade(darken(@black-025,30%),60%);
+        color: @black-700;
+        z-index: @zi-pop;
+    }
+
+    //  $$  MODIFICATIONS
+    //  --------------------------------------------------------------------------
+    //  --  Primary
+    //      When the toggle is the only one within a view and we want it to be
+    //      visually dominating for the user.
+    &.s-option-toggle__primary {
+        .s-label:hover {
+            color: @blue-700;
+            background-color: @blue-050;
+        }
+
+        .s-radio:checked + .s-label {
+            border-color: @blue-600;
+            box-shadow: inset 0 @su2 @su2+@su4 0 fade(darken(@blue-300,30%),90%);
+            background-color: @blue-500;
+            color: @white;
+        }
+    }
+
+    //  --  Switch
+    //      Used when the toggle represents an "on/off" choice for the user.
+    &.s-option-toggle__switch {
+        .s-radio:checked + .s-label {
+            &:not(.s-label__off) {
+                border-color: @green-400;
+                background-color: @green-400;
+                box-shadow: inset 0 @su2 @su2+@su4 0 fade(darken(@green-200,30%),90%);
+                color: @white;
+            }
+        }
+    }
+}
+
 //  $$  CONNECTED INPUTS
 //      To visually connect inputs together
 //  ----------------------------------------------------------------------------
-.input-connect {
-    padding: @su8 @su12;
-    line-height: @lh-m;
+.s-input-connect {
+    padding: 0.8em 1em;
+    line-height: 1;
 
     //  When we want the gray background
-    &._fill {
+    &.s-input-connect__fill {
         border: 1px solid @black-150;
         border-left-width: 0;
         border-right-width: 0;
@@ -141,536 +457,8 @@
         }
     }
 
-    //  If we want to connect a button that's last, don't round all the corners
-    &.button.order-last {
-        border-top-left-radius: 0;
-        border-bottom-left-radius: 0;
-    }
-
-    //  Make labels white-space
-    .label {
+    //  No wrapping on labels
+    .s-label {
         white-space: nowrap;
-    }
-}
-
-//  --  FORM VALIDATION STATES
-//      Validation states will need applied at the wrapping container level.
-//  ----------------------------------------------------------------------------
-.grid {
-    //  --  WARNING
-    &.has-warning {
-        .input,
-        .select > select {
-            border-color: mix(@yellow-500,@orange-600);
-
-            &:hover {
-                border-color: lighten(mix(@yellow-500,@orange-600),10%);
-                box-shadow: inset 0 0 1px @black-100, 0 0 2px @yellow-200;
-            }
-            &:focus {
-                border-color: saturate(mix(@yellow-500,@orange-600),10%);
-                box-shadow: inset 0 0 4px @black-050, 0 0 4px @yellow-200;
-            }
-        }
-
-        .input-message {
-            color: darken(saturate(mix(@yellow-500,@orange-600),120%),10%);
-        }
-    }
-
-    //  --  ERROR
-    &.has-error {
-        .input,
-        .select > select {
-            border-color: @red-400;
-
-            &:hover {
-                border-color: @red-400;
-                box-shadow: inset 0 0 1px @black-100, 0 0 2px @red-100;
-            }
-            &:focus {
-                border-color: @red-600;
-                box-shadow: inset 0 0 4px @black-050, 0 0 4px @red-200;
-            }
-        }
-
-        .input-message {
-            color: @red-500;
-        }
-    }
-
-    //  --  SUCCESS
-    &.is-success {
-        .input,
-        .select select {
-            border-color: @green-400;
-
-            &:hover {
-                border-color: @green-600;
-                box-shadow: inset 0 0 1px @black-100, 0 0 2px @green-100;
-            }
-            &:focus {
-                border-color: @green-600;
-                box-shadow: inset 0 0 4px @black-050, 0 0 4px @green-200;
-            }
-        }
-
-        .input-message {
-            color: darken(@green-500,5%);
-        }
-    }
-
-    //  --  DISABLED
-    &.is-disabled {
-        .o70;
-        cursor: not-allowed;
-
-        .select > select {
-            &:before,
-            &:after { .o30; }
-        }
-    }
-}
-
-
-//  $$  TEXTAREAS
-//  ----------------------------------------------------------------------------
-.input.textarea {
-    .py12;
-    height: auto;
-    resize: vertical;
-}
-
-//  $$  SELECT MENUS
-//  ----------------------------------------------------------------------------
-.select {
-    .ps-relative;
-
-    //  --  MENU ARROWS
-    //      To customize the visual appearance of the select menu arrows, we
-    //      need to recreate them on the wrapping .select div.
-    //  ------------------------------------------------------------------------
-    &:before,
-    &:after {
-        content: "";
-        position: absolute;
-        right: @su12;
-        pointer-events: none;
-
-        border-width: 3px;
-        border-style: solid;
-        border-color: @black-700 transparent;
-    }
-    &:before {
-        top: calc(~"50% - 6px");
-        border-top-width: 0;
-        border-bottom-width: 5px;
-    }
-    &:after {
-        top: calc(~"50% + 1px");
-        border-top-width: 5px;
-        border-bottom-width: 0;
-    }
-
-    //  --  MENU
-    //      Now we can style the visual appearance of the select menu;
-    //  ------------------------------------------------------------------------
-    > select {
-        //  [1] Reset the appearance
-        .appearance(none);
-
-        //  [2] Update the styles
-        padding: @su8 @su12;
-        width: 100%;
-        border-radius: @br-md;
-        border: 1px solid @black-200;
-        background-color: @white;
-        transition: border-color 300ms @te-smooth, box-shadow 300ms @te-smooth, background-color 300ms @te-smooth;
-    }
-}
-
-//  $$  FILE UPLOAD
-//  ----------------------------------------------------------------------------
-.input._file {
-    display: block;
-    margin: 0;
-    padding: @su8 0;
-    .mx-fs(@fs-fine);
-}
-
-//  $$  CHECKBOXES & RADIOS
-//  ----------------------------------------------------------------------------
-//  --  Variables
-@input-ch-rd-focus:           0 0 2em/13 1px fade(@input-ch-rd-bgc-blue, 50%);
-@input-ch-rd-hover:           0 0 2em/13 1px fade(@input-ch-rd-bgc-blue, 70%);
-@input-ch-rd-bgc-blue:        @blue-500;
-@input-ch-rd-gray:            inset 0 0 0 1px @black-300;
-@input-ch-rd-blue:            inset 0 0 0 1px @input-ch-rd-bgc-blue;
-@input-ch-rd-blue_light:      inset 0 0 0 1px fade(@input-ch-rd-bgc-blue,50%);
-@input-ch-rd-white:           inset 0 0 0 3px @white;
-@input-ch-rd-clear:           0 0 0 0 fade(@white,0%);
-
-.checkbox,
-.radio {
-    //  [1]   Check to see if we can use custom styles, if so reset the defaults
-    //  ------------------------------------------------------------------------
-    @supports (appearance: none) or (-webkit-appearance: none) {
-    .appearance(none);
-
-    &::-ms-check {
-        display: none;
-    }
-
-    //  [2]  Now re-style the checkboxes and radios
-    //  ------------------------------------------------------------------------
-    width: @su16 - 3;
-    height: @su16 - 3;
-    background-color: @white;
-    transition: background-color 300ms @te-smooth, border-radius 300ms @te-smooth, box-shadow 300ms @te-smooth;
-    outline: 0;
-    cursor: pointer;
-
-    &:focus {
-        outline: 0;
-    }
-
-    //  Sizes
-    &._sm {
-        width: @su12;
-        height: @su12;
-    }
-    &._md {
-        width: @su16;
-        height: @su16;
-    }
-    &._lg {
-        width: @su16 + 3;
-        height: @su16 + 3;
-    }
-    &._xl {
-        width: @su24;
-        height: @su24;
-    }
-  }
-}
-
-//  --   Checkboxes
-//  ----------------------------------------------------------------------------
-.checkbox {
-    @supports (appearance: none) or (-webkit-appearance: none) {
-        border-radius: floor(@br-md / 2);
-        box-shadow: @input-ch-rd-clear, @input-ch-rd-gray;
-        background-repeat: no-repeat;
-        background-position: center center;
-        background-size: contain;
-
-        &:checked {
-            box-shadow: @input-ch-rd-blue;
-            background-color: @input-ch-rd-bgc-blue;
-            background-image: url("data:image/svg+xml,%3C%3Fxml%20version%3D%221.0%22%20encoding%3D%22UTF-8%22%3F%3E%0A%3Csvg%20width%3D%2212%22%20height%3D%2212%22%20version%3D%221.1%22%20viewBox%3D%220%200%203.1749997%203.175%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cg%20transform%3D%22translate(-61.232%20-118.44)%22%3E%3Cpath%20d%3D%22m63.682%20119.01-1.1328%201.5957-0.63477-0.45117-0.21094%200.29687%200.93164%200.66211%201.3438-1.8906z%22%20fill%3D%22%23fff%22%20fill-rule%3D%22evenodd%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E");
-
-            &:hover {
-                box-shadow: @input-ch-rd-hover;
-                background-color: darken(@input-ch-rd-bgc-blue,5%);
-            }
-        }
-
-        &:hover {
-            box-shadow: @input-ch-rd-hover, @input-ch-rd-blue_light;
-            background-color: fade(@input-ch-rd-bgc-blue,10%);
-        }
-
-        &:active {
-            box-shadow: @input-ch-rd-blue;
-            background-color: fade(@input-ch-rd-bgc-blue,50%);
-        }
-
-        &:focus {
-            box-shadow: @input-ch-rd-focus, @input-ch-rd-gray;
-
-            &:checked,
-            &:active {
-                box-shadow: @input-ch-rd-focus;
-            }
-            &:active {
-                box-shadow: @input-ch-rd-focus, @input-ch-rd-blue;
-            }
-        }
-    }
-}
-
-//  --   Radio Selects
-//  ----------------------------------------------------------------------------
-.radio {
-    @supports (appearance: none) or (-webkit-appearance: none) {
-        border-radius: @br-circle;
-        box-shadow: @input-ch-rd-clear, @input-ch-rd-gray, @input-ch-rd-white;
-
-        &:checked {
-            box-shadow: @input-ch-rd-clear, @input-ch-rd-blue, @input-ch-rd-white;
-            background-color: @input-ch-rd-bgc-blue;
-
-            &:hover {
-                box-shadow: @input-ch-rd-hover, @input-ch-rd-blue, @input-ch-rd-white;
-                background-color: darken(@input-ch-rd-bgc-blue,5%);
-            }
-        }
-
-        &:hover {
-            box-shadow: @input-ch-rd-hover, @input-ch-rd-blue_light, @input-ch-rd-white;
-            background-color: fade(@input-ch-rd-bgc-blue,10%);
-        }
-
-        &:active {
-            box-shadow: @input-ch-rd-clear, @input-ch-rd-blue, @input-ch-rd-white;
-            background-color: fade(@input-ch-rd-bgc-blue,50%);
-        }
-
-        &:focus {
-            box-shadow: @input-ch-rd-focus, @input-ch-rd-gray, @input-ch-rd-white;
-
-            &:checked,
-            &:active {
-                box-shadow: @input-ch-rd-focus, @input-ch-rd-blue, @input-ch-rd-white;
-            }
-        }
-    }
-}
-
-
-//  ============================================================================
-//  $  LABELS
-//  ============================================================================
-.label {
-    .mx-fs(@fs-body2);
-    font-weight: 700;
-    cursor: pointer;
-}
-
-//  $$  LABEL STATUS FLAG
-//  ----------------------------------------------------------------------------
-//      Is this form item required or optional? Flag the status for users.
-//      Default styling is optional.
-.label-status {
-    font-size: 85%;
-    font-style: italic;
-    font-weight: 400;
-    color: @fc-medium;
-
-    &._required {
-        color: @red-400;
-    }
-}
-
-//  ============================================================================
-//  $  TEXT STYLES
-//  ============================================================================
-.input-description {
-    margin: 0 0 @su8;
-    .mx-fs(@fs-caption);
-    line-height: @lh-s;
-    color: @fc-medium;
-}
-
-
-//  ============================================================================
-//  $ OPTION TOGGLE
-//  ----------------------------------------------------------------------------
-.option-toggle {
-    //  First hide the radio buttons
-    .radio {
-        position: absolute;
-        left: -999em;
-        .o0;
-    }
-
-    //  Next modifictions to option cells
-    .-option {
-        margin-left: -1px;
-        margin-right: -1px;
-
-        //  Round the corners on the first and last elements
-        &:first-of-type .label {
-            .blr-sm;
-        }
-        &:last-of-type .label {
-            .brr-sm;
-        }
-    }
-
-    //  Style the base label
-    .label {
-        padding: @su8 @su12;
-        border: 1px solid @black-075;
-        background-color: @white;
-        color: @fc-medium;
-        transition: all 300ms @te-smooth;
-        cursor: pointer;
-
-        &:hover,
-        &:active {
-            color: @fc-dark;
-            border-color: @black-150;
-            box-shadow: 0 0 8px fade(@powder-600,25%);
-            background-color: @powder-025;
-            z-index: 1;
-        }
-    }
-
-    //  If the label is selected, style it accordingly.
-    .radio:checked + .label {
-        z-index: 2;
-        border-color: @powder-100;
-        box-shadow: 0 0 8px fade(@powder-600,10%);
-        background-color: @powder-100;
-        color: @powder-700;
-
-        &:hover,
-        &:active {
-            border-color: @powder-400;
-            box-shadow: 0 0 8px fade(@powder-600,25%);
-            background-color: darken(@powder-100,5%);
-            color: @powder-800;
-        }
-    }
-
-    //  $$  MODIFICATIONS
-    //  --------------------------------------------------------------------------
-    //  --  Primary
-    //      When the toggle is the only one within a view and we want it to be
-    //      visually dominating for the user.
-    &._primary {
-        .label:hover,
-        .label:active {
-            color: @blue-700;
-            box-shadow: 0 0 8px fade(@blue-500,25%);
-            background-color: @blue-050;
-        }
-
-        .radio:checked + .label {
-            border-color: @blue-600;
-            box-shadow: 0 0 8px fade(@blue-500,10%);
-            background-color: @blue-500;
-            color: @white;
-
-            &:hover,
-            &:active {
-                border-color: @blue-700;
-                box-shadow: 0 0 8px fade(@blue-500,25%);
-                background-color: @blue-600;
-                color: @blue-050;
-            }
-        }
-    }
-
-    //  --  Switch
-    //      Used when the toggle represents an "on/off" choice for the user. A
-    //      "off" state must be present to use this modifier.
-    &._switch {
-        .label:hover,
-        .label:active {
-            border: 1px solid @black-800;
-            box-shadow: 0 0 8px fade(@black-600,25%);
-            background-color: @bgc-lightest;
-        }
-
-        .radio:checked + .label {
-            &:not(._off) {
-                border-color: @green-400;
-                box-shadow: 0 0 8px fade(@green-400,10%);
-                background-color: @green-400;
-                color: @white;
-
-                &:hover,
-                &:active {
-                    border-color: @green-600;
-                    box-shadow: 0 0 8px fade(@green-400,25%);
-                    background-color: @green-500;
-                    color: @green-050;
-                }
-            }
-
-            //  When the off state is selected, we don't it green. We want it to be
-            //  gray instead.
-            &._off {
-                border-color: @black-300;
-                box-shadow: 0 0 8px fade(@black-800,10%);
-                background-color: @bgc-light;
-                color: @black-800;
-
-                &:hover,
-                &:active {
-                    border-color: @black-400;
-                    box-shadow: 0 0 8px fade(@black-800,25%);
-                    background-color: @bgc-dark;
-                    color: darken(@black-800,5%);
-                }
-            }
-        }
-    }
-}
-
-//  ============================================================================
-//  $ Chosen plugin (JS plugin)
-//  ----------------------------------------------------------------------------
-.container .chosen-container {
-    margin-top: 0;
-
-    &.chosen-container-active {
-        border-width: 0;
-        .chosen-choices {
-            border-color: @blue-600;
-            box-shadow: inset 0 0 4px @black-050, 0 0 5px fade(@blue-500,50%);
-        }
-    }
-
-    .chosen-choices {
-        padding: 0 1px;
-        min-height: 38px;
-        background-image: none;
-        border-radius: @br-md;
-        border-color: @black-100;
-
-        &:hover {
-            border-color: fade(@blue-500,50%);
-            box-shadow: inset 0 0 2px darken(@black-050,10%), 0 0 2px fade(fade(@blue-500,50%),20%);
-        }
-    }
-
-    //  Restyle tags
-    .chosen-choices {
-        li.search-choice,
-        li.search-field {
-            display: inline-flex;
-            .ai-center;
-            margin: @su4 1px;
-            padding: @su2 (@su4 + 2);
-        }
-        li.search-choice {
-            float: none;
-            box-shadow: none;
-            background-image: none;
-
-            font-family: @ff-sans;
-            .mx-fs(@fs-caption);
-            color: @powder-600;
-            background-color: @powder-100;
-            border-color: transparent;
-            border-radius: @br-md;
-
-            &:first-child { margin-left: 3px; }
-
-            .search-choice-close {
-                position: relative;
-                top: 0;
-                right: -1px;
-                margin-left: @su4;
-                transition: none;
-            }
-        }
-    }
-     li.search-field > input[type="text"] {
-        padding: 0;
-        margin: 0;
     }
 }
