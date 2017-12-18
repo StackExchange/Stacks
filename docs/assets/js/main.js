@@ -10,12 +10,4 @@ $(function() {
         inputSelector: '#searchbox',
         debug: false
     });
-
-    search.autocomplete.on('autocomplete:opened', function(e) {
-        $(".stacks-nav-secondary").addClass("z-hide");
-    });
-
-    search.autocomplete.on('autocomplete:closed', function(e) {
-        $(".stacks-nav-secondary").removeClass("z-hide");
-    });
 });
