@@ -10,6 +10,12 @@ Stacks is available as a standalone library that’s delivered via NPM. This lib
 npm install --save-dev @stackoverflow/stacks
 ```
 
+If you’d rather use a CDN for quick prototyping, you can include Stacks from Unpkg.
+
+``` html
+<link rel="stylesheet" href="https://unpkg.com/@stackoverflow/stacks" />
+```
+
 ## Documentation
 
 Stacks’ documentation is hosted at https://stackoverflow.design/
