@@ -28,11 +28,8 @@ module.exports = function (grunt) {
         // Less compilation
         less: {
             production: {
-                options: {
-                    paths: ['docs/assets/less']
-                },
                 files: {
-                    'docs/assets/css/stacks.css': 'docs/assets/less/stacks.less',
+                    'docs/assets/css/stacks-documentation.css': 'docs/assets/less/stacks-documentation.less',
                     'lib/css/stacks.css': 'lib/src/_stacks-base.less',
                 }
             },
@@ -41,7 +38,7 @@ module.exports = function (grunt) {
         cssmin: {
             production: {
                 files: {
-                    'docs/assets/css/stacks.min.css': 'docs/assets/css/stacks.css',
+                    'docs/assets/css/stacks-documentation.min.css': 'docs/assets/css/stacks-documentation.css',
                     'lib/css/stacks.min.css': 'lib/css/stacks.css',
                 }
             }
@@ -53,7 +50,7 @@ module.exports = function (grunt) {
                 tasks: ['less']
             },
             css: {
-                files: ['docs/assets/css/stacks.css', 'lib/css/stacks.css'],
+                files: ['docs/assets/css/stacks-documentation.css', 'lib/css/stacks.css'],
                 tasks: ['cssmin']
             }
         },
