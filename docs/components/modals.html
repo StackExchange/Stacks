@@ -6,19 +6,21 @@ description: Modal dialogs are used to display content that temporarily blocks i
 <section class="stacks-section">
     <h2 class="grid jc-spacebetween ai-center stacks-title">Confirmation</h2>
     <h3 class="grid jc-spacebetween ai-center stacks-title _subtitle">Concise</h3>
-    <p class="stacks-p _section">This modal is used to confirm a user’s action. It is intended to add friction to an interaction, only confirming the action if the user explicitly presses "confirm". In this example, we present the modal to confirm they’re posting a question on public Stack Overflow.</p>
+    <p class="stacks-p _section">This modal is used to confirm a user’s action. It is intended to add friction to an interaction, only confirming the action if the user explicitly presses “confirm”. In this example, we present the modal to confirm they’re posting a question on public Stack Overflow.</p>
     <div class="stacks-code-preview">
 {% highlight html linenos %}
-<div class="bg-white bs-lg wmx7 bar-md p16 ps-relative">
-    <div class="fs-subheading pr32 mb16">Title</div>
+<div class="s-modal-overlay"></div>
+<div class="s-modal">
+    <div class="fs-subheading mb16">Title</div>
     <div class="grid gs8 gsx jc-center">
         <button class="s-btn s-btn__primary grid--cell">Primary action</button>
         <button class="s-btn grid--cell">Cancel</button>
     </div>
 </div>
 {% endhighlight %}
-        <div class="-preview ps-relative bg-black-500 grid jc-center">
-            <div class="bg-white bs-lg wmx7 bar-md p16 ps-relative grid--cell ta-center">
+        <div class="-preview ps-relative grid jc-center">
+            <div class="s-modal-overlay"></div>
+            <div class="s-modal grid--cell">
                 <div class="fs-subheading mb16">Are you sure you want to ask this question publicly?</div>
                 <div class="grid gs8 gsx jc-center">
                     <button class="s-btn s-btn__primary grid--cell">Publish to public</button>
@@ -32,8 +34,9 @@ description: Modal dialogs are used to display content that temporarily blocks i
     <p class="stacks-p _section">If you need to add more detail to your modal, you can add an additional description.</p>
     <div class="stacks-code-preview">
 {% highlight html linenos %}
-<div class="bg-white bs-lg wmx7 bar-md p16 ps-relative">
-    <div class="fs-subheading pr32 mb16">Title</div>
+<div class="s-modal-overlay"></div>
+<div class="s-modal">
+    <div class="fs-subheading mb16">Title</div>
     <div class="fs-body1 mb16">Additional description</div>
     <div class="grid gs8 gsx jc-center">
         <button class="s-btn s-btn__primary grid--cell">Primary action</button>
@@ -41,13 +44,61 @@ description: Modal dialogs are used to display content that temporarily blocks i
     </div>
 </div>
 {% endhighlight %}
-        <div class="-preview ps-relative bg-black-500 grid jc-center">
-            <div class="bg-white bs-lg wmx7 bar-md p16 ps-relative grid--cell ta-center">
+        <div class="-preview ps-relative grid jc-center">
+            <div class="s-modal-overlay"></div>
+            <div class="s-modal grid--cell">
                 <div class="fs-subheading mb16">Ask publicly?</div>
                 <p class="fs-body1 mb16">You’re about to post this question on public Stack Overflow.</p>
                 <div class="grid gs8 gsx jc-center">
                     <button class="s-btn s-btn__primary grid--cell">Publish to public</button>
                     <button class="s-btn grid--cell">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <h3 class="grid jc-spacebetween ai-center stacks-title _subtitle">Preference confirmation</h3>
+    <p class="stacks-p _section">To add clarity to a user’s action, you can present a user multiple choices in a modal confirmation. In low-risk situations, you don’t need to have a confirm or cancel button. Choosing a preference will save and close the modal.</p>
+    <div class="stacks-code-preview">
+{% highlight html linenos %}
+<div class="s-modal-overlay"></div>
+<div class="s-modal">
+    <div class="fs-subheading mb16">Title</div>
+    <label for="sample-group-ex3" class="fs-body1 mb16 d-block">Additional description</label>
+    <div class="grid jc-center s-option-toggle s-option-toggle__switch">
+        <div class="grid s-option-toggle--option">
+            <input class="s-radio" type="radio" name="sample-group-ex3" id="optionA-ex3" />
+            <label class="grid--cell s-label" for="optionA-ex3">Option 1</label>
+        </div>
+        <div class="grid s-option-toggle--option">
+            <input class="s-radio" type="radio" name="sample-group-ex3" id="optionB-ex3" checked />
+            <label class="grid--cell s-label" for="optionB-ex3">Option 2</label>
+        </div>
+        <div class="grid s-option-toggle--option">
+            <input class="s-radio" type="radio" name="sample-group-ex3" id="optionC-ex3" />
+            <label class="grid--cell s-label s-label__off" for="optionC-ex3">Off</label>
+        </div>
+    </div>
+</div>
+{% endhighlight %}
+        <div class="-preview ps-relative grid jc-center">
+            <div class="s-modal-overlay"></div>
+            <div class="s-modal grid--cell">
+                <div class="fs-subheading mb16">Notification Frequency</div>
+                <label for="sample-group-ex3" class="fs-body1 mb16 d-block">How often would you like to receive notifications for objective-c?</label>
+                <div class="grid jc-center s-option-toggle s-option-toggle__switch">
+                    <div class="grid s-option-toggle--option">
+                        <input class="s-radio" type="radio" name="sample-group-ex3" id="optionA-ex3" />
+                        <label class="grid--cell s-label" for="optionA-ex3">Weekly</label>
+                    </div>
+                    <div class="grid s-option-toggle--option">
+                        <input class="s-radio" type="radio" name="sample-group-ex3" id="optionB-ex3" checked />
+                        <label class="grid--cell s-label" for="optionB-ex3">Daily</label>
+                    </div>
+                    <div class="grid s-option-toggle--option">
+                        <input class="s-radio" type="radio" name="sample-group-ex3" id="optionC-ex3" />
+                        <label class="grid--cell s-label s-label__off" for="optionC-ex3">Off</label>
+                    </div>
                 </div>
             </div>
         </div>
