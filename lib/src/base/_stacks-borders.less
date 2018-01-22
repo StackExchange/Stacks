@@ -36,8 +36,8 @@
 .br             { .brs-solid; .brw1; }
 .bb             { .bbs-solid; .bbw1; }
 .bl             { .bls-solid; .blw1; }
-.bx             { .bxs-solid; .bxw1; }
-.by             { .bys-solid; .byw1; }
+.bx             { .bts-solid; .bbs-solid; .bxw1; }
+.by             { .bls-solid; .brs-solid; .byw1; }
 
 
 //  ============================================================================
@@ -108,43 +108,26 @@
 .bas-none       { border-style: none !important; }
 .bas-solid      { border-style: solid !important; }
 .bas-dashed     { border-style: dashed !important; }
-.bas-dotted     { border-style: dotted !important; }
 
 //  $$  Top Border
 .bts-none       { border-top-style: none !important; }
 .bts-solid      { border-top-style: solid !important; }
 .bts-dashed     { border-top-style: dashed !important; }
-.bts-dotted     { border-top-style: dotted !important; }
 
 //  $$  Right Border
 .brs-none       { border-right-style: none !important; }
 .brs-solid      { border-right-style: solid !important; }
 .brs-dashed     { border-right-style: dashed !important; }
-.brs-dotted     { border-right-style: dotted !important; }
 
 //  $$  Bottom Border
 .bbs-none       { border-bottom-style: none !important; }
 .bbs-solid      { border-bottom-style: solid !important; }
 .bbs-dashed     { border-bottom-style: dashed !important; }
-.bbs-dotted     { border-bottom-style: dotted !important; }
 
 //  $$  Left Border
 .bls-none       { border-left-style: none !important; }
 .bls-solid      { border-left-style: solid !important; }
 .bls-dashed     { border-left-style: dashed !important; }
-.bls-dotted     { border-left-style: dotted !important; }
-
-//  $$  Y Axis Border
-.bys-none       { .bts-none; .bbs-none; }
-.bys-solid      { .bts-solid; .bbs-solid; }
-.bys-dashed     { .bts-dashed; .bbs-dashed; }
-.bys-dotted     { .bts-dotted; .bbs-dotted; }
-
-//  $$  X Axis Border
-.bxs-none       { .brs-none; .bls-none; }
-.bxs-solid      { .brs-solid; .bls-solid; }
-.bxs-dashed     { .brs-dashed; .bls-dashed; }
-.bxs-dotted     { .brs-dotted; .bls-dotted; }
 
 
 //  ============================================================================
@@ -153,9 +136,7 @@
 //      r-sm:  Small step:   2px border width
 //      r-md:  Medium step:  4px border width
 //      r-lg:  Large step:   8px border width
-//
 //      r-circle:            100% border width
-//      r-pill:              9999px border width
 //  ----------------------------------------------------------------------------
 //  $$  All Sides
 .bar0           { border-radius: 0 !important; }
@@ -163,71 +144,34 @@
 .bar-md         { border-radius: @br-md !important; }
 .bar-lg         { border-radius: @br-lg !important; }
 .bar-circle     { border-radius: 100% !important; }
-.bar-pill       { border-radius: 9999px !important; }
 
 //  $$  Top Corners
-.btr0           { .btlr0; .btrr0; }
-.btr-sm         { .btlr-sm; .btrr-sm; }
-.btr-md         { .btlr-md; .btrr-md; }
-.btr-lg         { .btlr-lg; .btrr-lg; }
-.btr-circle     { .btlr-circle; .btrr-circle; }
-.btr-pill       { .btlr-pill; .btrr-pill; }
-
-//  $$  Top Left Corner
-.btlr0          { border-top-left-radius: 0 !important; }
-.btlr-sm        { border-top-left-radius: @br-sm !important; }
-.btlr-md        { border-top-left-radius: @br-md !important; }
-.btlr-lg        { border-top-left-radius: @br-lg !important; }
-.btlr-circle    { border-top-left-radius: 100% !important; }
-.btlr-pill      { border-top-left-radius: 9999px !important; }
-
-//  $$  Top Right Corner
-.btrr0          { border-top-right-radius: 0 !important; }
-.btrr-sm        { border-top-right-radius: @br-sm !important; }
-.btrr-md        { border-top-right-radius: @br-md !important; }
-.btrr-lg        { border-top-right-radius: @br-lg !important; }
-.btrr-circle    { border-top-right-radius: 100% !important; }
-.btrr-pill      { border-top-right-radius: 9999px !important; }
+.btr0           { border-top-left-radius: 0 !important; border-top-right-radius: 0 !important; }
+.btr-sm         { border-top-left-radius: @br-sm !important; border-top-right-radius: @br-sm !important; }
+.btr-md         { border-top-left-radius: @br-md !important; border-top-right-radius: @br-md !important; }
+.btr-lg         { border-top-left-radius: @br-lg !important; border-top-right-radius: @br-lg !important; }
+.btr-circle     { border-top-left-radius: 100% !important; border-top-right-radius: 100% !important; }
 
 //  $$  Right Corners
-.brr0           { .btrr0; .bbrr0; }
-.brr-sm         { .btrr-sm; .bbrr-sm; }
-.brr-md         { .btrr-md; .bbrr-md; }
-.brr-lg         { .btrr-lg; .bbrr-lg; }
-.brr-circle     { .btrr-circle; .bbrr-circle; }
-.brr-pill       { .btrr-pill; .bbrr-pill; }
+.brr0           { border-top-right-radius: 0 !important; border-bottom-right-radius: 0 !important; }
+.brr-sm         { border-top-right-radius: @br-sm !important; border-bottom-right-radius: @br-sm !important; }
+.brr-md         { border-top-right-radius: @br-md !important; border-bottom-right-radius: @br-md !important; }
+.brr-lg         { border-top-right-radius: @br-lg !important; border-bottom-right-radius: @br-lg !important; }
+.brr-circle     { border-top-right-radius: 100% !important; border-bottom-right-radius: 100% !important; }
 
 //  $$  Bottom Corners
-.bbr0           { .bblr0; .bbrr0; }
-.bbr-sm         { .bblr-sm; .bbrr-sm; }
-.bbr-md         { .bblr-md; .bbrr-md; }
-.bbr-lg         { .bblr-lg; .bbrr-lg; }
-.bbr-circle     { .bblr-circle; .bbrr-circle; }
-.bbr-pill       { .bblr-pill; .bbrr-pill; }
-
-//  $$  Bottom Left Corner
-.bblr0          { border-bottom-left-radius: 0 !important; }
-.bblr-sm        { border-bottom-left-radius: @br-sm !important; }
-.bblr-md        { border-bottom-left-radius: @br-md !important; }
-.bblr-lg        { border-bottom-left-radius: @br-lg !important; }
-.bblr-circle    { border-bottom-left-radius: 100% !important; }
-.bblr-pill      { border-bottom-left-radius: 9999px !important; }
-
-//  $$  Bottom Right Corner
-.bbrr0          { border-bottom-right-radius: 0 !important; }
-.bbrr-sm        { border-bottom-right-radius: @br-sm !important; }
-.bbrr-md        { border-bottom-right-radius: @br-md !important; }
-.bbrr-lg        { border-bottom-right-radius: @br-lg !important; }
-.bbrr-circle    { border-bottom-right-radius: 100% !important; }
-.bbrr-pill      { border-bottom-right-radius: 9999px !important; }
+.bbr0           { border-bottom-left-radius: 0 !important; border-bottom-right-radius: 0 !important; }
+.bbr-sm         { border-bottom-left-radius: @br-sm !important; border-bottom-right-radius: @br-sm !important; }
+.bbr-md         { border-bottom-left-radius: @br-md !important; border-bottom-right-radius: @br-md !important; }
+.bbr-lg         { border-bottom-left-radius: @br-lg !important; border-bottom-right-radius: @br-lg !important; }
+.bbr-circle     { border-bottom-left-radius: 100% !important; border-bottom-right-radius: 100% !important; }
 
 //  $$  Left Corners
-.blr0           { .btlr0; .bblr0; }
-.blr-sm         { .btlr-sm; .bblr-sm; }
-.blr-md         { .btlr-md; .bblr-md; }
-.blr-lg         { .btlr-lg; .bblr-lg; }
-.blr-circle     { .btlr-circle; .bblr-circle; }
-.blr-pill       { .btlr-pill; .bblr-pill; }
+.blr0           { border-top-left-radius: 0 !important; border-bottom-left-radius: 0 !important; }
+.blr-sm         { border-top-left-radius: @br-sm !important; border-bottom-left-radius: @br-sm !important; }
+.blr-md         { border-top-left-radius: @br-md !important; border-bottom-left-radius: @br-md !important; }
+.blr-lg         { border-top-left-radius: @br-lg !important; border-bottom-left-radius: @br-lg !important; }
+.blr-circle     { border-top-left-radius: 100% !important; border-bottom-left-radius: 100% !important; }
 
 
 //  ============================================================================
