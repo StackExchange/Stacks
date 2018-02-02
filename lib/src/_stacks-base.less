@@ -47,30 +47,31 @@
 //      Various properties we need to reset to make everything better.
 //  ----------------------------------------------------------------------------
 html {
-  min-width: @site-width;   // https://meta.stackoverflow.com/questions/208203/
+    min-width: @site-width;   // https://meta.stackoverflow.com/questions/208203/
 }
 
 html,
 body {
-  //  Text styles
-  font-family: @ff-sans;
-  font-size: @body-fs;
-  line-height: @body-lh;
-  color: @body-font-color;
+    //  Text styles
+    font-family: @ff-sans;
+    font-size: @body-fs;
+    line-height: @body-lh;
+    color: @body-font-color;
 }
 
 body {
-  //  Border Box ALL THE THINGZ!
-  *,
-  *:before,
-  *:after {
     box-sizing: border-box;
-  }
+    
+    *,
+    *:before,
+    *:after {
+        box-sizing: inherit;
+    }
 
-  //  Layout
-  min-height: 100%;
-  min-width: @site-width + @site-padding;
+    //  Layout
+    min-height: 100%;
+    min-width: @site-width + @site-padding;
 
-  //  Background
-  background: @body-bg;
+    //  Background
+    background: @body-bg;
 }
