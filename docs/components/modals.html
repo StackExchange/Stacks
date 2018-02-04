@@ -3,6 +3,60 @@ layout: page
 title: Modals
 description: Modal dialogs are used to display content that temporarily blocks interactions with the primary view. These are often used to confirm user action or clarify their action.
 ---
+
+<!-- Example modal content -->
+<div class="s-modal-overlay js-example-modal-overlay d-none ps-fixed"></div>
+<div class="s-modal js-example-modal-content d-none ps-fixed">
+    <div class="fs-subheading mb16">Example Title</div>
+    <div class="grid gs8 gsx jc-center">
+        <button class="s-btn s-btn__primary grid--cell js-example-modal-primary-btn">Example primary action</button>
+        <button class="s-btn grid--cell js-example-modal-cancel-btn">Cancel</button>
+    </div>
+</div>
+
+<script>
+    $(function() {
+        var modalOverlay = $(".js-example-modal-overlay");
+        var modalContent = $(".js-example-modal-content");
+
+        $(".js-launch-modal-btn").on("click", function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            modalOverlay.toggleClass("d-none");
+            modalContent.toggleClass("d-none");
+
+            // Hide the dropdown when clicking outside
+            $(document).one("click", function closeIt (e){
+                if(modalContent.has(e.target).length === 0){
+                    closeModal();
+                } else {
+                    $(document).one("click", closeIt);
+                }
+            });
+        });
+        
+        $(".js-example-modal-cancel-btn, .js-example-modal-primary-btn").on("click", function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            
+            closeModal();
+        });
+        
+        $(document).on('keyup',function(evt) {
+            if (evt.keyCode == 27) {
+                closeModal();
+            }
+        });
+        
+        function closeModal() {
+            modalContent.addClass("d-none");
+            modalOverlay.addClass("d-none");
+        }
+    });
+</script>
+
+<!-- And now for some documentation -->
 <section class="stacks-section">
     <h2 class="grid jc-spacebetween ai-center stacks-title">General Usage</h2>
     <p class="stacks-p _section">Modal windows intended to quickly grab the user's attention. Complicated interfaces or decisions are better served by their own page.</p>
@@ -12,13 +66,13 @@ description: Modal dialogs are used to display content that temporarily blocks i
         Since Stacks’s scope is limited to <a href="{{ "/guidelines/using-stacks#toc-javascript" | relative_url }}">CSS and HTML</a>, the JS found on these pages is intended to communicate behavior only.
     </p>
     <p class="stacks-p _section">
-        Modals should be presented with a semi-transparent blocker to focus the user’s attention on the task being presented. Practically, on Stack Overflow, most pages will have a <code class="stacks-code">div</code> with the class <code class="stacks-code">.s-modal-overlay</code> somewhere in the view. You'll need to include one if it's not. The modal experience is not complete without the overlay. In addition, our modals are not feature-complete unless the following behaviors are enabled:
+        Modals should be presented with a semi-transparent blocker to focus the user’s attention on the task being presented. Practically, on Stack Overflow, most pages will have a <code class="stacks-code">div</code> with the class <code class="stacks-code">.s-modal-overlay</code> somewhere in the view. You’ll need to include one if it’s not. The modal experience is not complete without the overlay. In addition, our modals are not feature-complete unless the following behaviors are enabled:
     </p>
     <ol class="stacks-p _section">
         <li>The user can close the modal dialog with their <code class="stacks-code">ESC</code> key.</li>
-        <li>The user can click outside the modal dialog.</li>
+        <li>The user can click outside the dialog to close it.</li>
     </ol>
-    <button class="s-btn s-btn__primary">Launch example modal</button>
+    <button class="s-btn s-btn__primary js-launch-modal-btn">Launch example modal</button>
 </section>
 
 <section class="stacks-section">
