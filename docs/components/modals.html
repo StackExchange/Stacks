@@ -25,18 +25,9 @@ description: Modal dialogs are used to display content that temporarily blocks i
 
             modalOverlay.toggleClass("is-visible");
             modalContent.toggleClass("is-visible");
-
-            // Hide the dropdown when clicking outside
-            $(document).one("click", function closeIt (e){
-                if(modalContent.has(e.target).length === 0){
-                    closeModal();
-                } else {
-                    $(document).one("click", closeIt);
-                }
-            });
         });
         
-        $(".js-example-modal-cancel-btn, .js-example-modal-primary-btn").on("click", function(e) {
+        $(".js-example-modal-cancel-btn, .js-example-modal-primary-btn, .js-example-modal-overlay").on("click", function(e) {
             e.preventDefault();
             e.stopPropagation();
             
