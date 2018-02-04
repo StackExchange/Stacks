@@ -1,10 +1,28 @@
 ---
 layout: page
-title: Modal
+title: Modals
 description: Modal dialogs are used to display content that temporarily blocks interactions with the primary view. These are often used to confirm user action or clarify their action.
 ---
 <section class="stacks-section">
-    <h2 class="grid jc-spacebetween ai-center stacks-title">Confirmation</h2>
+    <h2 class="grid jc-spacebetween ai-center stacks-title">General Usage</h2>
+    <p class="stacks-p _section">Modal windows intended to quickly grab the user's attention. Complicated interfaces or decisions are better served by their own page.</p>
+
+    <h3 class="grid jc-spacebetween ai-center stacks-title _subtitle">Behavior</h3>
+    <p class="stacks-p _section">
+        Since Stacks’s scope is limited to <a href="{{ "/guidelines/using-stacks#toc-javascript" | relative_url }}">CSS and HTML</a>, the JS found on these pages is intended to communicate behavior only.
+    </p>
+    <p class="stacks-p _section">
+        Modals should be presented with a semi-transparent blocker to focus the user’s attention on the task being presented. Practically, on Stack Overflow, most pages will have a <code class="stacks-code">div</code> with the class <code class="stacks-code">.s-modal-overlay</code> somewhere in the view. You'll need to include one if it's not. The modal experience is not complete without the overlay. In addition, our modals are not feature-complete unless the following behaviors are enabled:
+    </p>
+    <ol class="stacks-p _section">
+        <li>The user can close the modal dialog with their <code class="stacks-code">ESC</code> key.</li>
+        <li>The user can click outside the modal dialog.</li>
+    </ol>
+    <button class="s-btn s-btn__primary">Launch example modal</button>
+</section>
+
+<section class="stacks-section">
+    <h2 class="grid jc-spacebetween ai-center stacks-title">Confirmations</h2>
     <h3 class="grid jc-spacebetween ai-center stacks-title _subtitle">Concise</h3>
     <p class="stacks-p _section">This modal is used to confirm a user’s action. It is intended to add friction to an interaction, only confirming the action if the user explicitly presses “confirm”. In this example, we present the modal to confirm they’re posting a question on public Stack Overflow.</p>
     <div class="stacks-code-preview">
@@ -19,7 +37,7 @@ description: Modal dialogs are used to display content that temporarily blocks i
 </div>
 {% endhighlight %}
         <div class="-preview ps-relative grid jc-center">
-            <div class="s-modal-overlay"></div>
+            <div class="s-modal-overlay d-block"></div>
             <div class="s-modal grid--cell">
                 <div class="fs-subheading mb16">Are you sure you want to ask this question publicly?</div>
                 <div class="grid gs8 gsx jc-center">
@@ -45,7 +63,7 @@ description: Modal dialogs are used to display content that temporarily blocks i
 </div>
 {% endhighlight %}
         <div class="-preview ps-relative grid jc-center">
-            <div class="s-modal-overlay"></div>
+            <div class="s-modal-overlay d-block"></div>
             <div class="s-modal grid--cell">
                 <div class="fs-subheading mb16">Ask publicly?</div>
                 <p class="fs-body1 mb16">You’re about to post this question on public Stack Overflow.</p>
@@ -71,7 +89,7 @@ description: Modal dialogs are used to display content that temporarily blocks i
             <label class="grid--cell s-label" for="optionA-ex3">Option 1</label>
         </div>
         <div class="grid s-option-toggle--option">
-            <input class="s-radio" type="radio" name="sample-group-ex3" id="optionB-ex3" checked />
+            <input class="s-radio" type="radio" name="sample-group-ex3" id="optionB-ex3" />
             <label class="grid--cell s-label" for="optionB-ex3">Option 2</label>
         </div>
         <div class="grid s-option-toggle--option">
@@ -82,7 +100,7 @@ description: Modal dialogs are used to display content that temporarily blocks i
 </div>
 {% endhighlight %}
         <div class="-preview ps-relative grid jc-center">
-            <div class="s-modal-overlay"></div>
+            <div class="s-modal-overlay d-block"></div>
             <div class="s-modal grid--cell">
                 <div class="fs-subheading mb16">Notification Frequency</div>
                 <label for="sample-group-ex3" class="fs-body1 mb16 d-block">How often would you like to receive notifications for objective-c?</label>
@@ -92,7 +110,7 @@ description: Modal dialogs are used to display content that temporarily blocks i
                         <label class="grid--cell s-label" for="optionA-ex3">Weekly</label>
                     </div>
                     <div class="grid s-option-toggle--option">
-                        <input class="s-radio" type="radio" name="sample-group-ex3" id="optionB-ex3" checked />
+                        <input class="s-radio" type="radio" name="sample-group-ex3" id="optionB-ex3" />
                         <label class="grid--cell s-label" for="optionB-ex3">Daily</label>
                     </div>
                     <div class="grid s-option-toggle--option">
