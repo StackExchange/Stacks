@@ -16,14 +16,16 @@
 //  ----------------------------------------------------------------------------
 .s-modal-overlay {
     position: fixed;
+
+    // This fills the entire viewport without having to worry about size.
     top: 0;
     right: 0;
     left: 0;
     bottom: 0;
     background-color: fade(@black-900, 50%);
 
-    // Set the off-state properties
-    z-index: @zi-hide; // Make sure its below the body and we can't interact with it.
+    // Set the off-state properties to be animated
+    z-index: @zi-hide; // Make sure the overlay below the body so we can't interact with it.
     opacity: 0;
 
     &.is-visible {
@@ -36,6 +38,8 @@
 
 .s-modal {
     position: fixed;
+
+    // We'll center this using positioning w/ a transform that we'll animate
     top: 50%;
     left: 50%;
     max-width: 24rem;
@@ -45,8 +49,8 @@
     text-align: center;
     .bs-lg;
 
-    // Set the off-state properties
-    transform: translate3d(-50%, 0, 0) scale3d(0.7, 0.7, 0.7);
+    // Set the off-state properties to be animated
+    transform: translate3d(-50%, 0, 0) scale3d(0.5, 0.5, 0.5);
     z-index: @zi-hide; // Make sure its below the body and we can't interact with it.
     opacity: 0;
 
