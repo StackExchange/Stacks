@@ -36,6 +36,8 @@
 
 .s-modal {
     position: fixed;
+    top: 50%;
+    left: 50%;
     max-width: 24rem;
     background-color: @white;
     border-radius: @br-lg;
@@ -44,14 +46,14 @@
     .bs-lg;
 
     // Set the off-state properties
-    transform: translateY(100px) scale3d(0.7, 0.7, 0.7);
+    transform: translate3d(-50%, 0, 0) scale3d(0.7, 0.7, 0.7);
     z-index: @zi-hide; // Make sure its below the body and we can't interact with it.
     opacity: 0;
 
     &.is-visible {
         // Only transition when showing the modal
         transition: opacity .05s ease-out, transform .1s cubic-bezier(0.175, 0.885, 0.32, 1.05);
-        transform: translateY(0) scale3d(1, 1, 1);
+        transform: translate3d(-50%, -50%, 0) scale3d(1, 1, 1);
         opacity: 1;
         z-index: @zi-modals-background;
     }
