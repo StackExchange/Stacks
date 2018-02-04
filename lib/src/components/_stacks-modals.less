@@ -15,21 +15,44 @@
 //  $   BASE STYLE
 //  ----------------------------------------------------------------------------
 .s-modal-overlay {
-    position: absolute;
+    position: fixed;
     top: 0;
     right: 0;
     left: 0;
     bottom: 0;
     background-color: fade(@black-900, 50%);
-    z-index: @zi-modals-background;
+
+    // Set the off-state properties
+    z-index: @zi-hide; // Make sure its below the body and we can't interact with it.
+    opacity: 0;
+
+    &.is-visible {
+        // Only transition when showing the modal
+        transition: opacity .1s ease-out;
+        opacity: 1;
+        z-index: @zi-modals-background;
+    }
 }
 
 .s-modal {
+    position: fixed;
     max-width: 24rem;
     background-color: @white;
     border-radius: @br-lg;
     padding: @su24;
     text-align: center;
     .bs-lg;
-    z-index: @zi-modals;
+
+    // Set the off-state properties
+    transform: translateY(100px) scale3d(0.7, 0.7, 0.7);
+    z-index: @zi-hide; // Make sure its below the body and we can't interact with it.
+    opacity: 0;
+
+    &.is-visible {
+        // Only transition when showing the modal
+        transition: opacity .05s ease-out, transform .1s cubic-bezier(0.175, 0.885, 0.32, 1.1);
+        transform: translateY(0) scale3d(1, 1, 1);
+        opacity: 1;
+        z-index: @zi-modals-background;
+    }
 }

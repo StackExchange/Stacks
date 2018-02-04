@@ -1715,22 +1715,37 @@ template {
   white-space: nowrap;
 }
 .s-modal-overlay {
-  position: absolute;
+  position: fixed;
   top: 0;
   right: 0;
   left: 0;
   bottom: 0;
   background-color: rgba(12, 13, 14, 0.5);
+  z-index: -1;
+  opacity: 0;
+}
+.s-modal-overlay.is-visible {
+  transition: opacity 0.1s ease-out;
+  opacity: 1;
   z-index: 8950;
 }
 .s-modal {
+  position: fixed;
   max-width: 24rem;
   background-color: #FFF;
   border-radius: 7px;
   padding: 24px;
   text-align: center;
   box-shadow: 0 4px 12px rgba(36, 39, 41, 0.2) !important;
-  z-index: 9000;
+  transform: translateY(100px) scale3d(0.7, 0.7, 0.7);
+  z-index: -1;
+  opacity: 0;
+}
+.s-modal.is-visible {
+  transition: opacity 0.05s ease-out, transform 0.1s cubic-bezier(0.175, 0.885, 0.32, 1.1);
+  transform: translateY(0) scale3d(1, 1, 1);
+  opacity: 1;
+  z-index: 8950;
 }
 .s-caption {
   padding-top: 12px;

@@ -5,8 +5,8 @@ description: Modal dialogs are used to display content that temporarily blocks i
 ---
 
 <!-- Example modal content -->
-<div class="s-modal-overlay js-example-modal-overlay d-none ps-fixed"></div>
-<div class="s-modal js-example-modal-content d-none ps-fixed">
+<div class="s-modal-overlay js-example-modal-overlay"></div>
+<div class="s-modal js-example-modal-content">
     <div class="fs-subheading mb16">Example Title</div>
     <div class="grid gs8 gsx jc-center">
         <button class="s-btn s-btn__primary grid--cell js-example-modal-primary-btn">Example primary action</button>
@@ -23,8 +23,8 @@ description: Modal dialogs are used to display content that temporarily blocks i
             e.preventDefault();
             e.stopPropagation();
 
-            modalOverlay.toggleClass("d-none");
-            modalContent.toggleClass("d-none");
+            modalOverlay.toggleClass("is-visible");
+            modalContent.toggleClass("is-visible");
 
             // Hide the dropdown when clicking outside
             $(document).one("click", function closeIt (e){
@@ -50,8 +50,8 @@ description: Modal dialogs are used to display content that temporarily blocks i
         });
         
         function closeModal() {
-            modalContent.addClass("d-none");
-            modalOverlay.addClass("d-none");
+            modalContent.removeClass("is-visible");
+            modalOverlay.removeClass("is-visible");
         }
     });
 </script>
@@ -91,7 +91,7 @@ description: Modal dialogs are used to display content that temporarily blocks i
 </div>
 {% endhighlight %}
         <div class="-preview ps-relative grid jc-center">
-            <div class="s-modal-overlay d-block"></div>
+            <div class="s-modal-overlay d-block ps-absolute"></div>
             <div class="s-modal grid--cell">
                 <div class="fs-subheading mb16">Are you sure you want to ask this question publicly?</div>
                 <div class="grid gs8 gsx jc-center">
@@ -117,7 +117,7 @@ description: Modal dialogs are used to display content that temporarily blocks i
 </div>
 {% endhighlight %}
         <div class="-preview ps-relative grid jc-center">
-            <div class="s-modal-overlay d-block"></div>
+            <div class="s-modal-overlay d-block ps-absolute"></div>
             <div class="s-modal grid--cell">
                 <div class="fs-subheading mb16">Ask publicly?</div>
                 <p class="fs-body1 mb16">You’re about to post this question on public Stack Overflow.</p>
@@ -154,7 +154,7 @@ description: Modal dialogs are used to display content that temporarily blocks i
 </div>
 {% endhighlight %}
         <div class="-preview ps-relative grid jc-center">
-            <div class="s-modal-overlay d-block"></div>
+            <div class="s-modal-overlay d-block ps-absolute"></div>
             <div class="s-modal grid--cell">
                 <div class="fs-subheading mb16">Notification Frequency</div>
                 <label for="sample-group-ex3" class="fs-body1 mb16 d-block">How often would you like to receive notifications for objective-c?</label>
