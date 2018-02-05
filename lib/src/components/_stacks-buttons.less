@@ -112,30 +112,30 @@
 //      In any other scenario, reset the background-image to none.
 //  ----------------------------------------------------------------------------
 .btn-check-bgg(@bgc) {
-  //    If @btn-bgg: true; and @bgc is NOT transparent, show gradients.
-  & when not (@bgc = transparent) and (@btn-bgg = true) {
-    background-image: linear-gradient(to bottom, lighten(@bgc,10%) 0%, spin(saturate(@bgc,10%),5) 100%);
+    //    If @btn-bgg: true; and @bgc is NOT transparent, show gradients.
+    & when not (@bgc = transparent) and (@btn-bgg = true) {
+        background-image: linear-gradient(to bottom, lighten(@bgc,10%) 0%, spin(saturate(@bgc,10%),5) 100%);
 
-    &:hover {
-        background-image: linear-gradient(to bottom, spin(saturate(lighten(@bgc,10%),5%),5) 0%, spin(saturate(@bgc,15%),10) 100%);
+        &:hover {
+            background-image: linear-gradient(to bottom, spin(saturate(lighten(@bgc,10%),5%),5) 0%, spin(saturate(@bgc,15%),10) 100%);
+        }
+        &:focus {
+            background-image: linear-gradient(to bottom, spin(saturate(lighten(@bgc,10%),10%),10) 0%, spin(saturate(@bgc,20%),15) 100%);
+        }
+        &[disabled] {
+            background-image: linear-gradient(to bottom, fade(desaturate(lighten(@bgc,10%),75%),50%) 0%, fade(desaturate(@bgc,75%),50%) 100%);
+        }
     }
-    &:focus {
-        background-image: linear-gradient(to bottom, spin(saturate(lighten(@bgc,10%),10%),10) 0%, spin(saturate(@bgc,20%),15) 100%);
-    }
-    &[disabled] {
-        background-image: linear-gradient(to bottom, fade(desaturate(lighten(@bgc,10%),75%),50%) 0%, fade(desaturate(@bgc,75%),50%) 100%);
-    }
-  }
 
-  //    If @btn-bgg: false; or if @bgc is transparent, then remove gradients.
-  & when (@bgc = transparent), (@btn-bgg = false) {
-    &,
-    &:hover,
-    &:focus,
-    &[disabled] {
-        background-image: none;
+    //    If @btn-bgg: false; or if @bgc is transparent, then remove gradients.
+    & when (@bgc = transparent), (@btn-bgg = false) {
+        &,
+        &:hover,
+        &:focus,
+        &[disabled] {
+            background-image: none;
+        }
     }
-  }
 }
 
 //      MIXIN:
@@ -148,37 +148,37 @@
 //      background color.
 //  ----------------------------------------------------------------------------
 .btn-bgc(@bgc) {
-  background-color: @bgc;
+    background-color: @bgc;
 
-  & when (alpha(@bgc) = 0) {
-    &:hover {
-        background-color: fade(saturate(@bgc,5%),5%);
+    & when (alpha(@bgc) = 0) {
+        &:hover {
+            background-color: fade(saturate(@bgc,5%),5%);
+        }
+        &:active {
+            background-color: fade(saturate(@bgc,15%),15%);
+        }
+        &.selected {
+            background-color: fade(saturate(@bgc,20%),20%);
+        }
+        &[disabled] {
+            background-color: fade(desaturate(@bgc,90%),20%);
+        }
     }
-    &:active {
-        background-color: fade(saturate(@bgc,15%),15%);
-    }
-    &.selected {
-        background-color: fade(saturate(@bgc,20%),20%);
-    }
-    &[disabled] {
-        background-color: fade(desaturate(@bgc,90%),20%);
-    }
-  }
 
-  & when (alpha(@bgc) > 0) {
-    &:hover {
-        background-color: darken(@bgc,7.5%);
+    & when (alpha(@bgc) > 0) {
+        &:hover {
+            background-color: darken(@bgc,7.5%);
+        }
+        &:active {
+            background-color: darken(@bgc,15%);
+        }
+        &.selected {
+            background-color: darken(@bgc,20%);
+        }
+        &[disabled] {
+            background-color: fade(desaturate(@bgc,75%),50%);
+        }
     }
-    &:active {
-        background-color: darken(@bgc,15%);
-    }
-    &.selected {
-        background-color: darken(@bgc,20%);
-    }
-    &[disabled] {
-        background-color: fade(desaturate(@bgc,75%),50%);
-    }
-  }
 }
 
 //      MIXIN:
@@ -493,12 +493,12 @@
 //  ----------------------------------------------------------------------------
 //  --  First the keyframes
 @keyframes spinnerRotate {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
 }
 
 //  --  Next the actual loading spinner
