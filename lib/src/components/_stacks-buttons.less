@@ -56,7 +56,7 @@
             box-shadow: inset 0 @su2 @su8 0 fade(darken(@bxis,20%),80%);
         }
         &.selected {
-            box-shadow: inset 0 @su2 @su8 0 fade(darken(@bxis,30%),90%);
+            box-shadow: inset 0 @su2 @su8 0 fade(darken(@bxis,25%),90%);
         }
     }
 
@@ -158,7 +158,7 @@
             background-color: fade(saturate(@bgc,15%),15%);
         }
         &.selected {
-            background-color: fade(saturate(@bgc,20%),20%);
+            background-color: fade(saturate(@bgc,20%),25%);
         }
         &[disabled] {
             background-color: fade(desaturate(@bgc,90%),20%);
@@ -195,7 +195,8 @@
     & when (@fc = #FFFFFF) and (alpha(@fc) = 1) {
         &:hover,
         &:active,
-        &:focus {
+        &:focus,
+        &.selected {
             color: @fc;
         }
     }
@@ -205,7 +206,8 @@
         &:active {
             color: darken(@fc,10%);
         }
-        &:focus {
+        &:focus,
+        &.selected {
             color: darken(@fc,20%);
         }
     }
@@ -215,7 +217,8 @@
         &:active {
             color: fade(lighten(@fc,10%),90%);
         }
-        &:focus {
+        &:focus,
+        &.selected {
             color: fade(lighten(@fc,10%),100%);
         }
     }
