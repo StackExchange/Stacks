@@ -11,7 +11,7 @@
 //  ============================================================================
 //  $   IMPORTS
 //  ----------------------------------------------------------------------------
-@import "./lib/_stacks-base";            //  These are actual styles used in SO projects
+@import "./lib/src/_stacks-base";            //  These are actual styles used in SO projects
 @import "syntax";
 
 
@@ -31,32 +31,26 @@
     min-height: 100vh;
 }
 
-.stacks-nav-primary {
-    width: 220px;
-}
-
-.stacks-nav-secondary {
-    left: 220px;
-    width: 220px;
+.stacks-nav {
+    width: 260px;
 }
 
 .stacks-content {
-    margin-left: 440px;
+    margin-left: 260px;
+}
+
+.stacks-home {
+    margin-left: 260px;
 }
 
 .stacks-body {
     max-width: 680px;
 }
 
-.stacks-home {
-    margin-left: 220px;
-}
-
 .stacks-section {
     margin-top: @su48;
     margin-bottom: @su48;
 }
-
 
 //  ============================================================================
 //  $   NAV STYLES
@@ -70,7 +64,6 @@
     }
 
     .-link {
-        position: relative;
         padding: @su4 @su4 @su4 @su24;
     }
 }
@@ -79,25 +72,23 @@
 //  ----------------------------------------------------------------------------
 .nav .-item {
     //  If a submenu item is active…
-    &.is-active .-link {
+    .-link.is-active {
         background-color: @orange-300;
         color: @white;
-
-        &:hover {
-            background-color: @orange-400;
-            color: @white;
-        }
     }
+}
 
-    //  If a submenu item is the last one…
-    &:last-child {
-        padding-bottom: @su8;
-    }
+.search-bar .iconSearch {
+    top: 50%;
+    margin-top: -9px;
+    left: 10px;
+    color: @black-200;
 }
 
 //  $$  NAV: SECTIONS
 //  ----------------------------------------------------------------------------
 .-section {
+    padding: @su24 @su4 @su4 @su24;
     .mx-fs(@fs-caption);
     color: @fc-medium;
 }
@@ -110,7 +101,6 @@
         .mx-fs(@fs-caption);
         line-height: @lh-l;
         color: @fc-light;
-        transition: all 600ms @te-smooth;
 
         &:hover {
             background-color: fade(@black-050,50%);
@@ -119,38 +109,22 @@
     }
     &._secondary {
         .-link {
-            color: @fc-medium;
-        }
-        .nav .-link {
+            color: @black-300;
             padding-left: @su32;
-            padding-right: @su32;
-            color: @fc-light;
+        }
+        
+        .nav .-link {
+            padding-left: @su48;
         }
     }
 }
 
 .-repo-meta a {
     color: @black-400;
-    transition: all 300ms @te-smooth-quick;
 
     &:hover {
         color: @fc-dark;
     }
-}
-
-//  ============================================================================
-//  $  NESTED NAV
-//  ----------------------------------------------------------------------------
-//  Scrollspy styling
-// .stacks-nav-secondary .active > .-link {
-//     box-shadow: inset -2px 0 0 @orange-400;
-//     color: @fc-dark;
-// }
-
-// Make icons slightly smaller
-.nav .-icon .svg-icon {
-    width: @su12;
-    height: @su12;
 }
 
 
@@ -173,12 +147,12 @@
         height: @su24;
         background-color: @white;
         color: @fc-light;
-        transition: all 300ms @te-smooth;
-
-        &:hover {
-            background-color: @blue-100;
-            color: @blue-700;
-        }
+        opacity: 0;
+        transition: opacity 300ms @te-smooth;
+    }
+    
+    &:hover .-anchor {
+        opacity: 1;
     }
 
     &._subtitle {
@@ -328,9 +302,8 @@
     }
 }
 
-
 //  ============================================================================
-//  $   CARD STYLES
+//  $   ICON PRESENTATION
 //  ----------------------------------------------------------------------------
 //  --   Preview Area
 .card.stacks-preview .-preview {
@@ -338,12 +311,7 @@
     background-color: @black-025;
     box-shadow: inset 0 -1px 0 @black-050;
     color: @fc-medium;
-
-    .svg-icon {
-        max-width: 90%;
-    }
 }
-
 
 //  ============================================================================
 //  $   GRID
@@ -386,22 +354,16 @@
 }
 
 //  ============================================================================
-//  $   Help Button
-//  ----------------------------------------------------------------------------
-.button-help {
-    position: fixed;
-    bottom: @su32;
-    right: @su32;
-    color: @orange-400;
-
-    &:hover {
-        color: @orange-600;
-    }
-}
-
-//  ============================================================================
 //  $   Line Numbers
 //  ----------------------------------------------------------------------------
 pre.lineno {
     text-align: right;
+}
+
+//  ============================================================================
+//  $   Search override
+//  ----------------------------------------------------------------------------
+
+.algolia-autocomplete {
+    width: 100% !important;
 }

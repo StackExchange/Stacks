@@ -1,0 +1,212 @@
+//
+//  STACK OVERFLOW
+//  TABLES
+//
+//  This CSS comes from Stacks, our CSS & Pattern library for rapidly building
+//  Stack Overflow. https://stackoverflow.design/
+//
+//  For documentation of all these classes and how to contribute,
+//  https://gh.stackoverflow.com/pages/Design/Stacks/
+//
+//  TABLE OF CONTENTS
+//  • CAPTIONS
+//  • BASE TABLE STYLES
+//  • TABLE CELL SIZES
+//  • TABLE LAYOUT VARIATIONS
+//    - Hover Rows
+//    - Condensed Padding
+//    - Bordered
+//    - Vertical Alignment
+//    - Text Alignment
+//    - Background Colors
+//  • UNIQUE TABLE LAYOUTS
+//    - Totals Row
+//
+//  ============================================================================
+//  $ CAPTIONS
+//  ----------------------------------------------------------------------------
+.s-caption {
+    padding-top: @su12;
+    padding-bottom: @su12;
+    text-align: left;
+}
+
+
+//  ============================================================================
+//  $  BASE TABLE STYLE
+//  ----------------------------------------------------------------------------
+.s-table {
+    display: table;
+    width: 100%;
+    max-width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+
+    th,
+    td {
+        padding: @su8;
+        vertical-align: top;
+        border-top: 1px solid @brc-lighter;
+        text-align: left;
+    }
+
+    thead th {
+        vertical-align: bottom;
+        border-top: 0;
+        border-bottom: 1px solid @brc-darker;
+    }
+
+    tbody + tbody {
+        border-top: 2px solid @brc-lighter;
+    }
+}
+
+
+//  ============================================================================
+//  $  TABLE CELL SIZES
+//  ----------------------------------------------------------------------------
+.s-table {
+    //  $$  General Column Sizes
+    //  ------------------------------------------------------------------------
+    @table-columns: 100% / 12;
+
+    .s-table--cell1     { width: @table-columns * 1; }
+    .s-table--cell2     { width: @table-columns * 2; }
+    .s-table--cell3     { width: @table-columns * 3; }
+    .s-table--cell4     { width: @table-columns * 4; }
+    .s-table--cell5     { width: @table-columns * 5; }
+    .s-table--cell6     { width: @table-columns * 6; }
+    .s-table--cell7     { width: @table-columns * 7; }
+    .s-table--cell8     { width: @table-columns * 8; }
+    .s-table--cell9     { width: @table-columns * 9; }
+    .s-table--cell10    { width: @table-columns * 10; }
+    .s-table--cell11    { width: @table-columns * 11; }
+    .s-table--cell12    { width: @table-columns * 12; }
+
+    //  $$  Specific Column Sizes
+    //  ------------------------------------------------------------------------
+    //  --  Input
+    //      Generally for a checkbox input that's placed first in the table row
+    .s-table--input {
+        max-width: @su24;
+        padding-left: @su2;
+        padding-right: @su2;
+    }
+}
+
+
+//  ============================================================================
+//  $ LAYOUT VARIATIONS
+//  ----------------------------------------------------------------------------
+.s-table {
+
+    //  $$  Hover Rows
+    //  ------------------------------------------------------------------------
+    &.s-table__hover tbody tr:hover {
+        background-color: lighten(@bgc-lightest,2%);
+        transition: background-color 300ms @te-smooth;
+    }
+
+    //  $$  Condensed Padding
+    //  ------------------------------------------------------------------------
+    &.s-table__condensed {
+        th,
+        td {
+            padding: @su4;
+        }
+    }
+
+    //  $$  Bordered
+    //  ------------------------------------------------------------------------
+    &.s-table__bordered {
+        th,
+        td {
+            border: 1px solid @brc-lighter;
+        }
+
+        thead th {
+            border-bottom-color: @brc-darker;
+        }
+
+        tbody + tbody {
+            border-top: 2px solid @brc-darker;
+        }
+    }
+
+    //  $$  Vertical Alignment
+    //      This applies the universal vertical alignment class to all cell's within
+    //      the table instead of a single cell.
+    //  ------------------------------------------------------------------------
+    //  --  Top
+    &.va-top {
+        th,
+        td {
+            vertical-align: top;
+        }
+    }
+    //  --  Middle
+    &.va-middle {
+        th,
+        td {
+            vertical-align: middle;
+        }
+    }
+    //  --  Bottom
+    &.va-bottom {
+        th,
+        td {
+            vertical-align: bottom;
+        }
+    }
+
+    //  $$  Text Alignment
+    //      This applies the universal text alignment class to all cell's within
+    //      the table instead of a single cell.
+    //  ------------------------------------------------------------------------
+    //  --  Left Align
+    &.ta-left {
+        th,
+        td {
+            text-align: left;
+        }
+    }
+
+    //  --  Center Align
+    &.ta-center {
+        th,
+        td {
+            text-align: center;
+        }
+    }
+
+    //  --  Right Align
+    &.ta-right {
+        th,
+        td {
+            text-align: right;
+        }
+    }
+
+    //  --  Justify Align
+    &.ta-justify {
+        th,
+        td {
+            text-align: justify;
+        }
+    }
+}
+
+//  $$  Footer: Large Row
+//  ------------------------------------------------------------------------
+.s-table--totals {
+    th,
+    td {
+        padding-top: @su12;
+        .mx-fs(@fs-subheading);
+        font-weight: bold;
+
+        &:hover {
+            background-color: transparent;
+        }
+    }
+}
