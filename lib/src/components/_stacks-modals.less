@@ -25,7 +25,7 @@
     background-color: fade(@black-900, 50%);
 
     // Set the off-state properties to be animated
-    z-index: @zi-hide; // Make sure the overlay below the body so we can't interact with it.
+    z-index: @zi-hide; // Make sure the overlay is behind everything so we can't interact with it.
     opacity: 0;
 
     &.is-visible {
@@ -42,7 +42,6 @@
     // We'll center this using positioning w/ a transform that we'll animate
     top: 50%;
     left: 50%;
-    max-width: 24rem;
     background-color: @white;
     border-radius: @br-lg;
     padding: @su24;
@@ -51,7 +50,7 @@
 
     // Set the off-state properties to be animated
     transform: translate3d(-50%, 0, 0) scale3d(0.5, 0.5, 0.5);
-    z-index: @zi-hide; // Make sure its below the body and we can't interact with it.
+    z-index: @zi-hide; // Make sure it's also below everything so we can't interact with it.
     opacity: 0;
 
     &.is-visible {
@@ -60,5 +59,17 @@
         transform: translate3d(-50%, -50%, 0) scale3d(1, 1, 1);
         opacity: 1;
         z-index: @zi-modals-background;
+    }
+}
+
+//  ============================================================================
+//  $ LAYOUT VARIATIONS
+//  ----------------------------------------------------------------------------
+.s-modal {
+
+    //  $$  Confirmation
+    //  ------------------------------------------------------------------------
+    &.s-modal__confirmation {
+        max-width: 24rem;
     }
 }
