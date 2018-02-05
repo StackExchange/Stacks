@@ -122,6 +122,9 @@
         &:focus {
             background-image: linear-gradient(to bottom, spin(saturate(lighten(@bgc,10%),10%),10) 0%, spin(saturate(@bgc,20%),15) 100%);
         }
+        &.selected {
+            background-image: linear-gradient(to bottom, spin(saturate(lighten(@bgc,10%),15%),15) 0%, spin(saturate(@bgc,25%),20) 100%);
+        }
         &[disabled] {
             background-image: linear-gradient(to bottom, fade(desaturate(lighten(@bgc,10%),75%),50%) 0%, fade(desaturate(@bgc,75%),50%) 100%);
         }
@@ -132,6 +135,7 @@
         &,
         &:hover,
         &:focus,
+        &.selected,
         &[disabled] {
             background-image: none;
         }
