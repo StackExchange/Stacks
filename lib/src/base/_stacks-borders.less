@@ -26,7 +26,7 @@
 //      bt: border top side
 //      br: border right side
 //      bl: border left side
-//      bb: border bottom sides
+//      bb: border bottom side
 //      bx: border x-axis
 //      by: border y-axis
 //  ----------------------------------------------------------------------------
@@ -36,8 +36,8 @@
 .br             { .brs-solid; .brw1; }
 .bb             { .bbs-solid; .bbw1; }
 .bl             { .bls-solid; .blw1; }
-.bx             { .bxs-solid; .bxw1; }
-.by             { .bys-solid; .byw1; }
+.bx             { .bls-solid; .brs-solid; .bxw1; }
+.by             { .bts-solid; .bbs-solid; .byw1; }
 
 
 //  ============================================================================
@@ -108,43 +108,26 @@
 .bas-none       { border-style: none !important; }
 .bas-solid      { border-style: solid !important; }
 .bas-dashed     { border-style: dashed !important; }
-.bas-dotted     { border-style: dotted !important; }
 
 //  $$  Top Border
 .bts-none       { border-top-style: none !important; }
 .bts-solid      { border-top-style: solid !important; }
 .bts-dashed     { border-top-style: dashed !important; }
-.bts-dotted     { border-top-style: dotted !important; }
 
 //  $$  Right Border
 .brs-none       { border-right-style: none !important; }
 .brs-solid      { border-right-style: solid !important; }
 .brs-dashed     { border-right-style: dashed !important; }
-.brs-dotted     { border-right-style: dotted !important; }
 
 //  $$  Bottom Border
 .bbs-none       { border-bottom-style: none !important; }
 .bbs-solid      { border-bottom-style: solid !important; }
 .bbs-dashed     { border-bottom-style: dashed !important; }
-.bbs-dotted     { border-bottom-style: dotted !important; }
 
 //  $$  Left Border
 .bls-none       { border-left-style: none !important; }
 .bls-solid      { border-left-style: solid !important; }
 .bls-dashed     { border-left-style: dashed !important; }
-.bls-dotted     { border-left-style: dotted !important; }
-
-//  $$  X Axis Border
-.bxs-none       { .bts-none; .bbs-none; }
-.bxs-solid      { .bts-solid; .bbs-solid; }
-.bxs-dashed     { .bts-dashed; .bbs-dashed; }
-.bxs-dotted     { .bts-dotted; .bbs-dotted; }
-
-//  $$  X Axis Border
-.bys-none       { .brs-none; .bls-none; }
-.bys-solid      { .brs-solid; .bls-solid; }
-.bys-dashed     { .brs-dashed; .bls-dashed; }
-.bys-dotted     { .brs-dotted; .bls-dotted; }
 
 
 //  ============================================================================
@@ -153,9 +136,7 @@
 //      r-sm:  Small step:   2px border width
 //      r-md:  Medium step:  4px border width
 //      r-lg:  Large step:   8px border width
-//
 //      r-circle:            100% border width
-//      r-pill:              9999px border width
 //  ----------------------------------------------------------------------------
 //  $$  All Sides
 .bar0           { border-radius: 0 !important; }
@@ -163,451 +144,101 @@
 .bar-md         { border-radius: @br-md !important; }
 .bar-lg         { border-radius: @br-lg !important; }
 .bar-circle     { border-radius: 100% !important; }
-.bar-pill       { border-radius: 9999px !important; }
 
 //  $$  Top Corners
-.btr0           { .btlr0; .btrr0; }
-.btr-sm         { .btlr-sm; .btrr-sm; }
-.btr-md         { .btlr-md; .btrr-md; }
-.btr-lg         { .btlr-lg; .btrr-lg; }
-.btr-circle     { .btlr-circle; .btrr-circle; }
-.btr-pill       { .btlr-pill; .btrr-pill; }
-
-//  $$  Top Left Corner
-.btlr0          { border-top-left-radius: 0 !important; }
-.btlr-sm        { border-top-left-radius: @br-sm !important; }
-.btlr-md        { border-top-left-radius: @br-md !important; }
-.btlr-lg        { border-top-left-radius: @br-lg !important; }
-.btlr-circle    { border-top-left-radius: 100% !important; }
-.btlr-pill      { border-top-left-radius: 9999px !important; }
-
-//  $$  Top Right Corner
-.btrr0          { border-top-right-radius: 0 !important; }
-.btrr-sm        { border-top-right-radius: @br-sm !important; }
-.btrr-md        { border-top-right-radius: @br-md !important; }
-.btrr-lg        { border-top-right-radius: @br-lg !important; }
-.btrr-circle    { border-top-right-radius: 100% !important; }
-.btrr-pill      { border-top-right-radius: 9999px !important; }
+.btr0           { border-top-left-radius: 0 !important; border-top-right-radius: 0 !important; }
+.btr-sm         { border-top-left-radius: @br-sm !important; border-top-right-radius: @br-sm !important; }
+.btr-md         { border-top-left-radius: @br-md !important; border-top-right-radius: @br-md !important; }
+.btr-lg         { border-top-left-radius: @br-lg !important; border-top-right-radius: @br-lg !important; }
+.btr-circle     { border-top-left-radius: 100% !important; border-top-right-radius: 100% !important; }
 
 //  $$  Right Corners
-.brr0           { .btrr0; .bbrr0; }
-.brr-sm         { .btrr-sm; .bbrr-sm; }
-.brr-md         { .btrr-md; .bbrr-md; }
-.brr-lg         { .btrr-lg; .bbrr-lg; }
-.brr-circle     { .btrr-circle; .bbrr-circle; }
-.brr-pill       { .btrr-pill; .bbrr-pill; }
+.brr0           { border-top-right-radius: 0 !important; border-bottom-right-radius: 0 !important; }
+.brr-sm         { border-top-right-radius: @br-sm !important; border-bottom-right-radius: @br-sm !important; }
+.brr-md         { border-top-right-radius: @br-md !important; border-bottom-right-radius: @br-md !important; }
+.brr-lg         { border-top-right-radius: @br-lg !important; border-bottom-right-radius: @br-lg !important; }
+.brr-circle     { border-top-right-radius: 100% !important; border-bottom-right-radius: 100% !important; }
 
 //  $$  Bottom Corners
-.bbr0           { .bblr0; .bbrr0; }
-.bbr-sm         { .bblr-sm; .bbrr-sm; }
-.bbr-md         { .bblr-md; .bbrr-md; }
-.bbr-lg         { .bblr-lg; .bbrr-lg; }
-.bbr-circle     { .bblr-circle; .bbrr-circle; }
-.bbr-pill       { .bblr-pill; .bbrr-pill; }
-
-//  $$  Bottom Left Corner
-.bblr0          { border-bottom-left-radius: 0 !important; }
-.bblr-sm        { border-bottom-left-radius: @br-sm !important; }
-.bblr-md        { border-bottom-left-radius: @br-md !important; }
-.bblr-lg        { border-bottom-left-radius: @br-lg !important; }
-.bblr-circle    { border-bottom-left-radius: 100% !important; }
-.bblr-pill      { border-bottom-left-radius: 9999px !important; }
-
-//  $$  Bottom Right Corner
-.bbrr0          { border-bottom-right-radius: 0 !important; }
-.bbrr-sm        { border-bottom-right-radius: @br-sm !important; }
-.bbrr-md        { border-bottom-right-radius: @br-md !important; }
-.bbrr-lg        { border-bottom-right-radius: @br-lg !important; }
-.bbrr-circle    { border-bottom-right-radius: 100% !important; }
-.bbrr-pill      { border-bottom-right-radius: 9999px !important; }
+.bbr0           { border-bottom-left-radius: 0 !important; border-bottom-right-radius: 0 !important; }
+.bbr-sm         { border-bottom-left-radius: @br-sm !important; border-bottom-right-radius: @br-sm !important; }
+.bbr-md         { border-bottom-left-radius: @br-md !important; border-bottom-right-radius: @br-md !important; }
+.bbr-lg         { border-bottom-left-radius: @br-lg !important; border-bottom-right-radius: @br-lg !important; }
+.bbr-circle     { border-bottom-left-radius: 100% !important; border-bottom-right-radius: 100% !important; }
 
 //  $$  Left Corners
-.blr0           { .btlr0; .bblr0; }
-.blr-sm         { .btlr-sm; .bblr-sm; }
-.blr-md         { .btlr-md; .bblr-md; }
-.blr-lg         { .btlr-lg; .bblr-lg; }
-.blr-circle     { .btlr-circle; .bblr-circle; }
-.blr-pill       { .btlr-pill; .bblr-pill; }
+.blr0           { border-top-left-radius: 0 !important; border-bottom-left-radius: 0 !important; }
+.blr-sm         { border-top-left-radius: @br-sm !important; border-bottom-left-radius: @br-sm !important; }
+.blr-md         { border-top-left-radius: @br-md !important; border-bottom-left-radius: @br-md !important; }
+.blr-lg         { border-top-left-radius: @br-lg !important; border-bottom-left-radius: @br-lg !important; }
+.blr-circle     { border-top-left-radius: 100% !important; border-bottom-left-radius: 100% !important; }
 
 
 //  ============================================================================
-//  $   COLOR
-//
-//      c-white:          White border color
-//      c-white-[alpha]:  White border color alpha
-//      c-black-[stop]:   Black border colors
-//      c-orange:         Orange border color
-//      c-blue:           Blue border color
-//      c-powder:         Powder border color
-//      c-red:            Red border color
-//      c-green:          Green border color
-//      c-yellow:         Yellow border color
-//      c-transparent:    Transparent border
+//  $   COLORS
 //  ============================================================================
 //  $$  WHITE
 //  ----------------------------------------------------------------------------
-//  --  100%
-.bac-white           { border-color: @white !important; }
-.btc-white           { border-top-color: @white !important; }
-.brc-white           { border-right-color: @white !important; }
-.bbc-white           { border-bottom-color: @white !important; }
-.blc-white           { border-left-color: @white !important; }
-.bxc-white           { .blc-white; .brc-white; }
-.byc-white           { .btc-white; .bbc-white; }
-
-//  --  First Step: 10% Alpha
-.bac-white-1         { border-color: fade(@white,10%) !important; }
-.btc-white-1         { border-top-color: fade(@white,10%) !important; }
-.brc-white-1         { border-right-color: fade(@white,10%) !important; }
-.bbc-white-1         { border-bottom-color: fade(@white,10%) !important; }
-.blc-white-1         { border-left-color: fade(@white,10%) !important; }
-.bxc-white-1         { .blc-white-1; .brc-white-1; }
-.byc-white-1         { .btc-white-1; .bbc-white-1; }
-
-//  --  Second Step: 20% Alpha
-.bac-white-2         { border-color: fade(@white,20%) !important; }
-.btc-white-2         { border-top-color: fade(@white,20%) !important; }
-.brc-white-2         { border-right-color: fade(@white,20%) !important; }
-.bbc-white-2         { border-bottom-color: fade(@white,20%) !important; }
-.blc-white-2         { border-left-color: fade(@white,20%) !important; }
-.bxc-white-2         { .blc-white-2; .brc-white-2; }
-.byc-white-2         { .btc-white-2; .bbc-white-2; }
-
-//  --  Third Step: 30% Alpha
-.bac-white-3         { border-color: fade(@white,30%) !important; }
-.btc-white-3         { border-top-color: fade(@white,30%) !important; }
-.brc-white-3         { border-right-color: fade(@white,30%) !important; }
-.bbc-white-3         { border-bottom-color: fade(@white,30%) !important; }
-.blc-white-3         { border-left-color: fade(@white,30%) !important; }
-.bxc-white-3         { .blc-white-3; .brc-white-3; }
-.byc-white-3         { .btc-white-3; .bbc-white-3; }
-
-//  --  Fourth Step: 40% Alpha
-.bac-white-4         { border-color: fade(@white,40%) !important; }
-.btc-white-4         { border-top-color: fade(@white,40%) !important; }
-.brc-white-4         { border-right-color: fade(@white,40%) !important; }
-.bbc-white-4         { border-bottom-color: fade(@white,40%) !important; }
-.blc-white-4         { border-left-color: fade(@white,40%) !important; }
-.bxc-white-4         { .blc-white-4; .brc-white-4; }
-.byc-white-4         { .btc-white-4; .bbc-white-4; }
-
-//  --  Fifth Step: 50% Alpha
-.bac-white-5         { border-color: fade(@white,50%) !important; }
-.btc-white-5         { border-top-color: fade(@white,50%) !important; }
-.brc-white-5         { border-right-color: fade(@white,50%) !important; }
-.bbc-white-5         { border-bottom-color: fade(@white,50%) !important; }
-.blc-white-5         { border-left-color: fade(@white,50%) !important; }
-.bxc-white-5         { .blc-white-5; .brc-white-5; }
-.byc-white-5         { .btc-white-5; .bbc-white-5; }
-
-//  --  Sixth Step: 60% Alpha
-.bac-white-6         { border-color: fade(@white,60%) !important; }
-.btc-white-6         { border-top-color: fade(@white,60%) !important; }
-.brc-white-6         { border-right-color: fade(@white,60%) !important; }
-.bbc-white-6         { border-bottom-color: fade(@white,60%) !important; }
-.blc-white-6         { border-left-color: fade(@white,60%) !important; }
-.bxc-white-6         { .blc-white-6; .brc-white-6; }
-.byc-white-6         { .btc-white-6; .bbc-white-6; }
-
-//  --  Seventh Step: 70% Alpha
-.bac-white-7         { border-color: fade(@white,70%) !important; }
-.btc-white-7         { border-top-color: fade(@white,70%) !important; }
-.brc-white-7         { border-right-color: fade(@white,70%) !important; }
-.bbc-white-7         { border-bottom-color: fade(@white,70%) !important; }
-.blc-white-7         { border-left-color: fade(@white,70%) !important; }
-.bxc-white-7         { .blc-white-7; .brc-white-7; }
-.byc-white-7         { .btc-white-7; .bbc-white-7; }
-
-//  --  Eighth Step: 80% Alpha
-.bac-white-8         { border-color: fade(@white,80%) !important; }
-.btc-white-8         { border-top-color: fade(@white,80%) !important; }
-.brc-white-8         { border-right-color: fade(@white,80%) !important; }
-.bbc-white-8         { border-bottom-color: fade(@white,80%) !important; }
-.blc-white-8         { border-left-color: fade(@white,80%) !important; }
-.bxc-white-8         { .blc-white-8; .brc-white-8; }
-.byc-white-8         { .btc-white-8; .bbc-white-8; }
-
-//  --  Ninth Step: 90% Alpha
-.bac-white-9         { border-color: fade(@white,90%) !important; }
-.btc-white-9         { border-top-color: fade(@white,90%) !important; }
-.brc-white-9         { border-right-color: fade(@white,90%) !important; }
-.bbc-white-9         { border-bottom-color: fade(@white,90%) !important; }
-.blc-white-9         { border-left-color: fade(@white,90%) !important; }
-.bxc-white-9         { .blc-white-9; .brc-white-9; }
-.byc-white-9         { .btc-white-9; .bbc-white-9; }
+.bc-white           { border-color: @white !important; }
+.bc-white-1         { border-color: fade(@white,10%) !important; }
+.bc-white-2         { border-color: fade(@white,20%) !important; }
+.bc-white-3         { border-color: fade(@white,30%) !important; }
+.bc-white-4         { border-color: fade(@white,40%) !important; }
+.bc-white-5         { border-color: fade(@white,50%) !important; }
+.bc-white-6         { border-color: fade(@white,60%) !important; }
+.bc-white-7         { border-color: fade(@white,70%) !important; }
+.bc-white-8         { border-color: fade(@white,80%) !important; }
+.bc-white-9         { border-color: fade(@white,90%) !important; }
 
 //  $$  BLACK
 //  ----------------------------------------------------------------------------
-//  --  First Step: @black-050
-.bac-black-1         { border-color: @black-050 !important; }
-.btc-black-1         { border-top-color: @black-050 !important; }
-.brc-black-1         { border-right-color: @black-050 !important; }
-.bbc-black-1         { border-bottom-color: @black-050 !important; }
-.blc-black-1         { border-left-color: @black-050 !important; }
-.bxc-black-1         { .blc-black-1; .brc-black-1; }
-.byc-black-1         { .btc-black-1; .bbc-black-1; }
-
-//  --  Second Step: @black-075
-.bac-black-2         { border-color: @black-075 !important; }
-.btc-black-2         { border-top-color: @black-075 !important; }
-.brc-black-2         { border-right-color: @black-075 !important; }
-.bbc-black-2         { border-bottom-color: @black-075 !important; }
-.blc-black-2         { border-left-color: @black-075 !important; }
-.bxc-black-2         { .blc-black-2; .brc-black-2; }
-.byc-black-2         { .btc-black-2; .bbc-black-2; }
-
-//  --  Third Step: @black-100
-.bac-black-3         { border-color: @black-100 !important; }
-.btc-black-3         { border-top-color: @black-100 !important; }
-.brc-black-3         { border-right-color: @black-100 !important; }
-.bbc-black-3         { border-bottom-color: @black-100 !important; }
-.blc-black-3         { border-left-color: @black-100 !important; }
-.bxc-black-3         { .blc-black-3; .brc-black-3; }
-.byc-black-3         { .btc-black-3; .bbc-black-3; }
-
-//  --  Fourth Step: @black-200
-.bac-black-4         { border-color: @black-200 !important; }
-.btc-black-4         { border-top-color: @black-200 !important; }
-.brc-black-4         { border-right-color: @black-200 !important; }
-.bbc-black-4         { border-bottom-color: @black-200 !important; }
-.blc-black-4         { border-left-color: @black-200 !important; }
-.bxc-black-4         { .blc-black-4; .brc-black-4; }
-.byc-black-4         { .btc-black-4; .bbc-black-4; }
-
-//  --  Fifth Step: @black-300
-.bac-black-5         { border-color: @black-300 !important; }
-.btc-black-5         { border-top-color: @black-300 !important; }
-.brc-black-5         { border-right-color: @black-300 !important; }
-.bbc-black-5         { border-bottom-color: @black-300 !important; }
-.blc-black-5         { border-left-color: @black-300 !important; }
-.bxc-black-5         { .blc-black-5; .brc-black-5; }
-.byc-black-5         { .btc-black-5; .bbc-black-5; }
-
-//  --  Sixth Step: @black-400
-.bac-black-6         { border-color: @black-400 !important; }
-.btc-black-6         { border-top-color: @black-400 !important; }
-.brc-black-6         { border-right-color: @black-400 !important; }
-.bbc-black-6         { border-bottom-color: @black-400 !important; }
-.blc-black-6         { border-left-color: @black-400 !important; }
-.bxc-black-6         { .blc-black-6; .brc-black-6; }
-.byc-black-6         { .btc-black-6; .bbc-black-6; }
-
-//  --  Seventh Step: @black-500
-.bac-black-7         { border-color: @black-500 !important; }
-.btc-black-7         { border-top-color: @black-500 !important; }
-.brc-black-7         { border-right-color: @black-500 !important; }
-.bbc-black-7         { border-bottom-color: @black-500 !important; }
-.blc-black-7         { border-left-color: @black-500 !important; }
-.bxc-black-7         { .blc-black-7; .brc-black-7; }
-.byc-black-7         { .btc-black-7; .bbc-black-7; }
-
-//  --  Eighth Step: @black-700
-.bac-black-8         { border-color: @black-700 !important; }
-.btc-black-8         { border-top-color: @black-700 !important; }
-.brc-black-8         { border-right-color: @black-700 !important; }
-.bbc-black-8         { border-bottom-color: @black-700 !important; }
-.blc-black-8         { border-left-color: @black-700 !important; }
-.bxc-black-8         { .blc-black-8; .brc-black-8; }
-.byc-black-8         { .btc-black-8; .bbc-black-8; }
-
-//  --  Ninth Step: @black-800
-.bac-black-9         { border-color: @black-800 !important; }
-.btc-black-9         { border-top-color: @black-800 !important; }
-.brc-black-9         { border-right-color: @black-800 !important; }
-.bbc-black-9         { border-bottom-color: @black-800 !important; }
-.blc-black-9         { border-left-color: @black-800 !important; }
-.bxc-black-9         { .blc-black-9; .brc-black-9; }
-.byc-black-9         { .btc-black-9; .bbc-black-9; }
-
-//  --  Tenth Step: @black-900
-.bac-black-10        { border-color: @black-900 !important; }
-.btc-black-10        { border-top-color: @black-900 !important; }
-.brc-black-10        { border-right-color: @black-900 !important; }
-.bbc-black-10        { border-bottom-color: @black-900 !important; }
-.blc-black-10        { border-left-color: @black-900 !important; }
-.bxc-black-10        { .blc-black-10; .brc-black-10; }
-.byc-black-10        { .btc-black-10; .bbc-black-10; }
+.bc-black-1         { border-color: @black-050 !important; }
+.bc-black-2         { border-color: @black-075 !important; }
+.bc-black-3         { border-color: @black-100 !important; }
+.bc-black-4         { border-color: @black-200 !important; }
+.bc-black-5         { border-color: @black-300 !important; }
+.bc-black-6         { border-color: @black-400 !important; }
+.bc-black-7         { border-color: @black-500 !important; }
+.bc-black-8         { border-color: @black-700 !important; }
+.bc-black-9         { border-color: @black-800 !important; }
+.bc-black-10        { border-color: @black-900 !important; }
 
 //  $$  ORANGE
 //  ----------------------------------------------------------------------------
-//  --  First Step
-.bac-orange-1        { border-color: @orange-100 !important; }
-.btc-orange-1        { border-top-color: @orange-100 !important; }
-.brc-orange-1        { border-right-color: @orange-100 !important; }
-.bbc-orange-1        { border-bottom-color: @orange-100 !important; }
-.blc-orange-1        { border-left-color: @orange-100 !important; }
-.bxc-orange-1        { .blc-orange-1; .brc-orange-1; }
-.byc-orange-1        { .btc-orange-1; .bbc-orange-1; }
+.bc-orange-1        { border-color: @orange-100 !important; }
+.bc-orange-2        { border-color: @orange-400 !important; }
+.bc-orange-3        { border-color: @orange-600 !important; }
 
-//  --  Second Step
-.bac-orange-2        { border-color: @orange-400 !important; }
-.btc-orange-2        { border-top-color: @orange-400 !important; }
-.brc-orange-2        { border-right-color: @orange-400 !important; }
-.bbc-orange-2        { border-bottom-color: @orange-400 !important; }
-.blc-orange-2        { border-left-color: @orange-400 !important; }
-.bxc-orange-2        { .blc-orange-2; .brc-orange-2; }
-.byc-orange-2        { .btc-orange-2; .bbc-orange-2; }
-
-//  --  Third Step
-.bac-orange-3        { border-color: @orange-600 !important; }
-.btc-orange-3        { border-top-color: @orange-600 !important; }
-.brc-orange-3        { border-right-color: @orange-600 !important; }
-.bbc-orange-3        { border-bottom-color: @orange-600 !important; }
-.blc-orange-3        { border-left-color: @orange-600 !important; }
-.bxc-orange-3        { .blc-orange-3; .brc-orange-3; }
-.byc-orange-3        { .btc-orange-3; .bbc-orange-3; }
+//  $$  BLUE
+//  ----------------------------------------------------------------------------
+.bc-blue-1          { border-color: @blue-100 !important; }
+.bc-blue-2          { border-color: @blue-400 !important; }
+.bc-blue-3          { border-color: @blue-600 !important; }
 
 //  $$  POWDER
 //  ----------------------------------------------------------------------------
-//  --  First Step
-.bac-blue-1          { border-color: @blue-100 !important; }
-.btc-blue-1          { border-top-color: @blue-100 !important; }
-.brc-blue-1          { border-right-color: @blue-100 !important; }
-.bbc-blue-1          { border-bottom-color: @blue-100 !important; }
-.blc-blue-1          { border-left-color: @blue-100 !important; }
-.bxc-blue-1          { .blc-blue-1; .brc-blue-1; }
-.byc-blue-1          { .btc-blue-1; .bbc-blue-1; }
-
-//  --  Second Step
-.bac-blue-2          { border-color: @blue-400 !important; }
-.btc-blue-2          { border-top-color: @blue-400 !important; }
-.brc-blue-2          { border-right-color: @blue-400 !important; }
-.bbc-blue-2          { border-bottom-color: @blue-400 !important; }
-.blc-blue-2          { border-left-color: @blue-400 !important; }
-.bxc-blue-2          { .blc-blue-2; .brc-blue-2; }
-.byc-blue-2          { .btc-blue-2; .bbc-blue-2; }
-
-//  --  Third Step
-.bac-blue-3          { border-color: @blue-600 !important; }
-.btc-blue-3          { border-top-color: @blue-600 !important; }
-.brc-blue-3          { border-right-color: @blue-600 !important; }
-.bbc-blue-3          { border-bottom-color: @blue-600 !important; }
-.blc-blue-3          { border-left-color: @blue-600 !important; }
-.bxc-blue-3          { .blc-blue-3; .brc-blue-3; }
-.byc-blue-3          { .btc-blue-3; .bbc-blue-3; }
-
-//  $$  POWDER
-//  ----------------------------------------------------------------------------
-//  --  First Step
-.bac-powder-1        { border-color: @powder-100 !important; }
-.btc-powder-1        { border-top-color: @powder-100 !important; }
-.brc-powder-1        { border-right-color: @powder-100 !important; }
-.bbc-powder-1        { border-bottom-color: @powder-100 !important; }
-.blc-powder-1        { border-left-color: @powder-100 !important; }
-.bxc-powder-1        { .blc-powder-1; .brc-powder-1; }
-.byc-powder-1        { .btc-powder-1; .bbc-powder-1; }
-
-//  --  Second Step
-.bac-powder-2        { border-color: @powder-400 !important; }
-.btc-powder-2        { border-top-color: @powder-400 !important; }
-.brc-powder-2        { border-right-color: @powder-400 !important; }
-.bbc-powder-2        { border-bottom-color: @powder-400 !important; }
-.blc-powder-2        { border-left-color: @powder-400 !important; }
-.bxc-powder-2        { .blc-powder-2; .brc-powder-2; }
-.byc-powder-2        { .btc-powder-2; .bbc-powder-2; }
-
-//  --  Third Step
-.bac-powder-3        { border-color: @powder-600 !important; }
-.btc-powder-3        { border-top-color: @powder-600 !important; }
-.brc-powder-3        { border-right-color: @powder-600 !important; }
-.bbc-powder-3        { border-bottom-color: @powder-600 !important; }
-.blc-powder-3        { border-left-color: @powder-600 !important; }
-.bxc-powder-3        { .blc-powder-3; .brc-powder-3; }
-.byc-powder-3        { .btc-powder-3; .bbc-powder-3; }
+.bc-powder-1        { border-color: @powder-100 !important; }
+.bc-powder-2        { border-color: @powder-400 !important; }
+.bc-powder-3        { border-color: @powder-600 !important; }
 
 //  $$  GREEN
 //  ----------------------------------------------------------------------------
-//  --  First Step
-.bac-green-1         { border-color: @green-100 !important; }
-.btc-green-1         { border-top-color: @green-100 !important; }
-.brc-green-1         { border-right-color: @green-100 !important; }
-.bbc-green-1         { border-bottom-color: @green-100 !important; }
-.blc-green-1         { border-left-color: @green-100 !important; }
-.bxc-green-1         { .blc-green-1; .brc-green-1; }
-.byc-green-1         { .btc-green-1; .bbc-green-1; }
-
-//  --  Second Step
-.bac-green-2         { border-color: @green-400 !important; }
-.btc-green-2         { border-top-color: @green-400 !important; }
-.brc-green-2         { border-right-color: @green-400 !important; }
-.bbc-green-2         { border-bottom-color: @green-400 !important; }
-.blc-green-2         { border-left-color: @green-400 !important; }
-.bxc-green-2         { .blc-green-2; .brc-green-2; }
-.byc-green-2         { .btc-green-2; .bbc-green-2; }
-
-//  --  Third Step
-.bac-green-3         { border-color: @green-600 !important; }
-.btc-green-3         { border-top-color: @green-600 !important; }
-.brc-green-3         { border-right-color: @green-600 !important; }
-.bbc-green-3         { border-bottom-color: @green-600 !important; }
-.blc-green-3         { border-left-color: @green-600 !important; }
-.bxc-green-3         { .blc-green-3; .brc-green-3; }
-.byc-green-3         { .btc-green-3; .bbc-green-3; }
+.bc-green-1         { border-color: @green-100 !important; }
+.bc-green-2         { border-color: @green-400 !important; }
+.bc-green-3         { border-color: @green-600 !important; }
 
 //  $$  RED
 //  ----------------------------------------------------------------------------
-//  --  First Step
-.bac-red-1           { border-color: @red-100 !important; }
-.btc-red-1           { border-top-color: @red-100 !important; }
-.brc-red-1           { border-right-color: @red-100 !important; }
-.bbc-red-1           { border-bottom-color: @red-100 !important; }
-.blc-red-1           { border-left-color: @red-100 !important; }
-.bxc-red-1           { .blc-red-1; .brc-red-1; }
-.byc-red-1           { .btc-red-1; .bbc-red-1; }
-
-//  --  Second Step
-.bac-red-2           { border-color: @red-400 !important; }
-.btc-red-2           { border-top-color: @red-400 !important; }
-.brc-red-2           { border-right-color: @red-400 !important; }
-.bbc-red-2           { border-bottom-color: @red-400 !important; }
-.blc-red-2           { border-left-color: @red-400 !important; }
-.bxc-red-2           { .blc-red-2; .brc-red-2; }
-.byc-red-2           { .btc-red-2; .bbc-red-2; }
-
-//  --  Third Step
-.bac-red-3           { border-color: @red-600 !important; }
-.btc-red-3           { border-top-color: @red-600 !important; }
-.brc-red-3           { border-right-color: @red-600 !important; }
-.bbc-red-3           { border-bottom-color: @red-600 !important; }
-.blc-red-3           { border-left-color: @red-600 !important; }
-.bxc-red-3           { .blc-red-3; .brc-red-3; }
-.byc-red-3           { .btc-red-3; .bbc-red-3; }
+.bc-red-1           { border-color: @red-100 !important; }
+.bc-red-2           { border-color: @red-400 !important; }
+.bc-red-3           { border-color: @red-600 !important; }
 
 //  $$  YELLOW
 //  ----------------------------------------------------------------------------
-//  --  First Step
-.bac-yellow-1        { border-color: @yellow-050 !important; }
-.btc-yellow-1        { border-top-color: @yellow-050 !important; }
-.brc-yellow-1        { border-right-color: @yellow-050 !important; }
-.bbc-yellow-1        { border-bottom-color: @yellow-050 !important; }
-.blc-yellow-1        { border-left-color: @yellow-050 !important; }
-.bxc-yellow-1        { .blc-yellow-1; .brc-yellow-1; }
-.byc-yellow-1        { .btc-yellow-1; .bbc-yellow-1; }
-
-//  --  Second Step
-.bac-yellow-2        { border-color: @yellow-100 !important; }
-.btc-yellow-2        { border-top-color: @yellow-100 !important; }
-.brc-yellow-2        { border-right-color: @yellow-100 !important; }
-.bbc-yellow-2        { border-bottom-color: @yellow-100 !important; }
-.blc-yellow-2        { border-left-color: @yellow-100 !important; }
-.bxc-yellow-2        { .blc-yellow-2; .brc-yellow-2; }
-.byc-yellow-2        { .btc-yellow-2; .bbc-yellow-2; }
-
-//  --  Third Step
-.bac-yellow-3        { border-color: @yellow-400 !important; }
-.btc-yellow-3        { border-top-color: @yellow-400 !important; }
-.brc-yellow-3        { border-right-color: @yellow-400 !important; }
-.bbc-yellow-3        { border-bottom-color: @yellow-400 !important; }
-.blc-yellow-3        { border-left-color: @yellow-400 !important; }
-.bxc-yellow-3        { .blc-yellow-3; .brc-yellow-3; }
-.byc-yellow-3        { .btc-yellow-3; .bbc-yellow-3; }
+.bc-yellow-1        { border-color: @yellow-050 !important; }
+.bc-yellow-2        { border-color: @yellow-100 !important; }
+.bc-yellow-3        { border-color: @yellow-400 !important; }
 
 //  $$  TRANSPARENT
 //  ----------------------------------------------------------------------------
-.bac-transparent     { border-color: transparent !important; }
-.btc-transparent     { border-top-color: transparent !important; }
-.bbc-transparent     { border-bottom-color: transparent !important; }
-.blc-transparent     { border-left-color: transparent !important; }
-.brc-transparent     { border-right-color: transparent !important; }
-.bxc-transparent     { .blc-transparent; .brc-transparent; }
-.byc-transparent     { .btc-transparent; .bbc-transparent; }
+.bc-transparent     { border-color: transparent !important; }
