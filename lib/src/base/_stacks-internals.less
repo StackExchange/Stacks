@@ -1,0 +1,51 @@
+#stacks-internals() {
+
+    // Load the configuration variables into the current scope. Example:
+    //
+    //     a {
+    //         #stacks-internals #load-config();
+    //         color: @link-color-regular;
+    //     }        
+    #load-config() {
+        #stacks-config();
+    }
+
+    // Same as #load-config, but also adds the corresponding short variable
+    // names to the scope.
+    #short-config() {
+        #stacks-internals #load-config();
+
+        @link-color:        @link-color-regular;
+        //@link-color-hover -- no short name
+        @body-fs:           @base-font-size;
+        @body-lh:           @base-line-height;
+        //@body-font-color -- no short name
+        @body-bg:           @body-background-color;
+
+        @btn-fc:            @button-font-color;
+        @btn-bgc:           @button-background-color;
+        @btn-brc:           @button-has-border;
+        @btn-bxos:          @button-box-shadow-color;
+        @btn-primary-bgc:   @button-primary-background-color;
+        @btn-primary-fc:    @button-primary-font-color;
+        @btn-filled-bgc:    @button-filled-background-color;
+        @btn-filled-fc:     @button-filled-font-color;
+        @btn-confirm-bgc:   @button-confirm-background-color;
+        @btn-confirm-fc:    @button-confirm-font-color;
+        @btn-warning-bgc:   @button-warning-background-color;
+        @btn-warning-fc:    @button-warning-font-color;
+        @btn-bgg:           @button-has-gradient;
+        @btn-br:            @button-border-radius;
+        @btn-fw:            @button-font-weight;
+        @btn-bxis:          @button-has-inset-box-shadow;
+
+        @brc-lighter:       @border-color-lighter;
+        @brc-darker:        @border-color-darker;
+    }
+}
+
+
+
+// the need for these (and thus the variables themselves) will be gone shortly
+@site-width: 1060px;
+@site-padding: 15px;

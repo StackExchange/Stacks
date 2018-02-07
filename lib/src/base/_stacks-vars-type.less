@@ -49,7 +49,11 @@
 //  $   LINE HEIGHT (lh-)
 //  ----------------------------------------------------------------------------
 // Need to remove the unit off the font-size to make line-height unitless
-@lh-unit:   unit(@body-fs);
+
+// FIXME with relying on @body-fs, this would create constants based on configuration.
+// Not sure what the right way to handle this is. Also, @lh-unit shouldn't be public in either case.
+// @lh-unit:   unit(@body-fs); // THIS WAS HERE ORIGINALLY
+@lh-unit:   unit(@fs-body1);
 
 // Now the various line-height variables
 @lh-xs:    1;                            // 1
