@@ -12,14 +12,17 @@
 //
 //  TABLE OF CONTENTS
 //  • IMPORTS
-//  • BODY / HTML
 //
 //  ============================================================================
 //  $   IMPORTS
 //      Various properties we need to reset to make everything better.
 //  ----------------------------------------------------------------------------
+
 //  --  NORMALIZE CSS ACROSS BROWSERS
 @import "base/_stacks-reset";
+
+//  --  SET BASIC STYLES FOR BODY
+@import "base/_stacks-body";
 
 //  --  COMPONENTS
 @import "components/_stacks-buttons";
@@ -34,47 +37,15 @@
 //  --  BASE ELEMENTS
 //      These come after the components so they will overwrite component
 //      styles as needed.
-@import "base/_stacks-vars";
-@import "base/_stacks-mixins";
-@import "base/_stacks-borders";
-@import "base/_stacks-colors";
-@import "base/_stacks-grid";
-@import "base/_stacks-spacing";
-@import "base/_stacks-typography";
-@import "base/_stacks-utilities";
+@import "exports/_stacks-exports";
+@import "atomic/_stacks-borders";
+@import "atomic/_stacks-colors";
+@import "atomic/_stacks-flex";
+@import "atomic/_stacks-grid";
+@import "atomic/_stacks-spacing";
+@import "atomic/_stacks-typography";
+@import "atomic/_stacks-misc";
 
 @import "base/_stacks-configuration.less";
 @import "base/_stacks-internals.less";
 
-//  ============================================================================
-//  $   BODY / HTML
-//      Various properties we need to reset to make everything better.
-//  ----------------------------------------------------------------------------
-
-html,
-body {
-    #stacks-internals #short-config();
-    //  Text styles
-    font-family: @ff-sans;
-    font-size: @body-fs;
-    line-height: @body-lh;
-    color: @body-font-color;
-}
-
-body {
-    #stacks-internals #short-config();
-    
-    box-sizing: border-box;
-    
-    *,
-    *:before,
-    *:after {
-        box-sizing: inherit;
-    }
-
-    //  Layout
-    min-height: 100%;
-
-    //  Background
-    background: @body-bg;
-}
