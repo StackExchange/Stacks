@@ -15,18 +15,8 @@
 //  ============================================================================
 //  $   TEXT SIZES
 //  ----------------------------------------------------------------------------
-//  First create a REM mixin
-.mx-fs(@value) when (ispixel(@value)) {
-    @rem: (unit(@value)) / unit(@fs-base);
 
-    font-size: @value;       // Pixel fallback
-    font-size: ~"@{rem}rem"; // REM
-}
-.mx-fs(@value) when (default()) {
-    error: @MX-FS-MUST-BE-PASSED-A-PIXEL-VALUE;
-}
-
-//  Now declare font sizes
+//  Declare font sizes
 .fs-display4    { .mx-fs(@fs-display4) !important; }
 .fs-display3    { .mx-fs(@fs-display3) !important; }
 .fs-display2    { .mx-fs(@fs-display2) !important; }
