@@ -42,6 +42,10 @@
 //      true/false statement. If TRUE, we add in the variable you pass into
 //      the mixin (@bxis). If @btn-bxis is FALSE, add only the outer box shadow.
 //  ----------------------------------------------------------------------------
+
+& { // create a single scope to load the config into, at least for now
+#stacks-internals #short-config();
+
 .btn-check-bxs(@bxis: transparent, @bxos: @btn-bxos, @status: @btn-bxis) {
     & when (@status = true) {
         box-shadow: inset 0 1px 0 0 fade(lighten(@bxis,20%),75%), 0 0 0 0 fade(@bxos,0%);
@@ -535,4 +539,6 @@
         border-color: @powder-300;
         border-left-color: @powder-600;
     }
+}
+
 }

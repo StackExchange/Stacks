@@ -9,21 +9,14 @@
 //  https://gh.stackoverflow.com/pages/Design/Stacks/
 //
 //  TABLE OF CONTENTS
-//  • UTILITY CLASSES
+//  • ATOMIC CLASSES
 //
 
 //  ============================================================================
 //  $   TEXT SIZES
 //  ----------------------------------------------------------------------------
-//  First create a REM mixin
-.mx-fs(@value) {
-    @rem: (unit(@value)) / unit(@body-fs);
 
-    font-size: @value;       // Pixel fallback
-    font-size: ~"@{rem}rem"; // REM
-}
-
-//  Now declare font sizes
+//  Declare font sizes
 .fs-display4    { .mx-fs(@fs-display4) !important; }
 .fs-display3    { .mx-fs(@fs-display3) !important; }
 .fs-display2    { .mx-fs(@fs-display2) !important; }
@@ -54,9 +47,9 @@
 //  ============================================================================
 //  $$  TEXT COLORS
 //  ----------------------------------------------------------------------------
-.fc-dark        { color: @fc-dark; }
-.fc-medium      { color: @fc-medium; }
-.fc-light       { color: @fc-light; }
+.fc-dark        { color: @fc-dark !important; }
+.fc-medium      { color: @fc-medium !important; }
+.fc-light       { color: @fc-light !important; }
 
 //  ============================================================================
 //  $   LINE HEIGHTS

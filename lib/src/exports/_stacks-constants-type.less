@@ -1,6 +1,6 @@
 //
 //  STACK OVERFLOW
-//  VARIABLES -- TYPOGRAPHY
+//  CONSTANTS -- TYPOGRAPHY
 //
 //  This CSS comes from Stacks, our CSS & Pattern library for rapidly building
 //  Stack Overflow. https://stackoverflow.design/
@@ -22,21 +22,23 @@
 
 //  ============================================================================
 //  $   FONT SIZES (fs-)
-//      Base font-size is 15px.
+//      Base font-size is 13px.
 //  ----------------------------------------------------------------------------
-@fs-fine:           11px; //  0.733rem
-@fs-caption:        12px; //  0.8rem
-@fs-body1:          13px; //  0.867rem
-@fs-body2:          15px; //  1rem
-@fs-body3:          17px; //  1.133rem
-@fs-subheading:     19px; //  1.267rem
-@fs-title:          21px; //  1.4rem
-@fs-headline1:      27px; //  1.8rem
-@fs-headline2:      34px; //  2.267rem
-@fs-display1:       43px; //  2.867rem
-@fs-display2:       55px; //  3.667rem
-@fs-display3:       69px; //  4.6rem
-@fs-display4:       99px; //  6.6rem
+@fs-fine:           11px;
+@fs-caption:        12px;
+@fs-body1:          13px;
+@fs-body2:          15px;
+@fs-body3:          17px;
+@fs-subheading:     19px;
+@fs-title:          21px;
+@fs-headline1:      27px;
+@fs-headline2:      34px;
+@fs-display1:       43px;
+@fs-display2:       55px;
+@fs-display3:       69px;
+@fs-display4:       99px;
+
+@fs-base: @fs-body1;
 
 //      Holdover font-sizes from production. These are NOT to be used and
 //      need to be deprecated.
@@ -49,20 +51,23 @@
 //  $   LINE HEIGHT (lh-)
 //  ----------------------------------------------------------------------------
 // Need to remove the unit off the font-size to make line-height unitless
-@lh-unit:   unit(@body-fs);
+// FIXME this shouldn't be public.
+@_stacks-internals-lh-unit:   unit(@fs-base);
 
 // Now the various line-height variables
-@lh-xs:    1;                            // 1
-@lh-s:     (@lh-unit + 2) / @lh-unit;    // 1.133
-@lh-m:     (@lh-unit + 4) / @lh-unit;    // 1.267
-@lh-l:     (@lh-unit + 8) / @lh-unit;    // 1.533
-@lh-xl:    (@lh-unit + 12) / @lh-unit;   // 1.8
-@lh-xxl:   2;                            // 2
+@lh-xs:    1;
+@lh-s:     (@_stacks-internals-lh-unit + 2) / @_stacks-internals-lh-unit;
+@lh-m:     (@_stacks-internals-lh-unit + 4) / @_stacks-internals-lh-unit;
+@lh-l:     (@_stacks-internals-lh-unit + 8) / @_stacks-internals-lh-unit;
+@lh-xl:    (@_stacks-internals-lh-unit + 12) / @_stacks-internals-lh-unit;
+@lh-xxl:   2;
+
+@lh-base: @lh-m;
 
 //      Holdover line-heights from production. These are NOT to be used and
 //      need to be deprecated.
 //  ----------------------------------------------------------------------------
-@lh-6:      (@lh-unit + 6) / @lh-unit;
+@lh-6:      (@_stacks-internals-lh-unit + 6) / @_stacks-internals-lh-unit;
 
 
 //  ============================================================================

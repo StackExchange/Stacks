@@ -30,7 +30,7 @@ module.exports = function (grunt) {
             production: {
                 files: {
                     'docs/assets/css/stacks-documentation.css': 'docs/assets/less/stacks-documentation.less',
-                    'lib/css/stacks.css': 'lib/src/_stacks-base.less',
+                    'lib/css/stacks.css': 'lib/src/stacks.less',
                 }
             },
         },
