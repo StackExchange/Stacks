@@ -16,12 +16,14 @@
 //  $   TEXT SIZES
 //  ----------------------------------------------------------------------------
 //  First create a REM mixin
-.mx-fs(@value) {
-    #stacks-internals #short-config();
-    @rem: (unit(@value)) / unit(@body-fs);
+.mx-fs(@value) when (ispixel(@value)) {
+    @rem: (unit(@value)) / unit(@fs-base);
 
     font-size: @value;       // Pixel fallback
     font-size: ~"@{rem}rem"; // REM
+}
+.mx-fs(@value) when (default()) {
+    error: @MX-FS-MUST-BE-PASSED-A-PIXEL-VALUE;
 }
 
 //  Now declare font sizes
