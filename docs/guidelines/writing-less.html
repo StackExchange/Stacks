@@ -5,8 +5,8 @@ description: We’ve tried our best to answer any questions when writing CSS / L
 ---
 
 <section class="stacks-section bg-yellow-100 py12 px16 bar-sm ba bc-yellow-3">
-  <p class="fs-title m0">Hold up!</p>
-  <p class="m0">As mentioned in our <a href="{{ "/guidelines/using-stacks" | relative_url }}">usage guide</a>, you <em>probably</em> shouldn’t be writing Less by hand. If you need to write Less, this is how we do it.</p>
+  <p class="fs-title mb8">Hold up!</p>
+  <p>As mentioned in our <a href="{{ "/guidelines/using-stacks" | relative_url }}">usage guide</a>, you <span class="fs-italic">probably</span> shouldn’t be writing Less by hand. If you need to write Less, this is how we do it.</p>
 </section>
 
 <section class="stacks-section">
@@ -30,20 +30,23 @@ description: We’ve tried our best to answer any questions when writing CSS / L
   </ul>
   <p class="stacks-p _section">Questions on the terms used here? See the <a href="http://en.wikipedia.org/wiki/Cascading_Style_Sheets#Syntax">syntax section of the Cascading Style Sheets article</a> on Wikipedia.</p>
 
+  <h2 class="grid jc-spacebetween ai-center stacks-title _subtitle">Annoying example</h2>
   <div class="stacks-code-preview _preview-none">
 {% highlight css linenos %}
-/* Bad CSS */
-.selector, .selector-secondary, .selector[type=text] {
+.selector, .selector-secondary {
     padding:15px;
     margin:0px 0px 15px;
   background-color:rgba(0,0,0,.5);
   box-shadow:0px 1px 2px #CCC,inset 0 1px 0 #FFFFFF
 }
+{% endhighlight %}
+</div>
 
-/* Good CSS */
+  <h2 class="grid jc-spacebetween ai-center stacks-title _subtitle">Better example</h2>
+  <div class="stacks-code-preview _preview-none">
+{% highlight css linenos %}
 .selector,
-.selector-secondary,
-.selector[type="text"] {
+.selector-secondary {
     padding-bottom: @su12;
     margin-bottom: @su12;
     background-color: @black-050;
@@ -123,17 +126,21 @@ description: We’ve tried our best to answer any questions when writing CSS / L
   <p class="stacks-p _section">We don’t often need to set all the values a shorthand property represents. For example, HTML headings only set top and bottom margin, so when necessary, only override those two values. Excessive use of shorthand properties often leads to sloppier code with unnecessary overrides and unintended side effects.</p>
   <p class="stacks-p _section">The Mozilla Developer Network has a great article on <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Shorthand_properties">shorthand properties</a> for those unfamiliar with notation and behavior.</p>
 
+  <h2 class="grid jc-spacebetween ai-center stacks-title _subtitle">Annoying example</h2>
   <div class="stacks-code-preview _preview-none">
 {% highlight css linenos %}
-/* Bad example */
 .element {
     margin: 0 0 10px;
     background: red;
     background: url("image.jpg");
     border-radius: 3px 3px 0 0;
 }
+{% endhighlight %}
+  </div>
 
-/* Better example */
+  <h2 class="grid jc-spacebetween ai-center stacks-title _subtitle">Better example</h2>
+  <div class="stacks-code-preview _preview-none">
+{% highlight css linenos %}
 .element {
     margin-bottom: 10px;
     background-color: red;
