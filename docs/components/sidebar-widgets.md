@@ -71,18 +71,18 @@ description: Sidebar widgets are flexible containers that provide a lot of patte
             <div class="s-sidebarwidget">
                 <div class="s-sidebarwidget--content s-sidebarwidget__items">
                     <div class="s-sidebarwidget--item">
-                        <img src="https://i.stack.imgur.com/MSY0L.jpg?s=32&amp;g=1" alt="balpha" width="16" height="16" class="example-avatar"><!-- PREVIEW ONLY -->
-                        <img src="..." class="example-avatar"><!-- CODE ONLY -->
+                        <img src="https://i.stack.imgur.com/MSY0L.jpg?s=32&amp;g=1" alt="balpha" width="16" height="16" class="example-avatar bar-sm"><!-- PREVIEW ONLY -->
+                        <img src="..." class="example-avatar bar-sm"><!-- CODE ONLY -->
                         <span><strong>balpha</strong> contributed 6 edits</span>
                     </div>
                     <div class="s-sidebarwidget--item">
-                        <img src="https://www.gravatar.com/avatar/13eaa034bcdefa7a6de2776007f43020?s=32&d=identicon&r=PG" alt="Paweł" width="16" height="16" class="example-avatar"><!-- PREVIEW ONLY -->
-                        <img src="..." class="example-avatar"><!-- CODE ONLY -->
+                        <img src="https://www.gravatar.com/avatar/13eaa034bcdefa7a6de2776007f43020?s=32&d=identicon&r=PG" alt="Paweł" width="16" height="16" class="example-avatar bar-sm"><!-- PREVIEW ONLY -->
+                        <img src="..." class="example-avatar bar-sm"><!-- CODE ONLY -->
                         <span><strong>Paweł</strong> contributed 7 edits</span>
                     </div>
                     <div class="s-sidebarwidget--item">
-                        <img src="https://i.stack.imgur.com/nf0QA.jpg?s=32&g=1" alt="Aaron Shekey" width="16" height="16" class="example-avatar"><!-- PREVIEW ONLY -->
-                        <img src="..." class="example-avatar"><!-- CODE ONLY -->
+                        <img src="https://i.stack.imgur.com/nf0QA.jpg?s=32&g=1" alt="Aaron Shekey" width="16" height="16" class="example-avatar bar-sm"><!-- PREVIEW ONLY -->
+                        <img src="..." class="example-avatar bar-sm"><!-- CODE ONLY -->
                         <span><strong>Aaron Shekey</strong> contributed 3 edits</span>
                     </div>
                 </div>
@@ -106,8 +106,8 @@ description: Sidebar widgets are flexible containers that provide a lot of patte
         <div style="width: 300px"><!-- PREVIEW ONLY -->
             <div class="s-sidebarwidget">
                 <div class="s-sidebarwidget--content">
-                    <img src="https://i.stack.imgur.com/MSY0L.jpg?s=64&amp;g=1" alt="balpha" width="32" height="32" class="example-avatar"><!-- PREVIEW ONLY -->
-                    <img src="..." class="example-avatar"><!-- CODE ONLY -->
+                    <img src="https://i.stack.imgur.com/MSY0L.jpg?s=64&amp;g=1" alt="balpha" width="32" height="32" class="example-avatar bar-sm"><!-- PREVIEW ONLY -->
+                    <img src="..." class="example-avatar bar-sm"><!-- CODE ONLY -->
                     <div class="lh4">
                         <strong>balpha</strong><br>
                         contributed 6 edits<br>
@@ -115,8 +115,8 @@ description: Sidebar widgets are flexible containers that provide a lot of patte
                     </div>
                 </div>
                 <div class="s-sidebarwidget--content">
-                    <img src="https://www.gravatar.com/avatar/13eaa034bcdefa7a6de2776007f43020?s=64&d=identicon&r=P" alt="Paweł" width="32" height="32" class="example-avatar"><!-- PREVIEW ONLY -->
-                    <img src="..." class="example-avatar"><!-- CODE ONLY -->
+                    <img src="https://www.gravatar.com/avatar/13eaa034bcdefa7a6de2776007f43020?s=64&d=identicon&r=P" alt="Paweł" width="32" height="32" class="example-avatar bar-sm"><!-- PREVIEW ONLY -->
+                    <img src="..." class="example-avatar bar-sm"><!-- CODE ONLY -->
                     <div class="lh4">
                         <strong>Paweł</strong><br>
                         contributed 7 edits<br>
@@ -124,8 +124,8 @@ description: Sidebar widgets are flexible containers that provide a lot of patte
                     </div>
                 </div>
                 <div class="s-sidebarwidget--content">
-                    <img src="https://i.stack.imgur.com/nf0QA.jpg?s=64&g=1" alt="Aaron Shekey" width="32" height="32" class="example-avatar"><!-- PREVIEW ONLY -->
-                    <img src="..." class="example-avatar"><!-- CODE ONLY -->
+                    <img src="https://i.stack.imgur.com/nf0QA.jpg?s=64&g=1" alt="Aaron Shekey" width="32" height="32" class="example-avatar bar-sm"><!-- PREVIEW ONLY -->
+                    <img src="..." class="example-avatar bar-sm"><!-- CODE ONLY -->
                     <div class="lh4">
                         <strong>Aaron Shekey</strong><br>
                         contributed 3 edits<br>
