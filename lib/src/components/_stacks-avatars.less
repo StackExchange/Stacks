@@ -18,17 +18,20 @@
 //  ----------------------------------------------------------------------------
 
 .s-avatar {
+    display: inline-block; // Make sure the avatar has structure regardless of the element eg. span vs. div
     width: @su16;
     height: @su16;
     position: relative;
     border-radius: @br-sm;
-    
+    vertical-align: bottom; // To make our avatars appear as a background
+
     .s-avatar--letter {
-        line-height: 1.4545455;
+        display: block; // Make sure we're treating the letter as a block-level element
         font-size: @fs-fine;
         text-align: center;
         font-weight: bold;
         color: @white;
+        line-height: 1.4545455;
         
         // We don't need text selection on our letter
         -webkit-user-select: none;  /* Chrome all / Safari all */
