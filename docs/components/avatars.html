@@ -5,100 +5,103 @@ description: Avatars are used to quickly identify users or teams.
 ---
 <section class="stacks-section">
     <h2 class="grid jc-spacebetween ai-center stacks-title">Teams</h2>
-    <p class="stacks-p _section">When displaying a team’s identity, we fall back to the first letter of their name and a color we choose at random. As team administrators add more data—choosing a color or uploading an avatar, we progressively enhance the avatar.</p>
+    <p class="stacks-p _section">When displaying a team’s identity, we badge the avatar with a shield. We fall back to the first letter of their name and a color we choose at random. As team administrators add more data—choosing a color or uploading an avatar—we progressively enhance the avatar.</p>
     <p class="stacks-p _section">In this example, from left to right, we have a team name of Hum with no avatar or custom color. In the middle we have a team name of Hum with a custom color. In the last example, we have a team name of Hum with a custom avatar applied.</p>
     <div class="stacks-code-preview">
 {% highlight html linenos %}
-<a href="…" class="s-avatar">
-    <div class="s-avatar--letter">H</div>
-    @Svg.ShieldXSm.With("native")
+<a href="…" class="s-link s-link__muted">
+    <div class="s-avatar">
+        <div class="s-avatar--letter">H</div>
+        @Svg.ShieldXSm.With("native s-avatar--badge")
+    </div>
+    <span class="pl4">Team name</span>
 </a>
 
 <a href="…" class="s-avatar s-avatar__md">
     <div class="s-avatar--letter">H</div>
-    @Svg.ShieldXSm.With("native")
+    @Svg.ShieldXSm.With("native s-avatar--badge")
 </a>
 
 <a href="…" class="s-avatar s-avatar__lg">
     <div class="s-avatar--letter">H</div>
-    @Svg.ShieldXSm.With("native")
+    @Svg.ShieldXSm.With("native s-avatar--badge")
 </a>
 
 <a href="…" class="s-avatar s-avatar__xl">
     <div class="s-avatar--letter">H</div>
-    Svg.ShieldXSm.With("native")
+    Svg.ShieldXSm.With("native s-avatar--badge")
 </a>
 {% endhighlight %}
         <div class="-preview">
             <div class="grid grid__allcells4">
                 <div class="grid fd-column gs16 gsy">
-                    <a href="#" class="grid s-link s-link__muted">
-                        <div class="grid--cell bg-blue-400 s-avatar s-avatar__team">
+                    <a href="#" class="grid--cell s-link s-link__muted">
+                        <div class="bg-blue-400 s-avatar">
                             <div class="s-avatar--letter">H</div>
-                            <svg aria-hidden="true" class="svg-icon iconShieldXSm native" width="9" height="10" viewBox="0 0 9 10"><g><path d="M0 1.84L4.5 0 9 1.84v3.17C9 7.53 6.3 10 4.5 10 2.7 10 0 7.53 0 5.01V1.84z" fill="#FFF"></path><path d="M4.5 1L1 2.5v2.51C1 7.34 3.65 9 4.5 9 5.34 9 8 7.34 8 5.01V2.5L4.5 1z" fill="#6A7E7C"></path><path d="M3.2 7l.78-1.48a.39.39 0 0 0-.15-.38C3.5 4.9 3.1 4.44 3.1 4c0-.71.47-1.23 1.39-1.23.91 0 1.4.52 1.4 1.23 0 .44-.38.9-.72 1.14a.4.4 0 0 0-.15.38L5.8 7H3.2z" fill="#FFF"></path></g></svg>
+                            <svg aria-hidden="true" class="svg-icon iconShieldXSm native s-avatar--badge" width="9" height="10" viewBox="0 0 9 10"><g><path d="M0 1.84L4.5 0 9 1.84v3.17C9 7.53 6.3 10 4.5 10 2.7 10 0 7.53 0 5.01V1.84z" fill="#FFF"></path><path d="M4.5 1L1 2.5v2.51C1 7.34 3.65 9 4.5 9 5.34 9 8 7.34 8 5.01V2.5L4.5 1z" fill="#6A7E7C"></path><path d="M3.2 7l.78-1.48a.39.39 0 0 0-.15-.38C3.5 4.9 3.1 4.44 3.1 4c0-.71.47-1.23 1.39-1.23.91 0 1.4.52 1.4 1.23 0 .44-.38.9-.72 1.14a.4.4 0 0 0-.15.38L5.8 7H3.2z" fill="#FFF"></path></g></svg>
                         </div>
-                        <span class="grid--cell pl8">Hum</span>
+                        <span class="pl4">Hum</span>
                     </a>
 
-                    <a href="#" class="grid--cell bg-blue-400 s-avatar s-avatar__team s-avatar__md">
+                    <a href="#" class="grid--cell bg-blue-400 s-avatar s-avatar__md">
                         <div class="s-avatar--letter">H</div>
-                        <svg aria-hidden="true" class="svg-icon iconShieldXSm native" width="9" height="10" viewBox="0 0 9 10"><g><path d="M0 1.84L4.5 0 9 1.84v3.17C9 7.53 6.3 10 4.5 10 2.7 10 0 7.53 0 5.01V1.84z" fill="#FFF"></path><path d="M4.5 1L1 2.5v2.51C1 7.34 3.65 9 4.5 9 5.34 9 8 7.34 8 5.01V2.5L4.5 1z" fill="#6A7E7C"></path><path d="M3.2 7l.78-1.48a.39.39 0 0 0-.15-.38C3.5 4.9 3.1 4.44 3.1 4c0-.71.47-1.23 1.39-1.23.91 0 1.4.52 1.4 1.23 0 .44-.38.9-.72 1.14a.4.4 0 0 0-.15.38L5.8 7H3.2z" fill="#FFF"></path></g></svg>
+                        <svg aria-hidden="true" class="svg-icon iconShieldXSm native s-avatar--badge" width="9" height="10" viewBox="0 0 9 10"><g><path d="M0 1.84L4.5 0 9 1.84v3.17C9 7.53 6.3 10 4.5 10 2.7 10 0 7.53 0 5.01V1.84z" fill="#FFF"></path><path d="M4.5 1L1 2.5v2.51C1 7.34 3.65 9 4.5 9 5.34 9 8 7.34 8 5.01V2.5L4.5 1z" fill="#6A7E7C"></path><path d="M3.2 7l.78-1.48a.39.39 0 0 0-.15-.38C3.5 4.9 3.1 4.44 3.1 4c0-.71.47-1.23 1.39-1.23.91 0 1.4.52 1.4 1.23 0 .44-.38.9-.72 1.14a.4.4 0 0 0-.15.38L5.8 7H3.2z" fill="#FFF"></path></g></svg>
                     </a>
 
-                    <a href="#" class="grid--cell bg-blue-400 s-avatar s-avatar__team s-avatar__lg">
+                    <a href="#" class="grid--cell bg-blue-400 s-avatar s-avatar__lg">
                         <div class="s-avatar--letter">H</div>
-                        <svg aria-hidden="true" class="svg-icon iconShieldXSm native" width="9" height="10" viewBox="0 0 9 10"><g><path d="M0 1.84L4.5 0 9 1.84v3.17C9 7.53 6.3 10 4.5 10 2.7 10 0 7.53 0 5.01V1.84z" fill="#FFF"></path><path d="M4.5 1L1 2.5v2.51C1 7.34 3.65 9 4.5 9 5.34 9 8 7.34 8 5.01V2.5L4.5 1z" fill="#6A7E7C"></path><path d="M3.2 7l.78-1.48a.39.39 0 0 0-.15-.38C3.5 4.9 3.1 4.44 3.1 4c0-.71.47-1.23 1.39-1.23.91 0 1.4.52 1.4 1.23 0 .44-.38.9-.72 1.14a.4.4 0 0 0-.15.38L5.8 7H3.2z" fill="#FFF"></path></g></svg>
+                        <svg aria-hidden="true" class="svg-icon iconShieldXSm native s-avatar--badge" width="9" height="10" viewBox="0 0 9 10"><g><path d="M0 1.84L4.5 0 9 1.84v3.17C9 7.53 6.3 10 4.5 10 2.7 10 0 7.53 0 5.01V1.84z" fill="#FFF"></path><path d="M4.5 1L1 2.5v2.51C1 7.34 3.65 9 4.5 9 5.34 9 8 7.34 8 5.01V2.5L4.5 1z" fill="#6A7E7C"></path><path d="M3.2 7l.78-1.48a.39.39 0 0 0-.15-.38C3.5 4.9 3.1 4.44 3.1 4c0-.71.47-1.23 1.39-1.23.91 0 1.4.52 1.4 1.23 0 .44-.38.9-.72 1.14a.4.4 0 0 0-.15.38L5.8 7H3.2z" fill="#FFF"></path></g></svg>
                     </a>
 
-                    <a href="#" class="grid--cell bg-blue-400 s-avatar s-avatar__team s-avatar__xlg">
+                    <a href="#" class="grid--cell bg-blue-400 s-avatar s-avatar__xlg">
                         <div class="s-avatar--letter">H</div>
-                        <svg aria-hidden="true" class="svg-icon iconShieldXSm native" width="9" height="10" viewBox="0 0 9 10"><g><path d="M0 1.84L4.5 0 9 1.84v3.17C9 7.53 6.3 10 4.5 10 2.7 10 0 7.53 0 5.01V1.84z" fill="#FFF"></path><path d="M4.5 1L1 2.5v2.51C1 7.34 3.65 9 4.5 9 5.34 9 8 7.34 8 5.01V2.5L4.5 1z" fill="#6A7E7C"></path><path d="M3.2 7l.78-1.48a.39.39 0 0 0-.15-.38C3.5 4.9 3.1 4.44 3.1 4c0-.71.47-1.23 1.39-1.23.91 0 1.4.52 1.4 1.23 0 .44-.38.9-.72 1.14a.4.4 0 0 0-.15.38L5.8 7H3.2z" fill="#FFF"></path></g></svg>
+                        <svg aria-hidden="true" class="svg-icon iconShieldXSm native s-avatar--badge" width="9" height="10" viewBox="0 0 9 10"><g><path d="M0 1.84L4.5 0 9 1.84v3.17C9 7.53 6.3 10 4.5 10 2.7 10 0 7.53 0 5.01V1.84z" fill="#FFF"></path><path d="M4.5 1L1 2.5v2.51C1 7.34 3.65 9 4.5 9 5.34 9 8 7.34 8 5.01V2.5L4.5 1z" fill="#6A7E7C"></path><path d="M3.2 7l.78-1.48a.39.39 0 0 0-.15-.38C3.5 4.9 3.1 4.44 3.1 4c0-.71.47-1.23 1.39-1.23.91 0 1.4.52 1.4 1.23 0 .44-.38.9-.72 1.14a.4.4 0 0 0-.15.38L5.8 7H3.2z" fill="#FFF"></path></g></svg>
                     </a>
                 </div>
                 
                 <div class="grid fd-column gs16 gsy">
-                    <a href="#" class="grid s-link s-link__muted">
-                        <div class="grid--cell s-avatar s-avatar__team" style="background-color: #4da99d;">
+                    <a href="#" class="grid--cell s-link s-link__muted">
+                        <div class="s-avatar" style="background-color: #4da99d;">
                             <div class="s-avatar--letter">H</div>
-                            <svg aria-hidden="true" class="svg-icon iconShieldXSm native" width="9" height="10" viewBox="0 0 9 10"><g><path d="M0 1.84L4.5 0 9 1.84v3.17C9 7.53 6.3 10 4.5 10 2.7 10 0 7.53 0 5.01V1.84z" fill="#FFF"></path><path d="M4.5 1L1 2.5v2.51C1 7.34 3.65 9 4.5 9 5.34 9 8 7.34 8 5.01V2.5L4.5 1z" fill="#6A7E7C"></path><path d="M3.2 7l.78-1.48a.39.39 0 0 0-.15-.38C3.5 4.9 3.1 4.44 3.1 4c0-.71.47-1.23 1.39-1.23.91 0 1.4.52 1.4 1.23 0 .44-.38.9-.72 1.14a.4.4 0 0 0-.15.38L5.8 7H3.2z" fill="#FFF"></path></g></svg>
+                            <svg aria-hidden="true" class="svg-icon iconShieldXSm native s-avatar--badge" width="9" height="10" viewBox="0 0 9 10"><g><path d="M0 1.84L4.5 0 9 1.84v3.17C9 7.53 6.3 10 4.5 10 2.7 10 0 7.53 0 5.01V1.84z" fill="#FFF"></path><path d="M4.5 1L1 2.5v2.51C1 7.34 3.65 9 4.5 9 5.34 9 8 7.34 8 5.01V2.5L4.5 1z" fill="#6A7E7C"></path><path d="M3.2 7l.78-1.48a.39.39 0 0 0-.15-.38C3.5 4.9 3.1 4.44 3.1 4c0-.71.47-1.23 1.39-1.23.91 0 1.4.52 1.4 1.23 0 .44-.38.9-.72 1.14a.4.4 0 0 0-.15.38L5.8 7H3.2z" fill="#FFF"></path></g></svg>
                         </div>
-                        <span class="grid--cell pl8">Hum</span>
+                        <span class="pl4">Hum</span>
                     </a>
 
-                    <a href="#" class="grid--cell s-avatar s-avatar__team s-avatar__md" style="background-color: #4da99d;">
+                    <a href="#" class="grid--cell s-avatar s-avatar__md" style="background-color: #4da99d;">
                         <div class="s-avatar--letter">H</div>
-                        <svg aria-hidden="true" class="svg-icon iconShieldXSm native" width="9" height="10" viewBox="0 0 9 10"><g><path d="M0 1.84L4.5 0 9 1.84v3.17C9 7.53 6.3 10 4.5 10 2.7 10 0 7.53 0 5.01V1.84z" fill="#FFF"></path><path d="M4.5 1L1 2.5v2.51C1 7.34 3.65 9 4.5 9 5.34 9 8 7.34 8 5.01V2.5L4.5 1z" fill="#6A7E7C"></path><path d="M3.2 7l.78-1.48a.39.39 0 0 0-.15-.38C3.5 4.9 3.1 4.44 3.1 4c0-.71.47-1.23 1.39-1.23.91 0 1.4.52 1.4 1.23 0 .44-.38.9-.72 1.14a.4.4 0 0 0-.15.38L5.8 7H3.2z" fill="#FFF"></path></g></svg>
+                        <svg aria-hidden="true" class="svg-icon iconShieldXSm native s-avatar--badge" width="9" height="10" viewBox="0 0 9 10"><g><path d="M0 1.84L4.5 0 9 1.84v3.17C9 7.53 6.3 10 4.5 10 2.7 10 0 7.53 0 5.01V1.84z" fill="#FFF"></path><path d="M4.5 1L1 2.5v2.51C1 7.34 3.65 9 4.5 9 5.34 9 8 7.34 8 5.01V2.5L4.5 1z" fill="#6A7E7C"></path><path d="M3.2 7l.78-1.48a.39.39 0 0 0-.15-.38C3.5 4.9 3.1 4.44 3.1 4c0-.71.47-1.23 1.39-1.23.91 0 1.4.52 1.4 1.23 0 .44-.38.9-.72 1.14a.4.4 0 0 0-.15.38L5.8 7H3.2z" fill="#FFF"></path></g></svg>
                     </a>
 
-                    <a href="#" class="grid--cell s-avatar s-avatar__team s-avatar__lg" style="background-color: #4da99d;">
+                    <a href="#" class="grid--cell s-avatar s-avatar__lg" style="background-color: #4da99d;">
                         <div class="s-avatar--letter">H</div>
-                        <svg aria-hidden="true" class="svg-icon iconShieldXSm native" width="9" height="10" viewBox="0 0 9 10"><g><path d="M0 1.84L4.5 0 9 1.84v3.17C9 7.53 6.3 10 4.5 10 2.7 10 0 7.53 0 5.01V1.84z" fill="#FFF"></path><path d="M4.5 1L1 2.5v2.51C1 7.34 3.65 9 4.5 9 5.34 9 8 7.34 8 5.01V2.5L4.5 1z" fill="#6A7E7C"></path><path d="M3.2 7l.78-1.48a.39.39 0 0 0-.15-.38C3.5 4.9 3.1 4.44 3.1 4c0-.71.47-1.23 1.39-1.23.91 0 1.4.52 1.4 1.23 0 .44-.38.9-.72 1.14a.4.4 0 0 0-.15.38L5.8 7H3.2z" fill="#FFF"></path></g></svg>
+                        <svg aria-hidden="true" class="svg-icon iconShieldXSm native s-avatar--badge" width="9" height="10" viewBox="0 0 9 10"><g><path d="M0 1.84L4.5 0 9 1.84v3.17C9 7.53 6.3 10 4.5 10 2.7 10 0 7.53 0 5.01V1.84z" fill="#FFF"></path><path d="M4.5 1L1 2.5v2.51C1 7.34 3.65 9 4.5 9 5.34 9 8 7.34 8 5.01V2.5L4.5 1z" fill="#6A7E7C"></path><path d="M3.2 7l.78-1.48a.39.39 0 0 0-.15-.38C3.5 4.9 3.1 4.44 3.1 4c0-.71.47-1.23 1.39-1.23.91 0 1.4.52 1.4 1.23 0 .44-.38.9-.72 1.14a.4.4 0 0 0-.15.38L5.8 7H3.2z" fill="#FFF"></path></g></svg>
                     </a>
 
-                    <a href="#" class="grid--cell s-avatar s-avatar__team s-avatar__xlg" style="background-color: #4da99d;">
+                    <a href="#" class="grid--cell s-avatar s-avatar__xlg" style="background-color: #4da99d;">
                         <div class="s-avatar--letter">H</div>
-                        <svg aria-hidden="true" class="svg-icon iconShieldXSm native" width="9" height="10" viewBox="0 0 9 10"><g><path d="M0 1.84L4.5 0 9 1.84v3.17C9 7.53 6.3 10 4.5 10 2.7 10 0 7.53 0 5.01V1.84z" fill="#FFF"></path><path d="M4.5 1L1 2.5v2.51C1 7.34 3.65 9 4.5 9 5.34 9 8 7.34 8 5.01V2.5L4.5 1z" fill="#6A7E7C"></path><path d="M3.2 7l.78-1.48a.39.39 0 0 0-.15-.38C3.5 4.9 3.1 4.44 3.1 4c0-.71.47-1.23 1.39-1.23.91 0 1.4.52 1.4 1.23 0 .44-.38.9-.72 1.14a.4.4 0 0 0-.15.38L5.8 7H3.2z" fill="#FFF"></path></g></svg>
+                        <svg aria-hidden="true" class="svg-icon iconShieldXSm native s-avatar--badge" width="9" height="10" viewBox="0 0 9 10"><g><path d="M0 1.84L4.5 0 9 1.84v3.17C9 7.53 6.3 10 4.5 10 2.7 10 0 7.53 0 5.01V1.84z" fill="#FFF"></path><path d="M4.5 1L1 2.5v2.51C1 7.34 3.65 9 4.5 9 5.34 9 8 7.34 8 5.01V2.5L4.5 1z" fill="#6A7E7C"></path><path d="M3.2 7l.78-1.48a.39.39 0 0 0-.15-.38C3.5 4.9 3.1 4.44 3.1 4c0-.71.47-1.23 1.39-1.23.91 0 1.4.52 1.4 1.23 0 .44-.38.9-.72 1.14a.4.4 0 0 0-.15.38L5.8 7H3.2z" fill="#FFF"></path></g></svg>
                     </a>
                 </div>
                 
                 <div class="grid fd-column gs16 gsy">
-                    <a href="#" class="grid s-link s-link__muted">
-                        <div class="grid--cell demo-background s-avatar s-avatar__team">
-                            <svg aria-hidden="true" class="svg-icon iconShieldXSm native" width="9" height="10" viewBox="0 0 9 10"><g><path d="M0 1.84L4.5 0 9 1.84v3.17C9 7.53 6.3 10 4.5 10 2.7 10 0 7.53 0 5.01V1.84z" fill="#FFF"></path><path d="M4.5 1L1 2.5v2.51C1 7.34 3.65 9 4.5 9 5.34 9 8 7.34 8 5.01V2.5L4.5 1z" fill="#6A7E7C"></path><path d="M3.2 7l.78-1.48a.39.39 0 0 0-.15-.38C3.5 4.9 3.1 4.44 3.1 4c0-.71.47-1.23 1.39-1.23.91 0 1.4.52 1.4 1.23 0 .44-.38.9-.72 1.14a.4.4 0 0 0-.15.38L5.8 7H3.2z" fill="#FFF"></path></g></svg>
+                    <a href="#" class="grid--cell s-link s-link__muted">
+                        <div class="demo-background s-avatar">
+                            <svg aria-hidden="true" class="svg-icon iconShieldXSm native s-avatar--badge" width="9" height="10" viewBox="0 0 9 10"><g><path d="M0 1.84L4.5 0 9 1.84v3.17C9 7.53 6.3 10 4.5 10 2.7 10 0 7.53 0 5.01V1.84z" fill="#FFF"></path><path d="M4.5 1L1 2.5v2.51C1 7.34 3.65 9 4.5 9 5.34 9 8 7.34 8 5.01V2.5L4.5 1z" fill="#6A7E7C"></path><path d="M3.2 7l.78-1.48a.39.39 0 0 0-.15-.38C3.5 4.9 3.1 4.44 3.1 4c0-.71.47-1.23 1.39-1.23.91 0 1.4.52 1.4 1.23 0 .44-.38.9-.72 1.14a.4.4 0 0 0-.15.38L5.8 7H3.2z" fill="#FFF"></path></g></svg>
                         </div>
-                        <span class="grid--cell pl8">Hum</span>
+                        <span class="pl4">Hum</span>
                     </a>
 
-                    <a href="#" class="grid--cell demo-background s-avatar s-avatar__team s-avatar__md">
-                        <svg aria-hidden="true" class="svg-icon iconShieldXSm native" width="9" height="10" viewBox="0 0 9 10"><g><path d="M0 1.84L4.5 0 9 1.84v3.17C9 7.53 6.3 10 4.5 10 2.7 10 0 7.53 0 5.01V1.84z" fill="#FFF"></path><path d="M4.5 1L1 2.5v2.51C1 7.34 3.65 9 4.5 9 5.34 9 8 7.34 8 5.01V2.5L4.5 1z" fill="#6A7E7C"></path><path d="M3.2 7l.78-1.48a.39.39 0 0 0-.15-.38C3.5 4.9 3.1 4.44 3.1 4c0-.71.47-1.23 1.39-1.23.91 0 1.4.52 1.4 1.23 0 .44-.38.9-.72 1.14a.4.4 0 0 0-.15.38L5.8 7H3.2z" fill="#FFF"></path></g></svg>
+                    <a href="#" class="grid--cell demo-background s-avatar s-avatar__md">
+                        <svg aria-hidden="true" class="svg-icon iconShieldXSm native s-avatar--badge" width="9" height="10" viewBox="0 0 9 10"><g><path d="M0 1.84L4.5 0 9 1.84v3.17C9 7.53 6.3 10 4.5 10 2.7 10 0 7.53 0 5.01V1.84z" fill="#FFF"></path><path d="M4.5 1L1 2.5v2.51C1 7.34 3.65 9 4.5 9 5.34 9 8 7.34 8 5.01V2.5L4.5 1z" fill="#6A7E7C"></path><path d="M3.2 7l.78-1.48a.39.39 0 0 0-.15-.38C3.5 4.9 3.1 4.44 3.1 4c0-.71.47-1.23 1.39-1.23.91 0 1.4.52 1.4 1.23 0 .44-.38.9-.72 1.14a.4.4 0 0 0-.15.38L5.8 7H3.2z" fill="#FFF"></path></g></svg>
                     </a>
 
-                    <a href="#" class="grid--cell demo-background s-avatar s-avatar__team s-avatar__lg">
-                        <svg aria-hidden="true" class="svg-icon iconShieldXSm native" width="9" height="10" viewBox="0 0 9 10"><g><path d="M0 1.84L4.5 0 9 1.84v3.17C9 7.53 6.3 10 4.5 10 2.7 10 0 7.53 0 5.01V1.84z" fill="#FFF"></path><path d="M4.5 1L1 2.5v2.51C1 7.34 3.65 9 4.5 9 5.34 9 8 7.34 8 5.01V2.5L4.5 1z" fill="#6A7E7C"></path><path d="M3.2 7l.78-1.48a.39.39 0 0 0-.15-.38C3.5 4.9 3.1 4.44 3.1 4c0-.71.47-1.23 1.39-1.23.91 0 1.4.52 1.4 1.23 0 .44-.38.9-.72 1.14a.4.4 0 0 0-.15.38L5.8 7H3.2z" fill="#FFF"></path></g></svg>
+                    <a href="#" class="grid--cell demo-background s-avatar s-avatar__lg">
+                        <svg aria-hidden="true" class="svg-icon iconShieldXSm native s-avatar--badge" width="9" height="10" viewBox="0 0 9 10"><g><path d="M0 1.84L4.5 0 9 1.84v3.17C9 7.53 6.3 10 4.5 10 2.7 10 0 7.53 0 5.01V1.84z" fill="#FFF"></path><path d="M4.5 1L1 2.5v2.51C1 7.34 3.65 9 4.5 9 5.34 9 8 7.34 8 5.01V2.5L4.5 1z" fill="#6A7E7C"></path><path d="M3.2 7l.78-1.48a.39.39 0 0 0-.15-.38C3.5 4.9 3.1 4.44 3.1 4c0-.71.47-1.23 1.39-1.23.91 0 1.4.52 1.4 1.23 0 .44-.38.9-.72 1.14a.4.4 0 0 0-.15.38L5.8 7H3.2z" fill="#FFF"></path></g></svg>
                     </a>
 
-                    <a href="#" class="grid--cell demo-background s-avatar s-avatar__team s-avatar__xlg">
-                        <svg aria-hidden="true" class="svg-icon iconShieldXSm native" width="9" height="10" viewBox="0 0 9 10"><g><path d="M0 1.84L4.5 0 9 1.84v3.17C9 7.53 6.3 10 4.5 10 2.7 10 0 7.53 0 5.01V1.84z" fill="#FFF"></path><path d="M4.5 1L1 2.5v2.51C1 7.34 3.65 9 4.5 9 5.34 9 8 7.34 8 5.01V2.5L4.5 1z" fill="#6A7E7C"></path><path d="M3.2 7l.78-1.48a.39.39 0 0 0-.15-.38C3.5 4.9 3.1 4.44 3.1 4c0-.71.47-1.23 1.39-1.23.91 0 1.4.52 1.4 1.23 0 .44-.38.9-.72 1.14a.4.4 0 0 0-.15.38L5.8 7H3.2z" fill="#FFF"></path></g></svg>
+                    <a href="#" class="grid--cell demo-background s-avatar s-avatar__xlg">
+                        <svg aria-hidden="true" class="svg-icon iconShieldXSm native s-avatar--badge" width="9" height="10" viewBox="0 0 9 10"><g><path d="M0 1.84L4.5 0 9 1.84v3.17C9 7.53 6.3 10 4.5 10 2.7 10 0 7.53 0 5.01V1.84z" fill="#FFF"></path><path d="M4.5 1L1 2.5v2.51C1 7.34 3.65 9 4.5 9 5.34 9 8 7.34 8 5.01V2.5L4.5 1z" fill="#6A7E7C"></path><path d="M3.2 7l.78-1.48a.39.39 0 0 0-.15-.38C3.5 4.9 3.1 4.44 3.1 4c0-.71.47-1.23 1.39-1.23.91 0 1.4.52 1.4 1.23 0 .44-.38.9-.72 1.14a.4.4 0 0 0-.15.38L5.8 7H3.2z" fill="#FFF"></path></g></svg>
                     </a>
                 </div>
             </div>
