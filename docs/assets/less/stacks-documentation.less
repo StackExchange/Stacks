@@ -11,13 +11,25 @@
 //  ============================================================================
 //  $   IMPORTS
 //  ----------------------------------------------------------------------------
-@import "./lib/src/_stacks-base";            //  These are actual styles used in SO projects
+@import "./lib/src/stacks.less"; //  These are actual styles used in SO projects
 @import "syntax";
 
 
 //  ============================================================================
 //  $   UNIVERSAL SETTINGS
 //  ----------------------------------------------------------------------------
+
+@site-width: 1060px;
+@site-padding: 15px;
+
+html {
+    min-width: @site-width; // https://meta.stackoverflow.com/questions/208203/
+}
+
+body {
+    min-width: @site-width + @site-padding;
+}
+
 .svg-icon {
     fill: currentColor;
     vertical-align: bottom; // Make icons play nicely while inline with text by default
@@ -214,6 +226,8 @@
 //  ----------------------------------------------------------------------------
 .stacks-list {
     margin-bottom: 1em;
+    margin-left: 1.4em;
+    padding-left: 1.4em;
     line-height: @lh-l;
     color: @fc-medium;
 
@@ -222,6 +236,14 @@
     strong {
         color: @fc-dark;
     }
+}
+
+ul.stacks-list {
+    .list-ls-disc;
+}
+
+ol.stacks-list {
+    .list-ls-decimal;
 }
 
 //  --   Code Tag
@@ -306,7 +328,7 @@
 //  $   ICON PRESENTATION
 //  ----------------------------------------------------------------------------
 //  --   Preview Area
-.card.stacks-preview .-preview {
+.stacks-card.stacks-preview .-preview {
     min-height: 4em;
     background-color: @black-025;
     box-shadow: inset 0 -1px 0 @black-050;
@@ -317,8 +339,8 @@
 //  $   GRID
 //      Used to showcase grid layouts and cells
 //  ----------------------------------------------------------------------------
-@grid-background:            @orange-050;
-@grid--cell-background:       @orange-300;
+@grid-background: @orange-050;
+@grid--cell-background: @orange-300;
 
 .stacks-grid-wrapper {
     margin-top: @su8;

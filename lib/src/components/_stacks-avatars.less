@@ -1,0 +1,90 @@
+//
+//  STACK OVERFLOW
+//  AVATARS
+//
+//  This CSS comes from Stacks, our CSS & Pattern library for rapidly building
+//  Stack Overflow. https://stackoverflow.design/
+//
+//  For documentation of all these classes and how to contribute,
+//  https://gh.stackoverflow.com/pages/Design/Stacks/
+//
+//  TABLE OF CONTENTS
+//  • AVATARS
+//  • TEAM AVATARS
+//
+
+//  ============================================================================
+//  $   TEAM AVATARS
+//  ----------------------------------------------------------------------------
+
+.s-avatar {
+    display: inline-block; // Make sure the avatar has structure regardless of the element eg. span vs. div
+    width: @su16;
+    height: @su16;
+    position: relative;
+    border-radius: @br-sm;
+    vertical-align: bottom; // To make our avatars appear as a background
+
+    .s-avatar--letter {
+        display: block; // Make sure we're treating the letter as a block-level element
+        font-size: @fs-fine;
+        text-align: center;
+        font-weight: bold;
+        color: @white;
+        line-height: 1.4545455;
+        
+        // We don't need text selection on our letter
+        -webkit-user-select: none;  /* Chrome all / Safari all */
+        -moz-user-select: none;     /* Firefox all */
+        -ms-user-select: none;      /* IE 10+ */
+        user-select: none;          /* Likely future */
+    }
+
+    .s-avatar--badge {
+        position: absolute;
+        bottom: -4px;
+        right: -4px;
+    }
+
+    &.s-avatar__md {
+        width: @su32;
+        height: @su32;
+        border-radius: @br-md;
+        
+        .s-avatar--letter {
+            font-size: 1.69em; // 22px
+        }
+
+        .s-avatar--badge {
+            transform: scale(1.3);
+        }
+    }
+
+    &.s-avatar__lg {
+        width: @su64;
+        height: @su64;
+        border-radius: @br-lg;
+
+        .s-avatar--letter {
+            font-size: 3.38em; // 33px
+        }
+
+        .s-avatar--badge {
+            transform: scale(2.4);
+        }
+    }
+
+    &.s-avatar__xlg {
+        width: @su64 + @su32;
+        height: @su64 + @su32;
+        border-radius: @br-lg + @br-sm;
+
+        .s-avatar--letter {
+            font-size: 5.07em; // 66px
+        }
+
+        .s-avatar--badge {
+            transform: scale(3.4);
+        }
+    }
+}
