@@ -530,6 +530,51 @@ sup {
 .s-input-connect .s-label {
   white-space: nowrap;
 }
+.s-modal-overlay {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background-color: rgba(12, 13, 14, 0.5);
+  z-index: -1;
+  opacity: 0;
+}
+.s-modal-overlay.is-visible {
+  transition: opacity 0.1s ease-out;
+  opacity: 1;
+  z-index: 8950;
+}
+.s-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  background-color: #FFF;
+  border-radius: 7px;
+  padding: 24px;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(36, 39, 41, 0.2) !important;
+  transform: translate3d(-50%, 0, 0) scale3d(0.5, 0.5, 0.5);
+  z-index: -1;
+  opacity: 0;
+}
+.s-modal.is-visible {
+  transition: opacity 0.05s ease-out, transform 0.1s cubic-bezier(0.175, 0.885, 0.32, 1.05);
+  transform: translate3d(-50%, -50%, 0) scale3d(1, 1, 1);
+  opacity: 1;
+  z-index: 8950;
+}
+.s-modal .s-modal--title {
+  margin-bottom: 24px;
+  font-size: 19px;
+}
+.s-modal .s-modal--description {
+  margin-bottom: 24px;
+  font-size: 13px;
+}
+.s-modal.s-modal__confirmation {
+  max-width: 24rem;
+}
 .s-caption {
   padding-top: 12px;
   padding-bottom: 12px;
