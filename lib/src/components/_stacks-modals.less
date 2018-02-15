@@ -49,13 +49,14 @@
     .bs-lg;
 
     // Set the off-state properties to be animated
-    transform: translate3d(-50%, 0, 0) scale3d(0.5, 0.5, 0.5);
+    transform: translate3d(-50%, 100%, 0) scale3d(0.5, 0.5, 0.5);
     z-index: @zi-hide; // Make sure it's also below everything so we can't interact with it.
     opacity: 0;
 
     &.is-visible {
         // Only transition when showing the modal
-        transition: opacity .05s ease-out, transform .1s cubic-bezier(0.175, 0.885, 0.32, 1.05);
+        will-change: transform, opacity;
+        transition: opacity .15s ease-out, transform .25s cubic-bezier(0.175, 0.885, 0.32, 1.05);
         transform: translate3d(-50%, -50%, 0) scale3d(1, 1, 1);
         opacity: 1;
         z-index: @zi-modals-background;
