@@ -18,18 +18,27 @@
 .s-card {
     position: relative;
     padding: @su12;
-    border-radius: 1px;
+    border-radius: @br-sm;
     border: 1px solid @brc-lighter;
     background-color: @white;
-    box-shadow: 0 0 0 fade(@white,0%);
     transition: box-shadow 150ms @te-smooth;
 
     &:hover {
         border-color: @brc-light;
-        box-shadow: 0 @su2 @su8 fade(@black-050, 50%);
         transition: box-shadow 100ms @te-smooth;
     }
 }
+
+//  ============================================================================
+//  $   BOX SHADOW ADJUSTMENTS
+//      This adds hover states to the base box-shadows
+//  ----------------------------------------------------------------------------
+.s-card.bs-sm:hover     { box-shadow: 0 @su2 @su8 @black-050 !important; }
+.s-card.bs-md:hover     { box-shadow: 0 @su4 @su8 @black-100 !important; }
+.s-card.bs-lg:hover     { box-shadow: 0 @su4 @su12 fade(@black-300, 70%) !important; }
+.s-card.bs-i-sm:hover   { box-shadow: inset 0 @su2/2 @su8 0 fade(@black-200, 75%) !important; }
+.s-card.bs-i-md:hover   { box-shadow: inset 0 @su2/2 @su8 0 fade(@black-350, 80%) !important; }
+.s-card.bs-i-lg:hover   { box-shadow: inset 0 @su2/2 @su12 0 @black-350 !important; }
 
 
 //  ============================================================================
@@ -38,8 +47,18 @@
 .s-card__muted {
     border-color: @brc-lightest;
 
+    //  Dim all card content
+    * {
+        opacity: 0.5;
+        transition: opacity 100ms @te-smooth;
+    }
+
     &:hover {
         border-color: @brc-lighter;
-        box-shadow: none;
+
+        * {
+            opacity: 0.75;
+            transition: opacity 75ms @te-smooth;
+        }
     }
 }
