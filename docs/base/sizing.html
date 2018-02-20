@@ -17,12 +17,22 @@ description: Atomic sizing classes allow you to quickly an element’s size or m
         </thead>
         <tbody>
             {% for size in site.data.atomic-definitions.sizing %}
-              <tr class="ff-mono fs-caption">
-                  <th scope="row" class="p8">.{{ size.class }}</th>
-                  <td class="p8">.w{{ size.value }}</td>
-                  <td class="p8">.h{{ size.value }}</td>
-                  <td class="p8">{{ size.value }}%</td>
-              </tr>
+                <tr class="ff-mono fs-caption">
+                    <th scope="row" class="p8">.{{ size.class }}</th>
+                    {% if size.value == "auto" %}
+                        <td class="p8">.w-{{ size.value }}</td>
+                        <td class="p8">.h-{{ size.value }}</td>
+                    {% else %}
+                        <td class="p8">.w{{ size.value }}</td>
+                        <td class="p8">.h{{ size.value }}</td>
+                    {% endif %}
+                    
+                    {% if size.value == "auto" %}
+                        <td class="p8">{{ size.value }}</td>
+                    {% else %}
+                        <td class="p8">{{ size.value }}%</td>
+                    {% endif %}
+                </tr>
             {% endfor %}
         </tbody>
     </table>
@@ -44,7 +54,10 @@ description: Atomic sizing classes allow you to quickly an element’s size or m
                 <th scope="row" class="p8">.{{ size.class }}</th>
                 <td class="p8">.wmx{{ size.name }}</td>
                 <td class="p8">.hmx{{ size.name }}</td>
-                {% if size.value == 100 %}
+                {% if size.value == "none" %}
+                    <td class="p8">{{ size.value }}</td>
+                    <td class="p8 fc-black-350">N/A</td>
+                {% elsif size.value == 100 %}
                     <td class="p8">{{ size.value }}%</td>
                     <td class="p8 fc-black-350">N/A</td>
                 {% else %}
