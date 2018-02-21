@@ -4,44 +4,65 @@ title: Modals
 description: Modal dialogs are used to display content that temporarily blocks interactions with the primary view. These are often used to confirm user action or clarify their action.
 ---
 
-<!-- Example modal content -->
+<!-- Example base modal content -->
 <div class="s-modal-overlay js-example-modal-overlay"></div>
-<div class="s-modal s-modal__confirmation js-example-modal-content">
-    <div class="s-modal--title">Example Title</div>
-    <div class="grid gs8 gsx jc-center">
+<aside class="s-modal s-modal__confirmation js-example-modal-content__base">
+    <h1 class="s-modal--title">Example Title</h1>
+    <p class="s-modal--description">This is an example description area for your modal.</p>
+    <div class="grid gs8 gsx">
         <button class="s-btn s-btn__primary grid--cell js-example-modal-primary-btn">Example primary action</button>
         <button class="s-btn grid--cell js-example-modal-cancel-btn">Cancel</button>
     </div>
-</div>
+</aside>
+
+<!-- Example modal + transform content -->
+<aside class="s-modal s-modal__transform s-modal__confirmation js-example-modal-content__transform">
+    <h1 class="s-modal--title">Example Title</h1>
+    <p class="s-modal--description">This is an example description area for your modal.</p>
+    <div class="grid gs8 gsx">
+        <button class="s-btn s-btn__primary grid--cell js-example-modal-primary-btn">Example primary action</button>
+        <button class="s-btn grid--cell js-example-modal-cancel-btn">Cancel</button>
+    </div>
+</aside>
 
 <script>
     $(function() {
         var modalOverlay = $(".js-example-modal-overlay");
-        var modalContent = $(".js-example-modal-content");
+        var modalBase = $(".js-example-modal-content__base");
+        var modalTransform = $(".js-example-modal-content__transform");
 
-        $(".js-launch-modal-btn").on("click", function(e) {
+        $(".js-launch-modal-btn__base").on("click", function(e) {
             e.preventDefault();
             e.stopPropagation();
 
             modalOverlay.toggleClass("is-visible");
-            modalContent.toggleClass("is-visible");
+            modalBase.toggleClass("is-visible");
         });
-        
+
+        $(".js-launch-modal-btn__transform").on("click", function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            modalOverlay.toggleClass("is-visible");
+            modalTransform.toggleClass("is-visible");
+        });
+
         $(".js-example-modal-cancel-btn, .js-example-modal-primary-btn, .js-example-modal-overlay").on("click", function(e) {
             e.preventDefault();
             e.stopPropagation();
-            
+
             closeModal();
         });
-        
+
         $(document).on('keyup',function(evt) {
             if (evt.keyCode == 27) {
                 closeModal();
             }
         });
-        
+
         function closeModal() {
-            modalContent.removeClass("is-visible");
+            modalBase.removeClass("is-visible");
+            modalTransform.removeClass("is-visible");
             modalOverlay.removeClass("is-visible");
         }
     });
@@ -63,7 +84,10 @@ description: Modal dialogs are used to display content that temporarily blocks i
         <li>The user can close the modal dialog with their <code class="stacks-code">ESC</code> key.</li>
         <li>The user can click outside the dialog to close it.</li>
     </ol>
-    <button class="s-btn s-btn__primary js-launch-modal-btn">Launch example modal</button>
+    <div class="grid gs4 gsx">
+        <button class="grid--cell s-btn s-btn__filled js-launch-modal-btn__base">Launch base modal</button>
+        <button class="grid--cell s-btn s-btn__filled js-launch-modal-btn__transform">Launch modal + transform</button>
+    </div>
 </section>
 
 <section class="stacks-section">
@@ -119,7 +143,7 @@ description: Modal dialogs are used to display content that temporarily blocks i
             </div>
         </div>
     </div>
-    
+
     <h3 class="grid jc-spacebetween ai-center stacks-title _subtitle">Preference confirmation</h3>
     <p class="stacks-p _section">To add clarity to a user’s action, you can present a user multiple choices in a modal confirmation. In low-risk situations, you don’t need to have a confirm or cancel button. Choosing a preference will save and close the modal.</p>
     <div class="stacks-code-preview">

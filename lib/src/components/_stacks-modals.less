@@ -27,10 +27,12 @@
     // Set the off-state properties to be animated
     z-index: @zi-hide; // Make sure the overlay is behind everything so we can't interact with it.
     opacity: 0;
+    overflow: hidden;
+    transition: opacity 50ms @te-smooth;
 
     &.is-visible {
         // Only transition when showing the modal
-        transition: opacity .1s ease-out;
+        transition: opacity 100ms @te-smooth;
         opacity: 1;
         z-index: @zi-modals-background;
     }
@@ -45,42 +47,56 @@
     background-color: @white;
     border-radius: @br-lg;
     padding: @su24;
-    text-align: center;
-    .bs-lg;
+    text-align: left;
+    box-shadow: @bs-lg;
 
     // Set the off-state properties to be animated
-    transform: translate3d(-50%, 100%, 0) scale3d(0.5, 0.5, 0.5);
+    transform: translate3d(-50%, -50%, 0);
     z-index: @zi-hide; // Make sure it's also below everything so we can't interact with it.
     opacity: 0;
 
     &.is-visible {
-        // Only transition when showing the modal
         will-change: transform, opacity;
-        transition: opacity .15s ease-out, transform .25s cubic-bezier(0.175, 0.885, 0.32, 1.05);
-        transform: translate3d(-50%, -50%, 0) scale3d(1, 1, 1);
+        transition: opacity 150ms @te-smooth, transform 250ms @te-smooth;
+        transform: translate3d(-50%, -50%, 0);
         opacity: 1;
-        z-index: @zi-modals-background;
-    }
-
-    .s-modal--title {
-        margin-bottom: @su24;
-        font-size: @fs-subheading;
-    }
-
-    .s-modal--description {
-        margin-bottom: @su24;
-        font-size: @fs-body1;
+        z-index: @zi-modals;
     }
 }
 
+
 //  ============================================================================
-//  $ LAYOUT VARIATIONS
+//  $   LAYOUT VARIATIONS
 //  ----------------------------------------------------------------------------
 .s-modal {
+
+    //  $$  Add transform
+    &.s-modal__transform {
+        // Set the off-state properties to be animated
+        transform: translate3d(-50%, -50%, 0) scale3d(0.5, 0.5, 0.5);
+
+        &.is-visible {
+            transform: translate3d(-50%, -50%, 0) scale3d(1, 1, 1);
+        }
+    }
 
     //  $$  Confirmation
     //  ------------------------------------------------------------------------
     &.s-modal__confirmation {
         max-width: 24rem;
     }
+}
+
+//  ============================================================================
+//  $   SPECIFIC TYPE STYLES
+//  ----------------------------------------------------------------------------
+.s-modal--title {
+    margin-bottom: 0.761904762em;
+    .mx-fs(@fs-title);
+    color: @fc-dark;
+}
+
+.s-modal--description {
+    margin-bottom: 1.142857143em;
+    font-size: @fs-body2;
 }

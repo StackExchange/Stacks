@@ -539,9 +539,11 @@ sup {
   background-color: rgba(12, 13, 14, 0.5);
   z-index: -1;
   opacity: 0;
+  overflow: hidden;
+  transition: opacity 50ms cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 .s-modal-overlay.is-visible {
-  transition: opacity 0.1s ease-out;
+  transition: opacity 100ms cubic-bezier(0.165, 0.84, 0.44, 1);
   opacity: 1;
   z-index: 8950;
 }
@@ -552,29 +554,37 @@ sup {
   background-color: #FFF;
   border-radius: 7px;
   padding: 24px;
-  text-align: center;
-  box-shadow: 0 4px 12px rgba(36, 39, 41, 0.2) !important;
-  transform: translate3d(-50%, 100%, 0) scale3d(0.5, 0.5, 0.5);
+  text-align: left;
+  box-shadow: 0 4px 12px rgba(36, 39, 41, 0.2);
+  transform: translate3d(-50%, -50%, 0);
   z-index: -1;
   opacity: 0;
 }
 .s-modal.is-visible {
   will-change: transform, opacity;
-  transition: opacity 0.15s ease-out, transform 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.05);
-  transform: translate3d(-50%, -50%, 0) scale3d(1, 1, 1);
+  transition: opacity 150ms cubic-bezier(0.165, 0.84, 0.44, 1), transform 250ms cubic-bezier(0.165, 0.84, 0.44, 1);
+  transform: translate3d(-50%, -50%, 0);
   opacity: 1;
-  z-index: 8950;
+  z-index: 9000;
 }
-.s-modal .s-modal--title {
-  margin-bottom: 24px;
-  font-size: 19px;
+.s-modal.s-modal__transform {
+  transform: translate3d(-50%, -50%, 0) scale3d(0.5, 0.5, 0.5);
 }
-.s-modal .s-modal--description {
-  margin-bottom: 24px;
-  font-size: 13px;
+.s-modal.s-modal__transform.is-visible {
+  transform: translate3d(-50%, -50%, 0) scale3d(1, 1, 1);
 }
 .s-modal.s-modal__confirmation {
   max-width: 24rem;
+}
+.s-modal--title {
+  margin-bottom: 0.761904762em;
+  font-size: 21px;
+  font-size: 1.6153846153846154rem;
+  color: #0C0D0E;
+}
+.s-modal--description {
+  margin-bottom: 1.142857143em;
+  font-size: 15px;
 }
 .s-caption {
   padding-top: 12px;
