@@ -23,7 +23,9 @@
     height: @su16;
     position: relative;
     border-radius: @br-sm;
-    vertical-align: bottom; // To make our avatars appear as a background
+    background-repeat: no-repeat;
+    background-size: 100%;
+    vertical-align: bottom; // Make our avatars play more nicely with text next to it.
 
     .s-avatar--letter {
         display: block; // Make sure we're treating the letter as a block-level element
@@ -32,12 +34,12 @@
         font-weight: bold;
         color: @white;
         line-height: 1.4545455;
-        
+
         // We don't need text selection on our letter
-        -webkit-user-select: none;  /* Chrome all / Safari all */
-        -moz-user-select: none;     /* Firefox all */
-        -ms-user-select: none;      /* IE 10+ */
-        user-select: none;          /* Likely future */
+        -webkit-user-select: none; /* Chrome all / Safari all */
+        -moz-user-select: none;    /* Firefox all */
+        -ms-user-select: none;     /* IE 10+ */
+        user-select: none;         /* Likely future */
     }
 
     .s-avatar--badge {
@@ -84,7 +86,21 @@
         }
 
         .s-avatar--badge {
-            transform: scale(3.4);
+            transform: scale(3);
+        }
+    }
+    
+    &.s-avatar__xxl {
+        width: @su64 + @su64;
+        height: @su64 + @su64;
+        border-radius: @br-lg + @br-lg;
+
+        .s-avatar--letter {
+            font-size: 6.77em; // 88px
+        }
+
+        .s-avatar--badge {
+            transform: scale(3);
         }
     }
 }
