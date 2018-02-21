@@ -10,6 +10,7 @@
 //
 //  TABLE OF CONTENTS
 //  • BASE STYLE
+//  • LAYOUT TRANSITIONS
 //
 //  ============================================================================
 //  $   BASE STYLE
@@ -28,10 +29,10 @@
     z-index: @zi-hide; // Make sure the overlay is behind everything so we can't interact with it.
     opacity: 0;
     overflow: hidden;
-    transition: opacity 50ms @te-smooth;
+    transition: opacity 100ms @te-smooth, z-index 0 100ms @te-smooth; // Transition out
 
     &.is-visible {
-        // Only transition when showing the modal
+        // Transition in
         transition: opacity 100ms @te-smooth;
         opacity: 1;
         z-index: @zi-modals-background;
@@ -41,9 +42,10 @@
 .s-modal {
     position: fixed;
 
-    // We'll center this using positioning w/ a transform that we'll animate
+    // We'll center this using positioning w/ a transform that we can optionally animate with s-modal__transform
     top: 50%;
     left: 50%;
+    transform: translate3d(-50%, -50%, 0);
     background-color: @white;
     border-radius: @br-lg;
     padding: @su24;
@@ -51,14 +53,12 @@
     box-shadow: @bs-lg;
 
     // Set the off-state properties to be animated
-    transform: translate3d(-50%, -50%, 0);
     z-index: @zi-hide; // Make sure it's also below everything so we can't interact with it.
     opacity: 0;
+    will-change: opacity;
 
     &.is-visible {
-        will-change: transform, opacity;
-        transition: opacity 150ms @te-smooth, transform 250ms @te-smooth;
-        transform: translate3d(-50%, -50%, 0);
+        transition: opacity 150ms @te-smooth;
         opacity: 1;
         z-index: @zi-modals;
     }
@@ -73,9 +73,11 @@
     //  $$  Add transform
     &.s-modal__transform {
         // Set the off-state properties to be animated
-        transform: translate3d(-50%, -50%, 0) scale3d(0.5, 0.5, 0.5);
+        transform: translate3d(-50%, 0, 0) scale3d(0.5, 0.5, 0.5);
+        will-change: transform;
 
         &.is-visible {
+            transition: transform 250ms @te-smooth;
             transform: translate3d(-50%, -50%, 0) scale3d(1, 1, 1);
         }
     }
@@ -83,6 +85,7 @@
     //  $$  Confirmation
     //  ------------------------------------------------------------------------
     &.s-modal__confirmation {
+        text-align: center;
         max-width: 24rem;
     }
 }
