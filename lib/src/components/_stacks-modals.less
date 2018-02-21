@@ -1,0 +1,105 @@
+//
+//  STACK OVERFLOW
+//  MODALS
+//
+//  This CSS comes from Stacks, our CSS & Pattern library for rapidly building
+//  Stack Overflow. https://stackoverflow.design/
+//
+//  For documentation of all these classes and how to contribute,
+//  https://gh.stackoverflow.com/pages/Design/Stacks/
+//
+//  TABLE OF CONTENTS
+//  • BASE STYLE
+//  • LAYOUT TRANSITIONS
+//
+//  ============================================================================
+//  $   BASE STYLE
+//  ----------------------------------------------------------------------------
+.s-modal-overlay {
+    position: fixed;
+
+    // This fills the entire viewport without having to worry about size.
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    background-color: fade(@black-900, 50%);
+
+    // Set the off-state properties to be animated
+    z-index: @zi-hide; // Make sure the overlay is behind everything so we can't interact with it.
+    opacity: 0;
+    overflow: hidden;
+    transition: opacity 100ms @te-smooth, z-index 0 100ms @te-smooth; // Transition out
+
+    &.is-visible {
+        // Transition in
+        transition: opacity 100ms @te-smooth;
+        opacity: 1;
+        z-index: @zi-modals-background;
+    }
+}
+
+.s-modal {
+    position: fixed;
+
+    // We'll center this using positioning w/ a transform that we can optionally animate with s-modal__transform
+    top: 50%;
+    left: 50%;
+    transform: translate3d(-50%, -50%, 0);
+    background-color: @white;
+    border-radius: @br-lg;
+    padding: @su24;
+    text-align: left;
+    box-shadow: @bs-lg;
+
+    // Set the off-state properties to be animated
+    z-index: @zi-hide; // Make sure it's also below everything so we can't interact with it.
+    opacity: 0;
+    will-change: opacity;
+
+    &.is-visible {
+        transition: opacity 150ms @te-smooth;
+        opacity: 1;
+        z-index: @zi-modals;
+    }
+}
+
+
+//  ============================================================================
+//  $   LAYOUT VARIATIONS
+//  ----------------------------------------------------------------------------
+.s-modal {
+
+    //  $$  Add transform
+    &.s-modal__transform {
+        // Set the off-state properties to be animated
+        transform: translate3d(-50%, 0, 0) scale3d(0.5, 0.5, 0.5);
+        will-change: transform;
+
+        &.is-visible {
+            transition: transform 250ms @te-smooth;
+            transform: translate3d(-50%, -50%, 0) scale3d(1, 1, 1);
+        }
+    }
+
+    //  $$  Confirmation
+    //  ------------------------------------------------------------------------
+    &.s-modal__confirmation {
+        text-align: center;
+        max-width: 24rem;
+    }
+}
+
+//  ============================================================================
+//  $   SPECIFIC TYPE STYLES
+//  ----------------------------------------------------------------------------
+.s-modal--title {
+    margin-bottom: 0.761904762em;
+    .mx-fs(@fs-title);
+    color: @fc-dark;
+}
+
+.s-modal--description {
+    margin-bottom: 1.142857143em;
+    font-size: @fs-body2;
+}
