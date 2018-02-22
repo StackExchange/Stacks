@@ -531,18 +531,17 @@
 //  ----------------------------------------------------------------------------
 //  --  First the keyframes
 @keyframes spinnerRotate {
-    0% {
+    from {
         transform: rotate(0deg);
     }
-    100% {
-        transform: rotate(360deg);
+    to {
+        transform: rotate(359deg);
     }
 }
 
 //  --  Next the actual loading spinner
 .s-btn {
-    &.is-loading,
-    &.is-loading__dark {
+    &.is-loading {
         padding-left: @su24 + @su4;
 
         &:before {
@@ -554,17 +553,18 @@
             height: 14px;
 
             border-radius: @br-circle;
-            border: 2px solid fade(@white,20%);
-            border-left-color: @white;
+            border: 2px dotted fade(@btn-filled-fc,40%);
+            border-left-color: darken(@btn-filled-fc,5%);
 
-            transform: translateZ(0);
-            animation: spinnerRotate 800ms infinite @te-back-out;
+            animation: spinnerRotate 800ms infinite linear;
         }
     }
 
-    &.is-loading__dark:before {
-        border-color: @powder-300;
-        border-left-color: @powder-600;
+    &.s-btn__primary.is-loading:before,
+    &.s-btn__warning.s-btn__filled.is-loading:before,
+    &.s-btn__confirm.s-btn__filled.is-loading:before {
+        border-color: fade(@white,25%);
+        border-left-color: @white;
     }
 
     &.s-btn__warning:not(.s-btn__filled).is-loading:before {

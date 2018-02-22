@@ -5341,19 +5341,17 @@ body *:after {
   color: rgba(255, 255, 255, 0.8);
 }
 @keyframes spinnerRotate {
-  0% {
+  from {
     transform: rotate(0deg);
   }
-  100% {
-    transform: rotate(360deg);
+  to {
+    transform: rotate(359deg);
   }
 }
-.s-btn.is-loading,
-.s-btn.is-loading__dark {
+.s-btn.is-loading {
   padding-left: 28px;
 }
-.s-btn.is-loading:before,
-.s-btn.is-loading__dark:before {
+.s-btn.is-loading:before {
   content: "";
   position: absolute;
   top: calc(50% - 8px);
@@ -5361,14 +5359,15 @@ body *:after {
   width: 14px;
   height: 14px;
   border-radius: 50%;
-  border: 2px solid rgba(255, 255, 255, 0.2);
-  border-left-color: #FFF;
-  transform: translateZ(0);
-  animation: spinnerRotate 800ms infinite cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  border: 2px dotted rgba(57, 115, 157, 0.4);
+  border-left-color: #33658a;
+  animation: spinnerRotate 800ms infinite linear;
 }
-.s-btn.is-loading__dark:before {
-  border-color: #96bdd9;
-  border-left-color: #39739d;
+.s-btn.s-btn__primary.is-loading:before,
+.s-btn.s-btn__warning.s-btn__filled.is-loading:before,
+.s-btn.s-btn__confirm.s-btn__filled.is-loading:before {
+  border-color: rgba(255, 255, 255, 0.25);
+  border-left-color: #FFF;
 }
 .s-btn.s-btn__warning:not(.s-btn__filled).is-loading:before {
   border-color: rgba(201, 29, 46, 0.25);
