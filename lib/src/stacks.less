@@ -1,6 +1,6 @@
 //
 //  STACK OVERFLOW
-//  BASE
+//  LOAD STACKS
 //
 //  This CSS comes from Stacks, our CSS & Pattern library for rapidly building
 //  Stack Overflow. https://stackoverflow.design/
@@ -10,6 +10,25 @@
 //
 //  This is where all the magic happens.
 //
+//  ============================================================================
+//  $   LOAD ELEMENTS
+//  ----------------------------------------------------------------------------
+//  --  RESET CSS
+//      This is placed here vs. stacks-static.less because Core and Talent use
+//      two different reset CSS approaches. Core's is very opinionated in its
+//      reset, whereas Talent's reset is not. This leads to breaking changes
+//      in either project depending on the reset used with legacy code.
+//
+//      For now we will move the reset into this file. This file will then be
+//      recreated in Talent, but linking to their current reset instead of Stacks.
+//      This will allow us to update the _stacks-static and _stacks-dynamic files
+//      in Stacks without having needing manually adjust items in Talent.
+//
+//      Eventually when the reset issues have been resolved we can move the reset
+//      back into _stack-static.
+//  ----------------------------------------------------------------------------
+@import "base/_stacks-reset";
 
+//  --  EVERYTHING ELSE
 @import "stacks-static.less";
 @import "stacks-dynamic.less";
