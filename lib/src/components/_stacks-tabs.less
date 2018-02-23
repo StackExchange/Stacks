@@ -1,0 +1,107 @@
+//
+//  STACK OVERFLOW
+//  TABS
+//
+//  This CSS comes from Stacks, our CSS & Pattern library for rapidly building
+//  Stack Overflow. https://stackoverflow.design/
+//
+//  For documentation of all these classes and how to contribute,
+//  https://gh.stackoverflow.com/pages/Design/Stacks/
+//
+//  TABLE OF CONTENTS
+//  • TAB CONTAINER
+//  • TAB ITEM
+//  • TAB SIZES
+//
+//  ============================================================================
+//  $   TAB CONTAINER
+//  ----------------------------------------------------------------------------
+@tabs-border:                       @brc-light;
+@tabs-border__selected:             @orange;
+@tabs-color:                        @fc-light;
+@tabs-color__selected:              @fc-dark;
+@tabs-background:                   @white;
+@tabs-background__selected:         fade(@bgc-lightest,50%);
+
+.s-tabs {
+    display: flex;
+    box-shadow: inset 0 -1px 0 @tabs-border;
+}
+
+
+//  ============================================================================
+//  $   TAB ITEM
+//      [1] Position is needed so we can position the :after pseudo element
+//      [2] Instead of using px, use em so the padding adjusts with the font-size.
+//  ----------------------------------------------------------------------------
+.s-tabs--item {
+    position: relative; // [1]
+    margin-right: @su2;
+    margin-left: @su2;
+    padding: 1.1em 1em 1em; // [2]
+    background-color: fade(@tabs-background,0%);
+    color: @tabs-color;
+    transition: color 100ms @te-smooth, background-color 100ms @te-smooth, box-shadow 100ms @te-smooth;
+    cursor: pointer;
+
+    //  Clear the margins though if it's the first and last items
+    &:first-of-type {
+        margin-left: 0;
+    }
+    &:last-of-type {
+        margin-right: 0;
+    }
+
+    &:hover {
+        box-shadow: inset 0 -1px 0 @tabs-border;
+        background-color: @tabs-background__selected;
+        color: darken(@tabs-color,10%);
+        transition: color 100ms @te-smooth, background-color 75ms @te-smooth
+    }
+}
+
+.s-tabs--item.is-selected {
+    background-color: @tabs-background;
+    box-shadow: inset 1px 1px 0 @tabs-border, inset -1px 0 0 @tabs-border;
+    color: @tabs-color__selected;
+
+    &:after {
+        content: "";
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: @su2 + 1;
+        background-color: @tabs-border__selected;
+    }
+
+    &:hover {
+        background-color: @tabs-background;
+        box-shadow: inset 1px 1px 0 @tabs-border, inset -1px 0 0 @tabs-border;
+        color: darken(@tabs-color__selected,5%);
+
+        &:after {
+            background-color: saturate(darken(@tabs-border__selected,5%),10%);
+        }
+    }
+}
+
+
+//  ============================================================================
+//  $   CONTAINER
+//  ----------------------------------------------------------------------------
+.s-tabs {
+    &.s-tabs__sm {
+        .mx-fs(@fs-caption);
+        line-height: @lh-xs;
+    }
+    &.s-tabs__md {
+        .mx-fs(@fs-body2);
+        line-height: @lh-s;
+    }
+    &.s-tabs__lg {
+        .mx-fs(@fs-body3);
+        line-height: @lh-s;
+    }
+}

@@ -1,0 +1,114 @@
+---
+layout: page
+title: Tabs
+description: Tabs are a navigational element which shows and hides content which, while similar, is disparate enough to warrant showing singularly.
+---
+
+<script>
+    $(function() {
+        $(".js-tabs-item").on("click", function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            $(this).siblings().removeClass("is-selected");
+            $(this).addClass("is-selected");
+        });
+    });
+</script>
+
+<!-- And now for some documentation -->
+<section class="stacks-section">
+    <h2 class="grid jc-spacebetween ai-center stacks-title">Base style</h2>
+    <p class="stacks-p _section">TBD</p>
+    <div class="stacks-code-preview">
+{% highlight html linenos %}
+<div class="s-tabs js-tabs-container">
+    <div class="s-tabs--item is-selected js-tabs-item">Profile</div>
+    <div class="s-tabs--item js-tabs-item">Activity</div>
+    <div class="s-tabs--item js-tabs-item">Developer Story</div>
+    <div class="s-tabs--item js-tabs-item">Moderator Info</div>
+    <div class="s-tabs--item js-tabs-item">Settings</div>
+</div>
+{% endhighlight %}
+        <div class="-preview ps-relative grid jc-center">
+            <div class="w100 s-tabs js-tabs-container">
+                <div class="s-tabs--item is-selected js-tabs-item">Profile</div>
+                <div class="s-tabs--item js-tabs-item">Activity</div>
+                <div class="s-tabs--item js-tabs-item">Developer Story</div>
+                <div class="s-tabs--item js-tabs-item">Moderator Info</div>
+                <div class="s-tabs--item js-tabs-item">Settings</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="stacks-section">
+    <h2 class="grid jc-spacebetween ai-center stacks-title">Sizes</h2>
+    <p class="stacks-p _section">Depending on the page, it might be desirable to have smaller or larger tabs. Apply the appropriate class below.</p>
+
+    <h3 class="grid jc-spacebetween ai-center stacks-title _subtitle">Small</h3>
+    <div class="stacks-code-preview">
+{% highlight html linenos %}
+<div class="s-tabs s-tabs__sm js-tabs-container">
+    <div class="s-tabs--item is-selected js-tabs-item">Profile</div>
+    <div class="s-tabs--item js-tabs-item">Activity</div>
+    <div class="s-tabs--item js-tabs-item">Developer Story</div>
+    <div class="s-tabs--item js-tabs-item">Moderator Info</div>
+    <div class="s-tabs--item js-tabs-item">Settings</div>
+</div>
+{% endhighlight %}
+        <div class="-preview ps-relative grid jc-center">
+            <div class="w100 s-tabs s-tabs__sm js-tabs-container">
+                <div class="s-tabs--item is-selected js-tabs-item">Profile</div>
+                <div class="s-tabs--item js-tabs-item">Activity</div>
+                <div class="s-tabs--item js-tabs-item">Developer Story</div>
+                <div class="s-tabs--item js-tabs-item">Moderator Info</div>
+                <div class="s-tabs--item js-tabs-item">Settings</div>
+            </div>
+        </div>
+    </div>
+
+    <h3 class="grid jc-spacebetween ai-center stacks-title _subtitle">Medium</h3>
+    <div class="stacks-code-preview">
+{% highlight html linenos %}
+<div class="s-tabs s-tabs__md js-tabs-container">
+    <div class="s-tabs--item is-selected js-tabs-item">Profile</div>
+    <div class="s-tabs--item js-tabs-item">Activity</div>
+    <div class="s-tabs--item js-tabs-item">Developer Story</div>
+    <div class="s-tabs--item js-tabs-item">Moderator Info</div>
+    <div class="s-tabs--item js-tabs-item">Settings</div>
+</div>
+{% endhighlight %}
+        <div class="-preview ps-relative grid jc-center">
+            <div class="w100 s-tabs s-tabs__md js-tabs-container">
+                <div class="s-tabs--item is-selected js-tabs-item">Profile</div>
+                <div class="s-tabs--item js-tabs-item">Activity</div>
+                <div class="s-tabs--item js-tabs-item">Developer Story</div>
+                <div class="s-tabs--item js-tabs-item">Moderator Info</div>
+                <div class="s-tabs--item js-tabs-item">Settings</div>
+            </div>
+        </div>
+    </div>
+
+    <h3 class="grid jc-spacebetween ai-center stacks-title _subtitle">Large</h3>
+    <div class="stacks-code-preview">
+{% highlight html linenos %}
+<div class="s-tabs s-tabs__lg js-tabs-container">
+    <div class="s-tabs--item is-selected js-tabs-item">Profile</div>
+    <div class="s-tabs--item js-tabs-item">Activity</div>
+    <div class="s-tabs--item js-tabs-item">Developer Story</div>
+    <div class="s-tabs--item js-tabs-item">Moderator Info</div>
+    <div class="s-tabs--item js-tabs-item">Settings</div>
+</div>
+{% endhighlight %}
+        <div class="-preview ps-relative grid jc-center">
+            <div class="w100 s-tabs s-tabs__lg js-tabs-container">
+                <div class="s-tabs--item is-selected js-tabs-item">Profile</div>
+                <div class="s-tabs--item js-tabs-item">Activity</div>
+                <div class="s-tabs--item js-tabs-item">Developer Story</div>
+                <div class="s-tabs--item js-tabs-item">Moderator Info</div>
+                <div class="s-tabs--item js-tabs-item">Settings</div>
+            </div>
+        </div>
+    </div>
+</section>
