@@ -19,7 +19,7 @@ description: Tabs are a navigational element which shows and hides content which
 <!-- And now for some documentation -->
 <section class="stacks-section">
     <h2 class="grid jc-spacebetween ai-center stacks-title">Base style</h2>
-    <p class="stacks-p _section">TBD</p>
+    <p class="stacks-p _section">Tabs are used to swap out entire sections of a page and clearly delineate which section you’re viewing with the <code class="stacks-code">.is-selected</code> class.</p>
     <div class="stacks-code-preview">
 {% highlight html linenos %}
 <div class="s-tabs js-tabs-container">
@@ -44,7 +44,7 @@ description: Tabs are a navigational element which shows and hides content which
 
 <section class="stacks-section">
     <h2 class="grid jc-spacebetween ai-center stacks-title">Sizes</h2>
-    <p class="stacks-p _section">Depending on the page, it might be desirable to have smaller or larger tabs. Apply the appropriate class below.</p>
+    <p class="stacks-p _section">Depending on the context, it might be desirable to have smaller or larger tabs. Apply the appropriate class below.</p>
 
     <h3 class="grid jc-spacebetween ai-center stacks-title _subtitle">Small</h3>
     <div class="stacks-code-preview">
@@ -108,6 +108,31 @@ description: Tabs are a navigational element which shows and hides content which
                 <div class="s-tabs--item js-tabs-item">Developer Story</div>
                 <div class="s-tabs--item js-tabs-item">Moderator Info</div>
                 <div class="s-tabs--item js-tabs-item">Settings</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="stacks-section">
+    <h2 class="grid jc-spacebetween ai-center stacks-title">Filters</h2>
+    <p class="stacks-p _section">If the content you’re interacting with is a simple paring down of the current view, it’s appropriate to use the modifier <code class="stacks-code">.s-tabs__filter</code>. Add the class <code class="stacks-code">.is-selected</code> to show the currently-enabled filter. This component is used in our questions view, and is frequently used in conjunction with other form elements such as search fields and sorting dropdowns.</p>
+    <div class="stacks-code-preview">
+{% highlight html linenos %}
+<div class="s-tabs s-tabs__filter">
+    <button class="s-btn s-btn__muted s-btn__outlined js-tabs-item" role="button">Newest</button>
+    <button class="s-btn s-btn__muted s-btn__outlined js-tabs-item" role="button">Frequent</button>
+    <button class="s-btn s-btn__muted s-btn__outlined is-selected js-tabs-item" role="button">Votes</button>
+    <button class="s-btn s-btn__muted s-btn__outlined js-tabs-item" role="button">Active</button>
+    <button class="s-btn s-btn__muted s-btn__outlined js-tabs-item" role="button">Unanswered</button>
+</div>
+{% endhighlight %}
+        <div class="-preview">
+            <div class="s-tabs s-tabs__filter">
+                <button class="s-btn s-btn__muted s-btn__outlined js-tabs-item" role="button">Newest</button>
+                <button class="s-btn s-btn__muted s-btn__outlined js-tabs-item" role="button">Frequent</button>
+                <button class="s-btn s-btn__muted s-btn__outlined is-selected js-tabs-item" role="button">Votes</button>
+                <button class="s-btn s-btn__muted s-btn__outlined js-tabs-item" role="button">Active</button>
+                <button class="s-btn s-btn__muted s-btn__outlined js-tabs-item" role="button">Unanswered</button>
             </div>
         </div>
     </div>
