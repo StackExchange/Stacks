@@ -116,75 +116,75 @@
 //  --  FORM VALIDATION STATES
 //      Validation states will need applied at the wrapping container level.
 //  ----------------------------------------------------------------------------
-.grid,
-.grid--cell {
-    //  --  WARNING
-    &.has-warning {
-        .s-input,
-        .s-select > select {
-            border-color: @yellow-600;
+//  --  WARNING
+.has-warning {
+    .s-input,
+    &.s-select > select {
+        border-color: @yellow-600;
 
-            &:focus {
-                box-shadow: inset 0 0 4px @black-050, 0 0 0 @su4 fade(@yellow-500, 40%);
-            }
-        }
-
-        .s-input-message {
-            color: shade(@yellow-600, 10%);
+        &:focus {
+            box-shadow: inset 0 0 4px @black-050, 0 0 0 @su4 fade(@yellow-500, 40%);
         }
     }
 
-    //  --  ERROR
-    &.has-error {
-        .s-input,
-        .s-select > select {
-            border-color: @red-400;
+    .s-input-message {
+        color: shade(@yellow-600, 10%);
+    }
+}
 
-            &:focus {
-                box-shadow: inset 0 0 4px @black-050, 0 0 0 @su4 fade(@red-200, 40%);
-            }
-        }
+//  --  ERROR
+.has-error {
+    .s-input,
+    &.s-select > select {
+        border-color: @red-400;
 
-        .s-input-message {
-            color: @red-500;
+        &:focus {
+            box-shadow: inset 0 0 4px @black-050, 0 0 0 @su4 fade(@red-200, 40%);
         }
     }
 
-    //  --  SUCCESS
-    &.is-success {
-        .s-input,
-        .s-select select {
-            border-color: @green-400;
+    .s-input-message {
+        color: @red-500;
+    }
+}
 
-            &:focus {
-                box-shadow: inset 0 0 4px @black-050, 0 0 0 @su4 fade(@green-200, 40%);
-            }
-        }
+//  --  SUCCESS
+.is-success {
+    .s-input,
+    &.s-select select {
+        border-color: @green-400;
 
-        .s-input-message {
-            color: darken(@green-500, 2%);
+        &:focus {
+            box-shadow: inset 0 0 4px @black-050, 0 0 0 @su4 fade(@green-200, 40%);
         }
     }
 
-    //  --  DISABLED
-    &.is-disabled {
-        .s-select:before,
-        .s-select:after {
-            border-color: @black-200 transparent;
-        }
-
-        .svg-icon {
-            color: @black-200;
-        }
+    .s-input-message {
+        color: darken(@green-500, 2%);
     }
-    
-    &.is-disabled,
-    &.is-success,
-    &.has-error,
-    &.has-warning {
-        .s-input {
-            padding-right: @su32;
-        }
+}
+
+//  --  DISABLED
+.is-disabled {
+    &.s-select:before,
+    &.s-select:after {
+        border-color: @black-200 transparent;
+    }
+
+    .svg-icon {
+        color: @black-200;
+    }
+}
+
+.is-disabled,
+.is-success,
+.has-error,
+.has-warning {
+    .s-input {
+        padding-right: @su32;
+    }
+    &.s-select .s-input-icon {
+        right: @su32;
     }
 }
 
