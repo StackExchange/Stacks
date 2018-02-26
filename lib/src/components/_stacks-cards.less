@@ -1,0 +1,53 @@
+//
+//  STACK OVERFLOW
+//  CARDS
+//
+//  This CSS comes from Stacks, our CSS & Pattern library for rapidly building
+//  Stack Overflow. https://stackoverflow.design/
+//
+//  For documentation of all these classes and how to contribute,
+//  https://gh.stackoverflow.com/pages/Design/Stacks/
+//
+//  TABLE OF CONTENTS
+//  • BASE STYLE
+//  • MODIFIERS
+//
+//  ============================================================================
+//  $   BASE STYLE
+//  ----------------------------------------------------------------------------
+.s-card {
+    position: relative;
+    padding: @su12;
+    border-radius: @br-sm;
+    border: 1px solid @brc-lighter;
+    background-color: @white;
+    transition: box-shadow 150ms @te-smooth;
+
+    &:hover {
+        border-color: @brc-light;
+        transition: box-shadow 100ms @te-smooth;
+    }
+}
+
+
+//  ============================================================================
+//  $   MODIFIERS
+//  ----------------------------------------------------------------------------
+.s-card__muted {
+    border-color: @brc-lightest;
+
+    //  Dim all card content
+    * {
+        opacity: 0.5;
+        transition: opacity 100ms @te-smooth;
+    }
+
+    &:hover {
+        border-color: @brc-lighter;
+
+        * {
+            opacity: 0.75;
+            transition: opacity 75ms @te-smooth;
+        }
+    }
+}
