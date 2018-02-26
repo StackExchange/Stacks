@@ -8,7 +8,6 @@
 //  For documentation of all these classes and how to contribute,
 //  https://gh.stackoverflow.com/pages/Design/Stacks/
 //
-
 //  ============================================================================
 //  $   TEXT SIZES
 //  ----------------------------------------------------------------------------
@@ -18,6 +17,19 @@
 
     font-size: @value;       // Pixel fallback
     font-size: ~"@{rem}rem"; // REM
+}
+.mx-fs(@value) when (default()) {
+    error: @MX-FS-MUST-BE-PASSED-A-PIXEL-VALUE;
+}
+
+
+//  ============================================================================
+//  $   ICON SIZE
+//  ----------------------------------------------------------------------------
+//  Create a REM mixin
+.mx-icon(@value) when (ispixel(@value)) {
+    width: @value;
+    height: @value;
 }
 .mx-fs(@value) when (default()) {
     error: @MX-FS-MUST-BE-PASSED-A-PIXEL-VALUE;

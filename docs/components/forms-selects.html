@@ -57,17 +57,32 @@
     <p class="stacks-p _section">Like <code class="stacks-code">.s-input</code>, to generate error states add add an input state to the wrapping <code class="stacks-code">div</code> container.</p>
     <div class="stacks-code-preview">
 {% highlight html linenos %}
-<div class="grid--cell s-select has-warning">
-    <select id="select-menu">…</select>
-    @Svg.Alert("s-input-icon fc-yellow-600")
+<div class="grid ff-column-nowrap gs4 gsy">
+    <label class="grid--cell s-label" for="select-menu1">…</label>
+    <div class="grid--cell s-select has-warning">
+        <select id="select-menu">
+            …
+        </select>
+        @Svg.Alert("s-input-icon fc-yellow-600")
+    </div>
 </div>
-<div class="grid--cell s-select has-error">
-    <select id="select-menu">…</select>
-    @Svg.AlertCircle.With("s-input-icon fc-red-400")
+<div class="grid ff-column-nowrap gs4 gsy">
+    <label class="grid--cell s-label" for="select-menu2">…</label>
+    <div class="s-select has-error">
+        <select id="select-menu">
+            …
+        </select>
+        @Svg.AlertCircle.With("s-input-icon fc-red-400")
+    </div>
 </div>
-<div class="grid--cell s-select has-success">
-    <select id="select-menu">…</select>
-    @Svg.Checkmark.With("s-input-icon fc-green-400")
+<div class="grid ff-column-nowrap gs4 gsy">
+    <label class="grid--cell s-label" for="select-menu3">…</label>
+    <div class="s-select has-success">
+        <select id="select-menu">
+            …
+        </select>
+        @Svg.Checkmark.With("s-input-icon fc-green-400")
+    </div>
 </div>
 {% endhighlight %}
         <div class="-preview">
