@@ -1,18 +1,22 @@
 <section class="stacks-section">
-    <h2 class="grid jc-spacebetween ai-center stacks-title" id="checkbox-radio">Checkboxes &amp; Radios </h2>
-    <p class="stacks-p _section">Like <code class="stacks-code">select</code> menus, we have custom checkboxes and radio buttons. We do this by clearing out the browser defaults and replacing them our own custom styles. However this only works for browsers which support <code class="stacks-code">appearance: none;</code> (or <code class="stacks-code">-webkit-appearance: none;</code>).</p>
+    <h2 class="grid jc-spacebetween ai-center stacks-title" id="checkbox-radio">Checkboxes</h2>
+    <p class="stacks-p _section">Like <code class="stacks-code">select</code> menus, we have custom checkboxes. We do this by clearing out the browser defaults and replacing them our own custom styles. However this only works for browsers which support <code class="stacks-code">appearance: none;</code> (or <code class="stacks-code">-webkit-appearance: none;</code>).</p>
 
-    <h3 class="grid jc-spacebetween ai-center stacks-title _subtitle">Checkboxes</h3>
+    <h3 class="grid jc-spacebetween ai-center stacks-title _subtitle">Vertical List</h3>
     <div class="stacks-code-preview">
 {% highlight html linenos %}
-<div class="grid">
-    <div class="grid--cell mr8">
-        <input class="s-checkbox" type="checkbox" name="" id="example-item" checked />
+<div class="grid ff-column-nowrap gs24 gsy">
+    <label class="grid--cell s-label">Vertical List</label>
+    <div class="grid">
+        <div class="grid--cell mr8">
+            <input class="s-checkbox" type="checkbox" name="" id="example-item" checked />
+        </div>
+        <div class="grid ff-column-nowrap gs4 gsy">
+            <label class="grid--cell s-label fw-normal" for="example-item">…</label>
+            <span class="grid--cell s-input-description">…</span>
+        </div>
     </div>
-    <div class="grid ff-column-nowrap gs4 gsy">
-        <label class="grid--cell s-label fw-normal" for="example-item">Choice 1</label>
-        <span class="grid--cell s-input-description">This is some help text to help further explain the choice you will be making.</span>
-    </div>
+    …
 </div>
 {% endhighlight %}
         <div class="-preview">
@@ -47,9 +51,33 @@
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
 
-                <div class="grid ff-column-nowrap gs8 gsy">
-                    <label class="grid--cell s-label">Horizontal List</label>
+    <h3 class="grid jc-spacebetween ai-center stacks-title _subtitle">Horizontal List</h3>
+    <div class="stacks-code-preview">
+{% highlight html linenos %}
+<div class="grid ff-column-nowrap gs8 gsy">
+    <label class="grid--cell s-label">Horizontal List</label>
+    <div class="grid">
+        <div class="grid--cell mr8">
+            <input class="s-checkbox" type="checkbox" name="" id="example-item" checked />
+        </div>
+        <div class="grid--cell">
+            <div class="grid gs8 gsx grid__allcells4">
+                <label class="grid--cell s-label fw-normal" for="example-item">…</label>
+                <span class="grid--cell s-input-description">…</span>
+            </div>
+        </div>
+    </div>
+    …
+</div>
+{% endhighlight %}
+        <div class="-preview">
+            <div class="grid ff-column-nowrap gs8 gsy">
+                <label class="grid--cell s-label">Horizontal List</label>
+                <div class="grid--cell">
                     <div class="grid gs8 gsx grid__allcells4">
                         <div class="grid">
                             <div class="grid--cell mr8">
@@ -84,53 +112,159 @@
         </div>
     </div>
 
-    <h3 class="grid jc-spacebetween ai-center stacks-title _subtitle">Radios</h3>
+    <h3 class="grid jc-spacebetween ai-center stacks-title _subtitle">Input States</h3>
     <div class="stacks-code-preview">
 {% highlight html linenos %}
-<div class="grid">
-    <div class="grid--cell mr8">
-        <input class="s-radio" type="radio" name="" id="example-item" checked />
+<div class="grid ff-column-nowrap gs8 gsy">
+    <div class="grid has-warning">
+        <div class="grid--cell mr8">
+            <input class="s-checkbox" type="checkbox" name="…" id="example-item" />
+        </div>
+        <div class="grid--cell">
+            <div class="grid gs4 gsy s-input-message">
+                <label class="grid--cell s-label fw-normal" for="example-item">…</label>
+                <span class="grid--cell s-input-description">…</span>
+            </div>
+        </div>
     </div>
-    <div class="grid ff-column-nowrap gs8 gsy">
-        <label class="grid--cell s-label fw-normal" for="example-item">Choice 1</label>
-        <span class="grid--cell s-input-description">This is some help text to help further explain the choice you will be making.</span>
+
+    <div class="grid has-error">
+        <div class="grid--cell mr8">
+            <input class="s-checkbox" type="checkbox" name="…" id="example-item" />
+        </div>
+        <div class="grid--cell">
+            <div class="grid gs4 gsy s-input-message">
+                <label class="grid--cell s-label fw-normal" for="example-item">…</label>
+                <span class="grid--cell s-input-description">…</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="grid is-success">
+        <div class="grid--cell mr8">
+            <input class="s-checkbox" type="checkbox" name="…" id="example-item" />
+        </div>
+        <div class="grid--cell">
+            <div class="grid gs4 gsy s-input-message">
+                <label class="grid--cell s-label fw-normal" for="example-item">…</label>
+                <span class="grid--cell s-input-description">…</span>
+            </div>
+        </div>
     </div>
 </div>
 {% endhighlight %}
         <div class="-preview">
-            <div class="grid ff-column-nowrap gs24 gsy">
-                <div class="grid ff-column-nowrap gs8 gsy">
-                    <label class="grid--cell s-label">Vertical List</label>
-                    <div class="grid">
-                        <div class="grid--cell mr8">
-                            <input class="s-radio" type="radio" name="choice-vert-radio" id="choice-vert-radio-1" checked />
-                        </div>
-                        <div class="grid ff-column-nowrap gs4 gsy">
-                            <label class="grid--cell s-label fw-normal" for="choice-vert-radio-1">Choice 1</label>
-                            <span class="grid--cell s-input-description">This is some help text to help further explain the choice you will be making.</span>
-                        </div>
+            <div class="grid ff-column-nowrap gs8 gsy">
+                <div class="grid has-warning">
+                    <div class="grid--cell mr8">
+                        <input class="s-checkbox" type="checkbox" name="" id="checkbox-choice-warning" />
                     </div>
-                    <div class="grid">
-                        <div class="grid--cell mr8">
-                            <input class="s-radio" type="radio" name="choice-vert-radio" id="choice-vert-radio-2" />
-                        </div>
-                        <div class="grid ff-column-nowrap gs4 gsy">
-                            <label class="grid--cell s-label fw-normal" for="choice-vert-radio-2">Choice 2</label>
-                            <span class="grid--cell s-input-description">This is some help text to help further explain the choice you will be making.</span>
-                        </div>
-                    </div>
-                    <div class="grid">
-                        <div class="grid--cell mr8">
-                            <input class="s-radio" type="radio" name="choice-vert-radio" id="choice-vert-radio-3" />
-                        </div>
-                        <div class="grid ff-column-nowrap gs4 gsy">
-                            <label class="grid--cell s-label fw-normal mb4" for="choice-vert-radio-3">Choice 3</label>
-                            <span class="grid--cell s-input-description">This is some help text to help further explain the choice you will be making.</span>
-                        </div>
+                    <div class="grid ff-column-nowrap gs4 gsy s-input-message">
+                        <label class="grid--cell s-label fw-normal" for="checkbox-choice-warning">I like receiving emails.</label>
+                        <div class="grid--cell s-input-description">It’s the best kind of mail though, so please consider signing up for it.</div>
                     </div>
                 </div>
-                <div class="grid ff-column-nowrap gs8 gsy">
-                    <label class="grid--cell s-label">Horizontal List</label>
+                <div class="grid has-error">
+                    <div class="grid--cell mr8">
+                        <input class="s-checkbox" type="checkbox" name="" id="checkbox-choice-error" />
+                    </div>
+                    <div class="grid ff-column-nowrap gs4 gsy s-input-message">
+                        <label class="grid--cell s-label fw-normal" for="checkbox-choice-error">I agree that if I break it, I buy it.</label>
+                        <div class="grid--cell s-input-description">Sorry but not agreeing isn’t an option.</div>
+                    </div>
+                </div>
+                <div class="grid is-success">
+                    <div class="grid--cell mr8">
+                        <input class="s-checkbox" type="checkbox" name="" id="checkbox-choice-success" checked />
+                    </div>
+                    <div class="grid ff-column-nowrap gs4 gsy s-input-message">
+                        <label class="grid--cell s-label fw-normal" for="checkbox-choice-success">I agree to send cookies and milk to the Stacks team.</label>
+                        <div class="grid--cell s-input-description">Hey, you’re amazing!</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="stacks-section">
+    <h2 class="grid jc-spacebetween ai-center stacks-title" id="checkbox-radio">Radios</h2>
+    <p class="stacks-p _section">Like <code class="stacks-code">select</code> menus, we have custom radio buttons. We do this by clearing out the browser defaults and replacing them our own custom styles. However this only works for browsers which support <code class="stacks-code">appearance: none;</code> (or <code class="stacks-code">-webkit-appearance: none;</code>).</p>
+
+    <h3 class="grid jc-spacebetween ai-center stacks-title _subtitle">Vertical List</h3>
+    <div class="stacks-code-preview">
+{% highlight html linenos %}
+<div class="grid ff-column-nowrap gs8 gsy">
+    <label class="grid--cell s-label">Vertical List</label>
+    <div class="grid">
+        <div class="grid--cell mr8">
+            <input class="s-radio" type="radio" name="example-group-radio" id="example-item-radio" checked />
+        </div>
+        <div class="grid ff-column-nowrap gs4 gsy">
+            <label class="grid--cell s-label fw-normal" for="example-item-radio">…</label>
+            <span class="grid--cell s-input-description">…</span>
+        </div>
+    </div>
+    …
+</div>
+{% endhighlight %}
+        <div class="-preview">
+            <div class="grid ff-column-nowrap gs8 gsy">
+                <div class="grid">
+                    <div class="grid--cell mr8">
+                        <input class="s-radio" type="radio" name="choice-vert-radio" id="choice-vert-radio-1" checked />
+                    </div>
+                    <div class="grid ff-column-nowrap gs4 gsy">
+                        <label class="grid--cell s-label fw-normal" for="choice-vert-radio-1">Choice 1</label>
+                        <span class="grid--cell s-input-description">This is some help text to help further explain the choice you will be making.</span>
+                    </div>
+                </div>
+                <div class="grid">
+                    <div class="grid--cell mr8">
+                        <input class="s-radio" type="radio" name="choice-vert-radio" id="choice-vert-radio-2" />
+                    </div>
+                    <div class="grid ff-column-nowrap gs4 gsy">
+                        <label class="grid--cell s-label fw-normal" for="choice-vert-radio-2">Choice 2</label>
+                        <span class="grid--cell s-input-description">This is some help text to help further explain the choice you will be making.</span>
+                    </div>
+                </div>
+                <div class="grid">
+                    <div class="grid--cell mr8">
+                        <input class="s-radio" type="radio" name="choice-vert-radio" id="choice-vert-radio-3" />
+                    </div>
+                    <div class="grid ff-column-nowrap gs4 gsy">
+                        <label class="grid--cell s-label fw-normal mb4" for="choice-vert-radio-3">Choice 3</label>
+                        <span class="grid--cell s-input-description">This is some help text to help further explain the choice you will be making.</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <h3 class="grid jc-spacebetween ai-center stacks-title _subtitle">Horizontal List</h3>
+    <div class="stacks-code-preview">
+{% highlight html linenos %}
+<div class="grid ff-column-nowrap gs8 gsy">
+    <label class="grid--cell s-label">Horizontal List</label>
+    <div class="grid--cell">
+        <div class="grid gs8 gsx grid__allcells4">
+            <div class="grid">
+                <div class="grid--cell mr8">
+                    <input class="s-radio" type="radio" name="example-radio-group-horz" id="example-radio-horz" checked />
+                </div>
+                <div class="grid ff-column-nowrap gs4 gsy">
+                    <label class="grid--cell s-label fw-normal" for="example-radio-horz">…</label>
+                    <span class="grid--cell s-input-description">…</span>
+                </div>
+            </div>
+            …
+    </div>
+</div>
+{% endhighlight %}
+        <div class="-preview">
+            <div class="grid ff-column-nowrap gs8 gsy">
+                <label class="grid--cell s-label">Horizontal List</label>
+                <div class="grid--cell">
                     <div class="grid gs8 gsx grid__allcells4">
                         <div class="grid">
                             <div class="grid--cell mr8">
