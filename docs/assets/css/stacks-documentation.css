@@ -4622,9 +4622,10 @@ body *:after {
   border-radius: 6px;
 }
 .s-btn .svg-icon {
+  transition: opacity 200ms cubic-bezier(0.165, 0.84, 0.44, 1);
   margin-top: -3px;
   margin-bottom: -2px;
-  margin-right: 4px;
+  margin-right: 2px;
   margin-left: -4px;
 }
 .s-btn__inverted {
@@ -5668,19 +5669,24 @@ body *:after {
   }
 }
 .s-btn.is-loading {
-  padding-left: 28px;
+  padding-left: 32px;
 }
 .s-btn.is-loading:before {
   content: "";
   position: absolute;
   top: calc(50% - 8px);
-  margin-left: -20px;
-  width: 14px;
-  height: 14px;
+  margin-left: -22px;
+  width: 16px;
+  height: 16px;
   border-radius: 50%;
   border: 2px dotted rgba(57, 115, 157, 0.4);
   border-left-color: #33658a;
   animation: spinnerRotate 800ms infinite linear;
+}
+.s-btn.is-loading .svg-icon:first-child {
+  opacity: 0;
+  margin-left: -23px;
+  transition: opacity 200ms cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 .s-btn.s-btn__primary.is-loading:before,
 .s-btn.s-btn__warning.s-btn__filled.is-loading:before,

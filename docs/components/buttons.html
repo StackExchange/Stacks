@@ -3,6 +3,18 @@ layout: page
 title: Buttons
 description: Buttons are user interface elements which allows users to take actions throughout the project. It is important that they have ample click space and help communicate the importance of their actions.
 ---
+
+<script>
+    $(function() {
+        $(".js-add-loading").on("click", function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            $(this).toggleClass("is-loading");
+        });
+    });
+</script>
+
+
 <p class="stacks-p _page">To assist in creating mockups, <a href="https://gh.stackoverflow.com/Design/Assets/blob/master/stacks--base-buttons-1.0.1.sketch?raw=true" title="Click here to download the buttons sticker sheet Sketch file">a Sketch file has been generated with the button types, styles, and sizes</a> shown below. Other sticker sheets can be found in the <a href="https://gh.stackoverflow.com/Design/Assets">the Design/Assets repo.</a></p>
 
 <section class="stacks-section" data-core-careers>
@@ -209,7 +221,11 @@ description: Buttons are user interface elements which allows users to take acti
 {% endhighlight %}
         <div class="-preview">
             <div class="grid gs4 fw-wrap">
-                <button class="grid--cell s-btn s-btn__primary is-loading" type="button">Processing</button>
+                <button class="grid--cell s-btn s-btn__primary js-add-loading" type="button">
+                    <svg aria-hidden="true" class="svg-icon iconNotInterested" width="18" height="18" viewBox="0 0 18 18"><path d="M5.52 13.89a6 6 0 0 0 8.37-8.37L5.52 13.9zm-1.4-1.41l8.36-8.37a6 6 0 0 0-8.37 8.37zM9 17A8 8 0 1 1 9 1a8 8 0 0 1 0 16z"></path></svg>
+                    Toggle .is-loading on click
+                </button>
+                <button class="grid--cell s-btn s-btn__primary is-loading" type="button">Loading</button>
                 <button class="grid--cell s-btn s-btn__filled is-loading" type="button">Processing</button>
                 <button class="grid--cell s-btn s-btn__filled s-btn__confirm  is-loading" type="button">Uploading</button>
                 <button class="grid--cell s-btn s-btn__filled s-btn__warning is-loading" type="button">Deleting</button>
