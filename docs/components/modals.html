@@ -6,8 +6,8 @@ description: Modal dialogs are used to display content that temporarily blocks i
 
 <!-- Example base modal content -->
 <div class="s-modal-overlay js-example-modal-overlay"></div>
-<aside class="s-modal js-example-modal-content__base">
-    <div class="s-modal--body s-modal__confirmation">
+<aside class="s-modal js-example-modal-content__base js-example-modal-container">
+    <div class="s-modal--body s-modal__confirmation js-example-modal-body">
         <h1 class="s-modal--title">Example Title</h1>
         <p class="s-modal--description">This is an example description area for your modal.</p>
         <div class="grid gs8 gsx jc-center">
@@ -18,8 +18,8 @@ description: Modal dialogs are used to display content that temporarily blocks i
 </aside>
 
 <!-- Example modal + transform content -->
-<aside class="s-modal js-example-modal-content__transform">
-    <div class="s-modal--body s-modal__transform s-modal__confirmation">
+<aside class="s-modal js-example-modal-content__transform js-example-modal-container">
+    <div class="s-modal--body s-modal__transform s-modal__confirmation js-example-modal-body">
         <h1 class="s-modal--title">Example Title</h1>
         <p class="s-modal--description">This is an example description area for your modal.</p>
         <div class="grid gs8 gsx jc-center">
@@ -34,6 +34,11 @@ description: Modal dialogs are used to display content that temporarily blocks i
         var modalOverlay = $(".js-example-modal-overlay");
         var modalBase = $(".js-example-modal-content__base");
         var modalTransform = $(".js-example-modal-content__transform");
+
+        $(".js-example-modal-body").on("click", function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+        });
 
         $(".js-launch-modal-btn__base").on("click", function(e) {
             e.preventDefault();
@@ -51,7 +56,7 @@ description: Modal dialogs are used to display content that temporarily blocks i
             modalTransform.toggleClass("is-visible");
         });
 
-        $(".js-example-modal-cancel-btn, .js-example-modal-primary-btn, .js-example-modal-overlay").on("click", function(e) {
+        $(".js-example-modal-cancel-btn, .js-example-modal-primary-btn, .js-example-modal-overlay, .js-example-modal-container").on("click", function(e) {
             e.preventDefault();
             e.stopPropagation();
 
