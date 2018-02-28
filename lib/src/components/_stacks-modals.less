@@ -26,14 +26,16 @@
     background-color: fade(@black-900, 50%);
 
     // Set the off-state properties to be animated
-    z-index: @zi-hide; // Make sure the overlay is behind everything so we can't interact with it.
+    visibility: hidden;
+    z-index: @zi-hide;
     opacity: 0;
+    will-change: visibility, z-index, opacity; // Not supported in IE11 / Edge
     overflow: hidden;
-    transition: opacity 100ms @te-smooth, z-index 0 100ms @te-smooth; // Transition out
+    transition: visibility 0s 0s, z-index 0s 0s, opacity 100ms @te-smooth 10ms;
 
     &.is-visible {
-        // Transition in
-        transition: opacity 100ms @te-smooth;
+        visibility: visible;
+        transition: opacity 100ms @te-smooth 50ms, z-index 0s 150ms, visibility 0s 150ms;
         opacity: 1;
         z-index: @zi-modals-background;
     }
@@ -45,20 +47,27 @@
     // We'll center this using positioning w/ a transform that we can optionally animate with s-modal__transform
     top: 50%;
     left: 50%;
-    transform: translate3d(-50%, -50%, 0);
+
     background-color: @white;
     border-radius: @br-lg;
     padding: @su24;
     text-align: left;
     box-shadow: @bs-lg;
 
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    transform: translateX(-50%) translateY(-50%);
+
     // Set the off-state properties to be animated
+    visibility: hidden;
     z-index: @zi-hide; // Make sure it's also below everything so we can't interact with it.
     opacity: 0;
-    will-change: opacity;
+    will-change: visibility, z-index, opacity; // Not supported in IE11 / Edge
+    transition: visibility 0s 0s, z-index 0s 0s, opacity 100ms @te-smooth 50ms;
 
     &.is-visible {
-        transition: opacity 150ms @te-smooth;
+        visibility: visible;
+        transition: opacity 100ms @te-smooth 0s, z-index 0s 100ms, visibility 0s 100ms;
         opacity: 1;
         z-index: @zi-modals;
     }

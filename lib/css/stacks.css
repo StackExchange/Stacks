@@ -842,13 +842,16 @@ template {
   left: 0;
   bottom: 0;
   background-color: rgba(12, 13, 14, 0.5);
+  visibility: hidden;
   z-index: -1;
   opacity: 0;
+  will-change: visibility, z-index, opacity;
   overflow: hidden;
-  transition: opacity 100ms cubic-bezier(0.165, 0.84, 0.44, 1), z-index 0 100ms cubic-bezier(0.165, 0.84, 0.44, 1);
+  transition: visibility 0s 0s, z-index 0s 0s, opacity 100ms cubic-bezier(0.165, 0.84, 0.44, 1) 10ms;
 }
 .s-modal-overlay.is-visible {
-  transition: opacity 100ms cubic-bezier(0.165, 0.84, 0.44, 1);
+  visibility: visible;
+  transition: opacity 100ms cubic-bezier(0.165, 0.84, 0.44, 1) 50ms, z-index 0s 150ms, visibility 0s 150ms;
   opacity: 1;
   z-index: 8950;
 }
@@ -856,18 +859,23 @@ template {
   position: fixed;
   top: 50%;
   left: 50%;
-  transform: translate3d(-50%, -50%, 0);
   background-color: #FFF;
   border-radius: 7px;
   padding: 24px;
   text-align: left;
   box-shadow: 0 4px 12px rgba(36, 39, 41, 0.2);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  transform: translateX(-50%) translateY(-50%);
+  visibility: hidden;
   z-index: -1;
   opacity: 0;
-  will-change: opacity;
+  will-change: visibility, z-index, opacity;
+  transition: visibility 0s 0s, z-index 0s 0s, opacity 100ms cubic-bezier(0.165, 0.84, 0.44, 1) 50ms;
 }
 .s-modal.is-visible {
-  transition: opacity 150ms cubic-bezier(0.165, 0.84, 0.44, 1);
+  visibility: visible;
+  transition: opacity 100ms cubic-bezier(0.165, 0.84, 0.44, 1) 0s, z-index 0s 100ms, visibility 0s 100ms;
   opacity: 1;
   z-index: 9000;
 }
