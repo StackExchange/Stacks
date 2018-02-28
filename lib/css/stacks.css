@@ -847,47 +847,54 @@ template {
   opacity: 0;
   will-change: visibility, z-index, opacity;
   overflow: hidden;
-  transition: visibility 0s 0s, z-index 0s 0s, opacity 100ms cubic-bezier(0.165, 0.84, 0.44, 1) 10ms;
+  transition: opacity 100ms cubic-bezier(0.165, 0.84, 0.44, 1) 50ms, z-index 0s 200ms, visibility 0s 200ms;
 }
 .s-modal-overlay.is-visible {
   visibility: visible;
-  transition: opacity 100ms cubic-bezier(0.165, 0.84, 0.44, 1) 50ms, z-index 0s 150ms, visibility 0s 150ms;
+  transition: opacity 150ms cubic-bezier(0.165, 0.84, 0.44, 1) 0s;
   opacity: 1;
   z-index: 8950;
 }
 .s-modal {
   position: fixed;
-  top: 50%;
-  left: 50%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  visibility: hidden;
+  z-index: -1;
+  opacity: 0;
+  will-change: visibility, z-index, opacity;
+  transition: opacity 100ms cubic-bezier(0.165, 0.84, 0.44, 1) 0s, z-index 0s 100ms, visibility 0s 100ms;
+}
+.s-modal.is-visible {
+  visibility: visible;
+  transition: opacity 100ms cubic-bezier(0.165, 0.84, 0.44, 1) 0s;
+  opacity: 1;
+  z-index: 9000;
+}
+.s-modal--body {
   background-color: #FFF;
   border-radius: 7px;
   padding: 24px;
   text-align: left;
   box-shadow: 0 4px 12px rgba(36, 39, 41, 0.2);
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
-  transform: translateX(-50%) translateY(-50%);
-  visibility: hidden;
-  z-index: -1;
-  opacity: 0;
-  will-change: visibility, z-index, opacity;
-  transition: visibility 0s 0s, z-index 0s 0s, opacity 100ms cubic-bezier(0.165, 0.84, 0.44, 1) 50ms;
 }
-.s-modal.is-visible {
-  visibility: visible;
-  transition: opacity 100ms cubic-bezier(0.165, 0.84, 0.44, 1) 0s, z-index 0s 100ms, visibility 0s 100ms;
-  opacity: 1;
-  z-index: 9000;
-}
-.s-modal.s-modal__transform {
-  transform: translate3d(-50%, 0, 0) scale3d(0.5, 0.5, 0.5);
+.s-modal__transform {
+  transition: transform 150ms cubic-bezier(0.165, 0.84, 0.44, 1);
+  transform: scale(0.75);
   will-change: transform;
 }
-.s-modal.s-modal__transform.is-visible {
+.s-modal.is-visible .s-modal__transform {
   transition: transform 250ms cubic-bezier(0.165, 0.84, 0.44, 1);
-  transform: translate3d(-50%, -50%, 0) scale3d(1, 1, 1);
+  transform: scale(1);
 }
-.s-modal.s-modal__confirmation {
+.s-modal--body.s-modal__confirmation {
   text-align: center;
   max-width: 24rem;
 }

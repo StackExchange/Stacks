@@ -6,22 +6,26 @@ description: Modal dialogs are used to display content that temporarily blocks i
 
 <!-- Example base modal content -->
 <div class="s-modal-overlay js-example-modal-overlay"></div>
-<aside class="s-modal s-modal__confirmation js-example-modal-content__base">
-    <h1 class="s-modal--title">Example Title</h1>
-    <p class="s-modal--description">This is an example description area for your modal.</p>
-    <div class="grid gs8 gsx jc-center">
-        <button class="s-btn s-btn__primary grid--cell js-example-modal-primary-btn">Example primary action</button>
-        <button class="s-btn grid--cell js-example-modal-cancel-btn">Cancel</button>
+<aside class="s-modal js-example-modal-content__base">
+    <div class="s-modal--body s-modal__confirmation">
+        <h1 class="s-modal--title">Example Title</h1>
+        <p class="s-modal--description">This is an example description area for your modal.</p>
+        <div class="grid gs8 gsx jc-center">
+            <button class="s-btn s-btn__primary grid--cell js-example-modal-primary-btn">Example primary action</button>
+            <button class="s-btn grid--cell js-example-modal-cancel-btn">Cancel</button>
+        </div>
     </div>
 </aside>
 
 <!-- Example modal + transform content -->
-<aside class="s-modal s-modal__transform s-modal__confirmation js-example-modal-content__transform">
-    <h1 class="s-modal--title">Example Title</h1>
-    <p class="s-modal--description">This is an example description area for your modal.</p>
-    <div class="grid gs8 gsx jc-center">
-        <button class="s-btn s-btn__primary grid--cell js-example-modal-primary-btn">Example primary action</button>
-        <button class="s-btn grid--cell js-example-modal-cancel-btn">Cancel</button>
+<aside class="s-modal js-example-modal-content__transform">
+    <div class="s-modal--body s-modal__transform s-modal__confirmation">
+        <h1 class="s-modal--title">Example Title</h1>
+        <p class="s-modal--description">This is an example description area for your modal.</p>
+        <div class="grid gs8 gsx jc-center">
+            <button class="s-btn s-btn__primary grid--cell js-example-modal-primary-btn">Example primary action</button>
+            <button class="s-btn grid--cell js-example-modal-cancel-btn">Cancel</button>
+        </div>
     </div>
 </aside>
 
@@ -91,29 +95,65 @@ description: Modal dialogs are used to display content that temporarily blocks i
 </section>
 
 <section class="stacks-section">
+    <h2 class="grid jc-spacebetween ai-center stacks-title">Base Modal</h2>
+    <div class="stacks-code-preview">
+{% highlight html linenos %}
+<div class="s-modal-overlay"></div>
+<aside class="s-modal">
+    <div class="s-modal--body">
+        <h1 class="s-modal--title">…</h1>
+        <p class="s-modal--description">…</p>
+        <div class="grid gs8 gsx">
+            <button class="grid--cell s-btn s-btn__primary">…</button>
+            <button class="grid--cell s-btn">…</button>
+        </div>
+    </div>
+</aside>
+{% endhighlight %}
+        <div class="-preview ps-relative grid jc-center">
+            <div class="s-modal-overlay ps-absolute" style="transform: unset; z-index: unset; opacity: unset; visibility: unset; margin: -1px;"></div>
+            <aside class="s-modal grid--cell ps-relative" style="transform: unset; z-index: unset; opacity: unset; visibility: unset; margin: 24px 0;">
+                <div class="s-modal--body">
+                    <h1 class="s-modal--title mb8">Sample Title</h1>
+                    <p class="s-modal--description">This is some sample copy that would explain the possible decision the user must do.</p>
+                    <div class="grid gs8 gsx">
+                        <button class="s-btn s-btn__primary grid--cell">Do it!</button>
+                        <button class="s-btn grid--cell">Cancel</button>
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </div>
+</section>
+
+<section class="stacks-section">
     <h2 class="grid jc-spacebetween ai-center stacks-title">Confirmations</h2>
     <h3 class="grid jc-spacebetween ai-center stacks-title _subtitle">Concise</h3>
     <p class="stacks-p _section">This modal is used to confirm a user’s action. It is intended to add friction to an interaction, only confirming the action if the user explicitly presses “confirm”. In this example, we present the modal to confirm they’re posting a question on public Stack Overflow.</p>
     <div class="stacks-code-preview">
 {% highlight html linenos %}
 <div class="s-modal-overlay"></div>
-<div class="s-modal s-modal__confirmation">
-    <div class="s-modal--title">Title</div>
-    <div class="grid gs8 gsx jc-center">
-        <button class="s-btn s-btn__primary grid--cell">Primary action</button>
-        <button class="s-btn grid--cell">Cancel</button>
+<aside class="s-modal">
+    <div class="s-modal--body s-modal__confirmation">
+        <h1 class="s-modal--title">…</h1>
+        <div class="grid gs8 gsx jc-center">
+            <button class="grid--cell s-btn s-btn__primary">…</button>
+            <button class="grid--cell s-btn">…</button>
+        </div>
     </div>
-</div>
+</aside>
 {% endhighlight %}
         <div class="-preview ps-relative grid jc-center">
-            <div class="s-modal-overlay ps-absolute" style="transform: unset; z-index: unset; opacity: unset;"></div>
-            <div class="s-modal s-modal__confirmation grid--cell ps-relative" style="transform: unset; z-index: unset; opacity: unset; top: unset; left: unset;">
-                <div class="s-modal--title">Are you sure you want to ask this question publicly?</div>
-                <div class="grid gs8 gsx jc-center">
-                    <button class="s-btn s-btn__primary grid--cell">Publish to public</button>
-                    <button class="s-btn grid--cell">Cancel</button>
+            <div class="s-modal-overlay ps-absolute" style="transform: unset; z-index: unset; opacity: unset; visibility: unset; margin: -1px;"></div>
+            <aside class="s-modal grid--cell ps-relative" style="transform: unset; z-index: unset; opacity: unset; visibility: unset; margin: 24px 0;">
+                <div class="s-modal--body s-modal__confirmation">
+                    <h1 class="s-modal--title mb8">Are you sure you want to ask this question publicly?</h1>
+                    <div class="grid gs8 gsx jc-center">
+                        <button class="grid--cell s-btn s-btn__primary">Publish to public</button>
+                        <button class="grid--cell s-btn">Cancel</button>
+                    </div>
                 </div>
-            </div>
+            </aside>
         </div>
     </div>
 
@@ -122,25 +162,29 @@ description: Modal dialogs are used to display content that temporarily blocks i
     <div class="stacks-code-preview">
 {% highlight html linenos %}
 <div class="s-modal-overlay"></div>
-<div class="s-modal s-modal__confirmation">
-    <div class="s-modal--title">Title</div>
-    <div class="s-modal--description">Additional description</div>
-    <div class="grid gs8 gsx">
-        <button class="s-btn s-btn__primary grid--cell">Primary action</button>
-        <button class="s-btn grid--cell">Cancel</button>
+<aside class="s-modal">
+    <div class="s-modal--body s-modal__confirmation">
+        <h1 class="s-modal--title">…</h1>
+        <p class="s-modal--description">…</p>
+        <div class="grid gs8 gsx jc-center">
+            <button class="grid--cell s-btn s-btn__primary">…</button>
+            <button class="grid--cell s-btn">…</button>
+        </div>
     </div>
-</div>
+</aside>
 {% endhighlight %}
         <div class="-preview ps-relative grid jc-center">
-            <div class="s-modal-overlay ps-absolute" style="transform: unset; z-index: unset; opacity: unset;"></div>
-            <div class="s-modal s-modal__confirmation grid--cell ps-relative" style="transform: unset; z-index: unset; opacity: unset; top: unset; left: unset;">
-                <div class="s-modal--title">Ask publicly?</div>
-                <div class="s-modal--description">You’re about to post this question on public Stack Overflow.</div>
-                <div class="grid gs8 gsx jc-center">
-                    <button class="s-btn s-btn__primary grid--cell">Publish to public</button>
-                    <button class="s-btn grid--cell">Cancel</button>
+            <div class="s-modal-overlay ps-absolute" style="transform: unset; z-index: unset; opacity: unset; visibility: unset; margin: -1px;"></div>
+            <aside class="s-modal grid--cell ps-relative" style="transform: unset; z-index: unset; opacity: unset; visibility: unset; margin: 24px 0;">
+                <div class="s-modal--body s-modal__confirmation">
+                    <h1 class="s-modal--title mb8">Ask publicly?</h1>
+                    <p class="s-modal--description">You’re about to post this question on public Stack Overflow.</p>
+                    <div class="grid gs8 gsx jc-center">
+                        <button class="s-btn s-btn__primary grid--cell">Publish to public</button>
+                        <button class="s-btn grid--cell">Cancel</button>
+                    </div>
                 </div>
-            </div>
+            </aside>
         </div>
     </div>
 
@@ -149,45 +193,49 @@ description: Modal dialogs are used to display content that temporarily blocks i
     <div class="stacks-code-preview">
 {% highlight html linenos %}
 <div class="s-modal-overlay"></div>
-<div class="s-modal s-modal__confirmation">
-    <div class="s-modal--title">Title</div>
-    <label for="sample-group-ex3" class="s-modal--description d-block">Additional description</label>
-    <div class="grid jc-center s-option-toggle s-option-toggle__switch">
-        <div class="grid s-option-toggle--option">
-            <input class="s-radio" type="radio" name="sample-group-ex3" id="optionA-ex3" />
-            <label class="grid--cell s-label" for="optionA-ex3">Option 1</label>
-        </div>
-        <div class="grid s-option-toggle--option">
-            <input class="s-radio" type="radio" name="sample-group-ex3" id="optionB-ex3" />
-            <label class="grid--cell s-label" for="optionB-ex3">Option 2</label>
-        </div>
-        <div class="grid s-option-toggle--option">
-            <input class="s-radio" type="radio" name="sample-group-ex3" id="optionC-ex3" checked />
-            <label class="grid--cell s-label s-label__off" for="optionC-ex3">Off</label>
+<aside class="s-modal">
+    <div class="s-modal--body s-modal__confirmation">
+        <h1 class="s-modal--title">…</h1>
+        <label for="sample-group-ex3" class="s-modal--description d-block">Additional description</label>
+        <div class="grid jc-center s-option-toggle s-option-toggle__switch">
+            <div class="grid s-option-toggle--option">
+                <input class="s-radio" type="radio" name="sample-group-ex3" id="optionA-ex3" />
+                <label class="grid--cell s-label" for="optionA-ex3">Option 1</label>
+            </div>
+            <div class="grid s-option-toggle--option">
+                <input class="s-radio" type="radio" name="sample-group-ex3" id="optionB-ex3" />
+                <label class="grid--cell s-label" for="optionB-ex3">Option 2</label>
+            </div>
+            <div class="grid s-option-toggle--option">
+                <input class="s-radio" type="radio" name="sample-group-ex3" id="optionC-ex3" checked />
+                <label class="grid--cell s-label s-label__off" for="optionC-ex3">Off</label>
+            </div>
         </div>
     </div>
-</div>
+</aside>
 {% endhighlight %}
         <div class="-preview ps-relative grid jc-center">
-            <div class="s-modal-overlay ps-absolute" style="transform: unset; z-index: unset; opacity: unset;"></div>
-            <div class="s-modal s-modal__confirmation grid--cell ps-relative" style="transform: unset; z-index: unset; opacity: unset; top: unset; left: unset;">
-                <div class="s-modal--title">Notification Frequency</div>
-                <label for="sample-group-ex3" class="s-modal--description d-block">How often would you like to receive notifications for objective-c?</label>
-                <div class="grid jc-center s-option-toggle s-option-toggle__switch">
-                    <div class="grid s-option-toggle--option">
-                        <input class="s-radio" type="radio" name="sample-group-ex3" id="optionA-ex3" />
-                        <label class="grid--cell s-label" for="optionA-ex3">Weekly</label>
-                    </div>
-                    <div class="grid s-option-toggle--option">
-                        <input class="s-radio" type="radio" name="sample-group-ex3" id="optionB-ex3" />
-                        <label class="grid--cell s-label" for="optionB-ex3">Daily</label>
-                    </div>
-                    <div class="grid s-option-toggle--option">
-                        <input class="s-radio" type="radio" name="sample-group-ex3" id="optionC-ex3" checked />
-                        <label class="grid--cell s-label s-label__off" for="optionC-ex3">Off</label>
+            <div class="s-modal-overlay ps-absolute" style="transform: unset; z-index: unset; opacity: unset; visibility: unset; margin: -1px;"></div>
+            <aside class="s-modal grid--cell ps-relative" style="transform: unset; z-index: unset; opacity: unset; visibility: unset; margin: 24px 0;">
+                <div class="s-modal--body s-modal__confirmation">
+                    <h1 class="s-modal--title mb8">Notification Frequency</h1>
+                    <label for="sample-group-ex3" class="s-modal--description d-block">How often would you like to receive notifications for objective-c?</label>
+                    <div class="grid jc-center s-option-toggle s-option-toggle__switch">
+                        <div class="grid s-option-toggle--option">
+                            <input class="s-radio" type="radio" name="sample-group-ex3" id="optionA-ex3" />
+                            <label class="grid--cell s-label" for="optionA-ex3">Weekly</label>
+                        </div>
+                        <div class="grid s-option-toggle--option">
+                            <input class="s-radio" type="radio" name="sample-group-ex3" id="optionB-ex3" />
+                            <label class="grid--cell s-label" for="optionB-ex3">Daily</label>
+                        </div>
+                        <div class="grid s-option-toggle--option">
+                            <input class="s-radio" type="radio" name="sample-group-ex3" id="optionC-ex3" checked />
+                            <label class="grid--cell s-label s-label__off" for="optionC-ex3">Off</label>
+                        </div>
                     </div>
                 </div>
-            </div>
+            </aside>
         </div>
     </div>
 </section>

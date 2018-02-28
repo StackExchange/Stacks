@@ -31,11 +31,11 @@
     opacity: 0;
     will-change: visibility, z-index, opacity; // Not supported in IE11 / Edge
     overflow: hidden;
-    transition: visibility 0s 0s, z-index 0s 0s, opacity 100ms @te-smooth 10ms;
+    transition: opacity 100ms @te-smooth 50ms, z-index 0s 200ms, visibility 0s 200ms; // Transition out
 
     &.is-visible {
         visibility: visible;
-        transition: opacity 100ms @te-smooth 50ms, z-index 0s 150ms, visibility 0s 150ms;
+        transition: opacity 150ms @te-smooth 0s; // Transition in
         opacity: 1;
         z-index: @zi-modals-background;
     }
@@ -43,60 +43,62 @@
 
 .s-modal {
     position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
 
-    // We'll center this using positioning w/ a transform that we can optionally animate with s-modal__transform
-    top: 50%;
-    left: 50%;
-
-    background-color: @white;
-    border-radius: @br-lg;
-    padding: @su24;
-    text-align: left;
-    box-shadow: @bs-lg;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
-    transform: translateX(-50%) translateY(-50%);
 
     // Set the off-state properties to be animated
     visibility: hidden;
     z-index: @zi-hide; // Make sure it's also below everything so we can't interact with it.
     opacity: 0;
     will-change: visibility, z-index, opacity; // Not supported in IE11 / Edge
-    transition: visibility 0s 0s, z-index 0s 0s, opacity 100ms @te-smooth 50ms;
+    transition: opacity 100ms @te-smooth 0s, z-index 0s 100ms, visibility 0s 100ms; // Transition out
 
     &.is-visible {
         visibility: visible;
-        transition: opacity 100ms @te-smooth 0s, z-index 0s 100ms, visibility 0s 100ms;
+        transition: opacity 100ms @te-smooth 0s; // Transition in
         opacity: 1;
         z-index: @zi-modals;
     }
+}
+
+.s-modal--body {
+    background-color: @white;
+    border-radius: @br-lg;
+    padding: @su24;
+    text-align: left;
+    box-shadow: @bs-lg;
 }
 
 
 //  ============================================================================
 //  $   LAYOUT VARIATIONS
 //  ----------------------------------------------------------------------------
-.s-modal {
+.s-modal__transform {
+    // Set the off-state properties to be animated
+    transition: transform 150ms @te-smooth;
+    transform: scale(0.75);
+    will-change: transform;
 
-    //  $$  Add transform
-    &.s-modal__transform {
-        // Set the off-state properties to be animated
-        transform: translate3d(-50%, 0, 0) scale3d(0.5, 0.5, 0.5);
-        will-change: transform;
-
-        &.is-visible {
-            transition: transform 250ms @te-smooth;
-            transform: translate3d(-50%, -50%, 0) scale3d(1, 1, 1);
-        }
+    .s-modal.is-visible & {
+        transition: transform 250ms @te-smooth;
+        transform: scale(1);
     }
+}
 
-    //  $$  Confirmation
-    //  ------------------------------------------------------------------------
-    &.s-modal__confirmation {
-        text-align: center;
-        max-width: 24rem;
-    }
+//  $$  Confirmation
+//  ----------------------------------------------------------------------------
+.s-modal--body.s-modal__confirmation {
+    text-align: center;
+    max-width: 24rem;
 }
 
 //  ============================================================================
