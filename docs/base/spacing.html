@@ -30,7 +30,7 @@ description: Stacks provides atomic classes to override margin and padding.
     <div class="stacks-code-preview">
 {% highlight html linenos %}
 <div class="mt8 mr4 mb32 ml64">
-  …
+    …
 </div>
 {% endhighlight %}
         <div class="-preview">
@@ -42,21 +42,50 @@ description: Stacks provides atomic classes to override margin and padding.
     <table class="mb32 s-table s-table__hover">
         <thead>
             <tr>
-                <th scope="col">Prefix</th>
-                <th scope="col" class="ta-center">0</th>
-                <th scope="col" class="ta-center">2</th>
-                <th scope="col" class="ta-center">4</th>
-                <th scope="col" class="ta-center">8</th>
-                <th scope="col" class="ta-center">12</th>
-                <th scope="col" class="ta-center">16</th>
-                <th scope="col" class="ta-center">24</th>
-                <th scope="col" class="ta-center">32</th>
-                <th scope="col" class="ta-center">48</th>
-                <th scope="col" class="ta-center">64</th>
+                <th scope="col"></th>
+                <th scope="col" class="ta-center ff-mono">0px</th>
+                <th scope="col" class="ta-center ff-mono">2px</th>
+                <th scope="col" class="ta-center ff-mono">4px</th>
+                <th scope="col" class="ta-center ff-mono">8px</th>
+                <th scope="col" class="ta-center ff-mono">12px</th>
+                <th scope="col" class="ta-center ff-mono">16px</th>
+                <th scope="col" class="ta-center ff-mono">24px</th>
+                <th scope="col" class="ta-center ff-mono">32px</th>
+                <th scope="col" class="ta-center ff-mono">48px</th>
+                <th scope="col" class="ta-center ff-mono">64px</th>
             </tr>
         </thead>
         <tbody>
           {% for class in site.data.spacing-classes.margin %}
+          {% assign prefix-value = class.values | split: ", " %}
+              <tr>
+                  <th scope="row" class="-cell1">{{ class.prefix }}</th>
+                  {% for values in prefix-value %}
+                  <td class="ta-center"><code>.{{ class.prefix }}{{ values }}</code></td>
+                  {% endfor %}
+              </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    
+    <h3 class="grid jc-spacebetween ai-center stacks-title _subtitle">Negative Margin Classes</h3>
+    <table class="mb32 s-table s-table__hover">
+        <thead>
+            <tr>
+                <th scope="col"></th>
+                <th scope="col" class="ta-center ff-mono">-2px</th>
+                <th scope="col" class="ta-center ff-mono">-4px</th>
+                <th scope="col" class="ta-center ff-mono">-8px</th>
+                <th scope="col" class="ta-center ff-mono">-12px</th>
+                <th scope="col" class="ta-center ff-mono">-16px</th>
+                <th scope="col" class="ta-center ff-mono">-24px</th>
+                <th scope="col" class="ta-center ff-mono">-32px</th>
+                <th scope="col" class="ta-center ff-mono">-48px</th>
+                <th scope="col" class="ta-center ff-mono">-64px</th>
+            </tr>
+        </thead>
+        <tbody>
+          {% for class in site.data.spacing-classes.negative-margin %}
           {% assign prefix-value = class.values | split: ", " %}
               <tr>
                   <th scope="row" class="-cell1">{{ class.prefix }}</th>
@@ -78,19 +107,6 @@ description: Stacks provides atomic classes to override margin and padding.
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <th scope="row">Negative Margin</th>
-                <td>
-                    <code>.mxn2</code>,
-                    <code>.mxn3</code>,
-                    <code>.mxn4</code>,
-                    <code>.mxn5</code>,
-                    <code>.mxn6</code>,
-                    <code>.mxn7</code>,
-                    <code>.mxn8</code>,
-                    <code>.mxn9</code>
-                </td>
-            </tr>
             <tr>
                 <th scope="row">Auto Margin</th>
                 <td>
@@ -131,7 +147,7 @@ description: Stacks provides atomic classes to override margin and padding.
     <div class="stacks-code-preview">
 {% highlight html linenos %}
 <div class="pt4 pr64 pb64 pl64">
-  …
+    …
 </div>
 {% endhighlight %}
         <div class="-preview">
