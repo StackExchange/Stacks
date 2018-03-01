@@ -208,8 +208,14 @@ description: Buttons are user interface elements which allows users to take acti
     </div>
 
     <h3 class="grid jc-spacebetween ai-center stacks-title _subtitle">Loading Animation</h3>
-    <p class="stacks-p _section">When you want to show that an action or item is loading within a button.</p>
-    <p class="stacks-p _section">Note, when using this with an icon, it assumes the default icon size of 18px. If you use a smaller icon, <code class="stacks-code">@Svg.ShieldSm</code>, for example, there may be some unintended shifting when toggling <code class="stacks-code">is-loading</code>.</p>
+    <p class="stacks-p _section">When you want to show that an action or item is loading within a button, add the <code class="stacks-code">is-loading</code> class. Since Stacks is only a CSS library you’ll likely need to add some javascript to toggle the <code class="stacks-code">is-loading</code> class as needed, like so:</p>
+    <p class="stacks-p">
+        <button class="grid--cell s-btn s-btn__primary js-add-loading" type="button">
+            <svg aria-hidden="true" class="svg-icon iconNotInterested" width="18" height="18" viewBox="0 0 18 18"><path d="M5.52 13.89a6 6 0 0 0 8.37-8.37L5.52 13.9zm-1.4-1.41l8.36-8.37a6 6 0 0 0-8.37 8.37zM9 17A8 8 0 1 1 9 1a8 8 0 0 1 0 16z"></path></svg>
+            Toggle .is-loading on click
+        </button>
+    </p>
+    <p class="stacks-p _section">You'll also need to manage removing the <code class="stacks-code">is-loading</code> as appropriate. Note that when toggling <code class="stacks-code">is-loading</code> on a button with an icon, Stacks assumes the default icon size of 18px. If you use a smaller icon, <code class="stacks-code">@Svg.ShieldSm</code>, for example, there may be some unintended shifting when adding the <code class="stacks-code">is-loading</code> class.</p>
     <div class="stacks-code-preview">
 {% highlight html linenos %}
 <button class="s-btn s-btn__primary is-loading" type="button">…</button>
@@ -223,13 +229,6 @@ description: Buttons are user interface elements which allows users to take acti
 {% endhighlight %}
         <div class="-preview">
             <div class="grid gs4 fw-wrap">
-                <button class="grid--cell s-btn s-btn__primary js-add-loading" type="button">
-                    <svg aria-hidden="true" class="svg-icon iconNotInterested" width="18" height="18" viewBox="0 0 18 18"><path d="M5.52 13.89a6 6 0 0 0 8.37-8.37L5.52 13.9zm-1.4-1.41l8.36-8.37a6 6 0 0 0-8.37 8.37zM9 17A8 8 0 1 1 9 1a8 8 0 0 1 0 16z"></path></svg>
-                    Toggle .is-loading on click
-                </button>
-                <button class="grid--cell s-btn s-btn__primary js-add-loading" type="button">
-                    Toggle .is-loading on click
-                </button>
                 <button class="grid--cell s-btn s-btn__primary is-loading" type="button">Loading</button>
                 <button class="grid--cell s-btn s-btn__filled is-loading" type="button">Processing</button>
                 <button class="grid--cell s-btn s-btn__filled s-btn__confirm  is-loading" type="button">Uploading</button>
