@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Positioning
-description: Atomic positioning classes allow you to change an element's position project quickly. Positions should <strong>only</strong> be declared with these classes. This is meant to help create consistency.
+description: Atomic positioning classes allow you to quickly change an element’s position.
 ---
 <section class="stacks-section">
     <h2 class="grid jc-spacebetween ai-center stacks-title _subtitle">Position Definitions</h2>
@@ -37,16 +37,100 @@ description: Atomic positioning classes allow you to change an element's positio
         <div class="-preview overflowy-scroll fs-caption ff-mono" style="height: 214px;">
             <div class="grid w100 ps-relative">
                 <div class="ps-static p12 bg-orange-100 ba bc-orange-3" style="width: 120px; height: 180px;"><strong>.ps-static</strong></div>
-                <div class="ps-relative p12 bg-orange-100 ba bc-orange-3" style="width: 120px; height: 380px; top: 30px; right: 20px;"><strong>.ps-relative</strong><br/><br/>top: 30px;<br/>right: 20px;</div>
-                <div class="ps-absolute p12 bg-orange-100 ba bc-orange-3" style="top:50px; right: 32px;  width: 120px; height: 180px;"><strong>.ps-absolute</strong><br/><br/>top: 50px;<br/>right: 32px;</div>
-                <div class="ps-sticky p12 bg-orange-100 ba bc-orange-3" style="width: 120px; height: 180px; top: 60px;"><strong>.ps-sticky</strong><br/><br/>top: 60px;</div>
+                <div class="ps-relative p12 bg-orange-100 ba bc-orange-3 t32 r24" style="width: 120px; height: 380px;"><strong>.ps-relative</strong><br/><br/>.t32<br/>r24</div>
+                <div class="ps-absolute p12 bg-orange-100 ba bc-orange-3 t48 r32" style="width: 120px; height: 180px;"><strong>.ps-absolute</strong><br/><br/>.t48<br/>.r32</div>
+                <div class="ps-sticky p12 bg-orange-100 ba bc-orange-3 t64" style="width: 120px; height: 180px;"><strong>.ps-sticky</strong><br/><br/>.t64</div>
             </div>
         </div>
     </div>
 </section>
 
 <section class="stacks-section">
+    <h2 class="grid fl-jc-space-between fl-ai-center mb0 stacks-title">Position</h2>
+    <p class="stacks-p _section">Our spacing units aren’t limited to margin and padding; they also apply to top, right, left, and bottom declarations. Combined with our <a href="{{ site.baseurl }}/utilities/position">position utility classes</a>, you should be able to acheive absolutely-positioned layouts while adhering to Stacks’ spacing conventions.</p>
+
+    <h3 class="grid fl-jc-space-between fl-ai-center mb0 mt24 stacks-title _subtitle">Position Class Convention</h3>
+    <table class="s-table mb32 mt24 s-table__hover">
+        <thead>
+            <tr>
+                <th class="-cell-2" scope="col">Abbreviation</th>
+                <th scope="col">Definition</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for spacing in site.data.spacing-definitions.position %}
+              <tr>
+                  <th scope="row">{{ spacing.term }}</th>
+                  <td>{{ spacing.define }}</td>
+              </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <h3 class="grid fl-jc-space-between fl-ai-center stacks-title _subtitle">Position Classes</h3>
+    <div class="stacks-code-preview">
+{% highlight html linenos %}
+<div class="ps-absolute t12 l12"> … </div>
+<div class="ps-absolute t48 r24"> … </div>
+<div class="ps-absolute t64 l64"> … </div>
+<div class="ps-absolute b12 r64"> … </div>
+<div class="ps-absolute b64 l12"> … </div>
+{% endhighlight %}
+        <div class="-preview ps-relative" style="height: 270px;">
+            <div class="ps-absolute w20 bg-orange-100 p12 ba bc-orange-3 ff-mono t12 l12">
+                .t12 .l12
+            </div>
+            
+            <div class="ps-absolute w20 bg-orange-100 p12 ba bc-orange-3 ff-mono t48 r24">
+                .t48 .r24
+            </div>
+            
+            <div class="ps-absolute w20 bg-orange-100 p12 ba bc-orange-3 ff-mono t64 l64">
+                .t64 .l64
+            </div>
+            
+            <div class="ps-absolute w20 bg-orange-100 p12 ba bc-orange-3 ff-mono b12 r64">
+                .b12 .r64
+            </div>
+            
+            <div class="ps-absolute w20 bg-orange-100 p12 ba bc-orange-3 ff-mono b64 l12">
+                .b64 .l12
+            </div>
+        </div>
+    </div>
+    <table class="s-table mb32 mt24 s-table__hover">
+        <thead>
+            <tr>
+                <th scope="col">Prefix</th>
+                <th scope="col" class="ta-center">0</th>
+                <th scope="col" class="ta-center">2</th>
+                <th scope="col" class="ta-center">4</th>
+                <th scope="col" class="ta-center">8</th>
+                <th scope="col" class="ta-center">12</th>
+                <th scope="col" class="ta-center">16</th>
+                <th scope="col" class="ta-center">24</th>
+                <th scope="col" class="ta-center">32</th>
+                <th scope="col" class="ta-center">48</th>
+                <th scope="col" class="ta-center">64</th>
+            </tr>
+        </thead>
+        <tbody>
+          {% for class in site.data.spacing-classes.position %}
+          {% assign prefix-value = class.values | split: ", " %}
+              <tr>
+                  <th scope="row" class="-cell1">{{ class.prefix }}</th>
+                  {% for values in prefix-value %}
+                   <td class="ta-center"><code class="fs1">.{{ class.prefix }}{{ values }}</code></td>
+                  {% endfor %}
+              </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</section>
+
+<section class="stacks-section">
     <h2 class="grid jc-spacebetween ai-center stacks-title">Position Coordinates</h2>
+    <p class="stacks-p _section">Stacks also offers percentage-based coordinate positioning classes.</p>
     <h3 class="grid jc-spacebetween ai-center stacks-title _subtitle">Coordinate Definitions</h3>
     <table class="mb32 s-table s-table__hover">
         <thead>
@@ -71,19 +155,19 @@ description: Atomic positioning classes allow you to change an element's positio
     <h4 class="grid jc-spacebetween ai-center stacks-title _subtitle-sm">Top</h4>
     <div class="stacks-code-preview">
 {% highlight html linenos %}
-<div class="ps-absolute top-n100">…</div>
-<div class="ps-absolute top-n50">…</div>
-<div class="ps-absolute top-0">…</div>
-<div class="ps-absolute top-50">…</div>
-<div class="ps-absolute top-100">…</div>
+<div class="ps-absolute tn100">…</div>
+<div class="ps-absolute tn50">…</div>
+<div class="ps-absolute t0">…</div>
+<div class="ps-absolute t50">…</div>
+<div class="ps-absolute t100">…</div>
 {% endhighlight %}
         <div class="-preview fs-caption ff-mono">
             <div class="grid my64 ps-relative w100 bts-dashed bc-orange-3 btw1" style="height: 64px;">
-                <div class="ps-absolute top-n100 left-50 p12 bg-orange-100 ba bc-orange-3 btw3" style="width: 120px;">.top-n100</div>
-                <div class="ps-absolute top-n50 left-50 p12 bg-orange-100 ba bc-orange-3 btw3" style="margin-left: -24px; width: 120px;">.top-n50</div>
-                <div class="ps-absolute top-0 left-50 p12 bg-orange-100 ba bc-orange-3 btw3" style="margin-left: -48px; width: 120px;">.top-0</div>
-                <div class="ps-absolute top-50 left-50 p12 bg-orange-100 ba bc-orange-3 btw3" style="margin-left: -72px; width: 120px;">.top-50</div>
-                <div class="ps-absolute top-100 left-50 p12 bg-orange-100 ba bc-orange-3 btw3" style="margin-left: -96px; width: 120px;">.top-100</div>
+                <div class="ps-absolute tn100 l50 p12 bg-orange-100 ba bc-orange-3 btw3" style="width: 120px;">.tn100</div>
+                <div class="ps-absolute tn50 l50 p12 bg-orange-100 ba bc-orange-3 btw3" style="margin-left: -24px; width: 120px;">.tn50</div>
+                <div class="ps-absolute t0 l50 p12 bg-orange-100 ba bc-orange-3 btw3" style="margin-left: -48px; width: 120px;">.t0</div>
+                <div class="ps-absolute t50 l50 p12 bg-orange-100 ba bc-orange-3 btw3" style="margin-left: -72px; width: 120px;">.t50</div>
+                <div class="ps-absolute t100 l50 p12 bg-orange-100 ba bc-orange-3 btw3" style="margin-left: -96px; width: 120px;">.t100</div>
            </div>
         </div>
     </div>
@@ -91,19 +175,19 @@ description: Atomic positioning classes allow you to change an element's positio
     <h4 class="grid jc-spacebetween ai-center stacks-title _subtitle-sm">Right</h4>
     <div class="stacks-code-preview">
 {% highlight html linenos %}
-<div class="ps-absolute right-n100">…</div>
-<div class="ps-absolute right-n50">…</div>
-<div class="ps-absolute right-0">…</div>
-<div class="ps-absolute right-50">…</div>
-<div class="ps-absolute right-100">…</div>
+<div class="ps-absolute rn100">…</div>
+<div class="ps-absolute rn50">…</div>
+<div class="ps-absolute r0">…</div>
+<div class="ps-absolute r50">…</div>
+<div class="ps-absolute r100">…</div>
 {% endhighlight %}
         <div class="-preview fs-caption ff-mono">
-            <div class="grid ps-relative w-30 brs-dashed bc-orange-3 brw1" style="margin-left: 35%; margin-right: 35%; height: 200px;">
-                <div class="ps-absolute right-n100 p12 bg-orange-100 ba bc-orange-3" style="width: 120px;">.right-n100</div>
-                <div class="ps-absolute right-n50 p12 bg-orange-100 ba bc-orange-3 brw3" style="margin-top: 24px; width: 120px;">.right-n50</div>
-                <div class="ps-absolute right-0 p12 bg-orange-100 ba bc-orange-3 brw3" style="margin-top: 48px; width: 120px;">.right-0</div>
-                <div class="ps-absolute right-50 p12 bg-orange-100 ba bc-orange-3 brw3" style="margin-top: 72px; width: 120px;">.right-50</div>
-                <div class="ps-absolute right-100 p12 bg-orange-100 ba bc-orange-3 brw3" style="margin-top: 96px; width: 120px;">.right-100</div>
+            <div class="grid ps-relative w30 brs-dashed bc-orange-3 brw1" style="margin-left: 35%; margin-right: 35%; height: 200px;">
+                <div class="ps-absolute rn100 p12 bg-orange-100 ba bc-orange-3" style="width: 120px;">.rn100</div>
+                <div class="ps-absolute rn50 p12 bg-orange-100 ba bc-orange-3 brw3" style="margin-top: 24px; width: 120px;">.rn50</div>
+                <div class="ps-absolute r0 p12 bg-orange-100 ba bc-orange-3 brw3" style="margin-top: 48px; width: 120px;">.r0</div>
+                <div class="ps-absolute r50 p12 bg-orange-100 ba bc-orange-3 brw3" style="margin-top: 72px; width: 120px;">.r50</div>
+                <div class="ps-absolute r100 p12 bg-orange-100 ba bc-orange-3 brw3" style="margin-top: 96px; width: 120px;">.r100</div>
             </div>
         </div>
     </div>
@@ -111,19 +195,19 @@ description: Atomic positioning classes allow you to change an element's positio
     <h4 class="grid jc-spacebetween ai-center stacks-title _subtitle-sm">Bottom</h4>
     <div class="stacks-code-preview">
 {% highlight html linenos %}
-<div class="ps-absolute bottom-n100">…</div>
-<div class="ps-absolute bottom-n50">…</div>
-<div class="ps-absolute bottom-0">…</div>
-<div class="ps-absolute bottom-50">…</div>
-<div class="ps-absolute bottom-100">…</div>
+<div class="ps-absolute bn100">…</div>
+<div class="ps-absolute bn50">…</div>
+<div class="ps-absolute b0">…</div>
+<div class="ps-absolute b50">…</div>
+<div class="ps-absolute b100">…</div>
 {% endhighlight %}
         <div class="-preview fs-caption ff-mono">
-            <div class="grid my64 ps-relative w100 bbs-dashed bbc-orange-3 bbw1 ff-mono fc-black-800" style="height: 64px;">
-                <div class="ps-absolute bottom-n100 left-50 p12 bg-orange-100 ba bc-orange-3 bbw3" style="width: 120px;">.bottom-n100</div>
-                <div class="ps-absolute bottom-n50 left-50 p12 bg-orange-100 ba bc-orange-3 bbw3" style="margin-left: -24px; width: 120px;">.bottom-n50</div>
-                <div class="ps-absolute bottom-0 left-50 p12 bg-orange-100 ba bc-orange-3 bbw3" style="margin-left: -48px; width: 120px;">.bottom-0</div>
-                <div class="ps-absolute bottom-50 left-50 p12 bg-orange-100 ba bc-orange-3 bbw3" style="margin-left: -72px; width: 120px;">.bottom-50</div>
-                <div class="ps-absolute bottom-100 left-50 p12 bg-orange-100 ba bc-orange-3 bbw3" style="margin-left: -96px; width: 120px;">.bottom-100</div>
+            <div class="grid my64 ps-relative w100 bbs-dashed bc-orange-3 bbw1 ff-mono fc-black-800" style="height: 64px;">
+                <div class="ps-absolute bn100 l50 p12 bg-orange-100 ba bc-orange-3 bbw3" style="width: 120px;">.bn100</div>
+                <div class="ps-absolute bn50 l50 p12 bg-orange-100 ba bc-orange-3 bbw3" style="margin-left: -24px; width: 120px;">.bn50</div>
+                <div class="ps-absolute b0 l50 p12 bg-orange-100 ba bc-orange-3 bbw3" style="margin-left: -48px; width: 120px;">.b0</div>
+                <div class="ps-absolute b50 l50 p12 bg-orange-100 ba bc-orange-3 bbw3" style="margin-left: -72px; width: 120px;">.b50</div>
+                <div class="ps-absolute b100 l50 p12 bg-orange-100 ba bc-orange-3 bbw3" style="margin-left: -96px; width: 120px;">.b100</div>
             </div>
         </div>
     </div>
@@ -131,19 +215,19 @@ description: Atomic positioning classes allow you to change an element's positio
     <h4 class="grid jc-spacebetween ai-center stacks-title _subtitle-sm">Left</h4>
     <div class="stacks-code-preview">
 {% highlight html linenos %}
-<div class="ps-absolute left-n100">…</div>
-<div class="ps-absolute left-n50">…</div>
-<div class="ps-absolute left-0">…</div>
-<div class="ps-absolute left-50">…</div>
-<div class="ps-absolute left-100">…</div>
+<div class="ps-absolute ln100">…</div>
+<div class="ps-absolute ln50">…</div>
+<div class="ps-absolute l0">…</div>
+<div class="ps-absolute l50">…</div>
+<div class="ps-absolute l100">…</div>
 {% endhighlight %}
         <div class="-preview fs-caption ff-mono">
-            <div class="grid ps-relative w-30 bls-dashed bc-orange-3 blw1" style="margin-left: 35%; margin-right: 35%; height: 200px;">
-                <div class="ps-absolute left-n100 p12 bg-orange-100 ba bc-orange-3 blw3" style="width: 120px;">.left-n100</div>
-                <div class="ps-absolute left-n50 p12 bg-orange-100 ba bc-orange-3 blw3" style="margin-top: 24px; width: 120px;">.left-n50</div>
-                <div class="ps-absolute left-0 p12 bg-orange-100 ba bc-orange-3 blw3" style="margin-top: 48px; width: 120px;">.left-0</div>
-                <div class="ps-absolute left-50 p12 bg-orange-100 ba bc-orange-3 blw3" style="margin-top: 72px; width: 120px;">.left-50</div>
-                <div class="ps-absolute left-100 p12 bg-orange-100 ba bc-orange-3 blw3" style="margin-top: 96px; width: 120px;">.left-100</div>
+            <div class="grid ps-relative w30 bls-dashed bc-orange-3 blw1" style="margin-left: 35%; margin-right: 35%; height: 200px;">
+                <div class="ps-absolute ln100 p12 bg-orange-100 ba bc-orange-3 blw3" style="width: 120px;">.ln100</div>
+                <div class="ps-absolute ln50 p12 bg-orange-100 ba bc-orange-3 blw3" style="margin-top: 24px; width: 120px;">.ln50</div>
+                <div class="ps-absolute l0 p12 bg-orange-100 ba bc-orange-3 blw3" style="margin-top: 48px; width: 120px;">.l0</div>
+                <div class="ps-absolute l50 p12 bg-orange-100 ba bc-orange-3 blw3" style="margin-top: 72px; width: 120px;">.l50</div>
+                <div class="ps-absolute l100 p12 bg-orange-100 ba bc-orange-3 blw3" style="margin-top: 96px; width: 120px;">.l100</div>
             </div>
         </div>
     </div>
