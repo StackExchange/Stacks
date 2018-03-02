@@ -168,7 +168,12 @@
 //      background color.
 //  ----------------------------------------------------------------------------
 .btn-bgc(@bgc) {
-    background-color: @bgc;
+    //  TEMPORARY -- PAST CSS REQUIRES US TO STATE FOCUS STATE.
+    //               This isn't needed otherwise.
+    &,
+    &:focus {
+        background-color: @bgc;
+    }
 
     & when (alpha(@bgc) = 0) {
         &:hover {
