@@ -1,6 +1,6 @@
 'use strict';
 
-module.exports = function (grunt) {
+module.exports = function(grunt) {
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
 
@@ -57,8 +57,10 @@ module.exports = function (grunt) {
         // Run tasks in parallel
         concurrent: {
             serve: [
+                'postcss',
                 'less',
                 'watch:less',
+                'postcss',
                 'cssmin',
                 'watch:css',
                 'shell:jekyllServe',
@@ -88,6 +90,20 @@ module.exports = function (grunt) {
                 filter: 'isFile',
             },
         },
+        // Add autoprefixing directly to Less files
+        postcss: {
+            options: {
+                syntax: require('postcss-less'),
+                processors: [
+                    require('autoprefixer')({
+                        browsers: 'last 2 versions'
+                    }), // add vendor prefixes
+                ]
+            },
+            dist: {
+                src: 'lib/**/*.less'
+            }
+        }
     });
 
     // Load plugins
@@ -98,9 +114,11 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-contrib-clean');
+    grunt.loadNpmTasks('grunt-postcss');
 
     // Default task
     grunt.registerTask('default', ['concurrent:serve']);
     grunt.registerTask('build', ['less', 'cssmin']);
     grunt.registerTask('update-icons', ['clean', 'copy']);
+    grunt.registerTask('autoprefix', ['postcss', 'less']);
 };

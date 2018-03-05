@@ -31,10 +31,12 @@
     opacity: 0;
     will-change: visibility, z-index, opacity; // Not supported in IE11 / Edge
     overflow: hidden;
+    -webkit-transition: opacity 100ms @te-smooth 50ms, z-index 0s 200ms, visibility 0s 200ms;
     transition: opacity 100ms @te-smooth 50ms, z-index 0s 200ms, visibility 0s 200ms; // Transition out
 
     &.is-visible {
         visibility: visible;
+        -webkit-transition: opacity 150ms @te-smooth 0s;
         transition: opacity 150ms @te-smooth 0s; // Transition in
         opacity: 1;
         z-index: @zi-modals-background;
@@ -48,9 +50,17 @@
     right: 0;
     bottom: 0;
 
+    display: -webkit-box;
+
+    display: -ms-flexbox;
+
     display: flex;
-    justify-content: center;
-    align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
 
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
@@ -60,10 +70,12 @@
     z-index: @zi-hide; // Make sure it's also below everything so we can't interact with it.
     opacity: 0;
     will-change: visibility, z-index, opacity; // Not supported in IE11 / Edge
+    -webkit-transition: opacity 100ms @te-smooth 0s, z-index 0s 100ms, visibility 0s 100ms;
     transition: opacity 100ms @te-smooth 0s, z-index 0s 100ms, visibility 0s 100ms; // Transition out
 
     &.is-visible {
         visibility: visible;
+        -webkit-transition: opacity 100ms @te-smooth 0s;
         transition: opacity 100ms @te-smooth 0s; // Transition in
         opacity: 1;
         z-index: @zi-modals;
@@ -75,7 +87,8 @@
     border-radius: @br-lg;
     padding: @su24;
     text-align: left;
-    box-shadow: @bs-lg;
+    -webkit-box-shadow: @bs-lg;
+            box-shadow: @bs-lg;
 }
 
 
@@ -88,13 +101,21 @@
 
 .s-modal__transform {
     // Set the off-state properties to be animated
+    -webkit-transition: -webkit-transform 150ms @te-smooth;
+    transition: -webkit-transform 150ms @te-smooth;
     transition: transform 150ms @te-smooth;
-    transform: scale(0.75);
+    transition: transform 150ms @te-smooth, -webkit-transform 150ms @te-smooth;
+    -webkit-transform: scale(0.75);
+            transform: scale(0.75);
     will-change: transform;
 
     .s-modal.is-visible & {
+        -webkit-transition: -webkit-transform 250ms @te-smooth;
+        transition: -webkit-transform 250ms @te-smooth;
         transition: transform 250ms @te-smooth;
-        transform: scale(1);
+        transition: transform 250ms @te-smooth, -webkit-transform 250ms @te-smooth;
+        -webkit-transform: scale(1);
+                transform: scale(1);
     }
 }
 

@@ -38,7 +38,8 @@
     border: 1px solid @black-200;
     border-radius: @br-sm;
     background-color: @white;
-    box-shadow: inset 0 0 1px fade(@black-350, 20%), 0 0 0 fade(@white, 0%);
+    -webkit-box-shadow: inset 0 0 1px fade(@black-350, 20%), 0 0 0 fade(@white, 0%);
+            box-shadow: inset 0 0 1px fade(@black-350, 20%), 0 0 0 fade(@white, 0%);
     font-family: @ff-sans;
     font-size: inherit;
     line-height: 1;
@@ -47,10 +48,6 @@
     //  ------------------------------------------------------------------------
     &::-webkit-input-placeholder {
         color: @black-200;
-    }
-    &::-moz-placeholder { // FF 18+
-        color: @black-200;
-        opacity: 1;
     }
     &:-ms-input-placeholder { // IE
         color: @black-200;
@@ -92,14 +89,16 @@
         position: relative;
         outline: 0;
         border-color: @blue-300;
-        box-shadow: inset 0 0 4px @black-050, 0 0 0 @su4 fade(@blue-500, 15%);
+        -webkit-box-shadow: inset 0 0 4px @black-050, 0 0 0 @su4 fade(@blue-500, 15%);
+                box-shadow: inset 0 0 4px @black-050, 0 0 0 @su4 fade(@blue-500, 15%);
     }
 
     //  Disabled, Read-only
     &[disabled],
     &[read-only] {
         border-color: @black-075;
-        box-shadow: inset 0 0 2px fade(@black-350, 10%);
+        -webkit-box-shadow: inset 0 0 2px fade(@black-350, 10%);
+                box-shadow: inset 0 0 2px fade(@black-350, 10%);
         background-color: @bgc-lightest;
         color: @black-200;
     }
@@ -121,7 +120,8 @@
         border-color: @yellow-600;
 
         &:focus {
-            box-shadow: inset 0 0 4px @black-050, 0 0 0 @su4 fade(@yellow-500, 40%);
+            -webkit-box-shadow: inset 0 0 4px @black-050, 0 0 0 @su4 fade(@yellow-500, 40%);
+                    box-shadow: inset 0 0 4px @black-050, 0 0 0 @su4 fade(@yellow-500, 40%);
         }
     }
 
@@ -143,7 +143,8 @@
         border-color: @red-400;
 
         &:focus {
-            box-shadow: inset 0 0 4px @black-050, 0 0 0 @su4 fade(@red-200, 40%);
+            -webkit-box-shadow: inset 0 0 4px @black-050, 0 0 0 @su4 fade(@red-200, 40%);
+                    box-shadow: inset 0 0 4px @black-050, 0 0 0 @su4 fade(@red-200, 40%);
         }
     }
 
@@ -165,7 +166,8 @@
         border-color: @green-400;
 
         &:focus {
-            box-shadow: inset 0 0 4px @black-050, 0 0 0 @su4 fade(@green-200, 40%);
+            -webkit-box-shadow: inset 0 0 4px @black-050, 0 0 0 @su4 fade(@green-200, 40%);
+                    box-shadow: inset 0 0 4px @black-050, 0 0 0 @su4 fade(@green-200, 40%);
         }
     }
 
@@ -265,7 +267,7 @@
 .s-radio {
     //  [1]   Check to see if we can use custom styles, if so reset the defaults
     //  ------------------------------------------------------------------------
-    @supports (appearance: none) or (-webkit-appearance: none) {
+    @supports ((-webkit-appearance: none) or (-moz-appearance: none) or (appearance: none)) or (-webkit-appearance: none) {
     .appearance(none);
 
     &::-ms-check {
@@ -292,7 +294,7 @@
 //  --   Checkboxes
 //  ----------------------------------------------------------------------------
 .s-checkbox {
-    @supports (appearance: none) or (-webkit-appearance: none) {
+    @supports ((-webkit-appearance: none) or (-moz-appearance: none) or (appearance: none)) or (-webkit-appearance: none) {
         border-radius: @br-sm;
         background-repeat: no-repeat;
         background-position: center center;
@@ -310,7 +312,8 @@
 
         &:focus {
             border-color: @blue-300;
-            box-shadow: 0 0 0 @su4 fade(@blue-500, 15%);
+            -webkit-box-shadow: 0 0 0 @su4 fade(@blue-500, 15%);
+                    box-shadow: 0 0 0 @su4 fade(@blue-500, 15%);
         }
     }
 }
@@ -318,7 +321,7 @@
 //  --   Radio Selects
 //  ----------------------------------------------------------------------------
 .s-radio {
-    @supports (appearance: none) or (-webkit-appearance: none) {
+    @supports ((-webkit-appearance: none) or (-moz-appearance: none) or (appearance: none)) or (-webkit-appearance: none) {
         border-radius: @br-circle;
 
         &:checked {
@@ -328,7 +331,8 @@
         }
 
         &:focus {
-            box-shadow: 0 0 0 @su4 fade(@blue-500, 15%);
+            -webkit-box-shadow: 0 0 0 @su4 fade(@blue-500, 15%);
+                    box-shadow: 0 0 0 @su4 fade(@blue-500, 15%);
         }
     }
 }
@@ -415,8 +419,7 @@
         text-align: center;
 
         -webkit-touch-callout: none; // iOS Safari
-          -webkit-user-select: none; // Safari
-           -khtml-user-select: none; // Konqueror HTML
+          -webkit-user-select: none; // Safari // Konqueror HTML
              -moz-user-select: none; // Firefox
               -ms-user-select: none; // Internet Explorer/Edge
                   user-select: none; // Non-prefixed version
@@ -429,7 +432,8 @@
     //  If the label is selected, style it accordingly.
     .s-radio:checked + .s-label {
         background-color: @black-100;
-        box-shadow: inset 0 @su2 @su2+@su4 0 fade(darken(@black-025,30%),60%);
+        -webkit-box-shadow: inset 0 @su2 @su2+@su4 0 fade(darken(@black-025,30%),60%);
+                box-shadow: inset 0 @su2 @su2+@su4 0 fade(darken(@black-025,30%),60%);
         color: @black-700;
         z-index: @zi-pop;
     }
@@ -447,7 +451,8 @@
 
         .s-radio:checked + .s-label {
             border-color: @blue-600;
-            box-shadow: inset 0 @su2 @su2+@su4 0 fade(darken(@blue-300,30%),90%);
+            -webkit-box-shadow: inset 0 @su2 @su2+@su4 0 fade(darken(@blue-300,30%),90%);
+                    box-shadow: inset 0 @su2 @su2+@su4 0 fade(darken(@blue-300,30%),90%);
             background-color: @blue-500;
             color: @white;
         }
@@ -460,7 +465,8 @@
             &:not(.s-label__off) {
                 border-color: @green-400;
                 background-color: @green-400;
-                box-shadow: inset 0 @su2 @su2+@su4 0 fade(darken(@green-200,30%),90%);
+                -webkit-box-shadow: inset 0 @su2 @su2+@su4 0 fade(darken(@green-200,30%),90%);
+                        box-shadow: inset 0 @su2 @su2+@su4 0 fade(darken(@green-200,30%),90%);
                 color: @white;
             }
         }

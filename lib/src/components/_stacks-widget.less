@@ -26,7 +26,8 @@
 .s-sidebarwidget {
     border: 1px solid @s-sidebarwidget-outer-border-color;
     border-radius: @br-sm;
-    box-shadow: @bs-sm;
+    -webkit-box-shadow: @bs-sm;
+            box-shadow: @bs-sm;
     font-size: @fs-body1;
     
     a:not(.button):not(.s-btn):not(.post-tag):not(.s-sidebarwidget--action) {
@@ -67,7 +68,7 @@
         // In order to also perfectly recreate the inner corner shape, our pseudo-element needs
         // the border on all sides. But we can only do that if we're able to hide the bottom part,
         // so this only works in browsers that support clip-path.
-        @supports (clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)) or (-webkit-clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)) {
+        @supports ((-webkit-clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)) or (clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%))) or (-webkit-clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)) {
             border: 1px solid @s-sidebarwidget-outer-border-color;
             clip-path: polygon(0% 0%, 100% 0%, 100% 50%, 0% 50%);
             -webkit-clip-path: polygon(0% 0%, 100% 0%, 100% 50%, 0% 50%);
@@ -111,10 +112,14 @@
             border-right-width: 0;
             border-left-color: @black-200;
             margin-top: ~"calc(1.3em / 2 - 5px)"; // 1.3 is our standard line height
+            -webkit-transition: -webkit-transform 0.3s cubic-bezier(0.4, 0.4, 0.6, 1);
+            transition: -webkit-transform 0.3s cubic-bezier(0.4, 0.4, 0.6, 1);
             transition: transform 0.3s cubic-bezier(0.4, 0.4, 0.6, 1);
+            transition: transform 0.3s cubic-bezier(0.4, 0.4, 0.6, 1), -webkit-transform 0.3s cubic-bezier(0.4, 0.4, 0.6, 1);
         }
         &[aria-expanded='true']:before {
-            transform: rotate(90deg);
+            -webkit-transform: rotate(90deg);
+                    transform: rotate(90deg);
         }
     }
 }
@@ -141,9 +146,13 @@ table.s-sidebarwidget--content.s-sidebarwidget__items {
 
 .s-sidebarwidget--content:not(table) {
     &:not(.s-sidebarwidget__items) {
+        display: -webkit-box;
+        display: -ms-flexbox;
         display: flex;
     }
     &:not(.s-sidebarwidget__block-items) .s-sidebarwidget--item {
+        display: -webkit-box;
+        display: -ms-flexbox;
         display: flex;
     }
 }
@@ -285,8 +294,14 @@ table.s-sidebarwidget--content.s-sidebarwidget__items {
 .s-collapsible {
     @s-collapsible-transition-duration: 0.3s;
 
+    display: -webkit-box;
+
+    display: -ms-flexbox;
+
     display: flex;
-    align-items: flex-start; // see comment above
+    -webkit-box-align: start;
+        -ms-flex-align: start;
+            align-items: flex-start; // see comment above
 
     clip-path: polygon(-1000000px -1000000px, 1000000px -1000000px, 1000000px 1000000px, -1000000px 1000000px);
     -webkit-clip-path: polygon(-1000000px -1000000px, 1000000px -1000000px, 1000000px 1000000px, -1000000px 1000000px);
@@ -295,46 +310,81 @@ table.s-sidebarwidget--content.s-sidebarwidget__items {
     &:after {
         content: '';
         height: 50px;
+        -webkit-transition: height @s-collapsible-transition-duration linear,
+                    max-height 0s @s-collapsible-transition-duration linear;
         transition: height @s-collapsible-transition-duration linear,
                     max-height 0s @s-collapsible-transition-duration linear;
         max-height: 0px;
-        flex-basis: 0;
+        -ms-flex-preferred-size: 0;
+            flex-basis: 0;
     }
 }
 
 .s-collapsible--content {
+    -webkit-transition: margin-bottom @s-collapsible-transition-duration cubic-bezier(0, 0, 0, 1),
+                opacity @s-collapsible-transition-duration cubic-bezier(1, 0, 1, 1),
+                -webkit-transform @s-collapsible-transition-duration cubic-bezier(1, 0, 1, 1);
+    transition: margin-bottom @s-collapsible-transition-duration cubic-bezier(0, 0, 0, 1),
+                opacity @s-collapsible-transition-duration cubic-bezier(1, 0, 1, 1),
+                -webkit-transform @s-collapsible-transition-duration cubic-bezier(1, 0, 1, 1);
     transition: margin-bottom @s-collapsible-transition-duration cubic-bezier(0, 0, 0, 1),
                 transform @s-collapsible-transition-duration cubic-bezier(1, 0, 1, 1),
                 opacity @s-collapsible-transition-duration cubic-bezier(1, 0, 1, 1);
+    transition: margin-bottom @s-collapsible-transition-duration cubic-bezier(0, 0, 0, 1),
+                transform @s-collapsible-transition-duration cubic-bezier(1, 0, 1, 1),
+                opacity @s-collapsible-transition-duration cubic-bezier(1, 0, 1, 1),
+                -webkit-transform @s-collapsible-transition-duration cubic-bezier(1, 0, 1, 1);
     margin-bottom: 0;
     max-height: 1000000px;
-    flex-basis: 100%;
-    transform-origin: 0 0;
+    -ms-flex-preferred-size: 100%;
+        flex-basis: 100%;
+    -webkit-transform-origin: 0 0;
+            transform-origin: 0 0;
 }
 
 .s-collapsible.is-collapsed {
     clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
     -webkit-clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
     overflow: hidden;
+    -webkit-transition: none;
     transition: none;
     .s-collapsible--content {
         margin-bottom: -1500px;
+        -webkit-transition: margin-bottom @s-collapsible-transition-duration cubic-bezier(1, 0, 1, 1),
+                    visibility 0s @s-collapsible-transition-duration,
+                    max-height 0s @s-collapsible-transition-duration,
+                    opacity @s-collapsible-transition-duration cubic-bezier(0, 1, 1, 1),
+                    -webkit-transform @s-collapsible-transition-duration cubic-bezier(0, 1, 1, 1);
+        transition: margin-bottom @s-collapsible-transition-duration cubic-bezier(1, 0, 1, 1),
+                    visibility 0s @s-collapsible-transition-duration,
+                    max-height 0s @s-collapsible-transition-duration,
+                    opacity @s-collapsible-transition-duration cubic-bezier(0, 1, 1, 1),
+                    -webkit-transform @s-collapsible-transition-duration cubic-bezier(0, 1, 1, 1);
         transition: margin-bottom @s-collapsible-transition-duration cubic-bezier(1, 0, 1, 1),
                     visibility 0s @s-collapsible-transition-duration,
                     max-height 0s @s-collapsible-transition-duration,
                     transform @s-collapsible-transition-duration cubic-bezier(0, 1, 1, 1),
                     opacity @s-collapsible-transition-duration cubic-bezier(0, 1, 1, 1);
+        transition: margin-bottom @s-collapsible-transition-duration cubic-bezier(1, 0, 1, 1),
+                    visibility 0s @s-collapsible-transition-duration,
+                    max-height 0s @s-collapsible-transition-duration,
+                    transform @s-collapsible-transition-duration cubic-bezier(0, 1, 1, 1),
+                    opacity @s-collapsible-transition-duration cubic-bezier(0, 1, 1, 1),
+                    -webkit-transform @s-collapsible-transition-duration cubic-bezier(0, 1, 1, 1);
         visibility: hidden;
         max-height: 0;
-        transform: scaleY(0);
+        -webkit-transform: scaleY(0);
+                transform: scaleY(0);
         opacity: 0;
-        @supports (clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)) or (-webkit-clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)){
-            transform: none;
+        @supports ((-webkit-clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)) or (clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%))) or (-webkit-clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)){
+            -webkit-transform: none;
+                    transform: none;
             opacity: 1;
         }
     }
     &:after {
         height: 0;
+        -webkit-transition: height @s-collapsible-transition-duration linear;
         transition: height @s-collapsible-transition-duration linear;
         max-height: 50px;
     }
