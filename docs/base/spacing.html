@@ -30,7 +30,7 @@ description: Stacks provides atomic classes to override margin and padding.
     <div class="stacks-code-preview">
 {% highlight html linenos %}
 <div class="mt8 mr4 mb32 ml64">
-  …
+    …
 </div>
 {% endhighlight %}
         <div class="-preview">
@@ -42,17 +42,17 @@ description: Stacks provides atomic classes to override margin and padding.
     <table class="mb32 s-table s-table__hover">
         <thead>
             <tr>
-                <th scope="col">Prefix</th>
-                <th scope="col" class="ta-center">0</th>
-                <th scope="col" class="ta-center">2</th>
-                <th scope="col" class="ta-center">4</th>
-                <th scope="col" class="ta-center">8</th>
-                <th scope="col" class="ta-center">12</th>
-                <th scope="col" class="ta-center">16</th>
-                <th scope="col" class="ta-center">24</th>
-                <th scope="col" class="ta-center">32</th>
-                <th scope="col" class="ta-center">48</th>
-                <th scope="col" class="ta-center">64</th>
+                <th scope="col"></th>
+                <th scope="col" class="ta-center ff-mono">0px</th>
+                <th scope="col" class="ta-center ff-mono">2px</th>
+                <th scope="col" class="ta-center ff-mono">4px</th>
+                <th scope="col" class="ta-center ff-mono">8px</th>
+                <th scope="col" class="ta-center ff-mono">12px</th>
+                <th scope="col" class="ta-center ff-mono">16px</th>
+                <th scope="col" class="ta-center ff-mono">24px</th>
+                <th scope="col" class="ta-center ff-mono">32px</th>
+                <th scope="col" class="ta-center ff-mono">48px</th>
+                <th scope="col" class="ta-center ff-mono">64px</th>
             </tr>
         </thead>
         <tbody>
@@ -67,37 +67,80 @@ description: Stacks provides atomic classes to override margin and padding.
             {% endfor %}
         </tbody>
     </table>
+    
+    <h3 class="grid jc-spacebetween ai-center stacks-title _subtitle">Negative Margin Classes</h3>
+    <table class="mb32 s-table s-table__hover">
+        <thead>
+            <tr>
+                <th scope="col"></th>
+                <th scope="col" class="ta-center ff-mono">-2px</th>
+                <th scope="col" class="ta-center ff-mono">-4px</th>
+                <th scope="col" class="ta-center ff-mono">-8px</th>
+                <th scope="col" class="ta-center ff-mono">-12px</th>
+                <th scope="col" class="ta-center ff-mono">-16px</th>
+                <th scope="col" class="ta-center ff-mono">-24px</th>
+                <th scope="col" class="ta-center ff-mono">-32px</th>
+                <th scope="col" class="ta-center ff-mono">-48px</th>
+                <th scope="col" class="ta-center ff-mono">-64px</th>
+            </tr>
+        </thead>
+        <tbody>
+          {% for class in site.data.spacing-classes.negative-margin %}
+          {% assign prefix-value = class.values | split: ", " %}
+              <tr>
+                  <th scope="row" class="-cell1">{{ class.prefix }}</th>
+                  {% for values in prefix-value %}
+                  <td class="ta-center"><code>.{{ class.prefix }}{{ values }}</code></td>
+                  {% endfor %}
+              </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 
-    <h3 class="grid jc-spacebetween ai-center stacks-title _subtitle">Additional Margin Classes</h3>
-    <p class="stacks-p _section">In order to the standard margin classes above, there a few additional margin-only classes available: negative margin and auto classes. Negative margin classes apply only to the x-axis (margin-left, margin-right) and can be used to offset margins and padding of child elements. The auto classes apply only to x-axis as well and can be used to reset the left and right margins.</p>
+    <h3 class="grid jc-spacebetween ai-center stacks-title _subtitle">Additional Automatic Margin Classes</h3>
+    <p class="stacks-p _section">Stacks provides additional automatic margin classes. These come in handy when positioning individual grid cells within flex layouts, or horizontally centering a block-level element.</p>
     <table class="mb48 s-table s-table__hover">
         <thead>
             <tr>
-                <th scope="col" class="s-table--cell3">Type</th>
-                <th scope="col">Values</th>
+                <th scope="col" class="s-table--cell3">Direction</th>
+                <th scope="col">Class</th>
             </tr>
         </thead>
         <tbody>
             <tr>
-                <th scope="row">Negative Margin</th>
-                <td>
-                    <code>.mxn2</code>,
-                    <code>.mxn3</code>,
-                    <code>.mxn4</code>,
-                    <code>.mxn5</code>,
-                    <code>.mxn6</code>,
-                    <code>.mxn7</code>,
-                    <code>.mxn8</code>,
-                    <code>.mxn9</code>
+                <td>All directions</td>
+                <td class="ff-mono">
+                    .m-auto
                 </td>
             </tr>
             <tr>
-                <th scope="row">Auto Margin</th>
-                <td>
-                    <code>.m-auto</code>,
-                    <code>.ml-auto</code>,
-                    <code>.mr-auto</code>,
-                    <code>.mx-auto</code>
+                <td>Top</td>
+                <td class="ff-mono">
+                    .mt-auto
+                </td>
+            </tr>
+            <tr>
+                <td>Right</td>
+                <td class="ff-mono">
+                    .mr-auto
+                </td>
+            </tr>
+            <tr>
+                <td>Bottom</td>
+                <td class="ff-mono">
+                    .mb-auto
+                </td>
+            </tr>
+            <tr>
+                <td>Left</td>
+                <td class="ff-mono">
+                    .mr-auto
+                </td>
+            </tr>
+            <tr>
+                <td>X axis</td>
+                <td class="ff-mono">
+                    .mx-auto
                 </td>
             </tr>
         </tbody>
@@ -131,7 +174,7 @@ description: Stacks provides atomic classes to override margin and padding.
     <div class="stacks-code-preview">
 {% highlight html linenos %}
 <div class="pt4 pr64 pb64 pl64">
-  …
+    …
 </div>
 {% endhighlight %}
         <div class="-preview">
