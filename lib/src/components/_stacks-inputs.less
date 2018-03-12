@@ -1,7 +1,7 @@
 //
 //  STACK OVERFLOW
-//  FORMS
-
+//  INPUTS
+//
 //  This CSS comes from Stacks, our CSS & Pattern library for rapidly building
 //  Stack Overflow. https://stackoverflow.design/
 //
@@ -27,9 +27,7 @@
 //  • LABELS
 //
 //  ============================================================================
-//  $  INPUTS
-//  ============================================================================
-//  $$  BASE STYLE
+//  $  BASE STYLE
 //  ----------------------------------------------------------------------------
 .s-input {
     padding: 0.8em 1em;
@@ -73,6 +71,179 @@
     vertical-align: text-bottom !important;
 }
 
+
+//  ============================================================================
+//  $   SELECT MENUS
+//  ----------------------------------------------------------------------------
+.s-select {
+    position: relative;
+
+    //  --  MENU ARROWS
+    //      To customize the visual appearance of the select menu arrows, we
+    //      need to recreate them on the wrapping .select div.
+    //  ------------------------------------------------------------------------
+    &:before,
+    &:after {
+        content: "";
+        position: absolute;
+        right: 13px;
+        pointer-events: none;
+        border-width: 4px;
+        border-style: solid;
+        border-color: @black-700 transparent;
+        z-index: @zi-selected;
+    }
+    &:before {
+        top: calc(~"50% - 5px");
+        border-top-width: 0;
+        border-bottom-width: 4px;
+    }
+    &:after {
+        top: calc(~"50% + 1px");
+        border-top-width: 4px;
+        border-bottom-width: 0;
+    }
+
+    //  --  MENU
+    //      Now we can style the visual appearance of the select menu;
+    //  ------------------------------------------------------------------------
+    > select {
+        //  [1] Reset the appearance
+        .appearance(none);
+
+        //  [2] Update the styles
+        padding: 0.8em 1em;
+        padding-right: @su32;
+        width: 100%;
+        height: 100%; // Fill the height of its parent
+        outline: 0;
+        border-radius: @br-sm;
+        border: 1px solid @black-200;
+        background-color: @white;
+        font-family: @ff-sans;
+        font-size: inherit;
+        line-height: 1;
+    }
+}
+
+
+//  ============================================================================
+//  $   CHECKBOXES & RADIOS
+//  ----------------------------------------------------------------------------
+.s-checkbox,
+.s-radio {
+    //  [1]   Check to see if we can use custom styles, if so reset the defaults
+    //  ------------------------------------------------------------------------
+    @supports (appearance: none) or (-webkit-appearance: none) {
+    .appearance(none);
+
+    &::-ms-check {
+        display: none;
+    }
+
+    //  [2]  Now re-style the checkboxes and radios
+    //  ------------------------------------------------------------------------
+    width: 1em;
+    height: 1em;
+    border: 1px solid @black-200;
+    background-color: @white;
+    outline: 0;
+    font-size: inherit;
+    cursor: pointer;
+    vertical-align: middle;
+
+    &:focus {
+        outline: 0;
+    }
+  }
+}
+
+//  $$  CHECKBOXES
+//  ----------------------------------------------------------------------------
+.s-checkbox {
+    @supports (appearance: none) or (-webkit-appearance: none) {
+        border-radius: @br-sm;
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-size: contain;
+
+        &:checked {
+            border-color: @blue-500 !important;
+            background-color: @blue-500;
+            background-image: url("data:image/svg+xml,%3Csvg width='11' height='11' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M10 3.41L8.59 2 4 6.59 2.41 5 1 6.41l3 3z' fill='%23fff'/%3E%3C/svg%3E");
+
+            &:focus {
+                border-color: @blue-500;
+            }
+        }
+
+        &:focus {
+            border-color: @blue-300;
+            box-shadow: 0 0 0 @su4 fade(@blue-500, 15%);
+        }
+    }
+}
+
+//  $$  RADIOS
+//  ----------------------------------------------------------------------------
+.s-radio {
+    @supports (appearance: none) or (-webkit-appearance: none) {
+        border-radius: @br-circle;
+
+        &:checked {
+            border-color: @blue-500;
+            border-width: 0.30769231em;
+            background-color: @white;
+        }
+
+        &:focus {
+            box-shadow: 0 0 0 @su4 fade(@blue-500, 15%);
+        }
+    }
+}
+
+
+//  ============================================================================
+//  $  LABELS
+//  ============================================================================
+.s-label {
+    .mx-fs(@fs-body2);
+    font-weight: 700;
+    cursor: pointer;
+}
+
+
+//  $$  LABEL STATUS FLAG
+//  ----------------------------------------------------------------------------
+//      Is this form item required or optional? Flag the status for users.
+//      Default styling is optional.
+.s-label--status {
+    padding: @su2 @su8;
+    font-size: @fs-caption;
+    font-style: italic;
+    font-weight: 400;
+    vertical-align: text-bottom;
+    background-color: @black-050;
+    border-radius: @br-sm;
+
+    &.s-label--status__required {
+        color: @white;
+        font-style: normal;
+        background-color: @red-500;
+    }
+}
+
+
+//  ============================================================================
+//  $  TEXT STYLES
+//  ============================================================================
+.s-input-description {
+    margin: 0 0 @su8;
+    .mx-fs(@fs-caption);
+    line-height: @lh-s;
+    color: @fc-medium;
+}
+
 //  $$  MESSAGE
 //      Set some baseline styles
 //  ----------------------------------------------------------------------------
@@ -82,7 +253,40 @@
 }
 
 
-//  $$  STATES
+
+//  ============================================================================
+//  $   CONNECTED INPUTS
+//      To visually connect inputs together
+//  ----------------------------------------------------------------------------
+.s-input-connect {
+    padding: 0.8em 1em;
+    line-height: 1;
+
+    //  When we want the gray background
+    &.s-input-connect__fill {
+        border: 1px solid @black-150;
+        border-left-width: 0;
+        border-right-width: 0;
+        background-color: @bgc-lightest;
+        color: @fc-medium;
+
+        &.order-first {
+            border-left-width: 1px;
+        }
+        &.order-last {
+            border-right-width: 1px;
+        }
+    }
+
+    //  No wrapping on labels
+    .s-label {
+        white-space: nowrap;
+    }
+}
+
+
+//  ============================================================================
+//  $   STATES
 //      The many states for inputs and select menus.
 //  ----------------------------------------------------------------------------
 .s-input,
@@ -110,9 +314,10 @@
     }
 }
 
-//  --  FORM VALIDATION STATES
+
+//  $$  VALIDATION STATES
 //      Validation states will need applied at the wrapping container level.
-//  ----------------------------------------------------------------------------
+//  ============================================================================
 //  --  WARNING
 .has-warning {
     .s-input,
@@ -203,295 +408,5 @@
 
     &.s-select .s-input-icon {
         right: @su32;
-    }
-}
-
-//  $$  SELECT MENUS
-//  ----------------------------------------------------------------------------
-.s-select {
-    position: relative;
-
-    //  --  MENU ARROWS
-    //      To customize the visual appearance of the select menu arrows, we
-    //      need to recreate them on the wrapping .select div.
-    //  ------------------------------------------------------------------------
-    &:before,
-    &:after {
-        content: "";
-        position: absolute;
-        right: 13px;
-        pointer-events: none;
-        border-width: 4px;
-        border-style: solid;
-        border-color: @black-700 transparent;
-        z-index: @zi-pop;
-    }
-    &:before {
-        top: calc(~"50% - 5px");
-        border-top-width: 0;
-        border-bottom-width: 4px;
-    }
-    &:after {
-        top: calc(~"50% + 1px");
-        border-top-width: 4px;
-        border-bottom-width: 0;
-    }
-
-    //  --  MENU
-    //      Now we can style the visual appearance of the select menu;
-    //  ------------------------------------------------------------------------
-    > select {
-        //  [1] Reset the appearance
-        .appearance(none);
-
-        //  [2] Update the styles
-        padding: 0.8em 1em;
-        padding-right: @su32;
-        width: 100%;
-        height: 100%; // Fill the height of its parent
-        outline: 0;
-        border-radius: @br-sm;
-        border: 1px solid @black-200;
-        background-color: @white;
-        font-family: @ff-sans;
-        font-size: inherit;
-        line-height: 1;
-    }
-}
-
-//  $$  CHECKBOXES & RADIOS
-//  ----------------------------------------------------------------------------
-.s-checkbox,
-.s-radio {
-    //  [1]   Check to see if we can use custom styles, if so reset the defaults
-    //  ------------------------------------------------------------------------
-    @supports (appearance: none) or (-webkit-appearance: none) {
-    .appearance(none);
-
-    &::-ms-check {
-        display: none;
-    }
-
-    //  [2]  Now re-style the checkboxes and radios
-    //  ------------------------------------------------------------------------
-    width: 1em;
-    height: 1em;
-    border: 1px solid @black-200;
-    background-color: @white;
-    outline: 0;
-    font-size: inherit;
-    cursor: pointer;
-    vertical-align: middle;
-
-    &:focus {
-        outline: 0;
-    }
-  }
-}
-
-//  --   Checkboxes
-//  ----------------------------------------------------------------------------
-.s-checkbox {
-    @supports (appearance: none) or (-webkit-appearance: none) {
-        border-radius: @br-sm;
-        background-repeat: no-repeat;
-        background-position: center center;
-        background-size: contain;
-
-        &:checked {
-            border-color: @blue-500;
-            background-color: @blue-500;
-            background-image: url("data:image/svg+xml,%3Csvg width='11' height='11' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M10 3.41L8.59 2 4 6.59 2.41 5 1 6.41l3 3z' fill='%23fff'/%3E%3C/svg%3E");
-
-            &:focus {
-                border-color: @blue-500;
-            }
-        }
-
-        &:focus {
-            border-color: @blue-300;
-            box-shadow: 0 0 0 @su4 fade(@blue-500, 15%);
-        }
-    }
-}
-
-//  --   Radio Selects
-//  ----------------------------------------------------------------------------
-.s-radio {
-    @supports (appearance: none) or (-webkit-appearance: none) {
-        border-radius: @br-circle;
-
-        &:checked {
-            border-color: @blue-500;
-            border-width: 0.30769231em;
-            background-color: @white;
-        }
-
-        &:focus {
-            box-shadow: 0 0 0 @su4 fade(@blue-500, 15%);
-        }
-    }
-}
-
-
-//  ============================================================================
-//  $  LABELS
-//  ============================================================================
-.s-label {
-    .mx-fs(@fs-body2);
-    font-weight: 700;
-    cursor: pointer;
-}
-
-//  $$  LABEL STATUS FLAG
-//  ----------------------------------------------------------------------------
-//      Is this form item required or optional? Flag the status for users.
-//      Default styling is optional.
-.s-label--status {
-    padding: @su2 @su8;
-    font-size: @fs-caption;
-    font-style: italic;
-    font-weight: 400;
-    vertical-align: text-bottom;
-    background-color: @black-050;
-    border-radius: @br-sm;
-
-    &.s-label--status__required {
-        color: @white;
-        font-style: normal;
-        background-color: @red-500;
-    }
-}
-
-//  ============================================================================
-//  $  TEXT STYLES
-//  ============================================================================
-.s-input-description {
-    margin: 0 0 @su8;
-    .mx-fs(@fs-caption);
-    line-height: @lh-s;
-    color: @fc-medium;
-}
-
-//  ============================================================================
-//  $ OPTION TOGGLE
-//  ----------------------------------------------------------------------------
-.s-option-toggle {
-    //  First hide the radio buttons
-    .s-radio {
-        position: absolute;
-        left: -999em;
-        opacity: 0;
-    }
-
-    //  Next modifications to option cells
-    .s-option-toggle--option {
-        &:not(:first-child) {
-            margin-left: -1px;
-        }
-
-        //  Round the corners on the first and last elements
-        &:first-of-type .s-label {
-            .blr-sm;
-        }
-
-        &:last-of-type .s-label {
-            .brr-sm;
-        }
-    }
-
-    //  Style the base label
-    .s-label {
-        padding: 0.8em 1em;
-        width: 100%;
-        margin: 0;
-        border: 1px solid @black-150;
-        background-color: @white;
-        font-family: inherit;
-        font-size: inherit;
-        font-weight: 400;
-        line-height: 1;
-        cursor: pointer;
-        text-align: center;
-
-        -webkit-touch-callout: none; // iOS Safari
-          -webkit-user-select: none; // Safari
-           -khtml-user-select: none; // Konqueror HTML
-             -moz-user-select: none; // Firefox
-              -ms-user-select: none; // Internet Explorer/Edge
-                  user-select: none; // Non-prefixed version
-
-        &:hover {
-            background-color: fade(saturate(@black-200,5%),5%);
-        }
-    }
-
-    //  If the label is selected, style it accordingly.
-    .s-radio:checked + .s-label {
-        background-color: @black-100;
-        box-shadow: inset 0 @su2 @su2+@su4 0 fade(darken(@black-025,30%),60%);
-        color: @black-700;
-        z-index: @zi-pop;
-    }
-
-    //  $$  MODIFICATIONS
-    //  --------------------------------------------------------------------------
-    //  --  Primary
-    //      When the toggle is the only one within a view and we want it to be
-    //      visually dominating for the user.
-    &.s-option-toggle__primary {
-        .s-label:hover {
-            color: @blue-700;
-            background-color: @blue-050;
-        }
-
-        .s-radio:checked + .s-label {
-            border-color: @blue-600;
-            box-shadow: inset 0 @su2 @su2+@su4 0 fade(darken(@blue-300,30%),90%);
-            background-color: @blue-500;
-            color: @white;
-        }
-    }
-
-    //  --  Switch
-    //      Used when the toggle represents an "on/off" choice for the user.
-    &.s-option-toggle__switch {
-        .s-radio:checked + .s-label {
-            &:not(.s-label__off) {
-                border-color: @green-400;
-                background-color: @green-400;
-                box-shadow: inset 0 @su2 @su2+@su4 0 fade(darken(@green-200,30%),90%);
-                color: @white;
-            }
-        }
-    }
-}
-
-//  $$  CONNECTED INPUTS
-//      To visually connect inputs together
-//  ----------------------------------------------------------------------------
-.s-input-connect {
-    padding: 0.8em 1em;
-    line-height: 1;
-
-    //  When we want the gray background
-    &.s-input-connect__fill {
-        border: 1px solid @black-150;
-        border-left-width: 0;
-        border-right-width: 0;
-        background-color: @bgc-lightest;
-        color: @fc-medium;
-
-        &.order-first {
-            border-left-width: 1px;
-        }
-        &.order-last {
-            border-right-width: 1px;
-        }
-    }
-
-    //  No wrapping on labels
-    .s-label {
-        white-space: nowrap;
     }
 }
