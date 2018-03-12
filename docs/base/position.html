@@ -102,16 +102,17 @@ description: Atomic positioning classes allow you to quickly change an element�
         <thead>
             <tr>
                 <th scope="col">Prefix</th>
-                <th scope="col" class="ta-center">0</th>
-                <th scope="col" class="ta-center">2</th>
-                <th scope="col" class="ta-center">4</th>
-                <th scope="col" class="ta-center">8</th>
-                <th scope="col" class="ta-center">12</th>
-                <th scope="col" class="ta-center">16</th>
-                <th scope="col" class="ta-center">24</th>
-                <th scope="col" class="ta-center">32</th>
-                <th scope="col" class="ta-center">48</th>
-                <th scope="col" class="ta-center">64</th>
+                <th scope="col" class="ta-center ff-mono">0</th>
+                <th scope="col" class="ta-center ff-mono">2px</th>
+                <th scope="col" class="ta-center ff-mono">4px</th>
+                <th scope="col" class="ta-center ff-mono">8px</th>
+                <th scope="col" class="ta-center ff-mono">12px</th>
+                <th scope="col" class="ta-center ff-mono">16px</th>
+                <th scope="col" class="ta-center ff-mono ff-mono">24px</th>
+                <th scope="col" class="ta-center ff-mono">32px</th>
+                <th scope="col" class="ta-center ff-mono">48px</th>
+                <th scope="col" class="ta-center ff-mono">64px</th>
+                <th scope="col" class="ta-center ff-mono">100%</th>
             </tr>
         </thead>
         <tbody>
@@ -126,109 +127,4 @@ description: Atomic positioning classes allow you to quickly change an element�
             {% endfor %}
         </tbody>
     </table>
-</section>
-
-<section class="stacks-section">
-    <h2 class="grid jc-spacebetween ai-center stacks-title">Position Coordinates</h2>
-    <p class="stacks-p _section">Stacks also offers percentage-based coordinate positioning classes.</p>
-    <h3 class="grid jc-spacebetween ai-center stacks-title _subtitle">Coordinate Definitions</h3>
-    <table class="mb32 s-table s-table__hover">
-        <thead>
-            <tr>
-                <th class="s-table--cell3" scope="col">Class</th>
-                <th class="s-table--cell2" scope="col">Output</th>
-                <th scope="col">Definition</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for atomic in site.data.atomic-definitions.coordinates %}
-              <tr class="fs-caption">
-                  <th scope="row" class="p8 ff-mono">.{{ atomic.class }}</th>
-                  <td class="p8 ff-mono">{{ atomic.output }}</td>
-                  <td>{{ atomic.define }}</td>
-              </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-
-    <h3 class="grid jc-spacebetween ai-center stacks-title _subtitle">Coordinate Examples</h3>
-    <h4 class="grid jc-spacebetween ai-center stacks-title _subtitle-sm">Top</h4>
-    <div class="stacks-code-preview">
-{% highlight html linenos %}
-<div class="ps-absolute tn100">…</div>
-<div class="ps-absolute tn50">…</div>
-<div class="ps-absolute t0">…</div>
-<div class="ps-absolute t50">…</div>
-<div class="ps-absolute t100">…</div>
-{% endhighlight %}
-        <div class="-preview fs-caption ff-mono">
-            <div class="grid my64 ps-relative w100 bts-dashed bc-orange-3 btw1" style="height: 64px;">
-                <div class="ps-absolute tn100 l50 p12 bg-orange-100 ba bc-orange-3 btw3" style="width: 120px;">.tn100</div>
-                <div class="ps-absolute tn50 l50 p12 bg-orange-100 ba bc-orange-3 btw3" style="margin-left: -24px; width: 120px;">.tn50</div>
-                <div class="ps-absolute t0 l50 p12 bg-orange-100 ba bc-orange-3 btw3" style="margin-left: -48px; width: 120px;">.t0</div>
-                <div class="ps-absolute t50 l50 p12 bg-orange-100 ba bc-orange-3 btw3" style="margin-left: -72px; width: 120px;">.t50</div>
-                <div class="ps-absolute t100 l50 p12 bg-orange-100 ba bc-orange-3 btw3" style="margin-left: -96px; width: 120px;">.t100</div>
-           </div>
-        </div>
-    </div>
-
-    <h4 class="grid jc-spacebetween ai-center stacks-title _subtitle-sm">Right</h4>
-    <div class="stacks-code-preview">
-{% highlight html linenos %}
-<div class="ps-absolute rn100">…</div>
-<div class="ps-absolute rn50">…</div>
-<div class="ps-absolute r0">…</div>
-<div class="ps-absolute r50">…</div>
-<div class="ps-absolute r100">…</div>
-{% endhighlight %}
-        <div class="-preview fs-caption ff-mono">
-            <div class="grid ps-relative w30 brs-dashed bc-orange-3 brw1" style="margin-left: 35%; margin-right: 35%; height: 200px;">
-                <div class="ps-absolute rn100 p12 bg-orange-100 ba bc-orange-3" style="width: 120px;">.rn100</div>
-                <div class="ps-absolute rn50 p12 bg-orange-100 ba bc-orange-3 brw3" style="margin-top: 24px; width: 120px;">.rn50</div>
-                <div class="ps-absolute r0 p12 bg-orange-100 ba bc-orange-3 brw3" style="margin-top: 48px; width: 120px;">.r0</div>
-                <div class="ps-absolute r50 p12 bg-orange-100 ba bc-orange-3 brw3" style="margin-top: 72px; width: 120px;">.r50</div>
-                <div class="ps-absolute r100 p12 bg-orange-100 ba bc-orange-3 brw3" style="margin-top: 96px; width: 120px;">.r100</div>
-            </div>
-        </div>
-    </div>
-
-    <h4 class="grid jc-spacebetween ai-center stacks-title _subtitle-sm">Bottom</h4>
-    <div class="stacks-code-preview">
-{% highlight html linenos %}
-<div class="ps-absolute bn100">…</div>
-<div class="ps-absolute bn50">…</div>
-<div class="ps-absolute b0">…</div>
-<div class="ps-absolute b50">…</div>
-<div class="ps-absolute b100">…</div>
-{% endhighlight %}
-        <div class="-preview fs-caption ff-mono">
-            <div class="grid my64 ps-relative w100 bbs-dashed bc-orange-3 bbw1 ff-mono fc-black-800" style="height: 64px;">
-                <div class="ps-absolute bn100 l50 p12 bg-orange-100 ba bc-orange-3 bbw3" style="width: 120px;">.bn100</div>
-                <div class="ps-absolute bn50 l50 p12 bg-orange-100 ba bc-orange-3 bbw3" style="margin-left: -24px; width: 120px;">.bn50</div>
-                <div class="ps-absolute b0 l50 p12 bg-orange-100 ba bc-orange-3 bbw3" style="margin-left: -48px; width: 120px;">.b0</div>
-                <div class="ps-absolute b50 l50 p12 bg-orange-100 ba bc-orange-3 bbw3" style="margin-left: -72px; width: 120px;">.b50</div>
-                <div class="ps-absolute b100 l50 p12 bg-orange-100 ba bc-orange-3 bbw3" style="margin-left: -96px; width: 120px;">.b100</div>
-            </div>
-        </div>
-    </div>
-
-    <h4 class="grid jc-spacebetween ai-center stacks-title _subtitle-sm">Left</h4>
-    <div class="stacks-code-preview">
-{% highlight html linenos %}
-<div class="ps-absolute ln100">…</div>
-<div class="ps-absolute ln50">…</div>
-<div class="ps-absolute l0">…</div>
-<div class="ps-absolute l50">…</div>
-<div class="ps-absolute l100">…</div>
-{% endhighlight %}
-        <div class="-preview fs-caption ff-mono">
-            <div class="grid ps-relative w30 bls-dashed bc-orange-3 blw1" style="margin-left: 35%; margin-right: 35%; height: 200px;">
-                <div class="ps-absolute ln100 p12 bg-orange-100 ba bc-orange-3 blw3" style="width: 120px;">.ln100</div>
-                <div class="ps-absolute ln50 p12 bg-orange-100 ba bc-orange-3 blw3" style="margin-top: 24px; width: 120px;">.ln50</div>
-                <div class="ps-absolute l0 p12 bg-orange-100 ba bc-orange-3 blw3" style="margin-top: 48px; width: 120px;">.l0</div>
-                <div class="ps-absolute l50 p12 bg-orange-100 ba bc-orange-3 blw3" style="margin-top: 72px; width: 120px;">.l50</div>
-                <div class="ps-absolute l100 p12 bg-orange-100 ba bc-orange-3 blw3" style="margin-top: 96px; width: 120px;">.l100</div>
-            </div>
-        </div>
-    </div>
 </section>
