@@ -1,11 +1,6 @@
-// jQuery formatted selector to search for focusable items
-var focusElementString = "a[href], area[href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), button:not([disabled]), iframe, object, embed, *[tabindex], *[contenteditable]";
-
-// store the item that has focus before opening the modal window
-var previousFocus;
-var bodyTag = $(document.body);
-var modalWrapper = $(".s-modal");
-var modalTarget;
+const focusSelectors    = "a[href], area[href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), button:not([disabled]), iframe, object, embed, *[tabindex], *[contenteditable]";
+var modal               = $(".js-modal-overlay");
+var body                = $("body");
 
 $(document).ready(function() {
     $(".js-modal-open").click(function(e) {
@@ -13,65 +8,69 @@ $(document).ready(function() {
     });
 
     $(".js-modal-cancel-btn").click(function(e) {
-        closeModal(e);
+        closeModal();
     })
 
-    $(".js-modal-close").click(function(e) {
-        closeModal(e);
+    $(".js-modal-close").click(function() {
+        closeModal();
     }).find(".js-modal-dialog").click(function(e) {
         e.preventDefault();
         e.stopPropagation();
         return;
     });
 
-    modalWrapper.keydown(function(e) {
+    modal.keydown(function(e) {
         trapEscapeKey(e);
     });
 });
 
 function trapEscapeKey(e) {
     // if escape pressed
-    if (e.keyCode == 27) {
+    if (e.which == 27) {
         alert("Pressed");
     }
 }
 
 function setInitialFocus(obj) {
-    var o = obj.find("*");
+    var val = 0;
 
-    var focusableItems;
-    focusableItems = o.filter(focusElementString).filter(":visible").first().focus();
+    // Focus the first element within the modal.
+    $(obj).find(".js-modal-dialog *").filter(focusSelectors).attr("tabindex", (parseInt(val + 1), 1));
+
+    var focusableItems = body.find(focusSelectors).not(".js-modal-overlay *");
+
+    // Trap the tab focus by disable tabbing on all elements outside of the modal.
+    focusableItems.each(function() {
+        $(this).attr("tabindex", "-1");
+    });
 }
 
-function setFocus(obj) {
-    obj.find("*").filter(focusElementString).filter(":visible").first().focus();
+function restoreInitialFocus() {
+    var focusableItems = body.find(focusSelectors).not(modal + "*");
+
+    // Trap the tab focus by disable tabbing on all elements outside of the modal.
+    focusableItems.each(function() {
+        $(this).removeAttr("tabindex");
+    });
 }
 
 function openModal(obj, evt) {
     var modalTarget = obj.attr("data-target");
 
-    modalWrapper.removeClass("is-visible");         //  Clear all open modals just in case
-    bodyTag.addClass("overflow-hidden");            //  Make the main <body> unscrollable
-    bodyTag.attr("aria-hidden", "true");            //  Make the main page hidden
-    $(modalTarget).addClass("is-visible");          //  Animate in modal dialog
-    $(modalTarget).attr("aria-hidden", "false");    //  Make the modal window visible
-
-    bodyTag.on("focusin", ".stacks-wrapper", function(e) {
-        setFocus($(modalTarget));
-    });
-
-    previousFocus = $(":focus");
-
-    setFocus(obj);
+    //  Clear all open modals just in case
+    modal.removeClass("is-visible");
+    //  Set modal focus
+    setInitialFocus(modalTarget);
+    //  Make the main page non-scrollable and hidden to screen readers
+    body.addClass("overflow-hidden").attr("aria-hidden", "true");
+    //  Show modal and viewable by screen readers
+    $(modalTarget).addClass("is-visible").attr("aria-hidden", "false");
 }
 
-function closeModal(e) {
-    bodyTag.removeClass("overflow-hidden");         //  Make the main <body> scrollable
-    bodyTag.attr("aria-hidden", "false");           //  Make the main page visible
-    $(".js-modal-overlay").removeClass("is-visible");       //  Animate in modal dialog
-    $(".js-modal-overlay").attr("aria-hidden", "true");     //  Make the modal window visible
+function closeModal() {
+    //  Reset everything
+    body.removeClass("overflow-hidden").attr("aria-hidden", "false");
+    $(".js-modal-overlay").removeClass("is-visible").attr("aria-hidden", "true");
 
-    bodyTag.off("focusin", ".js-modal-overlay");
-
-    previousFocus.focus();
+    restoreInitialFocus();
 }
