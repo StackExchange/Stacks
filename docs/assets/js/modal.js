@@ -6,7 +6,7 @@ $(document).ready(function() {
     function trapEscapeKey(e) {
         // if escape pressed
         if (e.which == 27) {
-            alert("Pressed");
+            closeModal();
         }
     }
 
@@ -52,7 +52,7 @@ $(document).ready(function() {
         return;
     });
 
-    $(".js-modal-dialog").keydown(function(e) {
+    $(this).keydown(function(e) {
         trapEscapeKey(e);
     });
 });
