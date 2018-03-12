@@ -1,0 +1,40 @@
+---
+layout: page
+title: Button Group
+description: Button groups are a collection of buttons. This component is used in our questions view, and is frequently used in conjunction with other form elements such as search fields and sorting dropdowns. If the content you’re interacting with is a simple paring down of the current view, it’s appropriate to use the <code class="stacks-code">.s-btn-group</code> component. Add the class <code class="stacks-code">.is-selected</code> to show the currently-selected button. 
+---
+
+<script>
+    $(function() {
+        $(".js-tabs-item").on("click", function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            $(this).siblings().removeClass("is-selected");
+            $(this).addClass("is-selected");
+        });
+    });
+</script>
+
+<!-- And now for some documentation -->
+<section class="stacks-section">
+    <div class="stacks-code-preview">
+{% highlight html linenos %}
+<div class="s-btn-group">
+    <button class="s-btn s-btn__muted s-btn__outlined js-tabs-item" role="button">Newest</button>
+    <button class="s-btn s-btn__muted s-btn__outlined js-tabs-item" role="button">Frequent</button>
+    <button class="s-btn s-btn__muted s-btn__outlined is-selected js-tabs-item" role="button">Votes</button>
+    <button class="s-btn s-btn__muted s-btn__outlined js-tabs-item" role="button">Active</button>
+    <button class="s-btn s-btn__muted s-btn__outlined js-tabs-item" role="button">Unanswered</button>
+</div>
+{% endhighlight %}
+        <div class="-preview">
+            <div class="s-btn-group">
+                <button class="s-btn s-btn__muted s-btn__outlined js-tabs-item" role="button">Newest</button>
+                <button class="s-btn s-btn__muted s-btn__outlined js-tabs-item" role="button">Frequent</button>
+                <button class="s-btn s-btn__muted s-btn__outlined is-selected js-tabs-item" role="button">Votes</button>
+                <button class="s-btn s-btn__muted s-btn__outlined js-tabs-item" role="button">Active</button>
+                <button class="s-btn s-btn__muted s-btn__outlined js-tabs-item" role="button">Unanswered</button>
+            </div>
+        </div>
+    </div>
+</section>
