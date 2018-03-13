@@ -22,14 +22,14 @@
     border: 1px solid @black-075;
     box-shadow: @bs-sm;
 
-    z-index: -1;
+    z-index: @zi-hide;
     visibility: hidden;
     opacity: 0;
 
     &.is-visible {
         opacity: 1;
         visibility: visible;
-        z-index: 1;
+        z-index: @zi-active;
     }
 
     .s-popover--arrow {
@@ -56,7 +56,7 @@
         }
     }
 
-    &.s-popover__south {
+    &.s-popover__bottom {
         .s-popover--arrow {
             top: -@su8;
             left: 50%;
@@ -76,7 +76,7 @@
         }
     }
 
-    &.s-popover__north {
+    &.s-popover__top {
         .s-popover--arrow {
             bottom: -@su8;
             left: 50%;
@@ -96,7 +96,7 @@
         }
     }
 
-    &.s-popover__east {
+    &.s-popover__right {
         .s-popover--arrow {
             left: -@su8;
             top: 50%;
@@ -116,7 +116,7 @@
         }
     }
 
-    &.s-popover__west {
+    &.s-popover__left {
         .s-popover--arrow {
             right: -@su8;
             top: 50%;

@@ -16,38 +16,34 @@ description: Popovers, yo.
         <div class="-preview">
             <div class="grid gs16 fw-wrap">
                 <div class="grid--cell">
-                    <div class="s-popover s-popover__south ps-relative is-visible">
-                        <div class="s-popover--arrow"></div>
-                        <ul class="list-reset my8">
-                            <li><a href="#" class="s-link s-link__grayscale d-block py4 px12 bg-black-050">All</a></li>
-                            <li><a href="#" class="s-link s-link__grayscale d-block py4 px12">Needs answers</a></li>
-                            <li><a href="#" class="s-link s-link__grayscale d-block py4 px12">Has bounty</a></li>
-                            <li><a href="#" class="s-link s-link__grayscale d-block py4 px12">No votes</a></li>
-                            <li><a href="#" class="s-link s-link__grayscale d-block py4 px12">Watched tags</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="grid--cell">
-                    <div class="s-popover s-popover__north ps-relative is-visible">
+                    <div class="s-popover s-popover__bottom ps-relative is-visible">
                         <div class="s-popover--arrow"></div>
                         <div class="p12">
-                            North
+                            Bottom
                         </div>
                     </div>
                 </div>
                 <div class="grid--cell">
-                    <div class="s-popover s-popover__east ps-relative is-visible">
+                    <div class="s-popover s-popover__top ps-relative is-visible">
                         <div class="s-popover--arrow"></div>
                         <div class="p12">
-                            East
+                            Top
                         </div>
                     </div>
                 </div>
                 <div class="grid--cell">
-                    <div class="s-popover s-popover__west ps-relative is-visible">
+                    <div class="s-popover s-popover__right ps-relative is-visible">
                         <div class="s-popover--arrow"></div>
                         <div class="p12">
-                            West
+                            Right
+                        </div>
+                    </div>
+                </div>
+                <div class="grid--cell">
+                    <div class="s-popover s-popover__left ps-relative is-visible">
+                        <div class="s-popover--arrow"></div>
+                        <div class="p12">
+                            Left
                         </div>
                     </div>
                 </div>
@@ -55,52 +51,3 @@ description: Popovers, yo.
         </div>
     </div>
 </section>
-
-<!-- Page-specific JS -->
-<script>
-    $(function() {
-        var modalOverlay = $(".js-example-modal-overlay");
-        var modalBase = $(".js-example-modal-content__base");
-        var modalTransform = $(".js-example-modal-content__transform");
-
-        $(".js-example-modal-body").on("click", function(e) {
-            e.preventDefault();
-            e.stopPropagation();
-        });
-
-        $(".js-launch-modal-btn__base").on("click", function(e) {
-            e.preventDefault();
-            e.stopPropagation();
-
-            modalOverlay.toggleClass("is-visible");
-            modalBase.toggleClass("is-visible");
-        });
-
-        $(".js-launch-modal-btn__transform").on("click", function(e) {
-            e.preventDefault();
-            e.stopPropagation();
-
-            modalOverlay.toggleClass("is-visible");
-            modalTransform.toggleClass("is-visible");
-        });
-
-        $(".js-example-modal-cancel-btn, .js-example-modal-primary-btn, .js-example-modal-overlay, .js-example-modal-container").on("click", function(e) {
-            e.preventDefault();
-            e.stopPropagation();
-
-            closeModal();
-        });
-
-        $(document).on('keyup',function(evt) {
-            if (evt.keyCode == 27) {
-                closeModal();
-            }
-        });
-
-        function closeModal() {
-            modalBase.removeClass("is-visible");
-            modalTransform.removeClass("is-visible");
-            modalOverlay.removeClass("is-visible");
-        }
-    });
-</script>
