@@ -1,0 +1,138 @@
+//
+//  STACK OVERFLOW
+//  POPOVERS
+//
+//  This CSS comes from Stacks, our CSS & Pattern library for rapidly building
+//  Stack Overflow. For documentation of all these classes and how to contribute,
+//  visit https://stackoverflow.design/
+//
+//  TABLE OF CONTENTS
+//  • POPOVERS
+//
+
+//  ============================================================================
+//  $   POPOVERS
+//  ----------------------------------------------------------------------------
+
+.s-popover {
+    position: absolute;
+    width: 160px;
+    background: @white;
+    border-radius: @br-sm;
+    border: 1px solid @black-075;
+    box-shadow: @bs-sm;
+
+    z-index: -1;
+    visibility: hidden;
+    opacity: 0;
+
+    &.is-visible {
+        opacity: 1;
+        visibility: visible;
+        z-index: 1;
+    }
+
+    .s-popover--arrow {
+        position: absolute;
+        display: block;
+        width: @su16;
+        height: @su8;
+
+        &:before {
+            position: absolute;
+            display: block;
+            content: "";
+            border-color: transparent;
+            border-style: solid;
+        }
+
+        &:after {
+            position: absolute;
+            display: block;
+            content: "";
+            border-color: transparent;
+            border-style: solid;
+            border-width: 0 @su8 @su8 @su8;
+        }
+    }
+
+    &.s-popover__south {
+        .s-popover--arrow {
+            top: -@su8;
+            left: 50%;
+            margin-left: -@su8;
+
+            &:before {
+                border-width: 0 @su8 @su8 @su8;
+                border-bottom-color: @black-100;
+                top: 0;
+            }
+
+            &:after {
+                border-width: 0 @su8 @su8 @su8;
+                border-bottom-color: @white;
+                top: 1px;
+            }
+        }
+    }
+
+    &.s-popover__north {
+        .s-popover--arrow {
+            bottom: -@su8;
+            left: 50%;
+            margin-left: -@su8;
+
+            &:before {
+                border-width: @su8 @su8 0 @su8;
+                border-top-color: @black-100;
+                bottom: 0px;
+            }
+
+            &:after {
+                border-width: @su8 @su8 0 @su8;
+                border-top-color: @white;
+                bottom: 1px;
+            }
+        }
+    }
+
+    &.s-popover__east {
+        .s-popover--arrow {
+            left: -@su8;
+            top: 50%;
+            margin-top: -@su8;
+
+            &:before {
+                border-width: @su8 @su8 @su8 0;
+                border-right-color: @black-100;
+                left: 0px;
+            }
+
+            &:after {
+                border-width: @su8 @su8 @su8 0;
+                border-right-color: @white;
+                left: 1px;
+            }
+        }
+    }
+
+    &.s-popover__west {
+        .s-popover--arrow {
+            right: -@su8;
+            top: 50%;
+            margin-top: -@su8;
+
+            &:before {
+                border-width: @su8 0 @su8 @su8;
+                border-left-color: @black-100;
+                right: 0px;
+            }
+
+            &:after {
+                border-width: @su8 0 @su8 @su8;
+                border-left-color: @white;
+                right: 1px;
+            }
+        }
+    }
+}

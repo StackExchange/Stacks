@@ -934,6 +934,103 @@ template {
   margin-bottom: 1.142857143em;
   font-size: 15px;
 }
+.s-popover {
+  position: absolute;
+  width: 160px;
+  background: #FFF;
+  border-radius: 3px;
+  border: 1px solid #e4e6e8;
+  box-shadow: 0 2px 8px rgba(59, 64, 69, 0.1);
+  z-index: -1;
+  visibility: hidden;
+  opacity: 0;
+}
+.s-popover.is-visible {
+  opacity: 1;
+  visibility: visible;
+  z-index: 1;
+}
+.s-popover .s-popover--arrow {
+  position: absolute;
+  display: block;
+  width: 16px;
+  height: 8px;
+}
+.s-popover .s-popover--arrow:before {
+  position: absolute;
+  display: block;
+  content: "";
+  border-color: transparent;
+  border-style: solid;
+}
+.s-popover .s-popover--arrow:after {
+  position: absolute;
+  display: block;
+  content: "";
+  border-color: transparent;
+  border-style: solid;
+  border-width: 0 8px 8px 8px;
+}
+.s-popover.s-popover__south .s-popover--arrow {
+  top: -8px;
+  left: 50%;
+  margin-left: -8px;
+}
+.s-popover.s-popover__south .s-popover--arrow:before {
+  border-width: 0 8px 8px 8px;
+  border-bottom-color: #d6d9dc;
+  top: 0;
+}
+.s-popover.s-popover__south .s-popover--arrow:after {
+  border-width: 0 8px 8px 8px;
+  border-bottom-color: #FFF;
+  top: 1px;
+}
+.s-popover.s-popover__north .s-popover--arrow {
+  bottom: -8px;
+  left: 50%;
+  margin-left: -8px;
+}
+.s-popover.s-popover__north .s-popover--arrow:before {
+  border-width: 8px 8px 0 8px;
+  border-top-color: #d6d9dc;
+  bottom: 0px;
+}
+.s-popover.s-popover__north .s-popover--arrow:after {
+  border-width: 8px 8px 0 8px;
+  border-top-color: #FFF;
+  bottom: 1px;
+}
+.s-popover.s-popover__east .s-popover--arrow {
+  left: -8px;
+  top: 50%;
+  margin-top: -8px;
+}
+.s-popover.s-popover__east .s-popover--arrow:before {
+  border-width: 8px 8px 8px 0;
+  border-right-color: #d6d9dc;
+  left: 0px;
+}
+.s-popover.s-popover__east .s-popover--arrow:after {
+  border-width: 8px 8px 8px 0;
+  border-right-color: #FFF;
+  left: 1px;
+}
+.s-popover.s-popover__west .s-popover--arrow {
+  right: -8px;
+  top: 50%;
+  margin-top: -8px;
+}
+.s-popover.s-popover__west .s-popover--arrow:before {
+  border-width: 8px 0 8px 8px;
+  border-left-color: #d6d9dc;
+  right: 0px;
+}
+.s-popover.s-popover__west .s-popover--arrow:after {
+  border-width: 8px 0 8px 8px;
+  border-left-color: #FFF;
+  right: 1px;
+}
 .s-caption {
   padding-top: 12px;
   padding-bottom: 12px;
