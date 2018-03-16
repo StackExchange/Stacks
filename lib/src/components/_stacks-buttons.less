@@ -199,7 +199,7 @@
     color: @fc;
 
     &.s-btn__dropdown:after {
-        border-color: @fc transparent;
+        border-color: currentColor transparent;
     }
 
     & when (@fc = #FFFFFF) and (alpha(@fc) = 1) {
@@ -210,7 +210,7 @@
             color: @fc;
 
             &.s-btn__dropdown:after {
-                border-color: @fc transparent;
+                border-color: currentColor transparent;
             }
         }
     }
@@ -219,47 +219,26 @@
         &:hover,
         &:active {
             color: darken(@fc,10%);
-
-            &.s-btn__dropdown:after {
-                border-color: darken(@fc,10%) transparent;
-            }
         }
         &:focus,
         &.is-selected {
             color: darken(@fc,20%);
-
-            &.s-btn__dropdown:after {
-                border-color: darken(@fc,10%) transparent;
-            }
         }
-
     }
 
     & when (alpha(@fc) < 1) {
         &:hover,
         &:active {
             color: fade(lighten(@fc,10%),90%);
-
-            &.s-btn__dropdown:after {
-                border-color: fade(lighten(@fc,10%),90%) transparent;
-            }
         }
         &:focus,
         &.is-selected {
             color: fade(lighten(@fc,10%),100%);
-
-            &.s-btn__dropdown:after {
-                border-color: fade(lighten(@fc,10%),100%) transparent;
-            }
         }
     }
 
     &[disabled] {
         color: fade(desaturate(@fc,90%),80%);
-
-        &.s-btn__dropdown:after {
-            border-color: fade(desaturate(@fc,90%),80%) transparent;
-        }
     }
 }
 
