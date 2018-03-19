@@ -278,8 +278,6 @@
         pointer-events: none;
     }
 
-    // padding: 0.8em 1em;
-
     &.s-btn__xs {
         font-size: @fs-fine;
         padding: 0.5em 0.6em;
@@ -321,9 +319,10 @@
     //      trapped whitespace.
     //  ------------------------------------------------------------------------
     .svg-icon {
+        transition: opacity 200ms @te-smooth; // Animate the transition to .is-loading
         margin-top: -(@su2 + 1);    // [1]
         margin-bottom: -(@su2);     // [1]
-        margin-right: @su4;         // [2]
+        margin-right: @su2;         // [2]
         margin-left: -(@su4);       // [3]
     }
 }
@@ -542,21 +541,28 @@
 //  --  Next the actual loading spinner
 .s-btn {
     &.is-loading {
-        padding-left: @su24 + @su4;
+        padding-left: @su24 + @su8;
 
         &:before {
             content: "";
             position: absolute;
             top: calc(~"50% - @{su8}");
-            margin-left: -(@su24 - @su4);
-            width: 14px;
-            height: 14px;
+            margin-left: -(@su24 - @su2);
+            width: @su16;
+            height: @su16;
 
             border-radius: @br-circle;
             border: 2px dotted fade(@btn-filled-fc,40%);
             border-left-color: darken(@btn-filled-fc,5%);
 
             animation: spinnerRotate 800ms infinite linear;
+        }
+
+        .svg-icon:first-child {
+            // If the first thing in the button is an icon, let's hide it on loading
+            // We only want to modify the visibility, since we still want it to have shape and keep the same layout.
+            opacity: 0;
+            margin-left: -23px;
         }
     }
 

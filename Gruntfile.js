@@ -67,6 +67,27 @@ module.exports = function (grunt) {
                 logConcurrentOutput: true
             }
         },
+        // Clean the icons directory to prepare for copying from the node dependency
+        clean: {
+            icons: ['docs/resources/svg-icons/'],
+        },
+        // Copy files out of node_modules so Jekyll can use them
+        copy: {
+            svgs: {
+                expand: true,
+                cwd: 'node_modules/@stackoverflow/stacks-icons/build/lib',
+                src: '**',
+                dest: 'docs/resources/svg-icons/',
+                filter: 'isFile',
+            },
+            data: {
+                expand: true,
+                cwd: 'node_modules/@stackoverflow/stacks-icons/build',
+                src: 'icons.yml',
+                dest: 'docs/_data/',
+                filter: 'isFile',
+            },
+        },
     });
 
     // Load plugins
@@ -75,8 +96,11 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-cssmin');
     grunt.loadNpmTasks('grunt-contrib-less');
     grunt.loadNpmTasks('grunt-contrib-watch');
+    grunt.loadNpmTasks('grunt-contrib-copy');
+    grunt.loadNpmTasks('grunt-contrib-clean');
 
     // Default task
     grunt.registerTask('default', ['concurrent:serve']);
     grunt.registerTask('build', ['less', 'cssmin']);
+    grunt.registerTask('update-icons', ['clean', 'copy']);
 };
