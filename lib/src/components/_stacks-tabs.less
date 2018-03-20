@@ -17,12 +17,11 @@
 //  ============================================================================
 //  $   TAB CONTAINER
 //  ----------------------------------------------------------------------------
-@tabs-border:                       @brc-light;
-@tabs-border__selected:             @orange;
+@tabs-border:                       @brc-dark;
 @tabs-color:                        @fc-light;
-@tabs-color__selected:              @fc-dark;
+@tabs-color__selected:              darken(@tabs-color,20%);
 @tabs-background:                   @white;
-@tabs-background__selected:         fade(@bgc-lightest,50%);
+@tabs-background__hover:            darken(@tabs-background,2.5%);
 
 .s-tabs {
     display: flex;
@@ -40,10 +39,11 @@
     margin-right: @su2;
     margin-left: @su2;
     padding: 1.1em 1em 1em; // [2]
-    border: none;
+    border: 1px solid transparent;
+    border-radius: @br-md @br-md 0 0;
     background-color: fade(@tabs-background,0%);
     color: @tabs-color;
-    transition: color 100ms @te-smooth, background-color 100ms @te-smooth, box-shadow 100ms @te-smooth;
+    transition: all 100ms @te-smooth;
     cursor: pointer;
 
     //  Clear the margins though if it's the first and last items
@@ -55,35 +55,21 @@
     }
 
     &:hover {
-        box-shadow: inset 0 -1px 0 @tabs-border;
-        background-color: @tabs-background__selected;
-        color: darken(@tabs-color,10%);
-        transition: color 100ms @te-smooth, background-color 75ms @te-smooth
+        border-bottom-color: @tabs-border;
+        background-color: fade(@tabs-background__hover,75%);
+        color: @tabs-color__selected;
+        transition: all 100ms @te-smooth;
     }
 }
 
 .s-tabs--item[aria-selected="true"] {
     background-color: @tabs-background;
-    box-shadow: inset 1px 1px 0 @tabs-border, inset -1px 0 0 @tabs-border;
+    border-color: @tabs-border;
+    border-bottom-color: @tabs-background;
     color: @tabs-color__selected;
 
-    &:after {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        height: @su2 + 1;
-        background-color: @tabs-border__selected;
-    }
-
     &:hover {
-        background-color: @tabs-background;
-        box-shadow: inset 1px 1px 0 @tabs-border, inset -1px 0 0 @tabs-border;
         color: darken(@tabs-color__selected,5%);
-
-        &:after {
-            background-color: saturate(darken(@tabs-border__selected,5%),10%);
-        }
+        background-color: @tabs-background__hover;
     }
 }
