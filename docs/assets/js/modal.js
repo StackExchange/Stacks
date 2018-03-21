@@ -27,9 +27,7 @@ $(document).ready(function() {
 
         //  Set modal focus
         //  Show modal and viewable by screen readers
-        $(modalTarget).on("focusin", function() {
-            $(".js-modal-dialog *").filter(focusSelectors).first().focus();
-        }).attr({
+        $(modalTarget).attr({
             "aria-hidden": "false",
             "tabindex": "0"
         });
