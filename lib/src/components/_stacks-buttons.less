@@ -319,8 +319,9 @@
     }
 
     &.s-btn__xs {
-        padding: 0.5em 0.6em;
-        font-size: @fs-fine;
+        padding-top: 0.7em;
+        padding-bottom: 0.6em;
+        .mx-fs(@fs-base - 2);
 
         &.s-btn__dropdown {
             padding-right: 1.5em;
@@ -336,8 +337,8 @@
     }
 
     &.s-btn__sm {
-        padding: 0.6em 0.8em;
-        font-size: @fs-caption;
+        padding-bottom: 0.7em;
+        .mx-fs(@fs-base - 1);
 
         &.s-btn__dropdown {
             padding-right: 2.05em;
@@ -350,7 +351,7 @@
 
     &.s-btn__md {
         border-radius: @btn-br + 1;
-        font-size: @fs-body3;
+        .mx-fs(@fs-base + 4);
 
         &.s-btn__dropdown {
             padding-right: 2.1em;
@@ -366,7 +367,7 @@
 
     &.s-btn__lg {
         border-radius: @btn-br + 1;
-        font-size: @fs-title;
+        .mx-fs(@fs-base + 7);
 
         &.s-btn__dropdown {
             padding-right: 2.15em;
@@ -382,7 +383,7 @@
 
     &.s-btn__xl {
         border-radius: @btn-br + @br-sm;
-        font-size: @fs-headline1;
+        .mx-fs(@fs-base + 10);
 
         &.s-btn__dropdown {
             padding-right: 2em;
@@ -412,10 +413,11 @@
     //      trapped whitespace.
     //  ------------------------------------------------------------------------
     .svg-icon {
-        margin-top: -(@su2 + 1);    // [1]
-        margin-right: @su2;         // [2]
-        margin-bottom: -(@su2);     // [1]
-        margin-left: -(@su4);       // [3]
+        margin-top: -(@su2);        // [1]
+        margin-bottom: -(@su2 + 1); // [1]
+        margin-right: @su4;         // [2]
+        margin-left: -(@su2);       // [3]
+
         /* autoprefixer: off */
         transition: opacity 200ms @te-smooth; // Animate the transition to .is-loading
     }
