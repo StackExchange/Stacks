@@ -15,12 +15,14 @@ $(document).ready(function() {
 
         //  Clear all open modals just in case
         modal.attr({
-            "aria-hidden": "true"
+            "aria-hidden": "true",
+            "tabindex": "-1"
         });
 
         //  Make the main page non-scrollable and hidden to screen readers
         body.addClass("overflow-hidden").attr({
-            "aria-hidden": "true"
+            "aria-hidden": "true",
+            "tabindex": "-1"
         });
 
         //  Set modal focus
@@ -28,17 +30,20 @@ $(document).ready(function() {
         $(modalTarget).on("focusin", function() {
             $(".js-modal-dialog *").filter(focusSelectors).first().focus();
         }).attr({
-            "aria-hidden": "false"
+            "aria-hidden": "false",
+            "tabindex": "0"
         });
     }
 
     function closeModal() {
         //  Reset everything
         body.removeClass("overflow-hidden").attr({
-            "aria-hidden": "false"
+            "aria-hidden": "false",
+            "tabindex": "0"
         });
         $(".js-modal-overlay").attr({
-            "aria-hidden": "true"
+            "aria-hidden": "true",
+            "tabindex": "-1"
         });
     }
 

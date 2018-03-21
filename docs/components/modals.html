@@ -23,32 +23,36 @@ description: Modals are dialog overlays that prevent the user from interacting w
             <div class="grid--cell mt-auto">
                 <div class="grid gs8 gsx s-modal--footer">
                     <button class="grid--cell s-btn s-btn__primary js-modal-primary-btn" type="button">Save changes</button>
-                    <button class="grid--cell s-btn js-modal-cancel-btn" data-dismiss="s-modal" type="button">Cancel</button>
+                    <button class="grid--cell s-btn js-modal-cancel-btn" type="button">Cancel</button>
                 </div>
             </div>
-            <a class="s-modal--close s-btn js-modal-close" href="#" data-dismiss="s-modal" aria-label="Close"><svg aria-hidden="true" class="svg-icon iconClearSm m0" width="14" height="14" viewBox="0 0 14 14"><path d="M12 3.41L10.59 2 7 5.59 3.41 2 2 3.41 5.59 7 2 10.59 3.41 12 7 8.41 10.59 12 12 10.59 8.41 7z"/></svg></a>
+            <a class="s-modal--close s-btn js-modal-close" href="#" aria-label="Close"><svg aria-hidden="true" class="svg-icon iconClearSm m0" width="14" height="14" viewBox="0 0 14 14"><path d="M12 3.41L10.59 2 7 5.59 3.41 2 2 3.41 5.59 7 2 10.59 3.41 12 7 8.41 10.59 12 12 10.59 8.41 7z"/></svg></a>
         </div>
     </div>
 </aside>
 
 <!-- And now for some documentation -->
 <section class="stacks-section">
-    <h2 class="grid jc-spacebetween ai-center stacks-title">Example</h2>
+    <h2 class="grid jc-spacebetween ai-center mb8 stacks-title">Example</h2>
+    <div class="mb24 p16 bar-sm bg-black-025 ba bc-black-1">
+        <button class="grid--cell s-btn s-btn__filled js-modal-open" data-toggle="s-modal" data-target="#modal-base">Launch example modal</button>
+    </div>
     <div class="stacks-code-preview">
 {% highlight html linenos %}
 <aside class="s-modal js-modal-overlay js-modal-close" id="modal-base" tabindex="-1" role="dialog" aria-labelledby="modal-title" aria-hidden="true">
     <div class="s-modal--dialog js-modal-dialog" role="document">
         <div class="s-modal--content js-example-modal-content">
             <div class="s-modal--header">
-                …
+                <h1 class="s-modal--title" id="modal-title">…</h1>
             </div>
             <div class="s-modal--body">
-                …
+                <p class="s-modal--description" id="modal-description">…</p>
             </div>
             <div class="s-modal--footer">
                 <button class="s-btn s-btn__primary js-modal-primary-btn" type="button">…</button>
-                <button class="s-btn js-modal-cancel-btn" data-dismiss="s-modal" type="button">…</button>
+                <button class="s-btn js-modal-cancel-btn" type="button">…</button>
             </div>
+            <a class="s-modal--close s-btn js-modal-close" href="#" aria-label="Close"><svg aria-hidden="true" class="svg-icon iconClearSm m0" width="14" height="14" viewBox="0 0 14 14"><path d="M12 3.41L10.59 2 7 5.59 3.41 2 2 3.41 5.59 7 2 10.59 3.41 12 7 8.41 10.59 12 12 10.59 8.41 7z"/></svg></a>
         </div>
     </div>
 </aside>
@@ -66,26 +70,113 @@ description: Modals are dialog overlays that prevent the user from interacting w
                         <div class="grid--cell mt-auto">
                             <div class="grid gs8 gsx s-modal--footer">
                                 <button class="grid--cell s-btn s-btn__primary js-modal-primary-btn" type="button">Save changes</button>
-                                <button class="grid--cell s-btn js-modal-cancel-btn" data-dismiss="s-modal" type="button">Cancel</button>
+                                <button class="grid--cell s-btn js-modal-cancel-btn" type="button">Cancel</button>
                             </div>
                         </div>
-                        <a class="s-modal--close s-btn js-modal-close" href="#" data-dismiss="s-modal" aria-label="Close"><svg aria-hidden="true" class="svg-icon iconClearSm m0" width="14" height="14" viewBox="0 0 14 14"><path d="M12 3.41L10.59 2 7 5.59 3.41 2 2 3.41 5.59 7 2 10.59 3.41 12 7 8.41 10.59 12 12 10.59 8.41 7z"/></svg></a>
+                        <a class="s-modal--close s-btn js-modal-close" href="#" aria-label="Close"><svg aria-hidden="true" class="svg-icon iconClearSm m0" width="14" height="14" viewBox="0 0 14 14"><path d="M12 3.41L10.59 2 7 5.59 3.41 2 2 3.41 5.59 7 2 10.59 3.41 12 7 8.41 10.59 12 12 10.59 8.41 7z"/></svg></a>
                     </div>
                 </div>
             </aside>
         </div>
     </div>
+    <table cellspacing="0" class="s-table">
+        <thead>
+            <tr>
+                <th scope="col" class="s-table--cell3">Item</th>
+                <th scope="col" class="s-table--cell2">Applied to</th>
+                <th scope="col">Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><code class="stacks-code">aria-describedby="[id]"</code></td>
+                <td><code class="stacks-code">.s-modal</code></td>
+                <td>Supply the modal's summary copy id. Assistive technologies (such as screen readers) use this to attribute to associate static text with a widget, element groups, headings, definitions, etc. (<a href="https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Techniques/Using_the_aria-describedby_attribute" target="_blank">Source</a>)</td>
+            </tr>
+            <tr>
+                <td><code class="stacks-code">aria-hidden="[state]"</code></td>
+                <td><code class="stacks-code">.s-modal</code></td>
+                <td>Informs assistive technologies (such as screen readers) if they should ignore the element. This should not be confused with the HTML5 hidden attribute which tells the browser to not display an element. (<a href="https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA" target="_blank">Source</a>)</td>
+            </tr>
+            <tr>
+                <td><code class="stacks-code">aria-label="[text]"</code></td>
+                <td><code class="stacks-code">.s-modal--close</code></td>
+                <td>Labels the element for assistive technologies (such as screen readers). (<a href="https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Techniques/Using_the_aria-label_attribute" target="_blank">Source</a>)</td>
+            </tr>
+            <tr>
+                <td><code class="stacks-code">aria-labelledby="[id]"</code></td>
+                <td><code class="stacks-code">.s-modal</code></td>
+                <td>Supply the modal's title id here. Assistive technologies (such as screen readers) use this to attribute to catalog the document objects correctly. (<a href="https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Techniques/Using_the_aria-labelledby_attribute" target="_blank">Source</a>)</td>
+            </tr>
+            <tr>
+                <td><code class="stacks-code">role="dialog"</code></td>
+                <td><code class="stacks-code">.s-modal</code></td>
+                <td>Identifies dialog elements for assistive technologies (<a href="https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Techniques/Using_the_dialog_role" target="_blank">Source</a>)</td>
+            </tr>
+            <tr>
+                <td><code class="stacks-code">role="document"</code></td>
+                <td><code class="stacks-code">.s-modal--dialog</code></td>
+                <td>Helps assistive technologies to switch their reading mode from the larger document to a focused dialog window. (<a href="https://www.w3.org/TR/wai-aria-1.1/#document" target="_blank">Source</a>)</td>
+            </tr>
+        </tbody>
+    </table>
 </section>
-<table cellspacing="0" class="s-table">
-    <thead>
-        <tr>
-            <th scope="col"></th>
-        </tr>
-    </thead>
-</table>
 
 <section class="stacks-section">
-    <h2 class="grid jc-spacebetween ai-center stacks-title">Best practices</h2>
+    <h2 class="grid jc-spacebetween ai-center mb4 stacks-title">Widths</h2>
+    <p class="stacks-p _section">You must specify the width of the modal dialog. Most dialogs are fine with <code class="stacks-code">.s-modal__md</code> (<code class="stacks-code">24rem</code>), but sometimes smaller or larger dialog sizes are desired. To achieve this apply one of the following width sizes on <code class="stacks-code">div.s-modal--dialog</code>.</p>
+    <table cellspacing="0" class="s-table">
+        <thead>
+            <tr>
+                <th scope="col" class="s-table--cell3">Class</th>
+                <th scope="col" class="s-table--cell3">Width</th>
+                <th scope="col" class="s-table--cell3">Pixels (13px base)</th>
+                <th scope="col">Pixels (15px base)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><code class="stacks-code">.s-modal__xs</code></td>
+                <td>24rem</td>
+                <td>312px</td>
+                <td>360px</td>
+            </tr>
+            <tr>
+                <td><code class="stacks-code">.s-modal__sm</code></td>
+                <td>32rem</td>
+                <td>416px</td>
+                <td>480px</td>
+            </tr>
+            <tr>
+                <td><code class="stacks-code">.s-modal__md</code></td>
+                <td>48rem</td>
+                <td>624px</td>
+                <td>720px</td>
+            </tr>
+            <tr>
+                <td><code class="stacks-code">.s-modal__lg</code></td>
+                <td>64rem</td>
+                <td>832px</td>
+                <td>960px</td>
+            </tr>
+            <tr>
+                <td><code class="stacks-code">.s-modal__xl</code></td>
+                <td>72rem</td>
+                <td>936px</td>
+                <td>1080px</td>
+            </tr>
+            <tr>
+                <td><code class="stacks-code">.s-modal__full</code></td>
+                <td>100% - 48px</td>
+                <td>N/A</td>
+                <td>N/A</td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+<section class="stacks-section">
+    <h2 class="grid jc-spacebetween ai-center mb0 stacks-title">Best practices</h2>
     <p class="stacks-p _section">Modals should:</p>
     <ul class="stacks-list _section">
         <li>Be used for tasks which require an explicit action</li>
@@ -95,8 +186,8 @@ description: Modals are dialog overlays that prevent the user from interacting w
 </section>
 
 <section class="stacks-section">
-    <h2 class="grid jc-spacebetween ai-center stacks-title">Content guidelines</h2>
-    <h3 class="grid jc-spacebetween ai-center stacks-title _subtitle">Title</h3>
+    <h2 class="grid jc-spacebetween ai-center mb0 stacks-title">Content guidelines</h2>
+    <h3 class="grid jc-spacebetween ai-center mb4 stacks-title _subtitle">Title</h3>
     <p class="stacks-p _section">Titles should be:</p>
     <ul class="stacks-list _section">
         <li><strong>Informative:</strong> the title should label the modal's content.</li>
@@ -104,35 +195,90 @@ description: Modals are dialog overlays that prevent the user from interacting w
         <li><strong>Scannable:</strong> keep titles to a single sentence, avoid punctuation, and avoid articles (i.e. the, a, an) to keep content short.</li>
         <li>Write in sentence case (first word capitalize, the rest is lowercase).</li>
     </ul>
-    <h3 class="grid jc-spacebetween ai-center stacks-title _subtitle">Content</h3>
+    <div class="mb32">
+        <div class="grid gs24 gsx fs-body3 fc-medium">
+            <div class="grid--cell6 p16 bar-sm bg-black-025 ba bc-green-2 btw-2">
+                <div class="grid gs8 gsx ai-center">
+                    <svg aria-hidden="true" class="grid--cell as-center fc-green-500 svg-icon iconCheckmark" width="18" height="18" viewBox="0 0 18 18"><path d="M16 4.41L14.59 3 6 11.59 2.41 8 1 9.41l5 5z"/></svg>
+                    <span class="grid--cell">Select badge</span>
+                </div>
+            </div>
+            <div class="grid--cell6 p16 bar-sm bg-black-025 ba bc-red-2 btw-2">
+                <div class="grid gs8 gsx ai-center">
+                    <svg aria-hidden="true" class="grid--cell as-center fc-red-400 svg-icon iconAlert" width="18" height="18" viewBox="0 0 18 18"><path d="M7.95 2.71c.58-.94 1.52-.94 2.1 0l7.69 12.58c.58.94.15 1.71-.96 1.71H1.22C.1 17-.32 16.23.26 15.29L7.96 2.7zM8 6v5h2V6H8zm0 7v2h2v-2H8z"/></svg>
+                    <span class="grid--cell">Select a badge to track</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <h3 class="grid jc-spacebetween ai-center mb4 stacks-title _subtitle">Content</h3>
     <p class="stacks-p _section">Content should be:</p>
     <ul class="stacks-list _section">
         <li><strong>Actionable:</strong> start sentences with imperative verbs to inform what actions are available. Don't use permissive language such as "you can".</li>
         <li><strong>Structured:</strong> Don't bury important information. Put it first. Users will read the first part and begin skimming if they can't locate what they need.</li>
         <li><strong>Clear:</strong> when something is required, be direct to help users understand what they need to do in order to accomplish their task.</li>
     </ul>
-    <h3 class="grid jc-spacebetween ai-center stacks-title _subtitle">Actions</h3>
+    <div class="mb32">
+        <div class="grid gs24 gsx fs-body3 fc-medium">
+            <div class="grid--cell6 p16 bar-sm bg-black-025 ba bc-green-2 btw-2">
+                <div class="grid gs4 gsy fd-column">
+                    <div class="grid pb8 bb bc-black-3">
+                        <svg aria-hidden="true" class="grid--cell1 mt2 mr8 fc-green-500 svg-icon iconCheckmark" width="18" height="18" viewBox="0 0 18 18"><path d="M16 4.41L14.59 3 6 11.59 2.41 8 1 9.41l5 5z"/></svg>
+                        <span class="grid--cell11">Send team notifications to this address.</span>
+                    </div>
+                    <div class="grid pt8">
+                        <svg aria-hidden="true" class="grid--cell1 mt2 mr8 fc-green-500 svg-icon iconCheckmark" width="18" height="18" viewBox="0 0 18 18"><path d="M16 4.41L14.59 3 6 11.59 2.41 8 1 9.41l5 5z"/></svg>
+                        <span class="grid--cell11">Passwords must have 8 characters, containing at least 1 letter and 1 number.</span>
+                    </div>
+                </div>
+            </div>
+            <div class="grid--cell6 p16 bar-sm bg-black-025 ba bc-red-2 btw-2">
+                <div class="grid gs4 gsy fd-column">
+                    <div class="grid pb8 bb bc-black-3">
+                        <svg aria-hidden="true" class="grid--cell1 mt2 mr8 fc-red-400 svg-icon iconCheckmark" width="18" height="18" viewBox="0 0 18 18"><path d="M7.95 2.71c.58-.94 1.52-.94 2.1 0l7.69 12.58c.58.94.15 1.71-.96 1.71H1.22C.1 17-.32 16.23.26 15.29L7.96 2.7zM8 6v5h2V6H8zm0 7v2h2v-2H8z"/></svg>
+                        <span class="grid--cell11">It's okay to send me notifications about this team to this email address.</span>
+                    </div>
+                    <div class="grid pt8">
+                        <svg aria-hidden="true" class="grid--cell1 mt2 mr8 fc-red-400 svg-icon iconCheckmark" width="18" height="18" viewBox="0 0 18 18"><path d="M7.95 2.71c.58-.94 1.52-.94 2.1 0l7.69 12.58c.58.94.15 1.71-.96 1.71H1.22C.1 17-.32 16.23.26 15.29L7.96 2.7zM8 6v5h2V6H8zm0 7v2h2v-2H8z"/></svg>
+                        <span class="grid--cell11">Passwords should be at least 8 characters long, containing at least 1 letter and 1 number.</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <h3 class="grid jc-spacebetween ai-center mb4 stacks-title _subtitle">Actions</h3>
     <p class="stacks-p _section">Actions should be:</p>
     <ul class="stacks-list _section">
         <li><strong>Clear:</strong> users should understand and anticipate what will happen when they engage with an action. Don't mislead or create confusion by mislabeling a button.</li>
         <li><strong>Actionable:</strong> Lead with a strong verb that describes and encourages the action. To provide enough context, usually you will need to use a <code class="stacks-code">[verb] + [noun]</code> combination. In some cases, a strong verb label can be enough (e.g. "Save", "Cancel", "Close", etc).</li>
         <li><strong>Concise:</strong> keep labels scannable by avoiding unnecessary words and articles.</li>
     </ul>
-</section>
-
-<section>
-    <h3 class="grid jc-spacebetween ai-center stacks-title _subtitle">Behavior</h3>
-    <p class="stacks-p _section">
-        Since Stacks’s scope is limited to <a href="{{ "/guidelines/using-stacks#toc-javascript" | relative_url }}">CSS and HTML</a>, the JS found on these pages is intended to communicate behavior only.
-    </p>
-    <p class="stacks-p _section">
-        Modals should be presented with a semi-transparent blocker to focus the user’s attention on the task being presented. Practically, on Stack Overflow, most pages will have a <code class="stacks-code">div</code> with the class <code class="stacks-code">.s-modal-overlay</code> somewhere in the view. You’ll need to include one if it’s not. The modal experience is not complete without the overlay. In addition, our modals are not feature-complete unless the following behaviors are enabled:
-    </p>
-    <ol class="stacks-p _section">
-        <li>The user can close the modal dialog with their <code class="stacks-code">ESC</code> key.</li>
-        <li>The user can click outside the dialog to close it.</li>
-    </ol>
-    <div class="grid gs4 gsx">
-        <button class="grid--cell s-btn s-btn__filled js-modal-open" data-toggle="s-modal" data-target="#modal-base">Launch example modal</button>
+    <div class="mb32">
+        <div class="grid gs24 gsx fs-body3 fc-medium">
+            <div class="grid--cell6 p16 bar-sm bg-black-025 ba bc-green-2 btw-2">
+                <div class="grid gs4 gsy fd-column">
+                    <div class="grid pb8 bb bc-black-3">
+                        <svg aria-hidden="true" class="grid--cell1 mt2 mr8 fc-green-500 svg-icon iconCheckmark" width="18" height="18" viewBox="0 0 18 18"><path d="M16 4.41L14.59 3 6 11.59 2.41 8 1 9.41l5 5z"/></svg>
+                        <span class="grid--cell11">View billing settings</span>
+                    </div>
+                    <div class="grid pt8">
+                        <svg aria-hidden="true" class="grid--cell1 mt2 mr8 fc-green-500 svg-icon iconCheckmark" width="18" height="18" viewBox="0 0 18 18"><path d="M16 4.41L14.59 3 6 11.59 2.41 8 1 9.41l5 5z"/></svg>
+                        <span class="grid--cell11">Ask question</span>
+                    </div>
+                </div>
+            </div>
+            <div class="grid--cell6 p16 bar-sm bg-black-025 ba bc-red-2 btw-2">
+                <div class="grid gs4 gsy fd-column">
+                    <div class="grid pb8 bb bc-black-3">
+                        <svg aria-hidden="true" class="grid--cell1 mt2 mr8 fc-red-400 svg-icon iconCheckmark" width="18" height="18" viewBox="0 0 18 18"><path d="M7.95 2.71c.58-.94 1.52-.94 2.1 0l7.69 12.58c.58.94.15 1.71-.96 1.71H1.22C.1 17-.32 16.23.26 15.29L7.96 2.7zM8 6v5h2V6H8zm0 7v2h2v-2H8z"/></svg>
+                        <span class="grid--cell11">View your settings</span>
+                    </div>
+                    <div class="grid pt8">
+                        <svg aria-hidden="true" class="grid--cell1 mt2 mr8 fc-red-400 svg-icon iconCheckmark" width="18" height="18" viewBox="0 0 18 18"><path d="M7.95 2.71c.58-.94 1.52-.94 2.1 0l7.69 12.58c.58.94.15 1.71-.96 1.71H1.22C.1 17-.32 16.23.26 15.29L7.96 2.7zM8 6v5h2V6H8zm0 7v2h2v-2H8z"/></svg>
+                        <span class="grid--cell11">Ask a question</span>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </section>
