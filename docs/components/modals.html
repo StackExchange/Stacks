@@ -1,60 +1,39 @@
 ---
 layout: page
 title: Modals
-description: Modal dialogs are used to display content that temporarily blocks interactions with the primary view. These are often used to confirm user action or clarify their action.
+description: Modals are dialog overlays that prevent the user from interacting with rest of the website until an action is taken or the dialog is dismissed. They are purposefully disruptive, so should be used thoughtfully and sparingly.
 ---
 
 <!-- Example base modal content -->
 <script src="{{ "/assets/js/modal.js" | relative_url }}"></script>
-
 <aside class="s-modal js-modal-overlay js-modal-close" id="modal-base" tabindex="-1" role="dialog" aria-labelledby="modal-title" aria-describedby="modal-description" aria-hidden="true">
-    <div class="s-modal--dialog js-modal-dialog" role="document">
+    <div class="s-modal--dialog s-modal__md js-modal-dialog" role="document">
         <div class="grid fd-column jc-spacebetween s-modal--content js-example-modal-content">
-            <div class="grid jc-spacebetween s-modal--header">
-                <h1 class="grid--cell fl1 s-modal--title" id="modal-title">Example Title</h1>
+            <div class="grid--cell s-modal--header">
+                <h1 class="s-modal--title" id="modal-title">Example Title</h1>
             </div>
             <div class="grid--cell s-modal--body">
-                <p class="s-modal--description" id="modal-description">Nullam ornare lectus vitae lacus sagittis, at sodales leo viverra. Suspendisse nec nulla dignissim elit varius tempus. Cras viverra neque at imperdiet vehicula. Curabitur condimentum id dolor vitae ultrices. Pellentesque scelerisque nunc sit amet leo fringilla bibendum. Etiam feugiat imperdiet mi, eu blandit arcu cursus a. Pellentesque cursus massa id dolor ullamcorper, at condimentum nunc ultrices. Mauris malesuada nisi a euismod finibus. Aliquam ante leo, euismod et risus eu, cursus vehicula est. Aenean congue justo et diam egestas ullamcorper. In hac habitasse platea dictumst. Mauris eget aliquam odio. Mauris venenatis tristique dolor, sit amet fringilla mauris varius eu. Aliquam euismod iaculis ipsum, gravida sagittis massa efficitur sed. Proin vitae euismod sem. In mattis, nibh non pulvinar maximus, neque orci cursus ligula, et euismod tellus leo ut augue.</p>
+                <p class="s-modal--description" id="modal-description">Nullam ornare lectus vitae lacus sagittis, at sodales leo viverra. Suspendisse nec nulla dignissim elit varius tempus. Cras viverra neque at imperdiet vehicula. Curabitur condimentum id dolor vitae ultrices. Pellentesque scelerisque nunc sit amet leo fringilla bibendum. Etiam feugiat imperdiet mi, eu blandit arcu cursus a. Pellentesque cursus massa id dolor ullamcorper, at condimentum nunc ultrices.</p>
+                <p class="s-modal--description">Mauris malesuada nisi a euismod finibus. Aliquam ante leo, euismod et risus eu, cursus vehicula est. Aenean congue justo et diam egestas ullamcorper. In hac habitasse platea dictumst. Mauris eget aliquam odio. Mauris venenatis tristique dolor, sit amet fringilla mauris varius eu. Aliquam euismod iaculis ipsum, gravida sagittis massa efficitur sed. Proin vitae euismod sem. In mattis, nibh non pulvinar maximus, neque orci cursus ligula, et euismod tellus leo ut augue.</p>
                 <div class="grid fd-column gs4 gsy">
                     <label class="grid--cell s-label" for="example-input">What's your name?</label>
                     <input class="grid--cell s-input" id="example-input" type="text" placeholder="Joe, perhaps?">
                 </div>
             </div>
-            <div class="grid--cell" style="margin-top: auto;">
+            <div class="grid--cell mt-auto">
                 <div class="grid gs8 gsx s-modal--footer">
                     <button class="grid--cell s-btn s-btn__primary js-modal-primary-btn" type="button">Save changes</button>
                     <button class="grid--cell s-btn js-modal-cancel-btn" data-dismiss="s-modal" type="button">Cancel</button>
                 </div>
             </div>
-            <a class="ps-absolute r0 t0 p12 s-btn js-modal-close" href="#" data-dismiss="s-modal" aria-label="Close"><svg aria-hidden="true" class="svg-icon iconClearSm m0" width="14" height="14" viewBox="0 0 14 14"><path d="M12 3.41L10.59 2 7 5.59 3.41 2 2 3.41 5.59 7 2 10.59 3.41 12 7 8.41 10.59 12 12 10.59 8.41 7z"/></svg></a>
+            <a class="s-modal--close s-btn js-modal-close" href="#" data-dismiss="s-modal" aria-label="Close"><svg aria-hidden="true" class="svg-icon iconClearSm m0" width="14" height="14" viewBox="0 0 14 14"><path d="M12 3.41L10.59 2 7 5.59 3.41 2 2 3.41 5.59 7 2 10.59 3.41 12 7 8.41 10.59 12 12 10.59 8.41 7z"/></svg></a>
         </div>
     </div>
 </aside>
 
 <!-- And now for some documentation -->
 <section class="stacks-section">
-    <h2 class="grid jc-spacebetween ai-center stacks-title">General Usage</h2>
-    <p class="stacks-p _section">Modal windows intended to quickly grab the user's attention. Complicated interfaces or decisions are better served by their own page.</p>
-
-    <h3 class="grid jc-spacebetween ai-center stacks-title _subtitle">Behavior</h3>
-    <p class="stacks-p _section">
-        Since Stacks’s scope is limited to <a href="{{ "/guidelines/using-stacks#toc-javascript" | relative_url }}">CSS and HTML</a>, the JS found on these pages is intended to communicate behavior only.
-    </p>
-    <p class="stacks-p _section">
-        Modals should be presented with a semi-transparent blocker to focus the user’s attention on the task being presented. Practically, on Stack Overflow, most pages will have a <code class="stacks-code">div</code> with the class <code class="stacks-code">.s-modal-overlay</code> somewhere in the view. You’ll need to include one if it’s not. The modal experience is not complete without the overlay. In addition, our modals are not feature-complete unless the following behaviors are enabled:
-    </p>
-    <ol class="stacks-p _section">
-        <li>The user can close the modal dialog with their <code class="stacks-code">ESC</code> key.</li>
-        <li>The user can click outside the dialog to close it.</li>
-    </ol>
-    <div class="grid gs4 gsx">
-        <button class="grid--cell s-btn s-btn__filled js-modal-open" data-toggle="s-modal" data-target="#modal-base">Launch confirmation modal</button>
-        <button class="grid--cell s-btn s-btn__filled js-modal-open" data-toggle="s-modal" data-target="#modal-confirm">Launch confirmation modal</button>
-    </div>
-</section>
-
-<section class="stacks-section">
-    <h2 class="grid jc-spacebetween ai-center stacks-title">Base Modal</h2>
+    <h2 class="grid jc-spacebetween ai-center stacks-title">Example</h2>
     <div class="stacks-code-preview">
 {% highlight html linenos %}
 <aside class="s-modal js-modal-overlay js-modal-close" id="modal-base" tabindex="-1" role="dialog" aria-labelledby="modal-title" aria-hidden="true">
@@ -67,137 +46,93 @@ description: Modal dialogs are used to display content that temporarily blocks i
                 …
             </div>
             <div class="s-modal--footer">
-                <button class="s-btn s-btn__primary js-modal-primary-btn" type="button">Save changes</button>
-                <button class="s-btn js-modal-cancel-btn" data-dismiss="s-modal" type="button">Cancel</button>
+                <button class="s-btn s-btn__primary js-modal-primary-btn" type="button">…</button>
+                <button class="s-btn js-modal-cancel-btn" data-dismiss="s-modal" type="button">…</button>
             </div>
         </div>
     </div>
 </aside>
 {% endhighlight %}
         <div class="-preview ps-relative grid jc-center" style="height: 320px;">
-            <aside class="s-modal js-modal-overlay js-modal-close" id="modal-base" tabindex="-1" role="dialog" aria-labelledby="modal-title" aria-hidden="true" style="position: absolute; z-index: initial; opacity: initial; visibility: initial; margin: -1px; display: flex; justify-content: center; align-items: center;">
-                <div class="s-modal--dialog js-modal-dialog" role="document" style="position: absolute; z-index: initial; opacity: initial; visibility: initial; max-height: 20rem;">
-                    <div class="s-modal--content js-example-modal-content">
-                        <div class="grid gs16 gsy fd-column">
-                            <div class="grid jc-spacebetween s-modal--header">
-                                <h1 class="grid--cell fl1 s-modal--title" id="modal-title">Example Title</h1>
-                                <a class="s-btn js-modal-close" href="#" data-dismiss="s-modal" aria-label="Close"><svg aria-hidden="true" class="svg-icon iconClearSm" width="14" height="14" viewBox="0 0 14 14"><path d="M12 3.41L10.59 2 7 5.59 3.41 2 2 3.41 5.59 7 2 10.59 3.41 12 7 8.41 10.59 12 12 10.59 8.41 7z"/></svg></a>
-                            </div>
-                            <div class="grid--cell fl1 s-modal--body">
-                                <p class="s-modal--description">Nullam ornare lectus vitae lacus sagittis, at sodales leo viverra. Suspendisse nec nulla dignissim elit varius tempus. Cras viverra neque at imperdiet vehicula. Curabitur condimentum id dolor vitae ultrices. Pellentesque scelerisque nunc sit amet leo fringilla bibendum. Etiam feugiat imperdiet mi, eu blandit arcu cursus a. Pellentesque cursus massa id dolor ullamcorper, at condimentum nunc ultrices. Mauris malesuada nisi a euismod finibus.</p>
-                            </div>
+            <aside class="s-modal" id="modal-base" tabindex="0" role="dialog" aria-labelledby="modal-title" aria-describedby="modal-description" aria-hidden="false" style="position: absolute; z-index: initial; opacity: initial; visibility: initial; margin: -1px; display: flex; justify-content: center; align-items: center;">
+                <div class="s-modal--dialog s-modal__md" role="document" style="position: absolute; z-index: initial; opacity: initial; visibility: initial; max-height: 20rem;">
+                    <div class="grid fd-column jc-spacebetween s-modal--content js-example-modal-content">
+                        <div class="grid--cell s-modal--header">
+                            <h1 class="s-modal--title" id="modal-title">Example Title</h1>
+                        </div>
+                        <div class="grid--cell s-modal--body">
+                            <p class="s-modal--description" id="modal-description">Nullam ornare lectus vitae lacus sagittis, at sodales leo viverra. Suspendisse nec nulla dignissim elit varius tempus. Cras viverra neque at imperdiet vehicula. Curabitur condimentum id dolor vitae ultrices. Pellentesque scelerisque nunc sit amet leo fringilla bibendum. Etiam feugiat imperdiet mi, eu blandit arcu cursus a.</p>
+                        </div>
+                        <div class="grid--cell mt-auto">
                             <div class="grid gs8 gsx s-modal--footer">
                                 <button class="grid--cell s-btn s-btn__primary js-modal-primary-btn" type="button">Save changes</button>
                                 <button class="grid--cell s-btn js-modal-cancel-btn" data-dismiss="s-modal" type="button">Cancel</button>
                             </div>
                         </div>
+                        <a class="s-modal--close s-btn js-modal-close" href="#" data-dismiss="s-modal" aria-label="Close"><svg aria-hidden="true" class="svg-icon iconClearSm m0" width="14" height="14" viewBox="0 0 14 14"><path d="M12 3.41L10.59 2 7 5.59 3.41 2 2 3.41 5.59 7 2 10.59 3.41 12 7 8.41 10.59 12 12 10.59 8.41 7z"/></svg></a>
                     </div>
                 </div>
             </aside>
         </div>
     </div>
 </section>
+<table cellspacing="0" class="s-table">
+    <thead>
+        <tr>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+</table>
 
 <section class="stacks-section">
-    <h2 class="grid jc-spacebetween ai-center stacks-title">Confirmations</h2>
-    <h3 class="grid jc-spacebetween ai-center stacks-title _subtitle">Concise</h3>
-    <p class="stacks-p _section">This modal is used to confirm a user’s action. It is intended to add friction to an interaction, only confirming the action if the user explicitly presses “confirm”. In this example, we present the modal to confirm they’re posting a question on public Stack Overflow.</p>
-    <div class="stacks-code-preview">
-{% highlight html linenos %}
-<div class="s-modal-overlay"></div>
-<aside class="s-modal">
-    <div class="s-modal--body s-modal__confirmation">
-        <h1 class="s-modal--title">…</h1>
-        <div class="grid gs8 gsx jc-center">
-            <button class="grid--cell s-btn s-btn__primary">…</button>
-            <button class="grid--cell s-btn">…</button>
-        </div>
-    </div>
-</aside>
-{% endhighlight %}
-        <div class="-preview ps-relative grid jc-center" style="height: 320px;">
-            <div class="s-modal-overlay ps-absolute bbr-sm" style="position: absolute; z-index: initial; opacity: initial; visibility: initial; margin: -1px; display: flex; justify-content: center; align-items: center;"></div>
-            <aside class="s-modal grid--cell ps-relative my24 mx0" style="position: relative; z-index: initial; opacity: initial; visibility: initial; top: unset; left: unset;">
-                <div class="s-modal--body s-modal__confirmation">
-                    <h1 class="s-modal--title mb8">Are you sure you want to ask this question publicly?</h1>
-                    <div class="grid gs8 gsx jc-center">
-                        <button class="grid--cell s-btn s-btn__primary">Publish to public</button>
-                        <button class="grid--cell s-btn">Cancel</button>
-                    </div>
-                </div>
-            </aside>
-        </div>
-    </div>
+    <h2 class="grid jc-spacebetween ai-center stacks-title">Best practices</h2>
+    <p class="stacks-p _section">Modals should:</p>
+    <ul class="stacks-list _section">
+        <li>Be used for tasks which require an explicit action</li>
+        <li>Be used for focused, specific tasks</li>
+        <li>Don't include more than one primary call to action</li>
+    </ul>
+</section>
 
-    <h3 class="grid jc-spacebetween ai-center stacks-title _subtitle">With Description</h3>
-    <p class="stacks-p _section">If you need to add more detail to your modal, you can add an additional description.</p>
-    <div class="stacks-code-preview">
-{% highlight html linenos %}
-<div class="s-modal-overlay"></div>
-<aside class="s-modal">
-    <div class="s-modal--body s-modal__confirmation">
-        <h1 class="s-modal--title">…</h1>
-        <p class="s-modal--description">…</p>
-        <div class="grid gs8 gsx jc-center">
-            <button class="grid--cell s-btn s-btn__primary">…</button>
-            <button class="grid--cell s-btn">…</button>
-        </div>
-    </div>
-</aside>
-{% endhighlight %}
-        <div class="-preview ps-relative grid jc-center" style="height: 320px;">
+<section class="stacks-section">
+    <h2 class="grid jc-spacebetween ai-center stacks-title">Content guidelines</h2>
+    <h3 class="grid jc-spacebetween ai-center stacks-title _subtitle">Title</h3>
+    <p class="stacks-p _section">Titles should be:</p>
+    <ul class="stacks-list _section">
+        <li><strong>Informative:</strong> the title should label the modal's content.</li>
+        <li><strong>Concise:</strong> say in one word what you might say in three.</li>
+        <li><strong>Scannable:</strong> keep titles to a single sentence, avoid punctuation, and avoid articles (i.e. the, a, an) to keep content short.</li>
+        <li>Write in sentence case (first word capitalize, the rest is lowercase).</li>
+    </ul>
+    <h3 class="grid jc-spacebetween ai-center stacks-title _subtitle">Content</h3>
+    <p class="stacks-p _section">Content should be:</p>
+    <ul class="stacks-list _section">
+        <li><strong>Actionable:</strong> start sentences with imperative verbs to inform what actions are available. Don't use permissive language such as "you can".</li>
+        <li><strong>Structured:</strong> Don't bury important information. Put it first. Users will read the first part and begin skimming if they can't locate what they need.</li>
+        <li><strong>Clear:</strong> when something is required, be direct to help users understand what they need to do in order to accomplish their task.</li>
+    </ul>
+    <h3 class="grid jc-spacebetween ai-center stacks-title _subtitle">Actions</h3>
+    <p class="stacks-p _section">Actions should be:</p>
+    <ul class="stacks-list _section">
+        <li><strong>Clear:</strong> users should understand and anticipate what will happen when they engage with an action. Don't mislead or create confusion by mislabeling a button.</li>
+        <li><strong>Actionable:</strong> Lead with a strong verb that describes and encourages the action. To provide enough context, usually you will need to use a <code class="stacks-code">[verb] + [noun]</code> combination. In some cases, a strong verb label can be enough (e.g. "Save", "Cancel", "Close", etc).</li>
+        <li><strong>Concise:</strong> keep labels scannable by avoiding unnecessary words and articles.</li>
+    </ul>
+</section>
 
-        </div>
-    </div>
-
-    <h3 class="grid jc-spacebetween ai-center stacks-title _subtitle">Preference confirmation</h3>
-    <p class="stacks-p _section">To add clarity to a user’s action, you can present a user multiple choices in a modal confirmation. In low-risk situations, you don’t need to have a confirm or cancel button. Choosing a preference will save and close the modal.</p>
-    <div class="stacks-code-preview">
-{% highlight html linenos %}
-<div class="s-modal-overlay"></div>
-<aside class="s-modal">
-    <div class="s-modal--body s-modal__confirmation">
-        <h1 class="s-modal--title">…</h1>
-        <label for="sample-group-ex3" class="s-modal--description d-block">Additional description</label>
-        <div class="grid jc-center s-option-toggle s-option-toggle__switch">
-            <div class="grid s-option-toggle--option">
-                <input class="s-radio" type="radio" name="sample-group-ex3" id="optionA-ex3" />
-                <label class="grid--cell s-label" for="optionA-ex3">Option 1</label>
-            </div>
-            <div class="grid s-option-toggle--option">
-                <input class="s-radio" type="radio" name="sample-group-ex3" id="optionB-ex3" />
-                <label class="grid--cell s-label" for="optionB-ex3">Option 2</label>
-            </div>
-            <div class="grid s-option-toggle--option">
-                <input class="s-radio" type="radio" name="sample-group-ex3" id="optionC-ex3" checked />
-                <label class="grid--cell s-label s-label__off" for="optionC-ex3">Off</label>
-            </div>
-        </div>
-    </div>
-</aside>
-{% endhighlight %}
-        <div class="-preview ps-relative grid jc-center">
-            <div class="s-modal-overlay ps-absolute bbr-sm" style="transform: initial; z-index: initial; opacity: initial; visibility: initial; margin: -1px;"></div>
-            <aside class="s-modal grid--cell ps-relative my24 mx0" style="transform: initial; z-index: initial; opacity: initial; visibility: initial;">
-                <div class="s-modal--body s-modal__confirmation">
-                    <h1 class="s-modal--title mb8">Notification Frequency</h1>
-                    <label for="sample-group-ex3" class="s-modal--description d-block">How often would you like to receive notifications for objective-c?</label>
-                    <div class="grid jc-center s-option-toggle s-option-toggle__switch">
-                        <div class="grid s-option-toggle--option">
-                            <input class="s-radio" type="radio" name="sample-group-ex3" id="optionA-ex3" />
-                            <label class="grid--cell s-label" for="optionA-ex3">Weekly</label>
-                        </div>
-                        <div class="grid s-option-toggle--option">
-                            <input class="s-radio" type="radio" name="sample-group-ex3" id="optionB-ex3" />
-                            <label class="grid--cell s-label" for="optionB-ex3">Daily</label>
-                        </div>
-                        <div class="grid s-option-toggle--option">
-                            <input class="s-radio" type="radio" name="sample-group-ex3" id="optionC-ex3" checked />
-                            <label class="grid--cell s-label s-label__off" for="optionC-ex3">Off</label>
-                        </div>
-                    </div>
-                </div>
-            </aside>
-        </div>
+<section>
+    <h3 class="grid jc-spacebetween ai-center stacks-title _subtitle">Behavior</h3>
+    <p class="stacks-p _section">
+        Since Stacks’s scope is limited to <a href="{{ "/guidelines/using-stacks#toc-javascript" | relative_url }}">CSS and HTML</a>, the JS found on these pages is intended to communicate behavior only.
+    </p>
+    <p class="stacks-p _section">
+        Modals should be presented with a semi-transparent blocker to focus the user’s attention on the task being presented. Practically, on Stack Overflow, most pages will have a <code class="stacks-code">div</code> with the class <code class="stacks-code">.s-modal-overlay</code> somewhere in the view. You’ll need to include one if it’s not. The modal experience is not complete without the overlay. In addition, our modals are not feature-complete unless the following behaviors are enabled:
+    </p>
+    <ol class="stacks-p _section">
+        <li>The user can close the modal dialog with their <code class="stacks-code">ESC</code> key.</li>
+        <li>The user can click outside the dialog to close it.</li>
+    </ol>
+    <div class="grid gs4 gsx">
+        <button class="grid--cell s-btn s-btn__filled js-modal-open" data-toggle="s-modal" data-target="#modal-base">Launch example modal</button>
     </div>
 </section>

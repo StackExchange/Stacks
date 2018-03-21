@@ -14,25 +14,32 @@ $(document).ready(function() {
         var modalTarget = obj.attr("data-target");
 
         //  Clear all open modals just in case
-        modal.removeClass("is-visible");
+        modal.attr({
+            "aria-hidden": "true"
+        });
 
         //  Make the main page non-scrollable and hidden to screen readers
-        body.addClass("overflow-hidden").attr("aria-hidden", "true");
+        body.addClass("overflow-hidden").attr({
+            "aria-hidden": "true"
+        });
 
         //  Set modal focus
         //  Show modal and viewable by screen readers
         $(modalTarget).on("focusin", function() {
             $(".js-modal-dialog *").filter(focusSelectors).first().focus();
+        }).attr({
+            "aria-hidden": "false"
         });
-        $(modalTarget).addClass("is-visible").attr("aria-hidden", "false");
     }
 
     function closeModal() {
         //  Reset everything
-        body.removeClass("overflow-hidden").attr("aria-hidden", "false");
-        $(".js-modal-overlay").removeClass("is-visible").attr("aria-hidden", "true");
-
-        //restoreInitialFocus();
+        body.removeClass("overflow-hidden").attr({
+            "aria-hidden": "false"
+        });
+        $(".js-modal-overlay").attr({
+            "aria-hidden": "true"
+        });
     }
 
 
