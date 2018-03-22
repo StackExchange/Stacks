@@ -18,7 +18,7 @@ $(document).ready(function() {
             "tabindex": "-1"
         });
 
-        //  Make the main page non-scrollable and hidden to screen readers
+        //  Make the main page hidden to screen readers
         body.attr({
             "aria-hidden": "true",
             "tabindex": "-1"
