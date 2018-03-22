@@ -649,12 +649,13 @@
 //  --  Next the actual loading spinner
 .s-btn {
     &.is-loading {
-        padding-left: @su24 + @su8;
+        padding-left: 2.2em;
 
         &:before {
             content: "";
             position: absolute;
             top: calc(~"50% - @{su8}");
+            margin-left: -1.65em;
             width: @su16;
             height: @su16;
             margin-left: -(@su24 - @su2);
@@ -673,20 +674,24 @@
         }
     }
 
+    &.s-btn__warning.is-loading:before {
+        border-color: fade(@btn-warning-bgc,25%);
+        border-left-color: fade(@btn-warning-bgc,75%);
+    }
+    &.s-btn__confirm.is-loading:before {
+        border-color: fade(@btn-confirm-bgc,40%);
+        border-left-color: fade(@btn-confirm-bgc,100%);
+    }
+
     &.s-btn__primary.is-loading:before,
     &.s-btn__warning.s-btn__filled.is-loading:before,
     &.s-btn__confirm.s-btn__filled.is-loading:before {
         border-color: fade(@white,25%);
         border-left-color: @white;
     }
-
-    &.s-btn__warning:not(.s-btn__filled).is-loading:before {
-        border-color: fade(@btn-warning-bgc,25%);
-        border-left-color: fade(@btn-warning-bgc,75%);
-    }
-    &.s-btn__confirm:not(.s-btn__filled).is-loading:before {
-        border-color: fade(@btn-confirm-bgc,40%);
-        border-left-color: fade(@btn-confirm-bgc,100%);
+    &.s-btn__muted.is-loading:before {
+        border-color: fade(@black-900,25%);
+        border-left-color: fade(@black-900,75%);
     }
 }
 
