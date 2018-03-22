@@ -198,12 +198,20 @@
 .btn-fc(@fc) {
     color: @fc;
 
+    &.s-btn__dropdown:after {
+        border-color: currentColor transparent;
+    }
+
     & when (@fc = #FFFFFF) and (alpha(@fc) = 1) {
         &:hover,
         &:active,
         &:focus,
         &.is-selected {
             color: @fc;
+
+            &.s-btn__dropdown:after {
+                border-color: currentColor transparent;
+            }
         }
     }
 
@@ -230,7 +238,7 @@
     }
 
     &[disabled] {
-        color: fade(desaturate(@fc,90%),80%)
+        color: fade(desaturate(@fc,90%),80%);
     }
 }
 
@@ -276,29 +284,99 @@
         pointer-events: none;
     }
 
+    &.s-btn__dropdown {
+        padding-right: 2.35em;
+
+        &:after {
+            content: "";
+            position: absolute;
+            top: calc(~"50% - 2px");
+            right: 1em;
+            pointer-events: none;
+            border-style: solid;
+            border-width: @su4;
+            border-top-width: @su4;
+            border-bottom-width: 0;
+            z-index: @zi-active;
+        }
+    }
+
     &.s-btn__xs {
         font-size: @fs-fine;
         padding: 0.5em 0.6em;
+
+        &.s-btn__dropdown {
+            padding-right: 1.5em;
+
+            &:after {
+                top: calc(~"50% - 2px");
+                right: 0.6em;
+                border-width: @su4 - 1px;
+                border-top-width: @su4 - 1px;
+                border-bottom-width: 0;
+            }
+        }
     }
 
     &.s-btn__sm {
         font-size: @fs-caption;
         padding: 0.6em 0.8em;
+
+        &.s-btn__dropdown {
+            padding-right: 2.05em;
+
+            &:after {
+                right: 0.8em;
+            }
+        }
     }
 
     &.s-btn__md {
         font-size: @fs-body3;
         border-radius: @btn-br + 1;
+
+        &.s-btn__dropdown {
+            padding-right: 2.1em;
+
+            &:after {
+                top: calc(~"50% - 2px");
+                border-width: @su4 + 1px;
+                border-top-width: @su4 + 1px;
+                border-bottom-width: 0;
+            }
+        }
     }
 
     &.s-btn__lg {
         font-size: @fs-title;
         border-radius: @btn-br + 1;
+
+        &.s-btn__dropdown {
+            padding-right: 2.15em;
+
+            &:after {
+                top: calc(~"50% - 2px");
+                border-width: @su4 + @su2;
+                border-top-width: @su4 + @su2;
+                border-bottom-width: 0;
+            }
+        }
     }
 
     &.s-btn__xl {
         font-size: @fs-headline1;
         border-radius: @btn-br + @br-sm;
+
+        &.s-btn__dropdown {
+            padding-right: 2em;
+
+            &:after {
+                top: calc(~"50% - 4px");
+                border-width: @su4 + 3px;
+                border-top-width: @su4 + 3px;
+                border-bottom-width: 0;
+            }
+        }
     }
 
     //  -- BUTTONS WITH ICONS
