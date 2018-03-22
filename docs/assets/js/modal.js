@@ -20,7 +20,7 @@ $(document).ready(function() {
         });
 
         //  Make the main page non-scrollable and hidden to screen readers
-        body.addClass("overflow-hidden").attr({
+        body.attr({
             "aria-hidden": "true",
             "tabindex": "-1"
         });
@@ -35,7 +35,7 @@ $(document).ready(function() {
 
     function closeModal() {
         //  Reset everything
-        body.removeClass("overflow-hidden").attr({
+        body.attr({
             "aria-hidden": "false",
             "tabindex": "0"
         });
