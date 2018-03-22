@@ -1,5 +1,4 @@
 $(document).ready(function() {
-    var focusSelectors    = "a[href], area[href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), button:not([disabled]), iframe, object, embed, *[tabindex], *[contenteditable]";
     var modal             = $(".js-modal-overlay");
     var body              = $("body");
 
