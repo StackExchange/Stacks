@@ -13,7 +13,7 @@
 //  ============================================================================
 //  $   BASE STYLE
 //  ----------------------------------------------------------------------------
-.s-modal-overlay {
+.s-modal {
     position: fixed;
 
     // This fills the entire viewport without having to worry about size.
@@ -23,35 +23,8 @@
     bottom: 0;
     background-color: fade(@black-900, 50%);
 
-    // Set the off-state properties to be animated
-    visibility: hidden;
-    z-index: @zi-hide;
-    opacity: 0;
-    will-change: visibility, z-index, opacity; // Not supported in IE11 / Edge
-    overflow: hidden;
-    transition: opacity 100ms @te-smooth 50ms, z-index 0s 200ms, visibility 0s 200ms; // Transition out
-
-    &.is-visible {
-        visibility: visible;
-        transition: opacity 150ms @te-smooth 0s; // Transition in
-        opacity: 1;
-        z-index: @zi-modals-background;
-    }
-}
-
-.s-modal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
     -webkit-backface-visibility: hidden;
-    backface-visibility: hidden;
+            backface-visibility: hidden;
 
     // Set the off-state properties to be animated
     visibility: hidden;
@@ -60,59 +33,97 @@
     will-change: visibility, z-index, opacity; // Not supported in IE11 / Edge
     transition: opacity 100ms @te-smooth 0s, z-index 0s 100ms, visibility 0s 100ms; // Transition out
 
-    &.is-visible {
+    &[aria-hidden="false"],
+    &[aria-hidden="false"] .s-modal--dialog {
         visibility: visible;
-        transition: opacity 100ms @te-smooth 0s; // Transition in
+        transition: opacity 100ms @te-smooth 10ms, z-index 0s 0s, visibility 0s 0s; // Transition in
         opacity: 1;
         z-index: @zi-modals;
     }
 }
 
-.s-modal--body {
-    background-color: @white;
+.s-modal--dialog {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    max-height: 40rem;
     border-radius: @br-lg;
-    padding: @su24;
-    text-align: left;
+    background-color: @white;
     box-shadow: @bs-lg;
+    transform: translate(-50%, -50%);
+
+    -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+
+    // Set the off-state properties to be animated
+    visibility: hidden;
+    z-index: @zi-hide; // Make sure it's also below everything so we can't interact with it.
+    opacity: 0;
+    will-change: visibility, z-index, opacity; // Not supported in IE11 / Edge
+    transition: opacity 200ms @te-smooth 0s, z-index 0s 100ms, visibility 0s 100ms; // Transition out
+}
+
+//  [1] To override .s-btn class attributes
+.s-modal--close {
+    position: absolute !important; // [1]
+    top: @su8;
+    right: @su8;
+    padding: @su12 !important; // [1]
 }
 
 
 //  ============================================================================
-//  $   LAYOUT VARIATIONS
+//  $   DIALOG PIECES
 //  ----------------------------------------------------------------------------
-.s-modal-overlay__invert {
-    background-color: fade(@white,90%);
+.s-modal--content {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 
-.s-modal__transform {
-    // Set the off-state properties to be animated
-    transition: transform 150ms @te-smooth;
-    transform: scale(0.75);
-    will-change: transform;
-
-    .s-modal.is-visible & {
-        transition: transform 250ms @te-smooth;
-        transform: scale(1);
-    }
+.s-modal--header,
+.s-modal--body,
+.s-modal--footer {
+    padding: @su12 @su24;
 }
 
-//  $$  Confirmation
+.s-modal--header {
+    padding-top: @su24;
+}
+
+.s-modal--footer {
+    padding-bottom: @su24;
+}
+
+
+//  ============================================================================
+//  $   MODAL WIDTHS
 //  ----------------------------------------------------------------------------
-.s-modal--body.s-modal__confirmation {
-    text-align: center;
-    max-width: 24rem;
+.s-modal__xs { max-width: (unit(@su24) * 1rem); }
+.s-modal__sm { max-width: (unit(@su32) * 1rem); }
+.s-modal__md { max-width: (unit(@su48) * 1rem); }
+.s-modal__lg { max-width: (unit(@su64) * 1rem); }
+.s-modal__xl { max-width: (unit(@su24 * 3) * 1rem); }
+.s-modal__full {
+    max-width: calc(~"100% - @{su48}");
+    max-height: calc(~"100% - @{su48}");
 }
+
 
 //  ============================================================================
 //  $   SPECIFIC TYPE STYLES
 //  ----------------------------------------------------------------------------
 .s-modal--title {
-    margin-bottom: 0.761904762em;
-    .mx-fs(@fs-title);
+    margin-bottom: 0;
+    .mx-fs(@fs-headline1);
     color: @fc-dark;
 }
 
 .s-modal--description {
     margin-bottom: 1.142857143em;
-    font-size: @fs-body2;
+    .mx-fs(@fs-body2);
 }

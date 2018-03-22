@@ -33,6 +33,7 @@
 //  $   TAB ITEM
 //      [1] Position is needed so we can position the :after pseudo element
 //      [2] Instead of using px, use em so the padding adjusts with the font-size.
+//      [3] Fading the background color instead of transparent for smooth transitions.
 //  ----------------------------------------------------------------------------
 .s-tabs--item {
     position: relative; // [1]
@@ -41,7 +42,7 @@
     padding: 1.1em 1em 1em; // [2]
     border: 1px solid transparent;
     border-radius: @br-md @br-md 0 0;
-    background-color: fade(@tabs-background,0%);
+    background-color: fade(@tabs-background,0%); // [3]
     color: @tabs-color;
     transition: all 100ms @te-smooth;
     cursor: pointer;
