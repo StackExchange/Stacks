@@ -52,7 +52,9 @@ description: Modals are dialog overlays that prevent the user from interacting w
                 <button class="s-btn s-btn__primary js-modal-primary-btn" type="button">…</button>
                 <button class="s-btn js-modal-cancel-btn" type="button">…</button>
             </div>
-            <a class="s-modal--close s-btn s-btn__muted js-modal-close" href="#" aria-label="Close"><svg aria-hidden="true" class="svg-icon iconClearSm m0" width="14" height="14" viewBox="0 0 14 14"><path d="M12 3.41L10.59 2 7 5.59 3.41 2 2 3.41 5.59 7 2 10.59 3.41 12 7 8.41 10.59 12 12 10.59 8.41 7z"/></svg></a>
+            <a class="s-modal--close s-btn s-btn__muted js-modal-close" href="#" aria-label="Close">
+                @Svg.ClearSm.With("m0")
+            </a>
         </div>
     </div>
 </aside>
@@ -91,7 +93,7 @@ description: Modals are dialog overlays that prevent the user from interacting w
             <tr>
                 <td><code class="stacks-code">aria-describedby="[id]"</code></td>
                 <td><code class="stacks-code">.s-modal</code></td>
-                <td>Supply the modal's summary copy id. Assistive technologies (such as screen readers) use this to attribute to associate static text with a widget, element groups, headings, definitions, etc. (<a href="https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Techniques/Using_the_aria-describedby_attribute" target="_blank">Source</a>)</td>
+                <td>Supply the modal’s summary copy id. Assistive technologies (such as screen readers) use this to attribute to associate static text with a widget, element groups, headings, definitions, etc. (<a href="https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Techniques/Using_the_aria-describedby_attribute" target="_blank">Source</a>)</td>
             </tr>
             <tr>
                 <td><code class="stacks-code">aria-hidden="[state]"</code></td>
@@ -106,7 +108,7 @@ description: Modals are dialog overlays that prevent the user from interacting w
             <tr>
                 <td><code class="stacks-code">aria-labelledby="[id]"</code></td>
                 <td><code class="stacks-code">.s-modal</code></td>
-                <td>Supply the modal's title id here. Assistive technologies (such as screen readers) use this to attribute to catalog the document objects correctly. (<a href="https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Techniques/Using_the_aria-labelledby_attribute" target="_blank">Source</a>)</td>
+                <td>Supply the modal’s title id here. Assistive technologies (such as screen readers) use this to attribute to catalog the document objects correctly. (<a href="https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Techniques/Using_the_aria-labelledby_attribute" target="_blank">Source</a>)</td>
             </tr>
             <tr>
                 <td><code class="stacks-code">role="dialog"</code></td>
@@ -181,7 +183,7 @@ description: Modals are dialog overlays that prevent the user from interacting w
     <ul class="stacks-list _section">
         <li>Be used for tasks which require an explicit action</li>
         <li>Be used for focused, specific tasks</li>
-        <li>Don't include more than one primary call to action</li>
+        <li>Not include more than one primary call to action</li>
     </ul>
 </section>
 
@@ -190,7 +192,7 @@ description: Modals are dialog overlays that prevent the user from interacting w
     <h3 class="grid jc-spacebetween ai-center mb4 stacks-title _subtitle">Title</h3>
     <p class="stacks-p _section">Titles should be:</p>
     <ul class="stacks-list _section">
-        <li><strong>Informative:</strong> the title should label the modal's content.</li>
+        <li><strong>Informative:</strong> the title should label the modal’s content.</li>
         <li><strong>Concise:</strong> say in one word what you might say in three.</li>
         <li><strong>Scannable:</strong> keep titles to a single sentence, avoid punctuation, and avoid articles (i.e. the, a, an) to keep content short.</li>
         <li>Write in sentence case (first word capitalize, the rest is lowercase).</li>
@@ -214,8 +216,8 @@ description: Modals are dialog overlays that prevent the user from interacting w
     <h3 class="grid jc-spacebetween ai-center mb4 stacks-title _subtitle">Content</h3>
     <p class="stacks-p _section">Content should be:</p>
     <ul class="stacks-list _section">
-        <li><strong>Actionable:</strong> start sentences with imperative verbs to inform what actions are available. Don't use permissive language such as "you can".</li>
-        <li><strong>Structured:</strong> Don't bury important information. Put it first. Users will read the first part and begin skimming if they can't locate what they need.</li>
+        <li><strong>Actionable:</strong> start sentences with imperative verbs to inform what actions are available. Don’t use permissive language such as “you can”.</li>
+        <li><strong>Structured:</strong> don’t bury important information. Put it first. Users will read the first part and begin skimming if they can't locate what they need.</li>
         <li><strong>Clear:</strong> when something is required, be direct to help users understand what they need to do in order to accomplish their task.</li>
     </ul>
     <div class="mb32">
@@ -236,7 +238,7 @@ description: Modals are dialog overlays that prevent the user from interacting w
                 <div class="grid gs4 gsy fd-column">
                     <div class="grid pb8 bb bc-black-3">
                         <svg aria-hidden="true" class="grid--cell1 mt2 mr8 fc-red-400 svg-icon iconCheckmark" width="18" height="18" viewBox="0 0 18 18"><path d="M7.95 2.71c.58-.94 1.52-.94 2.1 0l7.69 12.58c.58.94.15 1.71-.96 1.71H1.22C.1 17-.32 16.23.26 15.29L7.96 2.7zM8 6v5h2V6H8zm0 7v2h2v-2H8z"/></svg>
-                        <span class="grid--cell11">It's okay to send me notifications about this team to this email address.</span>
+                        <span class="grid--cell11">It’s okay to send me notifications about this team to this email address.</span>
                     </div>
                     <div class="grid pt8">
                         <svg aria-hidden="true" class="grid--cell1 mt2 mr8 fc-red-400 svg-icon iconCheckmark" width="18" height="18" viewBox="0 0 18 18"><path d="M7.95 2.71c.58-.94 1.52-.94 2.1 0l7.69 12.58c.58.94.15 1.71-.96 1.71H1.22C.1 17-.32 16.23.26 15.29L7.96 2.7zM8 6v5h2V6H8zm0 7v2h2v-2H8z"/></svg>
@@ -249,8 +251,8 @@ description: Modals are dialog overlays that prevent the user from interacting w
     <h3 class="grid jc-spacebetween ai-center mb4 stacks-title _subtitle">Actions</h3>
     <p class="stacks-p _section">Actions should be:</p>
     <ul class="stacks-list _section">
-        <li><strong>Clear:</strong> users should understand and anticipate what will happen when they engage with an action. Don't mislead or create confusion by mislabeling a button.</li>
-        <li><strong>Actionable:</strong> Lead with a strong verb that describes and encourages the action. To provide enough context, usually you will need to use a <code class="stacks-code">[verb] + [noun]</code> combination. In some cases, a strong verb label can be enough (e.g. "Save", "Cancel", "Close", etc).</li>
+        <li><strong>Clear:</strong> users should understand and anticipate what will happen when they engage with an action. Don’t mislead or create confusion by mislabeling a button.</li>
+        <li><strong>Actionable:</strong> lead with a strong verb that describes and encourages the action. To provide enough context, usually you will need to use a <code class="stacks-code">[verb] + [noun]</code> combination. In some cases, a strong verb label can be enough (e.g. “Save”, “Cancel”, “Close”, etc).</li>
         <li><strong>Concise:</strong> keep labels scannable by avoiding unnecessary words and articles.</li>
     </ul>
     <div class="mb32">
