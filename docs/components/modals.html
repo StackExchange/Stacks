@@ -27,28 +27,37 @@ description: Modals are dialog overlays that prevent the user from interacting w
     </div>
     <div class="stacks-code-preview">
 {% highlight html linenos %}
-<aside class="s-modal js-modal-overlay js-modal-close" id="modal-base" tabindex="-1" role="dialog" aria-labelledby="modal-title" aria-hidden="true">
-    <div class="s-modal--dialog s-modal__wmx-md s-modal__hmx-xs js-modal-dialog" role="document">
-        <div class="s-modal--content js-example-modal-content">
-            <div class="s-modal--header">
-                <h1 class="s-modal--title" id="modal-title">…</h1>
-            </div>
-            <div class="s-modal--body">
-                <p class="s-modal--description" id="modal-description">…</p>
-            </div>
-            <div class="s-modal--footer">
-                <button class="s-btn s-btn__primary js-modal-primary-btn" type="button">…</button>
-                <button class="s-btn js-modal-cancel-btn" type="button">…</button>
-            </div>
-            <a class="s-modal--close s-btn s-btn__muted js-modal-close" href="#" aria-label="Close">
-                @Svg.ClearSm.With("m0")
-            </a>
+<aside class="s-modal js-modal-overlay js-modal-close" id="modal-base" tabindex="-1" role="dialog" aria-labelledby="modal-title" aria-describedby="modal-description" aria-hidden="true">
+    <div class="s-modal--dialog js-modal-dialog" role="document">
+        <h1 class="s-modal--header" id="modal-title">…</h1>
+        <p class="s-modal--body" id="modal-description">…</p>
+        <div class="grid gs8 gsx s-modal--footer">
+            <button class="grid--cell s-btn s-btn__primary js-modal-primary-btn" type="button">…</button>
+            <button class="grid--cell s-btn js-modal-cancel-btn" type="button">…</button>
         </div>
+        <a class="s-modal--close s-btn s-btn__muted js-modal-close" href="#" aria-label="Close">
+            @Svg.ClearSm
+        </a>
     </div>
 </aside>
 {% endhighlight %}
         <div class="-preview ps-relative grid jc-center" style="height: 320px;">
-            <aside class="s-modal" id="modal-base" tabindex="0" role="dialog" aria-labelledby="modal-title" aria-describedby="modal-description" aria-hidden="false" style="position: absolute; z-index: initial; opacity: initial; visibility: initial; margin: -1px; display: flex; justify-content: center; align-items: center;">
+            <aside class="s-modal ps-absolute bbr-sm z-base" id="modal-base" aria-hidden="false" style="margin: -1px;">
+                <div class="s-modal--dialog" role="document">
+                    <h1 class="s-modal--header" id="modal-title">Example title</h1>
+                    <p class="s-modal--body" id="modal-description">Nullam ornare lectus vitae lacus sagittis, at sodales leo viverra. Suspendisse nec nulla dignissim elit varius tempus. Cras viverra neque at imperdiet vehicula. Curabitur condimentum id dolor vitae ultrices. Pellentesque scelerisque nunc sit amet leo fringilla bibendum. Etiam feugiat imperdiet mi, eu blandit arcu cursus a.</p>
+                    <div class="grid gs8 gsx s-modal--footer">
+                        <button class="grid--cell s-btn s-btn__primary" type="button">Save changes</button>
+                        <button class="grid--cell s-btn" type="button">Cancel</button>
+                    </div>
+                    <a class="s-modal--close s-btn s-btn__muted" href="#" aria-label="Close">
+                        <svg aria-hidden="true" class="svg-icon iconClearSm m0" width="14" height="14" viewBox="0 0 14 14"><path d="M12 3.41L10.59 2 7 5.59 3.41 2 2 3.41 5.59 7 2 10.59 3.41 12 7 8.41 10.59 12 12 10.59 8.41 7z"/></svg>
+                    </a>
+                </div>
+            </aside>
+
+
+            <!-- <aside class="s-modal" id="modal-base" tabindex="0" role="dialog" aria-labelledby="modal-title" aria-describedby="modal-description" aria-hidden="false" style="position: absolute; z-index: initial; opacity: initial; visibility: initial; margin: -1px; display: flex; justify-content: center; align-items: center;">
                 <div class="s-modal--dialog s-modal__wmx-md s-modal__hmx-xs" role="document" style="position: absolute; z-index: initial; opacity: initial; visibility: initial; max-height: 20rem;">
                     <div class="grid fd-column jc-spacebetween s-modal--content js-example-modal-content">
                         <div class="grid--cell s-modal--header">
@@ -66,7 +75,7 @@ description: Modals are dialog overlays that prevent the user from interacting w
                         <a class="s-modal--close s-btn s-btn__muted js-modal-close" href="#" aria-label="Close"><svg aria-hidden="true" class="svg-icon iconClearSm m0" width="14" height="14" viewBox="0 0 14 14"><path d="M12 3.41L10.59 2 7 5.59 3.41 2 2 3.41 5.59 7 2 10.59 3.41 12 7 8.41 10.59 12 12 10.59 8.41 7z"/></svg></a>
                     </div>
                 </div>
-            </aside>
+            </aside> -->
         </div>
     </div>
     <table cellspacing="0" class="s-table">
