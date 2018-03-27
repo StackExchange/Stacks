@@ -880,8 +880,9 @@ template {
 .s-modal[aria-hidden="false"],
 .s-modal[aria-hidden="false"] .s-modal--dialog {
   visibility: visible;
-  transition: opacity 100ms cubic-bezier(0.165, 0.84, 0.44, 1) 10ms, z-index 0s 0s, visibility 0s 0s;
+  transition: opacity 100ms cubic-bezier(0.165, 0.84, 0.44, 1) 10ms, z-index 0s 0s, visibility 0s 0s, transform 100ms cubic-bezier(0.165, 0.84, 0.44, 1) 10ms;
   opacity: 1;
+  transform: translate3d(0, 0, 0) scale3d(1, 1, 1);
   z-index: 9000;
 }
 .s-modal--dialog {
@@ -898,8 +899,9 @@ template {
   visibility: hidden;
   z-index: -1;
   opacity: 0;
-  will-change: visibility, z-index, opacity;
-  transition: opacity 200ms cubic-bezier(0.165, 0.84, 0.44, 1) 0s, z-index 0s 100ms, visibility 0s 100ms;
+  transform: translate3d(0, 30%, 0) scale3d(0.6, 0.6, 0.6);
+  will-change: visibility, z-index, opacity, transform;
+  transition: opacity 200ms cubic-bezier(0.165, 0.84, 0.44, 1) 0s, z-index 0s 100ms, visibility 0s 100ms, transform 0s 100ms;
 }
 .s-modal--close {
   position: absolute !important;

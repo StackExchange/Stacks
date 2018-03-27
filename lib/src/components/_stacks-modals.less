@@ -41,8 +41,9 @@
     &[aria-hidden="false"],
     &[aria-hidden="false"] .s-modal--dialog {
         visibility: visible;
-        transition: opacity 100ms @te-smooth 10ms, z-index 0s 0s, visibility 0s 0s; // Transition in
+        transition: opacity 100ms @te-smooth 10ms, z-index 0s 0s, visibility 0s 0s, transform 100ms @te-smooth 10ms; // Transition in
         opacity: 1;
+        transform: translate3d(0, 0, 0) scale3d(1, 1, 1);
         z-index: @zi-modals;
     }
 }
@@ -66,8 +67,9 @@
     visibility: hidden;
     z-index: @zi-hide; // Make sure it's also below everything so we can't interact with it.
     opacity: 0;
-    will-change: visibility, z-index, opacity; // Not supported in IE11 / Edge
-    transition: opacity 200ms @te-smooth 0s, z-index 0s 100ms, visibility 0s 100ms; // Transition out
+    transform: translate3d(0, 30%, 0) scale3d(0.6, 0.6, 0.6);
+    will-change: visibility, z-index, opacity, transform; // Not supported in IE11 / Edge
+    transition: opacity 200ms @te-smooth 0s, z-index 0s 100ms, visibility 0s 100ms, transform 0s 100ms; // Transition out
 }
 
 //  [1] To override .s-btn class attributes
