@@ -22,7 +22,6 @@
     left: 0;
     bottom: 0;
     background-color: fade(@black-900, 50%);
-    padding: @su8;
 
     display: flex;
     align-items: center;
@@ -49,7 +48,7 @@
 }
 
 .s-modal--dialog {
-    position: relative;
+    position: fixed; // We shouldn't NEED this, since the parent is fixed, but IE Edge needs it to properly scroll at small viewport sizes.
     padding: @su24;
     border-radius: @br-lg;
     background-color: @white;
