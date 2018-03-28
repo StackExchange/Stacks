@@ -23,6 +23,10 @@
     bottom: 0;
     background-color: fade(@black-900, 50%);
 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
     -webkit-backface-visibility: hidden;
             backface-visibility: hidden;
 
@@ -36,22 +40,25 @@
     &[aria-hidden="false"],
     &[aria-hidden="false"] .s-modal--dialog {
         visibility: visible;
-        transition: opacity 100ms @te-smooth 10ms, z-index 0s 0s, visibility 0s 0s; // Transition in
+        transition: opacity 100ms @te-smooth 10ms, z-index 0s 0s, visibility 0s 0s, transform 100ms @te-smooth 10ms; // Transition in
         opacity: 1;
+        transform: translate3d(0, 0, 0) scale3d(1, 1, 1);
         z-index: @zi-modals;
     }
 }
 
 .s-modal--dialog {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    width: 100%;
-    height: 100%;
+    position: fixed; // We shouldn't NEED this, since the parent is fixed, but IE Edge needs it to properly scroll at small viewport sizes.
+    padding: @su24;
     border-radius: @br-lg;
     background-color: @white;
     box-shadow: @bs-lg;
-    transform: translate(-50%, -50%);
+
+    max-width: 600px;
+    max-height: 100%;
+
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch; // Make scrolling have inertia on mobile devices.
 
     -webkit-backface-visibility: hidden;
             backface-visibility: hidden;
@@ -60,8 +67,9 @@
     visibility: hidden;
     z-index: @zi-hide; // Make sure it's also below everything so we can't interact with it.
     opacity: 0;
-    will-change: visibility, z-index, opacity; // Not supported in IE11 / Edge
-    transition: opacity 200ms @te-smooth 0s, z-index 0s 100ms, visibility 0s 100ms; // Transition out
+    transform: translate3d(0, 30%, 0) scale3d(0.6, 0.6, 0.6);
+    will-change: visibility, z-index, opacity, transform; // Not supported in IE11 / Edge
+    transition: opacity 200ms @te-smooth 0s, z-index 0s 100ms, visibility 0s 100ms, transform 100ms @te-smooth 0s; // Transition out
 }
 
 //  [1] To override .s-btn class attributes
@@ -70,34 +78,29 @@
     top: @su8;
     right: @su8;
     padding: @su12 !important; // [1]
-}
 
+    .svg-icon {
+        margin: 0 !important;
+    }
+}
 
 //  ============================================================================
 //  $   DIALOG PIECES
 //  ----------------------------------------------------------------------------
-.s-modal--content {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    overflow-y: auto;
-    overflow-x: hidden;
-}
-
-.s-modal--header,
-.s-modal--body,
-.s-modal--footer {
-    padding: @su12 @su24;
-}
 
 .s-modal--header {
-    padding-top: @su24;
+    margin-bottom: @su16;
+    .mx-fs(@fs-headline1);
+    color: @fc-dark;
+}
+
+.s-modal--body {
+    margin-bottom: @su24;
 }
 
 .s-modal--footer {
-    padding-bottom: @su24;
+    margin-top: @su24;
 }
-
 
 //  ============================================================================
 //  $   MODAL WIDTHS
@@ -117,19 +120,4 @@
 .s-modal__full {
     max-width: calc(~"100% - @{su48}");
     max-height: calc(~"100% - @{su48}");
-}
-
-
-//  ============================================================================
-//  $   SPECIFIC TYPE STYLES
-//  ----------------------------------------------------------------------------
-.s-modal--title {
-    margin-bottom: 0;
-    .mx-fs(@fs-headline1);
-    color: @fc-dark;
-}
-
-.s-modal--description {
-    margin-bottom: 1.142857143em;
-    .mx-fs(@fs-body2);
 }
