@@ -17,23 +17,23 @@ description: Buttons are user interface elements which allows users to take acti
 
 <p class="stacks-p _page">To assist in creating mockups, <a href="https://gh.stackoverflow.com/Design/Assets/blob/master/stacks--base-buttons-1.0.1.sketch?raw=true" title="Click here to download the buttons sticker sheet Sketch file">a Sketch file has been generated with the button types, styles, and sizes</a> shown below. Other sticker sheets can be found in the <a href="https://gh.stackoverflow.com/Design/Assets">the Design/Assets repo.</a></p>
 
-<section class="stacks-section" data-core-careers>
+<section class="stacks-section">
     <h2 class="grid jc-spacebetween ai-center stacks-title">Default Style</h2>
     <p class="stacks-p _section">The default button is a <em>secondary, clear, and regular</em> button. This means that it has no background, border, background image, or inner box-shadows styles by default. Visually it looks like a link. Since the visual styling is so minimal, it’s considered a secondary button type.</p>
-    <p class="stacks-p">Every button has <code class="stacks-code">:hover</code>, <code class="stacks-code">:active</code>, <code class="stacks-code">.selected</code> <code class="stacks-code">:focus</code>, and <code class="stacks-code">disabled</code> states.</p>
+    <p class="stacks-p">Every button has <code class="stacks-code">:hover</code>, <code class="stacks-code">:active</code>, <code class="stacks-code">.is-selected</code> <code class="stacks-code">:focus</code>, and <code class="stacks-code">disabled</code> states.</p>
     <p class="stacks-p">When using a <code class="stacks-code">button</code> or an <code class="stacks-code">a</code> element, be sure to specify a <code class="stacks-code">type</code> or <code class="stacks-code">role</code>, respectively.</p>
     <div class="stacks-code-preview">
 {% highlight html linenos %}
 <button class="s-btn" type="button" aria-pressed="false">…</button>
 <a href="#" class="s-btn" role="button" aria-pressed="false">…</a>
-<button class="s-btn selected" type="button" aria-pressed="false">…</button>
+<button class="s-btn is-selected" type="button" aria-pressed="false">…</button>
 <button class="s-btn" type="button" aria-pressed="false" disabled>…</button>
 {% endhighlight %}
         <div class="-preview">
             <div class="grid gs4">
                 <button class="grid--cell s-btn" type="button" aria-pressed="false">Button Button</button>
                 <a href="#" class="grid--cell s-btn" role="button" aria-pressed="false">Link Button</a>
-                <button class="grid--cell s-btn selected" type="button" aria-pressed="false">Selected Button</button>
+                <button class="grid--cell s-btn is-selected" type="button" aria-pressed="false">Selected Button</button>
                 <button class="grid--cell s-btn" type="button" aria-pressed="false" disabled>Disabled Button</button>
             </div>
         </div>
@@ -52,7 +52,7 @@ description: Buttons are user interface elements which allows users to take acti
 <button class="s-btn s-btn__primary" type="button" aria-pressed="false">…</button>
 <a href="#" class="s-btn s-btn__primary" role="button" aria-pressed="false">…</a>
 <button class="s-btn s-btn__primary" type="button" aria-pressed="false">@Svg.Help …</button>
-<button class="s-btn s-btn__primary selected" type="button" aria-pressed="false">…</button>
+<button class="s-btn s-btn__primary is-selected" type="button" aria-pressed="false">…</button>
 {% endhighlight %}
         <div class="-preview">
             <div class="grid gs4">
@@ -60,7 +60,7 @@ description: Buttons are user interface elements which allows users to take acti
                 <button class="grid--cell s-btn s-btn__primary" type="button" aria-pressed="false" disabled>Primary Disabled</button>
                 <button class="grid--cell s-btn s-btn__primary" type="button" aria-pressed="false">
                     <svg aria-hidden="true" class="svg-icon iconHelp" width="18" height="18" viewBox="0 0 18 18"><path d="M9 1a8 8 0 1 0 0 16A8 8 0 0 0 9 1zm.81 12.13c-.02.71-.55 1.15-1.24 1.13-.66-.02-1.17-.49-1.15-1.2.02-.72.56-1.18 1.22-1.16.7.03 1.2.51 1.17 1.23zM11.77 8a5.8 5.8 0 0 1-1.02.91l-.53.37c-.26.2-.42.43-.5.69a4 4 0 0 0-.09.75c0 .05-.03.16-.18.16H7.88c-.16 0-.18-.1-.18-.15.03-.66.12-1.21.4-1.66a5.29 5.29 0 0 1 1.43-1.22c.16-.12.28-.25.38-.39a1.34 1.34 0 0 0 .02-1.71c-.24-.31-.51-.46-1.03-.46-.51 0-.8.26-1.02.6-.21.33-.18.73-.18 1.1H5.75c0-1.38.35-2.25 1.1-2.76.52-.35 1.17-.5 1.93-.5 1 0 1.79.18 2.49.71.64.5.98 1.18.98 2.12 0 .57-.2 1.05-.48 1.44z"></path></svg>Primary Button with Icon</button>
-                <button class="grid--cell s-btn s-btn__primary selected" type="button" aria-pressed="false">Primary Selected</button>
+                <button class="grid--cell s-btn s-btn__primary is-selected" type="button" aria-pressed="false">Primary Selected</button>
             </div>
         </div>
     </div>
@@ -73,17 +73,17 @@ description: Buttons are user interface elements which allows users to take acti
 <button class="s-btn" type="button" aria-pressed="false">…</button>
 <button class="s-btn s-btn__outlined" type="button" aria-pressed="false">…</button>
 <a href="#" class="s-btn s-btn__filled" role="button" aria-pressed="false">…</a>
-<a href="#" class="s-btn s-btn__filled selected" role="button" aria-pressed="false">…</a>
+<a href="#" class="s-btn s-btn__filled is-selected" role="button" aria-pressed="false">…</a>
 {% endhighlight %}
         <div class="-preview">
             <div class="grid gs4 fw-wrap">
                 <button class="grid--cell s-btn" type="button" aria-pressed="false">Clear Secondary</button>
-                <button class="grid--cell s-btn selected" type="button" aria-pressed="false">Clear Secondary Selected</button>
+                <button class="grid--cell s-btn is-selected" type="button" aria-pressed="false">Clear Secondary Selected</button>
                 <button class="grid--cell s-btn s-btn__outlined" type="button" aria-pressed="false">Outlined Secondary</button>
-                <button class="grid--cell s-btn s-btn__outlined selected" type="button" aria-pressed="false">Selected Outlined Secondary</button>
+                <button class="grid--cell s-btn s-btn__outlined is-selected" type="button" aria-pressed="false">Selected Outlined Secondary</button>
                 <button class="grid--cell s-btn s-btn__filled" type="button" aria-pressed="false">Filled Secondary</button>
                 <button class="grid--cell s-btn s-btn__filled" type="button" aria-pressed="false" disabled>Disabled Filled Secondary</button>
-                <button class="grid--cell s-btn s-btn__filled selected" type="button" aria-pressed="false">Selected Filled Secondary</button>
+                <button class="grid--cell s-btn s-btn__filled is-selected" type="button" aria-pressed="false">Selected Filled Secondary</button>
             </div>
         </div>
     </div>
@@ -96,17 +96,17 @@ description: Buttons are user interface elements which allows users to take acti
 <button class="s-btn s-btn__confirm s-btn__outlined" type="button" aria-pressed="false">…</button>
 <button class="s-btn s-btn__confirm s-btn__filled" type="button" aria-pressed="false">…</button>
 <button class="s-btn s-btn__confirm s-btn__filled" type="button" aria-pressed="false" disabled>…</button>
-<button class="s-btn s-btn__confirm s-btn__filled selected" type="button" aria-pressed="false">…</button>
+<button class="s-btn s-btn__confirm s-btn__filled is-selected" type="button" aria-pressed="false">…</button>
 {% endhighlight %}
         <div class="-preview">
             <div class="grid gs4 fw-wrap">
                 <button class="grid--cell s-btn s-btn__confirm" type="button" aria-pressed="false">Clear Confirm</button>
-                <button class="grid--cell s-btn s-btn__confirm selected" type="button" aria-pressed="false">Clear Confirm Selected</button>
+                <button class="grid--cell s-btn s-btn__confirm is-selected" type="button" aria-pressed="false">Clear Confirm Selected</button>
                 <button class="grid--cell s-btn s-btn__confirm s-btn__outlined" type="button" aria-pressed="false">Outlined Confirm</button>
-                <button class="grid--cell s-btn s-btn__confirm s-btn__outlined selected" type="button" aria-pressed="false">Selected Outlined Confirm</button>
+                <button class="grid--cell s-btn s-btn__confirm s-btn__outlined is-selected" type="button" aria-pressed="false">Selected Outlined Confirm</button>
                 <button class="grid--cell s-btn s-btn__confirm s-btn__filled" type="button" aria-pressed="false">Filled Confirm</button>
                 <button class="grid--cell s-btn s-btn__confirm s-btn__filled" type="button" aria-pressed="false" disabled>Disabled Filled Confirm</button>
-                <button class="grid--cell s-btn s-btn__confirm s-btn__filled selected" type="button" aria-pressed="false">Selected</button>
+                <button class="grid--cell s-btn s-btn__confirm s-btn__filled is-selected" type="button" aria-pressed="false">Selected</button>
             </div>
         </div>
     </div>
@@ -119,17 +119,17 @@ description: Buttons are user interface elements which allows users to take acti
 <button class="s-btn s-btn__warning s-btn__outlined" type="button" aria-pressed="false">…</button>
 <button class="s-btn s-btn__warning s-btn__filled" type="button" aria-pressed="false">…</button>
 <button class="s-btn s-btn__warning s-btn__filled" type="button" aria-pressed="false" disabled>…</button>
-<button class="s-btn s-btn__warning s-btn__filled selected" type="button" aria-pressed="false">…</button>
+<button class="s-btn s-btn__warning s-btn__filled is-selected" type="button" aria-pressed="false">…</button>
 {% endhighlight %}
         <div class="-preview">
             <div class="grid gs4 fw-wrap">
                 <button class="grid--cell s-btn s-btn__warning" type="button" aria-pressed="false">Clear Warning</button>
-                <button class="grid--cell s-btn s-btn__warning selected" type="button" aria-pressed="false">Clear Warning Selected</button>
+                <button class="grid--cell s-btn s-btn__warning is-selected" type="button" aria-pressed="false">Clear Warning Selected</button>
                 <button class="grid--cell s-btn s-btn__warning s-btn__outlined" type="button" aria-pressed="false">Outlined Warning</button>
-                <button class="grid--cell s-btn s-btn__warning s-btn__outlined selected" type="button" aria-pressed="false">Selected Outlined Warning</button>
+                <button class="grid--cell s-btn s-btn__warning s-btn__outlined is-selected" type="button" aria-pressed="false">Selected Outlined Warning</button>
                 <button class="grid--cell s-btn s-btn__warning s-btn__filled" type="button" aria-pressed="false">Filled Warning</button>
                 <button class="grid--cell s-btn s-btn__warning s-btn__filled" type="button" aria-pressed="false" disabled>Disabled Filled Warning</button>
-                <button class="grid--cell s-btn s-btn__warning s-btn__filled selected" type="button" aria-pressed="false">Selected Warning</button>
+                <button class="grid--cell s-btn s-btn__warning s-btn__filled is-selected" type="button" aria-pressed="false">Selected Warning</button>
             </div>
         </div>
     </div>
@@ -142,17 +142,17 @@ description: Buttons are user interface elements which allows users to take acti
 <button class="s-btn s-btn__muted s-btn__outlined" type="button" aria-pressed="false">…</button>
 <button class="s-btn s-btn__muted s-btn__filled" type="button" aria-pressed="false">…</button>
 <button class="s-btn s-btn__muted s-btn__filled" type="button" aria-pressed="false" disabled>…</button>
-<button class="s-btn s-btn__muted s-btn__filled selected" type="button" aria-pressed="false">…</button>
+<button class="s-btn s-btn__muted s-btn__filled is-selected" type="button" aria-pressed="false">…</button>
 {% endhighlight %}
         <div class="-preview">
             <div class="grid gs4 fw-wrap">
                 <button class="grid--cell s-btn s-btn__muted" type="button" aria-pressed="false">Clear Muted</button>
-                <button class="grid--cell s-btn s-btn__muted selected" type="button" aria-pressed="false">Clear Muted Selected</button>
+                <button class="grid--cell s-btn s-btn__muted is-selected" type="button" aria-pressed="false">Clear Muted Selected</button>
                 <button class="grid--cell s-btn s-btn__muted s-btn__outlined" type="button" aria-pressed="false">Outlined Muted</button>
-                <button class="grid--cell s-btn s-btn__muted s-btn__outlined selected" type="button" aria-pressed="false">Selected Outlined Muted</button>
+                <button class="grid--cell s-btn s-btn__muted s-btn__outlined is-selected" type="button" aria-pressed="false">Selected Outlined Muted</button>
                 <button class="grid--cell s-btn s-btn__muted s-btn__filled" type="button" aria-pressed="false">Filled Muted</button>
                 <button class="grid--cell s-btn s-btn__muted s-btn__filled" type="button" aria-pressed="false" disabled>Disabled Filled Muted</button>
-                <button class="grid--cell s-btn s-btn__muted s-btn__filled selected" type="button" aria-pressed="false">Selected Muted</button>
+                <button class="grid--cell s-btn s-btn__muted s-btn__filled is-selected" type="button" aria-pressed="false">Selected Muted</button>
             </div>
         </div>
     </div>
@@ -175,33 +175,33 @@ description: Buttons are user interface elements which allows users to take acti
             <div class="grid gs12 ff-column-nowrap">
                 <div class="grid gs4 fw-wrap">
                     <button class="grid--cell s-btn s-btn__inverted" role="button">Clear Inverted</button>
-                    <button class="grid--cell s-btn s-btn__inverted selected" role="button">Clear Inverted Selected</button>
+                    <button class="grid--cell s-btn s-btn__inverted is-selected" role="button">Clear Inverted Selected</button>
                     <button class="grid--cell s-btn s-btn__outlined s-btn__inverted" role="button">Outlined Inverted</button>
-                    <button class="grid--cell s-btn s-btn__outlined s-btn__inverted selected" role="button">Outlined Inverted Selected</button>
+                    <button class="grid--cell s-btn s-btn__outlined s-btn__inverted is-selected" role="button">Outlined Inverted Selected</button>
                 </div>
                 <div class="grid gs4 fw-wrap">
                     <button class="grid--cell s-btn s-btn__filled s-btn__inverted" role="button">Filled Inverted</button>
-                    <button class="grid--cell s-btn s-btn__filled s-btn__inverted selected" role="button">Filled Inverted Selected</button>
+                    <button class="grid--cell s-btn s-btn__filled s-btn__inverted is-selected" role="button">Filled Inverted Selected</button>
                 </div>
                 <div class="grid gs4 fw-wrap">
                     <button class="grid--cell s-btn s-btn__confirm s-btn__inverted" role="button">Clear Confirm Inverted</button>
-                    <button class="grid--cell s-btn s-btn__confirm s-btn__inverted selected" role="button">Clear Confirm Inverted Selected</button>
+                    <button class="grid--cell s-btn s-btn__confirm s-btn__inverted is-selected" role="button">Clear Confirm Inverted Selected</button>
                     <button class="grid--cell s-btn s-btn__confirm s-btn__outlined s-btn__inverted" role="button">Outlined Confirm Inverted</button>
-                    <button class="grid--cell s-btn s-btn__confirm s-btn__outlined s-btn__inverted selected" role="button">Outlined Confirm Selected</button>
+                    <button class="grid--cell s-btn s-btn__confirm s-btn__outlined s-btn__inverted is-selected" role="button">Outlined Confirm Selected</button>
                 </div>
                 <div class="grid gs4 fw-wrap">
                     <button class="grid--cell s-btn s-btn__confirm s-btn__filled s-btn__inverted" role="button">Filled Confirm Inverted</button>
-                    <button class="grid--cell s-btn s-btn__confirm s-btn__filled s-btn__inverted selected" role="button">Filled Confirm Inverted Selected</button>
+                    <button class="grid--cell s-btn s-btn__confirm s-btn__filled s-btn__inverted is-selected" role="button">Filled Confirm Inverted Selected</button>
                 </div>
                 <div class="grid gs4 fw-wrap">
                     <button class="grid--cell s-btn s-btn__warning s-btn__inverted" role="button">Clear Warning Inverted</button>
-                    <button class="grid--cell s-btn s-btn__warning s-btn__inverted selected" role="button">Clear Warning Inverted Selected</button>
+                    <button class="grid--cell s-btn s-btn__warning s-btn__inverted is-selected" role="button">Clear Warning Inverted Selected</button>
                     <button class="grid--cell s-btn s-btn__warning s-btn__outlined s-btn__inverted" role="button">Outlined Warning Inverted</button>
-                    <button class="grid--cell s-btn s-btn__warning s-btn__outlined s-btn__inverted selected" role="button">Outlined Warning Inverted Selected</button>
+                    <button class="grid--cell s-btn s-btn__warning s-btn__outlined s-btn__inverted is-selected" role="button">Outlined Warning Inverted Selected</button>
                 </div>
                 <div class="grid gs4 fw-wrap">
                     <button class="grid--cell s-btn s-btn__warning s-btn__filled s-btn__inverted" role="button">Filled Warning Inverted</button>
-                    <button class="grid--cell s-btn s-btn__warning s-btn__filled s-btn__inverted selected" role="button">Filled Warning Inverted Selected</button>
+                    <button class="grid--cell s-btn s-btn__warning s-btn__filled s-btn__inverted is-selected" role="button">Filled Warning Inverted Selected</button>
                 </div>
             </div>
         </div>
@@ -242,7 +242,35 @@ description: Buttons are user interface elements which allows users to take acti
     </div>
 </section>
 
-<section class="stacks-section" data-core-careers>
+<section class="stacks-section">
+    <h2 class="grid jc-spacebetween ai-center stacks-title">Dropdowns</h2>
+    <p class="stacks-p _section">Adding the class <code class="stacks-code">.s-btn__dropdown</code> to any button style will add an appropriately-styled caret. These should be paired with a menus or popovers.</p>
+
+    <div class="stacks-code-preview">
+{% highlight html linenos %}
+<button class="s-btn s-btn__dropdown" type="button">Dropdown</button>
+{% endhighlight %}
+        <div class="-preview">
+            <div class="grid gs4 fw-wrap">
+                <button class="grid--cell s-btn s-btn__primary s-btn__dropdown" type="button">Primary</button>
+                <button class="grid--cell s-btn s-btn__dropdown" type="button">Secondary</button>
+                <button class="grid--cell s-btn s-btn__outlined s-btn__dropdown" type="button">Outlined Secondary</button>
+                <button class="grid--cell s-btn s-btn__filled s-btn__dropdown" type="button">Filled Secondary</button>
+                <button class="grid--cell s-btn s-btn__confirm s-btn__dropdown" type="button">Confirm</button>
+                <button class="grid--cell s-btn s-btn__confirm s-btn__outlined s-btn__dropdown" type="button">Outline Confirm</button>
+                <button class="grid--cell s-btn s-btn__confirm s-btn__filled s-btn__dropdown" type="button">Filled Confirm</button>
+                <button class="grid--cell s-btn s-btn__warning s-btn__dropdown" type="button">Warning</button>
+                <button class="grid--cell s-btn s-btn__warning s-btn__outlined s-btn__dropdown" type="button">Outline Warning</button>
+                <button class="grid--cell s-btn s-btn__warning s-btn__filled s-btn__dropdown" type="button">Filled Warning</button>
+                <button class="grid--cell s-btn s-btn__muted s-btn__dropdown" type="button">Muted</button>
+                <button class="grid--cell s-btn s-btn__muted s-btn__outlined s-btn__dropdown" type="button">Outline Muted</button>
+                <button class="grid--cell s-btn s-btn__muted s-btn__filled s-btn__dropdown" type="button">Filled Muted</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="stacks-section">
     <h2 class="grid jc-spacebetween ai-center stacks-title">Sizes</h2>
     <p class="stacks-p _section">Like forms, there are various button sizes available. The default size is 13px font-size. Other available sizes are:</p>
 
@@ -268,7 +296,7 @@ description: Buttons are user interface elements which allows users to take acti
     </div>
 </section>
 
-<section class="stacks-section" data-core-careers>
+<section class="stacks-section">
     <h2 class="grid jc-spacebetween ai-center stacks-title">Ordering</h2>
     <p class="stacks-p _section">To maintain product consistency, buttons should maintain the following layout ordering:</p>
 

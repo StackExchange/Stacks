@@ -4,23 +4,23 @@ title: Writing HTML
 description: We’ve tried our best to answer any questions when writing HTML. Hopefully this guide makes the task a little less daunting.
 ---
 <section class="stacks-section">
-  <h2 class="grid jc-spacebetween ai-center stacks-title" id="toc-syntax">Syntax</h2>
-  <ul class="stacks-list _section">
-    <li>Use soft tabs with four spaces.</li>
-    <li>Nested elements should be indented once (four spaces).</li>
-    <li>Always use double quotes, never single quotes, on attributes.</li>
-    <li>Don’t include a trailing slash in self-closing elements—the <a href="http://dev.w3.org/html5/spec-author-view/syntax.html#syntax-start-tag">HTML5 spec</a> says they’re optional.</li>
-    <li>Don’t omit optional closing tags (e.g. <code class="stacks-code">&lt;/li&gt;</code> or <code class="stacks-code">&lt;/body&gt;</code>).</li>
-    <li>In body copy, use smart punctuation. <code class="stacks-code">’</code> instead of <code class="stacks-code">'</code>. See <a href="http://smartquotesforsmartpeople.com">Smart Quotes for Smart People</a> for more information.</li>
-    <li>When possible, use sentence case.</li>
-  </ul>
+    <h2 class="grid jc-spacebetween ai-center stacks-title" id="toc-syntax">Syntax</h2>
+    <ul class="stacks-list _section">
+        <li>Use soft tabs with four spaces.</li>
+        <li>Nested elements should be indented once (four spaces).</li>
+        <li>Always use double quotes, never single quotes, on attributes.</li>
+        <li>Don’t include a trailing slash in self-closing elements—the <a href="http://dev.w3.org/html5/spec-author-view/syntax.html#syntax-start-tag">HTML5 spec</a> says they’re optional.</li>
+        <li>Don’t omit optional closing tags (e.g. <code class="stacks-code">&lt;/li&gt;</code> or <code class="stacks-code">&lt;/body&gt;</code>).</li>
+        <li>In body copy, use smart punctuation. <code class="stacks-code">’</code> instead of <code class="stacks-code">'</code>. See <a href="http://smartquotesforsmartpeople.com">Smart Quotes for Smart People</a> for more information.</li>
+        <li>When possible, use sentence case.</li>
+    </ul>
 
-  <div class="stacks-code-preview _preview-none">
+    <div class="stacks-code-preview _preview-none">
 {% highlight html linenos %}
 <!DOCTYPE html>
 <html>
     <head>
-      <title>Page title</title>
+        <title>Page title</title>
     </head>
     <body>
         <img src="images/company-logo.png" alt="Company">
@@ -28,24 +28,24 @@ description: We’ve tried our best to answer any questions when writing HTML. H
     </body>
 </html>
 {% endhighlight %}
-  </div>
+    </div>
 </section>
 
 <section class="stacks-section">
-  <h2 class="grid jc-spacebetween ai-center stacks-title" id="toc-attribute-order">Attribute order</h2>
-  <p class="stacks-p _section">HTML attributes should come in this particular order for easier reading of code.</p>
-  <ol class="stacks-list _section">
+    <h2 class="grid jc-spacebetween ai-center stacks-title" id="toc-attribute-order">Attribute order</h2>
+    <p class="stacks-p _section">HTML attributes should come in this particular order for easier reading of code.</p>
+    <ol class="stacks-list _section">
     <li><code class="stacks-code">class</code></li>
     <li><code class="stacks-code">id</code>, <code class="stacks-code">name</code></li>
     <li><code class="stacks-code">data-*</code></li>
     <li><code class="stacks-code">src</code>, <code class="stacks-code">for</code>, <code class="stacks-code">type</code>, <code class="stacks-code">href</code>, <code class="stacks-code">value</code></li>
     <li><code class="stacks-code">title</code>, <code class="stacks-code">alt</code></li>
     <li><code class="stacks-code">role</code>, <code class="stacks-code">aria-*</code></li>
-  </ol>
-  <p class="stacks-p _section">Classes make for great reusable components, so they come first. Ids are more specific and should be used sparingly (e.g., for in-page bookmarks), so they come second.</p>
-  <p class="stacks-p _section">Classes within the class attribute should follow the same declaration order as our Less does.</p>
+    </ol>
+    <p class="stacks-p _section">Classes make for great reusable components, so they come first. Ids are more specific and should be used sparingly (e.g., for in-page bookmarks), so they come second.</p>
+    <p class="stacks-p _section">Classes within the class attribute should follow the same declaration order as our Less does.</p>
 
-  <div class="stacks-code-preview _preview-none">
+    <div class="stacks-code-preview _preview-none">
 {% highlight html linenos %}
 <a class="..." id="..." data-toggle="modal" href="#">
     Example link
@@ -55,23 +55,23 @@ description: We’ve tried our best to answer any questions when writing HTML. H
 
 <img src="..." alt="...">
 {% endhighlight %}
-  </div>
+    </div>
 </section>
 
 <section class="stacks-section">
-  <h2 class="grid jc-spacebetween ai-center stacks-title" id="toc-boolean-attributes">Boolean attributes</h2>
-  <p class="stacks-p _section">A boolean attribute is one that needs no declared value. XHTML required you to declare a value, but HTML5 has no such requirement.</p>
-  <p class="stacks-p _section">For further reading, consult the <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/common-microsyntaxes.html#boolean-attributes">WhatWG section on boolean attributes</a>:</p>
-  <blockquote>
+    <h2 class="grid jc-spacebetween ai-center stacks-title" id="toc-boolean-attributes">Boolean attributes</h2>
+    <p class="stacks-p _section">A boolean attribute is one that needs no declared value. XHTML required you to declare a value, but HTML5 has no such requirement.</p>
+    <p class="stacks-p _section">For further reading, consult the <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/common-microsyntaxes.html#boolean-attributes">WhatWG section on boolean attributes</a>:</p>
+    <blockquote>
     <p class="stacks-p _section">The presence of a boolean attribute on an element represents the true value, and the absence of the attribute represents the false value.</p>
-  </blockquote>
-  <p class="stacks-p _section">If you <em>must</em> include the attribute’s value, and <strong>you don’t need to</strong>, follow this WhatWG guideline:</p>
-  <blockquote>
+    </blockquote>
+    <p class="stacks-p _section">If you <em>must</em> include the attribute’s value, and <strong>you don’t need to</strong>, follow this WhatWG guideline:</p>
+    <blockquote>
     <p class="stacks-p _section">If the attribute is present, its value must either be the empty string or [...] the attribute’s canonical name, with no leading or trailing whitespace.</p>
-  </blockquote>
-  <p class="stacks-p _section"><strong>In short, don’t add a value.</strong></p>
+    </blockquote>
+    <p class="stacks-p _section"><strong>In short, don’t add a value.</strong></p>
 
-  <div class="stacks-code-preview _preview-none">
+    <div class="stacks-code-preview _preview-none">
 {% highlight html linenos %}
 <!-- Not so great -->
 <input type="text" disabled=disabled>
@@ -91,14 +91,14 @@ description: We’ve tried our best to answer any questions when writing HTML. H
     <option value="1" selected>1</option>
 </select>
 {% endhighlight %}
-  </div>
+    </div>
 </section>
 
 <section class="stacks-section">
-  <h2 class="grid jc-spacebetween ai-center stacks-title" id="toc-reducing-markup">Reducing markup</h2>
-  <p class="stacks-p _section">Whenever possible, avoid superfluous parent elements when writing HTML. Many times this requires iteration and refactoring, but produces less HTML. Take the following example:</p>
+    <h2 class="grid jc-spacebetween ai-center stacks-title" id="toc-reducing-markup">Reducing markup</h2>
+    <p class="stacks-p _section">Whenever possible, avoid superfluous parent elements when writing HTML. Many times this requires iteration and refactoring, but produces less HTML. Take the following example:</p>
 
-  <div class="stacks-code-preview _preview-none">
+    <div class="stacks-code-preview _preview-none">
 {% highlight html linenos %}
 <!-- Not so great -->
 <span class="avatar">
@@ -108,10 +108,10 @@ description: We’ve tried our best to answer any questions when writing HTML. H
 <!-- Better -->
 <img class="avatar" src="...">
 {% endhighlight %}
-  </div>
+    </div>
 </section>
 
 <section class="stacks-section">
-  <h2 class="grid jc-spacebetween ai-center stacks-title" id="toc-javascript-generated-markup">Javascript-generated markup</h2>
-  <p class="stacks-p _section">Writing markup in a JavaScript file makes the content harder to find, harder to edit, and less performant. Avoid it whenever possible.</p>
+    <h2 class="grid jc-spacebetween ai-center stacks-title" id="toc-javascript-generated-markup">Javascript-generated markup</h2>
+    <p class="stacks-p _section">Writing markup in a JavaScript file makes the content harder to find, harder to edit, and less performant. Avoid it whenever possible.</p>
 </section>

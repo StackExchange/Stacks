@@ -3,10 +3,8 @@
 //  TYPOGRAPHY
 //
 //  This CSS comes from Stacks, our CSS & Pattern library for rapidly building
-//  Stack Overflow. https://stackoverflow.design/
-//
-//  For documentation of all these classes and how to contribute,
-//  https://gh.stackoverflow.com/pages/Design/Stacks/
+//  Stack Overflow. For documentation of all these classes and how to contribute,
+//  visit https://stackoverflow.design/
 //
 //  TABLE OF CONTENTS
 //  • LINKS
@@ -25,34 +23,52 @@ a,
 
     &:hover,
     &:active {
-        color: @link-color-hover;
+        color: darken(@link-color, 10%);
         text-decoration: none;
     }
-    
+
+    &.s-link__grayscale {
+        color: @black-800;
+
+        &:hover,
+        &:active {
+            color: @black-900;
+        }
+    }
+
+    &.s-link__inherit {
+        color: inherit;
+
+        &:hover,
+        &:active {
+            color: inherit;
+        }
+    }
+
     &.s-link__muted {
         color: @black-500;
         
         &:hover,
         &:active {
-            color: fade(@black-500, 70%);
+            color: darken(@black-500, 10%);
         }
     }
-    
+
     &.s-link__warning {
         color: @btn-warning-bgc;
         
         &:hover,
         &:active {
-            color: fade(saturate(@btn-warning-bgc, 5%), 70%);
+            color: darken(saturate(@btn-warning-bgc, 5%), 15%);
         }
     }
-    
+
     &.s-link__confirm {
         color: @btn-confirm-bgc;
         
         &:hover,
         &:active {
-            color: fade(saturate(@btn-confirm-bgc, 5%), 70%);
+            color: darken(saturate(@btn-confirm-bgc, 5%), 15%);
         }
     }
 }
