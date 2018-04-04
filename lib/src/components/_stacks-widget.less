@@ -62,7 +62,6 @@
         left: -1px;
         height: 2px + @br-sm; // we need 2px border + 2px border radius to have the correct corner shape
         border-top: 1px solid @s-sidebarwidget-outer-border-color;
-
         border-radius: @br-sm;
         pointer-events: none; // if the top item is clickable, then we don't want to prevent clicking the top 2 pixels
 
@@ -309,19 +308,20 @@ table.s-sidebarwidget--content.s-sidebarwidget__items {
     flex-basis: 100%;
     max-height: 1000000px;
     margin-bottom: 0;
+    transform-origin: 0 0;
     transition: margin-bottom @s-collapsible-transition-duration cubic-bezier(0, 0, 0, 1),
                 transform @s-collapsible-transition-duration cubic-bezier(1, 0, 1, 1),
                 opacity @s-collapsible-transition-duration cubic-bezier(1, 0, 1, 1);
-    transform-origin: 0 0;
 }
 
 .s-collapsible.is-collapsed {
+    overflow: hidden;
     -webkit-clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
     clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
     transition: none;
-    overflow: hidden;
 
     .s-collapsible--content {
+        visibility: hidden;
         max-height: 0;
         margin-bottom: -1500px;
         opacity: 0;
@@ -331,7 +331,6 @@ table.s-sidebarwidget--content.s-sidebarwidget__items {
                     max-height 0s @s-collapsible-transition-duration,
                     transform @s-collapsible-transition-duration cubic-bezier(0, 1, 1, 1),
                     opacity @s-collapsible-transition-duration cubic-bezier(0, 1, 1, 1);
-        visibility: hidden;
         @supports (clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)) or (-webkit-clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)){
             opacity: 1;
             transform: none;
