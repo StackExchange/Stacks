@@ -132,34 +132,34 @@
 .s-radio {
     //  [1]   Check to see if we can use custom styles, if so reset the defaults
     //  ------------------------------------------------------------------------
-    @supports (appearance: none) or (-webkit-appearance: none) {
-    .appearance(none);
+    @supports (appearance: none) or (-webkit-appearance: none) or (-moz-appearance: none) {
+        .appearance(none);
 
-    &::-ms-check {
-        display: none;
-    }
+        &::-ms-check {
+            display: none;
+        }
 
-    //  [2]  Now re-style the checkboxes and radios
-    //  ------------------------------------------------------------------------
-    width: 1em;
-    height: 1em;
-    border: 1px solid @black-200;
-    background-color: @white;
-    outline: 0;
-    font-size: inherit;
-    cursor: pointer;
-    vertical-align: middle;
-
-    &:focus {
+        //  [2]  Now re-style the checkboxes and radios
+        //  ------------------------------------------------------------------------
+        width: 1em;
+        height: 1em;
+        border: 1px solid @black-200;
+        background-color: @white;
         outline: 0;
+        font-size: inherit;
+        cursor: pointer;
+        vertical-align: middle;
+
+        &:focus {
+            outline: 0;
+        }
     }
-  }
 }
 
 //  $$  CHECKBOXES
 //  ----------------------------------------------------------------------------
 .s-checkbox {
-    @supports (appearance: none) or (-webkit-appearance: none) {
+    @supports (appearance: none) or (-webkit-appearance: none) or (-moz-appearance: none) {
         border-radius: @br-sm;
         background-repeat: no-repeat;
         background-position: center center;
@@ -185,7 +185,7 @@
 //  $$  RADIOS
 //  ----------------------------------------------------------------------------
 .s-radio {
-    @supports (appearance: none) or (-webkit-appearance: none) {
+    @supports (appearance: none) or (-webkit-appearance: none) or (-moz-appearance: none) {
         border-radius: @br-circle;
 
         &:checked {
