@@ -17,9 +17,9 @@
 
 .s-avatar {
     display: inline-block; // Make sure the avatar has structure regardless of the element eg. span vs. div
+    position: relative;
     width: @su16;
     height: @su16;
-    position: relative;
     border-radius: @br-sm;
     background-repeat: no-repeat;
     background-size: 100%;
@@ -27,24 +27,21 @@
 
     .s-avatar--letter {
         display: block; // Make sure we're treating the letter as a block-level element
-        font-size: @fs-fine;
-        text-align: center;
-        font-weight: bold;
         color: @white;
-        line-height: 1.4545455;
+        font-size: @fs-fine;
+        font-weight: bold;
+        text-align: center;
         text-transform: uppercase; // Force uppercase in avatars when team name is lowercase
+        line-height: 1.4545455;
 
         // We don't need text selection on our letter
-        -webkit-user-select: none; /* Chrome all / Safari all */
-        -moz-user-select: none;    /* Firefox all */
-        -ms-user-select: none;     /* IE 10+ */
-        user-select: none;         /* Likely future */
+        user-select: none;
     }
 
     .s-avatar--badge {
         position: absolute;
-        bottom: -4px;
         right: -4px;
+        bottom: -4px;
     }
 
     &.s-avatar__md {
