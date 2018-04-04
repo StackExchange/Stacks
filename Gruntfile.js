@@ -1,6 +1,6 @@
 'use strict';
 
-module.exports = function (grunt) {
+module.exports = function(grunt) {
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
 
@@ -57,8 +57,10 @@ module.exports = function (grunt) {
         // Run tasks in parallel
         concurrent: {
             serve: [
+                'postcss',
                 'less',
                 'watch:less',
+                'postcss',
                 'cssmin',
                 'watch:css',
                 'shell:jekyllServe',
@@ -88,6 +90,102 @@ module.exports = function (grunt) {
                 filter: 'isFile',
             },
         },
+        // Add sorting directly to Less files
+        postcss: {
+            options: {
+                syntax: require('postcss-less'),
+                processors: [
+                    require('postcss-sorting')({
+                        'emptyLineBefore': true,
+                        'properties-order': [
+                            'content',
+                            'box-sizing',
+                            'display',
+                            'position',
+                            'float',
+                            'clear',
+                            'flex-direction',
+                            'order',
+                            'flex',
+                            'flex-grow',
+                            'flex-wrap',
+                            'flex-shrink',
+                            'flex-flow',
+                            'flex-basis',
+                            'justify-content',
+                            'align-content',
+                            'align-items',
+                            'align-self',
+                            'top',
+                            'right',
+                            'bottom',
+                            'left',
+                            'width',
+                            'height',
+                            'min-width',
+                            'min-height',
+                            'max-width',
+                            'max-height',
+                            'margin',
+                            'margin-top',
+                            'margin-right',
+                            'margin-bottom',
+                            'margin-left',
+                            'padding',
+                            'padding-top',
+                            'padding-right',
+                            'padding-bottom',
+                            'padding-left',
+                            'z-index',
+                            'clip-path',
+                            'opacity',
+                            'border',
+                            'border-color',
+                            'border-width',
+                            'border-top',
+                            'border-right',
+                            'border-bottom',
+                            'border-left',
+                            'border-radius',
+                            'border-top-left-radius',
+                            'border-top-right-radius',
+                            'border-bottom-left-radius',
+                            'border-bottom-right-radius',
+                            'outline',
+                            'background',
+                            'background-color',
+                            'background-repeat',
+                            'background-size',
+                            'box-shadow',
+                            'color',
+                            'font',
+                            'font-family',
+                            'font-size',
+                            'font-weight',
+                            'font-style',
+                            'text-align',
+                            'text-transform',
+                            'text-decoration',
+                            'text-overflow',
+                            'line-height',
+                            'vertical-align',
+                            'white-space',
+                            'animation',
+                            'transform',
+                            'transition',
+                            'will-change',
+                            'touch-action',
+                            'pointer-events',
+                            'cursor'
+                        ],
+                        'unspecified-properties-position': 'bottom',
+                    }),
+                ]
+            },
+            dist: {
+                src: 'lib/**/*.less'
+            }
+        }
     });
 
     // Load plugins
@@ -98,9 +196,11 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-contrib-clean');
+    grunt.loadNpmTasks('grunt-postcss');
 
     // Default task
     grunt.registerTask('default', ['concurrent:serve']);
     grunt.registerTask('build', ['less', 'cssmin']);
     grunt.registerTask('update-icons', ['clean', 'copy']);
+    grunt.registerTask('autoprefix', ['postcss', 'less']);
 };
