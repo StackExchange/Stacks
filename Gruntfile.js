@@ -45,6 +45,10 @@ module.exports = function(grunt) {
         },
         // Watch for files to change and run tasks when they do
         watch: {
+            postcss: {
+                files: ['lib/**/*.less'],
+                tasks: ['postcss'],
+            },
             less: {
                 files: ['lib/**/*.less', 'docs/**/*.less'],
                 tasks: ['less']
@@ -58,9 +62,9 @@ module.exports = function(grunt) {
         concurrent: {
             serve: [
                 'postcss',
+                'watch:postcss',
                 'less',
                 'watch:less',
-                'postcss',
                 'cssmin',
                 'watch:css',
                 'shell:jekyllServe',
@@ -90,13 +94,12 @@ module.exports = function(grunt) {
                 filter: 'isFile',
             },
         },
-        // Add sorting directly to Less files
         postcss: {
+            // Add sorting directly to Less files
             options: {
                 syntax: require('postcss-less'),
                 processors: [
                     require('postcss-sorting')({
-                        'emptyLineBefore': true,
                         'properties-order': [
                             'content',
                             'box-sizing',
@@ -227,5 +230,5 @@ module.exports = function(grunt) {
     grunt.registerTask('default', ['concurrent:serve']);
     grunt.registerTask('build', ['less', 'cssmin']);
     grunt.registerTask('update-icons', ['clean', 'copy']);
-    grunt.registerTask('autoprefix', ['postcss', 'less']);
+    grunt.registerTask('process-css', ['postcss']);
 };
