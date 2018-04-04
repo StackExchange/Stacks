@@ -203,7 +203,7 @@ module.exports = function(grunt) {
                             'will-change',
                             'touch-action',
                             'pointer-events',
-                            'user-inpute',
+                            'user-select',
                             'cursor'
                         ],
                         'unspecified-properties-position': 'bottom',
