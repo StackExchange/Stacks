@@ -43,10 +43,10 @@ description: All system icons are inline SVG files, invoked via a Razor helper. 
       {% assign icon_sort = site.data.icons | sort: "helper" %}
       {% for icon in icon_sort %}
       <div class="grid ff-column-nowrap stacks-card stacks-preview -item ba bc-black-2 bar-sm bs-sm">
-          <div class="d-inline-flex grid--cell fl2 grid__center p-8 -preview btr-sm">
+          <div class="d-inline-flex grid--cell fl2 grid__center p8 -preview btr-sm icon-preview">
               {% include_relative {{ icon.helper | prepend: "svg-icons/" | append: ".svg" }} %}
           </div>
-          <div class="grid ff-column-nowrap ai-center p-8 -content">
+          <div class="grid ff-column-nowrap ai-center p8 -content">
               <code class="grid--cell fs-caption py8 ff-mono">@Svg.{{ icon.helper }}</code>
           </div>
       </div>
@@ -63,3 +63,10 @@ description: All system icons are inline SVG files, invoked via a Razor helper. 
   </ol>
   <p class="stacks-p _section">If you have further questions, visit the project’s Slack channel: <a href="https://stackexchange.slack.com/messages/C27RWNQN9">#design-stacks</a>.</p>
 </section>
+
+<script>
+    // We've gotta add the native class to all these icons
+    $(function() {
+        $(".svg-icon").addClass("native");
+    });
+</script>
