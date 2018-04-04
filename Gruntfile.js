@@ -65,7 +65,6 @@ module.exports = function(grunt) {
                 'watch:postcss',
                 'less',
                 'watch:less',
-                'postcss',
                 'cssmin',
                 'watch:css',
                 'shell:jekyllServe',
