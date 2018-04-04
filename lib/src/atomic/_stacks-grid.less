@@ -29,8 +29,8 @@
 
         .create-fixed-cells(@num, @count: 1) when (@count =< @num) {
             .grid--cell@{count} {
-                -ms-flex-preferred-size: @count * 100% / @num;
                     flex-basis: @count * 100% / @num;
+                -ms-flex-preferred-size: @count * 100% / @num;
             }
 
             #stacks-internals #grid-builder-helpers .create-fixed-cells(@num, (@count + 1));
@@ -47,8 +47,8 @@
             .grid__allcells@{count} {
                 > .grid,
                 > .grid--cell {
-                    -ms-flex-preferred-size: @count * 100% / @num;
                         flex-basis: @count * 100% / @num;
+                    -ms-flex-preferred-size: @count * 100% / @num;
                 }
             }
 
@@ -119,8 +119,8 @@
             > .grid--cell@{count},              // [1]
             &.grid__allcells@{count} > .grid,        // [2]
             &.grid__allcells@{count} > .grid--cell {  // [2]
-                -ms-flex-preferred-size: calc(~"@{cell-width} - @{spacing}");
                     flex-basis: calc(~"@{cell-width} - @{spacing}");
+                -ms-flex-preferred-size: calc(~"@{cell-width} - @{spacing}");
             }
 
             #stacks-internals #grid-builder-helpers .grid-fixed-cell-spacing(@spacing, @num, (@count + 1));
@@ -176,18 +176,18 @@
     &,
     > .grid,
     > .grid--cell {
-        -webkit-box-flex: 0;
             -ms-flex: 0 auto;
                 flex: 0 auto;
+        -webkit-box-flex: 0;
     }
 }
 .grid__fl1 {
     &,
     > .grid,
     > .grid--cell {
-        -webkit-box-flex: 1;
             -ms-flex: 1 auto;
                 flex: 1 auto;
+        -webkit-box-flex: 1;
     }
 }
 
@@ -233,7 +233,7 @@
     &,
     > .grid,
     > [class*="grid--cell"] {
-        margin-left: 0;
         margin-right: 0;
+        margin-left: 0;
     }
 }
