@@ -1,9 +1,4 @@
 $(function() {
-    var sections = $('.stacks-section > :header');
-    if ( sections.length ) {
-        $(".js-secondary-nav").buildMenu();
-    }
-
     var search = docsearch({
         apiKey: '09d35fa9def5c025244d5b217778a652',
         indexName: 'stackoverflow_design',
@@ -16,6 +11,13 @@ $(function() {
         e.preventDefault();
         e.stopPropagation();
     });
+
+    var sections = $('.stacks-section > :header');
+    var subnav = $(".js-secondary-nav");
+
+    if ( sections.length ) {
+        subnav.buildMenu()
+    }
 });
 
 $.when($.ready).then(function() {
@@ -23,7 +25,7 @@ $.when($.ready).then(function() {
         'href': window.location.href,
         'title': $('head').filter('title').text(),
         'nav': $(document).find('#nav').html(),
-        'content': $(document).find('#content').html()
+        'content': $(document).find('#content').html(),
     }, '', window.location.href)
 
     $('#nav').on('click', 'a', function (event) {
@@ -51,6 +53,8 @@ $.when($.ready).then(function() {
             var title = $(html).filter('title').text()
             var nav = $(html).find('#nav').html()
             var content = $(html).find('#content').html()
+            var sections = $('.stacks-section > :header')
+            var subnav = $(".js-secondary-nav");
 
             // Update the page
             $('head title').text(title)
@@ -60,12 +64,20 @@ $.when($.ready).then(function() {
             // Scroll to the top of the page
             $(document).scrollTop(0)
 
+
+            // Kill the subnav and rebuild it
+            subnav.empty();
+
+            if ( sections.length ) {
+                subnav.buildMenu()
+            }
+
             // Add page load to browser history
             window.history.pushState({
                 'href': href,
                 'title': title,
                 'nav': $(html).find('#nav').html(),
-                'content': $(html).find('#content').html()
+                'content': $(html).find('#content').html(),
             }, '', href)
         })
     })

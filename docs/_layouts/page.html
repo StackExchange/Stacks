@@ -7,20 +7,23 @@
         {% include navigation.html %}
 
         <main class="stacks-content p16 pt32">
-            <div class="mx-auto stacks-body" id="content">
-                {% if page.title %}
-                    <h1 class="fs-headline2 fw-normal">
-                        {{ page.title }}
-                    </h1>
-                {% endif %}
+            <div class="grid">
+                <ul class="grid--cell order-last js-secondary-nav bg-black-050 ps-fixed" style="width: 200px; min-height: 400px;"></ul>
+                <div class="grid--cell mx-auto stacks-body" id="content">
+                    {% if page.title %}
+                        <h1 class="fs-headline2 fw-normal">
+                            {{ page.title }}
+                        </h1>
+                    {% endif %}
 
-                {% if page.description %}
-                    <p class="stacks-p _intro">
-                        {{ page.description }}
-                    </p>
-                {% endif %}
+                    {% if page.description %}
+                        <p class="stacks-p _intro">
+                            {{ page.description }}
+                        </p>
+                    {% endif %}
 
-                {{ content }}
+                    {{ content }}
+                </div>
             </div>
         </main>
     </div>
