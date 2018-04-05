@@ -43,7 +43,7 @@ description: All system icons are inline SVG files, invoked via a Razor helper. 
       {% assign icon_sort = site.data.icons | sort: "helper" %}
       {% for icon in icon_sort %}
       <div class="grid ff-column-nowrap stacks-card stacks-preview -item ba bc-black-2 bar-sm bs-sm">
-          <div class="d-inline-flex grid--cell fl2 grid__center p8 -preview btr-sm icon-preview">
+          <div class="d-inline-flex grid--cell fl2 grid__center p8 -preview btr-sm">
               {% include_relative {{ icon.helper | prepend: "svg-icons/" | append: ".svg" }} %}
           </div>
           <div class="grid ff-column-nowrap ai-center p8 -content">
@@ -65,7 +65,7 @@ description: All system icons are inline SVG files, invoked via a Razor helper. 
 </section>
 
 <script>
-    // We've gotta add the native class to all these icons
+    // We've gotta add the native class to all these icons. This is the easiest way to do it without modifying the SVG directly.
     $(function() {
         $(".svg-icon").addClass("native");
     });
