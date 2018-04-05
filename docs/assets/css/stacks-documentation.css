@@ -393,6 +393,13 @@ template {
 [hidden] {
   display: none;
 }
+.svg-icon {
+  vertical-align: bottom;
+  -moz-transform: rotate(360deg);
+}
+.svg-icon:not(.native) * {
+  fill: currentColor;
+}
 .s-avatar {
   display: inline-block;
   position: relative;
@@ -655,6 +662,7 @@ template {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
+  position: relative;
   width: 100%;
   height: 100%;
   padding: 0.8em 1em;
@@ -667,7 +675,14 @@ template {
   font-size: inherit;
   line-height: 1;
 }
-@supports ((-webkit-appearance: none) or (-moz-appearance: none) or (appearance: none)) or (-webkit-appearance: none) {
+.s-select > select::-moz-focus-inner {
+  outline: none !important;
+}
+.s-select > select:-moz-focusring {
+  color: transparent;
+  text-shadow: 0 0 0 #000;
+}
+@supports (-webkit-appearance: none) or (-moz-appearance: none) or (appearance: none) {
   .s-checkbox,
   .s-radio {
     -webkit-appearance: none;
@@ -691,7 +706,7 @@ template {
     outline: 0;
   }
 }
-@supports ((-webkit-appearance: none) or (-moz-appearance: none) or (appearance: none)) or (-webkit-appearance: none) {
+@supports (-webkit-appearance: none) or (-moz-appearance: none) or (appearance: none) {
   .s-checkbox {
     border-radius: 3px;
     background-repeat: no-repeat;
@@ -712,7 +727,7 @@ template {
     box-shadow: 0 0 0 4px rgba(0, 149, 255, 0.15);
   }
 }
-@supports ((-webkit-appearance: none) or (-moz-appearance: none) or (appearance: none)) or (-webkit-appearance: none) {
+@supports (-webkit-appearance: none) or (-moz-appearance: none) or (appearance: none) {
   .s-radio {
     border-radius: 50%;
   }
@@ -898,10 +913,11 @@ template {
   z-index: -1;
   opacity: 0;
   background-color: rgba(12, 13, 14, 0.5);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
   -webkit-transition: opacity 100ms cubic-bezier(0.165, 0.84, 0.44, 1) 0s, z-index 0s 100ms, visibility 0s 100ms;
   transition: opacity 100ms cubic-bezier(0.165, 0.84, 0.44, 1) 0s, z-index 0s 100ms, visibility 0s 100ms;
   will-change: visibility, z-index, opacity;
-  backface-visibility: hidden;
 }
 .s-modal[aria-hidden="false"],
 .s-modal[aria-hidden="false"] .s-modal--dialog {
@@ -928,6 +944,8 @@ template {
   background-color: #FFF;
   -webkit-box-shadow: 0 4px 12px rgba(36, 39, 41, 0.2);
   box-shadow: 0 4px 12px rgba(36, 39, 41, 0.2);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
   -webkit-transform: translate3d(0, 30%, 0) scale3d(0.6, 0.6, 0.6);
   transform: translate3d(0, 30%, 0) scale3d(0.6, 0.6, 0.6);
   -webkit-transition: opacity 200ms cubic-bezier(0.165, 0.84, 0.44, 1) 0s, z-index 0s 100ms, visibility 0s 100ms, -webkit-transform 100ms cubic-bezier(0.165, 0.84, 0.44, 1) 0s;
@@ -935,7 +953,6 @@ template {
   transition: opacity 200ms cubic-bezier(0.165, 0.84, 0.44, 1) 0s, z-index 0s 100ms, visibility 0s 100ms, transform 100ms cubic-bezier(0.165, 0.84, 0.44, 1) 0s;
   transition: opacity 200ms cubic-bezier(0.165, 0.84, 0.44, 1) 0s, z-index 0s 100ms, visibility 0s 100ms, transform 100ms cubic-bezier(0.165, 0.84, 0.44, 1) 0s, -webkit-transform 100ms cubic-bezier(0.165, 0.84, 0.44, 1) 0s;
   will-change: visibility, z-index, opacity, transform;
-  backface-visibility: hidden;
   -webkit-overflow-scrolling: touch;
 }
 .s-modal--close {
@@ -6734,10 +6751,6 @@ html {
 }
 body {
   min-width: 1075px;
-}
-.svg-icon {
-  fill: currentColor;
-  vertical-align: bottom;
 }
 .stacks-wrapper {
   min-height: 100vh;

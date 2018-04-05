@@ -105,10 +105,11 @@
     > select {
         //  [1] Reset the appearance
         .appearance(none);
-        width: 100%;
-        height: 100%; // Fill the height of its parent
 
         //  [2] Update the styles
+        position: relative; // This prevents Firefox from requiring a second click to select options
+        width: 100%;
+        height: 100%; // Fill the height of its parent
         padding: 0.8em 1em;
         padding-right: @su32;
         border: 1px solid @black-200;
@@ -118,6 +119,15 @@
         font-family: @ff-sans;
         font-size: inherit;
         line-height: 1;
+
+        &::-moz-focus-inner {
+            outline: none !important;
+        }
+
+        &:-moz-focusring {
+            color: transparent;
+            text-shadow: 0 0 0 #000;
+        }
     }
 }
 
@@ -129,7 +139,7 @@
 .s-radio {
     //  [1]   Check to see if we can use custom styles, if so reset the defaults
     //  ------------------------------------------------------------------------
-    @supports ((-webkit-appearance: none) or (-moz-appearance: none) or (appearance: none)) or (-webkit-appearance: none) {
+    @supports ((-webkit-appearance: none) or (-moz-appearance: none) or (appearance: none)) {
         .appearance(none);
 
         &::-ms-check {
@@ -156,7 +166,7 @@
 //  $$  CHECKBOXES
 //  ----------------------------------------------------------------------------
 .s-checkbox {
-    @supports ((-webkit-appearance: none) or (-moz-appearance: none) or (appearance: none)) or (-webkit-appearance: none) {
+    @supports ((-webkit-appearance: none) or (-moz-appearance: none) or (appearance: none)) {
         border-radius: @br-sm;
         background-repeat: no-repeat;
         background-size: contain;
@@ -183,7 +193,7 @@
 //  $$  RADIOS
 //  ----------------------------------------------------------------------------
 .s-radio {
-    @supports ((-webkit-appearance: none) or (-moz-appearance: none) or (appearance: none)) or (-webkit-appearance: none) {
+    @supports ((-webkit-appearance: none) or (-moz-appearance: none) or (appearance: none)) {
         border-radius: @br-circle;
 
         &:checked {
