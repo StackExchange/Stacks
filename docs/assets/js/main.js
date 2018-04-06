@@ -11,17 +11,24 @@ $(function() {
         e.preventDefault();
         e.stopPropagation();
     });
+});
 
+function regenerateMenu () {
     // Build the submenu on initial page load
     var sections = $('.stacks-section > :header');
     var subnav = $(".js-secondary-nav");
 
+    // Kill the subnav and rebuild it
+    subnav.empty();
+
     if ( sections.length ) {
         subnav.buildMenu()
     }
-});
+}
 
 $.when($.ready).then(function() {
+    regenerateMenu();
+
     window.history.replaceState({
         'href': window.location.href,
         'title': $('head').filter('title').text(),
@@ -54,8 +61,6 @@ $.when($.ready).then(function() {
             var title = $(html).filter('title').text()
             var nav = $(html).find('#nav').html()
             var content = $(html).find('#content').html()
-            var sections = $('.stacks-section > :header')
-            var subnav = $(".js-secondary-nav");
 
             // Update the page
             $('head title').text(title)
@@ -65,12 +70,7 @@ $.when($.ready).then(function() {
             // Scroll to the top of the page
             $(document).scrollTop(0)
 
-            // Kill the subnav and rebuild it
-            subnav.empty();
-
-            if ( sections.length ) {
-                subnav.buildMenu()
-            }
+            regenerateMenu();
 
             // Add page load to browser history
             window.history.pushState({
@@ -82,13 +82,14 @@ $.when($.ready).then(function() {
         })
     })
 
-    // Load page history (for back/forward nav)
-    window.onpopstate = function(e) {
+    window.onpopstate = history.onpushstate = function(e) {
         if(e.state){
             // Update the page
             $('title').text(e.state.title)
             $('#nav').html(e.state.nav)
             $('#content').html(e.state.content)
         }
+
+        regenerateMenu();
     }
 })
