@@ -12,6 +12,7 @@ $(function() {
         e.stopPropagation();
     });
 
+    // Build the submenu on initial page load
     var sections = $('.stacks-section > :header');
     var subnav = $(".js-secondary-nav");
 
@@ -63,7 +64,6 @@ $.when($.ready).then(function() {
 
             // Scroll to the top of the page
             $(document).scrollTop(0)
-
 
             // Kill the subnav and rebuild it
             subnav.empty();
