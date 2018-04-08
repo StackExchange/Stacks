@@ -249,7 +249,7 @@ description: Stacks provides atomic sizing classes for percentage-based widths &
 </section>
 
 <section class="stacks-section">
-    <h2 class="grid jc-spacebetween ai-center stacks-title">Percentage Height</h2>
+    <h2 class="grid jc-spacebetween ai-center stacks-title">Height</h2>
     <h3 class="grid jc-spacebetween ai-center stacks-title _subtitle">Definitions</h3>
     <table class="mb48 s-table s-table__hover">
         <thead>
@@ -290,7 +290,7 @@ description: Stacks provides atomic sizing classes for percentage-based widths &
 </section>
 
 <section class="stacks-section">
-    <h2 class="grid jc-spacebetween ai-center stacks-title">Max-Height</h2>
+    <h2 class="grid jc-spacebetween ai-center stacks-title">Max-Height & Min-Height</h2>
     <h3 class="grid jc-spacebetween ai-center stacks-title _subtitle">Definitions</h3>
     <table class="mb48 s-table s-table__hover">
         <thead>
@@ -300,7 +300,7 @@ description: Stacks provides atomic sizing classes for percentage-based widths &
             </tr>
         </thead>
         <tbody>
-            {% for size in site.data.atomic-definitions.height-max %}
+            {% for size in site.data.atomic-definitions.height-max-min %}
             <tr class="ff-mono fs-caption">
                 <th scope="row" class="p8">.{{ size.class }}</th>
                 <td class="p8">{{ size.output }}</td>
@@ -308,132 +308,4 @@ description: Stacks provides atomic sizing classes for percentage-based widths &
             {% endfor %}
         </tbody>
     </table>
-
-    <h3 class="grid jc-spacebetween ai-center stacks-title _subtitle">Examples</h3>
-    <div class="stacks-code-preview">
-{% highlight html linenos %}
-<div class="hmx-none">…</div>
-<div class="hmx1">…</div>
-<div class="hmx2">…</div>
-<div class="hmx3">…</div>
-<div class="hmx4">…</div>
-<div class="hmx5">…</div>
-<div class="hmx6">…</div>
-<div class="hmx7">…</div>
-<div class="hmx8">…</div>
-<div class="hmx9">…</div>
-<div class="hmx10">…</div>
-<div class="hmx11">…</div>
-<div class="hmx12">…</div>
-<div class="hmx100">…</div>
-{% endhighlight %}
-        <div class="-preview ps-relative fs-caption ff-mono overflowy-scroll hs4">
-            <div class="grid gs8 ff-column-nowrap">
-                <div class="grid--cell p16 hmx1 bg-orange-050 ba bc-orange-1 overflow-hidden">
-                    <p class="mb16 fw-bold">.hmx1</p>
-                    {% include loremipsum.html %}
-                </div>
-                <div class="grid--cell p16 hmx2 bg-orange-050 ba bc-orange-1 overflow-hidden">
-                    <p class="mb16 fw-bold">.hmx2</p>
-                    {% include loremipsum.html %}
-                </div>
-                <div class="grid--cell p16 hmx3 bg-orange-050 ba bc-orange-1 overflow-hidden">
-                    <p class="mb16 fw-bold">.hmx3</p>
-                    {% include loremipsum.html %}
-                </div>
-                <div class="grid--cell p16 hmx4 bg-orange-050 ba bc-orange-1 overflow-hidden">
-                    <p class="mb16 fw-bold">.hmx4</p>
-                    {% include loremipsum.html %}
-                </div>
-                <div class="grid--cell p16 hmx5 bg-orange-050 ba bc-orange-1 overflow-hidden">
-                    <p class="mb16 fw-bold">.hmx5</p>
-                    {% include loremipsum.html %}
-                </div>
-                <div class="grid--cell p16 hmx6 bg-orange-050 ba bc-orange-1 overflow-hidden">
-                    <p class="mb16 fw-bold">.hmx6</p>
-                    {% include loremipsum.html %}
-                </div>
-                <div class="grid--cell p16 hmx7 bg-orange-050 ba bc-orange-1 overflow-hidden">
-                    <p class="mb16 fw-bold">.hmx7</p>
-                    {% include loremipsum.html %}
-                </div>
-                <div class="grid--cell p16 hmx8 bg-orange-050 ba bc-orange-1 overflow-hidden">
-                    <p class="mb16 fw-bold">.hmx8</p>
-                    {% include loremipsum.html %}
-                </div>
-                <div class="grid--cell p16 hmx9 bg-orange-050 ba bc-orange-1 overflow-hidden">
-                    <p class="mb16 fw-bold">.hmx9</p>
-                    {% include loremipsum.html %}
-                </div>
-                <div class="grid--cell p16 hmx10 bg-orange-050 ba bc-orange-1 overflow-hidden">
-                    <p class="mb16 fw-bold">.hmx10</p>
-                    {% include loremipsum.html %}
-                </div>
-                <div class="grid--cell p16 hmx11 bg-orange-050 ba bc-orange-1 overflow-hidden">
-                    <p class="mb16 fw-bold">.hmx11</p>
-                    {% include loremipsum.html %}
-                </div>
-                <div class="grid--cell p16 hmx12 bg-orange-050 ba bc-orange-1 overflow-hidden">
-                    <p class="mb16 fw-bold">.hmx12</p>
-                    {% include loremipsum.html %}
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<section class="stacks-section">
-    <h2 class="grid jc-spacebetween ai-center stacks-title">Min-Height</h2>
-    <h3 class="grid jc-spacebetween ai-center stacks-title _subtitle">Definitions</h3>
-    <table class="mb48 s-table s-table__hover">
-        <thead>
-            <tr>
-                <th scope="col">Class</th>
-                <th scope="col">Output</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for size in site.data.atomic-definitions.height-min %}
-            <tr class="ff-mono fs-caption">
-                <th scope="row" class="p8">.{{ size.class }}</th>
-                <td class="p8">{{ size.output }}</td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-
-    <h3 class="grid jc-spacebetween ai-center stacks-title _subtitle">Examples</h3>
-    <div class="stacks-code-preview">
-{% highlight html linenos %}
-<div class="hmn1">…</div>
-<div class="hmn2">…</div>
-<div class="hmn3">…</div>
-<div class="hmn4">…</div>
-<div class="hmn5">…</div>
-<div class="hmn6">…</div>
-<div class="hmn7">…</div>
-<div class="hmn8">…</div>
-<div class="hmn9">…</div>
-<div class="hmn10">…</div>
-<div class="hmn11">…</div>
-<div class="hmn12">…</div>
-<div class="hmn100">…</div>
-{% endhighlight %}
-        <div class="-preview ps-relative fs-caption ff-mono overflowy-scroll hs4">
-            <div class="grid gs2 ff-column-nowrap">
-                <div class="grid--cell p16 hmn1 bg-orange-050 ba bc-orange-1">.hmn1</div>
-                <div class="grid--cell p16 hmn2 bg-orange-050 ba bc-orange-1">.hmn2</div>
-                <div class="grid--cell p16 hmn3 bg-orange-050 ba bc-orange-1">.hmn3</div>
-                <div class="grid--cell p16 hmn4 bg-orange-050 ba bc-orange-1">.hmn4</div>
-                <div class="grid--cell p16 hmn5 bg-orange-050 ba bc-orange-1">.hmn5</div>
-                <div class="grid--cell p16 hmn6 bg-orange-050 ba bc-orange-1">.hmn6</div>
-                <div class="grid--cell p16 hmn7 bg-orange-050 ba bc-orange-1">.hmn7</div>
-                <div class="grid--cell p16 hmn8 bg-orange-050 ba bc-orange-1">.hmn8</div>
-                <div class="grid--cell p16 hmn9 bg-orange-050 ba bc-orange-1">.hmn9</div>
-                <div class="grid--cell p16 hmn10 bg-orange-050 ba bc-orange-1">.hmn10</div>
-                <div class="grid--cell p16 hmn11 bg-orange-050 ba bc-orange-1">.hmn11</div>
-                <div class="grid--cell p16 hmn12 bg-orange-050 ba bc-orange-1">.hmn12</div>
-            </div>
-        </div>
-    </div>
 </section>
