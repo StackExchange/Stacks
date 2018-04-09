@@ -10,7 +10,7 @@
         </div>
     </header>
 
-    <ul role="navigation" class="grid--cell fl1 ff-column-nowrap nav pb16 overflowy-auto by bc-black-2">
+    <ul id="nav" role="navigation" class="grid--cell fl1 ff-column-nowrap nav pb16 overflowy-auto by bc-black-2">
         {% for entry in site.data.nav %}
             {% assign sublinks = entry.sublinks %}
             {% assign submenu-active = "" %}
@@ -25,7 +25,7 @@
                             {% assign pageURL = page.url | remove_first:"/" | remove: ".html" %}
                             {% if pageURL == sublink.url %}
                               {% assign submenu-active = " is-active" %}
-                              {% assign submenu-container = "<ul class='fl ff-column-nowrap nav _secondary js-secondary-nav'></ul>" %}
+                              {% assign submenu-container = "" %}
                             {% else %}
                               {% assign submenu-active = "" %}
                               {% assign submenu-container = "" %}
