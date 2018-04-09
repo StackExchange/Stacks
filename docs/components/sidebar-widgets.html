@@ -699,7 +699,13 @@ description: Sidebar widgets are flexible containers that provide a lot of patte
 </section>
 
 <script type="text/javascript">
-    window.onload = function () {
+    $(function() {
+        // Kill default behavior on empty links
+        $("a[href='#']").on("click", function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+        });
+
         function toggleCollapsing(e) {
             if (e.type == "keydown" && (e.keyCode != 13 && e.keyCode != 32)) {
                 return;
@@ -726,5 +732,5 @@ description: Sidebar widgets are flexible containers that provide a lot of patte
             cs[i].addEventListener("click", toggleCollapsing);
             cs[i].addEventListener("keydown", toggleCollapsing);
         }
-    };
+    });
 </script>
