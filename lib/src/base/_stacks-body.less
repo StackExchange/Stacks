@@ -19,27 +19,24 @@
 html,
 body {
     #stacks-internals #load-config();
-    //  Text styles
+    color: @body-font-color;
     font-family: @body-type-face;
     font-size: @fs-base;
     line-height: @lh-base;
-    color: @body-font-color;
 }
 
 body {
     #stacks-internals #load-config();
-    
-    box-sizing: border-box;
-    
+
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+    min-height: 100%;
+    background: @body-background;
+
     *,
     *:before,
     *:after {
-        box-sizing: inherit;
+        -webkit-box-sizing: inherit;
+                box-sizing: inherit;
     }
-
-    //  Layout
-    min-height: 100%;
-
-    //  Background
-    background: @body-background;
 }

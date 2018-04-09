@@ -28,13 +28,14 @@
 //  $  BASE STYLE
 //  ----------------------------------------------------------------------------
 .s-input {
-    padding: 0.8em 1em;
     width: 100%;
     margin: 0;
+    padding: 0.8em 1em;
     border: 1px solid @black-200;
     border-radius: @br-sm;
     background-color: @white;
-    box-shadow: inset 0 0 1px fade(@black-350, 20%), 0 0 0 fade(@white, 0%);
+    -webkit-box-shadow: inset 0 0 1px fade(@black-350, 20%), 0 0 0 fade(@white, 0%);
+            box-shadow: inset 0 0 1px fade(@black-350, 20%), 0 0 0 fade(@white, 0%);
     font-family: @ff-sans;
     font-size: inherit;
     line-height: 1;
@@ -44,10 +45,6 @@
     &::-webkit-input-placeholder {
         color: @black-200;
     }
-    &::-moz-placeholder { // FF 18+
-        color: @black-200;
-        opacity: 1;
-    }
     &:-ms-input-placeholder { // IE
         color: @black-200;
     }
@@ -55,8 +52,8 @@
         color: @black-200;
     }
     &::placeholder {
-        color: @black-200;
         padding-top: 1px; // Placeholder text is 1px higher than text that's entered.
+        color: @black-200;
     }
 }
 
@@ -65,8 +62,8 @@
     top: 50%;
     right: @su8;
     margin-top: -9px;
-    pointer-events: none;
     vertical-align: text-bottom !important;
+    pointer-events: none;
 }
 
 
@@ -85,11 +82,11 @@
         content: "";
         position: absolute;
         right: 13px;
-        pointer-events: none;
-        border-width: 4px;
-        border-style: solid;
-        border-color: @black-700 transparent;
         z-index: @zi-selected;
+        border-color: @black-700 transparent;
+        border-style: solid;
+        border-width: 4px;
+        pointer-events: none;
     }
     &:before {
         top: calc(~"50% - 5px");
@@ -110,17 +107,27 @@
         .appearance(none);
 
         //  [2] Update the styles
-        padding: 0.8em 1em;
-        padding-right: @su32;
+        position: relative; // This prevents Firefox from requiring a second click to select options
         width: 100%;
         height: 100%; // Fill the height of its parent
-        outline: 0;
-        border-radius: @br-sm;
+        padding: 0.8em 1em;
+        padding-right: @su32;
         border: 1px solid @black-200;
+        border-radius: @br-sm;
+        outline: 0;
         background-color: @white;
         font-family: @ff-sans;
         font-size: inherit;
         line-height: 1;
+
+        &::-moz-focus-inner {
+            outline: none !important;
+        }
+
+        &:-moz-focusring {
+            color: transparent;
+            text-shadow: 0 0 0 #000;
+        }
     }
 }
 
@@ -132,38 +139,38 @@
 .s-radio {
     //  [1]   Check to see if we can use custom styles, if so reset the defaults
     //  ------------------------------------------------------------------------
-    @supports (appearance: none) or (-webkit-appearance: none) {
-    .appearance(none);
+    @supports ((-webkit-appearance: none) or (-moz-appearance: none) or (appearance: none)) {
+        .appearance(none);
 
-    &::-ms-check {
-        display: none;
-    }
+        &::-ms-check {
+            display: none;
+        }
 
-    //  [2]  Now re-style the checkboxes and radios
-    //  ------------------------------------------------------------------------
-    width: 1em;
-    height: 1em;
-    border: 1px solid @black-200;
-    background-color: @white;
-    outline: 0;
-    font-size: inherit;
-    cursor: pointer;
-    vertical-align: middle;
-
-    &:focus {
+        //  [2]  Now re-style the checkboxes and radios
+        //  ------------------------------------------------------------------------
+        width: 1em;
+        height: 1em;
+        border: 1px solid @black-200;
         outline: 0;
+        background-color: @white;
+        font-size: inherit;
+        vertical-align: middle;
+        cursor: pointer;
+
+        &:focus {
+            outline: 0;
+        }
     }
-  }
 }
 
 //  $$  CHECKBOXES
 //  ----------------------------------------------------------------------------
 .s-checkbox {
-    @supports (appearance: none) or (-webkit-appearance: none) {
+    @supports ((-webkit-appearance: none) or (-moz-appearance: none) or (appearance: none)) {
         border-radius: @br-sm;
         background-repeat: no-repeat;
-        background-position: center center;
         background-size: contain;
+        background-position: center center;
 
         &:checked {
             border-color: @blue-500 !important;
@@ -177,7 +184,8 @@
 
         &:focus {
             border-color: @blue-300;
-            box-shadow: 0 0 0 @su4 fade(@blue-500, 15%);
+            -webkit-box-shadow: 0 0 0 @su4 fade(@blue-500, 15%);
+                    box-shadow: 0 0 0 @su4 fade(@blue-500, 15%);
         }
     }
 }
@@ -185,7 +193,7 @@
 //  $$  RADIOS
 //  ----------------------------------------------------------------------------
 .s-radio {
-    @supports (appearance: none) or (-webkit-appearance: none) {
+    @supports ((-webkit-appearance: none) or (-moz-appearance: none) or (appearance: none)) {
         border-radius: @br-circle;
 
         &:checked {
@@ -195,7 +203,8 @@
         }
 
         &:focus {
-            box-shadow: 0 0 0 @su4 fade(@blue-500, 15%);
+            -webkit-box-shadow: 0 0 0 @su4 fade(@blue-500, 15%);
+                    box-shadow: 0 0 0 @su4 fade(@blue-500, 15%);
         }
     }
 }
@@ -217,17 +226,17 @@
 //      Default styling is optional.
 .s-label--status {
     padding: @su2 @su8;
-    font-size: @fs-caption;
-    font-style: italic;
-    font-weight: 400;
-    vertical-align: text-bottom;
-    background-color: @black-050;
     border-radius: @br-sm;
+    background-color: @black-050;
+    font-size: @fs-caption;
+    font-weight: 400;
+    font-style: italic;
+    vertical-align: text-bottom;
 
     &.s-label--status__required {
+        background-color: @red-500;
         color: @white;
         font-style: normal;
-        background-color: @red-500;
     }
 }
 
@@ -237,9 +246,9 @@
 //  ============================================================================
 .s-input-description {
     margin: 0 0 @su8;
-    .mx-fs(@fs-caption);
-    line-height: @lh-s;
     color: @fc-medium;
+    line-height: @lh-s;
+    .mx-fs(@fs-caption);
 }
 
 //  $$  MESSAGE
@@ -263,8 +272,8 @@
     //  When we want the gray background
     &.s-input-connect__fill {
         border: 1px solid @black-150;
-        border-left-width: 0;
         border-right-width: 0;
+        border-left-width: 0;
         background-color: @bgc-lightest;
         color: @fc-medium;
 
@@ -292,17 +301,19 @@
     //  Focus
     &:focus {
         position: relative;
-        outline: 0;
         border-color: @blue-300;
-        box-shadow: inset 0 0 4px @black-050, 0 0 0 @su4 fade(@blue-500, 15%);
+        outline: 0;
+        -webkit-box-shadow: inset 0 0 4px @black-050, 0 0 0 @su4 fade(@blue-500, 15%);
+                box-shadow: inset 0 0 4px @black-050, 0 0 0 @su4 fade(@blue-500, 15%);
     }
 
     //  Disabled, Read-only
     &[disabled],
     &[read-only] {
         border-color: @black-075;
-        box-shadow: inset 0 0 2px fade(@black-350, 10%);
         background-color: @bgc-lightest;
+        -webkit-box-shadow: inset 0 0 2px fade(@black-350, 10%);
+                box-shadow: inset 0 0 2px fade(@black-350, 10%);
         color: @black-200;
     }
 
@@ -324,7 +335,8 @@
         border-color: @yellow-600;
 
         &:focus {
-            box-shadow: inset 0 0 4px @black-050, 0 0 0 @su4 fade(@yellow-500, 40%);
+            -webkit-box-shadow: inset 0 0 4px @black-050, 0 0 0 @su4 fade(@yellow-500, 40%);
+                    box-shadow: inset 0 0 4px @black-050, 0 0 0 @su4 fade(@yellow-500, 40%);
         }
     }
 
@@ -346,7 +358,8 @@
         border-color: @red-400;
 
         &:focus {
-            box-shadow: inset 0 0 4px @black-050, 0 0 0 @su4 fade(@red-200, 40%);
+            -webkit-box-shadow: inset 0 0 4px @black-050, 0 0 0 @su4 fade(@red-200, 40%);
+                    box-shadow: inset 0 0 4px @black-050, 0 0 0 @su4 fade(@red-200, 40%);
         }
     }
 
@@ -368,7 +381,8 @@
         border-color: @green-400;
 
         &:focus {
-            box-shadow: inset 0 0 4px @black-050, 0 0 0 @su4 fade(@green-200, 40%);
+            -webkit-box-shadow: inset 0 0 4px @black-050, 0 0 0 @su4 fade(@green-200, 40%);
+                    box-shadow: inset 0 0 4px @black-050, 0 0 0 @su4 fade(@green-200, 40%);
         }
     }
 

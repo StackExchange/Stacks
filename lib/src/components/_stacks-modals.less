@@ -14,62 +14,67 @@
 //  $   BASE STYLE
 //  ----------------------------------------------------------------------------
 .s-modal {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    visibility: hidden;
     position: fixed;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
 
     // This fills the entire viewport without having to worry about size.
     top: 0;
     right: 0;
-    left: 0;
     bottom: 0;
-    background-color: fade(@black-900, 50%);
+    left: 0;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    -webkit-backface-visibility: hidden;
-            backface-visibility: hidden;
-
-    // Set the off-state properties to be animated
-    visibility: hidden;
     z-index: @zi-hide; // Make sure it's also below everything so we can't interact with it.
     opacity: 0;
-    will-change: visibility, z-index, opacity; // Not supported in IE11 / Edge
+    background-color: fade(@black-900, 50%);
+    -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+    /* autoprefixer: off */
     transition: opacity 100ms @te-smooth 0s, z-index 0s 100ms, visibility 0s 100ms; // Transition out
+    will-change: visibility, z-index, opacity; // Not supported in IE11 / Edge
 
     &[aria-hidden="false"],
     &[aria-hidden="false"] .s-modal--dialog {
         visibility: visible;
-        transition: opacity 100ms @te-smooth 10ms, z-index 0s 0s, visibility 0s 0s, transform 100ms @te-smooth 10ms; // Transition in
-        opacity: 1;
-        transform: translate3d(0, 0, 0) scale3d(1, 1, 1);
         z-index: @zi-modals;
+        opacity: 1;
+        -webkit-transform: translate3d(0, 0, 0) scale3d(1, 1, 1);
+                transform: translate3d(0, 0, 0) scale3d(1, 1, 1);
+
+        /* autoprefixer: off */
+        transition: opacity 100ms @te-smooth 10ms, z-index 0s 0s, visibility 0s 0s, transform 100ms @te-smooth 10ms, transform 100ms @te-smooth 10ms; // Transition in
     }
 }
 
 .s-modal--dialog {
+    visibility: hidden;
     position: fixed; // We shouldn't NEED this, since the parent is fixed, but IE Edge needs it to properly scroll at small viewport sizes.
-    padding: @su24;
-    border-radius: @br-lg;
-    background-color: @white;
-    box-shadow: @bs-lg;
-
     max-width: 600px;
     max-height: 100%;
-
     overflow-y: auto;
-    -webkit-overflow-scrolling: touch; // Make scrolling have inertia on mobile devices.
-
-    -webkit-backface-visibility: hidden;
-            backface-visibility: hidden;
-
-    // Set the off-state properties to be animated
-    visibility: hidden;
+    padding: @su24;
     z-index: @zi-hide; // Make sure it's also below everything so we can't interact with it.
     opacity: 0;
-    transform: translate3d(0, 30%, 0) scale3d(0.6, 0.6, 0.6);
+    border-radius: @br-lg;
+    background-color: @white;
+    -webkit-box-shadow: @bs-lg;
+            box-shadow: @bs-lg;
+    -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+    -webkit-transform: translate3d(0, 30%, 0) scale3d(0.6, 0.6, 0.6);
+            transform: translate3d(0, 30%, 0) scale3d(0.6, 0.6, 0.6);
+    /* autoprefixer: off */
+    transition: opacity 200ms @te-smooth 0s, z-index 0s 100ms, visibility 0s 100ms, transform 100ms @te-smooth 0s, transform 100ms @te-smooth 0s; // Transition out
     will-change: visibility, z-index, opacity, transform; // Not supported in IE11 / Edge
-    transition: opacity 200ms @te-smooth 0s, z-index 0s 100ms, visibility 0s 100ms, transform 100ms @te-smooth 0s; // Transition out
+    -webkit-overflow-scrolling: touch; // Make scrolling have inertia on mobile devices.
 }
 
 //  [1] To override .s-btn class attributes
@@ -90,8 +95,8 @@
 
 .s-modal--header {
     margin-bottom: @su16;
-    .mx-fs(@fs-headline1);
     color: @fc-dark;
+    .mx-fs(@fs-headline1);
 }
 
 .s-modal--body {
@@ -101,21 +106,6 @@
 .s-modal--footer {
     margin-top: @su24;
 }
-
-//  ============================================================================
-//  $   MODAL WIDTHS
-//  ----------------------------------------------------------------------------
-.s-modal__wmx-xs { max-width: (unit(@su24) * 1rem); }
-.s-modal__wmx-sm { max-width: (unit(@su32) * 1rem); }
-.s-modal__wmx-md { max-width: (unit(@su48) * 1rem); }
-.s-modal__wmx-lg { max-width: (unit(@su64) * 1rem); }
-.s-modal__wmx-xl { max-width: (unit(@su24 * 3) * 1rem); }
-
-.s-modal__hmx-xs { max-height: (unit(@su16) * 1rem); }
-.s-modal__hmx-sm { max-height: (unit(@su24) * 1rem); }
-.s-modal__hmx-md { max-height: (unit(@su32) * 1rem); }
-.s-modal__hmx-lg { max-height: (unit(@su48) * 1rem); }
-.s-modal__hmx-xl { max-height: (unit(@su64) * 1rem); }
 
 .s-modal__full {
     max-width: calc(~"100% - @{su48}");
