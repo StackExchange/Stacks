@@ -105,6 +105,7 @@
     &.s-notice__important {
         background-color: @red-400;
         border-color: transparent;
+        color: @red-050;
     }
 }
 
@@ -120,15 +121,25 @@
 }
 
 .s-notice__banner {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
     padding: @su12;
     width: 100%;
     border-radius: 0;
+    z-index: @zi-banners;
 }
 
 .s-notice__toast {
-    position: absolute;
-    top: 66px; // 50px (header) + 16px
+    display: none;
+    position: fixed;
+    top: 16px; // 50px (header) + 16px
     left: 50%;
+    margin-left: -16rem;
+    width: 100%;
+    max-width: 42rem;
     z-index: @zi-popovers;
     box-shadow: @bs-sm;
 }
