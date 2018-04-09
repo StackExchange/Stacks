@@ -120,8 +120,9 @@
     z-index: @zi-popovers;
 }
 
+//  $$  BANNER
+//  ----------------------------------------------------------------------------
 .s-notice__banner {
-    display: none;
     position: fixed;
     top: 0;
     left: 0;
@@ -130,10 +131,23 @@
     width: 100%;
     border-radius: 0;
     z-index: @zi-banners;
+
+    visibility: hidden;
+    opacity: 0;
+    transform: translate3d(0,-50px,0);
+    transition: transform 125ms @te-smooth 0s, opacity 125ms @te-smooth 10ms, visibility 0s 150ms;
+
+    &[aria-hidden="false"] {
+        visibility: visible;
+        opacity: 1;
+        transform: translate3d(0,0,0);
+        transition: visibility 0s 0s, transform 75ms @te-smooth 10ms, opacity 125ms @te-smooth 10ms;
+    }
 }
 
+//  $$  TOAST
+//  ----------------------------------------------------------------------------
 .s-notice__toast {
-    display: none;
     position: fixed;
     top: 16px; // 50px (header) + 16px
     left: 50%;
@@ -142,4 +156,16 @@
     max-width: 42rem;
     z-index: @zi-popovers;
     box-shadow: @bs-sm;
+
+    visibility: hidden;
+    opacity: 0;
+    transform: translate3d(0,-66px,0);
+    transition: transform 100ms @te-smooth-slow 0s, opacity 0ms 100ms, visibility 0s 100ms;
+
+    &[aria-hidden="false"] {
+        visibility: visible;
+        opacity: 1;
+        transform: translate3d(0,0,0);
+        transition: visibility 0s 0s, opacity 100ms @te-smooth 0s, transform 100ms @te-smooth 0s;
+    }
 }

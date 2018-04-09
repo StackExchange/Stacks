@@ -1,19 +1,30 @@
 $(document).ready(function() {
     $(".js-notice-banner-open").click(function(e) {
-        $(".js-stacks-nav, .js-stacks-content").css("margin-top","44px");
-        $(".js-notice-banner").addClass("d-block");
+        $(".js-stacks-nav, .js-stacks-content").css({
+            "margin-top": "44px",
+            "transition": "margin-top 125ms cubic-bezier(0.165, 0.84, 0.44, 1) 0s"
+        });
+        $(".js-notice-banner").attr("aria-hidden","false");
     });
 
     $(".js-notice-banner-close").click(function(e) {
         $(".js-stacks-nav, .js-stacks-content").css("margin-top","");
-        $(".js-notice-banner").removeClass("d-block");
+        $(".js-notice-banner").attr("aria-hidden","true");
     });
 
     $(".js-notice-toast-open").click(function(e) {
-        $(".js-notice-toast").addClass("d-block");
+
+        $(".js-notice-toast")
+            .queue(function() {
+                $(this).attr("aria-hidden","false").dequeue();
+            })
+            .delay(3000)
+            .queue(function(e) {
+                $(this).attr("aria-hidden","true").dequeue();
+            });
     });
 
     $(".js-notice-toast-close").click(function(e) {
-        $(".js-notice-toast").removeClass("d-block");
+        $(".js-notice-toast").attr("aria-hidden","true");
     });
 });
