@@ -14,7 +14,7 @@
   const ClassName = {
     MENU        : "nav",
     MENU_ITEM   : "-item",
-    MENU_LINK   : "-link"
+    MENU_LINK   : "s-link s-link__muted"
   }
 
   const GridClass = {

@@ -53,17 +53,17 @@
 //      fonts before downloading.
 //  ---------------------------------------------------------------------------
 .font-face(@family, @path, @weight, @style) {
-@font-face {
-    font-family: "@{family}";
-    font-weight: @weight;
-    font-style: @style;
-    & when (@style=italic) {
-        #stacks-internals #font-face-src(@family, @path, @weight, " Italic");
+    @font-face {
+        font-family: "@{family}";
+        font-weight: @weight;
+        font-style: @style;
+        & when (@style=italic) {
+            #stacks-internals #font-face-src(@family, @path, @weight, " Italic");
+        }
+        & when not (@style=italic) {
+            #stacks-internals #font-face-src(@family, @path, @weight, "");
+        }
     }
-    & when not (@style=italic) {
-        #stacks-internals #font-face-src(@family, @path, @weight, "");
-    }
-}
 }
 
 
@@ -76,17 +76,17 @@
 .triangle-top(@width, @height, @color) {
     width: 0;
     height: 0;
-    border-left: @width solid transparent;
     border-right: @width solid transparent;
     border-bottom: @height solid @color;
+    border-left: @width solid transparent;
 }
 
 .triangle-bottom(@width, @height, @color) {
     width: 0;
     height: 0;
-    border-left: @width solid transparent;
-    border-right: @width solid transparent;
     border-top: @height solid @color;
+    border-right: @width solid transparent;
+    border-left: @width solid transparent;
 }
 
 .triangle-right(@width, @height, @color) {
@@ -101,8 +101,8 @@
     width: 0;
     height: 0;
     border-top: @width solid transparent;
-    border-bottom: @width solid transparent;
     border-right: @height solid @color;
+    border-bottom: @width solid transparent;
 }
 
 
@@ -113,9 +113,9 @@
 //  ---------------------------------------------------------------------------
 .ellipsisAtMaxWidth(@width) {
     max-width: @width;
-    white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 
@@ -137,7 +137,7 @@
     // - ComicSansMS-ExtraBoldItalic
     // - Comic Sans MS 800 Italic
     // - ComicSansMS-800Italic
-    // 
+    //
     // For the weight 400 we also include the un-weight-postfixed name ("Comic Sans MS Italic").
 
     #font-face-src(@family, @path, @weight, @style-postfix) {
@@ -161,4 +161,3 @@
         }
     }
 }
-
