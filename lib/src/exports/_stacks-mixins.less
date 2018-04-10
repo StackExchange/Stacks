@@ -49,16 +49,21 @@
 //  --  FONT FACE
 //      Used to load hosted, custom webfonts. You must provide the font's
 //      full file path in the mixin. All modern browsers the WOFF file format.
-//      The "local" call in src looks to see if the user has the file locally
-//      first before downloading the font file.
+//      Will automaticall add various local()s to try using already-installed
+//      fonts before downloading.
 //  ---------------------------------------------------------------------------
 .font-face(@family, @path, @weight, @style) {
-@font-face {
-    font-family: @family;
-    font-weight: @weight;
-    font-style: @style;
-    src: local(@family), @path format('woff');
-}
+    @font-face {
+        font-family: "@{family}";
+        font-weight: @weight;
+        font-style: @style;
+        & when (@style=italic) {
+            #stacks-internals #font-face-src(@family, @path, @weight, " Italic");
+        }
+        & when not (@style=italic) {
+            #stacks-internals #font-face-src(@family, @path, @weight, "");
+        }
+    }
 }
 
 
@@ -71,17 +76,17 @@
 .triangle-top(@width, @height, @color) {
     width: 0;
     height: 0;
-    border-left: @width solid transparent;
     border-right: @width solid transparent;
     border-bottom: @height solid @color;
+    border-left: @width solid transparent;
 }
 
 .triangle-bottom(@width, @height, @color) {
     width: 0;
     height: 0;
-    border-left: @width solid transparent;
-    border-right: @width solid transparent;
     border-top: @height solid @color;
+    border-right: @width solid transparent;
+    border-left: @width solid transparent;
 }
 
 .triangle-right(@width, @height, @color) {
@@ -96,8 +101,8 @@
     width: 0;
     height: 0;
     border-top: @width solid transparent;
-    border-bottom: @width solid transparent;
     border-right: @height solid @color;
+    border-bottom: @width solid transparent;
 }
 
 
@@ -108,9 +113,51 @@
 //  ---------------------------------------------------------------------------
 .ellipsisAtMaxWidth(@width) {
     max-width: @width;
-    white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 
+
+//  ===========================================================================
+//  Internals only beyond this point -- helpers for .font-face()
+//  ---------------------------------------------------------------------------
+
+
+#stacks-internals() {
+
+    // Generate all common variants for local names that this font face may have.
+    // The CSS spec (Font Module Level 3, Section 4.3) says to use "only the Postscript
+    // name or the full font name".
+    // For example, given the family "Comic Sans MS", weight 800, italic, we're
+    // trying these local names:
+    //
+    // - Comic Sans MS Extra Bold Italic
+    // - ComicSansMS-ExtraBoldItalic
+    // - Comic Sans MS 800 Italic
+    // - ComicSansMS-800Italic
+    //
+    // For the weight 400 we also include the un-weight-postfixed name ("Comic Sans MS Italic").
+
+    #font-face-src(@family, @path, @weight, @style-postfix) {
+        @index: round(@weight/100);
+        @weight-names: "Thin", "Extra Light", "Light", "Regular", "Medium", "Semi Bold", "Bold", "Extra Bold", "Black";
+        @weight-name: extract(@weight-names, @index);
+        #stacks-internals #font-face-src-postfix(@family, @path, "@{weight-name}", @weight, @style-postfix);
+    }
+
+    #font-face-src-postfix(@family, @path, @postfix-name, @postfix-number, @style-postfix) {
+        @family-nospace: replace(@family, " ", "");
+        @postfix-name-nospace: replace("@{postfix-name}@{style-postfix}", " ", "");
+        @postfix-number-nospace: replace("@{postfix-number}@{style-postfix}", " ", "");
+
+        & when (@postfix-name="Regular") {
+            src: local("@{family} @{postfix-name}@{style-postfix}"), local("@{family-nospace}-@{postfix-name-nospace}"), local("@{family} @{postfix-number}@{style-postfix}"), local("@{family-nospace}-@{postfix-number-nospace}"), local("@{family}@{style-postfix}"), @path format("woff");
+        }
+
+        & when not (@postfix-name="Regular") {
+            src: local("@{family} @{postfix-name}@{style-postfix}"), local("@{family-nospace}-@{postfix-name-nospace}"), local("@{family} @{postfix-number}@{style-postfix}"), local("@{family-nospace}-@{postfix-number-nospace}"), @path format("woff");
+        }
+    }
+}

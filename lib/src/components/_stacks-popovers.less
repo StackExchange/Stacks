@@ -15,41 +15,42 @@
 //  ----------------------------------------------------------------------------
 
 .s-popover {
+    visibility: hidden;
     position: absolute;
     width: 160px;
-    background: @white;
-    border-radius: @br-sm;
-    border: 1px solid @black-075;
-    box-shadow: @bs-sm;
 
     z-index: @zi-hide;
-    visibility: hidden;
     opacity: 0;
+    border: 1px solid @black-075;
+    border-radius: @br-sm;
+    background: @white;
+    -webkit-box-shadow: @bs-sm;
+            box-shadow: @bs-sm;
 
     &.is-visible {
-        opacity: 1;
         visibility: visible;
         z-index: @zi-active;
+        opacity: 1;
     }
 
     .s-popover--arrow {
-        position: absolute;
         display: block;
+        position: absolute;
         width: @su16;
         height: @su8;
 
         &:before {
-            position: absolute;
-            display: block;
             content: "";
+            display: block;
+            position: absolute;
             border-color: transparent;
             border-style: solid;
         }
 
         &:after {
-            position: absolute;
-            display: block;
             content: "";
+            display: block;
+            position: absolute;
             border-color: transparent;
             border-style: solid;
             border-width: 0 @su8 @su8 @su8;
@@ -63,15 +64,15 @@
             margin-left: -@su8;
 
             &:before {
-                border-width: 0 @su8 @su8 @su8;
-                border-bottom-color: @black-100;
                 top: 0;
+                border-bottom-color: @black-100;
+                border-width: 0 @su8 @su8 @su8;
             }
 
             &:after {
-                border-width: 0 @su8 @su8 @su8;
-                border-bottom-color: @white;
                 top: 1px;
+                border-bottom-color: @white;
+                border-width: 0 @su8 @su8 @su8;
             }
         }
     }
@@ -83,55 +84,55 @@
             margin-left: -@su8;
 
             &:before {
-                border-width: @su8 @su8 0 @su8;
-                border-top-color: @black-100;
                 bottom: 0px;
+                border-top-color: @black-100;
+                border-width: @su8 @su8 0 @su8;
             }
 
             &:after {
-                border-width: @su8 @su8 0 @su8;
-                border-top-color: @white;
                 bottom: 1px;
+                border-top-color: @white;
+                border-width: @su8 @su8 0 @su8;
             }
         }
     }
 
     &.s-popover__right {
         .s-popover--arrow {
-            left: -@su8;
             top: 50%;
+            left: -@su8;
             margin-top: -@su8;
 
             &:before {
-                border-width: @su8 @su8 @su8 0;
-                border-right-color: @black-100;
                 left: 0px;
+                border-right-color: @black-100;
+                border-width: @su8 @su8 @su8 0;
             }
 
             &:after {
-                border-width: @su8 @su8 @su8 0;
-                border-right-color: @white;
                 left: 1px;
+                border-right-color: @white;
+                border-width: @su8 @su8 @su8 0;
             }
         }
     }
 
     &.s-popover__left {
         .s-popover--arrow {
-            right: -@su8;
             top: 50%;
+            right: -@su8;
             margin-top: -@su8;
 
             &:before {
-                border-width: @su8 0 @su8 @su8;
-                border-left-color: @black-100;
                 right: 0px;
+                border-left-color: @black-100;
+                border-width: @su8 0 @su8 @su8;
             }
 
             &:after {
-                border-width: @su8 0 @su8 @su8;
-                border-left-color: @white;
                 right: 1px;
+                border-left-color: @white;
+                border-width: @su8 0 @su8 @su8;
             }
         }
     }

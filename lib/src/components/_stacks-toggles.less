@@ -39,24 +39,22 @@
 
     //  Style the base label
     .s-label {
-        padding: 0.8em 1em;
         width: 100%;
         margin: 0;
+        padding: 0.8em 1em;
         border: 1px solid @black-150;
         background-color: @white;
         font-family: inherit;
         font-size: inherit;
         font-weight: 400;
-        line-height: 1;
-        cursor: pointer;
         text-align: center;
-
-        -webkit-touch-callout: none; // iOS Safari
-          -webkit-user-select: none; // Safari
-           -khtml-user-select: none; // Konqueror HTML
-             -moz-user-select: none; // Firefox
-              -ms-user-select: none; // Internet Explorer/Edge
-                  user-select: none; // Non-prefixed version
+        line-height: 1;
+        -webkit-touch-callout: none;
+          -webkit-user-select: none;
+             -moz-user-select: none;
+              -ms-user-select: none;
+                  user-select: none;
+        cursor: pointer;
 
         &:hover {
             background-color: fade(saturate(@black-200,5%),5%);
@@ -65,10 +63,11 @@
 
     //  If the label is selected, style it accordingly.
     .s-radio:checked + .s-label {
-        background-color: @black-100;
-        box-shadow: inset 0 @su2 @su2+@su4 0 fade(darken(@black-025,30%),60%);
-        color: @black-700;
         z-index: @zi-selected;
+        background-color: @black-100;
+        -webkit-box-shadow: inset 0 @su2 @su2+@su4 0 fade(darken(@black-025,30%),60%);
+                box-shadow: inset 0 @su2 @su2+@su4 0 fade(darken(@black-025,30%),60%);
+        color: @black-700;
     }
 }
 
@@ -83,14 +82,15 @@
     //      visually dominating for the user.
     &.s-option-toggle__primary {
         .s-label:hover {
-            color: @blue-700;
             background-color: @blue-050;
+            color: @blue-700;
         }
 
         .s-radio:checked + .s-label {
             border-color: @blue-600;
-            box-shadow: inset 0 @su2 @su2+@su4 0 fade(darken(@blue-300,30%),90%);
             background-color: @blue-500;
+            -webkit-box-shadow: inset 0 @su2 @su2+@su4 0 fade(darken(@blue-300,30%),90%);
+                    box-shadow: inset 0 @su2 @su2+@su4 0 fade(darken(@blue-300,30%),90%);
             color: @white;
         }
     }
@@ -102,7 +102,8 @@
             &:not(.s-label__off) {
                 border-color: @green-400;
                 background-color: @green-400;
-                box-shadow: inset 0 @su2 @su2+@su4 0 fade(darken(@green-200,30%),90%);
+                -webkit-box-shadow: inset 0 @su2 @su2+@su4 0 fade(darken(@green-200,30%),90%);
+                        box-shadow: inset 0 @su2 @su2+@su4 0 fade(darken(@green-200,30%),90%);
                 color: @white;
             }
         }
