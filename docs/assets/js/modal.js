@@ -1,6 +1,6 @@
 $(document).ready(function() {
-    var modal             = $(".js-modal-overlay");
-    var body              = $("body");
+    var modal = $(".js-modal-overlay");
+    var body = $("body");
 
     function trapEscapeKey(e) {
         // if escape pressed

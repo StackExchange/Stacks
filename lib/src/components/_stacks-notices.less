@@ -16,8 +16,8 @@
 //  $$  FILLED, MUTED
 .s-notice {
     padding: @su16;
-    border-radius: @br-sm;
     border: 1px solid transparent;
+    border-radius: @br-sm;
     color: @fc-medium;
 }
 
@@ -41,34 +41,34 @@
 //  $$  INFO
 //  ----------------------------------------------------------------------------
 .s-notice__info {
-    background-color: #E1F0FC;
     border-color: #CFDCE6;
+    background-color: #E1F0FC;
 
     &.s-notice__outlined {
-        background-color: @white;
         border-color: @blue-500;
+        background-color: @white;
     }
 
     &.s-notice__important {
-        background-color: @blue-500;
         border-color: transparent;
+        background-color: @blue-500;
     }
 }
 
 //  $$  SUCCESS
 //  ----------------------------------------------------------------------------
 .s-notice__success {
-    background-color: #D3F1DC;
     border-color: #BED9C6;
+    background-color: #D3F1DC;
 
     &.s-notice__outlined {
-        background-color: @white;
         border-color: @green-400;
+        background-color: @white;
     }
 
     &.s-notice__important {
-        background-color: #43CA70;
         border-color: transparent;
+        background-color: #43CA70;
         color: @fc-dark;
     }
 }
@@ -76,17 +76,17 @@
 //  $$  WARNING
 //  ----------------------------------------------------------------------------
 .s-notice__warning {
-    background-color: #FFF8DC;
     border-color: #E6DFC6;
+    background-color: #FFF8DC;
 
     &.s-notice__outlined {
-        background-color: @white;
         border-color: @yellow-500;
+        background-color: @white;
     }
 
     &.s-notice__important {
-        background-color: @yellow-400;
         border-color: transparent;
+        background-color: @yellow-400;
         color: @fc-dark;
     }
 }
@@ -94,17 +94,17 @@
 //  $$  DANGER
 //  ----------------------------------------------------------------------------
 .s-notice__danger {
-    background-color: #FFE7EB;
     border-color: #E6D0D4;
+    background-color: #FFE7EB;
 
     &.s-notice__outlined {
-        background-color: @white;
         border-color: @red-400;
+        background-color: @white;
     }
 
     &.s-notice__important {
-        background-color: @red-400;
         border-color: transparent;
+        background-color: @red-400;
         color: @red-050;
     }
 }
@@ -116,56 +116,74 @@
 //  $$  FLOATING
 //  ----------------------------------------------------------------------------
 .s-notice__float {
-    box-shadow: @bs-sm;
     z-index: @zi-popovers;
+    -webkit-box-shadow: @bs-sm;
+            box-shadow: @bs-sm;
 }
 
 //  $$  BANNER
 //  ----------------------------------------------------------------------------
 .s-notice__banner {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    padding: @su12;
-    width: 100%;
-    border-radius: 0;
-    z-index: @zi-banners;
 
     visibility: hidden;
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    width: 100%;
+    padding: @su12;
+    z-index: @zi-banners;
     opacity: 0;
-    transform: translate3d(0,-50px,0);
+    border-radius: 0;
+    -webkit-transform: translate3d(0,-50px,0);
+            transform: translate3d(0,-50px,0);
+    -webkit-transition: opacity 125ms @te-smooth 10ms, visibility 0s 150ms, -webkit-transform 125ms @te-smooth 0s;
+    transition: opacity 125ms @te-smooth 10ms, visibility 0s 150ms, -webkit-transform 125ms @te-smooth 0s;
     transition: transform 125ms @te-smooth 0s, opacity 125ms @te-smooth 10ms, visibility 0s 150ms;
+    transition: transform 125ms @te-smooth 0s, opacity 125ms @te-smooth 10ms, visibility 0s 150ms, -webkit-transform 125ms @te-smooth 0s;
 
     &[aria-hidden="false"] {
         visibility: visible;
         opacity: 1;
-        transform: translate3d(0,0,0);
+        -webkit-transform: translate3d(0,0,0);
+                transform: translate3d(0,0,0);
+        -webkit-transition: visibility 0s 0s, opacity 125ms @te-smooth 10ms, -webkit-transform 75ms @te-smooth 10ms;
+        transition: visibility 0s 0s, opacity 125ms @te-smooth 10ms, -webkit-transform 75ms @te-smooth 10ms;
         transition: visibility 0s 0s, transform 75ms @te-smooth 10ms, opacity 125ms @te-smooth 10ms;
+        transition: visibility 0s 0s, transform 75ms @te-smooth 10ms, opacity 125ms @te-smooth 10ms, -webkit-transform 75ms @te-smooth 10ms;
     }
 }
 
 //  $$  TOAST
 //  ----------------------------------------------------------------------------
 .s-notice__toast {
+
+    visibility: hidden;
     position: fixed;
     top: 16px; // 50px (header) + 16px
     left: 50%;
-    margin-left: -16rem;
     width: 100%;
     max-width: 42rem;
+    margin-left: -16rem;
     z-index: @zi-popovers;
-    box-shadow: @bs-sm;
-
-    visibility: hidden;
     opacity: 0;
-    transform: translate3d(0,-66px,0);
+    -webkit-box-shadow: @bs-sm;
+            box-shadow: @bs-sm;
+    -webkit-transform: translate3d(0,-66px,0);
+            transform: translate3d(0,-66px,0);
+    -webkit-transition: opacity 0ms 100ms, visibility 0s 100ms, -webkit-transform 100ms @te-smooth-slow 0s;
+    transition: opacity 0ms 100ms, visibility 0s 100ms, -webkit-transform 100ms @te-smooth-slow 0s;
     transition: transform 100ms @te-smooth-slow 0s, opacity 0ms 100ms, visibility 0s 100ms;
+    transition: transform 100ms @te-smooth-slow 0s, opacity 0ms 100ms, visibility 0s 100ms, -webkit-transform 100ms @te-smooth-slow 0s;
 
     &[aria-hidden="false"] {
         visibility: visible;
         opacity: 1;
-        transform: translate3d(0,0,0);
+        -webkit-transform: translate3d(0,0,0);
+                transform: translate3d(0,0,0);
+        -webkit-transition: visibility 0s 0s, opacity 100ms @te-smooth 0s, -webkit-transform 100ms @te-smooth 0s;
+        transition: visibility 0s 0s, opacity 100ms @te-smooth 0s, -webkit-transform 100ms @te-smooth 0s;
         transition: visibility 0s 0s, opacity 100ms @te-smooth 0s, transform 100ms @te-smooth 0s;
+        transition: visibility 0s 0s, opacity 100ms @te-smooth 0s, transform 100ms @te-smooth 0s, -webkit-transform 100ms @te-smooth 0s;
     }
 }
