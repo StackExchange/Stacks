@@ -13,11 +13,14 @@ $(document).ready(function() {
     });
 
     $(".js-notice-toast-open").click(function(e) {
-        var banner = $(".js-notice-banner[aria-hidden=false]");
+        var banner = $(".js-notice-banner").attr("aria-hidden");
         var toast = $(".js-notice-toast");
 
-        if (typeof banner == true) {
+        if (typeof banner !== typeof undefined && banner == "false") {
             toast.css("top","66px");
+        }
+        else {
+            toast.css("top","");
         }
 
         $(".js-notice-toast")
