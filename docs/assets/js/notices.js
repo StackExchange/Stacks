@@ -13,6 +13,12 @@ $(document).ready(function() {
     });
 
     $(".js-notice-toast-open").click(function(e) {
+        var banner = $(".js-notice-banner[aria-hidden=false]");
+        var toast = $(".js-notice-toast");
+
+        if (typeof banner == true) {
+            toast.css("top","66px");
+        }
 
         $(".js-notice-toast")
             .queue(function() {
