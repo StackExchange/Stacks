@@ -19,11 +19,12 @@ $(document).ready(function() {
     });
 
     $(".js-notice-toast-open").click(function(e) {
-        var banner = $(".js-notice-banner").attr("aria-hidden");
+        var banner = $(".js-notice-banner");
+        var attr = banner.attr("aria-hidden");
         var toast = $(".js-notice-toast");
 
-        if (typeof banner !== typeof undefined && banner == "false") {
-            toast.css("top","66px");
+        if (typeof attr !== typeof undefined && attr == "false") {
+            toast.css("top","116px");
         }
         else {
             toast.css("top","");
