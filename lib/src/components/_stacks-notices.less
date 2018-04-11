@@ -148,7 +148,7 @@
     }
 
     &.is-pinned {
-        z-index: @zi-banners;
+        z-index: @zi-navigation-fixed + 1;
         -webkit-transform: translate3d(0,0,0);
                 transform: translate3d(0,0,0);
     }
@@ -157,7 +157,6 @@
 //  $$  TOAST
 //  ----------------------------------------------------------------------------
 .s-notice__toast {
-
     visibility: hidden;
     position: fixed;
     top: 16px; // 50px (header) + 16px
@@ -165,7 +164,7 @@
     width: 100%;
     max-width: 42rem;
     margin-left: -16rem;
-    z-index: @zi-popovers;
+    z-index: @zi-navigation-fixed - 1;
     opacity: 0;
     -webkit-box-shadow: @bs-sm;
             box-shadow: @bs-sm;
