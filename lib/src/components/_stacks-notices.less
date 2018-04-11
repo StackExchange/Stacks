@@ -124,7 +124,6 @@
 //  $$  BANNER
 //  ----------------------------------------------------------------------------
 .s-notice__banner {
-
     visibility: hidden;
     position: fixed;
     top: 0;
@@ -132,25 +131,26 @@
     left: 0;
     width: 100%;
     padding: @su12;
-    z-index: @zi-banners;
+    z-index: @zi-navigation-fixed;
     opacity: 0;
     border-radius: 0;
+    -webkit-box-shadow: @bs-sm;
+            box-shadow: @bs-sm;
+
     -webkit-transform: translate3d(0,-50px,0);
             transform: translate3d(0,-50px,0);
-    -webkit-transition: opacity 125ms @te-smooth 10ms, visibility 0s 150ms, -webkit-transform 125ms @te-smooth 0s;
-    transition: opacity 125ms @te-smooth 10ms, visibility 0s 150ms, -webkit-transform 125ms @te-smooth 0s;
-    transition: transform 125ms @te-smooth 0s, opacity 125ms @te-smooth 10ms, visibility 0s 150ms;
-    transition: transform 125ms @te-smooth 0s, opacity 125ms @te-smooth 10ms, visibility 0s 150ms, -webkit-transform 125ms @te-smooth 0s;
 
     &[aria-hidden="false"] {
         visibility: visible;
         opacity: 1;
         -webkit-transform: translate3d(0,0,0);
+                transform: translate3d(0,49px,0);
+    }
+
+    &.is-pinned {
+        z-index: @zi-banners;
+        -webkit-transform: translate3d(0,0,0);
                 transform: translate3d(0,0,0);
-        -webkit-transition: visibility 0s 0s, opacity 125ms @te-smooth 10ms, -webkit-transform 75ms @te-smooth 10ms;
-        transition: visibility 0s 0s, opacity 125ms @te-smooth 10ms, -webkit-transform 75ms @te-smooth 10ms;
-        transition: visibility 0s 0s, transform 75ms @te-smooth 10ms, opacity 125ms @te-smooth 10ms;
-        transition: visibility 0s 0s, transform 75ms @te-smooth 10ms, opacity 125ms @te-smooth 10ms, -webkit-transform 75ms @te-smooth 10ms;
     }
 }
 
