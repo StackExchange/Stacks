@@ -57,6 +57,8 @@
 .s-modal--dialog {
     visibility: hidden;
     position: fixed; // We shouldn't NEED this, since the parent is fixed, but IE Edge needs it to properly scroll at small viewport sizes.
+    top: 50%;
+    left: 50%;
     max-width: 600px;
     max-height: 100%;
     overflow-y: auto;
@@ -70,11 +72,15 @@
     -webkit-backface-visibility: hidden;
             backface-visibility: hidden;
     -webkit-transform: translate3d(0, 30%, 0) scale3d(0.6, 0.6, 0.6);
-            transform: translate3d(0, 30%, 0) scale3d(0.6, 0.6, 0.6);
+            transform: translate3d(-50%, -20%, 0) scale3d(0.6, 0.6, 0.6);
     /* autoprefixer: off */
     transition: opacity 200ms @te-smooth 0s, z-index 0s 100ms, visibility 0s 100ms, transform 100ms @te-smooth 0s, transform 100ms @te-smooth 0s; // Transition out
     will-change: visibility, z-index, opacity, transform; // Not supported in IE11 / Edge
     -webkit-overflow-scrolling: touch; // Make scrolling have inertia on mobile devices.
+
+    .s-modal[aria-hidden="false"] & {
+        transform: translate3d(-50%, -50%, 0) scale3d(1, 1, 1)
+    }
 }
 
 //  [1] To override .s-btn class attributes
