@@ -512,7 +512,7 @@
 //  ============================================================================
 //  $   WARNING BUTTONS & STYLES
 //  ============================================================================
-.s-btn__warning {
+.s-btn__danger {
     .btn-check-brc(@status: false);
     .btn-check-bxs(@bxos: @btn-warning-bgc, @status: false);
     .btn-bgc(fade(@btn-warning-bgc,0%));
@@ -681,18 +681,15 @@
         }
     }
 
-    &.s-btn__warning.is-loading:before {
+    &.s-btn__danger.is-loading:before {
         border-color: fade(@btn-warning-bgc,25%);
         border-left-color: fade(@btn-warning-bgc,75%);
     }
-    &.s-btn__confirm.is-loading:before {
-        border-color: fade(@btn-confirm-bgc,40%);
-        border-left-color: fade(@btn-confirm-bgc,100%);
-    }
 
     &.s-btn__primary.is-loading:before,
-    &.s-btn__warning.s-btn__filled.is-loading:before,
-    &.s-btn__confirm.s-btn__filled.is-loading:before {
+    &.s-btn__danger.s-btn__filled.is-loading:before,
+    &.s-btn__inverted:not(.s-btn__filled).is-loading:before,
+    &.s-btn__inverted:not(.s-btn__filled).is-selected.is-loading:before, {
         border-color: fade(@white,25%);
         border-left-color: @white;
     }
