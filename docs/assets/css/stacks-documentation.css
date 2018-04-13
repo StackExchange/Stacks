@@ -928,8 +928,6 @@ template {
 .s-modal--dialog {
   visibility: hidden;
   position: fixed;
-  top: 50%;
-  left: 50%;
   max-width: 600px;
   max-height: 100%;
   overflow-y: auto;
@@ -942,14 +940,24 @@ template {
   box-shadow: 0 4px 12px rgba(36, 39, 41, 0.2);
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
-  transform: translate3d(-50%, -20%, 0) scale3d(0.6, 0.6, 0.6);
+  transform: translate3d(0, 30%, 0) scale3d(0.6, 0.6, 0.6);
   /* autoprefixer: off */
   transition: opacity 200ms cubic-bezier(0.165, 0.84, 0.44, 1) 0s, z-index 0s 100ms, visibility 0s 100ms, transform 100ms cubic-bezier(0.165, 0.84, 0.44, 1) 0s, transform 100ms cubic-bezier(0.165, 0.84, 0.44, 1) 0s;
   will-change: visibility, z-index, opacity, transform;
   -webkit-overflow-scrolling: touch;
 }
 .s-modal[aria-hidden="false"] .s-modal--dialog {
-  transform: translate3d(-50%, -50%, 0) scale3d(1, 1, 1);
+  transform: translate3d(0, 0, 0) scale3d(1, 1, 1);
+}
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+  .s-modal--dialog {
+    top: 50%;
+    left: 50%;
+    transform: translate3d(-50%, -20%, 0) scale3d(0.6, 0.6, 0.6);
+  }
+  .s-modal[aria-hidden="false"] .s-modal--dialog {
+    transform: translate3d(-50%, -50%, 0) scale3d(1, 1, 1);
+  }
 }
 .s-modal--close {
   position: absolute !important;
