@@ -1,22 +1,179 @@
 ---
 layout: page
-title: Notices
-description: Notices deliver <strong>System</strong> and <strong>Engagement</strong> messaging, informing the user about product or account statuses and related actions.
+title: Banners
+description: Banners are a type of <a href="/components/notices">notice</a>, delivering both <strong>System</strong> and <strong>Engagement</strong> messaging. These are highly intrusive messaging methods and so should be used appropriately.
 ---
 <!-- Example notice content -->
 <script src="{{ "/assets/js/notices.js" | relative_url }}"></script>
-<aside class="py8 pr8 s-notice s-notice__success s-notice__toast js-notice-toast" aria-hidden="true">
-    <div class="grid gs16 gsx ai-center jc-spacebetween" aria-describedby="notice-message">
-        <div class="grid--cell" aria-label="notice-message">
-            <p class="m0">Email settings have been successfully updated.</p>
+<aside class="py8 pr8 s-banner s-notice__important js-notice-banner" role="alert" aria-hidden="true">
+    <div class="wmx10 m-auto grid grid__center jc-spacebetween" role="alertdialog" aria-describedby="notice-message">
+        <div class="grid gs8 gsx mx0" aria-label="notice-message">
+            <div class="grid--cell">
+                <svg aria-hidden="true" class="svg-icon iconLock" width="18" height="18" viewBox="0 0 18 18"><path d="M16 9a2 2 0 0 0-2-2V6A5 5 0 0 0 4 6v1a2 2 0 0 0-2 2v6c0 1.1.9 2 2 2h10a2 2 0 0 0 2-2V9zm-7 5a2 2 0 0 1-2-2c0-1.1.9-2 2-2a2 2 0 0 1 2 2 2 2 0 0 1-2 2zm3.1-7H5.9V6a3.1 3.1 0 0 1 6.2 0v1z"/></svg>
+            </div>
+            <div class="grid--cell">
+                <p class="m0"><strong>Stacks is currently frozen in read-only mode.</strong> Contact the team to restore access.</p>
+            </div>
         </div>
-        <div class="grid--cell" aria-label="notice-dismiss">
-            <a class="p8 s-btn grid grid__center fc-dark js-notice-close">
+        <div class="grid--cell ml-auto" aria-label="notice-dismiss">
+            <a class="p8 s-btn grid grid__center fc-red-050 js-notice-close" role="status" aria-hidden="true">
                 <svg aria-hidden="true" class="m0 svg-icon iconClearSm" width="14" height="14" viewBox="0 0 14 14"><path d="M12 3.41L10.59 2 7 5.59 3.41 2 2 3.41 5.59 7 2 10.59 3.41 12 7 8.41 10.59 12 12 10.59 8.41 7z"/></svg>
             </a>
         </div>
     </div>
 </aside>
+
+<section class="stacks-section">
+    <h2 class="grid jc-spacebetween ai-center mb8 stacks-title">System Banners</h2>
+    <p class="stacks-p _section">System banners are used for <strong>system</strong> messaging. They are full-width notices placed in one of two locations:</p>
+    <ol class="stacks-list _section">
+        <li><strong>Above everything else:</strong> If the system banner is related to the entire website (e.g. the website is in read-only), place the banner first. <em>These cannot be dismissed until the issue is resolved.</em> To pin a system banner to the top of the browser window, add <code class="stacks-code">.is-pinned</code>.</li>
+        <li><strong>Below the top navigation bar:</strong> This is the default location for all system banners. Use these banners when it affects only a particular area of the product (e.g. when a product subscription is about to expire).</li>
+    </ol>
+    <p class="stacks-p _section">Since system banners are a type of notice, you can use the following <a href="/components/notice#visual-styles">notice visual styles</a> in conjunction with <code class="stacks-code">.s-banner</code>:</p>
+    <h3 class="grid jc-spacebetween ai-center mb8 stacks-title _subtitle">Classes</h3>
+    <table cellspacing="0" class="s-table mb32">
+        <thead>
+            <tr>
+                <th scope="col" class="s-table--cell3">Class</th>
+                <th scope="col">Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><code class="stacks-code">.s-notice__info</code></td>
+                <td>Visual style for information notices</td>
+            </tr>
+            <tr>
+                <td><code class="stacks-code">.s-notice__success</code></td>
+                <td>Visual style for success notices</td>
+            </tr>
+            <tr>
+                <td><code class="stacks-code">.s-notice__warning</code></td>
+                <td>Visual style for warning notices</td>
+            </tr>
+            <tr>
+                <td><code class="stacks-code">.s-notice__danger</code></td>
+                <td>Visual style for danger notices</td>
+            </tr>
+            <tr>
+                <td><code class="stacks-code">.s-notice__important</code></td>
+                <td>Loud visual style for important, time-sensitive information that needs to be noticed by the user</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h3 class="grid jc-spacebetween ai-center mb8 stacks-title _subtitle">Examples</h3>
+    <div class="mb12 p16 bar-sm bg-black-025 ba bc-black-1">
+        <div class="grid gs8 gsx">
+            <button class="grid--cell s-btn s-btn__filled js-notice-banner-open">Banner example</button>
+            <button class="grid--cell s-btn s-btn__filled js-notice-banner-pinned-open">Pinned banner example</button>
+        </div>
+    </div>
+    <div class="stacks-code-preview">
+{% highlight html linenos %}
+<aside class="s-banner s-notice__info s-notice__important" role="banner" role="status" aria-hidden="false">…</aside>
+<aside class="s-banner s-notice__success s-notice__important" role="banner" role="status" aria-hidden="false">…</aside>
+<aside class="s-banner s-notice__warning s-notice__important" role="banner" role="status" aria-hidden="false">…</aside>
+<aside class="s-banner s-notice__danger s-notice__important" role="banner" role="status" aria-hidden="false">…</aside>
+<aside class="s-banner s-notice__important" role="banner" role="status" aria-hidden="false">…</aside>
+{% endhighlight %}
+        <div class="-preview">
+            <div class="ps-relative grid gs8 gsy fd-column jc-center">
+                <aside class="grid--cell s-banner s-notice__info s-notice__important" role="banner" aria-hidden="false" style="position: relative; transform: translate3d(0,0,0);">
+                    <p class="m0">Info system banner</p>
+                </aside>
+                <aside class="grid--cell s-banner s-notice__success s-notice__important" role="banner" aria-hidden="false" style="position: relative; transform: translate3d(0,0,0);">
+                    <p class="m0">Success system banner</p>
+                </aside>
+                <aside class="grid--cell s-banner s-notice__warning s-notice__important" role="banner" aria-hidden="false" style="position: relative; transform: translate3d(0,0,0);">
+                    <p class="m0">Warning system banner</p>
+                </aside>
+                <aside class="grid--cell s-banner s-notice__danger s-notice__important" role="banner" aria-hidden="false" style="position: relative; transform: translate3d(0,0,0);">
+                    <p class="m0">Danger system banner</p>
+                </aside>
+                <aside class="grid--cell s-banner s-notice__important" role="banner" aria-hidden="false" style="position: relative; transform: translate3d(0,0,0);">
+                    <p class="m0">Base important system banner</p>
+                </aside>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="stacks-section">
+    <h2 class="grid jc-spacebetween ai-center mb8 stacks-title">Hero Banners</h2>
+    <p class="stacks-p _section">Hero banners are used for <strong>engagement</strong> messaging. They are full-width notices placed in one of two locations:</p>
+    <ol class="stacks-list _section">
+        <li><strong>Between the navigation and content areas:</strong> While highly disruptive, these place the banner within the users view first (e.g. sign-up or login messaging for logged out or new users).</li>
+        <li><strong>Fixed to the bottom of the browser window:</strong> A more minimal, persistent location for lower priority messages.</li>
+    </ol>
+    <p class="stacks-p _section">Since hero banners have an engagement goal, more visual styling is added to the heros. This means a number of new, specific classes are available for hero banners:</p>
+    <h3 class="grid jc-spacebetween ai-center mb8 stacks-title _subtitle">Classes</h3>
+    <table cellspacing="0" class="s-table mb32">
+        <thead>
+            <tr>
+                <th scope="col" class="s-table--cell3">Class</th>
+                <th scope="col">Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><code class="stacks-code">.s-banner__hero</code></td>
+                <td>The parent class for hero banners</td>
+            </tr>
+            <tr>
+                <td><code class="stacks-code">.s-banner__bgg-brand</code></td>
+                <td>Gives the hero banner an background gradient composed of brand colors</td>
+            </tr>
+            <tr>
+                <td><code class="stacks-code">.s-banner__bgg-info</code></td>
+                <td>Gives the hero banner an background gradient composed of info notice colors</td>
+            </tr>
+            <tr>
+                <td><code class="stacks-code">.s-banner__bgg-success</code></td>
+                <td>Gives the hero banner an background gradient composed of success notice colors</td>
+            </tr>
+            <tr>
+                <td><code class="stacks-code">.s-banner__bgg-danger</code></td>
+                <td>Gives the hero banner an background gradient composed of danger notice colors</td>
+            </tr>
+            <tr>
+                <td><code class="stacks-code">.s-banner__bgg-important</code></td>
+                <td>Gives the hero banner an background gradient composed of important notice colors</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h3 class="grid jc-spacebetween ai-center mb8 stacks-title _subtitle">Examples</h3>
+    <div class="mb12 p16 bar-sm bg-black-025 ba bc-black-1">
+        <div class="grid gs8 gsx">
+            <div class="grid--cell s-select">
+                <select id="hero-select" class="js-hero-select-menu">
+                    <option name="hero-select-menu" id="hero-info" selected>Info Hero</option>
+                    <option name="hero-select-menu" id="hero-brand">Brand Hero</option>
+                    <option name="hero-select-menu" id="hero-success">Success Hero</option>
+                    <option name="hero-select-menu" id="hero-important">Important Hero</option>
+                    <option name="hero-select-menu" id="hero-danger">Danger Hero</option>
+                </select>
+            </div>
+            <div class="grid--cell s-select">
+                <select id="hero-select" class="js-hero-position-menu">
+                    <option name="hero-position-menu" id="hero-normal" selected>Normal</option>
+                    <option name="hero-position-menu" id="hero-footer">Footer</option>
+                </select>
+            </div>
+            <button class="grid--cell s-btn s-btn__filled js-banner-show-hero">Show example</button>
+        </div>
+    </div>
+    <div class="stacks-code-preview">
+{% highlight html linenos %}
+<aside class="s-notice s-notice__info s-notice__banner" role="banner" role="status" aria-hidden="false">…</aside>
+{% endhighlight %}
+        <div class="-preview">
+            To view an example, see the menu above
+        </div>
+    </div>
+</section>
 
 <section class="stacks-section">
     <h2 class="grid jc-spacebetween ai-center mb8 stacks-title">Accessibilty</h2>
@@ -249,111 +406,6 @@ description: Notices deliver <strong>System</strong> and <strong>Engagement</str
                             </a>
                         </div>
                     </div>
-                </aside>
-            </div>
-        </div>
-    </div>
-</section>
-
-<section class="stacks-section">
-    <h2 class="grid jc-spacebetween ai-center mb8 stacks-title">Behaviors</h2>
-    <table cellspacing="0" class="s-table">
-        <thead>
-            <tr>
-                <th scope="col" class="s-table--cell2">Behavior</th>
-                <th scope="col" class="s-table--cell3">Class</th>
-                <th scope="col" class="s-table--cell2">Applied to</th>
-                <th scope="col">Description</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td><a href="#inline">Inline</a></td>
-                <td><code class="stacks-code">.s-notice</code></td>
-                <td><em class="fc-black-350">N/A</em></td>
-                <td>Notice inserted within the content area</td>
-            </tr>
-            <tr>
-                <td><a href="#floating">Floating</a></td>
-                <td><code class="stacks-code">.s-notice__float</code></td>
-                <td><code class="stacks-code">.s-notice</code></td>
-                <td>Floats notice above page content</td>
-            </tr>
-            <tr>
-                <td><a href="#banner">Banner</a></td>
-                <td><code class="stacks-code">.s-notice__banner</code></td>
-                <td><code class="stacks-code">.s-notice</code></td>
-                <td>Full-width notice fixed to the top or bottom of the viewport</td>
-            </tr>
-            <tr>
-                <td><a href="#toast">Toast</a></td>
-                <td><code class="stacks-code">.s-notice__toast</code></td>
-                <td><code class="stacks-code">.s-notice</code></td>
-                <td>Fixed floating notice to the top-center of the page and typically disappear after a set time (i.e. 3 seconds)</td>
-            </tr>
-        </tbody>
-    </table>
-    <h3 class="grid jc-spacebetween ai-center mb8 stacks-title _subtitle">Inline</h3>
-    <p class="stacks-p _section">Default behavior for notices that are inserted within the content area</p>
-    <div class="stacks-code-preview">
-{% highlight html linenos %}
-<aside class="s-notice s-notice__info" role="status" aria-hidden="false">…</aside>
-{% endhighlight %}
-        <div class="-preview">
-            <div class="ps-relative grid gs8 gsy fd-column jc-center">
-                <aside class="grid--cell s-notice s-notice__info" role="status" aria-hidden="false">
-                    <p class="m0">Inline notice message style</p>
-                </aside>
-            </div>
-        </div>
-    </div>
-
-    <h3 class="grid jc-spacebetween ai-center mb8 stacks-title _subtitle">Floating</h3>
-    <p class="stacks-p _section">Floats a notice above the current page's content</p>
-    <div class="stacks-code-preview">
-{% highlight html linenos %}
-<aside class="s-notice s-notice__info s-notice__float" role="status" aria-hidden="false">…</aside>
-{% endhighlight %}
-        <div class="-preview">
-            <div class="ps-relative grid gs8 gsy fd-column jc-center">
-                <aside class="grid--cell s-notice s-notice__info s-notice__float" role="status" aria-hidden="false">
-                    <p class="m0">Floating notice message style</p>
-                </aside>
-            </div>
-        </div>
-    </div>
-
-    <h3 class="grid jc-spacebetween ai-center mb8 stacks-title _subtitle">Banner</h3>
-    <p class="stacks-p _section">Full width notices usually at the top or bottom of the browser window</p>
-    <div class="mb24 p16 bar-sm bg-black-025 ba bc-black-1">
-        <button class="grid--cell s-btn s-btn__filled js-notice-banner-open">Launch example banner notice</button>
-    </div>
-    <div class="stacks-code-preview">
-{% highlight html linenos %}
-<aside class="s-notice s-notice__info s-notice__banner" role="banner" role="status" aria-hidden="false">…</aside>
-{% endhighlight %}
-        <div class="-preview">
-            <div class="ps-relative grid gs8 gsy fd-column jc-center">
-                <aside class="grid--cell s-notice s-notice__important s-notice__banner" role="banner" aria-hidden="false" style="position: relative; transform: translate3d(0,0,0);">
-                    <p class="m0">Banner notice message style</p>
-                </aside>
-            </div>
-        </div>
-    </div>
-
-    <h3 class="grid jc-spacebetween ai-center mb8 stacks-title _subtitle">Toast</h3>
-    <p class="stacks-p _section">Floating notices, but aligned to the top and center of the page and they disappear after a set time</p>
-    <div class="mb24 p16 bar-sm bg-black-025 ba bc-black-1">
-        <button class="grid--cell s-btn s-btn__filled js-notice-toast-open">Launch example toast notice</button>
-    </div>
-    <div class="stacks-code-preview">
-{% highlight html linenos %}
-<aside class="s-notice s-notice__success s-notice__toast" role="status" aria-hidden="false">…</aside>
-{% endhighlight %}
-        <div class="-preview">
-            <div class="ps-relative grid grid__center gs8 gsy fd-column jc-center">
-                <aside class="grid--cell s-notice s-notice__success s-notice__toast" role="status" aria-hidden="false" style="position: relative; top: 0; left: 0;">
-                    <p class="m0">Toast notice message style</p>
                 </aside>
             </div>
         </div>
