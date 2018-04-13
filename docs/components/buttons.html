@@ -16,10 +16,24 @@ description: Buttons are user interface elements which allows users to take acti
 
 <section class="stacks-section">
     <h2 class="grid jc-spacebetween ai-center mb0 stacks-title">Styles</h2>
-    <p class="stacks-p _section">Stacks provides 5 different button styles: 1) secondary, 2) primary, 3) warning, 4) muted, and 5) inverted. Each style is explained below, detailing how and where these varying styles should be used.</p>
+    <p class="stacks-p _section">Stacks provides 5 different button styles:</p>
+    <ol class="stacks-list _section">
+        <li><a href="#secondary">Secondary</a></li>
+        <li><a href="#primary">Primary</a></li>
+        <li><a href="#danger">Danger</a></li>
+        <li><a href="#muted">Muted</a></li>
+        <li><a href="#inverted">Inverted</a></li>
+    </ol>
+    <p class="stacks-p _section">Each style is explained below, detailing how and where to use these styles.</p>
 
     <h3 class="grid jc-spacebetween ai-center mb0 stacks-title _subtitle">Secondary</h3>
-    <p class="stacks-p _section">All buttons, by default, are secondary buttons. There are three, graduating secondary styles: 1) <strong>clear</strong> <em>(default)</em>, 2) <strong>outlined</strong>, and 3) <strong>filled</strong>. A button's visual weight should correspond to the button action importance. The more important the action, the heavier the visual weight should be.</p>
+    <p class="stacks-p _section">All buttons, by default, are secondary buttons. There are three, graduating secondary styles:</p>
+    <ol class="stacks-list _section">
+        <li>Clear <em>(default)</em></li>
+        <li>Outlined</li>
+        <li>Filled</li>
+    </ol>
+    <p class="stacks-p _section">A button's visual weight should correspond to the importance of the button's action. The more important the action, the heavier the button's visual weight.</p>
     <div class="stacks-code-preview">
 {% highlight html linenos %}
 <button class="s-btn" type="button" aria-pressed="false">…</button>
@@ -32,57 +46,34 @@ description: Buttons are user interface elements which allows users to take acti
                     <tr>
                         <th scope="col">Type</th>
                         <th scope="col" class="s-table--cell4">Class</th>
-                        <th scope="col" class="s-table--cell7">Example</th>
+                        <th scope="col" class="ta-center">Default State</th>
+                        <th scope="col" class="ta-center">Selected State</th>
+                        <th scope="col" class="ta-center">Disabled State</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <th scope="row" class="va-middle">Clear</th>
-                        <td class="va-middle">
-                            <div class="grid gs4 fw-wrap">
-                                <code class="grid--cell stacks-code">.s-btn</code>
-                            </div>
-                        </td>
-                        <td class="va-middle">
-                            <div class="grid gs8">
-                                <button class="grid--cell s-btn" type="button" aria-pressed="false">Ask question</button>
-                                <button class="grid--cell s-btn is-selected" type="button" aria-pressed="false">Ask question</button>
-                                <button class="grid--cell s-btn" type="button" aria-pressed="false" disabled>Ask question</button>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row" class="va-middle">Outlined</th>
-                        <td class="va-middle">
-                            <div class="grid gs4 fw-wrap">
-                                <code class="grid--cell stacks-code">.s-btn</code>
-                                <code class="grid--cell stacks-code">.s-btn__outlined</code>
-                            </div>
-                        </td>
-                        <td class="va-middle">
-                            <div class="grid gs8">
-                                <button class="grid--cell s-btn s-btn__outlined" type="button" aria-pressed="false">Ask question</button>
-                                <button class="grid--cell s-btn s-btn__outlined is-selected" type="button" aria-pressed="false">Ask question</button>
-                                <button class="grid--cell s-btn s-btn__outlined" type="button" aria-pressed="false" disabled>Ask question</button>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row" class="va-middle">Filled</th>
-                        <td class="va-middle">
-                            <div class="grid gs4 fw-wrap">
-                                <code class="grid--cell stacks-code">.s-btn</code>
-                                <code class="grid--cell stacks-code">.s-btn__filled</code>
-                            </div>
-                        </td>
-                        <td class="va-middle">
-                            <div class="grid gs8">
-                                <button class="grid--cell s-btn s-btn__filled" type="button" aria-pressed="false">Ask question</button>
-                                <button class="grid--cell s-btn s-btn__filled is-selected" type="button" aria-pressed="false">Ask question</button>
-                                <button class="grid--cell s-btn s-btn__filled" type="button" aria-pressed="false" disabled>Ask question</button>
-                            </div>
-                        </td>
-                    </tr>
+                    {% for btn in site.data.buttons.secondary %}
+                        {% assign types = btn.classes %}
+                        {% for class in types %}
+                        <tr>
+                            <th scope="row" class="va-middle">{{ class.title }}</th>
+                            <td class="va-middle">
+                                <div class="grid gs4 fw-wrap">
+                                    <code class="grid--cell stacks-code">.s-btn</code>
+                                    {% if btn.class != nil %}
+                                        <code class="grid--cell stacks-code">.{{ btn.class }}</code>
+                                    {% endif %}
+                                    {% if class.class != nil %}
+                                        <code class="grid--cell stacks-code">.{{ class.class }}</code>
+                                    {% endif %}
+                                </div>
+                            </td>
+                            <td class="va-middle px4"><button class="w100 ws-nowrap s-btn {{ class.class }}" type="button" aria-pressed="false">Ask question</button></td>
+                            <td class="va-middle px4"><button class="w100 ws-nowrap s-btn {{ class.class }} is-selected" type="button" aria-pressed="false">Ask question</button></td>
+                            <td class="va-middle px4"><button class="w100 ws-nowrap s-btn {{ class.class }}" type="button" aria-pressed="false" disabled>Ask question</button></td>
+                        </tr>
+                        {% endfor %}
+                    {% endfor %}
                 </tbody>
             </table>
         </div>
@@ -100,33 +91,41 @@ description: Buttons are user interface elements which allows users to take acti
                     <tr>
                         <th scope="col">Type</th>
                         <th scope="col" class="s-table--cell4">Class</th>
-                        <th scope="col" class="s-table--cell7">Example</th>
+                        <th scope="col" class="ta-center">Default State</th>
+                        <th scope="col" class="ta-center">Selected State</th>
+                        <th scope="col" class="ta-center">Disabled State</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <th scope="row" class="va-middle">Primary</th>
-                        <td class="va-middle">
-                            <div class="grid gs4 fw-wrap">
-                                <code class="grid--cell stacks-code">.s-btn</code>
-                                <code class="grid--cell stacks-code">.s-btn__primary</code>
-                            </div>
-                        </td>
-                        <td class="va-middle">
-                            <div class="grid gs8">
-                                <button class="grid--cell s-btn s-btn__primary" type="button" aria-pressed="false">Ask question</button>
-                                <button class="grid--cell s-btn s-btn__primary is-selected" type="button" aria-pressed="false">Ask question</button>
-                                <button class="grid--cell s-btn s-btn__primary" type="button" aria-pressed="false" disabled>Ask question</button>
-                            </div>
-                        </td>
-                    </tr>
+                    {% for btn in site.data.buttons.primary %}
+                        {% assign types = btn.classes %}
+                        {% for class in types %}
+                        <tr>
+                            <th scope="row" class="va-middle">{{ class.title }}</th>
+                            <td class="va-middle">
+                                <div class="grid gs4 fw-wrap">
+                                    <code class="grid--cell stacks-code">.s-btn</code>
+                                    {% if btn.class != nil %}
+                                        <code class="grid--cell stacks-code">.{{ btn.class }}</code>
+                                    {% endif %}
+                                    {% if class.class != nil %}
+                                        <code class="grid--cell stacks-code">.{{ class.class }}</code>
+                                    {% endif %}
+                                </div>
+                            </td>
+                            <td class="va-middle px4"><button class="w100 ws-nowrap s-btn {{ class.class }}" type="button" aria-pressed="false">Ask question</button></td>
+                            <td class="va-middle px4"><button class="w100 ws-nowrap s-btn {{ class.class }} is-selected" type="button" aria-pressed="false">Ask question</button></td>
+                            <td class="va-middle px4"><button class="w100 ws-nowrap s-btn {{ class.class }}" type="button" aria-pressed="false" disabled>Ask question</button></td>
+                        </tr>
+                        {% endfor %}
+                    {% endfor %}
                 </tbody>
             </table>
         </div>
     </div>
 
-    <h3 class="grid jc-spacebetween ai-center mb0 stacks-title _subtitle">Warning</h3>
-    <p class="stacks-p _section">Warning buttons are a secondary button style, used to visually communicate destructive actions such as deleting content, accounts, or canceling services.</p>
+    <h3 class="grid jc-spacebetween ai-center mb0 stacks-title _subtitle">Danger</h3>
+    <p class="stacks-p _section">Danger buttons are a secondary button style, used to visually communicate destructive actions such as deleting content, accounts, or canceling services.</p>
     <div class="stacks-code-preview">
 {% highlight html linenos %}
 <button class="s-btn s-btn__warning" type="button" aria-pressed="false">…</button>
@@ -139,60 +138,34 @@ description: Buttons are user interface elements which allows users to take acti
                     <tr>
                         <th scope="col">Type</th>
                         <th scope="col" class="s-table--cell4">Class</th>
-                        <th scope="col" class="s-table--cell7">Example</th>
+                        <th scope="col" class="ta-center">Default State</th>
+                        <th scope="col" class="ta-center">Selected State</th>
+                        <th scope="col" class="ta-center">Disabled State</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <th scope="row" class="va-middle">Clear</th>
-                        <td class="va-middle">
-                            <div class="grid gs4 fw-wrap">
-                                <code class="grid--cell stacks-code">.s-btn</code>
-                                <code class="grid--cell stacks-code">.s-btn__warning</code>
-                            </div>
-                        </td>
-                        <td class="va-middle">
-                            <div class="grid gs8">
-                                <button class="grid--cell s-btn s-btn__warning" type="button" aria-pressed="false">Ask question</button>
-                                <button class="grid--cell s-btn s-btn__warning is-selected" type="button" aria-pressed="false">Ask question</button>
-                                <button class="grid--cell s-btn s-btn__warning" type="button" aria-pressed="false" disabled>Ask question</button>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row" class="va-middle">Outlined</th>
-                        <td class="va-middle">
-                            <div class="grid gs4 fw-wrap">
-                                <code class="grid--cell stacks-code">.s-btn</code>
-                                <code class="grid--cell stacks-code">.s-btn__outlined</code>
-                                <code class="grid--cell stacks-code">.s-btn__warning</code>
-                            </div>
-                        </td>
-                        <td class="va-middle">
-                            <div class="grid gs8">
-                                <button class="grid--cell s-btn s-btn__outlined s-btn__warning" type="button" aria-pressed="false">Ask question</button>
-                                <button class="grid--cell s-btn s-btn__outlined s-btn__warning is-selected" type="button" aria-pressed="false">Ask question</button>
-                                <button class="grid--cell s-btn s-btn__outlined s-btn__warning" type="button" aria-pressed="false" disabled>Ask question</button>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row" class="va-middle">Filled</th>
-                        <td class="va-middle">
-                            <div class="grid gs4 fw-wrap">
-                                <code class="grid--cell stacks-code">.s-btn</code>
-                                <code class="grid--cell stacks-code">.s-btn__filled</code>
-                                <code class="grid--cell stacks-code">.s-btn__warning</code>
-                            </div>
-                        </td>
-                        <td class="va-middle">
-                            <div class="grid gs8">
-                                <button class="grid--cell s-btn s-btn__filled s-btn__warning" type="button" aria-pressed="false">Ask question</button>
-                                <button class="grid--cell s-btn s-btn__filled s-btn__warning is-selected" type="button" aria-pressed="false">Ask question</button>
-                                <button class="grid--cell s-btn s-btn__filled s-btn__warning" type="button" aria-pressed="false" disabled>Ask question</button>
-                            </div>
-                        </td>
-                    </tr>
+                    {% for btn in site.data.buttons.danger %}
+                        {% assign types = btn.classes %}
+                        {% for class in types %}
+                        <tr>
+                            <th scope="row" class="va-middle">{{ class.title }}</th>
+                            <td class="va-middle">
+                                <div class="grid gs4 fw-wrap">
+                                    <code class="grid--cell stacks-code">.s-btn</code>
+                                    {% if btn.class != nil %}
+                                        <code class="grid--cell stacks-code">.{{ btn.class }}</code>
+                                    {% endif %}
+                                    {% if class.class != nil %}
+                                        <code class="grid--cell stacks-code">.{{ class.class }}</code>
+                                    {% endif %}
+                                </div>
+                            </td>
+                            <td class="va-middle px4"><button class="w100 ws-nowrap s-btn {{ btn.class }} {{ class.class }}" type="button" aria-pressed="false">Ask question</button></td>
+                            <td class="va-middle px4"><button class="w100 ws-nowrap s-btn {{ btn.class }} {{ class.class }} is-selected" type="button" aria-pressed="false">Ask question</button></td>
+                            <td class="va-middle px4"><button class="w100 ws-nowrap s-btn {{ btn.class }} {{ class.class }}" type="button" aria-pressed="false" disabled>Ask question</button></td>
+                        </tr>
+                        {% endfor %}
+                    {% endfor %}
                 </tbody>
             </table>
         </div>
@@ -212,60 +185,34 @@ description: Buttons are user interface elements which allows users to take acti
                     <tr>
                         <th scope="col">Type</th>
                         <th scope="col" class="s-table--cell4">Class</th>
-                        <th scope="col" class="s-table--cell7">Example</th>
+                        <th scope="col" class="ta-center">Default State</th>
+                        <th scope="col" class="ta-center">Selected State</th>
+                        <th scope="col" class="ta-center">Disabled State</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <th scope="row" class="va-middle">Clear</th>
-                        <td class="va-middle">
-                            <div class="grid gs4 fw-wrap">
-                                <code class="grid--cell stacks-code">.s-btn</code>
-                                <code class="grid--cell stacks-code">.s-btn__muted</code>
-                            </div>
-                        </td>
-                        <td class="va-middle">
-                            <div class="grid gs8">
-                                <button class="grid--cell s-btn s-btn__muted" type="button" aria-pressed="false">Ask question</button>
-                                <button class="grid--cell s-btn s-btn__muted is-selected" type="button" aria-pressed="false">Ask question</button>
-                                <button class="grid--cell s-btn s-btn__muted" type="button" aria-pressed="false" disabled>Ask question</button>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row" class="va-middle">Outlined</th>
-                        <td class="va-middle">
-                            <div class="grid gs4 fw-wrap">
-                                <code class="grid--cell stacks-code">.s-btn</code>
-                                <code class="grid--cell stacks-code">.s-btn__outlined</code>
-                                <code class="grid--cell stacks-code">.s-btn__muted</code>
-                            </div>
-                        </td>
-                        <td class="va-middle">
-                            <div class="grid gs8">
-                                <button class="grid--cell s-btn s-btn__outlined s-btn__muted" type="button" aria-pressed="false">Ask question</button>
-                                <button class="grid--cell s-btn s-btn__outlined s-btn__muted is-selected" type="button" aria-pressed="false">Ask question</button>
-                                <button class="grid--cell s-btn s-btn__outlined s-btn__muted" type="button" aria-pressed="false" disabled>Ask question</button>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row" class="va-middle">Filled</th>
-                        <td class="va-middle">
-                            <div class="grid gs4 fw-wrap">
-                                <code class="grid--cell stacks-code">.s-btn</code>
-                                <code class="grid--cell stacks-code">.s-btn__filled</code>
-                                <code class="grid--cell stacks-code">.s-btn__muted</code>
-                            </div>
-                        </td>
-                        <td class="va-middle">
-                            <div class="grid gs8">
-                                <button class="grid--cell s-btn s-btn__filled s-btn__muted" type="button" aria-pressed="false">Ask question</button>
-                                <button class="grid--cell s-btn s-btn__filled s-btn__muted is-selected" type="button" aria-pressed="false">Ask question</button>
-                                <button class="grid--cell s-btn s-btn__filled s-btn__muted" type="button" aria-pressed="false" disabled>Ask question</button>
-                            </div>
-                        </td>
-                    </tr>
+                    {% for btn in site.data.buttons.muted %}
+                        {% assign types = btn.classes %}
+                        {% for class in types %}
+                        <tr>
+                            <th scope="row" class="va-middle">{{ class.title }}</th>
+                            <td class="va-middle">
+                                <div class="grid gs4 fw-wrap">
+                                    <code class="grid--cell stacks-code">.s-btn</code>
+                                    {% if btn.class != nil %}
+                                        <code class="grid--cell stacks-code">.{{ btn.class }}</code>
+                                    {% endif %}
+                                    {% if class.class != nil %}
+                                        <code class="grid--cell stacks-code">.{{ class.class }}</code>
+                                    {% endif %}
+                                </div>
+                            </td>
+                            <td class="va-middle px4"><button class="w100 ws-nowrap s-btn {{ btn.class }} {{ class.class }}" type="button" aria-pressed="false">Ask question</button></td>
+                            <td class="va-middle px4"><button class="w100 ws-nowrap s-btn {{ btn.class }} {{ class.class }} is-selected" type="button" aria-pressed="false">Ask question</button></td>
+                            <td class="va-middle px4"><button class="w100 ws-nowrap s-btn {{ btn.class }} {{ class.class }}" type="button" aria-pressed="false" disabled>Ask question</button></td>
+                        </tr>
+                        {% endfor %}
+                    {% endfor %}
                 </tbody>
             </table>
         </div>
@@ -285,60 +232,34 @@ description: Buttons are user interface elements which allows users to take acti
                     <tr>
                         <th scope="col">Type</th>
                         <th scope="col" class="s-table--cell4">Class</th>
-                        <th scope="col" class="s-table--cell7">Example</th>
+                        <th scope="col" class="ta-center">Default State</th>
+                        <th scope="col" class="ta-center">Selected State</th>
+                        <th scope="col" class="ta-center">Disabled State</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <th scope="row" class="va-middle">Clear</th>
-                        <td class="va-middle">
-                            <div class="grid gs4 fw-wrap">
-                                <code class="grid--cell stacks-code">.s-btn</code>
-                                <code class="grid--cell stacks-code">.s-btn__inverted</code>
-                            </div>
-                        </td>
-                        <td class="va-middle bg-black-800">
-                            <div class="grid gs8">
-                                <button class="grid--cell s-btn s-btn__inverted" type="button" aria-pressed="false">Ask question</button>
-                                <button class="grid--cell s-btn s-btn__inverted is-selected" type="button" aria-pressed="false">Ask question</button>
-                                <button class="grid--cell s-btn s-btn__inverted" type="button" aria-pressed="false" disabled>Ask question</button>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row" class="va-middle">Outlined</th>
-                        <td class="va-middle">
-                            <div class="grid gs4 fw-wrap">
-                                <code class="grid--cell stacks-code">.s-btn</code>
-                                <code class="grid--cell stacks-code">.s-btn__outlined</code>
-                                <code class="grid--cell stacks-code">.s-btn__inverted</code>
-                            </div>
-                        </td>
-                        <td class="va-middle bg-black-800">
-                            <div class="grid gs8">
-                                <button class="grid--cell s-btn s-btn__outlined s-btn__inverted" type="button" aria-pressed="false">Ask question</button>
-                                <button class="grid--cell s-btn s-btn__outlined s-btn__inverted is-selected" type="button" aria-pressed="false">Ask question</button>
-                                <button class="grid--cell s-btn s-btn__outlined s-btn__inverted" type="button" aria-pressed="false" disabled>Ask question</button>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row" class="va-middle">Filled</th>
-                        <td class="va-middle">
-                            <div class="grid gs4 fw-wrap">
-                                <code class="grid--cell stacks-code">.s-btn</code>
-                                <code class="grid--cell stacks-code">.s-btn__filled</code>
-                                <code class="grid--cell stacks-code">.s-btn__inverted</code>
-                            </div>
-                        </td>
-                        <td class="va-middle bg-black-800">
-                            <div class="grid gs8">
-                                <button class="grid--cell s-btn s-btn__filled s-btn__inverted" type="button" aria-pressed="false">Ask question</button>
-                                <button class="grid--cell s-btn s-btn__filled s-btn__inverted is-selected" type="button" aria-pressed="false">Ask question</button>
-                                <button class="grid--cell s-btn s-btn__filled s-btn__inverted" type="button" aria-pressed="false" disabled>Ask question</button>
-                            </div>
-                        </td>
-                    </tr>
+                    {% for btn in site.data.buttons.inverted %}
+                        {% assign types = btn.classes %}
+                        {% for class in types %}
+                        <tr>
+                            <th scope="row" class="va-middle">{{ class.title }}</th>
+                            <td class="va-middle">
+                                <div class="grid gs4 fw-wrap">
+                                    <code class="grid--cell stacks-code">.s-btn</code>
+                                    {% if btn.class != nil %}
+                                        <code class="grid--cell stacks-code">.{{ btn.class }}</code>
+                                    {% endif %}
+                                    {% if class.class != nil %}
+                                        <code class="grid--cell stacks-code">.{{ class.class }}</code>
+                                    {% endif %}
+                                </div>
+                            </td>
+                            <td class="va-middle px4 {% if btn.class or class.class == "s-btn__inverted" %}bg-black-750{% endif %}"><button class="w100 ws-nowrap s-btn {{ btn.class }} {{ class.class }}" type="button" aria-pressed="false">Ask question</button></td>
+                            <td class="va-middle px4 {% if btn.class or class.class == "s-btn__inverted" %}bg-black-750{% endif %}"><button class="w100 ws-nowrap s-btn {{ btn.class }} {{ class.class }} is-selected" type="button" aria-pressed="false">Ask question</button></td>
+                            <td class="va-middle px4 {% if btn.class or class.class == "s-btn__inverted" %}bg-black-750{% endif %}"><button class="w100 ws-nowrap s-btn {{ btn.class }} {{ class.class }}" type="button" aria-pressed="false" disabled>Ask question</button></td>
+                        </tr>
+                        {% endfor %}
+                    {% endfor %}
                 </tbody>
             </table>
         </div>
@@ -347,7 +268,7 @@ description: Buttons are user interface elements which allows users to take acti
 
 <section class="stacks-section">
     <h2 class="grid jc-spacebetween ai-center mb0 stacks-title">Loading states</h2>
-    <p class="stacks-p _section">Any button can have a loading state applied by adding the <code class="stacks-close">.is-loading</code> state class.</p>
+    <p class="stacks-p _section">Any button can have a loading state applied by adding the <code class="stacks-code">.is-loading</code> state class.</p>
     <div class="stacks-code-preview">
 {% highlight html linenos %}
 <button class="s-btn is-loading" type="button" aria-pressed="false">…</button>
@@ -359,188 +280,91 @@ description: Buttons are user interface elements which allows users to take acti
             <table cellspacing="0" class="s-table">
                 <thead>
                     <tr>
-                        <th scope="col" class="s-table--cell2">Type</th>
+                        <th scope="col">Type</th>
                         <th scope="col" class="s-table--cell4">Class</th>
-                        <th scope="col" class="s-table--cell6">Example</th>
+                        <th scope="col" class="ta-center">Default State</th>
+                        <th scope="col" class="ta-center">Selected State</th>
+                        <th scope="col" class="ta-center">Disabled State</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <th scope="row" class="va-middle">Primary</th>
-                        <td class="va-middle">
-                            <div class="grid gs4 fw-wrap">
-                                <code class="grid--cell stacks-code">.s-btn</code>
-                                <code class="grid--cell stacks-code">.s-btn__primary</code>
-                                <code class="grid--cell stacks-code">.is-loading</code>
-                            </div>
-                        </td>
-                        <td class="va-middle">
-                            <div class="grid gs8">
-                                <button class="grid--cell s-btn s-btn__primary is-loading" type="button" aria-pressed="false">Ask question</button>
-                                <button class="grid--cell s-btn s-btn__primary is-loading is-selected" type="button" aria-pressed="false">Ask question</button>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row" class="va-middle">Clear</th>
-                        <td class="va-middle">
-                            <div class="grid gs4 fw-wrap">
-                                <code class="grid--cell stacks-code">.s-btn</code>
-                                <code class="grid--cell stacks-code">.is-loading</code>
-                            </div>
-                        </td>
-                        <td class="va-middle">
-                            <div class="grid gs8">
-                                <button class="grid--cell s-btn is-loading" type="button" aria-pressed="false">Ask question</button>
-                                <button class="grid--cell s-btn is-loading is-selected" type="button" aria-pressed="false">Ask question</button>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row" class="va-middle">Outlined</th>
-                        <td class="va-middle">
-                            <div class="grid gs4 fw-wrap">
-                                <code class="grid--cell stacks-code">.s-btn</code>
-                                <code class="grid--cell stacks-code">.s-btn__outlined</code>
-                                <code class="grid--cell stacks-code">.is-loading</code>
-                            </div>
-                        </td>
-                        <td class="va-middle">
-                            <div class="grid gs8">
-                                <button class="grid--cell s-btn s-btn__outlined is-loading" type="button" aria-pressed="false">Ask question</button>
-                                <button class="grid--cell s-btn s-btn__outlined is-loading is-selected" type="button" aria-pressed="false">Ask question</button>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row" class="va-middle">Filled</th>
-                        <td class="va-middle">
-                            <div class="grid gs4 fw-wrap">
-                                <code class="grid--cell stacks-code">.s-btn</code>
-                                <code class="grid--cell stacks-code">.s-btn__filled</code>
-                                <code class="grid--cell stacks-code">.is-loading</code>
-                            </div>
-                        </td>
-                        <td class="va-middle">
-                            <div class="grid gs8">
-                                <button class="grid--cell s-btn s-btn__filled is-loading" type="button" aria-pressed="false">Ask question</button>
-                                <button class="grid--cell s-btn s-btn__filled is-loading is-selected" type="button" aria-pressed="false">Ask question</button>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row" class="va-middle">Warning, Clear</th>
-                        <td class="va-middle">
-                            <div class="grid gs4 fw-wrap">
-                                <code class="grid--cell stacks-code">.s-btn</code>
-                                <code class="grid--cell stacks-code">.s-btn__warning</code>
-                                <code class="grid--cell stacks-code">.is-loading</code>
-                            </div>
-                        </td>
-                        <td class="va-middle">
-                            <div class="grid gs8">
-                                <button class="grid--cell s-btn s-btn__warning is-loading" type="button" aria-pressed="false">Ask question</button>
-                                <button class="grid--cell s-btn s-btn__warning is-loading is-selected" type="button" aria-pressed="false">Ask question</button>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row" class="va-middle">Warning, Outlined</th>
-                        <td class="va-middle">
-                            <div class="grid gs4 fw-wrap">
-                                <code class="grid--cell stacks-code">.s-btn</code>
-                                <code class="grid--cell stacks-code">.s-btn__outlined</code>
-                                <code class="grid--cell stacks-code">.s-btn__warning</code>
-                                <code class="grid--cell stacks-code">.is-loading</code>
-                            </div>
-                        </td>
-                        <td class="va-middle">
-                            <div class="grid gs8">
-                                <button class="grid--cell s-btn s-btn__outlined s-btn__warning is-loading" type="button" aria-pressed="false">Ask question</button>
-                                <button class="grid--cell s-btn s-btn__outlined s-btn__warning is-loading is-selected" type="button" aria-pressed="false">Ask question</button>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row" class="va-middle">Warning, Filled</th>
-                        <td class="va-middle">
-                            <div class="grid gs4 fw-wrap">
-                                <code class="grid--cell stacks-code">.s-btn</code>
-                                <code class="grid--cell stacks-code">.s-btn__filled</code>
-                                <code class="grid--cell stacks-code">.s-btn__warning</code>
-                                <code class="grid--cell stacks-code">.is-loading</code>
-                            </div>
-                        </td>
-                        <td class="va-middle">
-                            <div class="grid gs8">
-                                <button class="grid--cell s-btn s-btn__filled s-btn__warning is-loading" type="button" aria-pressed="false">Ask question</button>
-                                <button class="grid--cell s-btn s-btn__filled s-btn__warning is-loading is-selected" type="button" aria-pressed="false">Ask question</button>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row" class="va-middle">Muted</th>
-                        <td class="va-middle">
-                            <div class="grid gs4 fw-wrap">
-                                <code class="grid--cell stacks-code">.s-btn</code>
-                                <code class="grid--cell stacks-code">.s-btn__filled</code>
-                                <code class="grid--cell stacks-code">.s-btn__muted</code>
-                                <code class="grid--cell stacks-code">.is-loading</code>
-                            </div>
-                        </td>
-                        <td class="va-middle">
-                            <div class="grid gs8">
-                                <button class="grid--cell s-btn s-btn__filled s-btn__muted is-loading" type="button" aria-pressed="false">Ask question</button>
-                                <button class="grid--cell s-btn s-btn__filled s-btn__muted is-loading is-selected" type="button" aria-pressed="false">Ask question</button>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row" class="va-middle">Inverted</th>
-                        <td class="va-middle">
-                            <div class="grid gs4 fw-wrap">
-                                <code class="grid--cell stacks-code">.s-btn</code>
-                                <code class="grid--cell stacks-code">.s-btn__filled</code>
-                                <code class="grid--cell stacks-code">.s-btn__inverted</code>
-                                <code class="grid--cell stacks-code">.is-loading</code>
-                            </div>
-                        </td>
-                        <td class="va-middle bg-black-800">
-                            <div class="grid gs8">
-                                <button class="grid--cell s-btn s-btn__filled s-btn__inverted is-loading" type="button" aria-pressed="false">Ask question</button>
-                                <button class="grid--cell s-btn s-btn__filled s-btn__inverted is-loading is-selected" type="button" aria-pressed="false">Ask question</button>
-                            </div>
-                        </td>
-                    </tr>
+                    {% for btn in site.data.buttons.loading %}
+                        {% assign types = btn.classes %}
+                        {% for class in types %}
+                        <tr>
+                            <th scope="row" class="va-middle">{{ class.title }}</th>
+                            <td class="va-middle">
+                                <div class="grid gs4 fw-wrap">
+                                    <code class="grid--cell stacks-code">.s-btn</code>
+                                    {% if class.class != nil %}
+                                        <code class="grid--cell stacks-code">.{{ class.class }}</code>
+                                    {% endif %}
+                                    {% if class.class2 != nil %}
+                                        <code class="grid--cell stacks-code">.{{ class.class2 }}</code>
+                                    {% endif %}
+                                    {% if btn.class != nil %}
+                                        <code class="grid--cell stacks-code">.{{ btn.class }}</code>
+                                    {% endif %}
+                                </div>
+                            </td>
+                            <td class="va-middle px4 {% if class.class == "s-btn__inverted" %}bg-black-750{% endif %}"><button class="w100 ws-nowrap s-btn {{ class.class }} {% if class.class2 %}{{ class.class2 }}{% endif %} {{ btn.class }}" type="button" aria-pressed="false">Ask question</button></td>
+                            <td class="va-middle px4 {% if class.class == "s-btn__inverted" %}bg-black-750{% endif %}"><button class="w100 ws-nowrap s-btn {{ class.class }} {% if class.class2 %}{{ class.class2 }}{% endif %} {{ btn.class }} is-selected" type="button" aria-pressed="false">Ask question</button></td>
+                            <td class="va-middle px4 {% if class.class == "s-btn__inverted" %}bg-black-750{% endif %}"><button class="w100 ws-nowrap s-btn {{ class.class }} {% if class.class2 %}{{ class.class2 }}{% endif %} {{ btn.class }}" type="button" aria-pressed="false" disabled>Ask question</button></td>
+                        </tr>
+                        {% endfor %}
+                    {% endfor %}
                 </tbody>
             </table>
         </div>
 </section>
 
 <section class="stacks-section">
-    <h2 class="grid jc-spacebetween ai-center stacks-title">Dropdowns</h2>
-    <p class="stacks-p _section">Adding the class <code class="stacks-code">.s-btn__dropdown</code> to any button style will add an appropriately-styled caret. These should be paired with a menus or popovers.</p>
+    <h2 class="grid jc-spacebetween ai-center mb0 stacks-title">Dropdowns</h2>
+    <p class="stacks-p _section">Adding the class <code class="stacks-code">.s-btn__dropdown</code> to any button style will add an appropriately-styled caret. These should be paired with a menu or popover.</p>
 
     <div class="stacks-code-preview">
 {% highlight html linenos %}
 <button class="s-btn s-btn__dropdown" type="button">Dropdown</button>
 {% endhighlight %}
         <div class="-preview">
-            <div class="grid gs4 fw-wrap">
-                <button class="grid--cell s-btn s-btn__primary s-btn__dropdown" type="button">Primary</button>
-                <button class="grid--cell s-btn s-btn__dropdown" type="button">Secondary</button>
-                <button class="grid--cell s-btn s-btn__outlined s-btn__dropdown" type="button">Outlined Secondary</button>
-                <button class="grid--cell s-btn s-btn__filled s-btn__dropdown" type="button">Filled Secondary</button>
-                <button class="grid--cell s-btn s-btn__confirm s-btn__dropdown" type="button">Confirm</button>
-                <button class="grid--cell s-btn s-btn__confirm s-btn__outlined s-btn__dropdown" type="button">Outline Confirm</button>
-                <button class="grid--cell s-btn s-btn__confirm s-btn__filled s-btn__dropdown" type="button">Filled Confirm</button>
-                <button class="grid--cell s-btn s-btn__warning s-btn__dropdown" type="button">Warning</button>
-                <button class="grid--cell s-btn s-btn__warning s-btn__outlined s-btn__dropdown" type="button">Outline Warning</button>
-                <button class="grid--cell s-btn s-btn__warning s-btn__filled s-btn__dropdown" type="button">Filled Warning</button>
-                <button class="grid--cell s-btn s-btn__muted s-btn__dropdown" type="button">Muted</button>
-                <button class="grid--cell s-btn s-btn__muted s-btn__outlined s-btn__dropdown" type="button">Outline Muted</button>
-                <button class="grid--cell s-btn s-btn__muted s-btn__filled s-btn__dropdown" type="button">Filled Muted</button>
-            </div>
+            <table cellspacing="0" class="s-table">
+                <thead>
+                    <tr>
+                        <th scope="col">Type</th>
+                        <th scope="col" class="s-table--cell4">Class</th>
+                        <th scope="col" class="ta-center">Default State</th>
+                        <th scope="col" class="ta-center">Selected State</th>
+                        <th scope="col" class="ta-center">Disabled State</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for btn in site.data.buttons.dropdown %}
+                        {% assign types = btn.classes %}
+                        {% for class in types %}
+                        <tr>
+                            <th scope="row" class="va-middle">{{ class.title }}</th>
+                            <td class="va-middle">
+                                <div class="grid gs4 fw-wrap">
+                                    <code class="grid--cell stacks-code">.s-btn</code>
+                                    {% if class.class != nil %}
+                                        <code class="grid--cell stacks-code">.{{ class.class }}</code>
+                                    {% endif %}
+                                    {% if class.class2 != nil %}
+                                        <code class="grid--cell stacks-code">.{{ class.class2 }}</code>
+                                    {% endif %}
+                                    {% if btn.class != nil %}
+                                        <code class="grid--cell stacks-code">.{{ btn.class }}</code>
+                                    {% endif %}
+                                </div>
+                            </td>
+                            <td class="va-middle px4 {% if class.class == "s-btn__inverted" %}bg-black-750{% endif %}"><button class="w100 ws-nowrap s-btn {{ class.class }} {% if class.class2 %}{{ class.class2 }}{% endif %} {{ btn.class }}" type="button" aria-pressed="false">Ask question</button></td>
+                            <td class="va-middle px4 {% if class.class == "s-btn__inverted" %}bg-black-750{% endif %}"><button class="w100 ws-nowrap s-btn {{ class.class }} {% if class.class2 %}{{ class.class2 }}{% endif %} {{ btn.class }} is-selected" type="button" aria-pressed="false">Ask question</button></td>
+                            <td class="va-middle px4 {% if class.class == "s-btn__inverted" %}bg-black-750{% endif %}"><button class="w100 ws-nowrap s-btn {{ class.class }} {% if class.class2 %}{{ class.class2 }}{% endif %} {{ btn.class }}" type="button" aria-pressed="false" disabled>Ask question</button></td>
+                        </tr>
+                        {% endfor %}
+                    {% endfor %}
+                </tbody>
+            </table>
         </div>
     </div>
 </section>
@@ -552,52 +376,37 @@ description: Buttons are user interface elements which allows users to take acti
     <table cellspacing="0" class="s-table">
         <thead>
             <tr>
-                <th scope="col" class="s-table--cell2">Class</th>
-                <th scope="col" class="s-table--cell2">Font Size</th>
-                <th scope="col">Example</th>
+                <th scope="col">Type</th>
+                <th scope="col">Class</th>
+                <th scope="col">Size</th>
+                <th scope="col" class="s-table--cell8">Example</th>
             </tr>
         </thead>
         <tbody>
+            {% for size in site.data.buttons.sizes %}
             <tr>
-                <td><code class="stacks-code">.s-btn__xs</code></td>
-                <td class="ff-mono">11px</td>
-                <td><button class="s-btn s-btn__primary s-btn__xs" type="button">Extra Small</button></td>
+                <th scope="row" class="va-middle">{{ size.size }}</th>
+                <td class="va-middle">
+                    {% if size.class == "N/A" %}
+                        <em class="fc-black-300">{{ size.class }}</em>
+                    {% else %}
+                        <code class="grid--cell stacks-code">{{ size.class }}</code>
+                    {% endif %}
+                </td>
+                <td class="va-middle">{{ size.fs }}</td>
+                <td class="va-middle"><button class="s-btn s-btn__primary {{ size.class }}" type="button" aria-pressed="false">{{ size.size }}</button></td>
             </tr>
-            <tr>
-                <td><code class="stacks-code">.s-btn__sm</code></td>
-                <td class="ff-mono">12px</td>
-                <td><button class="s-btn s-btn__primary s-btn__sm" type="button">Small</button></td>
-            </tr>
-            <tr>
-                <td>N/A</td>
-                <td class="ff-mono">13px</td>
-                <td><button class="s-btn s-btn__primary" type="button">Default</button></td>
-            </tr>
-            <tr>
-                <td><code class="stacks-code">.s-btn__md</code></td>
-                <td class="ff-mono">15px</td>
-                <td><button class="s-btn s-btn__primary s-btn__md" type="button">Medium</button></td>
-            </tr>
-            <tr>
-                <td><code class="stacks-code">.s-btn__lg</code></td>
-                <td class="ff-mono">19px</td>
-                <td><button class="s-btn s-btn__primary s-btn__lg" type="button">Large</button></td>
-            </tr>
-            <tr>
-                <td><code class="stacks-code">.s-btn__xl</code></td>
-                <td class="ff-mono">25px</td>
-                <td><button class="s-btn s-btn__primary s-btn__xl" type="button">Extra Large</button></td>
-            </tr>
+            {% endfor %}
         </tbody>
     </table>
 </section>
 
 
 <section class="stacks-section">
-    <h2 class="grid jc-spacebetween ai-center stacks-title">Ordering</h2>
+    <h2 class="grid jc-spacebetween ai-center mb0 stacks-title">Ordering</h2>
     <p class="stacks-p _section">To maintain product consistency, buttons should maintain the following layout ordering:</p>
 
-    <h3 class="grid jc-spacebetween ai-center stacks-title _subtitle">Within a row</h3>
+    <h3 class="grid jc-spacebetween ai-center mt24 mb0 stacks-title _subtitle">Within a row</h3>
     <p class="stacks-p _section">Most button groups should be ordered from the most important to the least important action, left to right.</p>
     <div class="stacks-code-preview">
 {% highlight html linenos %}
@@ -616,7 +425,7 @@ description: Buttons are user interface elements which allows users to take acti
         </div>
     </div>
 
-    <h3 class="grid jc-spacebetween ai-center stacks-title _subtitle">Within a column</h3>
+    <h3 class="grid jc-spacebetween ai-center mb0 stacks-title _subtitle">Within a column</h3>
     <p class="stacks-p _section">Sometimes the layout dictates that buttons need to be stacked on top of each other. Again, these buttons should be stacked from the most important to the least important, top to bottom.</p>
     <div class="stacks-code-preview">
 {% highlight html linenos %}
@@ -637,7 +446,7 @@ description: Buttons are user interface elements which allows users to take acti
         </div>
     </div>
 
-    <h3 class="grid jc-spacebetween ai-center stacks-title _subtitle">Within a header</h3>
+    <h3 class="grid jc-spacebetween ai-center mb0 stacks-title _subtitle">Within a header</h3>
     <p class="stacks-p _section">Sometimes the best place for a series of actions is in the same area as the title. In these cases, the buttons should be pulled to the right. Within this instance, the button order should be reversed with the most important action to the far right and the least important action to the far left.</p>
     <div class="stacks-code-preview">
 {% highlight html linenos %}
