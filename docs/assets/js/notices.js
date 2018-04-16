@@ -44,4 +44,27 @@ $(document).ready(function() {
         topnav.css("top","").hide();
         banner.attr("aria-hidden","true").removeClass("s-notice__danger is-pinned");
     });
+
+
+    var hero = $(".js-banner-hero");
+    var heroBtn = $(".js-banner-show-hero");
+    var heroTypeMenu = $(".js-hero-type-menu");
+    var heroPositionMenu = $(".js-hero-position-menu");
+
+    heroBtn.on("click", function() {
+        var typeSelect = heroTypeMenu.find(":selected").data("class");
+        var positionSelect = heroPositionMenu.find(":selected").data("class");
+        var typeClasses = ("s-banner__bgg-info s-banner__bgg-important s-banner__bgg-danger s-banner__bgg-success s-banner__bgg-brand");
+
+        hero
+            .attr("aria-hidden","false")
+            .removeClass(typeClasses)
+            .addClass(typeSelect, positionSelect)
+            .css({
+                "position": "fixed",
+                "top": "-50px",
+                "left": "0",
+                "right": "0"
+            });
+    })
 });

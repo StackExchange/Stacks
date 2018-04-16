@@ -1,0 +1,183 @@
+//
+//  STACK OVERFLOW
+//  BANNERS
+//
+//  This CSS comes from Stacks, our CSS & Pattern library for rapidly building
+//  Stack Overflow. For documentation of all these classes and how to contribute,
+//  visit https://stackoverflow.design/
+//
+//  TABLE OF CONTENTS
+//  • BASE STYLE
+//  • LAYOUT TRANSITIONS
+//
+//  ============================================================================
+//  $   BASE STYLES
+//      Banners are closely connected with .s-notice classes.
+//  ----------------------------------------------------------------------------
+.s-banner {
+    visibility: hidden;
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    width: 100%;
+    padding: @su12;
+    z-index: @zi-navigation-fixed;
+    opacity: 0;
+    border-radius: 0;
+    -webkit-box-shadow: none;
+            box-shadow: none;
+
+    -webkit-transform: translate3d(0,-50px,0);
+            transform: translate3d(0,-50px,0);
+
+    &[aria-hidden="false"] {
+        visibility: visible;
+        opacity: 1;
+        -webkit-transform: translate3d(0,0,0);
+                transform: translate3d(0,49px,0);
+    }
+
+    &.is-pinned {
+        z-index: @zi-navigation-fixed + 1;
+        -webkit-transform: translate3d(0,0,0);
+                transform: translate3d(0,0,0);
+    }
+}
+
+//  ============================================================================
+//  $   HERO BANNER
+//  ----------------------------------------------------------------------------
+.s-banner__hero {
+    position: relative;
+    top: unset;
+    right: unset;
+    left: unset;
+    overflow: hidden;
+    padding: 0;
+    z-index: @zi-banners;
+    background-repeat: no-repeat, no-repeat;
+    -webkit-box-shadow: none;
+            box-shadow: none;
+    background-position: right center, center center;
+}
+
+//  --  When we want to keep hero content capped
+.s-banner--container {
+    position: relative;
+    width: 100%;
+    max-width: 1090px;
+    margin: 0 auto;
+    padding: @su32 @su16;
+    z-index: @zi-banners + 1;
+
+    .s-banner__notice & {
+        padding-top: @su16;
+        padding-bottom: @su16;
+    }
+}
+
+
+//  ============================================================================
+//  $   BANNER BACKGROUNDS
+//  ============================================================================
+//  $$  VARIABLES
+//  ----------------------------------------------------------------------------
+@banner-brand-bgg1:     #F16720;
+@banner-brand-bgg2:     #F58907;
+@banner-brand-bgc:      mix(@banner-brand-bgg1,@banner-brand-bgg2);
+@banner-important-bgg1: @black-800;
+@banner-important-bgg2: @black-700;
+@banner-important-bgc:  mix(@banner-important-bgg1, @banner-important-bgg2);
+@banner-info-bgg1:      #126CFA;
+@banner-info-bgg2:      #108AEC;
+@banner-info-bgc:       mix(@banner-info-bgg1,@banner-info-bgg2);
+@banner-success-bgg1:   @green-500;
+@banner-success-bgg2:   @green-400;
+@banner-success-bgc:    mix(@banner-success-bgg1,@banner-success-bgg2);
+@banner-danger-bgg1:    @red-500;
+@banner-danger-bgg2:    #DB1F32;
+@banner-danger-bgc:     mix(@banner-danger-bgg1, @banner-danger-bgg2);
+
+
+
+.s-banner__bgg-circle:before {
+    content: "";
+    position: absolute;
+    top: -4vw;
+    left: -4vw;
+    width: 0;
+    height: 0;
+    padding: 20%;
+    z-index: -1;
+    border-radius: @br-circle;
+    pointer-events: none;
+}
+
+
+.s-banner__bgg-brand {
+    background-color: @banner-brand-bgc;
+    color: @white;
+    background-image: url("../img/hero-pattern--squares.svg"), -webkit-gradient(linear, left top, right top, from(@banner-brand-bgg1), to(@banner-brand-bgg2));
+    background-image: url("../img/hero-pattern--squares.svg"), linear-gradient(to right, @banner-brand-bgg1, @banner-brand-bgg2);
+
+    .s-banner__bgg-circle:before {
+        background-color: fade(overlay(@banner-brand-bgc, @black-900), 7.5%);
+    }
+
+    .s-banner__notice {
+        background-color: darken(@banner-brand-bgc, 7.5%);
+        background-image: -webkit-gradient(linear, left top, right top, from(darken(@banner-brand-bgg1,7.5%)), to(darken(@banner-brand-bgg2,7.5%)));
+        background-image: linear-gradient(to right, darken(@banner-brand-bgg1,7.5%), darken(@banner-brand-bgg2,7.5%));
+    }
+}
+
+.s-banner__bgg-info {
+    background-color: @banner-info-bgc;
+    color: @white;
+    background-image: url("../img/hero-pattern--squares.svg"), -webkit-gradient(linear, left top, right top, from(@banner-info-bgg1), to(@banner-info-bgg2));
+    background-image: url("../img/hero-pattern--squares.svg"), linear-gradient(to right, @banner-info-bgg1, @banner-info-bgg2);
+
+    .s-banner__bgg-circle:before {
+        background-color: fade(overlay(@banner-info-bgc, @black-900), 7.5%);
+    }
+
+    .s-banner__notice {
+        background-color: darken(@banner-info-bgc, 7.5%);
+        background-image: -webkit-gradient(linear, left top, right top, from(darken(@banner-info-bgg1,7.5%)), to(darken(@banner-info-bgg2,7.5%)));
+        background-image: linear-gradient(to right, darken(@banner-info-bgg1,7.5%), darken(@banner-info-bgg2,7.5%));
+    }
+}
+
+.s-banner__bgg-success {
+    background-color: @banner-success-bgc;
+    color: @white;
+    background-image: url("../img/hero-pattern--squares.svg"), -webkit-gradient(linear, left top, right top, from(@banner-success-bgg1), to(@banner-success-bgg2));
+    background-image: url("../img/hero-pattern--squares.svg"), linear-gradient(to right, @banner-success-bgg1, @banner-success-bgg2);
+
+    .s-banner__bgg-circle:before {
+        background-color: fade(overlay(@banner-success-bgc, @black-900), 7.5%);
+    }
+}
+
+.s-banner__bgg-important {
+    background-color: @banner-important-bgc;
+    color: @white;
+    background-image: url("../img/hero-pattern--squares.svg"), -webkit-gradient(linear, left top, right top, from(@banner-important-bgg1), to(@banner-important-bgg2));
+    background-image: url("../img/hero-pattern--squares.svg"), linear-gradient(to right, @banner-important-bgg1, @banner-important-bgg2);
+
+    .s-banner__bgg-circle:before {
+        background-color: fade(overlay(@banner-important-bgc, @black-900), 15%);
+    }
+}
+
+.s-banner__bgg-danger {
+    background-color: @banner-danger-bgc;
+    color: @white;
+    background-image: url("../img/hero-pattern--squares.svg"), -webkit-gradient(linear, left top, right top, from(@banner-danger-bgg1), to(@banner-danger-bgg2));
+    background-image: url("../img/hero-pattern--squares.svg"), linear-gradient(to right, @banner-danger-bgg1, @banner-danger-bgg2);
+
+    .s-banner__bgg-circle:before {
+        background-color: fade(overlay(@banner-danger-bgc, @black-900), 15%);
+    }
+}

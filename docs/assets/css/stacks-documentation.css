@@ -1530,43 +1530,89 @@ table.s-sidebarwidget--content.s-sidebarwidget__items tr.-item td {
   overflow: hidden;
   padding: 0;
   z-index: 5000;
+  background-repeat: no-repeat, no-repeat;
   -webkit-box-shadow: none;
   box-shadow: none;
+  background-position: right center, center center;
 }
 .s-banner--container {
+  position: relative;
   width: 100%;
-  max-width: 32px 16px;
+  max-width: 1090px;
   margin: 0 auto;
+  padding: 32px 16px;
+  z-index: 5001;
+}
+.s-banner__notice .s-banner--container {
+  padding-top: 16px;
+  padding-bottom: 16px;
+}
+.s-banner__bgg-circle:before {
+  content: "";
+  position: absolute;
+  top: -4vw;
+  left: -4vw;
+  width: 0;
+  height: 0;
+  padding: 20%;
+  z-index: -1;
+  border-radius: 50%;
+  pointer-events: none;
 }
 .s-banner__bgg-brand {
   background-color: #f37814;
   color: #FFF;
-  background-image: -webkit-gradient(linear, left top, right top, from(#F16720), to(#F58907));
-  background-image: linear-gradient(to right, #F16720, #F58907);
+  background-image: url("../img/hero-pattern--squares.svg"), -webkit-gradient(linear, left top, right top, from(#F16720), to(#F58907));
+  background-image: url("../img/hero-pattern--squares.svg"), linear-gradient(to right, #F16720, #F58907);
+}
+.s-banner__bgg-brand .s-banner__bgg-circle:before {
+  background-color: rgba(232, 12, 2, 0.075);
+}
+.s-banner__bgg-brand .s-banner__notice {
+  background-color: #d5660b;
+  background-image: -webkit-gradient(linear, left top, right top, from(#dd540e), to(#d07406));
+  background-image: linear-gradient(to right, #dd540e, #d07406);
 }
 .s-banner__bgg-info {
   background-color: #117bf3;
   color: #FFF;
-  background-image: -webkit-gradient(linear, left top, right top, from(#126CFA), to(#108AEC));
-  background-image: linear-gradient(to right, #126CFA, #108AEC);
+  background-image: url("../img/hero-pattern--squares.svg"), -webkit-gradient(linear, left top, right top, from(#126CFA), to(#108AEC));
+  background-image: url("../img/hero-pattern--squares.svg"), linear-gradient(to right, #126CFA, #108AEC);
+}
+.s-banner__bgg-info .s-banner__bgg-circle:before {
+  background-color: rgba(2, 13, 232, 0.075);
+}
+.s-banner__bgg-info .s-banner__notice {
+  background-color: #0b69d3;
+  background-image: -webkit-gradient(linear, left top, right top, from(#055ae1), to(#0e75c8));
+  background-image: linear-gradient(to right, #055ae1, #0e75c8);
 }
 .s-banner__bgg-success {
   background-color: #52ae70;
   color: #FFF;
-  background-image: -webkit-gradient(linear, left top, right top, from(#45A163), to(#5fba7d));
-  background-image: linear-gradient(to right, #45A163, #5fba7d);
+  background-image: url("../img/hero-pattern--squares.svg"), -webkit-gradient(linear, left top, right top, from(#45A163), to(#5fba7d));
+  background-image: url("../img/hero-pattern--squares.svg"), linear-gradient(to right, #45A163, #5fba7d);
+}
+.s-banner__bgg-success .s-banner__bgg-circle:before {
+  background-color: rgba(8, 101, 12, 0.075);
 }
 .s-banner__bgg-important {
   background-color: #2f3337;
   color: #FFF;
-  background-image: -webkit-gradient(linear, left top, right top, from(#242729), to(#3b4045));
-  background-image: linear-gradient(to right, #242729, #3b4045);
+  background-image: url("../img/hero-pattern--squares.svg"), -webkit-gradient(linear, left top, right top, from(#242729), to(#3b4045));
+  background-image: url("../img/hero-pattern--squares.svg"), linear-gradient(to right, #242729, #3b4045);
+}
+.s-banner__bgg-important .s-banner__bgg-circle:before {
+  background-color: rgba(4, 5, 6, 0.15);
 }
 .s-banner__bgg-danger {
   background-color: #d21e30;
   color: #FFF;
-  background-image: -webkit-gradient(linear, left top, right top, from(#C91D2E), to(#DB1F32));
-  background-image: linear-gradient(to right, #C91D2E, #DB1F32);
+  background-image: url("../img/hero-pattern--squares.svg"), -webkit-gradient(linear, left top, right top, from(#C91D2E), to(#DB1F32));
+  background-image: url("../img/hero-pattern--squares.svg"), linear-gradient(to right, #C91D2E, #DB1F32);
+}
+.s-banner__bgg-danger .s-banner__bgg-circle:before {
+  background-color: rgba(169, 3, 5, 0.15);
 }
 .bn {
   border-style: none !important;
@@ -6825,6 +6871,16 @@ body *:after {
 }
 .s-btn__primary[disabled] {
   color: rgba(255, 255, 255, 0.8);
+}
+.s-btn__google {
+  border-color: #FFF;
+  background-color: #FFF;
+  color: #535A60;
+}
+.s-btn__facebook {
+  border-color: #385499;
+  background-color: #385499;
+  color: #FFF;
 }
 @-webkit-keyframes spinnerRotate {
   from {
