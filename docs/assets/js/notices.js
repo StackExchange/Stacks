@@ -53,6 +53,9 @@ $(document).ready(function() {
     var heroPosMenu = $(".js-hero-position-menu");
     var heroHeight = hero.innerHeight();
 
+    hero.hide();
+    heroSmall.hide();
+
     heroBtn.on("click", function() {
         var typeSelect = heroTypeMenu.find(":selected").data("class");
         var positionSelect = heroPosMenu.find(":selected").data("class");
@@ -60,6 +63,7 @@ $(document).ready(function() {
 
         if (positionSelect == "is-pinned") {
             hero
+                .show()
                 .attr("aria-hidden","false")
                 .removeClass(typeClasses)
                 .addClass(typeSelect + " " + positionSelect)
@@ -70,6 +74,7 @@ $(document).ready(function() {
                     "right": ""
                 });
             heroSmall
+                .hide()
                 .attr("aria-hidden","true")
                 .removeClass(typeClasses)
                 .css({
@@ -81,6 +86,7 @@ $(document).ready(function() {
         }
         else {
             hero
+                .show()
                 .attr("aria-hidden","false")
                 .removeClass(typeClasses)
                 .addClass(typeSelect)
@@ -91,6 +97,7 @@ $(document).ready(function() {
                     "right": "0"
                 });
             heroSmall
+                .show()
                 .attr("aria-hidden","false")
                 .removeClass(typeClasses)
                 .addClass(typeSelect).addClass(positionSelect)
