@@ -47,9 +47,11 @@ $(document).ready(function() {
 
 
     var hero = $(".js-banner-hero");
+    var heroSmall = $(".js-banner-sm");
     var heroBtn = $(".js-banner-show-hero");
     var heroTypeMenu = $(".js-hero-type-menu");
     var heroPositionMenu = $(".js-hero-position-menu");
+    var heroHeight = hero.innerHeight();
 
     heroBtn.on("click", function() {
         var typeSelect = heroTypeMenu.find(":selected").data("class");
@@ -62,7 +64,17 @@ $(document).ready(function() {
             .addClass(typeSelect, positionSelect)
             .css({
                 "position": "fixed",
-                "top": "-50px",
+                "top": "-4vw",
+                "left": "0",
+                "right": "0"
+            });
+        heroSmall
+            .attr("aria-hidden","false")
+            .removeClass(typeClasses)
+            .addClass(typeSelect, positionSelect)
+            .css({
+                "position": "fixed",
+                "top": heroHeight - 91,
                 "left": "0",
                 "right": "0"
             });

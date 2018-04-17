@@ -70,12 +70,19 @@
     margin: 0 auto;
     padding: @su32 @su16;
     z-index: @zi-banners + 1;
+}
 
-    .s-banner__notice & {
+.s-banner__sm {
+    position: relative;
+    padding: 0;
+    z-index: @zi-banners;
+
+    .s-banner--container {
         padding-top: @su16;
         padding-bottom: @su16;
     }
 }
+
 
 
 //  ============================================================================
@@ -125,7 +132,7 @@
         background-color: fade(overlay(@banner-brand-bgc, @black-900), 7.5%);
     }
 
-    .s-banner__notice {
+    &.s-banner__sm {
         background-color: darken(@banner-brand-bgc, 7.5%);
         background-image: -webkit-gradient(linear, left top, right top, from(darken(@banner-brand-bgg1,7.5%)), to(darken(@banner-brand-bgg2,7.5%)));
         background-image: linear-gradient(to right, darken(@banner-brand-bgg1,7.5%), darken(@banner-brand-bgg2,7.5%));
@@ -142,7 +149,7 @@
         background-color: fade(overlay(@banner-info-bgc, @black-900), 7.5%);
     }
 
-    .s-banner__notice {
+    &.s-banner__sm {
         background-color: darken(@banner-info-bgc, 7.5%);
         background-image: -webkit-gradient(linear, left top, right top, from(darken(@banner-info-bgg1,7.5%)), to(darken(@banner-info-bgg2,7.5%)));
         background-image: linear-gradient(to right, darken(@banner-info-bgg1,7.5%), darken(@banner-info-bgg2,7.5%));
@@ -158,6 +165,12 @@
     .s-banner__bgg-circle:before {
         background-color: fade(overlay(@banner-success-bgc, @black-900), 7.5%);
     }
+
+    &.s-banner__sm {
+        background-color: darken(@banner-success-bgc, 7.5%);
+        background-image: -webkit-gradient(linear, left top, right top, from(darken(@banner-success-bgg1,7.5%)), to(darken(@banner-success-bgg2,7.5%)));
+        background-image: linear-gradient(to right, darken(@banner-success-bgg1,7.5%), darken(@banner-success-bgg2,7.5%));
+    }
 }
 
 .s-banner__bgg-important {
@@ -169,6 +182,12 @@
     .s-banner__bgg-circle:before {
         background-color: fade(overlay(@banner-important-bgc, @black-900), 15%);
     }
+
+    &.s-banner__sm {
+        background-color: darken(@banner-important-bgc, 7.5%);
+        background-image: -webkit-gradient(linear, left top, right top, from(darken(@banner-important-bgg1,7.5%)), to(darken(@banner-important-bgg2,7.5%)));
+        background-image: linear-gradient(to right, darken(@banner-important-bgg1,7.5%), darken(@banner-important-bgg2,7.5%));
+    }
 }
 
 .s-banner__bgg-danger {
@@ -179,5 +198,11 @@
 
     .s-banner__bgg-circle:before {
         background-color: fade(overlay(@banner-danger-bgc, @black-900), 15%);
+    }
+
+    &.s-banner__sm {
+        background-color: darken(@banner-danger-bgc, 7.5%);
+        background-image: -webkit-gradient(linear, left top, right top, from(darken(@banner-danger-bgg1,7.5%)), to(darken(@banner-danger-bgg2,7.5%)));
+        background-image: linear-gradient(to right, darken(@banner-danger-bgg1,7.5%), darken(@banner-danger-bgg2,7.5%));
     }
 }
