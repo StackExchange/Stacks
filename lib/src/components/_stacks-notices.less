@@ -124,7 +124,6 @@
 //  $$  BANNER
 //  ----------------------------------------------------------------------------
 .s-notice__banner {
-    visibility: hidden;
     position: fixed;
     top: 0;
     right: 0;
@@ -132,7 +131,8 @@
     width: 100%;
     padding: @su12;
     z-index: @zi-navigation-fixed;
-    opacity: 0;
+    border-right: none;
+    border-left: none;
     border-radius: 0;
     -webkit-box-shadow: @bs-sm;
             box-shadow: @bs-sm;
@@ -141,17 +141,30 @@
             transform: translate3d(0,-50px,0);
 
     &[aria-hidden="false"] {
-        visibility: visible;
-        opacity: 1;
-        -webkit-transform: translate3d(0,0,0);
+        -webkit-transform: translate3d(0,49px,0);
                 transform: translate3d(0,49px,0);
     }
 
     &.is-pinned {
+                height: 30px;
         z-index: @zi-navigation-fixed + 1;
         -webkit-transform: translate3d(0,0,0);
                 transform: translate3d(0,0,0);
     }
+}
+
+//  --  When we use .s-notice__banner, we need to adjust the padding-top on
+//      the body tag. This class correctly adjusts the body padding ONLY if
+//      the notice is one line. If it wraps to multiple lines, more classes or
+//      (ideally) JS will need to be used to determine the notice's height
+//      at the time of render. The padding value is determined like so:
+//
+//      50px (top bar) + 44px (notice height) - 2px (borders)
+//
+//      The borders subtraction are necessary to neatly tuck everything together.
+//
+.s-notice--body {
+    padding-top: 92px;
 }
 
 //  $$  TOAST
