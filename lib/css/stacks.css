@@ -1467,7 +1467,6 @@ table.s-sidebarwidget--content.s-sidebarwidget__items tr.-item td {
   box-shadow: 0 2px 8px rgba(59, 64, 69, 0.1);
 }
 .s-notice__banner {
-  visibility: hidden;
   position: fixed;
   top: 0;
   right: 0;
@@ -1475,7 +1474,8 @@ table.s-sidebarwidget--content.s-sidebarwidget__items tr.-item td {
   width: 100%;
   padding: 12px;
   z-index: 1050;
-  opacity: 0;
+  border-right: none;
+  border-left: none;
   border-radius: 0;
   -webkit-box-shadow: 0 2px 8px rgba(59, 64, 69, 0.1);
   box-shadow: 0 2px 8px rgba(59, 64, 69, 0.1);
@@ -1483,15 +1483,16 @@ table.s-sidebarwidget--content.s-sidebarwidget__items tr.-item td {
   transform: translate3d(0, -50px, 0);
 }
 .s-notice__banner[aria-hidden="false"] {
-  visibility: visible;
-  opacity: 1;
-  -webkit-transform: translate3d(0, 0, 0);
+  -webkit-transform: translate3d(0, 49px, 0);
   transform: translate3d(0, 49px, 0);
 }
 .s-notice__banner.is-pinned {
   z-index: 1051;
   -webkit-transform: translate3d(0, 0, 0);
   transform: translate3d(0, 0, 0);
+}
+.s-notice--body {
+  padding-top: 92px;
 }
 .s-notice__toast {
   visibility: hidden;
