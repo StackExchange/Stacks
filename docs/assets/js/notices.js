@@ -50,33 +50,57 @@ $(document).ready(function() {
     var heroSmall = $(".js-banner-sm");
     var heroBtn = $(".js-banner-show-hero");
     var heroTypeMenu = $(".js-hero-type-menu");
-    var heroPositionMenu = $(".js-hero-position-menu");
+    var heroPosMenu = $(".js-hero-position-menu");
     var heroHeight = hero.innerHeight();
 
     heroBtn.on("click", function() {
         var typeSelect = heroTypeMenu.find(":selected").data("class");
-        var positionSelect = heroPositionMenu.find(":selected").data("class");
-        var typeClasses = ("s-banner__bgg-info s-banner__bgg-important s-banner__bgg-danger s-banner__bgg-success s-banner__bgg-brand");
+        var positionSelect = heroPosMenu.find(":selected").data("class");
+        var typeClasses = ("s-banner__bgg-info s-banner__bgg-important s-banner__bgg-danger s-banner__bgg-success s-banner__bgg-brand is-pinned");
 
-        hero
-            .attr("aria-hidden","false")
-            .removeClass(typeClasses)
-            .addClass(typeSelect, positionSelect)
-            .css({
-                "position": "fixed",
-                "top": "-4vw",
-                "left": "0",
-                "right": "0"
-            });
-        heroSmall
-            .attr("aria-hidden","false")
-            .removeClass(typeClasses)
-            .addClass(typeSelect, positionSelect)
-            .css({
-                "position": "fixed",
-                "top": heroHeight - 91,
-                "left": "0",
-                "right": "0"
-            });
+        if (positionSelect == "is-pinned") {
+            hero
+                .attr("aria-hidden","false")
+                .removeClass(typeClasses)
+                .addClass(typeSelect + " " + positionSelect)
+                .css({
+                    "position": "",
+                    "top": "",
+                    "left": "",
+                    "right": ""
+                });
+            heroSmall
+                .attr("aria-hidden","true")
+                .removeClass(typeClasses)
+                .css({
+                    "position": "",
+                    "top": "",
+                    "left": "",
+                    "right": ""
+                });
+        }
+        else {
+            hero
+                .attr("aria-hidden","false")
+                .removeClass(typeClasses)
+                .addClass(typeSelect)
+                .css({
+                    "position": "fixed",
+                    "top": "-4vw",
+                    "left": "0",
+                    "right": "0"
+                });
+            heroSmall
+                .attr("aria-hidden","false")
+                .removeClass(typeClasses)
+                .addClass(typeSelect).addClass(positionSelect)
+                .css({
+                    "position": "fixed",
+                    "top": heroHeight - 91,
+                    "left": "0",
+                    "right": "0"
+                });
+        }
+
     })
 });
