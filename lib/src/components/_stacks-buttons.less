@@ -514,25 +514,25 @@
 //  ============================================================================
 .s-btn__danger {
     .btn-check-brc(@status: false);
-    .btn-check-bxs(@bxos: @btn-warning-bgc, @status: false);
-    .btn-bgc(fade(@btn-warning-bgc,0%));
-    .btn-fc(@btn-warning-bgc);
+    .btn-check-bxs(@bxos: @btn-danger-bgc, @status: false);
+    .btn-bgc(fade(@btn-danger-bgc,0%));
+    .btn-fc(@btn-danger-bgc);
 
     //  --  Outlined
     &.s-btn__outlined {
-        .btn-check-brc(lighten(@btn-warning-bgc,20%));
-        .btn-check-bxs(@bxos: @btn-warning-bgc, @status: false);
-        .btn-bgc(fade(@btn-warning-bgc,0%));
-        .btn-fc(@btn-warning-bgc);
+        .btn-check-brc(lighten(@btn-danger-bgc,20%));
+        .btn-check-bxs(@bxos: @btn-danger-bgc, @status: false);
+        .btn-bgc(fade(@btn-danger-bgc,0%));
+        .btn-fc(@btn-danger-bgc);
     }
 
     //  --  Filled
     &.s-btn__filled {
-        .btn-check-brc(@btn-warning-bgc);
-        .btn-check-bxs(@btn-warning-bgc, @btn-warning-bgc);
-        .btn-bgc(@btn-warning-bgc);
-        .btn-check-bgg(@btn-warning-bgc);
-        .btn-fc(@btn-warning-fc);
+        .btn-check-brc(@btn-danger-bgc);
+        .btn-check-bxs(@btn-danger-bgc, @btn-danger-bgc);
+        .btn-bgc(@btn-danger-bgc);
+        .btn-check-bgg(@btn-danger-bgc);
+        .btn-fc(@btn-danger-fc);
     }
 
     //  --  Inverted
@@ -540,76 +540,23 @@
         //  --  Inverted: Clear
         .btn-check-brc(@status: false);
         .btn-check-bxs(@bxos: fade(@btn-bxos,0%), @status: false);
-        .btn-bgc(fade(@btn-warning-fc,0%));
-        .btn-fc(fade(lighten(@btn-warning-bgc,40%),90%));
+        .btn-bgc(fade(@btn-danger-fc,0%));
+        .btn-fc(fade(lighten(@btn-danger-bgc,40%),90%));
 
         //  --  Inverted: Outlined
         &.s-btn__outlined {
-            .btn-check-brc(fade(lighten(@btn-warning-bgc,50%),25%));
-            .btn-bgc(fade(lighten(@btn-warning-bgc,40%),0%));
-            .btn-fc(fade(lighten(@btn-warning-bgc,50%),80%));
+            .btn-check-brc(fade(lighten(@btn-danger-bgc,50%),25%));
+            .btn-bgc(fade(lighten(@btn-danger-bgc,40%),0%));
+            .btn-fc(fade(lighten(@btn-danger-bgc,50%),80%));
         }
 
         //  --  Inverted: Filled
         &.s-btn__filled {
-            .btn-check-brc(mix(lighten(@btn-warning-bgc,30%),@white));
-            .btn-check-bxs(@bxos: lighten(@btn-warning-bgc,50%), @status: false);
-            .btn-bgc(mix(lighten(@btn-warning-bgc,30%),@white));
-            .btn-check-bgg(lighten(@btn-warning-bgc,30%));
-            .btn-fc(darken(@btn-warning-bgc,10%));
-        }
-    }
-}
-
-
-//  ============================================================================
-//  $   CONFIRM BUTTONS & STYLES
-//  ============================================================================
-.s-btn__confirm {
-    .btn-check-brc(@status: false);
-    .btn-check-bxs(@bxos:@btn-confirm-bgc, @status: false);
-    .btn-bgc(fade(@btn-confirm-bgc,0%));
-    .btn-fc(@btn-confirm-bgc);
-
-    //  -- Outlined
-    &.s-btn__outlined {
-        .btn-check-brc(lighten(@btn-confirm-bgc,20%));
-        .btn-check-bxs(@bxos: @btn-confirm-bgc, @status: false);
-        .btn-bgc(fade(@btn-confirm-bgc,0%));
-        .btn-fc(@btn-confirm-bgc);
-    }
-
-    //  -- Filled
-    &.s-btn__filled {
-        .btn-check-brc(@btn-confirm-bgc);
-        .btn-check-bxs(@btn-confirm-bgc, @btn-confirm-bgc);
-        .btn-bgc(@btn-confirm-bgc);
-        .btn-check-bgg(@btn-confirm-bgc);
-        .btn-fc(@btn-confirm-fc);
-    }
-
-    //  -- Inverted
-    &.s-btn__inverted {
-        //  --  Inverted: Clear
-        .btn-check-brc(@status: false);
-        .btn-check-bxs(@bxos: fade(@btn-bxos,0%), @status: false);
-        .btn-bgc(fade(@btn-confirm-fc,0%));
-        .btn-fc(fade(lighten(@btn-confirm-bgc,40%),90%));
-
-        //  --  Inverted: Outlined
-        &.s-btn__outlined {
-            .btn-check-brc(fade(lighten(@btn-confirm-bgc,50%),25%));
-            .btn-bgc(fade(@btn-confirm-bgc,0%));
-            .btn-fc(fade(lighten(@btn-confirm-bgc,50%),80%));
-        }
-
-        //  --  Inverted: Filled
-        &.s-btn__filled {
-            .btn-check-brc(transparent);
-            .btn-check-bxs(@bxos: lighten(@btn-confirm-bgc,50%), @status: false);
-            .btn-bgc(mix(lighten(@btn-confirm-bgc,15%),@white));
-            .btn-check-bgg(lighten(@btn-confirm-bgc,25%));
-            .btn-fc(darken(@btn-confirm-bgc,30%));
+            .btn-check-brc(mix(lighten(@btn-danger-bgc,30%),@white));
+            .btn-check-bxs(@bxos: lighten(@btn-danger-bgc,50%), @status: false);
+            .btn-bgc(mix(lighten(@btn-danger-bgc,30%),@white));
+            .btn-check-bgg(lighten(@btn-danger-bgc,30%));
+            .btn-fc(darken(@btn-danger-bgc,10%));
         }
     }
 }
@@ -682,8 +629,8 @@
     }
 
     &.s-btn__danger.is-loading:before {
-        border-color: fade(@btn-warning-bgc,25%);
-        border-left-color: fade(@btn-warning-bgc,75%);
+        border-color: fade(@btn-danger-bgc,25%);
+        border-left-color: fade(@btn-danger-bgc,75%);
     }
 
     &.s-btn__primary.is-loading:before,
