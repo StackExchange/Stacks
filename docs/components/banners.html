@@ -4,7 +4,7 @@ title: Banners
 description: Banners are a type of <a href="/components/notices">notice</a>, delivering both <strong>System</strong> and <strong>Engagement</strong> messaging. These are highly intrusive messaging methods and so should be used appropriately.
 ---
 <!-- Example notice content -->
-<script src="{{ "/assets/js/notices.js" | relative_url }}"></script>
+<script src="{{ "/assets/js/banners.js" | relative_url }}"></script>
 <aside class="py8 pr8 s-banner s-notice__important js-notice-banner" role="alert" aria-hidden="true">
     <div class="wmx10 m-auto grid grid__center jc-spacebetween" role="alertdialog" aria-describedby="notice-message">
         <div class="grid gs8 gsx mx0" aria-label="notice-message">
@@ -24,7 +24,7 @@ description: Banners are a type of <a href="/components/notices">notice</a>, del
 </aside>
 
 <aside class="s-banner s-banner__hero js-banner-hero" aria-hidden="true">
-    <div class="grid jc-spacebetween ai-center s-banner--container s-banner__bgg-circle" aria-titledby="banner-title" aria-describedby="banner-message">
+    <div class="grid jc-spacebetween ai-center s-banner--container s-banner__bgg-circle js-banner-circle" aria-titledby="banner-title" aria-describedby="banner-message">
         <div class="grid--cell6">
             <h1 class="fs-headline2 fw-bold line-lg mb12" aria-label="banner-title">Learn, share, build</h1>
             <div aria-label="banner-messge">
@@ -211,22 +211,39 @@ description: Banners are a type of <a href="/components/notices">notice</a>, del
     <h3 class="grid jc-spacebetween ai-center mb8 stacks-title _subtitle">Examples</h3>
     <div class="mb12 p16 bar-sm bg-black-025 ba bc-black-1">
         <div class="grid gs8 gsx">
-            <div class="grid--cell s-select">
-                <select id="hero-type" class="js-hero-type-menu">
-                    <option name="hero-type" id="hero-info" data-class="s-banner__bgg-info" selected>Info Hero</option>
-                    <option name="hero-type" id="hero-brand" data-class="s-banner__bgg-brand">Brand Hero</option>
-                    <option name="hero-type" id="hero-success" data-class="s-banner__bgg-success">Success Hero</option>
-                    <option name="hero-type" id="hero-important" data-class="s-banner__bgg-important">Important Hero</option>
-                    <option name="hero-type" id="hero-danger" data-class="s-banner__bgg-danger">Danger Hero</option>
-                </select>
+            <div class="grid gs4 gsy fd-column">
+                <label class="grid--cell s-label fs-body1" for="hero-type">Style</label>
+                <div class="grid--cell s-select">
+                    <select id="hero-type" class="js-hero-type-menu">
+                        <option name="hero-type" id="hero-info" data-class="s-banner__bgg-info" selected>Info</option>
+                        <option name="hero-type" id="hero-brand" data-class="s-banner__bgg-brand">Brand</option>
+                        <option name="hero-type" id="hero-success" data-class="s-banner__bgg-success">Success</option>
+                        <option name="hero-type" id="hero-important" data-class="s-banner__bgg-important">Important</option>
+                        <option name="hero-type" id="hero-danger" data-class="s-banner__bgg-danger">Danger</option>
+                    </select>
+                </div>
             </div>
-            <div class="grid--cell s-select">
-                <select id="hero-position" class="js-hero-position-menu">
-                    <option name="hero-position" id="hero-normal" selected>Normal</option>
-                    <option name="hero-position" id="hero-footer" data-class="is-pinned">Footer</option>
-                </select>
+            <div class="grid gs4 gsy fd-column">
+                <label class="grid--cell s-label fs-body1" for="hero-pattern">Elements</label>
+                <div class="grid--cell s-select">
+                    <select id="hero-pattern" class="js-hero-pattern-menu">
+                        <option name="hero-pattern" id="hero-normal" data-pattern="true" data-circle="true" selected>Circle and pattern</option>
+                        <option name="hero-pattern" id="hero-footer" data-pattern="false" data-circle="true">Circle only</option>
+                        <option name="hero-pattern" id="hero-footer" data-pattern="true" data-circle="false">Pattern only</option>
+                    </select>
+                </div>
             </div>
-            <button class="grid--cell s-btn s-btn__filled js-banner-show-hero">Show example</button>
+            <div class="grid gs4 gsy fd-column">
+                <label class="grid--cell s-label fs-body1" for="hero-position">Position</label>
+                <div class="grid--cell s-select">
+                    <select id="hero-position" class="js-hero-position-menu">
+                        <option name="hero-position" id="hero-normal" selected>Normal</option>
+                        <option name="hero-position" id="hero-footer" data-class="is-pinned">Footer</option>
+                    </select>
+                </div>
+            </div>
+            <button class="grid--cell as-end mb2 s-btn s-btn__filled js-banner-show-hero">Show example</button>
+            <button class="grid--cell as-end mb2 s-btn s-btn__danger js-banner-remove-hero d-none">Remove example</button>
         </div>
     </div>
     <div class="stacks-code-preview">
