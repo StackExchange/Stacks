@@ -319,8 +319,9 @@
     }
 
     &.s-btn__xs {
-        padding: 0.5em 0.6em;
-        font-size: @fs-fine;
+        padding-top: 0.7em;
+        padding-bottom: 0.6em;
+        .mx-fs(@fs-base - 2);
 
         &.s-btn__dropdown {
             padding-right: 1.5em;
@@ -336,8 +337,9 @@
     }
 
     &.s-btn__sm {
-        padding: 0.6em 0.8em;
-        font-size: @fs-caption;
+        padding-top: 0.7em;
+        padding-bottom: 0.7em;
+        .mx-fs(@fs-base - 1);
 
         &.s-btn__dropdown {
             padding-right: 2.05em;
@@ -349,8 +351,10 @@
     }
 
     &.s-btn__md {
+        padding-top: 0.7em;
+        padding-bottom: 0.7em;
         border-radius: @btn-br + 1;
-        font-size: @fs-body3;
+        .mx-fs(@fs-base + 4);
 
         &.s-btn__dropdown {
             padding-right: 2.1em;
@@ -365,8 +369,10 @@
     }
 
     &.s-btn__lg {
+        padding-top: 0.7em;
+        padding-bottom: 0.7em;
         border-radius: @btn-br + 1;
-        font-size: @fs-title;
+        .mx-fs(@fs-base + 8);
 
         &.s-btn__dropdown {
             padding-right: 2.15em;
@@ -381,8 +387,10 @@
     }
 
     &.s-btn__xl {
+        padding-top: 0.7em;
+        padding-bottom: 0.7em;
         border-radius: @btn-br + @br-sm;
-        font-size: @fs-headline1;
+        .mx-fs(@fs-base + 14);
 
         &.s-btn__dropdown {
             padding-right: 2em;
@@ -412,10 +420,11 @@
     //      trapped whitespace.
     //  ------------------------------------------------------------------------
     .svg-icon {
-        margin-top: -(@su2 + 1);    // [1]
-        margin-right: @su2;         // [2]
-        margin-bottom: -(@su2);     // [1]
-        margin-left: -(@su4);       // [3]
+        margin-top: -0.307692308em;         // [1]
+        margin-right: 0.153846154em;        // [2]
+        margin-bottom: -0.153846154em;      // [1]
+        margin-left: -0.538461538em;        // [3]
+
         /* autoprefixer: off */
         transition: opacity 200ms @te-smooth; // Animate the transition to .is-loading
     }
@@ -503,27 +512,27 @@
 //  ============================================================================
 //  $   WARNING BUTTONS & STYLES
 //  ============================================================================
-.s-btn__warning {
+.s-btn__danger {
     .btn-check-brc(@status: false);
-    .btn-check-bxs(@bxos: @btn-warning-bgc, @status: false);
-    .btn-bgc(fade(@btn-warning-bgc,0%));
-    .btn-fc(@btn-warning-bgc);
+    .btn-check-bxs(@bxos: @btn-danger-bgc, @status: false);
+    .btn-bgc(fade(@btn-danger-bgc,0%));
+    .btn-fc(@btn-danger-bgc);
 
     //  --  Outlined
     &.s-btn__outlined {
-        .btn-check-brc(lighten(@btn-warning-bgc,20%));
-        .btn-check-bxs(@bxos: @btn-warning-bgc, @status: false);
-        .btn-bgc(fade(@btn-warning-bgc,0%));
-        .btn-fc(@btn-warning-bgc);
+        .btn-check-brc(lighten(@btn-danger-bgc,20%));
+        .btn-check-bxs(@bxos: @btn-danger-bgc, @status: false);
+        .btn-bgc(fade(@btn-danger-bgc,0%));
+        .btn-fc(@btn-danger-bgc);
     }
 
     //  --  Filled
     &.s-btn__filled {
-        .btn-check-brc(@btn-warning-bgc);
-        .btn-check-bxs(@btn-warning-bgc, @btn-warning-bgc);
-        .btn-bgc(@btn-warning-bgc);
-        .btn-check-bgg(@btn-warning-bgc);
-        .btn-fc(@btn-warning-fc);
+        .btn-check-brc(@btn-danger-bgc);
+        .btn-check-bxs(@btn-danger-bgc, @btn-danger-bgc);
+        .btn-bgc(@btn-danger-bgc);
+        .btn-check-bgg(@btn-danger-bgc);
+        .btn-fc(@btn-danger-fc);
     }
 
     //  --  Inverted
@@ -531,76 +540,23 @@
         //  --  Inverted: Clear
         .btn-check-brc(@status: false);
         .btn-check-bxs(@bxos: fade(@btn-bxos,0%), @status: false);
-        .btn-bgc(fade(@btn-warning-fc,0%));
-        .btn-fc(fade(lighten(@btn-warning-bgc,40%),90%));
+        .btn-bgc(fade(@btn-danger-fc,0%));
+        .btn-fc(fade(lighten(@btn-danger-bgc,40%),90%));
 
         //  --  Inverted: Outlined
         &.s-btn__outlined {
-            .btn-check-brc(fade(lighten(@btn-warning-bgc,50%),25%));
-            .btn-bgc(fade(lighten(@btn-warning-bgc,40%),0%));
-            .btn-fc(fade(lighten(@btn-warning-bgc,50%),80%));
+            .btn-check-brc(fade(lighten(@btn-danger-bgc,50%),25%));
+            .btn-bgc(fade(lighten(@btn-danger-bgc,40%),0%));
+            .btn-fc(fade(lighten(@btn-danger-bgc,50%),80%));
         }
 
         //  --  Inverted: Filled
         &.s-btn__filled {
-            .btn-check-brc(mix(lighten(@btn-warning-bgc,30%),@white));
-            .btn-check-bxs(@bxos: lighten(@btn-warning-bgc,50%), @status: false);
-            .btn-bgc(mix(lighten(@btn-warning-bgc,30%),@white));
-            .btn-check-bgg(lighten(@btn-warning-bgc,30%));
-            .btn-fc(darken(@btn-warning-bgc,10%));
-        }
-    }
-}
-
-
-//  ============================================================================
-//  $   CONFIRM BUTTONS & STYLES
-//  ============================================================================
-.s-btn__confirm {
-    .btn-check-brc(@status: false);
-    .btn-check-bxs(@bxos:@btn-confirm-bgc, @status: false);
-    .btn-bgc(fade(@btn-confirm-bgc,0%));
-    .btn-fc(@btn-confirm-bgc);
-
-    //  -- Outlined
-    &.s-btn__outlined {
-        .btn-check-brc(lighten(@btn-confirm-bgc,20%));
-        .btn-check-bxs(@bxos: @btn-confirm-bgc, @status: false);
-        .btn-bgc(fade(@btn-confirm-bgc,0%));
-        .btn-fc(@btn-confirm-bgc);
-    }
-
-    //  -- Filled
-    &.s-btn__filled {
-        .btn-check-brc(@btn-confirm-bgc);
-        .btn-check-bxs(@btn-confirm-bgc, @btn-confirm-bgc);
-        .btn-bgc(@btn-confirm-bgc);
-        .btn-check-bgg(@btn-confirm-bgc);
-        .btn-fc(@btn-confirm-fc);
-    }
-
-    //  -- Inverted
-    &.s-btn__inverted {
-        //  --  Inverted: Clear
-        .btn-check-brc(@status: false);
-        .btn-check-bxs(@bxos: fade(@btn-bxos,0%), @status: false);
-        .btn-bgc(fade(@btn-confirm-fc,0%));
-        .btn-fc(fade(lighten(@btn-confirm-bgc,40%),90%));
-
-        //  --  Inverted: Outlined
-        &.s-btn__outlined {
-            .btn-check-brc(fade(lighten(@btn-confirm-bgc,50%),25%));
-            .btn-bgc(fade(@btn-confirm-bgc,0%));
-            .btn-fc(fade(lighten(@btn-confirm-bgc,50%),80%));
-        }
-
-        //  --  Inverted: Filled
-        &.s-btn__filled {
-            .btn-check-brc(transparent);
-            .btn-check-bxs(@bxos: lighten(@btn-confirm-bgc,50%), @status: false);
-            .btn-bgc(mix(lighten(@btn-confirm-bgc,15%),@white));
-            .btn-check-bgg(lighten(@btn-confirm-bgc,25%));
-            .btn-fc(darken(@btn-confirm-bgc,30%));
+            .btn-check-brc(mix(lighten(@btn-danger-bgc,30%),@white));
+            .btn-check-bxs(@bxos: lighten(@btn-danger-bgc,50%), @status: false);
+            .btn-bgc(mix(lighten(@btn-danger-bgc,30%),@white));
+            .btn-check-bgg(lighten(@btn-danger-bgc,30%));
+            .btn-fc(darken(@btn-danger-bgc,10%));
         }
     }
 }
@@ -663,7 +619,7 @@
 //  --  Next the actual loading spinner
 .s-btn {
     &.is-loading {
-        padding-left: @su24 + @su8;
+        padding-left: 2.2em;
 
         &:before {
             content: "";
@@ -671,6 +627,7 @@
             top: calc(~"50% - @{su8}");
             width: @su16;
             height: @su16;
+            margin-left: -1.65em;
             margin-left: -(@su24 - @su2);
             border: 2px dotted fade(@btn-filled-fc,40%);
             border-left-color: darken(@btn-filled-fc,5%);
@@ -687,20 +644,21 @@
         }
     }
 
+    &.s-btn__danger.is-loading:before {
+        border-color: fade(@btn-danger-bgc,25%);
+        border-left-color: fade(@btn-danger-bgc,75%);
+    }
+
     &.s-btn__primary.is-loading:before,
-    &.s-btn__warning.s-btn__filled.is-loading:before,
-    &.s-btn__confirm.s-btn__filled.is-loading:before {
+    &.s-btn__danger.s-btn__filled.is-loading:before,
+    &.s-btn__inverted:not(.s-btn__filled).is-loading:before,
+    &.s-btn__inverted:not(.s-btn__filled).is-selected.is-loading:before, {
         border-color: fade(@white,25%);
         border-left-color: @white;
     }
-
-    &.s-btn__warning:not(.s-btn__filled).is-loading:before {
-        border-color: fade(@btn-warning-bgc,25%);
-        border-left-color: fade(@btn-warning-bgc,75%);
-    }
-    &.s-btn__confirm:not(.s-btn__filled).is-loading:before {
-        border-color: fade(@btn-confirm-bgc,40%);
-        border-left-color: fade(@btn-confirm-bgc,100%);
+    &.s-btn__muted.is-loading:before {
+        border-color: fade(@black-900,25%);
+        border-left-color: fade(@black-900,75%);
     }
 }
 
