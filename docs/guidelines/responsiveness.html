@@ -55,16 +55,23 @@ description: Stacks allows you to build responsive designs using utility classes
     </ul>
 
     <div class="stacks-code-preview">
-{% highlight html linenos %}
-<div class="grid ai-center md:fd-column gs16">
-    <div class="grid--cell fs-body3 lg:ta-center">
+    <!-- This is a terribly hack to be able to highlight our markup -->
+<figure class="highlight"><pre><code class="language-html" data-lang="html"><table class="rouge-table"><tbody><tr><td class="gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+</pre></td><td class="code"><pre><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"grid ai-center <span class="js-highlight js-md-highlight">md:fd-column</span> gs16"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"grid--cell fs-body3 <span class="js-highlight js-lg-highlight">lg:ta-center</span>"</span><span class="nt">&gt;</span>
         …
-    </div>
-    <div class="grid--cell sm:d-none">
-        <svg>…</svg>
-    </div>
-</div>
-{% endhighlight %}
+    <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"grid--cell <span class="js-highlight js-sm-highlight">sm:d-none</span>"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;svg&gt;</span>…<span class="nt">&lt;/svg&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/div&gt;</span></pre></td></tr></tbody></table></code></pre></figure>
         <div class="-preview p32">
             <div class="grid ai-center md:fd-column gs16 js-grid">
                 <div class="grid--cell fs-body3 lg:ta-center js-grid-left">
@@ -175,6 +182,10 @@ description: Stacks allows you to build responsive designs using utility classes
         var gridTarget = $(".js-grid");
         var gridLeftTarget = $(".js-grid-left");
         var gridRightTarget = $(".js-grid-right");
+        var lgHighlights = $(".js-lg-highlight");
+        var smHighlights = $(".js-sm-highlight");
+        var mdHighlights = $(".js-md-highlight");
+        var highlights = $(".js-highlight");
 
         smBtn.click(function(e) {
             e.preventDefault();
@@ -183,6 +194,7 @@ description: Stacks allows you to build responsive designs using utility classes
             addSelection($(this));
             gridLeftTarget.addClass("ta-center");
             gridRightTarget.addClass("d-none");
+            smHighlights.addClass("bg-white bar-sm p4 fc-black-900");
         });
 
         mdBtn.click(function(e) {
@@ -192,6 +204,7 @@ description: Stacks allows you to build responsive designs using utility classes
             addSelection($(this));
             gridLeftTarget.addClass("ta-center");
             gridTarget.addClass("fd-column");
+            mdHighlights.addClass("bg-white bar-sm p4 fc-black-900");
         });
 
         lgBtn.click(function(e) {
@@ -200,6 +213,7 @@ description: Stacks allows you to build responsive designs using utility classes
             removeClasses();
             addSelection($(this));
             gridLeftTarget.addClass("ta-center");
+            lgHighlights.addClass("bg-white bar-sm p4 fc-black-900");
         });
 
         allBtn.click(function(e) {
@@ -215,6 +229,7 @@ description: Stacks allows you to build responsive designs using utility classes
             gridTarget.removeClass("fd-column");
             gridLeftTarget.removeClass("ta-center");
             btns.removeClass("bg-blue-500 fc-white");
+            highlights.removeClass("bg-white bar-sm p4 fc-black-900");
         };
 
         function addSelection(obj) {
