@@ -8,10 +8,11 @@ $(document).ready(function() {
     var heroHeight = hero.innerHeight();
     var heroBannerFooter = $(".js-banner-hero-footer");
     var circle = $(this).find(".js-banner-circle");
-    var typeClasses = ("s-banner__bgg-info s-banner__bgg-important s-banner__bgg-danger s-banner__bgg-success s-banner__bgg-brand s-banner__bgg-pattern is-pinned");
+    var typeClasses = ("s-notice__info s-notice__brand s-notice__success s-notice__warning s-notice__danger s-notice__important s-banner__info s-banner__important s-banner__danger s-banner__success s-banner__brand s-banner__pattern is-pinned");
 
     hero.hide();
     heroSmall.hide();
+    heroBannerFooter.hide();
 
     heroBtn.on("click", function() {
         var typeSelect = heroTypeMenu.find(":selected").data("class");
@@ -46,17 +47,17 @@ $(document).ready(function() {
                     "right": ""
                 });
             if (patternSelect == "yes") {
-                heroBannerFooter.addClass("s-banner__bgg-pattern");
+                heroBannerFooter.addClass("s-banner__pattern");
             }
             else {
-                heroBannerFooter.removeClass("s-banner__bgg-pattern");
+                heroBannerFooter.removeClass("s-banner__pattern");
             }
 
             if (circleSelect == "yes") {
-                circle.addClass("s-banner__bgg-circle");
+                circle.addClass("s-banner__circle");
             }
             else {
-                circle.removeClass("s-banner__bgg-circle");
+                circle.removeClass("s-banner__circle");
             }
         }
         else {
@@ -88,17 +89,17 @@ $(document).ready(function() {
                 });
 
             if (patternSelect == "yes") {
-                hero.addClass("s-banner__bgg-pattern");
+                hero.addClass("s-banner__pattern");
             }
             else {
-                hero.removeClass("s-banner__bgg-pattern");
+                hero.removeClass("s-banner__pattern");
             }
 
             if (circleSelect == "yes") {
-                circle.addClass("s-banner__bgg-circle");
+                circle.addClass("s-banner__circle");
             }
             else {
-                circle.removeClass("s-banner__bgg-circle");
+                circle.removeClass("s-banner__circle");
             }
         }
     });
@@ -131,6 +132,35 @@ $(document).ready(function() {
                 "left": "",
                 "right": ""
             });
-        circle.removeClass("s-banner__bgg-circle");
+        circle.removeClass("s-banner__circle");
+    });
+
+    var topnav = $(".js-stacks-topbar");
+    var topnavHeight = topnav.outerHeight();
+    var sysBanner = $(".js-notice-banner");
+    var sysBannerHeight = sysBanner.outerHeight();
+    var sysBannerBtn = $(".js-sys-banner-show");
+    var sysCloseBtn = $(".js-sys-banner-remove");
+    var sysStyleMenu = $(".js-sys-banner-style-menu");
+    var sysTypeMenu = $(".js-sys-banner-type-menu");
+    var sysPosMenu = $(".js-sys-banner-position-menu");
+
+    sysBannerBtn.on("click", function(e) {
+        var sysStyle = sysStyleMenu.find(":selected").data("class");
+        var sysType = sysTypeMenu.find(":selected").data("class");
+        var sysPos = sysPosMenu.find(":selected").data("class");
+
+        if (sysPos == "is-pinned") {
+            topnav.css("top", sysBannerHeight + "px").show();
+            sysBanner.show().attr("aria-hidden","false").removeClass(typeClasses).addClass(sysStyle + " " + sysType + " " + sysPos);
+        }
+        else {
+            topnav.css("top","").show();
+            sysBanner.show().attr("aria-hidden","false").removeClass(typeClasses).addClass(sysStyle + " " + sysType);
+        }
+
+        if (sysStyle == "none") {
+            sysBanner.addClass("s-notice__important");
+        }
     });
 });

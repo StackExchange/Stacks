@@ -23,8 +23,8 @@ description: Banners are a type of <a href="/components/notices">notice</a>, del
     </div>
 </aside>
 
-<aside class="s-banner s-banner__hero js-banner-hero" aria-hidden="true">
-    <div class="grid jc-spacebetween ai-center s-banner--container js-banner-circle" aria-titledby="banner-title" aria-describedby="banner-message">
+<aside class="s-banner s-banner__hero js-banner-hero" role="region" aria-hidden="true">
+    <div class="grid jc-spacebetween ai-center s-banner--container js-banner-circle" aria-labeledby="banner-title" aria-describedby="banner-message">
         <div class="grid--cell6">
             <h1 class="fs-headline2 fw-bold line-lg mb12" aria-label="banner-title">Learn, share, build</h1>
             <div aria-label="banner-messge">
@@ -79,7 +79,7 @@ description: Banners are a type of <a href="/components/notices">notice</a>, del
         </div>
     </div>
 </aside>
-<aside class="s-banner s-banner__bar js-banner-bar" aria-hidden="true">
+<aside class="s-banner s-banner__bar js-banner-bar" role="region" aria-hidden="true">
     <div class="grid ai-center s-banner--container">
         <p class="mb0 fs-body2 lh-sm">
             <strong>Stack Overflow Business Solutions:</strong> Looking to understand, engage, or hire developers? <a href="#" class="s-btn s-btn__inverted p8 fc-white"><strong>Learn more &raquo;</strong></a>
@@ -87,8 +87,8 @@ description: Banners are a type of <a href="/components/notices">notice</a>, del
     </div>
 </aside>
 
-<aside class="s-banner s-banner__hero js-banner-hero-footer" aria-hidden="true">
-    <div class="grid s-banner--container js-banner-circle" aria-titledby="banner-title" aria-describedby="banner-message">
+<aside class="s-banner s-banner__hero js-banner-hero-footer" role="region" aria-hidden="true">
+    <div class="grid s-banner--container js-banner-circle" aria-labeledby="banner-title" aria-describedby="banner-message">
         <div class="grid--cell">
             <div class="grid h100 ai-center">
                 <p class="mb0 fs-body2 lh-md" aria-label="banner-title"><strong>Join Stack Overflow</strong> to learn, share knowledge, and build your career.</p>
@@ -123,176 +123,6 @@ description: Banners are a type of <a href="/components/notices">notice</a>, del
 </aside>
 
 <section class="stacks-section">
-    <h2 class="grid jc-spacebetween ai-center mb8 stacks-title">System Banners</h2>
-    <p class="stacks-p _section">System banners are used for <strong>system</strong> messaging. They are full-width notices placed in one of two locations:</p>
-    <ol class="stacks-list _section">
-        <li><strong>Above everything else:</strong> If the system banner is related to the entire website (e.g. the website is in read-only), place the banner first. <em>These cannot be dismissed until the issue is resolved.</em> To pin a system banner to the top of the browser window, add <code class="stacks-code">.is-pinned</code>.</li>
-        <li><strong>Below the top navigation bar:</strong> This is the default location for all system banners. Use these banners when it affects only a particular area of the product (e.g. when a product subscription is about to expire).</li>
-    </ol>
-    <p class="stacks-p _section">Since system banners are a type of notice, you can use the following <a href="/components/notice#visual-styles">notice visual styles</a> in conjunction with <code class="stacks-code">.s-banner</code>:</p>
-    <h3 class="grid jc-spacebetween ai-center mb8 stacks-title _subtitle">Classes</h3>
-    <table cellspacing="0" class="s-table mb32">
-        <thead>
-            <tr>
-                <th scope="col" class="s-table--cell3">Class</th>
-                <th scope="col">Description</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td><code class="stacks-code">.s-notice__info</code></td>
-                <td>Visual style for information notices</td>
-            </tr>
-            <tr>
-                <td><code class="stacks-code">.s-notice__success</code></td>
-                <td>Visual style for success notices</td>
-            </tr>
-            <tr>
-                <td><code class="stacks-code">.s-notice__warning</code></td>
-                <td>Visual style for warning notices</td>
-            </tr>
-            <tr>
-                <td><code class="stacks-code">.s-notice__danger</code></td>
-                <td>Visual style for danger notices</td>
-            </tr>
-            <tr>
-                <td><code class="stacks-code">.s-notice__important</code></td>
-                <td>Loud visual style for important, time-sensitive information that needs to be noticed by the user</td>
-            </tr>
-        </tbody>
-    </table>
-
-    <h3 class="grid jc-spacebetween ai-center mb8 stacks-title _subtitle">Examples</h3>
-    <div class="mb12 p16 bar-sm bg-black-025 ba bc-black-1">
-        <div class="grid gs8 gsx">
-            <button class="grid--cell s-btn s-btn__filled js-notice-banner-open">Banner example</button>
-            <button class="grid--cell s-btn s-btn__filled js-notice-banner-pinned-open">Pinned banner example</button>
-        </div>
-    </div>
-    <div class="stacks-code-preview">
-{% highlight html linenos %}
-<aside class="s-banner s-notice__info s-notice__important" role="banner" role="status" aria-hidden="false">…</aside>
-<aside class="s-banner s-notice__success s-notice__important" role="banner" role="status" aria-hidden="false">…</aside>
-<aside class="s-banner s-notice__warning s-notice__important" role="banner" role="status" aria-hidden="false">…</aside>
-<aside class="s-banner s-notice__danger s-notice__important" role="banner" role="status" aria-hidden="false">…</aside>
-<aside class="s-banner s-notice__important" role="banner" role="status" aria-hidden="false">…</aside>
-{% endhighlight %}
-        <div class="-preview">
-            <div class="ps-relative grid gs8 gsy fd-column jc-center">
-                <aside class="grid--cell s-banner s-notice__info s-notice__important" role="banner" aria-hidden="false" style="position: relative; transform: translate3d(0,0,0);">
-                    <p class="m0">Info system banner</p>
-                </aside>
-                <aside class="grid--cell s-banner s-notice__success s-notice__important" role="banner" aria-hidden="false" style="position: relative; transform: translate3d(0,0,0);">
-                    <p class="m0">Success system banner</p>
-                </aside>
-                <aside class="grid--cell s-banner s-notice__warning s-notice__important" role="banner" aria-hidden="false" style="position: relative; transform: translate3d(0,0,0);">
-                    <p class="m0">Warning system banner</p>
-                </aside>
-                <aside class="grid--cell s-banner s-notice__danger s-notice__important" role="banner" aria-hidden="false" style="position: relative; transform: translate3d(0,0,0);">
-                    <p class="m0">Danger system banner</p>
-                </aside>
-                <aside class="grid--cell s-banner s-notice__important" role="banner" aria-hidden="false" style="position: relative; transform: translate3d(0,0,0);">
-                    <p class="m0">Base important system banner</p>
-                </aside>
-            </div>
-        </div>
-    </div>
-</section>
-
-<section class="stacks-section">
-    <h2 class="grid jc-spacebetween ai-center mb8 stacks-title">Hero Banners</h2>
-    <p class="stacks-p _section">Hero banners are used for <strong>engagement</strong> messaging. They are full-width notices placed in one of two locations:</p>
-    <ol class="stacks-list _section">
-        <li><strong>Between the navigation and content areas:</strong> While highly disruptive, these place the banner within the users view first (e.g. sign-up or login messaging for logged out or new users).</li>
-        <li><strong>Fixed to the bottom of the browser window:</strong> A more minimal, persistent location for lower priority messages.</li>
-    </ol>
-    <p class="stacks-p _section">Since hero banners have an engagement goal, more visual styling is added to the heros. This means a number of new, specific classes are available for hero banners:</p>
-    <h3 class="grid jc-spacebetween ai-center mb8 stacks-title _subtitle">Classes</h3>
-    <table cellspacing="0" class="s-table mb32">
-        <thead>
-            <tr>
-                <th scope="col" class="s-table--cell3">Class</th>
-                <th scope="col">Description</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td><code class="stacks-code">.s-banner__hero</code></td>
-                <td>The parent class for hero banners</td>
-            </tr>
-            <tr>
-                <td><code class="stacks-code">.s-banner__bgg-brand</code></td>
-                <td>Background gradient composed of brand colors</td>
-            </tr>
-            <tr>
-                <td><code class="stacks-code">.s-banner__bgg-info</code></td>
-                <td>Background gradient composed of info notice colors</td>
-            </tr>
-            <tr>
-                <td><code class="stacks-code">.s-banner__bgg-success</code></td>
-                <td>Background gradient composed of success notice colors</td>
-            </tr>
-            <tr>
-                <td><code class="stacks-code">.s-banner__bgg-danger</code></td>
-                <td>Background gradient composed of danger notice colors</td>
-            </tr>
-            <tr>
-                <td><code class="stacks-code">.s-banner__bgg-important</code></td>
-                <td>Background gradient composed of important notice colors</td>
-            </tr>
-        </tbody>
-    </table>
-
-    <h3 class="grid jc-spacebetween ai-center mb8 stacks-title _subtitle">Examples</h3>
-    <div class="mb12 p16 bar-sm bg-black-025 ba bc-black-1">
-        <div class="grid gs8 gsx">
-            <div class="grid gs4 gsy fd-column">
-                <label class="grid--cell s-label fs-body1" for="hero-type">Style</label>
-                <div class="grid--cell s-select">
-                    <select id="hero-type" class="js-hero-type-menu">
-                        <option name="hero-type" id="hero-info" data-class="s-banner__bgg-info" selected>Info</option>
-                        <option name="hero-type" id="hero-brand" data-class="s-banner__bgg-brand">Brand</option>
-                        <option name="hero-type" id="hero-success" data-class="s-banner__bgg-success">Success</option>
-                        <option name="hero-type" id="hero-important" data-class="s-banner__bgg-important">Important</option>
-                        <option name="hero-type" id="hero-danger" data-class="s-banner__bgg-danger">Danger</option>
-                    </select>
-                </div>
-            </div>
-            <div class="grid gs4 gsy fd-column">
-                <label class="grid--cell s-label fs-body1" for="hero-pattern">Elements</label>
-                <div class="grid--cell s-select">
-                    <select id="hero-pattern" class="js-hero-pattern-menu">
-                        <option name="hero-pattern" id="hero-normal" data-pattern="yes" data-circle="yes" selected>Circle and pattern</option>
-                        <option name="hero-pattern" id="hero-footer" data-pattern="no" data-circle="yes">Circle only</option>
-                        <option name="hero-pattern" id="hero-footer" data-pattern="yes" data-circle="no">Pattern only</option>
-                        <option name="hero-pattern" id="hero-footer" data-pattern="no" data-circle="no">None</option>
-                    </select>
-                </div>
-            </div>
-            <div class="grid gs4 gsy fd-column">
-                <label class="grid--cell s-label fs-body1" for="hero-position">Position</label>
-                <div class="grid--cell s-select">
-                    <select id="hero-position" class="js-hero-position-menu">
-                        <option name="hero-position" id="hero-normal" selected>Normal</option>
-                        <option name="hero-position" id="hero-footer" data-class="is-pinned">Footer</option>
-                    </select>
-                </div>
-            </div>
-            <button class="grid--cell as-end mb2 s-btn s-btn__filled js-banner-show-hero">Show example</button>
-            <button class="grid--cell as-end mb2 s-btn s-btn__danger js-banner-remove-hero d-none">Remove example</button>
-        </div>
-    </div>
-    <div class="stacks-code-preview">
-{% highlight html linenos %}
-<aside class="s-notice s-notice__info s-notice__banner" role="banner" role="status" aria-hidden="false">…</aside>
-{% endhighlight %}
-        <div class="-preview">
-            To view an example, see the menu above
-        </div>
-    </div>
-</section>
-
-<section class="stacks-section">
     <h2 class="grid jc-spacebetween ai-center mb8 stacks-title">Accessibilty</h2>
     <table cellspacing="0" class="s-table">
         <thead>
@@ -303,228 +133,195 @@ description: Banners are a type of <a href="/components/notices">notice</a>, del
             </tr>
         </thead>
         <tbody>
+            {% for item in site.data.banners.access | sort %}
             <tr>
-                <td><code class="stacks-code">aria-describedby="[id]"</code></td>
-                <td><code class="stacks-code">role="alertdialog"</code></td>
-                <td>Used to reference the alert message within the dialog. If you are using <code class="stacks-code">role="alertdialog"</code>, <strong>this must be applied.</strong> (<a href="https://www.w3.org/TR/wai-aria-1.1/#aria-describedby" target="_blank">Source</a>)</td>
+                <td><code class="stacks-code">{{ item.item | replace: "'", """ }}</code></td>
+                <td>
+                    {% if item.applies == "N/A" %}
+                        <em class="fc-black-350">{{ item.applies }}</em>
+                    {% else %}
+                        {% assign class = item.applies | split: " " %}
+
+                        {% for name in class %}
+                            <code class="stacks-code">{{ name }}</code>
+                        {% endfor %}
+                    {% endif %}
+                </td>
+                <td>{{ item.description }} (<a href="{{ item.url }}" target="_blank">Source</a>)</td>
             </tr>
-            <tr>
-                <td><code class="stacks-code">aria-hidden="[state]"</code></td>
-                <td><code class="stacks-code">.s-notice</code></td>
-                <td>Informs assistive technologies (such as screen readers) if they should ignore the element. This should not be confused with the HTML5 hidden attribute which tells the browser to not display an element. (<a href="https://www.w3.org/TR/wai-aria-1.1/#aria-hidden" target="_blank">Source</a>)</td>
-            </tr>
-            <tr>
-                <td><code class="stacks-code">aria-label="[text]"</code></td>
-                <td>Message area</td>
-                <td>Labels the element for assistive technologies (such as screen readers). (<a href="https://www.w3.org/TR/wai-aria-1.1/#aria-label" target="_blank">Source</a>)</td>
-            </tr>
-            <tr>
-                <td><code class="stacks-code">role="status"</code></td>
-                <td><code class="stacks-code">.s-notice</code></td>
-                <td>A form of live region which contains advisory information but isn't important enough to justify an alert role. Elements with a status role have an implicit <code class="stacks-code">aria-live</code> value of <code class="stacks-code">polite</code> and implicit <code class="stacks-code">aria-atomic</code> value of <code class="stacks-code">true</code>. If the element controlling the status appears in a different area of the page, you <strong>must make the relationship explicit</strong> with the <code class="stacks-code">aria-controls</code> attribute. (<a href="https://www.w3.org/TR/wai-aria-1.1/#status" target="_blank">Source</a>)</td>
-            </tr>
-            <tr>
-                <td><code class="stacks-code">role="alert"</code></td>
-                <td><code class="stacks-code">.s-notice</code></td>
-                <td>A form of live region which contains important, usually time-sensitive, information. Elements with an alert role have an implicit <code class="stacks-code">aria-live</code> value of <code class="stacks-code">assertive</code> and implicit <code class="stacks-code">aria-atomic</code> value of <code class="stacks-code">true</code>. (<a href="https://www.w3.org/TR/wai-aria-1.1/#alert" target="_blank">Source</a>)</td>
-            </tr>
-            <tr>
-                <td><code class="stacks-code">role="alertdialog"</code></td>
-                <td>Notice dialog container</td>
-                <td>The wrapping content area of an <code class="stacks-code">alert</code>. Elements with the <code class="stacks-code">alertdialog</code> role <strong>must</strong> use the <code class="stacks-code">aria-describedby</code> attribute to reference the alert message within the dialog. (<a href="https://www.w3.org/TR/wai-aria-1.1/#alertdialog" target="_blank">Source</a>)</td>
-            </tr>
+            {% endfor %}
         </tbody>
     </table>
 </section>
 
 <section class="stacks-section">
-    <h2 class="grid jc-spacebetween ai-center mb8 stacks-title">Visual Styles</h2>
+    <h2 class="grid jc-spacebetween ai-center mb8 stacks-title">System Banners</h2>
+    <p class="stacks-p _section">System banners are used for <strong>system</strong> messaging. They are full-width notices placed in one of two locations:</p>
+    <ol class="stacks-list _section">
+        <li><strong>Above everything else:</strong> If the system banner is related to the entire website (e.g. the website is in read-only), place the banner first. <em>These cannot be dismissed until the issue is resolved.</em> To pin a system banner to the top of the browser window, add <code class="stacks-code">.is-pinned</code>.</li>
+        <li><strong>Below the top navigation bar:</strong> This is the default location for all system banners. Use these banners when it affects only a particular area of the product (e.g. when a product subscription is about to expire).</li>
+    </ol>
+    <p class="stacks-p _section">Since system banners are a type of notice, you can use the following <a href="/components/notice#visual-styles">notice visual styles</a> in conjunction with <code class="stacks-code">.s-banner</code>:</p>
+
+    <h3 class="grid jc-spacebetween ai-center mb8 stacks-title _subtitle">Examples</h3>
+    <div class="stacks-code-preview">
+{% highlight html linenos %}
+<aside class="s-banner s-notice__info s-notice__important" role="alert" aria-hidden="false">…</aside>
+<aside class="s-banner s-notice__success s-notice__important" role="alert" aria-hidden="false">…</aside>
+<aside class="s-banner s-notice__warning s-notice__important" role="alert" aria-hidden="false">…</aside>
+<aside class="s-banner s-notice__danger s-notice__important" role="alert" aria-hidden="false">…</aside>
+<aside class="s-banner s-notice__important" role="alert" aria-hidden="false">…</aside>
+{% endhighlight %}
+        <div class="-preview">
+            <div class="p16 bar-sm bg-black-025 ba bc-black-1">
+                <div class="grid gs8 gsx">
+                    <div class="grid gs4 gsy fd-column">
+                        <label class="grid--cell s-label fs-body1" for="sys-banner-type">Style</label>
+                        <div class="grid--cell s-select">
+                            <select id="sys-banner-type" class="js-sys-banner-style-menu">
+                                <option name="sys-banner-type" id="sys-banner-style-info" data-class="s-notice__info" selected>Info</option>
+                                <option name="sys-banner-type" id="sys-banner-style-brand" data-class="s-notice__brand">Brand</option>
+                                <option name="sys-banner-type" id="sys-banner-style-success" data-class="s-notice__success">Success</option>
+                                <option name="sys-banner-type" id="sys-banner-style-danger" data-class="s-notice__danger">Danger</option>
+                                <option name="sys-banner-type" id="sys-banner-style-none" data-class="none">None</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="grid gs4 gsy fd-column">
+                        <label class="grid--cell s-label fs-body1" for="sys-banner-type">Type</label>
+                        <div class="grid--cell s-select">
+                            <select id="sys-banner-type" class="js-sys-banner-type-menu">
+                                <option name="sys-banner-type" id="sys-banner-type-outlined" data-class="s-notice__outlined">Outlined</option>
+                                <option name="sys-banner-type" id="sys-banner-type-default" data-class="none" selected>Filled (Default)</option>
+                                <option name="sys-banner-type" id="sys-banner-type-important" data-class="s-notice__important">Important</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="grid gs4 gsy fd-column">
+                        <label class="grid--cell s-label fs-body1" for="sys-banner-position">Position</label>
+                        <div class="grid--cell s-select">
+                            <select id="sys-banner-position" class="js-sys-banner-position-menu">
+                                <option name="sys-banner-position" id="sys-banner-pos-default" data-class="" selected>Below topbar</option>
+                                <option name="sys-banner-position" id="sys-banner-pos-pinned" data-class="is-pinned">Above topbar</option>
+                            </select>
+                        </div>
+                    </div>
+                    <button class="grid--cell as-end mb2 s-btn s-btn__filled js-sys-banner-show">Show example</button>
+                    <button class="grid--cell as-end mb2 s-btn s-btn__danger js-sys-banner-remove d-none">Remove example</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <h3 class="grid jc-spacebetween ai-center mb8 stacks-title _subtitle">Classes</h3>
     <table cellspacing="0" class="s-table mb32">
         <thead>
             <tr>
                 <th scope="col" class="s-table--cell3">Class</th>
-                <th scope="col" class="s-table--cell2">Applied to</th>
+                <th scope="col" class="s-table--cell3">Applies to</th>
                 <th scope="col">Description</th>
             </tr>
         </thead>
         <tbody>
+            {% for item in site.data.banners.system %}
             <tr>
-                <td><code class="stacks-code">.s-notice</code></td>
-                <td><em class="fc-black-350">N/A</em></td>
-                <td>Default style used to separate notices from the main content</td>
+                <td><code class="stacks-code">{{ item.class }}</code></td>
+                <td>{% if item.applies == "N/A" %}<em class="fc-black-350">{{ item.applies }}</em>{% else %}<code class="stacks-code">{{ item.applies }}</code>{% endif %}</td>
+                <td>{{ item.description }}</td>
             </tr>
-            <tr>
-                <td><code class="stacks-code">.s-notice__info</code></td>
-                <td><code class="stacks-code">.s-notice</code></td>
-                <td>Visual style for information notices</td>
-            </tr>
-            <tr>
-                <td><code class="stacks-code">.s-notice__success</code></td>
-                <td><code class="stacks-code">.s-notice</code></td>
-                <td>Visual style for success notices</td>
-            </tr>
-            <tr>
-                <td><code class="stacks-code">.s-notice__warning</code></td>
-                <td><code class="stacks-code">.s-notice</code></td>
-                <td>Visual style for warning notices</td>
-            </tr>
-            <tr>
-                <td><code class="stacks-code">.s-notice__danger</code></td>
-                <td><code class="stacks-code">.s-notice</code></td>
-                <td>Visual style for danger notices</td>
-            </tr>
-            <tr>
-                <td><code class="stacks-code">.s-notice__outlined</code></td>
-                <td><code class="stacks-code">.s-notice</code></td>
-                <td>Minimal style used for not important information that is minimally separated from the main content</td>
-            </tr>
-            <tr>
-                <td><code class="stacks-code">.s-notice__important</code></td>
-                <td><code class="stacks-code">.s-notice</code></td>
-                <td>Loud visual style for important, time-sensitive information that needs to be noticed by the user</td>
-            </tr>
+            {% endfor %}
         </tbody>
     </table>
+</section>
 
-    <h3 class="grid jc-spacebetween ai-center mb8 stacks-title _subtitle">Outlined</h3>
-    <p class="stacks-p _section">Minimal style used to minimally separate notices from the main content</p>
+<section class="stacks-section">
+    <h2 class="grid jc-spacebetween ai-center mb8 stacks-title">Hero Banners</h2>
+    <p class="stacks-p _section">Hero banners are used for <strong>engagement</strong> messaging. They are full-width notices placed in one of two locations:</p>
+    <ol class="stacks-list _section">
+        <li><strong>Between the navigation and content areas:</strong> While highly disruptive, these place the banner within the users view first (e.g. sign-up or login messaging for logged out or new users).</li>
+        <li><strong>Fixed to the bottom of the browser window:</strong> A more minimal, persistent location for lower priority messages.</li>
+    </ol>
+    <p class="stacks-p _section">Since hero banners have an engagement goal, more visual styling is added to the heros. This means a number of new, specific classes are available for hero banners:</p>
+
+    <h3 class="grid jc-spacebetween ai-center mb8 stacks-title _subtitle">Examples</h3>
     <div class="stacks-code-preview">
 {% highlight html linenos %}
-<aside class="s-notice s-notice__info s-notice__outlined" role="status" aria-hidden="false">…</aside>
-<aside class="s-notice s-notice__success s-notice__outlined" role="status" aria-hidden="false">…</aside>
-<aside class="s-notice s-notice__warning s-notice__outlined" role="status" aria-hidden="false">…</aside>
-<aside class="s-notice s-notice__danger s-notice__outlined" role="status" aria-hidden="false">…</aside>
-{% endhighlight %}
-        <div class="-preview">
-            <div class="ps-relative grid gs8 gsy fd-column jc-center">
-                <aside class="grid--cell s-notice s-notice__info s-notice__outlined" role="status" aria-hidden="false">
-                    <p class="m0">Info outlined message style</p>
-                </aside>
-                <aside class="grid--cell s-notice s-notice__success s-notice__outlined" role="status" aria-hidden="false">
-                    <p class="m0">Success outlined message style</p>
-                </aside>
-                <aside class="grid--cell s-notice s-notice__warning s-notice__outlined" role="status" aria-hidden="false">
-                    <p class="m0">Warning outlined message style</p>
-                </aside>
-                <aside class="grid--cell s-notice s-notice__danger s-notice__outlined" role="status" aria-hidden="false">
-                    <p class="m0">Danger outlined message style</p>
-                </aside>
-            </div>
-        </div>
-    </div>
-
-    <h3 class="grid jc-spacebetween ai-center mb8 stacks-title _subtitle">Filled</h3>
-    <p class="stacks-p _section">Default style used to separate notices from the main content</p>
-    <div class="stacks-code-preview">
-{% highlight html linenos %}
-<aside class="s-notice s-notice__info" role="status" aria-hidden="false">…</aside>
-<aside class="s-notice s-notice__success" role="status" aria-hidden="false">…</aside>
-<aside class="s-notice s-notice__warning" role="status" aria-hidden="false">…</aside>
-<aside class="s-notice s-notice__danger" role="status" aria-hidden="false">…</aside>
-{% endhighlight %}
-        <div class="-preview">
-            <div class="ps-relative grid gs8 gsy fd-column jc-center">
-                <aside class="grid--cell s-notice s-notice__info" role="status" aria-hidden="false">
-                    <p class="m0">Info filled message style</p>
-                </aside>
-                <aside class="grid--cell s-notice s-notice__success" role="status" aria-hidden="false">
-                    <p class="m0">Success filled message style</p>
-                </aside>
-                <aside class="grid--cell s-notice s-notice__warning" role="status" aria-hidden="false">
-                    <p class="m0">Warning filled message style</p>
-                </aside>
-                <aside class="grid--cell s-notice s-notice__danger" role="status" aria-hidden="false">
-                    <p class="m0">Danger filled message style</p>
-                </aside>
-            </div>
-        </div>
-    </div>
-
-    <h3 class="grid jc-spacebetween ai-center mb8 stacks-title _subtitle">Filled, Important</h3>
-    <p class="stacks-p _section">Used sparingly for when an important notice needs to be noticed</p>
-    <div class="stacks-code-preview">
-{% highlight html linenos %}
-<aside class="s-notice s-notice__invert s-notice__important" role="alert" aria-hidden="false">
-    <div class="grid" role="alertdialog" aria-describedby="notice-message">
-        <div class="grid--cell" aria-label="notice-message">
-            <p class="m0">…</p>
-        </div>
-        <div class="grid--cell ml-auto" aria-label="notice-dismiss">
-            <a href="#" class="fc-white o75 js-notice-close">
-                @Svg.ClearSm
-            </a>
-        </div>
+<aside class="s-banner s-banner__hero js-banner-hero" role="region" aria-hidden="false">
+    <div class="s-banner--container js-banner-circle" aria-labeledby="banner-title" aria-describedby="banner-message">
+        <div class="grid--cell">…</div>
+        <div class="grid--cell">…</div>
     </div>
 </aside>
-<aside class="s-notice s-notice__info s-notice__important" role="alert" aria-hidden="false">…</aside>
-<aside class="s-notice s-notice__success s-notice__important" role="alert" aria-hidden="false">…</aside>
-<aside class="s-notice s-notice__warning s-notice__important" role="alert" aria-hidden="false">…</aside>
-<aside class="s-notice s-notice__danger s-notice__important" role="alert" aria-hidden="false">…</aside>
 {% endhighlight %}
         <div class="-preview">
-            <div class="ps-relative grid gs8 gsy fd-column jc-center">
-                <aside class="grid--cell s-notice s-notice__important" role="alert" aria-hidden="false">
-                    <div class="grid">
-                        <div class="grid--cell" role="alertdialog" aria-describedby="notice-message">
-                            <p class="m0" aria-label="notice-message">Inverted important message style</p>
-                        </div>
-                        <div class="grid--cell ml-auto" aria-label="notice-dismiss">
-                            <a href="#" class="fc-white o75 js-notice-close">
-                                <svg aria-hidden="true" class="svg-icon iconClearSm" width="14" height="14" viewBox="0 0 14 14"><path d="M12 3.41L10.59 2 7 5.59 3.41 2 2 3.41 5.59 7 2 10.59 3.41 12 7 8.41 10.59 12 12 10.59 8.41 7z"/></svg>
-                            </a>
-                        </div>
-                    </div>
-                </aside>
-                <aside class="grid--cell s-notice s-notice__info s-notice__important" role="alert" aria-hidden="false">
-                    <div class="grid">
-                        <div class="grid--cell" role="alertdialog" aria-describedby="notice-message">
-                            <p class="m0" aria-label="notice-message">Info important message style</p>
-                        </div>
-                        <div class="grid--cell ml-auto" aria-label="notice-dismiss">
-                            <a href="#" class="fc-white o75 js-notice-close">
-                                <svg aria-hidden="true" class="svg-icon iconClearSm" width="14" height="14" viewBox="0 0 14 14"><path d="M12 3.41L10.59 2 7 5.59 3.41 2 2 3.41 5.59 7 2 10.59 3.41 12 7 8.41 10.59 12 12 10.59 8.41 7z"/></svg>
-                            </a>
+            <div class="p16 bar-sm bg-black-025 ba bc-black-1">
+                <div class="grid gs8 gsx">
+                    <div class="grid gs4 gsy fd-column">
+                        <label class="grid--cell s-label fs-body1" for="hero-type">Style</label>
+                        <div class="grid--cell s-select">
+                            <select id="hero-type" class="js-hero-type-menu">
+                                <option name="hero-type" id="hero-info" data-class="s-banner__info" selected>Info</option>
+                                <option name="hero-type" id="hero-brand" data-class="s-banner__brand">Brand</option>
+                                <option name="hero-type" id="hero-success" data-class="s-banner__success">Success</option>
+                                <option name="hero-type" id="hero-important" data-class="s-banner__important">Important</option>
+                                <option name="hero-type" id="hero-danger" data-class="s-banner__danger">Danger</option>
+                            </select>
                         </div>
                     </div>
-                </aside>
-                <aside class="grid--cell s-notice s-notice__success s-notice__important" role="alert" aria-hidden="false">
-                    <div class="grid">
-                        <div class="grid--cell" role="alertdialog" aria-describedby="notice-message">
-                            <p class="m0" aria-label="notice-message">Success important message style</p>
-                        </div>
-                        <div class="grid--cell ml-auto" aria-label="notice-dismiss">
-                            <a href="#" class="fc-dark o75 js-notice-close">
-                                <svg aria-hidden="true" class="svg-icon iconClearSm" width="14" height="14" viewBox="0 0 14 14"><path d="M12 3.41L10.59 2 7 5.59 3.41 2 2 3.41 5.59 7 2 10.59 3.41 12 7 8.41 10.59 12 12 10.59 8.41 7z"/></svg>
-                            </a>
-                        </div>
-                    </div>
-                </aside>
-                <aside class="grid--cell s-notice s-notice__warning s-notice__important" role="alert" aria-hidden="false">
-                    <div class="grid">
-                        <div class="grid--cell" role="alertdialog" aria-describedby="notice-message">
-                            <p class="m0" aria-label="notice-message">Warning important message style</p>
-                        </div>
-                        <div class="grid--cell ml-auto" aria-label="notice-dismiss">
-                            <a href="#" class="fc-dark o75 js-notice-close">
-                                <svg aria-hidden="true" class="svg-icon iconClearSm" width="14" height="14" viewBox="0 0 14 14"><path d="M12 3.41L10.59 2 7 5.59 3.41 2 2 3.41 5.59 7 2 10.59 3.41 12 7 8.41 10.59 12 12 10.59 8.41 7z"/></svg>
-                            </a>
+                    <div class="grid gs4 gsy fd-column">
+                        <label class="grid--cell s-label fs-body1" for="hero-pattern">Elements</label>
+                        <div class="grid--cell s-select">
+                            <select id="hero-pattern" class="js-hero-pattern-menu">
+                                <option name="hero-pattern" id="hero-normal" data-pattern="yes" data-circle="yes" selected>Circle and pattern</option>
+                                <option name="hero-pattern" id="hero-footer" data-pattern="no" data-circle="yes">Circle only</option>
+                                <option name="hero-pattern" id="hero-footer" data-pattern="yes" data-circle="no">Pattern only</option>
+                                <option name="hero-pattern" id="hero-footer" data-pattern="no" data-circle="no">None</option>
+                            </select>
                         </div>
                     </div>
-                </aside>
-                <aside class="grid--cell s-notice s-notice__danger s-notice__important" role="alert" aria-hidden="false">
-                    <div class="grid">
-                        <div class="grid--cell" role="alertdialog" aria-describedby="notice-message">
-                            <p class="m0" aria-label="notice-message">Danger important message style</p>
-                        </div>
-                        <div class="grid--cell ml-auto" aria-label="notice-dismiss">
-                            <a href="#" class="fc-white js-notice-close">
-                                <svg aria-hidden="true" class="svg-icon iconClearSm" width="14" height="14" viewBox="0 0 14 14"><path d="M12 3.41L10.59 2 7 5.59 3.41 2 2 3.41 5.59 7 2 10.59 3.41 12 7 8.41 10.59 12 12 10.59 8.41 7z"/></svg>
-                            </a>
+                    <div class="grid gs4 gsy fd-column">
+                        <label class="grid--cell s-label fs-body1" for="hero-position">Position</label>
+                        <div class="grid--cell s-select">
+                            <select id="hero-position" class="js-hero-position-menu">
+                                <option name="hero-position" id="hero-normal" selected>Normal</option>
+                                <option name="hero-position" id="hero-footer" data-class="is-pinned">Footer</option>
+                            </select>
                         </div>
                     </div>
-                </aside>
+                    <button class="grid--cell as-end mb2 s-btn s-btn__filled js-banner-show-hero">Show example</button>
+                    <button class="grid--cell as-end mb2 s-btn s-btn__danger js-banner-remove-hero d-none">Remove example</button>
+                </div>
             </div>
         </div>
     </div>
+
+    <h3 class="grid jc-spacebetween ai-center mb8 stacks-title _subtitle">Classes</h3>
+    <table cellspacing="0" class="s-table mb32">
+        <thead>
+            <tr>
+                <th scope="col" class="s-table--cell3">Class</th>
+                <th scope="col" class="s-table--cell3">Applies to</th>
+                <th scope="col">Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in site.data.banners.hero %}
+            <tr>
+                <td><code class="stacks-code">{{ item.class }}</code></td>
+                <td>
+                    {% if item.applies == "N/A" %}
+                        <em class="fc-black-350">{{ item.applies }}</em>
+                    {% else %}
+                        {% assign class = item.applies | split: " " %}
+
+                        {% for name in class %}
+                            <code class="stacks-code">{{ name }}</code>
+                        {% endfor %}
+                    {% endif %}
+                </td>
+                <td>{{ item.description }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 </section>
