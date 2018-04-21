@@ -47,11 +47,36 @@ description: Stacks allows you to build responsive designs using utility classes
 
 <section class="stacks-section">
     <h2 class="grid jc-spacebetween ai-center stacks-title">Example</h2>
-    <ul class="list-reset mb16 ta-center">
-        <li class="d-inline-block"><a href="#" class="py4 px8 bar-pill js-sm-btn js-query-select-btn">Small</a></li>
-        <li class="d-inline-block"><a href="#" class="py4 px8 bar-pill js-md-btn js-query-select-btn">Medium</a></li>
-        <li class="d-inline-block"><a href="#" class="py4 px8 bar-pill js-lg-btn js-query-select-btn">Large</a></li>
-        <li class="d-inline-block"><a href="#" class="py4 px8 bar-pill bg-blue-500 fc-white js-all-btn js-query-select-btn">All</a></li>
+    <ul class="list-reset mb16 grid">
+        <li class="grid--cell mr8">
+            <a href="#" class="s-link s-link__muted py8 px12 bar-pill js-sm-btn js-query-select-btn">
+                <svg xmlns="http://www.w3.org/2000/svg" class="svg-icon va-text-top" width="10" height="14" viewBox="0 0 10 14">
+                  <path d="M2,2 L2,10 L8,10 L8,2 L2,2 Z M2,0 L8,0 C9.1045695,0 10,0.8954305 10,2 L10,12 C10,13.1045695 9.1045695,14 8,14 L2,14 C0.8954305,14 0,13.1045695 0,12 L0,2 C0,0.8954305 0.8954305,0 2,0 Z M4,11 L4,13 L6,13 L6,11 L4,11 Z"/>
+                </svg>
+                Small
+            </a>
+        </li>
+        <li class="grid--cell mr8">
+            <a href="#" class="s-link s-link__muted py8 px12 bar-pill js-md-btn js-query-select-btn">
+                <svg xmlns="http://www.w3.org/2000/svg" class="svg-icon va-text-top" width="20" height="14" viewBox="0 0 20 14">
+                  <path d="M4,2 L4,12 L18,12 L18,2 L4,2 Z M2,0 L18,0 C19.1045695,0 20,0.8954305 20,2 L20,12 C20,13.1045695 19.1045695,14 18,14 L2,14 C0.8954305,14 0,13.1045695 0,12 L0,2 C0,0.8954305 0.8954305,0 2,0 Z M1,6 L1,8 L3,8 L3,6 L1,6 Z"/>
+                </svg>
+                Medium
+            </a>
+        </li>
+        <li class="grid--cell mr8">
+            <a href="#" class="s-link s-link__muted py8 px12 bar-pill js-lg-btn js-query-select-btn">
+                <svg xmlns="http://www.w3.org/2000/svg" class="svg-icon va-text-top" width="26" height="14" viewBox="0 0 26 14">
+                  <path fill-rule="evenodd" d="M5,0 L21,0 C22.1045695,0 23,0.8954305 23,2 L23,12 L26,12 L26,14 L0,14 L0,12 L3,12 L3,2 C3,0.8954305 3.8954305,0 5,0 Z M5,2 L5,11 L21,11 L21,2 L5,2 Z"/>
+                </svg>
+                Large
+            </a>
+        </li>
+        <li class="grid--cell ml-auto">
+            <a href="#" class="s-link s-link__muted py8 px12 bar-pill bg-black-100 fc-black-600 js-all-btn js-query-select-btn">
+                All
+            </a>
+        </li>
     </ul>
 
     <div class="stacks-code-preview">
@@ -194,7 +219,7 @@ description: Stacks allows you to build responsive designs using utility classes
             addSelection($(this));
             gridLeftTarget.addClass("ta-center");
             gridRightTarget.addClass("d-none");
-            smHighlights.addClass("bg-white bar-sm p4 fc-black-900");
+            smHighlights.addClass("bg-white bar-pill px8 py4 fc-green-600");
         });
 
         mdBtn.click(function(e) {
@@ -204,7 +229,7 @@ description: Stacks allows you to build responsive designs using utility classes
             addSelection($(this));
             gridLeftTarget.addClass("ta-center");
             gridTarget.addClass("fd-column");
-            mdHighlights.addClass("bg-white bar-sm p4 fc-black-900");
+            mdHighlights.addClass("bg-white bar-pill px8 py4 fc-green-600");
         });
 
         lgBtn.click(function(e) {
@@ -213,7 +238,7 @@ description: Stacks allows you to build responsive designs using utility classes
             removeClasses();
             addSelection($(this));
             gridLeftTarget.addClass("ta-center");
-            lgHighlights.addClass("bg-white bar-sm p4 fc-black-900");
+            lgHighlights.addClass("bg-white bar-pill px8 py4 fc-green-600");
         });
 
         allBtn.click(function(e) {
@@ -228,12 +253,12 @@ description: Stacks allows you to build responsive designs using utility classes
             gridRightTarget.removeClass("d-none");
             gridTarget.removeClass("fd-column");
             gridLeftTarget.removeClass("ta-center");
-            btns.removeClass("bg-blue-500 fc-white");
-            highlights.removeClass("bg-white bar-sm p4 fc-black-900");
+            btns.removeClass("bg-black-100 fc-black-600");
+            highlights.removeClass("bg-white bar-pill px8 py4 fc-green-600");
         };
 
         function addSelection(obj) {
-            obj.addClass("bg-blue-500 fc-white");
+            obj.addClass("bg-black-100 fc-black-600");
         };
     });
 </script>
