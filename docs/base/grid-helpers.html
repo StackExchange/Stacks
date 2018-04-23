@@ -4,27 +4,55 @@
 
     <h3 class="grid jc-spacebetween ai-center stacks-title _subtitle">Flex Direction</h3>
     <p class="stacks-p _section"><strong>These classes only work on <code class="stacks-code">.grid</code> containers.</strong> These classes allow you to change the flow directions.</p>
+
+    <h4 class="grid jc-spacebetween ai-center stacks-title _subtitle">Flex Direction Definitions</h4>
+    <table class="mb48 s-table s-table__hover">
+        <thead>
+            <tr>
+                <th class="s-table--cell2" scope="col">Class</th>
+                <th class="s-table--cell3" scope="col">Output</th>
+                <th scope="col">Definition</th>
+                <th scope="col">Responsive</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for grid in site.data.grid-definitions.flex-direction %}
+              <tr class="fs-caption">
+                  <th scope="row" class="p8 ff-mono">.{{ grid.class }}</th>
+                  <td class="p8 ff-mono">{{ grid.output }}</td>
+                  <td>{{ grid.define }}</td>
+                  <td class="ta-center">
+                      {% if grid.responsive %}
+                      <svg aria-hidden="true" class="svg-icon iconCheckmark fc-green-500" width="18" height="18" viewBox="0 0 18 18"><path d="M16 4.41L14.59 3 6 11.59 2.41 8 1 9.41l5 5z"></path></svg>
+                      {% endif %}
+                  </td>
+              </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <h4 class="grid jc-spacebetween ai-center stacks-title _subtitle">Flex Direction Examples</h4>
     <div class="p2 stacks-code-preview">
 {% highlight html linenos %}
 <div class="grid fd-row">
-    <div class="grid--cell">...</div>
-    <div class="grid--cell">...</div>
-    <div class="grid--cell">...</div>
+    <div class="grid--cell">…</div>
+    <div class="grid--cell">…</div>
+    <div class="grid--cell">…</div>
 </div>
 <div class="grid fd-rowreverse">
-    <div class="grid--cell">...</div>
-    <div class="grid--cell">...</div>
-    <div class="grid--cell">...</div>
+    <div class="grid--cell">…</div>
+    <div class="grid--cell">…</div>
+    <div class="grid--cell">…</div>
 </div>
 <div class="grid fd-column">
-    <div class="grid--cell">...</div>
-    <div class="grid--cell">...</div>
-    <div class="grid--cell">...</div>
+    <div class="grid--cell">…</div>
+    <div class="grid--cell">…</div>
+    <div class="grid--cell">…</div>
 </div>
 <div class="grid fd-columnreverse">
-    <div class="grid--cell">...</div>
-    <div class="grid--cell">...</div>
-    <div class="grid--cell">...</div>
+    <div class="grid--cell">…</div>
+    <div class="grid--cell">…</div>
+    <div class="grid--cell">…</div>
 </div>
 {% endhighlight %}
         <div class="-preview stacks-grid">
@@ -64,19 +92,19 @@
     <div class="p2 stacks-code-preview">
 {% highlight html linenos %}
 <div class="grid fw-wrap">
-    <div class="grid--cell">...</div>
-    <div class="grid--cell">...</div>
-    <div class="grid--cell">...</div>
+    <div class="grid--cell">…</div>
+    <div class="grid--cell">…</div>
+    <div class="grid--cell">…</div>
 </div>
 <div class="grid fw-reverse">
-    <div class="grid--cell">...</div>
-    <div class="grid--cell">...</div>
-    <div class="grid--cell">...</div>
+    <div class="grid--cell">…</div>
+    <div class="grid--cell">…</div>
+    <div class="grid--cell">…</div>
 </div>
 <div class="grid fw-none">
-    <div class="grid--cell">...</div>
-    <div class="grid--cell">...</div>
-    <div class="grid--cell">...</div>
+    <div class="grid--cell">…</div>
+    <div class="grid--cell">…</div>
+    <div class="grid--cell">…</div>
 </div>
 {% endhighlight %}
         <div class="-preview stacks-grid">
@@ -111,28 +139,28 @@
     <div class="p2 stacks-code-preview">
 {% highlight html linenos %}
 <div class="grid ff-row-wrap">
-    ...
+    …
 </div>
 <div class="grid ff-row-nowrap">
-    ...
+    …
 </div>
 <div class="grid ff-rowreverse-wrap">
-    ...
+    …
 </div>
 <div class="grid ff-rowreverse-nowrap">
-    ...
+    …
 </div>
 <div class="grid ff-column-wrap">
-    ...
+    …
 </div>
 <div class="grid ff-column-nowrap">
-    ...
+    …
 </div>
 <div class="grid ff-columnreverse-wrap">
-    ...
+    …
 </div>
 <div class="grid ff-columnreverse-nowrap">
-    ...
+    …
 </div>
 {% endhighlight %}
         <div class="-preview stacks-grid">
@@ -208,20 +236,20 @@
     <div class="p2 stacks-code-preview">
 {% highlight html linenos %}
 <div class="grid">
-    <div class="grid--cell">...</div>
-    <div class="grid--cell">...</div>
-    <div class="grid--cell">...</div>
-    <div class="grid--cell">...</div>
-    <div class="grid--cell">...</div>
-    <div class="grid--cell order-first">...</div>
+    <div class="grid--cell">…</div>
+    <div class="grid--cell">…</div>
+    <div class="grid--cell">…</div>
+    <div class="grid--cell">…</div>
+    <div class="grid--cell">…</div>
+    <div class="grid--cell order-first">…</div>
 </div>
 <div class="grid">
-    <div class="grid--cell order-last">...</div>
-    <div class="grid--cell">...</div>
-    <div class="grid--cell">...</div>
-    <div class="grid--cell">...</div>
-    <div class="grid--cell">...</div>
-    <div class="grid--cell">...</div>
+    <div class="grid--cell order-last">…</div>
+    <div class="grid--cell">…</div>
+    <div class="grid--cell">…</div>
+    <div class="grid--cell">…</div>
+    <div class="grid--cell">…</div>
+    <div class="grid--cell">…</div>
 </div>
 {% endhighlight %}
         <div class="-preview stacks-grid _helper-order">
@@ -254,24 +282,24 @@
     <div class="p2 stacks-code-preview">
 {% highlight html linenos %}
 <div class="grid">
-    <div class="grid--cell fl0">...</div>
-    <div class="grid--cell fl1">...</div>
-    <div class="grid--cell fl2">...</div>
+    <div class="grid--cell fl0">…</div>
+    <div class="grid--cell fl1">…</div>
+    <div class="grid--cell fl2">…</div>
 </div>
 <div class="grid">
-    <div class="grid--cell fl0">...</div>
-    <div class="grid--cell fl1">...</div>
-    <div class="grid--cell fl3">...</div>
+    <div class="grid--cell fl0">…</div>
+    <div class="grid--cell fl1">…</div>
+    <div class="grid--cell fl3">…</div>
 </div>
 <div class="grid">
-    <div class="grid--cell fl0">...</div>
-    <div class="grid--cell fl1">...</div>
-    <div class="grid--cell fl4">...</div>
+    <div class="grid--cell fl0">…</div>
+    <div class="grid--cell fl1">…</div>
+    <div class="grid--cell fl4">…</div>
 </div>
 <div class="grid">
-    <div class="grid--cell fl0">...</div>
-    <div class="grid--cell fl1">...</div>
-    <div class="grid--cell fl5">...</div>
+    <div class="grid--cell fl0">…</div>
+    <div class="grid--cell fl1">…</div>
+    <div class="grid--cell fl5">…</div>
 </div>
 {% endhighlight %}
         <div class="-preview stacks-grid">
@@ -311,24 +339,24 @@
     <div class="p2 stacks-code-preview">
 {% highlight html linenos %}
 <div class="grid jc-start">
-    <div class="grid--cell">...</div>
-    <div class="grid--cell">...</div>
+    <div class="grid--cell">…</div>
+    <div class="grid--cell">…</div>
 </div>
 <div class="grid jc-center">
-    <div class="grid--cell">...</div>
-    <div class="grid--cell">...</div>
+    <div class="grid--cell">…</div>
+    <div class="grid--cell">…</div>
 </div>
 <div class="grid jc-end">
-    <div class="grid--cell">...</div>
-    <div class="grid--cell">...</div>
+    <div class="grid--cell">…</div>
+    <div class="grid--cell">…</div>
 </div>
 <div class="grid jc-spacearound">
-    <div class="grid--cell">...</div>
-    <div class="grid--cell">...</div>
+    <div class="grid--cell">…</div>
+    <div class="grid--cell">…</div>
 </div>
 <div class="grid jc-spacebetween">
-    <div class="grid--cell">...</div>
-    <div class="grid--cell">...</div>
+    <div class="grid--cell">…</div>
+    <div class="grid--cell">…</div>
 </div>
 {% endhighlight %}
         <div class="-preview stacks-grid">
@@ -375,24 +403,24 @@
     <div class="p2 stacks-code-preview">
 {% highlight html linenos %}
 <div class="grid ai-start">
-    <div class="grid--cell">...</div>
-    <div class="grid--cell">...</div>
+    <div class="grid--cell">…</div>
+    <div class="grid--cell">…</div>
 </div>
 <div class="grid ai-center">
-    <div class="grid--cell">...</div>
-    <div class="grid--cell">...</div>
+    <div class="grid--cell">…</div>
+    <div class="grid--cell">…</div>
 </div>
 <div class="grid ai-end">
-    <div class="grid--cell">...</div>
-    <div class="grid--cell">...</div>
+    <div class="grid--cell">…</div>
+    <div class="grid--cell">…</div>
 </div>
 <div class="grid ai-stretch">
-    <div class="grid--cell">...</div>
-    <div class="grid--cell">...</div>
+    <div class="grid--cell">…</div>
+    <div class="grid--cell">…</div>
 </div>
 <div class="grid ai-baseline">
-    <div class="grid--cell">...</div>
-    <div class="grid--cell">...</div>
+    <div class="grid--cell">…</div>
+    <div class="grid--cell">…</div>
 </div>
 {% endhighlight %}
         <div class="-preview stacks-grid">
@@ -439,28 +467,28 @@
     <div class="p2 stacks-code-preview">
 {% highlight html linenos %}
 <div class="grid fw-wrap ac-start">
-    <div class="grid--cell">...</div>
-    <div class="grid--cell">...</div>
+    <div class="grid--cell">…</div>
+    <div class="grid--cell">…</div>
 </div>
 <div class="grid fw-wrap ac-center">
-    <div class="grid--cell">...</div>
-    <div class="grid--cell">...</div>
+    <div class="grid--cell">…</div>
+    <div class="grid--cell">…</div>
 </div>
 <div class="grid fw-wrap ac-end">
-    <div class="grid--cell">...</div>
-    <div class="grid--cell">...</div>
+    <div class="grid--cell">…</div>
+    <div class="grid--cell">…</div>
 </div>
 <div class="grid fw-wrap ac-stretch">
-    <div class="grid--cell">...</div>
-    <div class="grid--cell">...</div>
+    <div class="grid--cell">…</div>
+    <div class="grid--cell">…</div>
 </div>
 <div class="grid fw-wrap ac-sp-around">
-    <div class="grid--cell">...</div>
-    <div class="grid--cell">...</div>
+    <div class="grid--cell">…</div>
+    <div class="grid--cell">…</div>
 </div>
 <div class="grid fw-wrap ac-sp-between">
-    <div class="grid--cell">...</div>
-    <div class="grid--cell">...</div>
+    <div class="grid--cell">…</div>
+    <div class="grid--cell">…</div>
 </div>
 {% endhighlight %}
         <div class="-preview stacks-grid _helper-ac">
@@ -568,34 +596,34 @@
     <div class="p2 stacks-code-preview">
 {% highlight html linenos %}
 <div class="grid">
-    <div class="grid--cell as-start">...</div>
-    <div class="grid--cell">...</div>
-    <div class="grid--cell">...</div>
-    <div class="grid--cell">...</div>
+    <div class="grid--cell as-start">…</div>
+    <div class="grid--cell">…</div>
+    <div class="grid--cell">…</div>
+    <div class="grid--cell">…</div>
 </div>
 <div class="grid">
-    <div class="grid--cell">...</div>
-    <div class="grid--cell">...</div>
-    <div class="grid--cell as-center">...</div>
-    <div class="grid--cell">...</div>
+    <div class="grid--cell">…</div>
+    <div class="grid--cell">…</div>
+    <div class="grid--cell as-center">…</div>
+    <div class="grid--cell">…</div>
 </div>
 <div class="grid">
-    <div class="grid--cell">...</div>
-    <div class="grid--cell as-end">...</div>
-    <div class="grid--cell">...</div>
-    <div class="grid--cell">...</div>
+    <div class="grid--cell">…</div>
+    <div class="grid--cell as-end">…</div>
+    <div class="grid--cell">…</div>
+    <div class="grid--cell">…</div>
 </div>
 <div class="grid">
-    <div class="grid--cell">...</div>
-    <div class="grid--cell">...</div>
-    <div class="grid--cell">...</div>
-    <div class="grid--cell as-stretch">...</div>
+    <div class="grid--cell">…</div>
+    <div class="grid--cell">…</div>
+    <div class="grid--cell">…</div>
+    <div class="grid--cell as-stretch">…</div>
 </div>
 <div class="grid">
-    <div class="grid--cell">...</div>
-    <div class="grid--cell as-baseline">...</div>
-    <div class="grid--cell">...</div>
-    <div class="grid--cell">...</div>
+    <div class="grid--cell">…</div>
+    <div class="grid--cell as-baseline">…</div>
+    <div class="grid--cell">…</div>
+    <div class="grid--cell">…</div>
 </div>
 {% endhighlight %}
         <div class="-preview stacks-grid _helper-as">
