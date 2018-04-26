@@ -10,10 +10,12 @@ $(document).ready(function() {
     var circle = $(this).find(".js-banner-circle");
     var typeClasses = ("s-notice__info s-notice__brand s-notice__success s-notice__warning s-notice__danger s-notice__important s-banner__info s-banner__important s-banner__danger s-banner__success s-banner__brand s-banner__pattern is-pinned");
 
+    //  Hide everything on load
     hero.hide();
     heroSmall.hide();
     heroBannerFooter.hide();
 
+    //  Show the hero banners when you click the "Show Example" button
     heroBtn.on("click", function() {
         var typeSelect = heroTypeMenu.find(":selected").data("class");
         var patternSelect = heroPatternMenu.find(":selected").data("pattern");
@@ -83,7 +85,7 @@ $(document).ready(function() {
                 .addClass(typeSelect).addClass(positionSelect)
                 .css({
                     "position": "fixed",
-                    "top": heroHeight - 94,
+                    "top": Math.ceil(heroHeight) - 95,
                     "left": "0",
                     "right": "0"
                 });
@@ -104,6 +106,7 @@ $(document).ready(function() {
         }
     });
 
+    //  Dismiss the small hero footer banner
     $(".js-banner-dismiss-btn").on("click", function(e) {
         e.preventDefault();
         e.stopPropagation();
@@ -135,12 +138,14 @@ $(document).ready(function() {
         circle.removeClass("s-banner__circle");
     });
 
+
+    //  Show the system banner when you click the "Show Example" button
     var topnav = $(".js-stacks-topbar");
     var topnavHeight = topnav.outerHeight();
     var sysBanner = $(".js-notice-banner");
     var sysBannerHeight = sysBanner.outerHeight();
     var sysBannerBtn = $(".js-sys-banner-show");
-    var sysCloseBtn = $(".js-sys-banner-remove");
+    var sysCloseBtn = $(".js-sys-banner-remove, .js-notice-close");
     var sysStyleMenu = $(".js-sys-banner-style-menu");
     var sysTypeMenu = $(".js-sys-banner-type-menu");
     var sysPosMenu = $(".js-sys-banner-position-menu");
@@ -149,6 +154,12 @@ $(document).ready(function() {
         var sysStyle = sysStyleMenu.find(":selected").data("class");
         var sysType = sysTypeMenu.find(":selected").data("class");
         var sysPos = sysPosMenu.find(":selected").data("class");
+
+        e.preventDefault();
+        e.stopPropagation();
+
+        $(this).text("Update example");
+        sysCloseBtn.removeClass("d-none");
 
         if (sysPos == "is-pinned") {
             topnav.css("top", sysBannerHeight + "px").show();
@@ -163,4 +174,16 @@ $(document).ready(function() {
             sysBanner.addClass("s-notice__important");
         }
     });
+
+    sysCloseBtn.on("click", function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+
+        topnav.hide();
+        sysBanner.hide().attr("aria-hidden","true").removeClass(typeClasses);
+
+        sysBannerBtn.text("Show example");
+        sysCloseBtn.addClass("d-none");
+    });
+
 });
