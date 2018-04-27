@@ -2,28 +2,38 @@
 
 Want to get involved? There are plenty of ways to help! Both internal and external contributors can get involved by submitting new features, fixes, or updates. Before you get started, please take a moment to review this contribution guide. This will make the process easier for everyone involved.
 
-## First open an issue
+## Table of contents
+
+ - [Open an issue](#open-an-issue)
+ - [Reporting bugs](#reporting-bugs)
+ - [Feature requests](#feature-requests)
+ - [Pull requests](#pull-requests)
+ - [Code guidlines](#code-guidelines)
+ - [License](#license)
+ - [References](#references)
+
+## Open an issue
 
 Before you start anything, we recommend [opening an issue](https://gh.stackoverflow.com/Design/Stacks/issues/new). This gives the Stacks team and other contributors a chance to provide initial feedback, thoughts, and possible historical context. It may also help you find others who might want to help you out!
 
 When creating an issue, use following labels to help us out:
 
- - `bug` – A _reproducable_ problem with the Stacks code. This will require a build version bump (e.g., `v0.1.1` > `v0.1.2`)
- - `feature` – Issues requesting a new item to Stacks. This will require a minor version bump (e.g., `v0.1.0` > `v0.2.0`)
- - `enhancement` – Issues requesting a feature modification or extension. This will require a minor version bump (e.g., `v0.1.0` > `v0.2.0`)
- - `docs` - Issues with the documentation site
- - `do-not-merge` - Pull requests that are in progress and should not be merged yet.
- - `help-wanted` – A person would like help with an issue.
- - `setup` – Issues related to Stacks setup and compilation processes. These include items relating to `grunt`, `jekyll`, `postcss`, or other plugins.
- - `status-completed` – Indicates the issue has been resolved.
- - `status-bydesign` – Indicates the issue is intentional and not subject to change.
- - `status-declined` – Indicates the issue has been reviewed and will not be addressed at this time.
- - `status-deferred` – Indicates the issue is something that will be addressed, but not in the near term.
- - `status-planned` – Indicates the issue has been reviewed and will be addressed in the near team.
- - `status-review` – Indicates the issue has merit, but a decision either way requires more investigation.
- - `status-reproduced` – Indicates that the Stacks team were able to reproduce the problem, but cannot address it right now.
- - `status-norepo` – Indicates that the Stacks team were unable to reproduce the problem.
- - `meta` – Issues about Stacks or the GitHub repository.
+ - [`bug`](https://gh.stackoverflow.com/Design/Stacks/labels/bug) – A _reproducable_ problem with the Stacks code. This will require a build version bump (e.g., `v0.1.1` > `v0.1.2`).
+ - [`feature`](https://gh.stackoverflow.com/Design/Stacks/labels/feature) – Issues requesting a new item to Stacks. This will require a minor version bump (e.g., `v0.1.0` > `v0.2.0`).
+ - [`enhancement`](https://gh.stackoverflow.com/Design/Stacks/labels/enhancement) – Issues requesting a feature modification or extension. This will require a minor version bump (e.g., `v0.1.0` > `v0.2.0`).
+ - [`docs`](https://gh.stackoverflow.com/Design/Stacks/labels/docs) - Issues with the documentation site.
+ - [`do-not-merge`](https://gh.stackoverflow.com/Design/Stacks/labels/do-not-merge) - Pull requests that are in progress and should not be merged yet.
+ - [`help-wanted`](https://gh.stackoverflow.com/Design/Stacks/labels/help-wanted) – A person would like help with an issue.
+ - [`setup`](https://gh.stackoverflow.com/Design/Stacks/labels/setup) – Issues related to Stacks setup and compilation processes. These include items relating to `grunt`, `jekyll`, `postcss`, or other plugins.
+ - [`status-bydesign`](https://gh.stackoverflow.com/Design/Stacks/labels/status-bydesign) – Indicates the issue is intentional and not subject to change.
+ - [`status-completed`](https://gh.stackoverflow.com/Design/Stacks/labels/status-completed) – Indicates the issue has been resolved.
+ - [`status-declined`](https://gh.stackoverflow.com/Design/Stacks/labels/status-declined) – Indicates the issue has been reviewed and will not be addressed at this time.
+ - [`status-deferred`](https://gh.stackoverflow.com/Design/Stacks/labels/status-deferred) – Indicates the issue is something that will be addressed, but not in the near term.
+ - [`status-planned`](https://gh.stackoverflow.com/Design/Stacks/labels/status-planned) – Indicates the issue has been reviewed and will be addressed in the near team.
+ - [`status-review`](https://gh.stackoverflow.com/Design/Stacks/labels/status-review) – Indicates the issue has merit, but a decision either way requires more investigation.
+ - [`status-reproduced`](https://gh.stackoverflow.com/Design/Stacks/labels/status-reproduced) – Indicates that the Stacks team were able to reproduce the problem, but cannot address it right now.
+ - [`status-norepro`](https://gh.stackoverflow.com/Design/Stacks/labels/status-norepro) – Indicates that the Stacks team were unable to reproduce the problem.
+ - [`meta`](https://gh.stackoverflow.com/Design/Stacks/labels/meta) – Issues about Stacks or the GitHub repository.
 
 ## Reporting bugs
 
