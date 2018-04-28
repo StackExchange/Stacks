@@ -6,7 +6,7 @@ Stacks is Stack Overflow's design system. It includes the resources needed to cr
  - Cross-browser compatible Less / CSS
  - An icon library
 
-Stacks documentation can be found at https://stackoverflow.design/
+The Stacks website can be found at https://stackoverflow.design/
 
 
 ## Table of contents
@@ -95,40 +95,6 @@ Have a bug or feature request? First search existing or closed issues to make su
 ## Contributing
 
 If you’d like to contribute to Stacks, please read through our [contribution guidelines](/CONTRIBUTING.md). Included are directions for opening issues, coding standards, and notes on development.
-
-## Team
-
-The Stacks team is a small group of designers and engineers at Stack Overflow.
-
-#### Joshua Hynes
- - https://stackoverflow.com/users/2640230/hynes
- - https://twitter.com/hellohynes
- - https://github.com/hellohynes
-
-#### Aaron Shekey
- - https://stackoverflow.com/users/2804712/aaron-shekey
- - https://twitter.com/aaronshekey
- - https://github.com/aaronshekey
-
-#### balpha
- - https://stackoverflow.com/users/115866/balpha
- - https://twitter.com/balpha
- - https://github.com/balpha
-
-#### Paweł Ludwiczak
- - https://stackoverflow.com/users/1147887/paweł
- - https://twitter.com/ludwiczakpawel
- - https://github.com/ludwiczakpawel
-
-#### Ted Goas
- - https://stackoverflow.com/users/734487/ted-goas
- - https://twitter.com/TedGoas
- - https://github.com/TedGoas
-
-#### rossipedia
- - https://stackoverflow.com/users/115049/rossipedia
- - https://twitter.com/rossipedia
- - https://github.com/rossipedia
 
 ## License
 

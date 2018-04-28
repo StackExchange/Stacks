@@ -212,7 +212,7 @@ The ordering works from outside the box to inside the box:
 | Group | Decision being made | Property examples |
 | ----- | ----- | ----- |
 | 1. Generated content | Items like `:before`/`:after` are listed first. | `content`, `list-style`, `quotes` |
-| 2. Flow Context <td rowspan=5>Interplay and relationship between boxes | `display`, `overflow`, `visibility` |
+| 2. Flow Context <td rowspan=5> Interplay and relationship between boxes | `display`, `overflow`, `visibility` |
 | 3. Position Model | `clip`, `position`, `z-index`, `top` |
 | 4. Float Model | `clear`, `float` |
 | 5. Flex Model | `flex`, `align-content`, `order` |
