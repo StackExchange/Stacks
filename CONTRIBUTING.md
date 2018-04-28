@@ -209,22 +209,81 @@ Instead of ordering declarations alphabetically, we logically group items togeth
 
 The ordering works from outside the box to inside the box:
 
-| Group | Decision being made | Property examples |
-| ----- | ----- | ----- |
-| 1. Generated content | Items like `:before`/`:after` are listed first. | `content`, `list-style`, `quotes` |
-| 2. Flow Context <td rowspan=5> Interplay and relationship between boxes | `display`, `overflow`, `visibility` |
-| 3. Position Model | `clip`, `position`, `z-index`, `top` |
-| 4. Float Model | `clear`, `float` |
-| 5. Flex Model | `flex`, `align-content`, `order` |
-| 6. Grid Model | `grid`, `grid-gap`, `grid-template` |
-| 7. Box Model | Dimensions of the box | `box-sizing`, `width`, `height`, `margin`, `padding`, `border` |
-| 8. Visual Box | How the box appears | `background`, `box-shadow`, `opacity`, `outline` |
-| 9. Typography | Font and color appearance | `color`, `font-size`, `line-height`, `text-align`, `vertical-align`, `white-space` |
-| 10. Animation <td rowspan=3> Changing the box's representation 2D/3D/4D | `animation`, `animation-delay` |
-| 11. Transform | `backface-visibility`, `perspective`, `transform` |
-| 12. Transition | `transition`, `transition-delay` |
-| 13. Will Change | Rendering optimization | `will-change` |
-| 14. Pointer + Selection | Modify the user's input tool | `appearance`, `cursor`, `pointer-events` |
+<table cellspacing="0">
+  <thead>
+    <tr>
+      <th scope="col">Group</th>
+      <th scope="col">Decision being made</th>
+      <th scope="col">Property examples</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">1. Generated content</th>
+      <td>Items like `:before`/`:after` are listed first</td>
+      <td>`content`, `list-style`, `quotes`</td>
+    </tr>
+    <tr>
+      <th scope="row">2. Flow Context </th>
+      <td rowspan="5">Interplay and relationship between boxes</td>
+      <td>`display`, `overflow`, `visibility`</td>
+    </tr>
+    <tr>
+      <th scope="row">3. Position Model</th>
+      <td>`clip`, `position`, `z-index`, `top`</td>
+    </tr>
+    <tr>
+      <th scope="row">4. Float Model</th>
+      <td>`clear`, `float`</td>
+    </tr>
+    <tr>
+      <th scope="row">5. Flex Model</th>
+      <td>`flex`, `align-content`, `order`</td>
+    </tr>
+    <tr>
+      <th scope="row">6. Grid Model</th>
+      <td>`grid`, `grid-gap`, `grid-template`</td>
+    </tr>
+    <tr>
+      <th scope="row">7. Box Model</th>
+      <td>Dimensions of the box</td>
+      <td>`box-sizing`, `width`, `height`, `margin`, `padding`, `border`</td>
+    </tr>
+    <tr>
+      <th scope="row">8. Visual Box</th>
+      <td>How the box appears</td>
+      <td>`background`, `box-shadow`, `opacity`, `outline`</td>
+    </tr>
+    <tr>
+      <th scope="row">9. Typography</th>
+      <td>Font and color appearance</td>
+      <td>`color`, `font-size`, `line-height`, `text-align`, `vertical-align`, `white-space`</td>
+    </tr>
+    <tr>
+      <th scope="row">10. Animation</th>
+      <td rowspan="3">Changing the box's representation 2D/3D/4D</td>
+      <td>`animation`, `animation-delay`</td>
+    </tr>
+    <tr>
+      <th scope="row">11. Transform</th>
+      <td>`backface-visibility`, `perspective`, `transform`</td>
+    </tr>
+    <tr>
+      <th scope="row">12. Transition</th>
+      <td>`transition`, `transition-delay`</td>
+    </tr>
+    <tr>
+      <th scope="row">13. Will Change</th>
+      <td>Rendering optimization</td>
+      <td>`will-change`</td>
+    </tr>
+    <tr>
+      <th scope="row">14. Pointer + Selection</th>
+      <td>Modify the user's input tool</td>
+      <td>`appearance`, `cursor`, `pointer-events`</td>
+    </tr>
+  </tbody>
+</table>
 
 For the most part you will not have to worry about this because PostCSS automatically reorders all Less files for you.
 
