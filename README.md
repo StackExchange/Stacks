@@ -1,12 +1,12 @@
 # Stacks
 
-Stacks is Stack Overflow's design system. It includes the resources needed to create consistent, predictable workflows and interfaces that adhere with Stack Overflow’s principles, design language, and best practices. It's built using [immutable, atomic classes](http://johnpolacek.com/rethinking/) and components for rapidly prototyping, building, and styling. The Stack website documents a range of resources, including:
+Stacks is Stack Overflow's design system. It includes the resources needed to create consistent, predictable workflows and interfaces that adhere with Stack Overflow’s principles, design language, and best practices. It's built using [immutable, atomic classes](http://johnpolacek.com/rethinking/) and components for rapidly prototyping, building, and styling. The Stacks website documents a range of resources, including:
 
  - Semantic and accessible component markup
  - Cross-browser compatible Less / CSS
  - An icon library
 
-The Stacks website can be found at https://stackoverflow.design/
+Stacks documentation can be found at https://stackoverflow.design/
 
 
 ## Table of contents
