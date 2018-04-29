@@ -125,12 +125,12 @@
 //  ----------------------------------------------------------------------------
 .s-notice__banner {
     position: fixed;
+    z-index: @zi-navigation-fixed;
     top: 0;
     right: 0;
     left: 0;
     width: 100%;
     padding: @su12;
-    z-index: @zi-navigation-fixed;
     border-right: none;
     border-left: none;
     border-radius: 0;
@@ -171,15 +171,15 @@
 .s-notice__toast {
     visibility: hidden;
     position: fixed;
+    z-index: @zi-navigation-fixed - 1;
     top: 16px; // 50px (header) + 16px
     left: 50%;
     width: 100%;
     max-width: 42rem;
     margin-left: -16rem;
-    z-index: @zi-navigation-fixed - 1;
-    opacity: 0;
     -webkit-box-shadow: @bs-sm;
             box-shadow: @bs-sm;
+    opacity: 0;
     -webkit-transform: translate3d(0,-66px,0);
             transform: translate3d(0,-66px,0);
     -webkit-transition: opacity 0ms 100ms, visibility 0s 100ms, -webkit-transform 100ms @te-smooth-slow 0s;

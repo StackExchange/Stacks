@@ -19,22 +19,22 @@
     display: flex;
     visibility: hidden;
     position: fixed;
-    -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
+
+    z-index: @zi-hide; // Make sure it's also below everything so we can't interact with it.
 
     // This fills the entire viewport without having to worry about size.
     top: 0;
     right: 0;
     bottom: 0;
     left: 0;
-
-    z-index: @zi-hide; // Make sure it's also below everything so we can't interact with it.
-    opacity: 0;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
     background-color: fade(@black-900, 50%);
+    opacity: 0;
     -webkit-backface-visibility: hidden;
             backface-visibility: hidden;
     /* autoprefixer: off */
@@ -55,18 +55,18 @@
 }
 
 .s-modal--dialog {
+    overflow-y: auto;
     visibility: hidden;
     position: fixed; // We shouldn't NEED this, since the parent is fixed, but IE Edge needs it to properly scroll at small viewport sizes.
+    z-index: @zi-hide; // Make sure it's also below everything so we can't interact with it.
     max-width: 600px;
     max-height: 100%;
-    overflow-y: auto;
     padding: @su24;
-    z-index: @zi-hide; // Make sure it's also below everything so we can't interact with it.
-    opacity: 0;
     border-radius: @br-lg;
     background-color: @white;
     -webkit-box-shadow: @bs-lg;
             box-shadow: @bs-lg;
+    opacity: 0;
     -webkit-backface-visibility: hidden;
             backface-visibility: hidden;
             transform: translate3d(0, 30%, 0) scale3d(0.6, 0.6, 0.6);
