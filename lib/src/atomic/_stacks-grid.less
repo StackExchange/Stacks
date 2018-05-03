@@ -115,12 +115,18 @@
             //      This class allows you to uniformly state the width of `.grid--cell`
             //      divs within a `.grid` element. In particular we adjust the flex-basis
             //      and max-width here to account for gutters.
+            //
+            //  [3] IE10/11 BUG
+            //      This fixes a known IE10/11 bug with flex-basis not correctly obeying
+            //      stated values in flex-basis because it assumes the wrapping element
+            //      has a content-box box-sizing value instead of potential border-box.
             //  ------------------------------------------------------------------------
-            > .grid--cell@{count},              // [1]
-            &.grid__allcells@{count} > .grid,        // [2]
-            &.grid__allcells@{count} > .grid--cell {  // [2]
-                -ms-flex-preferred-size: calc(~"@{cell-width} - @{spacing}");
-                    flex-basis: calc(~"@{cell-width} - @{spacing}");
+            > .grid--cell@{count},                                  // [1]
+            &.grid__allcells@{count} > .grid,                       // [2]
+            &.grid__allcells@{count} > .grid--cell {                // [2]
+                -ms-flex-preferred-size: auto;                      // [3]
+                    flex-basis: auto;                               // [3]
+                    width: calc(~"@{cell-width} - @{spacing}");     // [3]
             }
 
             #stacks-internals #grid-builder-helpers .grid-fixed-cell-spacing(@spacing, @num, (@count + 1));
