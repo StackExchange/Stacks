@@ -8,7 +8,7 @@ Want to get involved? There are plenty of ways to help! Both internal and extern
  - [Reporting bugs](#reporting-bugs)
  - [Feature requests](#feature-requests)
  - [Pull requests](#pull-requests)
- - [Code guidlines](#code-guidelines)
+ - [Code guidelines](#code-guidelines)
  - [License](#license)
  - [References](#references)
 
@@ -18,7 +18,7 @@ Before you start anything, we recommend [opening an issue](https://gh.stackoverf
 
 When creating an issue, use following labels to help us out:
 
- - [`bug`](https://gh.stackoverflow.com/Design/Stacks/labels/bug) – A _reproducable_ problem with the Stacks code. This will require a build version bump (e.g., `v0.1.1` > `v0.1.2`).
+ - [`bug`](https://gh.stackoverflow.com/Design/Stacks/labels/bug) – A _reproducible_ problem with the Stacks code. This will require a build version bump (e.g., `v0.1.1` > `v0.1.2`).
  - [`feature`](https://gh.stackoverflow.com/Design/Stacks/labels/feature) – Issues requesting a new item to Stacks. This will require a minor version bump (e.g., `v0.1.0` > `v0.2.0`).
  - [`enhancement`](https://gh.stackoverflow.com/Design/Stacks/labels/enhancement) – Issues requesting a feature modification or extension. This will require a minor version bump (e.g., `v0.1.0` > `v0.2.0`).
  - [`docs`](https://gh.stackoverflow.com/Design/Stacks/labels/docs) - Issues with the documentation site.
@@ -37,27 +37,27 @@ When creating an issue, use following labels to help us out:
 
 ## Reporting bugs
 
-Reporting bugs is a great way to help Stacks. A bug is a _reproducable_ problem with the Stacks code or incorrect (or confusing) documentation. If you've found a bug, report it using the following guidelines. Adherence to these guidelines helps us better understand the problem.
+Reporting bugs is a great way to help Stacks. A bug is a _reproducable_ problem with the Stacks code or incorrect (or confusing) documentation. If you’ve found a bug, report it using the following guidelines. Adherence to these guidelines helps us better understand the problem.
 
  1. [**Search previous issues**](https://gh.stackoverflow.com/Design/Stacks/issues?utf8=%E2%9C%93&q=) — Make sure this issue hasn't already been reported
- 2. **What's the problem?** — If the issue hasn't been reported, explain what you are trying to do and what actually happened
+ 2. **What’s the problem?** — If the issue hasn’t been reported, explain what you are trying to do and what actually happened
  3. **Provide an example** — A CodePen that illustrates the problem is perfect
- 4. **Describe what you've tried so far** — Understanding what you've tried so far will help us respond more quickly. Include possible related issues that you've read or explored if you can
+ 4. **Describe what you’ve tried so far** — Understanding what you’ve tried so far will help us respond more quickly. Include possible related issues that you’ve read or explored if you can
  5. **Label your issue as a `bug`**
 
-Issues don't need to be exhaustive, but we do ask you provide enough details that we can understand the problem and fix the issues.
+Issues don’t need to be exhaustive, but we do ask you provide enough details that we can understand the problem and fix the issues.
 
 ## Feature requests
 
 Have an idea for how to make Stacks better? Great! We welcome all ideas. There are a few ways you can submit requests: 1) ask us to do it or 2) do it yourself. Either way we do ask that you open an issue first. When opening an issue, provide the following information:
 
  1. **Proposed feature** – What are you proposing?
- 2. **Why do you need it?** — Is this required for a project? What's your timeline? Have you tried using other elements and components first? Explain to us why this needs to be standardized into Stacks.
+ 2. **Why do you need it?** — Is this required for a project? What’s your timeline? Have you tried using other elements and components first? Explain to us why this needs to be standardized into Stacks.
  3. **Provide examples** — If you have examples how others have solved this problem, provide those so we can better understand what you're asking for.
  4. **Who do you want to create this?** — Are you building this or do you want the Stacks team to build it?
  5. **Label your issue as a `feature`**
 
-Please note that if you are requesting a feature for the Stacks team to build, it will be prioritized against other work. This doesn't mean it won't be added. Depending on the request, it could happen rather quickly. But it may also not happen immediately.
+Please note that if you are requesting a feature for the Stacks team to build, it will be prioritized against other work. This doesn’t mean it won’t be added. Depending on the request, it could happen rather quickly. But it may also not happen immediately.
 
 ## Pull requests
 
@@ -99,7 +99,7 @@ No PR is too small, or too early. We strive to provide initial feedback within a
    ```
 4. Commit your changes in logical chunks. Please adhere to these [git commit
    message guidelines](http://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html)
-   or your code is unlikely to be merged into the main project. Use Git's
+   or your code is unlikely to be merged into the main project. Use Git’s
    [interactive rebase](https://help.github.com/articles/interactive-rebase)
    feature to tidy up your commits before making them public.
 5. Locally merge (or rebase) the upstream development branch into your topic branch:<br/>
@@ -147,7 +147,7 @@ HTML attributes should be listed in the following order for easier reading:
  5. `title`, `alt`
  6. `role`, `aria-[name]`
 
-Classes are resusable so they come first. Ids are more specific and should be used sparingly, so they come second. Order classes the following way:
+Classes are reusable so they come first. Ids are more specific and should be used sparingly, so they come second. Order classes the following way:
 
  1. Atomic classes (In the same fashion as our Less ordering)
  2. Component classes
@@ -160,7 +160,7 @@ A boolean attribute is one that needs no declared value. XHTML required you to d
 
  > If the attribute is present, its value must either be the empty string or […] the attribute’s canonical name, with no leading or trailing whitespace.
 
-*In short, don't add a value.*
+*In short, don’t add a value.*
 
 ```html
 <!-- Not so great -->
@@ -232,7 +232,7 @@ Avoid using shorthand declaration unless you are explicitly setting all the avai
  - `border`
  - `border-radius`
 
-Typically you don't need to set all the values the shorthand property represents. Shorthand properties have a higher specificity than their longform counterparts. They also reset undeclared property values, which leads to unintended side effects. The Mozilla Developer Network has a [great article on shorthand properties](https://developer.mozilla.org/en-US/docs/Web/CSS/Shorthand_properties) for those unfamiliar with notation and behavior.
+Typically you don’t need to set all the values the shorthand property represents. Shorthand properties have a higher specificity than their longform counterparts. They also reset undeclared property values, which leads to unintended side effects. The Mozilla Developer Network has a [great article on shorthand properties](https://developer.mozilla.org/en-US/docs/Web/CSS/Shorthand_properties) for those unfamiliar with notation and behavior.
 
 ```css
 // Avoid this
@@ -255,7 +255,7 @@ Typically you don't need to set all the values the shorthand property represents
 
 ## License
 
-By contributing to Stacks, you agree to license your work under Stack's [MIT License](https://gh.stackoverflow.com/Design/Stacks/blob/master/LICENSE.MD).
+By contributing to Stacks, you agree to license your work under Stacks’ [MIT License](https://gh.stackoverflow.com/Design/Stacks/blob/master/LICENSE.MD).
 
 ## References
 
