@@ -59,7 +59,7 @@ description: Atomic positioning classes allow you to quickly change an elementâ€
     <table class="s-table mb32 mt24 s-table__hover">
         <thead>
             <tr>
-                <th class="-cell-2" scope="col">Abbreviation</th>
+                <th class="s-table--cell2" scope="col">Abbreviation</th>
                 <th scope="col">Definition</th>
             </tr>
         </thead>
@@ -79,10 +79,9 @@ description: Atomic positioning classes allow you to quickly change an elementâ€
 <div class="ps-absolute t12 l12"> â€¦ </div>
 <div class="ps-absolute t48 r24"> â€¦ </div>
 <div class="ps-absolute t64 l64"> â€¦ </div>
-<div class="ps-absolute b12 r64"> â€¦ </div>
-<div class="ps-absolute b64 l12"> â€¦ </div>
+<div class="ps-absolute bn8 rn8"> â€¦ </div>
 {% endhighlight %}
-        <div class="-preview ps-relative" style="height: 270px;">
+        <div class="-preview ps-relative" style="height: 180px;">
             <div class="ps-absolute w20 bg-orange-100 p12 ba bc-orange-3 ff-mono t12 l12">
                 .t12 .l12
             </div>
@@ -95,15 +94,13 @@ description: Atomic positioning classes allow you to quickly change an elementâ€
                 .t64 .l64
             </div>
 
-            <div class="ps-absolute w20 bg-orange-100 p12 ba bc-orange-3 ff-mono b12 r64">
-                .b12 .r64
-            </div>
-
-            <div class="ps-absolute w20 bg-orange-100 p12 ba bc-orange-3 ff-mono b64 l12">
-                .b64 .l12
+            <div class="ps-absolute w20 bg-orange-100 p12 ba bc-orange-3 ff-mono rn8 bn8">
+                .rn8 .bn8
             </div>
         </div>
     </div>
+
+    <h4 class="grid fl-jc-space-between fl-ai-center stacks-title _subtitle">Positive Coordinates</h4>
     <table class="s-table mb32 mt24 s-table__hover">
         <thead>
             <tr>
@@ -114,7 +111,7 @@ description: Atomic positioning classes allow you to quickly change an elementâ€
                 <th scope="col" class="ta-center ff-mono">8px</th>
                 <th scope="col" class="ta-center ff-mono">12px</th>
                 <th scope="col" class="ta-center ff-mono">16px</th>
-                <th scope="col" class="ta-center ff-mono ff-mono">24px</th>
+                <th scope="col" class="ta-center ff-mono">24px</th>
                 <th scope="col" class="ta-center ff-mono">32px</th>
                 <th scope="col" class="ta-center ff-mono">48px</th>
                 <th scope="col" class="ta-center ff-mono">64px</th>
@@ -123,6 +120,35 @@ description: Atomic positioning classes allow you to quickly change an elementâ€
         </thead>
         <tbody>
           {% for class in site.data.spacing-classes.position %}
+          {% assign prefix-value = class.values | split: ", " %}
+              <tr>
+                  <th scope="row" class="-cell1">{{ class.prefix }}</th>
+                  {% for values in prefix-value %}
+                   <td class="ta-center"><code class="fs1">.{{ class.prefix }}{{ values }}</code></td>
+                  {% endfor %}
+              </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <h4 class="grid fl-jc-space-between fl-ai-center stacks-title _subtitle">Negative Coordinates</h4>
+    <table class="s-table mb32 mt24 s-table__hover">
+        <thead>
+            <tr>
+                <th scope="col">Prefix</th>
+                <th scope="col" class="ta-center ff-mono">2px</th>
+                <th scope="col" class="ta-center ff-mono">4px</th>
+                <th scope="col" class="ta-center ff-mono">8px</th>
+                <th scope="col" class="ta-center ff-mono">12px</th>
+                <th scope="col" class="ta-center ff-mono">16px</th>
+                <th scope="col" class="ta-center ff-mono">24px</th>
+                <th scope="col" class="ta-center ff-mono">32px</th>
+                <th scope="col" class="ta-center ff-mono">48px</th>
+                <th scope="col" class="ta-center ff-mono">64px</th>
+            </tr>
+        </thead>
+        <tbody>
+          {% for class in site.data.spacing-classes.negative-position %}
           {% assign prefix-value = class.values | split: ", " %}
               <tr>
                   <th scope="row" class="-cell1">{{ class.prefix }}</th>
