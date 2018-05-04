@@ -42,13 +42,25 @@
         //      have all cell's within a box container to be the same width. Instead
         //      stating a fixed cell width, apply a modifying to the box container and
         //      all child elements will automatically be sized.
+        //
+        //      [1] IE10/11 BUG
+        //      This fixes a known IE10/11 bug with flex-basis not correctly obeying
+        //      stated values in flex-basis because it assumes the wrapping element
+        //      has a content-box box-sizing value instead of potential border-box.
         //  ----------------------------------------------------------------------------
         .create-grid-count-cols(@num, @count: 1) when (@count =< @num) {
             .grid__allcells@{count} {
                 > .grid,
                 > .grid--cell {
-                    -ms-flex-preferred-size: @count * 100% / @num;
-                        flex-basis: @count * 100% / @num;
+                    -ms-flex-preferred-size: (@count * 100%) / @num;
+                        flex-basis: (@count * 100%) / @num;
+
+                    // [1] Target IE10/11
+                    @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+                        -ms-flex-preferred-size: auto;
+                            flex-basis: auto;
+                        width: (@count * 100%) / @num;
+                    }
                 }
             }
 
@@ -124,9 +136,15 @@
             > .grid--cell@{count},                                  // [1]
             &.grid__allcells@{count} > .grid,                       // [2]
             &.grid__allcells@{count} > .grid--cell {                // [2]
-                -ms-flex-preferred-size: auto;                      // [3]
-                    flex-basis: auto;                               // [3]
-                    width: calc(~"@{cell-width} - @{spacing}");     // [3]
+                -ms-flex-preferred-size: calc(~"@{cell-width} - @{spacing}");
+                    flex-basis: calc(~"@{cell-width} - @{spacing}");
+
+                // [3] Target IE10/11
+                @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+                    -ms-flex-preferred-size: auto;
+                        flex-basis: auto;
+                    width: calc(~"@{cell-width} - @{spacing}");
+                }
             }
 
             #stacks-internals #grid-builder-helpers .grid-fixed-cell-spacing(@spacing, @num, (@count + 1));
