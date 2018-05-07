@@ -36,18 +36,25 @@
                     -ms-flex-preferred-size: auto;
                                  flex-basis: auto;
                     width: (@count * 100%) / @num;
-                }
-            }
-            @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
-                .fd-column .grid--cell@{count},
-                .lg\:fd-column .grid--cell@{count},
-                .md\:fd-column .grid--cell@{count},
-                .sm\:fd-column .grid--cell@{count},
-                .fd-columnreverse .grid--cell@{count},
-                .lg\:fd-columnreverse .grid--cell@{count},
-                .md\:fd-columnreverse .grid--cell@{count},
-                .sm\:fd-columnreverse .grid--cell@{count} {
-                    height: (@count * 100%) / @num;
+
+                    //  --  IE11/10 Flex-basis bug
+                    //      Known issue where if a flex item has a box-sizing border-box
+                    //      value, the flex-basis value is incorrect. The workaround is
+                    //      to apply a width or height. Since flex-basis applies in the
+                    //      flow direction, we have to conditionally set the width (default)
+                    //      or height (if a column).
+                    //  -------------------------------------------------------------------
+                    .fd-column &,
+                    .lg\:fd-column &,
+                    .md\:fd-column &,
+                    .sm\:fd-column &,
+                    .fd-columnreverse &,
+                    .lg\:fd-columnreverse &,
+                    .md\:fd-columnreverse &,
+                    .sm\:fd-columnreverse & {
+                        width: auto !important;
+                        height: (@count * 100%) / @num;
+                    }
                 }
             }
 
@@ -72,9 +79,14 @@
                         -ms-flex-preferred-size: auto;
                                      flex-basis: auto;
                         width: (@count * 100%) / @num;
-                    }
 
-                    @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+                        //  --  IE11/10 Flex-basis bug
+                        //      Known issue where if a flex item has a box-sizing border-box
+                        //      value, the flex-basis value is incorrect. The workaround is
+                        //      to apply a width or height. Since flex-basis applies in the
+                        //      flow direction, we have to conditionally set the width (default)
+                        //      or height (if a column).
+                        //  -------------------------------------------------------------------
                         .fd-column&,
                         .lg\:fd-column&,
                         .md\:fd-column&,
@@ -83,6 +95,7 @@
                         .lg\:fd-columnreverse&,
                         .md\:fd-columnreverse&,
                         .sm\:fd-columnreverse& {
+                            width: auto !important;
                             height: (@count * 100%) / @num;
                         }
                     }
@@ -164,6 +177,13 @@
                                  flex-basis: auto;
                     width: calc(~"@{cell-width} - @{spacing}");
 
+                    //  --  IE11/10 Flex-basis bug
+                    //      Known issue where if a flex item has a box-sizing border-box
+                    //      value, the flex-basis value is incorrect. The workaround is
+                    //      to apply a width or height. Since flex-basis applies in the
+                    //      flow direction, we have to conditionally set the width (default)
+                    //      or height (if a column).
+                    //  -------------------------------------------------------------------
                     .fd-column&,
                     .lg\:fd-column &,
                     .md\:fd-column &,
@@ -172,6 +192,7 @@
                     .lg\:fd-columnreverse &,
                     .md\:fd-columnreverse &,
                     .sm\:fd-columnreverse & {
+                        width: auto !important;
                         height: calc(~"@{cell-width} - @{spacing}");
                     }
                 }
