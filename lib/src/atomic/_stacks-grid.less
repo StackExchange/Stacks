@@ -31,11 +31,22 @@
             .grid--cell@{count} {
                 -ms-flex-preferred-size: (@count * 100%) / @num;
                              flex-basis: (@count * 100%) / @num;
-                width: (@count * 100%) / @num;
 
                 @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
                     -ms-flex-preferred-size: auto;
                                  flex-basis: auto;
+                    width: (@count * 100%) / @num;
+
+                    .fd-column &,
+                    .lg\:fd-column &,
+                    .md\:fd-column &,
+                    .sm\:fd-column &,
+                    .fd-columnreverse &,
+                    .lg\:fd-columnreverse &,
+                    .md\:fd-columnreverse &,
+                    .sm\:fd-columnreverse & {
+                        height: (@count * 100%) / @num;
+                    }
                 }
             }
 
@@ -54,12 +65,23 @@
                 > .grid,
                 > .grid--cell {
                     -ms-flex-preferred-size: (@count * 100%) / @num;
-                             flex-basis: (@count * 100%) / @num;
-                    width: (@count * 100%) / @num;
+                                 flex-basis: (@count * 100%) / @num;
 
                     @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
                         -ms-flex-preferred-size: auto;
                                      flex-basis: auto;
+                        width: (@count * 100%) / @num;
+
+                        .fd-column &,
+                        .lg\:fd-column &,
+                        .md\:fd-column &,
+                        .sm\:fd-column &,
+                        .fd-columnreverse &,
+                        .lg\:fd-columnreverse &,
+                        .md\:fd-columnreverse &,
+                        .sm\:fd-columnreverse & {
+                            height: (@count * 100%) / @num;
+                        }
                     }
                 }
             }
@@ -133,11 +155,22 @@
             &.grid__allcells@{count} > .grid--cell {                // [2]
                 -ms-flex-preferred-size: calc(~"@{cell-width} - @{spacing}");
                              flex-basis: calc(~"@{cell-width} - @{spacing}");
-                width: calc(~"@{cell-width} - @{spacing}");
 
                 @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
                     -ms-flex-preferred-size: auto;
                                  flex-basis: auto;
+                    width: calc(~"@{cell-width} - @{spacing}");
+
+                    .fd-column &,
+                    .lg\:fd-column &,
+                    .md\:fd-column &,
+                    .sm\:fd-column &,
+                    .fd-columnreverse &,
+                    .lg\:fd-columnreverse &,
+                    .md\:fd-columnreverse &,
+                    .sm\:fd-columnreverse & {
+                        height: calc(~"@{cell-width} - @{spacing}");
+                    }
                 }
             }
 
