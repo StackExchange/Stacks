@@ -5,10 +5,10 @@ $(document).ready(function() {
     var heroTypeMenu = $(".js-hero-type-menu");
     var heroPatternMenu = $(".js-hero-pattern-menu");
     var heroPositionMenu = $(".js-hero-position-menu");
-    var heroHeight = hero.innerHeight();
+    var heroHeight = hero.outerHeight();
     var heroBannerFooter = $(".js-banner-hero-footer");
     var circle = $(this).find(".js-banner-circle");
-    var typeClasses = ("s-notice__info s-notice__brand s-notice__success s-notice__warning s-notice__danger s-notice__important s-banner__info s-banner__important s-banner__danger s-banner__success s-banner__brand s-banner__pattern is-pinned");
+    var typeClasses = ("s-notice__info s-notice__brand s-notice__success s-notice__warning s-notice__danger s-notice__important s-notice--banner__info s-notice--banner__important s-notice--banner__danger s-notice--banner__success s-notice--banner__brand is-pinned");
 
     //  Hide everything on load
     hero.hide();
@@ -18,7 +18,6 @@ $(document).ready(function() {
     //  Show the hero banners when you click the "Show Example" button
     heroBtn.on("click", function() {
         var typeSelect = heroTypeMenu.find(":selected").data("class");
-        var patternSelect = heroPatternMenu.find(":selected").data("pattern");
         var circleSelect = heroPatternMenu.find(":selected").data("circle");
         var positionSelect = heroPositionMenu.find(":selected").data("class");
 
@@ -48,18 +47,12 @@ $(document).ready(function() {
                     "left": "",
                     "right": ""
                 });
-            if (patternSelect == "yes") {
-                heroBannerFooter.addClass("s-banner__pattern");
-            }
-            else {
-                heroBannerFooter.removeClass("s-banner__pattern");
-            }
 
             if (circleSelect == "yes") {
-                circle.addClass("s-banner__circle");
+                circle.addClass("s-notice--banner__circle");
             }
             else {
-                circle.removeClass("s-banner__circle");
+                circle.removeClass("s-notice--banner__circle");
             }
         }
         else {
@@ -74,7 +67,7 @@ $(document).ready(function() {
                 .addClass(typeSelect)
                 .css({
                     "position": "fixed",
-                    "top": "-4vw",
+                    "top": "-50px",
                     "left": "0",
                     "right": "0"
                 });
@@ -85,23 +78,16 @@ $(document).ready(function() {
                 .addClass(typeSelect).addClass(positionSelect)
                 .css({
                     "position": "fixed",
-                    "top": Math.ceil(heroHeight) - 95,
+                    "top": heroHeight - 50,
                     "left": "0",
                     "right": "0"
                 });
 
-            if (patternSelect == "yes") {
-                hero.addClass("s-banner__pattern");
-            }
-            else {
-                hero.removeClass("s-banner__pattern");
-            }
-
             if (circleSelect == "yes") {
-                circle.addClass("s-banner__circle");
+                circle.addClass("s-notice--banner__circle");
             }
             else {
-                circle.removeClass("s-banner__circle");
+                circle.removeClass("s-notice--banner__circle");
             }
         }
     });
@@ -135,7 +121,7 @@ $(document).ready(function() {
                 "left": "",
                 "right": ""
             });
-        circle.removeClass("s-banner__circle");
+        circle.removeClass("s-notice--banner__circle");
     });
 
 

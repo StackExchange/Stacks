@@ -119,54 +119,11 @@
             box-shadow: @bs-sm;
 }
 
-//  $$  BANNER
+
+//  ============================================================================
+//  $   TOASTS
 //  ----------------------------------------------------------------------------
-.s-notice__banner {
-    position: fixed;
-    top: 0;
-    right: 0;
-    left: 0;
-    width: 100%;
-    padding: @su12;
-    z-index: @zi-navigation-fixed;
-    border-right: none;
-    border-left: none;
-    border-radius: 0;
-    -webkit-box-shadow: @bs-sm;
-            box-shadow: @bs-sm;
-
-    -webkit-transform: translate3d(0,-50px,0);
-            transform: translate3d(0,-50px,0);
-
-    &[aria-hidden="false"] {
-        -webkit-transform: translate3d(0,49px,0);
-                transform: translate3d(0,49px,0);
-    }
-
-    &.is-pinned {
-        z-index: @zi-navigation-fixed + 1;
-        -webkit-transform: translate3d(0,0,0);
-                transform: translate3d(0,0,0);
-    }
-}
-
-//  --  When we use .s-notice__banner, we need to adjust the padding-top on
-//      the body tag. This class correctly adjusts the body padding ONLY if
-//      the notice is one line. If it wraps to multiple lines, more classes or
-//      (ideally) JS will need to be used to determine the notice's height
-//      at the time of render. The padding value is determined like so:
-//
-//      50px (top bar) + 44px (notice height) - 2px (borders)
-//
-//      The borders subtraction are necessary to neatly tuck everything together.
-//
-.s-notice--body {
-    padding-top: 92px;
-}
-
-//  $$  TOAST
-//  ----------------------------------------------------------------------------
-.s-notice__toast {
+.s-notice--toast {
     visibility: hidden;
     position: fixed;
     top: 16px; // 50px (header) + 16px
@@ -194,5 +151,195 @@
         transition: visibility 0s 0s, opacity 100ms @te-smooth 0s, -webkit-transform 100ms @te-smooth 0s;
         transition: visibility 0s 0s, opacity 100ms @te-smooth 0s, transform 100ms @te-smooth 0s;
         transition: visibility 0s 0s, opacity 100ms @te-smooth 0s, transform 100ms @te-smooth 0s, -webkit-transform 100ms @te-smooth 0s;
+    }
+}
+
+
+//  ============================================================================
+//  $   BANNERS
+//  ----------------------------------------------------------------------------
+.s-notice--banner {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    width: 100%;
+    padding: @su12;
+    z-index: @zi-navigation-fixed - 1; // Tuck below topbar
+
+    border-radius: 0;
+    -webkit-box-shadow: none;
+            box-shadow: none;
+
+    color: @white;
+
+    // If you want to hide and reveal the banner
+    &[aria-hidden="true"] {
+        visibility: hidden;
+        opacity: 0;
+        -webkit-transform: translate3d(0,-50px,0);
+                transform: translate3d(0,-50px,0);
+    }
+    &[aria-hidden="false"] {
+        visibility: visible;
+        opacity: 1;
+        -webkit-transform: translate3d(0,0,0);
+                transform: translate3d(0,49px,0);
+    }
+
+    &.is-pinned {
+        z-index: @zi-navigation-fixed + 1;
+        -webkit-transform: translate3d(0,0,0);
+                transform: translate3d(0,0,0);
+    }
+}
+
+.s-notice--banner--hero {
+    overflow: hidden;
+    z-index: @zi-banners;
+    background-repeat: no-repeat, no-repeat;
+    background-position: right center, center center;
+}
+
+//  --  When we want to keep hero content capped
+.s-notice--banner--container {
+    position: relative;
+    width: 100%;
+    max-width: 1090px;
+    margin: 0 auto;
+    padding: @su16;
+    z-index: @zi-banners + 1;
+}
+
+.s-notice--banner--bar {
+    position: relative;
+    padding: 0;
+    z-index: @zi-banners;
+}
+
+
+//  ============================================================================
+//  $$   BANNER BACKGROUNDS
+//  ============================================================================
+//  --  VARIABLES
+//  ----------------------------------------------------------------------------
+@banner-brand-bgg1:     #F16720;
+@banner-brand-bgg2:     #F58907;
+@banner-brand-bgc:      mix(@banner-brand-bgg1,@banner-brand-bgg2);
+@banner-important-bgg1: @black-800;
+@banner-important-bgg2: @black-700;
+@banner-important-bgc:  mix(@banner-important-bgg1, @banner-important-bgg2);
+@banner-info-bgg1:      #126CFA;
+@banner-info-bgg2:      #108AEC;
+@banner-info-bgc:       mix(@banner-info-bgg1,@banner-info-bgg2);
+@banner-success-bgg1:   @green-500;
+@banner-success-bgg2:   @green-400;
+@banner-success-bgc:    mix(@banner-success-bgg1,@banner-success-bgg2);
+@banner-danger-bgg1:    @red-500;
+@banner-danger-bgg2:    #DB1F32;
+@banner-danger-bgc:     mix(@banner-danger-bgg1, @banner-danger-bgg2);
+
+//  --  CIRCLE
+//  ----------------------------------------------------------------------------
+.s-notice--banner__circle:before {
+    content: "";
+    position: absolute;
+    top: -4vw;
+    left: -4vw;
+    width: 0;
+    height: 0;
+    padding: 20%;
+    z-index: -1;
+    border-radius: @br-circle;
+    pointer-events: none;
+}
+
+//  --  BACKGROUND: BRAND COLOR
+//  ----------------------------------------------------------------------------
+.s-notice--banner__brand {
+    background-image: -webkit-gradient(linear, left top, right top, from(@banner-brand-bgg1), to(@banner-brand-bgg2));
+    background-image: linear-gradient(to right, @banner-brand-bgg1, @banner-brand-bgg2);
+
+    //  --  Darkens the background gradient
+    &.s-notice--banner--bar {
+        background-image: -webkit-gradient(linear, left top, right top, from(darken(@banner-brand-bgg1,7.5%)), to(darken(@banner-brand-bgg2,7.5%)));
+        background-image: linear-gradient(to right, darken(@banner-brand-bgg1,7.5%), darken(@banner-brand-bgg2,7.5%));
+    }
+
+    //  --  Adds the background circle in
+    .s-notice--banner__circle:before {
+        background-color: fade(overlay(@banner-brand-bgc, @black-900), 7.5%);
+    }
+}
+
+//  --  BACKGROUND: INFO (BLUE) COLOR
+//  ----------------------------------------------------------------------------
+.s-notice--banner__info {
+    background-image: -webkit-gradient(linear, left top, right top, from(@banner-info-bgg1), to(@banner-info-bgg2));
+    background-image: linear-gradient(to right, @banner-info-bgg1, @banner-info-bgg2);
+
+    //  --  Darkens the background gradient
+    &.s-notice--banner--bar {
+        background-image: -webkit-gradient(linear, left top, right top, from(darken(@banner-info-bgg1,7.5%)), to(darken(@banner-info-bgg2,7.5%)));
+        background-image: linear-gradient(to right, darken(@banner-info-bgg1,7.5%), darken(@banner-info-bgg2,7.5%));
+    }
+
+    //  --  Adds the background circle in
+    .s-notice--banner__circle:before {
+        background-color: fade(overlay(@banner-info-bgc, @black-900), 7.5%);
+    }
+}
+
+//  --  BACKGROUND: SUCCESS (GREEN) COLOR
+//  ----------------------------------------------------------------------------
+.s-notice--banner__success {
+    background-image: -webkit-gradient(linear, left top, right top, from(@banner-success-bgg1), to(@banner-success-bgg2));
+    background-image: linear-gradient(to right, @banner-success-bgg1, @banner-success-bgg2);
+
+    //  --  Darkens the background gradient
+    &.s-notice--banner--bar {
+        background-image: -webkit-gradient(linear, left top, right top, from(darken(@banner-success-bgg1,7.5%)), to(darken(@banner-success-bgg2,7.5%)));
+        background-image: linear-gradient(to right, darken(@banner-success-bgg1,7.5%), darken(@banner-success-bgg2,7.5%));
+    }
+
+    //  --  Adds the background circle in
+    .s-notice--banner__circle:before {
+        background-color: fade(overlay(@banner-success-bgc, @black-900), 7.5%);
+    }
+}
+
+//  --  BACKGROUND: IMPORTANT (BLACK) COLOR
+//  ----------------------------------------------------------------------------
+.s-notice--banner__important {
+    background-image: -webkit-gradient(linear, left top, right top, from(@banner-important-bgg1), to(@banner-important-bgg2));
+    background-image: linear-gradient(to right, @banner-important-bgg1, @banner-important-bgg2);
+
+    //  --  Darkens the background gradient
+    &.s-notice--banner--bar {
+        background-image: -webkit-gradient(linear, left top, right top, from(darken(@banner-important-bgg1,7.5%)), to(darken(@banner-important-bgg2,7.5%)));
+        background-image: linear-gradient(to right, darken(@banner-important-bgg1,7.5%), darken(@banner-important-bgg2,7.5%));
+    }
+
+    //  --  Adds the background circle in
+    .s-notice--banner__circle:before {
+        background-color: fade(overlay(@banner-important-bgc, @black-900), 15%);
+    }
+}
+
+//  --  BACKGROUND: DANGER (RED) COLOR
+//  ----------------------------------------------------------------------------
+.s-notice--banner__danger {
+    background-image: -webkit-gradient(linear, left top, right top, from(@banner-danger-bgg1), to(@banner-danger-bgg2));
+    background-image: linear-gradient(to right, @banner-danger-bgg1, @banner-danger-bgg2);
+
+    //  --  Darkens the background gradient
+    &.s-notice--banner--bar {
+        background-image: -webkit-gradient(linear, left top, right top, from(darken(@banner-danger-bgg1,7.5%)), to(darken(@banner-danger-bgg2,7.5%)));
+        background-image: linear-gradient(to right, darken(@banner-danger-bgg1,7.5%), darken(@banner-danger-bgg2,7.5%));
+    }
+
+    //  --  Adds the background circle in
+    .s-notice--banner__circle:before {
+        background-color: fade(overlay(@banner-danger-bgc, @black-900), 15%);
     }
 }
