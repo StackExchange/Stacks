@@ -27,10 +27,24 @@
     #grid-builder-helpers() {
         #stacks-internals #grid-builder-settings();
 
+        //
+        //      [1] IE10/11 BUG
+        //      This fixes a known IE10/11 bug with flex-basis not correctly obeying
+        //      stated values in flex-basis because it assumes the wrapping element
+        //      has a content-box box-sizing value instead of potential border-box.
+        //
+        //  ----------------------------------------------------------------------------
         .create-fixed-cells(@num, @count: 1) when (@count =< @num) {
             .grid--cell@{count} {
                 -ms-flex-preferred-size: @count * 100% / @num;
                     flex-basis: @count * 100% / @num;
+
+                // [1] Target IE10/11
+                @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+                    -ms-flex-preferred-size: auto;
+                        flex-basis: auto;
+                    width: (@count * 100%) / @num;
+                }
             }
 
             #stacks-internals #grid-builder-helpers .create-fixed-cells(@num, (@count + 1));
@@ -42,11 +56,6 @@
         //      have all cell's within a box container to be the same width. Instead
         //      stating a fixed cell width, apply a modifying to the box container and
         //      all child elements will automatically be sized.
-        //
-        //      [1] IE10/11 BUG
-        //      This fixes a known IE10/11 bug with flex-basis not correctly obeying
-        //      stated values in flex-basis because it assumes the wrapping element
-        //      has a content-box box-sizing value instead of potential border-box.
         //  ----------------------------------------------------------------------------
         .create-grid-count-cols(@num, @count: 1) when (@count =< @num) {
             .grid__allcells@{count} {
