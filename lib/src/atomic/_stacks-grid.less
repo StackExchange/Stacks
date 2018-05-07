@@ -29,9 +29,14 @@
 
         .create-fixed-cells(@num, @count: 1) when (@count =< @num) {
             .grid--cell@{count} {
-                -ms-flex-preferred-size: auto;
-                             flex-basis: auto;
+                -ms-flex-preferred-size: (@count * 100%) / @num;
+                             flex-basis: (@count * 100%) / @num;
                 width: (@count * 100%) / @num;
+
+                @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+                    -ms-flex-preferred-size: auto;
+                                 flex-basis: auto;
+                }
             }
 
             #stacks-internals #grid-builder-helpers .create-fixed-cells(@num, (@count + 1));
@@ -48,9 +53,14 @@
             .grid__allcells@{count} {
                 > .grid,
                 > .grid--cell {
-                    -ms-flex-preferred-size: auto;
-                             flex-basis: auto;
+                    -ms-flex-preferred-size: (@count * 100%) / @num;
+                             flex-basis: (@count * 100%) / @num;
                     width: (@count * 100%) / @num;
+
+                    @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+                        -ms-flex-preferred-size: auto;
+                                     flex-basis: auto;
+                    }
                 }
             }
 
@@ -121,9 +131,14 @@
             > .grid--cell@{count},                                  // [1]
             &.grid__allcells@{count} > .grid,                       // [2]
             &.grid__allcells@{count} > .grid--cell {                // [2]
-                -ms-flex-preferred-size: auto;
-                             flex-basis: auto;
+                -ms-flex-preferred-size: calc(~"@{cell-width} - @{spacing}");
+                             flex-basis: calc(~"@{cell-width} - @{spacing}");
                 width: calc(~"@{cell-width} - @{spacing}");
+
+                @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+                    -ms-flex-preferred-size: auto;
+                                 flex-basis: auto;
+                }
             }
 
             #stacks-internals #grid-builder-helpers .grid-fixed-cell-spacing(@spacing, @num, (@count + 1));
