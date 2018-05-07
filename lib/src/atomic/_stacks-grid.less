@@ -36,17 +36,18 @@
                     -ms-flex-preferred-size: auto;
                                  flex-basis: auto;
                     width: (@count * 100%) / @num;
-
-                    .fd-column &,
-                    .lg\:fd-column &,
-                    .md\:fd-column &,
-                    .sm\:fd-column &,
-                    .fd-columnreverse &,
-                    .lg\:fd-columnreverse &,
-                    .md\:fd-columnreverse &,
-                    .sm\:fd-columnreverse & {
-                        height: (@count * 100%) / @num;
-                    }
+                }
+            }
+            @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+                .fd-column .grid--cell@{count},
+                .lg\:fd-column .grid--cell@{count},
+                .md\:fd-column .grid--cell@{count},
+                .sm\:fd-column .grid--cell@{count},
+                .fd-columnreverse .grid--cell@{count},
+                .lg\:fd-columnreverse .grid--cell@{count},
+                .md\:fd-columnreverse .grid--cell@{count},
+                .sm\:fd-columnreverse .grid--cell@{count} {
+                    height: (@count * 100%) / @num;
                 }
             }
 
@@ -71,15 +72,17 @@
                         -ms-flex-preferred-size: auto;
                                      flex-basis: auto;
                         width: (@count * 100%) / @num;
+                    }
 
-                        .fd-column &,
-                        .lg\:fd-column &,
-                        .md\:fd-column &,
-                        .sm\:fd-column &,
-                        .fd-columnreverse &,
-                        .lg\:fd-columnreverse &,
-                        .md\:fd-columnreverse &,
-                        .sm\:fd-columnreverse & {
+                    @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+                        .fd-column&,
+                        .lg\:fd-column&,
+                        .md\:fd-column&,
+                        .sm\:fd-column&,
+                        .fd-columnreverse&,
+                        .lg\:fd-columnreverse&,
+                        .md\:fd-columnreverse&,
+                        .sm\:fd-columnreverse& {
                             height: (@count * 100%) / @num;
                         }
                     }
@@ -161,7 +164,7 @@
                                  flex-basis: auto;
                     width: calc(~"@{cell-width} - @{spacing}");
 
-                    .fd-column &,
+                    .fd-column&,
                     .lg\:fd-column &,
                     .md\:fd-column &,
                     .sm\:fd-column &,
