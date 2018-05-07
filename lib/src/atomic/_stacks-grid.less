@@ -27,24 +27,11 @@
     #grid-builder-helpers() {
         #stacks-internals #grid-builder-settings();
 
-        //
-        //      [1] IE10/11 BUG
-        //      This fixes a known IE10/11 bug with flex-basis not correctly obeying
-        //      stated values in flex-basis because it assumes the wrapping element
-        //      has a content-box box-sizing value instead of potential border-box.
-        //
-        //  ----------------------------------------------------------------------------
         .create-fixed-cells(@num, @count: 1) when (@count =< @num) {
             .grid--cell@{count} {
-                -ms-flex-preferred-size: @count * 100% / @num;
-                    flex-basis: @count * 100% / @num;
-
-                // [1] Target IE10/11
-                @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
-                    -ms-flex-preferred-size: auto;
-                        flex-basis: auto;
-                    width: (@count * 100%) / @num;
-                }
+                -ms-flex-preferred-size: auto;
+                             flex-basis: auto;
+                width: (@count * 100%) / @num;
             }
 
             #stacks-internals #grid-builder-helpers .create-fixed-cells(@num, (@count + 1));
@@ -61,15 +48,9 @@
             .grid__allcells@{count} {
                 > .grid,
                 > .grid--cell {
-                    -ms-flex-preferred-size: (@count * 100%) / @num;
-                        flex-basis: (@count * 100%) / @num;
-
-                    // [1] Target IE10/11
-                    @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
-                        -ms-flex-preferred-size: auto;
-                            flex-basis: auto;
-                        width: (@count * 100%) / @num;
-                    }
+                    -ms-flex-preferred-size: auto;
+                             flex-basis: auto;
+                    width: (@count * 100%) / @num;
                 }
             }
 
@@ -136,24 +117,13 @@
             //      This class allows you to uniformly state the width of `.grid--cell`
             //      divs within a `.grid` element. In particular we adjust the flex-basis
             //      and max-width here to account for gutters.
-            //
-            //  [3] IE10/11 BUG
-            //      This fixes a known IE10/11 bug with flex-basis not correctly obeying
-            //      stated values in flex-basis because it assumes the wrapping element
-            //      has a content-box box-sizing value instead of potential border-box.
             //  ------------------------------------------------------------------------
             > .grid--cell@{count},                                  // [1]
             &.grid__allcells@{count} > .grid,                       // [2]
             &.grid__allcells@{count} > .grid--cell {                // [2]
-                -ms-flex-preferred-size: calc(~"@{cell-width} - @{spacing}");
-                    flex-basis: calc(~"@{cell-width} - @{spacing}");
-
-                // [3] Target IE10/11
-                @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
-                    -ms-flex-preferred-size: auto;
-                        flex-basis: auto;
-                    width: calc(~"@{cell-width} - @{spacing}");
-                }
+                -ms-flex-preferred-size: auto;
+                             flex-basis: auto;
+                width: calc(~"@{cell-width} - @{spacing}");
             }
 
             #stacks-internals #grid-builder-helpers .grid-fixed-cell-spacing(@spacing, @num, (@count + 1));
