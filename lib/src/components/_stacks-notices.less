@@ -119,22 +119,21 @@
             box-shadow: @bs-sm;
 }
 
-
 //  ============================================================================
 //  $   TOASTS
 //  ----------------------------------------------------------------------------
 .s-notice__toast {
     visibility: hidden;
     position: fixed;
+    z-index: @zi-navigation-fixed - 1;
     top: 16px; // 50px (header) + 16px
     left: 50%;
     width: 100%;
     max-width: 42rem;
     margin-left: -16rem;
-    z-index: @zi-navigation-fixed - 1;
-    opacity: 0;
     -webkit-box-shadow: @bs-sm;
             box-shadow: @bs-sm;
+    opacity: 0;
     -webkit-transform: translate3d(0,-66px,0);
             transform: translate3d(0,-66px,0);
     -webkit-transition: opacity 0ms 100ms, visibility 0s 100ms, -webkit-transform 100ms @te-smooth-slow 0s;
@@ -160,12 +159,12 @@
 //  ----------------------------------------------------------------------------
 .s-notice__banner {
     position: fixed;
+    z-index: @zi-navigation-fixed - 1; // Tuck below topbar
     top: 0;
     right: 0;
     left: 0;
     width: 100%;
     padding: @su12;
-    z-index: @zi-navigation-fixed - 1; // Tuck below topbar
 
     border-radius: 0;
     -webkit-box-shadow: none;
@@ -197,24 +196,24 @@
 .s-notice__banner-hero {
     overflow: hidden;
     z-index: @zi-banners;
-    background-repeat: no-repeat, no-repeat;
     background-position: right center, center center;
+    background-repeat: no-repeat, no-repeat;
 }
 
 //  --  When we want to keep hero content capped
 .s-notice__banner-container {
     position: relative;
+    z-index: @zi-banners + 1;
     width: 100%;
     max-width: 1090px;
     margin: 0 auto;
     padding: @su16;
-    z-index: @zi-banners + 1;
 }
 
 .s-notice__banner-bar {
     position: relative;
-    padding: 0;
     z-index: @zi-banners;
+    padding: 0;
 }
 
 
@@ -244,12 +243,12 @@
 .s-notice__banner-circle:before {
     content: "";
     position: absolute;
+    z-index: -1;
     top: -4vw;
     left: -4vw;
     width: 0;
     height: 0;
     padding: 20%;
-    z-index: -1;
     border-radius: @br-circle;
     pointer-events: none;
 }

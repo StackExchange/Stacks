@@ -55,8 +55,8 @@
 .font-face(@family, @path, @weight, @style) {
     @font-face {
         font-family: "@{family}";
-        font-weight: @weight;
         font-style: @style;
+        font-weight: @weight;
         & when (@style=italic) {
             #stacks-internals #font-face-src(@family, @path, @weight, " Italic");
         }
@@ -66,6 +66,27 @@
     }
 }
 
+//  ===========================================================================
+//  --  RESPONSIVE
+//      Used to wrap rules with
+//  ---------------------------------------------------------------------------
+.screen-lg(@rules) {
+    @media (max-width: @screen-lg) {
+        @rules();
+    }
+}
+
+.screen-md(@rules) {
+    @media (max-width: @screen-md) {
+        @rules();
+    }
+}
+
+.screen-sm(@rules) {
+    @media (max-width: @screen-sm) {
+        @rules();
+    }
+}
 
 //  ===========================================================================
 //  --  TRIANGLES
@@ -112,8 +133,8 @@
 ///     THESE ARE ONLY USED IN THE PROFILE AND SHOULD BE PHASED OUT EVENTUALLY.
 //  ---------------------------------------------------------------------------
 .ellipsisAtMaxWidth(@width) {
-    max-width: @width;
     overflow: hidden;
+    max-width: @width;
     text-overflow: ellipsis;
     white-space: nowrap;
 }

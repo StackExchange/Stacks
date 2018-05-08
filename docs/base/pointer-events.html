@@ -1,7 +1,7 @@
 ---
 layout: page
-title: Cursors
-description: Atomic cursor classes allow you to quickly change an element’s cursor behavior.
+title: Pointer Events
+description: Atomic pointer-event classes allow you to quickly change an element’s interactivity.
 ---
 <section class="stacks-section">
     <h2 class="grid jc-spacebetween ai-center stacks-title _subtitle">Definitions</h2>
@@ -9,15 +9,17 @@ description: Atomic cursor classes allow you to quickly change an element’s cu
         <thead>
             <tr>
                 <th class="s-table--cell2" scope="col">Class</th>
-                <th scope="col">Output</th>
+                <th class="s-table--cell3" scope="col">Output</th>
+                <th scope="col">Definition</th>
                 <th scope="col">Responsive</th>
             </tr>
         </thead>
         <tbody>
-            {% for atomic in site.data.atomic-definitions.cursors %}
+            {% for atomic in site.data.atomic-definitions.pointer-events %}
               <tr class="fs-caption">
                   <th scope="row" class="p8 ff-mono">.{{ atomic.class }}</th>
                   <td class="p8 ff-mono">{{ atomic.output }}</td>
+                  <td class="p8">{{ atomic.define }}</td>
                   <td class="ta-center">
                       {% if atomic.responsive %}
                       <svg aria-hidden="true" class="svg-icon iconCheckmark fc-green-500" width="18" height="18" viewBox="0 0 18 18"><path d="M16 4.41L14.59 3 6 11.59 2.41 8 1 9.41l5 5z"></path></svg>
@@ -31,33 +33,13 @@ description: Atomic cursor classes allow you to quickly change an element’s cu
     <h2 class="grid jc-spacebetween ai-center stacks-title _subtitle">Examples</h2>
     <div class="stacks-code-preview">
 {% highlight html linenos %}
-<div class="c-auto">…</div>
-<div class="c-default">…</div>
-<div class="c-pointer">…</div>
-<div class="c-wait">…</div>
-<div class="c-move">…</div>
-<div class="c-not-allowed">…</div>
+<div class="pe-auto">…</div>
+<div class="pe-none">…</div>
 {% endhighlight %}
         <div class="-preview fs-caption ff-mono">
             <div class="grid gs8 fw-wrap">
-                <div class="grid--cell bg-orange-100 p12 ba bc-orange-3 c-auto">
-                    .c-auto
-                </div>
-                <div class="grid--cell bg-orange-100 p12 ba bc-orange-3 c-default">
-                    .c-default
-                </div>
-                <div class="grid--cell bg-orange-100 p12 ba bc-orange-3 c-pointer">
-                    .c-pointer
-                </div>
-                <div class="grid--cell bg-orange-100 p12 ba bc-orange-3 c-wait">
-                    .c-wait
-                </div>
-                <div class="grid--cell bg-orange-100 p12 ba bc-orange-3 c-move">
-                    .c-move
-                </div>
-                <div class="grid--cell bg-orange-100 p12 ba bc-orange-3 c-not-allowed">
-                    .c-not-allowed
-                </div>
+                <button class="pe-auto grid--cell s-btn s-btn__primary ff-mono">.pe-auto</button>
+                <button class="pe-none grid--cell s-btn s-btn__primary ff-mono">.pe-none</button>
             </div>
         </div>
     </div>
