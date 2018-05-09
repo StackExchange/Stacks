@@ -16,24 +16,68 @@
 
     //  ===========================================================================
     //  --  RESPONSIVE
-    //      Used to wrap rules with
+    //      The three #screen-XX mixins wrap the given rules in the appropriate
+    //      media queries and (if applicable) selector prefixes for all breakpoint
+    //      groups that have been defined in the static configuration section.
+    //
+    //      Usage example:
+    //
+    //          .lg\:comic-sans {
+    //              #stacks-internals #screen-lg({
+    //                  font-family: "Comic Sans MS";
+    //              });
+    //          }
     //  ---------------------------------------------------------------------------
+
     #screen-lg(@rules) {
-        @media (max-width: @screen-lg) {
-            @rules();
-        }
+        #stacks-internals #load-static-config();
+        #stacks-internals #responsive-stuff(0, @rules, @breakpoints, 1);
     }
-
     #screen-md(@rules) {
-        @media (max-width: @screen-md) {
-            @rules();
-        }
+        #stacks-internals #load-static-config();
+        #stacks-internals #responsive-stuff(1, @rules, @breakpoints, 1);
     }
-
     #screen-sm(@rules) {
-        @media (max-width: @screen-sm) {
-            @rules();
-        }
+        #stacks-internals #load-static-config();
+        #stacks-internals #responsive-stuff(2, @rules, @breakpoints, 1);
     }
 
+    // @bp-index is 0 (large), 1 (medium), or 2 (small). @start-index is the index into the @breakpoints config option
+    // which is increased recursively to exhaust the whole list.
+    #responsive-stuff(@bp-index, @rules, @breakpoints, @start-index) when (@start-index < length(@breakpoints)) {
+        
+        // If the first list element is a string, it's a selector that is prepended to the responsive class
+        & when (isstring(extract(@breakpoints, @start-index))) {
+
+            // the actual breakpoint; "+1" to skip the (selector) string
+            @bp: extract(@breakpoints, @start-index + @bp-index + 1);
+
+            // convert the selector string into an identifier (i.e. remove the quotes)
+            @sel-s: extract(@breakpoints, @start-index);
+            @sel: ~"@{sel-s}";
+
+            @media (max-width: (@bp)) {
+                @{sel} & {
+                    @rules();
+                }
+            }
+
+            // recursively descend to handle the next breakpoint group ("+4" for the selector string and the three breakpoint values)
+            #stacks-internals #responsive-stuff(@bp-index, @rules, @breakpoints, @start-index + 4)
+        }
+
+        // If the first list element is a number (i.e. pixel value), there is no selector string
+        & when (isnumber(extract(@breakpoints, @start-index))) {
+
+            // the actual breakpoint
+            @bp: extract(@breakpoints, @start-index + @bp-index);
+
+            @media (max-width: (@bp)) {
+                @rules();
+            }
+
+            // recursively descend to handle the next breakpoint group ("+3" for the three breakpoint values)
+            #stacks-internals #responsive-stuff(@bp-index, @rules, @breakpoints, @start-index + 3)
+        }
+    }
 }
