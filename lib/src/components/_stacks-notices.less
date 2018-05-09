@@ -24,51 +24,51 @@
 //  $$  OUTLINED
 //  ----------------------------------------------------------------------------
 .s-notice__outlined {
+    background-color: @white;
     color: @fc-dark;
 }
 
 //  $$  IMPORTANT
 //  ----------------------------------------------------------------------------
 .s-notice__important {
+    border-color: transparent;
     background-color: @black-700;
     color: @white;
 }
 
 
+& {
+#stacks-internals #load-config(); //  Call all our variables from _stacks-configuration
 //  ============================================================================
 //  $   VISUAL STYLES
 //  ============================================================================
 //  $$  INFO
 //  ----------------------------------------------------------------------------
 .s-notice__info {
-    border-color: #CFDCE6;
-    background-color: #E1F0FC;
+    border-color: @notice-info-border-color;
+    background-color: @notice-info-background-color;
 
     &.s-notice__outlined {
         border-color: @blue-500;
-        background-color: @white;
     }
 
     &.s-notice__important {
-        border-color: transparent;
-        background-color: @blue-500;
+        background-color: @notice-info-important-background-color;
     }
 }
 
 //  $$  SUCCESS
 //  ----------------------------------------------------------------------------
 .s-notice__success {
-    border-color: #BED9C6;
-    background-color: #D3F1DC;
+    border-color: @notice-success-border-color;
+    background-color: @notice-success-background-color;
 
     &.s-notice__outlined {
         border-color: @green-400;
-        background-color: @white;
     }
 
     &.s-notice__important {
-        border-color: transparent;
-        background-color: #43CA70;
+        background-color: @notice-success-important-background-color;
         color: @fc-dark;
     }
 }
@@ -76,17 +76,15 @@
 //  $$  WARNING
 //  ----------------------------------------------------------------------------
 .s-notice__warning {
-    border-color: #E6DFC6;
-    background-color: #FFF8DC;
+    border-color: @notice-warning-border-color;
+    background-color: @notice-warning-background-color;
 
     &.s-notice__outlined {
         border-color: @yellow-500;
-        background-color: @white;
     }
 
     &.s-notice__important {
-        border-color: transparent;
-        background-color: @yellow-400;
+        background-color: @notice-warning-important-background-color;
         color: @fc-dark;
     }
 }
@@ -94,20 +92,18 @@
 //  $$  DANGER
 //  ----------------------------------------------------------------------------
 .s-notice__danger {
-    border-color: #E6D0D4;
-    background-color: #FFE7EB;
+    border-color: @notice-danger-border-color;
+    background-color: @notice-danger-background-color;
 
     &.s-notice__outlined {
         border-color: @red-400;
-        background-color: @white;
     }
 
     &.s-notice__important {
-        border-color: transparent;
-        background-color: @red-400;
-        color: @red-050;
+        background-color: @notice-danger-important-background-color;
     }
 }
+} // End stacks configuration mixin
 
 
 //  ============================================================================
@@ -151,180 +147,4 @@
         transition: visibility 0s 0s, opacity 100ms @te-smooth 0s, transform 100ms @te-smooth 0s;
         transition: visibility 0s 0s, opacity 100ms @te-smooth 0s, transform 100ms @te-smooth 0s, -webkit-transform 100ms @te-smooth 0s;
     }
-}
-
-
-//  ============================================================================
-//  $   BANNERS
-//  ----------------------------------------------------------------------------
-.s-notice__banner {
-    position: fixed;
-    z-index: @zi-navigation-fixed - 1; // Tuck below topbar
-    top: 0;
-    right: 0;
-    left: 0;
-    width: 100%;
-    padding: @su12;
-
-    border-radius: 0;
-    -webkit-box-shadow: none;
-            box-shadow: none;
-
-    color: @white;
-
-    // If you want to hide and reveal the banner
-    &[aria-hidden="true"] {
-        visibility: hidden;
-        opacity: 0;
-        -webkit-transform: translate3d(0,-50px,0);
-                transform: translate3d(0,-50px,0);
-    }
-    &[aria-hidden="false"] {
-        visibility: visible;
-        opacity: 1;
-        -webkit-transform: translate3d(0,49px,0);
-                transform: translate3d(0,49px,0);
-    }
-
-    &.is-pinned {
-        z-index: @zi-navigation-fixed + 1;
-        -webkit-transform: translate3d(0,0,0);
-                transform: translate3d(0,0,0);
-    }
-}
-
-.s-notice__banner-hero {
-    overflow: hidden;
-    z-index: @zi-banners;
-    background-position: right center, center center;
-    background-repeat: no-repeat, no-repeat;
-}
-
-//  --  When we want to keep hero content capped
-.s-notice__banner-container {
-    position: relative;
-    z-index: @zi-banners + 1;
-    width: 100%;
-    max-width: 1090px;
-    margin: 0 auto;
-    padding: @su16;
-}
-
-.s-notice__banner-bar {
-    position: relative;
-    z-index: @zi-banners;
-    padding: 0;
-}
-
-
-//  ============================================================================
-//  $$   BANNER BACKGROUNDS
-//  ============================================================================
-//  --  CIRCLE
-//  ----------------------------------------------------------------------------
-.s-notice__banner-circle:before {
-    content: "";
-    position: absolute;
-    z-index: -1;
-    top: -4vw;
-    left: -4vw;
-    width: 0;
-    height: 0;
-    padding: 20%;
-    border-radius: @br-circle;
-    pointer-events: none;
-}
-
-& {
-#stacks-internals #load-config();
-
-//  --  BACKGROUND: BRAND COLOR
-//  ----------------------------------------------------------------------------
-.s-notice__banner__brand {
-    background-image: -webkit-gradient(linear, left top, right top, from(@banner-brand-background-gradient1), to(@banner-brand-background-gradient2));
-    background-image: linear-gradient(to right, @banner-brand-background-gradient1, @banner-brand-background-gradient2);
-
-    //  --  Darkens the background gradient
-    &.s-notice__banner-bar {
-        background-image: -webkit-gradient(linear, left top, right top, from(darken(@banner-brand-background-gradient1,7.5%)), to(darken(@banner-brand-background-gradient2,7.5%)));
-        background-image: linear-gradient(to right, darken(@banner-brand-background-gradient1,7.5%), darken(@banner-brand-background-gradient2,7.5%));
-    }
-
-    //  --  Adds the background circle in
-    .s-notice__banner-circle:before {
-        background-color: fade(overlay(@banner-brand-background-color, @black-900), 7.5%);
-    }
-}
-
-//  --  BACKGROUND: INFO (BLUE) COLOR
-//  ----------------------------------------------------------------------------
-.s-notice__banner__info {
-    background-image: -webkit-gradient(linear, left top, right top, from(@banner-info-background-gradient1), to(@banner-info-background-gradient2));
-    background-image: linear-gradient(to right, @banner-info-background-gradient1, @banner-info-background-gradient2);
-
-    //  --  Darkens the background gradient
-    &.s-notice__banner-bar {
-        background-image: -webkit-gradient(linear, left top, right top, from(darken(@banner-info-background-gradient1,7.5%)), to(darken(@banner-info-background-gradient2,7.5%)));
-        background-image: linear-gradient(to right, darken(@banner-info-background-gradient1,7.5%), darken(@banner-info-background-gradient2,7.5%));
-    }
-
-    //  --  Adds the background circle in
-    .s-notice__banner-circle:before {
-        background-color: fade(overlay(@banner-info-background-color, @black-900), 7.5%);
-    }
-}
-
-//  --  BACKGROUND: SUCCESS (GREEN) COLOR
-//  ----------------------------------------------------------------------------
-.s-notice__banner__success {
-    background-image: -webkit-gradient(linear, left top, right top, from(@banner-success-background-gradient1), to(@banner-success-background-gradient2));
-    background-image: linear-gradient(to right, @banner-success-background-gradient1, @banner-success-background-gradient2);
-
-    //  --  Darkens the background gradient
-    &.s-notice__banner-bar {
-        background-image: -webkit-gradient(linear, left top, right top, from(darken(@banner-success-background-gradient1,7.5%)), to(darken(@banner-success-background-gradient2,7.5%)));
-        background-image: linear-gradient(to right, darken(@banner-success-background-gradient1,7.5%), darken(@banner-success-background-gradient2,7.5%));
-    }
-
-    //  --  Adds the background circle in
-    .s-notice__banner-circle:before {
-        background-color: fade(overlay(@banner-success-background-color, @black-900), 7.5%);
-    }
-}
-
-//  --  BACKGROUND: IMPORTANT (BLACK) COLOR
-//  ----------------------------------------------------------------------------
-.s-notice__banner__important {
-    background-image: -webkit-gradient(linear, left top, right top, from(@banner-important-background-gradient1), to(@banner-important-background-gradient2));
-    background-image: linear-gradient(to right, @banner-important-background-gradient1, @banner-important-background-gradient2);
-
-    //  --  Darkens the background gradient
-    &.s-notice__banner-bar {
-        background-image: -webkit-gradient(linear, left top, right top, from(darken(@banner-important-background-gradient1,7.5%)), to(darken(@banner-important-background-gradient2,7.5%)));
-        background-image: linear-gradient(to right, darken(@banner-important-background-gradient1,7.5%), darken(@banner-important-background-gradient2,7.5%));
-    }
-
-    //  --  Adds the background circle in
-    .s-notice__banner-circle:before {
-        background-color: fade(overlay(@banner-important-background-color, @black-900), 15%);
-    }
-}
-
-//  --  BACKGROUND: DANGER (RED) COLOR
-//  ----------------------------------------------------------------------------
-.s-notice__banner__danger {
-    background-image: -webkit-gradient(linear, left top, right top, from(@banner-danger-background-gradient1), to(@banner-danger-background-gradient2));
-    background-image: linear-gradient(to right, @banner-danger-background-gradient1, @banner-danger-background-gradient2);
-
-    //  --  Darkens the background gradient
-    &.s-notice__banner-bar {
-        background-image: -webkit-gradient(linear, left top, right top, from(darken(@banner-danger-background-gradient1,7.5%)), to(darken(@banner-danger-background-gradient2,7.5%)));
-        background-image: linear-gradient(to right, darken(@banner-danger-background-gradient1,7.5%), darken(@banner-danger-background-gradient2,7.5%));
-    }
-
-    //  --  Adds the background circle in
-    .s-notice__banner-circle:before {
-        background-color: fade(overlay(@banner-danger-background-color, @black-900), 15%);
-    }
-}
 }

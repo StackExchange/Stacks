@@ -1,69 +1,72 @@
 system:
-  - class: .s-notice__banner
+  - class: .s-banner
     applies: N/A
     description: Base banner parent class. This defaults to a system banner style.
-  - class: ".s-notice__brand"
-    applies: .s-notice__banner
-    description: Uses the same class name for brand (orange) visual styles as on <span class="stacks-code">.s-notice</span>.
-  - class: ".s-notice__info"
-    applies: .s-notice__banner
-    description: Uses the same class name for info (blue) visual styles as on <span class="stacks-code">.s-notice</span>.
-  - class: ".s-notice__success"
-    applies: .s-notice__banner
-    description: Uses the same class name for success (green) visual styles as on <span class="stacks-code">.s-notice</span>.
-  - class: ".s-notice__warning"
-    applies: .s-notice__banner
-    description: Uses the same class name for warning (yellow) visual styles as on <span class="stacks-code">.s-notice</span>.
-  - class: ".s-notice__danger"
-    applies: .s-notice__banner
-    description: Uses the same class name for danger (red) visual styles as on <span class="stacks-code">.s-notice</span>.
-  - class: ".s-notice__important"
-    applies: .s-notice__banner
+  - class: .s-banner__dark
+    applies: .s-banner
+    description: Creates a darker background and border color.
+  - class: .s-banner__info
+    applies: .s-banner
+    description: Applies info (blue) visual styles.
+  - class: ".s-banner__success"
+    applies: .s-banner
+    description: Applies success (green) visual styles.
+  - class: ".s-banner__warning"
+    applies: .s-banner
+    description: Applies warning (yellow) visual styles.
+  - class: ".s-banner__danger"
+    applies: .s-banner
+    description: Applies danger (red) visual styles.
+  - class: ".s-banner__important"
+    applies: .s-banner
     description: Emboldens the above visual styles by strengthening the background saturation. This should be used for time-sensitive, pressing information that needs to be noticed by the user.
 
 hero:
-  - class: .s-notice__banner
+  - class: .s-hero
     applies: N/A
-    description: Base parent banner class. This defaults to a system banner style.
-  - class: .s-notice__banner-hero
-    applies: ".s-notice__banner .s-notice__banner-bar"
-    description: Modifying class which turns the base banner class into a larger, hero class.
-  - class: .s-notice__banner-bar
-    applies: .s-notice__banner
-    description: Inserts a smaller, footer-like bar underneath the larger hero. This is typically used for secondary calls-to-action.
-  - class: .s-notice__banner-container
-    applies: .s-notice__banner .s-notice__banner-bar
-    description: All hero content is to be contained within this class.
-  - class: .s-notice__banner__brand
-    applies: .s-notice__banner .s-notice__banner-bar
-    description: Provides a background gradient which matches our brand colors (orange).
-  - class: .s-notice__banner__info
-    applies: .s-notice__banner .s-notice__banner-bar
-    description: Provides a background gradient which matches other info styles (blue).
-  - class: .s-notice__banner__success
-    applies: .s-notice__banner .s-notice__banner-bar
-    description: Provides a background gradient which matches other success styles (green).
-  - class: .s-notice__banner__warning
-    applies: .s-notice__banner .s-notice__banner-bar
-    description: Provides a background gradient which matches other warning styles (yellow).
-  - class: .s-notice__banner__danger
-    applies: .s-notice__banner .s-notice__banner-bar
-    description: Provides a background gradient which matches other danger styles (red).
-  - class: .s-notice__banner-circle
-    applies: .s-notice__banner-container
+    description: Base parent class for hero banners
+  - class: .s-hero--bar
+    applies: .s-hero
+    description: A smaller, visually darker bar, typically located underneath a larger hero. Used primarily for secondary calls-to-action.
+  - class: .s-hero--container
+    applies: .s-hero .s-hero--bar
+    description: All hero content is contained within this class to properly center it within the overall hero wrapper.
+  - class: .s-hero__orange
+    applies: .s-hero .s-hero--bar
+    description: A visual treatment that matches our orange brand colors.
+  - class: .s-hero__purple
+    applies: .s-hero .s-hero--bar
+    description: A visual treatment that matches our purple brand colors.
+  - class: .s-hero__dark
+    applies: .s-hero .s-hero--bar
+    description: A visual treatment that matches our black brand colors.
+  - class: .s-hero__info
+    applies: .s-hero .s-hero--bar
+    description: A visual treatment that matches info styles.
+  - class: .s-hero__success
+    applies: .s-hero .s-hero--bar
+    description: A visual treatment that matches success styles.
+  - class: .s-hero__warning
+    applies: .s-hero .s-hero--bar
+    description: A visual treatment that matches warning styles.
+  - class: .s-hero__danger
+    applies: .s-hero .s-hero--bar
+    description: A visual treatment that matches danger styles.
+  - class: .s-hero--circle
+    applies: .s-hero--container
     description: Inserts a background circle to the left side of the hero area.
 
 access:
   - item: aria-describedby="[id]"
-    applies: .s-notice__banner-container
+    applies: .s-hero--container
     description: Used to locate what copy should be used to describe the banner.
     url: https://www.w3.org/TR/wai-aria-1.1/#aria-describedby
   - item: aria-labeledby="[id]"
-    applies: .s-notice__banner-container
+    applies: .s-hero--container
     description: Used to locate what copy should be used to title the banner.
     url: https://www.w3.org/TR/wai-aria-1.1/#aria-labelledby
   - item: aria-hidden="[state]"
-    applies: .s-notice__banner
+    applies: .s-banner .s-hero
     description: Used to inform screen-readers if the banner should be visible or not.
     url: https://www.w3.org/TR/wai-aria-1.1/#aria-hidden
   - item: aria-label="[id]"
@@ -71,18 +74,18 @@ access:
     description: Apply this label to the copy blocks which title or describe the banner.
     url: https://www.w3.org/TR/wai-aria-1.1/#aria-label
   - item: role="region"
-    applies: .s-notice__banner
+    applies: .s-banner .s-hero
     description: Defines the banner area as a distinct area on the page. Used only on hero banners.
     url: https://www.w3.org/TR/wai-aria-1.1/#region
   - item: role="status"
-    applies: .s-notice__banner
+    applies: .s-banner .s-hero
     description: Defines a live region with advisory information for the user, but not important enough to warrant an alert.
     url: https://www.w3.org/TR/wai-aria-1.1/#status
   - item: role="alert"
-    applies: .s-notice__banner
+    applies: .s-banner .s-hero
     description: Defines a live region with important, time-sensitive information for the user.
     url: https://www.w3.org/TR/wai-aria-1.1/#alert
   - item: role="alertdialog"
-    applies: .s-notice__banner-container
+    applies: .s-hero--container
     description: Defines the containing dialog area of an alert message. This is to be used in conjunction with <code class="stacks-code">role="alert"</code>.
     url: https://www.w3.org/TR/wai-aria-1.1/#status

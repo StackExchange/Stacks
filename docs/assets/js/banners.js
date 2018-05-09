@@ -9,7 +9,7 @@ $(document).ready(function() {
     var heroHeight = hero.outerHeight();
     var heroBannerFooter = $(".js-banner-hero-footer");
     var circle = $(this).find(".js-banner-circle");
-    var typeClasses = ("s-notice__info s-notice__brand s-notice__success s-notice__warning s-notice__danger s-notice__important s-notice__banner__info s-notice__banner__important s-notice__banner__danger s-notice__banner__success s-notice__banner__brand is-pinned");
+    var typeClasses = ("s-banner__info s-banner__success s-banner__warning s-banner__danger s-banner__dark s-banner__important s-hero__orange s-hero__purple s-hero__dark s-hero__info s-hero__success s-hero__warning s-hero__danger s-hero--circle is-pinned");
 
     //  Hide everything on load
     hero.hide();
@@ -20,12 +20,12 @@ $(document).ready(function() {
     heroBtn.on("click", function() {
         var typeSelect = heroTypeMenu.find(":selected").data("class");
         var circleSelect = heroPatternMenu.find(":selected").data("circle");
-        var positionSelect = heroPositionMenu.find(":selected").data("class");
+        var positionSelect = heroPositionMenu.find(":selected").data("pinned");
 
         $(this).text("Update example");
         heroCloseBtn.removeClass("d-none");
 
-        if (positionSelect == "is-pinned") {
+        if (positionSelect == "yes") {
             heroBannerFooter
                 .show()
                 .attr("aria-hidden","false")
@@ -53,10 +53,10 @@ $(document).ready(function() {
                 });
 
             if (circleSelect == "yes") {
-                circle.addClass("s-notice__banner-circle");
+                circle.addClass("s-hero--circle");
             }
             else {
-                circle.removeClass("s-notice__banner-circle");
+                circle.removeClass("s-hero--circle");
             }
         }
         else {
@@ -88,10 +88,10 @@ $(document).ready(function() {
                 });
 
             if (circleSelect == "yes") {
-                circle.addClass("s-notice__banner-circle");
+                circle.addClass("s-hero--circle");
             }
             else {
-                circle.removeClass("s-notice__banner-circle");
+                circle.removeClass("s-hero--circle");
             }
         }
     });
@@ -124,7 +124,7 @@ $(document).ready(function() {
                 "left": "",
                 "right": ""
             });
-        circle.removeClass("s-notice__banner-circle");
+        circle.removeClass("s-hero--circle");
 
         heroBtn.text("Show example");
         heroCloseBtn.addClass("d-none");
@@ -159,7 +159,7 @@ $(document).ready(function() {
                 "left": "",
                 "right": ""
             });
-        circle.removeClass("s-notice__banner-circle");
+        circle.removeClass("s-hero--circle");
     });
 
 
@@ -175,9 +175,9 @@ $(document).ready(function() {
     var sysPosMenu = $(".js-sys-banner-position-menu");
 
     sysBannerBtn.on("click", function(e) {
-        var sysStyle = sysStyleMenu.find(":selected").data("class");
+        var sysStyle = sysStyleMenu.find(":selected").data("important");
         var sysType = sysTypeMenu.find(":selected").data("class");
-        var sysPos = sysPosMenu.find(":selected").data("class");
+        var sysPos = sysPosMenu.find(":selected").data("pinned");
 
         e.preventDefault();
         e.stopPropagation();
@@ -185,7 +185,7 @@ $(document).ready(function() {
         $(this).text("Update example");
         sysCloseBtn.removeClass("d-none");
 
-        if (sysPos == "is-pinned") {
+        if (sysPos == "yes") {
             topnav.css("top", sysBannerHeight + "px").show();
             sysBanner.show().attr("aria-hidden","false").removeClass(typeClasses).addClass(sysStyle + " " + sysType + " " + sysPos);
         }
@@ -194,8 +194,8 @@ $(document).ready(function() {
             sysBanner.show().attr("aria-hidden","false").removeClass(typeClasses).addClass(sysStyle + " " + sysType);
         }
 
-        if (sysStyle == "none") {
-            sysBanner.addClass("s-notice__important");
+        if (sysStyle == "yes") {
+            sysBanner.addClass("s-banner__important");
         }
     });
 
