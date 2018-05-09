@@ -1,5 +1,4 @@
 // the default CSS reset is normalize.css; other possibilities are the Eric Meyer reset, and no reset at all.
-@stacks-include-css-reset: normalize;
 
 #stacks-internals() {
     #include-css-reset(meyer) {
@@ -12,4 +11,8 @@
     }
 }
 
-#stacks-internals #include-css-reset(@stacks-include-css-reset);
+&{
+	#stacks-internals #load-static-config();
+	#stacks-internals #include-css-reset(@css-reset);
+}
+
