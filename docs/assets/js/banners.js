@@ -16,6 +16,18 @@ $(document).ready(function() {
     heroSmall.hide();
     heroBannerFooter.hide();
 
+    $.fn.hideBanner = function() {
+        this.hide()
+            .attr("aria-hidden","true")
+            .removeClass(typeClasses)
+            .css({
+                "position": "",
+                "top": "",
+                "left": "",
+                "right": ""
+            });
+    }
+
     //  Show the hero banners when you click the "Show Example" button
     heroBtn.on("click", function() {
         var typeSelect = heroTypeMenu.find(":selected").data("class");
@@ -30,27 +42,9 @@ $(document).ready(function() {
                 .show()
                 .attr("aria-hidden","false")
                 .removeClass(typeClasses)
-                .addClass(typeSelect + " " + positionSelect);
-            hero
-                .hide()
-                .attr("aria-hidden","true")
-                .removeClass(typeClasses)
-                .css({
-                    "position": "",
-                    "top": "",
-                    "left": "",
-                    "right": ""
-                });
-            heroSmall
-                .hide()
-                .attr("aria-hidden","true")
-                .removeClass(typeClasses)
-                .css({
-                    "position": "",
-                    "top": "",
-                    "left": "",
-                    "right": ""
-                });
+                .addClass(typeSelect + " is-pinned");
+            hero.hideBanner();
+            heroSmall.hideBanner();
 
             if (circleSelect == "yes") {
                 circle.addClass("s-hero--circle");
@@ -60,10 +54,7 @@ $(document).ready(function() {
             }
         }
         else {
-            heroBannerFooter
-                .hide()
-                .attr("aria-hidden","true")
-                .removeClass(typeClasses);
+            heroBannerFooter.hideBanner();
             hero
                 .show()
                 .attr("aria-hidden","false")
@@ -71,7 +62,7 @@ $(document).ready(function() {
                 .addClass(typeSelect)
                 .css({
                     "position": "fixed",
-                    "top": "-50px",
+                    "top": "0",
                     "left": "0",
                     "right": "0"
                 });
@@ -100,30 +91,9 @@ $(document).ready(function() {
         e.preventDefault();
         e.stopPropagation();
 
-        heroBannerFooter
-                .hide()
-                .attr("aria-hidden","true")
-                .removeClass(typeClasses);
-        heroSmall
-                .hide()
-                .attr("aria-hidden","true")
-                .removeClass(typeClasses)
-                .css({
-                    "position": "",
-                    "top": "",
-                    "left": "",
-                    "right": ""
-                });
-        hero
-            .hide()
-            .attr("aria-hidden","true")
-            .removeClass(typeClasses)
-            .css({
-                "position": "",
-                "top": "",
-                "left": "",
-                "right": ""
-            });
+        heroBannerFooter.hideBanner();
+        heroSmall.hideBanner();
+        hero.hideBanner();
         circle.removeClass("s-hero--circle");
 
         heroBtn.text("Show example");
@@ -139,26 +109,8 @@ $(document).ready(function() {
                 .hide()
                 .attr("aria-hidden","true")
                 .removeClass(typeClasses);
-        heroSmall
-                .hide()
-                .attr("aria-hidden","true")
-                .removeClass(typeClasses)
-                .css({
-                    "position": "",
-                    "top": "",
-                    "left": "",
-                    "right": ""
-                });
-        hero
-            .hide()
-            .attr("aria-hidden","true")
-            .removeClass(typeClasses)
-            .css({
-                "position": "",
-                "top": "",
-                "left": "",
-                "right": ""
-            });
+        heroSmall.hideBanner();
+        hero.hideBanner();
         circle.removeClass("s-hero--circle");
     });
 
@@ -170,32 +122,38 @@ $(document).ready(function() {
     var sysBannerHeight = sysBanner.outerHeight();
     var sysBannerBtn = $(".js-sys-banner-show");
     var sysCloseBtn = $(".js-sys-banner-remove, .js-notice-close");
-    var sysStyleMenu = $(".js-sys-banner-style-menu");
-    var sysTypeMenu = $(".js-sys-banner-type-menu");
-    var sysPosMenu = $(".js-sys-banner-position-menu");
+    var sysStyle = $(".js-sys-banner-style-menu").find(":selected").data("class");
+    var sysType = $(".js-sys-banner-type");
+    var sysPos = $(".js-sys-banner-position");
+    var sysCloseIcon = $(".js-notice-close");
 
     sysBannerBtn.on("click", function(e) {
-        var sysStyle = sysStyleMenu.find(":selected").data("important");
-        var sysType = sysTypeMenu.find(":selected").data("class");
-        var sysPos = sysPosMenu.find(":selected").data("pinned");
-
         e.preventDefault();
         e.stopPropagation();
 
         $(this).text("Update example");
         sysCloseBtn.removeClass("d-none");
 
-        if (sysPos == "yes") {
+        sysBanner.show().attr("aria-hidden","false").removeClass(typeClasses).addClass(sysStyle);
+
+        if (sysPos.is(":checked")) {
             topnav.css("top", sysBannerHeight + "px").show();
-            sysBanner.show().attr("aria-hidden","false").removeClass(typeClasses).addClass(sysStyle + " " + sysType + " " + sysPos);
+
+            sysBanner.addClass("is-pinned");
         }
         else {
             topnav.css("top","").show();
-            sysBanner.show().attr("aria-hidden","false").removeClass(typeClasses).addClass(sysStyle + " " + sysType);
         }
 
-        if (sysStyle == "yes") {
+        if (sysType.is(":checked")) {
             sysBanner.addClass("s-banner__important");
+
+            if (sysStyle == "s-banner__warning" || sysStyle == "s-banner__success") {
+                sysCloseIcon.removeClass("fc-white").addClass("fc-dark");
+            }
+            else {
+                sysCloseIcon.removeClass("fc-dark").addClass("fc-white");
+            }
         }
     });
 
