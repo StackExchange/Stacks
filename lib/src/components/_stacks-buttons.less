@@ -16,16 +16,16 @@
 //      Within each community theme, we allow buttons styles to be modified.
 //      The attributes that we allow people to modify are:
 //
-//      Attribute                 Variable                Default
-//      ---                       ---                     ---
-//      Font Weight               @btn-fw                 400
-//      Font Color                @btn-fc                 @link-color
-//      Background Color          @btn-bgc                fade(@btn-fc,0%)
-//      Background Image          @btn-bgg                false
-//      Border Color              @btn-brc                false
-//      Border Radius             @btn-br                 @br-sm
-//      Box Shadow Inset Color    @btn-bxis               false
-//      Box Shadow Color          @btn-bxos               @blue-500;
+//      Attribute                 Variable                      Default
+//      ---                       ---                           ---
+//      Font Weight               @button-font-weight           400
+//      Font Color                @button-font-color            @link-color-regular
+//      Background Color          @button-background-color      fade(@button-font-color,0%)
+//      Background Image          @button-has-gradient          false
+//      Border Color              @button-has-border            false
+//      Border Radius             @button-border-radius         @br-sm
+//      Box Shadow Inset Color    @button-has-inset-box-shadow  false
+//      Box Shadow Color          @button-box-shadow-color      @blue-500;
 //
 //      Some of these properties are true or false statements. To provide the
 //      fullest flexibility, we've created a number of mixins which check
@@ -36,15 +36,15 @@
 //
 //      HOW IT WORKS:
 //      What happens is when the mixin is invoked, we do a quick check to see
-//      if we're allowing inset borders within buttons (@btn-bxis). This is a
+//      if we're allowing inset borders within buttons (@button-has-inset-box-shadow). This is a
 //      true/false statement. If TRUE, we add in the variable you pass into
-//      the mixin (@bxis). If @btn-bxis is FALSE, add only the outer box shadow.
+//      the mixin (@bxis). If @button-has-inset-box-shadow is FALSE, add only the outer box shadow.
 //  ----------------------------------------------------------------------------
 
 & { // create a single scope to load the config into, at least for now
-#stacks-internals #short-config();
+#stacks-internals #load-config();
 
-.btn-check-bxs(@bxis: transparent, @bxos: @btn-bxos, @status: @btn-bxis) {
+.btn-check-bxs(@bxis: transparent, @bxos: @button-box-shadow-color, @status: @button-has-inset-box-shadow) {
     & when (@status = true) {
         -webkit-box-shadow: inset 0 1px 0 0 fade(lighten(@bxis,20%),75%), 0 0 0 0 fade(@bxos,0%);
                 box-shadow: inset 0 1px 0 0 fade(lighten(@bxis,20%),75%), 0 0 0 0 fade(@bxos,0%);
@@ -91,10 +91,10 @@
 //      Border Color
 //
 //      HOW IT WORKS:
-//      We first check to see if borders are desired on buttons with @btn-brc.
+//      We first check to see if borders are desired on buttons with @button-has-border.
 //      If it's true, then we use the background color by darkening it.
 //  ----------------------------------------------------------------------------
-.btn-check-brc(@brc: @btn-bgc, @status: @btn-brc) when (@status = true) {
+.btn-check-brc(@brc: @button-background-color, @status: @button-has-border) when (@status = true) {
     border-color: darken(@brc,10%);
 
     &:hover {
@@ -115,16 +115,16 @@
 //      Background Image (Gradient)
 //
 //      HOW IT WORKS:
-//      Using a mixin guard we check to see if @btn-bgg is TRUE/FALSE, or if
-//      the background value being passed is transparent. If @btn-bgg is TRUE
+//      Using a mixin guard we check to see if @button-has-gradient is TRUE/FALSE, or if
+//      the background value being passed is transparent. If @button-has-gradient is TRUE
 //      and if the @bgc value IS NOT transparent, then add the background
 //      gradient to the button.
 //
 //      In any other scenario, reset the background-image to none.
 //  ----------------------------------------------------------------------------
 .btn-check-bgg(@bgc) {
-    //    If @btn-bgg: true; and @bgc is NOT transparent, show gradients.
-    & when not (@bgc = transparent) and (@btn-bgg = true) {
+    //    If @button-has-gradient: true; and @bgc is NOT transparent, show gradients.
+    & when not (@bgc = transparent) and (@button-has-gradient = true) {
         background-image: -webkit-gradient(linear, left top, left bottom, from(lighten(@bgc,10%)), to(spin(saturate(@bgc,10%),5)));
         background-image: linear-gradient(to bottom, lighten(@bgc,10%) 0%, spin(saturate(@bgc,10%),5) 100%);
 
@@ -146,8 +146,8 @@
         }
     }
 
-    //    If @btn-bgg: false; or if @bgc is transparent, then remove gradients.
-    & when (@bgc = transparent), (@btn-bgg = false) {
+    //    If @button-has-gradient: false; or if @bgc is transparent, then remove gradients.
+    & when (@bgc = transparent), (@button-has-gradient = false) {
         &,
         &:hover,
         &:focus,
@@ -269,22 +269,22 @@
     position: relative;
     padding: 0.8em 1em;
     border: 1px solid transparent;
-    border-radius: @btn-br;
+    border-radius: @button-border-radius;
     background-color: transparent;
     outline: none;
     font-family: inherit;
     font-size: inherit;
-    font-weight: @btn-fw;
+    font-weight: @button-font-weight;
     line-height: 1; // Normalizes text display between a.s-button and button.s-button
     text-decoration: none;
     cursor: pointer;
 
     //  Default Style (Clear)
     .btn-check-brc();
-    .btn-check-bxs(fade(@btn-bxos,0%), @status: false);
-    .btn-bgc(@btn-bgc);
+    .btn-check-bxs(fade(@button-box-shadow-color,0%), @status: false);
+    .btn-bgc(@button-background-color);
     .btn-check-bgg(transparent);
-    .btn-fc(@btn-fc);
+    .btn-fc(@button-font-color);
 
     &:hover,
     &:focus {
@@ -353,7 +353,7 @@
     &.s-btn__md {
         padding-top: 0.7em;
         padding-bottom: 0.7em;
-        border-radius: @btn-br + 1;
+        border-radius: @button-border-radius + 1;
         .mx-fs(@fs-base + 4);
 
         &.s-btn__dropdown {
@@ -371,7 +371,7 @@
     &.s-btn__lg {
         padding-top: 0.7em;
         padding-bottom: 0.7em;
-        border-radius: @btn-br + 1;
+        border-radius: @button-border-radius + 1;
         .mx-fs(@fs-base + 8);
 
         &.s-btn__dropdown {
@@ -389,7 +389,7 @@
     &.s-btn__xl {
         padding-top: 0.7em;
         padding-bottom: 0.7em;
-        border-radius: @btn-br + @br-sm;
+        border-radius: @button-border-radius + @br-sm;
         .mx-fs(@fs-base + 14);
 
         &.s-btn__dropdown {
@@ -439,28 +439,28 @@
 //  ----------------------------------------------------------------------------
 .s-btn__inverted {
     .btn-check-brc(@status: false);
-    .btn-check-bxs(@bxos: fade(@btn-bxos,0%), @status: false);
-    .btn-bgc(fade(@btn-primary-fc,0%));
-    .btn-fc(fade(lighten(@btn-primary-bgc,40%),90%));
+    .btn-check-bxs(@bxos: fade(@button-box-shadow-color,0%), @status: false);
+    .btn-bgc(fade(@button-primary-font-color,0%));
+    .btn-fc(fade(lighten(@button-primary-background-color,40%),90%));
 }
 
 //  --  Base Outline Style
 //      Style which applies only a border.
 //  ----------------------------------------------------------------------------
 .s-btn__outlined {
-    .btn-check-brc(lighten(@btn-fc,20%));
-    .btn-check-bxs(@bxos: @btn-bxos, @status: false);
+    .btn-check-brc(lighten(@button-font-color,20%));
+    .btn-check-bxs(@bxos: @button-box-shadow-color, @status: false);
     .btn-check-bgg(transparent);
-    .btn-bgc(fade(@btn-fc,0%));
-    .btn-fc(@btn-fc);
+    .btn-bgc(fade(@button-font-color,0%));
+    .btn-fc(@button-font-color);
 
     //  --  Inverted: Outlined
     &.s-btn__inverted {
-        .btn-check-brc(fade(lighten(@btn-primary-bgc,50%),25%));
+        .btn-check-brc(fade(lighten(@button-primary-background-color,50%),25%));
         .btn-check-bxs(@bxos: @white, @status: false);
-        .btn-bgc(fade(lighten(@btn-primary-bgc,20%),0%));
+        .btn-bgc(fade(lighten(@button-primary-background-color,20%),0%));
         .btn-check-bgg(transparent);
-        .btn-fc(fade(lighten(@btn-primary-bgc,40%),90%));
+        .btn-fc(fade(lighten(@button-primary-background-color,40%),90%));
     }
 }
 
@@ -494,17 +494,17 @@
 //      Adds in background-colors, background-images, and/or box-shadows.
 //  ----------------------------------------------------------------------------
 .s-btn__filled {
-    .btn-check-brc(darken(@btn-filled-bgc,20%));
-    .btn-check-bxs(@btn-filled-bgc);
-    .btn-bgc(@btn-filled-bgc);
-    .btn-check-bgg(@btn-filled-bgc);
-    .btn-fc(@btn-filled-fc);
+    .btn-check-brc(darken(@button-filled-background-color,20%));
+    .btn-check-bxs(@button-filled-background-color);
+    .btn-bgc(@button-filled-background-color);
+    .btn-check-bgg(@button-filled-background-color);
+    .btn-fc(@button-filled-font-color);
 
     &.s-btn__inverted {
         .btn-check-brc(transparent);
-        .btn-check-bxs(@bxos: lighten(@btn-bxos,40%), @status: false);
+        .btn-check-bxs(@bxos: lighten(@button-box-shadow-color,40%), @status: false);
         .btn-bgc(fade(@white,95%));
-        .btn-fc(@btn-fc);
+        .btn-fc(@button-font-color);
     }
 }
 
@@ -514,49 +514,49 @@
 //  ============================================================================
 .s-btn__danger {
     .btn-check-brc(@status: false);
-    .btn-check-bxs(@bxos: @btn-danger-bgc, @status: false);
-    .btn-bgc(fade(@btn-danger-bgc,0%));
-    .btn-fc(@btn-danger-bgc);
+    .btn-check-bxs(@bxos: @button-danger-background-color, @status: false);
+    .btn-bgc(fade(@button-danger-background-color,0%));
+    .btn-fc(@button-danger-background-color);
 
     //  --  Outlined
     &.s-btn__outlined {
-        .btn-check-brc(lighten(@btn-danger-bgc,20%));
-        .btn-check-bxs(@bxos: @btn-danger-bgc, @status: false);
-        .btn-bgc(fade(@btn-danger-bgc,0%));
-        .btn-fc(@btn-danger-bgc);
+        .btn-check-brc(lighten(@button-danger-background-color,20%));
+        .btn-check-bxs(@bxos: @button-danger-background-color, @status: false);
+        .btn-bgc(fade(@button-danger-background-color,0%));
+        .btn-fc(@button-danger-background-color);
     }
 
     //  --  Filled
     &.s-btn__filled {
-        .btn-check-brc(@btn-danger-bgc);
-        .btn-check-bxs(@btn-danger-bgc, @btn-danger-bgc);
-        .btn-bgc(@btn-danger-bgc);
-        .btn-check-bgg(@btn-danger-bgc);
-        .btn-fc(@btn-danger-fc);
+        .btn-check-brc(@button-danger-background-color);
+        .btn-check-bxs(@button-danger-background-color, @button-danger-background-color);
+        .btn-bgc(@button-danger-background-color);
+        .btn-check-bgg(@button-danger-background-color);
+        .btn-fc(@button-danger-font-color);
     }
 
     //  --  Inverted
     &.s-btn__inverted {
         //  --  Inverted: Clear
         .btn-check-brc(@status: false);
-        .btn-check-bxs(@bxos: fade(@btn-bxos,0%), @status: false);
-        .btn-bgc(fade(@btn-danger-fc,0%));
-        .btn-fc(fade(lighten(@btn-danger-bgc,40%),90%));
+        .btn-check-bxs(@bxos: fade(@button-box-shadow-color,0%), @status: false);
+        .btn-bgc(fade(@button-danger-font-color,0%));
+        .btn-fc(fade(lighten(@button-danger-background-color,40%),90%));
 
         //  --  Inverted: Outlined
         &.s-btn__outlined {
-            .btn-check-brc(fade(lighten(@btn-danger-bgc,50%),25%));
-            .btn-bgc(fade(lighten(@btn-danger-bgc,40%),0%));
-            .btn-fc(fade(lighten(@btn-danger-bgc,50%),80%));
+            .btn-check-brc(fade(lighten(@button-danger-background-color,50%),25%));
+            .btn-bgc(fade(lighten(@button-danger-background-color,40%),0%));
+            .btn-fc(fade(lighten(@button-danger-background-color,50%),80%));
         }
 
         //  --  Inverted: Filled
         &.s-btn__filled {
-            .btn-check-brc(mix(lighten(@btn-danger-bgc,30%),@white));
-            .btn-check-bxs(@bxos: lighten(@btn-danger-bgc,50%), @status: false);
-            .btn-bgc(mix(lighten(@btn-danger-bgc,30%),@white));
-            .btn-check-bgg(lighten(@btn-danger-bgc,30%));
-            .btn-fc(darken(@btn-danger-bgc,10%));
+            .btn-check-brc(mix(lighten(@button-danger-background-color,30%),@white));
+            .btn-check-bxs(@bxos: lighten(@button-danger-background-color,50%), @status: false);
+            .btn-bgc(mix(lighten(@button-danger-background-color,30%),@white));
+            .btn-check-bgg(lighten(@button-danger-background-color,30%));
+            .btn-fc(darken(@button-danger-background-color,10%));
         }
     }
 }
@@ -566,11 +566,11 @@
 //  $   PRIMARY STYLE
 //  ============================================================================
 .s-btn__primary {
-    .btn-check-brc(@btn-primary-bgc);
-    .btn-check-bxs(@btn-primary-bgc);
-    .btn-bgc(@btn-primary-bgc);
-    .btn-check-bgg(@btn-primary-bgc);
-    .btn-fc(@btn-primary-fc);
+    .btn-check-brc(@button-primary-background-color);
+    .btn-check-bxs(@button-primary-background-color);
+    .btn-bgc(@button-primary-background-color);
+    .btn-check-bgg(@button-primary-background-color);
+    .btn-fc(@button-primary-font-color);
 }
 
 
@@ -613,8 +613,8 @@
             height: @su16;
             margin-left: -1.65em;
             margin-left: -(@su24 - @su2);
-            border: 2px dotted fade(@btn-filled-fc,40%);
-            border-left-color: darken(@btn-filled-fc,5%);
+            border: 2px dotted fade(@button-filled-font-color,40%);
+            border-left-color: darken(@button-filled-font-color,5%);
             border-radius: @br-circle;
             -webkit-animation: spinnerRotate 800ms infinite linear;
                     animation: spinnerRotate 800ms infinite linear;
@@ -629,8 +629,8 @@
     }
 
     &.s-btn__danger.is-loading:before {
-        border-color: fade(@btn-danger-bgc,25%);
-        border-left-color: fade(@btn-danger-bgc,75%);
+        border-color: fade(@button-danger-background-color,25%);
+        border-left-color: fade(@button-danger-background-color,75%);
     }
 
     &.s-btn__primary.is-loading:before,
