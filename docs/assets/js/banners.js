@@ -122,27 +122,25 @@ $(document).ready(function() {
     var sysBannerHeight = sysBanner.outerHeight();
     var sysBannerBtn = $(".js-sys-banner-show");
     var sysCloseBtn = $(".js-sys-banner-remove, .js-notice-close");
-    var sysStyle = $(".js-sys-banner-style-menu").find(":selected").data("class");
+    var sysStyleMenu = $(".js-sys-banner-style-menu");
     var sysType = $(".js-sys-banner-type");
     var sysPos = $(".js-sys-banner-position");
     var sysCloseIcon = $(".js-notice-close");
 
     sysBannerBtn.on("click", function(e) {
+        var sysStyle = sysStyleMenu.find(":selected").data("class");
+
         e.preventDefault();
         e.stopPropagation();
 
         $(this).text("Update example");
         sysCloseBtn.removeClass("d-none");
 
+        topnav.css("top","").show();
         sysBanner.show().attr("aria-hidden","false").removeClass(typeClasses).addClass(sysStyle);
 
         if (sysPos.is(":checked")) {
             topnav.css("top", sysBannerHeight + "px").show();
-
-            sysBanner.addClass("is-pinned");
-        }
-        else {
-            topnav.css("top","").show();
         }
 
         if (sysType.is(":checked")) {
