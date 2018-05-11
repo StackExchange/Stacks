@@ -141,6 +141,7 @@ $(document).ready(function() {
 
         if (sysPos.is(":checked")) {
             topnav.css("top", sysBannerHeight + "px").show();
+            sysBanner.css("top", "-49px");
         }
 
         if (sysType.is(":checked")) {
