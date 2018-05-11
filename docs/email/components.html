@@ -6,43 +6,50 @@ description: When to use and how to implement common email components.
 <section class="stacks-section">
     <h2 class="grid jc-spacebetween ai-center stacks-title">Typography</h2>
     <p class="stacks-p _section">
-        It's safe and accessible to use semantic HTML tags for basic text in email. Use <code class="stacks-code">margin</code> for spacing and <a href="faq#howdoescssinheritanceworkinemail">don't rely on inheritance</a> for text styles.</p>
+        It's safe and accessible to use semantic HTML tags like <code class="stacks-code">&lt;h&gt;</code>, <code class="stacks-code">&lt;p&gt;</code>, and <code class="stacks-code">&lt;ul&gt;</code> for text in email. Use inline CSS to specify intended styles (like the color of an <code class="stacks-code">&lt;a href&gt;</code> tag) and zero out unintended defaults (like the margin around a <code class="stacks-code">&lt;p&gt;</code> tag)
     </p>
     <div class="stacks-code-preview">
 {% highlight html linenos %}
 <td style="font-family: arial, sans-serif; font-size: 15px; line-height: 19px; color: #54595F; text-align: left;">
     <h2 style="margin: 0 0 15px 0; font-size: 21px; color: #242629; font-weight: bold;">This is a small section title</h2>
-    <p style="margin: 0 0 15px 0;">Lorem ipsum dolor sit amet, consectetur <a href="https://stackoverflow.com/" style="color: #0077CC; text-decoration: none;">adipiscing elit</a>. Cras nisi magna, mollis luctus sapien varius, mattis ornare est. Sed non tincidunt erat, ut commodo augue.</p>
-    <p style="margin: 0 0 15px 0;" class="has-markdown">I'm a markdown paragraph. Lorem ipsum <a href="https://stackoverflow.com/">dolor sit amet</a>, consectetur. <strong>Cras nisi magna</strong>, mollis luctus sapien varius, mattis ornare est.</p>
+    <p style="margin: 0 0 15px 0;">Lorem ipsum <strong>dolor</strong> sit amet, consectetur <a href="https://stackoverflow.com/" style="color: #0077CC; text-decoration: none;">adipiscing elit</a>. Cras nisi magna, mollis luctus sapien varius, mattis ornare est. Sed non tincidunt erat, ut commodo augue.</p>
+    <p style="margin: 0 0 15px 0;" class="has-markdown">I'm a <em>markdown</em> paragraph. Lorem ipsum <a href="https://stackoverflow.com/" style="color: #0077CC; text-decoration: none;">dolor sit amet</a>, consectetur. <strong>Cras nisi magna</strong>, mollis luctus sapien varius, mattis ornare est.</p>
     <ul style="padding: 0; margin: 0 0 15px 0; list-style-type: disc;">
-        <li style="margin:0 0 10px 30px;" class="list-item-first">A list item.</li>
+        <li style="margin:0 0 10px 30px;">A list item.</li>
         <li style="margin:0 0 10px 30px;">Another list item here.</li>
-        <li style="margin: 0 0 0 30px;" class="list-item-last">Everyone gets a list item, list items for everyone!</li>
+        <li style="margin: 0 0 0 30px;">Everyone gets a list item, list items for everyone!</li>
     </ul>
 </td>
 {% endhighlight %}
         <div class="-preview ps-relative" style="font-family: arial, sans-serif; font-size: 15px; line-height: 19px; color: #54595F; text-align: left;">
             <h2 style="margin: 0 0 15px 0; font-size: 21px; color: #242629; font-weight: bold;">This is a small section title</h2>
-            <p style="margin: 0 0 15px 0;">Lorem ipsum dolor sit amet, consectetur <a href="https://stackoverflow.com/" style="color: #0077CC; text-decoration: none;">adipiscing elit</a>. Cras nisi magna, mollis luctus sapien varius, mattis ornare est. Sed non tincidunt erat, ut commodo augue.</p>
-            <p style="margin: 0 0 15px 0;" class="has-markdown">I'm a markdown paragraph. Lorem ipsum <a href="https://stackoverflow.com/">dolor sit amet</a>, consectetur. <strong>Cras nisi magna</strong>, mollis luctus sapien varius, mattis ornare est.</p>
+            <p style="margin: 0 0 15px 0;">Lorem ipsum <strong>dolor</strong> sit amet, consectetur <a href="https://stackoverflow.com/" style="color: #0077CC; text-decoration: none;">adipiscing elit</a>. Cras nisi magna, mollis luctus sapien varius, mattis ornare est. Sed non tincidunt erat, ut commodo augue.</p>
+            <p style="margin: 0 0 15px 0;" class="has-markdown">I'm a <em>markdown</em> paragraph. Lorem ipsum <a href="https://stackoverflow.com/" style="color: #0077CC; text-decoration: none;">dolor sit amet</a>, consectetur. <strong>Cras nisi magna</strong>, mollis luctus sapien varius, mattis ornare est.</p>
             <ul style="padding: 0; margin: 0 0 15px 0; list-style-type: disc;">
-                <li style="margin:0 0 10px 30px;" class="list-item-first">You get a list item.</li>
+                <li style="margin:0 0 10px 30px;">You get a list item.</li>
                 <li style="margin:0 0 10px 30px;">And you get a list item!</li>
-                <li style="margin: 0 0 0 30px;" class="list-item-last">Everyone gets a list item!</li>
+                <li style="margin: 0 0 0 30px;">Everyone gets a list item!</li>
             </ul>
         </div>
     </div>
     <h3 class="grid jc-spacebetween ai-center stacks-title _subtitle">Using Markdown</h3>
     <p class="stacks-p _section">
-        TBD
+        If email content is written in markdown, we can't write inline CSS into link tags. Left unstyled, <a href="#" style="color: blue; text-decoration: underline;">links will appear like this</a>. To style links contained in markdown text, add a <code class="stacks-code">class="has-markdown"</code> to any parent tag that might contain a markdown link.
     </p>
     <div class="stacks-code-preview">
 {% highlight html linenos %}
-<p style="margin: 0 0 15px 0;">@_s("I'm a text string in markdown.")</p>
+<td style="" class="has-markdown">
+    <p style="margin: 0 0 15px 0;">@_s("I'm a text string in markdown.")</p>
+    <p style="margin: 0 0 15px 0;">@_m("I'm a *bold* [text link](https://www.stackoverflow.com) in markdown.")</p>
+</td>
 {% endhighlight %}
         <div class="-preview ps-relative" style="font-family: arial, sans-serif; font-size: 15px; line-height: 19px; color: #54595F; text-align: left;">
             <p style="margin: 0 0 15px 0;">I'm a text string in markdown.</p>
+            <p style="margin: 0 0 15px 0;">I'm a <strong>bold</strong> <a href="https://www.stackoverflow.com" style="color: #0077CC; text-decoration: none;">text link</a> in markdown.</p>
         </div>
+        <aside class="s-notice s-notice__warning mt12" aria-hidden="false">
+            Using <code class="stacks-code">class="has-markdown"</code> applies styles defined in the <code class="stacks-code">&lt;style&gt;</code> tag. Only  <a href="https://www.campaignmonitor.com/css/style-element/style-in-head/">email clients that support <code class="stacks-code">&lt;style&gt;</code> in <code class="stacks-code">&lt;head&gt;</code></a> will render <code class="stacks-code">has-markdown</code> links properly.
+        </aside>
     </div>
 </section>
 <section class="stacks-section">
