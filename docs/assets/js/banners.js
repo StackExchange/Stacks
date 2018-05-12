@@ -138,6 +138,7 @@ $(document).ready(function() {
 
         topnav.css("top","").show();
         sysBanner.show().attr("aria-hidden","false").removeClass(typeClasses).addClass(sysStyle);
+        sysCloseIcon.removeClass("fc-white").addClass("fc-dark");
 
         if (sysPos.is(":checked")) {
             topnav.css("top", sysBannerHeight + "px").show();
