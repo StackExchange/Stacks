@@ -9,27 +9,25 @@
     <div class="stacks-wrapper">
         {% include navigation.html %}
 
-        <main class="stacks-content p16 pt32 js-stacks-content">
-            <div class="grid mx-auto stacks-body">
-                <div class="w25 order-last">
-                    <ul class="stacks-subnav js-secondary-nav ps-sticky"></ul>
-                </div>
-                <div class="w75">
-                    <div id="content">
-                        {% if page.title %}
-                            <h1 class="fs-headline2 fw-normal">
-                                {{ page.title }}
-                            </h1>
-                        {% endif %}
+        <main class="grid stacks-body js-stacks-content">
+            <div class="grid--cell stacks-menu order-last">
+                <ul class="ps-sticky grid gs4 gsy fd-column stacks-nav__secondary js-secondary-nav"></ul>
+            </div>
+            <div class="grid--cell stacks-content">
+                <div id="content">
+                    {% if page.title %}
+                        <h1 class="fs-headline2 fw-normal">
+                            {{ page.title }}
+                        </h1>
+                    {% endif %}
 
-                        {% if page.description %}
-                            <p class="stacks-p _intro">
-                                {{ page.description }}
-                            </p>
-                        {% endif %}
+                    {% if page.description %}
+                        <p class="stacks-p _intro">
+                            {{ page.description }}
+                        </p>
+                    {% endif %}
 
-                        {{ content }}
-                    </div>
+                    {{ content }}
                 </div>
             </div>
         </main>

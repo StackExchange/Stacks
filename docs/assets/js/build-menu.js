@@ -12,14 +12,14 @@
   const HEADERS = ".stacks-section > :header"
 
   const ClassName = {
-    MENU        : "nav",
-    MENU_ITEM   : "-item",
-    MENU_LINK   : "s-link s-link__muted"
+    MENU        : "stacks-nav--subnav",
+    MENU_ITEM   : "stacks-nav--item",
+    MENU_LINK   : "stacks-nav--link fs-body1"
   }
 
   const GridClass = {
     GRID_BOX    : "grid",
-    GRID_COL    : "ff-column-nowrap",
+    GRID_COL    : "fd-column",
     GRID_CELL   : "grid--cell"
   }
 
@@ -62,7 +62,7 @@
 
   function $li(val,id) {
     var $e = $("<li>", { "class": ClassName.MENU_ITEM + " " + GridClass.GRID_BOX + " " + GridClass.GRID_COL });
-    $("<a>", { "class": ClassName.MENU_LINK, href: "#" + id}).text(val).appendTo($e);
+    $("<a>", { "class": GridClass.GRID_CELL + " " + ClassName.MENU_LINK, href: "#" + id}).text(val).appendTo($e);
 
     return $e;
   }
