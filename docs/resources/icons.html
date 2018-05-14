@@ -5,63 +5,63 @@ description: All system icons are inline SVG files, invoked via a Razor helper. 
 ---
 
 <section class="stacks-section">
-  <h2 class="grid jc-spacebetween ai-center stacks-h2">Using the Icon Helper</h2>
-  <p class="stacks-copy stacks-copy__lg">The SVG Razor helper function should be used for all system icons in lieu of SVG sprite sheets or raster image assets. This ensures a single source of truth for all icons. The SVG helper is invoked by <code class="stacks-code">@Svg.</code> and then adding the icon name, like so:</p>
+    <h2 class="grid jc-space-between ai-center stacks-h2"><div class="grid--cell fl1">Using the Icon Helper</div></h2>
+    <p class="stacks-copy">The SVG Razor helper function should be used for all system icons in lieu of SVG sprite sheets or raster image assets. This ensures a single source of truth for all icons. The SVG helper is invoked by <code class="stacks-code">@Svg.</code> and then adding the icon name, like so:</p>
 
-  <div class="stacks-code-preview _preview-none">
+    <div class="stacks-code-preview _preview-none">
 {% highlight html linenos %}
 <div class="example">
   @Svg.Search
 </div>
 {% endhighlight %}
-  </div>
+    </div>
 
-  <p class="stacks-copy stacks-copy__lg">By default, every icon will inherit the color of its parent. To override this and show the icon with its native colors (Our logos, for example), you can include the native class in the helper.</p>
+    <p class="stacks-copy">By default, every icon will inherit the color of its parent. To override this and show the icon with its native colors (Our logos, for example), you can include the native class in the helper.</p>
 
-  <div class="stacks-code-preview _preview-none">
+    <div class="stacks-code-preview _preview-none">
 {% highlight html linenos %}
 <div class="example">
   @Svg.Logo.With("native")
 </div>
 {% endhighlight %}
-  </div>
+    </div>
 
-  <p class="stacks-copy stacks-copy__lg">In fact, our helper supports arbitrary classes as well.</p>
+    <p class="stacks-copy">In fact, our helper supports arbitrary classes as well.</p>
 
-  <div class="stacks-code-preview _preview-none">
+    <div class="stacks-code-preview _preview-none">
 {% highlight html linenos %}
 <div class="example">
   @Svg.Logo.With("native js-dropdown-target another-class-name")
 </div>
 {% endhighlight %}
-  </div>
+    </div>
 </section>
 
 <section class="stacks-section mb32">
-  <h2 class="grid jc-spacebetween ai-center stacks-h2">Icon Set</h2>
-  <div class="grid fw-wrap gs16 grid__allcells4 iconset">
-      {% assign icon_sort = site.data.icons | sort: "helper" %}
-      {% for icon in icon_sort %}
-      <div class="grid ff-column-nowrap stacks-card stacks-preview -item ba bc-black-2 bar-sm bs-sm">
-          <div class="d-inline-flex grid--cell fl2 grid__center p8 -preview btr-sm">
-              {% include_relative {{ icon.helper | prepend: "svg-icons/" | append: ".svg" }} %}
-          </div>
-          <div class="grid ff-column-nowrap ai-center p8 -content">
-              <code class="grid--cell fs-caption py8 ff-mono">@Svg.{{ icon.helper }}</code>
-          </div>
-      </div>
-      {% endfor %}
-  </div>
+    <h2 class="grid jc-space-between ai-center stacks-h2"><div class="grid--cell fl1">Icon Set</div></h2>
+    <div class="grid fw-wrap gs16 grid__allcells4 iconset">
+        {% assign icon_sort = site.data.icons | sort: "helper" %}
+        {% for icon in icon_sort %}
+            <div class="grid ff-column-nowrap stacks-card stacks-preview -item ba bc-black-2 bar-sm bs-sm">
+                <div class="d-inline-flex grid--cell fl2 grid__center p8 -preview btr-sm">
+                    {% include_relative {{ icon.helper | prepend: "svg-icons/" | append: ".svg" }} %}
+                </div>
+                <div class="grid ff-column-nowrap ai-center p8 -content">
+                    <code class="grid--cell fs-caption py8 ff-mono">@Svg.{{ icon.helper }}</code>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
 </section>
 
 <section class="stacks-section">
-  <h2 class="grid jc-spacebetween ai-center stacks-h2">Need an icon?</h2>
-  <p class="stacks-copy stacks-copy__lg">If an icon you need isn’t listed above, please do one of the following two options:</p>
-  <ol class="stacks-list _section">
-    <li><a href="https://gh.stackoverflow.com/Design/Icons/issues/new">Submit a request</a> outlining the desired icon, the icon’s intended purposed, and where it will be used.</li>
-    <li>If the icon is ready, <a href="https://gh.stackoverflow.com/Design/Icons/compare">submit a pull request</a> to have it to be reviewed. Please be sure to provide the same information as above.</li>
-  </ol>
-  <p class="stacks-copy stacks-copy__lg">If you have further questions, visit the project’s Slack channel: <a href="https://stackexchange.slack.com/messages/C27RWNQN9">#design-stacks</a>.</p>
+    <h2 class="grid jc-space-between ai-center stacks-h2"><div class="grid--cell fl1">Need an icon?</div></h2>
+    <p class="stacks-copy">If an icon you need isn’t listed above, please do one of the following two options:</p>
+    <ol class="stacks-list _section">
+        <li><a href="https://gh.stackoverflow.com/Design/Icons/issues/new">Submit a request</a> outlining the desired icon, the icon’s intended purposed, and where it will be used.</li>
+        <li>If the icon is ready, <a href="https://gh.stackoverflow.com/Design/Icons/compare">submit a pull request</a> to have it to be reviewed. Please be sure to provide the same information as above.</li>
+    </ol>
+    <p class="stacks-copy">If you have further questions, visit the project’s Slack channel: <a href="https://stackexchange.slack.com/messages/C27RWNQN9">#design-stacks</a>.</p>
 </section>
 
 <script>
