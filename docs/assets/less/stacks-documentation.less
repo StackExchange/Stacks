@@ -50,8 +50,8 @@ body {
 }
 
 .stacks-body {
-    margin-left: 20vw;
-    padding: @su32 @su48;
+    margin-left: 20rem;
+    padding: @su32 0 @su32 @su32;
 }
 
 .stacks-home {
@@ -60,19 +60,23 @@ body {
 }
 
 .stacks-menu {
+    top: 8.2rem;
     padding-left: @su12;
-    width: 25%;
+    width: 100%;
+    min-width: 16rem;
+    max-width: 20rem;
 }
 
 .stacks-content {
     width: 75%;
-    max-width: 50vw;
+    max-width: 60rem;
 }
 
 .stacks-section {
     margin-top: @su48;
     margin-bottom: @su48;
 }
+
 
 //  ============================================================================
 //  $   NAV STYLES
@@ -84,6 +88,8 @@ body {
     top: 0;
     bottom: 0;
     width: 20vw;
+    min-width: 16rem;
+    max-width: 20rem;
     border-right: 1px solid @black-050;
     background-color: @black-025;
 }
@@ -155,6 +161,7 @@ body {
     border-top: 1px solid @black-075;
 
     .stacks-nav--link {
+        padding: @su4;
         color: @black-400;
 
         &:hover {
@@ -176,7 +183,6 @@ body {
 //  $$  NAV SECONDARY SUBNAV
 //  ----------------------------------------------------------------------------
 .stacks-nav__secondary {
-    top: 8.2rem;
     padding: 0 @su16;
 
     .stacks-nav--link {
@@ -205,22 +211,6 @@ body {
     line-height: @lh-l;
     color: @fc-dark;
 
-    .-anchor {
-        display: inline-flex;
-        .fl0;
-        .grid__center;
-        width: @su24;
-        height: @su24;
-        background-color: @white;
-        color: @fc-light;
-        opacity: 0;
-        transition: opacity 300ms @te-smooth;
-    }
-
-    &:hover .-anchor {
-        opacity: 1;
-    }
-
     &._subtitle {
         margin-bottom: @su12;
         .mx-fs(@fs-title);
@@ -229,6 +219,21 @@ body {
     &._subtitle-sm {
         .mx-fs(@fs-body3);
         color: @fc-light;
+    }
+}
+
+.stacks-header--anchor {
+    padding: @su8;
+    border-radius: @br-sm;
+    background-color: @white;
+    color: @fc-light;
+    opacity: 0.5;
+    transition: opacity 150ms @te-smooth;
+
+    &:hover {
+        background-color: @black-050;
+        color: @fc-dark;
+        opacity: 1;
     }
 }
 
