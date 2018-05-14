@@ -254,31 +254,16 @@ body {
     .mx-fs(@fs-body3);
     line-height: @lh-l;
     color: @fc-medium;
-
-    strong {
-        color: @fc-dark;
-    }
 }
 
 .stacks-copy__lg {
     .mx-fs(@fs-title);
 }
 
-
-//  ============================================================================
-//  $$  LISTS
-//  ----------------------------------------------------------------------------
-.stacks-list {
-    margin-bottom: 1em;
-    line-height: @lh-l;
-    color: @fc-medium;
-
-    &._section { .mx-fs(@fs-body3); }
-
-    strong {
-        color: @fc-dark;
-    }
+strong {
+    color: @fc-dark;
 }
+
 
 //  --   Code Tag
 //  ----------------------------------------------------------------------------
@@ -300,13 +285,23 @@ body {
 
 
 //  ============================================================================
+//  $  LISTS
+//  ----------------------------------------------------------------------------
+.stacks-list {
+    margin-bottom: 1em;
+    .mx-fs(@fs-body3);
+    line-height: @lh-l;
+    color: @fc-medium;
+}
+
+
+//  ============================================================================
 //  $   CODE STYLES
 //  ----------------------------------------------------------------------------
-.stacks-code-preview {
+.stacks-preview {
     margin-bottom: @su48;
     box-shadow: 0 @su2 @su8 fade(@black-050, 50%);
 
-    // Actual code highlight
     .highlight {
         // Reset margins
         &,
@@ -342,21 +337,17 @@ body {
             padding-left: @su12;
         }
     }
-
-    //  Preview area
-    .-preview {
-        padding: @su16;
-        border-bottom-left-radius: @br-sm;
-        border-bottom-right-radius: @br-sm;
-        border: 1px solid @black-100;
-        border-top-width: 0;
-    }
-
-    //  If there's no preview. We're only showing code.
-    &._preview-none .highlight pre {
-        border-radius: @br-sm;
-    }
 }
+
+//  Preview area
+.stacks-preview--example {
+    padding: @su16;
+    border-bottom-left-radius: @br-sm;
+    border-bottom-right-radius: @br-sm;
+    border: 1px solid @black-100;
+    border-top-width: 0;
+}
+
 
 //  ============================================================================
 //  $   ICON PRESENTATION
@@ -376,23 +367,14 @@ body {
 @grid-background: @orange-050;
 @grid--cell-background: @orange-300;
 
-.stacks-grid-wrapper {
-    margin-top: @su8;
-    margin-bottom: @su8;
-
-    .grid > [class*="grid-"] {
-        padding: @su8;
-        border: 1px solid fade(@orange-400,25%);
-        background-color: fade(@orange-400,15%);
-
-        font-family: @ff-mono;
-        .mx-fs(@fs-caption);
-        font-color: @fc-dark;
-    }
-
-    &._background {
-        background-color: fade(@yellow-500,10%);
-    }
+.stacks-grid-example--cell {
+    padding: @su8;
+    border: 1px solid @orange-100;
+    background-color: @orange-050;
+    font-family: @ff-mono;
+    .mx-fs(@fs-caption);
+    line-height: @lh-s;
+    color: @fc-dark;
 }
 
 .stacks-grid-example {
