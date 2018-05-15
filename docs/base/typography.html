@@ -7,7 +7,7 @@ description: Stacks provides atomic classes to override default styling of typog
     <h2 class="grid jc-space-between ai-center stacks-h2"><div class="grid--cell fl1">Basic</div></h2>
     <p class="stacks-copy stacks-copy__lg">These styles should only be used as overrides. They shouldn’t replace standard semantic uses of <code class="stacks-code">strong</code> or <code class="stacks-code">em</code> tags.</p>
 
-    <h3 class="grid jc-space-between ai-center stacks-h3"><div class="grid--cell fl1">Classes</h3></div>
+    <h3 class="grid jc-space-between ai-center stacks-h3"><div class="grid--cell fl1">Classes</div></h3>
     <table class="mb32 s-table s-table__hover">
         <thead>
             <tr>
@@ -20,8 +20,8 @@ description: Stacks provides atomic classes to override default styling of typog
         <tbody>
             {% for basic in site.data.type-definitions.type-basic %}
               <tr class="fs-caption">
-                  <th scope="row" class="p8 ff-mono">.{{ basic.class }}</th>
-                  <td class="p8 ff-mono">{{ basic.output }}</td>
+                  <th scope="row"><code class="stacks-code bg-white">.{{ basic.class }}</code></th>
+                  <td><code class="stacks-code bg-white">{{ basic.output }}</code></td>
                   <td>{{ basic.define }}</td>
                   <td class="ta-center">
                       {% if basic.responsive %}
@@ -84,8 +84,8 @@ description: Stacks provides atomic classes to override default styling of typog
         <tbody>
             {% for layout in site.data.type-definitions.type-layout %}
               <tr class="fs-caption">
-                  <th scope="row" class="p8 ff-mono">.{{ layout.class }}</th>
-                  <td class="p8 ff-mono">{{ layout.output }}</td>
+                  <th scope="row"><code class="stacks-code bg-white">.{{ layout.class }}</code></th>
+                  <td><code class="stacks-code bg-white">{{ layout.output }}</code></td>
                   <td>{{ layout.define }}</td>
                   <td class="ta-center">
                       {% if layout.responsive %}
@@ -166,7 +166,7 @@ description: Stacks provides atomic classes to override default styling of typog
         <tbody>
             {% for term in site.data.type-definitions.fontsize %}
                 <tr>
-                    <th scope="row"><code class="stacks-code">.fs-{{ term.term }}</code></th>
+                    <th scope="row"><code class="stacks-code bg-white">.fs-{{ term.term }}</code></th>
                     <td>{{ term.define }}</td>
                 </tr>
             {% endfor %}
