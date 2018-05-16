@@ -17,12 +17,12 @@
 //      (ideally) JS will need to be used to determine the notice's height
 //      at the time of render. The padding value is determined like so:
 //
-//      50px (top bar) + 44px (notice height) - 2px (borders)
+//      50px (top bar) + 50px (notice height) - 1px (borders)
 //
 //      The borders subtraction are necessary to neatly tuck everything together.
 //  ----------------------------------------------------------------------------
 .s-banner__body-pt {
-    padding-top: 92px;
+    padding-top: 99px;
 }
 
 
@@ -36,7 +36,7 @@
     right: 0;
     left: 0;
     width: 100%;
-    padding: @su12;
+    padding: @su8;
     border-top: 1px solid transparent;
     border-bottom: 1px solid transparent;
 
@@ -72,6 +72,16 @@
         border-color: transparent;
         color: @white;
     }
+}
+
+//  --  When we want to keep hero content capped
+.s-banner--container {
+    #stacks-internals #load-config();
+
+    position: relative;
+    width: 100%;
+    max-width: @body-site-width;
+    margin: 0 auto;
 }
 
 & {
@@ -163,10 +173,11 @@
 
 //  --  When we want to keep hero content capped
 .s-hero--container {
+    #stacks-internals #load-config();
     position: relative;
     z-index: @zi-banners + 1;
     width: 100%;
-    max-width: 1090px;
+    max-width: @body-site-width;
     margin: 0 auto;
     padding: @su16;
 }
