@@ -1,6 +1,6 @@
 # Stacks
 
-Stacks is Stack Overflow's design system. It includes the resources needed to create consistent, predictable workflows and interfaces that adhere with Stack Overflow’s principles, design language, and best practices. It's built using [immutable, atomic classes](http://johnpolacek.com/rethinking/) and components for rapidly prototyping, building, and styling. The Stacks website documents a range of resources, including:
+Stacks is Stack Overflow’s design system. It includes the resources needed to create consistent, predictable workflows and interfaces that adhere with Stack Overflow’s principles, design language, and best practices. It’s built using [immutable, atomic classes](http://johnpolacek.com/rethinking/) and components for rapidly prototyping, building, and styling. The Stacks website documents a range of resources, including:
 
  - Semantic and accessible component markup
  - Cross-browser compatible Less / CSS
@@ -24,7 +24,7 @@ Stacks documentation can be found at https://stackoverflow.design/
 
 You can use Stacks a few different ways.
 
- 1. Stacks is currently included within various Stack Overflow projects automatically. If you're working on a Stack Overflow project, chances are it's already available for you! If not, reach out to use and we'll work on getting it setup.
+ 1. Stacks is currently included within various Stack Overflow projects automatically. If you’re working on a Stack Overflow project, chances are it’s already available for you! If not, reach out to use and we’ll work on getting it setup.
  2. To include it in other projects, you can intall it via [NPM](https://www.npmjs.com/package/@stackoverflow/stacks):
     ```bash
     npm install --save @stackoverflow/stacks
@@ -37,7 +37,7 @@ You can use Stacks a few different ways.
 ## Getting setup
 
  1. Our documentation site uses the Jekyll static site generator. You will need to install that and its various dependencies first. To install, [follow this guide from CloudCannon.com](https://learn.cloudcannon.com/jekyll/install-jekyll-on-os-x/).
- 2. We use Grunt to compile our Less, rebuild the documentation site, minify things, and other items. You will need to install this and its various dependencies. To use Grunt. make sure you have [Node & NPM](https://nodejs.org/en/download/) installed.
+ 2. We use the task runner Grunt to compile our Less, rebuild the documentation site, minify things, auto-prefix things, and other tasks. To install and run Grunt and its various dependencies, you’ll first need to install [Node & NPM](https://nodejs.org/en/download/).
  3. Clone the project
     ```bash
     # Clone your fork of the repo into the current directory
@@ -46,14 +46,14 @@ You can use Stacks a few different ways.
     cd Stacks
     ```
  4. Run `npm install`. This will install all the required project dependencies for Grunt.
- 3. Run `grunt`. This is how you will start your local Jekyll server.
+ 3. Run `npm start`. This will run Grunt which will start your local Jekyll server.
  4. Visit `http://127.0.0.1:4000/` to view your changes.
 
-Having trouble getting these steps to work? Open [an issue](https://gh.stackoverflow.com/Design/Stacks/issues/new) with a `setup` tag.
+Having trouble getting these steps to work? Open [an issue](https://github.com/StackExchange/issues/new) with a `setup` tag.
 
 ## What's included
 
-Within Stacks you'll find the following directories and files:
+Within Stacks you’ll find the following directories and files:
 
 ```
 Stacks/
@@ -89,7 +89,7 @@ Compiled and minified CSS for the core system is placed in a `lib/css/` folder. 
 
 ## Bugs and feature requests
 
-Have a bug or feature request? First search existing or closed issues to make sure the issue hasn't been noted yet. If not, review our [issue guidelines](/CONTRIBUTING.md#open-an-issue) for submitting [a bug report](/CONTRIBUTING.md#reporting-bugs) or [feature request](/CONTRIBUTING.md#feature-requests).
+Have a bug or feature request? First search existing or closed issues to make sure the issue hasn’t been noted yet. If not, review our [issue guidelines](/CONTRIBUTING.md#open-an-issue) for submitting [a bug report](/CONTRIBUTING.md#reporting-bugs) or [feature request](/CONTRIBUTING.md#feature-requests).
 
 
 ## Contributing
