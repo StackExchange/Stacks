@@ -18,18 +18,18 @@
 //      The default values are row.
 //  ----------------------------------------------------------------------------
 .fd-row                   { -webkit-box-direction: normal !important; -webkit-box-orient: horizontal !important; -ms-flex-direction: row !important; flex-direction: row !important; }
-.fd-row-reverse            { -webkit-box-direction: reverse !important; -webkit-box-orient: horizontal !important; -ms-flex-direction: row-reverse !important; flex-direction: row-reverse !important; }
-.lg\:fd-row-reverse        { .screen-lg({ .fd-row-reverse; }) }
-.md\:fd-row-reverse        { .screen-md({ .fd-row-reverse; }) }
-.sm\:fd-row-reverse        { .screen-sm({ .fd-row-reverse; }) }
+.fd-row-reverse           { -webkit-box-direction: reverse !important; -webkit-box-orient: horizontal !important; -ms-flex-direction: row-reverse !important; flex-direction: row-reverse !important; }
+.lg\:fd-row-reverse       { #stacks-internals #screen-lg({ .fd-row-reverse; }) }
+.md\:fd-row-reverse       { #stacks-internals #screen-md({ .fd-row-reverse; }) }
+.sm\:fd-row-reverse       { #stacks-internals #screen-sm({ .fd-row-reverse; }) }
 .fd-column                { -webkit-box-direction: normal !important; -webkit-box-orient: vertical !important; -ms-flex-direction: column !important; flex-direction: column !important; }
-.lg\:fd-column            { .screen-lg({ .fd-column; }) }
-.md\:fd-column            { .screen-md({ .fd-column; }) }
-.sm\:fd-column            { .screen-sm({ .fd-column; }) }
-.fd-column-reverse         { -webkit-box-direction: reverse !important; -webkit-box-orient: vertical !important; -ms-flex-direction: column-reverse !important; flex-direction: column-reverse !important; }
-.lg\:fd-column-reverse     { .screen-lg({ .fd-column-reverse; }) }
-.md\:fd-column-reverse     { .screen-md({ .fd-column-reverse; }) }
-.sm\:fd-column-everse     { .screen-sm({ .fd-column-reverse; }) }
+.lg\:fd-column            { #stacks-internals #screen-lg({ .fd-column; }) }
+.md\:fd-column            { #stacks-internals #screen-md({ .fd-column; }) }
+.sm\:fd-column            { #stacks-internals #screen-sm({ .fd-column; }) }
+.fd-column-reverse        { -webkit-box-direction: reverse !important; -webkit-box-orient: vertical !important; -ms-flex-direction: column-reverse !important; flex-direction: column-reverse !important; }
+.lg\:fd-column-reverse    { #stacks-internals #screen-lg({ .fd-column-reverse; }) }
+.md\:fd-column-reverse    { #stacks-internals #screen-md({ .fd-column-reverse; }) }
+.sm\:fd-column-everse     { #stacks-internals #screen-sm({ .fd-column-reverse; }) }
 
 //  --  FLEX WRAP
 //      This determines if a parent's child items will wrap or not.
@@ -44,20 +44,20 @@
 //  ----------------------------------------------------------------------------
 .ff-row-wrap              { -webkit-box-direction: normal !important; -webkit-box-orient: horizontal !important; -ms-flex-flow: row wrap !important; flex-flow: row wrap !important; }
 .ff-row-nowrap            { -webkit-box-direction: normal !important; -webkit-box-orient: horizontal !important; -ms-flex-flow: row nowrap !important; flex-flow: row nowrap !important; }
-.ff-row-reverse-wrap       { -webkit-box-direction: reverse !important; -webkit-box-orient: horizontal !important; -ms-flex-flow: row-reverse wrap !important; flex-flow: row-reverse wrap !important; }
-.ff-row-reverse-nowrap     { -webkit-box-direction: reverse !important; -webkit-box-orient: horizontal !important; -ms-flex-flow: row-reverse nowrap !important; flex-flow: row-reverse nowrap !important; }
+.ff-row-reverse-wrap      { -webkit-box-direction: reverse !important; -webkit-box-orient: horizontal !important; -ms-flex-flow: row-reverse wrap !important; flex-flow: row-reverse wrap !important; }
+.ff-row-reverse-nowrap    { -webkit-box-direction: reverse !important; -webkit-box-orient: horizontal !important; -ms-flex-flow: row-reverse nowrap !important; flex-flow: row-reverse nowrap !important; }
 .ff-column-wrap           { -webkit-box-direction: normal !important; -webkit-box-orient: vertical !important; -ms-flex-flow: column wrap !important; flex-flow: column wrap !important; }
 .ff-column-nowrap         { -webkit-box-direction: normal !important; -webkit-box-orient: vertical !important; -ms-flex-flow: column nowrap !important; flex-flow: column nowrap !important; }
-.ff-column-reverse-wrap    { -webkit-box-direction: reverse !important; -webkit-box-orient: vertical !important; -ms-flex-flow: column-reverse wrap !important; flex-flow: column-reverse wrap !important; }
-.ff-column-reverse-nowrap  { -webkit-box-direction: reverse !important; -webkit-box-orient: vertical !important; -ms-flex-flow: column-reverse nowrap !important; flex-flow: column-reverse nowrap !important; }
+.ff-column-reverse-wrap   { -webkit-box-direction: reverse !important; -webkit-box-orient: vertical !important; -ms-flex-flow: column-reverse wrap !important; flex-flow: column-reverse wrap !important; }
+.ff-column-reverse-nowrap { -webkit-box-direction: reverse !important; -webkit-box-orient: vertical !important; -ms-flex-flow: column-reverse nowrap !important; flex-flow: column-reverse nowrap !important; }
 
 //  --  JUSTIFY CONTENT
 //      Defines the child alignment along the parent's main axis
 //  ----------------------------------------------------------------------------
 .jc-center                { -webkit-box-pack: center !important; -ms-flex-pack: center !important; justify-content: center !important; }
 .jc-end                   { -webkit-box-pack: end !important; -ms-flex-pack: end !important; justify-content: flex-end !important; }
-.jc-space-around           { -ms-flex-pack: distribute !important; justify-content: space-around !important; }
-.jc-space-between          { -webkit-box-pack: justify !important; -ms-flex-pack: justify !important; justify-content: space-between !important; }
+.jc-space-around          { -ms-flex-pack: distribute !important; justify-content: space-around !important; }
+.jc-space-between         { -webkit-box-pack: justify !important; -ms-flex-pack: justify !important; justify-content: space-between !important; }
 .jc-start                 { -webkit-box-pack: start !important; -ms-flex-pack: start !important; justify-content: flex-start !important; }
 
 //  --  ALIGN CONTENT
@@ -67,8 +67,8 @@
 //  ----------------------------------------------------------------------------
 .ac-center                { -ms-flex-line-pack: center !important; align-content: center !important; }
 .ac-end                   { -ms-flex-line-pack: end !important; align-content: flex-end !important; }
-.ac-space-around           { -ms-flex-line-pack: distribute !important; align-content: space-around !important; }
-.ac-space-between          { -ms-flex-line-pack: justify !important; align-content: space-between !important; }
+.ac-space-around          { -ms-flex-line-pack: distribute !important; align-content: space-around !important; }
+.ac-space-between         { -ms-flex-line-pack: justify !important; align-content: space-between !important; }
 .ac-start                 { -ms-flex-line-pack: start !important; align-content: flex-start !important; }
 .ac-stretch               { -ms-flex-line-pack: stretch !important; align-content: stretch !important; }
 
