@@ -11,6 +11,22 @@
 //  • HERO BANNERS
 //
 //  ============================================================================
+//      When we use .s-banner, we need to adjust the padding-top on
+//      the body tag. This class correctly adjusts the body padding ONLY if
+//      the notice is one line. If it wraps to multiple lines, more classes or
+//      (ideally) JS will need to be used to determine the notice's height
+//      at the time of render. The padding value is determined like so:
+//
+//      50px (top bar) + 44px (notice height) - 2px (borders)
+//
+//      The borders subtraction are necessary to neatly tuck everything together.
+//  ----------------------------------------------------------------------------
+.s-banner__body-pt {
+    padding-top: 92px;
+}
+
+
+//  ============================================================================
 //  $   SYSTEM BANNERS
 //  ----------------------------------------------------------------------------
 .s-banner {
