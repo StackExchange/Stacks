@@ -39,14 +39,14 @@ description: All system icons are inline SVG files, invoked via a Razor helper. 
 
 <section class="stacks-section mb32">
     <h2 class="grid jc-space-between ai-center stacks-h2"><div class="grid--cell fl1">Icon Set</div></h2>
-    <div class="grid fw-wrap gs16 grid__allcells4 iconset">
+    <div class="grid fw-wrap gs16 grid__allcells4">
         {% assign icon_sort = site.data.icons | sort: "helper" %}
         {% for icon in icon_sort %}
-            <div class="grid ff-column-nowrap stacks-card stacks-preview -item ba bc-black-2 bar-sm bs-sm">
-                <div class="d-inline-flex grid--cell fl2 grid__center p8 stacks-preview--example  btr-sm">
+            <div class="grid ff-column-nowrap p0 s-card">
+                <div class="grid fl2 grid__center stacks-icon-preview">
                     {% include_relative {{ icon.helper | prepend: "svg-icons/" | append: ".svg" }} %}
                 </div>
-                <div class="grid ff-column-nowrap ai-center p8 -content">
+                <div class="grid ff-column-nowrap ai-center p8">
                     <code class="grid--cell fs-caption py8 ff-mono">@Svg.{{ icon.helper }}</code>
                 </div>
             </div>
