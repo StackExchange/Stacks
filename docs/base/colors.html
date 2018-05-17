@@ -51,45 +51,45 @@ description: To avoid specifying color values by hand, we’ve included a robust
 </section>
 
 <section class="stacks-section">
-  <h2 class="grid jc-space-between ai-center stacks-h2"><div class="grid--cell fl1">Color Stops</div></h2>
-  {% for color in site.data.color-stops %}
-      {% assign color_stops = color.stops %}
-      <h3 class="grid jc-space-between ai-center stacks-h3"><div class="grid--cell fl1">{{ color.name | capitalize }}</div></h3>
-      <table class="s-table s-table__hover s-table__condensed va-middle mb48 fs-caption">
-          <thead>
-              <tr>
-                  <th scope="col" width="36px"></th>
-                  <th scope="col">Less</th>
-                  <th scope="col">HEX</th>
-                  <th scope="col">RGB</th>
-                  <th scope="col">Text Class</th>
-                  <th scope="col">Background Class</th>
-              </tr>
-          </thead>
-          <tbody>
-              {% for stop in color_stops %}
-              <tr class="ff-mono">
-                  <th scope="row">
+    <h2 class="grid jc-space-between ai-center stacks-h2"><div class="grid--cell fl1">Color Stops</div></h2>
+    {% for color in site.data.color-stops %}
+        {% assign color_stops = color.stops %}
+        <h3 class="grid jc-space-between ai-center stacks-h3"><div class="grid--cell fl1">{{ color.name | capitalize }}</div></h3>
+        <table class="s-table s-table__hover s-table__condensed va-middle mb48 fs-caption">
+            <thead>
+                <tr>
+                    <th scope="col" width="36px"></th>
+                    <th scope="col">Less</th>
+                    <th scope="col">HEX</th>
+                    <th scope="col">RGB</th>
+                    <th scope="col">Text Class</th>
+                    <th scope="col">Background Class</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for stop in color_stops %}
+                <tr class="ff-mono">
+                    <th scope="row">
                       <div class="stacks-swatch bar-sm bs-i-sm bg-{{ color.name }}-{{ stop.stop }}"></div>
-                  </th>
-                  <td>@{{ color.name }}-{{ stop.stop }}</td>
-                  <td>#{{ stop.hex }}</td>
-                  <td>{{ stop.rgb }}</td>
-                  <td>.fc-{{ color.name }}-{{ stop.stop }}</td>
-                  <td>.bg-{{ color.name }}-{{ stop.stop }}</td>
-              </tr>
-              {% endfor %}
-              <tr class="ff-mono">
-                  <th scope="row">
+                    </th>
+                    <td>@{{ color.name }}-{{ stop.stop }}</td>
+                    <td>#{{ stop.hex }}</td>
+                    <td>{{ stop.rgb }}</td>
+                    <td>.fc-{{ color.name }}-{{ stop.stop }}</td>
+                    <td>.bg-{{ color.name }}-{{ stop.stop }}</td>
+                </tr>
+                {% endfor %}
+                <tr class="ff-mono">
+                    <th scope="row">
                       <div class="stacks-swatch bar-sm bs-i-sm bg-{{ color.name }}-{{ stop.stop }}"></div>
-                  </th>
-                  <td>@white</td>
-                  <td>#FFFFFF</td>
-                  <td>255,255,255</td>
-                  <td>.fc-white</td>
-                  <td>.bg-white</td>
-              </tr>
-          </tbody>
-      </table>
-  {% endfor %}
+                    </th>
+                    <td>@white</td>
+                    <td>#FFFFFF</td>
+                    <td>255,255,255</td>
+                    <td>.fc-white</td>
+                    <td>.bg-white</td>
+                </tr>
+            </tbody>
+        </table>
+    {% endfor %}
 </section>
