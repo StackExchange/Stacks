@@ -21,54 +21,38 @@
     color: @fc-medium;
 }
 
-//  $$  OUTLINED
-//  ----------------------------------------------------------------------------
-.s-notice__outlined {
-    color: @fc-dark;
-}
-
-//  $$  IMPORTANT
-//  ----------------------------------------------------------------------------
-.s-notice__important {
-    background-color: @black-700;
-    color: @white;
-}
-
-
+& {
+#stacks-internals #load-config(); //  Call all our variables from _stacks-configuration
 //  ============================================================================
 //  $   VISUAL STYLES
 //  ============================================================================
 //  $$  INFO
 //  ----------------------------------------------------------------------------
 .s-notice__info {
-    border-color: #CFDCE6;
-    background-color: #E1F0FC;
+    border-color: @notice-info-border-color;
+    background-color: @notice-info-background-color;
 
     &.s-notice__outlined {
         border-color: @blue-500;
-        background-color: @white;
     }
 
     &.s-notice__important {
-        border-color: transparent;
-        background-color: @blue-500;
+        background-color: @notice-info-important-background-color;
     }
 }
 
 //  $$  SUCCESS
 //  ----------------------------------------------------------------------------
 .s-notice__success {
-    border-color: #BED9C6;
-    background-color: #D3F1DC;
+    border-color: @notice-success-border-color;
+    background-color: @notice-success-background-color;
 
     &.s-notice__outlined {
         border-color: @green-400;
-        background-color: @white;
     }
 
     &.s-notice__important {
-        border-color: transparent;
-        background-color: #43CA70;
+        background-color: @notice-success-important-background-color;
         color: @fc-dark;
     }
 }
@@ -76,17 +60,15 @@
 //  $$  WARNING
 //  ----------------------------------------------------------------------------
 .s-notice__warning {
-    border-color: #E6DFC6;
-    background-color: #FFF8DC;
+    border-color: @notice-warning-border-color;
+    background-color: @notice-warning-background-color;
 
     &.s-notice__outlined {
         border-color: @yellow-500;
-        background-color: @white;
     }
 
     &.s-notice__important {
-        border-color: transparent;
-        background-color: @yellow-400;
+        background-color: @notice-warning-important-background-color;
         color: @fc-dark;
     }
 }
@@ -94,26 +76,38 @@
 //  $$  DANGER
 //  ----------------------------------------------------------------------------
 .s-notice__danger {
-    border-color: #E6D0D4;
-    background-color: #FFE7EB;
+    border-color: @notice-danger-border-color;
+    background-color: @notice-danger-background-color;
 
     &.s-notice__outlined {
         border-color: @red-400;
-        background-color: @white;
     }
 
     &.s-notice__important {
-        border-color: transparent;
-        background-color: @red-400;
-        color: @red-050;
+        background-color: @notice-danger-important-background-color;
     }
+}
+} // End stacks configuration mixin
+
+
+//  $$  OUTLINED
+//  ----------------------------------------------------------------------------
+.s-notice__outlined {
+    background-color: transparent;
+    color: @fc-dark;
+}
+
+//  $$  IMPORTANT
+//  ----------------------------------------------------------------------------
+.s-notice__important {
+    border-color: transparent;
+    background-color: @black-700;
+    color: @white;
 }
 
 
 //  ============================================================================
-//  $   BEHAVIORS
-//  ============================================================================
-//  $$  FLOATING
+//  $   FLOAT NOTICES
 //  ----------------------------------------------------------------------------
 .s-notice__float {
     z-index: @zi-popovers;
@@ -121,66 +115,21 @@
             box-shadow: @bs-sm;
 }
 
-//  $$  BANNER
-//  ----------------------------------------------------------------------------
-.s-notice__banner {
-    position: fixed;
-    top: 0;
-    right: 0;
-    left: 0;
-    width: 100%;
-    padding: @su12;
-    z-index: @zi-navigation-fixed;
-    border-right: none;
-    border-left: none;
-    border-radius: 0;
-    -webkit-box-shadow: @bs-sm;
-            box-shadow: @bs-sm;
-
-    -webkit-transform: translate3d(0,-50px,0);
-            transform: translate3d(0,-50px,0);
-
-    &[aria-hidden="false"] {
-        -webkit-transform: translate3d(0,49px,0);
-                transform: translate3d(0,49px,0);
-    }
-
-    &.is-pinned {
-                height: 30px;
-        z-index: @zi-navigation-fixed + 1;
-        -webkit-transform: translate3d(0,0,0);
-                transform: translate3d(0,0,0);
-    }
-}
-
-//  --  When we use .s-notice__banner, we need to adjust the padding-top on
-//      the body tag. This class correctly adjusts the body padding ONLY if
-//      the notice is one line. If it wraps to multiple lines, more classes or
-//      (ideally) JS will need to be used to determine the notice's height
-//      at the time of render. The padding value is determined like so:
-//
-//      50px (top bar) + 44px (notice height) - 2px (borders)
-//
-//      The borders subtraction are necessary to neatly tuck everything together.
-//
-.s-notice--body {
-    padding-top: 92px;
-}
-
-//  $$  TOAST
+//  ============================================================================
+//  $   TOASTS
 //  ----------------------------------------------------------------------------
 .s-notice__toast {
     visibility: hidden;
     position: fixed;
+    z-index: @zi-navigation-fixed - 1;
     top: 16px; // 50px (header) + 16px
     left: 50%;
     width: 100%;
     max-width: 42rem;
     margin-left: -16rem;
-    z-index: @zi-navigation-fixed - 1;
-    opacity: 0;
     -webkit-box-shadow: @bs-sm;
             box-shadow: @bs-sm;
+    opacity: 0;
     -webkit-transform: translate3d(0,-66px,0);
             transform: translate3d(0,-66px,0);
     -webkit-transition: opacity 0ms 100ms, visibility 0s 100ms, -webkit-transform 100ms @te-smooth-slow 0s;

@@ -1,132 +1,65 @@
 <section class="stacks-section">
-    <h2 class="grid jc-spacebetween ai-center stacks-title">Gutters</h2>
-    <p class="stacks-p _section">Grids, by default, have no gutters between cells. When gutters are desired between cells, you apply them to the parent <code class="stacks-code">.grid</code> class. The gutter applies a margin to all sides. The available gutter sizes are <strong>2px</strong>, <strong>4px</strong>, <strong>8px</strong>, <strong>12px</strong>, <strong>16px</strong>, <strong>24px</strong>, <strong>32px</strong>, <strong>48px</strong>, and <strong>64px</strong>). <em>Please note that the number in the grid spacing class name (i.e. <code class="stacks-code">gs4</code>) is the desired <strong>total</strong> gutter space between each cell.</em></p>
+    <h2 class="grid jc-space-between ai-center stacks-h2"><div class="grid--cell fl1">Gutters</div></h2>
+    <p class="stacks-copy">Sometimes gutters are desired between cells. To do so apply the appropriate class to the parent wrapper. The gutter applies a margin to all sides. The sizes available are the same as <a href="{{ /base/spacing | relative_url }}">the spacing units</a>.</p>
 
-    <h3 class="grid jc-spacebetween ai-center stacks-title _subtitle">Gutter Sizes</h3>
-    <div class="p2 stacks-code-preview">
+    <h3 class="grid jc-space-between ai-center stacks-h3" id="gutter-classes"><div class="grid--cell fl1">Classes</div></h3>
+    <table class="s-table s-table__hover mb48">
+        <thead>
+            <tr>
+                <th class="s-table--cell2" scope="col">Class</th>
+                <th scope="col">Output</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in site.data.grid.gutter %}
+              <tr>
+                  <td><code class="stacks-code">{{ item.class }}</code></td>
+                  <td>{{ item.output }}</code></td>
+              </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <h3 class="grid jc-space-between ai-center stacks-h3" id="gutter-examples"><div class="grid--cell fl1">Examples</div></h3>
+    <div class="p2 stacks-preview">
 {% highlight html linenos %}
-<div class="grid grid__fl1 gs2">
-    <div class="grid--cell">...</div>
-    <div class="grid--cell">...</div>
-</div>
-<div class="grid grid__fl1 gs4">
-    <div class="grid--cell">...</div>
-    <div class="grid--cell">...</div>
-</div>
-<div class="grid grid__fl1 gs8">
-    <div class="grid--cell">...</div>
-    <div class="grid--cell">...</div>
-</div>
-<div class="grid grid__fl1 gs12">
-    <div class="grid--cell">...</div>
-    <div class="grid--cell">...</div>
-</div>
 <div class="grid grid__fl1 gs16">
-    <div class="grid--cell">...</div>
-    <div class="grid--cell">...</div>
+    <div class="grid--cell">…</div>
+    <div class="grid--cell">…</div>
 </div>
-<div class="grid grid__fl1 gs24">
-    <div class="grid--cell">...</div>
-    <div class="grid--cell">...</div>
-</div>
-<div class="grid grid__fl1 gs32">
-    <div class="grid--cell">...</div>
-    <div class="grid--cell">...</div>
-</div>
-<div class="grid grid__fl1 gs48">
-    <div class="grid--cell">...</div>
-    <div class="grid--cell">...</div>
-</div>
-<div class="grid grid__fl1 gs64">
-    <div class="grid--cell">...</div>
-    <div class="grid--cell">...</div>
-</div>
-{% endhighlight %}
-        <div class="-preview">
-            <div class="grid fd-column">
-                <div class="stacks-grid-wrapper _background">
-                    <div class="grid grid__fl1 gs2">
-                        <div class="grid--cell"><div class="stacks-grid-example">.gs2</div></div>
-                        <div class="grid--cell"><div class="stacks-grid-example">.gs2</div></div>
-                    </div>
-                </div>
-                <div class="stacks-grid-wrapper _background">
-                    <div class="grid grid__fl1 gs4">
-                        <div class="grid--cell"><div class="stacks-grid-example">.gs4</div></div>
-                        <div class="grid--cell"><div class="stacks-grid-example">.gs4</div></div>
-                    </div>
-                </div>
-                <div class="stacks-grid-wrapper _background">
-                    <div class="grid grid__fl1 gs8">
-                        <div class="grid--cell"><div class="stacks-grid-example">.gs8</div></div>
-                        <div class="grid--cell"><div class="stacks-grid-example">.gs8</div></div>
-                    </div>
-                </div>
-                <div class="stacks-grid-wrapper _background">
-                    <div class="grid grid__fl1 gs12">
-                        <div class="grid--cell"><div class="stacks-grid-example">.gs12</div></div>
-                        <div class="grid--cell"><div class="stacks-grid-example">.gs12</div></div>
-                    </div>
-                </div>
-                <div class="stacks-grid-wrapper _background">
-                    <div class="grid grid__fl1 gs16">
-                        <div class="grid--cell"><div class="stacks-grid-example">.gs16</div></div>
-                        <div class="grid--cell"><div class="stacks-grid-example">.gs16</div></div>
-                    </div>
-                </div>
-                <div class="stacks-grid-wrapper _background">
-                    <div class="grid grid__fl1 gs24">
-                        <div class="grid--cell"><div class="stacks-grid-example">.gs24</div></div>
-                        <div class="grid--cell"><div class="stacks-grid-example">.gs24</div></div>
-                    </div>
-                </div>
-                <div class="stacks-grid-wrapper _background">
-                    <div class="grid grid__fl1 gs32">
-                        <div class="grid--cell"><div class="stacks-grid-example">.gs32</div></div>
-                        <div class="grid--cell"><div class="stacks-grid-example">.gs32</div></div>
-                    </div>
-                </div>
-                <div class="stacks-grid-wrapper _background">
-                    <div class="grid grid__fl1 gs48">
-                        <div class="grid--cell"><div class="stacks-grid-example">.gs48</div></div>
-                        <div class="grid--cell"><div class="stacks-grid-example">.gs48</div></div>
-                    </div>
-                </div>
-                <div class="stacks-grid-wrapper _background">
-                    <div class="grid grid__fl1 gs64">
-                        <div class="grid--cell"><div class="stacks-grid-example">.gs64</div></div>
-                        <div class="grid--cell"><div class="stacks-grid-example">.gs64</div></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <h3 class="grid jc-spacebetween ai-center stacks-title _subtitle">Row or Column Gutters Only</h3>
-    <p class="stacks-p _section">Flexbox doesn't collapse margins like other CSS elements. Since margins compound, sometimes there's a need to remove gutters from the top and bottom (column) or left and right (row). To do this, add the following modifying classes. To have gutters only in a row, apply <code class="stacks-code">.gsx</code>. To have gutters only in a column, apply <code class="stacks-code">.gsy</code>.</p>
-    <div class="p2 stacks-code-preview">
-{% highlight html linenos %}
 <div class="grid grid__fl1 gs16 gsx">
-    <div class="grid--cell">...</div>
-    <div class="grid--cell">...</div>
+    <div class="grid--cell">…</div>
+    <div class="grid--cell">…</div>
 </div>
-<div class="grid grid__fl1 fd-column gs16 gsy">
-    <div class="grid--cell">...</div>
-    <div class="grid--cell">...</div>
+<div class="grid grid__fl1 gs16 gsy">
+    <div class="grid--cell">…</div>
+    <div class="grid--cell">…</div>
 </div>
 {% endhighlight %}
-        <div class="-preview">
-            <div class="grid fd-column">
-                <div class="stacks-grid-wrapper _background">
-                    <div class="grid grid__fl1 gs16 gsx">
-                        <div class="grid--cell"><div class="stacks-grid-example">.gs16.gsx -- Row gutters only</div></div>
-                        <div class="grid--cell"><div class="stacks-grid-example">.gs16.gsx -- Row gutters only</div></div>
+        <div class="stacks-preview--example ">
+            <div class="grid gs32 gsy fd-column">
+                <div class="grid--cell bg-yellow-100">
+                    <div class="grid grid__allcells6 gs16 fw-wrap">
+                        <div class="grid--cell"><div class="stacks-grid-example--cell">.gs16</div></div>
+                        <div class="grid--cell"><div class="stacks-grid-example--cell">.gs16</div></div>
+                        <div class="grid--cell"><div class="stacks-grid-example--cell">.gs16</div></div>
+                        <div class="grid--cell"><div class="stacks-grid-example--cell">.gs16</div></div>
                     </div>
                 </div>
-                <div class="stacks-grid-wrapper _background">
+                <div class="grid--cell bg-yellow-100">
+                    <div class="grid grid__allcells6 gs16 gsx fw-wrap">
+                        <div class="grid--cell"><div class="stacks-grid-example--cell">.gs16.gsx -- Row gutters only</div></div>
+                        <div class="grid--cell"><div class="stacks-grid-example--cell">.gs16.gsx -- Row gutters only</div></div>
+                        <div class="grid--cell"><div class="stacks-grid-example--cell">.gs16.gsx -- Row gutters only</div></div>
+                        <div class="grid--cell"><div class="stacks-grid-example--cell">.gs16.gsx -- Row gutters only</div></div>
+                    </div>
+                </div>
+                <div class="grid--cell bg-yellow-100">
                     <div class="grid grid__fl1 fd-column gs16 gsy">
-                        <div class="grid--cell"><div class="stacks-grid-example">.gs16.gsy -- Column gutters only</div></div>
-                        <div class="grid--cell"><div class="stacks-grid-example">.gs16.gsy -- Column gutters only</div></div>
+                        <div class="grid--cell"><div class="stacks-grid-example--cell">.gs16.gsy -- Column gutters only</div></div>
+                        <div class="grid--cell"><div class="stacks-grid-example--cell">.gs16.gsy -- Column gutters only</div></div>
+                        <div class="grid--cell"><div class="stacks-grid-example--cell">.gs16.gsy -- Column gutters only</div></div>
+                        <div class="grid--cell"><div class="stacks-grid-example--cell">.gs16.gsy -- Column gutters only</div></div>
                     </div>
                 </div>
             </div>

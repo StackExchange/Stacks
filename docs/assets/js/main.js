@@ -19,7 +19,7 @@ function regenerateMenu () {
     var subnav = $(".js-secondary-nav");
 
     // Kill the automatically generated anchors
-    $(".-anchor").remove();
+    $(".stacks-header--anchor").remove();
 
     // Kill the subnav and rebuild it
     subnav.empty();

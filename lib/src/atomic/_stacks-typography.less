@@ -58,9 +58,9 @@ h1, h2, h3, h4, h5, h6, p {
 //  $   LINE HEIGHTS
 //  ----------------------------------------------------------------------------
 .lh-xs          { line-height: @lh-xs !important; }
-.lh-sm          { line-height: @lh-s !important; }
-.lh-md          { line-height: @lh-m !important; }
-.lh-lg          { line-height: @lh-l !important; }
+.lh-sm          { line-height: @lh-sm !important; }
+.lh-md          { line-height: @lh-md !important; }
+.lh-lg          { line-height: @lh-lg !important; }
 .lh-xl          { line-height: @lh-xl !important; }
 .lh-xxl         { line-height: @lh-xxl !important; }
 
@@ -84,14 +84,22 @@ h1, h2, h3, h4, h5, h6, p {
 
 //  --  Text Align
 .ta-left          { text-align: left !important; }
+.lg\:ta-left      { #stacks-internals #screen-lg({ .ta-left; }) }
+.md\:ta-left      { #stacks-internals #screen-md({ .ta-left; }) }
+.sm\:ta-left      { #stacks-internals #screen-sm({ .ta-left; }) }
 .ta-center        { text-align: center !important; }
+.lg\:ta-center    { #stacks-internals #screen-lg({ .ta-center; }) }
+.md\:ta-center    { #stacks-internals #screen-md({ .ta-center; }) }
+.sm\:ta-center    { #stacks-internals #screen-sm({ .ta-center; }) }
 .ta-right         { text-align: right !important; }
+.lg\:ta-right     { #stacks-internals #screen-lg({ .ta-right; }) }
+.md\:ta-right     { #stacks-internals #screen-md({ .ta-right; }) }
+.sm\:ta-right     { #stacks-internals #screen-sm({ .ta-right; }) }
 .ta-justify       { text-align: justify !important; }
 .ta-unset         { text-align: unset !important; }
 
 //  --  Text Decoration
 .td-none          { text-decoration: none !important; }
-.td-dashed        { -webkit-text-decoration: dashed underline !important; text-decoration: dashed underline !important; }
 .td-underline     { text-decoration: underline !important; }
 
 //  --  Text Transform
@@ -103,8 +111,8 @@ h1, h2, h3, h4, h5, h6, p {
 
 //  --  Text Truncate
 .truncate {
-    max-width: 100%;
     overflow: hidden;
+    max-width: 100%;
     text-overflow: ellipsis !important;
     white-space: nowrap;
 }
@@ -127,9 +135,9 @@ h1, h2, h3, h4, h5, h6, p {
 .list-reset {
     &,
     > li {
+        list-style: none;
         margin: 0;
         padding: 0;
-        list-style: none;
     }
 }
 
