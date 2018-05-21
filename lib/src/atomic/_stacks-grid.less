@@ -29,8 +29,7 @@
 
         .create-fixed-cells(@num, @count: 1) when (@count =< @num) {
             .grid--cell@{count} {
-                -ms-flex-preferred-size: (@count * 100%) / @num;
-                             flex-basis: (@count * 100%) / @num;
+                flex-basis: (@count * 100%) / @num;
 
                 //  --  IE11/10 Flex-basis bug
                 //      Known issue where if a flex item has a box-sizing border-box
@@ -40,8 +39,7 @@
                 //      or height (if a column).
                 //  --------------------------------------------------------------------
                 @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
-                    -ms-flex-preferred-size: auto;
-                                 flex-basis: auto;
+                    flex-basis: auto;
                     width: (@count * 100%) / @num;
 
                     .fd-column &,
@@ -80,8 +78,7 @@
             .grid__allcells@{count} {
                 > .grid,
                 > .grid--cell {
-                    -ms-flex-preferred-size: (@count * 100%) / @num;
-                                 flex-basis: (@count * 100%) / @num;
+                    flex-basis: (@count * 100%) / @num;
 
                     //  --  IE11/10 Flex-basis bug
                     //      Known issue where if a flex item has a box-sizing border-box
@@ -91,8 +88,7 @@
                     //      or height (if a column).
                     //  --------------------------------------------------------------------
                     @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
-                        -ms-flex-preferred-size: auto;
-                                     flex-basis: auto;
+                        flex-basis: auto;
                         width: (@count * 100%) / @num;
 
                         .fd-column &,
@@ -185,8 +181,7 @@
             > .grid--cell@{count},                                  // [1]
             &.grid__allcells@{count} > .grid,                       // [2]
             &.grid__allcells@{count} > .grid--cell {                // [2]
-                -ms-flex-preferred-size: calc(~"@{cell-width} - @{spacing}");
-                             flex-basis: calc(~"@{cell-width} - @{spacing}");
+                flex-basis: calc(~"@{cell-width} - @{spacing}");
 
                 //  --  IE11/10 Flex-basis bug
                 //      Known issue where if a flex item has a box-sizing border-box
@@ -196,8 +191,7 @@
                 //      or height (if a column).
                 //  --------------------------------------------------------------------
                 @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
-                    -ms-flex-preferred-size: auto;
-                                 flex-basis: auto;
+                    flex-basis: auto;
                     width: calc(~"@{cell-width} - @{spacing}");
 
                     .fd-column&,
@@ -263,8 +257,6 @@
 //      this is a row container, but we can modify the box to become a column.
 //  ----------------------------------------------------------------------------
 .grid {
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
 }
 
@@ -275,18 +267,14 @@
     &,
     > .grid,
     > .grid--cell {
-        -webkit-box-flex: 0;
-            -ms-flex: 0 auto;
-                flex: 0 auto;
+        flex: 0 auto;
     }
 }
 .grid__fl1 {
     &,
     > .grid,
     > .grid--cell {
-        -webkit-box-flex: 1;
-            -ms-flex: 1 auto;
-                flex: 1 auto;
+        flex: 1 auto;
     }
 }
 
