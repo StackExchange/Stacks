@@ -5,26 +5,8 @@ description: Notices deliver <strong>System</strong> and <strong>Engagement</str
 ---
 <!-- Example notice content -->
 <script src="{{ "/assets/js/notices.js" | relative_url }}"></script>
-<aside class="py8 pr8 s-notice s-notice__important s-notice__banner js-notice-banner" role="alert" aria-hidden="true">
-    <div class="wmx10 m-auto grid grid__center jc-spacebetween" role="alertdialog" aria-describedby="notice-message">
-        <div class="grid gs8 gsx mx0" aria-label="notice-message">
-            <div class="grid--cell">
-                <svg aria-hidden="true" class="svg-icon iconLock" width="18" height="18" viewBox="0 0 18 18"><path d="M16 9a2 2 0 0 0-2-2V6A5 5 0 0 0 4 6v1a2 2 0 0 0-2 2v6c0 1.1.9 2 2 2h10a2 2 0 0 0 2-2V9zm-7 5a2 2 0 0 1-2-2c0-1.1.9-2 2-2a2 2 0 0 1 2 2 2 2 0 0 1-2 2zm3.1-7H5.9V6a3.1 3.1 0 0 1 6.2 0v1z"/></svg>
-            </div>
-            <div class="grid--cell">
-                <p class="m0"><strong>Stacks is currently frozen in read-only mode.</strong> Contact the team to restore access.</p>
-            </div>
-        </div>
-        <div class="grid--cell ml-auto" aria-label="notice-dismiss">
-            <a class="p8 s-btn grid grid__center fc-red-050 js-notice-close" role="status" aria-hidden="true">
-                <svg aria-hidden="true" class="m0 svg-icon iconClearSm" width="14" height="14" viewBox="0 0 14 14"><path d="M12 3.41L10.59 2 7 5.59 3.41 2 2 3.41 5.59 7 2 10.59 3.41 12 7 8.41 10.59 12 12 10.59 8.41 7z"/></svg>
-            </a>
-        </div>
-    </div>
-</aside>
-
 <aside class="py8 pr8 s-notice s-notice__success s-notice__toast js-notice-toast" aria-hidden="true">
-    <div class="grid gs16 gsx ai-center jc-spacebetween" aria-describedby="notice-message">
+    <div class="grid gs16 gsx ai-center jc-space-between" aria-describedby="notice-message">
         <div class="grid--cell" aria-label="notice-message">
             <p class="m0">Email settings have been successfully updated.</p>
         </div>
@@ -37,19 +19,8 @@ description: Notices deliver <strong>System</strong> and <strong>Engagement</str
 </aside>
 
 <section class="stacks-section">
-    <h2 class="grid jc-spacebetween ai-center mb8 stacks-title">Examples</h2>
-    <div class="p16 bar-sm bg-black-025 ba bc-black-1">
-        <div class="grid gs8 gsx">
-            <button class="grid--cell s-btn s-btn__filled js-notice-banner-open">View banner example</button>
-            <button class="grid--cell s-btn s-btn__filled js-notice-banner-pinned-open">View pinned banner example</button>
-            <button class="grid--cell s-btn s-btn__filled js-notice-toast-open">View flash notice example</button>
-        </div>
-    </div>
-</section>
-
-<section class="stacks-section">
-    <h2 class="grid jc-spacebetween ai-center mb8 stacks-title">Accessibilty</h2>
-    <table cellspacing="0" class="s-table">
+    <h2 class="grid jc-space-between ai-center stacks-h2"><div class="grid--cell fl1">Accessibilty</div></h2>
+    <table cellspacing="0" class="mb32 s-table s-table__hover">
         <thead>
             <tr>
                 <th scope="col" class="s-table--cell3">Item</th>
@@ -58,44 +29,31 @@ description: Notices deliver <strong>System</strong> and <strong>Engagement</str
             </tr>
         </thead>
         <tbody>
+            {% for item in site.data.notices.access %}
             <tr>
-                <td><code class="stacks-code">aria-describedby="[id]"</code></td>
-                <td><code class="stacks-code">role="alertdialog"</code></td>
-                <td>Used to reference the alert message within the dialog. If you are using <code class="stacks-code">role="alertdialog"</code>, <strong>this must be applied.</strong> (<a href="https://www.w3.org/TR/wai-aria-1.1/#aria-describedby" target="_blank">Source</a>)</td>
+                <td><code class="stacks-code">{{ item.item }}</code></td>
+                <td>
+                    {% if item.applies == "N/A" %}
+                        <em class="fc-black-350">{{ item.applies }}</em>
+                    {% else %}
+                        {% assign class = item.applies | split: " " %}
+
+                        {% for name in class %}
+                            <code class="stacks-code">{{ name }}</code>
+                        {% endfor %}
+                    {% endif %}
+                </td>
+                <td>{{ item.description }} (<a href="{{ item.url }}" target="_blank">Source</a>)</td>
             </tr>
-            <tr>
-                <td><code class="stacks-code">aria-hidden="[state]"</code></td>
-                <td><code class="stacks-code">.s-notice</code></td>
-                <td>Informs assistive technologies (such as screen readers) if they should ignore the element. This should not be confused with the HTML5 hidden attribute which tells the browser to not display an element. (<a href="https://www.w3.org/TR/wai-aria-1.1/#aria-hidden" target="_blank">Source</a>)</td>
-            </tr>
-            <tr>
-                <td><code class="stacks-code">aria-label="[text]"</code></td>
-                <td>Message area</td>
-                <td>Labels the element for assistive technologies (such as screen readers). (<a href="https://www.w3.org/TR/wai-aria-1.1/#aria-label" target="_blank">Source</a>)</td>
-            </tr>
-            <tr>
-                <td><code class="stacks-code">role="status"</code></td>
-                <td><code class="stacks-code">.s-notice</code></td>
-                <td>A form of live region which contains advisory information but isn't important enough to justify an alert role. Elements with a status role have an implicit <code class="stacks-code">aria-live</code> value of <code class="stacks-code">polite</code> and implicit <code class="stacks-code">aria-atomic</code> value of <code class="stacks-code">true</code>. If the element controlling the status appears in a different area of the page, you <strong>must make the relationship explicit</strong> with the <code class="stacks-code">aria-controls</code> attribute. (<a href="https://www.w3.org/TR/wai-aria-1.1/#status" target="_blank">Source</a>)</td>
-            </tr>
-            <tr>
-                <td><code class="stacks-code">role="alert"</code></td>
-                <td><code class="stacks-code">.s-notice</code></td>
-                <td>A form of live region which contains important, usually time-sensitive, information. Elements with an alert role have an implicit <code class="stacks-code">aria-live</code> value of <code class="stacks-code">assertive</code> and implicit <code class="stacks-code">aria-atomic</code> value of <code class="stacks-code">true</code>. (<a href="https://www.w3.org/TR/wai-aria-1.1/#alert" target="_blank">Source</a>)</td>
-            </tr>
-            <tr>
-                <td><code class="stacks-code">role="alertdialog"</code></td>
-                <td>Notice dialog container</td>
-                <td>The wrapping content area of an <code class="stacks-code">alert</code>. Elements with the <code class="stacks-code">alertdialog</code> role <strong>must</strong> use the <code class="stacks-code">aria-describedby</code> attribute to reference the alert message within the dialog. (<a href="https://www.w3.org/TR/wai-aria-1.1/#alertdialog" target="_blank">Source</a>)</td>
-            </tr>
+            {% endfor %}
         </tbody>
     </table>
 </section>
 
 <section class="stacks-section">
-    <h2 class="grid jc-spacebetween ai-center mb8 stacks-title">Visual Styles</h2>
-    <h3 class="grid jc-spacebetween ai-center mb8 stacks-title _subtitle">Classes</h3>
-    <table cellspacing="0" class="s-table mb32">
+    <h2 class="grid jc-space-between ai-center stacks-h2"><div class="grid--cell fl1">Visual Styles</div></h2>
+    <h3 class="grid jc-space-between ai-center stacks-h3"><div class="grid--cell fl1">Classes</div></h3>
+    <table cellspacing="0" class="mb32 s-table s-table__hover">
         <thead>
             <tr>
                 <th scope="col" class="s-table--cell3">Class</th>
@@ -104,47 +62,56 @@ description: Notices deliver <strong>System</strong> and <strong>Engagement</str
             </tr>
         </thead>
         <tbody>
+            {% for item in site.data.notices.visual %}
             <tr>
-                <td><code class="stacks-code">.s-notice</code></td>
-                <td><em class="fc-black-350">N/A</em></td>
-                <td>Default style used to separate notices from the main content</td>
+                <td><code class="stacks-code">{{ item.class }}</code></td>
+                <td>
+                    {% if item.applies == "N/A" %}
+                        <em class="fc-black-350">{{ item.applies }}</em>
+                    {% else %}
+                        {% assign class = item.applies | split: " " %}
+
+                        {% for name in class %}
+                            <code class="stacks-code">{{ name }}</code>
+                        {% endfor %}
+                    {% endif %}
+                </td>
+                <td>{{ item.description }}</td>
             </tr>
-            <tr>
-                <td><code class="stacks-code">.s-notice__info</code></td>
-                <td><code class="stacks-code">.s-notice</code></td>
-                <td>Visual style for information notices</td>
-            </tr>
-            <tr>
-                <td><code class="stacks-code">.s-notice__success</code></td>
-                <td><code class="stacks-code">.s-notice</code></td>
-                <td>Visual style for success notices</td>
-            </tr>
-            <tr>
-                <td><code class="stacks-code">.s-notice__warning</code></td>
-                <td><code class="stacks-code">.s-notice</code></td>
-                <td>Visual style for warning notices</td>
-            </tr>
-            <tr>
-                <td><code class="stacks-code">.s-notice__danger</code></td>
-                <td><code class="stacks-code">.s-notice</code></td>
-                <td>Visual style for danger notices</td>
-            </tr>
-            <tr>
-                <td><code class="stacks-code">.s-notice__outlined</code></td>
-                <td><code class="stacks-code">.s-notice</code></td>
-                <td>Minimal style used for not important information that is minimally separated from the main content</td>
-            </tr>
-            <tr>
-                <td><code class="stacks-code">.s-notice__important</code></td>
-                <td><code class="stacks-code">.s-notice</code></td>
-                <td>Loud visual style for important, time-sensitive information that needs to be noticed by the user</td>
-            </tr>
+            {% endfor %}
         </tbody>
     </table>
 
-    <h3 class="grid jc-spacebetween ai-center mb8 stacks-title _subtitle">Outlined</h3>
-    <p class="stacks-p _section">Minimal style used to minimally separate notices from the main content</p>
-    <div class="stacks-code-preview">
+    <h3 class="grid jc-space-between ai-center stacks-h3"><div class="grid--cell fl1">Filled</div></h3>
+    <p class="stacks-copy">Default style used to separate notices from the main content</p>
+    <div class="stacks-preview">
+{% highlight html linenos %}
+<aside class="s-notice s-notice__info" role="status" aria-hidden="false">…</aside>
+<aside class="s-notice s-notice__success" role="status" aria-hidden="false">…</aside>
+<aside class="s-notice s-notice__warning" role="status" aria-hidden="false">…</aside>
+<aside class="s-notice s-notice__danger" role="status" aria-hidden="false">…</aside>
+{% endhighlight %}
+        <div class="stacks-preview--example ">
+            <div class="ps-relative grid gs8 gsy fd-column jc-center">
+                <aside class="grid--cell s-notice s-notice__info" role="status" aria-hidden="false">
+                    <p class="m0">Info filled message style</p>
+                </aside>
+                <aside class="grid--cell s-notice s-notice__success" role="status" aria-hidden="false">
+                    <p class="m0">Success filled message style</p>
+                </aside>
+                <aside class="grid--cell s-notice s-notice__warning" role="status" aria-hidden="false">
+                    <p class="m0">Warning filled message style</p>
+                </aside>
+                <aside class="grid--cell s-notice s-notice__danger" role="status" aria-hidden="false">
+                    <p class="m0">Danger filled message style</p>
+                </aside>
+            </div>
+        </div>
+    </div>
+
+    <h3 class="grid jc-space-between ai-center stacks-h3"><div class="grid--cell fl1">Outlined</div></h3>
+    <p class="stacks-copy">Minimal style used to minimally separate notices from the main content</p>
+    <div class="stacks-preview">
 {% highlight html linenos %}
 <aside class="s-notice s-notice__info s-notice__outlined" role="status" aria-hidden="false">…</aside>
 <aside class="s-notice s-notice__success s-notice__outlined" role="status" aria-hidden="false">…</aside>
@@ -169,36 +136,9 @@ description: Notices deliver <strong>System</strong> and <strong>Engagement</str
         </div>
     </div>
 
-    <h3 class="grid jc-spacebetween ai-center mb8 stacks-title _subtitle">Filled</h3>
-    <p class="stacks-p _section">Default style used to separate notices from the main content</p>
-    <div class="stacks-code-preview">
-{% highlight html linenos %}
-<aside class="s-notice s-notice__info" role="status" aria-hidden="false">…</aside>
-<aside class="s-notice s-notice__success" role="status" aria-hidden="false">…</aside>
-<aside class="s-notice s-notice__warning" role="status" aria-hidden="false">…</aside>
-<aside class="s-notice s-notice__danger" role="status" aria-hidden="false">…</aside>
-{% endhighlight %}
-        <div class="-preview">
-            <div class="ps-relative grid gs8 gsy fd-column jc-center">
-                <aside class="grid--cell s-notice s-notice__info" role="status" aria-hidden="false">
-                    <p class="m0">Info filled message style</p>
-                </aside>
-                <aside class="grid--cell s-notice s-notice__success" role="status" aria-hidden="false">
-                    <p class="m0">Success filled message style</p>
-                </aside>
-                <aside class="grid--cell s-notice s-notice__warning" role="status" aria-hidden="false">
-                    <p class="m0">Warning filled message style</p>
-                </aside>
-                <aside class="grid--cell s-notice s-notice__danger" role="status" aria-hidden="false">
-                    <p class="m0">Danger filled message style</p>
-                </aside>
-            </div>
-        </div>
-    </div>
-
-    <h3 class="grid jc-spacebetween ai-center mb8 stacks-title _subtitle">Filled, Important</h3>
-    <p class="stacks-p _section">Used sparingly for when an important notice needs to be noticed</p>
-    <div class="stacks-code-preview">
+    <h3 class="grid jc-space-between ai-center stacks-h3"><div class="grid--cell fl1">Filled, Important</div></h3>
+    <p class="stacks-copy">Used sparingly for when an important notice needs to be noticed</p>
+    <div class="stacks-preview">
 {% highlight html linenos %}
 <aside class="s-notice s-notice__invert s-notice__important" role="alert" aria-hidden="false">
     <div class="grid" role="alertdialog" aria-describedby="notice-message">
@@ -217,7 +157,7 @@ description: Notices deliver <strong>System</strong> and <strong>Engagement</str
 <aside class="s-notice s-notice__warning s-notice__important" role="alert" aria-hidden="false">…</aside>
 <aside class="s-notice s-notice__danger s-notice__important" role="alert" aria-hidden="false">…</aside>
 {% endhighlight %}
-        <div class="-preview">
+        <div class="stacks-preview--example ">
             <div class="ps-relative grid gs8 gsy fd-column jc-center">
                 <aside class="grid--cell s-notice s-notice__important" role="alert" aria-hidden="false">
                     <div class="grid">
@@ -285,8 +225,8 @@ description: Notices deliver <strong>System</strong> and <strong>Engagement</str
 </section>
 
 <section class="stacks-section">
-    <h2 class="grid jc-spacebetween ai-center mb8 stacks-title">Behaviors</h2>
-    <table cellspacing="0" class="s-table">
+    <h2 class="grid jc-space-between ai-center stacks-h2"><div class="grid--cell fl1">Behaviors</div></h2>
+    <table cellspacing="0" class="mb32 s-table s-table__hover">
         <thead>
             <tr>
                 <th scope="col" class="s-table--cell2">Behavior</th>
@@ -296,39 +236,34 @@ description: Notices deliver <strong>System</strong> and <strong>Engagement</str
             </tr>
         </thead>
         <tbody>
+            {% for item in site.data.notices.behavior %}
             <tr>
-                <td><a href="#inline">Inline</a></td>
-                <td><code class="stacks-code">.s-notice</code></td>
-                <td><em class="fc-black-350">N/A</em></td>
-                <td>Notice inserted within the content area</td>
+                <td>{{ item.type }}
+                <td><code class="stacks-code">{{ item.class }}</code></td>
+                <td>
+                    {% if item.applies == "N/A" %}
+                        <em class="fc-black-350">{{ item.applies }}</em>
+                    {% else %}
+                        {% assign class = item.applies | split: " " %}
+
+                        {% for name in class %}
+                            <code class="stacks-code">{{ name }}</code>
+                        {% endfor %}
+                    {% endif %}
+                </td>
+                <td>{{ item.description }}</td>
             </tr>
-            <tr>
-                <td><a href="#floating">Floating</a></td>
-                <td><code class="stacks-code">.s-notice__float</code></td>
-                <td><code class="stacks-code">.s-notice</code></td>
-                <td>Floats notice above page content</td>
-            </tr>
-            <tr>
-                <td><a href="#banner">Banner</a></td>
-                <td><code class="stacks-code">.s-notice__banner</code></td>
-                <td><code class="stacks-code">.s-notice</code></td>
-                <td>Full-width notice fixed to the top or bottom of the viewport</td>
-            </tr>
-            <tr>
-                <td><a href="#toast">Toast</a></td>
-                <td><code class="stacks-code">.s-notice__toast</code></td>
-                <td><code class="stacks-code">.s-notice</code></td>
-                <td>Fixed floating notice to the top-center of the page and typically disappear after a set time (i.e. 3 seconds)</td>
-            </tr>
+            {% endfor %}
         </tbody>
     </table>
-    <h3 class="grid jc-spacebetween ai-center mb8 stacks-title _subtitle">Inline</h3>
-    <p class="stacks-p _section">Default behavior for notices that are inserted within the content area</p>
-    <div class="stacks-code-preview">
+
+    <h3 class="grid jc-space-between ai-center stacks-h3"><div class="grid--cell fl1">Inline</div></h3>
+    <p class="stacks-copy">Default behavior for notices that are inserted within the content area</p>
+    <div class="stacks-preview">
 {% highlight html linenos %}
 <aside class="s-notice s-notice__info" role="status" aria-hidden="false">…</aside>
 {% endhighlight %}
-        <div class="-preview">
+        <div class="stacks-preview--example ">
             <div class="ps-relative grid gs8 gsy fd-column jc-center">
                 <aside class="grid--cell s-notice s-notice__info" role="status" aria-hidden="false">
                     <p class="m0">Inline notice message style</p>
@@ -337,52 +272,40 @@ description: Notices deliver <strong>System</strong> and <strong>Engagement</str
         </div>
     </div>
 
-    <h3 class="grid jc-spacebetween ai-center mb8 stacks-title _subtitle">Floating</h3>
-    <p class="stacks-p _section">Floats a notice above the current page's content</p>
-    <div class="stacks-code-preview">
-{% highlight html linenos %}
-<aside class="s-notice s-notice__info s-notice__float" role="status" aria-hidden="false">…</aside>
-{% endhighlight %}
-        <div class="-preview">
-            <div class="ps-relative grid gs8 gsy fd-column jc-center">
-                <aside class="grid--cell s-notice s-notice__info s-notice__float" role="status" aria-hidden="false">
-                    <p class="m0">Floating notice message style</p>
-                </aside>
-            </div>
-        </div>
+    <h3 class="grid jc-space-between ai-center stacks-h3"><div class="grid--cell fl1">Banners</div></h3>
+    <p class="stacks-copy">System and hero banners are full-width notices placed usually at the top or bottom of the browser window, providing system or engagement content.</p>
+    <div class="mb48 s-notice s-notice__info">
+        <p class="mb0 fs-body3 lh-md">Full documentation for banners <a href="banners.html">can be found in the banners area</a>.</p>
     </div>
 
-    <h3 class="grid jc-spacebetween ai-center mb8 stacks-title _subtitle">Banner</h3>
-    <p class="stacks-p _section">Full width notices usually at the top or bottom of the browser window</p>
-    <div class="mb24 p16 bar-sm bg-black-025 ba bc-black-1">
-        <button class="grid--cell s-btn s-btn__filled js-notice-banner-open">Launch example banner notice</button>
-    </div>
-    <div class="stacks-code-preview">
-{% highlight html linenos %}
-<aside class="s-notice s-notice__info s-notice__banner" role="banner" role="status" aria-hidden="false">…</aside>
-{% endhighlight %}
-        <div class="-preview">
-            <div class="ps-relative grid gs8 gsy fd-column jc-center">
-                <aside class="grid--cell s-notice s-notice__important s-notice__banner" role="banner" aria-hidden="false" style="position: relative; transform: translate3d(0,0,0);">
-                    <p class="m0">Banner notice message style</p>
-                </aside>
-            </div>
-        </div>
-    </div>
-
-    <h3 class="grid jc-spacebetween ai-center mb8 stacks-title _subtitle">Toast</h3>
-    <p class="stacks-p _section">Floating notices, but aligned to the top and center of the page and they disappear after a set time</p>
+    <h3 class="grid jc-space-between ai-center stacks-h3"><div class="grid--cell fl1">Toast</div></h3>
+    <p class="stacks-copy">Floating notices, but aligned to the top and center of the page and they disappear after a set time</p>
     <div class="mb24 p16 bar-sm bg-black-025 ba bc-black-1">
         <button class="grid--cell s-btn s-btn__filled js-notice-toast-open">Launch example toast notice</button>
     </div>
-    <div class="stacks-code-preview">
+    <div class="stacks-preview">
 {% highlight html linenos %}
-<aside class="s-notice s-notice__success s-notice__toast" role="status" aria-hidden="false">…</aside>
+<aside class="s-notice s-notice__info s-notice__float" role="status" aria-hidden="false">…</aside>
 {% endhighlight %}
-        <div class="-preview">
+        <div class="stacks-preview--example ">
             <div class="ps-relative grid grid__center gs8 gsy fd-column jc-center">
                 <aside class="grid--cell s-notice s-notice__success s-notice__toast" role="status" aria-hidden="false" style="position: relative; top: 0; left: 0;">
                     <p class="m0">Toast notice message style</p>
+                </aside>
+            </div>
+        </div>
+    </div>
+
+    <h3 class="grid jc-space-between ai-center stacks-h3"><div class="grid--cell fl1">Floating</div></h3>
+    <p class="stacks-copy">Floats a notice above the current page's content</p>
+    <div class="stacks-preview">
+{% highlight html linenos %}
+<aside class="s-notice s-notice__info s-notice__float" role="status" aria-hidden="false">…</aside>
+{% endhighlight %}
+        <div class="stacks-preview--example ">
+            <div class="ps-relative grid gs8 gsy fd-column jc-center">
+                <aside class="grid--cell s-notice s-notice__info s-notice__float" role="status" aria-hidden="false">
+                    <p class="m0">Floating notice message style</p>
                 </aside>
             </div>
         </div>

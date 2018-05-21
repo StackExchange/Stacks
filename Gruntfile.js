@@ -7,7 +7,7 @@ module.exports = function(grunt) {
         // Shell commands for use in Grunt tasks
         shell: {
             jekyllBuild: {
-                command: 'jekyll build',
+                command: 'bundle exec jekyll build',
                 options: {
                     stderr: false,
                     execOptions: {
@@ -16,7 +16,7 @@ module.exports = function(grunt) {
                 }
             },
             jekyllServe: {
-                command: 'jekyll serve',
+                command: 'bundle exec jekyll serve',
                 options: {
                     stderr: false,
                     execOptions: {
@@ -33,6 +33,15 @@ module.exports = function(grunt) {
                     'lib/css/stacks.css': 'lib/src/stacks.less',
                 }
             },
+            partials: {
+                // these files are immediately deleted because we don't distribute them directly, but we must ensure
+                // that they compile (e.g. if a static file accidentally accesses the dynamic options, the full bundle will compile
+                // fine, but stacks-static alone will blow up)
+                files: {
+                    'lib/css/stacks-static.css': 'lib/src/stacks-static.less',
+                    'lib/css/stacks-dynamic.css': 'lib/src/stacks-dynamic.less',
+                }
+            }
         },
         // Minify our compiled CSS
         cssmin: {
@@ -51,7 +60,7 @@ module.exports = function(grunt) {
             },
             less: {
                 files: ['lib/**/*.less', 'docs/**/*.less'],
-                tasks: ['less']
+                tasks: ['less:production']
             },
             css: {
                 files: ['docs/assets/css/stacks-documentation.css', 'lib/css/stacks.css'],
@@ -64,7 +73,7 @@ module.exports = function(grunt) {
                 'postcss:autoprefixing',
                 'postcss:sorting',
                 'watch:postcss',
-                'less',
+                'less:production',
                 'watch:less',
                 'cssmin',
                 'watch:css',
@@ -77,6 +86,7 @@ module.exports = function(grunt) {
         // Clean the icons directory to prepare for copying from the node dependency
         clean: {
             icons: ['docs/resources/svg-icons/'],
+            partials: ['lib/css/stacks-static.css', 'lib/css/stacks-dynamic.css'],
         },
         // Copy files out of node_modules so Jekyll can use them
         copy: {
@@ -312,7 +322,7 @@ module.exports = function(grunt) {
 
     // Default task
     grunt.registerTask('default', ['concurrent:serve']);
-    grunt.registerTask('build', ['less', 'cssmin']);
-    grunt.registerTask('update-icons', ['clean', 'copy']);
+    grunt.registerTask('build', ['less:production', 'less:partials', 'clean:partials', 'cssmin']);
+    grunt.registerTask('update-icons', ['clean:icons', 'copy']);
     grunt.registerTask('process-css', ['postcss']);
 };
