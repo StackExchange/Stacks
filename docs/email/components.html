@@ -4,11 +4,11 @@ title: Email Components
 description: When to use and how to implement common email components.
 ---
 <section class="stacks-section">
-    <h2 class="grid jc-spacebetween ai-center stacks-title">Typography</h2>
-    <p class="stacks-p _section">
+    <h2 class="grid jc-space-between ai-center stacks-h2"><div class="grid--cell fl1">Typography</div></h2>
+    <p class="stacks-copy">
         It's safe and accessible to use semantic HTML tags like <code class="stacks-code">&lt;h&gt;</code>, <code class="stacks-code">&lt;p&gt;</code>, and <code class="stacks-code">&lt;ul&gt;</code> for text in email. Use inline CSS to specify intended styles (like the color of an <code class="stacks-code">&lt;a href&gt;</code> tag) and zero out unintended defaults (like the margin around a <code class="stacks-code">&lt;p&gt;</code> tag)
     </p>
-    <div class="stacks-code-preview">
+    <div class="stacks-preview">
 {% highlight html linenos %}
 <td style="font-family: arial, sans-serif; font-size: 15px; line-height: 19px; color: #54595F; text-align: left;">
     <h2 style="margin: 0 0 15px 0; font-size: 21px; color: #242629; font-weight: bold;">This is a small section title</h2>
@@ -21,7 +21,7 @@ description: When to use and how to implement common email components.
     </ul>
 </td>
 {% endhighlight %}
-        <div class="-preview ps-relative" style="font-family: arial, sans-serif; font-size: 15px; line-height: 19px; color: #54595F; text-align: left;">
+        <div class="stacks-preview--example" style="font-family: arial, sans-serif; font-size: 15px; line-height: 19px; color: #54595F; text-align: left;">
             <h2 style="margin: 0 0 15px 0; font-size: 21px; color: #242629; font-weight: bold;">This is a small section title</h2>
             <p style="margin: 0 0 15px 0;">Lorem ipsum <strong>dolor</strong> sit amet, consectetur <a href="https://stackoverflow.com/" style="color: #0077CC; text-decoration: none;">adipiscing elit</a>. Cras nisi magna, mollis luctus sapien varius, mattis ornare est. Sed non tincidunt erat, ut commodo augue.</p>
             <p style="margin: 0 0 15px 0;" class="has-markdown">I'm a <em>markdown</em> paragraph. Lorem ipsum <a href="https://stackoverflow.com/" style="color: #0077CC; text-decoration: none;">dolor sit amet</a>, consectetur. <strong>Cras nisi magna</strong>, mollis luctus sapien varius, mattis ornare est.</p>
@@ -32,18 +32,18 @@ description: When to use and how to implement common email components.
             </ul>
         </div>
     </div>
-    <h3 class="grid jc-spacebetween ai-center stacks-title _subtitle">Using Markdown</h3>
-    <p class="stacks-p _section">
+    <h3 class="grid jc-space-between ai-center stacks-h3"><div class="grid--cell fl1">Using Markdown</div></h3>
+    <p class="stacks-copy">
         If email content is written in markdown, we can't write inline CSS into link tags. Left unstyled, <a href="#" style="color: blue; text-decoration: underline;">links will appear like this</a>. To style links contained in markdown text, add a <code class="stacks-code">class="has-markdown"</code> to any parent tag that might contain a markdown link.
     </p>
-    <div class="stacks-code-preview">
+    <div class="stacks-preview">
 {% highlight html linenos %}
 <td style="" class="has-markdown">
     <p style="margin: 0 0 15px 0;">@_s("I'm a text string in markdown.")</p>
     <p style="margin: 0 0 15px 0;">@_m("I'm a *bold* [text link](https://www.stackoverflow.com) in markdown.")</p>
 </td>
 {% endhighlight %}
-        <div class="-preview ps-relative" style="font-family: arial, sans-serif; font-size: 15px; line-height: 19px; color: #54595F; text-align: left;">
+        <div class="stacks-preview--example" style="font-family: arial, sans-serif; font-size: 15px; line-height: 19px; color: #54595F; text-align: left;">
             <p style="margin: 0 0 15px 0;">I'm a text string in markdown.</p>
             <p style="margin: 0 0 15px 0;">I'm a <strong>bold</strong> <a href="https://www.stackoverflow.com" style="color: #0077CC; text-decoration: none;">text link</a> in markdown.</p>
         </div>
@@ -55,15 +55,15 @@ description: When to use and how to implement common email components.
 
 <!----- BUTTONS ----->
 <section class="stacks-section">
-    <h2 class="grid jc-spacebetween ai-center stacks-title">Buttons</h2>
-    <p class="stacks-p _section">Creating a successful button in email uses multiple html tags to create progressive enhancement and prevent text-decoration in certain email clients.</p>
-    <p class="stacks-p _section">
+    <h2 class="grid jc-space-between ai-center stacks-h2"><div class="grid--cell fl1">Buttons</div></h2>
+    <p class="stacks-copy">Creating a successful button in email uses multiple html tags to create progressive enhancement and prevent text-decoration in certain email clients.</p>
+    <p class="stacks-copy">
         Each style is explained below, detailing how and where to use these styles.
     </p>
-    <p class="stacks-p _section">
+    <p class="stacks-copy">
         A visual style used to highlight the most important actions. To avoid confusing users, don't use more than one primary button within a section or preferably, email.
     </p>
-    <div class="stacks-code-preview">
+    <div class="stacks-preview">
 {% highlight html linenos %}
 <td class="s-btn s-btn__primary" style="border-radius: 4px; background: #0095ff; text-align: center;">
     <a class="s-btn s-btn__primary" href="#" style="background: #0095FF; border: 1px solid #0077cc; box-shadow: inset 0 1px 0 0 rgba(102,191,255,.75), 0 0 0 0 rgba(0,149,255,0); font-family: arial, sans-serif; font-size: 17px; line-height: 17px; text-align: center; text-decoration: none; padding: 13px 17px; display: block; border-radius: 4px;">
@@ -155,43 +155,47 @@ description: When to use and how to implement common email components.
 
 <!----- TAGS ----->
 <section class="stacks-section">
-    <h2 class="grid jc-spacebetween ai-center stacks-title">Tags</h2>
-    <p class="stacks-p _section">
+    <h2 class="grid jc-space-between ai-center stacks-h2"><div class="grid--cell fl1">Tags</div></h2>
+    <p class="stacks-copy">
         TBD
     </p>
-    <div class="stacks-code-preview">
+    <div class="stacks-preview">
 {% highlight html linenos %}
 Example code bit
 {% endhighlight %}
-        <div class="-preview ps-relative">
+        <div class="stacks-preview--example">
             Example area
         </div>
     </div>
 </section>
+
+<!----- FOREGROUND IMAGES ----->
 <section class="stacks-section">
-    <h2 class="grid jc-spacebetween ai-center stacks-title">Foreground Images</h2>
-    <p class="stacks-p _section">
+    <h2 class="grid jc-space-between ai-center stacks-h2"><div class="grid--cell fl1">Foreground Images</div></h2>
+    <p class="stacks-copy">
         TBD
     </p>
-    <div class="stacks-code-preview">
+    <div class="stacks-preview">
 {% highlight html linenos %}
 Example code bit
 {% endhighlight %}
-        <div class="-preview ps-relative">
+        <div class="stacks-preview--example">
             Example area
         </div>
     </div>
 </section>
+
+<!----- BACKGROUND IMAGES ----->
 <section class="stacks-section">
-    <h2 class="grid jc-spacebetween ai-center stacks-title">Background Images</h2>
-    <p class="stacks-p _section">
+    <h2 class="grid jc-space-between ai-center stacks-h2"><div class="grid--cell fl1">Background Images</div></h2>
+    <p class="stacks-copy">
         TBD
     </p>
-    <div class="stacks-code-preview">
+    <div class="stacks-preview">
 {% highlight html linenos %}
 Example code bit
 {% endhighlight %}
-        <div class="-preview ps-relative">
+        <div class="stacks-preview--example">
             Example area
         </div>
     </div>
