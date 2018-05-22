@@ -301,7 +301,7 @@ module.exports = function(grunt) {
                     syntax: require('postcss-less'),
                     processors: [
                         require('autoprefixer')({
-                            browsers: 'last 2 versions'
+                            browsers: 'Last 2 versions, not dead, last 2 iOS major versions'
                         }),
                     ]
                 },
