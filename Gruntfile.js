@@ -56,7 +56,7 @@ module.exports = function(grunt) {
         watch: {
             postcss: {
                 files: ['lib/**/*.less'],
-                tasks: ['postcss:autoprefixing','postcss:sorting'],
+                tasks: ['postcss:flexbugs','postcss:autoprefixing','postcss:sorting'],
             },
             less: {
                 files: ['lib/**/*.less', 'docs/**/*.less'],
@@ -70,6 +70,7 @@ module.exports = function(grunt) {
         // Run tasks in parallel
         concurrent: {
             serve: [
+                'postcss:flexbugs',
                 'postcss:autoprefixing',
                 'postcss:sorting',
                 'watch:postcss',
@@ -292,6 +293,15 @@ module.exports = function(grunt) {
                             ],
                             'unspecified-properties-position': 'bottom',
                         }),
+                    ]
+                },
+                src: 'lib/**/*.less',
+            },
+            flexbugs: {
+                options: {
+                    syntax: require('postcss-less'),
+                    processors: [
+                        require('postcss-flexbugs-fixes'),
                     ]
                 },
                 src: 'lib/**/*.less',
