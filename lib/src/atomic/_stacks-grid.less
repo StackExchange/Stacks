@@ -41,26 +41,6 @@
                 @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
                     flex-basis: auto;
                     width: (@count * 100%) / @num;
-
-                    .fd-column &,
-                    .fd-column-reverse & {
-                        width: auto !important;
-                    }
-
-                    .lg\:fd-column&,
-                    .lg\:fd-column-reverse& {
-                        #stacks-internals #screen-lg({ width: auto; }) !important;
-                    }
-
-                    .md\:fd-column&,
-                    .md\:fd-column-reverse& {
-                        #stacks-internals #screen-md({ width: auto; }) !important;
-                    }
-
-                    .sm\:fd-column&,
-                    .sm\:fd-column-reverse& {
-                        #stacks-internals #screen-lg({ width: auto; }) !important;
-                    }
                 }
             }
 
@@ -90,26 +70,6 @@
                     @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
                         flex-basis: auto;
                         width: (@count * 100%) / @num;
-
-                        .fd-column &,
-                        .fd-column-reverse & {
-                            width: auto !important;
-                        }
-
-                        .lg\:fd-column&,
-                        .lg\:fd-column-reverse& {
-                            #stacks-internals #screen-lg({ width: auto; }) !important;
-                        }
-
-                        .md\:fd-column&,
-                        .md\:fd-column-reverse& {
-                            #stacks-internals #screen-md({ width: auto; }) !important;
-                        }
-
-                        .sm\:fd-column&,
-                        .sm\:fd-column-reverse& {
-                            #stacks-internals #screen-lg({ width: auto; }) !important;
-                        }
                     }
                 }
             }
@@ -193,26 +153,6 @@
                 @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
                     flex-basis: auto;
                     width: calc(~"@{cell-width} - @{spacing}");
-
-                    .fd-column&,
-                    .fd-column-reverse& {
-                        width: auto !important;
-                    }
-
-                    .lg\:fd-column&,
-                    .lg\:fd-column-reverse& {
-                        #stacks-internals #screen-lg({ width: auto; }) !important;
-                    }
-
-                    .md\:fd-column&,
-                    .md\:fd-column-reverse& {
-                        #stacks-internals #screen-md({ width: auto; }) !important;
-                    }
-
-                    .sm\:fd-column&,
-                    .sm\:fd-column-reverse& {
-                        #stacks-internals #screen-lg({ width: auto; }) !important;
-                    }
                 }
             }
 
@@ -289,6 +229,52 @@
     //  $$  AUTO FIXED WIDTH CELLS
     //  ----------------------------------------------------------------------------
     #stacks-internals #grid-builder-helpers .create-grid-count-cols(@grid-cols);
+
+    //  --  IE11/10 Flex-basis bug
+    //      Known issue where if a flex item has a box-sizing border-box
+    //      value, the flex-basis value is incorrect. The workaround is
+    //      to apply a width or height. Since flex-basis applies in the
+    //      flow direction, we have to conditionally set the width (default)
+    //      or height (if a column).
+    //  --------------------------------------------------------------------
+    @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+        .fd-column,
+        .fd-column-reverse {
+            > .grid,
+            > [class*="grid--cell"],
+            &[class*="grid__allcells"] > .grid,
+            &[class*="grid__allcells"] > [class*="grid--cell"] {
+                .w-auto;
+            }
+        }
+        .lg\:fd-column,
+        .lg\:fd-column-reverse {
+            > .grid,
+            > [class*="grid--cell"],
+            &[class*="grid__allcells"] > .grid,
+            &[class*="grid__allcells"] > [class*="grid--cell"] {
+                #stacks-internals #screen-lg({ .w-auto; })
+            }
+        }
+        .md\:fd-column,
+        .md\:fd-column-reverse {
+            > .grid,
+            > [class*="grid--cell"],
+            &[class*="grid__allcells"] > .grid,
+            &[class*="grid__allcells"] > [class*="grid--cell"] {
+                #stacks-internals #screen-md({ .w-auto; })
+            }
+        }
+        .sm\:fd-column,
+        .sm\:fd-column-reverse {
+            > .grid,
+            > [class*="grid--cell"],
+            &[class*="grid__allcells"] > .grid,
+            &[class*="grid__allcells"] > [class*="grid--cell"] {
+                #stacks-internals #screen-sm({ .w-auto; })
+            }
+        }
+    }
 
 }
 //  ============================================================================
