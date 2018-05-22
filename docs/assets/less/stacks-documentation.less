@@ -254,14 +254,14 @@ body {
     .mx-fs(@fs-body3);
     line-height: @lh-lg;
     color: @fc-medium;
+
+    strong {
+        color: @fc-dark;
+    }
 }
 
 .stacks-copy__lg {
     .mx-fs(@fs-title);
-}
-
-strong {
-    color: @fc-dark;
 }
 
 
@@ -307,6 +307,8 @@ strong {
     box-shadow: 0 @su2 @su8 fade(@black-050, 50%);
 
     .highlight {
+        position: relative;
+
         // Reset margins
         &,
         pre {
@@ -317,7 +319,19 @@ strong {
             color: #C5C8C6;
         }
 
+        &:after {
+            content: "";
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            height: 4rem;
+            background-image: linear-gradient(to top, fade(@black-800,90%), fade(@black-800,0%));
+        }
+
         > pre {
+            max-height: 24rem;
+            overflow: auto;
             background-color: @black-800;
             border-top-left-radius: @br-sm;
             border-top-right-radius: @br-sm;

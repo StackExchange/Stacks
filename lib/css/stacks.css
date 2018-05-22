@@ -703,12 +703,21 @@ template {
     outline: 0;
   }
 }
+.s-checkbox[disabled],
+.s-radio[disabled] {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
 @supports ((-webkit-appearance: none) or (-moz-appearance: none) or (appearance: none)) {
   .s-checkbox {
     border-radius: 3px;
     background-position: center center;
     background-repeat: no-repeat;
     background-size: contain;
+  }
+  .s-checkbox[disabled] {
+    border-color: #bbc0c4;
+    background-color: #e4e6e8;
   }
   .s-checkbox:checked {
     border-color: #0095ff !important;
@@ -717,6 +726,10 @@ template {
   }
   .s-checkbox:checked:focus {
     border-color: #0095ff;
+  }
+  .s-checkbox:checked[disabled] {
+    border-color: #6a737c !important;
+    background-color: #848d95;
   }
   .s-checkbox:focus {
     border-color: #66bfff;
@@ -848,27 +861,32 @@ template {
 .has-error .s-input-icon {
   color: #dc3d4c;
 }
-.is-success .s-input,
-.is-success .s-checkbox,
-.is-success.s-select select {
+.has-success .s-input,
+.has-success .s-checkbox,
+.has-success.s-select select {
   border-color: #5fba7d;
 }
-.is-success .s-input:focus,
-.is-success .s-checkbox:focus,
-.is-success.s-select select:focus {
+.has-success .s-input:focus,
+.has-success .s-checkbox:focus,
+.has-success.s-select select:focus {
   -webkit-box-shadow: inset 0 0 4px #eff0f1, 0 0 0 4px rgba(166, 217, 183, 0.4);
   box-shadow: inset 0 0 4px #eff0f1, 0 0 0 4px rgba(166, 217, 183, 0.4);
 }
-.is-success .s-input-message,
-.is-success .s-input-description {
+.has-success .s-input-message,
+.has-success .s-input-description {
   color: #429a5f;
 }
-.is-success .s-input-icon {
+.has-success .s-input-icon {
   color: #5fba7d;
 }
 .is-disabled.s-select:before,
 .is-disabled.s-select:after {
   border-color: #bbc0c4 transparent;
+}
+.is-disabled .s-label,
+.is-disabled .s-input-message,
+.is-disabled .s-input-description {
+  opacity: 0.5;
 }
 .is-disabled .svg-icon {
   color: #bbc0c4;

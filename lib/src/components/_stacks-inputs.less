@@ -161,6 +161,12 @@
             outline: 0;
         }
     }
+
+    //  Disabled
+    &[disabled] {
+        opacity: 0.5;
+        cursor: not-allowed;
+    }
 }
 
 //  $$  CHECKBOXES
@@ -172,6 +178,12 @@
         background-repeat: no-repeat;
         background-size: contain;
 
+        //  Disabled
+        &[disabled] {
+            border-color: @black-200;
+            background-color: @black-075;
+        }
+
         &:checked {
             border-color: @blue-500 !important;
             background-color: @blue-500;
@@ -179,6 +191,12 @@
 
             &:focus {
                 border-color: @blue-500;
+            }
+
+            //  Disabled
+            &[disabled] {
+                border-color: @black-500 !important;
+                background-color: @black-400;
             }
         }
 
@@ -374,7 +392,7 @@
 }
 
 //  --  SUCCESS
-.is-success {
+.has-success {
     .s-input,
     .s-checkbox,
     &.s-select select {
@@ -401,6 +419,12 @@
     &.s-select:before,
     &.s-select:after {
         border-color: @black-200 transparent;
+    }
+
+    .s-label,
+    .s-input-message,
+    .s-input-description {
+        opacity: 0.5;
     }
 
     .svg-icon {
