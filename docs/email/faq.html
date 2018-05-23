@@ -19,14 +19,48 @@ Example code bit
 </section>
 
 <section class="stacks-section">
-    <h2 class="grid jc-space-between ai-center stacks-h2"><div class="grid--cell fl1">Why can’t I depend on the &lt;style&gt; tag?</div></h3>
+    <h2 class="grid jc-space-between ai-center stacks-h2"><div class="grid--cell fl1">How does CSS inheritance work in email?</div></h3>
     <p class="stacks-copy">
-        TBD
+        Email clients handle CSS inheritance differently, so it’s best to place inline CSS on the HTML tag close to the content you wish to style instead of relying on the cascade.
     </p>
+    <div class="grid grid__allcells6 jc-space-between gs24 gsx">
+        <div class="grid--cell">
+            <p class="stacks-copy grid ai-center fc-green-400 fw-bold fs-body2 tt-uppercase">
+                <svg aria-hidden="true" class="svg-icon iconCheckmark mr4" width="18" height="18" viewBox="0 0 18 18"><path d="M16 4.41L14.59 3 6 11.59 2.41 8 1 9.41l5 5z"></path></svg> Do
+            </p>
+            <div class="stacks-preview">
+{% highlight html linenos %}
+<table>
+    <tr>
+        <td style="font-family: arial;">
+            Arial text.
+        </td>
+    </tr>
+</table>
+{% endhighlight %}
+            </div>
+        </div>
+        <div class="grid--cell">
+            <p class="stacks-copy grid ai-center fc-red-500 fw-bold fs-body2 tt-uppercase">
+                <svg aria-hidden="true" class="svg-icon iconClear mr4" width="18" height="18" viewBox="0 0 18 18"><path d="M15 4.41L13.59 3 9 7.59 4.41 3 3 4.41 7.59 9 3 13.59 4.41 15 9 10.41 13.59 15 15 13.59 10.41 9z"></path></svg> Don't
+            </p>
+            <div class="stacks-preview">
+{% highlight html linenos %}
+<table style="font-family: arial;">
+    <tr>
+        <td>
+            Arial text.
+        </td>
+    </tr>
+</table>
+{% endhighlight %}
+            </div>
+        </div>
+    </div>
 </section>
 
 <section class="stacks-section">
-    <h2 class="grid jc-space-between ai-center stacks-h2"><div class="grid--cell fl1">How does CSS inheritance work in email?</div></h3>
+    <h2 class="grid jc-space-between ai-center stacks-h2"><div class="grid--cell fl1">Why can’t I depend on the &lt;style&gt; tag?</div></h3>
     <p class="stacks-copy">
         TBD
     </p>
@@ -63,7 +97,7 @@ Example code bit
 <section class="stacks-section">
     <h2 class="grid jc-space-between ai-center stacks-h2"><div class="grid--cell fl1">What is the best &lt;doctype&gt; for email?</div></h3>
     <p class="stacks-copy">
-        TBD
+        Use the HTML5 doctype <code class="stacks-code">&lt;!doctype html&gt;</code>. It’s the shortest and easiest to remember, and it’s enough to trigger standards mode on supported clients. <a href="https://emails.hteumeuleu.com/which-doctype-should-you-use-in-html-emails-cd323fdb793c">This article</a> goes into more detail. <strong>There's no need to close <code class="stacks-code">&lt;img&gt;</code> tags with trailing <code class="stacks-code">/</code> XHTML style.
     </p>
 </section>
 
