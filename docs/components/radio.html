@@ -1,0 +1,87 @@
+---
+layout: page
+title: Radio
+description: An input group which can only have one entry selected at a time.
+---
+<section class="stacks-section">
+    <h2 class="grid jc-space-between ai-center stacks-h2"><div class="grid--cell fl1">Base Style</div></h2>
+    <div class="stacks-preview">
+{% highlight html linenos %}
+{% include_relative examples/radio-base.html %}
+{% endhighlight %}
+        <div class="stacks-preview--example ">
+            {% include_relative examples/radio-base.html %}
+        </div>
+    </div>
+</section>
+
+<section class="stacks-section">
+    <h2 class="grid jc-space-between ai-center stacks-h2"><div class="grid--cell fl1">Examples</div></h2>
+    <h3 class="grid jc-space-between ai-center stacks-h3"><div class="grid--cell fl1">Group (Vertical)</div></h3>
+    <div class="stacks-preview">
+{% highlight html linenos %}
+{% include_relative examples/radio-vertical.html %}
+{% endhighlight %}
+        <div class="stacks-preview--example ">
+            {% include_relative examples/radio-vertical.html %}
+        </div>
+    </div>
+
+    <h3 class="grid jc-space-between ai-center stacks-h3"><div class="grid--cell fl1">Group (Horizontal)</div></h3>
+    <div class="stacks-preview">
+{% highlight html linenos %}
+{% include_relative examples/radio-horizontal.html %}
+{% endhighlight %}
+        <div class="stacks-preview--example ">
+            {% include_relative examples/radio-horizontal.html %}
+        </div>
+    </div>
+
+    <h3 class="grid jc-space-between ai-center stacks-h3"><div class="grid--cell fl1">With Description Copy</div></h3>
+    <div class="stacks-preview">
+{% highlight html linenos %}
+{% include_relative examples/radio-copy.html %}
+{% endhighlight %}
+        <div class="stacks-preview--example ">
+            {% include_relative examples/radio-copy.html %}
+        </div>
+    </div>
+</section>
+
+<section class="stacks-section">
+    <h2 class="grid jc-space-between ai-center stacks-h2"><div class="grid--cell fl1">Validation States</div></h2>
+    <p class="stacks-copy">Radio inputs use the same validation states as <a href="/components/inputs">inputs</a>.</p>
+
+    <h3 class="grid jc-space-between ai-center stacks-h3"><div class="grid--cell fl1">Classes</div></h3>
+    <table cellspacing="0" class="mb32 s-table s-table__hover">
+        <thead>
+            <tr>
+                <th scope="col" class="s-table--cell2">Class</th>
+                <th scope="col" class="s-table--cell4">Applies</th>
+                <th scope="col">Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in site.data.inputs.radio %}
+                {% assign state = item.validation  %}
+                {% for class in state %}
+                <tr>
+                    <th scope="row"><code class="grid--cell stacks-code bg-white">{{ class.class }}</th>
+                    <td>{{ class.applies }}</td>
+                    <td>{{ class.description }}</td>
+                </tr>
+                {% endfor %}
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <h3 class="grid jc-space-between ai-center stacks-h3"><div class="grid--cell fl1">Examples</div></h3>
+    <div class="stacks-preview">
+{% highlight html linenos %}
+{% include_relative examples/radio-validation.html %}
+{% endhighlight %}
+        <div class="stacks-preview--example ">
+            {% include_relative examples/radio-validation.html %}
+        </div>
+    </div>
+</section>
