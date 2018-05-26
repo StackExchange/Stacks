@@ -16,16 +16,16 @@ description: Float and clear atomic classes allow you to change how an element i
         </thead>
         <tbody class="fs-caption">
             {% for floats in site.data.atomic-definitions.floats %}
-              <tr>
-                  <th scope="row"><code class="stacks-code bg-white">.{{ floats.class }}</code></th>
-                  <td><code class="stacks-code bg-white">{{ floats.output }}</td>
-                  <td class="p8">{{ floats.define }}</td>
-                  <td class="ta-center">
-                      {% if floats.responsive %}
-                      <svg aria-hidden="true" class="svg-icon iconCheckmark fc-green-500" width="18" height="18" viewBox="0 0 18 18"><path d="M16 4.41L14.59 3 6 11.59 2.41 8 1 9.41l5 5z"></path></svg>
-                      {% endif %}
-                  </td>
-              </tr>
+                <tr>
+                    <th scope="row"><code class="stacks-code bg-white">.{{ floats.class }}</code></th>
+                    <td><code class="stacks-code bg-white">{{ floats.output }}</td>
+                    <td class="p8">{{ floats.define }}</td>
+                    <td class="ta-center">
+                        {% if floats.responsive %}
+                            {% svg /resources/svg-icons/Checkmark.svg width="18" height="18" aria-hidden="true" class="svg-icon iconCheckmark fc-green-500" %}
+                        {% endif %}
+                    </td>
+                </tr>
             {% endfor %}
         </tbody>
     </table>
