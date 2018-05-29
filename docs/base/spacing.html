@@ -14,14 +14,20 @@ description: Stacks provides atomic classes to override margin and padding.
             <tr>
                 <th class="s-table--cell2" scope="col">Abbreviation</th>
                 <th scope="col">Definition</th>
+                <th class="s-table--cell2 ta-center" scope="col">Responsive?</th>
             </tr>
         </thead>
         <tbody>
             {% for spacing in site.data.spacing-definitions.margin %}
-              <tr>
-                  <th scope="row">{{ spacing.term }}</th>
-                  <td>{{ spacing.define }}</td>
-              </tr>
+                <tr>
+                    <th scope="row">{{ spacing.term }}</th>
+                    <td>{{ spacing.define }}</td>
+                    <td class="ta-center">
+                        {% if spacing.responsive %}
+                            <svg aria-hidden="true" class="svg-icon iconCheckmark fc-green-500" width="18" height="18" viewBox="0 0 18 18"><path d="M16 4.41L14.59 3 6 11.59 2.41 8 1 9.41l5 5z"></path></svg>
+                        {% endif %}
+                    </td>
+                </tr>
             {% endfor %}
         </tbody>
     </table>
@@ -53,17 +59,23 @@ description: Stacks provides atomic classes to override margin and padding.
                 <th scope="col" class="ta-center ff-mono">32px</th>
                 <th scope="col" class="ta-center ff-mono">48px</th>
                 <th scope="col" class="ta-center ff-mono">64px</th>
+                <th scrop="col" class="ta-center">Responsive?</th>
             </tr>
         </thead>
         <tbody>
           {% for class in site.data.spacing-classes.margin %}
           {% assign prefix-value = class.values | split: ", " %}
-              <tr>
-                  <th scope="row" class="-cell1">{{ class.prefix }}</th>
-                  {% for values in prefix-value %}
-                  <td class="ta-center"><code>.{{ class.prefix }}{{ values }}</code></td>
-                  {% endfor %}
-              </tr>
+                <tr>
+                    <th scope="row" class="-cell1">{{ class.prefix }}</th>
+                    {% for values in prefix-value %}
+                    <td class="ta-center"><code>.{{ class.prefix }}{{ values }}</code></td>
+                    {% endfor %}
+                    <td class="ta-center">
+                        {% if class.responsive %}
+                            <svg aria-hidden="true" class="svg-icon iconCheckmark fc-green-500" width="18" height="18" viewBox="0 0 18 18"><path d="M16 4.41L14.59 3 6 11.59 2.41 8 1 9.41l5 5z"></path></svg>
+                        {% endif %}
+                    </td>
+                </tr>
             {% endfor %}
         </tbody>
     </table>
@@ -158,14 +170,20 @@ description: Stacks provides atomic classes to override margin and padding.
             <tr>
                 <th class="s-table--cell2" scope="col">Abbreviation</th>
                 <th scope="col">Definition</th>
+                <th class="s-table--cell2 ta-center" scope="col">Responsive?</th>
             </tr>
         </thead>
         <tbody>
             {% for spacing in site.data.spacing-definitions.padding %}
-              <tr>
-                  <th scope="row">{{ spacing.term }}</th>
-                  <td>{{ spacing.define }}</td>
-              </tr>
+                <tr>
+                    <th scope="row">{{ spacing.term }}</th>
+                    <td>{{ spacing.define }}</td>
+                    <td class="ta-center">
+                        {% if spacing.responsive %}
+                            <svg aria-hidden="true" class="svg-icon iconCheckmark fc-green-500" width="18" height="18" viewBox="0 0 18 18"><path d="M16 4.41L14.59 3 6 11.59 2.41 8 1 9.41l5 5z"></path></svg>
+                        {% endif %}
+                    </td>
+                </tr>
             {% endfor %}
         </tbody>
     </table>
@@ -197,17 +215,23 @@ description: Stacks provides atomic classes to override margin and padding.
                 <th scope="col" class="ta-center">32</th>
                 <th scope="col" class="ta-center">48</th>
                 <th scope="col" class="ta-center">64</th>
+                <th scope="col" class="ta-center">Responsive?</th>
             </tr>
         </thead>
         <tbody>
-          {% for class in site.data.spacing-classes.padding %}
-          {% assign prefix-value = class.values | split: ", " %}
-              <tr>
-                  <th scope="row" class="-cell1">{{ class.prefix }}</th>
-                  {% for values in prefix-value %}
-                   <td class="ta-center"><code>.{{ class.prefix }}{{ values }}</code></td>
-                  {% endfor %}
-              </tr>
+            {% for class in site.data.spacing-classes.padding %}
+            {% assign prefix-value = class.values | split: ", " %}
+                <tr>
+                    <th scope="row" class="-cell1">{{ class.prefix }}</th>
+                    {% for values in prefix-value %}
+                        <td class="ta-center"><code>.{{ class.prefix }}{{ values }}</code></td>
+                    {% endfor %}
+                    <td class="ta-center">
+                        {% if class.responsive %}
+                            <svg aria-hidden="true" class="svg-icon iconCheckmark fc-green-500" width="18" height="18" viewBox="0 0 18 18"><path d="M16 4.41L14.59 3 6 11.59 2.41 8 1 9.41l5 5z"></path></svg>
+                        {% endif %}
+                    </td>
+                </tr>
             {% endfor %}
         </tbody>
     </table>
