@@ -1,134 +1,102 @@
----
-layout: page
-title: Inputs
-description: Text input elements are used to gather freeform data from users.
----
 <section id="inputs" class="stacks-section">
-    <p class="stacks-copy">They are normally paired with a label, but there times when they can be used without a label. Placeholder text should primarily be used as a content prompt, and only when needed.</p>
+    <h2 class="grid jc-space-between ai-center stacks-h2"><div class="grid--cell fl1">Base Style</div></h2>
+    <p class="stacks-copy">Inputs are normally paired with a label, but there times when they can be used without a label. Placeholder text should primarily be used as a content prompt and only provided when needed.</p>
 
-    <h2 class="grid jc-space-between ai-center stacks-h2"><div class="grid--cell fl1">Base Styles</div></h2>
     <div class="stacks-preview">
 {% highlight html linenos %}
-{% include_relative examples/input-base.html %}
+<div class="grid gs4 gsy fd-column">
+    <label class="grid--cell s-label" for="example-item1">Field label</label>
+    <div class="grid ps-relative">
+        <input class="s-input" id="example-item1" type="text" placeholder="Enter your input here" />
+    </div>
+    <p class="grid--cell s-input-description">Help or instruction text goes here</p>
+</div>
+
+<div class="grid gs4 gsy fd-column ps-relative">
+    <label class="grid--cell s-label" for="example-item2">Field label</label>
+    <div class="grid ps-relative">
+        <input class="s-input" id="example-item2" type="text" placeholder="Enter your input here" disabled />
+        @Svg.Lock.With("s-input-icon fc-black-300")
+    </div>
+    <p class="grid--cell s-input-description">Help or instruction text goes here</p>
+</div>
 {% endhighlight %}
-        <div class="stacks-preview--example ">
+        <div class="stacks-preview--example">
             {% include_relative examples/input-base.html %}
         </div>
     </div>
+</section>
 
-    <div class="stacks-preview">
-{% highlight html linenos %}
-<div class="grid ff-column-nowrap gs4 gsy">
-    <label class="grid--cell s-label" for="example-item">Label</label>
-    <input class="grid--cell s-input" id="example-item" type="text" placeholder="…" />
-</div>
-
-<div class="grid ff-column-nowrap gs4 gsy ps-relative">
-    <label class="grid--cell s-label" for="example-item">Label</label>
-    <input class="grid--cell s-input" id="example-item" type="text" placeholder="…" disabled />
-    @Svg.Lock.With("s-input-icon fc-black-300")
-</div>
-{% endhighlight %}
-        <div class="stacks-preview--example ">
-            <div class="grid ff-column-nowrap gs16 gsy">
-                <div class="grid ff-column-nowrap gs4 gsy">
-                    <label class="grid--cell s-label" for="example-item1">Question title</label>
-                    <input class="grid--cell s-input" id="example-item1" type="text" placeholder="What’s your programming question? Be specific." />
-                </div>
-                <div class="grid ff-column-nowrap gs4 gsy">
-                    <label class="grid--cell s-label" for="example-item2">Question title</label>
-                    <div class="grid ps-relative is-disabled">
-                        <input class="grid--cell s-input" id="example-item2" type="text" value="What’s your programming question? Be specific." disabled />
-                        {% svg /resources/svg-icons/Lock.svg width="18" height="18" aria-hidden="true" class="svg-icon iconLock s-input-icon fc-black-300" %}
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
+<section id="inputs" class="stacks-section">
     <h2 class="grid jc-space-between ai-center stacks-h2"><div class="grid--cell fl1">Validation States</div></h2>
-    <p class="stacks-copy">In cases when you would like validation states attached to an input, you will need to wrap the input with <code class="stacks-code">.grid</code> div so the icon can be placed correctly.</p>
+    <p class="stacks-copy">Validation states provides the user feedback based on their interaction (or lack of interaction) with an input. Styles are applied by applying the appropriate class to the wrapping parent container for the input group.</p>
 
-    <h3 class="grid jc-space-between ai-center stacks-h3"><div class="grid--cell fl1">Warning</div></h3>
+    <h3 class="grid jc-space-between ai-center stacks-h3"><div class="grid--cell fl1">Classes</div></h3>
+    <table class="mb32 s-table s-table__hover">
+        <thead>
+            <tr>
+                <th class="s-table--cell3" scope="col">Class</th>
+                <th class="s-table--cell3" scope="col">Applies</th>
+                <th scope="col">Defintion</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in site.data.inputs.input %}
+                {% assign state = item.validation  %}
+                {% for class in state %}
+                <tr>
+                    <th scope="row"><code class="grid--cell stacks-code bg-white">{{ class.class }}</th>
+                    <td>{{ class.applies }}</td>
+                    <td>{{ class.description }}</td>
+                </tr>
+                {% endfor %}
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <h3 class="grid jc-space-between ai-center stacks-h3"><div class="grid--cell fl1">Examples</div></h3>
     <div class="stacks-preview">
 {% highlight html linenos %}
-<div class="grid ff-column-nowrap gs4 gsy has-warning">
-    <label class="grid--cell label" for="example-warning">Username</label>
-    <div class="grid--cell grid ps-relative">
-        <input class="grid--cell s-input" id="example-warning" type="text" name="" />
+<div class="grid gs4 gsy fd-column has-warning">
+    <label class="grid--cell s-label" for="example-warning">Username</label>
+    <div class="grid ps-relative">
+        <input class="s-input" id="example-warning" type="text" placeholder="" />
         @Svg.Alert("s-input-icon")
     </div>
-    <div class="grid--cell">
-        <p class="input-message">…</p>
-    </div>
+    <p class="grid--cell s-input-description">Caps lock is on!</p>
 </div>
 {% endhighlight %}
-        <div class="stacks-preview--example ">
-            <div class="grid ff-column-nowrap gs4 gsy has-warning">
-                <label class="grid--cell s-label" for="example-warning">Username</label>
-                <div class="grid ps-relative">
-                    <input class="grid--cell s-input" id="example-warning" type="text" name="" />
-                    {% svg /resources/svg-icons/Alert.svg width="18" height="18" aria-hidden="true" class="svg-icon iconAlert s-input-icon" %}
+        <div class="stacks-preview--example">
+            <div class="grid gs16 gsy fd-column">
+                <div class="grid--cell">
+                    <div class="grid gs4 gsy fd-column has-warning">
+                        <label class="grid--cell s-label" for="example-warning">Username</label>
+                        <div class="grid ps-relative">
+                            <input class="s-input" id="example-warning" type="text" placeholder="" />
+                            {% svg /resources/svg-icons/Alert.svg width="18" height="18" aria-hidden="true" class="svg-icon iconAlert s-input-icon" %}
+                        </div>
+                        <p class="grid--cell s-input-description">Caps lock is on!</p>
+                    </div>
                 </div>
                 <div class="grid--cell">
-                    <p class="s-input-message">Caps lock is on!</p>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <h3 class="grid jc-space-between ai-center stacks-h3"><div class="grid--cell fl1">Error</div></h3>
-    <div class="stacks-preview">
-
-{% highlight html linenos %}
-<div class="grid ff-column-nowrap gs4 gsy has-error">
-    <label class="grid--cell s-label" for="example-error">Username</label>
-    <div class="grid ps-relative">
-        <input class="grid--cell s-input" id="example-error" type="text" name="…" />
-        @Svg.AlertCircle.With("s-input-icon")
-    </div>
-    <div class="grid--cell">
-        <p class="s-input-message">…</p>
-    </div>
-</div>
-{% endhighlight %}
-        <div class="stacks-preview--example ">
-            <div class="grid ff-column-nowrap gs4 gsy has-error">
-                <label class="grid--cell s-label" for="example-error">Username</label>
-                <div class="grid ps-relative">
-                    <input class="grid--cell s-input" id="example-error" type="text" name="" />
-                    {% svg /resources/svg-icons/AlertCircle.svg width="18" height="18" aria-hidden="true" class="svg-icon iconAlertCircle s-input-icon" %}
+                    <div class="grid gs4 gsy fd-column has-error">
+                        <label class="grid--cell s-label" for="example-error">Username</label>
+                        <div class="grid ps-relative">
+                            <input class="s-input" id="example-error" type="text" placeholder="" />
+                            {% svg /resources/svg-icons/AlertCircle.svg width="18" height="18" aria-hidden="true" class="svg-icon iconAlertCircle s-input-icon" %}
+                        </div>
+                        <p class="grid--cell s-input-description">That username is already taken.</p>
+                    </div>
                 </div>
                 <div class="grid--cell">
-                    <p class="s-input-message">That username is already taken.</p>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <h3 class="grid jc-space-between ai-center stacks-h3"><div class="grid--cell fl1">Success</div></h3>
-    <div class="stacks-preview">
-{% highlight html linenos %}
-<div class="grid ff-column-nowrap gs4 gsy is-success">
-    <label class="grid--cell s-label" for="example-success">Username</label>
-    <div class="grid ps-relative">
-        <input class="grid--cell s-input" id="example-success" type="text" name="" value="" />
-        @Svg.Checkmark.With("s-input-icon")
-    </div>
-    <div class="grid--cell">
-        <p class="s-input-message">…</p>
-    </div>
-</div>
-{% endhighlight %}
-        <div class="stacks-preview--example ">
-            <div class="grid ff-column-nowrap gs4 gsy is-success">
-                <label class="grid--cell s-label" for="example-success">Username</label>
-                <div class="grid ps-relative">
-                    <input class="grid--cell s-input" id="example-success" type="text" />
-                    {% svg /resources/svg-icons/Checkmark.svg width="18" height="18" aria-hidden="true" class="svg-icon iconCheckmark s-input-icon" %}
-                </div>
-                <div class="grid--cell">
-                    <p class="s-input-message">Congrats! That name is available.</p>
+                    <div class="grid gs4 gsy fd-column has-success">
+                        <label class="grid--cell s-label" for="example-success">Username</label>
+                        <div class="grid ps-relative">
+                            <input class="s-input" id="example-success" type="text" placeholder="" />
+                            {% svg /resources/svg-icons/Checkmark.svg width="18" height="18" aria-hidden="true" class="svg-icon iconCheckmark s-input-icon" %}
+                        </div>
+                        <p class="grid--cell s-input-description">Congrats! That name is available.</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -136,55 +104,28 @@ description: Text input elements are used to gather freeform data from users.
 </section>
 
 <section id="inputs" class="stacks-section">
-    <h2 class="grid jc-space-between ai-center stacks-h2"><div class="grid--cell fl1">Input Sizes</h2>
-    <p class="stacks-copy">These sizes apply not only to <code class="stacks-code">.s-input</code>, but also to <code class="stacks-code">.s-label</code>, <code class="stacks-code">.s-select</code>, and <code class="stacks-code">.s-input-description</code>.</p>
-    <div class="stacks-preview">
-{% highlight html linenos %}
-<div class="grid ff-column-nowrap gs4 gsy">
-    <label class="grid--cell s-label fs-caption" for="example-item">Small Label</label>
-    <input class="grid--cell s-input fs-caption" id="example-item" type="text" placeholder="…" />
-</div>
-
-<div class="grid ff-column-nowrap gs4 gsy">
-    <label class="grid--cell s-label" for="example-item">Default Label</label>
-    <input class="grid--cell s-input" id="example-item" type="text" placeholder="…" />
-
-    <label class="grid--cell s-label fs-subheading" for="example-item">Large Label</label>
-    <input class="grid--cell s-input fs-subheading" id="example-item" type="text" placeholder="…" />
-</div>
-{% endhighlight %}
-        <div class="stacks-preview--example ">
-            <div class="grid ff-column-nowrap gs16 gsy">
-                <div class="grid ff-column-nowrap gs4 gsy">
-                    <label class="grid--cell s-label fs-caption" for="example-item4">Small Label (12px)</label>
-                    <input class="grid--cell s-input fs-caption" id="example-item4" type="text" placeholder="e.g. Why are there 5 bars in the Stack Overflow glyph?" />
-                </div>
-                <div class="grid ff-column-nowrap gs4 gsy">
-                    <label class="grid--cell s-label" for="example-item5">Default Label (Body text size)</label>
-                    <input class="grid--cell s-input" id="example-item5" type="text" placeholder="e.g. Why are there 5 bars in the Stack Overflow glyph?" />
-                </div>
-                <div class="grid ff-column-nowrap gs4 gsy">
-                    <label class="grid--cell s-label fs-subheading" for="example-item">Large Label (19px)</label>
-                    <input class="grid--cell s-input fs-subheading" id="example-item" type="text" placeholder="e.g. Why are there 5 bars in the Stack Overflow glyph?" />
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <h2 class="grid jc-space-between ai-center stacks-h2"><div class="grid--cell fl1">Textareas</div></h2>
-    <p class="stacks-copy">Textareas are used for multi-line content areas.</p>
-    <div class="stacks-preview">
-{% highlight html linenos %}
-<div class="grid ff-column-nowrap gs4 gsy">
-    <label class="grid--cell s-label" for="example-item">Question body</label>
-    <textarea class="grid--cell s-input" id="example-item" placeholder="…"></textarea>
-</div>
-{% endhighlight %}
-        <div class="stacks-preview--example ">
-            <div class="grid ff-column-nowrap gs4 gsy">
-                <label class="grid--cell s-label" for="example-item7">Question body</label>
-                <textarea class="grid--cell s-input" id="example-item7" placeholder="e.g. The Stack Overflow glyph used to have 6 bars, but now…"></textarea>
-            </div>
-        </div>
-    </div>
+    <h2 class="grid jc-space-between ai-center stacks-h2"><div class="grid--cell fl1">Sizes</h2>
+    <table class="mb32 s-table s-table__hover va-middle">
+        <thead>
+            <tr>
+                <th scope="col" class="s-table--cell2">Name</th>
+                <th scope="col" class="s-table--cell1">Size</th>
+                <th scope="col" class="s-table--cell2">Class</th>
+                <th scope="col">Example</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in site.data.inputs.input %}
+                {% assign size = item.sizes  %}
+                {% for item in size %}
+                <tr>
+                    <th scope="row">{{ item.name }}</th>
+                    <td>{{ item.size }}</td>
+                    <td>{% if item.class == "N/A" %}<em class="fc-light">{{ item.class }}</em>{% else %}<code class="stacks-code bg-white">.{{ item.class }}</code>{% endif %}</td>
+                    <td><input type="text" class="s-input {{ item.class }}" placeholder="e.g. What is Stacks?"></td>
+                </tr>
+                {% endfor %}
+            {% endfor %}
+        </tbody>
+    </table>
 </section>

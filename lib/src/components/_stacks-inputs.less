@@ -30,7 +30,7 @@
 .s-input {
     width: 100%;
     margin: 0;
-    padding: 0.8em 1em;
+    padding: @su8 @su12;
     border: 1px solid @black-200;
     border-radius: @br-sm;
     background-color: @white;
@@ -55,6 +55,13 @@
         color: @black-200;
     }
 }
+
+//  Sizes
+.s-input__xs    { font-size: @fs-fine; }
+.s-input__sm    { font-size: @fs-caption; }
+.s-input__md    { font-size: @fs-body3; }
+.s-input__lg    { font-size: @fs-title; }
+.s-input__xl    { font-size: @fs-headline1; }
 
 .s-input-icon {
     position: absolute;
@@ -229,9 +236,12 @@
 //  $  LABELS
 //  ============================================================================
 .s-label {
-    .mx-fs(@fs-body2);
+    padding: @su2; // Helps the label visually line up with inputs
+    color: @fc-dark;
     font-weight: 700;
+    line-height: @lh-md;
     cursor: pointer;
+    .mx-fs(@fs-body2);
 }
 
 
@@ -260,7 +270,7 @@
 //  $  TEXT STYLES
 //  ============================================================================
 .s-input-description {
-    margin: 0 0 @su8;
+    padding: @su4 @su2;
     color: @fc-medium;
     line-height: @lh-sm;
     .mx-fs(@fs-caption);
