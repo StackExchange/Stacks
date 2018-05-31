@@ -1,32 +1,157 @@
 ---
 layout: page
 title: Select
-description: A selectable menu list from which a user can make a single selection. Typically they are used when there are more than 3 possible options. The custom select menu styling is achieved by wrapping the <code class="stacks-code">select</code> tag within the <code class="stacks-code">.s-select</code> class.
+description: A selectable menu list from which a user can make a single selection. Typically they are used when there are more than four possible options. The custom select menu styling is achieved by wrapping the <code class="stacks-code">select</code> tag within the <code class="stacks-code">.s-select</code> class.
 ---
 <section class="stacks-section">
     <h2 class="grid jc-space-between ai-center stacks-h2"><div class="grid--cell fl1">Base Style</div></h2>
     <div class="stacks-preview">
 {% highlight html linenos %}
-<div class="grid gs16 gsy fd-column">
-    <div class="grid--cell">
-        <div class="grid gs4 gsy fd-column">
-            <label class="grid--cell s-label" for="example-item1">Field label</label>
-            <input class="grid--cell s-input" id="example-item1" type="text" placeholder="Enter your input here" />
-            <p class="grid--cell s-input-description">Help or instruction text goes here</p>
+{% include_relative examples/select-base.html %}
+{% include_relative examples/select-disabled.html %}
+{% endhighlight %}
+        <div class="stacks-preview--example">
+            <div class="grid gs16 gsy fd-column">
+                <div class="grid--cell">
+                    {% include_relative examples/select-base.html %}
+                </div>
+                <div class="grid--cell">
+                    {% include_relative examples/select-disabled.html %}
+                </div>
+            </div>
         </div>
     </div>
+</section>
+
+<section id="inputs" class="stacks-section">
+    <h2 class="grid jc-space-between ai-center stacks-h2"><div class="grid--cell fl1">Validation States</div></h2>
+    <p class="stacks-copy">Validation states provides the user feedback based on their interaction (or lack of interaction) with a select menu. These styles are applied by applying the appropriate class to the wrapping parent container.</p>
+
+    <h3 class="grid jc-space-between ai-center stacks-h3"><div class="grid--cell fl1">Classes</div></h3>
+    <table class="mb32 s-table s-table__hover">
+        <thead>
+            <tr>
+                <th class="s-table--cell3" scope="col">Class</th>
+                <th class="s-table--cell3" scope="col">Applies</th>
+                <th scope="col">Defintion</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in site.data.inputs.select %}
+                {% assign state = item.validation  %}
+                {% for class in state %}
+                <tr>
+                    <th scope="row"><code class="grid--cell stacks-code bg-white">{{ class.class }}</code></th>
+                    <td>{{ class.applies }}</td>
+                    <td>{{ class.description }}</td>
+                </tr>
+                {% endfor %}
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <h3 class="grid jc-space-between ai-center stacks-h3"><div class="grid--cell fl1">Examples</div></h3>
+    <div class="stacks-preview">
+{% highlight html linenos %}
+<div class="grid gs4 gsy fd-column has-warning">
     <div class="grid--cell">
-        <div class="grid gs4 gsy fd-column">
-            <label class="grid--cell s-label" for="example-item1">Field label</label>
-            <input class="grid--cell s-input" id="example-item1" type="text" placeholder="Enter your input here" disabled />
-            <p class="grid--cell s-input-description">Help or instruction text goes here</p>
-            @Svg.Alert.With("s-input-icon fc-black-300")
+        <div class="grid gs2 gsy fd-column">
+            <label class="grid--cell s-label" for="select-menu">How will you be traveling?</label>
+            <p class="grid--cell mb4 s-input-description">Select the transportation method you will be using to come to the event.</p>
         </div>
+    </div>
+    <div class="grid--cell s-select">
+        <select id="select-menu">
+            <option value="" selected>Please select one…</option>
+            <option value="walk">Walk</option>
+            <option value="bike">Bicycle</option>
+            <option value="car">Automobile</option>
+            <option value="rail">Train</option>
+            <option value="fly">Plane</option>
+        </select>
+        @Svg.Alert.With("s-input-icon")
+    </div>
+</div>
+
+<div class="grid gs4 gsy fd-column has-error">
+    <div class="grid--cell">
+        <div class="grid gs2 gsy fd-column">
+            <label class="grid--cell s-label" for="select-menu">How will you be traveling?</label>
+            <p class="grid--cell mb4 s-input-description">Select the transportation method you will be using to come to the event.</p>
+        </div>
+    </div>
+    <div class="grid--cell s-select">
+        <select id="select-menu">
+            <option value="" selected>Please select one…</option>
+            <option value="walk">Walk</option>
+            <option value="bike">Bicycle</option>
+            <option value="car">Automobile</option>
+            <option value="rail">Train</option>
+            <option value="fly">Plane</option>
+        </select>
+        @Svg.AlertCircle.With("s-input-icon")
+    </div>
+</div>
+
+<div class="grid gs4 gsy fd-column has-success">
+    <div class="grid--cell">
+        <div class="grid gs2 gsy fd-column">
+            <label class="grid--cell s-label" for="select-menu">How will you be traveling?</label>
+            <p class="grid--cell mb4 s-input-description">Select the transportation method you will be using to come to the event.</p>
+        </div>
+    </div>
+    <div class="grid--cell s-select">
+        <select id="select-menu">
+            <option value="" selected>Please select one…</option>
+            <option value="walk">Walk</option>
+            <option value="bike">Bicycle</option>
+            <option value="car">Automobile</option>
+            <option value="rail">Train</option>
+            <option value="fly">Plane</option>
+        </select>
+        @Svg.Checkmark.With("s-input-icon")
     </div>
 </div>
 {% endhighlight %}
-        <div class="stacks-preview--example ">
-            {% include_relative examples/input-base.html %}
+        <div class="stacks-preview--example">
+            <div class="grid gs16 gsy fd-column">
+                <div class="grid--cell">
+                    {% include_relative examples/select-warning.html %}
+                </div>
+                <div class="grid--cell">
+                    {% include_relative examples/select-error.html %}
+                </div>
+                <div class="grid--cell">
+                    {% include_relative examples/select-success.html %}
+                </div>
+            </div>
         </div>
     </div>
+</section>
+
+<section class="stacks-section">
+    <h2 class="grid jc-space-between ai-center stacks-h2"><div class="grid--cell fl1">Sizes</div></h2>
+    <table class="mb32 s-table s-table__hover va-middle">
+        <thead>
+            <tr>
+                <th scope="col" class="s-table--cell2">Name</th>
+                <th scope="col" class="s-table--cell1">Size</th>
+                <th scope="col" class="s-table--cell2">Class</th>
+                <th scope="col">Example</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in site.data.inputs.select %}
+                {% assign size = item.sizes  %}
+                {% for item in size %}
+                <tr>
+                    <th scope="row">{{ item.name }}</th>
+                    <td>{{ item.size }}</td>
+                    <td>{% if item.class == "N/A" %}<em class="fc-light">{{ item.class }}</em>{% else %}<code class="stacks-code bg-white">.{{ item.class }}</code>{% endif %}</td>
+                    <td><div class="grid s-select {{ item.class }}"><select><option>1 Example</option><option>2 Options</option></select></div></td>
+                </tr>
+                {% endfor %}
+            {% endfor %}
+        </tbody>
+    </table>
 </section>

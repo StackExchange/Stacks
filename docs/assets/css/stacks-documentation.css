@@ -589,53 +589,85 @@ template {
   box-shadow: inset 0 2px 6px 0 rgba(69, 161, 99, 0.9);
   color: #FFF;
 }
-.s-input {
+.s-input,
+.s-textarea {
   width: 100%;
   margin: 0;
-  padding: 8px 12px;
+  padding: 0.9em;
   border: 1px solid #bbc0c4;
   border-radius: 3px;
-  background-color: #FFF;
   box-shadow: inset 0 0 1px rgba(145, 153, 161, 0.2), 0 0 0 rgba(255, 255, 255, 0);
-  font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
-  font-size: inherit;
-  line-height: 1;
 }
-.s-input::-webkit-input-placeholder {
+.s-input::-webkit-input-placeholder,
+.s-textarea::-webkit-input-placeholder {
   color: #bbc0c4;
 }
-.s-input:-ms-input-placeholder {
+.s-input:-ms-input-placeholder,
+.s-textarea:-ms-input-placeholder {
   color: #bbc0c4;
 }
-.s-input::-ms-input-placeholder {
+.s-input::-ms-input-placeholder,
+.s-textarea::-ms-input-placeholder {
   color: #bbc0c4;
 }
-.s-input::placeholder {
+.s-input::placeholder,
+.s-textarea::placeholder {
   padding-top: 1px;
   color: #bbc0c4;
 }
-.s-input__xs {
+.s-textarea {
+  padding-right: 8px;
+  padding-left: 8px;
+  line-height: 1.30769231;
+}
+.s-input__xs,
+.s-textarea__xs,
+.s-label__xs,
+.s-select__xs > select {
   font-size: 11px;
 }
-.s-input__sm {
+.s-input__sm,
+.s-textarea__sm,
+.s-label__sm,
+.s-select__sm > select {
   font-size: 12px;
 }
-.s-input__md {
+.s-input__md,
+.s-textarea__md,
+.s-label__md,
+.s-select__md > select {
   font-size: 17px;
 }
-.s-input__lg {
+.s-input__lg,
+.s-textarea__lg,
+.s-label__lg,
+.s-select__lg > select {
   font-size: 21px;
 }
-.s-input__xl {
+.s-input__xl,
+.s-textarea__xl,
+.s-label__xl,
+.s-select__xl > select {
   font-size: 27px;
 }
-.s-input-icon {
-  position: absolute;
-  top: 50%;
-  right: 8px;
-  margin-top: -9px;
-  vertical-align: text-bottom !important;
-  pointer-events: none;
+.s-input-connect {
+  padding: 0.9em;
+}
+.s-input-connect.s-input-connect__fill {
+  border: 1px solid #c8ccd0;
+  border-right-width: 0;
+  border-left-width: 0;
+  background-color: #eff0f1;
+  color: #3b4045;
+}
+.s-input-connect.s-input-connect__fill.order-first {
+  border-left-width: 1px;
+}
+.s-input-connect.s-input-connect__fill.order-last {
+  border-right-width: 1px;
+}
+.s-input-connect .s-label {
+  white-space: nowrap;
 }
 .s-select {
   position: relative;
@@ -662,21 +694,19 @@ template {
   border-bottom-width: 0;
 }
 .s-select > select {
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
   position: relative;
   width: 100%;
   height: 100%;
-  padding: 0.8em 1em;
+  padding: 0.9em;
   padding-right: 32px;
   border: 1px solid #bbc0c4;
   border-radius: 3px;
   background-color: #FFF;
   outline: 0;
   font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
-  font-size: inherit;
-  line-height: 1;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
 }
 .s-select > select::-moz-focus-inner {
   outline: none !important;
@@ -684,6 +714,15 @@ template {
 .s-select > select:-moz-focusring {
   color: transparent;
   text-shadow: 0 0 0 #000;
+}
+.s-select__md > select {
+  padding: 0.7em;
+}
+.s-select__lg > select {
+  padding: 0.6em;
+}
+.s-select__xl > select {
+  padding: 0.5em;
 }
 @supports ((-webkit-appearance: none) or (-moz-appearance: none) or (appearance: none)) {
   .s-checkbox,
@@ -755,14 +794,137 @@ template {
     box-shadow: 0 0 0 4px rgba(0, 149, 255, 0.15);
   }
 }
+.s-input:focus,
+.s-textarea:focus,
+.s-select > select:focus {
+  position: relative;
+  border-color: #66bfff;
+  box-shadow: inset 0 0 4px #eff0f1, 0 0 0 4px rgba(0, 149, 255, 0.15);
+  outline: 0;
+}
+.s-input[disabled],
+.s-textarea[disabled],
+.s-select > select[disabled],
+.s-input[read-only],
+.s-textarea[read-only],
+.s-select > select[read-only] {
+  border-color: #e4e6e8;
+  background-color: #eff0f1;
+  box-shadow: inset 0 0 2px rgba(145, 153, 161, 0.1);
+  color: #bbc0c4;
+}
+.s-input[disabled],
+.s-textarea[disabled],
+.s-select > select[disabled] {
+  cursor: not-allowed;
+}
+.is-disabled,
+.has-success,
+.has-error,
+.has-warning {
+  position: relative;
+}
+.is-disabled .s-input,
+.has-success .s-input,
+.has-error .s-input,
+.has-warning .s-input,
+.is-disabled .s-textarea,
+.has-success .s-textarea,
+.has-error .s-textarea,
+.has-warning .s-textarea {
+  padding-right: 32px;
+}
+.is-disabled .s-select .s-input-icon,
+.has-success .s-select .s-input-icon,
+.has-error .s-select .s-input-icon,
+.has-warning .s-select .s-input-icon {
+  right: 32px;
+}
+.has-warning .s-input,
+.has-warning .s-textarea,
+.has-warning .s-checkbox,
+.has-warning .s-radio:not(:checked),
+.has-warning .s-select > select {
+  border-color: #dcb000;
+}
+.has-warning .s-input:focus,
+.has-warning .s-textarea:focus,
+.has-warning .s-checkbox:focus,
+.has-warning .s-radio:not(:checked):focus,
+.has-warning .s-select > select:focus {
+  box-shadow: inset 0 0 4px 0 #eff0f1, 0 0 0 4px rgba(255, 207, 16, 0.4);
+}
+.has-warning .s-input-message {
+  color: #9a7b00;
+}
+.has-warning .s-input-icon {
+  color: #dcb000;
+}
+.has-error .s-input,
+.has-error .s-textarea,
+.has-error .s-checkbox,
+.has-error .s-radio:not(:checked),
+.has-error .s-select > select {
+  border-color: #dc3d4c;
+}
+.has-error .s-input:focus,
+.has-error .s-textarea:focus,
+.has-error .s-checkbox:focus,
+.has-error .s-radio:not(:checked):focus,
+.has-error .s-select > select:focus {
+  box-shadow: inset 0 0 4px 0 #eff0f1, 0 0 0 4px rgba(229, 154, 161, 0.4);
+}
+.has-error .s-input-message {
+  color: #C91D2E;
+}
+.has-error .s-input-icon {
+  color: #dc3d4c;
+}
+.has-success .s-input,
+.has-success .s-textarea,
+.has-success .s-checkbox,
+.has-success .s-radio:not(:checked),
+.has-success .s-select > select {
+  border-color: #5fba7d;
+}
+.has-success .s-input:focus,
+.has-success .s-textarea:focus,
+.has-success .s-checkbox:focus,
+.has-success .s-radio:not(:checked):focus,
+.has-success .s-select > select:focus {
+  box-shadow: inset 0 0 4px 0 #eff0f1, 0 0 0 4px rgba(166, 217, 183, 0.4);
+}
+.has-success .s-input-message {
+  color: #429a5f;
+}
+.has-success .s-input-icon {
+  color: #5fba7d;
+}
+.is-disabled .s-select:before,
+.is-disabled .s-select:after {
+  border-color: #bbc0c4 transparent;
+}
+.is-disabled .s-label,
+.is-disabled .s-input-description {
+  opacity: 0.5;
+}
+.is-disabled .s-input-icon {
+  color: #bbc0c4;
+}
+.s-input-icon {
+  position: absolute;
+  top: 50%;
+  right: 8px;
+  margin-top: -9px;
+  vertical-align: text-bottom !important;
+  pointer-events: none;
+}
 .s-label {
-  padding: 2px;
+  padding: 0 2px;
   color: #0C0D0E;
-  font-weight: 700;
-  line-height: 1.30769231;
-  cursor: pointer;
   font-size: 15px;
-  font-size: 1.1538461538461537rem;
+  font-weight: 700;
+  cursor: pointer;
 }
 .s-label--status {
   padding: 2px 8px;
@@ -779,143 +941,14 @@ template {
   font-style: normal;
 }
 .s-input-description {
-  padding: 4px 2px;
-  color: #3b4045;
-  line-height: 1.15384615;
+  padding: 0 2px;
+  color: #6a737c;
   font-size: 12px;
-  font-size: 0.9230769230769231rem;
 }
 .s-input-message {
   margin: 4px 0 0;
   font-size: 12px;
   font-size: 0.9230769230769231rem;
-}
-.s-input-connect {
-  padding: 0.8em 1em;
-  line-height: 1;
-}
-.s-input-connect.s-input-connect__fill {
-  border: 1px solid #c8ccd0;
-  border-right-width: 0;
-  border-left-width: 0;
-  background-color: #eff0f1;
-  color: #3b4045;
-}
-.s-input-connect.s-input-connect__fill.order-first {
-  border-left-width: 1px;
-}
-.s-input-connect.s-input-connect__fill.order-last {
-  border-right-width: 1px;
-}
-.s-input-connect .s-label {
-  white-space: nowrap;
-}
-.s-input:focus,
-.s-select > select:focus {
-  position: relative;
-  border-color: #66bfff;
-  box-shadow: inset 0 0 4px #eff0f1, 0 0 0 4px rgba(0, 149, 255, 0.15);
-  outline: 0;
-}
-.s-input[disabled],
-.s-select > select[disabled],
-.s-input[read-only],
-.s-select > select[read-only] {
-  border-color: #e4e6e8;
-  background-color: #eff0f1;
-  box-shadow: inset 0 0 2px rgba(145, 153, 161, 0.1);
-  color: #bbc0c4;
-}
-.s-input[disabled],
-.s-select > select[disabled] {
-  cursor: not-allowed;
-}
-.has-warning .s-input,
-.has-warning .s-checkbox,
-.has-warning .s-radio:not(:checked),
-.has-warning.s-select > select {
-  border-color: #dcb000;
-}
-.has-warning .s-input:focus,
-.has-warning .s-checkbox:focus,
-.has-warning .s-radio:not(:checked):focus,
-.has-warning.s-select > select:focus {
-  box-shadow: inset 0 0 4px #eff0f1, 0 0 0 4px rgba(255, 207, 16, 0.4);
-}
-.has-warning .s-input-message,
-.has-warning .s-input-description {
-  color: #b08d00;
-}
-.has-warning .s-input-icon {
-  color: #dcb000;
-}
-.has-error .s-input,
-.has-error .s-checkbox,
-.has-error .s-radio:not(:checked),
-.has-error.s-select > select {
-  border-color: #dc3d4c;
-}
-.has-error .s-input:focus,
-.has-error .s-checkbox:focus,
-.has-error .s-radio:not(:checked):focus,
-.has-error.s-select > select:focus {
-  box-shadow: inset 0 0 4px #eff0f1, 0 0 0 4px rgba(229, 154, 161, 0.4);
-}
-.has-error .s-input-message,
-.has-error .s-input-description {
-  color: #C91D2E;
-}
-.has-error .s-input-icon {
-  color: #dc3d4c;
-}
-.has-success .s-input,
-.has-success .s-checkbox,
-.has-success .s-radio:not(:checked),
-.has-success.s-select select {
-  border-color: #5fba7d;
-}
-.has-success .s-input:focus,
-.has-success .s-checkbox:focus,
-.has-success .s-radio:not(:checked):focus,
-.has-success.s-select select:focus {
-  box-shadow: inset 0 0 4px #eff0f1, 0 0 0 4px rgba(166, 217, 183, 0.4);
-}
-.has-success .s-input-message,
-.has-success .s-input-description {
-  color: #429a5f;
-}
-.has-success .s-input-icon {
-  color: #5fba7d;
-}
-.is-disabled.s-select:before,
-.is-disabled.s-select:after {
-  border-color: #bbc0c4 transparent;
-}
-.is-disabled .s-label,
-.is-disabled .s-input-message,
-.is-disabled .s-input-description {
-  opacity: 0.5;
-}
-.is-disabled .svg-icon {
-  color: #bbc0c4;
-}
-.is-disabled,
-.is-success,
-.has-error,
-.has-warning {
-  position: relative;
-}
-.is-disabled .s-input,
-.is-success .s-input,
-.has-error .s-input,
-.has-warning .s-input {
-  padding-right: 32px;
-}
-.is-disabled.s-select .s-input-icon,
-.is-success.s-select .s-input-icon,
-.has-error.s-select .s-input-icon,
-.has-warning.s-select .s-input-icon {
-  right: 32px;
 }
 .s-modal {
   display: -webkit-box;
@@ -7764,7 +7797,7 @@ body *:after {
 }
 .s-btn {
   position: relative;
-  padding: 0.8em 1em;
+  padding: 0.7em 1em;
   border: 1px solid transparent;
   border-radius: 3px;
   background-color: transparent;
@@ -7865,7 +7898,6 @@ body *:after {
   pointer-events: none;
 }
 .s-btn.s-btn__xs {
-  padding-top: 0.7em;
   padding-bottom: 0.6em;
   font-size: 11px;
   font-size: 0.8461538461538461rem;
@@ -7881,8 +7913,6 @@ body *:after {
   border-bottom-width: 0;
 }
 .s-btn.s-btn__sm {
-  padding-top: 0.7em;
-  padding-bottom: 0.7em;
   font-size: 12px;
   font-size: 0.9230769230769231rem;
 }
@@ -7893,8 +7923,6 @@ body *:after {
   right: 0.8em;
 }
 .s-btn.s-btn__md {
-  padding-top: 0.7em;
-  padding-bottom: 0.7em;
   border-radius: 4px;
   font-size: 17px;
   font-size: 1.3076923076923077rem;
@@ -7909,8 +7937,6 @@ body *:after {
   border-bottom-width: 0;
 }
 .s-btn.s-btn__lg {
-  padding-top: 0.7em;
-  padding-bottom: 0.7em;
   border-radius: 4px;
   font-size: 21px;
   font-size: 1.6153846153846154rem;
@@ -7925,8 +7951,6 @@ body *:after {
   border-bottom-width: 0;
 }
 .s-btn.s-btn__xl {
-  padding-top: 0.7em;
-  padding-bottom: 0.7em;
   border-radius: 6px;
   font-size: 27px;
   font-size: 2.076923076923077rem;
