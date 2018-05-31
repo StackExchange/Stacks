@@ -620,6 +620,33 @@ template {
   padding-left: 8px;
   line-height: 1.30769231;
 }
+.s-label {
+  padding: 0 2px;
+  color: #0C0D0E;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+}
+.s-label--status {
+  margin-left: 4px;
+  padding: 2px 8px;
+  border-radius: 7px;
+  background-color: #eff0f1;
+  color: #6a737c;
+  font-size: 12px;
+  font-style: italic;
+  font-weight: 400;
+  vertical-align: text-bottom;
+}
+.s-label--status.s-label--status__required {
+  background-color: #dc3d4c;
+  color: #FFF;
+}
+.s-input-description {
+  padding: 0 2px;
+  color: #6a737c;
+  font-size: 12px;
+}
 .s-input__xs,
 .s-textarea__xs,
 .s-label__xs,
@@ -650,24 +677,43 @@ template {
 .s-select__xl > select {
   font-size: 27px;
 }
-.s-input-connect {
-  padding: 0.9em;
+.s-input__md,
+.s-textarea__md,
+.s-select__md > select {
+  padding: 0.7em;
 }
-.s-input-connect.s-input-connect__fill {
-  border: 1px solid #c8ccd0;
+.s-input__lg,
+.s-textarea__lg,
+.s-select__lg > select {
+  padding: 0.6em;
+}
+.s-input__xl,
+.s-textarea__xl,
+.s-select__xl > select {
+  padding: 0.5em;
+}
+.s-input-fill {
+  padding: 0.9em;
+  border: 1px solid #bbc0c4;
   border-right-width: 0;
   border-left-width: 0;
   background-color: #eff0f1;
   color: #3b4045;
-}
-.s-input-connect.s-input-connect__fill.order-first {
-  border-left-width: 1px;
-}
-.s-input-connect.s-input-connect__fill.order-last {
-  border-right-width: 1px;
-}
-.s-input-connect .s-label {
   white-space: nowrap;
+}
+.s-input-fill.s-input-fill__clear {
+  border-color: transparent;
+  background-color: transparent;
+}
+.s-input-fill.order-first {
+  border-left-width: 1px;
+  border-top-left-radius: 3px;
+  border-bottom-left-radius: 3px;
+}
+.s-input-fill.order-last {
+  border-right-width: 1px;
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
 }
 .s-select {
   position: relative;
@@ -714,15 +760,6 @@ template {
 .s-select > select:-moz-focusring {
   color: transparent;
   text-shadow: 0 0 0 #000;
-}
-.s-select__md > select {
-  padding: 0.7em;
-}
-.s-select__lg > select {
-  padding: 0.6em;
-}
-.s-select__xl > select {
-  padding: 0.5em;
 }
 @supports ((-webkit-appearance: none) or (-moz-appearance: none) or (appearance: none)) {
   .s-checkbox,
@@ -919,36 +956,9 @@ template {
   vertical-align: text-bottom !important;
   pointer-events: none;
 }
-.s-label {
-  padding: 0 2px;
-  color: #0C0D0E;
-  font-size: 15px;
-  font-weight: 700;
-  cursor: pointer;
-}
-.s-label--status {
-  padding: 2px 8px;
-  border-radius: 3px;
-  background-color: #eff0f1;
-  font-size: 12px;
-  font-style: italic;
-  font-weight: 400;
-  vertical-align: text-bottom;
-}
-.s-label--status.s-label--status__required {
-  background-color: #C91D2E;
-  color: #FFF;
-  font-style: normal;
-}
-.s-input-description {
-  padding: 0 2px;
-  color: #6a737c;
-  font-size: 12px;
-}
 .s-input-message {
-  margin: 4px 0 0;
+  padding: 2px;
   font-size: 12px;
-  font-size: 0.9230769230769231rem;
 }
 .s-modal {
   display: -webkit-box;
@@ -9491,7 +9501,8 @@ body {
 }
 .stacks-h1,
 .stacks-h2,
-.stacks-h3 {
+.stacks-h3,
+.stacks-h4 {
   margin-bottom: 0.5em;
   font-weight: 700;
   line-height: 1.15384615;
@@ -9509,6 +9520,11 @@ body {
   font-size: 19px;
   font-size: 1.4615384615384615rem;
   color: #3b4045;
+}
+.stacks-h4 {
+  font-size: 17px;
+  font-size: 1.3076923076923077rem;
+  color: #6a737c;
 }
 .stacks-header--anchor {
   padding: 8px;

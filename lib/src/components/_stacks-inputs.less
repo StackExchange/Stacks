@@ -53,13 +53,57 @@
     }
 }
 
-//  $$  TEXTAREA
+//  ============================================================================
+//  $  TEXTAREA
 //  ----------------------------------------------------------------------------
 .s-textarea {
     padding-right: @su8;
     padding-left: @su8;
     line-height: @lh-md;
 }
+
+//  ============================================================================
+//  $  LABELS
+//  ============================================================================
+.s-label {
+    padding: 0 @su2; // Helps the label visually line up with inputs
+    color: @fc-dark;
+    font-size: @fs-body2;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+//  $$  LABEL STATUS FLAG
+//  ----------------------------------------------------------------------------
+//      Is this form item required or optional? Flag the status for users.
+//      Default styling is optional.
+.s-label--status {
+    margin-left: @su4;
+    padding: @su2 @su8;
+    border-radius: @br-lg;
+    background-color: @black-050;
+    color: @fc-light;
+    font-size: @fs-caption;
+    font-style: italic;
+    font-weight: 400;
+    vertical-align: text-bottom;
+
+    &.s-label--status__required {
+        background-color: @red-400;
+        color: @white;
+    }
+}
+
+
+//  ============================================================================
+//  $  TEXT STYLES
+//  ============================================================================
+.s-input-description {
+    padding: 0 @su2;
+    color: @fc-light;
+    font-size: @fs-caption;
+}
+
 
 //  $$  SIZES
 //  ----------------------------------------------------------------------------
@@ -94,32 +138,53 @@
     font-size: @fs-headline1;
 }
 
+//  $$  PADDING ADJUSTMENTS WITHIN SIZES
+//  ----------------------------------------------------------------------------
+.s-input__md,
+.s-textarea__md,
+.s-select__md > select {
+    padding: 0.7em;
+}
+.s-input__lg,
+.s-textarea__lg,
+.s-select__lg > select {
+    padding: 0.6em;
+}
+.s-input__xl,
+.s-textarea__xl,
+.s-select__xl > select {
+    padding: 0.5em;
+}
+
+
 //  ============================================================================
 //  $   CONNECTED INPUTS
 //      To visually connect inputs together
 //  ----------------------------------------------------------------------------
-.s-input-connect {
+.s-input-fill {
     padding: 0.9em;
+    border: 1px solid @black-200;
+    border-right-width: 0;
+    border-left-width: 0;
+    background-color: @bgc-lightest;
+    color: @fc-medium;
+    white-space: nowrap;
 
-    //  When we want the gray background
-    &.s-input-connect__fill {
-        border: 1px solid @black-150;
-        border-right-width: 0;
-        border-left-width: 0;
-        background-color: @bgc-lightest;
-        color: @fc-medium;
-
-        &.order-first {
-            border-left-width: 1px;
-        }
-        &.order-last {
-            border-right-width: 1px;
-        }
+    &.s-input-fill__clear {
+        border-color: transparent;
+        background-color: transparent;
     }
 
-    //  No wrapping on labels
-    .s-label {
-        white-space: nowrap;
+    &.order-first {
+        border-left-width: 1px;
+        border-top-left-radius: @br-sm;
+        border-bottom-left-radius: @br-sm;
+    }
+
+    &.order-last {
+        border-right-width: 1px;
+        border-top-right-radius: @br-sm;
+        border-bottom-right-radius: @br-sm;
     }
 }
 
@@ -186,18 +251,6 @@
             text-shadow: 0 0 0 #000;
         }
     }
-}
-
-//  $$  SIZE CUSTOMIZATIONS
-//  ----------------------------------------------------------------------------
-.s-select__md > select {
-    padding: 0.7em;
-}
-.s-select__lg > select {
-    padding: 0.6em;
-}
-.s-select__xl > select {
-    padding: 0.5em;
 }
 
 
@@ -447,53 +500,10 @@
     pointer-events: none;
 }
 
-//  ============================================================================
-//  $  LABELS
-//  ============================================================================
-.s-label {
-    padding: 0 @su2; // Helps the label visually line up with inputs
-    color: @fc-dark;
-    font-size: @fs-body2;
-    font-weight: 700;
-    cursor: pointer;
-}
-
-
-
-//  $$  LABEL STATUS FLAG
-//  ----------------------------------------------------------------------------
-//      Is this form item required or optional? Flag the status for users.
-//      Default styling is optional.
-.s-label--status {
-    padding: @su2 @su8;
-    border-radius: @br-sm;
-    background-color: @black-050;
-    font-size: @fs-caption;
-    font-style: italic;
-    font-weight: 400;
-    vertical-align: text-bottom;
-
-    &.s-label--status__required {
-        background-color: @red-500;
-        color: @white;
-        font-style: normal;
-    }
-}
-
-
-//  ============================================================================
-//  $  TEXT STYLES
-//  ============================================================================
-.s-input-description {
-    padding: 0 @su2;
-    color: @fc-light;
-    font-size: @fs-caption;
-}
-
 //  $$  MESSAGE
 //      Set some baseline styles
 //  ----------------------------------------------------------------------------
 .s-input-message {
-    margin: @su4 0 0;
-    .mx-fs(@fs-caption);
+    padding: @su2;
+    font-size: @fs-caption;
 }

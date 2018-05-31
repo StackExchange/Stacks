@@ -1,0 +1,118 @@
+---
+layout: page
+title: Labels
+description: Labels are used to describe inputs, select menus, textareas, radio buttons, and checkboxes.
+---
+<section class="stacks-section">
+    <p class="stacks-copy">Labels inform users what information is being asked of them. They should be written in sentence case.</p>
+    <div class="grid gs8 s-notice s-notice__info">
+        <div class="grid grid__center">{% svg /resources/svg-icons/Alert.svg width="24" height="24" aria-hidden="true" class="svg-icon iconAlert fc-powder-800" %}</div>
+        <p class="grid--cell pl8 fs-body2">For usability reasons, if a label is connected with an input, the <code class="stacks-code fs-body2 bg-powder-050 fc-red-400">for="[id]"</code> attribute should be filled in. This attribute references the input’s <code class="stacks-code fs-body2 bg-powder-050 fc-red-400">id="[value]"</code> value.</p>
+    </div>
+
+    <h2 class="mt32 grid jc-space-between ai-center stacks-h2"><div class="grid--cell fl1">Base Style</div></h2>
+    <div class="stacks-preview">
+{% highlight html linenos %}
+<form class="grid gs4 gsy fd-column">
+    <label class="grid--cell s-label" for="question-title">Question title</label>
+    <div class="grid ps-relative">
+        <input class="grid--cell s-input" type="text" id="question-title" placeholder="e.g. Why doesn't Stack Overflow use a custom web font?"/>
+    </div>
+</form>
+{% endhighlight %}
+        <div class="stacks-preview--example">
+            <form class="grid gs4 gsy fd-column">
+                <label class="grid--cell s-label" for="question-title">Question title</label>
+                <div class="grid ps-relative">
+                    <input class="grid--cell s-input" type="text" id="question-title" placeholder="e.g. Why doesn't Stack Overflow use a custom web font?"/>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+
+<section class="stacks-section">
+    <h2 class="grid jc-space-between ai-center stacks-h2"><div class="grid--cell fl1">Sizes</div></h2>
+    <table class="mb32 s-table s-table__hover va-middle">
+        <thead>
+            <tr>
+                <th scope="col" class="s-table--cell2">Name</th>
+                <th scope="col" class="s-table--cell1">Size</th>
+                <th scope="col" class="s-table--cell2">Class</th>
+                <th scope="col">Example</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in site.data.inputs.label %}
+                {% assign size = item.sizes  %}
+                {% for item in size %}
+                <tr>
+                    <th scope="row">{{ item.name }}</th>
+                    <td>{{ item.size }}</td>
+                    <td>{% if item.class == "N/A" %}<em class="fc-light">{{ item.class }}</em>{% else %}<code class="stacks-code bg-white">.{{ item.class }}</code>{% endif %}</td>
+                    <td><label class="s-label {% if item.class != "N/A" %}{{ item.class }}{% endif %}">Question title</label></td>
+                </tr>
+                {% endfor %}
+            {% endfor %}
+        </tbody>
+    </table>
+</section>
+
+<section class="stacks-section">
+    <h2 class="grid jc-space-between ai-center stacks-h2"><div class="grid--cell fl1">Status</div></h2>
+    <p class="stacks-copy">When you need to flag labels as required or optional, use the following flags. Use the full word "Required" or "Optional" for these flags instead of using asterisks.</p>
+
+    <h3 class="grid jc-space-between ai-center stacks-h3"><div class="grid--cell fl1">Optional</div></h3>
+    <div class="stacks-preview">
+{% highlight html linenos %}
+{% include_relative examples/label-optional.html %}
+{% endhighlight %}
+        <div class="stacks-preview--example">
+            {% include_relative examples/label-optional.html %}
+        </div>
+    </div>
+
+    <h3 class="grid jc-space-between ai-center stacks-h3"><div class="grid--cell fl1">Required</div></h3>
+    <div class="stacks-preview">
+{% highlight html linenos %}
+{% include_relative examples/label-required.html %}
+{% endhighlight %}
+        <div class="stacks-preview--example">
+            {% include_relative examples/label-required.html %}
+        </div>
+    </div>
+</section>
+
+<section class="stacks-section">
+    <h2 class="grid jc-space-between ai-center stacks-h2"><div class="grid--cell fl1">Description Copy</div></h2>
+    <p class="stacks-copy">When a label or input needs further explantation, text should be placed directly underneath it.</p>
+
+    <div class="stacks-preview">
+{% highlight html linenos %}
+<form class="grid gs4 gsy fd-column">
+    <div class="grid--cell">
+        <div class="grid gs2 gsy fd-column">
+            <label class="grid--cell s-label" for="question-title-copy">Question title</label>
+            <p class="grid--cell s-input-description">Clear question titles are more likely to get answered.</p>
+        </div>
+    </div>
+    <div class="grid ps-relative">
+        <input class="grid--cell s-input" type="text" id="question-title-copy" placeholder="e.g. Why doesn't Stack Overflow use a custom web font?"/>
+    </div>
+</form>
+{% endhighlight %}
+        <div class="stacks-preview--example">
+            <form class="grid gs4 gsy fd-column">
+                <div class="grid--cell">
+                    <div class="grid gs2 gsy fd-column">
+                        <label class="grid--cell s-label" for="question-title-copy">Question title</label>
+                        <p class="grid--cell s-input-description">Clear question titles are more likely to get answered.</p>
+                    </div>
+                </div>
+                <div class="grid ps-relative">
+                    <input class="grid--cell s-input" type="text" id="question-title-copy" placeholder="e.g. Why doesn't Stack Overflow use a custom web font?"/>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
