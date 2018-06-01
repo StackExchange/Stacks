@@ -7,37 +7,31 @@
 //  visit https://stackoverflow.design/
 //
 //  TABLE OF CONTENTS
-//  • UNIVERSAL PROPERTIES
-//    - Layout
-//    - Font Styles
 //  • Inputs
-//    - Base Style
-//    - Interaction States
-//    - Textareas
-//    - Select Menus
-//    - File Upload
-//    - Checkboxes & Radios
-//  • LABELS
-//    - Base Style
-//    - Style Modifications
-//    - Status Flag
-//  • TYPE STYLES
-//  • LABELS
+//    - Base Style (Input / Textarea)
+//    - Textarea Styles
+//    - Fieldset Resets
+//  • Labels
+//  • Label Statuses
+//  • Text Styles
+//  • Input Sizes
+//  • Connected Input Fills
+//  • Select Menus
+//  • Checkbox & Radio
+//  • Input States
+//  • Validation States
 //
 //  ============================================================================
-//  $  BASE STYLE
+//  $  BASE INPUT / TEXTAREA STYLE
 //  ----------------------------------------------------------------------------
-.s-input {
+.s-input,
+.s-textarea {
     width: 100%;
     margin: 0;
-    padding: 0.8em 1em;
+    padding: 0.9em;
     border: 1px solid @black-200;
     border-radius: @br-sm;
-    background-color: @white;
     box-shadow: inset 0 0 1px fade(@black-350, 20%), 0 0 0 fade(@white, 0%);
-    font-family: @ff-sans;
-    font-size: inherit;
-    line-height: 1;
 
     //  --  PLACEHOLDER
     //  ------------------------------------------------------------------------
@@ -56,13 +50,154 @@
     }
 }
 
-.s-input-icon {
-    position: absolute;
-    top: 50%;
-    right: @su8;
-    margin-top: -9px;
-    vertical-align: text-bottom !important;
-    pointer-events: none;
+//  ============================================================================
+//  $  TEXTAREA
+//  ----------------------------------------------------------------------------
+.s-textarea {
+    line-height: @lh-md;
+}
+
+
+//  ============================================================================
+//  $  FIELDSET
+//  ----------------------------------------------------------------------------
+fieldset {
+    min-width: 0;
+    padding: 0;
+    border: 0;
+}
+
+//  ============================================================================
+//  $  LABELS
+//  ============================================================================
+.s-label {
+    padding: 0 @su2; // Helps the label visually line up with inputs
+    color: @fc-dark;
+    font-size: @fs-body2;
+    font-weight: 700;
+    cursor: pointer;
+
+    legend& {
+        cursor: default; // Reset cursor when it's a legend
+    }
+}
+
+//  $$  LABEL STATUS FLAG
+//  ----------------------------------------------------------------------------
+//      Is this form item required or optional? Flag the status for users.
+//      Default styling is optional.
+.s-label--status {
+    margin-left: @su4;
+    padding: @su2 @su8;
+    border-radius: @br-lg;
+    background-color: @black-050;
+    color: @fc-light;
+    font-size: @fs-caption;
+    font-style: italic;
+    font-weight: 400;
+    vertical-align: text-bottom;
+
+    &.s-label--status__required {
+        background-color: @red-400;
+        color: @white;
+    }
+}
+
+
+//  ============================================================================
+//  $  TEXT STYLES
+//  ============================================================================
+.s-description {
+    padding: 0 @su2;
+    color: @fc-light;
+    font-size: @fs-caption;
+}
+
+
+//  $$  SIZES
+//  ----------------------------------------------------------------------------
+.s-input__xs,
+.s-textarea__xs,
+.s-label__xs,
+.s-select__xs > select {
+    font-size: @fs-fine;
+}
+.s-input__sm,
+.s-textarea__sm,
+.s-label__sm,
+.s-select__sm > select {
+    font-size: @fs-caption;
+}
+.s-input__md,
+.s-textarea__md,
+.s-label__md,
+.s-select__md > select {
+    font-size: @fs-body3;
+}
+.s-input__lg,
+.s-textarea__lg,
+.s-label__lg,
+.s-select__lg > select {
+    font-size: @fs-title;
+}
+.s-input__xl,
+.s-textarea__xl,
+.s-label__xl,
+.s-select__xl > select {
+    font-size: @fs-headline1;
+}
+
+//  $$  PADDING ADJUSTMENTS WITHIN SIZES
+//  ----------------------------------------------------------------------------
+.s-input__md,
+.s-textarea__md,
+.s-select__md > select {
+    padding: 0.7em;
+    border-radius: @br-sm + 1;
+}
+.s-input__lg,
+.s-textarea__lg,
+.s-select__lg > select {
+    padding: 0.6em;
+    border-radius: @br-sm + 1;
+}
+.s-input__xl,
+.s-textarea__xl,
+.s-select__xl > select {
+    padding: 0.5em;
+    border-radius: @br-md;
+}
+
+
+//  ============================================================================
+//  $   CONNECTED INPUTS
+//      To visually connect inputs together
+//  ----------------------------------------------------------------------------
+.s-input-fill {
+    padding: 0.9em;
+    border: 1px solid @black-200;
+    border-right-width: 0;
+    border-left-width: 0;
+    background-color: @bgc-lightest;
+    color: @fc-medium;
+    white-space: nowrap;
+
+    &.s-input-fill__clear {
+        border-color: transparent;
+        background-color: transparent;
+    }
+
+    &.order-first {
+        border-left-width: 1px;
+        border-top-left-radius: @br-sm;
+        border-bottom-left-radius: @br-sm;
+    }
+
+    &.order-last {
+        border-right-width: 1px;
+        border-top-right-radius: @br-sm;
+        border-bottom-right-radius: @br-sm;
+    }
 }
 
 
@@ -102,22 +237,22 @@
     //      Now we can style the visual appearance of the select menu;
     //  ------------------------------------------------------------------------
     > select {
-        //  [1] Reset the appearance
-        .appearance(none);
-
         //  [2] Update the styles
         position: relative; // This prevents Firefox from requiring a second click to select options
         width: 100%;
         height: 100%; // Fill the height of its parent
-        padding: 0.8em 1em;
+        padding: 0.9em;
         padding-right: @su32;
         border: 1px solid @black-200;
         border-radius: @br-sm;
         background-color: @white;
         outline: 0;
         font-family: @ff-sans;
-        font-size: inherit;
-        line-height: 1;
+
+        //  [1] Reset the appearance
+        -webkit-appearance: none;
+           -moz-appearance: none;
+                appearance: none;
 
         &::-moz-focus-inner {
             outline: none !important;
@@ -160,6 +295,12 @@
             outline: 0;
         }
     }
+
+    //  Disabled
+    &[disabled] {
+        opacity: 0.5;
+        cursor: not-allowed;
+    }
 }
 
 //  $$  CHECKBOXES
@@ -171,6 +312,12 @@
         background-repeat: no-repeat;
         background-size: contain;
 
+        //  Disabled
+        &[disabled] {
+            border-color: @black-200;
+            background-color: @black-075;
+        }
+
         &:checked {
             border-color: @blue-500 !important;
             background-color: @blue-500;
@@ -178,6 +325,12 @@
 
             &:focus {
                 border-color: @blue-500;
+            }
+
+            //  Disabled
+            &[disabled] {
+                border-color: @black-500 !important;
+                background-color: @black-400;
             }
         }
 
@@ -208,92 +361,11 @@
 
 
 //  ============================================================================
-//  $  LABELS
-//  ============================================================================
-.s-label {
-    .mx-fs(@fs-body2);
-    font-weight: 700;
-    cursor: pointer;
-}
-
-
-//  $$  LABEL STATUS FLAG
-//  ----------------------------------------------------------------------------
-//      Is this form item required or optional? Flag the status for users.
-//      Default styling is optional.
-.s-label--status {
-    padding: @su2 @su8;
-    border-radius: @br-sm;
-    background-color: @black-050;
-    font-size: @fs-caption;
-    font-style: italic;
-    font-weight: 400;
-    vertical-align: text-bottom;
-
-    &.s-label--status__required {
-        background-color: @red-500;
-        color: @white;
-        font-style: normal;
-    }
-}
-
-
-//  ============================================================================
-//  $  TEXT STYLES
-//  ============================================================================
-.s-input-description {
-    margin: 0 0 @su8;
-    color: @fc-medium;
-    line-height: @lh-sm;
-    .mx-fs(@fs-caption);
-}
-
-//  $$  MESSAGE
-//      Set some baseline styles
-//  ----------------------------------------------------------------------------
-.s-input-message {
-    margin: @su4 0 0;
-    .mx-fs(@fs-caption);
-}
-
-
-
-//  ============================================================================
-//  $   CONNECTED INPUTS
-//      To visually connect inputs together
-//  ----------------------------------------------------------------------------
-.s-input-connect {
-    padding: 0.8em 1em;
-    line-height: 1;
-
-    //  When we want the gray background
-    &.s-input-connect__fill {
-        border: 1px solid @black-150;
-        border-right-width: 0;
-        border-left-width: 0;
-        background-color: @bgc-lightest;
-        color: @fc-medium;
-
-        &.order-first {
-            border-left-width: 1px;
-        }
-        &.order-last {
-            border-right-width: 1px;
-        }
-    }
-
-    //  No wrapping on labels
-    .s-label {
-        white-space: nowrap;
-    }
-}
-
-
-//  ============================================================================
 //  $   STATES
 //      The many states for inputs and select menus.
 //  ----------------------------------------------------------------------------
 .s-input,
+.s-textarea,
 .s-select > select {
     //  Focus
     &:focus {
@@ -319,89 +391,12 @@
 }
 
 
-//  $$  VALIDATION STATES
-//      Validation states will need applied at the wrapping container level.
 //  ============================================================================
-//  --  WARNING
-.has-warning {
-    .s-input,
-    .s-checkbox,
-    &.s-select > select {
-        border-color: @yellow-600;
-
-        &:focus {
-            box-shadow: inset 0 0 4px @black-050, 0 0 0 @su4 fade(@yellow-500, 40%);
-        }
-    }
-
-    .s-input-message,
-    .s-input-description {
-        color: shade(@yellow-600, 20%);
-    }
-
-    .s-input-icon {
-        color: @yellow-600;
-    }
-}
-
-//  --  ERROR
-.has-error {
-    .s-input,
-    .s-checkbox,
-    &.s-select > select {
-        border-color: @red-400;
-
-        &:focus {
-            box-shadow: inset 0 0 4px @black-050, 0 0 0 @su4 fade(@red-200, 40%);
-        }
-    }
-
-    .s-input-message,
-    .s-input-description {
-        color: @red-500;
-    }
-
-    .s-input-icon {
-        color: @red-400;
-    }
-}
-
-//  --  SUCCESS
-.is-success {
-    .s-input,
-    .s-checkbox,
-    &.s-select select {
-        border-color: @green-400;
-
-        &:focus {
-            box-shadow: inset 0 0 4px @black-050, 0 0 0 @su4 fade(@green-200, 40%);
-        }
-    }
-
-    .s-input-message,
-    .s-input-description {
-        color: darken(@green-500, 2%);
-    }
-
-    .s-input-icon {
-        color: @green-400;
-    }
-}
-
-//  --  DISABLED
-.is-disabled {
-    &.s-select:before,
-    &.s-select:after {
-        border-color: @black-200 transparent;
-    }
-
-    .svg-icon {
-        color: @black-200;
-    }
-}
-
+//  $   VALIDATION STATES
+//      Classes are applied at the wrapping container level.
+//  ----------------------------------------------------------------------------
 .is-disabled,
-.is-success,
+.has-success,
 .has-error,
 .has-warning {
     position: relative;
@@ -410,7 +405,128 @@
         padding-right: @su32;
     }
 
-    &.s-select .s-input-icon {
+    .s-select .s-input-icon {
         right: @su32;
     }
+
+    .s-textarea {
+        padding-right: @su48;
+
+        ~ .s-input-icon {
+            top: 1.5em;
+        }
+    }
+}
+
+//  $$  WARNING
+//  ----------------------------------------------------------------------------
+.has-warning {
+    .s-input,
+    .s-textarea,
+    .s-checkbox,
+    .s-radio:not(:checked),
+    .s-select > select {
+        border-color: @yellow-600;
+
+        &:focus {
+            box-shadow: inset 0 0 @su4 0 @black-050, 0 0 0 @su4 fade(@yellow-500, 40%);
+        }
+    }
+
+    .s-input-message {
+        color: shade(@yellow-600, 25%);
+    }
+
+    .s-input-icon {
+        color: @yellow-600;
+    }
+}
+
+//  $$  ERROR
+//  ----------------------------------------------------------------------------
+.has-error {
+    .s-input,
+    .s-textarea,
+    .s-checkbox,
+    .s-radio:not(:checked),
+    .s-select > select {
+        border-color: @red-400;
+
+        &:focus {
+            box-shadow: inset 0 0 @su4 0 @black-050, 0 0 0 @su4 fade(@red-200, 40%);
+        }
+    }
+
+    .s-input-message {
+        color: @red-500;
+    }
+
+    .s-input-icon {
+        color: @red-400;
+    }
+}
+
+//  $$  SUCCESS
+//  ----------------------------------------------------------------------------
+.has-success {
+    .s-input,
+    .s-textarea,
+    .s-checkbox,
+    .s-radio:not(:checked),
+    .s-select > select {
+        border-color: @green-400;
+
+        &:focus {
+            box-shadow: inset 0 0 @su4 0 @black-050, 0 0 0 @su4 fade(@green-200, 40%);
+        }
+    }
+
+    .s-input-message {
+        color: darken(@green-500, 2%);
+    }
+
+    .s-input-icon {
+        color: @green-400;
+    }
+}
+
+//  $$  DISABLED
+//  ----------------------------------------------------------------------------
+.is-disabled {
+    .s-select:before,
+    .s-select:after {
+        border-color: @black-200 transparent;
+    }
+
+    .s-label,
+    .s-description {
+        opacity: 0.5;
+    }
+
+    .s-input-icon {
+        color: @black-200;
+    }
+
+    .s-label {
+        cursor: not-allowed;
+    }
+}
+
+//  $$  ICON
+//  ----------------------------------------------------------------------------
+.s-input-icon {
+    position: absolute;
+    top: 50%;
+    right: 0.8em;
+    margin-top: -0.69em;
+    vertical-align: text-bottom !important;
+    pointer-events: none;
+}
+
+//  $$  MESSAGE
+//      Set some baseline styles
+//  ----------------------------------------------------------------------------
+.s-input-message {
+    padding: @su2;
+    font-size: @fs-caption;
 }

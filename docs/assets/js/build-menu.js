@@ -9,7 +9,7 @@
 */
 
 (function ($) {
-  const HEADERS = ".stacks-section > :header:not(h1)"
+  const HEADERS = ".stacks-section > :header:not(h1):not(h4)"
 
   const ClassName = {
     MENU        : "stacks-nav--subnav",
