@@ -54,6 +54,123 @@ input:
     - name: Extra Large
       size: 27px
       class: s-input__xl
+  - types:
+    - name: color
+      html5: true
+      description: Allows user to select a color and returns the hex value for that color. The color picker used is native to the OS or the browser.
+    - name: date
+      html5: true
+      description: Allows user to enter a date (year, month, and day) without a time.
+    - name: datetime-local
+      html5: true
+      description: Allows user to enter a date (year, month, and day) <strong>and</strong> a time, with no time zone.
+    - name: email
+      html5: true
+      description: Allows user to enter an email address. Some mobile devices will deliver custom keyboards specifically for entering email addresses.
+    - name: file
+      html5: false
+      description: Allows user to select a file. To define the type of files that can be selected, use the <code class="stacks-code">accept=""</code> attribute.
+    - name: month
+      html5: true
+      description: Allows user to enter a month and year with no time zone.
+    - name: number
+      html5: true
+      description: Limits user to entering <em>only</em> numbers. Some mobile devices will deliver a custom keyboard.
+    - name: password
+      html5: false
+      description: Single-line text input whose value is obsecured. Use the <code class="stacks-code">minlength</code> and <code class="stacks-code">maxlength</code> attributes to specify the value length.
+    - name: range
+      html5: true
+      description: Allows user to enter a number who exact value isn't important.
+    - name: search
+      html5: true
+      description: Single-line text input for entering search strings. Some mobile devices will deliver a custom keyboard.
+    - name: tel
+      html5: true
+      description: Allows user to enter a telephone number. Some mobile devices will deliver a custom keyboard.
+    - name: text
+      html5: false
+      description: Single-line text input field.
+    - name: time
+      html5: true
+      description: Allows user to enter a time value with no time zone.
+    - name: url
+      html5: true
+      description: Allows user to enter a website URL. Some mobile devices will deliver a custom keyboard.
+    - name: week
+      html5: true
+      description: Allows user to enter a date consisting of a week-year number and a week number with no time zone.
+  - attributes:
+    - name: accept
+      html5: false
+      description: If the type is <code class="stacks-code">file</code>, then this attribute will indicate the file types that will be accepted. The value must be a comma-separated list.
+    - name: autocomplete
+      html5: true
+      description: Indicates if the control value can be automatically completed by the browser. For a full list of possible values, please visit <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/Input#Global_%3Cinput%3E_attributes" target="_blank">MDN Inputs page</a>.
+    - name: autofocus
+      html5: true
+      description: Lets you specify which form control should have input focus on page load. Only one element can have this attribute and it cannot be set on <code class="stacks-code">hidden</code> elements.
+    - name: capture
+      html5: false
+      description: If the type is <code class="stacks-code">file</code>, then this Boolean attribute will indicate that the capture of media directly from the device's environment using <a href="https://www.w3.org/TR/html-media-capture/#dfn-media-capture-mechanism" target="_blank">a media capture mechanicism</a> is preferred (e.g. taking a photo using a camera).
+    - name: disabled
+      html5: false
+      description: Boolean attribute that indicates the input is not available for interaction.
+    - name: form
+      html5: true
+      description: This attribute associates the form element with the input element. The input value must be the form's <code class="stacks-code">id</code> value within the same document. If this isn't specified, the input will use the closest ancestor form element. This attribute allows you to place inputs anywhere on the page, not just as a descendant within a form element. An input can only be associated with one form.
+    - name: max
+      html5: true
+      description: Maximum numeric or date-time value for this item, which cannot be lesser than the minimum value.
+    - name: maxlength
+      html5: true
+      description: If type is <code class="stacks-code">text</code>, <code class="stacks-code">email</code>, <code class="stacks-code">search</code>, <code class="stacks-code">password</code>, <code class="stacks-code">tel</code>, or <code class="stacks-code">url</code>; this attribute sets the maximum number of characters that can be entered.
+    - name: min
+      html5: true
+      description: Minimum numeric or date-time value for this item, which cannot be greater than the minimum value.
+    - name: minlength
+      html5: true
+      description: If type is <code class="stacks-code">text</code>, <code class="stacks-code">email</code>, <code class="stacks-code">search</code>, <code class="stacks-code">password</code>, <code class="stacks-code">tel</code>, or <code class="stacks-code">url</code>; this attribute sets the minimum number of characters that must be entered.
+    - name: multiple
+      html5: true
+      description: If type is <code class="stacks-code">email</code> or <code class="stacks-code">file</code>, this attribute allows for more than one value.
+    - name: name
+      html5: false
+      description: Name of the control which is submitted with the form data.
+    - name: placeholder
+      html5: true
+      description: Provides a hint to the user of what can be entered into the control.
+    - name: readonly
+      html5: true
+      description: Indicates that the control cannot be modified by the user. This is ignored if the type attribute is <code class="stacks-code">hidden</code>, <code class="stacks-code">range</code>, <code class="stacks-code">color</code>, <code class="stacks-code">checkbox</code>, <code class="stacks-code">radio</code>, or a button type.
+    - name: required
+      html5: true
+      description: Specifies that the user must provide a value for this control before submitting the form. This is ignored if the type attribute is <code class="stacks-code">hidden</code>, <code class="stacks-code">image</code>, or a button type.
+    - name: selectionDirection
+      html5: true
+      description: Specifies the direction in which a selection occurs.
+    - name: selectionEnd
+      html5: false
+      description: The offset into the element's text content of the last selected character. If there's no selection, this value indicates the offset to the character following the current text input cursor position (that is, the position the next character typed would occupy).
+    - name: selectionStart
+      html5: false
+      description: The offset into the element's text content of the first selected character. If there's no selection, this value indicates the offset to the character following the current text input cursor position (that is, the position the next character typed would occupy).
+    - name: size
+      html5: false
+      description: The control's initial size.
+    - name: spellcheck
+      html5: true
+      description: Setting the value to <code class="stacks-code">true</code> indicates that the element needs to have its spelling and grammar checked.
+    - name: step
+      html5: true
+      description: Works with <code class="stacks-code">min</code> and <code class="stacks-code">max</code> attributes to limit the increments at which a numeric or date-time value can be set.
+    - name: tabindex
+      html5: true
+      description: Position of the element in the tab navigation order for the current document.
+    - name: value
+      html5: false
+      description: Initial value for the control.
+
 
 textarea:
   - validation:
