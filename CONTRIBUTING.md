@@ -14,32 +14,32 @@ Want to get involved? There are plenty of ways to help! Both internal and extern
 
 ## Open an issue
 
-Before you start anything, we recommend [opening an issue](https://gh.stackoverflow.com/Design/Stacks/issues/new). This gives the Stacks team and other contributors a chance to provide initial feedback, thoughts, and possible historical context. It may also help you find others who might want to help you out!
+Before you start anything, we recommend [opening an issue](https://github.com/StackExchange/Stacks/issues/new). This gives the Stacks team and other contributors a chance to provide initial feedback, thoughts, and possible historical context. It may also help you find others who might want to help you out!
 
 When creating an issue, use following labels to help us out:
 
- - [`bug`](https://gh.stackoverflow.com/Design/Stacks/labels/bug) – A _reproducible_ problem with the Stacks code. This will require a build version bump (e.g., `v0.1.1` > `v0.1.2`).
- - [`feature`](https://gh.stackoverflow.com/Design/Stacks/labels/feature) – Issues requesting a new item to Stacks. This will require a minor version bump (e.g., `v0.1.0` > `v0.2.0`).
- - [`enhancement`](https://gh.stackoverflow.com/Design/Stacks/labels/enhancement) – Issues requesting a feature modification or extension. This will require a minor version bump (e.g., `v0.1.0` > `v0.2.0`).
- - [`docs`](https://gh.stackoverflow.com/Design/Stacks/labels/docs) - Issues with the documentation site.
- - [`do-not-merge`](https://gh.stackoverflow.com/Design/Stacks/labels/do-not-merge) - Pull requests that are in progress and should not be merged yet.
- - [`help-wanted`](https://gh.stackoverflow.com/Design/Stacks/labels/help-wanted) – A person would like help with an issue.
- - [`setup`](https://gh.stackoverflow.com/Design/Stacks/labels/setup) – Issues related to Stacks setup and compilation processes. These include items relating to `grunt`, `jekyll`, `postcss`, or other plugins.
- - [`status-bydesign`](https://gh.stackoverflow.com/Design/Stacks/labels/status-bydesign) – Indicates the issue is intentional and not subject to change.
- - [`status-completed`](https://gh.stackoverflow.com/Design/Stacks/labels/status-completed) – Indicates the issue has been resolved.
- - [`status-declined`](https://gh.stackoverflow.com/Design/Stacks/labels/status-declined) – Indicates the issue has been reviewed and will not be addressed at this time.
- - [`status-deferred`](https://gh.stackoverflow.com/Design/Stacks/labels/status-deferred) – Indicates the issue is something that will be addressed, but not in the near term.
- - [`status-planned`](https://gh.stackoverflow.com/Design/Stacks/labels/status-planned) – Indicates the issue has been reviewed and will be addressed in the near team.
- - [`status-review`](https://gh.stackoverflow.com/Design/Stacks/labels/status-review) – Indicates the issue has merit, but a decision either way requires more investigation.
- - [`status-reproduced`](https://gh.stackoverflow.com/Design/Stacks/labels/status-reproduced) – Indicates that the Stacks team were able to reproduce the problem, but cannot address it right now.
- - [`status-norepro`](https://gh.stackoverflow.com/Design/Stacks/labels/status-norepro) – Indicates that the Stacks team were unable to reproduce the problem.
- - [`meta`](https://gh.stackoverflow.com/Design/Stacks/labels/meta) – Issues about Stacks or the GitHub repository.
+ - [`bug`](https://github.com/StackExchange/Stacks/labels/bug) – A _reproducible_ problem with the Stacks code. This will require a build version bump (e.g., `v0.1.1` > `v0.1.2`).
+ - [`feature`](https://github.com/StackExchange/Stacks/labels/feature) – Issues requesting a new item to Stacks. This will require a minor version bump (e.g., `v0.1.0` > `v0.2.0`).
+ - [`enhancement`](https://github.com/StackExchange/Stacks/labels/enhancement) – Issues requesting a feature modification or extension. This will require a minor version bump (e.g., `v0.1.0` > `v0.2.0`).
+ - [`docs`](https://github.com/StackExchange/Stacks/labels/docs) - Issues with the documentation site.
+ - [`do-not-merge`](https://github.com/StackExchange/Stacks/labels/do-not-merge) - Pull requests that are in progress and should not be merged yet.
+ - [`help-wanted`](https://github.com/StackExchange/Stacks/labels/help-wanted) – A person would like help with an issue.
+ - [`setup`](https://github.com/StackExchange/Stacks/labels/setup) – Issues related to Stacks setup and compilation processes. These include items relating to `grunt`, `jekyll`, `postcss`, or other plugins.
+ - [`status-bydesign`](https://github.com/StackExchange/Stacks/labels/status-bydesign) – Indicates the issue is intentional and not subject to change.
+ - [`status-completed`](https://github.com/StackExchange/Stacks/labels/status-completed) – Indicates the issue has been resolved.
+ - [`status-declined`](https://github.com/StackExchange/Stacks/labels/status-declined) – Indicates the issue has been reviewed and will not be addressed at this time.
+ - [`status-deferred`](https://github.com/StackExchange/Stacks/labels/status-deferred) – Indicates the issue is something that will be addressed, but not in the near term.
+ - [`status-planned`](https://github.com/StackExchange/Stacks/labels/status-planned) – Indicates the issue has been reviewed and will be addressed in the near team.
+ - [`status-review`](https://github.com/StackExchange/Stacks/labels/status-review) – Indicates the issue has merit, but a decision either way requires more investigation.
+ - [`status-reproduced`](https://github.com/StackExchange/Stacks/labels/status-reproduced) – Indicates that the Stacks team were able to reproduce the problem, but cannot address it right now.
+ - [`status-norepro`](https://github.com/StackExchange/Stacks/labels/status-norepro) – Indicates that the Stacks team were unable to reproduce the problem.
+ - [`meta`](https://github.com/StackExchange/Stacks/labels/meta) – Issues about Stacks or the GitHub repository.
 
 ## Reporting bugs
 
 Reporting bugs is a great way to help Stacks. A bug is a _reproducable_ problem with the Stacks code or incorrect (or confusing) documentation. If you’ve found a bug, report it using the following guidelines. Adherence to these guidelines helps us better understand the problem.
 
- 1. [**Search previous issues**](https://gh.stackoverflow.com/Design/Stacks/issues?utf8=%E2%9C%93&q=) — Make sure this issue hasn't already been reported
+ 1. [**Search previous issues**](https://github.com/StackExchange/Stacks/issues?utf8=%E2%9C%93&q=) — Make sure this issue hasn't already been reported
  2. **What’s the problem?** — If the issue hasn’t been reported, explain what you are trying to do and what actually happened
  3. **Provide an example** — A CodePen that illustrates the problem is perfect
  4. **Describe what you’ve tried so far** — Understanding what you’ve tried so far will help us respond more quickly. Include possible related issues that you’ve read or explored if you can
@@ -110,7 +110,7 @@ No PR is too small, or too early. We strive to provide initial feedback within a
    ```bash
    git push origin <branch-name>
    ```
-7. [Open a Pull Request](https://gh.stackoverflow.com/Design/Stacks/pulls)
+7. [Open a Pull Request](https://github.com/StackExchange/Stacks/pulls)
     with a clear title and description.
 
 **Please note** that all pull requests should be merged into the `develop` branch. Any pull request for `master` will be rejected.
@@ -255,7 +255,7 @@ Typically you don’t need to set all the values the shorthand property represen
 
 ## License
 
-By contributing to Stacks, you agree to license your work under Stacks’ [MIT License](https://gh.stackoverflow.com/Design/Stacks/blob/master/LICENSE.MD).
+By contributing to Stacks, you agree to license your work under Stacks’ [MIT License](https://github.com/StackExchange/Stacks/blob/master/LICENSE.MD).
 
 ## References
 

@@ -46,44 +46,35 @@
 
 .btn-check-bxs(@bxis: transparent, @bxos: @button-box-shadow-color, @status: @button-has-inset-box-shadow) {
     & when (@status = true) {
-        -webkit-box-shadow: inset 0 1px 0 0 fade(lighten(@bxis,20%),75%), 0 0 0 0 fade(@bxos,0%);
-                box-shadow: inset 0 1px 0 0 fade(lighten(@bxis,20%),75%), 0 0 0 0 fade(@bxos,0%);
+        box-shadow: inset 0 1px 0 0 fade(lighten(@bxis,20%),75%), 0 0 0 0 fade(@bxos,0%);
 
         &:hover {
-            -webkit-box-shadow: inset 0 1px 0 0 fade(lighten(@bxis,20%),50%), 0 0 0 0 fade(@bxos,0%);
-                    box-shadow: inset 0 1px 0 0 fade(lighten(@bxis,20%),50%), 0 0 0 0 fade(@bxos,0%);
+            box-shadow: inset 0 1px 0 0 fade(lighten(@bxis,20%),50%), 0 0 0 0 fade(@bxos,0%);
         }
         &:focus {
-            -webkit-box-shadow: inset 0 1px 0 0 fade(lighten(@bxis,20%),50%), 0 0 0 @su4 fade(@bxos,15%);
-                    box-shadow: inset 0 1px 0 0 fade(lighten(@bxis,20%),50%), 0 0 0 @su4 fade(@bxos,15%);
+            box-shadow: inset 0 1px 0 0 fade(lighten(@bxis,20%),50%), 0 0 0 @su4 fade(@bxos,15%);
         }
         &:active {
-            -webkit-box-shadow: inset 0 @su2 @su8 0 fade(darken(@bxis,20%),80%);
-                    box-shadow: inset 0 @su2 @su8 0 fade(darken(@bxis,20%),80%);
+            box-shadow: inset 0 @su2 @su8 0 fade(darken(@bxis,20%),80%);
         }
         &.is-selected {
-            -webkit-box-shadow: inset 0 @su2 @su8 0 fade(darken(@bxis,25%),90%);
-                    box-shadow: inset 0 @su2 @su8 0 fade(darken(@bxis,25%),90%);
+            box-shadow: inset 0 @su2 @su8 0 fade(darken(@bxis,25%),90%);
         }
     }
 
     & when (@status = false) {
-        -webkit-box-shadow: 0 0 0 0 fade(@bxos,0%);
-                box-shadow: 0 0 0 0 fade(@bxos,0%);
+        box-shadow: 0 0 0 0 fade(@bxos,0%);
 
         &:hover {
-            -webkit-box-shadow: 0 0 0 0 fade(@bxos,0%);
-                    box-shadow: 0 0 0 0 fade(@bxos,0%);
+            box-shadow: 0 0 0 0 fade(@bxos,0%);
         }
         &:focus {
-            -webkit-box-shadow: 0 0 0 1px fade(@white,50%), 0 0 0 @su4 fade(@bxos,10%);
-                    box-shadow: 0 0 0 1px fade(@white,50%), 0 0 0 @su4 fade(@bxos,10%);
+            box-shadow: 0 0 0 1px fade(@white,50%), 0 0 0 @su4 fade(@bxos,10%);
         }
     }
 
     &[disabled] {
-        -webkit-box-shadow: none;
-                box-shadow: none;
+        box-shadow: none;
     }
 }
 
@@ -125,23 +116,18 @@
 .btn-check-bgg(@bgc) {
     //    If @button-has-gradient: true; and @bgc is NOT transparent, show gradients.
     & when not (@bgc = transparent) and (@button-has-gradient = true) {
-        background-image: -webkit-gradient(linear, left top, left bottom, from(lighten(@bgc,10%)), to(spin(saturate(@bgc,10%),5)));
         background-image: linear-gradient(to bottom, lighten(@bgc,10%) 0%, spin(saturate(@bgc,10%),5) 100%);
 
         &:hover {
-            background-image: -webkit-gradient(linear, left top, left bottom, from(spin(saturate(lighten(@bgc,10%),5%),5)), to(spin(saturate(@bgc,15%),10)));
             background-image: linear-gradient(to bottom, spin(saturate(lighten(@bgc,10%),5%),5) 0%, spin(saturate(@bgc,15%),10) 100%);
         }
         &:focus {
-            background-image: -webkit-gradient(linear, left top, left bottom, from(spin(saturate(lighten(@bgc,10%),10%),10)), to(spin(saturate(@bgc,20%),15)));
             background-image: linear-gradient(to bottom, spin(saturate(lighten(@bgc,10%),10%),10) 0%, spin(saturate(@bgc,20%),15) 100%);
         }
         &.is-selected {
-            background-image: -webkit-gradient(linear, left top, left bottom, from(spin(saturate(lighten(@bgc,10%),15%),15)), to(spin(saturate(@bgc,25%),20)));
             background-image: linear-gradient(to bottom, spin(saturate(lighten(@bgc,10%),15%),15) 0%, spin(saturate(@bgc,25%),20) 100%);
         }
         &[disabled] {
-            background-image: -webkit-gradient(linear, left top, left bottom, from(fade(desaturate(lighten(@bgc,10%),75%),50%)), to(fade(desaturate(@bgc,75%),50%)));
             background-image: linear-gradient(to bottom, fade(desaturate(lighten(@bgc,10%),75%),50%) 0%, fade(desaturate(@bgc,75%),50%) 100%);
         }
     }
