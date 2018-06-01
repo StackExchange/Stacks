@@ -54,8 +54,6 @@
 //  $  TEXTAREA
 //  ----------------------------------------------------------------------------
 .s-textarea {
-    padding-right: @su8;
-    padding-left: @su8;
     line-height: @lh-md;
 }
 
@@ -151,16 +149,19 @@ fieldset {
 .s-textarea__md,
 .s-select__md > select {
     padding: 0.7em;
+    border-radius: @br-sm + 1;
 }
 .s-input__lg,
 .s-textarea__lg,
 .s-select__lg > select {
     padding: 0.6em;
+    border-radius: @br-sm + 1;
 }
 .s-input__xl,
 .s-textarea__xl,
 .s-select__xl > select {
     padding: 0.5em;
+    border-radius: @br-md;
 }
 
 
@@ -396,13 +397,20 @@ fieldset {
 .has-warning {
     position: relative;
 
-    .s-input,
-    .s-textarea {
+    .s-input {
         padding-right: @su32;
     }
 
     .s-select .s-input-icon {
         right: @su32;
+    }
+
+    .s-textarea {
+        padding-right: @su48;
+
+        ~ .s-input-icon {
+            top: 1.5em;
+        }
     }
 }
 
@@ -422,7 +430,7 @@ fieldset {
     }
 
     .s-input-message {
-        color: shade(@yellow-600, 30%);
+        color: shade(@yellow-600, 25%);
     }
 
     .s-input-icon {
@@ -505,8 +513,8 @@ fieldset {
 .s-input-icon {
     position: absolute;
     top: 50%;
-    right: @su8;
-    margin-top: -9px;
+    right: 0.8em;
+    margin-top: -0.69em;
     vertical-align: text-bottom !important;
     pointer-events: none;
 }
