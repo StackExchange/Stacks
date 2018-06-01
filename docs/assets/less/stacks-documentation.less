@@ -207,7 +207,8 @@ body {
 //  ----------------------------------------------------------------------------
 .stacks-h1,
 .stacks-h2,
-.stacks-h3 {
+.stacks-h3,
+.stacks-h4 {
     margin-bottom: 0.5em;
     font-weight: 700;
     line-height: @lh-sm;
@@ -228,6 +229,11 @@ body {
 .stacks-h3 {
     .mx-fs(@fs-subheading);
     color: @fc-medium;
+}
+
+.stacks-h4 {
+    .mx-fs(@fs-body3);
+    color: @fc-light;
 }
 
 .stacks-header--anchor {
@@ -254,14 +260,14 @@ body {
     .mx-fs(@fs-body3);
     line-height: @lh-lg;
     color: @fc-medium;
+
+    strong {
+        color: @fc-dark;
+    }
 }
 
 .stacks-copy__lg {
     .mx-fs(@fs-title);
-}
-
-strong {
-    color: @fc-dark;
 }
 
 
@@ -307,6 +313,8 @@ strong {
     box-shadow: 0 @su2 @su8 fade(@black-050, 50%);
 
     .highlight {
+        position: relative;
+
         // Reset margins
         &,
         pre {
@@ -318,6 +326,8 @@ strong {
         }
 
         > pre {
+            max-height: 24rem;
+            overflow: auto;
             background-color: @black-800;
             .btr-sm;
             overflow: auto;
