@@ -157,35 +157,18 @@ description: When to use and how to implement common email components.
 <section class="stacks-section">
     <h2 class="grid jc-space-between ai-center stacks-h2"><div class="grid--cell fl1">Tags</div></h2>
     <p class="stacks-copy">
-        Questions, jobs, and candidates can be tagged with up to 5 tags.
+        Tags are interface elements that allow users to organize and discover related information throughout Stack Overflow.
     </p>
     <p class="stacks-copy">
-        Most email clients can display a list of properly spaced tags using <code class="stacks-code">display: inline-block</code> or <code class="stacks-code">margin</code>. Since Windows Outlook doesn't support either CSS property, we wrap each tag in padded ghost table cells to apply <code class="stacks-code">padding</code>.
+        Questions, jobs, and candidates can be tagged with up to 5 tags. Individual tags should not break onto multiple lines, though tag lists can.
     </p>
     <div class="stacks-preview">
 {% highlight html linenos %}
 <td>
-    <!--[if mso]>
-    <table role="presentation" border="0" cellspacing="0" cellpadding="0">
-    <tr>
-    <td align="left" style="padding: 0 4px 4px 0;">
-    <![endif]-->
     <a href="#" style="display: inline-block; border: 5px solid #E1ECF4; margin: 0 1px 4px 0; background: #E1ECF4; color: #39739D; font-family: arial, sans-serif; font-size: 12px; line-height: 12px; text-decoration: none; white-space: nowrap;" class="post-tag">tag-name</a>
-    <!--[if mso]>
-    </td>
-    <td align="left" style="padding: 0 4px 4px 0;">
-    <![endif]-->
     <a href="#" style="display: inline-block; border: 5px solid #E1ECF4; margin: 0 1px 4px 0; background: #E1ECF4; color: #39739D; font-family: arial, sans-serif; font-size: 12px; line-height: 12px; text-decoration: none; white-space: nowrap;" class="post-tag">tag</a>
-    <!--[if mso]>
-    </td>
-    <td align="left" style="padding: 0 4px 4px 0;">
-    <![endif]-->
     <a href="#" style="display: inline-block; border: 5px solid #E1ECF4; margin: 0 1px 4px 0; background: #E1ECF4; color: #39739D; font-family: arial, sans-serif; font-size: 12px; line-height: 12px; text-decoration: none; white-space: nowrap;" class="post-tag">another-tag-name</a>
-    <!--[if mso]>
-    </td>
-    </tr>
-    </table>
-    <![endif]-->
+</td>
 {% endhighlight %}
         <div class="stacks-preview--example">
             <a href="#" style="display: inline-block; border: 5px solid #E1ECF4; margin: 0 1px 4px 0; background: #E1ECF4; color: #39739D; font-family: arial, sans-serif; font-size: 12px; line-height: 12px; text-decoration: none; white-space: nowrap;" class="post-tag">tag-name</a>
@@ -204,7 +187,7 @@ description: When to use and how to implement common email components.
                 </thead>
                 <tbody>
                     <tr>
-                        <th scope="row" class="va-middle">Primary</th>
+                        <th scope="row" class="va-middle">Regular</th>
                         <td class="va-middle">
                             <div class="grid gs4 fw-wrap">
                                 <code class="grid--cell stacks-code">.post-tag</code>
