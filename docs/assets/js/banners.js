@@ -6,7 +6,6 @@ $(document).ready(function() {
     var heroTypeMenu = $(".js-hero-type-menu");
     var heroPatternMenu = $(".js-hero-pattern-menu");
     var heroPositionMenu = $(".js-hero-position-menu");
-    var heroHeight = hero.outerHeight();
     var heroBannerFooter = $(".js-banner-hero-footer");
     var circle = $(this).find(".js-banner-circle");
     var typeClasses = ("s-banner__info s-banner__success s-banner__warning s-banner__danger s-banner__dark s-banner__important s-hero__orange s-hero__purple s-hero__dark s-hero__info s-hero__success s-hero__warning s-hero__danger s-hero--circle is-pinned");
@@ -73,7 +72,7 @@ $(document).ready(function() {
                 .addClass(typeSelect).addClass(positionSelect)
                 .css({
                     "position": "fixed",
-                    "top": heroHeight - 50,
+                    "top": hero.outerHeight(),
                     "left": "0",
                     "right": "0"
                 });
