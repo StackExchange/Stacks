@@ -122,20 +122,29 @@ description: Multi-line inputs used by users to enter longer text portions.
     </div>
 </section>
 
-<section id="inputs" class="stacks-section">
+<section class="stacks-section">
     <h2 class="grid jc-space-between ai-center stacks-h2"><div class="grid--cell fl1">Sizes</div></h2>
-    <div class="stacks-preview">
-{% highlight html linenos %}
-<div class="grid ff-column-nowrap gs4 gsy">
-    <label class="grid--cell s-label" for="example-item">Question body</label>
-    <textarea class="grid--cell s-input" id="example-item" placeholder="…"></textarea>
-</div>
-{% endhighlight %}
-        <div class="stacks-preview--example">
-            <div class="grid gs4 gsy fd-column">
-                <label class="grid--cell s-label" for="example-item7">Question body</label>
-                <textarea class="grid--cell s-input" id="example-item7" placeholder="e.g. The Stack Overflow glyph used to have 6 bars, but now…"></textarea>
-            </div>
-        </div>
-    </div>
+    <table class="mb32 s-table s-table__hover va-middle">
+        <thead>
+            <tr>
+                <th scope="col" class="s-table--cell2">Name</th>
+                <th scope="col" class="s-table--cell1">Size</th>
+                <th scope="col" class="s-table--cell2">Class</th>
+                <th scope="col">Example</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in site.data.inputs.textarea %}
+                {% assign size = item.sizes  %}
+                {% for item in size %}
+                <tr>
+                    <th scope="row">{{ item.name }}</th>
+                    <td>{{ item.size }}</td>
+                    <td>{% if item.class == "N/A" %}<em class="fc-light">{{ item.class }}</em>{% else %}<code class="stacks-code bg-white">.{{ item.class }}</code>{% endif %}</td>
+                    <td><textarea class="s-textarea {% if item.class != "N/A" %}{{ item.class }}{% endif %}"">Not sure what to ask? Recurring questions, onboarding procedures, local setups, and FAQs all make for useful questions.</textarea></td>
+                </tr>
+                {% endfor %}
+            {% endfor %}
+        </tbody>
+    </table>
 </section>

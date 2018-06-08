@@ -7,6 +7,7 @@
 //  visit https://stackoverflow.design/
 //
 //  TABLE OF CONTENTS
+//  • Variables
 //  • Inputs
 //    - Base Style (Input / Textarea)
 //    - Textarea Styles
@@ -23,10 +24,9 @@
 //  ============================================================================
 //  $  VARIABLES
 //  ----------------------------------------------------------------------------
-@input-line-height: 1.352307692;
+@input-line-height: (unit(@fs-body1) + 4) / unit(@fs-body1);
 @input-padding:     0.7em;
 
-//
 //  ============================================================================
 //  $  BASE INPUT / TEXTAREA STYLE
 //  ----------------------------------------------------------------------------
@@ -56,13 +56,6 @@
         padding-top: 1px; // Placeholder text is 1px higher than text that's entered.
         color: @black-200;
     }
-}
-
-//  ============================================================================
-//  $  TEXTAREA
-//  ----------------------------------------------------------------------------
-.s-textarea {
-    line-height: @lh-md;
 }
 
 
@@ -489,61 +482,55 @@ fieldset {
 
 //  $$  SIZES
 //  ----------------------------------------------------------------------------
-.s-input__xs,
-.s-textarea__xs,
-.s-label__xs,
-.s-select__xs > select {
-    font-size: @fs-fine;
-}
 .s-input__sm,
 .s-textarea__sm,
 .s-label__sm,
 .s-select__sm > select {
     font-size: @fs-caption;
+    line-height: (unit(@fs-caption) + 4) / unit(@fs-caption);
 }
 .s-input__md,
 .s-textarea__md,
 .s-label__md,
 .s-select__md > select {
     font-size: @fs-body3;
+    line-height: (unit(@fs-body3) + 4) / unit(@fs-body3);
 }
 .s-input__lg,
 .s-textarea__lg,
 .s-label__lg,
 .s-select__lg > select {
     font-size: @fs-title;
+    line-height: (unit(@fs-title) + 4) / unit(@fs-title);
 }
 .s-input__xl,
 .s-textarea__xl,
 .s-label__xl,
 .s-select__xl > select {
     font-size: @fs-headline1;
+    line-height: (unit(@fs-headline1) + 4) / unit(@fs-headline1);
 }
 
 //  $$  PADDING ADJUSTMENTS WITHIN SIZES
 //  ----------------------------------------------------------------------------
-.s-input__xs,
-.s-textarea__xs,
-.s-select__xs > select {
-    padding-top: 0.55em;
-}
-
 .s-input__md,
 .s-textarea__md,
 .s-select__md > select {
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
     border-radius: @br-sm + 1;
 }
 
 .s-input__lg,
 .s-textarea__lg,
 .s-select__lg > select {
-    padding: 0.6em;
+    padding: 0.45em 0.6em;
     border-radius: @br-sm + 1;
 }
 
 .s-input__xl,
 .s-textarea__xl,
 .s-select__xl > select {
-    padding: 0.5em;
+    padding: 0.4em 0.5em;
     border-radius: @br-md;
 }
