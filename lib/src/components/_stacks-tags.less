@@ -34,7 +34,7 @@
             color: darken(fade(@color, 90%), 5%);
 
             &:hover {
-                background-color: fade(@red-500, 90%);
+                background-color: fade(@color, 90%);
                 color: @white;
             }
         }
@@ -48,17 +48,17 @@
 //  ---------------------------------------------------------------------------
 .s-tag {
     display: inline-flex;
-    position: relative;
     align-content: center;
     justify-content: center;
     min-width: 0;
-    padding: 0.545em;
+    padding: 0 (@su4 + @su2);
     border-style: solid;
     border-width: 1px;
     border-radius: @tags-border-radius;
-    font-size: @fs-fine;
-    line-height: @lh-sm;
+    font-size: 0.923076923em;
+    line-height: 2;
     text-decoration: none;
+    vertical-align: middle;
     white-space: nowrap;
     cursor: pointer;
 
@@ -75,14 +75,14 @@
 .s-tag--dismiss {
     display: flex;
     align-content: center;
+    align-self: center;
     justify-content: center;
     width: @su16 - 2;
     height: @su16 - 2;
     margin-right: -(@su2 / 2);
-    margin-bottom: -(@su2 / 2);
     margin-left: @su4;
     padding: @su2 / 2;
-    border-radius: @br-circle;
+    border-radius: @br-sm;
 }
 
 //  $$  SPONSOR IMAGE
@@ -90,7 +90,8 @@
 //  ---------------------------------------------------------------------------
 .s-tag--sponsor {
     display: inline-flex;
-    margin: -(@su2) @su4 -(@su2 + 1) -(@su2);
+    align-self: center;
+    margin: -(@su2 + 1) @su4 -(@su2) -(@su2 + 1);
 }
 
 
