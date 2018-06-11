@@ -1,0 +1,98 @@
+---
+layout: page
+title: Badges
+description: Badges are labels used for flags, earned achievements, and number totals.
+---
+<section class="stacks-section">
+    <h2 class="grid jc-space-between ai-center stacks-h2"><div class="grid--cell fl1">Classes</div></h2>
+    <table class="mb32 s-table s-table__hover">
+        <thead>
+            <tr>
+                <th class="s-table--cell2" scope="col">Class</th>
+                <th class="s-table--cell2" scope="col">Applied</th>
+                <th scope="col">Description</th>
+            </tr>
+        </thead>
+        <tbody class="fs-caption">
+            {% for item in site.data.badges.classes %}
+                <tr>
+                    <th scope="row"><code class="stacks-code bg-white">{{ item.class }}</code></th>
+                    <td><code class="stacks-code bg-white">{{ item.applies }}</td>
+                    <td class="p8">{{ item.description }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</section>
+
+<section class="stacks-section">
+    <h2 class="grid jc-space-between ai-center stacks-h2"><div class="grid--cell fl1">Examples</div></h2>
+    <h3 class="grid jc-space-between ai-center stacks-h3"><div class="grid--cell fl1">Achievement Badges</div></h3>
+    <div class="stacks-preview">
+{% highlight html linenos %}
+<span class="s-badge">
+    <span class="s-badge--image"><img src="" alt=""></span>
+    <span>Great Question</span>
+</span>
+<span class="s-badge">
+    <span class="s-badge--image"><img src="" alt=""></span>
+    <span>Favorite Question</span>
+</span>
+<span class="s-badge">
+    <span class="s-badge--image"><img src="" alt=""></span>
+    <span>Altruist</span>
+</span>
+{% endhighlight %}
+        <div class="stacks-preview--example">
+            <div class="grid gs4">
+                <span class="grid--cell s-badge">
+                    <span class="s-badge--image"><img src="" alt=""></span>
+                    <span>Great Question</span>
+                </span>
+                <span class="grid--cell s-badge">
+                    <span class="s-badge--image"><img src="" alt=""></span>
+                    <span>Favorite Question</span>
+                </span>
+                <span class="grid--cell s-badge">
+                    <span class="s-badge--image"><img src="" alt=""></span>
+                    <span>Altruist</span>
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <h3 class="grid jc-space-between ai-center stacks-h3"><div class="grid--cell fl1">Tag Badges</div></h3>
+    <div class="stacks-preview">
+{% highlight html linenos %}
+<span class="s-badge s-badge__tag">
+    <span class="s-badge--image"><img src="" alt=""></span>
+    <span>css</span>
+</span>
+<span class="s-badge s-badge__tag">
+    <span class="s-badge--image"><img src="" alt=""></span>
+    <span>javascript</span>
+</span>
+<span class="s-badge s-badge__tag">
+    <span class="s-badge--image"><img src="" alt=""></span>
+    <span>react-js</span>
+</span>
+{% endhighlight %}
+        <div class="stacks-preview--example">
+            <div class="grid gs4">
+                <span class="grid--cell s-badge s-badge__tag">
+                    <span class="s-badge--image"><img src="" alt=""></span>
+                    <span>css</span>
+                </span>
+                <span class="grid--cell s-badge s-badge__tag">
+                    <span class="s-badge--image"><img src="" alt=""></span>
+                    <span>javascript</span>
+                </span>
+                <span class="grid--cell s-badge s-badge__tag">
+                    <span class="s-badge--image"><img src="" alt=""></span>
+                    <span>react-js</span>
+                </span>
+            </div>
+        </div>
+    </div>
+
+</section>

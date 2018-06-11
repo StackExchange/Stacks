@@ -1,0 +1,71 @@
+//
+//  STACK OVERFLOW
+//  BADGES
+//
+//  This CSS comes from Stacks, our CSS & Pattern library for rapidly building
+//  Stack Overflow. For documentation of all these classes and how to contribute,
+//  visit https://stackoverflow.design/
+//
+//  TABLE OF CONTENTS
+//  • BASE STYLE
+//  • STYLE VARIATIONS
+//  • LAYOUTS & SIZES
+//
+//  ===========================================================================
+//  $   MIXIN
+//      Any badge we use will always modify the same items, so to save time,
+//      here's a mixin to state all that CSS.
+//  ---------------------------------------------------------------------------
+.badge-styles(@border: transparent, @background: transparent, @color: inherit) {
+    border-color: @border;
+    background-color: @background;
+    color: @color;
+
+    .s-tag--dismiss {
+        background-color: transparent;
+        color: fade(@color, 90%);
+    }
+
+    &:hover {
+        border-color: darken(@border, 5%);
+        background-color: darken(@background, 10%);
+    }
+}
+
+
+//  ===========================================================================
+//  $   BASE STYLE
+//      The same style is applied to all badges. Do not modify the core style.
+//  ---------------------------------------------------------------------------
+.s-badge {
+    display: inline-flex;
+    align-content: center;
+    justify-content: center;
+    min-width: 0;
+    padding: 0 (@su4 + @su2);
+    border: 1px solid transparent;
+    border-radius: @br-sm;
+    font-size: 0.923076923em;
+    line-height: 2;
+    text-decoration: none;
+    vertical-align: middle;
+    white-space: nowrap;
+    cursor: pointer;
+
+    .badge-styles(transparent, @black-800, @black-025);
+
+    &:hover {
+        text-decoration: none;
+    }
+}
+
+
+//  ===========================================================================
+//  $   STYLE VARIATIONS
+//      This is what can be modified on each community (for the most part).
+//  ===========================================================================
+//  $$  Required Tag
+//  ---------------------------------------------------------------------------
+.s-badge__tag {
+    .badge-styles(@black-100, @black-025, @black-700);
+}
