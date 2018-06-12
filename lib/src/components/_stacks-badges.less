@@ -45,7 +45,8 @@
     padding: 0 (@su4 + @su2);
     border: 1px solid transparent;
     border-radius: @br-sm;
-    font-size: 0.923076923em;
+    font-size: @fs-caption;
+    font-weight: normal;
     line-height: 2;
     text-decoration: none;
     vertical-align: middle;
@@ -59,13 +60,58 @@
     }
 }
 
+//  $   BADGE IMAGE
+//      When we have a badge image
+//  ---------------------------------------------------------------------------
+.s-badge--image {
+    display: inline-flex;
+    align-self: center;
+    margin-right: (@su2 / 2);
+    margin-left: -(@su4 + 1);
+}
+
 
 //  ===========================================================================
 //  $   STYLE VARIATIONS
 //      This is what can be modified on each community (for the most part).
 //  ===========================================================================
-//  $$  Required Tag
+//  $$  Tag Badges
 //  ---------------------------------------------------------------------------
 .s-badge__tag {
-    .badge-styles(@black-100, @black-025, @black-700);
+    .badge-styles(@black-100, @black-050, @black-700);
+}
+
+//  $$  Badge Counts
+//  ---------------------------------------------------------------------------
+.s-badge__gold {
+    .badge-styles(#ECE3C8, #FFF8E2, @black-900);
+}
+.s-badge__silver {
+    .badge-styles(#E0E1E3, #EDEEEF, @black-900);
+}
+.s-badge__bronze {
+    .badge-styles(#F1DECC, #F9EBE1, @black-900);
+}
+
+//  $$  Number Counts
+//  ---------------------------------------------------------------------------
+.s-badge__bounty {
+    .badge-styles(transparent, @blue-600, @white);
+}
+.s-badge__votes {
+    .badge-styles(@black-150, @white, @fc-medium);
+}
+.s-badge__answered {
+    .badge-styles(transparent, @green-400, @white);
+}
+.s-badge__rep {
+    .badge-styles(@green-400, @white, @green-500);
+}
+.s-badge__mini {
+    align-self: flex-start;
+    padding-right: @su4;
+    padding-left: @su4 - 1;
+    font-size: @fs-fine;
+    line-height: 1.8;
+    .badge-styles(transparent, @red-500, @white);
 }
