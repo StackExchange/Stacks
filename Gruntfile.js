@@ -113,6 +113,7 @@ module.exports = function(grunt) {
                     processors: [
                         require('postcss-sorting')({
                             'properties-order': [
+                                'appearance',
                                 'content',
                                 'counter-increment',
                                 'counter-reset',
@@ -283,7 +284,6 @@ module.exports = function(grunt) {
                                 'transition-property',
                                 'transition-timing-function',
                                 'will-change',
-                                'appearance',
                                 'cursor',
                                 'pointer-events',
                                 'user-select',
@@ -301,7 +301,7 @@ module.exports = function(grunt) {
                     syntax: require('postcss-less'),
                     processors: [
                         require('autoprefixer')({
-                            browsers: 'last 2 versions'
+                            browsers: 'Last 2 versions, not dead, last 2 iOS major versions'
                         }),
                     ]
                 },
