@@ -24,40 +24,17 @@
     </div>
 
     <div class="grid mx-auto w100 wmx12">
-        <!-- {% include navigation.html %} -->
-        <div class="grid--cell2">
-            <div class="overflow-y-auto p16 pb0 ps-fixed w100 wmx2 t64 b0">
-                <ul class="list-reset">
-                    {% for entry in site.data.nav %} {% assign sublinks = entry.sublinks %} {% assign submenu-active = "" %} {% if sublinks %}
-                    <li class="grid fd-column mb16 gsy gs4">
-                        <div class="grid--cell fw-bold" title="{{ entry.title }}"> {{ entry.title }}</div>
-                        <ul class="grid fd-column list-reset gsy gs4">
-                            {% for sublink in sublinks %} {% assign pageURL = page.url | remove_first:"/" | remove: ".html" %} {% if pageURL == sublink.url %} {% assign submenu-active = " is-active" %} {% assign submenu-container = "" %} {% else %} {% assign submenu-active = ""
-                            %} {% assign submenu-container = "" %} {% endif %}
-                            <li class="grid">
-                                <a class="d-block s-link s-link__muted w100" href="{{ sublink.url | relative_url }}" title="{{ sublink.title }}">{{ sublink.title }}</a> {{ submenu-container }}
-                            </li>
-                            {% endfor %}
-                        </ul>
-                    </li>
-                    {% else %}
-                    <li>
-                        <a class="s-link s-link__muted" href="{{ entry.url | relative_url }}" title="{{ entry.title }}">{{ entry.title }}</a>
-                    </li>
-                    {% endif %} {% endfor %}
-                </ul>
-            </div>
-        </div>
+        {% include navigation.html %}
 
-        <div class="grid--cell10">
+        <div class="grid--cell w80 md:w100">
             <div class="grid ps-relative t64 p16 wmx9 mx-auto">
-                <div class="grid--cell order-last">
-                    <aside class="stacks-menu wmn2">
+                <div class="grid--cell order-last w30 sm:d-none">
+                    <aside class="stacks-menu">
                         <h5 class="mx16 px8 py4 mb4 stacks-nav--category fc-orange-500">Sections</h5>
                         <ul class="grid gs4 gsy fd-column stacks-nav__secondary js-secondary-nav"></ul>
                     </aside>
                 </div>
-                <div class="grid--cell">
+                <div class="grid--cell w70 sm:w100">
                     {% if page.title %}
                         <h1 class="stacks-h1">{{ page.title }}</h1>
                     {% endif %}
@@ -74,5 +51,4 @@
 </body>
 
 {% include footer.html %}
-
 </html>
