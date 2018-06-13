@@ -3,41 +3,77 @@
 {% include head.html %}
 
 <body>
-    <nav class="s-nav js-stacks-topbar">
-        <div class="grid grid__center h100 fc-medium">Sample navigation</div>
-    </nav>
-    <div class="stacks-wrapper">
-        {% include navigation.html %}
+    <div class="bg-black-050 px16 ps-fixed t0 l0 r0 z-nav bb bc-black-3" style="height:64px">
+        <div class="grid gs32 gsx ai-center h100 mx-auto wmx12">
+            <a class="grid--cell s-link s-link__muted mr8" href="#">
+                {% svg /resources/svg-icons/LogoGlyphSm.svg width="32" height="37" aria-hidden="true" class="svg-icon iconLogoGlyphMd native" %}
+            </a>
+            <div class="grid--cell ml-auto">
+                <a class="s-link s-link__muted px16 py8 bar-pill fc-white bg-orange-500" href="#">Product</a>
+            </div>
+            <div class="grid--cell">
+                <a class="s-link s-link__muted" href="#">Email</a>
+            </div>
+            <div class="grid--cell">
+                <a class="s-link s-link__muted" href="#">Brand</a>
+            </div>
+            <div class="grid--cell ps-relative">
+                <input id="searchbox" class="s-input s-input__sm bar-pill pl32 w100 wmx4" type="text" placeholder="Search Stacks"> {% svg /resources/svg-icons/SearchSm.svg width="14" height="14" aria-hidden="true" class="svg-icon iconSearch stacks-search-icon" %}
+            </div>
+        </div>
+    </div>
 
-        <main class="stacks-body js-stacks-content">
-            <div class="grid mx-auto wmx9 stacks-body--container">
+    <div class="grid mx-auto w100 wmx12">
+        <!-- {% include navigation.html %} -->
+        <div class="grid--cell2">
+            <div class="overflow-y-auto p16 pb0 ps-fixed w100 wmx2 t64 b0">
+                <ul class="list-reset">
+                    {% for entry in site.data.nav %} {% assign sublinks = entry.sublinks %} {% assign submenu-active = "" %} {% if sublinks %}
+                    <li class="grid fd-column mb16 gsy gs4">
+                        <div class="grid--cell fw-bold" title="{{ entry.title }}"> {{ entry.title }}</div>
+                        <ul class="grid fd-column list-reset gsy gs4">
+                            {% for sublink in sublinks %} {% assign pageURL = page.url | remove_first:"/" | remove: ".html" %} {% if pageURL == sublink.url %} {% assign submenu-active = " is-active" %} {% assign submenu-container = "" %} {% else %} {% assign submenu-active = ""
+                            %} {% assign submenu-container = "" %} {% endif %}
+                            <li class="grid">
+                                <a class="d-block s-link s-link__muted w100" href="{{ sublink.url | relative_url }}" title="{{ sublink.title }}">{{ sublink.title }}</a> {{ submenu-container }}
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    </li>
+                    {% else %}
+                    <li>
+                        <a class="s-link s-link__muted" href="{{ entry.url | relative_url }}" title="{{ entry.title }}">{{ entry.title }}</a>
+                    </li>
+                    {% endif %} {% endfor %}
+                </ul>
+            </div>
+        </div>
+
+        <div class="grid--cell fl1">
+            <div class="grid ps-relative t64 mx-auto wmx9 pt16">
                 <div class="grid--cell order-last">
                     <aside class="ps-sticky stacks-menu">
-                        <h5 class="mx16 px8 py4 mb4 stacks-nav--category fc-orange-500" style="margin-left: -1px;">Sections</h5>
+                        <h5 class="mx16 px8 py4 mb4 stacks-nav--category fc-orange-500">Sections</h5>
                         <ul class="grid gs4 gsy fd-column stacks-nav__secondary js-secondary-nav"></ul>
                     </aside>
                 </div>
-                <div class="grid--cell stacks-content">
+                <div class="grid--cell">
                     <div id="content">
                         {% if page.title %}
-                            <h1 class="stacks-h1">
+                        <h1 class="stacks-h1">
                                 {{ page.title }}
-                            </h1>
-                        {% endif %}
-
-                        {% if page.description %}
-                            <p class="stacks-copy stacks-copy__lg">
-                                {{ page.description }}
-                            </p>
-                        {% endif %}
-
-                        {{ content }}
+                            </h1> {% endif %} {% if page.description %}
+                        <p class="stacks-copy stacks-copy__lg">
+                            {{ page.description }}
+                        </p>
+                        {% endif %} {{ content }}
                     </div>
                 </div>
             </div>
-        </main>
+        </div>
     </div>
 </body>
 
 {% include footer.html %}
+
 </html>
