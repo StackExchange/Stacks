@@ -219,14 +219,84 @@ description: When to use and how to implement common email components.
 <section class="stacks-section">
     <h2 class="grid jc-space-between ai-center stacks-h2"><div class="grid--cell fl1">Foreground Images</div></h2>
     <p class="stacks-copy">
-        TBD
+        All email client can display <code class="stacks-code">.png</code>, <code class="stacks-code">.gif</code>, and <code class="stacks-code">.jpg</code> images displayed with the <code class="stacks-code">&lt;img&gt;</code> tag. <code class="stacks-code">.svg</code> images are not well supported, regardless of how they're referenced.
     </p>
+    <p class="stacks-copy">
+        Most images should be coded responsive by default, meaning they'll scale down proportionately in small viewports. It's safest to code all images this way, even if they don't end up scaling in practice. However if we're confident that an image will never scale, we can display a non-responsive image using less code.
+    </p>
+    <table class="mb32 s-table s-table__hover">
+        <thead>
+            <tr>
+                <th class="s-table--cell2" scope="col">Name</th>
+                <th class="s-table--cell2" scope="col">Type</th>
+                <th scope="col">Notes</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="fs-caption">
+                <td><code class="stacks-code">src</code></code></td>
+                <td>attribute</td>
+                <td>Always set and use full <code class="stacks-code">https://</code> reference.</td>
+            </tr>
+            <tr class="fs-caption">
+                <td><code class="stacks-code">width</code></code></td>
+                <td>attribute</td>
+                <td>Always set to intended desktop width.</td>
+            </tr>
+            <tr class="fs-caption">
+                <td><code class="stacks-code">height</code></code></td>
+                <td>attribute</td>
+                <td>Optional. Use only for images that won't scale.</td>
+            </tr>
+            <tr class="fs-caption">
+                <td><code class="stacks-code">border</code></code></td>
+                <td>attribute</td>
+                <td>Always set to 0 to avoid blue outlines on image links.</td>
+            </tr>
+            <tr class="fs-caption">
+                <td><code class="stacks-code">alt</code></code></td>
+                <td>attribute</td>
+                <td>Always include but can be left empty if image is ornamental (Eg. <code class="stacks-code">alt=""</code>).</td>
+            </tr>
+            <tr class="fs-caption">
+                <td><code class="stacks-code">width</code></code></td>
+                <td>inline CSS</td>
+                <td>[Responsive] Always set to <code class="stacks-code">100%</code> for responsive images. Optional for static images.</td>
+            </tr>
+            <tr class="fs-caption">
+                <td><code class="stacks-code">max-width</code></code></td>
+                <td>inline CSS</td>
+                <td>[Responsive] Always set to intended desktop width. Optional for static images.</td>
+            </tr>
+            <tr class="fs-caption">
+                <td><code class="stacks-code">height</code></code></td>
+                <td>inline CSS</td>
+                <td>[Responsive] Always set to <code class="stacks-code">auto</code> for responsive images. Optional for static images.</td>
+            </tr>
+            <tr class="fs-caption">
+                <td><code class="stacks-code">display</code></code></td>
+                <td>inline CSS</td>
+                <td>Generally good practice to use `display:block;` when possible since it negates a few pixels of unwanted space below images in some clients.</td>
+            </tr>
+            <tr class="fs-caption">
+                <td><code class="stacks-code">.g-img</code></code></td>
+                <td>class</td>
+                <td>Advisable for images larger than ~300px wide. Prevents <a href="https://www.emailonacid.com/blog/article/email-development/prevent-gmail-from-displaying-image-download-button-in-email/">gmail from displaying an image download icon over images</a>.</td>
+            </tr>
+        </tbody>
+    </table>
     <div class="stacks-preview">
 {% highlight html linenos %}
-Example code bit
+/* Responsive */
+<img src="http://placehold.it/1280x600" width="640" height="" alt="alt_text" border="0" style="width: 100%; max-width: 640px; height: auto; display: block;" class="g-img">
+
+/* Static */
+<img src="http://placehold.it/256" width="128" height="128" alt="alt_text" border="0" style="display: block;">
 {% endhighlight %}
         <div class="stacks-preview--example">
-            Example area
+            <img src="http://placehold.it/1280x600" width="640" height="" alt="alt_text" border="0" style="width: 100%; max-width: 640px; height: auto; display: block;" class="g-img">
+            <br>
+            <img src="http://placehold.it/256" width="128" height="128" alt="alt_text" border="0" style="display: block;">
         </div>
     </div>
 </section>
