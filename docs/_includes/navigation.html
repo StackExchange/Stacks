@@ -3,7 +3,7 @@
         <ul class="list-reset">
             {% for entry in site.data.nav %} {% assign sublinks = entry.sublinks %} {% assign submenu-active = "" %} {% if sublinks %}
             <li class="grid fd-column mb16 gsy gs4">
-                <div class="grid--cell fw-bold" title="{{ entry.title }}"> {{ entry.title }}</div>
+                <div class="grid--cell fw-bold tt-uppercase fs-caption" title="{{ entry.title }}"> {{ entry.title }}</div>
                 <ul class="grid fd-column list-reset gsy gs4">
                     {% for sublink in sublinks %} {% assign pageURL = page.url | remove_first:"/" | remove: ".html" %} {% if pageURL == sublink.url %} {% assign submenu-active = " is-active" %} {% assign submenu-container = "" %} {% else %} {% assign submenu-active = ""
                     %} {% assign submenu-container = "" %} {% endif %}
