@@ -113,6 +113,7 @@ module.exports = function(grunt) {
                     processors: [
                         require('postcss-sorting')({
                             'properties-order': [
+                                'appearance',
                                 'content',
                                 'counter-increment',
                                 'counter-reset',
@@ -283,7 +284,6 @@ module.exports = function(grunt) {
                                 'transition-property',
                                 'transition-timing-function',
                                 'will-change',
-                                'appearance',
                                 'cursor',
                                 'pointer-events',
                                 'user-select',
