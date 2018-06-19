@@ -347,10 +347,10 @@ textarea {
  * 2. Change font properties to `inherit` in Safari.
  */
 ::-webkit-file-upload-button {
-  font: inherit;
-  /* 2 */
   -webkit-appearance: button;
   /* 1 */
+  font: inherit;
+  /* 2 */
 }
 /* Interactive
    ========================================================================== */
@@ -593,11 +593,12 @@ template {
 .s-textarea {
   width: 100%;
   margin: 0;
-  padding: 0.8em;
+  padding: 0.7em;
   border: 1px solid #bbc0c4;
   border-radius: 3px;
   box-shadow: inset 0 0 1px rgba(145, 153, 161, 0.2), 0 0 0 rgba(255, 255, 255, 0);
-  line-height: 1.15384615;
+  font-family: inherit;
+  line-height: 1.30769231;
 }
 .s-input::-webkit-input-placeholder,
 .s-textarea::-webkit-input-placeholder {
@@ -616,9 +617,6 @@ template {
   padding-top: 1px;
   color: #bbc0c4;
 }
-.s-textarea {
-  line-height: 1.30769231;
-}
 fieldset {
   min-width: 0;
   padding: 0;
@@ -627,6 +625,7 @@ fieldset {
 .s-label {
   padding: 0 2px;
   color: #0C0D0E;
+  font-family: inherit;
   font-size: 15px;
   font-weight: 700;
   cursor: pointer;
@@ -654,62 +653,15 @@ legend.s-label {
   color: #6a737c;
   font-size: 12px;
 }
-.s-input__xs,
-.s-textarea__xs,
-.s-label__xs,
-.s-select__xs > select {
-  font-size: 11px;
-}
-.s-input__sm,
-.s-textarea__sm,
-.s-label__sm,
-.s-select__sm > select {
-  font-size: 12px;
-}
-.s-input__md,
-.s-textarea__md,
-.s-label__md,
-.s-select__md > select {
-  font-size: 17px;
-}
-.s-input__lg,
-.s-textarea__lg,
-.s-label__lg,
-.s-select__lg > select {
-  font-size: 21px;
-}
-.s-input__xl,
-.s-textarea__xl,
-.s-label__xl,
-.s-select__xl > select {
-  font-size: 27px;
-}
-.s-input__md,
-.s-textarea__md,
-.s-select__md > select {
-  padding: 0.7em;
-  border-radius: 4px;
-}
-.s-input__lg,
-.s-textarea__lg,
-.s-select__lg > select {
-  padding: 0.6em;
-  border-radius: 4px;
-}
-.s-input__xl,
-.s-textarea__xl,
-.s-select__xl > select {
-  padding: 0.5em;
-  border-radius: 5px;
-}
 .s-input-fill {
-  padding: 0.8em;
+  padding: 0.7em;
   border: 1px solid #bbc0c4;
   border-right-width: 0;
   border-left-width: 0;
   background-color: #eff0f1;
   color: #3b4045;
-  line-height: 1.15384615;
+  font-family: inherit;
+  line-height: 1.30769231;
   white-space: nowrap;
 }
 .s-input-fill.s-input-fill__clear {
@@ -751,20 +703,20 @@ legend.s-label {
   border-bottom-width: 0;
 }
 .s-select > select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
   position: relative;
   width: 100%;
   height: 100%;
-  padding: 0.8em;
+  padding: 0.7em;
   padding-right: 32px;
   border: 1px solid #bbc0c4;
   border-radius: 3px;
   background-color: #FFF;
   outline: 0;
-  font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
-  line-height: 1.15384615;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
+  font-family: inherit;
+  line-height: 1.30769231;
 }
 .s-select > select::-moz-focus-inner {
   outline: none !important;
@@ -982,6 +934,53 @@ legend.s-label {
 .s-input-message {
   padding: 2px;
   font-size: 12px;
+}
+.s-input__sm,
+.s-textarea__sm,
+.s-label__sm,
+.s-select__sm > select {
+  font-size: 12px;
+  line-height: 1.33333333;
+}
+.s-input__md,
+.s-textarea__md,
+.s-label__md,
+.s-select__md > select {
+  font-size: 17px;
+  line-height: 1.23529412;
+}
+.s-input__lg,
+.s-textarea__lg,
+.s-label__lg,
+.s-select__lg > select {
+  font-size: 21px;
+  line-height: 1.19047619;
+}
+.s-input__xl,
+.s-textarea__xl,
+.s-label__xl,
+.s-select__xl > select {
+  font-size: 27px;
+  line-height: 1.14814815;
+}
+.s-input__md,
+.s-textarea__md,
+.s-select__md > select {
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+  border-radius: 4px;
+}
+.s-input__lg,
+.s-textarea__lg,
+.s-select__lg > select {
+  padding: 0.45em 0.6em;
+  border-radius: 4px;
+}
+.s-input__xl,
+.s-textarea__xl,
+.s-select__xl > select {
+  padding: 0.4em 0.5em;
+  border-radius: 5px;
 }
 .s-modal {
   display: -webkit-box;
@@ -7951,7 +7950,8 @@ body *:after {
   pointer-events: none;
 }
 .s-btn.s-btn__xs {
-  padding-bottom: 0.6em;
+  padding-top: 0.6em;
+  padding-bottom: 0.85em;
   font-size: 11px;
   font-size: 0.8461538461538461rem;
 }
@@ -8021,10 +8021,10 @@ body *:after {
   border-bottom-width: 0;
 }
 .s-btn .svg-icon {
-  margin-top: -0.30769231em;
-  margin-right: 0.153846154em;
-  margin-bottom: -0.15384615em;
-  margin-left: -0.53846154em;
+  margin-top: -0.3em;
+  margin-right: 0.4em;
+  margin-bottom: -0.15em;
+  margin-left: -0.2em;
   /* autoprefixer: off */
   transition: opacity 200ms cubic-bezier(0.165, 0.84, 0.44, 1);
 }
@@ -9060,7 +9060,6 @@ body *:after {
 }
 .s-hero--container {
   position: relative;
-  z-index: 5001;
   width: 100%;
   max-width: 1060px;
   margin: 0 auto;
@@ -9068,7 +9067,6 @@ body *:after {
 }
 .s-hero--bar {
   position: relative;
-  z-index: 5000;
   padding: 0;
 }
 .s-hero__orange {
