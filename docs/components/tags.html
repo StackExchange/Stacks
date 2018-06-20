@@ -135,3 +135,25 @@ description: Tags are an interactive, community-generated keyword that allow com
         </div>
     </div>
 </section>
+
+<section class="stacks-section">
+    <h2 class="grid jc-space-between ai-center stacks-h2"><div class="grid--cell fl1">Sizes</div></h2>
+    <table class="mb32 s-table s-table__hover">
+        <thead>
+            <tr>
+                <th class="s-table--cell2" scope="col">Class</th>
+                <th class="s-table--cell2" scope="col">Applied</th>
+                <th scope="col">Example</th>
+            </tr>
+        </thead>
+        <tbody class="fs-caption">
+            {% for item in site.data.tags.sizes %}
+                <tr>
+                    <th scope="row"><code class="stacks-code bg-white">{% if item.class == "N/A" %}.s-tag{% else %}.{{ item.class }}{% endif %}</code></th>
+                    <td><code class="stacks-code bg-white">{% if item.class == "N/A" %}<em class="fc-light">{{ item.class }}</em>{% else %}.s-tag{% endif %}</td>
+                    <td class="p8"><a class="s-tag {{ item.class }}" href="#">css</a></td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</section>
