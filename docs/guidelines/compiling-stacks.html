@@ -1,0 +1,107 @@
+---
+layout: page
+title: Compiling &amp; Configuring Stacks
+description: An introduction to how the LESS source files become CSS files, and what settings are available to customize the CSS.
+---
+
+<section class="stacks-section">
+    <h2 class="grid jc-space-between ai-center stacks-h2"><div class="grid--cell fl1">Introduction</div></h2>
+    <p class="stacks-copy">If you only need a single plain CSS file that can be dropped into your fresh project to start using Stacks, you probably won&rsquo;t care about this section. <a href="https://github.com/StackExchange/Stacks/blob/master/lib/css/stacks.css">stacks.css</a> (also available in a <a href="https://github.com/StackExchange/Stacks/blob/master/lib/css/stacks.min.css">minified version</a>) may be all you need.</p>
+    <p class="stacks-copy">If you compile the LESS files inside your own project and/or need to customize certain things, this document is for you.</p>
+</section>
+
+<section class="stacks-section">
+    <h2 class="grid jc-space-between ai-center stacks-h2"><div class="grid--cell fl1">Static part and dynamic part</div></h2>
+    <p class="stacks-copy">Stacks consists of a <i>static</i> and a <i>dynamic</i> part. In order to understand the difference, it helps to explain <i>why</i> this separation exists.</p>
+    <p class="stacks-copy">Stacks is used on all Q&amp;A sites in the Stack Exchange network, including Stack Overflow. Many of those sites have their own themes, e.g. with different link colors and different button styles. Large parts of Stacks are agnostic to these differences &ndash; for example, the atomic class <code class="stacks-code">.ps-fixed</code> does the same thing regardless of what site it&rsquo;s used on. But some parts of Stacks need to behave differently depending on what site they&rsquo;re used on &ndash; for example, the background color of the <code class="stacks-code">.s-btn</code> component differs per-site.</p>
+    <p class="stacks-copy">The parts of Stacks that are always the same across all Stack Exchange sites are what we call the <i>static</i> part. The parts of Stacks that are configurable based on the Q&amp;A site&rsquo;s theme are called the <i>dynamic</i> part.</p>
+    <p class="stacks-copy">The static parts of Stacks are included in all network pages as a single CSS file that&rsquo;s identical everywhere. The dynamic parts, on the other hand, are compiled into the site&rsquo;s <code class="stacks-code">primary.css</code> file.</p>
+</section>
+
+<section class="stacks-section">
+    <h2 class="grid jc-space-between ai-center stacks-h2"><div class="grid--cell fl1">Configuration</div></h2>
+    <p class="stacks-copy">While Stacks is pretty opinionated, it does have some configuration options. Most of these options configure the different appearances of the various themes in the dynamic part of Stacks (see above), for example the button colors. There are a few (currently two) options that also configure the static parts; these are settings that may be different per project (e.g. Talent uses a different CSS reset than Q&amp;A), but are identical across all Q&amp;A network sites (all Q&amp;A sites use the same CSS reset).</p>
+    <p class="stacks-copy">Compiling a customized version of Stacks happens by including <code class="stacks-code">stacks.less</code> (or, depending on your need, <code class="stacks-code">stacks-dynamic.less</code> and/or <code class="stacks-code">stacks-static-less</code> in your LESS file and overriding the default configuration options. These options are contained in two different mixins.</p>
+    <p class="stacks-copy">For example, to compile the dynamic parts of Stacks into your own CSS file, but with Roboto as the font family and pink hyperlinks, you would do something like this:</p>
+
+<div class="stacks-preview">
+{% comment %}the rouge highlighter doesn't support LESS :( {% endcomment %}
+{% highlight css linenos %}
+@include "path/to/stacks-dynamic.less";
+
+#stacks-config {
+    @body-type-face: 'Roboto', sans-serif;
+    @link-color-regular: magenta;
+    @link-color-hover: lighten(magenta, 20%);
+}
+{% endhighlight %}
+</div>
+
+    <p class="stacks-copy">To compile the complete LESS with its default values, except that you don&rsquo;t want a CSS reset compiled in, you would do this:</p>
+
+<div class="stacks-preview">
+{% highlight css linenos %}
+@include "path/to/stacks.less";
+
+#stacks-config-static {
+    @css-reset: none;
+}
+{% endhighlight %}
+</div>
+
+</section>
+
+<section class="stacks-section">
+    <h2 class="grid jc-space-between ai-center stacks-h2"><div class="grid--cell fl1">Static configuration options</div></h2>
+    <p class="stacks-copy">These are the configuration options that customize all of Stacks, even the static parts. These should be set in a <code class="stacks-code">#stacks-config-static</code> mixin as shown <a href="#configuration">above</a>.</p>
+
+    <table cellspacing="0" class="mb16 s-table s-table__hover mln8">
+        <thead>
+            <tr>
+                <th scope="col">Setting</th>
+                <th scope="col" class="s-table--cell4">Default value</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for var in site.data.configuration.static.variables %}
+                <tr>
+                    <th scope="row">
+                        <code class="stacks-code bg-white mb4 fs-body1 mln4">{{ var.variable }}</code>
+                        <p class="stacks-copy mb0 pr8 fs-caption fw-normal">{{ var.description }}</p>
+                    </td>
+                    <td><code class="stacks-code bg-white mb8 fs-body1 lh-md ws-normal">{{ var.default }}</code></td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+</section>
+
+<section class="stacks-section">
+    <h2 class="grid jc-space-between ai-center stacks-h2"><div class="grid--cell fl1">Dynamic configuration options</div></h2>
+    <p class="stacks-copy">These are the configuration options that allow you to customize the styling of the dynamic parts of Stacks. These should be set in a <code class="stacks-code">#stacks-config</code> mixin as shown <a href="#configuration">above</a>.</p>
+
+    {% for item in site.data.configuration.dynamic %}
+        <h3 class="grid jc-space-between ai-center stacks-h3 mb0"><div class="grid--cell fl1">{{ item.section }}</div></h3>
+        <table cellspacing="0" class="mb16 s-table s-table__hover mln8">
+            <thead>
+                <tr>
+                    <th scope="col">Setting</th>
+                    <th scope="col" class="s-table--cell4">Default value</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for var in item.variables %}
+                    <tr>
+                        <th scope="row">
+                            <code class="stacks-code bg-white mb4 fs-body1 mln4">{{ var.variable }}</code>
+                            <p class="stacks-copy mb0 pr8 fs-caption fw-normal">{{ var.description }}</p>
+                        </td>
+                        <td><code class="stacks-code bg-white mb8 fs-body1 lh-md ws-normal">{{ var.default }}</code></td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% endfor %}
+</section>
+
