@@ -1,0 +1,123 @@
+//
+//  STACK OVERFLOW
+//  BADGES
+//
+//  This CSS comes from Stacks, our CSS & Pattern library for rapidly building
+//  Stack Overflow. For documentation of all these classes and how to contribute,
+//  visit https://stackoverflow.design/
+//
+//  TABLE OF CONTENTS
+//  • BASE STYLE
+//  • STYLE VARIATIONS
+//  • LAYOUTS & SIZES
+//
+//  ===========================================================================
+//  $   MIXIN
+//      Any badge we use will always modify the same items, so to save time,
+//      here's a mixin to state all that CSS.
+//  ---------------------------------------------------------------------------
+.badge-styles(@border: transparent, @background: transparent, @color: inherit) {
+    border-color: @border;
+    background-color: @background;
+    color: @color;
+
+    .s-tag--dismiss {
+        background-color: transparent;
+        color: fade(@color, 90%);
+    }
+
+    a&:hover {
+        border-color: darken(@border, 5%);
+        background-color: darken(@background, 10%);
+        color: @color;
+    }
+}
+
+
+//  ===========================================================================
+//  $   BASE STYLE
+//      The same style is applied to all badges. Do not modify the core style.
+//  ---------------------------------------------------------------------------
+.s-badge {
+    display: inline-flex;
+    align-content: center;
+    justify-content: center;
+    min-width: 0;
+    padding: 0 @su6;
+    border: 1px solid transparent;
+    border-radius: @br-sm;
+    font-size: @fs-caption;
+    font-weight: normal;
+    line-height: 2;
+    text-decoration: none;
+    vertical-align: middle;
+    white-space: nowrap;
+
+    .badge-styles(transparent, @black-800, @black-025);
+
+    a&:hover {
+        text-decoration: none;
+    }
+}
+
+//  $   BADGE IMAGE
+//      When we have a badge image
+//  ---------------------------------------------------------------------------
+.s-badge--image {
+    display: inline-flex;
+    align-self: center;
+    margin-right: (@su2 / 2);
+    margin-left: -(@su4 + 1);
+}
+
+
+//  ===========================================================================
+//  $   STYLE VARIATIONS
+//      This is what can be modified on each community (for the most part).
+//  ===========================================================================
+//  $$  Tag Badges
+//  ---------------------------------------------------------------------------
+.s-badge__tag {
+    .badge-styles(@black-100, @black-050, @black-700);
+}
+
+//  $$  Badge Counts
+//  ---------------------------------------------------------------------------
+.s-badge__gold {
+    .badge-styles(#ECE3C8, #FFF8E2, @black-900);
+}
+.s-badge__silver {
+    .badge-styles(#E0E1E3, #EDEEEF, @black-900);
+}
+.s-badge__bronze {
+    .badge-styles(#F1DECC, #F9EBE1, @black-900);
+}
+
+//  $$  Number Counts
+//  ---------------------------------------------------------------------------
+.s-badge__bounty {
+    .badge-styles(transparent, @blue-600, @white);
+}
+.s-badge__votes {
+    .badge-styles(@black-150, @white, @fc-medium);
+}
+.s-badge__answered {
+    .badge-styles(transparent, @green-400, @white);
+}
+.s-badge__rep {
+    .badge-styles(@green-400, @white, @green-500);
+}
+.s-badge__rep-down {
+    .badge-styles(@red-400, @white, @red-500);
+}
+.s-badge__mini {
+    align-self: flex-start;
+    padding-right: @su4;
+    padding-left: @su4 - 1;
+    font-size: @fs-fine;
+    line-height: 1.8;
+    .badge-styles(transparent, @blue-600, @white);
+}
+.s-badge__important {
+    .badge-styles(transparent, @red-500, @white);
+}

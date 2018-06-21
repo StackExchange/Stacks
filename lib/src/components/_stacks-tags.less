@@ -1,0 +1,127 @@
+//
+//  TAGS
+//
+//  TABLE OF CONTENTS
+//  • BASE STYLE
+//  • STYLE VARIATIONS
+//  • LAYOUTS & SIZES
+//
+//  ===========================================================================
+//  $   MIXIN
+//      Any tag we use will always modify the same items, so to save time,
+//      here's a mixin to state all that CSS.
+//  ---------------------------------------------------------------------------
+& { // create a single scope to load the config into, at least for now
+#stacks-internals #load-config();
+
+.tag-styles(@border: transparent, @background: transparent, @color: inherit) {
+    border-color: @border;
+    background-color: @background;
+    color: @color;
+
+    .s-tag--dismiss {
+        background-color: transparent;
+        color: fade(@color, 90%);
+    }
+
+    a&:hover {
+        border-color: darken(@border, 5%);
+        background-color: darken(@background, 5%);
+        color: darken(@color, 5%);
+
+        .s-tag--dismiss {
+            color: darken(fade(@color, 90%), 5%);
+
+            &:hover {
+                background-color: fade(@color, 90%);
+                color: @white;
+            }
+        }
+    }
+}
+
+
+//  ===========================================================================
+//  $   BASE STYLE
+//      The same style is applied to all tags. Do not modify the core style.
+//  ---------------------------------------------------------------------------
+.s-tag {
+    display: inline-flex;
+    align-content: center;
+    justify-content: center;
+    min-width: 0;
+    padding: 0 @su6;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: @br-sm;
+    font-size: @fs-caption;
+    line-height: 2;
+    text-decoration: none;
+    vertical-align: middle;
+    white-space: nowrap;
+
+    .tag-styles(@tags-border, @tags-background, @tags-color);
+
+    a&:hover {
+        text-decoration: none;
+    }
+
+    //  -- SIZES
+    &.s-tag__md {
+        font-size: @fs-body2;
+    }
+    &.s-tag__lg {
+        border-radius: @br-sm + 1;
+        font-size: @fs-subheading;
+    }
+}
+
+//  $$  DISMISS ICON
+//      Style adjument to @Svg.ClearSm
+//  ---------------------------------------------------------------------------
+.s-tag--dismiss {
+    display: flex;
+    align-content: center;
+    align-self: center;
+    justify-content: center;
+    width: @su16 - 2;
+    height: @su16 - 2;
+    margin-right: -(@su2 / 2);
+    margin-left: @su4;
+    padding: @su2 / 2;
+    border-radius: @br-sm;
+}
+
+//  $$  SPONSOR IMAGE
+//      The small sponsor favicon displayed within a tag
+//  ---------------------------------------------------------------------------
+.s-tag--sponsor {
+    display: inline-flex;
+    align-self: center;
+    margin: -(@su2 + 1) @su4 -(@su2) -(@su2 + 1);
+}
+
+
+//  ===========================================================================
+//  $   STYLE VARIATIONS
+//      This is what can be modified on each community (for the most part).
+//  ===========================================================================
+//  $$  Required Tag
+//  ---------------------------------------------------------------------------
+.s-tag__required {
+    .tag-styles(@tags-required-border, @tags-required-background, @tags-required-color);
+}
+
+//  $$  Moderator Tag
+//  ---------------------------------------------------------------------------
+.s-tag__moderator {
+    .tag-styles(@tags-moderator-border, @tags-moderator-background, @tags-moderator-color);
+}
+
+//  $$  Muted Tag
+//  ---------------------------------------------------------------------------
+.s-tag__muted {
+    .tag-styles(@tags-muted-border, @tags-muted-background, @tags-muted-color);
+}
+
+} // Close mixin config scope
