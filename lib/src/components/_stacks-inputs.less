@@ -22,10 +22,17 @@
 //  • Validation States
 //  • Input Sizes
 //  ============================================================================
-//  $  VARIABLES
+//  $  VARIABLES & MIXINS
 //  ----------------------------------------------------------------------------
-@input-line-height: (unit(@fs-body1) + 4) / unit(@fs-body1);
 @input-padding:     0.7em;
+
+//    Line Height Mixin to help ensure input line-heights are pixel perfect.
+.input-lineheight(@size,@distance: 4) {
+    @lh-numerator: unit((@size * @fs-base) + @distance);
+    @lh-denonminator: unit(@size * @fs-base);
+
+    line-height: @lh-numerator / @lh-denonminator;
+}
 
 //  ============================================================================
 //  $  BASE INPUT / TEXTAREA STYLE
@@ -39,7 +46,7 @@
     border-radius: @br-sm;
     box-shadow: inset 0 0 1px fade(@black-350, 20%), 0 0 0 fade(@white, 0%);
     font-family: inherit;
-    line-height: @input-line-height;
+    .input-lineheight(@fs-body1);
 
     //  --  PLACEHOLDER
     //  ------------------------------------------------------------------------
@@ -127,8 +134,8 @@ fieldset {
     background-color: @bgc-lightest;
     color: @fc-medium;
     font-family: inherit;
-    line-height: @input-line-height;
     white-space: nowrap;
+    .input-lineheight(@fs-body1);
 
     &.s-input-fill__clear {
         border-color: transparent;
@@ -201,7 +208,7 @@ fieldset {
         background-color: @white;
         outline: 0;
         font-family: inherit;
-        line-height: @input-line-height;
+        .input-lineheight(@fs-body1);
 
         &::-moz-focus-inner {
             outline: none !important;
@@ -487,28 +494,28 @@ fieldset {
 .s-label__sm,
 .s-select__sm > select {
     font-size: @fs-caption;
-    line-height: (unit(@fs-caption) + 4) / unit(@fs-caption);
+    .input-lineheight(@fs-caption);
 }
 .s-input__md,
 .s-textarea__md,
 .s-label__md,
 .s-select__md > select {
     font-size: @fs-body3;
-    line-height: (unit(@fs-body3) + 4) / unit(@fs-body3);
+    .input-lineheight(@fs-body3);
 }
 .s-input__lg,
 .s-textarea__lg,
 .s-label__lg,
 .s-select__lg > select {
     font-size: @fs-title;
-    line-height: (unit(@fs-title) + 4) / unit(@fs-title);
+    .input-lineheight(@fs-title);
 }
 .s-input__xl,
 .s-textarea__xl,
 .s-label__xl,
 .s-select__xl > select {
     font-size: @fs-headline1;
-    line-height: (unit(@fs-headline1) + 4) / unit(@fs-headline1);
+    .input-lineheight(@fs-headline1);
 }
 
 //  $$  PADDING ADJUSTMENTS WITHIN SIZES
