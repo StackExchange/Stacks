@@ -8,6 +8,30 @@ description: Stacks provides atomic classes to override margin and padding.
     <p class="stacks-copy stacks-copy__lg">Immutable margin utilities are based on our global white space scale. These can dramatically help reduce the size of large stylesheets and allow for greater flexibility and quicker iteration when designing in the browser.</p>
     <p class="stacks-copy stacks-copy__lg">Margin should never be declared outside of these utilities. This is meant to help create consistency and avoid magic numbers. If, for some reason, the default white space scale does not suit your design, customize and extend it before use.</p>
 
+    <h3 class="grid jc-space-between ai-center stacks-h3" id="margin-class-abbreviations"><div class="grid--cell fl1">Class Abbreviations</div></h3>
+    <table class="mb32 s-table s-table__hover">
+        <thead>
+            <tr>
+                <th class="s-table--cell2" scope="col">Abbreviation</th>
+                <th scope="col">Definition</th>
+                <th class="s-table--cell2 ta-center" scope="col">Responsive?</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for spacing in site.data.spacing-definitions.margin %}
+                <tr>
+                    <th scope="row">{{ spacing.term }}</th>
+                    <td>{{ spacing.define }}</td>
+                    <td class="ta-center">
+                        {% if spacing.responsive %}
+                            {% svg /resources/svg-icons/Checkmark.svg width="18" height="18" aria-hidden="true" class="svg-icon iconCheckmark fc-green-500" %}
+                        {% endif %}
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
     <h3 class="grid jc-space-between ai-center stacks-h3" id="margin-classes"><div class="grid--cell fl1">Classes</div></h3>
     <div class="stacks-preview">
 {% highlight html linenos %}
@@ -49,7 +73,7 @@ description: Stacks provides atomic classes to override margin and padding.
                     {% endfor %}
                     <td class="ta-center">
                         {% if class.responsive %}
-                            <svg aria-hidden="true" class="svg-icon iconCheckmark fc-green-500" width="18" height="18" viewBox="0 0 18 18"><path d="M16 4.41L14.59 3 6 11.59 2.41 8 1 9.41l5 5z"></path></svg>
+                            {% svg /resources/svg-icons/Checkmark.svg width="18" height="18" aria-hidden="true" class="svg-icon iconCheckmark fc-green-500" %}
                         {% endif %}
                     </td>
                 </tr>
@@ -159,7 +183,7 @@ description: Stacks provides atomic classes to override margin and padding.
                     <td>{{ spacing.define }}</td>
                     <td class="ta-center">
                         {% if spacing.responsive %}
-                            <svg aria-hidden="true" class="svg-icon iconCheckmark fc-green-500" width="18" height="18" viewBox="0 0 18 18"><path d="M16 4.41L14.59 3 6 11.59 2.41 8 1 9.41l5 5z"></path></svg>
+                            {% svg /resources/svg-icons/Checkmark.svg width="18" height="18" aria-hidden="true" class="svg-icon iconCheckmark fc-green-500" %}
                         {% endif %}
                     </td>
                 </tr>
@@ -208,7 +232,7 @@ description: Stacks provides atomic classes to override margin and padding.
                     {% endfor %}
                     <td class="ta-center">
                         {% if class.responsive %}
-                            <svg aria-hidden="true" class="svg-icon iconCheckmark fc-green-500" width="18" height="18" viewBox="0 0 18 18"><path d="M16 4.41L14.59 3 6 11.59 2.41 8 1 9.41l5 5z"></path></svg>
+                            {% svg /resources/svg-icons/Checkmark.svg width="18" height="18" aria-hidden="true" class="svg-icon iconCheckmark fc-green-500" %}
                         {% endif %}
                     </td>
                 </tr>
