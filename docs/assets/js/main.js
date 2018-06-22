@@ -107,6 +107,10 @@ $(document).ready(function() {
 
         $(".js-stacks-search-bar").keydown(function(e) {
             e.stopPropagation();
+
+            if (e.which == 27) {
+                $(this).blur();
+            }
         });
     }
 
