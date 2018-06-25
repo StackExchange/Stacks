@@ -14,7 +14,13 @@
                 <div class="grid--cell order-last">
                     <aside class="ps-sticky stacks-menu">
                         <h5 class="mx16 px8 py4 mb4 stacks-nav--category fc-orange-500" style="margin-left: -1px;">Sections</h5>
-                        <ul class="grid gs4 gsy fd-column stacks-nav__secondary js-secondary-nav"></ul>
+                        <ul class="grid gs4 gsy fd-column stacks-nav__secondary">
+                            {% for item in page.subnav %}
+                                <li class="stacks-nav--item grid fd-column">
+                                    <a class="grid--cell stacks-nav--link fs-body1" href="{{ item.url }}">{{ item.title }}</a>
+                                </li>
+                            {% endfor %}
+                        </ul>
                     </aside>
                 </div>
                 <div class="grid--cell stacks-content">
