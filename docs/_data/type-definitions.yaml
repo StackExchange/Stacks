@@ -91,48 +91,84 @@ type-basic:
 type-layout:
   - class: ta-left
     output: "text-align: left;"
-    define: "<p class='mt0'>Inline contents are aligned to the left edge.</p>"
+    define: Inline contents are aligned to the left edge.
     responsive: true
   - class: ta-center
     output: "text-align: center;"
-    define: "<p class='mt0'>Inline contents are aligned to the center.</p>"
+    define: Inline contents are aligned to the center.
     responsive: true
   - class: ta-right
     output: "text-align: right;"
-    define: "<p class='mt0'>Inline contents are aligned to the right edge.</p>"
+    define: Inline contents are aligned to the right edge.
     responsive: true
   - class: ta-justify
     output: "text-align: justify;"
-    define: "<p class='mt0'>Inline contents are justified. Text should be spaced to line up its left and right edges to the left and right edges, except for the last line.</p>"
+    define: Inline contents are justified. Text should be spaced to line up its left and right edges to the left and right edges, except for the last line.
     responsive: false
   - class: ws-normal
     output: "white-space: normal;"
-    define: "<p class='mt0'>Lines are broken as necessary to fill the parent.</p>"
+    define: Lines are broken as necessary to fill the parent.
     responsive: false
   - class: ws-nowrap
     output: "white-space: nowrap;"
-    define: "<p class='mt0'>Text wrapping is disabled.</p>"
+    define: Text wrapping is disabled.
     responsive: false
   - class: ws-pre
     output: "white-space: pre;"
-    define: "<p class='mt0'>Whitespace is preserved but text won’t wrap.</p>"
+    define: Whitespace is preserved but text won’t wrap.
     responsive: false
   - class: ws-pre-wrap
     output: "white-space: pre-wrap;"
-    define: "<p class='mt0'>Whitespace is preserved but text will wrap. New lines are preserved.</p>"
+    define: Whitespace is preserved but text will wrap. New lines are preserved.
     responsive: false
   - class: ws-pre-line
     output: "white-space: pre-line;"
-    define: "<p class='mt0'>Whitespace is preserved but text will wrap. New lines are collapsed.</p>"
+    define: Whitespace is preserved but text will wrap. New lines are collapsed.
     responsive: false
+  - class: ow-normal
+    output: "word-break: normal;"
+    define: Restores overflow wrapping behavior.
+  - class: ow-break-word
+    output: "overflow-wrap: break-word;"
+    define: Breaks a word to a new line only if the entire word cannot be placed on its own line without overflowing.
+  - class: ow-inherit
+    output: "overflow-wrap: inherit;"
+    define: Inherits the parent value.
+  - class: ow-intial
+    output: "overflow-wrap: intial;"
+    define: Restores the value to the initial value set on the body.
+  - class: ow-unset
+    output: "overflow-wrap: unset;"
+    define: Unsets any inherited behavior. Does not work in IE.
   - class: ww-break-word
     output: "word-wrap: break-word;"
-    define: "<p class='mt0'>To prevent overflow, normally unbreakable words may be broken at arbitrary points if there are no otherwise acceptable break points in the line.</p>"
+    define: Specifies if a browser should insert line breaks within words to prevent text from overflowing its content box.
+  - class: wb-normal
+    output: "word-break: normal;"
+    define: Restores word break behavior.
+  - class: wb-break-all
+    output: "word-break: break-all;"
+    define: To prevent copy from overflowing its box, breaks should occur between any two characters (excluding Chinese, Japanese, and Korean text)
+  - class: wb-keep-all
+    output: "word-break: keep-all;"
+    define: Removes word breaks for Chinese, Japanese, and Korean text. All other text behavior is the same as normal.
+  - class: wb-break-word
+    output: "word-break: break-word;"
+    define: To prevent overflow, normally unbreakable words may be broken at arbitrary points if there are no otherwise acceptable break in the line.
+  - class: wb-inherit
+    output: "word-break: inherit;"
+    define: Inherits the parent value.
+  - class: wb-intial
+    output: "word-break: intial;"
+    define: Restores the value to the initial value set on the body.
+  - class: wb-unset
+    output: "word-break: unset;"
+    define: Unsets any inherited behavior. Does not work in IE.
     responsive: false
   - class: truncate
     output: "max-width: 100%;<br>
              overflow: hidden;<br>
              text-overflow: ellipsis;<br>
              white-space: nowrap;"
-    define: "<p class='mt0'>Text is cropped to the width of its parent with an ellipsis.</p>"
+    define: Text is cropped to the width of its parent with an ellipsis.
     responsive: false
