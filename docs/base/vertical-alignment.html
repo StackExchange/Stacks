@@ -4,26 +4,32 @@ title: Vertical Alignment
 description: Atomic vertical alignment classes allow you to change an element’s vertical alignment quickly.
 ---
 <section class="stacks-section">
-    <h2 class="grid jc-spacebetween ai-center stacks-title _subtitle">Definitions</h2>
+    <h2 class="grid jc-space-between ai-center stacks-h2"><div class="grid--cell fl1">Classes</div></h2>
     <table class="mb48 s-table s-table__hover">
         <thead>
             <tr>
                 <th class="s-table--cell3" scope="col">Class</th>
                 <th scope="col">Output</th>
+                <th class="s-table--cell2 ta-center" scope="col"><a class="s-link s-link__inherit" href="{{ "/guidelines/responsiveness" | relative_url }}">Responsive?</a></th>
             </tr>
         </thead>
         <tbody>
             {% for atomic in site.data.atomic-definitions.vertical-alignment %}
-              <tr class="fs-caption">
-                  <th scope="row" class="p8 ff-mono">.{{ atomic.class }}</th>
-                  <td class="p8 ff-mono">{{ atomic.output }}</td>
-              </tr>
+                <tr class="fs-caption">
+                    <th scope="row"><code class="stacks-code bg-white">.{{ atomic.class }}</code></th>
+                    <td><code class="stacks-code bg-white">{{ atomic.output }}</code></td>
+                    <td class="ta-center">
+                        {% if atomic.responsive %}
+                            {% svg /resources/svg-icons/Checkmark.svg width="18" height="18" aria-hidden="true" class="svg-icon iconCheckmark fc-green-500" %}
+                        {% endif %}
+                    </td>
+                </tr>
             {% endfor %}
         </tbody>
     </table>
 
-    <h2 class="grid jc-spacebetween ai-center stacks-title _subtitle">Examples</h2>
-    <div class="stacks-code-preview">
+    <h2 class="grid jc-space-between ai-center stacks-h2"><div class="grid--cell fl1">Examples</div></h2>
+    <div class="stacks-preview">
 {% highlight html linenos %}
 <div class="va-baseline">…</div>
 <div class="va-bottom">…</div>
@@ -35,7 +41,7 @@ description: Atomic vertical alignment classes allow you to change an element’
 <div class="va-top">…</div>
 <div class="va-unset">…</div>
 {% endhighlight %}
-        <div class="-preview fs-caption ff-mono overflowx-scroll">
+        <div class="stacks-preview--example  fs-caption ff-mono overflow-x-scroll">
             <div style="width: 860px;">
                 <div class="va-baseline my4 bg-orange-100 p12 ba bc-orange-3 d-inline">.va-baseline</div>
                 <div class="va-bottom my4 bg-orange-100 p12 ba bc-orange-3 d-inline">.va-bottom</div>

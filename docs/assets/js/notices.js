@@ -6,14 +6,16 @@ $(document).ready(function() {
     var toast = $(".js-notice-toast");
     var closeBtn = $(".js-notice-close");
 
+    banner.hide();
+
     $(".js-notice-banner-open").click(function(e) {
         topnav.css("top","").show();
-        banner.attr("aria-hidden","false").removeClass("s-notice__danger is-pinned");
+        banner.show().attr("aria-hidden","false").removeClass("s-notice__danger is-pinned");
     });
 
     $(".js-notice-banner-pinned-open").click(function(e) {
         topnav.css("top", bannerHeight + "px").show();
-        banner.attr("aria-hidden","false").addClass("s-notice__danger is-pinned");
+        banner.show().attr("aria-hidden","false").addClass("s-notice__danger is-pinned");
     });
 
     $(".js-notice-toast-open").click(function(e) {
@@ -42,6 +44,6 @@ $(document).ready(function() {
 
         toast.attr("aria-hidden","true");
         topnav.css("top","").hide();
-        banner.attr("aria-hidden","true").removeClass("s-notice__danger is-pinned");
+        banner.hide().attr("aria-hidden","true").removeClass("s-notice__danger is-pinned");
     });
 });

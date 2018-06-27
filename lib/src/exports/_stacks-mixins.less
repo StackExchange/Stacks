@@ -7,21 +7,6 @@
 //  visit https://stackoverflow.design/
 //
 //  ============================================================================
-//  $   TEXT SIZES
-//  ----------------------------------------------------------------------------
-//  Create a REM mixin
-.mx-fs(@value) when (ispixel(@value)) {
-    @rem: (unit(@value)) / unit(@fs-base);
-
-    font-size: @value;       // Pixel fallback
-    font-size: ~"@{rem}rem"; // REM
-}
-.mx-fs(@value) when (default()) {
-    error: @MX-FS-MUST-BE-PASSED-A-PIXEL-VALUE;
-}
-
-
-//  -----------------------------------------------------------------------------
 //  $   Clearfix
 //  -----------------------------------------------------------------------------
 .clearfix() {
@@ -55,8 +40,8 @@
 .font-face(@family, @path, @weight, @style) {
     @font-face {
         font-family: "@{family}";
-        font-weight: @weight;
         font-style: @style;
+        font-weight: @weight;
         & when (@style=italic) {
             #stacks-internals #font-face-src(@family, @path, @weight, " Italic");
         }
@@ -65,7 +50,6 @@
         }
     }
 }
-
 
 //  ===========================================================================
 //  --  TRIANGLES
@@ -112,8 +96,8 @@
 ///     THESE ARE ONLY USED IN THE PROFILE AND SHOULD BE PHASED OUT EVENTUALLY.
 //  ---------------------------------------------------------------------------
 .ellipsisAtMaxWidth(@width) {
-    max-width: @width;
     overflow: hidden;
+    max-width: @width;
     text-overflow: ellipsis;
     white-space: nowrap;
 }

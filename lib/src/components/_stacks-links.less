@@ -16,14 +16,14 @@
 
 a,
 .s-link {
-    #stacks-internals #short-config();
-    color: @link-color;
+    #stacks-internals #load-config();
+    color: @link-color-regular;
     text-decoration: none;
     cursor: pointer;
 
     &:hover,
     &:active {
-        color: darken(@link-color, 10%);
+        color: darken(@link-color-regular, 10%);
         text-decoration: none;
     }
 
@@ -54,21 +54,12 @@ a,
         }
     }
 
-    &.s-link__warning {
-        color: @btn-warning-bgc;
+    &.s-link__danger {
+        color: @button-danger-background-color;
 
         &:hover,
         &:active {
-            color: darken(saturate(@btn-warning-bgc, 5%), 15%);
-        }
-    }
-
-    &.s-link__confirm {
-        color: @btn-confirm-bgc;
-
-        &:hover,
-        &:active {
-            color: darken(saturate(@btn-confirm-bgc, 5%), 15%);
+            color: darken(saturate(@button-danger-background-color, 5%), 15%);
         }
     }
 }

@@ -7,7 +7,7 @@ module.exports = function(grunt) {
         // Shell commands for use in Grunt tasks
         shell: {
             jekyllBuild: {
-                command: 'jekyll build',
+                command: 'bundle exec jekyll build',
                 options: {
                     stderr: false,
                     execOptions: {
@@ -16,7 +16,7 @@ module.exports = function(grunt) {
                 }
             },
             jekyllServe: {
-                command: 'jekyll serve',
+                command: 'bundle exec jekyll serve',
                 options: {
                     stderr: false,
                     execOptions: {
@@ -33,6 +33,15 @@ module.exports = function(grunt) {
                     'lib/css/stacks.css': 'lib/src/stacks.less',
                 }
             },
+            partials: {
+                // these files are immediately deleted because we don't distribute them directly, but we must ensure
+                // that they compile (e.g. if a static file accidentally accesses the dynamic options, the full bundle will compile
+                // fine, but stacks-static alone will blow up)
+                files: {
+                    'lib/css/stacks-static.css': 'lib/src/stacks-static.less',
+                    'lib/css/stacks-dynamic.css': 'lib/src/stacks-dynamic.less',
+                }
+            }
         },
         // Minify our compiled CSS
         cssmin: {
@@ -45,13 +54,9 @@ module.exports = function(grunt) {
         },
         // Watch for files to change and run tasks when they do
         watch: {
-            postcss: {
-                files: ['lib/**/*.less'],
-                tasks: ['postcss:autoprefixing','postcss:sorting'],
-            },
             less: {
                 files: ['lib/**/*.less', 'docs/**/*.less'],
-                tasks: ['less']
+                tasks: ['less:production']
             },
             css: {
                 files: ['docs/assets/css/stacks-documentation.css', 'lib/css/stacks.css'],
@@ -61,10 +66,7 @@ module.exports = function(grunt) {
         // Run tasks in parallel
         concurrent: {
             serve: [
-                'postcss:autoprefixing',
-                'postcss:sorting',
-                'watch:postcss',
-                'less',
+                'less:production',
                 'watch:less',
                 'cssmin',
                 'watch:css',
@@ -77,6 +79,7 @@ module.exports = function(grunt) {
         // Clean the icons directory to prepare for copying from the node dependency
         clean: {
             icons: ['docs/resources/svg-icons/'],
+            partials: ['lib/css/stacks-static.css', 'lib/css/stacks-dynamic.css'],
         },
         // Copy files out of node_modules so Jekyll can use them
         copy: {
@@ -95,156 +98,6 @@ module.exports = function(grunt) {
                 filter: 'isFile',
             },
         },
-        postcss: {
-            // Add sorting directly to Less files
-            sorting: {
-                options: {
-                    syntax: require('postcss-less'),
-                    processors: [
-                        require('postcss-sorting')({
-                            'properties-order': [
-                                'content',
-                                'box-sizing',
-                                'display',
-                                'visibility',
-                                'position',
-                                'float',
-                                'clear',
-                                'box-direction',
-                                'box-orient',
-                                'flex-direction',
-                                'box-ordinal-group',
-                                'flex-order',
-                                'order',
-                                'box-flex',
-                                'flex',
-                                'flex-grow',
-                                'flex-wrap',
-                                'flex-shrink',
-                                'flex-flow',
-                                'flex-preferred-size',
-                                'flex-basis',
-                                'box-pack',
-                                'flex-pack',
-                                'justify-content',
-                                'flex-line-pack',
-                                'align-content',
-                                'box-align',
-                                'flex-align',
-                                'align-items',
-                                'flex-item-align',
-                                'align-self',
-                                'top',
-                                'right',
-                                'bottom',
-                                'left',
-                                'width',
-                                'height',
-                                'min-width',
-                                'min-height',
-                                'max-width',
-                                'max-height',
-                                'overflow',
-                                'overflow-x',
-                                'overflow-y',
-                                'margin',
-                                'margin-top',
-                                'margin-right',
-                                'margin-bottom',
-                                'margin-left',
-                                'padding',
-                                'padding-top',
-                                'padding-right',
-                                'padding-bottom',
-                                'padding-left',
-                                'z-index',
-                                'clip-path',
-                                'opacity',
-                                'border-collapse',
-                                'border-spacing',
-                                'border',
-                                'border-color',
-                                'border-top-color',
-                                'border-right-color',
-                                'border-bottom-color',
-                                'border-left-color',
-                                'border-style',
-                                'border-top-style',
-                                'border-right-style',
-                                'border-bottom-style',
-                                'border-left-style',
-                                'border-width',
-                                'border-top-width',
-                                'border-right-width',
-                                'border-bottom-width',
-                                'border-left-width',
-                                'border-top',
-                                'border-right',
-                                'border-bottom',
-                                'border-left',
-                                'border-radius',
-                                'border-top-left-radius',
-                                'border-top-right-radius',
-                                'border-bottom-left-radius',
-                                'border-bottom-right-radius',
-                                'outline',
-                                'background',
-                                'background-color',
-                                'background-repeat',
-                                'background-size',
-                                'box-shadow',
-                                'color',
-                                'font',
-                                'font-family',
-                                'font-size',
-                                'font-weight',
-                                'font-style',
-                                'text-align',
-                                'text-transform',
-                                'text-decoration',
-                                'text-overflow',
-                                'line-height',
-                                'list-style',
-                                'list-style-type',
-                                'list-style-image',
-                                'list-style-position',
-                                'vertical-align',
-                                'white-space',
-                                'word-wrap',
-                                'backface-visibility',
-                                'animation',
-                                'transform',
-                                'transform-origin',
-                                'transition',
-                                'transition-delay',
-                                'transition-duration',
-                                'transition-property',
-                                'transition-timing-function',
-                                'will-change',
-                                'touch-action',
-                                'pointer-events',
-                                'touch-callout',
-                                'user-select',
-                                'cursor',
-                            ],
-                            'unspecified-properties-position': 'bottom',
-                        }),
-                    ]
-                },
-                src: 'lib/**/*.less',
-            },
-            autoprefixing: {
-                options: {
-                    syntax: require('postcss-less'),
-                    processors: [
-                        require('autoprefixer')({
-                            browsers: 'last 2 versions'
-                        }),
-                    ]
-                },
-                src: 'lib/**/*.less',
-            }
-        }
     });
 
     // Load plugins
@@ -255,11 +108,9 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-contrib-clean');
-    grunt.loadNpmTasks('grunt-postcss');
 
     // Default task
     grunt.registerTask('default', ['concurrent:serve']);
-    grunt.registerTask('build', ['less', 'cssmin']);
-    grunt.registerTask('update-icons', ['clean', 'copy']);
-    grunt.registerTask('process-css', ['postcss']);
+    grunt.registerTask('build', ['less:production', 'less:partials', 'clean:partials', 'cssmin']);
+    grunt.registerTask('update-icons', ['clean:icons', 'copy']);
 };

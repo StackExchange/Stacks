@@ -1,0 +1,145 @@
+---
+layout: page
+title: Badges
+description: Badges are labels used for flags, earned achievements, and number totals.
+---
+<section class="stacks-section">
+    <h2 class="grid jc-space-between ai-center stacks-h2"><div class="grid--cell fl1">Classes</div></h2>
+    <table class="mb32 s-table s-table__hover va-middle">
+        <thead>
+            <tr>
+                <th class="s-table--cell2" scope="col">Class</th>
+                <th class="s-table--cell2" scope="col">Example</th>
+                <th scope="col">Description</th>
+            </tr>
+        </thead>
+        <tbody class="fs-caption">
+            {% for item in site.data.badges %}
+                <tr>
+                    <th scope="row"><code class="stacks-code bg-white">{{ item.class }}</code></th>
+                    <td>
+                        {% if item.image %}
+                            <span class="{{ item.html }}">
+                                <img class="s-badge--image" src="../{{ site.img }}/{{ item.image}}.svg" aria-hidden="true"> {{ item.label }}
+                            </span>
+                        {% else %}
+                            <span class="{{ item.html }}">{{ item.label }}</span>
+                        {% endif %}
+                    </td>
+                    <td>{{ item.description }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</section>
+
+<section class="stacks-section">
+    <h2 class="grid jc-space-between ai-center stacks-h2"><div class="grid--cell fl1">Examples</div></h2>
+    <h3 class="grid jc-space-between ai-center stacks-h3"><div class="grid--cell fl1">Badges (Default)</div></h3>
+    <div class="stacks-preview">
+{% highlight html linenos %}
+<span class="s-badge">
+    <img class="s-badge--image" src="../{{ site.img }}/BadgeGold.svg" aria-hidden="true"> Great Question
+</span>
+<span class="s-badge">
+    <img class="s-badge--image" src="../{{ site.img }}/BadgeSilver.svg" aria-hidden="true"> Favorite Question
+</span>
+<span class="s-badge">
+    <img class="s-badge--image" src="../{{ site.img }}/BadgeBronze.svg" aria-hidden="true"> Altruist
+</span>
+{% endhighlight %}
+        <div class="stacks-preview--example">
+            <div class="grid gs4">
+                <span class="grid--cell s-badge">
+                    <img class="s-badge--image" src="../{{ site.img }}/BadgeGold.svg" aria-hidden="true"> Great Question
+                </span>
+                <span class="grid--cell s-badge">
+                    <img class="s-badge--image" src="../{{ site.img }}/BadgeSilver.svg" aria-hidden="true"> Favorite Question
+                </span>
+                <span class="grid--cell s-badge">
+                    <img class="s-badge--image" src="../{{ site.img }}/BadgeBronze.svg" aria-hidden="true"> Altruist
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <h3 class="grid jc-space-between ai-center stacks-h3"><div class="grid--cell fl1">Tag Badge</div></h3>
+    <div class="stacks-preview">
+{% highlight html linenos %}
+<span class="s-badge s-badge__tag">
+    <img class="s-badge--image" src="../{{ site.img }}/BadgeGold.svg" aria-hidden="true"> css
+</span>
+<span class="s-badge s-badge__tag">
+    <img class="s-badge--image" src="../{{ site.img }}/BadgeSilver.svg" aria-hidden="true"> javascript
+</span>
+<span class="s-badge s-badge__tag">
+    <img class="s-badge--image" src="../{{ site.img }}/BadgeBronze.svg" aria-hidden="true"> swift
+</span>
+{% endhighlight %}
+        <div class="stacks-preview--example">
+            <div class="grid gs4">
+                <span class="grid--cell s-badge s-badge__tag">
+                    <img class="s-badge--image" src="../{{ site.img }}/BadgeGold.svg" aria-hidden="true"> css
+                </span>
+                <span class="grid--cell s-badge s-badge__tag">
+                    <img class="s-badge--image" src="../{{ site.img }}/BadgeSilver.svg" aria-hidden="true"> javascript
+                </span>
+                <span class="grid--cell s-badge s-badge__tag">
+                    <img class="s-badge--image" src="../{{ site.img }}/BadgeBronze.svg" aria-hidden="true"> swift
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <h3 class="grid jc-space-between ai-center stacks-h3"><div class="grid--cell fl1">Badge Counts</div></h3>
+    <div class="stacks-preview">
+{% highlight html linenos %}
+<span class="s-badge s-badge__gold">
+    <img class="s-badge--image" src="../{{ site.img }}/BadgeGold.svg" aria-hidden="true"> 635
+</span>
+<span class="s-badge s-badge__silver">
+    <img class="s-badge--image" src="../{{ site.img }}/BadgeSilver.svg" aria-hidden="true"> 7624
+</span>
+<span class="s-badge s-badge__bronze">
+    <img class="s-badge--image" src="../{{ site.img }}/BadgeBronze.svg" aria-hidden="true"> 8234
+</span>
+{% endhighlight %}
+        <div class="stacks-preview--example">
+            <div class="grid gs4">
+                <span class="grid--cell s-badge s-badge__gold">
+                    <img class="s-badge--image" src="../{{ site.img }}/BadgeGold.svg" aria-hidden="true"> 635
+                </span>
+                <span class="grid--cell s-badge s-badge__silver">
+                    <img class="s-badge--image" src="../{{ site.img }}/BadgeSilver.svg" aria-hidden="true"> 7624
+                </span>
+                <span class="grid--cell s-badge s-badge__bronze">
+                    <img class="s-badge--image" src="../{{ site.img }}/BadgeBronze.svg" aria-hidden="true"> 8234
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <h3 class="grid jc-space-between ai-center stacks-h3"><div class="grid--cell fl1">Number Counts</div></h3>
+    <div class="stacks-preview">
+{% highlight html linenos %}
+<span class="s-badge s-badge__bounty">+100</span>
+<span class="s-badge s-badge__votes">38</span>
+<span class="s-badge s-badge__answered">154</span>
+<span class="s-badge s-badge__rep">+15</span>
+<span class="s-badge s-badge__rep-down">-2</span>
+<span class="s-badge s-badge__mini">99+</span>
+<span class="s-badge s-badge__mini s-badge__important">99+</span>
+{% endhighlight %}
+        <div class="stacks-preview--example">
+            <div class="grid gs4">
+                <span class="grid--cell s-badge s-badge__bounty">+100</span>
+                <span class="grid--cell s-badge s-badge__votes">38</span>
+                <span class="grid--cell s-badge s-badge__answered">154</span>
+                <span class="grid--cell s-badge s-badge__rep">+15</span>
+                <span class="grid--cell s-badge s-badge__rep-down">-2</span>
+                <span class="grid--cell s-badge s-badge__mini">99+</span>
+                <span class="grid--cell s-badge s-badge__mini s-badge__important">99+</span>
+            </div>
+        </div>
+    </div>
+</section>

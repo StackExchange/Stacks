@@ -25,8 +25,7 @@
     position: relative; // so that it's the positioning parent for the :after
     border: 1px solid @s-sidebarwidget-outer-border-color;
     border-radius: @br-sm;
-    -webkit-box-shadow: @bs-sm;
-            box-shadow: @bs-sm;
+    box-shadow: @bs-sm;
     font-size: @fs-body1;
 
     a:not(.button):not(.s-btn):not(.post-tag):not(.s-sidebarwidget--action) {
@@ -113,7 +112,6 @@
             border: 5px solid transparent;
             border-left-color: @black-200;
             border-right-width: 0;
-            -webkit-transition: -webkit-transform 0.3s cubic-bezier(0.4, 0.4, 0.6, 1);
             transition: -webkit-transform 0.3s cubic-bezier(0.4, 0.4, 0.6, 1);
             transition: transform 0.3s cubic-bezier(0.4, 0.4, 0.6, 1);
             transition: transform 0.3s cubic-bezier(0.4, 0.4, 0.6, 1), -webkit-transform 0.3s cubic-bezier(0.4, 0.4, 0.6, 1);
@@ -148,13 +146,9 @@ table.s-sidebarwidget--content.s-sidebarwidget__items {
 
 .s-sidebarwidget--content:not(table) {
     &:not(.s-sidebarwidget__items) {
-        display: -webkit-box;
-        display: -ms-flexbox;
         display: flex;
     }
     &:not(.s-sidebarwidget__block-items) .s-sidebarwidget--item {
-        display: -webkit-box;
-        display: -ms-flexbox;
         display: flex;
     }
 }
@@ -199,15 +193,15 @@ table.s-sidebarwidget--content.s-sidebarwidget__items {
     }
 }
 .s-sidebarwidget--subnav {
-    padding-left: 0;
     list-style-type: none;
+    padding-left: 0;
 
     li {
         margin-top: 12px;
         padding-left: 16px;
+        background-position: 0 ~"calc((1.2em - 10px)/2)";
         background-repeat: no-repeat;
         background-size: auto 10px;
-        background-position: 0 ~"calc((1.2em - 10px)/2)";
 
         .bullet-arrow(@col) {
             @image: '<?xml version="1.0" encoding="UTF-8"?><svg version="1.1" viewBox="0 0 7 10" xmlns="http://www.w3.org/2000/svg"><path d="m0.72153 0.68446 4.1336 4.3077-4.1336 4.3077" fill="none" stroke="@{col}" stroke-width="2"/></svg>';
@@ -301,15 +295,10 @@ table.s-sidebarwidget--content.s-sidebarwidget__items {
 
 .s-collapsible {
     @s-collapsible-transition-duration: 0.3s;
-
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-align: start;
-        -ms-flex-align: start;
-            align-items: flex-start; // see comment above
     -webkit-clip-path: polygon(-1000000px -1000000px, 1000000px -1000000px, 1000000px 1000000px, -1000000px 1000000px);
     clip-path: polygon(-1000000px -1000000px, 1000000px -1000000px, 1000000px 1000000px, -1000000px 1000000px);
+    align-items: flex-start; // see comment above
     transition: clip-path 0s @s-collapsible-transition-duration, -webkit-clip-path 0s @s-collapsible-transition-duration;
 
     &:after {
@@ -342,7 +331,6 @@ table.s-sidebarwidget--content.s-sidebarwidget__items {
     overflow: hidden;
     -webkit-clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
     clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
-    -webkit-transition: none;
     transition: none;
 
     .s-collapsible--content {
@@ -369,7 +357,6 @@ table.s-sidebarwidget--content.s-sidebarwidget__items {
     &:after {
         height: 0;
         max-height: 50px;
-        -webkit-transition: height @s-collapsible-transition-duration linear;
         transition: height @s-collapsible-transition-duration linear;
     }
 }

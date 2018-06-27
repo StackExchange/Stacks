@@ -1,0 +1,107 @@
+// Some small parts of Stacks is configurable, so e.g. different Stack Exchange communities
+// can have different button styles. The default styles are the Stack Overflow brand styles.
+// To compile a modified version of stacks, create a LESS file that imports Stacks and
+// modifies the configuration, e.g. like this:
+//
+//     @import "path/to/stacks.less";
+//
+//     #stacks-config {
+//         @button-primary-background-color: magenta;
+//     }
+//
+// These configuration options only apply to the "dynamic" part of Stacks, which (on the Q&A sites) gets
+// compiled into the site's primary.css. The "static" part of Stacks, which is a shared CSS file across
+// all Q&A sites, has no access to these options.
+//
+// A few global configuration options that are per-project, not per-site, and thus apply to the static part
+// as well, are in _stacks-configuration-static.less
+
+#stacks-config {
+    //  Overall body element properties
+    @body-font-color:                   @black-800;
+    @body-type-face:                    @ff-sans;
+    @body-background:                   @white;
+    @body-site-width:                   1060px;
+
+    //  Links
+    @link-color-regular:                @blue-600;
+    @link-color-hover:                  #4CA3D7;
+
+    //  Buttons
+    @button-font-color:                 @link-color-regular;
+    @button-font-weight:                400;
+    @button-background-color:           fade(@button-font-color, 0%);
+    @button-has-border:                 true;
+    @button-has-gradient:               false;
+    @button-box-shadow-color:           @button-primary-background-color;
+    @button-border-radius:              @br-sm;
+    @button-has-inset-box-shadow:       true;
+    @button-primary-background-color:   @blue-500;
+    @button-primary-font-color:         @white;
+    @button-filled-background-color:    @powder-100;
+    @button-filled-font-color:          @powder-600;
+    @button-danger-background-color:    @red-500;
+    @button-danger-font-color:          @white;
+
+    //  Tabs
+    @tabs-border:                       @brc-light;
+    @tabs-border__selected:             @orange;
+    @tabs-color:                        @fc-light;
+    @tabs-color__selected:              @fc-dark;
+    @tabs-background:                   @white;
+    @tabs-background__selected:         fade(@bgc-lightest,50%);
+
+    //  Tags
+    @tags-border:                       transparent;
+    @tags-background:                   @powder-100;
+    @tags-color:                        @powder-700;
+    @tags-moderator-border:             @red-100;
+    @tags-moderator-background:         @red-050;
+    @tags-moderator-color:              @red-600;
+    @tags-required-border:              @black-200;
+    @tags-required-background:          @black-075;
+    @tags-required-color:               @black-700;
+    @tags-muted-border:                 transparent;
+    @tags-muted-background:             @black-075;
+    @tags-muted-color:                  @black-700;
+
+    //  Notices
+    @notice-dark-border-color:                      #E6D0D4;
+    @notice-dark-background-color:                  #FFE7EB;
+    @notice-dark-important-background-color:        @black-700;
+    @notice-info-border-color:                      #CFDCE6;
+    @notice-info-background-color:                  #E1F0FC;
+    @notice-info-important-background-color:        @blue-500;
+    @notice-success-border-color:                   #BED9C6;
+    @notice-success-background-color:               #D3F1DC;
+    @notice-success-important-background-color:     #43CA70;
+    @notice-warning-border-color:                   #E6DFC6;
+    @notice-warning-background-color:               #FFF8DC;
+    @notice-warning-important-background-color:     @yellow-400;
+    @notice-danger-border-color:                    #E6D0D4;
+    @notice-danger-background-color:                #FFE7EB;
+    @notice-danger-important-background-color:      @red-400;
+
+    //  Banners (System & Heroes)
+    @banner-brand-orange-background-gradient1:      #F16720;
+    @banner-brand-orange-background-gradient2:      #F58907;
+    @banner-brand-orange-background-color:          mix(@banner-brand-orange-background-gradient1,@banner-brand-orange-background-gradient2);
+    @banner-brand-purple-background-gradient1:      #43347D;
+    @banner-brand-purple-background-gradient2:      #41429a;
+    @banner-brand-purple-background-color:          mix(@banner-brand-purple-background-gradient1,@banner-brand-purple-background-gradient2);
+    @banner-dark-background-gradient1:              @black-800;
+    @banner-dark-background-gradient2:              @black-700;
+    @banner-dark-background-color:                  mix(@banner-dark-background-gradient1, @banner-dark-background-gradient2);
+    @banner-info-background-gradient1:              #126CFA;
+    @banner-info-background-gradient2:              #108AEC;
+    @banner-info-background-color:                  mix(@banner-info-background-gradient1,@banner-info-background-gradient2);
+    @banner-success-background-gradient1:           @green-500;
+    @banner-success-background-gradient2:           @green-400;
+    @banner-success-background-color:               mix(@banner-success-background-gradient1,@banner-success-background-gradient2);
+    @banner-warning-background-gradient1:           @yellow-500;
+    @banner-warning-background-gradient2:           @yellow-400;
+    @banner-warning-background-color:               mix(@banner-warning-background-gradient1,@banner-warning-background-gradient2);
+    @banner-danger-background-gradient1:            @red-500;
+    @banner-danger-background-gradient2:            #DB1F32;
+    @banner-danger-background-color:                mix(@banner-danger-background-gradient1, @banner-danger-background-gradient2);
+}

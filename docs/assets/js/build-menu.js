@@ -9,17 +9,17 @@
 */
 
 (function ($) {
-  const HEADERS = ".stacks-section > :header"
+  const HEADERS = ".stacks-section > :header:not(h1):not(h4)"
 
   const ClassName = {
-    MENU        : "nav",
-    MENU_ITEM   : "-item",
-    MENU_LINK   : "s-link s-link__muted"
+    MENU        : "stacks-nav--subnav",
+    MENU_ITEM   : "stacks-nav--item",
+    MENU_LINK   : "stacks-nav--link fs-body1"
   }
 
   const GridClass = {
     GRID_BOX    : "grid",
-    GRID_COL    : "ff-column-nowrap",
+    GRID_COL    : "fd-column",
     GRID_CELL   : "grid--cell"
   }
 
@@ -43,6 +43,7 @@
         depth: depth
       };
     });
+
     var prevDepth = $headers[0].depth;
     var $parents = [$parent];
     var $prev;
@@ -62,7 +63,7 @@
 
   function $li(val,id) {
     var $e = $("<li>", { "class": ClassName.MENU_ITEM + " " + GridClass.GRID_BOX + " " + GridClass.GRID_COL });
-    $("<a>", { "class": ClassName.MENU_LINK, href: "#" + id}).text(val).appendTo($e);
+    $("<a>", { "class": GridClass.GRID_CELL + " " + ClassName.MENU_LINK, href: "#" + id}).text(val).appendTo($e);
 
     return $e;
   }
@@ -85,8 +86,8 @@
     function options(o) {
       return $.extend(true, {
         anchor: {
-          "class": "-anchor bar-sm",
-          content: "<svg role='icon' class='svg-icon iconLink' width='18' height='18' viewBox='0 0 18 18'><path d='M2.9 9c0-1.16.94-2.1 2.1-2.1h3V5H5C2.79 5 1 6.79 1 9s1.79 4 4 4h3v-1.9H5A2.1 2.1 0 0 1 2.9 9zM13 5h-3v1.9h3a2.1 2.1 0 1 1 0 4.2h-3V13h3c2.21 0 4-1.79 4-4s-1.79-4-4-4zm-7 5h6V8H6v2z'/></svg>"
+          "class": GridClass.GRID_BOX + " " + "grid__center stacks-header--anchor",
+          content: "<svg aria-hidden='true' class='svg-icon iconLink' width='18' height='18' viewBox='0 0 18 18'><path d='M2.9 9c0-1.16.94-2.1 2.1-2.1h3V5H5C2.79 5 1 6.79 1 9s1.79 4 4 4h3v-1.9H5A2.1 2.1 0 0 1 2.9 9zM13 5h-3v1.9h3a2.1 2.1 0 1 1 0 4.2h-3V13h3c2.21 0 4-1.79 4-4s-1.79-4-4-4zm-7 5h6V8H6v2z'/></svg>"
         }
       }, o);
     }

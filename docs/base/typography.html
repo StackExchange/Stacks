@@ -4,48 +4,101 @@ title: Typography
 description: Stacks provides atomic classes to override default styling of typography. Change typographic weights, styles, and alignment with these atomic styles.
 ---
 <section id="typography-basic" class="stacks-section">
-    <h2 class="grid jc-spacebetween ai-center stacks-title">Basic Styles</h2>
-    <p class="stacks-p _section">These styles should only be used as overrides. They shouldn’t replace standard semantic uses of <code class="stacks-code">strong</code> or <code class="stacks-code">em</code> tags.</p>
-    <div class="stacks-code-preview">
+    <h2 class="grid jc-space-between ai-center stacks-h2"><div class="grid--cell fl1">Basic</div></h2>
+    <p class="stacks-copy stacks-copy__lg">These styles should only be used as overrides. They shouldn’t replace standard semantic uses of <code class="stacks-code">strong</code> or <code class="stacks-code">em</code> tags.</p>
+
+    <h3 class="grid jc-space-between ai-center stacks-h3"><div class="grid--cell fl1">Classes</div></h3>
+    <table class="mb32 s-table s-table__hover">
+        <thead>
+            <tr>
+                <th class="s-table--cell2" scope="col">Class</th>
+                <th class="s-table--cell3" scope="col">Output</th>
+                <th scope="col">Definition</th>
+                <th class="s-table--cell2 ta-center" scope="col"><a class="s-link s-link__inherit" href="{{ "/guidelines/responsiveness" | relative_url }}">Responsive?</a></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for basic in site.data.type-definitions.type-basic %}
+                <tr class="fs-caption">
+                    <th scope="row"><code class="stacks-code bg-white">.{{ basic.class }}</code></th>
+                    <td><code class="stacks-code bg-white">{{ basic.output }}</code></td>
+                    <td>{{ basic.define }}</td>
+                    <td class="ta-center">
+                        {% if basic.responsive %}
+                            {% svg /resources/svg-icons/Checkmark.svg width="18" height="18" aria-hidden="true" class="svg-icon iconCheckmark fc-green-500" %}
+                        {% endif %}
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <h3 class="grid jc-space-between ai-center stacks-h3"><div class="grid--cell fl1">Examples</div></h3>
+    <div class="stacks-preview">
 {% highlight html linenos %}
-<p class="fw-normal">Font Weight: Normal</p>
-<p class="fw-bold">Font Weight: Bold</p>
+<p class="fw-normal">…</p>
+<p class="fw-bold">…</p>
 
-<p class="fs-normal">Font Style: Normal</p>
-<p class="fs-italic">Font Style: Italic</p>
-<p class="fs-unset">Font Style: Unset</p>
+<p class="fs-normal">…</p>
+<p class="fs-italic">…</p>
+<p class="fs-unset">…</p>
 
-<p class="tt-capitalize">Text Transform: Capitalize</p>
-<p class="tt-lowercase">Text Transform: Lowercase</p>
-<p class="tt-uppercase">Text Transform: Uppercase</p>
-<p class="tt-none">Text Transform: None</p>
-<p class="tt-unset">Text Transform: Unset</p>
+<p class="tt-capitalize">…</p>
+<p class="tt-lowercase">…</p>
+<p class="tt-uppercase">…</p>
+<p class="tt-none">…</p>
+<p class="tt-unset">…</p>
 
-<a class="td-dashed">Text Decoration: Dashed</a>
-<a class="td-underline">Text Decoration: Underline</a>
-<a class="td-none">Text Decoration: None</a>
+<a class="td-underline">…</a>
+<a class="td-none">…</a>
 {% endhighlight %}
-        <div class="-preview grid ff-column-nowrap gs16 gsy my0">
-            <p class="grid--cell"><strong>Font Weight:</strong> Normal</p>
-            <p class="grid--cell"><strong>Font Weight:</strong> <span class="fw-bold">Bold</span></p>
-            <p class="grid--cell"><strong>Font Style:</strong> <span class="fs-normal">Normal</span></p>
-            <p class="grid--cell"><strong>Font Style:</strong> <span class="fs-italic">Italic</span></p>
-            <p class="grid--cell mb32"><strong>Font Style:</strong> <span class="fs-unset">Unset</span></p>
-            <p class="grid--cell"><strong>Text Transform:</strong> <span class="tt-capitalize">Capitalize</span></p>
-            <p class="grid--cell"><strong>Text Transform:</strong> <span class="tt-lowercase">Lowercase</span></p>
-            <p class="grid--cell"><strong>Text Transform:</strong> <span class="tt-uppercase">Uppercase</span></p>
-            <p class="grid--cell"><strong>Text Transform:</strong> <span class="tt-none">None</span></p>
-            <p class="grid--cell mb32"><strong>Text Transform:</strong> <span class="tt-unset">Unset</span></p>
-            <p class="grid--cell"><strong>Text Decoration:</strong> <a><span class="td-dashed">Dashed</span></a></p>
-            <p class="grid--cell"><strong>Text Decoration:</strong> <a><span class="td-underline">Underline</span></a></p>
-            <p class="grid--cell"><strong>Text Decoration:</strong> <a><span class="td-none">None</span></a></p>
+        <div class="stacks-preview--example  grid ff-column-nowrap gs16 gsy">
+            <div class="grid--cell"><strong>Font Weight:</strong> Normal</div>
+            <div class="grid--cell"><strong>Font Weight:</strong> <span class="fw-bold">Bold</span></div>
+            <div class="grid--cell"><strong>Font Style:</strong> <span class="fs-normal">Normal</span></div>
+            <div class="grid--cell"><strong>Font Style:</strong> <span class="fs-italic">Italic</span></div>
+            <div class="grid--cell mb32"><strong>Font Style:</strong> <span class="fs-unset">Unset</span></div>
+            <div class="grid--cell"><strong>Text Transform:</strong> <span class="tt-capitalize">Capitalize</span></div>
+            <div class="grid--cell"><strong>Text Transform:</strong> <span class="tt-lowercase">Lowercase</span></div>
+            <div class="grid--cell"><strong>Text Transform:</strong> <span class="tt-uppercase">Uppercase</span></div>
+            <div class="grid--cell"><strong>Text Transform:</strong> <span class="tt-none">None</span></div>
+            <div class="grid--cell mb32"><strong>Text Transform:</strong> <span class="tt-unset">Unset</span></div>
+            <div class="grid--cell"><strong>Text Decoration:</strong> <a><span class="td-underline">Underline</span></a></div>
+            <div class="grid--cell"><strong>Text Decoration:</strong> <a><span class="td-none">None</span></a></div>
         </div>
     </div>
 </section>
 
 <section id="typography-layout" class="stacks-section">
-    <h2 class="grid jc-spacebetween ai-center stacks-title">Layout</h2>
-    <div class="stacks-code-preview">
+    <h2 class="grid jc-space-between ai-center stacks-h2"><div class="grid--cell fl1">Layout</div></h2>
+    <h3 class="grid jc-space-between ai-center stacks-h3" id="layout-classes"><div class="grid--cell fl1">Classes</div></h3>
+    <table class="mb32 s-table s-table__hover va-middle">
+        <thead>
+            <tr>
+                <th class="s-table--cell2" scope="col">Class</th>
+                <th class="s-table--cell3" scope="col">Output</th>
+                <th scope="col">Definition</th>
+                <th class="s-table--cell2 ta-center" scope="col"><a class="s-link s-link__inherit" href="{{ "/guidelines/responsiveness" | relative_url }}">Responsive?</a></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for layout in site.data.type-definitions.type-layout %}
+                <tr class="fs-caption">
+                    <th scope="row"><code class="stacks-code bg-white">.{{ layout.class }}</code></th>
+                    <td><code class="stacks-code bg-white">{{ layout.output }}</code></td>
+                    <td><p class="m0">{{ layout.define }}</p></td>
+                    <td class="ta-center">
+                        {% if layout.responsive %}
+                            {% svg /resources/svg-icons/Checkmark.svg width="18" height="18" aria-hidden="true" class="svg-icon iconCheckmark fc-green-500" %}
+                        {% endif %}
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <h3 class="grid jc-space-between ai-center stacks-h3" id="layout-examples"><div class="grid--cell fl1">Examples</div></h3>
+    <div class="stacks-preview">
 {% highlight html linenos %}
 <p class="ta-left">Text Align: Left</p>
 <p class="ta-center">Text Align: Center</p>
@@ -64,7 +117,7 @@ description: Stacks provides atomic classes to override default styling of typog
 
 <p class="truncate">Truncate: …</p>
 {% endhighlight %}
-        <div class="-preview grid ff-column-nowrap gs16 gsy my0">
+        <div class="stacks-preview--example  grid ff-column-nowrap gs16 gsy my0">
             <p class="grid--cell ta-left"><strong>Text Align:</strong> Left</p>
             <p class="grid--cell ta-center"><strong>Text Align:</strong> Center</p>
             <p class="grid--cell ta-right"><strong>Text Align:</strong> Right</p>
@@ -83,15 +136,15 @@ description: Stacks provides atomic classes to override default styling of typog
 </section>
 
 <section id="typography-font" class="stacks-section">
-    <h2 class="grid jc-spacebetween ai-center stacks-title">Fonts</h2>
-    <div class="stacks-code-preview">
+    <h2 class="grid jc-space-between ai-center stacks-h2"><div class="grid--cell fl1">Fonts</div></h2>
+    <div class="stacks-preview">
 {% highlight html linenos %}
 <p class="ff-sans">…</p>
 <p class="ff-serif">…</p>
 <p class="ff-mono">…</p>
 <p class="ff-inherit">…</p>
 {% endhighlight %}
-        <div class="-preview grid ff-column-nowrap gs16 gsy my0 fs-subheading">
+        <div class="stacks-preview--example  grid ff-column-nowrap gs16 gsy my0 fs-subheading">
             <p class="grid--cell ff-sans">Sans Serif</p>
             <p class="grid--cell ff-serif">Serif</p>
             <p class="grid--cell ff-mono">Mono</p>
@@ -101,8 +154,8 @@ description: Stacks provides atomic classes to override default styling of typog
 </section>
 
 <section id="typography-scale" class="stacks-section">
-    <h2 class="grid jc-spacebetween ai-center stacks-title">Type Sizes</h2>
-    <h3 class="grid jc-spacebetween ai-center stacks-title _subtitle">Type Class Definitions</h3>
+    <h2 class="grid jc-space-between ai-center stacks-h2"><div class="grid--cell fl1">Sizes</div></h2>
+    <h3 class="grid jc-space-between ai-center stacks-h3" id="size-classes"><div class="grid--cell fl1">Classes</div></h3>
     <table class="mb32 s-table s-table__hover">
         <thead>
             <tr>
@@ -113,15 +166,15 @@ description: Stacks provides atomic classes to override default styling of typog
         <tbody>
             {% for term in site.data.type-definitions.fontsize %}
                 <tr>
-                    <th scope="row"><code class="stacks-code">.fs-{{ term.term }}</code></th>
+                    <th scope="row"><code class="stacks-code bg-white">.fs-{{ term.term }}</code></th>
                     <td>{{ term.define }}</td>
                 </tr>
             {% endfor %}
         </tbody>
     </table>
 
-    <h3 class="grid jc-spacebetween ai-center stacks-title _subtitle">Type Examples</h3>
-    <div class="stacks-code-preview">
+    <h3 class="grid jc-space-between ai-center stacks-h3" id="size-examples"><div class="grid--cell fl1">Examples</div></h3>
+    <div class="stacks-preview">
 {% highlight html linenos %}
 <p class="fs-fine">…</p>
 <p class="fs-caption">…</p>
@@ -137,7 +190,7 @@ description: Stacks provides atomic classes to override default styling of typog
 <p class="fs-display3">…</p>
 <p class="fs-display4">…</p>
 {% endhighlight %}
-        <div class="-preview grid ff-column-nowrap gs16 gsy my0">
+        <div class="stacks-preview--example  grid ff-column-nowrap gs16 gsy my0">
             {% for term in site.data.type-definitions.fontsize %}
             <div class="grid">
                 <div class="grid--cell3 fc-light fs-caption fw-bold">{{ term.label }}</div>
@@ -147,14 +200,14 @@ description: Stacks provides atomic classes to override default styling of typog
         </div>
     </div>
 
-    <h3 class="grid jc-spacebetween ai-center stacks-title _subtitle">Category Titles</h3>
+    <h3 class="grid jc-space-between ai-center stacks-h3" id="size-category"><div class="grid--cell fl1">Category Titles</div></h3>
     <p class="stacks-p">Category titles help break content into digestible chunks, but are visually smaller than a traditional headline. They are meta descriptions of a content block. To further visually separate the content block from surrounding items, you can add a <code class="stacks-code">.has-border</code> class.</p>
-    <div class="stacks-code-preview">
+    <div class="stacks-preview">
 {% highlight html linenos %}
 <p class="fs-category">…</p>
 <p class="fs-category has-border">…</p>
 {% endhighlight %}
-        <div class="-preview grid ff-column-nowrap gs16 gsy mt0">
+        <div class="stacks-preview--example  grid ff-column-nowrap gs16 gsy mt0">
             <div class="grid ai-center">
                 <div class="grid--cell4 fc-light fs-caption fw-bold">Category</div>
                 <div class="grid--cell fs-category lh-xs w100">Category Title (12px)</div>
@@ -168,8 +221,8 @@ description: Stacks provides atomic classes to override default styling of typog
 </section>
 
 <section id="typography-spacing" class="stacks-section">
-    <h2 class="grid jc-spacebetween ai-center stacks-title">Type Spacing</h2>
-    <div class="stacks-code-preview">
+    <h2 class="grid jc-space-between ai-center stacks-h2"><div class="grid--cell fl1">Line Height</div></h2>
+    <div class="stacks-preview">
 {% highlight html linenos %}
 <p class="lh-xs">…</p>
 <p class="lh-sm">…</p>
@@ -178,7 +231,7 @@ description: Stacks provides atomic classes to override default styling of typog
 <p class="lh-xl">…</p>
 <p class="lh-xxl">…</p>
 {% endhighlight %}
-        <div class="-preview grid ff-column-nowrap gs16 gsy my0">
+        <div class="stacks-preview--example  grid ff-column-nowrap gs16 gsy my0">
             <p class="grid--cell lh-xs"><strong>Line Height XS:</strong> This sets the <code class="stacks-code">line-height</code> value to <code class="stacks-code">1</code>. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
             <p class="grid--cell lh-sm"><strong>Line Height SM:</strong> This sets the <code class="stacks-code">line-height</code> value to <code class="stacks-code">1.13</code>. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
             <p class="grid--cell lh-md"><strong>Line Height MD:</strong> This sets the <code class="stacks-code">line-height</code> value to <code class="stacks-code">1.26</code>. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
@@ -190,14 +243,14 @@ description: Stacks provides atomic classes to override default styling of typog
 </section>
 
 <section id="typography-scale" class="stacks-section">
-    <h2 class="grid jc-spacebetween ai-center stacks-title">Type Colors</h2>
-    <div class="stacks-code-preview">
+    <h2 class="grid jc-space-between ai-center stacks-h2"><div class="grid--cell fl1">Colors</div></h2>
+    <div class="stacks-preview">
 {% highlight html linenos %}
 <p class="fc-light">…</p>
 <p class="fc-medium">…</p>
 <p class="fc-dark">…</p>
 {% endhighlight %}
-        <div class="-preview grid ff-column-nowrap gs16 gsy my0 fs-body2">
+        <div class="stacks-preview--example  grid ff-column-nowrap gs16 gsy my0 fs-body2">
             <p class="grid--cell fc-light"><strong>Color:</strong> Light</p>
             <p class="grid--cell fc-medium"><strong>Color:</strong> Medium</p>
             <p class="grid--cell fc-dark"><strong>Color:</strong> Dark</p>
@@ -206,8 +259,8 @@ description: Stacks provides atomic classes to override default styling of typog
 </section>
 
 <section id="typography-list-styling" class="stacks-section">
-    <h2 class="grid jc-spacebetween ai-center stacks-title"class="toc-list-styling">List Styling</h2>
-    <div class="stacks-code-preview">
+    <h2 class="grid jc-space-between ai-center stacks-h2"><div class="grid--cell fl1">List Styling</div></h2>
+    <div class="stacks-preview">
 {% highlight html linenos %}
 <ol class="list-reset">
   …
@@ -231,7 +284,7 @@ description: Stacks provides atomic classes to override default styling of typog
   …
 </ul>
 {% endhighlight %}
-        <div class="-preview">
+        <div class="stacks-preview--example ">
             <ol class="ml24 mb24 list-reset">
                 <li>List item 1</li>
                 <li>List item 2</li>

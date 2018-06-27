@@ -1,0 +1,324 @@
+//
+//  STACK OVERFLOW
+//  BANNERS
+//
+//  This CSS comes from Stacks, our CSS & Pattern library for rapidly building
+//  Stack Overflow. For documentation of all these classes and how to contribute,
+//  visit https://stackoverflow.design/
+//
+//  TABLE OF CONTENTS
+//  • SYSTEM BANNERS
+//  • HERO BANNERS
+//
+//  ============================================================================
+//      When we use .s-banner, we need to adjust the padding-top on
+//      the body tag. This class correctly adjusts the body padding ONLY if
+//      the notice is one line. If it wraps to multiple lines, more classes or
+//      (ideally) JS will need to be used to determine the notice's height
+//      at the time of render. The padding value is determined like so:
+//
+//      50px (top bar) + 44px (notice height) - 1px (bottom border)
+//
+//      The borders subtraction are necessary to neatly tuck everything together.
+//  ----------------------------------------------------------------------------
+.s-banner__body-pt {
+    padding-top: 93px;
+}
+
+
+//  ============================================================================
+//  $   SYSTEM BANNERS
+//  ----------------------------------------------------------------------------
+.s-banner {
+    position: fixed;
+    z-index: @zi-navigation-fixed - 1; // Tuck below topbar
+    top: 0;
+    right: 0;
+    left: 0;
+    width: 100%;
+    padding: @su12;
+    border-top: 1px solid transparent;
+    border-bottom: 1px solid transparent;
+
+    border-radius: 0;
+    box-shadow: none;
+
+    color: @fc-medium;
+
+    // If you want to hide and reveal the banner
+    &[aria-hidden="true"] {
+        visibility: hidden;
+        opacity: 0;
+        -webkit-transform: translate3d(0,-50px,0);
+                transform: translate3d(0,-50px,0);
+    }
+    &[aria-hidden="false"] {
+        visibility: visible;
+        opacity: 1;
+        -webkit-transform: translate3d(0,49px,0);
+                transform: translate3d(0,49px,0);
+    }
+
+    //  If you want to put the banner above the topbar
+    &.is-pinned {
+        z-index: @zi-navigation-fixed + 1;
+        -webkit-transform: translate3d(0,0,0);
+                transform: translate3d(0,0,0);
+    }
+
+    //  If it's a really important banner
+    &.s-banner__important {
+        border-color: transparent;
+        color: @white;
+    }
+}
+
+//  --  When we want to keep hero content capped
+.s-banner--container {
+    #stacks-internals #load-config();
+
+    position: relative;
+    width: 100%;
+    max-width: @body-site-width;
+    margin: 0 auto;
+}
+
+& {
+#stacks-internals #load-config(); //  Call all our variables from _stacks-configuration
+//  ============================================================================
+//  $$  SYSTEM BANNER BACKGROUNDS
+//      Backgrounds specific to system banners
+//  ----------------------------------------------------------------------------
+.s-banner__info {
+    border-color: @notice-info-border-color;
+    background-color: @notice-info-background-color;
+
+    &.s-banner__important {
+        background-color: @notice-info-important-background-color;
+    }
+}
+
+.s-banner__success {
+    border-color: @notice-success-border-color;
+    background-color: @notice-success-background-color;
+
+    &.s-banner__important {
+        background-color: @notice-success-important-background-color;
+        color: @fc-dark;
+    }
+}
+
+.s-banner__warning {
+    border-color: @notice-warning-border-color;
+    background-color: @notice-warning-background-color;
+
+    &.s-banner__important {
+        background-color: @notice-warning-important-background-color;
+        color: @fc-dark;
+    }
+
+}
+
+.s-banner__danger {
+    border-color: @notice-danger-border-color;
+    background-color: @notice-danger-background-color;
+
+    &.s-banner__important {
+        background-color: @notice-danger-important-background-color;
+    }
+}
+
+.s-banner__dark {
+    border-color: @notice-dark-border-color;
+    background-color: @notice-dark-background-color;
+
+    &.s-banner__important {
+        background-color: @notice-dark-important-background-color;
+    }
+}
+
+
+//  ============================================================================
+//  $   HERO BANNERS
+//  ----------------------------------------------------------------------------
+.s-hero {
+    overflow: hidden;
+    background-position: right center, center center;
+    background-repeat: no-repeat, no-repeat;
+    color: @white;
+
+    // If you want to hide and reveal the banner
+    &[aria-hidden="true"] {
+        visibility: hidden;
+        opacity: 0;
+    }
+    &[aria-hidden="false"] {
+        visibility: visible;
+        opacity: 1;
+    }
+
+    //  If you want to put the banner above the topbar
+    &.is-pinned {
+        position: fixed;
+        z-index: @zi-navigation-fixed + 1;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        -webkit-transform: translate3d(0,0,0);
+                transform: translate3d(0,0,0);
+    }
+}
+
+//  --  When we want to keep hero content capped
+.s-hero--container {
+    #stacks-internals #load-config();
+    position: relative;
+    width: 100%;
+    max-width: @body-site-width;
+    margin: 0 auto;
+    padding: @su16;
+}
+
+.s-hero--bar {
+    position: relative;
+    padding: 0;
+}
+
+
+//  ============================================================================
+//  $$  HERO BANNER VISUAL ELEMENTS
+//  ============================================================================
+//  $$  BACKGROUNDS
+//      Background gradient combinations specific to hero banners
+//  ----------------------------------------------------------------------------
+//  --  BRAND (ORANGE)
+//  ----------------------------------------------------------------------------
+.s-hero__orange {
+    background-image: linear-gradient(to right, @banner-brand-orange-background-gradient1, @banner-brand-orange-background-gradient2);
+
+    //  --  Darkens the background gradient
+    &.s-hero--bar {
+        background-image: linear-gradient(to right, darken(@banner-brand-orange-background-gradient1,7.5%), darken(@banner-brand-orange-background-gradient2,7.5%));
+    }
+
+    //  --  Adds the background circle in
+    .s-hero--circle:before {
+        background-color: fade(overlay(@banner-brand-orange-background-color, @black-900), 7.5%);
+    }
+}
+
+//  --  BRAND (PURPLE)
+//  ----------------------------------------------------------------------------
+.s-hero__purple {
+    background-image: linear-gradient(to right, @banner-brand-purple-background-gradient1, @banner-brand-purple-background-gradient2);
+
+    //  --  Darkens the background gradient
+    &.s-hero--bar {
+        background-image: linear-gradient(to right, darken(@banner-brand-purple-background-gradient1,7.5%), darken(@banner-brand-purple-background-gradient2,7.5%));
+    }
+
+    //  --  Adds the background circle in
+    .s-hero--circle:before {
+        background-color: fade(overlay(@banner-brand-purple-background-color, @black-900), 7.5%);
+    }
+}
+
+//  --  DARK (BLACK)
+//  ----------------------------------------------------------------------------
+.s-hero__dark {
+    background-image: linear-gradient(to right, @banner-dark-background-gradient1, @banner-dark-background-gradient2);
+
+    //  --  Darkens the background gradient
+    &.s-hero--bar {
+        background-image: linear-gradient(to right, darken(@banner-dark-background-gradient1,7.5%), darken(@banner-dark-background-gradient2,7.5%));
+    }
+
+    //  --  Adds the background circle in
+    .s-hero--circle:before {
+        background-color: fade(overlay(@banner-dark-background-color, @black-900), 15%);
+    }
+}
+
+//  --  INFO (BLUE)
+//  ----------------------------------------------------------------------------
+.s-hero__info {
+    background-image: linear-gradient(to right, @banner-info-background-gradient1, @banner-info-background-gradient2);
+
+    //  --  Darkens the background gradient
+    &.s-hero--bar {
+        background-image: linear-gradient(to right, darken(@banner-info-background-gradient1,7.5%), darken(@banner-info-background-gradient2,7.5%));
+    }
+
+    //  --  Adds the background circle in
+    .s-hero--circle:before {
+        background-color: fade(overlay(@banner-info-background-color, @black-900), 7.5%);
+    }
+}
+
+//  --  SUCCESS (GREEN)
+//  ----------------------------------------------------------------------------
+.s-hero__success {
+    background-image: linear-gradient(to right, @banner-success-background-gradient1, @banner-success-background-gradient2);
+    color: @green-900;
+
+    //  --  Darkens the background gradient
+    &.s-hero--bar {
+        background-image: linear-gradient(to right, darken(@banner-success-background-gradient1,7.5%), darken(@banner-success-background-gradient2,7.5%));
+    }
+
+    //  --  Adds the background circle in
+    .s-hero--circle:before {
+        background-color: fade(overlay(@banner-success-background-color, @black-900), 7.5%);
+    }
+}
+
+//  --  WARNING
+//  ----------------------------------------------------------------------------
+.s-hero__warning {
+    background-image: linear-gradient(to right, @banner-warning-background-gradient1, @banner-warning-background-gradient2);
+    color: @fc-dark;
+
+    //  --  Darkens the background gradient
+    &.s-hero--bar {
+        background-image: linear-gradient(to right, darken(@banner-warning-background-gradient1,7.5%), darken(@banner-warning-background-gradient2,7.5%));
+    }
+
+    //  --  Adds the background circle in
+    .s-hero--circle:before {
+        background-color: fade(overlay(@banner-warning-background-color, @black-900), 15%);
+    }
+}
+
+//  --  DANGER (RED)
+//  ----------------------------------------------------------------------------
+.s-hero__danger {
+    background-image: linear-gradient(to right, @banner-danger-background-gradient1, @banner-danger-background-gradient2);
+
+    //  --  Darkens the background gradient
+    &.s-hero--bar {
+        background-image: linear-gradient(to right, darken(@banner-danger-background-gradient1,7.5%), darken(@banner-danger-background-gradient2,7.5%));
+    }
+
+    //  --  Adds the background circle in
+    .s-hero--circle:before {
+        background-color: fade(overlay(@banner-danger-background-color, @black-900), 15%);
+    }
+}
+}  // End stacks configuration mixin
+
+//  ============================================================================
+//  $$  CIRCLE
+//      Adds a background circle to the left side of the hero banner
+//  ----------------------------------------------------------------------------
+.s-hero--circle:before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    top: -4vw;
+    left: -4vw;
+    width: 0;
+    height: 0;
+    padding: 20%;
+    border-radius: @br-circle;
+    pointer-events: none;
+}

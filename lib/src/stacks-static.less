@@ -18,6 +18,7 @@
 
 //  --  COMPONENTS
 @import "components/_stacks-avatars";
+@import "components/_stacks-badges";
 @import "components/_stacks-button-groups";
 @import "components/_stacks-cards";
 @import "components/_stacks-toggles";
@@ -26,7 +27,6 @@
 @import "components/_stacks-popovers";
 @import "components/_stacks-tables";
 @import "components/_stacks-widget";
-@import "components/_stacks-notices";
 
 //  --  LESS CONSTANTS AND MIXINS
 @import "exports/_stacks-exports";
@@ -40,3 +40,18 @@
 @import "atomic/_stacks-typography";
 @import "atomic/_stacks-misc";
 @import "atomic/_stacks-width-height";
+
+#stacks-internals #screen-lg({
+    #stacks-internals-collect-large();
+});
+#stacks-internals #screen-md({
+    #stacks-internals-collect-medium();
+});
+#stacks-internals #screen-sm({
+    #stacks-internals-collect-small();
+});
+
+//  --  CONFIG
+@import "base/_stacks-configuration-static.less";
+@import "base/_stacks-internals.less";
+

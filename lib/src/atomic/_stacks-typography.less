@@ -20,20 +20,20 @@ h1, h2, h3, h4, h5, h6, p {
 //  $   TEXT SIZES
 //  ----------------------------------------------------------------------------
 //  Declare font sizes
-.fs-display4    { .mx-fs(@fs-display4) !important; }
-.fs-display3    { .mx-fs(@fs-display3) !important; }
-.fs-display2    { .mx-fs(@fs-display2) !important; }
-.fs-display1    { .mx-fs(@fs-display1) !important; }
-.fs-headline2   { .mx-fs(@fs-headline2) !important; }
-.fs-headline1   { .mx-fs(@fs-headline1) !important; }
-.fs-title       { .mx-fs(@fs-title) !important; }
-.fs-subheading  { .mx-fs(@fs-subheading) !important; }
-.fs-body3       { .mx-fs(@fs-body3) !important; }
-.fs-body2       { .mx-fs(@fs-body2) !important; }
-.fs-body1       { .mx-fs(@fs-body1) !important; }
+.fs-display4    { font-size: @fs-display4 !important; }
+.fs-display3    { font-size: @fs-display3 !important; }
+.fs-display2    { font-size: @fs-display2 !important; }
+.fs-display1    { font-size: @fs-display1 !important; }
+.fs-headline2   { font-size: @fs-headline2 !important; }
+.fs-headline1   { font-size: @fs-headline1 !important; }
+.fs-title       { font-size: @fs-title !important; }
+.fs-subheading  { font-size: @fs-subheading !important; }
+.fs-body3       { font-size: @fs-body3 !important; }
+.fs-body2       { font-size: @fs-body2 !important; }
+.fs-body1       { font-size: @fs-body1 !important; }
 .fs-caption,
-.fs-category    { .mx-fs(@fs-caption) !important; }
-.fs-fine        { .mx-fs(@fs-fine) !important; }
+.fs-category    { font-size: @fs-caption !important; }
+.fs-fine        { font-size: @fs-fine !important; }
 
 .fs-category {
     font-weight: 700;
@@ -58,9 +58,9 @@ h1, h2, h3, h4, h5, h6, p {
 //  $   LINE HEIGHTS
 //  ----------------------------------------------------------------------------
 .lh-xs          { line-height: @lh-xs !important; }
-.lh-sm          { line-height: @lh-s !important; }
-.lh-md          { line-height: @lh-m !important; }
-.lh-lg          { line-height: @lh-l !important; }
+.lh-sm          { line-height: @lh-sm !important; }
+.lh-md          { line-height: @lh-md !important; }
+.lh-lg          { line-height: @lh-lg !important; }
 .lh-xl          { line-height: @lh-xl !important; }
 .lh-xxl         { line-height: @lh-xxl !important; }
 
@@ -83,15 +83,14 @@ h1, h2, h3, h4, h5, h6, p {
 .fs-unset         { font-style: unset !important; }
 
 //  --  Text Align
-.ta-left          { text-align: left !important; }
-.ta-center        { text-align: center !important; }
-.ta-right         { text-align: right !important; }
+#stacks-internals #responsify('.ta-left', { text-align: left !important; });
+#stacks-internals #responsify('.ta-center', { text-align: center !important; });
+#stacks-internals #responsify('.ta-right', { text-align: right !important; });
 .ta-justify       { text-align: justify !important; }
 .ta-unset         { text-align: unset !important; }
 
 //  --  Text Decoration
 .td-none          { text-decoration: none !important; }
-.td-dashed        { -webkit-text-decoration: dashed underline !important; text-decoration: dashed underline !important; }
 .td-underline     { text-decoration: underline !important; }
 
 //  --  Text Transform
@@ -103,8 +102,8 @@ h1, h2, h3, h4, h5, h6, p {
 
 //  --  Text Truncate
 .truncate {
-    max-width: 100%;
     overflow: hidden;
+    max-width: 100%;
     text-overflow: ellipsis !important;
     white-space: nowrap;
 }
@@ -117,7 +116,26 @@ h1, h2, h3, h4, h5, h6, p {
 .ws-pre-line      { white-space: pre-line !important; }
 .ws-unset         { white-space: unset !important; }
 
-//  --  Word Wrap
+//  --  Word Break
+.wb-normal        { word-break: normal !important; }
+.wb-break-all     { word-break: break-all !important; }
+.wb-keep-all      { word-break: keep-all !important; }
+.wb-break-word    { word-break: break-word !important; }
+.wb-inherit       { word-break: inherit !important; }
+.wb-initial       { word-break: initial !important; }
+.wb-unset         { word-break: unset !important; }
+
+//  --  Overflow Wrap
+//      This property will create a line break only if an entire word cannot be
+//      placed on its own line without overflowing. This was formerly called
+//      word-wrap, which was an unprefixed Microsoft vendor property implemented
+//      by most browsers. Word-wrap is still a supported alias.
+.ow-normal        { overflow-wrap: normal !important; }
+.ow-break-word    { overflow-wrap: break-word !important; }
+.ow-inherit       { overflow-wrap: inherit !important; }
+.ow-initial       { overflow-wrap: initial !important; }
+.ow-unset         { overflow-wrap: unset !important; }
+
 .ww-break-word    { word-wrap: break-word !important; }
 
 
@@ -127,9 +145,9 @@ h1, h2, h3, h4, h5, h6, p {
 .list-reset {
     &,
     > li {
+        list-style: none;
         margin: 0;
         padding: 0;
-        list-style: none;
     }
 }
 

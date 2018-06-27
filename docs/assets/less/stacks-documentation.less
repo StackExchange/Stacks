@@ -18,7 +18,6 @@
 //  ============================================================================
 //  $   UNIVERSAL SETTINGS
 //  ----------------------------------------------------------------------------
-
 @site-width: 1060px;
 @site-padding: 15px;
 
@@ -50,20 +49,27 @@ body {
     min-height: 100vh;
 }
 
-.stacks-nav {
-    width: 260px;
-}
-
-.stacks-content {
-    margin-left: 260px;
+.stacks-body {
+    margin-left: 20rem;
+    padding: @su64 0;
 }
 
 .stacks-home {
-    margin-left: 260px;
+    margin-left: 20rem;
+    width: 100%;
 }
 
-.stacks-body {
-    max-width: 980px;
+.stacks-menu {
+    top: 10.462rem;
+    padding-left: @su12;
+    width: 100%;
+    min-width: 16rem;
+    max-width: 20rem;
+}
+
+.stacks-content {
+    width: 75%;
+    max-width: 60rem;
 }
 
 .stacks-section {
@@ -71,81 +77,126 @@ body {
     margin-bottom: @su48;
 }
 
+
 //  ============================================================================
 //  $   NAV STYLES
 //  ============================================================================
-//  $$  NAV: RESET LIST
+//  $$  MAIN NAVIGATION WRAPPER
 //  ----------------------------------------------------------------------------
-.nav {
-    &,
-    .-item {
-        .list-reset;
-    }
-
-    .-link {
-        padding: @su4 @su4 @su4 @su24;
-    }
+.stacks-nav {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    width: 20vw;
+    min-width: 16rem;
+    max-width: 20rem;
+    border-right: 1px solid @black-050;
+    background-color: @black-025;
+    z-index: @zi-navigation-fixed;
 }
 
-//  $$  NAV: MENU ITEM
+//  $$  MAIN NAVIGATION MENU
 //  ----------------------------------------------------------------------------
-.nav .-item {
-    //  If a submenu item is active…
-    .-link.is-active {
+.stacks-nav--menu {
+    margin: 0;
+    padding: @su8 0 @su12;
+    list-style: none;
+    border-top: 1px solid @black-075;
+}
+
+//  $$  MAIN NAVIGATION CATEGORY TITLE
+//  ----------------------------------------------------------------------------
+.stacks-nav--category {
+    padding: @su16 @su4 @su8 @su24;
+    font-size: @fs-fine;
+    color: @fc-dark;
+    font-weight: bold;
+    //font-family: @ff-mono;
+    line-height: @lh-sm;
+    text-transform: uppercase;
+}
+
+//  $$  MAIN NAVIGATION SUBNAV
+//  ----------------------------------------------------------------------------
+.stacks-nav--subnav {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+//  $$  MAIN NAVIGATION ITEM
+//  ----------------------------------------------------------------------------
+.stacks-nav--item {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+//  $$  MAIN NAVIGATION LINK
+//  ----------------------------------------------------------------------------
+.stacks-nav--link {
+    padding: @su4 @su12 @su4 @su24;
+    font-size: @fs-caption;
+    line-height: @lh-lg;
+    color: @fc-medium;
+
+    &:hover {
+        background-color: fade(@black-050,50%);
+        color: @fc-dark;
+    }
+
+    &.is-active {
+        margin-right: -1px;
         background-color: @orange-300;
         color: @white;
-    }
-}
-
-.search-bar .iconSearch {
-    top: 50%;
-    margin-top: -9px;
-    left: 10px;
-    color: @black-200;
-}
-
-.stacks-subnav {
-    top: 110px;
-
-    .-item {
-        margin-bottom: @su8;
-    }
-
-    .nav {
-        padding-top: @su12;
-        padding-left: @su12;
-    }
-}
-
-//  $$  NAV: SECTIONS
-//  ----------------------------------------------------------------------------
-.-section {
-    padding: @su24 @su4 @su4 @su24;
-    .mx-fs(@fs-caption);
-    color: @fc-medium;
-}
-
-//  $$  NAV: LINKS
-//  ----------------------------------------------------------------------------
-.nav {
-    .-link {
-        background-color: fade(@black-050,0%);
-        .mx-fs(@fs-caption);
-        line-height: @lh-l;
-        color: @fc-light;
 
         &:hover {
-            background-color: fade(@black-050,50%);
+            background-color: @orange-400;
+        }
+    }
+}
+
+//  $$  MAIN NAVIGATION FOOTER
+//  ----------------------------------------------------------------------------
+.stacks-nav--footer {
+    border-top: 1px solid @black-075;
+
+    .stacks-nav--link {
+        padding: @su4;
+        color: @black-400;
+
+        &:hover {
             color: @fc-dark;
         }
     }
 }
 
-.-repo-meta a {
-    color: @black-400;
+//  $$  SEARCH BOX ICON
+//  ----------------------------------------------------------------------------
+.stacks-search-icon {
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    margin-top: -9px;
+    color: @black-200;
+}
 
-    &:hover {
-        color: @fc-dark;
+//  $$  NAV SECONDARY SUBNAV
+//  ----------------------------------------------------------------------------
+.stacks-nav__secondary {
+    padding: 0 @su16;
+
+    .stacks-nav--link {
+        padding: @su2 @su8;
+    }
+
+    .stacks-nav--subnav .stacks-nav--link {
+        padding-left: @su24;
+        color: @fc-light;
+
+        &:hover {
+            color: @fc-dark;
+        }
     }
 }
 
@@ -155,110 +206,89 @@ body {
 //  ============================================================================
 //  $$  TITLES
 //  ----------------------------------------------------------------------------
-.stacks-title {
-    margin-bottom: 1em;
-    .mx-fs(@fs-headline1);
-    line-height: @lh-l;
+.stacks-h1,
+.stacks-h2,
+.stacks-h3,
+.stacks-h4 {
+    margin-bottom: 0.5em;
+    font-weight: 700;
+    line-height: @lh-sm;
     color: @fc-dark;
+}
 
-    .-anchor {
-        display: inline-flex;
-        .fl0;
-        .grid__center;
-        width: @su24;
-        height: @su24;
-        background-color: @white;
-        color: @fc-light;
-        opacity: 0;
-        transition: opacity 300ms @te-smooth;
-    }
+//  --  Page Title
+.stacks-h1 {
+    font-size: @fs-display1;
+}
 
-    &:hover .-anchor {
+//  --  Section Title
+.stacks-h2 {
+    font-size: @fs-headline1;
+}
+
+//  --  Sub-section Title
+.stacks-h3 {
+    font-size: @fs-subheading;
+    color: @fc-medium;
+}
+
+.stacks-h4 {
+    font-size: @fs-body3;
+    color: @fc-light;
+}
+
+.stacks-header--anchor {
+    padding: @su8;
+    border-radius: @br-sm;
+    background-color: @white;
+    color: @fc-light;
+    opacity: 0.25;
+    transition: opacity 150ms @te-smooth;
+
+    &:hover {
+        background-color: @black-050;
+        color: @fc-dark;
         opacity: 1;
     }
-
-    &._subtitle {
-        margin-bottom: @su12;
-        .mx-fs(@fs-title);
-        color: @fc-medium;
-    }
-    &._subtitle-sm {
-        .mx-fs(@fs-body3);
-        color: @fc-light;
-    }
 }
 
-.stacks-page-category {
-    position: relative;
-    margin: @su24;
-    padding-bottom: @su8;
-
-    .mx-fs(@fs-caption);
-    text-transform: uppercase;
-    color: @orange-400;
-
-    &:before {
-        content: "";
-        position: absolute;
-        left: 0;
-        bottom: 0;
-        width: @su24;
-        height: @su2;
-        background-color: @bgc-darker;
-    }
-
-}
-
-//  ============================================================================
 //  $$  PARAGRAPHS
 //  ----------------------------------------------------------------------------
-.stacks-p {
+.stacks-copy {
     margin-top: 0;
     margin-bottom: 1em;
-    line-height: @lh-l;
+    max-width: 55rem;
+    font-size: @fs-body3;
+    line-height: @lh-lg;
     color: @fc-medium;
-
-    &._intro {
-        margin-bottom: @su24;
-        padding-top: @su4;
-        .mx-fs(@fs-title);
-    }
-    &._page    { .mx-fs(@fs-subheading); }
-    &._section { .mx-fs(@fs-body3); }
 
     strong {
         color: @fc-dark;
     }
 }
 
-//  ============================================================================
-//  $$  LISTS
-//  ----------------------------------------------------------------------------
-.stacks-list {
-    margin-bottom: 1em;
-    line-height: @lh-l;
-    color: @fc-medium;
-
-    &._section { .mx-fs(@fs-body3); }
-
-    strong {
-        color: @fc-dark;
-    }
+.stacks-copy__lg {
+    font-size: @fs-title;
 }
+
 
 //  --   Code Tag
 //  ----------------------------------------------------------------------------
 .stacks-code,
 .stacks-p code.highlighter-rouge /* markdown-created code spans */ {
+    display: inline-flex;
+    justify-content: center;
+    align-content: center;
+
     margin: 0 @su2;
-    padding: @su2 @su4;
-    border-radius: @br-md;
-    border: 1px solid @black-050;
+    padding: 3px 5px @su2 @su4;
+    border-radius: @br-sm;
     background-color: @black-050;
 
-    .mx-fs(@fs-caption);
+    font-size: @fs-caption;
     font-family: @ff-mono;
-    color: @fc-medium;
+    color: @fc-dark;
+    line-height: @lh-xs;
 
     vertical-align: middle;
     white-space: nowrap;
@@ -266,28 +296,40 @@ body {
 
 
 //  ============================================================================
+//  $  LISTS
+//  ----------------------------------------------------------------------------
+.stacks-list {
+    margin-bottom: 1em;
+    font-size: @fs-body3;
+    line-height: @lh-lg;
+    color: @fc-medium;
+}
+
+
+//  ============================================================================
 //  $   CODE STYLES
 //  ----------------------------------------------------------------------------
-.stacks-code-preview {
+.stacks-preview {
     margin-bottom: @su48;
     box-shadow: 0 @su2 @su8 fade(@black-050, 50%);
 
-    // Actual code highlight
     .highlight {
+        position: relative;
+
         // Reset margins
         &,
         pre {
             margin: 0;
-            .mx-fs(@fs-body1);
+            font-size: @fs-body1;
             font-family: @ff-mono;
-            line-height: @lh-l;
+            line-height: @lh-lg;
             color: #C5C8C6;
         }
 
         > pre {
+            max-height: 24rem;
+            overflow: auto;
             background-color: @black-800;
-            border-top-left-radius: @br-sm;
-            border-top-right-radius: @br-sm;
             .btr-sm;
             overflow: auto;
         }
@@ -309,29 +351,32 @@ body {
         }
     }
 
-    //  Preview area
-    .-preview {
-        padding: @su16;
-        border-bottom-left-radius: @br-sm;
-        border-bottom-right-radius: @br-sm;
-        border: 1px solid @black-100;
-        border-top-width: 0;
-    }
-
-    //  If there's no preview. We're only showing code.
     &._preview-none .highlight pre {
-        border-radius: @br-sm;
+        .bar-sm;
     }
 }
+
+//  Preview area
+.stacks-preview--example {
+    padding: @su16;
+    border-bottom-left-radius: @br-sm;
+    border-bottom-right-radius: @br-sm;
+    border: 1px solid @black-100;
+    border-top-width: 0;
+}
+
 
 //  ============================================================================
 //  $   ICON PRESENTATION
 //  ----------------------------------------------------------------------------
 //  --   Preview Area
-.stacks-card.stacks-preview .-preview {
+.stacks-icon-preview {
+    padding: @su8;
     min-height: 4em;
+    border-top-left-radius: @br-sm;
+    border-top-right-radius: @br-sm;
     background-color: @black-025;
-    box-shadow: inset 0 -1px 0 @black-050;
+    box-shadow: inset 0 -1px 0 @black-075;
     color: @fc-medium;
 }
 
@@ -342,23 +387,14 @@ body {
 @grid-background: @orange-050;
 @grid--cell-background: @orange-300;
 
-.stacks-grid-wrapper {
-    margin-top: @su8;
-    margin-bottom: @su8;
-
-    .grid > [class*="grid-"] {
-        padding: @su8;
-        border: 1px solid fade(@orange-400,25%);
-        background-color: fade(@orange-400,15%);
-
-        font-family: @ff-mono;
-        .mx-fs(@fs-caption);
-        font-color: @fc-dark;
-    }
-
-    &._background {
-        background-color: fade(@yellow-500,10%);
-    }
+.stacks-grid-example--cell {
+    padding: @su8;
+    border: 1px solid @orange-100;
+    background-color: @orange-050;
+    font-family: @ff-mono;
+    font-size: @fs-caption;
+    line-height: @lh-sm;
+    color: @fc-dark;
 }
 
 .stacks-grid-example {
@@ -385,7 +421,11 @@ pre.lineno {
 //  ============================================================================
 //  $   Search override
 //  ----------------------------------------------------------------------------
-
 .algolia-autocomplete {
     width: 100% !important;
+}
+
+
+.algolia-autocomplete .ds-dropdown-menu {
+    z-index: 9000 !important;
 }

@@ -19,24 +19,19 @@
     display: flex;
     visibility: hidden;
     position: fixed;
-    -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
+
+    z-index: @zi-hide; // Make sure it's also below everything so we can't interact with it.
 
     // This fills the entire viewport without having to worry about size.
     top: 0;
     right: 0;
     bottom: 0;
     left: 0;
-
-    z-index: @zi-hide; // Make sure it's also below everything so we can't interact with it.
-    opacity: 0;
+    align-items: center;
+    justify-content: center;
     background-color: fade(@black-900, 50%);
-    -webkit-backface-visibility: hidden;
-            backface-visibility: hidden;
+    opacity: 0;
+    backface-visibility: hidden;
     /* autoprefixer: off */
     transition: opacity 100ms @te-smooth 0s, z-index 0s 100ms, visibility 0s 100ms; // Transition out
     will-change: visibility, z-index, opacity; // Not supported in IE11 / Edge
@@ -46,8 +41,7 @@
         visibility: visible;
         z-index: @zi-modals;
         opacity: 1;
-        -webkit-transform: translate3d(0, 0, 0) scale3d(1, 1, 1);
-                transform: translate3d(0, 0, 0) scale3d(1, 1, 1);
+        transform: translate3d(0, 0, 0) scale3d(1, 1, 1);
 
         /* autoprefixer: off */
         transition: opacity 100ms @te-smooth 10ms, z-index 0s 0s, visibility 0s 0s, transform 100ms @te-smooth 10ms, transform 100ms @te-smooth 10ms; // Transition in
@@ -55,26 +49,40 @@
 }
 
 .s-modal--dialog {
+    overflow-y: auto;
     visibility: hidden;
     position: fixed; // We shouldn't NEED this, since the parent is fixed, but IE Edge needs it to properly scroll at small viewport sizes.
+    z-index: @zi-hide; // Make sure it's also below everything so we can't interact with it.
     max-width: 600px;
     max-height: 100%;
-    overflow-y: auto;
     padding: @su24;
-    z-index: @zi-hide; // Make sure it's also below everything so we can't interact with it.
-    opacity: 0;
     border-radius: @br-lg;
     background-color: @white;
-    -webkit-box-shadow: @bs-lg;
-            box-shadow: @bs-lg;
-    -webkit-backface-visibility: hidden;
-            backface-visibility: hidden;
-    -webkit-transform: translate3d(0, 30%, 0) scale3d(0.6, 0.6, 0.6);
-            transform: translate3d(0, 30%, 0) scale3d(0.6, 0.6, 0.6);
+    box-shadow: @bs-lg;
+    opacity: 0;
+    backface-visibility: hidden;
+    transform: translate3d(0, 30%, 0) scale3d(0.6, 0.6, 0.6);
+
     /* autoprefixer: off */
     transition: opacity 200ms @te-smooth 0s, z-index 0s 100ms, visibility 0s 100ms, transform 100ms @te-smooth 0s, transform 100ms @te-smooth 0s; // Transition out
     will-change: visibility, z-index, opacity, transform; // Not supported in IE11 / Edge
     -webkit-overflow-scrolling: touch; // Make scrolling have inertia on mobile devices.
+
+    .s-modal[aria-hidden="false"] & {
+        transform: translate3d(0, 0, 0) scale3d(1, 1, 1)
+    }
+
+    //  IE11 and below don't correctly position the dialog box, so we need to set some additional
+    //  values to make sure it visibly centers.
+    @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+        top: 50%;
+        left: 50%;
+        transform: translate3d(-50%, -20%, 0) scale3d(0.6, 0.6, 0.6);
+
+        .s-modal[aria-hidden="false"] & {
+            transform: translate3d(-50%, -50%, 0) scale3d(1, 1, 1)
+        }
+    }
 }
 
 //  [1] To override .s-btn class attributes
@@ -95,7 +103,7 @@
 .s-modal--header {
     margin-bottom: @su16;
     color: @fc-dark;
-    .mx-fs(@fs-headline1);
+    font-size: @fs-headline1;
 }
 
 .s-modal--body {
