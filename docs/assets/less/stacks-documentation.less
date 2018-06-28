@@ -92,6 +92,7 @@ body {
     max-width: 20rem;
     border-right: 1px solid @black-050;
     background-color: @black-025;
+    z-index: @zi-navigation-fixed;
 }
 
 //  $$  MAIN NAVIGATION MENU
@@ -420,7 +421,11 @@ pre.lineno {
 //  ============================================================================
 //  $   Search override
 //  ----------------------------------------------------------------------------
-
 .algolia-autocomplete {
     width: 100% !important;
+}
+
+
+.algolia-autocomplete .ds-dropdown-menu {
+    z-index: 9000 !important;
 }
