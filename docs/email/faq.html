@@ -4,9 +4,16 @@ title: Frequently Asked Questions
 description: TBD
 ---
 <section class="stacks-section">
+    <h2 class="grid jc-space-between ai-center stacks-h2"><div class="grid--cell fl1">Why do we have to write CSS inline?</div></h2>
+    <p class="stacks-copy">
+        It's still the safest way to ensure CSS styles are applied in email clients. Referencing external stylesheets isn't well-supported in email. Embedded CSS in a <span class="stacks-code">&lt;style&gt;</span> tag <em>does</em> have decent support, there are a few hold outs like <a href="https://emails.hteumeuleu.com/trying-to-make-sense-of-gmail-css-support-after-the-2016-update-53c15151063a">a few Gmail clients</a> and a <a href="https://emails.hteumeuleu.com/should-we-stop-inlining-styles-in-emails-8c3b64f0d407">smattering of mostly non-US mobile clients</a>. Given Stack Overflow’s volume and reach, we choose to support as many email clients as we can, even ones that don't support the <span class="stacks-code">&lt;style&gt;</span> tag. So we opt for writing CSS inline, which is supported everywhere.
+    </p>
+</section>
+
+<section class="stacks-section">
     <h2 class="grid jc-space-between ai-center stacks-h2"><div class="grid--cell fl1">How does CSS inheritance work in email?</div></h2>
     <p class="stacks-copy">
-        Email clients handle CSS inheritance differently, so it’s best to place inline CSS on the HTML tag close to the content you wish to style instead of relying on the cascade.
+        Various email clients handle CSS inheritance differently from one another, so it’s best to place inline CSS on the HTML tag close to the content you wish to style instead of relying on the cascade.
     </p>
     <div class="grid grid__allcells6 jc-space-between gs24 gsx">
         <div class="grid--cell">
@@ -45,13 +52,6 @@ description: TBD
 </section>
 
 <section class="stacks-section">
-    <h2 class="grid jc-space-between ai-center stacks-h2"><div class="grid--cell fl1">Why do we have to write CSS inline?</div></h2>
-    <p class="stacks-copy">
-        It's still the safest way to ensure CSS styles are applied in email clients. Referencing external stylesheets isn't well-supported in email, though support for embedding CSS in a <span class="stacks-code">&lt;style&gt;</span> tag does have decent support. Inline CSS, though, has support nearly everywhere. Given Stack Overflow’s volume and reach, we choose to support as many email clients as we can. Even ones that don't support the <span class="stacks-code">&lt;style&gt;</span> tag, namely <a href="https://emails.hteumeuleu.com/trying-to-make-sense-of-gmail-css-support-after-the-2016-update-53c15151063a">the few Gmail clients that haven’t been updated</a> and a <a href="https://emails.hteumeuleu.com/should-we-stop-inlining-styles-in-emails-8c3b64f0d407">smattering of mostly non-US mobile clients</a>. For this reason, we don’t rely on support for the <span class="stacks-code">&lt;style&gt;</span> tag.
-    </p>
-</section>
-
-<section class="stacks-section">
     <h2 class="grid jc-space-between ai-center stacks-h2"><div class="grid--cell fl1">How does margin and padding work in email?</div></h2>
     <p class="stacks-copy">
         Use <strong>margin</strong> block-level typography tags like <span class="stacks-code">&lt;h&gt;</span>, <span class="stacks-code">&lt;p&gt;</span>, <span class="stacks-code">&lt;ul&gt;</span>, and <span class="stacks-code">&lt;li&gt;</span>... and use <strong>padding</strong> on <span class="stacks-code">&lt;td&gt;</span>'s.
@@ -59,12 +59,42 @@ description: TBD
     <p class="stacks-copy">
         Outlook only honors margins on typography tags, and only honors padding on <span class="stacks-code">&lt;td&gt;</span> tags. Its interpretation of spacing on other tags like <span class="stacks-code">&lt;table&gt;</span>, <span class="stacks-code">&lt;div&gt;</span>, and <span class="stacks-code">&lt;img&gt;</span> tags is sketchy, so it's best to avoid spacing with those.
     </p>
+    <div class="grid grid__allcells6 jc-space-between gs24 gsx">
+        <div class="grid--cell">
+            <p class="stacks-copy grid ai-center fc-green-400 fw-bold fs-body2 tt-uppercase">
+                <svg aria-hidden="true" class="svg-icon iconCheckmark mr4" width="18" height="18" viewBox="0 0 18 18"><path d="M16 4.41L14.59 3 6 11.59 2.41 8 1 9.41l5 5z"></path></svg> Do
+            </p>
+            <div class="stacks-preview">
+{% highlight html linenos %}
+<td style="padding-left: 10px;">
+    <p style="margin-bottom: 10px">
+        Paragraph
+    </p>
+</td>
+{% endhighlight %}
+            </div>
+        </div>
+        <div class="grid--cell">
+            <p class="stacks-copy grid ai-center fc-red-500 fw-bold fs-body2 tt-uppercase">
+                <svg aria-hidden="true" class="svg-icon iconClear mr4" width="18" height="18" viewBox="0 0 18 18"><path d="M15 4.41L13.59 3 9 7.59 4.41 3 3 4.41 7.59 9 3 13.59 4.41 15 9 10.41 13.59 15 15 13.59 10.41 9z"></path></svg> Don't
+            </p>
+            <div class="stacks-preview">
+{% highlight html linenos %}
+<td style="margin-left: 10px;">
+    <p style="padding-bottom: 10px">
+        Paragraph
+    </p>
+</td>
+{% endhighlight %}
+            </div>
+        </div>
+    </div>
 </section>
 
 <section class="stacks-section">
     <h2 class="grid jc-space-between ai-center stacks-h2"><div class="grid--cell fl1">What is the best &lt;doctype&gt; for email?</div></h2>
     <p class="stacks-copy">
-        Use the HTML5 doctype <code class="stacks-code">&lt;!doctype html&gt;</code>. It’s the shortest and easiest to remember, and it’s enough to trigger standards mode on supported clients. <a href="https://emails.hteumeuleu.com/which-doctype-should-you-use-in-html-emails-cd323fdb793c">This article</a> goes into more detail. <strong>There's no need to close <code class="stacks-code">&lt;img&gt;</code> tags with trailing <code class="stacks-code">/</code> XHTML style.</strong>
+        Use the HTML5 doctype <code class="stacks-code">&lt;!doctype html&gt;</code>. It’s the shortest and easiest to remember, and it’s enough to trigger standards mode on supported clients. <a href="https://emails.hteumeuleu.com/which-doctype-should-you-use-in-html-emails-cd323fdb793c">This article</a> goes into more detail. There's no need to close <code class="stacks-code">&lt;img&gt;</code> tags with trailing <code class="stacks-code">/</code> (XHTML style).
     </p>
 </section>
 
@@ -78,7 +108,7 @@ description: TBD
         <li><strong>Background images</strong> should be saved at @1x since they don’t scale reliably in all major email clients.</li>
     </ul>
     <p class="stacks-copy">
-        Ideally images should be under ~100KB. Tools like <a href="https://imageoptim.com/mac">Image Optim</a>, <a href="https://kraken.io/web-interface">Krackin</a>, and <a href="https://tinypng.com/">TinyPNG</a> help bring down a file size. Keep in mind that animated GIFs tend to get very large, so it’s a good idea to keep them simple and use them sparingly.
+        Ideally, images should be under ~100KB. Tools like <a href="https://imageoptim.com/mac">Image Optim</a>, <a href="https://kraken.io/web-interface">Krackin</a>, and <a href="https://tinypng.com/">TinyPNG</a> help bring down a file size. Keep in mind that animated GIFs tend to get very large, so it’s a good idea to keep them simple and use them sparingly.
     </p>
     <p class="stacks-copy">
         Images should be hosted within their respective ESP. Upload images in Iterable for Iterable emails, add images in GitHub for StackMail emails, etc. Images should not be referenced using services like Imgur or Dropbox, as they have a greater chance of being marked as spam.
