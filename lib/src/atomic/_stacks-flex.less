@@ -17,7 +17,7 @@
 //      This determines the direction content flows within a parent container.
 //      The default values are row.
 //  ----------------------------------------------------------------------------
-.fd-row                   { flex-direction: row !important; }
+#stacks-internals #responsify('.fd-row', { flex-direction: row !important; });
 #stacks-internals #responsify('.fd-row-reverse', { flex-direction: row-reverse !important; });
 #stacks-internals #responsify('.fd-column', { flex-direction: column !important; });
 #stacks-internals #responsify('.fd-column-reverse', { flex-direction: column-reverse !important; });
@@ -25,9 +25,9 @@
 //  --  FLEX WRAP
 //      This determines if a parent's child items will wrap or not.
 //  ----------------------------------------------------------------------------
-.fw-wrap                  { flex-wrap: wrap !important; }
-.fw-reverse               { flex-wrap: wrap-reverse !important; }
-.fw-none                  { flex-wrap: none !important; }
+#stacks-internals #responsify('.fw-wrap', { flex-wrap: wrap !important; });
+#stacks-internals #responsify('.fw-reverse', { flex-wrap: wrap-reverse !important; });
+#stacks-internals #responsify('.fw-none', { flex-wrap: none !important; });
 
 //  --  FLEX FLOW
 //      This is another shorthand property for flex-direction and flex-wrap.
@@ -69,11 +69,15 @@
 //      the parent's cross axis. Think of it the cross-axis for
 //      justify-content.
 //  ----------------------------------------------------------------------------
-.ai-baseline              { align-items: baseline !important; }
-.ai-center                { align-items: center !important; }
-.ai-end                   { align-items: flex-end !important; }
-.ai-start                 { align-items: flex-start !important; }
-.ai-stretch               { align-items: stretch !important; }
+#stacks-internals #build-classes(
+    responsive,
+    '.ai',
+    {
+        .template(@value) when (@value=start) or (@value=end) { align-items: ~"flex-@{value}" !important; }
+        .template(@value) when (default()) { align-items: @value !important; };
+    },
+    baseline center end start stretch
+);
 
 //  --  CENTER ITEMS
 //      A common combination of classes is .jc-center and .ai-center.
@@ -85,12 +89,15 @@
 //      Allows child containers to re-align themselves irregardless
 //      of the parent's main axis direction.
 //  ----------------------------------------------------------------------------
-.as-auto                  { align-self: auto !important; }
-.as-baseline              { align-self: baseline !important; }
-.as-center                { align-self: center !important; }
-.as-end                   { align-self: flex-end !important; }
-.as-start                 { align-self: flex-start !important; }
-.as-stretch               { align-self: stretch !important; }
+#stacks-internals #build-classes(
+    responsive,
+    '.as',
+    {
+        .template(@value) when (@value=start) or (@value=end) { align-self: ~"flex-@{value}" !important; }
+        .template(@value) when (default()) { align-self: @value !important; };
+    },
+    auto baseline center end start stretch
+);
 
 //  --  FLEX
 //      Graduating scale of flex-grow and flex-shrink values
