@@ -4,31 +4,58 @@ title: Email Templates
 description: Email templates allow us to create consistent customer communications.
 ---
 <section class="stacks-section">
-    <h2 class="grid jc-space-between ai-center stacks-h2"><div class="grid--cell fl1">Short Stack</div></h3>
+    <h2 class="grid jc-space-between ai-center stacks-h2"><div class="grid--cell fl1">Short Transactional</div></h3>
     <p class="stacks-copy">
         Good for simple emails with an “FYI” type of message.
     </p>
     <ul class="stacks-list">
         <li>Forgot Password</li>
         <li>You’ve been removed from a Team</li>
-        <li>Take our Survey</li>
+        <li>New top user</li>
     </ul>
-    <figure class="stack-figure">
-        <img src="http://via.placeholder.com/800?text=Basic-Email-Preview" class="wmx100">
-    </figure>
+
+    <ul class="list-reset grid ai-center bl bt br bc-black-3 p16">
+        <li class="grid--cell mr8">
+            <a href="#" class="s-link s-link__muted py8 px12 bar-pill js-sm-btn js-query-select-btn">
+                <svg xmlns="http://www.w3.org/2000/svg" class="svg-icon va-text-top" width="10" height="14" viewBox="0 0 10 14">
+                  <path d="M2,2 L2,10 L8,10 L8,2 L2,2 Z M2,0 L8,0 C9.1045695,0 10,0.8954305 10,2 L10,12 C10,13.1045695 9.1045695,14 8,14 L2,14 C0.8954305,14 0,13.1045695 0,12 L0,2 C0,0.8954305 0.8954305,0 2,0 Z M4,11 L4,13 L6,13 L6,11 L4,11 Z"/>
+                </svg>
+                Small
+            </a>
+        </li>
+        <li class="grid--cell mr8">
+            <a href="#" class="s-link s-link__muted py8 px12 bar-pill bg-black-100 fc-black-600 js-lg-btn js-query-select-btn">
+                <svg xmlns="http://www.w3.org/2000/svg" class="svg-icon va-text-top" width="26" height="14" viewBox="0 0 26 14">
+                  <path fill-rule="evenodd" d="M5,0 L21,0 C22.1045695,0 23,0.8954305 23,2 L23,12 L26,12 L26,14 L0,14 L0,12 L3,12 L3,2 C3,0.8954305 3.8954305,0 5,0 Z M5,2 L5,11 L21,11 L21,2 L5,2 Z"/>
+                </svg>
+                Large
+            </a>
+        </li>
+        <li class="grid--cell ml-auto">
+            <a href="#" class="grid ai-center py8 px12 s-btn s-btn__primary s-btn__xs">
+                <svg aria-hidden="true" class="svg-icon iconCode mr4" width="18" height="18" viewBox="0 0 18 18"><path d="M11.41 3l6 6-6 6L10 13.59 14.59 9 10 4.41 11.41 3zM6.59 3L8 4.41 3.41 9 8 13.59 6.59 15l-6-6 6-6z"></path></svg>
+                Grab the Code
+            </a>
+        </li>
+    </ul>
+
+    <div class="bl bt br bc-black-3 ta-center">
+        <iframe title="Example of a Short Transactional Email" height="700" src="http://htmlpreview.github.io/?https://github.com/TedGoas/Cerberus/blob/master/cerberus-responsive.html" class="ba baw0 m-auto w100 js-iframe"></iframe>
+    </div>
+
 </section>
 
 <hr class="stacks-hr">
 
 <section class="stacks-section">
-    <h2 class="grid jc-space-between ai-center stacks-h2"><div class="grid--cell fl1">Tall Stack</div></h3>
+    <h2 class="grid jc-space-between ai-center stacks-h2"><div class="grid--cell fl1">Long Transactional</div></h3>
     <p class="stacks-copy">
         Good for emails with an “It’s important you acknowledge or address this” type of message.
     </p>
     <ul class="stacks-list">
         <li>Your answer was accepted</li>
         <li>You’ve been invited to a Team</li>
-        <li>A new featured job you might be interested in</li>
+        <li>New featured job</li>
     </ul>
     <figure class="stack-figure">
         <img src="http://via.placeholder.com/800?text=Basic-Email-Preview" class="wmx100">
@@ -38,7 +65,7 @@ description: Email templates allow us to create consistent customer communicatio
 <hr class="stacks-hr">
 
 <section class="stacks-section">
-    <h2 class="grid jc-space-between ai-center stacks-h2"><div class="grid--cell fl1">Full Stack</div></h3>
+    <h2 class="grid jc-space-between ai-center stacks-h2"><div class="grid--cell fl1">Promotional</div></h3>
     <p class="stacks-copy">
         Good for emails with complex or multiple messages.
     </p>
@@ -51,3 +78,37 @@ description: Email templates allow us to create consistent customer communicatio
         <img src="http://via.placeholder.com/800?text=Basic-Email-Preview" class="wmx100">
     </figure>
 </section>
+
+<script>
+    $(function(){
+        var smBtn = $(".js-sm-btn");
+        var lgBtn = $(".js-lg-btn");
+        var btns = $(".js-query-select-btn");
+        var gridTarget = $(".js-iframe");
+
+        smBtn.click(function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            removeClasses();
+            addSelection($(this));
+            gridTarget.addClass("w60");
+        });
+
+        lgBtn.click(function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            removeClasses();
+            addSelection($(this));
+            gridTarget.addClass("w100");
+        });
+
+        function removeClasses() {
+            gridTarget.removeClass("w60 w100");
+            btns.removeClass("bg-black-100 fc-black-600");
+        };
+
+        function addSelection(obj) {
+            obj.addClass("bg-black-100 fc-black-600");
+        };
+    });
+</script>
