@@ -6,7 +6,7 @@ description: To avoid specifying color values by hand, we’ve included a robust
 
 
 <section class="stacks-section">
-    {% header {element: 'h2', text: 'Primary Colors'} %}
+    <h2 class="grid jc-space-between ai-center stacks-h2"><div class="grid--cell fl1">Primary Colors</div></h2>
     <div class="grid gs16 grid__allcells4">
         <a class="grid--cell fw-wrap p12 bg-orange-400 fc-dark mb12 bar-sm" href="#orange">
             <h2 class="fs-subheading mb4">Orange</h2>
@@ -26,7 +26,7 @@ description: To avoid specifying color values by hand, we’ve included a robust
 </section>
 
 <section class="stacks-section">
-    {% header {element: 'h2', text: 'Accent Colors'} %}
+    <h2 class="grid jc-space-between ai-center stacks-h2"><div class="grid--cell fl1">Accent Colors</div></h2>
     <div class="grid fw-wrap gs16 grid__allcells3">
         <a class="grid--cell p12 bg-powder-100 mb12 fc-powder-900 bar-sm" href="#powder">
             <h2 class="fs-subheading mb4">Powder</h2>
@@ -51,15 +51,10 @@ description: To avoid specifying color values by hand, we’ve included a robust
 </section>
 
 <section class="stacks-section">
-    {% header {element: 'h2', text: 'Color Stops'} %}
+    <h2 class="grid jc-space-between ai-center stacks-h2"><div class="grid--cell fl1">Color Stops</div></h2>
     {% for color in site.data.color-stops %}
         {% assign color_stops = color.stops %}
-        <div class="grid jc-space-between ai-center" id="{{ color.name}}">
-            <h3 class="grid--cell fl1 stacks-h3">{{ color.name | capitalize }}</h3>
-            <a class="grid grid__center stacks-header--anchor" href="#{{ color.name}}">
-                {% svg /resources/svg-icons/Link.svg width="18" height="18" %}
-            </a>
-        </div>
+        <h3 class="grid jc-space-between ai-center stacks-h3"><div class="grid--cell fl1">{{ color.name | capitalize }}</div></h3>
         <table class="s-table s-table__hover s-table__condensed va-middle mb48 fs-caption">
             <thead>
                 <tr>
