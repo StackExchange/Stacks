@@ -73,7 +73,7 @@
     responsive,
     '.ai',
     {
-        .template(@value) when (@value=start) or (@value=end) { align-items: ~"flex-@{value}" !important; }
+        .template(@value) when (@value=start), (@value=end) { align-items: ~"flex-@{value}" !important; }
         .template(@value) when (default()) { align-items: @value !important; };
     },
     baseline center end start stretch
@@ -93,7 +93,7 @@
     responsive,
     '.as',
     {
-        .template(@value) when (@value=start) or (@value=end) { align-self: ~"flex-@{value}" !important; }
+        .template(@value) when (@value=start), (@value=end) { align-self: ~"flex-@{value}" !important; }
         .template(@value) when (default()) { align-self: @value !important; };
     },
     auto baseline center end start stretch
