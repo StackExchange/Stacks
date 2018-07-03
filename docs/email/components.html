@@ -6,30 +6,69 @@ description: When to use and how to implement common email components.
 <section class="stacks-section">
     <h2 class="grid jc-space-between ai-center stacks-h2"><div class="grid--cell fl1">Typography</div></h2>
     <p class="stacks-copy">
-        It's safe and accessible to use semantic HTML tags like <code class="stacks-code">&lt;h&gt;</code>, <code class="stacks-code">&lt;p&gt;</code>, and <code class="stacks-code">&lt;ul&gt;</code> for text in email. Use inline CSS to specify intended styles (like the color of an <code class="stacks-code">&lt;a href&gt;</code> tag) and zero out unintended defaults (like the margin around a <code class="stacks-code">&lt;p&gt;</code> tag)
+        It's safe and accessible to use semantic HTML tags like <code class="stacks-code">&lt;h&gt;</code>, <code class="stacks-code">&lt;p&gt;</code>, and <code class="stacks-code">&lt;ul&gt;</code> for text in email just as we do for the web. The main difference in email is that <a href="/email/faq#whydowehavetowritecssinline">CSS should be written inline</a> to specify intended styles (like the color of an <code class="stacks-code">&lt;a href&gt;</code> tag) and zero out unintended defaults (like the margin around a <code class="stacks-code">&lt;p&gt;</code> tag)
     </p>
+    <p class="stacks-copy">
+        This page provides some common typography patterns for email, but anything on <a href="/base/typography">the main Stacks typography page</a> is fair game too (as long as CSS is written inline, of course).
+    </p>
+    <h3 class="grid jc-space-between ai-center stacks-h3"><div class="grid--cell fl1">Paragraphs</div></h3>
     <div class="stacks-preview">
 {% highlight html linenos %}
-<td style="font-family: arial, sans-serif; font-size: 15px; line-height: 19px; color: #54595F; text-align: left;">
-    <h2 style="margin: 0 0 15px 0; font-size: 21px; color: #242629; font-weight: bold;">This is a small section title</h2>
-    <p style="margin: 0 0 15px 0;">Lorem ipsum <strong>dolor</strong> sit amet, consectetur <a href="https://stackoverflow.com/" style="color: #0077CC; text-decoration: none;">adipiscing elit</a>. Cras nisi magna, mollis luctus sapien varius, mattis ornare est. Sed non tincidunt erat, ut commodo augue.</p>
-    <p style="margin: 0 0 15px 0;" class="has-markdown">I'm a <em>markdown</em> paragraph. Lorem ipsum <a href="https://stackoverflow.com/" style="color: #0077CC; text-decoration: none;">dolor sit amet</a>, consectetur. <strong>Cras nisi magna</strong>, mollis luctus sapien varius, mattis ornare est.</p>
-    <ul style="padding: 0; margin: 0 0 15px 0; list-style-type: disc;">
-        <li style="margin:0 0 10px 30px;">A list item.</li>
-        <li style="margin:0 0 10px 30px;">Another list item here.</li>
-        <li style="margin: 0 0 0 30px;">Everyone gets a list item, list items for everyone!</li>
-    </ul>
-</td>
+<p style="margin: 0 0 15px 0; font-size: 17px; line-height: 23px;">A lead paragraph with slightly larger text lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras nisi magna, mollis luctus sapien varius, mattis ornare est.</p>
+<p style="margin: 0 0 15px 0;">A regular paragraph with <strong>strong</strong> and <em>italic</em> text, consectetur adipiscing elit. Cras nisi magna, mollis luctus sapien varius, mattis ornare est. Sed non tincidunt erat, ut commodo augue.</p>
+<p style="margin: 0;">A paragraph with no margin (useful for the last paragraph in a section).</p>
 {% endhighlight %}
         <div class="stacks-preview--example" style="font-family: arial, sans-serif; font-size: 15px; line-height: 19px; color: #54595F; text-align: left;">
-            <h2 style="margin: 0 0 15px 0; font-size: 21px; color: #242629; font-weight: bold;">This is a small section title</h2>
-            <p style="margin: 0 0 15px 0;">Lorem ipsum <strong>dolor</strong> sit amet, consectetur <a href="https://stackoverflow.com/" style="color: #0077CC; text-decoration: none;">adipiscing elit</a>. Cras nisi magna, mollis luctus sapien varius, mattis ornare est. Sed non tincidunt erat, ut commodo augue.</p>
-            <p style="margin: 0 0 15px 0;" class="has-markdown">I'm a <em>markdown</em> paragraph. Lorem ipsum <a href="https://stackoverflow.com/" style="color: #0077CC; text-decoration: none;">dolor sit amet</a>, consectetur. <strong>Cras nisi magna</strong>, mollis luctus sapien varius, mattis ornare est.</p>
+            <p style="margin: 0 0 15px 0; font-size: 17px; line-height: 23px;">A lead paragraph with slightly larger text lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras nisi magna, mollis luctus sapien varius, mattis ornare est.</p>
+            <p style="margin: 0 0 15px 0;">A regular paragraph with <strong>strong</strong> and <em>italic</em> text, consectetur adipiscing elit. Cras nisi magna, mollis luctus sapien varius, mattis ornare est. Sed non tincidunt erat, ut commodo augue.</p>
+            <p style="margin: 0;">A paragraph with no margin (useful for the last paragraph in a section).</p>
+        </div>
+    </div>
+    <h3 class="grid jc-space-between ai-center stacks-h3"><div class="grid--cell fl1">Headlines</div></h3>
+    <div class="stacks-preview">
+{% highlight html linenos %}
+<h1 style="font-weight: bold; font-size: 27px; line-height: 27px; color: #242629; margin: 0 0 15px 0;">I'm a headline</h1>
+<h2 style="font-weight: bold; font-size: 21px; line-height: 24px; color: #242629; margin: 0 0 15px 0;">I'm a subheadline</h2>
+{% endhighlight %}
+        <div class="stacks-preview--example" style="font-family: arial, sans-serif; text-align: left;">
+            <h1 style="font-weight: bold; font-size: 27px; line-height: 27px; color: #242629; margin: 0 0 15px 0;">I'm a headline</h1>
+            <h2 style="font-weight: bold; font-size: 21px; line-height: 24px; color: #242629; margin: 0 0 15px 0;">I'm a subheadline</h2>
+        </div>
+    </div>
+    <h3 class="grid jc-space-between ai-center stacks-h3"><div class="grid--cell fl1">Lists</div></h3>
+    <div class="stacks-preview">
+{% highlight html linenos %}
+<ul style="padding: 0; margin: 0 0 15px 0; list-style-type: disc;">
+    <li style="margin: 0 0 10px 30px;">You get a list item.</li>
+    <li style="margin: 0 0 10px 30px;">And you get a list item!</li>
+    <li style="margin: 0 0 0 30px;">Everyone gets a list item!</li>
+</ul>
+<ol style="padding: 0; margin: 0 0 15px 0; list-style-type: decimal;">
+    <li style="margin: 0 0 10px 30px;">You get a list item.</li>
+    <li style="margin: 0 0 10px 30px;">And you get a list item!</li>
+    <li style="margin: 0 0 0 30px;">Everyone gets a list item!</li>
+</ol>
+{% endhighlight %}
+        <div class="stacks-preview--example" style="font-family: arial, sans-serif; font-size: 15px; line-height: 19px; color: #54595F; text-align: left;">
             <ul style="padding: 0; margin: 0 0 15px 0; list-style-type: disc;">
-                <li style="margin:0 0 10px 30px;">You get a list item.</li>
-                <li style="margin:0 0 10px 30px;">And you get a list item!</li>
+                <li style="margin: 0 0 10px 30px;">You get a list item.</li>
+                <li style="margin: 0 0 10px 30px;">And you get a list item!</li>
                 <li style="margin: 0 0 0 30px;">Everyone gets a list item!</li>
             </ul>
+            <ol style="padding: 0; margin: 0 0 15px 0; list-style-type: decimal;">
+                <li style="margin: 0 0 10px 30px;">You get a list item.</li>
+                <li style="margin: 0 0 10px 30px;">And you get a list item!</li>
+                <li style="margin: 0 0 0 30px;">Everyone gets a list item!</li>
+            </ol>
+        </div>
+    </div>
+    <h3 class="grid jc-space-between ai-center stacks-h3"><div class="grid--cell fl1">Links</div></h3>
+    <div class="stacks-preview">
+{% highlight html linenos %}
+<a href="https://stackoverflow.com/" style="color: #0077CC; text-decoration: none;">Go to the homepage</a>
+{% endhighlight %}
+        <div class="stacks-preview--example" style="font-family: arial, sans-serif; font-size: 15px; line-height: 19px; color: #54595F; text-align: left;">
+            <a href="https://stackoverflow.com/" style="color: #0077CC; text-decoration: none;">Go to the homepage</a>
         </div>
     </div>
     <h3 class="grid jc-space-between ai-center stacks-h3"><div class="grid--cell fl1">Using Markdown</div></h3>
