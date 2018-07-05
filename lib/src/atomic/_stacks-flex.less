@@ -17,26 +17,17 @@
 //      This determines the direction content flows within a parent container.
 //      The default values are row.
 //  ----------------------------------------------------------------------------
-.fd-row                   { flex-direction: row !important; }
-.fd-row-reverse           { flex-direction: row-reverse !important; }
-.lg\:fd-row-reverse       { #stacks-internals #screen-lg({ .fd-row-reverse; }) }
-.md\:fd-row-reverse       { #stacks-internals #screen-md({ .fd-row-reverse; }) }
-.sm\:fd-row-reverse       { #stacks-internals #screen-sm({ .fd-row-reverse; }) }
-.fd-column                { flex-direction: column !important; }
-.lg\:fd-column            { #stacks-internals #screen-lg({ .fd-column; }) }
-.md\:fd-column            { #stacks-internals #screen-md({ .fd-column; }) }
-.sm\:fd-column            { #stacks-internals #screen-sm({ .fd-column; }) }
-.fd-column-reverse        { flex-direction: column-reverse !important; }
-.lg\:fd-column-reverse    { #stacks-internals #screen-lg({ .fd-column-reverse; }) }
-.md\:fd-column-reverse    { #stacks-internals #screen-md({ .fd-column-reverse; }) }
-.sm\:fd-column-everse     { #stacks-internals #screen-sm({ .fd-column-reverse; }) }
+#stacks-internals #responsify('.fd-row', { flex-direction: row !important; });
+#stacks-internals #responsify('.fd-row-reverse', { flex-direction: row-reverse !important; });
+#stacks-internals #responsify('.fd-column', { flex-direction: column !important; });
+#stacks-internals #responsify('.fd-column-reverse', { flex-direction: column-reverse !important; });
 
 //  --  FLEX WRAP
 //      This determines if a parent's child items will wrap or not.
 //  ----------------------------------------------------------------------------
-.fw-wrap                  { flex-wrap: wrap !important; }
-.fw-reverse               { flex-wrap: wrap-reverse !important; }
-.fw-none                  { flex-wrap: none !important; }
+#stacks-internals #responsify('.fw-wrap', { flex-wrap: wrap !important; });
+#stacks-internals #responsify('.fw-reverse', { flex-wrap: wrap-reverse !important; });
+#stacks-internals #responsify('.fw-none', { flex-wrap: none !important; });
 
 //  --  FLEX FLOW
 //      This is another shorthand property for flex-direction and flex-wrap.
@@ -54,30 +45,12 @@
 //  --  JUSTIFY CONTENT
 //      Defines the child alignment along the parent's main axis
 //  ----------------------------------------------------------------------------
-.jc-center                { justify-content: center !important; }
-.lg\:jc-center            { #stacks-internals #screen-lg({ .jc-center; }) }
-.md\:jc-center            { #stacks-internals #screen-md({ .jc-center; }) }
-.sm\:jc-center            { #stacks-internals #screen-sm({ .jc-center; }) }
-.jc-end                   { justify-content: flex-end !important; }
-.lg\:jc-end               { #stacks-internals #screen-lg({ .jc-end; }) }
-.md\:jc-end               { #stacks-internals #screen-md({ .jc-end; }) }
-.sm\:jc-end               { #stacks-internals #screen-sm({ .jc-end; }) }
-.jc-space-around          { justify-content: space-around !important; }
-.lg\:jc-space-around      { #stacks-internals #screen-lg({ .jc-space-around; }) }
-.md\:jc-space-around      { #stacks-internals #screen-md({ .jc-space-around; }) }
-.sm\:jc-space-around      { #stacks-internals #screen-sm({ .jc-space-around; }) }
-.jc-space-between         { justify-content: space-between !important; }
-.lg\:jc-space-between     { #stacks-internals #screen-lg({ .jc-space-between; }) }
-.md\:jc-space-between     { #stacks-internals #screen-md({ .jc-space-between; }) }
-.sm\:jc-space-between     { #stacks-internals #screen-sm({ .jc-space-between; }) }
-.jc-space-evenly          { justify-content: space-evenly !important; }
-.lg\:jc-space-evenly      { #stacks-internals #screen-lg({ .jc-space-evenly; }) }
-.md\:jc-space-evenly      { #stacks-internals #screen-md({ .jc-space-evenly; }) }
-.sm\:jc-space-evenly      { #stacks-internals #screen-sm({ .jc-space-evenly; }) }
-.jc-start                 { justify-content: flex-start !important; }
-.lg\:jc-start             { #stacks-internals #screen-lg({ .jc-start; }) }
-.md\:jc-start             { #stacks-internals #screen-md({ .jc-start; }) }
-.sm\:jc-start             { #stacks-internals #screen-sm({ .jc-start; }) }
+#stacks-internals #responsify('.jc-center', { justify-content: center !important; });
+#stacks-internals #responsify('.jc-end', { justify-content: flex-end !important; });
+#stacks-internals #responsify('.jc-space-around', { justify-content: space-around !important; });
+#stacks-internals #responsify('.jc-space-between', { justify-content: space-between !important; });
+#stacks-internals #responsify('.jc-space-evenly', { justify-content: space-evenly !important; });
+#stacks-internals #responsify('.jc-start', { justify-content: flex-start !important; });
 
 //  --  ALIGN CONTENT
 //      Aligns the container's lines when there is extra space in the
@@ -96,11 +69,15 @@
 //      the parent's cross axis. Think of it the cross-axis for
 //      justify-content.
 //  ----------------------------------------------------------------------------
-.ai-baseline              { align-items: baseline !important; }
-.ai-center                { align-items: center !important; }
-.ai-end                   { align-items: flex-end !important; }
-.ai-start                 { align-items: flex-start !important; }
-.ai-stretch               { align-items: stretch !important; }
+#stacks-internals #build-classes(
+    responsive,
+    '.ai',
+    {
+        .template(@value) when (@value=start), (@value=end) { align-items: ~"flex-@{value}" !important; }
+        .template(@value) when (default()) { align-items: @value !important; };
+    },
+    baseline center end start stretch
+);
 
 //  --  CENTER ITEMS
 //      A common combination of classes is .jc-center and .ai-center.
@@ -112,12 +89,15 @@
 //      Allows child containers to re-align themselves irregardless
 //      of the parent's main axis direction.
 //  ----------------------------------------------------------------------------
-.as-auto                  { align-self: auto !important; }
-.as-baseline              { align-self: baseline !important; }
-.as-center                { align-self: center !important; }
-.as-end                   { align-self: flex-end !important; }
-.as-start                 { align-self: flex-start !important; }
-.as-stretch               { align-self: stretch !important; }
+#stacks-internals #build-classes(
+    responsive,
+    '.as',
+    {
+        .template(@value) when (@value=start), (@value=end) { align-self: ~"flex-@{value}" !important; }
+        .template(@value) when (default()) { align-self: @value !important; };
+    },
+    auto baseline center end start stretch
+);
 
 //  --  FLEX
 //      Graduating scale of flex-grow and flex-shrink values

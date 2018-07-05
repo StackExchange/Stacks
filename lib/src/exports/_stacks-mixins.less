@@ -7,21 +7,6 @@
 //  visit https://stackoverflow.design/
 //
 //  ============================================================================
-//  $   TEXT SIZES
-//  ----------------------------------------------------------------------------
-//  Create a REM mixin
-.mx-fs(@value) when (ispixel(@value)) {
-    @rem: (unit(@value)) / unit(@fs-base);
-
-    font-size: @value;       // Pixel fallback
-    font-size: ~"@{rem}rem"; // REM
-}
-.mx-fs(@value) when (default()) {
-    error: @MX-FS-MUST-BE-PASSED-A-PIXEL-VALUE;
-}
-
-
-//  -----------------------------------------------------------------------------
 //  $   Clearfix
 //  -----------------------------------------------------------------------------
 .clearfix() {
