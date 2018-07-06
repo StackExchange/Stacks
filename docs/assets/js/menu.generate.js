@@ -1,18 +1,10 @@
 $(document).ready(function() {
     function regenerateMenu () {
-        // Build the submenu on initial page load
-        var sections = $('.stacks-section > :header');
         var subnav = $(".js-secondary-nav");
-
-        // Kill the automatically generated anchors
-        $(".stacks-header--anchor").remove();
 
         // Kill the subnav and rebuild it
         subnav.empty();
-
-        if ( sections.length ) {
-            subnav.buildMenu()
-        }
+        subnav.toc({content: "#content", headings: "h2.stacks-h2, h3.stacks-h3"});
     }
 
     $.when($.ready).then(function() {
