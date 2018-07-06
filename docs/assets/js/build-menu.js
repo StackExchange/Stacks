@@ -80,7 +80,7 @@
                     // In the upside-down stack, unshift = push, and stack[0] = the top.
                     var parentItem = stack[0].children("li:last")[0];
                     if (parentItem) {
-                        stack.unshift($("<" + listTag + "/>").appendTo(parentItem));
+                        stack.unshift($("<" + listTag + " class='grid fd-column stacks-nav__secondary'/>").appendTo(parentItem));
                     }
                 } else {
                     // Truncate the stack to the current level by chopping off the 'top' of the
@@ -90,8 +90,8 @@
                 }
 
                 // Add the list item
-                $("<li/>").appendTo(stack[0]).append(
-                    $("<a/>").text(elem.text()).attr("href", "#" + elem.attr("id"))
+                $("<li class='stacks-nav--item grid fd-column' />").appendTo(stack[0]).append(
+                    $("<a class='grid--cell stacks-nav--link fs-body1' />").text(elem.text()).attr("href", "#" + elem.attr("id"))
                 );
 
                 currentLevel = level;
