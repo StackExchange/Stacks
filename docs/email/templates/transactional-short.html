@@ -256,7 +256,7 @@
             <table aria-hidden="true" border="0" cellpadding="0" cellspacing="0" role="presentation" style="max-width: 680px; width:100%">
                 <!-- Logo : BEGIN -->
                 <tr>
-                    <td style="padding: 20px 30px; text-align: left;" valign="middle">
+                    <td style="padding: 20px 30px; text-align: left;" valign="middle" class="sm-px">
                         <a href="https://stackoverflow.com/"><img src="Logo@2x.png" alt="Stack Overflow" border="0" height="30" width="150"></a>
                     </td>
                 </tr>
@@ -270,10 +270,10 @@
                                 <td style="padding-bottom: 10px;">
                                     <table border="0" cellpadding="0" cellspacing="0" role="presentation" align="left">
                                         <tr>
-                                            <td style="font-family: arial, sans-serif; font-size: 15px; line-height: 15px; color: #ffffff; background-color: #EB5757; font-weight: bold; text-align: center; padding: 4px 6px; border-radius: 3px;">
+                                            <td style="font-family: arial, sans-serif; font-size: 15px; line-height: 16px; color: #ffffff; background-color: #EB5757; font-weight: bold; text-align: center; padding: 4px 6px; border-radius: 3px;">
                                                 T
                                             </td>
-                                            <td style="padding-left: 5px; font-family: arial, sans-serif; font-size: 15px; line-height: 15px; color: #EB5757; font-weight: bold; text-align: left;">
+                                            <td style="padding-left: 5px; font-family: arial, sans-serif; font-size: 15px; line-height: 16px; color: #EB5757; font-weight: bold; text-align: left;">
                                                 Team Name
                                             </td>
                                         </tr>
@@ -283,10 +283,10 @@
                             <!-- Team Name : END -->
                             <!-- Rich Text : BEGIN -->
                             <tr>
-                                <td style="padding-bottom: 15px; font-family: arial, sans-serif; font-size: 15px; line-height: 140%; color: #54595F; text-align: left;">
-                                    <h1 style="font-weight: bold; font-size: 27px; line-height: 27px; color: #242629; margin: 0 0 15px 0;">Something happened</h1>
-                                    <p style="margin: 0 0 15px 0;" class="has-markdown">A starting point for more <strong>simple transactional emails</strong> with a single message. It can contain <a href="https://stackoverflow.com/" style="color: #0077CC; text-decoration: none;">links</a> or <strong>rich</strong> <em>text</em>. <a href="https://stackoverflow.design/email/components#usingmarkdown">Read this</a> if text is written in markdown.</p>
-                                    <p style="margin: 0 0 15px 0;">Good for emails like:</p>
+                                <td style="padding-bottom: 15px; font-family: arial, sans-serif; font-size: 15px; line-height: 21px; color: #3b4045; text-align: left;">
+                                    <h1 style="font-weight: bold; font-size: 27px; line-height: 27px; color: #0c0d0e; margin: 0 0 15px 0;">Something happened</h1>
+                                    <p style="margin: 0 0 15px;" class="has-markdown">A starting point for more <strong>simple transactional emails</strong> with a single message. It can contain <a href="https://stackoverflow.com/" style="color: #0077CC; text-decoration: none;">links</a> or <strong>rich</strong> <em>text</em>. <a href="https://stackoverflow.design/email/components#usingmarkdown" style="color: #0077CC; text-decoration: none;">Read this</a> if text is written in markdown.</p>
+                                    <p style="margin: 0 0 15px;">Good for emails like:</p>
                                     <ul style="padding: 0; margin: 0; list-style-type: disc;">
                                         <li style="margin:0 0 10px 30px;">Forgot password</li>
                                         <li style="margin:0 0 10px 30px;">You’ve been removed from a Team</li>
@@ -321,16 +321,16 @@
                         <table align="left" border="0" cellpadding="0" cellspacing="0" role="presentation">
                             <!-- Subscription Info : BEGIN -->
                             <tr>
-                                <td style="padding-bottom: 10px; font-size: 12px; font-family: arial, sans-serif; line-height: 126%; color: #93999F; text-align: left;">
-                                    You're receiving this email because {{#metadata "messagetypebuckets" messageTypeId as |bucketInfo|}}{{bucketInfo.footer}}{{/metadata}}.
+                                <td style="padding-bottom: 10px; font-size: 12px; line-height: 16px; font-family: arial, sans-serif; color: #9199A1; text-align: left;">
+                                    You're receiving this message because $reason$.
                                 </td>
                             </tr>
                             <tr>
-                                <td style="font-size: 12px; line-height: 126%; font-family: arial, sans-serif; color: #93999F; text-align: left;">
-                                    <a href="{{hostedUnsubscribeUrl}}" style="color:#93999F; text-decoration:underline;">Unsubscribe from emails like this</a>&nbsp;&nbsp;&nbsp;&nbsp;
-                                    <a href="https://stackoverflow.email/subscriptions/manage?{{#metadata 'messagetypebuckets' messageTypeId as |bi|}}{{#lookup HMAC bi.value as |auth|}}iterable=1&amp;id={{AccountId}}&amp;auth={{auth}}&amp;bucketId={{bi.value}}&amp;campaignId={{campaignId}}&amp;templateId={{templateId}}&amp;messageId={{messageId}}&amp;email={{#urlEncode}}{{email}}{{/urlEncode}}{{/lookup}}{{/metadata}}"
-                                    style="color:#93999F; text-decoration:underline;">Edit email settings</a>&nbsp;&nbsp;&nbsp;&nbsp;
-                                    <a href="https://meta.stackoverflow.com" style="color:#93999F; text-decoration:underline;">Leave feedback</a>
+                                <td style="font-size: 12px; line-height: 16px; font-family: arial, sans-serif; color: #9199A1; text-align: left;">
+                                    <a href="https://stackoverflow.email/subscriptions/manage?{{#data}}"
+                                    style="color: #9199A1; text-decoration: underline;">Edit email settings</a>&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <a href="https://meta.stackoverflow.com" style="color: #9199A1; text-decoration: underline;">Leave feedback</a>&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <a href="Urls.Legal.PrivacyPolicy" style="color: #9EA3A9; text-decoration: underline;">Privacy</a>
                                 </td>
                             </tr>
                             <!-- Subscription Info : BEGIN -->
@@ -352,13 +352,12 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td style="padding-bottom: 5px; font-size: 12px; line-height:16px; font-family: arial, sans-serif; color: #93999F; text-align: left;"><strong>Stack&nbsp;Overflow</strong>, <span class="unstyle-auto-detected-links">110 William Street, 28th Floor, New York, NY 10038</span></td>
+                                <td style="padding-bottom: 5px; font-size: 12px; line-height: 16px; font-family: arial, sans-serif; color: #9199A1; text-align: left;"><strong>Stack&nbsp;Overflow</strong>, <span class="unstyle-auto-detected-links">110 William Street, 28th Floor, New York, NY 10038</span></td>
                             </tr>
                             <!-- Sender Info : END -->
                             <!-- Heart : BEGIN -->
                             <tr>
                                 <td>
-                                    <!-- Adjust the padding so that it matches the rest of the footer. The heart should at least be left-aligned with the lines above. -->
                                     <table align="left" border="0" cellpadding="0" cellspacing="0" role="presentation" style="background:#ffffff; border-radius:1px; line-height:0px">
                                         <tr>
                                             <td>
