@@ -586,24 +586,12 @@
 //      Adds a loading icon into the button
 //  ----------------------------------------------------------------------------
 //  --  First the keyframes
-@-webkit-keyframes spinnerRotate {
-    from {
-        -webkit-transform: rotate(0deg);
-                transform: rotate(0deg);
-    }
-    to {
-        -webkit-transform: rotate(359deg);
-                transform: rotate(359deg);
-    }
-}
 @keyframes spinnerRotate {
     from {
-        -webkit-transform: rotate(0deg);
-                transform: rotate(0deg);
+        transform: rotate(0deg);
     }
     to {
-        -webkit-transform: rotate(359deg);
-                transform: rotate(359deg);
+        transform: rotate(359deg);
     }
 }
 
@@ -623,8 +611,7 @@
             border: 2px dotted fade(@button-filled-font-color,40%);
             border-left-color: darken(@button-filled-font-color,5%);
             border-radius: @br-circle;
-            -webkit-animation: spinnerRotate 800ms infinite linear;
-                    animation: spinnerRotate 800ms infinite linear;
+            animation: spinnerRotate 800ms infinite linear;
         }
 
         .svg-icon:first-child {
@@ -632,6 +619,55 @@
             // If the first thing in the button is an icon, let's hide it on loading
             // We only want to modify the visibility, since we still want it to have shape and keep the same layout.
             opacity: 0;
+        }
+
+        &.s-btn__xs:before {
+            width: 13px;
+            height: 13px;
+            margin-left: -18px;
+            top: calc(~"50% - 7px");
+        }
+
+        &.s-btn__sm:before {
+            width: 14px;
+            height: 14px;
+            margin-left: -20px;
+        }
+
+        &.s-btn__md {
+            padding-left: 2.1em;
+
+            &:before {
+                width: 20px;
+                height: 20px;
+                margin-left: -27px;
+                border-width: 0.125em;
+                top: calc(~"50% - 9px");
+            }
+        }
+
+        &.s-btn__lg {
+            padding-left: 1.8em;
+
+            &:before {
+                width: 28px;
+                height: 28px;
+                margin-left: -38px;
+                border-width: 3px;
+                top: calc(~"50% - 15px");
+            }
+        }
+
+        &.s-btn__xl {
+            padding-left: 1.7em;
+
+            &:before {
+                width: 36px;
+                height: 36px;
+                margin-left: -46px;
+                border-width: 4px;
+                top: calc(~"50% - 18px");
+            }
         }
     }
 
