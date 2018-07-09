@@ -8981,23 +8981,11 @@ body *:after {
   background-color: #314a86;
   color: rgba(255, 255, 255, 0.95);
 }
-@-webkit-keyframes spinnerRotate {
-  from {
-    -webkit-transform: rotate(0deg);
-    transform: rotate(0deg);
-  }
-  to {
-    -webkit-transform: rotate(359deg);
-    transform: rotate(359deg);
-  }
-}
 @keyframes spinnerRotate {
   from {
-    -webkit-transform: rotate(0deg);
     transform: rotate(0deg);
   }
   to {
-    -webkit-transform: rotate(359deg);
     transform: rotate(359deg);
   }
 }
@@ -9015,12 +9003,52 @@ body *:after {
   border: 2px dotted rgba(57, 115, 157, 0.4);
   border-left-color: #33658a;
   border-radius: 50%;
-  -webkit-animation: spinnerRotate 800ms infinite linear;
   animation: spinnerRotate 800ms infinite linear;
 }
 .s-btn.is-loading .svg-icon:first-child {
   margin-left: -23px;
   opacity: 0;
+}
+.s-btn.is-loading.s-btn__xs:before {
+  width: 13px;
+  height: 13px;
+  margin-left: -18px;
+  top: calc(50% - 7px);
+}
+.s-btn.is-loading.s-btn__sm:before {
+  width: 14px;
+  height: 14px;
+  margin-left: -20px;
+}
+.s-btn.is-loading.s-btn__md {
+  padding-left: 2.1em;
+}
+.s-btn.is-loading.s-btn__md:before {
+  width: 20px;
+  height: 20px;
+  margin-left: -27px;
+  border-width: 0.125em;
+  top: calc(50% - 9px);
+}
+.s-btn.is-loading.s-btn__lg {
+  padding-left: 1.8em;
+}
+.s-btn.is-loading.s-btn__lg:before {
+  width: 28px;
+  height: 28px;
+  margin-left: -38px;
+  border-width: 3px;
+  top: calc(50% - 15px);
+}
+.s-btn.is-loading.s-btn__xl {
+  padding-left: 1.7em;
+}
+.s-btn.is-loading.s-btn__xl:before {
+  width: 36px;
+  height: 36px;
+  margin-left: -46px;
+  border-width: 4px;
+  top: calc(50% - 18px);
 }
 .s-btn.s-btn__danger.is-loading:before {
   border-color: rgba(201, 29, 46, 0.25);
