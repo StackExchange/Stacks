@@ -1,31 +1,32 @@
 ---
 layout: page
 title: Best Practices
-description: <a href="http://doemailshavetolookthesameineveryclient.com/">Emails don’t need to look the same in every email client</a>, but here are few email best practices and guidelines to keep in mind to make sure they look as good as they can.
+description: <a href="http://doemailshavetolookthesameineveryclient.com/">Emails don’t need to look the same in every email client</a>, but here are few best practices and guidelines to keep in mind to make sure they're consistently designed and accessible.
 ---
 <section class="stacks-section">
-    <h2 class="grid jc-space-between ai-center stacks-h2"><div class="grid--cell fl1">Writing HTML & CSS</div></h2>
+    <h2 class="grid jc-space-between ai-center stacks-h2"><div class="grid--cell fl1">General rules and principles</div></h2>
     <p class="stacks-copy">
-        Given Stack Overflow’s reach, we strive to support email clients with low levels of HTML &amp; CSS support (namely <a href="https://emails.hteumeuleu.com/trying-to-make-sense-of-gmail-css-support-after-the-2016-update-53c15151063a">a few versions of Gmail</style> and <a href="https://emails.hteumeuleu.com/should-we-stop-inlining-styles-in-emails-8c3b64f0d407">some mostly non-US clients</a>). It's safest to code emails like it's 1999.
+        Given Stack Overflow’s reach, we strive to support email clients with low levels of HTML &amp; CSS support (namely Microsoft Outlook, <a href="https://emails.hteumeuleu.com/trying-to-make-sense-of-gmail-css-support-after-the-2016-update-53c15151063a">a few versions of Gmail</style>, and <a href="https://emails.hteumeuleu.com/should-we-stop-inlining-styles-in-emails-8c3b64f0d407">a handful of mostly non-US clients</a>). It's safest to code emails like it's 1999.
     </p>
     <ul class="stacks-list">
         <li>CSS2 instead of CSS3</li>
         <li>Tables instead of Divs</li>
         <li>Inline CSS instead of embedded styles or stylesheets</li>
+        <li>HTML text instead of images</li>
     </ul>
     <p class="stacks-copy">
         <a href="https://www.campaignmonitor.com/css/">Campaign Monitors guide to CSS</a> is the most complete reference for HTML &amp; CSS support in email.</p>
     </p>
 
-    <h3 class="grid jc-space-between ai-center stacks-h3"><div class="grid--cell fl1">Examples</div></h3>
+    <h3 class="grid jc-space-between ai-center stacks-h3"><div class="grid--cell fl1">HTML &amp; CSS</div></h3>
     <ol class="stacks-list">
-        <li class="mb24 lh-sm">
-            When in doubt, nest another table.
-            <span class="d-block fs-body2 fc-light lh-md mt8">For finer control of your HTML, try nesting tables when building emails.</span>
-        </li>
         <li class="mb24 lh-sm">
             Use <code class="stacks-code">&lt;table border="0" cellpadding="0" cellspacing="0" role="presentation"&gt;</code> when creating new tables.
             <span class="d-block fs-body2 fc-light lh-md mt8">This negates any unwanted spacing and borders and tells screen readers to skip over the table's tags and move straight into the content.</span>
+        </li>
+        <li class="mb24 lh-sm">
+            When in doubt, nest another table.
+            <span class="d-block fs-body2 fc-light lh-md mt8">For finer control of your HTML, try nesting tables when building emails.</span>
         </li>
         <li class="mb24 lh-sm">
             Use padding for spacing in table cells.
@@ -34,14 +35,6 @@ description: <a href="http://doemailshavetolookthesameineveryclient.com/">Emails
         <li class="mb24 lh-sm">
             Use margin for typography.
             <span class="d-block fs-body2 fc-light lh-md mt8">Margins <em>are</em> fully supported for headline, paragraph, and list tags.</span>
-        </li>
-        <li class="mb24 lh-sm">
-            Save images as PNG, GIF, or JPG instead of SVG.
-            <span class="d-block fs-body2 fc-light lh-md mt8">SVG has almost no support in email, no matter how it's referenced (inline, Base64, <code class="stacks-code">.svg</code>).</span>
-        </li>
-        <li class="mb24 lh-sm">
-            Save images as @2x and scale them down using HTML attributes.
-            <span class="d-block fs-body2 fc-light lh-md mt8">Since SVG isn't supported, a 20x20 raster image coded like <code class="stacks-code">&lt;img src="40x40-image.png" height="20" width="20"&gt;</code> displays crisply on high-definition screens.</span>
         </li>
         <li class="mb24 lh-sm">
             HTML Attributes
@@ -58,6 +51,32 @@ description: <a href="http://doemailshavetolookthesameineveryclient.com/">Emails
         <li class="mb24 lh-sm">
             Don't forget about <a href="/faq#whatispreviewtext">preview text</a>.
             <span class="d-block fs-body2 fc-light lh-md mt8">We can specify the text that appears beneath subject lines in many email clients. If preview text is not included, this space will be populated by the email's content.</span>
+        </li>
+    </ol>
+    <h3 class="grid jc-space-between ai-center stacks-h3"><div class="grid--cell fl1">Images</div></h3>
+    <ol class="stacks-list">
+        <li class="mb24 lh-sm">
+            Save images as PNG, GIF, or JPG instead of SVG.
+            <span class="d-block fs-body2 fc-light lh-md mt8">SVG has almost no support in email, no matter how it's referenced (inline, Base64, <code class="stacks-code">.svg</code>).</span>
+        </li>
+        <li class="mb24 lh-sm">
+            Save images as @2x and scale them down using HTML attributes.
+            <span class="d-block fs-body2 fc-light lh-md mt8">Since SVG isn't supported, a 20x20 raster image coded like <code class="stacks-code">&lt;img src="40x40-image.png" height="20" width="20"&gt;</code> displays crisply on high-definition screens.</span>
+        </li>
+    </ol>
+    <h3 class="grid jc-space-between ai-center stacks-h3"><div class="grid--cell fl1">Accessibility</div></h3>
+    <ol class="stacks-list">
+        <li class="mb24 lh-sm">
+            Include <code class="stacks-code">role="presentation";</code> on all tables used for layout.
+            <span class="d-block fs-body2 fc-light lh-md mt8">This prevents screen readers from reading aloud the structure of each table cell.</span>
+        </li>
+        <li class="mb24 lh-sm">
+            Use HTML1 semantic tags whenever possible.
+            <span class="d-block fs-body2 fc-light lh-md mt8">Tags like <code class="stacks-code">&lt;p&gt;</code> and <code class="stacks-code">&lt;h&gt;</code> allow screen readers to quickly jump from section to section.</span>
+        </li>
+        <li class="mb24 lh-sm">
+            Include an <code class="stacks-code">alt</code> attribute on every images.
+            <span class="d-block fs-body2 fc-light lh-md mt8">Remember to be descriptive. Use <code class="stacks-code">alt=""</code> for images a screen reader should skip (eg. decorative images).</span>
         </li>
     </ol>
 </section>
