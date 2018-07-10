@@ -97,6 +97,23 @@ description: When to use and how to implement common email components.
             </div>
         </aside>
     </div>
+    <h3 class="grid jc-space-between ai-center stacks-h3"><div class="grid--cell fl1">Preventing Text Wrapping</div></h3>
+    <p class="stacks-copy">
+        A non-breaking space (<code class="stacks-code">&#38;nbsp;</code>) can be used to prevent a group of words from breaking onto multiple lines. Useful for keeping names together and preventing typographic orphans and&nbsp;widows.
+        <br><span class="d-block fc-light fs-body1">See ☝️?</span>
+    </p>
+    <div class="stacks-preview">
+{% highlight html linenos %}
+<p style="margin: 0 0 15px 0;">Now with Stack&nbsp;Overflow you can level up.</p>
+<p style="margin: 0 0 15px 0;">The last sentence shouldn't produce an&nbsp;orphan.</p>
+<p style="margin: 0;">@_m("Also works for text written in$nbsp$markdown.", new { nbsp = "&nbsp;".AsRawHtml() })</p>
+{% endhighlight %}
+        <div class="stacks-preview--example" style="font-family: arial, sans-serif; font-size: 15px; line-height: 19px; color: #54595F; text-align: left;">
+            <p style="margin: 0 0 15px 0;">Now with Stack&nbsp;Overflow you can level up.</p>
+            <p style="margin: 0 0 15px 0;">The last sentence shouldn't produce an&nbsp;orphan.</p>
+            <p style="margin: 0;">Also works for text written in&nbsp;markdown.</p>
+        </div>
+    </div>
 </section>
 
 <!----- BUTTONS ----->
