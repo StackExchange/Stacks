@@ -61,7 +61,7 @@
 {% endhighlight %}
         {% unless include.preview == false %}
             {% assign previewlines = include.preview | default: include.html | split: NEWLINE %}
-            <div class="stacks-preview--example ">
+            <div class="stacks-preview--example">
                 {% for line in previewlines %}{% assign removed = line | remove: "CODE ONLY" %}{% if removed == line %}{{ line }}{% endif %}{% endfor %}
             </div>
         {% endunless %}        
