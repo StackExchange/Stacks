@@ -1,13 +1,13 @@
 <div class="grid--cell w20 md:d-none js-navigation">
-    <div class="overflow-y-scroll bg-white z-nav-fixed px16 pt32 pb0 ps-fixed w100 wmx2 t64 b0">
+    <div class="overflow-y-scroll bg-white z-nav-fixed px16 py16 ps-fixed w100 wmx2 t64 b0">
         <ul class="list-reset">
             {% for entry in site.data.nav %}
                 {% assign sublinks = entry.sublinks %}
                 {% assign submenu-active = "" %}
                 {% if sublinks %}
                     <li class="grid fd-column mb16 gsy gs4">
-                        <div class="grid--cell fw-bold tt-uppercase fs-caption" title="{{ entry.title }}"> {{ entry.title }}</div>
-                        <ul class="grid fd-column list-reset gsy gs4">
+                        <div class="grid--cell fw-bold tt-uppercase fs-fine mt16" title="{{ entry.title }}"> {{ entry.title }}</div>
+                        <ul class="grid fd-column list-reset gsy gs8">
                             {% for sublink in sublinks %}
                                 {% assign pageURL = page.url | remove_first:"/" | remove: ".html" %}
                                 {% if pageURL == sublink.url %}
