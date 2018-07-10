@@ -1,23 +1,37 @@
 <div class="grid--cell w20 md:d-none js-navigation">
     <div class="overflow-y-scroll bg-white z-nav-fixed px16 pt32 pb0 ps-fixed w100 wmx2 t64 b0">
         <ul class="list-reset">
-            {% for entry in site.data.nav %} {% assign sublinks = entry.sublinks %} {% assign submenu-active = "" %} {% if sublinks %}
-            <li class="grid fd-column mb16 gsy gs4">
-                <div class="grid--cell fw-bold tt-uppercase fs-caption" title="{{ entry.title }}"> {{ entry.title }}</div>
-                <ul class="grid fd-column list-reset gsy gs4">
-                    {% for sublink in sublinks %} {% assign pageURL = page.url | remove_first:"/" | remove: ".html" %} {% if pageURL == sublink.url %} {% assign submenu-active = " is-active" %} {% assign submenu-container = "" %} {% else %} {% assign submenu-active = ""
-                    %} {% assign submenu-container = "" %} {% endif %}
-                    <li class="grid">
-                        <a class="d-block s-link s-link__muted w100" href="{{ sublink.url | relative_url }}" title="{{ sublink.title }}">{{ sublink.title }}</a> {{ submenu-container }}
+            {% for entry in site.data.nav %}
+                {% assign sublinks = entry.sublinks %}
+                {% assign submenu-active = "" %}
+                {% if sublinks %}
+                    <li class="grid fd-column mb16 gsy gs4">
+                        <div class="grid--cell fw-bold tt-uppercase fs-caption" title="{{ entry.title }}"> {{ entry.title }}</div>
+                        <ul class="grid fd-column list-reset gsy gs4">
+                            {% for sublink in sublinks %}
+                                {% assign pageURL = page.url | remove_first:"/" | remove: ".html" %}
+                                {% if pageURL == sublink.url %}
+                                    {% assign submenu-active = " is-active" %}
+                                    {% assign submenu-container = "" %}
+                                {% else %}
+                                    {% assign submenu-active = ""%}
+                                    {% assign submenu-container = "" %}
+                                {% endif %}
+                                <li class="grid">
+                                    <a class="d-block s-link s-link__muted w100" href="{{ sublink.url | relative_url }}" title="{{ sublink.title }}">
+                                        {{ sublink.title }}
+                                    </a>
+                                    {{ submenu-container }}
+                                </li>
+                            {% endfor %}
+                        </ul>
                     </li>
-                    {% endfor %}
-                </ul>
-            </li>
-            {% else %}
-            <li>
-                <a class="s-link s-link__muted" href="{{ entry.url | relative_url }}" title="{{ entry.title }}">{{ entry.title }}</a>
-            </li>
-            {% endif %} {% endfor %}
+                {% else %}
+                    <li>
+                        <a class="s-link s-link__muted" href="{{ entry.url | relative_url }}" title="{{ entry.title }}">{{ entry.title }}</a>
+                    </li>
+                {% endif %}
+            {% endfor %}
         </ul>
     </div>
 </div>
