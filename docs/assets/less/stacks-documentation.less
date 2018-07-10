@@ -29,7 +29,6 @@
     z-index: @zi-navigation-fixed;
 }
 
-
 .stacks-wrapper {
     min-height: 100vh;
 }
@@ -59,6 +58,10 @@
     margin-bottom: @su48;
 }
 
+.stacks-header {
+    margin-bottom: 0.75em;
+}
+
 
 //  ============================================================================
 //  $   NAV STYLES
@@ -74,6 +77,7 @@
     max-width: 20rem;
     border-right: 1px solid @black-050;
     background-color: @black-025;
+    z-index: @zi-navigation-fixed;
 }
 
 //  $$  MAIN NAVIGATION MENU
@@ -89,10 +93,9 @@
 //  ----------------------------------------------------------------------------
 .stacks-nav--category {
     padding: @su16 @su4 @su8 @su24;
-    .mx-fs(@fs-fine);
+    font-size: @fs-fine;
     color: @fc-dark;
     font-weight: bold;
-    //font-family: @ff-mono;
     line-height: @lh-sm;
     text-transform: uppercase;
 }
@@ -117,7 +120,7 @@
 //  ----------------------------------------------------------------------------
 .stacks-nav--link {
     padding: @su4 @su12 @su4 @su24;
-    .mx-fs(@fs-caption);
+    font-size: @fs-caption;
     line-height: @lh-lg;
     color: @fc-medium;
 
@@ -171,12 +174,16 @@
         padding: @su2 @su8;
     }
 
-    .stacks-nav--subnav .stacks-nav--link {
-        padding-left: @su24;
-        color: @fc-light;
+    .stacks-nav__secondary {
+        padding: 0;
 
-        &:hover {
-            color: @fc-dark;
+        .stacks-nav--link {
+            color: @fc-light;
+            padding: @su2 @su24;
+
+            &:hover {
+                color: @fc-dark;
+            }
         }
     }
 }
@@ -191,7 +198,7 @@
 .stacks-h2,
 .stacks-h3,
 .stacks-h4 {
-    margin-bottom: 0.5em;
+    margin-bottom: 0;
     font-weight: 700;
     line-height: @lh-sm;
     color: @fc-dark;
@@ -199,38 +206,24 @@
 
 //  --  Page Title
 .stacks-h1 {
-    .mx-fs(@fs-display1);
+    font-size: @fs-display1;
+    margin-bottom: 0.5em;
 }
 
 //  --  Section Title
 .stacks-h2 {
-    .mx-fs(@fs-headline1);
+    font-size: @fs-headline1;
 }
 
 //  --  Sub-section Title
 .stacks-h3 {
-    .mx-fs(@fs-subheading);
+    font-size: @fs-subheading;
     color: @fc-medium;
 }
 
 .stacks-h4 {
-    .mx-fs(@fs-body3);
+    font-size: @fs-body3;
     color: @fc-light;
-}
-
-.stacks-header--anchor {
-    padding: @su8;
-    border-radius: @br-sm;
-    background-color: @white;
-    color: @fc-light;
-    opacity: 0.25;
-    transition: opacity 150ms @te-smooth;
-
-    &:hover {
-        background-color: @black-050;
-        color: @fc-dark;
-        opacity: 1;
-    }
 }
 
 //  $$  PARAGRAPHS
@@ -239,7 +232,7 @@
     margin-top: 0;
     margin-bottom: 1em;
     // max-width: 55rem;
-    .mx-fs(@fs-body3);
+    font-size: @fs-body3;
     line-height: @lh-lg;
     color: @fc-medium;
 
@@ -249,7 +242,7 @@
 }
 
 .stacks-copy__lg {
-    .mx-fs(@fs-title);
+    font-size: @fs-title;
 }
 
 
@@ -266,7 +259,7 @@
     border-radius: @br-sm;
     background-color: @black-050;
 
-    .mx-fs(@fs-caption);
+    font-size: @fs-caption;
     font-family: @ff-mono;
     color: @fc-dark;
     line-height: @lh-xs;
@@ -281,7 +274,7 @@
 //  ----------------------------------------------------------------------------
 .stacks-list {
     margin-bottom: 1em;
-    .mx-fs(@fs-body3);
+    font-size: @fs-body3;
     line-height: @lh-lg;
     color: @fc-medium;
 }
@@ -301,7 +294,7 @@
         &,
         pre {
             margin: 0;
-            .mx-fs(@fs-body1);
+            font-size: @fs-body1;
             font-family: @ff-mono;
             line-height: @lh-lg;
             color: #C5C8C6;
@@ -373,7 +366,7 @@
     border: 1px solid @orange-100;
     background-color: @orange-050;
     font-family: @ff-mono;
-    .mx-fs(@fs-caption);
+    font-size: @fs-caption;
     line-height: @lh-sm;
     color: @fc-dark;
 }
@@ -402,7 +395,11 @@ pre.lineno {
 //  ============================================================================
 //  $   Search override
 //  ----------------------------------------------------------------------------
-
 .algolia-autocomplete {
     width: 100% !important;
+}
+
+
+.algolia-autocomplete .ds-dropdown-menu {
+    z-index: 9000 !important;
 }

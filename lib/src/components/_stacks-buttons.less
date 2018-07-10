@@ -259,7 +259,7 @@
     background-color: transparent;
     outline: none;
     font-family: inherit;
-    font-size: inherit;
+    font-size: @fs-body1;
     font-weight: @button-font-weight;
     line-height: @lh-sm;
     text-decoration: none;
@@ -305,8 +305,9 @@
     }
 
     &.s-btn__xs {
-        padding-bottom: 0.6em;
-        .mx-fs(@fs-base - 2);
+        padding-top: 0.6em;
+        padding-bottom: 0.85em;
+        font-size: @fs-fine;
 
         &.s-btn__dropdown {
             padding-right: 1.5em;
@@ -322,7 +323,7 @@
     }
 
     &.s-btn__sm {
-        .mx-fs(@fs-base - 1);
+        font-size: @fs-caption;
 
         &.s-btn__dropdown {
             padding-right: 2.05em;
@@ -336,7 +337,7 @@
     &.s-btn__md {
         padding: 0.7em;
         border-radius: @button-border-radius + 1;
-        .mx-fs(@fs-base + 4);
+        font-size: @fs-body3;
 
         &.s-btn__dropdown {
             padding-right: 2.1em;
@@ -353,15 +354,15 @@
     &.s-btn__lg {
         padding: 0.6em;
         border-radius: @button-border-radius + 1;
-        .mx-fs(@fs-base + 8);
+        font-size: @fs-headline1;
 
         &.s-btn__dropdown {
             padding-right: 2.15em;
 
             &:after {
                 top: calc(~"50% - 2px");
-                border-width: @su4 + @su2;
-                border-top-width: @su4 + @su2;
+                border-width: @su6;
+                border-top-width: @su6;
                 border-bottom-width: 0;
             }
         }
@@ -370,7 +371,7 @@
     &.s-btn__xl {
         padding: 0.5em;
         border-radius: @button-border-radius + @br-sm;
-        .mx-fs(@fs-base + 14);
+        font-size: @fs-headline2;
 
         &.s-btn__dropdown {
             padding-right: 2em;
@@ -400,10 +401,10 @@
     //      trapped whitespace.
     //  ------------------------------------------------------------------------
     .svg-icon {
-        margin-top: -0.307692308em;         // [1]
-        margin-right: 0.153846154em;        // [2]
-        margin-bottom: -0.153846154em;      // [1]
-        margin-left: -0.538461538em;        // [3]
+        margin-top: -0.3em;         // [1]
+        margin-right: 0.4em;        // [2]
+        margin-bottom: -0.15em;     // [1]
+        margin-left: -0.2em;        // [3]
 
         /* autoprefixer: off */
         transition: opacity 200ms @te-smooth; // Animate the transition to .is-loading
@@ -585,24 +586,12 @@
 //      Adds a loading icon into the button
 //  ----------------------------------------------------------------------------
 //  --  First the keyframes
-@-webkit-keyframes spinnerRotate {
-    from {
-        -webkit-transform: rotate(0deg);
-                transform: rotate(0deg);
-    }
-    to {
-        -webkit-transform: rotate(359deg);
-                transform: rotate(359deg);
-    }
-}
 @keyframes spinnerRotate {
     from {
-        -webkit-transform: rotate(0deg);
-                transform: rotate(0deg);
+        transform: rotate(0deg);
     }
     to {
-        -webkit-transform: rotate(359deg);
-                transform: rotate(359deg);
+        transform: rotate(359deg);
     }
 }
 
@@ -622,8 +611,7 @@
             border: 2px dotted fade(@button-filled-font-color,40%);
             border-left-color: darken(@button-filled-font-color,5%);
             border-radius: @br-circle;
-            -webkit-animation: spinnerRotate 800ms infinite linear;
-                    animation: spinnerRotate 800ms infinite linear;
+            animation: spinnerRotate 800ms infinite linear;
         }
 
         .svg-icon:first-child {
@@ -631,6 +619,55 @@
             // If the first thing in the button is an icon, let's hide it on loading
             // We only want to modify the visibility, since we still want it to have shape and keep the same layout.
             opacity: 0;
+        }
+
+        &.s-btn__xs:before {
+            width: 13px;
+            height: 13px;
+            margin-left: -18px;
+            top: calc(~"50% - 7px");
+        }
+
+        &.s-btn__sm:before {
+            width: 14px;
+            height: 14px;
+            margin-left: -20px;
+        }
+
+        &.s-btn__md {
+            padding-left: 2.1em;
+
+            &:before {
+                width: 20px;
+                height: 20px;
+                margin-left: -27px;
+                border-width: 0.125em;
+                top: calc(~"50% - 9px");
+            }
+        }
+
+        &.s-btn__lg {
+            padding-left: 1.8em;
+
+            &:before {
+                width: 28px;
+                height: 28px;
+                margin-left: -38px;
+                border-width: 3px;
+                top: calc(~"50% - 15px");
+            }
+        }
+
+        &.s-btn__xl {
+            padding-left: 1.7em;
+
+            &:before {
+                width: 36px;
+                height: 36px;
+                margin-left: -46px;
+                border-width: 4px;
+                top: calc(~"50% - 18px");
+            }
         }
     }
 
