@@ -14,35 +14,6 @@
 @import "./lib/src/stacks.less"; //  These are actual styles used in SO projects
 @import "syntax";
 
-//  ============================================================================
-//  $   SITE LAYOUT
-//  ============================================================================
-.s-nav {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    background-color: @black-025;
-    box-shadow: inset 0 4px 0 0 @orange-400, inset 0 -1px 0 0 @black-100, @bs-sm;
-    height: 50px;
-    z-index: @zi-navigation-fixed;
-}
-
-.stacks-wrapper {
-    min-height: 100vh;
-}
-
-.stacks-body {
-    margin-left: 20rem;
-    padding: @su64 0;
-}
-
-.stacks-home {
-    margin-left: 20rem;
-    width: 100%;
-}
-
 .stacks-section {
     margin-top: @su48;
     margin-bottom: @su48;
@@ -50,40 +21,6 @@
 
 .stacks-header {
     margin-bottom: 0.75em;
-}
-
-// We need this bullshit to offset links
-:target:before {
-    content: "";
-    display: block;
-    height: @su48;
-    margin-top: @su48;
-}
-
-
-//  ============================================================================
-//  $   NAV STYLES
-//  ============================================================================
-//  $$  MAIN NAVIGATION WRAPPER
-//  ----------------------------------------------------------------------------
-.stacks-nav {
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    width: 20vw;
-    min-width: 16rem;
-    max-width: 20rem;
-    border-right: 1px solid @black-050;
-    background-color: @black-025;
-    z-index: @zi-navigation-fixed;
-}
-
-//  $$  NAVIGATION ITEM
-//  ----------------------------------------------------------------------------
-.stacks-nav--item {
-    margin: 0;
-    padding: 0;
-    list-style: none;
 }
 
 //  $$  SEARCH BOX ICON
@@ -132,12 +69,16 @@
 //  --  Section Title
 .stacks-h2 {
     font-size: @fs-headline1;
+    padding-top: @su64 + @su24; // Hack for #anchor positioning
+    margin-top: -@su64 + -@su24; // Hack for #anchor positioning
 }
 
 //  --  Sub-section Title
 .stacks-h3 {
     font-size: @fs-subheading;
     color: @fc-medium;
+    padding-top: @su64 + @su24; // Hack for #anchor positioning
+    margin-top: -@su64 + -@su24; // Hack for #anchor positioning
 }
 
 .stacks-h4 {
@@ -150,7 +91,6 @@
 .stacks-copy {
     margin-top: 0;
     margin-bottom: 1em;
-    // max-width: 55rem;
     font-size: @fs-body3;
     line-height: @lh-lg;
     color: @fc-medium;
