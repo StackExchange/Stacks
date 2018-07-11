@@ -1,6 +1,6 @@
 $(document).ready(function() {
     var navigation = $(".js-navigation");
-    var closeIcon = $(".js-close-icon");
+    var closeIcon = $(".js-hamburger-close-icon");
     var hamburgerIcon = $(".js-hamburger-icon");
     var hamburgerBtn = $(".js-hamburger-btn");
 
