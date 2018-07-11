@@ -5,6 +5,7 @@
 <!-- Additional Javascript -->
 <script src="{{ site.baseurl }}/{{ site.js }}/hamburger.js" async></script>
 <script src="{{ site.baseurl }}/{{ site.js }}/navigation.js" async></script>
+
 <body>
     {% include header.html %}
 
@@ -19,16 +20,18 @@
                         <ul class="list-reset grid gs8 gsy fd-column stacks-nav__secondary js-secondary-nav"></ul>
                     </aside>
                 </div>
-                <div id="content" class="grid--cell w70 sm:w100">
-                    {% if page.title %}
-                        <h1 class="stacks-h1">{{ page.title }}</h1>
-                    {% endif %}
-                    {% if page.description %}
-                        <p class="stacks-copy stacks-copy__lg">
-                            {{ page.description }}
-                        </p>
-                    {% endif %}
-                    {{ content }}
+                <div class="grid--cell w70 sm:w100">
+                    <div id="content">
+                        {% if page.title %}
+                            <h1 class="stacks-h1">{{ page.title }}</h1>
+                        {% endif %}
+                        {% if page.description %}
+                            <p class="stacks-copy stacks-copy__lg">
+                                {{ page.description }}
+                            </p>
+                        {% endif %}
+                        {{ content }}
+                    </div>
                 </div>
             </div>
         </div>
