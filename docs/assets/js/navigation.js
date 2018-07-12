@@ -2,7 +2,7 @@ $(document).ready(function() {
     // Cache some variables
     var subnav = $(".js-secondary-nav");
     var navigation = $(".js-navigation");
-    var closeIcon = $(".js-close-icon");
+    var closeIcon = $(".js-hamburger-close-icon");
     var hamburgerIcon = $(".js-hamburger-icon");
 
     function regenerateMenu () {
