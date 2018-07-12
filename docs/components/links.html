@@ -1,10 +1,32 @@
 ---
 layout: page
 title: Links
-description: Links are lightly styled via the <code class="stacks-code">a</code> element by default. In addition, we provide <code class="stacks-code">.s-link</code> and its variations.
+description: Links are lightly styled via the <code class="stacks-code">a</code> element by default. In addition, we provide <code class="stacks-code">.s-link</code> and its variations. In rare situations, <code class="stacks-code">.s-link</code> can be applied to n <code class="stacks-code">button</code> while maintaining the look of an anchor.
 ---
 <section class="stacks-section">
-    {% header {element: 'h2', text: 'Styling single links'} %}
+    {% header {element: 'h2', text: 'Single Link'} %}
+    {% header {element: 'h3', text: 'Single Link Classes'} %}
+    <table class="mb32 s-table s-table__hover">
+        <thead>
+            <tr>
+                <th class="s-table--cell2" scope="col">Class</th>
+                <th class="s-table--cell2" scope="col">Applied</th>
+                <th scope="col">Description</th>
+            </tr>
+        </thead>
+        <tbody class="fs-caption">
+            {% for item in site.data.links.single-links %}
+                <tr>
+                    <th scope="row"><code class="stacks-code bg-white">{{ item.class }}</code></th>
+                    <td><code class="stacks-code bg-white">{{ item.applies }}</td>
+                    <td class="p8">{{ item.description }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</section>
+<section class="stacks-section">
+    {% header {element: 'h3', text: 'Single Link Examples'} %}
     <div class="stacks-preview">
 {% highlight html linenos %}
 <a class="s-link" href="#">Default</a>
@@ -12,6 +34,7 @@ description: Links are lightly styled via the <code class="stacks-code">a</code>
 <a class="s-link s-link__muted" href="#">Muted</a>
 <a class="s-link s-link__danger" href="#">Danger</a>
 <a class="s-link s-link__inherit" href="#">Inherit</a>
+<button class="s-link">Button Link</button>
 {% endhighlight %}
         <div class="stacks-preview--example ">
             <div class="grid gs16 gsx">
@@ -20,13 +43,34 @@ description: Links are lightly styled via the <code class="stacks-code">a</code>
                 <a class="grid--cell s-link s-link__muted" href="#">Muted</a>
                 <a class="grid--cell s-link s-link__danger" href="#">Danger</a>
                 <a class="grid--cell s-link s-link__inherit" href="#">Inherit</a>
+                <button class="grid--cell ml-auto s-link">Button Link</button>
             </div>
         </div>
     </div>
 </section>
 
 <section class="stacks-section">
-    {% header {element: 'h2', text: 'Styling all anchor elements inside a container'} %}
+    {% header {element: 'h2', text: 'Child Links'} %}
+    {% header {element: 'h3', text: 'Child Link Classes'} %}
+    <table class="mb32 s-table s-table__hover">
+        <thead>
+            <tr>
+                <th class="s-table--cell2" scope="col">Class</th>
+                <th class="s-table--cell2" scope="col">Applied</th>
+                <th scope="col">Description</th>
+            </tr>
+        </thead>
+        <tbody class="fs-caption">
+            {% for item in site.data.links.child-links %}
+                <tr>
+                    <th scope="row"><code class="stacks-code bg-white">{{ item.class }}</code></th>
+                    <td><code class="stacks-code bg-white">{{ item.applies }}</td>
+                    <td class="p8">{{ item.description }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% header {element: 'h3', text: 'Child Links Examples'} %}
     <p class="stacks-copy">Sometimes you need to give all <code class="stacks-code">&lt;a&gt;</code> elements inside a container or component the same color, even
         when it&lsquo;s impractical or even impossible to give each anchor element an <code class="stacks-code">s-link</code> class (e.g. because the markup is generated from Markdown).</p>
     <p class="stacks-copy">In this case, you can add the <code class="stacks-code">s-anchors</code> class together with one of the modifiers
@@ -60,7 +104,8 @@ description: Links are lightly styled via the <code class="stacks-code">a</code>
         <div class="s-anchors s-anchors__default s-card w70 mt8">
             <p>
                 But all <a href="#">links</a> in this <a href="#">inner box</a>
-                have the <a href="#">default</a> link color.</p>
+                have the <a href="#">default</a> link color.
+            </p>
         </div>
     </div>
     {% endcapture %}{% include example.html html=html %}
