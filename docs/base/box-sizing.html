@@ -5,30 +5,26 @@ description: Box-sizing atomic classes allow one to determine what is used to de
 ---
 <section class="stacks-section">
     {% header {element: 'h2', text: 'Classes'} %}
-    <table class="mb32 s-table s-table__hover">
-        <thead>
-            <tr>
-                <th class="s-table--cell2" scope="col">Class</th>
-                <th class="s-table--cell3" scope="col">Output</th>
-                <th scope="col">Definition</th>
-                <th class="s-table--cell2 ta-center" scope="col"><a class="s-link s-link__inherit" href="{{ "/guidelines/responsiveness" | relative_url }}">Responsive?</a></th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for box in site.data.atomic-definitions.box-sizing %}
-                <tr class="fs-caption">
-                    <th scope="row"><code class="stacks-code bg-white">.{{ box.class }}</code></th>
-                    <td><code class="stacks-code bg-white">{{ box.output }}</code></td>
-                    <td class="p8">{{ box.define }}</td>
-                    <td class="ta-center">
-                        {% if box.responsive %}
-                            {% svg /resources/svg-icons/Checkmark.svg width="18" height="18" aria-hidden="true" class="svg-icon iconCheckmark fc-green-500" %}
-                        {% endif %}
-                    </td>
+    <div class="overflow-x-auto mb32">
+        <table class="wmn5 s-table s-table__hover">
+            <thead>
+                <tr>
+                    <th class="s-table--cell2" scope="col">Class</th>
+                    <th class="s-table--cell3" scope="col">Output</th>
+                    <th scope="col">Definition</th>
                 </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+                {% for box in site.data.atomic-definitions.box-sizing %}
+                    <tr class="fs-caption">
+                        <th scope="row"><code class="stacks-code bg-white">.{{ box.class }}</code></th>
+                        <td><code class="stacks-code bg-white">{{ box.output }}</code></td>
+                        <td class="p8">{{ box.define }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
     {% include notice-unset.html %}
 </section>
 

@@ -5,24 +5,26 @@ description: Links are lightly styled via the <code class="stacks-code">a</code>
 ---
 <section class="stacks-section">
     {% header {element: 'h2', text: 'Classes'} %}
-    <table class="mb32 s-table s-table__hover">
-        <thead>
-            <tr>
-                <th class="s-table--cell2" scope="col">Class</th>
-                <th class="s-table--cell2" scope="col">Applied</th>
-                <th scope="col">Description</th>
-            </tr>
-        </thead>
-        <tbody class="fs-caption">
-            {% for item in site.data.links.classes %}
+    <div class="overflow-x-auto mb32">
+        <table class="wmn4 s-table s-table__hover">
+            <thead>
                 <tr>
-                    <th scope="row"><code class="stacks-code bg-white">{{ item.class }}</code></th>
-                    <td><code class="stacks-code bg-white">{{ item.applies }}</td>
-                    <td class="p8">{{ item.description }}</td>
+                    <th scope="col">Class</th>
+                    <th scope="col">Applied</th>
+                    <th scope="col">Description</th>
                 </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+            </thead>
+            <tbody class="fs-caption">
+                {% for item in site.data.links.classes %}
+                    <tr>
+                        <th scope="row"><code class="stacks-code bg-white">{{ item.class }}</code></th>
+                        <td><code class="stacks-code bg-white">{{ item.applies }}</td>
+                        <td class="p8">{{ item.description }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
 </section>
 <section class="stacks-section">
     {% header {element: 'h2', text: 'Examples'} %}
@@ -36,13 +38,13 @@ description: Links are lightly styled via the <code class="stacks-code">a</code>
 <button class="s-link">Button Link</button>
 {% endhighlight %}
         <div class="stacks-preview--example">
-            <div class="grid gs16 gsx">
+            <div class="grid gs16 fw-wrap">
                 <a class="grid--cell s-link" href="#">Default</a>
                 <a class="grid--cell s-link s-link__grayscale" href="#">Grayscale</a>
                 <a class="grid--cell s-link s-link__muted" href="#">Muted</a>
                 <a class="grid--cell s-link s-link__danger" href="#">Danger</a>
                 <a class="grid--cell s-link s-link__inherit" href="#">Inherit</a>
-                <button class="grid--cell ml-auto s-link">Button Link</button>
+                <button class="grid--cell s-link">Button Link</button>
             </div>
         </div>
     </div>

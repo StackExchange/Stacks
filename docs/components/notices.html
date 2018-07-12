@@ -20,67 +20,71 @@ description: Notices deliver <strong>System</strong> and <strong>Engagement</str
 
 <section class="stacks-section">
     {% header {element: 'h2', text: 'Accessibility'} %}
-    <table cellspacing="0" class="mb32 s-table s-table__hover">
-        <thead>
-            <tr>
-                <th scope="col" class="s-table--cell3">Item</th>
-                <th scope="col" class="s-table--cell2">Applied to</th>
-                <th scope="col">Description</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for item in site.data.notices.access %}
-            <tr>
-                <td><code class="stacks-code">{{ item.item }}</code></td>
-                <td>
-                    {% if item.applies == "N/A" %}
-                        <em class="fc-black-350">{{ item.applies }}</em>
-                    {% else %}
-                        {% assign class = item.applies | split: " " %}
+    <div class="overflow-x-auto mb32">
+        <table class="wmn5 s-table s-table__hover">
+            <thead>
+                <tr>
+                    <th scope="col" class="s-table--cell3">Item</th>
+                    <th scope="col" class="s-table--cell2">Applied</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in site.data.notices.access %}
+                <tr>
+                    <td><code class="stacks-code">{{ item.item }}</code></td>
+                    <td>
+                        {% if item.applies == "N/A" %}
+                            <em class="fc-black-350">{{ item.applies }}</em>
+                        {% else %}
+                            {% assign class = item.applies | split: " " %}
 
-                        {% for name in class %}
-                            <code class="stacks-code">{{ name }}</code>
-                        {% endfor %}
-                    {% endif %}
-                </td>
-                <td>{{ item.description }} (<a href="{{ item.url }}" target="_blank">Source</a>)</td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+                            {% for name in class %}
+                                <code class="stacks-code">{{ name }}</code>
+                            {% endfor %}
+                        {% endif %}
+                    </td>
+                    <td>{{ item.description }} (<a href="{{ item.url }}" target="_blank">Source</a>)</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
 </section>
 
 <section class="stacks-section">
     {% header {element: 'h2', text: 'Visual Styles'} %}
     {% header {element: 'h3', text: 'Classes'} %}
-    <table cellspacing="0" class="mb32 s-table s-table__hover">
-        <thead>
-            <tr>
-                <th scope="col" class="s-table--cell3">Class</th>
-                <th scope="col" class="s-table--cell2">Applied to</th>
-                <th scope="col">Description</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for item in site.data.notices.visual %}
-            <tr>
-                <td><code class="stacks-code">{{ item.class }}</code></td>
-                <td>
-                    {% if item.applies == "N/A" %}
-                        <em class="fc-black-350">{{ item.applies }}</em>
-                    {% else %}
-                        {% assign class = item.applies | split: " " %}
+    <div class="overflow-x-auto mb32">
+        <table class="wmn5 s-table s-table__hover">
+            <thead>
+                <tr>
+                    <th scope="col" class="s-table--cell3">Class</th>
+                    <th scope="col" class="s-table--cell2">Applied</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in site.data.notices.visual %}
+                <tr>
+                    <td><code class="stacks-code">{{ item.class }}</code></td>
+                    <td>
+                        {% if item.applies == "N/A" %}
+                            <em class="fc-black-350">{{ item.applies }}</em>
+                        {% else %}
+                            {% assign class = item.applies | split: " " %}
 
-                        {% for name in class %}
-                            <code class="stacks-code">{{ name }}</code>
-                        {% endfor %}
-                    {% endif %}
-                </td>
-                <td>{{ item.description }}</td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+                            {% for name in class %}
+                                <code class="stacks-code">{{ name }}</code>
+                            {% endfor %}
+                        {% endif %}
+                    </td>
+                    <td>{{ item.description }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
 
     {% header {element: 'h3', text: 'Filled'} %}
     <p class="stacks-copy">Default style used to separate notices from the main content</p>
@@ -226,36 +230,38 @@ description: Notices deliver <strong>System</strong> and <strong>Engagement</str
 
 <section class="stacks-section">
     {% header {element: 'h2', text: 'Behaviors'} %}
-    <table cellspacing="0" class="mb32 s-table s-table__hover">
-        <thead>
-            <tr>
-                <th scope="col" class="s-table--cell2">Behavior</th>
-                <th scope="col" class="s-table--cell3">Class</th>
-                <th scope="col" class="s-table--cell2">Applied to</th>
-                <th scope="col">Description</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for item in site.data.notices.behavior %}
-            <tr>
-                <td>{{ item.type }}
-                <td><code class="stacks-code">{{ item.class }}</code></td>
-                <td>
-                    {% if item.applies == "N/A" %}
-                        <em class="fc-black-350">{{ item.applies }}</em>
-                    {% else %}
-                        {% assign class = item.applies | split: " " %}
+    <div class="overflow-x-auto mb32">
+        <table class="wmn4 s-table s-table__hover">
+            <thead>
+                <tr>
+                    <th scope="col" class="s-table--cell2">Behavior</th>
+                    <th scope="col" class="s-table--cell3">Class</th>
+                    <th scope="col" class="s-table--cell2">Applied</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in site.data.notices.behavior %}
+                <tr>
+                    <td>{{ item.type }}
+                    <td><code class="stacks-code">{{ item.class }}</code></td>
+                    <td>
+                        {% if item.applies == "N/A" %}
+                            <em class="fc-black-350">{{ item.applies }}</em>
+                        {% else %}
+                            {% assign class = item.applies | split: " " %}
 
-                        {% for name in class %}
-                            <code class="stacks-code">{{ name }}</code>
-                        {% endfor %}
-                    {% endif %}
-                </td>
-                <td>{{ item.description }}</td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+                            {% for name in class %}
+                                <code class="stacks-code">{{ name }}</code>
+                            {% endfor %}
+                        {% endif %}
+                    </td>
+                    <td>{{ item.description }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
 
     {% header {element: 'h3', text: 'Inline'} %}
     <p class="stacks-copy">Default behavior for notices that are inserted within the content area</p>
