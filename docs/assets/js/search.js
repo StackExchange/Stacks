@@ -1,10 +1,8 @@
 $(document).ready(function() {
-    var search = docsearch({
+    docsearch({
         apiKey: '09d35fa9def5c025244d5b217778a652',
         indexName: 'stackoverflow_design',
-        inputSelector: '#searchbox',
-        autoWidth: false,
-        debug: false
+        inputSelector: '#searchbox'
     });
 
     // Kill default behavior on empty links
