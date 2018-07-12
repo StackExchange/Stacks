@@ -1,6 +1,15 @@
 $(document).ready(function() {
+    // Cache some variables
+    var subnav = $(".js-secondary-nav");
+    var navigation = $(".js-navigation");
+    var closeIcon = $(".js-hamburger-close-icon");
+    var hamburgerIcon = $(".js-hamburger-icon");
+
     function regenerateMenu () {
-        var subnav = $(".js-secondary-nav");
+        // Hide the navigation if we've opened it
+        hamburgerIcon.removeClass("d-none");
+        closeIcon.addClass("d-none");
+        navigation.addClass("md:d-none");
 
         // Kill the subnav and rebuild it
         subnav.empty();

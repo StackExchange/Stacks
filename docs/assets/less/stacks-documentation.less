@@ -14,63 +14,6 @@
 @import "./lib/src/stacks.less"; //  These are actual styles used in SO projects
 @import "syntax";
 
-
-//  ============================================================================
-//  $   UNIVERSAL SETTINGS
-//  ----------------------------------------------------------------------------
-@site-width: 1060px;
-@site-padding: 15px;
-
-html {
-    min-width: @site-width; // https://meta.stackoverflow.com/questions/208203/
-}
-
-body {
-    min-width: @site-width + @site-padding;
-}
-
-//  ============================================================================
-//  $   SITE LAYOUT
-//  ============================================================================
-.s-nav {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    background-color: @black-025;
-    box-shadow: inset 0 4px 0 0 @orange-400, inset 0 -1px 0 0 @black-100, @bs-sm;
-    height: 50px;
-    z-index: @zi-navigation-fixed;
-}
-
-.stacks-wrapper {
-    min-height: 100vh;
-}
-
-.stacks-body {
-    margin-left: 20rem;
-    padding: @su64 0;
-}
-
-.stacks-home {
-    margin-left: 20rem;
-    width: 100%;
-}
-
-.stacks-menu {
-    top: 10.462rem;
-    padding-left: @su12;
-    width: 100%;
-    min-width: 16rem;
-    max-width: 20rem;
-}
-
-.stacks-content {
-    width: 75%;
-    max-width: 60rem;
-}
-
 .stacks-section {
     margin-top: @su48;
     margin-bottom: @su48;
@@ -80,129 +23,24 @@ body {
     margin-bottom: 0.75em;
 }
 
-
-//  ============================================================================
-//  $   NAV STYLES
-//  ============================================================================
-//  $$  MAIN NAVIGATION WRAPPER
-//  ----------------------------------------------------------------------------
-.stacks-nav {
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    width: 20vw;
-    min-width: 16rem;
-    max-width: 20rem;
-    border-right: 1px solid @black-050;
-    background-color: @black-025;
-    z-index: @zi-navigation-fixed;
-}
-
-//  $$  MAIN NAVIGATION MENU
-//  ----------------------------------------------------------------------------
-.stacks-nav--menu {
-    margin: 0;
-    padding: @su8 0 @su12;
-    list-style: none;
-    border-top: 1px solid @black-075;
-}
-
-//  $$  MAIN NAVIGATION CATEGORY TITLE
-//  ----------------------------------------------------------------------------
-.stacks-nav--category {
-    padding: @su16 @su4 @su8 @su24;
-    font-size: @fs-fine;
-    color: @fc-dark;
-    font-weight: bold;
-    line-height: @lh-sm;
-    text-transform: uppercase;
-}
-
-//  $$  MAIN NAVIGATION SUBNAV
-//  ----------------------------------------------------------------------------
-.stacks-nav--subnav {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-}
-
-//  $$  MAIN NAVIGATION ITEM
-//  ----------------------------------------------------------------------------
-.stacks-nav--item {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-}
-
-//  $$  MAIN NAVIGATION LINK
-//  ----------------------------------------------------------------------------
-.stacks-nav--link {
-    padding: @su4 @su12 @su4 @su24;
-    font-size: @fs-caption;
-    line-height: @lh-lg;
-    color: @fc-medium;
-
-    &:hover {
-        background-color: fade(@black-050,50%);
-        color: @fc-dark;
-    }
-
-    &.is-active {
-        margin-right: -1px;
-        background-color: @orange-300;
-        color: @white;
-
-        &:hover {
-            background-color: @orange-400;
-        }
-    }
-}
-
-//  $$  MAIN NAVIGATION FOOTER
-//  ----------------------------------------------------------------------------
-.stacks-nav--footer {
-    border-top: 1px solid @black-075;
-
-    .stacks-nav--link {
-        padding: @su4;
-        color: @black-400;
-
-        &:hover {
-            color: @fc-dark;
-        }
-    }
-}
-
 //  $$  SEARCH BOX ICON
 //  ----------------------------------------------------------------------------
 .stacks-search-icon {
     position: absolute;
     top: 50%;
     left: 10px;
-    margin-top: -9px;
+    margin-top: -10px;
     color: @black-200;
 }
 
 //  $$  NAV SECONDARY SUBNAV
 //  ----------------------------------------------------------------------------
-.stacks-nav__secondary {
-    padding: 0 @su16;
+.stacks-nav__secondary .stacks-nav__secondary {
+    padding-top: @su6;
 
-    .stacks-nav--link {
-        padding: @su2 @su8;
-    }
-
-    .stacks-nav__secondary {
-        padding: 0;
-
-        .stacks-nav--link {
-            color: @fc-light;
-            padding: @su2 @su24;
-
-            &:hover {
-                color: @fc-dark;
-            }
-        }
+    .stacks-nav--item {
+        padding: @su2;
+        padding-left: @su12;
     }
 }
 
@@ -231,12 +69,16 @@ body {
 //  --  Section Title
 .stacks-h2 {
     font-size: @fs-headline1;
+    padding-top: @su64 + @su24; // Hack for #anchor positioning
+    margin-top: -@su64 + -@su24; // Hack for #anchor positioning
 }
 
 //  --  Sub-section Title
 .stacks-h3 {
     font-size: @fs-subheading;
     color: @fc-medium;
+    padding-top: @su64 + @su24; // Hack for #anchor positioning
+    margin-top: -@su64 + -@su24; // Hack for #anchor positioning
 }
 
 .stacks-h4 {
@@ -249,7 +91,6 @@ body {
 .stacks-copy {
     margin-top: 0;
     margin-bottom: 1em;
-    max-width: 55rem;
     font-size: @fs-body3;
     line-height: @lh-lg;
     color: @fc-medium;
@@ -286,6 +127,10 @@ body {
     white-space: nowrap;
 }
 
+.stacks-code {
+    white-space: normal;
+}
+
 
 //  ============================================================================
 //  $  LISTS
@@ -303,7 +148,7 @@ body {
 //  ----------------------------------------------------------------------------
 .stacks-preview {
     margin-bottom: @su48;
-    box-shadow: 0 @su2 @su8 fade(@black-050, 50%);
+    .bs-sm;
 
     .highlight {
         position: relative;
@@ -370,6 +215,10 @@ body {
     background-color: @black-025;
     box-shadow: inset 0 -1px 0 @black-075;
     color: @fc-medium;
+
+    .svg-icon {
+        width: 100%;
+    }
 }
 
 //  ============================================================================
@@ -411,13 +260,61 @@ pre.lineno {
 }
 
 //  ============================================================================
-//  $   Search override
+//  $   Search Customization
 //  ----------------------------------------------------------------------------
 .algolia-autocomplete {
+    display: block !important;
     width: 100% !important;
-}
 
+    [class^="ds-dataset-"] {
+        .algolia-docsearch-suggestion--text {
+            .algolia-docsearch-suggestion--highlight {
+                box-shadow: inset 0 -2px 0 0 rgba(68, 168, 179,.8);
+            }
+        }
 
-.algolia-autocomplete .ds-dropdown-menu {
-    z-index: 9000 !important;
+        .algolia-docsearch-suggestion--highlight {
+            color: @fc-medium;
+            background: @orange-100;
+        }
+    }
+
+    .ds-dropdown-menu {
+        width: 100% !important;
+        max-width: 100% !important;
+        min-width: 0 !important;
+    }
+
+    .algolia-docsearch-footer {
+        float: none !important;
+        width: auto !important;
+        height: auto !important;
+        padding: 5px 8px;
+        font-size: @fs-caption !important;
+        line-height: 1 !important;
+        color: @fc-light !important;
+    }
+
+    .algolia-docsearch-footer--logo {
+        display: inline !important;
+        overflow: visible !important;
+        color: inherit !important;
+        text-indent: 0 !important;
+        background: 0 0 !important
+    }
+
+    @media (max-width: 640px) {
+        .algolia-docsearch-suggestion--subcategory-column {
+            display: none !important;
+        }
+
+        .algolia-docsearch-suggestion--content {
+            width: 100% !important;
+            padding: 0 !important;
+
+            &:before {
+                display: none !important;
+            }
+        }
+    }
 }

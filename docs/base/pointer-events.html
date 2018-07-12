@@ -5,30 +5,26 @@ description: Atomic pointer-event classes allow you to quickly change an element
 ---
 <section class="stacks-section">
     {% header {element: 'h2', text: 'Classes'} %}
-    <table class="mb32 s-table s-table__hover">
-        <thead>
-            <tr>
-                <th class="s-table--cell2" scope="col">Class</th>
-                <th class="s-table--cell3" scope="col">Output</th>
-                <th scope="col">Definition</th>
-                <th class="s-table--cell2 ta-center" scope="col"><a class="s-link s-link__inherit" href="{{ "/guidelines/responsiveness" | relative_url }}">Responsive?</a></th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for atomic in site.data.atomic-definitions.pointer-events %}
-            <tr class="fs-caption">
-                <th scope="row"><code class="stacks-code bg-white">.{{ atomic.class }}</code></th>
-                <td><code class="stacks-code bg-white">{{ atomic.output }}</code></td>
-                <td class="p8">{{ atomic.define }}</td>
-                <td class="ta-center">
-                    {% if atomic.responsive %}
-                        {% svg /resources/svg-icons/Checkmark.svg width="18" height="18" aria-hidden="true" class="svg-icon iconCheckmark fc-green-500" %}
-                    {% endif %}
-                </td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+    <div class="overflow-x-auto mb32">
+        <table class="wmn3 s-table s-table__hover">
+            <thead>
+                <tr>
+                    <th class="s-table--cell2" scope="col">Class</th>
+                    <th class="s-table--cell3" scope="col">Output</th>
+                    <th scope="col">Definition</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for atomic in site.data.atomic-definitions.pointer-events %}
+                <tr class="fs-caption">
+                    <th scope="row"><code class="stacks-code bg-white">.{{ atomic.class }}</code></th>
+                    <td><code class="stacks-code bg-white">{{ atomic.output }}</code></td>
+                    <td class="p8">{{ atomic.define }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
 
     {% header {element: 'h2', text: 'Examples'} %}
     <div class="stacks-preview">
@@ -36,7 +32,7 @@ description: Atomic pointer-event classes allow you to quickly change an element
 <div class="pe-auto">…</div>
 <div class="pe-none">…</div>
 {% endhighlight %}
-        <div class="stacks-preview--example  fs-caption ff-mono">
+        <div class="stacks-preview--example fs-caption ff-mono">
             <div class="grid gs8 fw-wrap">
                 <button class="pe-auto grid--cell s-btn s-btn__primary ff-mono">.pe-auto</button>
                 <button class="pe-none grid--cell s-btn s-btn__primary ff-mono">.pe-none</button>

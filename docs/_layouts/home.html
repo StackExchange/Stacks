@@ -1,11 +1,17 @@
 <!DOCTYPE html>
 <html lang="en-us" class="h100">
 {% include head.html %}
-<body class="grid h100 w100">
-    <div class="grid fl1 bg-orange-400 fc-white">
+
+<!-- Additional Javascript -->
+<script src="{{ site.baseurl }}/{{ site.js }}/hamburger.js" async></script>
+
+<body class="grid grid__center">
+    {% include header.html %}
+
+    <div class="grid mx-auto w100 wmx12">
         {% include navigation.html %}
 
-        <div class="grid--cell stacks-home">
+        <div class="grid--cell w80 ps-relative t48 p64 pt24 md:w100 ta-center fc-medium">
             {{ content }}
         </div>
     </div>

@@ -5,30 +5,32 @@ description: Display atomic classes allow you to change an element’s display q
 ---
 <section class="stacks-section">
     {% header {element: 'h2', text: 'Classes'} %}
-    <table class="mb32 s-table s-table__hover">
-        <thead>
-            <tr>
-                <th class="s-table--cell2" scope="col">Class</th>
-                <th class="s-table--cell3" scope="col">Output</th>
-                <th scope="col">Definition</th>
-                <th class="s-table--cell2 ta-center" scope="col"><a class="s-link s-link__inherit" href="{{ "/guidelines/responsiveness" | relative_url }}">Responsive?</a></th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for atomic in site.data.atomic-definitions.display %}
-                <tr class="fs-caption">
-                    <th scope="row"><code class="stacks-code bg-white">.{{ atomic.class }}</code></th>
-                    <td><code class="stacks-code bg-white">{{ atomic.output }}</td>
-                    <td>{{ atomic.define }}</td>
-                    <td class="ta-center">
-                        {% if atomic.responsive %}
-                            {% svg /resources/svg-icons/Checkmark.svg width="18" height="18" aria-hidden="true" class="svg-icon iconCheckmark fc-green-500" %}
-                        {% endif %}
-                    </td>
+    <div class="overflow-x-auto mb32">
+        <table class="wmn5 s-table s-table__hover">
+            <thead>
+                <tr>
+                    <th class="s-table--cell2" scope="col">Class</th>
+                    <th class="s-table--cell3" scope="col">Output</th>
+                    <th scope="col">Definition</th>
+                    <th class="s-table--cell2 ta-center" scope="col"><a class="s-link s-link__inherit" href="{{ "/guidelines/responsiveness" | relative_url }}">Responsive?</a></th>
                 </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+                {% for atomic in site.data.atomic-definitions.display %}
+                    <tr class="fs-caption">
+                        <th scope="row"><code class="stacks-code bg-white">.{{ atomic.class }}</code></th>
+                        <td><code class="stacks-code bg-white">{{ atomic.output }}</td>
+                        <td>{{ atomic.define }}</td>
+                        <td class="ta-center">
+                            {% if atomic.responsive %}
+                                {% svg /resources/svg-icons/Checkmark.svg width="18" height="18" aria-hidden="true" class="svg-icon iconCheckmark fc-green-500" %}
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
     {% include notice-unset.html %}
 </section>
 <section class="stacks-section">
@@ -43,7 +45,7 @@ description: Display atomic classes allow you to change an element’s display q
 <div class="d-none">…</div>
 <div class="d-unset">…</div>
 {% endhighlight %}
-        <div class="stacks-preview--example  fs-caption ff-mono">
+        <div class="stacks-preview--example fs-caption ff-mono">
             <div class="d-block my4 w20 bg-orange-100 p12 ba bc-orange-3">.d-block</div>
             <br>
             <div class="d-inline my4 bg-orange-100 p12 ba bc-orange-3">.d-inline</div>
