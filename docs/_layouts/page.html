@@ -2,41 +2,39 @@
 <html lang="en-us">
 {% include head.html %}
 
+<!-- Additional Javascript -->
+<script src="{{ site.baseurl }}/{{ site.js }}/hamburger.js" async></script>
+<script src="{{ site.baseurl }}/{{ site.js }}/navigation.js" async></script>
+
 <body>
-    <nav class="s-nav js-stacks-topbar">
-        <div class="grid grid__center h100 fc-medium">Sample navigation</div>
-    </nav>
-    <div class="stacks-wrapper">
+    {% include header.html %}
+
+    <div class="grid mx-auto w100 wmx12">
         {% include navigation.html %}
 
-        <main class="stacks-body js-stacks-content">
-            <div class="grid mx-auto wmx9 stacks-body--container">
-                <div class="grid--cell order-last">
-                    <aside class="ps-sticky stacks-menu">
-                        <h5 class="mx16 px8 py4 mb4 stacks-nav--category fc-orange-500" style="margin-left: -1px;">Sections</h5>
-                        <ul class="grid gs4 gsy fd-column stacks-nav__secondary js-secondary-nav"></ul>
+        <div class="grid--cell w80 md:w100">
+            <div class="grid jc-space-between ps-relative t64 p24 wmx9 mx-auto">
+                <div class="grid--cell order-last w30 wmx2 pl8 sm:d-none">
+                    <aside class="ps-sticky t64 pt16">
+                        <h5 class="mb4 fw-bold tt-uppercase fs-fine fc-orange-500 mnl1">Sections</h5>
+                        <ul class="list-reset grid gs8 gsy fd-column stacks-nav__secondary js-secondary-nav"></ul>
                     </aside>
                 </div>
-                <div class="grid--cell stacks-content">
+                <div class="grid--cell w70 sm:w100">
                     <div id="content">
                         {% if page.title %}
-                            <h1 class="stacks-h1">
-                                {{ page.title }}
-                            </h1>
+                            <h1 class="stacks-h1">{{ page.title }}</h1>
                         {% endif %}
-
                         {% if page.description %}
                             <p class="stacks-copy stacks-copy__lg">
                                 {{ page.description }}
                             </p>
                         {% endif %}
-
                         {{ content }}
                     </div>
                 </div>
             </div>
-        </main>
+        </div>
     </div>
 </body>
-{% include footer.html %}
 </html>

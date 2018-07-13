@@ -4,32 +4,33 @@ title: Width & Height
 description: Stacks provides atomic sizing classes for percentage-based widths & heights, static widths & heights, max-widths & heights, and min-widths & heights.
 ---
 <section class="stacks-section">
-    <h2 class="grid jc-space-between ai-center stacks-h2"><div class="grid--cell fl1">Width, Percentage</div></h2>
-    <h3 class="grid jc-space-between ai-center stacks-h3"><div class="grid--cell fl1">Classes</div></h3>
-    <table class="mb32 s-table s-table__hover">
-        <thead>
-            <tr>
-                <th scope="col">Class</th>
-                <th scope="col">Output</th>
-                <th class="s-table--cell2 ta-center" scope="col"><a class="s-link s-link__inherit" href="{{ "/guidelines/responsiveness" | relative_url }}">Responsive?</a></th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for size in site.data.atomic-definitions.width-percentage %}
-            <tr class="ff-mono fs-caption">
-                <th scope="row" class="p8">.{{ size.class }}</th>
-                <td class="p8">{{ size.output }}</td>
-                <td class="ta-center">
-                    {% if size.responsive %}
-                        {% svg /resources/svg-icons/Checkmark.svg width="18" height="18" aria-hidden="true" class="svg-icon iconCheckmark fc-green-500" %}
-                    {% endif %}
-                </td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+    {% header {element: 'h2', text: 'Fluid Width'} %}
+    {% header {element: 'h3', text: 'Fluid Classes'} %}
+    <div class="overflow-x-auto mb32">
+        <table class="wmn3 s-table s-table__hover">
+            <thead>
+                <tr>
+                    <th scope="col">Class</th>
+                    <th scope="col">Output</th>
+                    <th class="s-table--cell2 ta-center" scope="col"><a class="s-link s-link__inherit" href="{{ "/guidelines/responsiveness" | relative_url }}">Responsive?</a></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for size in site.data.atomic-definitions.width-percentage %}
+                <tr class="ff-mono fs-caption">
+                    <th scope="row" class="p8">.{{ size.class }}</th>
+                    <td class="p8">{{ size.output }}</td>
+                    <td class="ta-center">
+                        {% if size.responsive %}
+                            {% svg /resources/svg-icons/Checkmark.svg width="18" height="18" aria-hidden="true" class="svg-icon iconCheckmark fc-green-500" %}
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
 
-    <h3 class="grid jc-space-between ai-center stacks-h3"><div class="grid--cell fl1">Examples</div></h3>
+    {% header {element: 'h3', text: 'Fluid Examples'} %}
     <div class="stacks-preview">
 {% highlight html linenos %}
 <div class="w0">…</div>
@@ -46,7 +47,7 @@ description: Stacks provides atomic sizing classes for percentage-based widths &
 <div class="w90">…</div>
 <div class="w100">…</div>
 {% endhighlight %}
-        <div class="stacks-preview--example  ps-relative fs-caption ff-mono">
+        <div class="stacks-preview--example ps-relative fs-caption ff-mono">
             <div class="grid gs2 ff-column-nowrap w100">
                 <div class="grid">
                     <div class="p16 w100 bg-orange-050 ba bc-orange-1">.w100</div>
@@ -81,33 +82,35 @@ description: Stacks provides atomic sizing classes for percentage-based widths &
 </section>
 
 <section class="stacks-section">
-    <h2 class="grid jc-space-between ai-center stacks-h2"><div class="grid--cell fl1">Width, Static</div></h2>
-    <h3 class="grid jc-space-between ai-center stacks-h3"><div class="grid--cell fl1">Classes</div></h3>
+    {% header {element: 'h2', text: 'Static Widths'} %}
+    {% header {element: 'h3', text: 'Static Classes'} %}
     <p class="stacks-copy stacks-copy__lg">Static widths are based on the full site width of <code class="stacks-code">1264px</code>.</p>
-    <table class="mb32 s-table s-table__hover">
-        <thead>
-            <tr>
-                <th scope="col">Class</th>
-                <th scope="col">Output</th>
-                <th class="s-table--cell2 ta-center" scope="col"><a class="s-link s-link__inherit" href="{{ "/guidelines/responsiveness" | relative_url }}">Responsive?</a></th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for size in site.data.atomic-definitions.width-static %}
-            <tr class="ff-mono fs-caption">
-                <th scope="row" class="p8">.{{ size.class }}</th>
-                <td class="p8">{{ size.output }}</td>
-                <td class="ta-center">
-                    {% if size.responsive %}
-                        {% svg /resources/svg-icons/Checkmark.svg width="18" height="18" aria-hidden="true" class="svg-icon iconCheckmark fc-green-500" %}
-                    {% endif %}
-                </td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+    <div class="overflow-x-auto mb32">
+        <table class="wmn3 s-table s-table__hover">
+            <thead>
+                <tr>
+                    <th scope="col">Class</th>
+                    <th scope="col">Output</th>
+                    <th class="s-table--cell2 ta-center" scope="col"><a class="s-link s-link__inherit" href="{{ "/guidelines/responsiveness" | relative_url }}">Responsive?</a></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for size in site.data.atomic-definitions.width-static %}
+                <tr class="ff-mono fs-caption">
+                    <th scope="row" class="p8">.{{ size.class }}</th>
+                    <td class="p8">{{ size.output }}</td>
+                    <td class="ta-center">
+                        {% if size.responsive %}
+                            {% svg /resources/svg-icons/Checkmark.svg width="18" height="18" aria-hidden="true" class="svg-icon iconCheckmark fc-green-500" %}
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
 
-    <h3 class="grid jc-space-between ai-center stacks-h3"><div class="grid--cell fl1">Examples</div></h3>
+    {% header {element: 'h3', text: 'Static Examples'} %}
     <div class="stacks-preview">
 {% highlight html linenos %}
 <div class="ws1">…</div>
@@ -145,32 +148,34 @@ description: Stacks provides atomic sizing classes for percentage-based widths &
 </section>
 
 <section class="stacks-section">
-    <h2 class="grid jc-space-between ai-center stacks-h2"><div class="grid--cell fl1">Width, Max</div></h2>
-    <h3 class="grid jc-space-between ai-center stacks-h3"><div class="grid--cell fl1">Classes</div></h3>
-    <table class="mb32 s-table s-table__hover">
-        <thead>
-            <tr>
-                <th scope="col">Class</th>
-                <th scope="col">Output</th>
-                <th class="s-table--cell2 ta-center" scope="col"><a class="s-link s-link__inherit" href="{{ "/guidelines/responsiveness" | relative_url }}">Responsive?</a></th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for size in site.data.atomic-definitions.width-max %}
-            <tr class="ff-mono fs-caption">
-                <th scope="row" class="p8">.{{ size.class }}</th>
-                <td class="p8">{{ size.output }}</td>
-                <td class="ta-center">
-                    {% if size.responsive %}
-                        {% svg /resources/svg-icons/Checkmark.svg width="18" height="18" aria-hidden="true" class="svg-icon iconCheckmark fc-green-500" %}
-                    {% endif %}
-                </td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+    {% header {element: 'h2', text: 'Max Width'} %}
+    {% header {element: 'h3', text: 'Max Width Classes'} %}
+    <div class="overflow-x-auto mb32">
+        <table class="wmn3 s-table s-table__hover">
+            <thead>
+                <tr>
+                    <th scope="col">Class</th>
+                    <th scope="col">Output</th>
+                    <th class="s-table--cell2 ta-center" scope="col"><a class="s-link s-link__inherit" href="{{ "/guidelines/responsiveness" | relative_url }}">Responsive?</a></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for size in site.data.atomic-definitions.width-max %}
+                <tr class="ff-mono fs-caption">
+                    <th scope="row" class="p8">.{{ size.class }}</th>
+                    <td class="p8">{{ size.output }}</td>
+                    <td class="ta-center">
+                        {% if size.responsive %}
+                            {% svg /resources/svg-icons/Checkmark.svg width="18" height="18" aria-hidden="true" class="svg-icon iconCheckmark fc-green-500" %}
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
 
-    <h3 class="grid jc-space-between ai-center stacks-h3"><div class="grid--cell fl1">Examples</div></h3>
+    {% header {element: 'h3', text: 'Max Width Examples'} %}
     <div class="stacks-preview">
 {% highlight html linenos %}
 <div class="wmx-initial">…</div>
@@ -188,7 +193,7 @@ description: Stacks provides atomic sizing classes for percentage-based widths &
 <div class="wmx12">…</div>
 <div class="wmx100">…</div>
 {% endhighlight %}
-        <div class="stacks-preview--example  ps-relative fs-caption ff-mono overflow-x-scroll">
+        <div class="stacks-preview--example ps-relative fs-caption ff-mono overflow-x-scroll">
             <div class="grid gs2 ff-column-nowrap ws12">
                 <div class="grid--cell p16 wmx1 bg-orange-050 ba bc-orange-1">.wmx1</div>
                 <div class="grid--cell p16 wmx2 bg-orange-050 ba bc-orange-1">.wmx2</div>
@@ -208,32 +213,34 @@ description: Stacks provides atomic sizing classes for percentage-based widths &
 </section>
 
 <section class="stacks-section">
-    <h2 class="grid jc-space-between ai-center stacks-h2"><div class="grid--cell fl1">Width, Min</div></h2>
-    <h3 class="grid jc-space-between ai-center stacks-h3"><div class="grid--cell fl1">Classes</div></h3>
-    <table class="mb32 s-table s-table__hover">
-        <thead>
-            <tr>
-                <th scope="col">Class</th>
-                <th scope="col">Output</th>
-                <th class="s-table--cell2 ta-center" scope="col"><a class="s-link s-link__inherit" href="{{ "/guidelines/responsiveness" | relative_url }}">Responsive?</a></th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for size in site.data.atomic-definitions.width-min %}
-            <tr class="ff-mono fs-caption">
-                <th scope="row" class="p8">.{{ size.class }}</th>
-                <td class="p8">{{ size.output }}</td>
-                <td class="ta-center">
-                    {% if size.responsive %}
-                        {% svg /resources/svg-icons/Checkmark.svg width="18" height="18" aria-hidden="true" class="svg-icon iconCheckmark fc-green-500" %}
-                    {% endif %}
-                </td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+    {% header {element: 'h2', text: 'Min Width'} %}
+    {% header {element: 'h3', text: 'Min Width Classes'} %}
+    <div class="overflow-x-auto mb32">
+        <table class="wmn3 s-table s-table__hover">
+            <thead>
+                <tr>
+                    <th scope="col">Class</th>
+                    <th scope="col">Output</th>
+                    <th class="s-table--cell2 ta-center" scope="col"><a class="s-link s-link__inherit" href="{{ "/guidelines/responsiveness" | relative_url }}">Responsive?</a></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for size in site.data.atomic-definitions.width-min %}
+                <tr class="ff-mono fs-caption">
+                    <th scope="row" class="p8">.{{ size.class }}</th>
+                    <td class="p8">{{ size.output }}</td>
+                    <td class="ta-center">
+                        {% if size.responsive %}
+                            {% svg /resources/svg-icons/Checkmark.svg width="18" height="18" aria-hidden="true" class="svg-icon iconCheckmark fc-green-500" %}
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
 
-    <h3 class="grid jc-space-between ai-center stacks-h3"><div class="grid--cell fl1">Examples</div></h3>
+    {% header {element: 'h3', text: 'Min Width Examples'} %}
     <div class="stacks-preview">
 {% highlight html linenos %}
 <div class="wmn-initial">…</div>
@@ -252,7 +259,7 @@ description: Stacks provides atomic sizing classes for percentage-based widths &
 <div class="wmn12">…</div>
 <div class="wmn100">…</div>
 {% endhighlight %}
-        <div class="stacks-preview--example  ps-relative fs-caption ff-mono overflow-x-scroll">
+        <div class="stacks-preview--example ps-relative fs-caption ff-mono overflow-x-scroll">
             <div class="grid gs2 ff-column-nowrap">
                 <div class="grid--cell p16 wmn0 bg-orange-050 ba bc-orange-1">.wmn0</div>
                 <div class="grid--cell p16 wmn1 bg-orange-050 ba bc-orange-1">.wmn1</div>
@@ -273,39 +280,41 @@ description: Stacks provides atomic sizing classes for percentage-based widths &
 </section>
 
 <section class="stacks-section">
-    <h2 class="grid jc-space-between ai-center stacks-h2"><div class="grid--cell fl1">Height</div></h2>
-    <h3 class="grid jc-space-between ai-center stacks-h3"><div class="grid--cell fl1">Classes</div></h3>
-    <table class="mb32 s-table s-table__hover">
-        <thead>
-            <tr>
-                <th scope="col">Class</th>
-                <th scope="col">Output</th>
-                <th class="s-table--cell2 ta-center" scope="col"><a class="s-link s-link__inherit" href="{{ "/guidelines/responsiveness" | relative_url }}">Responsive?</a></th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for size in site.data.atomic-definitions.height-percentage %}
-            <tr class="ff-mono fs-caption">
-                <th scope="row" class="p8">.{{ size.class }}</th>
-                <td class="p8">{{ size.output }}</td>
-                <td class="ta-center">
-                    {% if size.responsive %}
-                        {% svg /resources/svg-icons/Checkmark.svg width="18" height="18" aria-hidden="true" class="svg-icon iconCheckmark fc-green-500" %}
-                    {% endif %}
-                </td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+    {% header {element: 'h2', text: 'Height'} %}
+    {% header {element: 'h3', text: 'Height Classes'} %}
+    <div class="overflow-x-auto mb32">
+        <table class="wmn3 s-table s-table__hover">
+            <thead>
+                <tr>
+                    <th scope="col">Class</th>
+                    <th scope="col">Output</th>
+                    <th class="s-table--cell2 ta-center" scope="col"><a class="s-link s-link__inherit" href="{{ "/guidelines/responsiveness" | relative_url }}">Responsive?</a></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for size in site.data.atomic-definitions.height-percentage %}
+                <tr class="ff-mono fs-caption">
+                    <th scope="row" class="p8">.{{ size.class }}</th>
+                    <td class="p8">{{ size.output }}</td>
+                    <td class="ta-center">
+                        {% if size.responsive %}
+                            {% svg /resources/svg-icons/Checkmark.svg width="18" height="18" aria-hidden="true" class="svg-icon iconCheckmark fc-green-500" %}
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
 
-    <h3 class="grid jc-space-between ai-center stacks-h3"><div class="grid--cell fl1">Examples</div></h3>
+    {% header {element: 'h2', text: 'Height Examples'} %}
     <div class="stacks-preview">
 {% highlight html linenos %}
 <div class="h0">…</div>
 <div class="h50">…</div>
 <div class="h100">…</div>
 {% endhighlight %}
-        <div class="stacks-preview--example  ps-relative fs-caption ff-mono">
+        <div class="stacks-preview--example ps-relative fs-caption ff-mono">
             <div class="grid gs2 w100 hs3">
                 <div class="grid--cell fl1 ff-column-nowrap">
                     <div class="p16 h100 bg-orange-050 ba bc-orange-1">.h100</div>
@@ -320,28 +329,30 @@ description: Stacks provides atomic sizing classes for percentage-based widths &
 </section>
 
 <section class="stacks-section">
-    <h2 class="grid jc-space-between ai-center stacks-h2"><div class="grid--cell fl1">Height, Min & Max</div></h2>
-    <h3 class="grid jc-space-between ai-center stacks-h3"><div class="grid--cell fl1">Classes</div></h3>
-    <table class="mb32 s-table s-table__hover">
-        <thead>
-            <tr>
-                <th scope="col">Class</th>
-                <th scope="col">Output</th>
-                <th class="s-table--cell2 ta-center" scope="col"><a class="s-link s-link__inherit" href="{{ "/guidelines/responsiveness" | relative_url }}">Responsive?</a></th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for size in site.data.atomic-definitions.height-max-min %}
-            <tr class="ff-mono fs-caption">
-                <th scope="row" class="p8">.{{ size.class }}</th>
-                <td class="p8">{{ size.output }}</td>
-                <td class="ta-center">
-                    {% if size.responsive %}
-                        {% svg /resources/svg-icons/Checkmark.svg width="18" height="18" aria-hidden="true" class="svg-icon iconCheckmark fc-green-500" %}
-                    {% endif %}
-                </td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+    {% header {element: 'h2', text: 'Height Min Max'} %}
+    {% header {element: 'h3', text: 'Height Min Max Classes'} %}
+    <div class="overflow-x-auto mb32">
+        <table class="wmn3 s-table s-table__hover">
+            <thead>
+                <tr>
+                    <th scope="col">Class</th>
+                    <th scope="col">Output</th>
+                    <th class="s-table--cell2 ta-center" scope="col"><a class="s-link s-link__inherit" href="{{ "/guidelines/responsiveness" | relative_url }}">Responsive?</a></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for size in site.data.atomic-definitions.height-max-min %}
+                <tr class="ff-mono fs-caption">
+                    <th scope="row" class="p8">.{{ size.class }}</th>
+                    <td class="p8">{{ size.output }}</td>
+                    <td class="ta-center">
+                        {% if size.responsive %}
+                            {% svg /resources/svg-icons/Checkmark.svg width="18" height="18" aria-hidden="true" class="svg-icon iconCheckmark fc-green-500" %}
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
 </section>

@@ -3,22 +3,9 @@ layout: page
 title: Sidebar Widgets
 description: Sidebar widgets are flexible containers that provide a lot of patterns that are helpful in a variety of sidebar uses.
 ---
-<style>
-    .post-tag {
-        color: #39739d;
-        background-color: #E1ECF4;
-        display: inline-block;
-        padding: .4em .5em;
-        margin: 4px 4px 4px 0;
-        white-space: nowrap;
-    }
-    .tag-list {
-        margin: -4px -4px -4px 0;
-    }
-</style>
 
 <section class="stacks-section">
-    <h2 class="grid jc-space-between ai-center stacks-h2"><div class="grid--cell fl1">The Basics</div></h2>
+    {% header {element: 'h2', text: 'Basic Style'} %}
 
     <p class="stacks-copy">
         In its simplest form, the sidebar widget is an element with class <code class="stacks-code">.s-sidebarwidget</code> and a child of class <code class="stacks-code">.s-sidebarwidget--content</code>.
@@ -40,7 +27,7 @@ description: Sidebar widgets are flexible containers that provide a lot of patte
     </div>
 </div>
 {% endhighlight %}
-        <div class="stacks-preview--example ">
+        <div class="stacks-preview--example">
             <div class="s-sidebarwidget ws3 mx-auto">
                 <div class="s-sidebarwidget--content d-block">
                     <div class="fs-headline1 mb8 lh-sm">
@@ -52,7 +39,7 @@ description: Sidebar widgets are flexible containers that provide a lot of patte
         </div>
     </div>
 
-    <h3 class="grid jc-space-between ai-center stacks-h3"><div class="grid--cell fl1">Simple Items</div></h3>
+    {% header {element: 'h3', text: 'Simple Items'} %}
     <p class="stacks-copy">Oftentimes, your widget will be a list of similar, relatively simple items. By giving the <code class="stacks-code">s-sidebarwidget--content</code> a modifier class <code class="stacks-code">s-sidebarwidget__items</code>, and giving the items a class of <code class="stacks-code">s-sidebarwidget--item</code>, the content will be spaced out nicely.</p>
     <p class="stacks-copy">In this case, each item is a flex container by default. If you require <code class="stacks-code">display: block</code> instead, specifically add the <code class="stacks-code">d-block</code> class to the <code class="stacks-code">s-sidebarwidget--item</code>, or add the <code class="stacks-code">s-sidebarwidget__block-items</code> modifier class to the <code class="stacks-code">s-sidebarwidget--content</code> to make the change to <em>all</em> items.</p>
 
@@ -75,7 +62,7 @@ description: Sidebar widgets are flexible containers that provide a lot of patte
     </div>
 </div>
 {% endhighlight %}
-        <div class="stacks-preview--example ">
+        <div class="stacks-preview--example">
             <div class="s-sidebarwidget ws3 mx-auto">
                 <div class="s-sidebarwidget--content s-sidebarwidget__items">
                     <div class="s-sidebarwidget--item">
@@ -95,13 +82,11 @@ description: Sidebar widgets are flexible containers that provide a lot of patte
         </div>
     </div>
 
-
     <p class="stacks-copy">
         There is built-in support for <code class="stacks-code">table</code> content. The <code class="stacks-code">table</code> element should have the classes <code class="stacks-code">s-sidebarwidget--content s-sidebarwidget__items</code>, and the <code class="stacks-code">tr</code> elements should be <code class="stacks-code">s-sidebarwidget--item</code>.
     </p>
 
-    <h3 class="grid jc-space-between ai-center stacks-h3"><div class="grid--cell fl1">Complex Items</div></h3>
-
+    {% header {element: 'h3', text: 'Complex Items'} %}
     <p class="stacks-copy">
         If your items are more complex than that, whitespace may not be enough to separate them clearly. In this case instead of a single <code class="stacks-code">s-sidebarwidget--content</code> element with multile items, use multiple <code class="stacks-code">s-sidebarwidget--content</code> elements, which will be separated by subtle divider lines.
     </p>
@@ -135,7 +120,7 @@ description: Sidebar widgets are flexible containers that provide a lot of patte
     </div>
 </div>
 {% endhighlight %}
-        <div class="stacks-preview--example ">
+        <div class="stacks-preview--example">
             <div class="s-sidebarwidget ws3 mx-auto">
                 <div class="s-sidebarwidget--content">
                     <img src="https://i.stack.imgur.com/MSY0L.jpg?s=64&amp;g=1" width="32" height="32" class="bar-sm mr8">
@@ -165,7 +150,7 @@ description: Sidebar widgets are flexible containers that provide a lot of patte
         </div>
     </div>
 
-    <h3 class="grid jc-space-between ai-center stacks-h3"><div class="grid--cell fl1">Headers</div></h3>
+    {% header {element: 'h3', text: 'Headers'} %}
     <p class="stacks-copy">
         Besides <code class="stacks-code">s-sidebarwidget--content</code>, the other possible child class is <code class="stacks-code">s-sidebarwidget--header</code>, which unsurprisingly creates a header. Headers can be used both as a title for the widget, as well as to create several sections inside the widget.
     </p>
@@ -194,7 +179,7 @@ description: Sidebar widgets are flexible containers that provide a lot of patte
     </table>
 </div>
 {% endhighlight %}
-        <div class="stacks-preview--example ">
+        <div class="stacks-preview--example">
             <div class="s-sidebarwidget ws3 mx-auto">
                 <div class="s-sidebarwidget--header">
                     Stats
@@ -243,7 +228,7 @@ description: Sidebar widgets are flexible containers that provide a lot of patte
     </ul>
 </div>
 {% endhighlight %}
-        <div class="stacks-preview--example ">
+        <div class="stacks-preview--example">
             <div class="s-sidebarwidget ws3 mx-auto">
                 <div class="s-sidebarwidget--header s-sidebarwidget__small-bold-text">
                     Stats
@@ -282,7 +267,7 @@ description: Sidebar widgets are flexible containers that provide a lot of patte
 </section>
 
 <section class="stacks-section">
-    <h2 class="grid jc-space-between ai-center stacks-h2"><div class="grid--cell fl1">Alternative Colors</div></h2>
+    {% header {element: 'h2', text: 'Alternative Colors'} %}
 
     <p class="stacks-copy">
         Three modifier classes are available for changing the background color of an <code class="stacks-code">s-sidebarwidget</code>: <code class="stacks-code">s-sidebarwidget__yellow</code>, <code class="stacks-code">s-sidebarwidget__blue</code>,
@@ -295,7 +280,7 @@ description: Sidebar widgets are flexible containers that provide a lot of patte
 <div class="s-sidebarwidget s-sidebarwidget__green">…</div>
 <div class="s-sidebarwidget s-sidebarwidget__blue">…</div>
 {% endhighlight %}
-        <div class="stacks-preview--example ">
+        <div class="stacks-preview--example">
             <div class="grid grid__allcells6 gs16">
                 <div class="grid--cell">
                     <div class="s-sidebarwidget s-sidebarwidget__yellow">
@@ -347,7 +332,7 @@ description: Sidebar widgets are flexible containers that provide a lot of patte
 </section>
 
 <section class="stacks-section">
-    <h2 class="grid jc-space-between ai-center stacks-h2"><div class="grid--cell fl1">Navigation</div></h2>
+    {% header {element: 'h2', text: 'Navigation'} %}
     <p class="stacks-copy">
         A common use for sidebar widgets is as a navigation block or table of contents, including a highlight of the page that the user is currently looking at.
     </p>
@@ -389,7 +374,7 @@ description: Sidebar widgets are flexible containers that provide a lot of patte
     </ul>
 </nav>
 {% endhighlight %}
-        <div class="stacks-preview--example ">
+        <div class="stacks-preview--example">
             <nav class="s-sidebarwidget ws3 mx-auto">
                 <div class="s-sidebarwidget--header">
                     Personal Information
@@ -410,7 +395,7 @@ description: Sidebar widgets are flexible containers that provide a lot of patte
         </div>
     </div>
 
-    <h3 class="grid jc-space-between ai-center stacks-h3"><div class="grid--cell fl1">Second-level navigation</div></h3>
+    {% header {element: 'h3', text: 'Second-Level Navigation'} %}
     <p class="stacks-copy">
         If you have a second level of navigation, you can add a <code class="stacks-code">ul</code> of class <code class="stacks-code">-subnav</code> to the top-level item. Highlighting the currently active navigation is a little more constrained in this case:
     </p>
@@ -451,7 +436,7 @@ description: Sidebar widgets are flexible containers that provide a lot of patte
     </ul>
 </nav>
 {% endhighlight %}
-        <div class="stacks-preview--example ">
+        <div class="stacks-preview--example">
             <nav class="s-sidebarwidget ws3 mx-auto">
                 <ul class="s-sidebarwidget--content s-sidebarwidget__items">
                     <li class="s-sidebarwidget--item">
@@ -482,7 +467,7 @@ description: Sidebar widgets are flexible containers that provide a lot of patte
 </section>
 
 <section class="stacks-section">
-    <h2 class="grid jc-space-between ai-center stacks-h2"><div class="grid--cell fl1">Header Actions</div></h2>
+    {% header {element: 'h2', text: 'Header Actions'} %}
     <p class="stacks-copy">
         There is often a need for a header to contain a link or link-like clickable that refers to the whole widget or to the section that this header starts. We call this an “action link”, and it’s created by adding the class <code class="stacks-code">s-sidebarwidget--action</code>.
     </p>
@@ -500,15 +485,15 @@ description: Sidebar widgets are flexible containers that provide a lot of patte
         Watched Tags
     </div>
     <div class="s-sidebarwidget--content">
-        <div class="tag-list">
-            <a class="post-tag" href="…">css</a>
-            <a class="post-tag" href="…">html</a>
-            <a class="post-tag" href="…">accessibility</a>
+        <div class="grid gs4">
+            <a class="grid--cell s-tag" href="…">css</a>
+            <a class="grid--cell s-tag" href="…">html</a>
+            <a class="grid--cell s-tag" href="…">accessibility</a>
         </div>
     </div>
 </div>
 {% endhighlight %}
-        <div class="stacks-preview--example ">
+        <div class="stacks-preview--example">
             <div class="grid grid__allcells6 gs16 ai-start">
                 <div class="grid--cell s-sidebarwidget">
                     <div class="s-sidebarwidget--header">
@@ -518,10 +503,10 @@ description: Sidebar widgets are flexible containers that provide a lot of patte
                         Watched Tags
                     </div>
                     <div class="s-sidebarwidget--content">
-                        <div class="tag-list">
-                            <a class="post-tag" href="#">css</a>
-                            <a class="post-tag" href="#">html</a>
-                            <a class="post-tag" href="#">accessibility</a>
+                        <div class="grid gs4">
+                            <a class="grid--cell s-tag" href="#">css</a>
+                            <a class="grid--cell s-tag" href="#">html</a>
+                            <a class="grid--cell s-tag" href="#">accessibility</a>
                         </div>
                     </div>
                     <div class="s-sidebarwidget--header">
@@ -531,10 +516,10 @@ description: Sidebar widgets are flexible containers that provide a lot of patte
                         Ignored Tags
                     </div>
                     <div class="s-sidebarwidget--content">
-                        <div class="tag-list">
-                            <a class="post-tag" href="#">twitter-bootstrap</a>
-                            <a class="post-tag" href="#">web-component</a>
-                            <a class="post-tag" href="#">internet-explorer</a>
+                        <div class="grid gs4">
+                            <a class="grid--cell s-tag" href="#">twitter-bootstrap</a>
+                            <a class="grid--cell s-tag" href="#">web-component</a>
+                            <a class="grid--cell s-tag" href="#">internet-explorer</a>
                         </div>
                     </div>
                 </div>
@@ -567,7 +552,7 @@ description: Sidebar widgets are flexible containers that provide a lot of patte
 </section>
 
 <section class="stacks-section">
-    <h2 class="grid jc-space-between ai-center stacks-h2"><div class="grid--cell fl1">Accordions</div></h2>
+    {% header {element: 'h2', text: 'Accordions'} %}
     <p class="stacks-copy">
         In order to create an accordion, i.e. to make part of the sidebar widget expandable / collapsible, you can do the following.
     </p>
@@ -645,7 +630,7 @@ description: Sidebar widgets are flexible containers that provide a lot of patte
     </div>
 </div>
 {% endhighlight %}
-        <div class="stacks-preview--example ">
+        <div class="stacks-preview--example">
             <div class="s-sidebarwidget ws3 mx-auto">
                 <div class="s-sidebarwidget--header s-sidebarwidget__small-bold_text
                             s-sidebarwidget__collapsing-control js-collapsing-control"
