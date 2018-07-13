@@ -51,27 +51,29 @@ description: Input elements are used to gather information from users.
     <p class="stacks-copy">Validation states provides the user feedback based on their interaction (or lack of interaction) with an input. These styles are applied by applying the appropriate class to the wrapping parent container.</p>
 
     {% header {element: 'h3', text: 'Validation Classes'} %}
-    <table class="mb32 s-table s-table__hover">
-        <thead>
-            <tr>
-                <th class="s-table--cell3" scope="col">Class</th>
-                <th class="s-table--cell3" scope="col">Applies</th>
-                <th scope="col">Definition</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for item in site.data.inputs.input %}
-                {% assign state = item.validation  %}
-                {% for class in state %}
+    <div class="overflow-x-auto mb32">
+        <table class="wmn4 s-table s-table__hover">
+            <thead>
                 <tr>
-                    <th scope="row"><code class="grid--cell stacks-code bg-white">{{ class.class }}</code></th>
-                    <td>{{ class.applies }}</td>
-                    <td>{{ class.description }}</td>
+                    <th class="s-table--cell3" scope="col">Class</th>
+                    <th class="s-table--cell3" scope="col">Applies</th>
+                    <th scope="col">Definition</th>
                 </tr>
+            </thead>
+            <tbody>
+                {% for item in site.data.inputs.input %}
+                    {% assign state = item.validation  %}
+                    {% for class in state %}
+                    <tr>
+                        <th scope="row"><code class="grid--cell stacks-code bg-white">{{ class.class }}</code></th>
+                        <td>{{ class.applies }}</td>
+                        <td>{{ class.description }}</td>
+                    </tr>
+                    {% endfor %}
                 {% endfor %}
-            {% endfor %}
-        </tbody>
-    </table>
+            </tbody>
+        </table>
+    </div>
 
     {% header {element: 'h3', text: 'Validation Examples'} %}
     {% header {element: 'h4', text: 'Warning'} %}
@@ -155,29 +157,31 @@ description: Input elements are used to gather information from users.
 
 <section id="inputs" class="stacks-section">
     {% header {element: 'h2', text: 'Sizes'} %}
-    <table class="mb32 s-table s-table__hover va-middle">
-        <thead>
-            <tr>
-                <th scope="col" class="s-table--cell2">Name</th>
-                <th scope="col" class="s-table--cell1">Size</th>
-                <th scope="col" class="s-table--cell2">Class</th>
-                <th scope="col">Example</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for item in site.data.inputs.input %}
-                {% assign size = item.sizes  %}
-                {% for item in size %}
+    <div class="overflow-x-auto mb32">
+        <table class="wmn5 s-table s-table__hover va-middle">
+            <thead>
                 <tr>
-                    <th scope="row">{{ item.name }}</th>
-                    <td>{{ item.size }}</td>
-                    <td>{% if item.class == "N/A" %}<em class="fc-light">{{ item.class }}</em>{% else %}<code class="stacks-code bg-white">.{{ item.class }}</code>{% endif %}</td>
-                    <td><input type="text" class="s-input {{ item.class }}" placeholder="e.g. What is Stacks?"></td>
+                    <th scope="col" class="s-table--cell2">Name</th>
+                    <th scope="col" class="s-table--cell1">Size</th>
+                    <th scope="col" class="s-table--cell2">Class</th>
+                    <th scope="col">Example</th>
                 </tr>
+            </thead>
+            <tbody>
+                {% for item in site.data.inputs.input %}
+                    {% assign size = item.sizes  %}
+                    {% for item in size %}
+                    <tr>
+                        <th scope="row">{{ item.name }}</th>
+                        <td>{{ item.size }}</td>
+                        <td>{% if item.class == "N/A" %}<em class="fc-light">{{ item.class }}</em>{% else %}<code class="stacks-code bg-white">.{{ item.class }}</code>{% endif %}</td>
+                        <td><input type="text" class="s-input {{ item.class }}" placeholder="e.g. What is Stacks?"></td>
+                    </tr>
+                    {% endfor %}
                 {% endfor %}
-            {% endfor %}
-        </tbody>
-    </table>
+            </tbody>
+        </table>
+    </div>
 </section>
 
 <section class="stacks-section">
@@ -189,7 +193,7 @@ description: Input elements are used to gather information from users.
 {% highlight html linenos %}
 {% include_relative examples/input-prepended.html %}
 {% endhighlight %}
-        <div class="stacks-preview--example ">
+        <div class="stacks-preview--example">
             {% include_relative examples/input-prepended.html %}
         </div>
     </div>
@@ -199,7 +203,7 @@ description: Input elements are used to gather information from users.
 {% highlight html linenos %}
 {% include_relative examples/input-appended.html %}
 {% endhighlight %}
-        <div class="stacks-preview--example ">
+        <div class="stacks-preview--example">
             {% include_relative examples/input-appended.html %}
         </div>
     </div>
@@ -208,47 +212,51 @@ description: Input elements are used to gather information from users.
 <section class="stacks-section">
     {% header {element: 'h2', text: 'Types'} %}
     <p class="stacks-copy">The most common input is <code class="stacks-code fs-body2">type="text"</code>, yet there are many other input types that can be used depending on the content type being gathered. Below is a list of available types and when you should consider using them:</p>
-    <table class="mb32 s-table s-table__hover">
-        <thead>
-            <tr>
-                <th class="s-table--cell3" scope="col">Type</th>
-                <th scope="col">Description</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for item in site.data.inputs.input %}
-                {% assign type = item.types  %}
-                {% for item in type %}
+    <div class="overflow-x-auto mb32">
+        <table class="wmn5 s-table s-table__hover">
+            <thead>
                 <tr>
-                    <th scope="row"><code class="grid--cell stacks-code bg-white fs-body1">{{ item.name }}</code> {% if item.html5 == true %}<span class="bar-sm tt-uppercase fc-orange-400 ba bc-orange-1 p4" style="font-size: 10px;">HTML5</span>{% endif %}</th>
-                    <td>{{ item.description }}</td>
+                    <th class="s-table--cell3" scope="col">Type</th>
+                    <th scope="col">Description</th>
                 </tr>
+            </thead>
+            <tbody>
+                {% for item in site.data.inputs.input %}
+                    {% assign type = item.types  %}
+                    {% for item in type %}
+                    <tr>
+                        <th scope="row"><code class="grid--cell stacks-code bg-white fs-body1">{{ item.name }}</code> {% if item.html5 == true %}<span class="bar-sm tt-uppercase fc-orange-400 ba bc-orange-1 p4" style="font-size: 10px;">HTML5</span>{% endif %}</th>
+                        <td>{{ item.description }}</td>
+                    </tr>
+                    {% endfor %}
                 {% endfor %}
-            {% endfor %}
-        </tbody>
-    </table>
+            </tbody>
+        </table>
+    </div>
 </section>
 
 <section class="stacks-section">
     {% header {element: 'h2', text: 'Attributes'} %}
     <p class="stacks-copy">There are a number of attributes available for inputs. These attributes allow you to help the user understand what data type or format you are requesting.</p>
-    <table class="mb32 s-table s-table__hover">
-        <thead>
-            <tr>
-                <th class="s-table--cell3" scope="col">Attribute</th>
-                <th scope="col">Description</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for item in site.data.inputs.input %}
-                {% assign attribute = item.attributes  %}
-                {% for item in attribute %}
+    <div class="overflow-x-auto mb32">
+        <table class="wmn5 s-table s-table__hover">
+            <thead>
                 <tr>
-                    <th scope="row"><code class="grid--cell stacks-code bg-white fs-body1">{{ item.name }}</code> {% if item.html5 == true %}<span class="bar-sm tt-uppercase fc-orange-400 ba bc-orange-1 p4" style="font-size: 10px;">HTML5</span>{% endif %}</th>
-                    <td>{{ item.description }}</td>
+                    <th class="s-table--cell3" scope="col">Attribute</th>
+                    <th scope="col">Description</th>
                 </tr>
+            </thead>
+            <tbody>
+                {% for item in site.data.inputs.input %}
+                    {% assign attribute = item.attributes  %}
+                    {% for item in attribute %}
+                    <tr>
+                        <th scope="row"><code class="grid--cell stacks-code bg-white fs-body1">{{ item.name }}</code> {% if item.html5 == true %}<span class="bar-sm tt-uppercase fc-orange-400 ba bc-orange-1 p4" style="font-size: 10px;">HTML5</span>{% endif %}</th>
+                        <td>{{ item.description }}</td>
+                    </tr>
+                    {% endfor %}
                 {% endfor %}
-            {% endfor %}
-        </tbody>
-    </table>
+            </tbody>
+        </table>
+    </div>
 </section>

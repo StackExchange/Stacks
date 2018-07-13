@@ -5,32 +5,34 @@ description: Badges are labels used for flags, earned achievements, and number t
 ---
 <section class="stacks-section">
     {% header {element: 'h2', text: 'Classes'} %}
-    <table class="mb32 s-table s-table__hover va-middle">
-        <thead>
-            <tr>
-                <th class="s-table--cell2" scope="col">Class</th>
-                <th class="s-table--cell2" scope="col">Example</th>
-                <th scope="col">Description</th>
-            </tr>
-        </thead>
-        <tbody class="fs-caption">
-            {% for item in site.data.badges %}
+    <div class="overflow-x-auto mb32">
+        <table class="wmn5 s-table s-table__hover va-middle">
+            <thead>
                 <tr>
-                    <th scope="row"><code class="stacks-code bg-white">{{ item.class }}</code></th>
-                    <td>
-                        {% if item.image %}
-                            <span class="{{ item.html }}">
-                                <img class="s-badge--image" src="../{{ site.img }}/{{ item.image}}.svg" aria-hidden="true"> {{ item.label }}
-                            </span>
-                        {% else %}
-                            <span class="{{ item.html }}">{{ item.label }}</span>
-                        {% endif %}
-                    </td>
-                    <td>{{ item.description }}</td>
+                    <th class="s-table--cell2" scope="col">Class</th>
+                    <th class="s-table--cell2" scope="col">Example</th>
+                    <th scope="col">Description</th>
                 </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+            </thead>
+            <tbody class="fs-caption">
+                {% for item in site.data.badges %}
+                    <tr>
+                        <th scope="row"><code class="stacks-code bg-white">{{ item.class }}</code></th>
+                        <td>
+                            {% if item.image %}
+                                <span class="{{ item.html }}">
+                                    <img class="s-badge--image" src="../{{ site.img }}/{{ item.image}}.svg" aria-hidden="true"> {{ item.label }}
+                                </span>
+                            {% else %}
+                                <span class="{{ item.html }}">{{ item.label }}</span>
+                            {% endif %}
+                        </td>
+                        <td>{{ item.description }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
 </section>
 
 <section class="stacks-section">
@@ -49,7 +51,7 @@ description: Badges are labels used for flags, earned achievements, and number t
 </span>
 {% endhighlight %}
         <div class="stacks-preview--example">
-            <div class="grid gs4">
+            <div class="grid gs4 fw-wrap">
                 <span class="grid--cell s-badge">
                     <img class="s-badge--image" src="../{{ site.img }}/BadgeGold.svg" aria-hidden="true"> Great Question
                 </span>
@@ -77,7 +79,7 @@ description: Badges are labels used for flags, earned achievements, and number t
 </span>
 {% endhighlight %}
         <div class="stacks-preview--example">
-            <div class="grid gs4">
+            <div class="grid gs4 fw-wrap">
                 <span class="grid--cell s-badge s-badge__tag">
                     <img class="s-badge--image" src="../{{ site.img }}/BadgeGold.svg" aria-hidden="true"> css
                 </span>
@@ -105,7 +107,7 @@ description: Badges are labels used for flags, earned achievements, and number t
 </span>
 {% endhighlight %}
         <div class="stacks-preview--example">
-            <div class="grid gs4">
+            <div class="grid gs4 fw-wrap">
                 <span class="grid--cell s-badge s-badge__gold">
                     <img class="s-badge--image" src="../{{ site.img }}/BadgeGold.svg" aria-hidden="true"> 635
                 </span>
@@ -131,7 +133,7 @@ description: Badges are labels used for flags, earned achievements, and number t
 <span class="s-badge s-badge__mini s-badge__important">99+</span>
 {% endhighlight %}
         <div class="stacks-preview--example">
-            <div class="grid gs4">
+            <div class="grid gs4 fw-wrap">
                 <span class="grid--cell s-badge s-badge__bounty">+100</span>
                 <span class="grid--cell s-badge s-badge__votes">38</span>
                 <span class="grid--cell s-badge s-badge__answered">154</span>
