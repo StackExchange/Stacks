@@ -12,6 +12,7 @@ $(document).ready(function() {
     });
 
     // Show or hide search
+    var searchBar = $(".js-stacks-search-bar");
     var searchContainer = $(".js-search");
     var searchCloseIcon = $(".js-search-close-icon");
     var searchIcon = $(".js-search-icon");
@@ -28,13 +29,17 @@ $(document).ready(function() {
         searchContainer.toggleClass("sm:d-none");
         hamburgerBtn.toggleClass("md:d-block");
         logo.toggleClass("sm:d-none");
+
+        if ( searchIcon.hasClass("d-none") ) {
+            searchBar.focus();
+        }
     });
 
     //  Focus on the search bar
     function focusSearch(e) {
         if (e.which == 191) {
             e.preventDefault();
-            $(".js-stacks-search-bar").focus();
+            searchBar.focus();
         }
 
         $(".js-stacks-search-bar").keydown(function(e) {
