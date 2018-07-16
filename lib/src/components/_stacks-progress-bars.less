@@ -1,0 +1,182 @@
+//
+//  STACK OVERFLOW
+//  PROGRESS BARS
+//
+//  This CSS comes from Stacks, our CSS & Pattern library for rapidly building
+//  Stack Overflow. For documentation of all these classes and how to contribute,
+//  visit https://stackoverflow.design/
+//
+//  TABLE OF CONTENTS
+//  • VARIABLE
+//  • BASE STYLE
+//  • VARIATION PROGRESS BACKGROUNDS
+//  • BADGES
+//
+//  ============================================================================
+//  $   VARIABLES
+//  ----------------------------------------------------------------------------
+@progressbar-zindex:       0;
+@progressbar-fill-bgc:     @black-100;
+
+
+//  ============================================================================
+//  $   BASE STYLE
+//  ----------------------------------------------------------------------------
+.s-progress {
+    position: relative;
+    width: 100%;
+    min-height: @su4;
+}
+
+//  ============================================================================
+//  $   CHILD STYLES
+//  ----------------------------------------------------------------------------
+.s-progress--label {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: @br-md;
+    border: 1px solid transparent;
+    font-size: @fs-caption;
+    color: @fc-medium;
+    z-index: @progressbar-zindex + 2;
+}
+
+.s-progress--fill,
+.s-progress--bar {
+    position: absolute;
+    height: 100%;
+}
+
+//  $$   FILL
+//       The fill is the background element. We do this so we can properly use
+//       background gradients.
+//  ----------------------------------------------------------------------------
+.s-progress--fill {
+    z-index: @progressbar-zindex;
+    left: 0;
+    right: 0;
+    width: 100%;
+    background-repeat: no-repeat;
+    background-position: 0 0;
+    background-size: cover;
+    background-image: linear-gradient(to right, #5ED286 0, #23D59B 100%);
+    border-radius: @br-sm;
+}
+
+//  $$   BAR
+//       A gray mask that reveals the fill.
+//  ----------------------------------------------------------------------------
+.s-progress--bar {
+    //   Pseudo elements to make it look like the background gradient is the bar.
+    &:before,
+    &:after {
+        content: "";
+        position: absolute;
+        left: -(@su2);
+        border: 2px solid transparent;
+    }
+    &:before {
+        top: 0;
+        border-top-color: @progressbar-fill-bgc;
+    }
+    &:after {
+        bottom: 0;
+        border-bottom-color: @progressbar-fill-bgc;
+    }
+
+    //   Hide the psuedo elements though when the bar is at 0% or 100%
+    &[aria-valuenow="0"],
+    &[aria-valuenow="100"] {
+      &:before,
+      &:after {
+        opacity: 0;
+      }
+    }
+
+    z-index: @progressbar-zindex + 1;
+    right: 0;
+    border-radius: @br-sm;
+    background-color: @progressbar-fill-bgc;
+}
+
+
+//  ===========================================================================
+//  $   VARIATION PROGRESS BACKGROUNDS
+//  ---------------------------------------------------------------------------
+.s-progress__brand .s-progress--fill {
+    background-image: linear-gradient(to right, #F58907 0%, #F16720 100%);
+}
+
+.s-progress__info .s-progress--fill {
+    background-image: linear-gradient(to right, #108AEC 0%, #126CFA 100%);
+}
+
+.s-progress__privilege .s-progress--fill {
+    background-image: linear-gradient(to right, #D0F4DD 0%, #A7F0C1 100%);
+}
+
+
+//  ===========================================================================
+//  $   BADGES
+//  ===========================================================================
+//  $$  GOLD
+//  ---------------------------------------------------------------------------
+.s-progress {
+    .s-badge__gold,
+    .s-badge__silver,
+    .s-badge__bronze {
+        background-color: initial;
+    }
+
+    &.s-progress__badge-gold,
+    &.s-progress__badge-silver,
+    &.s-progress__badge-bronze {
+        min-height: @su24 + @su2;
+
+        .s-progress--bar,
+        .s-progress--fill {
+            border-radius: @br-md;
+        }
+    }
+}
+
+.s-progress__badge-gold {
+    .s-progress--bar {
+        background-color: @black-050;
+    }
+    .s-progress--fill {
+        background-image: linear-gradient(to right, #F9F4E2 0%, #FFF0BA 100%);
+    }
+    .s-badge__gold {
+        border-color: @gold-dot;
+    }
+}
+
+//  $$  SILVER
+//  ---------------------------------------------------------------------------
+.s-progress__badge-silver {
+    .s-progress--bar {
+        background-color: @black-050;
+    }
+    .s-progress--fill {
+        background-image: linear-gradient(to right, #E7EAED 0%, #DBDCDD 100%);
+    }
+    .s-badge__silver {
+        border-color: @silver-dot;
+    }
+}
+
+//  $$  BRONZE
+//  ---------------------------------------------------------------------------
+.s-progress__badge-bronze {
+    .s-progress--bar {
+        background-color: @black-050;
+    }
+    .s-progress--fill {
+        background-image: linear-gradient(to right, #F9EBE1 0%, #FDE4D3 100%);
+    }
+    .s-badge__bronze {
+        border-color: @bronze-dot;
+    }
+}
