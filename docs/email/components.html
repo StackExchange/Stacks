@@ -4,14 +4,14 @@ title: Email Components
 description: Use components as building blocks as you design and build new emails.
 ---
 <section class="stacks-section">
-    <h2 class="grid jc-space-between ai-center stacks-h2"><div class="grid--cell fl1">Typography</div></h2>
+    {% header {element: 'h2', text: 'Typography'} %}
     <p class="stacks-copy">
         It's safe and accessible to use semantic HTML tags like <code class="stacks-code">&lt;h&gt;</code>, <code class="stacks-code">&lt;p&gt;</code>, and <code class="stacks-code">&lt;ul&gt;</code> for text in email just as we do for the web. The main difference in email is that <a href="/email/faq#whydowehavetowritecssinline">CSS should be written inline</a> to specify intended styles (like the color of an <code class="stacks-code">&lt;a href&gt;</code> tag) and zero out unintended defaults (like the margin around a <code class="stacks-code">&lt;p&gt;</code> tag)
     </p>
     <p class="stacks-copy">
         This page provides some common typography patterns for email, but anything on <a href="/base/typography">the main Stacks typography page</a> is fair game too (as long as CSS is written inline, of course).
     </p>
-    <h3 class="grid jc-space-between ai-center stacks-h3"><div class="grid--cell fl1">Paragraphs</div></h3>
+    {% header {element: 'h3', text: 'Paragraphs'} %}
     <div class="stacks-preview">
 {% highlight html linenos %}
 <p style="margin: 0 0 15px 0; font-size: 17px; line-height: 23px;">A lead paragraph with slightly larger text lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras nisi magna, mollis luctus sapien varius, mattis ornare est.</p>
@@ -24,7 +24,7 @@ description: Use components as building blocks as you design and build new email
             <p style="margin: 0;">A paragraph with no margin (useful for the last paragraph in a section).</p>
         </div>
     </div>
-    <h3 class="grid jc-space-between ai-center stacks-h3"><div class="grid--cell fl1">Headlines</div></h3>
+    {% header {element: 'h3', text: 'Headlines'} %}
     <div class="stacks-preview">
 {% highlight html linenos %}
 <h1 style="font-weight: bold; font-size: 27px; line-height: 27px; color: #242629; margin: 0 0 15px 0;">I'm a headline</h1>
@@ -35,7 +35,7 @@ description: Use components as building blocks as you design and build new email
             <h2 style="font-weight: bold; font-size: 21px; line-height: 24px; color: #242629; margin: 0 0 15px 0;">I'm a subheadline</h2>
         </div>
     </div>
-    <h3 class="grid jc-space-between ai-center stacks-h3"><div class="grid--cell fl1">Lists</div></h3>
+    {% header {element: 'h3', text: 'Lists'} %}
     <div class="stacks-preview">
 {% highlight html linenos %}
 <ul style="padding: 0; margin: 0 0 15px 0; list-style-type: disc;">
@@ -62,7 +62,7 @@ description: Use components as building blocks as you design and build new email
             </ol>
         </div>
     </div>
-    <h3 class="grid jc-space-between ai-center stacks-h3"><div class="grid--cell fl1">Links</div></h3>
+    {% header {element: 'h3', text: 'Links'} %}
     <div class="stacks-preview">
 {% highlight html linenos %}
 <a href="https://stackoverflow.com/" style="color: #0077CC; text-decoration: none;">Go to the homepage</a>
@@ -71,7 +71,7 @@ description: Use components as building blocks as you design and build new email
             <a href="https://stackoverflow.com/" style="color: #0077CC; text-decoration: none;">Go to the homepage</a>
         </div>
     </div>
-    <h3 class="grid jc-space-between ai-center stacks-h3"><div class="grid--cell fl1">Links in Markdown</div></h3>
+    {% header {element: 'h3', text: 'Links in Markdown'} %}
     <p class="stacks-copy">
         If email content is written in markdown, we can't write inline CSS into link tags. Left unstyled, <a href="#" style="color: blue; text-decoration: underline;">links will appear like this</a>. To style links contained in markdown text, add a <code class="stacks-code">class="has-markdown"</code> to any parent tag that might contain a markdown link.
     </p>
@@ -97,7 +97,7 @@ description: Use components as building blocks as you design and build new email
             </div>
         </aside>
     </div>
-    <h3 class="grid jc-space-between ai-center stacks-h3"><div class="grid--cell fl1">Preventing Text Wrapping</div></h3>
+    {% header {element: 'h3', text: 'Preventing Text Wrapping'} %}
     <p class="stacks-copy">
         A non-breaking space (<code class="stacks-code">&#38;nbsp;</code>) can be used to prevent a group of words from breaking onto multiple lines. Useful for keeping names together and preventing typographic orphans and&nbsp;widows.
         <br><span class="d-block fc-light fs-body1">See ☝️?</span>
@@ -118,7 +118,7 @@ description: Use components as building blocks as you design and build new email
 
 <!----- BUTTONS ----->
 <section class="stacks-section">
-    <h2 class="grid jc-space-between ai-center stacks-h2"><div class="grid--cell fl1">Buttons</div></h2>
+    {% header {element: 'h2', text: 'Buttons'} %}
     <p class="stacks-copy">Creating a successful button in email uses multiple html tags to create progressive enhancement and prevent text-decoration in certain email clients.</p>
     <p class="stacks-copy">
         Each style is explained below, detailing how and where to use these styles.
@@ -232,7 +232,7 @@ description: Use components as building blocks as you design and build new email
 
 <!----- TAGS ----->
 <section class="stacks-section">
-    <h2 class="grid jc-space-between ai-center stacks-h2"><div class="grid--cell fl1">Tags</div></h2>
+    {% header {element: 'h2', text: 'Tags'} %}
     <p class="stacks-copy">
         Tags are interface elements that allow users to organize and discover related information throughout Stack Overflow.
     </p>
@@ -298,7 +298,7 @@ description: Use components as building blocks as you design and build new email
 
 <!----- FOREGROUND IMAGES ----->
 <section class="stacks-section">
-    <h2 class="grid jc-space-between ai-center stacks-h2"><div class="grid--cell fl1">Foreground Images</div></h2>
+    {% header {element: 'h2', text: 'Foreground Images'} %}
     <p class="stacks-copy">
         All email client can display <code class="stacks-code">.png</code>, <code class="stacks-code">.gif</code>, and <code class="stacks-code">.jpg</code> images displayed with the <code class="stacks-code">&lt;img&gt;</code> tag. <code class="stacks-code">.svg</code> images are not well supported, regardless of how they're referenced.
     </p>
@@ -384,7 +384,7 @@ description: Use components as building blocks as you design and build new email
 
 <!----- BACKGROUND IMAGES ----->
 <section class="stacks-section">
-    <h2 class="grid jc-space-between ai-center stacks-h2"><div class="grid--cell fl1">Background Images</div></h2>
+    {% header {element: 'h2', text: 'Background Images'} %}
     <p class="stacks-copy">
         Background images allow us to place additional HTML content on top of them, one of the few reliable ways to provide layering possibilities in email. A benefit of using background images over foreground images is, when paired with a background color, the HTML content on top of the background image remains accessible even when images are disabled.
     </p>
