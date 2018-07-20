@@ -1,34 +1,34 @@
 <!DOCTYPE html>
 <html lang="en-us">
 {% include head.html %}
+
+<!-- Additional Javascript -->
+<script src="{{ site.baseurl }}/{{ site.js }}/hamburger.js" async></script>
+<script src="{{ site.baseurl }}/{{ site.js }}/navigation.js" async></script>
+
 <body>
-    <nav class="s-nav js-stacks-topbar">
-        <div class="grid grid__center h100 fc-medium">Sample navigation</div>
-    </nav>
-    <div class="stacks-wrapper">
+    {% include header.html %}
+
+    <div class="grid mx-auto w100 wmx12">
         {% include navigation.html %}
 
-        <main class="stacks-body js-stacks-content">
-            <div class="grid mx-auto wmx9 stacks-body--container">
-                <div class="grid--cell w100 wmx100">
+        <div class="grid--cell w80 md:w100">
+            <div class="grid jc-space-between ps-relative t64 p24 wmx9 mx-auto">
+                <div class="grid--cell w100">
                     <div id="content">
                         {% if page.title %}
-                            <h1 class="stacks-h1">
-                                {{ page.title }}
-                            </h1>
+                            <h1 class="stacks-h1">{{ page.title }}</h1>
                         {% endif %}
-
                         {% if page.description %}
                             <p class="stacks-copy stacks-copy__lg">
                                 {{ page.description }}
                             </p>
                         {% endif %}
-
                         {{ content }}
                     </div>
                 </div>
             </div>
-        </main>
+        </div>
     </div>
 </body>
 </html>
