@@ -4,7 +4,7 @@ title: Textarea
 description: Multi-line inputs used by users to enter longer text portions.
 ---
 <section id="inputs" class="stacks-section">
-    <h2 class="grid jc-space-between ai-center stacks-h2"><div class="grid--cell fl1">Base Style</div></h2>
+    {% header {element: 'h2', text: 'Base Style'} %}
     <div class="stacks-preview">
 {% highlight html linenos %}
 <div class="grid ff-column-nowrap gs4 gsy">
@@ -22,34 +22,36 @@ description: Multi-line inputs used by users to enter longer text portions.
 </section>
 
 <section id="inputs" class="stacks-section">
-    <h2 class="grid jc-space-between ai-center stacks-h2"><div class="grid--cell fl1">Validation States</div></h2>
+    {% header {element: 'h2', text: 'Validation States'} %}
     <p class="stacks-copy">Validation states provides the user feedback based on their interaction (or lack of interaction) with a textarea. These styles are applied by applying the appropriate class to the wrapping parent container.</p>
 
-    <h3 class="grid jc-space-between ai-center stacks-h3"><div class="grid--cell fl1">Classes</div></h3>
-    <table class="mb32 s-table s-table__hover">
-        <thead>
-            <tr>
-                <th class="s-table--cell3" scope="col">Class</th>
-                <th class="s-table--cell3" scope="col">Applies</th>
-                <th scope="col">Definition</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for item in site.data.inputs.textarea %}
-                {% assign state = item.validation  %}
-                {% for class in state %}
+    {% header {element: 'h3', text: 'Validation Classes'} %}
+    <div class="overflow-x-auto mb32">
+        <table class="wmn5 s-table s-table__hover">
+            <thead>
                 <tr>
-                    <th scope="row"><code class="grid--cell stacks-code bg-white">{{ class.class }}</code></th>
-                    <td>{{ class.applies }}</td>
-                    <td>{{ class.description }}</td>
+                    <th class="s-table--cell3" scope="col">Class</th>
+                    <th class="s-table--cell3" scope="col">Applies</th>
+                    <th scope="col">Definition</th>
                 </tr>
+            </thead>
+            <tbody>
+                {% for item in site.data.inputs.textarea %}
+                    {% assign state = item.validation  %}
+                    {% for class in state %}
+                    <tr>
+                        <th scope="row"><code class="grid--cell stacks-code bg-white">{{ class.class }}</code></th>
+                        <td>{{ class.applies }}</td>
+                        <td>{{ class.description }}</td>
+                    </tr>
+                    {% endfor %}
                 {% endfor %}
-            {% endfor %}
-        </tbody>
-    </table>
+            </tbody>
+        </table>
+    </div>
 
-    <h3 class="grid jc-space-between ai-center stacks-h3"><div class="grid--cell fl1">Examples</div></h3>
-    <h4 class="grid jc-space-between ai-center stacks-h4"><div class="grid--cell fl1">Warning</div></h4>
+    {% header {element: 'h3', text: 'Validation Examples'} %}
+    {% header {element: 'h4', text: 'Warning'} %}
     <div class="stacks-preview">
 {% highlight html linenos %}
 <div class="grid gs4 gsy fd-column has-warning">
@@ -73,7 +75,7 @@ description: Multi-line inputs used by users to enter longer text portions.
         </div>
     </div>
 
-    <h4 class="grid jc-space-between ai-center stacks-h4"><div class="grid--cell fl1">Error</div></h4>
+    {% header {element: 'h4', text: 'Error'} %}
     <div class="stacks-preview">
 {% highlight html linenos %}
 <div class="grid gs4 gsy fd-column has-error">
@@ -97,7 +99,7 @@ description: Multi-line inputs used by users to enter longer text portions.
         </div>
     </div>
 
-    <h4 class="grid jc-space-between ai-center stacks-h4"><div class="grid--cell fl1">Success</div></h4>
+    {% header {element: 'h4', text: 'Success'} %}
     <div class="stacks-preview">
 {% highlight html linenos %}
 <div class="grid gs4 gsy fd-column has-success">
@@ -123,28 +125,30 @@ description: Multi-line inputs used by users to enter longer text portions.
 </section>
 
 <section class="stacks-section">
-    <h2 class="grid jc-space-between ai-center stacks-h2"><div class="grid--cell fl1">Sizes</div></h2>
-    <table class="mb32 s-table s-table__hover va-middle">
-        <thead>
-            <tr>
-                <th scope="col" class="s-table--cell2">Name</th>
-                <th scope="col" class="s-table--cell1">Size</th>
-                <th scope="col" class="s-table--cell2">Class</th>
-                <th scope="col">Example</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for item in site.data.inputs.textarea %}
-                {% assign size = item.sizes  %}
-                {% for item in size %}
+    {% header {element: 'h2', text: 'Sizes'} %}
+    <div class="overflow-x-auto mb32">
+        <table class="wmn5 s-table s-table__hover va-middle">
+            <thead>
                 <tr>
-                    <th scope="row">{{ item.name }}</th>
-                    <td>{{ item.size }}</td>
-                    <td>{% if item.class == "N/A" %}<em class="fc-light">{{ item.class }}</em>{% else %}<code class="stacks-code bg-white">.{{ item.class }}</code>{% endif %}</td>
-                    <td><textarea class="s-textarea {% if item.class != "N/A" %}{{ item.class }}{% endif %}"">Not sure what to ask? Recurring questions, onboarding procedures, local setups, and FAQs all make for useful questions.</textarea></td>
+                    <th scope="col" class="s-table--cell2">Name</th>
+                    <th scope="col" class="s-table--cell1">Size</th>
+                    <th scope="col" class="s-table--cell2">Class</th>
+                    <th scope="col">Example</th>
                 </tr>
+            </thead>
+            <tbody>
+                {% for item in site.data.inputs.textarea %}
+                    {% assign size = item.sizes  %}
+                    {% for item in size %}
+                    <tr>
+                        <th scope="row">{{ item.name }}</th>
+                        <td>{{ item.size }}</td>
+                        <td>{% if item.class == "N/A" %}<em class="fc-light">{{ item.class }}</em>{% else %}<code class="stacks-code bg-white">.{{ item.class }}</code>{% endif %}</td>
+                        <td><textarea class="s-textarea {% if item.class != 'N/A' %}{{ item.class }}{% endif %}">Not sure what to ask? Recurring questions, onboarding procedures, local setups, and FAQs all make for useful questions.</textarea></td>
+                    </tr>
+                    {% endfor %}
                 {% endfor %}
-            {% endfor %}
-        </tbody>
-    </table>
+            </tbody>
+        </table>
+    </div>
 </section>

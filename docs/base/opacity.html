@@ -4,31 +4,27 @@ title: Opacity
 description: Atomic opacity classes allow you to change an element’s opacity quickly.
 ---
 <section class="stacks-section">
-    <h2 class="grid jc-space-between ai-center stacks-h2"><div class="grid--cell fl1">Classes</div></h2>
-    <table class="mb48 s-table s-table__hover">
-        <thead>
-            <tr>
-                <th class="s-table--cell2" scope="col">Class</th>
-                <th scope="col">Output</th>
-                <th class="s-table--cell2 ta-center" scope="col"><a class="s-link s-link__inherit" href="{{ "/guidelines/responsiveness" | relative_url }}">Responsive?</a></th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for atomic in site.data.atomic-definitions.opacity %}
-                <tr class="fs-caption">
-                    <th scope="row"><code class="stacks-code bg-white">.{{ atomic.class }}</code></th>
-                    <td><code class="stacks-code bg-white">{{ atomic.output }}</code></td>
-                    <td class="ta-center">
-                        {% if atomic.responsive %}
-                            {% svg /resources/svg-icons/Checkmark.svg width="18" height="18" aria-hidden="true" class="svg-icon iconCheckmark fc-green-500" %}
-                        {% endif %}
-                    </td>
+    {% header {element: 'h2', text: 'Classes'} %}
+    <div class="overflow-x-auto mb48">
+        <table class="wmn3 s-table s-table__hover">
+            <thead>
+                <tr>
+                    <th scope="col">Class</th>
+                    <th scope="col">Output</th>
                 </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+                {% for atomic in site.data.atomic-definitions.opacity %}
+                    <tr class="fs-caption">
+                        <th scope="row"><code class="stacks-code bg-white">.{{ atomic.class }}</code></th>
+                        <td><code class="stacks-code bg-white">{{ atomic.output }}</code></td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
 
-    <h2 class="grid jc-space-between ai-center stacks-h2"><div class="grid--cell fl1">Examples</div></h2>
+    {% header {element: 'h2', text: 'Examples'} %}
     <div class="stacks-preview">
 {% highlight html linenos %}
 <div class="o0">…</div>
@@ -44,7 +40,7 @@ description: Atomic opacity classes allow you to change an element’s opacity q
 <div class="o90">…</div>
 <div class="o100">…</div>
 {% endhighlight %}
-        <div class="stacks-preview--example  fs-caption ff-mono">
+        <div class="stacks-preview--example fs-caption ff-mono">
             <div class="o0 my4 bg-orange-100 p12 ba bc-orange-3">.o0</div>
             <div class="o5 my4 bg-orange-100 p12 ba bc-orange-3">.o5</div>
             <div class="o10 my4 bg-orange-100 p12 ba bc-orange-3">.o10</div>

@@ -84,13 +84,13 @@ No PR is too small, or too early. We strive to provide initial feedback within a
 2. Make sure you have the latest changes from the upstream:<br/>
   _For **internal** Stack Overflow contributors:_
   ```bash
-  git checkout master
-  git pull origin master
+  git checkout develop
+  git pull origin develop
   ```
   _For **external** contributors:_
   ```bash
-  git checkout master
-  git pull upstream master
+  git checkout develop
+  git pull upstream develop
   ```
 3. Checkout `develop` branch and create a new topic branch for your feature, change, or fix:<br/>
    ```bash

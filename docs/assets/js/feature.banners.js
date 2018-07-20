@@ -133,14 +133,13 @@ $(document).ready(function() {
         e.stopPropagation();
 
         $(this).text("Update example");
+        topnav.css("top","");
         sysCloseBtn.removeClass("d-none");
-
-        topnav.css("top","").show();
         sysBanner.show().attr("aria-hidden","false").removeClass(typeClasses).addClass(sysStyle);
         sysCloseIcon.removeClass("fc-white").addClass("fc-dark");
 
         if (sysPos.is(":checked")) {
-            topnav.css("top", sysBannerHeight + "px").show();
+            topnav.removeClass("t0").css("top", sysBannerHeight + "px");
             sysBanner.addClass("is-pinned");
         }
 
@@ -160,7 +159,7 @@ $(document).ready(function() {
         e.preventDefault();
         e.stopPropagation();
 
-        topnav.hide();
+        topnav.addClass("t0");
         sysBanner.hide().attr("aria-hidden","true").removeClass(typeClasses);
 
         sysBannerBtn.text("Show example");

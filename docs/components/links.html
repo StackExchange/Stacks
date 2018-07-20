@@ -1,9 +1,34 @@
 ---
 layout: page
 title: Links
-description: Links are lightly styled via the <code class="stacks-code">a</code> element by default. In addition, we provide <code class="stacks-code">.s-link</code> and its variations.
+description: Links are lightly styled via the <code class="stacks-code">a</code> element by default. In addition, we provide <code class="stacks-code">.s-link</code> and its variations. In rare situations, <code class="stacks-code">.s-link</code> can be applied to n <code class="stacks-code">button</code> while maintaining the look of an anchor.
 ---
 <section class="stacks-section">
+    {% header {element: 'h2', text: 'Single Link'} %}
+    {% header {element: 'h3', text: 'Single Link Classes'} %}
+    <div class="overflow-x-auto mb32">
+        <table class="wmn4 s-table s-table__hover">
+            <thead>
+                <tr>
+                    <th scope="col">Class</th>
+                    <th scope="col">Applied</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody class="fs-caption">
+                {% for item in site.data.links.single-links %}
+                    <tr>
+                        <th scope="row"><code class="stacks-code bg-white">{{ item.class }}</code></th>
+                        <td><code class="stacks-code bg-white">{{ item.applies }}</td>
+                        <td class="p8">{{ item.description }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</section>
+<section class="stacks-section">
+    {% header {element: 'h3', text: 'Single Link Examples'} %}
     <div class="stacks-preview">
 {% highlight html linenos %}
 <a class="s-link" href="#">Default</a>
@@ -11,15 +36,91 @@ description: Links are lightly styled via the <code class="stacks-code">a</code>
 <a class="s-link s-link__muted" href="#">Muted</a>
 <a class="s-link s-link__danger" href="#">Danger</a>
 <a class="s-link s-link__inherit" href="#">Inherit</a>
+<button class="s-link">Button Link</button>
 {% endhighlight %}
-        <div class="stacks-preview--example ">
-            <div class="grid gs16 gsx">
+        <div class="stacks-preview--example">
+            <div class="grid gs16 fw-wrap">
                 <a class="grid--cell s-link" href="#">Default</a>
                 <a class="grid--cell s-link s-link__grayscale" href="#">Grayscale</a>
                 <a class="grid--cell s-link s-link__muted" href="#">Muted</a>
                 <a class="grid--cell s-link s-link__danger" href="#">Danger</a>
                 <a class="grid--cell s-link s-link__inherit" href="#">Inherit</a>
+                <button class="grid--cell s-link">Button Link</button>
             </div>
         </div>
     </div>
+</section>
+
+<section class="stacks-section">
+    {% header {element: 'h2', text: 'Descendent Anchors'} %}
+    {% header {element: 'h3', text: 'Descendent Anchor Classes'} %}
+    <div class="overflow-x-auto mb32">
+        <table class="wmn4 s-table s-table__hover">
+            <thead>
+                <tr>
+                    <th class="s-table--cell2" scope="col">Class</th>
+                    <th class="s-table--cell2" scope="col">Applied</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody class="fs-caption">
+                {% for item in site.data.links.descendent-anchors %}
+                    <tr>
+                        <th scope="row"><code class="stacks-code bg-white">{{ item.class }}</code></th>
+                        <td><code class="stacks-code bg-white">{{ item.applies }}</td>
+                        <td class="p8">{{ item.description }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% header {element: 'h3', text: 'Descendent Anchor Examples'} %}
+    <p class="stacks-copy">Sometimes you need to give all <code class="stacks-code">&lt;a&gt;</code> elements inside a container or component the same color, even
+        when it&lsquo;s impractical or even impossible to give each anchor element an <code class="stacks-code">s-link</code> class (e.g. because the markup is generated from Markdown).</p>
+    <p class="stacks-copy">In this case, you can add the <code class="stacks-code">s-anchors</code> class together with one of the modifiers
+        <code class="stacks-code">s-anchors__default</code>, <code class="stacks-code">s-anchors__grayscale</code>, <code class="stacks-code">s-anchors__muted</code>,
+        <code class="stacks-code">s-anchors__danger</code>, or <code class="stacks-code">s-anchors__inherit</code> to the container.
+    </p>
+
+    {% capture html %}
+    <div class="s-anchors s-anchors__grayscale s-card mb8 fc-orange-700">
+        <p>There is a <a href="#">gray link here</a>, and <a href="#">another one</a>.</p>
+    </div>
+    <div class="s-anchors s-anchors__muted s-card mb8">
+        <p>There is a <a href="#">muted link here</a>, and <a href="#">another one</a>.</p>
+    </div>
+    <div class="s-anchors s-anchors__danger s-card mb8">
+        <p>There is a <a href="#">dangerous link here</a>, and <a href="#">another one</a>.</p>
+    </div>
+    <div class="s-anchors s-anchors__inherit s-card mb8 fc-green-500">
+        <p>There is an <a href="#">inheriting link here</a>, and <a href="#">another one</a>.</p>
+    </div>
+    {% endcapture %}{% include example.html html=html %}
+
+    <p class="stacks-copy">One additional level of nesting is supported, but even that should be exceedingly rare. More than that is not supported.</p>
+
+    {% capture html %}
+    <div class="s-anchors s-anchors__danger s-card">
+        <p>
+            All <a href="#">links</a> in this <a href="#">outer box</a>
+            are <a href="#">dangerous</a>.
+        </p>
+        <div class="s-anchors s-anchors__default s-card w70 mt8">
+            <p>
+                But all <a href="#">links</a> in this <a href="#">inner box</a>
+                have the <a href="#">default</a> link color.
+            </p>
+        </div>
+    </div>
+    {% endcapture %}{% include example.html html=html %}
+
+    <p class="stacks-copy">An explicit <code class="stacks-code">s-link</code> on an anchor overrides any <code class="stacks-code">s-anchors</code> setting:</p>
+
+    {% capture html %}
+    <div class="s-anchors s-anchors__danger s-card">
+        All <a href="#">links</a> in this <a href="#">box</a> are <a href="#">dangerous</a>,
+        except for <a class="s-link">this one</a> which uses the default color, and
+        <a class="s-link s-link__muted">this muted link</a>.
+    </div>
+    {% endcapture %}{% include example.html html=html %}
 </section>

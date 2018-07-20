@@ -1,18 +1,19 @@
 $(document).ready(function() {
-    function regenerateMenu () {
-        // Build the submenu on initial page load
-        var sections = $('.stacks-section > :header');
-        var subnav = $(".js-secondary-nav");
+    // Cache some variables
+    var subnav = $(".js-secondary-nav");
+    var navigation = $(".js-navigation");
+    var closeIcon = $(".js-hamburger-close-icon");
+    var hamburgerIcon = $(".js-hamburger-icon");
 
-        // Kill the automatically generated anchors
-        $(".stacks-header--anchor").remove();
+    function regenerateMenu () {
+        // Hide the navigation if we've opened it
+        hamburgerIcon.removeClass("d-none");
+        closeIcon.addClass("d-none");
+        navigation.addClass("md:d-none");
 
         // Kill the subnav and rebuild it
         subnav.empty();
-
-        if ( sections.length ) {
-            subnav.buildMenu()
-        }
+        subnav.toc({content: "#content", headings: "h2.stacks-h2, h3.stacks-h3"});
     }
 
     $.when($.ready).then(function() {
