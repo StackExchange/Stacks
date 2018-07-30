@@ -9,22 +9,18 @@ description: A component that visually communicates the completion of a task or 
     <div class="stacks-preview">
 {% highlight html linenos %}
 <div class="s-progress">
-    <span class="s-progress--bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="33" style="width: calc(100% - 33%)"></span>
-    <span class="s-progress--fill"></span>
+    <div class="s-progress--bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="33" style="width: 33%"></div>
 </div>
 {% endhighlight %}
         <div class="grid gs16 gsy fd-column stacks-preview--example">
             <div class="grid--cell s-progress">
-                <span class="s-progress--bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="33" style="width: calc(100% - 33%)"></span>
-                <span class="s-progress--fill"></span>
+                <div class="s-progress--bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="33" style="width: 33%"></div>
             </div>
             <div class="grid--cell s-progress">
-                <span class="s-progress--bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="66" style="width: calc(100% - 66%)"></span>
-                <span class="s-progress--fill"></span>
+                <div class="s-progress--bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="66" style="width: 66%"></div>
             </div>
             <div class="grid--cell s-progress">
-                <span class="s-progress--bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="100" style="width: calc(100% - 100%)"></span>
-                <span class="s-progress--fill"></span>
+                <div class="s-progress--bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="100" style="width: 100%"></div>
             </div>
         </div>
     </div>
@@ -35,21 +31,27 @@ description: A component that visually communicates the completion of a task or 
     <p class="stacks-copy">In addition to the standard progress bar, there is also a brand (orange) and info (blue) progress bar color variation.</p>
     <div class="stacks-preview">
 {% highlight html linenos %}
-TBD
+<!-- Brand -->
+<div class="s-progress s-progress__brand" id="brandprogress">
+    <div class="s-progress--bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="33" style="width: 33%"></div>
+</div>
+
+<!-- Info -->
+<div class="s-progress s-progress__info" id="infoprogress">
+    <div class="s-progress--bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="66" style="width: 66%"></div>
+</div>
 {% endhighlight %}
         <div class="grid gs16 gsy fd-column stacks-preview--example">
             <div class="grid--cell">
                 <label class="s-label d-inline-flex my8 fw-normal" for="brandprogress">Brand</label>
                 <div class="s-progress s-progress__brand" id="brandprogress">
-                    <span class="s-progress--bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="33" style="width: calc(100% - 33%)"></span>
-                    <span class="s-progress--fill"></span>
+                    <div class="s-progress--bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="33" style="width: 33%"></div>
                 </div>
             </div>
             <div class="grid--cell">
                 <label class="s-label d-inline-flex my8 fw-normal" for="infoprogress">Info</label>
                 <div class="s-progress s-progress__info" id="infoprogress">
-                    <span class="s-progress--bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="66" style="width: calc(100% - 66%)"></span>
-                    <span class="s-progress--fill"></span>
+                    <div class="s-progress--bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="66" style="width: 66%"></div>
                 </div>
             </div>
         </div>
@@ -62,58 +64,52 @@ TBD
     <div class="stacks-preview">
 {% highlight html linenos %}
 <!-- Gold Badge -->
-<div class="s-progress s-progress__badge-gold">
-    <label class="grid gs4 gsx m0 s-badge__gold s-progress--label" for="badgegold-progress">
+<div class="s-progress s-progress__badge s-progress__gold">
+    <label class="grid gs4 gsx m0 s-progress--label" for="badgegold-progress">
         <img class="grid--cell s-badge--image" src="../{{ site.img }}/BadgeGold.svg" aria-hidden="true">
         <div class="grid grid__center fl1 s-badge--label">Electorate</div>
     </label>
-    <span class="s-progress--bar" id="badgegold-progress" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="33" style="width: calc(100% - 33%)"></span>
-    <span class="s-progress--fill"></span>
+    <div class="s-progress--bar" id="badgegold-progress" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="25" style="width: 25%;"></div>
 </div>
 <!-- Silver Badge -->
-<div class="s-progress s-progress__badge-silver">
-    <label class="grid gs4 gsx m0 s-badge__silver s-progress--label" for="badgesilver-progress">
+<div class="s-progress s-progress__badge s-progress__silver">
+    <label class="grid gs4 gsx m0 s-progress--label" for="badgesilver-progress">
         <img class="grid--cell s-badge--image" src="../{{ site.img }}/BadgeSilver.svg" aria-hidden="true">
         <div class="grid grid__center fl1 s-badge--label">Civic Duty - 162/300</div>
     </label>
-    <span class="s-progress--bar" id="badgegold-progress" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="33" style="width: calc(100% - 33%)"></span>
-    <span class="s-progress--fill"></span>
+    <div class="s-progress--bar" id="badgegold-progress" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50" style="width: 50%;"></div>
 </div>
 <!-- Bronze Badge -->
-<div class="s-progress s-progress__badge-bronze">
-    <label class="grid gs4 gsx m0 s-badge__bronze s-progress--label" for="badgebronze-progress">
+<div class="s-progress s-progress__badge s-progress__bronze">
+    <label class="grid gs4 gsx m0 s-progress--label" for="badgebronze-progress">
         <img class="grid--cell s-badge--image" src="../{{ site.img }}/BadgeBronze.svg" aria-hidden="true">
         <div class="grid grid__center fl1 s-badge--label">Proofreader - 16/100</div>
     </label>
-    <span class="s-progress--bar" id="badgegold-progress" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="33" style="width: calc(100% - 33%)"></span>
-    <span class="s-progress--fill"></span>
+    <div class="s-progress--bar" id="badgegold-progress" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="75" style="width: 75%;"></div>
 </div>
 {% endhighlight %}
         <div class="stacks-preview--example">
             <div class="grid gs16">
-                <div class="grid--cell s-progress s-progress__badge-gold">
-                    <label class="grid gs4 gsx m0 s-badge__gold s-progress--label" for="badgegold-progress">
+                <div class="grid--cell s-progress s-progress__badge s-progress__gold">
+                    <label class="grid gs4 gsx m0 s-progress--label" for="badgegold-progress">
                         <img class="grid--cell s-badge--image" src="../{{ site.img }}/BadgeGold.svg" aria-hidden="true">
                         <div class="grid grid__center fl1 s-badge--label">Electorate</div>
                     </label>
-                    <span class="s-progress--bar" id="badgegold-progress" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="33" style="width: calc(100% - 33%)"></span>
-                    <span class="s-progress--fill"></span>
+                    <div class="s-progress--bar" id="badgegold-progress" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="25" style="width: 25%;"></div>
                 </div>
-                <div class="grid--cell s-progress s-progress__badge-silver">
-                    <label class="grid gs4 gsx m0 s-badge__silver s-progress--label" for="badgesilver-progress">
+                <div class="grid--cell s-progress s-progress__badge s-progress__silver">
+                    <label class="grid gs4 gsx m0 s-progress--label" for="badgesilver-progress">
                         <img class="grid--cell s-badge--image" src="../{{ site.img }}/BadgeSilver.svg" aria-hidden="true">
                         <div class="grid grid__center fl1 s-badge--label">Civic Duty - 162/300</div>
                     </label>
-                    <span class="s-progress--bar" id="badgegold-progress" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="33" style="width: calc(100% - 33%)"></span>
-                    <span class="s-progress--fill"></span>
+                    <div class="s-progress--bar" id="badgegold-progress" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50" style="width: 50%;"></div>
                 </div>
-                <div class="grid--cell s-progress s-progress__badge-bronze">
-                    <label class="grid gs4 gsx m0 s-badge__bronze s-progress--label" for="badgebronze-progress">
+                <div class="grid--cell s-progress s-progress__badge s-progress__bronze">
+                    <label class="grid gs4 gsx m0 s-progress--label" for="badgebronze-progress">
                         <img class="grid--cell s-badge--image" src="../{{ site.img }}/BadgeBronze.svg" aria-hidden="true">
                         <div class="grid grid__center fl1 s-badge--label">Proofreader - 16/100</div>
                     </label>
-                    <span class="s-progress--bar" id="badgegold-progress" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="33" style="width: calc(100% - 33%)"></span>
-                    <span class="s-progress--fill"></span>
+                    <div class="s-progress--bar" id="badgegold-progress" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="75" style="width: 75%;"></div>
                 </div>
             </div>
         </div>
