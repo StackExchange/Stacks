@@ -4,8 +4,100 @@ title: Progress Bars
 description: A component that visually communicates the completion of a task or operation. It shows the task’s progress and remainder.
 ---
 <section class="stacks-section">
+    {% header {element: 'h2', text: 'Classes and Parameters'} %}
+    <p class="stacks-copy">These are the various classes and parameters used within progress bars.</p>
+
+    {% header {element: 'h3', text: 'Classes'} %}
+    <div class="overflow-x-auto mb32">
+        <table class="wmn4 s-table s-table__hover">
+            <thead>
+                <tr>
+                    <th scope="col" class="s-table--cell4">Classes</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row"><code class="ff-mono fs-caption">.s-progress</code></th>
+                    <td>The parent class for all progress bars.</td>
+                </tr>
+                <tr>
+                    <th scope="row"><code class="ff-mono fs-caption">.s-progress--bar</code></th>
+                    <td>A child element of <code class="stacks-code">.s-progress</code>. It shows the user's current progress to accomplishing a goal with a background color.</td>
+                </tr>
+                <tr>
+                    <th scope="row"><code class="ff-mono fs-caption">.s-progress--label</code></th>
+                    <td>A child element of <code class="stacks-code">.s-progress</code>. It's used to describe what progress bar is tracking.</td>
+                </tr>
+                <tr>
+                    <th scope="row"><code class="ff-mono fs-caption">.s-progress__brand</code></th>
+                    <td>A modifying class applied to <code class="stacks-code">.s-progress</code>, it changes the bar color from green to orange.</td>
+                </tr>
+                <tr>
+                    <th scope="row"><code class="ff-mono fs-caption">.s-progress__info</code></th>
+                    <td>A modifying class applied to <code class="stacks-code">.s-progress</code>, it changes the bar color from green to blue.</td>
+                </tr>
+                <tr>
+                    <th scope="row"><code class="ff-mono fs-caption">.s-progress__privilege</code></th>
+                    <td>A modifying class applied to <code class="stacks-code">.s-progress</code>, it changes the bar color from green to a lighter green (for legibility reasons).</td>
+                </tr>
+                <tr>
+                    <th scope="row"><code class="ff-mono fs-caption">.s-progress__badge</code></th>
+                    <td>A modifying class applied to <code class="stacks-code">.s-progress</code>, it is applied when a badge progress bar is desired.</td>
+                </tr>
+                <tr>
+                    <th scope="row"><code class="ff-mono fs-caption">.s-progress__gold</code></th>
+                    <td>A modifying class applied to <code class="stacks-code">.s-progress__badge</code>, it is used when a gold badge progress bar is desired.</td>
+                </tr>
+                <tr>
+                    <th scope="row"><code class="ff-mono fs-caption">.s-progress__silver</code></th>
+                    <td>A modifying class applied to <code class="stacks-code">.s-progress__badge</code>, it is used when a silver badge progress bar is desired.</td>
+                </tr>
+                <tr>
+                    <th scope="row"><code class="ff-mono fs-caption">.s-progress__bronze</code></th>
+                    <td>A modifying class applied to <code class="stacks-code">.s-progress__badge</code>, it is used when a bronze badge progress bar is desired.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    {% header {element: 'h3', text: 'Parameters'} %}
+    <div class="overflow-x-auto mb32">
+        <table class="wmn4 s-table s-table__hover">
+            <thead>
+                <tr>
+                    <th scope="col" class="s-table--cell4">Parameter</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row"><code class="ff-mono fs-caption">role="progressbar"</code></th>
+                    <td>Applied to <code class="stacks-code">.s-progress--bar</code>, this parameter communicates that element is displaying progress status that takes a long time or consists of several steps. (<a href="https://www.w3.org/TR/wai-aria-1.1/#progressbar" target="_blank">Source</a>)</td>
+                </tr>
+                <tr>
+                    <th scope="row"><code class="ff-mono fs-caption">aria-valuemin</code></th>
+                    <td>Applied to <code class="stacks-code">.s-progress--bar</code>, this parameter defines the minimum allowed value for the progress bar. (<a href="https://www.w3.org/TR/wai-aria-1.1/#aria-valuemin" target="_blank">Source</a>)</td>
+                </tr>
+                <tr>
+                    <th scope="row"><code class="ff-mono fs-caption">aria-valuemax</code></th>
+                    <td>Applied to <code class="stacks-code">.s-progress--bar</code>, this parameter defines the maximum allowed value for the progress bar. (<a href="https://www.w3.org/TR/wai-aria-1.1/#aria-valuemax" target="_blank">Source</a>)</td>
+                </tr>
+                <tr>
+                    <th scope="row"><code class="ff-mono fs-caption">aria-valuenow</code></th>
+                    <td>Applied to <code class="stacks-code">.s-progress--bar</code>, this parameter defines the current value for the progress bar. (<a href="https://www.w3.org/TR/wai-aria-1.1/#aria-valuenow" target="_blank">Source</a>)</td>
+                </tr>
+                <tr>
+                    <th scope="row"><code class="ff-mono fs-caption">style="width: [value]%"</code></th>
+                    <td>Applied to <code class="stacks-code">.s-progress--bar</code>, this is the <code class="stacks-code">aria-valuenow</code> value displayed as a percentage.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+
+<section class="stacks-section">
     {% header {element: 'h2', text: 'Base Style'} %}
-    <p class="stacks-copy">The progress bars use background gradients for the fill color. In order to properly reveal the changing color of the bar, the progress "fill" is the actual background gradient. The actual bar is a gray mask that slowly shrinks to the right to reveal the background gradient underneath.</p>
+    <p class="stacks-copy">Since most progress bars are used to show successful completion of a task, the default fill color is green.</p>
     <div class="stacks-preview">
 {% highlight html linenos %}
 <div class="s-progress">
