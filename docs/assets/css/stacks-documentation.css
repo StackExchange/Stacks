@@ -931,8 +931,15 @@ legend.s-label {
   }
 }
 .s-input:focus,
+.s-input.has-focus,
 .s-textarea:focus,
 .s-select > select:focus {
+  position: relative;
+  border-color: #66bfff;
+  box-shadow: inset 0 0 4px #eff0f1, 0 0 0 4px rgba(0, 149, 255, 0.15);
+  outline: 0;
+}
+.s-input:focus-within {
   position: relative;
   border-color: #66bfff;
   box-shadow: inset 0 0 4px #eff0f1, 0 0 0 4px rgba(0, 149, 255, 0.15);
@@ -1455,8 +1462,8 @@ legend.s-label {
   box-shadow: 0 2px 8px rgba(59, 64, 69, 0.1);
   font-size: 1rem;
 }
-.s-sidebarwidget a:not(.button):not(.s-btn):not(.post-tag):not(.s-sidebarwidget--action),
-.s-sidebarwidget a:not(.button):not(.s-btn):not(.post-tag):not(.s-sidebarwidget--action):visited {
+.s-sidebarwidget:not(.s-anchors) a:not(.button):not(.s-btn):not(.post-tag):not(.s-sidebarwidget--action),
+.s-sidebarwidget:not(.s-anchors) a:not(.button):not(.s-btn):not(.post-tag):not(.s-sidebarwidget--action):visited {
   color: #6a737c;
 }
 .s-sidebarwidget:before {
