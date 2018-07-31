@@ -78,11 +78,37 @@ description: Use components as building blocks as you design and build new email
     <div class="stacks-preview">
 {% highlight html linenos %}
 <p style="margin: 0 0 15px 0;">@_s("I'm a text string in markdown.")</p>
-<p style="margin: 0 0 15px 0;" class="unstyle-auto-detected-links">@_m("I'm a *bold* [text link](https://www.stackoverflow.com) in markdown.")</p>
+<p style="margin: 0 0 15px 0;" class="has-markdown">@_m("I'm a *bold* [text link](https://www.stackoverflow.com) in markdown.")</p>
 {% endhighlight %}
         <div class="stacks-preview--example" style="font-family: arial, sans-serif; font-size: 15px; line-height: 19px; color: #54595F; text-align: left;">
             <p style="margin: 0 0 15px 0;">I'm a text string in markdown.</p>
             <p style="margin: 0;">I'm a <strong>bold</strong> <a href="https://www.stackoverflow.com" style="color: #0077CC; text-decoration: none;">text link</a> in markdown.</p>
+        </div>
+        <aside class="s-notice s-notice__info s-notice__outlined mt24" role="status" aria-hidden="false">
+            <div class="grid" role="alertdialog" aria-describedby="notice-message">
+                <div class="grid--cell mr8 fc-blue-500">
+                    <svg aria-hidden="true" class="svg-icon iconInfo" width="18" height="18" viewBox="0 0 18 18"><path d="M9 1a8 8 0 1 1 0 16A8 8 0 0 1 9 1zm1 13V8H8v6h2zm0-8V4H8v2h2z"></path></svg>
+                </div>
+                <div class="grid--cell" aria-label="notice-message">
+                    <p class="m0">
+                        Using <code class="stacks-code">class="has-markdown"</code> applies styles defined in the <code class="stacks-code">&lt;style&gt;</code> tag. Only <a href="https://www.campaignmonitor.com/css/style-element/style-in-head/">email clients that support <code class="stacks-code">&lt;style&gt;</code> in <code class="stacks-code">&lt;head&gt;</code></a> will render <code class="stacks-code">has-markdown</code> links properly.
+                    </p>
+                </div>
+            </div>
+        </aside>
+    </div>
+    {% header {element: 'h3', text: 'Auto-detected links'} %}
+    <p class="stacks-copy">
+        Some email clients auto-detect certain text strings (like dates, times, and locations) and automatically convert them into hyperlinks. We can't <em>remove</em> the link, but we can make the link <em>appear</em> like the text around it by negating a few CSS styles.
+    </p>
+    <div class="stacks-preview">
+{% highlight html linenos %}
+<p style="margin: 0 0 15px 0;">On Thursday we'll be doing on planned maintenance on our New York server, so the parts of the site might be unavailable.</p>
+<p style="margin: 0 0 15px 0;">On <span class="unstyle-auto-detected-links">Thursday</span> we'll be doing on planned maintenance on our <span class="unstyle-auto-detected-links">New York</span> server, so the parts of the site might be unavailable.</p>
+{% endhighlight %}
+        <div class="stacks-preview--example" style="font-family: arial, sans-serif; font-size: 15px; line-height: 19px; color: #54595F; text-align: left;">
+            <p style="margin: 0 0 15px 0;">On <a href="https://stackoverflow.com/" style="color: blue; text-decoration: none; border-bottom: 1px dashed;">Thursday</a> we'll be doing on planned maintenance on our <a href="https://stackoverflow.com/" style="color: blue; text-decoration: none; border-bottom: 1px dashed;">New York</a> server, so the parts of the site might be unavailable.</p>
+            <p style="margin: 0 0 15px 0;">On <a href="https://stackoverflow.com/" style="border-bottom: 0 !important; cursor: default !important; color: inherit !important; text-decoration: none !important; font-size: inherit !important; font-family: inherit !important; font-weight: inherit !important; line-height: inherit !important;">Thursday</a> we'll be doing on planned maintenance on our <a href="https://stackoverflow.com/" style="border-bottom: 0 !important; cursor: default !important; color: inherit !important; text-decoration: none !important; font-size: inherit !important; font-family: inherit !important; font-weight: inherit !important; line-height: inherit !important;">New York</a> server, so the parts of the site might be unavailable.</p>
         </div>
         <aside class="s-notice s-notice__info s-notice__outlined mt24" role="status" aria-hidden="false">
             <div class="grid" role="alertdialog" aria-describedby="notice-message">
@@ -99,8 +125,8 @@ description: Use components as building blocks as you design and build new email
     </div>
     {% header {element: 'h3', text: 'Preventing Text Wrapping'} %}
     <p class="stacks-copy">
-        A non-breaking space (<code class="stacks-code">&#38;nbsp;</code>) can be used to prevent a group of words from breaking onto multiple lines. Useful for keeping names together and preventing typographic orphans and&nbsp;widows.
-        <br><span class="d-block fc-light fs-body1">See ☝️?</span>
+        A non-breaking space (<code class="stacks-code">&#38;nbsp;</code>) can be used to prevent a group of words from breaking onto multiple lines. Useful for keeping names together and preventing typographic orphans&nbsp;and&nbsp;widows.
+        <br><span class="d-block mt8 fc-light fs-body1">Inspect the line above to see ☝️</span>
     </p>
     <div class="stacks-preview">
 {% highlight html linenos %}
