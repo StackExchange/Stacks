@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Progress Bars
-description: A component that visually communicates the completion of a task or operation. It shows the task’s progress and remainder.
+description: A component that visually communicates the completion of a task or operation. It shows the task's progress and remainder.
 ---
 <section class="stacks-section">
     {% header {element: 'h2', text: 'Classes and Parameters'} %}
@@ -144,6 +144,47 @@ description: A component that visually communicates the completion of a task or 
                 <label class="s-label d-inline-flex my8 fw-normal" for="infoprogress">Info</label>
                 <div class="s-progress s-progress__info" id="infoprogress">
                     <div class="s-progress--bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="66" style="width: 66%"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="stacks-section">
+    {% header {element: 'h2', text: 'Privileges'} %}
+    <p class="stacks-copy">Taller progress bars used within Profiles to help users understand how close they are to achieving their next privilege.</p>
+    <div class="stacks-preview">
+{% highlight html linenos %}
+<div class="s-progress s-progress__badge s-progress__gold">
+    <label class="grid gs4 gsx m0 s-progress--label" for="badgegold-progress">
+        <img class="grid--cell s-badge--image" src="../{{ site.img }}/BadgeGold.svg" aria-hidden="true">
+        <div class="grid grid__center fl1 s-badge--label">Electorate</div>
+    </label>
+    <div class="s-progress--bar" id="badgegold-progress" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="25" style="width: 25%;"></div>
+</div>
+{% endhighlight %}
+        <div class="stacks-preview--example">
+            <div class="grid gs8">
+                <div class="grid--cell s-progress s-progress__privilege">
+                    <label class="grid gs4 gsx grid__center m0 s-progress--label" for="badgegold-progress">
+                        {% svg /resources/svg-icons/PromoteDemote.svg width="18" height="18" aria-hidden="true" class="svg-icon iconSearch grid--cell" %}
+                        <div class="grid--cell">Access Review Queues</div>
+                    </label>
+                    <div class="s-progress--bar" id="badgegold-progress" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="25" style="width: 25%;"></div>
+                </div>
+                <div class="grid--cell s-progress s-progress__privilege">
+                    <label class="grid gs4 gsx grid__center m0 s-progress--label" for="badgesilver-progress">
+                        {% svg /resources/svg-icons/Achievements.svg width="14" height="14" aria-hidden="true" class="svg-icon iconSearch grid--cell" %}
+                        <div class="grid--cell">Trusted user</div>
+                    </label>
+                    <div class="s-progress--bar" id="badgegold-progress" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50" style="width: 50%;"></div>
+                </div>
+                <div class="grid--cell s-progress s-progress__privilege">
+                    <label class="grid gs4 gsx grid__center m0 s-progress--label" for="badgebronze-progress">
+                        {% svg /resources/svg-icons/PromoteDemote.svg width="18" height="18" aria-hidden="true" class="svg-icon iconSearch grid--cell" %}
+                        <div class="grid--cell">Protect questions</div>
+                    </label>
+                    <div class="s-progress--bar" id="badgegold-progress" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="75" style="width: 75%;"></div>
                 </div>
             </div>
         </div>
