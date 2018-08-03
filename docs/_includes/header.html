@@ -19,11 +19,9 @@
 
         {% if site.data.nav[0] %}
             {% for item in site.data.nav %}
-                {% if forloop.first == true %}
-                    <a class="grid--cell ml-auto s-link s-link__muted sm:d-none" href="{{ item.url | relative_url }}">{{ item.title }}</a>
-                {% else %}
-                    <a class="grid--cell ml24 s-link s-link__muted sm:d-none" href="{{ item.url | relative_url }}">{{ item.title }}</a>
-                {% endif %}
+                {% assign pageSlug = page.url | replace:'/',' ' | truncatewords: 1 | remove:'...' %}
+
+                <a class="grid--cell {% if forloop.first == true %}ml-auto{% else %}ml24{% endif %} {% if item.url contains pageSlug %}fc-white bg-orange-400 bar-pill px12 py4 {% endif %} s-link s-link__muted sm:d-none" href="{{ item.url | relative_url }}">{{ item.title }}</a>
             {% endfor %}
         {% endif %}
 

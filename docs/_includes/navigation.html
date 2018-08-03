@@ -1,14 +1,16 @@
 <div class="grid--cell ws2 sm:w100 md:w-auto md:d-none js-navigation">
     <div class="overflow-y-scroll bg-white z-nav py12 ps-fixed wmn2 t64 b0 br bc-black-2 sm:w100 sm:pb0">
         <div class="d-none sm:d-block">
-            <div class="grid ai-center jc-center">
-                <a href="#" class="grid--cell fc-white bg-orange-400 bar-pill px12 py4 mr24">
-                    Product
-                </a>
-                <a href="#" class="grid--cell s-link s-link__muted">
-                    Email
-                </a>
-                <a class="grid--cell fc-black-200 ml24" href="https://github.com/StackExchange/Stacks">
+            <div class="grid gs24 ai-center jc-center">
+                {% if site.data.nav[0] %}
+                    {% for item in site.data.nav %}
+                        {% assign pageSlug = page.url | replace:'/',' ' | truncatewords: 1 | remove:'...' %}
+
+                        <a class="grid--cell {% if item.url contains pageSlug %}fc-white bg-orange-400 bar-pill px12 py4 {% endif %} s-link s-link__muted" href="{{ item.url | relative_url }}">{{ item.title }}</a>
+                    {% endfor %}
+                {% endif %}
+
+                <a class="grid--cell fc-black-200" href="https://github.com/StackExchange/Stacks">
                     {% svg /product/resources/svg-icons/GitHub.svg width="24" height="24" aria-hidden="true" %}
                 </a>
             </div>
@@ -16,21 +18,24 @@
 
         {% if site.data.nav[0] %}
             {% for item in site.data.nav %}
-                <h3><a href="{{ item.url | relative_url }}">{{ item.title }}</a></h3>
-                {% if item.sublinks[0] %}
-                    <ul>
-                    {% for entry in item.sublinks %}
-                        <li>{{ entry.title }}
-                            {% if entry.subsublinks[0] %}
-                            <ul>
-                            {% for subentry in entry.subsublinks %}
-                                <li><a href="{{ subentry.url | relative_url }}">{{ subentry.title }}</a></li>
-                            {% endfor %}
-                            </ul>
-                            {% endif %}
-                        </li>
-                    {% endfor %}
-                    </ul>
+                {% assign pageSlug = page.url | replace:'/',' ' | truncatewords: 1 | remove:'...' %}
+
+                {% if item.url contains pageSlug %}
+                    {% if item.sublinks[0] %}
+                        <ul>
+                        {% for entry in item.sublinks %}
+                            <li>{{ entry.title }}
+                                {% if entry.subsublinks[0] %}
+                                <ul>
+                                {% for subentry in entry.subsublinks %}
+                                    <li><a href="{{ subentry.url | relative_url }}">{{ subentry.title }}</a></li>
+                                {% endfor %}
+                                </ul>
+                                {% endif %}
+                            </li>
+                        {% endfor %}
+                        </ul>
+                    {% endif %}
                 {% endif %}
             {% endfor %}
         {% endif %}
