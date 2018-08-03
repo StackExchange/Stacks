@@ -13,34 +13,26 @@
                 </a>
             </div>
         </div>
-        <ul id="nav" class="list-reset">
-            {% for entry in site.data.product.nav %}
-                {% assign sublinks = entry.sublinks %}
-                {% assign submenu-active = "" %}
-                {% if sublinks %}
-                    <li class="mb16">
-                        <div class="px16 py6 fw-bold tt-uppercase fs-fine mt16" title="{{ entry.title }}"> {{ entry.title }}</div>
-                        <ul class="list-reset">
-                            {% for sublink in sublinks %}
-                                {% assign pageURL = page.url | remove_first:"/" | remove: ".html" %}
-                                {% if pageURL == sublink.url %}
-                                    {% assign submenu-active = " bg-orange-400 fc-white" %}
-                                    {% assign submenu-container = "" %}
-                                {% else %}
-                                    {% assign submenu-active = ""%}
-                                    {% assign submenu-container = "" %}
-                                {% endif %}
-                                <li>
-                                    <a class="d-block py6 px16 s-link s-link__muted w100{{ submenu-active }}" href="{{ sublink.url | relative_url }}" title="{{ sublink.title }}">
-                                        {{ sublink.title }}
-                                    </a>
-                                    {{ submenu-container }}
-                                </li>
+
+        {% if site.data.nav[0] %}
+            {% for item in site.data.nav %}
+                <h3><a href="{{ item.url | relative_url }}">{{ item.title }}</a></h3>
+                {% if item.sublinks[0] %}
+                    <ul>
+                    {% for entry in item.sublinks %}
+                        <li>{{ entry.title }}
+                            {% if entry.subsublinks[0] %}
+                            <ul>
+                            {% for subentry in entry.subsublinks %}
+                                <li><a href="{{ subentry.url | relative_url }}">{{ subentry.title }}</a></li>
                             {% endfor %}
-                        </ul>
-                    </li>
+                            </ul>
+                            {% endif %}
+                        </li>
+                    {% endfor %}
+                    </ul>
                 {% endif %}
             {% endfor %}
-        </ul>
+        {% endif %}
     </div>
 </div>

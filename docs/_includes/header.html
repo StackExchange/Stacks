@@ -16,12 +16,17 @@
             {% svg /product/resources/svg-icons/Search.svg width="18" height="18" aria-hidden="true" class="svg-icon iconSearch js-search-icon" %}
             {% svg /product/resources/svg-icons/Clear.svg width="18" height="18" aria-hidden="true" class="svg-icon iconClear d-none js-search-close-icon" %}
         </a>
-        <a href="#" class="grid--cell ml-auto fc-white bg-orange-400 bar-pill px12 py4 sm:d-none">
-            Product
-        </a>
-        <a href="#" class="grid--cell ml24 s-link s-link__muted sm:d-none">
-            Email
-        </a>
+
+        {% if site.data.nav[0] %}
+            {% for item in site.data.nav %}
+                {% if forloop.first == true %}
+                    <a class="grid--cell ml-auto s-link s-link__muted sm:d-none" href="{{ item.url | relative_url }}">{{ item.title }}</a>
+                {% else %}
+                    <a class="grid--cell ml24 s-link s-link__muted sm:d-none" href="{{ item.url | relative_url }}">{{ item.title }}</a>
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+
         <a class="grid--cell fc-black-200 ml24 sm:d-none" href="https://github.com/StackExchange/Stacks">
             {% svg /product/resources/svg-icons/GitHub.svg width="24" height="24" aria-hidden="true" %}
         </a>
