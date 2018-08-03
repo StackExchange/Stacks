@@ -22,15 +22,19 @@
 
                 {% if item.url contains pageSlug %}
                     {% if item.sublinks[0] %}
-                        <ul>
+                        <ul id="nav" class="list-reset">
                         {% for entry in item.sublinks %}
-                            <li>{{ entry.title }}
+                            <li class="mb16">
+                                <div class="px16 py6 fw-bold tt-uppercase fs-fine mt16">
+                                    {{ entry.title }}
+                                </div>
                                 {% if entry.subsublinks[0] %}
-                                <ul>
-                                {% for subentry in entry.subsublinks %}
-                                    <li><a href="{{ subentry.url | relative_url }}">{{ subentry.title }}</a></li>
-                                {% endfor %}
-                                </ul>
+                                    <ul class="list-reset">
+                                        {% for subentry in entry.subsublinks %}
+                                            {% assign pageURL = page.url | remove_first:"/" | remove: ".html" %}
+                                            <li><a class="d-block py6 px16 s-link s-link__muted w100 {% if pageURL == subentry.url %}bg-orange-400 fc-white{% endif %}" href="{{ subentry.url | relative_url }}">{{ subentry.title }}</a></li>
+                                        {% endfor %}
+                                    </ul>
                                 {% endif %}
                             </li>
                         {% endfor %}
