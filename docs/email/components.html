@@ -75,7 +75,7 @@ description: Use components as building blocks as you design and build new email
     <p class="stacks-copy">
         If email content is written in markdown, we can't write inline CSS into link tags. Left unstyled, <a href="#" style="color: blue; text-decoration: underline;">links will appear like this</a>. To style links contained in markdown text, add a <code class="stacks-code">class="has-markdown"</code> to any parent tag that might contain a markdown link.
     </p>
-    <div class="stacks-preview">
+    <div class="stacks-preview mb24">
 {% highlight html linenos %}
 <p style="margin: 0 0 15px 0;">@_s("I'm a text string in markdown.")</p>
 <p style="margin: 0 0 15px 0;" class="has-markdown">@_m("I'm a *bold* [text link](https://www.stackoverflow.com) in markdown.")</p>
@@ -84,24 +84,20 @@ description: Use components as building blocks as you design and build new email
             <p style="margin: 0 0 15px 0;">I'm a text string in markdown.</p>
             <p style="margin: 0;">I'm a <strong>bold</strong> <a href="https://www.stackoverflow.com" style="color: #0077CC; text-decoration: none;">text link</a> in markdown.</p>
         </div>
-        <aside class="s-notice s-notice__info s-notice__outlined mt24" role="status" aria-hidden="false">
-            <div class="grid" role="alertdialog" aria-describedby="notice-message">
-                <div class="grid--cell mr8 fc-blue-500">
-                    <svg aria-hidden="true" class="svg-icon iconInfo" width="18" height="18" viewBox="0 0 18 18"><path d="M9 1a8 8 0 1 1 0 16A8 8 0 0 1 9 1zm1 13V8H8v6h2zm0-8V4H8v2h2z"></path></svg>
-                </div>
-                <div class="grid--cell" aria-label="notice-message">
-                    <p class="m0">
-                        Using <code class="stacks-code">class="has-markdown"</code> applies styles defined in the <code class="stacks-code">&lt;style&gt;</code> tag. Only <a href="https://www.campaignmonitor.com/css/style-element/style-in-head/">email clients that support <code class="stacks-code">&lt;style&gt;</code> in <code class="stacks-code">&lt;head&gt;</code></a> will render <code class="stacks-code">has-markdown</code> links properly.
-                    </p>
-                </div>
-            </div>
-        </aside>
     </div>
+
+    <div class="grid ai-start s-notice s-notice__info mb48">
+        <div class="grid--cell mr8">{% svg /resources/svg-icons/Info.svg width="18" height="18" aria-hidden="true" %}</div>
+        <div class="grid--cell lh-lg">
+            <strong>Note:</strong> Using <code class="stacks-code bg-powder-200">class="has-markdown"</code> applies styles defined in the <code class="stacks-code bg-powder-200">&lt;style&gt;</code> tag. Only <a href="https://www.campaignmonitor.com/css/style-element/style-in-head/">email clients that support <code class="stacks-code bg-powder-200">&lt;style&gt;</code> in <code class="stacks-code bg-powder-200">&lt;head&gt;</code></a> will render <code class="stacks-code bg-powder-200">has-markdown</code> links properly.
+        </div>
+    </div>
+
     {% header {element: 'h3', text: 'Auto-detected links'} %}
     <p class="stacks-copy">
         Some email clients auto-detect certain text strings (like dates, times, and locations) and automatically convert them into hyperlinks. We can't <em>remove</em> the link, but we can make the link <em>appear</em> like the text around it by negating a few CSS styles.
     </p>
-    <div class="stacks-preview">
+    <div class="stacks-preview mb24">
 {% highlight html linenos %}
 <p style="margin: 0 0 15px 0;">On Thursday we'll be doing on planned maintenance on our New York server, so the parts of the site might be unavailable.</p>
 <p style="margin: 0 0 15px 0;">On <span class="unstyle-auto-detected-links">Thursday</span> we'll be doing on planned maintenance on our <span class="unstyle-auto-detected-links">New York</span> server, so the parts of the site might be unavailable.</p>
@@ -110,19 +106,15 @@ description: Use components as building blocks as you design and build new email
             <p style="margin: 0 0 15px 0;">On <a href="https://stackoverflow.com/" style="color: blue; text-decoration: none; border-bottom: 1px dashed;">Thursday</a> we'll be doing on planned maintenance on our <a href="https://stackoverflow.com/" style="color: blue; text-decoration: none; border-bottom: 1px dashed;">New York</a> server, so the parts of the site might be unavailable.</p>
             <p style="margin: 0 0 15px 0;">On <a href="https://stackoverflow.com/" style="border-bottom: 0 !important; cursor: default !important; color: inherit !important; text-decoration: none !important; font-size: inherit !important; font-family: inherit !important; font-weight: inherit !important; line-height: inherit !important;">Thursday</a> we'll be doing on planned maintenance on our <a href="https://stackoverflow.com/" style="border-bottom: 0 !important; cursor: default !important; color: inherit !important; text-decoration: none !important; font-size: inherit !important; font-family: inherit !important; font-weight: inherit !important; line-height: inherit !important;">New York</a> server, so the parts of the site might be unavailable.</p>
         </div>
-        <aside class="s-notice s-notice__info s-notice__outlined mt24" role="status" aria-hidden="false">
-            <div class="grid" role="alertdialog" aria-describedby="notice-message">
-                <div class="grid--cell mr8 fc-blue-500">
-                    <svg aria-hidden="true" class="svg-icon iconInfo" width="18" height="18" viewBox="0 0 18 18"><path d="M9 1a8 8 0 1 1 0 16A8 8 0 0 1 9 1zm1 13V8H8v6h2zm0-8V4H8v2h2z"></path></svg>
-                </div>
-                <div class="grid--cell" aria-label="notice-message">
-                    <p class="m0">
-                        Using <code class="stacks-code">class="unstyle-auto-detected-links"</code> applies styles defined in the <code class="stacks-code">&lt;style&gt;</code> tag. Only <a href="https://www.campaignmonitor.com/css/style-element/style-in-head/">email clients that support <code class="stacks-code">&lt;style&gt;</code> in <code class="stacks-code">&lt;head&gt;</code></a> will render <code class="stacks-code">has-markdown</code> links properly.
-                    </p>
-                </div>
-            </div>
-        </aside>
     </div>
+
+    <div class="grid ai-start s-notice s-notice__info mb48">
+        <div class="grid--cell mr8">{% svg /resources/svg-icons/Info.svg width="18" height="18" aria-hidden="true" %}</div>
+        <div class="grid--cell lh-lg">
+            <strong>Note:</strong> Using <code class="stacks-code bg-powder-200">class="unstyle-auto-detected-links"</code> applies styles defined in the <code class="stacks-code bg-powder-200">&lt;style&gt;</code> tag. Only <a href="https://www.campaignmonitor.com/css/style-element/style-in-head/">email clients that support <code class="stacks-code bg-powder-200">&lt;style&gt;</code> in <code class="stacks-code bg-powder-200">&lt;head&gt;</code></a> will render <code class="stacks-code bg-powder-200">has-markdown</code> links properly.
+        </div>
+    </div>
+
     {% header {element: 'h3', text: 'Preventing Text Wrapping'} %}
     <p class="stacks-copy">
         A non-breaking space (<code class="stacks-code">&#38;nbsp;</code>) can be used to prevent a group of words from breaking onto multiple lines. Useful for keeping names together and preventing typographic orphans&nbsp;and&nbsp;widows.
@@ -142,7 +134,7 @@ description: Use components as building blocks as you design and build new email
     </div>
 </section>
 
-<!----- BUTTONS ----->
+<!-- BUTTONS -->
 <section class="stacks-section">
     {% header {element: 'h2', text: 'Buttons'} %}
     <p class="stacks-copy">Creating a successful button in email uses multiple html tags to create progressive enhancement and prevent text-decoration in certain email clients.</p>
@@ -152,7 +144,7 @@ description: Use components as building blocks as you design and build new email
     <p class="stacks-copy">
         A visual style used to highlight the most important actions. To avoid confusing users, don't use more than one primary button within a section or preferably, email.
     </p>
-    <div class="stacks-preview">
+    <div class="stacks-preview mb24">
 {% highlight html linenos %}
 <td class="s-btn s-btn__primary" style="border-radius: 4px; background: #0095ff; text-align: center;">
     <a class="s-btn s-btn__primary" href="#" style="background: #0095FF; border: 1px solid #0077cc; box-shadow: inset 0 1px 0 0 rgba(102,191,255,.75), 0 0 0 0 rgba(0,149,255,0); font-family: arial, sans-serif; font-size: 17px; line-height: 17px; color: #ffffff; text-align: center; text-decoration: none; padding: 13px 17px; display: block; border-radius: 4px;">
@@ -172,7 +164,7 @@ description: Use components as building blocks as you design and build new email
     </a>
 </td>
 {% endhighlight %}
-        <div class="-preview">
+        <div class="stacks-preview--example">
             <table cellspacing="0" class="s-table">
                 <thead>
                     <tr>
@@ -240,23 +232,19 @@ description: Use components as building blocks as you design and build new email
                 </tbody>
             </table>
         </div>
-        <aside class="s-notice s-notice__info s-notice__outlined mt24" role="status" aria-hidden="false">
-            <div class="grid" role="alertdialog" aria-describedby="notice-message">
-                <div class="grid--cell mr8 fc-blue-500">
-                    <svg aria-hidden="true" class="svg-icon iconInfo" width="18" height="18" viewBox="0 0 18 18"><path d="M9 1a8 8 0 1 1 0 16A8 8 0 0 1 9 1zm1 13V8H8v6h2zm0-8V4H8v2h2z"></path></svg>
-                </div>
-                <div class="grid--cell" aria-label="notice-message">
-                    <p class="m0">
-                        Using the <code class="stacks-code">s-btn</code> class with <code class="stacks-code">s-btn__primary</code>, <code class="stacks-code">s-btn__white</code> or <code class="stacks-code">s-btn__outlined</code> applies <code class="stacks-code">:hover</code> progressive enhancements defined in the <code class="stacks-code">&lt;style&gt;</code> tag. Only  <a href="https://www.campaignmonitor.com/css/style-element/style-in-head/">email clients that support <code class="stacks-code">&lt;style&gt;</code> in <code class="stacks-code">&lt;head&gt;</code></a> will render the <code class="stacks-code">:hover</code>.
-                    </p>
-                </div>
-            </div>
-        </aside>
     </div>
 
+    <div class="grid ai-start s-notice s-notice__info mb48">
+        <div class="grid--cell mr8">{% svg /resources/svg-icons/Info.svg width="18" height="18" aria-hidden="true" %}</div>
+        <div class="grid--cell lh-lg">
+            <strong>Note:</strong> Using <code class="stacks-code bg-powder-200">class="unstyle-auto-detected-links"</code> applies styles defined in the <code class="stacks-code bg-powder-200">&lt;style&gt;</code> tag. Only <a href="https://www.campaignmonitor.com/css/style-element/style-in-head/">email clients that support <code class="stacks-code bg-powder-200">&lt;style&gt;</code> in <code class="stacks-code bg-powder-200">&lt;head&gt;</code></a> will render <code class="stacks-code bg-powder-200">has-markdown</code> links properly.
+
+            Using the <code class="stacks-code bg-powder-200">s-btn</code> class with <code class="stacks-code bg-powder-200">s-btn__primary</code>, <code class="stacks-code bg-powder-200">s-btn__white</code> or <code class="stacks-code bg-powder-200">s-btn__outlined</code> applies <code class="stacks-code bg-powder-200">:hover</code> progressive enhancements defined in the <code class="stacks-code bg-powder-200">&lt;style&gt;</code> tag. Only  <a href="https://www.campaignmonitor.com/css/style-element/style-in-head/">email clients that support <code class="stacks-code bg-powder-200">&lt;style&gt;</code> in <code class="stacks-code bg-powder-200">&lt;head&gt;</code></a> will render the <code class="stacks-code bg-powder-200">:hover</code>.
+        </div>
+    </div>
 </section>
 
-<!----- TAGS ----->
+<!-- TAGS -->
 <section class="stacks-section">
     {% header {element: 'h2', text: 'Tags'} %}
     <p class="stacks-copy">
@@ -265,7 +253,7 @@ description: Use components as building blocks as you design and build new email
     <p class="stacks-copy">
         Questions, jobs, and candidates can be tagged with up to 5 tags. Individual tags should not break onto multiple lines, though tag lists can.
     </p>
-    <div class="stacks-preview">
+    <div class="stacks-preview mb24">
 {% highlight html linenos %}
 <td>
     <a href="#" style="display: inline-block; border: 5px solid #E1ECF4; margin: 0 1px 4px 0; background: #E1ECF4; color: #39739D; font-family: arial, sans-serif; font-size: 12px; line-height: 12px; text-decoration: none; white-space: nowrap;" class="post-tag">tag-name</a>
@@ -274,11 +262,12 @@ description: Use components as building blocks as you design and build new email
 </td>
 {% endhighlight %}
         <div class="stacks-preview--example">
-            <a href="#" style="display: inline-block; border: 5px solid #E1ECF4; margin: 0 1px 4px 0; background: #E1ECF4; color: #39739D; font-family: arial, sans-serif; font-size: 12px; line-height: 12px; text-decoration: none; white-space: nowrap;" class="post-tag">tag-name</a>
-            <a href="#" style="display: inline-block; border: 5px solid #E1ECF4; margin: 0 1px 4px 0; background: #E1ECF4; color: #39739D; font-family: arial, sans-serif; font-size: 12px; line-height: 12px; text-decoration: none; white-space: nowrap;" class="post-tag">tag</a>
-            <a href="#" style="display: inline-block; border: 5px solid #E1ECF4; margin: 0 1px 4px 0; background: #E1ECF4; color: #39739D; font-family: arial, sans-serif; font-size: 12px; line-height: 12px; text-decoration: none; white-space: nowrap;" class="post-tag">another-tag-name</a>
-        </div>
-        <div class="-preview">
+            <div class="mb16">
+                <a href="#" style="display: inline-block; border: 5px solid #E1ECF4; margin: 0 1px 4px 0; background: #E1ECF4; color: #39739D; font-family: arial, sans-serif; font-size: 12px; line-height: 12px; text-decoration: none; white-space: nowrap;" class="post-tag">tag-name</a>
+                <a href="#" style="display: inline-block; border: 5px solid #E1ECF4; margin: 0 1px 4px 0; background: #E1ECF4; color: #39739D; font-family: arial, sans-serif; font-size: 12px; line-height: 12px; text-decoration: none; white-space: nowrap;" class="post-tag">tag</a>
+                <a href="#" style="display: inline-block; border: 5px solid #E1ECF4; margin: 0 1px 4px 0; background: #E1ECF4; color: #39739D; font-family: arial, sans-serif; font-size: 12px; line-height: 12px; text-decoration: none; white-space: nowrap;" class="post-tag">another-tag-name</a>
+            </div>
+
             <table cellspacing="0" class="s-table">
                 <thead>
                     <tr>
@@ -306,23 +295,16 @@ description: Use components as building blocks as you design and build new email
                 </tbody>
             </table>
         </div>
-        <aside class="s-notice s-notice__info s-notice__outlined mt24" role="status" aria-hidden="false">
-            <div class="grid" role="alertdialog" aria-describedby="notice-message">
-                <div class="grid--cell mr8 fc-blue-500">
-                    <svg aria-hidden="true" class="svg-icon iconInfo" width="18" height="18" viewBox="0 0 18 18"><path d="M9 1a8 8 0 1 1 0 16A8 8 0 0 1 9 1zm1 13V8H8v6h2zm0-8V4H8v2h2z"></path></svg>
-                </div>
-                <div class="grid--cell" aria-label="notice-message">
-                    <p class="m0">
-                        Using the <code class="stacks-code">post-tag</code> class applies <code class="stacks-code">:hover</code> progressive enhancements defined in the <code class="stacks-code">&lt;style&gt;</code> tag. Only  <a href="https://www.campaignmonitor.com/css/style-element/style-in-head/">email clients that support <code class="stacks-code">&lt;style&gt;</code> in <code class="stacks-code">&lt;head&gt;</code></a> will render the <code class="stacks-code">:hover</code>.
-                    </p>
-                </div>
-            </div>
-        </aside>
     </div>
-</td>
+    <div class="grid ai-start s-notice s-notice__info mb48">
+        <div class="grid--cell mr8">{% svg /resources/svg-icons/Info.svg width="18" height="18" aria-hidden="true" %}</div>
+        <div class="grid--cell lh-lg">
+            <strong>Note:</strong> Using the <code class="stacks-code bg-powder-200">post-tag</code> class applies <code class="stacks-code bg-powder-200">:hover</code> progressive enhancements defined in the <code class="stacks-code bg-powder-200">&lt;style&gt;</code> tag. Only  <a href="https://www.campaignmonitor.com/css/style-element/style-in-head/">email clients that support <code class="stacks-code bg-powder-200">&lt;style&gt;</code> in <code class="stacks-code bg-powder-200">&lt;head&gt;</code></a> will render the <code class="stacks-code bg-powder-200">:hover</code>.
+        </div>
+    </div>
 </section>
 
-<!----- FOREGROUND IMAGES ----->
+<!-- FOREGROUND IMAGES -->
 <section class="stacks-section">
     {% header {element: 'h2', text: 'Foreground Images'} %}
     <p class="stacks-copy">
@@ -395,20 +377,20 @@ description: Use components as building blocks as you design and build new email
     <div class="stacks-preview">
 {% highlight html linenos %}
 /* Responsive */
-<img src="http://placehold.it/1280x600" width="640" height="" alt="alt_text" border="0" style="width: 100%; max-width: 640px; height: auto; display: block;" class="g-img">
+<img src="https://placehold.it/1280x600" width="640" height="" alt="alt_text" border="0" style="width: 100%; max-width: 640px; height: auto; display: block;" class="g-img">
 
 /* Static */
-<img src="http://placehold.it/256" width="128" height="128" alt="alt_text" border="0" style="display: block;">
+<img src="https://placehold.it/256" width="128" height="128" alt="alt_text" border="0" style="display: block;">
 {% endhighlight %}
         <div class="stacks-preview--example">
-            <img src="http://placehold.it/1280x600" width="640" height="" alt="alt_text" border="0" style="width: 100%; max-width: 640px; height: auto; display: block;" class="g-img">
+            <img src="https://placehold.it/1280x600" width="640" height="" alt="alt_text" border="0" style="width: 100%; max-width: 640px; height: auto; display: block;" class="g-img">
             <br>
-            <img src="http://placehold.it/256" width="128" height="128" alt="alt_text" border="0" style="display: block;">
+            <img src="https://placehold.it/256" width="128" height="128" alt="alt_text" border="0" style="display: block;">
         </div>
     </div>
 </section>
 
-<!----- BACKGROUND IMAGES ----->
+<!-- BACKGROUND IMAGES -->
 <section class="stacks-section">
     {% header {element: 'h2', text: 'Background Images'} %}
     <p class="stacks-copy">
@@ -468,7 +450,7 @@ description: Use components as building blocks as you design and build new email
             </tr>
         </tbody>
     </table>
-    <div class="stacks-preview">
+    <div class="stacks-preview mb24">
 {% highlight html linenos %}
 <td valign="middle" style="background-image: url('https://d2axdqolvqmdvx.cloudfront.net/857c3f94-f791-401e-85a8-e041ec72569e/bgheropatternblue.png'); background-position: center center; background-size: cover; background-color: #117FF1; text-align: center;">
     <!--[if gte mso 9]>
@@ -512,17 +494,11 @@ description: Use components as building blocks as you design and build new email
                 </tr>
             </table>
         </div>
-        <aside class="s-notice s-notice__info s-notice__outlined mt24" role="status" aria-hidden="false">
-            <div class="grid" role="alertdialog" aria-describedby="notice-message">
-                <div class="grid--cell mr8 fc-blue-500">
-                    <svg aria-hidden="true" class="svg-icon iconInfo" width="18" height="18" viewBox="0 0 18 18"><path d="M9 1a8 8 0 1 1 0 16A8 8 0 0 1 9 1zm1 13V8H8v6h2zm0-8V4H8v2h2z"></path></svg>
-                </div>
-                <div class="grid--cell" aria-label="notice-message">
-                    <p class="m0">
-                        Windows Outlook and Win10 Mail cannot scale background images, so the image referenced in VML should be prepared @1x. Most other email clients can scale background images defined in CSS, so using @2x images is advisable.
-                    </p>
-                </div>
-            </div>
-        </aside>
+    </div>
+    <div class="grid ai-start s-notice s-notice__info mb48">
+        <div class="grid--cell mr8">{% svg /resources/svg-icons/Info.svg width="18" height="18" aria-hidden="true" %}</div>
+        <div class="grid--cell lh-lg">
+            <strong>Note:</strong> Windows Outlook and Win10 Mail cannot scale background images, so the image referenced in VML should be prepared @1x. Most other email clients can scale background images defined in CSS, so using @2x images is advisable.
+        </div>
     </div>
 </section>
