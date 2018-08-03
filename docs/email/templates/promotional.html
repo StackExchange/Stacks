@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:v="urn:schemas-microsoft-com:vml">
+<head>
+    <title></title> <!-- The title tag shows in email notifications, like Android 4.4. -->
+    <meta charset="utf-8"> <!-- utf-8 works for most cases -->
+    <meta name="viewport" content="width=device-width"> <!-- Forcing initial-scale shouldn't be necessary -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!-- Use the latest (edge) version of IE rendering engine -->
+    <meta name="x-apple-disable-message-reformatting"> <!-- Disable auto-scale in iOS 10 Mail entirely -->
+
+    <!-- CSS Reset -->
+    <style type="text/css">
+        /* What it does: Remove spaces around the email design added by some email clients. */
+        /* Beware: It can remove the padding / margin and add a background color to the compose a reply window. */
+        html,
+        body {
+            margin: 0 auto !important;
+            padding: 0 !important;
+            height: 100% !important;
+            width: 100% !important;
+        }
+
+        /* What it does: Stops email clients resizing small text. */
+        * {
+            -ms-text-size-adjust: 100%;
+            -webkit-text-size-adjust: 100%;
+        }
+
+        /* What it does: Centers email on Android 4.4 */
+        div[style*="margin: 16px 0"] {
+            margin:0 !important;
+        }
+
+        /* What it does: Stops Outlook from adding extra spacing to tables. */
+        table,
+        td {
+            mso-table-lspace: 0pt !important;
+            mso-table-rspace: 0pt !important;
+        }
+
+        /* What it does: Fixes webkit padding issue. Fix for Yahoo mail table alignment bug. Applies table-layout to the first 2 tables then removes for anything nested deeper. */
+        table {
+            border-spacing: 0 !important;
+            border-collapse: collapse !important;
+            table-layout: fixed !important;
+            margin: 0 auto !important;
+        }
+        table table table {
+            table-layout: auto;
+        }
+
+        /* What it does: Uses a better rendering method when resizing images in IE. */
+        img {
+            -ms-interpolation-mode:bicubic;
+        }
+
+        /* What it does: Prevents Windows 10 Mail from underlining links despite inline CSS. Styles for underlined links should be inline. */
+        a {
+            text-decoration: none;
+        }
+
+        /* What it does: A work-around for email clients meddling in triggered links. */
+        *[x-apple-data-detectors],  /* iOS */
+        .unstyle-auto-detected-links *,
+        .aBn {
+            border-bottom: 0 !important;
+            cursor: default !important;
+            color: inherit !important;
+            text-decoration: none !important;
+            font-size: inherit !important;
+            font-family: inherit !important;
+            font-weight: inherit !important;
+            line-height: inherit !important;
+        }
+
+        /* What it does: Styles markdown links that we can't write inline CSS for. */
+        .has-markdown a,
+        .has-markdown a:visited {
+            color: #0077CC !important;
+            text-decoration: none !important;
+        }
+
+        /* What it does: Prevents Gmail from displaying an download button on large, non-linked images. */
+        .a6S {
+            display: none !important;
+            opacity: 0.01 !important;
+        }
+        /* If the above doesn't work, add a .g-img class to any image in question. */
+        img.g-img + div {
+            display:none !important;
+        }
+
+        /* What it does: Prevents underlining the button text in Windows 10 */
+        .button-link {
+            text-decoration: none !important;
+        }
+
+        /* What it does: Removes right gutter in Gmail iOS app: https://github.com/TedGoas/Cerberus/issues/89  */
+        /* Create one of these media queries for each additional viewport size you'd like to fix */
+
+        /* iPhone 4, 4S, 5, 5S, 5C, and 5SE */
+        @media only screen and (min-device-width: 320px) and (max-device-width: 374px) {
+            .email-container {
+                min-width: 320px !important;
+            }
+        }
+        /* iPhone 6, 6S, 7, 8, and X */
+        @media only screen and (min-device-width: 375px) and (max-device-width: 413px) {
+            .email-container {
+                min-width: 375px !important;
+            }
+        }
+        /* iPhone 6+, 7+, and 8+ */
+        @media only screen and (min-device-width: 414px) {
+            .email-container {
+                min-width: 414px !important;
+            }
+        }
+    </style>
+    <!-- Reset list spacing because Outlook ignores much of our inline CSS. -->
+    <!--[if mso]>
+    <style type="text/css">
+        ul,
+        ol {
+            margin: 0 !important;
+        }
+        li {
+            margin-left: 30px !important;
+        }
+        li.list-item-first {
+            margin-top: 15px !important;
+        }
+        li.list-item-last {
+            margin-bottom: 15px !important;
+        }
+    </style>
+    <![endif]-->
+
+    <!-- Progressive Enhancements -->
+    <style type="text/css">
+
+        /* What it does: Hover styles for buttons and tags */
+        .s-btn,
+        .s-tag,
+        .post-tag {
+            transition: all 100ms ease-in;
+        }
+        .s-btn__primary:hover {
+            background: #0077CC !important;
+            border-color: #0077CC !important;
+        }
+        .s-btn__white:hover {
+            background: rgba(255,255,255,.7) !important;
+            border-color: rgba(255,255,255,.7) !important;
+        }
+        .s-btn__outlined:hover {
+            background: rgba(0,119,204,.05) !important;
+            color: #005999 !important;
+        }
+        .s-tag:hover,
+        .post-tag:hover {
+            border-color: #cee0ed !important;
+            background: #cee0ed !important;
+        }
+
+        /* Media Queries */
+        @media screen and (max-width: 680px) {
+
+            /* What it does: Forces elements to resize to the full width of their container. Useful for resizing images beyond their max-width. */
+            .fluid {
+                width: 100% !important;
+                max-width: 100% !important;
+                height: auto !important;
+                margin-left: auto !important;
+                margin-right: auto !important;
+            }
+
+            /* What it does: Forces table cells into full-width rows. */
+            .stack-column,
+            .stack-column-center {
+                display: block !important;
+                width: 100% !important;
+                max-width: 100% !important;
+                direction: ltr !important;
+            }
+            /* And center justify these ones. */
+            .stack-column-center {
+                text-align: center !important;
+            }
+
+            /* Hides things in small viewports. */
+            .hide-on-mobile {
+                display: none !important;
+                max-height: 0 !important;
+                overflow: hidden !important;
+                visibility: hidden !important;
+            }
+
+            /* What it does: Utility classes to reduce spacing for smaller viewports. */
+            .sm-p {
+               padding: 20px !important;
+            }
+            .sm-pt {
+               padding-top: 20px !important;
+            }
+            .sm-pb {
+               padding-bottom: 20px !important;
+            }
+            .sm-pr {
+               padding-right: 20px !important;
+            }
+            .sm-pl {
+               padding-left: 20px !important;
+            }
+            .sm-px {
+               padding-left: 20px !important;
+               padding-right: 20px !important;
+            }
+            .sm-py {
+               padding-top: 20px !important;
+               padding-bottom: 20px !important;
+            }
+            .sm-mb {
+               margin-bottom: 20px !important;
+            }
+            .sm-fs34 {
+                font-size: 34px !important;
+                line-height: 34px !important;
+            }
+        }
+    </style>
+</head>
+
+<!--
+    The email background color is defined in three places, just below. If you change one, remember to change the others.
+    1. body tag: for most email clients
+    2. center tag: for Gmail and Inbox mobile apps and web versions of Gmail, GSuite, Inbox, Yahoo, AOL, Libero, Comcast, freenet, Mail.ru, Orange.fr
+    3. mso conditional: For Windows 10 Mail
+-->
+<body width="100%" style="margin: 0; padding: 0 !important; background: #f3f3f5; mso-line-height-rule: exactly;">
+    <center style="width: 100%; background: #f3f3f5;">
+    <!--[if mso | IE]>
+    <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%" style="background-color: #f3f3f5;">
+    <tr>
+    <td>
+    <![endif]-->
+
+        <!-- Visually Hidden Preheader Text : BEGIN -->
+        <div style="display: none; font-size: 1px; line-height: 1px; max-height: 0px; max-width: 0px; opacity: 0; overflow: hidden; mso-hide: all; font-family: sans-serif;">
+            (Optional) This text will appear in the inbox preview, but not the email body. It can be used to supplement the email subject line or even summarize the email's contents. Extended text preheaders (~490 characters) seems like a better UX for anyone using a screenreader or voice-command apps like Siri to dictate the contents of an email. If this text is not included, email clients will automatically populate it using the text (including image alt text) at the start of the email's body.
+        </div>
+        <!-- Visually Hidden Preheader Text : END -->
+
+        <div class="email-container" style="max-width: 680px; margin: 0 auto;">
+            <!--[if mso]>
+            <table role="presentation" aria-hidden="true" cellspacing="0" cellpadding="0" border="0" width="680" align="center">
+            <tr>
+            <td>
+            <![endif]-->
+            <table aria-hidden="true" border="0" cellpadding="0" cellspacing="0" role="presentation" style="max-width: 680px; width:100%">
+                <!-- Logo : BEGIN -->
+                <tr>
+                    <td style="padding: 20px 30px; text-align: left;" valign="middle" class="sm-px">
+                        <a href="https://stackoverflow.com/"><img src="Logo@2x.png" alt="Stack Overflow" border="0" height="30" width="150"></a>
+                    </td>
+                </tr>
+                <!-- Logo : END -->
+
+                <!-----------------------------
+
+                    EMAIL BODY : BEGIN
+
+                ------------------------------>
+
+                <!-- 2 Even Columns : BEGIN -->
+                <tr>
+                    <td style="background-color: #362858;">
+                        <!--[if mso]>
+                        <table align="center" role="presentation" border="0" cellspacing="0" cellpadding="0" width="680">
+                        <tr>
+                        <td valign="top" width="680">
+                        <![endif]-->
+                        <table align="center" role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width:680px;">
+                            <tr>
+                                <td valign="top" style="font-size:0;">
+                                    <!--[if mso]>
+                                    <table role="presentation" border="0" cellspacing="0" cellpadding="0" width="680">
+                                    <tr>
+                                    <td align="left" valign="top" width="340">
+                                    <![endif]-->
+                                    <div style="display:inline-block; margin: 0 -2px; width:100%; min-width:200px; max-width:340px; vertical-align: top;" class="stack-column">
+                                        <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+                                            <tr>
+                                                <td style="padding: 30px 30px 15px; text-align: left;" class="sm-px sm-pt">
+                                                    <h1 style="font-weight: bold; font-size: 27px; line-height: 27px; color: #ffffff; font-family: arial, sans-serif; margin: 0 0 15px 0;">We're announcing something</h1>
+                                                    <p style="margin: 10px 0; font-size: 17px; line-height: 21px; color: #ffffff; font-family: arial, sans-serif;">The excerpt or slogan of the email announcement can go here.</p>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="padding: 0 30px 30px;" class="sm-px sm-pb">
+                                                    <!-- Button : BEGIN -->
+                                                    <table align="left" border="0" cellpadding="0" cellspacing="0" role="presentation">
+                                                        <tr>
+                                                            <td class="s-btn s-btn__white" style="border-radius: 4px; background: #ffffff;">
+                                                                <a class="s-btn s-btn__white" href="#" style="background: #ffffff; border: 1px solid #ffffff; box-shadow: 0 0 0 0 rgba(0,149,255,0); font-family: arial, sans-serif; font-size: 17px; line-height: 17px; color: #0077cc; text-align: center; text-decoration: none; padding: 13px 17px; display: block; border-radius: 4px; white-space: nowrap;">Medium White Button</a>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                    <!-- Button : END -->
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                    <!--[if mso]>
+                                    </td>
+                                    <td align="left" valign="top" width="340">
+                                    <![endif]-->
+                                    <div style="display:inline-block; margin: 0 -2px; width:100%; min-width:200px; max-width:340px; vertical-align: top;" class="stack-column-center">
+                                        <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+                                            <tr>
+                                                <td style="padding: 30px 10px; font-family: arial, sans-serif; font-size: 15px; line-height: 21px; color: #ffffff; text-align: center;" class="sm-py">
+                                                    <img src="illo-scene-1.png" width="340" height="" alt="alt_text" border="0" style="display: block; margin: auto; width: 100%; max-width: 340px; font-family: arial, sans-serif; font-size: 15px; line-height: 16px; color: #ffffff;" class="g-img">
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                    <!--[if mso]>
+                                    </td>
+                                    </tr>
+                                    </table>
+                                    <![endif]-->
+                                </td>
+                            </tr>
+                        </table>
+                        <!--[if mso]>
+                        </td>
+                        </tr>
+                        </table>
+                        <![endif]-->
+                    </td>
+                </tr>
+                <!-- 2 Even Columns : END -->
+                <!-- General Email Body : BEGIN -->
+                <tr>
+                    <td style="padding: 30px; background-color: #ffffff;" class="sm-p">
+                        <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="width:100%;">
+                            <!-- Rich Text : BEGIN -->
+                            <tr>
+                                <td style="font-family: arial, sans-serif; font-size: 15px; line-height: 21px; color: #3C3F44; text-align: left;">
+                                    <h2 style="font-weight: bold; font-size: 21px; line-height: 21px; color: #0C0D0E; margin: 0 0 15px 0;">Mix and match patterns to build complex emails</h2>
+                                    <p style="margin: 0;" class="has-markdown">Think of this template as a canvas for mixing and matching email components. Use <a href="https://stackoverflow.design/email/components" style="color: #0077CC; text-decoration: none;" target="_parent">components</a> and <a href="https://stackoverflow.design/email/patterns" style="color: #0077CC; text-decoration: none;" target="_parent">patterns</a> as building blocks as you design and build new emails.</p>
+                                </td>
+                            </tr>
+                            <!-- Rich Text : END -->
+                        </table>
+                    </td>
+                </tr>
+                <!-- General Email Body : END -->
+                <!-- HTML Content with Image Background : BEGIN -->
+                <tr>
+                    <td valign="middle" style="background-image: url('https://d2axdqolvqmdvx.cloudfront.net/857c3f94-f791-401e-85a8-e041ec72569e/bgheropatternblue.png'); background-position: center center; background-size: cover; background-color: #117FF1;">
+                        <!--[if gte mso 9]>
+                        <v:rect xmlns:v="urn:schemas-microsoft-com:vml" fill="true" stroke="false" style="width:680px; height:86px; background-position: center center !important;">
+                        <v:fill type="tile" src="https://d2axdqolvqmdvx.cloudfront.net/857c3f94-f791-401e-85a8-e041ec72569e/bgheropatternblue.png" color="#117FF1"/>
+                        <v:textbox inset="0,0,0,0">
+                        <![endif]-->
+                        <div>
+                            <!--[if mso]>
+                            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                            <tr>
+                            <td>
+                            <![endif]-->
+                            <table width="100%" align="center" border="0" cellpadding="0" cellspacing="0" role="presentation">
+                                <tr>
+                                    <td style="padding: 30px;" class="sm-p">
+                                        <p style="margin: 0; text-align: center; font-size: 17px; line-height: 21px; color: #ffffff; font-family: arial, sans-serif;">Put the pieces together to create a meaningful experience.</p>
+                                    </td>
+                                </tr>
+                            </table>
+                            <!--[if mso]>
+                            </td>
+                            </tr>
+                            </table>
+                            <![endif]-->
+                        </div>
+                        <!--[if gte mso 9]>
+                        </v:textbox>
+                        </v:rect>
+                        <![endif]-->
+                    </td>
+                </tr>
+                <!-- Hero, Centered : END -->
+                <!-- Small Graphic Left, Text Right : BEGIN -->
+                <tr>
+                    <td style="background-color: #ffffff; padding: 30px 0;" class="sm-py">
+                        <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%">
+                            <tr>
+                                <td dir="ltr" align="left" valign="middle" style="font-size:0; padding: 0;">
+                                    <!--[if mso]>
+                                    <table role="presentation" border="0" cellspacing="0" cellpadding="0" width="680">
+                                    <tr>
+                                    <td align="left" valign="top" width="158">
+                                    <![endif]-->
+                                    <div style="display:inline-block; margin: 0 -2px; width: 158px; vertical-align: top;" class="stack-column">
+                                        <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+                                            <tr>
+                                                <td dir="ltr" style="padding: 0 0 0 30px;" class="sm-pl">
+                                                    <img src="illo-128-2.png" width="128" height="128" alt="alt_text" border="0" style="display: block; font-family: arial, sans-serif; font-size: 15px; line-height: 21px; color: #3C3F44; margin: 0;" class="g-img">
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                    <!--[if mso]>
+                                    </td>
+                                    <td align="left" valign="top" width="522">
+                                    <![endif]-->
+                                    <div style="display:inline-block; margin: 0 -2px; max-width: 522px; min-width: 220px; vertical-align: top;" class="stack-column">
+                                        <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+                                            <tr>
+                                                <td dir="ltr" style="padding: 10px 30px; font-family: arial, sans-serif; font-size: 15px; line-height: 21px; color: #3C3F44; text-align: left;" class="sm-px">
+                                                    <h3 style="margin: 0 0 5px 0; color: #0C0D0E; font-weight: bold; font-size: 17px; line-height: 21px;">Are your preferences up to date?</h3>
+                                                    <p style="margin: 0 0 15px 0;">Make sure we are recommending the best content for you.</p>
+                                                    <p style="margin: 0;"><a href="#" style="color: #0077CC; text-decoration: none;">Change your profile »</a></p>
+                                               </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                    <!--[if mso]>
+                                    </td>
+                                    </tr>
+                                    </table>
+                                    <![endif]-->
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <!-- Small Graphic Left, Text Right : END -->
+                <!-- Tiny Graphic Right, Text Left : BEGIN -->
+                <tr>
+                    <td style="background-color: #ffffff; padding-bottom: 30px;" class="sm-pb">
+                        <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%">
+                            <tr>
+                                <td dir="rtl" align="left" valign="middle" style="font-size:0; padding: 0;">
+                                    <!--[if mso]>
+                                    <table role="presentation" border="0" cellspacing="0" cellpadding="0" width="680">
+                                    <tr>
+                                    <td align="left" valign="top" width="124">
+                                    <![endif]-->
+                                    <div style="display:inline-block; margin: 0 -2px; width: 124px; vertical-align: top;" class="stack-column">
+                                        <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+                                            <tr>
+                                                <td dir="ltr" style="padding: 0 30px;" class="sm-px">
+                                                    <img src="illo-64-1.png" width="64" height="64" alt="alt_text" border="0" style="display: block; font-family: arial, sans-serif; font-size: 15px; line-height: 21px; color: #3C3F44; margin: 0;" class="g-img">
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                    <!--[if mso]>
+                                    </td>
+                                    <td align="left" valign="top" width="556">
+                                    <![endif]-->
+                                    <div style="display:inline-block; margin: 0 -2px; max-width: 556px; min-width: 220px; vertical-align: top;" class="stack-column">
+                                        <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+                                            <tr>
+                                                <td dir="ltr" style="padding: 10px 30px; font-family: arial, sans-serif; font-size: 15px; line-height: 21px; color: #3C3F44; text-align: left;" class="sm-px">
+                                                    <p style="margin: 0 0 10px 0;">Make sure we are recommending the best content for you. If you set your job search status to actively looking, we’ll accelerate your matches.</p>
+                                                    <p style="margin: 0;"><a href="#" style="color: #0077CC; text-decoration: none;">Update your preferences »</a></p>
+                                               </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                    <!--[if mso]>
+                                    </td>
+                                    </tr>
+                                    </table>
+                                    <![endif]-->
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <!-- Tiny Graphic Right, Text Left : END -->
+                <!-- Button Row : BEGIN -->
+                <tr>
+                    <td style="background-color: #ffffff; padding: 0 30px 30px;" class="sm-px sm-pb">
+                        <!-- Button : BEGIN -->
+                        <table align="left" border="0" cellpadding="0" cellspacing="0" role="presentation">
+                            <tr>
+                                <td class="s-btn s-btn__primary" style="border-radius: 4px; background: #0095ff;">
+                                    <a class="s-btn s-btn__primary" href="#" style="background: #0095FF; border: 1px solid #0077cc; box-shadow: inset 0 1px 0 0 rgba(102,191,255,.75), 0 0 0 0 rgba(0,149,255,0); font-family: arial, sans-serif; font-size: 17px; line-height: 17px; color: #ffffff; text-align: center; text-decoration: none; padding: 13px 17px; display: block; border-radius: 4px; white-space: nowrap;">Medium Primary Button</a>
+                                </td>
+                            </tr>
+                        </table>
+                        <!-- Button : END -->
+                    </td>
+                </tr>
+                <!-- Button Row : END -->
+
+                <!-----------------------------
+
+                    EMAIL BODY : END
+
+                ------------------------------>
+
+                <!-- Footer : BEGIN -->
+                <tr>
+                    <td style="padding: 30px;" class="sm-p">
+                        <table align="left" border="0" cellpadding="0" cellspacing="0" role="presentation">
+                            <!-- Subscription Info : BEGIN -->
+                            <tr>
+                                <td style="padding-bottom: 10px; font-size: 12px; line-height: 16px; font-family: arial, sans-serif; color: #9199A1; text-align: left;">
+                                    You're receiving this email because {{#metadata "messagetypebuckets" messageTypeId as |bucketInfo|}}{{bucketInfo.footer}}{{/metadata}}.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="font-size: 12px; line-height: 16px; font-family: arial, sans-serif; color: #9199A1; text-align: left;">
+                                    <a href="{{hostedUnsubscribeUrl}}" style="color: #9199A1; text-decoration: underline;">Unsubscribe from emails like this</a>&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <a href="https://stackoverflow.email/subscriptions/manage?{{#data}}"
+                                    style="color: #9199A1; text-decoration: underline;">Edit email settings</a>&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <a href="https://meta.stackoverflow.com" style="color: #9199A1; text-decoration: underline;">Leave feedback</a>&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <a href="Urls.Legal.PrivacyPolicy" style="color: #9EA3A9; text-decoration: underline;">Privacy</a>
+                                </td>
+                            </tr>
+                            <!-- Subscription Info : BEGIN -->
+                            <!-- HR line : BEGIN -->
+                            <tr>
+                                <td style="padding: 30px 0;" valign="middle" width="100%">
+                                    <table aria-hidden="true" border="0" cellpadding="0" cellspacing="0" role="presentation" style="width:100%">
+                                        <tr>
+                                            <td height="1" width="100%" style="font-size: 0; line-height: 0; border-top: 1px solid #D6D8DB;">&nbsp;</td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                            <!-- HR line : END -->
+                            <!-- Sender Info : BEGIN -->
+                            <tr>
+                                <td style="padding-bottom: 5px; text-align: left;">
+                                    <img src="LogoSm@2x.png" align="left" alt="Stack Overflow" border="0" width="111" height="22" style="display: block;">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="padding-bottom: 5px; font-size: 12px; line-height: 16px; font-family: arial, sans-serif; color: #9199A1; text-align: left;"><strong>Stack&nbsp;Overflow</strong>, <span class="unstyle-auto-detected-links">110 William Street, 28th Floor, New York, NY 10038</span></td>
+                            </tr>
+                            <!-- Sender Info : END -->
+                            <!-- Heart : BEGIN -->
+                            <tr>
+                                <td>
+                                    <table align="left" border="0" cellpadding="0" cellspacing="0" role="presentation" style="background:#ffffff; border-radius:1px; line-height:0px">
+                                        <tr>
+                                            <td>
+                                                <div style="border-radius: 1px; border: 1px solid #D6D9DC; padding: 4px 6px 3px 6px; font-size: 11px; line-height: 11px; font-family: Consolas, monospace; color: #E06C77;" title="because we care">&lt;3</div>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                            <!-- Heart : END -->
+                        </table>
+                    </td>
+                </tr>
+                <!-- Footer : END -->
+            </table>
+        </div>
+    <!--[if mso | IE]>
+    </td>
+    </tr>
+    </table>
+    <![endif]-->
+    </center>
+</body>
+</html>
