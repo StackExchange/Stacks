@@ -1,0 +1,131 @@
+//
+//  STACK OVERFLOW
+//  PROGRESS BARS
+//
+//  This CSS comes from Stacks, our CSS & Pattern library for rapidly building
+//  Stack Overflow. For documentation of all these classes and how to contribute,
+//  visit https://stackoverflow.design/
+//
+//  TABLE OF CONTENTS
+//  • VARIABLE
+//  • BASE STYLE
+//  • VARIATION PROGRESS BACKGROUNDS
+//  • BADGES
+//
+//  ============================================================================
+//  $   VARIABLES
+//  ----------------------------------------------------------------------------
+@progressbar-zindex:       0;
+@progressbar-fill-bgc:     @black-100;
+
+
+//  ============================================================================
+//  $   BASE STYLE
+//  ----------------------------------------------------------------------------
+.s-progress,
+.s-progress--bar {
+    position: relative;
+    min-height: @su4;
+    border-radius: @br-sm;
+}
+
+//  $$   PROGRESS WRAPPER
+//  ----------------------------------------------------------------------------
+.s-progress {
+    width: 100%;
+    background-color: @progressbar-fill-bgc;
+}
+
+//  $$   BAR
+//  ----------------------------------------------------------------------------
+.s-progress--bar {
+    background-color: saturate(@green-400, 25%);
+}
+
+
+//  $$   LABEL
+//       For when there's descriptive, label copy within the progress bar
+//  ----------------------------------------------------------------------------
+.s-progress--label {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: @br-md;
+    border: 1px solid transparent;
+    font-size: @fs-caption;
+    line-height: @lh-xs;
+    color: @fc-dark;
+    z-index: @progressbar-zindex + 2;
+}
+
+
+//  ===========================================================================
+//  $   VARIATION PROGRESS BACKGROUNDS
+//  ---------------------------------------------------------------------------
+.s-progress__brand .s-progress--bar {
+    background-color: saturate(@orange-400,15%);
+}
+
+.s-progress__info .s-progress--bar {
+    background-color: saturate(@blue-500, 15%);
+}
+
+.s-progress__privilege {
+    .s-progress--bar {
+        background-color: @green-050;
+    }
+    .s-progress--label {
+        border-color: @green-400;
+    }
+}
+
+
+//  ===========================================================================
+//  $   BADGE PROGRESS BARS
+//  ===========================================================================
+.s-progress__privilege,
+.s-progress__privilege .s-progress--bar,
+.s-progress__badge,
+.s-progress__badge .s-progress--bar {
+    min-height: 2em;
+    border-radius: @br-md;
+}
+
+.s-progress__privilege,
+.s-progress__badge {
+    background-color: transparent;
+}
+
+
+//  $$  GOLD
+//  ---------------------------------------------------------------------------
+.s-progress__gold {
+    .s-progress--bar {
+        background-color: @gold-bg;
+    }
+    .s-progress--label {
+        border-color: @gold-dot;
+    }
+}
+
+//  $$  SILVER
+//  ---------------------------------------------------------------------------
+.s-progress__silver {
+    .s-progress--bar {
+        background-color: @silver-bg;
+    }
+    .s-progress--label {
+        border-color: @silver-dot;
+    }
+}
+
+//  $$  BRONZE
+//  ---------------------------------------------------------------------------
+.s-progress__bronze {
+    .s-progress--bar {
+        background-color: @bronze-bg;
+    }
+    .s-progress--label {
+        border-color: @bronze-dot;
+    }
+}
