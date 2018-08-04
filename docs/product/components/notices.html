@@ -1,0 +1,319 @@
+---
+layout: page
+title: Notices
+description: Notices deliver <strong>System</strong> and <strong>Engagement</strong> messaging, informing the user about product or account statuses and related actions.
+---
+<!-- Example notice content -->
+<script src="{{ "/assets/js/feature.notices.js" | relative_url }}"></script>
+<aside class="py8 pr8 s-notice s-notice__success s-notice__toast js-notice-toast" aria-hidden="true">
+    <div class="grid gs16 gsx ai-center jc-space-between" aria-describedby="notice-message">
+        <div class="grid--cell" aria-label="notice-message">
+            <p class="m0">Email settings have been successfully updated.</p>
+        </div>
+        <div class="grid--cell" aria-label="notice-dismiss">
+            <a class="p8 s-btn grid grid__center fc-dark js-notice-close">
+                {% svg /product/resources/svg-icons/ClearSm.svg width="14" height="14" aria-hidden="true" class="svg-icon iconClearSm m0" %}
+            </a>
+        </div>
+    </div>
+</aside>
+
+<section class="stacks-section">
+    {% header {element: 'h2', text: 'Accessibility'} %}
+    <div class="overflow-x-auto mb32">
+        <table class="wmn5 s-table s-table__hover">
+            <thead>
+                <tr>
+                    <th scope="col" class="s-table--cell3">Item</th>
+                    <th scope="col" class="s-table--cell2">Applied</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in site.data.product.notices.access %}
+                <tr>
+                    <td><code class="stacks-code">{{ item.item }}</code></td>
+                    <td>
+                        {% if item.applies == "N/A" %}
+                            <em class="fc-black-350">{{ item.applies }}</em>
+                        {% else %}
+                            {% assign class = item.applies | split: " " %}
+
+                            {% for name in class %}
+                                <code class="stacks-code">{{ name }}</code>
+                            {% endfor %}
+                        {% endif %}
+                    </td>
+                    <td>{{ item.description }} (<a href="{{ item.url }}" target="_blank">Source</a>)</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</section>
+
+<section class="stacks-section">
+    {% header {element: 'h2', text: 'Visual Styles'} %}
+    {% header {element: 'h3', text: 'Classes'} %}
+    <div class="overflow-x-auto mb32">
+        <table class="wmn5 s-table s-table__hover">
+            <thead>
+                <tr>
+                    <th scope="col" class="s-table--cell3">Class</th>
+                    <th scope="col" class="s-table--cell2">Applied</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in site.data.product.notices.visual %}
+                <tr>
+                    <td><code class="stacks-code">{{ item.class }}</code></td>
+                    <td>
+                        {% if item.applies == "N/A" %}
+                            <em class="fc-black-350">{{ item.applies }}</em>
+                        {% else %}
+                            {% assign class = item.applies | split: " " %}
+
+                            {% for name in class %}
+                                <code class="stacks-code">{{ name }}</code>
+                            {% endfor %}
+                        {% endif %}
+                    </td>
+                    <td>{{ item.description }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    {% header {element: 'h3', text: 'Filled'} %}
+    <p class="stacks-copy">Default style used to separate notices from the main content</p>
+    <div class="stacks-preview">
+{% highlight html linenos %}
+<aside class="s-notice s-notice__info" role="status" aria-hidden="false">…</aside>
+<aside class="s-notice s-notice__success" role="status" aria-hidden="false">…</aside>
+<aside class="s-notice s-notice__warning" role="status" aria-hidden="false">…</aside>
+<aside class="s-notice s-notice__danger" role="status" aria-hidden="false">…</aside>
+{% endhighlight %}
+        <div class="stacks-preview--example">
+            <div class="ps-relative grid gs8 gsy fd-column jc-center">
+                <aside class="grid--cell s-notice s-notice__info" role="status" aria-hidden="false">
+                    <p class="m0">Info filled message style</p>
+                </aside>
+                <aside class="grid--cell s-notice s-notice__success" role="status" aria-hidden="false">
+                    <p class="m0">Success filled message style</p>
+                </aside>
+                <aside class="grid--cell s-notice s-notice__warning" role="status" aria-hidden="false">
+                    <p class="m0">Warning filled message style</p>
+                </aside>
+                <aside class="grid--cell s-notice s-notice__danger" role="status" aria-hidden="false">
+                    <p class="m0">Danger filled message style</p>
+                </aside>
+            </div>
+        </div>
+    </div>
+
+    {% header {element: 'h3', text: 'Outlined'} %}
+    <p class="stacks-copy">Minimal style used to minimally separate notices from the main content</p>
+    <div class="stacks-preview">
+{% highlight html linenos %}
+<aside class="s-notice s-notice__info s-notice__outlined" role="status" aria-hidden="false">…</aside>
+<aside class="s-notice s-notice__success s-notice__outlined" role="status" aria-hidden="false">…</aside>
+<aside class="s-notice s-notice__warning s-notice__outlined" role="status" aria-hidden="false">…</aside>
+<aside class="s-notice s-notice__danger s-notice__outlined" role="status" aria-hidden="false">…</aside>
+{% endhighlight %}
+        <div class="stacks-preview--example">
+            <div class="ps-relative grid gs8 gsy fd-column jc-center">
+                <aside class="grid--cell s-notice s-notice__info s-notice__outlined" role="status" aria-hidden="false">
+                    <p class="m0">Info outlined message style</p>
+                </aside>
+                <aside class="grid--cell s-notice s-notice__success s-notice__outlined" role="status" aria-hidden="false">
+                    <p class="m0">Success outlined message style</p>
+                </aside>
+                <aside class="grid--cell s-notice s-notice__warning s-notice__outlined" role="status" aria-hidden="false">
+                    <p class="m0">Warning outlined message style</p>
+                </aside>
+                <aside class="grid--cell s-notice s-notice__danger s-notice__outlined" role="status" aria-hidden="false">
+                    <p class="m0">Danger outlined message style</p>
+                </aside>
+            </div>
+        </div>
+    </div>
+
+    {% header {element: 'h3', text: 'Filled Important'} %}
+    <p class="stacks-copy">Used sparingly for when an important notice needs to be noticed</p>
+    <div class="stacks-preview">
+{% highlight html linenos %}
+<aside class="s-notice s-notice__invert s-notice__important" role="alert" aria-hidden="false">
+    <div class="grid" role="alertdialog" aria-describedby="notice-message">
+        <div class="grid--cell" aria-label="notice-message">
+            <p class="m0">…</p>
+        </div>
+        <div class="grid--cell ml-auto" aria-label="notice-dismiss">
+            <a href="#" class="fc-white o75 js-notice-close">
+                @Svg.ClearSm
+            </a>
+        </div>
+    </div>
+</aside>
+<aside class="s-notice s-notice__info s-notice__important" role="alert" aria-hidden="false">…</aside>
+<aside class="s-notice s-notice__success s-notice__important" role="alert" aria-hidden="false">…</aside>
+<aside class="s-notice s-notice__warning s-notice__important" role="alert" aria-hidden="false">…</aside>
+<aside class="s-notice s-notice__danger s-notice__important" role="alert" aria-hidden="false">…</aside>
+{% endhighlight %}
+        <div class="stacks-preview--example">
+            <div class="ps-relative grid gs8 gsy fd-column jc-center">
+                <aside class="grid--cell s-notice s-notice__important" role="alert" aria-hidden="false">
+                    <div class="grid">
+                        <div class="grid--cell" role="alertdialog" aria-describedby="notice-message">
+                            <p class="m0" aria-label="notice-message">Inverted important message style</p>
+                        </div>
+                        <div class="grid--cell ml-auto" aria-label="notice-dismiss">
+                            <a href="#" class="fc-white o75 js-notice-close">
+                                {% svg /product/resources/svg-icons/ClearSm.svg width="14" height="14" aria-hidden="true" class="svg-icon iconClearSm" %}
+                            </a>
+                        </div>
+                    </div>
+                </aside>
+                <aside class="grid--cell s-notice s-notice__info s-notice__important" role="alert" aria-hidden="false">
+                    <div class="grid">
+                        <div class="grid--cell" role="alertdialog" aria-describedby="notice-message">
+                            <p class="m0" aria-label="notice-message">Info important message style</p>
+                        </div>
+                        <div class="grid--cell ml-auto" aria-label="notice-dismiss">
+                            <a href="#" class="fc-white o75 js-notice-close">
+                                {% svg /product/resources/svg-icons/ClearSm.svg width="14" height="14" aria-hidden="true" class="svg-icon iconClearSm" %}
+                            </a>
+                        </div>
+                    </div>
+                </aside>
+                <aside class="grid--cell s-notice s-notice__success s-notice__important" role="alert" aria-hidden="false">
+                    <div class="grid">
+                        <div class="grid--cell" role="alertdialog" aria-describedby="notice-message">
+                            <p class="m0" aria-label="notice-message">Success important message style</p>
+                        </div>
+                        <div class="grid--cell ml-auto" aria-label="notice-dismiss">
+                            <a href="#" class="fc-dark o75 js-notice-close">
+                                {% svg /product/resources/svg-icons/ClearSm.svg width="14" height="14" aria-hidden="true" class="svg-icon iconClearSm" %}
+                            </a>
+                        </div>
+                    </div>
+                </aside>
+                <aside class="grid--cell s-notice s-notice__warning s-notice__important" role="alert" aria-hidden="false">
+                    <div class="grid">
+                        <div class="grid--cell" role="alertdialog" aria-describedby="notice-message">
+                            <p class="m0" aria-label="notice-message">Warning important message style</p>
+                        </div>
+                        <div class="grid--cell ml-auto" aria-label="notice-dismiss">
+                            <a href="#" class="fc-dark o75 js-notice-close">
+                                {% svg /product/resources/svg-icons/ClearSm.svg width="14" height="14" aria-hidden="true" class="svg-icon iconClearSm" %}
+                            </a>
+                        </div>
+                    </div>
+                </aside>
+                <aside class="grid--cell s-notice s-notice__danger s-notice__important" role="alert" aria-hidden="false">
+                    <div class="grid">
+                        <div class="grid--cell" role="alertdialog" aria-describedby="notice-message">
+                            <p class="m0" aria-label="notice-message">Danger important message style</p>
+                        </div>
+                        <div class="grid--cell ml-auto" aria-label="notice-dismiss">
+                            <a href="#" class="fc-white js-notice-close">
+                                {% svg /product/resources/svg-icons/ClearSm.svg width="14" height="14" aria-hidden="true" class="svg-icon iconClearSm" %}
+                            </a>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="stacks-section">
+    {% header {element: 'h2', text: 'Behaviors'} %}
+    <div class="overflow-x-auto mb32">
+        <table class="wmn4 s-table s-table__hover">
+            <thead>
+                <tr>
+                    <th scope="col" class="s-table--cell2">Behavior</th>
+                    <th scope="col" class="s-table--cell3">Class</th>
+                    <th scope="col" class="s-table--cell2">Applied</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in site.data.product.notices.behavior %}
+                <tr>
+                    <td>{{ item.type }}
+                    <td><code class="stacks-code">{{ item.class }}</code></td>
+                    <td>
+                        {% if item.applies == "N/A" %}
+                            <em class="fc-black-350">{{ item.applies }}</em>
+                        {% else %}
+                            {% assign class = item.applies | split: " " %}
+
+                            {% for name in class %}
+                                <code class="stacks-code">{{ name }}</code>
+                            {% endfor %}
+                        {% endif %}
+                    </td>
+                    <td>{{ item.description }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    {% header {element: 'h3', text: 'Inline'} %}
+    <p class="stacks-copy">Default behavior for notices that are inserted within the content area</p>
+    <div class="stacks-preview">
+{% highlight html linenos %}
+<aside class="s-notice s-notice__info" role="status" aria-hidden="false">…</aside>
+{% endhighlight %}
+        <div class="stacks-preview--example">
+            <div class="ps-relative grid gs8 gsy fd-column jc-center">
+                <aside class="grid--cell s-notice s-notice__info" role="status" aria-hidden="false">
+                    <p class="m0">Inline notice message style</p>
+                </aside>
+            </div>
+        </div>
+    </div>
+
+    {% header {element: 'h3', text: 'Banners'} %}
+    <p class="stacks-copy">System and hero banners are full-width notices placed usually at the top or bottom of the browser window, providing system or engagement content.</p>
+    <div class="mb48 s-notice s-notice__info">
+        <p class="mb0 fs-body3 lh-md">Full documentation for banners <a href="{{ "/product/components/banners" | relative_url }}">can be found in the banners area</a>.</p>
+    </div>
+
+    {% header {element: 'h3', text: 'Toast'} %}
+    <p class="stacks-copy">Floating notices, but aligned to the top and center of the page and they disappear after a set time</p>
+    <div class="mb24 p16 bar-sm bg-black-025 ba bc-black-1">
+        <button class="grid--cell s-btn s-btn__filled js-notice-toast-open">Launch example toast notice</button>
+    </div>
+    <div class="stacks-preview">
+{% highlight html linenos %}
+<aside class="s-notice s-notice__info s-notice__float" role="status" aria-hidden="false">…</aside>
+{% endhighlight %}
+        <div class="stacks-preview--example">
+            <div class="ps-relative grid grid__center gs8 gsy fd-column jc-center">
+                <aside class="grid--cell s-notice s-notice__success s-notice__toast" role="status" aria-hidden="false" style="position: relative; top: 0; left: 0;">
+                    <p class="m0">Toast notice message style</p>
+                </aside>
+            </div>
+        </div>
+    </div>
+
+    {% header {element: 'h3', text: 'Floating'} %}
+    <p class="stacks-copy">Floats a notice above the current page’s content</p>
+    <div class="stacks-preview">
+{% highlight html linenos %}
+<aside class="s-notice s-notice__info s-notice__float" role="status" aria-hidden="false">…</aside>
+{% endhighlight %}
+        <div class="stacks-preview--example">
+            <div class="ps-relative grid gs8 gsy fd-column jc-center">
+                <aside class="grid--cell s-notice s-notice__info s-notice__float" role="status" aria-hidden="false">
+                    <p class="m0">Floating notice message style</p>
+                </aside>
+            </div>
+        </div>
+    </div>
+</section>

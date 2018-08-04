@@ -1,0 +1,154 @@
+---
+layout: page
+title: Textarea
+description: Multi-line inputs used by users to enter longer text portions.
+---
+<section id="inputs" class="stacks-section">
+    {% header {element: 'h2', text: 'Base Style'} %}
+    <div class="stacks-preview">
+{% highlight html linenos %}
+<div class="grid ff-column-nowrap gs4 gsy">
+    <label class="grid--cell s-label" for="example-item">Question body</label>
+    <textarea class="grid--cell s-textarea" id="example-item" placeholder="…"></textarea>
+</div>
+{% endhighlight %}
+        <div class="stacks-preview--example">
+            <div class="grid gs4 gsy fd-column">
+                <label class="grid--cell s-label" for="example-item7">Question body</label>
+                <textarea class="grid--cell s-textarea" id="example-item7" placeholder="e.g. The Stack Overflow glyph used to have 6 bars, but now…"></textarea>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="inputs" class="stacks-section">
+    {% header {element: 'h2', text: 'Validation States'} %}
+    <p class="stacks-copy">Validation states provides the user feedback based on their interaction (or lack of interaction) with a textarea. These styles are applied by applying the appropriate class to the wrapping parent container.</p>
+
+    {% header {element: 'h3', text: 'Validation Classes'} %}
+    <div class="overflow-x-auto mb32">
+        <table class="wmn5 s-table s-table__hover">
+            <thead>
+                <tr>
+                    <th class="s-table--cell3" scope="col">Class</th>
+                    <th class="s-table--cell3" scope="col">Applies</th>
+                    <th scope="col">Definition</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in site.data.product.inputs.textarea %}
+                    {% assign state = item.validation  %}
+                    {% for class in state %}
+                    <tr>
+                        <th scope="row"><code class="grid--cell stacks-code bg-white">{{ class.class }}</code></th>
+                        <td>{{ class.applies }}</td>
+                        <td>{{ class.description }}</td>
+                    </tr>
+                    {% endfor %}
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    {% header {element: 'h3', text: 'Validation Examples'} %}
+    {% header {element: 'h4', text: 'Warning'} %}
+    <div class="stacks-preview">
+{% highlight html linenos %}
+<div class="grid gs4 gsy fd-column has-warning">
+    <label class="grid--cell s-label" for="example-warning">Description</label>
+    <div class="grid ps-relative">
+        <textarea class="grid--cell s-textarea" id="example-warning" placeholder="Please describe your problem"></textarea>
+        @Svg.Alert.With("s-input-icon")
+    </div>
+    <p class="grid--cell s-input-message">Consider entering a description to help us better help you.</p>
+</div>
+{% endhighlight %}
+        <div class="stacks-preview--example">
+            <div class="grid gs4 gsy fd-column has-warning">
+                <label class="grid--cell s-label" for="example-warning">Description</label>
+                <div class="grid ps-relative">
+                    <textarea class="grid--cell s-textarea" id="example-warning" placeholder="Please describe your problem"></textarea>
+                    {% svg /product/resources/svg-icons/Alert.svg width="18" height="18" aria-hidden="true" class="svg-icon iconAlert s-input-icon" %}
+                </div>
+                <p class="grid--cell s-input-message">Consider entering a description to help us better help you.</p>
+            </div>
+        </div>
+    </div>
+
+    {% header {element: 'h4', text: 'Error'} %}
+    <div class="stacks-preview">
+{% highlight html linenos %}
+<div class="grid gs4 gsy fd-column has-error">
+    <label class="grid--cell s-label" for="example-success">Description</label>
+    <div class="grid ps-relative">
+        <textarea class="grid--cell s-textarea" id="example-success" placeholder="Please describe your problem"></textarea>
+        @Svg.AlertCircle.With("s-input-icon")
+    </div>
+    <p class="grid--cell s-input-message">A description must be provided.</p>
+</div>
+{% endhighlight %}
+        <div class="stacks-preview--example">
+            <div class="grid gs4 gsy fd-column has-error">
+                <label class="grid--cell s-label" for="example-success">Description</label>
+                <div class="grid ps-relative">
+                    <textarea class="grid--cell s-textarea" id="example-success" placeholder="Please describe your problem"></textarea>
+                    {% svg /product/resources/svg-icons/AlertCircle.svg width="18" height="18" aria-hidden="true" class="svg-icon iconAlertCircle s-input-icon" %}
+                </div>
+                <p class="grid--cell s-input-message">A description must be provided.</p>
+            </div>
+        </div>
+    </div>
+
+    {% header {element: 'h4', text: 'Success'} %}
+    <div class="stacks-preview">
+{% highlight html linenos %}
+<div class="grid gs4 gsy fd-column has-success">
+    <label class="grid--cell s-label" for="example-success">Description</label>
+    <div class="grid ps-relative">
+        <textarea class="grid--cell s-textarea" id="example-success" placeholder="Please describe your problem">How do you know your company is ready for a design system? How do you implement one without too many pain points? How do you efficiently maintain one once it’s built?</textarea>
+        @Svg.Checkmark.With("s-input-icon")
+    </div>
+    <p class="grid--cell s-input-message">Thanks for providing a description.</p>
+</div>
+{% endhighlight %}
+        <div class="stacks-preview--example">
+            <div class="grid gs4 gsy fd-column has-success">
+                <label class="grid--cell s-label" for="example-success">Description</label>
+                <div class="grid ps-relative">
+                    <textarea class="grid--cell s-textarea" id="example-success" placeholder="Please describe your problem">How do you know your company is ready for a design system? How do you implement one without too many pain points? How do you efficiently maintain one once it’s built?</textarea>
+                    {% svg /product/resources/svg-icons/Checkmark.svg width="18" height="18" aria-hidden="true" class="svg-icon iconCheckmark s-input-icon" %}
+                </div>
+                <p class="grid--cell s-input-message">Thanks for providing a description.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="stacks-section">
+    {% header {element: 'h2', text: 'Sizes'} %}
+    <div class="overflow-x-auto mb32">
+        <table class="wmn5 s-table s-table__hover va-middle">
+            <thead>
+                <tr>
+                    <th scope="col" class="s-table--cell2">Name</th>
+                    <th scope="col" class="s-table--cell1">Size</th>
+                    <th scope="col" class="s-table--cell2">Class</th>
+                    <th scope="col">Example</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in site.data.product.inputs.textarea %}
+                    {% assign size = item.sizes  %}
+                    {% for item in size %}
+                    <tr>
+                        <th scope="row">{{ item.name }}</th>
+                        <td>{{ item.size }}</td>
+                        <td>{% if item.class == "N/A" %}<em class="fc-light">{{ item.class }}</em>{% else %}<code class="stacks-code bg-white">.{{ item.class }}</code>{% endif %}</td>
+                        <td><textarea class="s-textarea {% if item.class != 'N/A' %}{{ item.class }}{% endif %}">Not sure what to ask? Recurring questions, onboarding procedures, local setups, and FAQs all make for useful questions.</textarea></td>
+                    </tr>
+                    {% endfor %}
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</section>

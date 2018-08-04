@@ -1,6 +1,5 @@
 $(document).ready(function() {
     // Cache some variables
-    var subnav = $(".js-secondary-nav");
     var navigation = $(".js-navigation");
     var closeIcon = $(".js-hamburger-close-icon");
     var hamburgerIcon = $(".js-hamburger-icon");
@@ -11,9 +10,8 @@ $(document).ready(function() {
         closeIcon.addClass("d-none");
         navigation.addClass("md:d-none");
 
-        // Kill the subnav and rebuild it
-        subnav.empty();
-        subnav.toc({content: "#content", headings: "h2.stacks-h2, h3.stacks-h3"});
+        // Build the menu
+        $(".js-secondary-nav").toc({content: "#content", headings: "h2.stacks-h2, h3.stacks-h3"});
     }
 
     $.when($.ready).then(function() {
@@ -79,8 +77,6 @@ $(document).ready(function() {
                 $('#nav').html(e.state.nav)
                 $('#content').html(e.state.content)
             }
-
-            regenerateMenu();
         }
     });
 });
