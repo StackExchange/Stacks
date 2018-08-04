@@ -9,19 +9,17 @@
         {% include navigation.html %}
 
         <div class="grid--cell w80 md:w100">
-            <div class="grid jc-space-between ps-relative t64 p24 wmx9 mx-auto">
+            <div id="content" class="grid jc-space-between ps-relative t64 p24 wmx9 mx-auto">
                 <div class="grid--cell w100">
-                    <div id="content">
-                        {% if page.title %}
-                            <h1 class="stacks-h1">{{ page.title }}</h1>
-                        {% endif %}
-                        {% if page.description %}
-                            <p class="stacks-copy stacks-copy__lg">
-                                {{ page.description }}
-                            </p>
-                        {% endif %}
-                        {{ content }}
-                    </div>
+                    {% if page.title %}
+                        <h1 class="stacks-h1">{{ page.title }}</h1>
+                    {% endif %}
+                    {% if page.description %}
+                        <p class="stacks-copy stacks-copy__lg">
+                            {{ page.description }}
+                        </p>
+                    {% endif %}
+                    {{ content }}
                 </div>
             </div>
         </div>
