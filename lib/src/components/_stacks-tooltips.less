@@ -1,0 +1,36 @@
+//
+//  STACK OVERFLOW
+//  TOOLTIPS
+//
+//  This CSS comes from Stacks, our CSS & Pattern library for rapidly building
+//  Stack Overflow. For documentation of all these classes and how to contribute,
+//  visit https://stackoverflow.design/
+//
+//  TABLE OF CONTENTS
+//  • BASE STYLE
+//  • LOCATIONS
+//  • ARROWS
+//  • ALTERNATE VERSIONS
+//
+//  ============================================================================
+//  $   BASE STYLE
+//  ----------------------------------------------------------------------------
+.s-tooltip {
+    visibility: hidden;
+    position: absolute;
+    min-width: 12rem;
+    z-index: @zi-hide;
+    opacity: 0;
+    padding: @su6;
+    border-radius: @br-sm;
+    background: fade(@black-900,95%);
+    box-shadow: @bs-sm;
+    color: @white;
+    font-size: @fs-caption;
+
+    &[aria-hidden="false"] {
+        visibility: visible;
+        opacity: 1;
+        z-index: @zi-tooltips;
+    }
+}

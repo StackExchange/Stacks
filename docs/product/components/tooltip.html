@@ -1,0 +1,84 @@
+---
+layout: page
+title: Tooltip
+description: Tooltips are text-only, floating elements which further explain user interface elements. They can be triggered when users hover, focus, tap, or click a designated tooltip item.
+---
+
+<section class="stacks-section">
+    {% header {element: 'h2', text: 'Examples'} %}
+    <div class="stacks-preview">
+{% highlight html linenos %}
+TBD
+{% endhighlight %}
+        <div class="stacks-preview--example ps-relative">
+            <div class="grid grid__fl1">
+                <div class="grid--cell">
+                    <button class="s-btn s-btn__muted fc-light js-tooltip-trigger" aria-describedby="tooltip1" aria-controls="tooltip1" aria-haspopup="true" aria-expanded="false">{% svg /product/resources/svg-icons/Help.svg width="18" height="18" aria-hidden="true" class="svg-icon iconHelp m0" %}</button>
+                    <div class="s-tooltip js-tooltip" id="tooltip1" role="tooltip" aria-hidden="true" data-method="hover">This area applies only to your main Stack Overflow profile. To edit it, go there.</div>
+                </div>
+                <div class="grid--cell">
+                    <button class="s-btn s-btn__muted fc-light js-tooltip-trigger" aria-describedby="tooltip2" aria-controls="tooltip2" aria-haspopup="true" aria-expanded="false">{% svg /product/resources/svg-icons/Help.svg width="18" height="18" aria-hidden="true" class="svg-icon iconHelp m0" %}</button>
+                    <div class="s-tooltip js-tooltip" id="tooltip2" role="tooltip" aria-hidden="true" data-method="click">This area applies only to your main Stack Overflow profile. To edit it, go there.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="stacks-section">
+    {% header {element: 'h2', text: 'Classes'} %}
+    <div class="overflow-x-auto mb32">
+        <table class="wmn5 s-table s-table__hover">
+            <thead>
+                <tr>
+                    <th scope="col">Item</th>
+                    <th scope="col">Applied</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code class="stacks-code">aria-controls="[id]"</code></td>
+                    <td>tab</td>
+                    <td>Identifies the tabpanel the tab controls. (<a href="https://www.w3.org/WAI/PF/aria/states_and_properties#aria-controls" target="_blank">Source</a>)</td>
+                </tr>
+                <tr>
+                    <td><code class="stacks-code">aria-hidden="[state]"</code></td>
+                    <td>tabpanel</td>
+                    <td>Indicates to screen readers if a tabpanel should be visible. (<a href="https://www.w3.org/WAI/PF/aria/states_and_properties#aria-hidden" target="_blank">Source</a>)</td>
+                </tr>
+                <tr>
+                    <td><code class="stacks-code">aria-labelledby="[id]"</code></td>
+                    <td>tabpanel</td>
+                    <td>Indicates which tab controls the tabpanel. (<a href="https://www.w3.org/WAI/PF/aria/states_and_properties#aria-labelledby" target="_blank">Source</a>)</td>
+                </tr>
+                <tr>
+                    <td><code class="stacks-code">aria-orientation="[dir]"</code></td>
+                    <td>tabgroup</td>
+                    <td>Indicates if the tabgroup is oriented horizontally or vertically. (<a href="https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Techniques/Using_the_aria-orientation_attribute" target="_blank">Source</a>)</td>
+                </tr>
+                <tr>
+                    <td><code class="stacks-code">aria-selected="[state]"</code></td>
+                    <td>tab</td>
+                    <td>Identifies if the tab is currently selected within the tabgroup. Only one tab can be set to true at a time. (<a href="https://www.w3.org/WAI/PF/aria/states_and_properties#aria-selected" target="_blank">Source</a>)</td>
+                </tr>
+                <tr>
+                    <td><code class="stacks-code">role="tab"</code></td>
+                    <td>tabgroup</td>
+                    <td>To help with screen readers, applied to each tab item. (<a href="https://www.w3.org/WAI/PF/aria/roles#tab" target="_blank">Source</a>)</td>
+                </tr>
+                <tr>
+                    <td><code class="stacks-code">role="tablist"</code></td>
+                    <td>tabgroup</td>
+                    <td>To help with screen readers, declare the wrapping tab container for the tabs. (<a href="https://www.w3.org/WAI/PF/aria/roles#tablist" target="_blank">Source</a>)</td>
+                </tr>
+                <tr>
+                    <td><code class="stacks-code">role="tabpanel"</code></td>
+                    <td>tabpanel</td>
+                    <td>To help with screen readers, applied to each tab content panel. (<a href="https://www.w3.org/WAI/PF/aria/roles#tablist" target="_blank">Source</a>)</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+
+<script src="{{ "/assets/js/feature.tooltips.js" | relative_url }}"></script>
