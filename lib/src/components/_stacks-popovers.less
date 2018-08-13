@@ -1,0 +1,175 @@
+//
+//  STACK OVERFLOW
+//  POPOVERS
+//
+//  This CSS comes from Stacks, our CSS & Pattern library for rapidly building
+//  Stack Overflow. For documentation of all these classes and how to contribute,
+//  visit https://stackoverflow.design/
+//
+//  TABLE OF CONTENTS
+//  • POPOVERS
+//
+
+//  ============================================================================
+//  $   POPOVERS
+//  ----------------------------------------------------------------------------
+
+.s-popover {
+    visibility: hidden;
+    position: absolute;
+    min-width: 160px;
+    z-index: @zi-hide;
+    opacity: 0;
+    border: 1px solid @black-075;
+    border-radius: @br-sm;
+    background: @white;
+    box-shadow: @bs-sm;
+
+    &.is-visible {
+        visibility: visible;
+        z-index: @zi-active;
+        opacity: 1;
+    }
+
+    .s-popover--arrow {
+        display: block;
+        position: absolute;
+
+        &:before {
+            content: "";
+            display: block;
+            position: absolute;
+            border-color: transparent;
+            border-style: solid;
+        }
+
+        &:after {
+            content: "";
+            display: block;
+            position: absolute;
+            border-color: transparent;
+            border-style: solid;
+            border-width: 0 @su8 @su8 @su8;
+        }
+    }
+
+    &.s-popover__bottom,
+    &.s-popover__bottom-left,
+    &.s-popover__bottom-right {
+        .s-popover--arrow { // Styling applied to the arrow of all bottom popovers
+            top: -@su8;
+            width: @su16;
+            height: @su8;
+
+            &:before {
+                top: 0;
+                border-bottom-color: @black-100;
+                border-width: 0 @su8 @su8 @su8;
+            }
+
+            &:after {
+                top: 1px;
+                border-bottom-color: @white;
+                border-width: 0 @su8 @su8 @su8;
+            }
+        }
+    }
+
+    &.s-popover__top,
+    &.s-popover__top-left,
+    &.s-popover__top-right {
+        .s-popover--arrow {
+            bottom: -@su8;
+            width: @su16;
+            height: @su8;
+
+            &:before {
+                bottom: 0px;
+                border-top-color: @black-100;
+                border-width: @su8 @su8 0 @su8;
+            }
+
+            &:after {
+                bottom: 1px;
+                border-top-color: @white;
+                border-width: @su8 @su8 0 @su8;
+            }
+        }
+    }
+
+    &.s-popover__bottom .s-popover--arrow,
+    &.s-popover__top .s-popover--arrow {
+        left: 50%;
+        margin-left: -@su8;
+    }
+
+    &.s-popover__bottom-left .s-popover--arrow,
+    &.s-popover__top-left .s-popover--arrow {
+        right: @su12;
+    }
+
+    &.s-popover__bottom-right .s-popover--arrow,
+    &.s-popover__top-right .s-popover--arrow {
+        left: @su12;
+    }
+
+    &.s-popover__right,
+    &.s-popover__right-top,
+    &.s-popover__right-bottom {
+        .s-popover--arrow {
+            width: @su8;
+            height: @su16;
+            left: -@su8;
+
+            &:before {
+                left: 0px;
+                border-right-color: @black-100;
+                border-width: @su8 @su8 @su8 0;
+            }
+
+            &:after {
+                left: 1px;
+                border-right-color: @white;
+                border-width: @su8 @su8 @su8 0;
+            }
+        }
+    }
+
+    &.s-popover__left,
+    &.s-popover__left-top,
+    &.s-popover__left-bottom {
+        .s-popover--arrow {
+            width: @su8;
+            height: @su16;
+            right: -@su8;
+
+            &:before {
+                right: 0px;
+                border-left-color: @black-100;
+                border-width: @su8 0 @su8 @su8;
+            }
+
+            &:after {
+                right: 1px;
+                border-left-color: @white;
+                border-width: @su8 0 @su8 @su8;
+            }
+        }
+    }
+
+    &.s-popover__right .s-popover--arrow,
+    &.s-popover__left .s-popover--arrow {
+        top: 50%;
+        margin-top: -@su8;
+    }
+
+    &.s-popover__right-top .s-popover--arrow,
+    &.s-popover__left-top .s-popover--arrow {
+        bottom: @su12;
+    }
+
+    &.s-popover__right-bottom .s-popover--arrow,
+    &.s-popover__left-bottom .s-popover--arrow {
+        top: @su12;
+    }
+}
