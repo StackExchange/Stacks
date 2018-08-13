@@ -4,24 +4,173 @@ title: Tooltip
 description: Tooltips are text-only, floating elements which further explain user interface elements. They can be triggered when users hover, focus, tap, or click a designated tooltip item.
 ---
 
+
 <section class="stacks-section">
     {% header {element: 'h2', text: 'Examples'} %}
     <div class="stacks-preview">
 {% highlight html linenos %}
-TBD
+<button class="s-btn s-btn__muted fc-light js-tooltip-trigger"
+        aria-describedby="tooltip1"
+        aria-controls="tooltip1"
+        aria-haspopup="true"
+        aria-expanded="false">
+            @Svg.Help
+</button>
+<div class="s-tooltip s-nubbin s-nubbin__tl js-tooltip"
+     id="tooltip1"
+     role="tooltip"
+     aria-hidden="true"
+     data-method="click">
+        This area applies only to your main Stack Overflow profile. To edit it, go there.
+</div>
 {% endhighlight %}
         <div class="stacks-preview--example ps-relative">
-            <div class="grid grid__fl1">
-                <div class="grid--cell">
-                    <button class="s-btn s-btn__muted fc-light js-tooltip-trigger" aria-describedby="tooltip1" aria-controls="tooltip1" aria-haspopup="true" aria-expanded="false">{% svg /product/resources/svg-icons/Help.svg width="18" height="18" aria-hidden="true" class="svg-icon iconHelp m0" %}</button>
-                    <div class="s-tooltip js-tooltip" id="tooltip1" role="tooltip" aria-hidden="true" data-method="hover">This area applies only to your main Stack Overflow profile. To edit it, go there.</div>
+            <div class="p16 bar-sm bg-black-025 ba bc-black-2">
+                <div class="grid gs16 ai-center fw-wrap">
+                    <div class="grid--cell">
+                        <div class="grid gs8 gsx ai-center">
+                            <label class="grid--cell s-label fs-body1" for="arrow-position">Arrow Position</label>
+                            <div class="grid--cell s-select">
+                                <select id="arrow-position" class="js-arrow-position-menu">
+                                    <option name="arrow-position" id="top-left" data-class="s-nubbin__tl" selected>Top Left</option>
+                                    <option name="arrow-position" id="top-left" data-class="s-nubbin__tc">Top Center</option>
+                                    <option name="arrow-position" id="top-right" data-class="s-nubbin__tr">Top Right</option>
+                                    <option name="arrow-position" id="right-top" data-class="s-nubbin__rt">Right Top</option>
+                                    <option name="arrow-position" id="right-center" data-class="s-nubbin__rc">Right Center</option>
+                                    <option name="arrow-position" id="right-bottom" data-class="s-nubbin__rb">Right Bottom</option>
+                                    <option name="arrow-position" id="bottom-left" data-class="s-nubbin__bl">Bottom Left</option>
+                                    <option name="arrow-position" id="bottom-left" data-class="s-nubbin__bc">Bottom Center</option>
+                                    <option name="arrow-position" id="bottom-right" data-class="s-nubbin__br">Bottom Right</option>
+                                    <option name="arrow-position" id="left-top" data-class="s-nubbin__lt">Left Top</option>
+                                    <option name="arrow-position" id="left-center" data-class="s-nubbin__lc">Left Center</option>
+                                    <option name="arrow-position" id="left-bottom" data-class="s-nubbin__lb">Left Bottom</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="grid--cell">
+                        <div class="grid gs8 gsx ai-center">
+                            <label class="grid--cell s-label fs-body1" for="arrow-method">Method</label>
+                            <div class="grid--cell s-select">
+                                <select id="arrow-method" class="js-arrow-method-menu">
+                                    <option name="arrow-method" id="arrow-hover" data-method="hover" selected>Hover</option>
+                                    <option name="arrow-method" id="arrow-click" data-method="click">Click</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="grid--cell s-btn s-btn__filled js-sys-banner-show">Update example</button>
                 </div>
-                <div class="grid--cell">
-                    <button class="s-btn s-btn__muted fc-light js-tooltip-trigger" aria-describedby="tooltip2" aria-controls="tooltip2" aria-haspopup="true" aria-expanded="false">{% svg /product/resources/svg-icons/Help.svg width="18" height="18" aria-hidden="true" class="svg-icon iconHelp m0" %}</button>
-                    <div class="s-tooltip js-tooltip" id="tooltip2" role="tooltip" aria-hidden="true" data-method="click">This area applies only to your main Stack Overflow profile. To edit it, go there.</div>
+            </div>
+
+            <div class="mt16 mb32 grid gs8 ai-center">
+                <div class="grid--cell s-label pl16">
+                    Example:
+                </div>
+                <div class="grid--cell ps-relative">
+                    <button class="grid gs4 ai-center s-link s-link__muted fs-body2 fc-light js-tooltip-trigger" aria-describedby="tooltip1" aria-controls="tooltip1" aria-haspopup="true" aria-expanded="false">
+                        <div class="grid--cell">Need help</div>
+                        <div class="grid--cell">{% svg /product/resources/svg-icons/Help.svg width="18" height="18" aria-hidden="true" class="svg-icon iconHelp m0" %}</div>
+                    </button>
+                    <div class="s-tooltip s-nubbin s-nubbin__tl js-tooltip" id="tooltip1" role="tooltip" aria-hidden="true" data-method="clikc">This area applies only to your main Stack Overflow profile. To edit it, go there.</div>
+                </div>
+            </div>
+
+            <div class="grid grid__allcells4 gs16 ff-row-wrap">
+                <div class="grid--cell ps-relative" style="min-height:6rem;">
+                    <div class="s-tooltip s-nubbin s-nubbin__tl" id="ex-tooltip1" role="tooltip" aria-hidden="false" data-method="click" style="z-index: initial;">This area applies only to your main Stack Overflow profile. To edit it, go there.</div>
+                </div>
+                <div class="grid--cell ps-relative" style="min-height:6rem;">
+                    <div class="s-tooltip s-nubbin s-nubbin__tc" id="ex-tooltip2" role="tooltip" aria-hidden="false" data-method="click" style="z-index: initial;">This area applies only to your main Stack Overflow profile. To edit it, go there.</div>
+                </div>
+                <div class="grid--cell ps-relative" style="min-height:6rem;">
+                    <div class="s-tooltip s-nubbin s-nubbin__tr" id="ex-tooltip3" role="tooltip" aria-hidden="false" data-method="click" style="z-index: initial;">This area applies only to your main Stack Overflow profile. To edit it, go there.</div>
+                </div>
+                <div class="grid--cell ps-relative" style="min-height:6rem;">
+                    <div class="s-tooltip s-nubbin s-nubbin__rt" id="ex-tooltip4" role="tooltip" aria-hidden="false" data-method="click" style="z-index: initial;">This area applies only to your main Stack Overflow profile. To edit it, go there.</div>
+                </div>
+                <div class="grid--cell ps-relative" style="min-height:6rem;">
+                    <div class="s-tooltip s-nubbin s-nubbin__rc" id="ex-tooltip5" role="tooltip" aria-hidden="false" data-method="click" style="z-index: initial;">This area applies only to your main Stack Overflow profile. To edit it, go there.</div>
+                </div>
+                <div class="grid--cell ps-relative" style="min-height:6rem;">
+                    <div class="s-tooltip s-nubbin s-nubbin__rb" id="ex-tooltip6" role="tooltip" aria-hidden="false" data-method="click" style="z-index: initial;">This area applies only to your main Stack Overflow profile. To edit it, go there.</div>
+                </div>
+                <div class="grid--cell ps-relative" style="min-height:6rem;">
+                    <div class="s-tooltip s-nubbin s-nubbin__br" id="ex-tooltip7" role="tooltip" aria-hidden="false" data-method="click" style="z-index: initial;">This area applies only to your main Stack Overflow profile. To edit it, go there.</div>
+                </div>
+                <div class="grid--cell ps-relative" style="min-height:6rem;">
+                    <div class="s-tooltip s-nubbin s-nubbin__bc" id="ex-tooltip8" role="tooltip" aria-hidden="false" data-method="click" style="z-index: initial;">This area applies only to your main Stack Overflow profile. To edit it, go there.</div>
+                </div>
+                <div class="grid--cell ps-relative" style="min-height:6rem;">
+                    <div class="s-tooltip s-nubbin s-nubbin__bl" id="ex-tooltip9" role="tooltip" aria-hidden="false" data-method="click" style="z-index: initial;">This area applies only to your main Stack Overflow profile. To edit it, go there.</div>
+                </div>
+                <div class="grid--cell ps-relative" style="min-height:6rem;">
+                    <div class="s-tooltip s-nubbin s-nubbin__lb" id="ex-tooltip10" role="tooltip" aria-hidden="false" data-method="click" style="z-index: initial;">This area applies only to your main Stack Overflow profile. To edit it, go there.</div>
+                </div>
+                <div class="grid--cell ps-relative" style="min-height:6rem;">
+                    <div class="s-tooltip s-nubbin s-nubbin__lc" id="ex-tooltip11" role="tooltip" aria-hidden="false" data-method="click" style="z-index: initial;">This area applies only to your main Stack Overflow profile. To edit it, go there.</div>
+                </div>
+                <div class="grid--cell ps-relative" style="min-height:6rem;">
+                    <div class="s-tooltip s-nubbin s-nubbin__lt" id="ex-tooltip12" role="tooltip" aria-hidden="false" data-method="click" style="z-index: initial;">This area applies only to your main Stack Overflow profile. To edit it, go there.</div>
                 </div>
             </div>
         </div>
+    </div>
+</section>
+<section class="stacks-section">
+    {% header {element: 'h2', text: 'Accessibility'} %}
+    <div class="overflow-x-auto mb32">
+        <table class="wmn5 s-table s-table__hover">
+            <thead>
+                <tr>
+                    <th scope="col" class="s-table--cell4">Item</th>
+                    <th scope="col">Applied</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th><code class="stacks-code">aria-controls="[id]"</code></th>
+                    <td>Trigger</td>
+                    <td>Identifies the tooltip the item controls. (<a href="https://www.w3.org/WAI/PF/aria/states_and_properties#aria-controls" target="_blank">Source</a>)</td>
+                </tr>
+                <tr>
+                    <th><code class="stacks-code">aria-hidden="[state]"</code></th>
+                    <td>Trigger, Tooltip</td>
+                    <td>Indicates to screen readers if a tooltip should be visible. (<a href="https://www.w3.org/WAI/PF/aria/states_and_properties#aria-hidden" target="_blank">Source</a>)</td>
+                </tr>
+                <tr>
+                    <th><code class="stacks-code">aria-describedby="[id]"</code></th>
+                    <td>Trigger</td>
+                    <td>Indicates which tooltips provides further information about the item. (<a href="https://www.w3.org/WAI/PF/aria/states_and_properties#aria-describedby" target="_blank">Source</a>)</td>
+                </tr>
+                <tr>
+                    <th><code class="stacks-code">aria-haspopup="[state]"</code></th>
+                    <td>Trigger</td>
+                    <td>Indicates if the item has a tooltip popup attached to it. (<a href="https://www.w3.org/WAI/PF/aria/states_and_properties#aria-haspopup" target="_blank">Source</a>)</td>
+                </tr>
+                <tr>
+                    <th><code class="stacks-code">aria-expanded="[state]"</code></th>
+                    <td>Trigger</td>
+                    <td>Indicated if the item's tooltip is currently expanded or collapsed. (<a href="https://www.w3.org/WAI/PF/aria/states_and_properties#aria-expanded" target="_blank">Source</a>)</td>
+                </tr>
+                <tr>
+                    <th><code class="stacks-code">role="tooltip"</code></th>
+                    <td>Tooltip</td>
+                    <td>To help with screen readers, applied to each tab item. (<a href="https://www.w3.org/WAI/PF/aria/roles#tab" target="_blank">Source</a>)</td>
+                </tr>
+                <tr>
+                    <th><code class="stacks-code">data-method="[method]"</code></th>
+                    <td>Tooltip</td>
+                    <td>Custom data value for stating how the tooltip should be shown: <code class="stacks-code">hover</code> or <code class="stacks-code">click</code>.</td>
+                </tr>
+                <tr>
+                    <th><code class="stacks-code">id="[id]"</code></th>
+                    <td>Tooltip</td>
+                    <td>This should match the same value in the trigger's <code class="stacks-code bg-white">aria-describedby</code> and <code class="stacks-code bg-white">aria-controls</code> values.</td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 </section>
 <section class="stacks-section">
@@ -30,55 +179,86 @@ TBD
         <table class="wmn5 s-table s-table__hover">
             <thead>
                 <tr>
-                    <th scope="col">Item</th>
+                    <th scope="col" class="s-table--cell4">Item</th>
                     <th scope="col">Applied</th>
                     <th scope="col">Description</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    <td><code class="stacks-code">aria-controls="[id]"</code></td>
-                    <td>tab</td>
-                    <td>Identifies the tabpanel the tab controls. (<a href="https://www.w3.org/WAI/PF/aria/states_and_properties#aria-controls" target="_blank">Source</a>)</td>
+                    <th><code class="stacks-code">.s-tooltip</code></th>
+                    <td>Tooltip</td>
+                    <td>Applies the tooltip style.</td>
                 </tr>
                 <tr>
-                    <td><code class="stacks-code">aria-hidden="[state]"</code></td>
-                    <td>tabpanel</td>
-                    <td>Indicates to screen readers if a tabpanel should be visible. (<a href="https://www.w3.org/WAI/PF/aria/states_and_properties#aria-hidden" target="_blank">Source</a>)</td>
+                    <th><code class="stacks-code">.s-nubbin</code></th>
+                    <td>Tooltip</td>
+                    <td>Initalizes the universal arrow nub styles.</td>
                 </tr>
                 <tr>
-                    <td><code class="stacks-code">aria-labelledby="[id]"</code></td>
-                    <td>tabpanel</td>
-                    <td>Indicates which tab controls the tabpanel. (<a href="https://www.w3.org/WAI/PF/aria/states_and_properties#aria-labelledby" target="_blank">Source</a>)</td>
+                    <th><code class="stacks-code">.s-nubbin__tl</code></th>
+                    <td>Tooltip</td>
+                    <td>Places the tooltip and arrow nub to the top left of the trigger item.</td>
                 </tr>
                 <tr>
-                    <td><code class="stacks-code">aria-orientation="[dir]"</code></td>
-                    <td>tabgroup</td>
-                    <td>Indicates if the tabgroup is oriented horizontally or vertically. (<a href="https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Techniques/Using_the_aria-orientation_attribute" target="_blank">Source</a>)</td>
+                    <th><code class="stacks-code">.s-nubbin__tc</code></th>
+                    <td>Tooltip</td>
+                    <td>Places the tooltip and arrow nub to the top center of the trigger item.</td>
                 </tr>
                 <tr>
-                    <td><code class="stacks-code">aria-selected="[state]"</code></td>
-                    <td>tab</td>
-                    <td>Identifies if the tab is currently selected within the tabgroup. Only one tab can be set to true at a time. (<a href="https://www.w3.org/WAI/PF/aria/states_and_properties#aria-selected" target="_blank">Source</a>)</td>
+                    <th><code class="stacks-code">.s-nubbin__tr</code></th>
+                    <td>Tooltip</td>
+                    <td>Places the tooltip and arrow nub to the top right of the trigger item.</td>
                 </tr>
                 <tr>
-                    <td><code class="stacks-code">role="tab"</code></td>
-                    <td>tabgroup</td>
-                    <td>To help with screen readers, applied to each tab item. (<a href="https://www.w3.org/WAI/PF/aria/roles#tab" target="_blank">Source</a>)</td>
+                    <th><code class="stacks-code">.s-nubbin__rt</code></th>
+                    <td>Tooltip</td>
+                    <td>Places the tooltip and arrow nub to the right top of the trigger item.</td>
                 </tr>
                 <tr>
-                    <td><code class="stacks-code">role="tablist"</code></td>
-                    <td>tabgroup</td>
-                    <td>To help with screen readers, declare the wrapping tab container for the tabs. (<a href="https://www.w3.org/WAI/PF/aria/roles#tablist" target="_blank">Source</a>)</td>
+                    <th><code class="stacks-code">.s-nubbin__rc</code></th>
+                    <td>Tooltip</td>
+                    <td>Places the tooltip and arrow nub to the right center of the trigger item.</td>
                 </tr>
                 <tr>
-                    <td><code class="stacks-code">role="tabpanel"</code></td>
-                    <td>tabpanel</td>
-                    <td>To help with screen readers, applied to each tab content panel. (<a href="https://www.w3.org/WAI/PF/aria/roles#tablist" target="_blank">Source</a>)</td>
+                    <th><code class="stacks-code">.s-nubbin__rb</code></th>
+                    <td>Tooltip</td>
+                    <td>Places the tooltip and arrow nub to the right bottom of the trigger item.</td>
+                </tr>
+                <tr>
+                    <th><code class="stacks-code">.s-nubbin__bl</code></th>
+                    <td>Tooltip</td>
+                    <td>Places the tooltip and arrow nub to the bottom left of the trigger item.</td>
+                </tr>
+                <tr>
+                    <th><code class="stacks-code">.s-nubbin__bc</code></th>
+                    <td>Tooltip</td>
+                    <td>Places the tooltip and arrow nub to the bottom center of the trigger item.</td>
+                </tr>
+                <tr>
+                    <th><code class="stacks-code">.s-nubbin__br</code></th>
+                    <td>Tooltip</td>
+                    <td>Places the tooltip and arrow nub to the bottom right of the trigger item.</td>
+                </tr>
+                <tr>
+                    <th><code class="stacks-code">.s-nubbin__lt</code></th>
+                    <td>Tooltip</td>
+                    <td>Places the tooltip and arrow nub to the left top of the trigger item.</td>
+                </tr>
+                <tr>
+                    <th><code class="stacks-code">.s-nubbin__lc</code></th>
+                    <td>Tooltip</td>
+                    <td>Places the tooltip and arrow nub to the left center of the trigger item.</td>
+                </tr>
+                <tr>
+                    <th><code class="stacks-code">.s-nubbin__lb</code></th>
+                    <td>Tooltip</td>
+                    <td>Places the tooltip and arrow nub to the left bottom of the trigger item.</td>
                 </tr>
             </tbody>
         </table>
     </div>
 </section>
+
 
 <script src="{{ "/assets/js/feature.tooltips.js" | relative_url }}"></script>
