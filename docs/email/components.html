@@ -1,0 +1,506 @@
+---
+layout: page
+title: Email Components
+description: Use components as building blocks as you design and build new emails.
+---
+<section class="stacks-section">
+    {% header {element: 'h2', text: 'Typography'} %}
+    <p class="stacks-copy">
+        It’s safe and accessible to use semantic HTML tags like <code class="stacks-code">&lt;h&gt;</code>, <code class="stacks-code">&lt;p&gt;</code>, and <code class="stacks-code">&lt;ul&gt;</code> for text in email just as we do for the web. The main difference in email is that <a href="{{ "/email/faq#why-do-we-have-to-write-css-inline?" | relative_url }}">CSS should be written inline</a> to specify intended styles (like the color of an <code class="stacks-code">&lt;a href&gt;</code> tag) and zero out unintended defaults (like the margin around a <code class="stacks-code">&lt;p&gt;</code> tag)
+    </p>
+    <p class="stacks-copy">
+        This page provides some common typography patterns for email, but anything on <a href="{{ "/product/base/typography" | relative_url }}">the main Stacks typography page</a> is fair game.
+    </p>
+    {% header {element: 'h3', text: 'Paragraphs'} %}
+    <div class="stacks-preview">
+{% highlight html linenos %}
+<td style="font-family: arial, sans-serif; font-size: 15px; line-height: 21px; color: #3C3F44; text-align: left;">
+    <p style="margin: 0 0 15px 0; font-size: 17px; line-height: 23px;">A lead paragraph with slightly larger text lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras nisi magna, mollis luctus sapien varius, mattis ornare est.</p>
+    <p style="margin: 0 0 15px 0;">A regular paragraph with <strong>strong</strong> and <em>italic</em> text, consectetur adipiscing elit. Cras nisi magna, mollis luctus sapien varius, mattis ornare est. Sed non tincidunt erat, ut commodo augue.</p>
+    <p style="margin: 0;">A paragraph with no margin (useful for the last paragraph in a section).</p>
+</td>
+{% endhighlight %}
+        <div class="stacks-preview--example" style="font-family: arial, sans-serif; font-size: 15px; line-height: 19px; color: #54595F; text-align: left;">
+            <p style="margin: 0 0 15px 0; font-size: 17px; line-height: 23px;">A lead paragraph with slightly larger text lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras nisi magna, mollis luctus sapien varius, mattis ornare est.</p>
+            <p style="margin: 0 0 15px 0;">A regular paragraph with <strong>strong</strong> and <em>italic</em> text, consectetur adipiscing elit. Cras nisi magna, mollis luctus sapien varius, mattis ornare est. Sed non tincidunt erat, ut commodo augue.</p>
+            <p style="margin: 0;">A paragraph with no margin (useful for the last paragraph in a section).</p>
+        </div>
+    </div>
+    {% header {element: 'h3', text: 'Headlines'} %}
+    <div class="stacks-preview">
+{% highlight html linenos %}
+<h1 style="font-weight: bold; font-size: 27px; line-height: 27px; color: #242629; margin: 0 0 15px 0;">I’m a headline</h1>
+<h2 style="font-weight: bold; font-size: 21px; line-height: 24px; color: #242629; margin: 0 0 15px 0;">I’m a subheadline</h2>
+{% endhighlight %}
+        <div class="stacks-preview--example" style="font-family: arial, sans-serif; text-align: left;">
+            <h1 style="font-weight: bold; font-size: 27px; line-height: 27px; color: #242629; margin: 0 0 15px 0;">I’m a headline</h1>
+            <h2 style="font-weight: bold; font-size: 21px; line-height: 24px; color: #242629; margin: 0 0 15px 0;">I’m a subheadline</h2>
+        </div>
+    </div>
+    {% header {element: 'h3', text: 'Lists'} %}
+    <div class="stacks-preview">
+{% highlight html linenos %}
+<ul style="padding: 0; margin: 0 0 15px 0; list-style-type: disc;">
+    <li style="margin: 0 0 10px 30px;">You get a list item.</li>
+    <li style="margin: 0 0 10px 30px;">And you get a list item!</li>
+    <li style="margin: 0 0 0 30px;">Everyone gets a list item!</li>
+</ul>
+<ol style="padding: 0; margin: 0 0 15px 0; list-style-type: decimal;">
+    <li style="margin: 0 0 10px 30px;">You get a list item.</li>
+    <li style="margin: 0 0 10px 30px;">And you get a list item!</li>
+    <li style="margin: 0 0 0 30px;">Everyone gets a list item!</li>
+</ol>
+{% endhighlight %}
+        <div class="stacks-preview--example" style="font-family: arial, sans-serif; font-size: 15px; line-height: 19px; color: #54595F; text-align: left;">
+            <ul style="padding: 0; margin: 0 0 15px 0; list-style-type: disc;">
+                <li style="margin: 0 0 10px 30px;">You get a list item.</li>
+                <li style="margin: 0 0 10px 30px;">And you get a list item!</li>
+                <li style="margin: 0 0 0 30px;">Everyone gets a list item!</li>
+            </ul>
+            <ol style="padding: 0; margin: 0 0 15px 0; list-style-type: decimal;">
+                <li style="margin: 0 0 10px 30px;">You get a list item.</li>
+                <li style="margin: 0 0 10px 30px;">And you get a list item!</li>
+                <li style="margin: 0 0 0 30px;">Everyone gets a list item!</li>
+            </ol>
+        </div>
+    </div>
+    {% header {element: 'h3', text: 'Links'} %}
+    <div class="stacks-preview">
+{% highlight html linenos %}
+<a href="https://stackoverflow.com/" style="color: #0077CC; text-decoration: none;">Go to the homepage</a>
+{% endhighlight %}
+        <div class="stacks-preview--example" style="font-family: arial, sans-serif; font-size: 15px; line-height: 19px; color: #54595F; text-align: left;">
+            <a href="https://stackoverflow.com/" style="color: #0077CC; text-decoration: none;">Go to the homepage</a>
+        </div>
+    </div>
+    {% header {element: 'h3', text: 'Links in Markdown'} %}
+    <p class="stacks-copy">
+        If email content is written in markdown, we can’t write inline CSS into link tags. Left unstyled, <a href="#" style="color: blue; text-decoration: underline;">links will appear like this</a>. To style links contained in markdown text, add a <code class="stacks-code">class="has-markdown"</code> to any parent tag that might contain a markdown link.
+    </p>
+    <div class="stacks-preview mb24">
+{% highlight html linenos %}
+<p style="margin: 0 0 15px 0;">@_s("I’m a text string in markdown.")</p>
+<p style="margin: 0 0 15px 0;" class="has-markdown">@_m("I’m a *bold* [text link](https://www.stackoverflow.com) in markdown.")</p>
+{% endhighlight %}
+        <div class="stacks-preview--example" style="font-family: arial, sans-serif; font-size: 15px; line-height: 19px; color: #54595F; text-align: left;">
+            <p style="margin: 0 0 15px 0;">I’m a text string in markdown.</p>
+            <p style="margin: 0;">I’m a <strong>bold</strong> <a href="https://www.stackoverflow.com" style="color: #0077CC; text-decoration: none;">text link</a> in markdown.</p>
+        </div>
+    </div>
+
+    <div class="grid ai-start s-notice s-notice__info mb48">
+        <div class="grid--cell mr8">{% svg /product/resources/svg-icons/Info.svg width="18" height="18" aria-hidden="true" %}</div>
+        <div class="grid--cell lh-lg">
+            <strong>Note:</strong> Using <code class="stacks-code bg-powder-200">class="has-markdown"</code> applies styles defined in the <code class="stacks-code bg-powder-200">&lt;style&gt;</code> tag. Only <a href="https://www.campaignmonitor.com/css/style-element/style-in-head/">email clients that support <code class="stacks-code bg-powder-200">&lt;style&gt;</code> in <code class="stacks-code bg-powder-200">&lt;head&gt;</code></a> will render <code class="stacks-code bg-powder-200">has-markdown</code> links properly.
+        </div>
+    </div>
+
+    {% header {element: 'h3', text: 'Auto-detected links'} %}
+    <p class="stacks-copy">
+        Some email clients auto-detect certain text strings (like dates, times, and locations) and automatically convert them into hyperlinks. We can’t <em>remove</em> the link, but we can make the link <em>appear</em> like the text around it by negating a few CSS styles.
+    </p>
+    <div class="stacks-preview mb24">
+{% highlight html linenos %}
+<p style="margin: 0 0 15px 0;">On Thursday we’ll be doing on planned maintenance on our New York server, so the parts of the site might be unavailable.</p>
+<p style="margin: 0 0 15px 0;">On <span class="unstyle-auto-detected-links">Thursday</span> we’ll be doing on planned maintenance on our <span class="unstyle-auto-detected-links">New York</span> server, so the parts of the site might be unavailable.</p>
+{% endhighlight %}
+        <div class="stacks-preview--example" style="font-family: arial, sans-serif; font-size: 15px; line-height: 19px; color: #54595F; text-align: left;">
+            <p style="margin: 0 0 15px 0;">On <a href="https://stackoverflow.com/" style="color: blue; text-decoration: none; border-bottom: 1px dashed;">Thursday</a> we’ll be doing on planned maintenance on our <a href="https://stackoverflow.com/" style="color: blue; text-decoration: none; border-bottom: 1px dashed;">New York</a> server, so the parts of the site might be unavailable.</p>
+            <p style="margin: 0 0 15px 0;">On <a href="https://stackoverflow.com/" style="border-bottom: 0 !important; cursor: default !important; color: inherit !important; text-decoration: none !important; font-size: inherit !important; font-family: inherit !important; font-weight: inherit !important; line-height: inherit !important;">Thursday</a> we’ll be doing on planned maintenance on our <a href="https://stackoverflow.com/" style="border-bottom: 0 !important; cursor: default !important; color: inherit !important; text-decoration: none !important; font-size: inherit !important; font-family: inherit !important; font-weight: inherit !important; line-height: inherit !important;">New York</a> server, so the parts of the site might be unavailable.</p>
+        </div>
+    </div>
+
+    <div class="grid ai-start s-notice s-notice__info mb48">
+        <div class="grid--cell mr8">{% svg /product/resources/svg-icons/Info.svg width="18" height="18" aria-hidden="true" %}</div>
+        <div class="grid--cell lh-lg">
+            <strong>Note:</strong> Using <code class="stacks-code bg-powder-200">class="unstyle-auto-detected-links"</code> applies styles defined in the <code class="stacks-code bg-powder-200">&lt;style&gt;</code> tag. Only <a href="https://www.campaignmonitor.com/css/style-element/style-in-head/">email clients that support <code class="stacks-code bg-powder-200">&lt;style&gt;</code> in <code class="stacks-code bg-powder-200">&lt;head&gt;</code></a> will render <code class="stacks-code bg-powder-200">has-markdown</code> links properly.
+        </div>
+    </div>
+
+    {% header {element: 'h3', text: 'Preventing Text Wrapping'} %}
+    <p class="stacks-copy">
+        A non-breaking space (<code class="stacks-code">&#38;nbsp;</code>) can be used to prevent a group of words from breaking onto multiple lines. Useful for keeping names together and preventing typographic orphans&nbsp;and&nbsp;widows.
+        <br><span class="d-block mt8 fc-light fs-body1">Inspect the line above to see ☝️</span>
+    </p>
+    <div class="stacks-preview">
+{% highlight html linenos %}
+<p style="margin: 0 0 15px 0;">Now with Stack&nbsp;Overflow you can level up.</p>
+<p style="margin: 0 0 15px 0;">The last sentence shouldn’t produce an&nbsp;orphan.</p>
+<p style="margin: 0;">@_m("Also works for text written in$nbsp$markdown.", new { nbsp = "&nbsp;".AsRawHtml() })</p>
+{% endhighlight %}
+        <div class="stacks-preview--example" style="font-family: arial, sans-serif; font-size: 15px; line-height: 19px; color: #54595F; text-align: left;">
+            <p style="margin: 0 0 15px 0;">Now with Stack&nbsp;Overflow you can level up.</p>
+            <p style="margin: 0 0 15px 0;">The last sentence shouldn’t produce an&nbsp;orphan.</p>
+            <p style="margin: 0;">Also works for text written in&nbsp;markdown.</p>
+        </div>
+    </div>
+</section>
+
+<!-- BUTTONS -->
+<section class="stacks-section">
+    {% header {element: 'h2', text: 'Buttons'} %}
+    <p class="stacks-copy">Creating a successful button in email uses multiple html tags to create progressive enhancement and prevent text-decoration in certain email clients.</p>
+    <p class="stacks-copy">
+        Each style is explained below, detailing how and where to use these styles.
+    </p>
+    <p class="stacks-copy">
+        A visual style used to highlight the most important actions. To avoid confusing users, don’t use more than one primary button within a section or preferably, email.
+    </p>
+    <div class="stacks-preview mb24">
+{% highlight html linenos %}
+<td class="s-btn s-btn__primary" style="border-radius: 4px; background: #0095ff; text-align: center;">
+    <a class="s-btn s-btn__primary" href="#" style="background: #0095FF; border: 1px solid #0077cc; box-shadow: inset 0 1px 0 0 rgba(102,191,255,.75), 0 0 0 0 rgba(0,149,255,0); font-family: arial, sans-serif; font-size: 17px; line-height: 17px; color: #ffffff; text-align: center; text-decoration: none; padding: 13px 17px; display: block; border-radius: 4px;">
+        ...
+    </a>
+</td>
+
+<td class="s-btn s-btn__white" style="border-radius: 4px; background: #ffffff; text-align: center;">
+    <a class="s-btn s-btn__white" href="#" style="background: #ffffff; border: 1px solid #ffffff; box-shadow: 0 0 0 0 rgba(0,149,255,0); font-family: arial, sans-serif; color: #0077cc; font-size: 17px; line-height: 17px; text-align: center; text-decoration: none; padding: 13px 17px; display: block; border-radius: 4px;">
+        ...
+    </a>
+</td>
+
+<td class="s-btn s-btn__outlined" style="border-radius: 4px; background: #ffffff; text-align: center;">
+    <a class="s-btn s-btn__outlined" href="#" style="background: #ffffff; border: 1px solid #0077cc; font-family: arial, sans-serif; font-size: 17px; line-height: 17px; color: #0077cc; text-align: center; text-decoration: none; padding: 13px 17px; display: block; border-radius: 4px; white-space: nowrap;">
+        ...
+    </a>
+</td>
+{% endhighlight %}
+        <div class="stacks-preview--example">
+            <table cellspacing="0" class="s-table">
+                <thead>
+                    <tr>
+                        <th scope="col">Type</th>
+                        <th scope="col" class="s-table--cell4">Class</th>
+                        <th scope="col" class="">Default State</th>
+                        <th scope="col" class="">Hover State</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row" class="va-middle">Primary</th>
+                        <td class="va-middle">
+                            <div class="grid gs4 fw-wrap">
+                                <code class="grid--cell stacks-code">.s-btn</code>
+                                <code class="grid--cell stacks-code">.s-btn__primary</code>
+                            </div>
+                        </td>
+                        <td class="va-middle px4">
+                            <a class="s-btn s-btn__primary" href="#" style="background: #0095FF; border: 1px solid #0077cc; box-shadow: inset 0 1px 0 0 rgba(102,191,255,.75), 0 0 0 0 rgba(0,149,255,0); font-family: arial, sans-serif; font-size: 17px; line-height: 17px; color: #ffffff; text-align: center; text-decoration: none; padding: 13px 17px; display: block; border-radius: 4px;"><span class="button-link" style="color:#ffffff">Ask Question</span></a>
+                        </td>
+                        <td class="va-middle px4">
+                            <a class="s-btn s-btn__primary" href="#" style="background: #0077CC; border: 1px solid #0077cc; box-shadow: inset 0 1px 0 0 rgba(102,191,255,.75), 0 0 0 0 rgba(0,149,255,0); font-family: arial, sans-serif; font-size: 17px; line-height: 17px; color: #ffffff; text-align: center; text-decoration: none; padding: 13px 17px; display: block; border-radius: 4px;">
+                                Ask Question
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row" class="va-middle">White</th>
+                        <td class="va-middle">
+                            <div class="grid gs4 fw-wrap">
+                                <code class="grid--cell stacks-code">.s-btn</code>
+                                <code class="grid--cell stacks-code">.s-btn__white</code>
+                            </div>
+                        </td>
+                        <td class="va-middle px8" style="background-color: #242729;">
+                            <a class="s-btn s-btn__white" href="#" style="background: #ffffff; border: 1px solid #ffffff; box-shadow: 0 0 0 0 rgba(0,149,255,0); font-family: arial, sans-serif; font-size: 17px; line-height: 17px; color: #0077cc; text-align: center; text-decoration: none; padding: 13px 17px; display: block; border-radius: 4px;">
+                                Ask Question
+                            </a>
+                        </td>
+                        <td class="va-middle px8" style="background-color: #242729;">
+                            <a class="s-btn s-btn__white" href="#" style="background: rgba(255,255,255,.7); border: 1px solid rgba(255,255,255,.7); box-shadow: 0 0 0 0 rgba(0,149,255,0); font-family: arial, sans-serif; font-size: 17px; line-height: 17px; color: #0077cc; text-align: center; text-decoration: none; padding: 13px 17px; display: block; border-radius: 4px;">
+                                Ask Question
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row" class="va-middle">Outlined</th>
+                        <td class="va-middle">
+                            <div class="grid gs4 fw-wrap">
+                                <code class="grid--cell stacks-code">.s-btn</code>
+                                <code class="grid--cell stacks-code">.s-btn__outlined</code>
+                            </div>
+                        </td>
+                        <td class="va-middle px8">
+                            <a class="s-btn s-btn__outlined" href="#" style="background: #ffffff; border: 1px solid #0077cc; font-family: arial, sans-serif; font-size: 17px; line-height: 17px; color: #0077cc; text-align: center; text-decoration: none; padding: 13px 17px; display: block; border-radius: 4px; white-space: nowrap;">
+                                Ask Question</span></a>
+                        </td>
+                        <td class="va-middle px8">
+                            <a class="s-btn s-btn__outlined" href="#" style="background: rgba(0,119,204,.05); border: 1px solid #0077cc; font-family: arial, sans-serif; font-size: 17px; line-height: 17px; color: #005999; text-align: center; text-decoration: none; padding: 13px 17px; display: block; border-radius: 4px; white-space: nowrap;">
+                                Ask Question
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="grid ai-start s-notice s-notice__info mb48">
+        <div class="grid--cell mr8">{% svg /product/resources/svg-icons/Info.svg width="18" height="18" aria-hidden="true" %}</div>
+        <div class="grid--cell lh-lg">
+            <strong>Note:</strong> Using <code class="stacks-code bg-powder-200">class="unstyle-auto-detected-links"</code> applies styles defined in the <code class="stacks-code bg-powder-200">&lt;style&gt;</code> tag. Only <a href="https://www.campaignmonitor.com/css/style-element/style-in-head/">email clients that support <code class="stacks-code bg-powder-200">&lt;style&gt;</code> in <code class="stacks-code bg-powder-200">&lt;head&gt;</code></a> will render <code class="stacks-code bg-powder-200">has-markdown</code> links properly.
+
+            Using the <code class="stacks-code bg-powder-200">s-btn</code> class with <code class="stacks-code bg-powder-200">s-btn__primary</code>, <code class="stacks-code bg-powder-200">s-btn__white</code> or <code class="stacks-code bg-powder-200">s-btn__outlined</code> applies <code class="stacks-code bg-powder-200">:hover</code> progressive enhancements defined in the <code class="stacks-code bg-powder-200">&lt;style&gt;</code> tag. Only  <a href="https://www.campaignmonitor.com/css/style-element/style-in-head/">email clients that support <code class="stacks-code bg-powder-200">&lt;style&gt;</code> in <code class="stacks-code bg-powder-200">&lt;head&gt;</code></a> will render the <code class="stacks-code bg-powder-200">:hover</code>.
+        </div>
+    </div>
+</section>
+
+<!-- TAGS -->
+<section class="stacks-section">
+    {% header {element: 'h2', text: 'Tags'} %}
+    <p class="stacks-copy">
+        Tags are interface elements that allow users to organize and discover related information throughout Stack Overflow.
+    </p>
+    <p class="stacks-copy">
+        Questions, jobs, and candidates can be tagged with up to 5 tags. Individual tags should not break onto multiple lines, though tag lists can.
+    </p>
+    <div class="stacks-preview mb24">
+{% highlight html linenos %}
+<td>
+    <a href="#" style="display: inline-block; border: 5px solid #E1ECF4; margin: 0 1px 4px 0; background: #E1ECF4; color: #39739D; font-family: arial, sans-serif; font-size: 12px; line-height: 12px; text-decoration: none; white-space: nowrap;" class="s-tag">tag-name</a>
+    <a href="#" style="display: inline-block; border: 5px solid #E1ECF4; margin: 0 1px 4px 0; background: #E1ECF4; color: #39739D; font-family: arial, sans-serif; font-size: 12px; line-height: 12px; text-decoration: none; white-space: nowrap;" class="s-tag">tag</a>
+    <a href="#" style="display: inline-block; border: 5px solid #E1ECF4; margin: 0 1px 4px 0; background: #E1ECF4; color: #39739D; font-family: arial, sans-serif; font-size: 12px; line-height: 12px; text-decoration: none; white-space: nowrap;" class="s-tag">another-tag-name</a>
+</td>
+{% endhighlight %}
+        <div class="stacks-preview--example">
+            <div class="mb16">
+                <a href="#" style="display: inline-block; border: 5px solid #E1ECF4; margin: 0 1px 4px 0; background: #E1ECF4; color: #39739D; font-family: arial, sans-serif; font-size: 12px; line-height: 12px; text-decoration: none; white-space: nowrap;" class="s-tag">tag-name</a>
+                <a href="#" style="display: inline-block; border: 5px solid #E1ECF4; margin: 0 1px 4px 0; background: #E1ECF4; color: #39739D; font-family: arial, sans-serif; font-size: 12px; line-height: 12px; text-decoration: none; white-space: nowrap;" class="s-tag">tag</a>
+                <a href="#" style="display: inline-block; border: 5px solid #E1ECF4; margin: 0 1px 4px 0; background: #E1ECF4; color: #39739D; font-family: arial, sans-serif; font-size: 12px; line-height: 12px; text-decoration: none; white-space: nowrap;" class="s-tag">another-tag-name</a>
+            </div>
+
+            <table cellspacing="0" class="s-table">
+                <thead>
+                    <tr>
+                        <th scope="col">Type</th>
+                        <th scope="col" class="s-table--cell4">Class</th>
+                        <th scope="col" class="">Default State</th>
+                        <th scope="col" class="">Hover State</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row" class="va-middle">Regular</th>
+                        <td class="va-middle">
+                            <div class="grid gs4 fw-wrap">
+                                <code class="grid--cell stacks-code">.s-tag</code>
+                            </div>
+                        </td>
+                        <td class="va-middle px4">
+                            <a href="#" style="display: inline-block; border: 5px solid #E1ECF4; margin: 0 1px 4px 0; background: #E1ECF4; color: #39739D; font-family: arial, sans-serif; font-size: 12px; line-height: 12px; text-decoration: none; white-space: nowrap;" class="s-tag">tag-name</a>
+                        </td>
+                        <td class="va-middle px4">
+                            <a href="#" style="display: inline-block; border: 5px solid #cee0ed; margin: 0 1px 4px 0; background: #cee0ed; color: #39739D; font-family: arial, sans-serif; font-size: 12px; line-height: 12px; text-decoration: none; white-space: nowrap;" class="s-tag">tag-name</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="grid ai-start s-notice s-notice__info mb48">
+        <div class="grid--cell mr8">{% svg /product/resources/svg-icons/Info.svg width="18" height="18" aria-hidden="true" %}</div>
+        <div class="grid--cell lh-lg">
+            <strong>Note:</strong> Using the <code class="stacks-code bg-powder-200">s-tag</code> class applies <code class="stacks-code bg-powder-200">:hover</code> progressive enhancements defined in the <code class="stacks-code bg-powder-200">&lt;style&gt;</code> tag. Only  <a href="https://www.campaignmonitor.com/css/style-element/style-in-head/">email clients that support <code class="stacks-code bg-powder-200">&lt;style&gt;</code> in <code class="stacks-code bg-powder-200">&lt;head&gt;</code></a> will render the <code class="stacks-code bg-powder-200">:hover</code>.
+        </div>
+    </div>
+</section>
+
+<!-- FOREGROUND IMAGES -->
+<section class="stacks-section">
+    {% header {element: 'h2', text: 'Foreground Images'} %}
+    <p class="stacks-copy">
+        All email clients can display <code class="stacks-code">.png</code>, <code class="stacks-code">.gif</code>, and <code class="stacks-code">.jpg</code> images displayed with the <code class="stacks-code">&lt;img&gt;</code> tag. <code class="stacks-code">.svg</code> images are not well supported, regardless of how they’re referenced, so avoid using these.
+    </p>
+    <p class="stacks-copy">
+        Most images should be coded responsive by default, meaning they’ll scale down proportionately in small viewports. It’s safest to code all images this way, even if they don’t end up scaling in practice. However if we’re confident that an image will never scale, we can display a non-responsive image using less code.
+    </p>
+    <table class="mb32 s-table s-table__hover">
+        <thead>
+            <tr>
+                <th class="s-table--cell2" scope="col">Name</th>
+                <th class="s-table--cell2" scope="col">Type</th>
+                <th scope="col">Notes</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="fs-caption">
+                <td><code class="stacks-code">src</code></td>
+                <td>attribute</td>
+                <td>Always set and use full <code class="stacks-code">https://</code> reference.</td>
+            </tr>
+            <tr class="fs-caption">
+                <td><code class="stacks-code">width</code></td>
+                <td>attribute</td>
+                <td>Always set to intended desktop width.</td>
+            </tr>
+            <tr class="fs-caption">
+                <td><code class="stacks-code">height</code></td>
+                <td>attribute</td>
+                <td>Optional. Use only for images that won’t scale.</td>
+            </tr>
+            <tr class="fs-caption">
+                <td><code class="stacks-code">border</code></td>
+                <td>attribute</td>
+                <td>Always set to 0 to avoid blue outlines on image links.</td>
+            </tr>
+            <tr class="fs-caption">
+                <td><code class="stacks-code">alt</code></td>
+                <td>attribute</td>
+                <td>Always include but can be left empty if image is ornamental (Eg. <code class="stacks-code">alt=""</code>).</td>
+            </tr>
+            <tr class="fs-caption">
+                <td><code class="stacks-code">width</code></td>
+                <td>inline CSS</td>
+                <td>[Responsive] Always set to <code class="stacks-code">100%</code> for responsive images. Optional for static images.</td>
+            </tr>
+            <tr class="fs-caption">
+                <td><code class="stacks-code">max-width</code></td>
+                <td>inline CSS</td>
+                <td>[Responsive] Always set to intended desktop width. Optional for static images.</td>
+            </tr>
+            <tr class="fs-caption">
+                <td><code class="stacks-code">height</code></td>
+                <td>inline CSS</td>
+                <td>[Responsive] Always set to <code class="stacks-code">auto</code> for responsive images. Optional for static images.</td>
+            </tr>
+            <tr class="fs-caption">
+                <td><code class="stacks-code">display</code></td>
+                <td>inline CSS</td>
+                <td>Generally good practice to use `display:block;` when possible since it negates a few pixels of unwanted space below images in some clients.</td>
+            </tr>
+            <tr class="fs-caption">
+                <td><code class="stacks-code">.g-img</code></td>
+                <td>class</td>
+                <td>Advisable for images larger than ~300px wide. Prevents <a href="https://www.emailonacid.com/blog/article/email-development/prevent-gmail-from-displaying-image-download-button-in-email/">gmail from displaying an image download icon over images</a>.</td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="stacks-preview">
+{% highlight html linenos %}
+/* Responsive */
+<img src="https://placehold.it/1280x600" width="640" height="" alt="alt_text" border="0" style="width: 100%; max-width: 640px; height: auto; display: block;" class="g-img">
+
+/* Static */
+<img src="https://placehold.it/256" width="128" height="128" alt="alt_text" border="0" style="display: block;">
+{% endhighlight %}
+        <div class="stacks-preview--example">
+            <img src="https://placehold.it/1280x600" width="640" height="" alt="alt_text" border="0" style="width: 100%; max-width: 640px; height: auto; display: block;" class="g-img">
+            <br>
+            <img src="https://placehold.it/256" width="128" height="128" alt="alt_text" border="0" style="display: block;">
+        </div>
+    </div>
+</section>
+
+<!-- BACKGROUND IMAGES -->
+<section class="stacks-section">
+    {% header {element: 'h2', text: 'Background Images'} %}
+    <p class="stacks-copy">
+        Background images allow us to place additional HTML content on top of them, one of the few reliable ways to provide layering possibilities in email. A benefit of using background images over foreground images is, when paired with a background color, the HTML content on top of the background image remains accessible even when images are disabled.
+    </p>
+    <p class="stacks-copy">
+        Background images can be complicated to implement in email, as many properties need to be defined once in CSS and <em>again</em> in VML for Windows Outlook and Win10 Mail.
+    </p>
+    <table class="mb32 s-table s-table__hover">
+        <thead>
+            <tr>
+                <th class="s-table--cell3" scope="col">Name</th>
+                <th class="s-table--cell3" scope="col">Type</th>
+                <th scope="col">Notes</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="fs-caption">
+                <td><code class="stacks-code">background-image</code></td>
+                <td>inline CSS</td>
+                <td>Always set and use full <code class="stacks-code">https://</code> reference.</td>
+            </tr>
+            <tr class="fs-caption">
+                <td><code class="stacks-code">background-position</code></td>
+                <td>inline CSS</td>
+                <td>Optional to set the size of the image.</td>
+            </tr>
+            <tr class="fs-caption">
+                <td><code class="stacks-code">background-size</code></td>
+                <td>inline CSS</td>
+                <td>Optional to set the position of the image.</td>
+            </tr>
+            <tr class="fs-caption">
+                <td><code class="stacks-code">background-color</code></td>
+                <td>inline CSS</td>
+                <td>Always set to make foreground HTML legible if background image doesn’t load.</td>
+            </tr>
+            <tr class="fs-caption">
+                <td><code class="stacks-code">width</code></td>
+                <td>VML in <code class="stacks-code">&lt;v:rect&gt;</code></td>
+                <td>Always set to full container width. VML doesn’t account for padding, adjust as necessary.</td>
+            </tr>
+            <tr class="fs-caption">
+                <td><code class="stacks-code">height</code></td>
+                <td>VML in <code class="stacks-code">&lt;v:rect&gt;</code></td>
+                <td>Always set to full container height. VML doesn’t account for padding, adjust as necessary.</td>
+            </tr>
+            <tr class="fs-caption">
+                <td><code class="stacks-code">src</code></td>
+                <td>VML in <code class="stacks-code">&lt;v:fill&gt;</code></td>
+                <td>Always set and use full <code class="stacks-code">https://</code> reference.</td>
+            </tr>
+            <tr class="fs-caption">
+                <td><code class="stacks-code">color</code> (background color)</td>
+                <td>VML in <code class="stacks-code">&lt;v:fill&gt;</code></td>
+                <td>Always set to make foreground HTML legible if background image doesn’t load.</td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="stacks-preview mb24">
+{% highlight html linenos %}
+<td valign="middle" style="background-image: url('https://d2axdqolvqmdvx.cloudfront.net/857c3f94-f791-401e-85a8-e041ec72569e/bgheropatternblue.png'); background-position: center center; background-size: cover; background-color: #117FF1; text-align: center;">
+    <!--[if gte mso 9]>
+    <v:rect xmlns:v="urn:schemas-microsoft-com:vml" fill="true" stroke="false" style="width:680px;height:220px;">
+    <v:fill type="tile" src="https://d2axdqolvqmdvx.cloudfront.net/857c3f94-f791-401e-85a8-e041ec72569e/bgheropatternblue.png" color="#117FF1"/>
+    <v:textbox inset="0,0,0,0">
+    <![endif]-->
+    <div>
+        <!-- Foreground Content : BEGIN -->
+        <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation">
+            <tr>
+                <td style="padding: 60px; color: #ffffff; font-family: arial, sans-serif; font-size: 15px; text-align: center;">
+                    Foreground HTML content.
+                </td>
+            </tr>
+        </table>
+        <!-- Foreground Content : END -->
+    </div>
+    <!--[if gte mso 9]>
+    </v:textbox>
+    </v:rect>
+    <![endif]-->
+</td>
+{% endhighlight %}
+        <div class="stacks-preview--example">
+            <table border="0" cellpadding="0" cellspacing="0" width="100%" role="presentation">
+                <tr>
+                    <td valign="middle" style="background-image: url('https://d2axdqolvqmdvx.cloudfront.net/857c3f94-f791-401e-85a8-e041ec72569e/bgheropatternblue.png'); background-position: center center; background-size: cover; background-color: #117FF1; text-align: center;">
+                        <div>
+                            <!-- Foreground Content : BEGIN -->
+                            <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation">
+                                <tr>
+                                    <td style="padding: 60px; color: #ffffff; font-family: arial, sans-serif; font-size: 15px; text-align: center;">
+                                        Foreground HTML content.
+                                    </td>
+                                </tr>
+                            </table>
+                            <!-- Foreground Content : END -->
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="grid ai-start s-notice s-notice__info mb48">
+        <div class="grid--cell mr8">{% svg /product/resources/svg-icons/Info.svg width="18" height="18" aria-hidden="true" %}</div>
+        <div class="grid--cell lh-lg">
+            <strong>Note:</strong> Windows Outlook and Win10 Mail cannot scale background images, so the image referenced in VML should be prepared @1x. Most other email clients can scale background images defined in CSS, so using @2x images is advisable.
+        </div>
+    </div>
+</section>

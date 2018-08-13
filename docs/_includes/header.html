@@ -1,0 +1,30 @@
+<div class="bg-black-050 ps-fixed t0 l0 r0 z-nav-fixed bb bc-black-3 js-stacks-topbar" style="height:64px">
+    <div class="grid ai-center px16 h100 mx-auto wmx12 sm:jc-space-between">
+        <a class="grid grid__center p8 mr8 s-link s-link__muted d-none md:d-block js-hamburger-btn" href="#">
+            {% svg /product/resources/svg-icons/Hamburger.svg width="18" height="18" aria-hidden="true" class="svg-icon iconHamburger js-hamburger-icon" %}
+            {% svg /product/resources/svg-icons/Clear.svg width="18" height="18" aria-hidden="true" class="svg-icon iconClear d-none js-hamburger-close-icon" %}
+        </a>
+        <a class="grid--cell js-logo" href="{{ "/" | relative_url }}">
+            {% svg /product/resources/svg-icons/LogoGlyphMd.svg width="32" height="37" aria-hidden="true" class="svg-icon iconLogoGlyphMd native" %}
+        </a>
+        {% if site.data.nav[0] %}
+            {% for item in site.data.nav %}
+                {% assign pageSlug = page.url | replace:'/',' ' | truncatewords: 1 | remove:'...' %}
+
+                <a class="grid--cell {% if forloop.first == true %}ml32{% else %}ml24{% endif %} {% if item.url contains pageSlug %}fc-white bg-orange-400 bar-pill px16 py6 {% endif %} s-link s-link__muted sm:d-none" href="{{ item.url | relative_url }}">{{ item.title }}</a>
+            {% endfor %}
+        {% endif %}
+        <a class="grid--cell fc-black-200 ml-auto sm:d-none" href="https://github.com/StackExchange/Stacks">
+            {% svg /product/resources/svg-icons/GitHub.svg width="24" height="24" aria-hidden="true" %}
+        </a>
+        <div class="grid--cell ps-relative ml16 sm:w100 sm:ml0 sm:d-none js-search">
+            <input id="searchbox" class="s-input bar-md ws3 sm:w100 pl32 js-stacks-search-bar" type="text" placeholder="Search Stacks…">
+            {% svg /product/resources/svg-icons/Search.svg width="18" height="18" aria-hidden="true" class="svg-icon iconSearch pe-none stacks-search-icon" %}
+            <span class="ps-absolute t8 r8 mtn1 px8 ba bc-black-3 bar-sm fc-black-350 fs-body1 lh-lg pe-none"><span class="ps-relative mln1">/</span></span>
+        </div>
+        <a class="grid grid__center p8 ml8 s-link s-link__muted d-none sm:d-block js-search-btn" href="#">
+            {% svg /product/resources/svg-icons/Search.svg width="18" height="18" aria-hidden="true" class="svg-icon iconSearch js-search-icon" %}
+            {% svg /product/resources/svg-icons/Clear.svg width="18" height="18" aria-hidden="true" class="svg-icon iconClear d-none js-search-close-icon" %}
+        </a>
+    </div>
+</div>

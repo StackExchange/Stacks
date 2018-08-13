@@ -21,8 +21,15 @@ a,
     text-decoration: none;
     cursor: pointer;
 
+    &.s-link__visited:visited {
+        color: lighten(@link-color-regular, 10%);
+        text-decoration: none;
+    }
+
     &:hover,
-    &:active {
+    &.s-link__visited:hover,
+    &:active,
+    &.s-link__visited:active {
         color: darken(@link-color-regular, 10%);
         text-decoration: none;
     }
@@ -30,26 +37,29 @@ a,
     &.s-link__grayscale {
         color: @black-800;
 
-        &:hover,
-        &:active {
-            color: @black-900;
+        &.s-link__visited:visited {
+            color: @black-700;
         }
-    }
-
-    &.s-link__inherit {
-        color: inherit;
 
         &:hover,
-        &:active {
-            color: inherit;
+        &.s-link__visited:hover,
+        &:active,
+        &.s-link__visited:active {
+            color: @black-900;
         }
     }
 
     &.s-link__muted {
         color: @black-500;
 
+        &.s-link__visited:visited {
+            color: lighten(@black-500, 10%);
+        }
+
         &:hover,
-        &:active {
+        &.s-link__visited:hover,
+        &:active,
+        &.s-link__visited:active {
             color: darken(@black-500, 10%);
         }
     }
@@ -57,9 +67,71 @@ a,
     &.s-link__danger {
         color: @button-danger-background-color;
 
+        &.s-link__visited:visited {
+            color: lighten(saturate(@button-danger-background-color, 5%), 15%);
+        }
+
         &:hover,
-        &:active {
+        &.s-link__visited:hover,
+        &:active,
+        &.s-link__visited:active {
             color: darken(saturate(@button-danger-background-color, 5%), 15%);
         }
     }
+
+    &.s-link__inherit {
+        color: inherit !important;
+
+        &:hover,
+        &:active,
+        &.s-link__visited:visited {
+            color: inherit !important;
+        }
+    }
+}
+
+button.s-link {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background: transparent;
+    border: 0;
+    padding: 0;
+    line-height: inherit;
+
+    &:focus {
+        outline: none;
+    }
+}
+
+.s-anchors {
+    .colorize-all(@name, @normal, @hover, @visited) {
+        &.s-anchors__@{name},
+        & .s-anchors.s-anchors__@{name} {
+            a:not(.s-link) {
+                color: @normal;
+
+                &:hover,
+                &:active {
+                    color: @hover;
+                }
+            }
+
+            &.s-anchors__visited {
+                a:not(.s-link) {
+                    color: @visited;
+    
+                    &:hover,
+                    &:active {
+                        color: @hover;
+                    }
+                }
+            }
+        }
+    }
+    #stacks-internals #load-config();
+    .colorize-all(default, @link-color-regular, darken(@link-color-regular, 10%), lighten(@link-color-regular, 10%));
+    .colorize-all(grayscale, @black-800, @black-900, @black-700);
+    .colorize-all(inherit, inherit, inherit, inherit);
+    .colorize-all(muted, @black-500, darken(@black-500, 10%), lighten(@black-500, 10%));
+    .colorize-all(danger, @button-danger-background-color, darken(saturate(@button-danger-background-color, 5%), 15%), lighten(saturate(@button-danger-background-color, 5%), 15%));
 }

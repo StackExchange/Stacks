@@ -1,0 +1,97 @@
+---
+layout: page
+title: Overflow
+description: Atomic overflow classes allow you to change an element’s overflow properties quickly.
+---
+<section class="stacks-section">
+    {% header {element: 'h2', text: 'Classes'} %}
+    <div class="overflow-x-auto mb48">
+        <table class="wmn4 s-table s-table__hover">
+            <thead>
+                <tr>
+                    <th class="s-table--cell2" scope="col">Class</th>
+                    <th class="s-table--cell3" scope="col">Output</th>
+                    <th scope="col">Definition</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for atomic in site.data.product.atomic-definitions.overflow %}
+                    <tr class="fs-caption">
+                        <th scope="row"><code class="stacks-code bg-white">.{{ atomic.class }}</code></th>
+                        <td><code class="stacks-code bg-white">{{ atomic.output }}</code></td>
+                        <td>{{ atomic.define }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    {% header {element: 'h2', text: 'Examples'} %}
+    <div class="stacks-preview">
+{% highlight html linenos %}
+<div class="overflow-auto">…</div>
+<div class="overflow-x-auto">…</div>
+<div class="overflow-y-auto">…</div>
+<div class="overflow-hidden">…</div>
+<div class="overflow-x-hidden">…</div>
+<div class="overflow-y-hidden">…</div>
+<div class="overflow-scroll">…</div>
+<div class="overflow-x-scroll">…</div>
+<div class="overflow-y-scroll">…</div>
+<div class="overflow-visible">…</div>
+{% endhighlight %}
+        <div class="stacks-preview--example fs-caption ff-mono">
+            <div class="grid gs12 jc-space-between grid__allcells4 w100 fc-black-800 mb16">
+                <div class="grid fd-column bg-orange-100 p12 ba bc-orange-3 overflow-auto" style="height: 200px;">
+                    <span class="mb12">.overflow-auto</span>
+                    <div class="grid fd-column box-border w100 p12 bg-orange-300 ba baw1 bc-orange-3" style="min-width: 400px; min-height: 400px;"></div>
+                </div>
+                <div class="grid fd-column bg-orange-100 p12 ba bc-orange-3 overflow-x-auto" style="height: 200px;">
+                    <span class="mb12">.overflow-x-auto</span>
+                    <div class="grid fd-column box-border w100 p12 bg-orange-300 ba baw1 bc-orange-3" style="min-width: 400px; min-height: 400px;"></div>
+                </div>
+                <div class="grid fd-column bg-orange-100 p12 ba bc-orange-3 overflow-y-auto" style="height: 200px;">
+                    <span class="mb12">.overflow-y-auto</span>
+                    <div class="grid fd-column box-border w100 p12 bg-orange-300 ba baw1 bc-orange-3" style="min-width: 400px; min-height: 400px;"></div>
+                </div>
+            </div>
+
+            <div class="grid gs12 jc-space-between grid__allcells4 w100 fc-black-800 mb16">
+                <div class="grid fd-column bg-orange-100 p12 ba bc-orange-3 overflow-hidden" style="height: 200px;">
+                    <span class="mb12">.overflow-hidden</span>
+                    <div class="grid fd-column box-border w100 p12 bg-orange-300 ba baw1 bc-orange-3" style="min-width: 400px; min-height: 400px;"></div>
+                </div>
+                <div class="grid fd-column bg-orange-100 p12 ba bc-orange-3 overflow-x-hidden" style="height: 200px;">
+                    <span class="mb12">.overflow-x-hidden</span>
+                    <div class="grid fd-column box-border w100 p12 bg-orange-300 ba baw1 bc-orange-3" style="min-width: 400px; min-height: 400px;"></div>
+                </div>
+                <div class="grid fd-column bg-orange-100 p12 ba bc-orange-3 overflow-y-hidden" style="height: 200px;">
+                    <span class="mb12">.overflow-y-hidden</span>
+                    <div class="grid fd-column box-border w100 p12 bg-orange-300 ba baw1 bc-orange-3" style="min-width: 400px; min-height: 400px;"></div>
+                </div>
+            </div>
+
+            <div class="grid gs12 jc-space-between grid__allcells4 w100 fc-black-800 mb16">
+                <div class="grid fd-column bg-orange-100 p12 ba bc-orange-3 overflow-scroll" style="height: 200px;">
+                    <span class="mb12">.overflow-scroll</span>
+                    <div class="grid fd-column box-border w100 p12 bg-orange-300 ba baw1 bc-orange-3" style="min-width: 400px; min-height: 400px;"></div>
+                </div>
+                <div class="grid fd-column bg-orange-100 p12 ba bc-orange-3 overflow-x-scroll" style="height: 200px;">
+                    <span class="mb12">.overflow-x-scroll</span>
+                    <div class="grid fd-column box-border w100 p12 bg-orange-300 ba baw1 bc-orange-3" style="min-width: 400px; min-height: 400px;"></div>
+                </div>
+                <div class="grid fd-column bg-orange-100 p12 ba bc-orange-3 overflow-y-scroll" style="height: 200px;">
+                    <span class="mb12">.overflow-y-scroll</span>
+                    <div class="grid fd-column box-border w100 p12 bg-orange-300 ba baw1 bc-orange-3" style="min-width: 400px; min-height: 400px;"></div>
+                </div>
+            </div>
+
+            <div class="grid gs12 jc-space-between grid__allcells4 w100 fc-black-800">
+                <div class="grid fd-column bg-orange-100 p12 ba bc-orange-3 overflow-visible" style="height: 200px;">
+                    <span class="mb12">.overflow-visible</span>
+                    <div class="grid fd-column box-border w100 p12 bg-orange-300 ba baw1 bc-orange-3" style="min-width: 200px; min-height: 200px;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,173 @@
+---
+layout: page
+title: Positioning
+description: Atomic positioning classes allow you to quickly change an element’s position.
+---
+<section class="stacks-section">
+    {% header {element: 'h2', text: 'Classes'} %}
+    <div class="overflow-x-auto mb48">
+        <table class="wmn3 s-table s-table__hover">
+            <thead>
+                <tr>
+                    <th class="s-table--cell2" scope="col">Class</th>
+                    <th class="s-table--cell3" scope="col">Output</th>
+                    <th scope="col">Definition</th>
+                    <th class="s-table--cell2 ta-center" scope="col"><a class="s-link s-link__inherit" href="{{ "/product/guidelines/responsiveness" | relative_url }}">Responsive?</a></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for atomic in site.data.product.atomic-definitions.position %}
+                    <tr class="fs-caption">
+                        <th scope="row"><code class="stacks-code bg-white">.{{ atomic.class }}</code></th>
+                        <td><code class="stacks-code bg-white">{{ atomic.output }}</code></td>
+                        <td>{{ atomic.define }}</td>
+                        <td class="ta-center">
+                            {% if atomic.responsive %}
+                                {% svg /product/resources/svg-icons/Checkmark.svg width="18" height="18" aria-hidden="true" class="svg-icon iconCheckmark fc-green-500" %}
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    {% header {element: 'h2', text: 'Examples'} %}
+    <div class="stacks-preview">
+{% highlight html linenos %}
+<div class="ps-static">…</div>
+<div class="ps-relative">…</div>
+<div class="ps-absolute">…</div>
+<div class="ps-sticky">…</div>
+<div class="ps-fixed">…</div>
+<div class="ps-unset">…</div>
+{% endhighlight %}
+        <div class="stacks-preview--example overflow-y-scroll fs-caption ff-mono" style="height: 214px;">
+            <div class="grid w100 ps-relative">
+                <div class="ps-static p12 bg-orange-100 ba bc-orange-3" style="width: 120px; height: 180px;"><strong>.ps-static</strong></div>
+                <div class="ps-relative p12 bg-orange-100 ba bc-orange-3 t32 r24" style="width: 120px; height: 380px;"><strong>.ps-relative</strong><br/><br/>.t32<br/>r24</div>
+                <div class="ps-absolute p12 bg-orange-100 ba bc-orange-3 t48 r32" style="width: 120px; height: 180px;"><strong>.ps-absolute</strong><br/><br/>.t48<br/>.r32</div>
+                <div class="ps-sticky p12 bg-orange-100 ba bc-orange-3 t64" style="width: 120px; height: 180px;"><strong>.ps-sticky</strong><br/><br/>.t64</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="stacks-section">
+    {% header {element: 'h2', text: 'Coordinates'} %}
+    <p class="stacks-copy stacks-copy__lg">Our spacing units aren’t limited to margin and padding; they also apply to top, right, left, and bottom declarations. Combined with our position utility classes, you should be able to acheive absolutely-positioned layouts while adhering to Stacks’ spacing conventions.</p>
+
+    {% header {element: 'h3', text: 'Coordinate Classes'} %}
+    <div class="overflow-x-auto mb48">
+        <table class="wmn3 s-table s-table__hover">
+            <thead>
+                <tr>
+                    <th class="s-table--cell2" scope="col">Abbreviation</th>
+                    <th scope="col">Definition</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for spacing in site.data.product.spacing-definitions.position %}
+                  <tr>
+                      <th scope="row">{{ spacing.term }}</th>
+                      <td>{{ spacing.define }}</td>
+                  </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    {% header {element: 'h3', text: 'Coordinate Examples'} %}
+    <div class="stacks-preview">
+{% highlight html linenos %}
+<div class="ps-absolute t12 l12"> … </div>
+<div class="ps-absolute t48 r24"> … </div>
+<div class="ps-absolute t64 l64"> … </div>
+<div class="ps-absolute bn8 rn8"> … </div>
+{% endhighlight %}
+        <div class="stacks-preview--example ps-relative" style="height: 180px;">
+            <div class="ps-absolute w20 bg-orange-100 p12 ba bc-orange-3 ff-mono t12 l12">
+                .t12 .l12
+            </div>
+
+            <div class="ps-absolute w20 bg-orange-100 p12 ba bc-orange-3 ff-mono t48 r24">
+                .t48 .r24
+            </div>
+
+            <div class="ps-absolute w20 bg-orange-100 p12 ba bc-orange-3 ff-mono t64 l64">
+                .t64 .l64
+            </div>
+
+            <div class="ps-absolute w20 bg-orange-100 p12 ba bc-orange-3 ff-mono rn8 bn8">
+                .rn8 .bn8
+            </div>
+        </div>
+    </div>
+
+    {% header {element: 'h2', text: 'Positive Coordinates'} %}
+    <div class="overflow-x-auto mb48 mt24">
+        <table class="wmn3 s-table s-table__hover">
+            <thead>
+                <tr>
+                    <th scope="col">Prefix</th>
+                    <th scope="col" class="ta-center ff-mono">0</th>
+                    <th scope="col" class="ta-center ff-mono">2px</th>
+                    <th scope="col" class="ta-center ff-mono">4px</th>
+                    <th scope="col" class="ta-center ff-mono">6px</th>
+                    <th scope="col" class="ta-center ff-mono">8px</th>
+                    <th scope="col" class="ta-center ff-mono">12px</th>
+                    <th scope="col" class="ta-center ff-mono">16px</th>
+                    <th scope="col" class="ta-center ff-mono">24px</th>
+                    <th scope="col" class="ta-center ff-mono">32px</th>
+                    <th scope="col" class="ta-center ff-mono">48px</th>
+                    <th scope="col" class="ta-center ff-mono">64px</th>
+                    <th scope="col" class="ta-center ff-mono">100%</th>
+                </tr>
+            </thead>
+            <tbody>
+              {% for class in site.data.product.spacing-classes.position %}
+              {% assign prefix-value = class.values | split: ", " %}
+                  <tr>
+                      <th scope="row" class="-cell1">{{ class.prefix }}</th>
+                      {% for values in prefix-value %}
+                       <td class="ta-center"><code class="fs1">.{{ class.prefix }}{{ values }}</code></td>
+                      {% endfor %}
+                  </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    {% header {element: 'h2', text: 'Negative Coordinates'} %}
+    <div class="overflow-x-auto mb48 mt24">
+        <table class="wmn3 s-table s-table__hover">
+            <thead>
+                <tr>
+                    <th scope="col">Prefix</th>
+                    <th scope="col" class="ta-center ff-mono">-2px</th>
+                    <th scope="col" class="ta-center ff-mono">-4px</th>
+                    <th scope="col" class="ta-center ff-mono">-6px</th>
+                    <th scope="col" class="ta-center ff-mono">-8px</th>
+                    <th scope="col" class="ta-center ff-mono">-12px</th>
+                    <th scope="col" class="ta-center ff-mono">-16px</th>
+                    <th scope="col" class="ta-center ff-mono">-24px</th>
+                    <th scope="col" class="ta-center ff-mono">-32px</th>
+                    <th scope="col" class="ta-center ff-mono">-48px</th>
+                    <th scope="col" class="ta-center ff-mono">-64px</th>
+                    <th scope="col" class="ta-center ff-mono">-100%</th>
+                </tr>
+            </thead>
+            <tbody>
+              {% for class in site.data.product.spacing-classes.negative-position %}
+              {% assign prefix-value = class.values | split: ", " %}
+                  <tr>
+                      <th scope="row" class="-cell1">{{ class.prefix }}</th>
+                      {% for values in prefix-value %}
+                       <td class="ta-center"><code class="fs1">.{{ class.prefix }}{{ values }}</code></td>
+                      {% endfor %}
+                  </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</section>

@@ -78,7 +78,7 @@ module.exports = function(grunt) {
         },
         // Clean the icons directory to prepare for copying from the node dependency
         clean: {
-            icons: ['docs/resources/svg-icons/'],
+            icons: ['docs/product/resources/svg-icons/'],
             partials: ['lib/css/stacks-static.css', 'lib/css/stacks-dynamic.css'],
         },
         // Copy files out of node_modules so Jekyll can use them
@@ -87,14 +87,14 @@ module.exports = function(grunt) {
                 expand: true,
                 cwd: 'node_modules/@stackoverflow/stacks-icons/build/lib',
                 src: '**',
-                dest: 'docs/resources/svg-icons/',
+                dest: 'docs/product/resources/svg-icons/',
                 filter: 'isFile',
             },
             data: {
                 expand: true,
                 cwd: 'node_modules/@stackoverflow/stacks-icons/build',
                 src: 'icons.yml',
-                dest: 'docs/_data/',
+                dest: 'docs/_data/product/',
                 filter: 'isFile',
             },
         },

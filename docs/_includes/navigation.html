@@ -1,50 +1,47 @@
-<nav class="grid fd-column stacks-nav js-stacks-nav" role="navigation">
-    <header class="grid--cell p24 ta-center">
-        <a class="mb24 d-inline-block" href="{{ "/" | relative_url }}" title="{{ site.title }}">
-            {% svg /resources/svg-icons/LogoGlyphMd.svg width="32" height="37" aria-hidden="true" class="svg-icon iconLogoGlyphMd native" %}
-        </a>
-        {% include search.html %}
-    </header>
+<div class="grid--cell ws2 sm:w100 md:w-auto md:d-none js-navigation">
+    <div class="overflow-y-scroll bg-white z-nav py12 ps-fixed wmn2 t64 b0 br bc-black-2 sm:w100 sm:pb0">
+        <div class="d-none sm:d-block">
+            <div class="grid gs24 ai-center jc-center">
+                {% if site.data.nav[0] %}
+                    {% for item in site.data.nav %}
+                        {% assign pageSlug = page.url | replace:'/',' ' | truncatewords: 1 | remove:'...' %}
 
-    <div class="grid--cell overflow-y-auto">
-        <ul id="nav" role="navigation" class="grid gs4 gsy fd-column stacks-nav--menu">
-            {% for entry in site.data.nav %}
-                {% assign sublinks = entry.sublinks %}
-                {% assign submenu-active = "" %}
+                        <a class="grid--cell {% if item.url contains pageSlug %}fc-white bg-orange-400 bar-pill px16 py6 {% endif %} s-link s-link__muted" href="{{ item.url | relative_url }}">{{ item.title }}</a>
+                    {% endfor %}
+                {% endif %}
 
-                {% if sublinks %}
-                    <li class="grid fd-column stacks-nav--item">
-                        <div class="grid--cell stacks-nav--category" title="{{ entry.title }}"> {{ entry.title }}</div>
-                        <ul class="grid fd-column stacks-nav--subnav">
-                            {% for sublink in sublinks %}
-                                {% assign pageURL = page.url | remove_first:"/" | remove: ".html" %}
-                                {% if pageURL == sublink.url %}
-                                  {% assign submenu-active = " is-active" %}
-                                  {% assign submenu-container = "" %}
-                                {% else %}
-                                  {% assign submenu-active = "" %}
-                                  {% assign submenu-container = "" %}
+                <a class="grid--cell fc-black-200" href="https://github.com/StackExchange/Stacks">
+                    {% svg /product/resources/svg-icons/GitHub.svg width="24" height="24" aria-hidden="true" %}
+                </a>
+            </div>
+        </div>
+
+        {% if site.data.nav[0] %}
+            {% for item in site.data.nav %}
+                {% assign pageSlug = page.url | replace:'/',' ' | truncatewords: 1 | remove:'...' %}
+
+                {% if item.url contains pageSlug %}
+                    {% if item.sublinks[0] %}
+                        <ul id="nav" class="list-reset">
+                        {% for entry in item.sublinks %}
+                            <li class="mb16">
+                                <div class="px16 py6 fw-bold tt-uppercase fs-fine mt16">
+                                    {{ entry.title }}
+                                </div>
+                                {% if entry.subsublinks[0] %}
+                                    <ul class="list-reset">
+                                        {% for subentry in entry.subsublinks %}
+                                            {% assign pageURL = page.url | remove_first:"/" | remove: ".html" %}
+                                            <li><a class="d-block py6 px16 s-link s-link__muted w100 {% if pageURL == subentry.url %}bg-orange-400 fc-white{% endif %}" href="{{ subentry.url | relative_url }}">{{ subentry.title }}</a></li>
+                                        {% endfor %}
+                                    </ul>
                                 {% endif %}
-                                <li class="grid stacks-nav--item">
-                                    <a class="w100 stacks-nav--link{{ submenu-active }}" href="{{ sublink.url | relative_url }}" title="{{ sublink.title }}">{{ sublink.title }}</a>
-                                    {{ submenu-container }}
-                                </li>
-                            {% endfor %}
+                            </li>
+                        {% endfor %}
                         </ul>
-                    </li>
-                {% else %}
-                    <li class="stacks-nav--item">
-                        <a class="-link" href="{{ entry.url | relative_url }}" title="{{ entry.title }}">{{ entry.title }}</a>
-                    </li>
+                    {% endif %}
                 {% endif %}
             {% endfor %}
-        </ul>
+        {% endif %}
     </div>
-
-    <div class="grid--cell mt-auto stacks-nav--footer">
-        <div class="grid jc-space-between py16 px24">
-            <a class="grid--cell stacks-nav--link" href="https://github.com/StackExchange/Stacks" title="Contribute on GitHub">GitHub</a>
-            <a class="grid--cell stacks-nav--link" href="https://github.com/StackExchange/Stacks/issues/new" title="Something wrong? Missing? File an issue on GitHub">Report an issue</a>
-        </div>
-    </div>
-</nav>
+</div>
