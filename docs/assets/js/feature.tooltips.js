@@ -1,6 +1,10 @@
 $(document).ready(function() {
     var trigger = $(".js-tooltip-trigger");
     var tooltip = $(".js-tooltip");
+    var tipUpdate = $(".js-tooltip-update");
+    var tipPosition = $(".js-tooltip-position-menu");
+    var tipMethod = $(".js-tooltip-method-menu");
+    var tipDirClass = ("s-nubbin__tl s-nubbin__tc s-nubbin__tr s-nubbin__rt s-nubbin__rc s-nubbin__rb s-nubbin__bl s-nubbin__bc s-nubbin__br s-nubbin__lt s-nubbin__lc s-nubbin__lr");
 
     trigger.on({
         mouseover: function() {
@@ -38,4 +42,18 @@ $(document).ready(function() {
             }
         }
     });
+
+    tipUpdate.on("click", function(e) {
+        e.stopPropagation;
+        e.preventDefault;
+
+        var position = tipPosition.find(":selected").data("class");
+        var method = tipMethod.find(":selected").data("method");
+
+
+        tooltip
+            .removeClass(tipDirClass)
+            .addClass(position)
+            .data("method", method);
+    })
 });
