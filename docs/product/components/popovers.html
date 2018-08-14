@@ -1,0 +1,128 @@
+---
+layout: page
+title: Popovers
+description: Popovers are small content containers that provide a contextual overlay.
+---
+
+<section class="stacks-section">
+    {% header {element: 'h2', text: 'Examples'} %}
+    <p class="stacks-copy">Popovers can be presented in any direction you choose. Popover modifiers are named by the direction in which they’ll appear. The primary direction (top, right, bottom, left) will appear first, followed by the secondary (center(default), top, right, bottom, left). For example, a popover with <code class="stacks-code">.popover__bottom</code> applied will appear centered below its originating element. <code class="stacks-code">.popover__top-right</code> will appear above the element and to the right.</p>
+    <div class="stacks-preview">
+{% highlight html linenos %}
+<div class="s-popover">
+    …
+</div>
+{% endhighlight %}
+        <div class="stacks-preview--example">
+            <div class="grid gs16 grid__allcells4 fw-wrap">
+                <div class="grid--cell ps-relative">
+                    <div class="s-popover s-popover__top s-arrow__tc ps-relative" role="menu" aria-hidden="false">
+                        <div class="p12">
+                            <p class="ff-mono mb8">.s-popover__top</p>
+                            <p class="mb0">Popover appears centered above the trigger</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="grid--cell ps-relative">
+                    <div class="s-popover s-popover__top-left s-arrow__tl ps-relative" role="menu" aria-hidden="false">
+                        <div class="p12">
+                            <p class="ff-mono mb8">.s-popover__top-left</p>
+                            <p class="mb0">Popover appears above and to the left of trigger</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="grid--cell ps-relative">
+                    <div class="s-popover s-popover__top-right s-arrow__tr ps-relative" role="menu" aria-hidden="false">
+                        <div class="p12">
+                            <p class="ff-mono mb8">.s-popover__top-right</p>
+                            <p class="mb0">Popover appears above and to the right of trigger</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="grid--cell ps-relative">
+                    <div class="s-popover s-popover__bottom s-arrow__bc ps-relative" role="menu" aria-hidden="false">
+                        <div class="p12">
+                            <p class="ff-mono mb8">.s-popover__bottom</p>
+                            <p class="mb0">Popover appears centered below the trigger</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="grid--cell ps-relative">
+                    <div class="s-popover s-popover__bottom-left s-arrow__bl ps-relative" role="menu" aria-hidden="false">
+                        <div class="p12">
+                            <p class="ff-mono mb8">.s-popover__bottom-left</p>
+                            <p class="mb0">Popover appears below and to the left of trigger</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="grid--cell ps-relative">
+                    <div class="s-popover s-popover__bottom-right s-arrow__br ps-relative" role="menu" aria-hidden="false">
+                        <div class="p12">
+                            <p class="ff-mono mb8">.s-popover__bottom-right</p>
+                            <p class="mb0">Popover appears below and to the right of trigger</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="grid--cell ps-relative">
+                    <div class="s-popover s-popover__right s-arrow__rc ps-relative" role="menu" aria-hidden="false">
+                        <div class="p12">
+                            <p class="ff-mono mb8">.s-popover__right</p>
+                            <p class="mb0">Popover appears to the right of the trigger centered vertically.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="grid--cell ps-relative">
+                    <div class="s-popover s-popover__right-top s-arrow__rt ps-relative" role="menu" aria-hidden="false">
+                        <div class="p12">
+                            <p class="ff-mono mb8">.s-popover__right-top</p>
+                            <p class="mb0">Popover appears to the right of the trigger aligned to the top vertically.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="grid--cell ps-relative">
+                    <div class="s-popover s-popover__right-bottom s-arrow__rb ps-relative" role="menu" aria-hidden="false">
+                        <div class="p12">
+                            <p class="ff-mono mb8">.s-popover__right-bottom</p>
+                            <p class="mb0">Popover appears to the right of the trigger aligned to the bottom vertically.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="grid--cell ps-relative">
+                    <div class="s-popover s-popover__left s-arrow__lc ps-relative" role="menu" aria-hidden="false">
+                        <div class="p12">
+                            <p class="ff-mono mb8">.s-popover__left</p>
+                            <p class="mb0">Popover appears to the left of the trigger centered vertically.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="grid--cell ps-relative">
+                    <div class="s-popover s-popover__left-top s-arrow__lt ps-relative" role="menu" aria-hidden="false">
+                        <div class="p12">
+                            <p class="ff-mono mb8">.s-popover__left-top</p>
+                            <p class="mb0">Popover appears to the left of the trigger aligned to the top vertically.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="grid--cell ps-relative">
+                    <div class="s-popover s-popover__left-bottom s-arrow__lb ps-relative" role="menu" aria-hidden="false">
+                        <div class="p12">
+                            <p class="ff-mono mb8">.s-popover__left-bottom</p>
+                            <p class="mb0">Popover appears to the left of the trigger aligned to the bottom vertically.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="ps-relative">
+    <button class="s-btn s-btn__primary js-trigger" id="popoverTrigger1" aria-haspopup="true" aria-controls="popoverTarget1" aria-expanded="false">Show a popover</button>
+    <div class="s-popover s-popover__right s-arrow__lc wmx4 js-popover" id="popoverTarget1" role="menu" aria-hidden="true" aria-labeledby="popoverTrigger1" data-method="click" data-position="right">
+        <p class="p12">
+            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+        </p>
+    </div>
+</div>
+
+<script src="{{ "/assets/js/feature.popups.js" | relative_url }}"></script>

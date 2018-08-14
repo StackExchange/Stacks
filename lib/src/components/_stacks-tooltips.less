@@ -7,11 +7,17 @@
 //  visit https://stackoverflow.design/
 //
 //  TABLE OF CONTENTS
+//  • VARIABLES
 //  • BASE STYLE
-//  • LOCATIONS
 //  • ARROWS
-//  • ALTERNATE VERSIONS
+//  • LOCATIONS
 //
+//  ============================================================================
+//  $   BASE STYLE
+//  ----------------------------------------------------------------------------
+@tooltip-background:  fade(@black-900,95%);
+
+
 //  ============================================================================
 //  $   BASE STYLE
 //  ----------------------------------------------------------------------------
@@ -25,7 +31,7 @@
     opacity: 0;
     padding: @su8;
     border-radius: @br-sm;
-    background-color: fade(@black-900,95%);
+    background-color: @tooltip-background;
     box-shadow: @bs-sm;
     color: @white;
     font-size: @fs-caption;
@@ -35,200 +41,76 @@
         opacity: 1;
         z-index: @zi-tooltips;
     }
-
-    //    Color tooltip nubs
-    &.s-nubbin__tl:after,
-    &.s-nubbin__tc:after,
-    &.s-nubbin__tr:after,
-    &.s-nubbin__bl:after,
-    &.s-nubbin__bc:after,
-    &.s-nubbin__br:after,
-    &.s-nubbin__lt:after,
-    &.s-nubbin__lc:after,
-    &.s-nubbin__lb:after,
-    &.s-nubbin__rt:after,
-    &.s-nubbin__rc:after,
-    &.s-nubbin__rb:after {
-        display: none;
-    }
-
-    &.s-nubbin__tl:before,
-    &.s-nubbin__tc:before,
-    &.s-nubbin__tr:before {
-        border-bottom-color: fade(@black-900,95%);
-    }
-
-    &.s-nubbin__bl:before,
-    &.s-nubbin__bc:before,
-    &.s-nubbin__br:before {
-        border-top-color: fade(@black-900,95%);
-    }
-
-    &.s-nubbin__lt:before,
-    &.s-nubbin__lc:before,
-    &.s-nubbin__lb:before {
-        border-right-color: fade(@black-900,95%);
-    }
-
-    &.s-nubbin__rt:before,
-    &.s-nubbin__rc:before,
-    &.s-nubbin__rb:before {
-        border-left-color: fade(@black-900,95%);
-    }
 }
-
 
 //  ============================================================================
 //  $   ARROWS
-//      These are used univerally between all popover-like components such as
-//      tooltips, popovers, and menus.
+//      The base arrow styles are stored in their own Less file as they're used
+//      by multiple components: tooltips, popovers, and dropdowns. This only
+//      provides tooltip specific styles for arrows.
+//  ----------------------------------------------------------------------------
+.s-tooltip {
+    //  $$  HIDE EXTRA ARROW
+    //      By default, .s-arrow provides two arrows with a :before and :after
+    //      pseudo elements. This allows us to fake a border around arrows.
+    //      Since we don't need a border for tooltips, we hide it.
+    //  ------------------------------------------------------------------------
+    &.s-arrow__tl,
+    &.s-arrow__tc,
+    &.s-arrow__tr,
+    &.s-arrow__bl,
+    &.s-arrow__bc,
+    &.s-arrow__br,
+    &.s-arrow__lt,
+    &.s-arrow__lc,
+    &.s-arrow__lb,
+    &.s-arrow__rt,
+    &.s-arrow__rc,
+    &.s-arrow__rb {
+        &:before {
+            border-width: @su6;
+        }
+        &:after {
+            display: none;
+        }
+    }
+
+    //  $$  ARROW COLORS
+    //  ------------------------------------------------------------------------
+    //  --  TOP
+    &.s-arrow__tl:before,
+    &.s-arrow__tc:before,
+    &.s-arrow__tr:before {
+        top: -(@su6);
+        border-bottom-color: @tooltip-background;
+    }
+
+    //  --  BOTTOM
+    &.s-arrow__bl:before,
+    &.s-arrow__bc:before,
+    &.s-arrow__br:before {
+        bottom: -(@su6);
+        border-top-color: @tooltip-background;
+    }
+
+    //  --  LEFT
+    &.s-arrow__lt:before,
+    &.s-arrow__lc:before,
+    &.s-arrow__lb:before {
+        left: -(@su6);
+        border-right-color: @tooltip-background;
+    }
+
+    //  --  RIGHT
+    &.s-arrow__rt:before,
+    &.s-arrow__rc:before,
+    &.s-arrow__rb:before {
+        right: -(@su6);
+        border-left-color: @tooltip-background;
+    }
+}
+
+
 //  ============================================================================
-//  $$  Universal Arrow Style
+//  $   LOCATIONS
 //  ----------------------------------------------------------------------------
-.s-nubbin__tl,
-.s-nubbin__tc,
-.s-nubbin__tr,
-.s-nubbin__bl,
-.s-nubbin__bc,
-.s-nubbin__br,
-.s-nubbin__lt,
-.s-nubbin__lc,
-.s-nubbin__lb,
-.s-nubbin__rt,
-.s-nubbin__rc,
-.s-nubbin__rb {
-    &:before,
-    &:after {
-        content: "";
-        position: absolute;
-        width: @su12;
-        height: @su12;
-        border: @su6 solid transparent;
-    }
-}
-
-//  $$  Top Arrows
-//  ----------------------------------------------------------------------------
-.s-nubbin__tl,
-.s-nubbin__tc,
-.s-nubbin__tr {
-    margin-top: @su8;
-
-    &:before,
-    &:after {
-        height: @su8;
-        border-top: none;
-    }
-    &:before { top: -(@su8); }
-    &:after  { top: -(@su8 + 1); }
-}
-
-//  $$  Bottom Arrows
-//  ----------------------------------------------------------------------------
-.s-nubbin__bl,
-.s-nubbin__bc,
-.s-nubbin__br {
-    margin-bottom: @su8;
-
-    &:before,
-    &:after {
-        height: @su8;
-        border-bottom: none;
-    }
-    &:before { bottom: -(@su8); }
-    &:after  { bottom: -(@su8 + 1); }
-}
-
-//  $$  Positioning: Top & Bottom Left
-//  ----------------------------------------------------------------------------
-.s-nubbin__tl,
-.s-nubbin__bl {
-    &:before,
-    &:after {
-        left: @su12;
-    }
-}
-
-//  $$  Positioning: Top & Bottom Center
-//  ----------------------------------------------------------------------------
-.s-nubbin__tc,
-.s-nubbin__bc {
-    &:before,
-    &:after {
-        left: 50%;
-        margin-left: -(@su8);
-    }
-}
-
-//  $$  Positioning: Top & Bottom Right
-//  ----------------------------------------------------------------------------
-.s-nubbin__tr,
-.s-nubbin__br {
-    &:before,
-    &:after {
-        right: @su12;
-    }
-}
-
-//  $$  Left Arrows
-//  ----------------------------------------------------------------------------
-.s-nubbin__lt,
-.s-nubbin__lc,
-.s-nubbin__lb {
-    margin-left: @su8;
-
-    &:before,
-    &:after {
-        width: @su8;
-        border-left: none;
-    }
-    &:before { left: -(@su8); }
-    &:after  { left: -(@su8 + 1); }
-}
-
-//  $$  Right Arrows
-//  ----------------------------------------------------------------------------
-.s-nubbin__rt,
-.s-nubbin__rc,
-.s-nubbin__rb {
-    margin-right: @su8;
-
-    &:before,
-    &:after {
-        width: @su8;
-        border-right: none;
-    }
-    &:before { right: -(@su8); }
-    &:after  { right: -(@su8 + 1); }
-}
-
-//  $$  Positioning: Left & Right Top
-//  ----------------------------------------------------------------------------
-.s-nubbin__lt,
-.s-nubbin__rt {
-    &:before,
-    &:after {
-        top: @su8;
-    }
-}
-
-//  $$  Positioning: Left & Right Center
-//  ----------------------------------------------------------------------------
-.s-nubbin__lc,
-.s-nubbin__rc {
-    &:before,
-    &:after {
-        top: 50%;
-        margin-top: -(@su6);
-    }
-}
-
-//  $$  Positioning: Left & Right Bottom
-//  ----------------------------------------------------------------------------
-.s-nubbin__lb,
-.s-nubbin__rb {
-    &:before,
-    &:after {
-        bottom: @su8;
-    }
-}

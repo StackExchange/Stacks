@@ -1,0 +1,176 @@
+//
+//  STACK OVERFLOW
+//  ARROWS
+//
+//  This CSS comes from Stacks, our CSS & Pattern library for rapidly building
+//  Stack Overflow. For documentation of all these classes and how to contribute,
+//  visit https://stackoverflow.design/
+//
+//  TABLE OF CONTENTS
+//  • BASE STYLE
+//  • LOCATIONS
+//      • TOP
+//      • BOTTOM
+//      • TOP & BOTTOM DIRECTIONS (Left, Center, Right)
+//      • LEFT
+//      • RIGHT
+//      • LEFT & RIGHT DIRECTIONS (Top, Center, Bottom)
+//
+//
+//  ============================================================================
+//  $   VARIABLES
+//  ----------------------------------------------------------------------------
+@arrow-width:                @su8;
+@arrow-margin-space:         @su8;
+
+//  ============================================================================
+//  $   BASE STYLE
+//      Sets the base arrow style for tooltips, popovers, and dropdowns.
+//  ----------------------------------------------------------------------------
+.s-arrow__tl,
+.s-arrow__tc,
+.s-arrow__tr,
+.s-arrow__bl,
+.s-arrow__bc,
+.s-arrow__br,
+.s-arrow__lt,
+.s-arrow__lc,
+.s-arrow__lb,
+.s-arrow__rt,
+.s-arrow__rc,
+.s-arrow__rb {
+    &:before,
+    &:after {
+        content: "";
+        position: absolute;
+        border-width: @arrow-width;
+        border-style: solid;
+        border-color: transparent;
+    }
+}
+
+
+//  ============================================================================
+//  $   ARROW LOCATIONS
+//  ============================================================================
+//  $$  TOP
+//  ----------------------------------------------------------------------------
+.s-arrow__tl,
+.s-arrow__tc,
+.s-arrow__tr {
+    margin-top: @arrow-margin-space;
+
+    &:before,
+    &:after {
+        border-top: none;
+    }
+    &:before { top: -(@arrow-width); }
+    &:after  { top: -(@arrow-width - 1); }
+}
+
+//  $$  BOTTOM
+//  ----------------------------------------------------------------------------
+.s-arrow__bl,
+.s-arrow__bc,
+.s-arrow__br {
+    margin-bottom: @arrow-margin-space;
+
+    &:before,
+    &:after {
+        border-bottom: none;
+    }
+    &:before { bottom: -(@arrow-width); }
+    &:after  { bottom: -(@arrow-width - 1); }
+}
+
+//  $$  TOP & BOTTOM LEFT
+//  ----------------------------------------------------------------------------
+.s-arrow__tl,
+.s-arrow__bl {
+    &:before,
+    &:after {
+        left: @arrow-width;
+    }
+}
+
+//  $$  TOP & BOTTOM CENTER
+//  ----------------------------------------------------------------------------
+.s-arrow__tc,
+.s-arrow__bc {
+    &:before,
+    &:after {
+        left: 50%;
+        margin-left: -(@arrow-width);
+    }
+}
+
+//  $$  TOP & BOTTOM RIGHT
+//  ----------------------------------------------------------------------------
+.s-arrow__tr,
+.s-arrow__br {
+    &:before,
+    &:after {
+        right: @arrow-width;
+    }
+}
+
+//  $$  LEFT
+//  ----------------------------------------------------------------------------
+.s-arrow__lt,
+.s-arrow__lc,
+.s-arrow__lb {
+    margin-left: @arrow-margin-space;
+
+    &:before,
+    &:after {
+        border-left: none;
+    }
+    &:before { left: -(@arrow-width); }
+    &:after  { left: -(@arrow-width - 1); }
+}
+
+//  $$  RIGHT
+//  ----------------------------------------------------------------------------
+.s-arrow__rt,
+.s-arrow__rc,
+.s-arrow__rb {
+    margin-right: @arrow-margin-space;
+
+    &:before,
+    &:after {
+        border-right: none;
+    }
+    &:before { right: -(@arrow-width); }
+    &:after  { right: -(@arrow-width - 1); }
+}
+
+//  $$  LEFT & RIGHT TOP
+//  ----------------------------------------------------------------------------
+.s-arrow__lt,
+.s-arrow__rt {
+    &:before,
+    &:after {
+        top: @arrow-width;
+    }
+}
+
+//  $$  LEFT & RIGHT CENTER
+//  ----------------------------------------------------------------------------
+.s-arrow__lc,
+.s-arrow__rc {
+    &:before,
+    &:after {
+        top: 50%;
+        margin-top: -(@arrow-width);
+    }
+}
+
+//  $$  LEFT & RIGHT BOTTOM
+//  ----------------------------------------------------------------------------
+.s-arrow__lb,
+.s-arrow__rb {
+    &:before,
+    &:after {
+        bottom: @arrow-width;
+    }
+}

@@ -1,0 +1,101 @@
+//
+//  STACK OVERFLOW
+//  POPOVERS
+//
+//  This CSS comes from Stacks, our CSS & Pattern library for rapidly building
+//  Stack Overflow. For documentation of all these classes and how to contribute,
+//  visit https://stackoverflow.design/
+//
+//  TABLE OF CONTENTS
+//  • VARIABLES
+//  • BASE STYLE
+//  • ARROWS
+//  • LOCATIONS
+//
+//  ============================================================================
+//  $   VARIABLES
+//  ----------------------------------------------------------------------------
+@popover-background:    @white;
+
+
+//  ============================================================================
+//  $   BASE STYLES
+//  ----------------------------------------------------------------------------
+.s-popover {
+    visibility: hidden;
+    position: absolute;
+    min-width: 12rem;
+    max-width: 24rem;
+    width: 100%;
+    z-index: @zi-hide;
+    opacity: 0;
+    border-radius: @br-sm;
+    border: 1px solid @black-075;
+    background-color: @white;
+    box-shadow: @bs-sm;
+    color: @fc-dark;
+    font-size: @fs-body1;
+
+    &[aria-hidden="false"] {
+        visibility: visible;
+        opacity: 1;
+        z-index: @zi-popovers;
+
+    }
+}
+
+//  ============================================================================
+//  $   ARROWS
+//      The base arrow styles are stored in their own Less file as they're used
+//      by multiple components: tooltips, popovers, and dropdowns. This only
+//      provides tooltip specific styles for arrows.
+//  ----------------------------------------------------------------------------
+.s-popover {
+    //  --  TOP
+    &.s-arrow__tl,
+    &.s-arrow__tc,
+    &.s-arrow__tr {
+        &:before {
+            border-bottom-color: @black-100;
+        }
+        &:after {
+            border-bottom-color: @popover-background;
+        }
+    }
+
+    //  --  BOTTOM
+    &.s-arrow__bl,
+    &.s-arrow__bc,
+    &.s-arrow__br {
+        &:before {
+            border-top-color: @black-100;
+        }
+        &:after {
+            border-top-color: @popover-background;
+        }
+    }
+
+    //  --  LEFT
+    &.s-arrow__lt,
+    &.s-arrow__lc,
+    &.s-arrow__lb {
+        &:before {
+            border-right-color: @black-100;
+        }
+        &:after {
+            border-right-color: @popover-background;
+        }
+    }
+
+    //  --  RIGHT
+    &.s-arrow__rt,
+    &.s-arrow__rc,
+    &.s-arrow__rb {
+        &:before {
+            border-left-color: @black-100;
+        }
+        &:after {
+            border-left-color: @popover-background;
+        }
+    }
+}
