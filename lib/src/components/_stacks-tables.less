@@ -131,14 +131,34 @@
         td {
             border: 1px solid @brc-lighter;
         }
-
         thead th {
             border-bottom-color: @brc-darker;
         }
-
         tbody + tbody {
             border-top: 2px solid @brc-darker;
         }
+    }
+    &.s-table__bordered-x {
+        th:not(:last-child),
+        td:not(:last-child) {
+            border-right: 1px solid @brc-lighter;
+        }
+    }
+    &.s-table__borderless-y {
+        th,
+        td {
+            border-top: none;
+        }
+        thead th {
+            border-bottom: none;
+        }
+
+        tbody + tbody {
+            border-top: none;
+        }
+    }
+    &.s-table__outlined {
+        border: 1px solid @brc-lighter;
     }
 
     //  $$  Vertical Alignment
@@ -232,7 +252,6 @@
                 bottom: -1px;
             }
         }
-
     }
     tr:last-child td {
         border-bottom: 1px solid @brc-lighter;

@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Tables
-description: The base style has minimal styling applied to it. It establishes preferred padding, font-size, and font-weight treatments. To enhance the look of the table, apply any additional classes listed below within the Modifiers section.
+description: The base style has minimal styling applied to it. It establishes preferred padding, font-size, and font-weight treatments. To enhance the look of the table, apply any additional classes listed below.
 ---
 
 <section class="stacks-section">
@@ -72,34 +72,15 @@ description: The base style has minimal styling applied to it. It establishes pr
 </section>
 
 <section class="stacks-section">
-    {% header {element: 'h2', text: 'Modifiers'} %}
-
+    {% header {element: 'h2', text: 'Borders'} %}
     {% header {element: 'h3', text: 'Bordered'} %}
     <p class="stacks-copy">When tables have multiple columns, it is suggested to add row borders to help the user more easily track the table data. This is suggested for data tables such as found within reports.</p>
-
     <div class="stacks-preview">
 {% highlight html linenos %}
 <table class="s-table s-table__bordered">
-<thead>
-    <tr>
-        <th scope="col"></th>
-        <th scope="col">First Name</th>
-        <th scope="col">Last Name</th>
-        <th scope="col">Username</th>
-    </tr>
-</thead>
-<tbody>
-    <tr>
-        <th scope="row">1</th>
-        <td>Aaron</td>
-        <td>S.</td>
-        <td>@aarons</td>
-    </tr>
     …
-</tbody>
 </table>
 {% endhighlight %}
-
         <div class="stacks-preview--example">
             <table class="s-table s-table__bordered">
                 <thead>
@@ -139,34 +120,16 @@ description: The base style has minimal styling applied to it. It establishes pr
             </table>
         </div>
     </div>
-
-    {% header {element: 'h3', text: 'Hover Rows'} %}
-    <p class="stacks-copy">When tables have multiple columns, add in a row hover can further help isolate the data for users. This is suggested for data tables such as found within reports.</p>
-
+    {% header {element: 'h3', text: 'Vertical Borders'} %}
+    <p class="stacks-copy">When table rows have different types of data (eg. user card, text string, graphic, links), it can help to add a vertical border to helped organize and distinguish columns.</p>
     <div class="stacks-preview">
 {% highlight html linenos %}
-<table class="s-table s-table__hover">
-    <thead>
-        <tr>
-            <th scope="col"></th>
-            <th scope="col">First Name</th>
-            <th scope="col">Last Name</th>
-            <th scope="col">Username</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <th scope="row">1</th>
-            <td>Aaron</td>
-            <td>S.</td>
-            <td>@aarons</td>
-        </tr>
-        …
-    </tbody>
+<table class="s-table s-table__bordered-x">
+    …
 </table>
 {% endhighlight %}
         <div class="stacks-preview--example">
-            <table class="s-table s-table__hover">
+            <table class="s-table s-table__bordered-x">
                 <thead>
                     <tr>
                         <th scope="col"></th>
@@ -204,30 +167,110 @@ description: The base style has minimal styling applied to it. It establishes pr
             </table>
         </div>
     </div>
-
+    {% header {element: 'h3', text: 'No Horizontal Borders'} %}
+    <p class="stacks-copy">This removes the default horizontal borders included on table headers and cells.</p>
+    <div class="stacks-preview">
+{% highlight html linenos %}
+<table class="s-table s-table__borderless-y">
+    …
+</table>
+{% endhighlight %}
+        <div class="stacks-preview--example">
+            <table class="s-table s-table__borderless-y">
+                <thead>
+                    <tr>
+                        <th scope="col"></th>
+                        <th scope="col">First Name</th>
+                        <th scope="col">Last Name</th>
+                        <th scope="col">Username</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>Aaron</td>
+                        <td>S.</td>
+                        <td>@aarons</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">2</th>
+                        <td>Joshua</td>
+                        <td>H.</td>
+                        <td>@joshuah</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">3</th>
+                        <td>Paweł</td>
+                        <td>L.</td>
+                        <td>@pawełl</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">4</th>
+                        <td>Ted</td>
+                        <td>G.</td>
+                        <td>@so-ted</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    {% header {element: 'h3', text: 'Outlined'} %}
+    <p class="stacks-copy">Creates a border around the outside of the table. Useful to separate a table from other stuff on a page.</p>
+    <div class="stacks-preview">
+{% highlight html linenos %}
+<table class="s-table s-table__outlined">
+    …
+</table>
+{% endhighlight %}
+        <div class="stacks-preview--example">
+            <table class="s-table s-table__outlined">
+                <thead>
+                    <tr>
+                        <th scope="col"></th>
+                        <th scope="col">First Name</th>
+                        <th scope="col">Last Name</th>
+                        <th scope="col">Username</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>Aaron</td>
+                        <td>S.</td>
+                        <td>@aarons</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">2</th>
+                        <td>Joshua</td>
+                        <td>H.</td>
+                        <td>@joshuah</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">3</th>
+                        <td>Paweł</td>
+                        <td>L.</td>
+                        <td>@pawełl</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">4</th>
+                        <td>Ted</td>
+                        <td>G.</td>
+                        <td>@so-ted</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+<section class="stacks-section">
+    {% header {element: 'h2', text: 'Spacing'} %}
     {% header {element: 'h3', text: 'Condensed'} %}
     <p class="stacks-copy">The condensed table does pretty much what it sounds like it would do: condenses the padding and line-height so that the table has a tighter feeling to it. This is suggested for data tables such as found within reports that have multiple records.</p>
 
     <div class="stacks-preview">
 {% highlight html linenos %}
 <table class="s-table s-table__condensed">
-    <thead>
-        <tr>
-            <th scope="col"></th>
-            <th scope="col">First Name</th>
-            <th scope="col">Last Name</th>
-            <th scope="col">Username</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <th scope="row">1</th>
-            <td>Aaron</td>
-            <td>S.</td>
-            <td>@aarons</td>
-        </tr>
-        …
-    </tbody>
+    …
 </table>
 {% endhighlight %}
         <div class="stacks-preview--example">
@@ -276,23 +319,7 @@ description: The base style has minimal styling applied to it. It establishes pr
     <div class="stacks-preview">
 {% highlight html linenos %}
 <table class="s-table s-table__expanded">
-    <thead>
-        <tr>
-            <th scope="col"></th>
-            <th scope="col">First Name</th>
-            <th scope="col">Last Name</th>
-            <th scope="col">Username</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <th scope="row">1</th>
-            <td>Aaron</td>
-            <td>S.</td>
-            <td>@aarons</td>
-        </tr>
-        …
-    </tbody>
+    …
 </table>
 {% endhighlight %}
         <div class="stacks-preview--example">
@@ -334,135 +361,9 @@ description: The base style has minimal styling applied to it. It establishes pr
             </table>
         </div>
     </div>
-
-    {% header {element: 'h3', text: 'Vertical Alignment'} %}
-    <p class="stacks-copy">Change an overall table or an individual cell’s vertical alignment by using the vertical alignment atomic classes: <code class="stacks-code">.va-top</code>, <code class="stacks-code">.va-middle</code>, or <code class="stacks-code">.va-bottom</code>.</p>
-    <div class="stacks-preview">
-{% highlight html linenos %}
-<table class="s-table va-middle">
-    <thead>
-        <tr>
-            <th scope="col"></th>
-            <th scope="col">First Name</th>
-            <th scope="col">Last Name</th>
-            <th scope="col">Username</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <th scope="row">1</th>
-            <td>Aaron</td>
-            <td>S.</td>
-            <td>@aarons</td>
-        </tr>
-        …
-    </tbody>
-</table>
-{% endhighlight %}
-        <div class="stacks-preview--example">
-            <table class="s-table va-middle">
-                <thead>
-                    <tr>
-                        <th scope="col"></th>
-                        <th scope="col">First Name</th>
-                        <th scope="col">Last Name</th>
-                        <th scope="col">Username</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>Aaron</td>
-                        <td>S.</td>
-                        <td>@aarons</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>Joshua</td>
-                        <td>H.</td>
-                        <td>@joshuah</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td>Paweł</td>
-                        <td>L.</td>
-                        <td>@pawełl</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">4</th>
-                        <td>Ted</td>
-                        <td>G.</td>
-                        <td>@so-ted</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
-
-    {% header {element: 'h3', text: 'Text Alignment'} %}
-    <p class="stacks-copy">Text alignment can be assigned at either the table-level or at the cell-level. In both cases, use the text-alignment atomic classes to assign how the cell(s) should align text: <code class="stacks-code">.ta-left</code>, <code class="stacks-code">.ta-center</code>, <code class="stacks-code">.ta-right</code>, or <code class="stacks-code">.ta-justify</code>.</p>
-    <div class="stacks-preview">
-{% highlight html linenos %}
-<table class="s-table">
-<thead>
-    <tr>
-        <th scope="col" class="ta-center"></th>
-        <th scope="col">First Name</th>
-        <th scope="col" class="ta-center">Last Name</th>
-        <th scope="col">Username</th>
-    </tr>
-</thead>
-<tbody>
-    <tr>
-        <th scope="row" class="ta-center">1</th>
-        <td>Aaron</td>
-        <td class="ta-center">S.</td>
-        <td>@aarons</td>
-    </tr>
-    …
-</tbody>
-</table>
-{% endhighlight %}
-        <div class="stacks-preview--example">
-            <table class="s-table ta-right">
-                <thead>
-                    <tr>
-                        <th scope="col" class="ta-center"></th>
-                        <th scope="col">First Name</th>
-                        <th scope="col" class="ta-center">Last Name</th>
-                        <th scope="col">Username</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <th scope="row" class="ta-center">1</th>
-                        <td>Aaron</td>
-                        <td class="ta-center">S.</td>
-                        <td>@aarons</td>
-                    </tr>
-                    <tr>
-                        <th scope="row" class="ta-center">2</th>
-                        <td>Joshua</td>
-                        <td class="ta-center">H.</td>
-                        <td>@joshuah</td>
-                    </tr>
-                    <tr>
-                        <th scope="row" class="ta-center">3</th>
-                        <td>Paweł</td>
-                        <td class="ta-center">L.</td>
-                        <td>@pawełl</td>
-                    </tr>
-                    <tr>
-                        <th scope="row" class="ta-center">4</th>
-                        <td>Ted</td>
-                        <td class="ta-center">G.</td>
-                        <td>@so-ted</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
-
+</section>
+<section class="stacks-section">
+    {% header {element: 'h2', text: 'Background'} %}
     {% header {element: 'h3', text: 'Background Colors'} %}
     <p class="stacks-copy">Add a background color to a table by using a background color atomic class.</p>
     <div class="stacks-preview">
@@ -510,19 +411,212 @@ description: The base style has minimal styling applied to it. It establishes pr
             </table>
         </div>
     </div>
+
+    {% header {element: 'h3', text: 'Hover Rows'} %}
+    <p class="stacks-copy">When tables have multiple columns, add in a row hover can further help isolate the data for users. This is suggested for data tables such as found within reports.</p>
+
+    <div class="stacks-preview">
+{% highlight html linenos %}
+<table class="s-table s-table__hover">
+    …
+</table>
+{% endhighlight %}
+        <div class="stacks-preview--example">
+            <table class="s-table s-table__hover">
+                <thead>
+                    <tr>
+                        <th scope="col"></th>
+                        <th scope="col">First Name</th>
+                        <th scope="col">Last Name</th>
+                        <th scope="col">Username</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>Aaron</td>
+                        <td>S.</td>
+                        <td>@aarons</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">2</th>
+                        <td>Joshua</td>
+                        <td>H.</td>
+                        <td>@joshuah</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">3</th>
+                        <td>Paweł</td>
+                        <td>L.</td>
+                        <td>@pawełl</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">4</th>
+                        <td>Ted</td>
+                        <td>G.</td>
+                        <td>@so-ted</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
 </section>
-
 <section class="stacks-section">
-    {% header {element: 'h2', text: 'Unique Layouts'} %}
-    <p class="stacks-copy">These are different layouts which can be added to particular areas within a table.</p>
+    {% header {element: 'h2', text: 'Alignment'} %}
+    {% header {element: 'h3', text: 'Vertical Alignment'} %}
+    <p class="stacks-copy">Change an overall table or an individual cell’s vertical alignment by using the vertical alignment atomic classes: <code class="stacks-code">.va-top</code>, <code class="stacks-code">.va-middle</code>, or <code class="stacks-code">.va-bottom</code>.</p>
+    <div class="stacks-preview">
+{% highlight html linenos %}
+<table class="s-table va-middle">
+    …
+</table>
+{% endhighlight %}
+        <div class="stacks-preview--example">
+            <table class="s-table va-middle">
+                <thead>
+                    <tr>
+                        <th scope="col"></th>
+                        <th scope="col">First Name</th>
+                        <th scope="col">Last Name</th>
+                        <th scope="col">Username</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>Aaron</td>
+                        <td>S.</td>
+                        <td>@aarons</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">2</th>
+                        <td>Joshua</td>
+                        <td>H.</td>
+                        <td>@joshuah</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">3</th>
+                        <td>Paweł</td>
+                        <td>L.</td>
+                        <td>@pawełl</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">4</th>
+                        <td>Ted</td>
+                        <td>G.</td>
+                        <td>@so-ted</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
 
-    {% header {element: 'h3', text: 'Sortable Tables'} %}
+    {% header {element: 'h3', text: 'Text Alignment'} %}
+    <p class="stacks-copy">Text alignment can be assigned at either the table-level or at the cell-level. In both cases, use the text-alignment atomic classes to assign how the cell(s) should align text: <code class="stacks-code">.ta-left</code>, <code class="stacks-code">.ta-center</code>, <code class="stacks-code">.ta-right</code>, or <code class="stacks-code">.ta-justify</code>.</p>
+    <div class="stacks-preview">
+{% highlight html linenos %}
+<table class="s-table">
+    <thead>
+        <tr>
+            <th scope="col" class="ta-center"></th>
+            <th scope="col">First Name</th>
+            <th scope="col" class="ta-center">Last Name</th>
+            <th scope="col">Username</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <th scope="row" class="ta-center">1</th>
+            <td>Aaron</td>
+            <td class="ta-center">S.</td>
+            <td>@aarons</td>
+        </tr>
+    </tbody>
+</table>
+{% endhighlight %}
+        <div class="stacks-preview--example">
+            <table class="s-table ta-right">
+                <thead>
+                    <tr>
+                        <th scope="col" class="ta-center"></th>
+                        <th scope="col">First Name</th>
+                        <th scope="col" class="ta-center">Last Name</th>
+                        <th scope="col">Username</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row" class="ta-center">1</th>
+                        <td>Aaron</td>
+                        <td class="ta-center">S.</td>
+                        <td>@aarons</td>
+                    </tr>
+                    <tr>
+                        <th scope="row" class="ta-center">2</th>
+                        <td>Joshua</td>
+                        <td class="ta-center">H.</td>
+                        <td>@joshuah</td>
+                    </tr>
+                    <tr>
+                        <th scope="row" class="ta-center">3</th>
+                        <td>Paweł</td>
+                        <td class="ta-center">L.</td>
+                        <td>@pawełl</td>
+                    </tr>
+                    <tr>
+                        <th scope="row" class="ta-center">4</th>
+                        <td>Ted</td>
+                        <td class="ta-center">G.</td>
+                        <td>@so-ted</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+<section class="stacks-section">
+    {% header {element: 'h2', text: 'Sortable Tables'} %}
     <p class="stacks-copy">Used with complex tables with sortable columns.</p>
     <div class="stacks-preview">
 {% highlight html linenos %}
-
-Preview will go here
-
+<table class="s-table va-middle s-table__expanded s-table--sortable">
+    <thead>
+        <tr>
+            <th scope="col" class="sortable is-sorted">
+                Listing
+                <svg aria-hidden="true" class="svg-icon iconArrowDownSm native" width="14" height="14" viewBox="0 0 14 14"><path d="M3 5h8L7 9z"></path></svg>
+            </th>
+            <th scope="col" class="sortable">
+                Status
+                <svg aria-hidden="true" class="svg-icon iconArrowUpDownSm native" width="14" height="14" viewBox="0 0 14 14"><path d="M3 7h8l-4 4zm0-1h8L7 2z"></path></svg>
+            </th>
+            <th scope="col" class="sortable">
+                Owner
+                <svg aria-hidden="true" class="svg-icon iconArrowUpDownSm native" width="14" height="14" viewBox="0 0 14 14"><path d="M3 7h8l-4 4zm0-1h8L7 2z"></path></svg>
+            </th>
+            <th scope="col" class="sortable ta-right">
+                Views
+                <svg aria-hidden="true" class="svg-icon iconArrowUpDownSm native" width="14" height="14" viewBox="0 0 14 14"><path d="M3 7h8l-4 4zm0-1h8L7 2z"></path></svg>
+            </th>
+            <th scope="col" class="sortable ta-right">
+                Applies
+                <svg aria-hidden="true" class="svg-icon iconArrowUpDownSm native" width="14" height="14" viewBox="0 0 14 14"><path d="M3 7h8l-4 4zm0-1h8L7 2z"></path></svg>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+                <a>Site Reliability Engineer, Generalist</a><br>
+                <span class="fs-caption">Sydney, Australia</span>
+            </td>
+            <td>Running</td>
+            <td>Sansa Stark</td>
+            <td class="ta-right">502</td>
+            <td class="ta-right">13</td>
+        </tr>
+    </tbody>
+</table>
 {% endhighlight %}
         <div class="stacks-preview--example">
             <table class="s-table va-middle s-table__expanded s-table--sortable">
@@ -570,8 +664,9 @@ Preview will go here
             </table>
         </div>
     </div>
-
-    {% header {element: 'h3', text: 'Totals Row'} %}
+</section>
+<section class="stacks-section">
+    {% header {element: 'h2', text: 'Totals Row'} %}
     <p class="stacks-copy">Used mainly with data tables, the totals row increases the font-size for all cells within a row.</p>
     <div class="stacks-preview">
 {% highlight html linenos %}
@@ -591,7 +686,6 @@ Preview will go here
             <td>187</td>
             <td>5.02%</td>
         </tr>
-        …
     </tbody>
     <tfoot class="s-table--totals">
         <tr>
@@ -644,5 +738,41 @@ Preview will go here
             </table>
         </div>
 
+    </div>
+</section>
+<section class="stacks-section">
+    {% header {element: 'h2', text: 'Actions & Menus'} %}
+    <p class="stacks-copy">Text.</p>
+    <div class="stacks-preview">
+{% highlight html linenos %}
+Code goes here
+{% endhighlight %}
+        <div class="stacks-preview--example">
+
+        </div>
+    </div>
+</section>
+<section class="stacks-section">
+    {% header {element: 'h2', text: 'Mini Graphs'} %}
+    <p class="stacks-copy">Text.</p>
+    <div class="stacks-preview">
+{% highlight html linenos %}
+Code goes here
+{% endhighlight %}
+        <div class="stacks-preview--example">
+
+        </div>
+    </div>
+</section>
+<section class="stacks-section">
+    {% header {element: 'h2', text: 'Blank States'} %}
+    <p class="stacks-copy">Text.</p>
+    <div class="stacks-preview">
+{% highlight html linenos %}
+Code goes here
+{% endhighlight %}
+        <div class="stacks-preview--example">
+
+        </div>
     </div>
 </section>
