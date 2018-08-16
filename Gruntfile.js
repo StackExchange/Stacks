@@ -30,7 +30,7 @@ module.exports = function(grunt) {
             production: {
                 files: {
                     'docs/assets/css/stacks-documentation.css': 'docs/assets/less/stacks-documentation.less',
-                    'lib/css/stacks.css': 'lib/src/stacks.less',
+                    'lib/css/dist/stacks.css': 'lib/css/src/stacks.less',
                 }
             },
             partials: {
@@ -38,8 +38,8 @@ module.exports = function(grunt) {
                 // that they compile (e.g. if a static file accidentally accesses the dynamic options, the full bundle will compile
                 // fine, but stacks-static alone will blow up)
                 files: {
-                    'lib/css/stacks-static.css': 'lib/src/stacks-static.less',
-                    'lib/css/stacks-dynamic.css': 'lib/src/stacks-dynamic.less',
+                    'lib/css/dist/stacks-static.css': 'lib/css/src/stacks-static.less',
+                    'lib/css/dist/stacks-dynamic.css': 'lib/css/src/stacks-dynamic.less',
                 }
             }
         },
@@ -48,7 +48,7 @@ module.exports = function(grunt) {
             production: {
                 files: {
                     'docs/assets/css/stacks-documentation.min.css': 'docs/assets/css/stacks-documentation.css',
-                    'lib/css/stacks.min.css': 'lib/css/stacks.css',
+                    'lib/css/dist/stacks.min.css': 'lib/css/dist/stacks.css',
                 }
             }
         },
@@ -59,7 +59,7 @@ module.exports = function(grunt) {
                 tasks: ['less:production']
             },
             css: {
-                files: ['docs/assets/css/stacks-documentation.css', 'lib/css/stacks.css'],
+                files: ['docs/assets/css/stacks-documentation.css', 'lib/css/dist/stacks.css'],
                 tasks: ['cssmin']
             }
         },
