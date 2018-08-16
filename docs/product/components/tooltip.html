@@ -16,11 +16,12 @@ description: Tooltips are text-only, floating elements which further explain use
         aria-expanded="false">
             @Svg.Help
 </button>
-<div class="s-tooltip s-arrow s-arrow__tl js-tooltip"
+<div class="s-tooltip js-tooltip"
     id="tooltip1"
     role="tooltip"
     aria-hidden="true"
     data-method="click">
+        <div class="s-arrow__tl"></div>
         This area applies only to your main Stack Overflow profile. To edit it, go there.
 </div>
 {% endhighlight %}
@@ -28,38 +29,44 @@ description: Tooltips are text-only, floating elements which further explain use
             <div class="p16 bar-sm bg-black-025 ba bc-black-2">
                 <div class="grid gs16 ai-center fw-wrap">
                     <div class="grid--cell">
-                        <div class="grid gs8 gsx ai-center">
-                            <label class="grid--cell s-label fs-body1" for="arrow-position">Arrow Position</label>
+                        <div class="grid gs8 fd-column">
+                            <label class="grid--cell s-label fs-body1" for="arrow-position">Position</label>
                             <div class="grid--cell s-select">
-                                <select id="arrow-position" class="js-menu-position">
-                                    <option name="tooltip-position" id="top-left" data-class="s-arrow__tl" selected>Top Left</option>
-                                    <option name="tooltip-position" id="top-left" data-class="s-arrow__tc">Top Center</option>
-                                    <option name="tooltip-position" id="top-right" data-class="s-arrow__tr">Top Right</option>
-                                    <option name="tooltip-position" id="right-top" data-class="s-arrow__rt">Right Top</option>
-                                    <option name="tooltip-position" id="right-center" data-class="s-arrow__rc">Right Center</option>
-                                    <option name="tooltip-position" id="right-bottom" data-class="s-arrow__rb">Right Bottom</option>
-                                    <option name="tooltip-position" id="bottom-left" data-class="s-arrow__bl">Bottom Left</option>
-                                    <option name="tooltip-position" id="bottom-left" data-class="s-arrow__bc">Bottom Center</option>
-                                    <option name="tooltip-position" id="bottom-right" data-class="s-arrow__br">Bottom Right</option>
-                                    <option name="tooltip-position" id="left-top" data-class="s-arrow__lt">Left Top</option>
-                                    <option name="tooltip-position" id="left-center" data-class="s-arrow__lc">Left Center</option>
-                                    <option name="tooltip-position" id="left-bottom" data-class="s-arrow__lb">Left Bottom</option>
+                                <select id="menu-position" class="js-menu-position">
+                                    <option name="tooltip-position" id="top" data-position="top">Top</option>
+                                    <option name="tooltip-position" id="right" data-position="right">Right</option>
+                                    <option name="tooltip-position" id="bottom" data-position="bottom" selected>Bottom</option>
+                                    <option name="tooltip-position" id="left" data-position="left">Left</option>
                                 </select>
                             </div>
                         </div>
                     </div>
                     <div class="grid--cell">
-                        <div class="grid gs8 gsx ai-center">
+                        <div class="grid gs8 fd-column">
+                            <label class="grid--cell s-label fs-body1" for="arrow-position">Arrow Position</label>
+                            <div class="grid--cell s-select">
+                                <select id="menu-arrow" class="js-menu-arrow">
+                                    <option name="tooltip-arrow" id="left" data-position="left" selected>Left</option>
+                                    <option name="tooltip-arrow" id="center" data-position="center">Center</option>
+                                    <option name="tooltip-arrow" id="right" data-position="right">Right</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="grid--cell">
+                        <div class="grid gs8 fd-column">
                             <label class="grid--cell s-label fs-body1" for="tooltip-method">Method</label>
                             <div class="grid--cell s-select">
-                                <select id="tooltip-method" class="js-menu-method">
+                                <select id="menu-method" class="js-menu-method">
                                     <option name="tooltip-method" id="hover" data-method="hover" selected>Hover</option>
                                     <option name="tooltip-method" id="click" data-method="click">Click</option>
                                 </select>
                             </div>
                         </div>
                     </div>
-                    <button class="grid--cell s-btn s-btn__filled js-menu-update">Update example</button>
+                    <div class="grid--cell as-end">
+                        <button class="s-btn s-btn__filled js-menu-update">Update</button>
+                    </div>
                 </div>
             </div>
 
@@ -72,7 +79,10 @@ description: Tooltips are text-only, floating elements which further explain use
                         <div class="grid--cell">Need help</div>
                         <div class="grid--cell">{% svg /product/resources/svg-icons/Help.svg width="18" height="18" aria-hidden="true" class="svg-icon iconHelp m0" %}</div>
                     </button>
-                    <div class="s-tooltip s-arrow s-arrow__tl js-tooltip" id="tooltip1" role="tooltip" aria-hidden="true" data-method="hover">This area applies only to your main Stack Overflow profile. To edit it, go there.</div>
+                    <div class="s-tooltip js-tooltip" id="tooltip1" role="tooltip" aria-hidden="true" data-method="hover" data-position="top left">
+                        <div class="s-arrow__tl"></div>
+                        This area applies only to your main Stack Overflow profile. To edit it, go there.
+                    </div>
                 </div>
             </div>
         </div>
@@ -96,7 +106,7 @@ description: Tooltips are text-only, floating elements which further explain use
                     <td>N/A</td>
                     <td>
                         <div class="grid--cell ps-relative" style="min-height:4rem;">
-                            <div class="s-tooltip" role="tooltip" aria-hidden="false" data-method="click" style="z-index: initial;">This area applies only to your main Stack Overflow profile. To edit it, go there.</div>
+                            <div class="s-tooltip" role="tooltip" aria-hidden="false" data-method="click">This area a z-basepplies only to your main Stack Overflow profile. To edit it, go there.</div>
                         </div>
                     </td>
                 </tr>
@@ -104,84 +114,108 @@ description: Tooltips are text-only, floating elements which further explain use
                     <th><code class="stacks-code">.s-arrow__tl</code></th>
                     <td>Top Left</td>
                     <td><div class="grid--cell ps-relative" style="min-height:4rem;">
-                        <div class="s-tooltip s-arrow__tl" role="tooltip" aria-hidden="false" style="z-index: initial;">This area applies only to your main Stack Overflow profile. To edit it, go there.</div>
+                        <div class="s-tooltip z-base" role="tooltip" aria-hidden="false">
+                            <div class="s-arrow__tl"></div>
+                            This area applies only to your main Stack Overflow profile. To edit it, go there.</div>
                     </div></td>
                 </tr>
                 <tr>
                     <th><code class="stacks-code">.s-arrow__tc</code></th>
                     <td>Top Center</td>
                     <td><div class="grid--cell ps-relative" style="min-height:4rem;">
-                        <div class="s-tooltip s-arrow__tc" role="tooltip" aria-hidden="false" style="z-index: initial;">This area applies only to your main Stack Overflow profile. To edit it, go there.</div>
+                        <div class="s-tooltip z-base" role="tooltip" aria-hidden="false">
+                            <div class="s-arrow__tc"></div>
+                            This area applies only to your main Stack Overflow profile. To edit it, go there.</div>
                     </div></td>
                 </tr>
                 <tr>
                     <th><code class="stacks-code">.s-arrow__tr</code></th>
                     <td>Top Right</td>
                     <td><div class="grid--cell ps-relative" style="min-height:4rem;">
-                        <div class="s-tooltip s-arrow__tr" role="tooltip" aria-hidden="false" style="z-index: initial;">This area applies only to your main Stack Overflow profile. To edit it, go there.</div>
+                        <div class="s-tooltip z-base" role="tooltip" aria-hidden="false">
+                            <div class="s-arrow__tr"></div>
+                            This area applies only to your main Stack Overflow profile. To edit it, go there.</div>
                     </div></td>
                 </tr>
                 <tr>
                     <th><code class="stacks-code">.s-arrow__rt</code></th>
                     <td>Right Top</td>
                     <td><div class="grid--cell ps-relative" style="min-height:4rem;">
-                        <div class="s-tooltip s-arrow__rt" role="tooltip" aria-hidden="false" style="z-index: initial;">This area applies only to your main Stack Overflow profile. To edit it, go there.</div>
+                        <div class="s-tooltip z-base" role="tooltip" aria-hidden="false">
+                            <div class="s-arrow__rt"></div>
+                            This area applies only to your main Stack Overflow profile. To edit it, go there.</div>
                     </div></td>
                 </tr>
                 <tr>
                     <th><code class="stacks-code">.s-arrow__rc</code></th>
                     <td>Right Center</td>
                     <td><div class="grid--cell ps-relative" style="min-height:4rem;">
-                        <div class="s-tooltip s-arrow__rc" role="tooltip" aria-hidden="false" style="z-index: initial;">This area applies only to your main Stack Overflow profile. To edit it, go there.</div>
+                        <div class="s-tooltip z-base" role="tooltip" aria-hidden="false">
+                            <div class="s-arrow__rc"></div>
+                            This area applies only to your main Stack Overflow profile. To edit it, go there.</div>
                     </div></td>
                 </tr>
                 <tr>
                     <th><code class="stacks-code">.s-arrow__rb</code></th>
                     <td>Right Bottom</td>
                     <td><div class="grid--cell ps-relative" style="min-height:4rem;">
-                        <div class="s-tooltip s-arrow__rb" role="tooltip" aria-hidden="false" style="z-index: initial;">This area applies only to your main Stack Overflow profile. To edit it, go there.</div>
+                        <div class="s-tooltip z-base" role="tooltip" aria-hidden="false">
+                            <div class="s-arrow__rb"></div>
+                            This area applies only to your main Stack Overflow profile. To edit it, go there.</div>
                     </div></td>
                 </tr>
                 <tr>
                     <th><code class="stacks-code">.s-arrow__bl</code></th>
                     <td>Bottom Left</td>
                     <td><div class="grid--cell ps-relative" style="min-height:4rem;">
-                        <div class="s-tooltip s-arrow__bl" role="tooltip" aria-hidden="false" style="z-index: initial;">This area applies only to your main Stack Overflow profile. To edit it, go there.</div>
+                        <div class="s-tooltip z-base" role="tooltip" aria-hidden="false">
+                            <div class="s-arrow__bl"></div>
+                            This area applies only to your main Stack Overflow profile. To edit it, go there.</div>
                     </div></td>
                 </tr>
                 <tr>
                     <th><code class="stacks-code">.s-arrow__bc</code></th>
                     <td>Bottom Center</td>
                     <td><div class="grid--cell ps-relative" style="min-height:4rem;">
-                        <div class="s-tooltip s-arrow__bc" role="tooltip" aria-hidden="false" style="z-index: initial;">This area applies only to your main Stack Overflow profile. To edit it, go there.</div>
+                        <div class="s-tooltip z-base" role="tooltip" aria-hidden="false">
+                            <div class="s-arrow__bc"></div>
+                            This area applies only to your main Stack Overflow profile. To edit it, go there.</div>
                     </div></td>
                 </tr>
                 <tr>
                     <th><code class="stacks-code">.s-arrow__br</code></th>
                     <td>Bottom Right</td>
                     <td><div class="grid--cell ps-relative" style="min-height:4rem;">
-                        <div class="s-tooltip s-arrow__br" role="tooltip" aria-hidden="false" style="z-index: initial;">This area applies only to your main Stack Overflow profile. To edit it, go there.</div>
+                        <div class="s-tooltip z-base" role="tooltip" aria-hidden="false">
+                            <div class="s-arrow__br"></div>
+                            This area applies only to your main Stack Overflow profile. To edit it, go there.</div>
                     </div></td>
                 </tr>
                 <tr>
                     <th><code class="stacks-code">.s-arrow__lt</code></th>
                     <td>Left Top</td>
                     <td><div class="grid--cell ps-relative" style="min-height:4rem;">
-                        <div class="s-tooltip s-arrow__lt" role="tooltip" aria-hidden="false" style="z-index: initial;">This area applies only to your main Stack Overflow profile. To edit it, go there.</div>
+                        <div class="s-tooltip z-base" role="tooltip" aria-hidden="false">
+                            <div class="s-arrow__lt"></div>
+                            This area applies only to your main Stack Overflow profile. To edit it, go there.</div>
                     </div></td>
                 </tr>
                 <tr>
                     <th><code class="stacks-code">.s-arrow__lc</code></th>
                     <td>Left Center</td>
                     <td><div class="grid--cell ps-relative" style="min-height:4rem;">
-                        <div class="s-tooltip s-arrow__lc" role="tooltip" aria-hidden="false" style="z-index: initial;">This area applies only to your main Stack Overflow profile. To edit it, go there.</div>
+                        <div class="s-tooltip z-base" role="tooltip" aria-hidden="false">
+                            <div class="s-arrow__lc"></div>
+                            This area applies only to your main Stack Overflow profile. To edit it, go there.</div>
                     </div></td>
                 </tr>
                 <tr>
                     <th><code class="stacks-code">.s-arrow__lb</code></th>
                     <td>Left Bottom</td>
                     <td><div class="grid--cell ps-relative" style="min-height:4rem;">
-                        <div class="s-tooltip s-arrow__lb" role="tooltip" aria-hidden="false" style="z-index: initial;">This area applies only to your main Stack Overflow profile. To edit it, go there.</div>
+                        <div class="s-tooltip z-base" role="tooltip" aria-hidden="false">
+                            <div class="s-arrow__lb"></div>
+                            This area applies only to your main Stack Overflow profile. To edit it, go there.</div>
                     </div></td>
                 </tr>
             </tbody>

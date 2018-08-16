@@ -35,6 +35,7 @@
     box-shadow: @bs-sm;
     color: @white;
     font-size: @fs-caption;
+    transition: visibility 0s 0s, opacity 150ms @te-smooth 50ms;
 
     &[aria-hidden="false"] {
         visibility: visible;
@@ -55,18 +56,18 @@
     //      pseudo elements. This allows us to fake a border around arrows.
     //      Since we don't need a border for tooltips, we hide it.
     //  ------------------------------------------------------------------------
-    &.s-arrow__tl,
-    &.s-arrow__tc,
-    &.s-arrow__tr,
-    &.s-arrow__bl,
-    &.s-arrow__bc,
-    &.s-arrow__br,
-    &.s-arrow__lt,
-    &.s-arrow__lc,
-    &.s-arrow__lb,
-    &.s-arrow__rt,
-    &.s-arrow__rc,
-    &.s-arrow__rb {
+    .s-arrow__tl,
+    .s-arrow__tc,
+    .s-arrow__tr,
+    .s-arrow__bl,
+    .s-arrow__bc,
+    .s-arrow__br,
+    .s-arrow__lt,
+    .s-arrow__lc,
+    .s-arrow__lb,
+    .s-arrow__rt,
+    .s-arrow__rc,
+    .s-arrow__rb {
         &:before {
             border-width: @su6;
         }
@@ -78,33 +79,33 @@
     //  $$  ARROW COLORS
     //  ------------------------------------------------------------------------
     //  --  TOP
-    &.s-arrow__tl:before,
-    &.s-arrow__tc:before,
-    &.s-arrow__tr:before {
+    .s-arrow__tl:before,
+    .s-arrow__tc:before,
+    .s-arrow__tr:before {
         top: -(@su6);
         border-bottom-color: @tooltip-background;
     }
 
     //  --  BOTTOM
-    &.s-arrow__bl:before,
-    &.s-arrow__bc:before,
-    &.s-arrow__br:before {
+    .s-arrow__bl:before,
+    .s-arrow__bc:before,
+    .s-arrow__br:before {
         bottom: -(@su6);
         border-top-color: @tooltip-background;
     }
 
     //  --  LEFT
-    &.s-arrow__lt:before,
-    &.s-arrow__lc:before,
-    &.s-arrow__lb:before {
+    .s-arrow__lt:before,
+    .s-arrow__lc:before,
+    .s-arrow__lb:before {
         left: -(@su6);
         border-right-color: @tooltip-background;
     }
 
     //  --  RIGHT
-    &.s-arrow__rt:before,
-    &.s-arrow__rc:before,
-    &.s-arrow__rb:before {
+    .s-arrow__rt:before,
+    .s-arrow__rc:before,
+    .s-arrow__rb:before {
         right: -(@su6);
         border-left-color: @tooltip-background;
     }
