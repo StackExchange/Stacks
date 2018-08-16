@@ -56,8 +56,8 @@ module.exports = function(grunt) {
         uglify: {
             production: {
                 files: {
-                    'lib/js/dist/stacks.min.js': ['node_modules/popper.js/dist/umd/popper.min.js', 'lib/js/src/stacks.js'],
-                    'docs/assets/js/stacks.min.js': ['node_modules/popper.js/dist/umd/popper.min.js', 'lib/js/src/stacks.js']
+                    'lib/js/dist/stacks.min.js': ['node_modules/stimulus/dist/stimulus.umd.js', 'node_modules/popper.js/dist/umd/popper.min.js', 'lib/js/src/stacks.js'],
+                    'docs/assets/js/stacks.min.js': ['node_modules/stimulus/dist/stimulus.umd.js', 'node_modules/popper.js/dist/umd/popper.min.js', 'lib/js/src/stacks.js']
                 }
             }
         },
