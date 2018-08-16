@@ -52,6 +52,15 @@ module.exports = function(grunt) {
                 }
             }
         },
+        // Minify and concatenate JS
+        uglify: {
+            production: {
+                files: {
+                    'lib/js/dist/stacks.min.js': ['node_modules/popper.js/dist/umd/popper.min.js', 'lib/js/src/stacks.js'],
+                    'docs/assets/js/stacks.min.js': ['node_modules/popper.js/dist/umd/popper.min.js', 'lib/js/src/stacks.js']
+                }
+            }
+        },
         // Watch for files to change and run tasks when they do
         watch: {
             less: {
@@ -61,7 +70,11 @@ module.exports = function(grunt) {
             css: {
                 files: ['docs/assets/css/stacks-documentation.css', 'lib/css/dist/stacks.css'],
                 tasks: ['cssmin']
-            }
+            },
+            js: {
+                files: ['lib/**/*.js'],
+                tasks: ['uglify:production']
+            },
         },
         // Run tasks in parallel
         concurrent: {
@@ -70,6 +83,8 @@ module.exports = function(grunt) {
                 'watch:less',
                 'cssmin',
                 'watch:css',
+                'uglify:production',
+                'watch:js',
                 'shell:jekyllServe',
             ],
             options: {
@@ -108,6 +123,7 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-contrib-clean');
+    grunt.loadNpmTasks('grunt-contrib-uglify');
 
     // Default task
     grunt.registerTask('default', ['concurrent:serve']);
