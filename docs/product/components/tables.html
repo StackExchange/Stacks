@@ -270,6 +270,71 @@ description: The base style has minimal styling applied to it. It establishes pr
         </div>
     </div>
 
+    {% header {element: 'h3', text: 'Expanded'} %}
+    <p class="stacks-copy">The expanded table does what it sounds like it would do: expands the padding so the table has feeling to it. This is suggested for complex data tables with multiple data types that would be difficult to read with less spacing.</p>
+
+    <div class="stacks-preview">
+{% highlight html linenos %}
+<table class="s-table s-table__expanded">
+    <thead>
+        <tr>
+            <th scope="col"></th>
+            <th scope="col">First Name</th>
+            <th scope="col">Last Name</th>
+            <th scope="col">Username</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <th scope="row">1</th>
+            <td>Aaron</td>
+            <td>S.</td>
+            <td>@aarons</td>
+        </tr>
+        …
+    </tbody>
+</table>
+{% endhighlight %}
+        <div class="stacks-preview--example">
+            <table class="s-table s-table__expanded">
+                <thead>
+                    <tr>
+                        <th scope="col"></th>
+                        <th scope="col">First Name</th>
+                        <th scope="col">Last Name</th>
+                        <th scope="col">Username</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>Aaron</td>
+                        <td>S.</td>
+                        <td>@aarons</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">2</th>
+                        <td>Joshua</td>
+                        <td>H.</td>
+                        <td>@joshuah</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">3</th>
+                        <td>Paweł</td>
+                        <td>L.</td>
+                        <td>@pawełl</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">4</th>
+                        <td>Ted</td>
+                        <td>G.</td>
+                        <td>@so-ted</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
     {% header {element: 'h3', text: 'Vertical Alignment'} %}
     <p class="stacks-copy">Change an overall table or an individual cell’s vertical alignment by using the vertical alignment atomic classes: <code class="stacks-code">.va-top</code>, <code class="stacks-code">.va-middle</code>, or <code class="stacks-code">.va-bottom</code>.</p>
     <div class="stacks-preview">
@@ -451,6 +516,61 @@ description: The base style has minimal styling applied to it. It establishes pr
     {% header {element: 'h2', text: 'Unique Layouts'} %}
     <p class="stacks-copy">These are different layouts which can be added to particular areas within a table.</p>
 
+    {% header {element: 'h3', text: 'Sortable Tables'} %}
+    <p class="stacks-copy">Used with complex tables with sortable columns.</p>
+    <div class="stacks-preview">
+{% highlight html linenos %}
+
+Preview will go here
+
+{% endhighlight %}
+        <div class="stacks-preview--example">
+            <table class="s-table va-middle s-table__expanded s-table--sortable">
+                <thead>
+                    <tr>
+                        <th scope="col" class="sortable is-sorted">Listing {% svg /product/resources/svg-icons/ArrowDownSm.svg width="14" height="14" aria-hidden="true" class="svg-icon iconArrowDownSm" %}</th>
+                        <th scope="col" class="sortable">Status {% svg /product/resources/svg-icons/ArrowUpDownSm.svg width="14" height="14" aria-hidden="true" class="svg-icon ArrowUpDownSm" %}</th>
+                        <th scope="col" class="sortable">Owner {% svg /product/resources/svg-icons/ArrowUpDownSm.svg width="14" height="14" aria-hidden="true" class="svg-icon ArrowUpDownSm" %}</th>
+                        <th scope="col" class="sortable ta-right">Views {% svg /product/resources/svg-icons/ArrowUpDownSm.svg width="14" height="14" aria-hidden="true" class="svg-icon ArrowUpDownSm" %}</th>
+                        <th scope="col" class="sortable ta-right">Applies {% svg /product/resources/svg-icons/ArrowUpDownSm.svg width="14" height="14" aria-hidden="true" class="svg-icon ArrowUpDownSm" %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <a>Site Reliability Engineer, Generalist</a><br>
+                            <span class="fs-caption">Sydney, Australia</span>
+                        </td>
+                        <td>Running</td>
+                        <td>Sansa Stark</td>
+                        <td class="ta-right">502</td>
+                        <td class="ta-right">13</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <a>Senior Product Designer</a><br>
+                            <span class="fs-caption">New York, NY, USA</span>
+                        </td>
+                        <td>Running</td>
+                        <td>Robert Baratheon</td>
+                        <td class="ta-right">854</td>
+                        <td class="ta-right">91</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <a>Product Manager, Developer Products</a><br>
+                            <span class="fs-caption">London, England</span>
+                        </td>
+                        <td>Running</td>
+                        <td>Sansa Stark</td>
+                        <td class="ta-right">112</td>
+                        <td class="ta-right">7</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
     {% header {element: 'h3', text: 'Totals Row'} %}
     <p class="stacks-copy">Used mainly with data tables, the totals row increases the font-size for all cells within a row.</p>
     <div class="stacks-preview">
@@ -466,7 +586,7 @@ description: The base style has minimal styling applied to it. It establishes pr
     </thead>
     <tbody>
         <tr>
-            <td scope="row" class="ta-left"><a>Site Reliability Engineer, Generalist</a></th>
+            <td scope="row" class="ta-left"><a>Site Reliability Engineer, Generalist</a></td>
             <td>6,871</td>
             <td>187</td>
             <td>5.02%</td>
@@ -523,5 +643,6 @@ description: The base style has minimal styling applied to it. It establishes pr
                 </tfoot>
             </table>
         </div>
+
     </div>
 </section>
