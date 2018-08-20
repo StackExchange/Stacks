@@ -46,19 +46,35 @@
         padding: @su8;
         border-top: 1px solid @brc-lighter;
         text-align: left;
-        vertical-align: top;
     }
-
+    th {
+        vertical-align: top;
+        font-weight: normal;
+        color: @fc-dark;
+    }
+    td {
+        color: @fc-medium;
+        vertical-align: middle;
+    }
     thead th {
-        border-top: 0;
-        border-bottom: 1px solid @brc-darker;
-        vertical-align: bottom;
+        font-weight: bold;
+        color: @fc-dark;
+        background-color: @black-025;
+        font-size: @fs-caption;
+        border-bottom: 0;
+        line-height: @lh-xs;
+        border-top: 1px solid @brc-lighter;
+        vertical-align: middle !important;
+    }
+    tr:last-child td {
+        border-bottom: 1px solid @brc-lighter;
     }
 
     tbody + tbody {
         border-top: 2px solid @brc-lighter;
     }
 }
+
 
 
 //  ============================================================================
@@ -229,32 +245,14 @@
 //  $$  Sortable Tables
 //  ------------------------------------------------------------------------
 .s-table--sortable {
-    th {
+    .sortable {
+        cursor: pointer;
         .fc-light;
-    }
-    td {
-        .fc-medium;
-    }
-    thead th {
-        background-color: @black-025;
-        font-size: @fs-caption;
-        font-weight: bold;
-        border-bottom: 0;
-        line-height: @lh-xs;
-        border-top: 1px solid @brc-lighter;
-        vertical-align: middle !important;
 
-        &.sortable {
-            cursor: pointer;
-
-            .svg-icon {
-                position: relative;
-                bottom: -1px;
-            }
+        .svg-icon {
+            position: relative;
+            bottom: -1px;
         }
-    }
-    tr:last-child td {
-        border-bottom: 1px solid @brc-lighter;
     }
     .is-sorted {
         .fc-dark;
