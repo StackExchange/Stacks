@@ -10,6 +10,16 @@ title: Frequently Asked Questions
 </section>
 
 <section class="stacks-section">
+    {% header {element: 'h2', text: 'If CSS is inline, why do we need a &lt;style&gt; tag?'} %}
+    <p class="stacks-copy">
+        Inline CSS is a sure fire way to style an email’s layout at a granular level. For the same reason it’s done on the web, adding a CSS reset to an email’s <span class="stacks-code">&lt;head&gt;</span> helps to normalize how the code gets rendered in email clients that <a href="https://www.campaignmonitor.com/css/style-element/style-in-head/">support the <span class="stacks-code">&lt;style&gt;</span> tag</a>.
+    </p>
+    <p class="stacks-copy">
+        Each template contains a breakdown, element by element, of what each reset style is actually doing.
+    </p>
+</section>
+
+<section class="stacks-section">
     {% header {element: 'h2', text: 'How does CSS inheritance work in email?'} %}
     <p class="stacks-copy">
         Various email clients handle CSS inheritance differently from one another, so it’s best to place inline CSS on the HTML tag close to the content you wish to style instead of relying on the cascade.
@@ -126,7 +136,10 @@ title: Frequently Asked Questions
 <section class="stacks-section">
     {% header {element: 'h2', text: 'How should images be prepared?'} %}
     <p class="stacks-copy">
-        Email has largely standardized on PNG, JPG, and GIF file formats. SVG is not well supported. Animated GIFs are supported in all email clients, though Windows Outlook and Win10 Mail only display its first frame.
+        Email has largely standardized on PNG, JPG, and GIF file formats. Animated GIFs are supported in all email clients, though Windows Outlook and Win10 Mail only display its first frame.
+    </p>
+    <p class="stacks-copy">
+        SVG is <a href="https://stackoverflow.com/questions/46783599/base64-encoded-image-is-not-showing-in-gmail/46789485#46789485">not well supported in most web email clients</a>, including Gmail (which accounts for most of our email opens) and are completely blocked in Outlook. <a href="https://stackoverflow.com/questions/46783599/base64-encoded-image-is-not-showing-in-gmail/46789485#46789485">This includes base64 encoded images</a>.
     </p>
     <ul class="stacks-list">
         <li><strong>Foreground images</strong> should be saved at @2x since they scale reliably in all major email clients. @2x images display crisply on high-definition displays when scaled down to @1x in code.</li>
