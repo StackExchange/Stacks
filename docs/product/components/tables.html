@@ -58,7 +58,7 @@ description: Tables are used to list all information from a data set. The base s
                     </tr>
                     <tr>
                         <th>
-                            <div class="grid ai-center"><div class="mr8"><a><img src="https://www.gravatar.com/avatar/a1b18fb7e261322e8730a2ef0c7d323e?s=32&d=identicon&r=PG&f=1" alt="" width="32" height="32"></a></div><div><a>Paweł Hynes</a><div class="grid ai-center"><div class="fw-bold mr8" title="reputation score " dir="ltr">25</div><div class="grid ai-center"><img class="s-badge--image" src="/assets/img/BadgeBronze.svg" aria-hidden="true"> <span>8</span></div></div></div></div>
+                            <div class="grid ai-center"><div class="mr8"><a><img src="https://www.gravatar.com/avatar/a1b18fb7e261322e8730a2ef0c7d323e?s=32&d=identicon&r=PG&f=1" alt="" width="32" height="32"></a></div><div><a>Paweł Ludwiczak</a><div class="grid ai-center"><div class="fw-bold mr8" title="reputation score " dir="ltr">25</div><div class="grid ai-center"><img class="s-badge--image" src="/assets/img/BadgeBronze.svg" aria-hidden="true"> <span>8</span></div></div></div></div>
                         </th>
                         <td>paweł@stackoverflow.com</td>
                         <td>Nov 28 '17 at 20:21</td>
@@ -128,15 +128,15 @@ description: Tables are used to list all information from a data set. The base s
         </div>
     </div>
     {% header {element: 'h3', text: 'No Horizontal Borders'} %}
-    <p class="stacks-copy">Removes the horizontal borders included in <code class="stacks-code">.s-table</code> by default.</p>
+    <p class="stacks-copy">Removes the horizontal borders included in <code class="stacks-code">.s-table</code> by default. When combined with other <code class="stacks-code">.s-table</code> modifier classes, <code class="stacks-code">.s-table__borderless-y</code> is useful for tables that focus on columns.</p>
     <div class="stacks-preview">
 {% highlight html linenos %}
-<table class="s-table s-table__borderless-y">
+<table class="s-table s-table__borderless-y s-table__outlined s-table__bordered-x">
     …
 </table>
 {% endhighlight %}
         <div class="stacks-preview--example">
-            <table class="s-table s-table__borderless-y">
+            <table class="s-table s-table__borderless-y s-table__outlined s-table__bordered-x">
                 <thead>
                     <tr>
                         <th scope="col"></th>
@@ -422,47 +422,68 @@ description: Tables are used to list all information from a data set. The base s
 <section class="stacks-section">
     {% header {element: 'h2', text: 'Alignment'} %}
     {% header {element: 'h3', text: 'Vertical Alignment'} %}
-    <p class="stacks-copy">Change an overall table or an individual cell’s vertical alignment by using the vertical alignment atomic classes: <code class="stacks-code">.va-top</code>, <code class="stacks-code">.va-middle</code>, or <code class="stacks-code">.va-bottom</code>.</p>
+    <p class="stacks-copy">Aligns text vertically, at either the table-level or cell-level. In either case, using atomic classes assigns how cell(s) should vertically align text: <code class="stacks-code">.va-top</code>, <code class="stacks-code">.va-middle</code>, or <code class="stacks-code">.va-bottom</code>.</p>
     <div class="stacks-preview">
 {% highlight html linenos %}
 <table class="s-table va-middle">
-    …
+    <thead>
+        <tr>
+            <th scope="col" class="va-bottom"></th>
+            <th scope="col" class="va-bottom">Full Name<br>(first and last)</th>
+            <th scope="col" class="va-bottom">Email</th>
+            <th scope="col" class="va-bottom">Username</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <th scope="row" class="va-top">1</th>
+            <td class="va-top">Mr.<br>Aaron<br>Shekey</td>
+            <td class="va-top">aaron@stackoverflow.com</td>
+            <td class="va-top">@aarons</td>
+        </tr>
+        <tr>
+            <th scope="row" class="va-middle">2</th>
+            <td class="va-middle">Mr.<br>Joshua<br>Hynes</td>
+            <td class="va-middle">joshua@stackoverflow.com</td>
+            <td class="va-middle">@joshuah</td>
+        </tr>
+        <tr>
+            <th scope="row" class="va-bottom">3</th>
+            <td class="va-bottom">Mr.<br>Paweł<br>Ludwiczak</td>
+            <td class="va-bottom">pawel@stackoverflow.com</td>
+            <td class="va-bottom">@pawełl</td>
+        </tr>
+    </tbody>
 </table>
 {% endhighlight %}
         <div class="stacks-preview--example">
             <table class="s-table va-middle">
                 <thead>
                     <tr>
-                        <th scope="col"></th>
-                        <th scope="col">First Name</th>
-                        <th scope="col">Last Name</th>
-                        <th scope="col">Username</th>
+                        <th scope="col" class="va-bottom"></th>
+                        <th scope="col" class="va-bottom">Full Name<br>(first and last)</th>
+                        <th scope="col" class="va-bottom">Email</th>
+                        <th scope="col" class="va-bottom">Username</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <th scope="row">1</th>
-                        <td>Aaron</td>
-                        <td>S.</td>
-                        <td>@aarons</td>
+                        <th scope="row" class="va-top">1</th>
+                        <td class="va-top">Mr.<br>Aaron<br>Shekey</td>
+                        <td class="va-top">aaron@stackoverflow.com</td>
+                        <td class="va-top">@aarons</td>
                     </tr>
                     <tr>
-                        <th scope="row">2</th>
-                        <td>Joshua</td>
-                        <td>H.</td>
-                        <td>@joshuah</td>
+                        <th scope="row" class="va-middle">2</th>
+                        <td class="va-middle">Mr.<br>Joshua<br>Hynes</td>
+                        <td class="va-middle">joshua@stackoverflow.com</td>
+                        <td class="va-middle">@joshuah</td>
                     </tr>
                     <tr>
-                        <th scope="row">3</th>
-                        <td>Paweł</td>
-                        <td>L.</td>
-                        <td>@pawełl</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">4</th>
-                        <td>Ted</td>
-                        <td>G.</td>
-                        <td>@so-ted</td>
+                        <th scope="row" class="va-bottom">3</th>
+                        <td class="va-bottom">Mr.<br>Paweł<br>Ludwiczak</td>
+                        <td class="va-bottom">pawel@stackoverflow.com</td>
+                        <td class="va-bottom">@pawełl</td>
                     </tr>
                 </tbody>
             </table>
@@ -470,16 +491,17 @@ description: Tables are used to list all information from a data set. The base s
     </div>
 
     {% header {element: 'h3', text: 'Text Alignment'} %}
-    <p class="stacks-copy">Text alignment can be assigned at either the table-level or at the cell-level. In both cases, use the text-alignment atomic classes to assign how the cell(s) should align text: <code class="stacks-code">.ta-left</code>, <code class="stacks-code">.ta-center</code>, <code class="stacks-code">.ta-right</code>, or <code class="stacks-code">.ta-justify</code>.</p>
+    <p class="stacks-copy">Aligns text horizontally, at either the table-level or cell-level. In either case, using atomic classes assigns how cell(s) should horizontally align text: <code class="stacks-code">.ta-left</code>, <code class="stacks-code">.ta-center</code>, <code class="stacks-code">.ta-right</code>, or <code class="stacks-code">.ta-justify</code>.</p>
+    <p class="stacks-copy">Columns should usually be left-aligned unless the content within the column is a number that expresses monetary value, is a value, or is a percentage. Those should be right-aligned. Number displays that are always fixed (such as phone numbers) should be left-aligned.</p>
     <div class="stacks-preview">
 {% highlight html linenos %}
-<table class="s-table">
+<table class="s-table ta-left">
     <thead>
         <tr>
-            <th scope="col" class="ta-center"></th>
+            <th scope="col"></th>
             <th scope="col">First Name</th>
             <th scope="col" class="ta-center">Last Name</th>
-            <th scope="col">Username</th>
+            <th scope="col" class="ta-right">Rep.</th>
         </tr>
     </thead>
     <tbody>
@@ -487,19 +509,37 @@ description: Tables are used to list all information from a data set. The base s
             <th scope="row" class="ta-center">1</th>
             <td>Aaron</td>
             <td class="ta-center">S.</td>
-            <td>@aarons</td>
+            <td class="ta-right">1</td>
+        </tr>
+        <tr>
+            <th scope="row" class="ta-center">2</th>
+            <td>Joshua</td>
+            <td class="ta-center">H.</td>
+            <td class="ta-right">14,780</td>
+        </tr>
+        <tr>
+            <th scope="row" class="ta-center">3</th>
+            <td>Paweł</td>
+            <td class="ta-center">L.</td>
+            <td class="ta-right">555</td>
+        </tr>
+        <tr>
+            <th scope="row" class="ta-center">4</th>
+            <td>Ted</td>
+            <td class="ta-center">G.</td>
+            <td class="ta-right">3,125</td>
         </tr>
     </tbody>
 </table>
 {% endhighlight %}
         <div class="stacks-preview--example">
-            <table class="s-table ta-right">
+            <table class="s-table ta-left">
                 <thead>
                     <tr>
-                        <th scope="col" class="ta-center"></th>
+                        <th scope="col"></th>
                         <th scope="col">First Name</th>
                         <th scope="col" class="ta-center">Last Name</th>
-                        <th scope="col">Username</th>
+                        <th scope="col" class="ta-right">Rep.</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -507,25 +547,25 @@ description: Tables are used to list all information from a data set. The base s
                         <th scope="row" class="ta-center">1</th>
                         <td>Aaron</td>
                         <td class="ta-center">S.</td>
-                        <td>@aarons</td>
+                        <td class="ta-right">1</td>
                     </tr>
                     <tr>
                         <th scope="row" class="ta-center">2</th>
                         <td>Joshua</td>
                         <td class="ta-center">H.</td>
-                        <td>@joshuah</td>
+                        <td class="ta-right">14,780</td>
                     </tr>
                     <tr>
                         <th scope="row" class="ta-center">3</th>
                         <td>Paweł</td>
                         <td class="ta-center">L.</td>
-                        <td>@pawełl</td>
+                        <td class="ta-right">555</td>
                     </tr>
                     <tr>
                         <th scope="row" class="ta-center">4</th>
                         <td>Ted</td>
                         <td class="ta-center">G.</td>
-                        <td>@so-ted</td>
+                        <td class="ta-right">3,125</td>
                     </tr>
                 </tbody>
             </table>
@@ -535,7 +575,7 @@ description: Tables are used to list all information from a data set. The base s
 <section class="stacks-section">
     {% header {element: 'h2', text: 'Table Headers'} %}
     {% header {element: 'h3', text: 'Simple Header'} %}
-    <p class="stacks-copy">Removes the background color and border from <code class="stacks-code">&lt;th&gt;</code> tags in the <code class="stacks-code">&lt;thead&gt;</code>. Useful when creating simple, no frills data tables.</p>
+    <p class="stacks-copy">Removes the background color and border from <code class="stacks-code">&lt;th&gt;</code> tags in the <code class="stacks-code">&lt;thead&gt;</code>. Useful when creating simple, no-frills data tables.</p>
     <div class="stacks-preview">
 {% highlight html linenos %}
 <table class="s-table s-table__simple-thead">
@@ -582,10 +622,10 @@ description: Tables are used to list all information from a data set. The base s
         </div>
     </div>
     {% header {element: 'h3', text: 'Sortable Tables'} %}
-    <p class="stacks-copy">Adds styles and JavaScript for sorting table columns.</p>
+    <p class="stacks-copy">Adds styles and JavaScript support for sorting table columns.</p>
     <div class="stacks-preview">
 {% highlight html linenos %}
-<table class="s-table va-middle s-table__expanded s-table--sortable">
+<table class="s-table va-middle s-table__expanded s-table__sortable">
     <thead>
         <tr>
             <th scope="col" class="sortable is-sorted">
@@ -625,7 +665,7 @@ description: Tables are used to list all information from a data set. The base s
 </table>
 {% endhighlight %}
         <div class="stacks-preview--example">
-            <table class="s-table va-middle s-table__expanded s-table--sortable">
+            <table class="s-table va-middle s-table__expanded s-table__sortable">
                 <thead>
                     <tr>
                         <th scope="col" class="sortable is-sorted">Listing {% svg /product/resources/svg-icons/ArrowDownSm.svg width="14" height="14" aria-hidden="true" class="svg-icon iconArrowDownSm" %}</th>
