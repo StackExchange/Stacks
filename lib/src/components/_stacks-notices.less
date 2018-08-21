@@ -108,33 +108,29 @@
 //  ============================================================================
 //  $   TOASTS
 //  ----------------------------------------------------------------------------
-.s-notice-toast {
+.s-toast {
     visibility: hidden;
     position: fixed;
     display: flex;
     justify-content: center;
-    top: 16px; // 50px (header) + 16px
+    top: @su16;
     left: @su8;
     right: @su8;
     opacity: 0;
     z-index: @zi-popovers;
-    -webkit-transform: translate3d(0,-66px,0);
-            transform: translate3d(0,-66px,0);
-    transition: opacity 0ms 100ms, visibility 0s 100ms, -webkit-transform 100ms @te-smooth-slow 0s;
-    transition: transform 100ms @te-smooth-slow 0s, opacity 0ms 100ms, visibility 0s 100ms;
-    transition: transform 100ms @te-smooth-slow 0s, opacity 0ms 100ms, visibility 0s 100ms, -webkit-transform 100ms @te-smooth-slow 0s;
+    transform: translate3d(0,-66px,0);
+    transition: transform 100ms @te-smooth-slow 0s, opacity 60ms @te-smooth-slow 0ms, visibility 0s 150ms;
 
     &[aria-hidden="false"] {
         visibility: visible;
         opacity: 1;
-        -webkit-transform: translate3d(0,0,0);
-                transform: translate3d(0,0,0);
-        transition: visibility 0s 0s, opacity 100ms @te-smooth 0s, -webkit-transform 100ms @te-smooth 0s;
+        transform: translate3d(0,0,0);
         transition: visibility 0s 0s, opacity 100ms @te-smooth 0s, transform 100ms @te-smooth 0s;
-        transition: visibility 0s 0s, opacity 100ms @te-smooth 0s, transform 100ms @te-smooth 0s, -webkit-transform 100ms @te-smooth 0s;
     }
 
     .s-notice {
+        max-width: 44rem;
+        width: 100%;
         box-shadow: @bs-sm;
     }
 }
