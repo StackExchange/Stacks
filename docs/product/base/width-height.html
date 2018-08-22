@@ -281,7 +281,33 @@ description: Stacks provides atomic sizing classes for percentage-based widths &
 
 <section class="stacks-section">
     {% header {element: 'h2', text: 'Height'} %}
-    {% header {element: 'h3', text: 'Height Classes'} %}
+    {% header {element: 'h3', text: 'Static Height Classes'} %}
+    <div class="overflow-x-auto mb32">
+        <table class="wmn3 s-table s-table__hover">
+            <thead>
+                <tr>
+                    <th scope="col">Class</th>
+                    <th scope="col">Output</th>
+                    <th class="s-table--cell2 ta-center" scope="col"><a class="s-link s-link__inherit" href="{{ "/product/guidelines/responsiveness" | relative_url }}">Responsive?</a></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for size in site.data.product.atomic-definitions.height-static %}
+                <tr class="ff-mono fs-caption">
+                    <th scope="row" class="p8">.{{ size.class }}</th>
+                    <td class="p8">{{ size.output }}</td>
+                    <td class="ta-center">
+                        {% if size.responsive %}
+                            {% svg /product/resources/svg-icons/Checkmark.svg width="18" height="18" aria-hidden="true" class="svg-icon iconCheckmark fc-green-500" %}
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    {% header {element: 'h3', text: 'Fluid Height Classes'} %}
     <div class="overflow-x-auto mb32">
         <table class="wmn3 s-table s-table__hover">
             <thead>
@@ -306,31 +332,11 @@ description: Stacks provides atomic sizing classes for percentage-based widths &
             </tbody>
         </table>
     </div>
-
-    {% header {element: 'h2', text: 'Height Examples'} %}
-    <div class="stacks-preview">
-{% highlight html linenos %}
-<div class="h0">…</div>
-<div class="h50">…</div>
-<div class="h100">…</div>
-{% endhighlight %}
-        <div class="stacks-preview--example ps-relative fs-caption ff-mono">
-            <div class="grid gs2 w100 hs3">
-                <div class="grid--cell fl1 ff-column-nowrap">
-                    <div class="p16 h100 bg-orange-050 ba bc-orange-1">.h100</div>
-                </div>
-                <div class="grid--cell fl1 ff-column-nowrap">
-                    <div class="p16 mb2 h50 bg-orange-050 ba bc-orange-1">.h50</div>
-                    <div class="p16 mt2 h50 bg-orange-050 ba bc-orange-1">.h50</div>
-                </div>
-            </div>
-        </div>
-    </div>
 </section>
 
 <section class="stacks-section">
-    {% header {element: 'h2', text: 'Height Min Max'} %}
-    {% header {element: 'h3', text: 'Height Min Max Classes'} %}
+    {% header {element: 'h2', text: 'Min Height'} %}
+    {% header {element: 'h3', text: 'Min Height Classes'} %}
     <div class="overflow-x-auto mb32">
         <table class="wmn3 s-table s-table__hover">
             <thead>
@@ -341,7 +347,7 @@ description: Stacks provides atomic sizing classes for percentage-based widths &
                 </tr>
             </thead>
             <tbody>
-                {% for size in site.data.product.atomic-definitions.height-max-min %}
+                {% for size in site.data.product.atomic-definitions.height-min %}
                 <tr class="ff-mono fs-caption">
                     <th scope="row" class="p8">.{{ size.class }}</th>
                     <td class="p8">{{ size.output }}</td>
@@ -356,3 +362,32 @@ description: Stacks provides atomic sizing classes for percentage-based widths &
         </table>
     </div>
 </section>
+
+<section class="stacks-section">
+        {% header {element: 'h2', text: 'Max Height'} %}
+        {% header {element: 'h3', text: 'Max Height Classes'} %}
+        <div class="overflow-x-auto mb32">
+            <table class="wmn3 s-table s-table__hover">
+                <thead>
+                    <tr>
+                        <th scope="col">Class</th>
+                        <th scope="col">Output</th>
+                        <th class="s-table--cell2 ta-center" scope="col"><a class="s-link s-link__inherit" href="{{ "/product/guidelines/responsiveness" | relative_url }}">Responsive?</a></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for size in site.data.product.atomic-definitions.height-max %}
+                    <tr class="ff-mono fs-caption">
+                        <th scope="row" class="p8">.{{ size.class }}</th>
+                        <td class="p8">{{ size.output }}</td>
+                        <td class="ta-center">
+                            {% if size.responsive %}
+                                {% svg /product/resources/svg-icons/Checkmark.svg width="18" height="18" aria-hidden="true" class="svg-icon iconCheckmark fc-green-500" %}
+                            {% endif %}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </section>
