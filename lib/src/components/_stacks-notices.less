@@ -19,6 +19,15 @@
     border: 1px solid transparent;
     border-radius: @br-sm;
     color: @fc-medium;
+
+    .s-toast & {
+        max-width: 44rem;
+        width: 100%;
+        padding-top: @su8;
+        padding-bottom: @su8;
+        box-shadow: @bs-sm;
+        pointer-events: all;
+    }
 }
 
 & {
@@ -120,17 +129,12 @@
     z-index: @zi-popovers;
     transform: translate3d(0,-66px,0);
     transition: transform 100ms @te-smooth-slow 0s, opacity 60ms @te-smooth-slow 0ms, visibility 0s 150ms;
+    pointer-events: none;
 
     &[aria-hidden="false"] {
         visibility: visible;
         opacity: 1;
         transform: translate3d(0,0,0);
         transition: visibility 0s 0s, opacity 100ms @te-smooth 0s, transform 100ms @te-smooth 0s;
-    }
-
-    .s-notice {
-        max-width: 44rem;
-        width: 100%;
-        box-shadow: @bs-sm;
     }
 }
