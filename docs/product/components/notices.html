@@ -5,18 +5,20 @@ description: Notices deliver <strong>System</strong> and <strong>Engagement</str
 ---
 <!-- Example notice content -->
 <script src="{{ "/assets/js/feature.notices.js" | relative_url }}"></script>
-<aside class="py8 pr8 s-notice s-notice__success s-notice__toast js-notice-toast" aria-hidden="true">
-    <div class="grid gs16 gsx ai-center jc-space-between" aria-describedby="notice-message">
-        <div class="grid--cell" aria-label="notice-message">
-            <p class="m0">Email settings have been successfully updated.</p>
+<div class="s-toast js-notice-toast" aria-hidden="true">
+    <aside class="s-notice s-notice__success">
+        <div class="grid gs16 gsx ai-center jc-space-between" aria-describedby="notice-message">
+            <div class="grid--cell" aria-label="notice-message">
+                <p class="m0">Email settings have been successfully updated.</p>
+            </div>
+            <div class="grid--cell mr0" aria-label="notice-dismiss">
+                <a class="p8 s-btn grid grid__center fc-dark js-notice-close">
+                    {% svg /product/resources/svg-icons/ClearSm.svg width="14" height="14" aria-hidden="true" class="svg-icon iconClearSm m0" %}
+                </a>
+            </div>
         </div>
-        <div class="grid--cell" aria-label="notice-dismiss">
-            <a class="p8 s-btn grid grid__center fc-dark js-notice-close">
-                {% svg /product/resources/svg-icons/ClearSm.svg width="14" height="14" aria-hidden="true" class="svg-icon iconClearSm m0" %}
-            </a>
-        </div>
-    </div>
-</aside>
+    </aside>
+</div>
 
 <section class="stacks-section">
     {% header {element: 'h2', text: 'Accessibility'} %}
@@ -164,64 +166,19 @@ description: Notices deliver <strong>System</strong> and <strong>Engagement</str
         <div class="stacks-preview--example">
             <div class="ps-relative grid gs8 gsy fd-column jc-center">
                 <aside class="grid--cell s-notice s-notice__important" role="alert" aria-hidden="false">
-                    <div class="grid">
-                        <div class="grid--cell" role="alertdialog" aria-describedby="notice-message">
-                            <p class="m0" aria-label="notice-message">Inverted important message style</p>
-                        </div>
-                        <div class="grid--cell ml-auto" aria-label="notice-dismiss">
-                            <a href="#" class="fc-white o75 js-notice-close">
-                                {% svg /product/resources/svg-icons/ClearSm.svg width="14" height="14" aria-hidden="true" class="svg-icon iconClearSm" %}
-                            </a>
-                        </div>
-                    </div>
+                    <p class="m0" aria-label="notice-message">Inverted important message style</p>
                 </aside>
                 <aside class="grid--cell s-notice s-notice__info s-notice__important" role="alert" aria-hidden="false">
-                    <div class="grid">
-                        <div class="grid--cell" role="alertdialog" aria-describedby="notice-message">
-                            <p class="m0" aria-label="notice-message">Info important message style</p>
-                        </div>
-                        <div class="grid--cell ml-auto" aria-label="notice-dismiss">
-                            <a href="#" class="fc-white o75 js-notice-close">
-                                {% svg /product/resources/svg-icons/ClearSm.svg width="14" height="14" aria-hidden="true" class="svg-icon iconClearSm" %}
-                            </a>
-                        </div>
-                    </div>
+                    <p class="m0" aria-label="notice-message">Info important message style</p>
                 </aside>
                 <aside class="grid--cell s-notice s-notice__success s-notice__important" role="alert" aria-hidden="false">
-                    <div class="grid">
-                        <div class="grid--cell" role="alertdialog" aria-describedby="notice-message">
-                            <p class="m0" aria-label="notice-message">Success important message style</p>
-                        </div>
-                        <div class="grid--cell ml-auto" aria-label="notice-dismiss">
-                            <a href="#" class="fc-dark o75 js-notice-close">
-                                {% svg /product/resources/svg-icons/ClearSm.svg width="14" height="14" aria-hidden="true" class="svg-icon iconClearSm" %}
-                            </a>
-                        </div>
-                    </div>
+                    <p class="m0" aria-label="notice-message">Success important message style</p>
                 </aside>
                 <aside class="grid--cell s-notice s-notice__warning s-notice__important" role="alert" aria-hidden="false">
-                    <div class="grid">
-                        <div class="grid--cell" role="alertdialog" aria-describedby="notice-message">
-                            <p class="m0" aria-label="notice-message">Warning important message style</p>
-                        </div>
-                        <div class="grid--cell ml-auto" aria-label="notice-dismiss">
-                            <a href="#" class="fc-dark o75 js-notice-close">
-                                {% svg /product/resources/svg-icons/ClearSm.svg width="14" height="14" aria-hidden="true" class="svg-icon iconClearSm" %}
-                            </a>
-                        </div>
-                    </div>
+                    <p class="m0" aria-label="notice-message">Warning important message style</p>
                 </aside>
                 <aside class="grid--cell s-notice s-notice__danger s-notice__important" role="alert" aria-hidden="false">
-                    <div class="grid">
-                        <div class="grid--cell" role="alertdialog" aria-describedby="notice-message">
-                            <p class="m0" aria-label="notice-message">Danger important message style</p>
-                        </div>
-                        <div class="grid--cell ml-auto" aria-label="notice-dismiss">
-                            <a href="#" class="fc-white js-notice-close">
-                                {% svg /product/resources/svg-icons/ClearSm.svg width="14" height="14" aria-hidden="true" class="svg-icon iconClearSm" %}
-                            </a>
-                        </div>
-                    </div>
+                    <p class="m0" aria-label="notice-message">Danger important message style</p>
                 </aside>
             </div>
         </div>
@@ -278,12 +235,6 @@ description: Notices deliver <strong>System</strong> and <strong>Engagement</str
         </div>
     </div>
 
-    {% header {element: 'h3', text: 'Banners'} %}
-    <p class="stacks-copy">System and hero banners are full-width notices placed usually at the top or bottom of the browser window, providing system or engagement content.</p>
-    <div class="mb48 s-notice s-notice__info">
-        <p class="mb0 fs-body3 lh-md">Full documentation for banners <a href="{{ "/product/components/banners" | relative_url }}">can be found in the banners area</a>.</p>
-    </div>
-
     {% header {element: 'h3', text: 'Toast'} %}
     <p class="stacks-copy">Floating notices, but aligned to the top and center of the page and they disappear after a set time</p>
     <div class="mb24 p16 bar-sm bg-black-025 ba bc-black-1">
@@ -291,28 +242,53 @@ description: Notices deliver <strong>System</strong> and <strong>Engagement</str
     </div>
     <div class="stacks-preview">
 {% highlight html linenos %}
-<aside class="s-notice s-notice__info s-notice__float" role="status" aria-hidden="false">…</aside>
-{% endhighlight %}
-        <div class="stacks-preview--example">
-            <div class="ps-relative grid grid__center gs8 gsy fd-column jc-center">
-                <aside class="grid--cell s-notice s-notice__success s-notice__toast" role="status" aria-hidden="false" style="position: relative; top: 0; left: 0;">
-                    <p class="m0">Toast notice message style</p>
-                </aside>
+<aside class="s-toast">
+    <div class="s-notice s-notice__success" role="status" aria-hidden="false">
+        <div class="grid gs16 gsx ai-center jc-space-between" aria-describedby="notice-message">
+            <div class="grid--cell" aria-label="notice-message">
+                Toast notice message
+            </div>
+            <div class="grid--cell mr0" aria-label="notice-dismiss">
+                <a class="p8 s-btn grid grid__center fc-dark">
+                    @Svg.ClearSm.With("m0")
+                </a>
             </div>
         </div>
     </div>
-
-    {% header {element: 'h3', text: 'Floating'} %}
-    <p class="stacks-copy">Floats a notice above the current page’s content</p>
-    <div class="stacks-preview">
-{% highlight html linenos %}
-<aside class="s-notice s-notice__info s-notice__float" role="status" aria-hidden="false">…</aside>
+</aside>
 {% endhighlight %}
         <div class="stacks-preview--example">
-            <div class="ps-relative grid gs8 gsy fd-column jc-center">
-                <aside class="grid--cell s-notice s-notice__info s-notice__float" role="status" aria-hidden="false">
-                    <p class="m0">Floating notice message style</p>
-                </aside>
+            <div class="ps-relative grid grid__center gs8 gsy fd-column jc-center">
+                <div class="grid--cell s-notice s-notice__success py8 bs-sm" role="status">
+                    <div class="grid gs16 gsx ai-center jc-space-between" aria-describedby="notice-message">
+                        <div class="grid--cell" aria-label="notice-message">
+                            <p class="m0">Toast notice message styling</p>
+                        </div>
+                        <div class="grid--cell mr0" aria-label="notice-dismiss">
+                            <a class="p8 s-btn grid grid__center fc-dark">
+                                {% svg /product/resources/svg-icons/ClearSm.svg width="14" height="14" aria-hidden="true" class="svg-icon iconClearSm m0" %}
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid--cell s-notice s-notice__success py8 bs-sm" role="status">
+                    <div class="grid gs16 gsx ai-center jc-space-between" aria-describedby="notice-message">
+                        <div class="grid--cell" aria-label="notice-message">
+                            <p class="m0">Toast notice message with an undo button</p>
+                        </div>
+                        <div class="grid--cell" aria-label="notice-message">
+                            <a class="p8 s-btn fc-dark">
+                                Undo
+                            </a>
+                        </div>
+                        <div class="grid--cell mr0 ml0" aria-label="notice-dismiss">
+                            <a class="p8 s-btn grid grid__center fc-dark">
+                                {% svg /product/resources/svg-icons/ClearSm.svg width="14" height="14" aria-hidden="true" class="svg-icon iconClearSm m0" %}
+                            </a>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
