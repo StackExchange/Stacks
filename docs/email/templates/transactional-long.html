@@ -157,6 +157,19 @@
             background: #cee0ed !important;
         }
 
+        /* What it does: Rounds corners in email clients that support it */
+        .bar {
+            border-radius: 5px;
+        }
+        .btr {
+            border-top-left-radius: 5px;
+            border-top-right-radius: 5px;
+        }
+        .bbr {
+            border-bottom-left-radius: 5px;
+            border-bottom-right-radius: 5px;
+        }
+
         /* Media Queries */
         @media screen and (max-width: 680px) {
 
@@ -214,8 +227,13 @@
             }
 
             /* What it does: Utility classes to kill border radius for smaller viewports. */
-            .bar0 {
-                border-radius: 0 !important;
+            .bar,
+            .btr,
+            .bbr {
+                border-top-left-radius: 0;
+                border-top-right-radius: 0;
+                border-bottom-left-radius: 0;
+                border-bottom-right-radius: 0;
             }
         }
     </style>
@@ -264,7 +282,7 @@
 
                 <!-- Primary Email Body : BEGIN -->
                 <tr>
-                    <td style="padding: 30px; background-color: #ffffff; border-top-right-radius: 5px; border-top-left-radius: 5px;" class="sm-p bar0">
+                    <td style="padding: 30px; background-color: #ffffff;" class="sm-p btr">
 
                         <table dir="rtl" role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%">
                             <tr>
@@ -324,7 +342,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td style="padding: 0 30px 30px; background-color: #ffffff; border-bottom-right-radius: 5px; border-bottom-left-radius: 5px;" class="sm-px sm-pb">
+                    <td style="padding: 0 30px 30px; background-color: #ffffff;" class="sm-px sm-pb bbr">
                          <table width="100%" align="left" border="0" cellpadding="0" cellspacing="0" role="presentation">
                             <!-- Rich Text : BEGIN -->
                             <tr>
@@ -367,7 +385,7 @@
                 <!-- Clear Spacer : END -->
                 <!-- Secondary Email Body : BEGIN -->
                 <tr>
-                    <td style="padding: 30px 30px 10px; background-color: #ffffff; text-align: left; border-radius: 5px;" class="sm-px sm-pt bar0">
+                    <td style="padding: 30px 30px 10px; background-color: #ffffff; text-align: left;" class="sm-px sm-pt bar">
                          <table width="100%" align="left" border="0" cellpadding="0" cellspacing="0" role="presentation">
                             <tr>
                                 <td style="font-family: arial, sans-serif; font-size: 15px; line-height: 140%; color: #3C3F44; text-align: left;">
