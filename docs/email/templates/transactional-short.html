@@ -139,11 +139,6 @@
     <style type="text/css">
 
         /* What it does: Hover styles for buttons and tags */
-        .s-btn,
-        .s-tag,
-        .post-tag {
-            transition: all 100ms ease-in;
-        }
         .s-btn__primary:hover {
             background: #0077CC !important;
             border-color: #0077CC !important;
@@ -160,6 +155,19 @@
         .post-tag:hover {
             border-color: #cee0ed !important;
             background: #cee0ed !important;
+        }
+
+        /* What it does: Rounds corners in email clients that support it */
+        .bar {
+            border-radius: 5px;
+        }
+        .btr {
+            border-top-left-radius: 5px;
+            border-top-right-radius: 5px;
+        }
+        .bbr {
+            border-bottom-left-radius: 5px;
+            border-bottom-right-radius: 5px;
         }
 
         /* Media Queries */
@@ -217,6 +225,16 @@
                 font-size: 34px !important;
                 line-height: 34px !important;
             }
+
+            /* What it does: Utility classes to kill border radius for smaller viewports. */
+            .bar,
+            .btr,
+            .bbr {
+                border-top-left-radius: 0;
+                border-top-right-radius: 0;
+                border-bottom-left-radius: 0;
+                border-bottom-right-radius: 0;
+            }
         }
     </style>
 </head>
@@ -263,7 +281,7 @@
                 ------------------------------>
 
                 <tr>
-                    <td style="padding: 30px; background-color: #ffffff;" class="sm-p">
+                    <td style="padding: 30px; background-color: #ffffff;" class="sm-p bar">
                         <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="width:100%;">
                             <!-- Team Name : BEGIN -->
                             <tr>
