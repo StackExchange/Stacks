@@ -319,6 +319,19 @@ description: Tables are used to list all information from a data set. The base s
             </table>
         </div>
     </div>
+
+    {% header {element: 'h3', text: 'Table Cell Widths'} %}
+    <p class="stacks-copy">Text.</p>
+    <div class="stacks-preview">
+{% highlight html linenos %}
+<table class="s-table s-table__expanded">
+    …
+</table>
+{% endhighlight %}
+        <div class="stacks-preview--example">
+
+        </div>
+    </div>
 </section>
 <section class="stacks-section">
     {% header {element: 'h2', text: 'Background'} %}
@@ -720,7 +733,52 @@ description: Tables are used to list all information from a data set. The base s
 Code goes here
 {% endhighlight %}
         <div class="stacks-preview--example">
-
+            <table class="s-table ta-left">
+                <thead>
+                    <tr>
+                        <th scope="col">Name</th>
+                        <th scope="col">Use Case</th>
+                        <th scope="col" class="ta-right">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row" class="ws-nowrap">Aaron Shekey</th>
+                        <td>For a single, neutral action</td>
+                        <td class="ta-right pr0">
+                            <button class="s-btn s-btn__sm">Edit</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row" class="ws-nowrap">Shog9</th>
+                        <td>For a single, destructive action</td>
+                        <td class="ta-right pr0">
+                            <button class="s-btn s-btn__danger s-btn__sm">Remove</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row" class="ws-nowrap">Medi Gwosdz</th>
+                        <td>For a table row that's read-only</td>
+                        <td class="ta-right pr0">
+                            <button disabled class="s-btn s-btn__muted s-btn__sm ws-nowrap">Managed via LDAP</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row" class="ws-nowrap">Anita M. Taylor</th>
+                        <td>For table rows with multiple actions available</td>
+                        <td class="ta-right pr0">
+                            <button class="s-btn s-btn__dropdown s-btn__sm">Options</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row" class="ws-nowrap">Vinko Vrsalovic</th>
+                        <td>Same as above. Useful when 1. Real estate is tight, 2. Menu actions cannot be accurately summarized, or 3. Menu actions are of secondary importance.</td>
+                        <td class="ta-right pr0">
+                            <button class="s-btn s-btn__muted s-btn__sm">{% svg /product/resources/svg-icons/EllipsisVertical.svg width="14" height="14" aria-hidden="true" class="svg-icon EllipsisVertical m0" %}</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     </div>
     {% header {element: 'h3', text: 'Mini Graphs'} %}
