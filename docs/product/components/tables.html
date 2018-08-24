@@ -724,13 +724,164 @@ Code goes here
         </div>
     </div>
     {% header {element: 'h3', text: 'Mini Graphs'} %}
-    <p class="stacks-copy">Text.</p>
+    <p class="stacks-copy">Adds support for data visualizations in table cells. Useful in helping visualize and call extra attention to data in a table cell. These patterns take existing components (the example below uses <a href="{{ "/product/components/progress-bars" | relative_url }}"><code class="stacks-code">.s-progress</code></a>) and adapts them to display nicely when dropped into a table.</p>
     <div class="stacks-preview">
 {% highlight html linenos %}
-Code goes here
+<table class="s-table">
+    <thead> … </thead>
+    <tbody>
+        <tr>
+            <td>
+                <a>Site Reliability Engineer, Generalist</a><br>
+                <span class="fs-caption">Sydney, Australia</span>
+            </td>
+            <td>Running</td>
+            <td>Sansa Stark</td>
+            <td>stackoverflow.com</td>
+            <td class="ta-right">
+                <div class="grid ai-center gs8 gsx">
+                    <div class="grid--cell fl1">1,854</div>
+                    <div class="grid--cell" style="width: 60px;">
+                        <div class="s-progress bg-white">
+                            <div class="s-progress--bar bg-powder-400" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="@percentage" style="width: 100%"></div>
+                        </div>
+                    </div>
+                </div>
+            </td>
+            <td class="ta-right">
+                <div class="grid ai-center gs8 gsx">
+                    <div class="grid--cell fl1">43</div>
+                    <div class="grid--cell" style="width: 60px;">
+                        <div class="s-progress  bg-white">
+                            <div class="s-progress--bar bg-orange-400"" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="@percentage" style="width: 100%"></div>
+                        </div>
+                    </div>
+                </div>
+            </td>
+        </tr>
+    </tbody>
+</table>
 {% endhighlight %}
         <div class="stacks-preview--example">
-
+            <table class="s-table s-table__bordered-x">
+                <thead>
+                    <tr>
+                        <th scope="col" class="sortable is-sorted">Listing</th>
+                        <th scope="col" class="sortable">Status</th>
+                        <th scope="col" class="sortable">Owner</th>
+                        <th scope="col" class="sortable">Source</th>
+                        <th scope="col" class="sortable">Views</th>
+                        <th scope="col" class="sortable">Applies</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <a>Site Reliability Engineer, Generalist</a><br>
+                            <span class="fs-caption">Sydney, Australia</span>
+                        </td>
+                        <td>Running</td>
+                        <td>Sansa Stark</td>
+                        <td>stackoverflow.com</td>
+                        <td class="ta-right">
+                            <div class="grid ai-center gs8 gsx">
+                                <div class="grid--cell fl1">
+                                    1,854
+                                </div>
+                                <div class="grid--cell" style="width: 60px;">
+                                    <div class="s-progress bg-white">
+                                        <div class="s-progress--bar bg-powder-400" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="@percentage" style="width: 100%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="ta-right">
+                            <div class="grid ai-center gs8 gsx">
+                                <div class="grid--cell fl1">
+                                    43
+                                </div>
+                                <div class="grid--cell" style="width: 60px;">
+                                    <div class="s-progress  bg-white">
+                                        <div class="s-progress--bar bg-orange-400"" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="@percentage" style="width: 100%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <a>Senior Product Designer</a><br>
+                            <span class="fs-caption">New York, NY, USA</span>
+                        </td>
+                        <td>Running</td>
+                        <td>Robert Baratheon</td>
+                        <td>linkedin.com</td>
+                        <td class="ta-right">
+                            <div class="grid ai-center gs8 gsx">
+                                <div class="grid--cell fl1">
+                                    900
+                                </div>
+                                <div class="grid--cell" style="width: 60px;">
+                                    <div class="s-progress bg-white">
+                                        <div class="s-progress--bar bg-powder-400" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="@percentage" style="width: 50%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="ta-right">
+                            <div class="grid ai-center gs8 gsx">
+                                <div class="grid--cell fl1">
+                                    15
+                                </div>
+                                <div class="grid--cell" style="width: 60px;">
+                                    <div class="s-progress  bg-white">
+                                        <div class="s-progress--bar bg-orange-400"" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="@percentage" style="width: 40%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <a>Product Manager, Developer Products</a><br>
+                            <span class="fs-caption">London, England</span>
+                        </td>
+                        <td>Running</td>
+                        <td>Sansa Stark</td>
+                        <td>m.facebook.com</td>
+                        <td class="ta-right">
+                            <div class="grid ai-center gs8 gsx">
+                                <div class="grid--cell fl1">
+                                    3
+                                </div>
+                                <div class="grid--cell" style="width: 60px;">
+                                    <div class="s-progress bg-white">
+                                        <div class="s-progress--bar bg-powder-400" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="@percentage" style="width: 10%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="ta-right">
+                            <div class="grid ai-center gs8 gsx">
+                                <div class="grid--cell fl1">
+                                    1
+                                </div>
+                                <div class="grid--cell" style="width: 60px;">
+                                    <div class="s-progress bg-white">
+                                        <div class="s-progress--bar bg-orange-400" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="@percentage" style="width: 5%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="grid ai-start s-notice s-notice__info">
+        <div class="grid--cell mr8">{% svg /product/resources/svg-icons/Info.svg width="18" height="18" aria-hidden="true" class="svg-icon iconInfo" %}</div>
+        <div class="grid--cell lh-lg">
+            <strong>Note:</strong> For more complex visualizations (like tiny pie charts and spark lines), we've used <a href="https://www.chartjs.org/">Chart.js</a> in the past. We recommend discussing this with your product team.
         </div>
     </div>
 </section>
