@@ -1298,6 +1298,11 @@ legend.s-label {
   border-top: 1px solid #e4e6e8;
   text-align: left;
   vertical-align: middle;
+  border-right: 1px solid #e4e6e8;
+}
+.s-table th:last-child,
+.s-table td:last-child {
+  border-right: none;
 }
 .s-table th {
   font-weight: normal;
@@ -1376,9 +1381,24 @@ legend.s-label {
 .s-table.s-table__expanded td {
   padding: 12px;
 }
-.s-table.s-table__bordered-x th:not(:last-child),
-.s-table.s-table__bordered-x td:not(:last-child) {
-  border-right: 1px solid #e4e6e8;
+.s-table.s-table__borderless th,
+.s-table.s-table__borderless td {
+  border-top: none;
+  border-right: none;
+}
+.s-table.s-table__borderless thead th {
+  border-bottom: none;
+}
+.s-table.s-table__borderless tbody tr:last-child th,
+.s-table.s-table__borderless tr:last-child td {
+  border-bottom: none;
+}
+.s-table.s-table__borderless tbody + tbody {
+  border-top: none;
+}
+.s-table.s-table__borderless-x th,
+.s-table.s-table__borderless-x td {
+  border-right: none;
 }
 .s-table.s-table__borderless-y th,
 .s-table.s-table__borderless-y td {
@@ -1428,6 +1448,7 @@ legend.s-label {
 .s-table__simple-thead thead th {
   background-color: transparent;
   border-top: none;
+  border-right: none;
 }
 .s-table__sortable .sortable {
   cursor: pointer;

@@ -47,6 +47,10 @@
         border-top: 1px solid @brc-lighter;
         text-align: left;
         vertical-align: middle;
+        border-right: 1px solid @brc-lighter;
+        &:last-child {
+            border-right: none;
+        }
     }
     th {
         font-weight: normal;
@@ -139,10 +143,27 @@
 
     //  $$  Bordered
     //  ------------------------------------------------------------------------
-    &.s-table__bordered-x {
-        th:not(:last-child),
-        td:not(:last-child) {
-            border-right: 1px solid @brc-lighter;
+    &.s-table__borderless {
+        th,
+        td {
+            border-top: none;
+            border-right: none;
+        }
+        thead th {
+            border-bottom: none;
+        }
+        tbody tr:last-child th,
+        tr:last-child td {
+            border-bottom: none;
+        }
+        tbody + tbody {
+            border-top: none;
+        }
+    }
+    &.s-table__borderless-x {
+        th,
+        td {
+            border-right: none;
         }
     }
     &.s-table__borderless-y {
@@ -233,9 +254,12 @@
 //  $$  Simple THEAD
 //  ------------------------------------------------------------------------
 .s-table__simple-thead {
-    thead th {
-        background-color: transparent;
-        border-top: none;
+    thead {
+        th {
+            background-color: transparent;
+            border-top: none;
+            border-right: none;
+        }
     }
 }
 

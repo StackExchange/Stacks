@@ -80,16 +80,24 @@ description: Tables are used to list all information from a data set. The base s
 
 <section class="stacks-section">
     {% header {element: 'h2', text: 'Borders'} %}
-    {% header {element: 'h3', text: 'Vertical Borders'} %}
-    <p class="stacks-copy">Adds a border to each table column. Helps organize data in tables have different types of data (eg. user card, text string, graphic, links).</p>
+    {% header {element: 'h3', text: 'Remove Borders'} %}
+    <p class="stacks-copy">By default, tables include both horizontal and vertical borders. If you would like to remove these borders, apply <code class="stacks-code">.s-table__borderless</code> to remove all borders, <code class="stacks-code">.s-table__borderless-x</code> to remove only the horizonal borders, or <code class="stacks-code">.s-table__borderless-y</code> to remove only the vertical borders.</p>
     <div class="stacks-preview">
 {% highlight html linenos %}
-<table class="s-table s-table__bordered-x">
+<table class="s-table s-table__borderless">
+    …
+</table>
+
+<table class="s-table s-table__borderless-x">
+    …
+</table>
+
+<table class="s-table s-table__borderless-y">
     …
 </table>
 {% endhighlight %}
         <div class="stacks-preview--example">
-            <table class="s-table s-table__bordered-x">
+            <table class="s-table s-table__borderless mb16">
                 <thead>
                     <tr>
                         <th scope="col"></th>
@@ -125,18 +133,43 @@ description: Tables are used to list all information from a data set. The base s
                     </tr>
                 </tbody>
             </table>
-        </div>
-    </div>
-    {% header {element: 'h3', text: 'No Horizontal Borders'} %}
-    <p class="stacks-copy">Removes the horizontal borders included in <code class="stacks-code">.s-table</code> by default. When combined with other <code class="stacks-code">.s-table</code> modifier classes, <code class="stacks-code">.s-table__borderless-y</code> is useful for tables that focus on columns.</p>
-    <div class="stacks-preview">
-{% highlight html linenos %}
-<table class="s-table s-table__borderless-y s-table__outlined s-table__bordered-x">
-    …
-</table>
-{% endhighlight %}
-        <div class="stacks-preview--example">
-            <table class="s-table s-table__borderless-y s-table__outlined s-table__bordered-x">
+            <table class="s-table s-table__borderless-x mb16">
+                <thead>
+                    <tr>
+                        <th scope="col"></th>
+                        <th scope="col">First Name</th>
+                        <th scope="col">Last Name</th>
+                        <th scope="col">Username</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>Aaron</td>
+                        <td>S.</td>
+                        <td>@aarons</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">2</th>
+                        <td>Joshua</td>
+                        <td>H.</td>
+                        <td>@joshuah</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">3</th>
+                        <td>Paweł</td>
+                        <td>L.</td>
+                        <td>@pawełl</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">4</th>
+                        <td>Ted</td>
+                        <td>G.</td>
+                        <td>@so-ted</td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="s-table s-table__borderless-y mb16">
                 <thead>
                     <tr>
                         <th scope="col"></th>
@@ -588,7 +621,7 @@ description: Tables are used to list all information from a data set. The base s
 <section class="stacks-section">
     {% header {element: 'h2', text: 'Table Headers'} %}
     {% header {element: 'h3', text: 'Simple Header'} %}
-    <p class="stacks-copy">Removes the background color and border from <code class="stacks-code">&lt;th&gt;</code> tags in the <code class="stacks-code">&lt;thead&gt;</code>. Useful when creating simple, no-frills data tables.</p>
+    <p class="stacks-copy">Removes the background color and border from <code class="stacks-code">&lt;th&gt;</code> tags in the <code class="stacks-code">&lt;thead&gt;</code>. Useful when creating a simple, no-frills table.</p>
     <div class="stacks-preview">
 {% highlight html linenos %}
 <table class="s-table s-table__simple-thead">
@@ -648,6 +681,7 @@ description: Tables are used to list all information from a data set. The base s
             <th scope="col" class="sortable">
                 Status
                 <svg aria-hidden="true" class="svg-icon iconArrowUpDownSm native" width="14" height="14" viewBox="0 0 14 14"><path d="M3 7h8l-4 4zm0-1h8L7 2z"></path></svg>
+                <svg width="8" height="11" xmlns="http://www.w3.org/2000/svg"><path d="M0 7h8l-4 4-4-4zm0-3l4-4 4 4H0z" fill="#858C93" fill-rule="nonzero"/></svg>
             </th>
             <th scope="col" class="sortable">
                 Owner
