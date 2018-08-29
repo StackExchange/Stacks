@@ -1,6 +1,6 @@
 ---
 layout: page
-title: MSO tags
+title: Outlook Conditional CSS
 description: Words go here
 ---
 
@@ -11,15 +11,56 @@ description: Words go here
     </p>
 </section>
 <section class="stacks-section">
-    {% header {element: 'h2', text: 'Examples'} %}
+    {% header {element: 'h2', text: 'Targeting Microsoft Office'} %}
+    <p class="stacks-copy">With the multitude of weird rendering issues Outlook introduces into emails, it makes more and more sense to provide an Outlook-specific stylesheet, akin to what we do for mobile emails. Using Microsoft’s conditional comments, you can do just that. Here’s all you need, and it can be placed after your main CSS:</p>
     <div class="stacks-preview mb24">
 {% highlight html linenos %}
-<td>
-    ...
-</td>
+<!--[if gte mso 9]>
+    <style>
+        /* Your Outlook-specific CSS goes here. */
+    </style>
+<![endif]-->
 {% endhighlight %}
-        <div class="stacks-preview--example">
-
-        </div>
+    </div>
+        <p class="stacks-copy">It’s the same thing you’d use to target Internet Explorer 7 when building a website, except it targets Microsoft Office, or ‘mso’. In the example above, ‘gte’ is added to have the comment apply only to versions of Microsoft Office greater than or equal to 9. You can also target lesser, or older, versions by using ‘lt’. Using ‘gt’ and ‘lte’ will target versions greater than, or less than or equal to, respectively.</p>
+</section>
+<section class="stacks-section">
+    {% header {element: 'h2', text: 'Outlook Version Numbers'} %}
+    <p class="stacks-copy">Using Microsoft Office version numbers allows you to target specific Outlook clients.</p>
+    <div class="overflow-x-auto mb32">
+        <table class="s-table va-middle">
+            <thead>
+                <tr>
+                    <th class="s-table--cell4" scope="col">Outlook Version(s)</th>
+                    <th scope="col">Code</th>
+               </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <div class="grid ai-center">
+                            <span>All Outlook 2003+</span>
+                            <span class="s-badge s-badge__mini ml8">most common</span>
+                        </td>
+                    <td scope="row" class="-cell1"><code class="stacks-code">&lt;!--[if mso]&gt;  your code  &lt;![endif]--&gt;</code></td>
+                </tr>
+                <tr>
+                    <td>Outlook 2007</td>
+                    <td scope="row" class="-cell1"><code class="stacks-code">&lt;!--[if mso 12]&gt;  your code  &lt;![endif]--&gt;</code></td>
+                </tr>
+                <tr>
+                    <td>Outlook 2010</td>
+                    <td scope="row" class="-cell1"><code class="stacks-code">&lt;!--[if mso 14]&gt;  your code  &lt;![endif]--&gt;</code></td>
+                </tr>
+                <tr>
+                    <td>Outlook 2013</td>
+                    <td scope="row" class="-cell1"><code class="stacks-code">&lt;!--[if mso 15]&gt;  your code  &lt;![endif]--&gt;</code></td>
+                </tr>
+                <tr>
+                    <td>Outlook 2016</td>
+                    <td scope="row" class="-cell1"><code class="stacks-code">&lt;!--[if mso 16]&gt;  your code  &lt;![endif]--&gt;</code></td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 </section>
