@@ -1,0 +1,158 @@
+---
+layout: page-nomenu
+title: Long Transactional Template
+description: A starter template for more complex transactional emails that could contain multiple messages.
+---
+<section class="stacks-section">
+    <div class="grid grid__allcells6 sm:fd-column jc-space-between gs16 gsx">
+        <div class="grid--cell ba bc-black-3 mb16 p16 bar-sm">
+            <p class="stacks-copy grid ai-center fc-green-400 fw-bold fs-body2 tt-uppercase">
+                {% svg /product/resources/svg-icons/Checkmark.svg width="18" height="18" aria-hidden="true" class="svg-icon iconCheckmark mr4" %} Good For:
+            </p>
+            <p class="fs-body2">Complex transactions that include multiple messages or lists, such as:</p>
+            <ul class="stacks-list fs-body2 mb0">
+                <li>Your answer was accepted</li>
+                <li>You’ve been added to a Team</li>
+                <li>New Interests</li>
+                <li>Tag digest</li>
+            </ul>
+        </div>
+        <div class="grid--cell ba bc-black-3 mb16 p16 bar-sm">
+            <p class="stacks-copy grid ai-center fc-red-500 fw-bold fs-body2 tt-uppercase">
+                {% svg /product/resources/svg-icons/Clear.svg width="18" height="18" aria-hidden="true" class="svg-icon iconClear mr4" %} Not So Good For:
+            </p>
+            <p class="fs-body2">Simple transactions that include a short message or one time announcements, such as:</p>
+            <ul class="stacks-list fs-body2 mb0">
+                <li>Account deactivated</li>
+                <li>New message from employer</li>
+                <li>Product announcement</li>
+                <li>You have an unused search subscription</li>
+            </ul>
+        </div>
+    </div>
+    <ul class="list-reset grid ai-center btr-sm ba bbw0 bc-black-3 p16 gs8 gsx">
+        <li class="grid--cell sm:d-none">
+            <a href="#" class="s-link s-link__muted py8 px12 bar-pill js-sm-btn2 js-query-select-btn2">
+                <svg xmlns="http://www.w3.org/2000/svg" class="svg-icon va-text-top" width="10" height="14" viewBox="0 0 10 14">
+                  <path d="M2,2 L2,10 L8,10 L8,2 L2,2 Z M2,0 L8,0 C9.1045695,0 10,0.8954305 10,2 L10,12 C10,13.1045695 9.1045695,14 8,14 L2,14 C0.8954305,14 0,13.1045695 0,12 L0,2 C0,0.8954305 0.8954305,0 2,0 Z M4,11 L4,13 L6,13 L6,11 L4,11 Z"/>
+                </svg>
+                Small
+            </a>
+        </li>
+        <li class="grid--cell sm:d-none">
+            <a href="#" class="s-link s-link__muted py8 px12 bar-pill bg-black-100 fc-black-600 js-lg-btn2 js-query-select-btn2">
+                <svg xmlns="http://www.w3.org/2000/svg" class="svg-icon va-text-top" width="26" height="14" viewBox="0 0 26 14">
+                  <path fill-rule="evenodd" d="M5,0 L21,0 C22.1045695,0 23,0.8954305 23,2 L23,12 L26,12 L26,14 L0,14 L0,12 L3,12 L3,2 C3,0.8954305 3.8954305,0 5,0 Z M5,2 L5,11 L21,11 L21,2 L5,2 Z"/>
+                </svg>
+                Large
+            </a>
+        </li>
+        <li class="grid--cell ml-auto">
+            <a href="https://raw.githubusercontent.com/StackExchange/Stacks/develop/docs/email/templates/transactional-long.html" class="grid ai-center py8 px12 s-btn s-btn__primary">
+                {% svg /product/resources/svg-icons/Code.svg width="18" height="18" aria-hidden="true" class="svg-icon iconCode mr4" %}
+                Grab the Code
+            </a>
+        </li>
+    </ul>
+    <div class="bbr-sm ba bc-black-3 ta-center">
+        <iframe title="Example of a Long Transactional Email" height="700" src="/email/templates/transactional-long.html" class="ba baw0 m-auto mbn4 w100 js-iframe2"></iframe>
+    </div>
+    <div class="grid mt24">
+        <div class="grid--cell">
+            <div class="grid ai-start s-notice s-notice__info">
+                <div class="grid--cell mr8">{% svg /product/resources/svg-icons/Help.svg width="18" height="18" aria-hidden="true" class="svg-icon iconHelp" %}</div>
+                <div class="grid--cell lh-lg">
+                    <strong>Note:</strong> If an email inherits from a master template (eg. <code class="stacks-code bg-powder-200">_Stacks-Layout.Html.cshtml</code>), only the middle part of the template is needed (the <code class="stacks-code bg-powder-200">&lt;head&gt;</code>, logo, and footer are automatically included). Each template includes <code class="stacks-code bg-powder-200">&lt;!-- EMAIL BODY : BEGIN --&gt;</code> and <code class="stacks-code bg-powder-200">&lt;!-- EMAIL BODY : END --&gt;</code> markers indicating this middle&nbsp;section.
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    $(function(){
+        // Add one of these blocks and increment the trailing number for each example
+        var smBtn1 = $(".js-sm-btn1");
+        var lgBtn1 = $(".js-lg-btn1");
+        var btns1 = $(".js-query-select-btn1");
+        var gridTarget1 = $(".js-iframe1");
+
+        smBtn1.click(function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            removeClasses1();
+            addSelection1($(this));
+            gridTarget1.addClass("ws4");
+        });
+        lgBtn1.click(function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            removeClasses1();
+            addSelection1($(this));
+            gridTarget1.addClass("w100");
+        });
+        function removeClasses1() {
+            gridTarget1.removeClass("ws4 w100");
+            btns1.removeClass("bg-black-100 fc-black-600");
+        };
+        function addSelection1(obj) {
+            obj.addClass("bg-black-100 fc-black-600");
+        };
+
+        // Add one of these blocks and increment the trailing number for each example
+        var smBtn2 = $(".js-sm-btn2");
+        var lgBtn2 = $(".js-lg-btn2");
+        var btns2 = $(".js-query-select-btn2");
+        var gridTarget2 = $(".js-iframe2");
+
+        smBtn2.click(function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            removeClasses2();
+            addSelection2($(this));
+            gridTarget2.addClass("ws4");
+        });
+        lgBtn2.click(function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            removeClasses2();
+            addSelection2($(this));
+            gridTarget2.addClass("w100");
+        });
+        function removeClasses2() {
+            gridTarget2.removeClass("ws4 w100");
+            btns2.removeClass("bg-black-100 fc-black-600");
+        };
+        function addSelection2(obj) {
+            obj.addClass("bg-black-100 fc-black-600");
+        };
+
+        // Add one of these blocks and increment the trailing number for each example
+        var smBtn3 = $(".js-sm-btn3");
+        var lgBtn3 = $(".js-lg-btn3");
+        var btns3 = $(".js-query-select-btn3");
+        var gridTarget3 = $(".js-iframe3");
+
+        smBtn3.click(function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            removeClasses3();
+            addSelection3($(this));
+            gridTarget3.addClass("ws4");
+        });
+        lgBtn3.click(function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            removeClasses3();
+            addSelection3($(this));
+            gridTarget3.addClass("w100");
+        });
+        function removeClasses3() {
+            gridTarget3.removeClass("ws4 w100");
+            btns3.removeClass("bg-black-100 fc-black-600");
+        };
+        function addSelection3(obj) {
+            obj.addClass("bg-black-100 fc-black-600");
+        };
+    });
+</script>
