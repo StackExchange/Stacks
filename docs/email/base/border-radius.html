@@ -1,25 +1,139 @@
 ---
 layout: page
 title: Border Radius
-description: Words go here
+description: To keep in step with the rest of Stacks, we round the corners of all major email containers that sit on top of the light gray background and square them off on mobile.
 ---
 
 <!-- TAGS -->
 <section class="stacks-section">
     <p class="stacks-copy">
-         If you need more words...
+        To ensure all mobile email clients have square corners, border radius is defined as a progressive enhancement in the <code class="stacks-code">&lt;style&gt;</code> tag so we can remove it reliably using a media query. For this reason:
     </p>
+    {% include notice-email-head-support.html %}
 </section>
 <section class="stacks-section">
-    {% header {element: 'h2', text: 'Examples'} %}
+    {% header {element: 'h2', text: 'Border Radius Classes'} %}
+    <table class="s-table s-table__hover mb32 va-top">
+        <thead>
+            <tr>
+                <th class="s-table--cell2" scope="col">Class</th>
+                <th class="s-table--cell4"scope="col">Output</th>
+                <th scope="col">Use Case</th>
+           </tr>
+        </thead>
+        <tbody>
+            <tr class="ff-mono">
+                <th>.bar</th>
+                <td>border-radius: 5px;</td>
+                <td class="ff-sans">Rounding all four corners of <a href="/email/templates/short-transactional">a simple email</a>.</td>
+            </tr>
+            <tr class="ff-mono">
+                <th>.btr</th>
+                <td>border-top-left-radius: 5px;<br>border-top-right-radius: 5px;</td>
+                <td class="ff-sans">Rounding the top corners of <a href="/email/templates/promotional">a complex promotional email</a> in one location…</td>
+            </tr>
+            <tr class="ff-mono">
+                <th>.bbr</th>
+                <td>border-bottom-left-radius: 5px;<br>border-bottom-right-radius: 5px;</td>
+                <td class="ff-sans">…and rounding the bottom corners in another location.</td>
+            </tr>
+        </tbody>
+    </table>
     <div class="stacks-preview mb24">
 {% highlight html linenos %}
-<td>
-    ...
-</td>
+<tr>
+    <td style="background-color: #ffffff;" class="bar">
+        ...
+    </td>
+</tr>
+
+<img class="btr">
 {% endhighlight %}
         <div class="stacks-preview--example">
+
+            <ul class="list-reset grid ai-center bc-black-3 py16 gs8 gsx">
+                <li class="grid--cell sm:d-none">
+                    <a href="#" class="s-link s-link__muted py8 px12 bar-pill js-sm-btn js-query-select-btn">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="svg-icon va-text-top" width="10" height="14" viewBox="0 0 10 14">
+                          <path d="M2,2 L2,10 L8,10 L8,2 L2,2 Z M2,0 L8,0 C9.1045695,0 10,0.8954305 10,2 L10,12 C10,13.1045695 9.1045695,14 8,14 L2,14 C0.8954305,14 0,13.1045695 0,12 L0,2 C0,0.8954305 0.8954305,0 2,0 Z M4,11 L4,13 L6,13 L6,11 L4,11 Z"/>
+                        </svg>
+                        Small
+                    </a>
+                </li>
+                <li class="grid--cell sm:d-none">
+                    <a href="#" class="s-link s-link__muted py8 px12 bar-pill bg-black-100 fc-black-600 js-lg-btn js-query-select-btn">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="svg-icon va-text-top" width="26" height="14" viewBox="0 0 26 14">
+                          <path fill-rule="evenodd" d="M5,0 L21,0 C22.1045695,0 23,0.8954305 23,2 L23,12 L26,12 L26,14 L0,14 L0,12 L3,12 L3,2 C3,0.8954305 3.8954305,0 5,0 Z M5,2 L5,11 L21,11 L21,2 L5,2 Z"/>
+                        </svg>
+                        Large
+                    </a>
+                </li>
+            </ul>
+            <div style="background-color: #000;" class="py48 ta-center">
+                <style>
+                    .bar {
+                        border-radius: 5px;
+                    }
+                    .btr {
+                        border-top-left-radius: 5px;
+                        border-top-right-radius: 5px;
+                    }
+                    .ex-narrow {
+                        display: none;
+                    }
+                    .ws4.bar,
+                    .ws4 .btr {
+                        border-top-left-radius: 0;
+                        border-top-right-radius: 0;
+                        border-bottom-left-radius: 0;
+                        border-bottom-right-radius: 0;
+                    }
+                    .ws4 .ex-narrow {
+                        display: block;
+                    }
+                    .ws4 .ex-wide {
+                        display: none;
+                    }
+                </style>
+                <div class="bar w100 ta-center js-iframe" style="max-width: 680px; margin: 0 auto;">
+                    <div style="padding: 30px; margin-bottom: 30px; background-color: #ffffff;">
+                        <h2 class="ex-wide" style="font-weight: bold; font-size: 21px; line-height: 21px; color: #0C0D0E; margin: 0 auto;">Round corners in wide viewports.</h2>
+                        <h2 class="ex-narrow" style="font-weight: bold; font-size: 21px; line-height: 21px; color: #0C0D0E; margin: 0 auto;">Square corners in narrow viewports.</h2>
+                    </div>
+                    <img src="https://placehold.it/1280x200?text=Works+on+Foreground+Images+Too" width="680" height="" alt="Works on Foreground Images Too" border="0" style="width: 100%; max-width: 680px; height: auto; display: block; margin: auto;" class="btr">
+               </div>
+            </div>
 
         </div>
     </div>
 </section>
+<script>
+    $(function(){
+        var smBtn = $(".js-sm-btn");
+        var lgBtn = $(".js-lg-btn");
+        var btns = $(".js-query-select-btn");
+        var gridTarget = $(".js-iframe");
+
+        smBtn.click(function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            removeClasses1();
+            addSelection1($(this));
+            gridTarget.addClass("ws4");
+        });
+        lgBtn.click(function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            removeClasses1();
+            addSelection1($(this));
+            gridTarget.addClass("w100");
+        });
+        function removeClasses1() {
+            gridTarget.removeClass("ws4 w100");
+            btns.removeClass("bg-black-100 fc-black-600");
+        };
+        function addSelection1(obj) {
+            obj.addClass("bg-black-100 fc-black-600");
+        };
+    });
+</script>
