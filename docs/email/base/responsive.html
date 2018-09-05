@@ -1,22 +1,52 @@
 ---
 layout: page
 title: Responsiveness
-description: Words go here
+description: All email templates use a hybrid approach to reconfigure the layout for different screen sizes in all email clients (regardless of media query support). Once a mobile-friendly baseline is set, media queries progressively enhance the email further in clients that support them.
 ---
 
 <section class="stacks-section">
-    <p class="stacks-copy">
-         If you need more words...
-    </p>
-</section>
-<section class="stacks-section">
     {% header {element: 'h2', text: 'Stacking Columns'} %}
     <p class="stacks-copy">
-         If you need more words...
+        Media queries are a standard way to optimize layouts for small screen sizes on the web. In the email world, though, there are some “small screen scenarios” where media queries aren’t supported (eg. <a href="https://cdn-images-1.medium.com/max/2000/1*JGe_A7b8LiHZfeSGzNZE9w.png">some Gmail Apps</a>) or only partially supported (eg. some Android device native mail apps).
     </p>
-    {% header {element: 'h3', text: 'With Media Queries'} %}
+    {% header {element: 'h3', text: 'Hybrid Design'} %}
     <p class="stacks-copy">
-         Using media queries in email allows us fine-tune email designs to be more usable across a wide range of devices. However <strong>media queries <a href="https://www.campaignmonitor.com/css/media-queries/media/">aren't fully supported</a> in all popular email clients</strong>, so we don't _rely solely_ on them to make our emails responsive (<a href="#without-media-queries-(hybrid-design)">more on that below</a>).
+        Hybrid design uses <code class="stacks-code">inline-block</code>, <code class="stacks-code">max-width</code>, <code class="stacks-code">min-width</code> to stack table columns without media queries. Outlook doesn't support these CSS properties, so we use MSO tags to add <a href="/email/base/mso#ghost-tables">ghost tables</a> to impose a fixed width for Outlook (who is shackled to the desktop).
+    </p>
+    <div class="stacks-preview mb24">
+{% highlight html linenos %}
+<tr>
+    <td>
+        <!--[if mso]>
+        <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+        <tr>
+        <td width="340">
+        <![endif]-->
+            <div style="display:inline-block; width:100%; min-width:200px; max-width:340px;">
+                Column 1
+            </div>
+        <!--[if mso]>
+        </td>
+        <td width="340">
+        <![endif]-->
+            <div style="display:inline-block; width:100%; min-width:200px; max-width:340px;">
+                Column 2
+            </div>
+        <!--[if mso]>
+        </td>
+        </tr>
+        </table>
+        <![endif]-->
+    </td>
+</tr>
+{% endhighlight %}
+    </div>
+    <p class="stacks-copy">
+         Using media queries in email allows us fine-tune email designs to be more usable across a wide range of devices. However <strong>media queries <a href="https://www.campaignmonitor.com/css/media-queries/media/">aren't fully supported</a> in all popular email clients</strong>, so we we use them to progressively enhance emails.
+    </p>
+    {% header {element: 'h3', text: 'Media Queries'} %}
+    <p class="stacks-copy">
+         Once a hybrid baseline is set, media queries can be used to fine-tune a responsive email layout. Since columns are (hopefully) already stacked, media queries can be used to change the width and text alignment in small viewports.
     </p>
     <table class="s-table s-table__hover mb32">
         <thead>
@@ -37,24 +67,6 @@ description: Words go here
         </tbody>
     </table>
     {% include notice-email-head-support.html %}
-    {% header {element: 'h3', text: 'Without Media Queries (Hybrid Design)'} %}
-    <p class="stacks-copy">
-         If you need more words...
-    </p>
-    <table class="mb32 s-table s-table__hover">
-        <thead>
-            <tr>
-                <th class="s-table--cell2" scope="col">Name</th>
-                <th scope="col">Output</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr class="fs-caption">
-                <td><code class="stacks-code">class</code></td>
-                <td>This class makes a great hoagie</td>
-            </tr>
-        </tbody>
-    </table>
 </section>
 <section class="stacks-section">
     {% header {element: 'h2', text: 'Responsive Spacing'} %}

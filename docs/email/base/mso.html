@@ -7,8 +7,7 @@ description: Windows Outlook 2003 and above use Microsoft Word as a rendering en
 <!-- TAGS -->
 <section class="stacks-section">
     {% header {element: 'h2', text: 'Basic Syntax'} %}
-    <p class="stacks-copy">We can use <strong>MSO</strong> (<strong>M</strong>icro<strong>s</strong>oft <strong>O</strong>ffice) tags to add HTML / CSS anywhere in an email template. This code will be ignored by other email clients.</p>
-    <p class="stacks-copy">Here’s what it looks like:</p>
+    <p class="stacks-copy">We can use <strong>MSO</strong> (<strong>M</strong>icro<strong>s</strong>oft <strong>O</strong>ffice) tags to add HTML / CSS anywhere in an email template. This code will be ignored by other email clients. Here’s what it looks like:</p>
     <div class="stacks-preview mb24">
 {% highlight html linenos %}
 <!--[if mso]>
@@ -18,7 +17,7 @@ description: Windows Outlook 2003 and above use Microsoft Word as a rendering en
 <![endif]-->
 {% endhighlight %}
     </div>
-    <p class="stacks-copy mt24">MSO tags can also be used to add styles targeting Outlook (<a href="https://www.campaignmonitor.com/css/style-element/style-in-head/">Outlook supports CSS in the <code class="stacks-code">&lt;head&gt;</code></a>):</p>
+    <p class="stacks-copy mt32">MSO tags can also be used to add styles targeting Outlook (<a href="https://www.campaignmonitor.com/css/style-element/style-in-head/">Outlook supports CSS in the <code class="stacks-code">&lt;head&gt;</code></a>):</p>
     <div class="stacks-preview mb24">
 {% highlight html linenos %}
 <!--[if mso]>
@@ -33,7 +32,7 @@ description: Windows Outlook 2003 and above use Microsoft Word as a rendering en
     <p class="stacks-copy">It’s the same thing we used to do to <a href="https://www.quirksmode.org/css/condcom.html">target old versions of Internet Explorer</a>, except it targets Microsoft Office.</p>
 </section>
 <section class="stacks-section">
-    {% header {element: 'h2', text: 'Hybrid Design'} %}
+    {% header {element: 'h2', text: 'Ghost Tables'} %}
     <p class="stacks-copy">Outlook conditional CSS is a backbone of hybrid design (making emails responsive without media queries). <strong>This is the main way we use MSO tags in our emails</strong>.</p>
     <p class="stacks-copy">Hybrid design uses <code class="stacks-code">inline-block</code>, <code class="stacks-code">max-width</code>, <code class="stacks-code">min-width</code> to stack table columns without media queries. However Outlook doesn't support these CSS properties, so we use MSO tags to add "ghost tables" that impose a fixed width for Outlook (who is shackled to the desktop anyway).</p>
     <div class="stacks-preview mb24">
@@ -44,7 +43,9 @@ description: Windows Outlook 2003 and above use Microsoft Word as a rendering en
 <td width="340">
 <![endif]-->
     <div style="display:inline-block; width:100%; min-width:200px; max-width:340px;">
-        Outlook can't render the CSS in this DIV but other email clients can.
+        Outlook can't render the CSS in this DIV but other email clients can,
+        so we wrap this in a ghost table that replicates the DIV's desktop style.
+        In this case, a container 340px wide.
     </div>
 <!--[if mso]>
 </td>
@@ -53,8 +54,7 @@ description: Windows Outlook 2003 and above use Microsoft Word as a rendering en
 <![endif]-->
 {% endhighlight %}
     </div>
-    <p class="stacks-copy">Without the ghost table above, Outlook would display the <code class="stacks-code">&lt;div&gt;</code> as <code class="stacks-code">display: block;</code> at 100%.</p>
-    <p class="stacks-copy">We'll add some practical examples of hybrid patterns soon!</p>
+    <p class="stacks-copy">Without the ghost table above, Outlook would display the <code class="stacks-code">&lt;div&gt;</code> at 100% width. <a href="/email/base/responsive#hybrid-design">Learn  how we use ghost tables to make our emails responsive</a>.</p>
 </section>
 <section class="stacks-section">
     {% header {element: 'h2', text: 'Outlook Version Numbers'} %}
