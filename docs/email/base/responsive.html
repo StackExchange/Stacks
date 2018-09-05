@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Responsiveness
-description: All email templates use a hybrid approach to reconfigure the layout for different screen sizes in all email clients (regardless of media query support). Once a mobile-friendly baseline is set, media queries progressively enhance the email further in clients that support them.
+description: All email templates use a hybrid approach to reconfigure the layout for different screen sizes in all email clients (regardless of media query support). Once a mobile-friendly baseline is set, <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Media_Queries/Using_media_queries">media queries</a> can be used to progressively enhance emails further in clients that support them.
 ---
 
 <section class="stacks-section">
@@ -11,7 +11,7 @@ description: All email templates use a hybrid approach to reconfigure the layout
     </p>
     {% header {element: 'h3', text: 'Hybrid Design'} %}
     <p class="stacks-copy">
-        Hybrid design uses <code class="stacks-code">inline-block</code>, <code class="stacks-code">max-width</code>, <code class="stacks-code">min-width</code> to stack table columns without media queries. Outlook doesn't support these CSS properties, so we use MSO tags to add <a href="/email/base/mso#ghost-tables">ghost tables</a> to impose a fixed width for Outlook (who is shackled to the desktop).
+        Hybrid design uses <code class="stacks-code">inline-block</code>, <code class="stacks-code">max-width</code>, <code class="stacks-code">min-width</code>, and <a href="/email/base/mso#ghost-tables">ghost tables</a> stack columns without media queries while imposing a fixed, desktop width for Outlook.
     </p>
     <div class="stacks-preview mb24">
 {% highlight html linenos %}
@@ -42,7 +42,7 @@ description: All email templates use a hybrid approach to reconfigure the layout
 {% endhighlight %}
     </div>
     <p class="stacks-copy">
-         In this example, the two columns will display side-by-side on a desktop display and stack on top of each other in mobile widths <strong>without needing media queries</strong>.
+         In this example, the two columns will display side-by-side on wide, desktop displays and stack on top of each other in narrow, mobile displays. The <a href="/email/templates/promotional">promotional email template</a> uses this technique in a few places.
     </p>
     {% header {element: 'h3', text: 'Media Queries'} %}
     <p class="stacks-copy">

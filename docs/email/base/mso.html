@@ -19,7 +19,10 @@ description: Windows Outlook 2003 and above use Microsoft Word as a rendering en
 <![endif]-->
 {% endhighlight %}
     </div>
-    <p class="stacks-copy mt32">
+    <p class="stacks-copy mt16">
+        Only Outlook will render this table.
+        <p>
+    <p class="stacks-copy">
         MSO tags can also be used to add styles targeting Outlook (<a href="https://www.campaignmonitor.com/css/style-element/style-in-head/">Outlook supports CSS in the <code class="stacks-code">&lt;head&gt;</code></a>):
     </p>
     <div class="stacks-preview mb24">
@@ -40,8 +43,8 @@ description: Windows Outlook 2003 and above use Microsoft Word as a rendering en
 <section class="stacks-section">
     {% header {element: 'h2', text: 'Ghost Tables'} %}
     <p class="stacks-copy">
-        The main way we use MSO tags in our emails is to create "ghost tables" so <a href="/email/base/responsive#hybrid-design">hybrid emails</a> don't fall apart in Outlook. Hybrid design uses <code class="stacks-code">inline-block</code>, <code class="stacks-code">max-width</code>, <code class="stacks-code">min-width</code> to stack table columns without media queries. Outlook doesn't support these CSS properties, so we use MSO tags to create "ghost tables" that apply a fixed width just for Outlook.
-    </p>
+        The main way we use MSO tags in our emails is to create "ghost tables" so <a href="/email/base/responsive#hybrid-design">hybrid emails</a> don't fall apart in Outlook. Hybrid design uses <code class="stacks-code">inline-block</code>, <code class="stacks-code">max-width</code>, <code class="stacks-code">min-width</code> to stack table columns. Outlook doesn't support these CSS properties, so we use MSO tags to create "ghost tables" that apply a fixed width just for Outlook.
+    </p>x
     <div class="stacks-preview mb24">
 {% highlight html linenos %}
 <!--[if mso]>
