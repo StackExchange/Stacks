@@ -1,15 +1,14 @@
 ---
 layout: page
 title: Border Radius
-description: To keep in step with the rest of Stacks, we round the corners of all major email containers that sit on top of the light gray background and square them off on mobile.
+description: We round the corners of all major email containers that sit on top of the light gray background and square them off on mobile.
 ---
 
 <!-- TAGS -->
 <section class="stacks-section">
     <p class="stacks-copy">
-        To ensure all mobile email clients have square corners, border radius is defined as a progressive enhancement in the <code class="stacks-code">&lt;style&gt;</code> tag so we can remove it reliably using a media query. For this reason:
+        To ensure all mobile email clients have square corners, border radius is defined as a progressive enhancement in the <code class="stacks-code">&lt;style&gt;</code> tag so we can remove it reliably using a media query.
     </p>
-    {% include notice-email-head-support.html %}
 </section>
 <section class="stacks-section">
     {% header {element: 'h2', text: 'Border Radius Classes'} %}
@@ -81,7 +80,7 @@ description: To keep in step with the rest of Stacks, we round the corners of al
                     .ex-narrow {
                         display: none;
                     }
-                    .ws4.bar,
+                    .ws4 .bar,
                     .ws4 .btr {
                         border-top-left-radius: 0;
                         border-top-right-radius: 0;
@@ -94,9 +93,24 @@ description: To keep in step with the rest of Stacks, we round the corners of al
                     .ws4 .ex-wide {
                         display: none;
                     }
+                    @media screen and (max-width: 680px) {
+                        .bar,
+                        .btr {
+                            border-top-left-radius: 0;
+                            border-top-right-radius: 0;
+                            border-bottom-left-radius: 0;
+                            border-bottom-right-radius: 0;
+                        }
+                        .ex-narrow {
+                            display: block;
+                        }
+                        .ex-wide {
+                            display: none;
+                        }
+                    }
                 </style>
-                <div class="bar w100 ta-center js-iframe" style="max-width: 680px; margin: 0 auto;">
-                    <div style="padding: 30px; margin-bottom: 30px; background-color: #ffffff;">
+                <div class="ta-center js-frame" style="max-width: 680px; margin: 0 auto;">
+                    <div style="padding: 30px; margin-bottom: 30px; background-color: #ffffff;" class="bar">
                         <h2 class="ex-wide" style="font-weight: bold; font-size: 21px; line-height: 21px; color: #0C0D0E; margin: 0 auto;">Round corners in wide viewports.</h2>
                         <h2 class="ex-narrow" style="font-weight: bold; font-size: 21px; line-height: 21px; color: #0C0D0E; margin: 0 auto;">Square corners in narrow viewports.</h2>
                     </div>
@@ -106,6 +120,7 @@ description: To keep in step with the rest of Stacks, we round the corners of al
 
         </div>
     </div>
+    {% include notice-email-head-support.html %}
 </section>
 <script>
     $(function(){
