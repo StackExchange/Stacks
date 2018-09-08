@@ -213,14 +213,21 @@
             border-right-color: transparent;
         }
         thead th {
+            border-top-color: transparent;
             border-bottom-color: @black-400;
         }
-
-        tr:first-of-type th,
-        tr:first-of-type td {
-            border-top-color: transparent;
+        tbody tr {
+            &:first-of-type th,
+            &:first-of-type td {
+                border-top-color: transparent;
+            }
+            &:last-of-type th,
+            &:last-of-type td {
+                border-bottom-color: transparent;
+            }
         }
-        tr:last-of-type td {
+        tfoot th,
+        tfoot td {
             border-bottom-color: transparent;
         }
     }
@@ -266,7 +273,7 @@
 
     //  $$  Sortable Table Columns
     //  ------------------------------------------------------------------------
-    .s-table__sortable {
+    &.s-table__sortable thead th {
         color: @fc-light;
         cursor: pointer;
 
