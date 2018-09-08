@@ -24,18 +24,14 @@
         color: fade(@color, 90%);
     }
 
-    a&:hover {
+    &:hover {
         border-color: darken(@border, 5%);
         background-color: darken(@background, 5%);
         color: darken(@color, 5%);
 
         .s-tag--dismiss {
-            color: darken(fade(@color, 90%), 5%);
-
-            &:hover {
-                background-color: fade(@color, 90%);
-                color: @white;
-            }
+            background-color: fade(@color, 90%);
+            color: @white;
         }
     }
 }
@@ -50,29 +46,40 @@
     align-content: center;
     justify-content: center;
     min-width: 0;
-    padding: 0 @su6;
+    padding-left: @su4;
+    padding-right: @su4;
     border-style: solid;
     border-width: 1px;
     border-radius: @br-sm;
     font-size: @fs-caption;
-    line-height: 2;
+    line-height: 1.846153846;
     text-decoration: none;
     vertical-align: middle;
     white-space: nowrap;
 
     .tag-styles(@tags-border, @tags-background, @tags-color);
 
-    a&:hover {
+    &:hover {
         text-decoration: none;
     }
 
     //  -- SIZES
+    &.s-tag__sm {
+        font-size: @fs-caption;
+        line-height: 1.5;
+    }
     &.s-tag__md {
+        padding-left: @su6;
+        padding-right: @su6;
         font-size: @fs-body2;
+        line-height: 1.733333333;
     }
     &.s-tag__lg {
+        padding-left: @su6;
+        padding-right: @su6;
         border-radius: @br-sm + 1;
         font-size: @fs-subheading;
+        line-height: 1.684210526;
     }
 }
 
@@ -98,7 +105,9 @@
 .s-tag--sponsor {
     display: inline-flex;
     align-self: center;
-    margin: -(@su2 + 1) @su4 -(@su2) -(@su2 + 1);
+    margin: -(@su2 + 1) @su4 -(@su2) -(@su2);
+    max-width: 18px;
+    border-radius: @br-sm - 1;
 }
 
 

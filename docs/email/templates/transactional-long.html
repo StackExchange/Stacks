@@ -139,11 +139,6 @@
     <style type="text/css">
 
         /* What it does: Hover styles for buttons and tags */
-        .s-btn,
-        .s-tag,
-        .post-tag {
-            transition: all 100ms ease-in;
-        }
         .s-btn__primary:hover {
             background: #0077CC !important;
             border-color: #0077CC !important;
@@ -160,6 +155,19 @@
         .post-tag:hover {
             border-color: #cee0ed !important;
             background: #cee0ed !important;
+        }
+
+        /* What it does: Rounds corners in email clients that support it */
+        .bar {
+            border-radius: 5px;
+        }
+        .btr {
+            border-top-left-radius: 5px;
+            border-top-right-radius: 5px;
+        }
+        .bbr {
+            border-bottom-left-radius: 5px;
+            border-bottom-right-radius: 5px;
         }
 
         /* Media Queries */
@@ -217,6 +225,16 @@
                 font-size: 34px !important;
                 line-height: 34px !important;
             }
+
+            /* What it does: Utility classes to kill border radius for smaller viewports. */
+            .bar,
+            .btr,
+            .bbr {
+                border-top-left-radius: 0;
+                border-top-right-radius: 0;
+                border-bottom-left-radius: 0;
+                border-bottom-right-radius: 0;
+            }
         }
     </style>
 </head>
@@ -264,7 +282,7 @@
 
                 <!-- Primary Email Body : BEGIN -->
                 <tr>
-                    <td style="padding: 30px; background-color: #ffffff;" class="sm-p">
+                    <td style="padding: 30px; background-color: #ffffff;" class="sm-p btr">
 
                         <table dir="rtl" role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%">
                             <tr>
@@ -294,10 +312,10 @@
                                                 <td dir="ltr" style="padding-bottom: 10px;">
                                                     <table border="0" cellpadding="0" cellspacing="0" role="presentation" align="left">
                                                         <tr>
-                                                            <td style="font-family: arial, sans-serif; font-size: 15px; line-height: 15px; color: #ffffff; background-color: #EB5757; font-weight: bold; text-align: center; padding: 4px 6px; border-radius: 3px; vertical-align: middle;">
+                                                            <td valign="middle" height="19" width="19" style="font-family: arial, sans-serif; font-size: 13px; line-height: 13px; color: #ffffff; background-color: #EB5757; font-weight: bold; text-align: center; border-radius: 3px;">
                                                                 T
                                                             </td>
-                                                            <td style="padding-left: 5px; font-family: arial, sans-serif; font-size: 15px; line-height: 15px; color: #EB5757; font-weight: bold; text-align: left; vertical-align: middle;">
+                                                            <td valign="middle" style="padding-left: 5px; font-family: arial, sans-serif; font-size: 13px; line-height: 13px; color: #242729; text-align: left;">
                                                                 Team Name
                                                             </td>
                                                         </tr>
@@ -324,7 +342,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td style="padding: 0 30px 30px; background-color: #ffffff;" class="sm-px sm-pb">
+                    <td style="padding: 0 30px 30px; background-color: #ffffff;" class="sm-px sm-pb bbr">
                          <table width="100%" align="left" border="0" cellpadding="0" cellspacing="0" role="presentation">
                             <!-- Rich Text : BEGIN -->
                             <tr>
@@ -367,7 +385,7 @@
                 <!-- Clear Spacer : END -->
                 <!-- Secondary Email Body : BEGIN -->
                 <tr>
-                    <td style="padding: 30px 30px 10px; background-color: #ffffff; text-align: left;" class="sm-px sm-pt">
+                    <td style="padding: 30px 30px 10px; background-color: #ffffff; text-align: left;" class="sm-px sm-pt bar">
                          <table width="100%" align="left" border="0" cellpadding="0" cellspacing="0" role="presentation">
                             <tr>
                                 <td style="font-family: arial, sans-serif; font-size: 15px; line-height: 140%; color: #3C3F44; text-align: left;">
