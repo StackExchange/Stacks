@@ -80,96 +80,16 @@ description: Tables are used to list all information from a data set. The base s
 
 <section class="stacks-section">
     {% header {element: 'h2', text: 'Borders'} %}
-    {% header {element: 'h3', text: 'Remove Borders'} %}
-    <p class="stacks-copy">By default, tables include both horizontal and vertical borders. If you would like to remove these borders, apply <code class="stacks-code">.s-table__borderless</code> to remove all borders, <code class="stacks-code">.s-table__borderless-x</code> to remove only the horizonal borders, or <code class="stacks-code">.s-table__borderless-y</code> to remove only the vertical borders.</p>
-    <div class="stacks-preview">
+    <p class="stacks-copy">By default, all tables have borders. These borders can be removed along the y-axis, x-axis, or altogehter.</p>
+    {% header {element: 'h3', text: 'No Borders'} %}
+    <div class="stacks-preview mb24">
 {% highlight html linenos %}
-<table class="s-table s-table__borderless">
-    …
-</table>
-
-<table class="s-table s-table__borderless-x">
-    …
-</table>
-
-<table class="s-table s-table__borderless-y">
+<table class="s-table s-table__b0">
     …
 </table>
 {% endhighlight %}
         <div class="stacks-preview--example">
-            <table class="s-table s-table__borderless mb16">
-                <thead>
-                    <tr>
-                        <th scope="col"></th>
-                        <th scope="col">First Name</th>
-                        <th scope="col">Last Name</th>
-                        <th scope="col">Username</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>Aaron</td>
-                        <td>S.</td>
-                        <td>@aarons</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>Joshua</td>
-                        <td>H.</td>
-                        <td>@joshuah</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td>Paweł</td>
-                        <td>L.</td>
-                        <td>@pawełl</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">4</th>
-                        <td>Ted</td>
-                        <td>G.</td>
-                        <td>@so-ted</td>
-                    </tr>
-                </tbody>
-            </table>
-            <table class="s-table s-table__borderless-x mb16">
-                <thead>
-                    <tr>
-                        <th scope="col"></th>
-                        <th scope="col">First Name</th>
-                        <th scope="col">Last Name</th>
-                        <th scope="col">Username</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>Aaron</td>
-                        <td>S.</td>
-                        <td>@aarons</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>Joshua</td>
-                        <td>H.</td>
-                        <td>@joshuah</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td>Paweł</td>
-                        <td>L.</td>
-                        <td>@pawełl</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">4</th>
-                        <td>Ted</td>
-                        <td>G.</td>
-                        <td>@so-ted</td>
-                    </tr>
-                </tbody>
-            </table>
-            <table class="s-table s-table__borderless-y mb16">
+            <table class="s-table s-table__b0">
                 <thead>
                     <tr>
                         <th scope="col"></th>
@@ -207,16 +127,63 @@ description: Tables are used to list all information from a data set. The base s
             </table>
         </div>
     </div>
-    {% header {element: 'h3', text: 'Outlined'} %}
-    <p class="stacks-copy">Creates a border around the outside of the table. Useful to separate a table from other stuff on a page.</p>
-    <div class="stacks-preview">
+
+    {% header {element: 'h3', text: 'No X-Axis Borders'} %}
+    <div class="stacks-preview mb24">
 {% highlight html linenos %}
-<table class="s-table s-table__outlined">
+<table class="s-table s-table__bx0">
     …
 </table>
 {% endhighlight %}
         <div class="stacks-preview--example">
-            <table class="s-table s-table__outlined">
+            <table class="s-table s-table__bx0">
+                <thead>
+                    <tr>
+                        <th scope="col"></th>
+                        <th scope="col">First Name</th>
+                        <th scope="col">Last Name</th>
+                        <th scope="col">Username</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>Aaron</td>
+                        <td>S.</td>
+                        <td>@aarons</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">2</th>
+                        <td>Joshua</td>
+                        <td>H.</td>
+                        <td>@joshuah</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">3</th>
+                        <td>Paweł</td>
+                        <td>L.</td>
+                        <td>@pawełl</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">4</th>
+                        <td>Ted</td>
+                        <td>G.</td>
+                        <td>@so-ted</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    {% header {element: 'h3', text: 'No Y-Axis Borders'} %}
+    <div class="stacks-preview">
+{% highlight html linenos %}
+<table class="s-table s-table__by0">
+    …
+</table>
+{% endhighlight %}
+        <div class="stacks-preview--example">
+            <table class="s-table s-table__by0">
                 <thead>
                     <tr>
                         <th scope="col"></th>
@@ -255,18 +222,20 @@ description: Tables are used to list all information from a data set. The base s
         </div>
     </div>
 </section>
+
 <section class="stacks-section">
     {% header {element: 'h2', text: 'Spacing'} %}
-    {% header {element: 'h3', text: 'Condensed'} %}
-    <p class="stacks-copy">Condenses the padding and line-height so the table has a tighter feeling to it.</p>
-    <div class="stacks-preview">
+    <p class="stacks-copy">A table's padding can be changed to be more or less condensed.</p>
+
+    {% header {element: 'h3', text: 'Small'} %}
+    <div class="stacks-preview mb24">
 {% highlight html linenos %}
-<table class="s-table s-table__condensed">
+<table class="s-table s-table__sm">
     …
 </table>
 {% endhighlight %}
         <div class="stacks-preview--example">
-            <table class="s-table s-table__condensed">
+            <table class="s-table s-table__sm">
                 <thead>
                     <tr>
                         <th scope="col"></th>
@@ -288,14 +257,37 @@ description: Tables are used to list all information from a data set. The base s
                         <td>H.</td>
                         <td>@joshuah</td>
                     </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    {% header {element: 'h3', text: 'Medium'} %}
+    <div class="stacks-preview mb24">
+{% highlight html linenos %}
+<table class="s-table s-table__md">
+    …
+</table>
+{% endhighlight %}
+        <div class="stacks-preview--example">
+            <table class="s-table s-table__md">
+                <thead>
                     <tr>
-                        <th scope="row">3</th>
+                        <th scope="col"></th>
+                        <th scope="col">First Name</th>
+                        <th scope="col">Last Name</th>
+                        <th scope="col">Username</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">1</th>
                         <td>Paweł</td>
                         <td>L.</td>
                         <td>@pawełl</td>
                     </tr>
                     <tr>
-                        <th scope="row">4</th>
+                        <th scope="row">2</th>
                         <td>Ted</td>
                         <td>G.</td>
                         <td>@so-ted</td>
@@ -305,16 +297,15 @@ description: Tables are used to list all information from a data set. The base s
         </div>
     </div>
 
-    {% header {element: 'h3', text: 'Expanded'} %}
-    <p class="stacks-copy">Expands the padding and line-height so the table has more spacious feeling to it.</p>
+    {% header {element: 'h3', text: 'Large'} %}
     <div class="stacks-preview">
 {% highlight html linenos %}
-<table class="s-table s-table__expanded">
+<table class="s-table s-table__lg">
     …
 </table>
 {% endhighlight %}
         <div class="stacks-preview--example">
-            <table class="s-table s-table__expanded">
+            <table class="s-table s-table__lg">
                 <thead>
                     <tr>
                         <th scope="col"></th>
@@ -336,93 +327,44 @@ description: Tables are used to list all information from a data set. The base s
                         <td>H.</td>
                         <td>@joshuah</td>
                     </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td>Paweł</td>
-                        <td>L.</td>
-                        <td>@pawełl</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">4</th>
-                        <td>Ted</td>
-                        <td>G.</td>
-                        <td>@so-ted</td>
-                    </tr>
                 </tbody>
             </table>
         </div>
     </div>
+</section>
 
-    {% header {element: 'h3', text: 'Table Cell Widths'} %}
-    <p class="stacks-copy">
-        By default, all table columns will size themselves based on their content. Optionally, classes can be used to specify widths for any column. Columns without a class name will size themselves within the remaining horizontal space in the table.
-    </p>
-    <table class="wmn5 s-table mb24">
+<section class="stacks-section">
+    {% header {element: 'h2', text: 'Cell Widths'} %}
+    <p class="stacks-copy">Table columns will size themselves based on their content. To set a specific width, you can use one of the following table cell classes to specify the width for any column.</p>
+    {% header {element: 'h3', text: 'Classes'} %}
+    <table class="mb24 s-table s-table__bx0 s-table__clear">
         <thead>
             <tr>
                 <th scope="col" class="s-table--cell3">Class</th>
-                <th scope="col">Output</th>
+                <th scope="col">Width</th>
             </tr>
         </thead>
-        <tbody class="ff-mono">
+        <tbody>
+            {% for item in site.data.product.tables.widths %}
             <tr>
-                <td><code class="stacks-code">.s-table--cell1</code></td>
-                <td>width: 8.33333333%;</td>
+                <td><code class="ff-mono fw-bold">{{ item.class }}</code></td>
+                <td><code class="ff-mono">{{ item.output }}</code></td>
             </tr>
-            <tr>
-                <td><code class="stacks-code">.s-table--cell2</code></td>
-                <td>width: 16.66666667%;</td>
-            </tr>
-            <tr>
-                <td><code class="stacks-code">.s-table--cell3</code></td>
-                <td>width: 25%;</td>
-            </tr>
-            <tr>
-                <td><code class="stacks-code">.s-table--cell4</code></td>
-                <td>width: 33.33333333%;</td>
-            </tr>
-            <tr>
-                <td><code class="stacks-code">.s-table--cell5</code></td>
-                <td>width: 41.66666667%</td>
-            </tr>
-            <tr>
-                <td><code class="stacks-code">.s-table--cell6</code></td>
-                <td>width: 50%;</td>
-            </tr>
-            <tr>
-                <td><code class="stacks-code">.s-table--cell7</code></td>
-                <td>width: 58.33333333%</td>
-            </tr>
-            <tr>
-                <td><code class="stacks-code">.s-table--cell8</code></td>
-                <td>width: 66.66666667%;</td>
-            </tr>
-            <tr>
-                <td><code class="stacks-code">.s-table--cell9</code></td>
-                <td>width: 75%;</td>
-            </tr>
-            <tr>
-                <td><code class="stacks-code">.s-table--cell10</code></td>
-                <td>width: 83.33333333%</td>
-            </tr>
-            <tr>
-                <td><code class="stacks-code">.s-table--cell11</code></td>
-                <td>width: 91.66666667%</td>
-            </tr>
-            <tr>
-                <td><code class="stacks-code">.s-table--cell12</code></td>
-                <td>width: 100%;</td>
-            </tr>
+            {% endfor %}
         </tbody>
     </table>
+
+    {% header {element: 'h3', text: 'Examples'} %}
     <div class="stacks-preview">
 {% highlight html linenos %}
+// Example 1
 <table class="s-table">
     <tr>
         <td class="s-table--cell2">…</td>
         <td>…</td>
     </tr>
 </table>
+// Example 2
 <table class="s-table">
     <tr>
         <td class="s-table--cell3">…</td>
@@ -432,6 +374,7 @@ description: Tables are used to list all information from a data set. The base s
         <td>…</td>
     </tr>
 </table>
+// Example 3
 <table class="s-table">
     <tr>
         <td class="s-table--cell4">…</td>
@@ -446,43 +389,43 @@ description: Tables are used to list all information from a data set. The base s
         <div class="stacks-preview--example ff-mono">
             <table class="s-table mb12 ta-center">
                 <tr>
-                    <td class="s-table--cell2"><code class="stacks-code">.s-table--cell2</code></td>
-                    <td>no class</td>
+                    <td class="stacks-grid-example--cell s-table--cell2"><strong>.s-table--cell2</strong></td>
+                    <td class="stacks-grid-example--cell"><em class="fc-light">No Class</em></td>
                 </tr>
             </table>
             <table class="s-table mb12 ta-center">
                 <tr>
-                    <td class="s-table--cell3"><code class="stacks-code">.s-table--cell3</code></td>
-                    <td class="s-table--cell6"><code class="stacks-code">.s-table--cell6</code></td>
-                    <td>no class</td>
-                    <td>no class</td>
-                    <td>no class</td>
+                    <td class="stacks-grid-example--cell s-table--cell3"><strong>.s-table--cell3</strong></td>
+                    <td class="stacks-grid-example--cell s-table--cell6"><strong>.s-table--cell6</strong></td>
+                    <td class="stacks-grid-example--cell"><em class="fc-light">No Class</em></td>
+                    <td class="stacks-grid-example--cell"><em class="fc-light">No Class</em></td>
+                    <td class="stacks-grid-example--cell"><em class="fc-light">No Class</em></td>
                 </tr>
             </table>
             <table class="s-table ta-center">
                 <tr>
-                    <td class="s-table--cell4"><code class="stacks-code">.s-table--cell4</code></td>
-                    <td>no class</td>
-                    <td>no class</td>
-                    <td>no class</td>
-                    <td>no class</td>
-                    <td class="s-table--cell2"><code class="stacks-code">.s-table--cell2</code></td>
+                    <td class="stacks-grid-example--cell s-table--cell4"><strong>.s-table--cell4</strong></td>
+                    <td class="stacks-grid-example--cell"><em class="fc-light">No Class</em></td>
+                    <td class="stacks-grid-example--cell"><em class="fc-light">No Class</em></td>
+                    <td class="stacks-grid-example--cell"><em class="fc-light">No Class</em></td>
+                    <td class="stacks-grid-example--cell"><em class="fc-light">No Class</em></td>
+                    <td class="stacks-grid-example--cell s-table--cell2"><strong>.s-table--cell2</strong></td>
                 </tr>
             </table>
         </div>
     </div>
 </section>
+
 <section class="stacks-section">
-    {% header {element: 'h2', text: 'Background'} %}
-    {% header {element: 'h3', text: 'Background Colors'} %}
-    <p class="stacks-copy">Adds a background color to a table by using a background color atomic class.</p>
+    {% header {element: 'h2', text: 'Backgrounds'} %}
+    <p class="stacks-copy">You can use the <a href="{{ "/product/base/colors#color-stops" | relative_url }}">atomic background color classes</a> to apply a background color to a table.</p>
     <div class="stacks-preview">
 {% highlight html linenos %}
 <table class="s-table bg-white">
 …
 </table>
 {% endhighlight %}
-        <div class="stacks-preview--example bg-black-100">
+        <div class="stacks-preview--example bg-black-300">
             <table class="s-table bg-white">
                 <thead>
                     <tr>
@@ -521,9 +464,11 @@ description: Tables are used to list all information from a data set. The base s
             </table>
         </div>
     </div>
+</section>
 
-    {% header {element: 'h3', text: 'Hover Rows'} %}
-    <p class="stacks-copy">When tables have multiple columns, add in a row hover can further help isolate the data for users. This is suggested for data tables such as found within reports.</p>
+<section class="stacks-section">
+    {% header {element: 'h2', text: 'Row Hovers'} %}
+    <p class="stacks-copy">When tables have a lot of information, you can help users more clearly group information by adding a row hover class. This helps isolate the data for users. It is suggested for data tables primarily.</p>
 
     <div class="stacks-preview">
 {% highlight html linenos %}
@@ -574,68 +519,44 @@ description: Tables are used to list all information from a data set. The base s
 <section class="stacks-section">
     {% header {element: 'h2', text: 'Alignment'} %}
     {% header {element: 'h3', text: 'Vertical Alignment'} %}
-    <p class="stacks-copy">Aligns text vertically, at either the table-level or cell-level. In either case, using atomic classes assigns how cell(s) should vertically align text: <code class="stacks-code">.va-top</code>, <code class="stacks-code">.va-middle</code>, or <code class="stacks-code">.va-bottom</code>.</p>
+    <p class="stacks-copy">The default vertical alignment is <code class="stacks-code">middle</code>. You change a table's or a specific cell's vertical alignment by using the <a href="{{ "/product/base/vertical-alignment#classes" | relative_url }}">Vertical Alignment atomic classes</a>.</p>
     <div class="stacks-preview">
 {% highlight html linenos %}
-<table class="s-table va-middle">
-    <thead>
-        <tr>
-            <th scope="col" class="va-bottom"></th>
-            <th scope="col" class="va-bottom">Full Name<br>(first and last)</th>
-            <th scope="col" class="va-bottom">Email</th>
-            <th scope="col" class="va-bottom">Username</th>
-        </tr>
-    </thead>
+<table class="s-table">
     <tbody>
         <tr>
-            <th scope="row" class="va-top">1</th>
-            <td class="va-top">Mr.<br>Aaron<br>Shekey</td>
-            <td class="va-top">aaron@stackoverflow.com</td>
-            <td class="va-top">@aarons</td>
+            <td class="va-top hmn1">…</td>
+            <td class="va-middle">…</td>
+            <td class="va-bottom">…</td>
         </tr>
+    </tbody>
+</table>
+<table class="s-table va-bottom">
+    <tbody>
         <tr>
-            <th scope="row" class="va-middle">2</th>
-            <td class="va-middle">Mr.<br>Joshua<br>Hynes</td>
-            <td class="va-middle">joshua@stackoverflow.com</td>
-            <td class="va-middle">@joshuah</td>
-        </tr>
-        <tr>
-            <th scope="row" class="va-bottom">3</th>
-            <td class="va-bottom">Mr.<br>Paweł<br>Ludwiczak</td>
-            <td class="va-bottom">pawel@stackoverflow.com</td>
-            <td class="va-bottom">@pawełl</td>
+            <td class="hmn1">…</td>
+            <td>…</td>
+            <td>…</td>
         </tr>
     </tbody>
 </table>
 {% endhighlight %}
         <div class="stacks-preview--example">
-            <table class="s-table va-middle">
-                <thead>
-                    <tr>
-                        <th scope="col" class="va-bottom"></th>
-                        <th scope="col" class="va-bottom">Full Name<br>(first and last)</th>
-                        <th scope="col" class="va-bottom">Email</th>
-                        <th scope="col" class="va-bottom">Username</th>
-                    </tr>
-                </thead>
+            <table class="s-table mb16">
                 <tbody>
                     <tr>
-                        <th scope="row" class="va-top">1</th>
-                        <td class="va-top">Mr.<br>Aaron<br>Shekey</td>
-                        <td class="va-top">aaron@stackoverflow.com</td>
-                        <td class="va-top">@aarons</td>
+                        <td class="stacks-grid-example--cell va-top hmn1"><code class="stacks-code">.va-top</code></td>
+                        <td class="stacks-grid-example--cell va-middle"><code class="stacks-code">.va-middle</code></td>
+                        <td class="stacks-grid-example--cell va-bottom"><code class="stacks-code">.va-bottom</code></td>
                     </tr>
+                </tbody>
+            </table>
+            <table class="s-table va-bottom">
+                <tbody>
                     <tr>
-                        <th scope="row" class="va-middle">2</th>
-                        <td class="va-middle">Mr.<br>Joshua<br>Hynes</td>
-                        <td class="va-middle">joshua@stackoverflow.com</td>
-                        <td class="va-middle">@joshuah</td>
-                    </tr>
-                    <tr>
-                        <th scope="row" class="va-bottom">3</th>
-                        <td class="va-bottom">Mr.<br>Paweł<br>Ludwiczak</td>
-                        <td class="va-bottom">pawel@stackoverflow.com</td>
-                        <td class="va-bottom">@pawełl</td>
+                        <td class="stacks-grid-example--cell hmn1"><code class="stacks-code">.s-table.va-bottom</code></td>
+                        <td class="stacks-grid-example--cell"><code class="stacks-code">.s-table.va-bottom</code></td>
+                        <td class="stacks-grid-example--cell"><code class="stacks-code">.s-table.va-bottom</code></td>
                     </tr>
                 </tbody>
             </table>

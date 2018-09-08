@@ -34,7 +34,6 @@
 //  $  BASE TABLE STYLE
 //  ----------------------------------------------------------------------------
 .s-table {
-
     display: table;
     width: 100%;
     max-width: 100%;
@@ -44,156 +43,55 @@
     th,
     td {
         padding: @su8;
-        border-top: 1px solid @brc-lighter;
-        text-align: left;
+        border-top: 1px solid @black-100;
+        border-left: 1px solid @black-100;
         vertical-align: middle;
-        border-right: 1px solid @brc-lighter;
-        &:last-child {
-            border-right: none;
-        }
-    }
-    th {
-        font-weight: normal;
-        color: @fc-dark;
-    }
-    td {
         color: @fc-medium;
+        text-align: left;
+
+        &:last-of-type {
+            border-right: 1px solid @black-100;
+        }
     }
-    thead th {
-        font-weight: bold;
+
+    th {
         color: @fc-dark;
-        background-color: @black-025;
-        font-size: @fs-caption;
-        border-bottom: 0;
-        line-height: @lh-xs;
-        border-top: 1px solid @brc-lighter;
+    }
+
+    //  Custom styles when in a table head
+    thead th {
         vertical-align: bottom;
+        background-color: @black-025;
+        font-size: @fs-fine;
+        line-height: @lh-sm;
+        text-transform: uppercase;
     }
-    tbody tr:last-child th,
-    tfoot th,
-    tr:last-child td {
-        border-bottom: 1px solid @brc-lighter;
+
+    //  When in a table body, don't make it bold.
+    tbody th {
+        font-weight: normal;
     }
+
+    //  If it's the last row, add a bottom border
+    tr:last-of-type td,
+    tr:last-of-type th {
+        border-bottom: 1px solid @black-100;
+    }
+
+    //  If two table bodies are next to each other, visually separate them
     tbody + tbody {
-        border-top: 2px solid @brc-lighter;
+        border-top: @su2 solid @black-100;
     }
 }
 
 //  ============================================================================
-//  $  TABLE CELL SIZES
+//  $    TEXT LAYOUT
 //  ----------------------------------------------------------------------------
 .s-table {
-    //  $$  General Column Sizes
+    //  $$  VERTICAL ALIGNMENT
+    //      This applies vertical alignment classes to all of a table's cells.
     //  ------------------------------------------------------------------------
-    @table-columns: 100% / 12;
-
-    .s-table--cell1     { width: @table-columns * 1; }
-    .s-table--cell2     { width: @table-columns * 2; }
-    .s-table--cell3     { width: @table-columns * 3; }
-    .s-table--cell4     { width: @table-columns * 4; }
-    .s-table--cell5     { width: @table-columns * 5; }
-    .s-table--cell6     { width: @table-columns * 6; }
-    .s-table--cell7     { width: @table-columns * 7; }
-    .s-table--cell8     { width: @table-columns * 8; }
-    .s-table--cell9     { width: @table-columns * 9; }
-    .s-table--cell10    { width: @table-columns * 10; }
-    .s-table--cell11    { width: @table-columns * 11; }
-    .s-table--cell12    { width: @table-columns * 12; }
-
-    //  $$  Specific Column Sizes
-    //  ------------------------------------------------------------------------
-    //  --  Input
-    //      Generally for a checkbox input that's placed first in the table row
-    .s-table--input {
-        max-width: @su24;
-        padding-right: @su2;
-        padding-left: @su2;
-    }
-}
-
-
-//  ============================================================================
-//  $ LAYOUT VARIATIONS
-//  ----------------------------------------------------------------------------
-.s-table {
-
-    //  $$  Hover Rows
-    //  ------------------------------------------------------------------------
-    &.s-table__hover tbody tr:hover {
-        background-color: lighten(@bgc-lightest,2%);
-        transition: background-color 300ms @te-smooth;
-    }
-
-    //  $$  Condensed Padding
-    //  ------------------------------------------------------------------------
-    &.s-table__condensed {
-        th,
-        td {
-            padding: @su4;
-        }
-    }
-
-    //  $$  Expanded Padding
-    //  ------------------------------------------------------------------------
-    &.s-table__expanded {
-        th,
-        td {
-            padding: @su12;
-        }
-    }
-
-    //  $$  Bordered
-    //  ------------------------------------------------------------------------
-    &.s-table__borderless {
-        th,
-        td {
-            border-top: none;
-            border-right: none;
-        }
-        thead th {
-            border-bottom: none;
-        }
-        tbody tr:last-child th,
-        tfoot th,
-        tr:last-child td {
-            border-bottom: none;
-        }
-        tbody + tbody {
-            border-top: none;
-        }
-    }
-    &.s-table__borderless-x {
-        th,
-        td {
-            border-right: none;
-        }
-    }
-    &.s-table__borderless-y {
-        th,
-        td {
-            border-top: none;
-        }
-        thead th {
-            border-bottom: none;
-        }
-        tbody tr:last-child th,
-        tfoot th,
-        tr:last-child td {
-            border-bottom: none;
-        }
-        tbody + tbody {
-            border-top: none;
-        }
-    }
-    &.s-table__outlined {
-        border: 1px solid @brc-lighter;
-    }
-
-    //  $$  Vertical Alignment
-    //      This applies the universal vertical alignment class to all cell's within
-    //      the table instead of a single cell.
-    //  ------------------------------------------------------------------------
-    //  --  Top
+    //  --  TOP
     &.va-top {
         th,
         td {
@@ -201,7 +99,7 @@
         }
     }
 
-    //  --  Middle
+    //  --  MIDDLE
     &.va-middle {
         th,
         td {
@@ -209,7 +107,7 @@
         }
     }
 
-    //  --  Bottom
+    //  --  BOTTOM
     &.va-bottom {
         th,
         td {
@@ -217,11 +115,10 @@
         }
     }
 
-    //  $$  Text Alignment
-    //      This applies the universal text alignment class to all cell's within
-    //      the table instead of a single cell.
+    //  $$  TEXT ALIGNMENT
+    //      This applies the text alignment classes to all of a table's cells.
     //  ------------------------------------------------------------------------
-    //  --  Left Align
+    //  --  LEFT ALIGN
     &.ta-left {
         th,
         td {
@@ -229,7 +126,7 @@
         }
     }
 
-    //  --  Center Align
+    //  --  CENTER ALIGN
     &.ta-center {
         th,
         td {
@@ -237,7 +134,7 @@
         }
     }
 
-    //  --  Right Align
+    //  --  RIGHT ALIGN
     &.ta-right {
         th,
         td {
@@ -245,7 +142,7 @@
         }
     }
 
-    //  --  Justify Align
+    //  --  JUSTIFY ALIGN
     &.ta-justify {
         th,
         td {
@@ -254,43 +151,165 @@
     }
 }
 
-//  $$  Simple THEAD
-//  ------------------------------------------------------------------------
-.s-table__simple-thead {
-    thead {
-        th {
-            background-color: transparent;
-            border-top: none;
-            border-right: none;
+
+//  ============================================================================
+//  $ LAYOUT VARIATIONS
+//  ----------------------------------------------------------------------------
+.s-table {
+    //  $$  HOVER
+    //  ------------------------------------------------------------------------
+    &.s-table__hover tbody tr:hover {
+        background-color: @black-025;
+    }
+
+    //  $$  SPACING
+    //  ------------------------------------------------------------------------
+    //  --  SMALL
+    &.s-table__sm {
+        th,
+        td {
+            padding: @su4;
+        }
+    }
+    //  --  MEDIUM
+    &.s-table__md {
+        th,
+        td {
+            padding: @su12;
+        }
+    }
+    //  --  LARGE
+    &.s-table__lg {
+        th,
+        td {
+            padding: @su16;
+        }
+    }
+
+    //  $$  NO BORDERS
+    //  ------------------------------------------------------------------------
+    //  --  X & Y Axis
+    &.s-table__b0 {
+        th,
+        td,
+        tr:last-of-type th,
+        tr:last-of-type td {
+            border-color: transparent;
+        }
+
+        //  This makes the border transparent, so we need to use whitespace
+        //  to achieve the same effect a 2px gray border achieves.
+        tbody + tbody {
+            border-color: transparent;
+            border-width: @su12;
+        }
+    }
+    //  --  X-AXIS
+    //      Clear out the y-axis colors
+    &.s-table__bx0 {
+        th,
+        td {
+            border-left-color: transparent;
+            border-right-color: transparent;
+        }
+        thead th {
+            border-bottom-color: @black-400;
+        }
+
+        tr:first-of-type th,
+        tr:first-of-type td {
+            border-top-color: transparent;
+        }
+        tr:last-of-type td {
+            border-bottom-color: transparent;
+        }
+    }
+
+    //  --  Y-AXIS
+    &.s-table__by0 {
+        th,
+        td {
+            border-top-color: transparent;
+            border-bottom-color: transparent;
+        }
+
+        //  If it's the last row, add a bottom border
+        tr:last-of-type td,
+        tr:last-of-type th {
+            border-bottom-color: transparent;
+        }
+
+        tbody + tbody {
+            border-top-width: @su12;
+            border-top-color: transparent;
+        }
+    }
+
+    //  $$  NO BACKGROUNDS
+    //  ------------------------------------------------------------------------
+    &.s-table__clear th {
+        font-size: @fs-caption;
+        text-transform: inherit;
+        background-color: transparent;
+    }
+
+    //  $$  TOTALS ROW
+    //  ------------------------------------------------------------------------
+    .s-table--totals {
+        th,
+        td {
+            padding-top: @su12;
+            font-size: @fs-subheading;
+            font-weight: bold;
+        }
+    }
+
+    //  $$  Sortable Table Columns
+    //  ------------------------------------------------------------------------
+    .s-table__sortable {
+        color: @fc-light;
+        cursor: pointer;
+
+        //  Slightly align the icon
+        .svg-icon {
+            position: relative;
+            bottom: -1px;
+        }
+
+        //  Selected state
+        &.is-sorted {
+            color: @fc-dark;
         }
     }
 }
 
-//  $$  Sortable Table Columns
-//  ------------------------------------------------------------------------
-.s-table__sortable {
-    cursor: pointer;
-    .fc-light;
 
-    .svg-icon {
-        position: relative;
-        bottom: -1px;
-    }
+//  ============================================================================
+//  $  TABLE CELL SIZES
+//  ============================================================================
+//  $$  General Column Sizes
+//  ----------------------------------------------------------------------------
+@table-columns: 100% / 12;
 
-    &.is-sorted {
-        .fc-dark;
-    }
-}
+.s-table--cell1     { width: @table-columns * 1; }
+.s-table--cell2     { width: @table-columns * 2; }
+.s-table--cell3     { width: @table-columns * 3; }
+.s-table--cell4     { width: @table-columns * 4; }
+.s-table--cell5     { width: @table-columns * 5; }
+.s-table--cell6     { width: @table-columns * 6; }
+.s-table--cell7     { width: @table-columns * 7; }
+.s-table--cell8     { width: @table-columns * 8; }
+.s-table--cell9     { width: @table-columns * 9; }
+.s-table--cell10    { width: @table-columns * 10; }
+.s-table--cell11    { width: @table-columns * 11; }
+.s-table--cell12    { width: @table-columns * 12; }
 
-//  $$  Footer: Large Row
-//  ------------------------------------------------------------------------
-.s-table--totals {
-    th,
-    td {
-        padding-top: @su12;
-        font-size: @fs-subheading;
-        font-weight: bold;
-    }
-
-
+//  $$  Specific Column Sizes
+//  ----------------------------------------------------------------------------
+//  --  Input
+//      Generally for a checkbox input that's placed first in the table row
+.s-table--input {
+    max-width: @su24;
+    padding-right: @su2;
+    padding-left: @su2;
 }
