@@ -157,10 +157,17 @@
 //  $ LAYOUT VARIATIONS
 //  ----------------------------------------------------------------------------
 .s-table {
-    //  $$  HOVER
+    //  $$  STRIPES
     //  ------------------------------------------------------------------------
-    &.s-table__hover tbody tr:hover {
-        background-color: @black-025;
+    &.s-table__stripes {
+        // Darken the header
+        thead th {
+            background-color: darken(@black-025,2%);
+        }
+        // Add in stripes
+        tbody tr:nth-child(even) {
+            background-color: @black-025;
+        }
     }
 
     //  $$  SPACING
