@@ -10,7 +10,7 @@ description: Windows Outlook 2003 and above use Microsoft Word as a rendering en
     <p class="stacks-copy">
         We can use <strong>MSO</strong> (<strong>M</strong>icro<strong>s</strong>oft <strong>O</strong>ffice) tags to add HTML / CSS anywhere in an email template. This code will be ignored by other email clients. Here’s what it looks like:
     </p>
-    <div class="stacks-preview mb24">
+    <div class="stacks-preview _preview-none mb24">
 {% highlight html linenos %}
 <!--[if mso]>
     <table><tr><td>
@@ -25,7 +25,7 @@ description: Windows Outlook 2003 and above use Microsoft Word as a rendering en
     <p class="stacks-copy">
         MSO tags can also be used to add styles targeting Outlook (<a href="https://www.campaignmonitor.com/css/style-element/style-in-head/">Outlook supports CSS in the <code class="stacks-code">&lt;head&gt;</code></a>):
     </p>
-    <div class="stacks-preview mb24">
+    <div class="stacks-preview _preview-none mb24">
 {% highlight html linenos %}
 <!--[if mso]>
     <style>
@@ -43,9 +43,9 @@ description: Windows Outlook 2003 and above use Microsoft Word as a rendering en
 <section class="stacks-section">
     {% header {element: 'h2', text: 'Ghost Tables'} %}
     <p class="stacks-copy">
-        The main way we use MSO tags in our emails is to create "ghost tables" so <a href="/email/base/responsive#hybrid-design">hybrid emails</a> don't fall apart in Outlook. Hybrid design uses <code class="stacks-code">inline-block</code>, <code class="stacks-code">max-width</code>, <code class="stacks-code">min-width</code> to stack table columns. Outlook doesn't support these CSS properties, so we use MSO tags to create "ghost tables" that apply a fixed width just for Outlook.
-    </p>x
-    <div class="stacks-preview mb24">
+        The main way we use MSO tags in our emails is to create “ghost tables” so <a href="/email/base/responsive#hybrid-design">hybrid emails</a> don’t fall apart in Outlook. Hybrid design uses <code class="stacks-code">inline-block</code>, <code class="stacks-code">max-width</code>, <code class="stacks-code">min-width</code> to stack table columns. Outlook doesn’t support these CSS properties, so we use MSO tags to create “ghost tables” that apply a fixed width just for Outlook.
+    </p>
+    <div class="stacks-preview _preview-none mb24">
 {% highlight html linenos %}
 <!--[if mso]>
 <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
@@ -53,8 +53,8 @@ description: Windows Outlook 2003 and above use Microsoft Word as a rendering en
 <td width="340">
 <![endif]-->
     <div style="display:inline-block; width:100%; min-width:200px; max-width:340px;">
-        Outlook can't render the CSS in this DIV but other email clients can,
-        so we wrap this in a ghost table that replicates the DIV's desktop style.
+        Outlook can’t render the CSS in this DIV but other email clients can,
+        so we wrap this in a ghost table that replicates the DIV’s desktop style.
         In this case, a container 340px wide.
     </div>
 <!--[if mso]>
@@ -71,7 +71,7 @@ description: Windows Outlook 2003 and above use Microsoft Word as a rendering en
 <section class="stacks-section">
     {% header {element: 'h2', text: 'Targeting Specific Outlook Versions'} %}
     <p class="stacks-copy">
-        We usually target <em>all</em> versions of Outlook using <code class="stacks-code">&lt;!--[if mso]&gt;</code>. But sometimes when testing emails in Litmus, an email looks ok in one Outlook version but is broken in another. It's not common but it happens, and there are a few ways to target specific versions of Outlook while omitting others.
+        We usually target <em>all</em> versions of Outlook using <code class="stacks-code">&lt;!--[if mso]&gt;</code>. But sometimes when testing emails in Litmus, an email looks ok in one Outlook version but is broken in another. It’s not common but it happens, and there are a few ways to target specific versions of Outlook while omitting others.
     </p>
     {% header {element: 'h3', text: 'Outlook Versions'} %}
     <p class="stacks-copy">
@@ -90,7 +90,7 @@ description: Windows Outlook 2003 and above use Microsoft Word as a rendering en
                     <td>
                         <div class="grid ai-center">
                             <span>All Windows Outlook</span>
-                            <span class="s-badge s-badge__mini ml8">most common</span>
+                            <span class="s-badge s-badge__mini ml8">Most common</span>
                         </td>
                     <td class="-cell1"><code class="stacks-code">&lt;!--[if mso]&gt;  your code  &lt;![endif]--&gt;</code></td>
                 </tr>
@@ -131,10 +131,10 @@ description: Windows Outlook 2003 and above use Microsoft Word as a rendering en
     <p class="stacks-copy">
         Using operators allows you to create conditional expressions for targeting multiple Outlook versions.
     </p>
-    <div class="grid ai-start s-notice s-notice__warning mb24">
-        <div class="grid--cell mr8">{% svg /product/resources/svg-icons/Alert.svg width="18" height="18" aria-hidden="true" %}</div>
+    <div class="grid ai-start s-notice s-notice__info mb24">
+        <div class="grid--cell mr8">{% svg /product/resources/svg-icons/Alert.svg width="18" height="18" %}</div>
         <div class="grid--cell lh-lg">
-            <strong>Note:</strong> We tend to keep our designs simple and don't use these very often. They're here if you need them every once in a while, but if you find yourself reaching for these often, please <a href="https://github.com/StackExchange/Stacks/issues/new">open an issue</a> or ask us about it.
+            <strong>Note:</strong> We tend to keep our designs simple and don’t use these very often. They’re here if you need them every once in a while, but if you find yourself reaching for these often, please <a href="https://github.com/StackExchange/Stacks/issues/new">open an issue</a> or ask us about it.
         </div>
     </div>
     <div class="overflow-x-auto mb32">
