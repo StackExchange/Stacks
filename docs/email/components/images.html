@@ -1,0 +1,208 @@
+---
+layout: page
+title: Images
+description:
+---
+
+<!-- FOREGROUND IMAGES -->
+<section class="stacks-section">
+    {% header {element: 'h2', text: 'Foreground Images'} %}
+    <p class="stacks-copy">
+        All email clients can display <code class="stacks-code">.png</code>, <code class="stacks-code">.gif</code>, and <code class="stacks-code">.jpg</code> images displayed with the <code class="stacks-code">&lt;img&gt;</code> tag. <code class="stacks-code">.svg</code> images are not well supported, regardless of how they’re referenced, so avoid using these.
+    </p>
+    <p class="stacks-copy">
+        Most images should be coded responsive by default, meaning they’ll scale down proportionately in small viewports. It’s safest to code all images this way, even if they don’t end up scaling in practice. However if we’re confident that an image will never scale, we can display a non-responsive image using less code.
+    </p>
+    {% header {element: 'h3', text: 'Foreground Image Attributes'} %}
+    <table class="mb32 s-table s-table__hover">
+        <thead>
+            <tr>
+                <th class="s-table--cell2" scope="col">Name</th>
+                <th class="s-table--cell2" scope="col">Type</th>
+                <th scope="col">Notes</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="fs-caption">
+                <td><code class="stacks-code">src</code></td>
+                <td>attribute</td>
+                <td>Always set and use full <code class="stacks-code">https://</code> reference.</td>
+            </tr>
+            <tr class="fs-caption">
+                <td><code class="stacks-code">width</code></td>
+                <td>attribute</td>
+                <td>Always set to intended desktop width.</td>
+            </tr>
+            <tr class="fs-caption">
+                <td><code class="stacks-code">height</code></td>
+                <td>attribute</td>
+                <td>Optional. Use only for images that won’t scale.</td>
+            </tr>
+            <tr class="fs-caption">
+                <td><code class="stacks-code">border</code></td>
+                <td>attribute</td>
+                <td>Always set to 0 to avoid blue outlines on image links.</td>
+            </tr>
+            <tr class="fs-caption">
+                <td><code class="stacks-code">alt</code></td>
+                <td>attribute</td>
+                <td>Always include but can be left empty if image is ornamental (Eg. <code class="stacks-code">alt=""</code>).</td>
+            </tr>
+            <tr class="fs-caption">
+                <td><code class="stacks-code">width</code></td>
+                <td>inline CSS</td>
+                <td>[Responsive] Always set to <code class="stacks-code">100%</code> for responsive images. Optional for static images.</td>
+            </tr>
+            <tr class="fs-caption">
+                <td><code class="stacks-code">max-width</code></td>
+                <td>inline CSS</td>
+                <td>[Responsive] Always set to intended desktop width. Optional for static images.</td>
+            </tr>
+            <tr class="fs-caption">
+                <td><code class="stacks-code">height</code></td>
+                <td>inline CSS</td>
+                <td>[Responsive] Always set to <code class="stacks-code">auto</code> for responsive images. Optional for static images.</td>
+            </tr>
+            <tr class="fs-caption">
+                <td><code class="stacks-code">display</code></td>
+                <td>inline CSS</td>
+                <td>Generally good practice to use `display:block;` when possible since it negates a few pixels of unwanted space below images in some clients.</td>
+            </tr>
+            <tr class="fs-caption">
+                <td><code class="stacks-code">.g-img</code></td>
+                <td>class</td>
+                <td>Advisable for images larger than ~300px wide. Prevents <a href="https://www.emailonacid.com/blog/article/email-development/prevent-gmail-from-displaying-image-download-button-in-email/">gmail from displaying an image download icon over images</a>.</td>
+            </tr>
+        </tbody>
+    </table>
+    {% header {element: 'h3', text: 'Foreground Image Examples'} %}
+    <div class="stacks-preview">
+{% highlight html linenos %}
+/* Responsive */
+<img src="https://placehold.it/1280x600" width="640" height="" alt="alt_text" border="0" style="width: 100%; max-width: 640px; height: auto; display: block;" class="g-img">
+
+/* Static */
+<img src="https://placehold.it/256" width="128" height="128" alt="alt_text" border="0" style="display: block;">
+{% endhighlight %}
+        <div class="stacks-preview--example">
+            <img src="https://placehold.it/1280x600" width="640" height="" alt="alt_text" border="0" style="width: 100%; max-width: 640px; height: auto; display: block;" class="g-img">
+            <br>
+            <img src="https://placehold.it/256" width="128" height="128" alt="alt_text" border="0" style="display: block;">
+        </div>
+    </div>
+</section>
+
+<!-- BACKGROUND IMAGES -->
+<section class="stacks-section">
+    {% header {element: 'h2', text: 'Background Images'} %}
+    <p class="stacks-copy">
+        Background images allow us to place additional HTML content on top of them, one of the few reliable ways to provide layering possibilities in email. A benefit of using background images over foreground images is, when paired with a background color, the HTML content on top of the background image remains accessible even when images are disabled.
+    </p>
+    <p class="stacks-copy">
+        Background images can be complicated to implement in email, as many properties need to be defined once in CSS and <em>again</em> in VML for Windows Outlook and Win10 Mail.
+    </p>
+    {% header {element: 'h3', text: 'Background Image Attributes'} %}
+    <table class="mb32 s-table s-table__hover">
+        <thead>
+            <tr>
+                <th class="s-table--cell3" scope="col">Name</th>
+                <th class="s-table--cell3" scope="col">Type</th>
+                <th scope="col">Notes</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="fs-caption">
+                <td><code class="stacks-code">background-image</code></td>
+                <td>inline CSS</td>
+                <td>Always set and use full <code class="stacks-code">https://</code> reference.</td>
+            </tr>
+            <tr class="fs-caption">
+                <td><code class="stacks-code">background-position</code></td>
+                <td>inline CSS</td>
+                <td>Optional to set the size of the image.</td>
+            </tr>
+            <tr class="fs-caption">
+                <td><code class="stacks-code">background-size</code></td>
+                <td>inline CSS</td>
+                <td>Optional to set the position of the image.</td>
+            </tr>
+            <tr class="fs-caption">
+                <td><code class="stacks-code">background-color</code></td>
+                <td>inline CSS</td>
+                <td>Always set to make foreground HTML legible if background image doesn’t load.</td>
+            </tr>
+            <tr class="fs-caption">
+                <td><code class="stacks-code">width</code></td>
+                <td>VML in <code class="stacks-code">&lt;v:rect&gt;</code></td>
+                <td>Always set to full container width. VML doesn’t account for padding, adjust as necessary.</td>
+            </tr>
+            <tr class="fs-caption">
+                <td><code class="stacks-code">height</code></td>
+                <td>VML in <code class="stacks-code">&lt;v:rect&gt;</code></td>
+                <td>Always set to full container height. VML doesn’t account for padding, adjust as necessary.</td>
+            </tr>
+            <tr class="fs-caption">
+                <td><code class="stacks-code">src</code></td>
+                <td>VML in <code class="stacks-code">&lt;v:fill&gt;</code></td>
+                <td>Always set and use full <code class="stacks-code">https://</code> reference.</td>
+            </tr>
+            <tr class="fs-caption">
+                <td><code class="stacks-code">color</code> (background color)</td>
+                <td>VML in <code class="stacks-code">&lt;v:fill&gt;</code></td>
+                <td>Always set to make foreground HTML legible if background image doesn’t load.</td>
+            </tr>
+        </tbody>
+    </table>
+    {% header {element: 'h3', text: 'Background Image Examples'} %}
+    <div class="stacks-preview mb24">
+{% highlight html linenos %}
+<td valign="middle" style="background-image: url('https://d2axdqolvqmdvx.cloudfront.net/857c3f94-f791-401e-85a8-e041ec72569e/bgheropatternblue.png'); background-position: center center; background-size: cover; background-color: #117FF1; text-align: center;">
+    <!--[if gte mso 9]>
+    <v:rect xmlns:v="urn:schemas-microsoft-com:vml" fill="true" stroke="false" style="width:680px;height:220px;">
+    <v:fill type="tile" src="https://d2axdqolvqmdvx.cloudfront.net/857c3f94-f791-401e-85a8-e041ec72569e/bgheropatternblue.png" color="#117FF1"/>
+    <v:textbox inset="0,0,0,0">
+    <![endif]-->
+    <div>
+        <!-- Foreground Content : BEGIN -->
+        <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation">
+            <tr>
+                <td style="padding: 60px; color: #ffffff; font-family: arial, sans-serif; font-size: 15px; text-align: center;">
+                    Foreground HTML content.
+                </td>
+            </tr>
+        </table>
+        <!-- Foreground Content : END -->
+    </div>
+    <!--[if gte mso 9]>
+    </v:textbox>
+    </v:rect>
+    <![endif]-->
+</td>
+{% endhighlight %}
+        <div class="stacks-preview--example">
+            <table border="0" cellpadding="0" cellspacing="0" width="100%" role="presentation">
+                <tr>
+                    <td valign="middle" style="background-image: url('https://d2axdqolvqmdvx.cloudfront.net/857c3f94-f791-401e-85a8-e041ec72569e/bgheropatternblue.png'); background-position: center center; background-size: cover; background-color: #117FF1; text-align: center;">
+                        <div>
+                            <!-- Foreground Content : BEGIN -->
+                            <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation">
+                                <tr>
+                                    <td style="padding: 60px; color: #ffffff; font-family: arial, sans-serif; font-size: 15px; text-align: center;">
+                                        Foreground HTML content.
+                                    </td>
+                                </tr>
+                            </table>
+                            <!-- Foreground Content : END -->
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="grid ai-start s-notice s-notice__info mb48">
+        <div class="grid--cell mr8">{% svg /product/resources/svg-icons/Info.svg width="18" height="18" aria-hidden="true" %}</div>
+        <div class="grid--cell lh-lg">
+            <strong>Note:</strong> Windows Outlook and Win10 Mail cannot scale background images, so the image referenced in VML should be prepared @1x. Most other email clients can scale background images defined in CSS, so using @2x images is advisable.
+        </div>
+    </div>
+</section>
