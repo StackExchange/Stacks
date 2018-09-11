@@ -196,30 +196,18 @@
         }
     }
 
-    //  --  Horizontal Only
+    //  --  Horizontal Only with Table Outline
     &.s-table__bx {
-        th,
-        td {
-            border-left-color: transparent;
-            border-right-color: transparent;
+        tr {
+            > *:not(:first-child) {
+                border-left-color: transparent;
+            }
+            > *:not(:last-child) {
+                border-right-color: transparent;
+            }
         }
         thead th {
-            border-top-color: transparent;
-            border-bottom-color: @black-200;
-        }
-        tbody tr {
-            &:first-of-type th,
-            &:first-of-type td {
-                border-top-color: transparent;
-            }
-            &:last-of-type th,
-            &:last-of-type td {
-                border-bottom-color: transparent;
-            }
-        }
-        tfoot th,
-        tfoot td {
-            border-bottom-color: transparent;
+            // border-bottom-color: @black-200; TGOAS: let's move this to a non-outlined version;
         }
     }
 
