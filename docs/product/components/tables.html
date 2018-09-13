@@ -575,74 +575,250 @@ description: Tables are used to list all information from a data set. The base s
 </table>
 {% endhighlight %}
 <script>
+
+// The following allows the user to sort tables by clicking on the appropriate headers.
+// In order for this to work, the table must have the following minimal structure (in addition
+// to the Stacks styling classes and anything else):
+//
+// <table class="js-sortable-table">
+//   <thead>
+//     <tr>
+//       <th class="js-sortable-head">
+//         Column title
+//         @Svg.ArrowDownSm.With("js-sorting-indicator js-sorting-indicator-desc d-none")
+//         @Svg.ArrowUpSm.With("js-sorting-indicator js-sorting-indicator-asc d-none")
+//         @Svg.ArrowDownSm.With("js-sorting-indicator js-sorting-indicator-none")
+//       </th>
+//       (... more <th>s; each one needs the icons if it's sortable! ...)
+//     </tr>
+//     (... possibly more <tr>s ...)
+//   </thead>
+//   <tbody>
+//     (... the actual data <tr>s)
+//   </tbody>
+// </table>
+//
+// By default, the cell's value used for sorting is the text content of the <td> (stripped of
+// leading and trailing whitespace). In order to override the value (e.g. for dates),
+// set a `data-sort-val` attribute on the <td>.
+//
+// If *all* values in the column that's being sorted can be parsed as integers or are empty,
+// then the sorting happens numerically, otherwise it happens alphanumerically.
+//
+// colspan and rowspan are handled correctly, with the exception of rowspans in the actual
+// data section (table rows that are connected via a rowspan > 1 of some cell will be broken
+// up by the sorting process, probably making the table display the wrong data). Handling
+// for this may be added later, but for now we have no use case for it.
+//
+// If the data is presorted and you want to indicate this in the UI,
+//
+//   1. add the `is-sorted` class to the corresponding <th>,
+//   2. add a `data-sorted-asc="true"` attribute to the <th> (unless it's presorted in descending
+//      direction, in which case you don't need to add an attribute),
+//   3. add a `d-none` class to the third SVG icon, and instead remove it from the `...-desc`
+//      or `...-asc` icon as appropriate
+
 $(function () {
-    $(".js-sortable-table").each(function (_, table) {
-        var $table = $(table);
-        $table.find(".js-sortable-head").click(function () {
-            var colno = $(this).index();
-            var direction = $(this).attr("data-sorted-asc") ? -1 : 1;
-            var rows = $table.find("> tbody > tr").toArray();
-            var anyNonInt = false;
-            var data = rows.map(function (row, index) {
-                var cell = $(row).find("> td").eq(colno);
-                var explicit = cell.attr("data-sort-val");
-                var d = typeof explicit === "string" ? explicit : $(row).find("> td").eq(colno).text().trim();
-                if (parseInt(d, 10) + "" !== d) {
-                    anyNonInt = true;
-                }
-                return [d, index];
-            });
-            if (!anyNonInt) {
-                data.forEach(function (tuple) {
-                    tuple[0] = parseInt(tuple[0], 10);
-                });
+    $(document).on("click", ".js-sortable-head", function () {
+        var $this = $(this);
+        var $table = $this.closest(".js-sortable-table");
+        if (!$table.length) {
+            return;
+        }
+        var $thead = $(this).closest("thead");
+        if (!$thead.length) {
+            return;
+        }
+
+        // the column slot number of the clicked header
+        var colno = getCellSlot(this);
+
+        if (colno < 0) { // this shouldn't happen because we're searching the header cell's grandparent element
+            return;
+        }
+
+        // an index of the <tbody>, so we can find out for each row which <td> element is
+        // in the same column slot as the header
+        var slotIndex = buildIndex($table.find("> tbody")[0]);
+
+        // the default behavior when clicking a header is to sort by this column in ascending
+        // direction, *unless* it is already sorted that way, in which case it is marked
+        // with the data-sorted-asc attribute
+        var direction = $this.attr("data-sorted-asc") ? -1 : 1;
+
+        var rows = $table.find("> tbody > tr").toArray();
+
+        // if this is still false after traversing the data, that means all values are integers (or empty)
+        // and thus we'll sort numerically.
+        var anyNonInt = false;
+
+        // data will be a list of tuples [value, rowNum], where value is what we're sorting by
+        var data = rows.map(function (row, index) {
+            var cell = slotIndex[index][colno];
+            if (!cell) {
+                return ["", index];
             }
-            data.sort(function (a, b) {
-                if (a[0] > b[0]) {
-                    return 1 * direction;
-                } else if (a[0] < b[0]) {
-                    return -1 * direction;
-                } else {
-                    // We're guaranteeing stable sorting, so if the values compare equal, we leave
-                    // the row order unchanged (note that this comparison is independent of the
-                    // sorting direction)
-                    return a[1] > b[1] ? 1 : -1;
-                }
-            })
-            data.forEach(function (tup) {
-                $(rows[tup[1]]).appendTo($table.find("> tbody"));
-            });
-            $(this).parent().find("> .is-sorted").removeClass("is-sorted");
-            $(this).addClass("is-sorted");
-            $(this).parent().find("> [data-sorted-asc]").attr("data-sorted-asc", null);
-            if (direction === 1) {
-                $(this).attr("data-sorted-asc", "true");
+            var $cell = $(cell);
+
+            // unless the to-be-sorted-by value is explicitly provided on the element via this attribute,
+            // the value we're using is the cell's text, trimmed of any whitespace
+            var explicit = $cell.attr("data-sort-val");
+            var d = typeof explicit === "string" ? explicit : $cell.text().trim();
+
+            if ((d !== "") && (parseInt(d, 10) + "" !== d)) {
+                anyNonInt = true;
             }
-            $(this).parent().find(".js-sorting-indicator").addClass("d-none");
-            $(this).parent().find(".js-sorting-indicator-none").removeClass("d-none");
-            $(this).find(".js-sorting-indicator").addClass("d-none");
-            $(this).find(".js-sorting-indicator-" + (direction === 1 ? "asc" : "desc")).removeClass("d-none");
+            return [d, index];
         });
+
+        // If all values were integers (or empty cells), sort numerically, with empty cells treated as
+        // having the lowest possible value (i.e. sorted to the top if ascending, bottom if descending)
+        if (!anyNonInt) {
+            data.forEach(function (tuple) {
+                tuple[0] = tuple[0] === "" ? Number.MIN_VALUE : parseInt(tuple[0], 10);
+            });
+        }
+
+        // We don't sort an array of <tr>, but instead an arrays of row *numbers*, because this way we
+        // can enforce stable sorting, i.e. rows that compare equal are guaranteed to remain in the same
+        // order (the JS standard does not gurantee this for sort()).
+        data.sort(function (a, b) {
+            // first compare the values (a[0])
+            if (a[0] > b[0]) {
+                return 1 * direction;
+            } else if (a[0] < b[0]) {
+                return -1 * direction;
+            } else {
+                // if the values are equal, compare the row numbers (a[1]) to guarantee stable sorting
+                // (note that this comparison is independent of the sorting direction)
+                return a[1] > b[1] ? 1 : -1;
+            }
+        });
+
+        // this is the actual reordering of the table rows
+        data.forEach(function (tup) {
+            $(rows[tup[1]]).appendTo($table.find("> tbody"));
+        });
+
+        // update the UI and set the `data-sorted-asc` attribute if appropriate, so that the next click
+        // will cause sorting in descending direction
+        $thead.find(".js-sortable-head.is-sorted").removeClass("is-sorted");
+        $this.addClass("is-sorted");
+        $thead.find("[data-sorted-asc]").attr("data-sorted-asc", null);
+        if (direction === 1) {
+            $this.attr("data-sorted-asc", "true");
+        }
+        $thead.find(".js-sorting-indicator").addClass("d-none");
+        $thead.find(".js-sorting-indicator-none").removeClass("d-none");
+        $this.find(".js-sorting-indicator").addClass("d-none");
+        $this.find(".js-sorting-indicator-" + (direction === 1 ? "asc" : "desc")).removeClass("d-none");
     });
+
+    function buildIndex(section) {
+        return buildIndexOrGetCellSlot(section);
+    }
+
+    function getCellSlot(cell) {
+        return buildIndexOrGetCellSlot(cell.parentElement.parentElement, cell);
+    }
+
+    // Just because a <td> is the 4th *child* of its <tr> doesn't mean it belongs to the 4th *column*
+    // of the table. Previous cells may have a colspan; cells in previous rows may have a rowspan.
+    // Because we need to know which header cells and data cells belong together, we have to 1) find out
+    // which column number (or "slot" as we call it here) the header cell has, and 2) for each row find
+    // out which <td> cell corresponds to this slot (because those are the rows we're sorting by).
+    //
+    // That's what the following function does. If the second argument is not given, it returns an index
+    // of the table, which is an array of arrays. Each of the sub-arrays corresponds to a table row. The
+    // indices of the sub-array correspond to column slots; the values are the actual table cell elements.
+    // For example index[4][3] is the <td> or <th> in row 4, column 3 of the table section (<tbody> or <thead>).
+    // Note that this element is not necessarily even in the 4th (zero-based) <tr> -- if it has a rowSpan > 1,
+    // it may also be in a previous <tr>.
+    //
+    // If the second argument is given, it's a <td> or <th> that we're trying to find, and the algorithm
+    // stops as soon as it has found it and the function returns its slot number.
+    function buildIndexOrGetCellSlot(section, findCell) {
+        var index = [];
+        var curRow = section.children[0];
+
+        // the elements of these two arrays are synchronized; the first array contains table cell elements,
+        // the second one contains a number that indicates for how many more rows this elements will
+        // exist (i.e. the value is initially one less than the cell's rowspan, and will be decreased for each row)
+        var growing = [];
+        var growingRowsLeft = [];
+
+        // continue while we have actual <tr>'s left *or* we still have rowspan'ed elements that aren't done
+        while (curRow || growingRowsLeft.some(function (e) { return e; })) {
+            var curIndexRow = [];
+            index.push(curIndexRow);
+
+            var curSlot = 0;
+            if (curRow) {
+                for (var curCellInd = 0; curCellInd < curRow.children.length; curCellInd++) {
+                    while (growingRowsLeft[curSlot]) {
+                        growingRowsLeft[curSlot]--;
+                        curIndexRow[curSlot] = growing[curSlot];
+                        curSlot++;
+                    }
+                    var cell = curRow.children[curCellInd];
+                    if (cell === findCell) {
+                        return curSlot;
+                    }
+                    nextFreeSlot = curSlot + cell.colSpan;
+                    for (; curSlot < nextFreeSlot; curSlot++) {
+                        growingRowsLeft[curSlot] = cell.rowSpan - 1; // if any of these is already growing, the table is broken -- no guarantees of anything
+                        growing[curSlot] = cell;
+                        curIndexRow[curSlot] = cell;
+                    }
+                }
+            }
+            while (curSlot < growing.length) {
+                if (growingRowsLeft[curSlot]) {
+                    growingRowsLeft[curSlot]--;
+                    curIndexRow[curSlot] = growing[curSlot];
+                }
+            }
+            if (curRow) {
+                curRow = curRow.nextElementSibling;
+            }
+        }
+        return findCell ? -1 : index; /* if findCell was given but we end up here, that means it isn't in this section */
+    }
 });
+
+
 </script>
         <div class="stacks-preview--example">
             <table class="s-table s-table__sortable js-sortable-table">
                 <thead>
                     <tr>
-                        <th scope="col" class="is-sorted js-sortable-head">
+                        <th scope="col" class="js-sortable-head" rowspan="2">
                             Listing
                             {% svg /product/resources/svg-icons/ArrowDownSm.svg width="14" height="14" aria-hidden="true" class="svg-icon iconArrowDownSm js-sorting-indicator js-sorting-indicator-desc d-none" %}
                             {% svg /product/resources/svg-icons/ArrowUpSm.svg width="14" height="14" aria-hidden="true" class="svg-icon iconArrowUpSm js-sorting-indicator js-sorting-indicator-asc d-none" %}
                             {% svg /product/resources/svg-icons/ArrowUpDownSm.svg width="14" height="14" aria-hidden="true" class="svg-icon iconArrowUpDownSm js-sorting-indicator js-sorting-indicator-none" %}
                         </th>
-                        <th scope="col" class="js-sortable-head">
+                        <th scope="col" class="js-sortable-head" rowspan="2">
                             Status
                             {% svg /product/resources/svg-icons/ArrowDownSm.svg width="14" height="14" aria-hidden="true" class="svg-icon iconArrowDownSm js-sorting-indicator js-sorting-indicator-desc d-none" %}
                             {% svg /product/resources/svg-icons/ArrowUpSm.svg width="14" height="14" aria-hidden="true" class="svg-icon iconArrowUpSm js-sorting-indicator js-sorting-indicator-asc d-none" %}
                             {% svg /product/resources/svg-icons/ArrowUpDownSm.svg width="14" height="14" aria-hidden="true" class="svg-icon iconArrowUpDownSm js-sorting-indicator js-sorting-indicator-none" %}
                         </th>
-                        <th scope="col" class="js-sortable-head">
+                        <th scope="col" class="js-sortable-head" colspan="3">
+                            Stuff
+                            {% svg /product/resources/svg-icons/ArrowDownSm.svg width="14" height="14" aria-hidden="true" class="svg-icon iconArrowDownSm js-sorting-indicator js-sorting-indicator-desc d-none" %}
+                            {% svg /product/resources/svg-icons/ArrowUpSm.svg width="14" height="14" aria-hidden="true" class="svg-icon iconArrowUpSm js-sorting-indicator js-sorting-indicator-asc d-none" %}
+                            {% svg /product/resources/svg-icons/ArrowUpDownSm.svg width="14" height="14" aria-hidden="true" class="svg-icon iconArrowUpDownSm js-sorting-indicator js-sorting-indicator-none" %}
+                        </th>
+                        <th scope="col" class="ta-right js-sortable-head">
+                            Expires
+                            {% svg /product/resources/svg-icons/ArrowDownSm.svg width="14" height="14" aria-hidden="true" class="svg-icon iconArrowDownSm js-sorting-indicator js-sorting-indicator-desc d-none" %}
+                            {% svg /product/resources/svg-icons/ArrowUpSm.svg width="14" height="14" aria-hidden="true" class="svg-icon iconArrowUpSm js-sorting-indicator js-sorting-indicator-asc d-none" %}
+                            {% svg /product/resources/svg-icons/ArrowUpDownSm.svg width="14" height="14" aria-hidden="true" class="svg-icon iconArrowUpDownSm js-sorting-indicator js-sorting-indicator-none" %}
+                        </th>
+                    </tr>
+                    <tr>
+                        <th scope="col" class="js-sortable-head" colspan="2">
                             Owner
                             {% svg /product/resources/svg-icons/ArrowDownSm.svg width="14" height="14" aria-hidden="true" class="svg-icon iconArrowDownSm js-sorting-indicator js-sorting-indicator-desc d-none" %}
                             {% svg /product/resources/svg-icons/ArrowUpSm.svg width="14" height="14" aria-hidden="true" class="svg-icon iconArrowUpSm js-sorting-indicator js-sorting-indicator-asc d-none" %}
@@ -660,12 +836,6 @@ $(function () {
                             {% svg /product/resources/svg-icons/ArrowUpSm.svg width="14" height="14" aria-hidden="true" class="svg-icon iconArrowUpSm js-sorting-indicator js-sorting-indicator-asc d-none" %}
                             {% svg /product/resources/svg-icons/ArrowUpDownSm.svg width="14" height="14" aria-hidden="true" class="svg-icon iconArrowUpDownSm js-sorting-indicator js-sorting-indicator-none" %}
                         </th>
-                        <th scope="col" class="ta-right js-sortable-head">
-                            Expires
-                            {% svg /product/resources/svg-icons/ArrowDownSm.svg width="14" height="14" aria-hidden="true" class="svg-icon iconArrowDownSm js-sorting-indicator js-sorting-indicator-desc d-none" %}
-                            {% svg /product/resources/svg-icons/ArrowUpSm.svg width="14" height="14" aria-hidden="true" class="svg-icon iconArrowUpSm js-sorting-indicator js-sorting-indicator-asc d-none" %}
-                            {% svg /product/resources/svg-icons/ArrowUpDownSm.svg width="14" height="14" aria-hidden="true" class="svg-icon iconArrowUpDownSm js-sorting-indicator js-sorting-indicator-none" %}
-                        </th>
                     </tr>
                 </thead>
                 <tbody>
@@ -676,8 +846,8 @@ $(function () {
                         </td>
                         <td>Running</td>
                         <td data-sort-val="Stark, Sansa">Sansa Stark</td>
-                        <td class="ta-right">900</td>
-                        <td class="ta-right">13</td>
+                        <td class="ta-right" colspan=2>900</td>
+                        <!--<td class="ta-right">13</td>-->
                         <td class="ta-right" data-sort-val="2019-01-27">Jan 27, 2019</td>
                     </tr>
                     <tr>
@@ -692,11 +862,11 @@ $(function () {
                         <td class="ta-right" data-sort-val="2019-08-04">Aug 4, 2019</td>
                     </tr>
                     <tr>
-                        <td>
+                        <td colspan="2">
                             <a>Product Manager, Developer Products</a><br>
                             <span class="fs-caption">London, England</span>
                         </td>
-                        <td>Running</td>
+                        <!--<td>Running</td>-->
                         <td data-sort-val="Stark, Sansa">Sansa Stark</td>
                         <td class="ta-right">27</td>
                         <td class="ta-right">1</td>
