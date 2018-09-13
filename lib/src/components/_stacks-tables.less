@@ -188,6 +188,14 @@
             border-color: transparent;
         }
 
+        //  Clear Header Styles
+        thead th {
+            background-color: transparent;
+            text-transform: initial;
+            font-size: inherit;
+            letter-spacing: initial;
+        }
+
         //  This makes the border transparent, so we need to use whitespace
         //  to achieve the same effect a 2px gray border achieves.
         tbody + tbody {
@@ -206,18 +214,38 @@
                 border-right-color: transparent;
             }
         }
-        thead th {
-            // border-bottom-color: @black-200; TGOAS: let's move this to a non-outlined version;
-        }
     }
 
-    //  $$  Clear Header Styles
-    //  ------------------------------------------------------------------------
-    &.s-table__clear thead th {
-        background-color: transparent;
-        text-transform: initial;
-        font-size: inherit;
-        letter-spacing: initial;
+    //  --  Horizontal Only without Table Outline
+    &.s-table__bx-simple {
+        th,
+        td {
+            border-left-color: transparent;
+            border-right-color: transparent;
+        }
+        thead th {
+            border-top-color: transparent;
+            border-bottom-color: @black-200;
+            //  Clear Header Styles
+            background-color: transparent;
+            text-transform: initial;
+            font-size: inherit;
+            letter-spacing: initial;
+        }
+        tbody tr {
+            &:first-of-type th,
+            &:first-of-type td {
+                border-top-color: transparent;
+            }
+            &:last-of-type th,
+            &:last-of-type td {
+                border-bottom-color: transparent;
+            }
+        }
+        tfoot th,
+        tfoot td {
+            border-bottom-color: transparent;
+        }
     }
 
     //  $$  TOTALS ROW

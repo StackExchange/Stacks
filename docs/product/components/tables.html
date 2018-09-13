@@ -70,7 +70,7 @@ description: Tables are used to list all information from a data set. The base s
 </section>
 
 <section class="stacks-section">
-    {% header {element: 'h2', text: 'Borders'} %}
+    {% header {element: 'h2', text: 'Borders & Backgrounds'} %}
     <p class="stacks-copy">By default, all tables have borders. These borders can be removed altogether or have only horizontal lines.</p>
     {% header {element: 'h3', text: 'Horizontal Borders'} %}
     <p class="stacks-copy">Shows only horizontal table cell borders.</p>
@@ -82,6 +82,54 @@ description: Tables are used to list all information from a data set. The base s
 {% endhighlight %}
         <div class="stacks-preview--example">
             <table class="s-table s-table__bx">
+                <thead>
+                    <tr>
+                        <th scope="col"></th>
+                        <th scope="col">First Name</th>
+                        <th scope="col">Last Name</th>
+                        <th scope="col">Username</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>Aaron</td>
+                        <td>S.</td>
+                        <td>@aarons</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">2</th>
+                        <td>Joshua</td>
+                        <td>H.</td>
+                        <td>@joshuah</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">3</th>
+                        <td>Paweł</td>
+                        <td>L.</td>
+                        <td>@pawełl</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">4</th>
+                        <td>Ted</td>
+                        <td>G.</td>
+                        <td>@so-ted</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    {% header {element: 'h3', text: 'Simple Borders'} %}
+    <p class="stacks-copy">Shows only horizontal table cell borders.</p>
+    <div class="stacks-preview mb24">
+{% highlight html linenos %}
+<table class="s-table s-table__bx">
+    …
+</table>
+{% endhighlight %}
+        <div class="stacks-preview--example">
+            <table class="s-table s-table__bx-simple">
                 <thead>
                     <tr>
                         <th scope="col"></th>
@@ -167,19 +215,17 @@ description: Tables are used to list all information from a data set. The base s
             </table>
         </div>
     </div>
-</section>
+    {% header {element: 'h3', text: 'Zebra Striping'} %}
+    <p class="stacks-copy">When tables have a lot of information, you can help users more clearly group information by adding zebra striping. This helps isolate the data for users. It is suggested for data tables primarily.</p>
 
-<section class="stacks-section">
-    {% header {element: 'h2', text: 'Clear Header Styles'} %}
-    <p class="stacks-copy">By default, all table headers have a few styles assigned to them for the background and type. These can be removed by using the <code class="stacks-code">s-table__clear</code> class.</p>
-    <div class="stacks-preview mb24">
+    <div class="stacks-preview">
 {% highlight html linenos %}
-<table class="s-table s-table__bx s-table__clear">
+<table class="s-table s-table__stripes">
     …
 </table>
 {% endhighlight %}
         <div class="stacks-preview--example">
-            <table class="s-table s-table__bx s-table__clear">
+            <table class="s-table s-table__stripes">
                 <thead>
                     <tr>
                         <th scope="col"></th>
@@ -412,56 +458,6 @@ description: Tables are used to list all information from a data set. The base s
     </div>
 </section>
 
-<section class="stacks-section">
-    {% header {element: 'h2', text: 'Zebra Striping'} %}
-    <p class="stacks-copy">When tables have a lot of information, you can help users more clearly group information by adding zebra striping. This helps isolate the data for users. It is suggested for data tables primarily.</p>
-
-    <div class="stacks-preview">
-{% highlight html linenos %}
-<table class="s-table s-table__stripes">
-    …
-</table>
-{% endhighlight %}
-        <div class="stacks-preview--example">
-            <table class="s-table s-table__stripes">
-                <thead>
-                    <tr>
-                        <th scope="col"></th>
-                        <th scope="col">First Name</th>
-                        <th scope="col">Last Name</th>
-                        <th scope="col">Username</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>Aaron</td>
-                        <td>S.</td>
-                        <td>@aarons</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>Joshua</td>
-                        <td>H.</td>
-                        <td>@joshuah</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td>Paweł</td>
-                        <td>L.</td>
-                        <td>@pawełl</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">4</th>
-                        <td>Ted</td>
-                        <td>G.</td>
-                        <td>@so-ted</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
-</section>
 <section class="stacks-section">
     {% header {element: 'h2', text: 'Alignment'} %}
     {% header {element: 'h3', text: 'Vertical Alignment'} %}
