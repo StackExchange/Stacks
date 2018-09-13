@@ -4,23 +4,27 @@ title: Suggestion Menus
 description: TBD
 ---
 <section class="stacks-section">
-    {% header {element: 'h2', text: 'Base Style`'} %}
+    {% header {element: 'h2', text: 'Base Style'} %}
     <div class="stacks-preview">
 {% highlight html linenos %}
 TBD
 {% endhighlight %}
         <div class="stacks-preview--example">
-            <aside class="s-suggest">
-                <div class="s-suggest--item">Item</div>
-                <div class="s-suggest--item">Item</div>
-                <div class="s-suggest--item">Item</div>
-                <div class="s-suggest--item">Item</div>
-                <div class="s-suggest--item">Item</div>
-                <div class="s-suggest--item">Item</div>
-                <div class="s-suggest--item">Item</div>
-                <div class="s-suggest--item">Item</div>
-                <div class="s-suggest--item">Item</div>
-                <div class="s-suggest--item">Item</div>
+            <input class="grid s-input" type="text" autofocus />
+            <aside class="grid fd-column s-suggest">
+                {% for item in site.data.product.suggest-menus.examples %}
+                <a class="grid--cell s-suggest--item">
+                    <div class="grid gs8 ai-center">
+                        <div class="grid--cell">
+                            <img class="s-suggest--avatar" src="{{ item.image }}" alt="{{ item.name }}" />
+                        </div>
+                        <div class="grid--cell fs-body1 fc-dark">
+                            {{ item.name }}
+                            <span class="fc-light">@{{ item.username }}</span>
+                        </div>
+                    </div>
+                </a>
+                {% endfor %}
             </aside>
         </div>
     </div>
