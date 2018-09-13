@@ -1,0 +1,49 @@
+//
+//  STACK OVERFLOW
+//  PAGINATION
+//
+//  This CSS comes from Stacks, our CSS & Pattern library for rapidly building
+//  Stack Overflow. For documentation of all these classes and how to contribute,
+//  visit https://stackoverflow.design/
+//
+//  TABLE OF CONTENTS
+//  • BASE STYLE
+//
+//  ============================================================================
+//  $    BASE STYLE
+//  ----------------------------------------------------------------------------
+.s-paginate {
+
+}
+
+& { // create a single scope to load the config into, at least for now
+#stacks-internals #load-config();
+.s-paginate--item {
+    padding: 0 @su8;
+    background-color: transparent;
+    border-radius: @br-sm;
+    border: 1px solid fade(@black-900,15%);
+    font-size: @fs-body1;
+    line-height: @lh-xl;
+    color: @fc-medium;
+
+    &:hover {
+        border-color: fade(@black-900,30%);
+        background-color: fade(@black-900,5%);
+        color: @fc-dark;
+    }
+}
+.s-paginate--item.is-selected {
+    border-color: transparent;
+    background-color: @paginate-select-background;
+    color: @paginate-select-color;
+}
+
+.s-paginate__clear {
+    &,
+    &:hover {
+        border-color: transparent;
+        background-color: transparent;
+    }
+}
+}
