@@ -27,19 +27,41 @@
 }
 
 .s-suggest--item {
+    position: relative;
     padding: @su4 @su6;
     width: 100%;
     border-top: 1px solid @black-150;
+    font-size: @fs-body1;
+    color: @fc-dark;
+    cursor: pointer;
 
     &:first-of-type {
         border-top-color: transparent;
-        border-top-left-radius: @br-sm;
-        border-top-right-radius: @br-sm;
     }
 
     &:hover {
         background-color: @blue-050;
+
+        .s-suggest--info {
+            opacity: 1;
+        }
     }
+}
+
+.s-suggest--copy {
+    font-size: @fs-caption;
+    color: inherit;
+}
+.s-suggest--footer {
+    font-size: @fs-fine;
+    color: @fc-medium;
+}
+
+.s-suggest--info {
+    position: absolute !important;
+    top: @su2;
+    right: @su2;
+    opacity: 0.5;
 }
 
 .s-suggest--avatar {
@@ -49,6 +71,8 @@
     border-radius: @br-sm;
 }
 
-//  ============================================================================
-//  $    VARIATIONS
-//  ----------------------------------------------------------------------------
+.s-suggest__clear .s-suggest--item {
+    padding: @su8;
+    padding-right: @su16;
+    border-top-color: transparent;
+}

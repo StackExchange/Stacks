@@ -12,18 +12,51 @@ TBD
         <div class="stacks-preview--example">
             <input class="grid s-input" type="text" autofocus />
             <aside class="grid fd-column s-suggest">
-                {% for item in site.data.product.suggest-menus.examples %}
+                {% for item in site.data.product.suggest-menus.people %}
                 <a class="grid--cell s-suggest--item">
                     <div class="grid gs8 ai-center">
                         <div class="grid--cell">
                             <img class="s-suggest--avatar" src="{{ item.image }}" alt="{{ item.name }}" />
                         </div>
-                        <div class="grid--cell fs-body1 fc-dark">
+                        <div class="grid--cell">
                             {{ item.name }}
                             <span class="fc-light">@{{ item.username }}</span>
                         </div>
                     </div>
                 </a>
+                {% endfor %}
+            </aside>
+        </div>
+    </div>
+</section>
+
+<section class="stacks-section">
+    {% header {element: 'h2', text: 'Multi-Column Style'} %}
+    <div class="stacks-preview">
+{% highlight html linenos %}
+TBD
+{% endhighlight %}
+        <div class="stacks-preview--example">
+            <input class="grid s-input" type="text" value="css" />
+            <aside class="grid grid__allcells4 fw-wrap s-suggest s-suggest__clear">
+                {% for item in site.data.product.suggest-menus.tags %}
+                <div class="grid--cell s-suggest--item">
+                    <div class="grid gs4 fd-column h100">
+                        <a class="s-suggest--info s-btn s-btn__muted p4">
+                            {% svg /product/resources/svg-icons/InfoSm.svg width="14" height="14" aria-hidden="true" class="svg-icon iconInfoSm" %}
+                        </a>
+                        <div class="grid--cell">
+                            <span class="s-tag">{{ item.tag }}</span>
+                            <span class="fc-light">x {{ item.count }}</span>
+                        </div>
+                        <div class="grid--cell s-suggest--copy">
+                            {{ item.copy }}
+                        </div>
+                        <div class="grid--cell mt-auto pt8 s-suggest--footer">
+                            Also: {% for tag in item.related %}css{{ tag.item }}, {% endfor %}
+                        </div>
+                    </div>
+                </div>
                 {% endfor %}
             </aside>
         </div>
