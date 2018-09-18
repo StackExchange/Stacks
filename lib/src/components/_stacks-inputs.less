@@ -42,26 +42,26 @@
     width: 100%;
     margin: 0;
     padding: @input-padding;
-    border: 1px solid @black-200;
+    border: 1px solid @ash-darker;
     border-radius: @br-sm;
-    box-shadow: inset 0 0 1px fade(@black-350, 20%), 0 0 0 fade(@white, 0%);
+    box-shadow: inset 0 0 1px fade(@ash-darkest, 20%), 0 0 0 fade(@white, 0%);
     font-family: inherit;
     .input-lineheight(@fs-body1);
 
     //  --  PLACEHOLDER
     //  ------------------------------------------------------------------------
     &::-webkit-input-placeholder {
-        color: @black-200;
+        color: @ash-darker;
     }
     &:-ms-input-placeholder { // IE
-        color: @black-200;
+        color: @ash-darker;
     }
     &::-ms-input-placeholder { // Edge
-        color: @black-200;
+        color: @ash-darker;
     }
     &::placeholder {
         padding-top: 1px; // Placeholder text is 1px higher than text that's entered.
-        color: @black-200;
+        color: @ash-darker;
     }
 
     //  --  REMOVE EDGE ADDITIONS
@@ -103,7 +103,7 @@ fieldset {
     margin-left: @su4;
     padding: @su2 @su8;
     border-radius: @br-lg;
-    background-color: @black-050;
+    background-color: @ash;
     color: @fc-light;
     font-size: @fs-caption;
     font-style: italic;
@@ -111,7 +111,7 @@ fieldset {
     vertical-align: text-bottom;
 
     &.s-label--status__required {
-        background-color: @red-400;
+        background-color: @red;
         color: @white;
     }
 }
@@ -132,10 +132,10 @@ fieldset {
 //  ----------------------------------------------------------------------------
 .s-input-fill {
     padding: @input-padding;
-    border: 1px solid @black-200;
+    border: 1px solid @ash-darker;
     border-right-width: 0;
     border-left-width: 0;
-    background-color: @bgc-lightest;
+    background-color: @ash;
     color: @fc-medium;
     font-family: inherit;
     white-space: nowrap;
@@ -176,7 +176,7 @@ fieldset {
         position: absolute;
         z-index: @zi-selected;
         right: 13px;
-        border-color: @black-700 transparent;
+        border-color: @slate-light transparent;
         border-style: solid;
         border-width: 4px;
         pointer-events: none;
@@ -207,7 +207,7 @@ fieldset {
         height: 100%; // Fill the height of its parent
         padding: @input-padding;
         padding-right: @su32;
-        border: 1px solid @black-200;
+        border: 1px solid @ash-darker;
         border-radius: @br-sm;
         background-color: @white;
         outline: 0;
@@ -248,7 +248,7 @@ fieldset {
         //  ------------------------------------------------------------------------
         width: 1em;
         height: 1em;
-        border: 1px solid @black-200;
+        border: 1px solid @ash-darker;
         background-color: @white;
         outline: 0;
         font-size: inherit;
@@ -278,29 +278,29 @@ fieldset {
 
         //  Disabled
         &[disabled] {
-            border-color: @black-200;
-            background-color: @black-075;
+            border-color: @ash-darker;
+            background-color: @ash-dark;
         }
 
         &:checked {
-            border-color: @blue-500 !important;
-            background-color: @blue-500;
+            border-color: @blue !important;
+            background-color: @blue;
             background-image: url("data:image/svg+xml,%3Csvg width='11' height='11' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M10 3.41L8.59 2 4 6.59 2.41 5 1 6.41l3 3z' fill='%23fff'/%3E%3C/svg%3E");
 
             &:focus {
-                border-color: @blue-500;
+                border-color: @blue;
             }
 
             //  Disabled
             &[disabled] {
-                border-color: @black-500 !important;
-                background-color: @black-400;
+                border-color: @slate-lighter !important;
+                background-color: @ash-darkest;
             }
         }
 
         &:focus {
-            border-color: @blue-300;
-            box-shadow: 0 0 0 @su4 fade(@blue-500, 15%);
+            border-color: @blue-light;
+            box-shadow: 0 0 0 @su4 fade(@blue, 15%);
         }
     }
 }
@@ -312,13 +312,13 @@ fieldset {
         border-radius: @br-circle;
 
         &:checked {
-            border-color: @blue-500;
+            border-color: @blue;
             border-width: 0.30769231em;
             background-color: @white;
         }
 
         &:focus {
-            box-shadow: 0 0 0 @su4 fade(@blue-500, 15%);
+            box-shadow: 0 0 0 @su4 fade(@blue, 15%);
         }
     }
 }
@@ -332,8 +332,8 @@ fieldset {
 & {
     @focus-style: {
         position: relative;
-        border-color: @blue-300;
-        box-shadow: inset 0 0 4px @black-050, 0 0 0 @su4 fade(@blue-500, 15%);
+        border-color: @blue-light;
+        box-shadow: inset 0 0 4px @ash, 0 0 0 @su4 fade(@blue, 15%);
         outline: 0;
     };
 
@@ -357,10 +357,10 @@ fieldset {
     //  Disabled, Read-only
     &[disabled],
     &[read-only] {
-        border-color: @black-075;
-        background-color: @bgc-lightest;
-        box-shadow: inset 0 0 2px fade(@black-350, 10%);
-        color: @black-200;
+        border-color: @ash-dark;
+        background-color: @ash;
+        box-shadow: inset 0 0 2px fade(@ash-darkest, 10%);
+        color: @ash-darker;
     }
 
     //  Disabled
@@ -409,27 +409,27 @@ fieldset {
     .s-checkbox,
     .s-radio:not(:checked),
     .s-select > select {
-        border-color: @yellow-600;
+        border-color: @orange-lighter;
 
         &:focus {
-            box-shadow: inset 0 0 @su4 0 @black-050, 0 0 0 @su4 fade(@yellow-500, 40%);
+            box-shadow: inset 0 0 @su4 0 @ash, 0 0 0 @su4 fade(@orange-lighter, 40%);
         }
     }
 
     .s-input-message {
-        color: @yellow-800;
+        color: @slate;
 
         a {
-            color: @yellow-900;
+            color: @slate;
 
             &:hover {
-                color: darken(@yellow-900,10%);
+                color: darken(@slate,10%);
             }
         }
     }
 
     .s-input-icon {
-        color: @yellow-600;
+        color: @orange-lighter;
     }
 }
 
@@ -441,27 +441,27 @@ fieldset {
     .s-checkbox,
     .s-radio:not(:checked),
     .s-select > select {
-        border-color: @red-400;
+        border-color: @red;
 
         &:focus {
-            box-shadow: inset 0 0 @su4 0 @black-050, 0 0 0 @su4 fade(@red-200, 40%);
+            box-shadow: inset 0 0 @su4 0 @ash, 0 0 0 @su4 fade(@red-light, 40%);
         }
     }
 
     .s-input-message {
-        color: @red-500;
+        color: @red;
 
         a {
-            color: @red-800;
+            color: @red-dark;
 
             &:hover {
-                color: @red-900;
+                color: @red-dark;
             }
         }
     }
 
     .s-input-icon {
-        color: @red-400;
+        color: @red;
     }
 }
 
@@ -473,27 +473,27 @@ fieldset {
     .s-checkbox,
     .s-radio:not(:checked),
     .s-select > select {
-        border-color: @green-400;
+        border-color: @green;
 
         &:focus {
-            box-shadow: inset 0 0 @su4 0 @black-050, 0 0 0 @su4 fade(@green-200, 40%);
+            box-shadow: inset 0 0 @su4 0 @ash, 0 0 0 @su4 fade(@green-light, 40%);
         }
     }
 
     .s-input-message {
-        color: darken(@green-500,5%);
+        color: darken(@green,5%);
 
         a {
-            color: @green-800;
+            color: @green-dark;
 
             &:hover {
-                color: @green-900;
+                color: @green-dark;
             }
         }
     }
 
     .s-input-icon {
-        color: @green-400;
+        color: @green;
     }
 }
 
@@ -502,7 +502,7 @@ fieldset {
 .is-disabled {
     .s-select:before,
     .s-select:after {
-        border-color: @black-200 transparent;
+        border-color: @ash-darker transparent;
     }
 
     .s-label,
@@ -511,7 +511,7 @@ fieldset {
     }
 
     .s-input-icon {
-        color: @black-200;
+        color: @ash-darker;
     }
 
     .s-label {

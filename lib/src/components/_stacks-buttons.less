@@ -25,7 +25,7 @@
 //      Border Color              @button-has-border            false
 //      Border Radius             @button-border-radius         @br-sm
 //      Box Shadow Inset Color    @button-has-inset-box-shadow  false
-//      Box Shadow Color          @button-box-shadow-color      @blue-500;
+//      Box Shadow Color          @button-box-shadow-color      @blue;
 //
 //      Some of these properties are true or false statements. To provide the
 //      fullest flexibility, we've created a number of mixins which check
@@ -449,24 +449,24 @@
 //  ----------------------------------------------------------------------------
 .s-btn__muted {
     .btn-check-brc(@status: false);
-    .btn-check-bxs(@bxos: @black-350, @status: false);
-    .btn-bgc(fade(@black-200,0%));
-    .btn-fc(@black-500);
+    .btn-check-bxs(@bxos: @ash-darkest, @status: false);
+    .btn-bgc(fade(@ash-darker,0%));
+    .btn-fc(@slate-lighter);
 
     //  --  Muted (Gray)
     &.s-btn__outlined {
-        .btn-check-brc(@black-150);
-        .btn-check-bxs(@bxos: @black-350, @status: false);
-        .btn-bgc(fade(@black-200,0%));
-        .btn-fc(@black-500);
+        .btn-check-brc(@ash-darker);
+        .btn-check-bxs(@bxos: @ash-darkest, @status: false);
+        .btn-bgc(fade(@ash-darker,0%));
+        .btn-fc(@slate-lighter);
     }
 
     //  --  Filled (Gray)
     &.s-btn__filled {
-        .btn-check-brc(@black-150);
-        .btn-check-bxs(@black-200, @bxos: @black-800);
-        .btn-bgc(@black-100);
-        .btn-fc(@black-700);
+        .btn-check-brc(@ash-darker);
+        .btn-check-bxs(@ash-darker, @bxos: @slate);
+        .btn-bgc(@ash-dark);
+        .btn-fc(@slate-light);
     }
 }
 
@@ -683,8 +683,8 @@
         border-left-color: @white;
     }
     &.s-btn__muted.is-loading:before {
-        border-color: fade(@black-900,25%);
-        border-left-color: fade(@black-900,75%);
+        border-color: fade(@slate,25%);
+        border-left-color: fade(@slate,75%);
     }
 }
 
