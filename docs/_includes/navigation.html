@@ -1,12 +1,12 @@
 <div class="grid--cell ws2 sm:w100 md:w-auto md:d-none js-navigation">
-    <div class="overflow-y-scroll bg-white z-nav py12 ps-fixed wmn2 t64 b0 br bc-black-2 sm:w100 sm:pb0">
+    <div class="overflow-y-scroll bg-white z-nav py12 ps-fixed wmn2 t64 b0 br bc-ash-dark sm:w100 sm:pb0">
         <div class="d-none sm:d-block">
             <div class="grid gs24 ai-center jc-center">
                 {% if site.data.nav[0] %}
                     {% for item in site.data.nav %}
                         {% assign pageSlug = page.url | replace:'/',' ' | truncatewords: 1 | remove:'...' %}
 
-                        <a class="grid--cell {% if item.url contains pageSlug %}fc-white bg-orange-400 bar-pill px16 py6 {% endif %} s-link s-link__muted" href="{{ item.url | relative_url }}">{{ item.title }}</a>
+                        <a class="grid--cell {% if item.url contains pageSlug %}fc-white bg-orange bar-pill px16 py6 {% endif %} s-link s-link__muted" href="{{ item.url | relative_url }}">{{ item.title }}</a>
                     {% endfor %}
                 {% endif %}
 
@@ -36,7 +36,7 @@
                                     <ul class="list-reset">
                                         {% for subentry in entry.subsublinks %}
                                             {% assign pageURL = page.url | remove_first:"/" | remove: ".html" %}
-                                            <li><a class="d-block py6 px16 s-link s-link__muted w100 {% if pageURL == subentry.url %}bg-orange-400 fc-white{% endif %}" href="{{ subentry.url | relative_url }}">{{ subentry.title }}</a></li>
+                                            <li><a class="d-block py6 px16 s-link s-link__muted w100 {% if pageURL == subentry.url %}bg-orange fc-white{% endif %}" href="{{ subentry.url | relative_url }}">{{ subentry.title }}</a></li>
                                         {% endfor %}
                                     </ul>
                                 {% endif %}
