@@ -42,26 +42,26 @@
     width: 100%;
     margin: 0;
     padding: @input-padding;
-    border: 1px solid @ash-darker;
+    border: 1px solid @ash-darkest;
     border-radius: @br-sm;
-    box-shadow: inset 0 0 1px fade(@ash-darkest, 20%), 0 0 0 fade(@white, 0%);
+    box-shadow: inset 0 0 1px fade(@slate-lightest, 20%), 0 0 0 fade(@white, 0%);
     font-family: inherit;
     .input-lineheight(@fs-body1);
 
     //  --  PLACEHOLDER
     //  ------------------------------------------------------------------------
     &::-webkit-input-placeholder {
-        color: @ash-darker;
+        color: @ash-darkest;
     }
     &:-ms-input-placeholder { // IE
-        color: @ash-darker;
+        color: @ash-darkest;
     }
     &::-ms-input-placeholder { // Edge
-        color: @ash-darker;
+        color: @ash-darkest;
     }
     &::placeholder {
         padding-top: 1px; // Placeholder text is 1px higher than text that's entered.
-        color: @ash-darker;
+        color: @ash-darkest;
     }
 
     //  --  REMOVE EDGE ADDITIONS
@@ -96,17 +96,16 @@ fieldset {
 }
 
 //  $$  LABEL STATUS FLAG
-//  ----------------------------------------------------------------------------
 //      Is this form item required or optional? Flag the status for users.
 //      Default styling is optional.
+//  ----------------------------------------------------------------------------
 .s-label--status {
     margin-left: @su4;
     padding: @su2 @su8;
     border-radius: @br-lg;
-    background-color: @ash;
+    background-color: @ash-dark;
     color: @fc-light;
     font-size: @fs-caption;
-    font-style: italic;
     font-weight: 400;
     vertical-align: text-bottom;
 
@@ -132,10 +131,10 @@ fieldset {
 //  ----------------------------------------------------------------------------
 .s-input-fill {
     padding: @input-padding;
-    border: 1px solid @ash-darker;
+    border: 1px solid @ash-darkest;
     border-right-width: 0;
     border-left-width: 0;
-    background-color: @ash;
+    background-color: @ash-dark;
     color: @fc-medium;
     font-family: inherit;
     white-space: nowrap;
@@ -207,7 +206,7 @@ fieldset {
         height: 100%; // Fill the height of its parent
         padding: @input-padding;
         padding-right: @su32;
-        border: 1px solid @ash-darker;
+        border: 1px solid @ash-darkest;
         border-radius: @br-sm;
         background-color: @white;
         outline: 0;
@@ -248,7 +247,7 @@ fieldset {
         //  ------------------------------------------------------------------------
         width: 1em;
         height: 1em;
-        border: 1px solid @ash-darker;
+        border: 1px solid @ash-darkest;
         background-color: @white;
         outline: 0;
         font-size: inherit;
@@ -293,13 +292,13 @@ fieldset {
 
             //  Disabled
             &[disabled] {
-                border-color: @slate-lighter !important;
-                background-color: @ash-darkest;
+                border-color: @slate-lightest !important;
+                background-color: @ash-dark;
             }
         }
 
         &:focus {
-            border-color: @blue-light;
+            border-color: @blue;
             box-shadow: 0 0 0 @su4 fade(@blue, 15%);
         }
     }
@@ -332,7 +331,7 @@ fieldset {
 & {
     @focus-style: {
         position: relative;
-        border-color: @blue-light;
+        border-color: @blue;
         box-shadow: inset 0 0 4px @ash, 0 0 0 @su4 fade(@blue, 15%);
         outline: 0;
     };
@@ -357,8 +356,8 @@ fieldset {
     //  Disabled, Read-only
     &[disabled],
     &[read-only] {
-        border-color: @ash-dark;
-        background-color: @ash;
+        border-color: @ash-darker;
+        background-color: @ash-dark;
         box-shadow: inset 0 0 2px fade(@ash-darkest, 10%);
         color: @ash-darker;
     }
@@ -409,27 +408,27 @@ fieldset {
     .s-checkbox,
     .s-radio:not(:checked),
     .s-select > select {
-        border-color: @orange-lighter;
+        border-color: @orange;
 
         &:focus {
-            box-shadow: inset 0 0 @su4 0 @ash, 0 0 0 @su4 fade(@orange-lighter, 40%);
+            box-shadow: inset 0 0 @su4 0 @ash, 0 0 0 @su4 fade(@orange-light, 40%);
         }
     }
 
     .s-input-message {
-        color: @slate;
+        color: @slate-light;
 
         a {
-            color: @slate;
+            color: darken(@slate-light,10%);
 
             &:hover {
-                color: darken(@slate,10%);
+                color: darken(@slate-light,25%);
             }
         }
     }
 
     .s-input-icon {
-        color: @orange-lighter;
+        color: @orange;
     }
 }
 
@@ -449,13 +448,13 @@ fieldset {
     }
 
     .s-input-message {
-        color: @red;
+        color: @red-dark;
 
         a {
-            color: @red-dark;
+            color: darken(@red-dark,10%);
 
             &:hover {
-                color: @red-dark;
+                color: darken(@red-dark,15%);
             }
         }
     }
@@ -476,18 +475,18 @@ fieldset {
         border-color: @green;
 
         &:focus {
-            box-shadow: inset 0 0 @su4 0 @ash, 0 0 0 @su4 fade(@green-light, 40%);
+            box-shadow: inset 0 0 @su4 0 @ash, 0 0 0 @su4 fade(@green, 40%);
         }
     }
 
     .s-input-message {
-        color: darken(@green,5%);
+        color: @green-dark;
 
         a {
-            color: @green-dark;
+            color: darken(@green-dark,10%);
 
             &:hover {
-                color: @green-dark;
+                color: darken(@green-dark,20%);
             }
         }
     }
@@ -511,7 +510,7 @@ fieldset {
     }
 
     .s-input-icon {
-        color: @ash-darker;
+        color: @ash-dark;
     }
 
     .s-label {
