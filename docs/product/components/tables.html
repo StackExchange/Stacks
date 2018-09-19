@@ -578,25 +578,49 @@ description: Tables are used to list all information from a data set. The base s
             <table class="s-table s-table__sortable">
                 <thead>
                     <tr>
-                        <th scope="col" class="is-sorted">
+                        <th scope="col" data-controller="s-sortable-column" data-action="click->s-sortable-column#sort" rowspan="2">
                             Listing
-                            {% svg /product/resources/svg-icons/ArrowDownSm.svg width="14" height="14" aria-hidden="true" class="svg-icon iconArrowDownSm" %}
+                            {% svg /product/resources/svg-icons/ArrowDownSm.svg width="14" height="14" aria-hidden="true" class="svg-icon iconArrowDownSm js-sorting-indicator js-sorting-indicator-desc d-none" %}
+                            {% svg /product/resources/svg-icons/ArrowUpSm.svg width="14" height="14" aria-hidden="true" class="svg-icon iconArrowUpSm js-sorting-indicator js-sorting-indicator-asc d-none" %}
+                            {% svg /product/resources/svg-icons/ArrowUpDownSm.svg width="14" height="14" aria-hidden="true" class="svg-icon iconArrowUpDownSm js-sorting-indicator js-sorting-indicator-none" %}
                         </th>
-                        <th scope="col">
+                        <th scope="col" data-controller="s-sortable-column" data-action="click->s-sortable-column#sort" rowspan="2">
                             Status
-                            {% svg /product/resources/svg-icons/ArrowUpDownSm.svg width="14" height="14" aria-hidden="true" class="svg-icon iconArrowUpDownSm" %}
+                            {% svg /product/resources/svg-icons/ArrowDownSm.svg width="14" height="14" aria-hidden="true" class="svg-icon iconArrowDownSm js-sorting-indicator js-sorting-indicator-desc d-none" %}
+                            {% svg /product/resources/svg-icons/ArrowUpSm.svg width="14" height="14" aria-hidden="true" class="svg-icon iconArrowUpSm js-sorting-indicator js-sorting-indicator-asc d-none" %}
+                            {% svg /product/resources/svg-icons/ArrowUpDownSm.svg width="14" height="14" aria-hidden="true" class="svg-icon iconArrowUpDownSm js-sorting-indicator js-sorting-indicator-none" %}
                         </th>
-                        <th scope="col">
+                        <th scope="col" data-controller="s-sortable-column" data-action="click->s-sortable-column#sort" colspan="3">
+                            Stuff
+                            {% svg /product/resources/svg-icons/ArrowDownSm.svg width="14" height="14" aria-hidden="true" class="svg-icon iconArrowDownSm js-sorting-indicator js-sorting-indicator-desc d-none" %}
+                            {% svg /product/resources/svg-icons/ArrowUpSm.svg width="14" height="14" aria-hidden="true" class="svg-icon iconArrowUpSm js-sorting-indicator js-sorting-indicator-asc d-none" %}
+                            {% svg /product/resources/svg-icons/ArrowUpDownSm.svg width="14" height="14" aria-hidden="true" class="svg-icon iconArrowUpDownSm js-sorting-indicator js-sorting-indicator-none" %}
+                        </th>
+                        <th scope="col" data-controller="s-sortable-column" data-action="click->s-sortable-column#sort" class="ta-right">
+                            Expires
+                            {% svg /product/resources/svg-icons/ArrowDownSm.svg width="14" height="14" aria-hidden="true" class="svg-icon iconArrowDownSm js-sorting-indicator js-sorting-indicator-desc d-none" %}
+                            {% svg /product/resources/svg-icons/ArrowUpSm.svg width="14" height="14" aria-hidden="true" class="svg-icon iconArrowUpSm js-sorting-indicator js-sorting-indicator-asc d-none" %}
+                            {% svg /product/resources/svg-icons/ArrowUpDownSm.svg width="14" height="14" aria-hidden="true" class="svg-icon iconArrowUpDownSm js-sorting-indicator js-sorting-indicator-none" %}
+                        </th>
+                    </tr>
+                    <tr>
+                        <th scope="col" data-controller="s-sortable-column" data-action="click->s-sortable-column#sort" colspan="2">
                             Owner
-                            {% svg /product/resources/svg-icons/ArrowUpDownSm.svg width="14" height="14" aria-hidden="true" class="svg-icon iconArrowUpDownSm" %}
+                            {% svg /product/resources/svg-icons/ArrowDownSm.svg width="14" height="14" aria-hidden="true" class="svg-icon iconArrowDownSm js-sorting-indicator js-sorting-indicator-desc d-none" %}
+                            {% svg /product/resources/svg-icons/ArrowUpSm.svg width="14" height="14" aria-hidden="true" class="svg-icon iconArrowUpSm js-sorting-indicator js-sorting-indicator-asc d-none" %}
+                            {% svg /product/resources/svg-icons/ArrowUpDownSm.svg width="14" height="14" aria-hidden="true" class="svg-icon iconArrowUpDownSm js-sorting-indicator js-sorting-indicator-none" %}
                         </th>
-                        <th scope="col" class="ta-right">
+                        <th scope="col" data-controller="s-sortable-column" data-action="click->s-sortable-column#sort" class="ta-right">
                             Views
-                            {% svg /product/resources/svg-icons/ArrowUpDownSm.svg width="14" height="14" aria-hidden="true" class="svg-icon iconArrowUpDownSm" %}
+                            {% svg /product/resources/svg-icons/ArrowDownSm.svg width="14" height="14" aria-hidden="true" class="svg-icon iconArrowDownSm js-sorting-indicator js-sorting-indicator-desc d-none" %}
+                            {% svg /product/resources/svg-icons/ArrowUpSm.svg width="14" height="14" aria-hidden="true" class="svg-icon iconArrowUpSm js-sorting-indicator js-sorting-indicator-asc d-none" %}
+                            {% svg /product/resources/svg-icons/ArrowUpDownSm.svg width="14" height="14" aria-hidden="true" class="svg-icon iconArrowUpDownSm js-sorting-indicator js-sorting-indicator-none" %}
                         </th>
-                        <th scope="col" class="ta-right">
+                        <th scope="col" data-controller="s-sortable-column" data-action="click->s-sortable-column#sort" class="ta-right">
                             Applies
-                            {% svg /product/resources/svg-icons/ArrowUpDownSm.svg width="14" height="14" aria-hidden="true" class="svg-icon iconArrowUpDownSm" %}
+                            {% svg /product/resources/svg-icons/ArrowDownSm.svg width="14" height="14" aria-hidden="true" class="svg-icon iconArrowDownSm js-sorting-indicator js-sorting-indicator-desc d-none" %}
+                            {% svg /product/resources/svg-icons/ArrowUpSm.svg width="14" height="14" aria-hidden="true" class="svg-icon iconArrowUpSm js-sorting-indicator js-sorting-indicator-asc d-none" %}
+                            {% svg /product/resources/svg-icons/ArrowUpDownSm.svg width="14" height="14" aria-hidden="true" class="svg-icon iconArrowUpDownSm js-sorting-indicator js-sorting-indicator-none" %}
                         </th>
                     </tr>
                 </thead>
@@ -607,9 +631,10 @@ description: Tables are used to list all information from a data set. The base s
                             <span class="fs-caption">Sydney, Australia</span>
                         </td>
                         <td>Running</td>
-                        <td>Sansa Stark</td>
-                        <td class="ta-right">502</td>
-                        <td class="ta-right">13</td>
+                        <td data-sort-val="Stark, Sansa">Sansa Stark</td>
+                        <td class="ta-right" colspan=2>900</td>
+                        <!--<td class="ta-right">13</td>-->
+                        <td class="ta-right" data-sort-val="2019-01-27">Jan 27, 2019</td>
                     </tr>
                     <tr>
                         <td>
@@ -617,19 +642,32 @@ description: Tables are used to list all information from a data set. The base s
                             <span class="fs-caption">New York, NY, USA</span>
                         </td>
                         <td>Running</td>
-                        <td>Robert Baratheon</td>
-                        <td class="ta-right">900</td>
+                        <td data-sort-val="Baratheon, Robert">Robert Baratheon</td>
+                        <td class="ta-right">502</td>
                         <td class="ta-right">15</td>
+                        <td class="ta-right" data-sort-val="2019-08-04">Aug 4, 2019</td>
                     </tr>
                     <tr>
-                        <td>
+                        <td colspan="2">
                             <a>Product Manager, Developer Products</a><br>
                             <span class="fs-caption">London, England</span>
                         </td>
-                        <td>Running</td>
-                        <td>Sansa Stark</td>
-                        <td class="ta-right">3</td>
+                        <!--<td>Running</td>-->
+                        <td data-sort-val="Stark, Sansa">Sansa Stark</td>
+                        <td class="ta-right">27</td>
                         <td class="ta-right">1</td>
+                        <td class="ta-right" data-sort-val="2018-08-05">Aug 5, 2018</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <a>Doer of things</a><br>
+                            <span class="fs-caption">Planet Earth</span>
+                        </td>
+                        <td>Expired</td>
+                        <td data-sort-val="Beeblebrox, Zaphod">Zaphod Beeblebrox</td>
+                        <td class="ta-right">3</td>
+                        <td class="ta-right">2</td>
+                        <td class="ta-right" data-sort-val="2018-07-14">Jul 14, 2018</td>
                     </tr>
                 </tbody>
             </table>
