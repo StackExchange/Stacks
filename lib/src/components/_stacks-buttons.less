@@ -428,18 +428,18 @@
 //      Style which applies only a border.
 //  ----------------------------------------------------------------------------
 .s-btn__outlined {
-    .btn-check-brc(lighten(@button-font-color,20%));
+    .btn-check-brc(@button-outlined-border-color);
     .btn-check-bxs(@bxos: @button-box-shadow-color, @status: false);
     .btn-check-bgg(transparent);
-    .btn-bgc(fade(@button-font-color,0%));
-    .btn-fc(@button-font-color);
+    .btn-bgc(@button-outlined-background-color);
+    .btn-fc(@button-outlined-border-color);
 
     //  --  Inverted: Outlined
     &.s-btn__inverted {
         .btn-check-brc(fade(lighten(@button-primary-background-color,50%),25%));
         .btn-check-bxs(@bxos: @white, @status: false);
-        .btn-bgc(fade(lighten(@button-primary-background-color,20%),0%));
         .btn-check-bgg(transparent);
+        .btn-bgc(fade(lighten(@button-primary-background-color,20%),0%));
         .btn-fc(fade(lighten(@button-primary-background-color,40%),90%));
     }
 }
@@ -474,10 +474,10 @@
 //      Adds in background-colors, background-images, and/or box-shadows.
 //  ----------------------------------------------------------------------------
 .s-btn__filled {
-    .btn-check-brc(darken(@button-filled-background-color,20%));
+    .btn-check-brc(@button-filled-border-color);
     .btn-check-bxs(@button-filled-background-color);
-    .btn-bgc(@button-filled-background-color);
     .btn-check-bgg(@button-filled-background-color);
+    .btn-bgc(@button-filled-background-color);
     .btn-fc(@button-filled-font-color);
 
     &.s-btn__inverted {
@@ -500,7 +500,7 @@
 
     //  --  Outlined
     &.s-btn__outlined {
-        .btn-check-brc(lighten(@button-danger-background-color,20%));
+        .btn-check-brc(@button-danger-border-color);
         .btn-check-bxs(@bxos: @button-danger-background-color, @status: false);
         .btn-bgc(fade(@button-danger-background-color,0%));
         .btn-fc(@button-danger-background-color);
@@ -508,7 +508,7 @@
 
     //  --  Filled
     &.s-btn__filled {
-        .btn-check-brc(@button-danger-background-color);
+        .btn-check-brc(@status: false);
         .btn-check-bxs(@button-danger-background-color, @button-danger-background-color);
         .btn-bgc(@button-danger-background-color);
         .btn-check-bgg(@button-danger-background-color);
@@ -546,7 +546,7 @@
 //  $   PRIMARY STYLE
 //  ============================================================================
 .s-btn__primary {
-    .btn-check-brc(@button-primary-background-color);
+    .btn-check-brc(@status: false);
     .btn-check-bxs(@button-primary-background-color);
     .btn-bgc(@button-primary-background-color);
     .btn-check-bgg(@button-primary-background-color);
