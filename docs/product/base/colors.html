@@ -7,30 +7,19 @@ description: To avoid specifying color values by hand, we’ve included a robust
 
 <section class="stacks-section">
     {% header {element: 'h2', text: 'Color Palette'} %}
-    <div class="grid gs16 grid__allcells4 fw-wrap">
+    <div class="grid gs16 grid__allcells6 fw-wrap">
         {% for color in site.data.product.color-stops %}
             <div class="grid--cell">
-                <div class="grid fd-column">
+                <div class="grid fd-column fs-caption">
                     {% for item in color.stops %}
-                        {% if item.stop == "base"%}
-                        <div class="grid jc-space-between ai-center px12 py16 bg-{{ color.name }} ff-mono fc-{{ item.fc }}">
+                        <div class="grid jc-space-between ai-center px12 py16 bg-{{ color.name }}{% if item.stop != "base"%}-{{ item.stop }}{% endif %} ff-mono fc-{{ item.fc }} {% if forloop.first %}btr-md{% elsif forloop.last %}bbr-md{% endif %}">
                             <div class="grid--cell fw-bold">
-                                @{{ color.name }}
+                                @{{ color.name }}{% if item.stop != "base"%}-{{ item.stop }}{% endif %}
                             </div>
                             <div class="grid--cell">
                                 #{{ item.hex }}
                             </div>
                         </div>
-                        {% else %}
-                        <div class="grid jc-space-between ai-center px12 py16 bg-{{ color.name }}-{{ item.stop }} ff-mono fc-{{ item.fc }}">
-                            <div class="grid--cell fw-bold">
-                                @{{ color.name }}-{{ item.stop }}
-                            </div>
-                            <div class="grid--cell">
-                                #{{ item.hex }}
-                            </div>
-                        </div>
-                        {% endif %}
                     {% endfor %}
                     {% if color.name == "ash" %}
                     <div class="grid jc-space-between ai-center px12 py16 bg-white ff-mono fc-medium fc-dark">
