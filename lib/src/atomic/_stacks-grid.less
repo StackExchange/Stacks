@@ -156,6 +156,48 @@
                 }
             }
 
+            > .lg\:grid--cell@{count},
+            &.lg\:grid__allcells@{count} > .grid,
+            &.lg\:grid__allcells@{count} > .grid--cell {
+                #stacks-internals #screen-lg({
+                    flex-basis: calc(~"@{cell-width} - @{spacing}");
+
+                    //  --  IE11/10 Flex-basis bug
+                    @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+                        flex-basis: auto;
+                        width: calc(~"@{cell-width} - @{spacing}");
+                    }
+                })
+            }
+
+            > .md\:grid--cell@{count},
+            &.md\:grid__allcells@{count} > .grid,
+            &.md\:grid__allcells@{count} > .grid--cell {
+                #stacks-internals #screen-md({
+                    flex-basis: calc(~"@{cell-width} - @{spacing}");
+
+                    //  --  IE11/10 Flex-basis bug
+                    @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+                        flex-basis: auto;
+                        width: calc(~"@{cell-width} - @{spacing}");
+                    }
+                })
+            }
+
+            > .sm\:grid--cell@{count},
+            &.sm\:grid__allcells@{count} > .grid,
+            &.sm\:grid__allcells@{count} > .grid--cell {
+                #stacks-internals #screen-sm({
+                    flex-basis: calc(~"@{cell-width} - @{spacing}");
+
+                    //  --  IE11/10 Flex-basis bug
+                    @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+                        flex-basis: auto;
+                        width: calc(~"@{cell-width} - @{spacing}");
+                    }
+                })
+            }
+
             #stacks-internals #grid-builder-helpers .grid-fixed-cell-spacing(@spacing, @num, (@count + 1));
         }
 
