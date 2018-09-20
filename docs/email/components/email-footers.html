@@ -24,57 +24,45 @@ Enterprise
 
 <section class="stacks-section">
     {% header {element: 'h2', text: 'Options'} %}
-    <p class="stacks-copy">
-        Text
-    </p>
     <div class="overflow-x-auto mb32">
-        <table class="s-table s-table__bx s-table__clear va-middle">
+        <table class="s-table s-table__bx-simple va-middle">
             <thead>
                 <tr>
-                    <th class="s-table--cell3" scope="col">Name</th>
-                    <th class="s-table--cell2" scope="col">Type</th>
+                    <th class="s-table--cell4" scope="col">Name</th>
                     <th scope="col">Description / Purpose</th>
                </tr>
             </thead>
             <tbody>
                 <tr>
-                    <td>"You’re receiving this email because"</td>
-                    <td>Reason</td>
+                    <td>"You’re receiving this email because..."</td>
                     <td>It's good practice to explain why someone received the email whenever possible.</td>
                 </tr>
                 <tr>
-                    <td>Unsubscribe</td>
-                    <td>Link</td>
+                    <td>Unsubscribe link</td>
                     <td>Directly unsubscribes recipient from a single email or email type.</td>
                 </tr>
                 <tr>
-                    <td>Manage Preferences</td>
-                    <td>Link</td>
+                    <td>Edit Email Settings link</td>
                     <td>Links to recipient's email settings.</td>
                 </tr>
                 <tr>
-                    <td>Leave Feedback</td>
-                    <td>Link</td>
+                    <td>Leave Feedback link</td>
                     <td>Links to the appropriate meta website.</td>
                 </tr>
                 <tr>
-                    <td>Privacy Policy</td>
-                    <td>Link</td>
-                    <td>Fulfills a GDPR requirement.</td>
+                    <td>Privacy link</td>
+                    <td>Fulfills a <abbr title="General Data Protection Regulation">GDPR</abbr> requirement.</td>
                 </tr>
                 <tr>
                     <td>Stack Overflow logo</td>
-                    <td>Company info</td>
                     <td>Adds a bit of branding.</td>
                 </tr>
                 <tr>
                     <td>Mailing address</td>
-                    <td>Company info</td>
                     <td>Anti-spam laws of most countries require a postal address for the sender.</td>
                 </tr>
                 <tr>
                     <td><code class="stacks-code">&lt;3</code></td>
-                    <td>❤️</td>
                     <td>because we care</td>
                 </tr>
             </tbody>
@@ -86,10 +74,116 @@ Enterprise
     </p>
     <div class="stacks-preview mb24">
 {% highlight html linenos %}
-...
+<!-- Footer : BEGIN -->
+<tr>
+    <td style="padding: 30px;" class="sm-p">
+        <table align="left" border="0" cellpadding="0" cellspacing="0" role="presentation">
+            <!-- Subscription Info : BEGIN -->
+            <tr>
+                <td style="padding-bottom: 10px; font-size: 12px; line-height: 16px; font-family: arial, sans-serif; color: #9199A1; text-align: left;">
+                    You're receiving this email because $reason$.
+                </td>
+            </tr>
+            <tr>
+                <td style="font-size: 12px; line-height: 16px; font-family: arial, sans-serif; color: #9199A1; text-align: left;">
+                    <a href="" style="color: #9199A1; text-decoration: underline;">Unsubscribe from this email</a>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a href="" style="color: #9199A1; text-decoration: underline;">Edit email settings</a>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a href="" style="color: #9199A1; text-decoration: underline;">Leave feedback</a>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a href="" style="color: #9EA3A9; text-decoration: underline;">Privacy</a>
+                </td>
+            </tr>
+            <!-- Subscription Info : BEGIN -->
+            <!-- HR line : BEGIN -->
+            <tr>
+                <td style="padding: 30px 0;" valign="middle" width="100%">
+                    <table aria-hidden="true" border="0" cellpadding="0" cellspacing="0" role="presentation" style="width:100%">
+                        <tr>
+                            <td height="1" width="100%" style="font-size: 0; line-height: 0; border-top: 1px solid #D6D8DB;">&nbsp;</td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <!-- HR line : END -->
+            <!-- Sender Info : BEGIN -->
+            <tr>
+                <td style="padding-bottom: 5px; text-align: left;">
+                    <img src="LogoSm@2x.png" align="left" alt="Stack Overflow" border="0" width="111" height="22" style="display: block;">
+                </td>
+            </tr>
+            <tr>
+                <td style="padding-bottom: 5px; font-size: 12px; line-height: 16px; font-family: arial, sans-serif; color: #9199A1; text-align: left;"><strong>Stack&nbsp;Overflow</strong>, <span class="unstyle-auto-detected-links">110 William Street, 28th Floor, New York, NY 10038</span></td>
+            </tr>
+            <!-- Sender Info : END -->
+            <!-- Heart : BEGIN -->
+            <tr>
+                <td>
+                    <table align="left" border="0" cellpadding="0" cellspacing="0" role="presentation" style="background:#ffffff; border-radius:1px; line-height:0px">
+                        <tr>
+                            <td>
+                                <div style="border-radius: 1px; border: 1px solid #D6D9DC; padding: 4px 6px 3px 6px; font-size: 11px; line-height: 11px; font-family: Consolas, monospace; color: #E06C77;" title="because we care">&lt;3</div>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <!-- Heart : END -->
+        </table>
+    </td>
+</tr>
+<!-- Footer : END -->
 {% endhighlight %}
-        <div class="stacks-preview--example" style="font-family: arial, sans-serif; font-size: 15px; line-height: 19px; color: #54595F; text-align: left;">
-            example
+        <div class="stacks-preview--example" style="font-family: arial, sans-serif; font-size: 15px; line-height: 19px; color: #54595F; text-align: left; background-color: #f3f3f5;">
+            <div style="max-width: 680px; width: 100%; margin: 0 auto;">
+                <table aria-hidden="true" border="0" cellpadding="0" cellspacing="0" role="presentation" style="max-width: 680px; width:100%">
+                    <tr>
+                        <td style="padding: 30px;" class="sm-p">
+                            <table width="100%" align="left" border="0" cellpadding="0" cellspacing="0" role="presentation">
+                                <tr>
+                                    <td style="padding-bottom: 10px; font-size: 12px; line-height: 16px; font-family: arial, sans-serif; color: #9199A1; text-align: left;">
+                                        You're receiving this email because $reason$.
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="font-size: 12px; line-height: 16px; font-family: arial, sans-serif; color: #9199A1; text-align: left;">
+                                        <a href="" style="color: #9199A1; text-decoration: underline;">Unsubscribe from this email</a>&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <a href="" style="color: #9199A1; text-decoration: underline;">Edit email settings</a>&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <a href="" style="color: #9199A1; text-decoration: underline;">Leave feedback</a>&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <a href="" style="color: #9EA3A9; text-decoration: underline;">Privacy</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 30px 0;" valign="middle" width="100%">
+                                        <table aria-hidden="true" border="0" cellpadding="0" cellspacing="0" role="presentation" style="width:100%">
+                                            <tr>
+                                                <td height="1" width="100%" style="font-size: 0; line-height: 0; border-top: 1px solid #D6D8DB;">&nbsp;</td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="padding-bottom: 5px; text-align: left;">
+                                        <img src="../templates/code/LogoSm@2x.png" align="left" alt="Stack Overflow" border="0" width="111" height="22" style="display: block;">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="padding-bottom: 5px; font-size: 12px; line-height: 16px; font-family: arial, sans-serif; color: #9199A1; text-align: left;"><strong>Stack&nbsp;Overflow</strong>, <span class="unstyle-auto-detected-links">110 William Street, 28th Floor, New York, NY 10038</span></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <table align="left" border="0" cellpadding="0" cellspacing="0" role="presentation" style="background:#ffffff; border-radius:1px; line-height:0px">
+                                            <tr>
+                                                <td>
+                                                    <div style="border-radius: 1px; border: 1px solid #D6D9DC; padding: 4px 6px 3px 6px; font-size: 11px; line-height: 11px; font-family: Consolas, monospace; color: #E06C77;" title="because we care">&lt;3</div>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+            </div>
         </div>
     </div>
 </section>
