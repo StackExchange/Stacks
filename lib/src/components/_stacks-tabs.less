@@ -14,15 +14,11 @@
 //  • TAB SIZES
 //  • TAB FILTERS
 //
+& {
+#stacks-internals #load-config(); //  Call all our variables from _stacks-configuration
 //  ============================================================================
 //  $   TAB CONTAINER
 //  ----------------------------------------------------------------------------
-@tabs-border:                       @ash-darker;
-@tabs-color:                        @fc-light;
-@tabs-color__selected:              darken(@tabs-color,20%);
-@tabs-background:                   @white;
-@tabs-background__hover:            darken(@tabs-background,2.5%);
-
 .s-tabs {
     display: flex;
     box-shadow: inset 0 -1px 0 @tabs-border;
@@ -71,3 +67,5 @@
     color: @tabs-color__selected;
     cursor: default;
 }
+
+} // End stacks configuration mixin
