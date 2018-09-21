@@ -1,13 +1,16 @@
 ---
 layout: page
 title: Email Footers
-description: Email footers have several configurations depending on what type of email is being sent and from where.
+description: Email footers are included at the bottom of every email. They typically include ways manage their email subscription preferences and contact the company.
 ---
 
 <section class="stacks-section">
     {% header {element: 'h2', text: 'Options'} %}
     <p class="stacks-copy">
-
+        Email footers have several configurations depending on what type of email is being sent and from where. Transactional emails cannot be unsubscribed from, email subscriptions can be <em>edited</em>, Enterprise sites don't have their own meta site.
+    </p>
+    <p class="stacks-copy">
+        Depending on the type of email being sent and where it comes from, different footer options can be included or excluded.
     </p>
     <div class="overflow-x-auto mb32">
         <table class="s-table s-table__bx-simple va-middle">
@@ -32,7 +35,7 @@ description: Email footers have several configurations depending on what type of
                 </tr>
                 <tr>
                     <td>Edit $name$ link</td>
-                    <td>Some subscription emails can be edited (eg. editing tags in a tag subscription).</td>
+                    <td>Some subscription emails can be edited (eg. the parameters for a tag subscription or job alert).</td>
                 </tr>
                 <tr>
                     <td>Leave Feedback link</td>
@@ -58,9 +61,6 @@ description: Email footers have several configurations depending on what type of
         </table>
     </div>
     {% header {element: 'h3', text: 'Example'} %}
-    <p class="stacks-copy">
-        Here's an example with every option included:
-    </p>
     <div class="stacks-preview mb24">
 {% highlight html linenos %}
 <!-- Footer : BEGIN -->
@@ -180,7 +180,7 @@ description: Email footers have several configurations depending on what type of
 <section class="stacks-section">
     {% header {element: 'h2', text: 'Transactional Emails'} %}
     <p class="stacks-copy">
-        Transactional emails are triggered by a user's interaction with the site. Common examples are account creation, password resets, and account notifications. Since these emails are initiated by the user, transactional emails don't have an unsubscribe link.
+        Transactional emails are triggered by a user's interaction with the site. Since these emails are initiated by the user, transactional emails don't have an unsubscribe link. Common examples are account creation, password resets, and account notifications.
     </p>
     {% header {element: 'h3', text: 'Full Account'} %}
     <p class="stacks-copy">
@@ -300,7 +300,7 @@ description: Email footers have several configurations depending on what type of
     </div>
     {% header {element: 'h3', text: 'Anonymous Visitor'} %}
     <p class="stacks-copy">
-        If a user has an account, we hide a link to their email preferences.
+        If a user does not have an account, we don't include a link for email preferences.
     </p>
     <div class="stacks-preview mb24">
 {% highlight html linenos %}
@@ -420,7 +420,7 @@ description: Email footers have several configurations depending on what type of
         text
     </p>
     <ul class="stacks-list">
-        <li>If person clicks “unsubscribe”, it automatically unsubscribes them from that single email only.</li>
+        <li>If person clicks “unsubscribe”, they are automatically unsubscribed from that single email only.</li>
         <li>If person clicks “Edit $name$”, they're redirected to their respective subscription view.</li>
         <li>$Name$ should populate with subscription type (eg. Question Subscriptions).</li>
     </ul>
@@ -546,7 +546,7 @@ description: Email footers have several configurations depending on what type of
     </div>
     {% header {element: 'h3', text: 'Subscription-only'} %}
     <p class="stacks-copy">
-        text
+        If a user does not have an account, we don't include a link for email preferences.
     </p>
     <div class="stacks-preview mb24">
 {% highlight html linenos %}
@@ -669,11 +669,11 @@ description: Email footers have several configurations depending on what type of
 <section class="stacks-section">
     {% header {element: 'h2', text: 'Promotional Emails'} %}
     <p class="stacks-copy">
-        text
+        Promotional emails are not transactional or subscription emails.
     </p>
     {% header {element: 'h3', text: 'Full Account'} %}
     <p class="stacks-copy">
-        text
+        If person clicks “unsubscribe from emails like this”, they are automatically unsubscribed from that single bucket only.
     </p>
     <div class="stacks-preview mb24">
 {% highlight html linenos %}
@@ -791,7 +791,7 @@ description: Email footers have several configurations depending on what type of
     </div>
     {% header {element: 'h3', text: 'Anonymous Visitor'} %}
     <p class="stacks-copy">
-        text
+        If a user does not have an account, we don't include an unsubscribe link or a link for email preferences.
     </p>
     <div class="stacks-preview mb24">
 {% highlight html linenos %}
@@ -909,7 +909,7 @@ description: Email footers have several configurations depending on what type of
     {% header {element: 'h2', text: 'Branding'} %}
     {% header {element: 'h3', text: 'Default'} %}
     <p class="stacks-copy">
-        If email is mapped to an English brand, display default branding.
+        If an email is mapped to an English brand, use default branding.
     </p>
     <div class="stacks-preview mb24">
 {% highlight html linenos %}
@@ -979,7 +979,7 @@ description: Email footers have several configurations depending on what type of
     </div>
     {% header {element: 'h3', text: 'Alternate'} %}
     <p class="stacks-copy">
-        If email is mapped to a non-English brand, display alternate branding.
+        If the email is mapped to a non-English brand, use alternate branding.
     </p>
     <div class="stacks-preview mb24">
 {% highlight html linenos %}
@@ -1042,7 +1042,7 @@ description: Email footers have several configurations depending on what type of
 <section class="stacks-section">
     {% header {element: 'h2', text: 'Enterprise Emails'} %}
     <p class="stacks-copy">
-        Enterprise emails are a bit unique. Enterprise sites don't send promotional email or have meta sites, so we don't need links for those. We also don't need a privacy link because Stack Overflow for Enterprise doesn't serve the users directly, rather we are serving the business that we sold to, making privacy policy with regards to GDPR the responsibility of the client, not us. Lastly, some Enterprise installations are behind firewalls or require VPN access, so we remove the logo image to avoid a broken image (eg. if someone checks email on their phone).
+        Enterprise is a bit unique; Enterprise sites don't send promotional email or have meta sites, so we don't need links for those in Enterprise emails. We also don't need a privacy link because we don't serve the users directly, rather we are serving the business that we sold to, making the privacy policy with regards to GDPR the responsibility of the client, not us. Lastly, some Enterprise installations are behind firewalls or require <abbr title="Virtual Private Network">VPN</abbr> access, so we remove the Stack Overflow logo to avoid a broken image (eg. if someone checks email on their phone).
     </p>
     <div class="stacks-preview mb24">
 {% highlight html linenos %}
