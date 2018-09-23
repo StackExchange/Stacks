@@ -4,7 +4,7 @@ report({
     {
       "pair": {
         "reference": "../bitmaps_reference/backstop_default_Stacks_Homepage_0_document_0_phone.png",
-        "test": "../bitmaps_test/20180923-002621/backstop_default_Stacks_Homepage_0_document_0_phone.png",
+        "test": "../bitmaps_test/20180923-003426/backstop_default_Stacks_Homepage_0_document_0_phone.png",
         "selector": "document",
         "fileName": "backstop_default_Stacks_Homepage_0_document_0_phone.png",
         "label": "Stacks Homepage",
@@ -14,14 +14,21 @@ report({
         "referenceUrl": "",
         "expect": 0,
         "viewportLabel": "phone",
-        "error": "Reference file not found /Users/shekey/Repositories/StackOverflow/Stacks/backstop_data/bitmaps_reference/backstop_default_Stacks_Homepage_0_document_0_phone.png"
+        "diff": {
+          "isSameDimensions": true,
+          "dimensionDifference": {
+            "width": 0,
+            "height": 0
+          },
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/backstop_default_Stacks_Homepage_0_document_1_tablet.png",
-        "test": "../bitmaps_test/20180923-002621/backstop_default_Stacks_Homepage_0_document_1_tablet.png",
+        "test": "../bitmaps_test/20180923-003426/backstop_default_Stacks_Homepage_0_document_1_tablet.png",
         "selector": "document",
         "fileName": "backstop_default_Stacks_Homepage_0_document_1_tablet.png",
         "label": "Stacks Homepage",
@@ -31,9 +38,16 @@ report({
         "referenceUrl": "",
         "expect": 0,
         "viewportLabel": "tablet",
-        "error": "Reference file not found /Users/shekey/Repositories/StackOverflow/Stacks/backstop_data/bitmaps_reference/backstop_default_Stacks_Homepage_0_document_1_tablet.png"
+        "diff": {
+          "isSameDimensions": true,
+          "dimensionDifference": {
+            "width": 0,
+            "height": 0
+          },
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     }
   ],
   "id": "backstop_default"
