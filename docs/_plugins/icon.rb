@@ -49,7 +49,7 @@ module Jekyll
       else
         classList = "svg-icon icon#{processedIcon} #{@class}"
         classList = classList.strip!
-        classEdit = Nokogiri::HTML(file)
+        classEdit = Nokogiri::HTML::DocumentFragment.parse(file)
 
         # Do we have a dimension?
         if @dimension.to_s.strip.empty?
