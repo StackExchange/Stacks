@@ -10,9 +10,20 @@ module Jekyll
       super
       @markup = markup.split("|")
 
-      @icon = @markup[0].strip!
-      @class = @markup[1]
-      @dimension = @markup[2]
+      @icon = @markup[0].to_s.strip
+      
+      secondParameter = @markup[1].to_s.strip
+
+      # Check if the second parameter looks like an integer
+      # If it does, we'll use the second parameter as the dimension
+      # If it doesn't, we'll use the second paramater as class names
+      if secondParameter.to_i.to_s == secondParameter
+        @dimension = @markup[1]
+        @class = nil
+      else
+        @class = @markup[1]
+        @dimension = @markup[2]
+      end
     end
 
     def interpolate(markup, context)
@@ -33,7 +44,7 @@ module Jekyll
       file = File.open(filePath, "r").read
 
       # Do we have a class parameter?
-      if @class.to_s.strip.empty?
+      if @class.to_s.strip.empty? && @dimension.to_s.strip.empty?
         return file
       else
         classList = "svg-icon icon#{processedIcon} #{@class}"
