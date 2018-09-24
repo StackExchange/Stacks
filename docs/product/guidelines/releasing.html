@@ -1,0 +1,25 @@
+---
+layout: page
+title: Releasing Stacks
+description: The following is a guide to releasing a new version of Stacks and making it available in production on Core and Careers.
+---
+
+<section class="stacks-section">
+    {% header h2 | Create and publish a new version %}
+    <p class="stacks-copy">Stacks is delivered via <a href="https://www.npmjs.com/package/@stackoverflow/stacks">NPM</a>, which offers some tools for creating new versions.</p>
+    <ol class="stacks-list">
+        <li>Open the Stacks repository in your Terminal and start by running <code class="stacks-code">npm version v[x.x.x]</code>. This will update our <code class="stacks-code">package.json</code> files while creating a tag. You can see which version Stacks is at currently by visiting our <a href="https://github.com/StackExchange/Stacks/releases">releases</a>. Our release pattern adheres to the <a href="https://semver.org">semantic versioning</a> spec.</li>
+        <li>Now that you’ve created a new version, we’ll want to push the tag associated with the version to GitHub so it appears on our releases page. <code class="stacks-code">git push --tags</code>.</li>
+        <li><a href="https://github.com/StackExchange/Stacks/releases/new">Draft the release notes</a> on GitHub by choosing the tag you just pushed. Be sure to include a body in the release that describes <a href="https://github.com/StackExchange/Stacks/releases/tag/v0.26.0">what changed</a>.</li>
+        <li>Actually publish the release to NPM. <code class="stacks-code">npm publish</code>. This will take you through the publishing workflow if you haven’t already logged in.</li>
+    </ol>
+</section>
+
+<section class="stacks-section">
+    {% header h2 | Ship the new version to Stack Overflow %}
+    <p class="stacks-copy">In order for the new version of Stacks to be usable on Core and Careers, you’ll need to ship to both.</p>
+    <ol class="stacks-list">
+        <li>Within Core and Careers, run the <code class="stacks-code">update-stacks.bat</code> script within <code class="stacks-code">content/less/_stacks</code>. This will copy the files from the latest version of the Stacks repo. You’ll need to do this for both Core and Careers. The script will create a single commit with the updates from Stacks.</li>
+        <li>If you’re making non-breaking changes, you can often merge this change directly to <code class="stacks-code">master</code> on Core or Careers. For breaking changes, this is often the first commit in a branch and the corresponding pull request that refactors existing UI to address new changes from Stacks.</li>
+    </ol>
+</section>
