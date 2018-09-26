@@ -71,6 +71,11 @@
     tbody + tbody {
         border-top: @su2 solid @black-100;
     }
+
+    //  The .user-info include has some padding we don't want when used in tables.
+    .user-info {
+        padding: 0;
+    }
 }
 
 //  ============================================================================
@@ -262,6 +267,13 @@
         color: @fc-light;
         cursor: pointer;
 
+        //  If an <a> link is used, it should appear like a <th> and not an <a>
+        th {
+            a {
+                color: inherit;
+            }
+        }
+
         //  Slightly align the icon
         .svg-icon {
             position: relative;
@@ -316,4 +328,8 @@
     max-width: @su24;
     padding-right: @su2;
     padding-left: @su2;
+
+    input {
+        margin: 0 auto;
+    }
 }
