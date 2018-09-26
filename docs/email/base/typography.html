@@ -9,7 +9,7 @@ description: This page provides some common typography patterns for email, but a
     </p>
 </section>
 <section class="stacks-section">
-    {% header {element: 'h2', text: 'Paragraphs'} %}
+    {% header h2 | Paragraphs %}
     <div class="stacks-preview">
 {% highlight html linenos %}
 <td style="font-family: arial, sans-serif; font-size: 15px; line-height: 21px; color: #3C3F44; text-align: left;">
@@ -26,7 +26,7 @@ description: This page provides some common typography patterns for email, but a
     </div>
 </section>
 <section class="stacks-section">
-    {% header {element: 'h2', text: 'Headlines'} %}
+    {% header h2 | Headlines %}
     <div class="stacks-preview">
 {% highlight html linenos %}
 <h1 style="font-weight: bold; font-size: 27px; line-height: 27px; color: #242629; margin: 0 0 15px 0;">I’m a headline</h1>
@@ -39,7 +39,7 @@ description: This page provides some common typography patterns for email, but a
     </div>
 </section>
 <section class="stacks-section">
-    {% header {element: 'h2', text: 'Lists'} %}
+    {% header h2 | Lists %}
     <div class="stacks-preview">
 {% highlight html linenos %}
 <ul style="padding: 0; margin: 0 0 15px 0; list-style-type: disc;">
@@ -68,7 +68,7 @@ description: This page provides some common typography patterns for email, but a
     </div>
 </section>
 <section class="stacks-section">
-    {% header {element: 'h2', text: 'Links'} %}
+    {% header h2 | Links %}
     <div class="stacks-preview">
 {% highlight html linenos %}
 <a href="https://stackoverflow.com/" style="color: #0077CC; text-decoration: none;">Go to the homepage</a>
@@ -77,7 +77,7 @@ description: This page provides some common typography patterns for email, but a
             <a href="https://stackoverflow.com/" style="color: #0077CC; text-decoration: none;">Go to the homepage</a>
         </div>
     </div>
-    {% header {element: 'h3', text: 'Links in Markdown'} %}
+    {% header h3 | Links in Markdown %}
     <p class="stacks-copy">
         If email content is written in markdown, we can’t write inline CSS into link tags. Left unstyled, <a href="#" style="color: blue; text-decoration: underline;">links will appear like this</a>. To style links contained in markdown text, add a <code class="stacks-code">class="has-markdown"</code> to any parent tag that might contain a markdown link.
     </p>
@@ -93,13 +93,13 @@ description: This page provides some common typography patterns for email, but a
     </div>
 
     <div class="grid ai-start s-notice s-notice__info mb48">
-        <div class="grid--cell mr8">{% svg /product/resources/svg-icons/Alert.svg width="18" height="18" %}</div>
+        <div class="grid--cell mr8">{% icon Alert %}</div>
         <div class="grid--cell lh-lg">
             <strong>Note:</strong> Using <code class="stacks-code bg-powder-200">class="has-markdown"</code> applies styles defined in the <code class="stacks-code bg-powder-200">&lt;style&gt;</code> tag. Only <a href="https://www.campaignmonitor.com/css/style-element/style-in-head/">email clients that support <code class="stacks-code bg-powder-200">&lt;style&gt;</code> in <code class="stacks-code bg-powder-200">&lt;head&gt;</code></a> will render <code class="stacks-code bg-powder-200">has-markdown</code> links properly.
         </div>
     </div>
 
-    {% header {element: 'h3', text: 'Auto-detected links'} %}
+    {% header h3 | Auto-detected links %}
     <p class="stacks-copy">
         Some email clients auto-detect certain text strings (like dates, times, and locations) and automatically convert them into hyperlinks. We can’t <em>remove</em> the link, but we can make the link <em>appear</em> like the text around it by negating a few CSS styles.
     </p>
@@ -115,7 +115,7 @@ description: This page provides some common typography patterns for email, but a
     </div>
 
     <div class="grid ai-start s-notice s-notice__info mb48">
-        <div class="grid--cell mr8">{% svg /product/resources/svg-icons/Alert.svg width="18" height="18" %}</div>
+        <div class="grid--cell mr8">{% icon Alert %}</div>
         <div class="grid--cell lh-lg">
             <strong>Note:</strong> Using <code class="stacks-code bg-powder-200">class="unstyle-auto-detected-links"</code> applies styles defined in the <code class="stacks-code bg-powder-200">&lt;style&gt;</code> tag. Only <a href="https://www.campaignmonitor.com/css/style-element/style-in-head/">email clients that support <code class="stacks-code bg-powder-200">&lt;style&gt;</code> in <code class="stacks-code bg-powder-200">&lt;head&gt;</code></a> will render <code class="stacks-code bg-powder-200">has-markdown</code> links properly.
         </div>
@@ -123,7 +123,7 @@ description: This page provides some common typography patterns for email, but a
 </section>
 <section class="stacks-section">
 
-    {% header {element: 'h2', text: 'Preventing Text Wrapping'} %}
+    {% header h2 | Preventing Text Wrapping %}
     <p class="stacks-copy">
         A non-breaking space (<code class="stacks-code">&#38;nbsp;</code>) can be used to prevent a group of words from breaking onto multiple lines. Useful for keeping names together and preventing typographic orphans&nbsp;and&nbsp;widows.
         <br><span class="d-block mt8 fc-light fs-body1">Inspect the line above to see ☝️</span>
