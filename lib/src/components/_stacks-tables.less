@@ -39,6 +39,14 @@
         vertical-align: middle;
         color: @fc-medium;
         text-align: left;
+
+        &.s-table--bulk {
+            max-width: @su16 + @su2;
+        }
+
+        .s-checkbox {
+            display: block;
+        }
     }
 
     th {
@@ -48,9 +56,12 @@
 
     //  Custom styles when in a table head
     thead th {
+        &:not(.s-table--bulk) {
+            font-size: @fs-fine;
+        }
+
         vertical-align: bottom;
         background-color: @black-025;
-        font-size: @fs-fine;
         line-height: @lh-sm;
         text-transform: uppercase;
         letter-spacing: 0.05em;
@@ -262,6 +273,11 @@
         color: @fc-light;
         cursor: pointer;
 
+        //  If an anchor is used, it should appear like a normal header
+        a {
+            color: inherit;
+        }
+
         //  Slightly align the icon
         .svg-icon {
             position: relative;
@@ -307,13 +323,3 @@
 .s-table--cell10    { width: @table-columns * 10; }
 .s-table--cell11    { width: @table-columns * 11; }
 .s-table--cell12    { width: @table-columns * 12; }
-
-//  $$  Specific Column Sizes
-//  ----------------------------------------------------------------------------
-//  --  Input
-//      Generally for a checkbox input that's placed first in the table row
-.s-table--input {
-    max-width: @su24;
-    padding-right: @su2;
-    padding-left: @su2;
-}

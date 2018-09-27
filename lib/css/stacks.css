@@ -889,6 +889,7 @@ legend.s-label {
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
+    margin: 0;
     width: 1em;
     height: 1em;
     border: 1px solid #bbc0c4;
@@ -1341,6 +1342,14 @@ legend.s-label {
   color: #3b4045;
   text-align: left;
 }
+.s-table th.s-table--bulk,
+.s-table td.s-table--bulk {
+  max-width: 18px;
+}
+.s-table th .s-checkbox,
+.s-table td .s-checkbox {
+  display: block;
+}
 .s-table th {
   font-weight: bold;
   color: #0C0D0E;
@@ -1348,10 +1357,12 @@ legend.s-label {
 .s-table thead th {
   vertical-align: bottom;
   background-color: #fafafb;
-  font-size: 0.84615385rem;
   line-height: 1.15384615;
   text-transform: uppercase;
   letter-spacing: 0.05em;
+}
+.s-table thead th:not(.s-table--bulk) {
+  font-size: 0.84615385rem;
 }
 .s-table tbody th {
   font-weight: normal;
@@ -1462,6 +1473,9 @@ legend.s-label {
   color: #6a737c;
   cursor: pointer;
 }
+.s-table.s-table__sortable thead th a {
+  color: inherit;
+}
 .s-table.s-table__sortable thead th .svg-icon {
   position: relative;
   bottom: -1px;
@@ -1513,11 +1527,6 @@ legend.s-label {
 }
 .s-table--cell12 {
   width: 100%;
-}
-.s-table--input {
-  max-width: 24px;
-  padding-right: 2px;
-  padding-left: 2px;
 }
 .s-option-toggle .s-radio {
   position: absolute;

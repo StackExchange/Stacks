@@ -47,7 +47,7 @@ description: All system icons are inline SVG files, invoked via a Razor helper. 
 
 <section class="stacks-section">
     {% header h2 | Requesting an Icon %}
-    <p class="stacks-copy">If an icon you need isn’t listed above, please do one of the following two options:</p>
+    <p class="stacks-copy">If an icon you need isn’t here, please do one of the following two options:</p>
     <ol class="stacks-list">
         <li><a href="https://github.com/StackExchange/Stacks-Icons/issues/new">Submit a request</a> outlining the desired icon, the icon’s intended purposed, and where it will be used.</li>
         <li>If the icon is ready, <a href="https://github.com/StackExchange/Stacks-Icons/compare">submit a pull request</a> to have it to be reviewed. Please be sure to provide the same information as above.</li>
@@ -55,19 +55,31 @@ description: All system icons are inline SVG files, invoked via a Razor helper. 
     <p class="stacks-copy">If you have further questions, visit the project’s Slack channel: <a href="https://stackexchange.slack.com/messages/C27RWNQN9"></a>#stacks</a>.</p>
 </section>
 
-<section class="stacks-section mb32">
+<section class="stacks-section mb32" id="js-sortable-list">
     {% header h2 | Icon Set %}
-    <div class="grid fw-wrap sm:fd-column gs16 grid__allcells4">
+    <div class="ps-relative mb16">
+        <input type="text" class="pl32 fuzzy-search s-input" placeholder="Search icons…" />
+        {% icon Search | pe-none stacks-search-icon %}
+    </div>
+    <div class="grid fw-wrap sm:fd-column gs16 grid__allcells4 list">
         {% assign icon_sort = site.data.product.icons | sort: "helper" %}
         {% for icon in icon_sort %}
-            <div class="grid ff-column-nowrap p0 s-card">
-                <div class="grid fl2 grid__center stacks-icon-preview">
-                    {% icon {{ icon.helper }} | native %}
-                </div>
-                <div class="grid ff-column-nowrap ai-center p8">
-                    <code class="grid--cell fs-caption py8 ff-mono wb-break-word">@Svg.{{ icon.helper }}</code>
+            <div class="grid--cell">
+                <div class="grid ff-column-nowrap p0 s-card">
+                    <div class="grid fl2 grid__center stacks-icon-preview">
+                        {% icon {{ icon.helper }} | native %}
+                    </div>
+                    <div class="grid ff-column-nowrap ai-center p8">
+                        <code class="grid--cell fs-caption py8 ff-mono wb-break-word js-name">@Svg.{{ icon.helper }}</code>
+                    </div>
                 </div>
             </div>
         {% endfor %}
     </div>
 </section>
+
+<script>
+    var monkeyList = new List('js-sortable-list', { 
+        valueNames: ['js-name']
+    });
+</script>
