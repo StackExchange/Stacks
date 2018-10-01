@@ -30,7 +30,7 @@ Stacks documentation can be found at https://stackoverflow.design/
 
 You can use Stacks a few different ways.
 
-1. Stacks is currently included within various Stack Overflow projects automatically. If you’re working on a Stack Overflow project, chances are it’s already available for you! If not, reach out to use and we’ll work on getting it setup.
+1. Stacks is currently included within various Stack Overflow projects automatically. If you’re working on a Stack Overflow project, chances are it’s already available for you! If not, reach out to us and we’ll work on getting it setup.
 2. To include it in other projects, you can install it via [NPM](https://www.npmjs.com/package/@stackoverflow/stacks):
     ```bash
     npm install --save @stackoverflow/stacks
