@@ -669,6 +669,22 @@ a.s-badge__important:hover {
   background-color: #9c1724;
   color: #FFF;
 }
+.s-empty-state {
+  color: #6a737c;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+.s-empty-state p {
+  font-size: 1rem;
+  margin-bottom: 12px;
+}
+.s-empty-state p strong {
+  color: #0C0D0E;
+}
+.s-empty-state .s-btn {
+  display: inline-block;
+}
 .s-btn-group {
   display: flex;
 }
@@ -873,6 +889,7 @@ legend.s-label {
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
+    margin: 0;
     width: 1em;
     height: 1em;
     border: 1px solid #bbc0c4;
@@ -1320,13 +1337,18 @@ legend.s-label {
   padding: 8px;
   border-top: 1px solid #d6d9dc;
   border-left: 1px solid #d6d9dc;
+  border-right: 1px solid #d6d9dc;
   vertical-align: middle;
   color: #3b4045;
   text-align: left;
 }
-.s-table th:last-of-type,
-.s-table td:last-of-type {
-  border-right: 1px solid #d6d9dc;
+.s-table th.s-table--bulk,
+.s-table td.s-table--bulk {
+  width: 30px;
+}
+.s-table th .s-checkbox,
+.s-table td .s-checkbox {
+  display: block;
 }
 .s-table th {
   font-weight: bold;
@@ -1334,11 +1356,14 @@ legend.s-label {
 }
 .s-table thead th {
   vertical-align: bottom;
+  white-space: nowrap;
   background-color: #fafafb;
-  font-size: 0.84615385rem;
   line-height: 1.15384615;
   text-transform: uppercase;
   letter-spacing: 0.05em;
+}
+.s-table thead th:not(.s-table--bulk) {
+  font-size: 0.84615385rem;
 }
 .s-table tbody th {
   font-weight: normal;
@@ -1398,36 +1423,46 @@ legend.s-label {
 .s-table.s-table__b0 tr:last-of-type td {
   border-color: transparent;
 }
-.s-table.s-table__b0 tbody + tbody {
-  border-color: transparent;
-  border-width: 12px;
-}
-.s-table.s-table__bx th,
-.s-table.s-table__bx td {
-  border-left-color: transparent;
-  border-right-color: transparent;
-}
-.s-table.s-table__bx thead th {
-  border-top-color: transparent;
-  border-bottom-color: #bbc0c4;
-}
-.s-table.s-table__bx tbody tr:first-of-type th,
-.s-table.s-table__bx tbody tr:first-of-type td {
-  border-top-color: transparent;
-}
-.s-table.s-table__bx tbody tr:last-of-type th,
-.s-table.s-table__bx tbody tr:last-of-type td {
-  border-bottom-color: transparent;
-}
-.s-table.s-table__bx tfoot th,
-.s-table.s-table__bx tfoot td {
-  border-bottom-color: transparent;
-}
-.s-table.s-table__clear thead th {
+.s-table.s-table__b0 thead th {
   background-color: transparent;
   text-transform: initial;
   font-size: inherit;
   letter-spacing: initial;
+}
+.s-table.s-table__b0 tbody + tbody {
+  border-color: transparent;
+  border-width: 12px;
+}
+.s-table.s-table__bx tr > *:not(:first-child) {
+  border-left-color: transparent;
+}
+.s-table.s-table__bx tr > *:not(:last-child) {
+  border-right-color: transparent;
+}
+.s-table.s-table__bx-simple th,
+.s-table.s-table__bx-simple td {
+  border-left-color: transparent;
+  border-right-color: transparent;
+}
+.s-table.s-table__bx-simple thead th {
+  border-top-color: transparent;
+  border-bottom-color: #bbc0c4;
+  background-color: transparent;
+  text-transform: initial;
+  font-size: inherit;
+  letter-spacing: initial;
+}
+.s-table.s-table__bx-simple tbody tr:first-of-type th,
+.s-table.s-table__bx-simple tbody tr:first-of-type td {
+  border-top-color: transparent;
+}
+.s-table.s-table__bx-simple tbody tr:last-of-type th,
+.s-table.s-table__bx-simple tbody tr:last-of-type td {
+  border-bottom-color: transparent;
+}
+.s-table.s-table__bx-simple tfoot th,
+.s-table.s-table__bx-simple tfoot td {
+  border-bottom-color: transparent;
 }
 .s-table .s-table--totals th,
 .s-table .s-table--totals td {
@@ -1439,6 +1474,9 @@ legend.s-label {
   color: #6a737c;
   cursor: pointer;
 }
+.s-table.s-table__sortable thead th a {
+  color: inherit;
+}
 .s-table.s-table__sortable thead th .svg-icon {
   position: relative;
   bottom: -1px;
@@ -1447,6 +1485,10 @@ legend.s-label {
   color: #0C0D0E;
 }
 .s-table td.s-table--progress {
+  border-right: none;
+  text-align: right;
+}
+.s-table td.s-table--progress-bar {
   border-left: none;
   padding-left: 0;
   width: 120px;
@@ -1486,11 +1528,6 @@ legend.s-label {
 }
 .s-table--cell12 {
   width: 100%;
-}
-.s-table--input {
-  max-width: 24px;
-  padding-right: 2px;
-  padding-left: 2px;
 }
 .s-option-toggle .s-radio {
   position: absolute;
@@ -2711,8 +2748,8 @@ table.s-sidebarwidget--content.s-sidebarwidget__items tr.-item td {
 .fw-reverse {
   flex-wrap: wrap-reverse !important;
 }
-.fw-none {
-  flex-wrap: none !important;
+.fw-nowrap {
+  flex-wrap: nowrap !important;
 }
 .ff-row-wrap {
   flex-flow: row wrap !important;
@@ -6542,6 +6579,11 @@ p {
 .bs-i-lg.bs-hover:hover {
   box-shadow: inset 0 1px 12px 0 #9199a1 !important;
 }
+@media print {
+  .print\:d-none {
+    display: none !important;
+  }
+}
 .w0 {
   width: 0 !important;
 }
@@ -6888,8 +6930,8 @@ p {
   .lg\:fw-reverse {
     flex-wrap: wrap-reverse !important;
   }
-  .lg\:fw-none {
-    flex-wrap: none !important;
+  .lg\:fw-nowrap {
+    flex-wrap: nowrap !important;
   }
   .lg\:jc-center {
     justify-content: center !important;
@@ -6941,6 +6983,12 @@ p {
   }
   .lg\:as-stretch {
     align-self: stretch !important;
+  }
+  .lg\:order-first {
+    order: -1 !important;
+  }
+  .lg\:order-last {
+    order: 1 !important;
   }
   .lg\:mt0 {
     margin-top: 0 !important;
@@ -7293,8 +7341,8 @@ p {
   .md\:fw-reverse {
     flex-wrap: wrap-reverse !important;
   }
-  .md\:fw-none {
-    flex-wrap: none !important;
+  .md\:fw-nowrap {
+    flex-wrap: nowrap !important;
   }
   .md\:jc-center {
     justify-content: center !important;
@@ -7346,6 +7394,12 @@ p {
   }
   .md\:as-stretch {
     align-self: stretch !important;
+  }
+  .md\:order-first {
+    order: -1 !important;
+  }
+  .md\:order-last {
+    order: 1 !important;
   }
   .md\:mt0 {
     margin-top: 0 !important;
@@ -7698,8 +7752,8 @@ p {
   .sm\:fw-reverse {
     flex-wrap: wrap-reverse !important;
   }
-  .sm\:fw-none {
-    flex-wrap: none !important;
+  .sm\:fw-nowrap {
+    flex-wrap: nowrap !important;
   }
   .sm\:jc-center {
     justify-content: center !important;
@@ -7751,6 +7805,12 @@ p {
   }
   .sm\:as-stretch {
     align-self: stretch !important;
+  }
+  .sm\:order-first {
+    order: -1 !important;
+  }
+  .sm\:order-last {
+    order: 1 !important;
   }
   .sm\:mt0 {
     margin-top: 0 !important;
