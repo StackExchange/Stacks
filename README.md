@@ -28,7 +28,7 @@ Stacks documentation can be found at https://stackoverflow.design/
 Using Stacks is outlined in our [usage guidelines](https://stackoverflow.design/product/using-stacks).
 
 ## Building Stacks
-To contribute to Stacks documentation or its CSS library, you'll need to build Stacks locally. View our [building guidelines](https://stackoverflow.design/product/guidelines/building).
+To contribute to Stacks documentation or its CSS library, you’ll need to build Stacks locally. View our [building guidelines](https://stackoverflow.design/product/guidelines/building).
 
 Having trouble getting these steps to work? Open [an issue](https://github.com/StackExchange/issues/new) with a `setup` label.
 
