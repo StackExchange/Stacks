@@ -5,18 +5,17 @@ description: If you compile the Stacks within your project and need to customize
 ---
 
 <section class="stacks-section">
-    {% header {element: 'h2', text: 'Introduction'} %}
+    {% header h2 | Introduction %}
     <p class="stacks-copy">Stacks is used on all Q&amp;A sites in the Stack Exchange network, including Stack Overflow. Many of those sites have their own themes, e.g. with different link colors and different button styles. Large parts of Stacks are agnostic to these differences &ndash; for example, the atomic class <code class="stacks-code">.ps-fixed</code> does the same thing regardless of what site it&rsquo;s used on. But some parts of Stacks need to behave differently depending on what site they&rsquo;re used on &ndash; for example, the background color of the <code class="stacks-code">.s-btn</code> component differs per-site.</p>
     <p class="stacks-copy">The parts of Stacks that are always the same across all Stack Exchange sites are called <strong>constants</strong>. The parts of Stacks that are configurable based are called <strong>configurations</strong>.</p>
     <p class="stacks-copy">Constants are included in all network pages as a single CSS file that&rsquo;s identical everywhere. Configurations, on the other hand, are compiled into the site&rsquo;s <code class="stacks-code">primary.css</code> file.</p>
 </section>
 
 <section class="stacks-section">
-    {% header {element: 'h2', text: 'Making Customizations'} %}
+    {% header h2 | Making Customizations %}
     <p class="stacks-copy">Most configuration options address <em>how</em> varying elements or components look within a theme. However there are a few options that change constants as well. Items such as CSS reset values or responsive breakpoints can be altered.</p>
     <p class="stacks-copy">To customize any configurable area listed below, you must include <code class="stacks-code">stacks.less</code> (or, depending on your need, <code class="stacks-code">stacks-dynamic.less</code> and/or <code class="stacks-code">stacks-static.less</code>) into your Less file and wrap your updated \configuration options within the following mixin:</p>
     <div class="stacks-preview _preview-none mb24">
-{% comment %}the rouge highlighter doesn't support Less :( {% endcomment %}
 {% highlight css linenos %}
 @include "path/to/stacks-dynamic.less";
 
@@ -41,18 +40,12 @@ description: If you compile the Stacks within your project and need to customize
     </div>
 </section>
 <section class="stacks-section">
-    {% header {element: 'h2', text: 'Available Configurations'} %}
+    {% header h2 | Available Configurations %}
     {% for item in site.data.product.configurations %}
         {% assign var = item.variables %}
-        <div class="grid jc-space-between ai-end stacks-header">
-            <h3 class="grid--cell fl1 stacks-h3" id="{{ item.section }}">{{ item.section }}</h3>
-            <a class="grid grid__center mbn6 s-btn s-btn__muted" href="#{{ item.section }}">
-                {% svg /product/resources/svg-icons/Link.svg width="18" height="18" class="svg-icon iconLink m0" %}
-            </a>
-        </div>
-
+        {% header h3 | {{ item.section }} %}
         <div class="overflow-x-auto mb32">
-            <table class="wmn4 s-table s-table__bx s-table__clear va-middle">
+            <table class="wmn4 s-table s-table__bx-simple va-middle">
                 <thead>
                     <tr>
                         <th scope="col">Setting</th>

@@ -35,12 +35,17 @@
         padding: @su8;
         border-top: 1px solid @black-100;
         border-left: 1px solid @black-100;
+        border-right: 1px solid @black-100;
         vertical-align: middle;
         color: @fc-medium;
         text-align: left;
 
-        &:last-of-type {
-            border-right: 1px solid @black-100;
+        &.s-table--bulk {
+            width: @su32 - @su2;
+        }
+
+        .s-checkbox {
+            display: block;
         }
     }
 
@@ -51,9 +56,13 @@
 
     //  Custom styles when in a table head
     thead th {
+        &:not(.s-table--bulk) {
+            font-size: @fs-fine;
+        }
+
         vertical-align: bottom;
+        white-space: nowrap;
         background-color: @black-025;
-        font-size: @fs-fine;
         line-height: @lh-sm;
         text-transform: uppercase;
         letter-spacing: 0.05em;
@@ -188,6 +197,14 @@
             border-color: transparent;
         }
 
+        //  Clear Header Styles
+        thead th {
+            background-color: transparent;
+            text-transform: initial;
+            font-size: inherit;
+            letter-spacing: initial;
+        }
+
         //  This makes the border transparent, so we need to use whitespace
         //  to achieve the same effect a 2px gray border achieves.
         tbody + tbody {
@@ -196,8 +213,20 @@
         }
     }
 
-    //  --  Horizontal Only
+    //  --  Horizontal Only with Table Outline
     &.s-table__bx {
+        tr {
+            > *:not(:first-child) {
+                border-left-color: transparent;
+            }
+            > *:not(:last-child) {
+                border-right-color: transparent;
+            }
+        }
+    }
+
+    //  --  Horizontal Only without Table Outline
+    &.s-table__bx-simple {
         th,
         td {
             border-left-color: transparent;
@@ -206,6 +235,11 @@
         thead th {
             border-top-color: transparent;
             border-bottom-color: @black-200;
+            //  Clear Header Styles
+            background-color: transparent;
+            text-transform: initial;
+            font-size: inherit;
+            letter-spacing: initial;
         }
         tbody tr {
             &:first-of-type th,
@@ -221,15 +255,6 @@
         tfoot td {
             border-bottom-color: transparent;
         }
-    }
-
-    //  $$  Clear Header Styles
-    //  ------------------------------------------------------------------------
-    &.s-table__clear thead th {
-        background-color: transparent;
-        text-transform: initial;
-        font-size: inherit;
-        letter-spacing: initial;
     }
 
     //  $$  TOTALS ROW
@@ -249,6 +274,11 @@
         color: @fc-light;
         cursor: pointer;
 
+        //  If an anchor is used, it should appear like a normal header
+        a {
+            color: inherit;
+        }
+
         //  Slightly align the icon
         .svg-icon {
             position: relative;
@@ -264,6 +294,11 @@
     //  $$  Progress Bar
     //  ------------------------------------------------------------------------
     td.s-table--progress {
+        border-right: none;
+        text-align: right;
+    }
+
+    td.s-table--progress-bar {
         border-left: none;
         padding-left: 0;
         width: 120px;
@@ -289,13 +324,3 @@
 .s-table--cell10    { width: @table-columns * 10; }
 .s-table--cell11    { width: @table-columns * 11; }
 .s-table--cell12    { width: @table-columns * 12; }
-
-//  $$  Specific Column Sizes
-//  ----------------------------------------------------------------------------
-//  --  Input
-//      Generally for a checkbox input that's placed first in the table row
-.s-table--input {
-    max-width: @su24;
-    padding-right: @su2;
-    padding-left: @su2;
-}
