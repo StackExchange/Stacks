@@ -1344,7 +1344,7 @@ legend.s-label {
 }
 .s-table th.s-table--bulk,
 .s-table td.s-table--bulk {
-  max-width: 18px;
+  width: 30px;
 }
 .s-table th .s-checkbox,
 .s-table td .s-checkbox {
@@ -6540,6 +6540,9 @@ p {
 .fill-current {
   fill: currentColor !important;
 }
+.stroke-current {
+  stroke: currentColor !important;
+}
 .bs-none {
   box-shadow: none !important;
 }
@@ -6578,6 +6581,11 @@ p {
 }
 .bs-i-lg.bs-hover:hover {
   box-shadow: inset 0 1px 12px 0 #9199a1 !important;
+}
+@media print {
+  .print\:d-none {
+    display: none !important;
+  }
 }
 .w0 {
   width: 0 !important;
@@ -9941,6 +9949,38 @@ button.s-link:focus {
 }
 .s-tag__danger:hover .s-tag--dismiss {
   background-color: #b31a29;
+}
+.s-pagination {
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: -2px;
+  margin-right: -2px;
+}
+.s-pagination--item {
+  margin-left: 2px;
+  margin-right: 2px;
+  padding: 0 8px;
+  background-color: transparent;
+  border-radius: 3px;
+  border: 1px solid rgba(12, 13, 14, 0.15);
+  font-size: 1rem;
+  line-height: 1.92307692;
+  color: #3b4045;
+}
+.s-pagination--item:hover {
+  border-color: rgba(12, 13, 14, 0.3);
+  background-color: rgba(12, 13, 14, 0.05);
+  color: #0C0D0E;
+}
+.s-pagination--item.is-selected {
+  border-color: transparent;
+  background-color: #F48024;
+  color: #FFF;
+}
+.s-pagination--item.s-pagination--item__clear,
+.s-pagination--item.s-pagination--item__clear:hover {
+  border-color: transparent;
+  background-color: transparent;
 }
 .highlight {
   background: #ffffff;
