@@ -16,7 +16,11 @@
                         <ul class="list-reset grid gs8 gsy fd-column stacks-nav__secondary js-secondary-nav"></ul>
                     </aside>
                 </div>
-                <div class="grid--cell w80 wmx8 sm:w100">
+                <!--
+                    This container’s .fl1 doesn't behave properly unless we add an explicit width.
+                    https://stackoverflow.com/questions/38723559/flex-item-exceeds-its-container
+                -->
+                <div class="grid--cell fl1 ws1 sm:w100">
                     {% if page.title %}
                         <h1 class="stacks-h1">{{ page.title }}</h1>
                     {% endif %}
