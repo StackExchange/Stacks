@@ -17,7 +17,7 @@ description: Button groups are a collection of buttons. This component is used i
 {% endhighlight %}
         <div class="stacks-preview--example">
             <div class="overflow-x-auto">
-                <div class="s-btn-group">
+                <div class="s-btn-group js-btn-group">
                     <button class="s-btn s-btn__muted s-btn__outlined js-btn-group-item" role="button">Newest</button>
                     <button class="s-btn s-btn__muted s-btn__outlined js-btn-group-item" role="button">Frequent</button>
                     <form>
@@ -39,7 +39,7 @@ description: Button groups are a collection of buttons. This component is used i
         $(".js-btn-group-item").on("click", function(e) {
             e.preventDefault();
             e.stopPropagation();
-            $(this).siblings().removeClass("is-selected");
+            $(".js-btn-group").find(".js-btn-group-item").removeClass("is-selected");
             $(this).addClass("is-selected");
         });
     });
