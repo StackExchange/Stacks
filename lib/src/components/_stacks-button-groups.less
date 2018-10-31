@@ -17,27 +17,27 @@
 
     .s-btn {
         margin-right: 0; // With Safari in production, we need to collapse white space
-
-        // We don't want border-radii on interior buttons
-        &:not(:first-of-type):not(:last-of-type) {
-            border-radius: 0;
-        }
+        border-radius: 0; // Kill the default border radius
 
         // If it isn't the first button, we should slide button over to account for border thickness
-        &:not(:first-of-type) {
+        &:not(:first-child) {
             margin-left: -1px;
         }
 
-        // Kill the right border radii on the first button
-        &:first-of-type {
-            border-top-right-radius: 0;
-            border-bottom-right-radius: 0;
+        // Re-add the left border radius on the first button
+        &:first-child {
+            border-top-left-radius: @br-sm;
+            border-bottom-left-radius: @br-sm;
         }
 
-        // Kill the left border radii on the last button
-        &:last-of-type {
-            border-top-left-radius: 0;
-            border-bottom-left-radius: 0;
+        // Re-add the right border radius on the last button
+        &:last-child {
+            border-top-right-radius: @br-sm;
+            border-bottom-right-radius: @br-sm;
+        }
+
+        &:only-child {
+            border-radius: 0;
         }
 
         // When the button is active or selected, it should pop above its siblings
@@ -54,8 +54,18 @@
         display: flex;
 
         .s-btn {
-            // We should slide buttons over to account for border thickness
-            margin-left: -1px;
+            border-radius: 0;
+            margin-left: -1px; // We should slide buttons over to account for border thickness
+        }
+
+        &:first-child .s-btn {
+            border-top-left-radius: @br-sm;
+            border-bottom-left-radius: @br-sm;
+        }
+
+        &:last-child .s-btn {
+            border-top-right-radius: @br-sm;
+            border-bottom-right-radius: @br-sm;
         }
     }
 }

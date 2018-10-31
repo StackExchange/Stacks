@@ -690,20 +690,21 @@ a.s-badge__important:hover {
 }
 .s-btn-group .s-btn {
   margin-right: 0;
-}
-.s-btn-group .s-btn:not(:first-of-type):not(:last-of-type) {
   border-radius: 0;
 }
-.s-btn-group .s-btn:not(:first-of-type) {
+.s-btn-group .s-btn:not(:first-child) {
   margin-left: -1px;
 }
-.s-btn-group .s-btn:first-of-type {
-  border-top-right-radius: 0;
-  border-bottom-right-radius: 0;
+.s-btn-group .s-btn:first-child {
+  border-top-left-radius: 3px;
+  border-bottom-left-radius: 3px;
 }
-.s-btn-group .s-btn:last-of-type {
-  border-top-left-radius: 0;
-  border-bottom-left-radius: 0;
+.s-btn-group .s-btn:last-child {
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+}
+.s-btn-group .s-btn:only-child {
+  border-radius: 0;
 }
 .s-btn-group .s-btn.is-selected {
   z-index: 25;
@@ -715,7 +716,16 @@ a.s-badge__important:hover {
   display: flex;
 }
 .s-btn-group form .s-btn {
+  border-radius: 0;
   margin-left: -1px;
+}
+.s-btn-group form:first-child .s-btn {
+  border-top-left-radius: 3px;
+  border-bottom-left-radius: 3px;
+}
+.s-btn-group form:last-child .s-btn {
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
 }
 .s-card {
   position: relative;
