@@ -17,27 +17,27 @@
 
     .s-btn {
         margin-right: 0; // With Safari in production, we need to collapse white space
-        border-radius: 0; // Kill the default border radius
 
         // If it isn't the first button, we should slide button over to account for border thickness
         &:not(:first-child) {
             margin-left: -1px;
         }
 
-        // Re-add the left border radius on the first button
-        &:first-child {
-            border-top-left-radius: @br-sm;
-            border-bottom-left-radius: @br-sm;
-        }
-
-        // Re-add the right border radius on the last button
-        &:last-child {
-            border-top-right-radius: @br-sm;
-            border-bottom-right-radius: @br-sm;
-        }
-
-        &:only-child {
+        // We don't want border-radii on interior buttons
+        &:not(:first-child):not(:last-child) {
             border-radius: 0;
+        }
+
+        // Kill the right border radius on the first button
+        &:first-child:not(:only-child) {
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 0;
+        }
+
+        // Kill the left border radius on the last button
+        &:last-child:not(:only-child) {
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
         }
 
         // When the button is active or selected, it should pop above its siblings
@@ -54,19 +54,22 @@
         display: flex;
 
         .s-btn {
-            border-radius: 0;
             margin-left: -1px; // We should slide buttons over to account for border thickness
         }
 
+        &:not(:first-child):not(:last-child) .s-btn {
+            border-radius: 0;
+        }
+
         &:first-child .s-btn {
-            border-top-left-radius: @br-sm;
-            border-bottom-left-radius: @br-sm;
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 0;
             margin-left: 0;
         }
 
         &:last-child .s-btn {
-            border-top-right-radius: @br-sm;
-            border-bottom-right-radius: @br-sm;
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
         }
     }
 }

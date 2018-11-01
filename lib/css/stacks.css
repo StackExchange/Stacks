@@ -690,21 +690,20 @@ a.s-badge__important:hover {
 }
 .s-btn-group .s-btn {
   margin-right: 0;
-  border-radius: 0;
 }
 .s-btn-group .s-btn:not(:first-child) {
   margin-left: -1px;
 }
-.s-btn-group .s-btn:first-child {
-  border-top-left-radius: 3px;
-  border-bottom-left-radius: 3px;
-}
-.s-btn-group .s-btn:last-child {
-  border-top-right-radius: 3px;
-  border-bottom-right-radius: 3px;
-}
-.s-btn-group .s-btn:only-child {
+.s-btn-group .s-btn:not(:first-child):not(:last-child) {
   border-radius: 0;
+}
+.s-btn-group .s-btn:first-child:not(:only-child) {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+.s-btn-group .s-btn:last-child:not(:only-child) {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
 }
 .s-btn-group .s-btn.is-selected {
   z-index: 25;
@@ -716,17 +715,19 @@ a.s-badge__important:hover {
   display: flex;
 }
 .s-btn-group .s-btn-group--container .s-btn {
-  border-radius: 0;
   margin-left: -1px;
 }
+.s-btn-group .s-btn-group--container:not(:first-child):not(:last-child) .s-btn {
+  border-radius: 0;
+}
 .s-btn-group .s-btn-group--container:first-child .s-btn {
-  border-top-left-radius: 3px;
-  border-bottom-left-radius: 3px;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
   margin-left: 0;
 }
 .s-btn-group .s-btn-group--container:last-child .s-btn {
-  border-top-right-radius: 3px;
-  border-bottom-right-radius: 3px;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
 }
 .s-card {
   position: relative;
