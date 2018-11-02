@@ -5,34 +5,48 @@ description: A short guide to Stacks, a robust CSS &amp; Pattern library for rap
 ---
 
 <section class="stacks-section">
-    {% header {element: 'h2', text: 'Goals'} %}
+    {% header h2 | Goals %}
     <p class="stacks-copy">Stacks is built with a unified goal: We should be writing <em>as little CSS as possible</em>. To achieve this goal, the Stacks team has created a robust set of reusable components. These include components like buttons, tables, and form elements.</p>
     <p class="stacks-copy">We’ve also created a powerful set of atomic classes that can be chained together to create just about <em>any</em> layout without writing a single line of <em>new</em> CSS. Further, these atomic classes can be used as modifiers of pre-existing components.</p>
 </section>
 
 <section class="stacks-section">
-    {% header {element: 'h2', text: 'How to Best Use Stacks'} %}
+    {% header h2 | Installing %}
+    <p class="stacks-copy">Stacks is currently included within various Stack Overflow projects automatically. If you’re working on a Stack Overflow project, chances are it’s already available for you! If not, reach out to us and we’ll work on getting it setup.</p>
+    <p class="stacks-copy">To include Stacks in other projects, you can install Stacks via NPM: <code class="stacks-code">npm install --save @stackoverflow/stacks</code></p>
+    <p class="stacks-copy">You can also include a minified, compiled Stacks CSS style sheet that’s delivered via Unkpg, a CDN for NPM packages. This is good for things like Codepen or other quick prototypes. This CDN should not be considered production-ready. <code class="stacks-code">&#x3C;link rel=&#x22;stylesheet&#x22; href=&#x22;https://unpkg.com/@stackoverflow/stacks&#x22;&#x3E;</code></p>
+</section>
+
+<section class="stacks-section">
+    {% header h2 | How to Best Use Stacks %}
     <p class="stacks-copy">In order to use Stacks, let’s consider the design you’d like to implement.</p>
 
-    <p class="stacks-copy fw-bold fs-italic mb4">My design uses existing components</p>
-    <p class="stacks-copy">Identify if the design you’re implementing uses any existing components. Great, it does? Grab the markup from that component’s example page and paste that into your view.</p>
-
-    <p class="stacks-copy fw-bold fs-italic mb4">My design uses existing components but has some special cases.</p>
-    <p class="stacks-copy"><em>e.g. background colors, border, font sizes</em>. Awesome, copy the component’s example markup to your view and add a atomic class to override its styling. Practically, this will likely just be adding something like an <a href="{{ "/product/base/spacing" | relative_url }}"><code class="stacks-code">.mb12</code></a> to a button, or hiding something temporarily with <a href="{{ "/product/base/display" | relative_url }}"><code class="stacks-code">.d-none</code></a>.</p>
-
-    <p class="stacks-copy fw-bold fs-italic mb4">My design uses a new pattern that doesn’t have a component yet.</h3>
-    <p class="stacks-copy">No worries, let’s build your view by assembling some atomic classes. If you’re doing this more than once, you should help us identify a new pattern by <a href="https://github.com/StackExchange/Stacks/issues/new">requesting a new component</a>.</p>
-
-    <p class="stacks-copy fw-bold fs-italic mb4">My design is super special and…</p>
-    <p class="stacks-copy">I’m going to write a lot of custom CSS from scratch in its own <code class="stacks-code">.less</code> file that I’ve included in the bundle. You <em>probably</em> shouldn’t be doing this. With atomic classes, you can build <em>most</em> of what you’re attempting to do without writing a single new line of CSS. The Stacks team would prefer you use these pre-existing classes to build new UI. Every line of CSS you write, the more CSS we have to maintain, the more our users have to download, and the more bytes we have to host.</p>
+    <ol class="stacks-list">
+        <li>
+            <p class="stacks-copy fw-bold mb4">My design uses existing components</p>
+            <p class="stacks-copy">Identify if the design you’re implementing uses any existing components. Great, it does? Grab the markup from that component’s example page and paste that into your view.</p>
+        </li>
+        <li>
+            <p class="stacks-copy fw-bold mb4">My design uses existing components but has some special cases.</p>
+            <p class="stacks-copy"><em>e.g. background colors, border, font sizes</em>. Awesome, copy the component’s example markup to your view and add a atomic class to override its styling. Practically, this will likely just be adding something like an <a href="{{ "/product/base/spacing" | relative_url }}"><code class="stacks-code">.mb12</code></a> to a button, or hiding something temporarily with <a href="{{ "/product/base/display" | relative_url }}"><code class="stacks-code">.d-none</code></a>.</p>
+        </li>
+        <li>
+            <p class="stacks-copy fw-bold mb4">My design uses a new pattern that doesn’t have a component yet.</h3>
+            <p class="stacks-copy">No worries, let’s build your view by assembling some atomic classes. If you’re doing this more than once, you should help us identify a new pattern by <a href="https://github.com/StackExchange/Stacks/issues/new">requesting a new component</a>.</p>
+        </li>
+        <li>
+            <p class="stacks-copy fw-bold mb4">My design is super special and…</p>
+            <p class="stacks-copy">I’m going to write a lot of custom CSS from scratch in its own <code class="stacks-code">.less</code> file that I’ve included in the bundle. You <em>probably</em> shouldn’t be doing this. With atomic classes, you can build <em>most</em> of what you’re attempting to do without writing a single new line of CSS. The Stacks team would prefer you use these pre-existing classes to build new UI. Every line of CSS you write, the more CSS we have to maintain, the more our users have to download, and the more bytes we have to host.</p>
+        </li>
+    </ol>
 </section>
 
 <section class="stacks-section">
-    {% header {element: 'h2', text: 'Javascript'} %}
-    <p class="stacks-copy">At this time Stacks is a pure Less/CSS framework and does not include any Javascript. The Javascript written for our examples is only used to demonstrate the component’s states. It is not meant to be used in production.</p>
+    {% header h2 | Javascript %}
+    <p class="stacks-copy">At this time Stacks is a pure Less/CSS framework and does not include any JavaScript. The JavaScript written for our examples is only used to demonstrate the component’s states. It is not meant to be used in production.</p>
 </section>
 
 <section class="stacks-section">
-    {% header {element: 'h2', text: 'Getting Help'} %}
+    {% header h2 | Getting Help %}
     <p class="stacks-copy">Need help? Open <a href="https://github.com/StackExchange/Stacks/issues/new">an issue</a>. We’ll be happy to help. 🎈</p>
 </section>

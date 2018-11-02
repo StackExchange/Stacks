@@ -110,7 +110,7 @@ module.exports = function(grunt) {
                 expand: true,
                 cwd: 'node_modules/@stackoverflow/stacks-icons/build/lib',
                 src: '**',
-                dest: 'docs/product/resources/svg-icons/',
+                dest: 'docs/_includes/svg-icons/',
                 filter: 'isFile',
             },
             data: {
