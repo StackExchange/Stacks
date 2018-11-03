@@ -167,6 +167,9 @@ description: Stacks provides atomic classes to override default styling of typog
 
 <section id="typography-scale" class="stacks-section">
     {% header h2 | Sizes %}
+    <p class="stacks-copy">
+        Fonts larger than <code class="stacks-code">.fs-body1</code> are reduced in size at the smallest responsive breakpoint. <code class="stacks-code">.fs-body1</code> or smaller remain fixed at their initial pixel values.
+    </p>
     {% header h3 | Size Classes %}
     <div class="overflow-x-auto mb32">
         <table class="wmn3 s-table s-table__bx-simple">
@@ -174,13 +177,15 @@ description: Stacks provides atomic classes to override default styling of typog
                 <tr>
                     <th scope="col">Class</th>
                     <th scope="col">Size</th>
+                    <th scope="col">Responsive Size</th>
                 </tr>
             </thead>
             <tbody>
                 {% for term in site.data.product.type-definitions.fontsize %}
                     <tr>
-                        <th scope="row"><code class="stacks-code bg-white">.fs-{{ term.term }}</code></th>
-                        <td>{{ term.define }}</td>
+                        <th scope="row"><code class="stacks-code">.fs-{{ term.term }}</code></th>
+                        <td><code class="stacks-code">{{ term.define }}</code></td>
+                        <td><code class="stacks-code">{{ term.responsive }}</code></td>
                     </tr>
                 {% endfor %}
             </tbody>
