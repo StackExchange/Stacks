@@ -691,17 +691,17 @@ a.s-badge__important:hover {
 .s-btn-group .s-btn {
   margin-right: 0;
 }
-.s-btn-group .s-btn:not(:first-of-type):not(:last-of-type) {
-  border-radius: 0;
-}
-.s-btn-group .s-btn:not(:first-of-type) {
+.s-btn-group .s-btn:not(:first-child) {
   margin-left: -1px;
 }
-.s-btn-group .s-btn:first-of-type {
+.s-btn-group .s-btn:not(:first-child):not(:last-child) {
+  border-radius: 0;
+}
+.s-btn-group .s-btn:first-child:not(:only-child) {
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
 }
-.s-btn-group .s-btn:last-of-type {
+.s-btn-group .s-btn:last-child:not(:only-child) {
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
 }
@@ -710,6 +710,24 @@ a.s-badge__important:hover {
 }
 .s-btn-group .s-btn:active {
   z-index: 30;
+}
+.s-btn-group .s-btn-group--container {
+  display: flex;
+}
+.s-btn-group .s-btn-group--container .s-btn {
+  margin-left: -1px;
+}
+.s-btn-group .s-btn-group--container:not(:first-child):not(:last-child) .s-btn {
+  border-radius: 0;
+}
+.s-btn-group .s-btn-group--container:first-child .s-btn {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  margin-left: 0;
+}
+.s-btn-group .s-btn-group--container:last-child .s-btn {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
 }
 .s-card {
   position: relative;
