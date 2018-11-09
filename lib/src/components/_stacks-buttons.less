@@ -564,6 +564,7 @@
     font: inherit;
     color: inherit;
     background: none;
+    box-shadow: none;
     cursor: default;
 }
 
@@ -573,6 +574,7 @@
     outline: none;
     font: inherit;
     background: none;
+    box-shadow: none;
 
     .s-link();
 
@@ -580,6 +582,7 @@
     &:active,
     &:focus {
         background: none;
+        box-shadow: none;
     }
 }
 
@@ -589,23 +592,11 @@
     //  [1] Most svg icons are 18px tall, but the button's line-height is 1 (13px).
     //      This means we need to off set the margin y-axis so we don't add
     //      additional height to the button.
-    //
-    //  [2] When you place an icon in a button, the button must have the `.grid`
-    //      class. We add this so we can invoke `.ai-center`. This centers the
-    //      copy with the icon. Then we apply a right margin for gutter spacing.
-    //
-    //  [3] When an icon is placed in a button, it creates trapped whitespace
-    //      to the left of the icon. This is a result of the button padding.
-    //      Again we offset this with a negative left margin to eliminate this
-    //      trapped whitespace.
     //  ------------------------------------------------------------------------
     .svg-icon {
-        align-self: center;
-        vertical-align: inherit;
+        .va-unset();
         margin-top: -0.3em;         // [1]
-        margin-bottom: -0.15em;     // [1]
-        margin-left: -0.2em;        // [3]
-
+        margin-bottom: -0.3em;      // [1]
         transition: opacity 200ms @te-smooth; // Animate the transition to .is-loading
     }
 }
