@@ -52,6 +52,18 @@ module.exports = function(grunt) {
                 }
             }
         },
+        rollup: {
+            options: {
+                plugins: [require('rollup-plugin-node-resolve')(), require('rollup-plugin-commonjs')()],
+                format: 'iife',
+                moduleName: 'stacks_polyfills'
+            },
+            polyfills: {
+                files: {
+                    'lib/js/dist/stacks.polyfills.js': ['lib/js/src/stacks.polyfills.js']
+                }
+            }
+        },
         // Minify and concatenate JS
         uglify: {
             production: {
@@ -65,6 +77,9 @@ module.exports = function(grunt) {
                         'node_modules/stimulus/dist/stimulus.umd.js',
                         'lib/js/src/stacks.js',
                         'lib/js/src/controllers/**/*.js'
+                    ],
+                    'docs/assets/js/stacks.polyfills.min.js': [
+                        'lib/js/dist/stacks.polyfills.js'
                     ],
                 }
             }
@@ -132,9 +147,10 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-contrib-uglify');
+    grunt.loadNpmTasks('grunt-rollup');
 
     // Default task
     grunt.registerTask('default', ['concurrent:serve']);
-    grunt.registerTask('build', ['less:production', 'less:partials', 'clean:partials', 'cssmin']);
+    grunt.registerTask('build', ['less:production', 'less:partials', 'clean:partials', 'cssmin', 'rollup:polyfills']);
     grunt.registerTask('update-icons', ['clean:icons', 'copy']);
 };
