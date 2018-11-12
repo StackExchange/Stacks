@@ -122,7 +122,58 @@ description: This page provides some common typography patterns for email, but a
     </div>
 </section>
 <section class="stacks-section">
+    {% header h2 | Code %}
+    <div class="stacks-preview mb16">
+{% highlight html linenos %}
+<!-- Preformatted code block -->
+<pre style="margin: 0 0 15px; background-color: #EFF0F1; padding: 4px 8px; border-radius: 3px; overflow-x: auto; font-size: 13px; line-height: 17px; "><code style="color: #242729; font-size: 13px; line-height: 17px; font-family: Consolas, Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace, sans-serif;">
+    …
+</code></pre>
 
+<!-- Inline code -->
+Format <code style="padding: 1px 5px; background-color: #EFF0F1; color: #242729; font-size: 13px; font-family: Consolas, Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace, sans-serif;">inline code</code> like this.
+{% endhighlight %}
+        <div class="stacks-preview--example" style="font-family: arial, sans-serif; font-size: 15px; line-height: 19px; color: #54595F; text-align: left;">
+<pre style="margin: 0 0 15px; background-color: #EFF0F1; padding: 4px 8px; border-radius: 3px; overflow-x: auto; font-size: 13px; line-height: 17px; "><code style="color: #242729; font-size: 13px; line-height: 17px; font-family: Consolas, Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace, sans-serif;">var obj = {};
+obj.categories = pm.variables.get("category_id");
+obj.packages = pm.variables.get("package_id");
+obj.type = "add";
+pm.globals.set("switch_json", JSON.stringify(obj));
+console.log("request body: " + pm.globals.get("switch_json"));</code></pre>
+            <p style="margin: 0;">Format <code style="padding: 1px 5px; background-color: #EFF0F1; color: #242729; font-size: 13px; font-family: Consolas, Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace, sans-serif;">inline code</code> like this.</p>
+        </div>
+    </div>
+    <div class="grid ai-start s-notice s-notice__warning mb48">
+        <div class="grid--cell mr8">{% icon AlertCircle %}</div>
+        <div class="grid--cell lh-lg">
+            <strong>Known Issue:</strong> in Windows Outlook 2003 - 2019, preformatted code blocks <a href="https://i.stack.imgur.com/OCP1l.png">appear like this</a>.
+        </div>
+    </div>
+</section>
+<section class="stacks-section">
+    {% header h2 | Blockquotes %}
+    <div class="stacks-preview mb16">
+{% highlight html linenos %}
+<blockquote style="margin: 0 0 15px; padding: 4px 10px; background-color: #FFF8DC; border-left: 2px solid #ffeb8e;">
+    <p style="padding: 4px 0; margin: 0; font-size: 15px; overflow-wrap: break-word;">Write a function that takes a string consisting of alphabetic characters as input argument and returns True if the string is a palindrome.
+        …
+    </p>
+</blockquote>
+{% endhighlight %}
+        <div class="stacks-preview--example" style="font-family: arial, sans-serif; font-size: 15px; line-height: 19px; color: #54595F; text-align: left;">
+            <blockquote style="margin: 0; padding: 4px 10px; background-color: #FFF8DC; border-left: 2px solid #ffeb8e;">
+                <p style="padding: 4px 0; font-size: 15px; margin: 0; overflow-wrap: break-word;">Write a function that takes a string consisting of alphabetic characters as input argument and returns True if the string is a palindrome. A palindrome is a string which is the same backward or forward.</p>
+            </blockquote>
+        </div>
+    </div>
+    <div class="grid ai-start s-notice s-notice__warning mb48">
+        <div class="grid--cell mr8">{% icon AlertCircle %}</div>
+        <div class="grid--cell lh-lg">
+            <strong>Known Issue:</strong> in Windows Outlook 2003 - 2019, blockquotes <a href="https://i.stack.imgur.com/8yz38.png">appear like this</a>.
+        </div>
+    </div>
+</section>
+<section class="stacks-section">
     {% header h2 | Preventing Text Wrapping %}
     <p class="stacks-copy">
         A non-breaking space (<code class="stacks-code">&#38;nbsp;</code>) can be used to prevent a group of words from breaking onto multiple lines. Useful for keeping names together and preventing typographic orphans&nbsp;and&nbsp;widows.

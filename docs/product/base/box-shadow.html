@@ -11,6 +11,7 @@ description: Box shadow atomic classes allow you to change an element’s box sh
                 <tr>
                     <th class="s-table--cell2" scope="col">Class</th>
                     <th scope="col">Output</th>
+                    <th scope="col" class="ta-center"><a class="s-link s-link__inherit" href="{{ "/product/guidelines/conditional-classes#hover" | relative_url }}">Hover?</a></th>
                 </tr>
             </thead>
             <tbody>
@@ -18,6 +19,11 @@ description: Box shadow atomic classes allow you to change an element’s box sh
                     <tr class="fs-caption">
                         <th scope="row"><code class="stacks-code bg-white">.{{ atomic.class }}</code></th>
                         <td><code class="stacks-code bg-white">{{ atomic.output }}</code></td>
+                        <td class="ta-center">
+                            {% if atomic.hover %}
+                                {% icon Checkmark | fc-green-500 %}
+                            {% endif %}
+                        </td>
                     </tr>
                 {% endfor %}
             </tbody>
