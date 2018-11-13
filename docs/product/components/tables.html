@@ -555,14 +555,14 @@ description: Tables are used to list all information from a data set. The base s
     <p class="stacks-copy">With the addition of JavaScript, table columns can be re-sorted based on the columns data.</p>
     <div class="stacks-preview">
 {% highlight html linenos %}
-<table class="s-table s-table__sortable">
+<table class="s-table s-table__sortable" data-controller="s-sortable-table">
     <thead>
         <tr>
-            <th scope="col" data-controller="s-sortable-column" data-action="click->s-sortable-column#sort" class="is-sorted">Listing @Svg.ArrowDownSm</th>
-            <th scope="col" data-controller="s-sortable-column" data-action="click->s-sortable-column#sort">Status @Svg.ArrowUpDownSm</th>
-            <th scope="col" data-controller="s-sortable-column" data-action="click->s-sortable-column#sort">Owner @Svg.ArrowUpDownSm</th>
-            <th scope="col" data-controller="s-sortable-column" data-action="click->s-sortable-column#sort" class="ta-right">Views @Svg.ArrowUpDownSm</th>
-            <th scope="col" data-controller="s-sortable-column" data-action="click->s-sortable-column#sort" class="ta-right">Applies @Svg.ArrowUpDownSm</th>
+            <th scope="col" data-target="s-sortable-table.column" data-action="click->s-sortable-table#sort" class="is-sorted">Listing @Svg.ArrowDownSm</th>
+            <th scope="col" data-target="s-sortable-table.column" data-action="click->s-sortable-table#sort">Status @Svg.ArrowUpDownSm</th>
+            <th scope="col" data-target="s-sortable-table.column" data-action="click->s-sortable-table#sort">Owner @Svg.ArrowUpDownSm</th>
+            <th scope="col" data-target="s-sortable-table.column" data-action="click->s-sortable-table#sort" class="ta-right">Views @Svg.ArrowUpDownSm</th>
+            <th scope="col" data-target="s-sortable-table.column" data-action="click->s-sortable-table#sort" class="ta-right">Applies @Svg.ArrowUpDownSm</th>
         </tr>
     </thead>
     <tbody>
@@ -576,28 +576,28 @@ description: Tables are used to list all information from a data set. The base s
 </table>
 {% endhighlight %}
         <div class="stacks-preview--example">
-            <table class="s-table s-table__sortable">
+            <table class="s-table s-table__sortable" data-controller="s-sortable-table">
                 <thead>
                     <tr>
-                        <th scope="col" data-controller="s-sortable-column" data-action="click->s-sortable-column#sort" class="is-sorted" rowspan="2">
+                        <th scope="col" data-target="s-sortable-table.column" data-action="click->s-sortable-table#sort" class="is-sorted" rowspan="2">
                             Listing
                             {% icon ArrowDownSm | js-sorting-indicator js-sorting-indicator-desc %}
                             {% icon ArrowUpSm | js-sorting-indicator js-sorting-indicator-asc d-none %}
                             {% icon ArrowUpDownSm | js-sorting-indicator js-sorting-indicator-none d-none %}
                         </th>
-                        <th scope="col" data-controller="s-sortable-column" data-action="click->s-sortable-column#sort" rowspan="2">
+                        <th scope="col" data-target="s-sortable-table.column" data-action="click->s-sortable-table#sort" rowspan="2">
                             Status
                             {% icon ArrowDownSm | js-sorting-indicator js-sorting-indicator-desc d-none %}
                             {% icon ArrowUpSm | js-sorting-indicator js-sorting-indicator-asc d-none %}
                             {% icon ArrowUpDownSm | js-sorting-indicator js-sorting-indicator-none %}
                         </th>
-                        <th scope="col" data-controller="s-sortable-column" data-action="click->s-sortable-column#sort" colspan="3">
+                        <th scope="col" data-target="s-sortable-table.column" data-action="click->s-sortable-table#sort" colspan="3">
                             Stuff
                             {% icon ArrowDownSm | js-sorting-indicator js-sorting-indicator-desc d-none %}
                             {% icon ArrowUpSm | js-sorting-indicator js-sorting-indicator-asc d-none %}
                             {% icon ArrowUpDownSm | js-sorting-indicator js-sorting-indicator-none %}
                         </th>
-                        <th scope="col" data-controller="s-sortable-column" data-action="click->s-sortable-column#sort" class="ta-right">
+                        <th scope="col" data-target="s-sortable-table.column" data-action="click->s-sortable-table#sort" class="ta-right">
                             Expires
                             {% icon ArrowDownSm | js-sorting-indicator js-sorting-indicator-desc d-none %}
                             {% icon ArrowUpSm | js-sorting-indicator js-sorting-indicator-asc d-none %}
@@ -605,19 +605,19 @@ description: Tables are used to list all information from a data set. The base s
                         </th>
                     </tr>
                     <tr>
-                        <th scope="col" data-controller="s-sortable-column" data-action="click->s-sortable-column#sort" colspan="2">
+                        <th scope="col" data-target="s-sortable-table.column" data-action="click->s-sortable-table#sort" colspan="2">
                             Owner
                             {% icon ArrowDownSm | js-sorting-indicator js-sorting-indicator-desc d-none %}
                             {% icon ArrowUpSm | js-sorting-indicator js-sorting-indicator-asc d-none %}
                             {% icon ArrowUpDownSm | js-sorting-indicator js-sorting-indicator-none %}
                         </th>
-                        <th scope="col" data-controller="s-sortable-column" data-action="click->s-sortable-column#sort" class="ta-right">
+                        <th scope="col" data-target="s-sortable-table.column" data-action="click->s-sortable-table#sort" class="ta-right">
                             Views
                             {% icon ArrowDownSm | js-sorting-indicator js-sorting-indicator-desc d-none %}
                             {% icon ArrowUpSm | js-sorting-indicator js-sorting-indicator-asc d-none %}
                             {% icon ArrowUpDownSm | js-sorting-indicator js-sorting-indicator-none %}
                         </th>
-                        <th scope="col" data-controller="s-sortable-column" data-action="click->s-sortable-column#sort" class="ta-right">
+                        <th scope="col" data-target="s-sortable-table.column" data-action="click->s-sortable-table#sort" class="ta-right">
                             Applies
                             {% icon ArrowDownSm | js-sorting-indicator js-sorting-indicator-desc d-none %}
                             {% icon ArrowUpSm | js-sorting-indicator js-sorting-indicator-asc d-none %}
