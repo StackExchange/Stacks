@@ -56,7 +56,7 @@
     }
 
     //  ===========================================================================
-    //  --  RESPONSIVE (deprecated)
+    //  --  RESPONSIVE
     //      The three #screen-XX mixins wrap the given rules in the appropriate
     //      media queries and (if applicable) selector prefixes for all breakpoint
     //      groups that have been defined in the static configuration section.
@@ -68,25 +68,38 @@
     //                  font-family: "Comic Sans MS";
     //              });
     //          }
+    //
+    //      If @force-selector is `true`, the @rules will be evaluated inside a `html { ... }`
+    //      block if a breakpoint group doesn't have a selector. You should only use this if you
+    //      need to apply CSS to the root element itself:
+    //
+    //          #stacks-internals #screen-lg({
+    //              &, body {
+    //                  font-size: 77px;
+    //              }
+    //          }, @force-selector: true);
+    //
+    //      The above sets the font size on <html> and <body> at the appropriate widths, regardless
+    //      of whether responsiveness was configured with or without selectors.
     //  ---------------------------------------------------------------------------
 
-    #screen-lg(@rules) {
+    #screen-lg(@rules, @force-selector: false) {
         #stacks-internals #load-static-config();
-        #stacks-internals #responsive-stuff(0, @rules, @breakpoints, 1);
+        #stacks-internals #responsive-stuff(0, @rules, @breakpoints, 1, @force-selector);
     }
-    #screen-md(@rules) {
+    #screen-md(@rules, @force-selector: false) {
         #stacks-internals #load-static-config();
-        #stacks-internals #responsive-stuff(1, @rules, @breakpoints, 1);
+        #stacks-internals #responsive-stuff(1, @rules, @breakpoints, 1, @force-selector);
     }
-    #screen-sm(@rules) {
+    #screen-sm(@rules, @force-selector: false) {
         #stacks-internals #load-static-config();
-        #stacks-internals #responsive-stuff(2, @rules, @breakpoints, 1);
+        #stacks-internals #responsive-stuff(2, @rules, @breakpoints, 1, @force-selector);
     }
 
     // @bp-index is 0 (large), 1 (medium), or 2 (small). @start-index is the index into the @breakpoints config option
     // which is increased recursively to exhaust the whole list.
-    #responsive-stuff(@bp-index, @rules, @breakpoints, @start-index) when (@start-index < length(@breakpoints)) {
-        
+    #responsive-stuff(@bp-index, @rules, @breakpoints, @start-index, @force-selector: false) when (@start-index < length(@breakpoints)) {
+
         // If the first list element is a string, it's a selector that is prepended to the responsive class
         & when (isstring(extract(@breakpoints, @start-index))) {
 
@@ -104,7 +117,7 @@
             }
 
             // recursively descend to handle the next breakpoint group ("+4" for the selector string and the three breakpoint values)
-            #stacks-internals #responsive-stuff(@bp-index, @rules, @breakpoints, @start-index + 4)
+            #stacks-internals #responsive-stuff(@bp-index, @rules, @breakpoints, @start-index + 4, @force-selector)
         }
 
         // If the first list element is a number (i.e. pixel value), there is no selector string
@@ -113,12 +126,22 @@
             // the actual breakpoint
             @bp: extract(@breakpoints, @start-index + @bp-index);
 
-            @media (max-width: (@bp)) {
-                @rules();
+            & when not (@force-selector) {
+                @media (max-width: (@bp)) {
+                    @rules();
+                }
+            }
+
+            & when (@force-selector) {
+                @media (max-width: (@bp)) {
+                    html & {
+                        @rules();
+                    }
+                }
             }
 
             // recursively descend to handle the next breakpoint group ("+3" for the three breakpoint values)
-            #stacks-internals #responsive-stuff(@bp-index, @rules, @breakpoints, @start-index + 3)
+            #stacks-internals #responsive-stuff(@bp-index, @rules, @breakpoints, @start-index + 3, @force-selector)
         }
     }
 
@@ -170,7 +193,7 @@
             & when (@unitless < 0) {
                 @abs: abs(@unitless);
                 @class-name: ~"@{class-prefix}n@{abs}";
-                
+
                 & when not (@responsive) {
                     @{class-name} { @rules(); .template(@val); }
                 }
