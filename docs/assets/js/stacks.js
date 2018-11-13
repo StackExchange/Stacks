@@ -1787,24 +1787,16 @@ Copyright © 2018 Basecamp, LLC
                 Controller.prototype[prop] = data[prop];
             }
         }
-        Object.defineProperty(Controller, "stacksControllerName", { get: function () { return name; }});
         return Controller;
-    }
-
-    function registerController(Controller) {
-        var name = Controller.stacksControllerName;
-        if (!name) {
-            throw "Controller wasn't created via Stacks.createController";
-        }
-        application.register(name, Controller);
-        Stacks.controllers[name] = Controller;
     }
 
     Stacks.addController = function addController(name, data) {
         if (!/^s-/.test(name)) {
             throw "Stacks-created Stimulus controller names must start with \"s-\".";
         }
-        registerController(createController(name, data));
+        var Controller = createController(name, data);
+        application.register(name, Controller);
+        Stacks.controllers[name] = Controller;
     };
 })()
 
