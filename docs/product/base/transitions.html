@@ -1,0 +1,56 @@
+---
+layout: page
+title: Cursors
+description: Atomic transition classes allow you to quickly change an element’s transitions between the values of specific CSS properties. You can control them by specifying their duration, property, or timing function. Delays are also provided.
+---
+<section class="stacks-section">
+    {% header h2 | Classes %}
+    <div class="overflow-x-auto mb32">
+        <table class="wmn3 s-table s-table__bx-simple">
+            <thead>
+                <tr>
+                    <th scope="col">Class</th>
+                    <th scope="col">Output</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for atomic in site.data.product.atomic-definitions.cursors %}
+                <tr class="fs-caption">
+                    <th scope="row"><code class="stacks-code bg-white">.{{ atomic.class }}</code></th>
+                    <td><code class="stacks-code bg-white">{{ atomic.output }}</code></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    {% header h2 | Examples %}
+    <div class="stacks-preview">
+{% highlight html linenos %}
+<div class="t">…</div>
+<div class="t-slow">…</div>
+<div class="t-slower">…</div>
+<div class="t-fast">…</div>
+<div class="t-faster">…</div>
+{% endhighlight %}
+        <div class="stacks-preview--example fs-caption ff-mono">
+            <div class="grid gs8 fw-wrap">
+                <div class="grid--cell bg-orange-100 p12 ba bc-orange-3 t">
+                    t
+                </div>
+                <div class="grid--cell bg-orange-100 p12 ba bc-orange-3 t-slow">
+                    t-slow
+                </div>
+                <div class="grid--cell bg-orange-100 p12 ba bc-orange-3 t-slower">
+                    t-slower
+                </div>
+                <div class="grid--cell bg-orange-100 p12 ba bc-orange-3 t-fast">
+                    t-fast
+                </div>
+                <div class="grid--cell bg-orange-100 p12 ba bc-orange-3 t-faster">
+                    t-faster
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
