@@ -1,8 +1,12 @@
 ---
 layout: page
 title: Transitions
-description: Atomic transition classes allow you to quickly apply a default transition to an element. You can also modify an element’s transition duration, property, or timing function. Delays are also supported.
+description: Atomic transition classes allow you to quickly apply transitions properties to an element. You can modify an element’s transition duration, property, timing function, or delay.
 ---
+<p class="stacks-copy">You can trigger CSS transitions directly with pseudo classes like <code class="stacks-code">:hover</code> which activate on mouse over, <code class="stacks-code">:focus</code> which activates when user tabs onto or clicks into an input element, or <code class="stacks-code">active</code> when a user clicks on an element.</p>
+
+<p class="stacks-copy">You can also trigger a CSS transition using JavaScript by adding or removing a class.</p>
+
 <section class="stacks-section">
     {% header h2 | Classes %}
     <div class="overflow-x-auto mb32">
@@ -24,20 +28,32 @@ description: Atomic transition classes allow you to quickly apply a default tran
         </table>
     </div>
 
-    {% header h2 | Examples %}
+    {% header h2 | Base Transition %}
+    <p class="stacks-copy">The base transition applies a moderate duration, timing function, and delay to an element.</p>
     <div class="stacks-preview">
 {% highlight html linenos %}
 <div class="t">…</div>
-<div class="t-slow">…</div>
-<div class="t-slower">…</div>
-<div class="t-fast">…</div>
-<div class="t-faster">…</div>
 {% endhighlight %}
         <div class="stacks-preview--example fs-caption ff-mono">
             <div class="grid gs8 fw-wrap">
                 <div class="grid--cell bg-black-100 bar-sm p32 t h:purple-rain">
                     .t
                 </div>
+            </div>
+        </div>
+    </div>
+
+    {% header h2 | Speed %}
+    <p class="stacks-copy">Alter an elements transition duration.</p>
+    <div class="stacks-preview">
+    {% highlight html linenos %}
+    <div class="t-slow">…</div>
+    <div class="t-slower">…</div>
+    <div class="t-fast">…</div>
+    <div class="t-faster">…</div>
+    {% endhighlight %}
+        <div class="stacks-preview--example fs-caption ff-mono">
+            <div class="grid gs8 fw-wrap">
                 <div class="grid--cell bg-black-100 bar-sm p32 t t-slow h:purple-rain">
                     .t-slow
                 </div>
@@ -51,6 +67,21 @@ description: Atomic transition classes allow you to quickly apply a default tran
                     .t-faster
                 </div>
             </div>
+        </div>
+    </div>
+
+
+    {% header h2 | Property %}
+    <p class="stacks-copy">Target the CSS property you wish to transition.</p>
+    <div class="stacks-preview">
+    {% highlight html linenos %}
+    <div class="t-all">…</div>
+    <div class="t-none">…</div>
+    <div class="t-bg">…</div>
+    <div class="t-opacity">…</div>
+    <div class="t-shadow">…</div>
+    {% endhighlight %}
+        <div class="stacks-preview--example fs-caption ff-mono">
             <div class="grid gs8 fw-wrap">
                 <div class="grid--cell bg-black-100 bar-sm p32 t t-all h:purple-rain">
                     .t-all
@@ -70,4 +101,68 @@ description: Atomic transition classes allow you to quickly apply a default tran
             </div>
         </div>
     </div>
+
+
+    {% header h2 | Timing %}
+    <div class="stacks-preview">
+    {% highlight html linenos %}
+    <div class="t-all">…</div>
+    <div class="t-none">…</div>
+    <div class="t-bg">…</div>
+    <div class="t-opacity">…</div>
+    <div class="t-shadow">…</div>
+    {% endhighlight %}
+        <div class="stacks-preview--example fs-caption ff-mono">
+            <div class="grid gs8 fw-wrap">
+                <div class="grid--cell bg-black-100 bar-sm p32 t t-all h:purple-rain">
+                    .t-all
+                </div>
+                <div class="grid--cell bg-black-100 bar-sm p32 t t-none h:purple-rain">
+                    .t-none
+                </div>
+                <div class="grid--cell bg-black-100 bar-sm p32 t t-bg h:purple-rain">
+                    .t-bg
+                </div>
+                <div class="grid--cell bg-black-100 bar-sm p32 t t-opacity h:o50 h:purple-rain">
+                    .t-opacity
+                </div>
+                <div class="grid--cell bg-black-100 bar-sm p32 t t-shadow h:bs-lg h:purple-rain">
+                    .t-shadow
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    {% header h2 | Delay %}
+    <div class="stacks-preview">
+    {% highlight html linenos %}
+    <div class="t-all">…</div>
+    <div class="t-none">…</div>
+    <div class="t-bg">…</div>
+    <div class="t-opacity">…</div>
+    <div class="t-shadow">…</div>
+    {% endhighlight %}
+        <div class="stacks-preview--example fs-caption ff-mono">
+            <div class="grid gs8 fw-wrap">
+                <div class="grid--cell bg-black-100 bar-sm p32 t t-all h:purple-rain">
+                    .t-all
+                </div>
+                <div class="grid--cell bg-black-100 bar-sm p32 t t-none h:purple-rain">
+                    .t-none
+                </div>
+                <div class="grid--cell bg-black-100 bar-sm p32 t t-bg h:purple-rain">
+                    .t-bg
+                </div>
+                <div class="grid--cell bg-black-100 bar-sm p32 t t-opacity h:o50 h:purple-rain">
+                    .t-opacity
+                </div>
+                <div class="grid--cell bg-black-100 bar-sm p32 t t-shadow h:bs-lg h:purple-rain">
+                    .t-shadow
+                </div>
+            </div>
+        </div>
+    </div>
+
+
 </section>
