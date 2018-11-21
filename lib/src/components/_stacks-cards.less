@@ -14,23 +14,26 @@
 //  $   BASE STYLE
 //  ----------------------------------------------------------------------------
 .s-card {
-    position: relative;
     padding: @su12;
-    border: 1px solid @brc-lighter;
+    border: 1px solid @brc-light;
     border-radius: @br-sm;
     background-color: @white;
-    transition: box-shadow 150ms @te-smooth;
-
-    &:hover {
-        border-color: @brc-light;
-        transition: box-shadow 100ms @te-smooth;
-    }
 
     p:last-of-type {
         margin-bottom: 0;
     }
 }
 
+//  ============================================================================
+//  $   LINKED CARDS
+//  ----------------------------------------------------------------------------
+a.s-card {
+    &:hover,
+    &:focus,
+    &:active {
+        border-color: @brc-dark;
+    }
+}
 
 //  ============================================================================
 //  $   MODIFIERS
@@ -53,3 +56,4 @@
         }
     }
 }
+
