@@ -4,7 +4,7 @@ title: Display
 description: Display atomic classes allow you to change an element’s display quickly.
 ---
 <section class="stacks-section">
-    {% header {element: 'h2', text: 'Classes'} %}
+    {% header h2 | Classes %}
     <div class="overflow-x-auto mb32">
         <table class="wmn5 s-table s-table__bx-simple">
             <thead>
@@ -12,7 +12,8 @@ description: Display atomic classes allow you to change an element’s display q
                     <th class="s-table--cell2" scope="col">Class</th>
                     <th class="s-table--cell3" scope="col">Output</th>
                     <th scope="col">Definition</th>
-                    <th class="s-table--cell2 ta-center" scope="col"><a class="s-link s-link__inherit" href="{{ "/product/guidelines/responsiveness" | relative_url }}">Responsive?</a></th>
+                    <th class="s-table--cell1 ta-center" scope="col"><a class="s-link s-link__inherit" href="{{ "/product/guidelines/conditional-classes#responsive" | relative_url }}">Responsive?</a></th>
+                    <th class="s-table--cell1 ta-center" scope="col"><a class="s-link s-link__inherit" href="{{ "/product/guidelines/conditional-classes#print" | relative_url }}">Print?</a></th>
                 </tr>
             </thead>
             <tbody>
@@ -23,7 +24,12 @@ description: Display atomic classes allow you to change an element’s display q
                         <td>{{ atomic.define }}</td>
                         <td class="ta-center">
                             {% if atomic.responsive %}
-                                {% svg /product/resources/svg-icons/Checkmark.svg width="18" height="18" aria-hidden="true" class="svg-icon iconCheckmark fc-green-500" %}
+                                {% icon Checkmark | fc-green-500 %}
+                            {% endif %}
+                        </td>
+                        <td class="ta-center">
+                            {% if atomic.print %}
+                                {% icon Checkmark | fc-green-500 %}
                             {% endif %}
                         </td>
                     </tr>
@@ -34,7 +40,7 @@ description: Display atomic classes allow you to change an element’s display q
     {% include notice-unset.html %}
 </section>
 <section class="stacks-section">
-    {% header {element: 'h2', text: 'Examples'} %}
+    {% header h2 | Examples %}
     <div class="stacks-preview">
 {% highlight html linenos %}
 <div class="d-block">…</div>

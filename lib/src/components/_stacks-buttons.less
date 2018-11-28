@@ -384,32 +384,7 @@
             }
         }
     }
-
-    //  -- BUTTONS WITH ICONS
-    //  ------------------------------------------------------------------------
-    //  [1] Most svg icons are 18px tall, but the button's line-height is 1 (13px).
-    //      This means we need to off set the margin y-axis so we don't add
-    //      additional height to the button.
-    //
-    //  [2] When you place an icon in a button, the button must have the `.grid`
-    //      class. We add this so we can invoke `.ai-center`. This centers the
-    //      copy with the icon. Then we apply a right margin for gutter spacing.
-    //
-    //  [3] When an icon is placed in a button, it creates trapped whitespace
-    //      to the left of the icon. This is a result of the button padding.
-    //      Again we offset this with a negative left margin to eliminate this
-    //      trapped whitespace.
-    //  ------------------------------------------------------------------------
-    .svg-icon {
-        margin-top: -0.3em;         // [1]
-        margin-right: 0.4em;        // [2]
-        margin-bottom: -0.15em;     // [1]
-        margin-left: -0.2em;        // [3]
-
-        transition: opacity 200ms @te-smooth; // Animate the transition to .is-loading
-    }
 }
-
 
 //  ============================================================================
 //  $   DEFAULT (SECONDARY) STYLES
@@ -579,7 +554,54 @@
     }
 }
 
+.s-btn__unset,
+.s-btn__unset:hover,
+.s-btn__unset:active {
+    padding: 0;
+    border: none;
+    outline: none;
+    font: inherit;
+    color: inherit;
+    background: none;
+    box-shadow: none;
+    cursor: default;
+}
 
+.s-btn__unset:focus {
+    color: inherit;
+}
+
+.s-btn__link {
+    padding: 0;
+    border: none;
+    outline: none;
+    font: inherit;
+    background: none;
+    box-shadow: none;
+
+    .s-link();
+
+    &:hover,
+    &:active,
+    &:focus {
+        background: none;
+    }
+}
+
+.s-btn__icon {
+    //  -- BUTTONS WITH ICONS
+    //  ------------------------------------------------------------------------
+    //  [1] Most svg icons are 18px tall, but the button's line-height is 1 (13px).
+    //      This means we need to off set the margin y-axis so we don't add
+    //      additional height to the button.
+    //  ------------------------------------------------------------------------
+    .svg-icon {
+        vertical-align: initial;
+        margin-top: -0.3em;         // [1]
+        margin-bottom: -0.3em;      // [1]
+        transition: opacity 200ms @te-smooth; // Animate the transition to .is-loading
+    }
+}
 
 //  $$  Loading Icon
 //      Adds a loading icon into the button
