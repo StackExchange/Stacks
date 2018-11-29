@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!-- Use the latest (edge) version of IE rendering engine -->
     <meta name="x-apple-disable-message-reformatting"> <!-- Disable auto-scale in iOS 10 Mail entirely -->
 
-    <!-- CSS Reset -->
+    <!-- CSS Reset : BEGIN -->
     <style type="text/css">
         /* What it does: Remove spaces around the email design added by some email clients. */
         /* Beware: It can remove the padding / margin and add a background color to the compose a reply window. */
@@ -72,6 +72,81 @@
             line-height: inherit !important;
         }
 
+        /* What it does: Prevents Gmail from changing the text color in conversation threads. */
+        .im {
+            color: inherit !important;
+        }
+
+        /* What it does: Prevents Gmail from displaying an download button on large, non-linked images. */
+        .a6S {
+            display: none !important;
+            opacity: 0.01 !important;
+        }
+        /* If the above doesn't work, add a .g-img class to any image in question. */
+        img.g-img + div {
+            display:none !important;
+        }
+
+        /* What it does: Prevents underlining the button text in Windows 10 */
+        .button-link {
+            text-decoration: none !important;
+        }
+
+        /* What it does: Removes right gutter in Gmail iOS app: https://github.com/TedGoas/Cerberus/issues/89  */
+        /* Create one of these media queries for each additional viewport size you'd like to fix */
+
+        /* iPhone 4, 4S, 5, 5S, 5C, and 5SE */
+        @media only screen and (min-device-width: 320px) and (max-device-width: 374px) {
+            u ~ div .email-container {
+                min-width: 320px !important;
+            }
+        }
+        /* iPhone 6, 6S, 7, 8, and X */
+        @media only screen and (min-device-width: 375px) and (max-device-width: 413px) {
+            u ~ div .email-container {
+                min-width: 375px !important;
+            }
+        }
+        /* iPhone 6+, 7+, and 8+ */
+        @media only screen and (min-device-width: 414px) {
+            u ~ div .email-container {
+                min-width: 414px !important;
+            }
+        }
+    </style>
+    <!-- What it does: Helps DPI ccaling in Outlook 2007-2013 -->
+    <!--[if gte mso 9]>
+    <xml>
+        <o:OfficeDocumentSettings>
+            <o:AllowPNG/>
+            <o:PixelsPerInch>96</o:PixelsPerInch>
+        </o:OfficeDocumentSettings>
+        </xml>
+    <![endif]-->
+
+    <!-- CSS Reset : END -->
+
+    <!-- Progressive Enhancements : BEGIN -->
+    <style type="text/css">
+        /* What it does: Hover styles for buttons and tags */
+        .s-btn__primary:hover {
+            background: #0077CC !important;
+            border-color: #0077CC !important;
+        }
+        .s-btn__white:hover {
+            background: rgba(255,255,255,.7) !important;
+            border-color: rgba(255,255,255,.7) !important;
+        }
+        .s-btn__outlined:hover {
+            background: rgba(0,119,204,.05) !important;
+            color: #005999 !important;
+        }
+        .s-tag:hover,
+        .post-tag:hover {
+            border-color: #cee0ed !important;
+            background: #cee0ed !important;
+        }
+
         /* What it does: Styles markdown links that we can't write inline CSS for. */
         .has-markdown a,
         .has-markdown a:visited {
@@ -116,89 +191,6 @@
             overflow-wrap: break-word;
         }
 
-        /* What it does: Prevents Gmail from changing the text color in conversation threads. */
-        .im {
-            color: inherit !important;
-        }
-
-        /* What it does: Prevents Gmail from displaying an download button on large, non-linked images. */
-        .a6S {
-            display: none !important;
-            opacity: 0.01 !important;
-        }
-        /* If the above doesn't work, add a .g-img class to any image in question. */
-        img.g-img + div {
-            display:none !important;
-        }
-
-        /* What it does: Prevents underlining the button text in Windows 10 */
-        .button-link {
-            text-decoration: none !important;
-        }
-
-        /* What it does: Removes right gutter in Gmail iOS app: https://github.com/TedGoas/Cerberus/issues/89  */
-        /* Create one of these media queries for each additional viewport size you'd like to fix */
-
-        /* iPhone 4, 4S, 5, 5S, 5C, and 5SE */
-        @media only screen and (min-device-width: 320px) and (max-device-width: 374px) {
-            u ~ div .email-container {
-                min-width: 320px !important;
-            }
-        }
-        /* iPhone 6, 6S, 7, 8, and X */
-        @media only screen and (min-device-width: 375px) and (max-device-width: 413px) {
-            u ~ div .email-container {
-                min-width: 375px !important;
-            }
-        }
-        /* iPhone 6+, 7+, and 8+ */
-        @media only screen and (min-device-width: 414px) {
-            u ~ div .email-container {
-                min-width: 414px !important;
-            }
-        }
-    </style>
-    <!-- Reset list spacing because Outlook ignores much of our inline CSS. -->
-    <!--[if mso]>
-    <style type="text/css">
-        ul,
-        ol {
-            margin: 0 !important;
-        }
-        li {
-            margin-left: 30px !important;
-        }
-        li.list-item-first {
-            margin-top: 15px !important;
-        }
-        li.list-item-last {
-            margin-bottom: 15px !important;
-        }
-    </style>
-    <![endif]-->
-
-    <!-- Progressive Enhancements -->
-    <style type="text/css">
-
-        /* What it does: Hover styles for buttons and tags */
-        .s-btn__primary:hover {
-            background: #0077CC !important;
-            border-color: #0077CC !important;
-        }
-        .s-btn__white:hover {
-            background: rgba(255,255,255,.7) !important;
-            border-color: rgba(255,255,255,.7) !important;
-        }
-        .s-btn__outlined:hover {
-            background: rgba(0,119,204,.05) !important;
-            color: #005999 !important;
-        }
-        .s-tag:hover,
-        .post-tag:hover {
-            border-color: #cee0ed !important;
-            background: #cee0ed !important;
-        }
-
         /* What it does: Rounds corners in email clients that support it */
         .bar {
             border-radius: 5px;
@@ -212,9 +204,7 @@
             border-bottom-right-radius: 5px;
         }
 
-        /* Media Queries */
         @media screen and (max-width: 680px) {
-
             /* What it does: Forces table cells into full-width rows. */
             .stack-column,
             .stack-column-center {
@@ -237,38 +227,16 @@
             }
 
             /* What it does: Utility classes to reduce spacing for smaller viewports. */
-            .sm-p {
-               padding: 20px !important;
-            }
-            .sm-pt {
-               padding-top: 20px !important;
-            }
-            .sm-pb {
-               padding-bottom: 20px !important;
-            }
-            .sm-pr {
-               padding-right: 20px !important;
-            }
-            .sm-pl {
-               padding-left: 20px !important;
-            }
-            .sm-px {
-               padding-left: 20px !important;
-               padding-right: 20px !important;
-            }
-            .sm-py {
-               padding-top: 20px !important;
-               padding-bottom: 20px !important;
-            }
-            .sm-mb {
-               margin-bottom: 20px !important;
-            }
-            .sm-fs34 {
-                font-size: 34px !important;
-                line-height: 34px !important;
-            }
+            .sm-p   {padding: 20px !important;}
+            .sm-pt  {padding-top: 20px !important;}
+            .sm-pb  {padding-bottom: 20px !important;}
+            .sm-pr  {padding-right: 20px !important;}
+            .sm-pl  {padding-left: 20px !important;}
+            .sm-px  {padding-left: 20px !important; padding-right: 20px !important;}
+            .sm-py  {padding-top: 20px !important; padding-bottom: 20px !important;}
+            .sm-mb  {margin-bottom: 20px !important;}
 
-            /* What it does: Utility classes to kill border radius for smaller viewports. */
+            /* What it does: Utility classes to kill border radius for smaller viewports. Used mainly on the email's main container(s). */
             .bar,
             .btr,
             .bbr {
@@ -279,6 +247,7 @@
             }
         }
     </style>
+    <!-- Progressive Enhancements : END -->
 </head>
 
 <!--
@@ -310,8 +279,10 @@
             <table aria-hidden="true" border="0" cellpadding="0" cellspacing="0" role="presentation" style="max-width: 680px; width:100%">
                 <!-- Logo : BEGIN -->
                 <tr>
-                    <td style="padding: 20px 30px; text-align: left;" valign="middle" class="sm-px">
-                        <a href="https://stackoverflow.com/"><img src="Logo@2x.png" alt="Stack Overflow" border="0" height="30" width="150"></a>
+                    <td style="padding: 20px 30px; text-align: left;" class="sm-px">
+                        <a href="https://stackoverflow.com/">
+                            <img src="Logo@2x.png" alt="Stack Overflow logo" border="0" height="30" width="150" style="display: block; font-family: arial, sans-serif; font-size: 15px; line-height: 15px; color: #3C3F44; margin: 0;">
+                        </a>
                     </td>
                 </tr>
                 <!-- Logo : END -->
@@ -414,11 +385,11 @@
                             <!-- Sender Info : BEGIN -->
                             <tr>
                                 <td style="padding-bottom: 5px; text-align: left;">
-                                    <img src="LogoSm@2x.png" align="left" alt="Stack Overflow" border="0" width="111" height="22" style="display: block;">
+                                    <img src="LogoSm@2x.png" align="left" alt="Small Stack Overflow logo" border="0" width="111" height="22" style="display: block; font-family: arial, sans-serif; font-size: 15px; line-height: 15px; color: #3C3F44;">
                                 </td>
                             </tr>
                             <tr>
-                                <td style="padding-bottom: 5px; font-size: 12px; line-height: 16px; font-family: arial, sans-serif; color: #9199A1; text-align: left;"><strong>Stack&nbsp;Overflow</strong>, <span class="unstyle-auto-detected-links">110 William Street, 28th Floor, New York, NY 10038</span></td>
+                                <td style="padding-bottom: 5px; font-size: 12px; line-height: 17px; font-family: arial, sans-serif; color: #9199A1; text-align: left;"><strong>Stack&nbsp;Overflow</strong>, <span class="unstyle-auto-detected-links">110 William Street, 28th Floor, New York, NY 10038</span></td>
                             </tr>
                             <!-- Sender Info : END -->
                             <!-- Heart : BEGIN -->
