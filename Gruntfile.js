@@ -109,5 +109,6 @@ module.exports = function(grunt) {
     // Default task
     grunt.registerTask('default', ['build', 'concurrent:serve']);
     grunt.registerTask('build', ['less:production', 'less:partials', 'clean:partials', 'cssmin']);
+    grunt.registerTask('deploy', ['build', 'shell:jekyllServe']);
     grunt.registerTask('update-icons', ['clean:icons', 'copy']);
 };
