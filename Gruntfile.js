@@ -23,15 +23,6 @@ module.exports = function(grunt) {
                         cwd: 'docs'
                     }
                 }
-            },
-            netlifyJekyll: {
-                command: 'jekyll build',
-                options: {
-                    stderr: false,
-                    execOptions: {
-                        cwd: 'docs'
-                    }
-                }
             }
         },
         // Less compilation
@@ -118,6 +109,5 @@ module.exports = function(grunt) {
     // Default task
     grunt.registerTask('default', ['build', 'concurrent:serve']);
     grunt.registerTask('build', ['less:production', 'less:partials', 'clean:partials', 'cssmin']);
-    grunt.registerTask('deploy', ['build', 'shell:netlifyJekyll']);
     grunt.registerTask('update-icons', ['clean:icons', 'copy']);
 };
