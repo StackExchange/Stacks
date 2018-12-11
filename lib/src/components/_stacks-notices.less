@@ -19,6 +19,16 @@
     border: 1px solid transparent;
     border-radius: @br-sm;
     color: @fc-medium;
+    font-size: @fs-body1;
+
+    .s-toast & {
+        max-width: 44rem;
+        width: 100%;
+        padding-top: @su8;
+        padding-bottom: @su8;
+        box-shadow: @bs-sm;
+        pointer-events: all;
+    }
 }
 
 & {
@@ -105,42 +115,27 @@
     color: @white;
 }
 
-
-//  ============================================================================
-//  $   FLOAT NOTICES
-//  ----------------------------------------------------------------------------
-.s-notice__float {
-    z-index: @zi-popovers;
-    box-shadow: @bs-sm;
-}
-
 //  ============================================================================
 //  $   TOASTS
 //  ----------------------------------------------------------------------------
-.s-notice__toast {
+.s-toast {
     visibility: hidden;
     position: fixed;
-    z-index: @zi-navigation-fixed - 1;
-    top: 16px; // 50px (header) + 16px
-    left: 50%;
-    width: 100%;
-    max-width: 42rem;
-    margin-left: -16rem;
-    box-shadow: @bs-sm;
+    display: flex;
+    justify-content: center;
+    top: @su16;
+    left: @su8;
+    right: @su8;
     opacity: 0;
-    -webkit-transform: translate3d(0,-66px,0);
-            transform: translate3d(0,-66px,0);
-    transition: opacity 0ms 100ms, visibility 0s 100ms, -webkit-transform 100ms @te-smooth-slow 0s;
-    transition: transform 100ms @te-smooth-slow 0s, opacity 0ms 100ms, visibility 0s 100ms;
-    transition: transform 100ms @te-smooth-slow 0s, opacity 0ms 100ms, visibility 0s 100ms, -webkit-transform 100ms @te-smooth-slow 0s;
+    z-index: @zi-popovers;
+    transform: translate3d(0,-66px,0);
+    transition: transform 100ms @te-smooth-slow 0s, opacity 60ms @te-smooth-slow 0ms, visibility 0s 150ms;
+    pointer-events: none;
 
     &[aria-hidden="false"] {
         visibility: visible;
         opacity: 1;
-        -webkit-transform: translate3d(0,0,0);
-                transform: translate3d(0,0,0);
-        transition: visibility 0s 0s, opacity 100ms @te-smooth 0s, -webkit-transform 100ms @te-smooth 0s;
+        transform: translate3d(0,0,0);
         transition: visibility 0s 0s, opacity 100ms @te-smooth 0s, transform 100ms @te-smooth 0s;
-        transition: visibility 0s 0s, opacity 100ms @te-smooth 0s, transform 100ms @te-smooth 0s, -webkit-transform 100ms @te-smooth 0s;
     }
 }

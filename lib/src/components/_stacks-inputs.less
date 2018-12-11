@@ -39,12 +39,14 @@
 //  ----------------------------------------------------------------------------
 .s-input,
 .s-textarea {
+    -webkit-appearance: none; // Removes shadows we don't want in mobile Safari
     width: 100%;
-    margin: 0;
+    margin: 0; // A guard against Core's default margins
     padding: @input-padding;
     border: 1px solid @black-200;
     border-radius: @br-sm;
     box-shadow: inset 0 0 1px fade(@black-350, 20%), 0 0 0 fade(@white, 0%);
+    font-size: @fs-body1;
     font-family: inherit;
     .input-lineheight(@fs-body1);
 
@@ -63,6 +65,10 @@
         padding-top: 1px; // Placeholder text is 1px higher than text that's entered.
         color: @black-200;
     }
+
+    //  --  REMOVE EDGE ADDITIONS
+    //  ------------------------------------------------------------------------
+    &::-ms-clear { display: none; }
 }
 
 
@@ -207,6 +213,7 @@ fieldset {
         border-radius: @br-sm;
         background-color: @white;
         outline: 0;
+        font-size: @fs-body1;
         font-family: inherit;
         .input-lineheight(@fs-body1);
 
@@ -242,6 +249,7 @@ fieldset {
 
         //  [2]  Now re-style the checkboxes and radios
         //  ------------------------------------------------------------------------
+        margin: 0; // A guard against Core's default margins
         width: 1em;
         height: 1em;
         border: 1px solid @black-200;
@@ -391,6 +399,10 @@ fieldset {
             top: 1.5em;
         }
     }
+
+    .s-input-message a {
+        text-decoration: underline;
+    }
 }
 
 //  $$  WARNING
@@ -409,7 +421,15 @@ fieldset {
     }
 
     .s-input-message {
-        color: shade(@yellow-600, 25%);
+        color: @yellow-800;
+
+        a {
+            color: @yellow-900;
+
+            &:hover {
+                color: darken(@yellow-900,10%);
+            }
+        }
     }
 
     .s-input-icon {
@@ -434,6 +454,14 @@ fieldset {
 
     .s-input-message {
         color: @red-500;
+
+        a {
+            color: @red-800;
+
+            &:hover {
+                color: @red-900;
+            }
+        }
     }
 
     .s-input-icon {
@@ -457,7 +485,15 @@ fieldset {
     }
 
     .s-input-message {
-        color: darken(@green-500, 2%);
+        color: darken(@green-500,5%);
+
+        a {
+            color: @green-800;
+
+            &:hover {
+                color: @green-900;
+            }
+        }
     }
 
     .s-input-icon {
