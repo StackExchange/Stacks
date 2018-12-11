@@ -66,10 +66,7 @@ module.exports = function(grunt) {
         // Run tasks in parallel
         concurrent: {
             serve: [
-                'less:production',
-                'watch:less',
-                'cssmin',
-                'watch:css',
+                'watch',
                 'shell:jekyllServe',
             ],
             options: {
@@ -110,7 +107,7 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-clean');
 
     // Default task
-    grunt.registerTask('default', ['concurrent:serve']);
+    grunt.registerTask('default', ['build', 'concurrent:serve']);
     grunt.registerTask('build', ['less:production', 'less:partials', 'clean:partials', 'cssmin']);
     grunt.registerTask('update-icons', ['clean:icons', 'copy']);
 };
