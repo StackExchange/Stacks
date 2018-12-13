@@ -48,6 +48,21 @@
         &:active {
             z-index: @zi-active;
         }
+
+        // Undo extra vertical space to button group caused by adding badges
+        .s-badge {
+            margin-top: -8px;
+            margin-bottom: -7px;
+        }
+        .s-badge__mini {
+            margin-top: -@su4;
+            margin-bottom: -@su4;
+        }
+
+        // When the button is active or selected, the s-badge__filter badge changes color.
+        &.is-selected .s-badge__filter {
+            color: @fc-medium;
+        }
     }
 
     .s-btn-group--container {
