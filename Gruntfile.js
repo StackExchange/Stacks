@@ -29,7 +29,7 @@ module.exports = function(grunt) {
         less: {
             stacks: {
                 files: {
-                    'lib/css/dist/stacks.css': 'lib/css/src/stacks.less'
+                    'dist/css/stacks.css': 'lib/css/stacks.less'
                 }
             },
             // note that the docs CSS includes the full Stacks
@@ -43,8 +43,8 @@ module.exports = function(grunt) {
                 // that they compile (e.g. if a static file accidentally accesses the dynamic options, the full bundle will compile
                 // fine, but stacks-static alone will blow up)
                 files: {
-                    'lib/css/tmp/stacks-static.css': 'lib/css/src/stacks-static.less',
-                    'lib/css/tmp/stacks-dynamic.css': 'lib/css/src/stacks-dynamic.less',
+                    'tmp/css/stacks-static.css': 'lib/css/stacks-static.less',
+                    'tmp/css/stacks-dynamic.css': 'lib/css/stacks-dynamic.less',
                 }
             }
         },
@@ -52,7 +52,7 @@ module.exports = function(grunt) {
         cssmin: {
             stacks: {
                 files: {
-                    'lib/css/dist/stacks.min.css': 'lib/css/dist/stacks.css'
+                    'dist/css/stacks.min.css': 'dist/css/stacks.css'
                 }
             },
             docs: {
@@ -68,7 +68,7 @@ module.exports = function(grunt) {
             },
             stacks_js_polyfills: {
                 files: {
-                    'lib/js/dist/stacks.polyfills.js': ['lib/js/src/stacks.polyfills.js']
+                    'dist/js/stacks.polyfills.js': ['lib/js/stacks.polyfills.js']
                 }
             }
         },
@@ -76,12 +76,12 @@ module.exports = function(grunt) {
         uglify: {
             stacks_js: {
                 files: {
-                    'lib/js/dist/stacks.min.js': ['lib/js/dist/stacks.js']
+                    'dist/js/stacks.min.js': ['dist/js/stacks.js']
                 }
             },
             stacks_js_polyfills: {
                 files: {
-                    'lib/js/dist/stacks.polyfills.min.js': ['lib/js/dist/stacks.polyfills.js']
+                    'dist/js/stacks.polyfills.min.js': ['dist/js/stacks.polyfills.js']
                 }
             },
         },
@@ -91,10 +91,10 @@ module.exports = function(grunt) {
                     separator: '\n\n;\n\n'
                 },
                 files: {
-                    'lib/js/dist/stacks.js': [
+                    'dist/js/stacks.js': [
                         'node_modules/stimulus/dist/stimulus.umd.js',
-                        'lib/js/src/stacks.js',
-                        'lib/js/src/controllers/**/*.js'
+                        'lib/js/stacks.js',
+                        'lib/js/controllers/**/*.js'
                     ]
                 }
             }
@@ -104,7 +104,7 @@ module.exports = function(grunt) {
             // If any Stacks LESS file changes, both the Stacks CSS and the docs CSS have to be
             // recompiled, because that latter @imports the Stacks LESS.
             stacks_less: {
-                files: ['lib/css/src/**/*.less'],
+                files: ['lib/css/**/*.less'],
                 tasks: ['concurrent:compile_stacks_css']
             },
 
@@ -115,7 +115,7 @@ module.exports = function(grunt) {
             },
 
             stacks_js: {
-                files: ['lib/js/src/**/*.js'], // note: this doesn't watch any of the npm dependencies
+                files: ['lib/js/**/*.js'], // note: this doesn't watch any of the npm dependencies
                 tasks: ['concurrent:compile_stacks_js', 'copy:js2docs']
             }
         },
@@ -157,13 +157,13 @@ module.exports = function(grunt) {
 
             // Clean-up the partial CSS files created in less:stacks_partials to ensure that
             // dynamic and static part compile independently of each other
-            stacks_partials: ['lib/css/tmp']
+            stacks_partials: ['tmp/']
         },
 
         copy: {
             // copy the compiled JS files into the Jekyll source
             js2docs: {
-                src: 'lib/js/dist/*.js',
+                src: 'dist/js/*.js',
                 dest: 'docs/assets/js/',
                 flatten: true,
                 expand: true
