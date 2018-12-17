@@ -153,7 +153,7 @@ module.exports = function(grunt) {
 
         clean: {
             // Clean the icons directory to prepare for copying from the node dependency
-            icons: ['docs/product/resources/svg-icons/'],
+            icons: ['docs/_includes/svg-icons/'],
 
             // Clean-up the partial CSS files created in less:stacks_partials to ensure that
             // dynamic and static part compile independently of each other

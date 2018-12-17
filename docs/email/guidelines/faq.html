@@ -24,11 +24,12 @@ title: Frequently Asked Questions
     <p class="stacks-copy">
         Various email clients handle CSS inheritance differently from one another, so it’s best to place inline CSS on the HTML tag close to the content you wish to style instead of relying on the cascade.
     </p>
-    <p class="stacks-copy grid ai-center fc-green-400 fw-bold fs-body2 tt-uppercase">
-        {% icon Checkmark | mr4 %}
-        Do
-    </p>
-    <div class="stacks-preview _preview-none">
+    <div class="grid grid__allcells6 gsx gs16">
+        <div class="grid--cell">
+            <p class="fc-green-500 fw-bold fs-body1 tt-uppercase bb bbw3 bc-green-2 mb0 pb8">
+                {% icon Checkmark | mr4 %} Do
+            </p>
+            <div class="stacks-preview _preview-none">
 {% highlight html linenos %}
 <table>
     <tr>
@@ -38,12 +39,13 @@ title: Frequently Asked Questions
     </tr>
 </table>
 {% endhighlight %}
-    </div>
-    <p class="stacks-copy grid ai-center fc-red-500 fw-bold fs-body2 tt-uppercase">
-        {% icon Clear | mr4 %}
-        Don’t
-    </p>
-    <div class="stacks-preview _preview-none">
+            </div>
+        </div>
+        <div class="grid--cell">
+            <p class="fc-red-500 fw-bold fs-body1 tt-uppercase bb bbw3 bc-red-2 mb0 pb8">
+                {% icon Clear | mr4 %} Don’t
+            </p>
+            <div class="stacks-preview _preview-none">
 {% highlight html linenos %}
 <table style="font-family: arial;">
     <tr>
@@ -53,6 +55,8 @@ title: Frequently Asked Questions
     </tr>
 </table>
 {% endhighlight %}
+            </div>
+        </div>
     </div>
 </section>
 
@@ -64,11 +68,12 @@ title: Frequently Asked Questions
     <p class="stacks-copy">
         Outlook only honors margins on typography tags, and only honors padding on <span class="stacks-code">&lt;td&gt;</span> tags. Its interpretation of spacing on other tags like <span class="stacks-code">&lt;table&gt;</span>, <span class="stacks-code">&lt;div&gt;</span>, and <span class="stacks-code">&lt;img&gt;</span> tags is sketchy, so it’s best to avoid spacing with those.
     </p>
-    <p class="stacks-copy grid ai-center fc-green-400 fw-bold fs-body2 tt-uppercase">
-        {% icon Checkmark | mr4 %}
-        Do
-    </p>
-    <div class="stacks-preview _preview-none">
+    <div class="grid grid__allcells6 gsx gs16">
+        <div class="grid--cell">
+            <p class="fc-green-500 fw-bold fs-body1 tt-uppercase bb bbw3 bc-green-2 mb0 pb8">
+                {% icon Checkmark | mr4 %} Do
+            </p>
+            <div class="stacks-preview _preview-none">
 {% highlight html linenos %}
 <td style="padding-left: 10px;">
     <p style="margin-bottom: 10px">
@@ -76,12 +81,13 @@ title: Frequently Asked Questions
     </p>
 </td>
 {% endhighlight %}
-    </div>
-    <p class="stacks-copy grid ai-center fc-red-500 fw-bold fs-body2 tt-uppercase">
-        {% icon Clear | mr4 %}
-        Don’t
-    </p>
-    <div class="stacks-preview _preview-none">
+            </div>
+        </div>
+        <div class="grid--cell">
+            <p class="fc-red-500 fw-bold fs-body1 tt-uppercase bb bbw3 bc-red-2 mb0 pb8">
+                {% icon Clear | mr4 %} Don’t
+            </p>
+            <div class="stacks-preview _preview-none">
 {% highlight html linenos %}
 <td style="margin-left: 10px;">
     <p style="padding-bottom: 10px">
@@ -89,6 +95,8 @@ title: Frequently Asked Questions
     </p>
 </td>
 {% endhighlight %}
+            </div>
+        </div>
     </div>
 </section>
 
@@ -152,6 +160,16 @@ title: Frequently Asked Questions
     </p>
     <p class="stacks-copy">
         Images should be hosted within their respective ESP. Upload images in Iterable for Iterable emails, add images in GitHub for StackMail emails, etc. Images should not be referenced using services like Imgur or Dropbox, as they have a greater chance of being marked as spam.
+    </p>
+</section>
+
+<section class="stacks-section">
+    {% header h2 | What is conversation threading? %}
+    <p class="stacks-copy">
+        When creating emails, Gmail may attempt to highlight portions of the email body that it thinks are important parts of a previous conversation thread. It does this by applying an <code class="stacks-code">.im</code> class to portions of the email, which makes text purple.
+    </p>
+    <p class="stacks-copy">
+        To defend against this unwanted styling, our templates include a CSS reset in the <code class="stacks-code">&lt;head&gt;</code>, though this will only be applied in <a href="https://www.campaignmonitor.com/css/style-element/style-in-head/">email clients that support CSS styles in the <code class="stacks-code">&lt;head&gt;</code></a>.
     </p>
 </section>
 
