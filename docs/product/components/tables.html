@@ -660,6 +660,8 @@ description: Tables are used to list all information from a data set. The base s
 
     <p class="stacks-copy">If a column contains any data that is not an integer, the data will be sorted lexicographically. Otherwise it will be sorted numerically, with empty cells being considered the lowest number.</p>
 
+    <p class="stacks-copy">If the table contains rows that should not be sorted, but rather always be at the top or always be at the bottom, add <code class="stacks-code">data-s-table-sort-to="top"</code> or <code class="stacks-code">data-s-table-sort-to="bottom"</code> to the <code class="stacks-code">&lt;tr&gt;</code> element.</p>
+
     {% capture html %}
         <table class="s-table s-table__sortable" data-controller="s-table">
             <thead>
@@ -687,12 +689,17 @@ description: Tables are used to list all information from a data set. The base s
                         {% icon ArrowUpDownSm | js-sorting-indicator js-sorting-indicator-none %} <!-- PREVIEW ONLY -->
                         ... <!-- CODE ONLY -->
                     </th>
+                </tr>
             </thead>
             <tbody>
                 <tr><td>Winter</td><td data-s-table-sort-val="12">December</td><td>2</td></tr>
                 <tr><td>Spring</td><td data-s-table-sort-val="3">March</td><td>13</td></tr>
                 <tr><td>Summer</td><td data-s-table-sort-val="6">June</td><td>25</td></tr>
                 <tr><td>Fall</td><td data-s-table-sort-val="9">September</td><td>13</td></tr>
+                <tr data-s-table-sort-to="bottom" class="fw-bold">
+                    <td colspan="2">Average temperature</td>
+                    <td>13</td>
+                </tr>
             </tbody>
         </table>
     {% endcapture %}{% include example.html html=html %}
