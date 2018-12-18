@@ -25,12 +25,12 @@ Stacks documentation can be found at https://stackoverflow.design/
 - [License](#license)
 
 ## Using Stacks
-Using Stacks is outlined in our [usage guidelines](https://stackoverflow.design/product/using-stacks).
+Using Stacks is outlined in our [usage guidelines](https://stackoverflow.design/product/guidelines/using-stacks).
 
 ## Building Stacks
 To contribute to Stacks documentation or its CSS library, you’ll need to build Stacks locally. View our [building guidelines](https://stackoverflow.design/product/guidelines/building).
 
-Having trouble getting these steps to work? Open [an issue](https://github.com/StackExchange/issues/new) with a `setup` label.
+Having trouble getting these steps to work? Open [an issue](https://github.com/StackExchange/Stacks/issues/new) with a `setup` label.
 
 ## Bugs and feature requests
 Have a bug or feature request? First search existing or closed issues to make sure the issue hasn’t been noted yet. If not, review our [issue guidelines](/CONTRIBUTING.md#open-an-issue) for submitting [a bug report](/CONTRIBUTING.md#reporting-bugs) or [feature request](/CONTRIBUTING.md#feature-requests).
