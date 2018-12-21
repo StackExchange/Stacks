@@ -49,20 +49,6 @@
             z-index: @zi-active;
         }
 
-        // Undo extra vertical space to button group caused by adding badges
-        .s-badge {
-            margin-top: -8px;
-            margin-bottom: -7px;
-        }
-        .s-badge__mini {
-            margin-top: -@su4;
-            margin-bottom: -@su4;
-        }
-
-        // When the button is active or selected, the s-badge__filter badge changes color.
-        &.is-selected .s-badge__filter {
-            color: @fc-medium;
-        }
     }
 
     .s-btn-group--container {
@@ -85,6 +71,26 @@
         &:last-child .s-btn {
             border-top-left-radius: 0;
             border-bottom-left-radius: 0;
+        }
+    }
+}
+
+.s-btn-group__badge {
+    .s-btn {
+        .-badge {
+            display: inline-block;
+            border-radius: @br-sm;
+            padding: @su4;
+            margin: -3px 0; // negate extra space that causes button group to grow taller
+            line-height: 1;
+            font-size: @fs-caption;
+            color: @fc-medium;
+            background-color: rgba(0,0,0,.07);
+
+            &.is-selected .-badge {
+                color: @fc-dark;
+                background-color: rgba(0,0,0,.1);
+            }
         }
     }
 }
