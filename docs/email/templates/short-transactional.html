@@ -5,32 +5,40 @@ description: A  starter template for simple transactional emails with a single m
 ---
 
 <section class="stacks-section">
-    <div class="grid grid__allcells4 jc-space-between ai-stretch gs16 gsx sm:fd-column">
-        <div class="grid--cell ba bc-black-3 mb16 p16 bar-sm">
-            <p class="stacks-copy grid ai-center fc-green-400 fw-bold fs-body2 tt-uppercase">
-                {% icon Checkmark | mr4 %} Good For:
-            </p>
-            <p class="fs-body2">Simple transactions that include a short message, such as:</p>
-            <ul class="stacks-list fs-body2 mb0">
-                <li>Forgot password</li>
-                <li>You’ve been removed from a Team</li>
-                <li>Cart abandonment</li>
-                <li>We’ve updated our privacy policy</li>
-            </ul>
+    <div class="grid jc-space-between ai-stretch gs16 gsx sm:fd-column">
+        <div class="grid--cell grid--cell8">
+            <table class="s-table s-table__lg w100 fs-body2 va-top w100 mb48">
+                <thead>
+                    <th class="btw0 bxw0 bbw3 bc-green-2 fc-green-500 bg-transparent fs-body1 s-table--cell6">{% icon Checkmark %} Good For:</th>
+                    <th class="btw0 bxw0 bbw3 bbw3 bc-red-2 fc-red-500 bg-transparent fs-body1 s-table--cell6">{% icon Clear %} Not So Good For:</th>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="va-bottom">Simple transactions that include a short message, such&nbsp;as:</td>
+                        <td class="va-bottom">Lengthy transactions that include multiple messages, lists or one time announcements, such&nbsp;as:</td>
+                    </tr>
+                    <tr>
+                        <td>Forgot password</td>
+                        <td>Your answer has been accepted!</td>
+                    </tr>
+                    <tr>
+                        <td>You’ve been removed from a Team</td>
+                        <td>New featured jobs</td>
+                    </tr>
+                    <tr>
+                        <td>Cart abandonment</td>
+                        <td>Weekly recommendations</td>
+                    </tr>
+                    <tr>
+                        <td>We’ve updated our privacy policy</td>
+                        <td>New application</td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
-        <div class="grid--cell ba bc-black-3 mb16 p16 bar-sm">
-            <p class="stacks-copy grid ai-center fc-red-500 fw-bold fs-body2 tt-uppercase">
-                {% icon Clear | mr4 %} Not So Good For:
-            </p>
-            <p class="fs-body2">Lengthy transactions that include multiple messages, lists or one time announcements, such as:</p>
-            <ul class="stacks-list fs-body2 mb0">
-                <li>Your answer has been accepted!</li>
-                <li>New featured jobs</li>
-                <li>Weekly recommendations</li>
-                <li>New application</li>
-            </ul>
+        <div class="grid--cell grid--cell4 mt32 pt8">
+            {% include notice-email-master-templates.html %}
         </div>
-        {% include notice-email-master-templates.html %}
     </div>
     <ul class="list-reset grid ai-center btr-sm ba bbw0 bc-black-3 p16 gs8 gsx">
         <li class="grid--cell sm:d-none">

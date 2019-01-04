@@ -27,59 +27,149 @@ module.exports = function(grunt) {
         },
         // Less compilation
         less: {
-            production: {
+            stacks: {
                 files: {
-                    'docs/assets/css/stacks-documentation.css': 'docs/assets/less/stacks-documentation.less',
-                    'lib/css/stacks.css': 'lib/src/stacks.less',
+                    'dist/css/stacks.css': 'lib/css/stacks.less'
                 }
             },
-            partials: {
+            // note that the docs CSS includes the full Stacks
+            docs: {
+                files: {
+                    'docs/assets/css/stacks-documentation.css': 'docs/assets/less/stacks-documentation.less'
+                }
+            },
+            stacks_partials: {
                 // these files are immediately deleted because we don't distribute them directly, but we must ensure
                 // that they compile (e.g. if a static file accidentally accesses the dynamic options, the full bundle will compile
                 // fine, but stacks-static alone will blow up)
                 files: {
-                    'lib/css/stacks-static.css': 'lib/src/stacks-static.less',
-                    'lib/css/stacks-dynamic.css': 'lib/src/stacks-dynamic.less',
+                    'tmp/css/stacks-static.css': 'lib/css/stacks-static.less',
+                    'tmp/css/stacks-dynamic.css': 'lib/css/stacks-dynamic.less',
                 }
             }
         },
         // Minify our compiled CSS
         cssmin: {
-            production: {
+            stacks: {
                 files: {
-                    'docs/assets/css/stacks-documentation.min.css': 'docs/assets/css/stacks-documentation.css',
-                    'lib/css/stacks.min.css': 'lib/css/stacks.css',
+                    'dist/css/stacks.min.css': 'dist/css/stacks.css'
+                }
+            },
+            docs: {
+                files: {
+                    'docs/assets/css/stacks-documentation.min.css': 'docs/assets/css/stacks-documentation.css'
+                }
+            }
+        },
+        rollup: {
+            options: {
+                plugins: [require('rollup-plugin-node-resolve')(), require('rollup-plugin-commonjs')()],
+                format: 'iife'
+            },
+            stacks_js_polyfills: {
+                files: {
+                    'dist/js/stacks.polyfills.js': ['lib/js/stacks.polyfills.js']
+                }
+            }
+        },
+        // Minify and concatenate JS
+        uglify: {
+            stacks_js: {
+                files: {
+                    'dist/js/stacks.min.js': ['dist/js/stacks.js']
+                }
+            },
+            stacks_js_polyfills: {
+                files: {
+                    'dist/js/stacks.polyfills.min.js': ['dist/js/stacks.polyfills.js']
+                }
+            },
+        },
+        concat: {
+            stacks_js: {
+                options: {
+                    separator: '\n\n;\n\n'
+                },
+                files: {
+                    'dist/js/stacks.js': [
+                        'node_modules/stimulus/dist/stimulus.umd.js',
+                        'lib/js/stacks.js',
+                        'lib/js/controllers/**/*.js'
+                    ]
                 }
             }
         },
         // Watch for files to change and run tasks when they do
         watch: {
-            less: {
-                files: ['lib/**/*.less', 'docs/**/*.less'],
-                tasks: ['less:production']
+            // If any Stacks LESS file changes, both the Stacks CSS and the docs CSS have to be
+            // recompiled, because that latter @imports the Stacks LESS.
+            stacks_less: {
+                files: ['lib/css/**/*.less'],
+                tasks: ['concurrent:compile_stacks_css']
             },
-            css: {
-                files: ['docs/assets/css/stacks-documentation.css', 'lib/css/stacks.css'],
-                tasks: ['cssmin']
+
+            // On the other hand, a change to docs .less only requires recompilation of the docs CSS
+            docs_less: {
+                files: ['docs/**/*.less', '!docs/_site/**'],
+                tasks: ['less:docs', 'cssmin:docs']
+            },
+
+            stacks_js: {
+                files: ['lib/js/**/*.js'], // note: this doesn't watch any of the npm dependencies
+                tasks: ['concurrent:compile_stacks_js', 'copy:js2docs']
             }
         },
         // Run tasks in parallel
         concurrent: {
-            serve: [
-                'watch',
-                'shell:jekyllServe',
-            ],
             options: {
                 logConcurrentOutput: true
-            }
+            },
+
+            serve: [
+                'watch',
+                'shell:jekyllServe'
+            ],
+
+            // CSS and JS compilation don't impact each other, thus can run in parallel
+            compile: [
+                'concurrent:compile_stacks_css',
+                ['concurrent:compile_stacks_js', 'copy:js2docs']
+            ],
+
+            // Stacks JS itself and the polyfills are independent of each other, so they can be compiled in parallel
+            compile_stacks_js: [
+                ['concat:stacks_js', 'uglify:stacks_js'],
+                ['rollup:stacks_js_polyfills', 'uglify:stacks_js_polyfills']
+            ],
+
+            // the actual stacks, the docs CSS (which also includes Stacks, but via a LESS @import), and the partials
+            // can be compiled in parallel as well
+            compile_stacks_css: [
+                ['less:stacks', 'cssmin:stacks'],
+                ['less:stacks_partials', 'clean:stacks_partials'],
+                ['less:docs', 'cssmin:docs']
+            ]
         },
-        // Clean the icons directory to prepare for copying from the node dependency
+
         clean: {
-            icons: ['docs/product/resources/svg-icons/'],
-            partials: ['lib/css/stacks-static.css', 'lib/css/stacks-dynamic.css'],
+            // Clean the icons directory to prepare for copying from the node dependency
+            icons: ['docs/_includes/svg-icons/'],
+
+            // Clean-up the partial CSS files created in less:stacks_partials to ensure that
+            // dynamic and static part compile independently of each other
+            stacks_partials: ['tmp/']
         },
-        // Copy files out of node_modules so Jekyll can use them
+
         copy: {
+            // copy the compiled JS files into the Jekyll source
+            js2docs: {
+                src: 'dist/js/*.js',
+                dest: 'docs/assets/js/',
+                flatten: true,
+                expand: true
+            },
+
+            // Copy files out of node_modules so Jekyll can use them
             svgs: {
                 expand: true,
                 cwd: 'node_modules/@stackoverflow/stacks-icons/build/lib',
@@ -103,11 +193,21 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-cssmin');
     grunt.loadNpmTasks('grunt-contrib-less');
     grunt.loadNpmTasks('grunt-contrib-watch');
+    grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-contrib-clean');
+    grunt.loadNpmTasks('grunt-contrib-uglify');
+    grunt.loadNpmTasks('grunt-rollup');
 
     // Default task
-    grunt.registerTask('default', ['build', 'concurrent:serve']);
-    grunt.registerTask('build', ['less:production', 'less:partials', 'clean:partials', 'cssmin']);
-    grunt.registerTask('update-icons', ['clean:icons', 'copy']);
+    grunt.registerTask('default',
+        'Compile all JS and LESS files and rebuild the documentation site, then continue running and re-compile as needed whenever files are changed.',
+        ['concurrent:compile', 'concurrent:serve']);
+
+    grunt.registerTask('build',
+        'Compile all JS and LESS files and rebuild the documentation site.',
+        ['concurrent:compile', 'shell:jekyllBuild']);
+
+    grunt.registerTask('update-icons', ['clean:icons', 'copy:svgs', 'copy:data']);
+
 };
