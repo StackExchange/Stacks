@@ -37,10 +37,14 @@
     color: @fc-dark;
     font-size: @fs-body1;
 
+    will-change: visibility, z-index, opacity; // Not supported in IE11 / Edge
+    transition: opacity 100ms @te-smooth 0s, z-index 0s 100ms, visibility 0s 100ms; // Transition out
+
     &[aria-hidden="false"] {
         visibility: visible;
         opacity: 1;
         z-index: @zi-popovers;
+        transition: opacity 100ms @te-smooth 0s, z-index 0s 0s, visibility 0s 0s; // Transition in
     }
 }
 
