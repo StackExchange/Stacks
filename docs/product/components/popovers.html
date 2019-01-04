@@ -28,7 +28,9 @@ description: Popovers are small content containers that provide a contextual ove
 </section>
 <section class="stacks-section">
     {% header h2 | Examples %}
-    <p class="stacks-copy">Popovers are provided without any positioning applied to them. It’s up to the implementer to choose how they’ll be positioned. This will most likely be achieved by adding something like <code class="stacks-code">ps-absolute t8 l8</code> to <code class="stacks-code">.s-popover</code>. Positioning for arrows <em>is</em> provided, however. Arrow direction (top, right, bottom, left) will appear first, followed by the secondary (center, top, right, bottom, left). For example, a popover with an arrow child of <code class="stacks-code">.s-popover--arrow_tc</code> will appear on the top of the <code class="stacks-code">.s-popover</code> and centered horizontally.</p>
+    <p class="stacks-copy">Popovers are provided without any positioning applied to them. It’s up to the implementer to choose how they’ll be positioned. This will most likely be achieved by adding something like <code class="stacks-code">ps-absolute t8 l8</code> to <code class="stacks-code">.s-popover</code>. Positioning for arrows <em>is</em> provided, however. Arrow direction (top, right, bottom, left) will appear first, followed by the secondary (center, top, right, bottom, left). For example, a popover with an arrow child of <code class="stacks-code">.s-popover--arrow_tc</code> will appear on the top of the <code class="stacks-code">.s-popover</code> and centered horizontally. Though there are sensible defaults applied to the width of popovers, you may need to adjust manually.</p>
+
+    {% header h3 | Standard %}
     <div class="stacks-preview">
 {% highlight html linenos %}
 <div class="s-popover">
@@ -122,6 +124,28 @@ description: Popovers are small content containers that provide a contextual ove
                         <p class="mb0">Popover arrow appears left bottom</p>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+
+    {% header h3 | Dismissable %}
+    <p class="stacks-copy">In the case of new feature callouts, it may be appropriate to include an explicit close button. You can add one using the styling provided by <code class="stacks-code">.s-popover--close</code>. Though there are sensible defaults applied to the width of popovers, you may need to adjust manually to make sure the close button doesn’t overlap its contents.</p>
+    <div class="stacks-preview">
+{% highlight html linenos %}
+<div class="s-popover">
+    <button class="s-popover--close s-btn s-btn__muted" aria-label="Close">
+        @Svg.ClearSm
+    </button>
+    <div class="s-popover--arrow__bl"></div>
+    …
+</div>
+{% endhighlight %}
+        <div class="stacks-preview--example bg-black-025">
+            <div class="s-popover" role="menu" aria-hidden="false">
+                <button class="s-popover--close s-btn s-btn__muted" aria-label="Close">{% icon ClearSm %}</button>
+                <div class="s-popover--arrow__bl"></div>
+                <p class="ff-mono mb8">.s-popover--close</p>
+                <p class="mb0">Popover presented with a close button</p>
             </div>
         </div>
     </div>
