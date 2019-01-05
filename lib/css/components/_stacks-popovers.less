@@ -13,12 +13,6 @@
 //  • LOCATIONS
 //
 //  ============================================================================
-//  $   VARIABLES
-//  ----------------------------------------------------------------------------
-@popover-background: @white;
-
-
-//  ============================================================================
 //  $   BASE STYLES
 //  ----------------------------------------------------------------------------
 .s-popover {
@@ -74,13 +68,6 @@
 //      • RIGHT
 //      • LEFT & RIGHT DIRECTIONS (Top, Center, Bottom)
 //
-//
-//  ============================================================================
-//  $   VARIABLES
-//  ----------------------------------------------------------------------------
-@arrow-width:                @su8;
-@arrow-spacing:              @su12; // This matches s-popover's padding
-
 //  ============================================================================
 //  $   BASE STYLE
 //      Sets the base arrow style for tooltips, popovers, and dropdowns.
@@ -101,12 +88,11 @@
     &:after {
         content: "";
         position: absolute;
-        border-width: @arrow-width;
+        border-width: @su8;
         border-style: solid;
         border-color: transparent;
     }
 }
-
 
 //  ============================================================================
 //  $   ARROW LOCATIONS
@@ -121,12 +107,12 @@
         border-top: none;
     }
     &:before {
-        top: -(@arrow-width);
+        top: -(@su8);
         border-bottom-color: @black-150;
     }
     &:after {
-        top: -(@arrow-width - 1);
-        border-bottom-color: @popover-background;
+        top: -(@su8 - 1);
+        border-bottom-color: @white;
     }
 }
 
@@ -140,12 +126,12 @@
         border-bottom: none;
     }
     &:before {
-        bottom: -(@arrow-width);
+        bottom: -(@su8);
         border-top-color: @black-150;
     }
     &:after {
-        bottom: -(@arrow-width - 1);
-        border-top-color: @popover-background;
+        bottom: -(@su8 - 1);
+        border-top-color: @white;
     }
 }
 
@@ -155,7 +141,7 @@
 .s-popover--arrow__bl {
     &:before,
     &:after {
-        left: @arrow-spacing;
+        left: @su12;
     }
 }
 
@@ -166,7 +152,7 @@
     &:before,
     &:after {
         left: 50%;
-        margin-left: -(@arrow-width);
+        margin-left: -(@su8);
     }
 }
 
@@ -176,7 +162,7 @@
 .s-popover--arrow__br {
     &:before,
     &:after {
-        right: @arrow-spacing;
+        right: @su12;
     }
 }
 
@@ -190,12 +176,12 @@
         border-left: none;
     }
     &:before {
-        left: -(@arrow-width);
+        left: -(@su8);
         border-right-color: @black-150;
     }
     &:after {
-        left: -(@arrow-width - 1);
-        border-right-color: @popover-background;
+        left: -(@su8 - 1);
+        border-right-color: @white;
     }
 }
 
@@ -209,12 +195,12 @@
         border-right: none;
     }
     &:before {
-        right: -(@arrow-width);
+        right: -(@su8);
         border-left-color: @black-150;
     }
     &:after {
-        right: -(@arrow-width - 1);
-        border-left-color: @popover-background;
+        right: -(@su8 - 1);
+        border-left-color: @white;
     }
 }
 
@@ -224,7 +210,7 @@
 .s-popover--arrow__rt {
     &:before,
     &:after {
-        top: @arrow-spacing;
+        top: @su12;
     }
 }
 
@@ -235,7 +221,7 @@
     &:before,
     &:after {
         top: 50%;
-        margin-top: -(@arrow-width);
+        margin-top: -(@su8);
     }
 }
 
@@ -245,6 +231,6 @@
 .s-popover--arrow__rb {
     &:before,
     &:after {
-        bottom: @arrow-spacing;
+        bottom: @su12;
     }
 }
