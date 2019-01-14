@@ -1,0 +1,57 @@
+//
+//  STACK OVERFLOW
+//  LOADING
+//
+//  This CSS comes from Stacks, our CSS & Pattern library for rapidly building
+//  Stack Overflow. For documentation of all these classes and how to contribute,
+//  visit https://stackoverflow.design/
+//
+//  TABLE OF CONTENTS
+//  • BASE STYLE
+//
+//  ============================================================================
+//  $   LOADING BASE STYLE
+//  ----------------------------------------------------------------------------
+
+.s-loading {
+    width: @su24;
+    height: @su24;
+    border: 3px solid fade(@black-900, 20%);
+    border-left-color: @black-700;
+    border-radius: @br-circle;
+    animation: spinnerRotate 1.1s infinite linear;
+
+    &.s-loading__xs {
+        width: @su12;
+        height: @su12;
+        border-width: 1px;
+    }
+
+    &.s-loading__sm {
+        width: @su16;
+        height: @su16;
+        border-width: @su2;
+    }
+
+    &.s-loading__md {
+        width: @su32;
+        height: @su32;
+        border-width: @su4;
+    }
+
+    &.s-loading__lg {
+        width: @su48;
+        height: @su48;
+        border-width: @su6;
+    }
+}
+
+// Keyframes
+@keyframes spinnerRotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
