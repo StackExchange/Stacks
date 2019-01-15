@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width"> <!-- Forcing initial-scale shouldn't be necessary -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!-- Use the latest (edge) version of IE rendering engine -->
     <meta name="x-apple-disable-message-reformatting"> <!-- Disable auto-scale in iOS 10 Mail entirely -->
+    <meta name="format-detection" content="telephone=no, address=no, email=no, date=no"> <!-- Tell iOS not to automatically link certain text strings. -->
 
     <!-- CSS Reset : BEGIN -->
     <style>
@@ -54,8 +55,9 @@
             text-decoration: none;
         }
 
-        /* What it does: A work-around for email clients meddling in triggered links. */
-        *[x-apple-data-detectors],  /* iOS */
+        /* What it does: A work-around for email clients automatically linking certain text strings. */
+        /* iOS */
+        *[x-apple-data-detectors],
         .unstyle-auto-detected-links *,
         .aBn {
             border-bottom: 0 !important;
@@ -66,6 +68,16 @@
             font-family: inherit !important;
             font-weight: inherit !important;
             line-height: inherit !important;
+        }
+        u + #body a,        /* Gmail */
+        #MessageViewBody a  /* Samsung Mail */
+        {
+           color: inherit;
+           text-decoration: none;
+           font-size: inherit;
+           font-family: inherit;
+           font-weight: inherit;
+           line-height: inherit;
         }
 
         /* What it does: Prevents Gmail from changing the text color in conversation threads. */
@@ -325,7 +337,7 @@
                                     <table align="left" border="0" cellpadding="0" cellspacing="0" role="presentation">
                                         <tr>
                                             <td class="s-btn s-btn__primary" style="border-radius: 4px; background: #0095ff;">
-                                                <a class="s-btn s-btn__primary" href="https://stackoverflow.design/email/components/buttons" target="_parent" style="background: #0095FF; border: 1px solid #0077cc; box-shadow: inset 0 1px 0 0 rgba(102,191,255,.75); font-family: arial, sans-serif; font-size: 17px; line-height: 17px; color: #ffffff; text-align: center; text-decoration: none; padding: 13px 17px; display: block; border-radius: 4px; white-space: nowrap;">Medium Primary Button</a>
+                                                <a class="s-btn s-btn__primary" href="https://stackoverflow.design/email/components/buttons" target="_parent" style="background: #0095FF; border: 1px solid #0077cc; box-shadow: inset 0 1px 0 0 rgba(102,191,255,.75); font-family: arial, sans-serif; font-size: 17px; line-height: 17px; color: #ffffff; text-align: center; text-decoration: none; padding: 13px 17px; display: block; border-radius: 4px; white-space: nowrap;">Medium primary button</a>
                                             </td>
                                         </tr>
                                     </table>

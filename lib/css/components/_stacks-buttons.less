@@ -606,17 +606,6 @@
 //  $$  Loading Icon
 //      Adds a loading icon into the button
 //  ----------------------------------------------------------------------------
-//  --  First the keyframes
-@keyframes spinnerRotate {
-    from {
-        transform: rotate(0deg);
-    }
-    to {
-        transform: rotate(359deg);
-    }
-}
-
-//  --  Next the actual loading spinner
 .s-btn {
     &.is-loading {
         padding-left: 2.2em;
@@ -629,10 +618,10 @@
             height: @su16;
             margin-left: -1.65em;
             margin-left: -(@su24 - @su2);
-            border: 2px dotted fade(@button-filled-font-color,40%);
-            border-left-color: darken(@button-filled-font-color,5%);
+            border: 2px solid fade(@button-filled-font-color, 40%);
+            border-left-color: darken(@button-filled-font-color, 5%);
             border-radius: @br-circle;
-            animation: spinnerRotate 800ms infinite linear;
+            animation: s-spinner-rotate .9s infinite cubic-bezier(0.5, 0.1, 0.5, 0.9);
         }
 
         .svg-icon:first-child {
@@ -693,20 +682,20 @@
     }
 
     &.s-btn__danger.is-loading:before {
-        border-color: fade(@button-danger-background-color,25%);
-        border-left-color: fade(@button-danger-background-color,75%);
+        border-color: fade(@button-danger-background-color, 25%);
+        border-left-color: fade(@button-danger-background-color, 75%);
     }
 
     &.s-btn__primary.is-loading:before,
     &.s-btn__danger.s-btn__filled.is-loading:before,
     &.s-btn__inverted:not(.s-btn__filled).is-loading:before,
     &.s-btn__inverted:not(.s-btn__filled).is-selected.is-loading:before, {
-        border-color: fade(@white,25%);
+        border-color: fade(@white, 25%);
         border-left-color: @white;
     }
     &.s-btn__muted.is-loading:before {
-        border-color: fade(@black-900,25%);
-        border-left-color: fade(@black-900,75%);
+        border-color: fade(@black-900, 25%);
+        border-left-color: fade(@black-900, 75%);
     }
 }
 
