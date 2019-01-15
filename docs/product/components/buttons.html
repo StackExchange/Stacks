@@ -373,6 +373,74 @@ description: Buttons are user interface elements which allows users to take acti
 </section>
 
 <section class="stacks-section">
+    {% header h2 | Badges %}
+    <p class="stacks-copy">Adding an <code class="stacks-code">.s-btn--badge</code> to any button will add an appropriately-styled badge.</p>
+
+    <div class="stacks-preview">
+{% highlight html linenos %}
+<button class="s-btn" type="button">
+    Badge
+    <span class="s-btn--badge">200</span>
+</button>
+{% endhighlight %}
+        <div class="stacks-preview--example">
+            <div class="overflow-x-auto">
+                <table class="wmn5 s-table s-table__bx-simple">
+                    <thead>
+                        <tr>
+                            <th scope="col">Type</th>
+                            <th scope="col" class="s-table--cell4">Class</th>
+                            <th scope="col" class="ta-center">Default State</th>
+                            <th scope="col" class="ta-center">Selected State</th>
+                            <th scope="col" class="ta-center">Disabled State</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for btn in site.data.product.buttons.badges %}
+                            {% assign types = btn.classes %}
+                            {% for class in types %}
+                            <tr>
+                                <th scope="row" class="va-middle">{{ class.title }}</th>
+                                <td class="va-middle">
+                                    <div class="grid gs4 fw-wrap">
+                                        <code class="grid--cell stacks-code">.s-btn</code>
+                                        {% if class.class != nil %}
+                                            <code class="grid--cell stacks-code">.{{ class.class }}</code>
+                                        {% endif %}
+                                        {% if class.class2 != nil %}
+                                            <code class="grid--cell stacks-code">.{{ class.class2 }}</code>
+                                        {% endif %}
+                                        {% if btn.class != nil %}
+                                            <code class="grid--cell stacks-code">.{{ btn.class }}</code>
+                                        {% endif %}
+                                    </div>
+                                </td>
+                                <td class="va-middle px4 {% if class.class == "s-btn__inverted" %}bg-black-750{% endif %}">
+                                    <button class="w100 ws-nowrap s-btn {{ class.class }} {% if class.class2 %}{{ class.class2 }}{% endif %} {{ btn.class }}" type="button" aria-pressed="false">
+                                        Active <span class="s-btn--badge">198</span>
+                                    </button>
+                                </td>
+                                <td class="va-middle px4 {% if class.class == "s-btn__inverted" %}bg-black-750{% endif %}">
+                                    <button class="w100 ws-nowrap s-btn {{ class.class }} {% if class.class2 %}{{ class.class2 }}{% endif %} {{ btn.class }} is-selected" type="button" aria-pressed="false">
+                                        Active <span class="s-btn--badge">198</span>
+                                    </button>
+                                </td>
+                                <td class="va-middle px4 {% if class.class == "s-btn__inverted" %}bg-black-750{% endif %}">
+                                    <button class="w100 ws-nowrap s-btn {{ class.class }} {% if class.class2 %}{{ class.class2 }}{% endif %} {{ btn.class }}" type="button" aria-pressed="false" disabled>
+                                        Active <span class="s-btn--badge">198</span>
+                                    </button>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="stacks-section">
     {% header h2 | Sizes %}
     <p class="stacks-copy">A button’s default font-size is determined by the <code class="stacks-code">@body-fs</code> variable. To change the button’s font-size, use the following classes with <code class="stacks-code">.s-btn</code>:</p>
 
