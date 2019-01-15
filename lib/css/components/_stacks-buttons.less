@@ -208,15 +208,18 @@
     }
 
     .s-btn--badge {
-        background-color: fade(@fc, 40%);
+        color: @fc;
+        background-color: fade(@fc, 15%);
     }
 
     &.is-selected .s-btn--badge {
-        background-color: fade(@fc, 70%);
+        color: @white;
+        background-color: fade(@fc, 65%);
     }
 
     &[disabled] .s-btn--badge {
-        background-color: desaturate(fade(@fc, 35%), 100%)
+        color: desaturate(@fc, 100%);
+        background-color: desaturate(fade(@fc, 25%), 100%)
     }
 
     & when (@fc = #FFFFFF) and (alpha(@fc) = 1) {
@@ -414,7 +417,6 @@
         border-radius: @br-sm;
         padding: @su2 (@su4 - 1px);
         font-size: @fs-caption;
-        color: @white;
     }
 }
 
