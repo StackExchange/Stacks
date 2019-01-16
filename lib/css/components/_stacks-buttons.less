@@ -46,30 +46,30 @@
 
 .btn-check-bxs(@bxis: transparent, @bxos: @button-box-shadow-color, @status: @button-has-inset-box-shadow) {
     & when (@status = true) {
-        box-shadow: inset 0 1px 0 0 fade(lighten(@bxis,20%),75%), 0 0 0 0 fade(@bxos,0%);
+        box-shadow: inset 0 1px 0 0 fade(lighten(@bxis, 20%), 75%), 0 0 0 0 fade(@bxos, 0%);
 
         &:hover {
-            box-shadow: inset 0 1px 0 0 fade(lighten(@bxis,20%),50%), 0 0 0 0 fade(@bxos,0%);
+            box-shadow: inset 0 1px 0 0 fade(lighten(@bxis, 20%), 50%), 0 0 0 0 fade(@bxos, 0%);
         }
         &:focus {
-            box-shadow: inset 0 1px 0 0 fade(lighten(@bxis,20%),50%), 0 0 0 @su4 fade(@bxos,15%);
+            box-shadow: inset 0 1px 0 0 fade(lighten(@bxis, 20%), 50%), 0 0 0 @su4 fade(@bxos, 15%);
         }
         &:active {
-            box-shadow: inset 0 @su2 @su8 0 fade(darken(@bxis,20%),80%);
+            box-shadow: inset 0 @su2 @su8 0 fade(darken(@bxis, 20%), 80%);
         }
         &.is-selected {
-            box-shadow: inset 0 @su2 @su8 0 fade(darken(@bxis,25%),90%);
+            box-shadow: inset 0 @su2 @su8 0 fade(darken(@bxis, 25%), 90%);
         }
     }
 
     & when (@status = false) {
-        box-shadow: 0 0 0 0 fade(@bxos,0%);
+        box-shadow: 0 0 0 0 fade(@bxos, 0%);
 
         &:hover {
-            box-shadow: 0 0 0 0 fade(@bxos,0%);
+            box-shadow: 0 0 0 0 fade(@bxos, 0%);
         }
         &:focus {
-            box-shadow: 0 0 0 1px fade(@white,50%), 0 0 0 @su4 fade(@bxos,10%);
+            box-shadow: 0 0 0 1px fade(@white, 50%), 0 0 0 @su4 fade(@bxos, 10%);
         }
     }
 
@@ -86,19 +86,19 @@
 //      If it's true, then we use the background color by darkening it.
 //  ----------------------------------------------------------------------------
 .btn-check-brc(@brc: @button-background-color, @status: @button-has-border) when (@status = true) {
-    border-color: darken(@brc,10%);
+    border-color: darken(@brc, 10%);
 
     &:hover {
-        border-color: darken(@brc,10%);
+        border-color: darken(@brc, 10%);
     }
     &:active {
-        border-color: darken(@brc,20%);
+        border-color: darken(@brc, 20%);
     }
     &.is-selected {
-        border-color: darken(@brc,30%);
+        border-color: darken(@brc, 30%);
     }
     &[disabled] {
-        border-color: fade(desaturate(@brc,75%),10%);
+        border-color: fade(desaturate(@brc, 75%), 10%);
     }
 }
 
@@ -116,19 +116,19 @@
 .btn-check-bgg(@bgc) {
     //    If @button-has-gradient: true; and @bgc is NOT transparent, show gradients.
     & when not (@bgc = transparent) and (@button-has-gradient = true) {
-        background-image: linear-gradient(to bottom, lighten(@bgc,10%) 0%, spin(saturate(@bgc,10%),5) 100%);
+        background-image: linear-gradient(to bottom, lighten(@bgc, 10%) 0%, spin(saturate(@bgc, 10%), 5) 100%);
 
         &:hover {
-            background-image: linear-gradient(to bottom, spin(saturate(lighten(@bgc,10%),5%),5) 0%, spin(saturate(@bgc,15%),10) 100%);
+            background-image: linear-gradient(to bottom, spin(saturate(lighten(@bgc, 10%), 5%), 5) 0%, spin(saturate(@bgc, 15%), 10) 100%);
         }
         &:focus {
-            background-image: linear-gradient(to bottom, spin(saturate(lighten(@bgc,10%),10%),10) 0%, spin(saturate(@bgc,20%),15) 100%);
+            background-image: linear-gradient(to bottom, spin(saturate(lighten(@bgc, 10%), 10%), 10) 0%, spin(saturate(@bgc, 20%), 15) 100%);
         }
         &.is-selected {
-            background-image: linear-gradient(to bottom, spin(saturate(lighten(@bgc,10%),15%),15) 0%, spin(saturate(@bgc,25%),20) 100%);
+            background-image: linear-gradient(to bottom, spin(saturate(lighten(@bgc, 10%), 15%), 15) 0%, spin(saturate(@bgc, 25%), 20) 100%);
         }
         &[disabled] {
-            background-image: linear-gradient(to bottom, fade(desaturate(lighten(@bgc,10%),75%),50%) 0%, fade(desaturate(@bgc,75%),50%) 100%);
+            background-image: linear-gradient(to bottom, fade(desaturate(lighten(@bgc, 10%), 75%), 50%) 0%, fade(desaturate(@bgc, 75%), 50%) 100%);
         }
     }
 
@@ -163,31 +163,31 @@
 
     & when (alpha(@bgc) = 0) {
         &:hover {
-            background-color: fade(saturate(@bgc,5%),5%);
+            background-color: fade(saturate(@bgc, 5%), 5%);
         }
         &:active {
-            background-color: fade(saturate(@bgc,15%),15%);
+            background-color: fade(saturate(@bgc, 15%), 15%);
         }
         &.is-selected {
-            background-color: fade(saturate(@bgc,20%),25%);
+            background-color: fade(saturate(@bgc, 20%), 25%);
         }
         &[disabled] {
-            background-color: fade(desaturate(@bgc,90%),20%);
+            background-color: fade(desaturate(@bgc, 90%), 20%);
         }
     }
 
     & when (alpha(@bgc) > 0) {
         &:hover {
-            background-color: darken(@bgc,7.5%);
+            background-color: darken(@bgc, 7.5%);
         }
         &:active {
-            background-color: darken(@bgc,15%);
+            background-color: darken(@bgc, 15%);
         }
         &.is-selected {
-            background-color: darken(@bgc,20%);
+            background-color: darken(@bgc, 20%);
         }
         &[disabled] {
-            background-color: fade(desaturate(@bgc,75%),50%);
+            background-color: fade(desaturate(@bgc, 75%), 50%);
         }
     }
 }
@@ -207,7 +207,26 @@
         border-color: currentColor transparent;
     }
 
+    .s-btn--badge {
+        color: @fc;
+        background-color: fade(@fc, 15%);
+    }
+
+    &.is-selected .s-btn--badge {
+        color: @white;
+        background-color: fade(@fc, 65%);
+    }
+
+    &[disabled] .s-btn--badge {
+        color: desaturate(@fc, 100%);
+        background-color: desaturate(fade(@fc, 25%), 100%)
+    }
+
     & when (@fc = #FFFFFF) and (alpha(@fc) = 1) {
+        .s-btn--badge {
+            background-color: fade(@black-900, 30%);
+        }
+
         &:hover,
         &:active,
         &:focus,
@@ -217,33 +236,41 @@
             &.s-btn__dropdown:after {
                 border-color: currentColor transparent;
             }
+
+            .s-btn--badge {
+                background-color: fade(@black-900, 50%);
+            }
+        }
+
+        &[disabled] .s-btn--badge {
+            background-color: desaturate(fade(@black-900, 20%), 90%);
         }
     }
 
-    & when not (@fc = #FFFFFF) and (alpha(@fc) = 1)  {
+    & when not (@fc = #FFFFFF) and (alpha(@fc) = 1) {
         &:hover,
         &:active {
-            color: darken(@fc,10%);
+            color: darken(@fc, 10%);
         }
         &:focus,
         &.is-selected {
-            color: darken(@fc,20%);
+            color: darken(@fc, 20%);
         }
     }
 
     & when (alpha(@fc) < 1) {
         &:hover,
         &:active {
-            color: fade(lighten(@fc,10%),90%);
+            color: fade(lighten(@fc, 10%), 90%);
         }
         &:focus,
         &.is-selected {
-            color: fade(lighten(@fc,10%),100%);
+            color: fade(lighten(@fc, 10%), 100%);
         }
     }
 
     &[disabled] {
-        color: fade(desaturate(@fc,90%),80%);
+        color: fade(desaturate(@fc, 90%), 80%);
     }
 }
 
@@ -267,7 +294,7 @@
 
     //  Default Style (Clear)
     .btn-check-brc();
-    .btn-check-bxs(fade(@button-box-shadow-color,0%), @status: false);
+    .btn-check-bxs(fade(@button-box-shadow-color, 0%), @status: false);
     .btn-bgc(@button-background-color);
     .btn-check-bgg(transparent);
     .btn-fc(@button-font-color);
@@ -384,6 +411,14 @@
             }
         }
     }
+
+    .s-btn--badge {
+        display: inline-block;
+        border-radius: @br-sm;
+        padding: @su2 (@su4 - 1px);
+        font-size: @fs-caption;
+        line-height: @lh-xs;
+    }
 }
 
 //  ============================================================================
@@ -394,28 +429,28 @@
 //  ----------------------------------------------------------------------------
 .s-btn__inverted {
     .btn-check-brc(@status: false);
-    .btn-check-bxs(@bxos: fade(@button-box-shadow-color,0%), @status: false);
-    .btn-bgc(fade(@button-primary-font-color,0%));
-    .btn-fc(fade(lighten(@button-primary-background-color,40%),90%));
+    .btn-check-bxs(@bxos: fade(@button-box-shadow-color, 0%), @status: false);
+    .btn-bgc(fade(@button-primary-font-color, 0%));
+    .btn-fc(fade(lighten(@button-primary-background-color, 40%), 90%));
 }
 
 //  --  Base Outline Style
 //      Style which applies only a border.
 //  ----------------------------------------------------------------------------
 .s-btn__outlined {
-    .btn-check-brc(lighten(@button-font-color,20%));
+    .btn-check-brc(lighten(@button-font-color, 20%));
     .btn-check-bxs(@bxos: @button-box-shadow-color, @status: false);
     .btn-check-bgg(transparent);
-    .btn-bgc(fade(@button-font-color,0%));
+    .btn-bgc(fade(@button-font-color, 0%));
     .btn-fc(@button-font-color);
 
     //  --  Inverted: Outlined
     &.s-btn__inverted {
-        .btn-check-brc(fade(lighten(@button-primary-background-color,50%),25%));
+        .btn-check-brc(fade(lighten(@button-primary-background-color, 50%), 25%));
         .btn-check-bxs(@bxos: @white, @status: false);
-        .btn-bgc(fade(lighten(@button-primary-background-color,20%),0%));
+        .btn-bgc(fade(lighten(@button-primary-background-color, 20%), 0%));
         .btn-check-bgg(transparent);
-        .btn-fc(fade(lighten(@button-primary-background-color,40%),90%));
+        .btn-fc(fade(lighten(@button-primary-background-color, 40%), 90%));
     }
 }
 
@@ -425,14 +460,14 @@
 .s-btn__muted {
     .btn-check-brc(@status: false);
     .btn-check-bxs(@bxos: @black-350, @status: false);
-    .btn-bgc(fade(@black-200,0%));
+    .btn-bgc(fade(@black-200, 0%));
     .btn-fc(@black-500);
 
     //  --  Muted (Gray)
     &.s-btn__outlined {
         .btn-check-brc(@black-150);
         .btn-check-bxs(@bxos: @black-350, @status: false);
-        .btn-bgc(fade(@black-200,0%));
+        .btn-bgc(fade(@black-200, 0%));
         .btn-fc(@black-500);
     }
 
@@ -449,7 +484,7 @@
 //      Adds in background-colors, background-images, and/or box-shadows.
 //  ----------------------------------------------------------------------------
 .s-btn__filled {
-    .btn-check-brc(darken(@button-filled-background-color,20%));
+    .btn-check-brc(darken(@button-filled-background-color, 20%));
     .btn-check-bxs(@button-filled-background-color);
     .btn-bgc(@button-filled-background-color);
     .btn-check-bgg(@button-filled-background-color);
@@ -457,8 +492,8 @@
 
     &.s-btn__inverted {
         .btn-check-brc(transparent);
-        .btn-check-bxs(@bxos: lighten(@button-box-shadow-color,40%), @status: false);
-        .btn-bgc(fade(@white,95%));
+        .btn-check-bxs(@bxos: lighten(@button-box-shadow-color, 40%), @status: false);
+        .btn-bgc(fade(@white, 95%));
         .btn-fc(@button-font-color);
     }
 }
@@ -470,14 +505,14 @@
 .s-btn__danger {
     .btn-check-brc(@status: false);
     .btn-check-bxs(@bxos: @button-danger-background-color, @status: false);
-    .btn-bgc(fade(@button-danger-background-color,0%));
+    .btn-bgc(fade(@button-danger-background-color, 0%));
     .btn-fc(@button-danger-background-color);
 
     //  --  Outlined
     &.s-btn__outlined {
-        .btn-check-brc(lighten(@button-danger-background-color,20%));
+        .btn-check-brc(lighten(@button-danger-background-color, 20%));
         .btn-check-bxs(@bxos: @button-danger-background-color, @status: false);
-        .btn-bgc(fade(@button-danger-background-color,0%));
+        .btn-bgc(fade(@button-danger-background-color, 0%));
         .btn-fc(@button-danger-background-color);
     }
 
@@ -494,24 +529,24 @@
     &.s-btn__inverted {
         //  --  Inverted: Clear
         .btn-check-brc(@status: false);
-        .btn-check-bxs(@bxos: fade(@button-box-shadow-color,0%), @status: false);
-        .btn-bgc(fade(@button-danger-font-color,0%));
-        .btn-fc(fade(lighten(@button-danger-background-color,40%),90%));
+        .btn-check-bxs(@bxos: fade(@button-box-shadow-color, 0%), @status: false);
+        .btn-bgc(fade(@button-danger-font-color, 0%));
+        .btn-fc(fade(lighten(@button-danger-background-color, 0%), 90%));
 
         //  --  Inverted: Outlined
         &.s-btn__outlined {
-            .btn-check-brc(fade(lighten(@button-danger-background-color,50%),25%));
-            .btn-bgc(fade(lighten(@button-danger-background-color,40%),0%));
-            .btn-fc(fade(lighten(@button-danger-background-color,50%),80%));
+            .btn-check-brc(fade(lighten(@button-danger-background-color, 50%), 25%));
+            .btn-bgc(fade(lighten(@button-danger-background-color, 40%), 0%));
+            .btn-fc(fade(lighten(@button-danger-background-color, 50%), 80%));
         }
 
         //  --  Inverted: Filled
         &.s-btn__filled {
-            .btn-check-brc(mix(lighten(@button-danger-background-color,30%),@white));
-            .btn-check-bxs(@bxos: lighten(@button-danger-background-color,50%), @status: false);
-            .btn-bgc(mix(lighten(@button-danger-background-color,30%),@white));
-            .btn-check-bgg(lighten(@button-danger-background-color,30%));
-            .btn-fc(darken(@button-danger-background-color,10%));
+            .btn-check-brc(mix(lighten(@button-danger-background-color, 30%), @white));
+            .btn-check-bxs(@bxos: lighten(@button-danger-background-color, 50%), @status: false);
+            .btn-bgc(mix(lighten(@button-danger-background-color, 30%), @white));
+            .btn-check-bgg(lighten(@button-danger-background-color, 30%));
+            .btn-fc(darken(@button-danger-background-color, 10%));
         }
     }
 }
@@ -538,8 +573,8 @@
     color: #535A60;
 
     &:hover {
-        background-color: darken(@white,3%);
-        color: darken(#535A60,5%);
+        background-color: darken(@white, 3%);
+        color: darken(#535A60, 5%);
     }
 }
 
@@ -549,8 +584,8 @@
     color: @white;
 
     &:hover {
-        background-color: darken(#385499,5%);
-        color: fade(@white,95%);
+        background-color: darken(#385499, 5%);
+        color: fade(@white, 95%);
     }
 }
 
@@ -606,17 +641,6 @@
 //  $$  Loading Icon
 //      Adds a loading icon into the button
 //  ----------------------------------------------------------------------------
-//  --  First the keyframes
-@keyframes spinnerRotate {
-    from {
-        transform: rotate(0deg);
-    }
-    to {
-        transform: rotate(359deg);
-    }
-}
-
-//  --  Next the actual loading spinner
 .s-btn {
     &.is-loading {
         padding-left: 2.2em;
@@ -629,10 +653,13 @@
             height: @su16;
             margin-left: -1.65em;
             margin-left: -(@su24 - @su2);
-            border: 2px dotted fade(@button-filled-font-color,40%);
-            border-left-color: darken(@button-filled-font-color,5%);
+            border: 2px solid fade(@button-filled-font-color, 40%);
+            border-left-color: darken(@button-filled-font-color, 5%);
             border-radius: @br-circle;
-            animation: spinnerRotate 800ms infinite linear;
+            animation: s-spinner-rotate .9s infinite cubic-bezier(0.5, 0.1, 0.5, 0.9);
+            // see _stacks-spinner.less for an explanation of the following two
+            filter: invert(0); // (*)
+            transform-origin: 50% 50% 1px; // (*)
         }
 
         .svg-icon:first-child {
@@ -693,20 +720,20 @@
     }
 
     &.s-btn__danger.is-loading:before {
-        border-color: fade(@button-danger-background-color,25%);
-        border-left-color: fade(@button-danger-background-color,75%);
+        border-color: fade(@button-danger-background-color, 25%);
+        border-left-color: fade(@button-danger-background-color, 75%);
     }
 
     &.s-btn__primary.is-loading:before,
     &.s-btn__danger.s-btn__filled.is-loading:before,
     &.s-btn__inverted:not(.s-btn__filled).is-loading:before,
     &.s-btn__inverted:not(.s-btn__filled).is-selected.is-loading:before, {
-        border-color: fade(@white,25%);
+        border-color: fade(@white, 25%);
         border-left-color: @white;
     }
     &.s-btn__muted.is-loading:before {
-        border-color: fade(@black-900,25%);
-        border-left-color: fade(@black-900,75%);
+        border-color: fade(@black-900, 25%);
+        border-left-color: fade(@black-900, 75%);
     }
 }
 

@@ -662,6 +662,30 @@ description: Tables are used to list all information from a data set. The base s
 
     <p class="stacks-copy">If the table contains rows that should not be sorted, but rather always be at the top or always be at the bottom, add <code class="stacks-code">data-s-table-sort-to="top"</code> or <code class="stacks-code">data-s-table-sort-to="bottom"</code> to the <code class="stacks-code">&lt;tr&gt;</code> element.</p>
 
+    {% header h3 | JavaScript data attributes %}
+    <div class="overflow-x-auto mb32">
+        <table class="wmn4 s-table s-table__bx-simple">
+            <thead>
+                <tr>
+                    <th class="s-table--cell5" scope="col">Attribute</th>
+                    <th class="s-table--cell2" scope="col">Applied to</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody class="fs-caption">
+                {% for item in site.data.product.tables.data-attributes %}
+                    <tr>
+                        <th scope="row"><code class="stacks-code">{{ item.attribute }}</code></th>
+                        <td><code class="stacks-code">{{ item.applies }}</td>
+                        <td class="p8">{{ item.description }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    {% header h3 | JavaScript example %}
+
     {% capture html %}
         <table class="s-table s-table__sortable" data-controller="s-table">
             <thead>

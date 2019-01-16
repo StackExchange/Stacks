@@ -1,0 +1,105 @@
+//
+//  STACK OVERFLOW
+//  SPINNER
+//
+//  This CSS comes from Stacks, our CSS & Pattern library for rapidly building
+//  Stack Overflow. For documentation of all these classes and how to contribute,
+//  visit https://stackoverflow.design/
+//
+//  TABLE OF CONTENTS
+//  • BASE STYLE
+//
+//  ============================================================================
+//  $   SPINNER BASE STYLE
+//  ----------------------------------------------------------------------------
+
+// Anything marked with (*) is there to remove the well-known "wobble" in Edge,
+// and yes, they're all necessary. My theory is that all of them trigger a
+// different drawing/compositing/hardware acceleration mode that in some way
+// or the other is more precise. Or something like that. I don't know.
+//
+// Note that all of these things are practically no-ops, so this doesn't
+// break anything in other browsers.
+//
+// IE11 also has the wobble problem, and our fixes don't quite work there
+// (probably because it doesn't support CSS filters). Therefore the outer
+// animation (**) is disabled in IE, because it amplifies the inner wobble.
+
+.s-spinner {
+    position: relative;
+    width: @su24;
+    height: @su24;
+    @supports (display: block) { // (**) the exact  feature query doesn't matter -- IE doesn't support @supports
+        animation: s-spinner-rotate 9s infinite linear; // Rotate the entire spinner so each revolution isn't perfectly at 12 o'clock
+    }
+    filter: invert(0); // (*)
+    transform-origin: 50% 50% 1px; // (*)
+
+    &:before,
+    &:after {
+        content: '';
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        border: 3px solid currentColor;
+        border-radius: @br-circle;
+        filter: invert(0); // (*)
+        transform-origin: 50% 50% 1px; // (*)
+    }
+    &:before {
+        opacity: 0.25;
+        transform: rotate(90deg); // (*)
+    }
+    &:after {
+        border-top-color: transparent;
+        border-right-color: transparent;
+        border-bottom-color: transparent;
+        animation: s-spinner-rotate .9s infinite cubic-bezier(0.5, 0.1, 0.5, 0.9);
+    }
+
+    &.s-spinner__xs {
+        width: @su12;
+        height: @su12;
+        &:before,
+        &:after {
+            border-width: 1px;
+        }
+    }
+
+    &.s-spinner__sm {
+        width: @su16;
+        height: @su16;
+        &:before,
+        &:after {
+            border-width: @su2;
+        }
+    }
+
+    &.s-spinner__md {
+        width: @su32;
+        height: @su32;
+        &:before,
+        &:after {
+            border-width: @su4;
+        }
+    }
+
+    &.s-spinner__lg {
+        width: @su48;
+        height: @su48;
+        &:before,
+        &:after {
+            border-width: @su6;
+        }
+    }
+}
+
+// Keyframes
+@keyframes s-spinner-rotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}

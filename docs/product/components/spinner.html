@@ -1,0 +1,60 @@
+---
+layout: page
+title: Spinner
+description: A loading spinner is used for indicating a loading state of a page or section. It is colored according to the currently applying font color.
+---
+<section class="stacks-section">
+    {% header h3 | Classes %}
+    <div class="overflow-x-auto mb32">
+        <table class="wmn4 s-table s-table__bx-simple">
+            <thead>
+                <tr>
+                    <th scope="col">Class</th>
+                    <th scope="col">Applied to</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody class="fs-caption">
+                {% for item in site.data.product.spinner.spinner %}
+                    <tr>
+                        <th scope="row"><code class="stacks-code bg-white">{{ item.class }}</code></th>
+                        <td><code class="stacks-code bg-white">{{ item.applies }}</td>
+                        <td class="p8">{{ item.description }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</section>
+<section class="stacks-section">
+    {% header h3 | Examples %}
+    <p class="stacks-copy">The spinner’s colors are based on the font color of the element, which will usually be inherited from its parent. If you need to apply a color override, the <a href="{{ "/product/base/colors" | relative_url }}">font color classes</a> can provide themability. In most situations, a black and white spinner based on the default font color will be appropriate.</p>
+    <div class="stacks-preview">
+{% highlight html linenos %}
+<div class="s-spinner s-spinner__xs"></div>
+<div class="s-spinner s-spinner__sm"></div>
+<div class="s-spinner"></div>
+<div class="s-spinner s-spinner__md"></div>
+<div class="s-spinner s-spinner__lg fc-orange-400"></div>
+{% endhighlight %}
+        <div class="stacks-preview--example">
+            <div class="grid gs16 fw-wrap">
+                <div class="grid--cell">
+                    <div class="s-spinner s-spinner__xs"></div>
+                </div>
+                <div class="grid--cell">
+                    <div class="s-spinner s-spinner__sm"></div>
+                </div>
+                <div class="grid--cell">
+                    <div class="s-spinner"></div>
+                </div>
+                <div class="grid--cell">
+                    <div class="s-spinner s-spinner__md"></div>
+                </div>
+                <div class="grid--cell">
+                    <div class="s-spinner s-spinner__lg fc-orange-400"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
