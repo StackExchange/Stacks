@@ -13,10 +13,27 @@
 //  $   SPINNER BASE STYLE
 //  ----------------------------------------------------------------------------
 
+// Anything marked with (*) is there to remove the well-known "wobble" in Edge,
+// and yes, they're all necessary. My theory is that all of them trigger a
+// different drawing/compositing/hardware acceleration mode that in some way
+// or the other is more precise. Or something like that. I don't know.
+//
+// Note that all of these things are practically no-ops, so this doesn't
+// break anything in other browsers.
+//
+// IE11 also has the wobble problem, and our fixes don't quite work there
+// (probably because it doesn't support CSS filters). Therefore the outer
+// animation (**) is disabled in IE, because it amplifies the inner wobble.
+
 .s-spinner {
     position: relative;
     width: @su24;
     height: @su24;
+    @supports (display: block) { // (**) the exact  feature query doesn't matter -- IE doesn't support @supports
+        animation: s-spinner-rotate 9s infinite linear; // Rotate the entire spinner so each revolution isn't perfectly at 12 o'clock
+    }
+    filter: invert(0); // (*)
+    transform-origin: 50% 50% 1px; // (*)
 
     &:before,
     &:after {
@@ -26,9 +43,12 @@
         height: 100%;
         border: 3px solid currentColor;
         border-radius: @br-circle;
+        filter: invert(0); // (*)
+        transform-origin: 50% 50% 1px; // (*)
     }
     &:before {
         opacity: 0.25;
+        transform: rotate(90deg); // (*)
     }
     &:after {
         border-top-color: transparent;
