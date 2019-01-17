@@ -54,7 +54,7 @@
 {% endfor %}
 
 
-    <div class="stacks-preview{% if include.preview == false %} _preview-none{% endif %}">
+    <div class="stacks-preview overflow-x-auto{% if include.preview == false %} _preview-none{% endif %}">
 {% highlight html linenos %}
 {% for line in lines %}{% assign line = line | strip_newlines %}{% assign linelength = line | size | minus: minindent %}{% assign removed = line | remove: "PREVIEW ONLY" %}{% if removed == line %}{{ line | slice: minindent, linelength | remove: "<!-- CODE ONLY -->"}}
 {% endif %}{% endfor %}
@@ -64,5 +64,5 @@
             <div class="stacks-preview--example">
                 {% for line in previewlines %}{% assign removed = line | remove: "CODE ONLY" %}{% if removed == line %}{{ line }}{% endif %}{% endfor %}
             </div>
-        {% endunless %}        
+        {% endunless %}
     </div>
