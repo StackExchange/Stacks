@@ -24,11 +24,24 @@
 }
 
 .stacks-intro {
-    background-image: url("../img/pattern-back.svg");
-    background-position: bottom center;
-    background-repeat: repeat;
-    background-size: 655px 655px;
+    background-image: url("../img/illustration-crane.svg"), url("../img/illustration-field.svg");
+    background-position: top -35% left 15%, bottom 10% right 8%;
+    background-repeat: no-repeat, no-repeat;
 }
+
+#stacks-internals #screen-md({
+    .stacks-intro {
+        background-position: top -15% left 15%, bottom 10% right 8%;
+        background-size: 135px 327px, 537px 390px;
+    }
+}, @force-selector: true);
+
+#stacks-internals #screen-sm({
+    .stacks-intro {
+        background-position: top 0 left 5%, bottom 60% right 8%;
+        background-size: 90px 218px, 358px 260px;
+    }
+}, @force-selector: true);
 
 //  $$  SEARCH BOX ICON
 //  ----------------------------------------------------------------------------
