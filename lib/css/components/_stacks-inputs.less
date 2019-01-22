@@ -24,15 +24,7 @@
 //  ============================================================================
 //  $  VARIABLES & MIXINS
 //  ----------------------------------------------------------------------------
-@input-padding:     0.7em;
-
-//    Line Height Mixin to help ensure input line-heights are pixel perfect.
-.input-lineheight(@size,@distance: 4) {
-    @lh-numerator: unit((@size * @fs-base) + @distance);
-    @lh-denonminator: unit(@size * @fs-base);
-
-    line-height: @lh-numerator / @lh-denonminator;
-}
+@input-padding:     0.6em 0.7em;
 
 //  ============================================================================
 //  $  BASE INPUT / TEXTAREA STYLE
@@ -48,7 +40,7 @@
     box-shadow: 0 0 0 fade(@white, 0%);
     font-size: @fs-body1;
     font-family: inherit;
-    .input-lineheight(@fs-body1);
+    line-height: @lh-sm;
 
     //  --  PLACEHOLDER
     //  ------------------------------------------------------------------------
@@ -141,7 +133,7 @@ fieldset {
     color: @fc-medium;
     font-family: inherit;
     white-space: nowrap;
-    .input-lineheight(@fs-body1);
+    line-height: @lh-sm;
 
     &.s-input-fill__clear {
         border-color: transparent;
@@ -215,7 +207,7 @@ fieldset {
         outline: 0;
         font-size: @fs-body1;
         font-family: inherit;
-        .input-lineheight(@fs-body1);
+        line-height: @lh-sm;
 
         &::-moz-focus-inner {
             outline: none !important;
@@ -549,28 +541,24 @@ fieldset {
 .s-label__sm,
 .s-select__sm > select {
     font-size: @fs-caption;
-    .input-lineheight(@fs-caption);
 }
 .s-input__md,
 .s-textarea__md,
 .s-label__md,
 .s-select__md > select {
     font-size: @fs-body3;
-    .input-lineheight(@fs-body3);
 }
 .s-input__lg,
 .s-textarea__lg,
 .s-label__lg,
 .s-select__lg > select {
     font-size: @fs-title;
-    .input-lineheight(@fs-title);
 }
 .s-input__xl,
 .s-textarea__xl,
 .s-label__xl,
 .s-select__xl > select {
     font-size: @fs-headline1;
-    .input-lineheight(@fs-headline1);
 }
 
 //  $$  PADDING ADJUSTMENTS WITHIN SIZES

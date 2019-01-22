@@ -24,10 +24,39 @@
 }
 
 .stacks-intro {
-    background-image: url("../img/pattern-back.svg");
-    background-position: bottom center;
-    background-repeat: repeat;
-    background-size: 655px 655px;
+    background-image: url("../img/illustration-crane.svg"), url("../img/illustration-field.svg");
+    background-position: top -35% left 15%, bottom 10% right 8%;
+    background-repeat: no-repeat, no-repeat;
+}
+
+.stacks-home-nav {
+    margin-bottom: 316px;
+}
+
+#stacks-internals #screen-md({
+    .stacks-intro {
+        background-position: top -15% left 15%, bottom 10% right 8%;
+        background-size: 135px 327px, 537px 390px;
+    }
+}, @force-selector: true);
+
+#stacks-internals #screen-sm({
+    .stacks-home-nav {
+        margin-bottom: 170px;
+    }
+    .stacks-intro {
+        background-position: top 0 left 15%, bottom 20% right 8%;
+        background-size: 90px 218px, 358px 260px;
+    }
+}, @force-selector: true);
+
+@media ( max-width:320px ) {
+    html .stacks-home-nav {
+        margin-bottom: 230px;
+    }
+    html .stacks-intro {
+        background-position: top -50px left 15%, bottom 50% right 8%;
+    }
 }
 
 //  $$  SEARCH BOX ICON
