@@ -36,10 +36,48 @@ description: A collapsible, sometimes called an accordion, is an element that ca
         <li>Give your button an <code class="stacks-code">aria-controls</code> attribute whose value is the ID from 1.</li>
         <li>Give your button an <code class="stacks-code">aria-expanded</code> attribute whose value is <code class="stacks-code">true</code> or <code class="stacks-code">false</code> depending on the initial state of your collapsible.</li>
         <li>Give your button a <code class="stacks-code">data-controller="s-collapsible-control"</code> attribute.</li>
-        <li>If your button is not an actual button or anchor element, be sure to make it keyboard-reachable with <code class="stacks-code">tabindex="0"</code></li>
-        <li>Give your button an <code class="stacks-code">aria-label</code> attribute that makes it clear that this is a collapsing control, <em>unless</em> this is already clear from its text content</li>
+        <li>If your button an element that is not focusable by default, be sure to make it keyboard-reachable with <code class="stacks-code">tabindex="0"</code></li>
+        <li>Give your button is an <code class="stacks-code">aria-label</code> attribute that makes it clear that this is a collapsing control, <em>unless</em> this is already clear from its text content</li>
     </ol>
 
+    <p class="stacks-copy">See the previous section for an example.</p>
 
+    <p class="stacks-copy">If your collapsing control is a checkbox or radio button, then the visibility of the collapsible will be synchronized with the radio / checkbox state:</p>
 
+    {% capture html %}
+    <fieldset class="grid gs8 gsy fd-column"> <!-- PREVIEW ONLY -->
+        <legend class="grid--cell s-label">What is your mood?</legend> <!-- PREVIEW ONLY -->
+        <div class="grid--cell"> <!-- PREVIEW ONLY -->
+            <div class="grid gs8 gsx"> <!-- PREVIEW ONLY -->
+                … <!-- CODE ONLY -->
+                <div class="grid--cell">
+                    <input class="s-radio" type="radio" name="mood-choice" id="mood-happy"
+                        data-controller="s-collapsible-control"
+                        aria-controls="mood-happy-text" />
+                </div>
+                <div class="grid--cell">
+                    <label class="d-block mb4 s-label fw-normal" for="mood-happy">Happy</label>
+                    <div class="s-collapsible" id="mood-happy-text">
+                        <p class="s-collapsible--content">{% icon FaceSmile | 64 %}</p> <!-- PREVIEW ONLY -->
+                        <p class="s-collapsible--content">@Svg.FaceSmile</p> <!-- CODE ONLY -->
+                    </div>
+                </div>
+                … <!-- CODE ONLY -->
+            </div> <!-- PREVIEW ONLY -->
+        </div> <!-- PREVIEW ONLY -->
+        <div class="grid--cell"> <!-- PREVIEW ONLY -->
+            <div class="grid gs8 gsx"> <!-- PREVIEW ONLY -->
+                <div class="grid--cell"> <!-- PREVIEW ONLY -->
+                    <input class="s-radio" type="radio" name="mood-choice" id="mood-sad" data-controller="s-collapsible-control" aria-controls="mood-sad-text" /> <!-- PREVIEW ONLY -->
+                </div> <!-- PREVIEW ONLY -->
+                <div class="grid--cell"> <!-- PREVIEW ONLY -->
+                    <label class="d-block mb4 s-label fw-normal" for="mood-sad">Sad</label> <!-- PREVIEW ONLY -->
+                    <div class="s-collapsible" id="mood-sad-text"> <!-- PREVIEW ONLY -->
+                        <p class="s-collapsible--content">{% icon FaceSad | 64 %}</p> <!-- PREVIEW ONLY -->
+                    </div> <!-- PREVIEW ONLY -->
+                </div> <!-- PREVIEW ONLY -->
+            </div> <!-- PREVIEW ONLY -->
+        </div> <!-- PREVIEW ONLY -->
+    </fieldset> <!-- PREVIEW ONLY -->
+    {% endcapture %}{% include example.html html=html %}
 </section>
