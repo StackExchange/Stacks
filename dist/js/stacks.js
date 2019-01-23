@@ -1902,7 +1902,7 @@ Copyright © 2019 Basecamp, LLC
                 newCollapsed = this.element.getAttribute("aria-expanded") === "true";
                 e.preventDefault();
                 if (e.type === "click") {
-                    this.blur();
+                    this.element.blur();
                 }
             }
             this.element.setAttribute("aria-expanded", newCollapsed ? "false" : "true");
