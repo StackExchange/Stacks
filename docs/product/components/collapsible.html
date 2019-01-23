@@ -1,0 +1,45 @@
+---
+layout: page
+title: Collapsible
+description: A collapsible, sometimes called an accordion, is an element that can be hidden / revealed with a sliding transition.
+---
+<section class="stacks-section">
+    {% header h3 | Basics %}
+    <p class="stacks-copy">From a purely visual standpoint, all you need is a container of class <code class="stacks-code">s-collapsible</code> and a child of class <code class="stacks-code">s-collapsible--content</code>. Toggle the state class <code class="stacks-code">is-collapsed</code> on the container to collapse / expand the content. Care must be taken to keep the collapsing functionality accessible.</p>
+
+
+{% capture html %}
+<div class="s-card ws3">
+    <button class="s-btn s-btn__filled mb8"
+        data-controller="s-collapsible-control"
+        aria-expanded="true"
+        aria-controls="collapsible-example">
+            Toggle first paragraph
+    </button>
+    <div class="s-collapsible" id="collapsible-example">
+        <div class="s-collapsible--content">
+            <p class="mb8">Lorem ipsum dolor sit amet, ex iudicabit necessitatibus usu, cetero laboramus concludaturque mel no, facilisis posidonium cu cum. Pro ex senserit dissentiunt, imperdiet intellegam at sed, ex pri dicit eruditi convenire. Est harum movet gubergren ei, errem dictas evertitur ea sit, at mei oratio eligendi. Ad vis legere possit, vis ne ipsum democritum appellantur. Nullam ancillae iudicabit his ad.</p> <!-- PREVIEW ONLY -->
+            … <!-- CODE ONLY -->
+        </div>
+    </div>
+    <p>Accusata reprimique interesset in sea, est graece dictas scriptorem ea. Consul facete mediocritatem quo et. Idque hendrerit theophrastus in vim, eum possit feugiat fastidii id. Idque invenire at quo, accusata salutandi sadipscing et qui. Eos doming adipiscing ea, eu pri debitis indoctum dissentiet. At libris labores adolescens eos, ex nec nobis aeterno.</p> <!-- PREVIEW ONLY -->
+</div>
+{% endcapture %}{% include example.html html=html %}
+</section>
+<section class="stacks-section">
+    {% header h3 | JavaScript %}
+
+    <p class="stacks-copy">In the usual case in which you have a button or other clickable element that toggles the collapsed state, you can use the built-in <code class="stacks-code">s-collapsible-control</code> functionality. See the <a href="{{ "/product/guidelines/javascript" | relative_url }}">JavaScript introduction</a> for general information on JS in Stacks.</p>
+
+    <ol class="stacks-list">
+        <li>Give the <code class="stacks-code">s-collapsible</code> an <code class="stacks-code">id</code> attribute.</li>
+        <li>Give your button an <code class="stacks-code">aria-controls</code> attribute whose value is the ID from 1.</li>
+        <li>Give your button an <code class="stacks-code">aria-expanded</code> attribute whose value is <code class="stacks-code">true</code> or <code class="stacks-code">false</code> depending on the initial state of your collapsible.</li>
+        <li>Give your button a <code class="stacks-code">data-controller="s-collapsible-control"</code> attribute.</li>
+        <li>If your button is not an actual button or anchor element, be sure to make it keyboard-reachable with <code class="stacks-code">tabindex="0"</code></li>
+        <li>Give your button an <code class="stacks-code">aria-label</code> attribute that makes it clear that this is a collapsing control, <em>unless</em> this is already clear from its text content</li>
+    </ol>
+
+
+
+</section>
