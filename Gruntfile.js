@@ -94,7 +94,8 @@ module.exports = function(grunt) {
                     'dist/js/stacks.js': [
                         'node_modules/stimulus/dist/stimulus.umd.js',
                         'lib/js/stacks.js',
-                        'lib/js/controllers/**/*.js'
+                        'lib/js/controllers/**/*.js',
+                        'lib/js/finalize.js'
                     ]
                 }
             }
