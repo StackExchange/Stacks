@@ -1828,61 +1828,6 @@ Copyright © 2019 Basecamp, LLC
 
 (function () {
     "use strict";
-    Stacks.addController("s-focus-within", {
-
-        initialize: function () {
-            var that = this;
-            that._listener = function (evt) {
-                if (evt.type === "focusin") {
-                    that._addClass();
-                } else {
-                    that._removeClass();
-                }
-            };
-        },
-
-        connect: function () {
-            if (this.element.querySelector(":focus")) {
-                this._addClass();
-            }
-            this.element.addEventListener("focusin", this._listener);
-            this.element.addEventListener("focusout", this._listener);
-        },
-
-        disconnect: function () {
-            this.element.removeEventListener("focusin", this._listener);
-            this.element.removeEventListener("focusout", this._listener);
-            this.removeClass();
-        },
-
-        _class: function () {
-            return this.data.get("class") || "has-focus";
-        },
-
-        _addClass: function() {
-            if (this._addedClass) {
-                return;
-            }
-            var cls = this._class();
-            if (this.element.classList.contains(cls)) {
-                return;
-            }
-            this.element.classList.add(cls);
-            this._addedClass = cls;
-        },
-
-        _removeClass: function() {
-            this.element.classList.remove(this._addedClass);
-            delete this._addedClass;
-        }
-    });
-})();
-
-
-;
-
-(function () {
-    "use strict";
     Stacks.addController("s-table", {
 
         targets: ["column"],
