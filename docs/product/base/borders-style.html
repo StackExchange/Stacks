@@ -5,16 +5,18 @@
         <table class="wmn3 s-table s-table__bx-simple">
             <thead>
                 <tr>
-                    <th class="s-table--cell2" scope="col">Abbreviation</th>
+                    <th class="s-table--cell2" scope="col">Class</th>
+                    <th scope="col">Output</th>
                     <th scope="col">Definition</th>
                 </tr>
             </thead>
             <tbody>
                 {% for border in site.data.product.borders-definitions.border-style %}
-                  <tr>
-                      <th scope="row">{{ border.term }}</th>
-                      <td>{{ border.define }}</td>
-                  </tr>
+                    <tr>
+                        <th scope="row"><code class="stacks-code">{{ border.class }}</code></th>
+                        <td class="ff-mono">{{ border.output }}</td>
+                        <td>{{ border.define }}</td>
+                    </tr>
                 {% endfor %}
             </tbody>
         </table>

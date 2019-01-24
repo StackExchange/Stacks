@@ -1,4 +1,4 @@
-<p class="stacks-copy">To apply a border, <code class="stacks-code">.b[direction]</code> classes are provided. The default <code class="stacks-code">border</code> properties are <code class="stacks-code">border-width: 1px;</code> and <code class="stacks-code">border-style: solid;</code>. The browser default border color is black (<code class="stacks-code">#000</code>). To supply a border-color, use the <a href="#border-color">border color classes</a>.</p>
+<p class="stacks-copy">To apply a border, <code class="stacks-code">.b[direction]</code> classes are provided. The default <code class="stacks-code">border</code> properties are <code class="stacks-code">border-width: 1px;</code> and <code class="stacks-code">border-style: solid;</code>. The browser default border color is black (<code class="stacks-code">#000</code>). To supply a border-color, use the <a href="#color">border color classes</a>.</p>
 
 <section class="stacks-section">
     {% header h3 | Border Classes %}
@@ -6,14 +6,16 @@
         <table class="wmn3 s-table s-table__bx-simple">
             <thead>
                 <tr>
-                    <th class="s-table--cell2" scope="col">Abbreviation</th>
+                    <th class="s-table--cell2" scope="col">Class</th>
+                    <th scope="col">Output</th>
                     <th scope="col">Definition</th>
                 </tr>
             </thead>
             <tbody>
                 {% for border in site.data.product.borders-definitions.border %}
                   <tr>
-                      <th scope="row">{{ border.term }}</th>
+                      <th scope="row"><code class="stacks-code">{{ border.class }}</code></th>
+                      <td class="ff-mono">{{ border.output }}</td>
                       <td>{{ border.define }}</td>
                   </tr>
                 {% endfor %}
