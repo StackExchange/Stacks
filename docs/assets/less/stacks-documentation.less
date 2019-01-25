@@ -59,16 +59,6 @@
     }
 }
 
-//  $$  SEARCH BOX ICON
-//  ----------------------------------------------------------------------------
-.stacks-search-icon {
-    position: absolute;
-    top: 50%;
-    left: 10px;
-    margin-top: -10px;
-    color: @black-200;
-}
-
 //  $$  NAV SECONDARY SUBNAV
 //  ----------------------------------------------------------------------------
 .stacks-nav__secondary .stacks-nav__secondary {
@@ -160,7 +150,8 @@
 
     vertical-align: middle;
     white-space: nowrap;
-    .wb-break-word;
+    overflow-wrap: break-word;
+    word-wrap: break-word; /* IE11 */
 }
 
 .stacks-code {
@@ -349,5 +340,90 @@ pre.lineno {
                 display: none !important;
             }
         }
+    }
+}
+
+//  ============================================================================
+//  $   Homepage grid
+//  ----------------------------------------------------------------------------
+
+.stacks-grid {
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-columns: 1fr @su16 1fr @su16 1fr @su16 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-column-gap: @su16;
+    grid-row-gap: @su16;
+}
+
+.stacks-grid--cell1 {
+    -ms-grid-column: 1;
+}
+
+.stacks-grid--cell2 {
+    -ms-grid-column: 3;
+}
+
+.stacks-grid--cell3 {
+    -ms-grid-column: 5;
+}
+
+.stacks-grid--cell4 {
+    -ms-grid-column: 7;
+}
+
+@media ( max-width:1340px ) {
+    .stacks-grid {
+        -ms-grid-columns: 1fr @su16 1fr;
+        -ms-grid-rows: 1fr @su16 1fr;
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .stacks-grid--cell1 {
+        -ms-grid-column: 1;
+        -ms-grid-row: 1;
+    }
+    
+    .stacks-grid--cell2 {
+        -ms-grid-column: 3;
+        -ms-grid-row: 1;
+    }
+    
+    .stacks-grid--cell3 {
+        -ms-grid-column: 1;
+        -ms-grid-row: 3;
+    }
+    
+    .stacks-grid--cell4 {
+        -ms-grid-column: 3;
+        -ms-grid-row: 3;
+    }
+}
+
+@media ( max-width:530px ) {
+    .stacks-grid {
+        -ms-grid-columns: 1fr;
+        -ms-grid-rows: 1fr @su16 1fr @su16 1fr @su16 1fr;
+        grid-template-columns: 1fr;
+    }
+
+    .stacks-grid--cell1 {
+        -ms-grid-column: 1;
+        -ms-grid-row: 1;
+    }
+    
+    .stacks-grid--cell2 {
+        -ms-grid-column: 1;
+        -ms-grid-row: 3;
+    }
+    
+    .stacks-grid--cell3 {
+        -ms-grid-column: 1;
+        -ms-grid-row: 5;
+    }
+    
+    .stacks-grid--cell4 {
+        -ms-grid-column: 1;
+        -ms-grid-row: 7;
     }
 }
