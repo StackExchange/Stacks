@@ -54,13 +54,16 @@
         color: @black-200;
     }
     &::placeholder {
-        padding-top: 1px; // Placeholder text is 1px higher than text that's entered.
         color: @black-200;
     }
 
     //  --  REMOVE EDGE ADDITIONS
     //  ------------------------------------------------------------------------
     &::-ms-clear { display: none; }
+}
+
+.s-input.s-input__search {
+    padding-left: @su32;
 }
 
 
@@ -515,15 +518,20 @@ fieldset {
     }
 }
 
-//  $$  ICON
+//  $$  ICONS
 //  ----------------------------------------------------------------------------
 .s-input-icon {
     position: absolute;
     top: 50%;
-    right: 0.8em;
-    margin-top: -0.69em;
-    vertical-align: text-bottom !important;
+    right: 0.7em;
+    margin-top: -9px; // Half the icon's height at 18px for centering;
     pointer-events: none;
+
+    &.s-input-icon__search {
+        right: auto;
+        left: 0.7em;
+        color: @black-200;
+    }
 }
 
 //  $$  MESSAGE
