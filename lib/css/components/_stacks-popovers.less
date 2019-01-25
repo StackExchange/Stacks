@@ -1,0 +1,234 @@
+//
+//  STACK OVERFLOW
+//  POPOVERS
+//
+//  This CSS comes from Stacks, our CSS & Pattern library for rapidly building
+//  Stack Overflow. For documentation of all these classes and how to contribute,
+//  visit https://stackoverflow.design/
+//
+//  TABLE OF CONTENTS
+//  • VARIABLES
+//  • BASE STYLE
+//  • ARROWS
+//  • LOCATIONS
+//
+//  ============================================================================
+//  $   BASE STYLES
+//  ----------------------------------------------------------------------------
+.s-popover {
+    visibility: hidden;
+    position: relative;
+    min-width: 12rem;
+    max-width: 24rem;
+    width: 100%;
+    padding: @su12;
+    z-index: @zi-hide;
+    opacity: 0;
+    border-radius: @br-md;
+    border: 1px solid @black-100;
+    background-color: @white;
+    box-shadow: @bs-sm;
+    color: @fc-dark;
+    font-size: @fs-body1;
+    transition: opacity 100ms @te-smooth 0s, z-index 0s 100ms, visibility 0s 100ms; // Transition out
+
+    &.is-visible {
+        visibility: visible;
+        opacity: 1;
+        z-index: @zi-popovers;
+        transition: opacity 100ms @te-smooth 0s, z-index 0s 0s, visibility 0s 0s; // Transition in
+    }
+}
+
+//  ============================================================================
+//  $   CLOSE BUTTON
+//  ----------------------------------------------------------------------------
+
+.s-popover--close {
+    float: right;
+    top: -@su8; // Compensate for s-popover's padding
+    right: -@su8; // Compensate for s-popover's padding
+    padding: @su8 !important;
+}
+
+
+//  ============================================================================
+//  $   ARROWS
+//  ----------------------------------------------------------------------------
+//
+//  TABLE OF CONTENTS
+//  • BASE STYLE
+//  • LOCATIONS
+//      • TOP
+//      • BOTTOM
+//      • TOP & BOTTOM DIRECTIONS (Left, Center, Right)
+//      • LEFT
+//      • RIGHT
+//      • LEFT & RIGHT DIRECTIONS (Top, Center, Bottom)
+//
+//  ============================================================================
+//  $   BASE STYLE
+//      Sets the base arrow style for tooltips, popovers, and dropdowns.
+//  ----------------------------------------------------------------------------
+.s-popover--arrow__tl,
+.s-popover--arrow__tc,
+.s-popover--arrow__tr,
+.s-popover--arrow__bl,
+.s-popover--arrow__bc,
+.s-popover--arrow__br,
+.s-popover--arrow__lt,
+.s-popover--arrow__lc,
+.s-popover--arrow__lb,
+.s-popover--arrow__rt,
+.s-popover--arrow__rc,
+.s-popover--arrow__rb {
+    &:before,
+    &:after {
+        content: "";
+        position: absolute;
+        border-width: @su8;
+        border-style: solid;
+        border-color: transparent;
+    }
+}
+
+//  ============================================================================
+//  $   ARROW LOCATIONS
+//  ============================================================================
+//  $$  TOP
+//  ----------------------------------------------------------------------------
+.s-popover--arrow__tl,
+.s-popover--arrow__tc,
+.s-popover--arrow__tr {
+    &:before,
+    &:after {
+        border-top: none;
+    }
+    &:before {
+        top: -(@su8);
+        border-bottom-color: @black-150;
+    }
+    &:after {
+        top: -(@su8 - 1);
+        border-bottom-color: @white;
+    }
+}
+
+//  $$  BOTTOM
+//  ----------------------------------------------------------------------------
+.s-popover--arrow__bl,
+.s-popover--arrow__bc,
+.s-popover--arrow__br {
+    &:before,
+    &:after {
+        border-bottom: none;
+    }
+    &:before {
+        bottom: -(@su8);
+        border-top-color: @black-150;
+    }
+    &:after {
+        bottom: -(@su8 - 1);
+        border-top-color: @white;
+    }
+}
+
+//  $$  TOP & BOTTOM LEFT
+//  ----------------------------------------------------------------------------
+.s-popover--arrow__tl,
+.s-popover--arrow__bl {
+    &:before,
+    &:after {
+        left: @su12;
+    }
+}
+
+//  $$  TOP & BOTTOM CENTER
+//  ----------------------------------------------------------------------------
+.s-popover--arrow__tc,
+.s-popover--arrow__bc {
+    &:before,
+    &:after {
+        left: 50%;
+        margin-left: -(@su8);
+    }
+}
+
+//  $$  TOP & BOTTOM RIGHT
+//  ----------------------------------------------------------------------------
+.s-popover--arrow__tr,
+.s-popover--arrow__br {
+    &:before,
+    &:after {
+        right: @su12;
+    }
+}
+
+//  $$  LEFT
+//  ----------------------------------------------------------------------------
+.s-popover--arrow__lt,
+.s-popover--arrow__lc,
+.s-popover--arrow__lb {
+    &:before,
+    &:after {
+        border-left: none;
+    }
+    &:before {
+        left: -(@su8);
+        border-right-color: @black-150;
+    }
+    &:after {
+        left: -(@su8 - 1);
+        border-right-color: @white;
+    }
+}
+
+//  $$  RIGHT
+//  ----------------------------------------------------------------------------
+.s-popover--arrow__rt,
+.s-popover--arrow__rc,
+.s-popover--arrow__rb {
+    &:before,
+    &:after {
+        border-right: none;
+    }
+    &:before {
+        right: -(@su8);
+        border-left-color: @black-150;
+    }
+    &:after {
+        right: -(@su8 - 1);
+        border-left-color: @white;
+    }
+}
+
+//  $$  LEFT & RIGHT TOP
+//  ----------------------------------------------------------------------------
+.s-popover--arrow__lt,
+.s-popover--arrow__rt {
+    &:before,
+    &:after {
+        top: @su12;
+    }
+}
+
+//  $$  LEFT & RIGHT CENTER
+//  ----------------------------------------------------------------------------
+.s-popover--arrow__lc,
+.s-popover--arrow__rc {
+    &:before,
+    &:after {
+        top: 50%;
+        margin-top: -(@su8);
+    }
+}
+
+//  $$  LEFT & RIGHT BOTTOM
+//  ----------------------------------------------------------------------------
+.s-popover--arrow__lb,
+.s-popover--arrow__rb {
+    &:before,
+    &:after {
+        bottom: @su12;
+    }
+}
