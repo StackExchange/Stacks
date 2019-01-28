@@ -58,8 +58,8 @@ description: All system icons are inline SVG files, invoked via a Razor helper. 
 <section class="stacks-section mb32" id="js-sortable-list">
     {% header h2 | Icon Set %}
     <div class="ps-relative mb16">
-        <input type="text" class="pl32 fuzzy-search s-input" placeholder="Search icons…" />
-        {% icon Search | pe-none stacks-search-icon %}
+        <input type="text" class="fuzzy-search s-input s-input__search" placeholder="Search icons…" />
+        {% icon Search | s-input-icon s-input-icon__search %}
     </div>
     <div class="grid fw-wrap sm:fd-column gs16 grid__allcells4 list">
         {% assign icon_sort = site.data.product.icons | sort: "helper" %}
@@ -70,7 +70,7 @@ description: All system icons are inline SVG files, invoked via a Razor helper. 
                         {% icon {{ icon.helper }} | native %}
                     </div>
                     <div class="grid ff-column-nowrap ai-center p8">
-                        <code class="grid--cell fs-caption py8 ff-mono wb-break-word js-name">@Svg.{{ icon.helper }}</code>
+                        <code class="grid--cell fs-caption py8 ff-mono ow-break-word js-name">@Svg.{{ icon.helper }}</code>
                     </div>
                 </div>
             </div>

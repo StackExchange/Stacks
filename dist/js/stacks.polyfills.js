@@ -15,7 +15,7 @@
     });
 
     var _core = createCommonjsModule(function (module) {
-    var core = module.exports = { version: '2.5.7' };
+    var core = module.exports = { version: '2.6.2' };
     if (typeof __e == 'number') __e = core; // eslint-disable-line no-undef
     });
 
@@ -264,7 +264,7 @@
     })('versions', []).push({
       version: _core.version,
       mode: _library ? 'pure' : 'global',
-      copyright: '© 2018 Denis Pushkarev (zloirock.ru)'
+      copyright: '© 2019 Denis Pushkarev (zloirock.ru)'
     });
     });
 

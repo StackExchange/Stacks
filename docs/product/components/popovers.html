@@ -1,0 +1,166 @@
+---
+layout: page
+title: Popovers
+description: Popovers are small content containers that provide a contextual overlay. They can be used as in-context feature explanations, dropdowns, or tooltips.
+---
+<section class="stacks-section">
+    {% header h2 | Classes %}
+    <div class="overflow-x-auto mb32">
+        <table class="wmn4 s-table s-table__bx-simple">
+            <thead>
+                <tr>
+                    <th class="s-table--cell4" scope="col">Class</th>
+                    <th class="s-table--cell3" scope="col">Applies to</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody class="fs-caption">
+                {% for item in site.data.product.popovers.classes %}
+                    <tr>
+                        <th scope="row"><code class="stacks-code">{{ item.class }}</code></th>
+                        <td><code class="stacks-code">{{ item.applies }}</td>
+                        <td class="p8">{{ item.description }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</section>
+<section class="stacks-section">
+    {% header h2 | Examples %}
+    <div class="mb24 p16 bar-sm bg-black-025 ba bc-black-1">
+        <div class="ps-relative">
+            <div class="s-popover ps-absolute ws2 b48 l64 mln4 js-popover-example" role="menu" aria-hidden="true">
+                <div class="s-popover--arrow__bl"></div>
+                <p class="ff-mono mb8">.s-popover--arrow__bl</p>
+                <p class="mb0">Popover arrow appears bottom left</p>
+            </div>
+            <button class="s-btn s-btn__filled js-popover-btn">Show example popover</button>
+        </div>
+    </div>
+    <p class="stacks-copy">Popovers are provided without any positioning applied to them. It’s up to the implementer to choose how they’ll be positioned. This will most likely be achieved by adding something like <code class="stacks-code">ps-absolute t8 l8</code> to <code class="stacks-code">.s-popover</code>. Positioning for arrows <em>is</em> provided, however. Arrow direction (top, right, bottom, left) will appear first, followed by the secondary (center, top, right, bottom, left). For example, a popover with an arrow child of <code class="stacks-code">.s-popover--arrow_tc</code> will appear on the top of the <code class="stacks-code">.s-popover</code> and centered horizontally. Though there are sensible defaults applied to the width of popovers, you may need to adjust manually.</p>
+
+    <p class="stacks-copy">By default, popovers are hidden. Adding the class <code class="stacks-code">.is-visible</code> will show the popover.</p>
+
+    {% header h3 | Standard %}
+    <div class="stacks-preview">
+{% highlight html linenos %}
+<div class="s-popover">
+    <div class="s-popover--arrow__tc"></div>
+    …
+</div>
+{% endhighlight %}
+        <div class="stacks-preview--example bg-black-025">
+            <div class="grid gs16 grid__allcells4 fw-wrap">
+                <div class="grid--cell ps-relative">
+                    <div class="s-popover z-base is-visible">
+                        <div class="s-popover--arrow__tc"></div>
+                        <p class="ff-mono mb8">.s-popover--arrow__tc</p>
+                        <p class="mb0">Popover arrow appears top center</p>
+                    </div>
+                </div>
+                <div class="grid--cell">
+                    <div class="s-popover z-base is-visible">
+                        <div class="s-popover--arrow__tl"></div>
+                        <p class="ff-mono mb8">.s-popover--arrow__tl</p>
+                        <p class="mb0">Popover arrow appears top left</p>
+                    </div>
+                </div>
+                <div class="grid--cell">
+                    <div class="s-popover z-base is-visible">
+                        <div class="s-popover--arrow__tr"></div>
+                        <p class="ff-mono mb8">.s-popover--arrow__tr</p>
+                        <p class="mb0">Popover arrow appears top right</p>
+                    </div>
+                </div>
+                <div class="grid--cell">
+                    <div class="s-popover z-base is-visible">
+                        <div class="s-popover--arrow__bc"></div>
+                        <p class="ff-mono mb8">.s-popover--arrow__bc</p>
+                        <p class="mb0">Popover arrow appears bottom center</p>
+                    </div>
+                </div>
+                <div class="grid--cell">
+                    <div class="s-popover z-base is-visible">
+                        <div class="s-popover--arrow__bl"></div>
+                        <p class="ff-mono mb8">.s-popover--arrow__bl</p>
+                        <p class="mb0">Popover arrow appears bottom left</p>
+                    </div>
+                </div>
+                <div class="grid--cell">
+                    <div class="s-popover z-base is-visible">
+                        <div class="s-popover--arrow__br"></div>
+                        <p class="ff-mono mb8">.s-popover--arrow__br</p>
+                        <p class="mb0">Popover arrow appears bottom right</p>
+                    </div>
+                </div>
+                <div class="grid--cell">
+                    <div class="s-popover z-base is-visible">
+                        <div class="s-popover--arrow__rc"></div>
+                        <p class="ff-mono mb8">.s-popover--arrow__rc</p>
+                        <p class="mb0">Popover arrow appears right center</p>
+                    </div>
+                </div>
+                <div class="grid--cell">
+                    <div class="s-popover z-base is-visible">
+                        <div class="s-popover--arrow__rt"></div>
+                        <p class="ff-mono mb8">.s-popover--arrow__rt</p>
+                        <p class="mb0">Popover arrow appears right top</p>
+                    </div>
+                </div>
+                <div class="grid--cell">
+                    <div class="s-popover z-base is-visible">
+                        <div class="s-popover--arrow__rb"></div>
+                        <p class="ff-mono mb8">.s-popover--arrow__rb</p>
+                        <p class="mb0">Popover arrow appears right bottom</p>
+                    </div>
+                </div>
+                <div class="grid--cell">
+                    <div class="s-popover z-base is-visible">
+                        <div class="s-popover--arrow__lc"></div>
+                        <p class="ff-mono mb8">.s-popover--arrow__lc</p>
+                        <p class="mb0">Popover arrow appears left center</p>
+                    </div>
+                </div>
+                <div class="grid--cell">
+                    <div class="s-popover z-base is-visible">
+                        <div class="s-popover--arrow__lt"></div>
+                        <p class="ff-mono mb8">.s-popover--arrow__lt</p>
+                        <p class="mb0">Popover arrow appears left top</p>
+                    </div>
+                </div>
+                <div class="grid--cell">
+                    <div class="s-popover z-base is-visible">
+                        <div class="s-popover--arrow__lb"></div>
+                        <p class="ff-mono mb8">.s-popover--arrow__lb</p>
+                        <p class="mb0">Popover arrow appears left bottom</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% header h3 | Dismissible %}
+    <p class="stacks-copy">In the case of new feature callouts, it may be appropriate to include an explicit dismiss button. You can add one using the styling provided by <code class="stacks-code">.s-popover--close</code>.</p>
+    <div class="stacks-preview">
+{% highlight html linenos %}
+<div class="s-popover">
+    <button class="s-popover--close s-btn s-btn__muted" aria-label="Close">
+        @Svg.ClearSm
+    </button>
+    <div class="s-popover--arrow__bl"></div>
+    …
+</div>
+{% endhighlight %}
+        <div class="stacks-preview--example bg-black-025">
+            <div class="s-popover z-base is-visible">
+                <button class="s-popover--close s-btn s-btn__muted" aria-label="Close">{% icon ClearSm %}</button>
+                <div class="s-popover--arrow__bl"></div>
+                <p class="ff-mono mb8">.s-popover--close</p>
+                <p class="mb0">Popover presented with a close button</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script src="{{ "/assets/js/feature.popovers.js" | relative_url }}"></script>
