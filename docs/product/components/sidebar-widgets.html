@@ -554,30 +554,30 @@ description: Sidebar widgets are flexible containers that provide a lot of patte
 <section class="stacks-section">
     {% header h2 | Accordions %}
     <p class="stacks-copy">
-        In order to create an accordion, i.e. to make part of the sidebar widget expandable / collapsible, you can make use of <a href="{{ "/product/components/collapsible" | relative_url }}">the <code class="stacks-code">s-collapsible</code> component</a>.
+        In order to create an accordion, i.e. to make part of the sidebar widget expandable / collapsible, you can make use of <a href="{{ "/product/components/expandable" | relative_url }}">the <code class="stacks-code">s-expandable</code> component</a>.
     </p>
 
-    <p class="stacks-copy">The <code class="stacks-code">s-sidebarwidget-header</code> element that controls the accordion needs a modifier class of <code class="stacks-code">s-sidebarwidget__collapsing-control</code> in order to display the expander arrow. Beyond that, it needs all the attributes as described for the controlling button in the <a href="{{ "/product/components/collapsible#javascript" | relative_url }}">collapsible documentation</a>.</p>
+    <p class="stacks-copy">The <code class="stacks-code">s-sidebarwidget-header</code> element that controls the accordion needs a modifier class of <code class="stacks-code">s-sidebarwidget__expanding-control</code> in order to display the expander arrow. Beyond that, it needs all the attributes as described for the controlling button in the <a href="{{ "/product/components/expandable#javascript" | relative_url }}">expandable documentation</a>.</p>
 
-    <p class="stacks-copy">The (one or more) content elements that are meant to be collapsed must be wrapped in the <code class="stacks-code">s-collapsible</code> element; inside this wrapper element there is the <code class="stacks-code">s-collapsible--content</code>. This can be the same element as the <code class="stacks-code">s-sidebarwidget--content</code> element (if there’s only one content element that is meant to be collapsed), or it can be an additional wrapper element <em>around</em> the content element(s).</p>
+    <p class="stacks-copy">The (one or more) content elements that are meant to be collapsed must be wrapped in the <code class="stacks-code">s-expandable</code> element; inside this wrapper element there is the <code class="stacks-code">s-expandable--content</code>. This can be the same element as the <code class="stacks-code">s-sidebarwidget--content</code> element (if there’s only one content element that is meant to be collapsed), or it can be an additional wrapper element <em>around</em> the content element(s).</p>
 
     <div class="stacks-preview">
 {% highlight html linenos %}
 <div class="s-sidebarwidget">
     <div class="s-sidebarwidget--header s-sidebarwidget__small-bold_text
-                s-sidebarwidget__collapsing-control"
+                s-sidebarwidget__expanding-control"
                 aria-expanded="true"
                 aria-controls="recent-searches"
                 aria-label="toggle recent searches"
-                data-controller="s-collapsible-control"
+                data-controller="s-expandable-control"
                 tabindex="0">
         <a class="s-sidebarwidget--action" href="…">
             Clear
         </a>
         2 Recent Searches
     </div>
-    <div class="s-collapsible" id="recent-searches">
-        <div class="s-collapsible--content">
+    <div class="s-expandable" id="recent-searches">
+        <div class="s-expandable--content">
             <table class="s-sidebarwidget--content s-sidebarwidget__items">
                 <tr class="s-sidebarwidget--item">
                     <td>…</td>
@@ -599,19 +599,19 @@ description: Sidebar widgets are flexible containers that provide a lot of patte
         <div class="stacks-preview--example overflow-x-auto">
             <div class="s-sidebarwidget ws3 mx-auto">
                 <div class="s-sidebarwidget--header s-sidebarwidget__small-bold_text
-                            s-sidebarwidget__collapsing-control"
+                            s-sidebarwidget__expanding-control"
                             aria-expanded="true"
                             aria-controls="recent-searches"
                             aria-label="toggle recent searches"
-                            data-controller="s-collapsible-control"
+                            data-controller="s-expandable-control"
                             tabindex="0">
                     <a class="s-sidebarwidget--action" href="#">
                         Clear
                     </a>
                     2 Recent Searches
                 </div>
-                <div class="s-collapsible" id="recent-searches">
-                    <div class="s-collapsible--content">
+                <div class="s-expandable" id="recent-searches">
+                    <div class="s-expandable--content">
                         <table class="s-sidebarwidget--content s-sidebarwidget__items">
                             <tbody>
                                 <tr class="s-sidebarwidget--item">
@@ -627,17 +627,17 @@ description: Sidebar widgets are flexible containers that provide a lot of patte
                     </div>
                 </div>
                 <div class="s-sidebarwidget--header s-sidebarwidget__small-bold-text
-                            s-sidebarwidget__collapsing-control js-collapsing-control"
+                            s-sidebarwidget__expanding-control
                             aria-expanded="false"
                             aria-controls="favorites"
                             aria-label="toggle favorites"
-                            data-controller="s-collapsible-control"
+                            data-controller="s-expandable-control"
                             tabindex="0">
                     0 Favorites
                 </div>
-                <div class="s-collapsible is-collapsed" id="favorites">
+                <div class="s-expandable" id="favorites">
                     <div class="s-sidebarwidget--content s-sidebarwidget__items
-                                s-collapsible--content">
+                                s-expandable--content">
                         <div class="s-sidebarwidget--item">
                             <i>You have no favorite jobs</i>
                         </div>
