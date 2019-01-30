@@ -12,7 +12,7 @@
 //
 // At the time of writing, clip-path works in Chrome, Firefox Beta, and Safari (with vendor prefix).
 //
-// In browsers that do not support this yet, we have to have another way to prevent the collapsible content
+// In browsers that do not support this yet, we have to have another way to prevent the expandable content
 // from being visible below the bottom edge during the transition, and the best I could come up with is
 // transitioning to scaleY(0) with a timing function that's faster than the height-reducing transitions.
 // This does kinda look like a deliberate effect, even more so if we also transition to transparency
@@ -23,22 +23,21 @@
 //
 // A major drawback of clip-path is that even though the content is clipped (not visible), it will still
 // contribute to the document height. This caused a jumping around of the scrollbar (and possibly even
-// of the viewport) when the collapsible was at the bottom of the page, because once the negative bottom
-// margin of the -collapsible-group exceeds the actual height, any additional pixels were added on to the
-// bottom. The fix is to set the -collapsible-group's flex alignment to flex-start, which forces the
+// of the viewport) when the expandable was at the bottom of the page, because once the negative bottom
+// margin of the -expandable-group exceeds the actual height, any additional pixels were added on to the
+// bottom. The fix is to set the -expandable-group's flex alignment to flex-start, which forces the
 // (no longer visible) element itself to remain at the top, thereby forcing the excess pixels to be added
 // above the top, not below the bottom. And because extending content above the document top will not do
 // anything to the document height, there is no jumping during the transition.
 
-@s-collapsible-transition-duration: 100ms;
+@stacks-internals-s-expandable-transition-duration: 100ms;
 
-.s-collapsible {
-    @s-collapsible-transition-duration: 100ms;
+.s-expandable {
     display: flex;
     -webkit-clip-path: polygon(-1000000px -1000000px, 1000000px -1000000px, 1000000px 1000000px, -1000000px 1000000px);
     clip-path: polygon(-1000000px -1000000px, 1000000px -1000000px, 1000000px 1000000px, -1000000px 1000000px);
     align-items: flex-start; // see comment above
-    transition: clip-path 0s @s-collapsible-transition-duration, -webkit-clip-path 0s @s-collapsible-transition-duration;
+    transition: clip-path 0s @stacks-internals-s-expandable-transition-duration, -webkit-clip-path 0s @stacks-internals-s-expandable-transition-duration;
 
     &:after {
         content: '';
@@ -46,41 +45,41 @@
             flex-basis: 0;
         height: 50px;
         max-height: 0px;
-        transition: height @s-collapsible-transition-duration linear,
-                    max-height 0s @s-collapsible-transition-duration linear;
+        transition: height @stacks-internals-s-expandable-transition-duration linear,
+                    max-height 0s @stacks-internals-s-expandable-transition-duration linear;
     }
 }
 
-.s-collapsible--content {
+.s-expandable--content {
     -ms-flex-preferred-size: 100%;
         flex-basis: 100%;
     max-height: 1000000px;
     margin-bottom: 0;
     -webkit-transform-origin: 0 0;
             transform-origin: 0 0;
-    transition: margin-bottom @s-collapsible-transition-duration cubic-bezier(0, 0, 0, 1),
-                transform @s-collapsible-transition-duration cubic-bezier(1, 0, 1, 1),
-                opacity @s-collapsible-transition-duration cubic-bezier(1, 0, 1, 1);
+    transition: margin-bottom @stacks-internals-s-expandable-transition-duration cubic-bezier(0, 0, 0, 1),
+                transform @stacks-internals-s-expandable-transition-duration cubic-bezier(1, 0, 1, 1),
+                opacity @stacks-internals-s-expandable-transition-duration cubic-bezier(1, 0, 1, 1);
 }
 
-.s-collapsible.is-collapsed {
+.s-expandable:not(.is-expanded) {
     overflow: hidden;
     -webkit-clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
     clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
     transition: none;
 
-    .s-collapsible--content {
+    .s-expandable--content {
         visibility: hidden;
         max-height: 0;
         margin-bottom: -1500px;
         opacity: 0;
         -webkit-transform: scaleY(0);
                 transform: scaleY(0);
-        transition: margin-bottom @s-collapsible-transition-duration cubic-bezier(1, 0, 1, 1),
-                    visibility 0s @s-collapsible-transition-duration,
-                    max-height 0s @s-collapsible-transition-duration,
-                    transform @s-collapsible-transition-duration cubic-bezier(0, 1, 1, 1),
-                    opacity @s-collapsible-transition-duration cubic-bezier(0, 1, 1, 1);
+        transition: margin-bottom @stacks-internals-s-expandable-transition-duration cubic-bezier(1, 0, 1, 1),
+                    visibility 0s @stacks-internals-s-expandable-transition-duration,
+                    max-height 0s @stacks-internals-s-expandable-transition-duration,
+                    transform @stacks-internals-s-expandable-transition-duration cubic-bezier(0, 1, 1, 1),
+                    opacity @stacks-internals-s-expandable-transition-duration cubic-bezier(0, 1, 1, 1);
         @supports ((-webkit-clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)) or (clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%))) {
             opacity: 1;
             -webkit-transform: none;
@@ -91,6 +90,6 @@
     &:after {
         height: 0;
         max-height: 50px;
-        transition: height @s-collapsible-transition-duration linear;
+        transition: height @stacks-internals-s-expandable-transition-duration linear;
     }
 }

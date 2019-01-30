@@ -1838,7 +1838,7 @@ Copyright © 2019 Basecamp, LLC
     // We're keeping a count of how many of these controllers are connected to the DOM,
     // so only have this global listener when we actually need it.
 
-    var RADIO_OFF_EVENT = "s-collapsible-control:radio-off";
+    var RADIO_OFF_EVENT = "s-expandable-control:radio-off";
 
     function globalChangeListener(e) {
         if (e.target.nodeName !== "INPUT" || e.target.type !== "radio") {
@@ -1877,7 +1877,7 @@ Copyright © 2019 Basecamp, LLC
     }
 
 
-    Stacks.addController("s-collapsible-control", {
+    Stacks.addController("s-expandable-control", {
 
         initialize: function () {
             if (this.element.nodeName === "INPUT" && ["radio", "checkbox"].indexOf(this.element.type) >= 0) {
@@ -1896,7 +1896,7 @@ Copyright © 2019 Basecamp, LLC
         // state of the controlled element (unless the element doesn't exist)
         _isCollapsedForClickable: function () {
             var cc = this.controlledCollapsible;
-            return cc ? cc.classList.contains("is-collapsed") : this.element.getAttribute("aria-expanded") === "false";
+            return cc ? !cc.classList.contains("is-expanded") : this.element.getAttribute("aria-expanded") === "false";
         },
 
         // for checkable elements, the initial source of truth is the checked state
@@ -1926,7 +1926,7 @@ Copyright © 2019 Basecamp, LLC
                 }
             }
             this.element.setAttribute("aria-expanded", newCollapsed ? "false" : "true");
-            this.controlledCollapsible.classList.toggle("is-collapsed", newCollapsed);
+            this.controlledCollapsible.classList.toggle("is-expanded", !newCollapsed);
         },
 
         connect: function () {
@@ -1944,7 +1944,7 @@ Copyright © 2019 Basecamp, LLC
             if (this.isCheckable) {
                 var cc = this.controlledCollapsible;
                 if (cc) {
-                    cc.classList.toggle("is-collapsed", this.isCollapsed());
+                    cc.classList.toggle("is-expanded", !this.isCollapsed());
                 }
             }
         },
