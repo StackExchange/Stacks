@@ -554,64 +554,30 @@ description: Sidebar widgets are flexible containers that provide a lot of patte
 <section class="stacks-section">
     {% header h2 | Accordions %}
     <p class="stacks-copy">
-        In order to create an accordion, i.e. to make part of the sidebar widget expandable / collapsible, you can do the following.
+        In order to create an accordion, i.e. to make part of the sidebar widget expandable / collapsible, you can make use of <a href="{{ "/product/components/expandable" | relative_url }}">the <code class="stacks-code">s-expandable</code> component</a>.
     </p>
 
-    <ul class="stacks-list">
-        <li>
-            <p class="stacks-copy">The <code class="stacks-code">s-sidebarwidget-header</code> element that controls the accordion needs</p>
-            <ul>
-                <li>
-                    <p class="stacks-copy">a modifier class of <code class="stacks-code">s-sidebarwidget__collapsing-control</code> in order to display the expander arrow</p>
-                </li>
-                <li>
-                    <p class="stacks-copy">An <code class="stacks-code">aria-expanded</code> attribute with value <code class="stacks-code">true</code> or <code class="stacks-code">false</code>; this is not only necessary for accessiblity, but also controls the rotation of the expander arrow. The value must be in sync with the wrapper’s <code class="stacks-code">is-collapsed</code> class (see below).</p>
-                </li>
-                <li>
-                    <p class="stacks-copy">an <code class="stacks-code">aria-label</code> attribute that makes it clear that this is a collapsing control, <em>unless</em> this is already clear from the header’s text content</p>
-                </li>
-                <li>
-                    <p class="stacks-copy">an <code class="stacks-code">aria-controls</code> attribute whose value is the <code class="stacks-code">id</code> of the <code class="stacks-code">s-collapsible</code> (see below)</p>
-                </li>
-                <li>
-                    <p class="stacks-copy">a non-negatvie <code class="stacks-code">tabindex</code>, usually <code class="stacks-code">0</code>, so it can be focused via keyboard navigation</p>
-                </li>
-            </ul>
-        </li>
-        <li>
-            <p class="stacks-copy">The (one or more) content elements that are meant to be collapsed must be wrapped in an element of class <code class="stacks-code">s-collapsible</code>, which has the following properties:</p>
-            <ul>
-                <li>
-                    <p class="stacks-copy">This element must have an <code class="stacks-code">id</code>, so it can be referred to by the header’s <code class="stacks-code">aria-controls</code> attribute (see above).</p>
-                </li>
-                <li>
-                    <p class="stacks-copy">If (and only if) the accordion is collapsed, this element has the state class <code class="stacks-code">is-collapsed</code>. The presence of this class must be synchronized with the header’s <code class="stacks-code">aria-expanded</code> value.</p>
-                </li>
-            </ul>
-        </li>
-        <li>
-            <p class="stacks-copy">Directly inside this wrapper element there must be an element of class <code class="stacks-code">s-collapsible--content</code>. This can be the same element as the <code class="stacks-code">s-sidebarwidget--content</code> element (if there’s only one content element that is meant to be collapsed), or it can be an additional wrapper element <em>around</em> the content element(s).</p>
-        </li>
-    </ul>
+    <p class="stacks-copy">The <code class="stacks-code">s-sidebarwidget-header</code> element that controls the accordion needs a modifier class of <code class="stacks-code">s-sidebarwidget__expanding-control</code> in order to display the expander arrow. Beyond that, it needs all the attributes as described for the controlling button in the <a href="{{ "/product/components/expandable#javascript" | relative_url }}">expandable documentation</a>.</p>
 
-    <p class="stacks-copy">A note on the examples below: There is an additional <code class="stacks-code">js-collapsing-control</code> class on the headers. This page includes JavaScript code that correctly handles keyboard and click events on elements with this class. We should eventually make such JavaScript functionality universally available together with the Stacks CSS, but currently this is not the case.</p>
+    <p class="stacks-copy">The (one or more) content elements that are meant to be collapsed must be wrapped in the <code class="stacks-code">s-expandable</code> element; inside this wrapper element there is the <code class="stacks-code">s-expandable--content</code>. This can be the same element as the <code class="stacks-code">s-sidebarwidget--content</code> element (if there’s only one content element that is meant to be collapsed), or it can be an additional wrapper element <em>around</em> the content element(s).</p>
 
     <div class="stacks-preview">
 {% highlight html linenos %}
 <div class="s-sidebarwidget">
     <div class="s-sidebarwidget--header s-sidebarwidget__small-bold_text
-                s-sidebarwidget__collapsing-control js-collapsing-control"
+                s-sidebarwidget__expanding-control"
                 aria-expanded="true"
                 aria-controls="recent-searches"
                 aria-label="toggle recent searches"
+                data-controller="s-expandable-control"
                 tabindex="0">
         <a class="s-sidebarwidget--action" href="…">
             Clear
         </a>
         2 Recent Searches
     </div>
-    <div class="s-collapsible" id="recent-searches">
-        <div class="s-collapsible--content">
+    <div class="s-expandable" id="recent-searches">
+        <div class="s-expandable--content">
             <table class="s-sidebarwidget--content s-sidebarwidget__items">
                 <tr class="s-sidebarwidget--item">
                     <td>…</td>
@@ -633,18 +599,19 @@ description: Sidebar widgets are flexible containers that provide a lot of patte
         <div class="stacks-preview--example overflow-x-auto">
             <div class="s-sidebarwidget ws3 mx-auto">
                 <div class="s-sidebarwidget--header s-sidebarwidget__small-bold_text
-                            s-sidebarwidget__collapsing-control js-collapsing-control"
+                            s-sidebarwidget__expanding-control"
                             aria-expanded="true"
                             aria-controls="recent-searches"
                             aria-label="toggle recent searches"
+                            data-controller="s-expandable-control"
                             tabindex="0">
                     <a class="s-sidebarwidget--action" href="#">
                         Clear
                     </a>
                     2 Recent Searches
                 </div>
-                <div class="s-collapsible" id="recent-searches">
-                    <div class="s-collapsible--content">
+                <div class="s-expandable" id="recent-searches">
+                    <div class="s-expandable--content">
                         <table class="s-sidebarwidget--content s-sidebarwidget__items">
                             <tbody>
                                 <tr class="s-sidebarwidget--item">
@@ -660,16 +627,17 @@ description: Sidebar widgets are flexible containers that provide a lot of patte
                     </div>
                 </div>
                 <div class="s-sidebarwidget--header s-sidebarwidget__small-bold-text
-                            s-sidebarwidget__collapsing-control js-collapsing-control"
+                            s-sidebarwidget__expanding-control
                             aria-expanded="false"
                             aria-controls="favorites"
                             aria-label="toggle favorites"
+                            data-controller="s-expandable-control"
                             tabindex="0">
                     0 Favorites
                 </div>
-                <div class="s-collapsible is-collapsed" id="favorites">
+                <div class="s-expandable" id="favorites">
                     <div class="s-sidebarwidget--content s-sidebarwidget__items
-                                s-collapsible--content">
+                                s-expandable--content">
                         <div class="s-sidebarwidget--item">
                             <i>You have no favorite jobs</i>
                         </div>
@@ -687,32 +655,5 @@ description: Sidebar widgets are flexible containers that provide a lot of patte
             e.preventDefault();
             e.stopPropagation();
         });
-
-        function toggleCollapsing(e) {
-            if (e.type == "keydown" && (e.keyCode != 13 && e.keyCode != 32)) {
-                return;
-            }
-            if (e.target.classList.contains("-action")) {
-                return;
-            }
-            var expanded = this.getAttribute("aria-expanded") === "true";
-            this.setAttribute("aria-expanded", expanded ? "false" : "true");
-            var l = document.getElementById(this.getAttribute("aria-controls"));
-            if (expanded) {
-                l.classList.add("is-collapsed");
-            } else {
-                l.classList.remove("is-collapsed");
-            }
-            if (e.type === "click") {
-                this.blur();
-            } else {
-                e.preventDefault();
-            }
-        }
-        var cs = document.getElementsByClassName("js-collapsing-control");
-        for (var i=0; i < cs.length; i++) {
-            cs[i].addEventListener("click", toggleCollapsing);
-            cs[i].addEventListener("keydown", toggleCollapsing);
-        }
     });
 </script>
