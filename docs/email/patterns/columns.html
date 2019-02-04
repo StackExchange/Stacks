@@ -1,21 +1,37 @@
 ---
 layout: page
 title: Columns
-description: Reading on small displays is easier when done in a top-to-bottom fashion. Using <a href="{{ "/email/base/responsiveness" | relative_url }}">hybrid design and media queries</a>, we can switch multi-column layouts to a single-column one.
+description: Reading on small displays is easier when done in a top-to-bottom fashion. Using <a href="{{ "/email/base/responsiveness/" | relative_url }}">hybrid design and media queries</a>, we can switch multi-column layouts to a single-column one.
 ---
 <style>
-    @media screen and (max-width: 680px) {
-        .stack-column {
-            display: block !important;
-            width: 100% !important;
-            max-width: 100% !important;
-            direction: ltr !important;
-        }
-        .sm-px-none {padding-left: 0 !important; padding-right: 0 !important;}
-        .sm-p       {padding: 20px !important;}
-        .sm-px      {padding-left: 20px !important; padding-right: 20px !important;}
+    .resizable {
+        height: 250px;  /* The interaction is best when this is defined here (vs. inline CSS or Stacks utility class) */
+    }
+    .ui-resizable-handle { /* Kept this separate in case we want to add ui-resizable-s or ui-resizable-e */
+        position: absolute;
+        font-size: 0.1px;
+        display: block;
+        touch-action: none;
+        z-index: 90;
+    }
+    .ui-resizable-se {
+        cursor: se-resize;
+        width: 18px;
+        height: 18px;
+        right: 2px;
+        bottom: 2px;
+        border-bottom: 18px solid #535A60;
+        border-left: 18px solid transparent;
     }
 </style>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script>
+    $(function() {
+        $( ".resizable" ).resizable({
+            handles: "se"
+        });
+    });
+</script>
 
 <section class="stacks-section">
     {% header h2 | Two even columns %}
@@ -60,40 +76,9 @@ description: Reading on small displays is easier when done in a top-to-bottom fa
     </td>
 </tr>
 {% endhighlight %}
-        <div class="stacks-preview--example bg-black-050 ta-center">
-            <div class="email-container" style="max-width: 680px; margin: 0 auto;">
-                <table aria-hidden="true" border="0" cellpadding="0" cellspacing="0" role="presentation" style="max-width: 680px; width:100%">
-                    <tr>
-                        <td style="padding: 20px; background-color: #ffffff;">
-                            <div style="display: table; width: 100%; text-align: center; font-size: 0;">
-                                <div style="display: inline-block; margin: 0 -1px; max-width: 320px; min-width:220px; vertical-align: top;" class="stack-column">
-                                    <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
-                                        <tr>
-                                            <td style="font-family: arial, sans-serif; font-size: 15px; line-height: 140%; color: #3C3F44; text-align: left; padding: 10px;" class="sm-px-none">
-                                                <h3 style="font-family: arial, sans-serif; font-size: 17px; color: #3B4045; font-weight: bold; margin: 0 0 5px;">
-                                                    ​﻿﻿​‌‍‍‌‍﻿‍‌‍‌‍‌﻿﻿‍‌‍﻿﻿​﻿​‌‌​‌﻿‌‌​‍‌﻿​‍‌﻿‍‍‌﻿﻿​‌‍‌﻿‌‌‌‍‌‍​﻿‌‍‌‍‌​﻿‍‌﻿﻿‍‌﻿‌﻿‌​﻿‌‌‍‌‌‌‌‍‍‌‌‌‍‌﻿‌﻿‌﻿​﻿‌​﻿‌‌‌‌​‌‌﻿‍‌‌​‍‌‌‍‍‌​﻿‍‌​﻿‌‌﻿​​‌​‍‍‌‌​‍‌‍﻿‍‌‍﻿‍‌‌‌‍‌​﻿‍‌﻿​﻿‌​﻿‌‌﻿﻿​‌‍﻿‍‌‍​‍‌﻿﻿‍‌‌​‍‌‍​﻿‌​‌‍‌‌‍‍‌‍﻿‍‌﻿‌‍‌​﻿‌‌﻿​‌‌​‍‍‌‌​‍‌‍​﻿‌‌‌‍‌﻿​‌‌‌‌‍‌​﻿‍‌‍‌‍‌‍‍​‌﻿﻿‍‌‌‍‍‌‍﻿‍‌​﻿​‌‌‍‍‌‍﻿‍‌﻿‍‍‌‍﻿‍​​‍​‌​‌﻿‌‌﻿‍‌​﻿‍‌‍﻿‍​﻿​‍‌﻿​﻿‌​‍‍‌​‌﻿‌‌﻿‍‌​﻿‍‌‍‍​​‌‌﻿​‌‌﻿​‍‍​​﻿​﻿​‌‌‍‌​​﻿​‍​‍‌‌‌‍‌‌‍﻿​﻿‌﻿​‌​﻿​‌‍﻿​﻿​‍‌‌​‍‌‌‌‍‌‍​﻿​‌‌‍‌﻿‌﻿​‌‌‍‌‍​‍‌‍‌‍‌​‍﻿​​​﻿​‍‌‍‌‌​﻿​‍​‍‌‌​﻿​​‍﻿​﻿​‍‌‍​﻿​‌‍﻿​﻿​﻿​​​﻿​‌‌﻿​‍​﻿​‍‍​​‍​​‌‌‌‍‌​‌﻿‌​‌﻿‌‌‌‍‌‍​﻿‌​​‍​‌​‍‌‍﻿‍‌​‌‍‌​​‍​‍‌‍‌‌​‍‌﻿​﻿‌​‌﻿‌‌‌‍‌‍​﻿‌​​‍​‌​‍‌‍﻿‍‌﻿​﻿‌﻿‌﻿‌‌‌‍‌‍​﻿‌﻿​﻿‌​​‍​​‌﻿‌﻿﻿‍‌​​‍​‌​﻿‌‌‌﻿‌‌‌‍‌﻿​﻿‌​‌﻿‌‌‍‍‌﻿﻿‍‌‍﻿‍‌﻿​﻿‌‍﻿‍​Better and faster answers to questions
-                                                </h3>
-                                                <p style="margin: 0;" class="has-markdown">​﻿﻿​‌‍‍‌‍﻿‍‌‍‌‍‌﻿﻿‍‌‍﻿﻿​﻿​‌‌​‌﻿‌‌​‍‌﻿​‍‌﻿‍‍‌﻿﻿​‌‍‌﻿‌‌‌‍‌‍​﻿‌‍‌‍‌​﻿‍‌﻿﻿‍‌﻿‌﻿‌​﻿‌‌‍‌‌‌‌‍‍‌‌‌‍‌﻿‌﻿‌﻿​﻿‌​﻿‌‌‌‌​‌‌﻿‍‌‌​‍‌‌‍‍‌​﻿‍‌​﻿‌‌﻿​​‌​‍‍‌‌​‍‌‍﻿‍‌‍﻿‍‌‌‌‍‌​﻿‍‌﻿​﻿‌​﻿‌‌﻿﻿​‌‍﻿‍‌‍​‍‌﻿﻿‍‌‌​‍‌‍​﻿‌​‌‍‌‌‍‍‌‍﻿‍‌﻿‌‍‌​﻿‌‌﻿​‌‌​‍‍‌‌​‍‌‍​﻿‌‌‌‍‌﻿​‌‌‌‌‍‌​﻿‍‌‍‌‍‌‍‍​‌﻿﻿‍‌‌‍‍‌‍﻿‍‌​﻿​‌‌‍‍‌‍﻿‍‌﻿‍‍‌‍﻿‍​​‍​‌​‌﻿‌‌﻿‍‌​﻿‍‌‍﻿‍​﻿​‍‌﻿​﻿‌​‍‍‌​‌﻿‌‌﻿‍‌​﻿‍‌‍‍​​‌‌﻿​​‍﻿​‍‍​​﻿​‍‌‍​﻿​​‍﻿​‌​‍‌‍​‍‌‍​‍‌‍​‍‌​‌﻿​​‌‍‌‌​﻿​﻿​‍‌‌‌‍‌​​﻿​‌‌﻿​‍‌‍‌﻿‌﻿​​‌﻿​​​﻿​‍​‍‌‌​‍‌‌‌‍‌﻿​‍‌‌​‍‌​‍﻿​‍​﻿​‌‌‍‌‌‌﻿​‌‍﻿​‌​﻿​‌​‍‌‌​﻿​​‌﻿​‍‍​​﻿‌‌‌​‍‍‌‌‌‍‌‍﻿‍‌​​‍​​‌﻿‌​‍‍‌‌‌‍‌‍​﻿‌‌‌‍‌​​‍​‌​‍‌‍​﻿‌‌‌‍‌​​‍​‌﻿‍‌﻿﻿‍‌‍​﻿‌‌‌‍‌​​‍​‌‌﻿‌﻿​﻿‌‌‌‍‌‍​﻿‌﻿​﻿‌​﻿‍​​​‍​‌‍﻿‌﻿﻿‍‌‌‌﻿‌​​‍​‌‍‍‌‍﻿‍‌﻿​‍‌‍​﻿‌‌‌‍‌‌​‍‌﻿​﻿‌‌‌‍‌​​‍​​‌﻿‌​‍‍‌‌‌‍‌​​‍​﻿​‍‌​‍‍‌‌​‍‌‍﻿‍‌﻿​‍‌‌‌‍‌﻿​﻿‌​​‍​﻿﻿‍‌‍‌‍‌​​‍​‌‍﻿‌﻿﻿‍‌‌‌﻿‌‍​﻿‌​​‍​‌​﻿‌‌‌﻿‌‌‌‍‌﻿​﻿‌​‌﻿‌‌‍‍‌﻿﻿‍‌‍﻿‍‌​​‍​‍​‍‌‌‌‍‌‌‍‍‌‍﻿‍‌﻿‌‍‌​​‍​‌​‍‌‍﻿‍‌﻿​﻿‌﻿‌﻿‌‌‌‍‌‍​﻿‌‌‌‍‌​‌‍‌‍﻿‍​When there are more users, you increase the chances of your question being answered.​﻿﻿​﻿﻿‍​‌‍‍‌‍﻿‍‌‍‌‍‌﻿﻿‍‌‍﻿﻿​</p>
-                                            </td>
-                                        </tr>
-                                    </table>
-                                </div>
-                                <div style="display: inline-block; margin: 0 -1px; max-width: 320px; min-width:220px; vertical-align: top;" class="stack-column">
-                                    <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
-                                        <tr>
-                                            <td style="font-family: arial, sans-serif; font-size: 15px; line-height: 140%; color: #3C3F44; text-align: left; padding: 10px;" class="sm-px-none">
-                                                <h3 style="font-family: arial, sans-serif; font-size: 17px; color: #3B4045; font-weight: bold; margin: 0 0 5px;">
-                                                    ​﻿﻿​‌‍‍‌‍﻿‍‌‍‌‍‌﻿﻿‍‌‍﻿﻿​﻿​‌‌​‌﻿‌‌​‍‌﻿​‍‌﻿‍‍‌﻿﻿​‌‍‌﻿‌‌‌‍‌‍​﻿‌‍‌‍‌​﻿‍‌﻿﻿‍‌﻿‌﻿‌​﻿‌‌‍‌‌‌‌‍‍‌‌‌‍‌﻿‌﻿‌﻿​﻿‌​﻿‌‌‌‌​‌‌﻿‍‌‌​‍‌‌‍‍‌​﻿‍‌​﻿‌‌﻿​​‌​‍‍‌‌​‍‌‍﻿‍‌‍﻿‍‌‌‌‍‌​﻿‍‌﻿​﻿‌​﻿‌‌﻿﻿​‌‍﻿‍‌‍​‍‌﻿﻿‍‌‌​‍‌‍​﻿‌​‌‍‌‌‍‍‌‍﻿‍‌﻿‌‍‌​﻿‌‌﻿​‌‌​‍‍‌‌​‍‌‍​﻿‌‌‌‍‌﻿​‌‌‌‌‍‌​﻿‍‌‍‌‍‌‍‍​‌﻿﻿‍‌‌‍‍‌‍﻿‍‌​﻿​‌‌‍‍‌‍﻿‍‌﻿‍‍‌‍﻿‍​​‍​‌​‌﻿‌‌﻿‍‌​﻿‍‌‍﻿‍​﻿​‍‌﻿​﻿‌​‍‍‌​‌﻿‌‌﻿‍‌​﻿‍‌‍‍​​‌‌﻿​‌‌﻿​‍‍​​﻿​﻿​‌‌‍‌​​﻿​‍​‍‌‌‌‍‌‌‍﻿​﻿‌﻿​‌​﻿​‌‍﻿​﻿​‍‌‌​‍‌‌‌‍‌‍​﻿​‌‌‍‌﻿‌﻿​‌‌‍‌‍​‍‌‍‌‍‌​‍﻿​​​﻿​‍‌‍‌‌​﻿​‍​‍‌‌​﻿​​‍﻿​﻿​‍‌‍​﻿​‌‍﻿​﻿​﻿​​​﻿​‌‌﻿​‍​﻿​‍‍​​‍​​‌‌‌‍‌​‌﻿‌​‌﻿‌‌‌‍‌‍​﻿‌​​‍​‌​‍‌‍﻿‍‌​‌‍‌​​‍​‍‌‍‌‌​‍‌﻿​﻿‌​‌﻿‌‌‌‍‌‍​﻿‌​​‍​‌​‍‌‍﻿‍‌﻿​﻿‌﻿‌﻿‌‌‌‍‌‍​﻿‌﻿​﻿‌​​‍​​‌﻿‌﻿﻿‍‌​​‍​‌​﻿‌‌‌﻿‌‌‌‍‌﻿​﻿‌​‌﻿‌‌‍‍‌﻿﻿‍‌‍﻿‍‌﻿​﻿‌‍﻿‍​A bigger and more robust knowledge base
-                                                </h3>
-                                                <p style="margin: 0;" class="has-markdown">​﻿﻿​‌‍‍‌‍﻿‍‌‍‌‍‌﻿﻿‍‌‍﻿﻿​﻿​‌‌​‌﻿‌‌​‍‌﻿​‍‌﻿‍‍‌﻿﻿​‌‍‌﻿‌‌‌‍‌‍​﻿‌‍‌‍‌​﻿‍‌﻿﻿‍‌﻿‌﻿‌​﻿‌‌‍‌‌‌‌‍‍‌‌‌‍‌﻿‌﻿‌﻿​﻿‌​﻿‌‌‌‌​‌‌﻿‍‌‌​‍‌‌‍‍‌​﻿‍‌​﻿‌‌﻿​​‌​‍‍‌‌​‍‌‍﻿‍‌‍﻿‍‌‌‌‍‌​﻿‍‌﻿​﻿‌​﻿‌‌﻿﻿​‌‍﻿‍‌‍​‍‌﻿﻿‍‌‌​‍‌‍​﻿‌​‌‍‌‌‍‍‌‍﻿‍‌﻿‌‍‌​﻿‌‌﻿​‌‌​‍‍‌‌​‍‌‍​﻿‌‌‌‍‌﻿​‌‌‌‌‍‌​﻿‍‌‍‌‍‌‍‍​‌﻿﻿‍‌‌‍‍‌‍﻿‍‌​﻿​‌‌‍‍‌‍﻿‍‌﻿‍‍‌‍﻿‍​​‍​‌​‌﻿‌‌﻿‍‌​﻿‍‌‍﻿‍​﻿​‍‌﻿​﻿‌​‍‍‌​‌﻿‌‌﻿‍‌​﻿‍‌‍‍​​‌‌﻿​​‍﻿​‍‍​​﻿​‍‌‍​﻿​​‍﻿​‌​‍‌‍​‍‌‍​‍‌‍​‍‌​‌﻿​​‌‍‌‌​﻿​﻿​‍‌‌‌‍‌​​﻿​‌‌﻿​‍‌‍‌﻿‌﻿​​‌﻿​​​﻿​‍​‍‌‌​‍‌‌‌‍‌﻿​‍‌‌​‍‌​‍﻿​‍​﻿​‌‌‍‌‌‌﻿​‌‍﻿​‌​﻿​‌​‍‌‌​﻿​​‌﻿​‍‍​​﻿‌‌‌​‍‍‌‌‌‍‌‍﻿‍‌​​‍​​‌﻿‌​‍‍‌‌‌‍‌‍​﻿‌‌‌‍‌​​‍​‌​‍‌‍​﻿‌‌‌‍‌​​‍​‌﻿‍‌﻿﻿‍‌‍​﻿‌‌‌‍‌​​‍​‌‌﻿‌﻿​﻿‌‌‌‍‌‍​﻿‌﻿​﻿‌​﻿‍​​​‍​‌‍﻿‌﻿﻿‍‌‌‌﻿‌​​‍​‌‍‍‌‍﻿‍‌﻿​‍‌‍​﻿‌‌‌‍‌‌​‍‌﻿​﻿‌‌‌‍‌​​‍​​‌﻿‌​‍‍‌‌‌‍‌​​‍​﻿​‍‌​‍‍‌‌​‍‌‍﻿‍‌﻿​‍‌‌‌‍‌﻿​﻿‌​​‍​﻿﻿‍‌‍‌‍‌​​‍​‌‍﻿‌﻿﻿‍‌‌‌﻿‌‍​﻿‌​​‍​‌​﻿‌‌‌﻿‌‌‌‍‌﻿​﻿‌​‌﻿‌‌‍‍‌﻿﻿‍‌‍﻿‍‌​​‍​‍​‍‌‌‌‍‌‌‍‍‌‍﻿‍‌﻿‌‍‌​​‍​‌​‍‌‍﻿‍‌﻿​﻿‌﻿‌﻿‌‌‌‍‌‍​﻿‌‌‌‍‌​‌‍‌‍﻿‍​More team members lead to more knowledge sharing and collaboration.</p>
-                                            </td>
-                                        </tr>
-                                    </table>
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-                </table>
+        <div class="stacks-preview--example p0">
+            <div class="resizable ps-relative">
+                <iframe src="{{ "/email/patterns/snippets/two-col-even.html" | relative_url }}" class="ui-widget-content" frameborder="no" width="100%" height="100%"></iframe>
             </div>
         </div>
     </div>
@@ -142,40 +127,10 @@ description: Reading on small displays is easier when done in a top-to-bottom fa
     </td>
 </tr>
 {% endhighlight %}
-        <div class="stacks-preview--example bg-black-050 ta-center">
-
-            <div class="email-container" style="max-width: 680px; margin: 0 auto;">
-                <table aria-hidden="true" border="0" cellpadding="0" cellspacing="0" role="presentation" style="max-width: 680px; width:100%">
-                    <tr>
-                        <td style="padding: 25px 30px; background-color: #ffffff;" class="sm-p">
-                            <div dir="ltr" style="display: table; width: 100%; text-align: center; font-size: 0;">
-                                <div style="display: inline-block; margin: 0 -1px; width: 158px; vertical-align: middle;" class="stack-column">
-                                    <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
-                                        <tr>
-                                            <td dir="ltr" style="font-family: arial, sans-serif; font-size: 15px; line-height: 140%; color: #3C3F44; text-align: left; padding: 5px 30px 5px 0;">
-                                                <img src="https://via.placeholder.com/128" width="128" height="128" alt="alt_text" border="0" style="display: block; margin: 0; font-family: arial, sans-serif; font-size: 15px; line-height: 15px; color: #3C3F44; margin: 0;">
-                                            </td>
-                                        </tr>
-                                    </table>
-                                </div>
-                                <div style="display: inline-block; margin: 0 -1px; max-width: 462px; min-width:220px; vertical-align: middle;" class="stack-column">
-                                    <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
-                                        <tr>
-                                            <td dir="ltr" style="font-family: arial, sans-serif; font-size: 15px; line-height: 140%; color: #3C3F44; text-align: left; padding: 5px 0;">
-                                                <h3 style="font-family: arial, sans-serif; font-size: 17px; color: #3B4045; font-weight: bold; margin: 0 0 5px;">
-                                                    ​﻿﻿​‌‍‍‌‍﻿‍‌‍‌‍‌﻿﻿‍‌‍﻿﻿​﻿​‌‌​‌﻿‌‌​‍‌﻿​‍‌﻿‍‍‌﻿﻿​‌‍‌﻿‌‌‌‍‌‍​﻿‌‍‌‍‌​﻿‍‌﻿﻿‍‌﻿‌﻿‌​﻿‌‌‍‌‌‌‌‍‍‌‌‌‍‌﻿‌﻿‌﻿​﻿‌​﻿‌‌‌‌​‌‌﻿‍‌‌​‍‌‌‍‍‌​﻿‍‌​﻿‌‌﻿​​‌​‍‍‌‌​‍‌‍﻿‍‌‍﻿‍‌‌‌‍‌​﻿‍‌﻿​﻿‌​﻿‌‌﻿﻿​‌‍﻿‍‌‍​‍‌﻿﻿‍‌‌​‍‌‍​﻿‌​‌‍‌‌‍‍‌‍﻿‍‌﻿‌‍‌​﻿‌‌﻿​‌‌​‍‍‌‌​‍‌‍​﻿‌‌‌‍‌﻿​‌‌‌‌‍‌​﻿‍‌‍‌‍‌‍‍​‌﻿﻿‍‌‌‍‍‌‍﻿‍‌​﻿​‌‌‍‍‌‍﻿‍‌﻿‍‍‌‍﻿‍​​‍​‌​‌﻿‌‌﻿‍‌​﻿‍‌‍﻿‍​﻿​‍‌﻿​﻿‌​‍‍‌​‌﻿‌‌﻿‍‌​﻿‍‌‍‍​​‌‌﻿​‌‌﻿​‍‍​​﻿​﻿​‌‌‍‌​​﻿​‍​‍‌‌‌‍‌‌‍﻿​﻿‌﻿​‌​﻿​‌‍﻿​﻿​‍‌‌​‍‌‌‌‍‌‍​﻿​‌‌‍‌﻿‌﻿​‌‌‍‌‍​‍‌‍‌‍‌​‍﻿​​​﻿​‍‌‍‌‌​﻿​‍​‍‌‌​﻿​​‍﻿​﻿​‍‌‍​﻿​‌‍﻿​﻿​﻿​​​﻿​‌‌﻿​‍​﻿​‍‍​​‍​​‌‌‌‍‌​‌﻿‌​‌﻿‌‌‌‍‌‍​﻿‌​​‍​‌​‍‌‍﻿‍‌​‌‍‌​​‍​‍‌‍‌‌​‍‌﻿​﻿‌​‌﻿‌‌‌‍‌‍​﻿‌​​‍​‌​‍‌‍﻿‍‌﻿​﻿‌﻿‌﻿‌‌‌‍‌‍​﻿‌﻿​﻿‌​​‍​​‌﻿‌﻿﻿‍‌​​‍​‌​﻿‌‌‌﻿‌‌‌‍‌﻿​﻿‌​‌﻿‌‌‍‍‌﻿﻿‍‌‍﻿‍‌﻿​﻿‌‍﻿‍​Better and faster answers to questions
-                                                </h3>
-                                                <p style="margin: 0;" class="has-markdown">​﻿﻿​‌‍‍‌‍﻿‍‌‍‌‍‌﻿﻿‍‌‍﻿﻿​﻿​‌‌​‌﻿‌‌​‍‌﻿​‍‌﻿‍‍‌﻿﻿​‌‍‌﻿‌‌‌‍‌‍​﻿‌‍‌‍‌​﻿‍‌﻿﻿‍‌﻿‌﻿‌​﻿‌‌‍‌‌‌‌‍‍‌‌‌‍‌﻿‌﻿‌﻿​﻿‌​﻿‌‌‌‌​‌‌﻿‍‌‌​‍‌‌‍‍‌​﻿‍‌​﻿‌‌﻿​​‌​‍‍‌‌​‍‌‍﻿‍‌‍﻿‍‌‌‌‍‌​﻿‍‌﻿​﻿‌​﻿‌‌﻿﻿​‌‍﻿‍‌‍​‍‌﻿﻿‍‌‌​‍‌‍​﻿‌​‌‍‌‌‍‍‌‍﻿‍‌﻿‌‍‌​﻿‌‌﻿​‌‌​‍‍‌‌​‍‌‍​﻿‌‌‌‍‌﻿​‌‌‌‌‍‌​﻿‍‌‍‌‍‌‍‍​‌﻿﻿‍‌‌‍‍‌‍﻿‍‌​﻿​‌‌‍‍‌‍﻿‍‌﻿‍‍‌‍﻿‍​​‍​‌​‌﻿‌‌﻿‍‌​﻿‍‌‍﻿‍​﻿​‍‌﻿​﻿‌​‍‍‌​‌﻿‌‌﻿‍‌​﻿‍‌‍‍​​‌‌﻿​​‍﻿​‍‍​​﻿​‍‌‍​﻿​​‍﻿​‌​‍‌‍​‍‌‍​‍‌‍​‍‌​‌﻿​​‌‍‌‌​﻿​﻿​‍‌‌‌‍‌​​﻿​‌‌﻿​‍‌‍‌﻿‌﻿​​‌﻿​​​﻿​‍​‍‌‌​‍‌‌‌‍‌﻿​‍‌‌​‍‌​‍﻿​‍​﻿​‌‌‍‌‌‌﻿​‌‍﻿​‌​﻿​‌​‍‌‌​﻿​​‌﻿​‍‍​​﻿‌‌‌​‍‍‌‌‌‍‌‍﻿‍‌​​‍​​‌﻿‌​‍‍‌‌‌‍‌‍​﻿‌‌‌‍‌​​‍​‌​‍‌‍​﻿‌‌‌‍‌​​‍​‌﻿‍‌﻿﻿‍‌‍​﻿‌‌‌‍‌​​‍​‌‌﻿‌﻿​﻿‌‌‌‍‌‍​﻿‌﻿​﻿‌​﻿‍​​​‍​‌‍﻿‌﻿﻿‍‌‌‌﻿‌​​‍​‌‍‍‌‍﻿‍‌﻿​‍‌‍​﻿‌‌‌‍‌‌​‍‌﻿​﻿‌‌‌‍‌​​‍​​‌﻿‌​‍‍‌‌‌‍‌​​‍​﻿​‍‌​‍‍‌‌​‍‌‍﻿‍‌﻿​‍‌‌‌‍‌﻿​﻿‌​​‍​﻿﻿‍‌‍‌‍‌​​‍​‌‍﻿‌﻿﻿‍‌‌‌﻿‌‍​﻿‌​​‍​‌​﻿‌‌‌﻿‌‌‌‍‌﻿​﻿‌​‌﻿‌‌‍‍‌﻿﻿‍‌‍﻿‍‌​​‍​‍​‍‌‌‌‍‌‌‍‍‌‍﻿‍‌﻿‌‍‌​​‍​‌​‍‌‍﻿‍‌﻿​﻿‌﻿‌﻿‌‌‌‍‌‍​﻿‌‌‌‍‌​‌‍‌‍﻿‍​When there are more users, you increase the chances of your question being answered.​﻿﻿​﻿﻿‍​‌‍‍‌‍﻿‍‌‍‌‍‌﻿﻿‍‌‍﻿﻿​</p>
-                                            </td>
-                                        </tr>
-                                    </table>
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-                </table>
+        <div class="stacks-preview--example p0">
+            <div class="resizable ps-relative">
+                <iframe src="{{ "/email/patterns/snippets/two-col-uneven.html" | relative_url }}" class="ui-widget-content" frameborder="no" width="100%" height="100%"></iframe>
             </div>
-
         </div>
     </div>
 </section>
@@ -225,40 +180,10 @@ description: Reading on small displays is easier when done in a top-to-bottom fa
     </td>
 </tr>
 {% endhighlight %}
-        <div class="stacks-preview--example bg-black-050 ta-center">
-
-            <div class="email-container" style="max-width: 680px; margin: 0 auto;">
-                <table aria-hidden="true" border="0" cellpadding="0" cellspacing="0" role="presentation" style="max-width: 680px; width:100%">
-                    <tr>
-                        <td style="padding: 25px 30px; background-color: #ffffff;" class="sm-p">
-                            <div dir="rtl" style="display: table; width: 100%; text-align: center; font-size: 0;">
-                                <div style="display: inline-block; margin: 0 -1px; width: 158px; vertical-align: middle;" class="stack-column">
-                                    <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
-                                        <tr>
-                                            <td dir="ltr" style="font-family: arial, sans-serif; font-size: 15px; line-height: 140%; color: #3C3F44; text-align: left; padding: 5px 30px 5px 0;">
-                                                <img src="https://via.placeholder.com/128" width="128" height="128" alt="alt_text" border="0" style="display: block; margin: 0; font-family: arial, sans-serif; font-size: 15px; line-height: 15px; color: #3C3F44; margin: 0;">
-                                            </td>
-                                        </tr>
-                                    </table>
-                                </div>
-                                <div style="display: inline-block; margin: 0 -1px; max-width: 462px; min-width:220px; vertical-align: middle;" class="stack-column">
-                                    <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
-                                        <tr>
-                                            <td dir="ltr" style="font-family: arial, sans-serif; font-size: 15px; line-height: 140%; color: #3C3F44; text-align: left; padding: 5px 0;">
-                                                <h3 style="font-family: arial, sans-serif; font-size: 17px; color: #3B4045; font-weight: bold; margin: 0 0 5px;">
-                                                    ​﻿﻿​‌‍‍‌‍﻿‍‌‍‌‍‌﻿﻿‍‌‍﻿﻿​﻿​‌‌​‌﻿‌‌​‍‌﻿​‍‌﻿‍‍‌﻿﻿​‌‍‌﻿‌‌‌‍‌‍​﻿‌‍‌‍‌​﻿‍‌﻿﻿‍‌﻿‌﻿‌​﻿‌‌‍‌‌‌‌‍‍‌‌‌‍‌﻿‌﻿‌﻿​﻿‌​﻿‌‌‌‌​‌‌﻿‍‌‌​‍‌‌‍‍‌​﻿‍‌​﻿‌‌﻿​​‌​‍‍‌‌​‍‌‍﻿‍‌‍﻿‍‌‌‌‍‌​﻿‍‌﻿​﻿‌​﻿‌‌﻿﻿​‌‍﻿‍‌‍​‍‌﻿﻿‍‌‌​‍‌‍​﻿‌​‌‍‌‌‍‍‌‍﻿‍‌﻿‌‍‌​﻿‌‌﻿​‌‌​‍‍‌‌​‍‌‍​﻿‌‌‌‍‌﻿​‌‌‌‌‍‌​﻿‍‌‍‌‍‌‍‍​‌﻿﻿‍‌‌‍‍‌‍﻿‍‌​﻿​‌‌‍‍‌‍﻿‍‌﻿‍‍‌‍﻿‍​​‍​‌​‌﻿‌‌﻿‍‌​﻿‍‌‍﻿‍​﻿​‍‌﻿​﻿‌​‍‍‌​‌﻿‌‌﻿‍‌​﻿‍‌‍‍​​‌‌﻿​‌‌﻿​‍‍​​﻿​﻿​‌‌‍‌​​﻿​‍​‍‌‌‌‍‌‌‍﻿​﻿‌﻿​‌​﻿​‌‍﻿​﻿​‍‌‌​‍‌‌‌‍‌‍​﻿​‌‌‍‌﻿‌﻿​‌‌‍‌‍​‍‌‍‌‍‌​‍﻿​​​﻿​‍‌‍‌‌​﻿​‍​‍‌‌​﻿​​‍﻿​﻿​‍‌‍​﻿​‌‍﻿​﻿​﻿​​​﻿​‌‌﻿​‍​﻿​‍‍​​‍​​‌‌‌‍‌​‌﻿‌​‌﻿‌‌‌‍‌‍​﻿‌​​‍​‌​‍‌‍﻿‍‌​‌‍‌​​‍​‍‌‍‌‌​‍‌﻿​﻿‌​‌﻿‌‌‌‍‌‍​﻿‌​​‍​‌​‍‌‍﻿‍‌﻿​﻿‌﻿‌﻿‌‌‌‍‌‍​﻿‌﻿​﻿‌​​‍​​‌﻿‌﻿﻿‍‌​​‍​‌​﻿‌‌‌﻿‌‌‌‍‌﻿​﻿‌​‌﻿‌‌‍‍‌﻿﻿‍‌‍﻿‍‌﻿​﻿‌‍﻿‍​Better and faster answers to questions
-                                                </h3>
-                                                <p style="margin: 0;" class="has-markdown">​﻿﻿​‌‍‍‌‍﻿‍‌‍‌‍‌﻿﻿‍‌‍﻿﻿​﻿​‌‌​‌﻿‌‌​‍‌﻿​‍‌﻿‍‍‌﻿﻿​‌‍‌﻿‌‌‌‍‌‍​﻿‌‍‌‍‌​﻿‍‌﻿﻿‍‌﻿‌﻿‌​﻿‌‌‍‌‌‌‌‍‍‌‌‌‍‌﻿‌﻿‌﻿​﻿‌​﻿‌‌‌‌​‌‌﻿‍‌‌​‍‌‌‍‍‌​﻿‍‌​﻿‌‌﻿​​‌​‍‍‌‌​‍‌‍﻿‍‌‍﻿‍‌‌‌‍‌​﻿‍‌﻿​﻿‌​﻿‌‌﻿﻿​‌‍﻿‍‌‍​‍‌﻿﻿‍‌‌​‍‌‍​﻿‌​‌‍‌‌‍‍‌‍﻿‍‌﻿‌‍‌​﻿‌‌﻿​‌‌​‍‍‌‌​‍‌‍​﻿‌‌‌‍‌﻿​‌‌‌‌‍‌​﻿‍‌‍‌‍‌‍‍​‌﻿﻿‍‌‌‍‍‌‍﻿‍‌​﻿​‌‌‍‍‌‍﻿‍‌﻿‍‍‌‍﻿‍​​‍​‌​‌﻿‌‌﻿‍‌​﻿‍‌‍﻿‍​﻿​‍‌﻿​﻿‌​‍‍‌​‌﻿‌‌﻿‍‌​﻿‍‌‍‍​​‌‌﻿​​‍﻿​‍‍​​﻿​‍‌‍​﻿​​‍﻿​‌​‍‌‍​‍‌‍​‍‌‍​‍‌​‌﻿​​‌‍‌‌​﻿​﻿​‍‌‌‌‍‌​​﻿​‌‌﻿​‍‌‍‌﻿‌﻿​​‌﻿​​​﻿​‍​‍‌‌​‍‌‌‌‍‌﻿​‍‌‌​‍‌​‍﻿​‍​﻿​‌‌‍‌‌‌﻿​‌‍﻿​‌​﻿​‌​‍‌‌​﻿​​‌﻿​‍‍​​﻿‌‌‌​‍‍‌‌‌‍‌‍﻿‍‌​​‍​​‌﻿‌​‍‍‌‌‌‍‌‍​﻿‌‌‌‍‌​​‍​‌​‍‌‍​﻿‌‌‌‍‌​​‍​‌﻿‍‌﻿﻿‍‌‍​﻿‌‌‌‍‌​​‍​‌‌﻿‌﻿​﻿‌‌‌‍‌‍​﻿‌﻿​﻿‌​﻿‍​​​‍​‌‍﻿‌﻿﻿‍‌‌‌﻿‌​​‍​‌‍‍‌‍﻿‍‌﻿​‍‌‍​﻿‌‌‌‍‌‌​‍‌﻿​﻿‌‌‌‍‌​​‍​​‌﻿‌​‍‍‌‌‌‍‌​​‍​﻿​‍‌​‍‍‌‌​‍‌‍﻿‍‌﻿​‍‌‌‌‍‌﻿​﻿‌​​‍​﻿﻿‍‌‍‌‍‌​​‍​‌‍﻿‌﻿﻿‍‌‌‌﻿‌‍​﻿‌​​‍​‌​﻿‌‌‌﻿‌‌‌‍‌﻿​﻿‌​‌﻿‌‌‍‍‌﻿﻿‍‌‍﻿‍‌​​‍​‍​‍‌‌‌‍‌‌‍‍‌‍﻿‍‌﻿‌‍‌​​‍​‌​‍‌‍﻿‍‌﻿​﻿‌﻿‌﻿‌‌‌‍‌‍​﻿‌‌‌‍‌​‌‍‌‍﻿‍​When there are more users, you increase the chances of your question being answered.​﻿﻿​﻿﻿‍​‌‍‍‌‍﻿‍‌‍‌‍‌﻿﻿‍‌‍﻿﻿​</p>
-                                            </td>
-                                        </tr>
-                                    </table>
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-                </table>
+        <div class="stacks-preview--example p0">
+            <div class="resizable ps-relative">
+                <iframe src="{{ "/email/patterns/snippets/two-col-uneven-reverse.html" | relative_url }}" class="ui-widget-content" frameborder="no" width="100%" height="100%"></iframe>
             </div>
-
         </div>
     </div>
     <div class="grid ai-start s-notice s-notice__info mb24">
@@ -324,101 +249,10 @@ description: Reading on small displays is easier when done in a top-to-bottom fa
     </td>
 </tr>
 {% endhighlight %}
-        <div class="stacks-preview--example bg-black-050 ta-center">
-            <div class="email-container" style="max-width: 680px; margin: 0 auto;">
-                <table aria-hidden="true" border="0" cellpadding="0" cellspacing="0" role="presentation" style="max-width: 680px; width:100%">
-                    <tr>
-                        <td style="padding: 20px; background-color: #ffffff;">
-                            <div style="display: table; width: 100%; text-align: center; font-size: 0;">
-                                <div style="display: inline-block; margin: 0 -1px; max-width: 213px; min-width:150px; vertical-align: top;" class="stack-column">
-                                    <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
-                                        <tr>
-                                            <td style="font-family: arial, sans-serif; font-size: 15px; line-height: 140%; color: #3C3F44; text-align: left; padding: 10px;" class="sm-px-none">
-                                                <h3 style="font-family: arial, sans-serif; font-size: 17px; color: #3B4045; font-weight: bold; margin: 0 0 5px;">
-                                                    ​﻿﻿​‌‍‍‌‍﻿‍‌‍‌‍‌﻿﻿‍‌‍﻿﻿​﻿​‌‌​‌﻿‌‌​‍‌﻿​‍‌﻿‍‍‌﻿﻿​‌‍‌﻿‌‌‌‍‌‍​﻿‌‍‌‍‌​﻿‍‌﻿﻿‍‌﻿‌﻿‌​﻿‌‌‍‌‌‌‌‍‍‌‌‌‍‌﻿‌﻿‌﻿​﻿‌​﻿‌‌‌‌​‌‌﻿‍‌‌​‍‌‌‍‍‌​﻿‍‌​﻿‌‌﻿​​‌​‍‍‌‌​‍‌‍﻿‍‌‍﻿‍‌‌‌‍‌​﻿‍‌﻿​﻿‌​﻿‌‌﻿﻿​‌‍﻿‍‌‍​‍‌﻿﻿‍‌‌​‍‌‍​﻿‌​‌‍‌‌‍‍‌‍﻿‍‌﻿‌‍‌​﻿‌‌﻿​‌‌​‍‍‌‌​‍‌‍​﻿‌‌‌‍‌﻿​‌‌‌‌‍‌​﻿‍‌‍‌‍‌‍‍​‌﻿﻿‍‌‌‍‍‌‍﻿‍‌​﻿​‌‌‍‍‌‍﻿‍‌﻿‍‍‌‍﻿‍​​‍​‌​‌﻿‌‌﻿‍‌​﻿‍‌‍﻿‍​﻿​‍‌﻿​﻿‌​‍‍‌​‌﻿‌‌﻿‍‌​﻿‍‌‍‍​​‌‌﻿​‌‌﻿​‍‍​​﻿​﻿​‌‌‍‌​​﻿​‍​‍‌‌‌‍‌‌‍﻿​﻿‌﻿​‌​﻿​‌‍﻿​﻿​‍‌‌​‍‌‌‌‍‌‍​﻿​‌‌‍‌﻿‌﻿​‌‌‍‌‍​‍‌‍‌‍‌​‍﻿​​​﻿​‍‌‍‌‌​﻿​‍​‍‌‌​﻿​​‍﻿​﻿​‍‌‍​﻿​‌‍﻿​﻿​﻿​​​﻿​‌‌﻿​‍​﻿​‍‍​​‍​​‌‌‌‍‌​‌﻿‌​‌﻿‌‌‌‍‌‍​﻿‌​​‍​‌​‍‌‍﻿‍‌​‌‍‌​​‍​‍‌‍‌‌​‍‌﻿​﻿‌​‌﻿‌‌‌‍‌‍​﻿‌​​‍​‌​‍‌‍﻿‍‌﻿​﻿‌﻿‌﻿‌‌‌‍‌‍​﻿‌﻿​﻿‌​​‍​​‌﻿‌﻿﻿‍‌​​‍​‌​﻿‌‌‌﻿‌‌‌‍‌﻿​﻿‌​‌﻿‌‌‍‍‌﻿﻿‍‌‍﻿‍‌﻿​﻿‌‍﻿‍​Better and faster answers to questions
-                                                </h3>
-                                                <p style="margin: 0;" class="has-markdown">​﻿﻿​‌‍‍‌‍﻿‍‌‍‌‍‌﻿﻿‍‌‍﻿﻿​﻿​‌‌​‌﻿‌‌​‍‌﻿​‍‌﻿‍‍‌﻿﻿​‌‍‌﻿‌‌‌‍‌‍​﻿‌‍‌‍‌​﻿‍‌﻿﻿‍‌﻿‌﻿‌​﻿‌‌‍‌‌‌‌‍‍‌‌‌‍‌﻿‌﻿‌﻿​﻿‌​﻿‌‌‌‌​‌‌﻿‍‌‌​‍‌‌‍‍‌​﻿‍‌​﻿‌‌﻿​​‌​‍‍‌‌​‍‌‍﻿‍‌‍﻿‍‌‌‌‍‌​﻿‍‌﻿​﻿‌​﻿‌‌﻿﻿​‌‍﻿‍‌‍​‍‌﻿﻿‍‌‌​‍‌‍​﻿‌​‌‍‌‌‍‍‌‍﻿‍‌﻿‌‍‌​﻿‌‌﻿​‌‌​‍‍‌‌​‍‌‍​﻿‌‌‌‍‌﻿​‌‌‌‌‍‌​﻿‍‌‍‌‍‌‍‍​‌﻿﻿‍‌‌‍‍‌‍﻿‍‌​﻿​‌‌‍‍‌‍﻿‍‌﻿‍‍‌‍﻿‍​​‍​‌​‌﻿‌‌﻿‍‌​﻿‍‌‍﻿‍​﻿​‍‌﻿​﻿‌​‍‍‌​‌﻿‌‌﻿‍‌​﻿‍‌‍‍​​‌‌﻿​​‍﻿​‍‍​​﻿​‍‌‍​﻿​​‍﻿​‌​‍‌‍​‍‌‍​‍‌‍​‍‌​‌﻿​​‌‍‌‌​﻿​﻿​‍‌‌‌‍‌​​﻿​‌‌﻿​‍‌‍‌﻿‌﻿​​‌﻿​​​﻿​‍​‍‌‌​‍‌‌‌‍‌﻿​‍‌‌​‍‌​‍﻿​‍​﻿​‌‌‍‌‌‌﻿​‌‍﻿​‌​﻿​‌​‍‌‌​﻿​​‌﻿​‍‍​​﻿‌‌‌​‍‍‌‌‌‍‌‍﻿‍‌​​‍​​‌﻿‌​‍‍‌‌‌‍‌‍​﻿‌‌‌‍‌​​‍​‌​‍‌‍​﻿‌‌‌‍‌​​‍​‌﻿‍‌﻿﻿‍‌‍​﻿‌‌‌‍‌​​‍​‌‌﻿‌﻿​﻿‌‌‌‍‌‍​﻿‌﻿​﻿‌​﻿‍​​​‍​‌‍﻿‌﻿﻿‍‌‌‌﻿‌​​‍​‌‍‍‌‍﻿‍‌﻿​‍‌‍​﻿‌‌‌‍‌‌​‍‌﻿​﻿‌‌‌‍‌​​‍​​‌﻿‌​‍‍‌‌‌‍‌​​‍​﻿​‍‌​‍‍‌‌​‍‌‍﻿‍‌﻿​‍‌‌‌‍‌﻿​﻿‌​​‍​﻿﻿‍‌‍‌‍‌​​‍​‌‍﻿‌﻿﻿‍‌‌‌﻿‌‍​﻿‌​​‍​‌​﻿‌‌‌﻿‌‌‌‍‌﻿​﻿‌​‌﻿‌‌‍‍‌﻿﻿‍‌‍﻿‍‌​​‍​‍​‍‌‌‌‍‌‌‍‍‌‍﻿‍‌﻿‌‍‌​​‍​‌​‍‌‍﻿‍‌﻿​﻿‌﻿‌﻿‌‌‌‍‌‍​﻿‌‌‌‍‌​‌‍‌‍﻿‍​When there are more users, you increase the chances of your question being answered.​﻿﻿​﻿﻿‍​‌‍‍‌‍﻿‍‌‍‌‍‌﻿﻿‍‌‍﻿﻿​</p>
-                                            </td>
-                                        </tr>
-                                    </table>
-                                </div>
-                                <div style="display: inline-block; margin: 0 -1px; max-width: 213px; min-width:150px; vertical-align: top;" class="stack-column">
-                                    <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
-                                        <tr>
-                                            <td style="font-family: arial, sans-serif; font-size: 15px; line-height: 140%; color: #3C3F44; text-align: left; padding: 10px;" class="sm-px-none">
-                                                <h3 style="font-family: arial, sans-serif; font-size: 17px; color: #3B4045; font-weight: bold; margin: 0 0 5px;">
-                                                    ​﻿﻿​‌‍‍‌‍﻿‍‌‍‌‍‌﻿﻿‍‌‍﻿﻿​﻿​‌‌​‌﻿‌‌​‍‌﻿​‍‌﻿‍‍‌﻿﻿​‌‍‌﻿‌‌‌‍‌‍​﻿‌‍‌‍‌​﻿‍‌﻿﻿‍‌﻿‌﻿‌​﻿‌‌‍‌‌‌‌‍‍‌‌‌‍‌﻿‌﻿‌﻿​﻿‌​﻿‌‌‌‌​‌‌﻿‍‌‌​‍‌‌‍‍‌​﻿‍‌​﻿‌‌﻿​​‌​‍‍‌‌​‍‌‍﻿‍‌‍﻿‍‌‌‌‍‌​﻿‍‌﻿​﻿‌​﻿‌‌﻿﻿​‌‍﻿‍‌‍​‍‌﻿﻿‍‌‌​‍‌‍​﻿‌​‌‍‌‌‍‍‌‍﻿‍‌﻿‌‍‌​﻿‌‌﻿​‌‌​‍‍‌‌​‍‌‍​﻿‌‌‌‍‌﻿​‌‌‌‌‍‌​﻿‍‌‍‌‍‌‍‍​‌﻿﻿‍‌‌‍‍‌‍﻿‍‌​﻿​‌‌‍‍‌‍﻿‍‌﻿‍‍‌‍﻿‍​​‍​‌​‌﻿‌‌﻿‍‌​﻿‍‌‍﻿‍​﻿​‍‌﻿​﻿‌​‍‍‌​‌﻿‌‌﻿‍‌​﻿‍‌‍‍​​‌‌﻿​‌‌﻿​‍‍​​﻿​﻿​‌‌‍‌​​﻿​‍​‍‌‌‌‍‌‌‍﻿​﻿‌﻿​‌​﻿​‌‍﻿​﻿​‍‌‌​‍‌‌‌‍‌‍​﻿​‌‌‍‌﻿‌﻿​‌‌‍‌‍​‍‌‍‌‍‌​‍﻿​​​﻿​‍‌‍‌‌​﻿​‍​‍‌‌​﻿​​‍﻿​﻿​‍‌‍​﻿​‌‍﻿​﻿​﻿​​​﻿​‌‌﻿​‍​﻿​‍‍​​‍​​‌‌‌‍‌​‌﻿‌​‌﻿‌‌‌‍‌‍​﻿‌​​‍​‌​‍‌‍﻿‍‌​‌‍‌​​‍​‍‌‍‌‌​‍‌﻿​﻿‌​‌﻿‌‌‌‍‌‍​﻿‌​​‍​‌​‍‌‍﻿‍‌﻿​﻿‌﻿‌﻿‌‌‌‍‌‍​﻿‌﻿​﻿‌​​‍​​‌﻿‌﻿﻿‍‌​​‍​‌​﻿‌‌‌﻿‌‌‌‍‌﻿​﻿‌​‌﻿‌‌‍‍‌﻿﻿‍‌‍﻿‍‌﻿​﻿‌‍﻿‍​A bigger and more robust knowledge base
-                                                </h3>
-                                                <p style="margin: 0;" class="has-markdown">​﻿﻿​‌‍‍‌‍﻿‍‌‍‌‍‌﻿﻿‍‌‍﻿﻿​﻿​‌‌​‌﻿‌‌​‍‌﻿​‍‌﻿‍‍‌﻿﻿​‌‍‌﻿‌‌‌‍‌‍​﻿‌‍‌‍‌​﻿‍‌﻿﻿‍‌﻿‌﻿‌​﻿‌‌‍‌‌‌‌‍‍‌‌‌‍‌﻿‌﻿‌﻿​﻿‌​﻿‌‌‌‌​‌‌﻿‍‌‌​‍‌‌‍‍‌​﻿‍‌​﻿‌‌﻿​​‌​‍‍‌‌​‍‌‍﻿‍‌‍﻿‍‌‌‌‍‌​﻿‍‌﻿​﻿‌​﻿‌‌﻿﻿​‌‍﻿‍‌‍​‍‌﻿﻿‍‌‌​‍‌‍​﻿‌​‌‍‌‌‍‍‌‍﻿‍‌﻿‌‍‌​﻿‌‌﻿​‌‌​‍‍‌‌​‍‌‍​﻿‌‌‌‍‌﻿​‌‌‌‌‍‌​﻿‍‌‍‌‍‌‍‍​‌﻿﻿‍‌‌‍‍‌‍﻿‍‌​﻿​‌‌‍‍‌‍﻿‍‌﻿‍‍‌‍﻿‍​​‍​‌​‌﻿‌‌﻿‍‌​﻿‍‌‍﻿‍​﻿​‍‌﻿​﻿‌​‍‍‌​‌﻿‌‌﻿‍‌​﻿‍‌‍‍​​‌‌﻿​​‍﻿​‍‍​​﻿​‍‌‍​﻿​​‍﻿​‌​‍‌‍​‍‌‍​‍‌‍​‍‌​‌﻿​​‌‍‌‌​﻿​﻿​‍‌‌‌‍‌​​﻿​‌‌﻿​‍‌‍‌﻿‌﻿​​‌﻿​​​﻿​‍​‍‌‌​‍‌‌‌‍‌﻿​‍‌‌​‍‌​‍﻿​‍​﻿​‌‌‍‌‌‌﻿​‌‍﻿​‌​﻿​‌​‍‌‌​﻿​​‌﻿​‍‍​​﻿‌‌‌​‍‍‌‌‌‍‌‍﻿‍‌​​‍​​‌﻿‌​‍‍‌‌‌‍‌‍​﻿‌‌‌‍‌​​‍​‌​‍‌‍​﻿‌‌‌‍‌​​‍​‌﻿‍‌﻿﻿‍‌‍​﻿‌‌‌‍‌​​‍​‌‌﻿‌﻿​﻿‌‌‌‍‌‍​﻿‌﻿​﻿‌​﻿‍​​​‍​‌‍﻿‌﻿﻿‍‌‌‌﻿‌​​‍​‌‍‍‌‍﻿‍‌﻿​‍‌‍​﻿‌‌‌‍‌‌​‍‌﻿​﻿‌‌‌‍‌​​‍​​‌﻿‌​‍‍‌‌‌‍‌​​‍​﻿​‍‌​‍‍‌‌​‍‌‍﻿‍‌﻿​‍‌‌‌‍‌﻿​﻿‌​​‍​﻿﻿‍‌‍‌‍‌​​‍​‌‍﻿‌﻿﻿‍‌‌‌﻿‌‍​﻿‌​​‍​‌​﻿‌‌‌﻿‌‌‌‍‌﻿​﻿‌​‌﻿‌‌‍‍‌﻿﻿‍‌‍﻿‍‌​​‍​‍​‍‌‌‌‍‌‌‍‍‌‍﻿‍‌﻿‌‍‌​​‍​‌​‍‌‍﻿‍‌﻿​﻿‌﻿‌﻿‌‌‌‍‌‍​﻿‌‌‌‍‌​‌‍‌‍﻿‍​More team members lead to more knowledge sharing and collaboration.</p>
-                                            </td>
-                                        </tr>
-                                    </table>
-                                </div>
-                                <div style="display: inline-block; margin: 0 -1px; max-width: 213px; min-width:150px; vertical-align: top;" class="stack-column">
-                                    <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
-                                        <tr>
-                                            <td style="font-family: arial, sans-serif; font-size: 15px; line-height: 140%; color: #3C3F44; text-align: left; padding: 10px;" class="sm-px-none">
-                                                <h3 style="font-family: arial, sans-serif; font-size: 17px; color: #3B4045; font-weight: bold; margin: 0 0 5px;">
-                                                    ​﻿﻿​‌‍‍‌‍﻿‍‌‍‌‍‌﻿﻿‍‌‍﻿﻿​﻿​‌‌​‌﻿‌‌​‍‌﻿​‍‌﻿‍‍‌﻿﻿​‌‍‌﻿‌‌‌‍‌‍​﻿‌‍‌‍‌​﻿‍‌﻿﻿‍‌﻿‌﻿‌​﻿‌‌‍‌‌‌‌‍‍‌‌‌‍‌﻿‌﻿‌﻿​﻿‌​﻿‌‌‌‌​‌‌﻿‍‌‌​‍‌‌‍‍‌​﻿‍‌​﻿‌‌﻿​​‌​‍‍‌‌​‍‌‍﻿‍‌‍﻿‍‌‌‌‍‌​﻿‍‌﻿​﻿‌​﻿‌‌﻿﻿​‌‍﻿‍‌‍​‍‌﻿﻿‍‌‌​‍‌‍​﻿‌​‌‍‌‌‍‍‌‍﻿‍‌﻿‌‍‌​﻿‌‌﻿​‌‌​‍‍‌‌​‍‌‍​﻿‌‌‌‍‌﻿​‌‌‌‌‍‌​﻿‍‌‍‌‍‌‍‍​‌﻿﻿‍‌‌‍‍‌‍﻿‍‌​﻿​‌‌‍‍‌‍﻿‍‌﻿‍‍‌‍﻿‍​​‍​‌​‌﻿‌‌﻿‍‌​﻿‍‌‍﻿‍​﻿​‍‌﻿​﻿‌​‍‍‌​‌﻿‌‌﻿‍‌​﻿‍‌‍‍​​‌‌﻿​‌‌﻿​‍‍​​﻿​﻿​‌‌‍‌​​﻿​‍​‍‌‌‌‍‌‌‍﻿​﻿‌﻿​‌​﻿​‌‍﻿​﻿​‍‌‌​‍‌‌‌‍‌‍​﻿​‌‌‍‌﻿‌﻿​‌‌‍‌‍​‍‌‍‌‍‌​‍﻿​​​﻿​‍‌‍‌‌​﻿​‍​‍‌‌​﻿​​‍﻿​﻿​‍‌‍​﻿​‌‍﻿​﻿​﻿​​​﻿​‌‌﻿​‍​﻿​‍‍​​‍​​‌‌‌‍‌​‌﻿‌​‌﻿‌‌‌‍‌‍​﻿‌​​‍​‌​‍‌‍﻿‍‌​‌‍‌​​‍​‍‌‍‌‌​‍‌﻿​﻿‌​‌﻿‌‌‌‍‌‍​﻿‌​​‍​‌​‍‌‍﻿‍‌﻿​﻿‌﻿‌﻿‌‌‌‍‌‍​﻿‌﻿​﻿‌​​‍​​‌﻿‌﻿﻿‍‌​​‍​‌​﻿‌‌‌﻿‌‌‌‍‌﻿​﻿‌​‌﻿‌‌‍‍‌﻿﻿‍‌‍﻿‍‌﻿​﻿‌‍﻿‍​A successful Q&A community
-                                                </h3>
-                                                <p style="margin: 0;" class="has-markdown">​﻿﻿​‌‍‍‌‍﻿‍‌‍‌‍‌﻿﻿‍‌‍﻿﻿​﻿​‌‌​‌﻿‌‌​‍‌﻿​‍‌﻿‍‍‌﻿﻿​‌‍‌﻿‌‌‌‍‌‍​﻿‌‍‌‍‌​﻿‍‌﻿﻿‍‌﻿‌﻿‌​﻿‌‌‍‌‌‌‌‍‍‌‌‌‍‌﻿‌﻿‌﻿​﻿‌​﻿‌‌‌‌​‌‌﻿‍‌‌​‍‌‌‍‍‌​﻿‍‌​﻿‌‌﻿​​‌​‍‍‌‌​‍‌‍﻿‍‌‍﻿‍‌‌‌‍‌​﻿‍‌﻿​﻿‌​﻿‌‌﻿﻿​‌‍﻿‍‌‍​‍‌﻿﻿‍‌‌​‍‌‍​﻿‌​‌‍‌‌‍‍‌‍﻿‍‌﻿‌‍‌​﻿‌‌﻿​‌‌​‍‍‌‌​‍‌‍​﻿‌‌‌‍‌﻿​‌‌‌‌‍‌​﻿‍‌‍‌‍‌‍‍​‌﻿﻿‍‌‌‍‍‌‍﻿‍‌​﻿​‌‌‍‍‌‍﻿‍‌﻿‍‍‌‍﻿‍​​‍​‌​‌﻿‌‌﻿‍‌​﻿‍‌‍﻿‍​﻿​‍‌﻿​﻿‌​‍‍‌​‌﻿‌‌﻿‍‌​﻿‍‌‍‍​​‌‌﻿​​‍﻿​‍‍​​﻿​‍‌‍​﻿​​‍﻿​‌​‍‌‍​‍‌‍​‍‌‍​‍‌​‌﻿​​‌‍‌‌​﻿​﻿​‍‌‌‌‍‌​​﻿​‌‌﻿​‍‌‍‌﻿‌﻿​​‌﻿​​​﻿​‍​‍‌‌​‍‌‌‌‍‌﻿​‍‌‌​‍‌​‍﻿​‍​﻿​‌‌‍‌‌‌﻿​‌‍﻿​‌​﻿​‌​‍‌‌​﻿​​‌﻿​‍‍​​﻿‌‌‌​‍‍‌‌‌‍‌‍﻿‍‌​​‍​​‌﻿‌​‍‍‌‌‌‍‌‍​﻿‌‌‌‍‌​​‍​‌​‍‌‍​﻿‌‌‌‍‌​​‍​‌﻿‍‌﻿﻿‍‌‍​﻿‌‌‌‍‌​​‍​‌‌﻿‌﻿​﻿‌‌‌‍‌‍​﻿‌﻿​﻿‌​﻿‍​​​‍​‌‍﻿‌﻿﻿‍‌‌‌﻿‌​​‍​‌‍‍‌‍﻿‍‌﻿​‍‌‍​﻿‌‌‌‍‌‌​‍‌﻿​﻿‌‌‌‍‌​​‍​​‌﻿‌​‍‍‌‌‌‍‌​​‍​﻿​‍‌​‍‍‌‌​‍‌‍﻿‍‌﻿​‍‌‌‌‍‌﻿​﻿‌​​‍​﻿﻿‍‌‍‌‍‌​​‍​‌‍﻿‌﻿﻿‍‌‌‌﻿‌‍​﻿‌​​‍​‌​﻿‌‌‌﻿‌‌‌‍‌﻿​﻿‌​‌﻿‌‌‍‍‌﻿﻿‍‌‍﻿‍‌​​‍​‍​‍‌‌‌‍‌‌‍‍‌‍﻿‍‌﻿‌‍‌​​‍​‌​‍‌‍﻿‍‌﻿​﻿‌﻿‌﻿‌‌‌‍‌‍​﻿‌‌‌‍‌​‌‍‌‍﻿‍​The Q&A format works best when the right people are there to answer and ask questions.</p>
-                                            </td>
-                                        </tr>
-                                    </table>
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-                </table>
+        <div class="stacks-preview--example p0">
+            <div class="resizable ps-relative">
+                <iframe src="{{ "/email/patterns/snippets/three-col-even.html" | relative_url }}" class="ui-widget-content" frameborder="no" width="100%" height="100%"></iframe>
             </div>
         </div>
     </div>
-</section>
-
-<section class="py64">
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    <script>
-        $(function() {
-            $( ".resizable" ).resizable();
-        });
-    </script>
-    <style>
-.ui-resizable-handle {
-    position: absolute;
-    font-size: 0.1px;
-    display: block;
-    touch-action: none;
-    z-index: 90;
-}
-.ui-resizable-e {
-    cursor: e-resize;
-    width: 7px;
-    right: -5px;
-    top: 0;
-    height: 100%;
-    background: green;
-}
-.ui-resizable-s {
-    cursor: s-resize;
-    height: 7px;
-    width: 100%;
-    bottom: -5px;
-    left: 0;
-    background: orange;
-}
-.ui-resizable-se {
-    cursor: se-resize;
-    width: 16px;
-    height: 16px;
-    right: 1px;
-    bottom: 1px;
-    background: blue;
-}
-    </style>
-    <h3>Test</h3>
-    <div class="resizable hmn2 ps-relative">
-      <iframe src="https://stackoverflow.design" class="ui-widget-content" frameborder="no" id="test" width="100%" height="100%" />
-    </div>
-
-
 </section>
