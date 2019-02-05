@@ -217,7 +217,58 @@ description: A few layout ideas to reconfigure columns for different screen size
 </tr>
 {% endhighlight %}
         <div class="stacks-preview--example p0">
-            <iframe src="{{ "/email/patterns/snippets/three-col-even.html" | relative_url }}" frameborder="no" width="100%" height="100%"></iframe>
+            <ul class="list-reset grid ai-center bb bc-black-3 p16 gs8 gsx">
+                <li class="grid--cell sm:d-none">
+                    <a href="#" class="s-link s-link__muted py8 px12 bar-pill js-sm-btn--3evencol js-query-select-btn--3evencol">
+                        {% icon SmartPhone %}
+                        Small
+                    </a>
+                </li>
+                <li class="grid--cell sm:d-none">
+                    <a href="#" class="s-link s-link__muted py8 px12 bar-pill bg-black-100 fc-black-600 js-lg-btn--3evencol js-query-select-btn--3evencol">
+                        {% icon Laptop %}
+                        Large
+                    </a>
+                </li>
+                <li class="grid--cell ml16 fc-light fs-caption">
+                    (or resize the viewport)
+                </li>
+            </ul>
+            <div class="ta-center bg-black-800">
+                <iframe title="Example of a three column hybrid layout" height="250" frameborder="no" src="{{ "/email/patterns/snippets/three-col-even.html" | relative_url }}" class="m-auto mbn4 w100 js-iframe--3evencol"></iframe>
+            </div>
         </div>
     </div>
 </section>
+
+<script>
+    $(function(){
+        var smBtn3evencol = $(".js-sm-btn--3evencol");
+        var lgBtn3evencol = $(".js-lg-btn--3evencol");
+        var btns3evencol = $(".js-query-select-btn--3evencol");
+        var gridTarget3evencol = $(".js-iframe--3evencol");
+
+        smBtn3evencol.click(function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            removeClasses3evencol();
+            addSelection3evencol($(this));
+            gridTarget3evencol.addClass("ws4");
+        });
+        lgBtn3evencol.click(function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            removeClasses3evencol();
+            addSelection3evencol($(this));
+            gridTarget3evencol.addClass("w100");
+        });
+        function removeClasses3evencol() {
+            gridTarget3evencol.removeClass("ws4 w100");
+            btns3evencol.removeClass("bg-black-100 fc-black-600");
+        };
+        function addSelection3evencol(obj) {
+            obj.addClass("bg-black-100 fc-black-600");
+        };
+    });
+</script>
+
