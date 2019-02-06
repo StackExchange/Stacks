@@ -1,0 +1,408 @@
+---
+layout: page
+title: Multiple Columns
+description: A few layout ideas to reconfigure columns for different screen sizes in email clients.
+---
+<section class="stacks-section">
+    <p class="stacks-copy">
+        Reading on small displays is easier when done in a top-to-bottom fashion. Using <a href="{{ "/email/base/responsiveness/" | relative_url }}">hybrid design and media queries</a>, we can switch multi-column layouts to a single-column one.
+    </p>
+    {% header h2 | Two even columns %}
+    <div class="stacks-preview _preview-none mb24">
+{% highlight html linenos %}
+<tr>
+    <td style="padding: 20px; background-color: #ffffff;">
+        <div style="display: table; width: 100%; text-align: center; font-size: 0;">
+            <!--[if mso]>
+            <table role="presentation" border="0" cellspacing="0" cellpadding="0" width="640">
+            <tr>
+            <td align="left" valign="top" width="320">
+            <![endif]-->
+            <div style="display: inline-block; margin: 0 -1px; max-width: 320px; min-width:220px; vertical-align: top;" class="stack-column">
+                <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+                    <tr>
+                        <td style="padding: 10px;" class="sm-px-none">
+                            …
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <!--[if mso]>
+            </td>
+            <td align="left" valign="top" width="320">
+            <![endif]-->
+            <div style="display: inline-block; margin: 0 -1px; max-width: 320px; min-width:220px; vertical-align: top;" class="stack-column">
+                <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+                    <tr>
+                        <td style="padding: 10px;" class="sm-px-none">
+                            …
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <!--[if mso]>
+            </td>
+            </tr>
+            </table>
+            <![endif]-->
+        </div>
+    </td>
+</tr>
+{% endhighlight %}
+        <div class="stacks-preview--example p0">
+            <ul class="list-reset grid ai-center bb bc-black-3 p16 gs8 gsx">
+                <li class="grid--cell sm:d-none">
+                    <a href="#" class="s-link s-link__muted py8 px12 bar-pill js-sm-btn--2evencol js-query-select-btn--2evencol">
+                        {% icon SmartPhone %}
+                        Small
+                    </a>
+                </li>
+                <li class="grid--cell sm:d-none">
+                    <a href="#" class="s-link s-link__muted py8 px12 bar-pill bg-black-100 fc-black-600 js-lg-btn--2evencol js-query-select-btn--2evencol">
+                        {% icon Laptop %}
+                        Large
+                    </a>
+                </li>
+                <li class="grid--cell ml16 fc-light fs-caption">
+                    (or resize the viewport)
+                </li>
+            </ul>
+            <div class="ta-center bg-checkered">
+                <iframe title="Two even columns example" height="250" frameborder="no" src="{{ "/email/patterns/snippets/two-col-even.html" | relative_url }}" class="m-auto mbn4 w100 bbr-sm js-iframe--2evencol"></iframe>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="stacks-section">
+    {% header h2 | Two uneven columns %}
+    {% header h3 | Default %}
+    <div class="stacks-preview _preview-none mb24">
+{% highlight html linenos %}
+<tr>
+    <td style="padding: 25px 30px; background-color: #ffffff;" class="sm-p">
+        <div dir="ltr" style="display: table; width: 100%; text-align: center; font-size: 0;">
+            <!--[if mso]>
+            <table role="presentation" border="0" cellspacing="0" cellpadding="0" width="620">
+            <tr>
+            <td align="left" valign="top" width="158">
+            <![endif]-->
+            <div style="display: inline-block; margin: 0 -1px; width: 158px; vertical-align: middle;" class="stack-column">
+                <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+                    <tr>
+                        <td dir="ltr" style="font-family: arial, sans-serif; font-size: 15px; line-height: 140%; color: #3C3F44; text-align: left; padding: 5px 30px 5px 0;">
+                            <img src="https://via.placeholder.com/128" width="128" height="128" alt="alt_text" border="0" style="display: block; margin: 0; font-family: arial, sans-serif; font-size: 15px; line-height: 15px; color: #3C3F44; margin: 0;">
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <!--[if mso]>
+            </td>
+            <td align="left" valign="top" width="462">
+            <![endif]-->
+            <div style="display: inline-block; margin: 0 -1px; max-width: 462px; min-width:220px; vertical-align: middle;" class="stack-column">
+                <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+                    <tr>
+                        <td style="padding: 10px;" class="sm-px-none">
+                            …
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <!--[if mso]>
+            </td>
+            </tr>
+            </table>
+            <![endif]-->
+        </div>
+    </td>
+</tr>
+{% endhighlight %}
+        <div class="stacks-preview--example p0">
+            <ul class="list-reset grid ai-center bb bc-black-3 p16 gs8 gsx">
+                <li class="grid--cell sm:d-none">
+                    <a href="#" class="s-link s-link__muted py8 px12 bar-pill js-sm-btn--2unevencol js-query-select-btn--2unevencol">
+                        {% icon SmartPhone %}
+                        Small
+                    </a>
+                </li>
+                <li class="grid--cell sm:d-none">
+                    <a href="#" class="s-link s-link__muted py8 px12 bar-pill bg-black-100 fc-black-600 js-lg-btn--2unevencol js-query-select-btn--2unevencol">
+                        {% icon Laptop %}
+                        Large
+                    </a>
+                </li>
+                <li class="grid--cell ml16 fc-light fs-caption">
+                    (or resize the viewport)
+                </li>
+            </ul>
+            <div class="ta-center bg-checkered">
+                <iframe title="Two uneven columns example" height="250" frameborder="no" src="{{ "/email/patterns/snippets/two-col-uneven.html" | relative_url }}" class="m-auto mbn4 w100 bbr-sm js-iframe--2unevencol"></iframe>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="stacks-section">
+    {% header h3 | Reverse stacking %}
+    <p class="stacks-copy">
+        By default, columns are arranged based on source order on both desktop and mobile displays. (Eg. the first (left) desktop column  will stack on top of the second (right) desktop column. Using the <code class="stacks-code">dir</code> attribute, we can swap the order of columns on desktop without changing the source order. Useful when you want an image in the second (right) column on desktop, but on the first (top) row when stacked on mobile.
+    </p>
+    <div class="stacks-preview _preview-none mb24">
+{% highlight html linenos %}
+<tr>
+    <td style="padding: 25px 30px; background-color: #ffffff;" class="sm-p">
+        <div dir="ltr" style="display: table; width: 100%; text-align: center; font-size: 0;">
+            <!--[if mso]>
+            <table role="presentation" border="0" cellspacing="0" cellpadding="0" width="620">
+            <tr>
+            <td align="left" valign="top" width="158">
+            <![endif]-->
+            <div style="display: inline-block; margin: 0 -1px; width: 158px; vertical-align: middle;" class="stack-column">
+                <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+                    <tr>
+                        <td dir="ltr" style="font-family: arial, sans-serif; font-size: 15px; line-height: 140%; color: #3C3F44; text-align: left; padding: 5px 30px 5px 0;">
+                            <img src="https://via.placeholder.com/128" width="128" height="128" alt="alt_text" border="0" style="display: block; margin: 0; font-family: arial, sans-serif; font-size: 15px; line-height: 15px; color: #3C3F44; margin: 0;">
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <!--[if mso]>
+            </td>
+            <td align="left" valign="top" width="462">
+            <![endif]-->
+            <div style="display: inline-block; margin: 0 -1px; max-width: 462px; min-width:220px; vertical-align: middle;" class="stack-column">
+                <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+                    <tr>
+                        <td style="padding: 10px;" class="sm-px-none">
+                            …
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <!--[if mso]>
+            </td>
+            </tr>
+            </table>
+            <![endif]-->
+        </div>
+    </td>
+</tr>
+{% endhighlight %}
+        <div class="stacks-preview--example p0">
+            <ul class="list-reset grid ai-center bb bc-black-3 p16 gs8 gsx">
+                <li class="grid--cell sm:d-none">
+                    <a href="#" class="s-link s-link__muted py8 px12 bar-pill js-sm-btn--2unevencolrev js-query-select-btn--2unevencolrev">
+                        {% icon SmartPhone %}
+                        Small
+                    </a>
+                </li>
+                <li class="grid--cell sm:d-none">
+                    <a href="#" class="s-link s-link__muted py8 px12 bar-pill bg-black-100 fc-black-600 js-lg-btn--2unevencolrev js-query-select-btn--2unevencolrev">
+                        {% icon Laptop %}
+                        Large
+                    </a>
+                </li>
+                <li class="grid--cell ml16 fc-light fs-caption">
+                    (or resize the viewport)
+                </li>
+            </ul>
+            <div class="ta-center bg-checkered">
+                <iframe title="Two uneven columns reverse stacking example" height="250" frameborder="no" src="{{ "/email/patterns/snippets/two-col-uneven-reverse.html" | relative_url }}" class="m-auto mbn4 w100 bbr-sm js-iframe--2unevencolrev"></iframe>
+            </div>
+        </div>
+    </div>
+    <div class="grid ai-start s-notice s-notice__info mb24">
+        <div class="grid--cell mr8">{% icon Alert %}</div>
+        <div class="grid--cell lh-lg">
+            <strong>Note:</strong> If you add a <code class="stacks-code bg-powder-200">dir="rtl"</code> to a parent container, it will cascade down into children containers. To prevent text from reading right-to-left, add <code class="stacks-code bg-powder-200">dir="ltr"</code> to children containers.
+        </div>
+    </div>
+</section>
+<section class="stacks-section">
+    {% header h2 | Three even columns %}
+    <div class="stacks-preview _preview-none mb24">
+{% highlight html linenos %}
+<tr>
+    <td style="padding: 20px; background-color: #ffffff;">
+        <div style="display: table; width: 100%; text-align: center; font-size: 0;">
+            <!--[if mso]>
+            <table role="presentation" border="0" cellspacing="0" cellpadding="0" width="640">
+            <tr>
+            <td align="left" valign="top" width="213">
+            <![endif]-->
+            <div style="display: inline-block; margin: 0 -1px; max-width: 213px; min-width:150px; vertical-align: top;" class="stack-column">
+                <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+                    <tr>
+                        <td style="padding: 10px;" class="sm-px-none">
+                            …
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <!--[if mso]>
+            </td>
+            <td align="left" valign="top" width="213">
+            <![endif]-->
+            <div style="display: inline-block; margin: 0 -1px; max-width: 213px; min-width:150px; vertical-align: top;" class="stack-column">
+                <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+                    <tr>
+                        <td style="padding: 10px;" class="sm-px-none">
+                            …
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <!--[if mso]>
+            </td>
+            <td align="left" valign="top" width="213">
+            <![endif]-->
+            <div style="display: inline-block; margin: 0 -1px; max-width: 213px; min-width:150px; vertical-align: top;" class="stack-column">
+                <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+                    <tr>
+                        <td style="padding: 10px;" class="sm-px-none">
+                            …
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <!--[if mso]>
+            </td>
+            </tr>
+            </table>
+            <![endif]-->
+        </div>
+    </td>
+</tr>
+{% endhighlight %}
+        <div class="stacks-preview--example p0">
+            <ul class="list-reset grid ai-center bb bc-black-3 p16 gs8 gsx">
+                <li class="grid--cell sm:d-none">
+                    <a href="#" class="s-link s-link__muted py8 px12 bar-pill js-sm-btn--3evencol js-query-select-btn--3evencol">
+                        {% icon SmartPhone %}
+                        Small
+                    </a>
+                </li>
+                <li class="grid--cell sm:d-none">
+                    <a href="#" class="s-link s-link__muted py8 px12 bar-pill bg-black-100 fc-black-600 js-lg-btn--3evencol js-query-select-btn--3evencol">
+                        {% icon Laptop %}
+                        Large
+                    </a>
+                </li>
+                <li class="grid--cell ml16 fc-light fs-caption">
+                    (or resize the viewport)
+                </li>
+            </ul>
+            <div class="ta-center bg-checkered">
+                <iframe title="Three even columns example" height="250" frameborder="no" src="{{ "/email/patterns/snippets/three-col-even.html" | relative_url }}" class="m-auto mbn4 w100 bbr-sm js-iframe--3evencol"></iframe>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    $(function(){
+        var smBtn2evencol = $(".js-sm-btn--2evencol");
+        var lgBtn2evencol = $(".js-lg-btn--2evencol");
+        var btns2evencol = $(".js-query-select-btn--2evencol");
+        var gridTarget2evencol = $(".js-iframe--2evencol");
+        smBtn2evencol.click(function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            removeClasses2evencol();
+            addSelection2evencol($(this));
+            gridTarget2evencol.addClass("ws4");
+        });
+        lgBtn2evencol.click(function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            removeClasses2evencol();
+            addSelection2evencol($(this));
+            gridTarget2evencol.addClass("w100");
+        });
+        function removeClasses2evencol() {
+            gridTarget2evencol.removeClass("ws4 w100");
+            btns2evencol.removeClass("bg-black-100 fc-black-600");
+        };
+        function addSelection2evencol(obj) {
+            obj.addClass("bg-black-100 fc-black-600");
+        };
+        /* ------------------------------------------------------------ */
+        var smBtn2unevencol = $(".js-sm-btn--2unevencol");
+        var lgBtn2unevencol = $(".js-lg-btn--2unevencol");
+        var btns2unevencol = $(".js-query-select-btn--2unevencol");
+        var gridTarget2unevencol = $(".js-iframe--2unevencol");
+        smBtn2unevencol.click(function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            removeClasses2unevencol();
+            addSelection2unevencol($(this));
+            gridTarget2unevencol.addClass("ws4");
+        });
+        lgBtn2unevencol.click(function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            removeClasses2unevencol();
+            addSelection2unevencol($(this));
+            gridTarget2unevencol.addClass("w100");
+        });
+        function removeClasses2unevencol() {
+            gridTarget2unevencol.removeClass("ws4 w100");
+            btns2unevencol.removeClass("bg-black-100 fc-black-600");
+        };
+        function addSelection2unevencol(obj) {
+            obj.addClass("bg-black-100 fc-black-600");
+        };
+        /* ------------------------------------------------------------ */
+        var smBtn2unevencolrev = $(".js-sm-btn--2unevencolrev");
+        var lgBtn2unevencolrev = $(".js-lg-btn--2unevencolrev");
+        var btns2unevencolrev = $(".js-query-select-btn--2unevencolrev");
+        var gridTarget2unevencolrev = $(".js-iframe--2unevencolrev");
+        smBtn2unevencolrev.click(function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            removeClasses2unevencolrev();
+            addSelection2unevencolrev($(this));
+            gridTarget2unevencolrev.addClass("ws4");
+        });
+        lgBtn2unevencolrev.click(function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            removeClasses2unevencolrev();
+            addSelection2unevencolrev($(this));
+            gridTarget2unevencolrev.addClass("w100");
+        });
+        function removeClasses2unevencolrev() {
+            gridTarget2unevencolrev.removeClass("ws4 w100");
+            btns2unevencolrev.removeClass("bg-black-100 fc-black-600");
+        };
+        function addSelection2unevencolrev(obj) {
+            obj.addClass("bg-black-100 fc-black-600");
+        };
+        /* ------------------------------------------------------------ */
+        var smBtn3evencol = $(".js-sm-btn--3evencol");
+        var lgBtn3evencol = $(".js-lg-btn--3evencol");
+        var btns3evencol = $(".js-query-select-btn--3evencol");
+        var gridTarget3evencol = $(".js-iframe--3evencol");
+        smBtn3evencol.click(function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            removeClasses3evencol();
+            addSelection3evencol($(this));
+            gridTarget3evencol.addClass("ws4");
+        });
+        lgBtn3evencol.click(function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            removeClasses3evencol();
+            addSelection3evencol($(this));
+            gridTarget3evencol.addClass("w100");
+        });
+        function removeClasses3evencol() {
+            gridTarget3evencol.removeClass("ws4 w100");
+            btns3evencol.removeClass("bg-black-100 fc-black-600");
+        };
+        function addSelection3evencol(obj) {
+            obj.addClass("bg-black-100 fc-black-600");
+        };
+    });
+</script>
+
