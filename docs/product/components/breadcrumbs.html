@@ -1,0 +1,42 @@
+---
+layout: page
+title: Breadcrumbs
+description: Breadcrumbs are used to provide context for the currently-viewed page.
+---
+<section class="stacks-section">
+    {% header h2 | Example %}
+    <p class="stacks-copy">Breadcrumbs show users where they are in the website hierarchy and how to navigate to previous page levels. It can be appropriate to use a breadcrumb when:</p>
+    <ul class="stacks-list">
+        <li>The user is many levels deep</li>
+        <li>The current page does not have its own navigation</li>
+        <li>The user needs to quickly go back to the previous parent page</li>
+    </ul>
+    <div class="stacks-preview">
+{% highlight html linenos %}
+<nav class="s-breadcrumb">
+    <a class="s-breadcrumb--item" href="…">
+        @Svg.LogoGlyphXxs
+    </a>
+    @Svg.ArrowRightAltSm.With("s-breadcrumb--divider")
+    <a class="s-breadcrumb--item" href="…">
+        …
+    </a>
+    @Svg.ArrowRightAltSm.With("s-breadcrumb--divider")
+    <a class="s-breadcrumb--item" href="…">
+        …
+    </a>
+</nav>
+{% endhighlight %}
+        <div class="stacks-preview--example">
+            <nav class="s-breadcrumb">
+                <a href="#" class="s-breadcrumb--item">
+                    {% icon LogoGlyphXxs %}
+                </a>
+                <svg aria-hidden="true" class="svg-icon iconArrowRightAltSm s-breadcrumb--divider" width="13" height="14" viewBox="0 0 13 14"><path d="M4.38 4.62l1.24-1.24L9.24 7l-3.62 3.62-1.24-1.24L6.76 7z"/></svg>
+                <a href="#" class="s-breadcrumb--item">Team Name</a>
+                <svg aria-hidden="true" class="svg-icon iconArrowRightAltSm s-breadcrumb--divider" width="13" height="14" viewBox="0 0 13 14"><path d="M4.38 4.62l1.24-1.24L9.24 7l-3.62 3.62-1.24-1.24L6.76 7z"/></svg>
+                <a href="#" class="s-breadcrumb--item">Settings</a>
+            </nav>
+        </div>
+    </div>
+</section>
