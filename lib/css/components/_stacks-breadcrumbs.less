@@ -9,9 +9,27 @@
 
 .s-breadcrumbs {
     display: flex;
-    align-items: center;
+    align-items: start;
     color: @black-150;
     font-size: @fs-caption;
+
+    .s-breadcrumbs--links {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+
+    .s-breadcrumbs--item {
+        display: flex;
+        margin-top: @su2;
+        margin-bottom: @su2;
+
+        &.s-breadcrumbs__home {
+            display: flex;
+            flex-wrap: nowrap;
+            white-space: nowrap;
+        }
+    }
 
     .s-breadcrumbs--divider {
         margin-right: @su4;
@@ -23,8 +41,8 @@
         });
     }
 
-    .s-breadcrumbs--item {
-        color: @fc-light;
+    .s-breadcrumbs--link {
+        color: @black-350;
 
         &:hover {
             color: @black-600;
