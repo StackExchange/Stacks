@@ -1,11 +1,16 @@
 //
 //  STACK OVERFLOW
-//  SIDEBAR WIDGET
+//  SIDEBAR WIDGET -- STATIC PARTS
 //
 //  This CSS comes from Stacks, our CSS & Pattern library for rapidly building
 //  Stack Overflow. For documentation of all these classes and how to contribute,
 //  visit https://stackoverflow.design/
 //
+//  This file contains almost all the CSS for the sidebar widget. The only exception
+//  is the "current color" highlight when the widget is used for navigation. That
+//  part is configurable and is in the dynamic part of Stacks as
+//  _stacks-widget-dynamic.less.
+
 
 @s-sidebarwidget-content-padding: @su16 - 1px; // subtract 1px for border
 @s-sidebarwidget-content-inner-spacing: @su12; // the spacing between two adjacent simple items
@@ -183,7 +188,9 @@ table.s-sidebarwidget--content.s-sidebarwidget__items {
                 height: ~"calc(100% +" @s-sidebarwidget-content-inner-spacing ~")";
                 margin-top: -@s-sidebarwidget-content-inner-spacing/2;
                 margin-left: -@s-sidebarwidget-content-padding - 1px; // the orange selection indicator overlaps with the widget border
-                border-left: 3px solid @orange;
+                border-left-width: 3px;
+                border-left-style: solid;
+                // border-left-color is set in _stacks-widget-dynamic.less
             }
 
             a, a:visited { // TODO: this isn't the best way to go about this. There should be a "is current" highlight without font modification for more complex cases
@@ -204,16 +211,10 @@ table.s-sidebarwidget--content.s-sidebarwidget__items {
         background-repeat: no-repeat;
         background-size: auto 10px;
 
-        .bullet-arrow(@col) {
-            @image: '<?xml version="1.0" encoding="UTF-8"?><svg version="1.1" viewBox="0 0 7 10" xmlns="http://www.w3.org/2000/svg"><path d="m0.72153 0.68446 4.1336 4.3077-4.1336 4.3077" fill="none" stroke="@{col}" stroke-width="2"/></svg>';
-            @encoded-image: escape(@image);
-            background-image: url("data:image/svg+xml,@{encoded-image}");
-        }
-
-        .bullet-arrow(@black-100);
+        #stacks-internals #bullet-arrow(@black-100);
 
         &[aria-current="true"], &[aria-current="page"] {
-            .bullet-arrow(@orange);
+            // this is given a bullet-arrow in the primary color in _stacks-widget-dynamic.less
             color: @black;
             font-weight: bold;
 
