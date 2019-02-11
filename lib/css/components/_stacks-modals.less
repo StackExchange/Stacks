@@ -67,8 +67,7 @@
         transform: translate3d(0, 0, 0) scale3d(1, 1, 1)
     }
 
-    //  IE11 and below don't correctly position the dialog box, so we need to set some additional
-    //  values to make sure it visibly centers.
+    //  IE11 and below aligns our dialog on subpixels causing a blurry layout. Let's just remove those transforms for IE11.
     @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
         transform: none;
 
