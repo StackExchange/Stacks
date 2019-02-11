@@ -1,0 +1,58 @@
+//
+//  STACK OVERFLOW
+//  GRID
+//
+//  This CSS comes from Stacks, our CSS & Pattern library for rapidly building
+//  Stack Overflow. For documentation of all these classes and how to contribute,
+//  visit https://stackoverflow.design/
+//
+//  TABLE OF CONTENTS
+//  • VARIABLES
+//  • MIXINS
+//  • FLEX ELEMENTS
+//  • FLEX SPACING
+//  • MODIFICATIONS
+
+//  ============================================================================
+//  $   GRID ELEMENTS
+//  ============================================================================
+//      To help simplify our CSS, we create a generic box container. By default
+//      this is a row container, but we can modify the box to become a column.
+//  ----------------------------------------------------------------------------
+.grid {
+    display: grid;
+}
+
+#stacks-internals #responsify('.grid__col8', { grid-template-columns: repeat(8, 1fr); });
+#stacks-internals #responsify('.grid__col7', { grid-template-columns: repeat(7, 1fr); });
+#stacks-internals #responsify('.grid__col6', { grid-template-columns: repeat(6, 1fr); });
+#stacks-internals #responsify('.grid__col5', { grid-template-columns: repeat(5, 1fr); });
+#stacks-internals #responsify('.grid__col4', { grid-template-columns: repeat(4, 1fr); });
+#stacks-internals #responsify('.grid__col3', { grid-template-columns: repeat(3, 1fr); });
+#stacks-internals #responsify('.grid__col2', { grid-template-columns: repeat(2, 1fr); });
+#stacks-internals #responsify('.grid__col1', { grid-template-columns: 1fr; });
+
+//  ============================================================================
+//  $   GRID SPACING
+//      Insert spaces or gutters in between grid cells
+//  ----------------------------------------------------------------------------
+.gs2    { grid-gap: @su2; }
+.gs4    { grid-gap: @su4; }
+.gs6    { grid-gap: @su6; }
+.gs8    { grid-gap: @su8; }
+.gs12   { grid-gap: @su12; }
+.gs16   { grid-gap: @su16; }
+.gs24   { grid-gap: @su24; }
+.gs32   { grid-gap: @su32; }
+.gs48   { grid-gap: @su48; }
+.gs64   { grid-gap: @su64; }
+
+.gs2, .gs4, .gs6, .gs8, .gs12, .gs16, .gs24, .gs32, .gs48, .gs64 {
+    &.gsx {
+        grid-row-gap: 0;
+    }
+
+    &.gsy {
+        grid-column-gap: 0;
+    }
+}
