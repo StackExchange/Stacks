@@ -22,7 +22,7 @@ Stacks.addController("docs-resizer", {
         this._handleSizeEvent(e, "w100");
     },
 
-    _handleSizeEvent(evt, cls) {
+    _handleSizeEvent: function(evt, cls) {
         if (this._sizeClass) {
             this.resizableTarget.classList.remove(this._sizeClass);
         }
