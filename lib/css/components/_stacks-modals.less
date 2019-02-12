@@ -48,7 +48,6 @@
 .s-modal--dialog {
     overflow-y: auto;
     visibility: hidden;
-    position: fixed; // We shouldn't NEED this, since the parent is fixed, but IE Edge needs it to properly scroll at small viewport sizes.
     z-index: @zi-hide; // Make sure it's also below everything so we can't interact with it.
     max-width: 600px;
     max-height: 100%;
@@ -58,25 +57,25 @@
     box-shadow: @bs-lg;
     opacity: 0;
     backface-visibility: hidden;
-    transform: translate3d(0, 30%, 0) scale3d(0.6, 0.6, 0.6);
+    transform: translate(0, 30%) scale(0.6, 0.6); // This translate default is added for IE11 but is overwritten to translate3d see [1]
 
     transition: opacity 200ms @te-smooth 0s, z-index 0s 100ms, visibility 0s 100ms, transform 100ms @te-smooth 0s, transform 100ms @te-smooth 0s; // Transition out
     will-change: visibility, z-index, opacity, transform; // Not supported in IE11 / Edge
     -webkit-overflow-scrolling: touch; // Make scrolling have inertia on mobile devices.
 
     .s-modal[aria-hidden="false"] & {
-        transform: translate3d(0, 0, 0) scale3d(1, 1, 1)
+        transform: translate(0, 0) scale(1, 1); // This translate default is added for IE11 but is overwritten to translate3d see [1]
     }
 
-    //  IE11 and below don't correctly position the dialog box, so we need to set some additional
-    //  values to make sure it visibly centers.
-    @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
-        top: 50%;
-        left: 50%;
-        transform: translate3d(-50%, -20%, 0) scale3d(0.6, 0.6, 0.6);
+    // [1] Things are blurry when using translate3d in IE11. translate3d is required for
+    // hardware acceleration everywhere else, so let's default to standard translate, but check for
+    // modern browsers and use translate3d there..
+    // It doesn't matter what feature query we check -- IE doesn't support @supports.
+    @supports (display: block) {
+        transform: translate3d(0, 30%, 0) scale3d(0.6, 0.6, 0.6);
 
         .s-modal[aria-hidden="false"] & {
-            transform: translate3d(-50%, -50%, 0) scale3d(1, 1, 1)
+            transform: translate3d(0, 0, 0) scale3d(1, 1, 1);
         }
     }
 }
