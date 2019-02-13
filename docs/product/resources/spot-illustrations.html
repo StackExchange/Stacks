@@ -1,0 +1,85 @@
+---
+layout: page
+title: Spot Illustrations
+description: Spot illustrations can be included as SVG files, invoked via a Razor helper. The helper will insert a properly formatted and minified SVG file into your view. All spots are managed and stored within the <a href="https://github.com/StackExchange/Stacks-Icons">Icons</a> repository.
+---
+
+<section class="stacks-section">
+    {% header h2 | Using the Spot Illustration Helper %}
+    <p class="stacks-copy">The SVG Razor helper function should be used for all system illustrations in lieu of SVG sprite sheets or raster image assets. This ensures a single source of truth for all illustrations. The SVG helper is invoked by <code class="stacks-code">@Svg.</code> and then adding the illustration name, like so:</p>
+
+    <div class="stacks-preview _preview-none">
+{% highlight html linenos %}
+<div class="example">
+  @Svg.Spot.Location
+</div>
+{% endhighlight %}
+    </div>
+
+    <p class="stacks-copy">By default, every spot illustration will inherit the text color of its parent.</p>
+
+    <div class="stacks-preview _preview-none">
+{% highlight html linenos %}
+<div class="example">
+  @Svg.Spot.Location.With("fc-orange-500")
+</div>
+{% endhighlight %}
+    </div>
+
+    <p class="stacks-copy">Our helper supports arbitrary classes as well.</p>
+
+    <div class="stacks-preview _preview-none">
+{% highlight html linenos %}
+<div class="example">
+  @Svg.Spot.Location.With("fc-orange-500 js-dropdown-target another-class-name")
+</div>
+{% endhighlight %}
+    </div>
+
+    <div class="grid ai-start s-notice s-notice__info">
+        <div class="grid--cell mr8">{% icon Alert %}</div>
+        <div class="grid--cell lh-xl">
+            <b>Note:</b> Our <code class="stacks-code bg-powder-200">@Svg</code> helper isn’t available within our documentation. You can call SVGs using our custom Spots liquid tag:
+            <code class="stacks-code bg-powder-200 ws-normal lh-md">{% raw %}{% spot Location | optional additional classes | pixel dimension %}{% endraw %}</code>
+        </div>
+    </div>
+</section>
+
+<!-- <section class="stacks-section">
+    {% header h2 | Requesting an Icon %}
+    <p class="stacks-copy">If an icon you need isn’t here, please do one of the following two options:</p>
+    <ol class="stacks-list">
+        <li><a href="https://github.com/StackExchange/Stacks-Icons/issues/new">Submit a request</a> outlining the desired icon, the icon’s intended purposed, and where it will be used.</li>
+        <li>If the icon is ready, <a href="https://github.com/StackExchange/Stacks-Icons/compare">submit a pull request</a> to have it to be reviewed. Please be sure to provide the same information as above.</li>
+    </ol>
+    <p class="stacks-copy">If you have further questions, visit the project’s Slack channel: <a href="https://stackexchange.slack.com/messages/C27RWNQN9"></a>#stacks</a>.</p>
+</section> -->
+
+<section class="stacks-section mb32" id="js-sortable-list">
+    {% header h2 | Spot Illustration Set %}
+    <div class="ps-relative mb16">
+        <input type="text" class="fuzzy-search s-input s-input__search" placeholder="Search spot illustrations…" />
+        {% icon Search | s-input-icon s-input-icon__search %}
+    </div>
+    <div class="grid fw-wrap sm:fd-column gs16 grid__allcells4 list">
+        {% assign spot_sort = site.data.product.spots | sort: "helper" %}
+        {% for spot in spot_sort %}
+            <div class="grid--cell">
+                <div class="grid ff-column-nowrap p0 s-card">
+                    <div class="grid fl2 grid__center stacks-icon-preview">
+                        {% spot {{ spot.helper }} | fc-orange-500 %}
+                    </div>
+                    <div class="grid ff-column-nowrap ai-center p8">
+                        <code class="grid--cell fs-caption py8 ff-mono ow-break-word js-name">@Svg.{{ spot.helper }}</code>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</section>
+
+<script>
+    var monkeyList = new List('js-sortable-list', { 
+        valueNames: ['js-name']
+    });
+</script>
