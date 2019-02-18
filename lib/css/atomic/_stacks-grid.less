@@ -148,3 +148,21 @@
         grid-column-gap: 0;
     }
 }
+
+// IE11 nonsense
+// We will need to generate new grid positions for every grid spacing class
+.grid__col4.gs16 {
+    -ms-grid-columns: 1fr @su16 1fr @su16 1fr @su16 1fr;
+
+    .grid--cell__col2 {
+        -ms-grid-column: 3; // In order to have proper spacing, we need to add a column with the size of gutter, and offset where our column appears
+    }
+
+    .grid--cell__col3 {
+        -ms-grid-column: 5;
+    }
+
+    .grid--cell__col4 {
+        -ms-grid-column: 7;
+    }
+}
