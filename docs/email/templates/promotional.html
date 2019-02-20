@@ -3,7 +3,7 @@ layout: page-nomenu
 title: Promotional Template
 description: A starter template for emails with a major announcement.
 ---
-<section class="stacks-section">
+<section class="stacks-section" data-controller="docs-resizer">
     <div class="grid jc-space-between ai-stretch gs16 gsx sm:fd-column">
         <div class="grid--cell grid--cell8">
             <table class="s-table s-table__lg w100 fs-body2 va-top w100 mb48">
@@ -41,13 +41,13 @@ description: A starter template for emails with a major announcement.
     </div>
     <ul class="list-reset grid ai-center btr-sm ba bbw0 bc-black-3 p16 gs8 gsx">
         <li class="grid--cell sm:d-none">
-            <a href="#" class="s-link s-link__muted py8 px12 bar-pill js-sm-btn js-query-select-btn">
+            <a href="#" class="s-link s-link__muted py8 px12 bar-pill" data-action="click->docs-resizer#small">
                 {% icon SmartPhone %}
                 Small
             </a>
         </li>
         <li class="grid--cell sm:d-none">
-            <a href="#" class="s-link s-link__muted py8 px12 bar-pill bg-black-100 fc-black-600 js-lg-btn js-query-select-btn">
+            <a href="#" class="s-link s-link__muted py8 px12 bar-pill" data-action="click->docs-resizer#large" data-target="docs-resizer.default">
                 {% icon Laptop %}
                 Large
             </a>
@@ -60,37 +60,7 @@ description: A starter template for emails with a major announcement.
         </li>
     </ul>
     <div class="bbr-sm ba bc-black-3 ta-center bg-checkered">
-        <iframe title="Example of a Promotional Email" height="700" src="/email/templates/code/promotional.html" class="ba baw0 m-auto mbn4 w100 bbr-sm js-iframe"></iframe>
+        <iframe title="Example of a Promotional Email" height="700" src="/email/templates/code/promotional.html" class="ba baw0 m-auto mbn4 bbr-sm"
+            data-target="docs-resizer.resizable"></iframe>
     </div>
 </section>
-
-<script>
-    $(function(){
-        var smBtn = $(".js-sm-btn");
-        var lgBtn = $(".js-lg-btn");
-        var btns = $(".js-query-select-btn");
-        var gridTarget = $(".js-iframe");
-
-        smBtn.click(function(e) {
-            e.preventDefault();
-            e.stopPropagation();
-            removeClasses1();
-            addSelection1($(this));
-            gridTarget.addClass("ws4");
-        });
-        lgBtn.click(function(e) {
-            e.preventDefault();
-            e.stopPropagation();
-            removeClasses1();
-            addSelection1($(this));
-            gridTarget.addClass("w100");
-        });
-        function removeClasses1() {
-            gridTarget.removeClass("ws4 w100");
-            btns.removeClass("bg-black-100 fc-black-600");
-        };
-        function addSelection1(obj) {
-            obj.addClass("bg-black-100 fc-black-600");
-        };
-    });
-</script>
