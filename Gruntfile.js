@@ -3,6 +3,7 @@
 module.exports = function(grunt) {
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
+        version: '<%= pkg.version %>',
 
         // Shell commands for use in Grunt tasks
         shell: {
@@ -133,7 +134,12 @@ module.exports = function(grunt) {
             stacks_js: {
                 files: ['lib/js/**/*.js'], // note: this doesn't watch any of the npm dependencies
                 tasks: ['concurrent:compile_stacks_js', 'copy:js2docs']
-            }
+            },
+
+            version: {
+                files: ['package.json'],
+                tasks: ['version'],
+            },
         },
         // Run tasks in parallel
         concurrent: {
@@ -142,6 +148,7 @@ module.exports = function(grunt) {
             },
 
             serve: [
+                'version',
                 'watch',
                 'shell:jekyllServe'
             ],
@@ -216,7 +223,6 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-rollup');
 
-    // Default task
     grunt.registerTask('default',
         'Compile all JS and LESS files and rebuild the documentation site, then continue running and re-compile as needed whenever files are changed.',
         ['concurrent:compile', 'concurrent:serve']);
@@ -227,4 +233,7 @@ module.exports = function(grunt) {
 
     grunt.registerTask('update-icons', ['clean:icons', 'copy:svgs', 'copy:data']);
 
+    grunt.registerTask('version', 'Creates a file with the version number inside it for Jekyll to display.', function() {
+        grunt.file.write('docs/_includes/version.html', grunt.config.get('version'));
+    });
 };

@@ -9,7 +9,7 @@ description: Tags are an interactive, community-generated keyword that allow com
         <table class="wmn4 s-table s-table__bx-simple">
             <thead>
                 <tr>
-                    <th class="s-table--cell4" scope="col">Class</th>
+                    <th class="s-table--cell3" scope="col">Class</th>
                     <th class="s-table--cell2" scope="col">Applied to</th>
                     <th scope="col">Description</th>
                 </tr>
@@ -17,7 +17,7 @@ description: Tags are an interactive, community-generated keyword that allow com
             <tbody class="fs-caption">
                 {% for item in site.data.product.tags.classes %}
                     <tr>
-                        <th scope="row"><code class="stacks-code bg-white">{{ item.class }}</code></th>
+                        <th scope="row"><code class="stacks-code">{{ item.class }}</code></th>
                         <td><code class="stacks-code bg-white">{{ item.applies }}</td>
                         <td class="p8">{{ item.description }}</td>
                     </tr>
@@ -133,7 +133,7 @@ description: Tags are an interactive, community-generated keyword that allow com
         <tbody class="fs-caption">
             {% for item in site.data.product.tags.sizes %}
                 <tr>
-                    <th scope="row"><code class="stacks-code bg-white">{% if item.class == "N/A" %}.s-tag{% else %}.{{ item.class }}{% endif %}</code></th>
+                    <th scope="row"><code class="stacks-code">{% if item.class == "N/A" %}.s-tag{% else %}.{{ item.class }}{% endif %}</code></th>
                     <td><code class="stacks-code bg-white">{% if item.class == "N/A" %}<em class="fc-light">{{ item.class }}</em>{% else %}.s-tag{% endif %}</td>
                     <td class="p8"><span class="s-tag {{ item.class }}">css</span></td>
                 </tr>
