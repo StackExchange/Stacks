@@ -1771,13 +1771,25 @@ Copyright © 2019 Basecamp, LLC
     });
     StacksController.prototype.getElementData = function(element, key) {
         return element.getAttribute("data-" + this.identifier + "-" + key);
-    }
+    };
     StacksController.prototype.setElementData = function(element, key, value) {
         element.setAttribute("data-" + this.identifier + "-" + key, value);
-    }
+    };
     StacksController.prototype.removeElementData = function(element, key) {
         element.removeAttribute("data-" + this.identifier + "-" + key);
-    }
+    };
+    StacksController.prototype.triggerEvent = function(eventName, optionalElement) {
+        var event;
+        var namespacedName = this.identifier + ":" + eventName;
+        try {
+            event = new Event(namespacedName, {bubbles: true});
+        } catch (ex) {
+            // Internet Explorer
+            event = document.createEvent("Event");
+            event.initEvent(namespacedName, true, true);
+        }
+        (optionalElement || this.element).dispatchEvent(event);
+    };
     Object.setPrototypeOf(StacksController, Stimulus.Controller);
 
     function createController(name, data) {
@@ -1908,6 +1920,10 @@ Copyright © 2019 Basecamp, LLC
             return document.getElementById(this.element.getAttribute("aria-controls"));
         },
 
+        _dispatchShowHideEvent: function(isShow) {
+            this.triggerEvent(isShow ? "show" : "hide");
+        },
+
         listener: function(e) {
             var newCollapsed;
             if (this.isCheckable) {
@@ -1927,6 +1943,7 @@ Copyright © 2019 Basecamp, LLC
             }
             this.element.setAttribute("aria-expanded", newCollapsed ? "false" : "true");
             this.controlledCollapsible.classList.toggle("is-expanded", !newCollapsed);
+            this._dispatchShowHideEvent(!newCollapsed);
         },
 
         connect: function () {
@@ -1944,7 +1961,12 @@ Copyright © 2019 Basecamp, LLC
             if (this.isCheckable) {
                 var cc = this.controlledCollapsible;
                 if (cc) {
-                    cc.classList.toggle("is-expanded", !this.isCollapsed());
+                    var expected = !this.isCollapsed();
+                    var actual = cc.classList.contains("is-expanded");
+                    if (expected !== actual) {
+                        cc.classList.toggle("is-expanded", expected);
+                        this._dispatchShowHideEvent(expected);
+                    }
                 }
             }
         },
