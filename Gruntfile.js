@@ -17,7 +17,7 @@ module.exports = function(grunt) {
                 }
             },
             jekyllServe: {
-                command: 'bundle exec jekyll serve --incremental',
+                command: 'bundle exec jekyll serve',
                 options: {
                     stderr: false,
                     execOptions: {
