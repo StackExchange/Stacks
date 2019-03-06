@@ -17,8 +17,9 @@
 
     .s-btn {
         margin-right: 0; // With Safari in production, we need to collapse white space
+        white-space: nowrap; // When the buttons wrap, they get super tall and mess up the whole layout
 
-        // If it isn't the first button, we should slide button over to account for border thickness
+        // If it isn't the first button, we should slide the button over to account for border thickness
         &:not(:first-child) {
             margin-left: -1px;
         }
@@ -49,7 +50,21 @@
             z-index: @zi-active;
         }
 
+        #stacks-internals #screen-sm({
+            padding-left: 0.4em;
+            padding-right: 0.4em;
+        }, @force-selector: true);
     }
+
+    #stacks-internals #screen-sm({
+        .s-btn.s-btn__dropdown {
+            padding-right: 1.2em;
+
+            &:after {
+                right: 0.4em;
+            }
+        }
+    }, @force-selector: true);
 
     .s-btn-group--container {
         display: flex;
