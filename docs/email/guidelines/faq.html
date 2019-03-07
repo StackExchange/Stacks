@@ -20,6 +20,19 @@ title: Frequently Asked Questions
 </section>
 
 <section class="stacks-section">
+    {% header h2 | Can we use a CSS inliner? %}
+    <p class="stacks-copy">
+        CSS inliners promise to take CSS written in the <span class="stacks-code">&lt;head&gt;</span> and automatically move CSS <strong>inline</strong> in the appropriate locations in the <span class="stacks-code">&lt;body&gt;</span>. However we <strong>recommend against</strong> using a CSS inliners with these templates. Here’s why:
+    </p>
+    <ul class="stacks-list">
+        <li>These templates should not require a dependency to author CSS.</li>
+        <li>The placement of the templates CSS is already optimized. The CSS in the <span class="stacks-code">&lt;head&gt;</span> is meant only for email clients that parse CSS in this location. It doesn’t need to be inlined.</li>
+        <li>There are some CSS selectors like <span class="stacks-code">:hover</span> that throw errors in some CSS inliners.</li>
+        <li>Inlining leads to code bloat. Not only does this impact download speeds, but some email clients like Gmail and iOS Outlook truncate messages after they exceed a certain file size.</li>
+    </ul>
+</section>
+
+<section class="stacks-section">
     {% header h2 | How does CSS inheritance work in email? %}
     <p class="stacks-copy">
         Various email clients handle CSS inheritance differently from one another, so it’s best to place inline CSS on the HTML tag close to the content you wish to style instead of relying on the cascade.
