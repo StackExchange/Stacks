@@ -71,6 +71,7 @@ description: To avoid specifying color values by hand, we’ve included a robust
                         <th scope="col">Text Class</th>
                         <th scope="col">Background Class</th>
                         <th scope="col" class="ta-center"><a class="s-link s-link__inherit" href="{{ "/product/guidelines/conditional-classes#hover" | relative_url }}">Hover?</a></th>
+                        <th scope="col" class="ta-center"><a class="s-link s-link__inherit" href="{{ "/product/guidelines/conditional-classes#focus" | relative_url }}">Focus?</a></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -89,6 +90,11 @@ description: To avoid specifying color values by hand, we’ve included a robust
                                 {% icon Checkmark | fc-green-500 %}
                             {% endif %}
                         </td>
+                        <td class="ta-center">
+                            {% if stop.focus %}
+                                {% icon Checkmark | fc-green-500 %}
+                            {% endif %}
+                        </td>
                     </tr>
                     {% endfor %}
                     <tr class="ff-mono">
@@ -101,6 +107,7 @@ description: To avoid specifying color values by hand, we’ve included a robust
                         <td>.fc-white</td>
                         <td>.bg-white</td>
                         <td></td>
+                        <td></td>
                     </tr>
                     <tr class="ff-mono">
                         <th scope="row">
@@ -111,6 +118,7 @@ description: To avoid specifying color values by hand, we’ve included a robust
                         <td class="fc-light">N/A</td>
                         <td class="fc-light">N/A</td>
                         <td>.bg-transparent</td>
+                        <td></td>
                         <td></td>
                     </tr>
                 </tbody>
