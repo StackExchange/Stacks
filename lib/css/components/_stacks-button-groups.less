@@ -19,12 +19,11 @@
 
     .s-btn {
         margin-bottom: -1px; // When wrapping we need 
-        margin-right: 0; // With Safari in production, we need to collapse white space
         white-space: nowrap; // When the buttons wrap, they get super tall and mess up the whole layout
 
-        // If it isn't the first button, we should slide the button over to account for border thickness
-        &:not(:first-child) {
-            margin-left: -1px;
+        // If it isn't the last button, we should slide the button over to account for border thickness
+        &:not(:last-child) {
+            margin-right: -1px;
         }
 
         // We don't want border-radii on interior buttons
@@ -73,7 +72,7 @@
         display: flex;
 
         .s-btn {
-            margin-left: -1px; // We should slide buttons over to account for border thickness
+            margin-right: -1px; // We should slide buttons over to account for border thickness
         }
 
         &:not(:first-child):not(:last-child) .s-btn {
