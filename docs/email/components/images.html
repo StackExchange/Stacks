@@ -206,3 +206,23 @@ description:
         </div>
     </div>
 </section>
+<section class="stacks-section">
+    {% header h2 | How should images be prepared? %}
+    <p class="stacks-copy">
+        Email has largely standardized on PNG, JPG, and GIF file formats. Animated GIFs are supported in all email clients, though Windows Outlook and Win10 Mail only display its first frame.
+    </p>
+    <p class="stacks-copy">
+        SVG is <a href="https://stackoverflow.com/questions/46783599/base64-encoded-image-is-not-showing-in-gmail/46789485#46789485">not well supported in most web email clients</a>, including Gmail (which accounts for most of our email opens) and are completely blocked in Outlook. <a href="https://stackoverflow.com/questions/46783599/base64-encoded-image-is-not-showing-in-gmail/46789485#46789485">This includes base64 encoded images</a>.
+    </p>
+    <ul class="stacks-list">
+        <li><strong>Foreground images</strong> should be saved at @2x since they scale reliably in all major email clients. @2x images display crisply on high-definition displays when scaled down to @1x in code.</li>
+        <li><strong>Background images</strong> should be saved at @1x since they don’t scale reliably in all major email clients.</li>
+    </ul>
+    <p class="stacks-copy">
+        Ideally, images should be under ~100KB. Tools like <a href="https://imageoptim.com/mac" target="_blank">Image Optim</a>, <a href="https://kraken.io/web-interface" target="_blank">Krackin</a>, and <a href="https://tinypng.com/" target="_blank">TinyPNG</a> help bring down a file size. Keep in mind that animated GIFs tend to get very large, so it’s a good idea to keep them simple and use them sparingly.
+    </p>
+    <p class="stacks-copy">
+        Images should be hosted within their respective ESP. Upload images in Iterable for Iterable emails, add images in GitHub for StackMail emails, etc. Images should not be referenced using services like Imgur or Dropbox, as they have a greater chance of being marked as spam.
+    </p>
+</section>
+
