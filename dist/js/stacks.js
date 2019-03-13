@@ -1778,15 +1778,15 @@ Copyright © 2019 Basecamp, LLC
     StacksController.prototype.removeElementData = function(element, key) {
         element.removeAttribute("data-" + this.identifier + "-" + key);
     };
-    StacksController.prototype.triggerEvent = function(eventName, optionalElement) {
+    StacksController.prototype.triggerEvent = function(eventName, detail, optionalElement) {
         var event;
         var namespacedName = this.identifier + ":" + eventName;
         try {
-            event = new Event(namespacedName, {bubbles: true});
+            event = new CustomEvent(namespacedName, {bubbles: true, detail: detail});
         } catch (ex) {
             // Internet Explorer
-            event = document.createEvent("Event");
-            event.initEvent(namespacedName, true, true);
+            event = document.createEvent("CustomEvent");
+            event.initCustomEvent(namespacedName, true, true, detail);
         }
         (optionalElement || this.element).dispatchEvent(event);
     };
@@ -1924,6 +1924,16 @@ Copyright © 2019 Basecamp, LLC
             this.triggerEvent(isShow ? "show" : "hide");
         },
 
+        _toggleClass: function(doAdd) {
+            if (!this.data.has("toggle-class")) {
+                return;
+            }
+            var cl = this.element.classList;
+            this.data.get("toggle-class").split(/\s+/).forEach(function (cls) {
+                cl.toggle(cls, !!doAdd);
+            });
+        },
+
         listener: function(e) {
             var newCollapsed;
             if (this.isCheckable) {
@@ -1944,6 +1954,7 @@ Copyright © 2019 Basecamp, LLC
             this.element.setAttribute("aria-expanded", newCollapsed ? "false" : "true");
             this.controlledCollapsible.classList.toggle("is-expanded", !newCollapsed);
             this._dispatchShowHideEvent(!newCollapsed);
+            this._toggleClass(!newCollapsed);
         },
 
         connect: function () {
@@ -1966,6 +1977,7 @@ Copyright © 2019 Basecamp, LLC
                     if (expected !== actual) {
                         cc.classList.toggle("is-expanded", expected);
                         this._dispatchShowHideEvent(expected);
+                        this._toggleClass(expected);
                     }
                 }
             }
