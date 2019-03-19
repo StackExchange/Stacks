@@ -20,6 +20,19 @@ title: Frequently Asked Questions
 </section>
 
 <section class="stacks-section">
+    {% header h2 | Can we use a CSS inliner? %}
+    <p class="stacks-copy">
+        CSS inliners promise to take CSS written in the <span class="stacks-code">&lt;head&gt;</span> and automatically move CSS <strong>inline</strong> in the appropriate locations in the <span class="stacks-code">&lt;body&gt;</span>. However we <strong>recommend against</strong> using a CSS inliners with these templates. Here’s why:
+    </p>
+    <ul class="stacks-list">
+        <li>These templates should not require a dependency to author CSS.</li>
+        <li>The placement of the templates CSS is already optimized. The CSS in the <span class="stacks-code">&lt;head&gt;</span> is meant only for email clients that parse CSS in this location. It doesn’t need to be inlined.</li>
+        <li>There are some CSS selectors like <span class="stacks-code">:hover</span> that throw errors in some CSS inliners.</li>
+        <li>Inlining leads to code bloat. Not only does this impact download speeds, but some email clients like Gmail and iOS Outlook truncate messages after they exceed a certain file size.</li>
+    </ul>
+</section>
+
+<section class="stacks-section">
     {% header h2 | How does CSS inheritance work in email? %}
     <p class="stacks-copy">
         Various email clients handle CSS inheritance differently from one another, so it’s best to place inline CSS on the HTML tag close to the content you wish to style instead of relying on the cascade.
@@ -112,8 +125,8 @@ title: Frequently Asked Questions
     <p class="stacks-copy">
         Preview text is a snippet of copy pulled in from the body of your email and typically displayed underneath the sender name and subject line in a subscriber’s inbox. It’s used to increase open rates, as users see an email in their inbox before opening it.
     </p>
-    <p class="stacks-copy">
-        <img src="https://d31v04zdn5vmni.cloudfront.net/blog/wp-content/uploads/2015/04/ios-gmail-app-preview-text.jpg" alt="diagram of email subject line, sender, and preview text in mobile inbox" class="mx-auto w100 wmx6">
+    <p class="stacks-copy ta-center">
+        <img src="{{ "/assets/img/figure-preview-text.svg" | relative_url }}" alt="diagram of email subject line, sender, and preview text in mobile inbox" class="mx-auto w100 wmx6">
     </p>
     <p class="stacks-copy">
         Preview text is optional. If preview text is short or omitted, email clients will fill the space with text from the email body (including alt attributes). You can avoid unwanted text coming in from your email’s body by <a href="https://litmus.com/blog/the-little-known-preview-text-hack-you-may-want-to-use-in-every-email" target="_blank">using this hack</a>.
