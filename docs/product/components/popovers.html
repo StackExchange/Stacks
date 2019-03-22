@@ -28,15 +28,36 @@ description: Popovers are small content containers that provide a contextual ove
 </section>
 <section class="stacks-section">
     {% header h2 | Examples %}
-    <div class="mb24 p16 bar-sm bg-black-025 ba bc-black-1">
-        <div class="ps-relative">
-            <div class="s-popover ps-absolute ws2 b48 l64 mln4 js-popover-example" role="menu" aria-hidden="true">
-                <div class="s-popover--arrow__bl"></div>
-                <p class="ff-mono mb8">.s-popover--arrow__bl</p>
-                <p class="mb0">Popover arrow appears bottom left</p>
-            </div>
-            <button class="s-btn s-btn__filled js-popover-btn">Show example popover</button>
+    <div class="mb24 p16 bar-sm bg-black-025 ba bc-black-1 ps-relative">
+        <div class="s-popover ps-absolute" id="example-popover" role="menu" aria-hidden="true">
+            <div class="s-popover--arrow__bc"></div>
+            <p class="ff-mono mb8">.s-popover--arrow__bc</p>
+            <p class="mb0">Popover arrow appears bottom center</p>
         </div>
+
+        <button class="s-btn s-btn__filled"
+            data-controller="s-popover"
+            data-action="s-popover#toggle"
+            aria-haspopup="true"
+            aria-expanded="false"
+            aria-controls="example-popover">
+            Show example popover
+        </button>
+
+        <div class="s-popover ps-absolute" id="second-example-popover" role="menu" aria-hidden="true">
+            <div class="s-popover--arrow__lb"></div>
+            <p class="ff-mono mb8">.s-popover--arrow__lb</p>
+            <p class="mb0">Popover arrow appears left bottom</p>
+        </div>
+
+        <button class="s-btn s-btn__filled"
+            data-controller="s-popover"
+            data-action="s-popover#toggle"
+            aria-haspopup="true"
+            aria-expanded="false"
+            aria-controls="second-example-popover">
+            Show second example popover
+        </button>
     </div>
     <p class="stacks-copy">Popovers are provided without any positioning applied to them. It’s up to the implementer to choose how they’ll be positioned. This will most likely be achieved by adding something like <code class="stacks-code">ps-absolute t8 l8</code> to <code class="stacks-code">.s-popover</code>. Positioning for arrows <em>is</em> provided, however. Arrow direction (top, right, bottom, left) will appear first, followed by the secondary (center, top, right, bottom, left). For example, a popover with an arrow child of <code class="stacks-code">.s-popover--arrow_tc</code> will appear on the top of the <code class="stacks-code">.s-popover</code> and centered horizontally. Though there are sensible defaults applied to the width of popovers, you may need to adjust manually.</p>
 
@@ -162,5 +183,3 @@ description: Popovers are small content containers that provide a contextual ove
         </div>
     </div>
 </section>
-
-<script src="{{ "/assets/js/feature.popovers.js" | relative_url }}"></script>
