@@ -16,13 +16,12 @@
 //  $   BASE STYLES
 //  ----------------------------------------------------------------------------
 .s-popover {
-    visibility: hidden;
-    position: relative;
+    display: none;
+    position: absolute;
     min-width: 12rem;
     max-width: 24rem;
     width: 100%;
     padding: @su12;
-    z-index: @zi-hide;
     opacity: 0;
     border-radius: @br-md;
     border: 1px solid @black-100;
@@ -30,13 +29,12 @@
     box-shadow: @bs-sm;
     color: @fc-dark;
     font-size: @fs-body1;
-    transition: opacity 100ms @te-smooth 0s, z-index 0s 100ms, visibility 0s 100ms; // Transition out
 
     &.is-visible {
-        visibility: visible;
+        display: block;
         opacity: 1;
         z-index: @zi-popovers;
-        transition: opacity 100ms @te-smooth 0s, z-index 0s 0s, visibility 0s 0s; // Transition in
+        transition: opacity 150ms @te-smooth 0; // Transition in
     }
 }
 
