@@ -1,5 +1,3 @@
-import { StacksController, addController } from "../stacks";
-
 // Radio buttons only trigger a change event when they're *checked*, but not when
 // they're *unchecked*. Therefore, if we have an active `s-collapsible-control` in
 // the document, we listen for change events on *all* radio buttons and find any
@@ -48,7 +46,7 @@ function globalChangeListenerRequired(required: boolean) {
     }
 }
 
-addController("s-expandable-control", class extends StacksController {
+Stacks.addController("s-expandable-control", class extends Stacks.StacksController {
     private isCollapsed!: () => boolean;
     private events!: string[];
     private isCheckable!: boolean;

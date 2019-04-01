@@ -1,7 +1,4 @@
-import { StacksController, addController } from "../stacks";
-
-
-addController("s-table", class extends StacksController {
+Stacks.addController("s-table", class extends Stacks.StacksController {
     static targets = ["column"];
     declare readonly columnTarget!: Element;
     declare readonly columnTargets!: Element[];
