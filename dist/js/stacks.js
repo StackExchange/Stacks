@@ -2000,6 +2000,7 @@ Copyright © 2019 Basecamp, LLC
 ;
 
 (function () {
+    "use strict";
     var arrowHeight = 8;
     var arrowMargin = 4;
     var arrowPadding = 12;
@@ -2019,71 +2020,64 @@ Copyright © 2019 Basecamp, LLC
             return $(this.element);
         },
 
-        get $popover() {
-            return $('#' + $(this.element).attr('aria-controls'));
+        get _popover() {
+            return document.getElementById(this.element.getAttribute("aria-controls"));
         },
 
         get isVisible() {
-            return this.$popover.hasClass(visibleClass);
+            return this._popover.classList.contains(visibleClass);
         },
 
         _updateAria: function () {
-            this.$source.attr('aria-expanded', this.isVisible ? 'true' : 'false');
+            this.element.setAttribute('aria-expanded', this.isVisible ? 'true' : 'false');
         },
 
         _reposition: function () {
-
-            var $popover = this.$popover;
-            var $source = this.$source;
-
-            function hasArrow(directions) {
-                var selector = $.map(arguments, function (d) { return '.s-popover--arrow__' + d; }).join(',');
-                return $popover.find(selector).length === 1;
+            function hasArrow(popover, directions) {
+                var selector = directions.map(function (d) { return '.s-popover--arrow__' + d; }).join(',');
+                return popover.querySelectorAll(selector).length === 1;
             }
 
-            var sourcePosition = $source.position();
-            var bL = sourcePosition.left;
-            var bT = sourcePosition.top;
-            var bR = bL + $source.outerWidth();
-            var bB = bT + $source.outerHeight();
+            var bL = this.element.offsetLeft;
+            var bT = this.element.offsetTop;
+            var bR = bL + this.element.offsetWidth;
+            var bB = bT + this.element.offsetHeight;
             var bC = (bL + bR) / 2;
             var bM = (bT + bB) / 2;
 
-            var pH = $popover.outerHeight();
-            var pW = $popover.outerWidth();
+            var pH = this._popover.offsetHeight;
+            var pW = this._popover.offsetWidth;
 
             var popoverLeft;
 
-            if (hasArrow('tl', 'bl')) {
+            if (hasArrow(this._popover, ['tl', 'bl'])) {
                 popoverLeft = bC - arrowInset;
-            } else if (hasArrow('tc', 'bc')) {
+            } else if (hasArrow(this._popover, ['tc', 'bc'])) {
                 popoverLeft = bC - pW / 2;
-            } else if (hasArrow('tr', 'br')) {
+            } else if (hasArrow(this._popover, ['tr', 'br'])) {
                 popoverLeft = bC - pW + arrowInset;
-            } else if (hasArrow('lt', 'lc', 'lb')) {
+            } else if (hasArrow(this._popover, ['lt', 'lc', 'lb'])) {
                 popoverLeft = bR + (arrowHeight + arrowMargin);
-            } else if (hasArrow('rt', 'rc', 'rb')) {
+            } else if (hasArrow(this._popover, ['rt', 'rc', 'rb'])) {
                 popoverLeft = bL - pW - (arrowHeight + arrowMargin);
             }
 
             var popoverTop;
 
-            if (hasArrow('tl', 'tc', 'tr')) {
+            if (hasArrow(this._popover, ['tl', 'tc', 'tr'])) {
                 popoverTop = bB + (arrowHeight + arrowMargin);
-            } else if (hasArrow('bl', 'bc', 'br')) {
+            } else if (hasArrow(this._popover, ['bl', 'bc', 'br'])) {
                 popoverTop = bT - pH - (arrowHeight + arrowMargin);
-            } else if (hasArrow('lt', 'rt')) {
+            } else if (hasArrow(this._popover, ['lt', 'rt'])) {
                 popoverTop = bM - arrowInset;
-            } else if (hasArrow('lc', 'rc')) {
+            } else if (hasArrow(this._popover, ['lc', 'rc'])) {
                 popoverTop = bM - pH / 2;
-            } else if (hasArrow('lb', 'rb')) {
+            } else if (hasArrow(this._popover, ['lb', 'rb'])) {
                 popoverTop = bM - pH + arrowInset;
             }
 
-            $popover.css({
-                top: (popoverTop | 0) + "px",
-                left: (popoverLeft | 0) + "px"
-            });
+            this._popover.style.top = (popoverTop | 0) + "px";
+            this._popover.style.left = (popoverLeft | 0) + "px";
         },
 
         toggle: function (e) {
@@ -2092,24 +2086,20 @@ Copyright © 2019 Basecamp, LLC
         },
 
         _toggle: function () {
-            if (!this.isVisible) {
-                this.$source.trigger(this.identifier + ':show');
-                this._reposition();
-            }
-            this.$popover.toggleClass(visibleClass);
+            this.triggerEvent(this.isVisible ? "hide": "show");
+            this._popover.classList.toggle(visibleClass);
             this._updateAria();
-            if (!this.isVisible) {
-                this.$source.trigger(this.identifier + ':hide');
+            if (this.isVisible) {
+                this._reposition();
             }
         },
 
         documentClick: function (e) {
             var target = e.target;
-            if (!$.contains(document.documentElement, target)
+            if(!document.documentElement.contains(target)
                 || !this.isVisible
-                || this.$popover.has(target).length > 0 || this.$popover.is(target)
-                || this.$source.has(target).length > 0 || this.$source.is(target)
-                || $(target).parents(possibleChildSelector).length > 0 || $(target).is(possibleChildSelector)) {
+                || this._popover === target || this._popover.contains(target)
+                || this.element === target || this.element.contains(target)) {
                 return;
             }
 
@@ -2129,14 +2119,15 @@ Copyright © 2019 Basecamp, LLC
         },
 
         connect: function () {
-            $(document).on('click' + this.eventSuffix, this.documentClick.bind(this));
             $(document).on('keyup' + this.eventSuffix, this.documentKeyup.bind(this));
             $(window).on('resize' + this.eventSuffix, this.windowResize.bind(this));
+            document.addEventListener('click', this.documentClick.bind(this));
         },
 
         disconnect: function () {
             $(document).off(this.eventSuffix);
             $(window).off(this.eventSuffix);
+            document.removeEventListener('click');
         },
     });
 })();
