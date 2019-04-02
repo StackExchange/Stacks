@@ -2007,17 +2007,14 @@ Copyright © 2019 Basecamp, LLC
     var arrowInset = arrowPadding + arrowHeight;
 
     var visibleClass = 'is-visible';
-    var possibleChildSelector = '.s-modal, .s-toast, .tag-suggestions';
-    var popoverIndex = 0;
+    var possibleChildSelector = '.s-modal, .s-toast';
 
     Stacks.addController('s-popover', {
 
         initialize: function () {
-            this.eventSuffix = '.s-popover-' + (popoverIndex++);
-        },
-
-        get $source() {
-            return $(this.element);
+            this._boundDocumentKeyup = this.documentKeyup.bind(this);
+            this._boundWindowResize = this.windowResize.bind(this);
+            this._boundDocumentClick = this.documentClick.bind(this);
         },
 
         get _popover() {
@@ -2030,6 +2027,7 @@ Copyright © 2019 Basecamp, LLC
 
         _updateAria: function () {
             this.element.setAttribute('aria-expanded', this.isVisible ? 'true' : 'false');
+            this._popover.setAttribute('aria-hidden', !this.isVisible ? 'true' : 'false');
         },
 
         _reposition: function () {
@@ -2098,8 +2096,8 @@ Copyright © 2019 Basecamp, LLC
             var target = e.target;
             if(!document.documentElement.contains(target)
                 || !this.isVisible
-                || this._popover === target || this._popover.contains(target)
-                || this.element === target || this.element.contains(target)) {
+                || this._popover.contains(target)
+                || this.element.contains(target)) {
                 return;
             }
 
@@ -2108,10 +2106,16 @@ Copyright © 2019 Basecamp, LLC
 
         documentKeyup: function (e) {
             var target = e.target;
-            if (e.which === 27 && this.isVisible && $(possibleChildSelector).length === 0) {
-                if (this.$popover.has(target).length > 0 || this.$popover.is(target)) { this.$source.focus(); }
-                this._toggle();
+
+            if (!document.documentElement.contains(target)
+                || !this.isVisible
+                || e.which !== 27
+                || document.querySelector(possibleChildSelector) !== null) {
+                return;
             }
+
+            if (this._popover.contains(target)) { this.element.focus(); }
+            this._toggle();
         },
 
         windowResize: function (e) {
@@ -2119,15 +2123,15 @@ Copyright © 2019 Basecamp, LLC
         },
 
         connect: function () {
-            $(document).on('keyup' + this.eventSuffix, this.documentKeyup.bind(this));
-            $(window).on('resize' + this.eventSuffix, this.windowResize.bind(this));
-            document.addEventListener('click', this.documentClick.bind(this));
+            document.addEventListener('keyup', this._boundDocumentKeyup);
+            document.addEventListener('click', this._boundDocumentClick);
+            window.addEventListener('resize', this._boundWindowResize);
         },
 
         disconnect: function () {
-            $(document).off(this.eventSuffix);
-            $(window).off(this.eventSuffix);
-            document.removeEventListener('click');
+            document.removeEventListener('keyup', this._boundDocumentKeyup);
+            document.removeEventListener('click', this._boundDocumentClick);
+            window.removeEventListener('resize', this._boundWindowResize);
         },
     });
 })();
