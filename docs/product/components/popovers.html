@@ -65,12 +65,6 @@ description: Popovers are small content containers that provide a contextual ove
 <section class="stacks-section">
     {% header h2 | Examples %}
     <div class="mb24 p16 bar-sm bg-black-025 ba bc-black-1 ps-relative">
-        <div class="s-popover ps-absolute" id="example-popover" role="menu" aria-hidden="true">
-            <div class="s-popover--arrow__bc"></div>
-            <p class="ff-mono mb8">.s-popover--arrow__bc</p>
-            <p class="mb0">Popover arrow appears bottom center</p>
-        </div>
-
         <button class="s-btn s-btn__filled"
             data-controller="s-popover"
             data-action="s-popover#toggle"
@@ -80,10 +74,12 @@ description: Popovers are small content containers that provide a contextual ove
             Show example popover
         </button>
 
-        <div class="s-popover ps-absolute" id="second-example-popover" role="menu" aria-hidden="true">
-            <div class="s-popover--arrow__lb"></div>
-            <p class="ff-mono mb8">.s-popover--arrow__lb</p>
-            <p class="mb0">Popover arrow appears left bottom</p>
+        <div class="s-popover ps-absolute" id="example-popover" role="menu" aria-hidden="true">
+            <div class="s-popover--arrow__bc"></div>
+            <div tabindex="0">
+                <p class="ff-mono mb8">.s-popover--arrow__bc</p>
+                <p class="mb0">Popover arrow appears bottom center</p>
+            </div>
         </div>
 
         <button class="s-btn s-btn__filled"
@@ -94,6 +90,14 @@ description: Popovers are small content containers that provide a contextual ove
             aria-controls="second-example-popover">
             Show second example popover
         </button>
+
+        <div class="s-popover ps-absolute" id="second-example-popover" role="menu" aria-hidden="true">
+            <div class="s-popover--arrow__lb"></div>
+            <div tabindex="0">
+                <p class="ff-mono mb8">.s-popover--arrow__lb</p>
+                <p class="mb0">Popover arrow appears left bottom</p>
+            </div>
+        </div>
     </div>
     <p class="stacks-copy">Popovers are invisible by default without any positioning applied to them. Instead, visibility and positioning of the popover is managed by JavaScript based on the arrow’s internal position. As shown in the example, an arrow with the <code class="stacks-code">.s-popover--arrow__bc</code> positioning class will position the popover above the originating element. Visibility is also toggled by the originating element.</p>
 
