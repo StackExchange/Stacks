@@ -74,6 +74,11 @@ module.exports = function(grunt) {
             }
         },
         // Minify and concatenate JS
+        ts: {
+            stacks_js: {
+                tsconfig: "tsconfig.json"
+            }
+        },
         uglify: {
             stacks_js: {
                 files: {
@@ -94,9 +99,9 @@ module.exports = function(grunt) {
                 files: {
                     'dist/js/stacks.js': [
                         'node_modules/stimulus/dist/stimulus.umd.js',
-                        'lib/js/stacks.js',
-                        'lib/js/controllers/**/*.js',
-                        'lib/js/finalize.js'
+                        'build/ts/stacks.js',
+                        'build/ts/controllers/**/*.js',
+                        'build/ts/finalize.js'
                     ]
                 }
             },
@@ -132,7 +137,7 @@ module.exports = function(grunt) {
             },
 
             stacks_js: {
-                files: ['lib/js/**/*.js'], // note: this doesn't watch any of the npm dependencies
+                files: ['lib/ts/**/*.ts'], // note: this doesn't watch any of the npm dependencies
                 tasks: ['concurrent:compile_stacks_js', 'copy:js2docs']
             },
 
@@ -162,7 +167,7 @@ module.exports = function(grunt) {
 
             // Stacks JS itself and the polyfills are independent of each other, so they can be compiled in parallel
             compile_stacks_js: [
-                ['concat:stacks_js', 'uglify:stacks_js'],
+                ['ts:stacks_js', 'concat:stacks_js', 'uglify:stacks_js'],
                 ['rollup:stacks_js_polyfills', 'uglify:stacks_js_polyfills']
             ],
 
@@ -222,6 +227,7 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-rollup');
+    grunt.loadNpmTasks("grunt-ts");
 
     grunt.registerTask('default',
         'Compile all JS and LESS files and rebuild the documentation site, then continue running and re-compile as needed whenever files are changed.',

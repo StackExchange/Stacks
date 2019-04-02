@@ -1752,3 +1752,441 @@ Copyright © 2019 Basecamp, LLC
     value: true
   });
 });
+
+
+;
+
+"use strict";
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+var Stacks;
+(function (Stacks) {
+    Stacks.application = Stimulus.Application.start();
+    Stacks._initializing = true;
+    var StacksController = (function (_super) {
+        __extends(StacksController, _super);
+        function StacksController() {
+            return _super !== null && _super.apply(this, arguments) || this;
+        }
+        StacksController.prototype.getElementData = function (element, key) {
+            return element.getAttribute("data-" + this.identifier + "-" + key);
+        };
+        ;
+        StacksController.prototype.setElementData = function (element, key, value) {
+            element.setAttribute("data-" + this.identifier + "-" + key, value);
+        };
+        ;
+        StacksController.prototype.removeElementData = function (element, key) {
+            element.removeAttribute("data-" + this.identifier + "-" + key);
+        };
+        ;
+        StacksController.prototype.triggerEvent = function (eventName, detail, optionalElement) {
+            var namespacedName = this.identifier + ":" + eventName;
+            var event;
+            try {
+                event = new CustomEvent(namespacedName, { bubbles: true, detail: detail });
+            }
+            catch (ex) {
+                event = document.createEvent("CustomEvent");
+                event.initCustomEvent(namespacedName, true, true, detail);
+            }
+            (optionalElement || this.element).dispatchEvent(event);
+        };
+        ;
+        return StacksController;
+    }(Stimulus.Controller));
+    Stacks.StacksController = StacksController;
+    var _controllers = {};
+    Stacks.controllers = _controllers;
+    function addController(name, controller) {
+        var hasPrefix = /^s-/.test(name);
+        if (Stacks._initializing && !hasPrefix) {
+            throw "Stacks-created Stimulus controller names must start with \"s-\".";
+        }
+        if (!Stacks._initializing && hasPrefix) {
+            throw "The \"s-\" prefix on Stimulus controller names is reserved for Stacks-created controllers.";
+        }
+        Stacks.application.register(name, controller);
+        if (Stacks._initializing) {
+            _controllers[name] = controller;
+        }
+    }
+    Stacks.addController = addController;
+    ;
+})(Stacks || (Stacks = {}));
+//# sourceMappingURL=stacks.js.map
+
+;
+
+"use strict";
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+var RADIO_OFF_EVENT = "s-expandable-control:radio-off";
+function globalChangeListener(e) {
+    var target = e.target;
+    if (!(target instanceof HTMLInputElement) || target.nodeName !== "INPUT" || target.type !== "radio") {
+        return;
+    }
+    document.querySelectorAll('input[type="radio"][name="' + target.name + '"]')
+        .forEach(function (other) {
+        if (other === e.target) {
+            return;
+        }
+        var customEvent;
+        try {
+            customEvent = new Event(RADIO_OFF_EVENT);
+        }
+        catch (ex) {
+            customEvent = document.createEvent("Event");
+            customEvent.initEvent(RADIO_OFF_EVENT, true, true);
+        }
+        other.dispatchEvent(customEvent);
+    });
+}
+var refCount = 0;
+function globalChangeListenerRequired(required) {
+    if (required) {
+        refCount++;
+        if (refCount === 1) {
+            document.body.addEventListener("change", globalChangeListener);
+        }
+    }
+    else {
+        refCount--;
+        if (refCount === 0) {
+            document.body.removeEventListener("change", globalChangeListener);
+        }
+    }
+}
+Stacks.addController("s-expandable-control", (function (_super) {
+    __extends(class_1, _super);
+    function class_1() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    class_1.prototype.initialize = function () {
+        if (this.element.nodeName === "INPUT" && ["radio", "checkbox"].indexOf(this.element.type) >= 0) {
+            this.isCollapsed = this._isCollapsedForCheckable;
+            this.events = ["change", RADIO_OFF_EVENT];
+            this.isCheckable = true;
+            this.isRadio = this.element.type === "radio";
+        }
+        else {
+            this.isCollapsed = this._isCollapsedForClickable;
+            this.events = ["click", "keydown"];
+        }
+        this.listener = this.listener.bind(this);
+    };
+    ;
+    class_1.prototype._isCollapsedForClickable = function () {
+        var cc = this.controlledCollapsible;
+        return cc ? !cc.classList.contains("is-expanded") : this.element.getAttribute("aria-expanded") === "false";
+    };
+    ;
+    class_1.prototype._isCollapsedForCheckable = function () {
+        return !this.element.checked;
+    };
+    ;
+    Object.defineProperty(class_1.prototype, "controlledCollapsible", {
+        get: function () {
+            var attr = this.element.getAttribute("aria-controls");
+            if (!attr) {
+                throw "couldn't find controls";
+            }
+            var result = document.getElementById(attr);
+            if (!result) {
+                throw "couldn't find controls";
+            }
+            return result;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    ;
+    class_1.prototype._dispatchShowHideEvent = function (isShow) {
+        this.triggerEvent(isShow ? "show" : "hide");
+    };
+    ;
+    class_1.prototype._toggleClass = function (doAdd) {
+        if (!this.data.has("toggle-class")) {
+            return;
+        }
+        var cl = this.element.classList;
+        var toggleClass = this.data.get("toggle-class");
+        if (!toggleClass) {
+            throw "couldn't find toggle class";
+        }
+        toggleClass.split(/\s+/).forEach(function (cls) {
+            cl.toggle(cls, !!doAdd);
+        });
+    };
+    ;
+    class_1.prototype.listener = function (e) {
+        var newCollapsed;
+        if (this.isCheckable) {
+            newCollapsed = !this.element.checked;
+        }
+        else {
+            if (e.type == "keydown" && (e.keyCode != 13 && e.keyCode != 32)) {
+                return;
+            }
+            if (e.target !== e.currentTarget && ["A", "BUTTON"].indexOf(e.target.nodeName) >= 0) {
+                return;
+            }
+            newCollapsed = this.element.getAttribute("aria-expanded") === "true";
+            e.preventDefault();
+            if (e.type === "click") {
+                this.element.blur();
+            }
+        }
+        this.element.setAttribute("aria-expanded", newCollapsed ? "false" : "true");
+        this.controlledCollapsible.classList.toggle("is-expanded", !newCollapsed);
+        this._dispatchShowHideEvent(!newCollapsed);
+        this._toggleClass(!newCollapsed);
+    };
+    ;
+    class_1.prototype.connect = function () {
+        var _this = this;
+        this.events.forEach(function (e) {
+            _this.element.addEventListener(e, _this.listener);
+        }, this);
+        if (this.isRadio) {
+            globalChangeListenerRequired(true);
+        }
+        this.element.setAttribute("aria-expanded", this.isCollapsed() ? "false" : "true");
+        if (this.isCheckable) {
+            var cc = this.controlledCollapsible;
+            if (cc) {
+                var expected = !this.isCollapsed();
+                var actual = cc.classList.contains("is-expanded");
+                if (expected !== actual) {
+                    cc.classList.toggle("is-expanded", expected);
+                    this._dispatchShowHideEvent(expected);
+                    this._toggleClass(expected);
+                }
+            }
+        }
+    };
+    ;
+    class_1.prototype.disconnect = function () {
+        var _this = this;
+        this.events.forEach(function (e) {
+            _this.element.removeEventListener(e, _this.listener);
+        }, this);
+        if (this.isRadio) {
+            globalChangeListenerRequired(false);
+        }
+    };
+    ;
+    return class_1;
+}(Stacks.StacksController)));
+//# sourceMappingURL=s-expandable-control.js.map
+
+;
+
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+var _a;
+"use strict";
+Stacks.addController("s-table", (_a = (function (_super) {
+        __extends(class_1, _super);
+        function class_1() {
+            return _super !== null && _super.apply(this, arguments) || this;
+        }
+        class_1.prototype.setCurrentSort = function (headElem, direction) {
+            if (["asc", "desc", "none"].indexOf(direction) < 0) {
+                throw "direction must be one of asc, desc, or none";
+            }
+            var controller = this;
+            this.columnTargets.forEach(function (target) {
+                var isCurrrent = target === headElem;
+                target.classList.toggle("is-sorted", isCurrrent && direction !== "none");
+                target.querySelectorAll(".js-sorting-indicator").forEach(function (icon) {
+                    var visible = isCurrrent ? direction : "none";
+                    icon.classList.toggle("d-none", !icon.classList.contains("js-sorting-indicator-" + visible));
+                });
+                if (!isCurrrent || direction === "none") {
+                    controller.removeElementData(target, "sort-direction");
+                }
+                else {
+                    controller.setElementData(target, "sort-direction", direction);
+                }
+            });
+        };
+        ;
+        class_1.prototype.sort = function (evt) {
+            var controller = this;
+            var colHead = evt.currentTarget;
+            if (!(colHead instanceof HTMLTableCellElement)) {
+                throw "invalid event target";
+            }
+            var table = this.element;
+            var tbody = table.tBodies[0];
+            var colno = getCellSlot(colHead);
+            if (colno < 0) {
+                return;
+            }
+            var slotIndex = buildIndex(tbody);
+            var direction = this.getElementData(colHead, "sort-direction") === "asc" ? -1 : 1;
+            var rows = Array.from(table.tBodies[0].rows);
+            var anyNonInt = false;
+            var data = [];
+            var firstBottomRow;
+            rows.forEach(function (row, index) {
+                var force = controller.getElementData(row, "sort-to");
+                if (force === "top") {
+                    return;
+                }
+                else if (force === "bottom") {
+                    if (!firstBottomRow) {
+                        firstBottomRow = row;
+                    }
+                    return;
+                }
+                var cell = slotIndex[index][colno];
+                if (!cell) {
+                    data.push(["", index]);
+                    return;
+                }
+                var explicit = controller.getElementData(cell, "sort-val");
+                var d = typeof explicit === "string" ? explicit : cell.textContent.trim();
+                if ((d !== "") && (parseInt(d, 10) + "" !== d)) {
+                    anyNonInt = true;
+                }
+                data.push([d, index]);
+            });
+            if (!anyNonInt) {
+                data.forEach(function (tuple) {
+                    tuple[0] = tuple[0] === "" ? Number.MIN_VALUE : parseInt(tuple[0], 10);
+                });
+            }
+            data.sort(function (a, b) {
+                if (a[0] > b[0]) {
+                    return 1 * direction;
+                }
+                else if (a[0] < b[0]) {
+                    return -1 * direction;
+                }
+                else {
+                    return a[1] > b[1] ? 1 : -1;
+                }
+            });
+            data.forEach(function (tup) {
+                var row = rows[tup[1]];
+                row.parentElement.removeChild(row);
+                if (firstBottomRow) {
+                    tbody.insertBefore(row, firstBottomRow);
+                }
+                else {
+                    tbody.appendChild(row);
+                }
+            });
+            this.setCurrentSort(colHead, direction === 1 ? "asc" : "desc");
+        };
+        return class_1;
+    }(Stacks.StacksController)),
+    _a.targets = ["column"],
+    _a));
+function buildIndex(section) {
+    var result = buildIndexOrGetCellSlot(section);
+    if (!(result instanceof Array)) {
+        throw "shouldn't happen";
+    }
+    return result;
+}
+function getCellSlot(cell) {
+    if (!(cell.parentElement && cell.parentElement.parentElement instanceof HTMLTableSectionElement)) {
+        throw "invalid table";
+    }
+    var result = buildIndexOrGetCellSlot(cell.parentElement.parentElement, cell);
+    if (typeof result !== "number") {
+        throw "shouldn't happen";
+    }
+    return result;
+}
+function buildIndexOrGetCellSlot(section, findCell) {
+    var index = [];
+    var curRow = section.children[0];
+    var growing = [];
+    var growingRowsLeft = [];
+    while (curRow || growingRowsLeft.some(function (e) { return e !== 0; })) {
+        var curIndexRow = [];
+        index.push(curIndexRow);
+        var curSlot = 0;
+        if (curRow) {
+            for (var curCellInd = 0; curCellInd < curRow.children.length; curCellInd++) {
+                while (growingRowsLeft[curSlot]) {
+                    growingRowsLeft[curSlot]--;
+                    curIndexRow[curSlot] = growing[curSlot];
+                    curSlot++;
+                }
+                var cell = curRow.children[curCellInd];
+                if (!(cell instanceof HTMLTableCellElement)) {
+                    throw "invalid table";
+                }
+                if (getComputedStyle(cell).display === "none") {
+                    continue;
+                }
+                if (cell === findCell) {
+                    return curSlot;
+                }
+                var nextFreeSlot = curSlot + cell.colSpan;
+                for (; curSlot < nextFreeSlot; curSlot++) {
+                    growingRowsLeft[curSlot] = cell.rowSpan - 1;
+                    growing[curSlot] = cell;
+                    curIndexRow[curSlot] = cell;
+                }
+            }
+        }
+        while (curSlot < growing.length) {
+            if (growingRowsLeft[curSlot]) {
+                growingRowsLeft[curSlot]--;
+                curIndexRow[curSlot] = growing[curSlot];
+            }
+            curSlot++;
+        }
+        if (curRow && curRow.nextElementSibling) {
+            curRow = curRow.nextElementSibling;
+        }
+    }
+    return findCell ? -1 : index;
+}
+//# sourceMappingURL=s-table.js.map
+
+;
+
+"use strict";
+Stacks._initializing = false;
+//# sourceMappingURL=finalize.js.map
