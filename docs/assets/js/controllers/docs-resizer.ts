@@ -1,7 +1,17 @@
-Stacks.addController("docs-resizer", {
-    targets: ["resizable", "default"],
+var application = Stimulus.Application.start();
+application.register("docs-resizer", class extends Stimulus.Controller {
+    static targets = ["resizable", "default"];
+    declare resizableTarget!: Element;
+    declare resizableTargets!: Element[];
+    declare hasResizableTarget!: boolean;
+    declare defaultTarget!: Element;
+    declare defaultTargets!: Element[];
+    declare hasDefaultTarget!: boolean;
 
-    connect: function () {
+    private _selected!: Element | null;
+    private _sizeClass!: string | null;
+
+    connect() {
         this._selected = null;
         this._sizeClass = null;
         if (this.hasDefaultTarget) {
@@ -12,17 +22,20 @@ Stacks.addController("docs-resizer", {
                 that.defaultTarget.dispatchEvent(evt);
             }, 0);
         }
-    },
+    };
 
-    small: function (e) {
+    small(e: Event) {
         this._handleSizeEvent(e, "w4");
-    },
+    };
 
-    large: function (e) {
+    large(e: Event) {
         this._handleSizeEvent(e, "w100");
-    },
+    };
 
-    _handleSizeEvent: function(evt, cls) {
+    _handleSizeEvent(evt: Event, cls: string) {
+        if (!(evt.currentTarget instanceof Element)) {
+            throw "unexpected event"
+        }
         if (this._sizeClass) {
             this.resizableTarget.classList.remove(this._sizeClass);
         }
@@ -32,7 +45,7 @@ Stacks.addController("docs-resizer", {
         }
         this._sizeClass = cls;
         this.resizableTarget.classList.add(cls);
-        this._selected = evt.currentTarget;
+        this._selected = evt.currentTarget as Element;
         evt.currentTarget.classList.add("bg-black-100");
         evt.currentTarget.classList.add("fc-black-600");
         evt.preventDefault();

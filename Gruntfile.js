@@ -77,6 +77,9 @@ module.exports = function(grunt) {
         ts: {
             stacks_js: {
                 tsconfig: "lib/tsconfig.json"
+            },
+            docs_js: {
+                tsconfig: "docs/assets/js/tsconfig.json"
             }
         },
         uglify: {
@@ -104,17 +107,7 @@ module.exports = function(grunt) {
                         'build/lib/ts/finalize.js'
                     ]
                 }
-            },
-            docs_js: {
-                options: {
-                    separator: '\n\n;\n\n'
-                },
-                files: {
-                    'docs/assets/js/controllers.js': [
-                        'docs/assets/js/controllers/*.js'
-                    ]
-                }
-            },
+            }
         },
         // Watch for files to change and run tasks when they do
         watch: {
@@ -133,7 +126,7 @@ module.exports = function(grunt) {
 
             docs_js: {
                 files: ['docs/assets/js/controllers/*.js'],
-                tasks: ['concat:docs_js']
+                tasks: ['ts:docs_js']
             },
 
             stacks_js: {
@@ -161,7 +154,7 @@ module.exports = function(grunt) {
             // CSS and JS compilation don't impact each other, thus can run in parallel
             compile: [
                 'concurrent:compile_stacks_css',
-                'concat:docs_js',
+                'ts:docs_js',
                 ['concurrent:compile_stacks_js', 'copy:js2docs']
             ],
 
