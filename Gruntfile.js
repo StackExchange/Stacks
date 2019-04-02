@@ -76,7 +76,7 @@ module.exports = function(grunt) {
         // Minify and concatenate JS
         ts: {
             stacks_js: {
-                tsconfig: "tsconfig.json"
+                tsconfig: "lib/tsconfig.json"
             }
         },
         uglify: {
@@ -99,9 +99,9 @@ module.exports = function(grunt) {
                 files: {
                     'dist/js/stacks.js': [
                         'node_modules/stimulus/dist/stimulus.umd.js',
-                        'build/ts/stacks.js',
-                        'build/ts/controllers/**/*.js',
-                        'build/ts/finalize.js'
+                        'build/lib/ts/stacks.js',
+                        'build/lib/ts/controllers/**/*.js',
+                        'build/lib/ts/finalize.js'
                     ]
                 }
             },
