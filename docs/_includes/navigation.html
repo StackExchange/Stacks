@@ -43,7 +43,17 @@
                                     <ul class="list-reset">
                                         {% for subentry in entry.subsublinks %}
                                             {% assign pageURL = page.url | remove_first:"/" | remove: ".html" %}
-                                            <li><a class="d-block py6 px16 s-link s-link__muted w100 {% if pageURL == subentry.url %}bg-orange-400 fc-white{% endif %}" href="{{ subentry.url | relative_url }}">{{ subentry.title }}</a></li>
+                                            <li>
+                                                <a class="grid jc-space-between ai-center py6 px16 s-link s-link__muted w100 {% if pageURL == subentry.url %}bg-orange-400 fc-white{% endif %}" href="{{ subentry.url | relative_url }}">
+                                                    <span class="grid--cell">
+                                                        {{ subentry.title }}
+                                                    </span>
+                                                    {% if subentry.status == "help-wanted" %}
+                                                        <span class="grid--cell bg-warning bar-circle" style="width: 8px; height: 8px;"></span>
+                                                    {% endif %>
+                                                    {% if entry.subsublinks[0] %}
+                                                </a>
+                                            </li>
                                         {% endfor %}
                                     </ul>
                                 {% endif %}
