@@ -26,12 +26,6 @@ namespace Stacks {
         };
     }
     
-    
-    type ControllersDictionary = { [identifier: string]: Stimulus.ControllerConstructor };
-    const _controllers : ControllersDictionary = {};
-    export const controllers : Readonly<ControllersDictionary> = _controllers;
-    
-    
     export function addController(name: string, controller: Stimulus.ControllerConstructor) {
         var hasPrefix = /^s-/.test(name);
         if (_initializing && !hasPrefix) {
@@ -41,8 +35,5 @@ namespace Stacks {
             throw "The \"s-\" prefix on Stimulus controller names is reserved for Stacks-created controllers.";
         }
         application.register(name, controller);
-        if (_initializing) {
-            _controllers[name] = controller;
-        }
     };
 }
