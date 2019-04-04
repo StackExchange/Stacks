@@ -1,5 +1,31 @@
 namespace Stacks {
-    export const application = Stimulus.Application.start();
+    class StacksApplication extends Stimulus.Application {
+        load(...definitions: Stimulus.Definition[]): void
+        load(definitions: Stimulus.Definition[]): void
+        load(head: Stimulus.Definition | Stimulus.Definition[], ...rest: Stimulus.Definition[]) {
+            const definitions = Array.isArray(head) ? head : [head, ...rest];
+
+            for (const definition of definitions) {
+                var hasPrefix = /^s-/.test(definition.identifier);
+                if (_initializing && !hasPrefix) {
+                    throw "Stacks-created Stimulus controller names must start with \"s-\".";
+                }
+                if (!_initializing && hasPrefix) {
+                    throw "The \"s-\" prefix on Stimulus controller names is reserved for Stacks-created controllers.";
+                }
+            }
+            
+            super.load(definitions);
+        }
+
+        static start(element?: Element, schema?: Stimulus.Schema): StacksApplication {
+            const application = new StacksApplication(element, schema);
+            application.start();
+            return application;
+        }
+    }
+
+    export const application: Stimulus.Application = StacksApplication.start();
     export var _initializing = true;
     
     export class StacksController extends Stimulus.Controller {
@@ -25,15 +51,31 @@ namespace Stacks {
             (optionalElement || this.element).dispatchEvent(event);
         };
     }
-    
-    export function addController(name: string, controller: Stimulus.ControllerConstructor) {
-        var hasPrefix = /^s-/.test(name);
-        if (_initializing && !hasPrefix) {
-            throw "Stacks-created Stimulus controller names must start with \"s-\".";
+
+    // ControllerDefinition/createController/addController is here to make
+    // it easier to consume Stimulus from ES5 files (without classes)
+    export interface ControllerDefinition {
+        [name: string]: any;
+        targets?: string[];
+    }
+    export function createController(controllerDefinition: ControllerDefinition): typeof StacksController {
+        const Controller = controllerDefinition.hasOwnProperty("targets")
+            ? class Controller extends StacksController { static targets = controllerDefinition.targets! }
+            : class Controller extends StacksController {};
+
+        for (var prop in controllerDefinition) {
+            if (prop !== "targets" && controllerDefinition.hasOwnProperty(prop)) {
+                Object.defineProperty(
+                    Controller.prototype,
+                    prop,
+                    Object.getOwnPropertyDescriptor(controllerDefinition, prop)!
+                );
+            }
         }
-        if (!_initializing && hasPrefix) {
-            throw "The \"s-\" prefix on Stimulus controller names is reserved for Stacks-created controllers.";
-        }
-        application.register(name, controller);
+
+        return Controller;
+    }
+    export function addController(name: string, controller: ControllerDefinition) {
+        application.register(name, createController(controller));
     };
 }

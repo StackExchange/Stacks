@@ -1,5 +1,5 @@
 (function(){
-    Stacks.addController("s-table", class extends Stacks.StacksController {
+    Stacks.application.register("s-table", class extends Stacks.StacksController {
         static targets = ["column"];
         declare readonly columnTarget!: Element;
         declare readonly columnTargets!: Element[];

@@ -46,7 +46,7 @@
         }
     }
 
-    Stacks.addController("s-expandable-control", class extends Stacks.StacksController {
+    Stacks.application.register("s-expandable-control", class extends Stacks.StacksController {
         private isCollapsed!: () => boolean;
         private events!: string[];
         private isCheckable!: boolean;
