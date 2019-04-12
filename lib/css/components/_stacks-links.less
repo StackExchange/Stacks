@@ -139,3 +139,29 @@ button.s-link {
     .colorize-all(muted, @black-500, darken(@black-500, 10%), lighten(@black-500, 10%));
     .colorize-all(danger, @button-danger-background-color, darken(saturate(@button-danger-background-color, 5%), 15%), lighten(saturate(@button-danger-background-color, 5%), 15%));
 }
+
+.s-block-link {
+    display: block;
+    color: @black-600;
+    padding: @su6 @su8;
+
+    &:hover,
+    &:active {
+        color: @black-800;
+    }
+
+    &.is-selected {
+        color: @black-800;
+        font-weight: bold;
+        background-color: fade(@black-800, 5%);
+
+        #stacks-internals #load-config();
+        &.s-block-link__right {
+            border-right: 3px solid @block-link-highlight;
+        }
+
+        &.s-block-link__left {
+            border-left: 3px solid @block-link-highlight;
+        }
+    }
+}
