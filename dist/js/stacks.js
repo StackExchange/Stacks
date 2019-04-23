@@ -2023,12 +2023,16 @@ Copyright © 2019 Basecamp, LLC
             return document.getElementById(this.element.getAttribute("aria-controls"));
         },
 
+        get _content() {
+            return this._popover.querySelector('.s-popover--content');
+        },
+
         get isVisible() {
             return this._popover.classList.contains(visibleClass);
         },
 
         get isModal() {
-            return this._popover.classList.contains(modalClass);
+            return this._content.classList.contains(modalClass);
         },
 
         get isInViewport() {
@@ -2105,7 +2109,7 @@ Copyright © 2019 Basecamp, LLC
         },
 
         _showModal: function() {
-            this._popover.classList.add(modalClass);
+            this._content.classList.add(modalClass);
         },
 
         toggle: function (e) {
@@ -2123,7 +2127,7 @@ Copyright © 2019 Basecamp, LLC
                     this._showModal();
                 }
             } else {
-                this._popover.classList.remove(modalClass);
+                this._content.classList.remove(modalClass);
             }
         },
 
