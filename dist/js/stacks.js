@@ -2027,6 +2027,10 @@ Copyright © 2019 Basecamp, LLC
             return this._popover.classList.contains(visibleClass);
         },
 
+        get isModal() {
+            return this._popover.classList.contains(modalClass);
+        },
+
         get isInViewport() {
             var bounding = this._popover.getBoundingClientRect();
             var padding = arrowMargin + arrowHeight;
@@ -2036,6 +2040,15 @@ Copyright © 2019 Basecamp, LLC
                 bounding.bottom + padding <= (window.innerHeight || document.documentElement.clientHeight) &&
                 bounding.right + padding <= (window.innerWidth || document.documentElement.clientWidth)
             );
+        },
+
+        _checkViewportEdge: function() {
+            if (this.isVisible && !this.isModal) {
+                this._reposition();
+                if (this.isVisible && !this.isInViewport) {
+                    this._toggle();
+                }
+            }
         },
 
         _updateAria: function () {
@@ -2141,11 +2154,11 @@ Copyright © 2019 Basecamp, LLC
         },
 
         windowResize: function (e) {
-            if (this.isVisible) { this._reposition(); }
+            this._checkViewportEdge();
         },
 
         windowScroll: function(e) {
-            if (this.isVisible) { this._reposition(); }
+            this._checkViewportEdge();
         },
 
         connect: function () {
