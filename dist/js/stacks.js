@@ -2015,6 +2015,7 @@ Copyright © 2019 Basecamp, LLC
             this._boundDocumentKeyup = this.documentKeyup.bind(this);
             this._boundWindowResize = this.windowResize.bind(this);
             this._boundDocumentClick = this.documentClick.bind(this);
+            this._boundWindowScroll = this.windowScroll.bind(this);
         },
 
         get _popover() {
@@ -2023,6 +2024,17 @@ Copyright © 2019 Basecamp, LLC
 
         get isVisible() {
             return this._popover.classList.contains(visibleClass);
+        },
+
+        get isInViewport() {
+            var bounding = this._popover.getBoundingClientRect();
+            var padding = arrowMargin + arrowHeight;
+            return (
+                bounding.top - padding >= 0 &&
+                bounding.left - padding >= 0 &&
+                bounding.bottom + padding <= (window.innerHeight || document.documentElement.clientHeight) &&
+                bounding.right + padding <= (window.innerWidth || document.documentElement.clientWidth)
+            );
         },
 
         _updateAria: function () {
@@ -2076,6 +2088,10 @@ Copyright © 2019 Basecamp, LLC
 
             this._popover.style.top = (popoverTop | 0) + "px";
             this._popover.style.left = (popoverLeft | 0) + "px";
+
+            if (this.isVisible && !this.isInViewport) {
+                this._toggle();
+            }
         },
 
         toggle: function (e) {
@@ -2122,16 +2138,22 @@ Copyright © 2019 Basecamp, LLC
             if (this.isVisible) { this._reposition(); }
         },
 
+        windowScroll: function(e) {
+            if (this.isVisible) { this._reposition(); }
+        },
+
         connect: function () {
             document.addEventListener('keyup', this._boundDocumentKeyup);
             document.addEventListener('click', this._boundDocumentClick);
             window.addEventListener('resize', this._boundWindowResize);
+            window.addEventListener('scroll', this._boundWindowScroll);
         },
 
         disconnect: function () {
             document.removeEventListener('keyup', this._boundDocumentKeyup);
             document.removeEventListener('click', this._boundDocumentClick);
             window.removeEventListener('resize', this._boundWindowResize);
+            window.removeEventListener('scroll', this._boundWindowScroll);
         },
     });
 })();
