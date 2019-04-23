@@ -2007,6 +2007,7 @@ Copyright © 2019 Basecamp, LLC
     var arrowInset = arrowPadding + arrowHeight;
 
     var visibleClass = 'is-visible';
+    var modalClass = 'is-modal';
     var possibleChildSelector = '.s-modal, .s-toast';
 
     Stacks.addController('s-popover', {
@@ -2088,10 +2089,10 @@ Copyright © 2019 Basecamp, LLC
 
             this._popover.style.top = (popoverTop | 0) + "px";
             this._popover.style.left = (popoverLeft | 0) + "px";
+        },
 
-            if (this.isVisible && !this.isInViewport) {
-                this._toggle();
-            }
+        _showModal: function() {
+            this._popover.classList.add(modalClass);
         },
 
         toggle: function (e) {
@@ -2103,8 +2104,13 @@ Copyright © 2019 Basecamp, LLC
             this.triggerEvent(this.isVisible ? "hide": "show");
             this._popover.classList.toggle(visibleClass);
             this._updateAria();
+            this._reposition();
             if (this.isVisible) {
-                this._reposition();
+                if (!this.isInViewport) {
+                    this._showModal();
+                }
+            } else {
+                this._popover.classList.remove(modalClass);
             }
         },
 
