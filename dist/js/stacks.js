@@ -2004,6 +2004,7 @@ Copyright © 2019 Basecamp, LLC
     var arrowHeight = 8;
     var arrowMargin = 4;
     var arrowPadding = 12;
+    var tolerancePadding = 4; // Since getBoundingClientRect doesn't care about borders, let's account for that with a tolerance
     var arrowInset = arrowPadding + arrowHeight;
 
     var visibleClass = 'is-visible';
@@ -2039,10 +2040,10 @@ Copyright © 2019 Basecamp, LLC
             var bounding = this._popover.getBoundingClientRect();
             var padding = arrowMargin + arrowHeight;
             return (
-                bounding.top - padding >= 0 &&
-                bounding.left - padding >= 0 &&
-                bounding.bottom + padding <= (window.innerHeight || document.documentElement.clientHeight) &&
-                bounding.right + padding <= (window.innerWidth || document.documentElement.clientWidth)
+                bounding.top + tolerancePadding - padding >= 0 &&
+                bounding.left + tolerancePadding - padding >= 0 &&
+                bounding.bottom + tolerancePadding + padding <= (window.innerHeight || document.documentElement.clientHeight) &&
+                bounding.right + tolerancePadding + padding <= (window.innerWidth || document.documentElement.clientWidth)
             );
         },
 
