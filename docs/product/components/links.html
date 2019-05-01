@@ -128,3 +128,50 @@ description: Links are lightly styled via the <code class="stacks-code">a</code>
     </div>
     {% endcapture %}{% include example.html html=html %}
 </section>
+
+<section class="stacks-section">
+    {% header h2 | Block Link %}
+    {% header h3 | Block Link Classes %}
+    <div class="overflow-x-auto mb32">
+        <table class="wmn4 s-table s-table__bx-simple">
+            <thead>
+                <tr>
+                    <th scope="col">Class</th>
+                    <th scope="col">Applied to</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody class="fs-caption">
+                {% for item in site.data.product.links.block-links %}
+                    <tr>
+                        <th scope="row"><code class="stacks-code">{{ item.class }}</code></th>
+                        <td><code class="stacks-code bg-white">{{ item.applies }}</td>
+                        <td class="p8">{{ item.description }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</section>
+<section class="stacks-section">
+    {% header h3 | Block Link Examples %}
+    <div class="stacks-preview">
+{% highlight html linenos %}
+<a class="s-block-link" href="#">…</a>
+<a class="s-block-link is-selected" href="#">…</a>
+<a class="s-block-link s-block-link__right is-selected" href="#">…</a>
+<a class="s-block-link s-block-link__left is-selected" href="#">…</a>
+{% endhighlight %}
+        <div class="stacks-preview--example">
+            <div class="grid gs16 fd-column ws3">
+                <a class="grid--cell s-block-link s-block-link__left" href="#">Block link</a>
+            </div>
+
+            <div class="grid gs16 fd-column ws3">
+                <a class="grid--cell s-block-link is-selected" href="#">Selected Block Link</a>
+                <a class="grid--cell s-block-link s-block-link__right is-selected" href="#">Selected Block Link Right</a>
+                <a class="grid--cell s-block-link s-block-link__left is-selected" href="#">Selected Block Link Left</a>
+            </div>
+        </div>
+    </div>
+</section>
