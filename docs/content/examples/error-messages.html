@@ -21,36 +21,38 @@ description: Things don’t always run smoothly. Our systems can fail. It’s im
 <section class="stacks-section">
     {% header h2 | Set a basic structure %}
     <p class="stacks-copy">
-        A good error message structure explains what happened and what can be done about it. A message might go something like this:
+        A good error message structure explains what happened and what can be done about it. A good error message has the following structure:
     </p>
-    <div class="grid ai-center p16 bg-black-025 bls-solid blw3 bc-blue-2 brr-md wmx6 mb24">
-        <div class="grid--cell fc-blue-500 pr16">
-            {% icon AlertCircle | mtn1 mbn1 %}
-        </div>
-        <div class="fs-body3">
-            [The error] [How to fix it]
-        </div>
-    </div>
+    <p class="stacks-copy p16 bar-md bg-black-025 ba bc-black-1">
+        <span class="s-badge s-badge__votes fs-fine ff-mono">The error</span>
+        <span class="s-badge s-badge__votes fs-fine ff-mono">How to fix it</span>
+    </p>
     <p class="stacks-copy">
         Here’s an example of an inline form error message:
     </p>
-    <div class="grid ai-center p16 bg-black-025 bls-solid blw3 bc-green-2 brr-md wmx6 mb24">
-        <div class="grid--cell fc-green-500 pr16">
-            {% icon Checkmark | mtn1 mbn1 %}
+
+    <div class="grid p16 bar-md bg-black-025 has-error mb16 ba bc-black-1">
+        <div class="grid--cell">
+            <div class="s-badge s-badge__votes fs-fine ff-mono mb4">The error</div>
+            <div class="s-input-message">This SVG file is invalid.</div>
         </div>
-        <div class="fs-body3">
-            This SVG file is invalid. Check its syntax or pick another file.
+        <div class="grid--cell">
+            <div class="s-badge s-badge__votes fs-fine ff-mono mb4">How to fix it</div>
+            <div class="s-input-message">Check its syntax or <a>pick another file</a>.</div>
         </div>
     </div>
+
     <p class="stacks-copy">
         If we can’t place the specific error, we’re deliberately vague. The best we can do is tell the user how they might fix it.
     </p>
-    <div class="grid ai-center p16 bg-black-025 bls-solid blw3 bc-green-2 brr-md wmx6">
-        <div class="grid--cell fc-green-500 pr16">
-            {% icon Checkmark | mtn1 mbn1 %}
+    <div class="grid p16 bar-md bg-black-025 has-error mb16 ba bc-black-1">
+        <div class="grid--cell">
+            <div class="s-badge s-badge__votes fs-fine ff-mono mb4">The error</div>
+            <div class="s-input-message">There was a problem syncing data.</div>
         </div>
-        <div class="fs-body3">
-            There was a problem syncing data. Check your database configuration and try again.
+        <div class="grid--cell">
+            <div class="s-badge s-badge__votes fs-fine ff-mono mb4">How to fix it</div>
+            <div class="s-input-message">Check your database configuration and try again.</div>
         </div>
     </div>
 </section>
@@ -109,7 +111,7 @@ description: Things don’t always run smoothly. Our systems can fail. It’s im
                 <td>“Please enter your name.”</td>
             </tr>
             <tr>
-                <td>“You can't leave this blank.”</td>
+                <td>“You can’t leave this blank.”</td>
                 <td>“Please enter a team name.”</td>
             </tr>
         </tbody>
