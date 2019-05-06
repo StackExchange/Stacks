@@ -192,3 +192,42 @@ console.log("request body: " + pm.globals.get("switch_json"));</code></pre>
         </div>
     </div>
 </section>
+<section class="stacks-section">
+    {% header h2 | Web fonts %}
+    <p class="stacks-copy">
+        Sometimes we use web fonts in emails to match the aesthetic of a marketing campaign or announcement. Web fonts <a href="https://www.campaignmonitor.com/css/text-fonts/font-face/">don't have great support in email clients</a>, so here's how we ensure our web font displays in as many email clients as possible:
+    </p>
+    <ol class="stacks-copy">
+        <li>Include an external stylesheet at the top of the email's <code class="stacks-code">&lt;head&gt;</code> tag. Sites like Google Fonts provide this code.</li>
+        <li>Windows Outlook sometimes chokes on web font references and defaults everything to Times New Roman. To avoid this, wrap the web font reference in a <code class="stacks-code">&lt;!--[if !mso]&gt;</code> tag (so Windows Outlook ignores it) and define a fallback font for Windows Outlook inside a <code class="stacks-code">&lt;!--[if mso]&gt;</code> tag.</li>
+        <li>Lastly, reference the web font at the beginning of the font stack, followed by a system fallback font for email clients that can't display (and ignore) the web font.</li>
+    </p>
+    <div class="stacks-preview">
+{% highlight html linenos %}
+<head>
+    <!-- Desktop Outlook on Windows sometimes chokes on web font references and defaults to Times New Roman, so we force a safe system font fallback. -->
+    <!--[if mso]>
+    <style>
+        * {
+            font-family: arial, sans-serif !important;
+        }
+    </style>
+    <!--<![endif]-->
+
+    <!-- All other clients get the webfont reference; some will render the font and others will silently fail to the fallbacks. More on that here: http://stylecampaign.com/blog/2015/02/webfont-support-in-email/ -->
+    <!--[if !mso]><!-->
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,700" rel="stylesheet">
+    <!--<![endif]-->
+</head>
+<body>
+    <h1 style="font-family: 'Roboto Slab', arial, sans-serif;">…</h1>
+    <p style="font-family: 'Roboto Slab', arial, sans-serif;">…</p>
+</body>
+{% endhighlight %}
+        <div class="stacks-preview--example">
+            <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,700" rel="stylesheet">
+            <h1 class="fs-headline mb8 fc-dark" style="font-family: 'Roboto Slab', arial, sans-serif;">I'm a Headline</h1>
+            <p class="fs-body3 mb0 fc-medium" style="font-family: 'Roboto Slab', arial, sans-serif;">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+        </div>
+    </div>
+</section>
