@@ -3,20 +3,6 @@ layout: page
 title: Popovers
 description: Popovers are small content containers that provide a contextual overlay. They can be used as in-context feature explanations, dropdowns, or tooltips.
 ---
-<div class="grid ai-start s-notice s-notice__warning mb48">
-    <div class="grid--cell mr8">{% icon Wave %}</div>
-    <div class="grid--cell lh-lg">
-        <p>
-            <strong>Help wanted!</strong> Each of our components will eventually ship with default <a class="s-link s-link__inherit s-link__underlined" href="{{ '/product/guidelines/javascript#using-the-stacks-javascript' | relative_url }}">JavaScript</a> interactivity. We could use your help writing that JavaScript. To get started, check out the <a class="s-link s-link__inherit s-link__underlined" href="https://github.com/StackExchange/Stacks/issues/264">spec</a> and a work in progress <a class="s-link s-link__inherit s-link__underlined" href="https://github.com/StackExchange/Stacks/pull/283">pull request</a>.
-        </p>
-        <p>
-            For examples of some JavaScript that’s been shipped, see our <a class="s-link s-link__inherit s-link__underlined" href="{{ '/product/components/tables#javascript-sorting' | relative_url }}">sortable table component</a> or our <a class="s-link s-link__inherit s-link__underlined" href="{{ '/product/components/expandable' | relative_url }}">expandable control</a>.
-        </p>
-        <p class="mb0">
-            It can be tempting to hack together a quick fix in jQuery for displaying a Popover for your feature, but it may be just as much work as doing it properly as a <a class="s-link s-link__inherit s-link__underlined" href="https://stimulusjs.org">Stimulus</a> component—and this way every developer at Stack Overflow now has Popovers at their disposal.
-        </p>
-    </div>
-</div>
 <section class="stacks-section">
     {% header h2 | Classes %}
     <div class="overflow-x-auto mb32">
@@ -41,22 +27,80 @@ description: Popovers are small content containers that provide a contextual ove
     </div>
 </section>
 <section class="stacks-section">
+    {% header h2 | JavaScript Attributes %}
+    <div class="overflow-x-auto mb32">
+        <table class="wmn4 s-table s-table__bx-simple">
+            <thead>
+                <tr>
+                    <th class="s-table--cell5" scope="col">Attribute</th>
+                    <th class="s-table--cell2" scope="col">Applied to</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody class="fs-caption">
+                <tr>
+                    <th scope="row"><code class="stacks-code">data-controller="s-popover"</code></th>
+                    <td>Originating element</td>
+                    <td class="p8">Wires up the button to the popover controller</td>
+                </tr>
+                <tr>
+                    <th scope="row"><code class="stacks-code">data-action="s-popover#toggle"</code></th>
+                    <td>Originating element</td>
+                    <td class="p8">Wires up the button to toggle the visibility of a generic popover.</td>
+                </tr>
+                <tr>
+                    <th scope="row"><code class="stacks-code">aria-controls="[s-popover id]"</code></th>
+                    <td>Originating element</td>
+                    <td class="p8">Wires up the button to toggle the visibility of a specific popover with the ID provided.</td>
+                </tr>
+                <tr>
+                    <th scope="row"><code class="stacks-code">id="[s-popover id]"</code></th>
+                    <td><code class="stacks-code">.s-popover</code></td>
+                    <td class="p8">A unique id that the popover’s originating element can target.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+<section class="stacks-section">
     {% header h2 | Examples %}
     <div class="mb24 p16 bar-sm bg-black-025 ba bc-black-1">
         <div class="ps-relative" data-controller="s-popover">
             <div class="s-popover ws2 js-popover-example" role="menu" aria-hidden="true" data-target="s-popover.popover">
                 <div class="s-popover--arrow"></div>
-                <p class="ff-mono mb8">.s-popover--arrow__bl</p>
-                <p class="mb0">Popover arrow appears bottom left</p>
+                <div class="grid ai-center jc-space-between">
+                    <div class="grid--cell tt-uppercase fs-fine fc-light">
+                        Saved filters
+                    </div>
+                    <div class="grid--cell">
+                        {% icon PlusSm | va-baseline %}
+                    </div>
+                </div>
+                <div class="fc-black-300 fs-caption ta-center p16">
+                    Save custom sorting & filtering for easy access.
+                </div>
             </div>
             <button class="s-btn s-btn__filled js-popover-btn" data-target="s-popover.reference" data-action="click->s-popover#toggle">Show example popover</button>
         </div>
     </div>
-    <p class="stacks-copy">Popovers are provided without any positioning applied to them. It’s up to the implementer to choose how they’ll be positioned. This will most likely be achieved by adding something like <code class="stacks-code">ps-absolute t8 l8</code> to <code class="stacks-code">.s-popover</code>. Positioning for arrows <em>is</em> provided, however. Arrow direction (top, right, bottom, left) will appear first, followed by the secondary (center, top, right, bottom, left). For example, a popover with an arrow child of <code class="stacks-code">.s-popover--arrow_tc</code> will appear on the top of the <code class="stacks-code">.s-popover</code> and centered horizontally. Though there are sensible defaults applied to the width of popovers, you may need to adjust manually.</p>
+
+    {% header h3 | Automatic %}
+    <p class="stacks-copy">If you’ve added the proper stimulus controllers to your popover, positioning and arrow direction will be managed for you.</p>
+
+    <div class="stacks-preview _preview-none">
+{% highlight html linenos %}
+<div class="s-popover" id="example-id">
+    <div class="s-popover--arrow"></div>
+    …
+</div>
+{% endhighlight %}
+    </div>
+
+    {% header h3 | Manual %}
+    <p class="stacks-copy">Popovers can also be positioning manually. This will most likely be achieved by adding something like <code class="stacks-code">ps-absolute t8 l8</code> to <code class="stacks-code">.s-popover</code>. Manually positioning for arrows is also provided. Arrow direction (top, right, bottom, left) will appear first, followed by the secondary (center, top, right, bottom, left). For example, a popover with an arrow child of <code class="stacks-code">.s-popover--arrow_tc</code> will appear on the top of the <code class="stacks-code">.s-popover</code> and centered horizontally. Though there are sensible defaults applied to the width of popovers, you may need to adjust manually.</p>
 
     <p class="stacks-copy">By default, popovers are hidden. Adding the class <code class="stacks-code">.is-visible</code> will show the popover.</p>
 
-    {% header h3 | Standard %}
     <div class="stacks-preview">
 {% highlight html linenos %}
 <div class="s-popover">
