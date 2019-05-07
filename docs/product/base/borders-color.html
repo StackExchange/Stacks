@@ -5,14 +5,14 @@
         <table class="wmn3 s-table s-table__bx-simple">
             <thead>
                 <tr>
-                    <th class="s-table--cell2" scope="col">Abbreviation</th>
+                    <th class="s-table--cell3" scope="col">Class</th>
                     <th scope="col">Definition</th>
                 </tr>
             </thead>
             <tbody>
                 {% for border in site.data.product.borders-definitions.border-color %}
                   <tr>
-                      <th scope="row">{{ border.term }}</th>
+                      <th scope="row"><code class="stacks-code">.{{ border.term }}</code></th>
                       <td>{{ border.define }}</td>
                   </tr>
                 {% endfor %}
@@ -20,14 +20,14 @@
         </table>
     </div>
 
-    {% header h3 | Clear %}
+    {% header h3 | Transparent %}
     <div class="stacks-preview">
 {% highlight html linenos %}
-<div class="ba bc-black-9 bc-transparent">Transparent</div>
+<div class="ba bc-transparent">Transparent</div>
 {% endhighlight %}
         <div class="stacks-preview--example">
             <div class="grid ff-column-nowrap w100">
-                <div class="grid--cell ai-center p8 ba bc-black-9 bc-transparent">Transparent Bottom Border Style</div>
+                <div class="grid--cell ai-center p8 ba bc-transparent">Transparent Border Color</div>
             </div>
         </div>
     </div>
