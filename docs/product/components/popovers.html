@@ -44,7 +44,12 @@ description: Popovers are small content containers that provide a contextual ove
                     <td class="p8">Wires up the button to the popover controller</td>
                 </tr>
                 <tr>
-                    <th scope="row"><code class="stacks-code">data-target="s-popover.reference" data-action="s-popover#toggle"</code></th>
+                    <th scope="row"><code class="stacks-code">data-target="s-popover.reference"</code></th>
+                    <td>Reference element</td>
+                    <td class="p8">Designates the element to position the popup in reference to.</td>
+                </tr>
+                <tr>
+                    <th scope="row"><code class="stacks-code">data-action="s-popover#toggle"</code></th>
                     <td>Toggling element</td>
                     <td class="p8">Wires up the button to toggle the visibility of a generic popover.</td>
                 </tr>
@@ -81,6 +86,18 @@ description: Popovers are small content containers that provide a contextual ove
                 </div>
             </div>
             <button class="s-btn s-btn__filled js-popover-btn" data-target="s-popover.reference" data-action="click->s-popover#toggle">Show example popover</button>
+        </div>
+    </div>
+
+    <div class="mb24 p16 bar-sm bg-black-025 ba bc-black-1">
+        <div class="ps-relative" data-controller="s-popover" data-s-popover-placement="bottom">
+            <div class="s-popover ws2 js-popover-example" role="menu" aria-hidden="true" data-target="s-popover.popover">
+                <div class="s-popover--arrow"></div>
+                <div class="fc-black-300 fs-caption ta-center p16">
+                    Look at how awesome this hover tooltip is!
+                </div>
+            </div>
+            <span data-target="s-popover.reference" data-action="mouseover->s-popover#show mouseout->s-popover#hide">Hover me to show/hide</button>
         </div>
     </div>
 
