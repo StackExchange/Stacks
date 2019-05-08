@@ -213,7 +213,10 @@ description: Stacks provides atomic classes to override default styling of typog
             {% for term in site.data.product.type-definitions.fontsize %}
             <div class="grid">
                 <div class="grid--cell3 fc-light fs-caption fw-bold">{{ term.label }}</div>
-                <div class="grid--cell fs-{{ term.term }} lh-xs">{{ term.define }}</div>
+                <div class="grid--cell fs-{{ term.term }} lh-xs">
+                    <span class="d-block sm:d-none">{{ term.define }}</span>
+                    <span class="d-none sm:d-block">{{ term.responsive }}</span>
+                </div>
             </div>
             {% endfor %}
         </div>
