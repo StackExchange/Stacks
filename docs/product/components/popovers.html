@@ -54,14 +54,14 @@ description: Popovers are small content containers that provide a contextual ove
                     <td class="p8">Wires up the button to toggle the visibility of a generic popover.</td>
                 </tr>
                 <tr>
-                    <th scope="row"><code class="stacks-code">data-target="s-popover.popover""</code></th>
+                    <th scope="row"><code class="stacks-code">data-target="s-popover.popover"</code></th>
                     <td><code class="stacks-code">.s-popover</code></td>
                     <td class="p8">A unique id that the popover’s originating element can target.</td>
                 </tr>
                 <tr>
-                    <th scope="row"><code class="stacks-code">data-s-popover-placement="<a href="https://popper.js.org/popper-documentation.html#Popper.placements">{placement}</a>"</code></th>
-                    <td>Originating element</td>
-                    <td class="p8">Dictates where to place the popover in relation to the toggle reference element</td>
+                    <th scope="row"><code class="stacks-code">data-s-popover-placement="<a href="https://popper.js.org/popper-documentation.html#Popper.placements">[placement]</a>"</code></th>
+                    <td>Toggling element</td>
+                    <td class="p8 lh-lg">Dictates where to place the popover in relation to the toggle reference element. Accepted placements are <code class="stacks-code">auto</code>, <code class="stacks-code">top</code>, <code class="stacks-code">right</code>, <code class="stacks-code">bottom</code>, <code class="stacks-code">left</code>. Each placement can take an additional <code class="stacks-code">-start</code> and <code class="stacks-code">-end</code> variation.</td>
                 </tr>
             </tbody>
         </table>
@@ -70,8 +70,8 @@ description: Popovers are small content containers that provide a contextual ove
 <section class="stacks-section">
     {% header h2 | Examples %}
     <div class="mb24 p16 bar-sm bg-black-025 ba bc-black-1">
-        <div class="ps-relative" data-controller="s-popover" data-s-popover-placement="auto-start">
-            <div class="s-popover ws2 js-popover-example" role="menu" aria-hidden="true" data-target="s-popover.popover">
+        <div class="ps-relative" data-controller="s-popover" data-s-popover-placement="right">
+            <div class="s-popover ws2" role="menu" aria-hidden="true" data-target="s-popover.popover">
                 <div class="s-popover--arrow"></div>
                 <div class="grid ai-center jc-space-between">
                     <div class="grid--cell tt-uppercase fs-fine fc-light">
@@ -86,18 +86,6 @@ description: Popovers are small content containers that provide a contextual ove
                 </div>
             </div>
             <button class="s-btn s-btn__filled js-popover-btn" data-target="s-popover.reference" data-action="click->s-popover#toggle">Show example popover</button>
-        </div>
-    </div>
-
-    <div class="mb24 p16 bar-sm bg-black-025 ba bc-black-1">
-        <div class="ps-relative" data-controller="s-popover" data-s-popover-placement="bottom">
-            <div class="s-popover ws2 js-popover-example" role="menu" aria-hidden="true" data-target="s-popover.popover">
-                <div class="s-popover--arrow"></div>
-                <div class="fc-black-300 fs-caption ta-center p16">
-                    Look at how awesome this hover tooltip is!
-                </div>
-            </div>
-            <span data-target="s-popover.reference" data-action="mouseover->s-popover#show mouseout->s-popover#hide">Hover me to show/hide</button>
         </div>
     </div>
 
