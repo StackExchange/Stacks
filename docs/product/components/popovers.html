@@ -44,19 +44,19 @@ description: Popovers are small content containers that provide a contextual ove
                     <td class="p8">Wires up the button to the popover controller</td>
                 </tr>
                 <tr>
-                    <th scope="row"><code class="stacks-code">data-action="s-popover#toggle"</code></th>
-                    <td>Originating element</td>
+                    <th scope="row"><code class="stacks-code">data-target="s-popover.reference" data-action="s-popover#toggle"</code></th>
+                    <td>Toggling element</td>
                     <td class="p8">Wires up the button to toggle the visibility of a generic popover.</td>
                 </tr>
                 <tr>
-                    <th scope="row"><code class="stacks-code">aria-controls="[s-popover id]"</code></th>
-                    <td>Originating element</td>
-                    <td class="p8">Wires up the button to toggle the visibility of a specific popover with the ID provided.</td>
-                </tr>
-                <tr>
-                    <th scope="row"><code class="stacks-code">id="[s-popover id]"</code></th>
+                    <th scope="row"><code class="stacks-code">data-target="s-popover.popover""</code></th>
                     <td><code class="stacks-code">.s-popover</code></td>
                     <td class="p8">A unique id that the popover’s originating element can target.</td>
+                </tr>
+                <tr>
+                    <th scope="row"><code class="stacks-code">data-s-popover-placement="<a href="https://popper.js.org/popper-documentation.html#Popper.placements">{placement}</a>"</code></th>
+                    <td>Originating element</td>
+                    <td class="p8">Dictates where to place the popover in relation to the toggle reference element</td>
                 </tr>
             </tbody>
         </table>
@@ -65,7 +65,7 @@ description: Popovers are small content containers that provide a contextual ove
 <section class="stacks-section">
     {% header h2 | Examples %}
     <div class="mb24 p16 bar-sm bg-black-025 ba bc-black-1">
-        <div class="ps-relative" data-controller="s-popover">
+        <div class="ps-relative" data-controller="s-popover" data-s-popover-placement="auto-start">
             <div class="s-popover ws2 js-popover-example" role="menu" aria-hidden="true" data-target="s-popover.popover">
                 <div class="s-popover--arrow"></div>
                 <div class="grid ai-center jc-space-between">
