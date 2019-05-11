@@ -94,9 +94,12 @@ description: Popovers are small content containers that provide a contextual ove
 
     <div class="stacks-preview _preview-none">
 {% highlight html linenos %}
-<div class="s-popover" id="example-id">
-    <div class="s-popover--arrow"></div>
-    …
+<div class="ps-relative" data-controller="s-popover" data-s-popover-placement="bottom">
+    <div class="s-popover" role="menu" aria-hidden="true" data-target="s-popover.popover">
+        <div class="s-popover--arrow"></div>
+        …
+    </div>
+    <button class="s-btn s-btn__dropdown" role="button" data-target="s-popover.reference" data-action="click->s-popover#toggle">…</button>
 </div>
 {% endhighlight %}
     </div>
