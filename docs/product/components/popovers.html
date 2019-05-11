@@ -44,14 +44,14 @@ description: Popovers are small content containers that provide a contextual ove
                     <td class="p8">Wires up the button to the popover controller</td>
                 </tr>
                 <tr>
-                    <th scope="row"><code class="stacks-code">data-target="s-popover.reference"</code></th>
-                    <td>Reference element</td>
-                    <td class="p8">Designates the element to position the popup in reference to.</td>
-                </tr>
-                <tr>
                     <th scope="row"><code class="stacks-code">data-action="s-popover#toggle"</code></th>
                     <td>Toggling element</td>
                     <td class="p8">Wires up the button to toggle the visibility of a generic popover.</td>
+                </tr>
+                <tr>
+                    <th scope="row"><code class="stacks-code">data-target="s-popover.reference"</code></th>
+                    <td>Reference element</td>
+                    <td class="p8">Designates the element to position the popup in reference to.</td>
                 </tr>
                 <tr>
                     <th scope="row"><code class="stacks-code">data-target="s-popover.popover"</code></th>
@@ -93,15 +93,26 @@ description: Popovers are small content containers that provide a contextual ove
     <p class="stacks-copy">If you’ve added the proper stimulus controllers to your popover, positioning and arrow direction will be managed for you.</p>
 
     <div class="stacks-preview _preview-none">
-{% highlight html linenos %}
-<div class="ps-relative" data-controller="s-popover" data-s-popover-placement="bottom">
-    <div class="s-popover" role="menu" aria-hidden="true" data-target="s-popover.popover">
+{% highlight html linenos %}{% raw %}
+<div class="ps-relative"
+     data-controller="s-popover"
+     data-s-popover-placement="bottom">
+
+    <div class="s-popover"
+         role="menu"
+         aria-hidden="true"
+         data-target="s-popover.popover">
+        
         <div class="s-popover--arrow"></div>
         …
     </div>
-    <button class="s-btn s-btn__dropdown" role="button" data-target="s-popover.reference" data-action="click->s-popover#toggle">…</button>
+    <button class="s-btn s-btn__dropdown" role="button"
+            data-target="s-popover.reference"
+            data-action="click->s-popover#toggle">
+        …
+    </button>
 </div>
-{% endhighlight %}
+{% endraw %}{% endhighlight %}
     </div>
 
     {% header h3 | Manual %}
