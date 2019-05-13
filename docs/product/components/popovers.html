@@ -74,28 +74,43 @@ description: Popovers are small content containers that provide a contextual ove
 </section>
 <section class="stacks-section">
     {% header h2 | Examples %}
-    <div class="mb24 p16 bar-sm bg-black-025 ba bc-black-1">
-        <div class="ps-relative">
-            <div id="popover-example" class="s-popover ws2" role="menu" aria-hidden="true">
-                <div class="s-popover--arrow"></div>
-                <div class="grid ai-center jc-space-between">
-                    <div class="grid--cell tt-uppercase fs-fine fc-light">
-                        Saved filters
-                    </div>
-                    <div class="grid--cell">
-                        {% icon PlusSm | va-baseline %}
-                    </div>
-                </div>
-                <div class="fc-black-300 fs-caption ta-center p16">
-                    Save custom sorting & filtering for easy access.
-                </div>
-            </div>
-            <button class="s-btn s-btn__filled"
+    <div class="mb24 p16 bar-sm bg-black-025 ba bc-black-1 grid gs8">
+        <button class="grid--cell s-btn s-btn__filled"
                 data-controller="s-popover"
-                data-s-popover-placement="right"
-                data-s-popover-toggle-class="bg-orange-600"
+                data-s-popover-placement="top-start"
+                data-s-popover-toggle-class="is-selected"
                 data-action="s-popover#toggle"
-                aria-controls="popover-example">Show example popover</button>
+                aria-controls="popover-example-1">
+            Show example popover
+        </button>
+        <button class="grid--cell s-btn s-btn__filled s-btn__dropdown"
+                data-controller="s-popover"
+                data-s-popover-toggle-class="is-selected"
+                data-action="s-popover#toggle"
+                aria-controls="popover-example-2">
+            Show example popover
+        </button>
+    </div>
+    <div id="popover-example-1" class="s-popover ws2" role="menu" aria-hidden="true">
+        <div class="s-popover--arrow"></div>
+        <div class="grid ai-center jc-space-between">
+            <div class="grid--cell tt-uppercase fs-fine fc-light">
+                Saved filters
+            </div>
+            <div class="grid--cell">
+                {% icon PlusSm | va-baseline %}
+            </div>
+        </div>
+        <div class="fc-black-300 fs-caption ta-center p16">
+            Save custom sorting & filtering for easy access.
+        </div>
+    </div>
+
+    <div id="popover-example-2" class="s-popover" role="menu" aria-hidden="true">
+        <div class="s-popover--arrow"></div>
+        <div class="s-empty-state wmx2">
+            <img src="{{ "/assets/img/illustrationNoDataBW.svg" | relative_url }}" width="128" height="128" alt="No data">
+            <p>There’s no data associated with your account yet. Please check back tomorrow.</p>
         </div>
     </div>
 
@@ -103,26 +118,22 @@ description: Popovers are small content containers that provide a contextual ove
     <p class="stacks-copy">If you’ve added the proper Stimulus controllers to your popover, positioning and arrow direction will be managed for you by <a href="https://popper.js.org">Popper.js</a>, a powerful popover positioning library we’ve added as a dependency.</p>
 
     <div class="stacks-preview _preview-none">
-{% highlight html linenos %}{% raw %}
-<div class="ps-relative">
-
-    <div class="s-popover"
-         id="popover-example"
-         role="menu"
-         aria-hidden="true">
-
-        <div class="s-popover--arrow"></div>
-        …
-    </div>
-    <button class="s-btn s-btn__dropdown" role="button"
-            data-controller="s-popover"
-            data-s-popover-placement="bottom"
-            data-action="s-popover#toggle"
-            data-s-popover-toggle-class="is-selected">
-        …
-    </button>
+{% highlight html linenos %}
+<div class="s-popover"
+        id="popover-example"
+        role="menu"
+        aria-hidden="true">
+    <div class="s-popover--arrow"></div>
+    …
 </div>
-{% endraw %}{% endhighlight %}
+<button class="s-btn s-btn__dropdown" role="button"
+        data-controller="s-popover"
+        data-s-popover-placement="bottom"
+        data-action="s-popover#toggle"
+        data-s-popover-toggle-class="is-selected">
+    …
+</button>
+{% endhighlight %}
     </div>
 
     {% header h3 | Manual %}
