@@ -4671,7 +4671,6 @@ return Popper;
          */
         _toggle: function(show) {
             this.popoverTarget.classList.toggle("is-visible", show);
-            this.referenceTarget.classList.toggle("is-selected", show);
             this._toggleOptionalClasses(show);
         },
 
