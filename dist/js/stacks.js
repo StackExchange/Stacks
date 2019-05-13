@@ -4671,6 +4671,8 @@ return Popper;
          */
         _toggle: function(show) {
             this.popoverTarget.classList.toggle("is-visible", show);
+            this.element.classList.toggle("is-selected");
+            this._toggleOptionalClasses(show);
         },
 
         /**
@@ -4683,6 +4685,20 @@ return Popper;
             if (!this.referenceTarget.contains(e.target) && !this.popoverTarget.contains(e.target)) {
                 this.hide();
             }
+        },
+
+        /**
+         * Toggles all classes on the originating element based on the `class-toggle` data
+         * @param {boolean=} show - Optional parameter that force shows/hides the classes or toggles them if left undefined 
+         */
+        _toggleOptionalClasses: function(show) {
+            if (!this.data.has("toggle-class")) {
+                return;
+            }
+            var cl = this.element.classList;
+            this.data.get("toggle-class").split(/\s+/).forEach(function (cls) {
+                cl.toggle(cls, show);
+            });
         }
     });
 })();
