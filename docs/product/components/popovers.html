@@ -54,6 +54,11 @@ description: Popovers are small content containers that provide a contextual ove
                     <td class="p8">Designates the element to position the popup in reference to.</td>
                 </tr>
                 <tr>
+                    <th scope="row"><code class="stacks-code">data-s-popover-toggle-class="[class list]"</code></th>
+                    <td>Reference element</td>
+                    <td class="p8">Adds an optional space-delineated list of classes to be toggled on the originating element when the popover is shown or hidden.</td>
+                </tr>
+                <tr>
                     <th scope="row"><code class="stacks-code">data-target="s-popover.popover"</code></th>
                     <td><code class="stacks-code">.s-popover</code></td>
                     <td class="p8">A unique id that the popover’s originating element can target.</td>
@@ -70,7 +75,7 @@ description: Popovers are small content containers that provide a contextual ove
 <section class="stacks-section">
     {% header h2 | Examples %}
     <div class="mb24 p16 bar-sm bg-black-025 ba bc-black-1">
-        <div class="ps-relative" data-controller="s-popover" data-s-popover-toggle-class="bg-orange-600 test1 test2" data-s-popover-placement="right">
+        <div class="ps-relative" data-controller="s-popover" data-s-popover-placement="right">
             <div class="s-popover ws2" role="menu" aria-hidden="true" data-target="s-popover.popover">
                 <div class="s-popover--arrow"></div>
                 <div class="grid ai-center jc-space-between">
@@ -85,7 +90,7 @@ description: Popovers are small content containers that provide a contextual ove
                     Save custom sorting & filtering for easy access.
                 </div>
             </div>
-            <button class="s-btn s-btn__filled" data-target="s-popover.reference" data-action="click->s-popover#toggle">Show example popover</button>
+            <button class="s-btn s-btn__filled" data-s-popover-toggle-class="bg-orange-600 test1 test2" data-target="s-popover.reference" data-action="click->s-popover#toggle">Show example popover</button>
         </div>
     </div>
 
@@ -102,13 +107,14 @@ description: Popovers are small content containers that provide a contextual ove
          role="menu"
          aria-hidden="true"
          data-target="s-popover.popover">
-        
+
         <div class="s-popover--arrow"></div>
         …
     </div>
     <button class="s-btn s-btn__dropdown" role="button"
             data-target="s-popover.reference"
-            data-action="click->s-popover#toggle">
+            data-action="click->s-popover#toggle"
+            data-s-popover-toggle-class="is-selected">
         …
     </button>
 </div>
