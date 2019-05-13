@@ -4618,13 +4618,21 @@ return Popper;
 (function () {
     "use strict";
     Stacks.addController("s-popover", {
-        targets: ["reference", "popover"],
+        targets: [],
         
         /**
          * Initializes popper.js and document events on controller connect
          */
         connect: function() {
-            this.popper = new Popper(this.referenceTarget, this.popoverTarget, {
+            var popoverId = this.element.getAttribute("aria-controls");
+
+            if (!popoverId) {
+                throw "[aria-controls=\"{POPOVER_ID}\"] required";
+            }
+
+            this.popoverElement = document.getElementById(popoverId);
+
+            this.popper = new Popper(this.element, this.popoverElement, {
                 placement: this.data.get("placement") || "bottom",
             });
 
@@ -4670,7 +4678,7 @@ return Popper;
          * @param {boolean=} show - Optional parameter that force shows/hides the element or toggles it if left undefined
          */
         _toggle: function(show) {
-            this.popoverTarget.classList.toggle("is-visible", show);
+            this.popoverElement.classList.toggle("is-visible", show);
             this._toggleOptionalClasses(show);
         },
 
@@ -4681,7 +4689,7 @@ return Popper;
         _hideOnOutsideClick: function(e) {
             // check if the document was clicked inside either the reference element or the popover itself
             // note: .contains also returns true if the node itself matches the target element
-            if (!this.referenceTarget.contains(e.target) && !this.popoverTarget.contains(e.target)) {
+            if (!this.element.contains(e.target) && !this.popoverElement.contains(e.target)) {
                 this.hide();
             }
         },
@@ -4694,7 +4702,7 @@ return Popper;
             if (!this.data.has("toggle-class")) {
                 return;
             }
-            var cl = this.referenceTarget.classList;
+            var cl = this.element.classList;
             this.data.get("toggle-class").split(/\s+/).forEach(function (cls) {
                 cl.toggle(cls, show);
             });
