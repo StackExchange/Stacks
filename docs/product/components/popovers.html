@@ -39,9 +39,14 @@ description: Popovers are small content containers that provide a contextual ove
             </thead>
             <tbody class="fs-caption">
                 <tr>
+                    <th scope="row"><code class="stacks-code">id="{POPOVER_ID}"</code></th>
+                    <td><code class="stacks-code">.s-popover</code></td>
+                    <td class="p8">A unique id that the popover’s toggling element can target. Matches the value of <code class="stacks-code">[aria-controls]</code> on the toggling element.</td>
+                </tr>
+                <tr>
                     <th scope="row"><code class="stacks-code">data-controller="s-popover"</code></th>
-                    <td>Originating element</td>
-                    <td class="p8">Wires up the button to the popover controller</td>
+                    <td>Toggling element</td>
+                    <td class="p8">Wires up the button to the popover controller.</td>
                 </tr>
                 <tr>
                     <th scope="row"><code class="stacks-code">data-action="s-popover#toggle"</code></th>
@@ -49,19 +54,14 @@ description: Popovers are small content containers that provide a contextual ove
                     <td class="p8">Wires up the button to toggle the visibility of a generic popover.</td>
                 </tr>
                 <tr>
-                    <th scope="row"><code class="stacks-code">data-target="s-popover.reference"</code></th>
-                    <td>Reference element</td>
-                    <td class="p8">Designates the element to position the popup in reference to.</td>
+                    <th scope="row"><code class="stacks-code">aria-controls="{POPOVER_ID}"</code></th>
+                    <td>Toggling element</td>
+                    <td class="p8">Associates the button to the desired popover element.</td>
                 </tr>
                 <tr>
                     <th scope="row"><code class="stacks-code">data-s-popover-toggle-class="[class list]"</code></th>
-                    <td>Reference element</td>
+                    <td>Toggling element</td>
                     <td class="p8">Adds an optional space-delineated list of classes to be toggled on the originating element when the popover is shown or hidden.</td>
-                </tr>
-                <tr>
-                    <th scope="row"><code class="stacks-code">data-target="s-popover.popover"</code></th>
-                    <td><code class="stacks-code">.s-popover</code></td>
-                    <td class="p8">A unique id that the popover’s originating element can target.</td>
                 </tr>
                 <tr>
                     <th scope="row"><code class="stacks-code">data-s-popover-placement="<a href="https://popper.js.org/popper-documentation.html#Popper.placements">[placement]</a>"</code></th>
@@ -75,8 +75,8 @@ description: Popovers are small content containers that provide a contextual ove
 <section class="stacks-section">
     {% header h2 | Examples %}
     <div class="mb24 p16 bar-sm bg-black-025 ba bc-black-1">
-        <div class="ps-relative" data-controller="s-popover" data-s-popover-placement="right">
-            <div class="s-popover ws2" role="menu" aria-hidden="true" data-target="s-popover.popover">
+        <div class="ps-relative">
+            <div id="popover-example" class="s-popover ws2" role="menu" aria-hidden="true">
                 <div class="s-popover--arrow"></div>
                 <div class="grid ai-center jc-space-between">
                     <div class="grid--cell tt-uppercase fs-fine fc-light">
@@ -90,7 +90,12 @@ description: Popovers are small content containers that provide a contextual ove
                     Save custom sorting & filtering for easy access.
                 </div>
             </div>
-            <button class="s-btn s-btn__filled" data-s-popover-toggle-class="bg-orange-600 test1 test2" data-target="s-popover.reference" data-action="click->s-popover#toggle">Show example popover</button>
+            <button class="s-btn s-btn__filled"
+                data-controller="s-popover"
+                data-s-popover-placement="right"
+                data-s-popover-toggle-class="bg-orange-600"
+                data-action="s-popover#toggle"
+                aria-controls="popover-example">Show example popover</button>
         </div>
     </div>
 
