@@ -4671,7 +4671,7 @@ return Popper;
          */
         _toggle: function(show) {
             this.popoverTarget.classList.toggle("is-visible", show);
-            this.element.classList.toggle("is-selected");
+            this.referenceTarget.classList.toggle("is-selected");
             this._toggleOptionalClasses(show);
         },
 
@@ -4695,7 +4695,7 @@ return Popper;
             if (!this.data.has("toggle-class")) {
                 return;
             }
-            var cl = this.element.classList;
+            var cl = this.referenceTarget.classList;
             this.data.get("toggle-class").split(/\s+/).forEach(function (cls) {
                 cl.toggle(cls, show);
             });
