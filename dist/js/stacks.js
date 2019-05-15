@@ -1789,6 +1789,7 @@ Copyright © 2019 Basecamp, LLC
             event.initCustomEvent(namespacedName, true, true, detail);
         }
         (optionalElement || this.element).dispatchEvent(event);
+        return event;
     };
     Object.setPrototypeOf(StacksController, Stimulus.Controller);
 
