@@ -4635,13 +4635,6 @@ return Popper;
             this.popper = new Popper(this.element, this.popoverElement, {
                 placement: this.data.get("placement") || "bottom",
             });
-
-            // in order for removeEventListener to remove the right event, this bound function needs a constant reference
-            this._boundClickFn = this._hideOnOutsideClick.bind(this);
-            this._boundKeypressFn = this._hideOnEscapePress.bind(this);
-
-            document.addEventListener("click", this._boundClickFn);
-            document.addEventListener("keyup", this._boundKeypressFn);
         },
 
         /**
@@ -4649,9 +4642,7 @@ return Popper;
          */
         disconnect: function() {
             this.popper.destroy();
-
-            document.removeEventListener("click", this._boundClickFn);
-            document.removeEventListener("keyup", this._boundKeypressFn);
+            this._unbindDocumentEvents();
         },
 
         /**
@@ -4683,6 +4674,33 @@ return Popper;
         _toggle: function(show) {
             this.popoverElement.classList.toggle("is-visible", show);
             this._toggleOptionalClasses(show);
+
+            if (this.popoverElement.classList.contains("is-visible")) {
+                this._bindDocumentEvents();
+            }
+            else {
+                this._unbindDocumentEvents();
+            }
+        },
+
+        /**
+         * Binds global events to the document for hiding popovers on user interaction
+         */
+        _bindDocumentEvents: function() {
+            // in order for removeEventListener to remove the right event, this bound function needs a constant reference
+            this._boundClickFn = this._boundClickFn || this._hideOnOutsideClick.bind(this);
+            this._boundKeypressFn = this._boundKeypressFn || this._hideOnEscapePress.bind(this);
+
+            document.addEventListener("click", this._boundClickFn);
+            document.addEventListener("keyup", this._boundKeypressFn);
+        },
+
+        /**
+         * Unbinds global events to the document for hiding popovers on user interaction
+         */
+        _unbindDocumentEvents: function() {
+            document.removeEventListener("click", this._boundClickFn);
+            document.removeEventListener("keyup", this._boundKeypressFn);
         },
 
         /**
