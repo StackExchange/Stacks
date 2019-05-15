@@ -4638,8 +4638,10 @@ return Popper;
 
             // in order for removeEventListener to remove the right event, this bound function needs a constant reference
             this._boundClickFn = this._hideOnOutsideClick.bind(this);
+            this._boundKeypressFn = this._hideOnEscapePress.bind(this);
 
             document.addEventListener("click", this._boundClickFn);
+            document.addEventListener("keyup", this._boundKeypressFn);
         },
 
         /**
@@ -4649,6 +4651,7 @@ return Popper;
             this.popper.destroy();
 
             document.removeEventListener("click", this._boundClickFn);
+            document.removeEventListener("keyup", this._boundKeypressFn);
         },
 
         /**
@@ -4692,6 +4695,25 @@ return Popper;
             if (!this.element.contains(e.target) && !this.popoverElement.contains(e.target)) {
                 this.hide();
             }
+        },
+
+        /**
+         * Forces the popover to hide if the user presses escape while it, one of its childen, or the reference element are focused
+         * @param {Event} e - The document keyup event 
+         */
+        _hideOnEscapePress: function(e) {
+            // if the ESC key (27) wasn't pressed or if no popovers are showing, return
+            if (e.which !== 27 || !this.popoverElement.classList.contains("is-visible")) {
+                return;
+            }
+
+            // check if the target was inside the popover element and refocus the triggering element
+            // note: .contains also returns true if the node itself matches the target element
+            if (this.popoverElement.contains(e.target)) {
+                this.element.focus();
+            }
+
+            this.hide();
         },
 
         /**
