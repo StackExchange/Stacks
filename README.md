@@ -32,6 +32,11 @@ To contribute to Stacks documentation or its CSS library, you’ll need to build
 
 Having trouble getting these steps to work? Open [an issue](https://github.com/StackExchange/Stacks/issues/new) with a `setup` label.
 
+## Testing Stacks
+Stacks has implemented visual regression testing with [Backstop](https://github.com/garris/BackstopJS). To test if your new feature introduces visual regressions, run `npm run tests` in a new Terminal window while Stacks is running. After the tests have run, a new browser window with any regressions will show. If the regressions are desired, you can run `npm run approve` to establish the new baseline.
+
+Individual routes to test are found in [backstop.json](/backstop.json)
+
 ## Bugs and feature requests
 Have a bug or feature request? First search existing or closed issues to make sure the issue hasn’t been noted yet. If not, review our [issue guidelines](/CONTRIBUTING.md#open-an-issue) for submitting [a bug report](/CONTRIBUTING.md#reporting-bugs) or [feature request](/CONTRIBUTING.md#feature-requests).
 

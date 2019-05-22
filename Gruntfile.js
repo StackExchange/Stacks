@@ -94,6 +94,7 @@ module.exports = function(grunt) {
                 files: {
                     'dist/js/stacks.js': [
                         'node_modules/stimulus/dist/stimulus.umd.js',
+                        'node_modules/popper.js/dist/umd/popper.js',
                         'lib/js/stacks.js',
                         'lib/js/controllers/**/*.js',
                         'lib/js/finalize.js'
