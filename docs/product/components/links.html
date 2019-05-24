@@ -86,20 +86,36 @@ description: Links are lightly styled via the <code class="stacks-code">a</code>
         <code class="stacks-code">s-anchors__danger</code>, or <code class="stacks-code">s-anchors__inherit</code> to the container.
     </p>
 
-    {% capture html %}
-    <div class="s-anchors s-anchors__grayscale s-card mb8 fc-orange-700">
-        <p>There is a <a href="#">gray link here</a>, and <a href="#">another one</a>.</p>
+    <div class="stacks-preview">
+{% highlight html linenos %}
+<a class="s-anchors s-anchors__default" href="#">…</a>
+<a class="s-anchors s-anchors__grayscale" href="#">…</a>
+<a class="s-anchors s-anchors__muted" href="#">…</a>
+<a class="s-anchors s-anchors__danger" href="#">…</a>
+<a class="s-anchors s-anchors__underlined" href="#">…</a>
+<a class="s-anchors s-anchors__inherit" href="#">…</a>
+{% endhighlight %}
+        <div class="stacks-preview--example">
+            <div class="s-anchors s-anchors__default s-card mb8">
+                <p>There is a <a href="#">default link here</a>, and <a href="#">another one</a>.</p>
+            </div>
+            <div class="s-anchors s-anchors__grayscale s-card mb8 fc-orange-700">
+                <p>There is a <a href="#">gray link here</a>, and <a href="#">another one</a>.</p>
+            </div>
+            <div class="s-anchors s-anchors__muted s-card mb8">
+                <p>There is a <a href="#">muted link here</a>, and <a href="#">another one</a>.</p>
+            </div>
+            <div class="s-anchors s-anchors__danger s-card mb8">
+                <p>There is a <a href="#">dangerous link here</a>, and <a href="#">another one</a>.</p>
+            </div>
+            <div class="s-anchors s-anchors__underlined s-card mb8">
+                <p>There is an <a href="#">underlined link here</a>, and <a href="#">another one</a>.</p>
+            </div>
+            <div class="s-anchors s-anchors__inherit s-card mb8 fc-green-500">
+                <p>There is an <a href="#">inheriting link here</a>, and <a href="#">another one</a>.</p>
+            </div>
+        </div>
     </div>
-    <div class="s-anchors s-anchors__muted s-card mb8">
-        <p>There is a <a href="#">muted link here</a>, and <a href="#">another one</a>.</p>
-    </div>
-    <div class="s-anchors s-anchors__danger s-card mb8">
-        <p>There is a <a href="#">dangerous link here</a>, and <a href="#">another one</a>.</p>
-    </div>
-    <div class="s-anchors s-anchors__inherit s-card mb8 fc-green-500">
-        <p>There is an <a href="#">inheriting link here</a>, and <a href="#">another one</a>.</p>
-    </div>
-    {% endcapture %}{% include example.html html=html %}
 
     <p class="stacks-copy">One additional level of nesting is supported, but even that should be exceedingly rare. More than that is not supported.</p>
 
