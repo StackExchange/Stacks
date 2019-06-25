@@ -4673,6 +4673,7 @@ return Popper;
          * @param {boolean=} show - Optional parameter that force shows/hides the element or toggles it if left undefined
          */
         _toggle: function(show) {
+            this.popper.update();
             this.popoverElement.classList.toggle("is-visible", show);
             this._toggleOptionalClasses(show);
 
