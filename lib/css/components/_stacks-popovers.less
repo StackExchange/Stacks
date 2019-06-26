@@ -17,7 +17,7 @@
 //  ----------------------------------------------------------------------------
 .s-popover {
     visibility: hidden;
-    position: relative;
+    position: absolute;
     min-width: 12rem;
     max-width: 24rem;
     width: 100%;
@@ -38,24 +38,23 @@
         z-index: @zi-popovers;
         transition: opacity 100ms @te-smooth 0s, z-index 0s 0s, visibility 0s 0s; // Transition in
     }
-}
 
-// Auto adjust margins for auto-placed popovers
+    // Auto adjust margins for auto-placed popovers
+    &[x-placement^="top"] {
+        margin-bottom: @su8 + 2px;
+    }
 
-.s-popover[x-placement^="top"] {
-    margin-bottom: @su8 + 2px;
-}
+    &[x-placement^="right"] {
+        margin-left: @su8 + 2px;
+    }
 
-.s-popover[x-placement^="right"] {
-    margin-left: @su8 + 2px;
-}
+    &[x-placement^="bottom"] {
+        margin-top: @su8 + 2px;
+    }
 
-.s-popover[x-placement^="bottom"] {
-    margin-top: @su8 + 2px;
-}
-
-.s-popover[x-placement^="left"] {
-    margin-right: @su8 + 2px;
+    &[x-placement^="left"] {
+        margin-right: @su8 + 2px;
+    }
 }
 
 //  ============================================================================
