@@ -45,28 +45,33 @@ description: Popovers are small content containers that provide a contextual ove
                 </tr>
                 <tr>
                     <th scope="row"><code class="stacks-code">data-controller="s-popover"</code></th>
-                    <td>Toggling element</td>
-                    <td class="p8">Wires up the button to the popover controller.</td>
+                    <td>Controller element</td>
+                    <td class="p8">Wires up the element to the popover controller. This may be a toggling element or a wrapper element.</td>
+                </tr>
+                <tr>
+                    <th scope="row"><code class="stacks-code">data-s-popover-reference-element="[css selector]"</code></th>
+                    <td>Controller element</td>
+                    <td class="p8"><em>OPTIONAL</em> Designates the element to use as the popover reference. If left unset, the value defaults to the controller element.</td>
+                </tr>
+                <tr>
+                    <th scope="row"><code class="stacks-code">aria-controls="{POPOVER_ID}"</code></th>
+                    <td>Reference element</td>
+                    <td class="p8">Associates the element to the desired popover element.</td>
                 </tr>
                 <tr>
                     <th scope="row"><code class="stacks-code">data-action="s-popover#toggle"</code></th>
                     <td>Toggling element</td>
-                    <td class="p8">Wires up the button to toggle the visibility of a generic popover.</td>
-                </tr>
-                <tr>
-                    <th scope="row"><code class="stacks-code">aria-controls="{POPOVER_ID}"</code></th>
-                    <td>Toggling element</td>
-                    <td class="p8">Associates the button to the desired popover element.</td>
+                    <td class="p8">Wires up the element to toggle the visibility of a generic popover.</td>
                 </tr>
                 <tr>
                     <th scope="row"><code class="stacks-code">data-s-popover-toggle-class="[class list]"</code></th>
-                    <td>Toggling element</td>
+                    <td>Controller element</td>
                     <td class="p8">Adds an optional space-delineated list of classes to be toggled on the originating element when the popover is shown or hidden.</td>
                 </tr>
                 <tr>
                     <th scope="row"><code class="stacks-code">data-s-popover-placement="<a href="https://popper.js.org/popper-documentation.html#Popper.placements">[placement]</a>"</code></th>
-                    <td>Toggling element</td>
-                    <td class="p8 lh-lg">Dictates where to place the popover in relation to the toggle reference element. By default, the placement value is <code class="stacks-code">bottom</code>. Accepted placements are <code class="stacks-code">auto</code>, <code class="stacks-code">top</code>, <code class="stacks-code">right</code>, <code class="stacks-code">bottom</code>, <code class="stacks-code">left</code>. Each placement can take an additional <code class="stacks-code">-start</code> and <code class="stacks-code">-end</code> variation.</td>
+                    <td>Controller element</td>
+                    <td class="p8 lh-lg">Dictates where to place the popover in relation to the reference element. By default, the placement value is <code class="stacks-code">bottom</code>. Accepted placements are <code class="stacks-code">auto</code>, <code class="stacks-code">top</code>, <code class="stacks-code">right</code>, <code class="stacks-code">bottom</code>, <code class="stacks-code">left</code>. Each placement can take an additional <code class="stacks-code">-start</code> and <code class="stacks-code">-end</code> variation.</td>
                 </tr>
             </tbody>
         </table>
@@ -107,6 +112,33 @@ description: Popovers are small content containers that provide a contextual ove
                 <button class="s-btn s-btn__filled">Link an account</button>
             </div>
         </div>
+
+
+        <div class="grid--cell"
+            data-controller="s-popover"
+            data-s-popover-toggle-class="is-selected"
+            data-s-popover-reference-selector="#reference-element">
+            <button id="reference-element" class="s-btn s-btn__filled s-btn__dropdown" 
+                aria-controls="popover-example-3"
+                data-action="s-popover#toggle">
+                Persistent popover toggle
+            </button>
+            <div id="popover-example-3" class="s-popover is-visible grid" role="menu" aria-hidden="true">
+                <div class="s-popover--arrow"></div>
+                <div class="grid--cell fl1">
+                    This is persistent and won't auto-close until toggled once.
+                </div>
+                <a class="s-btn s-btn__muted ml2 grid--cell"
+                    href="#" aria-label="Close"
+                    data-action="s-popover#toggle">
+                    {% icon ClearSm %}
+                </a>
+            </div>
+        </div>
+
+
+
+
     </div>
 
     {% header h3 | Automatic %}
