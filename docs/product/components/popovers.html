@@ -279,13 +279,17 @@ description: Popovers are small content containers that provide a contextual ove
 
     {% header h3 | Dismissible %}
     <p class="stacks-copy">In the case of new feature callouts, it may be appropriate to include an explicit dismiss button. You can add one using the styling provided by <code class="stacks-code">.s-popover--close</code>.</p>
+    <p class="stacks-copy">In order for to close the popover with an explicit close button, you’ll need to add the controller to a parent as illustrated in the following example code:</p>
     <div class="stacks-preview">
  {% highlight html linenos %}
-    <button class="s-btn s-btn__filled s-btn__dropdown"
-            aria-controls="popover-example"
-            data-action="s-popover#toggle"
-            data-controller="s-popover"
-            data-s-popover-toggle-class="is-selected">
+<div class="…"
+    data-controller="s-popover"
+    data-s-popover-toggle-class="is-selected"
+    data-s-popover-reference-selector="#reference-element">
+
+    <button id="reference-element" class="s-btn s-btn__filled s-btn__dropdown"
+        aria-controls="popover-example"
+        data-action="s-popover#toggle">
         …
     </button>
 
