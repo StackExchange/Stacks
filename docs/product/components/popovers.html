@@ -79,7 +79,7 @@ description: Popovers are small content containers that provide a contextual ove
 </section>
 <section class="stacks-section">
     {% header h2 | Examples %}
-    <div class="mb24 p16 bar-sm bg-black-025 ba bc-black-1 grid gs8">
+    <div class="mb24 p16 bar-sm bg-black-025 ba bc-black-1 grid ai-center gs8 sm:fd-column">
         <button class="grid--cell s-btn s-btn__filled"
                 data-controller="s-popover"
                 data-s-popover-placement="top-start"
@@ -112,15 +112,14 @@ description: Popovers are small content containers that provide a contextual ove
                 <button class="s-btn s-btn__filled">Link an account</button>
             </div>
         </div>
-        <div class="grid--cell"
+        <div class="grid--cell ml-auto sm:ml0"
             data-controller="s-popover"
-            data-s-popover-toggle-class="is-selected"
-            data-s-popover-reference-selector="#reference-element">
-            <button id="reference-element" class="s-btn s-btn__filled s-btn__dropdown"
-                aria-controls="popover-example-3"
-                data-action="s-popover#toggle">
-                Dismissible popover toggle
-            </button>
+            data-s-popover-reference-selector="#reference-element"
+            data-s-popover-placement="bottom-end">
+            <a id="reference-element" class="s-link s-link__inherit"
+                aria-controls="popover-example-3">
+                Create a team
+            </a>
             <div id="popover-example-3" class="s-popover is-visible ws2" role="menu" aria-hidden="true">
                 <div class="s-popover--arrow"></div>
                 <button class="s-popover--close s-btn s-btn__muted" aria-label="Close" data-action="s-popover#toggle">{% icon ClearSm %}</button>
