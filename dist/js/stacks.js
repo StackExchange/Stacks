@@ -4625,7 +4625,12 @@ return Popper;
          * Initializes popper.js and document events on controller connect
          */
         connect: function() {
-            var popoverId = this.element.getAttribute("aria-controls");
+            var referenceSelector = this.data.get("reference-selector");
+
+            // if there is an alternative reference selector and that element exists, use it (otherwise use this element)
+            this.referenceElement = referenceSelector && this.element.querySelector(referenceSelector) || this.element;
+
+            var popoverId = this.referenceElement.getAttribute("aria-controls");
 
             if (!popoverId) {
                 throw "[aria-controls=\"{POPOVER_ID}\"] required";
@@ -4633,9 +4638,12 @@ return Popper;
 
             this.popoverElement = document.getElementById(popoverId);
 
-            this.popper = new Popper(this.element, this.popoverElement, {
+            this.popper = new Popper(this.referenceElement, this.popoverElement, {
                 placement: this.data.get("placement") || "bottom",
             });
+
+            // toggle classes based on if the popover is already visible
+            this._toggleOptionalClasses(this.popoverElement.classList.contains("is-visible"));
         },
 
         /**
@@ -4712,7 +4720,7 @@ return Popper;
         _hideOnOutsideClick: function(e) {
             // check if the document was clicked inside either the reference element or the popover itself
             // note: .contains also returns true if the node itself matches the target element
-            if (!this.element.contains(e.target) && !this.popoverElement.contains(e.target)) {
+            if (!this.referenceElement.contains(e.target) && !this.popoverElement.contains(e.target)) {
                 this.hide();
             }
         },
@@ -4730,7 +4738,7 @@ return Popper;
             // check if the target was inside the popover element and refocus the triggering element
             // note: .contains also returns true if the node itself matches the target element
             if (this.popoverElement.contains(e.target)) {
-                this.element.focus();
+                this.referenceElement.focus();
             }
 
             this.hide();
@@ -4744,7 +4752,7 @@ return Popper;
             if (!this.data.has("toggle-class")) {
                 return;
             }
-            var cl = this.element.classList;
+            var cl = this.referenceElement.classList;
             this.data.get("toggle-class").split(/\s+/).forEach(function (cls) {
                 cl.toggle(cls, show);
             });
