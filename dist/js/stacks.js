@@ -4681,6 +4681,16 @@ return Popper;
          * @param {boolean=} show - Optional parameter that force shows/hides the element or toggles it if left undefined
          */
         _toggle: function(show) {
+            var toShow = show;
+
+            // if we're letting the class toggle, we need to figure out if the popover is visible manually
+            if (typeof toShow === "undefined") {
+                toShow = !this.popoverElement.classList.contains("is-visible");
+            }
+
+            // show/hide events trigger before toggling the class
+            this.triggerEvent(toShow ? "show" : "hide");
+
             this.popper.update();
             this.popoverElement.classList.toggle("is-visible", show);
             this._toggleOptionalClasses(show);
@@ -4691,6 +4701,9 @@ return Popper;
             else {
                 this._unbindDocumentEvents();
             }
+
+            // shown/hidden events trigger after toggling the class
+            this.triggerEvent(toShow ? "shown" : "hidden");
         },
 
         /**
