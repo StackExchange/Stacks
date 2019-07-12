@@ -46,10 +46,10 @@ $(document).ready(function() {
             heroSmall.hideBanner();
 
             if (circleSelect == "yes") {
-                circle.addClass("s-hero--circle");
+                circle.addClass("s-hero__circle");
             }
             else {
-                circle.removeClass("s-hero--circle");
+                circle.removeClass("s-hero__circle");
             }
         }
         else {
@@ -78,10 +78,10 @@ $(document).ready(function() {
                 });
 
             if (circleSelect == "yes") {
-                circle.addClass("s-hero--circle");
+                circle.addClass("s-hero__circle");
             }
             else {
-                circle.removeClass("s-hero--circle");
+                circle.removeClass("s-hero__circle");
             }
         }
     });
@@ -93,7 +93,7 @@ $(document).ready(function() {
         heroBannerFooter.hideBanner();
         heroSmall.hideBanner();
         hero.hideBanner();
-        circle.removeClass("s-hero--circle");
+        circle.removeClass("s-hero__circle");
 
         heroBtn.text("Show example");
         heroCloseBtn.addClass("d-none");
@@ -110,7 +110,7 @@ $(document).ready(function() {
                 .removeClass(typeClasses);
         heroSmall.hideBanner();
         hero.hideBanner();
-        circle.removeClass("s-hero--circle");
+        circle.removeClass("s-hero__circle");
     });
 
 

@@ -168,6 +168,11 @@
         -webkit-transform: translate3d(0,0,0);
                 transform: translate3d(0,0,0);
     }
+
+    &.s-hero__bar {
+        position: relative;
+        padding: 0;
+    }
 }
 
 //  --  When we want to keep hero content capped
@@ -178,13 +183,24 @@
     max-width: @body-site-width;
     margin: 0 auto;
     padding: @su16;
-}
 
-.s-hero--bar {
-    position: relative;
-    padding: 0;
+    //  ============================================================================
+    //  $$  CIRCLE
+    //      Adds a background circle to the left side of the hero banner
+    //  ----------------------------------------------------------------------------
+    &.s-hero__circle:before {
+        content: "";
+        position: absolute;
+        z-index: -1;
+        top: -4vw;
+        left: -4vw;
+        width: 0;
+        height: 0;
+        padding: 20%;
+        border-radius: @br-circle;
+        pointer-events: none;
+    }
 }
-
 
 //  ============================================================================
 //  $$  HERO BANNER VISUAL ELEMENTS
@@ -198,12 +214,12 @@
     background-image: linear-gradient(to right, @banner-brand-orange-background-gradient1, @banner-brand-orange-background-gradient2);
 
     //  --  Darkens the background gradient
-    &.s-hero--bar {
+    &.s-hero__bar {
         background-image: linear-gradient(to right, darken(@banner-brand-orange-background-gradient1,7.5%), darken(@banner-brand-orange-background-gradient2,7.5%));
     }
 
     //  --  Adds the background circle in
-    .s-hero--circle:before {
+    .s-hero--container.s-hero__circle:before {
         background-color: fade(overlay(@banner-brand-orange-background-color, @black-900), 7.5%);
     }
 }
@@ -214,12 +230,12 @@
     background-image: linear-gradient(to right, @banner-brand-purple-background-gradient1, @banner-brand-purple-background-gradient2);
 
     //  --  Darkens the background gradient
-    &.s-hero--bar {
+    &.s-hero__bar {
         background-image: linear-gradient(to right, darken(@banner-brand-purple-background-gradient1,7.5%), darken(@banner-brand-purple-background-gradient2,7.5%));
     }
 
     //  --  Adds the background circle in
-    .s-hero--circle:before {
+    .s-hero--container.s-hero__circle:before {
         background-color: fade(overlay(@banner-brand-purple-background-color, @black-900), 7.5%);
     }
 }
@@ -230,12 +246,12 @@
     background-image: linear-gradient(to right, @banner-dark-background-gradient1, @banner-dark-background-gradient2);
 
     //  --  Darkens the background gradient
-    &.s-hero--bar {
+    &.s-hero__bar {
         background-image: linear-gradient(to right, darken(@banner-dark-background-gradient1,7.5%), darken(@banner-dark-background-gradient2,7.5%));
     }
 
     //  --  Adds the background circle in
-    .s-hero--circle:before {
+    .s-hero--container.s-hero__circle:before {
         background-color: fade(overlay(@banner-dark-background-color, @black-900), 15%);
     }
 }
@@ -246,12 +262,12 @@
     background-image: linear-gradient(to right, @banner-info-background-gradient1, @banner-info-background-gradient2);
 
     //  --  Darkens the background gradient
-    &.s-hero--bar {
+    &.s-hero__bar {
         background-image: linear-gradient(to right, darken(@banner-info-background-gradient1,7.5%), darken(@banner-info-background-gradient2,7.5%));
     }
 
     //  --  Adds the background circle in
-    .s-hero--circle:before {
+    .s-hero--container.s-hero__circle:before {
         background-color: fade(overlay(@banner-info-background-color, @black-900), 7.5%);
     }
 }
@@ -263,12 +279,12 @@
     color: @green-900;
 
     //  --  Darkens the background gradient
-    &.s-hero--bar {
+    &.s-hero__bar {
         background-image: linear-gradient(to right, darken(@banner-success-background-gradient1,7.5%), darken(@banner-success-background-gradient2,7.5%));
     }
 
     //  --  Adds the background circle in
-    .s-hero--circle:before {
+    .s-hero--container.s-hero__circle:before {
         background-color: fade(overlay(@banner-success-background-color, @black-900), 7.5%);
     }
 }
@@ -280,12 +296,12 @@
     color: @fc-dark;
 
     //  --  Darkens the background gradient
-    &.s-hero--bar {
+    &.s-hero__bar {
         background-image: linear-gradient(to right, darken(@banner-warning-background-gradient1,7.5%), darken(@banner-warning-background-gradient2,7.5%));
     }
 
     //  --  Adds the background circle in
-    .s-hero--circle:before {
+    .s-hero--container.s-hero__circle:before {
         background-color: fade(overlay(@banner-warning-background-color, @black-900), 15%);
     }
 }
@@ -296,30 +312,13 @@
     background-image: linear-gradient(to right, @banner-danger-background-gradient1, @banner-danger-background-gradient2);
 
     //  --  Darkens the background gradient
-    &.s-hero--bar {
+    &.s-hero__bar {
         background-image: linear-gradient(to right, darken(@banner-danger-background-gradient1,7.5%), darken(@banner-danger-background-gradient2,7.5%));
     }
 
     //  --  Adds the background circle in
-    .s-hero--circle:before {
+    .s-hero--container.s-hero__circle:before {
         background-color: fade(overlay(@banner-danger-background-color, @black-900), 15%);
     }
 }
 }  // End stacks configuration mixin
-
-//  ============================================================================
-//  $$  CIRCLE
-//      Adds a background circle to the left side of the hero banner
-//  ----------------------------------------------------------------------------
-.s-hero--circle:before {
-    content: "";
-    position: absolute;
-    z-index: -1;
-    top: -4vw;
-    left: -4vw;
-    width: 0;
-    height: 0;
-    padding: 20%;
-    border-radius: @br-circle;
-    pointer-events: none;
-}
