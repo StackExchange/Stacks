@@ -1,69 +1,10 @@
 ---
 layout: page
 title: Heroes
-description: 
+description: Hero banners are used for engagement messaging. They are full-width branded containers that serve as headers or fixed footers.
 ---
-{% include_relative examples/heroes.html %}
-
 <section class="stacks-section">
-    {% header h2 | Hero banners %}
-    <p class="stacks-copy">Hero banners are used for <strong>engagement</strong> messaging. They are full-width notices placed in one of two locations:</p>
-    <ol class="stacks-list">
-        <li><strong>Between the navigation and content areas:</strong> While highly disruptive, these place the banner within the users view first (e.g. sign-up or login messaging for logged out or new users).</li>
-        <li><strong>Fixed to the bottom of the browser window:</strong> A more minimal, persistent location for lower priority messages.</li>
-    </ol>
-    <p class="stacks-copy">Since hero banners have an engagement goal, more visual styling is added to the heros. This means a number of new, specific classes are available for hero banners:</p>
-
-    {% header h3 | Hero examples %}
-    <div class="stacks-preview">
-{% highlight html linenos %}
-<aside class="s-hero" role="region" aria-hidden="false">
-    <div class="s-hero--container" aria-labeledby="banner-title" aria-describedby="banner-message">
-        …
-    </div>
-</aside>
-{% endhighlight %}
-        <div class="stacks-preview--example">
-            <div class="p16 bar-sm bg-black-025 ba bc-black-1">
-                <div class="grid gs24 ai-center">
-                    <div class="grid gs4 gsy fd-column">
-                        <label class="grid--cell s-label fs-body1" for="hero-type">Style</label>
-                        <div class="grid--cell s-select">
-                            <select id="hero-type" class="js-hero-type-menu">
-                                <option name="hero-type" id="hero-brand" data-class="s-hero__orange" selected>Orange</option>
-                                <option name="hero-type" id="hero-important" data-class="s-hero__black">Black</option>
-                                <option name="hero-type" id="hero-info" data-class="s-hero__blue">Blue</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="grid gs4 gsy fd-column">
-                        <label class="grid--cell s-label fs-body1" for="hero-pattern">Elements</label>
-                        <div class="grid--cell s-select">
-                            <select id="hero-pattern" class="js-hero-pattern-menu">
-                                <option name="hero-pattern" id="hero-normal" data-circle="yes" selected>Add Circle</option>
-                                <option name="hero-pattern" id="hero-footer" data-circle="no">None</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="grid gs4 gsy fd-column">
-                        <label class="grid--cell s-label fs-body1" for="hero-position">Position</label>
-                        <div class="grid--cell s-select">
-                            <select id="hero-position" class="js-hero-position-menu">
-                                <option name="hero-position" id="hero-normal" data-pinned="no" selected>Normal</option>
-                                <option name="hero-position" id="hero-footer" data-pinned="yes">Footer</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-                <div class="grid gs24 ai-center">
-                    <button class="grid--cell s-btn s-btn__filled js-banner-show-hero">Show example</button>
-                    <button class="grid--cell s-btn s-btn__danger js-banner-remove-hero d-none">Remove example</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    {% header h3 | Hero classes %}
+    {% header h2 | Classes %}
     <div class="overflow-x-auto mb32">
         <table class="wmn5 s-table s-table__bx-simple">
             <thead>
@@ -93,6 +34,61 @@ description:
                 {% endfor %}
             </tbody>
         </table>
+    </div>
+</section>
+
+<section class="stacks-section">
+    {% header h2 | Examples %}
+    {% header h3 | Default %}
+    <div class="stacks-preview">
+{% highlight html linenos %}
+<aside class="s-hero" role="region" aria-hidden="false">
+    <div class="s-hero--container" aria-labeledby="banner-title" aria-describedby="banner-message">
+        …
+    </div>
+</aside>
+{% endhighlight %}
+        <div class="stacks-preview--example">
+            <aside class="s-hero s-hero__blue" role="region">
+                <div class="s-hero--container grid jc-space-between ai-center" aria-labeledby="banner-title" aria-describedby="banner-message">
+                    <div class="grid--cell wmx5">
+                        <h1 class="fs-headline2 fw-bold lh-sm mb12" aria-label="banner-title">Learn, share, build</h1>
+                        <div aria-label="banner-message">
+                            <p class="mb8 fs-body3 lh-md">Each month, over 50 million developers come to Stack Overflow to learn, share their knowledge, and build their careers.</p>
+                            <p class="mb0 fs-body3 lh-md">Join the world’s largest developer community.</p>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+            <!-- <aside class="s-hero s-hero__blue s-hero__bar" role="region">
+                <div class="s-hero--container">
+                    <p class="mb0 fs-body2 lh-sm">
+                        <strong>Stack Overflow Business Solutions</strong> Looking to understand, engage, or hire developers? <a href="#" class="s-link s-link__inherit fw-bold">Learn more</a>
+                    </p>
+                </div>
+            </aside> -->
+        </div>
+    </div>
+
+    {% header h3 | Bar %}
+    <p class="stacks-copy">In some situations, you may need to stack an additional hero. Apply the <code class="stacks-code">s-hero__bar</code> modifier to differentiate between them.</p>
+    <div class="stacks-preview">
+{% highlight html linenos %}
+<aside class="s-hero s-hero__bar">
+    <div class="s-hero--container">
+        …
+    </div>
+</aside>
+{% endhighlight %}
+        <div class="stacks-preview--example">
+            <aside class="s-hero s-hero__blue s-hero__bar" role="region">
+                <div class="s-hero--container lh-sm">
+                    <p class="mb0 fs-body2 lh-sm">
+                        <strong>Stack Overflow Business Solutions</strong> Looking to understand, engage, or hire developers? <a href="#" class="s-link s-link__inherit fw-bold">Learn more</a>
+                    </p>
+                </div>
+            </aside>
+        </div>
     </div>
 </section>
 
