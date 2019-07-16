@@ -319,12 +319,12 @@ description: Popovers are small content containers that provide a contextual ove
     <div class="stacks-preview">
  {% highlight html linenos %}
 <div class="…"
-    data-controller="s-popover"
-    data-s-popover-reference-selector="#reference-element">
+     data-controller="s-popover"
+     data-s-popover-reference-selector="#reference-element">
 
     <button id="reference-element" class="s-btn s-btn__filled s-btn__dropdown"
-        aria-controls="popover-example"
-        data-action="s-popover#toggle">
+            aria-controls="popover-example"
+            data-action="s-popover#toggle">
         …
     </button>
 
@@ -343,6 +343,44 @@ description: Popovers are small content containers that provide a contextual ove
                 <button class="s-popover--close s-btn s-btn__muted" aria-label="Close">{% icon ClearSm %}</button>
                 <div class="s-popover--arrow__bl"></div>
                 <p class="mb0">Dismissible persistent popover presented with a close button</p>
+            </div>
+        </div>
+    </div>
+
+    {% header h3 | Hover %}
+    <p class="stacks-copy">If the user doesn’t need to interact with the <em>contents</em> of the popover, it may be appropriate to only show it on hover. This will make popovers feel like a tooltip. To do so, we can rely on stock mouseover and mouseout events from Stimulus.</p>
+
+    <div class="stacks-preview">
+{% highlight html linenos %}
+<button class="s-btn" role="button"
+        aria-controls="popover-example"
+        data-controller="s-popover"
+        data-action="mouseover->s-popover#show mouseout->s-popover#hide"
+        data-s-popover-placement="bottom">
+    …
+</button>
+<div class="s-popover"
+     id="popover-example"
+     role="menu"
+     aria-hidden="true">
+    <div class="s-popover--arrow"></div>
+    …
+</div>
+{% endhighlight %}
+        <div class="stacks-preview--example bg-black-025">
+            <button class="s-btn" role="button"
+                    aria-controls="popover-hover-example"
+                    data-controller="s-popover"
+                    data-action="mouseover->s-popover#show mouseout->s-popover#hide"
+                    data-s-popover-placement="top-start">
+                Hover popover
+            </button>
+            <div class="s-popover"
+                id="popover-hover-example"
+                role="menu"
+                aria-hidden="true">
+                <div class="s-popover--arrow"></div>
+                This popover will show content that isn’t intended to be interacted with directly.
             </div>
         </div>
     </div>
