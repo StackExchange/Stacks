@@ -11,6 +11,7 @@
 //  ----------------------------------------------------------------------------
 
 #stacks-internals #responsify('.d-block', { display: block !important; });
+@media print { .print\:d-block { display: block !important; } }
 .d-flex                   { display: flex !important; }
 .d-inline-flex            { display: inline-flex !important; }
 #stacks-internals #responsify('.d-inline', { display: inline !important; });
@@ -18,6 +19,8 @@
 .d-table                  { display: table !important; }
 .d-table-cell             { display: table-cell !important; }
 #stacks-internals #responsify('.d-none', { display: none !important; });
+@media print { .print\:d-none { display: none !important; } }
+
 .d-unset                  { display: initial !important; }
 
 //  ============================================================================
@@ -213,12 +216,12 @@
 .z-base                   { z-index: @zi-base !important; }
 .z-active                 { z-index: @zi-active !important; }
 .z-selected               { z-index: @zi-selected !important; }
-.z-nav                    { z-index: @zi-navigation !important; }
-.z-nav-fixed              { z-index: @zi-navigation-fixed !important; }
 .z-dropdown               { z-index: @zi-dropdown !important; }
 .z-popover                { z-index: @zi-popovers !important; }
 .z-tooltip                { z-index: @zi-tooltips !important; }
 .z-banner                 { z-index: @zi-banners !important; }
+.z-nav                    { z-index: @zi-navigation !important; }
+.z-nav-fixed              { z-index: @zi-navigation-fixed !important; }
 .z-modal                  { z-index: @zi-modals !important; }
 .z-modal-bg               { z-index: @zi-modals-background !important; }
 
@@ -275,12 +278,3 @@
 // -- Delays
 .t-delay { transition-delay: .25s !important; }
 .t-delay-unset { transition-delay: 0s !important; }
-
-//  ============================================================================
-//  $  PRINT
-//  ----------------------------------------------------------------------------
-@media print {
-    .print\:d-none {
-        display: none !important;
-    }
-}

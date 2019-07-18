@@ -1,5 +1,5 @@
 <section class="stacks-section">
-    {% header h3 | Border Classes %}
+    {% header h3 | Classes %}
     <div class="overflow-x-auto mb32">
         <table class="wmn3 s-table s-table__bx-simple">
             <thead>
@@ -7,40 +7,48 @@
                     <th class="s-table--cell2" scope="col">Class</th>
                     <th scope="col">Output</th>
                     <th scope="col">Definition</th>
+                    <th scope="col">
+                        <a class="s-link s-link__inherit" href="{{ "/product/guidelines/conditional-classes#responsive" | relative_url }}">Responsive?</a>
+                    </th>
                 </tr>
             </thead>
             <tbody>
                 {% for border in site.data.product.borders-definitions.border %}
                   <tr>
-                      <th scope="row"><code class="stacks-code">{{ border.class }}</code></th>
-                      <td class="ff-mono">{{ border.output }}</td>
-                      <td>{{ border.define }}</td>
+                        <th scope="row"><code class="stacks-code">{{ border.class }}</code></th>
+                        <td class="ff-mono">{{ border.output }}</td>
+                        <td>{{ border.define }}</td>
+                        <td class="ta-center">
+                            {% if border.responsive %}
+                                {% icon Checkmark | fc-green-500 %}
+                            {% endif %}
+                        </td>
                   </tr>
                 {% endfor %}
             </tbody>
         </table>
     </div>
 
-    {% header h2 | Border Examples %}
+    {% header h2 | Examples %}
     <div class="stacks-preview">
 {% highlight html linenos %}
-<div class="ba bc-orange-3">All Borders</div>
-<div class="bt bc-orange-3">Top Border</div>
-<div class="br bc-orange-3">Right Border</div>
-<div class="bb bc-orange-3">Bottom Border</div>
-<div class="bl bc-orange-3">Left Border</div>
-<div class="bx bc-orange-3">X Border</div>
-<div class="by bc-orange-3">Y Border</div>
+<div class="ba bc-orange-3">All borders</div>
+<div class="bt bc-orange-3">Top border</div>
+<div class="br bc-orange-3">Right border</div>
+<div class="bb bc-orange-3">Bottom border</div>
+<div class="bl bc-orange-3">Left border</div>
+<div class="bx bc-orange-3">X border</div>
+<div class="by bc-orange-3">Y border</div>
 {% endhighlight %}
         <div class="stacks-preview--example">
             <div class="grid gs8 fw-wrap">
-                <div class="grid--cell p12 bg-orange-100 ba bc-orange-3">All Borders</div>
-                <div class="grid--cell p12 bg-orange-100 bt bc-orange-3">Top Border</div>
-                <div class="grid--cell p12 bg-orange-100 br bc-orange-3">Right Border</div>
-                <div class="grid--cell p12 bg-orange-100 bb bc-orange-3">Bottom Border</div>
-                <div class="grid--cell p12 bg-orange-100 bl bc-orange-3">Left Border</div>
-                <div class="grid--cell p12 bg-orange-100 bx bc-orange-3">X Border</div>
-                <div class="grid--cell p12 bg-orange-100 by bc-orange-3">Y Border</div>
+                <div class="grid--cell p12 bg-orange-100 ba bc-orange-3">All borders</div>
+                <div class="grid--cell p12 bg-orange-100 bt bc-orange-3">Top border</div>
+                <div class="grid--cell p12 bg-orange-100 br bc-orange-3">Right border</div>
+                <div class="grid--cell p12 bg-orange-100 bb bc-orange-3">Bottom border</div>
+                <div class="grid--cell p12 bg-orange-100 bl bc-orange-3">Left border</div>
+                <div class="grid--cell p12 bg-orange-100 bx bc-orange-3">X border</div>
+                <div class="grid--cell p12 bg-orange-100 by bc-orange-3">Y border</div>
             </div>
         </div>
     </div>
