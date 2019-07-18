@@ -4683,6 +4683,124 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 (function () {
+    "use strict";
+    Stacks.application.register("s-popover", (function (_super) {
+        __extends(class_1, _super);
+        function class_1() {
+            return _super !== null && _super.apply(this, arguments) || this;
+        }
+        class_1.prototype.connect = function () {
+            var referenceSelector = this.data.get("reference-selector");
+            this.referenceElement = referenceSelector && this.element.querySelector(referenceSelector) || this.element;
+            var popoverId = this.referenceElement.getAttribute("aria-controls");
+            if (!popoverId) {
+                throw "[aria-controls=\"{POPOVER_ID}\"] required";
+            }
+            var element = document.getElementById(popoverId);
+            if (!element) {
+                throw "element with popover id not found";
+            }
+            this.popoverElement = element;
+            this.popper = new Popper(this.referenceElement, this.popoverElement, {
+                placement: this.data.get("placement") || "bottom",
+            });
+            this._toggleOptionalClasses(this.popoverElement.classList.contains("is-visible"));
+        };
+        ;
+        class_1.prototype.disconnect = function () {
+            this.popper.destroy();
+            this._unbindDocumentEvents();
+        };
+        ;
+        class_1.prototype.toggle = function () {
+            this._toggle();
+        };
+        ;
+        class_1.prototype.show = function () {
+            this._toggle(true);
+        };
+        ;
+        class_1.prototype.hide = function () {
+            this._toggle(false);
+        };
+        ;
+        class_1.prototype._toggle = function (show) {
+            var toShow = show;
+            if (typeof toShow === "undefined") {
+                toShow = !this.popoverElement.classList.contains("is-visible");
+            }
+            this.triggerEvent(toShow ? "show" : "hide");
+            this.popper.update();
+            this.popoverElement.classList.toggle("is-visible", show);
+            this._toggleOptionalClasses(show);
+            if (this.popoverElement.classList.contains("is-visible")) {
+                this._bindDocumentEvents();
+            }
+            else {
+                this._unbindDocumentEvents();
+            }
+            this.triggerEvent(toShow ? "shown" : "hidden");
+        };
+        ;
+        class_1.prototype._bindDocumentEvents = function () {
+            this._boundClickFn = this._boundClickFn || this._hideOnOutsideClick.bind(this);
+            this._boundKeypressFn = this._boundKeypressFn || this._hideOnEscapePress.bind(this);
+            document.addEventListener("click", this._boundClickFn);
+            document.addEventListener("keyup", this._boundKeypressFn);
+        };
+        ;
+        class_1.prototype._unbindDocumentEvents = function () {
+            document.removeEventListener("click", this._boundClickFn);
+            document.removeEventListener("keyup", this._boundKeypressFn);
+        };
+        ;
+        class_1.prototype._hideOnOutsideClick = function (e) {
+            if (!this.referenceElement.contains(e.target) && !this.popoverElement.contains(e.target)) {
+                this.hide();
+            }
+        };
+        ;
+        class_1.prototype._hideOnEscapePress = function (e) {
+            if (e.which !== 27 || !this.popoverElement.classList.contains("is-visible")) {
+                return;
+            }
+            if (this.popoverElement.contains(e.target)) {
+                this.referenceElement.focus();
+            }
+            this.hide();
+        };
+        ;
+        class_1.prototype._toggleOptionalClasses = function (show) {
+            if (!this.data.has("toggle-class")) {
+                return;
+            }
+            var cl = this.referenceElement.classList;
+            this.data.get("toggle-class").split(/\s+/).forEach(function (cls) {
+                cl.toggle(cls, show);
+            });
+        };
+        return class_1;
+    }(Stacks.StacksController)));
+})();
+//# sourceMappingURL=s-popover.js.map
+
+;
+
+"use strict";
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+(function () {
     var _a;
     Stacks.application.register("s-table", (_a = (function (_super) {
             __extends(class_1, _super);
