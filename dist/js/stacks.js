@@ -4448,6 +4448,7 @@ var Stacks;
                 event.initCustomEvent(namespacedName, true, true, detail);
             }
             (optionalElement || this.element).dispatchEvent(event);
+            return event;
         };
         ;
         return StacksController;
