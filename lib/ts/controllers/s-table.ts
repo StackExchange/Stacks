@@ -211,8 +211,8 @@
                 }
                 curSlot++;
             }
-            if (curRow && curRow.nextElementSibling) {
-                curRow = curRow.nextElementSibling;
+            if (curRow) {
+                curRow = curRow.nextElementSibling!;
             }
         }
         return findCell ? -1 : index; /* if findCell was given but we end up here, that means it isn't in this section */
