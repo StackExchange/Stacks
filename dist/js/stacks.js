@@ -4959,7 +4959,7 @@ var __extends = (this && this.__extends) || (function () {
                 }
                 curSlot++;
             }
-            if (curRow && curRow.nextElementSibling) {
+            if (curRow) {
                 curRow = curRow.nextElementSibling;
             }
         }
