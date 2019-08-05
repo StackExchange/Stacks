@@ -12,6 +12,7 @@ description: Box shadow atomic classes allow you to change an element’s box sh
                     <th class="s-table--cell2" scope="col">Class</th>
                     <th scope="col">Output</th>
                     <th scope="col" class="ta-center"><a class="s-link s-link__inherit" href="{{ "/product/guidelines/conditional-classes#hover" | relative_url }}">Hover?</a></th>
+                    <th scope="col" class="ta-center"><a class="s-link s-link__inherit" href="{{ "/product/guidelines/conditional-classes#focus" | relative_url }}">Focus?</a></th>
                 </tr>
             </thead>
             <tbody>
@@ -21,6 +22,11 @@ description: Box shadow atomic classes allow you to change an element’s box sh
                         <td><code class="stacks-code bg-white">{{ atomic.output }}</code></td>
                         <td class="ta-center">
                             {% if atomic.hover %}
+                                {% icon Checkmark | fc-green-500 %}
+                            {% endif %}
+                        </td>
+                        <td class="ta-center">
+                            {% if atomic.focus %}
                                 {% icon Checkmark | fc-green-500 %}
                             {% endif %}
                         </td>
@@ -53,7 +59,7 @@ description: Box shadow atomic classes allow you to change an element’s box sh
                 </div>
             </div>
 
-            <div class="grid jc-space-between grid__allcells3">
+            <div class="grid jc-space-between grid__allcells3 mb16">
                 <div class="grid--cell fd-column p12 bs-i-sm bar-sm h96">
                     .bs-i-sm
                 </div>
@@ -62,6 +68,12 @@ description: Box shadow atomic classes allow you to change an element’s box sh
                 </div>
                 <div class="grid--cell fd-column p12 bs-i-lg bar-sm h96">
                     .bs-i-lg
+                </div>
+            </div>
+
+            <div class="grid jc-space-between grid__allcells3">
+                <div class="grid--cell fd-column p12 bs-ring bar-sm h96">
+                    .bs-ring
                 </div>
             </div>
         </div>
