@@ -1,28 +1,25 @@
 box-shadow:
   - class: bs-none
     output: "box-shadow: none;"
-    responsive: false
   - class: bs-sm
     output: "box-shadow: 0 @su2 @su8 fade(@black-700, 10%);"
-    responsive: false
     hover: true
   - class: bs-md
     output: "box-shadow: 0 @su4 @su8 fade(@black-700, 20%);"
-    responsive: false
     hover: true
   - class: bs-lg
     output: "box-shadow: 0 @su4 @su12 fade(@black-800, 20%);"
-    responsive: false
     hover: true
   - class: bs-i-sm
     output: "box-shadow: inset 0 @su2/2 @su8 0 fade(@black-700, 10%);"
-    responsive: false
   - class: bs-i-md
     output: "box-shadow: inset 0 @su2/2 @su8 0 fade(@black-700, 20%);"
-    responsive: false
   - class: bs-i-lg
     output: "box-shadow: inset 0 @su2/2 @su12 0 fade(@black-800, 20%);"
-    responsive: false
+  - class: bs-ring
+    output: "box-shadow: 0 0 0 @su4 fade(@blue-500, 15%);"
+    hover: true
+    focus: true
 
 box-sizing:
   - class: box-content
@@ -677,6 +674,16 @@ overflow:
     output: "overflow: visible;"
     define: "<p class='mb0'>Content is not clipped and may be rendered outside the content box. This is the default value.</p>"
     responsive: false
+
+outline:
+  - class: outline-none
+    output: "outline: 0;"
+    define: "<p class='mb0'>Removes the browser’s default focus style. To maintain accessibility, care should be taken to replace the style that’s been removed.</p>"
+    focus: false
+  - class: outline-ring
+    output: "outline: solid @su4 fade(@blue-500, 15%);"
+    define: "<p class='mb0'>Adds an outline that mimics our button focus styling.</p>"
+    focus: true
 
 position:
   - class: ps-absolute

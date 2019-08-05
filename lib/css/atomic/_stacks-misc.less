@@ -173,9 +173,9 @@
 //  ============================================================================
 //  $  OVERFLOW
 //  ----------------------------------------------------------------------------
-.overflow-auto            { overflow: auto !important; }
-.overflow-x-auto          { overflow-x: auto !important; }
-.overflow-y-auto          { overflow-y: auto !important; }
+.overflow-auto            { overflow: auto !important; -webkit-overflow-scrolling: touch; }
+.overflow-x-auto          { overflow-x: auto !important; -webkit-overflow-scrolling: touch; }
+.overflow-y-auto          { overflow-y: auto !important; -webkit-overflow-scrolling: touch; }
 
 .overflow-hidden          { overflow: hidden !important; }
 .overflow-x-hidden        { overflow-x: hidden !important; }
@@ -229,6 +229,8 @@
 //  $  OUTLINE
 //  ----------------------------------------------------------------------------
 .outline-none             { outline: 0 !important; }
+.outline-ring             { outline: solid @su4 fade(@blue-500, 15%); }
+.f\:outline-ring          { &:focus, &:focus-within { .outline-ring } }
 
 //  ============================================================================
 //  $  CURRENT COLOR
@@ -249,6 +251,9 @@
 .bs-i-sm                  { box-shadow: @bs-i-sm !important; }
 .bs-i-md                  { box-shadow: @bs-i-md !important; }
 .bs-i-lg                  { box-shadow: @bs-i-lg !important; }
+.bs-ring                  { box-shadow: 0 0 0 @su4 fade(@blue-500, 15%); }
+.h\:bs-ring:hover { .bs-ring}
+.f\:bs-ring { &:focus, &:focus-within { .bs-ring } }
 
 //  --  Added hover styles for box-shadow
 .bs-sm.bs-hover:hover     { box-shadow: 0 @su2 @su8 @black-050 !important; }
