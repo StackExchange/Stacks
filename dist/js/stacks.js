@@ -4610,7 +4610,7 @@ var __extends = (this && this.__extends) || (function () {
                 newCollapsed = !this.element.checked;
             }
             else {
-                if (e.type == "keydown" && (e.keyCode != 13 && e.keyCode != 32)) {
+                if (e.type == "keydown" && (e instanceof KeyboardEvent && e.keyCode != 13 && e.keyCode != 32)) {
                     return;
                 }
                 if (e.target !== e.currentTarget && ["A", "BUTTON"].indexOf(e.target.nodeName) >= 0) {
@@ -4755,7 +4755,8 @@ var __extends = (this && this.__extends) || (function () {
         };
         ;
         class_1.prototype._hideOnOutsideClick = function (e) {
-            if (!this.referenceElement.contains(e.target) && !this.popoverElement.contains(e.target)) {
+            var target = e.target;
+            if (!this.referenceElement.contains(target) && !this.popoverElement.contains(target)) {
                 this.hide();
             }
         };
