@@ -9,6 +9,7 @@ $(document).ready(function() {
     var sysType = $(".js-sys-banner-type");
     var sysPos = $(".js-sys-banner-position");
     var sysCloseIcon = $(".js-notice-close");
+    var typeClasses = ("s-banner__info s-banner__success s-banner__warning s-banner__danger s-banner__dark s-banner__important is-pinned");
 
     sysBannerBtn.on("click", function(e) {
         var sysStyle = sysStyleMenu.find(":selected").data("class");
