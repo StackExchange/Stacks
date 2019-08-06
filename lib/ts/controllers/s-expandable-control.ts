@@ -109,12 +109,12 @@
             });
         };
 
-        listener(e: UIEvent) {
+        listener(e: Event) {
             var newCollapsed;
             if (this.isCheckable) {
                 newCollapsed = !(<HTMLInputElement>this.element).checked;
             } else {
-                if (e.type == "keydown" && ((<KeyboardEvent>e).keyCode != 13 && (<KeyboardEvent>e).keyCode != 32)) {
+                if (e.type == "keydown" && (e instanceof KeyboardEvent && e.keyCode != 13 && e.keyCode != 32)) {
                     return;
                 }
                 if (e.target !== e.currentTarget && ["A", "BUTTON"].indexOf((<HTMLElement>e.target).nodeName) >= 0) {
@@ -134,7 +134,7 @@
 
         connect() {
             this.events.forEach(e => {
-                this.element.addEventListener(e, this.listener as EventListener);
+                this.element.addEventListener(e, this.listener);
             }, this);
 
             if (this.isRadio) {
@@ -160,7 +160,7 @@
 
         disconnect() {
             this.events.forEach(e => {
-                this.element.removeEventListener(e, this.listener as EventListener);
+                this.element.removeEventListener(e, this.listener);
             }, this);
 
             if (this.isRadio) {

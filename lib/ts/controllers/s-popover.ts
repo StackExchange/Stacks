@@ -131,9 +131,10 @@
          * @param {Event} e - The document click event
          */
         _hideOnOutsideClick(e: MouseEvent) {
+            const target = <Node>e.target;
             // check if the document was clicked inside either the reference element or the popover itself
             // note: .contains also returns true if the node itself matches the target element
-            if (!this.referenceElement.contains(<Node>e.target) && !this.popoverElement.contains(<Node>e.target)) {
+            if (!this.referenceElement.contains(target) && !this.popoverElement.contains(target)) {
                 this.hide();
             }
         };
