@@ -1,3 +1,5 @@
+import * as Stimulus from 'stimulus';
+
 (function(){
     var application = Stimulus.Application.start();
     application.register("docs-resizer", class extends Stimulus.Controller {
