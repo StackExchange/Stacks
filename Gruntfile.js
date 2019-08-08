@@ -80,6 +80,9 @@ module.exports = function(grunt) {
             },
             docs_js: {
                 tsconfig: "docs/assets/js/tsconfig.json"
+            },
+            options: {
+                declaration: true
             }
         },
         uglify: {
@@ -207,6 +210,12 @@ module.exports = function(grunt) {
                 dest: 'docs/_data/product/',
                 filter: 'isFile',
             },
+            declarations: {
+                expand: true,
+                cwd: 'build/lib/ts',
+                src: 'stacks.d.ts',
+                dest: 'dist/js/'
+            }
         },
     });
 
@@ -229,7 +238,7 @@ module.exports = function(grunt) {
 
     grunt.registerTask('build',
         'Compile all JS and LESS files and rebuild the documentation site.',
-        ['concurrent:compile', 'shell:jekyllBuild']);
+        ['concurrent:compile', 'shell:jekyllBuild', 'copy:declarations']);
 
     grunt.registerTask('update-icons', ['clean:icons', 'copy:svgs', 'copy:data']);
 
