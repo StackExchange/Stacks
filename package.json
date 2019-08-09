@@ -12,7 +12,8 @@
   "unpkg": "dist/css/stacks.min.css",
   "scripts": {
     "start": "grunt",
-    "update-icons": "grunt update-icons",
+    "update-icons": "shx cp node_modules/@stackoverflow/stacks-icons/build/icons.yml docs/_data/product/icons.yml",
+    "clean": "shx rm -rf dist && shx rm -rf docs/assets/dist && shx rm -rf docs/_site",
     "build": "grunt build",
     "test": "backstop test",
     "approve": "backstop approve",
@@ -33,6 +34,7 @@
     "less-loader": "^5.0.0",
     "mini-css-extract-plugin": "^0.8.0",
     "postcss-loader": "^3.0.0",
+    "shx": "^0.3.2",
     "style-loader": "^1.0.0",
     "ts-loader": "^6.0.4",
     "typescript": "^3.4.1",
