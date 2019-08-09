@@ -11,15 +11,13 @@
   ],
   "unpkg": "dist/css/stacks.min.css",
   "scripts": {
-    "start": "grunt",
+    "start": "cd docs/ && concurrently \"webpack --watch\" \"bundle exec jekyll serve\"",
+    "build": "webpack -p",
+    "build-docs": "cd docs/ && webpack -p && bundle exec jekyll build",
     "update-icons": "shx cp node_modules/@stackoverflow/stacks-icons/build/icons.yml docs/_data/product/icons.yml",
     "clean": "shx rm -rf dist && shx rm -rf docs/assets/dist && shx rm -rf docs/_site",
-    "build": "grunt build",
     "test": "backstop test",
-    "approve": "backstop approve",
-    "webpack-start": "cd docs/ && concurrently \"webpack --watch\" \"bundle exec jekyll serve\"",
-    "webpack-build": "webpack -p",
-    "webpack-build-docs": "cd docs / && webpack -p && bundle exec jekyll build"
+    "approve": "backstop approve"
   },
   "license": "MIT",
   "devDependencies": {
