@@ -3,7 +3,7 @@
 (function () {
     "use strict";
     Stacks.application.register("s-popover", class extends Stacks.StacksController {
-        static targets: [];
+        static targets = [];
 
         private referenceElement!: HTMLElement;
         private popoverElement!: HTMLElement;
