@@ -11,10 +11,10 @@
   ],
   "unpkg": "dist/css/stacks.min.css",
   "scripts": {
-    "init-docs": "npm run update-icons && pushd \"./docs/\" && gem install jekyll bundler && bundle install && popd",
-    "start": "pushd \"./docs/\" && concurrently \"webpack --watch\" \"bundle exec jekyll serve\"",
+    "init-docs": "npm run update-icons && cd docs/ && gem install jekyll bundler && bundle install",
+    "start": "cd docs/ && concurrently \"webpack --watch\" \"bundle exec jekyll serve\"",
     "build": "webpack -p",
-    "build-docs": "pushd \"./docs/\" && webpack -p && bundle exec jekyll build && popd",
+    "build-docs": "cd docs/ && webpack -p && bundle exec jekyll build",
     "update-icons": "shx cp node_modules/@stackoverflow/stacks-icons/build/icons.yml docs/_data/product/icons.yml",
     "clean": "shx rm -rf dist && shx rm -rf docs/assets/dist && shx rm -rf docs/_site",
     "test": "backstop test",
