@@ -23,11 +23,11 @@ description: A component that visually communicates the completion of a task or 
                 </tr>
                 <tr>
                     <th scope="row"><code class="stacks-code">.s-progress--bar</code></th>
-                    <td>A child element of <code class="stacks-code">.s-progress</code>. It shows the user's current progress to accomplishing a goal with a background color.</td>
+                    <td>A child element of <code class="stacks-code">.s-progress</code>. It shows the user’s current progress to accomplishing a goal with a background color.</td>
                 </tr>
                 <tr>
                     <th scope="row"><code class="stacks-code">.s-progress--label</code></th>
-                    <td>A child element of <code class="stacks-code">.s-progress</code>. It's used to describe what progress bar is tracking.</td>
+                    <td>A child element of <code class="stacks-code">.s-progress</code>. It’s used to describe what progress bar is tracking.</td>
                 </tr>
                 <tr>
                     <th scope="row"><code class="stacks-code">.s-progress__brand</code></th>
@@ -56,6 +56,34 @@ description: A component that visually communicates the completion of a task or 
                 <tr>
                     <th scope="row"><code class="stacks-code">.s-progress__bronze</code></th>
                     <td>A modifying class applied to <code class="stacks-code">.s-progress__badge</code>, it is used when a bronze badge progress bar is desired.</td>
+                </tr>
+                <tr>
+                    <th scope="row"><code class="stacks-code">.s-progress__stepped</code></th>
+                    <td>A modifying class applied to <code class="stacks-code">.s-progress</code> for a stepped progress bar</td>
+                </tr>
+                <tr>
+                    <th scope="row"><code class="stacks-code">.s-progress--step</code></th>
+                    <td>A child of <code class="stacks-code">.s-progress__stepped</code> that’s a wrapper for each individual step</td>
+                </tr>
+                <tr>
+                    <th scope="row"><code class="stacks-code">.is-active</code></th>
+                    <td>A modifier <code class="stacks-code">.s-progress__step</code> that adds visual styling to the active step.</td>
+                </tr>
+                <tr>
+                    <th scope="row"><code class="stacks-code">.is-completed</code></th>
+                    <td>A modifier <code class="stacks-code">.s-progress__step</code> that adds visual styling to a completed step.</td>
+                </tr>
+                <tr>
+                    <th scope="row"><code class="stacks-code">.s-progress--stop</code></th>
+                    <td>A child of <code class="stacks-code">.s-progress__step</code>, the circle that might contain a checkmark if the step’s been completed.</td>
+                </tr>
+                <tr>
+                    <th scope="row"><code class="stacks-code">.s-progress--bar__left</code></th>
+                    <td>A modifier of <code class="stacks-code">.s-progress__bar</code> that draws a line on the left side of a step.</td>
+                </tr>
+                <tr>
+                    <th scope="row"><code class="stacks-code">.s-progress--bar__right</code></th>
+                    <td>A modifier of <code class="stacks-code">.s-progress__bar</code> that draws a line on the right side of a step.</td>
                 </tr>
             </tbody>
         </table>
@@ -243,6 +271,79 @@ description: A component that visually communicates the completion of a task or 
                         <div class="grid grid__center fl1 s-badge--label">Proofreader - 16/100</div>
                     </label>
                     <div class="s-progress--bar" id="badgegold-progress" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="75" style="width: 75%;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="stacks-section">
+    {% header h2 | Stepped %}
+    <p class="stacks-copy">If your experience has a small number of discrete steps, it might be appropriate to use a stepped progress bar.</p>
+    <div class="stacks-preview">
+{% highlight html linenos %}
+<div class="s-progress s-progress__stepped">
+    <div class="s-progress--step is-complete">
+        <a href="…" class="s-progress--stop">
+            @Svg.CheckmarkSm
+        </a>
+        <div class="s-progress--bar s-progress--bar__right"></div>
+        <a class="s-progress--label">…</a>
+    </div>
+
+    <div class="s-progress--step is-complete">
+        <a href="…" class="s-progress--stop">
+            @Svg.CheckmarkSm
+        </a>
+        <div class="s-progress--bar s-progress--bar__left"></div>
+        <div class="s-progress--bar s-progress--bar__right"></div>
+        <a class="s-progress--label">…</a>
+    </div>
+
+    <div class="s-progress--step is-active">
+        <div class="s-progress--stop"></div>
+        <div class="s-progress--bar s-progress--bar__left"></div>
+        <div class="s-progress--bar s-progress--bar__right"></div>
+        <div class="s-progress--label">…</div>
+    </div>
+
+    <div class="s-progress--step">
+        <div class="s-progress--stop"></div>
+        <div class="s-progress--bar s-progress--bar__left"></div>
+        <div class="s-progress--label">…</div>
+    </div>
+</div>
+{% endhighlight %}
+        <div class="stacks-preview--example">
+            <div class="s-progress s-progress__stepped">
+                <div class="s-progress--step is-complete">
+                    <a class="s-progress--stop">
+                        {% icon CheckmarkSm %}
+                    </a>
+                    <div class="s-progress--bar s-progress--bar__right"></div>
+                    <a class="s-progress--label">Select plan</a>
+                </div>
+
+                <div class="s-progress--step is-complete">
+                    <a class="s-progress--stop">
+                        {% icon CheckmarkSm %}
+                    </a>
+                    <div class="s-progress--bar s-progress--bar__left"></div>
+                    <div class="s-progress--bar s-progress--bar__right"></div>
+                    <a class="s-progress--label">Team name</a>
+                </div>
+
+                <div class="s-progress--step is-active">
+                    <div class="s-progress--stop"></div>
+                    <div class="s-progress--bar s-progress--bar__left"></div>
+                    <div class="s-progress--bar s-progress--bar__right"></div>
+                    <div class="s-progress--label">Payment</div>
+                </div>
+
+                <div class="s-progress--step">
+                    <div class="s-progress--stop"></div>
+                    <div class="s-progress--bar s-progress--bar__left"></div>
+                    <div class="s-progress--label">Create account</div>
                 </div>
             </div>
         </div>

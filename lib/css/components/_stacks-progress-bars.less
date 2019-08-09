@@ -11,6 +11,7 @@
 //  • BASE STYLE
 //  • VARIATION PROGRESS BACKGROUNDS
 //  • BADGES
+//  • STEPPED
 //
 //  ============================================================================
 //  $   VARIABLES
@@ -127,5 +128,96 @@
     }
     .s-progress--label {
         border-color: @bronze-dot;
+    }
+}
+
+//  ===========================================================================
+//  $   STEPPED
+//  ---------------------------------------------------------------------------
+.s-progress.s-progress__stepped {
+    background: transparent;
+    display: flex;
+
+    .s-progress--step {
+        display: flex;
+        flex-grow: 1;
+        flex-shrink: 1;
+        flex-basis: 0;
+        flex-direction: column;
+        align-items: center;
+        position: relative;
+    }
+
+    .s-progress--label {
+        // Override a ton of properties
+        position: static;
+        display: block;
+        width: auto;
+        height: auto;
+        font-size: @fs-body1;
+        border: 0;
+        border-radius: 0;
+        padding: @su12 @su6 0 @su6;
+        text-align: center;
+        color: @black-200;
+        z-index: @zi-base;
+    }
+
+    .s-progress--stop {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: @black-200;
+        border-radius: 100%;
+        width: @su24;
+        height: @su24;
+        z-index: @zi-selected;
+        color: @white;
+    }
+
+    .s-progress--bar {
+        position: absolute;
+        top: 9px;
+        height: @su6;
+        background: @black-200;
+        z-index: @zi-base;
+        border-radius: 0;
+
+        &.s-progress--bar__left {
+            left: 0;
+            right: 50%;
+        }
+
+        &.s-progress--bar__right {
+            right: 0;
+            left: 50%;
+        }
+    }
+    
+    .s-progress--step.is-active {
+        .s-progress--bar.s-progress--bar__left {
+            background: @blue-500;
+        }
+
+        .s-progress--stop {
+            background: @blue-500;
+            box-shadow: 0 0 0 @su6 fade(@blue-500, 15%);
+        }
+
+        .s-progress--label {
+            color: @fc-dark;
+        }
+    }
+
+    .s-progress--step.is-complete {
+        .s-progress--bar,
+        .s-progress--stop {
+            background: @blue-500;
+        }
+
+        .s-progress--label {
+            color: @fc-dark;
+        }
     }
 }
