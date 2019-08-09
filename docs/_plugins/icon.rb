@@ -40,7 +40,7 @@ module Jekyll
         processedIcon = @icon
       end
 
-      filePath = "_includes/svg-icons/#{processedIcon}.svg"
+      filePath = "../node_modules/@stackoverflow/stacks-icons/build/lib/#{processedIcon}.svg"
       file = File.open(filePath, "r").read
 
       # Do we have a class parameter?
