@@ -14,7 +14,7 @@ module.exports = {
     devtool: 'source-map',
     output: {
         filename: '[name].js',
-        path: path.resolve(__dirname, 'dist2') //TODO change to dist, just using dist2 as a debug tool
+        path: path.resolve(__dirname, 'dist')
     },
     module: {
         rules: [
