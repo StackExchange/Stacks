@@ -74,6 +74,17 @@ module.exports = function(grunt) {
             }
         },
         // Minify and concatenate JS
+        ts: {
+            stacks_js: {
+                tsconfig: "lib/tsconfig.json"
+            },
+            docs_js: {
+                tsconfig: "docs/assets/js/tsconfig.json"
+            },
+            options: {
+                declaration: true
+            }
+        },
         uglify: {
             stacks_js: {
                 files: {
@@ -95,22 +106,12 @@ module.exports = function(grunt) {
                     'dist/js/stacks.js': [
                         'node_modules/stimulus/dist/stimulus.umd.js',
                         'node_modules/popper.js/dist/umd/popper.js',
-                        'lib/js/stacks.js',
-                        'lib/js/controllers/**/*.js',
-                        'lib/js/finalize.js'
+                        'build/lib/ts/stacks.js',
+                        'build/lib/ts/controllers/**/*.js',
+                        'build/lib/ts/finalize.js'
                     ]
                 }
-            },
-            docs_js: {
-                options: {
-                    separator: '\n\n;\n\n'
-                },
-                files: {
-                    'docs/assets/js/controllers.js': [
-                        'docs/assets/js/controllers/*.js'
-                    ]
-                }
-            },
+            }
         },
         // Watch for files to change and run tasks when they do
         watch: {
@@ -129,11 +130,11 @@ module.exports = function(grunt) {
 
             docs_js: {
                 files: ['docs/assets/js/controllers/*.js'],
-                tasks: ['concat:docs_js']
+                tasks: ['ts:docs_js']
             },
 
             stacks_js: {
-                files: ['lib/js/**/*.js'], // note: this doesn't watch any of the npm dependencies
+                files: ['lib/ts/**/*.ts'], // note: this doesn't watch any of the npm dependencies
                 tasks: ['concurrent:compile_stacks_js', 'copy:js2docs']
             },
 
@@ -157,13 +158,13 @@ module.exports = function(grunt) {
             // CSS and JS compilation don't impact each other, thus can run in parallel
             compile: [
                 'concurrent:compile_stacks_css',
-                'concat:docs_js',
+                'ts:docs_js',
                 ['concurrent:compile_stacks_js', 'copy:js2docs']
             ],
 
             // Stacks JS itself and the polyfills are independent of each other, so they can be compiled in parallel
             compile_stacks_js: [
-                ['concat:stacks_js', 'uglify:stacks_js'],
+                ['ts:stacks_js', 'concat:stacks_js', 'uglify:stacks_js'],
                 ['rollup:stacks_js_polyfills', 'uglify:stacks_js_polyfills']
             ],
 
@@ -209,6 +210,12 @@ module.exports = function(grunt) {
                 dest: 'docs/_data/product/',
                 filter: 'isFile',
             },
+            declarations: {
+                expand: true,
+                cwd: 'build/lib/ts',
+                src: 'stacks.d.ts',
+                dest: 'dist/js/'
+            }
         },
     });
 
@@ -223,6 +230,7 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-rollup');
+    grunt.loadNpmTasks("grunt-ts");
 
     grunt.registerTask('default',
         'Compile all JS and LESS files and rebuild the documentation site, then continue running and re-compile as needed whenever files are changed.',
@@ -230,7 +238,7 @@ module.exports = function(grunt) {
 
     grunt.registerTask('build',
         'Compile all JS and LESS files and rebuild the documentation site.',
-        ['concurrent:compile', 'shell:jekyllBuild']);
+        ['concurrent:compile', 'shell:jekyllBuild', 'copy:declarations']);
 
     grunt.registerTask('update-icons', ['clean:icons', 'copy:svgs', 'copy:data']);
 
