@@ -193,67 +193,47 @@
     margin-bottom: @su48;
     .bs-sm;
 
-    // Force scrollbar styling on the code examples
-    ::-webkit-scrollbar {
-        width: @su8;
-        height: @su8;
-        background-color: transparent;
-    }
-
-    ::-webkit-scrollbar-track {
-        border-radius: @su8;
-        background-color: transparent;
-    }
-
-    ::-webkit-scrollbar-thumb
-    {
-        border-radius: @su8;
-        background-color: fade(@white, 30%);
-    }
-
-    ::-webkit-scrollbar-corner {
-        background-color: transparent;
-    }
-
     .highlight {
-        position: relative;
+        .btr-sm;
+        max-height: 24rem;
+        margin: 0;
+        padding: @su8 @su12;
+        overflow: auto;
+        background-color: @black-800;
+        line-height: @lh-lg;
+        color: @black-150;
 
-        // Reset margins
-        &,
+        // Force scrollbar styling on the code examples
+        &::-webkit-scrollbar {
+            width: @su8;
+            height: @su8;
+            background-color: transparent;
+        }
+
+        &::-webkit-scrollbar-track {
+            border-radius: @su8;
+            background-color: transparent;
+        }
+
+        &::-webkit-scrollbar-thumb
+        {
+            border-radius: @su8;
+            background-color: fade(@white, 30%);
+        }
+
+        &::-webkit-scrollbar-corner {
+            background-color: transparent;
+        }
+
+        scrollbar-color: fade(@white, 30%) transparent;
+        scrollbar-width: thin;
+
         pre {
             margin: 0;
-            font-size: @fs-body1;
-            font-family: @ff-mono;
-            line-height: @lh-lg;
-            color: #C5C8C6;
-        }
-
-        > pre {
-            max-height: 24rem;
-            overflow: auto;
-            background-color: @black-800;
-            .btr-sm;
-            overflow: auto;
-        }
-
-        .gutter.gl {
-            padding-top: @su12;
-            padding-right: @su8;
-            padding-bottom: @su12;
-            background: @black-750;
-            min-width: @su32;
-
-            pre {
-                color: #7A7D80;
-            }
-        }
-
-        .code {
-            padding-left: @su12;
         }
     }
 
-    &._preview-none .highlight pre {
+    &._preview-none .highlight {
         .bar-sm;
     }
 }

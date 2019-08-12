@@ -11,7 +11,7 @@ description: Windows Outlook 2003 and above use Microsoft Word as a rendering en
         We can use <strong>MSO</strong> (<strong>M</strong>icro<strong>s</strong>oft <strong>O</strong>ffice) tags to add HTML / CSS anywhere in an email template. This code will be ignored by other email clients. Here’s what it looks like:
     </p>
     <div class="stacks-preview _preview-none mb24">
-{% highlight html linenos %}
+{% highlight html %}
 <!--[if mso]>
     <table><tr><td>
         /* Outlook-specific HTML content goes here. */
@@ -26,7 +26,7 @@ description: Windows Outlook 2003 and above use Microsoft Word as a rendering en
         MSO tags can also be used to add styles targeting Outlook (<a href="https://www.campaignmonitor.com/css/style-element/style-in-head/">Outlook supports CSS in the <code class="stacks-code">&lt;head&gt;</code></a>):
     </p>
     <div class="stacks-preview _preview-none mb24">
-{% highlight html linenos %}
+{% highlight html %}
 <!--[if mso]>
     <style>
         .example-class {
@@ -46,7 +46,7 @@ description: Windows Outlook 2003 and above use Microsoft Word as a rendering en
         The main way we use MSO tags in our emails is to create “ghost tables” so <a href="/email/base/responsiveness#hybrid-design">hybrid emails</a> don’t fall apart in Outlook. Hybrid design uses <code class="stacks-code">inline-block</code>, <code class="stacks-code">max-width</code>, <code class="stacks-code">min-width</code> to stack table columns. Outlook doesn’t support these CSS properties, so we use MSO tags to create “ghost tables” that apply a fixed width just for Outlook.
     </p>
     <div class="stacks-preview _preview-none mb24">
-{% highlight html linenos %}
+{% highlight html %}
 <!--[if mso]>
 <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
 <tr>
