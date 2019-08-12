@@ -11,7 +11,7 @@ description: This page provides some common typography patterns for email.
 <section class="stacks-section">
     {% header h2 | Paragraphs %}
     <div class="stacks-preview">
-{% highlight html linenos %}
+{% highlight html %}
 <td style="font-family: arial, sans-serif; font-size: 15px; line-height: 21px; color: #3C3F44; text-align: left;">
     <p style="margin: 0 0 15px 0; font-size: 17px; line-height: 23px;">A lead paragraph with slightly larger text lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras nisi magna, mollis luctus sapien varius, mattis ornare est.</p>
     <p style="margin: 0 0 15px 0;">A regular paragraph with <strong>strong</strong> and <em>italic</em> text, consectetur adipiscing elit. Cras nisi magna, mollis luctus sapien varius, mattis ornare est. Sed non tincidunt erat, ut commodo augue.</p>
@@ -28,7 +28,7 @@ description: This page provides some common typography patterns for email.
 <section class="stacks-section">
     {% header h2 | Headlines %}
     <div class="stacks-preview">
-{% highlight html linenos %}
+{% highlight html %}
 <h1 style="font-weight: bold; font-size: 27px; line-height: 27px; color: #242629; margin: 0 0 15px 0;">I’m a headline</h1>
 <h2 style="font-weight: bold; font-size: 21px; line-height: 24px; color: #242629; margin: 0 0 15px 0;">I’m a subheadline</h2>
 {% endhighlight %}
@@ -41,7 +41,7 @@ description: This page provides some common typography patterns for email.
 <section class="stacks-section">
     {% header h2 | Lists %}
     <div class="stacks-preview">
-{% highlight html linenos %}
+{% highlight html %}
 <ul style="padding: 0; margin: 0 0 15px 0; list-style-type: disc;">
     <li style="margin: 0 0 10px 30px;">You get a list item.</li>
     <li style="margin: 0 0 10px 30px;">And you get a list item!</li>
@@ -70,7 +70,7 @@ description: This page provides some common typography patterns for email.
 <section class="stacks-section">
     {% header h2 | Links %}
     <div class="stacks-preview">
-{% highlight html linenos %}
+{% highlight html %}
 <a href="https://stackoverflow.com/" style="color: #0077CC; text-decoration: none;">Go to the homepage</a>
 {% endhighlight %}
         <div class="stacks-preview--example" style="font-family: arial, sans-serif; font-size: 15px; line-height: 19px; color: #54595F; text-align: left;">
@@ -82,7 +82,7 @@ description: This page provides some common typography patterns for email.
         If email content is written in Markdown, we can’t write inline CSS into link tags. Left unstyled, <a href="#" style="color: blue; text-decoration: underline;">links will appear like this</a>. To style links contained in Markdown text, add a <code class="stacks-code">class="has-markdown"</code> to any parent tag that might contain a Markdown link.
     </p>
     <div class="stacks-preview mb24">
-{% highlight html linenos %}
+{% highlight html %}
 <p style="margin: 0 0 15px 0;">@_s("I’m a text string in markdown.")</p>
 <p style="margin: 0 0 15px 0;" class="has-markdown">@_m("I’m a *bold* [text link](https://www.stackoverflow.com) in markdown.")</p>
 {% endhighlight %}
@@ -104,7 +104,7 @@ description: This page provides some common typography patterns for email.
         Some email clients auto-detect certain text strings (like dates, times, and locations) and automatically convert them into hyperlinks. We can’t <em>remove</em> the link, but we can make the link <em>appear</em> like the text around it by negating a few CSS styles.
     </p>
     <div class="stacks-preview mb24">
-{% highlight html linenos %}
+{% highlight html %}
 <p style="margin: 0 0 15px 0;">On Thursday we’ll be doing on planned maintenance on our New York server, so the parts of the site might be unavailable.</p>
 <p style="margin: 0 0 15px 0;">On <span class="unstyle-auto-detected-links">Thursday</span> we’ll be doing on planned maintenance on our <span class="unstyle-auto-detected-links">New York</span> server, so the parts of the site might be unavailable.</p>
 {% endhighlight %}
@@ -124,7 +124,7 @@ description: This page provides some common typography patterns for email.
 <section class="stacks-section">
     {% header h2 | Code %}
     <div class="stacks-preview mb16">
-{% highlight html linenos %}
+{% highlight html %}
 <!-- Preformatted code block -->
 <pre style="margin: 0 0 15px; background-color: #EFF0F1; padding: 4px 8px; border-radius: 3px; overflow-x: auto; font-size: 13px; line-height: 17px; "><code style="color: #242729; font-size: 13px; line-height: 17px; font-family: Consolas, Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace, sans-serif;">
     …
@@ -153,7 +153,7 @@ console.log("request body: " + pm.globals.get("switch_json"));</code></pre>
 <section class="stacks-section">
     {% header h2 | Blockquotes %}
     <div class="stacks-preview mb16">
-{% highlight html linenos %}
+{% highlight html %}
 <blockquote style="margin: 0 0 15px; padding: 4px 10px; background-color: #FFF8DC; border-left: 2px solid #ffeb8e;">
     <p style="padding: 4px 0; margin: 0; font-size: 15px; overflow-wrap: break-word;">Write a function that takes a string consisting of alphabetic characters as input argument and returns True if the string is a palindrome.
         …
@@ -180,7 +180,7 @@ console.log("request body: " + pm.globals.get("switch_json"));</code></pre>
         <br><span class="d-block mt8 fc-light fs-body1">Inspect the line above to see ☝️</span>
     </p>
     <div class="stacks-preview">
-{% highlight html linenos %}
+{% highlight html %}
 <p style="margin: 0 0 15px 0;">Now with Stack&nbsp;Overflow you can level up.</p>
 <p style="margin: 0 0 15px 0;">The last sentence shouldn’t produce an&nbsp;orphan.</p>
 <p style="margin: 0;">@_m("Also works for text written in$nbsp$markdown.", new { nbsp = "&nbsp;".AsRawHtml() })</p>
@@ -203,7 +203,7 @@ console.log("request body: " + pm.globals.get("switch_json"));</code></pre>
         <li>Lastly, reference the web font at the beginning of the font stack, followed by a system fallback font for email clients that can’t display (and ignore) the web font.</li>
     </p>
     <div class="stacks-preview">
-{% highlight html linenos %}
+{% highlight html %}
 <head>
     <!-- Desktop Outlook on Windows sometimes chokes on web font references and defaults to Times New Roman, so we force a safe system font fallback. -->
     <!--[if mso]>
