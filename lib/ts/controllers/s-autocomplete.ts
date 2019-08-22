@@ -1,15 +1,17 @@
 (function () {
     "use strict";
     Stacks.application.register("s-autocomplete", class extends Stacks.StacksController {
-        static targets = ["query"];
+        static targets = ["query", "results"];
 
         declare readonly queryTarget!: HTMLInputElement;
         declare readonly queryTargets!: HTMLInputElement[];
+        declare readonly resultsTarget!: HTMLInputElement;
+        declare readonly resultsTargets!: HTMLInputElement[];
 
         timeouts: number[] = [];
 
         connect() {
-            console.log("Connected autocomplete");
+            this._clearResults();
         };
 
         disconnect() {
@@ -21,14 +23,13 @@
          */
         query() {
             let fun = () => {
-                console.log("firing query", this._query);
                 let response = "<div>1</div><div>2</div>";
                 this._resultElement.innerHTML = response;
             };
 
             // todo: debounce
 
-            let response = fun();
+            fun();
         }
 
         /**
@@ -50,22 +51,16 @@
          * Get the element which should display the autocomplete result
          */
         private get _resultElement(): Element {
-            let selector = this.data.get("result-element");
-            if (selector === null) {
-                throw "no result-element attribute given"
-            }
-
-            let element = document.querySelector(selector);
-            if (element === null) {
-                throw `no element found with selector ${element}`
-            }
-
-            return element;
+            return this.resultsTarget;
         }
 
         private _debounce(fun: () => void, wait: number) {
             this.timeouts.forEach(timeout => window.clearInterval(timeout));
             this.timeouts.push(window.setTimeout(fun, wait));
+        }
+
+        private _clearResults() {
+            this._resultElement.innerHTML = ""
         }
     });
 })();
