@@ -11,14 +11,18 @@
         declare readonly loadingTargets!: HTMLInputElement[];
         declare readonly hasLoadingTarget!: boolean;
 
-        timeouts: number[] = [];
+        private timeouts: number[] = [];
+
+        private _boundKeypressFn!: any;
 
         connect() {
             this._clearResults();
             this._hideLoadingIndicator();
+            this._bindDocumentEvents();
         };
 
         disconnect() {
+            this._unbindDocumentEvents();
         };
 
         /**
@@ -38,7 +42,7 @@
 
         /**
          * Display autocomplete results in the result element
-         * @param results 
+         * @param results
          */
         private _displayResults(results: string): void {
             setTimeout(() => {
@@ -104,8 +108,32 @@
             this._resultElement.innerHTML = ""
         }
 
-        private _initializeKeyboardNavigation() {
+        /**
+         * Binds global events to the document to enable keyboard interaction
+         */
+        private _bindDocumentEvents() {
+            // in order for removeEventListener to remove the right event, this bound function needs a constant reference
+            this._boundKeypressFn = this._boundKeypressFn || this._blurOnEscapePress.bind(this);
 
-        }
+            document.addEventListener("keyup", this._boundKeypressFn);
+        };
+
+        /**
+         * Unbinds global events from the document
+         */
+        private _unbindDocumentEvents() {
+            document.removeEventListener("keyup", this._boundKeypressFn);
+        };
+
+        /**
+         * Blurs the input element if the user presses escape while it is focused
+         * @param {Event} e - The document keyup event
+         */
+        private _blurOnEscapePress(e: KeyboardEvent) {
+            // if the ESC key (27) was pressed, blur
+            if (e.which === 27) {
+                this.queryTarget.blur();
+            }
+        };
     });
 })();
