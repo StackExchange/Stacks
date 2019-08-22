@@ -3,12 +3,78 @@ layout: page
 title: Autocomplete
 description: Autocompletes are components that search for text a user entered into an input field and show search results on the fly. They can be used whenever you want to help the user with suggestions after they've typed a partial search query.
 ---
+<section class="stacks-section">
+    {% header h2 | JavaScript %}
+    {% header h3 | Attributes %}
+    <div class="overflow-x-auto mb32">
+        <table class="wmn4 s-table s-table__bx-simple">
+            <thead>
+                <tr>
+                    <th class="s-table--cell5" scope="col">Attribute</th>
+                    <th class="s-table--cell2" scope="col">Applied to</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody class="fs-caption">
+                <tr>
+                    <th scope="row"><code class="stacks-code">data-controller="s-autocomplete"</code></th>
+                    <td>Controller element</td>
+                    <td class="p8">Wires up the element to the autocomplete controller. This has to be a wrapper element containing both, the input for the search query as well as the container to display the results.</td>
+                </tr>
+                <tr>
+                    <th scope="row"><code class="stacks-code">data-target="s-autocomplete.query"</code></th>
+                    <td>Input element</td>
+                    <td class="p8">Designates the input element as the source of the autocomplete search query.</td>
+                </tr>
+                <tr>
+                    <th scope="row"><code class="stacks-code">data-target="s-autocomplete.results"</code></th>
+                    <td>Any child of the controller element</td>
+                    <td class="p8">Designates the declaring element as the target where autocomplete results will appear.</td>
+                </tr>
+                <tr>
+                    <th scope="row"><code class="stacks-code">data-action="input->s-autocomplete#query"</code></th>
+                    <td>Input element</td>
+                    <td class="p8">Wires up the input element to trigger a search query after the user has stopped typing.</td>
+                </tr>
+                <tr>
+                    <th scope="row"><code class="stacks-code">data-s-autocomplete-delay="[delay in ms]"</code></th>
+                    <td>Input element</td>
+                    <td class="p8"><span class="s-label--status ml0">Optional</span> Sets a debounce delay in milliseconds. The delay determines the time the autocomplete component will wait <em>after</em> the user stopped typing until it sends the search query. Defaults to 250ms.</td>
+                </tr>
+                <tr>
+                    <th scope="row"><code class="stacks-code">data-s-autocomplete-url="[search url]"</code></th>
+                    <td>Controller element</td>
+                    <td class="p8">Tells the autocomplete component where to send the search query to. The URL endpoint needs to respond with a <code class="stacks-code">text/html</code> response.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
 
 <section class="stacks-section">
     {% header h2 | Examples %}
+    {% header h3 | Simple %}
+    <div data-controller="s-autocomplete">
+        <input class="s-input" placeholder="simple autocompletion"
+            data-target="s-autocomplete.query"
+            data-s-autocomplete-delay="500"
+            data-action="input->s-autocomplete#query">
+        <div class="my24 p16 bar-sm bg-black-025 ba bc-black-1">
+            <div class="fs-fine fc-light">
+                Autocomplete results go here
+            </div>
+            <div class="grid gs4 mt12 fw-wrap" data-target="s-autocomplete.results"></div>
+        </div>
+    </div>
+
+    {% header h3 | With popover %}
+    <p>A autocomplete component can display its autocomplete results in any element.
+    Often you'll want to display autocomplete results in a <a href="https://stackoverflow.design/product/components/popovers">popover</a> that is attached to the input element itself.</p>
+
+    <p>To do so, you can combine an <code class="stacks-code">s-autocomplete</code> and an <code class="stacks-code">s-popover</code> component.</p>
     <div class="mb24 p16 bar-sm bg-black-025 ba bc-black-1">
         <div data-controller="s-autocomplete">
-            <input class="s-input" placeholder="with loading indicator"
+            <input class="s-input" placeholder="Type to search relevant tags…"
                 data-controller="s-popover"
                 data-target="s-autocomplete.query"
                 data-s-popover-placement="bottom-start"
@@ -18,37 +84,55 @@ description: Autocompletes are components that search for text a user entered in
             <div id="popover-example-1" class="s-popover ws2" role="menu" aria-hidden="true">
                 <div class="s-popover--arrow"></div>
                 <div class="tt-uppercase fs-fine fc-light mb6">
-                    Search for some tags
-                </div>
-                <div class="js-spinner p24 grid ai-center jc-center d-none"
-                     data-target="s-autocomplete.loading">
-                     <div class="s-spinner s-spinner__sm fc-orange-400">
-                        <div class="v-visible-sr">Loading…</div>
-                     </div>
+                    Relevant tags
                 </div>
                 <div class="grid gs4 fw-wrap"
-                     data-target="s-autocomplete.results"></div>
+                    data-target="s-autocomplete.results"></div>
             </div>
         </div>
     </div>
 
+    {% header h3 | Loading indicator %}
+    <p>
+        The autocomplete component supports showing a loading indicator while the search query is running.
+        For longer-running queries and generous debounce delays, this can make the autocompletion feel more snappy to the user.
+    </p>
+
+    <p>
+        To show a loading indicator while waiting for the autocomplete result, add any HTML element as a child to 
+        your <code class="stacks-code">data-controller="s-autocomplete"</code> element and declare it as the element
+        to be displayed while waiting for search results using the <code class="stacks-code">data-target="s-autocomplete.loading"</code> 
+        attribute.
+    </p>
+    <p>
+        The autocomplete component will show the loading indicator automatically while it's waiting for the user to stop typing and
+        for the search results to come in. Once the results are there, or once the user deleted the search query, the loading indicator
+        will be hidden again.
+    </p>
+
     <div class="mb24 p16 bar-sm bg-black-025 ba bc-black-1">
-            <div data-controller="s-autocomplete">
-                <input class="s-input" placeholder="without loading indicator"
-                    data-controller="s-popover"
-                    data-target="s-autocomplete.query"
-                    data-s-popover-placement="bottom-start"
-                    data-s-autocomplete-delay="500"
-                    data-action="focus->s-popover#show input->s-autocomplete#query"
-                    aria-controls="popover-example-2">
-                <div id="popover-example-2" class="s-popover ws2" role="menu" aria-hidden="true">
-                    <div class="s-popover--arrow"></div>
-                    <div class="tt-uppercase fs-fine fc-light mb6">
-                        Search for some tags
-                    </div>
-                    <div class="grid gs4 fw-wrap"
-                         data-target="s-autocomplete.results"></div>
+        <div data-controller="s-autocomplete">
+            <input class="s-input" placeholder="Type to search for users…"
+                data-controller="s-popover"
+                data-target="s-autocomplete.query"
+                data-s-popover-placement="bottom-start"
+                data-s-autocomplete-delay="500"
+                data-action="focus->s-popover#show input->s-autocomplete#query"
+                aria-controls="popover-example-2">
+            <div id="popover-example-2" class="s-popover ws2" role="menu" aria-hidden="true">
+                <div class="s-popover--arrow"></div>
+                <div class="tt-uppercase fs-fine fc-light mb6">
+                    Top users
                 </div>
+                <div class="js-spinner p24 grid ai-center jc-center d-none"
+                    data-target="s-autocomplete.loading">
+                    <div class="s-spinner s-spinner__sm fc-orange-400">
+                        <div class="v-visible-sr">Loading…</div>
+                    </div>
+                </div>
+                <div class="grid gs4 fw-wrap"
+                    data-target="s-autocomplete.results"></div>
             </div>
         </div>
+    </div>
 </section>
