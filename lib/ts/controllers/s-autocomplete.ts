@@ -15,10 +15,10 @@
 
         connect() {
             this._clearResults();
+            this._hideLoadingIndicator();
         };
 
         disconnect() {
-            console.log("disconnected autocomplete");
         };
 
         /**
@@ -41,7 +41,6 @@
          * @param results 
          */
         private _displayResults(results: string): void {
-            console.log("displaying")
             setTimeout(() => {
                 this._hideLoadingIndicator();
                 this._resultElement.innerHTML = results;
