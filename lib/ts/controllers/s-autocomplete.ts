@@ -23,13 +23,24 @@
          */
         query() {
             let fun = () => {
-                let response = "<div>1</div><div>2</div>";
-                this._resultElement.innerHTML = response;
+                this._query === "" 
+                    ? this._clearResults() 
+                    : this._resultElement.innerHTML = this._stubResponse();
             };
 
             // todo: debounce
 
             fun();
+        }
+
+        private _stubResponse(): string {
+            return `
+                <a href="#" class="s-tag grid--cell">typescript</a>
+                <a href="#" class="s-tag grid--cell">clojure</a>
+                <a href="#" class="s-tag grid--cell">rust</a>
+                <a href="#" class="s-tag grid--cell">html</a>
+                <a href="#" class="s-tag grid--cell">php</a>
+            `;
         }
 
         /**
