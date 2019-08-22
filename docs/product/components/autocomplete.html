@@ -8,7 +8,7 @@ description: Autocompletes are components that search for text a user entered in
     {% header h2 | Examples %}
     <div class="mb24 p16 bar-sm bg-black-025 ba bc-black-1">
         <div data-controller="s-autocomplete">
-            <input class="s-input"
+            <input class="s-input" placeholder="with loading indicator"
                 data-controller="s-popover"
                 data-target="s-autocomplete.query"
                 data-s-popover-placement="bottom-start"
@@ -20,9 +20,35 @@ description: Autocompletes are components that search for text a user entered in
                 <div class="tt-uppercase fs-fine fc-light mb6">
                     Search for some tags
                 </div>
+                <div class="js-spinner p24 grid ai-center jc-center d-none"
+                     data-target="s-autocomplete.loading">
+                     <div class="s-spinner s-spinner__sm fc-orange-400">
+                        <div class="v-visible-sr">Loading…</div>
+                     </div>
+                </div>
                 <div class="grid gs4 fw-wrap"
                      data-target="s-autocomplete.results"></div>
             </div>
         </div>
     </div>
+
+    <div class="mb24 p16 bar-sm bg-black-025 ba bc-black-1">
+            <div data-controller="s-autocomplete">
+                <input class="s-input" placeholder="without loading indicator"
+                    data-controller="s-popover"
+                    data-target="s-autocomplete.query"
+                    data-s-popover-placement="bottom-start"
+                    data-s-autocomplete-delay="500"
+                    data-action="focus->s-popover#show input->s-autocomplete#query"
+                    aria-controls="popover-example-2">
+                <div id="popover-example-2" class="s-popover ws2" role="menu" aria-hidden="true">
+                    <div class="s-popover--arrow"></div>
+                    <div class="tt-uppercase fs-fine fc-light mb6">
+                        Search for some tags
+                    </div>
+                    <div class="grid gs4 fw-wrap"
+                         data-target="s-autocomplete.results"></div>
+                </div>
+            </div>
+        </div>
 </section>

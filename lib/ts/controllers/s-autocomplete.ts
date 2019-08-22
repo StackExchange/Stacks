@@ -1,12 +1,15 @@
 (function () {
     "use strict";
     Stacks.application.register("s-autocomplete", class extends Stacks.StacksController {
-        static targets = ["query", "results"];
+        static targets = ["query", "results", "loading"];
 
         declare readonly queryTarget!: HTMLInputElement;
         declare readonly queryTargets!: HTMLInputElement[];
         declare readonly resultsTarget!: HTMLInputElement;
         declare readonly resultsTargets!: HTMLInputElement[];
+        declare readonly loadingTarget!: HTMLInputElement;
+        declare readonly loadingTargets!: HTMLInputElement[];
+        declare readonly hasLoadingTarget!: boolean;
 
         timeouts: number[] = [];
 
@@ -22,15 +25,39 @@
          * Sends a query after a given delay
          */
         query() {
-            let fun = () => {
-                this._query === "" 
-                    ? this._clearResults() 
-                    : this._resultElement.innerHTML = this._stubResponse();
-            };
+            if (this._query === "") {
+                this._clearResults();
+                // todo: stop running queries
+                return;
+            }
 
+            this._showLoadingIndicator();
+            this._displayResults(this._stubResponse());
             // todo: debounce
+        }
 
-            fun();
+        /**
+         * Display autocomplete results in the result element
+         * @param results 
+         */
+        private _displayResults(results: string): void {
+            console.log("displaying")
+            setTimeout(() => {
+                this._hideLoadingIndicator();
+                this._resultElement.innerHTML = results;
+            }, 1500);
+        }
+
+        private _showLoadingIndicator(): void {
+            if (this.hasLoadingTarget) {
+                this.loadingTarget.classList.remove("d-none");
+            }
+        }
+
+        private _hideLoadingIndicator(): void {
+            if (this.hasLoadingTarget) {
+                this.loadingTarget.classList.add("d-none");
+            }
         }
 
         private _stubResponse(): string {
@@ -70,8 +97,16 @@
             this.timeouts.push(window.setTimeout(fun, wait));
         }
 
+        /**
+         * Clear all autocomplete results
+         */
         private _clearResults() {
+            this._hideLoadingIndicator();
             this._resultElement.innerHTML = ""
+        }
+
+        private _initializeKeyboardNavigation() {
+
         }
     });
 })();
