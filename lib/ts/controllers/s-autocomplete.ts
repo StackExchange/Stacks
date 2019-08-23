@@ -41,8 +41,19 @@
             }
 
             this._showLoadingIndicator();
-            this._displayResults(this._stubResponse());
+
+            fetch(this._url)
+                .then(response => this._handleResponse(response))
+                .then(responseText => this._displayResults(responseText))
+                .catch(error => this._showErrorState());
             // todo: debounce
+        }
+
+        private _handleResponse(response: Response): Promise<string> {
+            if(!response.ok) {
+                throw Error(response.statusText);
+            }
+            return response.text();
         }
 
         /**
@@ -50,10 +61,8 @@
          * @param results
          */
         private _displayResults(results: string): void {
-            setTimeout(() => {
-                this._hideLoadingIndicator();
-                this._resultElement.innerHTML = results;
-            }, 1500);
+            this._hideLoadingIndicator();
+            this._resultElement.innerHTML = results;
         }
 
         private _showLoadingIndicator(): void {
@@ -69,25 +78,17 @@
         }
 
         private _showErrorState(): void {
-            if (this.hasErrorTarget) {
-                this.errorTarget.classList.remove("d-none");
+            if (!this.hasErrorTarget) {
+                return;
             }
+            this.errorTarget.classList.remove("d-none");
         }
 
         private _hideErrorState(): void {
-            if (this.hasErrorTarget) {
-                this.errorTarget.classList.add("d-none");
-            }
-        }
-
-        private _stubResponse(): string {
-            return `
-                <a href="#" class="s-tag grid--cell">typescript</a>
-                <a href="#" class="s-tag grid--cell">clojure</a>
-                <a href="#" class="s-tag grid--cell">rust</a>
-                <a href="#" class="s-tag grid--cell">html</a>
-                <a href="#" class="s-tag grid--cell">php</a>
-            `;
+            if (!this.hasErrorTarget) {
+                return
+            };
+            this.errorTarget.classList.add("d-none");
         }
 
         /**
@@ -103,6 +104,18 @@
          */
         private get _delay(): number {
             return parseInt(this.data.get("delay") || "250");
+        }
+
+        /**
+         * Get the URL that shuold be queried
+         *
+         */
+        private get _url(): string {
+            let url = this.data.get("url");
+            if (!url) {
+                throw "no data-s-autocomplete-url attribute specified!"
+            }
+            return url;
         }
 
         /**
@@ -148,6 +161,7 @@
          */
         private _blurOnEscapePress(e: KeyboardEvent) {
             // if the ESC key (27) was pressed, blur
+            // todo: is this really good behavior?
             if (e.which === 27) {
                 this.queryTarget.blur();
             }
