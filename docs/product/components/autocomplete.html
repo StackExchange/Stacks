@@ -105,20 +105,35 @@ description: Autocompletes are components that search for text a user entered in
         to show in case something will go wrong. The autocomplete component will take care of showing
         and hiding the error state on its own.
     </p>
-    <div data-controller="s-autocomplete"
-        data-s-autocomplete-url="https://httpbin.org/status/404">
-        <input class="s-input" placeholder="autocompletion with errors"
-            data-target="s-autocomplete.query"
-            data-s-autocomplete-delay="500"
-            data-action="input->s-autocomplete#query">
-        <div class="my24 p16 bar-sm bg-black-025 ba bc-black-1">
-            <div class="fs-fine fc-light">
-                Autocomplete results go here
+
+    <div class="stacks-preview">
+{% highlight html %}
+<div data-controller="s-autocomplete"
+    data-s-autocomplete-url="...">
+    <input class="s-input"
+        data-target="s-autocomplete.query"
+        data-action="input->s-autocomplete#query">
+    <div data-target="s-autocomplete.results"></div>
+    <div data-target="s-autocomplete.error">
+        Something went wrong, please try again.
+    </div>
+</div>
+{% endhighlight %}
+        <div class="stacks-preview--example bg-black-025">
+            <div data-controller="s-autocomplete"
+                data-s-autocomplete-url="https://httpbin.org/status/404">
+                <input class="s-input" placeholder="autocompletion with errors"
+                    data-target="s-autocomplete.query"
+                    data-s-autocomplete-delay="500"
+                    data-action="input->s-autocomplete#query">
+                <div class="mt16 fs-fine fc-light">
+                    Autocomplete results go here
+                </div>
+                <div class="s-notice s-notice__danger mt16" data-target="s-autocomplete.error">
+                    Something went wrong, please try again.
+                </div>
+                <div class="grid gs4 mt16 fw-wrap" data-target="s-autocomplete.results"></div>
             </div>
-            <div class="s-notice s-notice__danger mt8" data-target="s-autocomplete.error">
-                Something went wrong, please try again.
-            </div>
-            <div class="grid gs4 mt12 fw-wrap" data-target="s-autocomplete.results"></div>
         </div>
     </div>
 
@@ -128,23 +143,40 @@ description: Autocompletes are components that search for text a user entered in
 
     <p class="stacks-copy">To do so, you can combine an <code class="stacks-code">s-autocomplete</code> and an <code class="stacks-code">s-popover</code> component.</p>
 
-    <div class="mb24 p16 bar-sm bg-black-025 ba bc-black-1">
-        <div data-controller="s-autocomplete"
-            data-s-autocomplete-url="/product/components/examples/autocomplete/teams.html">
-            <input class="s-input" placeholder="Type to search for teams…"
-                data-controller="s-popover"
-                data-target="s-autocomplete.query"
-                data-s-popover-placement="bottom-start"
-                data-s-autocomplete-delay="500"
-                data-action="focus->s-popover#show input->s-autocomplete#query"
-                aria-controls="popover-example-1">
-            <div id="popover-example-1" class="s-popover ws2" role="menu" aria-hidden="true">
-                <div class="s-popover--arrow"></div>
-                <div class="tt-uppercase fs-fine fc-light mb12">
-                    My favourite teams
+    <div class="stacks-preview">
+{% highlight html %}
+<div data-controller="s-autocomplete"
+    data-s-autocomplete-url="...">
+    <input class="s-input"
+        data-controller="s-popover"
+        data-s-popover-placement="bottom-start"
+        aria-controls="popover-example-1"
+        data-target="s-autocomplete.query"
+        data-action="focus->s-popover#show input->s-autocomplete#query">
+    <div id="popover-example-1" class="s-popover ws2" role="menu" aria-hidden="true">
+        <div class="s-popover--arrow"></div>
+        <div data-target="s-autocomplete.results"></div>
+    </div>
+</div>
+{% endhighlight %}
+        <div class="stacks-preview--example bg-black-025">
+            <div data-controller="s-autocomplete"
+                data-s-autocomplete-url="/product/components/examples/autocomplete/teams.html">
+                <input class="s-input" placeholder="Type to search for teams…"
+                    data-controller="s-popover"
+                    data-target="s-autocomplete.query"
+                    data-s-popover-placement="bottom-start"
+                    data-s-autocomplete-delay="500"
+                    data-action="focus->s-popover#show input->s-autocomplete#query"
+                    aria-controls="popover-example-1">
+                <div id="popover-example-1" class="s-popover ws2" role="menu" aria-hidden="true">
+                    <div class="s-popover--arrow"></div>
+                    <div class="tt-uppercase fs-fine fc-light mb12">
+                        My favourite teams
+                    </div>
+                    <div class="grid fd-column"
+                        data-target="s-autocomplete.results"></div>
                 </div>
-                <div class="grid fd-column"
-                    data-target="s-autocomplete.results"></div>
             </div>
         </div>
     </div>
@@ -167,32 +199,50 @@ description: Autocompletes are components that search for text a user entered in
         will be hidden again.
     </p>
 
-    <div class="mb24 p16 bar-sm bg-black-025 ba bc-black-1">
-        <div data-controller="s-autocomplete"
-            data-s-autocomplete-url="http://deelay.me/2000/https://httpbin.org/status/404">
-            <input class="s-input" placeholder="Type to search for users…"
-                data-controller="s-popover"
-                data-target="s-autocomplete.query"
-                data-s-popover-placement="bottom-start"
-                data-s-autocomplete-delay="500"
-                data-action="focus->s-popover#show input->s-autocomplete#query"
-                aria-controls="popover-example-2">
-            <div id="popover-example-2" class="s-popover ws2" role="menu" aria-hidden="true">
-                <div class="s-popover--arrow"></div>
-                <div class="tt-uppercase fs-fine fc-light mb6">
-                    Top users
-                </div>
-                <div class="p24 grid ai-center jc-center"
-                    data-target="s-autocomplete.loading">
-                    <div class="s-spinner s-spinner__sm fc-orange-400">
-                        <div class="v-visible-sr">Loading…</div>
+    <div class="stacks-preview">
+{% highlight html %}
+<div data-controller="s-autocomplete"
+    data-s-autocomplete-url="...">
+    <input class="s-input"
+        data-controller="s-popover"
+        data-s-popover-placement="bottom-start"
+        aria-controls="popover-example-2"
+        data-target="s-autocomplete.query"
+        data-action="focus->s-popover#show input->s-autocomplete#query">
+    <div id="popover-example-2" class="s-popover ws2" role="menu" aria-hidden="true">
+        <div class="s-popover--arrow"></div>
+        <div data-target="s-autocomplete.results"></div>
+        <div data-target="s-autocomplete.loading">Loading…</div>
+    </div>
+</div>
+{% endhighlight %}
+        <div class="stacks-preview--example bg-black-025">
+            <div data-controller="s-autocomplete"
+                data-s-autocomplete-url="http://deelay.me/2000/https://httpbin.org/status/404">
+                <input class="s-input" placeholder="Type to search for users…"
+                    data-controller="s-popover"
+                    data-target="s-autocomplete.query"
+                    data-s-popover-placement="bottom-start"
+                    data-s-autocomplete-delay="500"
+                    data-action="focus->s-popover#show input->s-autocomplete#query"
+                    aria-controls="popover-example-2">
+                <div id="popover-example-2" class="s-popover ws2" role="menu" aria-hidden="true">
+                    <div class="s-popover--arrow"></div>
+                    <div class="tt-uppercase fs-fine fc-light mb6">
+                        Top users
                     </div>
+                    <div class="p24 grid ai-center jc-center"
+                        data-target="s-autocomplete.loading">
+                        <div class="s-spinner s-spinner__sm fc-orange-400">
+                            <div class="v-visible-sr">Loading…</div>
+                        </div>
+                    </div>
+                    <div class="s-notice s-notice__danger mt8" data-target="s-autocomplete.error">
+                        Something went wrong, please try again.
+                    </div>
+                    <div class="grid gs4 fw-wrap"
+                        data-target="s-autocomplete.results"></div>
                 </div>
-                <div class="s-notice s-notice__danger mt8" data-target="s-autocomplete.error">
-                    Something went wrong, please try again.
-                </div>
-                <div class="grid gs4 fw-wrap"
-                    data-target="s-autocomplete.results"></div>
             </div>
         </div>
     </div>
