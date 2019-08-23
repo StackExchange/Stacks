@@ -65,18 +65,27 @@
             this._resultElement.innerHTML = results;
         }
 
+        /**
+         * Show the loading indicator element, if present
+         */
         private _showLoadingIndicator(): void {
             if (this.hasLoadingTarget) {
                 this.loadingTarget.classList.remove("d-none");
             }
         }
 
+        /**
+         * Hide the loading indicator element, if present
+         */
         private _hideLoadingIndicator(): void {
             if (this.hasLoadingTarget) {
                 this.loadingTarget.classList.add("d-none");
             }
         }
 
+        /**
+         * Show the error state element if present
+         */
         private _showErrorState(): void {
             if (!this.hasErrorTarget) {
                 return;
@@ -84,6 +93,9 @@
             this.errorTarget.classList.remove("d-none");
         }
 
+        /**
+         * Hide the error state element, if present
+         */
         private _hideErrorState(): void {
             if (!this.hasErrorTarget) {
                 return
