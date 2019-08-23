@@ -1,7 +1,7 @@
 (function () {
     "use strict";
     Stacks.application.register("s-autocomplete", class extends Stacks.StacksController {
-        static targets = ["query", "results", "loading"];
+        static targets = ["query", "results", "loading", "error"];
 
         declare readonly queryTarget!: HTMLInputElement;
         declare readonly queryTargets!: HTMLInputElement[];
@@ -10,6 +10,9 @@
         declare readonly loadingTarget!: HTMLInputElement;
         declare readonly loadingTargets!: HTMLInputElement[];
         declare readonly hasLoadingTarget!: boolean;
+        declare readonly errorTarget!: HTMLInputElement;
+        declare readonly errorTargets!: HTMLInputElement[];
+        declare readonly hasErrorTarget!: boolean;
 
         private timeouts: number[] = [];
 
@@ -18,6 +21,7 @@
         connect() {
             this._clearResults();
             this._hideLoadingIndicator();
+            this._hideErrorState();
             this._bindDocumentEvents();
         };
 
@@ -29,6 +33,7 @@
          * Sends a query after a given delay
          */
         query() {
+            this._hideErrorState();
             if (this._query === "") {
                 this._clearResults();
                 // todo: stop running queries
@@ -60,6 +65,18 @@
         private _hideLoadingIndicator(): void {
             if (this.hasLoadingTarget) {
                 this.loadingTarget.classList.add("d-none");
+            }
+        }
+
+        private _showErrorState(): void {
+            if (this.hasErrorTarget) {
+                this.errorTarget.classList.remove("d-none");
+            }
+        }
+
+        private _hideErrorState(): void {
+            if (this.hasErrorTarget) {
+                this.errorTarget.classList.add("d-none");
             }
         }
 

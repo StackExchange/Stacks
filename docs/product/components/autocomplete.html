@@ -32,6 +32,16 @@ description: Autocompletes are components that search for text a user entered in
                     <td class="p8">Designates the declaring element as the target where autocomplete results will appear.</td>
                 </tr>
                 <tr>
+                    <th scope="row"><code class="stacks-code">data-target="s-autocomplete.loading"</code></th>
+                    <td>Any child of the controller element</td>
+                    <td class="p8">The declaring element will be shown while querying data and hidden once the search results are there.</td>
+                </tr>
+                <tr>
+                    <th scope="row"><code class="stacks-code">data-target="s-autocomplete.error"</code></th>
+                    <td>Any child of the controller element</td>
+                    <td class="p8">The declaring element will be shown if an error occurs while running the search query.</td>
+                </tr>
+                <tr>
                     <th scope="row"><code class="stacks-code">data-action="input->s-autocomplete#query"</code></th>
                     <td>Input element</td>
                     <td class="p8">Wires up the input element to trigger a search query after the user has stopped typing.</td>
@@ -62,6 +72,33 @@ description: Autocompletes are components that search for text a user entered in
         <div class="my24 p16 bar-sm bg-black-025 ba bc-black-1">
             <div class="fs-fine fc-light">
                 Autocomplete results go here
+            </div>
+            <div class="grid gs4 mt12 fw-wrap" data-target="s-autocomplete.results"></div>
+        </div>
+    </div>
+
+    {% header h3 | Error State %}
+    <p>
+        We're fetching data from an external backend and there are many ways this can go wrong.
+        Autocompletes support showing custom error states if fetching data fails.
+    </p>
+    <p>
+        Add the <code class="stacks-code">data-target="s-autocomplete.error"</code> attribute to any
+        child element of your <code class="stacks-code">s-autocomplete</code> controller that you want
+        to show in case something will go wrong. The autocomplete component will take care of showing
+        and hiding the error state on its own.
+    </p>
+    <div data-controller="s-autocomplete">
+        <input class="s-input" placeholder="autocompletion with errors"
+            data-target="s-autocomplete.query"
+            data-s-autocomplete-delay="500"
+            data-action="input->s-autocomplete#query">
+        <div class="my24 p16 bar-sm bg-black-025 ba bc-black-1">
+            <div class="fs-fine fc-light">
+                Autocomplete results go here
+            </div>
+            <div class="s-notice s-notice__danger" data-target="s-autocomplete.error">
+                Something went wrong, please try again.
             </div>
             <div class="grid gs4 mt12 fw-wrap" data-target="s-autocomplete.results"></div>
         </div>
@@ -99,9 +136,9 @@ description: Autocompletes are components that search for text a user entered in
     </p>
 
     <p>
-        To show a loading indicator while waiting for the autocomplete result, add any HTML element as a child to 
+        To show a loading indicator while waiting for the autocomplete result, add any HTML element as a child to
         your <code class="stacks-code">data-controller="s-autocomplete"</code> element and declare it as the element
-        to be displayed while waiting for search results using the <code class="stacks-code">data-target="s-autocomplete.loading"</code> 
+        to be displayed while waiting for search results using the <code class="stacks-code">data-target="s-autocomplete.loading"</code>
         attribute.
     </p>
     <p>
