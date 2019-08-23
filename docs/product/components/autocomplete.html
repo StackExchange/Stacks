@@ -152,7 +152,7 @@ description: Autocompletes are components that search for text a user entered in
 
     <div class="mb24 p16 bar-sm bg-black-025 ba bc-black-1">
         <div data-controller="s-autocomplete"
-            data-s-autocomplete-url="https://httpbin.org/delay/4">
+            data-s-autocomplete-url="http://deelay.me/2000/https://httpbin.org/status/404">
             <input class="s-input" placeholder="Type to search for users…"
                 data-controller="s-popover"
                 data-target="s-autocomplete.query"
@@ -165,11 +165,14 @@ description: Autocompletes are components that search for text a user entered in
                 <div class="tt-uppercase fs-fine fc-light mb6">
                     Top users
                 </div>
-                <div class="js-spinner p24 grid ai-center jc-center"
+                <div class="p24 grid ai-center jc-center"
                     data-target="s-autocomplete.loading">
                     <div class="s-spinner s-spinner__sm fc-orange-400">
                         <div class="v-visible-sr">Loading…</div>
                     </div>
+                </div>
+                <div class="s-notice s-notice__danger mt8" data-target="s-autocomplete.error">
+                    Something went wrong, please try again.
                 </div>
                 <div class="grid gs4 fw-wrap"
                     data-target="s-autocomplete.results"></div>

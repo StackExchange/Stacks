@@ -87,6 +87,7 @@
          * Show the error state element if present
          */
         private _showErrorState(): void {
+            this._hideLoadingIndicator();
             if (!this.hasErrorTarget) {
                 return;
             }
