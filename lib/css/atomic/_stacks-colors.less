@@ -14,28 +14,18 @@
 
 & {
     .color(@color-name) {
-        .fc-@{color-name} {
+        .fc-@{color-name},
+        .h\:fc-@{color-name}:hover,
+        .f\:fc-@{color-name}:focus,
+        .f\:fc-@{color-name}:focus-within {
             color: @@color-name !important;
-        }
-        .h\:fc-@{color-name}:hover {
-            color: @@color-name !important;
-        }
-        .f\:fc-@{color-name} {
-            &:focus, &:focus-within {
-                color: @@color-name !important;
-            }
         }
 
-        .bg-@{color-name} {
-            color: @@color-name !important;
-        }
-        .h\:bg-@{color-name}:hover {
-            color: @@color-name !important;
-        }
-        .f\:bg-@{color-name} {
-            &:focus, &:focus-within {
-                color: @@color-name !important;
-            }
+        .fc-@{color-name},
+        .h\:fc-@{color-name}:hover,
+        .f\:fc-@{color-name}:focus,
+        .f\:fc-@{color-name}:focus-within {
+            background-color: @@color-name !important;
         }
     }
 
