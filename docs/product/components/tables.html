@@ -976,17 +976,16 @@ description: Tables are used to list all information from a data set. The base s
     </div>
 </section>
 <section class="stacks-section">
-    {% header h2 | Disabled rows %}
-    <p class="stacks-copy">Used in tables that display data that’s been disabled or deactivated. Good for tables that include disabled users or teams.</p>
-    <p class="stacks-copy">Optionally inside <code class="stacks-code">&lt;tr class="is-disabled"&gt;</code>, a <code class="stacks-code">.never-disabled</code> class can be applied to any <code class="stacks-code">&lt;th&gt;</code> or <code class="stacks-code">&lt;td&gt;</code> that you’d like to ignore the disabled styling (such as a link to reactivate a disabled account).</p>
+    {% header h2 | Inactive rows %}
+    <p class="stacks-copy">For tables that include inactive rows, such as inactive users or teams, <code class="stacks-code">is-inactive</code> can be applied to any <code class="stacks-code">&lt;tr&gt;</code>. Additionally, <code class="stacks-code">.is-active</code> can be applied to any <code class="stacks-code">&lt;th&gt;</code> or <code class="stacks-code">&lt;td&gt;</code> that you’d like to ignoring the parent inactive styling (such as a persistent link to reactivate a disabled account).</p>
     <div class="stacks-preview">
 {% highlight html %}
 <table class="s-table">
     <tbody>
-         <tr class="is-disabled">
+         <tr class="is-inactive">
             <td>…</td>
             <td>…</td>
-            <td class="never-disabled">
+            <td class="is-active">
                 <a>Add</a>
             </td>
         </tr>
@@ -1008,31 +1007,31 @@ description: Tables are used to list all information from a data set. The base s
                         <th><a>Aaron Shekey</a></th>
                         <td>emailaddress@website.com</td>
                         <td>just now</td>
-                        <td class="ta-right never-disabled"><a class="fc-red-500">Remove</a></td>
+                        <td class="ta-right"><a class="fc-red-500">Remove</a></td>
                     </tr>
-                    <tr class="is-disabled">
+                    <tr class="is-inactive">
                         <th>Joshua Hynes</th>
                         <td>emailaddress@website.com</td>
                         <td>Sep 28 ’18</td>
-                        <td class="ta-right never-disabled"><a>Add</a></td>
+                        <td class="ta-right is-active"><a>Add</a></td>
                     </tr>
-                    <tr class="is-disabled">
+                    <tr class="is-inactive">
                         <th>Paweł Ludwiczak</th>
                         <td>emailaddress@website.com</td>
                         <td>Apr 17 ’19</td>
-                        <td class="ta-right never-disabled"><a>Add</a></td>
+                        <td class="ta-right is-active"><a>Add</a></td>
                     </tr>
                     <tr>
                         <th><a>Piper Lawson</a></th>
                         <td>emailaddress@website.com</td>
                         <td>Yesterday</td>
-                        <td class="ta-right never-disabled"><a class="fc-red-500">Remove</a></td>
+                        <td class="ta-right"><a class="fc-red-500">Remove</a></td>
                     </tr>
                     <tr>
                         <th><a>Ted Goas</a></th>
                         <td>emailaddress@website.com</td>
                         <td>5min ago</td>
-                        <td class="ta-right never-disabled"><a class="fc-red-500">Remove</a></td>
+                        <td class="ta-right"><a class="fc-red-500">Remove</a></td>
                     </tr>
                 </tbody>
             </table>
