@@ -12,6 +12,10 @@ description: Tags are interface elements that allow users to organize and discov
 </section>
 <section class="stacks-section">
     {% header h2 | Examples %}
+    {% header h3 | Default %}
+    <p class="stacks-copy">
+        The default style of tags on Stack Overflow
+    </p>
     <div class="stacks-preview mb24">
 {% highlight html %}
 <td>
@@ -28,6 +32,44 @@ description: Tags are interface elements that allow users to organize and discov
             </div>
         </div>
     </div>
+    <div class="grid ai-start s-notice s-notice__info mb48">
+        <div class="grid--cell mr8">{% icon Alert %}</div>
+        <div class="grid--cell lh-lg">
+            <strong>Note:</strong> Using the <code class="stacks-code bg-powder-200">s-tag</code> class applies <code class="stacks-code bg-powder-200">:hover</code> progressive enhancements defined in the <code class="stacks-code bg-powder-200">&lt;style&gt;</code> tag. Only  <a href="https://www.campaignmonitor.com/css/style-element/style-in-head/">email clients that support <code class="stacks-code bg-powder-200">&lt;style&gt;</code> in <code class="stacks-code bg-powder-200">&lt;head&gt;</code></a> will render the <code class="stacks-code bg-powder-200">:hover</code>.
+        </div>
+    </div>
+    {% header h3 | Themed %}
+    <p class="stacks-copy">
+        For when the color of tags can be customizes or user defined.
+    </p>
+    <div class="stacks-preview mb24">
+{% highlight html %}
+<td>
+    <a href="#" style="display: inline-block; border: 5px solid #EFF0F1; border-color: #2b8a3e01; margin: 0 1px 4px 0; background: #EFF0F1; background: #2b8a3e15; border-radius: 3px; color: #2b8a3e; font-family: arial, sans-serif; font-size: 12px; line-height: 12px; text-decoration: none; white-space: nowrap;" class="s-tag">tag-name</a>
+</td>
+{% endhighlight %}
+        <div class="stacks-preview--example">
+            <div class="mb8">
+                <a href="#" style="display: inline-block; border: 5px solid #EFF0F1; border-color: #2b8a3e01; margin: 0 1px 4px 0; background: #EFF0F1; background: #2b8a3e15; border-radius: 3px; color: #2b8a3e; font-family: arial, sans-serif; font-size: 12px; line-height: 12px; text-decoration: none; white-space: nowrap;" class="s-tag">tag-name</a>
+                <a href="#" style="display: inline-block; border: 5px solid #EFF0F1; border-color: #2b8a3e01; margin: 0 1px 4px 0; background: #EFF0F1; background: #2b8a3e15; border-radius: 3px; color: #2b8a3e; font-family: arial, sans-serif; font-size: 12px; line-height: 12px; text-decoration: none; white-space: nowrap;" class="s-tag">tag</a>
+                <a href="#" style="display: inline-block; border: 5px solid #EFF0F1; border-color: #2b8a3e01; margin: 0 1px 4px 0; background: #EFF0F1; background: #2b8a3e15; border-radius: 3px; color: #2b8a3e; font-family: arial, sans-serif; font-size: 12px; line-height: 12px; text-decoration: none; white-space: nowrap;" class="s-tag">another-tag-name</a>
+            </div>
+            <div>
+                <a href="#" style="display: inline-block; border: 5px solid #EFF0F1; border-color: #F4802401; margin: 0 1px 4px 0; background: #EFF0F1; background: #F4802415; border-radius: 3px; color: #F48024; font-family: arial, sans-serif; font-size: 12px; line-height: 12px; text-decoration: none; white-space: nowrap;" class="s-tag">tag-name</a>
+                <a href="#" style="display: inline-block; border: 5px solid #EFF0F1; border-color: #F4802401; margin: 0 1px 4px 0; background: #EFF0F1; background: #F4802415; border-radius: 3px; color: #F48024; font-family: arial, sans-serif; font-size: 12px; line-height: 12px; text-decoration: none; white-space: nowrap;" class="s-tag">tag</a>
+                <a href="#" style="display: inline-block; border: 5px solid #EFF0F1; border-color: #F4802401; margin: 0 1px 4px 0; background: #EFF0F1; background: #F4802415; border-radius: 3px; color: #F48024; font-family: arial, sans-serif; font-size: 12px; line-height: 12px; text-decoration: none; white-space: nowrap;" class="s-tag">another-tag-name</a>
+            </div>
+        </div>
+    </div>
+    <p class="stacks-copy">
+        Themed color are defined using a dark theme color (used for text color) and applying that same color at <strong>15% opacity</strong> as the background. However not all email clients support background opacity, so this explains our “clever hack” around those limitations.
+    </p>
+    <p class="stacks-copy">
+        Initially we define a neutral gray color <code class="stacks-code">#EFF0F1</code> . That's mainly for Windows Outlook and Yahoo (web and mobile), who will display themed tags with a light gray background and the text set in the theme color.
+    </p>
+    <p class="stacks-copy">
+        But for email clients that support opacity, we can use the theme color at 15% as a longer hex code like <code class="stacks-code">#2b8a3e15</code>. But when we apply a background opacity to both the border and background, we get a visible border. But for tagfs, the border is only used to give this button some padding (because some email clients don’t apply padding to text elements) and the background color is already what we need. Applying <code class="stacks-code">background-color: transparent;</code> would be ideal, but Outlook reads that as nothing and doesn’t apply the background width. So we're making the team color appear at 1% for the border. Technically it’s there (so Outlook doesn’t collapse our tag’s padding) but the 1% opacity is imperceivable to humans.
+    </p>
     <div class="grid ai-start s-notice s-notice__info mb48">
         <div class="grid--cell mr8">{% icon Alert %}</div>
         <div class="grid--cell lh-lg">
