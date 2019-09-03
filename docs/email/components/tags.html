@@ -13,7 +13,7 @@ description: Tags are interface elements that allow users to organize and discov
 <section class="stacks-section">
     {% header h2 | Default %}
     <p class="stacks-copy">
-        The default style of tags on Stack Overflow
+        The default style of tags on Stack Overflow.
     </p>
     <div class="stacks-preview mb24">
 {% highlight html %}
@@ -43,7 +43,7 @@ description: Tags are interface elements that allow users to organize and discov
     </div>
     {% header h2 | Themed %}
     <p class="stacks-copy">
-        For when the color of tags can be customizes or user defined.
+        Some areas of the site can be themed by the community by setting a theme color. This theme color can be used to change the text and background color of tags in that community.
     </p>
     <div class="stacks-preview mb24">
 {% highlight html %}
@@ -65,13 +65,13 @@ description: Tags are interface elements that allow users to organize and discov
         </div>
     </div>
     <p class="stacks-copy">
-        Themed color are defined using a dark theme color (used for text color) and applying that same color at <strong>15% opacity</strong> as the background. However not all email clients support background opacity, so this explains our “clever hack” around those limitations.
+        Themed tags use the theme color at 100% for text color and use the theme color at 15% for the background. However not all email clients support opacity, so here’s how we worked around those limitations:
     </p>
     <p class="stacks-copy">
-        Initially we define a neutral gray color <code class="stacks-code">#EFF0F1</code> . That's mainly for Windows Outlook and Yahoo (web and mobile), who will display themed tags with a light gray background and the text set in the theme color.
+        Initially a solid gray color <code class="stacks-code">#EFF0F1</code> is defined for the background (both <code class="stacks-code">border-color</code> and <code class="stacks-code">background</code>). Email clients that don’t support opacity (mainly Windows Outlook and Yahoo) will display themed tags using the theme color for text and a solid gray background.
     </p>
     <p class="stacks-copy">
-        But for email clients that support opacity, we can use the theme color at 15% as a longer hex code like <code class="stacks-code">#2b8a3e15</code>. But when we apply a background opacity to both the border and background, we get a visible border. But for tagfs, the border is only used to give this button some padding (because some email clients don’t apply padding to text elements) and the background color is already what we need. Applying <code class="stacks-code">background-color: transparent;</code> would be ideal, but Outlook reads that as nothing and doesn’t apply the background width. So we're making the team color appear at 1% for the border. Technically it’s there (so Outlook doesn’t collapse our tag’s padding) but the 1% opacity is imperceivable to humans.
+        For email clients that support opacity, the background can be defined again using the theme color at 15%, like <code class="stacks-code">#2b8a3e15</code>. But when a transparent background is applied to both the border and background, a visible appears. However, the <code class="stacks-code">border</code> is only used here to give the tag some padding (some email clients don’t apply padding to text elements) and the <code class="stacks-code">background</code> is already the color we need. Applying <code class="stacks-code">background-color: transparent;</code> would be ideal, but Outlook reads that as nothing and doesn’t apply the background width. So the team color is defined at 1% for the border (<code class="stacks-code">border-color: #F4802401;</code>). Technically it’s there so Outlook won't collapse the tag’s spacing but the 1% opacity is imperceivable to humans.
     </p>
     <div class="grid ai-start s-notice s-notice__info mb48">
         <div class="grid--cell mr8">{% icon Alert %}</div>
