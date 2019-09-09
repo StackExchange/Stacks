@@ -109,4 +109,40 @@ description: Page titles create consistency in the layout of similar pages, spec
             </div>
         </div>
     </div>
+    {% header h3 | Title with breadcrumbs %}
+    <p class="stacks-copy">
+        Breadcrumbs are used to provide context for the currently-viewed page and reduce the number of actions a website visitor needs to take in order to get to a higher-level page. Breadcrumbs <strong>should not</strong> for single-level sections that have no logical grouping.
+    </p>
+    <div class="stacks-preview">
+{% highlight html %}
+<div class="s-page-title">
+    <div>
+        <nav class="s-breadcrumbs" aria-label="breadcrumb">…</nav>
+        <h1>Page title</h1>
+        <p>…</p>
+    </div>
+</div>
+{% endhighlight %}
+        <div class="stacks-preview--example">
+            <div class="s-page-title">
+                <div>
+                    <nav class="s-breadcrumbs" aria-label="breadcrumb">
+                        <div class="s-breadcrumbs--item">
+                            <a class="s-breadcrumbs--link" href="…">Stack Overflow</a>
+                            {% icon ArrowRightAltSm | s-breadcrumbs--divider %}
+                        </div>
+                        <div class="s-breadcrumbs--item">
+                            <a class="s-breadcrumbs--link" href="…">…</a>
+                            {% icon ArrowRightAltSm | s-breadcrumbs--divider %}
+                        </div>
+                        <div class="s-breadcrumbs--item">
+                            <a class="s-breadcrumbs--link" href="…">…</a>
+                        </div>
+                    </nav>
+                    <h1>Page title</h1>
+                    <p>Optional description de Finibus Bonorum et Malorum with an <a href="#">optional link</a>.</p>
+                </div>
+            </div>
+        </div>
+    </div>
 </section>
