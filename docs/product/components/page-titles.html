@@ -1,15 +1,11 @@
 ---
 layout: page
 title: Page titles
-description: content
+description: Page titles create consistency in the layout of similar pages, specifically the placement and appearance of titles, descriptions, actions, and breadcrumbs.
 ---
 
 <section class="stacks-section">
-    {% header h2 | Admin sections %}
-    <p class="stacks-copy">
-        These patterns are specific to page titles in the admin sections of our private Q&A products, but will likely be expanded.
-    </p>
-    {% header h3 | Components %}
+    {% header h2 | Components %}
     <div class="overflow-x-auto mb32">
         <table class="wmn4 s-table s-table__bx-simple">
             <thead>
@@ -21,22 +17,30 @@ description: content
             <tbody>
                 <tr>
                     <th scope="row">Page title</th>
-                    <td>Title of the page. Refer to <a href="">word choice</a>, <a href="">naming</a>, and <a href="">capitalization</a>.</td>
+                    <td>Title of the page. Refer to the <a href="{{ "/content/guidelines/principles" | relative_url }}">content section</a> of Stacks for things like <a href="{{ "/content/guidelines/principles#simple-words" | relative_url }}">word choice</a>, <a href="{{ "/content/guidelines/principles#naming" | relative_url }}">naming</a>, and <a href="{{ "/content/guidelines/grammar-and-mechanics#use-sentence-casing" | relative_url }}">capitalization</a>.</td>
                 </tr>
                 <tr>
                     <th scope="row">Description <span class="s-label--status">Optional</span></th>
-                    <td>More context</td>
+                    <td>Additional context for content and actions on the page.</td>
                 </tr>
                 <tr>
                     <th scope="row">Actions <span class="s-label--status">Optional</span></th>
-                    <td>Free form area to include buttons, filters, or other HTML content.</td>
+                    <td>Free-form area to include buttons, filters, or other HTML content.</td>
+                </tr>
+                <tr>
+                    <th scope="row">Breadcrumbs <span class="s-label--status">Optional</span></th>
+                    <td><a href="{{ "/product/components/breadcrumbs" | relative_url }}">Breadcrumbs</a> can be included to provide context for the currently-viewed page.</td>
                 </tr>
             </tbody>
         </table>
     </div>
+    {% header h2 | Admin sections %}
+    <p class="stacks-copy">
+        These components should be used in the admin sections of our private Q&A products.
+    </p>
     {% header h3 | Base Styles %}
     <p class="stacks-copy">
-        The base style for pages that don't need further descriotion beyond the page title and don't have any actions for filters. 
+        The base style for pages that don’t need further description beyond the page title and don’t have any actions for filters. 
     </p>
     <div class="stacks-preview">
 {% highlight html %}
@@ -56,7 +60,7 @@ description: content
     </div>
     {% header h3 | Title with description %}
     <p class="stacks-copy">
-        When you need to explain more than the title.
+        A summary of a page’s content. Helpful for large pages with multiple actions.
     </p>
     <div class="stacks-preview">
 {% highlight html %}
@@ -78,7 +82,7 @@ description: content
     </div>
     {% header h3 | Title with actions %}
     <p class="stacks-copy">
-        Sometimes you have actions.
+        When a page title includes actions, they are located at the far end of the component. This area is free-form, so we can include any markups we'd like, from single button to a grid of custom filters and text.
     </p>
     <div class="stacks-preview">
 {% highlight html %}
@@ -87,7 +91,7 @@ description: content
                     <h1>Page title</h1>
                     <p>…</p>
                 </div>
-                <div>…</div>
+                <div class="md:mt8">…</div>
             </div>
 {% endhighlight %}
         <div class="stacks-preview--example">
