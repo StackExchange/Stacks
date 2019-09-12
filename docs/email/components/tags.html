@@ -72,30 +72,20 @@ description: Tags are interface elements that allow users to organize and discov
         </div>
     </div>
     <p class="stacks-copy">
-        Themed tags use the theme color at 100% for text color and use the theme color at 15% for the background. However not all email clients support opacity, so here’s how we worked around those limitations:
+        Themed tags use a variable theme color and CSS opacity. However not all email clients support opacity, so here’s how we work around those limitations:
     </p>
     <p class="stacks-copy">
-        Initially a solid gray color <code class="stacks-code">#EFF0F1</code> is defined for the background (both <code class="stacks-code">border-color</code> and <code class="stacks-code">background</code>). Email clients that don’t support opacity (mainly Windows Outlook and Yahoo) will display themed tags using the theme color for text and a solid gray background:
+        <strong>For email clients that DON’T support opacity</strong> (mainly Windows Outlook and Yahoo), the background (both <code class="stacks-code">border-color</code> and <code class="stacks-code">background</code>) is defined as a solid gray color <code class="stacks-code">#EFF0F1</code>. Email clients that don’t support opacity displayed themed tags with this gray background:
     </p>
     <figure class="s-card bs-sm p16 m0 mb16 grid ai-center wmx5">
         <a href="#" style="border: 5px solid #EFF0F1; background: #EFF0F1; border-radius: 3px; color: #2b8a3e; font-family: arial, sans-serif; font-size: 12px; line-height: 12px; text-decoration: none; white-space: nowrap;" class="grid--cell">tag-name</a>
         <p class="grid--cell ml8"> How themed tags appear in email clients that DON’T support opacity.</p>
     </figure>
     <p class="stacks-copy">
-        For email clients that support opacity, the background can be defined again using the theme color at 15%, like <code class="stacks-code">#2b8a3e15</code>. But when a transparent background is applied to both the border and background, the overlap is visible:
-    </p>
-    <figure class="s-card bs-sm p16 m0 mb16 grid ai-center wmx5">
-        <a href="#" style="border: 5px solid #2b8a3e15; background: #2b8a3e15; border-radius: 3px; color: #2b8a3e; font-family: arial, sans-serif; font-size: 12px; line-height: 12px; text-decoration: none; white-space: nowrap;">tag-name</a>
-        <p class="grid--cell ml8"> The two backgrounds to overlap each other, causing a visible overlay.</p>
-    </figure>
-    <p class="stacks-copy">
-        However, the <code class="stacks-code">border</code> is only used here to give the tag some padding (some email clients don’t apply padding to text elements) and the <code class="stacks-code">background</code> is already the color we need. Applying <code class="stacks-code">background-color: transparent;</code> would be ideal, but Outlook reads that as nothing and doesn’t apply the background width. So the team color is defined at 1% for the border (<code class="stacks-code">border-color: #F4802401;</code>):
+        <strong>For email clients that DO support opacity</strong>, we define the background again by using the theme color at 15% opacity (<code class="stacks-code">#2b8a3e15</code>). The <code class="stacks-code">border-color</code> uses the theme color at 1% opacity (<code class="stacks-code">#2b8a3e01</code>) to avoid a perceivable border caused by two overlapping color at 15% and prevent email clients from collapsing a transparent border.
     </p>
     <figure class="s-card bs-sm p16 m0 mb16 grid ai-center wmx5">
         <a href="#" style="border: 5px solid #2b8a3e01; background: #2b8a3e15; border-radius: 3px; color: #2b8a3e; font-family: arial, sans-serif; font-size: 12px; line-height: 12px; text-decoration: none; white-space: nowrap;">tag-name</a>
         <p class="grid--cell ml8"> How themed tags appear in email clients that DO support opacity.</p>
     </figure>
-    <p class="stacks-copy">
-        Technically it’s there so Outlook won't collapse the tag’s spacing but the 1% opacity is imperceivable to humans.
-    </p>
 </section>
