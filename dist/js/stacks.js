@@ -4702,10 +4702,12 @@ var __extends = (this && this.__extends) || (function () {
                     throw "element with popover id not found";
                 }
                 this.popoverElement = element;
+                var isVisibleByDefault = this.popoverElement.classList.contains("is-visible");
                 this.popper = new Popper(this.referenceElement, this.popoverElement, {
                     placement: this.data.get("placement") || "bottom",
+                    eventsEnabled: isVisibleByDefault
                 });
-                this._toggleOptionalClasses(this.popoverElement.classList.contains("is-visible"));
+                this._toggleOptionalClasses(isVisibleByDefault);
             };
             ;
             class_1.prototype.disconnect = function () {
@@ -4748,11 +4750,13 @@ var __extends = (this && this.__extends) || (function () {
                 this._boundKeypressFn = this._boundKeypressFn || this._hideOnEscapePress.bind(this);
                 document.addEventListener("click", this._boundClickFn);
                 document.addEventListener("keyup", this._boundKeypressFn);
+                this.popper.enableEventListeners();
             };
             ;
             class_1.prototype._unbindDocumentEvents = function () {
                 document.removeEventListener("click", this._boundClickFn);
                 document.removeEventListener("keyup", this._boundKeypressFn);
+                this.popper.disableEventListeners();
             };
             ;
             class_1.prototype._hideOnOutsideClick = function (e) {
