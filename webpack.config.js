@@ -1,4 +1,5 @@
 const path = require('path');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 let babelOptions = {
@@ -62,7 +63,8 @@ module.exports = {
         ]
     },
     plugins: [
-        new MiniCssExtractPlugin()
+        new MiniCssExtractPlugin(),
+        new CleanWebpackPlugin(),
     ],
     resolve: {
         extensions: ['.tsx', '.ts', '.js']
