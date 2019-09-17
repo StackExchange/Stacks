@@ -16,27 +16,22 @@
 //  $   BASE STYLES
 //  ----------------------------------------------------------------------------
 .s-popover {
-    visibility: hidden;
+    display: none;
     position: absolute;
     min-width: 12rem;
     max-width: 24rem;
     width: 100%;
     padding: @su12;
-    z-index: @zi-base;
-    opacity: 0;
+    z-index: @zi-popovers;
     border-radius: @br-md;
     border: 1px solid @black-100;
     background-color: @white;
     box-shadow: @bs-sm;
     color: @fc-dark;
     font-size: @fs-body1;
-    transition: opacity 100ms @te-smooth 0s, z-index 0s 100ms, visibility 0s 100ms; // Transition out
 
     &.is-visible {
-        visibility: visible;
-        opacity: 1;
-        z-index: @zi-popovers;
-        transition: opacity 100ms @te-smooth 0s, z-index 0s 0s, visibility 0s 0s; // Transition in
+        display: block;
     }
 
     // Auto adjust margins for auto-placed popovers
@@ -62,7 +57,7 @@
 //  ----------------------------------------------------------------------------
 
 .s-popover--close {
-    float: right;
+    float: right; // Use floats for title wrapping
     top: -@su8; // Compensate for s-popover's padding
     right: -@su8; // Compensate for s-popover's padding
     padding: @su8 !important;
