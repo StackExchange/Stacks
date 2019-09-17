@@ -6,6 +6,7 @@ export default class StacksPopover extends Stacks.StacksController {
 
     private referenceElement!: HTMLElement;
     private popoverElement!: HTMLElement;
+    // @ts-ignore
     private popper!: Popper;
 
     private _boundClickFn!: any;
@@ -33,13 +34,17 @@ export default class StacksPopover extends Stacks.StacksController {
         }
 
         this.popoverElement = element;
+        var isVisibleByDefault = this.popoverElement.classList.contains("is-visible");
 
+        // @ts-ignore
         this.popper = new Popper(this.referenceElement, this.popoverElement, {
+            // @ts-ignore
             placement: this.data.get("placement") as Popper.Placement || "bottom",
+            eventsEnabled: isVisibleByDefault
         });
 
         // toggle classes based on if the popover is already visible
-        this._toggleOptionalClasses(this.popoverElement.classList.contains("is-visible"));
+        this._toggleOptionalClasses(isVisibleByDefault);
     };
 
     /**
@@ -112,6 +117,8 @@ export default class StacksPopover extends Stacks.StacksController {
 
         document.addEventListener("click", this._boundClickFn);
         document.addEventListener("keyup", this._boundKeypressFn);
+
+        this.popper.enableEventListeners();
     };
 
     /**
@@ -120,6 +127,8 @@ export default class StacksPopover extends Stacks.StacksController {
     _unbindDocumentEvents() {
         document.removeEventListener("click", this._boundClickFn);
         document.removeEventListener("keyup", this._boundKeypressFn);
+
+        this.popper.disableEventListeners();
     };
 
     /**

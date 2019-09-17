@@ -5,7 +5,7 @@ description: Labels are used to describe inputs, select menus, textareas, radio 
 ---
 <section class="stacks-section">
     <p class="stacks-copy">Labels inform users what information is being asked of them. They should be written in sentence case.</p>
-    <div class="grid ai-start s-notice s-notice__info">
+    <div class="grid s-notice s-notice__info">
         <div class="grid--cell mr8">{% icon Alert %}</div>
         <div class="grid--cell lh-lg">For usability reasons, if a label is connected with an input, the <code class="stacks-code bg-powder-200">for="[id]"</code> attribute should be filled in. This attribute references the input’s <code class="stacks-code bg-powder-200">id="[value]"</code> value. This makes clicking the label automatically focus the proper input.</div>
     </div>
@@ -62,31 +62,6 @@ description: Labels are used to describe inputs, select menus, textareas, radio 
 </section>
 
 <section class="stacks-section">
-    {% header h2 | Status %}
-    <p class="stacks-copy">When you need to flag labels as required or optional, use the following flags. Use the full word "Required" or "Optional" for these flags instead of using asterisks.</p>
-
-    {% header h3 | Optional %}
-    <div class="stacks-preview">
-{% highlight html %}
-{% include_relative examples/label-optional.html %}
-{% endhighlight %}
-        <div class="stacks-preview--example">
-            {% include_relative examples/label-optional.html %}
-        </div>
-    </div>
-
-    {% header h3 | Required %}
-    <div class="stacks-preview">
-{% highlight html %}
-{% include_relative examples/label-required.html %}
-{% endhighlight %}
-        <div class="stacks-preview--example">
-            {% include_relative examples/label-required.html %}
-        </div>
-    </div>
-</section>
-
-<section class="stacks-section">
     {% header h2 | Description copy %}
     <p class="stacks-copy">When a label or input needs further explantation, text should be placed directly underneath it.</p>
 
@@ -116,6 +91,51 @@ description: Labels are used to describe inputs, select menus, textareas, radio 
                     <input class="s-input" id="question-title-copy" type="text" placeholder="e.g. Why doesn’t Stack Overflow use a custom web font?" />
                 </div>
             </form>
+        </div>
+    </div>
+</section>
+
+<section class="stacks-section">
+    {% header h2 | Status %}
+    <p class="stacks-copy">When you need to flag labels as required or optional, use the following flags. Use the full word “Required” or “Optional” for these flags instead of using asterisks. If a majority of a form’s inputs are required, it isn’t necessary to show that they’re required until after the form has been submitted with errors. It may be more appropriate to only mark the non-required fields as optional.</p>
+
+    {% header h3 | Optional %}
+    <div class="stacks-preview">
+{% highlight html %}
+{% include_relative examples/label-optional.html %}
+{% endhighlight %}
+        <div class="stacks-preview--example">
+            {% include_relative examples/label-optional.html %}
+        </div>
+    </div>
+
+    {% header h3 | Required %}
+    <div class="stacks-preview">
+{% highlight html %}
+{% include_relative examples/label-required.html %}
+{% endhighlight %}
+        <div class="stacks-preview--example">
+            {% include_relative examples/label-required.html %}
+        </div>
+    </div>
+
+    {% header h3 | New %}
+    <div class="stacks-preview">
+{% highlight html %}
+{% include_relative examples/label-new.html %}
+{% endhighlight %}
+        <div class="stacks-preview--example">
+            {% include_relative examples/label-new.html %}
+        </div>
+    </div>
+
+    {% header h3 | Beta %}
+    <div class="stacks-preview">
+{% highlight html %}
+{% include_relative examples/label-beta.html %}
+{% endhighlight %}
+        <div class="stacks-preview--example">
+            {% include_relative examples/label-beta.html %}
         </div>
     </div>
 </section>
