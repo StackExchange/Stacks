@@ -8,6 +8,9 @@ let babelOptions = {
 
 module.exports = {
     mode: 'production',
+    performance: {
+        hints: false
+    },
     entry: {
         stacks: './lib/ts/index.ts',
         'stacks.polyfills': './lib/js/stacks.polyfills.js' //TODO need to keep as separate file?
