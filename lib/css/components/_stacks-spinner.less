@@ -13,22 +13,11 @@
 //  $   SPINNER BASE STYLE
 //  ----------------------------------------------------------------------------
 
-
-
 .s-spinner {
-
     position: relative;
     width: @su24;
     height: @su24;
-
-    // IE11 also has the wobble problem, and our fixes (see cross-browser fixes
-    // at the bottom of this file) don't quite work there (probably because it
-    // doesn't support CSS filters). Therefore we disable the outer animation in IE,
-    // because it amplifies the inner wobble.
-    // It doesn't matter what feature query we check -- IE doesn't support @supports.
-    @supports (display: block) {
-        animation: s-spinner-rotate 9s infinite linear; // Rotate the entire spinner so each revolution isn't perfectly at 12 o'clock
-    }
+    animation: s-spinner-rotate 9s infinite linear; // Rotate the entire spinner so each revolution isn't perfectly at 12 o'clock
 
     &:before,
     &:after {
