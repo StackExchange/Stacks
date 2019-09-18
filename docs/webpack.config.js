@@ -7,7 +7,7 @@ module.exports = Object.assign({}, config, {
         'stacks.polyfills': '../lib/js/stacks.polyfills.js' //TODO need to keep as separate file?
     },
     output: {
-        filename: '[name].js',
+        filename: '[name].min.js',
         path: path.resolve(__dirname, 'assets/dist')
     },
 });
