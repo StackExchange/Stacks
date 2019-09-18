@@ -17,7 +17,7 @@ module.exports = {
     },
     devtool: 'source-map',
     output: {
-        filename: '[name].js',
+        filename: '[name].min.js',
         path: path.resolve(__dirname, 'dist')
     },
     module: {
@@ -66,7 +66,9 @@ module.exports = {
         ]
     },
     plugins: [
-        new MiniCssExtractPlugin(),
+        new MiniCssExtractPlugin({
+            filename: '[name].min.css',
+        }),
         new CleanWebpackPlugin(),
     ],
     resolve: {
