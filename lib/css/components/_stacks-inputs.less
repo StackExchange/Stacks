@@ -38,9 +38,20 @@
     border: 1px solid @black-200;
     border-radius: @br-sm;
     box-shadow: 0 0 0 fade(@white, 0%);
-    font-size: 16px; // In iOS, any font size less than 16px will cause the browser to zoom. Not what we'd like.
+    font-size: @fs-body1;
     font-family: inherit;
     line-height: @lh-sm;
+
+    //  --  INCREASE FONT SIZE FOR MOBILE SAFARI
+    //  This keeps our inputs from zooming the page while focused
+    //  ------------------------------------------------------------------------
+    @supports (-webkit-overflow-scrolling: touch) {
+        font-size: 16px;
+
+        &::-webkit-input-placeholder {
+            line-height: normal !important;
+        }
+    }
 
     //  --  PLACEHOLDER
     //  ------------------------------------------------------------------------
@@ -241,6 +252,13 @@ fieldset {
 
         &::-ms-expand {
             display: none;
+        }
+
+        //  --  INCREASE FONT SIZE FOR MOBILE SAFARI
+        //  This keeps our inputs from zooming the page while focused
+        //  ------------------------------------------------------------------------
+        @supports (-webkit-overflow-scrolling: touch) {
+            font-size: 16px;
         }
     }
 }
