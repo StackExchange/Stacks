@@ -11,17 +11,57 @@
 //      First, declare our core colors
 //  ----------------------------------------------------------------------------
 //  --  Primary Colors
-@white:         #FFF;
-@black:         #0C0D0E;
-@orange:        #F48024;
+:root {
+    --white: #fff;
+    --black: #0c0d0e;
 
-//  --  Accent Colors
-@yellow:        #FFF8DC;
-@green:         #45A163;
-@blue:          #07C;
-@powder:        #E1ECF4;
-@red:           #C91D2E;
-@fog:           #F7F8F8;
+    // Orange
+    --orange: #ef8a39; // orange-400
+    --orange-050: #fff7f2;
+    --orange-100: #fee3cf;
+    --orange-200: #fcd0ad;
+    --orange-300: #f7aa6d;
+    --orange-400: #ef8a39;
+    --orange-500: #e47213;
+    --orange-600: #d36300;
+    --orange-700: #bd5c00;
+    --orange-800: #a35200;
+    --orange-900: #874600;
+
+    --yellow: #fff8dc;
+    --green: #45a163;
+    --blue: #07C;
+    --powder: #e1ecf4;
+    --red: #c91d2e;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --white: #0c0d0e;
+        --black: #fff;
+
+        // Orange
+        --orange: #452100;
+        --orange-050: #291d14;
+        --orange-100: #2b1a0c;
+        --orange-200: #2e1603;
+        --orange-300: #361a00;
+        --orange-400: #452100;
+        --orange-500: #5a2d00;
+        --orange-600: #773c00;
+        --orange-700: #9e5100;
+        --orange-800: #cd6900;
+        --orange-900: #ff8400;
+    }
+}
+
+@white: #fff;
+@black: #0c0d0e;
+@yellow: #fff8dc;
+@green: #45a163;
+@blue: #07C;
+@powder: #e1ecf4;
+@red: #c91d2e;
 
 
 //  ============================================================================
@@ -44,31 +84,20 @@
 @badge-bronze:  #D1A684;
 
 @gold-dot:                          @badge-gold;
-@gold-bg:                           lighten(@gold-dot,45%);
-@gold-border:                       desaturate(lighten(@gold-dot,35%),50%);
+@gold-bg:                           lighten(@gold-dot, 45%);
+@gold-border:                       desaturate(lighten(@gold-dot, 35%), 50%);
 @silver-dot:                        @badge-silver;
-@silver-bg:                         lighten(@silver-dot,20%);
-@silver-border:                     spin(desaturate(lighten(@silver-dot,15%),1%),10);
+@silver-bg:                         lighten(@silver-dot, 20%);
+@silver-border:                     spin(desaturate(lighten(@silver-dot, 15%), 1%), 10);
 @bronze-dot:                        @badge-bronze;
-@bronze-bg:                         saturate(lighten(@bronze-dot,25%),20%);
-@bronze-border:                     spin(saturate(lighten(@bronze-dot,20%),10%),5);
+@bronze-bg:                         saturate(lighten(@bronze-dot, 25%), 20%);
+@bronze-border:                     spin(saturate(lighten(@bronze-dot, 20%), 10%), 5);
 
 
 //  ============================================================================
 //  $   COLOR STOPS
 //      Now we build out all of our color stops
 //  ----------------------------------------------------------------------------
-//  --  Primary: Overflow Orange
-@orange-900:    darken(@orange,40%);    // #482204
-@orange-800:    darken(@orange,30%);    // #793906
-@orange-700:    darken(@orange,20%);    // #A95009
-@orange-600:    darken(@orange,10%);    // #DA670B
-@orange-500:    darken(@orange,5%);     // #F2720C
-@orange-400:    @orange;                // #F48024
-@orange-300:    lighten(@orange,10%);   // #F69C55
-@orange-200:    lighten(@orange,20%);   // #F9B885
-@orange-100:    lighten(@orange,30%);   // #FBD4B6
-@orange-050:    lighten(@orange,35%);   // #FDE3CE
 
 //  --  Primary: Stack Black
 @black-900:     @black;                 // #0C0D0E
@@ -168,4 +197,4 @@
 @brc-dark:                          @black-200;
 @brc-darker:                        @black-300;
 @brc-darkest:                       @black-350;
-@brc-orange:                        @orange-400;
+@brc-orange:                        var(--orange-400);
