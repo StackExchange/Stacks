@@ -83,18 +83,25 @@ description: To avoid specifying color values by hand, we’ve included a robust
                         <td>@{{ color.name }}-{{ stop.stop }}</td>
                         <td>#{{ stop.hex }}</td>
                         <td>{{ stop.rgb }}</td>
-                        <td>.fc-{{ color.name }}-{{ stop.stop }}</td>
+                        <td>.fc-{{ color.name }}-{{ stop.stop }}
+                            {% if color.name == 'black' %}
+                                {% if stop.stop == 900 %}
+                                    .fc-dark
+                                {% endif %}
+                                {% if stop.stop == 800 %}
+                                    <span class="s-badge s-badge__mini ff-sans">Default</span>
+                                {% endif %}
+                                {% if stop.stop == 700 %}
+                                    .fc-medium
+                                {% endif %}
+                                {% if stop.stop == 500 %}
+                                    .fc-light
+                                {% endif %}
+                            {% endif %}
+                        </td>
                         <td>.bg-{{ color.name }}-{{ stop.stop }}</td>
-                        <td class="ta-center">
-                            {% if stop.hover %}
-                                {% icon Checkmark | fc-green-500 %}
-                            {% endif %}
-                        </td>
-                        <td class="ta-center">
-                            {% if stop.focus %}
-                                {% icon Checkmark | fc-green-500 %}
-                            {% endif %}
-                        </td>
+                        <td class="ta-center">{% icon Checkmark | fc-green-500 %}</td>
+                        <td class="ta-center">{% icon Checkmark | fc-green-500 %}</td>
                     </tr>
                     {% endfor %}
                     <tr class="ff-mono">

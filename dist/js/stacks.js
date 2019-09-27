@@ -4372,124 +4372,161 @@ return Popper;
 
 ;
 
-
-(function () {
-    window.Stacks = window.Stacks || Object.create(null);
-    Stacks._initializing = true;
-    var application = Stacks.stimulusApplication = Stimulus.Application.start();
-    Stacks.controllers = Object.create(null);
-
-    function StacksController () {
-        Stimulus.Controller.apply(this, arguments);
-    }
-    StacksController.prototype = Object.create(Stimulus.Controller.prototype, {
-        constructor: { value: StacksController, enumerable: false, writable: true }
-    });
-    StacksController.prototype.getElementData = function(element, key) {
-        return element.getAttribute("data-" + this.identifier + "-" + key);
+"use strict";
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
     };
-    StacksController.prototype.setElementData = function(element, key, value) {
-        element.setAttribute("data-" + this.identifier + "-" + key, value);
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
-    StacksController.prototype.removeElementData = function(element, key) {
-        element.removeAttribute("data-" + this.identifier + "-" + key);
-    };
-    StacksController.prototype.triggerEvent = function(eventName, detail, optionalElement) {
-        var event;
-        var namespacedName = this.identifier + ":" + eventName;
-        try {
-            event = new CustomEvent(namespacedName, {bubbles: true, detail: detail});
-        } catch (ex) {
-            // Internet Explorer
-            event = document.createEvent("CustomEvent");
-            event.initCustomEvent(namespacedName, true, true, detail);
+})();
+var Stacks;
+(function (Stacks) {
+    var StacksApplication = (function (_super) {
+        __extends(StacksApplication, _super);
+        function StacksApplication() {
+            return _super !== null && _super.apply(this, arguments) || this;
         }
-        (optionalElement || this.element).dispatchEvent(event);
-        return event;
-    };
-    Object.setPrototypeOf(StacksController, Stimulus.Controller);
-
-    function createController(name, data) {
-        var Controller = function () {
-            StacksController.apply(this, arguments);
+        StacksApplication.prototype.load = function (head) {
+            var rest = [];
+            for (var _i = 1; _i < arguments.length; _i++) {
+                rest[_i - 1] = arguments[_i];
+            }
+            var definitions = Array.isArray(head) ? head : [head].concat(rest);
+            for (var _a = 0, definitions_1 = definitions; _a < definitions_1.length; _a++) {
+                var definition = definitions_1[_a];
+                var hasPrefix = /^s-/.test(definition.identifier);
+                if (Stacks._initializing && !hasPrefix) {
+                    throw "Stacks-created Stimulus controller names must start with \"s-\".";
+                }
+                if (!Stacks._initializing && hasPrefix) {
+                    throw "The \"s-\" prefix on Stimulus controller names is reserved for Stacks-created controllers.";
+                }
+            }
+            _super.prototype.load.call(this, definitions);
         };
-        Controller.prototype = Object.create(StacksController.prototype, {
-            // This needs to be writable because Stimulus changes the constructor property
-            // on the controller. This shouldn't be a problem, mind you -- because right here
-            // were're defining the property on the *prototype*. But IE11 throws anyway.
-            constructor: { value: Controller, enumerable: false, writable: true }
-        });
-        Object.setPrototypeOf(Controller, StacksController);
-
-        var targets;
-        for (var prop in data) if (data.hasOwnProperty(prop)) {
-            if (prop === "targets") {
-                targets = data[prop];
-                Object.defineProperty(Controller, "targets", {
-                    get: function () { return targets; },
-                    enumerable: false
-                });
-            } else {
-                Object.defineProperty(Controller.prototype, prop, Object.getOwnPropertyDescriptor(data, prop));
+        StacksApplication.start = function (element, schema) {
+            var application = new StacksApplication(element, schema);
+            application.start();
+            return application;
+        };
+        return StacksApplication;
+    }(Stimulus.Application));
+    Stacks.application = StacksApplication.start();
+    Stacks._initializing = true;
+    var StacksController = (function (_super) {
+        __extends(StacksController, _super);
+        function StacksController() {
+            return _super !== null && _super.apply(this, arguments) || this;
+        }
+        StacksController.prototype.getElementData = function (element, key) {
+            return element.getAttribute("data-" + this.identifier + "-" + key);
+        };
+        ;
+        StacksController.prototype.setElementData = function (element, key, value) {
+            element.setAttribute("data-" + this.identifier + "-" + key, value);
+        };
+        ;
+        StacksController.prototype.removeElementData = function (element, key) {
+            element.removeAttribute("data-" + this.identifier + "-" + key);
+        };
+        ;
+        StacksController.prototype.triggerEvent = function (eventName, detail, optionalElement) {
+            var namespacedName = this.identifier + ":" + eventName;
+            var event;
+            try {
+                event = new CustomEvent(namespacedName, { bubbles: true, detail: detail });
+            }
+            catch (ex) {
+                event = document.createEvent("CustomEvent");
+                event.initCustomEvent(namespacedName, true, true, detail);
+            }
+            (optionalElement || this.element).dispatchEvent(event);
+            return event;
+        };
+        ;
+        return StacksController;
+    }(Stimulus.Controller));
+    Stacks.StacksController = StacksController;
+    function createController(controllerDefinition) {
+        var _a;
+        var Controller = controllerDefinition.hasOwnProperty("targets")
+            ? (_a = (function (_super) {
+                    __extends(Controller, _super);
+                    function Controller() {
+                        return _super !== null && _super.apply(this, arguments) || this;
+                    }
+                    return Controller;
+                }(StacksController)),
+                _a.targets = controllerDefinition.targets,
+                _a) : (function (_super) {
+            __extends(Controller, _super);
+            function Controller() {
+                return _super !== null && _super.apply(this, arguments) || this;
+            }
+            return Controller;
+        }(StacksController));
+        for (var prop in controllerDefinition) {
+            if (prop !== "targets" && controllerDefinition.hasOwnProperty(prop)) {
+                Object.defineProperty(Controller.prototype, prop, Object.getOwnPropertyDescriptor(controllerDefinition, prop));
             }
         }
         return Controller;
     }
-
-    Stacks.addController = function addController(name, data) {
-        var hasPrefix = /^s-/.test(name);
-        if (Stacks._initializing && !hasPrefix) {
-            throw "Stacks-created Stimulus controller names must start with \"s-\".";
-        }
-        if (!Stacks._initializing && hasPrefix) {
-            throw "The \"s-\" prefix on Stimulus controller names is reserved for Stacks-created controllers.";
-        }
-        var Controller = createController(name, data);
-        application.register(name, Controller);
-        if (Stacks._initializing) {
-            Stacks.controllers[name] = Controller;
-        }
-    };
-})()
-
+    Stacks.createController = createController;
+    function addController(name, controller) {
+        Stacks.application.register(name, createController(controller));
+    }
+    Stacks.addController = addController;
+    ;
+})(Stacks || (Stacks = {}));
+//# sourceMappingURL=stacks.js.map
 
 ;
 
+"use strict";
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
 (function () {
-    "use strict";
-
-    // Radio buttons only trigger a change event when they're *checked*, but not when
-    // they're *unchecked*. Therefore, if we have an active `s-collapsible-control` in
-    // the document, we listen for change events on *all* radio buttons and find any
-    // other radio buttons in the same `name` group, triggering a custom event on all
-    // of them so the controller can re-evaluate.
-    //
-    // We're keeping a count of how many of these controllers are connected to the DOM,
-    // so only have this global listener when we actually need it.
-
     var RADIO_OFF_EVENT = "s-expandable-control:radio-off";
-
     function globalChangeListener(e) {
-        if (e.target.nodeName !== "INPUT" || e.target.type !== "radio") {
+        var target = e.target;
+        if (!(target instanceof HTMLInputElement) || target.nodeName !== "INPUT" || target.type !== "radio") {
             return;
         }
-        document.querySelectorAll('input[type="radio"][name="' + e.target.name + '"]')
+        document.querySelectorAll('input[type="radio"][name="' + target.name + '"]')
             .forEach(function (other) {
-                if (other === e.target) {
-                    return;
-                }
-                var customEvent;
-                try {
-                    customEvent = new Event(RADIO_OFF_EVENT);
-                } catch (ex) {
-                    // Internet Explorer
-                    customEvent = document.createEvent("Event");
-                    customEvent.initEvent(RADIO_OFF_EVENT, true, true);
-                }
-                other.dispatchEvent(customEvent);
-            });
+            if (other === e.target) {
+                return;
+            }
+            var customEvent;
+            try {
+                customEvent = new Event(RADIO_OFF_EVENT);
+            }
+            catch (ex) {
+                customEvent = document.createEvent("Event");
+                customEvent.initEvent(RADIO_OFF_EVENT, true, true);
+            }
+            other.dispatchEvent(customEvent);
+        });
     }
-
     var refCount = 0;
     function globalChangeListenerRequired(required) {
         if (required) {
@@ -4497,66 +4534,83 @@ return Popper;
             if (refCount === 1) {
                 document.body.addEventListener("change", globalChangeListener);
             }
-        } else {
+        }
+        else {
             refCount--;
             if (refCount === 0) {
                 document.body.removeEventListener("change", globalChangeListener);
             }
         }
     }
-
-
-    Stacks.addController("s-expandable-control", {
-
-        initialize: function () {
+    Stacks.application.register("s-expandable-control", (function (_super) {
+        __extends(class_1, _super);
+        function class_1() {
+            return _super !== null && _super.apply(this, arguments) || this;
+        }
+        class_1.prototype.initialize = function () {
             if (this.element.nodeName === "INPUT" && ["radio", "checkbox"].indexOf(this.element.type) >= 0) {
                 this.isCollapsed = this._isCollapsedForCheckable;
                 this.events = ["change", RADIO_OFF_EVENT];
                 this.isCheckable = true;
                 this.isRadio = this.element.type === "radio";
-            } else {
+            }
+            else {
                 this.isCollapsed = this._isCollapsedForClickable;
                 this.events = ["click", "keydown"];
             }
             this.listener = this.listener.bind(this);
-        },
-
-        // for non-checkable elements, the initial source of truth is the collapsed/expanded
-        // state of the controlled element (unless the element doesn't exist)
-        _isCollapsedForClickable: function () {
+        };
+        ;
+        class_1.prototype._isCollapsedForClickable = function () {
             var cc = this.controlledCollapsible;
             return cc ? !cc.classList.contains("is-expanded") : this.element.getAttribute("aria-expanded") === "false";
-        },
-
-        // for checkable elements, the initial source of truth is the checked state
-        _isCollapsedForCheckable: function () {
+        };
+        ;
+        class_1.prototype._isCollapsedForCheckable = function () {
             return !this.element.checked;
-        },
-
-        get controlledCollapsible() {
-            return document.getElementById(this.element.getAttribute("aria-controls"));
-        },
-
-        _dispatchShowHideEvent: function(isShow) {
+        };
+        ;
+        Object.defineProperty(class_1.prototype, "controlledCollapsible", {
+            get: function () {
+                var attr = this.element.getAttribute("aria-controls");
+                if (!attr) {
+                    throw "couldn't find controls";
+                }
+                var result = document.getElementById(attr);
+                if (!result) {
+                    throw "couldn't find controls";
+                }
+                return result;
+            },
+            enumerable: true,
+            configurable: true
+        });
+        ;
+        class_1.prototype._dispatchShowHideEvent = function (isShow) {
             this.triggerEvent(isShow ? "show" : "hide");
-        },
-
-        _toggleClass: function(doAdd) {
+        };
+        ;
+        class_1.prototype._toggleClass = function (doAdd) {
             if (!this.data.has("toggle-class")) {
                 return;
             }
             var cl = this.element.classList;
-            this.data.get("toggle-class").split(/\s+/).forEach(function (cls) {
+            var toggleClass = this.data.get("toggle-class");
+            if (!toggleClass) {
+                throw "couldn't find toggle class";
+            }
+            toggleClass.split(/\s+/).forEach(function (cls) {
                 cl.toggle(cls, !!doAdd);
             });
-        },
-
-        listener: function(e) {
+        };
+        ;
+        class_1.prototype.listener = function (e) {
             var newCollapsed;
             if (this.isCheckable) {
                 newCollapsed = !this.element.checked;
-            } else {
-                if (e.type == "keydown" && (e.keyCode != 13 && e.keyCode != 32)) {
+            }
+            else {
+                if (e.type == "keydown" && (e instanceof KeyboardEvent && e.keyCode != 13 && e.keyCode != 32)) {
                     return;
                 }
                 if (e.target !== e.currentTarget && ["A", "BUTTON"].indexOf(e.target.nodeName) >= 0) {
@@ -4572,19 +4626,16 @@ return Popper;
             this.controlledCollapsible.classList.toggle("is-expanded", !newCollapsed);
             this._dispatchShowHideEvent(!newCollapsed);
             this._toggleClass(!newCollapsed);
-        },
-
-        connect: function () {
+        };
+        ;
+        class_1.prototype.connect = function () {
+            var _this = this;
             this.events.forEach(function (e) {
-                this.element.addEventListener(e, this.listener);
+                _this.element.addEventListener(e, _this.listener);
             }, this);
-
             if (this.isRadio) {
                 globalChangeListenerRequired(true);
             }
-
-            // synchronize state -- in all cases, this means setting the correct `aria-expanded`
-            // attribute; for checkable controls this also means setting the `is-collapsed` class
             this.element.setAttribute("aria-expanded", this.isCollapsed() ? "false" : "true");
             if (this.isCheckable) {
                 var cc = this.controlledCollapsible;
@@ -4598,349 +4649,291 @@ return Popper;
                     }
                 }
             }
-        },
-
-        disconnect: function () {
+        };
+        ;
+        class_1.prototype.disconnect = function () {
+            var _this = this;
             this.events.forEach(function (e) {
-                this.element.removeEventListener(e, this.listener);
+                _this.element.removeEventListener(e, _this.listener);
             }, this);
-
             if (this.isRadio) {
                 globalChangeListenerRequired(false);
             }
-        }
-
-    });
+        };
+        ;
+        return class_1;
+    }(Stacks.StacksController)));
 })();
-
+//# sourceMappingURL=s-expandable-control.js.map
 
 ;
 
+"use strict";
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
 (function () {
     "use strict";
-    Stacks.addController("s-popover", {
-        targets: [],
-        
-        /**
-         * Initializes popper.js and document events on controller connect
-         */
-        connect: function() {
-            var referenceSelector = this.data.get("reference-selector");
-
-            // if there is an alternative reference selector and that element exists, use it (otherwise use this element)
-            this.referenceElement = referenceSelector && this.element.querySelector(referenceSelector) || this.element;
-
-            var popoverId = this.referenceElement.getAttribute("aria-controls");
-
-            if (!popoverId) {
-                throw "[aria-controls=\"{POPOVER_ID}\"] required";
+    var _a;
+    Stacks.application.register("s-popover", (_a = (function (_super) {
+            __extends(class_1, _super);
+            function class_1() {
+                return _super !== null && _super.apply(this, arguments) || this;
             }
-
-            this.popoverElement = document.getElementById(popoverId);
-
-            this.popper = new Popper(this.referenceElement, this.popoverElement, {
-                placement: this.data.get("placement") || "bottom",
-            });
-
-            // toggle classes based on if the popover is already visible
-            this._toggleOptionalClasses(this.popoverElement.classList.contains("is-visible"));
-        },
-
-        /**
-         * Cleans up popper.js elements and disconnects all added event listeners on controller disconnect
-         */
-        disconnect: function() {
-            this.popper.destroy();
-            this._unbindDocumentEvents();
-        },
-
-        /**
-         * Toggles the visibility of the popover when called as a Stimulus action
-         * @param {Event} event - The event object from the Stimulus action call
-         */
-        toggle: function(event) {
-            this._toggle();
-        },
-
-        /**
-         * Shows the popover
-         */
-        show: function() {
-            this._toggle(true);
-        },
-
-        /**
-         * Hides the popover
-         */
-        hide: function() {
-            this._toggle(false);
-        },
-
-        /**
-         * Toggles the visibility of the popover element
-         * @param {boolean=} show - Optional parameter that force shows/hides the element or toggles it if left undefined
-         */
-        _toggle: function(show) {
-            var toShow = show;
-
-            // if we're letting the class toggle, we need to figure out if the popover is visible manually
-            if (typeof toShow === "undefined") {
-                toShow = !this.popoverElement.classList.contains("is-visible");
-            }
-
-            // show/hide events trigger before toggling the class
-            this.triggerEvent(toShow ? "show" : "hide");
-
-            this.popper.update();
-            this.popoverElement.classList.toggle("is-visible", show);
-            this._toggleOptionalClasses(show);
-
-            if (this.popoverElement.classList.contains("is-visible")) {
-                this._bindDocumentEvents();
-            }
-            else {
+            class_1.prototype.connect = function () {
+                var referenceSelector = this.data.get("reference-selector");
+                this.referenceElement = referenceSelector && this.element.querySelector(referenceSelector) || this.element;
+                var popoverId = this.referenceElement.getAttribute("aria-controls");
+                if (!popoverId) {
+                    throw "[aria-controls=\"{POPOVER_ID}\"] required";
+                }
+                var element = document.getElementById(popoverId);
+                if (!element) {
+                    throw "element with popover id not found";
+                }
+                this.popoverElement = element;
+                var isVisibleByDefault = this.popoverElement.classList.contains("is-visible");
+                this.popper = new Popper(this.referenceElement, this.popoverElement, {
+                    placement: this.data.get("placement") || "bottom",
+                    eventsEnabled: isVisibleByDefault
+                });
+                this._toggleOptionalClasses(isVisibleByDefault);
+            };
+            ;
+            class_1.prototype.disconnect = function () {
+                this.popper.destroy();
                 this._unbindDocumentEvents();
-            }
-
-            // shown/hidden events trigger after toggling the class
-            this.triggerEvent(toShow ? "shown" : "hidden");
-        },
-
-        /**
-         * Binds global events to the document for hiding popovers on user interaction
-         */
-        _bindDocumentEvents: function() {
-            // in order for removeEventListener to remove the right event, this bound function needs a constant reference
-            this._boundClickFn = this._boundClickFn || this._hideOnOutsideClick.bind(this);
-            this._boundKeypressFn = this._boundKeypressFn || this._hideOnEscapePress.bind(this);
-
-            document.addEventListener("click", this._boundClickFn);
-            document.addEventListener("keyup", this._boundKeypressFn);
-        },
-
-        /**
-         * Unbinds global events to the document for hiding popovers on user interaction
-         */
-        _unbindDocumentEvents: function() {
-            document.removeEventListener("click", this._boundClickFn);
-            document.removeEventListener("keyup", this._boundKeypressFn);
-        },
-
-        /**
-         * Forces the popover to hide if a user clicks outside of it or its reference element
-         * @param {Event} e - The document click event
-         */
-        _hideOnOutsideClick: function(e) {
-            // check if the document was clicked inside either the reference element or the popover itself
-            // note: .contains also returns true if the node itself matches the target element
-            if (!this.referenceElement.contains(e.target) && !this.popoverElement.contains(e.target)) {
+            };
+            ;
+            class_1.prototype.toggle = function () {
+                this._toggle();
+            };
+            ;
+            class_1.prototype.show = function () {
+                this._toggle(true);
+            };
+            ;
+            class_1.prototype.hide = function () {
+                this._toggle(false);
+            };
+            ;
+            class_1.prototype._toggle = function (show) {
+                var toShow = show;
+                if (typeof toShow === "undefined") {
+                    toShow = !this.popoverElement.classList.contains("is-visible");
+                }
+                this.triggerEvent(toShow ? "show" : "hide");
+                this.popper.update();
+                this.popoverElement.classList.toggle("is-visible", show);
+                this._toggleOptionalClasses(show);
+                if (this.popoverElement.classList.contains("is-visible")) {
+                    this._bindDocumentEvents();
+                }
+                else {
+                    this._unbindDocumentEvents();
+                }
+                this.triggerEvent(toShow ? "shown" : "hidden");
+            };
+            ;
+            class_1.prototype._bindDocumentEvents = function () {
+                this._boundClickFn = this._boundClickFn || this._hideOnOutsideClick.bind(this);
+                this._boundKeypressFn = this._boundKeypressFn || this._hideOnEscapePress.bind(this);
+                document.addEventListener("click", this._boundClickFn);
+                document.addEventListener("keyup", this._boundKeypressFn);
+                this.popper.enableEventListeners();
+            };
+            ;
+            class_1.prototype._unbindDocumentEvents = function () {
+                document.removeEventListener("click", this._boundClickFn);
+                document.removeEventListener("keyup", this._boundKeypressFn);
+                this.popper.disableEventListeners();
+            };
+            ;
+            class_1.prototype._hideOnOutsideClick = function (e) {
+                var target = e.target;
+                if (!this.referenceElement.contains(target) && !this.popoverElement.contains(target)) {
+                    this.hide();
+                }
+            };
+            ;
+            class_1.prototype._hideOnEscapePress = function (e) {
+                if (e.which !== 27 || !this.popoverElement.classList.contains("is-visible")) {
+                    return;
+                }
+                if (this.popoverElement.contains(e.target)) {
+                    this.referenceElement.focus();
+                }
                 this.hide();
-            }
-        },
-
-        /**
-         * Forces the popover to hide if the user presses escape while it, one of its childen, or the reference element are focused
-         * @param {Event} e - The document keyup event 
-         */
-        _hideOnEscapePress: function(e) {
-            // if the ESC key (27) wasn't pressed or if no popovers are showing, return
-            if (e.which !== 27 || !this.popoverElement.classList.contains("is-visible")) {
-                return;
-            }
-
-            // check if the target was inside the popover element and refocus the triggering element
-            // note: .contains also returns true if the node itself matches the target element
-            if (this.popoverElement.contains(e.target)) {
-                this.referenceElement.focus();
-            }
-
-            this.hide();
-        },
-
-        /**
-         * Toggles all classes on the originating element based on the `class-toggle` data
-         * @param {boolean=} show - Optional parameter that force shows/hides the classes or toggles them if left undefined 
-         */
-        _toggleOptionalClasses: function(show) {
-            if (!this.data.has("toggle-class")) {
-                return;
-            }
-            var cl = this.referenceElement.classList;
-            this.data.get("toggle-class").split(/\s+/).forEach(function (cls) {
-                cl.toggle(cls, show);
-            });
-        }
-    });
+            };
+            ;
+            class_1.prototype._toggleOptionalClasses = function (show) {
+                if (!this.data.has("toggle-class")) {
+                    return;
+                }
+                var cl = this.referenceElement.classList;
+                this.data.get("toggle-class").split(/\s+/).forEach(function (cls) {
+                    cl.toggle(cls, show);
+                });
+            };
+            return class_1;
+        }(Stacks.StacksController)),
+        _a.targets = [],
+        _a));
 })();
-
+//# sourceMappingURL=s-popover.js.map
 
 ;
 
+"use strict";
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
 (function () {
-    "use strict";
-    Stacks.addController("s-table", {
-
-        targets: ["column"],
-
-        setCurrentSort: function (headElem, direction) {
-            if (["asc", "desc", "none"].indexOf(direction) < 0) {
-                throw "direction must be one of asc, desc, or none"
+    var _a;
+    Stacks.application.register("s-table", (_a = (function (_super) {
+            __extends(class_1, _super);
+            function class_1() {
+                return _super !== null && _super.apply(this, arguments) || this;
             }
-            var controller = this;
-            this.columnTargets.forEach(function (target) {
-                var isCurrrent = target === headElem;
-
-                target.classList.toggle("is-sorted", isCurrrent && direction !== "none");
-
-                target.querySelectorAll(".js-sorting-indicator").forEach(function (icon) {
-                    var visible = isCurrrent ? direction : "none";
-                    icon.classList.toggle("d-none", !icon.classList.contains("js-sorting-indicator-" + visible));
-                });
-
-                if (!isCurrrent || direction === "none") {
-                    controller.removeElementData(target, "sort-direction");
-                } else {
-                    controller.setElementData(target, "sort-direction", direction);
+            class_1.prototype.setCurrentSort = function (headElem, direction) {
+                if (["asc", "desc", "none"].indexOf(direction) < 0) {
+                    throw "direction must be one of asc, desc, or none";
                 }
-            });
-        },
-
-        sort: function (evt) {
-            var controller = this;
-            var colHead = evt.currentTarget;
-            var table = this.element;
-            var tbody = table.tBodies[0];
-
-            // the column slot number of the clicked header
-            var colno = getCellSlot(colHead);
-
-            if (colno < 0) { // this shouldn't happen if the clicked element is actually a column head
-                return;
-            }
-
-            // an index of the <tbody>, so we can find out for each row which <td> element is
-            // in the same column slot as the header
-            var slotIndex = buildIndex(tbody);
-
-            // the default behavior when clicking a header is to sort by this column in ascending
-            // direction, *unless* it is already sorted that way
-            var direction = this.getElementData(colHead, "sort-direction") === "asc" ? -1 : 1;
-
-            var rows = Array.from(table.tBodies[0].rows);
-
-            // if this is still false after traversing the data, that means all values are integers (or empty)
-            // and thus we'll sort numerically.
-            var anyNonInt = false;
-
-            // data will be a list of tuples [value, rowNum], where value is what we're sorting by
-            var data = [];
-            var firstBottomRow;
-            rows.forEach(function (row, index) {
-                var force = controller.getElementData(row, "sort-to");
-                if (force === "top") {
-                    return; // rows not added to the list will automatically end up at the top
-                } else if (force === "bottom") {
-                    if (!firstBottomRow) {
-                        firstBottomRow = row;
+                var controller = this;
+                this.columnTargets.forEach(function (target) {
+                    var isCurrrent = target === headElem;
+                    target.classList.toggle("is-sorted", isCurrrent && direction !== "none");
+                    target.querySelectorAll(".js-sorting-indicator").forEach(function (icon) {
+                        var visible = isCurrrent ? direction : "none";
+                        icon.classList.toggle("d-none", !icon.classList.contains("js-sorting-indicator-" + visible));
+                    });
+                    if (!isCurrrent || direction === "none") {
+                        controller.removeElementData(target, "sort-direction");
                     }
-                    return;
-                }
-                var cell = slotIndex[index][colno];
-                if (!cell) {
-                    data.push(["", index]);
-                    return;
-                }
-
-                // unless the to-be-sorted-by value is explicitly provided on the element via this attribute,
-                // the value we're using is the cell's text, trimmed of any whitespace
-                var explicit = controller.getElementData(cell, "sort-val");
-                var d = typeof explicit === "string" ? explicit : cell.textContent.trim();
-
-                if ((d !== "") && (parseInt(d, 10) + "" !== d)) {
-                    anyNonInt = true;
-                }
-                data.push([d, index]);
-            });
-
-            // If all values were integers (or empty cells), sort numerically, with empty cells treated as
-            // having the lowest possible value (i.e. sorted to the top if ascending, bottom if descending)
-            if (!anyNonInt) {
-                data.forEach(function (tuple) {
-                    tuple[0] = tuple[0] === "" ? Number.MIN_VALUE : parseInt(tuple[0], 10);
+                    else {
+                        controller.setElementData(target, "sort-direction", direction);
+                    }
                 });
-            }
-
-            // We don't sort an array of <tr>, but instead an arrays of row *numbers*, because this way we
-            // can enforce stable sorting, i.e. rows that compare equal are guaranteed to remain in the same
-            // order (the JS standard does not gurantee this for sort()).
-            data.sort(function (a, b) {
-                // first compare the values (a[0])
-                if (a[0] > b[0]) {
-                    return 1 * direction;
-                } else if (a[0] < b[0]) {
-                    return -1 * direction;
-                } else {
-                    // if the values are equal, compare the row numbers (a[1]) to guarantee stable sorting
-                    // (note that this comparison is independent of the sorting direction)
-                    return a[1] > b[1] ? 1 : -1;
+            };
+            ;
+            class_1.prototype.sort = function (evt) {
+                var controller = this;
+                var colHead = evt.currentTarget;
+                if (!(colHead instanceof HTMLTableCellElement)) {
+                    throw "invalid event target";
                 }
-            });
-
-            // this is the actual reordering of the table rows
-            data.forEach(function (tup) {
-                var row = rows[tup[1]];
-                row.parentElement.removeChild(row);
-                if (firstBottomRow) {
-                    tbody.insertBefore(row, firstBottomRow);
-                } else {
-                    tbody.appendChild(row);
+                var table = this.element;
+                var tbody = table.tBodies[0];
+                var colno = getCellSlot(colHead);
+                if (colno < 0) {
+                    return;
                 }
-            });
-
-            // update the UI and set the `data-sort-direction` attribute if appropriate, so that the next click
-            // will cause sorting in descending direction
-            this.setCurrentSort(colHead, direction === 1 ? "asc" : "desc");
-        }
-    });
-
+                var slotIndex = buildIndex(tbody);
+                var direction = this.getElementData(colHead, "sort-direction") === "asc" ? -1 : 1;
+                var rows = Array.from(table.tBodies[0].rows);
+                var anyNonInt = false;
+                var data = [];
+                var firstBottomRow;
+                rows.forEach(function (row, index) {
+                    var force = controller.getElementData(row, "sort-to");
+                    if (force === "top") {
+                        return;
+                    }
+                    else if (force === "bottom") {
+                        if (!firstBottomRow) {
+                            firstBottomRow = row;
+                        }
+                        return;
+                    }
+                    var cell = slotIndex[index][colno];
+                    if (!cell) {
+                        data.push(["", index]);
+                        return;
+                    }
+                    var explicit = controller.getElementData(cell, "sort-val");
+                    var d = typeof explicit === "string" ? explicit : cell.textContent.trim();
+                    if ((d !== "") && (parseInt(d, 10) + "" !== d)) {
+                        anyNonInt = true;
+                    }
+                    data.push([d, index]);
+                });
+                if (!anyNonInt) {
+                    data.forEach(function (tuple) {
+                        tuple[0] = tuple[0] === "" ? Number.MIN_VALUE : parseInt(tuple[0], 10);
+                    });
+                }
+                data.sort(function (a, b) {
+                    if (a[0] > b[0]) {
+                        return 1 * direction;
+                    }
+                    else if (a[0] < b[0]) {
+                        return -1 * direction;
+                    }
+                    else {
+                        return a[1] > b[1] ? 1 : -1;
+                    }
+                });
+                data.forEach(function (tup) {
+                    var row = rows[tup[1]];
+                    row.parentElement.removeChild(row);
+                    if (firstBottomRow) {
+                        tbody.insertBefore(row, firstBottomRow);
+                    }
+                    else {
+                        tbody.appendChild(row);
+                    }
+                });
+                this.setCurrentSort(colHead, direction === 1 ? "asc" : "desc");
+            };
+            return class_1;
+        }(Stacks.StacksController)),
+        _a.targets = ["column"],
+        _a));
     function buildIndex(section) {
-        return buildIndexOrGetCellSlot(section);
+        var result = buildIndexOrGetCellSlot(section);
+        if (!(result instanceof Array)) {
+            throw "shouldn't happen";
+        }
+        return result;
     }
-
     function getCellSlot(cell) {
-        return buildIndexOrGetCellSlot(cell.parentElement.parentElement, cell);
+        if (!(cell.parentElement && cell.parentElement.parentElement instanceof HTMLTableSectionElement)) {
+            throw "invalid table";
+        }
+        var result = buildIndexOrGetCellSlot(cell.parentElement.parentElement, cell);
+        if (typeof result !== "number") {
+            throw "shouldn't happen";
+        }
+        return result;
     }
-
-    // Just because a <td> is the 4th *child* of its <tr> doesn't mean it belongs to the 4th *column*
-    // of the table. Previous cells may have a colspan; cells in previous rows may have a rowspan.
-    // Because we need to know which header cells and data cells belong together, we have to 1) find out
-    // which column number (or "slot" as we call it here) the header cell has, and 2) for each row find
-    // out which <td> cell corresponds to this slot (because those are the rows we're sorting by).
-    //
-    // That's what the following function does. If the second argument is not given, it returns an index
-    // of the table, which is an array of arrays. Each of the sub-arrays corresponds to a table row. The
-    // indices of the sub-array correspond to column slots; the values are the actual table cell elements.
-    // For example index[4][3] is the <td> or <th> in row 4, column 3 of the table section (<tbody> or <thead>).
-    // Note that this element is not necessarily even in the 4th (zero-based) <tr> -- if it has a rowSpan > 1,
-    // it may also be in a previous <tr>.
-    //
-    // If the second argument is given, it's a <td> or <th> that we're trying to find, and the algorithm
-    // stops as soon as it has found it and the function returns its slot number.
     function buildIndexOrGetCellSlot(section, findCell) {
         var index = [];
         var curRow = section.children[0];
-
-        // the elements of these two arrays are synchronized; the first array contains table cell elements,
-        // the second one contains a number that indicates for how many more rows this elements will
-        // exist (i.e. the value is initially one less than the cell's rowspan, and will be decreased for each row)
         var growing = [];
         var growingRowsLeft = [];
-
-        // continue while we have actual <tr>'s left *or* we still have rowspan'ed elements that aren't done
-        while (curRow || growingRowsLeft.some(function (e) { return e; })) {
+        while (curRow || growingRowsLeft.some(function (e) { return e !== 0; })) {
             var curIndexRow = [];
             index.push(curIndexRow);
-
             var curSlot = 0;
             if (curRow) {
                 for (var curCellInd = 0; curCellInd < curRow.children.length; curCellInd++) {
@@ -4950,6 +4943,9 @@ return Popper;
                         curSlot++;
                     }
                     var cell = curRow.children[curCellInd];
+                    if (!(cell instanceof HTMLTableCellElement)) {
+                        throw "invalid table";
+                    }
                     if (getComputedStyle(cell).display === "none") {
                         continue;
                     }
@@ -4958,7 +4954,7 @@ return Popper;
                     }
                     var nextFreeSlot = curSlot + cell.colSpan;
                     for (; curSlot < nextFreeSlot; curSlot++) {
-                        growingRowsLeft[curSlot] = cell.rowSpan - 1; // if any of these is already growing, the table is broken -- no guarantees of anything
+                        growingRowsLeft[curSlot] = cell.rowSpan - 1;
                         growing[curSlot] = cell;
                         curIndexRow[curSlot] = cell;
                     }
@@ -4975,14 +4971,13 @@ return Popper;
                 curRow = curRow.nextElementSibling;
             }
         }
-        return findCell ? -1 : index; /* if findCell was given but we end up here, that means it isn't in this section */
+        return findCell ? -1 : index;
     }
-
 })();
-
+//# sourceMappingURL=s-table.js.map
 
 ;
 
-(function () {
-    delete Stacks._initializing;
-})();
+"use strict";
+Stacks._initializing = false;
+//# sourceMappingURL=finalize.js.map

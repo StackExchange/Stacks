@@ -42,6 +42,18 @@
     font-family: inherit;
     line-height: @lh-sm;
 
+    //  --  INCREASE FONT SIZE FOR MOBILE SAFARI
+    //  This keeps our inputs from zooming the page while focused
+    //  ------------------------------------------------------------------------
+    @supports (-webkit-overflow-scrolling: touch) {
+        font-size: 16px;
+        padding: .36em .55em; // Compensate for the larger font size so we generally keep the input the same size
+
+        &::-webkit-input-placeholder {
+            line-height: normal !important;
+        }
+    }
+
     //  --  PLACEHOLDER
     //  ------------------------------------------------------------------------
     &::-webkit-input-placeholder {
@@ -62,7 +74,8 @@
     &::-ms-clear { display: none; }
 }
 
-.s-input.s-input__search {
+.s-input.s-input__search,
+.s-input.s-input__creditcard {
     padding-left: @su32;
 }
 
@@ -99,17 +112,26 @@ fieldset {
 .s-label--status {
     margin-left: @su4;
     padding: @su2 @su8;
-    border-radius: @br-lg;
+    border-radius: 1000px;
     background-color: @black-050;
-    color: @fc-light;
+    color: @black-700;
     font-size: @fs-caption;
-    font-style: italic;
     font-weight: 400;
     vertical-align: text-bottom;
 
     &.s-label--status__required {
-        background-color: @red-400;
-        color: @white;
+        background-color: @red-050;
+        color: @red-600;
+    }
+
+    &.s-label--status__new {
+        background-color: @green-100;
+        color: @green-700;
+    }
+
+    &.s-label--status__beta {
+        background-color: @blue-100;
+        color: @blue-700;
     }
 }
 
@@ -231,6 +253,14 @@ fieldset {
 
         &::-ms-expand {
             display: none;
+        }
+
+        //  --  INCREASE FONT SIZE FOR MOBILE SAFARI
+        //  This keeps our inputs from zooming the page while focused
+        //  ------------------------------------------------------------------------
+        @supports (-webkit-overflow-scrolling: touch) {
+            font-size: 16px;
+            padding: .4em .55em; // Compensate for the larger font size so we generally keep the input the same size
         }
     }
 }
@@ -534,7 +564,8 @@ fieldset {
     margin-top: -9px; // Half the icon's height at 18px for centering;
     pointer-events: none;
 
-    &.s-input-icon__search {
+    &.s-input-icon__search,
+    &.s-input-icon__creditcard {
         right: auto;
         left: 0.7em;
         color: @black-200;
