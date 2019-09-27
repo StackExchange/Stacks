@@ -17,9 +17,9 @@ description: A loading spinner is used for indicating a loading state of a page 
             <tbody class="fs-caption">
                 {% for item in site.data.product.spinner.spinner %}
                     <tr>
-                        <td><code class="stacks-code bg-white">{{ item.class }}</td>
-                        <th scope="row"><code class="stacks-code">{{ item.applies }}</code></th>
-                        <td class="p8">{{ item.description }}</td>
+                        <td><code class="stacks-code">{{ item.class }}</code></td>
+                        <td>{% if item.applies == "N/A" %}<em class="fc-black-350">{{ item.applies }}</em>{% else %}<code class="stacks-code">{{ item.applies }}</code>{% endif %}</td>
+                        <td>{{ item.description }}</td>
                     </tr>
                 {% endfor %}
             </tbody>
