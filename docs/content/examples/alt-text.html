@@ -10,7 +10,7 @@ description: Everything we know about alt-texts, when to use them, and how to cr
     </p>
     {% header h3 | Describe the image concisely %}
     <p class="stacks-copy">
-        It might sound obvious, but an alt-text should describe the image in case in image doesn’t display or someone has trouble seeing it. The goal of alt-text is to give the necessary information from the image <strong class="ws-nowrap">at a glance</strong>. It’s best to include only the necessary information.
+        It might sound obvious, but an alt-text should describe the image in case an image doesn’t display or someone has trouble seeing it. The goal of alt-text is to give the necessary information from the image <strong class="ws-nowrap">at a glance</strong>. It’s best to include only the necessary information.
     </p>
     <div class="ta-center w100 wmx5 mb8">
         <img src="{{ "/assets/img/community.svg" | relative_url }}"" alt="Man and woman using laptops at a standing table, Illustration.">
@@ -68,7 +68,7 @@ description: Everything we know about alt-texts, when to use them, and how to cr
     </p>
 </section>
 <section class="stacks-section">
-    {% header h2 | When not to write one %}
+    {% header h2 | When not to write alt-text %}
     <p class="stacks-copy">
         In most cases you should use an alt-text for images, but there are some exceptions where you should leave the alt-text blank.
     </p>
@@ -122,8 +122,14 @@ description: Everything we know about alt-texts, when to use them, and how to cr
         </div>
     </div>
     <p class="stacks-copy">
-        The nearby text here already explains what the graphic illustrates.
+        The nearby text here already explains what the graphic illustrates. If there was alt-text here, screen readers would repeat information to the user.
     </p>
+    <div class="grid s-notice s-notice__info mb16">
+        <div class="grid--cell mr8">{% icon Alert %}</div>
+        <div class="grid--cell lh-lg">
+            <strong>Note:</strong> In these cases, leaving the alt attribute empty (<code class="stacks-code bg-powder-200">alt=""</code>) will cause a screenreader to skip over the image. <Strong>Never <em>remove</em> the alt-attribute.</Strong> When a screenreader comes to an image without an alt attribute, it will dictate the filename (Eg. “SO underscore logo dot png”).
+        </div>
+    </div>
 </section>
 <section class="stacks-section">
     {% header h2 | How to add alt-text %}
