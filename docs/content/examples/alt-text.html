@@ -1,8 +1,152 @@
 ---
 layout: page
-title: Alt text
-description: Things don’t always run smoothly. Our systems can fail. It’s important to craft clear, logical, and accessible error messages that help folks get things done.
+title: Alt-text
+description: Everything we know about alt-texts, when to use them, and how to craft them.
 ---
 <section class="stacks-section">
-
+    {% header h2 | How to write alt-text %}
+    <p class="stacks-copy">
+        An alt-text is a description of an image that’s shown to people who can’t see the image. Alt-texts help people with little or no vision who use assistive technologies, people who have turned off images, and search engines.
+    </p>
+    {% header h3 | Describe the image concisely %}
+    <p class="stacks-copy">
+        It might sound obvious, but an alt-text should describe the image in case in image doesn’t display or someone has trouble seeing it. The goal of alt-text is to give the necessary information from the image <strong class="ws-nowrap">at a glance</strong>. It’s best to include only the necessary information.
+    </p>
+    <div class="ta-center w100 wmx5 mb8">
+        <img src="{{ "/assets/img/community.svg" | relative_url }}"" alt="Man and woman using laptops at a standing table, Illustration.">
+    </div>
+    <table class="s-table s-table__lg va-middle fs-body2 va-top w100 wmx5 mb48">
+        <thead>
+            <th class="btw0 bxw0 bbw3 bbw3 bc-red-2 fc-red-500 bg-transparent fs-body1 s-table--cell6">{% icon Clear | mtn1 mbn1 %} Don't</th>
+            <th class="btw0 bxw0 bbw3 bc-green-2 fc-green-500 bg-transparent fs-body1 s-table--cell6">{% icon Checkmark | mtn1 mbn1 %} Do</th>
+        </thead>
+        <tbody>
+            <tr>
+                <td>“People using computers.”</td>
+                <td rowspan="3" class="bb bc-black-3">“Man and woman using laptops at a standing table, Illustration.”</td>
+            </tr>
+            <tr>
+                <td>“Man in a purple shirt and woman in blue pants are typing on laptops and there’s a plant on the floor nearby.”</td>
+            </tr>
+            <tr>
+                <td>“Man and woman using computers, illustrated by Jane Doe © 2019.”</td>
+            </tr>
+        </tbody>
+    </table>
+    <p class="stacks-copy">
+        Take context into account. For instance, if the image above is part of a blog post about standing tables, then it’s safer to skip the part about standing tables.
+    </p>
+    {% header h3 | Don’t say it’s an image %}
+    <p class="stacks-copy">
+        Don’t start alt-texts with things like “Image of” or “Photo of.”. Screen readers add that by default. If it’s a special type of image (like an icon), you can note that at the end.
+    </p>
+    <table class="s-table s-table__lg va-middle fs-body2 va-top w100 wmx5 mb48">
+        <thead>
+            <th class="btw0 bxw0 bbw3 bbw3 bc-red-2 fc-red-500 bg-transparent fs-body1 s-table--cell6">{% icon Clear | mtn1 mbn1 %} Don't</th>
+            <th class="btw0 bxw0 bbw3 bc-green-2 fc-green-500 bg-transparent fs-body1 s-table--cell6">{% icon Checkmark | mtn1 mbn1 %} Do</th>
+        </thead>
+        <tbody>
+            <tr>
+                <td>“Image of a rocket.”</td>
+                <td rowspan="3">“A rocket.”</td>
+            </tr>
+            <tr>
+                <td>“Illustration of a rocket.”</td>
+            </tr>
+            <tr>
+                <td>Phoot of a rocket.”</td>
+            </tr>
+            <tr>
+                <td>“Icon of a rocket.”</td>
+                <td>“A rocket, icon.”</td>
+            </tr>
+        </tbody>
+    </table>
+    {% header h3 | End with a period %}
+    <p class="stacks-copy">
+        End the alt-text with a period. This makes screen readers pause a bit after the last word in the alt-text, creating a natural pause before the next bit of text.
+    </p>
 </section>
+<section class="stacks-section">
+    {% header h2 | When not to write one %}
+    <p class="stacks-copy">
+        In most cases you should use an alt-text for images, but there are some exceptions where you should leave the alt-text blank.
+    </p>
+    {% header h3 | Decorative images %}
+    <p class="stacks-copy">
+        If an image does not convey any meaning to the user, leave the alt text blank.
+    </p>
+    <div class="stacks-preview mb16">
+{% highlight html %}
+<div>
+    <img src="rocket.svg" alt="">
+    <h2>…</h2>
+    <p>…</p>
+</div>
+{% endhighlight %}
+        <div class="stacks-preview--example">
+            <div class="grid fd-column gsy gs8 wmx3">
+                <div class="grid--cell">
+                    <img src="{{ "/assets/img/efficiency.svg" | relative_url }}"" alt="">
+                </div>
+                <h2 class="grid--cell fs-body3 fw-normal fc-dark">Improve efficiency and ship better code</h2>
+                <p class="grid--cell fs-body1 fc-medium m0">There’s a reason the world’s largest developer teams rely on Stack Overflow Enterprise—it leads to better product and allows distributed teams to securely collaborate and share knowledge.</p>
+            </div>
+        </div>
+    </div>
+    <p class="stacks-copy">
+        The rocket here doesn’t add meaningful information.
+    </p>
+    {% header h3 | Images accompanied by text %}
+    <p class="stacks-copy">
+        If an image has a label nearby, leave the alt-text blank.
+    </p>
+    <div class="stacks-preview mb16">
+{% highlight html %}
+<div>
+    <img src="leaderboard.svg" alt="">
+    <h2>…</h2>
+    <p>…</p>
+</div>
+{% endhighlight %}
+        <div class="stacks-preview--example">
+            <div class="grid ai-center wmx4">
+                <div class="grid--cell">
+                    <img src="{{ "/assets/img/leaderboard.svg" | relative_url }}"" alt="" width="44" height="43">
+                </div>
+                <div class="grid--cell">
+                    <h2 class="grid--cell fs-body1 fw-bold fw-normal fc-dark mb4">TOP LEADERBOARD: 728X90</h2>
+                    <p class="grid--cell fs-body1 fc-medium m0">This ad unit is the most visible on the site.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <p class="stacks-copy">
+        The nearby text here already explains what the graphic illustrates.
+    </p>
+</section>
+<section class="stacks-section">
+    {% header h2 | How to add alt-text %}
+    {% header h3 | Using &lt;img&gt; %}
+    <p class="stacks-copy">
+        Inside an <code class="stacks-code">&lt;img&gt;</code> tag, add the alt-text inside the <code class="stacks-code">alt</code> attribute:
+    </p>
+    <div class="stacks-preview mb16">
+{% highlight html %}
+<img src="image.png" alt="The alt text.">
+<img src="image.svg" alt="The alt text.">
+{% endhighlight %}
+    </div>
+    {% header h3 | Using inline SVG %}
+    <p class="stacks-copy">
+        Inline SVG doesn't support the <code class="stacks-code">alt</code> attribute, so instead add two wai-aria attributes: <code class="stacks-code">role="img"</code> and <code class="stacks-code">aria-label="The alt text."</code>:
+    </p>
+    <div class="stacks-preview mb16">
+{% highlight html %}
+<svg role="img" aria-label="the alt text" viewBox="…">…</svg>
+{% endhighlight %}
+    </div>
+</section>
+<div class="bt btw1 bc-black-3 pt24">
+    <p class="m0 fc-caption fc-light">This content was adapted from <a href="https://axesslab.com/alt-texts/">Axess Lab</a>.</p>
+</div>
