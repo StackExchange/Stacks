@@ -12,177 +12,68 @@
 //  for text and background colors
 //  ============================================================================
 
-.fc-orange-050,
-.h\:fc-range-050:hover,
-.f\:fc-orange-050:focus {
-    color: var(--orange-050) !important;
-}
-.f\:fc-orange-050:focus-within {
-    color: var(--orange-050) !important;
-}
+& {
+    .color(@color-name) {
+        // need to define focus-within as a separate rule for IE compat.
+        // If a selector contains focus-within, IE/Edge ignores the whole rule,
+        // including any other selectors combined using comma!!
+        .fc-@{color-name},
+        .h\:fc-@{color-name}:hover,
+        .f\:fc-@{color-name}:focus {
+            color: var(~"--@{color-name}") !important;
+        }
+        .f\:fc-@{color-name}:focus-within {
+            color: var(~"--@{color-name}") !important;
+        }
 
-.fc-orange-100,
-.h\:fc-range-100:hover,
-.f\:fc-orange-100:focus {
-    color: var(--orange-100) !important;
-}
-.f\:fc-orange-100:focus-within {
-    color: var(--orange-100) !important;
-}
-
-.fc-orange-200,
-.h\:fc-range-200:hover,
-.f\:fc-orange-200:focus {
-    color: var(--orange-200) !important;
-}
-.f\:fc-orange-200:focus-within {
-    color: var(--orange-200) !important;
-}
-
-.fc-orange-300,
-.h\:fc-range-300:hover,
-.f\:fc-orange-300:focus {
-    color: var(--orange-300) !important;
-}
-.f\:fc-orange-300:focus-within {
-    color: var(--orange-300) !important;
-}
-
-.fc-orange-400,
-.h\:fc-range-400:hover,
-.f\:fc-orange-400:focus {
-    color: var(--orange-400) !important;
-}
-.f\:fc-orange-400:focus-within {
-    color: var(--orange-400) !important;
-}
-
-.fc-orange-600,
-.h\:fc-range-600:hover,
-.f\:fc-orange-600:focus {
-    color: var(--orange-600) !important;
-}
-.f\:fc-orange-600:focus-within {
-    color: var(--orange-600) !important;
-}
-
-.fc-orange-700,
-.h\:fc-range-700:hover,
-.f\:fc-orange-700:focus {
-    color: var(--orange-700) !important;
-}
-.f\:fc-orange-700:focus-within {
-    color: var(--orange-700) !important;
-}
-
-.fc-orange-800,
-.h\:fc-range-800:hover,
-.f\:fc-orange-800:focus {
-    color: var(--orange-800) !important;
-}
-.f\:fc-orange-800:focus-within {
-    color: var(--orange-800) !important;
-}
-
-.fc-orange-900,
-.h\:fc-range-900:hover,
-.f\:fc-orange-900:focus {
-    color: var(--orange-900) !important;
-}
-.f\:fc-orange-900:focus-within {
-    color: var(--orange-900) !important;
-}
+        .bg-@{color-name},
+        .h\:bg-@{color-name}:hover,
+        .f\:bg-@{color-name}:focus {
+            background-color: var(~"--@{color-name}") !important;
+        }
+        .f\:bg-@{color-name}:focus-within {
+            background-color: var(~"--@{color-name}") !important;
+        }
+    }
 
 
+    .standard-weights(@color) {
+        .color(~"@{color}-900");
+        .color(~"@{color}-800");
+        .color(~"@{color}-700");
+        .color(~"@{color}-600");
+        .color(~"@{color}-500");
+        .color(~"@{color}-400");
+        .color(~"@{color}-300");
+        .color(~"@{color}-200");
+        .color(~"@{color}-100");
+        .color(~"@{color}-050");
+    }
 
-.bg-orange-050,
-.h\:bg-orange-050:hover,
-.f\:bg-orange-050:focus {
-    background-color: var(--orange-050) !important;
-}
-.f\:bg-orange-050:focus-within {
-    background-color: var(--orange-050) !important;
-}
+    // .standard-weights(black);
+    .standard-weights(orange);
+    // .standard-weights(blue);
+    // .standard-weights(powder);
+    // .standard-weights(green);
+    // .standard-weights(yellow);
+    // .standard-weights(red);
 
-.bg-orange-100,
-.h\:bg-orange-100:hover,
-.f\:bg-orange-100:focus {
-    background-color: var(--orange-100) !important;
-}
-.f\:bg-orange-100:focus-within {
-    background-color: var(--orange-100) !important;
-}
+    // additional color names
+    // .color(white);
+    // .color(black-750);
+    // .color(black-350);
+    // .color(black-150);
+    // .color(black-075);
+    // .color(black-025);
+    // .color(green-025);
 
-.bg-orange-200,
-.h\:bg-orange-200:hover,
-.f\:bg-orange-200:focus {
-    background-color: var(--orange-200) !important;
-}
-.f\:bg-orange-200:focus-within {
-    background-color: var(--orange-200) !important;
-}
-
-.bg-orange-300,
-.h\:bg-orange-300:hover,
-.f\:bg-orange-300:focus {
-    background-color: var(--orange-300) !important;
-}
-.f\:bg-orange-300:focus-within {
-    background-color: var(--orange-300) !important;
-}
-
-.bg-orange-400,
-.h\:bg-orange-400:hover,
-.f\:bg-orange-400:focus {
-    background-color: var(--orange-400) !important;
-}
-.f\:bg-orange-400:focus-within {
-    background-color: var(--orange-400) !important;
-}
-
-.bg-orange-500,
-.h\:bg-orange-500:hover,
-.f\:bg-orange-500:focus {
-    background-color: var(--orange-500) !important;
-}
-.f\:bg-orange-500:focus-within {
-    background-color: var(--orange-500) !important;
-}
-
-.bg-orange-600,
-.h\:bg-orange-600:hover,
-.f\:bg-orange-600:focus {
-    background-color: var(--orange-600) !important;
-}
-.f\:bg-orange-600:focus-within {
-    background-color: var(--orange-600) !important;
-}
-
-.bg-orange-700,
-.h\:bg-orange-700:hover,
-.f\:bg-orange-700:focus {
-    background-color: var(--orange-700) !important;
-}
-.f\:bg-orange-700:focus-within {
-    background-color: var(--orange-700) !important;
-}
-
-.bg-orange-800,
-.h\:bg-orange-800:hover,
-.f\:bg-orange-800:focus {
-    background-color: var(--orange-800) !important;
-}
-.f\:bg-orange-800:focus-within {
-    background-color: var(--orange-800) !important;
-}
-
-.bg-orange-900,
-.h\:bg-orange-900:hover,
-.f\:bg-orange-900:focus {
-    background-color: var(--orange-900) !important;
-}
-.f\:bg-orange-900:focus-within {
-    background-color: var(--orange-900) !important;
+    // .fc-success           { &:extend(.fc-green-600); }
+    // .fc-warning           { &:extend(.fc-yellow-600); }
+    // .fc-error, .fc-danger { &:extend(.fc-red-500); }
+    
+    // .bg-success           { &:extend(.bg-green-500); }
+    // .bg-warning           { &:extend(.bg-yellow-600); }
+    // .bg-error, .bg-danger { &:extend(.bg-red-500); }
 }
 
 .bg-transparent { background-color: transparent !important; background-image: none !important; }
