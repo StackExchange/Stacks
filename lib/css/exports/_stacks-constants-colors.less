@@ -11,55 +11,92 @@
 //      First, declare our core colors
 //  ----------------------------------------------------------------------------
 //  --  Primary Colors
-:root {
+body {
     --white: #fff;
     --black: #0c0d0e;
 
     // Orange
-    --orange: #ef8a39; // orange-400
-    --orange-050: #fff7f2;
-    --orange-100: #fee3cf;
-    --orange-200: #fcd0ad;
-    --orange-300: #f7aa6d;
-    --orange-400: #ef8a39;
-    --orange-500: #e47213;
-    --orange-600: #d36300;
-    --orange-700: #bd5c00;
-    --orange-800: #a35200;
-    --orange-900: #874600;
+    --orange-050: hsla(27, 91%, var(--lightness, 90%), var(--alpha, 100%));
+    --orange-100: hsla(27, 91%, var(--lightness, 85%), var(--alpha, 100%));
+    --orange-200: hsla(27, 91%, var(--lightness, 75%), var(--alpha, 100%));
+    --orange-300: hsla(27, 91%, var(--lightness, 65%), var(--alpha, 100%));
+    --orange-400: hsla(27, 91%, var(--lightness, 55%), var(--alpha, 100%));
+    --orange-500: hsla(27, 91%, var(--lightness, 50%), var(--alpha, 100%));
+    --orange-600: hsla(27, 91%, var(--lightness, 45%), var(--alpha, 100%));
+    --orange-700: hsla(27, 91%, var(--lightness, 35%), var(--alpha, 100%));
+    --orange-800: hsla(27, 91%, var(--lightness, 25%), var(--alpha, 100%));
+    --orange-900: hsla(27, 91%, var(--lightness, 15%), var(--alpha, 100%));
+    --orange: var(--orange-400);
 
-    --yellow: #fff8dc;
-    --green: #45a163;
+    // Blue
+    --blue-050: hsla(205, 100%, var(--lightness, 95%), var(--alpha, 100%));
+    --blue-100: hsla(205, 100%, var(--lightness, 90%), var(--alpha, 100%));
+    --blue-200: hsla(205, 100%, var(--lightness, 80%), var(--alpha, 100%));
+    --blue-300: hsla(205, 100%, var(--lightness, 70%), var(--alpha, 100%));
+    --blue-400: hsla(205, 100%, var(--lightness, 60%), var(--alpha, 100%));
+    --blue-500: hsla(205, 100%, var(--lightness, 50%), var(--alpha, 100%));
+    --blue-600: hsla(205, 100%, var(--lightness, 40%), var(--alpha, 100%));
+    --blue-700: hsla(205, 100%, var(--lightness, 30%), var(--alpha, 100%));
+    --blue-800: hsla(205, 100%, var(--lightness, 20%), var(--alpha, 100%));
+    --blue-900: hsla(205, 100%, var(--lightness, 10%), var(--alpha, 100%));
+    --blue: var(--blue-600);
+
+    // Yellow
+    --yellow-050: hsla(48, 100%, var(--lightness, 98%), var(--alpha, 100%));
+    --yellow-100: hsla(48, 100%, var(--lightness, 93%), var(--alpha, 100%));
+    --yellow-200: hsla(48, 100%, var(--lightness, 83%), var(--alpha, 100%));
+    --yellow-300: hsla(48, 100%, var(--lightness, 73%), var(--alpha, 100%));
+    --yellow-400: hsla(48, 100%, var(--lightness, 63%), var(--alpha, 100%));
+    --yellow-500: hsla(48, 100%, var(--lightness, 53%), var(--alpha, 100%));
+    --yellow-600: hsla(48, 100%, var(--lightness, 43%), var(--alpha, 100%));
+    --yellow-700: hsla(48, 100%, var(--lightness, 33%), var(--alpha, 100%));
+    --yellow-800: hsla(48, 100%, var(--lightness, 23%), var(--alpha, 100%));
+    --yellow-900: hsla(48, 100%, var(--lightness, 13%), var(--alpha, 100%));
+    --yellow: var(--yellow-100);
+
+    // Green
+    --green-025: hsla(140, 40%, var(--lightness, 95%), var(--alpha, 100%));
+    --green-050: hsla(140, 40%, var(--lightness, 90%), var(--alpha, 100%));
+    --green-100: hsla(140, 40%, var(--lightness, 85%), var(--alpha, 100%));
+    --green-200: hsla(140, 40%, var(--lightness, 75%), var(--alpha, 100%));
+    --green-300: hsla(140, 40%, var(--lightness, 65%), var(--alpha, 100%));
+    --green-400: hsla(140, 40%, var(--lightness, 55%), var(--alpha, 100%));
+    --green-500: hsla(140, 40%, var(--lightness, 45%), var(--alpha, 100%));
+    --green-600: hsla(140, 40%, var(--lightness, 35%), var(--alpha, 100%));
+    --green-700: hsla(140, 40%, var(--lightness, 25%), var(--alpha, 100%));
+    --green-800: hsla(140, 40%, var(--lightness, 15%), var(--alpha, 100%));
+    --green-900: hsla(140, 40%, var(--lightness, 5%), var(--alpha, 100%));
+    --green: var(--green-500);
+
     --blue: #07C;
     --powder: #e1ecf4;
     --red: #c91d2e;
 }
 
-@media (prefers-color-scheme: dark) {
-    :root {
-        --white: #0c0d0e;
-        --black: #fff;
+// @media (prefers-color-scheme: dark) {
+//     :root {
+//         --white: #0c0d0e;
+//         --black: #fff;
 
-        // Orange
-        --orange: #452100;
-        --orange-050: #291d14;
-        --orange-100: #2b1a0c;
-        --orange-200: #2e1603;
-        --orange-300: #361a00;
-        --orange-400: #452100;
-        --orange-500: #5a2d00;
-        --orange-600: #773c00;
-        --orange-700: #9e5100;
-        --orange-800: #cd6900;
-        --orange-900: #ff8400;
-    }
-}
+//         // Orange
+//         --orange: #452100;
+//         --orange-050: #291d14;
+//         --orange-100: #2b1a0c;
+//         --orange-200: #2e1603;
+//         --orange-300: #361a00;
+//         --orange-400: #452100;
+//         --orange-500: #5a2d00;
+//         --orange-600: #773c00;
+//         --orange-700: #9e5100;
+//         --orange-800: #cd6900;
+//         --orange-900: #ff8400;
+//     }
+// }
 
 @white: #fff;
 @black: #0c0d0e;
 @yellow: #fff8dc;
 @green: #45a163;
-@blue: #07C;
 @powder: #e1ecf4;
 @red: #c91d2e;
 
@@ -115,18 +152,6 @@
 @black-075:     lighten(@black,85%);    // #E4E6E7
 @black-050:     lighten(@black,89%);    // #EFF0F1
 @black-025:     lighten(@black,93%);    // #FAFAFA
-
-//  --  Accent: Blue
-@blue-900:      darken(@blue,30%);      // #001e33
-@blue-800:      darken(@blue,20%);      // #003b66
-@blue-700:      darken(@blue,10%);      // #005999
-@blue-600:      @blue;                  // #0077cc
-@blue-500:      lighten(@blue,10%);     // #0095ff
-@blue-400:      lighten(@blue,20%);     // #33aaff
-@blue-300:      lighten(@blue,30%);     // #66bfff
-@blue-200:      lighten(@blue,40%);     // #99d4ff
-@blue-100:      lighten(@blue,50%);     // #cceaff
-@blue-050:      lighten(@blue,55%);     // #e6f4ff
 
 //  --  Accent: Powder
 @powder-900:    darken(@powder,80%);    // #10212d
