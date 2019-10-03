@@ -34,11 +34,11 @@
     th,
     td {
         padding: @su8;
-        border-top: 1px solid @black-100;
-        border-left: 1px solid @black-100;
-        border-right: 1px solid @black-100;
+        border-top: 1px solid var(--black-100);
+        border-left: 1px solid var(--black-100);
+        border-right: 1px solid var(--black-100);
         vertical-align: middle;
-        color: @fc-medium;
+        color: var(--black-700);
         text-align: left;
 
         &.s-table--bulk {
@@ -52,7 +52,7 @@
 
     th {
         font-weight: bold;
-        color: @fc-dark;
+        color: var(--black-900);
     }
 
     //  Custom styles when in a table head
@@ -63,7 +63,7 @@
 
         vertical-align: bottom;
         white-space: nowrap;
-        background-color: @black-025;
+        background-color: var(--black-025);
         line-height: @lh-sm;
         text-transform: uppercase;
         letter-spacing: 0.05em;
@@ -77,12 +77,12 @@
     //  If it's the last row, add a bottom border
     tr:last-of-type td,
     tr:last-of-type th {
-        border-bottom: 1px solid @black-100;
+        border-bottom: 1px solid var(--black-100);
     }
 
     //  If two table bodies are next to each other, visually separate them
     tbody + tbody {
-        border-top: @su2 solid @black-100;
+        border-top: @su2 solid var(--black-100);
     }
 }
 
@@ -162,11 +162,11 @@
     &.s-table__stripes {
         // Darken the header
         thead th {
-            background-color: darken(@black-025,2%);
+            background-color: var(--black-050);
         }
         // Add in stripes
         tbody tr:nth-child(even) {
-            background-color: @black-025;
+            background-color: var(--black-025);
         }
     }
 
@@ -235,7 +235,7 @@
         }
         thead th {
             border-top-color: transparent;
-            border-bottom-color: @black-200;
+            border-bottom-color: var(--black-200);
             //  Clear Header Styles
             background-color: transparent;
             text-transform: initial;
@@ -272,7 +272,7 @@
     //  $$  Sortable Table Columns
     //  ------------------------------------------------------------------------
     &.s-table__sortable thead th {
-        color: @fc-light;
+        color: var(--black-500);
         cursor: pointer;
 
         //  If an anchor is used, it should appear like a normal header
@@ -288,7 +288,7 @@
 
         //  Selected state
         &.is-sorted {
-            color: @fc-dark;
+            color: var(--black-900);
         }
     }
 
@@ -308,7 +308,7 @@
     //  $$  Disabled rows
     //  ------------------------------------------------------------------------
     tr.is-disabled {
-        background-color: @black-025;
+        background-color: var(--black-025);
 
         th:not(.is-enabled),
         td:not(.is-enabled) {

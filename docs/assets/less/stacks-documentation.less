@@ -103,15 +103,8 @@
     margin-bottom: 0;
     font-weight: 700;
     line-height: @lh-sm;
-    color: var(--orange-500);
+    color: var(--black-900);
     text-rendering: optimizeLegibility;
-}
-
-.stacks-h1:hover,
-.stacks-h2:hover,
-.stacks-h3:hover,
-.stacks-h4:hover {
-    --orange-500-lightness: 0%;
 }
 
 //  --  Page Title
@@ -130,14 +123,14 @@
 //  --  Sub-section Title
 .stacks-h3 {
     font-size: @fs-subheading;
-    // color: @fc-medium;
+    color: var(--black-700);
     padding-top: @su64 + @su24; // Hack for #anchor positioning
     margin-top: -@su64 + -@su24; // Hack for #anchor positioning
 }
 
 .stacks-h4 {
     font-size: @fs-body3;
-    // color: @fc-light;
+    color: var(--black-500);
 }
 
 //  $$  PARAGRAPHS
@@ -147,10 +140,10 @@
     margin-bottom: 1em;
     font-size: @fs-body3;
     line-height: @lh-lg;
-    // color: @fc-medium;
+    color: var(--black-700);
 
     strong {
-        // color: @fc-dark;
+        color: var(--black-900);
     }
 }
 
@@ -164,11 +157,11 @@
 .stacks-code {
     padding: 3px 5px @su2 @su4;
     border-radius: @br-sm;
-    background-color: @black-050;
+    background-color: var(--black-100);
 
     font-size: @fs-caption;
     font-family: @ff-mono;
-    // color: @fc-dark;
+    color: var(--black-900);
     line-height: @lh-xs;
 
     vertical-align: middle;
@@ -189,7 +182,7 @@
     margin-bottom: 1em;
     font-size: @fs-body3;
     line-height: @lh-lg;
-    // color: @fc-medium;
+    color: var(--black-700);
 }
 
 
@@ -206,7 +199,10 @@
         margin: 0;
         padding: @su8 @su12;
         overflow: auto;
-        background-color: @black-800;
+
+        // We want our code highlighting colors to stay fixed
+        color: #fff; // var(--white)
+        background-color: #242729; // var(--black-800)
 
         // Force scrollbar styling on the code examples
         &::-webkit-scrollbar {
@@ -223,14 +219,14 @@
         &::-webkit-scrollbar-thumb
         {
             border-radius: @su8;
-            background-color: fade(@white, 30%);
+            background-color: var(--black-100);
         }
 
         &::-webkit-scrollbar-corner {
             background-color: transparent;
         }
 
-        scrollbar-color: fade(@white, 30%) transparent;
+        scrollbar-color: var(--black-100) transparent;
         scrollbar-width: thin;
 
         pre,
@@ -239,7 +235,7 @@
             font-size: @fs-body1;
             font-family: @ff-mono;
             line-height: @lh-lg;
-            // color: @black-150;
+            color: var(--black-150);
         }
     }
 
@@ -253,7 +249,7 @@
     padding: @su16;
     border-bottom-left-radius: @br-sm;
     border-bottom-right-radius: @br-sm;
-    border: 1px solid @black-100;
+    border: 1px solid var(--black-100);
     border-top-width: 0;
     font-size: @fs-body1;
 }
@@ -275,9 +271,9 @@
     min-height: 4em;
     border-top-left-radius: @br-sm;
     border-top-right-radius: @br-sm;
-    background-color: @black-025;
-    box-shadow: inset 0 -1px 0 @black-075;
-    // color: @fc-medium;
+    background-color: var(--black-025);
+    box-shadow: inset 0 -1px 0 var(--black-075);
+    color: var(--black-700);
 }
 
 //  ============================================================================
@@ -294,7 +290,7 @@
     font-family: @ff-mono;
     font-size: @fs-caption;
     line-height: @lh-sm;
-    // color: @fc-dark;
+    color: var(--black-900);
 }
 
 .stacks-grid-example {
@@ -333,7 +329,7 @@ pre.lineno {
         }
 
         .algolia-docsearch-suggestion--highlight {
-            color: @fc-medium;
+            color: var(--black-700);
             background: var(--orange-100);
         }
     }
@@ -351,7 +347,7 @@ pre.lineno {
         padding: 5px 8px;
         font-size: @fs-caption !important;
         line-height: 1 !important;
-        color: @fc-light !important;
+        color: var(--black-500) !important;
     }
 
     .algolia-docsearch-footer--logo {
