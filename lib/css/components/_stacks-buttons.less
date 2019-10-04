@@ -284,27 +284,57 @@
 //  $   WARNING BUTTONS & STYLES
 //  ============================================================================
 .s-btn__danger {
-    // .btn-check-brc(@status: false);
-    // .btn-check-bxs(@bxos: @button-danger-background-color, @status: false);
-    // .btn-bgc(fade(@button-danger-background-color, 0%));
-    // .btn-fc(@button-danger-background-color);
+    color: var(--red-600);
 
-    // //  --  Outlined
-    // &.s-btn__outlined {
-    //     .btn-check-brc(lighten(@button-danger-background-color, 20%));
-    //     .btn-check-bxs(@bxos: @button-danger-background-color, @status: false);
-    //     .btn-bgc(fade(@button-danger-background-color, 0%));
-    //     .btn-fc(@button-danger-background-color);
-    // }
+    &:hover,
+    &:focus {
+        color: var(--red-700);
+        background: var(--red-050);
+    }
 
-    // //  --  Filled
-    // &.s-btn__filled {
-    //     .btn-check-brc(@button-danger-background-color);
-    //     .btn-check-bxs(@button-danger-background-color, @button-danger-background-color);
-    //     .btn-bgc(@button-danger-background-color);
-    //     .btn-check-bgg(@button-danger-background-color);
-    //     .btn-fc(@button-danger-font-color);
-    // }
+    &.is-selected {
+        color: var(--red-900);
+        background: var(--red-100);
+    }
+
+    //  --  Outlined
+    &.s-btn__outlined {
+        border-color: var(--red-500);
+
+        &.is-selected {
+            border-color: var(--red-600);
+        }
+
+        &[disabled] {
+            border-color: var(--black-200);
+        }
+    }
+
+    //  --  Filled
+    &.s-btn__filled {
+        color: var(--white);
+        background-color: var(--red-500);
+        border-color: var(--red-600);
+
+        &:hover,
+        &:focus {
+            color: var(--white);
+            background-color: var(--red-600);
+            border-color: var(--red-700);
+        }
+
+        &[disabled] {
+            color: var(--white);
+            background-color: var(--black-100);
+            border-color: var(--black-200);
+        }
+
+        &.is-selected {
+            color: var(--white);
+            background-color: var(--red-800);
+            border-color: var(--red-900);
+        }
+    }
 
     // //  --  Inverted
     // &.s-btn__inverted {
