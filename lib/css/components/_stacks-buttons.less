@@ -50,12 +50,12 @@
     display: inline-block;
     padding: 0.8em;
     border: 1px solid transparent;
-    border-radius: @button-border-radius;
+    border-radius: @br-sm;
     background-color: transparent;
     outline: none;
     font-family: inherit;
     font-size: @fs-body1;
-    font-weight: @button-font-weight;
+    font-weight: normal;
     line-height: @lh-sm;
     text-align: center;
     text-decoration: none;
@@ -67,14 +67,12 @@
     }
 
     //  Default Style (Clear)
-    // .btn-check-brc();
-    // .btn-check-bxs(fade(@button-box-shadow-color, 0%), @status: false);
-    // .btn-bgc(@button-background-color);
-    // .btn-check-bgg(transparent);
-    // .btn-fc(@button-font-color);
+    color: var(--blue-600);
 
     &:hover,
     &:focus {
+        color: var(--blue-700);
+        background: var(--blue-050);
         text-decoration: none;
     }
 
@@ -86,6 +84,11 @@
         opacity: 1;
         cursor: default;
         pointer-events: none;
+    }
+
+    &.is-selected {
+        color: var(--blue-900);
+        background: var(--blue-100);
     }
 
     &.s-btn__dropdown {
@@ -136,7 +139,7 @@
 
     &.s-btn__md {
         padding: 0.7em;
-        border-radius: @button-border-radius + 1;
+        border-radius: @br-sm + 1;
         font-size: @fs-body3;
 
         &.s-btn__dropdown {
@@ -153,7 +156,7 @@
 
     &.s-btn__lg {
         padding: 0.6em;
-        border-radius: @button-border-radius + 1;
+        border-radius: @br-sm + 1;
         font-size: @fs-headline1;
 
         &.s-btn__dropdown {
@@ -170,7 +173,7 @@
 
     &.s-btn__xl {
         padding: 0.5em;
-        border-radius: @button-border-radius + @br-sm;
+        border-radius: @br-sm + @br-sm;
         font-size: @fs-headline2;
 
         &.s-btn__dropdown {
@@ -211,20 +214,11 @@
 //      Style which applies only a border.
 //  ----------------------------------------------------------------------------
 .s-btn__outlined {
-    // .btn-check-brc(lighten(@button-font-color, 20%));
-    // .btn-check-bxs(@bxos: @button-box-shadow-color, @status: false);
-    // .btn-check-bgg(transparent);
-    // .btn-bgc(fade(@button-font-color, 0%));
-    // .btn-fc(@button-font-color);
+    border-color: var(--blue-500);
 
-    // //  --  Inverted: Outlined
-    // &.s-btn__inverted {
-    //     .btn-check-brc(fade(lighten(@button-primary-background-color, 50%), 25%));
-    //     .btn-check-bxs(@bxos: @white, @status: false);
-    //     .btn-bgc(fade(lighten(@button-primary-background-color, 20%), 0%));
-    //     .btn-check-bgg(transparent);
-    //     .btn-fc(fade(lighten(@button-primary-background-color, 40%), 90%));
-    // }
+    &.is-selected {
+        border-color: var(--blue-600);
+    }
 }
 
 //  --  Muted Clear Style
