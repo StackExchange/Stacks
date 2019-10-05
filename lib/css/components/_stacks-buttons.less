@@ -223,7 +223,9 @@
     }
 
     &[disabled] {
-        border-color: var(--black-200);
+        color: var(--black-200);
+        border-color: var(--black-100);
+        background-color: transparent;
     }
 }
 
@@ -231,26 +233,55 @@
 //      Creates a gray button style.
 //  ----------------------------------------------------------------------------
 .s-btn__muted {
-    // .btn-check-brc(@status: false);
-    // .btn-check-bxs(@bxos: @black-350, @status: false);
-    // .btn-bgc(fade(@black-200, 0%));
-    // .btn-fc(@black-500);
+    color: var(--black-500);
 
-    // //  --  Muted (Gray)
-    // &.s-btn__outlined {
-    //     .btn-check-brc(@black-150);
-    //     .btn-check-bxs(@bxos: @black-350, @status: false);
-    //     .btn-bgc(fade(@black-200, 0%));
-    //     .btn-fc(@black-500);
-    // }
+    &:hover,
+    &:focus {
+        color: var(--black-600);
+        background-color: var(--black-025);
+    }
 
-    // //  --  Filled (Gray)
-    // &.s-btn__filled {
-    //     .btn-check-brc(@black-150);
-    //     .btn-check-bxs(@black-200, @bxos: @black-800);
-    //     .btn-bgc(@black-100);
-    //     .btn-fc(@black-700);
-    // }
+    &.is-selected {
+        color: var(--black-700);
+        background-color: var(--black-050);
+    }
+
+    //  --  Muted (Gray)
+    &.s-btn__outlined {
+        border-color: var(--black-300);
+
+        &.is-selected {
+            border-color: var(--black-400);
+        }
+
+        &[disabled] {
+            border-color: var(--black-100);
+        }
+    }
+
+    //  --  Filled (Gray)
+    &.s-btn__filled {
+        color: var(--black-700);
+        background-color: var(--black-100);
+        border-color: var(--black-200);
+
+        &:hover,
+        &:focus {
+            background-color: var(--black-200);
+            border-color: var(--black-300);
+        }
+
+        &.is-selected {
+            color: var(--black-800);
+            background-color: var(--black-350);
+            border-color: var(--black-500);
+        }
+
+        &[disabled] {
+            color: var(--black-200);
+            border-color: var(--black-100);
+        }
+    }
 }
 
 //  --  Base Filled Style
