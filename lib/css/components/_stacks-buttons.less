@@ -491,18 +491,28 @@
         &:before {
             content: "";
             position: absolute;
-            top: calc(~"50% - @{su8}");
-            width: @su16;
-            height: @su16;
-            margin-left: -(@su24 - @su2);
+            opacity: .3;
+            left: .6em;
+            top: calc(~"50% - .6em");
+            width: 1.23076923em;
+            height: 1.23076923em;
             border-width: 2px;
             border-style: solid;
-            border-color: rgba(0, 0, 0, 15%);
+            border-color: currentColor;
+            border-radius: @br-circle;
+        }
+
+        &:after {
+            content: "";
+            position: absolute;
+            left: .6em;
+            top: calc(~"50% - .6em");
+            width: 1.23076923em;
+            height: 1.23076923em;
+            border-width: 2px;
+            border-style: solid;
+            border-color: transparent;
             border-left-color: currentColor;
-            @media (prefers-color-scheme: dark) {
-                border-color: rgba(255, 255, 255, 15%);
-                border-left-color: currentColor;
-            }
             border-radius: @br-circle;
             animation: s-spinner-rotate .9s infinite cubic-bezier(0.5, 0.1, 0.5, 0.9);
             // see _stacks-spinner.less for an explanation of the following two
@@ -517,68 +527,18 @@
             opacity: 0;
         }
 
-        &.s-btn__xs:before {
-            width: 13px;
-            height: 13px;
-            margin-left: -18px;
-            top: calc(~"50% - 7px");
-        }
-
-        &.s-btn__sm:before {
-            width: 14px;
-            height: 14px;
-            margin-left: -20px;
-        }
-
-        &.s-btn__md {
-            padding-left: 2.1em;
-
-            &:before {
-                width: 20px;
-                height: 20px;
-                margin-left: -27px;
-                border-width: 0.125em;
-                top: calc(~"50% - 9px");
-            }
-        }
-
         &.s-btn__lg {
-            padding-left: 1.8em;
-
-            &:before {
-                width: 28px;
-                height: 28px;
-                margin-left: -38px;
+            &:before,
+            &:after {
                 border-width: 3px;
-                top: calc(~"50% - 15px");
             }
         }
 
         &.s-btn__xl {
-            padding-left: 1.7em;
-
-            &:before {
-                width: 36px;
-                height: 36px;
-                margin-left: -46px;
+            &:before,
+            &:after {
                 border-width: 4px;
-                top: calc(~"50% - 18px");
             }
         }
     }
-
-    // &.s-btn__danger.is-loading:before {
-    //     // border-color: fade(@button-danger-background-color, 25%);
-    //     // border-left-color: fade(@button-danger-background-color, 75%);
-    // }
-
-    // &.s-btn__primary.is-loading:before,
-    // &.s-btn__danger.s-btn__filled.is-loading:before {
-    //     // border-color: fade(@white, 25%);
-    //     border-left-color: @white;
-    // }
-    // &.s-btn__muted.is-loading:before {
-    //     // border-color: fade(@black-900, 25%);
-    //     // border-left-color: fade(@black-900, 75%);
-    // }
 }
