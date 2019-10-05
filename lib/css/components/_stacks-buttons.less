@@ -494,10 +494,15 @@
             top: calc(~"50% - @{su8}");
             width: @su16;
             height: @su16;
-            margin-left: -1.65em;
             margin-left: -(@su24 - @su2);
-            // border: 2px solid fade(@button-filled-font-color, 40%);
-            // border-left-color: darken(@button-filled-font-color, 5%);
+            border-width: 2px;
+            border-style: solid;
+            border-color: rgba(0, 0, 0, 15%);
+            border-left-color: currentColor;
+            @media (prefers-color-scheme: dark) {
+                border-color: rgba(255, 255, 255, 15%);
+                border-left-color: currentColor;
+            }
             border-radius: @br-circle;
             animation: s-spinner-rotate .9s infinite cubic-bezier(0.5, 0.1, 0.5, 0.9);
             // see _stacks-spinner.less for an explanation of the following two
@@ -562,18 +567,18 @@
         }
     }
 
-    &.s-btn__danger.is-loading:before {
-        // border-color: fade(@button-danger-background-color, 25%);
-        // border-left-color: fade(@button-danger-background-color, 75%);
-    }
+    // &.s-btn__danger.is-loading:before {
+    //     // border-color: fade(@button-danger-background-color, 25%);
+    //     // border-left-color: fade(@button-danger-background-color, 75%);
+    // }
 
-    &.s-btn__primary.is-loading:before,
-    &.s-btn__danger.s-btn__filled.is-loading:before {
-        // border-color: fade(@white, 25%);
-        border-left-color: @white;
-    }
-    &.s-btn__muted.is-loading:before {
-        // border-color: fade(@black-900, 25%);
-        // border-left-color: fade(@black-900, 75%);
-    }
+    // &.s-btn__primary.is-loading:before,
+    // &.s-btn__danger.s-btn__filled.is-loading:before {
+    //     // border-color: fade(@white, 25%);
+    //     border-left-color: @white;
+    // }
+    // &.s-btn__muted.is-loading:before {
+    //     // border-color: fade(@black-900, 25%);
+    //     // border-left-color: fade(@black-900, 75%);
+    // }
 }
