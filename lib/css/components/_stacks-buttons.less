@@ -165,11 +165,17 @@
     }
 
     .s-btn--badge {
+        opacity: .5;
         display: inline-block;
         border-radius: @br-sm;
         padding: @su2 (@su4 - 1px);
         font-size: @fs-caption;
         line-height: @lh-xs;
+        background-color: currentColor;
+    }
+
+    .s-btn--number {
+        color: var(--white);
     }
 }
 
@@ -283,7 +289,7 @@
 
 
 //  ============================================================================
-//  $   WARNING BUTTONS & STYLES
+//  $   DANGER BUTTONS & STYLES
 //  ============================================================================
 .s-btn__danger {
     color: var(--red-600);
@@ -334,11 +340,19 @@
         &[disabled] {
             color: var(--white);
             background-color: var(--black-100);
+
+            .s-btn--number {
+                color: var(--black-300);
+            }
         }
 
         &.is-selected {
             color: var(--white);
             background-color: var(--red-800);
+        }
+
+        .s-btn--number {
+            color: var(--black-900);
         }
     }
 }
@@ -364,11 +378,19 @@
     &[disabled] {
         color: var(--white);
         background-color: var(--black-100);
+
+        .s-btn--number {
+            color: var(--black-300);
+        }
     }
 
     &.is-selected {
         color: var(--white);
         background-color: var(--blue-800);
+    }
+
+    .s-btn--number {
+        color: var(--black-900);
     }
 }
 
