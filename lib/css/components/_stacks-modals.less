@@ -29,7 +29,7 @@
     left: 0;
     align-items: center;
     justify-content: center;
-    background-color: fade(@black-900, 50%);
+    background-color: fade(@black-900, 50%); // No need to reverse for dark mode
     opacity: 0;
     backface-visibility: hidden;
     transition: opacity 100ms @te-smooth 0s, z-index 0s 100ms, visibility 0s 100ms; // Transition out
@@ -53,7 +53,7 @@
     max-height: 100%;
     padding: @su24;
     border-radius: @br-lg;
-    background-color: @white;
+    background-color: var(--white);
     box-shadow: @bs-lg;
     opacity: 0;
     backface-visibility: hidden;
@@ -77,6 +77,11 @@
         .s-modal[aria-hidden="false"] & {
             transform: translate3d(0, 0, 0) scale3d(1, 1, 1);
         }
+    }
+
+    // Dark mode specific overrides
+    @media (prefers-color-scheme: dark) {
+        background-color: var(--black-100);
     }
 }
 
@@ -117,7 +122,7 @@
     background-color: desaturate(fade(@red-900, 50%), 30%);
 
     .s-modal--header {
-        color: var(--red-400);
+        color: var(--red-600);
     }
 }
 
