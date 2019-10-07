@@ -7,18 +7,10 @@
 //  visit https://stackoverflow.design/
 //
 //  TABLE OF CONTENTS
-//  • VARIABLE
 //  • BASE STYLE
 //  • VARIATION PROGRESS BACKGROUNDS
 //  • BADGES
 //  • STEPPED
-//
-//  ============================================================================
-//  $   VARIABLES
-//  ----------------------------------------------------------------------------
-@progressbar-zindex:       0;
-@progressbar-fill-bgc:     @black-100;
-
 
 //  ============================================================================
 //  $   BASE STYLE
@@ -34,7 +26,7 @@
 //  ----------------------------------------------------------------------------
 .s-progress {
     width: 100%;
-    background-color: @progressbar-fill-bgc;
+    background-color: var(--black-200);
 }
 
 //  $$   BAR
@@ -56,7 +48,7 @@
     font-size: @fs-caption;
     line-height: @lh-xs;
     color: var(--black-900);
-    z-index: @progressbar-zindex + 2;
+    z-index: @zi-base + 2;
 }
 
 
@@ -102,10 +94,10 @@
 //  ---------------------------------------------------------------------------
 .s-progress__gold {
     .s-progress--bar {
-        background-color: @gold-bg;
+        background-color: var(--gold-lighter);
     }
     .s-progress--label {
-        border-color: @gold-dot;
+        border-color: var(--gold-darker);
     }
 }
 
@@ -113,10 +105,10 @@
 //  ---------------------------------------------------------------------------
 .s-progress__silver {
     .s-progress--bar {
-        background-color: @silver-bg;
+        background-color: var(--silver-lighter);
     }
     .s-progress--label {
-        border-color: @silver-dot;
+        border-color: var(--silver-darker);
     }
 }
 
@@ -124,10 +116,10 @@
 //  ---------------------------------------------------------------------------
 .s-progress__bronze {
     .s-progress--bar {
-        background-color: @bronze-bg;
+        background-color: var(--bronze-lighter);
     }
     .s-progress--label {
-        border-color: @bronze-dot;
+        border-color: var(--bronze-darker);
     }
 }
 
@@ -202,7 +194,11 @@
 
         .s-progress--stop {
             background: var(--blue-500);
-            // box-shadow: 0 0 0 @su6 fade(@blue-500, 15%);
+            box-shadow: 0 0 0 @su6 rgba(0, 149, 255, .15); // var(--blue-500) @ 15% opacity
+
+            @media (prefers-color-scheme: dark) {
+                box-shadow: 0 0 0 @su6 rgba(0, 149, 255, .30); // var(--blue-600) @ 30% opacity
+            }
         }
 
         .s-progress--label {
