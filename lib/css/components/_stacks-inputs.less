@@ -26,6 +26,14 @@
 //  ----------------------------------------------------------------------------
 @input-padding:     0.6em 0.7em;
 
+@focus-ring: {
+    box-shadow: 0 0 0 @su4 rgba(0, 149, 255, .15); // var(--blue-500) @ 15% opacity
+
+    @media (prefers-color-scheme: dark) {
+        box-shadow: 0 0 0 @su4 rgba(0, 149, 255, .30); // var(--blue-600) @ 30% opacity
+    }
+}
+
 //  ============================================================================
 //  $  BASE INPUT / TEXTAREA STYLE
 //  ----------------------------------------------------------------------------
@@ -38,7 +46,6 @@
     border: 1px solid var(--black-200);
     border-radius: @br-sm;
     background-color: var(--white);
-    box-shadow: 0 0 0 fade(@white, 0%);
     font-size: @fs-body1;
     font-family: inherit;
     color: var(--black-900);
@@ -294,10 +301,6 @@ fieldset {
         font-size: inherit;
         vertical-align: middle;
         cursor: pointer;
-
-        &:focus {
-            outline: 0;
-        }
     }
 
     //  Disabled
@@ -340,7 +343,7 @@ fieldset {
 
         &:focus {
             border-color: var(--blue-300);
-            // box-shadow: 0 0 0 @su4 fade(@blue-500, 15%);
+            @focus-ring();
         }
     }
 }
@@ -354,15 +357,14 @@ fieldset {
         &:checked {
             border-color: var(--blue-500);
             border-width: 0.30769231em;
-            background-color: var(--white);
+            background-color: #fff; // This should always be white regardless of dark mode
         }
 
         &:focus {
-            // box-shadow: 0 0 0 @su4 fade(@blue-500, 15%);
+            @focus-ring();
         }
     }
 }
-
 
 //  ============================================================================
 //  $   STATES
@@ -372,8 +374,11 @@ fieldset {
 & {
     @focus-style: {
         border-color: var(--blue-300);
-        // box-shadow: 0 0 0 @su4 fade(@blue-500, 15%);
         outline: 0;
+
+        @media (prefers-color-scheme: dark) {
+            border-color: var(--blue-400);
+        }
     };
 
     .s-input:focus,
@@ -381,12 +386,14 @@ fieldset {
     .s-textarea:focus,
     .s-select > select:focus {
         @focus-style();
+        @focus-ring();
     }
 
     // This needs to be separate from the one above, because in browsers that don't support :focus-within
     // it's a syntax error, rendering the whole selector null and void.
     .s-input:focus-within {
         @focus-style();
+        @focus-ring();
     }
 }
 
@@ -398,7 +405,6 @@ fieldset {
     &[read-only] {
         border-color: var(--black-075);
         background-color: var(--black-050);
-        box-shadow: inset 0 0 2px fade(@black-350, 10%);
         color: var(--black-200);
     }
 
@@ -448,27 +454,23 @@ fieldset {
     .s-checkbox,
     .s-radio:not(:checked),
     .s-select > select {
-        border-color: @yellow-600;
+        border-color: var(--yellow-600);
 
         &:focus {
-            box-shadow: 0 0 0 @su4 fade(@yellow-500, 40%);
+            box-shadow: 0 0 0 @su4 rgba(239, 202, 51, .4); // var(--yellow-400) @ 40% opacity
         }
     }
 
     .s-input-message {
-        color: @yellow-800;
+        color: var(--yellow-800);
 
         a {
-            color: @yellow-900;
-
-            &:hover {
-                color: darken(@yellow-900, 10%);
-            }
+            color: var(--yellow-900);
         }
     }
 
     .s-input-icon {
-        color: @yellow-600;
+        color: var(--yellow-600);
     }
 }
 
@@ -483,7 +485,11 @@ fieldset {
         border-color: var(--red-400);
 
         &:focus {
-            // box-shadow: 0 0 0 @su4 fade(@red-200, 40%);
+            box-shadow: 0 0 0 @su4 rgba(253, 172, 181, .4); // var(--red-200) @ 40% opacity
+
+            @media (prefers-color-scheme: dark) {
+                box-shadow: 0 0 0 @su4 rgba(212, 0, 20, .4); // var(--red-500) @ 40% opacity
+            }
         }
     }
 
@@ -515,7 +521,11 @@ fieldset {
         border-color: var(--green-400);
 
         &:focus {
-            // box-shadow: 0 0 0 @su4 fade(@green-200, 40%);
+            box-shadow: 0 0 0 @su4 rgba(166, 217, 183, .4); // var(--green-200) @ 40% opacity
+
+            @media (prefers-color-scheme: dark) {
+                box-shadow: 0 0 0 @su4 rgba(94, 186, 125, .4); // var(--green-300) @ 40% opacity
+            }
         }
     }
 
