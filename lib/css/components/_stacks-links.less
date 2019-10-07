@@ -65,17 +65,17 @@ a,
     }
 
     &.s-link__danger {
-        color: @button-danger-background-color;
+        color: var(--red-500);
 
         &.s-link__visited:visited {
-            // color: lighten(saturate(@button-danger-background-color, 5%), 15%);
+            color: var(--red-600);
         }
 
         &:hover,
         &.s-link__visited:hover,
         &:active,
         &.s-link__visited:active {
-            // color: darken(saturate(@button-danger-background-color, 5%), 15%);
+            color: var(--red-400);
         }
     }
 
@@ -131,12 +131,11 @@ button.s-link {
         }
     }
     #stacks-internals #load-config();
-    // .colorize-all(default, @link-color-regular, lighten(@link-color-regular, 10%), darken(@link-color-regular, 10%));
-    // .colorize-all(visited, @link-color-regular, lighten(@link-color-regular, 10%), darken(@link-color-regular, 10%));
-    // .colorize-all(grayscale, @black-700, @black-600, @black-900);
-    // .colorize-all(inherit, inherit, inherit, inherit);
-    // .colorize-all(muted, @black-500, lighten(@black-500, 10%), darken(@black-500, 10%));
-    // .colorize-all(danger, @button-danger-background-color, lighten(saturate(@button-danger-background-color, 5%), 15%), darken(saturate(@button-danger-background-color, 5%), 15%));
+    .colorize-all(default, var(--blue-600), var(--blue-500), var(--blue-700));
+    .colorize-all(grayscale, var(--black-700), var(--black-600), var(--black-900));
+    .colorize-all(inherit, inherit, inherit, inherit);
+    .colorize-all(muted, var(--black-500), var(--black-400), var(--black-600));
+    .colorize-all(danger, var(--red-500), var(--red-400), var(--red-600));
 }
 
 .s-block-link {
