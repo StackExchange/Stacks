@@ -1,0 +1,148 @@
+---
+layout: page
+title: Page titles
+description: Page titles create consistency in the layout of similar pages, specifically the placement and appearance of titles, descriptions, actions, and breadcrumbs.
+---
+
+<section class="stacks-section">
+    {% header h2 | Components %}
+    <div class="overflow-x-auto mb32">
+        <table class="wmn4 s-table s-table__bx-simple">
+            <thead>
+                <tr>
+                    <th scope="col" class="s-table--cell4">Component</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row">Page title</th>
+                    <td>Title of the page. Refer to the <a href="{{ "/content/guidelines/principles" | relative_url }}">content section</a> of Stacks for things like <a href="{{ "/content/guidelines/principles#simple-words" | relative_url }}">word choice</a>, <a href="{{ "/content/guidelines/principles#naming" | relative_url }}">naming</a>, and <a href="{{ "/content/guidelines/grammar-and-mechanics#use-sentence-casing" | relative_url }}">capitalization</a>.</td>
+                </tr>
+                <tr>
+                    <th scope="row">Description <span class="s-label--status">Optional</span></th>
+                    <td>Additional context for content and actions on the page.</td>
+                </tr>
+                <tr>
+                    <th scope="row">Actions <span class="s-label--status">Optional</span></th>
+                    <td>Free-form area to include buttons, filters, or other HTML content.</td>
+                </tr>
+                <tr>
+                    <th scope="row">Breadcrumbs <span class="s-label--status">Optional</span></th>
+                    <td><a href="{{ "/product/components/breadcrumbs" | relative_url }}">Breadcrumbs</a> can be included to provide context for the currently-viewed page.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    {% header h2 | Admin sections %}
+    <p class="stacks-copy">
+        These components should be used in the admin sections of our private Q&A products.
+    </p>
+    {% header h3 | Base Styles %}
+    <p class="stacks-copy">
+        The base style for pages that don’t need further description beyond the page title and don’t have any actions for filters. 
+    </p>
+    <div class="stacks-preview">
+{% highlight html %}
+<div class="s-page-title">
+    <div class="s-page-title--text">
+        <h1>Page title</h1>
+    </div>
+</div>
+{% endhighlight %}
+        <div class="stacks-preview--example">
+            <div class="s-page-title">
+                <div class="s-page-title--text">
+                    <h1>Page title</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% header h3 | Title with description %}
+    <p class="stacks-copy">
+        A summary of a page’s content. Helpful for large pages with multiple actions.
+    </p>
+    <div class="stacks-preview">
+{% highlight html %}
+<div class="s-page-title">
+    <div class="s-page-title--text">
+        <h1>Page title</h1>
+        <p class="s-page-title--description">…</p>
+    </div>
+</div>
+{% endhighlight %}
+        <div class="stacks-preview--example">
+            <div class="s-page-title">
+                <div class="s-page-title--text">
+                    <h1>Page title</h1>
+                    <p class="s-page-title--description">Optional description de Finibus Bonorum et Malorum with an <a href="#">optional link</a>.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% header h3 | Title with actions %}
+    <p class="stacks-copy">
+        When a page title includes actions, they are located at the far end of the component. This area is free-form, so we can include any markups we'd like, from single button to a grid of custom filters and text.
+    </p>
+    <div class="stacks-preview">
+{% highlight html %}
+<div class="s-page-title">
+    <div class="s-page-title--text">
+        <h1>Page title</h1>
+        <p class="s-page-title--description">…</p>
+    </div>
+    <div class="s-page-title--actions">…</div>
+</div>
+{% endhighlight %}
+        <div class="stacks-preview--example">
+            <div class="s-page-title">
+                <div class="s-page-title--text">
+                    <h1>Page title</h1>
+                    <p class="s-page-title--description">Optional description de Finibus Bonorum et Malorum with an <a href="#">optional link</a>.</p>
+                </div>
+                <div class="s-page-title--actions">
+                    <div class="grid gsx gs8">
+                        <button class="grid--cell s-btn s-btn__filled" type="button" aria-pressed="false">Add something</button>
+                        <button class="grid--cell s-btn s-btn__muted s-btn__outlined s-btn__dropdown" type="button" aria-pressed="false">Filter</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% header h3 | Title with breadcrumbs %}
+    <p class="stacks-copy">
+        Breadcrumbs are used to provide context for the currently-viewed page and reduce the number of actions a website visitor needs to take in order to get to a higher-level page. Breadcrumbs <strong>should not</strong> for single-level sections that have no logical grouping.
+    </p>
+    <div class="stacks-preview">
+{% highlight html %}
+<div class="s-page-title">
+    <div class="s-page-title--text">
+        <nav class="s-breadcrumbs" aria-label="breadcrumb">…</nav>
+        <h1>Page title</h1>
+        <p class="s-page-title--description">…</p>
+    </div>
+</div>
+{% endhighlight %}
+        <div class="stacks-preview--example">
+            <div class="s-page-title">
+                <div class="s-page-title--text">
+                    <nav class="s-breadcrumbs" aria-label="breadcrumb">
+                        <div class="s-breadcrumbs--item">
+                            <a class="s-breadcrumbs--link" href="…">Stack Overflow</a>
+                            {% icon ArrowRightAltSm | s-breadcrumbs--divider %}
+                        </div>
+                        <div class="s-breadcrumbs--item">
+                            <a class="s-breadcrumbs--link" href="…">…</a>
+                            {% icon ArrowRightAltSm | s-breadcrumbs--divider %}
+                        </div>
+                        <div class="s-breadcrumbs--item">
+                            <a class="s-breadcrumbs--link" href="…">…</a>
+                        </div>
+                    </nav>
+                    <h1>Page title</h1>
+                    <p class="s-page-title--description">Optional description de Finibus Bonorum et Malorum with an <a href="#">optional link</a>.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
