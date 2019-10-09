@@ -370,10 +370,6 @@ fieldset {
     @focus-style: {
         border-color: var(--blue-300);
         outline: 0;
-
-        @media (prefers-color-scheme: dark) {
-            border-color: var(--blue-400);
-        }
     };
 
     .s-input:focus,
@@ -481,10 +477,6 @@ fieldset {
 
         &:focus {
             box-shadow: 0 0 0 @su4 rgba(253, 172, 181, .4); // var(--red-200) @ 40% opacity
-
-            @media (prefers-color-scheme: dark) {
-                box-shadow: 0 0 0 @su4 rgba(212, 0, 20, .4); // var(--red-500) @ 40% opacity
-            }
         }
     }
 
@@ -505,6 +497,20 @@ fieldset {
     }
 }
 
+body.has-darkmode .has-error {
+    .s-input,
+    .s-textarea,
+    .s-checkbox,
+    .s-radio:not(:checked),
+    .s-select > select {
+        &:focus {
+            @media (prefers-color-scheme: dark) {
+                box-shadow: 0 0 0 @su4 rgba(212, 0, 20, .4); // var(--red-500) @ 40% opacity
+            }
+        }
+    }
+}
+
 //  $$  SUCCESS
 //  ----------------------------------------------------------------------------
 .has-success {
@@ -517,10 +523,6 @@ fieldset {
 
         &:focus {
             box-shadow: 0 0 0 @su4 rgba(166, 217, 183, .4); // var(--green-200) @ 40% opacity
-
-            @media (prefers-color-scheme: dark) {
-                box-shadow: 0 0 0 @su4 rgba(94, 186, 125, .4); // var(--green-300) @ 40% opacity
-            }
         }
     }
 
@@ -538,6 +540,20 @@ fieldset {
 
     .s-input-icon {
         color: var(--green-400);
+    }
+}
+
+body.has-darkmode .has-success {
+    .s-input,
+    .s-textarea,
+    .s-checkbox,
+    .s-radio:not(:checked),
+    .s-select > select {
+        &:focus {
+            @media (prefers-color-scheme: dark) {
+                box-shadow: 0 0 0 @su4 rgba(94, 186, 125, .4); // var(--green-300) @ 40% opacity
+            }
+        }
     }
 }
 

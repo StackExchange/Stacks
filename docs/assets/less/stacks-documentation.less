@@ -25,13 +25,14 @@
 
 .stacks-intro {
     background-image: url("../img/illustration-crane.svg"), url("../img/illustration-field.svg");
+    background-position: top -35% left 15%, bottom 10% right 8%;
+    background-repeat: no-repeat, no-repeat;
+}
 
+body.has-darkmode .stacks-intro {
     @media (prefers-color-scheme: dark) {
         background-image: url("../img/illustration-crane-dark.svg"), url("../img/illustration-field-dark.svg");
     }
-
-    background-position: top -35% left 15%, bottom 10% right 8%;
-    background-repeat: no-repeat, no-repeat;
 }
 
 .stacks-home-nav {
@@ -206,10 +207,6 @@
         overflow: auto;
         background-color: #242729;
 
-        @media (prefers-color-scheme: dark) {
-            background-color: #1C1B1B;
-        }
-
         @scrollbar-styles();
 
         &::-webkit-scrollbar-thumb
@@ -236,20 +233,27 @@
     }
 }
 
+body.has-darkmode .stacks-preview .highlight {
+    @media (prefers-color-scheme: dark) {
+        background-color: #1C1B1B;
+    }
+}
+
 //  Preview area
 .stacks-preview--example {
     padding: @su16;
     border-bottom-left-radius: @br-sm;
     border-bottom-right-radius: @br-sm;
     border: 1px solid var(--black-100);
+    border-top-width: 0;
+    font-size: @fs-body1;
+}
 
+body.has-darkmode .stacks-preview--example {
     @media (prefers-color-scheme: dark) {
         border-color: transparent;
         background: var(--black-025);
     }
-
-    border-top-width: 0;
-    font-size: @fs-body1;
 }
 
 // Checkered background

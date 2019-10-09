@@ -25,7 +25,7 @@
         .f\:fc-@{color-name}:focus-within {
             color: var(~"--@{color-name}") !important;
         }
-        .d\:fc-@{color-name} {
+        body.has-darkmode .d\:fc-@{color-name} {
             @media (prefers-color-scheme: dark) {
                 color: var(~"--@{color-name}") !important;
             }
@@ -39,13 +39,12 @@
         .f\:bg-@{color-name}:focus-within {
             background-color: var(~"--@{color-name}") !important;
         }
-        .d\:bg-@{color-name} {
+        body.has-darkmode .d\:bg-@{color-name} {
             @media (prefers-color-scheme: dark) {
                 background-color: var(~"--@{color-name}") !important;
             }
         }
     }
-
 
     .standard-weights(@color) {
         .color(~"@{color}-900");
