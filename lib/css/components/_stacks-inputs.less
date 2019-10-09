@@ -26,14 +26,6 @@
 //  ----------------------------------------------------------------------------
 @input-padding:     0.6em 0.7em;
 
-@focus-ring: {
-    box-shadow: 0 0 0 @su4 rgba(0, 149, 255, .15); // var(--blue-500) @ 15% opacity
-
-    @media (prefers-color-scheme: dark) {
-        box-shadow: 0 0 0 @su4 rgba(0, 149, 255, .30); // var(--blue-600) @ 30% opacity
-    }
-}
-
 //  ============================================================================
 //  $  BASE INPUT / TEXTAREA STYLE
 //  ----------------------------------------------------------------------------
@@ -343,7 +335,7 @@ fieldset {
 
         &:focus {
             border-color: var(--blue-300);
-            @focus-ring();
+            box-shadow: var(--bs-ring);
         }
     }
 }
@@ -361,7 +353,7 @@ fieldset {
         }
 
         &:focus {
-            @focus-ring();
+            box-shadow: var(--bs-ring);
         }
     }
 }
@@ -386,14 +378,14 @@ fieldset {
     .s-textarea:focus,
     .s-select > select:focus {
         @focus-style();
-        @focus-ring();
+        box-shadow: var(--bs-ring);
     }
 
     // This needs to be separate from the one above, because in browsers that don't support :focus-within
     // it's a syntax error, rendering the whole selector null and void.
     .s-input:focus-within {
         @focus-style();
-        @focus-ring();
+        box-shadow: var(--bs-ring);
     }
 }
 
