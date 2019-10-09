@@ -199,9 +199,11 @@
         margin: 0;
         padding: @su8 @su12;
         overflow: auto;
+        background-color: #242729;
 
-        // We want our code highlighting colors to stay fixed
-        background-color: #242729; // var(--black-800)
+        @media (prefers-color-scheme: dark) {
+            background-color: #1C1B1B;
+        }
 
         // Force scrollbar styling on the code examples
         &::-webkit-scrollbar {
@@ -251,6 +253,12 @@
     border-bottom-left-radius: @br-sm;
     border-bottom-right-radius: @br-sm;
     border: 1px solid var(--black-100);
+
+    @media (prefers-color-scheme: dark) {
+        border-color: transparent;
+        background: var(--black-025);
+    }
+
     border-top-width: 0;
     font-size: @fs-body1;
 }
