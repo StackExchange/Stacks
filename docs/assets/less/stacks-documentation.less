@@ -205,30 +205,14 @@
             background-color: #1C1B1B;
         }
 
-        // Force scrollbar styling on the code examples
-        &::-webkit-scrollbar {
-            width: @su8;
-            height: @su8;
-            background-color: transparent;
-        }
-
-        &::-webkit-scrollbar-track {
-            border-radius: @su8;
-            background-color: transparent;
-        }
+        @scrollbar-styles();
 
         &::-webkit-scrollbar-thumb
         {
-            border-radius: @su8;
-            background-color: var(--black-100);
+            background-color: rgba(255, 255, 255, .25);
         }
 
-        &::-webkit-scrollbar-corner {
-            background-color: transparent;
-        }
-
-        scrollbar-color: var(--black-100) transparent;
-        scrollbar-width: thin;
+        scrollbar-color: rgba(255, 255, 255, .25) transparent;
 
         pre,
         code {

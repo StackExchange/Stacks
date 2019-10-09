@@ -108,3 +108,40 @@
 
 @default-transition-duration:       0.1s;
 @transition-time:                   @default-transition-duration;
+
+@scrollbar-styles: {
+    // Force scrollbar styling on the code examples
+    &::-webkit-scrollbar {
+        width: @su8;
+        height: @su8;
+        background-color: transparent;
+    }
+
+    &::-webkit-scrollbar-track {
+        border-radius: @su8;
+        background-color: transparent;
+    }
+
+    &::-webkit-scrollbar-thumb
+    {
+        border-radius: @su8;
+        background-color: rgba(0, 0, 0, .15);
+
+        @media (prefers-color-scheme: dark) {
+            background-color: rgba(255, 255, 255, .15);
+        }
+    }
+
+    &::-webkit-scrollbar-corner {
+        background-color: transparent;
+        border-color: transparent;
+    }
+
+    scrollbar-color: rgba(0, 0, 0, .15) transparent;
+
+    @media (prefers-color-scheme: dark) {
+        scrollbar-color: rgba(255, 255, 255, .15) transparent;
+    }
+
+    scrollbar-width: thin;
+}
