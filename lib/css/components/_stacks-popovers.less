@@ -24,9 +24,9 @@
     padding: @su12;
     z-index: @zi-popovers;
     border-radius: @br-md;
-    border: 1px solid var(--black-100);
+    border: 1px solid var(--black-075);
     background-color: var(--white);
-    box-shadow: var(--bs-sm);
+    box-shadow: var(--bs-md);
     color: var(--black-900);
     font-size: @fs-body1;
 
@@ -49,6 +49,14 @@
 
     &[x-placement^="left"] {
         margin-right: @su8 + 2px;
+    }
+}
+
+body.has-darkmode .s-popover {
+    @media (prefers-color-scheme: dark) {
+        background-color: var(--black-075);
+        border-color: transparent;
+        box-shadow: var(--bs-lg);
     }
 }
 
@@ -106,6 +114,26 @@
     }
 }
 
+body.has-darkmode {
+    .s-popover--arrow,
+    .s-popover--arrow__tl,
+    .s-popover--arrow__tc,
+    .s-popover--arrow__tr,
+    .s-popover--arrow__bl,
+    .s-popover--arrow__bc,
+    .s-popover--arrow__br,
+    .s-popover--arrow__lt,
+    .s-popover--arrow__lc,
+    .s-popover--arrow__lb,
+    .s-popover--arrow__rt,
+    .s-popover--arrow__rc,
+    .s-popover--arrow__rb {
+        @media (prefers-color-scheme: dark) {
+            color: var(--black-075);
+        }
+    }
+}
+
 //  ============================================================================
 //  $   ARROW LOCATIONS
 //  ============================================================================
@@ -121,7 +149,7 @@
     }
     &:before {
         top: -(@su8);
-        border-bottom-color: var(--black-150);
+        border-bottom-color: var(--black-100);
     }
     &:after {
         top: -(@su8 - 1);
@@ -141,7 +169,7 @@
     }
     &:before {
         bottom: -(@su8);
-        border-top-color: var(--black-150);
+        border-top-color: var(--black-100);
     }
     &:after {
         bottom: -(@su8 - 1);
@@ -198,7 +226,7 @@
     }
     &:before {
         left: -(@su8);
-        border-right-color: var(--black-150);
+        border-right-color: var(--black-100);
     }
     &:after {
         left: -(@su8 - 1);
@@ -218,7 +246,7 @@
     }
     &:before {
         right: -(@su8);
-        border-left-color: var(--black-150);
+        border-left-color: var(--black-100);
     }
     &:after {
         right: -(@su8 - 1);
