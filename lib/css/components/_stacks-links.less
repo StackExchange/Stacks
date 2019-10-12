@@ -18,11 +18,11 @@ a,
 .s-link {
     #stacks-internals #load-config();
     text-decoration: none;
-    color: var(--blue-600);
+    color: @link-color;
     cursor: pointer;
 
     &.s-link__visited:visited {
-        color: var(--blue-700);
+        color: @link-color-visited;
         text-decoration: none;
     }
 
@@ -30,7 +30,7 @@ a,
     &.s-link__visited:hover,
     &:active,
     &.s-link__visited:active {
-        color: var(--blue-500);
+        color: @link-color-hover;
         text-decoration: none;
     }
 
@@ -131,7 +131,7 @@ button.s-link {
         }
     }
     #stacks-internals #load-config();
-    .colorize-all(default, var(--blue-600), var(--blue-500), var(--blue-700));
+    .colorize-all(default, @link-color, @link-color-hover, @link-color-visited);
     .colorize-all(grayscale, var(--black-700), var(--black-600), var(--black-900));
     .colorize-all(inherit, inherit, inherit, inherit);
     .colorize-all(muted, var(--black-500), var(--black-400), var(--black-600));
