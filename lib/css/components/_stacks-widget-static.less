@@ -221,27 +221,20 @@ table.s-sidebarwidget--content.s-sidebarwidget__items {
     }
 }
 
-// COLOR ALTERNATIVES
-.alternate-color(blue);
-.alternate-color(yellow);
-.alternate-color(green);
+&.s-sidebarwidget__bulletin {
+    border-color: var(--yellow-200);
+    background-color: var(--yellow-050);
 
-.alternate-color(@name) {
-    &.s-sidebarwidget__@{name} {
-        border-color: var(~"--@{name}-200");
-        background-color: var(~"--@{name}-050");
+    .s-sidebarwidget--header {
+        background-color: var(--yellow-100);
+        color: var(--black-700);
+    }
 
-        .s-sidebarwidget--header {
-            background-color: var(~"--@{name}-100");
-            color: var(~"--@{name}-900");
-        }
+    .s-sidebarwidget--header, .s-sidebarwidget--content {
+        border-color: var(--yellow-200);
+    }
 
-        .s-sidebarwidget--header, .s-sidebarwidget--content {
-            border-color: var(~"--@{name}-200");
-        }
-
-        &:after {
-            border-color: var(~"--@{name}-200");
-        }
+    &:after {
+        border-color: var(--yellow-200);
     }
 }
