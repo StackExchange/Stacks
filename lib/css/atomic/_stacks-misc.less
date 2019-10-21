@@ -11,6 +11,7 @@
 //  ----------------------------------------------------------------------------
 
 #stacks-internals #responsify('.d-block', { display: block !important; });
+@media print { .print\:d-block { display: block !important; } }
 .d-flex                   { display: flex !important; }
 .d-inline-flex            { display: inline-flex !important; }
 #stacks-internals #responsify('.d-inline', { display: inline !important; });
@@ -18,7 +19,44 @@
 .d-table                  { display: table !important; }
 .d-table-cell             { display: table-cell !important; }
 #stacks-internals #responsify('.d-none', { display: none !important; });
+@media print { .print\:d-none { display: none !important; } }
+
 .d-unset                  { display: initial !important; }
+
+//  ============================================================================
+//  $  BACKGROUND-POSITIONS
+//  ----------------------------------------------------------------------------
+.bg-bottom                { background-position: bottom !important; }
+.bg-center                { background-position: center !important; }
+.bg-left                  { background-position: left !important; }
+.bg-left-bottom           { background-position: left bottom !important; }
+.bg-left-top              { background-position: left top !important; }
+.bg-right                 { background-position: right !important; }
+.bg-right-bottom          { background-position: right bottom !important; }
+.bg-right-top             { background-position: right top !important; }
+.bg-top                   { background-position: top !important; }
+
+//  ============================================================================
+//  $  BACKGROUND-REPEATS
+//  ----------------------------------------------------------------------------
+.bg-repeat                { background-repeat: repeat !important; }
+.bg-no-repeat             { background-repeat: no-repeat !important; }
+.bg-repeat-x              { background-repeat: repeat-x !important; }
+.bg-repeat-y              { background-repeat: repeat-y !important; }
+
+//  ============================================================================
+//  $  BACKGROUND-SIZE
+//  ----------------------------------------------------------------------------
+.bg-auto                  { background-size: auto !important; }
+.bg-cover                 { background-size: cover !important; }
+.bg-contain               { background-size: contain !important; }
+
+//  ============================================================================
+//  $  BACKGROUND-ATTACHMENT
+//  ----------------------------------------------------------------------------
+.bg-fixed                 { background-attachment: fixed !important; }
+.bg-local                 { background-attachment: local !important; }
+.bg-scroll                { background-attachment: scroll !important; }
 
 //  ============================================================================
 //  $  CURSORS
@@ -135,9 +173,9 @@
 //  ============================================================================
 //  $  OVERFLOW
 //  ----------------------------------------------------------------------------
-.overflow-auto            { overflow: auto !important; }
-.overflow-x-auto          { overflow-x: auto !important; }
-.overflow-y-auto          { overflow-y: auto !important; }
+.overflow-auto            { overflow: auto !important; -webkit-overflow-scrolling: touch; }
+.overflow-x-auto          { overflow-x: auto !important; -webkit-overflow-scrolling: touch; }
+.overflow-y-auto          { overflow-y: auto !important; -webkit-overflow-scrolling: touch; }
 
 .overflow-hidden          { overflow: hidden !important; }
 .overflow-x-hidden        { overflow-x: hidden !important; }
@@ -178,12 +216,12 @@
 .z-base                   { z-index: @zi-base !important; }
 .z-active                 { z-index: @zi-active !important; }
 .z-selected               { z-index: @zi-selected !important; }
-.z-nav                    { z-index: @zi-navigation !important; }
-.z-nav-fixed              { z-index: @zi-navigation-fixed !important; }
 .z-dropdown               { z-index: @zi-dropdown !important; }
 .z-popover                { z-index: @zi-popovers !important; }
 .z-tooltip                { z-index: @zi-tooltips !important; }
 .z-banner                 { z-index: @zi-banners !important; }
+.z-nav                    { z-index: @zi-navigation !important; }
+.z-nav-fixed              { z-index: @zi-navigation-fixed !important; }
 .z-modal                  { z-index: @zi-modals !important; }
 .z-modal-bg               { z-index: @zi-modals-background !important; }
 
@@ -191,6 +229,8 @@
 //  $  OUTLINE
 //  ----------------------------------------------------------------------------
 .outline-none             { outline: 0 !important; }
+.outline-ring             { outline: solid @su4 fade(@blue-500, 15%); }
+.f\:outline-ring          { &:focus, &:focus-within { .outline-ring } }
 
 //  ============================================================================
 //  $  CURRENT COLOR
@@ -211,6 +251,9 @@
 .bs-i-sm                  { box-shadow: @bs-i-sm !important; }
 .bs-i-md                  { box-shadow: @bs-i-md !important; }
 .bs-i-lg                  { box-shadow: @bs-i-lg !important; }
+.bs-ring                  { box-shadow: 0 0 0 @su4 fade(@blue-500, 15%); }
+.h\:bs-ring:hover { .bs-ring}
+.f\:bs-ring { &:focus, &:focus-within { .bs-ring } }
 
 //  --  Added hover styles for box-shadow
 .bs-sm.bs-hover:hover     { box-shadow: 0 @su2 @su8 @black-050 !important; }
@@ -240,12 +283,3 @@
 // -- Delays
 .t-delay { transition-delay: .25s !important; }
 .t-delay-unset { transition-delay: 0s !important; }
-
-//  ============================================================================
-//  $  PRINT
-//  ----------------------------------------------------------------------------
-@media print {
-    .print\:d-none {
-        display: none !important;
-    }
-}

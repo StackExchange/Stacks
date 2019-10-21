@@ -1,18 +1,18 @@
 ---
 layout: page
-title: Frequently Asked Questions
+title: Frequently asked questions
 ---
 <section class="stacks-section">
     {% header h2 | Why do we have to write CSS inline? %}
     <p class="stacks-copy">
-        It’s still the safest way to ensure CSS styles are applied in email clients. Referencing external stylesheets isn’t well-supported in email. Embedded CSS in a <span class="stacks-code">&lt;style&gt;</span> tag <em>does</em> have decent support, there are a few hold outs like <a href="https://emails.hteumeuleu.com/trying-to-make-sense-of-gmail-css-support-after-the-2016-update-53c15151063a" target="_blank">a few Gmail clients</a> and a <a href="https://emails.hteumeuleu.com/should-we-stop-inlining-styles-in-emails-8c3b64f0d407" target="_blank">smattering of mostly non-US mobile clients</a>. Given Stack Overflow’s volume and reach, we choose to support as many email clients as we can, even ones that don’t support the <span class="stacks-code">&lt;style&gt;</span> tag. So we opt for writing CSS inline, which is supported everywhere.
+        It’s still the safest way to ensure CSS styles are applied in email clients. Referencing external stylesheets isn’t well-supported in email. Embedded CSS in a <span class="stacks-code">&lt;style&gt;</span> tag <em>does</em> have decent support, and there are a few holdouts like <a href="https://emails.hteumeuleu.com/trying-to-make-sense-of-gmail-css-support-after-the-2016-update-53c15151063a" target="_blank">a few Gmail clients</a> and a <a href="https://emails.hteumeuleu.com/should-we-stop-inlining-styles-in-emails-8c3b64f0d407" target="_blank">smattering of mostly non-US mobile clients</a>. Given Stack Overflow’s volume and reach, we choose to support as many email clients as we can, even ones that don’t support the <span class="stacks-code">&lt;style&gt;</span> tag. So we opt for writing CSS inline, which is supported everywhere.
     </p>
 </section>
 
 <section class="stacks-section">
     {% header h2 | If CSS is inline, why do we need a &lt;style&gt; tag? %}
     <p class="stacks-copy">
-        Inline CSS is a sure fire way to style an email’s layout at a granular level. For the same reason it’s done on the web, adding a CSS reset to an email’s <span class="stacks-code">&lt;head&gt;</span> helps to normalize how the code gets rendered in email clients that <a href="https://www.campaignmonitor.com/css/style-element/style-in-head/">support the <span class="stacks-code">&lt;style&gt;</span> tag</a>.
+        Inline CSS is a sure-fire way to style an email’s layout at a granular level. For the same reason it’s done on the web, adding a CSS reset to an email’s <span class="stacks-code">&lt;head&gt;</span> helps to normalize how the code gets rendered in email clients that <a href="https://www.campaignmonitor.com/css/style-element/style-in-head/">support the <span class="stacks-code">&lt;style&gt;</span> tag</a>.
     </p>
     <p class="stacks-copy">
         Each template contains a breakdown, element by element, of what each reset style is actually doing.
@@ -20,17 +20,28 @@ title: Frequently Asked Questions
 </section>
 
 <section class="stacks-section">
+    {% header h2 | Can we use a CSS inliner? %}
+    <p class="stacks-copy">
+        CSS inliners promise to take CSS written in the <span class="stacks-code">&lt;head&gt;</span> and automatically move CSS <strong>inline</strong> in the appropriate locations in the <span class="stacks-code">&lt;body&gt;</span>. However we <strong>recommend against</strong> using a CSS inliners with these templates. Here’s why:
+    </p>
+    <ul class="stacks-list">
+        <li>These templates should not require a dependency to author CSS.</li>
+        <li>The placement of the templates CSS is already optimized. The CSS in the <span class="stacks-code">&lt;head&gt;</span> is meant only for email clients that parse CSS in this location. It doesn’t need to be inlined.</li>
+        <li>There are some CSS selectors like <span class="stacks-code">:hover</span> that throw errors in some CSS inliners.</li>
+        <li>Inlining leads to code bloat. Not only does this impact download speeds, but some email clients like Gmail and iOS Outlook truncate messages after they exceed a certain file size.</li>
+    </ul>
+</section>
+
+<section class="stacks-section">
     {% header h2 | How does CSS inheritance work in email? %}
     <p class="stacks-copy">
         Various email clients handle CSS inheritance differently from one another, so it’s best to place inline CSS on the HTML tag close to the content you wish to style instead of relying on the cascade.
     </p>
-    <div class="grid grid__allcells6 gsx gs16">
-        <div class="grid--cell">
-            <p class="fc-green-500 fw-bold fs-body1 tt-uppercase bb bbw3 bc-green-2 mb0 pb8">
-                {% icon Checkmark | mr4 %} Do
-            </p>
-            <div class="stacks-preview _preview-none">
-{% highlight html linenos %}
+    <p class="fc-green-500 fw-bold fs-body1 tt-uppercase mb0 pb8">
+        {% icon Checkmark | mr4 %} Do
+    </p>
+    <div class="stacks-preview _preview-none">
+{% highlight html %}
 <table>
     <tr>
         <td style="font-family: arial;">
@@ -39,14 +50,13 @@ title: Frequently Asked Questions
     </tr>
 </table>
 {% endhighlight %}
-            </div>
-        </div>
-        <div class="grid--cell">
-            <p class="fc-red-500 fw-bold fs-body1 tt-uppercase bb bbw3 bc-red-2 mb0 pb8">
-                {% icon Clear | mr4 %} Don’t
-            </p>
-            <div class="stacks-preview _preview-none">
-{% highlight html linenos %}
+    </div>
+
+    <p class="fc-red-500 fw-bold fs-body1 tt-uppercase mb0 pb8">
+        {% icon Clear | mr4 %} Don’t
+    </p>
+    <div class="stacks-preview _preview-none btr0">
+{% highlight html %}
 <table style="font-family: arial;">
     <tr>
         <td>
@@ -55,8 +65,6 @@ title: Frequently Asked Questions
     </tr>
 </table>
 {% endhighlight %}
-            </div>
-        </div>
     </div>
 </section>
 
@@ -68,35 +76,30 @@ title: Frequently Asked Questions
     <p class="stacks-copy">
         Outlook only honors margins on typography tags, and only honors padding on <span class="stacks-code">&lt;td&gt;</span> tags. Its interpretation of spacing on other tags like <span class="stacks-code">&lt;table&gt;</span>, <span class="stacks-code">&lt;div&gt;</span>, and <span class="stacks-code">&lt;img&gt;</span> tags is sketchy, so it’s best to avoid spacing with those.
     </p>
-    <div class="grid grid__allcells6 gsx gs16">
-        <div class="grid--cell">
-            <p class="fc-green-500 fw-bold fs-body1 tt-uppercase bb bbw3 bc-green-2 mb0 pb8">
-                {% icon Checkmark | mr4 %} Do
-            </p>
-            <div class="stacks-preview _preview-none">
-{% highlight html linenos %}
+    <p class="fc-green-500 fw-bold fs-body1 tt-uppercase mb0 pb8">
+        {% icon Checkmark | mr4 %} Do
+    </p>
+    <div class="stacks-preview _preview-none">
+{% highlight html %}
 <td style="padding-left: 10px;">
     <p style="margin-bottom: 10px">
         Paragraph
     </p>
 </td>
 {% endhighlight %}
-            </div>
-        </div>
-        <div class="grid--cell">
-            <p class="fc-red-500 fw-bold fs-body1 tt-uppercase bb bbw3 bc-red-2 mb0 pb8">
-                {% icon Clear | mr4 %} Don’t
-            </p>
-            <div class="stacks-preview _preview-none">
-{% highlight html linenos %}
+    </div>
+
+    <p class="fc-red-500 fw-bold fs-body1 tt-uppercase mb0 pb8">
+        {% icon Clear | mr4 %} Don’t
+    </p>
+    <div class="stacks-preview _preview-none">
+{% highlight html %}
 <td style="margin-left: 10px;">
     <p style="padding-bottom: 10px">
         Paragraph
     </p>
 </td>
 {% endhighlight %}
-            </div>
-        </div>
     </div>
 </section>
 
@@ -108,18 +111,18 @@ title: Frequently Asked Questions
 </section>
 
 <section class="stacks-section">
-    {% header h2 | What is Preview Text? %}
+    {% header h2 | What is preview text? %}
     <p class="stacks-copy">
         Preview text is a snippet of copy pulled in from the body of your email and typically displayed underneath the sender name and subject line in a subscriber’s inbox. It’s used to increase open rates, as users see an email in their inbox before opening it.
     </p>
-    <p class="stacks-copy">
-        <img src="https://d31v04zdn5vmni.cloudfront.net/blog/wp-content/uploads/2015/04/ios-gmail-app-preview-text.jpg" alt="diagram of email subject line, sender, and preview text in mobile inbox" class="mx-auto w100 wmx6">
+    <p class="stacks-copy ta-center">
+        <img src="{{ '/assets/img/figure-preview-text.png' | relative_url }}" width="720" alt="Diagram of email subject line, sender, and preview text in mobile inbox" class="mx-auto wmx100">
     </p>
     <p class="stacks-copy">
         Preview text is optional. If preview text is short or omitted, email clients will fill the space with text from the email body (including alt attributes). You can avoid unwanted text coming in from your email’s body by <a href="https://litmus.com/blog/the-little-known-preview-text-hack-you-may-want-to-use-in-every-email" target="_blank">using this hack</a>.
     </p>
 
-    <div class="grid ai-start s-notice s-notice__info">
+    <div class="grid s-notice s-notice__info">
         <div class="grid--cell mr8">
             {% icon Alert %}
         </div>
@@ -135,32 +138,12 @@ title: Frequently Asked Questions
         Our default email templates are <code class="stacks-code">680px</code> wide. Our hybrid math, the code that makes emails responsive without media queries, is built on that number.
     </p>
     <p class="stacks-copy">
-        This is more a guideline than a rule. It the situation calls for it, an email can have any width. Examples might be...
+        This is more a guideline than a rule. If the situation calls for it, an email can have any width. Examples might be...
     </p>
     <ul class="stacks-list">
         <li><strong>One-off emails</strong> with unique layouts (like a major product update).</li>
         <li><strong>Single-column emails</strong> that don’t need to stack on small screens (like our Code of Conduct email).</li>
     </ul>
-</section>
-
-<section class="stacks-section">
-    {% header h2 | How should images be prepared? %}
-    <p class="stacks-copy">
-        Email has largely standardized on PNG, JPG, and GIF file formats. Animated GIFs are supported in all email clients, though Windows Outlook and Win10 Mail only display its first frame.
-    </p>
-    <p class="stacks-copy">
-        SVG is <a href="https://stackoverflow.com/questions/46783599/base64-encoded-image-is-not-showing-in-gmail/46789485#46789485">not well supported in most web email clients</a>, including Gmail (which accounts for most of our email opens) and are completely blocked in Outlook. <a href="https://stackoverflow.com/questions/46783599/base64-encoded-image-is-not-showing-in-gmail/46789485#46789485">This includes base64 encoded images</a>.
-    </p>
-    <ul class="stacks-list">
-        <li><strong>Foreground images</strong> should be saved at @2x since they scale reliably in all major email clients. @2x images display crisply on high-definition displays when scaled down to @1x in code.</li>
-        <li><strong>Background images</strong> should be saved at @1x since they don’t scale reliably in all major email clients.</li>
-    </ul>
-    <p class="stacks-copy">
-        Ideally, images should be under ~100KB. Tools like <a href="https://imageoptim.com/mac" target="_blank">Image Optim</a>, <a href="https://kraken.io/web-interface" target="_blank">Krackin</a>, and <a href="https://tinypng.com/" target="_blank">TinyPNG</a> help bring down a file size. Keep in mind that animated GIFs tend to get very large, so it’s a good idea to keep them simple and use them sparingly.
-    </p>
-    <p class="stacks-copy">
-        Images should be hosted within their respective ESP. Upload images in Iterable for Iterable emails, add images in GitHub for StackMail emails, etc. Images should not be referenced using services like Imgur or Dropbox, as they have a greater chance of being marked as spam.
-    </p>
 </section>
 
 <section class="stacks-section">

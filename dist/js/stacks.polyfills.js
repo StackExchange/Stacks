@@ -2028,7 +2028,7 @@
             var oldToggle = DOMTokenList.prototype.toggle;
 
             DOMTokenList.prototype.toggle = function (cls, force) {
-                if (arguments.length === 1) {
+                if (arguments.length === 1 || typeof arguments[1] === "undefined") {
                     return oldToggle.apply(this, arguments);
                 }
                 if (force) {

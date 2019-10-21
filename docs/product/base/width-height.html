@@ -1,11 +1,111 @@
 ---
 layout: page
-title: Width & Height
+title: Width & height
 description: Stacks provides atomic sizing classes for percentage-based widths & heights, static widths & heights, max-widths & heights, and min-widths & heights.
 ---
 <section class="stacks-section">
-    {% header h2 | Fluid Width %}
-    {% header h3 | Fluid Classes %}
+    {% header h2 | Widths %}
+    {% header h3 | Width classes %}
+    <p class="stacks-copy">Width classes are provided at each fixed stop of our sizing scale.</p>
+    <div class="overflow-x-auto mb32">
+        <table class="wmn3 s-table s-table__bx-simple">
+            <thead>
+                <tr>
+                    <th scope="col" class="s-table--cell2">Class</th>
+                    <th scope="col">Output</th>
+                    <th class="s-table--cell2 ta-center" scope="col"><a class="s-link s-link__inherit" href="{{ "/product/guidelines/conditional-classes#responsive" | relative_url }}">Responsive?</a></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for size in site.data.product.atomic-definitions.width %}
+                <tr class="ff-mono fs-caption">
+                    <th scope="row" class="p8"><code class="stacks-code">.{{ size.class }}</code></th>
+                    <td class="p8">{{ size.output }}</td>
+                    <td class="ta-center">
+                        {% if size.responsive %}
+                            {% icon Checkmark | fc-green-500 %}
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    {% header h3 | Width examples %}
+    <div class="stacks-preview">
+{% highlight html %}
+<div class="w2">…</div>
+<div class="w4">…</div>
+<div class="w6">…</div>
+<div class="w8">…</div>
+<div class="w12">…</div>
+<div class="w16">…</div>
+<div class="w24">…</div>
+<div class="w32">…</div>
+<div class="w48">…</div>
+<div class="w64">…</div>
+<div class="w96">…</div>
+<div class="w128">…</div>
+{% endhighlight %}
+        <div class="stacks-preview--example ps-relative fs-caption ff-mono">
+            <div class="grid gs2 fd-column">
+                <div class="grid gs4">
+                    <div class="grid--cell w2 bg-orange-050 ba bc-orange-1"></div>
+                    <div class="grid--cell">.w2</div>
+                </div>
+                <div class="grid gs4">
+                    <div class="grid--cell w4 bg-orange-050 ba bc-orange-1"></div>
+                    <div class="grid--cell">.w4</div>
+                </div>
+                <div class="grid gs4">
+                    <div class="grid--cell w6 bg-orange-050 ba bc-orange-1"></div>
+                    <div class="grid--cell">.w6</div>
+                </div>
+                <div class="grid gs4">
+                    <div class="grid--cell w8 bg-orange-050 ba bc-orange-1"></div>
+                    <div class="grid--cell">.w8</div>
+                </div>
+                <div class="grid gs4">
+                    <div class="grid--cell w12 bg-orange-050 ba bc-orange-1"></div>
+                    <div class="grid--cell">.w12</div>
+                </div>
+                <div class="grid gs4">
+                    <div class="grid--cell w16 bg-orange-050 ba bc-orange-1"></div>
+                    <div class="grid--cell">.w16</div>
+                </div>
+                <div class="grid gs4">
+                    <div class="grid--cell w24 bg-orange-050 ba bc-orange-1"></div>
+                    <div class="grid--cell">.w24</div>
+                </div>
+                <div class="grid gs4">
+                    <div class="grid--cell w32 bg-orange-050 ba bc-orange-1"></div>
+                    <div class="grid--cell">.w32</div>
+                </div>
+                <div class="grid gs4">
+                    <div class="grid--cell w48 bg-orange-050 ba bc-orange-1"></div>
+                    <div class="grid--cell">.w48</div>
+                </div>
+                <div class="grid gs4">
+                    <div class="grid--cell w64 bg-orange-050 ba bc-orange-1"></div>
+                    <div class="grid--cell">.w64</div>
+                </div>
+                <div class="grid gs4">
+                    <div class="grid--cell w96 bg-orange-050 ba bc-orange-1"></div>
+                    <div class="grid--cell">.w96</div>
+                </div>
+                <div class="grid gs4">
+                    <div class="grid--cell w128 bg-orange-050 ba bc-orange-1"></div>
+                    <div class="grid--cell">.w128</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="stacks-section">
+    {% header h2 | Fluid width %}
+    {% header h3 | Fluid width classes %}
     <div class="overflow-x-auto mb32">
         <table class="wmn3 s-table s-table__bx-simple">
             <thead>
@@ -30,14 +130,15 @@ description: Stacks provides atomic sizing classes for percentage-based widths &
             </tbody>
         </table>
 
-    {% header h3 | Fluid Examples %}
+    {% header h3 | Fluid width examples %}
     <div class="stacks-preview">
-{% highlight html linenos %}
+{% highlight html %}
 <div class="w0">…</div>
 <div class="w10">…</div>
 <div class="w20">…</div>
 <div class="w25">…</div>
 <div class="w30">…</div>
+<div class="w33">…</div>
 <div class="w40">…</div>
 <div class="w50">…</div>
 <div class="w60">…</div>
@@ -69,6 +170,10 @@ description: Stacks provides atomic sizing classes for percentage-based widths &
                     <div class="p16 ml2 w70 bg-orange-050 ba bc-orange-1">.w70</div>
                 </div>
                 <div class="grid">
+                    <div class="p16 mr2 w33 bg-orange-050 ba bc-orange-1">.w33</div>
+                    <div class="p16 ml2 w66 bg-orange-050 ba bc-orange-1">.w66</div>
+                </div>
+                <div class="grid">
                     <div class="p16 mr2 w40 bg-orange-050 ba bc-orange-1">.w40</div>
                     <div class="p16 ml2 w60 bg-orange-050 ba bc-orange-1">.w60</div>
                 </div>
@@ -82,9 +187,9 @@ description: Stacks provides atomic sizing classes for percentage-based widths &
 </section>
 
 <section class="stacks-section">
-    {% header h2 | Static Widths %}
-    {% header h3 | Static Classes %}
-    <p class="stacks-copy stacks-copy__lg">Static widths are based on the full site width of <code class="stacks-code">1264px</code>.</p>
+    {% header h2 | Static widths %}
+    {% header h3 | Static width classes %}
+    <p class="stacks-copy">Static widths are based on the full site width of <code class="stacks-code">1264px</code>.</p>
     <div class="overflow-x-auto mb32">
         <table class="wmn3 s-table s-table__bx-simple">
             <thead>
@@ -110,9 +215,9 @@ description: Stacks provides atomic sizing classes for percentage-based widths &
         </table>
     </div>
 
-    {% header h3 | Static Examples %}
+    {% header h3 | Static width examples %}
     <div class="stacks-preview">
-{% highlight html linenos %}
+{% highlight html %}
 <div class="ws1">…</div>
 <div class="ws2">…</div>
 <div class="ws2">…</div>
@@ -148,8 +253,8 @@ description: Stacks provides atomic sizing classes for percentage-based widths &
 </section>
 
 <section class="stacks-section">
-    {% header h2 | Max Width %}
-    {% header h3 | Max Width Classes %}
+    {% header h2 | Max width %}
+    {% header h3 | Max width classes %}
     <div class="overflow-x-auto mb32">
         <table class="wmn3 s-table s-table__bx-simple">
             <thead>
@@ -175,9 +280,9 @@ description: Stacks provides atomic sizing classes for percentage-based widths &
         </table>
     </div>
 
-    {% header h3 | Max Width Examples %}
+    {% header h3 | Max width examples %}
     <div class="stacks-preview">
-{% highlight html linenos %}
+{% highlight html %}
 <div class="wmx-initial">…</div>
 <div class="wmx1">…</div>
 <div class="wmx2">…</div>
@@ -219,8 +324,8 @@ description: Stacks provides atomic sizing classes for percentage-based widths &
 </section>
 
 <section class="stacks-section">
-    {% header h2 | Min Width %}
-    {% header h3 | Min Width Classes %}
+    {% header h2 | Min width %}
+    {% header h3 | Min width classes %}
     <div class="overflow-x-auto mb32">
         <table class="wmn3 s-table s-table__bx-simple">
             <thead>
@@ -246,9 +351,9 @@ description: Stacks provides atomic sizing classes for percentage-based widths &
         </table>
     </div>
 
-    {% header h3 | Min Width Examples %}
+    {% header h3 | Min width examples %}
     <div class="stacks-preview">
-{% highlight html linenos %}
+{% highlight html %}
 <div class="wmn-initial">…</div>
 <div class="wmn0">…</div>
 <div class="wmn1">…</div>
@@ -293,7 +398,131 @@ description: Stacks provides atomic sizing classes for percentage-based widths &
 
 <section class="stacks-section">
     {% header h2 | Height %}
-    {% header h3 | Static Height Classes %}
+    {% header h3 | Height classes %}
+    <p class="stacks-copy">Height classes are provided at each fixed stop of our sizing scale.</p>
+    <div class="overflow-x-auto mb32">
+        <table class="wmn3 s-table s-table__bx-simple">
+            <thead>
+                <tr>
+                    <th scope="col" class="s-table--cell2">Class</th>
+                    <th scope="col">Output</th>
+                    <th class="s-table--cell2 ta-center" scope="col"><a class="s-link s-link__inherit" href="{{ "/product/guidelines/conditional-classes#responsive" | relative_url }}">Responsive?</a></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for size in site.data.product.atomic-definitions.height %}
+                <tr class="ff-mono fs-caption">
+                    <th scope="row" class="p8"><code class="stacks-code">.{{ size.class }}</code></th>
+                    <td class="p8">{{ size.output }}</td>
+                    <td class="ta-center">
+                        {% if size.responsive %}
+                            {% icon Checkmark | fc-green-500 %}
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    {% header h3 | Height examples %}
+    <div class="stacks-preview">
+{% highlight html %}
+<div class="h2">…</div>
+<div class="h4">…</div>
+<div class="h6">…</div>
+<div class="h8">…</div>
+<div class="h12">…</div>
+<div class="h16">…</div>
+<div class="h24">…</div>
+<div class="h32">…</div>
+<div class="h48">…</div>
+<div class="h64">…</div>
+<div class="h96">…</div>
+<div class="h128">…</div>
+{% endhighlight %}
+        <div class="stacks-preview--example ps-relative fs-caption ff-mono">
+            <div class="grid gs8 fd-column">
+                <div class="grid--cell">
+                    <div class="grid gs4 fd-column">
+                        <div class="grid--cell">.h2</div>
+                        <div class="grid--cell h2 bg-orange-050 ba bc-orange-1"></div>
+                    </div>
+                </div>
+                <div class="grid--cell">
+                    <div class="grid gs4 fd-column">
+                        <div class="grid--cell">.h4</div>
+                        <div class="grid--cell h4 bg-orange-050 ba bc-orange-1"></div>
+                    </div>
+                </div>
+                <div class="grid--cell">
+                    <div class="grid gs4 fd-column">
+                        <div class="grid--cell">.h6</div>
+                        <div class="grid--cell h6 bg-orange-050 ba bc-orange-1"></div>
+                    </div>
+                </div>
+                <div class="grid--cell">
+                    <div class="grid gs4 fd-column">
+                        <div class="grid--cell">.h8</div>
+                        <div class="grid--cell h8 bg-orange-050 ba bc-orange-1"></div>
+                    </div>
+                </div>
+                <div class="grid--cell">
+                    <div class="grid gs4 fd-column">
+                        <div class="grid--cell">.h12</div>
+                        <div class="grid--cell h12 bg-orange-050 ba bc-orange-1"></div>
+                    </div>
+                </div>
+                <div class="grid--cell">
+                    <div class="grid gs4 fd-column">
+                        <div class="grid--cell">.h16</div>
+                        <div class="grid--cell h16 bg-orange-050 ba bc-orange-1"></div>
+                    </div>
+                </div>
+                <div class="grid--cell">
+                    <div class="grid gs4 fd-column">
+                        <div class="grid--cell">.h24</div>
+                        <div class="grid--cell h24 bg-orange-050 ba bc-orange-1"></div>
+                    </div>
+                </div>
+                <div class="grid--cell">
+                    <div class="grid gs4 fd-column">
+                        <div class="grid--cell">.h32</div>
+                        <div class="grid--cell h32 bg-orange-050 ba bc-orange-1"></div>
+                    </div>
+                </div>
+                <div class="grid--cell">
+                    <div class="grid gs4 fd-column">
+                        <div class="grid--cell">.h48</div>
+                        <div class="grid--cell h48 bg-orange-050 ba bc-orange-1"></div>
+                    </div>
+                </div>
+                <div class="grid--cell">
+                    <div class="grid gs4 fd-column">
+                        <div class="grid--cell">.h64</div>
+                        <div class="grid--cell h64 bg-orange-050 ba bc-orange-1"></div>
+                    </div>
+                </div>
+                <div class="grid--cell">
+                    <div class="grid gs4 fd-column">
+                        <div class="grid--cell">.h96</div>
+                        <div class="grid--cell h96 bg-orange-050 ba bc-orange-1"></div>
+                    </div>
+                </div>
+                <div class="grid--cell">
+                    <div class="grid gs4 fd-column">
+                        <div class="grid--cell">.h128</div>
+                        <div class="grid--cell h128 bg-orange-050 ba bc-orange-1"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="stacks-section">
+    {% header h2 | Static Height %}
+    {% header h3 | Static height classes %}
     <div class="overflow-x-auto mb32">
         <table class="wmn3 s-table s-table__bx-simple">
             <thead>
@@ -319,7 +548,7 @@ description: Stacks provides atomic sizing classes for percentage-based widths &
         </table>
     </div>
 
-    {% header h3 | Fluid Height Classes %}
+    {% header h3 | Fluid height classes %}
     <div class="overflow-x-auto mb32">
         <table class="wmn3 s-table s-table__bx-simple">
             <thead>
@@ -347,8 +576,8 @@ description: Stacks provides atomic sizing classes for percentage-based widths &
 </section>
 
 <section class="stacks-section">
-    {% header h2 | Min Height %}
-    {% header h3 | Min Height Classes %}
+    {% header h2 | Min height %}
+    {% header h3 | Min height classes %}
     <div class="overflow-x-auto mb32">
         <table class="wmn3 s-table s-table__bx-simple">
             <thead>
@@ -376,8 +605,8 @@ description: Stacks provides atomic sizing classes for percentage-based widths &
 </section>
 
 <section class="stacks-section">
-        {% header h2 | Max Height %}
-        {% header h3 | Max Height Classes %}
+        {% header h2 | Max height %}
+        {% header h3 | Max height classes %}
         <div class="overflow-x-auto mb32">
             <table class="wmn3 s-table s-table__bx-simple">
                 <thead>

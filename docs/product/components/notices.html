@@ -55,7 +55,7 @@ description: Notices deliver <strong>System</strong> and <strong>Engagement</str
 </section>
 
 <section class="stacks-section">
-    {% header h2 | Visual Styles %}
+    {% header h2 | Visual styles %}
     {% header h3 | Classes %}
     <div class="overflow-x-auto mb32">
         <table class="wmn5 s-table s-table__bx-simple">
@@ -91,7 +91,7 @@ description: Notices deliver <strong>System</strong> and <strong>Engagement</str
     {% header h3 | Filled %}
     <p class="stacks-copy">Default style used to separate notices from the main content</p>
     <div class="stacks-preview">
-{% highlight html linenos %}
+{% highlight html %}
 <aside class="s-notice s-notice__info" role="status" aria-hidden="false">…</aside>
 <aside class="s-notice s-notice__success" role="status" aria-hidden="false">… <a class="s-link s-link__inherit s-link__underlined" href="…">…</a></aside>
 <aside class="s-notice s-notice__warning" role="status" aria-hidden="false">…</aside>
@@ -115,10 +115,10 @@ description: Notices deliver <strong>System</strong> and <strong>Engagement</str
         </div>
     </div>
 
-    {% header h3 | Filled Important %}
+    {% header h3 | Filled important %}
     <p class="stacks-copy">Used sparingly for when an important notice needs to be noticed</p>
     <div class="stacks-preview">
-{% highlight html linenos %}
+{% highlight html %}
 <aside class="s-notice s-notice__invert s-notice__important" role="alert" aria-hidden="false">
     <div class="grid" role="alertdialog" aria-describedby="notice-message">
         <div class="grid--cell" aria-label="notice-message">
@@ -196,7 +196,7 @@ description: Notices deliver <strong>System</strong> and <strong>Engagement</str
     {% header h3 | Inline %}
     <p class="stacks-copy">Default behavior for notices that are inserted within the content area</p>
     <div class="stacks-preview">
-{% highlight html linenos %}
+{% highlight html %}
 <aside class="s-notice s-notice__info" role="status" aria-hidden="false">…</aside>
 {% endhighlight %}
         <div class="stacks-preview--example">
@@ -208,13 +208,38 @@ description: Notices deliver <strong>System</strong> and <strong>Engagement</str
         </div>
     </div>
 
+    {% header h3 | With an Icon %}
+    <p class="stacks-copy">Notices are often accompanied by an icon.</p>
+    <div class="stacks-preview">
+{% highlight html %}
+<aside class="grid s-notice s-notice__info" aria-hidden="false" role="status">
+    <div class="grid--cell mr8">
+        @Svg.Alert
+    </div>
+    <div class="grid--cell lh-lg">
+        …
+    </div>
+</aside>
+{% endhighlight %}
+        <div class="stacks-preview--example">
+            <aside class="grid s-notice s-notice__info" aria-hidden="false" role="status">
+                <div class="grid--cell mr8">
+                    {% icon Alert %}
+                </div>
+                <div class="grid--cell lh-lg">
+                    This question and its answers are locked because the question is off-topic but has historical significance. It is not currently accepting new answers or interactions.
+                </div>
+            </aside>
+        </div>
+    </div>
+
     {% header h3 | Toast %}
     <p class="stacks-copy">Floating notices, but aligned to the top and center of the page and they disappear after a set time</p>
     <div class="mb24 p16 bar-sm bg-black-025 ba bc-black-1">
         <button class="grid--cell s-btn s-btn__filled js-notice-toast-open">Launch example toast notice</button>
     </div>
     <div class="stacks-preview">
-{% highlight html linenos %}
+{% highlight html %}
 <aside class="s-toast">
     <div class="s-notice s-notice__success" role="status" aria-hidden="false">
         <div class="grid gs16 gsx ai-center jc-space-between" aria-describedby="notice-message">
@@ -251,12 +276,12 @@ description: Notices deliver <strong>System</strong> and <strong>Engagement</str
                             <p class="m0">Toast notice message with an undo button</p>
                         </div>
                         <div class="grid--cell" aria-label="notice-message">
-                            <a class="p8 s-btn fc-dark">
+                            <a href="#" class="d-block p8 s-btn fc-dark">
                                 Undo
                             </a>
                         </div>
                         <div class="grid--cell mr0 ml0" aria-label="notice-dismiss">
-                            <a class="p8 s-btn grid grid__center fc-dark">
+                            <a href="#" class="d-block p8 s-btn grid grid__center fc-dark">
                                 {% icon ClearSm | m0 %}
                             </a>
                         </div>

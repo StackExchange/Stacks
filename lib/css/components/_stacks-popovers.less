@@ -16,27 +16,39 @@
 //  $   BASE STYLES
 //  ----------------------------------------------------------------------------
 .s-popover {
-    visibility: hidden;
-    position: relative;
+    display: none;
+    position: absolute;
     min-width: 12rem;
     max-width: 24rem;
     width: 100%;
     padding: @su12;
-    z-index: @zi-hide;
-    opacity: 0;
+    z-index: @zi-popovers;
     border-radius: @br-md;
     border: 1px solid @black-100;
     background-color: @white;
     box-shadow: @bs-sm;
     color: @fc-dark;
     font-size: @fs-body1;
-    transition: opacity 100ms @te-smooth 0s, z-index 0s 100ms, visibility 0s 100ms; // Transition out
 
     &.is-visible {
-        visibility: visible;
-        opacity: 1;
-        z-index: @zi-popovers;
-        transition: opacity 100ms @te-smooth 0s, z-index 0s 0s, visibility 0s 0s; // Transition in
+        display: block;
+    }
+
+    // Auto adjust margins for auto-placed popovers
+    &[x-placement^="top"] {
+        margin-bottom: @su8 + 2px;
+    }
+
+    &[x-placement^="right"] {
+        margin-left: @su8 + 2px;
+    }
+
+    &[x-placement^="bottom"] {
+        margin-top: @su8 + 2px;
+    }
+
+    &[x-placement^="left"] {
+        margin-right: @su8 + 2px;
     }
 }
 
@@ -45,12 +57,11 @@
 //  ----------------------------------------------------------------------------
 
 .s-popover--close {
-    float: right;
+    float: right; // Use floats for title wrapping
     top: -@su8; // Compensate for s-popover's padding
     right: -@su8; // Compensate for s-popover's padding
     padding: @su8 !important;
 }
-
 
 //  ============================================================================
 //  $   ARROWS
@@ -70,6 +81,7 @@
 //  $   BASE STYLE
 //      Sets the base arrow style for tooltips, popovers, and dropdowns.
 //  ----------------------------------------------------------------------------
+.s-popover--arrow,
 .s-popover--arrow__tl,
 .s-popover--arrow__tc,
 .s-popover--arrow__tr,
@@ -82,6 +94,8 @@
 .s-popover--arrow__rt,
 .s-popover--arrow__rc,
 .s-popover--arrow__rb {
+    color: @white;
+
     &:before,
     &:after {
         content: "";
@@ -97,6 +111,7 @@
 //  ============================================================================
 //  $$  TOP
 //  ----------------------------------------------------------------------------
+.s-popover[x-placement^="bottom"] .s-popover--arrow,
 .s-popover--arrow__tl,
 .s-popover--arrow__tc,
 .s-popover--arrow__tr {
@@ -110,12 +125,13 @@
     }
     &:after {
         top: -(@su8 - 1);
-        border-bottom-color: @white;
+        border-bottom-color: currentColor;
     }
 }
 
 //  $$  BOTTOM
 //  ----------------------------------------------------------------------------
+.s-popover[x-placement^="top"] .s-popover--arrow,
 .s-popover--arrow__bl,
 .s-popover--arrow__bc,
 .s-popover--arrow__br {
@@ -129,12 +145,14 @@
     }
     &:after {
         bottom: -(@su8 - 1);
-        border-top-color: @white;
+        border-top-color: currentColor;
     }
 }
 
 //  $$  TOP & BOTTOM LEFT
 //  ----------------------------------------------------------------------------
+.s-popover[x-placement="top-start"] .s-popover--arrow,
+.s-popover[x-placement="bottom-start"] .s-popover--arrow,
 .s-popover--arrow__tl,
 .s-popover--arrow__bl {
     &:before,
@@ -145,6 +163,8 @@
 
 //  $$  TOP & BOTTOM CENTER
 //  ----------------------------------------------------------------------------
+.s-popover[x-placement="top"] .s-popover--arrow,
+.s-popover[x-placement="bottom"] .s-popover--arrow,
 .s-popover--arrow__tc,
 .s-popover--arrow__bc {
     &:before,
@@ -156,6 +176,8 @@
 
 //  $$  TOP & BOTTOM RIGHT
 //  ----------------------------------------------------------------------------
+.s-popover[x-placement="top-end"] .s-popover--arrow,
+.s-popover[x-placement="bottom-end"] .s-popover--arrow,
 .s-popover--arrow__tr,
 .s-popover--arrow__br {
     &:before,
@@ -166,6 +188,7 @@
 
 //  $$  LEFT
 //  ----------------------------------------------------------------------------
+.s-popover[x-placement^="right"] .s-popover--arrow,
 .s-popover--arrow__lt,
 .s-popover--arrow__lc,
 .s-popover--arrow__lb {
@@ -179,12 +202,13 @@
     }
     &:after {
         left: -(@su8 - 1);
-        border-right-color: @white;
+        border-right-color: currentColor;
     }
 }
 
 //  $$  RIGHT
 //  ----------------------------------------------------------------------------
+.s-popover[x-placement^="left"] .s-popover--arrow,
 .s-popover--arrow__rt,
 .s-popover--arrow__rc,
 .s-popover--arrow__rb {
@@ -198,12 +222,14 @@
     }
     &:after {
         right: -(@su8 - 1);
-        border-left-color: @white;
+        border-left-color: currentColor;
     }
 }
 
 //  $$  LEFT & RIGHT TOP
 //  ----------------------------------------------------------------------------
+.s-popover[x-placement="left-start"] .s-popover--arrow,
+.s-popover[x-placement="right-start"] .s-popover--arrow,
 .s-popover--arrow__lt,
 .s-popover--arrow__rt {
     &:before,
@@ -214,6 +240,8 @@
 
 //  $$  LEFT & RIGHT CENTER
 //  ----------------------------------------------------------------------------
+.s-popover[x-placement="left"] .s-popover--arrow,
+.s-popover[x-placement="right"] .s-popover--arrow,
 .s-popover--arrow__lc,
 .s-popover--arrow__rc {
     &:before,
@@ -225,6 +253,8 @@
 
 //  $$  LEFT & RIGHT BOTTOM
 //  ----------------------------------------------------------------------------
+.s-popover[x-placement="left-end"] .s-popover--arrow,
+.s-popover[x-placement="right-end"] .s-popover--arrow,
 .s-popover--arrow__lb,
 .s-popover--arrow__rb {
     &:before,

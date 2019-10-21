@@ -280,6 +280,7 @@
 //  ----------------------------------------------------------------------------
 .s-btn {
     position: relative;
+    display: inline-block;
     padding: 0.8em;
     border: 1px solid transparent;
     border-radius: @button-border-radius;
@@ -289,8 +290,14 @@
     font-size: @fs-body1;
     font-weight: @button-font-weight;
     line-height: @lh-sm;
+    text-align: center;
     text-decoration: none;
     cursor: pointer;
+
+    // Override for buttons having inline-block by default
+    &.grid {
+        display: flex;
+    }
 
     //  Default Style (Clear)
     .btn-check-brc();
@@ -332,8 +339,7 @@
     }
 
     &.s-btn__xs {
-        padding-top: 0.6em;
-        padding-bottom: 0.85em;
+        padding: 0.6em;
         font-size: @fs-fine;
 
         &.s-btn__dropdown {
@@ -578,6 +584,12 @@
         background-color: darken(@white, 3%);
         color: darken(#535A60, 5%);
     }
+
+    &:active {
+        border-color: @black-200;
+        background-color: @black-050;
+        color: @black-900;
+    }
 }
 
 .s-btn__facebook {
@@ -589,6 +601,27 @@
     &:focus {
         background-color: darken(#385499, 5%);
         color: fade(@white, 95%);
+    }
+
+    &:active {
+        background-color: darken(#385499, 10%);
+        color: #fff;
+    }
+}
+
+.s-btn__github {
+    background-color: @black-750;
+    color: @white;
+
+    &:hover,
+    &:focus {
+        background-color: @black-800;
+        color: @white;
+    }
+
+     &:active {
+        background-color: @black-900;
+        color: @white;
     }
 }
 
@@ -634,7 +667,7 @@
     //      additional height to the button.
     //  ------------------------------------------------------------------------
     .svg-icon {
-        vertical-align: initial;
+        vertical-align: baseline;
         margin-top: -0.3em;         // [1]
         margin-bottom: -0.3em;      // [1]
         transition: opacity 200ms @te-smooth; // Animate the transition to .is-loading
@@ -730,7 +763,7 @@
     &.s-btn__primary.is-loading:before,
     &.s-btn__danger.s-btn__filled.is-loading:before,
     &.s-btn__inverted:not(.s-btn__filled).is-loading:before,
-    &.s-btn__inverted:not(.s-btn__filled).is-selected.is-loading:before, {
+    &.s-btn__inverted:not(.s-btn__filled).is-selected.is-loading:before {
         border-color: fade(@white, 25%);
         border-left-color: @white;
     }

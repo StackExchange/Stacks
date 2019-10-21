@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Box Shadow
+title: Box shadow
 description: Box shadow atomic classes allow you to change an element’s box shadow quickly.
 ---
 <section class="stacks-section">
@@ -12,6 +12,7 @@ description: Box shadow atomic classes allow you to change an element’s box sh
                     <th class="s-table--cell2" scope="col">Class</th>
                     <th scope="col">Output</th>
                     <th scope="col" class="ta-center"><a class="s-link s-link__inherit" href="{{ "/product/guidelines/conditional-classes#hover" | relative_url }}">Hover?</a></th>
+                    <th scope="col" class="ta-center"><a class="s-link s-link__inherit" href="{{ "/product/guidelines/conditional-classes#focus" | relative_url }}">Focus?</a></th>
                 </tr>
             </thead>
             <tbody>
@@ -24,6 +25,11 @@ description: Box shadow atomic classes allow you to change an element’s box sh
                                 {% icon Checkmark | fc-green-500 %}
                             {% endif %}
                         </td>
+                        <td class="ta-center">
+                            {% if atomic.focus %}
+                                {% icon Checkmark | fc-green-500 %}
+                            {% endif %}
+                        </td>
                     </tr>
                 {% endfor %}
             </tbody>
@@ -32,7 +38,7 @@ description: Box shadow atomic classes allow you to change an element’s box sh
 
     {% header h2 | Examples %}
     <div class="stacks-preview">
-{% highlight html linenos %}
+{% highlight html %}
 <div class="bs-sm">…</div>
 <div class="bs-md">…</div>
 <div class="bs-lg">…</div>
@@ -42,26 +48,32 @@ description: Box shadow atomic classes allow you to change an element’s box sh
 {% endhighlight %}
         <div class="stacks-preview--example fs-caption ff-mono">
             <div class="grid jc-space-between grid__allcells3 mb16">
-                <div class="grid--cell fd-column p12 bs-sm bar-sm" style="height: 80px;">
+                <div class="grid--cell fd-column p12 bs-sm bar-sm h96">
                     .bs-sm
                 </div>
-                <div class="grid--cell fd-column p12 bs-md bar-sm" style="height: 80px;">
+                <div class="grid--cell fd-column p12 bs-md bar-sm h96">
                     .bs-md
                 </div>
-                <div class="grid--cell fd-column p12 bs-lg bar-sm" style="height: 80px;">
+                <div class="grid--cell fd-column p12 bs-lg bar-sm h96">
                     .bs-lg
                 </div>
             </div>
 
-            <div class="grid jc-space-between grid__allcells3">
-                <div class="grid--cell fd-column p12 bs-i-sm bar-sm" style="height: 80px;">
+            <div class="grid jc-space-between grid__allcells3 mb16">
+                <div class="grid--cell fd-column p12 bs-i-sm bar-sm h96">
                     .bs-i-sm
                 </div>
-                <div class="grid--cell fd-column p12 bs-i-md bar-sm" style="height: 80px;">
+                <div class="grid--cell fd-column p12 bs-i-md bar-sm h96">
                     .bs-i-md
                 </div>
-                <div class="grid--cell fd-column p12 bs-i-lg bar-sm" style="height: 80px;">
+                <div class="grid--cell fd-column p12 bs-i-lg bar-sm h96">
                     .bs-i-lg
+                </div>
+            </div>
+
+            <div class="grid jc-space-between grid__allcells3">
+                <div class="grid--cell fd-column p12 bs-ring bar-sm h96">
+                    .bs-ring
                 </div>
             </div>
         </div>

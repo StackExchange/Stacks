@@ -5,9 +5,9 @@ description: Stacks provides atomic classes to override default styling of typog
 ---
 <section id="typography-basic" class="stacks-section">
     {% header h2 | Basic %}
-    <p class="stacks-copy stacks-copy__lg">These styles should only be used as overrides. They shouldn’t replace standard semantic uses of <code class="stacks-code">strong</code> or <code class="stacks-code">em</code> tags.</p>
+    <p class="stacks-copy">These styles should only be used as overrides. They shouldn’t replace standard semantic uses of <code class="stacks-code">strong</code> or <code class="stacks-code">em</code> tags.</p>
 
-    {% header h3 | Basic Classes %}
+    {% header h3 | Basic classes %}
     <div class="overflow-x-auto mb32">
         <table class="wmn5 s-table s-table__bx-simple">
             <thead>
@@ -30,9 +30,9 @@ description: Stacks provides atomic classes to override default styling of typog
     </div>
     {% include notice-unset.html %}
 
-    {% header h3 | Basic Examples %}
+    {% header h3 | Basic examples %}
     <div class="stacks-preview">
-{% highlight html linenos %}
+{% highlight html %}
 <p class="fw-normal">…</p>
 <p class="fw-bold">…</p>
 
@@ -68,7 +68,7 @@ description: Stacks provides atomic classes to override default styling of typog
 
 <section id="typography-layout" class="stacks-section">
     {% header h2 | Layout %}
-    {% header h3 | Layout Classes %}
+    {% header h3 | Layout classes %}
     <div class="overflow-x-auto mb32">
         <table class="wmn5 s-table s-table__bx-simple va-middle">
             <thead>
@@ -98,14 +98,14 @@ description: Stacks provides atomic classes to override default styling of typog
 
     {% include notice-unset.html %}
 
-    {% header h3 | Layout Examples %}
+    {% header h3 | Layout examples %}
     <div class="stacks-preview">
-{% highlight html linenos %}
-<p class="ta-left">Text Align: Left</p>
-<p class="ta-center">Text Align: Center</p>
-<p class="ta-right">Text Align: Right</p>
+{% highlight html %}
+<p class="ta-left">Text align: Left</p>
+<p class="ta-center">Text align: Center</p>
+<p class="ta-right">Text align: Right</p>
 <p class="ta-justify">Justify: …</p>
-<p class="ta-unset">Text Align: Unset</p>
+<p class="ta-unset">Text align: Unset</p>
 
 <p class="ws-normal">White-space: Normal</p>
 <p class="ws-nowrap">White-space: Nowrap</p>
@@ -142,7 +142,7 @@ description: Stacks provides atomic classes to override default styling of typog
 <section id="typography-font" class="stacks-section">
     {% header h2 | Fonts %}
     <div class="stacks-preview">
-{% highlight html linenos %}
+{% highlight html %}
 <p class="ff-sans">…</p>
 <p class="ff-serif">…</p>
 <p class="ff-mono">…</p>
@@ -170,7 +170,7 @@ description: Stacks provides atomic classes to override default styling of typog
     <p class="stacks-copy">
         Fonts larger than <code class="stacks-code">.fs-body1</code> are reduced in size at the smallest responsive breakpoint. <code class="stacks-code">.fs-body1</code> or smaller remain fixed at their initial pixel values.
     </p>
-    {% header h3 | Size Classes %}
+    {% header h3 | Size classes %}
     <div class="overflow-x-auto mb32">
         <table class="wmn3 s-table s-table__bx-simple">
             <thead>
@@ -192,9 +192,9 @@ description: Stacks provides atomic classes to override default styling of typog
         </table>
     </div>
 
-    {% header h3 | Size Examples %}
+    {% header h3 | Size examples %}
     <div class="stacks-preview">
-{% highlight html linenos %}
+{% highlight html %}
 <p class="fs-fine">…</p>
 <p class="fs-caption">…</p>
 <p class="fs-body1">…</p>
@@ -213,16 +213,19 @@ description: Stacks provides atomic classes to override default styling of typog
             {% for term in site.data.product.type-definitions.fontsize %}
             <div class="grid">
                 <div class="grid--cell3 fc-light fs-caption fw-bold">{{ term.label }}</div>
-                <div class="grid--cell fs-{{ term.term }} lh-xs">{{ term.define }}</div>
+                <div class="grid--cell fs-{{ term.term }} lh-xs">
+                    <span class="d-block sm:d-none">{{ term.define }}</span>
+                    <span class="d-none sm:d-block">{{ term.responsive }}</span>
+                </div>
             </div>
             {% endfor %}
         </div>
     </div>
 
-    {% header h2 | Category Titles %}
+    {% header h2 | Category titles %}
     <p class="stacks-copy">Category titles help break content into digestible chunks, but are visually smaller than a traditional headline. They are meta descriptions of a content block. To further visually separate the content block from surrounding items, you can add a <code class="stacks-code">.has-border</code> class.</p>
     <div class="stacks-preview">
-{% highlight html linenos %}
+{% highlight html %}
 <p class="fs-category">…</p>
 <p class="fs-category has-border">…</p>
 {% endhighlight %}
@@ -240,9 +243,9 @@ description: Stacks provides atomic classes to override default styling of typog
 </section>
 
 <section id="typography-spacing" class="stacks-section">
-    {% header h2 | Line Height %}
+    {% header h2 | Line height %}
     <div class="stacks-preview">
-{% highlight html linenos %}
+{% highlight html %}
 <p class="lh-xs">…</p>
 <p class="lh-sm">…</p>
 <p class="lh-md">…</p>
@@ -264,101 +267,17 @@ description: Stacks provides atomic classes to override default styling of typog
 <section id="typography-scale" class="stacks-section">
     {% header h2 | Colors %}
     <div class="stacks-preview">
-{% highlight html linenos %}
+{% highlight html %}
 <p class="fc-light">…</p>
 <p class="fc-medium">…</p>
+<p>…</p>
 <p class="fc-dark">…</p>
 {% endhighlight %}
         <div class="stacks-preview--example grid ff-column-nowrap gs16 gsy my0 fs-body2">
-            <p class="grid--cell fc-light"><strong>Color:</strong> Light</p>
-            <p class="grid--cell fc-medium"><strong>Color:</strong> Medium</p>
-            <p class="grid--cell fc-dark"><strong>Color:</strong> Dark</p>
-        </div>
-    </div>
-</section>
-
-<section id="typography-list-styling" class="stacks-section">
-    {% header h2 | List Styling %}
-    <div class="stacks-preview">
-{% highlight html linenos %}
-<ol class="list-reset">
-  …
-</ol>
-<ul class="list-ls-none">
-  …
-</ul>
-<ul class="list-ls-disc">
-  …
-</ul>
-<ul class="list-ls-circle">
-  …
-</ul>
-<ul class="list-ls-square">
-  …
-</ul>
-<ol class="list-ls-decimal">
-  …
-</ol>
-<ul class="list-ls-unset">
-  …
-</ul>
-{% endhighlight %}
-        <div class="stacks-preview--example">
-            <ol class="ml24 mb24 list-reset">
-                <li>List item 1</li>
-                <li>List item 2</li>
-                <li>List item 3</li>
-                <li>List item 4</li>
-                <li>List item 5</li>
-            </ol>
-            <br />
-            <ul class="ml24 mb24 list-ls-none">
-                <li>List item 1</li>
-                <li>List item 2</li>
-                <li>List item 3</li>
-                <li>List item 4</li>
-                <li>List item 5</li>
-            </ul>
-            <br />
-            <ul class="ml24 mb24 list-ls-disc">
-                <li>List item 1</li>
-                <li>List item 2</li>
-                <li>List item 3</li>
-                <li>List item 4</li>
-                <li>List item 5</li>
-            </ul>
-            <br />
-            <ul class="ml24 mb24 list-ls-circle">
-                <li>List item 1</li>
-                <li>List item 2</li>
-                <li>List item 3</li>
-                <li>List item 4</li>
-                <li>List item 5</li>
-            </ul>
-            <br />
-            <ul class="ml24 mb24 list-ls-square">
-                <li>List item 1</li>
-                <li>List item 2</li>
-                <li>List item 3</li>
-                <li>List item 4</li>
-                <li>List item 5</li>
-            </ul>
-            <br />
-            <ol class="ml24 mb24 list-ls-decimal">
-                <li>List item 1</li>
-                <li>List item 2</li>
-                <li>List item 3</li>
-                <li>List item 4</li>
-                <li>List item 5</li>
-            </ol>
-            <br />
-            <ul class="ml24 list-ls-unset">
-                <li>List item 1</li>
-                <li>List item 2</li>
-                <li>List item 3</li>
-                <li>List item 4</li>
-                <li>List item 5</li>
-            </ul>
+            <p class="grid--cell fc-light"><strong>Color:</strong> Light <code class="stacks-code">@black-500</code></p>
+            <p class="grid--cell fc-medium"><strong>Color:</strong> Medium <code class="stacks-code">@black-700</code></p>
+            <p class="grid--cell"><strong>Color:</strong> Default <code class="stacks-code">@black-800</code></p>
+            <p class="grid--cell fc-dark"><strong>Color:</strong> Dark <code class="stacks-code">@black-900</code></p>
         </div>
     </div>
 </section>

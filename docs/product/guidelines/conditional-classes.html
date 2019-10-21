@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Conditional Classes
+title: Conditional classes
 description: Stacks provides conditional atomic classes to easily build complex responsive designs, hover states, and print layouts.
 ---
 
@@ -10,7 +10,7 @@ description: Stacks provides conditional atomic classes to easily build complex 
 
     <p class="stacks-copy">This is done using predefined max-width media query breakpoints represented by t-shirt sizes. A common example would be to apply <code class="stacks-code">.md:fd-column</code> to a grid. This means, “At the medium breakpoint and smaller, switch the grid from columns to rows by applying <code class="stacks-code">fd-column</code>.”</p>
 
-    <div class="grid ai-start s-notice s-notice__info">
+    <div class="grid s-notice s-notice__info">
         <div class="grid--cell mr8">{% icon Alert %}</div>
         <div class="grid--cell lh-lg">
             <strong>Note:</strong> Our font size classes, <code class="stacks-code bg-powder-200">.fs-[x]</code> are automatically adjusted at the smallest breakpoint.
@@ -19,7 +19,7 @@ description: Stacks provides conditional atomic classes to easily build complex 
 </section>
 
 <section class="stacks-section">
-    {% header h3 | Responsive Classes %}
+    {% header h3 | Responsive classes %}
     <div class="overflow-x-auto mb32">
         <table class="wmn4 s-table s-table__bx-simple">
             <thead>
@@ -56,28 +56,20 @@ description: Stacks provides conditional atomic classes to easily build complex 
 </section>
 
 <section class="stacks-section">
-    {% header h3 | Responsive Example %}
+    {% header h3 | Responsive example %}
     <p class="stacks-copy">Resize your browser to see which classes are applied.</p>
     <div class="stacks-preview">
     {% comment %}
         This is a terrible hack to be able to highlight our markup
     {% endcomment %}
-<figure class="highlight"><pre><code class="language-html" data-lang="html"><table class="rouge-table"><tbody><tr><td class="gutter gl"><pre class="lineno">1
-2
-3
-4
-5
-6
-7
-8
-</pre></td><td class="code"><pre><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"grid ai-center <span class="md:highlight">md:fd-column</span> gs16"</span><span class="nt">&gt;</span>
+<figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"grid ai-center <span class="md:highlight">md:fd-column</span> gs16"</span><span class="nt">&gt;</span>
     <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"grid--cell fs-body3 <span class="lg:highlight">lg:ta-center</span>"</span><span class="nt">&gt;</span>
         …
     <span class="nt">&lt;/div&gt;</span>
     <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"grid--cell <span class="sm:highlight">sm:d-none</span>"</span><span class="nt">&gt;</span>
         <span class="nt">&lt;svg&gt;</span>…<span class="nt">&lt;/svg&gt;</span>
     <span class="nt">&lt;/div&gt;</span>
-<span class="nt">&lt;/div&gt;</span></pre></td></tr></tbody></table></code></pre></figure>
+<span class="nt">&lt;/div&gt;</span></code></pre></figure>
         <div class="stacks-preview--example p32">
             <div class="grid ai-center md:fd-column gs16 js-grid">
                 <div class="grid--cell fs-body3 lg:ta-center js-grid-left">
@@ -177,7 +169,7 @@ description: Stacks provides conditional atomic classes to easily build complex 
     {% header h2 | Hover %}
     <p class="stacks-copy">Stacks provides hover-only atomic classes. By applying <code class="stacks-code">.h:bs-lg</code>, <code class="stacks-code">.h:o100</code>, and <code class="stacks-code">.h:fc-black-900</code>, you’re saying “On hover, add a large box shadow, an opacity of 100%, and a font color of black 900.”</p>
     <div class="stacks-preview">
-{% highlight html linenos %}
+{% highlight html %}
 <div class="s-card o80 bs-sm h:bs-lg h:o100 h:fc-black-900"></div>
 {% endhighlight %}
         <div class="stacks-preview--example">
@@ -190,7 +182,7 @@ description: Stacks provides conditional atomic classes to easily build complex 
     {% header h2 | Focus %}
     <p class="stacks-copy">Stacks provides focus-only atomic classes. By applying <code class="stacks-code">.f:o100</code>, and <code class="stacks-code">.f:fc-black-900</code>, you’re saying “On focus, add an opacity of 100%, and a font color of black 900.”</p>
     <div class="stacks-preview">
-{% highlight html linenos %}
+{% highlight html %}
 <div class="s-card o80 bs-sm f:o100 f:fc-black-900"></div>
 {% endhighlight %}
         <div class="stacks-preview--example">
@@ -203,11 +195,13 @@ description: Stacks provides conditional atomic classes to easily build complex 
     {% header h2 | Print %}
     <p class="stacks-copy">Stacks provides print-only atomic classes. By applying <code class="stacks-code">.print:d-none</code>, you’re saying “In print layouts, remove this element from the layout.”</p>
     <div class="stacks-preview">
-{% highlight html linenos %}
+{% highlight html %}
 <div class="s-card print:d-none"></div>
+<div class="s-card d-none print:d-block"></div>
 {% endhighlight %}
         <div class="stacks-preview--example">
             <div class="s-card print:d-none">This element will be removed from the page while printing.</div>
+            <div class="s-card d-none print:d-none">This element will only be shown when printing.</div>
         </div>
     </div>
 </section>
