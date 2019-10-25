@@ -19,34 +19,10 @@
     flex-wrap: wrap;
 
     &.s-navigation__scroll {
-        -webkit-overflow-scrolling: touch;
         overflow-x: auto;
         flex-wrap: nowrap;
 
-        // Webkit scrollbars
-        &::-webkit-scrollbar {
-            width: @su8;
-            height: @su8;
-            background-color: transparent;
-        }
-
-        &::-webkit-scrollbar-track {
-            border-radius: @su8;
-            background-color: transparent;
-        }
-
-        &::-webkit-scrollbar-thumb {
-            border-radius: @su8;
-            background-color: var(--black-100);
-        }
-
-        &::-webkit-scrollbar-corner {
-            background-color: transparent;
-        }
-
-        // Firefox
-        scrollbar-color: var(--black-100) transparent;
-        scrollbar-width: thin;
+        @scrollbar-styles();
     }
 }
 

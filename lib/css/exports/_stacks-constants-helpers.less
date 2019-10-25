@@ -109,9 +109,13 @@ body {
 @default-transition-duration:       0.1s;
 @transition-time:                   @default-transition-duration;
 
+
+//  ============================================================================
+//  $   SCROLLBAR STYLING
+//  ----------------------------------------------------------------------------
 @scrollbar-styles: {
-    // TODO: Figure out how to scope this to body.has-darkmode
-    // Force scrollbar styling
+    -webkit-overflow-scrolling: touch;
+
     &::-webkit-scrollbar {
         width: @su8;
         height: @su8;
@@ -126,10 +130,10 @@ body {
     &::-webkit-scrollbar-thumb
     {
         border-radius: @su8;
-        background-color: rgba(0, 0, 0, .15);
+        background-color: rgba(0, 0, 0, .20);
 
         @media (prefers-color-scheme: dark) {
-            background-color: rgba(255, 255, 255, .15);
+            background-color: rgba(255, 255, 255, .20);
         }
     }
 
@@ -138,10 +142,10 @@ body {
         border-color: transparent;
     }
 
-    scrollbar-color: rgba(0, 0, 0, .15) transparent;
+    scrollbar-color: rgba(0, 0, 0, .20) transparent;
 
     @media (prefers-color-scheme: dark) {
-        scrollbar-color: rgba(255, 255, 255, .15) transparent;
+        scrollbar-color: rgba(255, 255, 255, .20) transparent;
     }
 
     scrollbar-width: thin;
