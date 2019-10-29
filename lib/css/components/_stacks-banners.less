@@ -42,7 +42,7 @@
     border-radius: 0;
     box-shadow: none;
 
-    color: @fc-medium;
+    color: var(--black-700);
     font-size: @fs-body1;
 
     // If you want to hide and reveal the banner
@@ -69,7 +69,7 @@
     //  If it's a really important banner
     &.s-banner__important {
         border-color: transparent;
-        color: @white;
+        color: var(--white);
     }
 }
 
@@ -82,49 +82,3 @@
     max-width: @body-site-width;
     margin: 0 auto;
 }
-
-& {
-#stacks-internals #load-config(); //  Call all our variables from _stacks-configuration
-//  ============================================================================
-//  $$  SYSTEM BANNER BACKGROUNDS
-//      Backgrounds specific to system banners
-//  ----------------------------------------------------------------------------
-.s-banner__info {
-    border-color: @notice-info-border-color;
-    background-color: @notice-info-background-color;
-
-    &.s-banner__important {
-        background-color: @notice-info-important-background-color;
-    }
-}
-
-.s-banner__success {
-    border-color: @notice-success-border-color;
-    background-color: @notice-success-background-color;
-
-    &.s-banner__important {
-        background-color: @notice-success-important-background-color;
-        color: @fc-dark;
-    }
-}
-
-.s-banner__warning {
-    border-color: @notice-warning-border-color;
-    background-color: @notice-warning-background-color;
-
-    &.s-banner__important {
-        background-color: @notice-warning-important-background-color;
-        color: @fc-dark;
-    }
-
-}
-
-.s-banner__danger {
-    border-color: @notice-danger-border-color;
-    background-color: @notice-danger-background-color;
-
-    &.s-banner__important {
-        background-color: @notice-danger-important-background-color;
-    }
-}
-}  // End stacks configuration mixin
