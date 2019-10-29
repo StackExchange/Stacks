@@ -20,22 +20,21 @@
         .fc-@{color-name},
         .h\:fc-@{color-name}:hover,
         .f\:fc-@{color-name}:focus {
-            color: @@color-name !important;
+            color: var(~"--@{color-name}") !important;
         }
         .f\:fc-@{color-name}:focus-within {
-            color: @@color-name !important;
+            color: var(~"--@{color-name}") !important;
         }
 
         .bg-@{color-name},
         .h\:bg-@{color-name}:hover,
         .f\:bg-@{color-name}:focus {
-            background-color: @@color-name !important;
+            background-color: var(~"--@{color-name}") !important;
         }
         .f\:bg-@{color-name}:focus-within {
-            background-color: @@color-name !important;
+            background-color: var(~"--@{color-name}") !important;
         }
     }
-
 
     .standard-weights(@color) {
         .color(~"@{color}-900");
@@ -70,7 +69,7 @@
     .fc-success           { &:extend(.fc-green-600); }
     .fc-warning           { &:extend(.fc-yellow-600); }
     .fc-error, .fc-danger { &:extend(.fc-red-500); }
-    
+
     .bg-success           { &:extend(.bg-green-500); }
     .bg-warning           { &:extend(.bg-yellow-600); }
     .bg-error, .bg-danger { &:extend(.bg-red-500); }
