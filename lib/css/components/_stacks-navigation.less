@@ -11,45 +11,12 @@
 //  • MUTED STYLE
 
 
-& { // create a single scope to load the config into, at least for now
-    #stacks-internals #load-config();
-
-//      MIXIN:
-//      Navigation item
-//
-//      HOW IT WORKS:
-//      Defines the s-navigation--item with the colors to be used. 
-//      The default values are the ones used by the base style.
-//      Style modifications can pass different colors as needed.
-//  ----------------------------------------------------------------------------
-.s-navigation--item(@fc: @black-600, @hover-bg: @black-100, @hover-fc: @black-600, @selected-bg: @navigation-link-highlight, @selected-fc: @white){
-    .s-navigation--item {
-        padding: @su6 @su16;
-        border-radius: 1000px;
-        margin: @su2;
-        color: @fc;
-    
-        &:hover,
-        &:active {
-            background: @hover-bg;
-            color: @hover-fc;
-        }
-    
-        &.is-selected {
-            background: @selected-bg;
-            color: @selected-fc;
-    
-            &:hover {
-                background: darken(@selected-bg,10%);
-            }
-        }
-    }
-}
-
 //  ============================================================================
 //  $   BASE STYLE
 //  ----------------------------------------------------------------------------
 .s-navigation {
+    #stacks-internals #load-config();
+
     display: flex;
     margin: -@su2;
     padding: @su2 0;
@@ -63,14 +30,40 @@
         @scrollbar-styles();
     }
 
-    .s-navigation--item();
-}
+    .s-navigation--item {
+        padding: @su6 @su16;
+        border-radius: 1000px;
+        margin: @su2;
+        color: @black-600;
+    
+        &:hover,
+        &:active {
+            background: @black-100;
+            color: @black-600;
+        }
+    
+        &.is-selected {
+            background: @navigation-link-highlight;
+            color: @white;
+    
+            &:hover {
+                background: darken(@navigation-link-highlight,10%);
+            }
+        }
+    }
 
-//  ============================================================================
-//  $   MUTED STYLE
-//  ----------------------------------------------------------------------------
-.s-navigation__muted {
-    .s-navigation--item(@selected-bg: @black-050, @selected-fc:@black-800);
-}
+    //  ============================================================================
+    //  $   MUTED STYLE
+    //  ----------------------------------------------------------------------------
 
+    &.s-navigation__muted .s-navigation--item {
+        &.is-selected {
+            background: @black-050;
+            color: @black-800;
+
+            &:hover {
+                background: @black-100;
+            }
+        }
+    }
 }
