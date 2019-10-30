@@ -8,11 +8,15 @@
 //
 //  TABLE OF CONTENTS
 //  • BASE STYLE
-//
+//  • MUTED STYLE
+
+
 //  ============================================================================
-//  $   BASE STYLES
+//  $   BASE STYLE
 //  ----------------------------------------------------------------------------
 .s-navigation {
+    #stacks-internals #load-config();
+
     display: flex;
     margin: -@su2;
     padding: @su2 0;
@@ -25,27 +29,41 @@
 
         @scrollbar-styles();
     }
-}
 
-.s-navigation--item {
-    #stacks-internals #load-config();
-    padding: @su6 @su16;
-    border-radius: 1000px;
-    margin: @su2;
-    color: @black-600;
-
-    &:hover,
-    &:active {
-        background: @black-100;
+    .s-navigation--item {
+        padding: @su6 @su16;
+        border-radius: 1000px;
+        margin: @su2;
         color: @black-600;
+    
+        &:hover,
+        &:active {
+            background: @black-100;
+            color: @black-600;
+        }
+    
+        &.is-selected {
+            background: @navigation-link-highlight;
+            color: @white;
+    
+            &:hover {
+                background: darken(@navigation-link-highlight,10%);
+            }
+        }
     }
 
-    &.is-selected {
-        background: @navigation-link-highlight;
-        color: @white;
+    //  ============================================================================
+    //  $   MUTED STYLE
+    //  ----------------------------------------------------------------------------
 
-        &:hover {
-            background: darken(@navigation-link-highlight,10%);
+    &.s-navigation__muted .s-navigation--item {
+        &.is-selected {
+            background: @black-050;
+            color: @black-800;
+
+            &:hover {
+                background: @black-100;
+            }
         }
     }
 }
