@@ -11,11 +11,11 @@ description: A selectable menu list from which a user can make a single selectio
 {% include_relative examples/select-disabled.html %}
 {% endhighlight %}
         <div class="stacks-preview--example">
-            <div class="grid gs16 gsy fd-column">
-                <div class="grid--cell">
+            <div class="flex gs16 gsy fd-column">
+                <div class="flex--cell">
                     {% include_relative examples/select-base.html %}
                 </div>
-                <div class="grid--cell">
+                <div class="flex--cell">
                     {% include_relative examples/select-disabled.html %}
                 </div>
             </div>
@@ -42,7 +42,7 @@ description: A selectable menu list from which a user can make a single selectio
                     {% assign state = item.validation %}
                     {% for class in state %}
                     <tr>
-                        <th scope="row"><code class="grid--cell stacks-code">{{ class.class }}</code></th>
+                        <th scope="row"><code class="flex--cell stacks-code">{{ class.class }}</code></th>
                         <td>{{ class.applies }}</td>
                         <td>{{ class.description }}</td>
                     </tr>
@@ -56,12 +56,12 @@ description: A selectable menu list from which a user can make a single selectio
     {% header h4 | Warning %}
     <div class="stacks-preview">
 {% highlight html %}
-<div class="grid gs4 gsy fd-column has-warning">
-    <label class="grid--cell s-label" for="select-menu">
+<div class="flex gs4 gsy fd-column has-warning">
+    <label class="flex--cell s-label" for="select-menu">
         How will you be traveling?
         <p class="mt2 s-description">Select the transportation method you will be using to come to the event.</p>
     </label>
-    <div class="grid--cell s-select">
+    <div class="flex--cell s-select">
         <select id="select-menu">
             <option value="" selected>Please select one…</option>
             <option value="walk">Walk</option>
@@ -82,12 +82,12 @@ description: A selectable menu list from which a user can make a single selectio
     {% header h4 | Error %}
     <div class="stacks-preview">
 {% highlight html %}
-<div class="grid gs4 gsy fd-column has-error">
-    <label class="grid--cell s-label" for="select-menu">
+<div class="flex gs4 gsy fd-column has-error">
+    <label class="flex--cell s-label" for="select-menu">
         How will you be traveling?
         <p class="mt2 s-description">Select the transportation method you will be using to come to the event.</p>
     </label>
-    <div class="grid--cell s-select">
+    <div class="flex--cell s-select">
         <select id="select-menu">
             <option value="" selected>Please select one…</option>
             <option value="walk">Walk</option>
@@ -108,12 +108,12 @@ description: A selectable menu list from which a user can make a single selectio
     {% header h4 | Success %}
     <div class="stacks-preview">
 {% highlight html %}
-<div class="grid gs4 gsy fd-column has-success">
-    <label class="grid--cell s-label" for="select-menu">
+<div class="flex gs4 gsy fd-column has-success">
+    <label class="flex--cell s-label" for="select-menu">
         How will you be traveling?
         <p class="mt2 s-description">Select the transportation method you will be using to come to the event.</p>
     </label>
-    <div class="grid--cell s-select">
+    <div class="flex--cell s-select">
         <select id="select-menu">
             <option value="" selected>Please select one…</option>
             <option value="walk">Walk</option>
@@ -152,7 +152,7 @@ description: A selectable menu list from which a user can make a single selectio
                         <th scope="row">{{ item.name }}</th>
                         <td>{{ item.size }}</td>
                         <td>{% if item.class == "N/A" %}<em class="fc-light">{{ item.class }}</em>{% else %}<code class="stacks-code">.{{ item.class }}</code>{% endif %}</td>
-                        <td><div class="grid s-select {{ item.class }}"><select><option>1 Example</option><option>2 Options</option></select></div></td>
+                        <td><div class="flex s-select {{ item.class }}"><select><option>1 Example</option><option>2 Options</option></select></div></td>
                     </tr>
                     {% endfor %}
                 {% endfor %}
