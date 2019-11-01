@@ -80,7 +80,7 @@
                     // In the upside-down stack, unshift = push, and stack[0] = the top.
                     var parentItem = stack[0].children("li:last")[0];
                     if (parentItem) {
-                        stack.unshift($("<" + listTag + " class='flex fd-column list-reset stacks-nav__secondary'/>").appendTo(parentItem));
+                        stack.unshift($("<" + listTag + " class='d-flex fd-column list-reset stacks-nav__secondary'/>").appendTo(parentItem));
                     }
                 } else {
                     // Truncate the stack to the current level by chopping off the 'top' of the

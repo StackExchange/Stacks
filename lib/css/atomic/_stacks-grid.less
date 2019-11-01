@@ -56,7 +56,7 @@
         //  ----------------------------------------------------------------------------
         .create-grid-count-cols(@num, @count: 1) when (@count =< @num) {
             .flex__allcells@{count} {
-                > .flex,
+                > .d-flex,
                 > .flex--cell {
                     flex-basis: (@count * 100%) / @num;
 
@@ -164,7 +164,7 @@
             margin: -(@spacing / 2);
 
             //  --  FLUID CELLS
-            > .flex,
+            > .d-flex,
             > .flex--cell {
                 margin: @spacing / 2;
             }
@@ -177,30 +177,19 @@
     }
 }
 
-
-//  ============================================================================
-//  $   GRID ELEMENTS
-//  ============================================================================
-//      To help simplify our CSS, we create a generic box container. By default
-//      this is a row container, but we can modify the box to become a column.
-//  ----------------------------------------------------------------------------
-.flex {
-    display: flex;
-}
-
 //  --  UNIVERSAL FLEX WIDTHS
 //      This applies a flex value it to all of a grid's direct children.
 //  --------------------------------------------------------------------------
 .flex__fl0 {
     &,
-    > .flex,
+    > .d-flex,
     > .flex--cell {
         flex: 0 auto;
     }
 }
 .flex__fl1 {
     &,
-    > .flex,
+    > .d-flex,
     > .flex--cell {
         flex: 1 auto;
     }
@@ -235,7 +224,7 @@
 //  On rows, remove top and bottom margins
 .fsx {
     &,
-    > .flex,
+    > .d-flex,
     > [class*="flex--cell"] {
         margin-top: 0;
         margin-bottom: 0;
@@ -245,7 +234,7 @@
 //  On columns, remove left and right margins
 .fsy {
     &,
-    > .flex,
+    > .d-flex,
     > [class*="flex--cell"] {
         margin-right: 0;
         margin-left: 0;

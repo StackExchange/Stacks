@@ -1,7 +1,7 @@
 <div class="flex--cell fl-shrink0 ws2 md:w-auto md:d-none print:d-none js-navigation">
     <div class="overflow-y-scroll overflow-x-hidden bg-white z-nav py12 fs-body1 ps-fixed wmn2 t64 b0 sm:w100 sm:pb0">
         <div class="d-none sm:d-block">
-            <div class="flex fd-column ai-center">
+            <div class="d-flex fd-column ai-center">
                 <div class="s-navigation s-navigation__wrap mx8 mb12 jc-center">
                     {% if site.data.nav[0] %}
                         {% for item in site.data.nav %}
@@ -11,7 +11,7 @@
                         {% endfor %}
                     {% endif %}
                 </div>
-                <div class="flex fs16 ai-center fw-wrap mx8">
+                <div class="d-flex fs16 ai-center fw-wrap mx8">
                     <a class="flex--cell fc-black-300" href="https://stackoverflow.com/">
                         {% icon LogoGlyphSm %}
                     </a>
@@ -44,7 +44,7 @@
                                         {% for subentry in entry.subsublinks %}
                                             {% assign pageURL = page.url | remove_first:"/" | remove: ".html" %}
                                             <li>
-                                                <a class="flex jc-space-between ai-center py6 px16 s-link s-link__muted w100 {% if pageURL == subentry.url %}bg-orange-400 fc-white{% endif %}" href="{{ subentry.url | relative_url }}">
+                                                <a class="d-flex jc-space-between ai-center py6 px16 s-link s-link__muted w100 {% if pageURL == subentry.url %}bg-orange-400 fc-white{% endif %}" href="{{ subentry.url | relative_url }}">
                                                     <span class="flex--cell">
                                                         {{ subentry.title }}
                                                     </span>
