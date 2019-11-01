@@ -28,7 +28,7 @@
         #stacks-internals #grid-builder-settings();
 
         .create-fixed-cells(@num, @count: 1) when (@count =< @num) {
-            .grid--cell@{count} {
+            .flex--cell@{count} {
                 flex-basis: (@count * 100%) / @num;
 
                 //  --  IE11/10 Flex-basis bug
@@ -55,9 +55,9 @@
         //      all child elements will automatically be sized.
         //  ----------------------------------------------------------------------------
         .create-grid-count-cols(@num, @count: 1) when (@count =< @num) {
-            .grid__allcells@{count} {
-                > .grid,
-                > .grid--cell {
+            .flex__allcells@{count} {
+                > .flex,
+                > .flex--cell {
                     flex-basis: (@count * 100%) / @num;
 
                     //  --  IE11/10 Flex-basis bug
@@ -89,7 +89,7 @@
         //
         //      HOW IT WORKS:
         //      A quick primer on how this mixin works. The TL;DR is we're using a mixin
-        //      guard to start a loop that'll create all the desired `> .grid--cell@{count}`
+        //      guard to start a loop that'll create all the desired `> .flex--cell@{count}`
         //      classes.
         //
         //      The three mixin parameters are:
@@ -116,8 +116,8 @@
         //      of our desired @num.
         //
         //      There are two mixins here:
-        //          • "grid-fixed-cell-row" -- This is the baseline mixin.
-        //          • "grid-fixed-cell-column" -- When the ".grid" is a column, change
+        //          • "flex-fixed-cell-row" -- This is the baseline mixin.
+        //          • "flex-fixed-cell-column" -- When the ".flex" is a column, change
         //             the margins, setting a top and bottom margin instead of left
         //             and right.
         //
@@ -125,7 +125,7 @@
         .grid-fixed-cell-spacing(@spacing, @num, @count: 1) when (@count =< @num) {
             @cell-width: @count * 100% / @num;
 
-            > .grid--cell@{count} {
+            > .flex--cell@{count} {
                 margin: @spacing / 2;
             }
 
@@ -138,22 +138,10 @@
             //      divs within a `.grid` element. In particular we adjust the flex-basis
             //      and max-width here to account for gutters.
             //  ------------------------------------------------------------------------
-            > .grid--cell@{count},                                  // [1]
-            &.grid__allcells@{count} > .grid,                       // [2]
-            &.grid__allcells@{count} > .grid--cell {                // [2]
+            > .flex--cell@{count},                                  // [1]
+            &.flex__allcells@{count} > .flex,                       // [2]
+            &.flex__allcells@{count} > .flex--cell {                // [2]
                 flex-basis: calc(~"@{cell-width} - @{spacing}");
-
-                //  --  IE11/10 Flex-basis bug
-                //      Known issue where if a flex item has a box-sizing border-box
-                //      value, the flex-basis value is incorrect. The workaround is
-                //      to apply a width or height. Since flex-basis applies in the
-                //      flow direction, we have to conditionally set the width (default)
-                //      or height (if a column).
-                //  --------------------------------------------------------------------
-                @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
-                    flex-basis: auto;
-                    width: calc(~"@{cell-width} - @{spacing}");
-                }
             }
 
             #stacks-internals #grid-builder-helpers .grid-fixed-cell-spacing(@spacing, @num, (@count + 1));
@@ -176,8 +164,8 @@
             margin: -(@spacing / 2);
 
             //  --  FLUID CELLS
-            > .grid,
-            > .grid--cell {
+            > .flex,
+            > .flex--cell {
                 margin: @spacing / 2;
             }
 
@@ -196,24 +184,24 @@
 //      To help simplify our CSS, we create a generic box container. By default
 //      this is a row container, but we can modify the box to become a column.
 //  ----------------------------------------------------------------------------
-.grid {
+.flex {
     display: flex;
 }
 
 //  --  UNIVERSAL FLEX WIDTHS
 //      This applies a flex value it to all of a grid's direct children.
 //  --------------------------------------------------------------------------
-.grid__fl0 {
+.flex__fl0 {
     &,
-    > .grid,
-    > .grid--cell {
+    > .flex,
+    > .flex--cell {
         flex: 0 auto;
     }
 }
-.grid__fl1 {
+.flex__fl1 {
     &,
-    > .grid,
-    > .grid--cell {
+    > .flex,
+    > .flex--cell {
         flex: 1 auto;
     }
 }
@@ -229,83 +217,36 @@
     //  $$  AUTO FIXED WIDTH CELLS
     //  ----------------------------------------------------------------------------
     #stacks-internals #grid-builder-helpers .create-grid-count-cols(@grid-cols);
-
-    //  --  IE11/10 Flex-basis bug
-    //      Known issue where if a flex item has a box-sizing border-box
-    //      value, the flex-basis value is incorrect. The workaround is
-    //      to apply a width or height. Since flex-basis applies in the
-    //      flow direction, we have to conditionally set the width (default)
-    //      or height (if a column).
-    //  --------------------------------------------------------------------
-    @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
-        .fd-column,
-        .fd-column-reverse {
-            > .grid,
-            > [class*="grid--cell"],
-            &[class*="grid__allcells"] > .grid,
-            &[class*="grid__allcells"] > [class*="grid--cell"] {
-                width: auto;
-            }
-        }
-        .lg\:fd-column,
-        .lg\:fd-column-reverse {
-            > .grid,
-            > [class*="grid--cell"],
-            &[class*="grid__allcells"] > .grid,
-            &[class*="grid__allcells"] > [class*="grid--cell"] {
-                #stacks-internals #screen-lg({ width: auto; })
-            }
-        }
-        .md\:fd-column,
-        .md\:fd-column-reverse {
-            > .grid,
-            > [class*="grid--cell"],
-            &[class*="grid__allcells"] > .grid,
-            &[class*="grid__allcells"] > [class*="grid--cell"] {
-                #stacks-internals #screen-md({ width: auto; })
-            }
-        }
-        .sm\:fd-column,
-        .sm\:fd-column-reverse {
-            > .grid,
-            > [class*="grid--cell"],
-            &[class*="grid__allcells"] > .grid,
-            &[class*="grid__allcells"] > [class*="grid--cell"] {
-                #stacks-internals #screen-sm({ width: auto; })
-            }
-        }
-    }
-
 }
 //  ============================================================================
 //  $   GRID SPACING
 //      Insert spaces or gutters in between grid cells
 //  ----------------------------------------------------------------------------
-.gs2    { #stacks-internals #grid-builder-helpers .gutter-spacing(@su2); }        //  2px
-.gs4    { #stacks-internals #grid-builder-helpers .gutter-spacing(@su4); }        //  4px
-.gs8    { #stacks-internals #grid-builder-helpers .gutter-spacing(@su8); }        //  8px
-.gs12   { #stacks-internals #grid-builder-helpers .gutter-spacing(@su12); }       //  12px
-.gs16   { #stacks-internals #grid-builder-helpers .gutter-spacing(@su16); }       //  16px
-.gs24   { #stacks-internals #grid-builder-helpers .gutter-spacing(@su24); }       //  24px
-.gs32   { #stacks-internals #grid-builder-helpers .gutter-spacing(@su32); }       //  32px
-.gs48   { #stacks-internals #grid-builder-helpers .gutter-spacing(@su48); }       //  48px
-.gs64   { #stacks-internals #grid-builder-helpers .gutter-spacing(@su64); }       //  64px
+.fs2    { #stacks-internals #grid-builder-helpers .gutter-spacing(@su2); }        //  2px
+.fs4    { #stacks-internals #grid-builder-helpers .gutter-spacing(@su4); }        //  4px
+.fs8    { #stacks-internals #grid-builder-helpers .gutter-spacing(@su8); }        //  8px
+.fs12   { #stacks-internals #grid-builder-helpers .gutter-spacing(@su12); }       //  12px
+.fs16   { #stacks-internals #grid-builder-helpers .gutter-spacing(@su16); }       //  16px
+.fs24   { #stacks-internals #grid-builder-helpers .gutter-spacing(@su24); }       //  24px
+.fs32   { #stacks-internals #grid-builder-helpers .gutter-spacing(@su32); }       //  32px
+.fs48   { #stacks-internals #grid-builder-helpers .gutter-spacing(@su48); }       //  48px
+.fs64   { #stacks-internals #grid-builder-helpers .gutter-spacing(@su64); }       //  64px
 
 //  On rows, remove top and bottom margins
-.gsx {
+.fsx {
     &,
-    > .grid,
-    > [class*="grid--cell"] {
+    > .flex,
+    > [class*="flex--cell"] {
         margin-top: 0;
         margin-bottom: 0;
     }
 }
 
 //  On columns, remove left and right margins
-.gsy {
+.fsy {
     &,
-    > .grid,
-    > [class*="grid--cell"] {
+    > .flex,
+    > [class*="flex--cell"] {
         margin-right: 0;
         margin-left: 0;
     }
