@@ -93,7 +93,7 @@ description: Modals are dialog overlays that prevent the user from interacting w
 </section>
 
 <!-- Example base modal content -->
-<aside class="s-modal js-modal-overlay js-modal-close" id="modal-base" tabindex="-1" role="dialog" aria-labelledby="modal-title" aria-describedby="modal-description" aria-hidden="true"
+<aside class="s-modal js-modal-overlay" id="modal-base" tabindex="-1" role="dialog" aria-labelledby="modal-title" aria-describedby="modal-description" aria-hidden="true"
     data-controller="s-modal" data-target="s-modal.modal">
     <div class="s-modal--dialog js-modal-dialog" role="document">
         <h1 class="s-modal--header" id="modal-title">Example title</h1>
@@ -102,14 +102,14 @@ description: Modals are dialog overlays that prevent the user from interacting w
             <button class="grid--cell s-btn s-btn__primary js-modal-primary-btn" type="button">Save changes</button>
             <button class="grid--cell s-btn js-modal-cancel-btn" type="button" data-action="s-modal#toggle">Cancel</button>
         </div>
-        <a class="s-modal--close s-btn s-btn__muted js-modal-close" aria-label="Close" data-action="s-modal#toggle">
+        <a class="s-modal--close s-btn s-btn__muted" aria-label="Close" data-action="s-modal#toggle">
             {% icon ClearSm %}
         </a>
     </div>
 </aside>
 
 <!-- Example danger modal content -->
-<aside class="s-modal has-danger js-modal-overlay js-modal-close" id="modal-danger" tabindex="-1" role="dialog" aria-labelledby="modal-title" aria-describedby="modal-description" aria-hidden="true"
+<aside class="s-modal has-danger js-modal-overlay" id="modal-danger" tabindex="-1" role="dialog" aria-labelledby="modal-title" aria-describedby="modal-description" aria-hidden="true"
     data-controller="s-modal" data-target="s-modal.modal">
     <div class="s-modal--dialog js-modal-dialog" role="document">
         <h1 class="s-modal--header" id="modal-title">Example danger title</h1>
@@ -118,26 +118,11 @@ description: Modals are dialog overlays that prevent the user from interacting w
             <button class="grid--cell s-btn s-btn__filled s-btn__danger js-modal-primary-btn" type="button">Save changes</button>
             <button class="grid--cell s-btn s-btn__muted js-modal-cancel-btn" type="button" data-action="s-modal#toggle">Cancel</button>
         </div>
-        <a class="s-modal--close s-btn s-btn__muted js-modal-close" aria-label="Close" data-action="s-modal#toggle">
+        <a class="s-modal--close s-btn s-btn__muted" aria-label="Close" data-action="s-modal#toggle">
             {% icon ClearSm %}
         </a>
     </div>
 </aside>
-
-<div class="grid s-notice s-notice__warning mb48">
-    <div class="grid--cell mr8">{% icon Wave %}</div>
-    <div class="grid--cell lh-lg">
-        <p>
-            <strong>Help wanted!</strong> Each of our components will eventually ship with default <a class="s-link s-link__inherit s-link__underlined" href="{{ '/product/guidelines/javascript#using-the-stacks-javascript' | relative_url }}">JavaScript</a> interactivity. We could use your help writing that JavaScript. To get started, check out the <a class="s-link s-link__inherit s-link__underlined" href="https://github.com/StackExchange/Stacks/issues/287">spec</a>.
-        </p>
-        <p>
-            For examples of some JavaScript that’s been shipped, see our <a class="s-link s-link__inherit s-link__underlined" href="{{ '/product/components/tables#javascript-sorting' | relative_url }}">sortable table component</a> or our <a class="s-link s-link__inherit s-link__underlined" href="{{ '/product/components/expandable' | relative_url }}">expandable control</a>.
-        </p>
-        <p class="mb0">
-            It can be tempting to hack together a quick fix in jQuery for displaying a Modal for your feature, but it may be just as much work as doing it properly as a <a class="s-link s-link__inherit s-link__underlined" href="https://stimulusjs.org">Stimulus</a> component—and this way every developer at Stack Overflow now has Modals at their disposal.
-        </p>
-    </div>
-</div>
 
 <!-- And now for some documentation -->
 <section class="stacks-section">
@@ -148,7 +133,7 @@ description: Modals are dialog overlays that prevent the user from interacting w
     </div>
     <div class="stacks-preview">
 {% highlight html %}
-<aside class="s-modal js-modal-overlay js-modal-close" id="modal-base" tabindex="-1" role="dialog" aria-labelledby="modal-title" aria-describedby="modal-description" aria-hidden="true"
+<aside class="s-modal js-modal-overlay" id="modal-base" tabindex="-1" role="dialog" aria-labelledby="modal-title" aria-describedby="modal-description" aria-hidden="true"
     data-controller="s-modal" data-target="s-modal.modal">
     <div class="s-modal--dialog js-modal-dialog" role="document">
         <h1 class="s-modal--header" id="modal-title">…</h1>
@@ -157,7 +142,7 @@ description: Modals are dialog overlays that prevent the user from interacting w
             <button class="grid--cell s-btn s-btn__primary js-modal-primary-btn" type="button">…</button>
             <button class="grid--cell s-btn js-modal-cancel-btn" type="button" data-action="s-modal#toggle">…</button>
         </div>
-        <a class="s-modal--close s-btn s-btn__muted js-modal-close" href="#" aria-label="Close" data-action="s-modal#toggle">
+        <a class="s-modal--close s-btn s-btn__muted" href="#" aria-label="Close" data-action="s-modal#toggle">
             @Svg.ClearSm
         </a>
     </div>
@@ -230,7 +215,7 @@ description: Modals are dialog overlays that prevent the user from interacting w
     <p class="stacks-copy">Not every modal is sunshine and rainbows. Sometimes there are potentially drastic things that could happen by hitting a confirm button in a modal—such as deleting an account. In moments like this, add the <code class="stacks-code">.has-danger</code> class to <code class="stacks-code">.s-modal</code>. Additionally, you should switch the buttons to <code class="stacks-code">.s-btn__danger.s-btn__filled</code>, since the main call to action will be destructive.</p>
     <div class="stacks-preview">
 {% highlight html %}
-<aside class="s-modal has-danger js-modal-overlay js-modal-close" id="modal-base" tabindex="-1" role="dialog" aria-labelledby="modal-title" aria-describedby="modal-description" aria-hidden="true"
+<aside class="s-modal has-danger js-modal-overlay" id="modal-base" tabindex="-1" role="dialog" aria-labelledby="modal-title" aria-describedby="modal-description" aria-hidden="true"
     data-controller="s-modal" data-target="s-modal.modal">
     <div class="s-modal--dialog js-modal-dialog" role="document">
         <h1 class="s-modal--header" id="modal-title">…</h1>
@@ -239,7 +224,7 @@ description: Modals are dialog overlays that prevent the user from interacting w
             <button class="grid--cell s-btn s-btn__filled s-btn__danger js-modal-primary-btn" type="button">…</button>
             <button class="grid--cell s-btn s-btn__muted js-modal-cancel-btn" type="button" data-action="s-modal#toggle">…</button>
         </div>
-        <a class="s-modal--close s-btn s-btn__muted js-modal-close" href="#" aria-label="Close" data-action="s-modal#toggle">
+        <a class="s-modal--close s-btn s-btn__muted" href="#" aria-label="Close" data-action="s-modal#toggle">
             @Svg.ClearSm
         </a>
     </div>
