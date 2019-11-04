@@ -3,31 +3,122 @@ layout: page
 title: Modals
 description: Modals are dialog overlays that prevent the user from interacting with the rest of the website until an action is taken or the dialog is dismissed. Modals are purposefully disruptive and should be used thoughtfully and sparingly.
 ---
+<section class="stacks-section">
+    {% header h2 | JavaScript %}
+    {% header h3 | Attributes %}
+    <div class="overflow-x-auto mb32">
+        <table class="wmn4 s-table s-table__bx-simple">
+            <thead>
+                <tr>
+                    <th class="s-table--cell5" scope="col">Attribute</th>
+                    <th class="s-table--cell2" scope="col">Applied to</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody class="fs-caption">
+                <tr>
+                    <th scope="row"><code class="stacks-code">data-controller="s-modal"</code></th>
+                    <td>Controller element</td>
+                    <td class="p8">Wires up the element to the modal controller. This may be a <code class="stacks-code">.s-modal</code> element or a wrapper element.</td>
+                </tr>
+                <tr>
+                    <th scope="row"><code class="stacks-code">data-target="s-modal.modal"</code></th>
+                    <td>.s-modal element</td>
+                    <td class="p8">Wires up the element that is to be shown/hidden</td>
+                </tr>
+                <tr>
+                    <th scope="row"><code class="stacks-code">data-action="s-modal#toggle"</code></th>
+                    <td>Toggling element</td>
+                    <td class="p8">Wires up the element to toggle the visibility of a modal</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    {% header h3 | Events %}
+    <div class="overflow-x-auto mb32">
+        <table class="wmn4 s-table s-table__bx-simple">
+            <thead>
+                <tr>
+                    <th class="s-table--cell5" scope="col">Event</th>
+                    <th class="s-table--cell2" scope="col">Element</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody class="fs-caption">
+                <tr>
+                    <th scope="row"><code class="stacks-code">s-modal:show</code></th>
+                    <td>Controller element</td>
+                    <td>Fires immediately before showing the modal</td>
+                </tr>
+                <tr>
+                    <th scope="row"><code class="stacks-code">s-modal:shown</code></th>
+                    <td>Controller element</td>
+                    <td>Fires immediately after showing the modal</td>
+                </tr>
+                <tr>
+                    <th scope="row"><code class="stacks-code">s-modal:hide</code></th>
+                    <td>Controller element</td>
+                    <td>Fires immediately before hiding the modal</td>
+                </tr>
+                <tr>
+                    <th scope="row"><code class="stacks-code">s-modal:hidden</code></th>
+                    <td>Controller element</td>
+                    <td>Fires immediately after hiding the modal</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    {% header h3 | Helpers %}
+    <div class="overflow-x-auto mb32">
+        <table class="wmn4 s-table s-table__bx-simple">
+            <thead>
+                <tr>
+                    <th class="s-table--cell5" scope="col">Function</th>
+                    <th class="s-table--cell2" scope="col">Parameters</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody class="fs-caption">
+                <tr>
+                    <th scope="row"><code class="stacks-code">Stacks.toggleModal</code></th>
+                    <td>
+                        <code class="stacks-code">element</code>: the element the <code class="stacks-code">data-controller="s-modal"</code> attribute is on <br><br>
+                        <code class="stacks-code">show</code>: whether to force show/hide the modal; toggles the modal if left undefined
+                    </td>
+                    <td>Helper to manually show an s-modal element via external JS</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+
 <!-- Example base modal content -->
-<aside class="s-modal js-modal-overlay js-modal-close" id="modal-base" tabindex="-1" role="dialog" aria-labelledby="modal-title" aria-describedby="modal-description" aria-hidden="true">
+<aside class="s-modal js-modal-overlay js-modal-close" id="modal-base" tabindex="-1" role="dialog" aria-labelledby="modal-title" aria-describedby="modal-description" aria-hidden="true"
+    data-controller="s-modal" data-target="s-modal.modal">
     <div class="s-modal--dialog js-modal-dialog" role="document">
         <h1 class="s-modal--header" id="modal-title">Example title</h1>
         <p class="s-modal--body" id="modal-description">Nullam ornare lectus vitae lacus sagittis, at sodales leo viverra. Suspendisse nec nulla dignissim elit varius tempus. Cras viverra neque at imperdiet vehicula. Curabitur condimentum id dolor vitae ultrices. Pellentesque scelerisque nunc sit amet leo fringilla bibendum. Etiam feugiat imperdiet mi, eu blandit arcu cursus a. Pellentesque cursus massa id dolor ullamcorper, at condimentum nunc ultrices.</p>
         <div class="grid gs8 gsx s-modal--footer">
             <button class="grid--cell s-btn s-btn__primary js-modal-primary-btn" type="button">Save changes</button>
-            <button class="grid--cell s-btn js-modal-cancel-btn" type="button">Cancel</button>
+            <button class="grid--cell s-btn js-modal-cancel-btn" type="button" data-action="s-modal#toggle">Cancel</button>
         </div>
-        <a class="s-modal--close s-btn s-btn__muted js-modal-close" aria-label="Close">
+        <a class="s-modal--close s-btn s-btn__muted js-modal-close" aria-label="Close" data-action="s-modal#toggle">
             {% icon ClearSm %}
         </a>
     </div>
 </aside>
 
 <!-- Example danger modal content -->
-<aside class="s-modal has-danger js-modal-overlay js-modal-close" id="modal-danger" tabindex="-1" role="dialog" aria-labelledby="modal-title" aria-describedby="modal-description" aria-hidden="true">
+<aside class="s-modal has-danger js-modal-overlay js-modal-close" id="modal-danger" tabindex="-1" role="dialog" aria-labelledby="modal-title" aria-describedby="modal-description" aria-hidden="true"
+    data-controller="s-modal" data-target="s-modal.modal">
     <div class="s-modal--dialog js-modal-dialog" role="document">
         <h1 class="s-modal--header" id="modal-title">Example danger title</h1>
         <p class="s-modal--body" id="modal-description">Nullam ornare lectus vitae lacus sagittis, at sodales leo viverra. Suspendisse nec nulla dignissim elit varius tempus. Cras viverra neque at imperdiet vehicula. Curabitur condimentum id dolor vitae ultrices. Pellentesque scelerisque nunc sit amet leo fringilla bibendum. Etiam feugiat imperdiet mi, eu blandit arcu cursus a. Pellentesque cursus massa id dolor ullamcorper, at condimentum nunc ultrices.</p>
         <div class="grid gs8 gsx s-modal--footer">
             <button class="grid--cell s-btn s-btn__filled s-btn__danger js-modal-primary-btn" type="button">Save changes</button>
-            <button class="grid--cell s-btn s-btn__muted js-modal-cancel-btn" type="button">Cancel</button>
+            <button class="grid--cell s-btn s-btn__muted js-modal-cancel-btn" type="button" data-action="s-modal#toggle">Cancel</button>
         </div>
-        <a class="s-modal--close s-btn s-btn__muted js-modal-close" aria-label="Close">
+        <a class="s-modal--close s-btn s-btn__muted js-modal-close" aria-label="Close" data-action="s-modal#toggle">
             {% icon ClearSm %}
         </a>
     </div>
@@ -57,30 +148,32 @@ description: Modals are dialog overlays that prevent the user from interacting w
     </div>
     <div class="stacks-preview">
 {% highlight html %}
-<aside class="s-modal js-modal-overlay js-modal-close" id="modal-base" tabindex="-1" role="dialog" aria-labelledby="modal-title" aria-describedby="modal-description" aria-hidden="true">
+<aside class="s-modal js-modal-overlay js-modal-close" id="modal-base" tabindex="-1" role="dialog" aria-labelledby="modal-title" aria-describedby="modal-description" aria-hidden="true"
+    data-controller="s-modal" data-target="s-modal.modal">
     <div class="s-modal--dialog js-modal-dialog" role="document">
         <h1 class="s-modal--header" id="modal-title">…</h1>
         <p class="s-modal--body" id="modal-description">…</p>
         <div class="grid gs8 gsx s-modal--footer">
             <button class="grid--cell s-btn s-btn__primary js-modal-primary-btn" type="button">…</button>
-            <button class="grid--cell s-btn js-modal-cancel-btn" type="button">…</button>
+            <button class="grid--cell s-btn js-modal-cancel-btn" type="button" data-action="s-modal#toggle">…</button>
         </div>
-        <a class="s-modal--close s-btn s-btn__muted js-modal-close" href="#" aria-label="Close">
+        <a class="s-modal--close s-btn s-btn__muted js-modal-close" href="#" aria-label="Close" data-action="s-modal#toggle">
             @Svg.ClearSm
         </a>
     </div>
 </aside>
 {% endhighlight %}
         <div class="stacks-preview--example ps-relative grid jc-center" style="height: 320px;">
-            <aside class="s-modal ps-absolute bbr-sm z-base mn1" id="modal-base" aria-hidden="false">
+            <aside class="s-modal ps-absolute bbr-sm z-base mn1" id="modal-base" aria-hidden="false"
+                data-controller="s-modal" data-target="s-modal.modal">
                 <div class="s-modal--dialog ps-relative" role="document" style="transform: none;">
                     <h1 class="s-modal--header" id="modal-title">Example title</h1>
                     <p class="s-modal--body" id="modal-description">Nullam ornare lectus vitae lacus sagittis, at sodales leo viverra. Suspendisse nec nulla dignissim elit varius tempus. Cras viverra neque at imperdiet vehicula. Curabitur condimentum id dolor vitae ultrices. Pellentesque scelerisque nunc sit amet leo fringilla bibendum. Etiam feugiat imperdiet mi, eu blandit arcu cursus a.</p>
                     <div class="grid gs8 gsx s-modal--footer">
                         <button class="grid--cell s-btn s-btn__primary" type="button">Save changes</button>
-                        <button class="grid--cell s-btn" type="button">Cancel</button>
+                        <button class="grid--cell s-btn" type="button" data-action="s-modal#toggle">Cancel</button>
                     </div>
-                    <a class="s-modal--close s-btn s-btn__muted" aria-label="Close">
+                    <a class="s-modal--close s-btn s-btn__muted" aria-label="Close" data-action="s-modal#toggle">
                         {% icon ClearSm %}
                     </a>
                 </div>
@@ -137,30 +230,32 @@ description: Modals are dialog overlays that prevent the user from interacting w
     <p class="stacks-copy">Not every modal is sunshine and rainbows. Sometimes there are potentially drastic things that could happen by hitting a confirm button in a modal—such as deleting an account. In moments like this, add the <code class="stacks-code">.has-danger</code> class to <code class="stacks-code">.s-modal</code>. Additionally, you should switch the buttons to <code class="stacks-code">.s-btn__danger.s-btn__filled</code>, since the main call to action will be destructive.</p>
     <div class="stacks-preview">
 {% highlight html %}
-<aside class="s-modal has-danger js-modal-overlay js-modal-close" id="modal-base" tabindex="-1" role="dialog" aria-labelledby="modal-title" aria-describedby="modal-description" aria-hidden="true">
+<aside class="s-modal has-danger js-modal-overlay js-modal-close" id="modal-base" tabindex="-1" role="dialog" aria-labelledby="modal-title" aria-describedby="modal-description" aria-hidden="true"
+    data-controller="s-modal" data-target="s-modal.modal">
     <div class="s-modal--dialog js-modal-dialog" role="document">
         <h1 class="s-modal--header" id="modal-title">…</h1>
         <p class="s-modal--body" id="modal-description">…</p>
         <div class="grid gs8 gsx s-modal--footer">
             <button class="grid--cell s-btn s-btn__filled s-btn__danger js-modal-primary-btn" type="button">…</button>
-            <button class="grid--cell s-btn s-btn__muted js-modal-cancel-btn" type="button">…</button>
+            <button class="grid--cell s-btn s-btn__muted js-modal-cancel-btn" type="button" data-action="s-modal#toggle">…</button>
         </div>
-        <a class="s-modal--close s-btn s-btn__muted js-modal-close" href="#" aria-label="Close">
+        <a class="s-modal--close s-btn s-btn__muted js-modal-close" href="#" aria-label="Close" data-action="s-modal#toggle">
             @Svg.ClearSm
         </a>
     </div>
 </aside>
 {% endhighlight %}
         <div class="stacks-preview--example ps-relative grid jc-center" style="height: 320px;">
-            <aside class="s-modal has-danger ps-absolute bbr-sm z-base" id="modal-base" aria-hidden="false" style="margin: -1px;">
-                <div class="s-modal--dialog ps-relative" role="document"  style="transform: none;">
+            <aside class="s-modal has-danger ps-absolute bbr-sm z-base" id="modal-base" aria-hidden="false" style="margin: -1px;"
+                data-controller="s-modal" data-target="s-modal.modal">
+                <div class="s-modal--dialog ps-relative" role="document" style="transform: none;">
                     <h1 class="s-modal--header" id="modal-title">Example title</h1>
                     <p class="s-modal--body" id="modal-description">Nullam ornare lectus vitae lacus sagittis, at sodales leo viverra. Suspendisse nec nulla dignissim elit varius tempus. Cras viverra neque at imperdiet vehicula. Curabitur condimentum id dolor vitae ultrices. Pellentesque scelerisque nunc sit amet leo fringilla bibendum. Etiam feugiat imperdiet mi, eu blandit arcu cursus a.</p>
                     <div class="grid gs8 gsx s-modal--footer">
                         <button class="grid--cell s-btn s-btn__filled s-btn__danger" type="button">Save changes</button>
-                        <button class="grid--cell s-btn s-btn__muted" type="button">Cancel</button>
+                        <button class="grid--cell s-btn s-btn__muted" type="button" data-action="s-modal#toggle">Cancel</button>
                     </div>
-                    <a class="s-modal--close s-btn s-btn__muted" aria-label="Close">
+                    <a class="s-modal--close s-btn s-btn__muted" aria-label="Close" data-action="s-modal#toggle">
                         {% icon ClearSm %}
                     </a>
                 </div>
@@ -194,4 +289,12 @@ description: Modals are dialog overlays that prevent the user from interacting w
     </div>
 </section>
 
-<script src="{{ "/assets/js/feature.modals.js" | relative_url }}"></script>
+<script>
+    $(function() {
+        $(".js-modal-open").click(function(e) {
+            var targetSelector = $(this).attr("data-target");
+            Stacks.toggleModal(document.querySelector(targetSelector));
+            return false;
+        });
+    });
+</script>
