@@ -14,6 +14,14 @@ class ModalController extends Stacks.StacksController {
         this._toggle();
     }
 
+    show () {
+        this._toggle(true);
+    }
+
+    hide () {
+        this._toggle(false);
+    }
+
     _toggle (show?: boolean | undefined) {
         var toShow = show;
 
