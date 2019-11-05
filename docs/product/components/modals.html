@@ -297,11 +297,14 @@ description: Modals are dialog overlays that prevent the user from interacting w
 </section>
 
 <script>
-    $(function() {
-        $(".js-modal-open").click(function(e) {
-            var targetSelector = $(this).attr("data-target");
-            Stacks.toggleModal(document.querySelector(targetSelector));
-            return false;
+    (function() {
+        document.querySelectorAll(".js-modal-open").forEach(function(el) {
+            el.addEventListener("click", function(e) {
+                e.stopPropagation();
+                e.preventDefault();
+                var targetSelector = el.dataset.target;
+                Stacks.toggleModal(document.querySelector(targetSelector));
+            });
         });
-    });
+    }());
 </script>
