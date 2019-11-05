@@ -4696,9 +4696,11 @@ var ModalController = (function (_super) {
         return _super !== null && _super.apply(this, arguments) || this;
     }
     ModalController.prototype.connect = function () { };
+    ModalController.prototype.disconnect = function () {
+        this._unbindDocumentEvents();
+    };
     ;
-    ModalController.prototype.toggle = function (e) {
-        e.preventDefault();
+    ModalController.prototype.toggle = function () {
         this._toggle();
     };
     ModalController.prototype.show = function () {
