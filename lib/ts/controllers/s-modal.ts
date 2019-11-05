@@ -7,21 +7,40 @@ class ModalController extends Stacks.StacksController {
     private _boundClickFn!: any;
     private _boundKeypressFn!: any;
 
-    connect () { };
+    connect () { }
 
-    toggle (e: Event) {
-        e.preventDefault();
+    /**
+     * Disconnects all added event listeners on controller disconnect
+     */
+    disconnect() {
+        this._unbindDocumentEvents();
+    };
+
+    /**
+     * Toggles the visibility of the modal
+     */
+    toggle () {
         this._toggle();
     }
 
+    /**
+     * Shows the modal
+     */
     show () {
         this._toggle(true);
     }
 
+    /**
+     * Hides the modal
+     */
     hide () {
         this._toggle(false);
     }
 
+    /**
+     * Toggles the visibility of the modal element
+     * @param show Optional parameter that force shows/hides the element or toggles it if left undefined
+     */
     _toggle (show?: boolean | undefined) {
         var toShow = show;
 
