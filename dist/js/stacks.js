@@ -4708,7 +4708,6 @@ var ModalController = (function (_super) {
         }
         this.triggerEvent(toShow ? "show" : "hide");
         this.modalTarget.setAttribute("aria-hidden", toShow ? "false" : "true");
-        this.modalTarget.setAttribute("tab-index", toShow ? "0" : "-1");
         if (toShow) {
             this._bindDocumentEvents();
         }
