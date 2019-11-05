@@ -4701,6 +4701,12 @@ var ModalController = (function (_super) {
         e.preventDefault();
         this._toggle();
     };
+    ModalController.prototype.show = function () {
+        this._toggle(true);
+    };
+    ModalController.prototype.hide = function () {
+        this._toggle(false);
+    };
     ModalController.prototype._toggle = function (show) {
         var toShow = show;
         if (typeof toShow === "undefined") {
