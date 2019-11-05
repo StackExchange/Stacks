@@ -4,6 +4,28 @@ title: Modals
 description: Modals are dialog overlays that prevent the user from interacting with the rest of the website until an action is taken or the dialog is dismissed. Modals are purposefully disruptive and should be used thoughtfully and sparingly.
 ---
 <section class="stacks-section">
+    {% header h2 | Classes %}
+    <div class="overflow-x-auto mb32">
+        <table class="wmn4 s-table s-table__bx-simple">
+            <thead>
+                <tr>
+                    <th class="s-table--cell4" scope="col">Class</th>
+                    <th class="s-table--cell3" scope="col">Applies to</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody class="fs-caption">
+                {% for item in site.data.product.modals.classes %}
+                    <tr>
+                        <th scope="row"><code class="stacks-code">{{ item.class }}</code></th>
+                        <td>{{ item.applies }}</td>
+                        <td class="p8">{{ item.description }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
     {% header h2 | JavaScript %}
     {% header h3 | Attributes %}
     <div class="overflow-x-auto mb32">
