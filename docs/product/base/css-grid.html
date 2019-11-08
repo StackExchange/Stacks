@@ -236,6 +236,88 @@ description: Atomic CSS grid classes allow you to quickly add a CSS grid to your
 </section>
 
 <section class="stacks-section">
+    {% header h2 | Autoflow %}
+    {% header h3 | Autoflow classes %}
+    <div class="overflow-x-auto mb48">
+        <table class="wmn4 s-table s-table__bx-simple">
+            <thead>
+                <tr>
+                    <th class="s-table--cell3" scope="col">Class</th>
+                    <th class="s-table--cell3" scope="col">Output</th>
+                    <th scope="col">Definition</th>
+                    <th class="s-table--cell2 ta-center" scope="col"><a class="s-link s-link__inherit" href="{{ "/product/guidelines/conditional-classes#responsive" | relative_url }}">Responsive?</a></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in site.data.product.css-grid.autoflow %}
+                    <tr class="fs-caption">
+                        <th scope="row"><code class="stacks-code">{{ item.class }}</code></th>
+                        <td><code class="stacks-code bg-white">{{ item.output }}</code></td>
+                        <td>{{ item.define }}</td>
+                        <td class="ta-center">
+                            {% if item.responsive %}
+                                {% icon Checkmark | fc-green-500 %}
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    {% header h3 | Autoflow examples %}
+    <div class="stacks-preview">
+{% highlight html %}
+<div class="d-grid g-af-row">…</div>
+<div class="d-grid g-af-column">…</div>
+<div class="d-grid g-af-dense">…</div>
+{% endhighlight %}
+        <div class="stacks-preview--example ff-mono">
+            <div class="mb16">.g-af-row</div>
+            <div class="mb32 d-grid gg16 g-af-row">
+                <div class="grid--col bg-black-075 p12 ba bc-black-3">1</div>
+                <div class="grid--col bg-black-075 p12 ba bc-black-3">2</div>
+                <div class="grid--col bg-black-075 p12 ba bc-black-3">3</div>
+            </div>
+
+            <div class="mb16">.g-af-column</div>
+            <div class="mb32 d-grid gg16 g-af-column grid__12">
+                <div class="grid--col bg-black-075 p12 ba bc-black-3">1</div>
+                <div class="grid--col bg-black-075 p12 ba bc-black-3">2</div>
+                <div class="grid--col bg-black-075 p12 ba bc-black-3">3</div>
+                <div class="grid--col bg-black-075 p12 ba bc-black-3">4</div>
+                <div class="grid--col bg-black-075 p12 ba bc-black-3">5</div>
+                <div class="grid--col bg-black-075 p12 ba bc-black-3">6</div>
+                <div class="grid--col bg-black-075 p12 ba bc-black-3">7</div>
+                <div class="grid--col bg-black-075 p12 ba bc-black-3">8</div>
+                <div class="grid--col bg-black-075 p12 ba bc-black-3">9</div>
+                <div class="grid--col bg-black-075 p12 ba bc-black-3">10</div>
+                <div class="grid--col bg-black-075 p12 ba bc-black-3">11</div>
+                <div class="grid--col bg-black-075 p12 ba bc-black-3">12</div>
+            </div>
+
+            <div class="mb16">.g-af-dense</div>
+            <div class="d-grid gg16 g-af-dense grid__6">
+                <div class="grid--col bg-black-075 p12 ba bc-black-3">1</div>
+                <div class="grid--col bg-black-075 p12 ba bc-black-3">2</div>
+                <div class="grid--col4 bg-black-075 p12 ba bc-black-3">3</div>
+                <div class="grid--col bg-black-075 p12 ba bc-black-3">4</div>
+                <div class="grid--col bg-black-075 p12 ba bc-black-3">5</div>
+                <div class="grid--col5 bg-black-075 p12 ba bc-black-3">6</div>
+                <div class="grid--col bg-black-075 p12 ba bc-black-3">7</div>
+                <div class="grid--col bg-black-075 p12 ba bc-black-3">8</div>
+                <div class="grid--col bg-black-075 p12 ba bc-black-3">9</div>
+                <div class="grid--col bg-black-075 p12 ba bc-black-3">10</div>
+                <div class="grid--col bg-black-075 p12 ba bc-black-3">11</div>
+                <div class="grid--col6 bg-black-075 p12 ba bc-black-3">12</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+<section class="stacks-section">
     {% header h2 | Spacing %}
     {% header h3 | Spacing classes %}
     <div class="overflow-x-auto mb48">
