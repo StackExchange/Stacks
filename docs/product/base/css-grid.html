@@ -90,8 +90,154 @@ description: Atomic CSS grid classes allow you to quickly add a CSS grid to your
 </section>
 
 <section class="stacks-section">
+    {% header h2 | Column & row spans %}
+    {% header h3 | Column spans classes %}
+    <div class="overflow-x-auto mb48">
+        <table class="wmn4 s-table s-table__bx-simple">
+            <thead>
+                <tr>
+                    <th class="s-table--cell3" scope="col">Class</th>
+                    <th class="s-table--cell3" scope="col">Output</th>
+                    <th scope="col">Definition</th>
+                    <th class="s-table--cell2 ta-center" scope="col"><a class="s-link s-link__inherit" href="{{ "/product/guidelines/conditional-classes#responsive" | relative_url }}">Responsive?</a></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in site.data.product.css-grid.columns %}
+                    <tr class="fs-caption">
+                        <th scope="row"><code class="stacks-code">{{ item.class }}</code></th>
+                        <td><code class="stacks-code bg-white">{{ item.output }}</code></td>
+                        <td>{{ item.define }}</td>
+                        <td class="ta-center">
+                            {% if item.responsive %}
+                                {% icon Checkmark | fc-green-500 %}
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    {% header h3 | Column spans examples %}
+    <div class="stacks-preview">
+{% highlight html %}
+<div class="d-grid grid__12">
+    <div class="grid--col-all">…</div>
+    <div class="grid--col1">…</div>
+    <div class="grid--col2">…</div>
+    <div class="grid--col3">…</div>
+    <div class="grid--col4">…</div>
+    <div class="grid--col5">…</div>
+    <div class="grid--col6">…</div>
+    <div class="grid--col7">…</div>
+    <div class="grid--col8">…</div>
+    <div class="grid--col9">…</div>
+    <div class="grid--col10">…</div>
+    <div class="grid--col11">…</div>
+    <div class="grid--col12">…</div>
+</div>
+{% endhighlight %}
+        <div class="stacks-preview--example ff-mono ws-nowrap">
+            <div class="d-grid grid__12 mb16">
+                <div class="bg-black-075 p12 ba bc-black-3 grid--col-all">.grid--col-all</div>
+            </div>
+            <div class="d-grid grid__12 mb16">
+                <div class="bg-black-075 p12 ba bc-black-3 grid--col1">.grid--col1</div>
+            </div>
+            <div class="d-grid grid__12 mb16">
+                <div class="bg-black-075 p12 ba bc-black-3 grid--col2">.grid--col2</div>
+            </div>
+            <div class="d-grid grid__12 mb16">
+                <div class="bg-black-075 p12 ba bc-black-3 grid--col3">.grid--col3</div>
+            </div>
+            <div class="d-grid grid__12 mb16">
+                <div class="bg-black-075 p12 ba bc-black-3 grid--col4">.grid--col4</div>
+            </div>
+            <div class="d-grid grid__12 mb16">
+                <div class="bg-black-075 p12 ba bc-black-3 grid--col5">.grid--col5</div>
+            </div>
+            <div class="d-grid grid__12 mb16">
+                <div class="bg-black-075 p12 ba bc-black-3 grid--col6">.grid--col6</div>
+            </div>
+            <div class="d-grid grid__12 mb16">
+                <div class="bg-black-075 p12 ba bc-black-3 grid--col7">.grid--col7</div>
+            </div>
+            <div class="d-grid grid__12 mb16">
+                <div class="bg-black-075 p12 ba bc-black-3 grid--col8">.grid--col8</div>
+            </div>
+            <div class="d-grid grid__12 mb16">
+                <div class="bg-black-075 p12 ba bc-black-3 grid--col9">.grid--col9</div>
+            </div>
+            <div class="d-grid grid__12 mb16">
+                <div class="bg-black-075 p12 ba bc-black-3 grid--col10">.grid--col10</div>
+            </div>
+            <div class="d-grid grid__12 mb16">
+                <div class="bg-black-075 p12 ba bc-black-3 grid--col11">.grid--col11</div>
+            </div>
+            <div class="d-grid grid__12">
+                <div class="bg-black-075 p12 ba bc-black-3 grid--col12">.grid--col12</div>
+            </div>
+        </div>
+    </div>
+
+    {% header h3 | Row classes %}
+    <div class="overflow-x-auto mb48">
+        <table class="wmn4 s-table s-table__bx-simple">
+            <thead>
+                <tr>
+                    <th class="s-table--cell3" scope="col">Class</th>
+                    <th class="s-table--cell3" scope="col">Output</th>
+                    <th scope="col">Definition</th>
+                    <th class="s-table--cell2 ta-center" scope="col"><a class="s-link s-link__inherit" href="{{ "/product/guidelines/conditional-classes#responsive" | relative_url }}">Responsive?</a></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in site.data.product.css-grid.rows %}
+                    <tr class="fs-caption">
+                        <th scope="row"><code class="stacks-code">{{ item.class }}</code></th>
+                        <td><code class="stacks-code bg-white">{{ item.output }}</code></td>
+                        <td>{{ item.define }}</td>
+                        <td class="ta-center">
+                            {% if item.responsive %}
+                                {% icon Checkmark | fc-green-500 %}
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    {% header h3 | Row example %}
+    <div class="stacks-preview">
+{% highlight html %}
+<div class="d-grid grid__4">
+    <div class="grid--col2 grid--row4">…</div>
+    <div class="grid--col2">…</div>
+    <div class="grid--col2">…</div>
+    <div class="grid--col2">…</div>
+    <div class="grid--col2">…</div>
+</div>
+{% endhighlight %}
+        <div class="stacks-preview--example ff-mono ws-nowrap">
+            <div class="d-grid grid__4 gg16">
+                <div class="bg-black-075 p12 ba bc-black-3 grid--col2 grid--row4">
+                    <div>.grid--col2</div>
+                    <div>.grid--row4</div>
+                </div>
+                <div class="bg-black-075 p12 ba bc-black-3 grid--col2">.grid--col2</div>
+                <div class="bg-black-075 p12 ba bc-black-3 grid--col2">.grid--col2</div>
+                <div class="bg-black-075 p12 ba bc-black-3 grid--col2">.grid--col2</div>
+                <div class="bg-black-075 p12 ba bc-black-3 grid--col2">.grid--col2</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="stacks-section">
     {% header h2 | Spacing %}
-    {% header h3 | Spacing Classes %}
+    {% header h3 | Spacing classes %}
     <div class="overflow-x-auto mb48">
         <table class="wmn4 s-table s-table__bx-simple">
             <thead>
@@ -119,7 +265,7 @@ description: Atomic CSS grid classes allow you to quickly add a CSS grid to your
         </table>
     </div>
 
-    {% header h3 | Spacing Examples %}
+    {% header h3 | Spacing examples %}
     <div class="stacks-preview">
 {% highlight html %}
 <div class="d-grid gg2">…</div>
