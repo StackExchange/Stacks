@@ -4,28 +4,6 @@ title: CSS Grid
 description: Atomic CSS grid classes allow you to quickly add a CSS grid to your container.
 ---
 <section class="stacks-section">
-    {% header h2 | Classes %}
-    <div class="overflow-x-auto mb48">
-        <table class="wmn4 s-table s-table__bx-simple">
-            <thead>
-                <tr>
-                    <th class="s-table--cell3" scope="col">Class</th>
-                    <th class="s-table--cell3" scope="col">Output</th>
-                    <th scope="col">Definition</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for item in site.data.product.css-grid.classes %}
-                    <tr class="fs-caption">
-                        <th scope="row"><code class="stacks-code">{{ item.class }}</code></th>
-                        <td><code class="stacks-code bg-white">{{ item.output }}</code></td>
-                        <td>{{ item.define }}</td>
-                    </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-    </div>
-
     {% header h2 | Examples %}
     <div class="stacks-preview">
 {% highlight html %}
@@ -106,6 +84,125 @@ description: Atomic CSS grid classes allow you to quickly add a CSS grid to your
                     <div class="md:d-none">.grid--col</div>
                     <div class="d-none md:d-inline-block md:highlight">.md:grid--col-all</div>
                 </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="stacks-section">
+    {% header h2 | Spacing %}
+    {% header h3 | Spacing Classes %}
+    <div class="overflow-x-auto mb48">
+        <table class="wmn4 s-table s-table__bx-simple">
+            <thead>
+                <tr>
+                    <th class="s-table--cell3" scope="col">Class</th>
+                    <th class="s-table--cell3" scope="col">Output</th>
+                    <th scope="col">Definition</th>
+                    <th class="s-table--cell2 ta-center" scope="col"><a class="s-link s-link__inherit" href="{{ "/product/guidelines/conditional-classes#responsive" | relative_url }}">Responsive?</a></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in site.data.product.css-grid.spacing %}
+                    <tr class="fs-caption">
+                        <th scope="row"><code class="stacks-code">{{ item.class }}</code></th>
+                        <td><code class="stacks-code bg-white">{{ item.output }}</code></td>
+                        <td>{{ item.define }}</td>
+                        <td class="ta-center">
+                            {% if item.responsive %}
+                                {% icon Checkmark | fc-green-500 %}
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    {% header h3 | Spacing Examples %}
+    <div class="stacks-preview">
+{% highlight html %}
+<div class="d-grid gg2">…</div>
+<div class="d-grid gg4">…</div>
+<div class="d-grid gg8">…</div>
+<div class="d-grid gg12">…</div>
+<div class="d-grid gg16">…</div>
+<div class="d-grid gg24">…</div>
+<div class="d-grid gg32">…</div>
+<div class="d-grid gg48">…</div>
+<div class="d-grid gg64">…</div>
+{% endhighlight %}
+        <div class="stacks-preview--example ff-mono">
+            <div class="mb16 d-grid gg2 grid__3">
+                <div class="grid--col bg-black-075 p12 ba bc-black-3">
+                    .gg2
+                </div>
+                <div class="grid--col bg-black-075 p12 ba bc-black-3"></div>
+                <div class="grid--col bg-black-075 p12 ba bc-black-3"></div>
+            </div>
+
+            <div class="my16 d-grid gg4 grid__3">
+                <div class="grid--col bg-black-075 p12 ba bc-black-3">
+                    .gg4
+                </div>
+                <div class="grid--col bg-black-075 p12 ba bc-black-3"></div>
+                <div class="grid--col bg-black-075 p12 ba bc-black-3"></div>
+            </div>
+
+            <div class="my16 d-grid gg8 grid__3">
+                <div class="grid--col bg-black-075 p12 ba bc-black-3">
+                    .gg8
+                </div>
+                <div class="grid--col bg-black-075 p12 ba bc-black-3"></div>
+                <div class="grid--col bg-black-075 p12 ba bc-black-3"></div>
+            </div>
+
+            <div class="my16 d-grid gg12 grid__3">
+                <div class="grid--col bg-black-075 p12 ba bc-black-3">
+                    .gg12
+                </div>
+                <div class="grid--col bg-black-075 p12 ba bc-black-3"></div>
+                <div class="grid--col bg-black-075 p12 ba bc-black-3"></div>
+            </div>
+
+            <div class="my16 d-grid gg16 grid__3">
+                <div class="grid--col bg-black-075 p12 ba bc-black-3">
+                    .gg16
+                </div>
+                <div class="grid--col bg-black-075 p12 ba bc-black-3"></div>
+                <div class="grid--col bg-black-075 p12 ba bc-black-3"></div>
+            </div>
+
+            <div class="my16 d-grid gg24 grid__3">
+                <div class="grid--col bg-black-075 p12 ba bc-black-3">
+                    .gg24
+                </div>
+                <div class="grid--col bg-black-075 p12 ba bc-black-3"></div>
+                <div class="grid--col bg-black-075 p12 ba bc-black-3"></div>
+            </div>
+
+            <div class="my16 d-grid gg32 grid__3">
+                <div class="grid--col bg-black-075 p12 ba bc-black-3">
+                    .gg32
+                </div>
+                <div class="grid--col bg-black-075 p12 ba bc-black-3"></div>
+                <div class="grid--col bg-black-075 p12 ba bc-black-3"></div>
+            </div>
+
+            <div class="my16 d-grid gg48 grid__3">
+                <div class="grid--col bg-black-075 p12 ba bc-black-3">
+                    .gg48
+                </div>
+                <div class="grid--col bg-black-075 p12 ba bc-black-3"></div>
+                <div class="grid--col bg-black-075 p12 ba bc-black-3"></div>
+            </div>
+
+            <div class="my16 d-grid gg64 grid__3">
+                <div class="grid--col bg-black-075 p12 ba bc-black-3">
+                    .gg64
+                </div>
+                <div class="grid--col bg-black-075 p12 ba bc-black-3"></div>
+                <div class="grid--col bg-black-075 p12 ba bc-black-3"></div>
             </div>
         </div>
     </div>
