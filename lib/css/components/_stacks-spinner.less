@@ -17,7 +17,7 @@
     position: relative;
     width: @su24;
     height: @su24;
-    animation: s-spinner-rotate 9s infinite linear; // Rotate the entire spinner so each revolution isn't perfectly at 12 o'clock
+    text-align: left; // When within a parent that has text-align: center, the spinner's entire container spins, not just the spinner. Let's force text-align left so things spin internally.
 
     &:before,
     &:after {
@@ -92,8 +92,13 @@
         // too aggressively, leading to a very visible flat edge part of the circle.
         // This invisible box shadow increases the area that the effects work on and thus
         // makes the circle round again.
-        @supports (-apple-trailing-word: auto) {
-            box-shadow: 0 0 0 2px transparent;
+        //
+        // Targeting only Safari:
+        // https://browserstrangeness.bitbucket.io/css_hacks.html#safari
+        @media not all and (min-resolution:.001dpcm) {
+            @supports (-webkit-appearance:none) and (stroke-color:transparent) {
+                box-shadow: 0 0 0 2px transparent;
+            }
         }
     }
 

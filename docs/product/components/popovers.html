@@ -15,7 +15,7 @@ description: Popovers are small content containers that provide a contextual ove
                 </tr>
             </thead>
             <tbody class="fs-caption">
-                {% for item in site.data.product.popovers.classes %}
+                {% for item in site.data.product.popovers.automatic %}
                     <tr>
                         <th scope="row"><code class="stacks-code">{{ item.class }}</code></th>
                         <td>{{ item.applies }}</td>
@@ -113,88 +113,91 @@ description: Popovers are small content containers that provide a contextual ove
     </div>
 </section>
 <section class="stacks-section">
-    {% header h2 | Examples %}
-    <div class="mb24 p16 bar-sm bg-black-025 ba bc-black-1 grid ai-center gs8 sm:fd-column">
-        <button class="grid--cell s-btn s-btn__filled"
-                data-controller="s-popover"
-                data-s-popover-placement="top-start"
-                data-s-popover-toggle-class="is-selected"
-                data-action="s-popover#toggle"
-                aria-controls="popover-example-1">
-            Show example popover
-        </button>
-        <div id="popover-example-1" class="s-popover ws2" role="menu" aria-hidden="true">
-            <div class="s-popover--arrow"></div>
-            <div class="tt-uppercase fs-fine fc-light">
-                Saved filters
-            </div>
-            <div class="fc-black-300 fs-caption ta-center p16">
-                Save custom sorting & filtering for easy access.
-            </div>
-        </div>
-        <button class="grid--cell s-btn s-btn__filled s-btn__dropdown"
-                data-controller="s-popover"
-                data-s-popover-toggle-class="is-selected"
-                data-action="s-popover#toggle"
-                aria-controls="popover-example-2">
-            Show example popover
-        </button>
-        <div id="popover-example-2" class="s-popover" role="menu" aria-hidden="true">
-            <div class="s-popover--arrow"></div>
-            <div class="s-empty-state wmx2 pb16">
-                <img src="{{ "/assets/img/illustrationNoDataBW.svg" | relative_url }}" width="128" height="128" alt="No data">
-                <p>There’s no data associated with your account yet. Please check back tomorrow.</p>
-                <button class="s-btn s-btn__filled">Link an account</button>
-            </div>
-        </div>
-        <div class="grid--cell ml-auto sm:ml0"
-            data-controller="s-popover"
-            data-s-popover-reference-selector="#reference-element"
-            data-s-popover-placement="bottom-end">
-            <a id="reference-element" class="s-link s-link__inherit"
-                aria-controls="popover-example-3">
-                Create a team
-            </a>
-            <div id="popover-example-3" class="s-popover is-visible ws2" role="menu" aria-hidden="true">
+    {% header h2 | Automatic placement %}
+    {% header h3 | Examples %}
+    <div class="mb24 p16 bar-sm bg-black-025 ba bc-black-1">
+        <div class="grid ai-center gs8 sm:fd-column">
+            <button class="grid--cell s-btn s-btn__filled"
+                    data-controller="s-popover"
+                    data-s-popover-placement="top-start"
+                    data-s-popover-toggle-class="is-selected"
+                    data-action="s-popover#toggle"
+                    aria-controls="popover-example-1">
+                Show example popover
+            </button>
+            <div id="popover-example-1" class="s-popover ws2" role="menu" aria-hidden="true">
                 <div class="s-popover--arrow"></div>
-                <button class="s-popover--close s-btn s-btn__muted" aria-label="Close" data-action="s-popover#toggle">{% icon ClearSm %}</button>
-
-                <div class="grid mb8">
-                    <div class="grid--cell mr8">
-                        <svg width="53" height="49" fill="none">
-                            <path d="M49 11l.2 31H18.9L9 49v-7H4V8h31" fill="#CCEAFF" />
-                            <path d="M44.5 19v-.3l-.2-.1-18-13-.1-.1H.5v33h4V46l.8-.6 9.9-6.9h29.3V19z" stroke="#1060E1" stroke-miterlimit="10" />
-                            <path d="M31 2l6-1.5 7 2V38H14.9L5 45v-7H1V6h25l5-4z" fill="#fff" />
-                            <path d="M7 16.5h13m-13 6h14m-14 6h18" stroke="#1060E1" stroke-miterlimit="10" />
-                            <path d="M39 30a14 14 0 1 0 0-28 14 14 0 0 0 0 28z" fill="#FFB935" />
-                            <path d="M50.5 14a13.5 13.5 0 1 1-27 0 13.5 13.5 0 0 1 27 0z" stroke="#F48024" stroke-miterlimit="10" />
-                            <path d="M32.5 21.5v-8h9v8h-9zm2-9.5V9.3A2.5 2.5 0 0 1 37 6.8a2.5 2.5 0 0 1 2.5 2.5V12h-5zm2 3v2m1-2v2" stroke="#fff" stroke-miterlimit="10" />
-                        </svg>
-                    </div>
-
-                    <div class="grid--cell pt4">
-                        <h3 class="fs-body2 mb2">Teams</h3>
-                        <p class="fs-caption fc-medium mb16">Q&A for Work</p>
-                    </div>
+                <div class="tt-uppercase fs-fine fc-light">
+                    Saved filters
                 </div>
-                <p class="fs-caption fc-medium mb0">
-                    Setup a private space for you and your coworkers to ask questions and share information.
-                </p>
+                <div class="fc-black-300 fs-caption ta-center p16">
+                    Save custom sorting & filtering for easy access.
+                </div>
+            </div>
+            <button class="grid--cell s-btn s-btn__filled s-btn__dropdown"
+                    data-controller="s-popover"
+                    data-s-popover-toggle-class="is-selected"
+                    data-action="s-popover#toggle"
+                    aria-controls="popover-example-2">
+                Show example popover
+            </button>
+            <div id="popover-example-2" class="s-popover" role="menu" aria-hidden="true">
+                <div class="s-popover--arrow"></div>
+                <div class="s-empty-state wmx2 pb16">
+                    <img src="{{ "/assets/img/illustrationNoDataBW.svg" | relative_url }}" width="128" height="128" alt="No data">
+                    <p>There’s no data associated with your account yet. Please check back tomorrow.</p>
+                    <button class="s-btn s-btn__filled">Link an account</button>
+                </div>
+            </div>
+            <div class="grid--cell ml-auto sm:ml0"
+                data-controller="s-popover"
+                data-s-popover-reference-selector="#reference-element"
+                data-s-popover-placement="top-end">
+                <a id="reference-element" class="s-link s-link__inherit"
+                    aria-controls="popover-example-3">
+                    Create a team
+                </a>
+                <div id="popover-example-3" class="s-popover is-visible ws2" role="menu" aria-hidden="true">
+                    <div class="s-popover--arrow"></div>
+                    <button class="s-popover--close s-btn s-btn__muted" aria-label="Close" data-action="s-popover#toggle">{% icon ClearSm %}</button>
+
+                    <div class="grid mb8">
+                        <div class="grid--cell mr8">
+                            <svg width="53" height="49" fill="none">
+                                <path d="M49 11l.2 31H18.9L9 49v-7H4V8h31" fill="#CCEAFF" />
+                                <path d="M44.5 19v-.3l-.2-.1-18-13-.1-.1H.5v33h4V46l.8-.6 9.9-6.9h29.3V19z" stroke="#1060E1" stroke-miterlimit="10" />
+                                <path d="M31 2l6-1.5 7 2V38H14.9L5 45v-7H1V6h25l5-4z" fill="#fff" />
+                                <path d="M7 16.5h13m-13 6h14m-14 6h18" stroke="#1060E1" stroke-miterlimit="10" />
+                                <path d="M39 30a14 14 0 1 0 0-28 14 14 0 0 0 0 28z" fill="#FFB935" />
+                                <path d="M50.5 14a13.5 13.5 0 1 1-27 0 13.5 13.5 0 0 1 27 0z" stroke="#F48024" stroke-miterlimit="10" />
+                                <path d="M32.5 21.5v-8h9v8h-9zm2-9.5V9.3A2.5 2.5 0 0 1 37 6.8a2.5 2.5 0 0 1 2.5 2.5V12h-5zm2 3v2m1-2v2" stroke="#fff" stroke-miterlimit="10" />
+                            </svg>
+                        </div>
+
+                        <div class="grid--cell pt4">
+                            <h3 class="fs-body2 mb2">Teams</h3>
+                            <p class="fs-caption fc-medium mb16">Q&A for Work</p>
+                        </div>
+                    </div>
+                    <p class="fs-caption fc-medium mb0">
+                        Setup a private space for you and your coworkers to ask questions and share information.
+                    </p>
+                </div>
             </div>
         </div>
     </div>
 
-    {% header h3 | Automatic %}
     <p class="stacks-copy">If you’ve added the proper Stimulus controllers to your popover, positioning and arrow direction will be managed for you by <a href="https://popper.js.org">Popper.js</a>, a powerful popover positioning library we’ve added as a dependency.</p>
+    <p class="stacks-copy">First, you’ll want to add our attributes to the popover’s originating button. Automatic positioning is specified by the <code class="stacks-code">data-s-popover-placement</code>. In the following example, we’ve chosen <code class="stacks-code">bottom-start</code>. No positioning classes need to be added to your markup, only the data attributes.</p>
     <p class="stacks-copy">To promote being able to tab to an open popover, it’s best to place the popover immediately after the toggling button in the markup as siblings.</p>
 
-    <div class="stacks-preview _preview-none">
+    <div class="stacks-preview">
 {% highlight html %}
 <button class="s-btn s-btn__dropdown" role="button"
         aria-controls="popover-example"
         data-controller="s-popover"
         data-action="s-popover#toggle"
-        data-s-popover-placement="bottom"
+        data-s-popover-placement="bottom-start"
         data-s-popover-toggle-class="is-selected">
     …
 </button>
@@ -206,15 +209,135 @@ description: Popovers are small content containers that provide a contextual ove
     …
 </div>
 {% endhighlight %}
+        <div class="stacks-preview--example">
+            <button class="s-btn s-btn__primary s-btn__dropdown" role="button"
+                    aria-controls="popover-example"
+                    data-controller="s-popover"
+                    data-action="s-popover#toggle"
+                    data-s-popover-placement="bottom-start"
+                    data-s-popover-toggle-class="is-selected">
+                Popover button
+            </button>
+            <div class="s-popover wmn-initial w-auto"
+                id="popover-example"
+                role="menu"
+                aria-hidden="true">
+                <div class="s-popover--arrow"></div>
+                Example popover content
+            </div>
+        </div>
     </div>
 
-    {% header h3 | Manual %}
+    {% header h3 | Dismissible %}
+    <p class="stacks-copy">In the case of new feature callouts, it may be appropriate to include an explicit dismiss button. You can add one using the styling provided by <code class="stacks-code">.s-popover--close</code>.</p>
+    <p class="stacks-copy">In order for to close the popover with an explicit close button, you’ll need to add the controller to a parent as illustrated in the following example code:</p>
+    <div class="stacks-preview">
+ {% highlight html %}
+<div class="…"
+     data-controller="s-popover"
+     data-s-popover-reference-selector="#reference-element">
+
+    <button id="reference-element" class="s-btn s-btn__filled s-btn__dropdown"
+            aria-controls="popover-example"
+            data-action="s-popover#toggle">
+        …
+    </button>
+
+    <div id="popover-example" class="s-popover is-visible" role="menu" aria-hidden="false">
+        <div class="s-popover--arrow"></div>
+        <button class="s-popover--close s-btn s-btn__muted" aria-label="Close"
+            data-action="s-popover#toggle">
+            @Svg.ClearSm
+        </button>
+        …
+    </div>
+</div>
+{% endhighlight %}
+        <div class="stacks-preview--example bg-black-025">
+            <div class="s-popover ps-relative is-visible">
+                <button class="s-popover--close s-btn s-btn__muted" aria-label="Close">{% icon ClearSm %}</button>
+                <div class="s-popover--arrow__bl"></div>
+                <p class="mb0">Dismissible persistent popover presented with a close button</p>
+            </div>
+        </div>
+    </div>
+
+    {% header h3 | Hover %}
+    <p class="stacks-copy">If the user doesn’t need to interact with the <em>contents</em> of the popover, it may be appropriate to only show it on hover. This will make popovers feel like a tooltip. To do so, we can rely on stock mouseover and mouseout events from Stimulus.</p>
+
+    <div class="stacks-preview">
+{% highlight html %}
+<button class="s-btn" role="button"
+        aria-controls="popover-example"
+        data-controller="s-popover"
+        data-action="mouseover->s-popover#show mouseout->s-popover#hide"
+        data-s-popover-placement="bottom">
+    …
+</button>
+<div class="s-popover"
+     id="popover-example"
+     role="menu"
+     aria-hidden="true">
+    <div class="s-popover--arrow"></div>
+    …
+</div>
+{% endhighlight %}
+        <div class="stacks-preview--example bg-black-025">
+            <button class="s-btn" role="button"
+                    aria-controls="popover-hover-example"
+                    data-controller="s-popover"
+                    data-action="mouseover->s-popover#show mouseout->s-popover#hide"
+                    data-s-popover-placement="top-start">
+                Hover popover
+            </button>
+            <div class="s-popover"
+                id="popover-hover-example"
+                role="menu"
+                aria-hidden="true">
+                <div class="s-popover--arrow"></div>
+                This popover will show content that isn’t intended to be interacted with directly.
+            </div>
+        </div>
+    </div>
+</section>
+<section class="stacks-section">
+    {% header h2 | Manual placement %}
+    {% header h3 | Manual classes %}
+    <div class="overflow-x-auto mb32">
+        <table class="wmn4 s-table s-table__bx-simple">
+            <thead>
+                <tr>
+                    <th class="s-table--cell4" scope="col">Class</th>
+                    <th class="s-table--cell3" scope="col">Applies to</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody class="fs-caption">
+                {% for item in site.data.product.popovers.manual %}
+                    <tr>
+                        <th scope="row"><code class="stacks-code">{{ item.class }}</code></th>
+                        <td>{{ item.applies }}</td>
+                        <td class="p8">{{ item.description }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    {% header h3 | Manual examples %}
     <p class="stacks-copy">Popovers can also be positioned manually if you aren’t using the built-in JavaScript interactivity. Practically, this might look like adding something like <code class="stacks-code">t8 l8</code> to <code class="stacks-code">.s-popover</code>.</p>
-    <p class="stacks-copy">Manual positioning for arrows is also provided. Arrow direction (top, right, bottom, left) will appear first, followed by the secondary (center, top, right, bottom, left). For example, a popover with an arrow child of <code class="stacks-code">.s-popover--arrow_tc</code> will appear on the top of the <code class="stacks-code">.s-popover</code> and centered horizontally. Though there are sensible defaults applied to the width of popovers, you may need to adjust manually.</p>
+    <p class="stacks-copy">Manual positioning for arrows is also provided. Arrow direction (top, right, bottom, left) will appear first, followed by the secondary (center, top, right, bottom, left). For example, a popover with an arrow child of <code class="stacks-code">.s-popover--arrow__tc</code> will appear on the top of the <code class="stacks-code">.s-popover</code> and centered horizontally. Though there are sensible defaults applied to the width of popovers, you may need to adjust manually.</p>
 
     <p class="stacks-copy">By default, popovers are hidden and positioned absolutely. Adding the class <code class="stacks-code">.is-visible</code> will show the popover.</p>
 
     <p class="stacks-copy">If you want to set the background color to something other than the default, simply add your desired <code class="stacks-code">bg-*</code> class to the <code class="stacks-code">s-popover</code> element and a matching <code class="stacks-code">fc-*</code> class to the <code class="stacks-code">s-popover--arrow</code> element.</p>
+
+    <div class="grid s-notice s-notice__info mb24">
+        <div class="grid--cell mr8">{% icon Alert %}</div>
+        <div class="grid--cell lh-lg">
+            99% of the time, you’ll want to position your popover automatically. We’ve built a robust Stimulus controller to handle all the positioning for you.
+        </div>
+    </div>
 
     <div class="stacks-preview">
 {% highlight html %}
@@ -309,78 +432,6 @@ description: Popovers are small content containers that provide a contextual ove
                         <p class="mb0">Popover arrow appears left bottom</p>
                     </div>
                 </div>
-            </div>
-        </div>
-    </div>
-
-    {% header h3 | Dismissible %}
-    <p class="stacks-copy">In the case of new feature callouts, it may be appropriate to include an explicit dismiss button. You can add one using the styling provided by <code class="stacks-code">.s-popover--close</code>.</p>
-    <p class="stacks-copy">In order for to close the popover with an explicit close button, you’ll need to add the controller to a parent as illustrated in the following example code:</p>
-    <div class="stacks-preview">
- {% highlight html %}
-<div class="…"
-     data-controller="s-popover"
-     data-s-popover-reference-selector="#reference-element">
-
-    <button id="reference-element" class="s-btn s-btn__filled s-btn__dropdown"
-            aria-controls="popover-example"
-            data-action="s-popover#toggle">
-        …
-    </button>
-
-    <div id="popover-example" class="s-popover is-visible" role="menu" aria-hidden="true">
-        <div class="s-popover--arrow"></div>
-        <button class="s-popover--close s-btn s-btn__muted" aria-label="Close"
-            data-action="s-popover#toggle">
-            @Svg.ClearSm
-        </button>
-        …
-    </div>
-</div>
-{% endhighlight %}
-        <div class="stacks-preview--example bg-black-025">
-            <div class="s-popover ps-relative is-visible">
-                <button class="s-popover--close s-btn s-btn__muted" aria-label="Close">{% icon ClearSm %}</button>
-                <div class="s-popover--arrow__bl"></div>
-                <p class="mb0">Dismissible persistent popover presented with a close button</p>
-            </div>
-        </div>
-    </div>
-
-    {% header h3 | Hover %}
-    <p class="stacks-copy">If the user doesn’t need to interact with the <em>contents</em> of the popover, it may be appropriate to only show it on hover. This will make popovers feel like a tooltip. To do so, we can rely on stock mouseover and mouseout events from Stimulus.</p>
-
-    <div class="stacks-preview">
-{% highlight html %}
-<button class="s-btn" role="button"
-        aria-controls="popover-example"
-        data-controller="s-popover"
-        data-action="mouseover->s-popover#show mouseout->s-popover#hide"
-        data-s-popover-placement="bottom">
-    …
-</button>
-<div class="s-popover"
-     id="popover-example"
-     role="menu"
-     aria-hidden="true">
-    <div class="s-popover--arrow"></div>
-    …
-</div>
-{% endhighlight %}
-        <div class="stacks-preview--example bg-black-025">
-            <button class="s-btn" role="button"
-                    aria-controls="popover-hover-example"
-                    data-controller="s-popover"
-                    data-action="mouseover->s-popover#show mouseout->s-popover#hide"
-                    data-s-popover-placement="top-start">
-                Hover popover
-            </button>
-            <div class="s-popover"
-                id="popover-hover-example"
-                role="menu"
-                aria-hidden="true">
-                <div class="s-popover--arrow"></div>
-                This popover will show content that isn’t intended to be interacted with directly.
             </div>
         </div>
     </div>

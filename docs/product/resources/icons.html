@@ -39,8 +39,8 @@ description: All system icons are inline SVG files, invoked via a Razor helper. 
     <div class="grid s-notice s-notice__info">
         <div class="grid--cell mr8">{% icon Alert %}</div>
         <div class="grid--cell lh-xl">
-            <b>Note:</b> Our <code class="stacks-code bg-powder-200">@Svg</code> helper isn’t available within our documentation. You can call SVGs using our custom Icon liquid tag:
-            <code class="stacks-code bg-powder-200 ws-normal lh-md">{% raw %}{% icon Search | optional additional classes | pixel dimension %}{% endraw %}</code>
+            <b>Note:</b> Our <code class="stacks-code bg-powder-300">@Svg</code> helper isn’t available within our documentation. You can call SVGs using our custom Icon liquid tag:
+            <code class="stacks-code bg-powder-300 ws-normal lh-md">{% raw %}{% icon Search | optional additional classes | pixel dimension %}{% endraw %}</code>
         </div>
     </div>
 </section>
@@ -57,11 +57,12 @@ description: All system icons are inline SVG files, invoked via a Razor helper. 
 
 <section class="stacks-section mb32" id="js-sortable-list">
     {% header h2 | Icon set %}
-    <div class="ps-relative mb16">
-        <input type="text" class="fuzzy-search s-input s-input__search" placeholder="Search icons…" />
+    <div class="ps-sticky z-nav t64 bb bc-black-3 bg-white py16 mtn8 mb16 grid jc-space-between">
+        <input type="text" class="grid--cell fuzzy-search s-input s-input__search" placeholder="Search icons…" />
+        <button class="s-btn s-btn__filled ws-nowrap js-color-toggle-btn ml8">Toggle native colors</button>
         {% icon Search | s-input-icon s-input-icon__search %}
     </div>
-    <div class="grid fw-wrap sm:fd-column gs16 grid__allcells4 list">
+    <div class="grid fw-wrap sm:fd-column gs16 grid__allcells4 list js-icon-list">
         {% assign icon_sort = site.data.product.icons | sort: "helper" %}
         {% for icon in icon_sort %}
             <div class="grid--cell">
@@ -79,7 +80,17 @@ description: All system icons are inline SVG files, invoked via a Razor helper. 
 </section>
 
 <script>
-    var monkeyList = new List('js-sortable-list', { 
+    var monkeyList = new List('js-sortable-list', {
         valueNames: ['js-name']
     });
+
+    var icons = document.querySelectorAll('.js-icon-list .svg-icon');
+    var buttons = document.querySelectorAll('.js-color-toggle-btn');
+    for (var button of buttons) {
+        button.addEventListener('click', function(event) {
+            for (var icon of icons) {
+                icon.classList.toggle('native');
+            }
+        });
+    }
 </script>
