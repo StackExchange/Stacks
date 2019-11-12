@@ -4485,6 +4485,14 @@ var Stacks;
     }
     Stacks.addController = addController;
     ;
+    function toggleModal(element, show) {
+        var controller = Stacks.application.getControllerForElementAndIdentifier(element, "s-modal");
+        if (!controller) {
+            throw "Unable to get s-modal controller from element";
+        }
+        controller._toggle(show);
+    }
+    Stacks.toggleModal = toggleModal;
 })(Stacks || (Stacks = {}));
 //# sourceMappingURL=stacks.js.map
 
@@ -4665,6 +4673,84 @@ var __extends = (this && this.__extends) || (function () {
     }(Stacks.StacksController)));
 })();
 //# sourceMappingURL=s-expandable-control.js.map
+
+;
+
+"use strict";
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+var ModalController = (function (_super) {
+    __extends(ModalController, _super);
+    function ModalController() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    ModalController.prototype.connect = function () { };
+    ModalController.prototype.disconnect = function () {
+        this._unbindDocumentEvents();
+    };
+    ;
+    ModalController.prototype.toggle = function () {
+        this._toggle();
+    };
+    ModalController.prototype.show = function () {
+        this._toggle(true);
+    };
+    ModalController.prototype.hide = function () {
+        this._toggle(false);
+    };
+    ModalController.prototype._toggle = function (show) {
+        var toShow = show;
+        if (typeof toShow === "undefined") {
+            toShow = this.modalTarget.getAttribute("aria-hidden") === "true";
+        }
+        this.triggerEvent(toShow ? "show" : "hide");
+        this.modalTarget.setAttribute("aria-hidden", toShow ? "false" : "true");
+        if (toShow) {
+            this._bindDocumentEvents();
+        }
+        else {
+            this._unbindDocumentEvents();
+        }
+        this.triggerEvent(toShow ? "shown" : "hidden");
+    };
+    ModalController.prototype._bindDocumentEvents = function () {
+        this._boundClickFn = this._boundClickFn || this._hideOnOutsideClick.bind(this);
+        this._boundKeypressFn = this._boundKeypressFn || this._hideOnEscapePress.bind(this);
+        document.addEventListener("click", this._boundClickFn);
+        document.addEventListener("keyup", this._boundKeypressFn);
+    };
+    ModalController.prototype._unbindDocumentEvents = function () {
+        document.removeEventListener("click", this._boundClickFn);
+        document.removeEventListener("keyup", this._boundKeypressFn);
+    };
+    ModalController.prototype._hideOnOutsideClick = function (e) {
+        var target = e.target;
+        if (!this.modalTarget.querySelector(".s-modal--dialog").contains(target)) {
+            this._toggle(false);
+        }
+    };
+    ModalController.prototype._hideOnEscapePress = function (e) {
+        if (e.which !== 27 || this.modalTarget.getAttribute("aria-hidden") === "true") {
+            return;
+        }
+        this._toggle(false);
+    };
+    ModalController.targets = ["modal"];
+    return ModalController;
+}(Stacks.StacksController));
+Stacks.application.register("s-modal", ModalController);
+//# sourceMappingURL=s-modal.js.map
 
 ;
 

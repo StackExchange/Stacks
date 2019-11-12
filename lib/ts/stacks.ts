@@ -79,4 +79,19 @@ namespace Stacks {
     export function addController(name: string, controller: ControllerDefinition) {
         application.register(name, createController(controller));
     };
+
+    /**
+     * Helper to manually show an s-modal element via external JS
+     * @param element the element the `data-controller="s-modal"` attribute is on
+     * @param show whether to force show/hide the modal; toggles the modal if left undefined
+     */
+    export function toggleModal(element: HTMLElement, show?: boolean | undefined) {
+        var controller = application.getControllerForElementAndIdentifier(element, "s-modal") as ModalController;
+
+        if (!controller) {
+            throw "Unable to get s-modal controller from element";
+        }
+
+        controller._toggle(show);
+    }
 }
