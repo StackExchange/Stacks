@@ -80,7 +80,7 @@
                     // In the upside-down stack, unshift = push, and stack[0] = the top.
                     var parentItem = stack[0].children("li:last")[0];
                     if (parentItem) {
-                        stack.unshift($("<" + listTag + " class='grid fd-column list-reset stacks-nav__secondary'/>").appendTo(parentItem));
+                        stack.unshift($("<" + listTag + " class='d-flex fd-column list-reset stacks-nav__secondary'/>").appendTo(parentItem));
                     }
                 } else {
                     // Truncate the stack to the current level by chopping off the 'top' of the
@@ -90,7 +90,7 @@
                 }
 
                 // Add the list item
-                $("<li class='grid--cell fd-column stacks-nav--item' />").appendTo(stack[0]).append(
+                $("<li class='flex--cell fd-column stacks-nav--item' />").appendTo(stack[0]).append(
                     $("<a class='d-block s-link s-link__muted fs-body1 lh-sm py2' />").text(elem.text()).attr("href", "#" + elem.attr("id"))
                 );
 
