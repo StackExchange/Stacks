@@ -18,68 +18,141 @@
 
 #stacks-config {
     //  Overall body element properties
-    @body-font-color:                   @black-800;
-    @body-type-face:                    @ff-sans;
-    @body-background:                   @white;
-    @body-site-width:                   1060px;
+    @body-font-color:                                var(--black-800);
+    @body-type-face:                                 @ff-sans;
+    @body-background:                                var(--white);
+    @body-site-width:                                1060px;
 
     //  Links
-    @link-color-regular:                @blue-600;
-    @link-color-hover:                  #4CA3D7;
-    @block-link-highlight:              @orange;
-    @navigation-link-highlight:         @orange;
+    @link-color:                                     var(--blue-600);
+    @link-color-hover:                               var(--blue-500);
+    @link-color-visited:                             var(--blue-700);
+    @block-link-highlight:                           var(--orange-400);
+    @navigation-link-highlight:                      var(--orange-400);
 
-    //  Buttons
-    @button-font-color:                 @link-color-regular;
-    @button-font-weight:                400;
-    @button-background-color:           fade(@button-font-color, 0%);
-    @button-has-border:                 true;
-    @button-has-gradient:               false;
-    @button-box-shadow-color:           @button-primary-background-color;
-    @button-border-radius:              @br-sm;
-    @button-has-inset-box-shadow:       true;
-    @button-primary-background-color:   @blue-500;
-    @button-primary-font-color:         @white;
-    @button-filled-background-color:    @powder-100;
-    @button-filled-font-color:          @powder-600;
-    @button-danger-background-color:    @red-500;
-    @button-danger-font-color:          @white;
+    //  Button Default
+    @button-color:                                   var(--blue-600);
+    @button-background-color:                        transparent;
+    @button-hover-color:                             var(--blue-700);
+    @button-hover-background-color:                  var(--blue-050);
+    @button-active-background-color:                 var(--blue-100);
+    @button-disabled-color:                          var(--black-300);
+    @button-disabled-background-color:               var(--black-050);
+    @button-selected-color:                          var(--blue-900);
+    @button-selected-background-color:               var(--blue-200);
+
+    //  Button Filled
+    @button-filled-color:                            var(--powder-700);
+    @button-filled-background-color:                 var(--powder-100);
+    @button-filled-hover-color:                      var(--powder-800);
+    @button-filled-hover-background-color:           var(--powder-300);
+    @button-filled-active-background-color:          var(--powder-400);
+    @button-filled-disabled-background-color:        var(--black-075);
+    @button-filled-selected-color:                   var(--powder-900);
+    @button-filled-selected-background-color:        var(--powder-500);
+
+    //  Button Outline
+    @button-outlined-border-color:                   var(--blue-400);
+    @button-outlined-selected-border-color:          var(--blue-600);
+    @button-outlined-disabled-color:                 var(--black-200);
+    @button-outlined-disabled-border-color:          var(--black-100);
+    @button-outlined-disabled-background-color:      transparent;
+
+    //  Button Muted
+    @button-muted-color:                             var(--black-500);
+    @button-muted-hover-color:                       var(--black-600);
+    @button-muted-hover-background-color:            var(--black-025);
+    @button-muted-active-background-color:           var(--black-050);
+    @button-muted-selected-color:                    var(--black-700);
+    @button-muted-selected-background-color:         var(--black-075);
+
+    //  Button Muted Outlined
+    @button-muted-outlined-border-color:             var(--black-300);
+    @button-muted-outlined-selected-border-color:    var(--black-400);
+    @button-muted-outlined-disabled-border-color:    var(--black-100);
+
+    //  Button Muted Filled
+    @button-muted-filled-color:                      var(--black-700);
+    @button-muted-filled-background-color:           var(--black-100);
+    @button-muted-filled-hover-color:                var(--black-700);
+    @button-muted-filled-hover-background-color:     var(--black-150);
+    @button-muted-filled-active-background-color:    var(--black-200);
+    @button-muted-filled-selected-color:             var(--black-800);
+    @button-muted-filled-selected-background-color:  var(--black-350);
+    @button-muted-filled-disabled-color:             var(--black-200);
+
+    //  Button Danger
+    @button-danger-color:                            var(--red-600);
+    @button-danger-hover-color:                      var(--red-700);
+    @button-danger-hover-background-color:           var(--red-050);
+    @button-danger-active-background-color:          var(--red-100);
+    @button-danger-selected-color:                   var(--red-900);
+    @button-danger-selected-background-color:        var(--red-200);
+
+    //  Button Danger Outlined
+    @button-danger-outlined-border-color:            var(--red-500);
+    @button-danger-outlined-selected-border-color:   var(--red-600);
+    @button-danger-outlined-disabled-border-color:   var(--black-200);
+
+    //  Button Danger Filled
+    @button-danger-filled-color:                     var(--white);
+    @button-danger-filled-background-color:          var(--red-500);
+    @button-danger-filled-hover-color:               var(--white);
+    @button-danger-filled-hover-background-color:    var(--red-600);
+    @button-danger-filled-active-background-color:   var(--red-700);
+    @button-danger-filled-disabled-color:            var(--white);
+    @button-danger-filled-disabled-background-color: var(--black-100);
+    @button-danger-filled-disabled-number-color:     var(--black-300);
+    @button-danger-filled-selected-color:            var(--white);
+    @button-danger-filled-selected-background-color: var(--red-800);
+    @button-danger-filled-number-color:              var(--black-900);
+
+    //  Button Primary
+    @button-primary-color:                           var(--white);
+    @button-primary-background-color:                var(--blue-500);
+    @button-primary-hover-color:                     var(--white);
+    @button-primary-hover-background-color:          var(--blue-600);
+    @button-primary-active-background-color:         var(--blue-700);
+    @button-primary-disabled-color:                  var(--white);
+    @button-primary-disabled-background-color:       var(--black-100);
+    @button-primary-disabled-number-color:           var(--black-300);
+    @button-primary-selected-color:                  var(--white);
+    @button-primary-selected-background-color:       var(--blue-800);
+    @button-primary-number-color:                    var(--black-900);
 
     //  Tags
-    @tags-border:                       transparent;
-    @tags-background:                   @powder-100;
-    @tags-color:                        @powder-700;
-    @tags-moderator-border:             @red-100;
-    @tags-moderator-background:         @red-050;
-    @tags-moderator-color:              @red-600;
-    @tags-required-border:              @black-200;
-    @tags-required-background:          @black-075;
-    @tags-required-color:               @black-700;
-    @tags-muted-border:                 transparent;
-    @tags-muted-background:             @black-075;
-    @tags-muted-color:                  @black-700;
-    @tags-danger-border:                transparent;
-    @tags-danger-background:            @red-500;
-    @tags-danger-color:                 @white;
+    @tags-border:                                    transparent;
+    @tags-background:                                var(--powder-100);
+    @tags-color:                                     var(--powder-700);
+    @tags-border-hover:                              transparent;
+    @tags-background-hover:                          var(--powder-200);
+    @tags-color-hover:                               var(--powder-800);
+
+    @tags-moderator-border:                          var(--red-100);
+    @tags-moderator-background:                      var(--red-050);
+    @tags-moderator-color:                           var(--red-600);
+    @tags-moderator-border-hover:                    var(--red-200);
+    @tags-moderator-background-hover:                var(--red-100);
+    @tags-moderator-color-hover:                     var(--red-700);
+
+    @tags-required-border:                           var(--black-200);
+    @tags-required-background:                       var(--black-075);
+    @tags-required-color:                            var(--black-700);
+    @tags-required-border-hover:                     var(--black-300);
+    @tags-required-background-hover:                 var(--black-100);
+    @tags-required-color-hover:                      var(--black-800);
+
+    @tags-muted-border:                              transparent;
+    @tags-muted-background:                          var(--black-075);
+    @tags-muted-color:                               var(--black-700);
+    @tags-muted-border-hover:                        transparent;
+    @tags-muted-background-hover:                    var(--black-100);
+    @tags-muted-color-hover:                         var(--black-800);
 
     //  Pagination
-    @pagination-select-background:      @orange-400;
-    @pagination-select-color:           @white;
-
-    //  Notices
-    @notice-info-border-color:                      #CFDCE6;
-    @notice-info-background-color:                  #E1F0FC;
-    @notice-info-important-background-color:        @blue-500;
-    @notice-success-border-color:                   #BED9C6;
-    @notice-success-background-color:               #D3F1DC;
-    @notice-success-important-background-color:     #43CA70;
-    @notice-warning-border-color:                   #E6DFC6;
-    @notice-warning-background-color:               #FFF8DC;
-    @notice-warning-important-background-color:     @yellow-400;
-    @notice-danger-border-color:                    #E6D0D4;
-    @notice-danger-background-color:                #FFE7EB;
-    @notice-danger-important-background-color:      @red-400;
+    @pagination-select-background:                   var(--orange-500);
+    @pagination-select-color:                        var(--white);
 
     // Sidebar widgets
-    @widget-navigation-current-color:               @orange;
+    @widget-navigation-current-color:                var(--orange);
 }
