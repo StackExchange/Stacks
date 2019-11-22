@@ -42,7 +42,7 @@ namespace Stacks {
             const namespacedName = this.identifier + ":" + eventName;
             var event : CustomEvent<T>;
             try {
-                event = new CustomEvent(namespacedName, {bubbles: true, detail: detail});
+                event = new CustomEvent(namespacedName, {bubbles: true, cancelable: true, detail: detail});
             } catch (ex) {
                 // Internet Explorer
                 event = document.createEvent("CustomEvent");
@@ -76,7 +76,66 @@ namespace Stacks {
 
         return Controller;
     }
+
     export function addController(name: string, controller: ControllerDefinition) {
         application.register(name, createController(controller));
-    };
+    }
+
+    export interface TooltipOptions {
+        placement: string;
+        classNames: string;
+    }
+
+    export function setTooltipHtml(element: Element, html: string, options?: TooltipOptions) {
+        setTooltip(element, popover => popover.innerHTML = html, options);
+    }
+
+    export function setTooltipText(element: Element, text: string, options?: TooltipOptions) {
+        setTooltip(element, popover => popover.textContent = text, options);
+    }
+
+    var generatedTooltipIdNumber = 0;
+
+    function setTooltip(element: Element, fn: (popover: HTMLElement) => void, options?: TooltipOptions) {
+
+        var controllerText = element.getAttribute("data-controller") || "";
+        if (!/(^|\s)s-tooltip(\s|$)/.test(controllerText)) {
+            element.setAttribute("data-controller", controllerText + " s-tooltip");
+        }
+
+        var popoverId = element.getAttribute("aria-describedby");
+        if (!popoverId) {
+            popoverId = "--stacks-s-tooltip-" + (generatedTooltipIdNumber++);
+            element.setAttribute("aria-describedby", popoverId);
+        }
+
+        if (options && options.placement) {
+            element.setAttribute("data-s-tooltip-placement", options.placement);
+        }
+
+        if (options && options.classNames) {
+            element.setAttribute("data-s-tooltip-class-names", options.classNames);
+        }
+
+        var popover = document.getElementById(popoverId);
+        if (!popover) {
+            popover = document.createElement("div");
+            popover.id = popoverId;
+            popover.className = "s-popover s-popover__tooltip";
+            popover.setAttribute("aria-hidden", "true");
+            popover.setAttribute("role", "tooltip");
+            // insertBefore inserts at end if element.nextSibling is null.
+            element.parentNode!.insertBefore(popover, element.nextSibling);
+        }
+
+        const arrows = popover.getElementsByClassName("s-popover--arrow");
+
+        fn(popover);
+
+        if (arrows.length > 0) {
+            popover.appendChild(arrows[0]);
+        } else {
+            popover.insertAdjacentHTML("beforeend", `<div class="s-popover--arrow"></div>`);
+        }
+    }
 }

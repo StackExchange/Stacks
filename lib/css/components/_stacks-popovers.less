@@ -18,9 +18,7 @@
 .s-popover {
     display: none;
     position: absolute;
-    min-width: 12rem;
     max-width: 24rem;
-    width: 100%;
     padding: @su12;
     z-index: @zi-popovers;
     border-radius: @br-md;
@@ -29,6 +27,11 @@
     box-shadow: @bs-sm;
     color: @fc-dark;
     font-size: @fs-body1;
+
+    &:not(.s-popover__tooltip) {
+        min-width: 12rem;
+        width: 100%;
+    }
 
     &.is-visible {
         display: block;
