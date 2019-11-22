@@ -368,25 +368,27 @@ pre.lineno {
     }
 }
 
-//  ============================================================================
-//  $   Homepage grid
-//  ----------------------------------------------------------------------------
-
-.stacks-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-column-gap: @su16;
-    grid-row-gap: @su16;
-}
-
-@media ( max-width:1200px ) {
-    .stacks-grid {
-        grid-template-columns: 1fr 1fr;
+#stacks-internals #screen-lg({
+    .lg\:highlight {
+        .highlight();
     }
-}
+}, @force-selector: true);
 
-@media ( max-width:530px ) {
-    .stacks-grid {
-        grid-template-columns: 1fr;
+#stacks-internals #screen-md({
+    .md\:highlight {
+        .highlight();
     }
+}, @force-selector: true);
+
+#stacks-internals #screen-sm({
+    .sm\:highlight {
+        .highlight();
+    }
+}, @force-selector: true);
+
+.highlight() {
+    padding: 3px 8px;
+    background-color: @black-300;
+    border-radius: 1000px;
+    color: @white !important;
 }
