@@ -51,7 +51,6 @@
 
     &:active {
         background: @button-active-background-color;
-        box-shadow: none;
     }
 
     &:focus {
@@ -206,6 +205,40 @@
     }
 }
 
+//  --  Base Filled Style
+//      Adds in background-colors, background-images, and/or box-shadows.
+//  ----------------------------------------------------------------------------
+.s-btn__filled {
+    color: @button-filled-color;
+    background-color: @button-filled-background-color;
+    border-color: @button-filled-border-color;
+    box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, .7);
+
+    &:hover,
+    &:focus {
+        color: @button-filled-hover-color;
+        background-color: @button-filled-hover-background-color;
+    }
+
+    &:active {
+        background-color: @button-filled-active-background-color;
+        border-color: @button-filled-active-border-color;
+    }
+
+    &[disabled] {
+        background-color: @button-filled-disabled-background-color;
+        border-color: @button-filled-disabled-border-color;
+        box-shadow: none;
+    }
+
+    &.is-selected {
+        color: @button-filled-selected-color;
+        background-color: @button-filled-selected-background-color;
+        border-color: @button-filled-selected-border-color;
+        box-shadow: none;
+    }
+}
+
 //  --  Muted Clear Style
 //      Creates a gray button style.
 //  ----------------------------------------------------------------------------
@@ -244,6 +277,7 @@
     &.s-btn__filled {
         color: @button-muted-filled-color;
         background-color: @button-muted-filled-background-color;
+        border-color: transparent;
         box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, .4);
 
         &:hover,
@@ -254,7 +288,6 @@
 
         &:active {
             background-color: @button-muted-filled-active-background-color;
-            box-shadow: none;
         }
 
         &.is-selected {
@@ -267,33 +300,6 @@
             color: @button-muted-filled-disabled-color;
             box-shadow: none;
         }
-    }
-}
-
-//  --  Base Filled Style
-//      Adds in background-colors, background-images, and/or box-shadows.
-//  ----------------------------------------------------------------------------
-.s-btn__filled {
-    color: @button-filled-color;
-    background-color: @button-filled-background-color;
-
-    &:hover,
-    &:focus {
-        color: @button-filled-hover-color;
-        background-color: @button-filled-hover-background-color;
-    }
-
-    &:active {
-        background-color: @button-filled-active-background-color;
-    }
-
-    &[disabled] {
-        background-color: @button-filled-disabled-background-color;
-    }
-
-    &.is-selected {
-        color: @button-filled-selected-color;
-        background-color: @button-filled-selected-background-color;
     }
 }
 
@@ -336,6 +342,7 @@
     &.s-btn__filled {
         color: @button-danger-filled-color;
         background-color: @button-danger-filled-background-color;
+        border-color: transparent;
         box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, .4);
 
         &:hover,
@@ -348,22 +355,24 @@
             background-color: @button-danger-filled-active-background-color;
         }
 
-        &[disabled] {
-            color: @button-danger-filled-disabled-color;
-            background-color: @button-danger-filled-disabled-background-color;
-
-            .s-btn--number {
-                color: @button-danger-filled-disabled-number-color;
-            }
-        }
-
         &.is-selected {
             color: @button-danger-filled-selected-color;
             background-color: @button-danger-filled-selected-background-color;
+            box-shadow: none;
         }
 
         .s-btn--number {
             color: @button-danger-filled-number-color;
+        }
+
+        &[disabled] {
+            color: @button-danger-filled-disabled-color;
+            background-color: @button-danger-filled-disabled-background-color;
+            box-shadow: none;
+
+            .s-btn--number {
+                color: @button-danger-filled-disabled-number-color;
+            }
         }
     }
 }
@@ -387,15 +396,6 @@
         background-color: @button-primary-active-background-color;
     }
 
-    &[disabled] {
-        color: @button-primary-disabled-color;
-        background-color: @button-primary-disabled-background-color;
-
-        .s-btn--number {
-            color: @button-primary-disabled-number-color;
-        }
-    }
-
     &.is-selected {
         color: @button-primary-selected-color;
         background-color: @button-primary-selected-background-color;
@@ -403,6 +403,15 @@
 
     .s-btn--number {
         color: @button-primary-number-color;
+    }
+
+    &[disabled] {
+        color: @button-primary-disabled-color;
+        background-color: @button-primary-disabled-background-color;
+
+        .s-btn--number {
+            color: @button-primary-disabled-number-color;
+        }
     }
 }
 
