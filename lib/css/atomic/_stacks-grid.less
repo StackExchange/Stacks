@@ -30,18 +30,6 @@
         .create-fixed-cells(@num, @count: 1) when (@count =< @num) {
             .grid--cell@{count} {
                 flex-basis: (@count * 100%) / @num;
-
-                //  --  IE11/10 Flex-basis bug
-                //      Known issue where if a flex item has a box-sizing border-box
-                //      value, the flex-basis value is incorrect. The workaround is
-                //      to apply a width or height. Since flex-basis applies in the
-                //      flow direction, we have to conditionally set the width (default)
-                //      or height (if a column).
-                //  --------------------------------------------------------------------
-                @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
-                    flex-basis: auto;
-                    width: (@count * 100%) / @num;
-                }
             }
 
             #stacks-internals #grid-builder-helpers .create-fixed-cells(@num, (@count + 1));
@@ -59,18 +47,6 @@
                 > .grid,
                 > .grid--cell {
                     flex-basis: (@count * 100%) / @num;
-
-                    //  --  IE11/10 Flex-basis bug
-                    //      Known issue where if a flex item has a box-sizing border-box
-                    //      value, the flex-basis value is incorrect. The workaround is
-                    //      to apply a width or height. Since flex-basis applies in the
-                    //      flow direction, we have to conditionally set the width (default)
-                    //      or height (if a column).
-                    //  --------------------------------------------------------------------
-                    @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
-                        flex-basis: auto;
-                        width: (@count * 100%) / @num;
-                    }
                 }
             }
 
@@ -142,18 +118,6 @@
             &.grid__allcells@{count} > .grid,                       // [2]
             &.grid__allcells@{count} > .grid--cell {                // [2]
                 flex-basis: calc(~"@{cell-width} - @{spacing}");
-
-                //  --  IE11/10 Flex-basis bug
-                //      Known issue where if a flex item has a box-sizing border-box
-                //      value, the flex-basis value is incorrect. The workaround is
-                //      to apply a width or height. Since flex-basis applies in the
-                //      flow direction, we have to conditionally set the width (default)
-                //      or height (if a column).
-                //  --------------------------------------------------------------------
-                @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
-                    flex-basis: auto;
-                    width: calc(~"@{cell-width} - @{spacing}");
-                }
             }
 
             #stacks-internals #grid-builder-helpers .grid-fixed-cell-spacing(@spacing, @num, (@count + 1));
@@ -229,53 +193,6 @@
     //  $$  AUTO FIXED WIDTH CELLS
     //  ----------------------------------------------------------------------------
     #stacks-internals #grid-builder-helpers .create-grid-count-cols(@grid-cols);
-
-    //  --  IE11/10 Flex-basis bug
-    //      Known issue where if a flex item has a box-sizing border-box
-    //      value, the flex-basis value is incorrect. The workaround is
-    //      to apply a width or height. Since flex-basis applies in the
-    //      flow direction, we have to conditionally set the width (default)
-    //      or height (if a column).
-    //  --------------------------------------------------------------------
-    @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
-        .fd-column,
-        .fd-column-reverse {
-            > .grid,
-            > [class*="grid--cell"],
-            &[class*="grid__allcells"] > .grid,
-            &[class*="grid__allcells"] > [class*="grid--cell"] {
-                width: auto;
-            }
-        }
-        .lg\:fd-column,
-        .lg\:fd-column-reverse {
-            > .grid,
-            > [class*="grid--cell"],
-            &[class*="grid__allcells"] > .grid,
-            &[class*="grid__allcells"] > [class*="grid--cell"] {
-                #stacks-internals #screen-lg({ width: auto; })
-            }
-        }
-        .md\:fd-column,
-        .md\:fd-column-reverse {
-            > .grid,
-            > [class*="grid--cell"],
-            &[class*="grid__allcells"] > .grid,
-            &[class*="grid__allcells"] > [class*="grid--cell"] {
-                #stacks-internals #screen-md({ width: auto; })
-            }
-        }
-        .sm\:fd-column,
-        .sm\:fd-column-reverse {
-            > .grid,
-            > [class*="grid--cell"],
-            &[class*="grid__allcells"] > .grid,
-            &[class*="grid__allcells"] > [class*="grid--cell"] {
-                #stacks-internals #screen-sm({ width: auto; })
-            }
-        }
-    }
-
 }
 //  ============================================================================
 //  $   GRID SPACING
