@@ -38,7 +38,8 @@
     color: @button-color;
 
     &:hover,
-    &:focus {
+    &:focus,
+    &:active {
         color: @button-hover-color;
         background: @button-hover-background-color;
         text-decoration: none;
@@ -201,6 +202,42 @@
     }
 }
 
+//  --  Base Filled Style
+//      Adds in background-colors, background-images, and/or box-shadows.
+//  ----------------------------------------------------------------------------
+.s-btn__filled {
+    color: @button-filled-color;
+    background-color: @button-filled-background-color;
+    border-color: @button-filled-border-color;
+    box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, .7);
+
+    &:hover,
+    &:focus,
+    &:active {
+        color: @button-filled-hover-color;
+        background-color: @button-filled-hover-background-color;
+    }
+
+    &:active {
+        background-color: @button-filled-active-background-color;
+        border-color: @button-filled-active-border-color;
+        box-shadow: none;
+    }
+
+    &[disabled] {
+        background-color: @button-filled-disabled-background-color;
+        border-color: @button-filled-disabled-border-color;
+        box-shadow: none;
+    }
+
+    &.is-selected {
+        color: @button-filled-selected-color;
+        background-color: @button-filled-selected-background-color;
+        border-color: @button-filled-selected-border-color;
+        box-shadow: none;
+    }
+}
+
 //  --  Muted Clear Style
 //      Creates a gray button style.
 //  ----------------------------------------------------------------------------
@@ -208,7 +245,8 @@
     color: @button-muted-color;
 
     &:hover,
-    &:focus {
+    &:focus,
+    &:active {
         color: @button-muted-hover-color;
         background-color: @button-muted-hover-background-color;
     }
@@ -239,10 +277,12 @@
     &.s-btn__filled {
         color: @button-muted-filled-color;
         background-color: @button-muted-filled-background-color;
+        border-color: transparent;
         box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, .4);
 
         &:hover,
-        &:focus {
+        &:focus,
+        &:active {
             color: @button-muted-filled-hover-color;
             background-color: @button-muted-filled-hover-background-color;
         }
@@ -265,33 +305,6 @@
     }
 }
 
-//  --  Base Filled Style
-//      Adds in background-colors, background-images, and/or box-shadows.
-//  ----------------------------------------------------------------------------
-.s-btn__filled {
-    color: @button-filled-color;
-    background-color: @button-filled-background-color;
-
-    &:hover,
-    &:focus {
-        color: @button-filled-hover-color;
-        background-color: @button-filled-hover-background-color;
-    }
-
-    &:active {
-        background-color: @button-filled-active-background-color;
-    }
-
-    &[disabled] {
-        background-color: @button-filled-disabled-background-color;
-    }
-
-    &.is-selected {
-        color: @button-filled-selected-color;
-        background-color: @button-filled-selected-background-color;
-    }
-}
-
 
 //  ============================================================================
 //  $   DANGER BUTTONS & STYLES
@@ -300,7 +313,8 @@
     color: @button-danger-color;
 
     &:hover,
-    &:focus {
+    &:focus,
+    &:active {
         color: @button-danger-hover-color;
         background-color: @button-danger-hover-background-color;
     }
@@ -331,34 +345,39 @@
     &.s-btn__filled {
         color: @button-danger-filled-color;
         background-color: @button-danger-filled-background-color;
+        border-color: transparent;
         box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, .4);
 
         &:hover,
-        &:focus {
+        &:focus,
+        &:active {
             color: @button-danger-filled-hover-color;
             background-color: @button-danger-filled-hover-background-color;
         }
 
         &:active {
             background-color: @button-danger-filled-active-background-color;
-        }
-
-        &[disabled] {
-            color: @button-danger-filled-disabled-color;
-            background-color: @button-danger-filled-disabled-background-color;
-
-            .s-btn--number {
-                color: @button-danger-filled-disabled-number-color;
-            }
+            box-shadow: none;
         }
 
         &.is-selected {
             color: @button-danger-filled-selected-color;
             background-color: @button-danger-filled-selected-background-color;
+            box-shadow: none;
         }
 
         .s-btn--number {
             color: @button-danger-filled-number-color;
+        }
+
+        &[disabled] {
+            color: @button-danger-filled-disabled-color;
+            background-color: @button-danger-filled-disabled-background-color;
+            box-shadow: none;
+
+            .s-btn--number {
+                color: @button-danger-filled-disabled-number-color;
+            }
         }
     }
 }
@@ -373,22 +392,15 @@
     box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, .4);
 
     &:hover,
-    &:focus {
+    &:focus,
+    &:active {
         color: @button-primary-hover-color;
         background-color: @button-primary-hover-background-color;
     }
 
     &:active {
         background-color: @button-primary-active-background-color;
-    }
-
-    &[disabled] {
-        color: @button-primary-disabled-color;
-        background-color: @button-primary-disabled-background-color;
-
-        .s-btn--number {
-            color: @button-primary-disabled-number-color;
-        }
+        box-shadow: none;
     }
 
     &.is-selected {
@@ -398,6 +410,15 @@
 
     .s-btn--number {
         color: @button-primary-number-color;
+    }
+
+    &[disabled] {
+        color: @button-primary-disabled-color;
+        background-color: @button-primary-disabled-background-color;
+
+        .s-btn--number {
+            color: @button-primary-disabled-number-color;
+        }
     }
 }
 
@@ -422,12 +443,6 @@
         background-color: var(--black-050);
         color: var(--black-900);
     }
-
-    &:active {
-        border-color: @black-200;
-        background-color: @black-050;
-        color: @black-900;
-    }
 }
 
 .s-btn__facebook {
@@ -448,7 +463,7 @@
 }
 
 .s-btn__github {
-    background-color: var(--black-700);
+    background-color: var(--black-750);
     color: var(--white);
 
     &:hover,
@@ -460,22 +475,6 @@
     &:active {
         background-color: var(--black-900);
         color: var(--white);
-    }
-}
-
-.s-btn__github {
-    background-color: @black-750;
-    color: @white;
-
-    &:hover,
-    &:focus {
-        background-color: @black-800;
-        color: @white;
-    }
-
-     &:active {
-        background-color: @black-900;
-        color: @white;
     }
 }
 
