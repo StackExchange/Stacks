@@ -18,7 +18,7 @@
     padding: @su16;
     border: 1px solid transparent;
     border-radius: @br-sm;
-    color: @fc-medium;
+    color: var(--fc-medium);
     font-size: @fs-body1;
 
     .s-toast & {
@@ -31,64 +31,69 @@
     }
 }
 
-& {
-#stacks-internals #load-config(); //  Call all our variables from _stacks-configuration
 //  ============================================================================
 //  $   VISUAL STYLES
 //  ============================================================================
 //  $$  INFO
 //  ----------------------------------------------------------------------------
-.s-notice__info {
-    border-color: @notice-info-border-color;
-    background-color: @notice-info-background-color;
+.s-notice__info,
+.s-banner__info {
+    border-color: var(--powder-400);
+    background-color: var(--powder-100);
 
-    &.s-notice__important {
-        background-color: @notice-info-important-background-color;
+    &.s-notice__important,
+    &.s-banner__important {
+        background-color: var(--blue-500);
     }
 }
 
 //  $$  SUCCESS
 //  ----------------------------------------------------------------------------
-.s-notice__success {
-    border-color: @notice-success-border-color;
-    background-color: @notice-success-background-color;
+.s-notice__success,
+.s-banner__success {
+    border-color: var(--green-200);
+    background-color: var(--green-050);
 
-    &.s-notice__important {
-        background-color: @notice-success-important-background-color;
-        color: @fc-dark;
+    &.s-notice__important,
+    &.s-banner__important {
+        background-color: var(--green-400);
+        color: var(--black-900);
     }
 }
 
 //  $$  WARNING
 //  ----------------------------------------------------------------------------
-.s-notice__warning {
-    border-color: @notice-warning-border-color;
-    background-color: @notice-warning-background-color;
+.s-notice__warning,
+.s-banner__warning {
+    border-color: var(--yellow-300);
+    background-color: var(--yellow-050);
 
-    &.s-notice__important {
-        background-color: @notice-warning-important-background-color;
-        color: @fc-dark;
+    &.s-notice__important,
+    &.s-banner__important {
+        background-color: var(--yellow-400);
+        color: var(--black-900);
     }
 }
 
 //  $$  DANGER
 //  ----------------------------------------------------------------------------
-.s-notice__danger {
-    border-color: @notice-danger-border-color;
-    background-color: @notice-danger-background-color;
+.s-notice__danger,
+.s-banner__danger {
+    border-color: var(--red-200);
+    background-color: var(--red-050);
 
-    &.s-notice__important {
-        background-color: @notice-danger-important-background-color;
+    &.s-notice__important,
+    &.s-banner__important {
+        background-color: var(--red-400);
     }
 }
-} // End stacks configuration mixin
 
 //  $$  IMPORTANT
 //  ----------------------------------------------------------------------------
 .s-notice__important {
     border-color: transparent;
-    background-color: @black-700;
-    color: @white;
+    background-color: var(--black-700);
+    color: var(--white);
 }
 
 //  ============================================================================

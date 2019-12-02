@@ -11,7 +11,6 @@ description: Buttons are user interface elements which allows users to take acti
         <li><a href="#primary">Primary</a></li>
         <li><a href="#danger">Danger</a></li>
         <li><a href="#muted">Muted</a></li>
-        <li><a href="#inverted">Inverted</a></li>
     </ol>
     <p class="stacks-copy">Each style is explained below, detailing how and where to use these styles.</p>
 
@@ -214,55 +213,6 @@ description: Buttons are user interface elements which allows users to take acti
             </div>
         </div>
     </div>
-
-    {% header h3 | Inverted %}
-    <p class="stacks-copy">More of a visual state then a style. Inverted buttons are used to visually separate buttons from dark backgrounds. Examples would be messaging heroes or banners which have darker backgrounds. <strong>Inverted, filled buttons are considered primary buttons.</strong></p>
-    <div class="stacks-preview">
-{% highlight html %}
-<button class="s-btn s-btn__inverted" type="button" aria-pressed="false">…</button>
-<button class="s-btn s-btn__outlined s-btn__inverted" type="button" aria-pressed="false">…</button>
-<button class="s-btn s-btn__filled s-btn__inverted" type="button" aria-pressed="false">…</button>
-{% endhighlight %}
-        <div class="stacks-preview--example">
-            <div class="overflow-x-auto">
-                <table class="wmn5 s-table s-table__bx-simple">
-                    <thead>
-                        <tr>
-                            <th scope="col">Type</th>
-                            <th scope="col" class="s-table--cell4">Class</th>
-                            <th scope="col" class="ta-center">Default State</th>
-                            <th scope="col" class="ta-center">Selected State</th>
-                            <th scope="col" class="ta-center">Disabled State</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for btn in site.data.product.buttons.inverted %}
-                            {% assign types = btn.classes %}
-                            {% for class in types %}
-                            <tr>
-                                <th scope="row" class="va-middle">{{ class.title }}</th>
-                                <td class="va-middle">
-                                    <div class="grid gs4 fw-wrap">
-                                        <code class="grid--cell stacks-code">.s-btn</code>
-                                        {% if btn.class != nil %}
-                                            <code class="grid--cell stacks-code">.{{ btn.class }}</code>
-                                        {% endif %}
-                                        {% if class.class != nil %}
-                                            <code class="grid--cell stacks-code">.{{ class.class }}</code>
-                                        {% endif %}
-                                    </div>
-                                </td>
-                                <td class="va-middle ta-center px4 {% if btn.class or class.class == "s-btn__inverted" %}bg-black-750{% endif %}"><button class="ws-nowrap s-btn {{ btn.class }} {{ class.class }}" type="button" aria-pressed="false">Ask question</button></td>
-                                <td class="va-middle ta-center px4 {% if btn.class or class.class == "s-btn__inverted" %}bg-black-750{% endif %}"><button class="ws-nowrap s-btn {{ btn.class }} {{ class.class }} is-selected" type="button" aria-pressed="false">Ask question</button></td>
-                                <td class="va-middle ta-center px4 {% if btn.class or class.class == "s-btn__inverted" %}bg-black-750{% endif %}"><button class="ws-nowrap s-btn {{ btn.class }} {{ class.class }}" type="button" aria-pressed="false" disabled>Ask question</button></td>
-                            </tr>
-                            {% endfor %}
-                        {% endfor %}
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
 </section>
 
 <section class="stacks-section">
@@ -307,9 +257,9 @@ description: Buttons are user interface elements which allows users to take acti
                                         {% endif %}
                                     </div>
                                 </td>
-                                <td class="va-middle ta-center px4 {% if class.class == "s-btn__inverted" %}bg-black-750{% endif %}"><button class="ws-nowrap s-btn {{ class.class }} {% if class.class2 %}{{ class.class2 }}{% endif %} {{ btn.class }}" type="button" aria-pressed="false">Ask question</button></td>
-                                <td class="va-middle ta-center px4 {% if class.class == "s-btn__inverted" %}bg-black-750{% endif %}"><button class="ws-nowrap s-btn {{ class.class }} {% if class.class2 %}{{ class.class2 }}{% endif %} {{ btn.class }} is-selected" type="button" aria-pressed="false">Ask question</button></td>
-                                <td class="va-middle ta-center px4 {% if class.class == "s-btn__inverted" %}bg-black-750{% endif %}"><button class="ws-nowrap s-btn {{ class.class }} {% if class.class2 %}{{ class.class2 }}{% endif %} {{ btn.class }}" type="button" aria-pressed="false" disabled>Ask question</button></td>
+                                <td class="va-middle ta-center px4"><button class="ws-nowrap s-btn {{ class.class }} {% if class.class2 %}{{ class.class2 }}{% endif %} {{ btn.class }}" type="button" aria-pressed="false">Ask question</button></td>
+                                <td class="va-middle ta-center px4"><button class="ws-nowrap s-btn {{ class.class }} {% if class.class2 %}{{ class.class2 }}{% endif %} {{ btn.class }} is-selected" type="button" aria-pressed="false">Ask question</button></td>
+                                <td class="va-middle ta-center px4"><button class="ws-nowrap s-btn {{ class.class }} {% if class.class2 %}{{ class.class2 }}{% endif %} {{ btn.class }}" type="button" aria-pressed="false" disabled>Ask question</button></td>
                             </tr>
                             {% endfor %}
                         {% endfor %}
@@ -359,9 +309,9 @@ description: Buttons are user interface elements which allows users to take acti
                                         {% endif %}
                                     </div>
                                 </td>
-                                <td class="va-middle ta-center px4 {% if class.class == "s-btn__inverted" %}bg-black-750{% endif %}"><button class="ws-nowrap s-btn {{ class.class }} {% if class.class2 %}{{ class.class2 }}{% endif %} {{ btn.class }}" type="button" aria-pressed="false">Ask question</button></td>
-                                <td class="va-middle ta-center px4 {% if class.class == "s-btn__inverted" %}bg-black-750{% endif %}"><button class="ws-nowrap s-btn {{ class.class }} {% if class.class2 %}{{ class.class2 }}{% endif %} {{ btn.class }} is-selected" type="button" aria-pressed="false">Ask question</button></td>
-                                <td class="va-middle ta-center px4 {% if class.class == "s-btn__inverted" %}bg-black-750{% endif %}"><button class="ws-nowrap s-btn {{ class.class }} {% if class.class2 %}{{ class.class2 }}{% endif %} {{ btn.class }}" type="button" aria-pressed="false" disabled>Ask question</button></td>
+                                <td class="va-middle ta-center px4"><button class="ws-nowrap s-btn {{ class.class }} {% if class.class2 %}{{ class.class2 }}{% endif %} {{ btn.class }}" type="button" aria-pressed="false">Ask question</button></td>
+                                <td class="va-middle ta-center px4"><button class="ws-nowrap s-btn {{ class.class }} {% if class.class2 %}{{ class.class2 }}{% endif %} {{ btn.class }} is-selected" type="button" aria-pressed="false">Ask question</button></td>
+                                <td class="va-middle ta-center px4"><button class="ws-nowrap s-btn {{ class.class }} {% if class.class2 %}{{ class.class2 }}{% endif %} {{ btn.class }}" type="button" aria-pressed="false" disabled>Ask question</button></td>
                             </tr>
                             {% endfor %}
                         {% endfor %}
@@ -380,7 +330,9 @@ description: Buttons are user interface elements which allows users to take acti
 {% highlight html %}
 <button class="s-btn" type="button">
     Badge
-    <span class="s-btn--badge">200</span>
+    <span class="s-btn--badge">
+        <span class="s-btn--number">200</span>
+    </span>
 </button>
 {% endhighlight %}
         <div class="stacks-preview--example">
@@ -415,19 +367,19 @@ description: Buttons are user interface elements which allows users to take acti
                                         {% endif %}
                                     </div>
                                 </td>
-                                <td class="va-middle ta-center px4 {% if class.class == "s-btn__inverted" %}bg-black-750{% endif %}">
+                                <td class="va-middle ta-center px4">
                                     <button class="ws-nowrap s-btn {{ class.class }} {% if class.class2 %}{{ class.class2 }}{% endif %} {{ btn.class }}" type="button" aria-pressed="false">
-                                        Active <span class="s-btn--badge">198</span>
+                                        Active <span class="s-btn--badge"><span class="s-btn--number">198</span></span>
                                     </button>
                                 </td>
-                                <td class="va-middle ta-center px4 {% if class.class == "s-btn__inverted" %}bg-black-750{% endif %}">
+                                <td class="va-middle ta-center px4">
                                     <button class="ws-nowrap s-btn {{ class.class }} {% if class.class2 %}{{ class.class2 }}{% endif %} {{ btn.class }} is-selected" type="button" aria-pressed="false">
-                                        Active <span class="s-btn--badge">198</span>
+                                        Active <span class="s-btn--badge"><span class="s-btn--number">198</span></span>
                                     </button>
                                 </td>
-                                <td class="va-middle px4 {% if class.class == "s-btn__inverted" %}bg-black-750{% endif %}">
+                                <td class="va-middle px4">
                                     <button class="ws-nowrap s-btn {{ class.class }} {% if class.class2 %}{{ class.class2 }}{% endif %} {{ btn.class }}" type="button" aria-pressed="false" disabled>
-                                        Active <span class="s-btn--badge">198</span>
+                                        Active <span class="s-btn--badge"><span class="s-btn--number">198</span></span>
                                     </button>
                                 </td>
                             </tr>

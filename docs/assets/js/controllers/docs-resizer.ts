@@ -26,7 +26,7 @@
         };
     
         small(e: Event) {
-            this._handleSizeEvent(e, "w4");
+            this._handleSizeEvent(e, "w40");
         };
     
         large(e: Event) {
