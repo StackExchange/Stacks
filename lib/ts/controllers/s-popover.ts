@@ -1,8 +1,6 @@
-
-
-(function () {
-    "use strict";
-    Stacks.application.register("s-popover", class extends Stacks.StacksController {
+namespace Stacks {
+    
+    export class PopoverController extends StacksController {
         static targets = [];
 
         private referenceElement!: HTMLElement;
@@ -177,5 +175,7 @@
                 cl.toggle(cls, show);
             });
         }
-    });
-})();
+    }
+}
+
+Stacks.application.register("s-popover", Stacks.PopoverController);
