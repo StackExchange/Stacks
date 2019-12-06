@@ -4516,12 +4516,18 @@ var Stacks;
             popover.className = "s-popover s-popover__tooltip";
             popover.setAttribute("aria-hidden", "true");
             popover.setAttribute("role", "tooltip");
-            element.parentNode.insertBefore(popover, element.nextSibling);
+            var parentNode = element.parentNode;
+            if (parentNode) {
+                parentNode.insertBefore(popover, element.nextSibling);
+            }
+            else {
+                document.body.appendChild(popover);
+            }
         }
-        var arrows = popover.getElementsByClassName("s-popover--arrow");
+        var arrow = popover.querySelector(".s-popover--arrow");
         fn(popover);
-        if (arrows.length > 0) {
-            popover.appendChild(arrows[0]);
+        if (arrow) {
+            popover.appendChild(arrow);
         }
         else {
             popover.insertAdjacentHTML("beforeend", "<div class=\"s-popover--arrow\"></div>");

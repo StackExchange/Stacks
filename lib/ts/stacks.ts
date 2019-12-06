@@ -124,16 +124,22 @@ namespace Stacks {
             popover.className = "s-popover s-popover__tooltip";
             popover.setAttribute("aria-hidden", "true");
             popover.setAttribute("role", "tooltip");
-            // insertBefore inserts at end if element.nextSibling is null.
-            element.parentNode!.insertBefore(popover, element.nextSibling);
+
+            var parentNode = element.parentNode;
+            if (parentNode) {
+                // insertBefore inserts at end if element.nextSibling is null.
+                parentNode.insertBefore(popover, element.nextSibling);
+            } else {
+                document.body.appendChild(popover);
+            }
         }
 
-        const arrows = popover.getElementsByClassName("s-popover--arrow");
+        const arrow = popover.querySelector(".s-popover--arrow");
 
         fn(popover);
 
-        if (arrows.length > 0) {
-            popover.appendChild(arrows[0]);
+        if (arrow) {
+            popover.appendChild(arrow);
         } else {
             popover.insertAdjacentHTML("beforeend", `<div class="s-popover--arrow"></div>`);
         }
