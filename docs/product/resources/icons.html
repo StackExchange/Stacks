@@ -36,9 +36,9 @@ description: All system icons are inline SVG files, invoked via a Razor helper. 
 {% endhighlight %}
     </div>
 
-    <div class="grid s-notice s-notice__info">
-        <div class="grid--cell mr8">{% icon Alert %}</div>
-        <div class="grid--cell lh-xl">
+    <div class="d-flex s-notice s-notice__info">
+        <div class="flex--cell mr8">{% icon Alert %}</div>
+        <div class="flex--cell lh-xl">
             <b>Note:</b> Our <code class="stacks-code bg-powder-300">@Svg</code> helper isn’t available within our documentation. You can call SVGs using our custom Icon liquid tag:
             <code class="stacks-code bg-powder-300 ws-normal lh-md">{% raw %}{% icon Search | optional additional classes | pixel dimension %}{% endraw %}</code>
         </div>
@@ -57,21 +57,21 @@ description: All system icons are inline SVG files, invoked via a Razor helper. 
 
 <section class="stacks-section mb32" id="js-sortable-list">
     {% header h2 | Icon set %}
-    <div class="ps-sticky z-nav t64 bb bc-black-3 bg-white py16 mtn8 mb16 grid jc-space-between">
-        <input type="text" class="grid--cell fuzzy-search s-input s-input__search" placeholder="Search icons…" />
+    <div class="ps-sticky z-nav t64 bb bc-black-3 bg-white py16 mtn8 mb16 d-flex jc-space-between">
+        <input type="text" class="flex--cell fuzzy-search s-input s-input__search" placeholder="Search icons…" />
         <button class="s-btn s-btn__filled ws-nowrap js-color-toggle-btn ml8">Toggle native colors</button>
         {% icon Search | s-input-icon s-input-icon__search %}
     </div>
-    <div class="grid fw-wrap sm:fd-column gs16 grid__allcells4 list js-icon-list">
+    <div class="d-flex fw-wrap sm:fd-column fs16 flex__allcells4 list js-icon-list">
         {% assign icon_sort = site.data.product.icons | sort: "helper" %}
         {% for icon in icon_sort %}
-            <div class="grid--cell">
-                <div class="grid ff-column-nowrap p0 s-card">
-                    <div class="grid fl2 grid__center stacks-icon-preview">
+            <div class="flex--cell">
+                <div class="d-flex ff-column-nowrap p0 s-card">
+                    <div class="d-flex fl2 flex__center stacks-icon-preview">
                         {% icon {{ icon.helper }} | native %}
                     </div>
-                    <div class="grid ff-column-nowrap ai-center p8">
-                        <code class="grid--cell fs-caption py8 ff-mono ow-break-word js-name">@Svg.{{ icon.helper }}</code>
+                    <div class="d-flex ff-column-nowrap ai-center p8">
+                        <code class="flex--cell fs-caption py8 ff-mono ow-break-word js-name">@Svg.{{ icon.helper }}</code>
                     </div>
                 </div>
             </div>
