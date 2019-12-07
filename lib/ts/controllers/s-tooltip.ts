@@ -2,153 +2,114 @@ namespace Stacks {
 
     export interface TooltipOptions {
         placement: string;
-        classNames: string;
     }
 
-    export class TooltipController extends StacksController {
+    export class TooltipController extends BasePopoverController {
         static targets = [];
 
-        // @ts-ignore
-        private popper!: Popper;
+        popoverSelectorAttribute = "aria-describedby";
 
         private boundShow!: any;
         private boundHide!: any;
 
-        private get popoverTarget(): HTMLElement | null {
-            var popoverId = this.element.getAttribute("aria-describedby");
-            return popoverId ? document.getElementById(popoverId) : null;
+        initialize() {
+            this.boundShow = this.boundShow || this.show.bind(this);
+            this.boundHide = this.boundHide || this.hide.bind(this);
+            super.initialize();
         }
 
+        /**
+         * Binds mouseover and mouseout events on controller connect.
+         */
         connect() {
+            super.connect();
             this.bindMouseEvents();
         }
 
+        /**
+         * Unbinds events on controller disconnect.
+         */
         disconnect() {
-            this.toggle(false);
-            if (this.popper) {
-                this.popper.destroy();
-                this.popper = null;
-            }
             this.unbindMouseEvents();
             this.unbindDocumentEvents();
-        };
-
-        private initializePopover() {
-
-            if (this.popper) {
-                return;
-            }
-
-            const popoverTarget = this.popoverTarget;
-
-            if (!popoverTarget) {
-                return;
-            }
-
-            // @ts-ignore
-            this.popper = new Popper(this.element, popoverTarget, {
-                eventsEnabled: false
-            });
+            super.disconnect();
         }
 
         /**
-         * Toggles the visibility of the popover element
-         * @param {boolean=} show - Optional parameter that force shows/hides the element or toggles it if left undefined
+         * Attempts to generate a new tooltip popover from the title attribute if no popover
+         * was present when requested, otherwise throws an error.
          */
-        toggle(show: boolean) {
-
-            if (show) {
-                const visiblePopover = document.querySelector(".s-popover.is-visible");
-                if (visiblePopover && visiblePopover.id) {
-                    const control = document.querySelector(`[aria-controls=${visiblePopover.id}]`);
-                    if (control && control.hasAttribute("data-controller") && /(^|\s)s-popover(\s|$)/.test(control.getAttribute("data-controller")!)) {
-                        return;
-                    }
-                }
-            }
-
-            // show/hide events trigger before toggling the class
-            const srcEvent = this.triggerEvent(show ? "show" : "hide");
-            if (srcEvent.defaultPrevented) { return; }
-
-            if (show && this.popoverTarget === null) {
-
-                var title = this.element.getAttribute('title');
-                if (title) {
-                    Stacks.setTooltipText(this.element, title);
-                    this.element.removeAttribute('title');
-                } else {
-                    throw "No popover set.  Element must have [aria-describedby=\"{POPOVER_ID}\"] pointing to an actual element.";
-                }
-            }
-
-            this.initializePopover();
-
-            var cl = this.popoverTarget!.classList;
-
-            if (this.data.has("class-names")) {
-                this.data.get("class-names")!.split(/\s+/).forEach(cls => cl.add(cls));
-            }
-
-            // @ts-ignore
-            this.popper.options.placement = this.data.get("placement") as Popper.Placement || "bottom";
-            this.popper.update();
-            cl.toggle("is-visible", show);
-
-            if (show) {
-                this.bindDocumentEvents();
+        protected popoverNotFound()
+        {
+            var title = this.element.getAttribute("title");
+            if (title) {
+                Stacks.setTooltipText(this.element, title);
+                this.element.removeAttribute("title");
             } else {
-                this.unbindDocumentEvents();
+                super.popoverNotFound();
             }
-
-            // shown/hidden events trigger after toggling the class
-            this.triggerEvent(show ? "shown" : "hidden");
-        };
-
-        private createEventBindings() {
-            this.boundShow = this.boundShow || (() => this.toggle(true));
-            this.boundHide = this.boundHide || (() => this.toggle(false));
         }
 
+        /**
+         * Attempts to show the tooltip popover so long as no other Stacks-managed popover is
+         * present on the page.
+         */
+        show() {
+            if (PopoverController.visiblePopover !== null) { return; }
+            super.show();
+        }
+
+        protected shown() {
+            this.bindDocumentEvents();
+            super.shown();
+        }
+
+        protected hidden() {
+            this.unbindDocumentEvents();
+            super.hidden();
+        }
+
+        /**
+         * Automatically shows and hides the popover on hover events.
+         */
         private bindMouseEvents() {
-            this.createEventBindings();
             this.unbindMouseEvents();
-            this.element.addEventListener("mouseover", this.boundShow);
-            this.element.addEventListener("mouseout", this.boundHide);
+            this.referenceElement.addEventListener("mouseover", this.boundShow);
+            this.referenceElement.addEventListener("mouseout", this.boundHide);
         }
 
         private unbindMouseEvents() {
-            this.createEventBindings();
-            this.element.removeEventListener("mouseover", this.boundShow);
-            this.element.removeEventListener("mouseout", this.boundHide);
+            this.referenceElement.removeEventListener("mouseover", this.boundShow);
+            this.referenceElement.removeEventListener("mouseout", this.boundHide);
         }
 
         /**
-         * Binds global events to the document for hiding popovers on user interaction
+         * Automatically hides the tooltip popover when a Stacks popover is shown anywhere on
+         * the page.
          */
         private bindDocumentEvents() {
             document.addEventListener("s-popover:shown", this.boundHide);
-            if (this.popper) {
-                this.popper.enableEventListeners();
-            }
+        }
+
+        private unbindDocumentEvents() {
+            document.removeEventListener("s-popover:shown", this.boundHide);
         }
 
         /**
-         * Unbinds global events to the document for hiding popovers on user interaction
+         * Generates an ID for tooltips created with setTooltip.
          */
-        private unbindDocumentEvents() {
-            document.removeEventListener("s-popover:shown", this.boundHide);
-            if (this.popper) {
-                this.popper.disableEventListeners();
-            }
-        }
-
-        private static generatedIdCounter = 0;
-
         private static generateId() {
             return "--stacks-s-tooltip-" + (TooltipController.generatedIdCounter++);
         }
 
+        private static generatedIdCounter = 0;
+
+        /**
+         * Adds or updates the contents of a tooltip controller on a given element, creating controller and popover as needed.
+         * @param element An element that will become a s-tooltip controller.
+         * @param fn A function which takes a s-popover element and configures its contents.
+         * @param options Options for rendering the tooltip.
+         */
         static setTooltip(element: Element, fn: (popover: HTMLElement) => void, options?: TooltipOptions) {
 
             var controllerText = element.getAttribute("data-controller") || "";
@@ -164,10 +125,6 @@ namespace Stacks {
 
             if (options && options.placement) {
                 element.setAttribute("data-s-tooltip-placement", options.placement);
-            }
-
-            if (options && options.classNames) {
-                element.setAttribute("data-s-tooltip-class-names", options.classNames);
             }
 
             var popover = document.getElementById(popoverId);
@@ -199,10 +156,22 @@ namespace Stacks {
         }
     }
 
+    /**
+     * Adds or updates a Stacks tooltip on a given element.
+     * @param element The element to add a tooltip to.
+     * @param html An HTML string to populate the tooltip with.
+     * @param options Options for rendering the tooltip.
+     */
     export function setTooltipHtml(element: Element, html: string, options?: TooltipOptions) {
         TooltipController.setTooltip(element, popover => popover.innerHTML = html, options);
     }
 
+    /**
+     * Adds or updates a Stacks tooltip on a given element.
+     * @param element The element to add a tooltip to.
+     * @param text An plain text string to populate the tooltip with.
+     * @param options Options for rendering the tooltip.
+     */
     export function setTooltipText(element: Element, text: string, options?: TooltipOptions) {
         TooltipController.setTooltip(element, popover => popover.textContent = text, options);
     }

@@ -4683,89 +4683,158 @@ var __extends = (this && this.__extends) || (function () {
 })();
 var Stacks;
 (function (Stacks) {
+    var BasePopoverController = (function (_super) {
+        __extends(BasePopoverController, _super);
+        function BasePopoverController() {
+            return _super !== null && _super.apply(this, arguments) || this;
+        }
+        Object.defineProperty(BasePopoverController.prototype, "referenceElement", {
+            get: function () {
+                var referenceSelector = this.data.get("reference-selector");
+                return referenceSelector && this.element.querySelector(referenceSelector) || this.element;
+            },
+            enumerable: true,
+            configurable: true
+        });
+        Object.defineProperty(BasePopoverController.prototype, "popoverElement", {
+            get: function () {
+                var popoverId = this.referenceElement.getAttribute(this.popoverSelectorAttribute);
+                return popoverId ? document.getElementById(popoverId) : null;
+            },
+            enumerable: true,
+            configurable: true
+        });
+        Object.defineProperty(BasePopoverController.prototype, "isVisible", {
+            get: function () {
+                var popoverElement = this.popoverElement;
+                return popoverElement ? popoverElement.classList.contains("is-visible") : false;
+            },
+            enumerable: true,
+            configurable: true
+        });
+        BasePopoverController.prototype.connect = function () {
+            _super.prototype.connect.call(this);
+            if (this.isVisible) {
+                this.finishShow();
+            }
+        };
+        BasePopoverController.prototype.disconnect = function () {
+            this.hide();
+            if (this.popper) {
+                this.popper.destroy();
+                this.popper = null;
+            }
+            _super.prototype.disconnect.call(this);
+        };
+        BasePopoverController.prototype.popoverNotFound = function () {
+            var popoverId = this.referenceElement.getAttribute(this.popoverSelectorAttribute);
+            if (!popoverId) {
+                throw "[" + this.popoverSelectorAttribute + "=\"{POPOVER_ID}\"] required";
+            }
+            else {
+                throw "element with id \"" + popoverId + "\" not found";
+            }
+        };
+        BasePopoverController.prototype.toggle = function () {
+            this.isVisible ? this.hide() : this.show();
+        };
+        BasePopoverController.prototype.show = function () {
+            if (this.isVisible) {
+                return;
+            }
+            if (this.triggerEvent("show").defaultPrevented) {
+                return;
+            }
+            if (!this.popoverElement) {
+                this.popoverNotFound();
+            }
+            this.finishShow();
+        };
+        BasePopoverController.prototype.finishShow = function () {
+            var popoverElement = this.popoverElement;
+            if (!popoverElement) {
+                return;
+            }
+            if (!this.popper) {
+                this.popper = new Popper(this.referenceElement, popoverElement, {
+                    eventsEnabled: false
+                });
+            }
+            this.popper.options.placement = this.data.get("placement") || "bottom";
+            this.popper.update();
+            popoverElement.classList.add("is-visible");
+            this.popper.enableEventListeners();
+            this.shown();
+        };
+        BasePopoverController.prototype.shown = function () {
+            this.triggerEvent("shown");
+        };
+        BasePopoverController.prototype.hide = function () {
+            if (!this.isVisible) {
+                return;
+            }
+            if (this.triggerEvent("hide").defaultPrevented) {
+                return;
+            }
+            var popoverElement = this.popoverElement;
+            if (!popoverElement) {
+                return;
+            }
+            popoverElement.classList.remove("is-visible");
+            if (this.popper) {
+                this.popper.disableEventListeners();
+            }
+            this.hidden();
+        };
+        BasePopoverController.prototype.hidden = function () {
+            this.triggerEvent("hidden");
+        };
+        return BasePopoverController;
+    }(Stacks.StacksController));
+    Stacks.BasePopoverController = BasePopoverController;
     var PopoverController = (function (_super) {
         __extends(PopoverController, _super);
         function PopoverController() {
-            return _super !== null && _super.apply(this, arguments) || this;
+            var _this = _super !== null && _super.apply(this, arguments) || this;
+            _this.popoverSelectorAttribute = "aria-controls";
+            return _this;
         }
-        PopoverController.prototype.connect = function () {
-            var referenceSelector = this.data.get("reference-selector");
-            this.referenceElement = referenceSelector && this.element.querySelector(referenceSelector) || this.element;
-            var popoverId = this.referenceElement.getAttribute("aria-controls");
-            if (!popoverId) {
-                throw "[aria-controls=\"{POPOVER_ID}\"] required";
-            }
-            var element = document.getElementById(popoverId);
-            if (!element) {
-                throw "element with popover id not found";
-            }
-            this.popoverElement = element;
-            var isVisibleByDefault = this.popoverElement.classList.contains("is-visible");
-            this.popper = new Popper(this.referenceElement, this.popoverElement, {
-                placement: this.data.get("placement") || "bottom",
-                eventsEnabled: isVisibleByDefault
-            });
-            this._toggleOptionalClasses(isVisibleByDefault);
+        PopoverController.prototype.initialize = function () {
+            this.boundHideOnOutsideClick = this.boundHideOnOutsideClick || this.hideOnOutsideClick.bind(this);
+            this.boundHideOnEscapePress = this.boundHideOnEscapePress || this.hideOnEscapePress.bind(this);
+            _super.prototype.initialize.call(this);
         };
-        ;
         PopoverController.prototype.disconnect = function () {
-            this.popper.destroy();
-            this._unbindDocumentEvents();
+            this.unbindDocumentEvents();
+            _super.prototype.disconnect.call(this);
         };
-        ;
-        PopoverController.prototype.toggle = function () {
-            this._toggle();
+        PopoverController.prototype.shown = function () {
+            this.toggleOptionalClasses(true);
+            this.bindDocumentEvents();
+            _super.prototype.shown.call(this);
         };
-        ;
-        PopoverController.prototype.show = function () {
-            this._toggle(true);
+        PopoverController.prototype.hidden = function () {
+            this.toggleOptionalClasses(false);
+            this.unbindDocumentEvents();
+            _super.prototype.hidden.call(this);
         };
-        ;
-        PopoverController.prototype.hide = function () {
-            this._toggle(false);
+        PopoverController.prototype.bindDocumentEvents = function () {
+            document.addEventListener("click", this.boundHideOnOutsideClick);
+            document.addEventListener("keyup", this.boundHideOnEscapePress);
         };
-        ;
-        PopoverController.prototype._toggle = function (show) {
-            var toShow = show;
-            if (typeof toShow === "undefined") {
-                toShow = !this.popoverElement.classList.contains("is-visible");
-            }
-            this.triggerEvent(toShow ? "show" : "hide");
-            this.popper.update();
-            this.popoverElement.classList.toggle("is-visible", show);
-            this._toggleOptionalClasses(show);
-            if (this.popoverElement.classList.contains("is-visible")) {
-                this._bindDocumentEvents();
-            }
-            else {
-                this._unbindDocumentEvents();
-            }
-            this.triggerEvent(toShow ? "shown" : "hidden");
+        PopoverController.prototype.unbindDocumentEvents = function () {
+            document.removeEventListener("click", this.boundHideOnOutsideClick);
+            document.removeEventListener("keyup", this.boundHideOnEscapePress);
         };
-        ;
-        PopoverController.prototype._bindDocumentEvents = function () {
-            this._boundClickFn = this._boundClickFn || this._hideOnOutsideClick.bind(this);
-            this._boundKeypressFn = this._boundKeypressFn || this._hideOnEscapePress.bind(this);
-            document.addEventListener("click", this._boundClickFn);
-            document.addEventListener("keyup", this._boundKeypressFn);
-            this.popper.enableEventListeners();
-        };
-        ;
-        PopoverController.prototype._unbindDocumentEvents = function () {
-            document.removeEventListener("click", this._boundClickFn);
-            document.removeEventListener("keyup", this._boundKeypressFn);
-            this.popper.disableEventListeners();
-        };
-        ;
-        PopoverController.prototype._hideOnOutsideClick = function (e) {
+        PopoverController.prototype.hideOnOutsideClick = function (e) {
             var target = e.target;
             if (!this.referenceElement.contains(target) && !this.popoverElement.contains(target)) {
                 this.hide();
             }
         };
         ;
-        PopoverController.prototype._hideOnEscapePress = function (e) {
-            if (e.which !== 27 || !this.popoverElement.classList.contains("is-visible")) {
+        PopoverController.prototype.hideOnEscapePress = function (e) {
+            if (e.which !== 27 || !this.isVisible) {
                 return;
             }
             if (this.popoverElement.contains(e.target)) {
@@ -4774,7 +4843,7 @@ var Stacks;
             this.hide();
         };
         ;
-        PopoverController.prototype._toggleOptionalClasses = function (show) {
+        PopoverController.prototype.toggleOptionalClasses = function (show) {
             if (!this.data.has("toggle-class")) {
                 return;
             }
@@ -4783,9 +4852,27 @@ var Stacks;
                 cl.toggle(cls, show);
             });
         };
+        Object.defineProperty(PopoverController, "visiblePopover", {
+            get: function () {
+                var found = null;
+                document.querySelectorAll(".s-popover.is-visible").forEach(function (popover) {
+                    if (found || !popover.id) {
+                        return;
+                    }
+                    var control = document.querySelector("[aria-controls=\"" + popover.id.replace(/["\\]/g, '\\$&') + "\"]");
+                    while (control !== null && found === null) {
+                        found = Stacks.application.getControllerForElementAndIdentifier(control, "s-popover");
+                        control = control.parentElement;
+                    }
+                });
+                return found;
+            },
+            enumerable: true,
+            configurable: true
+        });
         PopoverController.targets = [];
         return PopoverController;
-    }(Stacks.StacksController));
+    }(BasePopoverController));
     Stacks.PopoverController = PopoverController;
 })(Stacks || (Stacks = {}));
 Stacks.application.register("s-popover", Stacks.PopoverController);
@@ -4996,109 +5083,62 @@ var Stacks;
     var TooltipController = (function (_super) {
         __extends(TooltipController, _super);
         function TooltipController() {
-            return _super !== null && _super.apply(this, arguments) || this;
+            var _this = _super !== null && _super.apply(this, arguments) || this;
+            _this.popoverSelectorAttribute = "aria-describedby";
+            return _this;
         }
-        Object.defineProperty(TooltipController.prototype, "popoverTarget", {
-            get: function () {
-                var popoverId = this.element.getAttribute("aria-describedby");
-                return popoverId ? document.getElementById(popoverId) : null;
-            },
-            enumerable: true,
-            configurable: true
-        });
+        TooltipController.prototype.initialize = function () {
+            this.boundShow = this.boundShow || this.show.bind(this);
+            this.boundHide = this.boundHide || this.hide.bind(this);
+            _super.prototype.initialize.call(this);
+        };
         TooltipController.prototype.connect = function () {
+            _super.prototype.connect.call(this);
             this.bindMouseEvents();
         };
         TooltipController.prototype.disconnect = function () {
-            this.toggle(false);
-            if (this.popper) {
-                this.popper.destroy();
-                this.popper = null;
-            }
             this.unbindMouseEvents();
             this.unbindDocumentEvents();
+            _super.prototype.disconnect.call(this);
         };
-        ;
-        TooltipController.prototype.initializePopover = function () {
-            if (this.popper) {
-                return;
-            }
-            var popoverTarget = this.popoverTarget;
-            if (!popoverTarget) {
-                return;
-            }
-            this.popper = new Popper(this.element, popoverTarget, {
-                eventsEnabled: false
-            });
-        };
-        TooltipController.prototype.toggle = function (show) {
-            if (show) {
-                var visiblePopover = document.querySelector(".s-popover.is-visible");
-                if (visiblePopover && visiblePopover.id) {
-                    var control = document.querySelector("[aria-controls=" + visiblePopover.id + "]");
-                    if (control && control.hasAttribute("data-controller") && /(^|\s)s-popover(\s|$)/.test(control.getAttribute("data-controller"))) {
-                        return;
-                    }
-                }
-            }
-            var srcEvent = this.triggerEvent(show ? "show" : "hide");
-            if (srcEvent.defaultPrevented) {
-                return;
-            }
-            if (show && this.popoverTarget === null) {
-                var title = this.element.getAttribute('title');
-                if (title) {
-                    Stacks.setTooltipText(this.element, title);
-                    this.element.removeAttribute('title');
-                }
-                else {
-                    throw "No popover set.  Element must have [aria-describedby=\"{POPOVER_ID}\"] pointing to an actual element.";
-                }
-            }
-            this.initializePopover();
-            var cl = this.popoverTarget.classList;
-            if (this.data.has("class-names")) {
-                this.data.get("class-names").split(/\s+/).forEach(function (cls) { return cl.add(cls); });
-            }
-            this.popper.options.placement = this.data.get("placement") || "bottom";
-            this.popper.update();
-            cl.toggle("is-visible", show);
-            if (show) {
-                this.bindDocumentEvents();
+        TooltipController.prototype.popoverNotFound = function () {
+            var title = this.element.getAttribute("title");
+            if (title) {
+                Stacks.setTooltipText(this.element, title);
+                this.element.removeAttribute("title");
             }
             else {
-                this.unbindDocumentEvents();
+                _super.prototype.popoverNotFound.call(this);
             }
-            this.triggerEvent(show ? "shown" : "hidden");
         };
-        ;
-        TooltipController.prototype.createEventBindings = function () {
-            var _this = this;
-            this.boundShow = this.boundShow || (function () { return _this.toggle(true); });
-            this.boundHide = this.boundHide || (function () { return _this.toggle(false); });
+        TooltipController.prototype.show = function () {
+            if (Stacks.PopoverController.visiblePopover !== null) {
+                return;
+            }
+            _super.prototype.show.call(this);
+        };
+        TooltipController.prototype.shown = function () {
+            this.bindDocumentEvents();
+            _super.prototype.shown.call(this);
+        };
+        TooltipController.prototype.hidden = function () {
+            this.unbindDocumentEvents();
+            _super.prototype.hidden.call(this);
         };
         TooltipController.prototype.bindMouseEvents = function () {
-            this.createEventBindings();
             this.unbindMouseEvents();
-            this.element.addEventListener("mouseover", this.boundShow);
-            this.element.addEventListener("mouseout", this.boundHide);
+            this.referenceElement.addEventListener("mouseover", this.boundShow);
+            this.referenceElement.addEventListener("mouseout", this.boundHide);
         };
         TooltipController.prototype.unbindMouseEvents = function () {
-            this.createEventBindings();
-            this.element.removeEventListener("mouseover", this.boundShow);
-            this.element.removeEventListener("mouseout", this.boundHide);
+            this.referenceElement.removeEventListener("mouseover", this.boundShow);
+            this.referenceElement.removeEventListener("mouseout", this.boundHide);
         };
         TooltipController.prototype.bindDocumentEvents = function () {
             document.addEventListener("s-popover:shown", this.boundHide);
-            if (this.popper) {
-                this.popper.enableEventListeners();
-            }
         };
         TooltipController.prototype.unbindDocumentEvents = function () {
             document.removeEventListener("s-popover:shown", this.boundHide);
-            if (this.popper) {
-                this.popper.disableEventListeners();
-            }
         };
         TooltipController.generateId = function () {
             return "--stacks-s-tooltip-" + (TooltipController.generatedIdCounter++);
@@ -5115,9 +5155,6 @@ var Stacks;
             }
             if (options && options.placement) {
                 element.setAttribute("data-s-tooltip-placement", options.placement);
-            }
-            if (options && options.classNames) {
-                element.setAttribute("data-s-tooltip-class-names", options.classNames);
             }
             var popover = document.getElementById(popoverId);
             if (!popover) {
@@ -5146,7 +5183,7 @@ var Stacks;
         TooltipController.targets = [];
         TooltipController.generatedIdCounter = 0;
         return TooltipController;
-    }(Stacks.StacksController));
+    }(Stacks.BasePopoverController));
     Stacks.TooltipController = TooltipController;
     function setTooltipHtml(element, html, options) {
         TooltipController.setTooltip(element, function (popover) { return popover.innerHTML = html; }, options);
