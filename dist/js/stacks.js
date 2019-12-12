@@ -5090,6 +5090,7 @@ var Stacks;
         TooltipController.prototype.initialize = function () {
             this.boundShow = this.boundShow || this.show.bind(this);
             this.boundHide = this.boundHide || this.hide.bind(this);
+            this.boundHideIfWithin = this.boundHideIfWithin || this.hideIfWithin.bind(this);
             _super.prototype.initialize.call(this);
         };
         TooltipController.prototype.connect = function () {
@@ -5112,7 +5113,8 @@ var Stacks;
             }
         };
         TooltipController.prototype.show = function () {
-            if (Stacks.PopoverController.visiblePopover !== null) {
+            var visiblePopover = Stacks.PopoverController.visiblePopover;
+            if (visiblePopover && visiblePopover.element.contains(this.referenceElement)) {
                 return;
             }
             _super.prototype.show.call(this);
@@ -5125,6 +5127,11 @@ var Stacks;
             this.unbindDocumentEvents();
             _super.prototype.hidden.call(this);
         };
+        TooltipController.prototype.hideIfWithin = function (event) {
+            if (event.target.contains(this.referenceElement)) {
+                this.hide();
+            }
+        };
         TooltipController.prototype.bindMouseEvents = function () {
             this.unbindMouseEvents();
             this.referenceElement.addEventListener("mouseover", this.boundShow);
@@ -5135,10 +5142,10 @@ var Stacks;
             this.referenceElement.removeEventListener("mouseout", this.boundHide);
         };
         TooltipController.prototype.bindDocumentEvents = function () {
-            document.addEventListener("s-popover:shown", this.boundHide);
+            document.addEventListener("s-popover:shown", this.boundHideIfWithin);
         };
         TooltipController.prototype.unbindDocumentEvents = function () {
-            document.removeEventListener("s-popover:shown", this.boundHide);
+            document.removeEventListener("s-popover:shown", this.boundHideIfWithin);
         };
         TooltipController.generateId = function () {
             return "--stacks-s-tooltip-" + (TooltipController.generatedIdCounter++);

@@ -11,10 +11,12 @@ namespace Stacks {
 
         private boundShow!: any;
         private boundHide!: any;
+        private boundHideIfWithin!: any;
 
         initialize() {
             this.boundShow = this.boundShow || this.show.bind(this);
             this.boundHide = this.boundHide || this.hide.bind(this);
+            this.boundHideIfWithin = this.boundHideIfWithin || this.hideIfWithin.bind(this);
             super.initialize();
         }
 
@@ -55,7 +57,8 @@ namespace Stacks {
          * present on the page.
          */
         show() {
-            if (PopoverController.visiblePopover !== null) { return; }
+            const visiblePopover = PopoverController.visiblePopover;
+            if (visiblePopover && visiblePopover.element.contains(this.referenceElement)) { return; }
             super.show();
         }
 
@@ -67,6 +70,16 @@ namespace Stacks {
         protected hidden() {
             this.unbindDocumentEvents();
             super.hidden();
+        }
+
+        /**
+         * Hides the tooltip if is or is within the event's target.
+         * @param event An event object from s-popover:shown
+         */
+        hideIfWithin(event: Event) {
+            if ((<Element>event.target!).contains(this.referenceElement)) {
+                this.hide();
+            }
         }
 
         /**
@@ -88,11 +101,11 @@ namespace Stacks {
          * the page.
          */
         private bindDocumentEvents() {
-            document.addEventListener("s-popover:shown", this.boundHide);
+            document.addEventListener("s-popover:shown", this.boundHideIfWithin);
         }
 
         private unbindDocumentEvents() {
-            document.removeEventListener("s-popover:shown", this.boundHide);
+            document.removeEventListener("s-popover:shown", this.boundHideIfWithin);
         }
 
         /**
