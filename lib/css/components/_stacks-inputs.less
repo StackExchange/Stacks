@@ -35,9 +35,9 @@
     width: 100%;
     margin: 0; // A guard against Core's default margins
     padding: @input-padding;
-    border: 1px solid @black-200;
+    border: 1px solid var(--black-200);
     border-radius: @br-sm;
-    box-shadow: 0 0 0 fade(@white, 0%);
+    color: var(--fc-dark);
     font-size: @fs-body1;
     font-family: inherit;
     line-height: @lh-sm;
@@ -57,16 +57,13 @@
     //  --  PLACEHOLDER
     //  ------------------------------------------------------------------------
     &::-webkit-input-placeholder {
-        color: @black-200;
-    }
-    &:-ms-input-placeholder { // IE
-        color: @black-200;
+        color: var(--black-200);
     }
     &::-ms-input-placeholder { // Edge
-        color: @black-200;
+        color: var(--black-200);
     }
     &::placeholder {
-        color: @black-200;
+        color: var(--black-200);
     }
 
     //  --  REMOVE EDGE ADDITIONS
@@ -94,7 +91,7 @@ fieldset {
 //  ============================================================================
 .s-label {
     padding: 0 @su2; // Helps the label visually line up with inputs
-    color: @fc-dark;
+    color: var(--fc-dark);
     font-family: inherit;
     font-size: @fs-body2;
     font-weight: 700;
@@ -113,25 +110,25 @@ fieldset {
     margin-left: @su4;
     padding: @su2 @su8;
     border-radius: 1000px;
-    background-color: @black-050;
-    color: @black-700;
+    background-color: var(--black-050);
+    color: var(--fc-medium);
     font-size: @fs-caption;
     font-weight: 400;
     vertical-align: text-bottom;
 
     &.s-label--status__required {
-        background-color: @red-050;
-        color: @red-600;
+        background-color: var(--red-100);
+        color: var(--red-600);
     }
 
     &.s-label--status__new {
-        background-color: @green-100;
-        color: @green-700;
+        background-color: var(--green-100);
+        color: var(--green-700);
     }
 
     &.s-label--status__beta {
-        background-color: @blue-100;
-        color: @blue-700;
+        background-color: var(--blue-100);
+        color: var(--blue-700);
     }
 }
 
@@ -141,7 +138,7 @@ fieldset {
 //  ============================================================================
 .s-description {
     padding: 0 @su2; // Helps the label visually line up with inputs
-    color: @fc-medium;
+    color: var(--fc-medium);
     font-size: @fs-caption;
 }
 
@@ -159,11 +156,11 @@ fieldset {
 //  ----------------------------------------------------------------------------
 .s-input-fill {
     padding: @input-padding;
-    border: 1px solid @black-200;
+    border: 1px solid var(--black-200);
     border-right-width: 0;
     border-left-width: 0;
-    background-color: @bgc-lightest;
-    color: @fc-medium;
+    background-color: var(--black-050);
+    color: var(--fc-medium);
     font-family: inherit;
     white-space: nowrap;
     line-height: @lh-sm;
@@ -192,6 +189,7 @@ fieldset {
 //  ----------------------------------------------------------------------------
 .s-select {
     position: relative;
+    color: var(--fc-dark);
 
     //  --  MENU ARROWS
     //      To customize the visual appearance of the select menu arrows, we
@@ -203,7 +201,7 @@ fieldset {
         position: absolute;
         z-index: @zi-selected;
         right: 13px;
-        border-color: @black-700 transparent;
+        border-color: currentColor transparent;
         border-style: solid;
         border-width: 4px;
         pointer-events: none;
@@ -234,9 +232,9 @@ fieldset {
         height: 100%; // Fill the height of its parent
         padding: @input-padding;
         padding-right: @su32;
-        border: 1px solid @black-200;
+        border: 1px solid var(--black-200);
         border-radius: @br-sm;
-        background-color: @white;
+        background-color: var(--white);
         outline: 0;
         font-size: @fs-body1;
         font-family: inherit;
@@ -285,8 +283,8 @@ fieldset {
         margin: 0; // A guard against Core's default margins
         width: 1em;
         height: 1em;
-        border: 1px solid @black-200;
-        background-color: @white;
+        border: 1px solid var(--black-200);
+        background-color: var(--white);
         outline: 0;
         font-size: inherit;
         vertical-align: middle;
@@ -315,29 +313,29 @@ fieldset {
 
         //  Disabled
         &[disabled] {
-            border-color: @black-200;
-            background-color: @black-075;
+            border-color: var(--black-200);
+            background-color: var(--black-075);
         }
 
         &:checked {
-            border-color: @blue-500 !important;
-            background-color: @blue-500;
+            border-color: var(--blue-500) !important;
+            background-color: var(--blue-500);
             background-image: url("data:image/svg+xml,%3Csvg width='11' height='11' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M10 3.41L8.59 2 4 6.59 2.41 5 1 6.41l3 3z' fill='%23fff'/%3E%3C/svg%3E");
 
             &:focus {
-                border-color: @blue-500;
+                border-color: var(--blue-500);
             }
 
             //  Disabled
             &[disabled] {
-                border-color: @black-500 !important;
-                background-color: @black-400;
+                border-color: var(--black-500) !important;
+                background-color: var(--black-400);
             }
         }
 
         &:focus {
-            border-color: @blue-300;
-            box-shadow: 0 0 0 @su4 fade(@blue-500, 15%);
+            border-color: var(--blue-300);
+            box-shadow: 0 0 0 @su4 var(--focus-ring);
         }
     }
 }
@@ -349,13 +347,13 @@ fieldset {
         border-radius: @br-circle;
 
         &:checked {
-            border-color: @blue-500;
+            border-color: var(--blue-500);
             border-width: 0.30769231em;
-            background-color: @white;
+            background-color: @white; // This should always be white regardless of dark mode
         }
 
         &:focus {
-            box-shadow: 0 0 0 @su4 fade(@blue-500, 15%);
+            box-shadow: 0 0 0 @su4 var(--focus-ring);
         }
     }
 }
@@ -368,8 +366,8 @@ fieldset {
 //  Focus
 & {
     @focus-style: {
-        border-color: @blue-300;
-        box-shadow: 0 0 0 @su4 fade(@blue-500, 15%);
+        border-color: var(--blue-300);
+        box-shadow: 0 0 0 @su4 var(--focus-ring);
         outline: 0;
     };
 
@@ -393,10 +391,9 @@ fieldset {
     //  Disabled, Read-only
     &[disabled],
     &[read-only] {
-        border-color: @black-075;
-        background-color: @bgc-lightest;
-        box-shadow: inset 0 0 2px fade(@black-350, 10%);
-        color: @black-200;
+        border-color: var(--black-075);
+        background-color: var(--black-050);
+        color: var(--black-200);
     }
 
     //  Disabled
@@ -445,27 +442,23 @@ fieldset {
     .s-checkbox,
     .s-radio:not(:checked),
     .s-select > select {
-        border-color: @yellow-600;
+        border-color: var(--yellow-600);
 
         &:focus {
-            box-shadow: 0 0 0 @su4 fade(@yellow-500, 40%);
+            box-shadow: 0 0 0 @su4 var(--focus-ring-warning);
         }
     }
 
     .s-input-message {
-        color: @yellow-800;
+        color: var(--yellow-800);
 
         a {
-            color: @yellow-900;
-
-            &:hover {
-                color: darken(@yellow-900, 10%);
-            }
+            color: var(--yellow-900);
         }
     }
 
     .s-input-icon {
-        color: @yellow-600;
+        color: var(--yellow-600);
     }
 }
 
@@ -477,27 +470,27 @@ fieldset {
     .s-checkbox,
     .s-radio:not(:checked),
     .s-select > select {
-        border-color: @red-400;
+        border-color: var(--red-400);
 
         &:focus {
-            box-shadow: 0 0 0 @su4 fade(@red-200, 40%);
+            box-shadow: 0 0 0 @su4 var(--focus-ring-error);
         }
     }
 
     .s-input-message {
-        color: @red-500;
+        color: var(--red-500);
 
         a {
-            color: @red-800;
+            color: var(--red-800);
 
             &:hover {
-                color: @red-900;
+                color: var(--red-900);
             }
         }
     }
 
     .s-input-icon {
-        color: @red-400;
+        color: var(--red-400);
     }
 }
 
@@ -509,27 +502,27 @@ fieldset {
     .s-checkbox,
     .s-radio:not(:checked),
     .s-select > select {
-        border-color: @green-400;
+        border-color: var(--green-400);
 
         &:focus {
-            box-shadow: 0 0 0 @su4 fade(@green-200, 40%);
+            box-shadow: 0 0 0 @su4 var(--focus-ring-success);
         }
     }
 
     .s-input-message {
-        color: darken(@green-500,5%);
+        color: var(--green-500);
 
         a {
-            color: @green-800;
+            color: var(--green-800);
 
             &:hover {
-                color: @green-900;
+                color: var(--green-900);
             }
         }
     }
 
     .s-input-icon {
-        color: @green-400;
+        color: var(--green-400);
     }
 }
 
@@ -538,7 +531,7 @@ fieldset {
 .is-disabled {
     .s-select:before,
     .s-select:after {
-        border-color: @black-200 transparent;
+        border-color: var(--black-200) transparent;
     }
 
     .s-label,
@@ -547,7 +540,7 @@ fieldset {
     }
 
     .s-input-icon {
-        color: @black-200;
+        color: var(--black-200);
     }
 
     .s-label {
@@ -568,7 +561,7 @@ fieldset {
     &.s-input-icon__creditcard {
         right: auto;
         left: 0.7em;
-        color: @black-200;
+        color: var(--black-200);
     }
 }
 

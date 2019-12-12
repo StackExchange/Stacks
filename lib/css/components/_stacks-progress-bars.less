@@ -7,18 +7,10 @@
 //  visit https://stackoverflow.design/
 //
 //  TABLE OF CONTENTS
-//  • VARIABLE
 //  • BASE STYLE
 //  • VARIATION PROGRESS BACKGROUNDS
 //  • BADGES
 //  • STEPPED
-//
-//  ============================================================================
-//  $   VARIABLES
-//  ----------------------------------------------------------------------------
-@progressbar-zindex:       0;
-@progressbar-fill-bgc:     @black-100;
-
 
 //  ============================================================================
 //  $   BASE STYLE
@@ -34,13 +26,13 @@
 //  ----------------------------------------------------------------------------
 .s-progress {
     width: 100%;
-    background-color: @progressbar-fill-bgc;
+    background-color: var(--black-200);
 }
 
 //  $$   BAR
 //  ----------------------------------------------------------------------------
 .s-progress--bar {
-    background-color: saturate(@green-400, 25%);
+    background-color: var(--green-400);
 }
 
 
@@ -55,8 +47,8 @@
     border: 1px solid transparent;
     font-size: @fs-caption;
     line-height: @lh-xs;
-    color: @fc-dark;
-    z-index: @progressbar-zindex + 2;
+    color: var(--fc-dark);
+    z-index: @zi-base + 2;
 }
 
 
@@ -64,19 +56,19 @@
 //  $   VARIATION PROGRESS BACKGROUNDS
 //  ---------------------------------------------------------------------------
 .s-progress__brand .s-progress--bar {
-    background-color: saturate(@orange-400,15%);
+    background-color: var(--orange-500);
 }
 
 .s-progress__info .s-progress--bar {
-    background-color: saturate(@blue-500, 15%);
+    background-color: var(--blue-500);
 }
 
 .s-progress__privilege {
     .s-progress--bar {
-        background-color: @green-050;
+        background-color: var(--green-050);
     }
     .s-progress--label {
-        border-color: @green-400;
+        border-color: var(--green-400);
     }
 }
 
@@ -102,10 +94,10 @@
 //  ---------------------------------------------------------------------------
 .s-progress__gold {
     .s-progress--bar {
-        background-color: @gold-bg;
+        background-color: var(--gold-bg);
     }
     .s-progress--label {
-        border-color: @gold-dot;
+        border-color: var(--gold-dot);
     }
 }
 
@@ -113,10 +105,10 @@
 //  ---------------------------------------------------------------------------
 .s-progress__silver {
     .s-progress--bar {
-        background-color: @silver-bg;
+        background-color: var(--silver-bg);
     }
     .s-progress--label {
-        border-color: @silver-dot;
+        border-color: var(--silver-dot);
     }
 }
 
@@ -124,10 +116,10 @@
 //  ---------------------------------------------------------------------------
 .s-progress__bronze {
     .s-progress--bar {
-        background-color: @bronze-bg;
+        background-color: var(--bronze-bg);
     }
     .s-progress--label {
-        border-color: @bronze-dot;
+        border-color: var(--bronze-dot);
     }
 }
 
@@ -159,7 +151,7 @@
         border-radius: 0;
         padding: @su12 @su6 0 @su6;
         text-align: center;
-        color: @black-200;
+        color: var(--black-200);
         z-index: @zi-base;
     }
 
@@ -168,19 +160,19 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        background: @black-200;
+        background: var(--black-200);
         border-radius: 100%;
         width: @su24;
         height: @su24;
         z-index: @zi-selected;
-        color: @white;
+        color: var(--white);
     }
 
     .s-progress--bar {
         position: absolute;
         top: 9px;
         height: @su6;
-        background: @black-200;
+        background: var(--black-200);
         z-index: @zi-base;
         border-radius: 0;
 
@@ -197,27 +189,27 @@
     
     .s-progress--step.is-active {
         .s-progress--bar.s-progress--bar__left {
-            background: @blue-500;
+            background: var(--blue-500);
         }
 
         .s-progress--stop {
-            background: @blue-500;
-            box-shadow: 0 0 0 @su6 fade(@blue-500, 15%);
+            background: var(--blue-500);
+            box-shadow: 0 0 0 @su6 var(--focus-ring);
         }
 
         .s-progress--label {
-            color: @fc-dark;
+            color: var(--fc-dark);
         }
     }
 
     .s-progress--step.is-complete {
         .s-progress--bar,
         .s-progress--stop {
-            background: @blue-500;
+            background: var(--blue-500);
         }
 
         .s-progress--label {
-            color: @fc-dark;
+            color: var(--fc-dark);
         }
     }
 }
