@@ -10,6 +10,7 @@ module Jekyll
 
       @element = @markup[0].strip!
       @text = @markup[1]
+      @slug = @markup[2]
     end
 
     def interpolate(markup, context)
@@ -28,7 +29,11 @@ module Jekyll
 
       processedText.strip!
 
-      textDowncase = processedText.downcase
+      unless @slug.nil?
+        textDowncase = @slug.strip.downcase
+      else
+        textDowncase = processedText.downcase
+      end
 
       if processedText.match(/\s/)
           textNoSpace = textDowncase.gsub! /\s/, '-'
