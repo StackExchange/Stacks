@@ -187,6 +187,7 @@ description: Popovers are small content containers that provide a contextual ove
         </div>
     </div>
 
+    {% header h4 | Default interactivity %}
     <p class="stacks-copy">To enable interactive popovers, you will need to add the above attributes to the popover’s originating button. Custom positioning can be specified using the <code class="stacks-code">data-s-popover-placement</code>. In the following example, we’ve chosen <code class="stacks-code">bottom-start</code>. No positioning classes need to be added to your markup, only the data attributes.</p>
     <p class="stacks-copy">To promote being able to tab to an open popover, it’s best to place the popover immediately after the toggling button in the markup as siblings.</p>
 
@@ -263,7 +264,7 @@ description: Popovers are small content containers that provide a contextual ove
 <section class="stacks-section">
     {% header h2 | Hover tooltips %}
 
-    <p class="stacks-copy">When a popover is intended only for display as an on-hover tooltip and contains no interactive copy, the <code class="stacks-code">s-tooltip</code> controller can be used in place of <code class="stacks-code">s-popover</code>. This is a separate controller that can be used alongside <code class="stacks-code">s-popover</code> on a single target element.</p>
+    <p class="stacks-copy">When a popover is intended only for display as an on-hover tooltip and contains no interactive text, the <code class="stacks-code">s-tooltip</code> controller can be used in place of <code class="stacks-code">s-popover</code>. This is a separate controller that can be used alongside <code class="stacks-code">s-popover</code> on a single target element.</p>
 
     {% header h3 | Attributes | tooltip-attributes %}
     <div class="overflow-x-auto mb32">
@@ -346,6 +347,7 @@ description: Popovers are small content containers that provide a contextual ove
     {% header h3 | Examples | tooltip-examples %}
     <p class="stacks-copy">If the user doesn’t need to interact with the <em>contents</em> of the popover, it may be appropriate to only show it on hover. This will make popovers feel like a tooltip. To do so, we provide an alternative controller, <code class="stacks-code">s-tooltip</code>, that shows the tooltip only on hover.</p>
 
+    {% header h4 | Title attribute %}
     <p class="stacks-copy">In the simple case where no markup is needed in the tooltip, the popover element can be omitted and automatically generated using the <code class="stacks-code">title</code> attribute.</p>
 
     <div class="stacks-preview">
@@ -358,17 +360,17 @@ description: Popovers are small content containers that provide a contextual ove
 </button>
 {% endhighlight %}
         <div class="stacks-preview--example bg-black-025">
-            <button class="s-btn" role="button"
+            <button class="s-btn s-btn__filled" role="button"
                     data-controller="s-tooltip"
                     title="This popover shows content from the title attribute."
                     data-s-tooltip-placement="bottom-start">
-                Hover popover
+                Hover tooltip popover
             </button>
         </div>
     </div>
 
+    {% header h4 | JavaScript configuration %}
     <p class="stacks-copy">In cases where the tooltip needs to display simple text or HTML, the popover can be configured using JavaScript.</p>
-
     <div class="stacks-preview">
 {% highlight javascript %}
 Stacks.setTooltipText(el,
@@ -384,19 +386,20 @@ Stacks.setTooltipHtml(el,
                       });
 {% endhighlight %}
         <div class="stacks-preview--example bg-black-025">
-            <button class="s-btn js-text-tooltip-example" role="button">
-                Hover popover with text
+            <button class="s-btn s-btn__filled js-text-tooltip-example" role="button">
+                Hover tooltip popover with text
             </button>
-            <button class="s-btn js-html-tooltip-example" role="button">
-                Hover popover with HTML
+            <button class="s-btn s-btn__filled js-html-tooltip-example" role="button">
+                Hover tooltip popover with HTML
             </button>
         </div>
     </div>
     <script>
         Stacks.setTooltipText(document.querySelector(".js-text-tooltip-example"), "Plain text tooltip", { placement: "top-start" });
-        Stacks.setTooltipHtml(document.querySelector(".js-html-tooltip-example"), "Tooltip <i>with</i> HTML", { placement: "top-end" });
+        Stacks.setTooltipHtml(document.querySelector(".js-html-tooltip-example"), "View all questions with <span class='s-tag'>stacks</span>", { placement: "top-end" });
     </script>
 
+    {% header h4 | Rich tooltips %}
     <p class="stacks-copy">When a rich tooltip is required, a popover element can be configured in much the same way as an <code class="stacks-code">s-popover</code> controller, with the most notable difference being the use of <code class="stacks-code">aria-describedby</code> instead of <code class="stacks-code">aria-controls</code>.</p>
 
     <div class="stacks-preview">
@@ -416,11 +419,11 @@ Stacks.setTooltipHtml(el,
 </div>
 {% endhighlight %}
         <div class="stacks-preview--example bg-black-025">
-            <button class="s-btn" role="button"
+            <button class="s-btn s-btn__filled" role="button"
                     aria-describedby="tooltip-example"
                     data-controller="s-tooltip"
                     data-s-tooltip-placement="top-start">
-                Hover popover
+                Hover tooltip popover
             </button>
             <div class="s-popover s-popover__tooltip"
                 id="tooltip-example"
@@ -435,7 +438,8 @@ Stacks.setTooltipHtml(el,
         </div>
     </div>
 
-    <p class="stacks-copy">Hover tooltips can be used alongside interactive popovers.  Tooltips will no appear when the interactive popover is visible.</p>
+    {% header h4 | Tooltips and interactive popovers %}
+    <p class="stacks-copy">Hover tooltips can be used alongside interactive popovers. Tooltips will no appear when the interactive popover is visible.</p>
 
     <div class="stacks-preview">
 {% highlight html %}
@@ -465,7 +469,7 @@ Stacks.setTooltipHtml(el,
                     data-s-popover-toggle-class="is-selected"
                     title="View your saved filters"
                     data-s-tooltip-placement="top-start">
-                Popover button
+                Popover button with tooltip hover
             </button>
             <div class="s-popover wmn-initial w-auto"
                 id="popover-example-with-tooltip"
