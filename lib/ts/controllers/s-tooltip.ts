@@ -25,7 +25,13 @@ namespace Stacks {
          */
         connect() {
             super.connect();
-            this.bindMouseEvents();
+
+            // Only bind to mouse events if the pointer device supports hover behavior.
+            // Otherwise we run into issues with mobile browser showing popovers for
+            // click events and not being able to hide them.
+            if (window.matchMedia("(hover: hover)").matches) {
+                this.bindMouseEvents();
+            }
         }
 
         /**

@@ -5095,7 +5095,9 @@ var Stacks;
         };
         TooltipController.prototype.connect = function () {
             _super.prototype.connect.call(this);
-            this.bindMouseEvents();
+            if (window.matchMedia("(hover: hover)").matches) {
+                this.bindMouseEvents();
+            }
         };
         TooltipController.prototype.disconnect = function () {
             this.unbindMouseEvents();
