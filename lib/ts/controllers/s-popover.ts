@@ -17,7 +17,7 @@ namespace Stacks {
         /**
          * An attribute containing the ID of the popover element to render, e.g. aria-controls or aria-describedby.
          */
-        abstract get popoverSelectorAttribute(): string;
+        protected abstract popoverSelectorAttribute: string;
 
         /**
          * Returns true if the if the popover is currently visible.
@@ -37,11 +37,17 @@ namespace Stacks {
          */
         protected abstract unbindDocumentEvents(): void;
 
+        /**
+         * Generates the popover if not found during initialization
+         */
         protected generatePopover(): HTMLElement | null {
             return null;
         }
 
-        protected validate(): boolean {
+        /**
+         * Validates the popover settings and attempts to set necessary internal variables
+         */
+        private validate() {
             var referenceSelector = this.data.get("reference-selector");
 
             this.referenceElement = <HTMLElement>this.element;
@@ -77,12 +83,10 @@ namespace Stacks {
             }
 
             this.popoverElement = popoverElement;
-
-            return true;
         }
 
         /**
-         * Initializes popper.js and document events on controller connect
+         * Initializes and validates controller variables
          */
         connect() {
             super.connect();
@@ -94,7 +98,7 @@ namespace Stacks {
         }
 
         /**
-         * Cleans up popper.js elements and disconnects all added event listeners on controller disconnect
+         * Cleans up popper.js elements and disconnects all added event listeners
          */
         disconnect() {
             this.hidden();
@@ -106,14 +110,14 @@ namespace Stacks {
         }
 
         /**
-         * Toggles the visibility of the popover when called as a Stimulus action
+         * Toggles the visibility of the popover
          */
         toggle() {
             this.isVisible ? this.hide() : this.show();
         }
 
         /**
-         * Shows the popover if not already visible when called as a Stimulus action
+         * Shows the popover if not already visible
          */
         show() {
             if (this.isVisible) { return; }
@@ -124,6 +128,7 @@ namespace Stacks {
                 this.initializePopper();
             }
 
+            // ensure the popper has been positioned correctly and is listening to events
             this.popper.update();
             this.popper.enableEventListeners();
 
@@ -144,29 +149,34 @@ namespace Stacks {
             this.popper.options.placement = this.data.get("placement") as Popper.Placement || "bottom";
         }
 
+        /**
+         * Binds document events for this popover and fires the shown event
+         */
         protected shown() {
             this.bindDocumentEvents();
             this.triggerEvent("shown");
         }
 
         /**
-         * Hides the popover if not already hidden when called as a Stimulus action
+         * Hides the popover if not already hidden
          */
         hide() {
             if (!this.isVisible) { return; }
 
             if (this.triggerEvent("hide").defaultPrevented) { return; }
 
-            const popoverElement = this.popoverElement;
-            if (!popoverElement) { return; }
+            this.popoverElement.classList.remove("is-visible");
 
-            popoverElement.classList.remove("is-visible");
             if (this.popper) {
                 this.popper.disableEventListeners();
             }
+
             this.hidden();
         }
 
+        /**
+         * Unbinds document events for this popover and fires the hidden event
+         */
         protected hidden() {
             this.unbindDocumentEvents();
             this.triggerEvent("hidden");
@@ -176,16 +186,22 @@ namespace Stacks {
     export class PopoverController extends BasePopoverController {
         static targets = [];
 
-        popoverSelectorAttribute = "aria-controls";
+        protected popoverSelectorAttribute = "aria-controls";
 
         private boundHideOnOutsideClick!: any;
         private boundHideOnEscapePress!: any;
 
+        /**
+         * Toggles optional classes in addition to BasePopoverController.shown
+         */
         protected shown() {
             this.toggleOptionalClasses(true);
             super.shown();
         }
 
+        /**
+         * Toggles optional classes in addition to BasePopoverController.hidden
+         */
         protected hidden() {
             this.toggleOptionalClasses(false);
             super.hidden();
@@ -194,7 +210,7 @@ namespace Stacks {
         /**
          * Binds global events to the document for hiding popovers on user interaction
          */
-        protected  bindDocumentEvents() {
+        protected bindDocumentEvents() {
             this.boundHideOnOutsideClick = this.boundHideOnOutsideClick || this.hideOnOutsideClick.bind(this);
             this.boundHideOnEscapePress = this.boundHideOnEscapePress || this.hideOnEscapePress.bind(this);
 

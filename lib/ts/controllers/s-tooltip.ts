@@ -7,14 +7,14 @@ namespace Stacks {
     export class TooltipController extends BasePopoverController {
         static targets = [];
 
-        popoverSelectorAttribute = "aria-describedby";
+        protected popoverSelectorAttribute = "aria-describedby";
 
         private boundShow!: any;
         private boundHide!: any;
         private boundHideIfWithin!: any;
 
         /**
-         * Binds mouseover and mouseout events on controller connect.
+         * Binds mouseover and mouseout events in addition to BasePopoverController.connect
          */
         connect() {
             super.connect();
@@ -28,7 +28,7 @@ namespace Stacks {
         }
 
         /**
-         * Unbinds events on controller disconnect.
+         * Unbinds mouse events in addition to BasePopoverController.disconnect
          */
         disconnect() {
             this.unbindMouseEvents();
@@ -77,7 +77,7 @@ namespace Stacks {
         }
 
         /**
-         * Automatically shows and hides the popover on hover events.
+         * Binds mouse events to show/hide on reference element hover
          */
         private bindMouseEvents() {
             this.boundShow = this.boundShow || this.show.bind(this);
@@ -87,6 +87,9 @@ namespace Stacks {
             this.referenceElement.addEventListener("mouseout", this.boundHide);
         }
 
+        /**
+         * Unbinds all mouse events
+         */
         private unbindMouseEvents() {
             this.referenceElement.removeEventListener("mouseover", this.boundShow);
             this.referenceElement.removeEventListener("mouseout", this.boundHide);
@@ -102,6 +105,9 @@ namespace Stacks {
             document.addEventListener("s-popover:shown", this.boundHideIfWithin);
         }
 
+        /**
+         * Unbinds all document events
+         */
         protected unbindDocumentEvents() {
             document.removeEventListener("s-popover:shown", this.boundHideIfWithin);
         }
