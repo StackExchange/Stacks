@@ -190,14 +190,14 @@ namespace Stacks {
         }
         // existing controller, we need to manually tell it to update the content
         else {
-            var controller = <TooltipController> Stacks.application.getControllerForElementAndIdentifier(element, "s-tooltip");
+            var controller = <TooltipController>Stacks.application.getControllerForElementAndIdentifier(element, "s-tooltip");
             if (controller) {
                 controller.setTooltipContent(html);
             }
             else {
                 throw "unable to get controller instance for s-tooltip";
             }
-        }      
+        }
     }
 }
 
