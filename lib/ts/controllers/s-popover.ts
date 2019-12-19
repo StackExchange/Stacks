@@ -22,7 +22,7 @@ namespace Stacks {
         /**
          * Returns true if the if the popover is currently visible.
          */
-        protected get isVisible() {
+        get isVisible() {
             var popoverElement = this.popoverElement;
             return popoverElement ? popoverElement.classList.contains("is-visible") : false;
         }
@@ -169,12 +169,6 @@ namespace Stacks {
         private boundHideOnOutsideClick!: any;
         private boundHideOnEscapePress!: any;
 
-        initialize() {
-            this.boundHideOnOutsideClick = this.boundHideOnOutsideClick || this.hideOnOutsideClick.bind(this);
-            this.boundHideOnEscapePress = this.boundHideOnEscapePress || this.hideOnEscapePress.bind(this);
-            super.initialize();
-        }
-
         disconnect() {
             this.unbindDocumentEvents();
             super.disconnect();
@@ -196,6 +190,9 @@ namespace Stacks {
          * Binds global events to the document for hiding popovers on user interaction
          */
         private bindDocumentEvents() {
+            this.boundHideOnOutsideClick = this.boundHideOnOutsideClick || this.hideOnOutsideClick.bind(this);
+            this.boundHideOnEscapePress = this.boundHideOnEscapePress || this.hideOnEscapePress.bind(this);
+
             document.addEventListener("click", this.boundHideOnOutsideClick);
             document.addEventListener("keyup", this.boundHideOnEscapePress);
         }
@@ -252,27 +249,6 @@ namespace Stacks {
             this.data.get("toggle-class")!.split(/\s+/).forEach(function (cls: string) {
                 cl.toggle(cls, show);
             });
-        }
-
-        /**
-         * Finds the currently visible element in the document structure.
-         */
-        static get visiblePopover(): PopoverController | null {
-
-            var found: PopoverController | null = null;
-
-            document.querySelectorAll(".s-popover.is-visible").forEach(popover => {
-                if (found || !popover.id) { return; }
-                var control = document.querySelector(`[aria-controls="${popover.id.replace(/["\\]/g, '\\$&')}"]`);
-                // The element could be either the controller's root element or a reference element nested inside,
-                // so we need to iterate out to look for it.
-                while (control !== null && found === null) {
-                    found = <PopoverController | null>application.getControllerForElementAndIdentifier(control, "s-popover");
-                    control = control.parentElement;
-                }
-            });
-
-            return found;
         }
     }
 }

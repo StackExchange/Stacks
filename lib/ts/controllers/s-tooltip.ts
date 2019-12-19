@@ -63,8 +63,14 @@ namespace Stacks {
          * present on the page.
          */
         show() {
-            const visiblePopover = PopoverController.visiblePopover;
-            if (visiblePopover && visiblePopover.element.contains(this.referenceElement)) { return; }
+            // check and see if this controller coexists with a popover
+            var controller = Stacks.application.getControllerForElementAndIdentifier(this.element, "s-popover");
+
+            // if the controller exists and already has a visible popover, don't show the tooltip
+            if (controller && (<PopoverController>controller).isVisible) {
+                return;
+            }
+
             super.show();
         }
 
