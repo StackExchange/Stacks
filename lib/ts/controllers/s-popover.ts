@@ -34,8 +34,16 @@ namespace Stacks {
         protected validate(): boolean {
             var referenceSelector = this.data.get("reference-selector");
 
-            // if there is an alternative reference selector and that element exists, use it (otherwise use this element)
-            this.referenceElement = referenceSelector && <HTMLElement>this.element.querySelector(referenceSelector)! || <HTMLElement>this.element;
+            this.referenceElement = <HTMLElement>this.element;
+
+            // if there is an alternative reference selector and that element exists, use it (and throw if it isn't found)
+            if (referenceSelector) {
+                this.referenceElement = <HTMLElement>this.element.querySelector(referenceSelector);
+
+                if (!this.referenceElement) {
+                    throw "Unable to find element by reference selector: " + referenceSelector;
+                }
+            }
 
             const popoverId = this.referenceElement.getAttribute(this.popoverSelectorAttribute);
 
