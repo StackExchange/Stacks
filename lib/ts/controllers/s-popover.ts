@@ -100,7 +100,6 @@ namespace Stacks {
          * Finishes showing the popover, initializing Popper if needed.
          */
         private finishShow() {
-
             const popoverElement = this.popoverElement!;
             if (!popoverElement) { return; }
 
@@ -114,9 +113,13 @@ namespace Stacks {
             // @ts-ignore
             this.popper.options.placement = this.data.get("placement") as Popper.Placement || "bottom";
             this.popper.update();
-            popoverElement.classList.add("is-visible");
             this.popper.enableEventListeners();
-            this.shown();
+
+            // if the element was shown by default, don't attempt to "show" it again
+            if (!this.isVisible) {
+                popoverElement.classList.add("is-visible");
+                this.shown();
+            }
         }
 
         protected shown() {
