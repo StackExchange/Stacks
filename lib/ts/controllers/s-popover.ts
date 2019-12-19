@@ -45,7 +45,8 @@ namespace Stacks {
         connect() {
             super.connect();
             if (this.isVisible) {
-                this.finishShow();
+                // just call initialize here, not show. This keeps already visible popovers from adding/firing document events
+                this.initializePopper();
             }
         }
 
@@ -93,33 +94,28 @@ namespace Stacks {
                 this.popoverNotFound();
             }
 
-            this.finishShow();
-        }
-
-        /**
-         * Finishes showing the popover, initializing Popper if needed.
-         */
-        private finishShow() {
-            const popoverElement = this.popoverElement!;
-            if (!popoverElement) { return; }
-
             if (!this.popper) {
-                // @ts-ignore
-                this.popper = new Popper(this.referenceElement, popoverElement, {
-                    eventsEnabled: false
-                });
+                this.initializePopper();
             }
 
-            // @ts-ignore
-            this.popper.options.placement = this.data.get("placement") as Popper.Placement || "bottom";
             this.popper.update();
             this.popper.enableEventListeners();
 
-            // if the element was shown by default, don't attempt to "show" it again
-            if (!this.isVisible) {
-                popoverElement.classList.add("is-visible");
-                this.shown();
-            }
+            this.popoverElement!.classList.add("is-visible");
+            this.shown();
+        }
+
+        /**
+         * Initializes the Popper for this instance
+         */
+        private initializePopper() {
+            // @ts-ignore
+            this.popper = new Popper(this.referenceElement, this.popoverElement, {
+                eventsEnabled: this.isVisible
+            });
+
+            // @ts-ignore
+            this.popper.options.placement = this.data.get("placement") as Popper.Placement || "bottom";
         }
 
         protected shown() {
