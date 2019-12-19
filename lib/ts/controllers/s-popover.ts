@@ -27,6 +27,16 @@ namespace Stacks {
             return popoverElement ? popoverElement.classList.contains("is-visible") : false;
         }
 
+        /**
+         * Binds events to the document on element show
+         */
+        protected abstract bindDocumentEvents(): void;
+
+        /**
+         * Unbinds events on the document on element hide
+         */
+        protected abstract unbindDocumentEvents(): void;
+
         protected generatePopover(): HTMLElement | null {
             return null;
         }
@@ -87,7 +97,7 @@ namespace Stacks {
          * Cleans up popper.js elements and disconnects all added event listeners on controller disconnect
          */
         disconnect() {
-            this.hide();
+            this.hidden();
             if (this.popper) {
                 this.popper.destroy();
                 this.popper = null;
@@ -135,6 +145,7 @@ namespace Stacks {
         }
 
         protected shown() {
+            this.bindDocumentEvents();
             this.triggerEvent("shown");
         }
 
@@ -157,6 +168,7 @@ namespace Stacks {
         }
 
         protected hidden() {
+            this.unbindDocumentEvents();
             this.triggerEvent("hidden");
         }
     }
@@ -169,27 +181,20 @@ namespace Stacks {
         private boundHideOnOutsideClick!: any;
         private boundHideOnEscapePress!: any;
 
-        disconnect() {
-            this.unbindDocumentEvents();
-            super.disconnect();
-        }
-
         protected shown() {
             this.toggleOptionalClasses(true);
-            this.bindDocumentEvents();
             super.shown();
         }
 
         protected hidden() {
             this.toggleOptionalClasses(false);
-            this.unbindDocumentEvents();
             super.hidden();
         }
 
         /**
          * Binds global events to the document for hiding popovers on user interaction
          */
-        private bindDocumentEvents() {
+        protected  bindDocumentEvents() {
             this.boundHideOnOutsideClick = this.boundHideOnOutsideClick || this.hideOnOutsideClick.bind(this);
             this.boundHideOnEscapePress = this.boundHideOnEscapePress || this.hideOnEscapePress.bind(this);
 
@@ -200,7 +205,7 @@ namespace Stacks {
         /**
          * Unbinds global events to the document for hiding popovers on user interaction
          */
-        private unbindDocumentEvents() {
+        protected  unbindDocumentEvents() {
             document.removeEventListener("click", this.boundHideOnOutsideClick);
             document.removeEventListener("keyup", this.boundHideOnEscapePress);
         }

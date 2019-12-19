@@ -13,13 +13,6 @@ namespace Stacks {
         private boundHide!: any;
         private boundHideIfWithin!: any;
 
-        initialize() {
-            this.boundShow = this.boundShow || this.show.bind(this);
-            this.boundHide = this.boundHide || this.hide.bind(this);
-            this.boundHideIfWithin = this.boundHideIfWithin || this.hideIfWithin.bind(this);
-            super.initialize();
-        }
-
         /**
          * Binds mouseover and mouseout events on controller connect.
          */
@@ -39,7 +32,6 @@ namespace Stacks {
          */
         disconnect() {
             this.unbindMouseEvents();
-            this.unbindDocumentEvents();
             super.disconnect();
         }
 
@@ -74,16 +66,6 @@ namespace Stacks {
             super.show();
         }
 
-        protected shown() {
-            this.bindDocumentEvents();
-            super.shown();
-        }
-
-        protected hidden() {
-            this.unbindDocumentEvents();
-            super.hidden();
-        }
-
         /**
          * Hides the tooltip if is or is within the event's target.
          * @param event An event object from s-popover:shown
@@ -98,7 +80,9 @@ namespace Stacks {
          * Automatically shows and hides the popover on hover events.
          */
         private bindMouseEvents() {
-            this.unbindMouseEvents();
+            this.boundShow = this.boundShow || this.show.bind(this);
+            this.boundHide = this.boundHide || this.hide.bind(this);
+
             this.referenceElement.addEventListener("mouseover", this.boundShow);
             this.referenceElement.addEventListener("mouseout", this.boundHide);
         }
@@ -112,11 +96,13 @@ namespace Stacks {
          * Automatically hides the tooltip popover when a Stacks popover is shown anywhere on
          * the page.
          */
-        private bindDocumentEvents() {
+        protected bindDocumentEvents() {
+            this.boundHideIfWithin = this.boundHideIfWithin || this.hideIfWithin.bind(this);
+
             document.addEventListener("s-popover:shown", this.boundHideIfWithin);
         }
 
-        private unbindDocumentEvents() {
+        protected unbindDocumentEvents() {
             document.removeEventListener("s-popover:shown", this.boundHideIfWithin);
         }
 
