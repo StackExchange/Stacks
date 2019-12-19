@@ -76,7 +76,6 @@ namespace Stacks {
 
         /**
          * Toggles the visibility of the popover when called as a Stimulus action
-         * @param {Event} event - The event object from the Stimulus action call
          */
         toggle() {
             this.isVisible ? this.hide() : this.show();
@@ -166,13 +165,13 @@ namespace Stacks {
             super.disconnect();
         }
 
-        shown() {
+        protected shown() {
             this.toggleOptionalClasses(true);
             this.bindDocumentEvents();
             super.shown();
         }
 
-        hidden() {
+        protected hidden() {
             this.toggleOptionalClasses(false);
             this.unbindDocumentEvents();
             super.hidden();
@@ -181,7 +180,7 @@ namespace Stacks {
         /**
          * Binds global events to the document for hiding popovers on user interaction
          */
-        bindDocumentEvents() {
+        private bindDocumentEvents() {
             document.addEventListener("click", this.boundHideOnOutsideClick);
             document.addEventListener("keyup", this.boundHideOnEscapePress);
         }
@@ -189,7 +188,7 @@ namespace Stacks {
         /**
          * Unbinds global events to the document for hiding popovers on user interaction
          */
-        unbindDocumentEvents() {
+        private unbindDocumentEvents() {
             document.removeEventListener("click", this.boundHideOnOutsideClick);
             document.removeEventListener("keyup", this.boundHideOnEscapePress);
         }
@@ -198,7 +197,7 @@ namespace Stacks {
          * Forces the popover to hide if a user clicks outside of it or its reference element
          * @param {Event} e - The document click event
          */
-        hideOnOutsideClick(e: MouseEvent) {
+        private hideOnOutsideClick(e: MouseEvent) {
             const target = <Node>e.target;
             // check if the document was clicked inside either the reference element or the popover itself
             // note: .contains also returns true if the node itself matches the target element
@@ -211,7 +210,7 @@ namespace Stacks {
          * Forces the popover to hide if the user presses escape while it, one of its childen, or the reference element are focused
          * @param {Event} e - The document keyup event 
          */
-        hideOnEscapePress(e: KeyboardEvent) {
+        private hideOnEscapePress(e: KeyboardEvent) {
             // if the ESC key (27) wasn't pressed or if no popovers are showing, return
             if (e.which !== 27 || !this.isVisible) {
                 return;
@@ -230,7 +229,7 @@ namespace Stacks {
          * Toggles all classes on the originating element based on the `class-toggle` data
          * @param {boolean=} show - A boolean indicating whether this is being triggered by a show or hide.
          */
-        toggleOptionalClasses(show?: boolean) {
+        private toggleOptionalClasses(show?: boolean) {
             if (!this.data.has("toggle-class")) {
                 return;
             }
