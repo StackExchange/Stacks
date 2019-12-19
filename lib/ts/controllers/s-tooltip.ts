@@ -1,5 +1,4 @@
 namespace Stacks {
-
     export interface TooltipOptions {
         placement: string;
     }
@@ -36,22 +35,6 @@ namespace Stacks {
         }
 
         /**
-         * Attempts to generate a new tooltip popover from the title attribute if no popover
-         * was present when requested, otherwise throws an error.
-         */
-        protected generatePopover(): HTMLElement | null {
-            var title = this.element.getAttribute("title");
-
-            if (!title) {
-                return super.generatePopover();
-            }
-
-            var popover = this.setTooltipContent(title);
-            this.element.removeAttribute("title");
-            return popover;
-        }
-
-        /**
          * Attempts to show the tooltip popover so long as no other Stacks-managed popover is
          * present on the page.
          */
@@ -68,65 +51,11 @@ namespace Stacks {
         }
 
         /**
-         * Hides the tooltip if is or is within the event's target.
-         * @param event An event object from s-popover:shown
-         */
-        hideIfWithin(event: Event) {
-            if ((<Element>event.target!).contains(this.referenceElement)) {
-                this.hide();
-            }
-        }
-
-        /**
-         * Binds mouse events to show/hide on reference element hover
-         */
-        private bindMouseEvents() {
-            this.boundShow = this.boundShow || this.show.bind(this);
-            this.boundHide = this.boundHide || this.hide.bind(this);
-
-            this.referenceElement.addEventListener("mouseover", this.boundShow);
-            this.referenceElement.addEventListener("mouseout", this.boundHide);
-        }
-
-        /**
-         * Unbinds all mouse events
-         */
-        private unbindMouseEvents() {
-            this.referenceElement.removeEventListener("mouseover", this.boundShow);
-            this.referenceElement.removeEventListener("mouseout", this.boundHide);
-        }
-
-        /**
-         * Automatically hides the tooltip popover when a Stacks popover is shown anywhere on
-         * the page.
-         */
-        protected bindDocumentEvents() {
-            this.boundHideIfWithin = this.boundHideIfWithin || this.hideIfWithin.bind(this);
-
-            document.addEventListener("s-popover:shown", this.boundHideIfWithin);
-        }
-
-        /**
-         * Unbinds all document events
-         */
-        protected unbindDocumentEvents() {
-            document.removeEventListener("s-popover:shown", this.boundHideIfWithin);
-        }
-
-        /**
-         * Generates an ID for tooltips created with setTooltip.
-         */
-        private static generateId() {
-            // generate a random number, then convert to a well formatted string
-            return "--stacks-s-tooltip-" + Math.random().toString(36).substring(2, 10);
-        }
-
-        /**
          * Adds or updates the contents of a tooltip controller on a given element, creating popover as needed.
          * @param content A string to convert to html and insert into the popover
          * @param options Options for rendering the tooltip.
          */
-        public setTooltipContent(content: string) {
+        setTooltipContent(content: string) {
             var fragment = document.createRange().createContextualFragment(content);
 
             var popoverId = this.element.getAttribute("aria-describedby");
@@ -166,6 +95,76 @@ namespace Stacks {
             }
 
             return popover;
+        }
+
+        /**
+         * Automatically hides the tooltip popover when a Stacks popover is shown anywhere on
+         * the page.
+         */
+        protected bindDocumentEvents() {
+            this.boundHideIfWithin = this.boundHideIfWithin || this.hideIfWithin.bind(this);
+
+            document.addEventListener("s-popover:shown", this.boundHideIfWithin);
+        }
+
+        /**
+         * Unbinds all document events
+         */
+        protected unbindDocumentEvents() {
+            document.removeEventListener("s-popover:shown", this.boundHideIfWithin);
+        }
+
+        /**
+         * Attempts to generate a new tooltip popover from the title attribute if no popover
+         * was present when requested, otherwise throws an error.
+         */
+        protected generatePopover(): HTMLElement | null {
+            var title = this.element.getAttribute("title");
+
+            if (!title) {
+                return super.generatePopover();
+            }
+
+            var popover = this.setTooltipContent(title);
+            this.element.removeAttribute("title");
+            return popover;
+        }
+
+        /**
+         * Hides the tooltip if is or is within the event's target.
+         * @param event An event object from s-popover:shown
+         */
+        private hideIfWithin(event: Event) {
+            if ((<Element>event.target!).contains(this.referenceElement)) {
+                this.hide();
+            }
+        }
+
+        /**
+         * Binds mouse events to show/hide on reference element hover
+         */
+        private bindMouseEvents() {
+            this.boundShow = this.boundShow || this.show.bind(this);
+            this.boundHide = this.boundHide || this.hide.bind(this);
+
+            this.referenceElement.addEventListener("mouseover", this.boundShow);
+            this.referenceElement.addEventListener("mouseout", this.boundHide);
+        }
+
+        /**
+         * Unbinds all mouse events
+         */
+        private unbindMouseEvents() {
+            this.referenceElement.removeEventListener("mouseover", this.boundShow);
+            this.referenceElement.removeEventListener("mouseout", this.boundHide);
+        }
+
+        /**
+         * Generates an ID for tooltips created with setTooltip.
+         */
+        private static generateId() {
+            // generate a random number, then convert to a well formatted string
+            return "--stacks-s-tooltip-" + Math.random().toString(36).substring(2, 10);
         }
     }
 
