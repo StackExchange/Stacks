@@ -30,7 +30,7 @@ namespace Stacks {
             const popoverId = this.referenceElement.getAttribute(this.popoverSelectorAttribute);
             return popoverId ? document.getElementById(popoverId) : null;
         }
-        
+
         /**
          * Returns true if the if the popover is currently visible.
          */
@@ -146,7 +146,7 @@ namespace Stacks {
             this.triggerEvent("hidden");
         }
     }
-    
+
     export class PopoverController extends BasePopoverController {
         static targets = [];
 
@@ -243,7 +243,7 @@ namespace Stacks {
         /**
          * Finds the currently visible element in the document structure.
          */
-        static get visiblePopover() : PopoverController | null {
+        static get visiblePopover(): PopoverController | null {
 
             var found: PopoverController | null = null;
 

@@ -47,8 +47,7 @@ namespace Stacks {
          * Attempts to generate a new tooltip popover from the title attribute if no popover
          * was present when requested, otherwise throws an error.
          */
-        protected popoverNotFound()
-        {
+        protected popoverNotFound() {
             var title = this.element.getAttribute("title");
             if (title) {
                 Stacks.setTooltipText(this.element, title);
