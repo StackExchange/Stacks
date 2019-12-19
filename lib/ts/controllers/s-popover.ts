@@ -5,31 +5,19 @@ namespace Stacks {
         // @ts-ignore
         private popper!: Popper;
 
-        /**
-         * An attribute containing the ID of the popover element to render, e.g. aria-controls or aria-describedby.
-         */
-        abstract get popoverSelectorAttribute(): string;
+        protected popoverElement!: HTMLElement;
 
         /**
          * The element the popover will point to.  If [data-{identifier}-reference-selector] is defined and
          * contains a selector to a valid element inside the control, that elementwill be returned.
          * Otherwise, it will return the controller's root element.
          */
-        protected get referenceElement(): HTMLElement {
-            var referenceSelector = this.data.get("reference-selector");
-
-            // if there is an alternative reference selector and that element exists, use it (otherwise use this element)
-            return referenceSelector && <HTMLElement>this.element.querySelector(referenceSelector)! || <HTMLElement>this.element;
-        }
+        protected referenceElement!: HTMLElement;
 
         /**
-         * The popover element for this control as found via the popoverSelectorAttribute, or null
-         * if it cannot be found.
+         * An attribute containing the ID of the popover element to render, e.g. aria-controls or aria-describedby.
          */
-        protected get popoverElement() {
-            const popoverId = this.referenceElement.getAttribute(this.popoverSelectorAttribute);
-            return popoverId ? document.getElementById(popoverId) : null;
-        }
+        abstract get popoverSelectorAttribute(): string;
 
         /**
          * Returns true if the if the popover is currently visible.
@@ -39,11 +27,48 @@ namespace Stacks {
             return popoverElement ? popoverElement.classList.contains("is-visible") : false;
         }
 
+        protected generatePopover(): HTMLElement | null {
+            return null;
+        }
+
+        protected validate(): boolean {
+            var referenceSelector = this.data.get("reference-selector");
+
+            // if there is an alternative reference selector and that element exists, use it (otherwise use this element)
+            this.referenceElement = referenceSelector && <HTMLElement>this.element.querySelector(referenceSelector)! || <HTMLElement>this.element;
+
+            const popoverId = this.referenceElement.getAttribute(this.popoverSelectorAttribute);
+
+            var popoverElement = null;
+
+            // if the popover is named, attempt to fetch it (and throw an error if it doesn't exist)
+            if (popoverId) {
+                popoverElement = document.getElementById(popoverId);
+
+                if (!popoverElement){
+                    throw `[${this.popoverSelectorAttribute}="{POPOVER_ID}"] required`;
+                }
+            }
+            // if the popover isn't named, attempt to generate it
+            else {
+                popoverElement = this.generatePopover();
+            }
+
+            if (!popoverElement) {
+                throw "unable to find or generate popover element";
+            }
+
+            this.popoverElement = popoverElement;
+
+            return true;
+        }
+
         /**
          * Initializes popper.js and document events on controller connect
          */
         connect() {
             super.connect();
+            this.validate();
             if (this.isVisible) {
                 // just call initialize here, not show. This keeps already visible popovers from adding/firing document events
                 this.initializePopper();
@@ -63,19 +88,6 @@ namespace Stacks {
         }
 
         /**
-         * This method fires after when the popover is trying to show but does not exist. The default behavior
-         * is to throw but overriding provides child classes with an opportunity to customize that their behavior.
-         */
-        protected popoverNotFound() {
-            const popoverId = this.referenceElement.getAttribute(this.popoverSelectorAttribute);
-            if (!popoverId) {
-                throw `[${this.popoverSelectorAttribute}="{POPOVER_ID}"] required`;
-            } else {
-                throw `element with id "${popoverId}" not found`;
-            }
-        }
-
-        /**
          * Toggles the visibility of the popover when called as a Stimulus action
          */
         toggle() {
@@ -89,10 +101,6 @@ namespace Stacks {
             if (this.isVisible) { return; }
 
             if (this.triggerEvent("show").defaultPrevented) { return; }
-
-            if (!this.popoverElement) {
-                this.popoverNotFound();
-            }
 
             if (!this.popper) {
                 this.initializePopper();

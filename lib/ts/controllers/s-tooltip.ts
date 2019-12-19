@@ -47,13 +47,14 @@ namespace Stacks {
          * Attempts to generate a new tooltip popover from the title attribute if no popover
          * was present when requested, otherwise throws an error.
          */
-        protected popoverNotFound() {
+        protected generatePopover(): HTMLElement | null {
             var title = this.element.getAttribute("title");
             if (title) {
-                Stacks.setTooltipText(this.element, title);
+                var popover = Stacks.setTooltipText(this.element, title);
                 this.element.removeAttribute("title");
+                return popover;
             } else {
-                super.popoverNotFound();
+                return super.generatePopover();
             }
         }
 
@@ -170,6 +171,8 @@ namespace Stacks {
             } else {
                 popover.insertAdjacentHTML("beforeend", `<div class="s-popover--arrow"></div>`);
             }
+
+            return popover;
         }
     }
 
@@ -190,7 +193,7 @@ namespace Stacks {
      * @param options Options for rendering the tooltip.
      */
     export function setTooltipText(element: Element, text: string, options?: TooltipOptions) {
-        TooltipController.setTooltip(element, popover => popover.textContent = text, options);
+        return TooltipController.setTooltip(element, popover => popover.textContent = text, options);
     }
 }
 
