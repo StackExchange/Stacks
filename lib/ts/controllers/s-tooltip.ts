@@ -117,10 +117,9 @@ namespace Stacks {
          * Generates an ID for tooltips created with setTooltip.
          */
         private static generateId() {
-            return "--stacks-s-tooltip-" + (TooltipController.generatedIdCounter++);
+            // generate a random number, then convert to a well formatted string
+            return "--stacks-s-tooltip-" + Math.random().toString(36).substring(2, 10);
         }
-
-        private static generatedIdCounter = 0;
 
         /**
          * Adds or updates the contents of a tooltip controller on a given element, creating controller and popover as needed.
