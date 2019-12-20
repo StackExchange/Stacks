@@ -51,12 +51,26 @@ namespace Stacks {
         }
 
         /**
-         * Adds or updates the contents of a tooltip controller on a given element, creating popover as needed.
-         * @param content A string to convert to html and insert into the popover
-         * @param options Options for rendering the tooltip.
+         * Applies data-s-tooltip-html-title and title attributes.
          */
-        setTooltipContent(content: string) {
-            var fragment = document.createRange().createContextualFragment(content);
+        applyTitleAttributes() {
+
+            var content: Node;
+
+            var htmlTitle = this.data.get("html-title");
+            if (htmlTitle) {
+                content = document.createRange().createContextualFragment(htmlTitle);
+            } else {
+                var plainTitle = this.element.getAttribute("title");
+                if (plainTitle) {
+                    content = document.createTextNode(plainTitle);
+                } else {
+                    return null;
+                }
+            }
+
+            this.data.delete("html-title");
+            this.element.removeAttribute("title");
 
             var popoverId = this.element.getAttribute("aria-describedby");
             if (!popoverId) {
@@ -85,7 +99,7 @@ namespace Stacks {
 
             // clear and set the content of the popover
             popover.innerHTML = "";
-            popover.appendChild(fragment);
+            popover.appendChild(content);
 
             // create the arrow if necessary
             if (arrow) {
@@ -119,15 +133,7 @@ namespace Stacks {
          * was present when requested, otherwise throws an error.
          */
         protected generatePopover(): HTMLElement | null {
-            var title = this.element.getAttribute("title");
-
-            if (!title) {
-                return super.generatePopover();
-            }
-
-            var popover = this.setTooltipContent(title);
-            this.element.removeAttribute("title");
-            return popover;
+            return this.applyTitleAttributes();
         }
 
         /**
@@ -175,28 +181,35 @@ namespace Stacks {
      * @param options Options for rendering the tooltip.
      */
     export function setTooltipHtml(element: Element, html: string, options?: TooltipOptions) {
-        var controllerText = element.getAttribute("data-controller") || "";
+        element.setAttribute("data-s-tooltip-html-title", html);
+        element.removeAttribute("title");
+        applyOptionsAndTitleAttributes(element, options);
+    }
 
-        var hasExistingController = /(^|\s)s-tooltip(\s|$)/.test(controllerText);
+    /**
+     * Adds or updates a Stacks tooltip on a given element, initializing the controller if necessary
+     * @param element The element to add a tooltip to.
+     * @param text A plain text string to populate the tooltip with.
+     * @param options Options for rendering the tooltip.
+     */
+    export function setTooltipText(element: Element, text: string, options?: TooltipOptions) {
+        element.setAttribute("title", text);
+        element.removeAttribute("data-s-tooltip-html-title");
+        applyOptionsAndTitleAttributes(element, options);
+    }
+
+    function applyOptionsAndTitleAttributes(element: Element, options?: TooltipOptions) {
 
         if (options && options.placement) {
             element.setAttribute("data-s-tooltip-placement", options.placement);
         }
 
-        // no existing controller, set the title, initialize it and let it set itself up
-        if (!hasExistingController) {
-            element.setAttribute("title", html);
-            element.setAttribute("data-controller", controllerText + " s-tooltip");
-        }
-        // existing controller, we need to manually tell it to update the content
-        else {
-            var controller = <TooltipController>Stacks.application.getControllerForElementAndIdentifier(element, "s-tooltip");
-            if (controller) {
-                controller.setTooltipContent(html);
-            }
-            else {
-                throw "unable to get controller instance for s-tooltip";
-            }
+        var controller = <TooltipController>Stacks.application.getControllerForElementAndIdentifier(element, "s-tooltip");
+
+        if (controller) {
+            controller.applyTitleAttributes();
+        } else {
+            element.setAttribute("data-controller", element.getAttribute("data-controller") + " s-tooltip");
         }
     }
 }

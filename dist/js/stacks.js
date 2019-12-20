@@ -4681,84 +4681,6 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-var ModalController = (function (_super) {
-    __extends(ModalController, _super);
-    function ModalController() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
-    ModalController.prototype.connect = function () { };
-    ModalController.prototype.disconnect = function () {
-        this._unbindDocumentEvents();
-    };
-    ;
-    ModalController.prototype.toggle = function () {
-        this._toggle();
-    };
-    ModalController.prototype.show = function () {
-        this._toggle(true);
-    };
-    ModalController.prototype.hide = function () {
-        this._toggle(false);
-    };
-    ModalController.prototype._toggle = function (show) {
-        var toShow = show;
-        if (typeof toShow === "undefined") {
-            toShow = this.modalTarget.getAttribute("aria-hidden") === "true";
-        }
-        this.triggerEvent(toShow ? "show" : "hide");
-        this.modalTarget.setAttribute("aria-hidden", toShow ? "false" : "true");
-        if (toShow) {
-            this._bindDocumentEvents();
-        }
-        else {
-            this._unbindDocumentEvents();
-        }
-        this.triggerEvent(toShow ? "shown" : "hidden");
-    };
-    ModalController.prototype._bindDocumentEvents = function () {
-        this._boundClickFn = this._boundClickFn || this._hideOnOutsideClick.bind(this);
-        this._boundKeypressFn = this._boundKeypressFn || this._hideOnEscapePress.bind(this);
-        document.addEventListener("click", this._boundClickFn);
-        document.addEventListener("keyup", this._boundKeypressFn);
-    };
-    ModalController.prototype._unbindDocumentEvents = function () {
-        document.removeEventListener("click", this._boundClickFn);
-        document.removeEventListener("keyup", this._boundKeypressFn);
-    };
-    ModalController.prototype._hideOnOutsideClick = function (e) {
-        var target = e.target;
-        if (!this.modalTarget.querySelector(".s-modal--dialog").contains(target)) {
-            this._toggle(false);
-        }
-    };
-    ModalController.prototype._hideOnEscapePress = function (e) {
-        if (e.which !== 27 || this.modalTarget.getAttribute("aria-hidden") === "true") {
-            return;
-        }
-        this._toggle(false);
-    };
-    ModalController.targets = ["modal"];
-    return ModalController;
-}(Stacks.StacksController));
-Stacks.application.register("s-modal", ModalController);
-//# sourceMappingURL=s-modal.js.map
-
-;
-
-"use strict";
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = function (d, b) {
-        extendStatics = Object.setPrototypeOf ||
-            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-        return extendStatics(d, b);
-    };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
 var Stacks;
 (function (Stacks) {
     var BasePopoverController = (function (_super) {
@@ -5150,8 +5072,23 @@ var Stacks;
             }
             _super.prototype.show.call(this);
         };
-        TooltipController.prototype.setTooltipContent = function (content) {
-            var fragment = document.createRange().createContextualFragment(content);
+        TooltipController.prototype.applyTitleAttributes = function () {
+            var content;
+            var htmlTitle = this.data.get("html-title");
+            if (htmlTitle) {
+                content = document.createRange().createContextualFragment(htmlTitle);
+            }
+            else {
+                var plainTitle = this.element.getAttribute("title");
+                if (plainTitle) {
+                    content = document.createTextNode(plainTitle);
+                }
+                else {
+                    return null;
+                }
+            }
+            this.data.delete("html-title");
+            this.element.removeAttribute("title");
             var popoverId = this.element.getAttribute("aria-describedby");
             if (!popoverId) {
                 popoverId = TooltipController.generateId();
@@ -5174,7 +5111,7 @@ var Stacks;
             }
             var arrow = popover.querySelector(".s-popover--arrow");
             popover.innerHTML = "";
-            popover.appendChild(fragment);
+            popover.appendChild(content);
             if (arrow) {
                 popover.appendChild(arrow);
             }
@@ -5191,13 +5128,7 @@ var Stacks;
             document.removeEventListener("s-popover:shown", this.boundHideIfWithin);
         };
         TooltipController.prototype.generatePopover = function () {
-            var title = this.element.getAttribute("title");
-            if (!title) {
-                return _super.prototype.generatePopover.call(this);
-            }
-            var popover = this.setTooltipContent(title);
-            this.element.removeAttribute("title");
-            return popover;
+            return this.applyTitleAttributes();
         };
         TooltipController.prototype.hideIfWithin = function (event) {
             if (event.target.contains(this.referenceElement)) {
@@ -5222,26 +5153,29 @@ var Stacks;
     }(Stacks.BasePopoverController));
     Stacks.TooltipController = TooltipController;
     function setTooltipHtml(element, html, options) {
-        var controllerText = element.getAttribute("data-controller") || "";
-        var hasExistingController = /(^|\s)s-tooltip(\s|$)/.test(controllerText);
+        element.setAttribute("data-s-tooltip-html-title", html);
+        element.removeAttribute("title");
+        applyOptionsAndTitleAttributes(element, options);
+    }
+    Stacks.setTooltipHtml = setTooltipHtml;
+    function setTooltipText(element, text, options) {
+        element.setAttribute("title", text);
+        element.removeAttribute("data-s-tooltip-html-title");
+        applyOptionsAndTitleAttributes(element, options);
+    }
+    Stacks.setTooltipText = setTooltipText;
+    function applyOptionsAndTitleAttributes(element, options) {
         if (options && options.placement) {
             element.setAttribute("data-s-tooltip-placement", options.placement);
         }
-        if (!hasExistingController) {
-            element.setAttribute("title", html);
-            element.setAttribute("data-controller", controllerText + " s-tooltip");
+        var controller = Stacks.application.getControllerForElementAndIdentifier(element, "s-tooltip");
+        if (controller) {
+            controller.applyTitleAttributes();
         }
         else {
-            var controller = Stacks.application.getControllerForElementAndIdentifier(element, "s-tooltip");
-            if (controller) {
-                controller.setTooltipContent(html);
-            }
-            else {
-                throw "unable to get controller instance for s-tooltip";
-            }
+            element.setAttribute("data-controller", element.getAttribute("data-controller") + " s-tooltip");
         }
     }
-    Stacks.setTooltipHtml = setTooltipHtml;
 })(Stacks || (Stacks = {}));
 Stacks.application.register("s-tooltip", Stacks.TooltipController);
 //# sourceMappingURL=s-tooltip.js.map
