@@ -198,6 +198,11 @@ namespace Stacks {
         applyOptionsAndTitleAttributes(element, options);
     }
 
+    /**
+     * Shared helper for setTooltip* to initialize and set tooltip content
+     * @param element The element to add a tooltip to.
+     * @param options Options for rendering the tooltip.
+     */
     function applyOptionsAndTitleAttributes(element: Element, options?: TooltipOptions) {
 
         if (options && options.placement) {
