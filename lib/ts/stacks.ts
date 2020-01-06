@@ -42,7 +42,7 @@ namespace Stacks {
             const namespacedName = this.identifier + ":" + eventName;
             var event : CustomEvent<T>;
             try {
-                event = new CustomEvent(namespacedName, {bubbles: true, detail: detail});
+                event = new CustomEvent(namespacedName, {bubbles: true, cancelable: true, detail: detail});
             } catch (ex) {
                 // Internet Explorer
                 event = document.createEvent("CustomEvent");
@@ -76,7 +76,8 @@ namespace Stacks {
 
         return Controller;
     }
+
     export function addController(name: string, controller: ControllerDefinition) {
         application.register(name, createController(controller));
-    };
+    }
 }
