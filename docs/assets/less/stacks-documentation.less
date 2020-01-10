@@ -29,11 +29,7 @@
     background-repeat: no-repeat, no-repeat;
 }
 
-body.has-darkmode .stacks-intro {
-    @media (prefers-color-scheme: dark) {
-        background-image: url("../img/illustration-crane-dark.svg"), url("../img/illustration-field-dark.svg");
-    }
-}
+#stacks-internals #darkmode('.stacks-intro', { background-image: url("../img/illustration-crane-dark.svg"), url("../img/illustration-field-dark.svg"); });
 
 .stacks-home-nav {
     margin-bottom: 316px;
@@ -233,11 +229,7 @@ body.has-darkmode .stacks-intro {
     }
 }
 
-body.has-darkmode .stacks-preview .highlight {
-    @media (prefers-color-scheme: dark) {
-        background-color: #1C1B1B;
-    }
-}
+#stacks-internals #darkmode('.stacks-preview .highlight', { background-color: #1C1B1B; });
 
 //  Preview area
 .stacks-preview--example {
@@ -249,12 +241,10 @@ body.has-darkmode .stacks-preview .highlight {
     font-size: @fs-body1;
 }
 
-body.has-darkmode .stacks-preview--example {
-    @media (prefers-color-scheme: dark) {
-        border-color: transparent;
-        background: var(--black-025);
-    }
-}
+#stacks-internals #darkmode('.stacks-preview--example', {
+    border-color: transparent;
+    background: var(--black-025);
+});
 
 // Checkered background
 .bg-checkered {

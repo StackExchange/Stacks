@@ -52,13 +52,11 @@
     }
 }
 
-body.has-darkmode .s-popover {
-    @media (prefers-color-scheme: dark) {
-        background-color: var(--black-075);
-        border-color: transparent;
-        box-shadow: var(--bs-lg);
-    }
-}
+#stacks-internals #darkmode('.s-popover', {
+    background-color: var(--black-075);
+    border-color: transparent;
+    box-shadow: var(--bs-lg);
+});
 
 //  ============================================================================
 //  $   CLOSE BUTTON
@@ -114,7 +112,7 @@ body.has-darkmode .s-popover {
     }
 }
 
-body.has-darkmode {
+#stacks-internals #darkmode('', {
     .s-popover--arrow,
     .s-popover--arrow__tl,
     .s-popover--arrow__tc,
@@ -128,11 +126,9 @@ body.has-darkmode {
     .s-popover--arrow__rt,
     .s-popover--arrow__rc,
     .s-popover--arrow__rb {
-        @media (prefers-color-scheme: dark) {
-            color: var(--black-075);
-        }
+        color: var(--black-075);
     }
-}
+});
 
 //  ============================================================================
 //  $   ARROW LOCATIONS

@@ -25,11 +25,9 @@
         .f\:fc-@{color-name}:focus-within {
             color: var(~"--@{color-name}") !important;
         }
-        body.has-darkmode .d\:fc-@{color-name} {
-            @media (prefers-color-scheme: dark) {
-                color: var(~"--@{color-name}") !important;
-            }
-        }
+        #stacks-internals #darkmode('.d\:fc-@{color-name}', {
+            color: var(~"--@{color-name}") !important;
+        });
 
         .bg-@{color-name},
         .h\:bg-@{color-name}:hover,
@@ -39,11 +37,9 @@
         .f\:bg-@{color-name}:focus-within {
             background-color: var(~"--@{color-name}") !important;
         }
-        body.has-darkmode .d\:bg-@{color-name} {
-            @media (prefers-color-scheme: dark) {
-                background-color: var(~"--@{color-name}") !important;
-            }
-        }
+        #stacks-internals #darkmode('.d\:bg-@{color-name}', {
+            background-color: var(~"--@{color-name}") !important;
+        });
     }
 
     .standard-weights(@color) {

@@ -214,8 +214,6 @@
     }
 }
 
-body.has-darkmode .s-progress.s-progress__stepped .s-progress-step.is-active .s-progress--stop {
-    @media (prefers-color-scheme: dark) {
-        box-shadow: 0 0 0 @su6 rgba(0, 149, 255, .30); // var(--blue-600) @ 30% opacity
-    }
-}
+#stacks-internals #darkmode('.s-progress.s-progress__stepped .s-progress-step.is-active .s-progress--stop', {
+    box-shadow: 0 0 0 @su6 rgba(0, 149, 255, .30);
+});
