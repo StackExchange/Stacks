@@ -20,16 +20,20 @@
     color: @color;
 
     .s-tag--dismiss {
+        color: inherit;
         background-color: transparent;
 
         &:hover {
+            color: @white;
             background-color: @color;
         }
     }
 }
 
 .tag-hover-styles(@border-hover: transparent, @background-hover: transparent, @color-hover: inherit) {
-    &:hover {
+    &:hover,
+    &:focus,
+    &:active {
         border-color: @border-hover;
         background-color: @background-hover;
         color: @color-hover;

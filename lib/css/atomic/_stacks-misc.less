@@ -21,7 +21,7 @@
 #stacks-internals #responsify('.d-none', { display: none !important; });
 @media print { .print\:d-none { display: none !important; } }
 
-.d-unset                  { display: initial !important; }
+.d-unset                  { display: unset !important; }
 
 //  ============================================================================
 //  $  BACKGROUND-POSITIONS
@@ -145,7 +145,7 @@
 //  ----------------------------------------------------------------------------
 .box-content              { box-sizing: content-box !important; }
 .box-border               { box-sizing: border-box !important; }
-.box-unset                { box-sizing: initial !important; }
+.box-unset                { box-sizing: unset !important; }
 
 //  ============================================================================
 //  $  VERTICAL ALIGNMENT
@@ -158,7 +158,7 @@
 .va-text-bottom           { vertical-align: text-bottom !important; }
 .va-text-top              { vertical-align: text-top !important; }
 .va-top                   { vertical-align: top !important; }
-.va-unset                 { vertical-align: initial !important; }
+.va-unset                 { vertical-align: unset !important; }
 
 //  ============================================================================
 //  $  POSITION
@@ -168,7 +168,7 @@
 #stacks-internals #responsify('.ps-relative', { position: relative !important; });
 #stacks-internals #responsify('.ps-static', { position: static !important; });
 #stacks-internals #responsify('.ps-sticky', { position: -webkit-sticky !important; position: sticky !important; });
-.ps-unset                 { position: initial !important; }
+.ps-unset                 { position: unset !important; }
 
 //  ============================================================================
 //  $  OVERFLOW
@@ -229,10 +229,7 @@
 //  $  OUTLINE
 //  ----------------------------------------------------------------------------
 .outline-none             { outline: 0 !important; }
-.outline-ring {
-    outline: solid @su4 rgba(0, 149, 255, .15); // var(--blue-500) @ 15% opacity
-}
-#stacks-internals #darkmode('.outline-ring', { outline: solid @su4 rgba(0, 149, 255, .30); });
+.outline-ring             { outline: solid @su4 var(--focus-ring); }
 .f\:outline-ring          { &:focus, &:focus-within { .outline-ring } }
 
 //  ============================================================================
@@ -251,7 +248,10 @@
 .h\:bs-md:hover { .bs-md }
 .bs-lg                    { box-shadow: var(--bs-lg) !important; }
 .h\:bs-lg:hover { .bs-lg }
-.bs-ring                  { box-shadow: var(--bs-ring) !important; }
+.bs-i-sm                  { box-shadow: @bs-i-sm !important; }
+.bs-i-md                  { box-shadow: @bs-i-md !important; }
+.bs-i-lg                  { box-shadow: @bs-i-lg !important; }
+.bs-ring                  { box-shadow: 0 0 0 @su4 var(--focus-ring); }
 .h\:bs-ring:hover { .bs-ring}
 .f\:bs-ring { &:focus, &:focus-within { .bs-ring } }
 

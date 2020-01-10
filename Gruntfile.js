@@ -62,17 +62,6 @@ module.exports = function(grunt) {
                 }
             }
         },
-        rollup: {
-            options: {
-                plugins: [require('rollup-plugin-node-resolve')(), require('rollup-plugin-commonjs')()],
-                format: 'iife'
-            },
-            stacks_js_polyfills: {
-                files: {
-                    'dist/js/stacks.polyfills.js': ['lib/js/stacks.polyfills.js']
-                }
-            }
-        },
         // Minify and concatenate JS
         ts: {
             stacks_js: {
@@ -89,11 +78,6 @@ module.exports = function(grunt) {
             stacks_js: {
                 files: {
                     'dist/js/stacks.min.js': ['dist/js/stacks.js']
-                }
-            },
-            stacks_js_polyfills: {
-                files: {
-                    'dist/js/stacks.polyfills.min.js': ['dist/js/stacks.polyfills.js']
                 }
             },
         },
@@ -162,10 +146,9 @@ module.exports = function(grunt) {
                 ['concurrent:compile_stacks_js', 'copy:js2docs']
             ],
 
-            // Stacks JS itself and the polyfills are independent of each other, so they can be compiled in parallel
+            // Stacks JS
             compile_stacks_js: [
                 ['ts:stacks_js', 'concat:stacks_js', 'uglify:stacks_js'],
-                ['rollup:stacks_js_polyfills', 'uglify:stacks_js_polyfills']
             ],
 
             // the actual stacks, the docs CSS (which also includes Stacks, but via a LESS @import), and the partials
@@ -229,7 +212,6 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-contrib-uglify');
-    grunt.loadNpmTasks('grunt-rollup');
     grunt.loadNpmTasks("grunt-ts");
 
     grunt.registerTask('default',

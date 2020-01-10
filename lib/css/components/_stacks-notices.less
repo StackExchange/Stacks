@@ -18,7 +18,7 @@
     padding: @su16;
     border: 1px solid transparent;
     border-radius: @br-sm;
-    color: var(--black-700);
+    color: var(--fc-medium);
     font-size: @fs-body1;
 
     .s-toast & {
@@ -42,7 +42,7 @@
     background-color: var(--powder-100);
 
     &.s-notice__important,
-    &.s-banner_important {
+    &.s-banner__important {
         background-color: var(--blue-500);
     }
 }
@@ -88,6 +88,14 @@
     }
 }
 
+//  $$  IMPORTANT
+//  ----------------------------------------------------------------------------
+.s-notice__important {
+    border-color: transparent;
+    background-color: var(--black-700);
+    color: var(--white);
+}
+
 #stacks-internals #darkmode('', {
     .s-notice__info,
     .s-notice__success,
@@ -96,14 +104,6 @@
         border-color: transparent;
     }
 });
-
-//  $$  IMPORTANT
-//  ----------------------------------------------------------------------------
-.s-notice__important {
-    border-color: transparent;
-    background-color: var(--black-700);
-    color: var(--white);
-}
 
 //  ============================================================================
 //  $   TOASTS

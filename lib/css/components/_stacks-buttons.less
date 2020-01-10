@@ -43,7 +43,8 @@
     color: @button-color;
 
     &:hover,
-    &:focus {
+    &:focus,
+    &:active {
         color: @button-hover-color;
         background: @button-hover-background-color;
         text-decoration: none;
@@ -55,6 +56,7 @@
 
     &:focus {
         outline: none;
+        box-shadow: 0 0 0 @su4 var(--focus-ring);
     }
 
     &[disabled] {
@@ -63,11 +65,17 @@
         pointer-events: none;
         color: @button-disabled-color;
         background-color: @button-disabled-background-color;
+        box-shadow: none;
     }
 
     &.is-selected {
         color: @button-selected-color;
         background: @button-selected-background-color;
+        box-shadow: none;
+
+        &:focus {
+            box-shadow: 0 0 0 @su4 var(--focus-ring);
+        }
     }
 
     &.s-btn__dropdown {
@@ -203,6 +211,42 @@
     }
 }
 
+//  --  Base Filled Style
+//      Adds in background-colors, background-images, and/or box-shadows.
+//  ----------------------------------------------------------------------------
+.s-btn__filled {
+    color: @button-filled-color;
+    background-color: @button-filled-background-color;
+    border-color: @button-filled-border-color;
+    box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, .7);
+
+    &:hover,
+    &:focus,
+    &:active {
+        color: @button-filled-hover-color;
+        background-color: @button-filled-hover-background-color;
+    }
+
+    &:active {
+        background-color: @button-filled-active-background-color;
+        border-color: @button-filled-active-border-color;
+        box-shadow: none;
+    }
+
+    &[disabled] {
+        background-color: @button-filled-disabled-background-color;
+        border-color: @button-filled-disabled-border-color;
+        box-shadow: none;
+    }
+
+    &.is-selected {
+        color: @button-filled-selected-color;
+        background-color: @button-filled-selected-background-color;
+        border-color: @button-filled-selected-border-color;
+        box-shadow: none;
+    }
+}
+
 //  --  Muted Clear Style
 //      Creates a gray button style.
 //  ----------------------------------------------------------------------------
@@ -210,7 +254,8 @@
     color: @button-muted-color;
 
     &:hover,
-    &:focus {
+    &:focus,
+    &:active {
         color: @button-muted-hover-color;
         background-color: @button-muted-hover-background-color;
     }
@@ -219,9 +264,17 @@
         background: @button-muted-active-background-color;
     }
 
+    &:focus {
+        box-shadow: 0 0 0 @su4 var(--focus-ring-muted);
+    }
+
     &.is-selected {
         color: @button-muted-selected-color;
         background-color: @button-muted-selected-background-color;
+
+        &:focus {
+            box-shadow: 0 0 0 @su4 var(--focus-ring-muted);
+        }
     }
 
     //  --  Muted (Gray)
@@ -241,52 +294,39 @@
     &.s-btn__filled {
         color: @button-muted-filled-color;
         background-color: @button-muted-filled-background-color;
+        border-color: transparent;
+        box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, .4);
 
         &:hover,
-        &:focus {
+        &:focus,
+        &:active {
             color: @button-muted-filled-hover-color;
             background-color: @button-muted-filled-hover-background-color;
         }
 
         &:active {
             background-color: @button-muted-filled-active-background-color;
+            box-shadow: none;
+        }
+
+        &:focus {
+            box-shadow: 0 0 0 @su4 var(--focus-ring-muted);
         }
 
         &.is-selected {
             color: @button-muted-filled-selected-color;
             background-color: @button-muted-filled-selected-background-color;
+            box-shadow: none;
+
+            &:focus {
+                box-shadow: 0 0 0 @su4 var(--focus-ring-muted);
+            }
         }
 
         &[disabled] {
             color: @button-muted-filled-disabled-color;
+            box-shadow: none;
         }
-    }
-}
-
-//  --  Base Filled Style
-//      Adds in background-colors, background-images, and/or box-shadows.
-//  ----------------------------------------------------------------------------
-.s-btn__filled {
-    color: @button-filled-color;
-    background-color: @button-filled-background-color;
-
-    &:hover,
-    &:focus {
-        color: @button-filled-hover-color;
-        background-color: @button-filled-hover-background-color;
-    }
-
-    &:active {
-        background-color: @button-filled-active-background-color;
-    }
-
-    &[disabled] {
-        background-color: @button-filled-disabled-background-color;
-    }
-
-    &.is-selected {
-        color: @button-filled-selected-color;
-        background-color: @button-filled-selected-background-color;
     }
 }
 
@@ -298,7 +338,8 @@
     color: @button-danger-color;
 
     &:hover,
-    &:focus {
+    &:focus,
+    &:active {
         color: @button-danger-hover-color;
         background-color: @button-danger-hover-background-color;
     }
@@ -307,9 +348,17 @@
         background-color: @button-danger-active-background-color;
     }
 
+    &:focus {
+        box-shadow: 0 0 0 @su4 var(--focus-ring-error);
+    }
+
     &.is-selected {
         color: @button-danger-selected-color;
         background-color: @button-danger-selected-background-color;
+
+        &:focus {
+            box-shadow: 0 0 0 @su4 var(--focus-ring-error);
+        }
     }
 
     //  --  Outlined
@@ -329,33 +378,47 @@
     &.s-btn__filled {
         color: @button-danger-filled-color;
         background-color: @button-danger-filled-background-color;
+        border-color: transparent;
+        box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, .4);
 
         &:hover,
-        &:focus {
+        &:focus,
+        &:active {
             color: @button-danger-filled-hover-color;
             background-color: @button-danger-filled-hover-background-color;
         }
 
         &:active {
             background-color: @button-danger-filled-active-background-color;
+            box-shadow: none;
         }
 
-        &[disabled] {
-            color: @button-danger-filled-disabled-color;
-            background-color: @button-danger-filled-disabled-background-color;
-
-            .s-btn--number {
-                color: @button-danger-filled-disabled-number-color;
-            }
+        &:focus {
+            box-shadow: 0 0 0 @su4 var(--focus-ring-error);
         }
 
         &.is-selected {
             color: @button-danger-filled-selected-color;
             background-color: @button-danger-filled-selected-background-color;
+            box-shadow: none;
+
+            &:focus {
+                box-shadow: 0 0 0 @su4 var(--focus-ring-error);
+            }
         }
 
         .s-btn--number {
             color: @button-danger-filled-number-color;
+        }
+
+        &[disabled] {
+            color: @button-danger-filled-disabled-color;
+            background-color: @button-danger-filled-disabled-background-color;
+            box-shadow: none;
+
+            .s-btn--number {
+                color: @button-danger-filled-disabled-number-color;
+            }
         }
     }
 }
@@ -367,24 +430,18 @@
 .s-btn__primary {
     color: @button-primary-color;
     background-color: @button-primary-background-color;
+    box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, .4);
 
     &:hover,
-    &:focus {
+    &:focus,
+    &:active {
         color: @button-primary-hover-color;
         background-color: @button-primary-hover-background-color;
     }
 
     &:active {
         background-color: @button-primary-active-background-color;
-    }
-
-    &[disabled] {
-        color: @button-primary-disabled-color;
-        background-color: @button-primary-disabled-background-color;
-
-        .s-btn--number {
-            color: @button-primary-disabled-number-color;
-        }
+        box-shadow: none;
     }
 
     &.is-selected {
@@ -394,6 +451,15 @@
 
     .s-btn--number {
         color: @button-primary-number-color;
+    }
+
+    &[disabled] {
+        color: @button-primary-disabled-color;
+        background-color: @button-primary-disabled-background-color;
+
+        .s-btn--number {
+            color: @button-primary-disabled-number-color;
+        }
     }
 }
 
@@ -418,12 +484,6 @@
         background-color: var(--black-050);
         color: var(--black-900);
     }
-
-    &:active {
-        border-color: @black-200;
-        background-color: @black-050;
-        color: @black-900;
-    }
 }
 
 .s-btn__facebook {
@@ -444,7 +504,7 @@
 }
 
 .s-btn__github {
-    background-color: var(--black-700);
+    background-color: var(--black-750);
     color: var(--white);
 
     &:hover,
@@ -457,27 +517,6 @@
         background-color: var(--black-900);
         color: var(--white);
     }
-
-    &:active {
-        background-color: darken(#385499, 10%);
-        color: #fff;
-    }
-}
-
-.s-btn__github {
-    background-color: @black-750;
-    color: @white;
-
-    &:hover,
-    &:focus {
-        background-color: @black-800;
-        color: @white;
-    }
-
-     &:active {
-        background-color: @black-900;
-        color: @white;
-    }
 }
 
 .s-btn__unset,
@@ -486,20 +525,22 @@
     padding: 0;
     border: none;
     outline: none;
-    font: inherit;
-    color: inherit;
+    font: unset;
+    border-radius: 0;
+    color: unset;
     background: none;
     box-shadow: none;
     cursor: default;
 }
 
 .s-btn__unset:focus {
-    color: inherit;
+    color: unset;
 }
 
 .s-btn__link {
     padding: 0;
     border: none;
+    border-radius: 0;
     outline: none;
     font: inherit;
     background: none;

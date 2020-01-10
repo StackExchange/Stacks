@@ -16,7 +16,6 @@
 @s-sidebarwidget-content-inner-spacing: @su12; // the spacing between two adjacent simple items
 @s-sidebarwidget-content-outer-spacing: @su16; // the spacing at the start/end of a group of simple items, as well as between a complex item and its separator line
 
-// Default style
 @s-sidebarwidget-outer-border-color: var(--black-100);
 @s-sidebarwidget-content-separator-color: var(--black-075);
 @s-sidebarwidget-header-background-color: var(--black-025);
@@ -211,7 +210,7 @@ table.s-sidebarwidget--content.s-sidebarwidget__items {
 
         &[aria-current="true"], &[aria-current="page"] {
             // this is given a bullet-arrow in the primary color in _stacks-widget-dynamic.less
-            color: var(--black-900);
+            color: var(--black);
             font-weight: bold;
 
             a, a:visited { // TODO: see above
@@ -221,20 +220,29 @@ table.s-sidebarwidget--content.s-sidebarwidget__items {
     }
 }
 
-&.s-sidebarwidget__bulletin {
-    border-color: var(--yellow-200);
-    background-color: var(--yellow-050);
+// COLOR ALTERNATIVES
+// todo: use CSS custom properties for this once we don't care about IE anymore
 
-    .s-sidebarwidget--header {
-        background-color: var(--yellow-100);
-        color: var(--black-700);
-    }
+.alternate-color(blue);
+.alternate-color(yellow);
+.alternate-color(green);
 
-    .s-sidebarwidget--header, .s-sidebarwidget--content {
-        border-color: var(--yellow-200);
-    }
+.alternate-color(@name) {
+    &.s-sidebarwidget__@{name} {
+        border-color: var(~"--@{name}-200");
+        background-color: var(~"--@{name}-050");
 
-    &:after {
-        border-color: var(--yellow-200);
+        .s-sidebarwidget--header {
+            background-color: var(~"--@{name}-100");
+            color: var(--fc-medium);
+        }
+
+        .s-sidebarwidget--header, .s-sidebarwidget--content {
+            border-color: var(~"--@{name}-200");
+        }
+
+        &:after {
+            border-color: var(~"--@{name}-200");
+        }
     }
 }
