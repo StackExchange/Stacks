@@ -140,6 +140,10 @@
 @focus-ring-error: fade(@red-600, 15%);
 @focus-ring-muted: fade(@black-800, 10%);
 
+@bs-sm: 0 1px 2px rgba(0, 0, 0, 0.05), 0 1px 4px rgba(0, 0, 0, 0.05), 0 2px 8px rgba(0, 0, 0, 0.05);
+@bs-md: 0 1px 3px rgba(0, 0, 0, 0.06), 0 2px 6px rgba(0, 0, 0, 0.06), 0 3px 8px rgba(0, 0, 0, 0.09);
+@bs-lg: 0 1px 4px rgba(0, 0, 0, 0.09), 0 3px 8px rgba(0, 0, 0, 0.09), 0 4px 13px rgba(0, 0, 0, 0.13);
+
 //  ============================================================================
 //  $   CSS Variable Colors
 //  ----------------------------------------------------------------------------
@@ -272,6 +276,11 @@ body {
     --focus-ring-warning: @focus-ring-warning;
     --focus-ring-error: @focus-ring-error;
     --focus-ring-muted: @focus-ring-muted;
+
+    // Shadows
+    --bs-sm: @bs-sm;
+    --bs-md: @bs-md;
+    --bs-lg: @bs-lg;
 }
 
 //  --  High contrast
@@ -390,6 +399,8 @@ body.has-highcontrast {
     --fc-light: --var(black-500);
 
     // TODO: NEEDS FOCUS RINGS
+
+    // TODO: NEEDS SHADOWS
 }
 
 //  --  Dark mode
@@ -513,6 +524,11 @@ body.has-highcontrast {
     --focus-ring-warning: fade(#9e883b, 40%); // @yellow-400
     --focus-ring-error: fade(#c4524f, 30%); // @red-500
     --focus-ring-muted: fade(#e7e8eb, 10%); // @black-800
+
+    // Shadows
+    --bs-sm: 0 1px 2px rgba(0, 0, 0, 0.1), 0 1px 4px rgba(0, 0, 0, 0.1), 0 2px 8px rgba(0, 0, 0, 0.1);
+    --bs-md: 0 1px 3px rgba(0, 0, 0, 0.11), 0 2px 6px rgba(0, 0, 0, 0.11), 0 3px 8px rgba(0, 0, 0, 0.14);
+    --bs-lg: 0 1px 4px rgba(0, 0, 0, 0.14), 0 3px 8px rgba(0, 0, 0, 0.14), 0 4px 13px rgba(0, 0, 0, 0.18);
 }
 
 @media (prefers-color-scheme: dark) {
