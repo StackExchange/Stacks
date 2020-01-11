@@ -47,7 +47,7 @@ module Jekyll
           <span class=\"pe-auto\">#{processedText}</span>
         </#{@element}>
         <a class=\"grid grid__center mbn6 s-btn s-btn__muted pe-auto\" href=\"##{slug}\">
-          <svg aria-hidden=\"true\" class=\"svg-icon iconLink m0\" width=\"18\" height=\"18\" viewBox=\"0 0 18 18\"><path d=\"M2.9 9c0-1.16.94-2.1 2.1-2.1h3V5H5C2.79 5 1 6.79 1 9s1.79 4 4 4h3v-1.9H5A2.1 2.1 0 0 1 2.9 9zM13 5h-3v1.9h3a2.1 2.1 0 1 1 0 4.2h-3V13h3c2.21 0 4-1.79 4-4s-1.79-4-4-4zm-7 5h6V8H6v2z\"></path></svg>
+          <svg aria-hidden=\"true\" class=\"svg-icon iconLink m0\" width=\"18\" height=\"18\" viewBox=\"0 0 18 18\"><path d=\"M7.22 11.83a6 6 0 0 0 1.62.85l.61-1.8a4.1 4.1 0 1 1 4.04-.8l1.26 1.42a6 6 0 1 0-7.53.33z\"></path><path d=\"M10.65 6.23a6 6 0 0 0-1.6-.87L8.4 7.15a4.1 4.1 0 1 1-4.05.73L3.12 6.43a6 6 0 1 0 7.53-.2z\"></path></svg>
         </a>
       </div>"
       
