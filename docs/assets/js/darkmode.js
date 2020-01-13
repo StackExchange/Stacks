@@ -27,6 +27,8 @@ $(document).ready(function() {
             } else {
                 localStorage.setItem('darkMode', false);
             }
+
+            localStorage.setItem('darkModeForced', false);
         } else {
             if ( body.hasClass("has-darkmode__forced") ) {
                 localStorage.setItem('darkModeForced', true);
