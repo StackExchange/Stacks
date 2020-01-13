@@ -35,6 +35,8 @@ $(document).ready(function() {
             } else {
                 localStorage.setItem('darkModeForced', false);
             }
+
+            localStorage.setItem('darkMode', false);
         }
     }
 
