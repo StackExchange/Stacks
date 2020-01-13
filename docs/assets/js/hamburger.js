@@ -19,6 +19,10 @@ $(document).ready(function() {
         e.preventDefault();
         e.stopPropagation();
 
-        body.toggleClass("has-darkmode__forced");
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            body.toggleClass("has-darkmode");
+        } else {
+            body.toggleClass("has-darkmode__forced");
+        }
     });
 });
