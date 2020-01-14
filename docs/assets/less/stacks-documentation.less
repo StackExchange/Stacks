@@ -205,7 +205,31 @@
         overflow: auto;
         background-color: @black-800;
 
-        @scrollbar-styles();
+        // Don't use the mixin since we want our scrollbar colors to remain fixed
+        // since the background also remains fixed.
+        &::-webkit-scrollbar {
+            width: @su8;
+            height: @su8;
+            background-color: transparent;
+        }
+
+        &::-webkit-scrollbar-track {
+            border-radius: @su8;
+            background-color: transparent;
+        }
+
+        &::-webkit-scrollbar-thumb
+        {
+            border-radius: @su8;
+            background-color: rgba(255, 255, 255, .2);
+        }
+
+        &::-webkit-scrollbar-corner {
+            background-color: transparent;
+        }
+
+        scrollbar-color: rgba(255, 255, 255, .2) transparent;
+        scrollbar-width: thin;
 
         pre,
         code {
