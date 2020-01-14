@@ -10,7 +10,7 @@ $(document).ready(function() {
         e.preventDefault();
         e.stopPropagation();
 
-        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        if (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches) {
             body.toggleClass("has-darkmode");
             body.removeClass("has-darkmode__forced");
         } else {
@@ -21,22 +21,22 @@ $(document).ready(function() {
     });
 
     function setDarkModeLocalStorage() {
-        if ( window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ) {
+        if ( window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches ) {
             if ( body.hasClass("has-darkmode") ) {
-                localStorage.setItem('darkMode', true);
+                localStorage.setItem("darkMode", true);
             } else {
-                localStorage.setItem('darkMode', false);
+                localStorage.setItem("darkMode", false);
             }
 
-            localStorage.setItem('darkModeForced', false);
+            localStorage.setItem("darkModeForced", false);
         } else {
             if ( body.hasClass("has-darkmode__forced") ) {
-                localStorage.setItem('darkModeForced', true);
+                localStorage.setItem("darkModeForced", true);
             } else {
-                localStorage.setItem('darkModeForced', false);
+                localStorage.setItem("darkModeForced", false);
             }
 
-            localStorage.setItem('darkMode', false);
+            localStorage.setItem("darkMode", false);
         }
     }
 
