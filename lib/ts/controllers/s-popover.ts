@@ -78,6 +78,11 @@ namespace Stacks {
             this.popper.enableEventListeners();
 
             this.popoverElement!.classList.add("is-visible");
+
+            // If the popover has undergone a content change while hidden, it may need to update its position slightly.
+            // Scheduling an update will cause the change to happen at the next animation frame.
+            this.popper.scheduleUpdate();
+
             this.shown();
         }
 
@@ -173,6 +178,12 @@ namespace Stacks {
             }
 
             this.popoverElement = popoverElement;
+        }
+
+        protected updateIfVisible() {
+            if (this.popper && this.isVisible) {
+                this.popper.update();
+            }
         }
     }
 
