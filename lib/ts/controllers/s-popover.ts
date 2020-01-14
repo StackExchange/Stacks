@@ -46,7 +46,7 @@ namespace Stacks {
          * Cleans up popper.js elements and disconnects all added event listeners
          */
         disconnect() {
-            this.hidden();
+            this.hide();
             if (this.popper) {
                 this.popper.destroy();
                 this.popper = null;
@@ -73,11 +73,12 @@ namespace Stacks {
                 this.initializePopper();
             }
 
-            // ensure the popper has been positioned correctly and is listening to events
-            this.popper.update();
-            this.popper.enableEventListeners();
-
             this.popoverElement!.classList.add("is-visible");
+
+            // ensure the popper has been positioned correctly and is listening to events
+            this.popper.enableEventListeners();
+            this.scheduleUpdate();
+
             this.shown();
         }
 
@@ -173,6 +174,15 @@ namespace Stacks {
             }
 
             this.popoverElement = popoverElement;
+        }
+
+        /**
+         * Schedules the popover to update on the next animation frame if visible
+         */
+        protected scheduleUpdate() {
+            if (this.popper && this.isVisible) {
+                this.popper.scheduleUpdate();
+            }
         }
     }
 

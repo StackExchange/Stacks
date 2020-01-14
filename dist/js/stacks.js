@@ -4704,7 +4704,7 @@ var Stacks;
             }
         };
         BasePopoverController.prototype.disconnect = function () {
-            this.hidden();
+            this.hide();
             if (this.popper) {
                 this.popper.destroy();
                 this.popper = null;
@@ -4724,9 +4724,9 @@ var Stacks;
             if (!this.popper) {
                 this.initializePopper();
             }
-            this.popper.update();
-            this.popper.enableEventListeners();
             this.popoverElement.classList.add("is-visible");
+            this.popper.enableEventListeners();
+            this.scheduleUpdate();
             this.shown();
         };
         BasePopoverController.prototype.hide = function () {
@@ -4783,6 +4783,11 @@ var Stacks;
                 throw "unable to find or generate popover element";
             }
             this.popoverElement = popoverElement;
+        };
+        BasePopoverController.prototype.scheduleUpdate = function () {
+            if (this.popper && this.isVisible) {
+                this.popper.scheduleUpdate();
+            }
         };
         return BasePopoverController;
     }(Stacks.StacksController));
@@ -5098,7 +5103,7 @@ var Stacks;
             if (!popover) {
                 popover = document.createElement("div");
                 popover.id = popoverId;
-                popover.className = "s-popover s-popover__tooltip";
+                popover.className = "s-popover s-popover__tooltip pe-none";
                 popover.setAttribute("aria-hidden", "true");
                 popover.setAttribute("role", "tooltip");
                 var parentNode = this.element.parentNode;
@@ -5118,6 +5123,7 @@ var Stacks;
             else {
                 popover.insertAdjacentHTML("beforeend", "<div class=\"s-popover--arrow\"></div>");
             }
+            this.scheduleUpdate();
             return popover;
         };
         TooltipController.prototype.bindDocumentEvents = function () {

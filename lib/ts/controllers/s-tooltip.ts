@@ -82,7 +82,7 @@ namespace Stacks {
             if (!popover) {
                 popover = document.createElement("div");
                 popover.id = popoverId;
-                popover.className = "s-popover s-popover__tooltip";
+                popover.className = "s-popover s-popover__tooltip pe-none";
                 popover.setAttribute("aria-hidden", "true");
                 popover.setAttribute("role", "tooltip");
 
@@ -107,6 +107,8 @@ namespace Stacks {
             } else {
                 popover.insertAdjacentHTML("beforeend", `<div class="s-popover--arrow"></div>`);
             }
+
+            this.scheduleUpdate();
 
             return popover;
         }
