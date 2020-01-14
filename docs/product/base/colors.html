@@ -8,7 +8,7 @@ description: To avoid specifying color values by hand, we’ve included a robust
 <section class="stacks-section">
     {% header h2 | Primary colors %}
     <div class="grid sm:fd-column gs16 grid__allcells4">
-        <a class="grid--cell fw-wrap p12 bg-orange-400 fc-dark mb12 bar-sm" href="#orange">
+        <a class="grid--cell fw-wrap p12 bg-orange-400 fc-dark d:fc-white mb12 bar-sm" href="#orange">
             <h2 class="fs-subheading mb4">Orange</h2>
             <p class="ff-mono mb0">@orange-400</p>
         </a>
@@ -28,22 +28,22 @@ description: To avoid specifying color values by hand, we’ve included a robust
 <section class="stacks-section">
     {% header h2 | Accent colors %}
     <div class="grid sm:fd-column gs16 grid__allcells3">
-        <a class="grid--cell p12 bg-powder-100 mb12 fc-powder-900 bar-sm" href="#powder">
+        <a class="grid--cell p12 bg-powder-100 mb12 fc-dark bar-sm" href="#powder">
             <h2 class="fs-subheading mb4">Powder</h2>
             <p class="ff-mono mb0">@powder-100</p>
         </a>
 
-        <a class="grid--cell p12 bg-green-400 mb12 fc-green-900 bar-sm" href="#green">
+        <a class="grid--cell p12 bg-green-400 mb12 fc-dark bar-sm" href="#green">
             <h2 class="fs-subheading mb4">Green</h2>
             <p class="ff-mono mb0">@green-400</p>
         </a>
 
-        <a class="grid--cell p12 bg-yellow-100 mb12 fc-yellow-900 bar-sm" href="#yellow">
+        <a class="grid--cell p12 bg-yellow-100 mb12 fc-dark bar-sm" href="#yellow">
             <h2 class="fs-subheading mb4">Yellow</h2>
             <p class="ff-mono mb0">@yellow-100</p>
         </a>
 
-        <a class="grid--cell p12 bg-red-500 mb12 fc-white bar-sm" href="#red">
+        <a class="grid--cell p12 bg-red-500 mb12 fc-white d:fc-black-900 bar-sm" href="#red">
             <h2 class="fs-subheading mb4">Red</h2>
             <p class="ff-mono mb0">@red-500</p>
         </a>
@@ -71,13 +71,14 @@ description: To avoid specifying color values by hand, we’ve included a robust
                         <th scope="col">Background class</th>
                         <th scope="col" class="ta-center"><a class="s-link s-link__inherit" href="{{ "/product/guidelines/conditional-classes#hover" | relative_url }}">Hover?</a></th>
                         <th scope="col" class="ta-center"><a class="s-link s-link__inherit" href="{{ "/product/guidelines/conditional-classes#focus" | relative_url }}">Focus?</a></th>
+                        <th scope="col" class="ta-center"><a class="s-link s-link__inherit" href="{{ "/product/guidelines/conditional-classes#dark-mode" | relative_url }}">Dark?</a></th>
                     </tr>
                 </thead>
                 <tbody>
                     {% for stop in color_stops %}
                     <tr class="ff-mono">
                         <th scope="row">
-                          <div class="stacks-swatch bar-sm bs-i-sm bg-{{ color.name }}-{{ stop.stop }}"></div>
+                          <div class="stacks-swatch bar-sm bg-{{ color.name }}-{{ stop.stop }}"></div>
                         </th>
                         <td>@{{ color.name }}-{{ stop.stop }}</td>
                         <td>#{{ stop.hex }}</td>
@@ -100,11 +101,12 @@ description: To avoid specifying color values by hand, we’ve included a robust
                         <td>.bg-{{ color.name }}-{{ stop.stop }}</td>
                         <td class="ta-center">{% icon Checkmark | fc-green-500 %}</td>
                         <td class="ta-center">{% icon Checkmark | fc-green-500 %}</td>
+                        <td class="ta-center">{% icon Checkmark | fc-green-500 %}</td>
                     </tr>
                     {% endfor %}
                     <tr class="ff-mono">
                         <th scope="row">
-                          <div class="stacks-swatch bar-sm bs-i-sm bg-white"></div>
+                          <div class="stacks-swatch bar-sm bg-white"></div>
                         </th>
                         <td>@white</td>
                         <td>#ffffff</td>
@@ -112,10 +114,11 @@ description: To avoid specifying color values by hand, we’ve included a robust
                         <td>.bg-white</td>
                         <td class="ta-center">{% icon Checkmark | fc-green-500 %}</td>
                         <td class="ta-center">{% icon Checkmark | fc-green-500 %}</td>
+                        <td class="ta-center">{% icon Checkmark | fc-green-500 %}</td>
                     </tr>
                     <tr class="ff-mono">
                         <th scope="row">
-                          <div class="stacks-swatch bar-sm bs-i-sm bg-transparent"></div>
+                          <div class="stacks-swatch bar-sm bg-transparent"></div>
                         </th>
                         <td class="fc-light">N/A</td>
                         <td class="fc-light">N/A</td>

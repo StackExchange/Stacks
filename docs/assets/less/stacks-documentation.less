@@ -29,6 +29,10 @@
     background-repeat: no-repeat, no-repeat;
 }
 
+#stacks-internals #darkmode('.stacks-intro', {
+    background-image: url("../img/illustration-crane-dark.svg"), url("../img/illustration-field-dark.svg");
+});
+
 .stacks-home-nav {
     margin-bottom: 316px;
 }
@@ -157,7 +161,7 @@
 .stacks-code {
     padding: 3px 5px @su2 @su4;
     border-radius: @br-sm;
-    background-color: var(--black-050);
+    background-color: var(--black-075);
 
     font-size: @fs-caption;
     font-family: @ff-mono;
@@ -201,7 +205,8 @@
         overflow: auto;
         background-color: @black-800;
 
-        // Force scrollbar styling on the code examples
+        // Don't use the mixin since we want our scrollbar colors to remain fixed
+        // since the background also remains fixed.
         &::-webkit-scrollbar {
             width: @su8;
             height: @su8;
@@ -216,14 +221,14 @@
         &::-webkit-scrollbar-thumb
         {
             border-radius: @su8;
-            background-color: fade(@white, 30%);
+            background-color: rgba(255, 255, 255, .2);
         }
 
         &::-webkit-scrollbar-corner {
             background-color: transparent;
         }
 
-        scrollbar-color: fade(@white, 30%) transparent;
+        scrollbar-color: rgba(255, 255, 255, .2) transparent;
         scrollbar-width: thin;
 
         pre,
@@ -232,7 +237,9 @@
             font-size: @fs-body1;
             font-family: @ff-mono;
             line-height: @lh-lg;
-            color: @black-150;
+
+            // We want our code highlighting colors to stay fixed
+            color: @white;
         }
     }
 
@@ -240,6 +247,8 @@
         .bar-sm;
     }
 }
+
+#stacks-internals #darkmode('.stacks-preview .highlight', { background-color: #1c1b1b; });
 
 //  Preview area
 .stacks-preview--example {
@@ -250,6 +259,11 @@
     border-top-width: 0;
     font-size: @fs-body1;
 }
+
+#stacks-internals #darkmode('.stacks-preview--example', {
+    border-color: transparent;
+    background: var(--black-025);
+});
 
 // Checkered background
 .bg-checkered {

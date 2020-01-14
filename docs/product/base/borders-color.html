@@ -7,14 +7,20 @@
                 <tr>
                     <th class="s-table--cell3" scope="col">Class</th>
                     <th scope="col">Definition</th>
+                    <th class="s-table--cell2 ta-center" scope="col"><a class="s-link s-link__inherit" href="{{ "/product/guidelines/conditional-classes#darkmode" | relative_url }}">Dark mode?</a></th>
                 </tr>
             </thead>
             <tbody>
                 {% for border in site.data.product.borders-definitions.border-color %}
-                  <tr>
-                      <th scope="row"><code class="stacks-code">.{{ border.term }}</code></th>
-                      <td>{{ border.define }}</td>
-                  </tr>
+                    <tr>
+                        <th scope="row"><code class="stacks-code">.{{ border.term }}</code></th>
+                        <td>{{ border.define }}</td>
+                        <td class="ta-center">
+                            {% if border.darkmode %}
+                                {% icon Checkmark | fc-green-500 %}
+                            {% endif %}
+                        </td>
+                    </tr>
                 {% endfor %}
             </tbody>
         </table>
@@ -28,36 +34,6 @@
         <div class="stacks-preview--example">
             <div class="grid ff-column-nowrap w100">
                 <div class="grid--cell ai-center p8 ba bc-transparent">Transparent border color</div>
-            </div>
-        </div>
-    </div>
-
-    {% header h3 | White %}
-    <div class="stacks-preview">
-{% highlight html %}
-<div class="bb bc-white">White border</div>
-<div class="bb bc-white-9">90% White Border</div>
-<div class="bb bc-white-8">80% White Border</div>
-<div class="bb bc-white-7">70% White Border</div>
-<div class="bb bc-white-6">60% White Border</div>
-<div class="bb bc-white-5">50% White Border</div>
-<div class="bb bc-white-4">40% White Border</div>
-<div class="bb bc-white-3">30% White Border</div>
-<div class="bb bc-white-2">20% White Border</div>
-<div class="bb bc-white-1">10% White Border</div>
-{% endhighlight %}
-        <div class="stacks-preview--example">
-            <div class="grid ff-column-nowrap w100 gs8 gsy bg-black-800">
-                <div class="grid--cell ai-center p8 bb bc-white fc-white">White Border</div>
-                <div class="grid--cell ai-center p8 bb bc-white-9 fc-white">90% White Border</div>
-                <div class="grid--cell ai-center p8 bb bc-white-8 fc-white">80% White Border</div>
-                <div class="grid--cell ai-center p8 bb bc-white-7 fc-white">70% White Border</div>
-                <div class="grid--cell ai-center p8 bb bc-white-6 fc-white">60% White Border</div>
-                <div class="grid--cell ai-center p8 bb bc-white-5 fc-white">50% White Border</div>
-                <div class="grid--cell ai-center p8 bb bc-white-4 fc-white">40% White Border</div>
-                <div class="grid--cell ai-center p8 bb bc-white-3 fc-white">30% White Border</div>
-                <div class="grid--cell ai-center p8 bb bc-white-2 fc-white">20% White Border</div>
-                <div class="grid--cell ai-center p8 bb bc-white-1 fc-white">10% White Border</div>
             </div>
         </div>
     </div>
@@ -88,6 +64,22 @@
                 <div class="grid--cell ai-center p8 bb bc-black-3">Black Border: Third Step</div>
                 <div class="grid--cell ai-center p8 bb bc-black-2">Black Border: Second Step</div>
                 <div class="grid--cell ai-center p8 bb bc-black-1">Black Border: First Step</div>
+            </div>
+        </div>
+    </div>
+
+    {% header h3 | White %}
+    <div class="stacks-preview">
+{% highlight html %}
+<div class="bb bc-white-3">White Border: Third Step</div>
+<div class="bb bc-white-2">White Border: Second Step</div>
+<div class="bb bc-white-1">White Border: First Step</div>
+{% endhighlight %}
+        <div class="stacks-preview--example bg-black-750">
+            <div class="grid ff-column-nowrap w100 gs8 gsy">
+                <div class="grid--cell ai-center p8 bb bc-white-3 fc-white">White Border: Third Step</div>
+                <div class="grid--cell ai-center p8 bb bc-white-2 fc-white">White Border: Second Step</div>
+                <div class="grid--cell ai-center p8 bb bc-white-1 fc-white">White Border: First Step</div>
             </div>
         </div>
     </div>
