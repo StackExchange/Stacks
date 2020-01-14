@@ -4704,7 +4704,7 @@ var Stacks;
             }
         };
         BasePopoverController.prototype.disconnect = function () {
-            this.hidden();
+            this.hide();
             if (this.popper) {
                 this.popper.destroy();
                 this.popper = null;

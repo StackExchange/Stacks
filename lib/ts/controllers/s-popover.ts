@@ -46,7 +46,7 @@ namespace Stacks {
          * Cleans up popper.js elements and disconnects all added event listeners
          */
         disconnect() {
-            this.hidden();
+            this.hide();
             if (this.popper) {
                 this.popper.destroy();
                 this.popper = null;
