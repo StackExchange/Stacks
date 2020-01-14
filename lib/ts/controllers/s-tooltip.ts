@@ -108,7 +108,7 @@ namespace Stacks {
                 popover.insertAdjacentHTML("beforeend", `<div class="s-popover--arrow"></div>`);
             }
 
-            this.updateIfVisible();
+            this.scheduleUpdate();
 
             return popover;
         }

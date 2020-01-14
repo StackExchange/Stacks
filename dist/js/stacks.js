@@ -4724,10 +4724,9 @@ var Stacks;
             if (!this.popper) {
                 this.initializePopper();
             }
-            this.popper.update();
-            this.popper.enableEventListeners();
             this.popoverElement.classList.add("is-visible");
-            this.popper.scheduleUpdate();
+            this.popper.enableEventListeners();
+            this.scheduleUpdate();
             this.shown();
         };
         BasePopoverController.prototype.hide = function () {
@@ -4785,9 +4784,9 @@ var Stacks;
             }
             this.popoverElement = popoverElement;
         };
-        BasePopoverController.prototype.updateIfVisible = function () {
+        BasePopoverController.prototype.scheduleUpdate = function () {
             if (this.popper && this.isVisible) {
-                this.popper.update();
+                this.popper.scheduleUpdate();
             }
         };
         return BasePopoverController;
@@ -5124,7 +5123,7 @@ var Stacks;
             else {
                 popover.insertAdjacentHTML("beforeend", "<div class=\"s-popover--arrow\"></div>");
             }
-            this.updateIfVisible();
+            this.scheduleUpdate();
             return popover;
         };
         TooltipController.prototype.bindDocumentEvents = function () {
