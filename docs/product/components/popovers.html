@@ -27,7 +27,10 @@ description: Popovers are small content containers that provide a contextual ove
     </div>
 </section>
 <section class="stacks-section">
-    {% header h2 | JavaScript %}
+    {% header h2 | Interactive popovers %}
+
+    <p class="stacks-copy">Stacks provides a Stimulus controller that allows you to interactively display a popover from a source element. Positioning and arrow direction are managed for you by <a href="https://popper.js.org">Popper.js</a>, a powerful popover positioning library we’ve added as a dependency.  These popovers are automatically hidden when user click outside the popover or tap the <kbd>Esc</kbd> key.</kbd></p>
+
     {% header h3 | Attributes %}
     <div class="overflow-x-auto mb32">
         <table class="wmn4 s-table s-table__bx-simple">
@@ -91,29 +94,26 @@ description: Popovers are small content containers that provide a contextual ove
                 <tr>
                     <th scope="row"><code class="stacks-code">s-popover:show</code></th>
                     <td>Controller element</td>
-                    <td>Fires immediately before showing the popover</td>
+                    <td><span class="s-label--status ml0">Default preventable</span> Fires immediately before showing and positioning the popover. This fires before the popover is first displayed to the user, and can be used to create or initialize the popover element. Calling <code class="stacks-code">.preventDefault()</code> cancels the display of the popover.</td>
                 </tr>
                 <tr>
                     <th scope="row"><code class="stacks-code">s-popover:shown</code></th>
                     <td>Controller element</td>
-                    <td>Fires immediately after showing the popover</td>
+                    <td>Fires immediately after showing the popover.</td>
                 </tr>
                 <tr>
                     <th scope="row"><code class="stacks-code">s-popover:hide</code></th>
                     <td>Controller element</td>
-                    <td>Fires immediately before hiding the popover</td>
+                    <td><span class="s-label--status ml0">Default preventable</span> Fires immediately before hiding the popover.  Calling <code class="stacks-code">.preventDefault()</code> prevents the removal of the popover.</td>
                 </tr>
                 <tr>
                     <th scope="row"><code class="stacks-code">s-popover:hidden</code></th>
                     <td>Controller element</td>
-                    <td>Fires immediately after hiding the popover</td>
+                    <td>Fires immediately after hiding the popover.</td>
                 </tr>
             </tbody>
         </table>
     </div>
-</section>
-<section class="stacks-section">
-    {% header h2 | Automatic placement %}
     {% header h3 | Examples %}
     <div class="mb24 p16 bar-sm bg-black-025 ba bc-black-1">
         <div class="grid ai-center gs8 sm:fd-column">
@@ -125,7 +125,7 @@ description: Popovers are small content containers that provide a contextual ove
                     aria-controls="popover-example-1">
                 Show example popover
             </button>
-            <div id="popover-example-1" class="s-popover ws2" role="menu" aria-hidden="true">
+            <div id="popover-example-1" class="s-popover ws2" role="menu">
                 <div class="s-popover--arrow"></div>
                 <div class="tt-uppercase fs-fine fc-light">
                     Saved filters
@@ -141,7 +141,7 @@ description: Popovers are small content containers that provide a contextual ove
                     aria-controls="popover-example-2">
                 Show example popover
             </button>
-            <div id="popover-example-2" class="s-popover" role="menu" aria-hidden="true">
+            <div id="popover-example-2" class="s-popover" role="menu">
                 <div class="s-popover--arrow"></div>
                 <div class="s-empty-state wmx2 pb16">
                     <img src="{{ "/assets/img/illustrationNoDataBW.svg" | relative_url }}" width="128" height="128" alt="No data">
@@ -157,7 +157,7 @@ description: Popovers are small content containers that provide a contextual ove
                     aria-controls="popover-example-3">
                     Create a team
                 </a>
-                <div id="popover-example-3" class="s-popover is-visible ws2" role="menu" aria-hidden="true">
+                <div id="popover-example-3" class="s-popover is-visible ws2" role="menu">
                     <div class="s-popover--arrow"></div>
                     <button class="s-popover--close s-btn s-btn__muted" aria-label="Close" data-action="s-popover#toggle">{% icon ClearSm %}</button>
 
@@ -187,8 +187,8 @@ description: Popovers are small content containers that provide a contextual ove
         </div>
     </div>
 
-    <p class="stacks-copy">If you’ve added the proper Stimulus controllers to your popover, positioning and arrow direction will be managed for you by <a href="https://popper.js.org">Popper.js</a>, a powerful popover positioning library we’ve added as a dependency.</p>
-    <p class="stacks-copy">First, you’ll want to add our attributes to the popover’s originating button. Automatic positioning is specified by the <code class="stacks-code">data-s-popover-placement</code>. In the following example, we’ve chosen <code class="stacks-code">bottom-start</code>. No positioning classes need to be added to your markup, only the data attributes.</p>
+    {% header h4 | Default interactivity %}
+    <p class="stacks-copy">To enable interactive popovers, you will need to add the above attributes to the popover’s originating button. Custom positioning can be specified using the <code class="stacks-code">data-s-popover-placement</code>. In the following example, we’ve chosen <code class="stacks-code">bottom-start</code>. No positioning classes need to be added to your markup, only the data attributes.</p>
     <p class="stacks-copy">To promote being able to tab to an open popover, it’s best to place the popover immediately after the toggling button in the markup as siblings.</p>
 
     <div class="stacks-preview">
@@ -203,8 +203,7 @@ description: Popovers are small content containers that provide a contextual ove
 </button>
 <div class="s-popover"
        id="popover-example"
-       role="menu"
-       aria-hidden="true">
+       role="menu">
     <div class="s-popover--arrow"></div>
     …
 </div>
@@ -220,15 +219,14 @@ description: Popovers are small content containers that provide a contextual ove
             </button>
             <div class="s-popover wmn-initial w-auto"
                 id="popover-example"
-                role="menu"
-                aria-hidden="true">
+                role="menu">
                 <div class="s-popover--arrow"></div>
                 Example popover content
             </div>
         </div>
     </div>
 
-    {% header h3 | Dismissible %}
+    {% header h4 | Dismissible %}
     <p class="stacks-copy">In the case of new feature callouts, it may be appropriate to include an explicit dismiss button. You can add one using the styling provided by <code class="stacks-code">.s-popover--close</code>.</p>
     <p class="stacks-copy">In order for to close the popover with an explicit close button, you’ll need to add the controller to a parent as illustrated in the following example code:</p>
     <div class="stacks-preview">
@@ -243,7 +241,7 @@ description: Popovers are small content containers that provide a contextual ove
         …
     </button>
 
-    <div id="popover-example" class="s-popover is-visible" role="menu" aria-hidden="false">
+    <div id="popover-example" class="s-popover is-visible" role="menu">
         <div class="s-popover--arrow"></div>
         <button class="s-popover--close s-btn s-btn__muted" aria-label="Close"
             data-action="s-popover#toggle">
@@ -262,40 +260,232 @@ description: Popovers are small content containers that provide a contextual ove
         </div>
     </div>
 
-    {% header h3 | Hover %}
-    <p class="stacks-copy">If the user doesn’t need to interact with the <em>contents</em> of the popover, it may be appropriate to only show it on hover. This will make popovers feel like a tooltip. To do so, we can rely on stock mouseover and mouseout events from Stimulus.</p>
+</section>
+<section class="stacks-section">
+    {% header h2 | Hover tooltips %}
+
+    <p class="stacks-copy">When a popover is intended only for display as an on-hover tooltip and contains no interactive text, the <code class="stacks-code">s-tooltip</code> controller can be used in place of <code class="stacks-code">s-popover</code>. This is a separate controller that can be used alongside <code class="stacks-code">s-popover</code> on a single target element.</p>
+
+    {% header h3 | Attributes | tooltip-attributes %}
+    <div class="overflow-x-auto mb32">
+        <table class="wmn4 s-table s-table__bx-simple">
+            <thead>
+                <tr>
+                    <th class="s-table--cell5" scope="col">Attribute</th>
+                    <th class="s-table--cell2" scope="col">Applied to</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody class="fs-caption">
+                <tr>
+                    <th scope="row"><code class="stacks-code">id="{POPOVER_ID}"</code></th>
+                    <td><code class="stacks-code">.s-popover</code></td>
+                    <td class="p8">A unique id that the popover’s toggling element can target. Matches the value of <code class="stacks-code">[aria-describedby]</code> on the toggling element.</td>
+                </tr>
+                <tr>
+                    <th scope="row"><code class="stacks-code">data-controller="s-tooltip"</code></th>
+                    <td>Controller element</td>
+                    <td class="p8">Wires up the element to the tooltip controller.</td>
+                </tr>
+                <tr>
+                    <th scope="row"><code class="stacks-code">data-s-tooltip-reference-selector="[css selector]"</code></th>
+                    <td>Controller element</td>
+                    <td class="p8"><span class="s-label--status ml0">Optional</span> Designates the element to use as the tooltip reference. If left unset, the value defaults to the controller element.</td>
+                </tr>
+                <tr>
+                    <th scope="row"><code class="stacks-code">aria-describedby="{POPOVER_ID}"</code></th>
+                    <td>Reference element</td>
+                    <td class="p8">Associates the element to the desired popover element.</td>
+                </tr>
+                <tr>
+                    <th scope="row"><code class="stacks-code">title="{TITLE}"</code></th>
+                    <td>Controller element</td>
+                    <td class="p8">If <code class="stacks-code">aria-describedby</code> is not present or valid, and the title attribute exists, the title will be removed from the element and be used to create a popover immediately after the element. All content will be escaped and inserted as text.</td>
+                </tr>
+                <tr>
+                    <th scope="row"><code class="stacks-code">s-popover-html-title="{TITLE}"</code></th>
+                    <td>Controller element</td>
+                    <td class="p8">Acts the exact same as the <code class="stacks-code">title</code> attribute, but inserts the raw text directly as html. If both this and the <code class="stacks-code">title</code> attribute exist on the element, this attribute will be used.</td>
+                </tr>
+                <tr>
+                    <th scope="row"><code class="stacks-code">data-s-tooltip-placement="<a href="https://popper.js.org/popper-documentation.html#Popper.placements">[placement]</a>"</code></th>
+                    <td>Controller element</td>
+                    <td class="p8 lh-lg">Dictates where to place the popover in relation to the reference element. By default, the placement value is <code class="stacks-code">bottom</code>. Accepted placements are <code class="stacks-code">auto</code>, <code class="stacks-code">top</code>, <code class="stacks-code">right</code>, <code class="stacks-code">bottom</code>, <code class="stacks-code">left</code>. Each placement can take an additional <code class="stacks-code">-start</code> and <code class="stacks-code">-end</code> variation.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    {% header h3 | Events | tooltip-events %}
+    <div class="overflow-x-auto mb32">
+        <table class="wmn4 s-table s-table__bx-simple">
+            <thead>
+                <tr>
+                    <th class="s-table--cell5" scope="col">Event</th>
+                    <th class="s-table--cell2" scope="col">Element</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody class="fs-caption">
+                <tr>
+                    <th scope="row"><code class="stacks-code">s-tooltip:show</code></th>
+                    <td>Controller element</td>
+                    <td><span class="s-label--status ml0">Default preventable</span> Fires immediately before showing and positioning the tooltip. This fires before the tooltip is first displayed to the user, and can be used to create or initialize the tooltip element. Calling <code class="stacks-code">.preventDefault()</code> cancels the display of the popover.</td>
+                </tr>
+                <tr>
+                    <th scope="row"><code class="stacks-code">s-tooltip:shown</code></th>
+                    <td>Controller element</td>
+                    <td>Fires immediately after showing the tooltip.</td>
+                </tr>
+                <tr>
+                    <th scope="row"><code class="stacks-code">s-tooltip:hide</code></th>
+                    <td>Controller element</td>
+                    <td><span class="s-label--status ml0">Default preventable</span> Fires immediately before hiding the tooltip.  Calling <code class="stacks-code">.preventDefault()</code> prevents the removal of the tooltip.</td>
+                </tr>
+                <tr>
+                    <th scope="row"><code class="stacks-code">s-tooltip:hidden</code></th>
+                    <td>Controller element</td>
+                    <td>Fires immediately after hiding the tooltip.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    {% header h3 | Examples | tooltip-examples %}
+    <p class="stacks-copy">If the user doesn’t need to interact with the <em>contents</em> of the popover, it may be appropriate to only show it on hover. This will make popovers feel like a tooltip. To do so, we provide an alternative controller, <code class="stacks-code">s-tooltip</code>, that shows the tooltip only on hover.</p>
+
+    {% header h4 | Title attribute %}
+    <p class="stacks-copy">In the simple case where no markup is needed in the tooltip, the popover element can be omitted and automatically generated using the <code class="stacks-code">title</code> attribute.</p>
 
     <div class="stacks-preview">
 {% highlight html %}
 <button class="s-btn" role="button"
-        aria-controls="popover-example"
-        data-controller="s-popover"
-        data-action="mouseover->s-popover#show mouseout->s-popover#hide"
-        data-s-popover-placement="bottom">
+        title="…"
+        data-controller="s-tooltip"
+        data-s-tooltip-placement="bottom-start">
     …
 </button>
-<div class="s-popover"
-     id="popover-example"
-     role="menu"
+{% endhighlight %}
+        <div class="stacks-preview--example bg-black-025">
+            <button class="s-btn s-btn__filled" role="button"
+                    data-controller="s-tooltip"
+                    title="This popover shows content from the title attribute."
+                    data-s-tooltip-placement="bottom-start">
+                Hover tooltip popover
+            </button>
+        </div>
+    </div>
+
+    {% header h4 | JavaScript configuration %}
+    <p class="stacks-copy">In cases where the tooltip needs to display simple text or HTML, the popover can be configured using JavaScript. Plain text tooltips will render characters like &lt;, &gt;, and &amp; as is. HTML tooltips will render the HTML as expected.</p>
+    <div class="stacks-preview">
+{% highlight javascript %}
+Stacks.setTooltipText(el,
+    "Plain text tooltip",
+    {
+        placement: "top-start"
+    });
+
+Stacks.setTooltipHtml(el,
+    "Tooltip <i>with</i> HTML",
+    {
+        placement: "top-end"
+    });
+{% endhighlight %}
+        <div class="stacks-preview--example bg-black-025">
+            <button class="s-btn s-btn__filled js-text-tooltip-example" role="button">
+                Hover tooltip popover with plain text
+            </button>
+            <button class="s-btn s-btn__filled js-html-tooltip-example" role="button">
+                Hover tooltip popover with HTML
+            </button>
+        </div>
+    </div>
+    <script>
+        Stacks.setTooltipText(document.querySelector(".js-text-tooltip-example"), "Only members of this Team can see the information posted here. It will never be shared publicly or accessible outside of your Team.", { placement: "top-start" });
+        Stacks.setTooltipHtml(document.querySelector(".js-html-tooltip-example"), "View all questions with <span class='s-tag'>stacks</span>", { placement: "top-end" });
+    </script>
+
+    {% header h4 | Rich tooltips %}
+    <p class="stacks-copy">When a rich tooltip is required, a popover element can be configured in much the same way as an <code class="stacks-code">s-popover</code> controller, with the most notable difference being the use of <code class="stacks-code">aria-describedby</code> instead of <code class="stacks-code">aria-controls</code>.</p>
+
+    <div class="stacks-preview">
+{% highlight html %}
+<button class="s-btn" role="button"
+        aria-describedby="tooltip-example"
+        data-controller="s-tooltip"
+        data-s-tooltip-placement="top-start">
+    …
+</button>
+<div class="s-popover s-popover__tooltip"
+     id="tooltip-example"
+     role="tooltip"
      aria-hidden="true">
     <div class="s-popover--arrow"></div>
     …
 </div>
 {% endhighlight %}
         <div class="stacks-preview--example bg-black-025">
-            <button class="s-btn" role="button"
-                    aria-controls="popover-hover-example"
-                    data-controller="s-popover"
-                    data-action="mouseover->s-popover#show mouseout->s-popover#hide"
-                    data-s-popover-placement="top-start">
-                Hover popover
+            <button class="s-btn s-btn__filled" role="button"
+                    aria-describedby="tooltip-example"
+                    data-controller="s-tooltip"
+                    data-s-tooltip-placement="top-start">
+                Hover tooltip popover
             </button>
-            <div class="s-popover"
-                id="popover-hover-example"
-                role="menu"
+            <div class="s-popover s-popover__tooltip"
+                id="tooltip-example"
+                role="tooltip"
                 aria-hidden="true">
                 <div class="s-popover--arrow"></div>
-                This popover will show content that isn’t intended to be interacted with directly.
+                <div class="s-empty-state wmx2">
+                    <img src="{{ "/assets/img/illustrationNoDataBW.svg" | relative_url }}" width="128" height="128" alt="No data">
+                    <p>There’s no data associated with your account yet. Please check back tomorrow.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% header h4 | Tooltips and interactive popovers %}
+    <p class="stacks-copy">Hover tooltips can be used alongside interactive popovers. Tooltips will no appear when the interactive popover is visible.</p>
+
+    <div class="stacks-preview">
+{% highlight html %}
+<button class="s-btn s-btn__dropdown" role="button"
+        aria-controls="popover-example"
+        data-controller="s-popover s-tooltip"
+        data-action="s-popover#toggle"
+        data-s-popover-placement="bottom-start"
+        data-s-popover-toggle-class="is-selected"
+        title="…"
+        data-s-tooltip-placement="top-start">
+    …
+</button>
+<div class="s-popover"
+       id="popover-example"
+       role="menu">
+    <div class="s-popover--arrow"></div>
+    …
+</div>
+{% endhighlight %}
+        <div class="stacks-preview--example">
+            <button class="s-btn s-btn__primary s-btn__dropdown" role="button"
+                    aria-controls="popover-example-with-tooltip"
+                    data-controller="s-popover s-tooltip"
+                    data-action="s-popover#toggle"
+                    data-s-popover-placement="bottom-start"
+                    data-s-popover-toggle-class="is-selected"
+                    title="View your saved filters"
+                    data-s-tooltip-placement="top-start">
+                Popover button with tooltip hover
+            </button>
+            <div class="s-popover wmn-initial w-auto"
+                id="popover-example-with-tooltip"
+                role="menu">
+                <div class="s-popover--arrow"></div>
+                <div class="tt-uppercase fs-fine fc-light">
+                    Saved filters
+                </div>
+                <div class="fc-black-300 fs-caption ta-center p16">
+                    Save custom sorting & filtering for easy access.
+                </div>
             </div>
         </div>
     </div>
