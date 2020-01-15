@@ -423,9 +423,15 @@ body {
     --scrollbar: rgba(255, 255, 255, .2);
 }
 
-#stacks-internals #darkmode('', {
+body.dark-mode {
+    @media (prefers-color-scheme: dark) {
+        .dark-colors();
+    }
+}
+
+body.dark-mode__forced {
     .dark-colors();
-});
+}
 
 //  ============================================================================
 //  $   PRODUCT-SPECIFIC COLOR VALUES
