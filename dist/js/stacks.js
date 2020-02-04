@@ -4681,84 +4681,6 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-var ModalController = (function (_super) {
-    __extends(ModalController, _super);
-    function ModalController() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
-    ModalController.prototype.connect = function () { };
-    ModalController.prototype.disconnect = function () {
-        this._unbindDocumentEvents();
-    };
-    ;
-    ModalController.prototype.toggle = function () {
-        this._toggle();
-    };
-    ModalController.prototype.show = function () {
-        this._toggle(true);
-    };
-    ModalController.prototype.hide = function () {
-        this._toggle(false);
-    };
-    ModalController.prototype._toggle = function (show) {
-        var toShow = show;
-        if (typeof toShow === "undefined") {
-            toShow = this.modalTarget.getAttribute("aria-hidden") === "true";
-        }
-        this.triggerEvent(toShow ? "show" : "hide");
-        this.modalTarget.setAttribute("aria-hidden", toShow ? "false" : "true");
-        if (toShow) {
-            this._bindDocumentEvents();
-        }
-        else {
-            this._unbindDocumentEvents();
-        }
-        this.triggerEvent(toShow ? "shown" : "hidden");
-    };
-    ModalController.prototype._bindDocumentEvents = function () {
-        this._boundClickFn = this._boundClickFn || this._hideOnOutsideClick.bind(this);
-        this._boundKeypressFn = this._boundKeypressFn || this._hideOnEscapePress.bind(this);
-        document.addEventListener("click", this._boundClickFn);
-        document.addEventListener("keyup", this._boundKeypressFn);
-    };
-    ModalController.prototype._unbindDocumentEvents = function () {
-        document.removeEventListener("click", this._boundClickFn);
-        document.removeEventListener("keyup", this._boundKeypressFn);
-    };
-    ModalController.prototype._hideOnOutsideClick = function (e) {
-        var target = e.target;
-        if (!this.modalTarget.querySelector(".s-modal--dialog").contains(target)) {
-            this._toggle(false);
-        }
-    };
-    ModalController.prototype._hideOnEscapePress = function (e) {
-        if (e.which !== 27 || this.modalTarget.getAttribute("aria-hidden") === "true") {
-            return;
-        }
-        this._toggle(false);
-    };
-    ModalController.targets = ["modal"];
-    return ModalController;
-}(Stacks.StacksController));
-Stacks.application.register("s-modal", ModalController);
-//# sourceMappingURL=s-modal.js.map
-
-;
-
-"use strict";
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = function (d, b) {
-        extendStatics = Object.setPrototypeOf ||
-            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-        return extendStatics(d, b);
-    };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
 var Stacks;
 (function (Stacks) {
     var BasePopoverController = (function (_super) {
@@ -4782,7 +4704,7 @@ var Stacks;
             }
         };
         BasePopoverController.prototype.disconnect = function () {
-            this.hidden();
+            this.hide();
             if (this.popper) {
                 this.popper.destroy();
                 this.popper = null;
@@ -4802,9 +4724,9 @@ var Stacks;
             if (!this.popper) {
                 this.initializePopper();
             }
-            this.popper.update();
-            this.popper.enableEventListeners();
             this.popoverElement.classList.add("is-visible");
+            this.popper.enableEventListeners();
+            this.scheduleUpdate();
             this.shown();
         };
         BasePopoverController.prototype.hide = function () {
@@ -4861,6 +4783,11 @@ var Stacks;
                 throw "unable to find or generate popover element";
             }
             this.popoverElement = popoverElement;
+        };
+        BasePopoverController.prototype.scheduleUpdate = function () {
+            if (this.popper && this.isVisible) {
+                this.popper.scheduleUpdate();
+            }
         };
         return BasePopoverController;
     }(Stacks.StacksController));
@@ -5176,7 +5103,7 @@ var Stacks;
             if (!popover) {
                 popover = document.createElement("div");
                 popover.id = popoverId;
-                popover.className = "s-popover s-popover__tooltip";
+                popover.className = "s-popover s-popover__tooltip pe-none";
                 popover.setAttribute("aria-hidden", "true");
                 popover.setAttribute("role", "tooltip");
                 var parentNode = this.element.parentNode;
@@ -5196,6 +5123,7 @@ var Stacks;
             else {
                 popover.insertAdjacentHTML("beforeend", "<div class=\"s-popover--arrow\"></div>");
             }
+            this.scheduleUpdate();
             return popover;
         };
         TooltipController.prototype.bindDocumentEvents = function () {

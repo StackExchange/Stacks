@@ -29,11 +29,11 @@
     left: 0;
     align-items: center;
     justify-content: center;
-    background-color: fade(@black-900, 50%);
+    background-color: fade(@black-900, 50%); // Background remains fixed
     opacity: 0;
     backface-visibility: hidden;
     transition: opacity 100ms @te-smooth 0s, z-index 0s 100ms, visibility 0s 100ms; // Transition out
-    will-change: visibility, z-index, opacity; // Not supported in IE11 / Edge
+    will-change: visibility, z-index, opacity; // Not supported in Edge
 
     &[aria-hidden="false"],
     &[aria-hidden="false"] .s-modal--dialog {
@@ -57,28 +57,17 @@
     box-shadow: @bs-lg;
     opacity: 0;
     backface-visibility: hidden;
-    transform: translate(0, 30%) scale(0.6, 0.6); // This translate default is added for IE11 but is overwritten to translate3d see [1]
+    transform: translate3d(0, 30%, 0) scale3d(0.6, 0.6, 0.6);
 
     transition: opacity 200ms @te-smooth 0s, z-index 0s 100ms, visibility 0s 100ms, transform 100ms @te-smooth 0s, transform 100ms @te-smooth 0s; // Transition out
-    will-change: visibility, z-index, opacity, transform; // Not supported in IE11 / Edge
-    -webkit-overflow-scrolling: touch; // Make scrolling have inertia on mobile devices.
+    will-change: visibility, z-index, opacity, transform; // Not supported by Edge
 
     .s-modal[aria-hidden="false"] & {
-        transform: translate(0, 0) scale(1, 1); // This translate default is added for IE11 but is overwritten to translate3d see [1]
-    }
-
-    // [1] Things are blurry when using translate3d in IE11. translate3d is required for
-    // hardware acceleration everywhere else, so let's default to standard translate, but check for
-    // modern browsers and use translate3d there..
-    // It doesn't matter what feature query we check -- IE doesn't support @supports.
-    @supports (display: block) {
-        transform: translate3d(0, 30%, 0) scale3d(0.6, 0.6, 0.6);
-
-        .s-modal[aria-hidden="false"] & {
-            transform: translate3d(0, 0, 0) scale3d(1, 1, 1);
-        }
+        transform: translate3d(0, 0, 0) scale3d(1, 1, 1); // Transition in
     }
 }
+
+#stacks-internals #darkmode('.s-modal--dialog', { background-color: var(--black-100) });
 
 //  [1] To override .s-btn class attributes
 .s-modal--close {
@@ -113,7 +102,8 @@
 //  ============================================================================
 //  $   STATES
 //  ----------------------------------------------------------------------------
-.s-modal.has-danger {
+.s-modal.has-danger,
+.s-modal.s-modal__danger {
     background-color: darken(fade(@red-900, 50%), 23%);
 
     .s-modal--header {
@@ -121,6 +111,8 @@
     }
 }
 
+#stacks-internals #darkmode('.s-modal.has-danger .s-modal--dialog', { background-color: var(--black-050) });
+#stacks-internals #darkmode('.s-modal.s-modal__danger .s-modal--dialog', { background-color: var(--black-050) });
 
 //  ============================================================================
 //  $   SIZES

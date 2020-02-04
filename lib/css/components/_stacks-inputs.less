@@ -37,6 +37,7 @@
     padding: @input-padding;
     border: 1px solid var(--black-200);
     border-radius: @br-sm;
+    background-color: var(--white);
     color: var(--fc-dark);
     font-size: @fs-body1;
     font-family: inherit;
@@ -69,6 +70,9 @@
     //  --  REMOVE EDGE ADDITIONS
     //  ------------------------------------------------------------------------
     &::-ms-clear { display: none; }
+
+    // --  STYLE SCROLLBARS
+    @scrollbar-styles();
 }
 
 .s-input.s-input__search,
@@ -238,6 +242,7 @@ fieldset {
         outline: 0;
         font-size: @fs-body1;
         font-family: inherit;
+        color: var(--black);
         line-height: @lh-sm;
 
         &::-moz-focus-inner {
@@ -289,10 +294,6 @@ fieldset {
         font-size: inherit;
         vertical-align: middle;
         cursor: pointer;
-
-        &:focus {
-            outline: 0;
-        }
     }
 
     //  Disabled
@@ -357,7 +358,6 @@ fieldset {
         }
     }
 }
-
 
 //  ============================================================================
 //  $   STATES
