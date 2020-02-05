@@ -122,6 +122,35 @@ h1, h2, h3, h4, h5, h6, p {
     white-space: nowrap;
 }
 
+.v-truncate1 {
+    .truncation(1);
+}
+
+.v-truncate2 {
+    .truncation(2);
+}
+
+.v-truncate3 {
+    .truncation(3);
+}
+
+.v-truncate4 {
+    .truncation(4);
+}
+
+.v-truncate5 {
+    .truncation(5);
+}
+
+.truncation(@count) {
+    // Despite these all being webkit-specific properties, this works across
+    // Safari, Chrome, Edge, and Firefox.
+    display: -webkit-box;
+    -webkit-line-clamp: @count;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
 //  --  Whitespace
 .ws-normal        { white-space: normal !important; }
 .ws-nowrap        { white-space: nowrap !important; }
