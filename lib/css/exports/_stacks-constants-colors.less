@@ -150,6 +150,19 @@
 //  ----------------------------------------------------------------------------
 @scrollbar: rgba(0, 0, 0, .2);
 
+//  $  CODE
+//  ----------------------------------------------------------------------------
+@code-background: @black-050;
+@code-foreground: @black-700;
+@code-foreground-light: @black-400;
+@code-red: #6c4990;
+@code-orange: #e56e1e;
+@code-yellow: #e1ab25;
+@code-green: #5c7114;
+@code-aqua: #357a83;
+@code-blue: #325494;
+@code-purple: #855eae;
+
 //  ============================================================================
 //  $   CSS Variable Colors
 //  ----------------------------------------------------------------------------
@@ -290,6 +303,33 @@ body {
 
     // Scrollbars
     --scrollbar: @scrollbar;
+
+    // Code
+    --code-background: @code-background;
+    --code-foreground: @code-foreground;
+    --code-foreground-light: @code-foreground-light;
+    --code-red: @code-red;
+    --code-orange: @code-orange;
+    --code-yellow: @code-yellow;
+    --code-green:  @code-green;
+    --code-aqua: @code-aqua;
+    --code-blue: @code-blue;
+    --code-purple: @code-purple;
+
+    --code-comment: var(--code-foreground-light);
+    --code-string: var(--code-green);
+    --code-keyword: var(--code-purple);
+    --code-type: var(--code-blue);
+    --code-literal: var(--code-orange);
+    --code-punctuation: var(--code-foreground);
+    --code-open-bracket: var(--code-foreground);
+    --code-close-bracket: var(--code-foreground);
+    --code-markup-tag: var(--code-orange);
+    --code-markup-attr-n: var(--code-blue);
+    --code-markup-attr-v: var(--code-green);
+    --code-declaration: var(--code-orange);
+    --code-function: var(--code-blue);
+    --code-variable: var(--code-red);
 }
 
 //  --  Dark mode
@@ -421,6 +461,18 @@ body {
 
     // Scrollbars
     --scrollbar: rgba(255, 255, 255, .2);
+
+    // Code
+    --code-background: var(--black-050);
+    --code-foreground: var(--black-700);
+    --code-foreground-light: var(--black-400);
+    --code-red: #d45e5e;
+    --code-orange: #e69257;
+    --code-yellow: #f6c86e;
+    --code-green: #a9b43e;
+    --code-aqua: #85c3ba;
+    --code-blue: #77a3c8;
+    --code-purple: #b68dc2;
 }
 
 body.has-darkmode {
@@ -432,16 +484,3 @@ body.has-darkmode {
 body.has-darkmode__forced {
     .dark-colors();
 }
-
-//  ============================================================================
-//  $   PRODUCT-SPECIFIC COLOR VALUES
-//      These are used only within the code and badge displays
-//  ----------------------------------------------------------------------------
-//  --  Product / UI Colors
-@code-black:    #303336;
-@code-gray:     #858c93;
-@code-blue:     #0f74bd;
-@code-maroon:   #7d2727;
-@code-purple:   #101094;
-@code-teal:     #2b91af;
-@code-red:      #e64320;
