@@ -54,7 +54,6 @@
 @bs-i-md:               inset 0 @su2/2 @su8 0 fade(@black-700, 20%);
 @bs-i-lg:               inset 0 @su2/2 @su12 0 fade(@black-800, 20%);
 
-
 //  ============================================================================
 //  $  SPACING UNITS (su-)
 //  ----------------------------------------------------------------------------
@@ -102,20 +101,19 @@
 //  ----------------------------------------------------------------------------
 @scrollbar-styles: {
     &::-webkit-scrollbar {
-        width: @su8;
-        height: @su8;
+        width: @su12 - @su2;
+        height: @su12 - @su2;
         background-color: transparent;
     }
 
     &::-webkit-scrollbar-track {
-        border-radius: @su8;
+        border-radius: @su12 - @su2;
         background-color: transparent;
     }
 
-    &::-webkit-scrollbar-thumb
-    {
-        border-radius: @su8;
-        background-color: rgba(0, 0, 0, .20);
+    &::-webkit-scrollbar-thumb {
+        border-radius: @su12 - @su2;
+        background-color: var(--scrollbar);
     }
 
     &::-webkit-scrollbar-corner {
@@ -123,6 +121,5 @@
         border-color: transparent;
     }
 
-    scrollbar-color: rgba(0, 0, 0, .20) transparent;
-    scrollbar-width: thin;
+    scrollbar-color: var(--scrollbar) transparent;
 }

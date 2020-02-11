@@ -222,6 +222,10 @@ module.exports = function(grunt) {
         'Compile all JS and LESS files and rebuild the documentation site.',
         ['concurrent:compile', 'shell:jekyllBuild', 'copy:declarations']);
 
+    grunt.registerTask('deploy-docs',
+        'Prep and build the documentation site so it is ready for deploy.',
+        ['update-icons', 'build']);
+
     grunt.registerTask('update-icons', ['clean:icons', 'copy:svgs', 'copy:data']);
 
     grunt.registerTask('version', 'Creates a file with the version number inside it for Jekyll to display.', function() {
