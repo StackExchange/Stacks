@@ -1,0 +1,265 @@
+---
+layout: page
+title: Select
+description: A selectable menu list from which a user can make a single selection. Typically they are used when there are more than four possible options. The custom select menu styling is achieved by wrapping the <code class="stacks-code">select</code> tag within the <code class="stacks-code">.s-select</code> class.
+---
+<section class="stacks-section">
+    {% header "h2", "Base style" %}
+    <div class="stacks-preview">
+{% highlight html %}
+<div class="grid gs4 gsy fd-column">
+    <label class="grid--cell s-label" for="select-menu">
+        How will you be traveling?
+        <p class="mt2 s-description">Select the transportation method you will be using to come to the event.</p>
+    </label>
+    <div class="grid--cell s-select">
+        <select id="select-menu">
+            <option value="" selected>Please select one…</option>
+            <option value="walk">Walk</option>
+            <option value="bike">Bicycle</option>
+            <option value="car">Automobile</option>
+            <option value="rail">Train</option>
+            <option value="fly">Plane</option>
+        </select>
+    </div>
+</div>
+
+<div class="grid gs4 gsy fd-column is-disabled">
+    <label class="grid--cell s-label" for="select-menu-disabled">Where are you staying?</label>
+    <div class="grid--cell s-select">
+        <select id="select-menu-disabled" disabled>
+            <option value="" selected>Please select one…</option>
+            <option value="bronx">Bronx</option>
+            <option value="brooklyn">Brooklyn</option>
+            <option value="manhattan">Manhattan</option>
+            <option value="queens">Queens</option>
+            <option value="staten-island">Staten Island</option>
+        </select>
+    </div>
+</div>
+{% endhighlight %}
+        <div class="stacks-preview--example">
+            <div class="grid gs16 gsy fd-column">
+                <div class="grid--cell">
+                    <div class="grid gs4 gsy fd-column">
+                        <label class="grid--cell s-label" for="select-menu">
+                            How will you be traveling?
+                            <p class="mt2 s-description">Select the transportation method you will be using to come to the event.</p>
+                        </label>
+                        <div class="grid--cell s-select">
+                            <select id="select-menu">
+                                <option value="" selected>Please select one…</option>
+                                <option value="walk">Walk</option>
+                                <option value="bike">Bicycle</option>
+                                <option value="car">Automobile</option>
+                                <option value="rail">Train</option>
+                                <option value="fly">Plane</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="grid--cell">
+                    <div class="grid gs4 gsy fd-column is-disabled">
+                        <label class="grid--cell s-label" for="select-menu-disabled">Where are you staying?</label>
+                        <div class="grid--cell s-select">
+                            <select id="select-menu-disabled" disabled>
+                                <option value="" selected>Please select one…</option>
+                                <option value="bronx">Bronx</option>
+                                <option value="brooklyn">Brooklyn</option>
+                                <option value="manhattan">Manhattan</option>
+                                <option value="queens">Queens</option>
+                                <option value="staten-island">Staten Island</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="inputs" class="stacks-section">
+    {% header "h2", "Validation states" %}
+    <p class="stacks-copy">Validation states provides the user feedback based on their interaction (or lack of interaction) with a select menu. These styles are applied by applying the appropriate class to the wrapping parent container.</p>
+
+    {% header "h3", "Validation classes" %}
+    <div class="overflow-x-auto mb32">
+        <table class="wmn4 s-table s-table__bx-simple">
+            <thead>
+                <tr>
+                    <th class="s-table--cell3" scope="col">Class</th>
+                    <th class="s-table--cell3" scope="col">Applies</th>
+                    <th scope="col">Definition</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in inputs.select %}
+                    {% assign state = item.validation %}
+                    {% for class in state %}
+                    <tr>
+                        <th scope="row"><code class="grid--cell stacks-code">{{ class.class }}</code></th>
+                        <td>{{ class.applies }}</td>
+                        <td>{{ class.description }}</td>
+                    </tr>
+                    {% endfor %}
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    {% header "h3", "Validation examples" %}
+    {% header "h4", "Warning" %}
+    <div class="stacks-preview">
+{% highlight html %}
+<div class="grid gs4 gsy fd-column has-warning">
+    <label class="grid--cell s-label" for="select-menu">
+        How will you be traveling?
+        <p class="mt2 s-description">Select the transportation method you will be using to come to the event.</p>
+    </label>
+    <div class="grid--cell s-select">
+        <select id="select-menu">
+            <option value="" selected>Please select one…</option>
+            <option value="walk">Walk</option>
+            <option value="bike">Bicycle</option>
+            <option value="car">Automobile</option>
+            <option value="rail">Train</option>
+            <option value="fly">Plane</option>
+        </select>
+        @Svg.Alert.With("s-input-icon")
+    </div>
+</div>
+{% endhighlight %}
+        <div class="stacks-preview--example">
+            <div class="grid gs4 gsy fd-column has-warning">
+                <label class="grid--cell s-label" for="select-menu-warning">
+                    How will you be traveling?
+                    <p class="mt2 s-description">Select the transportation method you will be using to come to the event.</p>
+                </label>
+                <div class="grid--cell s-select">
+                    <select id="select-menu-warning">
+                        <option value="" selected>Please select one…</option>
+                        <option value="walk">Walk</option>
+                        <option value="bike">Bicycle</option>
+                        <option value="car">Automobile</option>
+                        <option value="rail">Train</option>
+                        <option value="fly">Plane</option>
+                    </select>
+                    {% icon "Alert", "s-input-icon" %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% header "h4", "Error" %}
+    <div class="stacks-preview">
+{% highlight html %}
+<div class="grid gs4 gsy fd-column has-error">
+    <label class="grid--cell s-label" for="select-menu">
+        How will you be traveling?
+        <p class="mt2 s-description">Select the transportation method you will be using to come to the event.</p>
+    </label>
+    <div class="grid--cell s-select">
+        <select id="select-menu">
+            <option value="" selected>Please select one…</option>
+            <option value="walk">Walk</option>
+            <option value="bike">Bicycle</option>
+            <option value="car">Automobile</option>
+            <option value="rail">Train</option>
+            <option value="fly">Plane</option>
+        </select>
+        @Svg.AlertCircle.With("s-input-icon")
+    </div>
+</div>
+{% endhighlight %}
+        <div class="stacks-preview--example">
+            <div class="grid gs4 gsy fd-column has-error">
+                <label class="grid--cell s-label" for="select-menu-error">
+                    How will you be traveling?
+                    <p class="mt2 s-description">Select the transportation method you will be using to come to the event.</p>
+                </label>
+                <div class="grid--cell s-select">
+                    <select id="select-menu-error">
+                        <option value="" selected>Please select one…</option>
+                        <option value="walk">Walk</option>
+                        <option value="bike">Bicycle</option>
+                        <option value="car">Automobile</option>
+                        <option value="rail">Train</option>
+                        <option value="fly">Plane</option>
+                    </select>
+                    {% icon "AlertCircle", "s-input-icon" %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% header "h4", "Success" %}
+    <div class="stacks-preview">
+{% highlight html %}
+<div class="grid gs4 gsy fd-column has-success">
+    <label class="grid--cell s-label" for="select-menu">
+        How will you be traveling?
+        <p class="mt2 s-description">Select the transportation method you will be using to come to the event.</p>
+    </label>
+    <div class="grid--cell s-select">
+        <select id="select-menu">
+            <option value="" selected>Please select one…</option>
+            <option value="walk">Walk</option>
+            <option value="bike">Bicycle</option>
+            <option value="car">Automobile</option>
+            <option value="rail">Train</option>
+            <option value="fly">Plane</option>
+        </select>
+        @Svg.Checkmark.With("s-input-icon")
+    </div>
+</div>
+{% endhighlight %}
+        <div class="stacks-preview--example">
+            <div class="grid gs4 gsy fd-column has-success">
+                <label class="grid--cell s-label" for="select-menu-success">
+                    How will you be traveling?
+                    <p class="mt2 s-description">Select the transportation method you will be using to come to the event.</p>
+                </label>
+                <div class="grid--cell s-select">
+                    <select id="select-menu-success">
+                        <option value="" selected>Please select one…</option>
+                        <option value="walk">Walk</option>
+                        <option value="bike">Bicycle</option>
+                        <option value="car">Automobile</option>
+                        <option value="rail">Train</option>
+                        <option value="fly">Plane</option>
+                    </select>
+                    {% icon "Checkmark", "s-input-icon" %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="stacks-section">
+    {% header "h2", "Sizes" %}
+    <div class="overflow-x-auto mb32">
+        <table class="wmn5 s-table s-table__bx-simple va-middle">
+            <thead>
+                <tr>
+                    <th scope="col" class="s-table--cell2">Name</th>
+                    <th scope="col" class="s-table--cell1">Size</th>
+                    <th scope="col" class="s-table--cell2">Class</th>
+                    <th scope="col">Example</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in inputs.select %}
+                    {% assign size = item.sizes %}
+                    {% for item in size %}
+                    <tr>
+                        <th scope="row">{{ item.name }}</th>
+                        <td>{{ item.size }}</td>
+                        <td>{% if item.class == "N/A" %}<em class="fc-light">{{ item.class }}</em>{% else %}<code class="stacks-code">.{{ item.class }}</code>{% endif %}</td>
+                        <td><div class="grid s-select {{ item.class }}"><select><option>1 Example</option><option>2 Options</option></select></div></td>
+                    </tr>
+                    {% endfor %}
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</section>
