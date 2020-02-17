@@ -1,0 +1,233 @@
+---
+layout: page
+title: Typography
+description: This page provides some common typography patterns for email.
+---
+<section class="stacks-section">
+    <p class="stacks-copy">
+        It’s safe and accessible to use semantic HTML tags like <code class="stacks-code">&lt;h&gt;</code>, <code class="stacks-code">&lt;p&gt;</code>, and <code class="stacks-code">&lt;ul&gt;</code> for text in email just as we do for the web. The main difference in email is that <a href="{{ "/email/guidelines/faq#why-do-we-have-to-write-css-inline?" | relative_url }}">CSS should be written inline</a> to specify intended styles (like the color of an anchor tag) and zero out unintended defaults (like the margin around a <code class="stacks-code">&lt;p&gt;</code> tag).
+    </p>
+</section>
+<section class="stacks-section">
+    {% header "h2", "Paragraphs" %}
+    <div class="stacks-preview">
+{% highlight html %}
+<td style="font-family: arial, sans-serif; font-size: 15px; line-height: 21px; color: #3C3F44; text-align: left;">
+    <p style="margin: 0 0 15px 0; font-size: 17px; line-height: 23px;">A lead paragraph with slightly larger text lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras nisi magna, mollis luctus sapien varius, mattis ornare est.</p>
+    <p style="margin: 0 0 15px 0;">A regular paragraph with <strong>strong</strong> and <em>italic</em> text, consectetur adipiscing elit. Cras nisi magna, mollis luctus sapien varius, mattis ornare est. Sed non tincidunt erat, ut commodo augue.</p>
+    <p style="margin: 0;">A paragraph with no margin (useful for the last paragraph in a section).</p>
+</td>
+{% endhighlight %}
+        <div class="stacks-preview--example" style="font-family: arial, sans-serif; font-size: 15px; line-height: 19px; color: #3C3F44; text-align: left;">
+            <p style="margin: 0 0 15px 0; font-size: 17px; line-height: 23px;">A lead paragraph with slightly larger text lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras nisi magna, mollis luctus sapien varius, mattis ornare est.</p>
+            <p style="margin: 0 0 15px 0;">A regular paragraph with <strong>strong</strong> and <em>italic</em> text, consectetur adipiscing elit. Cras nisi magna, mollis luctus sapien varius, mattis ornare est. Sed non tincidunt erat, ut commodo augue.</p>
+            <p style="margin: 0;">A paragraph with no margin (useful for the last paragraph in a section).</p>
+        </div>
+    </div>
+</section>
+<section class="stacks-section">
+    {% header "h2", "Headlines" %}
+    <div class="stacks-preview">
+{% highlight html %}
+<h1 style="font-weight: bold; font-size: 27px; line-height: 27px; color: #242629; margin: 0 0 15px 0;">I’m a headline</h1>
+<h2 style="font-weight: bold; font-size: 21px; line-height: 24px; color: #242629; margin: 0 0 15px 0;">I’m a subheadline</h2>
+{% endhighlight %}
+        <div class="stacks-preview--example" style="font-family: arial, sans-serif; text-align: left;">
+            <h1 style="font-weight: bold; font-size: 27px; line-height: 27px; color: #242629; margin: 0 0 15px 0;">I’m a headline</h1>
+            <h2 style="font-weight: bold; font-size: 21px; line-height: 24px; color: #242629; margin: 0 0 15px 0;">I’m a subheadline</h2>
+        </div>
+    </div>
+</section>
+<section class="stacks-section">
+    {% header "h2", "Lists" %}
+    <div class="stacks-preview">
+{% highlight html %}
+<ul style="padding: 0; margin: 0 0 15px 0; list-style-type: disc;">
+    <li style="margin: 0 0 10px 30px;">You get a list item.</li>
+    <li style="margin: 0 0 10px 30px;">And you get a list item!</li>
+    <li style="margin: 0 0 0 30px;">Everyone gets a list item!</li>
+</ul>
+<ol style="padding: 0; margin: 0 0 15px 0; list-style-type: decimal;">
+    <li style="margin: 0 0 10px 30px;">You get a list item.</li>
+    <li style="margin: 0 0 10px 30px;">And you get a list item!</li>
+    <li style="margin: 0 0 0 30px;">Everyone gets a list item!</li>
+</ol>
+{% endhighlight %}
+        <div class="stacks-preview--example" style="font-family: arial, sans-serif; font-size: 15px; line-height: 19px; color: #54595F; text-align: left;">
+            <ul style="padding: 0; margin: 0 0 15px 0; list-style-type: disc;">
+                <li style="margin: 0 0 10px 30px;">You get a list item.</li>
+                <li style="margin: 0 0 10px 30px;">And you get a list item!</li>
+                <li style="margin: 0 0 0 30px;">Everyone gets a list item!</li>
+            </ul>
+            <ol style="padding: 0; margin: 0 0 15px 0; list-style-type: decimal;">
+                <li style="margin: 0 0 10px 30px;">You get a list item.</li>
+                <li style="margin: 0 0 10px 30px;">And you get a list item!</li>
+                <li style="margin: 0 0 0 30px;">Everyone gets a list item!</li>
+            </ol>
+        </div>
+    </div>
+</section>
+<section class="stacks-section">
+    {% header "h2", "Links" %}
+    <div class="stacks-preview">
+{% highlight html %}
+<a href="https://stackoverflow.com/" style="color: #0077CC; text-decoration: none;">Go to the homepage</a>
+{% endhighlight %}
+        <div class="stacks-preview--example" style="font-family: arial, sans-serif; font-size: 15px; line-height: 19px; color: #54595F; text-align: left;">
+            <a href="https://stackoverflow.com/" style="color: #0077CC; text-decoration: none;">Go to the homepage</a>
+        </div>
+    </div>
+    {% header "h3", "Links in Markdown" %}
+    <p class="stacks-copy">
+        If email content is written in Markdown, we can’t write inline CSS into link tags. Left unstyled, <a href="#" style="color: blue; text-decoration: underline;">links will appear like this</a>. To style links contained in Markdown text, add a <code class="stacks-code">class="has-markdown"</code> to any parent tag that might contain a Markdown link.
+    </p>
+    <div class="stacks-preview mb24">
+{% highlight html %}
+<p style="margin: 0 0 15px 0;">@_s("I’m a text string in markdown.")</p>
+<p style="margin: 0 0 15px 0;" class="has-markdown">@_m("I’m a *bold* [text link](https://www.stackoverflow.com) in markdown.")</p>
+{% endhighlight %}
+        <div class="stacks-preview--example" style="font-family: arial, sans-serif; font-size: 15px; line-height: 19px; color: #54595F; text-align: left;">
+            <p style="margin: 0 0 15px 0;">I’m a text string in markdown.</p>
+            <p style="margin: 0;">I’m a <strong>bold</strong> <a href="https://www.stackoverflow.com" style="color: #0077CC; text-decoration: none;">text link</a> in markdown.</p>
+        </div>
+    </div>
+
+    <div class="grid s-notice s-notice__info mb48">
+        <div class="grid--cell mr8">{% icon "Alert" %}</div>
+        <div class="grid--cell lh-lg">
+            <strong>Note:</strong> Using <code class="stacks-code bg-powder-300">class="has-markdown"</code> applies styles defined in the <code class="stacks-code bg-powder-300">&lt;style&gt;</code> tag. Only <a href="https://www.campaignmonitor.com/css/style-element/style-in-head/">email clients that support <code class="stacks-code bg-powder-300">&lt;style&gt;</code> in <code class="stacks-code bg-powder-300">&lt;head&gt;</code></a> will render <code class="stacks-code bg-powder-300">has-markdown</code> links properly.
+        </div>
+    </div>
+
+    {% header "h3", "Auto-detected links" %}
+    <p class="stacks-copy">
+        Some email clients auto-detect certain text strings (like dates, times, and locations) and automatically convert them into hyperlinks. We can’t <em>remove</em> the link, but we can make the link <em>appear</em> like the text around it by negating a few CSS styles.
+    </p>
+    <div class="stacks-preview mb24">
+{% highlight html %}
+<p style="margin: 0 0 15px 0;">On Thursday we’ll be doing on planned maintenance on our New York server, so the parts of the site might be unavailable.</p>
+<p style="margin: 0 0 15px 0;">On <span class="unstyle-auto-detected-links">Thursday</span> we’ll be doing on planned maintenance on our <span class="unstyle-auto-detected-links">New York</span> server, so the parts of the site might be unavailable.</p>
+{% endhighlight %}
+        <div class="stacks-preview--example" style="font-family: arial, sans-serif; font-size: 15px; line-height: 19px; color: #54595F; text-align: left;">
+            <p style="margin: 0 0 15px 0;">On <a href="https://stackoverflow.com/" style="color: blue; text-decoration: none; border-bottom: 1px dashed;">Thursday</a> we’ll be doing on planned maintenance on our <a href="https://stackoverflow.com/" style="color: blue; text-decoration: none; border-bottom: 1px dashed;">New York</a> server, so the parts of the site might be unavailable.</p>
+            <p style="margin: 0 0 15px 0;">On <a href="https://stackoverflow.com/" style="border-bottom: 0 !important; cursor: default !important; color: inherit !important; text-decoration: none !important; font-size: inherit !important; font-family: inherit !important; font-weight: inherit !important; line-height: inherit !important;">Thursday</a> we’ll be doing on planned maintenance on our <a href="https://stackoverflow.com/" style="border-bottom: 0 !important; cursor: default !important; color: inherit !important; text-decoration: none !important; font-size: inherit !important; font-family: inherit !important; font-weight: inherit !important; line-height: inherit !important;">New York</a> server, so the parts of the site might be unavailable.</p>
+        </div>
+    </div>
+
+    <div class="grid s-notice s-notice__info mb48">
+        <div class="grid--cell mr8">{% icon "Alert" %}</div>
+        <div class="grid--cell lh-lg">
+            <strong>Note:</strong> Using <code class="stacks-code bg-powder-300">class="unstyle-auto-detected-links"</code> applies styles defined in the <code class="stacks-code bg-powder-300">&lt;style&gt;</code> tag. Only <a href="https://www.campaignmonitor.com/css/style-element/style-in-head/">email clients that support <code class="stacks-code bg-powder-300">&lt;style&gt;</code> in <code class="stacks-code bg-powder-300">&lt;head&gt;</code></a> will render <code class="stacks-code bg-powder-300">has-markdown</code> links properly.
+        </div>
+    </div>
+</section>
+<section class="stacks-section">
+    {% header "h2", "Code" %}
+    <div class="stacks-preview mb16">
+{% highlight html %}
+<!-- Preformatted code block -->
+<pre style="margin: 0 0 15px; background-color: #EFF0F1; padding: 4px 8px; border-radius: 3px; overflow-x: auto; font-size: 13px; line-height: 17px; "><code style="color: #242729; font-size: 13px; line-height: 17px; font-family: Consolas, Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace, sans-serif;">
+    …
+</code></pre>
+
+<!-- Inline code -->
+Format <code style="padding: 1px 5px; background-color: #EFF0F1; color: #242729; font-size: 13px; font-family: Consolas, Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace, sans-serif;">inline code</code> like this.
+{% endhighlight %}
+        <div class="stacks-preview--example" style="font-family: arial, sans-serif; font-size: 15px; line-height: 19px; color: #54595F; text-align: left;">
+<pre style="margin: 0 0 15px; background-color: #EFF0F1; padding: 4px 8px; border-radius: 3px; overflow-x: auto; font-size: 13px; line-height: 17px; "><code style="color: #242729; font-size: 13px; line-height: 17px; font-family: Consolas, Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace, sans-serif;">var obj = {};
+obj.categories = pm.variables.get("category_id");
+obj.packages = pm.variables.get("package_id");
+obj.type = "add";
+pm.globals.set("switch_json", JSON.stringify(obj));
+console.log("request body: " + pm.globals.get("switch_json"));</code></pre>
+            <p style="margin: 0;">Format <code style="padding: 1px 5px; background-color: #EFF0F1; color: #242729; font-size: 13px; font-family: Consolas, Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace, sans-serif;">inline code</code> like this.</p>
+        </div>
+    </div>
+    <div class="grid s-notice s-notice__warning mb48">
+        <div class="grid--cell mr8">{% icon "AlertCircle" %}</div>
+        <div class="grid--cell lh-lg">
+            <strong>Known Issue:</strong> in Windows Outlook 2003 - 2019, preformatted code blocks <a href="https://i.stack.imgur.com/OCP1l.png">appear like this</a>.
+        </div>
+    </div>
+</section>
+<section class="stacks-section">
+    {% header "h2", "Blockquotes" %}
+    <div class="stacks-preview mb16">
+{% highlight html %}
+<blockquote style="margin: 0 0 15px; padding: 4px 10px; background-color: #FFF8DC; border-left: 2px solid #ffeb8e;">
+    <p style="padding: 4px 0; margin: 0; font-size: 15px; overflow-wrap: break-word;">Write a function that takes a string consisting of alphabetic characters as input argument and returns True if the string is a palindrome.
+        …
+    </p>
+</blockquote>
+{% endhighlight %}
+        <div class="stacks-preview--example" style="font-family: arial, sans-serif; font-size: 15px; line-height: 19px; color: #54595F; text-align: left;">
+            <blockquote style="margin: 0; padding: 4px 10px; background-color: #FFF8DC; border-left: 2px solid #ffeb8e;">
+                <p style="padding: 4px 0; font-size: 15px; margin: 0; overflow-wrap: break-word;">Write a function that takes a string consisting of alphabetic characters as input argument and returns True if the string is a palindrome. A palindrome is a string which is the same backward or forward.</p>
+            </blockquote>
+        </div>
+    </div>
+    <div class="grid s-notice s-notice__warning mb48">
+        <div class="grid--cell mr8">{% icon "AlertCircle" %}</div>
+        <div class="grid--cell lh-lg">
+            <strong>Known Issue:</strong> in Windows Outlook 2003 - 2019, blockquotes <a href="https://i.stack.imgur.com/8yz38.png">appear like this</a>.
+        </div>
+    </div>
+</section>
+<section class="stacks-section">
+    {% header "h2", "Preventing text wrapping" %}
+    <p class="stacks-copy">
+        A non-breaking space (<code class="stacks-code">&#38;nbsp;</code>) can be used to prevent a group of words from breaking onto multiple lines. Useful for keeping names together and preventing typographic orphans&nbsp;and&nbsp;widows.
+        <br><span class="d-block mt8 fc-light fs-body1">Inspect the line above to see ☝️</span>
+    </p>
+    <div class="stacks-preview">
+{% highlight html %}
+<p style="margin: 0 0 15px 0;">Now with Stack&nbsp;Overflow you can level up.</p>
+<p style="margin: 0 0 15px 0;">The last sentence shouldn’t produce an&nbsp;orphan.</p>
+<p style="margin: 0;">@_m("Also works for text written in$nbsp$markdown.", new { nbsp = "&nbsp;".AsRawHtml() })</p>
+{% endhighlight %}
+        <div class="stacks-preview--example" style="font-family: arial, sans-serif; font-size: 15px; line-height: 19px; color: #54595F; text-align: left;">
+            <p style="margin: 0 0 15px 0;">Now with Stack&nbsp;Overflow you can level up.</p>
+            <p style="margin: 0 0 15px 0;">The last sentence shouldn’t produce an&nbsp;orphan.</p>
+            <p style="margin: 0;">Also works for text written in&nbsp;markdown.</p>
+        </div>
+    </div>
+</section>
+<section class="stacks-section">
+    {% header "h2", "Web fonts" %}
+    <p class="stacks-copy">
+        Sometimes we use web fonts in emails to match the aesthetic of a marketing campaign or announcement. Web fonts <a href="https://www.campaignmonitor.com/css/text-fonts/font-face/">don’t have great support in email clients</a>, so here’s how we ensure our web font displays in as many email clients as possible:
+    </p>
+    <ol class="stacks-copy">
+        <li>Include an external stylesheet at the top of the email’s <code class="stacks-code">&lt;head&gt;</code> tag. Sites like Google Fonts provide this code.</li>
+        <li>Windows Outlook sometimes chokes on web font references and defaults everything to Times New Roman. To avoid this, wrap the web font reference in a <code class="stacks-code">&lt;!--[if !mso]&gt;</code> tag (so Windows Outlook ignores it) and define a fallback font for Windows Outlook inside a <code class="stacks-code">&lt;!--[if mso]&gt;</code> tag.</li>
+        <li>Lastly, reference the web font at the beginning of the font stack, followed by a system fallback font for email clients that can’t display (and ignore) the web font.</li>
+    </p>
+    <div class="stacks-preview">
+{% highlight html %}
+<head>
+    <!-- Desktop Outlook on Windows sometimes chokes on web font references and defaults to Times New Roman, so we force a safe system font fallback. -->
+    <!--[if mso]>
+    <style>
+        * {
+            font-family: arial, sans-serif !important;
+        }
+    </style>
+    <![endif]-->
+
+    <!-- All other clients get the webfont reference; some will render the font and others will silently fail to the fallbacks. More on that here: http://stylecampaign.com/blog/2015/02/webfont-support-in-email/ -->
+    <!--[if !mso]><!-->
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,700" rel="stylesheet">
+    <!--<![endif]-->
+</head>
+<body>
+    <h1 style="font-family: 'Roboto Slab', arial, sans-serif;">…</h1>
+    <p style="font-family: 'Roboto Slab', arial, sans-serif;">…</p>
+</body>
+{% endhighlight %}
+        <div class="stacks-preview--example">
+            <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,700" rel="stylesheet">
+            <h1 class="fs-headline mb8 fc-dark" style="font-family: 'Roboto Slab', arial, sans-serif;">I’m a Headline</h1>
+            <p class="fs-body3 mb0 fc-medium" style="font-family: 'Roboto Slab', arial, sans-serif;">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+        </div>
+    </div>
+</section>
