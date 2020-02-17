@@ -2,11 +2,31 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.addLayoutAlias('home', 'layouts/home.html');
   eleventyConfig.addLayoutAlias('page', 'layouts/page.html');
 
+  // Icon shortcode
+  eleventyConfig.addLiquidShortcode("icon", function(name, classes, dimension) {
+    var fs = require("fs");
+    var path = "_includes/svg-icons/" + name + ".svg";
+    var svg = fs.readFileSync(path).toString("utf-8");
+    var defaultClasses = "svg-icon icon" + name;
+
+    // If we have classes, add them
+    if (classes != null) {
+      svg = svg.replace(defaultClasses, defaultClasses + " " + classes);
+    }
+
+    // If we need to change the size, do that too
+    if (dimension != null) {
+      svg = svg.replace('width="18" height="18"', 'width="' + dimension + '" height="' + dimension + '"');
+    }
+
+    return svg;
+  });
+
   // Header shortcode
   eleventyConfig.addLiquidShortcode("header", function(tag, text) {
     var slug = text.replace(/\s+/g, '-').toLowerCase();
 
-    var output = ''
+    var output = '';
     output += '<div class="grid jc-space-between ai-end pe-none stacks-header">';
     output +=   '<' + tag + ' class="grid--cell fl1 stacks-' + tag + '" id="#'+ slug +'">';
     output +=     '<span class="pe-auto">' + text + '</span>';
