@@ -47,6 +47,7 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.addPlugin(syntaxHighlight);
 
   eleventyConfig.addPassthroughCopy('assets');
+  eleventyConfig.addPassthroughCopy('404.html');
   eleventyConfig.addPassthroughCopy('email/templates');
   return {
     passthroughFileCopy: true
