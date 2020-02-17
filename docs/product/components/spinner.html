@@ -1,0 +1,81 @@
+---
+layout: page
+title: Spinner
+description: A loading spinner is used for indicating a loading state of a page or section. It is colored according to the currently applying font color.
+---
+<section class="stacks-section">
+    {% header "h3", "Classes" %}
+    <div class="overflow-x-auto mb32">
+        <table class="wmn4 s-table s-table__bx-simple">
+            <thead>
+                <tr>
+                    <th scope="col">Class</th>
+                    <th scope="col">Applied to</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody class="fs-caption">
+                {% for item in spinner.spinner %}
+                    <tr>
+                        <td><code class="stacks-code">{{ item.class }}</code></td>
+                        <td>{% if item.applies == "N/A" %}<em class="fc-black-350">{{ item.applies }}</em>{% else %}<code class="stacks-code">{{ item.applies }}</code>{% endif %}</td>
+                        <td>{{ item.description }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</section>
+<section class="stacks-section">
+    {% header "h3", "Examples" %}
+    <p class="stacks-copy">The spinner’s colors are based on the font color of the element, which will usually be inherited from its parent. If you need to apply a color override, the <a href="{{ "/product/base/colors" | relative_url }}">font color classes</a> can provide themability. In most situations, a black and white spinner based on the default font color will be appropriate.</p>
+    <p class="stacks-copy">For accessibility, it’s important to add fallback loading text that is visible to screen readers. Additionally, you should add <code class="stacks-code">aria-busy="true"</code> to the component that triggered the loading state while the spinner is shown.</p>
+    <div class="stacks-preview">
+{% highlight html %}
+<div class="s-spinner s-spinner__xs">
+    <div class="v-visible-sr">Loading…</div>
+</div>
+<div class="s-spinner s-spinner__sm">
+    <div class="v-visible-sr">Loading…</div>
+</div>
+<div class="s-spinner">
+    <div class="v-visible-sr">Loading…</div>
+</div>
+<div class="s-spinner s-spinner__md">
+    <div class="v-visible-sr">Loading…</div>
+</div>
+<div class="s-spinner s-spinner__lg fc-orange-400">
+    <div class="v-visible-sr">Loading…</div>
+</div>
+{% endhighlight %}
+        <div class="stacks-preview--example">
+            <div class="grid gs16 fw-wrap">
+                <div class="grid--cell">
+                    <div class="s-spinner s-spinner__xs">
+                        <div class="v-visible-sr">Loading…</div>
+                    </div>
+                </div>
+                <div class="grid--cell">
+                    <div class="s-spinner s-spinner__sm">
+                        <div class="v-visible-sr">Loading…</div>
+                    </div>
+                </div>
+                <div class="grid--cell">
+                    <div class="s-spinner">
+                        <div class="v-visible-sr">Loading…</div>
+                    </div>
+                </div>
+                <div class="grid--cell">
+                    <div class="s-spinner s-spinner__md">
+                        <div class="v-visible-sr">Loading…</div>
+                    </div>
+                </div>
+                <div class="grid--cell">
+                    <div class="s-spinner s-spinner__lg fc-orange-400">
+                        <div class="v-visible-sr">Loading…</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
