@@ -1,3 +1,5 @@
+const syntaxHighlight = require("@11ty/eleventy-plugin-syntaxhighlight");
+
 module.exports = function(eleventyConfig) {
   eleventyConfig.addLayoutAlias('home', 'layouts/home.html');
   eleventyConfig.addLayoutAlias('page', 'layouts/page.html');
@@ -38,6 +40,9 @@ module.exports = function(eleventyConfig) {
 
     return output;
   });
+
+  // Add syntax highlighting
+  eleventyConfig.addPlugin(syntaxHighlight);
 
   eleventyConfig.addPassthroughCopy('assets');
   return {
