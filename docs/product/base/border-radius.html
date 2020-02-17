@@ -1,0 +1,201 @@
+---
+layout: page
+title: Border radius
+description: Stacks provides atomic classes for border radius.
+---
+<section class="stacks-section">
+    {% header "h2", "Classes" %}
+    <div class="overflow-x-auto mb48">
+        <table class="wmn3 s-table s-table__bx-simple">
+            <thead>
+                <tr>
+                    <th class="s-table--cell2" scope="col">Abbreviation</th>
+                    <th class="s-table--cell4" scope="col">Output</th>
+                    <th scope="col">Definition</th>
+                    <th scope="col">
+                        <a class="s-link s-link__inherit" href="{{ "/product/guidelines/conditional-classes#responsive" | relative_url }}">Responsive?</a>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for border in borders.border-radius %}
+                  <tr>
+                        <th scope="row"><code class="stacks-code">.{{ border.class }}</code></th>
+                        <th class="ff-mono">{{ border.output }}</th>
+                        <td>{{ border.define }}</td>
+                        <td class="ta-center">
+                            {% if border.responsive %}
+                                {% icon "Checkmark", "fc-green-500" %}
+                            {% endif %}
+                        </td>
+                  </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    {% header "h2", "Examples" %}
+    {% header "h3", "All corners" %}
+    <div class="stacks-preview">
+{% highlight html %}
+<div class="bar0">0px Border radius</div>
+<div class="bar-sm">3px Border radius</div>
+<div class="bar-md">5px Border radius</div>
+<div class="bar-lg">7px Border radius</div>
+<div class="bar-circle">Circle border radius</div>
+{% endhighlight %}
+        <div class="stacks-preview--example fs-caption ff-mono">
+            <div class="grid w100 gs8 fw-wrap">
+                <div class="grid--cell grid__center p12 bg-black-075 bar0 ba bc-black-3">0px Border Radius</div>
+                <div class="grid--cell grid__center p12 bg-black-075 bar-sm ba bc-black-3">3px Border Radius</div>
+                <div class="grid--cell grid__center p12 bg-black-075 bar-md ba bc-black-3">5px Border Radius</div>
+                <div class="grid--cell grid__center p12 bg-black-075 bar-lg ba bc-black-3">7px Border Radius</div>
+                <div class="grid--cell grid__center p8 bg-black-075 bar-circle ba bc-black-3 ta-center w64">Circle Border Radius</div>
+            </div>
+        </div>
+    </div>
+
+    {% header "h3", "Top left corner" %}
+    <div class="stacks-preview">
+{% highlight html %}
+<div class="btlr0">0px Top Left Border Radius</div>
+<div class="btlr-sm">3px Top Left Border Radius</div>
+<div class="btlr-md">5px Top Left Border Radius</div>
+<div class="btlr-lg">7px Top Left Border Radius</div>
+{% endhighlight %}
+        <div class="stacks-preview--example fs-caption ff-mono">
+            <div class="grid w100 gs8 fw-wrap">
+                <div class="grid--cell grid__center p12 bg-black-075 btlr0 ba bc-black-3">0px Top Left Border Radius</div>
+                <div class="grid--cell grid__center p12 bg-black-075 btlr-sm ba bc-black-3">3px Top Left Border Radius</div>
+                <div class="grid--cell grid__center p12 bg-black-075 btlr-md ba bc-black-3">5px Top Left Border Radius</div>
+                <div class="grid--cell grid__center p12 bg-black-075 btlr-lg ba bc-black-3">7px Top Left Border Radius</div>
+            </div>
+        </div>
+    </div>
+
+    {% header "h3", "Top right corner" %}
+    <div class="stacks-preview">
+{% highlight html %}
+<div class="btrr0">0px Top Right Border Radius</div>
+<div class="btrr-sm">3px Top Right Border Radius</div>
+<div class="btrr-md">5px Top Right Border Radius</div>
+<div class="btrr-lg">7px Top Right Border Radius</div>
+{% endhighlight %}
+        <div class="stacks-preview--example fs-caption ff-mono">
+            <div class="grid w100 gs8 fw-wrap">
+                <div class="grid--cell grid__center p12 bg-black-075 btrr0 ba bc-black-3">0px Top Right Border Radius</div>
+                <div class="grid--cell grid__center p12 bg-black-075 btrr-sm ba bc-black-3">3px Top Right Border Radius</div>
+                <div class="grid--cell grid__center p12 bg-black-075 btrr-md ba bc-black-3">5px Top Right Border Radius</div>
+                <div class="grid--cell grid__center p12 bg-black-075 btrr-lg ba bc-black-3">7px Top Right Border Radius</div>
+            </div>
+        </div>
+    </div>
+
+    {% header "h3", "Bottom right corner" %}
+    <div class="stacks-preview">
+{% highlight html %}
+<div class="bbrr0">0px Bottom Right Border Radius</div>
+<div class="bbrr-sm">3px Bottom Right Border Radius</div>
+<div class="bbrr-md">5px Bottom Right Border Radius</div>
+<div class="bbrr-lg">7px Bottom Right Border Radius</div>
+{% endhighlight %}
+        <div class="stacks-preview--example fs-caption ff-mono">
+            <div class="grid w100 gs8 fw-wrap">
+                <div class="grid--cell grid__center p12 bg-black-075 bbrr0 ba bc-black-3">0px Bottom Right Border Radius</div>
+                <div class="grid--cell grid__center p12 bg-black-075 bbrr-sm ba bc-black-3">3px Bottom Right Border Radius</div>
+                <div class="grid--cell grid__center p12 bg-black-075 bbrr-md ba bc-black-3">5px Bottom Right Border Radius</div>
+                <div class="grid--cell grid__center p12 bg-black-075 bbrr-lg ba bc-black-3">7px Bottom Right Border Radius</div>
+            </div>
+        </div>
+    </div>
+
+    {% header "h3", "Bottom left corner" %}
+    <div class="stacks-preview">
+{% highlight html %}
+<div class="bblr0">0px Bottom Left Border Radius</div>
+<div class="bblr-sm">3px Bottom Left Border Radius</div>
+<div class="bblr-md">5px Bottom Left Border Radius</div>
+<div class="bblr-lg">7px Bottom Left Border Radius</div>
+{% endhighlight %}
+        <div class="stacks-preview--example fs-caption ff-mono">
+            <div class="grid w100 gs8 fw-wrap">
+                <div class="grid--cell grid__center p12 bg-black-075 bblr0 ba bc-black-3">0px Bottom Left Border Radius</div>
+                <div class="grid--cell grid__center p12 bg-black-075 bblr-sm ba bc-black-3">3px Bottom Left Border Radius</div>
+                <div class="grid--cell grid__center p12 bg-black-075 bblr-md ba bc-black-3">5px Bottom Left Border Radius</div>
+                <div class="grid--cell grid__center p12 bg-black-075 bblr-lg ba bc-black-3">7px Bottom Left Border Radius</div>
+            </div>
+        </div>
+    </div>
+
+    {% header "h3", "Top corners" %}
+    <div class="stacks-preview">
+{% highlight html %}
+<div class="btr0">0px Top Border Radius</div>
+<div class="btr-sm">3px Top Border Radius</div>
+<div class="btr-md">5px Top Border Radius</div>
+<div class="btr-lg">7px Top Border Radius</div>
+{% endhighlight %}
+        <div class="stacks-preview--example fs-caption ff-mono">
+            <div class="grid w100 gs8 fw-wrap">
+                <div class="grid--cell grid__center p12 bg-black-075 btr0 ba bc-black-3">0px Top Border Radius</div>
+                <div class="grid--cell grid__center p12 bg-black-075 btr-sm ba bc-black-3">3px Top Border Radius</div>
+                <div class="grid--cell grid__center p12 bg-black-075 btr-md ba bc-black-3">5px Top Border Radius</div>
+                <div class="grid--cell grid__center p12 bg-black-075 btr-lg ba bc-black-3">7px Top Border Radius</div>
+            </div>
+        </div>
+    </div>
+
+    {% header "h3", "Bottom corners" %}
+    <div class="stacks-preview">
+{% highlight html %}
+<div class="bbr0">0px Bottom Border Radius</div>
+<div class="bbr-sm">3px Bottom Border Radius</div>
+<div class="bbr-md">5px Bottom Border Radius</div>
+<div class="bbr-lg">7px Bottom Border Radius</div>
+{% endhighlight %}
+        <div class="stacks-preview--example fs-caption ff-mono">
+            <div class="grid w100 gs8 fw-wrap">
+                <div class="grid--cell grid__center p12 bg-black-075 bbr0 ba bc-black-3">0px Bottom Border Radius</div>
+                <div class="grid--cell grid__center p12 bg-black-075 bbr-sm ba bc-black-3">3px Bottom Border Radius</div>
+                <div class="grid--cell grid__center p12 bg-black-075 bbr-md ba bc-black-3">5px Bottom Border Radius</div>
+                <div class="grid--cell grid__center p12 bg-black-075 bbr-lg ba bc-black-3">7px Bottom Border Radius</div>
+            </div>
+        </div>
+    </div>
+
+    {% header "h3", "Left corners" %}
+    <div class="stacks-preview">
+{% highlight html %}
+<div class="blr0">0px Left Border Radius</div>
+<div class="blr-sm">3px Left Border Radius</div>
+<div class="blr-md">5px Left Border Radius</div>
+<div class="blr-lg">7px Left Border Radius</div>
+{% endhighlight %}
+        <div class="stacks-preview--example fs-caption ff-mono">
+            <div class="grid w100 gs8 fw-wrap">
+                <div class="grid--cell grid__center p12 bg-black-075 blr0 ba bc-black-3">0px Left Border Radius</div>
+                <div class="grid--cell grid__center p12 bg-black-075 blr-sm ba bc-black-3">3px Left Border Radius</div>
+                <div class="grid--cell grid__center p12 bg-black-075 blr-md ba bc-black-3">5px Left Border Radius</div>
+                <div class="grid--cell grid__center p12 bg-black-075 blr-lg ba bc-black-3">7px Left Border Radius</div>
+            </div>
+        </div>
+    </div>
+
+    {% header "h3", "Right corners" %}
+    <div class="stacks-preview">
+{% highlight html %}
+<div class="brr0">0px Right Border Radius</div>
+<div class="brr-sm">3px Right Border Radius</div>
+<div class="brr-md">5px Right Border Radius</div>
+<div class="brr-lg">7px Right Border Radius</div>
+{% endhighlight %}
+        <div class="stacks-preview--example fs-caption ff-mono">
+            <div class="grid w100 gs8 fw-wrap">
+                <div class="grid--cell grid__center p12 bg-black-075 brr0 ba bc-black-3">0px Right Border Radius</div>
+                <div class="grid--cell grid__center p12 bg-black-075 brr-sm ba bc-black-3">3px Right Border Radius</div>
+                <div class="grid--cell grid__center p12 bg-black-075 brr-md ba bc-black-3">5px Right Border Radius</div>
+                <div class="grid--cell grid__center p12 bg-black-075 brr-lg ba bc-black-3">7px Right Border Radius</div>
+            </div>
+        </div>
+    </div>
+</section>
