@@ -1,0 +1,208 @@
+---
+layout: page
+title: Error messages
+description: Things don’t always run smoothly. Our systems can fail. It’s important to craft clear, logical, and accessible error messages that help folks get things done.
+---
+<section class="stacks-section">
+    {% header "h2", "Understand the error" %}
+    <p class="stacks-copy">
+        Before writing anything, make sure you know the answers to these questions:
+    </p>
+    <ul class="stacks-list">
+        <li>What happened?</li>
+        <li>How did it happen?</li>
+        <li>How can it be fixed?</li>
+        <li>Is it a user or system error, or both?</li>
+    </ul>
+    <p class="stacks-copy">
+        How can we expect a user to know what’s going on and how to fix something if <em>we</em> don’t?
+    </p>
+</section>
+<section class="stacks-section">
+    {% header "h2", "Set a basic structure" %}
+    <p class="stacks-copy">
+        A good error message structure explains what happened and what can be done about it. A good error message has the following structure:
+    </p>
+    <p class="stacks-copy p16 bar-md bg-black-025 ba bc-black-3">
+        <span class="fs-body2 ff-mono">[The error]</span>
+        <span class="fs-body2 ff-mono">[How to fix it]</span>
+    </p>
+    <p class="stacks-copy">
+        Here’s an example of an inline form error message:
+    </p>
+
+    <div class="grid p16 bar-md bg-black-025 has-error mb16 ba bc-black-3">
+        <div class="grid--cell">
+            <div class="s-input-message fs-body2">This SVG file is invalid.</div>
+            <div class="fs-body2 ff-mono mt8 d-inline-block">[The error]</div>
+        </div>
+        <div class="grid--cell">
+            <div class="s-input-message fs-body2">Check its syntax or <a>pick another file</a>.</div>
+            <div class="fs-body2 ff-mono mt8 d-inline-block">[How to fix it]</div>
+        </div>
+    </div>
+
+    <p class="stacks-copy">
+        If we can’t place the specific error, we’re deliberately vague. The best we can do is tell the user how they might fix it.
+    </p>
+    <div class="grid p16 bar-md bg-black-025 has-error mb16 ba bc-black-3">
+        <div class="grid--cell">
+            <div class="s-input-message fs-body2">There was a problem syncing data.</div>
+            <div class="fs-body2 ff-mono mt8 d-inline-block">[The error]</div>
+        </div>
+        <div class="grid--cell">
+            <div class="s-input-message fs-body2">Check your database configuration and try again.</div>
+            <div class="fs-body2 ff-mono mt8 d-inline-block">[How to fix it]</div>
+        </div>
+    </div>
+</section>
+<section class="stacks-section">
+    {% header "h2", "Keep it short and simple" %}
+    <p class="stacks-copy">
+        We want to help folks fix errors quickly, so error messages should <a href="{{ "/content/guidelines/principles#short,-simple-sentences" | relative_url }}">be concise</a>. Strip out unnecessary words. Keep detail only when it’s relevant.
+    </p>
+    <table class="s-table s-table__lg fs-body2 va-top w100 wmx6 mb48">
+        <thead>
+            <th class="btw0 bxw0 bbw3 bbw3 bc-red-2 fc-red-500 bg-transparent fs-body1 s-table--cell4">{% icon "Clear", "mtn1 mbn1" %} Don’t</th>
+            <th class="btw0 bxw0 bbw3 bc-green-2 fc-green-500 bg-transparent fs-body1 s-table--cell4">{% icon "Checkmark", "mtn1 mbn1" %} Do</th>
+        </thead>
+        <tbody>
+            <tr>
+                <td>“Can’t create ‘Engineering’ because a team with that name already exists. Specify a different name.”</td>
+                <td>“‘Engineering’ already exists. Try another team name.”</td>
+            </tr>
+            <tr>
+                <td>“Your notification failed and needs to be re-authorized.”</td>
+                <td>“Notification failed, please <a href="#">re-authorize it</a>.”</td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+<section class="stacks-section">
+    {% header "h2", "Consider etiquette" %}
+    {% header "h3", "System error" %}
+    <p class="stacks-copy">
+        Apologize when it’s the system’s fault and let the user know it’s not their fault. Use <a href="{{ "/content/guidelines/principles#use-active-voice" | relative_url }}">an active voice</a> to accept responsibility. For example:
+    </p>
+    <table class="s-table s-table__lg fs-body2 va-top w100 wmx6 mb48">
+        <thead>
+            <th class="btw0 bxw0 bbw3 bbw3 bc-red-2 fc-red-500 bg-transparent fs-body1 s-table--cell4">{% icon "Clear", "mtn1 mbn1" %} Don’t</th>
+            <th class="btw0 bxw0 bbw3 bc-green-2 fc-green-500 bg-transparent fs-body1 s-table--cell4">{% icon "Checkmark", "mtn1 mbn1" %} Do</th>
+        </thead>
+        <tbody>
+            <tr>
+                <td>“Your changes couldn’t be saved.”</td>
+                <td>“We couldn’t save your changes.”</td>
+            </tr>
+        </tbody>
+    </table>
+    {% header "h3", "User error" %}
+    <p class="stacks-copy">
+        Sometimes it’s the user’s fault, but there are ways to tell them without sounding like we’re pointing the finger. For example, we can focus on the desired action rather than telling the user they’ve messed up:
+    </p>
+    <table class="s-table s-table__lg fs-body2 va-top w100 wmx6 mb48">
+        <thead>
+            <th class="btw0 bxw0 bbw3 bbw3 bc-red-2 fc-red-500 bg-transparent fs-body1 s-table--cell4">{% icon "Clear", "mtn1 mbn1" %} Don’t</th>
+            <th class="btw0 bxw0 bbw3 bc-green-2 fc-green-500 bg-transparent fs-body1 s-table--cell4">{% icon "Checkmark", "mtn1 mbn1" %} Do</th>
+        </thead>
+        <tbody>
+            <tr>
+                <td>“You’ve missed your name.”</td>
+                <td>“Please enter your name.”</td>
+            </tr>
+            <tr>
+                <td>“You can’t leave this blank.”</td>
+                <td>“Please enter a team name.”</td>
+            </tr>
+        </tbody>
+    </table>
+    <p class="stacks-copy">
+        A passive voice can work for more serious user errors, such as “This card was declined”.
+    </p>
+</section>
+<section class="stacks-section">
+    {% header "h2", "Use the right tone" %}
+    <p class="stacks-copy">
+        <a href="{{ "/content/guidelines/voice-and-tone#tone" | relative_url }}">Tone is how you say something</a>. A message’s tone should depend on how serious the error is. Warmth is great for less serious errors, but avoid anything too lighthearted for serious errors.
+    </p>
+    <p class="stacks-copy">
+        <strong>Avoid mechanical language and jargon, opting for plain language at all times</strong>. The aim is to make a user feel like you’re there, helping them solve the error.
+    </p>
+    <table class="s-table s-table__lg fs-body2 w100 wmx6 mb48">
+        <thead>
+            <th class="btw0 bxw0 bbw3 bbw3 bc-red-2 fc-red-500 bg-transparent fs-body1 s-table--cell6">{% icon "Clear", "mtn1 mbn1" %} Don’t</th>
+            <th class="btw0 bxw0 bbw3 bc-green-2 fc-green-500 bg-transparent fs-body1 s-table--cell6">{% icon "Checkmark", "mtn1 mbn1" %} Do</th>
+        </thead>
+        <tbody>
+            <tr>
+                <td>“The password entered does not match our records. Please re-enter your password.”</td>
+                <td>“That password’s not right. Try again.”</td>
+            </tr>
+        </tbody>
+    </table>
+    <p class="stacks-copy">
+        At the same time, error messages are not the place to be clever or <a href="{{ "/content/guidelines/principles#jokes-&-cultural-references" | relative_url }}">make jokes</a>. This will only muddy your message and add to your user’s frustration.
+    </p>
+    <table class="s-table s-table__lg fs-body2 w100 wmx6 mb48">
+        <thead>
+            <th class="btw0 bxw0 bbw3 bbw3 bc-red-2 fc-red-500 bg-transparent fs-body1 s-table--cell6">{% icon "Clear", "mtn1 mbn1" %} Don’t</th>
+            <th class="btw0 bxw0 bbw3 bc-green-2 fc-green-500 bg-transparent fs-body1 s-table--cell6">{% icon "Checkmark", "mtn1 mbn1" %} Do</th>
+        </thead>
+        <tbody>
+            <tr>
+                <td>“Whoops! Looks like your card was declined. Better ask Mom for another one.”</td>
+                <td>“This card was declined. Try another payment method.”</td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+<section class="stacks-section">
+    {% header "h2", "What happens next" %}
+    <p class="stacks-copy">
+        Some errors might need a button or link to fix or dismiss the message.
+    </p>
+    <p class="stacks-copy">
+        Always say what happens next. Buttons and links should make sense when read in isolation. Avoid just using things like “OK”. “OK” can be used to dismiss a message or take an action. Be clear to the user what they’re saying “OK” to.
+    </p>
+
+    <table class="s-table s-table__lg fs-body2 w100 wmx6 mb48">
+        <thead>
+            <th class="btw0 bxw0 bbw3 bbw3 bc-red-2 fc-red-500 bg-transparent fs-body1 s-table--cell6">{% icon "Clear", "mtn1 mbn1" %} Don’t</th>
+            <th class="btw0 bxw0 bbw3 bc-green-2 fc-green-500 bg-transparent fs-body1 s-table--cell6">{% icon "Checkmark", "mtn1 mbn1" %} Do</th>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    <h2 class="fs-subheading lh-sm fc-dark mb6">Can’t display metrics</h2>
+                    <p class="fs-body1 fc-medium mb16">You need to restart your data sync.</p>
+                    <div class="grid gs8 gsx ai-center">
+                        <button class="grid--cell s-btn s-btn__primary js-modal-primary-btn" type="button">OK</button>
+                        <button class="grid--cell s-btn js-modal-cancel-btn" type="button">Cancel</button>
+                    </div>
+                </td>
+                <td>
+                    <h2 class="fs-subheading lh-sm fc-dark mb6">Can’t display metrics</h2>
+                    <p class="fs-body1 fc-medium mb16">You need to restart your data sync.</p>
+                    <div class="grid gs8 gsx ai-center">
+                        <button class="grid--cell s-btn s-btn__primary js-modal-primary-btn" type="button">OK, restart sync</button>
+                        <button class="grid--cell s-btn js-modal-cancel-btn" type="button">Cancel</button>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+<section class="stacks-section">
+    {% header "h2", "Design, placement, and timing" %}
+    <p class="stacks-copy">
+        Error messages should take the whole user experience into consideration. It should be clear what triggers an error message and what it’s related to.
+    </p>
+    <ul class="stacks-list">
+        <li><a href="{{ "/product/components/inputs#validation-states" | relative_url }}">Inline validation</a> styles are best for displaying errors in <strong>UI with form fields</strong>.</li>
+        <li><a href="{{ "/product/components/notices#inline" | relative_url }}">Inline notifications</a> are best for displaying errors in <strong>UI without form fields</strong>. They should be located within close proximity of items that affect a feature.</li>
+    <li><a href="{{ "/product/components/modals" | relative_url }}">Modals</a> are best when you want to ensure you <strong>capture someone’s focus</strong>.</li>
+    </ul>
+    <p class="stacks-copy">
+        <a href="{{ "/product/components/notices#toast" | relative_url }}">Toast notifications</a> are best for confirming that an action someone performed is taking place or successfully completed. Since they appear away from the layout and disappear after a few seconds, toast notifications aren’t recommended for error messages.
+    </p>
+</section>
