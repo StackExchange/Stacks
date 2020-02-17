@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en-us">
+{% include head.html %}
+
+<body class="has-darkmode">
+    {% include darkmode.html %}
+    {% include header.html %}
+
+    <div class="grid mx-auto w100 wmx12">
+        {% include navigation.html %}
+
+        <div id="content" class="grid fl1 ps-relative t64 py24 pl48 pr16 md:pl24 sm:pl16 sm:pr16">
+            <div class="grid--cell order-last w20 wmx2 pl24 sm:d-none print:d-none">
+                <aside class="ps-sticky t64 pt16">
+                    <h5 class="mb4 fw-bold tt-uppercase fs-fine fc-orange-500 mnl1">Sections</h5>
+                    <ul class="list-reset grid gs8 gsy fd-column stacks-nav__secondary js-secondary-nav"></ul>
+                </aside>
+            </div>
+            {% comment %}
+                This container’s .fl1 doesn't behave properly unless we add an explicit width.
+                https://stackoverflow.com/questions/38723559/flex-item-exceeds-its-container
+            {% endcomment %}
+            <div class="grid--cell fl1 ws1">
+                {% if page.js %}
+                    <div class="stacks-badged grid ai-center sm:jc-space-between">
+                        <h1 class="stacks-h1 grid--cell mb0">{{ title }}</h1>
+                        <a href="{{ "/product/guidelines/javascript" | relative_url }}" class="grid p8 fc-white ml6">
+                            <div class="bg-green-700 blr-sm p4"></div>
+                            <div class="bg-green-500 brr-sm px8 py4">javascript</div>
+                        </a>
+                    </div>
+                {% else %}
+                    <h1 class="stacks-h1">{{ title }}</h1>
+                {% endif %}
+                {% if page.description %}
+                    <p class="stacks-copy stacks-copy__lg">
+                        {{ page.description | liquify }}
+                    </p>
+                {% endif %}
+                {{ content }}
+            </div>
+        </div>
+    </div>
+    {% include scripts.html %}
+</body>
+</html>
