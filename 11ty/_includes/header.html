@@ -6,12 +6,13 @@
         <a class="grid--cell js-logo" href="{{ "/" | relative_url }}">
             
         </a>
-        {% if site.data.nav[0] %}
+        {% if navigation %}
             <div class="s-navigation mx16 fw-nowrap sm:d-none">
-                {% for item in site.data.nav %}
-                    {% assign pageSlug = page.url | replace:'/',' ' | truncatewords: 1 | remove:'...' %}
+                {% assign slug = page.url | replace:'/',' ' | truncatewords: 2 | remove:'...' %}
 
-                    <a class="s-navigation--item {% if item.url contains pageSlug %}is-selected{% endif %}" href="{{ item.url | relative_url }}">{{ item.title }}</a>
+                {% for section in navigation.sections %}
+                    {% assign url = section.url | replace:'/',' ' | truncatewords: 2 | remove:'...' %}
+                    <a class="s-navigation--item{% if url == slug %} is-selected{% endif %}" href="{{ section.url }}">{{ section.title }}</a>
                 {% endfor %}
             </div>
         {% endif %}
