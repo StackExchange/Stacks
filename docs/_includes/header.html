@@ -1,27 +1,28 @@
 <div class="bg-black-050 ps-fixed h64 t0 l0 r0 z-nav-fixed bb bc-black-3 js-stacks-topbar print:d-none">
     <div class="grid ai-center px16 h100 mx-auto wmx12 sm:jc-space-between">
         <a class="grid grid__center p8 mr8 s-link s-link__muted d-none md:d-block js-hamburger-btn" href="#">
-            {% icon Hamburger | js-hamburger-icon %}
-            {% icon Clear | d-none js-hamburger-close-icon %}
+            {% icon "Hamburger", "js-hamburger-icon" %}
+            {% icon "Clear", "d-none js-hamburger-close-icon" %}
         </a>
         <a class="grid--cell js-logo" href="{{ "/" | relative_url }}">
-            {% icon LogoGlyphMd | native %}
+            {% icon "LogoGlyph", "native" %}
         </a>
-        {% if site.data.nav[0] %}
+        {% if site-navigation %}
             <div class="s-navigation mx16 fw-nowrap sm:d-none">
-                {% for item in site.data.nav %}
-                    {% assign pageSlug = page.url | replace:'/',' ' | truncatewords: 1 | remove:'...' %}
+                {% assign slug = page.url | replace:'/',' ' | truncatewords: 2 | remove:'...' %}
 
-                    <a class="s-navigation--item {% if item.url contains pageSlug %}is-selected{% endif %}" href="{{ item.url | relative_url }}">{{ item.title }}</a>
+                {% for section in site-navigation.sections %}
+                    {% assign url = section.url | replace:'/',' ' | truncatewords: 2 | remove:'...' %}
+                    <a class="s-navigation--item{% if url == slug %} is-selected{% endif %}" href="{{ section.url }}">{{ section.title }}</a>
                 {% endfor %}
             </div>
         {% endif %}
         <a class="grid--cell fc-black-300 ml-auto sm:d-none" title="Stack Overflow" href="https://stackoverflow.com">
-            {% icon LogoGlyphSm %}
+            {% icon "LogoGlyphSm" %}
         </a>
 
         <a class="grid--cell fc-black-300 ml12 sm:d-none" title="Stacks on GitHub" href="https://github.com/StackExchange/Stacks">
-            {% icon GitHub | 24 %}
+            {% icon "GitHub", "", "24" %}
         </a>
 
         <a class="grid--cell fc-black-300 ml12 sm:d-none" title="Stacks Template on Codepen" href="https://codepen.io/pen?template=PMRpVb&editors=1000">
@@ -34,11 +35,11 @@
 
         <div class="grid--cell ps-relative ml16 w100 wmx3 sm:wmx-initial sm:ml0 sm:d-none js-search">
             <input id="searchbox" class="s-input s-input__search bar-md js-stacks-search-bar" type="text" placeholder="Search Stacks…">
-            {% icon Search | s-input-icon s-input-icon__search %}
+            {% icon "Search", "s-input-icon s-input-icon__search" %}
         </div>
         <a class="grid grid__center p8 ml8 s-link s-link__muted d-none sm:d-block js-search-btn" href="#">
-            {% icon Search | js-search-icon %}
-            {% icon Clear | d-none js-search-close-icon %}
+            {% icon "Search", "js-search-icon" %}
+            {% icon "Clear", "d-none js-search-close-icon" %}
         </a>
     </div>
 </div>

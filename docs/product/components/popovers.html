@@ -5,7 +5,7 @@ js: true
 description: Popovers are small content containers that provide a contextual overlay. They can be used as in-context feature explanations, dropdowns, or tooltips.
 ---
 <section class="stacks-section">
-    {% header h2 | Classes %}
+    {% header "h2", "Classes" %}
     <div class="overflow-x-auto mb32">
         <table class="wmn4 s-table s-table__bx-simple">
             <thead>
@@ -16,7 +16,7 @@ description: Popovers are small content containers that provide a contextual ove
                 </tr>
             </thead>
             <tbody class="fs-caption">
-                {% for item in site.data.product.popovers.automatic %}
+                {% for item in popovers.automatic %}
                     <tr>
                         <th scope="row"><code class="stacks-code">{{ item.class }}</code></th>
                         <td>{{ item.applies }}</td>
@@ -28,11 +28,11 @@ description: Popovers are small content containers that provide a contextual ove
     </div>
 </section>
 <section class="stacks-section">
-    {% header h2 | Interactive popovers %}
+    {% header "h2", "Interactive popovers" %}
 
     <p class="stacks-copy">Stacks provides a Stimulus controller that allows you to interactively display a popover from a source element. Positioning and arrow direction are managed for you by <a href="https://popper.js.org">Popper.js</a>, a powerful popover positioning library we’ve added as a dependency.  These popovers are automatically hidden when user click outside the popover or tap the <kbd>Esc</kbd> key.</kbd></p>
 
-    {% header h3 | Attributes %}
+    {% header "h3", "Interactive Attributes" %}
     <div class="overflow-x-auto mb32">
         <table class="wmn4 s-table s-table__bx-simple">
             <thead>
@@ -81,7 +81,7 @@ description: Popovers are small content containers that provide a contextual ove
             </tbody>
         </table>
     </div>
-    {% header h3 | Events %}
+    {% header "h3", "Interactive Events" %}
     <div class="overflow-x-auto mb32">
         <table class="wmn4 s-table s-table__bx-simple">
             <thead>
@@ -115,7 +115,7 @@ description: Popovers are small content containers that provide a contextual ove
             </tbody>
         </table>
     </div>
-    {% header h3 | Examples %}
+    {% header "h3", "Examples" %}
     <div class="mb24 p16 bar-sm bg-black-025 ba bc-black-1">
         <div class="grid ai-center gs8 sm:fd-column">
             <button class="grid--cell s-btn s-btn__filled"
@@ -160,7 +160,7 @@ description: Popovers are small content containers that provide a contextual ove
                 </a>
                 <div id="popover-example-3" class="s-popover is-visible ws2" role="menu">
                     <div class="s-popover--arrow"></div>
-                    <button class="s-popover--close s-btn s-btn__muted" aria-label="Close" data-action="s-popover#toggle">{% icon ClearSm %}</button>
+                    <button class="s-popover--close s-btn s-btn__muted" aria-label="Close" data-action="s-popover#toggle">{% icon "ClearSm" %}</button>
 
                     <div class="grid mb8">
                         <div class="grid--cell mr8">
@@ -188,7 +188,7 @@ description: Popovers are small content containers that provide a contextual ove
         </div>
     </div>
 
-    {% header h4 | Default interactivity %}
+    {% header "h4", "Default interactivity" %}
     <p class="stacks-copy">To enable interactive popovers, you will need to add the above attributes to the popover’s originating button. Custom positioning can be specified using the <code class="stacks-code">data-s-popover-placement</code>. In the following example, we’ve chosen <code class="stacks-code">bottom-start</code>. No positioning classes need to be added to your markup, only the data attributes.</p>
     <p class="stacks-copy">To promote being able to tab to an open popover, it’s best to place the popover immediately after the toggling button in the markup as siblings.</p>
 
@@ -227,7 +227,7 @@ description: Popovers are small content containers that provide a contextual ove
         </div>
     </div>
 
-    {% header h4 | Dismissible %}
+    {% header "h4", "Dismissible" %}
     <p class="stacks-copy">In the case of new feature callouts, it may be appropriate to include an explicit dismiss button. You can add one using the styling provided by <code class="stacks-code">.s-popover--close</code>.</p>
     <p class="stacks-copy">In order for to close the popover with an explicit close button, you’ll need to add the controller to a parent as illustrated in the following example code:</p>
     <div class="stacks-preview">
@@ -254,7 +254,7 @@ description: Popovers are small content containers that provide a contextual ove
 {% endhighlight %}
         <div class="stacks-preview--example bg-black-025">
             <div class="s-popover ps-relative is-visible">
-                <button class="s-popover--close s-btn s-btn__muted" aria-label="Close">{% icon ClearSm %}</button>
+                <button class="s-popover--close s-btn s-btn__muted" aria-label="Close">{% icon "ClearSm" %}</button>
                 <div class="s-popover--arrow__bl"></div>
                 <p class="mb0">Dismissible persistent popover presented with a close button</p>
             </div>
@@ -263,11 +263,11 @@ description: Popovers are small content containers that provide a contextual ove
 
 </section>
 <section class="stacks-section">
-    {% header h2 | Hover tooltips %}
+    {% header "h2", "Hover tooltips" %}
 
     <p class="stacks-copy">When a popover is intended only for display as an on-hover tooltip and contains no interactive text, the <code class="stacks-code">s-tooltip</code> controller can be used in place of <code class="stacks-code">s-popover</code>. This is a separate controller that can be used alongside <code class="stacks-code">s-popover</code> on a single target element.</p>
 
-    {% header h3 | Attributes | tooltip-attributes %}
+    {% header "h3", "Hover attributes" %}
     <div class="overflow-x-auto mb32">
         <table class="wmn4 s-table s-table__bx-simple">
             <thead>
@@ -316,7 +316,7 @@ description: Popovers are small content containers that provide a contextual ove
             </tbody>
         </table>
     </div>
-    {% header h3 | Events | tooltip-events %}
+    {% header "h3", "Hover events" %}
     <div class="overflow-x-auto mb32">
         <table class="wmn4 s-table s-table__bx-simple">
             <thead>
@@ -350,10 +350,10 @@ description: Popovers are small content containers that provide a contextual ove
             </tbody>
         </table>
     </div>
-    {% header h3 | Examples | tooltip-examples %}
+    {% header "h3", "Hover examples" %}
     <p class="stacks-copy">If the user doesn’t need to interact with the <em>contents</em> of the popover, it may be appropriate to only show it on hover. This will make popovers feel like a tooltip. To do so, we provide an alternative controller, <code class="stacks-code">s-tooltip</code>, that shows the tooltip only on hover.</p>
 
-    {% header h4 | Title attribute %}
+    {% header "h4", "Title attribute" %}
     <p class="stacks-copy">In the simple case where no markup is needed in the tooltip, the popover element can be omitted and automatically generated using the <code class="stacks-code">title</code> attribute.</p>
 
     <div class="stacks-preview">
@@ -375,7 +375,7 @@ description: Popovers are small content containers that provide a contextual ove
         </div>
     </div>
 
-    {% header h4 | JavaScript configuration %}
+    {% header "h4", "JavaScript configuration" %}
     <p class="stacks-copy">In cases where the tooltip needs to display simple text or HTML, the popover can be configured using JavaScript. Plain text tooltips will render characters like &lt;, &gt;, and &amp; as is. HTML tooltips will render the HTML as expected.</p>
     <div class="stacks-preview">
 {% highlight javascript %}
@@ -405,7 +405,7 @@ Stacks.setTooltipHtml(el,
         Stacks.setTooltipHtml(document.querySelector(".js-html-tooltip-example"), "View all questions with <span class='s-tag'>stacks</span>", { placement: "top-end" });
     </script>
 
-    {% header h4 | Rich tooltips %}
+    {% header "h4", "Rich tooltips" %}
     <p class="stacks-copy">When a rich tooltip is required, a popover element can be configured in much the same way as an <code class="stacks-code">s-popover</code> controller, with the most notable difference being the use of <code class="stacks-code">aria-describedby</code> instead of <code class="stacks-code">aria-controls</code>.</p>
 
     <div class="stacks-preview">
@@ -444,7 +444,7 @@ Stacks.setTooltipHtml(el,
         </div>
     </div>
 
-    {% header h4 | Tooltips and interactive popovers %}
+    {% header "h4", "Tooltips and interactive popovers" %}
     <p class="stacks-copy">Hover tooltips can be used alongside interactive popovers. Tooltips will no appear when the interactive popover is visible.</p>
 
     <div class="stacks-preview">
@@ -492,8 +492,8 @@ Stacks.setTooltipHtml(el,
     </div>
 </section>
 <section class="stacks-section">
-    {% header h2 | Manual placement %}
-    {% header h3 | Manual classes %}
+    {% header "h2", "Manual placement" %}
+    {% header "h3", "Manual classes" %}
     <div class="overflow-x-auto mb32">
         <table class="wmn4 s-table s-table__bx-simple">
             <thead>
@@ -515,7 +515,7 @@ Stacks.setTooltipHtml(el,
         </table>
     </div>
 
-    {% header h3 | Manual examples %}
+    {% header "h3", "Manual examples" %}
     <p class="stacks-copy">Popovers can also be positioned manually if you aren’t using the built-in JavaScript interactivity. Practically, this might look like adding something like <code class="stacks-code">t8 l8</code> to <code class="stacks-code">.s-popover</code>.</p>
     <p class="stacks-copy">Manual positioning for arrows is also provided. Arrow direction (top, right, bottom, left) will appear first, followed by the secondary (center, top, right, bottom, left). For example, a popover with an arrow child of <code class="stacks-code">.s-popover--arrow__tc</code> will appear on the top of the <code class="stacks-code">.s-popover</code> and centered horizontally. Though there are sensible defaults applied to the width of popovers, you may need to adjust manually.</p>
 
@@ -524,7 +524,7 @@ Stacks.setTooltipHtml(el,
     <p class="stacks-copy">If you want to set the background color to something other than the default, simply add your desired <code class="stacks-code">bg-*</code> class to the <code class="stacks-code">s-popover</code> element and a matching <code class="stacks-code">fc-*</code> class to the <code class="stacks-code">s-popover--arrow</code> element.</p>
 
     <div class="grid s-notice s-notice__info mb24">
-        <div class="grid--cell mr8">{% icon Alert %}</div>
+        <div class="grid--cell mr8">{% icon "Alert" %}</div>
         <div class="grid--cell lh-lg">
             99% of the time, you’ll want to position your popover automatically. We’ve built a robust Stimulus controller to handle all the positioning for you.
         </div>

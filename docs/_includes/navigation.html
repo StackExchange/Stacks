@@ -2,22 +2,23 @@
     <div class="overflow-y-scroll overflow-x-hidden bg-white z-nav py12 fs-body1 ps-fixed wmn2 t64 b0 sm:w100 sm:pb0">
         <div class="d-none sm:d-block">
             <div class="grid fd-column ai-center">
-                <div class="s-navigation s-navigation__wrap mx8 mb12 jc-center">
-                    {% if site.data.nav[0] %}
-                        {% for item in site.data.nav %}
-                            {% assign pageSlug = page.url | replace:'/',' ' | truncatewords: 1 | remove:'...' %}
-    
-                            <a class="s-navigation--item {% if item.url contains pageSlug %}is-selected {% endif %}" href="{{ item.url | relative_url }}">{{ item.title }}</a>
+                {% if site-navigation %}
+                    <div class="s-navigation s-navigation__wrap mx8 mb12 jc-center">
+                        {% assign slug = page.url | replace:'/',' ' | truncatewords: 2 | remove:'...' %}
+
+                        {% for section in site-navigation.sections %}
+                            {% assign url = section.url | replace:'/',' ' | truncatewords: 2 | remove:'...' %}
+                            <a class="s-navigation--item{% if url == slug %} is-selected{% endif %}" href="{{ section.url }}">{{ section.title }}</a>
                         {% endfor %}
-                    {% endif %}
-                </div>
+                    </div>
+                {% endif %}
                 <div class="grid gs16 ai-center fw-wrap mx8">
                     <a class="grid--cell fc-black-300" href="https://stackoverflow.com/">
-                        {% icon LogoGlyphSm %}
+                        
                     </a>
 
                     <a class="grid--cell fc-black-300" href="https://github.com/StackExchange/Stacks">
-                        {% icon GitHub | 24 %}
+                        
                     </a>
 
                     <a class="grid--cell fc-black-300" title="Stacks Template on Codepen" href="https://codepen.io/pen?template=PMRpVb&editors=1000">
@@ -31,31 +32,27 @@
             </div>
         </div>
 
-        {% if site.data.nav[0] %}
-            {% for item in site.data.nav %}
-                {% assign pageSlug = page.url | replace:'/',' ' | truncatewords: 1 | remove:'...' %}
+        {% if site-navigation %}
+            {% for section in site-navigation.sections %}
+                {% assign slug = page.url | replace:'/',' ' | truncatewords: 2 | remove:'...' %}
+                {% assign url = section.url | replace:'/',' ' | truncatewords: 2 | remove:'...' %}
 
-                {% if item.url contains pageSlug %}
-                    {% if item.sublinks[0] %}
+                {% if url == slug %}
+                    {% if section.sections %}
                         <ul id="nav" class="list-reset">
-                        {% for entry in item.sublinks %}
+                        {% for section in section.sections %}
                             <li class="mb16">
                                 <div class="px16 py6 fw-bold tt-uppercase fs-fine mt16">
-                                    {{ entry.title }}
+                                    {{ section.title }}
                                 </div>
-                                {% if entry.subsublinks[0] %}
+                                {% if section.links %}
                                     <ul class="list-reset">
-                                        {% for subentry in entry.subsublinks %}
-                                            {% assign pageURL = page.url | remove_first:"/" | remove: ".html" %}
+                                        {% for link in section.links %}
                                             <li>
-                                                <a class="grid jc-space-between ai-center py6 px12 s-link s-link__muted mx4 {% if pageURL == subentry.url %}bg-orange-400 bar-pill fc-white{% endif %}" href="{{ subentry.url | relative_url }}">
+                                                <a class="grid jc-space-between ai-center py6 px12 s-link s-link__muted mx4 {% if page.url == link.url %}bg-orange-400 bar-pill fc-white{% endif %}" href="{{ link.url | relative_url }}">
                                                     <span class="grid--cell">
-                                                        {{ subentry.title }}
+                                                        {{ link.title }}
                                                     </span>
-                                                    {% if subentry.status == "help-wanted" %}
-                                                        <span class="grid--cell bg-warning bar-circle w8 h8"></span>
-                                                    {% endif %>
-                                                    {% if entry.subsublinks[0] %}
                                                 </a>
                                             </li>
                                         {% endfor %}

@@ -4,7 +4,7 @@ title: Badges
 description: Badges are labels used for flags, earned achievements, and number totals.
 ---
 <section class="stacks-section">
-    {% header h2 | Classes %}
+    {% header "h2", "Classes" %}
     <div class="overflow-x-auto mb32">
         <table class="wmn5 s-table s-table__bx-simple va-middle">
             <thead>
@@ -15,14 +15,14 @@ description: Badges are labels used for flags, earned achievements, and number t
                 </tr>
             </thead>
             <tbody class="fs-caption">
-                {% for item in site.data.product.badges %}
+                {% for item in badges %}
                     <tr>
                         <th scope="row"><code class="stacks-code">.{{ item.class }}</code></th>
                         <td>
                             {% if item.image %}
                                 <span class="{{ item.html }}">
 
-                                    <img class="s-badge--image" src="/{{site.img}}/{{ item.image}}.svg" aria-hidden="true"> {{ item.label }}
+                                    <img class="s-badge--image" src="/assets/img/{{ item.image}}.svg" aria-hidden="true"> {{ item.label }}
                                 </span>
                             {% else %}
                                 <span class="{{ item.html }}">{{ item.label }}</span>
@@ -37,92 +37,92 @@ description: Badges are labels used for flags, earned achievements, and number t
 </section>
 
 <section class="stacks-section">
-    {% header h2 | Examples %}
-    {% header h3 | Badges default %}
+    {% header "h2", "Examples" %}
+    {% header "h3", "Badges default" %}
     <div class="stacks-preview">
 {% highlight html %}
 <span class="s-badge">
-    <img class="s-badge--image" src="/{{site.img}}/BadgeGold.svg" aria-hidden="true"> Great Question
+    <img class="s-badge--image" src="BadgeGold.svg" aria-hidden="true"> Great Question
 </span>
 <span class="s-badge">
-    <img class="s-badge--image" src="/{{site.img}}/BadgeSilver.svg" aria-hidden="true"> Favorite Question
+    <img class="s-badge--image" src="BadgeSilver.svg" aria-hidden="true"> Favorite Question
 </span>
 <span class="s-badge">
-    <img class="s-badge--image" src="/{{site.img}}/BadgeBronze.svg" aria-hidden="true"> Altruist
+    <img class="s-badge--image" src="BadgeBronze.svg" aria-hidden="true"> Altruist
 </span>
 {% endhighlight %}
         <div class="stacks-preview--example">
             <div class="grid gs4 fw-wrap">
                 <span class="grid--cell s-badge">
-                    <img class="s-badge--image" src="/{{site.img}}/BadgeGold.svg" aria-hidden="true"> Great Question
+                    <img class="s-badge--image" src="/assets/img/BadgeGold.svg" aria-hidden="true"> Great Question
                 </span>
                 <span class="grid--cell s-badge">
-                    <img class="s-badge--image" src="/{{site.img}}/BadgeSilver.svg" aria-hidden="true"> Favorite Question
+                    <img class="s-badge--image" src="/assets/img/BadgeSilver.svg" aria-hidden="true"> Favorite Question
                 </span>
                 <span class="grid--cell s-badge">
-                    <img class="s-badge--image" src="/{{site.img}}/BadgeBronze.svg" aria-hidden="true"> Altruist
+                    <img class="s-badge--image" src="/assets/img/BadgeBronze.svg" aria-hidden="true"> Altruist
                 </span>
             </div>
         </div>
     </div>
 
-    {% header h3 | Tag badge %}
+    {% header "h3", "Tag badge" %}
     <div class="stacks-preview">
 {% highlight html %}
 <span class="s-badge s-badge__tag">
-    <img class="s-badge--image" src="/{{site.img}}/BadgeGold.svg" aria-hidden="true"> css
+    <img class="s-badge--image" src="BadgeGold.svg" aria-hidden="true"> css
 </span>
 <span class="s-badge s-badge__tag">
-    <img class="s-badge--image" src="/{{site.img}}/BadgeSilver.svg" aria-hidden="true"> javascript
+    <img class="s-badge--image" src="BadgeSilver.svg" aria-hidden="true"> javascript
 </span>
 <span class="s-badge s-badge__tag">
-    <img class="s-badge--image" src="/{{site.img}}/BadgeBronze.svg" aria-hidden="true"> swift
+    <img class="s-badge--image" src="BadgeBronze.svg" aria-hidden="true"> swift
 </span>
 {% endhighlight %}
         <div class="stacks-preview--example">
             <div class="grid gs4 fw-wrap">
                 <span class="grid--cell s-badge s-badge__tag">
-                    <img class="s-badge--image" src="/{{site.img}}/BadgeGold.svg" aria-hidden="true"> css
+                    <img class="s-badge--image" src="/assets/img/BadgeGold.svg" aria-hidden="true"> css
                 </span>
                 <span class="grid--cell s-badge s-badge__tag">
-                    <img class="s-badge--image" src="/{{site.img}}/BadgeSilver.svg" aria-hidden="true"> javascript
+                    <img class="s-badge--image" src="/assets/img/BadgeSilver.svg" aria-hidden="true"> javascript
                 </span>
                 <span class="grid--cell s-badge s-badge__tag">
-                    <img class="s-badge--image" src="/{{site.img}}/BadgeBronze.svg" aria-hidden="true"> swift
+                    <img class="s-badge--image" src="/assets/img/BadgeBronze.svg" aria-hidden="true"> swift
                 </span>
             </div>
         </div>
     </div>
 
-    {% header h3 | Badge counts %}
+    {% header "h3", "Badge counts" %}
     <div class="stacks-preview">
 {% highlight html %}
 <span class="s-badge s-badge__gold">
-    <img class="s-badge--image" src="/{{site.img}}/BadgeGold.svg" aria-hidden="true"> 635
+    <img class="s-badge--image" src="BadgeGold.svg" aria-hidden="true"> 635
 </span>
 <span class="s-badge s-badge__silver">
-    <img class="s-badge--image" src="/{{site.img}}/BadgeSilver.svg" aria-hidden="true"> 7624
+    <img class="s-badge--image" src="BadgeSilver.svg" aria-hidden="true"> 7624
 </span>
 <span class="s-badge s-badge__bronze">
-    <img class="s-badge--image" src="/{{site.img}}/BadgeBronze.svg" aria-hidden="true"> 8234
+    <img class="s-badge--image" src="BadgeBronze.svg" aria-hidden="true"> 8234
 </span>
 {% endhighlight %}
         <div class="stacks-preview--example">
             <div class="grid gs4 fw-wrap">
                 <span class="grid--cell s-badge s-badge__gold">
-                    <img class="s-badge--image" src="/{{site.img}}/BadgeGold.svg" aria-hidden="true"> 635
+                    <img class="s-badge--image" src="/assets/img/BadgeGold.svg" aria-hidden="true"> 635
                 </span>
                 <span class="grid--cell s-badge s-badge__silver">
-                    <img class="s-badge--image" src="/{{site.img}}/BadgeSilver.svg" aria-hidden="true"> 7624
+                    <img class="s-badge--image" src="/assets/img/BadgeSilver.svg" aria-hidden="true"> 7624
                 </span>
                 <span class="grid--cell s-badge s-badge__bronze">
-                    <img class="s-badge--image" src="/{{site.img}}/BadgeBronze.svg" aria-hidden="true"> 8234
+                    <img class="s-badge--image" src="/assets/img/BadgeBronze.svg" aria-hidden="true"> 8234
                 </span>
             </div>
         </div>
     </div>
 
-    {% header h3 | Number counts %}
+    {% header "h3", "Number counts" %}
     <div class="stacks-preview">
 {% highlight html %}
 <span class="s-badge s-badge__bounty">+100</span>

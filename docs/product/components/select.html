@@ -4,19 +4,74 @@ title: Select
 description: A selectable menu list from which a user can make a single selection. Typically they are used when there are more than four possible options. The custom select menu styling is achieved by wrapping the <code class="stacks-code">select</code> tag within the <code class="stacks-code">.s-select</code> class.
 ---
 <section class="stacks-section">
-    {% header h2 | Base style %}
+    {% header "h2", "Base style" %}
     <div class="stacks-preview">
 {% highlight html %}
-{% include_relative examples/select-base.html %}
-{% include_relative examples/select-disabled.html %}
+<div class="grid gs4 gsy fd-column">
+    <label class="grid--cell s-label" for="select-menu">
+        How will you be traveling?
+        <p class="mt2 s-description">Select the transportation method you will be using to come to the event.</p>
+    </label>
+    <div class="grid--cell s-select">
+        <select id="select-menu">
+            <option value="" selected>Please select one…</option>
+            <option value="walk">Walk</option>
+            <option value="bike">Bicycle</option>
+            <option value="car">Automobile</option>
+            <option value="rail">Train</option>
+            <option value="fly">Plane</option>
+        </select>
+    </div>
+</div>
+
+<div class="grid gs4 gsy fd-column is-disabled">
+    <label class="grid--cell s-label" for="select-menu-disabled">Where are you staying?</label>
+    <div class="grid--cell s-select">
+        <select id="select-menu-disabled" disabled>
+            <option value="" selected>Please select one…</option>
+            <option value="bronx">Bronx</option>
+            <option value="brooklyn">Brooklyn</option>
+            <option value="manhattan">Manhattan</option>
+            <option value="queens">Queens</option>
+            <option value="staten-island">Staten Island</option>
+        </select>
+    </div>
+</div>
 {% endhighlight %}
         <div class="stacks-preview--example">
             <div class="grid gs16 gsy fd-column">
                 <div class="grid--cell">
-                    {% include_relative examples/select-base.html %}
+                    <div class="grid gs4 gsy fd-column">
+                        <label class="grid--cell s-label" for="select-menu">
+                            How will you be traveling?
+                            <p class="mt2 s-description">Select the transportation method you will be using to come to the event.</p>
+                        </label>
+                        <div class="grid--cell s-select">
+                            <select id="select-menu">
+                                <option value="" selected>Please select one…</option>
+                                <option value="walk">Walk</option>
+                                <option value="bike">Bicycle</option>
+                                <option value="car">Automobile</option>
+                                <option value="rail">Train</option>
+                                <option value="fly">Plane</option>
+                            </select>
+                        </div>
+                    </div>
                 </div>
                 <div class="grid--cell">
-                    {% include_relative examples/select-disabled.html %}
+                    <div class="grid gs4 gsy fd-column is-disabled">
+                        <label class="grid--cell s-label" for="select-menu-disabled">Where are you staying?</label>
+                        <div class="grid--cell s-select">
+                            <select id="select-menu-disabled" disabled>
+                                <option value="" selected>Please select one…</option>
+                                <option value="bronx">Bronx</option>
+                                <option value="brooklyn">Brooklyn</option>
+                                <option value="manhattan">Manhattan</option>
+                                <option value="queens">Queens</option>
+                                <option value="staten-island">Staten Island</option>
+                            </select>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -24,10 +79,10 @@ description: A selectable menu list from which a user can make a single selectio
 </section>
 
 <section id="inputs" class="stacks-section">
-    {% header h2 | Validation states %}
+    {% header "h2", "Validation states" %}
     <p class="stacks-copy">Validation states provides the user feedback based on their interaction (or lack of interaction) with a select menu. These styles are applied by applying the appropriate class to the wrapping parent container.</p>
 
-    {% header h3 | Validation classes %}
+    {% header "h3", "Validation classes" %}
     <div class="overflow-x-auto mb32">
         <table class="wmn4 s-table s-table__bx-simple">
             <thead>
@@ -38,7 +93,7 @@ description: A selectable menu list from which a user can make a single selectio
                 </tr>
             </thead>
             <tbody>
-                {% for item in site.data.product.inputs.select %}
+                {% for item in inputs.select %}
                     {% assign state = item.validation %}
                     {% for class in state %}
                     <tr>
@@ -52,8 +107,8 @@ description: A selectable menu list from which a user can make a single selectio
         </table>
     </div>
 
-    {% header h3 | Validation examples %}
-    {% header h4 | Warning %}
+    {% header "h3", "Validation examples" %}
+    {% header "h4", "Warning" %}
     <div class="stacks-preview">
 {% highlight html %}
 <div class="grid gs4 gsy fd-column has-warning">
@@ -75,11 +130,27 @@ description: A selectable menu list from which a user can make a single selectio
 </div>
 {% endhighlight %}
         <div class="stacks-preview--example">
-            {% include_relative examples/select-warning.html %}
+            <div class="grid gs4 gsy fd-column has-warning">
+                <label class="grid--cell s-label" for="select-menu-warning">
+                    How will you be traveling?
+                    <p class="mt2 s-description">Select the transportation method you will be using to come to the event.</p>
+                </label>
+                <div class="grid--cell s-select">
+                    <select id="select-menu-warning">
+                        <option value="" selected>Please select one…</option>
+                        <option value="walk">Walk</option>
+                        <option value="bike">Bicycle</option>
+                        <option value="car">Automobile</option>
+                        <option value="rail">Train</option>
+                        <option value="fly">Plane</option>
+                    </select>
+                    {% icon "Alert", "s-input-icon" %}
+                </div>
+            </div>
         </div>
     </div>
 
-    {% header h4 | Error %}
+    {% header "h4", "Error" %}
     <div class="stacks-preview">
 {% highlight html %}
 <div class="grid gs4 gsy fd-column has-error">
@@ -101,11 +172,27 @@ description: A selectable menu list from which a user can make a single selectio
 </div>
 {% endhighlight %}
         <div class="stacks-preview--example">
-            {% include_relative examples/select-error.html %}
+            <div class="grid gs4 gsy fd-column has-error">
+                <label class="grid--cell s-label" for="select-menu-error">
+                    How will you be traveling?
+                    <p class="mt2 s-description">Select the transportation method you will be using to come to the event.</p>
+                </label>
+                <div class="grid--cell s-select">
+                    <select id="select-menu-error">
+                        <option value="" selected>Please select one…</option>
+                        <option value="walk">Walk</option>
+                        <option value="bike">Bicycle</option>
+                        <option value="car">Automobile</option>
+                        <option value="rail">Train</option>
+                        <option value="fly">Plane</option>
+                    </select>
+                    {% icon "AlertCircle", "s-input-icon" %}
+                </div>
+            </div>
         </div>
     </div>
 
-    {% header h4 | Success %}
+    {% header "h4", "Success" %}
     <div class="stacks-preview">
 {% highlight html %}
 <div class="grid gs4 gsy fd-column has-success">
@@ -127,13 +214,29 @@ description: A selectable menu list from which a user can make a single selectio
 </div>
 {% endhighlight %}
         <div class="stacks-preview--example">
-            {% include_relative examples/select-success.html %}
+            <div class="grid gs4 gsy fd-column has-success">
+                <label class="grid--cell s-label" for="select-menu-success">
+                    How will you be traveling?
+                    <p class="mt2 s-description">Select the transportation method you will be using to come to the event.</p>
+                </label>
+                <div class="grid--cell s-select">
+                    <select id="select-menu-success">
+                        <option value="" selected>Please select one…</option>
+                        <option value="walk">Walk</option>
+                        <option value="bike">Bicycle</option>
+                        <option value="car">Automobile</option>
+                        <option value="rail">Train</option>
+                        <option value="fly">Plane</option>
+                    </select>
+                    {% icon "Checkmark", "s-input-icon" %}
+                </div>
+            </div>
         </div>
     </div>
 </section>
 
 <section class="stacks-section">
-    {% header h2 | Sizes %}
+    {% header "h2", "Sizes" %}
     <div class="overflow-x-auto mb32">
         <table class="wmn5 s-table s-table__bx-simple va-middle">
             <thead>
@@ -145,8 +248,8 @@ description: A selectable menu list from which a user can make a single selectio
                 </tr>
             </thead>
             <tbody>
-                {% for item in site.data.product.inputs.select %}
-                    {% assign size = item.sizes  %}
+                {% for item in inputs.select %}
+                    {% assign size = item.sizes %}
                     {% for item in size %}
                     <tr>
                         <th scope="row">{{ item.name }}</th>
