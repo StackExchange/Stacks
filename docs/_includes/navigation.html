@@ -2,11 +2,11 @@
     <div class="overflow-y-scroll overflow-x-hidden bg-white z-nav py12 fs-body1 ps-fixed wmn2 t64 b0 sm:w100 sm:pb0">
         <div class="d-none sm:d-block">
             <div class="grid fd-column ai-center">
-                {% if navigation %}
+                {% if site-navigation %}
                     <div class="s-navigation s-navigation__wrap mx8 mb12 jc-center">
                         {% assign slug = page.url | replace:'/',' ' | truncatewords: 2 | remove:'...' %}
 
-                        {% for section in navigation.sections %}
+                        {% for section in site-navigation.sections %}
                             {% assign url = section.url | replace:'/',' ' | truncatewords: 2 | remove:'...' %}
                             <a class="s-navigation--item{% if url == slug %} is-selected{% endif %}" href="{{ section.url }}">{{ section.title }}</a>
                         {% endfor %}
@@ -32,8 +32,8 @@
             </div>
         </div>
 
-        {% if navigation %}
-            {% for section in navigation.sections %}
+        {% if site-navigation %}
+            {% for section in site-navigation.sections %}
                 {% assign slug = page.url | replace:'/',' ' | truncatewords: 2 | remove:'...' %}
                 {% assign url = section.url | replace:'/',' ' | truncatewords: 2 | remove:'...' %}
 

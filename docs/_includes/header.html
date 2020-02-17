@@ -7,11 +7,11 @@
         <a class="grid--cell js-logo" href="{{ "/" | relative_url }}">
             {% icon "LogoGlyph", "native" %}
         </a>
-        {% if navigation %}
+        {% if site-navigation %}
             <div class="s-navigation mx16 fw-nowrap sm:d-none">
                 {% assign slug = page.url | replace:'/',' ' | truncatewords: 2 | remove:'...' %}
 
-                {% for section in navigation.sections %}
+                {% for section in site-navigation.sections %}
                     {% assign url = section.url | replace:'/',' ' | truncatewords: 2 | remove:'...' %}
                     <a class="s-navigation--item{% if url == slug %} is-selected{% endif %}" href="{{ section.url }}">{{ section.title }}</a>
                 {% endfor %}
