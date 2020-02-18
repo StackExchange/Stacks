@@ -4,7 +4,331 @@ title: Borders
 description: Stacks provides atomic classes for borders.
 ---
 
-{% include_relative borders-border.html %}
-{% include_relative borders-width.html %}
-{% include_relative borders-style.html %}
-{% include_relative borders-color.html %}
+<section class="stacks-section">
+    {% header "h2", "Classes" %}
+    <div class="overflow-x-auto mb32">
+        <table class="wmn3 s-table s-table__bx-simple">
+            <thead>
+                <tr>
+                    <th class="s-table--cell2" scope="col">Class</th>
+                    <th scope="col">Output</th>
+                    <th scope="col">Definition</th>
+                    <th scope="col">
+                        <a class="s-link s-link__inherit" href="{{ "/product/guidelines/conditional-classes#responsive" | relative_url }}">Responsive?</a>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for border in borders.border %}
+                  <tr>
+                        <th scope="row"><code class="stacks-code">{{ border.class }}</code></th>
+                        <td class="ff-mono">{{ border.output }}</td>
+                        <td>{{ border.define }}</td>
+                        <td class="ta-center">
+                            {% if border.responsive %}
+                                {% icon "Checkmark", "fc-green-500" %}
+                            {% endif %}
+                        </td>
+                  </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    {% header "h2", "Examples" %}
+    <div class="stacks-preview">
+{% highlight html %}
+<div class="ba">…</div>
+<div class="bt">…</div>
+<div class="br">…</div>
+<div class="bb">…</div>
+<div class="bl">…</div>
+<div class="bx">…</div>
+<div class="by">…</div>
+{% endhighlight %}
+        <div class="stacks-preview--example">
+            <div class="grid gs8 fw-wrap">
+                <div class="grid--cell p12 bg-black-075 ba">All borders</div>
+                <div class="grid--cell p12 bg-black-075 bt">Top border</div>
+                <div class="grid--cell p12 bg-black-075 br">Right border</div>
+                <div class="grid--cell p12 bg-black-075 bb">Bottom border</div>
+                <div class="grid--cell p12 bg-black-075 bl">Left border</div>
+                <div class="grid--cell p12 bg-black-075 bx">X border</div>
+                <div class="grid--cell p12 bg-black-075 by">Y border</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="stacks-section">
+    {% header "h2", "Width" %}
+    {% header "h3", "Width classes" %}
+    <div class="overflow-x-auto mb32">
+        <table class="wmn3 s-table s-table__bx-simple">
+            <thead>
+                <tr>
+                    <th class="s-table--cell2" scope="col">Class</th>
+                    <th scope="col">Output</th>
+                    <th scope="col">Definition</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for border in borders.border-width %}
+                    <tr>
+                        <th scope="row"><code class="stacks-code">{{ border.class }}</code></th>
+                        <td class="ff-mono">{{ border.output }}</td>
+                        <td>{{ border.define }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    {% header "h3", "Width examples" %}
+    <div class="stacks-preview">
+{% highlight html %}
+<div class="ba">…</div>
+<div class="ba brw0">…</div>
+<div class="ba bbw0">…</div>
+<div class="ba baw2">…</div>
+<div class="ba baw3">…</div>
+{% endhighlight %}
+        <div class="stacks-preview--example">
+            <div class="grid w100 gs8 fw-wrap">
+                <div class="grid--cell p12 bg-black-075 ba">1px Border</div>
+                <div class="grid--cell p12 bg-black-075 ba brw0">0px Right border</div>
+                <div class="grid--cell p12 bg-black-075 ba bbw0">0px Bottom border</div>
+                <div class="grid--cell p12 bg-black-075 ba baw2">2px border</div>
+                <div class="grid--cell p12 bg-black-075 ba baw3">4px border</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="stacks-section">
+    {% header "h2", "Style" %}
+    {% header "h3", "Style classes" %}
+    <div class="overflow-x-auto mb48">
+        <table class="wmn3 s-table s-table__bx-simple">
+            <thead>
+                <tr>
+                    <th class="s-table--cell2" scope="col">Class</th>
+                    <th scope="col">Output</th>
+                    <th scope="col">Definition</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for border in borders.border-style %}
+                    <tr>
+                        <th scope="row"><code class="stacks-code">.{{ border.class }}</code></th>
+                        <td class="ff-mono">{{ border.output }}</td>
+                        <td>{{ border.define }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    {% header "h3", "Style examples" %}
+    <div class="stacks-preview">
+{% highlight html %}
+<div class="ba bas-solid">…</div>
+<div class="ba bas-dashed">…</div>
+<div class="ba brs-dashed">…</div>
+{% endhighlight %}
+        <div class="stacks-preview--example">
+            <div class="grid w100 gs8 ai-center">
+                <div class="grid--cell p12 ba bas-solid bg-black-075">Solid border style</div>
+                <div class="grid--cell p12 ba bas-dashed bg-black-075">Dashed border style</div>
+                <div class="grid--cell p12 ba brs-dashed bg-black-075">Dashed border right style</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="stacks-section">
+    {% header "h2", "Color" %}
+    {% header "h3", "Color classes" %}
+    <div class="overflow-x-auto mb32">
+        <table class="wmn3 s-table s-table__bx-simple">
+            <thead>
+                <tr>
+                    <th class="s-table--cell3" scope="col">Class</th>
+                    <th scope="col">Definition</th>
+                    <th class="s-table--cell2 ta-center" scope="col"><a class="s-link s-link__inherit" href="{{ "/product/guidelines/conditional-classes#darkmode" | relative_url }}">Dark mode?</a></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for border in borders.border-color %}
+                    <tr>
+                        <th scope="row"><code class="stacks-code">.{{ border.term }}</code></th>
+                        <td>{{ border.define }}</td>
+                        <td class="ta-center">
+                            {% if border.darkmode %}
+                                {% icon "Checkmark", "fc-green-500" %}
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    {% header "h3", "Transparent" %}
+    <div class="stacks-preview">
+{% highlight html %}
+<div class="ba bc-transparent">Transparent</div>
+{% endhighlight %}
+        <div class="stacks-preview--example">
+            <div class="grid ff-column-nowrap w100">
+                <div class="grid--cell ai-center p8 ba bc-transparent">Transparent border color</div>
+            </div>
+        </div>
+    </div>
+
+    {% header "h3", "Black" %}
+    <div class="stacks-preview">
+{% highlight html %}
+<div class="bb bc-black-10">Black Border: Tenth Step</div>
+<div class="bb bc-black-9">Black Border: Ninth Step</div>
+<div class="bb bc-black-8">Black Border: Eighth Step</div>
+<div class="bb bc-black-7">Black Border: Seventh Step</div>
+<div class="bb bc-black-6">Black Border: Sixth Step</div>
+<div class="bb bc-black-5">Black Border: Fifth Step</div>
+<div class="bb bc-black-4">Black Border: Fourth Step</div>
+<div class="bb bc-black-3">Black Border: Third Step</div>
+<div class="bb bc-black-2">Black Border: Second Step</div>
+<div class="bb bc-black-1">Black Border: First Step</div>
+{% endhighlight %}
+        <div class="stacks-preview--example">
+            <div class="grid ff-column-nowrap w100 gs8 gsy">
+                <div class="grid--cell ai-center p8 bb bc-black-10">Black Border: Tenth Step</div>
+                <div class="grid--cell ai-center p8 bb bc-black-9">Black Border: Ninth Step</div>
+                <div class="grid--cell ai-center p8 bb bc-black-8">Black Border: Eighth Step</div>
+                <div class="grid--cell ai-center p8 bb bc-black-7">Black Border: Seventh Step</div>
+                <div class="grid--cell ai-center p8 bb bc-black-6">Black Border: Sixth Step</div>
+                <div class="grid--cell ai-center p8 bb bc-black-5">Black Border: Fifth Step</div>
+                <div class="grid--cell ai-center p8 bb bc-black-4">Black Border: Fourth Step</div>
+                <div class="grid--cell ai-center p8 bb bc-black-3">Black Border: Third Step</div>
+                <div class="grid--cell ai-center p8 bb bc-black-2">Black Border: Second Step</div>
+                <div class="grid--cell ai-center p8 bb bc-black-1">Black Border: First Step</div>
+            </div>
+        </div>
+    </div>
+
+    {% header "h3", "White" %}
+    <div class="stacks-preview">
+{% highlight html %}
+<div class="bb bc-white-3">White Border: Third Step</div>
+<div class="bb bc-white-2">White Border: Second Step</div>
+<div class="bb bc-white-1">White Border: First Step</div>
+{% endhighlight %}
+        <div class="stacks-preview--example bg-black-750">
+            <div class="grid ff-column-nowrap w100 gs8 gsy">
+                <div class="grid--cell ai-center p8 bb bc-white-3 fc-white">White Border: Third Step</div>
+                <div class="grid--cell ai-center p8 bb bc-white-2 fc-white">White Border: Second Step</div>
+                <div class="grid--cell ai-center p8 bb bc-white-1 fc-white">White Border: First Step</div>
+            </div>
+        </div>
+    </div>
+
+    {% header "h3", "Orange" %}
+    <div class="stacks-preview">
+{% highlight html %}
+<div class="bb bc-orange-3">Dark orange border</div>
+<div class="bb bc-orange-2">Orange border</div>
+<div class="bb bc-orange-1">Light orange border</div>
+{% endhighlight %}
+        <div class="stacks-preview--example">
+            <div class="grid ff-column-nowrap w100 gs8 gsy">
+                <div class="grid--cell ai-center p8 bb bc-orange-3">Dark Orange Border</div>
+                <div class="grid--cell ai-center p8 bb bc-orange-2">Orange Border</div>
+                <div class="grid--cell ai-center p8 bb bc-orange-1">Light Orange Border</div>
+            </div>
+        </div>
+    </div>
+
+    {% header "h3", "Blue" %}
+    <div class="stacks-preview">
+{% highlight html %}
+<div class="bb bc-blue-3">Dark blue border</div>
+<div class="bb bc-blue-2">Blue border</div>
+<div class="bb bc-blue-1">Light blue border</div>
+{% endhighlight %}
+        <div class="stacks-preview--example">
+            <div class="grid ff-column-nowrap w100 gs8 gsy">
+                <div class="grid--cell ai-center p8 bb bc-blue-3">Dark blue Border</div>
+                <div class="grid--cell ai-center p8 bb bc-blue-2">Blue border</div>
+                <div class="grid--cell ai-center p8 bb bc-blue-1">Light blue border</div>
+            </div>
+        </div>
+    </div>
+
+    {% header "h3", "Powder" %}
+    <div class="stacks-preview">
+{% highlight html %}
+<div class="bb bc-powder-3">Dark powder border</div>
+<div class="bb bc-powder-2">Powder border</div>
+<div class="bb bc-powder-1">Light powder border</div>
+{% endhighlight %}
+        <div class="stacks-preview--example">
+            <div class="grid ff-column-nowrap w100 gs8 gsy">
+                <div class="grid--cell ai-center p8 bb bc-powder-3">Dark powder border</div>
+                <div class="grid--cell ai-center p8 bb bc-powder-2">Powder border</div>
+                <div class="grid--cell ai-center p8 bb bc-powder-1">Light powder border</div>
+            </div>
+        </div>
+    </div>
+
+    {% header "h3", "Green" %}
+    <p class="stacks-copy">Green borders can also be declared using our <code class="stacks-code">.bc-success</code> <a href="{{ '/product/base/colors#success' | relative_url }}">alias class</a>.</p>
+    <div class="stacks-preview">
+{% highlight html %}
+<div class="bb bc-green-3">Dark green border</div>
+<div class="bb bc-green-2">Green border</div>
+<div class="bb bc-green-1">Light green border</div>
+{% endhighlight %}
+        <div class="stacks-preview--example">
+            <div class="grid ff-column-nowrap w100 gs8 gsy">
+                <div class="grid--cell ai-center p8 bb bc-green-3">Dark green border</div>
+                <div class="grid--cell ai-center p8 bb bc-green-2">Green border</div>
+                <div class="grid--cell ai-center p8 bb bc-green-1">Light green border</div>
+            </div>
+        </div>
+    </div>
+
+    {% header "h3", "Red" %}
+    <p class="stacks-copy">Red borders can also be declared using our <code class="stacks-code">.bc-error</code> and <code class="stacks-code">.bc-danger</code> <a href="{{ '/product/base/colors#danger-and-error' | relative_url }}">alias classes</a>.</p>
+    <div class="stacks-preview">
+{% highlight html %}
+<div class="bb bc-red-3">Dark red Border</div>
+<div class="bb bc-red-2">Red border</div>
+<div class="bb bc-red-1">Light red border</div>
+{% endhighlight %}
+        <div class="stacks-preview--example">
+            <div class="grid ff-column-nowrap w100 gs8 gsy">
+                <div class="grid--cell ai-center p8 bb bc-red-3">Dark red border</div>
+                <div class="grid--cell ai-center p8 bb bc-red-2">Red border</div>
+                <div class="grid--cell ai-center p8 bb bc-red-1">Light red border</div>
+            </div>
+        </div>
+    </div>
+
+    {% header "h3", "Yellow" %}
+    <p class="stacks-copy">Yellow borders can also be declared using our <code class="stacks-code">.bc-warning</code> <a href="{{ '/product/base/colors#warning' | relative_url }}">alias class</a>.</p>
+    <div class="stacks-preview">
+{% highlight html %}
+<div class="bb bc-yellow-3">Dark yellow Border</div>
+<div class="bb bc-yellow-2">Yellow border</div>
+<div class="bb bc-yellow-1">Light yellow border</div>
+{% endhighlight %}
+        <div class="stacks-preview--example">
+            <div class="grid ff-column-nowrap w100 gs8 gsy">
+                <div class="grid--cell ai-center p8 bb bc-yellow-3">Dark yellow border</div>
+                <div class="grid--cell ai-center p8 bb bc-yellow-2">Yellow border</div>
+                <div class="grid--cell ai-center p8 bb bc-yellow-1">Light yellow border</div>
+            </div>
+        </div>
+    </div>
+</section>
+

@@ -6,7 +6,7 @@ description: To avoid specifying color values by hand, we’ve included a robust
 
 
 <section class="stacks-section">
-    {% header h2 | Primary colors %}
+    {% header "h2", "Primary colors" %}
     <div class="grid sm:fd-column gs16 grid__allcells4">
         <a class="grid--cell fw-wrap p12 bg-orange-400 fc-dark d:fc-white mb12 bar-sm" href="#orange">
             <h2 class="fs-subheading mb4">Orange</h2>
@@ -26,7 +26,7 @@ description: To avoid specifying color values by hand, we’ve included a robust
 </section>
 
 <section class="stacks-section">
-    {% header h2 | Accent colors %}
+    {% header "h2", "Accent colors" %}
     <div class="grid sm:fd-column gs16 grid__allcells3">
         <a class="grid--cell p12 bg-powder-100 mb12 fc-dark bar-sm" href="#powder">
             <h2 class="fs-subheading mb4">Powder</h2>
@@ -51,13 +51,13 @@ description: To avoid specifying color values by hand, we’ve included a robust
 </section>
 
 <section class="stacks-section">
-    {% header h2 | Color stops %}
-    {% for color in site.data.product.color-stops %}
+    {% header "h2", "Color stops" %}
+    {% for color in colors %}
         {% assign color_stops = color.stops %}
         <div class="grid jc-space-between ai-end stacks-header">
             <h3 class="grid--cell fl1 stacks-h3" id="{{ color.name}}">{{ color.name | capitalize }}</h3>
             <a class="grid grid__center mbn6 s-btn s-btn__muted" href="#{{ color.name}}">
-                {% icon Link | m0 %}
+                {% icon "Link", "m0" %}
             </a>
         </div>
         <div class="overflow-x-auto mb48">
@@ -99,9 +99,9 @@ description: To avoid specifying color values by hand, we’ve included a robust
                             {% endif %}
                         </td>
                         <td>.bg-{{ color.name }}-{{ stop.stop }}</td>
-                        <td class="ta-center">{% icon Checkmark | fc-green-500 %}</td>
-                        <td class="ta-center">{% icon Checkmark | fc-green-500 %}</td>
-                        <td class="ta-center">{% icon Checkmark | fc-green-500 %}</td>
+                        <td class="ta-center">{% icon "Checkmark", "fc-green-500" %}</td>
+                        <td class="ta-center">{% icon "Checkmark", "fc-green-500" %}</td>
+                        <td class="ta-center">{% icon "Checkmark", "fc-green-500" %}</td>
                     </tr>
                     {% endfor %}
                     <tr class="ff-mono">
@@ -112,9 +112,9 @@ description: To avoid specifying color values by hand, we’ve included a robust
                         <td>#ffffff</td>
                         <td>.fc-white</td>
                         <td>.bg-white</td>
-                        <td class="ta-center">{% icon Checkmark | fc-green-500 %}</td>
-                        <td class="ta-center">{% icon Checkmark | fc-green-500 %}</td>
-                        <td class="ta-center">{% icon Checkmark | fc-green-500 %}</td>
+                        <td class="ta-center">{% icon "Checkmark", "fc-green-500" %}</td>
+                        <td class="ta-center">{% icon "Checkmark", "fc-green-500" %}</td>
+                        <td class="ta-center">{% icon "Checkmark", "fc-green-500" %}</td>
                     </tr>
                     <tr class="ff-mono">
                         <th scope="row">
@@ -135,8 +135,8 @@ description: To avoid specifying color values by hand, we’ve included a robust
 </section>
 
 <section class="stacks-section">
-    {% header h2 | Aliases %}
-    {% header h3 | Danger and error %}
+    {% header "h2", "Aliases" %}
+    {% header "h3", "Danger and error" %}
     <table class="wmn5 s-table s-table__bx-simple s-table__condensed va-middle fs-caption">
         <thead>
             <tr>
@@ -160,7 +160,7 @@ description: To avoid specifying color values by hand, we’ve included a robust
         </tbody>
     </table>
 
-    {% header h3 | Success %}
+    {% header "h3", "Success" %}
     <table class="wmn5 s-table s-table__bx-simple s-table__condensed va-middle fs-caption">
         <thead>
             <tr>
@@ -182,7 +182,7 @@ description: To avoid specifying color values by hand, we’ve included a robust
         </tbody>
     </table>
 
-    {% header h3 | Warning %}
+    {% header "h3", "Warning" %}
     <table class="wmn5 s-table s-table__bx-simple s-table__condensed va-middle fs-caption">
         <thead>
             <tr>
