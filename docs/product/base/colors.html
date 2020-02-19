@@ -53,9 +53,9 @@ description: To avoid specifying color values by hand, we’ve included a robust
 <section class="stacks-section">
     {% header "h2", "Color stops" %}
     {% for color in colors %}
-        {% assign color_stops = color.stops %}
+        {% assign color_name = color.name | capitalize %}
 
-        {% h3 {{ color.name | capitalize }} %}
+        {% header "h3", color_name %}
         <div class="overflow-x-auto mb48">
             <table class="wmn5 s-table s-table__bx-simple s-table__condensed va-middle fs-caption">
                 <thead>
@@ -71,7 +71,7 @@ description: To avoid specifying color values by hand, we’ve included a robust
                     </tr>
                 </thead>
                 <tbody>
-                    {% for stop in color_stops %}
+                    {% for stop in color.stops %}
                     <tr class="ff-mono">
                         <th scope="row">
                           <div class="stacks-swatch bar-sm bg-{{ color.name }}-{{ stop.stop }}"></div>
