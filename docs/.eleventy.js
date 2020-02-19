@@ -47,6 +47,7 @@ module.exports = function(eleventyConfig) {
   // Add syntax highlighting
   eleventyConfig.addPlugin(syntaxHighlight);
 
+  // Copy these files over to _site
   eleventyConfig.addPassthroughCopy('assets');
   eleventyConfig.addPassthroughCopy('email/templates/code');
   eleventyConfig.addPassthroughCopy('email/templates/examples');
