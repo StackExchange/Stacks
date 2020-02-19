@@ -54,12 +54,8 @@ description: To avoid specifying color values by hand, we’ve included a robust
     {% header "h2", "Color stops" %}
     {% for color in colors %}
         {% assign color_stops = color.stops %}
-        <div class="grid jc-space-between ai-end stacks-header">
-            <h3 class="grid--cell fl1 stacks-h3" id="{{ color.name}}">{{ color.name | capitalize }}</h3>
-            <a class="grid grid__center mbn6 s-btn s-btn__muted" href="#{{ color.name}}">
-                {% icon "Link", "m0" %}
-            </a>
-        </div>
+
+        {% h3 {{ color.name | capitalize }} %}
         <div class="overflow-x-auto mb48">
             <table class="wmn5 s-table s-table__bx-simple s-table__condensed va-middle fs-caption">
                 <thead>
