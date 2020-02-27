@@ -4,7 +4,8 @@ title: Notices
 description: Notices deliver <strong>System</strong> and <strong>Engagement</strong> messaging, informing the user about product or account statuses and related actions.
 ---
 <!-- Example notice content -->
-<script src="{{ site.baseurl }}/{{ site.js }}/feature.notices.js" defer></script>
+<script src="{{ "/assets/js/feature.notices.js" | relative_url }}" defer></script>
+
 <div class="s-toast js-notice-toast" aria-hidden="true">
     <aside class="s-notice s-notice__success">
         <div class="grid gs16 gsx ai-center jc-space-between" aria-describedby="notice-message">
@@ -13,7 +14,7 @@ description: Notices deliver <strong>System</strong> and <strong>Engagement</str
             </div>
             <div class="grid--cell mr0" aria-label="notice-dismiss">
                 <a class="p8 s-btn grid grid__center fc-dark js-notice-close">
-                    {% icon ClearSm | m0 %}
+                    {% icon "ClearSm", "m0" %}
                 </a>
             </div>
         </div>
@@ -21,7 +22,7 @@ description: Notices deliver <strong>System</strong> and <strong>Engagement</str
 </div>
 
 <section class="stacks-section">
-    {% header h2 | Accessibility %}
+    {% header "h2", "Accessibility" %}
     <div class="overflow-x-auto mb32">
         <table class="wmn5 s-table s-table__bx-simple">
             <thead>
@@ -32,7 +33,7 @@ description: Notices deliver <strong>System</strong> and <strong>Engagement</str
                 </tr>
             </thead>
             <tbody>
-                {% for item in site.data.product.notices.access %}
+                {% for item in notices.access %}
                 <tr>
                     <td><code class="stacks-code">{{ item.item }}</code></td>
                     <td>
@@ -55,8 +56,8 @@ description: Notices deliver <strong>System</strong> and <strong>Engagement</str
 </section>
 
 <section class="stacks-section">
-    {% header h2 | Visual styles %}
-    {% header h3 | Classes %}
+    {% header "h2", "Visual styles" %}
+    {% header "h3", "Classes" %}
     <div class="overflow-x-auto mb32">
         <table class="wmn5 s-table s-table__bx-simple">
             <thead>
@@ -67,7 +68,7 @@ description: Notices deliver <strong>System</strong> and <strong>Engagement</str
                 </tr>
             </thead>
             <tbody>
-                {% for item in site.data.product.notices.visual %}
+                {% for item in notices.visual %}
                 <tr>
                     <td><code class="stacks-code">{{ item.class }}</code></td>
                     <td>
@@ -88,7 +89,7 @@ description: Notices deliver <strong>System</strong> and <strong>Engagement</str
         </table>
     </div>
 
-    {% header h3 | Filled %}
+    {% header "h3", "Filled" %}
     <p class="stacks-copy">Default style used to separate notices from the main content</p>
     <div class="stacks-preview">
 {% highlight html %}
@@ -115,7 +116,7 @@ description: Notices deliver <strong>System</strong> and <strong>Engagement</str
         </div>
     </div>
 
-    {% header h3 | Filled important %}
+    {% header "h3", "Filled important" %}
     <p class="stacks-copy">Used sparingly for when an important notice needs to be noticed</p>
     <div class="stacks-preview">
 {% highlight html %}
@@ -159,7 +160,7 @@ description: Notices deliver <strong>System</strong> and <strong>Engagement</str
 </section>
 
 <section class="stacks-section">
-    {% header h2 | Behaviors %}
+    {% header "h2", "Behaviors" %}
     <div class="overflow-x-auto mb32">
         <table class="wmn4 s-table s-table__bx-simple">
             <thead>
@@ -171,7 +172,7 @@ description: Notices deliver <strong>System</strong> and <strong>Engagement</str
                 </tr>
             </thead>
             <tbody>
-                {% for item in site.data.product.notices.behavior %}
+                {% for item in notices.behavior %}
                 <tr>
                     <td>{{ item.type }}
                     <td><code class="stacks-code">{{ item.class }}</code></td>
@@ -193,7 +194,7 @@ description: Notices deliver <strong>System</strong> and <strong>Engagement</str
         </table>
     </div>
 
-    {% header h3 | Inline %}
+    {% header "h3", "Inline" %}
     <p class="stacks-copy">Default behavior for notices that are inserted within the content area</p>
     <div class="stacks-preview">
 {% highlight html %}
@@ -208,7 +209,7 @@ description: Notices deliver <strong>System</strong> and <strong>Engagement</str
         </div>
     </div>
 
-    {% header h3 | With an Icon %}
+    {% header "h3", "With an Icon" %}
     <p class="stacks-copy">Notices are often accompanied by an icon.</p>
     <div class="stacks-preview">
 {% highlight html %}
@@ -224,7 +225,7 @@ description: Notices deliver <strong>System</strong> and <strong>Engagement</str
         <div class="stacks-preview--example">
             <aside class="grid s-notice s-notice__info" aria-hidden="false" role="status">
                 <div class="grid--cell mr8">
-                    {% icon Alert %}
+                    {% icon "Alert" %}
                 </div>
                 <div class="grid--cell lh-lg">
                     This question and its answers are locked because the question is off-topic but has historical significance. It is not currently accepting new answers or interactions.
@@ -233,7 +234,7 @@ description: Notices deliver <strong>System</strong> and <strong>Engagement</str
         </div>
     </div>
 
-    {% header h3 | Toast %}
+    {% header "h3", "Toast" %}
     <p class="stacks-copy">Floating notices, but aligned to the top and center of the page and they disappear after a set time</p>
     <div class="mb24 p16 bar-sm bg-black-025 ba bc-black-1">
         <button class="grid--cell s-btn s-btn__filled js-notice-toast-open">Launch example toast notice</button>
@@ -264,7 +265,7 @@ description: Notices deliver <strong>System</strong> and <strong>Engagement</str
                         </div>
                         <div class="grid--cell mr0" aria-label="notice-dismiss">
                             <a class="p8 s-btn grid grid__center fc-dark">
-                                {% icon ClearSm | m0 %}
+                                {% icon "ClearSm", "m0" %}
                             </a>
                         </div>
                     </div>
@@ -282,7 +283,7 @@ description: Notices deliver <strong>System</strong> and <strong>Engagement</str
                         </div>
                         <div class="grid--cell mr0 ml0" aria-label="notice-dismiss">
                             <a href="#" class="d-block p8 s-btn grid grid__center fc-dark">
-                                {% icon ClearSm | m0 %}
+                                {% icon "ClearSm", "m0" %}
                             </a>
                         </div>
                     </div>

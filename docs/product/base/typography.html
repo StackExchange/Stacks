@@ -4,10 +4,10 @@ title: Typography
 description: Stacks provides atomic classes to override default styling of typography. Change typographic weights, styles, and alignment with these atomic styles.
 ---
 <section class="stacks-section">
-    {% header h2 | Basic %}
+    {% header "h2", "Basic" %}
     <p class="stacks-copy">These styles should only be used as overrides. They shouldn’t replace standard semantic uses of <code class="stacks-code">strong</code> or <code class="stacks-code">em</code> tags.</p>
 
-    {% header h3 | Basic classes %}
+    {% header "h3", "Basic classes" %}
     <div class="overflow-x-auto mb32">
         <table class="wmn5 s-table s-table__bx-simple">
             <thead>
@@ -18,7 +18,7 @@ description: Stacks provides atomic classes to override default styling of typog
                 </tr>
             </thead>
             <tbody>
-                {% for basic in site.data.product.type-definitions.type-basic %}
+                {% for basic in typography.type-basic %}
                     <tr class="fs-caption">
                         <th scope="row"><code class="stacks-code">.{{ basic.class }}</code></th>
                         <td><code class="stacks-code bg-white">{{ basic.output }}</code></td>
@@ -29,7 +29,7 @@ description: Stacks provides atomic classes to override default styling of typog
         </table>
     </div>
 
-    {% header h3 | Basic examples %}
+    {% header "h3", "Basic examples" %}
     <div class="stacks-preview">
 {% highlight html %}
 <p class="fw-normal">…</p>
@@ -68,8 +68,8 @@ description: Stacks provides atomic classes to override default styling of typog
 </section>
 
 <section id="typography-layout" class="stacks-section">
-    {% header h2 | Layout %}
-    {% header h3 | Layout classes %}
+    {% header "h2", "Layout" %}
+    {% header "h3", "Layout classes" %}
     <div class="overflow-x-auto mb32">
         <table class="wmn5 s-table s-table__bx-simple va-middle">
             <thead>
@@ -81,14 +81,14 @@ description: Stacks provides atomic classes to override default styling of typog
                 </tr>
             </thead>
             <tbody>
-                {% for layout in site.data.product.type-definitions.type-layout %}
+                {% for layout in typography.type-layout %}
                     <tr class="fs-caption">
                         <th scope="row"><code class="stacks-code">.{{ layout.class }}</code></th>
                         <td><code class="stacks-code bg-white">{{ layout.output }}</code></td>
                         <td><p class="m0">{{ layout.define }}</p></td>
                         <td class="ta-center">
                             {% if layout.responsive %}
-                                {% icon Checkmark | fc-green-500 %}
+                                {% icon "Checkmark", "fc-green-500" %}
                             {% endif %}
                         </td>
                     </tr>
@@ -97,7 +97,7 @@ description: Stacks provides atomic classes to override default styling of typog
         </table>
     </div>
 
-    {% header h3 | Layout examples %}
+    {% header "h3", "Layout examples" %}
     <div class="stacks-preview">
 {% highlight html %}
 <p class="ta-left">Text align: Left</p>
@@ -135,7 +135,7 @@ description: Stacks provides atomic classes to override default styling of typog
 </section>
 
 <section class="stacks-section">
-    {% header h2 | Truncation %}
+    {% header "h2", "Truncation" %}
     <p class="stacks-copy">CSS offers truncation on arbitrarily-long strings. This can help sanitize user-inputted things like bios, locations, or display names. In order for text truncation to work, it should be applied to a block-level element.</p>
     <div class="stacks-preview">
 {% highlight html %}
@@ -175,7 +175,7 @@ description: Stacks provides atomic classes to override default styling of typog
 </section>
 
 <section class="stacks-section">
-    {% header h2 | Fonts %}
+    {% header "h2", "Fonts" %}
     <div class="stacks-preview">
 {% highlight html %}
 <p class="ff-sans">…</p>
@@ -194,18 +194,18 @@ description: Stacks provides atomic classes to override default styling of typog
             </div>
             <div class="grid--cell">
                 <p class="ff-mono mb0">Monospace</p>
-                <p class="ff-mono fs-caption fc-light">Consolas, Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace, sans-serif</p>
+                <p class="ff-mono fs-caption fc-light mb0">Consolas, Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace, sans-serif</p>
             </div>
         </div>
     </div>
 </section>
 
 <section class="stacks-section">
-    {% header h2 | Sizes %}
+    {% header "h2", "Sizes" %}
     <p class="stacks-copy">
         Fonts larger than <code class="stacks-code">.fs-body1</code> are reduced in size at the smallest responsive breakpoint. <code class="stacks-code">.fs-body1</code> or smaller remain fixed at their initial pixel values.
     </p>
-    {% header h3 | Size classes %}
+    {% header "h3", "Size classes" %}
     <div class="overflow-x-auto mb32">
         <table class="wmn3 s-table s-table__bx-simple">
             <thead>
@@ -216,7 +216,7 @@ description: Stacks provides atomic classes to override default styling of typog
                 </tr>
             </thead>
             <tbody>
-                {% for term in site.data.product.type-definitions.fontsize %}
+                {% for term in typography.fontsize %}
                     <tr>
                         <th scope="row"><code class="stacks-code">.fs-{{ term.term }}</code></th>
                         <td><code class="stacks-code bg-white">{{ term.define }}</code></td>
@@ -227,7 +227,7 @@ description: Stacks provides atomic classes to override default styling of typog
         </table>
     </div>
 
-    {% header h3 | Size examples %}
+    {% header "h3", "Size examples" %}
     <div class="stacks-preview">
 {% highlight html %}
 <p class="fs-fine">…</p>
@@ -245,7 +245,7 @@ description: Stacks provides atomic classes to override default styling of typog
 <p class="fs-display4">…</p>
 {% endhighlight %}
         <div class="stacks-preview--example grid ff-column-nowrap gs16 gsy my0">
-            {% for term in site.data.product.type-definitions.fontsize %}
+            {% for term in typography.fontsize %}
             <div class="grid">
                 <div class="grid--cell3 fc-light fs-caption fw-bold">{{ term.label }}</div>
                 <div class="grid--cell fs-{{ term.term }} lh-xs">
@@ -257,7 +257,7 @@ description: Stacks provides atomic classes to override default styling of typog
         </div>
     </div>
 
-    {% header h2 | Category titles %}
+    {% header "h2", "Category titles" %}
     <p class="stacks-copy">Category titles help break content into digestible chunks, but are visually smaller than a traditional headline. They are meta descriptions of a content block. To further visually separate the content block from surrounding items, you can add a <code class="stacks-code">.has-border</code> class.</p>
     <div class="stacks-preview">
 {% highlight html %}
@@ -278,7 +278,7 @@ description: Stacks provides atomic classes to override default styling of typog
 </section>
 
 <section class="stacks-section">
-    {% header h2 | Line height %}
+    {% header "h2", "Line height" %}
     <div class="stacks-preview">
 {% highlight html %}
 <p class="lh-xs">…</p>
@@ -302,7 +302,7 @@ description: Stacks provides atomic classes to override default styling of typog
 </section>
 
 <section class="stacks-section">
-    {% header h2 | Colors %}
+    {% header "h2", "Colors" %}
     <div class="stacks-preview">
 {% highlight html %}
 <p class="fc-light">…</p>
