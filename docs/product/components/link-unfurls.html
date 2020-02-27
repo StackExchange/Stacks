@@ -1,0 +1,109 @@
+---
+layout: page
+title: Link unfurls
+description: Link unfurls, also referred to as oneboxes, add rich previews to messages using third party integrations. 
+---
+<section class="stacks-section">
+    {% header "h2", "Classes" %}
+    <div class="overflow-x-auto mb32">
+        <table class="wmn4 s-table s-table__bx-simple">
+            <thead>
+                <tr>
+                    <th class="s-table--cell4" scope="col">Class</th>
+                    <th class="s-table--cell3" scope="col">Parent</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody class="fs-caption">
+                {% for item in breadcrumbs.classes %}
+                    <tr>
+                        <th scope="row"><code class="stacks-code">{{ item.class }}</code></th>
+                        <td><code class="stacks-code">{{ item.applies }}</td>
+                        <td class="p8">{{ item.description }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</section>
+<section class="stacks-section">
+    {% header "h2", "Examples" %}
+    <p class="stacks-copy">Breadcrumbs show users where they are within a site’s hierarchy. Breadcrumbs help orient the user and allow for navigation to previous page levels. It can be appropriate to use a breadcrumb when:</p>
+    <ul class="stacks-list">
+        <li>The user is many levels of navigation deep</li>
+        <li>The current page does not have its own navigation</li>
+        <li>The user needs to quickly go back to the previous parent page</li>
+    </ul>
+    <p class="stacks-copy">Breadcrumbs should be the first page element—placed directly above the page’s title. The page the user is on should not appear in the breadcrumb trail, since that indicator is satisfied by the title of the page itself. Additionally, the last <code class="stacks-code">.s-breadcrumb--item</code> shouldn’t include the divider.</p>
+
+    {% header "h3", "Text-based home link" %}
+    <div class="stacks-preview">
+{% highlight html %}
+<nav class="s-breadcrumbs mb6 sm:mb2" aria-label="breadcrumb">
+    <div class="s-breadcrumbs--item">
+        <a class="s-breadcrumbs--link" href="…">Stack Overflow</a>
+        @Svg.ArrowRightAltSm.With("s-breadcrumbs--divider")
+    </div>
+    <div class="s-breadcrumbs--item">
+        <a class="s-breadcrumbs--link" href="…">…</a>
+        @Svg.ArrowRightAltSm.With("s-breadcrumbs--divider")
+    </div>
+    <div class="s-breadcrumbs--item">
+        <a class="s-breadcrumbs--link" href="…">…</a>
+    </div>
+</nav>
+{% endhighlight %}
+        <div class="stacks-preview--example">
+            <nav class="s-breadcrumbs mb6 sm:mb2" aria-label="breadcrumb">
+                <div class="s-breadcrumbs--item">
+                    <a class="s-breadcrumbs--link" href="#">Stack Overflow</a>
+                    {% icon "ArrowRightAltSm", "s-breadcrumbs--divider" %}
+                </div>
+                <div class="s-breadcrumbs--item">
+                    <a class="s-breadcrumbs--link" href="#">Settings</a>
+                    {% icon "ArrowRightAltSm", "s-breadcrumbs--divider" %}
+                </div>
+                <div class="s-breadcrumbs--item">
+                    <a class="s-breadcrumbs--link" href="#">Billing</a>
+                </div>
+            </nav>
+            <h1 class="fs-headline1 fw-normal mb0">Payment Details</h1>
+        </div>
+    </div>
+
+    {% header "h3", "Icon-based home link" %}
+    <p class="stacks-copy">When possible, an icon can be used as the highest breadcrumb level. Take care in positioning this icon relative to the rest of the breadcrumb links.</p>
+    <div class="stacks-preview">
+{% highlight html %}
+<nav class="s-breadcrumbs mb6 sm:mb2" aria-label="breadcrumb">
+    <div class="s-breadcrumbs--item">
+        <a class="s-breadcrumbs--link" href="…">@Svg.LogoGlyphXxs.With("mtn2")</a>
+        @Svg.ArrowRightAltSm.With("s-breadcrumbs--divider")
+    </div>
+    <div class="s-breadcrumbs--item">
+        <a class="s-breadcrumbs--link" href="…">…</a>
+        @Svg.ArrowRightAltSm.With("s-breadcrumbs--divider")
+    </div>
+    <div class="s-breadcrumbs--item">
+        <a class="s-breadcrumbs--link" href="…">…</a>
+    </div>
+</nav>
+{% endhighlight %}
+        <div class="stacks-preview--example">
+            <nav class="s-breadcrumbs mb6 sm:mb2" aria-label="breadcrumb">
+                <div class="s-breadcrumbs--item">
+                    <a class="s-breadcrumbs--link" href="#">{% icon "LogoGlyphXxs", "mtn2" %}</a>
+                    {% icon "ArrowRightAltSm", "s-breadcrumbs--divider" %}
+                </div>
+                <div class="s-breadcrumbs--item">
+                    <a class="s-breadcrumbs--link" href="#">Settings</a>
+                    {% icon "ArrowRightAltSm", "s-breadcrumbs--divider" %}
+                </div>
+                <div class="s-breadcrumbs--item">
+                    <a class="s-breadcrumbs--link" href="#">Billing</a>
+                </div>
+            </nav>
+            <h1 class="fs-headline1 fw-normal mb0">Payment Details</h1>
+        </div>
+    </div>
+</section>
