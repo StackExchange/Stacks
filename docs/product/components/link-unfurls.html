@@ -1,11 +1,12 @@
 ---
 layout: page
 title: Link unfurls
-description: Link unfurls, also referred to as oneboxes, add rich previews to messages using third party integrations. 
+description: Link unfurls add rich previews to links included in questions and answers on Stack&nbsp;Overflow. 
 ---
 <section class="stacks-section">
+    <p class="stacks-copy">Link unfurls, also referred to as oneboxes, are those handy little previews that automatically appear when you paste a link into a message on Slack, Twitter, Facebook, etc. Unfurled previews are handy because they give everyone a glimpse of what someone linked to.</p>
+    <p class="stacks-copy">Several of <a href="https://stackoverflow.com/teams/features#integrations">Stack Overflow’s integrations</a> all us to unfurl links to third party sites. This page explains how we design the unfurled previews.</p>
     {% header "h2", "Base style" %}
-    <p class="stacks-copy">Link unfurls contain a header, body, and footer.</p>
     <div class="stacks-preview">
 {% highlight html %}
 <div class="s-unfurl">
@@ -93,19 +94,92 @@ description: Link unfurls, also referred to as oneboxes, add rich previews to me
     {% header "h2", "Examples" %}
     <p class="stacks-copy">Text</p>
     {% header "h3", "Rich text" %}
+    <p class="stacks-copy">Links whose expected body is rich text use the default style. It’s best practice to support basic markdown formatting wherever possible (bold, italics, line breaks, lists, etc.)</p>
     <div class="stacks-preview">
 {% highlight html %}
 
 {% endhighlight %}
         <div class="stacks-preview--example">
-
+            <div class="s-unfurl">
+                <div class="s-unfurl--header">
+                    <div class="s-unfurl--icon">
+                        {% icon "Jira", "native" %}
+                    </div>
+                    <div>
+                        <div class="s-unfurl--title">
+                            <a href="#" target="_blank">
+                                Teams Pricing page has a row for Analytics that we do not offer
+                            </a>
+                        </div>
+                        <div class="s-unfurl--details">
+                            Issue submitted by Kezia Frayjo on <relative-time datetime="2019-08-12T04:05:22Z" title="Aug 12, 2019, 12:05 AM EDT">Aug 12, 2019</relative-time> &bull; <strong>RESOLVED</strong>
+                        </div>
+                    </div>
+                </div>
+                <div class="s-unfurl--body">
+                    <p>On https://stackoverflow.com/teams/pricing, under Security and Administration, there is a row of entries referring to "Analytics". This is marked as available in all 3 tiers of product.</p>
+                    <p>However, we don't... offer some kind of analytics in all 3 tiers. We offer the Reporting Dashboard, which is right below that, and appropriately is only available on Business and Enterprise.</p>
+                    <p>Could we have the page updated and the row for Analytics removed?</p>
+                </div>
+                <div class="s-unfurl--footer">
+                    <div class="s-unfurl--url">
+                        <a href="#">https://stackoverflow.atlassian.net/projects/SREREQ/queues/custom/1</a>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
     {% header "h3", "Code blocks" %}
+    <p class="stacks-copy">Links whose expected body is code should wrap the content’s <code class="stacks-code">&lt;code&gt;</code> tag in a <code class="stacks-code">&lt;pre class="mb0 bar0"&gt;&lt;/pre&gt;</code> to negate a few unwanted styles inherited from the site.</p>
     <div class="stacks-preview">
 {% highlight html %}
+<div class="s-unfurl">
+    <div class="s-unfurl--header">…</div>
+    <div class="s-unfurl--body">
+        <pre class="mb0 bar0">
+            <code>…</code>
+        </pre>
+    </div>
+    <div class="s-unfurl--footer">…</div>
+</div>
+{% endhighlight %}
+        <div class="stacks-preview--example">
 
+        </div>
+    </div>
+    <p class="stacks-copy">You can also <strong>add line numbers</strong> by adding the class <code class="stacks-code">linenums</code> to the <code class="stacks-code">&lt;pre&gt;</code> tag containing the code.</p>
+    <div class="overflow-x-auto mb16">
+        <table class="wmn4 s-table s-table__bx-simple">
+            <thead>
+                <tr>
+                    <th class="s-table--cell4" scope="col">Class</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody class="fs-caption">
+                <tr>
+                    <th scope="row"><code class="stacks-code">linenums</code></th>
+                    <td class="p8">Count starts at line 1</td>
+                </tr>
+                <tr>
+                    <th scope="row"><code class="stacks-code">linenums:&lt;n&gt;</code></th>
+                    <td class="p8">Count starts at line <code class="stacks-code">&lt;n&gt;</code></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="stacks-preview">
+{% highlight html %}
+<div class="s-unfurl">
+    <div class="s-unfurl--header">…</div>
+    <div class="s-unfurl--body">
+        <pre class="mb0 bar0 linenums">
+            <code>…</code>
+        </pre>
+    </div>
+    <div class="s-unfurl--footer">…</div>
+</div>
 {% endhighlight %}
         <div class="stacks-preview--example">
 
