@@ -4,6 +4,69 @@ title: Link unfurls
 description: Link unfurls, also referred to as oneboxes, add rich previews to messages using third party integrations. 
 ---
 <section class="stacks-section">
+    {% header "h2", "Base style" %}
+    <p class="stacks-copy">Link unfurls contain a header, body, and footer.</p>
+    <div class="stacks-preview">
+{% highlight html %}
+<div class="s-unfurl">
+    <div class="s-unfurl--header">
+        <div class="s-unfurl--icon fc-black-800">
+            @Svg.GitHub
+        </div>
+        <div>
+            <div class="s-unfurl--title">
+                <a href="#" target="_blank">…</a>
+            </div>
+            <div class="s-unfurl--details">…</div>
+        </div>
+    </div>
+    <div class="s-unfurl--body">…</div>
+    <div class="s-unfurl--footer">
+        <div class="s-unfurl--url">
+            <a href="#">…</a>
+        </div>
+        <div class="s-unfurl--truncated">(truncated)</div>
+    </div>
+</div>
+{% endhighlight %}
+        <div class="stacks-preview--example">
+
+            <div class="s-unfurl">
+                <div class="s-unfurl--header">
+                    <div class="s-unfurl--icon fc-black-800">
+                        {% icon "GitHub" %}
+                    </div>
+                    <div>
+                        <div class="s-unfurl--title">
+                            <a href="https://github.com/StackExchange/Stacks/pull/44" target="_blank">
+                                make the .XXX-unset classes work in IE
+                            </a>
+                        </div>
+                        <div class="s-unfurl--details">
+                            Pull request merged by <a href="https://github.com/hellohynes">hellohynes</a> on <relative-time datetime="2018-06-30T04:05:22Z" title="Jun 30, 2018, 12:05 AM EDT">on Jun 30, 2018</relative-time> in <a href="https://github.com/StackExchange/Stacks/">StackExchange / Stacks</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="s-unfurl--body">
+                    <p>Stacks is providing a bunch of <code class="fs-body1 p2 bg-black-075 bar-sm">.FOOBAR-unset</code> atomic classed. All of these classes literally set the <code class="fs-body1 p2 bg-black-075 bar-sm">unset</code> value on the corresponding properties.</p>
+                    <p>Since <code class="fs-body1 p2 bg-black-075 bar-sm">unset</code> doesn't exist in IE, which Stacks has to support, this doesn't work. Fortunately, <code class="fs-body1 p2 bg-black-075 bar-sm">unset</code> is just minor syntactic sugar for either <code class="fs-body1 p2 bg-black-075 bar-sm">inherit</code> or <code class="fs-body1 p2 bg-black-075 bar-sm">initial</code>, depending on whether the property is inherited or not.</p>
+                    <p>Therefore, we can continue providing the Stacks user with <code class="fs-body1 p2 bg-black-075 bar-sm">...-unset</code> classes that do the right thing, and that <strong>also</strong> work in IE.</p>
+                    <p>It does <strong>not</strong> change the class names; they still contain the word "unset", for the following reasons:</p>
+                    <ul>
+                        <li>The semantics are identical; these class <Strong>do</Strong> have the same effect as <code class="fs-body1 p2 bg-black-075 bar-sm">unset</code>, except that they work in IE.</li>
+                    </ul>
+                </div>
+                <div class="s-unfurl--footer">
+                    <div class="s-unfurl--url">
+                        <a href="https://github.com/StackExchange/Stacks/pull/44">https://github.com/StackExchange/Stacks/pull/44</a>
+                    </div>
+                    <div class="s-unfurl--truncated">(truncated)</div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
     {% header "h2", "Classes" %}
     <div class="overflow-x-auto mb32">
         <table class="wmn4 s-table s-table__bx-simple">
@@ -28,82 +91,24 @@ description: Link unfurls, also referred to as oneboxes, add rich previews to me
 </section>
 <section class="stacks-section">
     {% header "h2", "Examples" %}
-    <p class="stacks-copy">Breadcrumbs show users where they are within a site’s hierarchy. Breadcrumbs help orient the user and allow for navigation to previous page levels. It can be appropriate to use a breadcrumb when:</p>
-    <ul class="stacks-list">
-        <li>The user is many levels of navigation deep</li>
-        <li>The current page does not have its own navigation</li>
-        <li>The user needs to quickly go back to the previous parent page</li>
-    </ul>
-    <p class="stacks-copy">Breadcrumbs should be the first page element—placed directly above the page’s title. The page the user is on should not appear in the breadcrumb trail, since that indicator is satisfied by the title of the page itself. Additionally, the last <code class="stacks-code">.s-breadcrumb--item</code> shouldn’t include the divider.</p>
-
-    {% header "h3", "Text-based home link" %}
+    <p class="stacks-copy">Text</p>
+    {% header "h3", "Rich text" %}
     <div class="stacks-preview">
 {% highlight html %}
-<nav class="s-breadcrumbs mb6 sm:mb2" aria-label="breadcrumb">
-    <div class="s-breadcrumbs--item">
-        <a class="s-breadcrumbs--link" href="…">Stack Overflow</a>
-        @Svg.ArrowRightAltSm.With("s-breadcrumbs--divider")
-    </div>
-    <div class="s-breadcrumbs--item">
-        <a class="s-breadcrumbs--link" href="…">…</a>
-        @Svg.ArrowRightAltSm.With("s-breadcrumbs--divider")
-    </div>
-    <div class="s-breadcrumbs--item">
-        <a class="s-breadcrumbs--link" href="…">…</a>
-    </div>
-</nav>
+
 {% endhighlight %}
         <div class="stacks-preview--example">
-            <nav class="s-breadcrumbs mb6 sm:mb2" aria-label="breadcrumb">
-                <div class="s-breadcrumbs--item">
-                    <a class="s-breadcrumbs--link" href="#">Stack Overflow</a>
-                    {% icon "ArrowRightAltSm", "s-breadcrumbs--divider" %}
-                </div>
-                <div class="s-breadcrumbs--item">
-                    <a class="s-breadcrumbs--link" href="#">Settings</a>
-                    {% icon "ArrowRightAltSm", "s-breadcrumbs--divider" %}
-                </div>
-                <div class="s-breadcrumbs--item">
-                    <a class="s-breadcrumbs--link" href="#">Billing</a>
-                </div>
-            </nav>
-            <h1 class="fs-headline1 fw-normal mb0">Payment Details</h1>
+
         </div>
     </div>
 
-    {% header "h3", "Icon-based home link" %}
-    <p class="stacks-copy">When possible, an icon can be used as the highest breadcrumb level. Take care in positioning this icon relative to the rest of the breadcrumb links.</p>
+    {% header "h3", "Code blocks" %}
     <div class="stacks-preview">
 {% highlight html %}
-<nav class="s-breadcrumbs mb6 sm:mb2" aria-label="breadcrumb">
-    <div class="s-breadcrumbs--item">
-        <a class="s-breadcrumbs--link" href="…">@Svg.LogoGlyphXxs.With("mtn2")</a>
-        @Svg.ArrowRightAltSm.With("s-breadcrumbs--divider")
-    </div>
-    <div class="s-breadcrumbs--item">
-        <a class="s-breadcrumbs--link" href="…">…</a>
-        @Svg.ArrowRightAltSm.With("s-breadcrumbs--divider")
-    </div>
-    <div class="s-breadcrumbs--item">
-        <a class="s-breadcrumbs--link" href="…">…</a>
-    </div>
-</nav>
+
 {% endhighlight %}
         <div class="stacks-preview--example">
-            <nav class="s-breadcrumbs mb6 sm:mb2" aria-label="breadcrumb">
-                <div class="s-breadcrumbs--item">
-                    <a class="s-breadcrumbs--link" href="#">{% icon "LogoGlyphXxs", "mtn2" %}</a>
-                    {% icon "ArrowRightAltSm", "s-breadcrumbs--divider" %}
-                </div>
-                <div class="s-breadcrumbs--item">
-                    <a class="s-breadcrumbs--link" href="#">Settings</a>
-                    {% icon "ArrowRightAltSm", "s-breadcrumbs--divider" %}
-                </div>
-                <div class="s-breadcrumbs--item">
-                    <a class="s-breadcrumbs--link" href="#">Billing</a>
-                </div>
-            </nav>
-            <h1 class="fs-headline1 fw-normal mb0">Payment Details</h1>
+
         </div>
     </div>
 </section>
