@@ -4681,75 +4681,78 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-Object.defineProperty(exports, "__esModule", { value: true });
-var ModalController = (function (_super) {
-    __extends(ModalController, _super);
-    function ModalController() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
-    ModalController.prototype.connect = function () { };
-    ModalController.prototype.disconnect = function () {
-        this._unbindDocumentEvents();
-    };
-    ;
-    ModalController.prototype.toggle = function () {
-        this._toggle();
-    };
-    ModalController.prototype.show = function () {
-        this._toggle(true);
-    };
-    ModalController.prototype.hide = function () {
-        this._toggle(false);
-    };
-    ModalController.prototype._toggle = function (show) {
-        var toShow = show;
-        if (typeof toShow === "undefined") {
-            toShow = this.modalTarget.getAttribute("aria-hidden") === "true";
+var Stacks;
+(function (Stacks) {
+    var ModalController = (function (_super) {
+        __extends(ModalController, _super);
+        function ModalController() {
+            return _super !== null && _super.apply(this, arguments) || this;
         }
-        this.triggerEvent(toShow ? "show" : "hide");
-        this.modalTarget.setAttribute("aria-hidden", toShow ? "false" : "true");
-        if (toShow) {
-            this._bindDocumentEvents();
-        }
-        else {
+        ModalController.prototype.connect = function () { };
+        ModalController.prototype.disconnect = function () {
             this._unbindDocumentEvents();
-        }
-        this.triggerEvent(toShow ? "shown" : "hidden");
-    };
-    ModalController.prototype._bindDocumentEvents = function () {
-        this._boundClickFn = this._boundClickFn || this._hideOnOutsideClick.bind(this);
-        this._boundKeypressFn = this._boundKeypressFn || this._hideOnEscapePress.bind(this);
-        document.addEventListener("click", this._boundClickFn);
-        document.addEventListener("keyup", this._boundKeypressFn);
-    };
-    ModalController.prototype._unbindDocumentEvents = function () {
-        document.removeEventListener("click", this._boundClickFn);
-        document.removeEventListener("keyup", this._boundKeypressFn);
-    };
-    ModalController.prototype._hideOnOutsideClick = function (e) {
-        var target = e.target;
-        if (!this.modalTarget.querySelector(".s-modal--dialog").contains(target)) {
+        };
+        ;
+        ModalController.prototype.toggle = function () {
+            this._toggle();
+        };
+        ModalController.prototype.show = function () {
+            this._toggle(true);
+        };
+        ModalController.prototype.hide = function () {
             this._toggle(false);
+        };
+        ModalController.prototype._toggle = function (show) {
+            var toShow = show;
+            if (typeof toShow === "undefined") {
+                toShow = this.modalTarget.getAttribute("aria-hidden") === "true";
+            }
+            this.triggerEvent(toShow ? "show" : "hide");
+            this.modalTarget.setAttribute("aria-hidden", toShow ? "false" : "true");
+            if (toShow) {
+                this._bindDocumentEvents();
+            }
+            else {
+                this._unbindDocumentEvents();
+            }
+            this.triggerEvent(toShow ? "shown" : "hidden");
+        };
+        ModalController.prototype._bindDocumentEvents = function () {
+            this._boundClickFn = this._boundClickFn || this._hideOnOutsideClick.bind(this);
+            this._boundKeypressFn = this._boundKeypressFn || this._hideOnEscapePress.bind(this);
+            document.addEventListener("click", this._boundClickFn);
+            document.addEventListener("keyup", this._boundKeypressFn);
+        };
+        ModalController.prototype._unbindDocumentEvents = function () {
+            document.removeEventListener("click", this._boundClickFn);
+            document.removeEventListener("keyup", this._boundKeypressFn);
+        };
+        ModalController.prototype._hideOnOutsideClick = function (e) {
+            var target = e.target;
+            if (!this.modalTarget.querySelector(".s-modal--dialog").contains(target)) {
+                this._toggle(false);
+            }
+        };
+        ModalController.prototype._hideOnEscapePress = function (e) {
+            if (e.which !== 27 || this.modalTarget.getAttribute("aria-hidden") === "true") {
+                return;
+            }
+            this._toggle(false);
+        };
+        ModalController.targets = ["modal"];
+        return ModalController;
+    }(Stacks.StacksController));
+    Stacks.ModalController = ModalController;
+    function toggleModal(element, show) {
+        var controller = Stacks.application.getControllerForElementAndIdentifier(element, "s-modal");
+        if (!controller) {
+            throw "Unable to get s-modal controller from element";
         }
-    };
-    ModalController.prototype._hideOnEscapePress = function (e) {
-        if (e.which !== 27 || this.modalTarget.getAttribute("aria-hidden") === "true") {
-            return;
-        }
-        this._toggle(false);
-    };
-    ModalController.targets = ["modal"];
-    return ModalController;
-}(Stacks.StacksController));
-function toggleModal(element, show) {
-    var controller = Stacks.application.getControllerForElementAndIdentifier(element, "s-modal");
-    if (!controller) {
-        throw "Unable to get s-modal controller from element";
+        controller._toggle(show);
     }
-    controller._toggle(show);
-}
-exports.toggleModal = toggleModal;
-Stacks.application.register("s-modal", ModalController);
+    Stacks.toggleModal = toggleModal;
+})(Stacks || (Stacks = {}));
+Stacks.application.register("s-modal", Stacks.ModalController);
 //# sourceMappingURL=s-modal.js.map
 
 ;
