@@ -1,4 +1,5 @@
 const syntaxHighlight = require("@11ty/eleventy-plugin-syntaxhighlight");
+const pluginTOC = require("eleventy-plugin-nesting-toc");
 
 module.exports = function(eleventyConfig) {
   eleventyConfig.addLayoutAlias('home', 'layouts/home.html');
@@ -46,6 +47,9 @@ module.exports = function(eleventyConfig) {
 
   // Add syntax highlighting
   eleventyConfig.addPlugin(syntaxHighlight);
+
+  // Add submenu generation
+  eleventyConfig.addPlugin(pluginTOC);
 
   // Copy these files over to _site
   eleventyConfig.addPassthroughCopy('assets');
