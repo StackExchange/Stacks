@@ -53,6 +53,11 @@ description: Modals are dialog overlays that prevent the user from interacting w
                     <td>Toggling element</td>
                     <td class="p8">Wires up the element to toggle the visibility of a modal</td>
                 </tr>
+                <tr>
+                    <th scope="row"><code class="stacks-code">data-s-modal-return-element="[css selector]"</code></th>
+                    <td>Controller element</td>
+                    <td class="p8"><span class="s-label--status ml0">Optional</span> Designates the element to return focus to when the modal is closed. If left unset, focus is not altered on close.</td>
+                </tr>
             </tbody>
         </table>
     </div>
@@ -75,7 +80,7 @@ description: Modals are dialog overlays that prevent the user from interacting w
                 <tr>
                     <th scope="row"><code class="stacks-code">s-modal:shown</code></th>
                     <td>Controller element</td>
-                    <td>Fires immediately after showing the modal</td>
+                    <td>Fires after the modal has been visually shown</td>
                 </tr>
                 <tr>
                     <th scope="row"><code class="stacks-code">s-modal:hide</code></th>
@@ -85,7 +90,7 @@ description: Modals are dialog overlays that prevent the user from interacting w
                 <tr>
                     <th scope="row"><code class="stacks-code">s-modal:hidden</code></th>
                     <td>Controller element</td>
-                    <td>Fires immediately after hiding the modal</td>
+                    <td>Fires after the modal has been visually hidden</td>
                 </tr>
             </tbody>
         </table>
@@ -114,6 +119,11 @@ description: Modals are dialog overlays that prevent the user from interacting w
     </div>
 
     {% header "h2", "Accessibility" %}
+    <p class="stacks-copy">
+        Models are designed with accessibility in mind by default. When a model is open, elements navigated by pressing <kbd>Tab</kbd> will be constrained to only those within the modal itself.
+        To ensure maximum compatibility, all <code class="stacks-code">a</code> tags must have <code class="stacks-code">href</code> attributes and any default focusable items you don't want focusable must have their <code class="stacks-code">tabindex</code> set to <code class="stacks-code">-1</code>.
+    </p>
+
     <div class="overflow-x-auto mb32">
         <table class="wmn4 s-table s-table__bx-simple">
             <thead>
@@ -161,7 +171,7 @@ description: Modals are dialog overlays that prevent the user from interacting w
 
 <!-- Example base modal content -->
 <aside class="s-modal" id="modal-base" role="dialog" aria-labelledby="modal-title" aria-describedby="modal-description" aria-hidden="true"
-    data-controller="s-modal" data-target="s-modal.modal">
+    data-controller="s-modal" data-target="s-modal.modal" data-s-modal-return-element="#js-toggle-default-modal">
     <div class="s-modal--dialog" role="document">
         <h1 class="s-modal--header" id="modal-title">Congratulations!</h1>
         <p class="s-modal--body" id="modal-description">You’ve published your first question and that’s a real achievement! You’re helping us build this community where everyone can learn from each other.</p>
@@ -169,7 +179,7 @@ description: Modals are dialog overlays that prevent the user from interacting w
             <button class="grid--cell s-btn s-btn__primary" type="button">Got it!</button>
             <button class="grid--cell s-btn" type="button" data-action="s-modal#hide">Undo</button>
         </div>
-        <a class="s-modal--close s-btn s-btn__muted" aria-label="Close" data-action="s-modal#hide">
+        <a href="#" class="s-modal--close s-btn s-btn__muted" aria-label="Close" data-action="s-modal#hide">
             {% icon "ClearSm" %}
         </a>
     </div>
@@ -185,7 +195,7 @@ description: Modals are dialog overlays that prevent the user from interacting w
             <button class="grid--cell s-btn s-btn__filled s-btn__danger" type="button">Delete team</button>
             <button class="grid--cell s-btn s-btn__muted" type="button" data-action="s-modal#hide">Cancel</button>
         </div>
-        <a class="s-modal--close s-btn s-btn__muted" aria-label="Close" data-action="s-modal#hide">
+        <a href="#" class="s-modal--close s-btn s-btn__muted" aria-label="Close" data-action="s-modal#hide">
             {% icon "ClearSm" %}
         </a>
     </div>
@@ -196,13 +206,13 @@ description: Modals are dialog overlays that prevent the user from interacting w
     {% header "h2", "Examples" %}
     {% header "h3", "Default" %}
     <div class="mb24 p16 bar-sm bg-black-025 ba bc-black-1">
-        <button class="grid--cell s-btn s-btn__filled js-modal-open" data-toggle="s-modal" data-target="#modal-base">Launch example default modal</button>
+        <button id="js-toggle-default-modal" class="grid--cell s-btn s-btn__filled js-modal-open" data-toggle="s-modal" data-target="#modal-base">Launch example default modal</button>
     </div>
     <p class="stacks-copy">You can wire up a modal along with the corresponding button by wrapping both in a <span class="stacks-code">s-modal</span> controller and attaching the corresponding <span class="stacks-code">data-*</span> attributes.</p>
     <div class="stacks-preview">
 {% highlight html %}
-<div data-controller="s-modal">
-    <button type="button" data-action="s-modal#show">Show modal</button>
+<div data-controller="s-modal" data-s-modal-return-element="#js-return-focus">
+    <button type="button" id="js-return-focus" data-action="s-modal#show">Show modal</button>
     <aside class="s-modal" id="modal-base" role="dialog" aria-labelledby="modal-title" aria-describedby="modal-description" aria-hidden="true"
         data-target="s-modal.modal">
         <div class="s-modal--dialog" role="document">
@@ -212,7 +222,7 @@ description: Modals are dialog overlays that prevent the user from interacting w
                 <button class="grid--cell s-btn s-btn__primary" type="button">…</button>
                 <button class="grid--cell s-btn" type="button" data-action="s-modal#hide">…</button>
             </div>
-            <a class="s-modal--close s-btn s-btn__muted" href="#" aria-label="Close" data-action="s-modal#hide">
+            <a href="#" class="s-modal--close s-btn s-btn__muted" href="#" aria-label="Close" data-action="s-modal#hide">
                 @Svg.ClearSm
             </a>
         </div>
@@ -228,7 +238,7 @@ description: Modals are dialog overlays that prevent the user from interacting w
                         <button class="grid--cell s-btn s-btn__primary" type="button">Got it!</button>
                         <button class="grid--cell s-btn" type="button">Undo</button>
                     </div>
-                    <a class="s-modal--close s-btn s-btn__muted" aria-label="Close">
+                    <a href="#" class="s-modal--close s-btn s-btn__muted" aria-label="Close">
                         {% icon "ClearSm" %}
                     </a>
                 </div>
@@ -296,7 +306,7 @@ document.querySelector(".js-modal-toggle").addEventListener("click", function(e)
                         <button class="grid--cell s-btn s-btn__filled s-btn__danger" type="button">Delete team</button>
                         <button class="grid--cell s-btn s-btn__muted" type="button">Cancel</button>
                     </div>
-                    <a class="s-modal--close s-btn s-btn__muted" aria-label="Close">
+                    <a href="#" class="s-modal--close s-btn s-btn__muted" aria-label="Close">
                         {% icon "ClearSm" %}
                     </a>
                 </div>
