@@ -54,7 +54,7 @@ namespace Stacks {
                 this.returnElement = <HTMLElement>document.querySelector(returnElementSelector);
 
                 if (!this.returnElement) {
-                    throw "Unable to find element by return-element selector: " + returnElementSelector;;
+                    throw "Unable to find element by return-element selector: " + returnElementSelector;
                 }
             }
         }
