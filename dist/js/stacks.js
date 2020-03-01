@@ -4688,7 +4688,9 @@ var Stacks;
         function ModalController() {
             return _super !== null && _super.apply(this, arguments) || this;
         }
-        ModalController.prototype.connect = function () { };
+        ModalController.prototype.connect = function () {
+            this._validate();
+        };
         ModalController.prototype.disconnect = function () {
             this._unbindDocumentEvents();
         };
@@ -4702,7 +4704,18 @@ var Stacks;
         ModalController.prototype.hide = function () {
             this._toggle(false);
         };
+        ModalController.prototype._validate = function () {
+            var returnElementSelector = this.data.get("return-element");
+            if (returnElementSelector) {
+                this.returnElement = document.querySelector(returnElementSelector);
+                if (!this.returnElement) {
+                    throw "Unable to find element by return-element selector: " + returnElementSelector;
+                    ;
+                }
+            }
+        };
         ModalController.prototype._toggle = function (show) {
+            var _this = this;
             var toShow = show;
             if (typeof toShow === "undefined") {
                 toShow = this.modalTarget.getAttribute("aria-hidden") === "true";
@@ -4714,18 +4727,65 @@ var Stacks;
             }
             else {
                 this._unbindDocumentEvents();
+                this._focusReturnElement();
             }
-            this.triggerEvent(toShow ? "shown" : "hidden");
+            var supportsTransitionEnd = this.modalTarget.ontransitionend !== undefined;
+            if (supportsTransitionEnd) {
+                this.modalTarget.addEventListener("transitionend", function () {
+                    _this.triggerEvent(toShow ? "shown" : "hidden");
+                }, { once: true });
+            }
+            else {
+                this.triggerEvent(toShow ? "shown" : "hidden");
+            }
+        };
+        ModalController.prototype._focusReturnElement = function () {
+            var _this = this;
+            if (!this.returnElement) {
+                return;
+            }
+            this.modalTarget.addEventListener("s-modal:hidden", function () {
+                if (_this.returnElement && document.body.contains(_this.returnElement)) {
+                    _this.returnElement.focus();
+                }
+            });
+        };
+        ModalController.prototype._bindTabFocusTrap = function () {
+            var _this = this;
+            var allTabbables = Array.from(this.modalTarget.querySelectorAll("[href], input, select, textarea, button, [tabindex]"))
+                .filter(function (el) { return el.matches(":not([disabled]):not([tabindex='-1'])"); });
+            if (!allTabbables.length) {
+                return;
+            }
+            var firstTabbable = allTabbables[0];
+            var lastTabbable = allTabbables[allTabbables.length - 1];
+            this._boundTabTrap = this._boundTabTrap || (function (e) {
+                if (!_this.modalTarget.contains(e.target)) {
+                    e.preventDefault();
+                    firstTabbable.focus();
+                }
+                if (e.target == firstTabbable && e.keyCode === 9 && e.shiftKey) {
+                    e.preventDefault();
+                    lastTabbable.focus();
+                }
+                if (e.target == lastTabbable && e.keyCode === 9 && !e.shiftKey) {
+                    e.preventDefault();
+                    firstTabbable.focus();
+                }
+            });
+            document.addEventListener("keydown", this._boundTabTrap);
         };
         ModalController.prototype._bindDocumentEvents = function () {
             this._boundClickFn = this._boundClickFn || this._hideOnOutsideClick.bind(this);
             this._boundKeypressFn = this._boundKeypressFn || this._hideOnEscapePress.bind(this);
             document.addEventListener("click", this._boundClickFn);
             document.addEventListener("keyup", this._boundKeypressFn);
+            this._bindTabFocusTrap();
         };
         ModalController.prototype._unbindDocumentEvents = function () {
             document.removeEventListener("click", this._boundClickFn);
             document.removeEventListener("keyup", this._boundKeypressFn);
+            document.removeEventListener("keydown", this._boundTabTrap);
         };
         ModalController.prototype._hideOnOutsideClick = function (e) {
             var target = e.target;
