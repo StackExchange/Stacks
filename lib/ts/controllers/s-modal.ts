@@ -3,7 +3,6 @@ namespace Stacks {
     export class ModalController extends Stacks.StacksController {
         static targets = ["modal"];
 
-        // TODO should Stimulus bind this? Needed to keep TS error-free
         private modalTarget!: HTMLElement;
 
         private _boundClickFn!: any;
