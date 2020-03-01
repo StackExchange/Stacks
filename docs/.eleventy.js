@@ -49,7 +49,7 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.addPlugin(syntaxHighlight);
 
   // Add submenu generation
-  eleventyConfig.addPlugin(pluginTOC);
+  eleventyConfig.addPlugin(pluginTOC, {tags: ['h2', 'h3']});
 
   // Copy these files over to _site
   eleventyConfig.addPassthroughCopy('assets');
