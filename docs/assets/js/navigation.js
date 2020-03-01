@@ -9,9 +9,6 @@ $(document).ready(function() {
         hamburgerIcon.removeClass("d-none");
         closeIcon.addClass("d-none");
         navigation.addClass("md:d-none");
-
-        // Build the menu
-        $(".js-secondary-nav").toc({content: "#content", headings: "h2.stacks-h2, h3.stacks-h3"});
     }
 
     $.when($.ready).then(function() {
