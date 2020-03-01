@@ -1,5 +1,5 @@
 namespace Stacks {
-        
+
     export class ModalController extends Stacks.StacksController {
         static targets = ["modal"];
 
@@ -9,7 +9,13 @@ namespace Stacks {
         private _boundClickFn!: any;
         private _boundKeypressFn!: any;
 
-        connect () { }
+        private returnElement!: HTMLElement;
+
+        private _boundTabTrap!: any;
+
+        connect () {
+            this._validate();
+        }
 
         /**
          * Disconnects all added event listeners on controller disconnect
@@ -40,6 +46,21 @@ namespace Stacks {
         }
 
         /**
+         * Validates the modal settings and attempts to set necessary internal variables
+         */
+        _validate() {
+            // check for returnElement support
+            var returnElementSelector = this.data.get("return-element");
+            if (returnElementSelector) {
+                this.returnElement = <HTMLElement>document.querySelector(returnElementSelector);
+
+                if (!this.returnElement) {
+                    throw "Unable to find element by return-element selector: " + returnElementSelector;;
+                }
+            }
+        }
+
+        /**
          * Toggles the visibility of the modal element
          * @param show Optional parameter that force shows/hides the element or toggles it if left undefined
          */
@@ -61,10 +82,79 @@ namespace Stacks {
             }
             else {
                 this._unbindDocumentEvents();
+                this._focusReturnElement();
             }
 
+            // check for transitionend support
+            var supportsTransitionEnd = (<HTMLElement>this.modalTarget).ontransitionend !== undefined;
+
             // shown/hidden events trigger after toggling the class
-            this.triggerEvent(toShow ? "shown" : "hidden");
+            if (supportsTransitionEnd) {
+                // wait until after the modal finishes transitioning to fire the event
+                this.modalTarget.addEventListener("transitionend", () => {
+                    //TODO this is firing waaay to soon?
+                    this.triggerEvent(toShow ? "shown" : "hidden");
+                }, { once: true });
+            } else {
+                this.triggerEvent(toShow ? "shown" : "hidden");
+            }           
+        }
+
+        /**
+         * Listens for the s-modal:hidden event and focuses the returnElement when it is fired
+         */
+        _focusReturnElement() {
+            if (!this.returnElement) {
+                return;
+            }
+
+            this.modalTarget.addEventListener("s-modal:hidden", () => {
+                // double check the element still exists when the event is called
+                if (this.returnElement && document.body.contains(this.returnElement)) {
+                    this.returnElement.focus();
+                }
+            });
+        }
+
+        /**
+         * Binds tab presses on tabbable items such that tabbing only works within the modal
+         */
+        _bindTabFocusTrap() {
+            // get all tabbable items
+            var allTabbables = Array.from(this.modalTarget.querySelectorAll("[href], input, select, textarea, button, [tabindex]"))
+                .filter((el: Element) => el.matches(":not([disabled]):not([tabindex='-1'])"));
+
+            //TODO support prod's js-[first,last]-tabbable overrides?
+
+            if (!allTabbables.length) {
+                return;
+            }
+
+            var firstTabbable = <HTMLElement>allTabbables[0];
+            var lastTabbable = <HTMLElement>allTabbables[allTabbables.length - 1];
+
+            // if the first or last item is tabbed over, ensure that the focus "loops" back to the end of the array instead of leaving the modal
+            this._boundTabTrap = this._boundTabTrap || ((e: KeyboardEvent) => {
+                // if somehow the user has tabbed out of the modal or if focus started outside the modal, push them to the first item
+                if (!this.modalTarget.contains(<Element>e.target)) {
+                    e.preventDefault();
+                    firstTabbable.focus();
+                }
+
+                // if they've tabbed backwards over the first item, then go to the last item
+                if (e.target == firstTabbable && e.keyCode === 9 && e.shiftKey) {
+                    e.preventDefault();
+                    lastTabbable.focus();
+                }
+
+                // if they've tabbed forwards over the last item, then go to the first item
+                if (e.target == lastTabbable && e.keyCode === 9 && !e.shiftKey) {
+                    e.preventDefault();
+                    firstTabbable.focus();
+                }
+            });
+
+            document.addEventListener("keydown", this._boundTabTrap);
         }
 
         /**
@@ -77,6 +167,8 @@ namespace Stacks {
 
             document.addEventListener("click", this._boundClickFn);
             document.addEventListener("keyup", this._boundKeypressFn);
+
+            this._bindTabFocusTrap();
         }
 
         /**
@@ -85,6 +177,7 @@ namespace Stacks {
         _unbindDocumentEvents () {
             document.removeEventListener("click", this._boundClickFn);
             document.removeEventListener("keyup", this._boundKeypressFn);
+            document.removeEventListener("keydown", this._boundTabTrap);
         }
 
         /**
@@ -94,7 +187,6 @@ namespace Stacks {
             var target = <Node>e.target;
             // check if the document was clicked inside either the toggle element or the modal itself
             // note: .contains also returns true if the node itself matches the target element
-            //TODO change !. to ?. after TS 3.7 launches
             if (!this.modalTarget.querySelector(".s-modal--dialog")!.contains(target)) {
                 this._toggle(false);
             }
