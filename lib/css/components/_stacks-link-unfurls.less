@@ -31,28 +31,27 @@
 }
 
 .s-unfurl--title {
-    #stacks-internals #load-config();
     font-size: @fs-body3;
     font-weight: bold;
     color: var(--black-900);
+}
+a.s-unfurl--title {
+    #stacks-internals #load-config();
+    text-decoration: none;
+    color: @link-color;
+    cursor: pointer;
 
-    a {
+    &.s-link__visited:visited {
+        color: @link-color-visited;
         text-decoration: none;
-        color: @link-color;
-        cursor: pointer;
-    
-        &.s-link__visited:visited {
-            color: @link-color-visited;
-            text-decoration: none;
-        }
+    }
 
-        &:hover,
-        &.s-link__visited:hover,
-        &:active,
-        &.s-link__visited:active {
-            color: @link-color-hover;
-            text-decoration: none;
-        }
+    &:hover,
+    &.s-link__visited:hover,
+    &:active,
+    &.s-link__visited:active {
+        color: @link-color-hover;
+        text-decoration: none;
     }
 }
 .s-unfurl--details {
@@ -129,20 +128,18 @@
     });
 }
 
-.s-unfurl--details,
-.s-unfurl--url {
-    a {
-        text-decoration: none;
-        cursor: pointer;
-        color: var(--black-500);
-        
-        &:visited {
-            color: var(--black-700);
-        }
-        &:hover,
-        &:active,
-        &:focus {
-            color: var(--black-600);
-        }
+.s-unfurl--details a,
+a.s-unfurl--url {
+    text-decoration: none;
+    cursor: pointer;
+    color: var(--black-500);
+    
+    &:visited {
+        color: var(--black-700);
+    }
+    &:hover,
+    &:active,
+    &:focus {
+        color: var(--black-600);
     }
 }
