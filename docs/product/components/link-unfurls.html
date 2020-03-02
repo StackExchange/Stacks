@@ -31,57 +31,6 @@ description: Link unfurls add rich previews to links included in questions and a
     <p class="stacks-copy">Link unfurls, also referred to as oneboxes, are those handy previews that automatically appear when you paste a link into a post. This approach has been popularized by Slack, Twitter, Facebook, etc. Unfurled previews are handy because they give everyone a glimpse of what’s been linked to. Link unfurling should be tailored to fit the content received from each third party. It might be appropriate to use atomic utility classes for further customizing unfurl previews, but Stacks provides a few reusable patterns:</p>
 
     {% header "h3", "Base style" %}
-    <div class="stacks-preview">
-{% highlight html %}
-<div class="s-unfurl">
-    <div class="s-unfurl--header">
-        <div class="s-unfurl--icon">@Svg.GitHub</div>
-        <div>
-            <a href="#" class="s-unfurl--title">…</a>
-            <div class="s-unfurl--details">…</div>
-        </div>
-    </div>
-    <div class="s-unfurl--body">…</div>
-    <div class="s-unfurl--footer">
-        <a href="#" class="s-unfurl--url">…</a>
-        <div class="s-unfurl--truncated">(truncated)</div>
-    </div>
-</div>
-{% endhighlight %}
-        <div class="stacks-preview--example">
-
-            <div class="s-unfurl">
-                <div class="s-unfurl--header">
-                    <div class="s-unfurl--icon">
-                        {% icon "GitHub" %}
-                    </div>
-                    <div>
-                        <a href="https://github.com/StackExchange/Stacks/pull/44" class="s-unfurl--title">
-                            make the .XXX-unset classes work in IE
-                        </a>
-                        <div class="s-unfurl--details">
-                            Pull request merged by <a href="https://github.com/hellohynes">hellohynes</a> on <relative-time datetime="2018-06-30T04:05:22Z" title="Jun 30, 2018, 12:05 AM EDT">on Jun 30, 2018</relative-time> in <a href="https://github.com/StackExchange/Stacks/">StackExchange / Stacks</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="s-unfurl--body">
-                    <p>Stacks is providing a bunch of <code class="fs-body1 p2 bg-black-075 bar-sm">.FOOBAR-unset</code> atomic classed. All of these classes literally set the <code class="fs-body1 p2 bg-black-075 bar-sm">unset</code> value on the corresponding properties.</p>
-                    <p>Since <code class="fs-body1 p2 bg-black-075 bar-sm">unset</code> doesn't exist in IE, which Stacks has to support, this doesn't work. Fortunately, <code class="fs-body1 p2 bg-black-075 bar-sm">unset</code> is just minor syntactic sugar for either <code class="fs-body1 p2 bg-black-075 bar-sm">inherit</code> or <code class="fs-body1 p2 bg-black-075 bar-sm">initial</code>, depending on whether the property is inherited or not.</p>
-                    <p>Therefore, we can continue providing the Stacks user with <code class="fs-body1 p2 bg-black-075 bar-sm">...-unset</code> classes that do the right thing, and that <strong>also</strong> work in IE.</p>
-                    <p>It does <strong>not</strong> change the class names; they still contain the word "unset", for the following reasons:</p>
-                    <ul>
-                        <li>The semantics are identical; these class <Strong>do</Strong> have the same effect as <code class="fs-body1 p2 bg-black-075 bar-sm">unset</code>, except that they work in IE.</li>
-                    </ul>
-                </div>
-                <div class="s-unfurl--footer">
-                    <a href="https://github.com/StackExchange/Stacks/pull/44" class="s-unfurl--url">https://github.com/StackExchange/Stacks/pull/44</a>
-                    <div class="s-unfurl--truncated">(truncated)</div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    {% header "h3", "Rich text" %}
     <p class="stacks-copy">Use for links whose expected body is rich text or markdown like Jira issues or Slack messages.</p>
     <p class="stacks-copy">It’s best practice to support basic markdown formatting wherever possible (bold, italics, line breaks, lists, etc.)</p>
     <div class="stacks-preview">
