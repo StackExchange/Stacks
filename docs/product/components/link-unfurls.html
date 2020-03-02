@@ -4,9 +4,33 @@ title: Link unfurls
 description: Link unfurls add rich previews to links included in questions and answers on Stack&nbsp;Overflow. 
 ---
 <section class="stacks-section">
-    <p class="stacks-copy">Link unfurls, also referred to as oneboxes, are those handy little previews that automatically appear when you paste a link into a message on Slack, Twitter, Facebook, etc. Unfurled previews are handy because they give everyone a glimpse of what someone linked to.</p>
-    <p class="stacks-copy">Several of <a href="https://stackoverflow.com/teams/features#integrations">our integrations</a> allow Stack Overflow to unfurl links. This page explains how we design those unfurled previews.</p>
-    {% header "h2", "Base style" %}
+    {% header "h2", "Classes" %}
+    <div class="overflow-x-auto mb32">
+        <table class="wmn4 s-table s-table__bx-simple">
+            <thead>
+                <tr>
+                    <th class="s-table--cell4" scope="col">Class</th>
+                    <th class="s-table--cell3" scope="col">Parent</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody class="fs-caption">
+                {% for item in link-unfurls.classes %}
+                    <tr>
+                        <th scope="row"><code class="stacks-code">{{ item.class }}</code></th>
+                        <td><code class="stacks-code">{{ item.parent }}</td>
+                        <td class="p8">{{ item.description }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</section>
+<section class="stacks-section">
+    {% header "h2", "Examples" %}
+    <p class="stacks-copy">Link unfurls, also referred to as oneboxes, are those handy previews that automatically appear when you paste a link into a post. This approach has been popularized by Slack, Twitter, Facebook, etc. Unfurled previews are handy because they give everyone a glimpse of what’s been linked to. Link unfurling should be tailored to fit the content received from each third party. It might be appropriate to use atomic utility classes for further customizing unfurl previews, but Stacks provides a few reusable patterns:</p>
+
+    {% header "h3", "Base style" %}
     <div class="stacks-preview">
 {% highlight html %}
 <div class="s-unfurl">
@@ -64,36 +88,9 @@ description: Link unfurls add rich previews to links included in questions and a
                     <div class="s-unfurl--truncated">(truncated)</div>
                 </div>
             </div>
-
         </div>
     </div>
 
-    {% header "h2", "Classes" %}
-    <div class="overflow-x-auto mb32">
-        <table class="wmn4 s-table s-table__bx-simple">
-            <thead>
-                <tr>
-                    <th class="s-table--cell4" scope="col">Class</th>
-                    <th class="s-table--cell3" scope="col">Parent</th>
-                    <th scope="col">Description</th>
-                </tr>
-            </thead>
-            <tbody class="fs-caption">
-                {% for item in link-unfurls.classes %}
-                    <tr>
-                        <th scope="row"><code class="stacks-code">{{ item.class }}</code></th>
-                        <td><code class="stacks-code">{{ item.parent }}</td>
-                        <td class="p8">{{ item.description }}</td>
-                    </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-    </div>
-</section>
-<section class="stacks-section">
-    {% header "h2", "Examples" %}
-    <p class="stacks-copy">Link unfurl previews should be tailored to fit the content received from each third party. Utility classes are great for customizing unfurl previews.</p>
-    <p class="stacks-copy">That said, there are a few reusable patterns available:</p>
     {% header "h3", "Rich text" %}
     <p class="stacks-copy">Use for links whose expected body is rich text or markdown like Jira issues or Slack messages.</p>
     <p class="stacks-copy">It’s best practice to support basic markdown formatting wherever possible (bold, italics, line breaks, lists, etc.)</p>
@@ -222,6 +219,8 @@ module.exports = function(grunt) {
             </div>
         </div>
     </div>
+
+    {% header "h3", "Line numbers" %}
     <p class="stacks-copy">You can also <strong>add line numbers</strong> by adding the class <code class="stacks-code">linenums</code> to the <code class="stacks-code">&lt;pre&gt;</code> tag containing the code.</p>
     <div class="overflow-x-auto mb16">
         <table class="wmn4 s-table s-table__bx-simple">
