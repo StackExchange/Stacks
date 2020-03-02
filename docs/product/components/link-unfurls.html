@@ -5,7 +5,7 @@ description: Link unfurls add rich previews to links included in questions and a
 ---
 <section class="stacks-section">
     <p class="stacks-copy">Link unfurls, also referred to as oneboxes, are those handy little previews that automatically appear when you paste a link into a message on Slack, Twitter, Facebook, etc. Unfurled previews are handy because they give everyone a glimpse of what someone linked to.</p>
-    <p class="stacks-copy">Several of <a href="https://stackoverflow.com/teams/features#integrations">Stack Overflow’s integrations</a> all us to unfurl links to third party sites. This page explains how we design the unfurled previews.</p>
+    <p class="stacks-copy">Several of <a href="https://stackoverflow.com/teams/features#integrations">our integrations</a> allow Stack Overflow to unfurl links. This page explains how we design those unfurled previews.</p>
     {% header "h2", "Base style" %}
     <div class="stacks-preview">
 {% highlight html %}
@@ -92,9 +92,10 @@ description: Link unfurls add rich previews to links included in questions and a
 </section>
 <section class="stacks-section">
     {% header "h2", "Examples" %}
-    <p class="stacks-copy">Link unfurl previews should be tailored to fit the content received from each third party. That said, there are a few reusable patterns you can use.</p>
+    <p class="stacks-copy">Link unfurl previews should be tailored to fit the content received from each third party. Utility classes are great for customizing unfurl previews.</p>
+    <p class="stacks-copy">That said, there are a few reusable patterns available:</p>
     {% header "h3", "Rich text" %}
-    <p class="stacks-copy"><strong>Use for:</strong> Links whose expected body is rich text use the default style.</p>
+    <p class="stacks-copy">Use for links whose expected body is rich text or markdown like Jira issues or Slack messages.</p>
     <p class="stacks-copy">It’s best practice to support basic markdown formatting wherever possible (bold, italics, line breaks, lists, etc.)</p>
     <div class="stacks-preview">
 {% highlight html %}
@@ -151,8 +152,7 @@ description: Link unfurls add rich previews to links included in questions and a
     </div>
 
     {% header "h3", "Code blocks" %}
-    <p class="stacks-copy"><strong>Use for:</strong> Links whose expected body is code.</p>
-    <p class="stacks-copy">In these scenarios, wrap the content’s <code class="stacks-code">&lt;code&gt;</code> tag in a <code class="stacks-code">&lt;pre class="mb0 bar0"&gt;&lt;/pre&gt;</code> to negate a few unwanted styles inherited from Stack Overflow’s primary CSS.</p>
+    <p class="stacks-copy">Use for links whose expected body is code like code files or GitHub Gists. In these scenarios, replace <code class="stacks-code ws-nowrap">s-unfurl--body</code> class with <code class="stacks-code ws-nowrap">s-unfurl--code</code>.</p>
     <div class="stacks-preview">
 {% highlight html %}
 <div class="s-unfurl">
