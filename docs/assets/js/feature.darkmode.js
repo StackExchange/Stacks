@@ -8,15 +8,15 @@ $(document).ready(function () {
 
         var browserPrefersDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
 
-        var isForcedDarkMode = body.hasClass("has-darkmode__forced");
-        var isUnforcedDarkMode = browserPrefersDark && body.hasClass("has-darkmode");
+        var isForcedDarkMode = body.hasClass("theme-dark");
+        var isUnforcedDarkMode = browserPrefersDark && body.hasClass("theme-system");
 
         if (browserPrefersDark) {
-            body.toggleClass("has-darkmode", !isUnforcedDarkMode);
-            body.toggleClass("has-darkmode__forced", false);
+            body.toggleClass("theme-system", !isUnforcedDarkMode);
+            body.toggleClass("theme-dark", false);
         } else {
-            body.toggleClass("has-darkmode", true);
-            body.toggleClass("has-darkmode__forced", !isForcedDarkMode);
+            body.toggleClass("theme-system", true);
+            body.toggleClass("theme-dark", !isForcedDarkMode);
         }
 
         localStorage.setItem("forceDarkModeOn", !(isUnforcedDarkMode || isForcedDarkMode));

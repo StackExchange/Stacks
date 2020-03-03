@@ -29,13 +29,13 @@
     #darkmode(@class, @rules) {
         @classname: ~"@{class}"; // Interpolate the @class passed to us so we can generate proper CSS rules from it
 
-        body.has-darkmode @{classname} {
+        body.theme-system @{classname} {
             @media (prefers-color-scheme: dark) {
                 @rules();
             }
         }
 
-        body.has-darkmode__forced @{classname} {
+        body.theme-dark @{classname} {
             @rules();
         }
     }
