@@ -78,6 +78,7 @@ description: Onebox previews add rich previews to links included in questions an
 
     {% header "h3", "Code blocks" %}
     <p class="stacks-copy">Use for links whose expected body is code like code files or GitHub Gists. In these scenarios, replace <code class="stacks-code ws-nowrap">s-onebox--body</code> class with <code class="stacks-code ws-nowrap">s-onebox--code</code>.</p>
+    <p class="stacks-copy">Add a <code class="stacks-code">prettyprint</code> class to the <code class="stacks-code">&lt;pre&gt;</code> tag if you’d like to apply <a href="https://github.com/google/code-prettify">Prettier’s</a> syntax highlighting on Stack Exchange sites with this option enabled.</p>
     <div class="stacks-preview">
 {% highlight html %}
 <div class="s-onebox">
@@ -89,7 +90,7 @@ description: Onebox previews add rich previews to links included in questions an
         </div>
     </div>
     <div class="s-onebox--code">
-        <pre>
+        <pre class="prettyprint">
             <code>…</code>
         </pre>
     </div>
@@ -114,21 +115,21 @@ description: Onebox previews add rich previews to links included in questions an
                     </div>
                 </div>
                 <div class="s-onebox--code">
-                    <pre><code>'use strict';
+                    <pre class="prettyprint"><code><span class="fc-red-800">'use strict'</span>;
 
-module.exports = function(grunt) {
+<span class="fc-blue-800">module</span>.exports = <span class="fc-blue-800">function</span>(grunt) {
     grunt.initConfig({
-        pkg: grunt.file.readJSON('package.json'),
-        version: '<%= pkg.version %>',
+        pkg: grunt.file.readJSON(<span class="fc-red-800">'package.json'</span>),
+        version: <span class="fc-red-800">'<%= pkg.version %>'</span>,
 
-        // Shell commands for use in Grunt tasks
+        <span class="fc-black-400">// Shell commands for use in Grunt tasks</span>
         shell: {
             eleventyBuild: {
-                command: 'npx @11ty/eleventy',
+                command: <span class="fc-red-800">'npx @11ty/eleventy'</span>,
                 options: {
-                    stderr: false,
+                    stderr: <span class="fc-blue-800">false</span>,
                     execOptions: {
-                        cwd: 'docs'
+                        cwd: <span class="fc-red-800">'docs'</span>
                     }
                 }</code></pre>
                 </div>
@@ -173,7 +174,7 @@ module.exports = function(grunt) {
         </div>
     </div>
     <div class="s-onebox--code">
-        <pre class="linenums">
+        <pre class="prettyprint linenums">
             <code>…</code>
         </pre>
     </div>
@@ -198,7 +199,7 @@ module.exports = function(grunt) {
                     </div>
                 </div>
                 <div class="s-onebox--code">
-                    <pre class="m0 bar0 px8 py12 ff-mono overflow-auto fs-body1 lh-sm bg-black-050">
+                    <pre class="prettyprint m0 bar0 px8 py12 ff-mono overflow-auto fs-body1 lh-sm bg-black-050">
                         <div class="linenums">1
 2
 3
@@ -215,23 +216,23 @@ module.exports = function(grunt) {
 14
 15
 16
-17</div><code>'use strict';
+17</div><code><span class="fc-red-800">'use strict'</span>;
 
-module.exports = function(grunt) {
-grunt.initConfig({
-    pkg: grunt.file.readJSON('package.json'),
-    version: '<%= pkg.version %>',
+<span class="fc-blue-800">module</span>.exports = <span class="fc-blue-800">function</span>(grunt) {
+    grunt.initConfig({
+        pkg: grunt.file.readJSON(<span class="fc-red-800">'package.json'</span>),
+        version: <span class="fc-red-800">'<%= pkg.version %>'</span>,
 
-    // Shell commands for use in Grunt tasks
-    shell: {
-        eleventyBuild: {
-            command: 'npx @11ty/eleventy',
-            options: {
-                stderr: false,
-                execOptions: {
-                    cwd: 'docs'
-                }
-            }</code></pre>
+        <span class="fc-black-400">// Shell commands for use in Grunt tasks</span>
+        shell: {
+            eleventyBuild: {
+                command: <span class="fc-red-800">'npx @11ty/eleventy'</span>,
+                options: {
+                    stderr: <span class="fc-blue-800">false</span>,
+                    execOptions: {
+                        cwd: <span class="fc-red-800">'docs'</span>
+                    }
+                }</code></pre>
                 </div>
                 <div class="s-onebox--footer">
                     <a href="https://github.com/StackExchange/Stacks/blob/develop/Gruntfile.js" class="s-onebox--url">https://github.com/StackExchange/Stacks/blob/develop/Gruntfile.js</a>
