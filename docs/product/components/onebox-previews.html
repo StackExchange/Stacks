@@ -1,7 +1,7 @@
 ---
 layout: page
-title: Link unfurls
-description: Link unfurls add rich previews to links included in questions and answers on Stack&nbsp;Overflow. 
+title: Onebox previews
+description: Onebox previews add rich previews to links included in questions and answers on Stack Overflow. They’re also known as link unfurls or link previews. 
 ---
 <section class="stacks-section">
     {% header "h2", "Classes" %}
@@ -15,7 +15,7 @@ description: Link unfurls add rich previews to links included in questions and a
                 </tr>
             </thead>
             <tbody class="fs-caption">
-                {% for item in link-unfurls.classes %}
+                {% for item in onebox-previews.classes %}
                     <tr>
                         <th scope="row"><code class="stacks-code">{{ item.class }}</code></th>
                         <td><code class="stacks-code">{{ item.parent }}</td>
@@ -28,93 +28,92 @@ description: Link unfurls add rich previews to links included in questions and a
 </section>
 <section class="stacks-section">
     {% header "h2", "Examples" %}
-    <p class="stacks-copy">Link unfurls, also referred to as oneboxes, are those handy previews that automatically appear when you paste a link into a post. This approach has been popularized by Slack, Twitter, Facebook, etc. Unfurled previews are handy because they give everyone a glimpse of what’s been linked to. Link unfurling should be tailored to fit the content received from each third party. It might be appropriate to use atomic utility classes for further customizing unfurl previews, but Stacks provides a few reusable patterns:</p>
-
+    <p class="stacks-copy">Onebox previews are those handy previews that automatically appear when you paste a link into a post. This approach has been popularized by Slack, Twitter, Facebook, etc. Onebox previews are handy because they give everyone a glimpse of what’s been linked to. Onebox previews should be tailored to fit the content received from each third party. It might be appropriate to use atomic utility classes for further customizing onebox previews, but Stacks provides a few reusable patterns:</p>
     {% header "h3", "Base style" %}
     <p class="stacks-copy">Use for links whose expected body is rich text or markdown like Jira issues or Slack messages.</p>
     <p class="stacks-copy">It’s best practice to support basic markdown formatting wherever possible (bold, italics, line breaks, lists, etc.)</p>
     <div class="stacks-preview">
 {% highlight html %}
-<div class="s-unfurl">
-    <div class="s-unfurl--header">
-        <div class="s-unfurl--icon">@Svg.Icon</div>
+<div class="s-onebox">
+    <div class="s-onebox--header">
+        <div class="s-onebox--icon">@Svg.Icon</div>
         <div>
-            <a href="#" class="s-unfurl--title">…</a>
-            <div class="s-unfurl--details">…</div>
+            <a href="#" class="s-onebox--title">…</a>
+            <div class="s-onebox--details">…</div>
         </div>
     </div>
-    <div class="s-unfurl--body">…</div>
-    <div class="s-unfurl--footer">
-        <a href="#" class="s-unfurl--url">…</a>
+    <div class="s-onebox--body">…</div>
+    <div class="s-onebox--footer">
+        <a href="#" class="s-onebox--url">…</a>
     </div>
 </div>
 {% endhighlight %}
         <div class="stacks-preview--example">
-            <div class="s-unfurl">
-                <div class="s-unfurl--header">
-                    <div class="s-unfurl--icon">
+            <div class="s-onebox">
+                <div class="s-onebox--header">
+                    <div class="s-onebox--icon">
                         {% icon "Jira", "native" %}
                     </div>
                     <div>
-                        <a href="#" class="s-unfurl--title">
+                        <a href="#" class="s-onebox--title">
                             Using hooks for a simple fetch request and breaking the rules of hooks, unsure how?
                         </a>
-                        <div class="s-unfurl--details">
+                        <div class="s-onebox--details">
                             Issue submitted by Ricky Otero on <relative-time datetime="2019-08-12T04:05:22Z" title="Aug 12, 2019, 12:05 AM EDT">Aug 12, 2019</relative-time> &bull; <strong>RESOLVED</strong>
                         </div>
                     </div>
                 </div>
-                <div class="s-unfurl--body">
+                <div class="s-onebox--body">
                     <p>I'm trying to create a simple fetch with hooks from an AWS database. At the moment it errors out and the only reason I can see is because it breaks the rules of hooks but I'm not sure how. It's at the top level of this functional component and it's not called inside an event handler.</p>
                     <p>The result of this call (an array of user data), needs to be exported as a function and called in another file.</p>
                     <p>If anyone can spot something I have missed and can highlighted how I'm breaking the rules of hooks I'd be grateful!</p>
                     <p>Thanks!</p>
                 </div>
-                <div class="s-unfurl--footer">
-                    <a href="#" class="s-unfurl--url">https://stackoverflow.atlassian.net/projects/SREREQ/queues/custom/1</a>
+                <div class="s-onebox--footer">
+                    <a href="#" class="s-onebox--url">https://stackoverflow.atlassian.net/projects/SREREQ/queues/custom/1</a>
                 </div>
             </div>
         </div>
     </div>
 
     {% header "h3", "Code blocks" %}
-    <p class="stacks-copy">Use for links whose expected body is code like code files or GitHub Gists. In these scenarios, replace <code class="stacks-code ws-nowrap">s-unfurl--body</code> class with <code class="stacks-code ws-nowrap">s-unfurl--code</code>.</p>
+    <p class="stacks-copy">Use for links whose expected body is code like code files or GitHub Gists. In these scenarios, replace <code class="stacks-code ws-nowrap">s-onebox--body</code> class with <code class="stacks-code ws-nowrap">s-onebox--code</code>.</p>
     <div class="stacks-preview">
 {% highlight html %}
-<div class="s-unfurl">
-    <div class="s-unfurl--header">
-        <div class="s-unfurl--icon">@Svg.Icon</div>
+<div class="s-onebox">
+    <div class="s-onebox--header">
+        <div class="s-onebox--icon">@Svg.Icon</div>
         <div>
-            <a href="#" class="s-unfurl--title">…</a>
-            <div class="s-unfurl--details">…</div>
+            <a href="#" class="s-onebox--title">…</a>
+            <div class="s-onebox--details">…</div>
         </div>
     </div>
-    <div class="s-unfurl--code">
+    <div class="s-onebox--code">
         <pre>
             <code>…</code>
         </pre>
     </div>
-    <div class="s-unfurl--footer">
-        <a href="#" class="s-unfurl--url">…</a>
+    <div class="s-onebox--footer">
+        <a href="#" class="s-onebox--url">…</a>
     </div>
 </div>
 {% endhighlight %}
         <div class="stacks-preview--example">
-            <div class="s-unfurl">
-                <div class="s-unfurl--header">
-                    <div class="s-unfurl--icon">
+            <div class="s-onebox">
+                <div class="s-onebox--header">
+                    <div class="s-onebox--icon">
                         {% icon "GitHub" %}
                     </div>
                     <div>
-                        <a href="https://github.com/StackExchange/Stacks/blob/develop/Gruntfile.js" class="s-unfurl--title">
+                        <a href="https://github.com/StackExchange/Stacks/blob/develop/Gruntfile.js" class="s-onebox--title">
                             Gruntfile.js
                         </a>
-                        <div class="s-unfurl--details">
+                        <div class="s-onebox--details">
                             Located in <a href="https://github.com/StackExchange/Stacks/">StackExchange / Stacks</a>
                         </div>
                     </div>
                 </div>
-                <div class="s-unfurl--code">
+                <div class="s-onebox--code">
                     <pre><code>'use strict';
 
 module.exports = function(grunt) {
@@ -133,9 +132,9 @@ module.exports = function(grunt) {
                     }
                 }</code></pre>
                 </div>
-                <div class="s-unfurl--footer">
-                    <a href="https://github.com/StackExchange/Stacks/blob/develop/Gruntfile.js" class="s-unfurl--url">https://github.com/StackExchange/Stacks/blob/develop/Gruntfile.js</a>
-                    <div class="s-unfurl--truncated">(truncated)</div>
+                <div class="s-onebox--footer">
+                    <a href="https://github.com/StackExchange/Stacks/blob/develop/Gruntfile.js" class="s-onebox--url">https://github.com/StackExchange/Stacks/blob/develop/Gruntfile.js</a>
+                    <div class="s-onebox--truncated">(truncated)</div>
                 </div>
             </div>
         </div>
@@ -165,40 +164,40 @@ module.exports = function(grunt) {
     </div>
     <div class="stacks-preview">
 {% highlight html %}
-<div class="s-unfurl">
-    <div class="s-unfurl--header">
-        <div class="s-unfurl--icon">@Svg.Icon</div>
+<div class="s-onebox">
+    <div class="s-onebox--header">
+        <div class="s-onebox--icon">@Svg.Icon</div>
         <div>
-            <a href="#" class="s-unfurl--title">…</a>
-            <div class="s-unfurl--details">…</div>
+            <a href="#" class="s-onebox--title">…</a>
+            <div class="s-onebox--details">…</div>
         </div>
     </div>
-    <div class="s-unfurl--code">
+    <div class="s-onebox--code">
         <pre class="linenums">
             <code>…</code>
         </pre>
     </div>
-    <div class="s-unfurl--footer">
-        <a href="#" class="s-unfurl--url">…</a>
+    <div class="s-onebox--footer">
+        <a href="#" class="s-onebox--url">…</a>
     </div>
 </div>
 {% endhighlight %}
         <div class="stacks-preview--example">
-            <div class="s-unfurl">
-                <div class="s-unfurl--header">
-                    <div class="s-unfurl--icon">
+            <div class="s-onebox">
+                <div class="s-onebox--header">
+                    <div class="s-onebox--icon">
                         {% icon "GitHub" %}
                     </div>
                     <div>
-                        <a href="https://github.com/StackExchange/Stacks/blob/develop/Gruntfile.js" class="s-unfurl--title">
+                        <a href="https://github.com/StackExchange/Stacks/blob/develop/Gruntfile.js" class="s-onebox--title">
                             Gruntfile.js
                         </a>
-                        <div class="s-unfurl--details">
+                        <div class="s-onebox--details">
                             Located in <a href="https://github.com/StackExchange/Stacks/">StackExchange / Stacks</a>
                         </div>
                     </div>
                 </div>
-                <div class="s-unfurl--code">
+                <div class="s-onebox--code">
                     <pre class="m0 bar0 px8 py12 ff-mono overflow-auto fs-body1 lh-sm bg-black-050">
                         <div class="linenums">1
 2
@@ -234,9 +233,9 @@ grunt.initConfig({
                 }
             }</code></pre>
                 </div>
-                <div class="s-unfurl--footer">
-                    <a href="https://github.com/StackExchange/Stacks/blob/develop/Gruntfile.js" class="s-unfurl--url">https://github.com/StackExchange/Stacks/blob/develop/Gruntfile.js</a>
-                    <div class="s-unfurl--truncated">(truncated)</div>
+                <div class="s-onebox--footer">
+                    <a href="https://github.com/StackExchange/Stacks/blob/develop/Gruntfile.js" class="s-onebox--url">https://github.com/StackExchange/Stacks/blob/develop/Gruntfile.js</a>
+                    <div class="s-onebox--truncated">(truncated)</div>
                 </div>
             </div>
         </div>
