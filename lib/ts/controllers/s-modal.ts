@@ -123,7 +123,6 @@ namespace Stacks {
             var allTabbables = Array.from(this.modalTarget.querySelectorAll("[href], input, select, textarea, button, [tabindex]"))
                 .filter((el: Element) => el.matches(":not([disabled]):not([tabindex='-1'])"));
 
-            //TODO support prod's js-[first,last]-tabbable overrides?
 
             if (!allTabbables.length) {
                 return;
