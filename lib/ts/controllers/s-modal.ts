@@ -47,7 +47,7 @@ namespace Stacks {
         /**
          * Validates the modal settings and attempts to set necessary internal variables
          */
-        _validate() {
+        private _validate() {
             // check for returnElement support
             var returnElementSelector = this.data.get("return-element");
             if (returnElementSelector) {
@@ -63,7 +63,7 @@ namespace Stacks {
          * Toggles the visibility of the modal element
          * @param show Optional parameter that force shows/hides the element or toggles it if left undefined
          */
-        _toggle (show?: boolean | undefined) {
+        private _toggle (show?: boolean | undefined) {
             var toShow = show;
 
             // if we're letting the class toggle, we need to figure out if the popover is visible manually
@@ -102,7 +102,7 @@ namespace Stacks {
         /**
          * Listens for the s-modal:hidden event and focuses the returnElement when it is fired
          */
-        _focusReturnElement() {
+        private _focusReturnElement() {
             if (!this.returnElement) {
                 return;
             }
@@ -118,7 +118,7 @@ namespace Stacks {
         /**
          * Binds tab presses on tabbable items such that tabbing only works within the modal
          */
-        _bindTabFocusTrap() {
+        private _bindTabFocusTrap() {
             // get all tabbable items
             var allTabbables = Array.from(this.modalTarget.querySelectorAll("[href], input, select, textarea, button, [tabindex]"))
                 .filter((el: Element) => el.matches(":not([disabled]):not([tabindex='-1'])"));
@@ -158,7 +158,7 @@ namespace Stacks {
         /**
          * Binds global events to the document for hiding popovers on user interaction
          */
-        _bindDocumentEvents () {
+        private _bindDocumentEvents () {
             // in order for removeEventListener to remove the right event, this bound function needs a constant reference
             this._boundClickFn = this._boundClickFn || this._hideOnOutsideClick.bind(this);
             this._boundKeypressFn = this._boundKeypressFn || this._hideOnEscapePress.bind(this);
@@ -172,7 +172,7 @@ namespace Stacks {
         /**
          * Unbinds global events to the document for hiding popovers on user interaction
          */
-        _unbindDocumentEvents () {
+        private _unbindDocumentEvents () {
             document.removeEventListener("click", this._boundClickFn);
             document.removeEventListener("keyup", this._boundKeypressFn);
             document.removeEventListener("keydown", this._boundTabTrap);
@@ -181,7 +181,7 @@ namespace Stacks {
         /**
          * Forces the popover to hide if a user clicks outside of it or its reference element
          */
-        _hideOnOutsideClick (e: Event) {
+        private _hideOnOutsideClick (e: Event) {
             var target = <Node>e.target;
             // check if the document was clicked inside either the toggle element or the modal itself
             // note: .contains also returns true if the node itself matches the target element
@@ -193,7 +193,7 @@ namespace Stacks {
         /**
          * Forces the popover to hide if the user presses escape while it, one of its childen, or the reference element are focused
          */
-        _hideOnEscapePress (e: KeyboardEvent) {
+        private _hideOnEscapePress (e: KeyboardEvent) {
             // if the ESC key (27) wasn't pressed or if no popovers are showing, return
             if (e.which !== 27 || this.modalTarget.getAttribute("aria-hidden") === "true") {
                 return;
@@ -206,16 +206,32 @@ namespace Stacks {
     /**
      * Helper to manually show an s-modal element via external JS
      * @param element the element the `data-controller="s-modal"` attribute is on
+     */
+    export function showModal(element: HTMLElement) {
+        toggleModal(element, true);
+    }
+   
+    /**
+     * Helper to manually hide an s-modal element via external JS
+     * @param element the element the `data-controller="s-modal"` attribute is on
+     */
+    export function hideModal(element: HTMLElement) {
+        toggleModal(element, false);
+    }
+
+    /**
+     * Helper to manually show an s-modal element via external JS
+     * @param element the element the `data-controller="s-modal"` attribute is on
      * @param show whether to force show/hide the modal; toggles the modal if left undefined
      */
-    export function toggleModal(element: HTMLElement, show?: boolean | undefined) {
+    function toggleModal(element: HTMLElement, show?: boolean | undefined) {
         var controller = Stacks.application.getControllerForElementAndIdentifier(element, "s-modal") as ModalController;
 
         if (!controller) {
             throw "Unable to get s-modal controller from element";
         }
 
-        controller._toggle(show);
+        show ? controller.show() : controller.hide();
     }
 }
 Stacks.application.register("s-modal", Stacks.ModalController);
