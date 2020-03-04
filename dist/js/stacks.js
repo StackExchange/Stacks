@@ -4716,10 +4716,17 @@ var Stacks;
         ModalController.prototype._toggle = function (show) {
             var _this = this;
             var toShow = show;
+            var isVisible = this.modalTarget.getAttribute("aria-hidden") === "false";
             if (typeof toShow === "undefined") {
-                toShow = this.modalTarget.getAttribute("aria-hidden") === "true";
+                toShow = !isVisible;
             }
-            this.triggerEvent(toShow ? "show" : "hide");
+            if ((toShow && isVisible) || (!toShow && !isVisible)) {
+                return;
+            }
+            var triggeredEvent = this.triggerEvent(toShow ? "show" : "hide");
+            if (triggeredEvent.defaultPrevented) {
+                return;
+            }
             this.modalTarget.setAttribute("aria-hidden", toShow ? "false" : "true");
             if (toShow) {
                 this.bindDocumentEvents();
