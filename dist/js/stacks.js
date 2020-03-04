@@ -4734,6 +4734,7 @@ var Stacks;
             else {
                 this.unbindDocumentEvents();
                 this.focusReturnElement();
+                this.removeModalOnHide();
             }
             var supportsTransitionEnd = this.modalTarget.ontransitionend !== undefined;
             if (supportsTransitionEnd) {
@@ -4756,13 +4757,31 @@ var Stacks;
                 }
             }, { once: true });
         };
-        ModalController.prototype.bindTabFocusTrap = function () {
+        ModalController.prototype.removeModalOnHide = function () {
+            var _this = this;
+            if (this.data.get("remove-when-hidden") !== "true") {
+                return;
+            }
+            this.modalTarget.addEventListener("s-modal:hidden", function () {
+                _this.element.remove();
+            }, { once: true });
+        };
+        ModalController.prototype.handleFocusableElements = function () {
             var _this = this;
             var allTabbables = Array.from(this.modalTarget.querySelectorAll("[href], input, select, textarea, button, [tabindex]"))
                 .filter(function (el) { return el.matches(":not([disabled]):not([tabindex='-1'])"); });
             if (!allTabbables.length) {
                 return;
             }
+            var initialFocus = allTabbables[0];
+            if (this.hasInitialFocusTarget) {
+                initialFocus = this.initialFocusTarget;
+            }
+            this.modalTarget.addEventListener("s-modal:shown", function () {
+                if (initialFocus && document.body.contains(initialFocus)) {
+                    initialFocus.focus();
+                }
+            }, { once: true });
             var firstTabbable = allTabbables[0];
             var lastTabbable = allTabbables[allTabbables.length - 1];
             this._boundTabTrap = this._boundTabTrap || (function (e) {
@@ -4780,13 +4799,14 @@ var Stacks;
                 }
             });
             document.addEventListener("keydown", this._boundTabTrap);
+            return initialFocus;
         };
         ModalController.prototype.bindDocumentEvents = function () {
             this._boundClickFn = this._boundClickFn || this.hideOnOutsideClick.bind(this);
             this._boundKeypressFn = this._boundKeypressFn || this.hideOnEscapePress.bind(this);
             document.addEventListener("click", this._boundClickFn);
             document.addEventListener("keyup", this._boundKeypressFn);
-            this.bindTabFocusTrap();
+            this.handleFocusableElements();
         };
         ModalController.prototype.unbindDocumentEvents = function () {
             document.removeEventListener("click", this._boundClickFn);
@@ -4805,7 +4825,7 @@ var Stacks;
             }
             this._toggle(false);
         };
-        ModalController.targets = ["modal"];
+        ModalController.targets = ["modal", "initialFocus"];
         return ModalController;
     }(Stacks.StacksController));
     Stacks.ModalController = ModalController;
