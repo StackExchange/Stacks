@@ -13,14 +13,14 @@ namespace Stacks {
         private _boundTabTrap!: any;
 
         connect () {
-            this._validate();
+            this.validate();
         }
 
         /**
          * Disconnects all added event listeners on controller disconnect
          */
         disconnect() {
-            this._unbindDocumentEvents();
+            this.unbindDocumentEvents();
         };
 
         /**
@@ -47,7 +47,7 @@ namespace Stacks {
         /**
          * Validates the modal settings and attempts to set necessary internal variables
          */
-        private _validate() {
+        private validate() {
             // check for returnElement support
             var returnElementSelector = this.data.get("return-element");
             if (returnElementSelector) {
@@ -77,11 +77,11 @@ namespace Stacks {
             this.modalTarget.setAttribute("aria-hidden", toShow ? "false" : "true");
 
             if (toShow) {
-                this._bindDocumentEvents();
+                this.bindDocumentEvents();
             }
             else {
-                this._unbindDocumentEvents();
-                this._focusReturnElement();
+                this.unbindDocumentEvents();
+                this.focusReturnElement();
             }
 
             // check for transitionend support
@@ -102,7 +102,7 @@ namespace Stacks {
         /**
          * Listens for the s-modal:hidden event and focuses the returnElement when it is fired
          */
-        private _focusReturnElement() {
+        private focusReturnElement() {
             if (!this.returnElement) {
                 return;
             }
@@ -118,7 +118,7 @@ namespace Stacks {
         /**
          * Binds tab presses on tabbable items such that tabbing only works within the modal
          */
-        private _bindTabFocusTrap() {
+        private bindTabFocusTrap() {
             // get all tabbable items
             var allTabbables = Array.from(this.modalTarget.querySelectorAll("[href], input, select, textarea, button, [tabindex]"))
                 .filter((el: Element) => el.matches(":not([disabled]):not([tabindex='-1'])"));
@@ -158,21 +158,21 @@ namespace Stacks {
         /**
          * Binds global events to the document for hiding popovers on user interaction
          */
-        private _bindDocumentEvents () {
+        private bindDocumentEvents () {
             // in order for removeEventListener to remove the right event, this bound function needs a constant reference
-            this._boundClickFn = this._boundClickFn || this._hideOnOutsideClick.bind(this);
-            this._boundKeypressFn = this._boundKeypressFn || this._hideOnEscapePress.bind(this);
+            this._boundClickFn = this._boundClickFn || this.hideOnOutsideClick.bind(this);
+            this._boundKeypressFn = this._boundKeypressFn || this.hideOnEscapePress.bind(this);
 
             document.addEventListener("click", this._boundClickFn);
             document.addEventListener("keyup", this._boundKeypressFn);
 
-            this._bindTabFocusTrap();
+            this.bindTabFocusTrap();
         }
 
         /**
          * Unbinds global events to the document for hiding popovers on user interaction
          */
-        private _unbindDocumentEvents () {
+        private unbindDocumentEvents () {
             document.removeEventListener("click", this._boundClickFn);
             document.removeEventListener("keyup", this._boundKeypressFn);
             document.removeEventListener("keydown", this._boundTabTrap);
@@ -181,7 +181,7 @@ namespace Stacks {
         /**
          * Forces the popover to hide if a user clicks outside of it or its reference element
          */
-        private _hideOnOutsideClick (e: Event) {
+        private hideOnOutsideClick (e: Event) {
             var target = <Node>e.target;
             // check if the document was clicked inside either the toggle element or the modal itself
             // note: .contains also returns true if the node itself matches the target element
@@ -193,7 +193,7 @@ namespace Stacks {
         /**
          * Forces the popover to hide if the user presses escape while it, one of its childen, or the reference element are focused
          */
-        private _hideOnEscapePress (e: KeyboardEvent) {
+        private hideOnEscapePress (e: KeyboardEvent) {
             // if the ESC key (27) wasn't pressed or if no popovers are showing, return
             if (e.which !== 27 || this.modalTarget.getAttribute("aria-hidden") === "true") {
                 return;
