@@ -65,14 +65,25 @@ namespace Stacks {
          */
         private _toggle (show?: boolean | undefined) {
             var toShow = show;
+            var isVisible = this.modalTarget.getAttribute("aria-hidden") === "false";
 
             // if we're letting the class toggle, we need to figure out if the popover is visible manually
             if (typeof toShow === "undefined") {
-                toShow = this.modalTarget.getAttribute("aria-hidden") === "true";
+                toShow = !isVisible;
+            }
+
+            // if the state matches the disired state, return without changing anything
+            if ((toShow && isVisible) || (!toShow && !isVisible)) {
+                return;
             }
 
             // show/hide events trigger before toggling the class
-            this.triggerEvent(toShow ? "show" : "hide");
+            var triggeredEvent = this.triggerEvent(toShow ? "show" : "hide");
+
+            // if this pre-show/hide event was prevented, don't attempt to continue changing the modal state
+            if (triggeredEvent.defaultPrevented) {
+                return;
+            }
 
             this.modalTarget.setAttribute("aria-hidden", toShow ? "false" : "true");
 
