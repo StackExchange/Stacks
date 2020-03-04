@@ -112,7 +112,7 @@ namespace Stacks {
                 if (this.returnElement && document.body.contains(this.returnElement)) {
                     this.returnElement.focus();
                 }
-            });
+            }, {once: true });
         }
 
         /**
