@@ -1,9 +1,11 @@
 namespace Stacks {
 
     export class ModalController extends Stacks.StacksController {
-        static targets = ["modal"];
+        static targets = ["modal", "initialFocus"];
 
         private modalTarget!: HTMLElement;
+        private initialFocusTarget!: HTMLElement;
+        private hasInitialFocusTarget!: boolean;
 
         private _boundClickFn!: any;
         private _boundKeypressFn!: any;
@@ -93,6 +95,7 @@ namespace Stacks {
             else {
                 this.unbindDocumentEvents();
                 this.focusReturnElement();
+                this.removeModalOnHide();
             }
 
             // check for transitionend support
@@ -127,17 +130,43 @@ namespace Stacks {
         }
 
         /**
+         * Remove the element on hide if the `remove-when-hidden` flag is set
+         */
+        private removeModalOnHide() {
+            if (this.data.get("remove-when-hidden") !== "true") {
+                return;
+            }
+
+            this.modalTarget.addEventListener("s-modal:hidden", () => {
+                this.element.remove();
+            }, {once: true });
+        }
+
+        /**
          * Binds tab presses on tabbable items such that tabbing only works within the modal
          */
-        private bindTabFocusTrap() {
+        private handleFocusableElements() {
             // get all tabbable items
             var allTabbables = Array.from(this.modalTarget.querySelectorAll("[href], input, select, textarea, button, [tabindex]"))
                 .filter((el: Element) => el.matches(":not([disabled]):not([tabindex='-1'])"));
 
-
             if (!allTabbables.length) {
                 return;
             }
+
+            var initialFocus = <HTMLElement>allTabbables[0];
+
+            if (this.hasInitialFocusTarget) {
+                initialFocus = this.initialFocusTarget;
+            }
+
+            // focus on the first focusable item within the modal
+            this.modalTarget.addEventListener("s-modal:shown", () => {
+                // double check the element still exists when the event is called
+                if (initialFocus && document.body.contains(initialFocus)) {
+                    initialFocus.focus()
+                }
+            }, {once: true });
 
             var firstTabbable = <HTMLElement>allTabbables[0];
             var lastTabbable = <HTMLElement>allTabbables[allTabbables.length - 1];
@@ -164,6 +193,8 @@ namespace Stacks {
             });
 
             document.addEventListener("keydown", this._boundTabTrap);
+
+            return initialFocus;
         }
 
         /**
@@ -177,7 +208,7 @@ namespace Stacks {
             document.addEventListener("click", this._boundClickFn);
             document.addEventListener("keyup", this._boundKeypressFn);
 
-            this.bindTabFocusTrap();
+            this.handleFocusableElements();
         }
 
         /**

@@ -50,6 +50,11 @@ description: Modals are dialog overlays that prevent the user from interacting w
                     <td class="p8">Wires up the element that is to be shown/hidden</td>
                 </tr>
                 <tr>
+                    <th scope="row"><code class="stacks-code">data-target="s-modal.initialFocus"</code></th>
+                    <td>Any child focusable element</td>
+                    <td class="p8"><span class="s-label--status ml0">Optional</span> Designates which element to focus on modal show. If absent, defaults to the first focusable element within the modal.</td>
+                </tr>
+                <tr>
                     <th scope="row"><code class="stacks-code">data-action="s-modal#toggle"</code></th>
                     <td>Toggling element</td>
                     <td class="p8">Wires up the element to toggle the visibility of a modal</td>
@@ -58,6 +63,11 @@ description: Modals are dialog overlays that prevent the user from interacting w
                     <th scope="row"><code class="stacks-code">data-s-modal-return-element="[css selector]"</code></th>
                     <td>Controller element</td>
                     <td class="p8"><span class="s-label--status ml0">Optional</span> Designates the element to return focus to when the modal is closed. If left unset, focus is not altered on close.</td>
+                </tr>
+                <tr>
+                    <th scope="row"><code class="stacks-code">data-s-modal-remove-when-hidden="true"</code></th>
+                    <td>Controller element</td>
+                    <td class="p8"><span class="s-label--status ml0">Optional</span> Removes the modal from the DOM entirely when it is hidden</td>
                 </tr>
             </tbody>
         </table>
@@ -171,7 +181,7 @@ description: Modals are dialog overlays that prevent the user from interacting w
 </section>
 
 <!-- Example base modal content -->
-<aside class="s-modal" id="modal-base" tabindex="-1" role="dialog" aria-labelledby="modal-title" aria-describedby="modal-description" aria-hidden="true" data-controller="s-modal" data-target="s-modal.modal" data-s-modal-return-element="#js-toggle-default-modal">
+<aside class="s-modal" id="modal-base" tabindex="-1" role="dialog" aria-labelledby="modal-title" aria-describedby="modal-description" aria-hidden="true" data-controller="s-modal" data-target="s-modal.modal" data-s-modal-remove-when-hidden="false">
     <div class="s-modal--dialog" role="document">
         <h1 class="s-modal--header" id="modal-title">Example title</h1>
         <p class="s-modal--body" id="modal-description">Nullam ornare lectus vitae lacus sagittis, at sodales leo viverra. Suspendisse nec nulla dignissim elit varius tempus. Cras viverra neque at imperdiet vehicula. Curabitur condimentum id dolor vitae ultrices. Pellentesque scelerisque nunc sit amet leo fringilla bibendum. Etiam feugiat imperdiet mi, eu blandit arcu cursus a. Pellentesque cursus massa id dolor ullamcorper, at condimentum nunc ultrices.</p>
@@ -204,7 +214,7 @@ description: Modals are dialog overlays that prevent the user from interacting w
 <section class="stacks-section">
     {% header "h2", "Examples" %}
     <div class="mb24 p16 bar-sm bg-black-025 ba bc-black-1 grid gs8 fw-wrap">
-        <button class="grid--cell s-btn s-btn__filled js-modal-open" data-toggle="s-modal" data-target="#modal-base">Launch example modal</button>
+        <button  class="grid--cell s-btn s-btn__filled js-modal-open" data-toggle="s-modal" data-target="#modal-base">Launch example modal</button>
         <button class="grid--cell s-btn s-btn__filled js-modal-open" data-toggle="s-modal" data-target="#modal-danger">Launch example modal w/ danger state</button>
     </div>
     <p class="stacks-copy">You can wire up a modal along with the corresponding button by wrapping both in a <span class="stacks-code">s-modal</span> controller and attaching the corresponding <span class="stacks-code">data-*</span> attributes. Make sure to set <span class="stacks-code">data-s-modal-return-element</span> if you want your button to refocus on close.</p>
