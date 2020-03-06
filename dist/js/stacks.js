@@ -4683,6 +4683,189 @@ var __extends = (this && this.__extends) || (function () {
 })();
 var Stacks;
 (function (Stacks) {
+    var ModalController = (function (_super) {
+        __extends(ModalController, _super);
+        function ModalController() {
+            return _super !== null && _super.apply(this, arguments) || this;
+        }
+        ModalController.prototype.connect = function () {
+            this.validate();
+        };
+        ModalController.prototype.disconnect = function () {
+            this.unbindDocumentEvents();
+        };
+        ;
+        ModalController.prototype.toggle = function () {
+            this._toggle();
+        };
+        ModalController.prototype.show = function () {
+            this._toggle(true);
+        };
+        ModalController.prototype.hide = function () {
+            this._toggle(false);
+        };
+        ModalController.prototype.validate = function () {
+            var returnElementSelector = this.data.get("return-element");
+            if (returnElementSelector) {
+                this.returnElement = document.querySelector(returnElementSelector);
+                if (!this.returnElement) {
+                    throw "Unable to find element by return-element selector: " + returnElementSelector;
+                }
+            }
+        };
+        ModalController.prototype._toggle = function (show) {
+            var _this = this;
+            var toShow = show;
+            var isVisible = this.modalTarget.getAttribute("aria-hidden") === "false";
+            if (typeof toShow === "undefined") {
+                toShow = !isVisible;
+            }
+            if ((toShow && isVisible) || (!toShow && !isVisible)) {
+                return;
+            }
+            var triggeredEvent = this.triggerEvent(toShow ? "show" : "hide");
+            if (triggeredEvent.defaultPrevented) {
+                return;
+            }
+            this.modalTarget.setAttribute("aria-hidden", toShow ? "false" : "true");
+            if (toShow) {
+                this.bindDocumentEvents();
+            }
+            else {
+                this.unbindDocumentEvents();
+                this.focusReturnElement();
+                this.removeModalOnHide();
+            }
+            var supportsTransitionEnd = this.modalTarget.ontransitionend !== undefined;
+            if (supportsTransitionEnd) {
+                this.modalTarget.addEventListener("transitionend", function () {
+                    _this.triggerEvent(toShow ? "shown" : "hidden");
+                }, { once: true });
+            }
+            else {
+                this.triggerEvent(toShow ? "shown" : "hidden");
+            }
+        };
+        ModalController.prototype.focusReturnElement = function () {
+            var _this = this;
+            if (!this.returnElement) {
+                return;
+            }
+            this.modalTarget.addEventListener("s-modal:hidden", function () {
+                if (_this.returnElement && document.body.contains(_this.returnElement)) {
+                    _this.returnElement.focus();
+                }
+            }, { once: true });
+        };
+        ModalController.prototype.removeModalOnHide = function () {
+            var _this = this;
+            if (this.data.get("remove-when-hidden") !== "true") {
+                return;
+            }
+            this.modalTarget.addEventListener("s-modal:hidden", function () {
+                _this.element.remove();
+            }, { once: true });
+        };
+        ModalController.prototype.handleFocusableElements = function () {
+            var _this = this;
+            var allTabbables = Array.from(this.modalTarget.querySelectorAll("[href], input, select, textarea, button, [tabindex]"))
+                .filter(function (el) { return el.matches(":not([disabled]):not([tabindex='-1'])"); });
+            if (!allTabbables.length) {
+                return;
+            }
+            var initialFocus = allTabbables[0];
+            if (this.hasInitialFocusTarget) {
+                initialFocus = this.initialFocusTarget;
+            }
+            this.modalTarget.addEventListener("s-modal:shown", function () {
+                if (initialFocus && document.body.contains(initialFocus)) {
+                    initialFocus.focus();
+                }
+            }, { once: true });
+            var firstTabbable = allTabbables[0];
+            var lastTabbable = allTabbables[allTabbables.length - 1];
+            this._boundTabTrap = this._boundTabTrap || (function (e) {
+                if (!_this.modalTarget.contains(e.target)) {
+                    e.preventDefault();
+                    firstTabbable.focus();
+                }
+                if (e.target == firstTabbable && e.keyCode === 9 && e.shiftKey) {
+                    e.preventDefault();
+                    lastTabbable.focus();
+                }
+                if (e.target == lastTabbable && e.keyCode === 9 && !e.shiftKey) {
+                    e.preventDefault();
+                    firstTabbable.focus();
+                }
+            });
+            document.addEventListener("keydown", this._boundTabTrap);
+            return initialFocus;
+        };
+        ModalController.prototype.bindDocumentEvents = function () {
+            this._boundClickFn = this._boundClickFn || this.hideOnOutsideClick.bind(this);
+            this._boundKeypressFn = this._boundKeypressFn || this.hideOnEscapePress.bind(this);
+            document.addEventListener("click", this._boundClickFn);
+            document.addEventListener("keyup", this._boundKeypressFn);
+            this.handleFocusableElements();
+        };
+        ModalController.prototype.unbindDocumentEvents = function () {
+            document.removeEventListener("click", this._boundClickFn);
+            document.removeEventListener("keyup", this._boundKeypressFn);
+            document.removeEventListener("keydown", this._boundTabTrap);
+        };
+        ModalController.prototype.hideOnOutsideClick = function (e) {
+            var target = e.target;
+            if (!this.modalTarget.querySelector(".s-modal--dialog").contains(target)) {
+                this._toggle(false);
+            }
+        };
+        ModalController.prototype.hideOnEscapePress = function (e) {
+            if (e.which !== 27 || this.modalTarget.getAttribute("aria-hidden") === "true") {
+                return;
+            }
+            this._toggle(false);
+        };
+        ModalController.targets = ["modal", "initialFocus"];
+        return ModalController;
+    }(Stacks.StacksController));
+    Stacks.ModalController = ModalController;
+    function showModal(element) {
+        toggleModal(element, true);
+    }
+    Stacks.showModal = showModal;
+    function hideModal(element) {
+        toggleModal(element, false);
+    }
+    Stacks.hideModal = hideModal;
+    function toggleModal(element, show) {
+        var controller = Stacks.application.getControllerForElementAndIdentifier(element, "s-modal");
+        if (!controller) {
+            throw "Unable to get s-modal controller from element";
+        }
+        show ? controller.show() : controller.hide();
+    }
+})(Stacks || (Stacks = {}));
+Stacks.application.register("s-modal", Stacks.ModalController);
+//# sourceMappingURL=s-modal.js.map
+
+;
+
+"use strict";
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+var Stacks;
+(function (Stacks) {
     var BasePopoverController = (function (_super) {
         __extends(BasePopoverController, _super);
         function BasePopoverController() {
