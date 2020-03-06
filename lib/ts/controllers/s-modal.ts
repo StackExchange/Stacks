@@ -80,13 +80,14 @@ namespace Stacks {
             }
 
             // show/hide events trigger before toggling the class
-            var triggeredEvent = this.triggerEvent(toShow ? "show" : "hide");
+            var triggeredEvent = this.triggerEvent(toShow ? "show" : "hide", { returnElement: this.returnElement });
 
             // if this pre-show/hide event was prevented, don't attempt to continue changing the modal state
             if (triggeredEvent.defaultPrevented) {
                 return;
             }
 
+            this.returnElement = triggeredEvent.detail.returnElement;
             this.modalTarget.setAttribute("aria-hidden", toShow ? "false" : "true");
 
             if (toShow) {
