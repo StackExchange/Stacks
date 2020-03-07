@@ -32,6 +32,12 @@
 
 @stacks-internals-s-expandable-transition-duration: 100ms;
 
+// Per the answer referenced above, the component can only guarantee smooth transitions if above a minimum
+// height and can only guarantee the element will be hidden is below a maximimum height.
+// The minimum height has been set at 10px because that's below the height of a single line of text in an s-description.
+@stacks-internal-s-expandable-min-expected-height: 10px;
+@stacks-internal-s-expandable-max-expected-height: 1500px;
+
 .s-expandable {
     display: flex;
     -webkit-clip-path: polygon(-1000000px -1000000px, 1000000px -1000000px, 1000000px 1000000px, -1000000px 1000000px);
@@ -43,7 +49,7 @@
         content: '';
         -ms-flex-preferred-size: 0;
             flex-basis: 0;
-        height: 50px;
+        height: @stacks-internal-s-expandable-min-expected-height;
         max-height: 0px;
         transition: height @stacks-internals-s-expandable-transition-duration linear,
                     max-height 0s @stacks-internals-s-expandable-transition-duration linear;
@@ -71,7 +77,7 @@
     .s-expandable--content {
         visibility: hidden;
         max-height: 0;
-        margin-bottom: -1500px;
+        margin-bottom: -@stacks-internal-s-expandable-max-expected-height;
         opacity: 0;
         -webkit-transform: scaleY(0);
                 transform: scaleY(0);
@@ -89,7 +95,7 @@
 
     &:after {
         height: 0;
-        max-height: 50px;
+        max-height: @stacks-internal-s-expandable-min-expected-height;
         transition: height @stacks-internals-s-expandable-transition-duration linear;
     }
 }

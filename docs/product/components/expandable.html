@@ -1,16 +1,18 @@
 ---
 layout: page
 title: Expandable
+js: true
 description: An expandable, sometimes called an accordion, is an element that can be hidden / revealed with a sliding transition.
 ---
 <section class="stacks-section">
-    {% header h2 | Basics %}
+    {% header "h2", "Basics" %}
     <p class="stacks-copy">From a purely visual standpoint, all you need is a container of class <code class="stacks-code">s-expandable</code> and a child of class <code class="stacks-code">s-expandable--content</code>. Toggle the state class <code class="stacks-code">is-expanded</code> on the container to collapse / expand the content. Care must be taken to keep the collapsing functionality accessible.</p>
 
 
-{% capture html %}
-<div class="s-card ws3">
-    <button class="s-btn s-btn__filled mb8"
+    <div class="stacks-preview">
+{% highlight html %}
+<div class="s-card">
+    <button class="s-btn s-btn__filled"
         data-controller="s-expandable-control"
         data-s-expandable-control-toggle-class="is-selected"
         aria-expanded="true"
@@ -19,16 +21,32 @@ description: An expandable, sometimes called an accordion, is an element that ca
     </button>
     <div class="s-expandable" id="expandable-example">
         <div class="s-expandable--content">
-            <p class="mb8">Lorem ipsum dolor sit amet, ex iudicabit necessitatibus usu, cetero laboramus concludaturque mel no, facilisis posidonium cu cum. Pro ex senserit dissentiunt, imperdiet intellegam at sed, ex pri dicit eruditi convenire. Est harum movet gubergren ei, errem dictas evertitur ea sit, at mei oratio eligendi. Ad vis legere possit, vis ne ipsum democritum appellantur. Nullam ancillae iudicabit his ad.</p> <!-- PREVIEW ONLY -->
-            … <!-- CODE ONLY -->
+            …
         </div>
     </div>
-    <p>Accusata reprimique interesset in sea, est graece dictas scriptorem ea. Consul facete mediocritatem quo et. Idque hendrerit theophrastus in vim, eum possit feugiat fastidii id. Idque invenire at quo, accusata salutandi sadipscing et qui. Eos doming adipiscing ea, eu pri debitis indoctum dissentiet. At libris labores adolescens eos, ex nec nobis aeterno.</p> <!-- PREVIEW ONLY -->
 </div>
-{% endcapture %}{% include example.html html=html %}
+{% endhighlight %}
+        <div class="stacks-preview--example">
+            <div class="s-card ws3">
+                <button class="s-btn s-btn__filled mb8"
+                    data-controller="s-expandable-control"
+                    data-s-expandable-control-toggle-class="is-selected"
+                    aria-expanded="true"
+                    aria-controls="expandable-example">
+                        Show first paragraph
+                </button>
+                <div class="s-expandable" id="expandable-example">
+                    <div class="s-expandable--content">
+                        <p class="mb8">Lorem ipsum dolor sit amet, ex iudicabit necessitatibus usu, cetero laboramus concludaturque mel no, facilisis posidonium cu cum. Pro ex senserit dissentiunt, imperdiet intellegam at sed, ex pri dicit eruditi convenire. Est harum movet gubergren ei, errem dictas evertitur ea sit, at mei oratio eligendi. Ad vis legere possit, vis ne ipsum democritum appellantur. Nullam ancillae iudicabit his ad.</p>
+                    </div>
+                </div>
+                <p>Accusata reprimique interesset in sea, est graece dictas scriptorem ea. Consul facete mediocritatem quo et. Idque hendrerit theophrastus in vim, eum possit feugiat fastidii id. Idque invenire at quo, accusata salutandi sadipscing et qui. Eos doming adipiscing ea, eu pri debitis indoctum dissentiet. At libris labores adolescens eos, ex nec nobis aeterno.</p>
+            </div>
+        </div>
+    </div>
 </section>
 <section class="stacks-section">
-    {% header h2 | JavaScript %}
+    {% header "h2", "JavaScript" %}
 
     <p class="stacks-copy">In the usual case in which you have a button or other clickable element that toggles the expanded state, you can use the built-in <code class="stacks-code">s-expandable-control</code> functionality. See the <a href="{{ "/product/guidelines/javascript" | relative_url }}">JavaScript introduction</a> for general information on JS in Stacks.</p>
 
@@ -49,43 +67,57 @@ description: An expandable, sometimes called an accordion, is an element that ca
 
     <p class="stacks-copy">If your expandable control is a checkbox or radio button, then the visibility of the expandable will be synchronized with the radio / checkbox state:</p>
 
-    {% capture html %}
-    <fieldset class="grid gs8 gsy fd-column"> <!-- PREVIEW ONLY -->
-        <legend class="grid--cell s-label">What is your mood?</legend> <!-- PREVIEW ONLY -->
-        <div class="grid--cell"> <!-- PREVIEW ONLY -->
-            <div class="grid gs8 gsx"> <!-- PREVIEW ONLY -->
-                … <!-- CODE ONLY -->
+    <div class="stacks-preview">
+{% highlight html %}
+…
+<div class="grid--cell">
+    <input class="s-radio" type="radio" name="mood-choice" id="mood-happy"
+        data-controller="s-expandable-control"
+        aria-controls="mood-happy-text" />
+</div>
+<div class="grid--cell">
+    <label class="d-block mb4 s-label fw-normal" for="mood-happy">Happy</label>
+    <div class="s-expandable" id="mood-happy-text">
+        <p class="s-expandable--content">@Svg.FaceSmile</p>
+    </div>
+</div>
+…
+{% endhighlight %}
+        <div class="stacks-preview--example">
+            <fieldset class="grid gs8 gsy fd-column">
+                <legend class="grid--cell s-label">What is your mood?</legend>
                 <div class="grid--cell">
-                    <input class="s-radio" type="radio" name="mood-choice" id="mood-happy"
-                        data-controller="s-expandable-control"
-                        aria-controls="mood-happy-text" />
-                </div>
-                <div class="grid--cell">
-                    <label class="d-block mb4 s-label fw-normal" for="mood-happy">Happy</label>
-                    <div class="s-expandable" id="mood-happy-text">
-                        <p class="s-expandable--content">{% icon FaceSmile | 64 %}</p> <!-- PREVIEW ONLY -->
-                        <p class="s-expandable--content">@Svg.FaceSmile</p> <!-- CODE ONLY -->
+                    <div class="grid gs8 gsx">
+                        <div class="grid--cell">
+                            <input class="s-radio" type="radio" name="mood-choice" id="mood-happy"
+                                data-controller="s-expandable-control"
+                                aria-controls="mood-happy-text" />
+                        </div>
+                        <div class="grid--cell">
+                            <label class="d-block mb4 s-label fw-normal" for="mood-happy">Happy</label>
+                            <div class="s-expandable" id="mood-happy-text">
+                                <p class="s-expandable--content">{% icon "FaceSmile", "", "64" %}</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                … <!-- CODE ONLY -->
-            </div> <!-- PREVIEW ONLY -->
-        </div> <!-- PREVIEW ONLY -->
-        <div class="grid--cell"> <!-- PREVIEW ONLY -->
-            <div class="grid gs8 gsx"> <!-- PREVIEW ONLY -->
-                <div class="grid--cell"> <!-- PREVIEW ONLY -->
-                    <input class="s-radio" type="radio" name="mood-choice" id="mood-sad" data-controller="s-expandable-control" aria-controls="mood-sad-text" /> <!-- PREVIEW ONLY -->
-                </div> <!-- PREVIEW ONLY -->
-                <div class="grid--cell"> <!-- PREVIEW ONLY -->
-                    <label class="d-block mb4 s-label fw-normal" for="mood-sad">Sad</label> <!-- PREVIEW ONLY -->
-                    <div class="s-expandable" id="mood-sad-text"> <!-- PREVIEW ONLY -->
-                        <p class="s-expandable--content">{% icon FaceSad | 64 %}</p> <!-- PREVIEW ONLY -->
-                    </div> <!-- PREVIEW ONLY -->
-                </div> <!-- PREVIEW ONLY -->
-            </div> <!-- PREVIEW ONLY -->
-        </div> <!-- PREVIEW ONLY -->
-    </fieldset> <!-- PREVIEW ONLY -->
-    {% endcapture %}{% include example.html html=html %}
+                <div class="grid--cell">
+                    <div class="grid gs8 gsx">
+                        <div class="grid--cell">
+                            <input class="s-radio" type="radio" name="mood-choice" id="mood-sad" data-controller="s-expandable-control" aria-controls="mood-sad-text" />
+                        </div> 
+                        <div class="grid--cell">
+                            <label class="d-block mb4 s-label fw-normal" for="mood-sad">Sad</label>
+                            <div class="s-expandable" id="mood-sad-text">
+                                <p class="s-expandable--content">{% icon "FaceSad", "", "64" %}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+    </div>
 
-    {% header h3 | Events %}
+    {% header "h3", "Events" %}
     <p class="stacks-copy">When an <code class="stacks-code">s-expandable-control</code> collapses or expands an element, it will fire an event of type <code class="stacks-code">s-expandable-control:hide</code> or <code class="stacks-code">s-expandable-control:show</code>, respectively. This event is fired synchronously. The event’s target element is the <code class="stacks-code">s-expandable-control</code> element, not the expandable itself.</p>
 </section>

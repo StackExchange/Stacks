@@ -4,7 +4,7 @@ title: Button groups
 description: Button groups are a collection of buttons. This component is used in our questions view, and is frequently used in conjunction with other form elements such as search fields and sorting dropdowns. If the content you’re interacting with is a simple paring down or filter of the current view, it’s appropriate to use the <code class="stacks-code">.s-btn-group</code> component. Add the class <code class="stacks-code">.is-selected</code> to show the currently-selected button.
 ---
 <section class="stacks-section">
-    {% header h2 | Classes %}
+    {% header "h2", "Classes" %}
     <div class="overflow-x-auto mb32">
         <table class="wmn4 s-table s-table__bx-simple">
             <thead>
@@ -15,7 +15,7 @@ description: Button groups are a collection of buttons. This component is used i
                 </tr>
             </thead>
             <tbody class="fs-caption">
-                {% for item in site.data.product.button-groups.classes %}
+                {% for item in button-groups.classes %}
                     <tr>
                         <th scope="row"><code class="stacks-code">{{ item.class }}</code></th>
                         <td><code class="stacks-code bg-white">{{ item.applies }}</td>
@@ -28,15 +28,15 @@ description: Button groups are a collection of buttons. This component is used i
 </section>
 
 <section class="stacks-section">
-    {% header h2 | Example %}
+    {% header "h2", "Example" %}
     <div class="stacks-preview">
 {% highlight html %}
 <div class="s-btn-group">
     <button class="s-btn s-btn__muted s-btn__outlined" role="button">Newest</button>
+    <button class="s-btn s-btn__muted s-btn__outlined" role="button">Frequent</button>
     <form class="s-btn-group--container">
-        <button class="s-btn s-btn__muted s-btn__outlined" role="button">Frequent</button>
+        <button class="s-btn s-btn__muted s-btn__outlined is-selected" role="button">Votes</button>
     </form>
-    <button class="s-btn s-btn__muted s-btn__outlined is-selected" role="button">Votes</button>
     <button class="s-btn s-btn__muted s-btn__outlined" role="button">Active</button>
     <form class="s-btn-group--container">
         <button class="s-btn s-btn__muted s-btn__outlined" role="button">Unanswered</button>
@@ -60,17 +60,29 @@ description: Button groups are a collection of buttons. This component is used i
 </section>
 
 <section class="stacks-section">
-    {% header h2 | Counts %}
+    {% header "h2", "Counts" %}
     <p class="stacks-copy">
         Counts are used to display a numerical count inside a button group. This is good for large data sets where it’s helpful to quickly know how many items are behind each filter.
     </p>
     <div class="stacks-preview">
 {% highlight html %}
-<div class="s-btn-group js-btn-group">
-    <button class="s-btn s-btn__muted s-btn__outlined js-btn-group-item" role="button">
+<div class="s-btn-group">
+    <button class="s-btn s-btn__muted s-btn__outlined" role="button">
         Active
         <span class="s-btn--badge">
             <span class="s-btn--number">197</span>
+        </span>
+    </button>
+    <button class="s-btn s-btn__muted s-btn__outlined" role="button">
+        Inactive
+        <span class="s-btn--badge">
+            <span class="s-btn--number">37</span>
+        </span>
+    </button>
+    <button class="s-btn s-btn__muted s-btn__outlined is-selected" role="button">
+        All
+        <span class="s-btn--badge">
+            <span class="s-btn--number">234</span>
         </span>
     </button>
 </div>

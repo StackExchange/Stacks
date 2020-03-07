@@ -7,8 +7,8 @@ module.exports = function(grunt) {
 
         // Shell commands for use in Grunt tasks
         shell: {
-            jekyllBuild: {
-                command: 'bundle exec jekyll build',
+            eleventyBuild: {
+                command: 'npx @11ty/eleventy',
                 options: {
                     stderr: false,
                     execOptions: {
@@ -16,8 +16,8 @@ module.exports = function(grunt) {
                     }
                 }
             },
-            jekyllServe: {
-                command: 'bundle exec jekyll serve',
+            eleventyServe: {
+                command: 'npx @11ty/eleventy --serve',
                 options: {
                     stderr: false,
                     execOptions: {
@@ -136,7 +136,7 @@ module.exports = function(grunt) {
             serve: [
                 'version',
                 'watch',
-                'shell:jekyllServe'
+                'shell:eleventyServe'
             ],
 
             // CSS and JS compilation don't impact each other, thus can run in parallel
@@ -170,7 +170,7 @@ module.exports = function(grunt) {
         },
 
         copy: {
-            // copy the compiled JS files into the Jekyll source
+            // copy the compiled JS files into the Eleventy source
             js2docs: {
                 src: 'dist/js/*.js',
                 dest: 'docs/assets/js/',
@@ -178,7 +178,7 @@ module.exports = function(grunt) {
                 expand: true
             },
 
-            // Copy files out of node_modules so Jekyll can use them
+            // Copy files out of node_modules so Eleventy can use them
             svgs: {
                 expand: true,
                 cwd: 'node_modules/@stackoverflow/stacks-icons/build/lib',
@@ -220,11 +220,15 @@ module.exports = function(grunt) {
 
     grunt.registerTask('build',
         'Compile all JS and LESS files and rebuild the documentation site.',
-        ['concurrent:compile', 'shell:jekyllBuild', 'copy:declarations']);
+        ['concurrent:compile', 'shell:eleventyBuild', 'copy:declarations']);
+
+    grunt.registerTask('deploy-docs',
+        'Prep and build the documentation site so it is ready for deploy.',
+        ['update-icons', 'build']);
 
     grunt.registerTask('update-icons', ['clean:icons', 'copy:svgs', 'copy:data']);
 
-    grunt.registerTask('version', 'Creates a file with the version number inside it for Jekyll to display.', function() {
+    grunt.registerTask('version', 'Creates a file with the version number inside it for Eleventy to display.', function() {
         grunt.file.write('docs/_includes/version.html', grunt.config.get('version'));
     });
 };

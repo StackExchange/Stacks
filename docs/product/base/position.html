@@ -4,7 +4,7 @@ title: Positioning
 description: Atomic positioning classes allow you to quickly change an elementâ€™s position.
 ---
 <section class="stacks-section">
-    {% header h2 | Classes %}
+    {% header "h2", "Classes" %}
     <div class="overflow-x-auto mb48">
         <table class="wmn3 s-table s-table__bx-simple">
             <thead>
@@ -16,14 +16,14 @@ description: Atomic positioning classes allow you to quickly change an elementâ€
                 </tr>
             </thead>
             <tbody>
-                {% for atomic in site.data.product.atomic-definitions.position %}
+                {% for atomic in atomics.position %}
                     <tr class="fs-caption">
                         <th scope="row"><code class="stacks-code">.{{ atomic.class }}</code></th>
                         <td><code class="stacks-code bg-white">{{ atomic.output }}</code></td>
                         <td>{{ atomic.define }}</td>
                         <td class="ta-center">
                             {% if atomic.responsive %}
-                                {% icon Checkmark | fc-green-500 %}
+                                {% icon "Checkmark", "fc-green-500" %}
                             {% endif %}
                         </td>
                     </tr>
@@ -32,7 +32,7 @@ description: Atomic positioning classes allow you to quickly change an elementâ€
         </table>
     </div>
 
-    {% header h2 | Examples %}
+    {% header "h2", "Examples" %}
     <div class="stacks-preview">
 {% highlight html %}
 <div class="ps-static">â€¦</div>
@@ -54,10 +54,10 @@ description: Atomic positioning classes allow you to quickly change an elementâ€
 </section>
 
 <section class="stacks-section">
-    {% header h2 | Coordinates %}
-    <p class="stacks-copy">Our spacing units arenâ€™t limited to margin and padding; they also apply to top, right, left, and bottom declarations. Combined with our position utility classes, you should be able to acheive absolutely-positioned layouts while adhering to Stacksâ€™ spacing conventions.</p>
+    {% header "h2", "Coordinates" %}
+    <p class="stacks-copy">Our spacing units arenâ€™t limited to margin and padding; they also apply to top, right, left, and bottom declarations. Combined with our position utility classes, you should be able to achieve absolutely-positioned layouts while adhering to Stacksâ€™ spacing conventions.</p>
 
-    {% header h3 | Coordinate classes %}
+    {% header "h3", "Coordinate classes" %}
     <div class="overflow-x-auto mb48">
         <table class="wmn3 s-table s-table__bx-simple">
             <thead>
@@ -67,17 +67,17 @@ description: Atomic positioning classes allow you to quickly change an elementâ€
                 </tr>
             </thead>
             <tbody>
-                {% for spacing in site.data.product.spacing-definitions.position %}
+                {% for space in spacing.position-definitions %}
                   <tr>
-                      <th scope="row">{{ spacing.term }}</th>
-                      <td>{{ spacing.define }}</td>
+                      <th scope="row">{{ space.term }}</th>
+                      <td>{{ space.define }}</td>
                   </tr>
                 {% endfor %}
             </tbody>
         </table>
     </div>
 
-    {% header h3 | Coordinate examples %}
+    {% header "h3", "Coordinate examples" %}
     <div class="stacks-preview">
 {% highlight html %}
 <div class="ps-absolute t12 l12"> â€¦ </div>
@@ -104,7 +104,7 @@ description: Atomic positioning classes allow you to quickly change an elementâ€
         </div>
     </div>
 
-    {% header h2 | Positive coordinates %}
+    {% header "h2", "Positive coordinates" %}
     <div class="overflow-x-auto mb48 mt24">
         <table class="wmn3 s-table s-table__bx-simple">
             <thead>
@@ -127,7 +127,7 @@ description: Atomic positioning classes allow you to quickly change an elementâ€
                 </tr>
             </thead>
             <tbody>
-              {% for class in site.data.product.spacing-classes.position %}
+              {% for class in spacing.position %}
               {% assign prefix-value = class.values | split: ", " %}
                   <tr>
                       <th scope="row" class="-cell1">{{ class.prefix }}</th>
@@ -140,7 +140,7 @@ description: Atomic positioning classes allow you to quickly change an elementâ€
         </table>
     </div>
 
-    {% header h2 | Negative coordinates %}
+    {% header "h2", "Negative coordinates" %}
     <div class="overflow-x-auto mb48 mt24">
         <table class="wmn3 s-table s-table__bx-simple">
             <thead>
@@ -162,7 +162,7 @@ description: Atomic positioning classes allow you to quickly change an elementâ€
                 </tr>
             </thead>
             <tbody>
-              {% for class in site.data.product.spacing-classes.negative-position %}
+              {% for class in spacing.negative-position %}
               {% assign prefix-value = class.values | split: ", " %}
                   <tr>
                       <th scope="row" class="-cell1">{{ class.prefix }}</th>

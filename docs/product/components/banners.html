@@ -3,7 +3,37 @@ layout: page
 title: Banners
 description: Banners are a type of <a href="/product/components/notices">notice</a>, delivering both system and engagement messaging. These are highly intrusive messaging methods and so should be used appropriately.
 ---
-{% include_relative examples/banners.html %}
+<!-- Additional javascript -->
+<script src="{{ "/assets/js/feature.banners.js" | relative_url }}" defer></script>
+
+<!-- Override stacks classes for demos -->
+<style>
+.s-banner[aria-hidden=false] {
+    -webkit-transform: translate3d(0, 63px, 0);
+    transform: translate3d(0, 63px, 0);
+}
+.s-banner[aria-hidden=false].is-pinned {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+}
+</style>
+<aside class="s-banner js-notice-banner" role="alert" aria-hidden="true">
+    <div class="grid grid__center jc-space-between s-banner--container" role="alertdialog" aria-describedby="notice-message">
+        <div class="grid gs8 gsx mx0" aria-label="notice-message">
+            <div class="grid--cell">
+                {% icon "Lock" %}
+            </div>
+            <div class="grid ai-center">
+                <p class="m0"><strong>Stacks is currently frozen in read-only mode.</strong> Contact the team to restore access.</p>
+            </div>
+        </div>
+        <div class="grid--cell ml-auto myn8" aria-label="notice-dismiss">
+            <a class="p8 s-btn grid grid__center fc-dark js-notice-close" role="status" aria-hidden="true">
+                {% icon "ClearSm", "m0" %}
+            </a>
+        </div>
+    </div>
+</aside>
 
 <section class="stacks-section">
     <p class="stacks-copy">System banners are used for <strong>system</strong> messaging. They are full-width notices placed in one of two locations:</p>
@@ -15,7 +45,7 @@ description: Banners are a type of <a href="/product/components/notices">notice<
 </section>
 
 <section class="stacks-section">
-    {% header h2 | Classes %}
+    {% header "h2", "Classes" %}
     <div class="overflow-x-auto mb32">
         <table class="wmn5 s-table s-table__bx-simple">
             <thead>
@@ -26,7 +56,7 @@ description: Banners are a type of <a href="/product/components/notices">notice<
                 </tr>
             </thead>
             <tbody>
-                {% for item in site.data.product.banners.system %}
+                {% for item in banners.system %}
                 <tr>
                     <td><code class="stacks-code">{{ item.class }}</code></td>
                     <td>{% if item.applies == "N/A" %}<em class="fc-black-350">{{ item.applies }}</em>{% else %}<code class="stacks-code">{{ item.applies }}</code>{% endif %}</td>
@@ -37,7 +67,7 @@ description: Banners are a type of <a href="/product/components/notices">notice<
         </table>
     </div>
 
-    {% header h2 | Examples %}
+    {% header "h2", "Examples" %}
     <div class="stacks-preview">
 {% highlight html %}
 <aside class="s-banner s-banner__info s-banner__important" role="alert" aria-hidden="false">…</aside>
@@ -47,7 +77,7 @@ description: Banners are a type of <a href="/product/components/notices">notice<
 <aside class="s-banner s-banner__important" role="alert" aria-hidden="false">…</aside>
 {% endhighlight %}
         <div class="stacks-preview--example">
-            <div class="p16 bar-sm bg-black-025 ba bc-black-1">
+            <div class="p16 bar-sm bg-black-050 ba bc-black-3">
                 <div class="grid gs24 ai-center fw-wrap">
                     <div class="grid--cell">
                         <div class="grid gs8 gsx ai-center">

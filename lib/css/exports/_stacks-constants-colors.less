@@ -15,12 +15,12 @@
 @orange: #f48024;
 
 //  --  Accent Colors
-@yellow:    #fbf2d4;
-@green:     #5eba7d;
-@blue:      #0077cc;
-@powder:    #e1ecf4;
-@red:       #d1383d;
-@fog:       #f7f8f8;
+@yellow: #fbf2d4;
+@green: #5eba7d;
+@blue: #0077cc;
+@powder: #e1ecf4;
+@red: #d1383d;
+@fog: #f7f8f8;
 
 // Black
 @black-025: #fafafb;
@@ -37,14 +37,14 @@
 @black-700: #3c4146;
 @black-750: #2f3337;
 @black-800: #242729;
-@black-900: #0c0d0e;
+@black-900: @black;
 
 // Orange
 @orange-050: #fff7f2;
 @orange-100: #fee3cf;
 @orange-200: #fcd0ad;
 @orange-300: #f7aa6d;
-@orange-400: #f48024;
+@orange-400: @orange;
 @orange-500: #f2720c;
 @orange-600: #da670b;
 @orange-700: #bd5c00;
@@ -58,14 +58,14 @@
 @blue-300: #6cbbf7;
 @blue-400: #379fef;
 @blue-500: #0095ff;
-@blue-600: #0077cc;
+@blue-600: @blue;
 @blue-700: #0064bd;
 @blue-800: #0054a3;
 @blue-900: #004487;
 
 // Powder
 @powder-050: #f4f8fb;
-@powder-100: #e1ecf4;
+@powder-100: @powder;
 @powder-200: #d1e5f1;
 @powder-300: #b3d3ea;
 @powder-400: #a0c7e4;
@@ -81,7 +81,7 @@
 @green-100: #cae8d4;
 @green-200: #a6d9b7;
 @green-300: #82ca9a;
-@green-400: #5eba7d;
+@green-400: @green;
 @green-500: #48a868;
 @green-600: #3d8f58;
 @green-700: #2f6f44;
@@ -90,7 +90,7 @@
 
 // Yellow
 @yellow-050: #fdf7e3;
-@yellow-100: #fbf2d4;
+@yellow-100: @yellow;
 @yellow-200: #f1e5bc;
 @yellow-300: #e6d178;
 @yellow-400: #e9c63f;
@@ -106,7 +106,7 @@
 @red-200: #f4b4bb;
 @red-300: #e87c87;
 @red-400: #de535e;
-@red-500: #d1383d;
+@red-500: @red;
 @red-600: #c02d2e;
 @red-700: #ac2726;
 @red-800: #942121;
@@ -114,21 +114,17 @@
 
 //  $  BADGES
 //  ----------------------------------------------------------------------------
-@badge-gold:    #ffcc01;
-@badge-silver:  #b4b8bc;
-@badge-bronze:  #d1a684;
+@gold: #ffcc01;
+@gold-lighter: #fff4d1;
+@gold-darker: #f1b600;
 
-@gold-dot:      #ffcc01;
-@gold-bg:       #fff4d1;
-@gold-border:   #f1b600;
+@silver: #b4b8bc;
+@silver-lighter: #e8e8e8;
+@silver-darker: #9a9c9f;
 
-@silver-dot:    #b4b8bc;
-@silver-bg:     #e8e8e8;
-@silver-border: #9a9c9f;
-
-@bronze-dot:    #caa789;
-@bronze-bg:     #f2e9e1;
-@bronze-border: #ab825f;
+@bronze: #caa789;
+@bronze-lighter: #f2e9e1;
+@bronze-darker:  #ab825f;
 
 //  $  TEXT COLORS
 //  ----------------------------------------------------------------------------
@@ -136,13 +132,23 @@
 @fc-medium: @black-700;
 @fc-light: @black-500;
 
-//  $  RINGS AND SHADOWS
+//  $  RINGS
 //  ----------------------------------------------------------------------------
 @focus-ring: fade(@blue-500, 15%);
 @focus-ring-success: fade(@green-200, 40%);
 @focus-ring-warning: fade(@yellow-400, 40%);
 @focus-ring-error: fade(@red-600, 15%);
 @focus-ring-muted: fade(@black-800, 10%);
+
+//  $  SHADOWS
+//  ----------------------------------------------------------------------------
+@bs-sm: 0 1px 2px rgba(0, 0, 0, 0.05), 0 1px 4px rgba(0, 0, 0, 0.05), 0 2px 8px rgba(0, 0, 0, 0.05);
+@bs-md: 0 1px 3px rgba(0, 0, 0, 0.06), 0 2px 6px rgba(0, 0, 0, 0.06), 0 3px 8px rgba(0, 0, 0, 0.09);
+@bs-lg: 0 1px 4px rgba(0, 0, 0, 0.09), 0 3px 8px rgba(0, 0, 0, 0.09), 0 4px 13px rgba(0, 0, 0, 0.13);
+
+//  $  SCROLLBARS
+//  ----------------------------------------------------------------------------
+@scrollbar: rgba(0, 0, 0, .2);
 
 //  ============================================================================
 //  $   CSS Variable Colors
@@ -250,20 +256,20 @@ body {
     --red-800: @red-800;
     --red-900: @red-900;
 
-    // Badges
-    --badge-gold:    @badge-gold;
-    --badge-silver:  @badge-silver;
-    --badge-bronze:  @badge-bronze;
+    // Gold
+    --gold: @gold;
+    --gold-lighter: @gold-lighter;
+    --gold-darker: @gold-darker;
 
-    --gold-dot:      @gold-dot;
-    --gold-bg:       @gold-bg;
-    --gold-border:   @gold-border;
-    --silver-dot:    @silver-dot;
-    --silver-bg:     @silver-bg;
-    --silver-border: @silver-border;
-    --bronze-dot:    @bronze-dot;
-    --bronze-bg:     @bronze-bg;
-    --bronze-border: @bronze-border;
+    // Silver
+    --silver: @silver;
+    --silver-lighter: @silver-lighter;
+    --silver-darker: @silver-darker;
+
+    // Bronze
+    --bronze: @bronze;
+    --bronze-lighter: @bronze-lighter;
+    --bronze-darker: @bronze-darker;
 
     // Font colors
     --fc-dark: @black-900;
@@ -276,37 +282,153 @@ body {
     --focus-ring-warning: @focus-ring-warning;
     --focus-ring-error: @focus-ring-error;
     --focus-ring-muted: @focus-ring-muted;
+
+    // Shadows
+    --bs-sm: @bs-sm;
+    --bs-md: @bs-md;
+    --bs-lg: @bs-lg;
+
+    // Scrollbars
+    --scrollbar: @scrollbar;
 }
 
-//  ============================================================================
-//  $   CONSTANT HELPERS
-//      Quick, easy helpers for commonly used colors
-//  --  Background Color Constants
-@bgc-lightest:  @black-050;
-@bgc-lighter:   @black-075;
-@bgc-light:     @black-100;
-@bgc-dark:      @black-200;
-@bgc-darker:    @black-300;
-@bgc-darkest:   @black-350;
+//  --  Dark mode
+.dark-colors() {
+    --white: #2d2d2d;
+    --black: #fff;
 
-//  --  Border Color Constants
-@brc-lightest:  @black-050;
-@brc-lighter:   @black-075;
-@brc-light:     @black-100;
-@brc-dark:      @black-200;
-@brc-darker:    @black-300;
-@brc-darkest:   @black-350;
-@brc-orange:    @orange-400;
+    // Black
+    --black-025: #393939;
+    --black-050: #3d3d3d;
+    --black-075: #404345;
+    --black-100: #4a4e51;
+    --black-150: #555a5e;
+    --black-200: #697075;
+    --black-300: #7d848d;
+    --black-350: #959ca3;
+    --black-400: #9fa6ad;
+    --black-500: #acb2b8;
+    --black-600: #c4c8cc;
+    --black-700: #cfd2d6;
+    --black-750: #dadee0;
+    --black-800: #e7e8eb;
+    --black-900: #f2f2f3;
 
-//  ============================================================================
-//  $   PRODUCT-SPECIFIC COLOR VALUES
-//      These are used only within the code and badge displays
-//  ----------------------------------------------------------------------------
-//  --  Product / UI Colors
-@code-black:    #303336;
-@code-gray:     #858c93;
-@code-blue:     #0f74bd;
-@code-maroon:   #7d2727;
-@code-purple:   #101094;
-@code-teal:     #2b91af;
-@code-red:      #e64320;
+    // Orange
+    --orange-050: #473c33;
+    --orange-100: #5e4433;
+    --orange-200: #8d5a2f;
+    --orange-300: #cc7525;
+    --orange-400: #f48024;
+    --orange-500: #ff901e;
+    --orange-600: #ffa95e;
+    --orange-700: #f8b682;
+    --orange-800: #fcd6b9;
+    --orange-900: #fee7d6;
+
+    // Blue
+    --blue-050: #233e52;
+    --blue-100: #25445f;
+    --blue-200: #295070;
+    --blue-300: #2b5f8a;
+    --blue-400: #3070ab;
+    --blue-500: #378ad3;
+    --blue-600: #3ca4ff;
+    --blue-700: #81c4f8;
+    --blue-800: #b8dffd;
+    --blue-900: #d5ecfd;
+
+    // Powder
+    --powder-050: #414648;
+    --powder-100: #3e4a52;
+    --powder-200: #43525f;
+    --powder-300: #4c6071;
+    --powder-400: #577489;
+    --powder-500: #688eac;
+    --powder-600: #7badd3;
+    --powder-700: #9cc3db;
+    --powder-800: #cde1ee;
+    --powder-900: #e5f3ff;
+
+    // Green
+    --green-025: #2e4233;
+    --green-050: #344b3a;
+    --green-100: #3d6048;
+    --green-200: #487455;
+    --green-300: #4d815c;
+    --green-400: #5a9e6f;
+    --green-500: #63b47c;
+    --green-600: #76c490;
+    --green-700: #93d0a8;
+    --green-800: #b3dec1;
+    --green-900: #d0eada;
+
+    // Yellow
+    --yellow-050: #464236;
+    --yellow-100: #524b38;
+    --yellow-200: #675c37;
+    --yellow-300: #7e6f3a;
+    --yellow-400: #9e883b;
+    --yellow-500: #bf9f37;
+    --yellow-600: #dab941;
+    --yellow-700: #f1d056;
+    --yellow-800: #f8df7a;
+    --yellow-900: #fcedaf;
+
+    // Red
+    --red-050: #572f32;
+    --red-100: #723738;
+    --red-200: #873f3e;
+    --red-300: #9b4544;
+    --red-400: #b24d49;
+    --red-500: #c4524f;
+    --red-600: #d25d5d;
+    --red-700: #de7176;
+    --red-800: #e7929a;
+    --red-900: #f2c1c7;
+
+    // Gold
+    --gold: @gold;
+    --gold-lighter: #5e553c;
+    --gold-darker: #bc8f03;
+
+    // Silver
+    --silver: @silver;
+    --silver-lighter: #424242;
+    --silver-darker: #7b7c7e;
+
+    // Bronze
+    --bronze: @bronze;
+    --bronze-lighter: #4d433b;
+    --bronze-darker: #8b684a;
+
+    // Font colors
+    --fc-dark: var(--black-900);
+    --fc-medium: var(--black-700);
+    --fc-light: var(--black-500);
+
+    // Focus rings
+    --focus-ring: fade(#378ad3, 15%); // @blue-500
+    --focus-ring-success: fade(#487455, 40%); // @green-200
+    --focus-ring-warning: fade(#9e883b, 40%); // @yellow-400
+    --focus-ring-error: fade(#c4524f, 30%); // @red-500
+    --focus-ring-muted: fade(#e7e8eb, 10%); // @black-800
+
+    // Shadows
+    --bs-sm: 0 1px 2px rgba(0, 0, 0, 0.1), 0 1px 4px rgba(0, 0, 0, 0.1), 0 2px 8px rgba(0, 0, 0, 0.1);
+    --bs-md: 0 1px 3px rgba(0, 0, 0, 0.11), 0 2px 6px rgba(0, 0, 0, 0.11), 0 3px 8px rgba(0, 0, 0, 0.14);
+    --bs-lg: 0 1px 4px rgba(0, 0, 0, 0.14), 0 3px 8px rgba(0, 0, 0, 0.14), 0 4px 13px rgba(0, 0, 0, 0.18);
+
+    // Scrollbars
+    --scrollbar: rgba(255, 255, 255, .2);
+}
+
+body.theme-system {
+    @media (prefers-color-scheme: dark) {
+        .dark-colors();
+    }
+}
+
+body.theme-dark {
+    .dark-colors();
+}
