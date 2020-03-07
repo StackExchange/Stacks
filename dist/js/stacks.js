@@ -4723,10 +4723,11 @@ var Stacks;
             if ((toShow && isVisible) || (!toShow && !isVisible)) {
                 return;
             }
-            var triggeredEvent = this.triggerEvent(toShow ? "show" : "hide");
+            var triggeredEvent = this.triggerEvent(toShow ? "show" : "hide", { returnElement: this.returnElement });
             if (triggeredEvent.defaultPrevented) {
                 return;
             }
+            this.returnElement = triggeredEvent.detail.returnElement;
             this.modalTarget.setAttribute("aria-hidden", toShow ? "false" : "true");
             if (toShow) {
                 this.bindDocumentEvents();
