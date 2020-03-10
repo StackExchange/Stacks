@@ -12,7 +12,8 @@ module.exports = function(grunt) {
                 options: {
                     stderr: false,
                     execOptions: {
-                        cwd: 'docs'
+                        cwd: 'docs',
+                        maxBuffer: 1000*1024,
                     }
                 }
             },
@@ -21,7 +22,8 @@ module.exports = function(grunt) {
                 options: {
                     stderr: false,
                     execOptions: {
-                        cwd: 'docs'
+                        cwd: 'docs',
+                        maxBuffer: 1000*1024,
                     }
                 }
             }
