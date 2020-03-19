@@ -285,7 +285,7 @@ namespace Stacks {
      * Helper to manually show an s-popover element via external JS
      * @param element the element the `data-controller="s-popover"` attribute is on
      */
-    export function showPopover(element: HTMLElement) {
+    export function showPopover(element: Element) {
         const controller = Stacks.application.getControllerForElementAndIdentifier(element, "s-popover") as PopoverController;
 
         if (controller) {
@@ -333,16 +333,17 @@ namespace Stacks {
      * Attaches a popover to an element and performs additional configuration.
      * @param element the element that will receive the `data-controller="s-popover"` attribute.
      * @param popover an element with the `.s-popover` class or HTML string containing a single element with the `.s-popover` class.
+     *                If the popover does not have a parent element, it will be inserted as a immediately after `element`.
      * @param options an optional collection of options to use when configuring the popover.
      */
-    export function attachPopover(element: HTMLElement, popover: HTMLElement | string, options?: PopoverOptions)
+    export function attachPopover(element: Element, popover: Element | string, options?: PopoverOptions)
     {
         if (typeof popover === 'string') {
             const elements = document.createRange().createContextualFragment(popover).children;
             if (elements.length !== 1) {
                 throw "popover should contain a single element";
             }
-            popover = <HTMLElement>elements[0];
+            popover = elements[0];
         }
 
         const existingId = element.getAttribute("aria-controls");
@@ -372,17 +373,12 @@ namespace Stacks {
         configureNewPopover(element, options || {});
     }
 
-    function configureNewPopover(element: HTMLElement, options: PopoverOptions)
+    function configureNewPopover(element: Element, options: PopoverOptions)
     {
-        function appendAttribute(attribute: string, value: string) {
-            const existing = element.getAttribute(attribute);
-            element.setAttribute(attribute, existing ? existing + " " + value : value);
-        }
-
-        appendAttribute("data-controller", "s-popover");
+        getControllerList(element).add("s-popover");
 
         if (options.toggleOnClick) {
-            appendAttribute("data-action", "click->s-popover#toggle");
+            getActionList(element).add("click->s-popover#toggle");
         }
         if (options.placement) {
             element.setAttribute("data-s-popover-placement", options.placement);

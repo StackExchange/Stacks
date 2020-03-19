@@ -333,7 +333,9 @@ Stacks.application.register("actions", class extends Stacks.StacksController {
 
     async load() {
         if (this.loaded) { return; }
-        Stacks.attachPopover(this.element, await fetch(`/posts/{postId}/actions`), { showOnConnect: true, toggleOnClick: true });
+        Stacks.attachPopover(this.element,
+                             await fetch(`/posts/{postId}/actions`),
+                             { showOnConnect: true, toggleOnClick: true });
         this.loaded = true;
     }
 });

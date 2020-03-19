@@ -4490,6 +4490,60 @@ var Stacks;
 ;
 
 "use strict";
+var Stacks;
+(function (Stacks) {
+    var TokenList = (function () {
+        function TokenList(element, attribute) {
+            this.element = element;
+            this.attribute = attribute;
+        }
+        Object.defineProperty(TokenList.prototype, "tokens", {
+            get: function () {
+                return (this.element.getAttribute(this.attribute) || "").trim().split(/\s+/).filter(function (content) { return content.length > 0; });
+            },
+            set: function (tokens) {
+                this.element.setAttribute(this.attribute, tokens.join(" "));
+            },
+            enumerable: true,
+            configurable: true
+        });
+        TokenList.prototype.add = function (value) {
+            var tokens = this.tokens;
+            if (!tokens.includes(value)) {
+                tokens.push(value);
+                this.tokens = tokens;
+            }
+        };
+        TokenList.prototype.remove = function (value) {
+            var tokens = this.tokens;
+            if (tokens.includes(value)) {
+                this.tokens = tokens.filter(function (content) { return content != value; });
+            }
+        };
+        TokenList.prototype.contains = function (value) {
+            return this.tokens.includes(value);
+        };
+        return TokenList;
+    }());
+    Stacks.TokenList = TokenList;
+    function getControllerList(element) {
+        return new TokenList(element, "data-controller");
+    }
+    Stacks.getControllerList = getControllerList;
+    function getTargetList(element) {
+        return new TokenList(element, "data-target");
+    }
+    Stacks.getTargetList = getTargetList;
+    function getActionList(element) {
+        return new TokenList(element, "data-action");
+    }
+    Stacks.getActionList = getActionList;
+})(Stacks || (Stacks = {}));
+//# sourceMappingURL=tokenlist.js.map
+
+;
+
+"use strict";
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
@@ -5085,13 +5139,9 @@ var Stacks;
     }
     Stacks.attachPopover = attachPopover;
     function configureNewPopover(element, options) {
-        function appendAttribute(attribute, value) {
-            var existing = element.getAttribute(attribute);
-            element.setAttribute(attribute, existing ? existing + " " + value : value);
-        }
-        appendAttribute("data-controller", "s-popover");
+        Stacks.getControllerList(element).add("s-popover");
         if (options.toggleOnClick) {
-            appendAttribute("data-action", "click->s-popover#toggle");
+            Stacks.getActionList(element).add("click->s-popover#toggle");
         }
         if (options.placement) {
             element.setAttribute("data-s-popover-placement", options.placement);
@@ -5432,7 +5482,7 @@ var Stacks;
             controller.applyTitleAttributes();
         }
         else {
-            element.setAttribute("data-controller", element.getAttribute("data-controller") + " s-tooltip");
+            Stacks.getControllerList(element).add("s-tooltip");
         }
     }
 })(Stacks || (Stacks = {}));

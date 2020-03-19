@@ -216,7 +216,7 @@ namespace Stacks {
         if (controller) {
             controller.applyTitleAttributes();
         } else {
-            element.setAttribute("data-controller", element.getAttribute("data-controller") + " s-tooltip");
+            getControllerList(element).add("s-tooltip");
         }
     }
 }
