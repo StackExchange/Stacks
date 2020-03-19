@@ -4940,10 +4940,6 @@ var Stacks;
             if (this.isVisible) {
                 this.initializePopper();
             }
-            if (this.data.get("show-on-connect") === "true") {
-                this.data.delete("show-on-connect");
-                this.show();
-            }
         };
         BasePopoverController.prototype.disconnect = function () {
             this.hide();
@@ -5041,6 +5037,13 @@ var Stacks;
             _this.popoverSelectorAttribute = "aria-controls";
             return _this;
         }
+        PopoverController.prototype.connect = function () {
+            _super.prototype.connect.call(this);
+            if (this.data.get("show-on-connect") === "true") {
+                this.data.delete("show-on-connect");
+                this.show();
+            }
+        };
         PopoverController.prototype.shown = function () {
             this.toggleOptionalClasses(true);
             _super.prototype.shown.call(this);

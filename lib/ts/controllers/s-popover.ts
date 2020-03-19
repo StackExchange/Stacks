@@ -40,11 +40,6 @@ namespace Stacks {
                 // just call initialize here, not show. This keeps already visible popovers from adding/firing document events
                 this.initializePopper();
             }
-
-            if (this.data.get("show-on-connect") === "true") {
-                this.data.delete("show-on-connect");
-                this.show();
-            }
         }
 
         /**
@@ -198,6 +193,15 @@ namespace Stacks {
 
         private boundHideOnOutsideClick!: any;
         private boundHideOnEscapePress!: any;
+
+        connect() {
+            super.connect();
+
+            if (this.data.get("show-on-connect") === "true") {
+                this.data.delete("show-on-connect");
+                this.show();
+            }
+        }
 
         /**
          * Toggles optional classes in addition to BasePopoverController.shown
