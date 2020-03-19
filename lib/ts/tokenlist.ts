@@ -1,5 +1,9 @@
 namespace Stacks {
 
+    /**
+     * A token list similar to DOMTokenList used for manipulating whitespace separated attributes.
+     * When this list is modified, the associated attribute will also be changed.
+     */
     export class TokenList {
 
         private element: Element;
@@ -18,6 +22,10 @@ namespace Stacks {
             this.element.setAttribute(this.attribute, tokens.join(" "));
         }
 
+        /**
+         * Adds a value to the token list if it does not already exist.
+         * @param value The value to add
+         */
         public add(value: string) {
             const tokens = this.tokens;
             if (!tokens.includes(value)) {
@@ -26,6 +34,10 @@ namespace Stacks {
             }
         }
 
+        /**
+         * Removes a value from the token list if it exists.
+         * @param value The value to remove
+         */
         public remove(value: string) {
             const tokens = this.tokens;
             if (tokens.includes(value)) {
@@ -33,6 +45,10 @@ namespace Stacks {
             }
         }
 
+        /**
+         * Checks whether or not the token list contains the value.
+         * @param value The value to check for
+         */
         public contains(value: string) {
             return this.tokens.includes(value);
         }
