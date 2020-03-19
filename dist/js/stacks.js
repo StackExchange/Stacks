@@ -4886,6 +4886,10 @@ var Stacks;
             if (this.isVisible) {
                 this.initializePopper();
             }
+            if (this.data.get("show-on-connect") === "true") {
+                this.data.delete("show-on-connect");
+                this.show();
+            }
         };
         BasePopoverController.prototype.disconnect = function () {
             this.hide();
@@ -5031,6 +5035,71 @@ var Stacks;
         return PopoverController;
     }(BasePopoverController));
     Stacks.PopoverController = PopoverController;
+    function showPopover(element) {
+        var controller = Stacks.application.getControllerForElementAndIdentifier(element, "s-popover");
+        if (controller) {
+            controller.show();
+        }
+        else {
+            configureNewPopover(element, { showOnConnect: true });
+        }
+    }
+    Stacks.showPopover = showPopover;
+    function hidePopover(element) {
+        var controller = Stacks.application.getControllerForElementAndIdentifier(element, "s-popover");
+        if (controller) {
+            controller.hide();
+        }
+        else {
+            element.removeAttribute("data-s-popover-show-on-connect");
+        }
+    }
+    Stacks.hidePopover = hidePopover;
+    function attachPopover(element, popover, options) {
+        if (typeof popover === 'string') {
+            var elements = document.createRange().createContextualFragment(popover).children;
+            if (elements.length !== 1) {
+                throw "popover should contain a single element";
+            }
+            popover = elements[0];
+        }
+        var existingId = element.getAttribute("aria-controls");
+        var popoverId = popover.id;
+        if (!popover.classList.contains('s-popover')) {
+            throw "popover should have the \"s-popover\" class but had class=\"" + popover.className + "\"";
+        }
+        if (existingId && existingId !== popoverId) {
+            throw "element has aria-controls=\"" + existingId + "\" but popover has id=\"" + popoverId + "\"";
+        }
+        if (!popoverId) {
+            popoverId = "--stacks-s-popover-" + Math.random().toString(36).substring(2, 10);
+            popover.id = popoverId;
+        }
+        if (!existingId) {
+            element.setAttribute("aria-controls", popoverId);
+        }
+        if (!popover.parentElement && element.parentElement) {
+            element.insertAdjacentElement("afterend", popover);
+        }
+        configureNewPopover(element, options || {});
+    }
+    Stacks.attachPopover = attachPopover;
+    function configureNewPopover(element, options) {
+        function appendAttribute(attribute, value) {
+            var existing = element.getAttribute(attribute);
+            element.setAttribute(attribute, existing ? existing + " " + value : value);
+        }
+        appendAttribute("data-controller", "s-popover");
+        if (options.toggleOnClick) {
+            appendAttribute("data-action", "click->s-popover#toggle");
+        }
+        if (options.placement) {
+            element.setAttribute("data-s-popover-placement", options.placement);
+        }
+        if (options.showOnConnect) {
+            element.setAttribute("data-s-popover-show-on-connect", "true");
+        }
+    }
 })(Stacks || (Stacks = {}));
 Stacks.application.register("s-popover", Stacks.PopoverController);
 //# sourceMappingURL=s-popover.js.map

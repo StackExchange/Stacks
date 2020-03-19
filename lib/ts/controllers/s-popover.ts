@@ -40,6 +40,11 @@ namespace Stacks {
                 // just call initialize here, not show. This keeps already visible popovers from adding/firing document events
                 this.initializePopper();
             }
+
+            if (this.data.get("show-on-connect") === "true") {
+                this.data.delete("show-on-connect");
+                this.show();
+            }
         }
 
         /**
@@ -273,6 +278,117 @@ namespace Stacks {
             this.data.get("toggle-class")!.split(/\s+/).forEach(function (cls: string) {
                 cl.toggle(cls, show);
             });
+        }
+    }
+
+    /**
+     * Helper to manually show an s-popover element via external JS
+     * @param element the element the `data-controller="s-popover"` attribute is on
+     */
+    export function showPopover(element: HTMLElement) {
+        const controller = Stacks.application.getControllerForElementAndIdentifier(element, "s-popover") as PopoverController;
+
+        if (controller) {
+            controller.show();
+        } else {
+            configureNewPopover(element, { showOnConnect: true });
+        }
+    }
+   
+    /**
+     * Helper to manually hide an s-popover element via external JS
+     * @param element the element the `data-controller="s-popover"` attribute is on
+     */
+    export function hidePopover(element: HTMLElement) {
+        const controller = Stacks.application.getControllerForElementAndIdentifier(element, "s-popover") as PopoverController;
+
+        if (controller) {
+            controller.hide();
+        } else {
+            element.removeAttribute("data-s-popover-show-on-connect");
+        }
+    }
+
+    /**
+     * Options to use when attaching a popover via `Stacks.attachPopover`.
+     * @see Stacks.attachPopover
+     */
+    export interface PopoverOptions {
+        /**
+         * When true, the `click->s-popover#toggle` action will be attached to the controller element.
+         */
+        toggleOnClick?: boolean;
+        /**
+         * When set, `data-s-popover-placement` will be set to this value on the controller element.
+         */
+        placement?: string;
+
+        /**
+         * When true, the popover will appear immediately when the controller connects.
+         */
+        showOnConnect?: boolean;
+    }
+
+    /**
+     * Attaches a popover to an element and performs additional configuration.
+     * @param element the element that will receive the `data-controller="s-popover"` attribute.
+     * @param popover an element with the `.s-popover` class or HTML string containing a single element with the `.s-popover` class.
+     * @param options an optional collection of options to use when configuring the popover.
+     */
+    export function attachPopover(element: HTMLElement, popover: HTMLElement | string, options?: PopoverOptions)
+    {
+        if (typeof popover === 'string') {
+            const elements = document.createRange().createContextualFragment(popover).children;
+            if (elements.length !== 1) {
+                throw "popover should contain a single element";
+            }
+            popover = <HTMLElement>elements[0];
+        }
+
+        const existingId = element.getAttribute("aria-controls");
+        var popoverId = popover.id;
+
+        if (!popover.classList.contains('s-popover')) {
+            throw `popover should have the "s-popover" class but had class="${popover.className}"`;
+        }
+
+        if (existingId && existingId !== popoverId) {
+            throw `element has aria-controls="${existingId}" but popover has id="${popoverId}"`;
+        }
+
+        if (!popoverId) {
+            popoverId = "--stacks-s-popover-" + Math.random().toString(36).substring(2, 10);
+            popover.id = popoverId;
+        }
+
+        if (!existingId) {
+            element.setAttribute("aria-controls", popoverId);
+        }
+
+        if (!popover.parentElement && element.parentElement) {
+            element.insertAdjacentElement("afterend", popover);
+        }
+
+        configureNewPopover(element, options || {});
+    }
+
+    function configureNewPopover(element: HTMLElement, options: PopoverOptions)
+    {
+        function appendAttribute(attribute: string, value: string) {
+            const existing = element.getAttribute(attribute);
+            element.setAttribute(attribute, existing ? existing + " " + value : value);
+        }
+
+        appendAttribute("data-controller", "s-popover");
+
+        if (options.toggleOnClick) {
+            appendAttribute("data-action", "click->s-popover#toggle");
+        }
+        if (options.placement) {
+            element.setAttribute("data-s-popover-placement", options.placement);
+        }
+        if (options.showOnConnect) {
+            element.setAttribute("data-s-popover-show-on-connect", "true");
         }
     }
 }
