@@ -5094,8 +5094,11 @@ var Stacks;
         if (controller) {
             controller.show();
         }
+        else if (!Stacks.getControllerList(element).contains("s-popover")) {
+            throw "element does not have data-controller=\"s-popover\"";
+        }
         else {
-            configureNewPopover(element, { showOnConnect: true });
+            element.setAttribute("data-s-popover-show-on-connect", "true");
         }
     }
     Stacks.showPopover = showPopover;
@@ -5103,6 +5106,9 @@ var Stacks;
         var controller = Stacks.application.getControllerForElementAndIdentifier(element, "s-popover");
         if (controller) {
             controller.hide();
+        }
+        else if (!Stacks.getControllerList(element).contains("s-popover")) {
+            throw "element does not have data-controller=\"s-popover\"";
         }
         else {
             element.removeAttribute("data-s-popover-show-on-connect");
@@ -5135,21 +5141,20 @@ var Stacks;
         if (!popover.parentElement && element.parentElement) {
             element.insertAdjacentElement("afterend", popover);
         }
-        configureNewPopover(element, options || {});
+        Stacks.getControllerList(element).add("s-popover");
+        if (options) {
+            if (options.toggleOnClick) {
+                Stacks.getActionList(element).add("click->s-popover#toggle");
+            }
+            if (options.placement) {
+                element.setAttribute("data-s-popover-placement", options.placement);
+            }
+            if (options.showOnConnect) {
+                element.setAttribute("data-s-popover-show-on-connect", "true");
+            }
+        }
     }
     Stacks.attachPopover = attachPopover;
-    function configureNewPopover(element, options) {
-        Stacks.getControllerList(element).add("s-popover");
-        if (options.toggleOnClick) {
-            Stacks.getActionList(element).add("click->s-popover#toggle");
-        }
-        if (options.placement) {
-            element.setAttribute("data-s-popover-placement", options.placement);
-        }
-        if (options.showOnConnect) {
-            element.setAttribute("data-s-popover-show-on-connect", "true");
-        }
-    }
 })(Stacks || (Stacks = {}));
 Stacks.application.register("s-popover", Stacks.PopoverController);
 //# sourceMappingURL=s-popover.js.map

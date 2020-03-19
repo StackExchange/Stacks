@@ -290,8 +290,10 @@ namespace Stacks {
 
         if (controller) {
             controller.show();
+        } else if (!getControllerList(element).contains("s-popover")) {
+            throw `element does not have data-controller="s-popover"`;
         } else {
-            configureNewPopover(element, { showOnConnect: true });
+            element.setAttribute("data-s-popover-show-on-connect", "true");
         }
     }
    
@@ -304,6 +306,8 @@ namespace Stacks {
 
         if (controller) {
             controller.hide();
+        } else if (!getControllerList(element).contains("s-popover")) {
+            throw `element does not have data-controller="s-popover"`;
         } else {
             element.removeAttribute("data-s-popover-show-on-connect");
         }
@@ -370,21 +374,18 @@ namespace Stacks {
             element.insertAdjacentElement("afterend", popover);
         }
 
-        configureNewPopover(element, options || {});
-    }
-
-    function configureNewPopover(element: Element, options: PopoverOptions)
-    {
         getControllerList(element).add("s-popover");
 
-        if (options.toggleOnClick) {
-            getActionList(element).add("click->s-popover#toggle");
-        }
-        if (options.placement) {
-            element.setAttribute("data-s-popover-placement", options.placement);
-        }
-        if (options.showOnConnect) {
-            element.setAttribute("data-s-popover-show-on-connect", "true");
+        if (options) {
+            if (options.toggleOnClick) {
+                getActionList(element).add("click->s-popover#toggle");
+            }
+            if (options.placement) {
+                element.setAttribute("data-s-popover-placement", options.placement);
+            }
+            if (options.showOnConnect) {
+                element.setAttribute("data-s-popover-show-on-connect", "true");
+            }
         }
     }
 }
