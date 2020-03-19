@@ -5089,33 +5089,52 @@ var Stacks;
         return PopoverController;
     }(BasePopoverController));
     Stacks.PopoverController = PopoverController;
-    function showPopover(element) {
+    function getPopover(element) {
+        var isPopover = Stacks.getControllerList(element).contains("s-popover");
         var controller = Stacks.application.getControllerForElementAndIdentifier(element, "s-popover");
+        var referenceSelector = element.getAttribute("data-s-popover-reference-selector");
+        var referenceElement = referenceSelector ? element.querySelector(referenceSelector) : element;
+        var popoverId = referenceElement ? referenceElement.getAttribute("aria-controls") : null;
+        var popover = popoverId ? document.getElementById(popoverId) : null;
+        return [isPopover, controller, referenceElement, popover];
+    }
+    function showPopover(element) {
+        var _a = getPopover(element), isPopover = _a[0], controller = _a[1], _ = _a[2];
         if (controller) {
             controller.show();
         }
-        else if (!Stacks.getControllerList(element).contains("s-popover")) {
-            throw "element does not have data-controller=\"s-popover\"";
+        else if (isPopover) {
+            element.setAttribute("data-s-popover-show-on-connect", "true");
         }
         else {
-            element.setAttribute("data-s-popover-show-on-connect", "true");
+            throw "element does not have data-controller=\"s-popover\"";
         }
     }
     Stacks.showPopover = showPopover;
     function hidePopover(element) {
-        var controller = Stacks.application.getControllerForElementAndIdentifier(element, "s-popover");
+        var _a = getPopover(element), isPopover = _a[0], controller = _a[1], _ = _a[2], popover = _a[3];
         if (controller) {
             controller.hide();
         }
-        else if (!Stacks.getControllerList(element).contains("s-popover")) {
-            throw "element does not have data-controller=\"s-popover\"";
+        else if (isPopover) {
+            element.removeAttribute("data-s-popover-show-on-connect");
+            if (popover) {
+                popover.classList.remove("is-visible");
+            }
         }
         else {
-            element.removeAttribute("data-s-popover-show-on-connect");
+            throw "element does not have data-controller=\"s-popover\"";
         }
     }
     Stacks.hidePopover = hidePopover;
     function attachPopover(element, popover, options) {
+        var _a = getPopover(element), isPopover = _a[0], controller = _a[1], referenceElement = _a[2], existingPopover = _a[3];
+        if (existingPopover) {
+            throw "element already has popover with id=\"" + existingPopover.id + "\"";
+        }
+        if (!referenceElement) {
+            throw "element has invalid data-s-popover-reference-selector attribute";
+        }
         if (typeof popover === 'string') {
             var elements = document.createRange().createContextualFragment(popover).children;
             if (elements.length !== 1) {
@@ -5123,7 +5142,7 @@ var Stacks;
             }
             popover = elements[0];
         }
-        var existingId = element.getAttribute("aria-controls");
+        var existingId = referenceElement.getAttribute("aria-controls");
         var popoverId = popover.id;
         if (!popover.classList.contains('s-popover')) {
             throw "popover should have the \"s-popover\" class but had class=\"" + popover.className + "\"";
@@ -5136,15 +5155,15 @@ var Stacks;
             popover.id = popoverId;
         }
         if (!existingId) {
-            element.setAttribute("aria-controls", popoverId);
+            referenceElement.setAttribute("aria-controls", popoverId);
         }
         if (!popover.parentElement && element.parentElement) {
-            element.insertAdjacentElement("afterend", popover);
+            referenceElement.insertAdjacentElement("afterend", popover);
         }
         Stacks.getControllerList(element).add("s-popover");
         if (options) {
             if (options.toggleOnClick) {
-                Stacks.getActionList(element).add("click->s-popover#toggle");
+                Stacks.getActionList(referenceElement).add("click->s-popover#toggle");
             }
             if (options.placement) {
                 element.setAttribute("data-s-popover-placement", options.placement);
@@ -5155,6 +5174,23 @@ var Stacks;
         }
     }
     Stacks.attachPopover = attachPopover;
+    function detachPopover(element) {
+        var _a = getPopover(element), isPopover = _a[0], controller = _a[1], referenceElement = _a[2], popover = _a[3];
+        if (controller) {
+            controller.hide();
+        }
+        if (popover) {
+            popover.remove();
+        }
+        if (isPopover) {
+            Stacks.getControllerList(element).remove("s-popover");
+            if (referenceElement) {
+                referenceElement.removeAttribute("aria-controls");
+            }
+        }
+        return popover;
+    }
+    Stacks.detachPopover = detachPopover;
 })(Stacks || (Stacks = {}));
 Stacks.application.register("s-popover", Stacks.PopoverController);
 //# sourceMappingURL=s-popover.js.map

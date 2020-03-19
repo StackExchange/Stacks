@@ -281,35 +281,48 @@ namespace Stacks {
         }
     }
 
+    function getPopover(element: Element) : [boolean, PopoverController | null, Element | null, Element | null] {
+        const isPopover = getControllerList(element).contains("s-popover");
+        const controller = Stacks.application.getControllerForElementAndIdentifier(element, "s-popover") as PopoverController | null;
+        const referenceSelector = element.getAttribute("data-s-popover-reference-selector");
+        const referenceElement = referenceSelector ? element.querySelector(referenceSelector) : element;
+        const popoverId = referenceElement ? referenceElement.getAttribute("aria-controls") : null;
+        const popover = popoverId ? document.getElementById(popoverId) : null;
+        return [isPopover, controller, referenceElement, popover];
+    }
+
     /**
      * Helper to manually show an s-popover element via external JS
      * @param element the element the `data-controller="s-popover"` attribute is on
      */
     export function showPopover(element: Element) {
-        const controller = Stacks.application.getControllerForElementAndIdentifier(element, "s-popover") as PopoverController;
+        const [isPopover, controller, _] = getPopover(element);
 
         if (controller) {
             controller.show();
-        } else if (!getControllerList(element).contains("s-popover")) {
-            throw `element does not have data-controller="s-popover"`;
-        } else {
+        } else if (isPopover) {
             element.setAttribute("data-s-popover-show-on-connect", "true");
+        } else {
+            throw `element does not have data-controller="s-popover"`;
         }
     }
-   
+
     /**
      * Helper to manually hide an s-popover element via external JS
      * @param element the element the `data-controller="s-popover"` attribute is on
      */
-    export function hidePopover(element: HTMLElement) {
-        const controller = Stacks.application.getControllerForElementAndIdentifier(element, "s-popover") as PopoverController;
+    export function hidePopover(element: Element) {
+        const [isPopover, controller, _, popover] = getPopover(element);
 
         if (controller) {
             controller.hide();
-        } else if (!getControllerList(element).contains("s-popover")) {
-            throw `element does not have data-controller="s-popover"`;
-        } else {
+        } else if (isPopover) {
             element.removeAttribute("data-s-popover-show-on-connect");
+            if (popover) {
+                popover.classList.remove("is-visible");
+            }
+        } else {
+            throw `element does not have data-controller="s-popover"`;
         }
     }
 
@@ -319,7 +332,7 @@ namespace Stacks {
      */
     export interface PopoverOptions {
         /**
-         * When true, the `click->s-popover#toggle` action will be attached to the controller element.
+         * When true, the `click->s-popover#toggle` action will be attached to the controller element or reference element.
          */
         toggleOnClick?: boolean;
         /**
@@ -337,11 +350,21 @@ namespace Stacks {
      * Attaches a popover to an element and performs additional configuration.
      * @param element the element that will receive the `data-controller="s-popover"` attribute.
      * @param popover an element with the `.s-popover` class or HTML string containing a single element with the `.s-popover` class.
-     *                If the popover does not have a parent element, it will be inserted as a immediately after `element`.
+     *                If the popover does not have a parent element, it will be inserted as a immediately after the reference element.
      * @param options an optional collection of options to use when configuring the popover.
      */
     export function attachPopover(element: Element, popover: Element | string, options?: PopoverOptions)
     {
+        const [isPopover, controller, referenceElement, existingPopover] = getPopover(element);
+
+        if (existingPopover) {
+            throw `element already has popover with id="${existingPopover.id}"`
+        }
+
+        if (!referenceElement) {
+            throw `element has invalid data-s-popover-reference-selector attribute`
+        }
+
         if (typeof popover === 'string') {
             const elements = document.createRange().createContextualFragment(popover).children;
             if (elements.length !== 1) {
@@ -350,7 +373,7 @@ namespace Stacks {
             popover = elements[0];
         }
 
-        const existingId = element.getAttribute("aria-controls");
+        const existingId = referenceElement.getAttribute("aria-controls");
         var popoverId = popover.id;
 
         if (!popover.classList.contains('s-popover')) {
@@ -367,18 +390,18 @@ namespace Stacks {
         }
 
         if (!existingId) {
-            element.setAttribute("aria-controls", popoverId);
+            referenceElement.setAttribute("aria-controls", popoverId);
         }
 
         if (!popover.parentElement && element.parentElement) {
-            element.insertAdjacentElement("afterend", popover);
+            referenceElement.insertAdjacentElement("afterend", popover);
         }
 
         getControllerList(element).add("s-popover");
 
         if (options) {
             if (options.toggleOnClick) {
-                getActionList(element).add("click->s-popover#toggle");
+                getActionList(referenceElement).add("click->s-popover#toggle");
             }
             if (options.placement) {
                 element.setAttribute("data-s-popover-placement", options.placement);
@@ -387,6 +410,31 @@ namespace Stacks {
                 element.setAttribute("data-s-popover-show-on-connect", "true");
             }
         }
+    }
+
+    /**
+     * Removes the popover controller from an element and removes the popover from the DOM.
+     * @param element the element that has the `data-controller="s-popover"` attribute.
+     * @returns The popover that was attached to the element.
+     */
+    export function detachPopover(element: Element) {
+        const [isPopover, controller, referenceElement, popover] = getPopover(element);
+
+        // Hide the popover so its events fire.
+        if (controller) { controller.hide(); }
+
+        // Remove the popover if it exists
+        if (popover) { popover.remove(); }
+
+        // Remove the popover controller and the aria-controls attributes.
+        if (isPopover) {
+            getControllerList(element).remove("s-popover");
+            if (referenceElement) {
+                referenceElement.removeAttribute("aria-controls");
+            }
+        }
+
+        return popover;
     }
 }
 
