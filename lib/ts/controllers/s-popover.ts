@@ -281,6 +281,16 @@ namespace Stacks {
         }
     }
 
+    /**
+     * Gets the current state of an element that may be or is intended to be an s-popover controller
+     * so it can be configured either directly or via the DOM.
+     * @param element An element that may have `data-controller="s-popover"`.
+     * @returns A tuple containing four components:
+     *          1. A boolean indicating whether or not the element has s-popover in its `data-controller` class.
+     *          2. The element's existing `PopoverController` or null it it has not been configured yet.
+     *          3. The popover's reference element as would live in `referenceSelector` or null if invalid.
+     *          4. The popover currently associated with the controller, or null if one does not exist in the DOM.
+     */
     function getPopover(element: Element) : [boolean, PopoverController | null, Element | null, Element | null] {
         const isPopover = getControllerList(element).contains("s-popover");
         const controller = Stacks.application.getControllerForElementAndIdentifier(element, "s-popover") as PopoverController | null;
