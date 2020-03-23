@@ -206,7 +206,7 @@ namespace Stacks {
             this._boundClickFn = this._boundClickFn || this.hideOnOutsideClick.bind(this);
             this._boundKeypressFn = this._boundKeypressFn || this.hideOnEscapePress.bind(this);
 
-            document.addEventListener("click", this._boundClickFn);
+            document.addEventListener("mousedown", this._boundClickFn);
             document.addEventListener("keyup", this._boundKeypressFn);
 
             this.handleFocusableElements();
@@ -216,7 +216,7 @@ namespace Stacks {
          * Unbinds global events to the document for hiding popovers on user interaction
          */
         private unbindDocumentEvents () {
-            document.removeEventListener("click", this._boundClickFn);
+            document.removeEventListener("mousedown", this._boundClickFn);
             document.removeEventListener("keyup", this._boundKeypressFn);
             document.removeEventListener("keydown", this._boundTabTrap);
         }
@@ -228,7 +228,7 @@ namespace Stacks {
             var target = <Node>e.target;
             // check if the document was clicked inside either the toggle element or the modal itself
             // note: .contains also returns true if the node itself matches the target element
-            if (!this.modalTarget.querySelector(".s-modal--dialog")!.contains(target)) {
+            if (!this.modalTarget.querySelector(".s-modal--dialog")!.contains(target) && document.body.contains(target)) {
                 this._toggle(false);
             }
         }

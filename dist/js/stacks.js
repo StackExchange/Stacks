@@ -4805,18 +4805,18 @@ var Stacks;
         ModalController.prototype.bindDocumentEvents = function () {
             this._boundClickFn = this._boundClickFn || this.hideOnOutsideClick.bind(this);
             this._boundKeypressFn = this._boundKeypressFn || this.hideOnEscapePress.bind(this);
-            document.addEventListener("click", this._boundClickFn);
+            document.addEventListener("mousedown", this._boundClickFn);
             document.addEventListener("keyup", this._boundKeypressFn);
             this.handleFocusableElements();
         };
         ModalController.prototype.unbindDocumentEvents = function () {
-            document.removeEventListener("click", this._boundClickFn);
+            document.removeEventListener("mousedown", this._boundClickFn);
             document.removeEventListener("keyup", this._boundKeypressFn);
             document.removeEventListener("keydown", this._boundTabTrap);
         };
         ModalController.prototype.hideOnOutsideClick = function (e) {
             var target = e.target;
-            if (!this.modalTarget.querySelector(".s-modal--dialog").contains(target)) {
+            if (!this.modalTarget.querySelector(".s-modal--dialog").contains(target) && document.body.contains(target)) {
                 this._toggle(false);
             }
         };
@@ -4994,16 +4994,16 @@ var Stacks;
         PopoverController.prototype.bindDocumentEvents = function () {
             this.boundHideOnOutsideClick = this.boundHideOnOutsideClick || this.hideOnOutsideClick.bind(this);
             this.boundHideOnEscapePress = this.boundHideOnEscapePress || this.hideOnEscapePress.bind(this);
-            document.addEventListener("click", this.boundHideOnOutsideClick);
+            document.addEventListener("mousedown", this.boundHideOnOutsideClick);
             document.addEventListener("keyup", this.boundHideOnEscapePress);
         };
         PopoverController.prototype.unbindDocumentEvents = function () {
-            document.removeEventListener("click", this.boundHideOnOutsideClick);
+            document.removeEventListener("mousedown", this.boundHideOnOutsideClick);
             document.removeEventListener("keyup", this.boundHideOnEscapePress);
         };
         PopoverController.prototype.hideOnOutsideClick = function (e) {
             var target = e.target;
-            if (!this.referenceElement.contains(target) && !this.popoverElement.contains(target)) {
+            if (!this.referenceElement.contains(target) && !this.popoverElement.contains(target) && document.body.contains(target)) {
                 this.hide();
             }
         };

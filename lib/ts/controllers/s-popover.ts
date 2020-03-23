@@ -217,7 +217,7 @@ namespace Stacks {
             this.boundHideOnOutsideClick = this.boundHideOnOutsideClick || this.hideOnOutsideClick.bind(this);
             this.boundHideOnEscapePress = this.boundHideOnEscapePress || this.hideOnEscapePress.bind(this);
 
-            document.addEventListener("click", this.boundHideOnOutsideClick);
+            document.addEventListener("mousedown", this.boundHideOnOutsideClick);
             document.addEventListener("keyup", this.boundHideOnEscapePress);
         }
 
@@ -225,7 +225,7 @@ namespace Stacks {
          * Unbinds global events to the document for hiding popovers on user interaction
          */
         protected  unbindDocumentEvents() {
-            document.removeEventListener("click", this.boundHideOnOutsideClick);
+            document.removeEventListener("mousedown", this.boundHideOnOutsideClick);
             document.removeEventListener("keyup", this.boundHideOnEscapePress);
         }
 
@@ -237,7 +237,7 @@ namespace Stacks {
             const target = <Node>e.target;
             // check if the document was clicked inside either the reference element or the popover itself
             // note: .contains also returns true if the node itself matches the target element
-            if (!this.referenceElement.contains(target) && !this.popoverElement!.contains(target)) {
+            if (!this.referenceElement.contains(target) && !this.popoverElement!.contains(target) && document.body.contains(target)) {
                 this.hide();
             }
         };
