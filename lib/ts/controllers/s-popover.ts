@@ -40,6 +40,11 @@ namespace Stacks {
                 // just call initialize here, not show. This keeps already visible popovers from adding/firing document events
                 this.initializePopper();
             }
+
+            if (this.data.get("auto-show") === "true") {
+                this.data.delete("auto-show");
+                this.show();
+            }
         }
 
         /**
@@ -193,15 +198,6 @@ namespace Stacks {
 
         private boundHideOnOutsideClick!: any;
         private boundHideOnEscapePress!: any;
-
-        connect() {
-            super.connect();
-
-            if (this.data.get("auto-show") === "true") {
-                this.data.delete("auto-show");
-                this.show();
-            }
-        }
 
         /**
          * Toggles optional classes in addition to BasePopoverController.shown
