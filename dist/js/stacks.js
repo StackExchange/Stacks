@@ -4051,6 +4051,8 @@ var Stacks;
             }
             this.popoverElement.classList.remove("is-visible");
             if (this.popper) {
+                this.popper.destroy();
+                this.popper = null;
             }
             this.hidden();
         };
@@ -4066,8 +4068,17 @@ var Stacks;
             return null;
         };
         BasePopoverController.prototype.initializePopper = function () {
-            this.popper = Popper.createPopper(this.referenceElement, this.popoverElement, {});
-            this.popper.setOptions('placement', this.data.get("placement") || "bottom");
+            this.popper = Popper.createPopper(this.referenceElement, this.popoverElement, {
+                placement: this.data.get("placement") || "bottom",
+                modifiers: [
+                    {
+                        name: "offset",
+                        options: {
+                            offset: [0, 10]
+                        }
+                    }
+                ]
+            });
         };
         BasePopoverController.prototype.validate = function () {
             var referenceSelector = this.data.get("reference-selector");
