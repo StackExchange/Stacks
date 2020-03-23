@@ -75,8 +75,7 @@ namespace Stacks {
 
             this.popoverElement!.classList.add("is-visible");
 
-            // ensure the popper has been positioned correctly and is listening to events
-            //this.popper.enableEventListeners(); //TODO
+            // ensure the popper has been positioned correctly
             this.scheduleUpdate();
 
             this.shown();
@@ -93,6 +92,7 @@ namespace Stacks {
             this.popoverElement.classList.remove("is-visible");
 
             if (this.popper) {
+                // completely destroy the popper on hide; this is in line with Popper.js's performance recommendations
                 this.popper.destroy();
                 this.popper = null;
             }
@@ -134,7 +134,9 @@ namespace Stacks {
                     {
                         name: "offset",
                         options: {
-                            offset: [0, 10] //NOTE: this is the value of @su8 in less
+                            // Popperjs does not respect margins on the element, so set the offset here
+                            // NOTE: this is the value of @su8 in less
+                            offset: [0, 10]
                         }
                     }
                 ]
