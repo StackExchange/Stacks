@@ -197,8 +197,8 @@ namespace Stacks {
         connect() {
             super.connect();
 
-            if (this.data.get("show-on-connect") === "true") {
-                this.data.delete("show-on-connect");
+            if (this.data.get("auto-show") === "true") {
+                this.data.delete("auto-show");
                 this.show();
             }
         }
@@ -305,7 +305,7 @@ namespace Stacks {
         if (controller) {
             controller.show();
         } else if (isPopover) {
-            element.setAttribute("data-s-popover-show-on-connect", "true");
+            element.setAttribute("data-s-popover-auto-show", "true");
         } else {
             throw `element does not have data-controller="s-popover"`;
         }
@@ -321,7 +321,7 @@ namespace Stacks {
         if (controller) {
             controller.hide();
         } else if (isPopover) {
-            element.removeAttribute("data-s-popover-show-on-connect");
+            element.removeAttribute("data-s-popover-auto-show");
             if (popover) {
                 popover.classList.remove("is-visible");
             }
@@ -347,7 +347,7 @@ namespace Stacks {
         /**
          * When true, the popover will appear immediately when the controller connects.
          */
-        showOnConnect?: boolean;
+        autoShow?: boolean;
     }
 
     /**
@@ -410,8 +410,8 @@ namespace Stacks {
             if (options.placement) {
                 element.setAttribute("data-s-popover-placement", options.placement);
             }
-            if (options.showOnConnect) {
-                element.setAttribute("data-s-popover-show-on-connect", "true");
+            if (options.autoShow) {
+                element.setAttribute("data-s-popover-auto-show", "true");
             }
         }
     }

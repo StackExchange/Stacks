@@ -79,9 +79,9 @@ description: Popovers are small content containers that provide a contextual ove
                     <td class="p8 lh-lg">Dictates where to place the popover in relation to the reference element. By default, the placement value is <code class="stacks-code">bottom</code>. Accepted placements are <code class="stacks-code">auto</code>, <code class="stacks-code">top</code>, <code class="stacks-code">right</code>, <code class="stacks-code">bottom</code>, <code class="stacks-code">left</code>. Each placement can take an additional <code class="stacks-code">-start</code> and <code class="stacks-code">-end</code> variation.</td>
                 </tr>
                 <tr>
-                    <th scope="row"><code class="stacks-code">data-s-popover-show-on-connect="true"</code></th>
+                    <th scope="row"><code class="stacks-code">data-s-popover-auto-show="true"</code></th>
                     <td>Controller element</td>
-                    <td class="p8">If set, the popover will appear immediately when the Stacks controller is connected.  This should be used in place of <code class="stacks-code">.is-visible</code> for displaying popovers on load as it will prevent the popover</td>
+                    <td class="p8">If set, the popover will appear immediately when the Stacks controller is first connected.  This should be used in place of <code class="stacks-code">.is-visible</code> for displaying popovers on load as it will prevent the popover</td>
                 </tr>
             </tbody>
         </table>
@@ -159,7 +159,7 @@ description: Popovers are small content containers that provide a contextual ove
                 data-controller="s-popover"
                 data-s-popover-reference-selector="#reference-element"
                 data-s-popover-placement="top-end"
-                data-s-popover-show-on-connect="true">
+                data-s-popover-auto-show="true">
                 <a id="reference-element" class="s-link s-link__inherit"
                     aria-controls="popover-example-3">
                     Create a team
@@ -336,7 +336,7 @@ Stacks.application.register("actions", class extends Stacks.StacksController {
         if (this.loaded) { return; }
         Stacks.attachPopover(this.element,
                              await fetch(`/posts/{postId}/actions`),
-                             { showOnConnect: true, toggleOnClick: true });
+                             { autoShow: true, toggleOnClick: true });
         this.loaded = true;
     }
 });
@@ -352,7 +352,7 @@ Stacks.application.register("actions", class extends Stacks.StacksController {
             load() {
                 if (this.loaded) { return; }
                 setTimeout(() => {
-                    Stacks.attachPopover(this.element, `<div class="s-popover wmx1"><div class="s-popover--arrow"></div><div class="s-btn d-block">Edit</div><div class="s-btn s-btn__danger d-block">Delete</div></div>`, { showOnConnect: true, toggleOnClick: true });
+                    Stacks.attachPopover(this.element, `<div class="s-popover wmx1"><div class="s-popover--arrow"></div><div class="s-btn d-block">Edit</div><div class="s-btn s-btn__danger d-block">Delete</div></div>`, { autoShow: true, toggleOnClick: true });
                     this.loaded = true;
                 });
             },
