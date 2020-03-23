@@ -93,7 +93,8 @@ namespace Stacks {
             this.popoverElement.classList.remove("is-visible");
 
             if (this.popper) {
-                //this.popper.disableEventListeners(); //TODO
+                this.popper.destroy();
+                this.popper = null;
             }
 
             this.hidden();
@@ -128,17 +129,16 @@ namespace Stacks {
         private initializePopper() {
             // @ts-ignore
             this.popper = Popper.createPopper(this.referenceElement, this.popoverElement, {
-                //eventsEnabled: this.isVisible,
-                /*modifiers: [
+                placement: this.data.get("placement") || "bottom",
+                modifiers: [
                     {
-                        name: "eventListeners",
-                        enabled: this.isVisible
+                        name: "offset",
+                        options: {
+                            offset: [0, 10] //NOTE: this is the value of @su8 in less
+                        }
                     }
-                ]*/ //TODO
+                ]
             });
-
-            // @ts-ignore
-            this.popper.setOptions('placement', this.data.get("placement") as Popper.Placement || "bottom");
         }
 
         /**
