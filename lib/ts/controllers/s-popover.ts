@@ -75,8 +75,7 @@ namespace Stacks {
 
             this.popoverElement!.classList.add("is-visible");
 
-            // ensure the popper has been positioned correctly and is listening to events
-            this.popper.enableEventListeners();
+            // ensure the popper has been positioned correctly
             this.scheduleUpdate();
 
             this.shown();
@@ -93,7 +92,9 @@ namespace Stacks {
             this.popoverElement.classList.remove("is-visible");
 
             if (this.popper) {
-                this.popper.disableEventListeners();
+                // completely destroy the popper on hide; this is in line with Popper.js's performance recommendations
+                this.popper.destroy();
+                this.popper = null;
             }
 
             this.hidden();
@@ -127,12 +128,19 @@ namespace Stacks {
          */
         private initializePopper() {
             // @ts-ignore
-            this.popper = new Popper(this.referenceElement, this.popoverElement, {
-                eventsEnabled: this.isVisible
+            this.popper = Popper.createPopper(this.referenceElement, this.popoverElement, {
+                placement: this.data.get("placement") || "bottom",
+                modifiers: [
+                    {
+                        name: "offset",
+                        options: {
+                            // Popperjs does not respect margins on the element, so set the offset here
+                            // NOTE: this value matches the CSS value of auto-placed popovers margins (@su8 + 2)
+                            offset: [0, 10]
+                        }
+                    }
+                ]
             });
-
-            // @ts-ignore
-            this.popper.options.placement = this.data.get("placement") as Popper.Placement || "bottom";
         }
 
         /**
@@ -181,7 +189,7 @@ namespace Stacks {
          */
         protected scheduleUpdate() {
             if (this.popper && this.isVisible) {
-                this.popper.scheduleUpdate();
+                this.popper.update();
             }
         }
     }
