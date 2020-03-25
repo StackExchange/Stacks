@@ -8,67 +8,62 @@
 //
 //  TABLE OF CONTENTS
 //  • BASE STYLE
-//
+//  • MUTED STYLE
+
+
 //  ============================================================================
-//  $   BASE STYLES
+//  $   BASE STYLE
 //  ----------------------------------------------------------------------------
 .s-navigation {
+    #stacks-internals #load-config();
+
     display: flex;
     margin: -@su2;
     padding: @su2 0;
     flex-wrap: wrap;
 
     &.s-navigation__scroll {
-        -webkit-overflow-scrolling: touch;
         overflow-x: auto;
         flex-wrap: nowrap;
 
-        // Webkit scrollbars
-        &::-webkit-scrollbar {
-            width: @su8;
-            height: @su8;
-            background-color: transparent;
-        }
-
-        &::-webkit-scrollbar-track {
-            border-radius: @su8;
-            background-color: transparent;
-        }
-
-        &::-webkit-scrollbar-thumb {
-            border-radius: @su8;
-            background-color: fade(@black-900, 10%);
-        }
-
-        &::-webkit-scrollbar-corner {
-            background-color: transparent;
-        }
-
-        // Firefox
-        scrollbar-color: fade(@black-900, 10%) transparent;
-        scrollbar-width: thin;
-    }
-}
-
-.s-navigation--item {
-    #stacks-internals #load-config();
-    padding: @su6 @su16;
-    border-radius: 1000px;
-    margin: @su2;
-    color: @black-600;
-
-    &:hover,
-    &:active {
-        background: @black-100;
-        color: @black-600;
+        @scrollbar-styles();
     }
 
-    &.is-selected {
-        background: @navigation-link-highlight;
-        color: @white;
+    .s-navigation--item {
+        padding: @su6 @su12;
+        border-radius: 1000px;
+        margin: @su2;
+        color: var(--black-600);
 
-        &:hover {
-            background: darken(@navigation-link-highlight,10%);
+        &:hover,
+        &:active {
+            background: var(--black-100);
+            color: var(--black-600);
+        }
+
+        &.is-selected {
+            background: @navigation-link-highlight;
+            color: var(--white);
+        }
+    }
+
+    //  ============================================================================
+    //  $   MUTED STYLE
+    //  ----------------------------------------------------------------------------
+    &.s-navigation__muted .s-navigation--item {
+        &.is-selected {
+            background: var(--black-050);
+            color: var(--black-800);
+        }
+    }
+
+    //  ============================================================================
+    //  $   SMALL SIZE
+    //  ----------------------------------------------------------------------------
+    &.s-navigation__sm {
+        .s-navigation--item {
+            padding: @su4 @su12;
+            font-size: @fs-caption;
         }
     }
 }

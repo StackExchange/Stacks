@@ -5,25 +5,7 @@ description: The following is a guide to building and running Stacks locally. Yo
 ---
 
 <section class="stacks-section">
-    {% header h2 | Install a full Ruby development environment %}
-    {% header h3 | macOS %}
-    <p class="stacks-copy">You’ll need a full Ruby development environment in order to run our static site generator. Let’s start by opening our Terminal app and installing a few things.</p>
-    <ol class="stacks-list">
-        <li>Install Xcode. You can download it <a href="https://developer.apple.com/xcode/">directly</a>, or install via the Mac App Store.</li>
-        <li>Install Xcode’s command line tools <code class="stacks-code">xcode-select --install</code></li>
-        <li>Accept the Xcode license. <code class="stacks-code">sudo xcodebuild -license accept</code></li>
-        <li>To Install a fresh version of Ruby, we’ll use <a href="https://brew.sh">Homebrew</a>. Install it by running <code class="stacks-code ws-pre-wrap">/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"</code></li>
-        <li>Now you can use Homebrew to install Ruby <code class="stacks-code">brew install ruby</code></li>
-        <li>You’ll need to add <code class="stacks-code">export PATH=/usr/local/opt/ruby/bin:$PATH</code> to your <code class="stacks-code">.bash_profile</code> in your user directory. If a <code class="stacks-code">.bash_profile</code>, <a href="https://redfinsolutions.com/blog/creating-bashprofile-your-mac">create one</a> and add that line to the file.</li>
-        <li>Now’s a good time to quit your Terminal and relaunch it. This will make sure your session is aware of the new dependencies we’ve installed. Don’t just close the window, quit the whole app.</li>
-    </ol>
-
-    {% header h3 | Windows %}
-    <p class="stacks-copy">Download and install a Ruby+Devkit version from <a href="https://rubyinstaller.org/">RubyInstaller Downloads</a>. You’ll want to restart your computer before moving on.</p>
-</section>
-
-<section class="stacks-section">
-    {% header h2 | Clone the repo %}
+    {% header "h2", "Clone the repo" %}
     <p class="stacks-copy">There are two common ways to <a href="https://help.github.com/articles/cloning-a-repository/">clone a repo</a>:</p>
     <ul class="stacks-list">
         <li>Use the command line: <code class="stacks-code">git clone https://github.com/StackExchange/Stacks.git</code></li>
@@ -38,35 +20,27 @@ description: The following is a guide to building and running Stacks locally. Yo
 </section>
 
 <section class="stacks-section">
-    {% header h2 | Get Node and NPM installed %}
+    {% header "h2", "Get Node and NPM installed" %}
     <p class="stacks-copy">We use a bunch of NPM dependencies to process and package up Stacks for delivery. You’ll need to install them.</p>
     <ol class="stacks-list">
         <li>Install <a href="https://nodejs.org/en/download/">Node & NPM</a></li>
         <li>Open the Stacks repo in a Terminal window.</li>
-        <li>Install the NPM dependencies. <code class="stacks-code">npm install</code></li>
+        <li>Install the NPM dependencies. <code class="stacks-code">npm run init-docs</code></li>
     </ol>
 </section>
 
 <section class="stacks-section">
-    {% header h2 | Install Bundler and Jekyll %}
-    <p class="stacks-copy">We use Jekyll to generate our site. We use Bundler to install Jekyll and its dependencies.</p>
-    <ol class="stacks-list">
-        <li>Switch to <code class="stacks-code">docs</code> within the Stacks directory. <code class="stacks-code">cd docs</code></li>
-        <li>Install Bundler and Jekyll <code class="stacks-code">gem install jekyll bundler</code>. Depending on your environment, you may need to type your machine’s password a few times during this process.</li>
-        <li>Install the Bundle <code class="stacks-code">bundle install</code></li>
-    </ol>
-</section>
-
-<section class="stacks-section">
-  {% header h2 | Running Stacks %}
-  <p class="stacks-copy">That should do it for all our dependencies. You’re now able to run Stacks. 🎉 </p>
+  {% header "h2", "Running Stacks" %}
+  <p class="stacks-copy">That should do it for all our dependencies. You’re now able to run Stacks. {% icon "Tada", "native va-text-bottom" %} </p>
   <ol class="stacks-list">
       <li>From the top level of the Stacks repo, run our main script <code class="stacks-code">npm start</code></li>
-      <li>Visit your local copy of Stacks at <a href="http://127.0.0.1:4000/"><code class="stacks-code">http://127.0.0.1:4000/</code></a></li>
+      <li>Visit your local copy of Stacks at <a href="http://localhost:8080/"><code class="stacks-code">http://localhost:8080/</code></a></li>
   </ol>
+  {% header "h3", "Updating icons" %}
+  <p class="stacks-copy">If you hit a build error saying something like <code class="stacks-code">no such file or directory, open '_includes/svg-icons/some-icon.svg</code>, run either <code class="stacks-code">npm run init-docs</code> or <code class="stacks-code">npm run update-icons</code> from the Stacks root.</p>
 </section>
 
 <section class="stacks-section">
-    {% header h2 | Getting Help %}
+    {% header "h2", "Getting help" %}
     <p class="stacks-copy">Installing dependencies can be frustrating, and we’re here to help. If you’re stuck, the Stacks team is always available in #stacks. If that doesn’t work, try <a href="https://github.com/StackExchange/Stacks/issues/new">opening an issue</a>.</p>
 </section>

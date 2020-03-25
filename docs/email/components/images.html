@@ -6,14 +6,14 @@ description:
 
 <!-- FOREGROUND IMAGES -->
 <section class="stacks-section">
-    {% header h2 | Foreground images %}
+    {% header "h2", "Foreground images" %}
     <p class="stacks-copy">
         All email clients can display <code class="stacks-code">.png</code>, <code class="stacks-code">.gif</code>, and <code class="stacks-code">.jpg</code> images displayed with the <code class="stacks-code">&lt;img&gt;</code> tag. <code class="stacks-code">.svg</code> images are not well supported, regardless of how they’re referenced, so avoid using these.
     </p>
     <p class="stacks-copy">
         Most images should be coded responsive by default, meaning they’ll scale down proportionately in small viewports. It’s safest to code all images this way, even if they don’t end up scaling in practice. However if we’re confident that an image will never scale, we can display a non-responsive image using less code.
     </p>
-    {% header h3 | Foreground image attributes %}
+    {% header "h3", "Foreground image attributes" %}
     <table class="mb32 s-table s-table__bx-simple">
         <thead>
             <tr>
@@ -75,7 +75,7 @@ description:
             </tr>
         </tbody>
     </table>
-    {% header h3 | Foreground image examples %}
+    {% header "h3", "Foreground image examples" %}
     <div class="stacks-preview">
 {% highlight html %}
 /* Responsive */
@@ -91,23 +91,23 @@ description:
         </div>
     </div>
     <div class="grid s-notice s-notice__info mb48">
-        <div class="grid--cell mr8">{% icon Alert %}</div>
+        <div class="grid--cell mr8">{% icon "Alert" %}</div>
         <div class="grid--cell lh-lg">
-            <strong>Note:</strong> Every image that should <strong>scale down</strong> in small screens should have a <code class="stacks-code bg-powder-200">width: 100%; max-width: (desktop-width)px;</code> in it's <code class="stacks-code bg-powder-200">style=""</code> attribute. <code class="stacks-code bg-powder-200">(desktop-width)px;</code> is the largest size an image should appear in on desktop. This allows images to scale down when their desktop width exceeds the width of its container.
+            <strong>Note:</strong> Every image that should <strong>scale down</strong> in small screens should have a <code class="stacks-code bg-powder-300">width: 100%; max-width: (desktop-width)px;</code> in it's <code class="stacks-code bg-powder-300">style=""</code> attribute. <code class="stacks-code bg-powder-300">(desktop-width)px;</code> is the largest size an image should appear in on desktop. This allows images to scale down when their desktop width exceeds the width of its container.
         </div>
     </div>
 </section>
 
 <!-- BACKGROUND IMAGES -->
 <section class="stacks-section">
-    {% header h2 | Background images %}
+    {% header "h2", "Background images" %}
     <p class="stacks-copy">
         Background images allow us to place additional HTML content on top of them, one of the few reliable ways to provide layering possibilities in email. A benefit of using background images over foreground images is, when paired with a background color, the HTML content on top of the background image remains accessible even when images are disabled.
     </p>
     <p class="stacks-copy">
         Background images can be complicated to implement in email, as many properties need to be defined once in CSS and <em>again</em> in VML for Windows Outlook and Win10 Mail.
     </p>
-    {% header h3 | Background image attributes %}
+    {% header "h3", "Background image attributes" %}
     <table class="mb32 s-table s-table__bx-simple">
         <thead>
             <tr>
@@ -159,7 +159,7 @@ description:
             </tr>
         </tbody>
     </table>
-    {% header h3 | Background image examples %}
+    {% header "h3", "Background image examples" %}
     <div class="stacks-preview mb24">
 {% highlight html %}
 <td valign="middle" style="background-image: url('https://d2axdqolvqmdvx.cloudfront.net/857c3f94-f791-401e-85a8-e041ec72569e/bgheropatternblue.png'); background-position: center center; background-size: cover; background-color: #117FF1; text-align: center;">
@@ -206,14 +206,14 @@ description:
         </div>
     </div>
     <div class="grid s-notice s-notice__info mb48">
-        <div class="grid--cell mr8">{% icon Alert %}</div>
+        <div class="grid--cell mr8">{% icon "Alert" %}</div>
         <div class="grid--cell lh-lg">
             <strong>Note:</strong> Windows Outlook and Win10 Mail cannot scale background images, so the image referenced in VML should be prepared @1x. Most other email clients can scale background images defined in CSS, so using @2x images is advisable.
         </div>
     </div>
 </section>
 <section class="stacks-section">
-    {% header h2 | How should images be prepared? %}
+    {% header "h2", "How should images be prepared?" %}
     <p class="stacks-copy">
         Email has largely standardized on PNG, JPG, and GIF file formats. Animated GIFs are supported in all email clients, though Windows Outlook and Win10 Mail only display its first frame.
     </p>
@@ -230,7 +230,7 @@ description:
     <p class="stacks-copy">
         Images should be hosted within their respective ESP. Upload images in Iterable for Iterable emails, add images in GitHub for StackMail emails, etc. Images should not be referenced using services like Imgur or Dropbox, as they have a greater chance of being marked as spam.
     </p>
-    {% header h3 | Animated GIFs %}
+    {% header "h3", "Animated GIFs" %}
     <p class="stacks-copy">
         Animated GIFs can help explain an interaction or add a bit of delight that isn’t possible with static email designs. However there are a couple things to consider when designing and preparing animated GIFs.
     </p>

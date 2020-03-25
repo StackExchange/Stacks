@@ -6,9 +6,9 @@ description: To avoid specifying color values by hand, we’ve included a robust
 
 
 <section class="stacks-section">
-    {% header h2 | Primary colors %}
+    {% header "h2", "Primary colors" %}
     <div class="grid sm:fd-column gs16 grid__allcells4">
-        <a class="grid--cell fw-wrap p12 bg-orange-400 fc-dark mb12 bar-sm" href="#orange">
+        <a class="grid--cell fw-wrap p12 bg-orange-400 fc-dark d:fc-white mb12 bar-sm" href="#orange">
             <h2 class="fs-subheading mb4">Orange</h2>
             <p class="ff-mono mb0">@orange-400</p>
         </a>
@@ -26,24 +26,24 @@ description: To avoid specifying color values by hand, we’ve included a robust
 </section>
 
 <section class="stacks-section">
-    {% header h2 | Accent colors %}
+    {% header "h2", "Accent colors" %}
     <div class="grid sm:fd-column gs16 grid__allcells3">
-        <a class="grid--cell p12 bg-powder-100 mb12 fc-powder-900 bar-sm" href="#powder">
+        <a class="grid--cell p12 bg-powder-100 mb12 fc-dark bar-sm" href="#powder">
             <h2 class="fs-subheading mb4">Powder</h2>
             <p class="ff-mono mb0">@powder-100</p>
         </a>
 
-        <a class="grid--cell p12 bg-green-400 mb12 fc-green-900 bar-sm" href="#green">
+        <a class="grid--cell p12 bg-green-400 mb12 fc-dark bar-sm" href="#green">
             <h2 class="fs-subheading mb4">Green</h2>
             <p class="ff-mono mb0">@green-400</p>
         </a>
 
-        <a class="grid--cell p12 bg-yellow-100 mb12 fc-yellow-900 bar-sm" href="#yellow">
+        <a class="grid--cell p12 bg-yellow-100 mb12 fc-dark bar-sm" href="#yellow">
             <h2 class="fs-subheading mb4">Yellow</h2>
             <p class="ff-mono mb0">@yellow-100</p>
         </a>
 
-        <a class="grid--cell p12 bg-red-500 mb12 fc-white bar-sm" href="#red">
+        <a class="grid--cell p12 bg-red-500 mb12 fc-white d:fc-black-900 bar-sm" href="#red">
             <h2 class="fs-subheading mb4">Red</h2>
             <p class="ff-mono mb0">@red-500</p>
         </a>
@@ -51,38 +51,33 @@ description: To avoid specifying color values by hand, we’ve included a robust
 </section>
 
 <section class="stacks-section">
-    {% header h2 | Color stops %}
-    {% for color in site.data.product.color-stops %}
-        {% assign color_stops = color.stops %}
-        <div class="grid jc-space-between ai-end stacks-header">
-            <h3 class="grid--cell fl1 stacks-h3" id="{{ color.name}}">{{ color.name | capitalize }}</h3>
-            <a class="grid grid__center mbn6 s-btn s-btn__muted" href="#{{ color.name}}">
-                {% icon Link | m0 %}
-            </a>
-        </div>
+    {% header "h2", "Color stops" %}
+    {% for color in colors %}
+        {% assign color_name = color.name | capitalize %}
+
+        {% header "h3", color_name %}
         <div class="overflow-x-auto mb48">
             <table class="wmn5 s-table s-table__bx-simple s-table__condensed va-middle fs-caption">
                 <thead>
                     <tr>
                         <th scope="col" width="36px"></th>
                         <th scope="col">Less</th>
-                        <th scope="col">HEX</th>
-                        <th scope="col">RGB</th>
+                        <th scope="col">Variable</th>
                         <th scope="col">Text class</th>
                         <th scope="col">Background class</th>
                         <th scope="col" class="ta-center"><a class="s-link s-link__inherit" href="{{ "/product/guidelines/conditional-classes#hover" | relative_url }}">Hover?</a></th>
                         <th scope="col" class="ta-center"><a class="s-link s-link__inherit" href="{{ "/product/guidelines/conditional-classes#focus" | relative_url }}">Focus?</a></th>
+                        <th scope="col" class="ta-center"><a class="s-link s-link__inherit" href="{{ "/product/guidelines/conditional-classes#dark-mode" | relative_url }}">Dark?</a></th>
                     </tr>
                 </thead>
                 <tbody>
-                    {% for stop in color_stops %}
+                    {% for stop in color.stops %}
                     <tr class="ff-mono">
                         <th scope="row">
-                          <div class="stacks-swatch bar-sm bs-i-sm bg-{{ color.name }}-{{ stop.stop }}"></div>
+                          <div class="stacks-swatch bar-sm bg-{{ color.name }}-{{ stop.stop }}"></div>
                         </th>
-                        <td>@{{ color.name }}-{{ stop.stop }}</td>
+                        <td>var(--{{ color.name }}-{{ stop.stop }})</td>
                         <td>#{{ stop.hex }}</td>
-                        <td>{{ stop.rgb }}</td>
                         <td>.fc-{{ color.name }}-{{ stop.stop }}
                             {% if color.name == 'black' %}
                                 {% if stop.stop == 900 %}
@@ -100,31 +95,32 @@ description: To avoid specifying color values by hand, we’ve included a robust
                             {% endif %}
                         </td>
                         <td>.bg-{{ color.name }}-{{ stop.stop }}</td>
-                        <td class="ta-center">{% icon Checkmark | fc-green-500 %}</td>
-                        <td class="ta-center">{% icon Checkmark | fc-green-500 %}</td>
+                        <td class="ta-center">{% icon "Checkmark", "fc-green-500" %}</td>
+                        <td class="ta-center">{% icon "Checkmark", "fc-green-500" %}</td>
+                        <td class="ta-center">{% icon "Checkmark", "fc-green-500" %}</td>
                     </tr>
                     {% endfor %}
                     <tr class="ff-mono">
                         <th scope="row">
-                          <div class="stacks-swatch bar-sm bs-i-sm bg-white"></div>
+                          <div class="stacks-swatch bar-sm bg-white"></div>
                         </th>
                         <td>@white</td>
-                        <td>#FFFFFF</td>
-                        <td>255,255,255</td>
+                        <td>#ffffff</td>
                         <td>.fc-white</td>
                         <td>.bg-white</td>
-                        <td class="ta-center">{% icon Checkmark | fc-green-500 %}</td>
-                        <td class="ta-center">{% icon Checkmark | fc-green-500 %}</td>
+                        <td class="ta-center">{% icon "Checkmark", "fc-green-500" %}</td>
+                        <td class="ta-center">{% icon "Checkmark", "fc-green-500" %}</td>
+                        <td class="ta-center">{% icon "Checkmark", "fc-green-500" %}</td>
                     </tr>
                     <tr class="ff-mono">
                         <th scope="row">
-                          <div class="stacks-swatch bar-sm bs-i-sm bg-transparent"></div>
+                          <div class="stacks-swatch bar-sm bg-transparent"></div>
                         </th>
-                        <td class="fc-light">N/A</td>
                         <td class="fc-light">N/A</td>
                         <td class="fc-light">N/A</td>
                         <td class="fc-light">N/A</td>
                         <td>.bg-transparent</td>
+                        <td></td>
                         <td></td>
                         <td></td>
                     </tr>
@@ -132,11 +128,179 @@ description: To avoid specifying color values by hand, we’ve included a robust
             </table>
         </div>
     {% endfor %}
+
+    {% header "h3", "Gold" %}
+    <div class="overflow-x-auto mb48">
+        <table class="wmn5 s-table s-table__bx-simple s-table__condensed va-middle fs-caption">
+            <thead>
+                <tr>
+                    <th scope="col" style="width:36px;"></th>
+                    <th scope="col">Variable</th>
+                    <th scope="col">HEX</th>
+                    <th scope="col">Text class</th>
+                    <th scope="col">Background class</th>
+                    <th scope="col" class="ta-center"><a class="s-link s-link__inherit" href="{{ "/product/guidelines/conditional-classes#hover" | relative_url }}">Hover?</a></th>
+                    <th scope="col" class="ta-center"><a class="s-link s-link__inherit" href="{{ "/product/guidelines/conditional-classes#focus" | relative_url }}">Focus?</a></th>
+                    <th scope="col" class="ta-center"><a class="s-link s-link__inherit" href="{{ "/product/guidelines/conditional-classes#dark-mode" | relative_url }}">Dark?</a></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="ff-mono">
+                    <th scope="row">
+                        <div class="stacks-swatch bar-sm bg-gold"></div>
+                    </th>
+                    <td>var(--gold)</td>
+                    <td>#ffcc01</td>
+                    <td>.fc-gold</td>
+                    <td>.bg-gold</td>
+                    <td class="ta-center"></td>
+                    <td class="ta-center"></td>
+                    <td class="ta-center"></td>
+                </tr>
+                <tr class="ff-mono">
+                    <th scope="row">
+                        <div class="stacks-swatch bar-sm bg-gold-darker"></div>
+                    </th>
+                    <td>var(--gold-darker)</td>
+                    <td>#f1b600</td>
+                    <td>.fc-gold-darker</td>
+                    <td>.bg-gold-darker</td>
+                    <td class="ta-center"></td>
+                    <td class="ta-center"></td>
+                    <td class="ta-center"></td>
+                </tr>
+                <tr class="ff-mono">
+                    <th scope="row">
+                        <div class="stacks-swatch bar-sm bg-gold-lighter"></div>
+                    </th>
+                    <td>var(--gold-lighter)</td>
+                    <td>#fff4d1</td>
+                    <td>.fc-gold-lighter</td>
+                    <td>.bg-gold-lighter</td>
+                    <td class="ta-center"></td>
+                    <td class="ta-center"></td>
+                    <td class="ta-center"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    {% header "h3", "Silver" %}
+    <div class="overflow-x-auto mb48">
+        <table class="wmn5 s-table s-table__bx-simple s-table__condensed va-middle fs-caption">
+            <thead>
+                <tr>
+                    <th scope="col" style="width:36px;"></th>
+                    <th scope="col">Variable</th>
+                    <th scope="col">HEX</th>
+                    <th scope="col">Text class</th>
+                    <th scope="col">Background class</th>
+                    <th scope="col" class="ta-center"><a class="s-link s-link__inherit" href="{{ "/product/guidelines/conditional-classes#hover" | relative_url }}">Hover?</a></th>
+                    <th scope="col" class="ta-center"><a class="s-link s-link__inherit" href="{{ "/product/guidelines/conditional-classes#focus" | relative_url }}">Focus?</a></th>
+                    <th scope="col" class="ta-center"><a class="s-link s-link__inherit" href="{{ "/product/guidelines/conditional-classes#dark-mode" | relative_url }}">Dark?</a></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="ff-mono">
+                    <th scope="row">
+                        <div class="stacks-swatch bar-sm bg-silver"></div>
+                    </th>
+                    <td>var(--silver)</td>
+                    <td>#b4b8bc</td>
+                    <td>.fc-silver</td>
+                    <td>.bg-silver</td>
+                    <td class="ta-center"></td>
+                    <td class="ta-center"></td>
+                    <td class="ta-center"></td>
+                </tr>
+                <tr class="ff-mono">
+                    <th scope="row">
+                        <div class="stacks-swatch bar-sm bg-silver-darker"></div>
+                    </th>
+                    <td>var(--silver-darker)</td>
+                    <td>#9a9c9f</td>
+                    <td>.fc-silver-darker</td>
+                    <td>.bg-silver-darker</td>
+                    <td class="ta-center"></td>
+                    <td class="ta-center"></td>
+                    <td class="ta-center"></td>
+                </tr>
+                <tr class="ff-mono">
+                    <th scope="row">
+                        <div class="stacks-swatch bar-sm bg-silver-lighter"></div>
+                    </th>
+                    <td>var(--silver-lighter)</td>
+                    <td>#e8e8e8</td>
+                    <td>.fc-silver-lighter</td>
+                    <td>.bg-silver-lighter</td>
+                    <td class="ta-center"></td>
+                    <td class="ta-center"></td>
+                    <td class="ta-center"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    {% header "h3", "Bronze" %}
+    <div class="overflow-x-auto mb48">
+        <table class="wmn5 s-table s-table__bx-simple s-table__condensed va-middle fs-caption">
+            <thead>
+                <tr>
+                    <th scope="col" style="width:36px;"></th>
+                    <th scope="col">Variable</th>
+                    <th scope="col">HEX</th>
+                    <th scope="col">Text class</th>
+                    <th scope="col">Background class</th>
+                    <th scope="col" class="ta-center"><a class="s-link s-link__inherit" href="{{ "/product/guidelines/conditional-classes#hover" | relative_url }}">Hover?</a></th>
+                    <th scope="col" class="ta-center"><a class="s-link s-link__inherit" href="{{ "/product/guidelines/conditional-classes#focus" | relative_url }}">Focus?</a></th>
+                    <th scope="col" class="ta-center"><a class="s-link s-link__inherit" href="{{ "/product/guidelines/conditional-classes#dark-mode" | relative_url }}">Dark?</a></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="ff-mono">
+                    <th scope="row">
+                        <div class="stacks-swatch bar-sm bg-bronze"></div>
+                    </th>
+                    <td>var(--bronze)</td>
+                    <td>#caa789</td>
+                    <td>.fc-bronze</td>
+                    <td>.bg-bronze</td>
+                    <td class="ta-center"></td>
+                    <td class="ta-center"></td>
+                    <td class="ta-center"></td>
+                </tr>
+                <tr class="ff-mono">
+                    <th scope="row">
+                        <div class="stacks-swatch bar-sm bg-bronze-darker"></div>
+                    </th>
+                    <td>var(--bronze-darker)</td>
+                    <td>#ab825f</td>
+                    <td>.fc-bronze-darker</td>
+                    <td>.bg-bronze-darker</td>
+                    <td class="ta-center"></td>
+                    <td class="ta-center"></td>
+                    <td class="ta-center"></td>
+                </tr>
+                <tr class="ff-mono">
+                    <th scope="row">
+                        <div class="stacks-swatch bar-sm bg-bronze-lighter"></div>
+                    </th>
+                    <td>var(--bronze-lighter)</td>
+                    <td>#f2e9e1</td>
+                    <td>.fc-bronze-lighter</td>
+                    <td>.bg-bronze-lighter</td>
+                    <td class="ta-center"></td>
+                    <td class="ta-center"></td>
+                    <td class="ta-center"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </section>
 
 <section class="stacks-section">
-    {% header h2 | Aliases %}
-    {% header h3 | Danger and error %}
+    {% header "h2", "Aliases" %}
+    {% header "h3", "Danger and error" %}
     <table class="wmn5 s-table s-table__bx-simple s-table__condensed va-middle fs-caption">
         <thead>
             <tr>
@@ -160,7 +324,7 @@ description: To avoid specifying color values by hand, we’ve included a robust
         </tbody>
     </table>
 
-    {% header h3 | Success %}
+    {% header "h3", "Success" %}
     <table class="wmn5 s-table s-table__bx-simple s-table__condensed va-middle fs-caption">
         <thead>
             <tr>
@@ -182,7 +346,7 @@ description: To avoid specifying color values by hand, we’ve included a robust
         </tbody>
     </table>
 
-    {% header h3 | Warning %}
+    {% header "h3", "Warning" %}
     <table class="wmn5 s-table s-table__bx-simple s-table__condensed va-middle fs-caption">
         <thead>
             <tr>

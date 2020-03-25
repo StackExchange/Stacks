@@ -21,13 +21,14 @@
     width: @su16;
     height: @su16;
     border-radius: @br-sm;
-    background-color: @black-400;
+    background-color: @white; // Force a white background color for when we have transparent avatars
     background-repeat: no-repeat;
     background-size: 100%;
     vertical-align: bottom; // Make our avatars play more nicely with text next to it.
 
     .s-avatar--letter {
-        color: @white;
+        display: block; // Make sure we're treating the letter as a block-level element
+        color: @white; // Force a light appearance of text rendering
         font-size: 11px; // Force a font size so the avatar text doesn't get smaller as the window resizes
         font-weight: bold;
         text-align: center;

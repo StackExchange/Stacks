@@ -4,18 +4,17 @@ title: Buttons
 description: Buttons are user interface elements which allows users to take actions throughout the project. It is important that they have ample click space and help communicate the importance of their actions.
 ---
 <section class="stacks-section">
-    {% header h2 | Styles %}
+    {% header "h2", "Styles" %}
     <p class="stacks-copy">Stacks provides 5 different button styles:</p>
     <ol class="stacks-list">
         <li><a href="#secondary">Secondary</a></li>
         <li><a href="#primary">Primary</a></li>
         <li><a href="#danger">Danger</a></li>
         <li><a href="#muted">Muted</a></li>
-        <li><a href="#inverted">Inverted</a></li>
     </ol>
     <p class="stacks-copy">Each style is explained below, detailing how and where to use these styles.</p>
 
-    {% header h3 | Secondary %}
+    {% header "h3", "Secondary" %}
     <p class="stacks-copy">All buttons, by default, are secondary buttons. There are three, graduating secondary styles:</p>
     <ol class="stacks-list">
         <li>Clear <em>(default)</em></li>
@@ -42,7 +41,7 @@ description: Buttons are user interface elements which allows users to take acti
                         </tr>
                     </thead>
                     <tbody>
-                        {% for btn in site.data.product.buttons.secondary %}
+                        {% for btn in buttons.secondary %}
                             {% assign types = btn.classes %}
                             {% for class in types %}
                             <tr>
@@ -58,9 +57,9 @@ description: Buttons are user interface elements which allows users to take acti
                                         {% endif %}
                                     </div>
                                 </td>
-                                <td class="va-middle px4"><button class="w100 ws-nowrap s-btn {{ class.class }}" type="button" aria-pressed="false">Ask question</button></td>
-                                <td class="va-middle px4"><button class="w100 ws-nowrap s-btn {{ class.class }} is-selected" type="button" aria-pressed="false">Ask question</button></td>
-                                <td class="va-middle px4"><button class="w100 ws-nowrap s-btn {{ class.class }}" type="button" aria-pressed="false" disabled>Ask question</button></td>
+                                <td class="va-middle ta-center px4"><button class="ws-nowrap s-btn {{ class.class }}" type="button" aria-pressed="false">Ask question</button></td>
+                                <td class="va-middle ta-center px4"><button class="ws-nowrap s-btn {{ class.class }} is-selected" type="button" aria-pressed="false">Ask question</button></td>
+                                <td class="va-middle ta-center px4"><button class="ws-nowrap s-btn {{ class.class }}" type="button" aria-pressed="false" disabled>Ask question</button></td>
                             </tr>
                             {% endfor %}
                         {% endfor %}
@@ -70,7 +69,7 @@ description: Buttons are user interface elements which allows users to take acti
         </div>
     </div>
 
-    {% header h3 | Primary %}
+    {% header "h3", "Primary" %}
     <p class="stacks-copy">A visual style used to highlight the most important actions. To avoid confusing users, don’t use more than one primary button within a section or view.</p>
     <div class="stacks-preview">
 {% highlight html %}
@@ -89,7 +88,7 @@ description: Buttons are user interface elements which allows users to take acti
                         </tr>
                     </thead>
                     <tbody>
-                        {% for btn in site.data.product.buttons.primary %}
+                        {% for btn in buttons.primary %}
                             {% assign types = btn.classes %}
                             {% for class in types %}
                             <tr>
@@ -105,9 +104,9 @@ description: Buttons are user interface elements which allows users to take acti
                                         {% endif %}
                                     </div>
                                 </td>
-                                <td class="va-middle px4"><button class="w100 ws-nowrap s-btn {{ class.class }}" type="button" aria-pressed="false">Ask question</button></td>
-                                <td class="va-middle px4"><button class="w100 ws-nowrap s-btn {{ class.class }} is-selected" type="button" aria-pressed="false">Ask question</button></td>
-                                <td class="va-middle px4"><button class="w100 ws-nowrap s-btn {{ class.class }}" type="button" aria-pressed="false" disabled>Ask question</button></td>
+                                <td class="va-middle ta-center px4"><button class="ws-nowrap s-btn {{ class.class }}" type="button" aria-pressed="false">Ask question</button></td>
+                                <td class="va-middle ta-center px4"><button class="ws-nowrap s-btn {{ class.class }} is-selected" type="button" aria-pressed="false">Ask question</button></td>
+                                <td class="va-middle ta-center px4"><button class="ws-nowrap s-btn {{ class.class }}" type="button" aria-pressed="false" disabled>Ask question</button></td>
                             </tr>
                             {% endfor %}
                         {% endfor %}
@@ -117,7 +116,7 @@ description: Buttons are user interface elements which allows users to take acti
         </div>
     </div>
 
-    {% header h3 | Danger %}
+    {% header "h3", "Danger" %}
     <p class="stacks-copy">Danger buttons are a secondary button style, used to visually communicate destructive actions such as deleting content, accounts, or canceling services.</p>
     <div class="stacks-preview">
 {% highlight html %}
@@ -138,7 +137,7 @@ description: Buttons are user interface elements which allows users to take acti
                         </tr>
                     </thead>
                     <tbody>
-                        {% for btn in site.data.product.buttons.danger %}
+                        {% for btn in buttons.danger %}
                             {% assign types = btn.classes %}
                             {% for class in types %}
                             <tr>
@@ -154,9 +153,9 @@ description: Buttons are user interface elements which allows users to take acti
                                         {% endif %}
                                     </div>
                                 </td>
-                                <td class="va-middle px4"><button class="w100 ws-nowrap s-btn {{ btn.class }} {{ class.class }}" type="button" aria-pressed="false">Ask question</button></td>
-                                <td class="va-middle px4"><button class="w100 ws-nowrap s-btn {{ btn.class }} {{ class.class }} is-selected" type="button" aria-pressed="false">Ask question</button></td>
-                                <td class="va-middle px4"><button class="w100 ws-nowrap s-btn {{ btn.class }} {{ class.class }}" type="button" aria-pressed="false" disabled>Ask question</button></td>
+                                <td class="va-middle ta-center px4"><button class="ws-nowrap s-btn {{ btn.class }} {{ class.class }}" type="button" aria-pressed="false">Ask question</button></td>
+                                <td class="va-middle ta-center px4"><button class="ws-nowrap s-btn {{ btn.class }} {{ class.class }} is-selected" type="button" aria-pressed="false">Ask question</button></td>
+                                <td class="va-middle ta-center px4"><button class="ws-nowrap s-btn {{ btn.class }} {{ class.class }}" type="button" aria-pressed="false" disabled>Ask question</button></td>
                             </tr>
                             {% endfor %}
                         {% endfor %}
@@ -166,7 +165,7 @@ description: Buttons are user interface elements which allows users to take acti
         </div>
     </div>
 
-    {% header h3 | Muted %}
+    {% header "h3", "Muted" %}
     <p class="stacks-copy">Muted buttons are a secondary button style, a grayscale visual treatment. Used in layouts for the least important items or currently inactive actions.</p>
     <div class="stacks-preview">
 {% highlight html %}
@@ -187,7 +186,7 @@ description: Buttons are user interface elements which allows users to take acti
                         </tr>
                     </thead>
                     <tbody>
-                        {% for btn in site.data.product.buttons.muted %}
+                        {% for btn in buttons.muted %}
                             {% assign types = btn.classes %}
                             {% for class in types %}
                             <tr>
@@ -203,58 +202,9 @@ description: Buttons are user interface elements which allows users to take acti
                                         {% endif %}
                                     </div>
                                 </td>
-                                <td class="va-middle px4"><button class="w100 ws-nowrap s-btn {{ btn.class }} {{ class.class }}" type="button" aria-pressed="false">Ask question</button></td>
-                                <td class="va-middle px4"><button class="w100 ws-nowrap s-btn {{ btn.class }} {{ class.class }} is-selected" type="button" aria-pressed="false">Ask question</button></td>
-                                <td class="va-middle px4"><button class="w100 ws-nowrap s-btn {{ btn.class }} {{ class.class }}" type="button" aria-pressed="false" disabled>Ask question</button></td>
-                            </tr>
-                            {% endfor %}
-                        {% endfor %}
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
-
-    {% header h3 | Inverted %}
-    <p class="stacks-copy">More of a visual state then a style. Inverted buttons are used to visually separate buttons from dark backgrounds. Examples would be messaging heroes or banners which have darker backgrounds. <strong>Inverted, filled buttons are considered primary buttons.</strong></p>
-    <div class="stacks-preview">
-{% highlight html %}
-<button class="s-btn s-btn__inverted" type="button" aria-pressed="false">…</button>
-<button class="s-btn s-btn__outlined s-btn__inverted" type="button" aria-pressed="false">…</button>
-<button class="s-btn s-btn__filled s-btn__inverted" type="button" aria-pressed="false">…</button>
-{% endhighlight %}
-        <div class="stacks-preview--example">
-            <div class="overflow-x-auto">
-                <table class="wmn5 s-table s-table__bx-simple">
-                    <thead>
-                        <tr>
-                            <th scope="col">Type</th>
-                            <th scope="col" class="s-table--cell4">Class</th>
-                            <th scope="col" class="ta-center">Default State</th>
-                            <th scope="col" class="ta-center">Selected State</th>
-                            <th scope="col" class="ta-center">Disabled State</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for btn in site.data.product.buttons.inverted %}
-                            {% assign types = btn.classes %}
-                            {% for class in types %}
-                            <tr>
-                                <th scope="row" class="va-middle">{{ class.title }}</th>
-                                <td class="va-middle">
-                                    <div class="grid gs4 fw-wrap">
-                                        <code class="grid--cell stacks-code">.s-btn</code>
-                                        {% if btn.class != nil %}
-                                            <code class="grid--cell stacks-code">.{{ btn.class }}</code>
-                                        {% endif %}
-                                        {% if class.class != nil %}
-                                            <code class="grid--cell stacks-code">.{{ class.class }}</code>
-                                        {% endif %}
-                                    </div>
-                                </td>
-                                <td class="va-middle px4 {% if btn.class or class.class == "s-btn__inverted" %}bg-black-750{% endif %}"><button class="w100 ws-nowrap s-btn {{ btn.class }} {{ class.class }}" type="button" aria-pressed="false">Ask question</button></td>
-                                <td class="va-middle px4 {% if btn.class or class.class == "s-btn__inverted" %}bg-black-750{% endif %}"><button class="w100 ws-nowrap s-btn {{ btn.class }} {{ class.class }} is-selected" type="button" aria-pressed="false">Ask question</button></td>
-                                <td class="va-middle px4 {% if btn.class or class.class == "s-btn__inverted" %}bg-black-750{% endif %}"><button class="w100 ws-nowrap s-btn {{ btn.class }} {{ class.class }}" type="button" aria-pressed="false" disabled>Ask question</button></td>
+                                <td class="va-middle ta-center px4"><button class="ws-nowrap s-btn {{ btn.class }} {{ class.class }}" type="button" aria-pressed="false">Ask question</button></td>
+                                <td class="va-middle ta-center px4"><button class="ws-nowrap s-btn {{ btn.class }} {{ class.class }} is-selected" type="button" aria-pressed="false">Ask question</button></td>
+                                <td class="va-middle ta-center px4"><button class="ws-nowrap s-btn {{ btn.class }} {{ class.class }}" type="button" aria-pressed="false" disabled>Ask question</button></td>
                             </tr>
                             {% endfor %}
                         {% endfor %}
@@ -266,7 +216,7 @@ description: Buttons are user interface elements which allows users to take acti
 </section>
 
 <section class="stacks-section">
-    {% header h2 | Loading %}
+    {% header "h2", "Loading" %}
     <p class="stacks-copy">Any button can have a loading state applied by adding the <code class="stacks-code">.is-loading</code> state class.</p>
     <div class="stacks-preview">
 {% highlight html %}
@@ -288,7 +238,7 @@ description: Buttons are user interface elements which allows users to take acti
                         </tr>
                     </thead>
                     <tbody>
-                        {% for btn in site.data.product.buttons.loading %}
+                        {% for btn in buttons.loading %}
                             {% assign types = btn.classes %}
                             {% for class in types %}
                             <tr>
@@ -307,9 +257,9 @@ description: Buttons are user interface elements which allows users to take acti
                                         {% endif %}
                                     </div>
                                 </td>
-                                <td class="va-middle px4 {% if class.class == "s-btn__inverted" %}bg-black-750{% endif %}"><button class="w100 ws-nowrap s-btn {{ class.class }} {% if class.class2 %}{{ class.class2 }}{% endif %} {{ btn.class }}" type="button" aria-pressed="false">Ask question</button></td>
-                                <td class="va-middle px4 {% if class.class == "s-btn__inverted" %}bg-black-750{% endif %}"><button class="w100 ws-nowrap s-btn {{ class.class }} {% if class.class2 %}{{ class.class2 }}{% endif %} {{ btn.class }} is-selected" type="button" aria-pressed="false">Ask question</button></td>
-                                <td class="va-middle px4 {% if class.class == "s-btn__inverted" %}bg-black-750{% endif %}"><button class="w100 ws-nowrap s-btn {{ class.class }} {% if class.class2 %}{{ class.class2 }}{% endif %} {{ btn.class }}" type="button" aria-pressed="false" disabled>Ask question</button></td>
+                                <td class="va-middle ta-center px4"><button class="ws-nowrap s-btn {{ class.class }} {% if class.class2 %}{{ class.class2 }}{% endif %} {{ btn.class }}" type="button" aria-pressed="false">Ask question</button></td>
+                                <td class="va-middle ta-center px4"><button class="ws-nowrap s-btn {{ class.class }} {% if class.class2 %}{{ class.class2 }}{% endif %} {{ btn.class }} is-selected" type="button" aria-pressed="false">Ask question</button></td>
+                                <td class="va-middle ta-center px4"><button class="ws-nowrap s-btn {{ class.class }} {% if class.class2 %}{{ class.class2 }}{% endif %} {{ btn.class }}" type="button" aria-pressed="false" disabled>Ask question</button></td>
                             </tr>
                             {% endfor %}
                         {% endfor %}
@@ -320,7 +270,7 @@ description: Buttons are user interface elements which allows users to take acti
 </section>
 
 <section class="stacks-section">
-    {% header h2 | Dropdowns %}
+    {% header "h2", "Dropdowns" %}
     <p class="stacks-copy">Adding the class <code class="stacks-code">.s-btn__dropdown</code> to any button style will add an appropriately-styled caret. These should be paired with a menu or popover.</p>
 
     <div class="stacks-preview">
@@ -340,7 +290,7 @@ description: Buttons are user interface elements which allows users to take acti
                         </tr>
                     </thead>
                     <tbody>
-                        {% for btn in site.data.product.buttons.dropdown %}
+                        {% for btn in buttons.dropdown %}
                             {% assign types = btn.classes %}
                             {% for class in types %}
                             <tr>
@@ -359,9 +309,9 @@ description: Buttons are user interface elements which allows users to take acti
                                         {% endif %}
                                     </div>
                                 </td>
-                                <td class="va-middle px4 {% if class.class == "s-btn__inverted" %}bg-black-750{% endif %}"><button class="w100 ws-nowrap s-btn {{ class.class }} {% if class.class2 %}{{ class.class2 }}{% endif %} {{ btn.class }}" type="button" aria-pressed="false">Ask question</button></td>
-                                <td class="va-middle px4 {% if class.class == "s-btn__inverted" %}bg-black-750{% endif %}"><button class="w100 ws-nowrap s-btn {{ class.class }} {% if class.class2 %}{{ class.class2 }}{% endif %} {{ btn.class }} is-selected" type="button" aria-pressed="false">Ask question</button></td>
-                                <td class="va-middle px4 {% if class.class == "s-btn__inverted" %}bg-black-750{% endif %}"><button class="w100 ws-nowrap s-btn {{ class.class }} {% if class.class2 %}{{ class.class2 }}{% endif %} {{ btn.class }}" type="button" aria-pressed="false" disabled>Ask question</button></td>
+                                <td class="va-middle ta-center px4"><button class="ws-nowrap s-btn {{ class.class }} {% if class.class2 %}{{ class.class2 }}{% endif %} {{ btn.class }}" type="button" aria-pressed="false">Ask question</button></td>
+                                <td class="va-middle ta-center px4"><button class="ws-nowrap s-btn {{ class.class }} {% if class.class2 %}{{ class.class2 }}{% endif %} {{ btn.class }} is-selected" type="button" aria-pressed="false">Ask question</button></td>
+                                <td class="va-middle ta-center px4"><button class="ws-nowrap s-btn {{ class.class }} {% if class.class2 %}{{ class.class2 }}{% endif %} {{ btn.class }}" type="button" aria-pressed="false" disabled>Ask question</button></td>
                             </tr>
                             {% endfor %}
                         {% endfor %}
@@ -373,14 +323,16 @@ description: Buttons are user interface elements which allows users to take acti
 </section>
 
 <section class="stacks-section">
-    {% header h2 | Badges %}
+    {% header "h2", "Badges" %}
     <p class="stacks-copy">Adding an <code class="stacks-code">.s-btn--badge</code> to any button will add an appropriately-styled badge.</p>
 
     <div class="stacks-preview">
 {% highlight html %}
 <button class="s-btn" type="button">
     Badge
-    <span class="s-btn--badge">200</span>
+    <span class="s-btn--badge">
+        <span class="s-btn--number">198</span>
+    </span>
 </button>
 {% endhighlight %}
         <div class="stacks-preview--example">
@@ -396,7 +348,7 @@ description: Buttons are user interface elements which allows users to take acti
                         </tr>
                     </thead>
                     <tbody>
-                        {% for btn in site.data.product.buttons.badges %}
+                        {% for btn in buttons.badges %}
                             {% assign types = btn.classes %}
                             {% for class in types %}
                             <tr>
@@ -415,19 +367,19 @@ description: Buttons are user interface elements which allows users to take acti
                                         {% endif %}
                                     </div>
                                 </td>
-                                <td class="va-middle px4 {% if class.class == "s-btn__inverted" %}bg-black-750{% endif %}">
-                                    <button class="w100 ws-nowrap s-btn {{ class.class }} {% if class.class2 %}{{ class.class2 }}{% endif %} {{ btn.class }}" type="button" aria-pressed="false">
-                                        Active <span class="s-btn--badge">198</span>
+                                <td class="va-middle ta-center px4">
+                                    <button class="ws-nowrap s-btn {{ class.class }} {% if class.class2 %}{{ class.class2 }}{% endif %} {{ btn.class }}" type="button" aria-pressed="false">
+                                        Active <span class="s-btn--badge"><span class="s-btn--number">198</span></span>
                                     </button>
                                 </td>
-                                <td class="va-middle px4 {% if class.class == "s-btn__inverted" %}bg-black-750{% endif %}">
-                                    <button class="w100 ws-nowrap s-btn {{ class.class }} {% if class.class2 %}{{ class.class2 }}{% endif %} {{ btn.class }} is-selected" type="button" aria-pressed="false">
-                                        Active <span class="s-btn--badge">198</span>
+                                <td class="va-middle ta-center px4">
+                                    <button class="ws-nowrap s-btn {{ class.class }} {% if class.class2 %}{{ class.class2 }}{% endif %} {{ btn.class }} is-selected" type="button" aria-pressed="false">
+                                        Active <span class="s-btn--badge"><span class="s-btn--number">198</span></span>
                                     </button>
                                 </td>
-                                <td class="va-middle px4 {% if class.class == "s-btn__inverted" %}bg-black-750{% endif %}">
-                                    <button class="w100 ws-nowrap s-btn {{ class.class }} {% if class.class2 %}{{ class.class2 }}{% endif %} {{ btn.class }}" type="button" aria-pressed="false" disabled>
-                                        Active <span class="s-btn--badge">198</span>
+                                <td class="va-middle ta-center px4">
+                                    <button class="ws-nowrap s-btn {{ class.class }} {% if class.class2 %}{{ class.class2 }}{% endif %} {{ btn.class }}" type="button" aria-pressed="false" disabled>
+                                        Active <span class="s-btn--badge"><span class="s-btn--number">198</span></span>
                                     </button>
                                 </td>
                             </tr>
@@ -441,7 +393,7 @@ description: Buttons are user interface elements which allows users to take acti
 </section>
 
 <section class="stacks-section">
-    {% header h2 | Sizes %}
+    {% header "h2", "Sizes" %}
     <p class="stacks-copy">A button’s default font-size is determined by the <code class="stacks-code">@body-fs</code> variable. To change the button’s font-size, use the following classes with <code class="stacks-code">.s-btn</code>:</p>
 
     <div class="overflow-x-auto mb32">
@@ -455,7 +407,7 @@ description: Buttons are user interface elements which allows users to take acti
                 </tr>
             </thead>
             <tbody>
-                {% for size in site.data.product.buttons.sizes %}
+                {% for size in buttons.sizes %}
                 <tr>
                     <th scope="row" class="va-middle">{{ size.size }}</th>
                     <td class="va-middle">
@@ -475,10 +427,10 @@ description: Buttons are user interface elements which allows users to take acti
 </section>
 
 <section class="stacks-section">
-    {% header h2 | Additional classes %}
+    {% header "h2", "Additional classes" %}
     <p class="stacks-copy">Stacks provides additional classes for cases that are a bit more rare.
 
-    {% header h3 | Resets %}
+    {% header "h3", "Resets" %}
     <div class="overflow-x-auto mb32">
         <table class="wmn4 s-table s-table__bx-simple">
             <thead>
@@ -510,7 +462,7 @@ description: Buttons are user interface elements which allows users to take acti
         </table>
     </div>
 
-    {% header h3 | Icons %}
+    {% header "h3", "Icons" %}
     <div class="overflow-x-auto mb32">
         <table class="wmn4 s-table s-table__bx-simple">
             <thead>
@@ -529,15 +481,15 @@ description: Buttons are user interface elements which allows users to take acti
                     </td>
                     <td class="va-middle">Adds some margin overrides that apply to an icon within a button</td>
                     <td class="va-middle grid ai-center">
-                        <button class="grid--cell s-btn s-btn__danger s-btn__icon ws-nowrap mr8" type="button" aria-pressed="false">{% icon Trash %} Delete</button>
-                        <button class="grid--cell s-btn s-btn__icon s-btn__link" type="button" aria-pressed="false">{% icon ArrowUpLg %}</button>
+                        <button class="grid--cell s-btn s-btn__danger s-btn__icon ws-nowrap mr8" type="button" aria-pressed="false">{% icon "Trash" %} Delete</button>
+                        <button class="grid--cell s-btn s-btn__icon s-btn__link" type="button" aria-pressed="false">{% icon "ArrowUpLg" %}</button>
                     </td>
                 </tr>
             </tbody>
         </table>
     </div>
 
-    {% header h3 | Social %}
+    {% header "h3", "Social" %}
     <div class="overflow-x-auto mb32">
         <table class="wmn4 s-table s-table__bx-simple">
             <thead>
@@ -556,7 +508,7 @@ description: Buttons are user interface elements which allows users to take acti
                     </td>
                     <td class="va-middle">Styles a button consistent with Facebook’s branding</td>
                     <td class="va-middle grid ai-center">
-                        <button class="grid--cell s-btn s-btn__icon s-btn__facebook ws-nowrap mr8" type="button" aria-pressed="false">{% icon Facebook %} Facebook</button>
+                        <button class="grid--cell s-btn s-btn__icon s-btn__facebook ws-nowrap mr8" type="button" aria-pressed="false">{% icon "Facebook" %} Facebook</button>
                     </td>
                 </tr>
                 <tr>
@@ -566,7 +518,7 @@ description: Buttons are user interface elements which allows users to take acti
                     </td>
                     <td class="va-middle">Styles a button consistent with Google’s branding</td>
                     <td class="va-middle grid ai-center">
-                        <button class="grid--cell s-btn s-btn__icon s-btn__google ws-nowrap mr8" type="button" aria-pressed="false">{% icon Google | native %} Google</button>
+                        <button class="grid--cell s-btn s-btn__icon s-btn__google ws-nowrap mr8" type="button" aria-pressed="false">{% icon "Google", "native" %} Google</button>
                     </td>
                 </tr>
                 <tr>
@@ -576,7 +528,7 @@ description: Buttons are user interface elements which allows users to take acti
                     </td>
                     <td class="va-middle">Styles a button consistent with GitHub’s branding</td>
                     <td class="va-middle grid ai-center">
-                        <button class="grid--cell s-btn s-btn__icon s-btn__github ws-nowrap mr8" type="button" aria-pressed="false">{% icon GitHub %} GitHub</button>
+                        <button class="grid--cell s-btn s-btn__icon s-btn__github ws-nowrap mr8" type="button" aria-pressed="false">{% icon "GitHub" %} GitHub</button>
                     </td>
                 </tr>
             </tbody>
@@ -585,10 +537,10 @@ description: Buttons are user interface elements which allows users to take acti
 </section>
 
 <section class="stacks-section">
-    {% header h2 | Ordering %}
+    {% header "h2", "Ordering" %}
     <p class="stacks-copy">To maintain product consistency, buttons should maintain the following layout ordering:</p>
 
-    {% header h3 | Within a row %}
+    {% header "h3", "Within a row" %}
     <p class="stacks-copy">Most button groups should be ordered from the most important to the least important action, left to right.</p>
     <div class="stacks-preview">
 {% highlight html %}
@@ -607,11 +559,11 @@ description: Buttons are user interface elements which allows users to take acti
         </div>
     </div>
 
-    {% header h3 | Within a column %}
+    {% header "h3", "Within a column" %}
     <p class="stacks-copy">Sometimes the layout dictates that buttons need to be stacked on top of each other. Again, these buttons should be stacked from the most important to the least important, top to bottom.</p>
     <div class="stacks-preview">
 {% highlight html %}
-<div class="grid gs4 ff-column-nowrap">
+<div class="grid gs4 fd-column">
     <button class="grid--cell s-btn s-btn__primary" type="button">Post answer</button>
     <button class="grid--cell s-btn s-btn__filled" type="button">Save draft</button>
     <button class="grid--cell s-btn s-btn__outlined" type="button">Preview answer</button>
@@ -619,7 +571,7 @@ description: Buttons are user interface elements which allows users to take acti
 </div>
 {% endhighlight %}
         <div class="stacks-preview--example">
-            <div class="grid gs4 ff-column-nowrap">
+            <div class="grid gs4 fd-column wmx2">
                 <button class="grid--cell s-btn s-btn__primary" type="button">Post answer</button>
                 <button class="grid--cell s-btn s-btn__filled" type="button">Save draft</button>
                 <button class="grid--cell s-btn s-btn__outlined" type="button">Preview answer</button>
@@ -628,7 +580,7 @@ description: Buttons are user interface elements which allows users to take acti
         </div>
     </div>
 
-    {% header h3 | Within a header %}
+    {% header "h3", "Within a header" %}
     <p class="stacks-copy">Sometimes the best place for a series of actions is in the same area as the title. In these cases, the buttons should be pulled to the right. Within this instance, the button order should be reversed with the most important action to the far right and the least important action to the far left.</p>
     <div class="stacks-preview">
 {% highlight html %}

@@ -3,11 +3,11 @@ layout: page
 title: Typography
 description: Stacks provides atomic classes to override default styling of typography. Change typographic weights, styles, and alignment with these atomic styles.
 ---
-<section id="typography-basic" class="stacks-section">
-    {% header h2 | Basic %}
+<section class="stacks-section">
+    {% header "h2", "Basic" %}
     <p class="stacks-copy">These styles should only be used as overrides. They shouldn’t replace standard semantic uses of <code class="stacks-code">strong</code> or <code class="stacks-code">em</code> tags.</p>
 
-    {% header h3 | Basic classes %}
+    {% header "h3", "Basic classes" %}
     <div class="overflow-x-auto mb32">
         <table class="wmn5 s-table s-table__bx-simple">
             <thead>
@@ -18,7 +18,7 @@ description: Stacks provides atomic classes to override default styling of typog
                 </tr>
             </thead>
             <tbody>
-                {% for basic in site.data.product.type-definitions.type-basic %}
+                {% for basic in typography.type-basic %}
                     <tr class="fs-caption">
                         <th scope="row"><code class="stacks-code">.{{ basic.class }}</code></th>
                         <td><code class="stacks-code bg-white">{{ basic.output }}</code></td>
@@ -28,9 +28,8 @@ description: Stacks provides atomic classes to override default styling of typog
             </tbody>
         </table>
     </div>
-    {% include notice-unset.html %}
 
-    {% header h3 | Basic examples %}
+    {% header "h3", "Basic examples" %}
     <div class="stacks-preview">
 {% highlight html %}
 <p class="fw-normal">…</p>
@@ -49,26 +48,28 @@ description: Stacks provides atomic classes to override default styling of typog
 <a class="td-underline">…</a>
 <a class="td-none">…</a>
 {% endhighlight %}
-        <div class="stacks-preview--example grid ff-column-nowrap gs16 gsy">
-            <div class="grid--cell"><strong>Font Weight:</strong> Normal</div>
-            <div class="grid--cell"><strong>Font Weight:</strong> <span class="fw-bold">Bold</span></div>
-            <div class="grid--cell"><strong>Font Style:</strong> <span class="fs-normal">Normal</span></div>
-            <div class="grid--cell"><strong>Font Style:</strong> <span class="fs-italic">Italic</span></div>
-            <div class="grid--cell mb32"><strong>Font Style:</strong> <span class="fs-unset">Unset</span></div>
-            <div class="grid--cell"><strong>Text Transform:</strong> <span class="tt-capitalize">Capitalize</span></div>
-            <div class="grid--cell"><strong>Text Transform:</strong> <span class="tt-lowercase">Lowercase</span></div>
-            <div class="grid--cell"><strong>Text Transform:</strong> <span class="tt-uppercase">Uppercase</span></div>
-            <div class="grid--cell"><strong>Text Transform:</strong> <span class="tt-none">None</span></div>
-            <div class="grid--cell mb32"><strong>Text Transform:</strong> <span class="tt-unset">Unset</span></div>
-            <div class="grid--cell"><strong>Text Decoration:</strong> <a><span class="td-underline">Underline</span></a></div>
-            <div class="grid--cell"><strong>Text Decoration:</strong> <a><span class="td-none">None</span></a></div>
+        <div class="stacks-preview--example">
+            <div class="grid fd-column gs16 gsy">
+                <div class="grid--cell"><strong>Font Weight:</strong> Normal</div>
+                <div class="grid--cell"><strong>Font Weight:</strong> <span class="fw-bold">Bold</span></div>
+                <div class="grid--cell"><strong>Font Style:</strong> <span class="fs-normal">Normal</span></div>
+                <div class="grid--cell"><strong>Font Style:</strong> <span class="fs-italic">Italic</span></div>
+                <div class="grid--cell mb32"><strong>Font Style:</strong> <span class="fs-unset">Unset</span></div>
+                <div class="grid--cell"><strong>Text Transform:</strong> <span class="tt-capitalize">Capitalize</span></div>
+                <div class="grid--cell"><strong>Text Transform:</strong> <span class="tt-lowercase">Lowercase</span></div>
+                <div class="grid--cell"><strong>Text Transform:</strong> <span class="tt-uppercase">Uppercase</span></div>
+                <div class="grid--cell"><strong>Text Transform:</strong> <span class="tt-none">None</span></div>
+                <div class="grid--cell mb32"><strong>Text Transform:</strong> <span class="tt-unset">Unset</span></div>
+                <div class="grid--cell"><strong>Text Decoration:</strong> <a><span class="td-underline">Underline</span></a></div>
+                <div class="grid--cell"><strong>Text Decoration:</strong> <a><span class="td-none">None</span></a></div>
+            </div>
         </div>
     </div>
 </section>
 
 <section id="typography-layout" class="stacks-section">
-    {% header h2 | Layout %}
-    {% header h3 | Layout classes %}
+    {% header "h2", "Layout" %}
+    {% header "h3", "Layout classes" %}
     <div class="overflow-x-auto mb32">
         <table class="wmn5 s-table s-table__bx-simple va-middle">
             <thead>
@@ -80,14 +81,14 @@ description: Stacks provides atomic classes to override default styling of typog
                 </tr>
             </thead>
             <tbody>
-                {% for layout in site.data.product.type-definitions.type-layout %}
+                {% for layout in typography.type-layout %}
                     <tr class="fs-caption">
                         <th scope="row"><code class="stacks-code">.{{ layout.class }}</code></th>
                         <td><code class="stacks-code bg-white">{{ layout.output }}</code></td>
                         <td><p class="m0">{{ layout.define }}</p></td>
                         <td class="ta-center">
                             {% if layout.responsive %}
-                                {% icon Checkmark | fc-green-500 %}
+                                {% icon "Checkmark", "fc-green-500" %}
                             {% endif %}
                         </td>
                     </tr>
@@ -96,9 +97,7 @@ description: Stacks provides atomic classes to override default styling of typog
         </table>
     </div>
 
-    {% include notice-unset.html %}
-
-    {% header h3 | Layout examples %}
+    {% header "h3", "Layout examples" %}
     <div class="stacks-preview">
 {% highlight html %}
 <p class="ta-left">Text align: Left</p>
@@ -131,16 +130,12 @@ description: Stacks provides atomic classes to override default styling of typog
             <p class="grid--cell ws-pre-line"><strong>White-space:</strong> Pre-line</p>
             <p class="grid--cell ws-unset mb32"><strong>White-space:</strong> Unset</p>
             <p class="grid--cell ow-break-word mb32"><strong>Word Wrap:</strong> Break word</p>
-            <p class="grid--cell">
-                <div class="truncate wmx3">
-                    <strong>Truncate:</strong> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                </div>
         </div>
     </div>
 </section>
 
-<section id="typography-font" class="stacks-section">
-    {% header h2 | Fonts %}
+<section class="stacks-section">
+    {% header "h2", "Fonts" %}
     <div class="stacks-preview">
 {% highlight html %}
 <p class="ff-sans">…</p>
@@ -159,18 +154,18 @@ description: Stacks provides atomic classes to override default styling of typog
             </div>
             <div class="grid--cell">
                 <p class="ff-mono mb0">Monospace</p>
-                <p class="ff-mono fs-caption fc-light">SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace</p>
+                <p class="ff-mono fs-caption fc-light mb0">SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace</p>
             </div>
         </div>
     </div>
 </section>
 
-<section id="typography-scale" class="stacks-section">
-    {% header h2 | Sizes %}
+<section class="stacks-section">
+    {% header "h2", "Sizes" %}
     <p class="stacks-copy">
         Fonts larger than <code class="stacks-code">.fs-body1</code> are reduced in size at the smallest responsive breakpoint. <code class="stacks-code">.fs-body1</code> or smaller remain fixed at their initial pixel values.
     </p>
-    {% header h3 | Size classes %}
+    {% header "h3", "Size classes" %}
     <div class="overflow-x-auto mb32">
         <table class="wmn3 s-table s-table__bx-simple">
             <thead>
@@ -181,7 +176,7 @@ description: Stacks provides atomic classes to override default styling of typog
                 </tr>
             </thead>
             <tbody>
-                {% for term in site.data.product.type-definitions.fontsize %}
+                {% for term in typography.fontsize %}
                     <tr>
                         <th scope="row"><code class="stacks-code">.fs-{{ term.term }}</code></th>
                         <td><code class="stacks-code bg-white">{{ term.define }}</code></td>
@@ -192,7 +187,7 @@ description: Stacks provides atomic classes to override default styling of typog
         </table>
     </div>
 
-    {% header h3 | Size examples %}
+    {% header "h3", "Size examples" %}
     <div class="stacks-preview">
 {% highlight html %}
 <p class="fs-fine">…</p>
@@ -210,7 +205,7 @@ description: Stacks provides atomic classes to override default styling of typog
 <p class="fs-display4">…</p>
 {% endhighlight %}
         <div class="stacks-preview--example grid ff-column-nowrap gs16 gsy my0">
-            {% for term in site.data.product.type-definitions.fontsize %}
+            {% for term in typography.fontsize %}
             <div class="grid">
                 <div class="grid--cell3 fc-light fs-caption fw-bold">{{ term.label }}</div>
                 <div class="grid--cell fs-{{ term.term }} lh-xs">
@@ -222,7 +217,7 @@ description: Stacks provides atomic classes to override default styling of typog
         </div>
     </div>
 
-    {% header h2 | Category titles %}
+    {% header "h2", "Category titles" %}
     <p class="stacks-copy">Category titles help break content into digestible chunks, but are visually smaller than a traditional headline. They are meta descriptions of a content block. To further visually separate the content block from surrounding items, you can add a <code class="stacks-code">.has-border</code> class.</p>
     <div class="stacks-preview">
 {% highlight html %}
@@ -242,8 +237,8 @@ description: Stacks provides atomic classes to override default styling of typog
     </div>
 </section>
 
-<section id="typography-spacing" class="stacks-section">
-    {% header h2 | Line height %}
+<section class="stacks-section">
+    {% header "h2", "Line height" %}
     <div class="stacks-preview">
 {% highlight html %}
 <p class="lh-xs">…</p>
@@ -252,6 +247,7 @@ description: Stacks provides atomic classes to override default styling of typog
 <p class="lh-lg">…</p>
 <p class="lh-xl">…</p>
 <p class="lh-xxl">…</p>
+<p class="lh-unset">…</p>
 {% endhighlight %}
         <div class="stacks-preview--example grid ff-column-nowrap gs16 gsy my0">
             <p class="grid--cell lh-xs"><strong>Line Height XS:</strong> This sets the <code class="stacks-code">line-height</code> value to <code class="stacks-code">1</code>. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
@@ -260,12 +256,13 @@ description: Stacks provides atomic classes to override default styling of typog
             <p class="grid--cell lh-lg"><strong>Line Height LG:</strong> This sets the <code class="stacks-code">line-height</code> value to <code class="stacks-code">1.4</code>. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
             <p class="grid--cell lh-xl"><strong>Line Height XL:</strong> This sets the <code class="stacks-code">line-height</code> value to <code class="stacks-code">1.53</code>. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
             <p class="grid--cell lh-xxl"><strong>Line Height XXL:</strong> This sets the <code class="stacks-code">line-height</code> value to <code class="stacks-code">1.67</code>. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+            <p class="grid--cell lh-unset"><strong>Line Height Unset:</strong> This sets the <code class="stacks-code">line-height</code> value to <code class="stacks-code">initial</code>. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
         </div>
     </div>
 </section>
 
-<section id="typography-scale" class="stacks-section">
-    {% header h2 | Colors %}
+<section class="stacks-section">
+    {% header "h2", "Colors" %}
     <div class="stacks-preview">
 {% highlight html %}
 <p class="fc-light">…</p>
@@ -278,6 +275,65 @@ description: Stacks provides atomic classes to override default styling of typog
             <p class="grid--cell fc-medium"><strong>Color:</strong> Medium <code class="stacks-code">@black-700</code></p>
             <p class="grid--cell"><strong>Color:</strong> Default <code class="stacks-code">@black-800</code></p>
             <p class="grid--cell fc-dark"><strong>Color:</strong> Dark <code class="stacks-code">@black-900</code></p>
+        </div>
+    </div>
+</section>
+
+<section class="stacks-section">
+    {% header "h2", "Truncation" %}
+    <p class="stacks-copy">CSS offers truncation on arbitrarily-long strings. This can help sanitize user-inputted things like bios, locations, or display names. In order for text truncation to work, it should be applied to a block-level element.</p>
+    <div class="stacks-preview">
+{% highlight html %}
+<p class="truncate">…</p>
+<p class="v-truncate1">…</p>
+<p class="v-truncate2">…</p>
+<p class="v-truncate3">…</p>
+<p class="v-truncate4">…</p>
+<p class="v-truncate5">…</p>
+{% endhighlight %}
+        <div class="stacks-preview--example">
+            <div class="truncate wmx3 mb16">
+                Regardless of length, this text will be truncated horizontally. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+            </div>
+
+            <div class="v-truncate1 wmx3 mb16">
+                Regardless of length, this text will be this text will be truncated to 1 line, vertically. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+            </div>
+
+            <div class="v-truncate2 wmx3 mb16">
+                Regardless of length, this text will be this text will be truncated to 2 lines, vertically. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+            </div>
+
+            <div class="v-truncate3 wmx3 mb16">
+                Regardless of length, this text will be this text will be truncated to 3 lines, vertically. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+            </div>
+
+            <div class="v-truncate4 wmx3 mb16">
+                Regardless of length, this text will be this text will be truncated to 4 lines, vertically. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+            </div>
+
+            <div class="v-truncate5 wmx3">
+                Regardless of length, this text will be this text will be truncated to 5 lines, vertically. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="stacks-section">
+    {% header "h2", "Hyphenation" %}
+    <p class="stacks-copy">Our hyphenation classes determine when text that wraps across multiple lines is hyphenated. You can prevent hyphenation entirely, or allow the browser to automatically hypenate.</p>
+    <div class="stacks-preview">
+{% highlight html %}
+<p class="hyphens-none">…</p>
+<p class="hyphens-auto">…</p>
+{% endhighlight %}
+        <div class="stacks-preview--example grid">
+            <div class="grid--cell bg-black-075 p12 ba bc-black-3 hyphens-none ow-break-word w96 mr16">
+                This text will not be hyphenated when large words break—longer words are broken by <code class="stacks-code bg-black-150">.ow-break-word</code>.
+            </div>
+            <div class="grid--cell bg-black-075 p12 ba bc-black-3 hyphens-auto w96">
+                This text will be hyphenated when large words break. <code class="stacks-code bg-black-150">.ow-break-word</code> shouldn’t be necessary since breaks are implied by hyphenation rules.
+            </div>
         </div>
     </div>
 </section>

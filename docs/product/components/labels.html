@@ -6,12 +6,12 @@ description: Labels are used to describe inputs, select menus, textareas, radio 
 <section class="stacks-section">
     <p class="stacks-copy">Labels inform users what information is being asked of them. They should be written in sentence case.</p>
     <div class="grid s-notice s-notice__info">
-        <div class="grid--cell mr8">{% icon Alert %}</div>
-        <div class="grid--cell lh-lg">For usability reasons, if a label is connected with an input, the <code class="stacks-code bg-powder-200">for="[id]"</code> attribute should be filled in. This attribute references the input’s <code class="stacks-code bg-powder-200">id="[value]"</code> value. This makes clicking the label automatically focus the proper input.</div>
+        <div class="grid--cell mr8">{% icon "Alert" %}</div>
+        <div class="grid--cell lh-lg">For usability reasons, if a label is connected with an input, the <code class="stacks-code bg-powder-300">for="[id]"</code> attribute should be filled in. This attribute references the input’s <code class="stacks-code bg-powder-300">id="[value]"</code> value. This makes clicking the label automatically focus the proper input.</div>
     </div>
 </section>
 <section class="stacks-section">
-    {% header h2 | Base style %}
+    {% header "h2", "Base style" %}
     <div class="stacks-preview">
 {% highlight html %}
 <form class="grid gs4 gsy fd-column">
@@ -33,7 +33,7 @@ description: Labels are used to describe inputs, select menus, textareas, radio 
 </section>
 
 <section class="stacks-section">
-    {% header h2 | Sizes %}
+    {% header "h2", "Sizes" %}
     <div class="overflow-x-auto mb32">
         <table class="wmn4 s-table s-table__bx-simple va-middle">
             <thead>
@@ -45,8 +45,8 @@ description: Labels are used to describe inputs, select menus, textareas, radio 
                 </tr>
             </thead>
             <tbody>
-                {% for item in site.data.product.inputs.label %}
-                    {% assign size = item.sizes  %}
+                {% for item in inputs.label %}
+                    {% assign size = item.sizes %}
                     {% for item in size %}
                     <tr>
                         <th scope="row">{{ item.name }}</th>
@@ -62,7 +62,7 @@ description: Labels are used to describe inputs, select menus, textareas, radio 
 </section>
 
 <section class="stacks-section">
-    {% header h2 | Description copy %}
+    {% header "h2", "Description copy" %}
     <p class="stacks-copy">When a label or input needs further explantation, text should be placed directly underneath it.</p>
 
     <div class="stacks-preview">
@@ -96,46 +96,86 @@ description: Labels are used to describe inputs, select menus, textareas, radio 
 </section>
 
 <section class="stacks-section">
-    {% header h2 | Status %}
+    {% header "h2", "Status" %}
     <p class="stacks-copy">When you need to flag labels as required or optional, use the following flags. Use the full word “Required” or “Optional” for these flags instead of using asterisks. If a majority of a form’s inputs are required, it isn’t necessary to show that they’re required until after the form has been submitted with errors. It may be more appropriate to only mark the non-required fields as optional.</p>
 
-    {% header h3 | Optional %}
+    {% header "h3", "Optional" %}
     <div class="stacks-preview">
 {% highlight html %}
-{% include_relative examples/label-optional.html %}
+<form class="grid gs4 gsy fd-column">
+    <label class="grid--cell s-label" for="question-tags">Question tags <span class="s-label--status">Optional</span></label>
+    <div class="grid ps-relative">
+        <input class="grid--cell s-input" type="text" id="question-tags" placeholder="e.g. Why doesn’t Stack Overflow use a custom web font?"/>
+    </div>
+</form>
 {% endhighlight %}
         <div class="stacks-preview--example">
-            {% include_relative examples/label-optional.html %}
+            <form class="grid gs4 gsy fd-column">
+                <label class="grid--cell s-label" for="question-tags">Question tags <span class="s-label--status">Optional</span></label>
+                <div class="grid ps-relative">
+                    <input class="grid--cell s-input" type="text" id="question-tags" placeholder="e.g. Why doesn’t Stack Overflow use a custom web font?"/>
+                </div>
+            </form>
         </div>
     </div>
 
-    {% header h3 | Required %}
+    {% header "h3", "Required" %}
     <div class="stacks-preview">
 {% highlight html %}
-{% include_relative examples/label-required.html %}
+<form class="grid gs4 gsy fd-column">
+    <label class="grid--cell s-label" for="question-title-required">Question title <span class="s-label--status s-label--status__required">Required</span></label>
+    <div class="grid ps-relative">
+        <input class="grid--cell s-input" type="text" id="question-title-required" placeholder="e.g. Why doesn’t Stack Overflow use a custom web font?"/>
+    </div>
+</form>
 {% endhighlight %}
         <div class="stacks-preview--example">
-            {% include_relative examples/label-required.html %}
+            <form class="grid gs4 gsy fd-column">
+                <label class="grid--cell s-label" for="question-title-required">Question title <span class="s-label--status s-label--status__required">Required</span></label>
+                <div class="grid ps-relative">
+                    <input class="grid--cell s-input" type="text" id="question-title-required" placeholder="e.g. Why doesn’t Stack Overflow use a custom web font?"/>
+                </div>
+            </form>
         </div>
     </div>
 
-    {% header h3 | New %}
+    {% header "h3", "New" %}
     <div class="stacks-preview">
 {% highlight html %}
-{% include_relative examples/label-new.html %}
+<form class="grid gs4 gsy fd-column">
+    <label class="grid--cell s-label" for="question-title-new">What is your favorite animal? <span class="s-label--status s-label--status__new">New</span></label>
+    <div class="grid ps-relative">
+        <input class="grid--cell s-input" type="text" id="question-title-new" placeholder="e.g. hedgehog, platypus, sugar glider"/>
+    </div>
+</form>
 {% endhighlight %}
         <div class="stacks-preview--example">
-            {% include_relative examples/label-new.html %}
+            <form class="grid gs4 gsy fd-column">
+                <label class="grid--cell s-label" for="question-title-new">What is your favorite animal? <span class="s-label--status s-label--status__new">New</span></label>
+                <div class="grid ps-relative">
+                    <input class="grid--cell s-input" type="text" id="question-title-new" placeholder="e.g. hedgehog, platypus, sugar glider"/>
+                </div>
+            </form>
         </div>
     </div>
 
-    {% header h3 | Beta %}
+    {% header "h3", "Beta" %}
     <div class="stacks-preview">
 {% highlight html %}
-{% include_relative examples/label-beta.html %}
+<form class="grid gs4 gsy fd-column">
+    <label class="grid--cell s-label" for="question-title-beta">Notify people <span class="s-label--status s-label--status__beta">Beta</span></label>
+    <div class="grid ps-relative">
+        <input class="grid--cell s-input" type="text" id="question-title-beta" placeholder="e.g. jdoe, bgates, sjobs"/>
+    </div>
+</form>
 {% endhighlight %}
         <div class="stacks-preview--example">
-            {% include_relative examples/label-beta.html %}
+            <form class="grid gs4 gsy fd-column">
+                <label class="grid--cell s-label" for="question-title-beta">Notify people <span class="s-label--status s-label--status__beta">Beta</span></label>
+                <div class="grid ps-relative">
+                    <input class="grid--cell s-input" type="text" id="question-title-beta" placeholder="e.g. jdoe, bgates, sjobs"/>
+                </div>
+            </form>
         </div>
     </div>
 </section>

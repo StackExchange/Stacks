@@ -1,11 +1,12 @@
 ---
 layout: page
 title: Tables
+js: true
 description: Tables are used to list all information from a data set. The base style establishes preferred padding, font-size, and font-weight treatments. To enhance or customize the look of the table, apply any additional classes listed below.
 ---
 
 <section class="stacks-section">
-    {% header h2 | Default style %}
+    {% header "h2", "Default style" %}
     <p class="stacks-copy">The default table style is a bordered cell layout with a stylized header row.</p>
     <div class="stacks-preview">
 {% highlight html %}
@@ -70,9 +71,9 @@ description: Tables are used to list all information from a data set. The base s
 </section>
 
 <section class="stacks-section">
-    {% header h2 | Borders & backgrounds %}
+    {% header "h2", "Borders & backgrounds" %}
     <p class="stacks-copy">By default, tables are outlined, have borders on all cells, and have a styled header. Depending on the size and complexity of a table, these can all be configured.</p>
-    {% header h3 | Horizontal borders %}
+    {% header "h3", "Horizontal borders" %}
     <p class="stacks-copy">Shows only horizontal table cell borders. Good for tables with lots of data that can be sorted and filtered.</p>
     <div class="stacks-preview mb24">
 {% highlight html %}
@@ -120,7 +121,7 @@ description: Tables are used to list all information from a data set. The base s
         </div>
     </div>
 
-    {% header h3 | Simple borders %}
+    {% header "h3", "Simple borders" %}
     <p class="stacks-copy">Removes most of the default borders and backgrounds. Good for tables without much data that don't need to be sorted or filtered.</p>
     <div class="stacks-preview mb24">
 {% highlight html %}
@@ -168,7 +169,7 @@ description: Tables are used to list all information from a data set. The base s
         </div>
     </div>
 
-    {% header h3 | No borders %}
+    {% header "h3", "No borders" %}
     <p class="stacks-copy">Removes all table cell borders.</p>
     <div class="stacks-preview mb24">
 {% highlight html %}
@@ -215,7 +216,7 @@ description: Tables are used to list all information from a data set. The base s
             </table>
         </div>
     </div>
-    {% header h3 | Zebra striping %}
+    {% header "h3", "Zebra striping" %}
     <p class="stacks-copy">When tables have a lot of information, you can help users group information and isolate data by adding zebra striping.</p>
 
     <div class="stacks-preview">
@@ -266,10 +267,10 @@ description: Tables are used to list all information from a data set. The base s
 </section>
 
 <section class="stacks-section">
-    {% header h2 | Spacing %}
+    {% header "h2", "Spacing" %}
     <p class="stacks-copy">A table’s padding can be changed to be more or less condensed.</p>
 
-    {% header h3 | Small %}
+    {% header "h3", "Small" %}
     <div class="stacks-preview mb24">
 {% highlight html %}
 <table class="s-table s-table__sm">
@@ -304,7 +305,7 @@ description: Tables are used to list all information from a data set. The base s
         </div>
     </div>
 
-    {% header h3 | Default %}
+    {% header "h3", "Default" %}
     <div class="stacks-preview mb24">
 {% highlight html %}
 <table class="s-table">
@@ -339,7 +340,7 @@ description: Tables are used to list all information from a data set. The base s
         </div>
     </div>
 
-    {% header h3 | Large %}
+    {% header "h3", "Large" %}
     <div class="stacks-preview">
 {% highlight html %}
 <table class="s-table s-table__lg">
@@ -376,9 +377,9 @@ description: Tables are used to list all information from a data set. The base s
 </section>
 
 <section class="stacks-section">
-    {% header h2 | Cell widths %}
+    {% header "h2", "Cell widths" %}
     <p class="stacks-copy">Table columns will size themselves based on their content. To set a specific width, you can use one of the following table cell classes to specify the width for any column.</p>
-    {% header h3 | Classes %}
+    {% header "h3", "Classes" %}
     <table class="mb24 s-table s-table__bx-simple">
         <thead>
             <tr>
@@ -387,7 +388,7 @@ description: Tables are used to list all information from a data set. The base s
             </tr>
         </thead>
         <tbody>
-            {% for item in site.data.product.tables.widths %}
+            {% for item in tables.widths %}
             <tr>
                 <td><code class="ff-mono fw-bold">{{ item.class }}</code></td>
                 <td><code class="ff-mono">{{ item.output }}</code></td>
@@ -396,7 +397,7 @@ description: Tables are used to list all information from a data set. The base s
         </tbody>
     </table>
 
-    {% header h3 | Examples %}
+    {% header "h3", "Examples" %}
     <div class="stacks-preview">
 {% highlight html %}
 // Example 1
@@ -459,8 +460,8 @@ description: Tables are used to list all information from a data set. The base s
 </section>
 
 <section class="stacks-section">
-    {% header h2 | Alignment %}
-    {% header h3 | Vertical alignment %}
+    {% header "h2", "Alignment" %}
+    {% header "h3", "Vertical alignment" %}
     <p class="stacks-copy">The default vertical alignment is <code class="stacks-code">middle</code>. You change a table’s or a specific cell’s vertical alignment by using the <a href="{{ "/product/base/vertical-alignment#classes" | relative_url }}">Vertical Alignment atomic classes</a>.</p>
     <div class="stacks-preview">
 {% highlight html %}
@@ -505,7 +506,7 @@ description: Tables are used to list all information from a data set. The base s
         </div>
     </div>
 
-    {% header h3 | Text alignment %}
+    {% header "h3", "Text alignment" %}
     <p class="stacks-copy">Text alignment can be changed at a table or cell level by using <a href="{{ "/product/base/typography#layout-classes" | relative_url }}">atomic text alignment classes</a>. Columns containing copy should be left-aligned. Columns containing numbers should be right-aligned.</p>
     <div class="stacks-preview">
 {% highlight html %}
@@ -551,10 +552,9 @@ description: Tables are used to list all information from a data set. The base s
     </div>
 </section>
 <section class="stacks-section">
-    {% header h2 | Sortable tables %}
+    {% header "h2", "Sortable tables" %}
     <p class="stacks-copy">To indicate that the user can sort a table by different columns, add the <code class="stacks-code">s-table__sortable</code> class to the table.</p>
-    <p class="stacks-copy">The <code class="stacks-code">&lt;th&gt;</code> cells should include arrows to indicate sortability or the currently applied sorting. In addition, the column that
-        is currently sorted should be indicated with the <code class="stacks-code">is-sorted</code> class on its <code class="stacks-code">&lt;th&gt;</code>.</p>
+    <p class="stacks-copy">The <code class="stacks-code">&lt;th&gt;</code> cells should include arrows to indicate sortability or the currently applied sorting. In addition, the column that is currently sorted should be indicated with the <code class="stacks-code">is-sorted</code> class on its <code class="stacks-code">&lt;th&gt;</code>.</p>
     <div class="stacks-preview">
 {% highlight html %}
 <table class="s-table s-table__sortable">
@@ -578,23 +578,23 @@ description: Tables are used to list all information from a data set. The base s
                     <tr>
                         <th scope="col" class="is-sorted">
                             Listing
-                            {% icon ArrowDownSm %}
+                            {% icon "ArrowDownSm" %}
                         </th>
                         <th scope="col">
                             Status
-                            {% icon ArrowUpDownSm %}
+                            {% icon "ArrowUpDownSm" %}
                         </th>
                         <th scope="col">
                             Owner
-                            {% icon ArrowUpDownSm %}
+                            {% icon "ArrowUpDownSm" %}
                         </th>
                         <th scope="col" class="ta-right">
                             Views
-                            {% icon ArrowUpDownSm %}
+                            {% icon "ArrowUpDownSm" %}
                         </th>
                         <th scope="col" class="ta-right">
                             Applies
-                            {% icon ArrowUpDownSm %}
+                            {% icon "ArrowUpDownSm" %}
                         </th>
                     </tr>
                 </thead>
@@ -634,8 +634,7 @@ description: Tables are used to list all information from a data set. The base s
         </div>
     </div>
 
-    {% header h3 | JavaScript sorting %}
-
+    {% header "h3", "JavaScript sorting" %}
     <p class="stacks-copy">Stacks provides built-in functionality for letting the user sort a table by the values in a column through clicking the column header. This requires the complete data to already exist in the table (e.g. it is not going to work if the table is paged and requires a call to the server to update data on sorting). See the <a href="{{ "/product/guidelines/javascript" | relative_url }}">JavaScript introduction</a> for general information about JS in Stacks.</p>
 
     <p class="stacks-copy">To make your table user-sortable, do the following:</p>
@@ -648,9 +647,9 @@ description: Tables are used to list all information from a data set. The base s
             Add the three icons for showing <i>ascending sort</i>, <i>descending sort</i>, and <i>unsorted</i> to each of these header cells, hiding the first two with a <code class="stacks-code">d-none</code> class. Add the <code class="stacks-code">js-sorting-indicator</code> class to each of the icons, and add <code class="stacks-code">js-sorting-indicator-asc</code>, <code class="stacks-code">js-sorting-indicator-desc</code>, and <code class="stacks-code">js-sorting-indicator-none</code> to the appropriate icon.
 
             <div class="grid s-notice s-notice__info mt16">
-                <div class="grid--cell mr8">{% icon Alert %}</div>
+                <div class="grid--cell mr8">{% icon "Alert" %}</div>
                 <div class="grid--cell lh-xl">
-                    <b>Note:</b> Using <code class="stacks-code bg-powder-200">js-…</code> classes is not really the optimal way of doing this, and will probably replaced with something better eventually. When that happens, the <code class="stacks-code bg-powder-200">js-…</code> mechanism will be deprecated but continue to be supported for a while, so you have ample time to update things.
+                    <b>Note:</b> Using <code class="stacks-code bg-powder-300">js-…</code> classes is not really the optimal way of doing this, and will probably replaced with something better eventually. When that happens, the <code class="stacks-code bg-powder-300">js-…</code> mechanism will be deprecated but continue to be supported for a while, so you have ample time to update things.
                 </div>
             </div>
         </li>
@@ -662,7 +661,7 @@ description: Tables are used to list all information from a data set. The base s
 
     <p class="stacks-copy">If the table contains rows that should not be sorted, but rather always be at the top or always be at the bottom, add <code class="stacks-code">data-s-table-sort-to="top"</code> or <code class="stacks-code">data-s-table-sort-to="bottom"</code> to the <code class="stacks-code">&lt;tr&gt;</code> element.</p>
 
-    {% header h3 | JavaScript data attributes %}
+    {% header "h3", "JavaScript data attributes" %}
     <div class="overflow-x-auto mb32">
         <table class="wmn4 s-table s-table__bx-simple">
             <thead>
@@ -673,7 +672,7 @@ description: Tables are used to list all information from a data set. The base s
                 </tr>
             </thead>
             <tbody class="fs-caption">
-                {% for item in site.data.product.tables.data-attributes %}
+                {% for item in tables.data-attributes %}
                     <tr>
                         <th scope="row"><code class="stacks-code">{{ item.attribute }}</code></th>
                         <td><code class="stacks-code">{{ item.applies }}</td>
@@ -684,52 +683,80 @@ description: Tables are used to list all information from a data set. The base s
         </table>
     </div>
 
-    {% header h3 | JavaScript example %}
-
-    {% capture html %}
-        <table class="s-table s-table__sortable" data-controller="s-table">
-            <thead>
-                <tr>
-                    <th data-target="s-table.column" data-action="click->s-table#sort">
-                        Season
-                        @Svg.ArrowUpSm.With("js-sorting-indicator js-sorting-indicator-asc d-none") <!-- CODE ONLY -->
-                        {% icon ArrowUpSm | js-sorting-indicator js-sorting-indicator-asc d-none %} <!-- PREVIEW ONLY -->
-                        @Svg.ArrowDownSm.With("js-sorting-indicator js-sorting-indicator-desc d-none") <!-- CODE ONLY -->
-                        {% icon ArrowDownSm | js-sorting-indicator js-sorting-indicator-desc d-none %} <!-- PREVIEW ONLY -->
-                        @Svg.ArrowUpDownSm.With("js-sorting-indicator js-sorting-indicator-none") <!-- CODE ONLY -->
-                        {% icon ArrowUpDownSm | js-sorting-indicator js-sorting-indicator-none %} <!-- PREVIEW ONLY -->
-                    </th>
-                    <th data-target="s-table.column" data-action="click->s-table#sort">
-                        Starts in month
-                        {% icon ArrowUpSm | js-sorting-indicator js-sorting-indicator-asc d-none %} <!-- PREVIEW ONLY -->
-                        {% icon ArrowDownSm | js-sorting-indicator js-sorting-indicator-desc d-none %} <!-- PREVIEW ONLY -->
-                        {% icon ArrowUpDownSm | js-sorting-indicator js-sorting-indicator-none %} <!-- PREVIEW ONLY -->
-                        … <!-- CODE ONLY -->
-                    </th>
-                    <th data-target="s-table.column" data-action="click->s-table#sort">
-                        Typical temperature in °C
-                        {% icon ArrowUpSm | js-sorting-indicator js-sorting-indicator-asc d-none %} <!-- PREVIEW ONLY -->
-                        {% icon ArrowDownSm | js-sorting-indicator js-sorting-indicator-desc d-none %} <!-- PREVIEW ONLY -->
-                        {% icon ArrowUpDownSm | js-sorting-indicator js-sorting-indicator-none %} <!-- PREVIEW ONLY -->
-                        … <!-- CODE ONLY -->
-                    </th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr><td>Winter</td><td data-s-table-sort-val="12">December</td><td>2</td></tr>
-                <tr><td>Spring</td><td data-s-table-sort-val="3">March</td><td>13</td></tr>
-                <tr><td>Summer</td><td data-s-table-sort-val="6">June</td><td>25</td></tr>
-                <tr><td>Fall</td><td data-s-table-sort-val="9">September</td><td>13</td></tr>
-                <tr data-s-table-sort-to="bottom" class="fw-bold">
-                    <td colspan="2">Average temperature</td>
-                    <td>13</td>
-                </tr>
-            </tbody>
-        </table>
-    {% endcapture %}{% include example.html html=html %}
+    {% header "h3", "JavaScript example" %}
+    <div class="stacks-preview">
+{% highlight html %}
+<table class="s-table s-table__sortable" data-controller="s-table">
+    <thead>
+        <tr>
+            <th data-target="s-table.column" data-action="click->s-table#sort">
+                Season
+                @Svg.ArrowUpSm.With("js-sorting-indicator js-sorting-indicator-asc d-none")
+                @Svg.ArrowDownSm.With("js-sorting-indicator js-sorting-indicator-desc d-none")
+                @Svg.ArrowUpDownSm.With("js-sorting-indicator js-sorting-indicator-none")
+            </th>
+            <th data-target="s-table.column" data-action="click->s-table#sort">
+                Starts in month
+                …
+            </th>
+            <th data-target="s-table.column" data-action="click->s-table#sort">
+                Typical temperature in °C
+                …
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr><td>Winter</td><td data-s-table-sort-val="12">December</td><td>2</td></tr>
+        <tr><td>Spring</td><td data-s-table-sort-val="3">March</td><td>13</td></tr>
+        <tr><td>Summer</td><td data-s-table-sort-val="6">June</td><td>25</td></tr>
+        <tr><td>Fall</td><td data-s-table-sort-val="9">September</td><td>13</td></tr>
+        <tr data-s-table-sort-to="bottom" class="fw-bold">
+            <td colspan="2">Average temperature</td>
+            <td>13</td>
+        </tr>
+    </tbody>
+</table>
+{% endhighlight %}
+        <div class="stacks-preview--example">
+            <table class="s-table s-table__sortable" data-controller="s-table">
+                <thead>
+                    <tr>
+                        <th data-target="s-table.column" data-action="click->s-table#sort">
+                            Season
+                            {% icon "ArrowUpSm", "js-sorting-indicator js-sorting-indicator-asc d-none" %}
+                            {% icon "ArrowDownSm", "js-sorting-indicator js-sorting-indicator-desc d-none" %}
+                            {% icon "ArrowUpDownSm", "js-sorting-indicator js-sorting-indicator-none" %}
+                        </th>
+                        <th data-target="s-table.column" data-action="click->s-table#sort">
+                            Starts in month
+                            {% icon "ArrowUpSm", "js-sorting-indicator js-sorting-indicator-asc d-none" %}
+                            {% icon "ArrowDownSm", "js-sorting-indicator js-sorting-indicator-desc d-none" %}
+                            {% icon "ArrowUpDownSm", "js-sorting-indicator js-sorting-indicator-none" %}
+                        </th>
+                        <th data-target="s-table.column" data-action="click->s-table#sort">
+                            Typical temperature in °C
+                            {% icon "ArrowUpSm", "js-sorting-indicator js-sorting-indicator-asc d-none" %}
+                            {% icon "ArrowDownSm", "js-sorting-indicator js-sorting-indicator-desc d-none" %}
+                            {% icon "ArrowUpDownSm", "js-sorting-indicator js-sorting-indicator-none" %}
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>Winter</td><td data-s-table-sort-val="12">December</td><td>2</td></tr>
+                    <tr><td>Spring</td><td data-s-table-sort-val="3">March</td><td>13</td></tr>
+                    <tr><td>Summer</td><td data-s-table-sort-val="6">June</td><td>25</td></tr>
+                    <tr><td>Fall</td><td data-s-table-sort-val="9">September</td><td>13</td></tr>
+                    <tr data-s-table-sort-to="bottom" class="fw-bold">
+                        <td colspan="2">Average temperature</td>
+                        <td>13</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
 </section>
 <section class="stacks-section">
-    {% header h2 | Bar graphs %}
+    {% header "h2", "Bar graphs" %}
     <p class="stacks-copy">To help users, you can add data visualizations into table cells. These are useful to help visualize the reported data and calling extra attention to the table cell. These graphs should always be paired with a number.</p>
     <div class="stacks-preview">
 {% highlight html %}
@@ -852,7 +879,7 @@ description: Tables are used to list all information from a data set. The base s
     </div>
 </section>
 <section class="stacks-section">
-    {% header h2 | Bulk actions %}
+    {% header "h2", "Bulk actions" %}
     <p class="stacks-copy">Generally for a checkbox input that’s placed first in the table row for bulk actions.</p>
     <div class="stacks-preview">
 {% highlight html %}
@@ -922,7 +949,7 @@ description: Tables are used to list all information from a data set. The base s
     </div>
 </section>
 <section class="stacks-section">
-    {% header h2 | Totals row %}
+    {% header "h2", "Totals row" %}
     <p class="stacks-copy">Used mainly with data tables, the totals row increases the font-size for all cells within a row.</p>
     <div class="stacks-preview">
 {% highlight html %}
@@ -976,7 +1003,7 @@ description: Tables are used to list all information from a data set. The base s
     </div>
 </section>
 <section class="stacks-section">
-    {% header h2 | Inactive rows %}
+    {% header "h2", "Inactive rows" %}
     <p class="stacks-copy">For tables that include inactive or disabled rows, such as inactive users or teams, <code class="stacks-code">.is-disabled</code> can be applied to any <code class="stacks-code">&lt;tr&gt;</code>. Additionally, <code class="stacks-code">.is-enabled</code> can be applied to any <code class="stacks-code">&lt;th&gt;</code> or <code class="stacks-code">&lt;td&gt;</code> that you’d like to ignoring the parent disabled styling (such as a persistent link to reactivate a disabled account).</p>
     <div class="stacks-preview">
 {% highlight html %}

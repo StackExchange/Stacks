@@ -1,10 +1,129 @@
 ---
 layout: page
 title: Backgrounds
-description: Atomic classes for controlling the background properties of an element's background image.
+description: Atomic classes for controlling the background properties of an element’s background image.
 ---
 
-{% include_relative background-size.html %}
-{% include_relative background-repeat.html %}
-{% include_relative background-position.html %}
-{% include_relative background-attachment.html %}
+<section class="stacks-section">
+    {% header "h2", "Background size" %}
+    {% header "h3", "Background size classes" %}
+    <div class="overflow-x-auto mb32">
+        <table class="wmn3 s-table s-table__bx-simple">
+            <thead>
+                <tr>
+                    <th scope="col">Class</th>
+                    <th scope="col">Output</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                {% for background-size in backgrounds.background-size %}
+                    <tr>
+                        <th scope="row"><code class="stacks-code">{{ background-size.class }}</code></th>
+                        <td class="ff-mono">{{ background-size.output }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</section>
+
+<section class="stacks-section">
+    {% header "h2", "Background repeat" %}
+    {% header "h3", "Background repeat classes" %}
+    <div class="overflow-x-auto mb32">
+        <table class="wmn3 s-table s-table__bx-simple">
+            <thead>
+                <tr>
+                    <th scope="col">Class</th>
+                    <th scope="col">Output</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                {% for background-repeat in backgrounds.background-repeat %}
+                    <tr>
+                        <th scope="row"><code class="stacks-code">{{ background-repeat.class }}</code></th>
+                        <td class="ff-mono">{{ background-repeat.output }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</section>
+
+<section class="stacks-section">
+    {% header "h2", "Background position" %}
+    {% header "h3", "Background position classes" %}
+    <div class="overflow-x-auto mb32">
+        <table class="wmn3 s-table s-table__bx-simple">
+            <thead>
+                <tr>
+                    <th scope="col">Class</th>
+                    <th scope="col">Output</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                {% for background-position in backgrounds.background-position %}
+                    <tr>
+                        <th scope="row"><code class="stacks-code">{{ background-position.class }}</code></th>
+                        <td class="ff-mono">{{ background-position.output }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    {% header "h3", "Background position examples" %}
+    <div class="stacks-preview">
+{% highlight html %}
+<div class="bg-no-repeat bg-bottom">…</div>
+<div class="bg-no-repeat bg-center">…</div>
+<div class="bg-no-repeat bg-left">…</div>
+<div class="bg-no-repeat bg-left-bottom">…</div>
+<div class="bg-no-repeat bg-left-top">…</div>
+<div class="bg-no-repeat bg-right">…</div>
+<div class="bg-no-repeat bg-right-bottom">…</div>
+<div class="bg-no-repeat bg-right-top">…</div>
+<div class="bg-no-repeat bg-top">…</div>
+{% endhighlight %}
+        <div class="stacks-preview--example">
+            <div class="grid grid__allcells3 w100 gs8 fc-black-800 ff-mono fw-wrap">
+                <div class="grid--cell p12 bg-black-075 hs1 ba bc-black-3 stacks-bg-img bg-no-repeat bg-bottom">.bg-bottom</div>
+                <div class="grid--cell p12 bg-black-075 hs1 ba bc-black-3 stacks-bg-img bg-no-repeat bg-center">.bg-center</div>
+                <div class="grid--cell p12 bg-black-075 hs1 ba bc-black-3 stacks-bg-img bg-no-repeat bg-left">.bg-left</div>
+                <div class="grid--cell p12 bg-black-075 hs1 ba bc-black-3 stacks-bg-img bg-no-repeat bg-left-bottom">.bg-left-bottom</div>
+                <div class="grid--cell p12 bg-black-075 hs1 ba bc-black-3 stacks-bg-img bg-no-repeat bg-left-top">.bg-left-top</div>
+                <div class="grid--cell p12 bg-black-075 hs1 ba bc-black-3 stacks-bg-img bg-no-repeat bg-right">.bg-right</div>
+                <div class="grid--cell p12 bg-black-075 hs1 ba bc-black-3 stacks-bg-img bg-no-repeat bg-right-bottom">.bg-right-bottom</div>
+                <div class="grid--cell p12 bg-black-075 hs1 ba bc-black-3 stacks-bg-img bg-no-repeat bg-right-top">.bg-right-top</div>
+                <div class="grid--cell p12 bg-black-075 hs1 ba bc-black-3 stacks-bg-img bg-no-repeat bg-top">.bg-top</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="stacks-section">
+    {% header "h2", "Background attachment" %}
+    {% header "h3", "Background attachment classes" %}
+    <div class="overflow-x-auto mb32">
+        <table class="wmn3 s-table s-table__bx-simple">
+            <thead>
+                <tr>
+                    <th scope="col">Class</th>
+                    <th scope="col">Output</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                {% for background-attachment in backgrounds.background-attachment %}
+                    <tr>
+                        <th scope="row"><code class="stacks-code">{{ background-attachment.class }}</code></th>
+                        <td class="ff-mono">{{ background-attachment.output }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</section>

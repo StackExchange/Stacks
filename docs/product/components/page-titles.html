@@ -5,7 +5,7 @@ description: Page titles create consistency in the layout of similar pages, spec
 ---
 
 <section class="stacks-section">
-    {% header h2 | Components %}
+    {% header "h2", "Components" %}
     <div class="overflow-x-auto mb32">
         <table class="wmn4 s-table s-table__bx-simple">
             <thead>
@@ -34,31 +34,27 @@ description: Page titles create consistency in the layout of similar pages, spec
             </tbody>
         </table>
     </div>
-    {% header h2 | Admin sections %}
+    {% header "h2", "Admin sections" %}
     <p class="stacks-copy">
         These components should be used in the admin sections of our private Q&A products.
     </p>
-    {% header h3 | Base Styles %}
+    {% header "h3", "Base Styles" %}
     <p class="stacks-copy">
-        The base style for pages that don’t need further description beyond the page title and don’t have any actions for filters. 
+        The base style for pages that don’t need further description beyond the page title and don’t have any actions for filters.
     </p>
     <div class="stacks-preview">
 {% highlight html %}
 <div class="s-page-title">
-    <div class="s-page-title--text">
-        <h1>Page title</h1>
-    </div>
+    <h1 class="s-page-title--header">Page title</h1>
 </div>
 {% endhighlight %}
         <div class="stacks-preview--example">
             <div class="s-page-title">
-                <div class="s-page-title--text">
-                    <h1>Page title</h1>
-                </div>
+                <h1 class="s-page-title--header">Page title</h1>
             </div>
         </div>
     </div>
-    {% header h3 | Title with description %}
+    {% header "h3", "Title with description" %}
     <p class="stacks-copy">
         A summary of a page’s content. Helpful for large pages with multiple actions.
     </p>
@@ -66,7 +62,7 @@ description: Page titles create consistency in the layout of similar pages, spec
 {% highlight html %}
 <div class="s-page-title">
     <div class="s-page-title--text">
-        <h1>Page title</h1>
+        <h1 class="s-page-title--header">Page title</h1>
         <p class="s-page-title--description">…</p>
     </div>
 </div>
@@ -74,13 +70,13 @@ description: Page titles create consistency in the layout of similar pages, spec
         <div class="stacks-preview--example">
             <div class="s-page-title">
                 <div class="s-page-title--text">
-                    <h1>Page title</h1>
+                    <h1 class="s-page-title--header">Page title</h1>
                     <p class="s-page-title--description">Optional description de Finibus Bonorum et Malorum with an <a href="#">optional link</a>.</p>
                 </div>
             </div>
         </div>
     </div>
-    {% header h3 | Title with actions %}
+    {% header "h3", "Title with actions" %}
     <p class="stacks-copy">
         When a page title includes actions, they are located at the far end of the component. This area is free-form, so we can include any markups we'd like, from single button to a grid of custom filters and text.
     </p>
@@ -88,7 +84,7 @@ description: Page titles create consistency in the layout of similar pages, spec
 {% highlight html %}
 <div class="s-page-title">
     <div class="s-page-title--text">
-        <h1>Page title</h1>
+        <h1 class="s-page-title--header">Page title</h1>
         <p class="s-page-title--description">…</p>
     </div>
     <div class="s-page-title--actions">…</div>
@@ -97,7 +93,7 @@ description: Page titles create consistency in the layout of similar pages, spec
         <div class="stacks-preview--example">
             <div class="s-page-title">
                 <div class="s-page-title--text">
-                    <h1>Page title</h1>
+                    <h1 class="s-page-title--header">Page title</h1>
                     <p class="s-page-title--description">Optional description de Finibus Bonorum et Malorum with an <a href="#">optional link</a>.</p>
                 </div>
                 <div class="s-page-title--actions">
@@ -109,16 +105,16 @@ description: Page titles create consistency in the layout of similar pages, spec
             </div>
         </div>
     </div>
-    {% header h3 | Title with breadcrumbs %}
+    {% header "h3", "Title with breadcrumbs" %}
     <p class="stacks-copy">
-        Breadcrumbs are used to provide context for the currently-viewed page and reduce the number of actions a website visitor needs to take in order to get to a higher-level page. Breadcrumbs <strong>should not</strong> for single-level sections that have no logical grouping.
+        Breadcrumbs are used to provide context for the currently-viewed page and reduce the number of actions a website visitor needs to take in order to get to a higher-level page. Breadcrumbs <strong>should not</strong> be used for single-level sections that have no logical grouping.
     </p>
     <div class="stacks-preview">
 {% highlight html %}
 <div class="s-page-title">
     <div class="s-page-title--text">
         <nav class="s-breadcrumbs" aria-label="breadcrumb">…</nav>
-        <h1>Page title</h1>
+        <h1 class="s-page-title--header">Page title</h1>
         <p class="s-page-title--description">…</p>
     </div>
 </div>
@@ -128,19 +124,19 @@ description: Page titles create consistency in the layout of similar pages, spec
                 <div class="s-page-title--text">
                     <nav class="s-breadcrumbs" aria-label="breadcrumb">
                         <div class="s-breadcrumbs--item">
-                            <a class="s-breadcrumbs--link" href="…">Stack Overflow</a>
-                            {% icon ArrowRightAltSm | s-breadcrumbs--divider %}
+                            <a class="s-breadcrumbs--link">Stack Overflow</a>
+                            {% icon "ArrowRightAltSm", "s-breadcrumbs--divider" %}
                         </div>
                         <div class="s-breadcrumbs--item">
-                            <a class="s-breadcrumbs--link" href="…">…</a>
-                            {% icon ArrowRightAltSm | s-breadcrumbs--divider %}
+                            <a class="s-breadcrumbs--link">…</a>
+                            {% icon "ArrowRightAltSm", "s-breadcrumbs--divider" %}
                         </div>
                         <div class="s-breadcrumbs--item">
-                            <a class="s-breadcrumbs--link" href="…">…</a>
+                            <a class="s-breadcrumbs--link">…</a>
                         </div>
                     </nav>
-                    <h1>Page title</h1>
-                    <p class="s-page-title--description">Optional description de Finibus Bonorum et Malorum with an <a href="#">optional link</a>.</p>
+                    <h1 class="s-page-title--header">Page title</h1>
+                    <p class="s-page-title--description">Optional description de Finibus Bonorum et Malorum with an <a>optional link</a>.</p>
                 </div>
             </div>
         </div>

@@ -1,0 +1,92 @@
+{
+  "visual": [
+    {
+      "class": ".s-notice",
+      "applies": "N/A",
+      "description": "Default style used to separate notices from the main content."
+    },
+    {
+      "class": ".s-notice__info",
+      "applies": ".s-notice",
+      "description": "Visual style for information notices."
+    },
+    {
+      "class": ".s-notice__success",
+      "applies": ".s-notice",
+      "description": "Visual style for success notices."
+    },
+    {
+      "class": ".s-notice__warning",
+      "applies": ".s-notice",
+      "description": "Visual style for warning notices."
+    },
+    {
+      "class": ".s-notice__danger",
+      "applies": ".s-notice",
+      "description": "Visual style for danger notices."
+    },
+    {
+      "class": ".s-notice__important",
+      "applies": ".s-notice",
+      "description": "Emboldens the above visual styles by strengthening the background saturation. This should be used for time-sensitive, pressing information that needs to be noticed by the user."
+    }
+  ],
+  "behavior": [
+    {
+      "type": "Inline",
+      "class": ".s-notice",
+      "applies": "N/A",
+      "description": "Notice inserted within the content area."
+    },
+    {
+      "type": "Toast",
+      "class": ".s-notice-toast",
+      "applies": "Container",
+      "description": "Adds a container to properly fix a floating toast notice to the top-center of the page. These toasts typically disappear after a set time (i.e. 3 seconds)"
+    }
+  ],
+  "access": [
+    {
+      "item": "aria-describedby=\"[id]\"",
+      "applies": "role=\"alertdialog\"",
+      "description": "Used to reference the alert message within the dialog. If you are using <code class=\"stacks-code\">role=\"alertdialog\"</code>, <strong>this must be applied.</strong>",
+      "url": "https://www.w3.org/TR/wai-aria-1.1/#aria-describedby"
+    },
+    {
+      "item": "aria-hidden=\"[state]\"",
+      "applies": ".s-notice",
+      "description": "Informs assistive technologies (such as screen readers) if they should ignore the element. This should not be confused with the HTML5 hidden attribute which tells the browser to not display an element.",
+      "url": "https://www.w3.org/TR/wai-aria-1.1/#aria-hidden"
+    },
+    {
+      "item": "aria-label=\"[id]\"",
+      "applies": "Message area",
+      "description": "Labels the element for assistive technologies (such as screen readers).",
+      "url": "https://www.w3.org/TR/wai-aria-1.1/#aria-label"
+    },
+    {
+      "item": "role=\"status\"",
+      "applies": ".s-notice--banner",
+      "description": "Defines a live region with advisory information for the user, but not important enough to warrant an alert.",
+      "url": "https://www.w3.org/TR/wai-aria-1.1/#status"
+    },
+    {
+      "item": "role=\"alert\"",
+      "applies": ".s-notice",
+      "description": "A form of live region which contains important, usually time-sensitive, information. Elements with an alert role have an implicit <code class=\"stacks-code\">aria-live</code> value of <code class=\"stacks-code\">assertive</code> and implicit <code class=\"stacks-code\">aria-atomic</code> value of <code class=\"stacks-code\">true</code>.",
+      "url": "https://www.w3.org/TR/wai-aria-1.1/#alert"
+    },
+    {
+      "item": "role=\"alertdialog\"",
+      "applies": "Notice dialog container",
+      "description": "The wrapping content area of an <code class=\"stacks-code\">alert</code>. Elements with the <code class=\"stacks-code\">alertdialog</code> role <strong>must</strong> use the <code class=\"stacks-code\">aria-describedby</code> attribute to reference the alert message within the dialog.",
+      "url": "https://www.w3.org/TR/wai-aria-1.1/#alertdialog"
+    },
+    {
+      "item": "role=\"status\"",
+      "applies": ".s-notice",
+      "description": "A form of live region which contains advisory information but isn't important enough to justify an alert role. Elements with a status role have an implicit <code class=\"stacks-code\">aria-live</code> value of <code class=\"stacks-code\">polite</code> and implicit <code class=\"stacks-code\">aria-atomic</code> value of <code class=\"stacks-code\">true</code>. If the element controlling the status appears in a different area of the page, you <strong>must make the relationship explicit</strong> with the <code class=\"stacks-code\">aria-controls</code> attribute.",
+      "url": "https://www.w3.org/TR/wai-aria-1.1/#status"
+    }
+  ]
+}

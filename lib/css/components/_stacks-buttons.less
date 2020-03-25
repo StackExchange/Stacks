@@ -10,285 +10,25 @@
 //  • BASE STYLE
 //  • STYLE MODIFICATIONS
 //  • LAYOUTS & SIZES
-//
-//  ============================================================================
-//  $   STYLE MIXINS
-//      Within each community theme, we allow buttons styles to be modified.
-//      The attributes that we allow people to modify are:
-//
-//      Attribute                 Variable                      Default
-//      ---                       ---                           ---
-//      Font Weight               @button-font-weight           400
-//      Font Color                @button-font-color            @link-color-regular
-//      Background Color          @button-background-color      fade(@button-font-color,0%)
-//      Background Image          @button-has-gradient          false
-//      Border Color              @button-has-border            false
-//      Border Radius             @button-border-radius         @br-sm
-//      Box Shadow Inset Color    @button-has-inset-box-shadow  false
-//      Box Shadow Color          @button-box-shadow-color      @blue-500;
-//
-//      Some of these properties are true or false statements. To provide the
-//      fullest flexibility, we've created a number of mixins which check
-//      if different attributes are present.
-//
-//      MIXIN:
-//      Box Shadow Inset Color
-//
-//      HOW IT WORKS:
-//      What happens is when the mixin is invoked, we do a quick check to see
-//      if we're allowing inset borders within buttons (@button-has-inset-box-shadow). This is a
-//      true/false statement. If TRUE, we add in the variable you pass into
-//      the mixin (@bxis). If @button-has-inset-box-shadow is FALSE, add only the outer box shadow.
 //  ----------------------------------------------------------------------------
-
-& { // create a single scope to load the config into, at least for now
-#stacks-internals #load-config();
-
-.btn-check-bxs(@bxis: transparent, @bxos: @button-box-shadow-color, @status: @button-has-inset-box-shadow) {
-    & when (@status = true) {
-        box-shadow: inset 0 1px 0 0 fade(lighten(@bxis, 20%), 75%), 0 0 0 0 fade(@bxos, 0%);
-
-        &:hover {
-            box-shadow: inset 0 1px 0 0 fade(lighten(@bxis, 20%), 50%), 0 0 0 0 fade(@bxos, 0%);
-        }
-        &:focus {
-            box-shadow: inset 0 1px 0 0 fade(lighten(@bxis, 20%), 50%), 0 0 0 @su4 fade(@bxos, 15%);
-        }
-        &:active {
-            box-shadow: inset 0 @su2 @su8 0 fade(darken(@bxis, 20%), 80%);
-        }
-        &.is-selected {
-            box-shadow: inset 0 @su2 @su8 0 fade(darken(@bxis, 25%), 90%);
-        }
-    }
-
-    & when (@status = false) {
-        box-shadow: 0 0 0 0 fade(@bxos, 0%);
-
-        &:hover {
-            box-shadow: 0 0 0 0 fade(@bxos, 0%);
-        }
-        &:focus {
-            box-shadow: 0 0 0 1px fade(@white, 50%), 0 0 0 @su4 fade(@bxos, 10%);
-        }
-    }
-
-    &[disabled] {
-        box-shadow: none;
-    }
-}
-
-//      MIXIN:
-//      Border Color
-//
-//      HOW IT WORKS:
-//      We first check to see if borders are desired on buttons with @button-has-border.
-//      If it's true, then we use the background color by darkening it.
-//  ----------------------------------------------------------------------------
-.btn-check-brc(@brc: @button-background-color, @status: @button-has-border) when (@status = true) {
-    border-color: darken(@brc, 10%);
-
-    &:hover {
-        border-color: darken(@brc, 10%);
-    }
-    &:active {
-        border-color: darken(@brc, 20%);
-    }
-    &.is-selected {
-        border-color: darken(@brc, 30%);
-    }
-    &[disabled] {
-        border-color: fade(desaturate(@brc, 75%), 10%);
-    }
-}
-
-//      MIXIN:
-//      Background Image (Gradient)
-//
-//      HOW IT WORKS:
-//      Using a mixin guard we check to see if @button-has-gradient is TRUE/FALSE, or if
-//      the background value being passed is transparent. If @button-has-gradient is TRUE
-//      and if the @bgc value IS NOT transparent, then add the background
-//      gradient to the button.
-//
-//      In any other scenario, reset the background-image to none.
-//  ----------------------------------------------------------------------------
-.btn-check-bgg(@bgc) {
-    //    If @button-has-gradient: true; and @bgc is NOT transparent, show gradients.
-    & when not (@bgc = transparent) and (@button-has-gradient = true) {
-        background-image: linear-gradient(to bottom, lighten(@bgc, 10%) 0%, spin(saturate(@bgc, 10%), 5) 100%);
-
-        &:hover {
-            background-image: linear-gradient(to bottom, spin(saturate(lighten(@bgc, 10%), 5%), 5) 0%, spin(saturate(@bgc, 15%), 10) 100%);
-        }
-        &:focus {
-            background-image: linear-gradient(to bottom, spin(saturate(lighten(@bgc, 10%), 10%), 10) 0%, spin(saturate(@bgc, 20%), 15) 100%);
-        }
-        &.is-selected {
-            background-image: linear-gradient(to bottom, spin(saturate(lighten(@bgc, 10%), 15%), 15) 0%, spin(saturate(@bgc, 25%), 20) 100%);
-        }
-        &[disabled] {
-            background-image: linear-gradient(to bottom, fade(desaturate(lighten(@bgc, 10%), 75%), 50%) 0%, fade(desaturate(@bgc, 75%), 50%) 100%);
-        }
-    }
-
-    //    If @button-has-gradient: false; or if @bgc is transparent, then remove gradients.
-    & when (@bgc = transparent), (@button-has-gradient = false) {
-        &,
-        &:hover,
-        &:focus,
-        &.is-selected,
-        &[disabled] {
-            background-image: none;
-        }
-    }
-}
-
-//      MIXIN:
-//      Background Color
-//
-//      HOW IT WORKS:
-//      Using a mixin guard we check to see what the alpha level is. If the
-//      level equals 0, we slightly fade in the background color on hover and
-//      focus. If the alpha level is greater than 0, then we darken the
-//      background color.
-//  ----------------------------------------------------------------------------
-.btn-bgc(@bgc) {
-    //  TEMPORARY -- PAST CSS REQUIRES US TO STATE FOCUS STATE.
-    //               This isn't needed otherwise.
-    &,
-    &:focus {
-        background-color: @bgc;
-    }
-
-    & when (alpha(@bgc) = 0) {
-        &:hover {
-            background-color: fade(saturate(@bgc, 5%), 5%);
-        }
-        &:active {
-            background-color: fade(saturate(@bgc, 15%), 15%);
-        }
-        &.is-selected {
-            background-color: fade(saturate(@bgc, 20%), 25%);
-        }
-        &[disabled] {
-            background-color: fade(desaturate(@bgc, 90%), 20%);
-        }
-    }
-
-    & when (alpha(@bgc) > 0) {
-        &:hover {
-            background-color: darken(@bgc, 7.5%);
-        }
-        &:active {
-            background-color: darken(@bgc, 15%);
-        }
-        &.is-selected {
-            background-color: darken(@bgc, 20%);
-        }
-        &[disabled] {
-            background-color: fade(desaturate(@bgc, 75%), 50%);
-        }
-    }
-}
-
-//      MIXIN:
-//      Font Color
-//
-//      HOW IT WORKS:
-//      Using a mixin guard we check to see if the color is white. When it is
-//      white, we fadeout the link color. When it isn't white, we darken
-//      the font color instead.
-//  ----------------------------------------------------------------------------
-.btn-fc(@fc) {
-    color: @fc;
-
-    &.s-btn__dropdown:after {
-        border-color: currentColor transparent;
-    }
-
-    .s-btn--badge {
-        color: @fc;
-        background-color: fade(@fc, 15%);
-    }
-
-    &.is-selected .s-btn--badge {
-        color: @white;
-        background-color: fade(@fc, 65%);
-    }
-
-    &[disabled] .s-btn--badge {
-        color: desaturate(@fc, 100%);
-        background-color: desaturate(fade(@fc, 25%), 100%)
-    }
-
-    & when (@fc = #FFFFFF) and (alpha(@fc) = 1) {
-        .s-btn--badge {
-            background-color: fade(@black-900, 30%);
-        }
-
-        &:hover,
-        &:active,
-        &:focus,
-        &.is-selected {
-            color: @fc;
-
-            &.s-btn__dropdown:after {
-                border-color: currentColor transparent;
-            }
-
-            .s-btn--badge {
-                background-color: fade(@black-900, 50%);
-            }
-        }
-
-        &[disabled] .s-btn--badge {
-            background-color: desaturate(fade(@black-900, 20%), 90%);
-        }
-    }
-
-    & when not (@fc = #FFFFFF) and (alpha(@fc) = 1) {
-        &:hover,
-        &:active {
-            color: darken(@fc, 10%);
-        }
-        &:focus,
-        &.is-selected {
-            color: darken(@fc, 20%);
-        }
-    }
-
-    & when (alpha(@fc) < 1) {
-        &:hover,
-        &:active {
-            color: fade(lighten(@fc, 10%), 90%);
-        }
-        &:focus,
-        &.is-selected {
-            color: fade(lighten(@fc, 10%), 100%);
-        }
-    }
-
-    &[disabled] {
-        color: fade(desaturate(@fc, 90%), 80%);
-    }
-}
-
 
 //  ============================================================================
 //  $   BASE STYLE
 //  ----------------------------------------------------------------------------
+& {
+#stacks-internals #load-config();
+
 .s-btn {
     position: relative;
     display: inline-block;
     padding: 0.8em;
     border: 1px solid transparent;
-    border-radius: @button-border-radius;
+    border-radius: @br-sm;
     background-color: transparent;
     outline: none;
     font-family: inherit;
     font-size: @fs-body1;
-    font-weight: @button-font-weight;
+    font-weight: normal;
     line-height: @lh-sm;
     text-align: center;
     text-decoration: none;
@@ -300,40 +40,58 @@
     }
 
     //  Default Style (Clear)
-    .btn-check-brc();
-    .btn-check-bxs(fade(@button-box-shadow-color, 0%), @status: false);
-    .btn-bgc(@button-background-color);
-    .btn-check-bgg(transparent);
-    .btn-fc(@button-font-color);
+    color: @button-color;
 
     &:hover,
-    &:focus {
+    &:focus,
+    &:active {
+        color: @button-hover-color;
+        background: @button-hover-background-color;
         text-decoration: none;
+    }
+
+    &:active {
+        background: @button-active-background-color;
     }
 
     &:focus {
         outline: none;
+        box-shadow: 0 0 0 @su4 var(--focus-ring);
     }
 
     &[disabled] {
         opacity: 1;
         cursor: default;
         pointer-events: none;
+        color: @button-disabled-color;
+        background-color: @button-disabled-background-color;
+        box-shadow: none;
+    }
+
+    &.is-selected {
+        color: @button-selected-color;
+        background: @button-selected-background-color;
+        box-shadow: none;
+
+        &:focus {
+            box-shadow: 0 0 0 @su4 var(--focus-ring);
+        }
     }
 
     &.s-btn__dropdown {
-        padding-right: 2.35em;
+        padding-right: 2em;
 
         &:after {
             content: "";
             position: absolute;
             z-index: @zi-active;
             top: calc(~"50% - 2px");
-            right: 1em;
+            right: .8em;
             border-style: solid;
             border-width: @su4;
             border-top-width: @su4;
             border-bottom-width: 0;
+            border-color: currentColor transparent;
             pointer-events: none;
         }
     }
@@ -360,23 +118,20 @@
 
         &.s-btn__dropdown {
             padding-right: 2.05em;
-
-            &:after {
-                right: 0.8em;
-            }
         }
     }
 
     &.s-btn__md {
         padding: 0.7em;
-        border-radius: @button-border-radius + 1;
+        border-radius: @br-sm + 1;
         font-size: @fs-body3;
 
         &.s-btn__dropdown {
-            padding-right: 2.1em;
+            padding-right: 1.8em;
 
             &:after {
                 top: calc(~"50% - 2px");
+                right: 0.7em;
                 border-width: @su4 + 1px;
                 border-top-width: @su4 + 1px;
                 border-bottom-width: 0;
@@ -386,14 +141,15 @@
 
     &.s-btn__lg {
         padding: 0.6em;
-        border-radius: @button-border-radius + 1;
+        border-radius: @br-sm + 1;
         font-size: @fs-headline1;
 
         &.s-btn__dropdown {
-            padding-right: 2.15em;
+            padding-right: 1.5em;
 
             &:after {
                 top: calc(~"50% - 2px");
+                right: 0.6em;
                 border-width: @su6;
                 border-top-width: @su6;
                 border-bottom-width: 0;
@@ -403,14 +159,15 @@
 
     &.s-btn__xl {
         padding: 0.5em;
-        border-radius: @button-border-radius + @br-sm;
+        border-radius: @br-sm + @br-sm;
         font-size: @fs-headline2;
 
         &.s-btn__dropdown {
-            padding-right: 2em;
+            padding-right: 1.3em;
 
             &:after {
                 top: calc(~"50% - 4px");
+                right: 0.5em;
                 border-width: @su4 + 3px;
                 border-top-width: @su4 + 3px;
                 border-bottom-width: 0;
@@ -419,70 +176,40 @@
     }
 
     .s-btn--badge {
+        opacity: .5;
         display: inline-block;
         border-radius: @br-sm;
         padding: @su2 (@su4 - 1px);
         font-size: @fs-caption;
         line-height: @lh-xs;
+        background-color: currentColor;
+    }
+
+    .s-btn--number {
+        color: var(--white);
     }
 }
+
+#stacks-internals #darkmode('.s-btn__primary:not(.is-selected):not([disabled]) .s-btn--number, .s-btn__danger.s-btn__filled:not(.is-selected):not([disabled]) .s-btn--number', { color: @black; });
 
 //  ============================================================================
 //  $   DEFAULT (SECONDARY) STYLES
 //  ============================================================================
-//  --  Base Inverted Style
-//      Inverts the button colors so they can be used on a dark background.
-//  ----------------------------------------------------------------------------
-.s-btn__inverted {
-    .btn-check-brc(@status: false);
-    .btn-check-bxs(@bxos: fade(@button-box-shadow-color, 0%), @status: false);
-    .btn-bgc(fade(@button-primary-font-color, 0%));
-    .btn-fc(fade(lighten(@button-primary-background-color, 40%), 90%));
-}
 
 //  --  Base Outline Style
 //      Style which applies only a border.
 //  ----------------------------------------------------------------------------
 .s-btn__outlined {
-    .btn-check-brc(lighten(@button-font-color, 20%));
-    .btn-check-bxs(@bxos: @button-box-shadow-color, @status: false);
-    .btn-check-bgg(transparent);
-    .btn-bgc(fade(@button-font-color, 0%));
-    .btn-fc(@button-font-color);
+    border-color: @button-outlined-border-color;
 
-    //  --  Inverted: Outlined
-    &.s-btn__inverted {
-        .btn-check-brc(fade(lighten(@button-primary-background-color, 50%), 25%));
-        .btn-check-bxs(@bxos: @white, @status: false);
-        .btn-bgc(fade(lighten(@button-primary-background-color, 20%), 0%));
-        .btn-check-bgg(transparent);
-        .btn-fc(fade(lighten(@button-primary-background-color, 40%), 90%));
-    }
-}
-
-//  --  Muted Clear Style
-//      Creates a gray button style.
-//  ----------------------------------------------------------------------------
-.s-btn__muted {
-    .btn-check-brc(@status: false);
-    .btn-check-bxs(@bxos: @black-350, @status: false);
-    .btn-bgc(fade(@black-200, 0%));
-    .btn-fc(@black-500);
-
-    //  --  Muted (Gray)
-    &.s-btn__outlined {
-        .btn-check-brc(@black-150);
-        .btn-check-bxs(@bxos: @black-350, @status: false);
-        .btn-bgc(fade(@black-200, 0%));
-        .btn-fc(@black-500);
+    &.is-selected {
+        border-color: @button-outlined-selected-border-color;
     }
 
-    //  --  Filled (Gray)
-    &.s-btn__filled {
-        .btn-check-brc(@black-150);
-        .btn-check-bxs(@black-200, @bxos: @black-800);
-        .btn-bgc(@black-100);
-        .btn-fc(@black-700);
+    &[disabled] {
+        color: @button-outlined-disabled-color;
+        border-color: @button-outlined-disabled-border-color;
+        background-color: @button-outlined-disabled-background-color;
     }
 }
 
@@ -490,117 +217,292 @@
 //      Adds in background-colors, background-images, and/or box-shadows.
 //  ----------------------------------------------------------------------------
 .s-btn__filled {
-    .btn-check-brc(darken(@button-filled-background-color, 20%));
-    .btn-check-bxs(@button-filled-background-color);
-    .btn-bgc(@button-filled-background-color);
-    .btn-check-bgg(@button-filled-background-color);
-    .btn-fc(@button-filled-font-color);
+    color: @button-filled-color;
+    background-color: @button-filled-background-color;
+    border-color: @button-filled-border-color;
+    box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, .7);
 
-    &.s-btn__inverted {
-        .btn-check-brc(transparent);
-        .btn-check-bxs(@bxos: lighten(@button-box-shadow-color, 40%), @status: false);
-        .btn-bgc(fade(@white, 95%));
-        .btn-fc(@button-font-color);
+    &:hover,
+    &:focus,
+    &:active {
+        color: @button-filled-hover-color;
+        background-color: @button-filled-hover-background-color;
+    }
+
+    &:active {
+        background-color: @button-filled-active-background-color;
+        border-color: @button-filled-active-border-color;
+        box-shadow: none;
+    }
+
+    &[disabled] {
+        background-color: @button-filled-disabled-background-color;
+        border-color: @button-filled-disabled-border-color;
+        box-shadow: none;
+    }
+
+    &.is-selected {
+        color: @button-filled-selected-color;
+        background-color: @button-filled-selected-background-color;
+        border-color: @button-filled-selected-border-color;
+        box-shadow: none;
     }
 }
 
+#stacks-internals #darkmode('.s-btn__filled', { box-shadow: none; });
+
+//  --  Muted Clear Style
+//      Creates a gray button style.
+//  ----------------------------------------------------------------------------
+.s-btn__muted {
+    color: @button-muted-color;
+
+    &:hover,
+    &:focus,
+    &:active {
+        color: @button-muted-hover-color;
+        background-color: @button-muted-hover-background-color;
+    }
+
+    &:active {
+        background: @button-muted-active-background-color;
+    }
+
+    &:focus {
+        box-shadow: 0 0 0 @su4 var(--focus-ring-muted);
+    }
+
+    &.is-selected {
+        color: @button-muted-selected-color;
+        background-color: @button-muted-selected-background-color;
+
+        &:focus {
+            box-shadow: 0 0 0 @su4 var(--focus-ring-muted);
+        }
+    }
+
+    //  --  Muted (Gray)
+    &.s-btn__outlined {
+        border-color: @button-muted-outlined-border-color;
+
+        &.is-selected {
+            border-color: @button-muted-outlined-selected-border-color;
+        }
+
+        &[disabled] {
+            border-color: @button-muted-outlined-disabled-border-color;
+        }
+    }
+
+    //  --  Filled (Gray)
+    &.s-btn__filled {
+        color: @button-muted-filled-color;
+        background-color: @button-muted-filled-background-color;
+        border-color: transparent;
+        box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, .4);
+
+        &:hover,
+        &:focus,
+        &:active {
+            color: @button-muted-filled-hover-color;
+            background-color: @button-muted-filled-hover-background-color;
+        }
+
+        &:active {
+            background-color: @button-muted-filled-active-background-color;
+            box-shadow: none;
+        }
+
+        &:focus {
+            box-shadow: 0 0 0 @su4 var(--focus-ring-muted);
+        }
+
+        &.is-selected {
+            color: @button-muted-filled-selected-color;
+            background-color: @button-muted-filled-selected-background-color;
+            box-shadow: none;
+
+            &:focus {
+                box-shadow: 0 0 0 @su4 var(--focus-ring-muted);
+            }
+        }
+
+        &[disabled] {
+            color: @button-muted-filled-disabled-color;
+            box-shadow: none;
+        }
+    }
+}
+
+#stacks-internals #darkmode('.s-btn__muted.s-btn__filled', { box-shadow: none; });
 
 //  ============================================================================
-//  $   WARNING BUTTONS & STYLES
+//  $   DANGER BUTTONS & STYLES
 //  ============================================================================
 .s-btn__danger {
-    .btn-check-brc(@status: false);
-    .btn-check-bxs(@bxos: @button-danger-background-color, @status: false);
-    .btn-bgc(fade(@button-danger-background-color, 0%));
-    .btn-fc(@button-danger-background-color);
+    color: @button-danger-color;
+
+    &:hover,
+    &:focus,
+    &:active {
+        color: @button-danger-hover-color;
+        background-color: @button-danger-hover-background-color;
+    }
+
+    &:active {
+        background-color: @button-danger-active-background-color;
+    }
+
+    &:focus {
+        box-shadow: 0 0 0 @su4 var(--focus-ring-error);
+    }
+
+    &.is-selected {
+        color: @button-danger-selected-color;
+        background-color: @button-danger-selected-background-color;
+
+        &:focus {
+            box-shadow: 0 0 0 @su4 var(--focus-ring-error);
+        }
+    }
 
     //  --  Outlined
     &.s-btn__outlined {
-        .btn-check-brc(lighten(@button-danger-background-color, 20%));
-        .btn-check-bxs(@bxos: @button-danger-background-color, @status: false);
-        .btn-bgc(fade(@button-danger-background-color, 0%));
-        .btn-fc(@button-danger-background-color);
+        border-color: @button-danger-outlined-border-color;
+
+        &.is-selected {
+            border-color: @button-danger-outlined-selected-border-color;
+        }
+
+        &[disabled] {
+            border-color: @button-danger-outlined-disabled-border-color;
+        }
     }
 
     //  --  Filled
     &.s-btn__filled {
-        .btn-check-brc(@button-danger-background-color);
-        .btn-check-bxs(@button-danger-background-color, @button-danger-background-color);
-        .btn-bgc(@button-danger-background-color);
-        .btn-check-bgg(@button-danger-background-color);
-        .btn-fc(@button-danger-font-color);
-    }
+        color: @button-danger-filled-color;
+        background-color: @button-danger-filled-background-color;
+        border-color: transparent;
+        box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, .4);
 
-    //  --  Inverted
-    &.s-btn__inverted {
-        //  --  Inverted: Clear
-        .btn-check-brc(@status: false);
-        .btn-check-bxs(@bxos: fade(@button-box-shadow-color, 0%), @status: false);
-        .btn-bgc(fade(@button-danger-font-color, 0%));
-        .btn-fc(fade(lighten(@button-danger-background-color, 0%), 90%));
-
-        //  --  Inverted: Outlined
-        &.s-btn__outlined {
-            .btn-check-brc(fade(lighten(@button-danger-background-color, 50%), 25%));
-            .btn-bgc(fade(lighten(@button-danger-background-color, 40%), 0%));
-            .btn-fc(fade(lighten(@button-danger-background-color, 50%), 80%));
+        &:hover,
+        &:focus,
+        &:active {
+            color: @button-danger-filled-hover-color;
+            background-color: @button-danger-filled-hover-background-color;
         }
 
-        //  --  Inverted: Filled
-        &.s-btn__filled {
-            .btn-check-brc(mix(lighten(@button-danger-background-color, 30%), @white));
-            .btn-check-bxs(@bxos: lighten(@button-danger-background-color, 50%), @status: false);
-            .btn-bgc(mix(lighten(@button-danger-background-color, 30%), @white));
-            .btn-check-bgg(lighten(@button-danger-background-color, 30%));
-            .btn-fc(darken(@button-danger-background-color, 10%));
+        &:active {
+            background-color: @button-danger-filled-active-background-color;
+            box-shadow: none;
+        }
+
+        &:focus {
+            box-shadow: 0 0 0 @su4 var(--focus-ring-error);
+        }
+
+        &.is-selected {
+            color: @button-danger-filled-selected-color;
+            background-color: @button-danger-filled-selected-background-color;
+            box-shadow: none;
+
+            &:focus {
+                box-shadow: 0 0 0 @su4 var(--focus-ring-error);
+            }
+        }
+
+        .s-btn--number {
+            color: @button-danger-filled-number-color;
+        }
+
+        &[disabled] {
+            color: @button-danger-filled-disabled-color;
+            background-color: @button-danger-filled-disabled-background-color;
+            box-shadow: none;
+
+            .s-btn--number {
+                color: @button-danger-filled-disabled-number-color;
+            }
         }
     }
 }
 
+#stacks-internals #darkmode('.s-btn__danger.s-btn__filled', { box-shadow: none; });
 
 //  ============================================================================
 //  $   PRIMARY STYLE
 //  ============================================================================
 .s-btn__primary {
-    .btn-check-brc(@button-primary-background-color);
-    .btn-check-bxs(@button-primary-background-color);
-    .btn-bgc(@button-primary-background-color);
-    .btn-check-bgg(@button-primary-background-color);
-    .btn-fc(@button-primary-font-color);
+    color: @button-primary-color;
+    background-color: @button-primary-background-color;
+    box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, .4);
+
+    &:hover,
+    &:focus,
+    &:active {
+        color: @button-primary-hover-color;
+        background-color: @button-primary-hover-background-color;
+    }
+
+    &:active {
+        background-color: @button-primary-active-background-color;
+        box-shadow: none;
+    }
+
+    &.is-selected {
+        color: @button-primary-selected-color;
+        background-color: @button-primary-selected-background-color;
+    }
+
+    .s-btn--number {
+        color: @button-primary-number-color;
+    }
+
+    &[disabled] {
+        color: @button-primary-disabled-color;
+        background-color: @button-primary-disabled-background-color;
+
+        .s-btn--number {
+            color: @button-primary-disabled-number-color;
+        }
+    }
 }
+
+#stacks-internals #darkmode('.s-btn__primary', { box-shadow: none; });
 
 
 //  ============================================================================
 //  $   MISC STYLES
 //  ============================================================================
 .s-btn__google {
-    border-color: @black-100;
-    background-color: @white;
-    color: #535A60;
+    border-color: var(--black-100);
+    background-color: var(--white);
+    color: var(--black-700);
 
     &:hover,
     &:focus {
-        border-color: @black-150;
-        background-color: darken(@white, 3%);
-        color: darken(#535A60, 5%);
+        border-color: var(--black-150);
+        background-color: var(--black-025);
+        color: var(--black-800);
     }
 
     &:active {
-        border-color: @black-200;
-        background-color: @black-050;
-        color: @black-900;
+        border-color: var(--black-200);
+        background-color: var(--black-050);
+        color: var(--black-900);
     }
 }
 
 .s-btn__facebook {
     border-color: transparent;
     background-color: #385499;
-    color: @white;
+    color: #fff;
 
     &:hover,
     &:focus {
         background-color: darken(#385499, 5%);
-        color: fade(@white, 95%);
+        color: #fff;
     }
 
     &:active {
@@ -610,18 +512,18 @@
 }
 
 .s-btn__github {
-    background-color: @black-750;
-    color: @white;
+    background-color: var(--black-750);
+    color: var(--white);
 
     &:hover,
     &:focus {
-        background-color: @black-800;
-        color: @white;
+        background-color: var(--black-800);
+        color: var(--white);
     }
 
-     &:active {
-        background-color: @black-900;
-        color: @white;
+    &:active {
+        background-color: var(--black-900);
+        color: var(--white);
     }
 }
 
@@ -631,24 +533,28 @@
     padding: 0;
     border: none;
     outline: none;
-    font: inherit;
-    color: inherit;
+    font: unset;
+    border-radius: 0;
+    color: unset;
     background: none;
     box-shadow: none;
     cursor: default;
 }
 
 .s-btn__unset:focus {
-    color: inherit;
+    color: unset;
 }
 
 .s-btn__link {
+    display: inline;
     padding: 0;
     border: none;
+    border-radius: 0;
     outline: none;
     font: inherit;
     background: none;
     box-shadow: none;
+    text-align: inherit;
 
     .s-link();
 
@@ -684,13 +590,28 @@
         &:before {
             content: "";
             position: absolute;
-            top: calc(~"50% - @{su8}");
-            width: @su16;
-            height: @su16;
-            margin-left: -1.65em;
-            margin-left: -(@su24 - @su2);
-            border: 2px solid fade(@button-filled-font-color, 40%);
-            border-left-color: darken(@button-filled-font-color, 5%);
+            opacity: .3;
+            left: .6em;
+            top: calc(~"50% - .6em");
+            width: 1.23076923em;
+            height: 1.23076923em;
+            border-width: 2px;
+            border-style: solid;
+            border-color: currentColor;
+            border-radius: @br-circle;
+        }
+
+        &:after {
+            content: "";
+            position: absolute;
+            left: .6em;
+            top: calc(~"50% - .6em");
+            width: 1.23076923em;
+            height: 1.23076923em;
+            border-width: 2px;
+            border-style: solid;
+            border-color: transparent;
+            border-left-color: currentColor;
             border-radius: @br-circle;
             animation: s-spinner-rotate .9s infinite cubic-bezier(0.5, 0.1, 0.5, 0.9);
             // see _stacks-spinner.less for an explanation of the following two
@@ -705,72 +626,19 @@
             opacity: 0;
         }
 
-        &.s-btn__xs:before {
-            width: 13px;
-            height: 13px;
-            margin-left: -18px;
-            top: calc(~"50% - 7px");
-        }
-
-        &.s-btn__sm:before {
-            width: 14px;
-            height: 14px;
-            margin-left: -20px;
-        }
-
-        &.s-btn__md {
-            padding-left: 2.1em;
-
-            &:before {
-                width: 20px;
-                height: 20px;
-                margin-left: -27px;
-                border-width: 0.125em;
-                top: calc(~"50% - 9px");
-            }
-        }
-
         &.s-btn__lg {
-            padding-left: 1.8em;
-
-            &:before {
-                width: 28px;
-                height: 28px;
-                margin-left: -38px;
+            &:before,
+            &:after {
                 border-width: 3px;
-                top: calc(~"50% - 15px");
             }
         }
 
         &.s-btn__xl {
-            padding-left: 1.7em;
-
-            &:before {
-                width: 36px;
-                height: 36px;
-                margin-left: -46px;
+            &:before,
+            &:after {
                 border-width: 4px;
-                top: calc(~"50% - 18px");
             }
         }
     }
-
-    &.s-btn__danger.is-loading:before {
-        border-color: fade(@button-danger-background-color, 25%);
-        border-left-color: fade(@button-danger-background-color, 75%);
-    }
-
-    &.s-btn__primary.is-loading:before,
-    &.s-btn__danger.s-btn__filled.is-loading:before,
-    &.s-btn__inverted:not(.s-btn__filled).is-loading:before,
-    &.s-btn__inverted:not(.s-btn__filled).is-selected.is-loading:before {
-        border-color: fade(@white, 25%);
-        border-left-color: @white;
-    }
-    &.s-btn__muted.is-loading:before {
-        border-color: fade(@black-900, 25%);
-        border-left-color: fade(@black-900, 75%);
-    }
 }
-
 }

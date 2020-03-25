@@ -17,31 +17,39 @@
     align-items: flex-end;
     width: 100%;
     padding-bottom: @su16;
-    border-bottom: 1px solid @black-100;
-    margin-bottom: @su16;
+    border-bottom: 1px solid var(--black-100);
 
     #stacks-internals #screen-md({
         flex-direction: column;
         align-items: flex-start;
     });
 
-    h1 {
-        margin-bottom:  -@su4;
+    .s-page-title--header {
+        margin: 0;
+        margin-bottom: 0;
         font-size: @fs-headline1;
-        color: @fc-dark;
+        color: var(--fc-dark);
         line-height: @lh-sm;
         font-weight: normal;
     }
+
     .s-page-title--description {
-        color: @fc-light;
-        margin: @su4 0 0;
+        color: var(--fc-light);
+        margin-top: @su4;
+        margin-bottom: 0;
         font-size: @fs-body2;
     }
+
     .s-page-title--actions {
-        #stacks-internals #screen-sm({
+        margin-left: @su8;
+        flex-shrink: 0;
+
+        #stacks-internals #screen-md({
             margin-top: @su8;
+            margin-left: 0;
         });
     }
+
     .s-breadcrumbs {
         margin-bottom: @su8;
 
