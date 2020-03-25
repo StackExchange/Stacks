@@ -135,7 +135,7 @@ namespace Stacks {
                         name: "offset",
                         options: {
                             // Popperjs does not respect margins on the element, so set the offset here
-                            // NOTE: this is the value of @su8 in less
+                            // NOTE: this value matches the CSS value of auto-placed popovers margins (@su8 + 2)
                             offset: [0, 10]
                         }
                     }
