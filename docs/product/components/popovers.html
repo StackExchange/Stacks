@@ -79,9 +79,14 @@ description: Popovers are small content containers that provide a contextual ove
                     <td class="p8 lh-lg">Dictates where to place the popover in relation to the reference element. By default, the placement value is <code class="stacks-code">bottom</code>. Accepted placements are <code class="stacks-code">auto</code>, <code class="stacks-code">top</code>, <code class="stacks-code">right</code>, <code class="stacks-code">bottom</code>, <code class="stacks-code">left</code>. Each placement can take an additional <code class="stacks-code">-start</code> and <code class="stacks-code">-end</code> variation.</td>
                 </tr>
                 <tr>
-                    <th scope="row"><code class="stacks-code">data-s-popover-auto-show="true"</code></th>
+                    <th scope="row"><code class="stacks-code">data-s-popover-auto-show="[true|false]"</code></th>
                     <td>Controller element</td>
-                    <td class="p8">If set, the popover will appear immediately when the Stacks controller is first connected.  This should be used in place of <code class="stacks-code">.is-visible</code> for displaying popovers on load as it will prevent the popover</td>
+                    <td class="p8"><span class="s-label--status ml0">Optional</span> If <code class="stacks-code">true</code>, the popover will appear immediately when the Stacks controller is first connected.  This should be used in place of <code class="stacks-code">.is-visible</code> for displaying popovers on load as it will prevent the popover from appearing before it has been correctly positioned.<code class="stacks-code">false</code>.</td>
+                </tr>
+                <tr>
+                    <th scope="row"><code class="stacks-code">data-s-popover-hide-on-outside-click="[true|false]"</code></th>
+                    <td>Controller element</td>
+                    <td class="p8"><span class="s-label--status ml0">Optional</span> If <code class="stacks-code">false</code>, the popover will appear not disappear on outside clicks and will only be dismissed through other means, e.g. <code class="stacks-code">data-target="s-popover#hide"</code>. If left unset, defaults to <code class="stacks-code">true</code>.</td>
                 </tr>
             </tbody>
         </table>
@@ -159,7 +164,8 @@ description: Popovers are small content containers that provide a contextual ove
                 data-controller="s-popover"
                 data-s-popover-reference-selector="#reference-element"
                 data-s-popover-placement="top-end"
-                data-s-popover-auto-show="true">
+                data-s-popover-auto-show="true"
+                data-s-popover-hide-on-ouside-click="false">
                 <a id="reference-element" class="s-link s-link__inherit"
                     aria-controls="popover-example-3">
                     Create a team

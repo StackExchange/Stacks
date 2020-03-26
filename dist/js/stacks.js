@@ -4068,12 +4068,12 @@ var Stacks;
             _super.prototype.connect.call(this);
             this.validate();
             if (this.isVisible) {
-                this.initializePopper();
+                this.finishShow();
             }
-            if (this.data.get("auto-show") === "true") {
-                this.data.delete("auto-show");
+            else if (this.data.get("auto-show") === "true") {
                 this.show();
             }
+            this.data.delete("auto-show");
         };
         BasePopoverController.prototype.disconnect = function () {
             this.hide();
@@ -4093,6 +4093,9 @@ var Stacks;
             if (this.triggerEvent("show").defaultPrevented) {
                 return;
             }
+            this.finishShow();
+        };
+        BasePopoverController.prototype.finishShow = function () {
             if (!this.popper) {
                 this.initializePopper();
             }
@@ -4198,11 +4201,12 @@ var Stacks;
         };
         PopoverController.prototype.hideOnOutsideClick = function (e) {
             var target = e.target;
-            if (!this.referenceElement.contains(target) && !this.popoverElement.contains(target)) {
+            var behavior = this.data.get("hide-on-ouside-click");
+            var shouldHide = behavior !== "false";
+            if (shouldHide && !this.referenceElement.contains(target) && !this.popoverElement.contains(target)) {
                 this.hide();
             }
         };
-        ;
         PopoverController.prototype.hideOnEscapePress = function (e) {
             if (e.which !== 27 || !this.isVisible) {
                 return;
@@ -4212,7 +4216,6 @@ var Stacks;
             }
             this.hide();
         };
-        ;
         PopoverController.prototype.toggleOptionalClasses = function (show) {
             if (!this.data.has("toggle-class")) {
                 return;

@@ -36,15 +36,15 @@ namespace Stacks {
         connect() {
             super.connect();
             this.validate();
-            if (this.isVisible) {
-                // just call initialize here, not show. This keeps already visible popovers from adding/firing document events
-                this.initializePopper();
-            }
 
-            if (this.data.get("auto-show") === "true") {
-                this.data.delete("auto-show");
+            // If the popover is visible, we bypass the failable `show` event and finish wiring things up
+            if (this.isVisible) {
+                this.finishShow();
+            } else if (this.data.get("auto-show") === "true") {
                 this.show();
             }
+
+            this.data.delete("auto-show");
         }
 
         /**
@@ -73,6 +73,14 @@ namespace Stacks {
             if (this.isVisible) { return; }
 
             if (this.triggerEvent("show").defaultPrevented) { return; }
+
+            this.finishShow();
+        }
+
+        /**
+         * Finishes showing the popover, regardless of whether the popover was already visible
+         */
+        finishShow() {
 
             if (!this.popper) {
                 this.initializePopper();
@@ -248,12 +256,17 @@ namespace Stacks {
          */
         private hideOnOutsideClick(e: MouseEvent) {
             const target = <Node>e.target;
+
+            const behavior = this.data.get("hide-on-ouside-click");
+
+            var shouldHide = behavior !== "false";
+
             // check if the document was clicked inside either the reference element or the popover itself
             // note: .contains also returns true if the node itself matches the target element
-            if (!this.referenceElement.contains(target) && !this.popoverElement!.contains(target)) {
+            if (shouldHide && !this.referenceElement.contains(target) && !this.popoverElement!.contains(target)) {
                 this.hide();
             }
-        };
+        }
 
         /**
          * Forces the popover to hide if the user presses escape while it, one of its childen, or the reference element are focused
@@ -272,7 +285,7 @@ namespace Stacks {
             }
 
             this.hide();
-        };
+        }
 
         /**
          * Toggles all classes on the originating element based on the `class-toggle` data
