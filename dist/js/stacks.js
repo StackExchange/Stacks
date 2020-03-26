@@ -4079,7 +4079,7 @@ var Stacks;
             this.hide();
             if (this.popper) {
                 this.popper.destroy();
-                this.popper = null;
+                delete this.popper;
             }
             _super.prototype.disconnect.call(this);
         };
@@ -4113,7 +4113,7 @@ var Stacks;
             this.popoverElement.classList.remove("is-visible");
             if (this.popper) {
                 this.popper.destroy();
-                this.popper = null;
+                delete this.popper;
             }
             this.hidden();
         };

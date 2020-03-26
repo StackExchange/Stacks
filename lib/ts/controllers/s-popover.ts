@@ -1,7 +1,7 @@
 namespace Stacks {
     export abstract class BasePopoverController extends StacksController {
-        // @ts-ignore
-        private popper!: Popper;
+
+        private popper?: Popper.Instance;
 
         protected popoverElement!: HTMLElement;
 
@@ -54,7 +54,7 @@ namespace Stacks {
             this.hide();
             if (this.popper) {
                 this.popper.destroy();
-                this.popper = null;
+                delete this.popper;
             }
             super.disconnect();
         }
@@ -107,7 +107,7 @@ namespace Stacks {
             if (this.popper) {
                 // completely destroy the popper on hide; this is in line with Popper.js's performance recommendations
                 this.popper.destroy();
-                this.popper = null;
+                delete this.popper;
             }
 
             this.hidden();
@@ -140,9 +140,8 @@ namespace Stacks {
          * Initializes the Popper for this instance
          */
         private initializePopper() {
-            // @ts-ignore
             this.popper = Popper.createPopper(this.referenceElement, this.popoverElement, {
-                placement: this.data.get("placement") || "bottom",
+                placement: <Popper.Placement | null>this.data.get("placement") || "bottom",
                 modifiers: [
                     {
                         name: "offset",
