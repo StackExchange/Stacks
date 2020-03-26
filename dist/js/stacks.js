@@ -4064,6 +4064,20 @@ var Stacks;
             enumerable: true,
             configurable: true
         });
+        Object.defineProperty(BasePopoverController.prototype, "isInViewport", {
+            get: function () {
+                var element = this.popoverElement;
+                if (!this.isVisible || !element) {
+                    return false;
+                }
+                var rect = element.getBoundingClientRect();
+                var viewHeight = Math.max(document.documentElement.clientHeight, window.innerHeight);
+                var viewWidth = Math.max(document.documentElement.clientWidth, window.innerWidth);
+                return rect.bottom > 0 && rect.top < viewHeight && rect.right > 0 && rect.left < viewWidth;
+            },
+            enumerable: true,
+            configurable: true
+        });
         BasePopoverController.prototype.connect = function () {
             _super.prototype.connect.call(this);
             this.validate();
@@ -4199,11 +4213,24 @@ var Stacks;
             document.removeEventListener("click", this.boundHideOnOutsideClick);
             document.removeEventListener("keyup", this.boundHideOnEscapePress);
         };
+        Object.defineProperty(PopoverController.prototype, "shouldHideOnOutsideClick", {
+            get: function () {
+                var hideBehavior = this.data.get("hide-on-ouside-click");
+                switch (hideBehavior) {
+                    case "never":
+                        return false;
+                    case "if-in-viewport":
+                        return this.isInViewport;
+                    default:
+                        return true;
+                }
+            },
+            enumerable: true,
+            configurable: true
+        });
         PopoverController.prototype.hideOnOutsideClick = function (e) {
             var target = e.target;
-            var behavior = this.data.get("hide-on-ouside-click");
-            var shouldHide = behavior !== "false";
-            if (shouldHide && !this.referenceElement.contains(target) && !this.popoverElement.contains(target)) {
+            if (this.shouldHideOnOutsideClick && !this.referenceElement.contains(target) && !this.popoverElement.contains(target)) {
                 this.hide();
             }
         };

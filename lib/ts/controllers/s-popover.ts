@@ -1,4 +1,8 @@
 namespace Stacks {
+
+    type OutsideClickBehavior = "always" | "never" | "if-in-viewport";
+
+
     export abstract class BasePopoverController extends StacksController {
 
         private popper?: Popper.Instance;
@@ -26,8 +30,25 @@ namespace Stacks {
          * Returns true if the if the popover is currently visible.
          */
         get isVisible() {
-            var popoverElement = this.popoverElement;
+            const popoverElement = this.popoverElement;
             return popoverElement ? popoverElement.classList.contains("is-visible") : false;
+        }
+
+        /**
+         * Gets whether the element is visible in the browser's viewport.
+         */
+        get isInViewport() {
+            const element = this.popoverElement;
+            if (!this.isVisible || !element) { return false; }
+
+            // From https://stackoverflow.com/a/5354536.  Theoretically, this could be calculated using Popper's detectOverflow function,
+            // but it's unclear how to access that with out current configuration.
+
+            const rect = element.getBoundingClientRect();
+            const viewHeight = Math.max(document.documentElement.clientHeight, window.innerHeight);
+            const viewWidth = Math.max(document.documentElement.clientWidth, window.innerWidth);
+
+            return rect.bottom > 0 && rect.top < viewHeight && rect.right > 0 && rect.left < viewWidth;
         }
 
         /**
@@ -249,6 +270,19 @@ namespace Stacks {
             document.removeEventListener("keyup", this.boundHideOnEscapePress);
         }
 
+        private get shouldHideOnOutsideClick() {
+
+            const hideBehavior = <OutsideClickBehavior>this.data.get("hide-on-ouside-click");
+            switch (hideBehavior) {
+                case "never":
+                    return false;
+                case "if-in-viewport":
+                     return this.isInViewport;
+                 default:
+                     return true;
+            }
+        }
+
         /**
          * Forces the popover to hide if a user clicks outside of it or its reference element
          * @param {Event} e - The document click event
@@ -256,13 +290,9 @@ namespace Stacks {
         private hideOnOutsideClick(e: MouseEvent) {
             const target = <Node>e.target;
 
-            const behavior = this.data.get("hide-on-ouside-click");
-
-            var shouldHide = behavior !== "false";
-
             // check if the document was clicked inside either the reference element or the popover itself
             // note: .contains also returns true if the node itself matches the target element
-            if (shouldHide && !this.referenceElement.contains(target) && !this.popoverElement!.contains(target)) {
+            if (this.shouldHideOnOutsideClick && !this.referenceElement.contains(target) && !this.popoverElement!.contains(target)) {
                 this.hide();
             }
         }
