@@ -3825,14 +3825,17 @@ var Stacks;
             this.unbindDocumentEvents();
         };
         ;
-        ModalController.prototype.toggle = function () {
-            this._toggle();
+        ModalController.prototype.toggle = function (dispatcher) {
+            if (dispatcher === void 0) { dispatcher = null; }
+            this._toggle(undefined, dispatcher);
         };
-        ModalController.prototype.show = function () {
-            this._toggle(true);
+        ModalController.prototype.show = function (dispatcher) {
+            if (dispatcher === void 0) { dispatcher = null; }
+            this._toggle(true, dispatcher);
         };
-        ModalController.prototype.hide = function () {
-            this._toggle(false);
+        ModalController.prototype.hide = function (dispatcher) {
+            if (dispatcher === void 0) { dispatcher = null; }
+            this._toggle(false, dispatcher);
         };
         ModalController.prototype.validate = function () {
             var returnElementSelector = this.data.get("return-element");
@@ -3843,8 +3846,9 @@ var Stacks;
                 }
             }
         };
-        ModalController.prototype._toggle = function (show) {
+        ModalController.prototype._toggle = function (show, dispatcher) {
             var _this = this;
+            if (dispatcher === void 0) { dispatcher = null; }
             var toShow = show;
             var isVisible = this.modalTarget.getAttribute("aria-hidden") === "false";
             if (typeof toShow === "undefined") {
@@ -3853,7 +3857,11 @@ var Stacks;
             if ((toShow && isVisible) || (!toShow && !isVisible)) {
                 return;
             }
-            var triggeredEvent = this.triggerEvent(toShow ? "show" : "hide", { returnElement: this.returnElement });
+            var dispatchingElement = this.getDispatcher(dispatcher);
+            var triggeredEvent = this.triggerEvent(toShow ? "show" : "hide", {
+                returnElement: this.returnElement,
+                dispatcher: this.getDispatcher(dispatchingElement)
+            });
             if (triggeredEvent.defaultPrevented) {
                 return;
             }
@@ -3870,11 +3878,15 @@ var Stacks;
             var supportsTransitionEnd = this.modalTarget.ontransitionend !== undefined;
             if (supportsTransitionEnd) {
                 this.modalTarget.addEventListener("transitionend", function () {
-                    _this.triggerEvent(toShow ? "shown" : "hidden");
+                    _this.triggerEvent(toShow ? "shown" : "hidden", {
+                        dispatcher: dispatchingElement
+                    });
                 }, { once: true });
             }
             else {
-                this.triggerEvent(toShow ? "shown" : "hidden");
+                this.triggerEvent(toShow ? "shown" : "hidden", {
+                    dispatcher: dispatchingElement
+                });
             }
         };
         ModalController.prototype.focusReturnElement = function () {
@@ -3947,14 +3959,26 @@ var Stacks;
         ModalController.prototype.hideOnOutsideClick = function (e) {
             var target = e.target;
             if (!this.modalTarget.querySelector(".s-modal--dialog").contains(target)) {
-                this._toggle(false);
+                this._toggle(false, e);
             }
         };
         ModalController.prototype.hideOnEscapePress = function (e) {
             if (e.which !== 27 || this.modalTarget.getAttribute("aria-hidden") === "true") {
                 return;
             }
-            this._toggle(false);
+            this._toggle(false, e);
+        };
+        ModalController.prototype.getDispatcher = function (dispatcher) {
+            if (dispatcher === void 0) { dispatcher = null; }
+            if (dispatcher instanceof Event) {
+                return dispatcher.target;
+            }
+            else if (dispatcher instanceof Element) {
+                return dispatcher;
+            }
+            else {
+                return this.element;
+            }
         };
         ModalController.targets = ["modal", "initialFocus"];
         return ModalController;
@@ -4025,14 +4049,19 @@ var Stacks;
             }
             _super.prototype.disconnect.call(this);
         };
-        BasePopoverController.prototype.toggle = function () {
-            this.isVisible ? this.hide() : this.show();
+        BasePopoverController.prototype.toggle = function (dispatcher) {
+            if (dispatcher === void 0) { dispatcher = null; }
+            this.isVisible ? this.hide(dispatcher) : this.show(dispatcher);
         };
-        BasePopoverController.prototype.show = function () {
+        BasePopoverController.prototype.show = function (dispatcher) {
+            if (dispatcher === void 0) { dispatcher = null; }
             if (this.isVisible) {
                 return;
             }
-            if (this.triggerEvent("show").defaultPrevented) {
+            var dispatcherElement = this.getDispatcher(dispatcher);
+            if (this.triggerEvent("show", {
+                dispatcher: dispatcherElement
+            }).defaultPrevented) {
                 return;
             }
             if (!this.popper) {
@@ -4042,11 +4071,15 @@ var Stacks;
             this.scheduleUpdate();
             this.shown();
         };
-        BasePopoverController.prototype.hide = function () {
+        BasePopoverController.prototype.hide = function (dispatcher) {
+            if (dispatcher === void 0) { dispatcher = null; }
             if (!this.isVisible) {
                 return;
             }
-            if (this.triggerEvent("hide").defaultPrevented) {
+            var dispatcherElement = this.getDispatcher(dispatcher);
+            if (this.triggerEvent("hide", {
+                dispatcher: dispatcherElement
+            }).defaultPrevented) {
                 return;
             }
             this.popoverElement.classList.remove("is-visible");
@@ -4056,13 +4089,19 @@ var Stacks;
             }
             this.hidden();
         };
-        BasePopoverController.prototype.shown = function () {
+        BasePopoverController.prototype.shown = function (dispatcher) {
+            if (dispatcher === void 0) { dispatcher = null; }
             this.bindDocumentEvents();
-            this.triggerEvent("shown");
+            this.triggerEvent("shown", {
+                dispatcher: dispatcher
+            });
         };
-        BasePopoverController.prototype.hidden = function () {
+        BasePopoverController.prototype.hidden = function (dispatcher) {
+            if (dispatcher === void 0) { dispatcher = null; }
             this.unbindDocumentEvents();
-            this.triggerEvent("hidden");
+            this.triggerEvent("hidden", {
+                dispatcher: dispatcher
+            });
         };
         BasePopoverController.prototype.generatePopover = function () {
             return null;
@@ -4105,6 +4144,18 @@ var Stacks;
             }
             this.popoverElement = popoverElement;
         };
+        BasePopoverController.prototype.getDispatcher = function (dispatcher) {
+            if (dispatcher === void 0) { dispatcher = null; }
+            if (dispatcher instanceof Event) {
+                return dispatcher.target;
+            }
+            else if (dispatcher instanceof Element) {
+                return dispatcher;
+            }
+            else {
+                return this.element;
+            }
+        };
         BasePopoverController.prototype.scheduleUpdate = function () {
             if (this.popper && this.isVisible) {
                 this.popper.update();
@@ -4120,13 +4171,15 @@ var Stacks;
             _this.popoverSelectorAttribute = "aria-controls";
             return _this;
         }
-        PopoverController.prototype.shown = function () {
+        PopoverController.prototype.shown = function (dispatcher) {
+            if (dispatcher === void 0) { dispatcher = null; }
             this.toggleOptionalClasses(true);
-            _super.prototype.shown.call(this);
+            _super.prototype.shown.call(this, dispatcher);
         };
-        PopoverController.prototype.hidden = function () {
+        PopoverController.prototype.hidden = function (dispatcher) {
+            if (dispatcher === void 0) { dispatcher = null; }
             this.toggleOptionalClasses(false);
-            _super.prototype.hidden.call(this);
+            _super.prototype.hidden.call(this, dispatcher);
         };
         PopoverController.prototype.bindDocumentEvents = function () {
             this.boundHideOnOutsideClick = this.boundHideOnOutsideClick || this.hideOnOutsideClick.bind(this);
@@ -4141,7 +4194,7 @@ var Stacks;
         PopoverController.prototype.hideOnOutsideClick = function (e) {
             var target = e.target;
             if (!this.referenceElement.contains(target) && !this.popoverElement.contains(target)) {
-                this.hide();
+                this.hide(e);
             }
         };
         ;
@@ -4152,7 +4205,7 @@ var Stacks;
             if (this.popoverElement.contains(e.target)) {
                 this.referenceElement.focus();
             }
-            this.hide();
+            this.hide(e);
         };
         ;
         PopoverController.prototype.toggleOptionalClasses = function (show) {
@@ -4391,12 +4444,13 @@ var Stacks;
             this.unbindMouseEvents();
             _super.prototype.disconnect.call(this);
         };
-        TooltipController.prototype.show = function () {
+        TooltipController.prototype.show = function (dispatcher) {
+            if (dispatcher === void 0) { dispatcher = null; }
             var controller = Stacks.application.getControllerForElementAndIdentifier(this.element, "s-popover");
             if (controller && controller.isVisible) {
                 return;
             }
-            _super.prototype.show.call(this);
+            _super.prototype.show.call(this, dispatcher);
         };
         TooltipController.prototype.applyTitleAttributes = function () {
             var content;
