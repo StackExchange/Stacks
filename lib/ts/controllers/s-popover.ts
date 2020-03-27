@@ -57,17 +57,21 @@ namespace Stacks {
         /**
          * Toggles the visibility of the popover
          */
-        toggle() {
-            this.isVisible ? this.hide() : this.show();
+        toggle(dispatcher: Event|Element|null = null) {
+            this.isVisible ? this.hide(dispatcher) : this.show(dispatcher);
         }
 
         /**
          * Shows the popover if not already visible
          */
-        show() {
+        show(dispatcher: Event|Element|null = null) {
             if (this.isVisible) { return; }
 
-            if (this.triggerEvent("show").defaultPrevented) { return; }
+            let dispatcherElement = this.getDispatcher(dispatcher);
+
+            if (this.triggerEvent("show", {
+                dispatcher: dispatcherElement
+            }).defaultPrevented) { return; }
 
             if (!this.popper) {
                 this.initializePopper();
@@ -75,8 +79,7 @@ namespace Stacks {
 
             this.popoverElement!.classList.add("is-visible");
 
-            // ensure the popper has been positioned correctly and is listening to events
-            this.popper.enableEventListeners();
+            // ensure the popper has been positioned correctly
             this.scheduleUpdate();
 
             this.shown();
@@ -85,15 +88,21 @@ namespace Stacks {
         /**
          * Hides the popover if not already hidden
          */
-        hide() {
+        hide(dispatcher: Event|Element|null = null) {
             if (!this.isVisible) { return; }
 
-            if (this.triggerEvent("hide").defaultPrevented) { return; }
+            let dispatcherElement = this.getDispatcher(dispatcher);
+
+            if (this.triggerEvent("hide", {
+                dispatcher: dispatcherElement
+            }).defaultPrevented) { return; }
 
             this.popoverElement.classList.remove("is-visible");
 
             if (this.popper) {
-                this.popper.disableEventListeners();
+                // completely destroy the popper on hide; this is in line with Popper.js's performance recommendations
+                this.popper.destroy();
+                this.popper = null;
             }
 
             this.hidden();
@@ -102,17 +111,21 @@ namespace Stacks {
         /**
          * Binds document events for this popover and fires the shown event
          */
-        protected shown() {
+        protected shown(dispatcher: Element|null = null) {
             this.bindDocumentEvents();
-            this.triggerEvent("shown");
+            this.triggerEvent("shown", {
+                dispatcher: dispatcher
+            });
         }
 
         /**
          * Unbinds document events for this popover and fires the hidden event
          */
-        protected hidden() {
+        protected hidden(dispatcher: Element|null = null) {
             this.unbindDocumentEvents();
-            this.triggerEvent("hidden");
+            this.triggerEvent("hidden", {
+                dispatcher: dispatcher
+            });
         }
 
         /**
@@ -127,12 +140,19 @@ namespace Stacks {
          */
         private initializePopper() {
             // @ts-ignore
-            this.popper = new Popper(this.referenceElement, this.popoverElement, {
-                eventsEnabled: this.isVisible
+            this.popper = Popper.createPopper(this.referenceElement, this.popoverElement, {
+                placement: this.data.get("placement") || "bottom",
+                modifiers: [
+                    {
+                        name: "offset",
+                        options: {
+                            // Popperjs does not respect margins on the element, so set the offset here
+                            // NOTE: this value matches the CSS value of auto-placed popovers margins (@su8 + 2)
+                            offset: [0, 10]
+                        }
+                    }
+                ]
             });
-
-            // @ts-ignore
-            this.popper.options.placement = this.data.get("placement") as Popper.Placement || "bottom";
         }
 
         /**
@@ -177,11 +197,27 @@ namespace Stacks {
         }
 
         /**
+         * Determines the correct dispatching element from a potential input
+         * @param dispatcher The event or element to get the dispatcher from
+         */
+        protected getDispatcher(dispatcher: Event|Element|null = null) : Element {
+            if (dispatcher instanceof Event) {
+                return <Element>dispatcher.target;
+            }
+            else if (dispatcher instanceof Element) {
+                return dispatcher;
+            }
+            else {
+                return this.element;
+            }
+        }
+
+        /**
          * Schedules the popover to update on the next animation frame if visible
          */
         protected scheduleUpdate() {
             if (this.popper && this.isVisible) {
-                this.popper.scheduleUpdate();
+                this.popper.update();
             }
         }
     }
@@ -197,17 +233,17 @@ namespace Stacks {
         /**
          * Toggles optional classes in addition to BasePopoverController.shown
          */
-        protected shown() {
+        protected shown(dispatcher: Element|null = null) {
             this.toggleOptionalClasses(true);
-            super.shown();
+            super.shown(dispatcher);
         }
 
         /**
          * Toggles optional classes in addition to BasePopoverController.hidden
          */
-        protected hidden() {
+        protected hidden(dispatcher: Element|null = null) {
             this.toggleOptionalClasses(false);
-            super.hidden();
+            super.hidden(dispatcher);
         }
 
         /**
@@ -238,7 +274,7 @@ namespace Stacks {
             // check if the document was clicked inside either the reference element or the popover itself
             // note: .contains also returns true if the node itself matches the target element
             if (!this.referenceElement.contains(target) && !this.popoverElement!.contains(target)) {
-                this.hide();
+                this.hide(e);
             }
         };
 
@@ -258,7 +294,7 @@ namespace Stacks {
                 this.referenceElement.focus();
             }
 
-            this.hide();
+            this.hide(e);
         };
 
         /**

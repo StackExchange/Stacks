@@ -115,6 +115,24 @@ description: Popovers are small content containers that provide a contextual ove
             </tbody>
         </table>
     </div>
+    <div class="overflow-x-auto mb32">
+        <table class="wmn4 s-table s-table__bx-simple">
+            <thead>
+                <tr>
+                    <th class="s-table--cell5" scope="col">event.detail</th>
+                    <th class="s-table--cell2" scope="col">Applicable events</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody class="fs-caption">
+                <tr>
+                    <th scope="row"><code class="stacks-code">dispatcher</code></th>
+                    <td><code class="stacks-code">s-popover:*</code></td>
+                    <td>Contains the <code class="stacks-code">Element</code> that initiated the event. For instance, the button clicked to show, the element clicked outside the popover that caused it to hide, etc.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
     {% header "h3", "Examples" %}
     <div class="mb24 p16 bar-sm bg-black-025 ba bc-black-1">
         <div class="grid ai-center gs8 sm:fd-column">
@@ -153,7 +171,7 @@ description: Popovers are small content containers that provide a contextual ove
             <div class="grid--cell ml-auto sm:ml0"
                 data-controller="s-popover"
                 data-s-popover-reference-selector="#reference-element"
-                data-s-popover-placement="top-end">
+                data-s-popover-placement="bottom-end">
                 <a id="reference-element" class="s-link s-link__inherit"
                     aria-controls="popover-example-3">
                     Create a team
@@ -350,6 +368,24 @@ description: Popovers are small content containers that provide a contextual ove
             </tbody>
         </table>
     </div>
+    <div class="overflow-x-auto mb32">
+        <table class="wmn4 s-table s-table__bx-simple">
+            <thead>
+                <tr>
+                    <th class="s-table--cell5" scope="col">event.detail</th>
+                    <th class="s-table--cell2" scope="col">Applicable events</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody class="fs-caption">
+                <tr>
+                    <th scope="row"><code class="stacks-code">dispatcher</code></th>
+                    <td><code class="stacks-code">s-tooltip:*</code></td>
+                    <td>Contains the <code class="stacks-code">Element</code> that initiated the event. For instance, the element hovered over to show, etc.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
     {% header "h3", "Hover examples" %}
     <p class="stacks-copy">If the user doesn’t need to interact with the <em>contents</em> of the popover, it may be appropriate to only show it on hover. This will make popovers feel like a tooltip. To do so, we provide an alternative controller, <code class="stacks-code">s-tooltip</code>, that shows the tooltip only on hover.</p>
 
@@ -401,8 +437,10 @@ Stacks.setTooltipHtml(el,
         </div>
     </div>
     <script>
-        Stacks.setTooltipText(document.querySelector(".js-text-tooltip-example"), "Only members of this Team can see the information posted here. It will never be shared publicly or accessible outside of your Team.", { placement: "top-start" });
-        Stacks.setTooltipHtml(document.querySelector(".js-html-tooltip-example"), "View all questions with <span class='s-tag'>stacks</span>", { placement: "top-end" });
+        window.addEventListener("load", () => {
+            Stacks.setTooltipText(document.querySelector(".js-text-tooltip-example"), "Only members of this Team can see the information posted here. It will never be shared publicly or accessible outside of your Team.", { placement: "top-start" });
+            Stacks.setTooltipHtml(document.querySelector(".js-html-tooltip-example"), "View all questions with <span class='s-tag'>stacks</span>", { placement: "top-end" });
+        });
     </script>
 
     {% header "h4", "Rich tooltips" %}
