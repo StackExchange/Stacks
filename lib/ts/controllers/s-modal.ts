@@ -28,22 +28,22 @@ namespace Stacks {
         /**
          * Toggles the visibility of the modal
          */
-        toggle () {
-            this._toggle();
+        toggle (dispatcher: Event|Element|null = null) {
+            this._toggle(undefined, dispatcher);
         }
 
         /**
          * Shows the modal
          */
-        show () {
-            this._toggle(true);
+        show (dispatcher: Event|Element|null = null) {
+            this._toggle(true, dispatcher);
         }
 
         /**
          * Hides the modal
          */
-        hide () {
-            this._toggle(false);
+        hide (dispatcher: Event|Element|null = null) {
+            this._toggle(false, dispatcher);
         }
 
         /**
@@ -65,7 +65,7 @@ namespace Stacks {
          * Toggles the visibility of the modal element
          * @param show Optional parameter that force shows/hides the element or toggles it if left undefined
          */
-        private _toggle (show?: boolean | undefined) {
+        private _toggle (show?: boolean | undefined, dispatcher: Event|Element|null = null) {
             var toShow = show;
             var isVisible = this.modalTarget.getAttribute("aria-hidden") === "false";
 
@@ -79,8 +79,13 @@ namespace Stacks {
                 return;
             }
 
+            let dispatchingElement = this.getDispatcher(dispatcher);
+
             // show/hide events trigger before toggling the class
-            var triggeredEvent = this.triggerEvent(toShow ? "show" : "hide", { returnElement: this.returnElement });
+            var triggeredEvent = this.triggerEvent(toShow ? "show" : "hide", {
+                returnElement: this.returnElement,
+                dispatcher: this.getDispatcher(dispatchingElement)
+            });
 
             // if this pre-show/hide event was prevented, don't attempt to continue changing the modal state
             if (triggeredEvent.defaultPrevented) {
@@ -107,10 +112,14 @@ namespace Stacks {
                 // wait until after the modal finishes transitioning to fire the event
                 this.modalTarget.addEventListener("transitionend", () => {
                     //TODO this is firing waaay to soon?
-                    this.triggerEvent(toShow ? "shown" : "hidden");
+                    this.triggerEvent(toShow ? "shown" : "hidden", {
+                        dispatcher: dispatchingElement
+                    });
                 }, { once: true });
             } else {
-                this.triggerEvent(toShow ? "shown" : "hidden");
+                this.triggerEvent(toShow ? "shown" : "hidden", {
+                    dispatcher: dispatchingElement
+                });
             }           
         }
 
@@ -229,7 +238,7 @@ namespace Stacks {
             // check if the document was clicked inside either the toggle element or the modal itself
             // note: .contains also returns true if the node itself matches the target element
             if (!this.modalTarget.querySelector(".s-modal--dialog")!.contains(target)) {
-                this._toggle(false);
+                this._toggle(false, e);
             }
         }
 
@@ -242,7 +251,23 @@ namespace Stacks {
                 return;
             }
 
-            this._toggle(false);
+            this._toggle(false, e);
+        }
+
+        /**
+         * Determines the correct dispatching element from a potential input
+         * @param dispatcher The event or element to get the dispatcher from
+         */
+        private getDispatcher(dispatcher: Event|Element|null = null) : Element {
+            if (dispatcher instanceof Event) {
+                return <Element>dispatcher.target;
+            }
+            else if (dispatcher instanceof Element) {
+                return dispatcher;
+            }
+            else {
+                return this.element;
+            }
         }
     }
 

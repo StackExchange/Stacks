@@ -86,7 +86,7 @@ description: Modals are dialog overlays that prevent the user from interacting w
                 <tr>
                     <th scope="row"><code class="stacks-code">s-modal:show</code></th>
                     <td>Controller element</td>
-                    <td>Fires immediately before showing the modal</td>
+                    <td><span class="s-label--status ml0">Default preventable</span> Fires immediately before showing the modal. Calling <code class="stacks-code">.preventDefault()</code> cancels the display of the modal.</td>
                 </tr>
                 <tr>
                     <th scope="row"><code class="stacks-code">s-modal:shown</code></th>
@@ -96,12 +96,37 @@ description: Modals are dialog overlays that prevent the user from interacting w
                 <tr>
                     <th scope="row"><code class="stacks-code">s-modal:hide</code></th>
                     <td>Controller element</td>
-                    <td>Fires immediately before hiding the modal</td>
+                    <td><span class="s-label--status ml0">Default preventable</span> Fires immediately before hiding the modal. Calling <code class="stacks-code">.preventDefault()</code> cancels the removal of the modal.</td>
                 </tr>
                 <tr>
                     <th scope="row"><code class="stacks-code">s-modal:hidden</code></th>
                     <td>Controller element</td>
                     <td>Fires after the modal has been visually hidden</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="overflow-x-auto mb32">
+        <table class="wmn4 s-table s-table__bx-simple">
+            <thead>
+                <tr>
+                    <th class="s-table--cell5" scope="col">event.detail</th>
+                    <th class="s-table--cell2" scope="col">Applicable events</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody class="fs-caption">
+                <tr>
+                    <th scope="row"><code class="stacks-code">dispatcher</code></th>
+                    <td><code class="stacks-code">s-modal:*</code></td>
+                    <td>Contains the <code class="stacks-code">Element</code> that initiated the event. For instance, the button clicked to show, the element clicked outside the modal that caused it to hide, etc.</td>
+                </tr>
+            </tbody>
+            <tbody class="fs-caption">
+                <tr>
+                    <th scope="row"><code class="stacks-code">returnElement</code></th>
+                    <td><code class="stacks-code">s-modal:show</code>, <code class="stacks-code">s-modal:hide</code></td>
+                    <td>Contains the <code class="stacks-code">Element</code> to return focus to on hide. If a value is set to this property inside an event listener, it will be updated on the controller as well.</td>
                 </tr>
             </tbody>
         </table>
