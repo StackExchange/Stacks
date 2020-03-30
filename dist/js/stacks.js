@@ -3958,7 +3958,9 @@ var Stacks;
         };
         ModalController.prototype.hideOnOutsideClick = function (e) {
             var target = e.target;
-            if (!this.modalTarget.querySelector(".s-modal--dialog").contains(target)) {
+            var hasModalAction = target.dataset.action && target.dataset.action.match(/s-modal#(toggle|show)/);
+            if (!this.modalTarget.querySelector(".s-modal--dialog").contains(target)
+                && !hasModalAction) {
                 this._toggle(false, e);
             }
         };
