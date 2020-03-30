@@ -234,10 +234,14 @@ namespace Stacks {
          * Forces the popover to hide if a user clicks outside of it or its reference element
          */
         private hideOnOutsideClick (e: Event) {
-            var target = <Node>e.target;
+            var target = <HTMLElement>e.target;
+            // if the target called toggle or show, then we can assume this was not an "outside" click
+            var hasModalAction = target.dataset.action && target.dataset.action.match(/s-modal#(toggle|show)/);
+
             // check if the document was clicked inside either the toggle element or the modal itself
             // note: .contains also returns true if the node itself matches the target element
-            if (!this.modalTarget.querySelector(".s-modal--dialog")!.contains(target)) {
+            if (!this.modalTarget.querySelector(".s-modal--dialog")!.contains(target)
+                && !hasModalAction) {
                 this._toggle(false, e);
             }
         }
