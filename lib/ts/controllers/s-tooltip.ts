@@ -38,7 +38,7 @@ namespace Stacks {
          * Attempts to show the tooltip popover so long as no other Stacks-managed popover is
          * present on the page.
          */
-        show() {
+        show(dispatcher: Event|Element|null = null) {
             // check and see if this controller coexists with a popover
             var controller = Stacks.application.getControllerForElementAndIdentifier(this.element, "s-popover");
 
@@ -47,7 +47,7 @@ namespace Stacks {
                 return;
             }
 
-            super.show();
+            super.show(dispatcher);
         }
 
         /**
