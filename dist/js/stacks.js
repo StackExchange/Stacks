@@ -4193,7 +4193,8 @@ var Stacks;
         };
         PopoverController.prototype.hideOnOutsideClick = function (e) {
             var target = e.target;
-
+            if (!this.referenceElement.contains(target) && !this.popoverElement.contains(target) && document.body.contains(target)) {
+                this.hide(e);
             }
         };
         ;
