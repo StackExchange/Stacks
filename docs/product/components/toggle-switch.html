@@ -3,6 +3,17 @@ layout: page
 title: Toggle switch
 description: Toggle switches prompt users to choose between mutually exclusive options. They are based on real-life on/off switches.
 ---
+
+<div class="s-toast js-notice-toast" aria-hidden="true">
+    <aside class="s-notice s-notice__success">
+        <div class="grid gs16 gsx ai-center jc-space-between" aria-describedby="notice-message">
+            <div class="grid--cell" aria-label="notice-message">
+                <p class="m0">Toggle value <strong id="js-value-placeholder"></strong> selected.</p>
+            </div>
+        </div>
+    </aside>
+</div>
+
 <section class="stacks-section">
     <p class="stacks-copy">Toggles switches are a quick way to view and switch between mutually exclusive options. Use toggles when your intent is to instantly turn something on or off or change its frequency. If a real-life on/off switch would work for the action, a toggle is probably the best component to use.</p>
     {% header "h2", "Classes" %}
@@ -46,9 +57,9 @@ description: Toggle switches prompt users to choose between mutually exclusive o
         <div class="stacks-preview--example">
             <div class="grid ai-center">
                 <div class="s-toggle-switch mr8">
-                    <input type="radio" name="example1" id="example1-on" checked>
+                    <input type="radio" name="example1" id="example1-on" checked value="On">
                     <label for="example1-on">On</label>
-                    <input type="radio" name="example1" id="example1-off">
+                    <input type="radio" name="example1" id="example1-off" value="Off">
                     <label for="example1-off" class="s-toggle-switch--label-off">Off</label>
                 </div>
                 <label class="s-label">Label</label>
@@ -78,13 +89,13 @@ description: Toggle switches prompt users to choose between mutually exclusive o
         <div class="stacks-preview--example">
             <div class="grid ai-center">
                 <div class="s-toggle-switch mr8">
-                    <input type="radio" name="example2" id="example2-w">
+                    <input type="radio" name="example2" id="example2-w" value="Weekly">
                     <label for="example2-w">Weekly</label>
-                    <input type="radio" name="example2" id="example2-d">
+                    <input type="radio" name="example2" id="example2-d" value="Daily">
                     <label for="example2-d">Daily</label>
-                    <input type="radio" name="example2" id="example2-3">
+                    <input type="radio" name="example2" id="example2-3" value="3 hrs">
                     <label for="example2-3">3 hrs</label>
-                    <input type="radio" name="example2" id="example2-off" checked>
+                    <input type="radio" name="example2" id="example2-off" checked value="Off">
                     <label for="example2-off" class="s-toggle-switch--label-off">Off</label>
                 </div>
                 <label class="s-label">Email frequency</label>
@@ -206,3 +217,26 @@ description: Toggle switches prompt users to choose between mutually exclusive o
         </tbody>
     </table>
 </section>
+
+<script>
+    window.addEventListener("load", () => {
+        $(".s-toggle-switch input[type=radio][value]").change(function(e) {
+            var topnavHeight = $(".js-stacks-topbar").outerHeight();
+            var toast = $(".js-notice-toast");
+
+            var toastOffset = topnavHeight + 16 + "px";
+
+            toast.css("top", toastOffset);
+
+            toast.find("#js-value-placeholder").text(this.value);
+
+            toast.queue(function() {
+                    $(this).attr("aria-hidden","false").dequeue();
+                })
+                .delay(3000)
+                .queue(function(e) {
+                    $(this).attr("aria-hidden","true").dequeue();
+                });
+        });
+    });
+</script>
