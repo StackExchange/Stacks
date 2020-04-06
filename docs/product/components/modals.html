@@ -211,42 +211,46 @@ description: Modals are dialog overlays that prevent the user from interacting w
     </div>
 </section>
 
-<!-- Example base modal content -->
-<aside class="s-modal" id="modal-base" tabindex="-1" role="dialog" aria-labelledby="modal-title" aria-describedby="modal-description" aria-hidden="true" data-controller="s-modal" data-target="s-modal.modal" data-s-modal-remove-when-hidden="false">
-    <div class="s-modal--dialog" role="document">
-        <h1 class="s-modal--header" id="modal-title">Example title</h1>
-        <p class="s-modal--body" id="modal-description">Nullam ornare lectus vitae lacus sagittis, at sodales leo viverra. Suspendisse nec nulla dignissim elit varius tempus. Cras viverra neque at imperdiet vehicula. Curabitur condimentum id dolor vitae ultrices. Pellentesque scelerisque nunc sit amet leo fringilla bibendum. Etiam feugiat imperdiet mi, eu blandit arcu cursus a. Pellentesque cursus massa id dolor ullamcorper, at condimentum nunc ultrices.</p>
-        <div class="grid gs8 gsx s-modal--footer">
-            <button class="grid--cell s-btn s-btn__primary" type="button">Save changes</button>
-            <button class="grid--cell s-btn" type="button" data-action="s-modal#hide">Cancel</button>
-        </div>
-        <a href="#" class="s-modal--close s-btn s-btn__muted js-modal-close" aria-label="Close" data-action="s-modal#hide">
-            {% icon "ClearSm" %}
-        </a>
-    </div>
-</aside>
-
-<!-- Example danger modal content -->
-<aside class="s-modal s-modal__danger" id="modal-danger" tabindex="-1" role="dialog" aria-labelledby="modal-title" aria-describedby="modal-description" aria-hidden="true" data-controller="s-modal" data-target="s-modal.modal">
-    <div class="s-modal--dialog" role="document">
-        <h1 class="s-modal--header" id="modal-title">Example danger title</h1>
-        <p class="s-modal--body" id="modal-description">Nullam ornare lectus vitae lacus sagittis, at sodales leo viverra. Suspendisse nec nulla dignissim elit varius tempus. Cras viverra neque at imperdiet vehicula. Curabitur condimentum id dolor vitae ultrices. Pellentesque scelerisque nunc sit amet leo fringilla bibendum. Etiam feugiat imperdiet mi, eu blandit arcu cursus a. Pellentesque cursus massa id dolor ullamcorper, at condimentum nunc ultrices.</p>
-        <div class="grid gs8 gsx s-modal--footer">
-            <button class="grid--cell s-btn s-btn__filled s-btn__danger" type="button">Save changes</button>
-            <button class="grid--cell s-btn s-btn__muted" type="button" data-action="s-modal#hide">Cancel</button>
-        </div>
-        <a href="#" class="s-modal--close s-btn s-btn__muted js-modal-close" aria-label="Close" data-action="s-modal#hide">
-            {% icon "ClearSm" %}
-        </a>
-    </div>
-</aside>
-
 <!-- And now for some documentation -->
 <section class="stacks-section">
     {% header "h2", "Examples" %}
     <div class="mb24 p16 bar-sm bg-black-025 ba bc-black-1 grid gs8 fw-wrap">
-        <button  class="grid--cell s-btn s-btn__filled js-modal-open" data-toggle="s-modal" data-target="#modal-base">Launch example modal</button>
-        <button class="grid--cell s-btn s-btn__filled js-modal-open" data-toggle="s-modal" data-target="#modal-danger">Launch example modal w/ danger state</button>
+        <div class="grid--cell" data-controller="s-modal" >
+            <!-- Example base modal trigger (inside the controller) -->
+            <button class="s-btn s-btn__filled" data-action="s-modal#show">Launch example modal</button>
+            <!-- Example base modal content -->
+            <aside class="s-modal" id="example-modal-base" tabindex="-1" role="dialog" aria-labelledby="modal-title" aria-describedby="modal-description" aria-hidden="true" data-target="s-modal.modal">
+                <div class="s-modal--dialog" role="document">
+                    <h1 class="s-modal--header" id="modal-title">Example title</h1>
+                    <p class="s-modal--body" id="modal-description">Nullam ornare lectus vitae lacus sagittis, at sodales leo viverra. Suspendisse nec nulla dignissim elit varius tempus. Cras viverra neque at imperdiet vehicula. Curabitur condimentum id dolor vitae ultrices. Pellentesque scelerisque nunc sit amet leo fringilla bibendum. Etiam feugiat imperdiet mi, eu blandit arcu cursus a. Pellentesque cursus massa id dolor ullamcorper, at condimentum nunc ultrices.</p>
+                    <div class="grid gs8 gsx s-modal--footer">
+                        <button class="grid--cell s-btn s-btn__primary" type="button">Save changes</button>
+                        <button class="grid--cell s-btn" type="button" data-action="s-modal#hide">Cancel</button>
+                    </div>
+                    <a href="#" class="s-modal--close s-btn s-btn__muted js-modal-close" aria-label="Close" data-action="s-modal#hide">
+                        {% icon "ClearSm" %}
+                    </a>
+                </div>
+            </aside>
+        </div>
+
+        <!-- Example danger modal trigger (outside the controller, js triggered) -->
+        <button class="grid--cell s-btn s-btn__filled js-modal-open" data-toggle="s-modal" data-target="#example-modal-danger">Launch example modal w/ danger state</button>
+
+        <!-- Example danger modal content -->
+        <aside class="s-modal s-modal__danger" id="example-modal-danger" tabindex="-1" role="dialog" aria-labelledby="modal-title" aria-describedby="modal-description" aria-hidden="true" data-controller="s-modal" data-target="s-modal.modal">
+            <div class="s-modal--dialog" role="document">
+                <h1 class="s-modal--header" id="modal-title">Example danger title</h1>
+                <p class="s-modal--body" id="modal-description">Nullam ornare lectus vitae lacus sagittis, at sodales leo viverra. Suspendisse nec nulla dignissim elit varius tempus. Cras viverra neque at imperdiet vehicula. Curabitur condimentum id dolor vitae ultrices. Pellentesque scelerisque nunc sit amet leo fringilla bibendum. Etiam feugiat imperdiet mi, eu blandit arcu cursus a. Pellentesque cursus massa id dolor ullamcorper, at condimentum nunc ultrices.</p>
+                <div class="grid gs8 gsx s-modal--footer">
+                    <button class="grid--cell s-btn s-btn__filled s-btn__danger" type="button">Save changes</button>
+                    <button class="grid--cell s-btn s-btn__muted" type="button" data-action="s-modal#hide">Cancel</button>
+                </div>
+                <a href="#" class="s-modal--close s-btn s-btn__muted js-modal-close" aria-label="Close" data-action="s-modal#hide">
+                    {% icon "ClearSm" %}
+                </a>
+            </div>
+        </aside>
     </div>
     <p class="stacks-copy">You can wire up a modal along with the corresponding button by wrapping both in a <span class="stacks-code">s-modal</span> controller and attaching the corresponding <span class="stacks-code">data-*</span> attributes. Make sure to set <span class="stacks-code">data-s-modal-return-element</span> if you want your button to refocus on close.</p>
     <div class="stacks-preview">
@@ -308,7 +312,11 @@ description: Modals are dialog overlays that prevent the user from interacting w
     <div class="stacks-preview _preview-none">
 {% highlight javascript %}
 document.querySelector(".js-modal-toggle").addEventListener("click", function(e) {
-    Stacks.showModal(document.querySelector("#modal-base"));
+    /*
+     * IMPORTANT! You need to pass any wrapping event objects directly into the helper.
+     * Failure to do so will cause the modal to re-close due it being detected as an "outside" click
+     */
+    Stacks.showModal(document.querySelector("#modal-base"), e);
 });
 {% endhighlight %}
     </div>
@@ -381,17 +389,8 @@ document.querySelector(".js-modal-toggle").addEventListener("click", function(e)
     (function() {
         document.querySelectorAll(".js-modal-open").forEach(function(el) {
             el.addEventListener("click", function(e) {
-                e.stopPropagation();
-                e.preventDefault();
                 var targetSelector = el.dataset.target;
-                Stacks.showModal(document.querySelector(targetSelector));
-            });
-        });
-
-        document.querySelectorAll(".js-modal-close").forEach(function(el) {
-            el.addEventListener("click", function(e) {
-                e.stopPropagation();
-                e.preventDefault();
+                Stacks.showModal(document.querySelector(targetSelector), e);
             });
         });
     }());
