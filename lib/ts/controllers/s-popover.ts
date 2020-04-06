@@ -69,6 +69,12 @@ namespace Stacks {
 
             let dispatcherElement = this.getDispatcher(dispatcher);
 
+            // if this was dispatched from an event, ensure that it doesn't bubble up to document
+            // this ensures that the modal won't immediately hide due to the event being detected as an "outside click"
+            if (dispatcher && dispatcher instanceof Event) {
+                dispatcher.stopPropagation();
+            }
+
             if (this.triggerEvent("show", {
                 dispatcher: dispatcherElement
             }).defaultPrevented) { return; }
@@ -253,7 +259,7 @@ namespace Stacks {
             this.boundHideOnOutsideClick = this.boundHideOnOutsideClick || this.hideOnOutsideClick.bind(this);
             this.boundHideOnEscapePress = this.boundHideOnEscapePress || this.hideOnEscapePress.bind(this);
 
-            document.addEventListener("mousedown", this.boundHideOnOutsideClick);
+            document.addEventListener("click", this.boundHideOnOutsideClick);
             document.addEventListener("keyup", this.boundHideOnEscapePress);
         }
 
@@ -261,7 +267,7 @@ namespace Stacks {
          * Unbinds global events to the document for hiding popovers on user interaction
          */
         protected  unbindDocumentEvents() {
-            document.removeEventListener("mousedown", this.boundHideOnOutsideClick);
+            document.removeEventListener("click", this.boundHideOnOutsideClick);
             document.removeEventListener("keyup", this.boundHideOnEscapePress);
         }
 

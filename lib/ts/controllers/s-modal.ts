@@ -81,6 +81,12 @@ namespace Stacks {
 
             let dispatchingElement = this.getDispatcher(dispatcher);
 
+            // if this was dispatched from an event, ensure that it doesn't bubble up to document
+            // this ensures that the modal won't immediately hide due to the event being detected as an "outside click"
+            if (dispatcher && dispatcher instanceof Event) {
+                dispatcher.stopPropagation();
+            }
+
             // show/hide events trigger before toggling the class
             var triggeredEvent = this.triggerEvent(toShow ? "show" : "hide", {
                 returnElement: this.returnElement,
@@ -215,7 +221,7 @@ namespace Stacks {
             this._boundClickFn = this._boundClickFn || this.hideOnOutsideClick.bind(this);
             this._boundKeypressFn = this._boundKeypressFn || this.hideOnEscapePress.bind(this);
 
-            document.addEventListener("mousedown", this._boundClickFn);
+            document.addEventListener("click", this._boundClickFn);
             document.addEventListener("keyup", this._boundKeypressFn);
 
             this.handleFocusableElements();
@@ -225,7 +231,7 @@ namespace Stacks {
          * Unbinds global events to the document for hiding popovers on user interaction
          */
         private unbindDocumentEvents () {
-            document.removeEventListener("mousedown", this._boundClickFn);
+            document.removeEventListener("click", this._boundClickFn);
             document.removeEventListener("keyup", this._boundKeypressFn);
             document.removeEventListener("keydown", this._boundTabTrap);
         }
@@ -275,16 +281,16 @@ namespace Stacks {
      * Helper to manually show an s-modal element via external JS
      * @param element the element the `data-controller="s-modal"` attribute is on
      */
-    export function showModal(element: HTMLElement) {
-        toggleModal(element, true);
+    export function showModal(element: HTMLElement, dispatcher: Event | null = null) {
+        toggleModal(element, true, dispatcher);
     }
    
     /**
      * Helper to manually hide an s-modal element via external JS
      * @param element the element the `data-controller="s-modal"` attribute is on
      */
-    export function hideModal(element: HTMLElement) {
-        toggleModal(element, false);
+    export function hideModal(element: HTMLElement, dispatcher: Event | null = null) {
+        toggleModal(element, false, dispatcher);
     }
 
     /**
@@ -292,14 +298,14 @@ namespace Stacks {
      * @param element the element the `data-controller="s-modal"` attribute is on
      * @param show whether to force show/hide the modal; toggles the modal if left undefined
      */
-    function toggleModal(element: HTMLElement, show?: boolean | undefined) {
+    function toggleModal(element: HTMLElement, show?: boolean | undefined, dispatcher: Event | null = null) {
         var controller = Stacks.application.getControllerForElementAndIdentifier(element, "s-modal") as ModalController;
 
         if (!controller) {
             throw "Unable to get s-modal controller from element";
         }
 
-        show ? controller.show() : controller.hide();
+        show ? controller.show(dispatcher) : controller.hide(dispatcher);
     }
 }
 Stacks.application.register("s-modal", Stacks.ModalController);
