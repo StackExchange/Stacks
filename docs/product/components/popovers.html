@@ -136,7 +136,8 @@ description: Popovers are small content containers that provide a contextual ove
     {% header "h3", "Examples" %}
     <div class="mb24 p16 bar-sm bg-black-025 ba bc-black-1">
         <div class="grid ai-center gs8 sm:fd-column">
-            <button class="grid--cell s-btn s-btn__filled"
+            <a href="#" class="js-btn1">TODO REMOVE</a>
+            <button class="grid--cell s-btn s-btn__filled js-cont"
                     data-controller="s-popover"
                     data-s-popover-placement="top-start"
                     data-s-popover-toggle-class="is-selected"
@@ -665,3 +666,11 @@ Stacks.setTooltipHtml(el,
         </div>
     </div>
 </section>
+
+<script>
+    document.querySelector(".js-btn1").addEventListener("click", (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        Stacks.application.getControllerForElementAndIdentifier(document.querySelector(".js-cont"), "s-popover").toggle();
+    })
+</script>
