@@ -3856,6 +3856,9 @@ var Stacks;
                 return;
             }
             var dispatchingElement = this.getDispatcher(dispatcher);
+            if (dispatcher && dispatcher instanceof Event) {
+                dispatcher.stopPropagation();
+            }
             var triggeredEvent = this.triggerEvent(toShow ? "show" : "hide", {
                 returnElement: this.returnElement,
                 dispatcher: this.getDispatcher(dispatchingElement)
@@ -3945,12 +3948,12 @@ var Stacks;
         ModalController.prototype.bindDocumentEvents = function () {
             this._boundClickFn = this._boundClickFn || this.hideOnOutsideClick.bind(this);
             this._boundKeypressFn = this._boundKeypressFn || this.hideOnEscapePress.bind(this);
-            document.addEventListener("mousedown", this._boundClickFn);
+            document.addEventListener("click", this._boundClickFn);
             document.addEventListener("keyup", this._boundKeypressFn);
             this.handleFocusableElements();
         };
         ModalController.prototype.unbindDocumentEvents = function () {
-            document.removeEventListener("mousedown", this._boundClickFn);
+            document.removeEventListener("click", this._boundClickFn);
             document.removeEventListener("keyup", this._boundKeypressFn);
             document.removeEventListener("keydown", this._boundTabTrap);
         };
@@ -3982,20 +3985,23 @@ var Stacks;
         return ModalController;
     }(Stacks.StacksController));
     Stacks.ModalController = ModalController;
-    function showModal(element) {
-        toggleModal(element, true);
+    function showModal(element, dispatcher) {
+        if (dispatcher === void 0) { dispatcher = null; }
+        toggleModal(element, true, dispatcher);
     }
     Stacks.showModal = showModal;
-    function hideModal(element) {
-        toggleModal(element, false);
+    function hideModal(element, dispatcher) {
+        if (dispatcher === void 0) { dispatcher = null; }
+        toggleModal(element, false, dispatcher);
     }
     Stacks.hideModal = hideModal;
-    function toggleModal(element, show) {
+    function toggleModal(element, show, dispatcher) {
+        if (dispatcher === void 0) { dispatcher = null; }
         var controller = Stacks.application.getControllerForElementAndIdentifier(element, "s-modal");
         if (!controller) {
             throw "Unable to get s-modal controller from element";
         }
-        show ? controller.show() : controller.hide();
+        show ? controller.show(dispatcher) : controller.hide(dispatcher);
     }
 })(Stacks || (Stacks = {}));
 Stacks.application.register("s-modal", Stacks.ModalController);
@@ -4057,6 +4063,9 @@ var Stacks;
                 return;
             }
             var dispatcherElement = this.getDispatcher(dispatcher);
+            if (dispatcher && dispatcher instanceof Event) {
+                dispatcher.stopPropagation();
+            }
             if (this.triggerEvent("show", {
                 dispatcher: dispatcherElement
             }).defaultPrevented) {
@@ -4182,11 +4191,11 @@ var Stacks;
         PopoverController.prototype.bindDocumentEvents = function () {
             this.boundHideOnOutsideClick = this.boundHideOnOutsideClick || this.hideOnOutsideClick.bind(this);
             this.boundHideOnEscapePress = this.boundHideOnEscapePress || this.hideOnEscapePress.bind(this);
-            document.addEventListener("mousedown", this.boundHideOnOutsideClick);
+            document.addEventListener("click", this.boundHideOnOutsideClick);
             document.addEventListener("keyup", this.boundHideOnEscapePress);
         };
         PopoverController.prototype.unbindDocumentEvents = function () {
-            document.removeEventListener("mousedown", this.boundHideOnOutsideClick);
+            document.removeEventListener("click", this.boundHideOnOutsideClick);
             document.removeEventListener("keyup", this.boundHideOnEscapePress);
         };
         PopoverController.prototype.hideOnOutsideClick = function (e) {
