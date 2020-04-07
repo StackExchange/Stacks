@@ -1757,7 +1757,7 @@ Copyright © 2019 Basecamp, LLC
 ;
 
 /**
- * @popperjs/core v2.1.1 - MIT License
+ * @popperjs/core v2.2.0 - MIT License
  */
 
 (function (global, factory) {
@@ -1959,19 +1959,13 @@ Copyright © 2019 Basecamp, LLC
     return ['table', 'td', 'th'].indexOf(getNodeName(element)) >= 0;
   }
 
-  var isFirefox = function isFirefox() {
-    return typeof window.InstallTrigger !== 'undefined';
-  };
-
   function getTrueOffsetParent(element) {
-    var offsetParent;
-
-    if (!isHTMLElement(element) || !(offsetParent = element.offsetParent) || // https://github.com/popperjs/popper-core/issues/837
-    isFirefox() && getComputedStyle(offsetParent).position === 'fixed') {
+    if (!isHTMLElement(element) || // https://github.com/popperjs/popper-core/issues/837
+    getComputedStyle(element).position === 'fixed') {
       return null;
     }
 
-    return offsetParent;
+    return element.offsetParent;
   }
 
   function getOffsetParent(element) {
@@ -2253,7 +2247,7 @@ Copyright © 2019 Basecamp, LLC
           cleanupModifierEffects();
           state.options = Object.assign({}, defaultOptions, {}, state.options, {}, options);
           state.scrollParents = {
-            reference: isElement(reference) ? listScrollParents(reference) : [],
+            reference: isElement(reference) ? listScrollParents(reference) : reference.contextElement ? listScrollParents(reference.contextElement) : [],
             popper: listScrollParents(popper)
           }; // Orders the modifiers based on their dependencies and `phase`
           // properties
@@ -3052,7 +3046,7 @@ Copyright © 2019 Basecamp, LLC
     var referenceElement = state.elements.reference;
     var popperRect = state.rects.popper;
     var element = state.elements[altBoundary ? altContext : elementContext];
-    var clippingClientRect = getClippingRect(isElement(element) ? element : getDocumentElement(state.elements.popper), boundary, rootBoundary);
+    var clippingClientRect = getClippingRect(isElement(element) ? element : element.contextElement || getDocumentElement(state.elements.popper), boundary, rootBoundary);
     var referenceClientRect = getBoundingClientRect(referenceElement);
     var popperOffsets = computeOffsets({
       reference: referenceClientRect,
@@ -3374,14 +3368,17 @@ Copyright © 2019 Basecamp, LLC
     var endDiff = state.rects.reference[len] + state.rects.reference[axis] - popperOffsets[axis] - state.rects.popper[len];
     var startDiff = popperOffsets[axis] - state.rects.reference[axis];
     var arrowOffsetParent = state.elements.arrow && getOffsetParent(state.elements.arrow);
-    var clientOffset = arrowOffsetParent ? axis === 'y' ? arrowOffsetParent.clientLeft || 0 : arrowOffsetParent.clientTop || 0 : 0;
-    var centerToReference = endDiff / 2 - startDiff / 2 - clientOffset; // Make sure the arrow doesn't overflow the popper if the center point is
+    var clientSize = arrowOffsetParent ? axis === 'y' ? arrowOffsetParent.clientHeight || 0 : arrowOffsetParent.clientWidth || 0 : 0;
+    var centerToReference = endDiff / 2 - startDiff / 2; // Make sure the arrow doesn't overflow the popper if the center point is
     // outside of the popper bounds
 
-    var center = within(paddingObject[minProp], state.rects.popper[len] / 2 - arrowRect[len] / 2 + centerToReference, state.rects.popper[len] - arrowRect[len] - paddingObject[maxProp]); // Prevents breaking syntax highlighting...
+    var min = paddingObject[minProp];
+    var max = clientSize - arrowRect[len] - paddingObject[maxProp];
+    var center = clientSize / 2 - arrowRect[len] / 2 + centerToReference;
+    var offset = within(min, center, max); // Prevents breaking syntax highlighting...
 
     var axisProp = axis;
-    state.modifiersData[name] = (_state$modifiersData$ = {}, _state$modifiersData$[axisProp] = center, _state$modifiersData$);
+    state.modifiersData[name] = (_state$modifiersData$ = {}, _state$modifiersData$[axisProp] = offset, _state$modifiersData$.centerOffset = offset - center, _state$modifiersData$);
   }
 
   function effect$2(_ref2) {
@@ -3492,6 +3489,7 @@ Copyright © 2019 Basecamp, LLC
 
   exports.createPopper = createPopper;
   exports.defaultModifiers = defaultModifiers;
+  exports.detectOverflow = detectOverflow;
   exports.popperGenerator = popperGenerator;
 
   Object.defineProperty(exports, '__esModule', { value: true });
@@ -3947,18 +3945,18 @@ var Stacks;
         ModalController.prototype.bindDocumentEvents = function () {
             this._boundClickFn = this._boundClickFn || this.hideOnOutsideClick.bind(this);
             this._boundKeypressFn = this._boundKeypressFn || this.hideOnEscapePress.bind(this);
-            document.addEventListener("click", this._boundClickFn);
+            document.addEventListener("mousedown", this._boundClickFn);
             document.addEventListener("keyup", this._boundKeypressFn);
             this.handleFocusableElements();
         };
         ModalController.prototype.unbindDocumentEvents = function () {
-            document.removeEventListener("click", this._boundClickFn);
+            document.removeEventListener("mousedown", this._boundClickFn);
             document.removeEventListener("keyup", this._boundKeypressFn);
             document.removeEventListener("keydown", this._boundTabTrap);
         };
         ModalController.prototype.hideOnOutsideClick = function (e) {
             var target = e.target;
-            if (!this.modalTarget.querySelector(".s-modal--dialog").contains(target)) {
+            if (!this.modalTarget.querySelector(".s-modal--dialog").contains(target) && document.body.contains(target)) {
                 this._toggle(false, e);
             }
         };
@@ -4184,16 +4182,16 @@ var Stacks;
         PopoverController.prototype.bindDocumentEvents = function () {
             this.boundHideOnOutsideClick = this.boundHideOnOutsideClick || this.hideOnOutsideClick.bind(this);
             this.boundHideOnEscapePress = this.boundHideOnEscapePress || this.hideOnEscapePress.bind(this);
-            document.addEventListener("click", this.boundHideOnOutsideClick);
+            document.addEventListener("mousedown", this.boundHideOnOutsideClick);
             document.addEventListener("keyup", this.boundHideOnEscapePress);
         };
         PopoverController.prototype.unbindDocumentEvents = function () {
-            document.removeEventListener("click", this.boundHideOnOutsideClick);
+            document.removeEventListener("mousedown", this.boundHideOnOutsideClick);
             document.removeEventListener("keyup", this.boundHideOnEscapePress);
         };
         PopoverController.prototype.hideOnOutsideClick = function (e) {
             var target = e.target;
-            if (!this.referenceElement.contains(target) && !this.popoverElement.contains(target)) {
+            if (!this.referenceElement.contains(target) && !this.popoverElement.contains(target) && document.body.contains(target)) {
                 this.hide(e);
             }
         };

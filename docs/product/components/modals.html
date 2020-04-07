@@ -143,12 +143,18 @@ description: Modals are dialog overlays that prevent the user from interacting w
             </thead>
             <tbody class="fs-caption">
                 <tr>
-                    <th scope="row"><code class="stacks-code">Stacks.toggleModal</code></th>
+                    <th scope="row"><code class="stacks-code">Stacks.showModal</code></th>
                     <td>
                         <code class="stacks-code">element</code>: the element the <code class="stacks-code">data-controller="s-modal"</code> attribute is on <br><br>
-                        <code class="stacks-code">show</code>: whether to force show/hide the modal; toggles the modal if left undefined
                     </td>
                     <td>Helper to manually show an s-modal element via external JS</td>
+                </tr>
+                <tr>
+                    <th scope="row"><code class="stacks-code">Stacks.hideModal</code></th>
+                    <td>
+                        <code class="stacks-code">element</code>: the element the <code class="stacks-code">data-controller="s-modal"</code> attribute is on <br><br>
+                    </td>
+                    <td>Helper to manually hide an s-modal element via external JS</td>
                 </tr>
             </tbody>
         </table>
@@ -302,7 +308,7 @@ description: Modals are dialog overlays that prevent the user from interacting w
     <div class="stacks-preview _preview-none">
 {% highlight javascript %}
 document.querySelector(".js-modal-toggle").addEventListener("click", function(e) {
-    Stacks.toggleModal(document.querySelector("#modal-base"));
+    Stacks.showModal(document.querySelector("#modal-base"));
 });
 {% endhighlight %}
     </div>
