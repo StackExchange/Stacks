@@ -5,42 +5,62 @@ description: All system icons are inline SVG files, invoked via a Razor helper. 
 ---
 
 <section class="stacks-section">
-    {% header "h2", "Using the icon helper" %}
-    <p class="stacks-copy">The SVG Razor helper function should be used for all system icons in lieu of SVG sprite sheets or raster image assets. This ensures a single source of truth for all icons. The SVG helper is invoked by <code class="stacks-code">@Svg.</code> and then adding the icon name, like so:</p>
+    {% header "h2", "Using the icon helpers" %}
+    <p class="stacks-copy">Our icons are delivered as a Razor helper in Stack Overflow’s production environment, a custom liquid tag in our documentation’s Eleventy site generator, and a JavaScript helper for use in prototypes.</p>
+    <p class="stacks-copy">Helpers should be used for all icons in lieu of SVG sprite sheets or raster image assets. This ensures a single source of truth for all icons.</p>
 
-    <div class="stacks-preview _preview-none">
+    {% header "h3", "Basic" %}
+    <div class="stacks-preview">
 {% highlight html %}
-<div class="example">
-  @Svg.Search
-</div>
+<!-- Razor -->
+@Svg.Logo
+
+<!-- Liquid -->
+{% icon "Logo" %}
+
+<!-- JavaScript Helper -->
+<svg data-icon="Logo"></svg>
 {% endhighlight %}
+        <div class="stacks-preview--example">
+            {% icon "Logo" %}
+        </div>
     </div>
 
-    <p class="stacks-copy">By default, every icon will inherit the text color of its parent. To override this and show the icon with its native colors (Our logos, for example), you can include the native class in the helper.</p>
+    {% header "h3", "Native colors" %}
+    <p class="stacks-copy">By default, every icon will inherit the text color of its parent. To override this and show the icon with its native colors (Our logos, for example), you can include the <code class="stacks-code">native</code> class in the helper.</p>
 
-    <div class="stacks-preview _preview-none">
+    <div class="stacks-preview">
 {% highlight html %}
-<div class="example">
-  @Svg.Logo.With("native")
-</div>
+<!-- Razor -->
+@Svg.Logo.With("native")
+
+<!-- Liquid -->
+{% icon "Logo", "native" %}
+
+<!-- JavaScript Helper -->
+<svg data-icon="Logo" class="native"></svg>
 {% endhighlight %}
+        <div class="stacks-preview--example">
+            {% icon "Logo", "native" %}
+        </div>
     </div>
 
+    {% header "h3", "Arbitrary classes" %}
     <p class="stacks-copy">In fact, our helper supports arbitrary classes as well.</p>
 
-    <div class="stacks-preview _preview-none">
+    <div class="stacks-preview">
 {% highlight html %}
-<div class="example">
-  @Svg.Logo.With("native js-dropdown-target another-class-name")
-</div>
-{% endhighlight %}
-    </div>
+<!-- Razor -->
+@Svg.Logo.With("native float-right js-dropdown-target")
 
-    <div class="grid s-notice s-notice__info">
-        <div class="grid--cell mr8">{% icon "Alert" %}</div>
-        <div class="grid--cell lh-xl">
-            <b>Note:</b> Our <code class="stacks-code bg-powder-300">@Svg</code> helper isn’t available within our documentation. You can call SVGs using our custom Icon liquid tag:
-            <code class="stacks-code bg-powder-300 ws-normal lh-md">{% raw %}{% icon "Search", "optional additional classes", "pixel dimension" %}{% endraw %}</code>
+<!-- Liquid -->
+{% icon "Logo", "native float-right js-dropdown-target" %}
+
+<!-- JavaScript Helper -->
+<svg data-icon="Logo" class="native float-right js-dropdown-target"></svg>
+{% endhighlight %}
+        <div class="stacks-preview--example overflow-hidden">
+            {% icon "Logo", "native float-right js-dropdown-target" %}
         </div>
     </div>
 </section>
