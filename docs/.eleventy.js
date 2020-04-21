@@ -33,11 +33,11 @@ module.exports = function(eleventyConfig) {
     var linkIcon = fs.readFileSync("_includes/svg-icons/Link.svg").toString("utf-8");
 
     var output = '';
-    output += '<div class="grid jc-space-between ai-end pe-none stacks-header">';
-    output +=   '<' + tag + ' class="grid--cell fl1 stacks-' + tag + '" id="'+ slug +'">';
+    output += '<div class="d-flex jc-space-between ai-end pe-none stacks-header">';
+    output +=   '<' + tag + ' class="flex--cell fl1 stacks-' + tag + '" id="'+ slug +'">';
     output +=     '<span class="pe-auto">' + text + '</span>';
     output +=   '</' + tag + '>';
-    output +=   '<a class="grid grid__center mbn6 s-btn s-btn__muted pe-auto" href="#'+ slug +'">';
+    output +=   '<a class="d-flex flex__center mbn6 s-btn s-btn__muted pe-auto" href="#'+ slug +'">';
     output +=     linkIcon;
     output +=   '</a>';
     output += '</div>';
