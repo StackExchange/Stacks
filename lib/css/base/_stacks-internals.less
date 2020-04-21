@@ -17,8 +17,8 @@
     //  ===========================================================================
     //  --  DARKMODE
     //      #darkmode renders a dark mode override behind the
-    //      prefers-color-scheme: dark media query and .has-darkmode. It also
-    //      renders the same rules outside of the media query with .has-forced-darkmode
+    //      prefers-color-scheme: dark media query and .theme-system. It also
+    //      renders the same rules outside of the media query with .theme-dark
     //
     //      Usage example:
     //
@@ -29,13 +29,13 @@
     #darkmode(@class, @rules) {
         @classname: ~"@{class}"; // Interpolate the @class passed to us so we can generate proper CSS rules from it
 
-        body.has-darkmode @{classname} {
+        body.theme-system @{classname} {
             @media (prefers-color-scheme: dark) {
                 @rules();
             }
         }
 
-        body.has-darkmode__forced @{classname} {
+        body.theme-dark @{classname} {
             @rules();
         }
     }

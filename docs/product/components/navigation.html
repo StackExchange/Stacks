@@ -4,7 +4,7 @@ title: Navigation
 description: Our navigation component is a collection of pill-shaped buttons that respond gracefully to various window sizes and parent containers.
 ---
 <section class="stacks-section">
-    {% header h2 | Classes %}
+    {% header "h2", "Classes" %}
     <div class="overflow-x-auto mb32">
         <table class="wmn4 s-table s-table__bx-simple">
             <thead>
@@ -15,7 +15,7 @@ description: Our navigation component is a collection of pill-shaped buttons tha
                 </tr>
             </thead>
             <tbody class="fs-caption">
-                {% for item in site.data.product.navigation.classes %}
+                {% for item in navigation.classes %}
                     <tr>
                         <th scope="row"><code class="stacks-code">{{ item.class }}</code></th>
                         <td>{{ item.applies }}</td>
@@ -27,11 +27,11 @@ description: Our navigation component is a collection of pill-shaped buttons tha
     </div>
 </section>
 <section class="stacks-section">
-    {% header h2 | Examples %}
+    {% header "h2", "Examples" %}
     <p class="stacks-copy">Care should be taken to only include at most one primary and one secondary navigation per page. Using multiple navigations with the same style can cause user confusion.</p>
     <p class="stacks-copy">Forcing a navigation to scroll is an established pattern on mobile devices, so it may be appropriate to use it in that context. Wrapping tends to make more sense on larger screens, where the user isn’t forced to scroll passed a ton of navigation chrome.</p>
 
-    {% header h3 | Default %}
+    {% header "h3", "Default" %}
     <div class="stacks-preview">
 {% highlight html %}
 <div class="s-navigation">
@@ -63,7 +63,7 @@ description: Our navigation component is a collection of pill-shaped buttons tha
         </div>
     </div>
 
-    {% header h3 | Muted %}
+    {% header "h3", "Muted" %}
     <div class="stacks-preview">
 {% highlight html %}
 <div class="s-navigation s-navigation__muted">
@@ -95,7 +95,7 @@ description: Our navigation component is a collection of pill-shaped buttons tha
         </div>
     </div>
 
-    {% header h3 | Scrolling %}
+    {% header "h3", "Scrolling" %}
     <div class="stacks-preview">
 {% highlight html %}
 <div class="s-navigation s-navigation__scroll">
@@ -108,6 +108,28 @@ description: Our navigation component is a collection of pill-shaped buttons tha
 {% endhighlight %}
         <div class="stacks-preview--example">
             <div class="s-navigation s-navigation__scroll wmx3">
+                <a class="s-navigation--item is-selected">Product</a>
+                <a class="s-navigation--item">Email</a>
+                <a class="s-navigation--item">Content</a>
+                <a class="s-navigation--item">Brand</a>
+                <a class="s-navigation--item">Marketing</a>
+            </div>
+        </div>
+    </div>
+
+    {% header "h3", "Small" %}
+    <div class="stacks-preview">
+{% highlight html %}
+<div class="s-navigation s-navigation__sm">
+    <a href="…" class="s-navigation--item is-selected">Product</a>
+    <a href="…" class="s-navigation--item">Email</a>
+    <a href="…" class="s-navigation--item">Content</a>
+    <a href="…" class="s-navigation--item">Brand</a>
+    <a href="…" class="s-navigation--item">Marketing</a>
+</div>
+{% endhighlight %}
+        <div class="stacks-preview--example">
+            <div class="s-navigation s-navigation__sm">
                 <a class="s-navigation--item is-selected">Product</a>
                 <a class="s-navigation--item">Email</a>
                 <a class="s-navigation--item">Content</a>

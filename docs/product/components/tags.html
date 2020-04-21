@@ -4,7 +4,7 @@ title: Tags
 description: Tags are an interactive, community-generated keyword that allow communities to label, organize, and discover related content. Tags are maintained by their respective communities
 ---
 <section class="stacks-section">
-    {% header h2 | Classes %}
+    {% header "h2", "Classes" %}
     <div class="overflow-x-auto mb32">
         <table class="wmn4 s-table s-table__bx-simple">
             <thead>
@@ -15,7 +15,7 @@ description: Tags are an interactive, community-generated keyword that allow com
                 </tr>
             </thead>
             <tbody class="fs-caption">
-                {% for item in site.data.product.tags.classes %}
+                {% for item in tags-component.classes %}
                     <tr>
                         <th scope="row"><code class="stacks-code">{{ item.class }}</code></th>
                         <td><code class="stacks-code bg-white">{{ item.applies }}</td>
@@ -28,8 +28,8 @@ description: Tags are an interactive, community-generated keyword that allow com
 </section>
 
 <section class="stacks-section">
-    {% header h2 | Examples %}
-    {% header h3 | Default tag %}
+    {% header "h2", "Examples" %}
+    {% header "h3", "Default tag" %}
     <div class="stacks-preview">
 {% highlight html %}
 <div class="d-flex fs4">
@@ -41,13 +41,13 @@ description: Tags are an interactive, community-generated keyword that allow com
         <div class="stacks-preview--example">
             <div class="d-flex fs4 fw-wrap">
                 <a class="flex--cell s-tag" href="#">jquery</a>
-                <a class="flex--cell s-tag" href="#">javascript <span class="s-tag--dismiss">{% icon ClearSm %}</span></a>
+                <a class="flex--cell s-tag" href="#">javascript <span class="s-tag--dismiss">{% icon "ClearSm" %}</span></a>
                 <a class="flex--cell s-tag" href="#"><img class="s-tag--sponsor" src="https://i.stack.imgur.com/tKsDb.png" width="16" height="18" alt="Google Android"> android</a>
             </div>
         </div>
     </div>
 
-    {% header h3 | Moderator %}
+    {% header "h3", "Moderator" %}
     <div class="stacks-preview">
 {% highlight html %}
 <div class="d-flex fs4">
@@ -59,13 +59,13 @@ description: Tags are an interactive, community-generated keyword that allow com
         <div class="stacks-preview--example">
             <div class="d-flex fs4 fw-wrap">
                 <a class="flex--cell s-tag s-tag__moderator" href="#">status-completed</a>
-                <a class="flex--cell s-tag s-tag__moderator" href="#">status-bydesign <span class="s-tag--dismiss">{% icon ClearSm %}</span></a>
+                <a class="flex--cell s-tag s-tag__moderator" href="#">status-bydesign <span class="s-tag--dismiss">{% icon "ClearSm" %}</span></a>
                 <a class="flex--cell s-tag s-tag__moderator" href="#">status-planned</a>
             </div>
         </div>
     </div>
 
-    {% header h3 | Required %}
+    {% header "h3", "Required" %}
     <div class="stacks-preview">
 {% highlight html %}
 <div class="d-flex fs4">
@@ -77,13 +77,13 @@ description: Tags are an interactive, community-generated keyword that allow com
         <div class="stacks-preview--example">
             <div class="d-flex fs4 fw-wrap">
                 <a class="flex--cell s-tag s-tag__required" href="#">discussion</a>
-                <a class="flex--cell s-tag s-tag__required" href="#">feature-request <span class="s-tag--dismiss">{% icon ClearSm %}</span></a>
+                <a class="flex--cell s-tag s-tag__required" href="#">feature-request <span class="s-tag--dismiss">{% icon "ClearSm" %}</span></a>
                 <a class="flex--cell s-tag s-tag__required" href="#">bug</a>
             </div>
         </div>
     </div>
 
-    {% header h3 | Muted %}
+    {% header "h3", "Muted" %}
     <div class="stacks-preview">
 {% highlight html %}
 <div class="d-flex fs4">
@@ -95,7 +95,7 @@ description: Tags are an interactive, community-generated keyword that allow com
         <div class="stacks-preview--example">
             <div class="d-flex fs4 fw-wrap">
                 <a class="flex--cell s-tag s-tag__muted" href="#">asp-net</a>
-                <a class="flex--cell s-tag s-tag__muted" href="#">netscape <span class="s-tag--dismiss">{% icon ClearSm %}</span></a>
+                <a class="flex--cell s-tag s-tag__muted" href="#">netscape <span class="s-tag--dismiss">{% icon "ClearSm" %}</span></a>
                 <a class="flex--cell s-tag s-tag__muted" href="#"><img class="s-tag--sponsor" src="https://i.stack.imgur.com/gfrSH.png" width="18" height="16" alt="SQL Server"> sql-server</a>
             </div>
         </div>
@@ -103,7 +103,7 @@ description: Tags are an interactive, community-generated keyword that allow com
 </section>
 
 <section class="stacks-section">
-    {% header h2 | Sizes %}
+    {% header "h2", "Sizes" %}
     <table class="s-table s-table__bx-simple">
         <thead>
             <tr>
@@ -113,7 +113,7 @@ description: Tags are an interactive, community-generated keyword that allow com
             </tr>
         </thead>
         <tbody class="fs-caption">
-            {% for item in site.data.product.tags.sizes %}
+            {% for item in tags-component.sizes %}
                 <tr>
                     <th scope="row"><code class="stacks-code">{% if item.class == "N/A" %}.s-tag{% else %}.{{ item.class }}{% endif %}</code></th>
                     <td><code class="stacks-code bg-white">{% if item.class == "N/A" %}<em class="fc-light">{{ item.class }}</em>{% else %}.s-tag{% endif %}</td>

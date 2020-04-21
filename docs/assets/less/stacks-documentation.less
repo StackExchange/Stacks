@@ -12,7 +12,6 @@
 //  $   IMPORTS
 //  ----------------------------------------------------------------------------
 @import "./lib/css/stacks.less"; //  These are actual styles used in SO projects
-@import "syntax";
 
 .stacks-section {
     margin-top: @su48;
@@ -80,12 +79,34 @@
 
 //  $$  NAV SECONDARY SUBNAV
 //  ----------------------------------------------------------------------------
-.stacks-nav__secondary .stacks-nav__secondary {
-    padding-top: @su6;
+.toc {
+    ol {
+        .list-reset;
+        .grid;
+        .fd-column;
 
-    .stacks-nav--item {
-        padding: @su2;
-        padding-left: @su12;
+        li {
+            .mb8;
+        }
+
+        li a {
+            .d-block;
+            .s-link;
+            .s-link__muted;
+            .fs-body1;
+            .lh-sm;
+            .py2;
+        }
+
+        ol {
+            .pt6;
+
+            li {
+                .p2;
+                .pl12;
+                .mb0;
+            }
+        }
     }
 }
 
@@ -202,7 +223,14 @@
     margin-bottom: @su48;
     .bs-sm;
 
-    .highlight {
+    pre[class*="language-"] {
+        font-size: @fs-body1;
+        font-family: @ff-mono;
+        line-height: @lh-lg;
+
+        // We want our code highlighting colors to stay fixed
+        color: @white;
+
         .btr-sm;
         max-height: 24rem;
         margin: 0;
@@ -213,19 +241,19 @@
         // Don't use the mixin since we want our scrollbar colors to remain fixed
         // since the background also remains fixed.
         &::-webkit-scrollbar {
-            width: @su8;
-            height: @su8;
+            width: @su12 - @su2;
+            height: @su12 - @su2;
             background-color: transparent;
         }
 
         &::-webkit-scrollbar-track {
-            border-radius: @su8;
+            border-radius: @su12 - @su2;
             background-color: transparent;
         }
 
         &::-webkit-scrollbar-thumb
         {
-            border-radius: @su8;
+            border-radius: @su12 - @su2;
             background-color: rgba(255, 255, 255, .2);
         }
 
@@ -234,26 +262,91 @@
         }
 
         scrollbar-color: rgba(255, 255, 255, .2) transparent;
-        scrollbar-width: thin;
-
-        pre,
-        code {
-            margin: 0;
-            font-size: @fs-body1;
-            font-family: @ff-mono;
-            line-height: @lh-lg;
-
-            // We want our code highlighting colors to stay fixed
-            color: @white;
-        }
     }
 
-    &._preview-none .highlight {
+    .token.comment,
+    .token.block-comment,
+    .token.prolog,
+    .token.doctype,
+    .token.cdata {
+        color: #999;
+    }
+
+    .token.punctuation {
+        color: #ccc;
+    }
+
+    .token.tag,
+    .token.namespace,
+    .token.deleted {
+        color: #f08d49;
+    }
+
+    .token.attr-name {
+        color: #81a2be;
+    }
+
+    .token.function-name {
+        color: #6196cc;
+    }
+
+    .token.boolean,
+    .token.number,
+    .token.function {
+        color: #f08d49;
+    }
+
+    .token.property,
+    .token.class-name,
+    .token.constant,
+    .token.symbol {
+        color: #f8c555;
+    }
+
+    .token.selector,
+    .token.important,
+    .token.atrule,
+    .token.keyword,
+    .token.builtin {
+        color: #cc99cd;
+    }
+
+    .token.string,
+    .token.char,
+    .token.attr-value,
+    .token.regex,
+    .token.variable {
+        color: #b5bd68;
+    }
+
+    .token.operator,
+    .token.entity,
+    .token.url {
+        color: #67cdcc;
+    }
+
+    .token.important,
+    .token.bold {
+        font-weight: bold;
+    }
+    .token.italic {
+        font-style: italic;
+    }
+
+    .token.entity {
+        cursor: help;
+    }
+
+    .token.inserted {
+        color: @green-300;
+    }
+
+    &._preview-none pre[class*="language-"] {
         .bar-sm;
     }
 }
 
-#stacks-internals #darkmode('.stacks-preview .highlight', { background-color: #1c1b1b; });
+#stacks-internals #darkmode('.stacks-preview pre[class*="language-"]', { background-color: #1c1b1b; });
 
 //  Preview area
 .stacks-preview--example {
@@ -275,8 +368,6 @@
     background-color: var(--white);
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8' viewBox='0 0 8 8'%3E%3Cg fill='%23e4e6e8' fill-opacity='0.4'%3E%3Cpath fill-rule='evenodd' d='M0 0h4v4H0V0zm4 4h4v4H4V4z'/%3E%3C/g%3E%3C/svg%3E");
 }
-
-
 
 //  ============================================================================
 //  $   ICON PRESENTATION
@@ -318,13 +409,6 @@
 .stacks-swatch {
     width: @su32;
     height: @su32;
-}
-
-//  ============================================================================
-//  $   Line Numbers
-//  ----------------------------------------------------------------------------
-pre.lineno {
-    text-align: right;
 }
 
 //  ============================================================================

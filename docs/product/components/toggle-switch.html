@@ -1,0 +1,265 @@
+---
+layout: page
+title: Toggle switch
+description: Toggle switches prompt users to choose between mutually exclusive options. They are based on real-life on/off switches.
+---
+
+<div class="s-toast js-notice-toast" aria-hidden="true">
+    <aside class="s-notice py16 s-notice__success" role="status" aria-hidden="false">
+        <p class="m0">Setting changed to <strong id="js-value-placeholder"></strong>.</p>
+    </aside>
+</div>
+
+<section class="stacks-section">
+    <p class="stacks-copy">Toggles switches are a quick way to view and switch between mutually exclusive options. Use toggles when your intent is to instantly turn something on or off or change its frequency. If a real-life on/off switch would work for the action, a toggle is probably the best component to use.</p>
+    {% header "h2", "Classes" %}
+    <div class="overflow-x-auto">
+        <table class="wmn4 s-table s-table__bx-simple">
+            <thead>
+                <tr>
+                    <th class="s-table--cell4" scope="col">Class</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody class="fs-caption">
+                <tr>
+                    <th scope="row"><code class="stacks-code">s-toggle-switch</code></th>
+                    <td>Base parent container for toggle switches</td>
+                </tr>
+                <tr>
+                    <th scope="row"><code class="stacks-code">s-toggle-switch--label-off</code></th>
+                    <td>Apply to the “Off” or “None” option so it’s highlighted state isn’t lit up green.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+<section class="stacks-section">
+    {% header "h2", "Examples" %}
+    {% header "h3", "Base style" %}
+    <p class="stacks-copy">Basic toggles switches allow you to choose between two opposing states. The “Off” or “None” option should appear first.</p>
+    <div class="stacks-preview">
+    {% highlight html %}
+<div class="grid ai-center">
+    <div class="s-toggle-switch mr8">
+        <input type="radio" name="group" id="two">
+        <label for="two" class="s-toggle-switch--label-off">Off</label>
+        <input type="radio" name="group" id="one" checked>
+        <label for="one">On</label>
+    </div>
+    <label class="s-label">…</label>
+</div>
+    {% endhighlight %}
+        <div class="stacks-preview--example">
+            <div class="grid ai-center">
+                <div class="s-toggle-switch mr8">
+                    <input type="radio" name="example1" id="example1-off" value="Off">
+                    <label for="example1-off" class="s-toggle-switch--label-off">Off</label>
+                    <input type="radio" name="example1" id="example1-on" checked value="On">
+                    <label for="example1-on">On</label>
+                </div>
+                <label class="s-label">Label</label>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="stacks-section">
+    {% header "h3", "3 or more options" %}
+    <p class="stacks-copy">Toggles switches can be extended to choose between three or more opposing states.</p>
+    <div class="stacks-preview">
+    {% highlight html %}
+<div class="grid ai-center">
+    <div class="s-toggle-switch mr8">
+        <input type="radio" name="group" id="four" checked>
+        <label for="four" class="s-toggle-switch--label-off">Off</label>
+        <input type="radio" name="group" id="one">
+        <label for="one">Weekly</label>
+        <input type="radio" name="group" id="two">
+        <label for="two">Daily</label>
+        <input type="radio" name="group" id="three">
+        <label for="three">3 hrs</label>
+    </div>
+    <label class="s-label">…</label>
+</div>
+    {% endhighlight %}
+        <div class="stacks-preview--example">
+            <div class="grid ai-center">
+                <div class="s-toggle-switch mr8">
+                    <input type="radio" name="example2" id="example2-off" checked value="Off">
+                    <label for="example2-off" class="s-toggle-switch--label-off">Off</label>
+                    <input type="radio" name="example2" id="example2-w" value="Weekly">
+                    <label for="example2-w">Weekly</label>
+                    <input type="radio" name="example2" id="example2-d" value="Daily">
+                    <label for="example2-d">Daily</label>
+                    <input type="radio" name="example2" id="example2-3" value="3 hrs">
+                    <label for="example2-3">3 hrs</label>
+                </div>
+                <label class="s-label">Email frequency</label>
+            </div>
+            <div class="grid ai-center mt12">
+                <div class="s-toggle-switch mr8">
+                    <input type="radio" name="example3" id="example3-off" checked value="Off">
+                    <label for="example3-off" class="s-toggle-switch--label-off">Off</label>
+                    <input type="radio" name="example3" id="example3-a" value="Automatic">
+                    <label for="example3-a">Automatic</label>
+                    <input type="radio" name="example3" id="example3-m" value="Manual">
+                    <label for="example3-m">Manual</label>
+                </div>
+                <label class="s-label">Encryption</label>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="stacks-section">
+    {% header "h2", "Guidelines" %}
+    {% header "h3", "Apply the change immediately" %}
+    <p class="stacks-copy">Toggles should apply the result immediately and confirm it with <a href="/product/components/notices/#classes">a success notice</a>. Toggle switches should never require users to press a “Save” button to apply the change. When you require users to press a submit button with a toggle, you may confuse them because it’s not the expected next step. In those cases, use checkboxes instead.</p>
+    <p class="stacks-copy">Toggle switches save and apply changes without an additional step.</p>
+    <div class="overflow-x-auto mb48">
+        <table class="s-table wmn4 wmx6 va-top">
+            <thead>
+                <th class="btw0 bxw0 bbw3 bbw3 bc-red-2 fc-red-500 bg-transparent fs-body1 s-table--cell6">{% icon "Clear", "mtn1 mbn1" %} Don’t</th>
+                <th class="btw0 bxw0 bbw3 bc-green-2 fc-green-500 bg-transparent fs-body1 s-table--cell6">{% icon "Checkmark", "mtn1 mbn1" %} Do</th>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="p16">
+                        <div class="grid ai-center mb12">
+                            <div class="s-toggle-switch wmx1 mr8">
+                                <input type="radio" name="dont-1-1" id="dont-1-1-off">
+                                <label for="dont-1-1-off" class="s-toggle-switch--label-off">Off</label>
+                                <input type="radio" name="dont-1-1" id="dont-1-1-on" checked>
+                                <label for="dont-1-1-on">On</label>
+                            </div>
+                            <label class="s-label">Feature name</label>
+                        </div>
+                        <button class="s-btn s-btn__primary">Save setting</button>
+                    </td>
+                    <td class="p16">
+                        <div class="grid ai-center">
+                            <div class="s-toggle-switch wmx1 mr8">
+                                <input type="radio" name="do-1-1" id="do-1-1-off" value="Off">
+                                <label for="do-1-1-off" class="s-toggle-switch--label-off">Off</label>
+                                <input type="radio" name="do-1-1" id="do-1-1-on" value="On" checked>
+                                <label for="do-1-1-on">On</label>
+                            </div>
+                            <label class="s-label">Feature name</label>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <p class="stacks-copy">Toggle switches should only save one thing. If they are part of a larger form with a save button, sections should be clearly marked. Or use <a href="/product/components/radio/">radio buttons</a>.</p>
+
+    <div class="overflow-x-auto">
+        <table class="s-table wmn4 wmx6 va-top">
+            <thead>
+                <th class="btw0 bxw0 bbw3 bbw3 bc-red-2 fc-red-500 bg-transparent fs-body1 s-table--cell6">{% icon "Clear", "mtn1 mbn1" %} Don’t</th>
+                <th class="btw0 bxw0 bbw3 bc-green-2 fc-green-500 bg-transparent fs-body1 s-table--cell6">{% icon "Checkmark", "mtn1 mbn1" %} Do</th>
+            </thead>
+            <tbody>
+                <tr>
+                    <td rowspan="2" class="bb bc-black-3 p16">
+                        <div class="grid ai-center mb12">
+                            <div class="s-toggle-switch wmx1 mr8">
+                                <input type="radio" name="dont-2-1" id="dont-2-1-off" value="Off">
+                                <label for="dont-2-1-off" class="s-toggle-switch--label-off">Off</label>
+                                <input type="radio" name="dont-2-1" id="dont-2-1-on" value="On" checked>
+                                <label for="dont-2-1-on">On</label>
+                            </div>
+                            <label class="s-label">Feature name</label>
+                        </div>
+                        <label class="s-label d-block mb4" for="dont-2-1-input">Feature URL</label>
+                        <input class="s-input mb12" id="dont-2-1-input" placeholder="https://...">
+                        <button class="s-btn s-btn__primary">Save settings</button>
+                    </td>
+                    <td class="p16">
+                        <div class="grid ai-center mb24 pb24 bb bc-black-4">
+                            <div class="s-toggle-switch wmx1 mr8">
+                                <input type="radio" name="do-2-1" id="do-2-1-off" value="Off">
+                                <label for="do-2-1-off" class="s-toggle-switch--label-off">Off</label>
+                                <input type="radio" name="do-2-1" id="do-2-1-on" value="On" checked>
+                                <label for="do-2-1-on">On</label>
+                            </div>
+                            <label class="s-label">Feature name</label>
+                        </div>
+                        <label class="s-label d-block mb4"for="do-2-1-input">Feature URL</label>
+                        <input class="s-input mb12" id="do-2-1-input" placeholder="https://…">
+                        <button class="s-btn s-btn__primary">Save feature URL</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="p24">
+                        <label class="s-label d-block">Feature name</label>
+                        <label class="s-label grid ai-center my4 fw-normal" for="do-2-2-en"><input type="radio" name="do-2-2" id="do-2-2-en" class="s-radio mr8"> Off</label>
+                        <label class="s-label grid ai-center my4 fw-normal" for="do-2-2-auto"><input type="radio" name="do-2-2" id="do-2-2-auto" class="s-radio mr8" checked> On</label>
+                        <label class="s-label d-block mt12" for="do-2-2-input">Feature URL</label>
+                        <input class="s-input mb12" id="do-2-2-input" placeholder="https://…">
+                        <button class="s-btn s-btn__primary">Save settings</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    {% header "h3", "Include a label" %}
+    <p class="stacks-copy">Toggle switches should be brief and be accompanied by a <code class="stacks-code">&lt;label&gt;</code> that describes the options.</p>
+    <div class="overflow-x-auto">
+        <table class="s-table va-top wmn4 wmx6">
+            <thead>
+                <th class="btw0 bxw0 bbw3 bbw3 bc-red-2 fc-red-500 bg-transparent fs-body1 s-table--cell6">{% icon "Clear", "mtn1 mbn1" %} Don’t</th>
+                <th class="btw0 bxw0 bbw3 bc-green-2 fc-green-500 bg-transparent fs-body1 s-table--cell6">{% icon "Checkmark", "mtn1 mbn1" %} Do</th>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="p16">
+                        <div class="grid ai-center">
+                            <div class="s-toggle-switch">
+                                <input type="radio" name="dont-3" id="dont-3-off" value="Disabled">
+                                <label for="dont-3-off" class="s-toggle-switch--label-off">Disable feature</label>
+                                <input type="radio" name="dont-3" id="dont-3-on" value="Enabled" checked>
+                                <label for="dont-3-on">Enable feature</label>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="p16">
+                        <div class="grid ai-center">
+                            <div class="s-toggle-switch wmx1 mr8">
+                                <input type="radio" name="do-3" id="do-3-off" value="Off">
+                                <label for="do-3-off" class="s-toggle-switch--label-off">Off</label>
+                                <input type="radio" name="do-3" id="do-3-on" value="On" checked>
+                                <label for="do-3-on">On</label>
+                            </div>
+                            <label class="s-label">Feature</label>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+
+<script>
+    window.addEventListener("load", () => {
+        $(".s-toggle-switch input[type=radio][value]").change(function(e) {
+            var topnavHeight = $(".js-stacks-topbar").outerHeight();
+            var toast = $(".js-notice-toast");
+
+            var toastOffset = topnavHeight + 16 + "px";
+
+            toast.css("top", toastOffset);
+
+            toast.find("#js-value-placeholder").text(this.value);
+
+            toast.queue(function() {
+                    $(this).attr("aria-hidden","false").dequeue();
+                })
+                .delay(3000)
+                .queue(function(e) {
+                    $(this).attr("aria-hidden","true").dequeue();
+                });
+        });
+    });
+</script>

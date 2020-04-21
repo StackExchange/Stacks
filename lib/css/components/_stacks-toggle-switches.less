@@ -1,0 +1,85 @@
+//
+//  STACK OVERFLOW
+//  TOGGLE SWITCHES
+//
+//  This CSS comes from Stacks, our CSS & Pattern library for rapidly building
+//  Stack Overflow. For documentation of all these classes and how to contribute,
+//  visit https://stackoverflow.design/
+//
+//  ============================================================================
+//  $   BASE STYLE
+//  ----------------------------------------------------------------------------
+.s-toggle-switch {
+    display: flex;
+    align-items: stretch;
+
+    //  First hide the radio buttons
+    input[type="radio"] {
+        position: absolute;
+        left: -999em;
+        opacity: 0;
+        margin: 0;
+    }
+
+    //  Next modifications to option cells
+    label {
+        //  Style the base label
+        width: 100%;
+        margin: 0;
+        padding: 0.8em 1em;
+        border: 1px solid var(--black-150);
+        background-color: var(--white);
+        color: var(--black-500);
+        font-size: @fs-body1;
+        font-weight: 400;
+        line-height: 1;
+        text-align: center;
+        white-space: nowrap;
+        cursor: pointer;
+          -webkit-user-select: none;
+                  user-select: none;
+        -webkit-touch-callout: none;
+
+        &:hover,
+        &:focus,
+        &:active {
+            background-color: var(--black-025);
+        }
+
+        //  Collapse right and left borders of adjacent options to 1px visually
+        &:not(:first-child) {
+            margin-left: -1px;
+        }
+
+        //  Round the corners on the first and last elements
+        &:first-of-type {
+            border-top-left-radius: @br-sm;
+            border-bottom-left-radius: @br-sm;
+        }
+        &:last-of-type {
+            border-top-right-radius: @br-sm;
+            border-bottom-right-radius: @br-sm;
+        }
+    }
+
+    //  If the input is selected, style its label accordingly.
+    input[type="radio"]:checked {
+        + label {
+            //  Raise the z-index so its borders sit on top of adjacent borders
+            z-index: @zi-selected;
+
+            //  Color activated options green
+            &.s-toggle-switch--label-off {
+                border-color: var(--black-200);
+                background-color: var(--black-050);
+                color: var(--black-700);
+            }
+            //  Color activated options green
+            &:not(.s-toggle-switch--label-off) {
+                border-color: var(--green-400);
+                background-color: var(--green-400);
+                color: @white;
+            }
+        }
+    } 
+}

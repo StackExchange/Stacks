@@ -4,19 +4,55 @@ title: Checkbox
 description: A checkable input that visually shows if an option is true or false.
 ---
 <section class="stacks-section">
-    {% header h2 | Base style %}
+    {% header "h2", "Base style" %}
     <div class="stacks-preview">
 {% highlight html %}
-{% include_relative examples/checkbox-base.html %}
+<!-- Base -->
+<fieldset>
+    <div class="grid gs8">
+        <div class="grid--cell">
+            <input class="s-checkbox" type="checkbox" name="example-name" id="example-item" />
+        </div>
+        <label class="grid--cell s-label fw-normal" for="example-item">Checkbox Label</label>
+    </div>
+</fieldset>
+
+<!-- Disabled -->
+<fieldset class="mt8">
+    <div class="grid gs8 is-disabled">
+        <div class="grid--cell">
+            <input class="s-checkbox" type="checkbox" name="example-disabled" id="example-item-disabled" disabled />
+        </div>
+        <label class="grid--cell s-label fw-normal" for="example-item-disabled">Checkbox Label</label>
+    </div>
+</fieldset>
 {% endhighlight %}
         <div class="stacks-preview--example">
-            {% include_relative examples/checkbox-base.html %}
+            <!-- Base -->
+            <fieldset>
+                <div class="grid gs8">
+                    <div class="grid--cell">
+                        <input class="s-checkbox" type="checkbox" name="example-name" id="example-item" />
+                    </div>
+                    <label class="grid--cell s-label fw-normal" for="example-item">Checkbox Label</label>
+                </div>
+            </fieldset>
+
+            <!-- Disabled -->
+            <fieldset class="mt8">
+                <div class="grid gs8 is-disabled">
+                    <div class="grid--cell">
+                        <input class="s-checkbox" type="checkbox" name="example-disabled" id="example-item-disabled" disabled />
+                    </div>
+                    <label class="grid--cell s-label fw-normal" for="example-item-disabled">Checkbox Label</label>
+                </div>
+            </fieldset>
         </div>
     </div>
 </section>
 
 <section class="stacks-section">
-    {% header h2 | Accessibility %}
+    {% header "h2", "Accessibility" %}
     <p class="stacks-copy">The best accessibility is semantic HTML. Most screen readers understand how to parse inputs if they’re correctly formatted. When it comes to checkboxes, there are a few things to keep in mind:</p>
     <ul class="stacks-list">
         <li>All inputs should have an <code class="stacks-code fs-body2">id</code> attribute.</li>
@@ -27,43 +63,237 @@ description: A checkable input that visually shows if an option is true or false
 </section>
 
 <section class="stacks-section">
-    {% header h2 | Examples %}
-    {% header h3 | Vertical group %}
+    {% header "h2", "Examples" %}
+    {% header "h3", "Vertical group" %}
     <div class="stacks-preview">
 {% highlight html %}
-{% include_relative examples/checkbox-vertical.html %}
+<fieldset class="grid gs8 gsy fd-column">
+    <legend class="grid--cell s-label">Which types of fruit do you like? <span class="ml4 fw-normal fc-light">(Check all that apply)</span></legend>
+    <div class="grid--cell">
+        <div class="grid gs8 gsx">
+            <div class="grid--cell">
+                <input class="s-checkbox" type="checkbox" name="" id="choice-vert-checkbox-1" />
+            </div>
+            <label class="grid--cell s-label fw-normal" for="choice-vert-checkbox-1">Apples</label>
+        </div>
+    </div>
+    <div class="grid--cell">
+        <div class="grid gs8 gsx">
+            <div class="grid--cell">
+                <input class="s-checkbox" type="checkbox" name="" id="choice-vert-checkbox-2" />
+            </div>
+            <label class="grid--cell s-label fw-normal" for="choice-vert-checkbox-2">Oranges</label>
+        </div>
+    </div>
+    <div class="grid--cell">
+        <div class="grid gs8 gsx">
+            <div class="grid--cell">
+                <input class="s-checkbox" type="checkbox" name="" id="choice-vert-checkbox-3" />
+            </div>
+            <label class="grid--cell s-label fw-normal" for="choice-vert-checkbox-3">Bananas</label>
+        </div>
+    </div>
+</fieldset>
 {% endhighlight %}
         <div class="stacks-preview--example">
-            {% include_relative examples/checkbox-vertical.html %}
+            <fieldset class="grid gs8 gsy fd-column">
+                <legend class="grid--cell s-label">Which types of fruit do you like? <span class="ml4 fw-normal fc-light">(Check all that apply)</span></legend>
+                <div class="grid--cell">
+                    <div class="grid gs8 gsx">
+                        <div class="grid--cell">
+                            <input class="s-checkbox" type="checkbox" name="" id="choice-vert-checkbox-1" />
+                        </div>
+                        <label class="grid--cell s-label fw-normal" for="choice-vert-checkbox-1">Apples</label>
+                    </div>
+                </div>
+                <div class="grid--cell">
+                    <div class="grid gs8 gsx">
+                        <div class="grid--cell">
+                            <input class="s-checkbox" type="checkbox" name="" id="choice-vert-checkbox-2" />
+                        </div>
+                        <label class="grid--cell s-label fw-normal" for="choice-vert-checkbox-2">Oranges</label>
+                    </div>
+                </div>
+                <div class="grid--cell">
+                    <div class="grid gs8 gsx">
+                        <div class="grid--cell">
+                            <input class="s-checkbox" type="checkbox" name="" id="choice-vert-checkbox-3" />
+                        </div>
+                        <label class="grid--cell s-label fw-normal" for="choice-vert-checkbox-3">Bananas</label>
+                    </div>
+                </div>
+            </fieldset>
         </div>
     </div>
 
-    {% header h3 | Horizontal group %}
+    {% header "h3", "Horizontal group" %}
     <div class="stacks-preview">
 {% highlight html %}
-{% include_relative examples/checkbox-horizontal.html %}
+<fieldset class="grid gs8 gsy fd-column">
+    <legend class="grid--cell s-label">Which types of fruit do you like? <span class="ml4 fw-normal fc-light">(Check all that apply)</span></legend>
+    <div class="grid--cell">
+        <div class="grid gs16">
+            <div class="grid--cell">
+                <div class="grid gs8 gsx">
+                    <div class="grid--cell">
+                        <input class="s-checkbox" type="checkbox" name="" id="choice-horz-checkbox-1" />
+                    </div>
+                    <label class="grid--cell s-label fw-normal" for="choice-horz-checkbox-1">Apples</label>
+                </div>
+            </div>
+            <div class="grid--cell">
+                <div class="grid gs8 gsx">
+                    <div class="grid--cell">
+                        <input class="s-checkbox" type="checkbox" name="" id="choice-horz-checkbox-2" />
+                    </div>
+                    <label class="grid--cell s-label fw-normal" for="choice-horz-checkbox-2">Oranges</label>
+                </div>
+            </div>
+            <div class="grid--cell">
+                <div class="grid gs8 gsx">
+                    <div class="grid--cell">
+                        <input class="s-checkbox" type="checkbox" name="" id="choice-horz-checkbox-3" />
+                    </div>
+                    <label class="grid--cell s-label fw-normal" for="choice-horz-checkbox-3">Bananas</label>
+                </div>
+            </div>
+        </div>
+    </div>
+</fieldset>
 {% endhighlight %}
         <div class="stacks-preview--example">
-            {% include_relative examples/checkbox-horizontal.html %}
+            <fieldset class="grid gs8 gsy fd-column">
+                <legend class="grid--cell s-label">Which types of fruit do you like? <span class="ml4 fw-normal fc-light">(Check all that apply)</span></legend>
+                <div class="grid--cell">
+                    <div class="grid gs16">
+                        <div class="grid--cell">
+                            <div class="grid gs8 gsx">
+                                <div class="grid--cell">
+                                    <input class="s-checkbox" type="checkbox" name="" id="choice-horz-checkbox-1" />
+                                </div>
+                                <label class="grid--cell s-label fw-normal" for="choice-horz-checkbox-1">Apples</label>
+                            </div>
+                        </div>
+                        <div class="grid--cell">
+                            <div class="grid gs8 gsx">
+                                <div class="grid--cell">
+                                    <input class="s-checkbox" type="checkbox" name="" id="choice-horz-checkbox-2" />
+                                </div>
+                                <label class="grid--cell s-label fw-normal" for="choice-horz-checkbox-2">Oranges</label>
+                            </div>
+                        </div>
+                        <div class="grid--cell">
+                            <div class="grid gs8 gsx">
+                                <div class="grid--cell">
+                                    <input class="s-checkbox" type="checkbox" name="" id="choice-horz-checkbox-3" />
+                                </div>
+                                <label class="grid--cell s-label fw-normal" for="choice-horz-checkbox-3">Bananas</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
         </div>
     </div>
 
-    {% header h3 | With description copy %}
+    {% header "h3", "With description copy" %}
     <div class="stacks-preview">
 {% highlight html %}
-{% include_relative examples/checkbox-copy.html %}
+<fieldset class="grid gs8 gsy fd-column">
+    <legend class="grid--cell s-label">Which types of fruit do you like? <span class="ml4 fw-normal fc-light">(Check all that apply)</span></legend>
+    <div class="grid--cell">
+        <div class="grid gs8 gsx">
+            <div class="grid--cell">
+                <input class="s-checkbox" type="checkbox" name="" id="choice-copy-checkbox-1" />
+            </div>
+            <div class="grid--cell">
+                <label class="d-block mb4 s-label fw-normal" for="choice-copy-checkbox-1">
+                    Apples
+                    <p class="s-description">A sweet, edible fruit produced by an apple tree (Malus pumila).</p>
+                </label>
+            </div>
+        </div>
+    </div>
+    <div class="grid--cell">
+        <div class="grid gs8 gsx">
+            <div class="grid--cell">
+                <input class="s-checkbox" type="checkbox" name="" id="choice-copy-checkbox-2" />
+            </div>
+            <div class="grid--cell">
+                <label class="d-block mb4 s-label fw-normal" for="choice-copy-checkbox-2">
+                    Oranges
+                    <p class="s-description">A fruit of the citrus species Citrus × sinensis in the family Rutaceae.</p>
+                </label>
+            </div>
+        </div>
+    </div>
+    <div class="grid--cell">
+        <div class="grid gs8 gsx">
+            <div class="grid--cell">
+                <input class="s-checkbox" type="checkbox" name="" id="choice-copy-checkbox-3" />
+            </div>
+            <div class="grid--cell">
+                <label class="d-block mb4 s-label fw-normal" for="choice-copy-checkbox-3">
+                    Bananas
+                    <p class="s-description">A fruit – botanically a berry – produced by several kinds of large herbaceous flowering plants in the genus Musa.</p>
+                </label>
+            </div>
+        </div>
+    </div>
+</fieldset>
 {% endhighlight %}
         <div class="stacks-preview--example">
-            {% include_relative examples/checkbox-copy.html %}
+            <fieldset class="grid gs8 gsy fd-column">
+                <legend class="grid--cell s-label">Which types of fruit do you like? <span class="ml4 fw-normal fc-light">(Check all that apply)</span></legend>
+                <div class="grid--cell">
+                    <div class="grid gs8 gsx">
+                        <div class="grid--cell">
+                            <input class="s-checkbox" type="checkbox" name="" id="choice-copy-checkbox-1" />
+                        </div>
+                        <div class="grid--cell">
+                            <label class="d-block mb4 s-label fw-normal" for="choice-copy-checkbox-1">
+                                Apples
+                                <p class="s-description">A sweet, edible fruit produced by an apple tree (Malus pumila).</p>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="grid--cell">
+                    <div class="grid gs8 gsx">
+                        <div class="grid--cell">
+                            <input class="s-checkbox" type="checkbox" name="" id="choice-copy-checkbox-2" />
+                        </div>
+                        <div class="grid--cell">
+                            <label class="d-block mb4 s-label fw-normal" for="choice-copy-checkbox-2">
+                                Oranges
+                                <p class="s-description">A fruit of the citrus species Citrus × sinensis in the family Rutaceae.</p>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="grid--cell">
+                    <div class="grid gs8 gsx">
+                        <div class="grid--cell">
+                            <input class="s-checkbox" type="checkbox" name="" id="choice-copy-checkbox-3" />
+                        </div>
+                        <div class="grid--cell">
+                            <label class="d-block mb4 s-label fw-normal" for="choice-copy-checkbox-3">
+                                Bananas
+                                <p class="s-description">A fruit – botanically a berry – produced by several kinds of large herbaceous flowering plants in the genus Musa.</p>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
         </div>
     </div>
 </section>
 
 <section class="stacks-section">
-    {% header h2 | Validation states %}
+    {% header "h2", "Validation states" %}
     <p class="stacks-copy">Checkboxes use the same validation states as <a href="{{ "/product/components/inputs" | relative_url }}">inputs</a>.</p>
 
-    {% header h3 | Validation classes %}
+    {% header "h3", "Validation classes" %}
     <div class="overflow-x-auto mb32">
         <table class="wmn4 s-table s-table__bx-simple">
             <thead>
@@ -74,8 +304,8 @@ description: A checkable input that visually shows if an option is true or false
                 </tr>
             </thead>
             <tbody>
-                {% for item in site.data.product.inputs.checkbox %}
-                    {% assign state = item.validation  %}
+                {% for item in inputs.checkbox %}
+                    {% assign state = item.validation %}
                     {% for class in state %}
                     <tr>
                         <th scope="row"><code class="flex--cell stacks-code bg-white">{{ class.class }}</code></th>
@@ -88,13 +318,95 @@ description: A checkable input that visually shows if an option is true or false
         </table>
     </div>
 
-    {% header h3 | Validation examples %}
+    {% header "h3", "Validation examples" %}
     <div class="stacks-preview">
 {% highlight html %}
-{% include_relative examples/checkbox-validation.html %}
+<fieldset class="grid gs8 gsy fd-column">
+    <legend class="grid--cell s-label">Which types of fruit do you like? <span class="ml4 fw-normal fc-light">(Check all that apply)</span></legend>
+    <div class="grid--cell">
+        <div class="grid gs8 gsx has-warning">
+            <div class="grid--cell">
+                <input class="s-checkbox" type="checkbox" name="" id="choice-valid-checkbox-1" />
+            </div>
+            <div class="grid--cell">
+                <label class="d-block mb4 s-label fw-normal" for="choice-valid-checkbox-1">
+                    Apples
+                    <p class="s-input-message"><strong>Note:</strong> Apples are currently not in season.</p>
+                </label>
+            </div>
+        </div>
+    </div>
+    <div class="grid--cell">
+        <div class="grid gs8 gsx has-error">
+            <div class="grid--cell">
+                <input class="s-checkbox" type="checkbox" name="" id="choice-valid-checkbox-2" />
+            </div>
+            <div class="grid--cell">
+                <label class="d-block mb4 s-label fw-normal" for="choice-valid-checkbox-2">
+                    Oranges
+                    <p class="s-input-message">All oranges are currently <strong>out of stock</strong>.</p>
+                </label>
+            </div>
+        </div>
+    </div>
+    <div class="grid--cell">
+        <div class="grid gs8 gsx has-success">
+            <div class="grid--cell">
+                <input class="s-checkbox" type="checkbox" name="" id="choice-valid-checkbox-3" />
+            </div>
+            <div class="grid--cell">
+                <label class="d-block mb4 s-label fw-normal" for="choice-valid-checkbox-3">
+                    Bananas
+                    <p class="s-input-message">You’ve successfully selected the most amazing fruit in the world.</p>
+                </label>
+            </div>
+        </div>
+    </div>
+</fieldset>
 {% endhighlight %}
         <div class="stacks-preview--example">
-            {% include_relative examples/checkbox-validation.html %}
+            <fieldset class="grid gs8 gsy fd-column">
+                <legend class="grid--cell s-label">Which types of fruit do you like? <span class="ml4 fw-normal fc-light">(Check all that apply)</span></legend>
+                <div class="grid--cell">
+                    <div class="grid gs8 gsx has-warning">
+                        <div class="grid--cell">
+                            <input class="s-checkbox" type="checkbox" name="" id="choice-valid-checkbox-1" />
+                        </div>
+                        <div class="grid--cell">
+                            <label class="d-block mb4 s-label fw-normal" for="choice-valid-checkbox-1">
+                                Apples
+                                <p class="s-input-message"><strong>Note:</strong> Apples are currently not in season.</p>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="grid--cell">
+                    <div class="grid gs8 gsx has-error">
+                        <div class="grid--cell">
+                            <input class="s-checkbox" type="checkbox" name="" id="choice-valid-checkbox-2" />
+                        </div>
+                        <div class="grid--cell">
+                            <label class="d-block mb4 s-label fw-normal" for="choice-valid-checkbox-2">
+                                Oranges
+                                <p class="s-input-message">All oranges are currently <strong>out of stock</strong>.</p>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="grid--cell">
+                    <div class="grid gs8 gsx has-success">
+                        <div class="grid--cell">
+                            <input class="s-checkbox" type="checkbox" name="" id="choice-valid-checkbox-3" />
+                        </div>
+                        <div class="grid--cell">
+                            <label class="d-block mb4 s-label fw-normal" for="choice-valid-checkbox-3">
+                                Bananas
+                                <p class="s-input-message">You’ve successfully selected the most amazing fruit in the world.</p>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
         </div>
     </div>
 </section>

@@ -4,7 +4,7 @@ title: Textarea
 description: Multi-line inputs used by users to enter longer text portions.
 ---
 <section id="inputs" class="stacks-section">
-    {% header h2 | Base style %}
+    {% header "h2", "Base style" %}
     <div class="stacks-preview">
 {% highlight html %}
 <div class="d-flex ff-column-nowrap fs4 fsy">
@@ -22,10 +22,10 @@ description: Multi-line inputs used by users to enter longer text portions.
 </section>
 
 <section id="inputs" class="stacks-section">
-    {% header h2 | Validation states %}
+    {% header "h2", "Validation states" %}
     <p class="stacks-copy">Validation states provides the user feedback based on their interaction (or lack of interaction) with a textarea. These styles are applied by applying the appropriate class to the wrapping parent container.</p>
 
-    {% header h3 | Validation classes %}
+    {% header "h3", "Validation classes" %}
     <div class="overflow-x-auto mb32">
         <table class="wmn5 s-table s-table__bx-simple">
             <thead>
@@ -36,7 +36,7 @@ description: Multi-line inputs used by users to enter longer text portions.
                 </tr>
             </thead>
             <tbody>
-                {% for item in site.data.product.inputs.textarea %}
+                {% for item in inputs.textarea %}
                     {% assign state = item.validation %}
                     {% for class in state %}
                     <tr>
@@ -50,8 +50,8 @@ description: Multi-line inputs used by users to enter longer text portions.
         </table>
     </div>
 
-    {% header h3 | Validation examples %}
-    {% header h4 | Warning %}
+    {% header "h3", "Validation examples" %}
+    {% header "h4", "Warning" %}
     <div class="stacks-preview">
 {% highlight html %}
 <div class="d-flex fs4 fsy fd-column has-warning">
@@ -68,14 +68,14 @@ description: Multi-line inputs used by users to enter longer text portions.
                 <label class="flex--cell s-label" for="example-warning">Description</label>
                 <div class="d-flex ps-relative">
                     <textarea class="flex--cell s-textarea" id="example-warning" placeholder="Please describe your problem"></textarea>
-                    {% icon Alert | s-input-icon %}
+                    {% icon "Alert", "s-input-icon" %}
                 </div>
                 <p class="flex--cell s-input-message">Consider entering a description to help us better help you.</p>
             </div>
         </div>
     </div>
 
-    {% header h4 | Error %}
+    {% header "h4", "Error" %}
     <div class="stacks-preview">
 {% highlight html %}
 <div class="d-flex fs4 fsy fd-column has-error">
@@ -92,14 +92,14 @@ description: Multi-line inputs used by users to enter longer text portions.
                 <label class="flex--cell s-label" for="example-success">Description</label>
                 <div class="d-flex ps-relative">
                     <textarea class="flex--cell s-textarea" id="example-success" placeholder="Please describe your problem"></textarea>
-                    {% icon AlertCircle | s-input-icon %}
+                    {% icon "AlertCircle", "s-input-icon" %}
                 </div>
                 <p class="flex--cell s-input-message">A description must be provided.</p>
             </div>
         </div>
     </div>
 
-    {% header h4 | Success %}
+    {% header "h4", "Success" %}
     <div class="stacks-preview">
 {% highlight html %}
 <div class="d-flex fs4 fsy fd-column has-success">
@@ -114,9 +114,9 @@ description: Multi-line inputs used by users to enter longer text portions.
         <div class="stacks-preview--example">
             <div class="d-flex fs4 fsy fd-column has-success">
                 <label class="flex--cell s-label" for="example-success">Description</label>
-                <div class="d-flex ps-relative">
+                <div class=" ps-relative">
                     <textarea class="flex--cell s-textarea" id="example-success" placeholder="Please describe your problem">How do you know your company is ready for a design system? How do you implement one without too many pain points? How do you efficiently maintain one once it’s built?</textarea>
-                    {% icon Checkmark | s-input-icon %}
+                    {% icon "Checkmark", "s-input-icon" %}
                 </div>
                 <p class="flex--cell s-input-message">Thanks for providing a description.</p>
             </div>
@@ -125,7 +125,7 @@ description: Multi-line inputs used by users to enter longer text portions.
 </section>
 
 <section class="stacks-section">
-    {% header h2 | Sizes %}
+    {% header "h2", "Sizes" %}
     <div class="overflow-x-auto mb32">
         <table class="wmn5 s-table s-table__bx-simple va-middle">
             <thead>
@@ -137,8 +137,8 @@ description: Multi-line inputs used by users to enter longer text portions.
                 </tr>
             </thead>
             <tbody>
-                {% for item in site.data.product.inputs.textarea %}
-                    {% assign size = item.sizes  %}
+                {% for item in inputs.textarea %}
+                    {% assign size = item.sizes %}
                     {% for item in size %}
                     <tr>
                         <th scope="row">{{ item.name }}</th>
