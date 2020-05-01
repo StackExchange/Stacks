@@ -181,18 +181,18 @@ module.exports = function(grunt) {
             },
 
             // Copy files out of node_modules so Eleventy can use them
-            svgs: {
+            icons: {
                 expand: true,
-                cwd: 'node_modules/@stackoverflow/stacks-icons/build/lib',
+                cwd: 'node_modules/@stackoverflow/stacks-icons/build/lib/Icon',
                 src: '**',
                 dest: 'docs/_includes/svg-icons/',
                 filter: 'isFile',
             },
-            data: {
+            spots: {
                 expand: true,
-                cwd: 'node_modules/@stackoverflow/stacks-icons/build',
-                src: 'icons.yml',
-                dest: 'docs/_data/product/',
+                cwd: 'node_modules/@stackoverflow/stacks-icons/build/lib/Spot',
+                src: '**',
+                dest: 'docs/_includes/svg-spots/',
                 filter: 'isFile',
             },
             declarations: {
@@ -228,7 +228,7 @@ module.exports = function(grunt) {
         'Prep and build the documentation site so it is ready for deploy.',
         ['update-icons', 'build']);
 
-    grunt.registerTask('update-icons', ['clean:icons', 'copy:svgs', 'copy:data']);
+    grunt.registerTask('update-icons', ['clean:icons', 'copy:icons', 'copy:spots']);
 
     grunt.registerTask('version', 'Creates a file with the version number inside it for Eleventy to display.', function() {
         grunt.file.write('docs/_includes/version.html', grunt.config.get('version'));
