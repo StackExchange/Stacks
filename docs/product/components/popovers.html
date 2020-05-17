@@ -160,10 +160,10 @@ description: Popovers are small content containers that provide a contextual ove
                     aria-controls="popover-example-2">
                 Show example popover
             </button>
-            <div id="popover-example-2" class="s-popover" role="menu">
+            <div id="popover-example-2" class="s-popover p16" role="menu">
                 <div class="s-popover--arrow"></div>
-                <div class="s-empty-state wmx2 pb16">
-                    <img src="{{ "/assets/img/illustrationNoDataBW.svg" | relative_url }}" width="128" height="128" alt="No data">
+                <div class="s-empty-state wmx2">
+                    {% spot "EmptyLg", "mb12" %}
                     <p>There’s no data associated with your account yet. Please check back tomorrow.</p>
                     <button class="s-btn s-btn__filled">Link an account</button>
                 </div>
@@ -171,36 +171,24 @@ description: Popovers are small content containers that provide a contextual ove
             <div class="grid--cell ml-auto sm:ml0"
                 data-controller="s-popover"
                 data-s-popover-reference-selector="#reference-element"
-                data-s-popover-placement="bottom-end">
+                data-s-popover-placement="bottom">
                 <a id="reference-element" class="s-link s-link__inherit"
                     aria-controls="popover-example-3">
-                    Create a team
+                    Follow question
                 </a>
-                <div id="popover-example-3" class="s-popover is-visible ws2" role="menu">
+                <div id="popover-example-3" class="s-popover is-visible wmx3" role="menu">
                     <div class="s-popover--arrow"></div>
                     <button class="s-popover--close s-btn s-btn__muted" aria-label="Close" data-action="s-popover#toggle">{% icon "ClearSm" %}</button>
 
-                    <div class="grid mb8">
-                        <div class="grid--cell mr8">
-                            <svg width="53" height="49" fill="none">
-                                <path d="M49 11l.2 31H18.9L9 49v-7H4V8h31" fill="#CCEAFF" />
-                                <path d="M44.5 19v-.3l-.2-.1-18-13-.1-.1H.5v33h4V46l.8-.6 9.9-6.9h29.3V19z" stroke="#1060E1" stroke-miterlimit="10" />
-                                <path d="M31 2l6-1.5 7 2V38H14.9L5 45v-7H1V6h25l5-4z" fill="#fff" />
-                                <path d="M7 16.5h13m-13 6h14m-14 6h18" stroke="#1060E1" stroke-miterlimit="10" />
-                                <path d="M39 30a14 14 0 1 0 0-28 14 14 0 0 0 0 28z" fill="#FFB935" />
-                                <path d="M50.5 14a13.5 13.5 0 1 1-27 0 13.5 13.5 0 0 1 27 0z" stroke="#F48024" stroke-miterlimit="10" />
-                                <path d="M32.5 21.5v-8h9v8h-9zm2-9.5V9.3A2.5 2.5 0 0 1 37 6.8a2.5 2.5 0 0 1 2.5 2.5V12h-5zm2 3v2m1-2v2" stroke="#fff" stroke-miterlimit="10" />
-                            </svg>
+                    <div class="grid ai-center">
+                        <div class="grid--cell mr12 fc-orange-400">
+                            {% spot "Bell" %}
                         </div>
 
-                        <div class="grid--cell pt4">
-                            <h3 class="fs-body2 mb2">Teams</h3>
-                            <p class="fs-caption fc-medium mb16">Q&A for Work</p>
+                        <div class="grid--cell">
+                            Get updates on questions and answers
                         </div>
                     </div>
-                    <p class="fs-caption fc-medium mb0">
-                        Setup a private space for you and your coworkers to ask questions and share information.
-                    </p>
                 </div>
             </div>
         </div>
@@ -475,8 +463,8 @@ Stacks.setTooltipHtml(el,
                 aria-hidden="true">
                 <div class="s-popover--arrow"></div>
                 <div class="s-empty-state wmx2">
-                    <img src="{{ "/assets/img/illustrationNoDataBW.svg" | relative_url }}" width="128" height="128" alt="No data">
-                    <p>There’s no data associated with your account yet. Please check back tomorrow.</p>
+                    {% spot "EmptyLg", "mb12" %}
+                    <p class="mb0">There’s no data associated with your account yet. Please check back tomorrow.</p>
                 </div>
             </div>
         </div>
