@@ -219,24 +219,19 @@
 //  ============================================================================
 //  $   CODE STYLES
 //  ----------------------------------------------------------------------------
+@import "../../../lib/css/syntax-highlighting/prismjs.less";
+
 .stacks-preview {
     margin-bottom: @su48;
     .bs-sm;
 
+    // add in some extra, opinionated overrides for our docs
     pre[class*="language-"] {
-        font-size: @fs-body1;
-        font-family: @ff-mono;
-        line-height: @lh-lg;
-
-        // We want our code highlighting colors to stay fixed
-        color: @white;
-
         .btr-sm;
         max-height: 24rem;
         margin: 0;
         padding: @su8 @su12;
         overflow: auto;
-        background-color: @black-800;
 
         // Don't use the mixin since we want our scrollbar colors to remain fixed
         // since the background also remains fixed.
@@ -264,89 +259,10 @@
         scrollbar-color: rgba(255, 255, 255, .2) transparent;
     }
 
-    .token.comment,
-    .token.block-comment,
-    .token.prolog,
-    .token.doctype,
-    .token.cdata {
-        color: #999;
-    }
-
-    .token.punctuation {
-        color: #ccc;
-    }
-
-    .token.tag,
-    .token.namespace,
-    .token.deleted {
-        color: #f08d49;
-    }
-
-    .token.attr-name {
-        color: #81a2be;
-    }
-
-    .token.function-name {
-        color: #6196cc;
-    }
-
-    .token.boolean,
-    .token.number,
-    .token.function {
-        color: #f08d49;
-    }
-
-    .token.property,
-    .token.class-name,
-    .token.constant,
-    .token.symbol {
-        color: #f8c555;
-    }
-
-    .token.selector,
-    .token.important,
-    .token.atrule,
-    .token.keyword,
-    .token.builtin {
-        color: #cc99cd;
-    }
-
-    .token.string,
-    .token.char,
-    .token.attr-value,
-    .token.regex,
-    .token.variable {
-        color: #b5bd68;
-    }
-
-    .token.operator,
-    .token.entity,
-    .token.url {
-        color: #67cdcc;
-    }
-
-    .token.important,
-    .token.bold {
-        font-weight: bold;
-    }
-    .token.italic {
-        font-style: italic;
-    }
-
-    .token.entity {
-        cursor: help;
-    }
-
-    .token.inserted {
-        color: @green-300;
-    }
-
     &._preview-none pre[class*="language-"] {
         .bar-sm;
     }
 }
-
-#stacks-internals #darkmode('.stacks-preview pre[class*="language-"]', { background-color: #1c1b1b; });
 
 //  Preview area
 .stacks-preview--example {
