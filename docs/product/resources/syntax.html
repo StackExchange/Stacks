@@ -6,7 +6,9 @@ description: Syntax highlighting party time
 
 <link rel="stylesheet" type="text/css" href="{{ "/assets/css/syntax.css" | relative_url }}?{{page.date | date: '%s%N'}}">
 
-<h2>Prismjs</h2>
+<div class="grid grid__allcells6 fw-wrap">
+    <div class="grid--cell wmn0">
+        <h2>Prismjs</h2>
 <pre id="prismjs"><code class="language-markup">
 &lt;!doctype html&gt;
 &lt;html&gt;
@@ -39,15 +41,10 @@ description: Syntax highlighting party time
 
 &lt;/html&gt;
 </code></pre>
+    </div>
 
-<script src="https://unpkg.com/prismjs@1.20.0/components/prism-core.min.js"></script>
-<script src="https://unpkg.com/prismjs@1.20.0/components/prism-markup.js"></script>
-<script src="https://unpkg.com/prismjs@1.20.0/components/prism-clike.js"></script>
-<script src="https://unpkg.com/prismjs@1.20.0/components/prism-javascript.js"></script>
-<script src="https://unpkg.com/prismjs@1.20.0/components/prism-css.js"></script>
-
-<hr>
-<h2>Highlightjs</h2>
+    <div class="grid--cell wmn0">
+        <h2>Highlightjs</h2>
 <pre id="highlightjs"><code class="html">
 &lt;!doctype html&gt;
 &lt;html&gt;
@@ -80,14 +77,10 @@ description: Syntax highlighting party time
 
 &lt;/html&gt;
 </code></pre>
+    </div>
 
-<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.0/highlight.min.js"></script>
-<script>
-    hljs.highlightBlock(document.querySelector("#highlightjs"));
-</script>
-
-<hr>
-<h2>Prettify</h2>
+    <div class="grid--cell wmn0">
+        <h2>Prettify</h2>
 <pre id="prettify" class="prettyprint"><code class="language-html">
 &lt;!doctype html&gt;
 &lt;html&gt;
@@ -120,8 +113,63 @@ description: Syntax highlighting party time
 
 &lt;/html&gt;
 </code></pre>
+    </div>
 
-<script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js?autorun=false"></script>
+    <div class="grid--cell wmn0">
+        <h2>Stacks docs <small>(for reference, should match Prismjs + custom styling)</small></h2>
+        <div class="stacks-preview">
+{% highlight markup %}
+<!doctype html>
+<html>
+<head>
+    <title>HTML Test</title>
+
+    <style type="text/css">
+        h1 {
+            font-size: 1em;
+        }
+        p { color: pink }
+        b { color: blue }
+        u { color: "umber" }
+    </style>
+</head>
+
+<body>
+    <h1>Hello world!</h1>
+</body>
+
+<script type="text/javascript">
+    // Say hello world until the user starts questioning
+    // the meaningfulness of their existence.
+    function helloWorld(world) {
+        for (var i = 42; --i >= 0;) {
+            alert('Hello ' + String(world));
+        }
+    }
+</script>
+
+</html>
+{% endhighlight %}
+        </div>
+    </div>
+</div>
+
+<!-- Prism.js -->
+<script src="https://unpkg.com/prismjs@1.20.0/components/prism-core.min.js"></script>
+<script src="https://unpkg.com/prismjs@1.20.0/components/prism-markup.js"></script>
+<script src="https://unpkg.com/prismjs@1.20.0/components/prism-clike.js"></script>
+<script src="https://unpkg.com/prismjs@1.20.0/components/prism-javascript.js"></script>
+<script src="https://unpkg.com/prismjs@1.20.0/components/prism-css.js"></script>
+
+<!-- Highlight.js -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.0/highlight.min.js"></script>
+<script>
+    hljs.highlightBlock(document.querySelector("#highlightjs"));
+</script>
+
+<!-- Prettify -->
+<script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/prettify.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/lang-html.js"></script>
 <script>
     PR.prettyPrint();
 </script>

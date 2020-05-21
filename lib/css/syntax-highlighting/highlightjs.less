@@ -1,34 +1,41 @@
 // reference doc https://highlightjs.readthedocs.io/en/latest/style-guide.html
-// TODO untested!
-
-@import "../exports/_stacks-constants-syntax.less";
 
 pre.hljs {
-    background: var(--highlight-bg);
+    font-size: var(--highlight-fs);
+    font-family: var(--highlight-ff);
+    line-height: var(--highlight-lh);
     color: var(--highlight-color);
+    background-color: var(--highlight-bg);
 
     .hljs-subst {
         color: var(--highlight-color);
     }
 
+    .hljs-meta,
     .hljs-comment {
-        color: var(--highlight-color);
+        color: var(--highlight-comment);
     }
 
     .hljs-keyword,
-    .hljs-attribute,
     .hljs-selector-tag,
     .hljs-meta-keyword,
     .hljs-doctag,
-    .hljs-name,
-    .hljs-title,
     .hljs-section {
         color: var(--highlight-keyword);
         font-weight: bold;
     }
 
+    .hljs-attr {
+        color: var(--highlight-attribute);
+    }
+    
+    
+    .hljs-attribute {
+        color: var(--highlight-symbol);
+    }
+
+    .hljs-name,
     .hljs-type,
-    .hljs-string,
     .hljs-number,
     .hljs-selector-id,
     .hljs-selector-class,
@@ -38,6 +45,7 @@ pre.hljs {
         color: var(--highlight-namespace);
     }
 
+    .hljs-string,
     .hljs-regexp,
     .hljs-symbol,
     .hljs-variable,
@@ -48,6 +56,7 @@ pre.hljs {
         color: var(--highlight-variable);
     }
 
+    .hljs-title,
     .hljs-literal {
         color: var(--highlight-literal);
     }
@@ -57,10 +66,6 @@ pre.hljs {
     .hljs-code,
     .hljs-addition {
         color: var(--highlight-punctuation);
-    }
-
-    .hljs-meta {
-        color: var(--highlight-namespace);
     }
 
     .hljs-meta-string {
