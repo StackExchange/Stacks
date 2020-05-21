@@ -2,7 +2,15 @@
 
 @import "../exports/_stacks-constants-syntax.less";
 
-pre[class*="language-"] {
+pre[class*="language-"],
+code[class*="language-"] {
+    display: block;
+    text-align: left;
+	white-space: pre;
+	word-spacing: normal;
+	word-break: normal;
+	word-wrap: normal;
+
     font-size: var(--highlight-fs);
     font-family: var(--highlight-ff);
     line-height: var(--highlight-lh);
@@ -86,5 +94,3 @@ pre[class*="language-"] {
 .token.inserted {
     color: var(--highlight-diff-inserted);
 }
-
-#stacks-internals #darkmode('pre[class*="language-"]', { background-color: #1c1b1b; });;
