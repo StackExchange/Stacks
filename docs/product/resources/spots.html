@@ -1,0 +1,72 @@
+---
+layout: page
+title: Spot illustrations
+description: Spot illustrations are the slightly grown up version of icons with a little more detail. They’re most often used in empty states and new product announcements. They’re built externally on the <a href="https://github.com/StackExchange/Stacks-Icons">Icons</a> repository.
+---
+
+<section class="stacks-section">
+    {% header "h2", "Using the spots helpers" %}
+    <p class="stacks-copy">Just like icons, spot illustrations are delivered as a Razor helper in Stack Overflow’s production environment, a custom liquid tag in our documentation’s Eleventy site generator, and a JavaScript helper for use in prototypes.</p>
+    <p class="stacks-copy">Helpers should be used for all spot illustrations in lieu of SVG sprite sheets or static raster image assets. This ensures a single source of truth for all spot illustrations.</p>
+
+    {% header "h3", "Basic" %}
+    <div class="stacks-preview">
+{% highlight html %}
+<!-- Razor -->
+@Svg.Spot.Wave
+
+<!-- Liquid -->
+{% spot "Wave" %}
+
+<!-- JavaScript Helper -->
+<svg data-spot="Wave"></svg>
+{% endhighlight %}
+        <div class="stacks-preview--example">
+            {% spot "Wave" %}
+        </div>
+    </div>
+
+    {% header "h3", "Arbitrary classes" %}
+    <p class="stacks-copy">Spot illustrations can be colored on the fly with support for arbitrary classes.</p>
+
+    <div class="stacks-preview">
+{% highlight html %}
+<!-- Razor -->
+@Svg.Spot.Wave.With("fc-orange-400 float-right js-dropdown-target")
+
+<!-- Liquid -->
+{% spot "Wave", "fc-orange-400 float-right js-dropdown-target" %}
+
+<!-- JavaScript Helper -->
+<svg data-spot="Wave" class="fc-orange float-right js-dropdown-target"></svg>
+{% endhighlight %}
+        <div class="stacks-preview--example overflow-hidden">
+            {% spot "Wave", "fc-orange-400 float-right js-dropdown-target" %}
+        </div>
+    </div>
+</section>
+
+<section class="stacks-section mb32" id="js-sortable-list">
+    {% header "h2", "Spot illustrations" %}
+    <div class="ps-sticky z-nav t64 bb bc-black-3 bg-white py16 mtn8 mb16 grid jc-space-between">
+        <input type="text" class="grid--cell fuzzy-search s-input s-input__search" placeholder="Search spot illustrations…" />
+        {% icon "Search", "s-input-icon s-input-icon__search" %}
+    </div>
+    <div class="grid fw-wrap sm:fd-column gs16 grid__allcells4 list js-icon-list">
+        {% for spot in spots %}
+            <div class="grid--cell">
+                <div class="grid ff-column-nowrap p0 s-card h100">
+                    <div class="grid fl2 grid__center stacks-icon-preview">
+                        {% spot spot.helper %}
+                    </div>
+                    <div class="grid ff-column-nowrap ai-center p8">
+                        <code class="grid--cell fs-caption py8 ff-mono ow-break-word js-name">@Svg.Spot.{{ spot.helper }}</code>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</section>
+
+<!-- Additional javascript -->
+<script src="{{ "/assets/js/svg-search.js" | relative_url }}" defer></script>
