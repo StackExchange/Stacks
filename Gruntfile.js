@@ -18,7 +18,7 @@ module.exports = function(grunt) {
                 }
             },
             eleventyServe: {
-                command: 'npx @11ty/eleventy --serve --incremental',
+                command: 'npx @11ty/eleventy --serve',
                 options: {
                     stderr: false,
                     execOptions: {
