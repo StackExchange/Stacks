@@ -14,6 +14,7 @@
     display: grid;
     grid-template-columns: auto 1fr;
     grid-column-gap: @su8;
+    align-items: center;
 }
 
 .s-user-card--time {
@@ -24,23 +25,16 @@
     margin-bottom: @su4;
 }
 
-.s-user-card--avatar {
-    grid-column: ~"1 / 2";
-    grid-row: ~"2 / 4";
+.s-user-card--info {
+    display: grid;
 }
 
-.s-user-card--name {
-    margin-bottom: 0;
-    grid-column: ~"2 / 3";
-    grid-row: ~"2 / 3";
+.s-user-card--link {
     font-size: @fs-caption;
-    font-weight: 500;
 }
 
 .s-user-card--awards {
-    line-height: 1;
-    grid-column: ~"2 / 3";
-    grid-row: ~"3 / 4";
+    .list-reset;
     display: flex;
     align-items: center;
 
@@ -51,13 +45,15 @@
 }
 
 .s-user-card--location {
-    margin-bottom: 0;
     font-size: @fs-caption;
     color: var(--black-500);
 }
 
 .s-user-card--tags {
-    display: flex;
+    display: grid;
+    grid-auto-flow: column;
+    grid-gap: @su4;
+    justify-content: start;
 }
 
 .s-user-card--rep {
@@ -71,40 +67,14 @@
 }
 
 .s-user-card__full {
+    align-items: start;
 
-    .s-user-card--avatar {
-        grid-column: ~"1 / 2";
-        grid-row: ~"1 / 6";
+    .s-user-card--info {
+        grid-gap: @su4;
     }
-    
+
     .s-user-card--link {
-        grid-column: ~"2 / 3";
-        grid-row: ~"2 / 3";
-    }
-
-    .s-user-card--name {
         font-size: @fs-body2;
-    }
-
-    .s-user-card--location {
-        grid-column: ~"2 / 3";
-        grid-row: ~"3 / 4";
-    }
-
-    .s-user-card--awards {
-        grid-column: ~"2 / 3";
-        grid-row: ~"4 / 5";
-        font-size: @fs-caption;
-    }
-
-    .s-user-card--tags {
-        grid-column: ~"2 / 3";
-        grid-row: ~"5 / 6";
-        font-size: @fs-caption;
-    }
-
-    .s-user-card--tag {
-        margin-right: @su4;
     }
 }
 
@@ -115,6 +85,7 @@
 .s-user-card__small {
     display: flex;
     align-items: center;
+    grid-column-gap: unset; // Firefox flex layouts respect column gaps, so we need to reset this
 
     .s-user-card--avatar {
         margin-right: @su6;
@@ -124,13 +95,14 @@
 .s-user-card__minimal {
     display: flex;
     align-items: center;
+    grid-column-gap: unset; // Firefox flex layouts respect column gaps, so we need to reset this
 
     .s-user-card--time {
         margin-right: @su6;
         margin-bottom: 0;
     }
 
-    .s-user-card--name {
+    .s-user-card--link {
         margin-right: @su6;
     }
 
