@@ -4,7 +4,31 @@ title: Avatars
 description: Avatars are used to quickly identify users or teams.
 ---
 <section class="stacks-section">
-    {% header "h2", "Users" %}
+    {% header "h2", "Classes" %}
+    <div class="overflow-x-auto mb32">
+        <table class="wmn4 s-table s-table__bx-simple">
+            <thead>
+                <tr>
+                    <th class="ws2" scope="col">Class</th>
+                    <th class="ws2" scope="col">Applied to</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody class="fs-caption">
+                {% for item in avatars-component.classes %}
+                    <tr>
+                        <th scope="row"><code class="stacks-code">{{ item.class }}</code></th>
+                        <td><code class="stacks-code bg-white">{{ item.applies }}</td>
+                        <td class="p8">{{ item.description }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</section>
+<section class="stacks-section">
+    {% header "h2", "Examples" %}
+    {% header "h3", "Users" %}
     <p class="stacks-copy">Including an image with the class <code class="stacks-code">s-avatar--image</code> within <code class="stacks-code">s-avatar</code> will apply the correct size and border radius. Remember, you’ll want to double the size of the avatar image to account for retina screens.</p>
     <div class="stacks-preview">
 {% highlight html %}
@@ -37,57 +61,164 @@ description: Avatars are used to quickly identify users or teams.
 </a>
 {% endhighlight %}
         <div class="stacks-preview--example overflow-x-auto">
-            <div class="grid">
-                <div class="grid fd-column mr24 gs16 gsy">
-                    <div class="grid--cell">
+
+            <table class="s-table s-table__b0 s-table__sm">
+                <tr>
+                    <td class="ws2">
+                        <code class="stacks-code">16px</code>
+                        <code class="stacks-code">default</code>
+                    </td>
+                    <td>
                         <a href="#" class="s-avatar">
                             <img class="s-avatar--image" src="https://placekitten.com/32" />
                         </a>
-                    </div>
-
-                    <div class="grid--cell">
+                    </td>
+                </tr>
+                <tr>
+                    <td class="ws2">
+                        <code class="stacks-code">24px</code>
+                        <code class="stacks-code">.s-avatar__sm</code>
+                    </td>
+                    <td>
                         <a href="#" class="s-avatar s-avatar__sm">
                             <img class="s-avatar--image" src="https://placekitten.com/48" />
                         </a>
-                    </div>
-
-                    <div class="grid--cell">
+                    </td>
+                </tr>
+                <tr>
+                    <td class="ws2">
+                        <code class="stacks-code">32px</code>
+                        <code class="stacks-code">.s-avatar__md</code>
+                    </td>
+                    <td>
                         <a href="#" class="s-avatar s-avatar__md">
                             <img class="s-avatar--image" src="https://placekitten.com/64" />
                         </a>
-                    </div>
-
-                    <div class="grid--cell">
+                    </td>
+                </tr>
+                <tr>
+                    <td class="ws2">
+                        <code class="stacks-code">48px</code>
+                        <code class="stacks-code">.s-avatar__lg</code>
+                    </td>
+                    <td>
                         <a href="#" class="s-avatar s-avatar__lg">
                             <img class="s-avatar--image" src="https://placekitten.com/96" />
                         </a>
-                    </div>
-
-                    <div class="grid--cell">
+                    </td>
+                </tr>
+                <tr>
+                    <td class="ws2">
+                        <code class="stacks-code">64px</code>
+                        <code class="stacks-code">.s-avatar__xl</code>
+                    </td>
+                    <td>
                         <a href="#" class="s-avatar s-avatar__xl">
                             <img class="s-avatar--image" src="https://placekitten.com/128" />
                         </a>
-                    </div>
-
-                    <div class="grid--cell">
+                    </td>
+                </tr>
+                <tr>
+                    <td class="ws2">
+                        <code class="stacks-code">96px</code>
+                        <code class="stacks-code">.s-avatar__xxl</code>
+                    </td>
+                    <td>
                         <a href="#" class="s-avatar s-avatar__xxl">
                             <img class="s-avatar--image" src="https://placekitten.com/192" />
                         </a>
-                    </div>
-
-                    <div class="grid--cell">
+                    </td>
+                </tr>
+                <tr>
+                    <td class="ws2">
+                        <code class="stacks-code">128px</code>
+                        <code class="stacks-code">.s-avatar__xxxl</code>
+                    </td>
+                    <td>
                         <a href="#" class="s-avatar s-avatar__xxxl">
                             <img class="s-avatar--image" src="https://placekitten.com/256" />
                         </a>
+                    </td>
+                </tr>
+            </table>
+
+
+
+            <!-- <div class="grid">
+                <div class="grid fd-column mr24 gs16 gsy">
+                    <div class="grid--cell">
+                        <div class="grid ai-center gsx gs8">
+                            <a href="#" class="grid--cell s-avatar s-avatar__sm">
+                                <img class="s-avatar--image" src="https://placekitten.com/48" />
+                            </a>
+                            <div class="grid--cell ff-mono fs-caption">
+                                <code class="stacks-code">24px</code> <code class="stacks-code">s-avatar__sm</code>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="grid--cell">
+                        <div class="grid ai-center gsx gs8">
+                            <a href="#" class="grid--cell s-avatar s-avatar__md">
+                                <img class="s-avatar--image" src="https://placekitten.com/64" />
+                            </a>
+                            <div class="grid--cell ff-mono fs-caption">
+                                <code class="stacks-code">32px</code> <code class="stacks-code">s-avatar__md</code>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="grid--cell">
+                        <div class="grid ai-center gsx gs8">
+                            <a href="#" class="grid--cell s-avatar s-avatar__lg">
+                                <img class="s-avatar--image" src="https://placekitten.com/96" />
+                            </a>
+                            <div class="grid--cell ff-mono fs-caption">
+                                <code class="stacks-code">48px</code> <code class="stacks-code">s-avatar__lg</code>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="grid--cell">
+                        <div class="grid ai-center gsx gs8">
+                            <a href="#" class="grid--cell s-avatar s-avatar__xl">
+                                <img class="s-avatar--image" src="https://placekitten.com/128" />
+                            </a>
+                            <div class="grid--cell ff-mono fs-caption">
+                                <code class="stacks-code">64px</code> <code class="stacks-code">s-avatar__xl</code>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="grid--cell">
+                        <div class="grid ai-center gsx gs8">
+                            <a href="#" class="grid--cell s-avatar s-avatar__xxl">
+                                <img class="s-avatar--image" src="https://placekitten.com/192" />
+                            </a>
+                            <div class="grid--cell ff-mono fs-caption">
+                                <code class="stacks-code">96px</code> <code class="stacks-code">s-avatar__xxl</code>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="grid--cell">
+                        <div class="grid ai-center gsx gs8">
+                            <a href="#" class="s-avatar s-avatar__xxxl">
+                                <img class="s-avatar--image" src="https://placekitten.com/256" />
+                            </a>
+                            <div class="grid--cell ff-mono fs-caption">
+                                <code class="stacks-code">128px</code> <code class="stacks-code">s-avatar__xxxl</code>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
         </div>
     </div>
 </section>
 
 <section class="stacks-section">
-    {% header "h2", "Teams" %}
+    {% header "h3", "Teams" %}
     <p class="stacks-copy">When displaying a team’s identity, we badge the avatar with a shield. We fall back to the first letter of their name and a color we choose at random. As team administrators add more data—choosing a color or uploading an avatar—we progressively enhance the avatar.</p>
     <p class="stacks-copy">In this example, from left to right, we have a team name of Hum with no avatar or custom color. In the middle we have a team name of Hum with a custom color. In the last example, we have a team name of Hum with a custom avatar applied.</p>
     <div class="stacks-preview">
@@ -131,9 +262,13 @@ description: Avatars are used to quickly identify users or teams.
 </a>
 {% endhighlight %}
         <div class="stacks-preview--example overflow-x-auto">
-            <div class="grid">
-                <div class="grid fd-column mr24 gs16 gsy">
-                    <div class="grid--cell">
+            <table class="s-table s-table__b0">
+                <tr>
+                    <td class="ws2">
+                        <code class="stacks-code">16px</code>
+                        <code class="stacks-code">default</code>
+                    </td>
+                    <td>
                         <a href="#" class="s-link s-link__muted">
                             <div class="bg-blue-400 s-avatar">
                                 <div class="s-avatar--letter">H</div>
@@ -141,53 +276,8 @@ description: Avatars are used to quickly identify users or teams.
                             </div>
                             <span class="pl4">Hum</span>
                         </a>
-                    </div>
-
-                    <div class="grid--cell">
-                        <a href="#" class="bg-blue-400 s-avatar s-avatar__sm">
-                            <div class="s-avatar--letter">H</div>
-                            {% icon "ShieldXSm", "native s-avatar--badge" %}
-                        </a>
-                    </div>
-
-                    <div class="grid--cell">
-                        <a href="#" class="bg-blue-400 s-avatar s-avatar__md">
-                            <div class="s-avatar--letter">H</div>
-                            {% icon "ShieldXSm", "native s-avatar--badge" %}
-                        </a>
-                    </div>
-
-                    <div class="grid--cell">
-                        <a href="#" class="bg-blue-400 s-avatar s-avatar__lg">
-                            <div class="s-avatar--letter">H</div>
-                            {% icon "ShieldXSm", "native s-avatar--badge" %}
-                        </a>
-                    </div>
-
-                    <div class="grid--cell">
-                        <a href="#" class="bg-blue-400 s-avatar s-avatar__xl">
-                            <div class="s-avatar--letter">H</div>
-                            {% icon "ShieldXSm", "native s-avatar--badge" %}
-                        </a>
-                    </div>
-
-                    <div class="grid--cell">
-                        <a href="#" class="bg-blue-400 s-avatar s-avatar__xxl">
-                            <div class="s-avatar--letter">H</div>
-                            {% icon "ShieldXSm", "native s-avatar--badge" %}
-                        </a>
-                    </div>
-
-                    <div class="grid--cell">
-                        <a href="#" class="bg-blue-400 s-avatar s-avatar__xxxl">
-                            <div class="s-avatar--letter">H</div>
-                            {% icon "ShieldXSm", "native s-avatar--badge" %}
-                        </a>
-                    </div>
-                </div>
-
-                <div class="grid fd-column mr24 gs16 gsy">
-                    <div class="grid--cell">
+                    </td>
+                    <td>
                         <a href="#" class="s-link s-link__muted">
                             <div class="s-avatar" style="background-color: #4da99d;">
                                 <div class="s-avatar--letter">H</div>
@@ -195,98 +285,155 @@ description: Avatars are used to quickly identify users or teams.
                             </div>
                             <span class="pl4">Hum</span>
                         </a>
-                    </div>
-
-                    <div class="grid--cell">
-                        <a href="#" class="s-avatar s-avatar__sm" style="background-color: #4da99d;">
-                            <div class="s-avatar--letter">H</div>
-                            {% icon "ShieldXSm", "native s-avatar--badge" %}
-                        </a>
-                    </div>
-
-                    <div class="grid--cell">
-                        <a href="#" class="s-avatar s-avatar__md" style="background-color: #4da99d;">
-                            <div class="s-avatar--letter">H</div>
-                            {% icon "ShieldXSm", "native s-avatar--badge" %}
-                        </a>
-                    </div>
-
-                    <div class="grid--cell">
-                        <a href="#" class="s-avatar s-avatar__lg" style="background-color: #4da99d;">
-                            <div class="s-avatar--letter">H</div>
-                            {% icon "ShieldXSm", "native s-avatar--badge" %}
-                        </a>
-                    </div>
-
-                    <div class="grid--cell">
-                        <a href="#" class="s-avatar s-avatar__xl" style="background-color: #4da99d;">
-                            <div class="s-avatar--letter">H</div>
-                            {% icon "ShieldXSm", "native s-avatar--badge" %}
-                        </a>
-                    </div>
-
-                    <div class="grid--cell">
-                        <a href="#" class="s-avatar s-avatar__xxl" style="background-color: #4da99d;">
-                            <div class="s-avatar--letter">H</div>
-                            {% icon "ShieldXSm", "native s-avatar--badge" %}
-                        </a>
-                    </div>
-
-                    <div class="grid--cell">
-                        <a href="#" class="s-avatar s-avatar__xxxl" style="background-color: #4da99d;">
-                            <div class="s-avatar--letter">H</div>
-                            {% icon "ShieldXSm", "native s-avatar--badge" %}
-                        </a>
-                    </div>
-                </div>
-
-                <div class="grid fd-column gs16 gsy">
-                    <div class="grid--cell">
+                    </td>
+                    <td>
                         <a href="#" class="s-link s-link__muted">
                             <div class="demo-background s-avatar">
                                 {% icon "ShieldXSm", "native s-avatar--badge" %}
                             </div>
                             <span class="pl4">Hum</span>
                         </a>
-                    </div>
-
-                    <div class="grid--cell">
+                    </td>
+                </tr>
+                <tr>
+                    <td class="ws2">
+                        <code class="stacks-code">24px</code>
+                        <code class="stacks-code">.s-avatar__sm</code>
+                    </td>
+                    <td>
+                        <a href="#" class="bg-blue-400 s-avatar s-avatar__sm">
+                            <div class="s-avatar--letter">H</div>
+                            {% icon "ShieldXSm", "native s-avatar--badge" %}
+                        </a>
+                    </td>
+                    <td>
+                        <a href="#" class="s-avatar s-avatar__sm" style="background-color: #4da99d;">
+                            <div class="s-avatar--letter">H</div>
+                            {% icon "ShieldXSm", "native s-avatar--badge" %}
+                        </a>
+                    </td>
+                    <td>
                         <a href="#" class="demo-background s-avatar s-avatar__sm">
                             {% icon "ShieldXSm", "native s-avatar--badge" %}
                         </a>
-                    </div>
-
-                    <div class="grid--cell">
+                    </td>
+                </tr>
+                <tr>
+                    <td class="ws2">
+                        <code class="stacks-code">32px</code>
+                        <code class="stacks-code">.s-avatar__md</code>
+                    </td>
+                    <td>
+                        <a href="#" class="bg-blue-400 s-avatar s-avatar__md">
+                            <div class="s-avatar--letter">H</div>
+                            {% icon "ShieldXSm", "native s-avatar--badge" %}
+                        </a>
+                    </td>
+                    <td>
+                        <a href="#" class="s-avatar s-avatar__md" style="background-color: #4da99d;">
+                            <div class="s-avatar--letter">H</div>
+                            {% icon "ShieldXSm", "native s-avatar--badge" %}
+                        </a>
+                    </td>
+                    <td>
                         <a href="#" class="demo-background s-avatar s-avatar__md">
                             {% icon "ShieldXSm", "native s-avatar--badge" %}
                         </a>
-                    </div>
-
-                    <div class="grid--cell">
+                    </td>
+                </tr>
+                <tr>
+                    <td class="ws2">
+                        <code class="stacks-code">48px</code>
+                        <code class="stacks-code">.s-avatar__lg</code>
+                    </td>
+                    <td>
+                        <a href="#" class="bg-blue-400 s-avatar s-avatar__lg">
+                            <div class="s-avatar--letter">H</div>
+                            {% icon "ShieldXSm", "native s-avatar--badge" %}
+                        </a>
+                    </td>
+                    <td>
+                        <a href="#" class="s-avatar s-avatar__lg" style="background-color: #4da99d;">
+                            <div class="s-avatar--letter">H</div>
+                            {% icon "ShieldXSm", "native s-avatar--badge" %}
+                        </a>
+                    </td>
+                    <td>
                         <a href="#" class="demo-background s-avatar s-avatar__lg">
                             {% icon "ShieldXSm", "native s-avatar--badge" %}
                         </a>
-                    </div>
-
-                    <div class="grid--cell">
+                    </td>
+                </tr>
+                <tr>
+                    <td class="ws2">
+                        <code class="stacks-code">64px</code>
+                        <code class="stacks-code">.s-avatar__xl</code>
+                    </td>
+                    <td>
+                        <a href="#" class="bg-blue-400 s-avatar s-avatar__xl">
+                            <div class="s-avatar--letter">H</div>
+                            {% icon "ShieldXSm", "native s-avatar--badge" %}
+                        </a>
+                    </td>
+                    <td>
+                        <a href="#" class="s-avatar s-avatar__xl" style="background-color: #4da99d;">
+                            <div class="s-avatar--letter">H</div>
+                            {% icon "ShieldXSm", "native s-avatar--badge" %}
+                        </a>
+                    </td>
+                    <td>
                         <a href="#" class="demo-background s-avatar s-avatar__xl">
                             {% icon "ShieldXSm", "native s-avatar--badge" %}
                         </a>
-                    </div>
-
-                    <div class="grid--cell">
+                    </td>
+                </tr>
+                <tr>
+                    <td class="ws2">
+                        <code class="stacks-code">96px</code>
+                        <code class="stacks-code">.s-avatar__xxl</code>
+                    </td>
+                    <td>
+                        <a href="#" class="bg-blue-400 s-avatar s-avatar__xxl">
+                            <div class="s-avatar--letter">H</div>
+                            {% icon "ShieldXSm", "native s-avatar--badge" %}
+                        </a>
+                    </td>
+                    <td>
+                        <a href="#" class="s-avatar s-avatar__xxl" style="background-color: #4da99d;">
+                            <div class="s-avatar--letter">H</div>
+                            {% icon "ShieldXSm", "native s-avatar--badge" %}
+                        </a>
+                    </td>
+                    <td>
                         <a href="#" class="demo-background s-avatar s-avatar__xxl">
                             {% icon "ShieldXSm", "native s-avatar--badge" %}
                         </a>
-                    </div>
-
-                    <div class="grid--cell">
+                    </td>
+                </tr>
+                <tr>
+                    <td class="ws2">
+                        <code class="stacks-code">128px</code>
+                        <code class="stacks-code">.s-avatar__xxxl</code>
+                    </td>
+                    <td>
+                        <a href="#" class="bg-blue-400 s-avatar s-avatar__xxxl">
+                            <div class="s-avatar--letter">H</div>
+                            {% icon "ShieldXSm", "native s-avatar--badge" %}
+                        </a>
+                    </td>
+                    <td>
+                        <a href="#" class="s-avatar s-avatar__xxxl" style="background-color: #4da99d;">
+                            <div class="s-avatar--letter">H</div>
+                            {% icon "ShieldXSm", "native s-avatar--badge" %}
+                        </a>
+                    </td>
+                    <td>
                         <a href="#" class="demo-background s-avatar s-avatar__xxxl">
                             {% icon "ShieldXSm", "native s-avatar--badge" %}
                         </a>
-                    </div>
-                </div>
-            </div>
+                    </td>
+                </tr>
+            </table>
         </div>
     </div>
 </section>
