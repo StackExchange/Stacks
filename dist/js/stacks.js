@@ -3576,6 +3576,13 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
+var __spreadArrays = (this && this.__spreadArrays) || function () {
+    for (var s = 0, i = 0, il = arguments.length; i < il; i++) s += arguments[i].length;
+    for (var r = Array(s), k = 0, i = 0; i < il; i++)
+        for (var a = arguments[i], j = 0, jl = a.length; j < jl; j++, k++)
+            r[k] = a[j];
+    return r;
+};
 var Stacks;
 (function (Stacks) {
     var StacksApplication = (function (_super) {
@@ -3588,7 +3595,7 @@ var Stacks;
             for (var _i = 1; _i < arguments.length; _i++) {
                 rest[_i - 1] = arguments[_i];
             }
-            var definitions = Array.isArray(head) ? head : [head].concat(rest);
+            var definitions = Array.isArray(head) ? head : __spreadArrays([head], rest);
             for (var _a = 0, definitions_1 = definitions; _a < definitions_1.length; _a++) {
                 var definition = definitions_1[_a];
                 var hasPrefix = /^s-/.test(definition.identifier);
@@ -3771,7 +3778,7 @@ var __extends = (this && this.__extends) || (function () {
                 }
                 return result;
             },
-            enumerable: true,
+            enumerable: false,
             configurable: true
         });
         ;
@@ -4091,7 +4098,7 @@ var Stacks;
                 var popoverElement = this.popoverElement;
                 return popoverElement ? popoverElement.classList.contains("is-visible") : false;
             },
-            enumerable: true,
+            enumerable: false,
             configurable: true
         });
         BasePopoverController.prototype.connect = function () {
