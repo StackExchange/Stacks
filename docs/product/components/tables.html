@@ -377,6 +377,238 @@ description: Tables are used to list all information from a data set. The base s
 </section>
 
 <section class="stacks-section">
+    {% header "h2", "Responsive" %}
+    <p class="stacks-copy">Make the tables behave on small screen.</p>
+    {% header "h3", "Classes" %}
+    <table class="mb24 s-table s-table__bx-simple">
+        <thead>
+            <tr>
+                <th scope="col" class="s-table--cell3">Class</th>
+                <th scope="col">Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><code class="ff-mono fw-bold">.s-table__responsive</code></td>
+                <td><code class="ff-mono">Makes the table responsive via overflow-x scrolling</code></td>
+            </tr>
+            <tr>
+                <td><code class="ff-mono fw-bold">.s-table__responsive--sticky</code></td>
+                <td><code class="ff-mono">Adds sticky classes to the first column (used in conjuntion with width classes below)</code></td>
+            </tr>
+            <tr>
+                <td><code class="ff-mono fw-bold">.s-table__responsive--sticky-col-xs</code></td>
+                <td><code class="ff-mono">105px wide first column</code></td>
+            </tr>
+            <tr>
+                <td><code class="ff-mono fw-bold">.s-table__responsive--sticky-col-sm</code></td>
+                <td><code class="ff-mono">128px wide first column</code></td>
+            </tr>
+            <tr>
+                <td><code class="ff-mono fw-bold">.s-table__responsive--sticky-col-md</code></td>
+                <td><code class="ff-mono">180px wide first column</code></td>
+            </tr>
+            <tr>
+                <td><code class="ff-mono fw-bold">.s-table__responsive--sticky-col-lg</code></td>
+                <td><code class="ff-mono">256px wide first column</code></td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="stacks-preview">
+{% highlight html %}
+<table class="s-table s-table__responsive">
+    <thead>
+        <tr>
+            <th scope="col"></th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <th scope="row"></th>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+    </tbody>
+</table>
+
+// Example 2
+<table class="s-table s-table__responsive s-table__responsive--sticky s-table__responsive--sticky-col-sm">
+    <thead>
+        <tr>
+            <th scope="col"></th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <th scope="row"></th>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+    </tbody>
+</table>
+
+// Example 3
+<table class="s-table s-table__responsive s-table__responsive--sticky s-table__responsive--sticky-col-md">
+    <thead>
+        <tr>
+            <th scope="col"></th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <th scope="row"></th>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+    </tbody>
+</table>
+{% endhighlight %}
+        <div class="stacks-preview--example overflow-x-auto">
+            <table class="s-table s-table__responsive mb12">
+                <thead>
+                    <tr>
+                        <th scope="col">Name</th>
+                        <th scope="col">City</th>
+                        <th scope="col">Department</th>
+                        <th scope="col">Reputation</th>
+                        <th scope="col">Joined</th>
+                        <th scope="col">Last seen</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th><a>Aaron Shekey</a></th>
+                        <td>New York City</td>
+                        <td>Design</td>
+                        <td><div class="grid ai-center"><div class="fw-bold mr8" title="reputation score " dir="ltr">263</div><div class="grid ai-center"><img class="s-badge--image" src="{{ "/assets/img/BadgeBronze.svg" | relative_url }}" aria-hidden="true"> <span>7</span></div></td>
+                        <td>Dec 1 ’17 at 20:24</td>
+                        <td>just now</td>
+                    </tr>
+                    <tr>
+                        <th><a>Paul Wright</a></th>
+                        <td>Remote</td>
+                        <td>Design</td>
+                        <td><div class="grid ai-center"><div class="fw-bold mr8" title="reputation score " dir="ltr">611</div><div class="grid ai-center"><img class="s-badge--image" src="{{ "/assets/img/BadgeBronze.svg" | relative_url }}" aria-hidden="true"> <span>11</span></div></td>
+                        <td>July 23 at 18:47</td>
+                        <td>Aug 10 at 14:57</td>
+                    </tr>
+                    <tr>
+                        <th><a>Piper Lawson</a></th>
+                        <td>New York City</td>
+                        <td>Design</td>
+                        <td><div class="grid ai-center"><div class="fw-bold mr8" title="reputation score " dir="ltr">25</div><div class="grid ai-center"><img class="s-badge--image" src="{{ "/assets/img/BadgeBronze.svg" | relative_url }}" aria-hidden="true"> <span>3</span></div></td>
+                        <td>Jul 5 at 14:32</td>
+                        <td>Aug 14 at 12:41</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <table class="s-table s-table__responsive s-table__responsive--sticky s-table__responsive--sticky-col-sm mb12">
+                <thead>
+                    <tr>
+                        <th scope="col">Name</th>
+                        <th scope="col">City</th>
+                        <th scope="col">Department</th>
+                        <th scope="col">Reputation</th>
+                        <th scope="col">Joined</th>
+                        <th scope="col">Last seen</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th><a>Aaron Shekey</a></th>
+                        <td>New York City</td>
+                        <td>Design</td>
+                        <td><div class="grid ai-center"><div class="fw-bold mr8" title="reputation score " dir="ltr">263</div><div class="grid ai-center"><img class="s-badge--image" src="{{ "/assets/img/BadgeBronze.svg" | relative_url }}" aria-hidden="true"> <span>7</span></div></td>
+                        <td>Dec 1 ’17 at 20:24</td>
+                        <td>just now</td>
+                    </tr>
+                    <tr>
+                        <th><a>Paul Wright</a></th>
+                        <td>Remote</td>
+                        <td>Design</td>
+                        <td><div class="grid ai-center"><div class="fw-bold mr8" title="reputation score " dir="ltr">611</div><div class="grid ai-center"><img class="s-badge--image" src="{{ "/assets/img/BadgeBronze.svg" | relative_url }}" aria-hidden="true"> <span>11</span></div></td>
+                        <td>July 23 at 18:47</td>
+                        <td>Aug 10 at 14:57</td>
+                    </tr>
+                    <tr>
+                        <th><a>Piper Lawson</a></th>
+                        <td>New York City</td>
+                        <td>Design</td>
+                        <td><div class="grid ai-center"><div class="fw-bold mr8" title="reputation score " dir="ltr">25</div><div class="grid ai-center"><img class="s-badge--image" src="{{ "/assets/img/BadgeBronze.svg" | relative_url }}" aria-hidden="true"> <span>3</span></div></td>
+                        <td>Jul 5 at 14:32</td>
+                        <td>Aug 14 at 12:41</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <table class="s-table s-table__responsive s-table__responsive--sticky s-table__responsive--sticky-col-md">
+                <thead>
+                    <tr>
+                        <th scope="col">Name</th>
+                        <th scope="col">City</th>
+                        <th scope="col">Department</th>
+                        <th scope="col">Reputation</th>
+                        <th scope="col">Joined</th>
+                        <th scope="col">Last seen</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th><a>Aaron Shekey</a></th>
+                        <td>New York City</td>
+                        <td>Design</td>
+                        <td><div class="grid ai-center"><div class="fw-bold mr8" title="reputation score " dir="ltr">263</div><div class="grid ai-center"><img class="s-badge--image" src="{{ "/assets/img/BadgeBronze.svg" | relative_url }}" aria-hidden="true"> <span>7</span></div></td>
+                        <td>Dec 1 ’17 at 20:24</td>
+                        <td>just now</td>
+                    </tr>
+                    <tr>
+                        <th><a>Paul Wright</a></th>
+                        <td>Remote</td>
+                        <td>Design</td>
+                        <td><div class="grid ai-center"><div class="fw-bold mr8" title="reputation score " dir="ltr">611</div><div class="grid ai-center"><img class="s-badge--image" src="{{ "/assets/img/BadgeBronze.svg" | relative_url }}" aria-hidden="true"> <span>11</span></div></td>
+                        <td>July 23 at 18:47</td>
+                        <td>Aug 10 at 14:57</td>
+                    </tr>
+                    <tr>
+                        <th><a>Piper Lawson</a></th>
+                        <td>New York City</td>
+                        <td>Design</td>
+                        <td><div class="grid ai-center"><div class="fw-bold mr8" title="reputation score " dir="ltr">25</div><div class="grid ai-center"><img class="s-badge--image" src="{{ "/assets/img/BadgeBronze.svg" | relative_url }}" aria-hidden="true"> <span>3</span></div></td>
+                        <td>Jul 5 at 14:32</td>
+                        <td>Aug 14 at 12:41</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
+<section class="stacks-section">
     {% header "h2", "Cell widths" %}
     <p class="stacks-copy">Table columns will size themselves based on their content. To set a specific width, you can use one of the following table cell classes to specify the width for any column.</p>
     {% header "h3", "Classes" %}
