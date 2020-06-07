@@ -1,0 +1,103 @@
+//
+//  STACK OVERFLOW
+//  QUESTION (IN LIST)
+//
+//  This CSS comes from Stacks, our CSS & Pattern library for rapidly building
+//  Stack Overflow. For documentation of all these classes and how to contribute,
+//  visit https://stackoverflow.design/
+//
+//  ============================================================================
+//  $  BASE
+//  ----------------------------------------------------------------------------
+
+.s-question {
+    display: grid;
+    grid-template-columns: min-content auto 1fr;
+    grid-column-gap: @su24;
+
+    .s-question--stats {
+        grid-column: ~"1 / 2";
+        grid-row: ~"1 / 3";
+    }
+
+    .s-question--tags {
+        grid-column: ~"2 / 3";
+        grid-row: ~"2 / 3";
+    }
+
+    .s-user-card {
+        grid-column: ~"3 / 4";
+        grid-row: ~"2 / 3";
+        justify-self: flex-end;
+    }
+}
+
+.s-question__full {
+    grid-auto-rows: auto auto 1fr;
+    grid-row-gap: @su6;
+
+    .s-question--excerpt {
+        grid-column: ~"2 / 4";
+        grid-row: ~"2 / 3";
+        margin-bottom: 0;
+    }
+
+    .s-question--stats {
+        flex-direction: column;
+        grid-column: ~"1 / 2";
+        grid-row: ~"1 / 4";
+    }
+
+    .s-question--tags {
+        grid-column: ~"2 / 3";
+        grid-row: ~"3 / 4";
+    }
+
+    .s-user-card {
+        grid-column: ~"3 / 4";
+        grid-row: ~"3 / 4";
+    }
+}
+
+.s-question--title {
+    grid-column: ~"2 / 4";
+    grid-row: ~"1 / 2";
+}
+
+.s-question--title {
+    color: var(--blue-700);
+    font-size: 16px;
+    line-height: 20px;
+    font-weight: normal;
+    margin-bottom: 0;
+}
+
+.s-question--stats {
+    .list-reset;
+    display: flex;
+}
+
+.s-question--stat {
+    padding: 8px;
+    font-size: 11px;
+}
+
+.s-question--stat span {
+    display: block;
+    text-align: center;
+}
+
+.s-question--stat span:first-child {
+    font-size: 17px;
+}
+
+.s-question--has-answer {
+    border: 1px solid var(--green-400);
+    color: var(--green-400);
+    border-radius: 3px;
+}
+
+.s-question--has-accepted-answer {
+    background-color: var(--green-400);
+    color: var(--white);
+}
