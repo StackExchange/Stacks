@@ -168,21 +168,25 @@ description: Popovers are small content containers that provide a contextual ove
                     <button class="s-btn s-btn__filled">Link an account</button>
                 </div>
             </div>
-            <div class="grid--cell ml-auto sm:ml0"
+            <div class="grid--cell ml-auto sm:ml0 sm:mt12"
                 data-controller="s-popover"
                 data-s-popover-reference-selector="#reference-element"
-                data-s-popover-placement="bottom">
+                data-s-popover-placement="bottom-end">
                 <a id="reference-element" class="s-link s-link__inherit"
                     aria-controls="popover-example-3">
                     Follow question
                 </a>
-                <div id="popover-example-3" class="s-popover is-visible wmx3" role="menu">
+                <div id="popover-example-3" class="s-popover is-visible ws2" role="menu">
                     <div class="s-popover--arrow"></div>
                     <button class="s-popover--close s-btn s-btn__muted" aria-label="Close" data-action="s-popover#toggle">{% icon "ClearSm" %}</button>
 
-                    <div class="grid ai-center">
-                        <div class="grid--cell mr12 fc-orange-400">
+                    <div class="grid ai-start">
+                        <div class="grid--cell mr12 fc-orange-400 sm:d-none">
                             {% spot "Bell" %}
+                        </div>
+
+                        <div class="grid--cell mr8 fc-orange-400 sm:d-block d-none">
+                            {% icon "Bell" %}
                         </div>
 
                         <div class="grid--cell">
@@ -424,12 +428,6 @@ Stacks.setTooltipHtml(el,
             </button>
         </div>
     </div>
-    <script>
-        window.addEventListener("load", () => {
-            Stacks.setTooltipText(document.querySelector(".js-text-tooltip-example"), "Only members of this Team can see the information posted here. It will never be shared publicly or accessible outside of your Team.", { placement: "top-start" });
-            Stacks.setTooltipHtml(document.querySelector(".js-html-tooltip-example"), "View all questions with <span class='s-tag'>stacks</span>", { placement: "top-end" });
-        });
-    </script>
 
     {% header "h4", "Rich tooltips" %}
     <p class="stacks-copy">When a rich tooltip is required, a popover element can be configured in much the same way as an <code class="stacks-code">s-popover</code> controller, with the most notable difference being the use of <code class="stacks-code">aria-describedby</code> instead of <code class="stacks-code">aria-controls</code>.</p>
@@ -653,3 +651,6 @@ Stacks.setTooltipHtml(el,
         </div>
     </div>
 </section>
+
+<!-- Example popover javascript -->
+<script src="{{ "/assets/js/feature.popovers.js" | relative_url }}" defer></script>
