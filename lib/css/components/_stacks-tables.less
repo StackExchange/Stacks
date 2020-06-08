@@ -85,58 +85,6 @@
         border-top: @su2 solid var(--black-100);
     }
 }
-
-.s-table__responsive {
-    display: block;
-    width: 100%;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-}
-
-.s-table__responsive--sticky {
-    tr {
-        position: relative;
-    }
-
-    th:first-child {
-        position: sticky;
-        position: -webkit-sticky;
-        left: 0px;
-        background-color: @white;
-    }
-}
-
-.s-table__responsive--sticky-col-xs {
-    th:first-child {
-        width: @s-step;
-        min-width: @s-step;
-        max-width: @s-step;
-    }
-}
-
-.s-table__responsive--sticky-col-sm {
-    th:first-child {
-        width: @su128;
-        min-width: @su128;
-        max-width: @su128;
-    }
-}
-
-.s-table__responsive--sticky-col-md {
-    th:first-child {
-        width: 180px;
-        min-width: 180px;
-        max-width: 180px;
-    }
-}
-
-.s-table__responsive--sticky-col-lg {
-    th:first-child {
-        width: @su128 * 2;
-        min-width: @su128 * 2;
-        max-width: @su128 * 2;
-    }
-}
 //  ============================================================================
 //  $    ALIGNMENTS
 //  ----------------------------------------------------------------------------
@@ -364,6 +312,59 @@
         th:not(.is-enabled),
         td:not(.is-enabled) {
             opacity: 0.3;
+        }
+    }
+
+    //  $$  Responsive
+    //  ------------------------------------------------------------------------
+    &.s-table__responsive {
+        display: block;
+        overflow-x: auto;
+        @scrollbar-styles(); // Style the scrollbars appropriately
+    }
+
+    &.s-table__responsive--sticky {
+        tr {
+            position: relative;
+        }
+
+        th:first-child {
+            position: sticky;
+            position: -webkit-sticky;
+            left: 0px;
+            background-color: @white;
+        }
+    }
+
+    &.s-table__responsive--sticky-col-xs {
+        th:first-child {
+            width: @s-step;
+            min-width: @s-step;
+            max-width: @s-step;
+        }
+    }
+
+    &.s-table__responsive--sticky-col-sm {
+        th:first-child {
+            width: @su128;
+            min-width: @su128;
+            max-width: @su128;
+        }
+    }
+
+    &.s-table__responsive--sticky-col-md {
+        th:first-child {
+            width: 180px;
+            min-width: 180px;
+            max-width: 180px;
+        }
+    }
+
+    &.s-table__responsive--sticky-col-lg {
+        th:first-child {
+            width: @su128 * 2;
+            min-width: @su128 * 2;
+            max-width: @su128 * 2;
         }
     }
 }
