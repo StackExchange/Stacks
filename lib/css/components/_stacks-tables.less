@@ -27,16 +27,15 @@
     display: table;
     width: 100%;
     max-width: 100%;
-    border-collapse: collapse;
     border-spacing: 0;
     font-size: @fs-body1;
 
     th,
     td {
+        box-shadow: 0 0 0 1px var(--black-100); // Instead of using borders, let's use drop shadows
         padding: @su8;
-        border-top: 1px solid var(--black-100);
-        border-left: 1px solid var(--black-100);
-        border-right: 1px solid var(--black-100);
+        background-color: var(--white);
+
         vertical-align: middle;
         color: var(--fc-medium);
         text-align: left;
@@ -55,34 +54,49 @@
         color: var(--fc-dark);
     }
 
-    //  Custom styles when in a table head
-    thead th {
-        &:not(.s-table--bulk) {
-            font-size: @fs-fine;
+    // Header overrides
+    thead {
+        th {
+            vertical-align: bottom;
+            white-space: nowrap;
+            background-color: var(--black-025);
+            line-height: @lh-sm;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+
+            &:not(.s-table--bulk) {
+                font-size: @fs-fine;
+            }
         }
 
-        vertical-align: bottom;
-        white-space: nowrap;
-        background-color: var(--black-025);
-        line-height: @lh-sm;
-        text-transform: uppercase;
-        letter-spacing: 0.05em;
+        tr {
+            th:first-of-type {
+                border-top-left-radius: @br-sm;
+            }
+
+            th:last-of-type {
+                border-top-right-radius: @br-sm;
+            }
+        }
     }
 
-    //  When in a table body, don't make it bold.
-    tbody th {
-        font-weight: normal;
-    }
+    // Body overrides
+    tbody {
+        tr:last-of-type {
+            td:first-child,
+            th:first-child {
+                border-bottom-left-radius: @br-sm;
+            }
 
-    //  If it's the last row, add a bottom border
-    tr:last-of-type td,
-    tr:last-of-type th {
-        border-bottom: 1px solid var(--black-100);
-    }
+            td:last-child,
+            th:last-child {
+                border-bottom-right-radius: @br-sm;
+            }
+        }
 
-    //  If two table bodies are next to each other, visually separate them
-    tbody + tbody {
-        border-top: @su2 solid var(--black-100);
+        th {
+            font-weight: normal;
+        }
     }
 }
 
