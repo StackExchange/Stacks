@@ -32,7 +32,7 @@
 
     th,
     td {
-        box-shadow: 0 0 0 1px var(--black-100); // Instead of using borders, let's use drop shadows
+        box-shadow: -1px 0 var(--black-100), 0 1px var(--black-100), 0 -1px var(--black-100), 1px 0 var(--black-100);
         padding: @su8;
         background-color: var(--white);
 
@@ -268,32 +268,27 @@
     &.s-table__bx-simple {
         th,
         td {
-            border-left-color: transparent;
-            border-right-color: transparent;
+            box-shadow: 0 -1px var(--black-100), 0 1px var(--black-100);
         }
         thead th {
-            border-top-color: transparent;
-            border-bottom-color: var(--black-200);
+            box-shadow: 0 1px var(--black-100);
+
             //  Clear Header Styles
-            background-color: transparent;
+            background-color: var(--white);
             text-transform: initial;
             font-size: inherit;
             letter-spacing: initial;
         }
         tbody tr {
-            &:first-of-type th,
-            &:first-of-type td {
-                border-top-color: transparent;
-            }
             &:last-of-type th,
             &:last-of-type td {
-                border-bottom-color: transparent;
+                box-shadow: 0 -1px var(--black-100);
             }
         }
-        tfoot th,
-        tfoot td {
-            border-bottom-color: transparent;
-        }
+        // tfoot th,
+        // tfoot td {
+        //     border-bottom-color: transparent;
+        // }
     }
 
     //  $$  TOTALS ROW
