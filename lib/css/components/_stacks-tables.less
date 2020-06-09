@@ -230,12 +230,36 @@
 
     //  --  Horizontal Only with Table Outline
     &.s-table__bx {
-        tr {
-            > *:not(:first-child) {
-                border-left-color: transparent;
+        th,
+        td {
+            box-shadow: 0 -1px var(--black-100), 0 1px var(--black);
+        }
+
+        // Header overrides
+        thead {
+            tr {
+                th:first-of-type {
+                    box-shadow: 0 -1px var(--black-100), 0 1px var(--black), -1px 0 var(--black-100);
+                }
+
+                th:last-of-type {
+                    box-shadow: 0 -1px var(--black-100), 1px 0 var(--black-100), 0 1px var(--black);
+                }
             }
-            > *:not(:last-child) {
-                border-right-color: transparent;
+        }
+
+        // Body overrides
+        tbody {
+            tr {
+                th:first-child,
+                td:first-child {
+                    box-shadow: 0 -1px var(--black-100), 0 1px var(--black), -1px 0 var(--black-100);
+                }
+
+                th:last-child,
+                td:last-child {
+                    box-shadow: 0 -1px var(--black-100), 1px 0 var(--black-100), 0 1px var(--black);
+                }
             }
         }
     }
