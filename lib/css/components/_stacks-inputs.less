@@ -631,6 +631,10 @@ fieldset {
 }
 
 @autofill: {
+    &:not(.s-input:-webkit-autofill)::-webkit-contacts-auto-fill-button {
+        background-color: var(--black); // In Safari, make the autocomplete button darkmode-aware
+    }
+
     &:-webkit-autofill {
         border-color: var(--blue-300);
         -webkit-text-fill-color: var(--black);
