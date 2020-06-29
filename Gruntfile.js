@@ -18,7 +18,7 @@ module.exports = function(grunt) {
                 }
             },
             eleventyServe: {
-                command: 'npx @11ty/eleventy --serve --incremental',
+                command: 'npx @11ty/eleventy --serve',
                 options: {
                     stderr: false,
                     execOptions: {
@@ -188,11 +188,25 @@ module.exports = function(grunt) {
                 dest: 'docs/_includes/svg-icons/',
                 filter: 'isFile',
             },
+            iconsJson: {
+                expand: true,
+                cwd: 'node_modules/@stackoverflow/stacks-icons/build',
+                src: 'iconsEleventy.json',
+                dest: 'docs/_data/',
+                filter: 'isFile',
+            },
             spots: {
                 expand: true,
                 cwd: 'node_modules/@stackoverflow/stacks-icons/build/lib/Spot',
                 src: '**',
                 dest: 'docs/_includes/svg-spots/',
+                filter: 'isFile',
+            },
+            spotsJson: {
+                expand: true,
+                cwd: 'node_modules/@stackoverflow/stacks-icons/build',
+                src: 'spotsEleventy.json',
+                dest: 'docs/_data/',
                 filter: 'isFile',
             },
             declarations: {
@@ -228,7 +242,7 @@ module.exports = function(grunt) {
         'Prep and build the documentation site so it is ready for deploy.',
         ['update-icons', 'build']);
 
-    grunt.registerTask('update-icons', ['clean:icons', 'copy:icons', 'copy:spots']);
+    grunt.registerTask('update-icons', ['clean:icons', 'copy:icons', 'copy:spots', 'copy:iconsJson', 'copy:spotsJson']);
 
     grunt.registerTask('version', 'Creates a file with the version number inside it for Eleventy to display.', function() {
         grunt.file.write('docs/_includes/version.html', grunt.config.get('version'));

@@ -2,7 +2,7 @@ var monkeyList = new List('js-sortable-list', {
     valueNames: ['js-name']
 });
 
-var icons = document.querySelectorAll('.js-icon-list .svg-icon');
+var icons = document.querySelectorAll('.js-icon-list .js-svg');
 var buttons = document.querySelectorAll('.js-color-toggle-btn');
 for (var button of buttons) {
     button.addEventListener('click', function(event) {
