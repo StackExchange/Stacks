@@ -84,14 +84,14 @@ description: All system icons are inline SVG files, invoked via a Razor helper. 
     </div>
     <div class="d-flex fw-wrap sm:fd-column fs16 flex__allcells4 list js-icon-list">
         {% for icon in iconsEleventy %}
-            <div class="grid--cell">
+            <div class="flex--cell">
                 <div id="{{ icon.helper | downcase }}" class="d-flex ff-column-nowrap p0 s-card stacks-icon-container">
                     <div class="d-flex fl2 flex__center stacks-icon-preview">
                         {% icon icon.helper, "native js-svg" %}
                     </div>
                     <div class="d-flex ai-center jc-space-between p8">
                         <code class="flex--cell fs-caption py8 ff-mono ow-break-word js-name">@Svg.{{ icon.helper }}</code>
-                        <a class="flex-cell flex__center s-btn s-btn__muted fc-black-400 p2" href="#{{ icon.helper | downcase }}">{% icon "Link" %}</a>
+                        <a class="flex--cell flex__center s-btn s-btn__muted fc-black-400 p2" href="#{{ icon.helper | downcase }}">{% icon "Link" %}</a>
                     </div>
                 </div>
             </div>
