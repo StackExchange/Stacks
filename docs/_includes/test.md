@@ -567,69 +567,65 @@ Only some [basic HTML elements are whitelisted](https://meta.stackexchange.com/q
 
 - `<ol>` or `<ul>` with `<li>`: `<ol>` can have `start`
 
-        <ol><li>First</li><li>Second</li></ol> <ul><li>Something</li><li>Else</li></ul>
+    ```
+    <ol><li>First</li><li>Second</li></ol> <ul><li>Something</li><li>Else</li></ul>
+    ```
 
     <ol><li>First</li><li>Second</li></ol> <ul><li>Something</li><li>Else</li></ul>
 
     - Start at desired number up to 2<sup>31</sup> - 1.
 
-            <ol start="2147483647"><li>First</li></ol>
+        ```
+        <ol start="2147483647"><li>First</li></ol>
+        ```
 
         <ol start="2147483647"><li>First</li></ol>
 
 - `<p>`: no attributes
-
-        <p>Paragraph1</p><p>Paragraph2</p>
+    ```
+    <p>Paragraph1</p><p>Paragraph2</p>
+    ```
 
     <p>Paragraph1</p><p>Paragraph2</p>
 
 - `<pre>`: no attributes
-
-        <pre>System.out.println("Hello World!");</pre>
+    ```
+    <pre>System.out.println("Hello World!");</pre>
+    ```
 
     <pre>System.out.println("Hello World!");</pre>
 
 - `<sup>` and `<sub>`: no attributes
-
-        x<sup>2</sup> + A<sub>0</sub>
+    ```
+    x<sup>2</sup> + A<sub>0</sub>
+    ```
 
     x<sup>2</sup> + A<sub>0</sub>
 
     - They can be nested.
-
-            a<sup>b<sup>c<sup>d<sub>e<sup>f</sup></sub></sup></sup></sup>
+        ```
+        a<sup>b<sup>c<sup>d<sub>e<sup>f</sup></sub></sup></sup></sup>
+        ```
 
         a<sup>b<sup>c<sup>d<sub>e<sup>f</sup></sub></sup></sup></sup>
 
-- Others are NOT supported, including: `font`, `span`, `div`, `table`.
-
-        <font color="red">Red text?</font>
-
-    <font color="red">Red text?</font>
-
-        <span style="color:red">Red text?</font>
-
-    <span style="color:red">Red text?</font>
-
-        <div style="color:red">Red text?</font>
-
-    <div style="color:red">Red text?</font>
-
-        <table><tr><td>Not</td><td>Supported</td></tr></table>
-
-    <table><tr><td>Not</td><td>Supported</td></tr></table>
-
 - Escape your `<>`
 
-        HashMap<String, Object>
+    ```
+    HashMap<String, Object>
+    ```
 
     HashMap<String, Object>
 
-        `HashMap<String, Object>`
+    ```
+    `HashMap<String, Object>`
+    ```
 
     `HashMap<String, Object>`
 
-        HashMap&lt;String, Object&gt;
+    ```
+    HashMap&lt;String, Object&gt;
+    ```
 
     HashMap&lt;String, Object&gt;
 
