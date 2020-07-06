@@ -232,10 +232,10 @@ Not indented
 
 ## Tables
 
-| Syntax | Description |
-| ----------- | ----------- |
-| Header | Title |
-| Paragraph | Text |
+| Syntax | Description | Whatever | Whatever | Whatever | Whatever |
+| -- | -- | -- | -- | -- | -- |
+| Header | Title | What | Title | What | What |
+| Paragraph | Text | Ever | Text | Ever | What |
 
 ## Strikethrough
 
