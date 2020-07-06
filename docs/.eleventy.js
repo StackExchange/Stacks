@@ -1,5 +1,6 @@
 const syntaxHighlight = require("@11ty/eleventy-plugin-syntaxhighlight");
 const pluginTOC = require("eleventy-plugin-nesting-toc");
+const markdownShortcode = require("eleventy-plugin-markdown-shortcode");
 
 module.exports = function(eleventyConfig) {
   eleventyConfig.addLayoutAlias('home', 'layouts/home.html');
@@ -67,6 +68,11 @@ module.exports = function(eleventyConfig) {
 
   // Add syntax highlighting
   eleventyConfig.addPlugin(syntaxHighlight);
+
+  // Add markdown shortcode
+  eleventyConfig.addPlugin(markdownShortcode, {
+    html: true
+  });
 
   // Add submenu generation
   eleventyConfig.addPlugin(pluginTOC, {tags: ['h2', 'h3']});
