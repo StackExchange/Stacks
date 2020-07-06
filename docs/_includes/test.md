@@ -73,7 +73,7 @@ Velit dignissim sodales ut eu sem integer. Netus et malesuada fames ac turpis eg
 - This is one line.<br>
   This is intended to be on the next line.
 
-### Italics and Bold
+## Italics and Bold
 
 - This is _italic_ text. This is *italic* too.
 - This is __bold__ text. This is **bold** too.
