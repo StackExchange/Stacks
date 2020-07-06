@@ -3,10 +3,10 @@
 ## Code Formatting
 
 - Inline code formatting or code spans
-  - Normal backticks `System.out.println("Hello World!");`.
-  - Escaped backticks: ``for line in `someCommand` ``
-  - A single backtick character in a line won't form a code block '`'.
-  - There are two backtick characters ('\`') in this line ('`').
+    - Normal backticks `System.out.println("Hello World!");`.
+    - Escaped backticks: ``for line in `someCommand` ``
+    - A single backtick character in a line won't form a code block '`'.
+    - There are two backtick characters ('\`') in this line ('`').
 - Block code formatting
 ```
 System.out.println("Hello World!");
@@ -41,7 +41,7 @@ Fringilla est ullamcorper eget nulla facilisi etiam dignissim diam. A cras sempe
 Quam adipiscing vitae proin sagittis nisl rhoncus mattis rhoncus. Massa placerat duis ultricies lacus sed turpis tincidunt id aliquet. Porta lorem mollis aliquam ut porttitor leo. Et malesuada fames ac turpis egestas. Eu ultrices vitae auctor eu augue ut lectus arcu bibendum. Nec ultrices dui sapien eget mi proin sed libero enim. Ultrices tincidunt arcu non sodales neque sodales ut etiam. Nibh sed pulvinar proin gravida hendrerit lectus a. Morbi tincidunt ornare massa eget egestas purus viverra. Id semper risus in hendrerit. Mollis nunc sed id semper risus in hendrerit gravida rutrum. Neque viverra justo nec ultrices dui sapien eget mi.
 
 Velit dignissim sodales ut eu sem integer. Netus et malesuada fames ac turpis egestas sed tempus. Odio ut enim blandit volutpat maecenas volutpat. Ipsum dolor sit amet consectetur adipiscing elit pellentesque. Facilisis sed odio morbi quis commodo odio. Scelerisque eleifend donec pretium vulputate sapien nec sagittis aliquam malesuada. Auctor augue mauris augue neque gravida in. Fames ac turpis egestas maecenas pharetra convallis posuere morbi. Ultrices in iaculis nunc sed augue lacus viverra vitae. Lectus urna duis convallis convallis tellus id interdum velit. Sit amet dictum sit amet justo donec enim diam vulputate. Velit laoreet id donec ultrices tincidunt arcu non sodales. Metus dictum at tempor commodo. Tincidunt nunc pulvinar sapien et ligula ullamcorper malesuada. Purus sit amet volutpat consequat mauris nunc congue nisi vitae. Integer vitae justo eget magna fermentum iaculis eu. Facilisis volutpat est velit egestas dui id ornare. Rhoncus urna neque viverra justo nec ultrices dui.
-    
+
 Quam adipiscing vitae proin sagittis nisl rhoncus mattis rhoncus. Massa placerat duis ultricies lacus sed turpis tincidunt id aliquet. Porta lorem mollis aliquam ut porttitor leo. Et malesuada fames ac turpis egestas. Eu ultrices vitae auctor eu augue ut lectus arcu bibendum. Nec ultrices dui sapien eget mi proin sed libero enim. Ultrices tincidunt arcu non sodales neque sodales ut etiam. Nibh sed pulvinar proin gravida hendrerit lectus a. Morbi tincidunt ornare massa eget egestas purus viverra. Id semper risus in hendrerit. Mollis nunc sed id semper risus in hendrerit gravida rutrum. Neque viverra justo nec ultrices dui sapien eget mi.
 
 Velit dignissim sodales ut eu sem integer. Netus et malesuada fames ac turpis egestas sed tempus. Odio ut enim blandit volutpat maecenas volutpat. Ipsum dolor sit amet consectetur adipiscing elit pellentesque. Facilisis sed odio morbi quis commodo odio. Scelerisque eleifend donec pretium vulputate sapien nec sagittis aliquam malesuada. Auctor augue mauris augue neque gravida in. Fames ac turpis egestas maecenas pharetra convallis posuere morbi. Ultrices in iaculis nunc sed augue lacus viverra vitae. Lectus urna duis convallis convallis tellus id interdum velit. Sit amet dictum sit amet justo donec enim diam vulputate. Velit laoreet id donec ultrices tincidunt arcu non sodales. Metus dictum at tempor commodo. Tincidunt nunc pulvinar sapien et ligula ullamcorper malesuada. Purus sit amet volutpat consequat mauris nunc congue nisi vitae. Integer vitae justo eget magna fermentum iaculis eu. Facilisis volutpat est velit egestas dui id ornare. Rhoncus urna neque viverra justo nec ultrices dui.
@@ -50,7 +50,6 @@ Velit dignissim sodales ut eu sem integer. Netus et malesuada fames ac turpis eg
 ```
 
 - HTML and other markdown are not supported within code spans or code blocks.
-
     ~~~
     ```
     </code> *Not in code!* <code>
@@ -146,7 +145,7 @@ Velit dignissim sodales ut eu sem integer. Netus et malesuada fames ac turpis eg
 >>
 >> Need blank line and one less
 > Spanning a blank line
-        
+
 - > A quote within a list item
 
 - One can nest blockquotes with multiple `>` characters.
@@ -232,14 +231,14 @@ Not indented
 \\ \` \* \_ \{ \} \[ \] \( \) \# \+ \- \. \!
 
 ## Tables
-    
+
 | Syntax | Description |
 | ----------- | ----------- |
 | Header | Title |
 | Paragraph | Text |
 
 ## Strikethrough
-    
+
 ~~Incorrect~~
 
 <!-- ## Stack Exchange Extensions to Markdown
@@ -540,7 +539,7 @@ Only some [basic HTML elements are whitelisted](https://meta.stackexchange.com/q
 - `<img>`: `src` then `width` then `height` then `alt` then `title`
 
   <img src="https://i.stack.imgur.com/7I1jg.jpg" alt="image of unicorn" title="Tooltip">
-  
+
   - Specifying one of `width` or `height` scales the image; must specify both to change the aspect ratio.  They can't be `px` and they max out at 999.
 
     <img src="https://i.stack.imgur.com/7I1jg.jpg" width="999">
