@@ -101,8 +101,6 @@ Velit dignissim sodales ut eu sem integer. Netus et malesuada fames ac turpis eg
     - Bare URLs get turned into links. http://example.com
     - Angle brackets force links. <https://www.google.com>
 
-- Magic links that work in comments do not work in a post.<br>[edit] [help] [main] [meta] [tour]
-
 ## Images
 
 - Inline images, similar to links but with leading `!`:
