@@ -151,13 +151,16 @@
     //  We would also most likely add `.s-table` to any `table`, and delete
     //  all these styles.
     table {
-        display: table;
+        display: block;
         max-width: 100%;
+        width: 100%;
         border-spacing: 0;
         margin-bottom: 1em;
         padding: 1px; // Allow room for borders to render
         font-size: @fs-body1;
         overflow-x: auto;
+
+        @scrollbar-styles();
 
         th,
         td {
