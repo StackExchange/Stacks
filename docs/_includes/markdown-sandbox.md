@@ -67,7 +67,7 @@ Velit dignissim sodales ut eu sem integer. Netus et malesuada fames ac turpis eg
 - This is one line.
   This was intended to be on the next line, but it appears on the same line.
 
-- This is one paragraph.  It has some sentences.
+- This is one paragraph. It has some sentences.
 
   This is intended to be a second paragraph.
 
@@ -182,11 +182,11 @@ Velit dignissim sodales ut eu sem integer. Netus et malesuada fames ac turpis eg
 ## Lists
 
 - Unordered Lists
-    - One
-    - Two
-    - Three
+  - One
+  - Two
+  - Three
 
-- Ordered Lists
+1. Ordered Lists
     1. One
     10. Two
     42. Three
@@ -203,10 +203,10 @@ Not indented
 - Nested lists: indent 4 spaces.
 
 1. Top level
-    * Mid level
+    - Mid level
         1. Bottom level
-    * Mid level
-        * Bottom level
+    - Mid level
+        - Bottom level
 1. Top level
     1. Mid level
         + Bottom level
