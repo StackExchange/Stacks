@@ -24,7 +24,8 @@
         font-size: @fs-body1;
     }
 
-    sub, sup {
+    sub,
+    sup {
         code {
             font-size: 90%;
         }
@@ -124,25 +125,43 @@
         img:only-child,
         dl:only-child,
         blockquote:only-child,
+        table:only-child,
+        hr:only-child,
         p:last-child,
         img:last-child,
         dl:last-child,
-        blockquote:last-child {
+        blockquote:last-child,
+        table:last-child,
+        hr:last-child {
             margin-bottom: 0;
+        }
+
+        // Within lists, we shouldn't have so much spacing
+        // in between block-level elements.
+        img,
+        dl,
+        p,
+        blockquote,
+        table,
+        hr,
+        dd,
+        pre {
+            margin-bottom: .5em;
         }
     }
 
     ol li,
     ul li {
         margin-bottom: .5em;
-        
+
         &:last-child {
             margin-bottom: 0;
         }
     }
 
     li {
-        > ul, > ol {
+        > ul,
+        > ol {
             padding-top: 0.5em;
         }
     }
@@ -386,13 +405,6 @@
         }
 
         @scrollbar-styles();
-    }
-
-    // Code inside list
-    li {
-        pre {
-            margin: 0 0 1em 0;
-        }
     }
 }
 
