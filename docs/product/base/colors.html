@@ -72,29 +72,14 @@ description: To avoid specifying color values by hand, we’ve included a robust
                 </thead>
                 <tbody>
                     {% for stop in color.stops %}
-                    <tr class="ff-mono">
+                    <tr>
                         <th scope="row">
                           <div class="stacks-swatch bar-sm bg-{{ color.name }}-{{ stop.stop }}"></div>
                         </th>
-                        <td>var(--{{ color.name }}-{{ stop.stop }})</td>
-                        <td>#{{ stop.hex }}</td>
-                        <td>.fc-{{ color.name }}-{{ stop.stop }}
-                            {% if color.name == 'black' %}
-                                {% if stop.stop == 900 %}
-                                    .fc-dark
-                                {% endif %}
-                                {% if stop.stop == 800 %}
-                                    <span class="s-badge s-badge__mini ff-sans">Default</span>
-                                {% endif %}
-                                {% if stop.stop == 700 %}
-                                    .fc-medium
-                                {% endif %}
-                                {% if stop.stop == 500 %}
-                                    .fc-light
-                                {% endif %}
-                            {% endif %}
-                        </td>
-                        <td>.bg-{{ color.name }}-{{ stop.stop }}</td>
+                        <td class="ff-mono">var(--{{ color.name }}-{{ stop.stop }})</td>
+                        <td class="ff-mono">#{{ stop.hex }}</td>
+                        <td class="ff-mono">.fc-{{ color.name }}-{{ stop.stop }}</td>
+                        <td class="ff-mono">.bg-{{ color.name }}-{{ stop.stop }}</td>
                         <td class="ta-center">{% icon "Checkmark", "fc-green-500" %}</td>
                         <td class="ta-center">{% icon "Checkmark", "fc-green-500" %}</td>
                         <td class="ta-center">{% icon "Checkmark", "fc-green-500" %}</td>
@@ -104,10 +89,10 @@ description: To avoid specifying color values by hand, we’ve included a robust
                         <th scope="row">
                           <div class="stacks-swatch bar-sm bg-white"></div>
                         </th>
-                        <td>@white</td>
-                        <td>#ffffff</td>
-                        <td>.fc-white</td>
-                        <td>.bg-white</td>
+                        <td class="ff-mono">@white</td>
+                        <td class="ff-mono">#ffffff</td>
+                        <td class="ff-mono">.fc-white</td>
+                        <td class="ff-mono">.bg-white</td>
                         <td class="ta-center">{% icon "Checkmark", "fc-green-500" %}</td>
                         <td class="ta-center">{% icon "Checkmark", "fc-green-500" %}</td>
                         <td class="ta-center">{% icon "Checkmark", "fc-green-500" %}</td>
@@ -120,7 +105,7 @@ description: To avoid specifying color values by hand, we’ve included a robust
                         <td class="fc-light">N/A</td>
                         <td class="fc-light">N/A</td>
                         <td>.bg-transparent</td>
-                        <td></td>
+                        <td class="ta-center">{% icon "Checkmark", "fc-green-500" %}</td>
                         <td></td>
                         <td></td>
                     </tr>
@@ -300,6 +285,25 @@ description: To avoid specifying color values by hand, we’ve included a robust
 
 <section class="stacks-section">
     {% header "h2", "Aliases" %}
+
+
+
+    {% header "h3", "Body text" %}
+    <div class="stacks-preview">
+{% highlight html %}
+<p class="fc-light">…</p>
+<p class="fc-medium">…</p>
+<p>…</p>
+<p class="fc-dark">…</p>
+{% endhighlight %}
+        <div class="stacks-preview--example grid ff-column-nowrap gs16 gsy my0 fs-body2">
+            <p class="grid--cell fc-light"><strong>Color:</strong> Light <code class="stacks-code">@black-500</code></p>
+            <p class="grid--cell fc-medium"><strong>Color:</strong> Medium <code class="stacks-code">@black-700</code></p>
+            <p class="grid--cell"><strong>Color:</strong> Default <code class="stacks-code">@black-800</code></p>
+            <p class="grid--cell fc-dark"><strong>Color:</strong> Dark <code class="stacks-code">@black-900</code></p>
+        </div>
+    </div>
+
     {% header "h3", "Danger and error" %}
     <table class="wmn5 s-table s-table__bx-simple s-table__condensed va-middle fs-caption">
         <thead>

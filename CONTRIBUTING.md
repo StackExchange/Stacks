@@ -113,7 +113,7 @@ No PR is too small, or too early. We strive to provide initial feedback within a
 7. [Open a Pull Request](https://github.com/StackExchange/Stacks/pulls)
     with a clear title and description.
 
-**Please note** that all pull requests should be merged into the `develop` branch. Any pull request for `master` will be rejected.
+**Please note** that all pull requests should be merged into the `develop` branch. Any pull request for `production` will be rejected.
 
 ## Code guidelines
 
@@ -255,8 +255,8 @@ Typically you don’t need to set all the values the shorthand property represen
 
 ## License
 
-By contributing to Stacks, you agree to license your work under Stacks’ [MIT License](https://github.com/StackExchange/Stacks/blob/master/LICENSE.MD).
+By contributing to Stacks, you agree to license your work under Stacks’ [MIT License](https://github.com/StackExchange/Stacks/blob/production/LICENSE.MD).
 
 ## References
 
-The following contribution guides were used as references when creating this one: [Grommet](https://github.com/grommet/grommet/blob/master/CONTRIBUTING.md), [Salesforce Lightning Design System](https://github.com/salesforce-ux/design-system/blob/master/CONTRIBUTING.md), and [Bootstrap](https://github.com/twbs/bootstrap/blob/master/CONTRIBUTING.md).
+The following contribution guides were used as references when creating this one: [Grommet](https://github.com/grommet/grommet/blob/production/CONTRIBUTING.md), [Salesforce Lightning Design System](https://github.com/salesforce-ux/design-system/blob/production/CONTRIBUTING.md), and [Bootstrap](https://github.com/twbs/bootstrap/blob/production/CONTRIBUTING.md).
