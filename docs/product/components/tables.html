@@ -470,11 +470,11 @@ description: Tables are used to list all information from a data set. The base s
     </div>
 
     {% header "h3", "Sticky column" %}
-    <p class="stacks-copy">You can add the <code class="stacks-code">.s-table__sticky</code> class to your table to have the first column stay put, regardless of the table’s scrolling position. You can apply a minimum width like <code class="stacks-code">.wmn[x]</code> to the first <code class="stacks-code">th</code> within the table header to control the width of the sticky column.</p>
+    <p class="stacks-copy">You can add either the <code class="stacks-code">.s-table__sticky-first</code> or <code class="stacks-code">.s-table__sticky-last</code> classes to your table to have the first or last column stay put, regardless of the table’s horizontal scrolling position. You can apply an appropriate minimum width as needed <code class="stacks-code">.wmn[x]</code> to the first or last <code class="stacks-code">th</code> within the table header to control the width of the sticky column.</p>
     <div class="stacks-preview">
 {% highlight html %}
 <div class="s-table-container">
-    <table class="s-table s-table__sticky wmn5">
+    <table class="s-table s-table__sticky-first wmn5">
         …
     </table>
 </div>
@@ -482,7 +482,7 @@ description: Tables are used to list all information from a data set. The base s
         <div class="stacks-preview--example">
             <p class="ff-mono mb12">Automatic sticky column width</p>
             <div class="s-table-container mb24">
-                <table class="s-table s-table__sticky">
+                <table class="s-table s-table__sticky-first">
                     <thead>
                         <tr>
                             <th scope="col">Name</th>
@@ -544,15 +544,15 @@ description: Tables are used to list all information from a data set. The base s
 
             <div class="ff-mono mb12">Sticky column width with .wmn1</div>
             <div class="s-table-container">
-                <table class="s-table s-table__sticky">
+                <table class="s-table s-table__sticky-last">
                     <thead>
                         <tr>
-                            <th scope="col" class="wmn1">Name</th>
+                            <th scope="col">Name</th>
                             <th scope="col">City</th>
                             <th scope="col">Department</th>
                             <th scope="col">Reputation</th>
                             <th scope="col">Joined</th>
-                            <th scope="col">Last seen</th>
+                            <th scope="col" class="wmn1">Last seen</th>
                         </tr>
                     </thead>
                     <tbody>

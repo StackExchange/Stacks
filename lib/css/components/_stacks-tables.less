@@ -364,10 +364,29 @@
 
     //  $$  Responsive
     //  ------------------------------------------------------------------------
-    &.s-table__sticky {
-        th:first-child {
+    &.s-table__sticky-first {
+        th:first-child,
+        td:first-child {
             position: sticky;
-            left: 1px;
+            left: 0;
+
+            // Improve Firefox column placement
+            @supports (-moz-appearance:none) {
+                left: 1px;
+            }
+        }
+    }
+
+    &.s-table__sticky-last {
+        th:last-child,
+        td:last-child {
+            position: sticky;
+            right: 0;
+
+            // Improve Firefox column placement
+            @supports (-moz-appearance:none) {
+                right: 1px;
+            }
         }
     }
 }
