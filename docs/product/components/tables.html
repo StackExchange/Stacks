@@ -399,17 +399,17 @@ description: Tables are used to list all information from a data set. The base s
 <section class="stacks-section">
     {% header "h2", "Responsive" %}
     {% header "h3", "Scrolling" %}
-    <p class="stacks-copy">Stacks provides a few methods for making tables responsive. Adding <code class="stacks-code">s-table__responsive</code> to your table will apply horizontal scrolling with a consistently-styled scrollbar. This will scroll the table itself. Alternatively, you can wrap your <code class="stacks-code">s-table</code> in a parent with <code class="stacks-code">overflow-x-auto</code> applied.</p>
+    <p class="stacks-copy">To make a table responsive, simply wrap the table in an element with <code class="stacks-code">.s-table-container</code> applied. This will set horizontal scrolling and style the scrollbar appropriately while keeping the table accessible.</p>
     <div class="stacks-preview">
 {% highlight html %}
-<div class="overflow-x-auto">
+<div class="s-table-container">
     <table class="s-table wmn5">
         …
     </table>
 </div>
 {% endhighlight %}
         <div class="stacks-preview--example">
-            <div class="overflow-x-auto">
+            <div class="s-table-container">
                 <table class="s-table">
                     <thead>
                         <tr>
@@ -470,10 +470,10 @@ description: Tables are used to list all information from a data set. The base s
     </div>
 
     {% header "h3", "Sticky column" %}
-    <p class="stacks-copy">You can add the <code class="stacks-code">.s-table__responsive--sticky</code> class to your responsive table to have the first column stay put, regardless of the tables scrolling position. You can apply a minimum width like <code class="stacks-code">.wmn[x]</code> to the first <code class="stacks-code">th</code> within the table header to control the width of the sticky column.</p>
+    <p class="stacks-copy">You can add the <code class="stacks-code">.s-table__sticky</code> class to your table to have the first column stay put, regardless of the table’s scrolling position. You can apply a minimum width like <code class="stacks-code">.wmn[x]</code> to the first <code class="stacks-code">th</code> within the table header to control the width of the sticky column.</p>
     <div class="stacks-preview">
 {% highlight html %}
-<div class="overflow-x-auto">
+<div class="s-table-container">
     <table class="s-table s-table__sticky wmn5">
         …
     </table>
@@ -481,7 +481,7 @@ description: Tables are used to list all information from a data set. The base s
 {% endhighlight %}
         <div class="stacks-preview--example">
             <p class="ff-mono mb12">Automatic sticky column width</p>
-            <div class="overflow-x-auto mb24">
+            <div class="s-table-container mb24">
                 <table class="s-table s-table__sticky">
                     <thead>
                         <tr>
@@ -543,7 +543,7 @@ description: Tables are used to list all information from a data set. The base s
             </div>
 
             <div class="ff-mono mb12">Sticky column width with .wmn1</div>
-            <div class="overflow-x-auto">
+            <div class="s-table-container">
                 <table class="s-table s-table__sticky">
                     <thead>
                         <tr>
@@ -557,7 +557,7 @@ description: Tables are used to list all information from a data set. The base s
                     </thead>
                     <tbody>
                         <tr>
-                            <th><a>Aaron Shekey</a></th>
+                            <th class="wmn1"><a>Aaron Shekey</a></th>
                             <td>New York City</td>
                             <td>Design</td>
                             <td>
