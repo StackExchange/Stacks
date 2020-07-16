@@ -13,14 +13,19 @@ System.out.println("Hello World!");
 System.out.println("Code Block!");
 ```
 
-<blockquote class="spoiler">
+<blockquote class="spoiler js-spoiler" data-spoiler="Reveal spoiler">
     <p>Tyler Durden is Luke Skywalker’s father.</p>
     <p>Keyser Söze was dead the whole time.</p>
 </blockquote>
 
-<blockquote class="spoiler">
+<blockquote class="spoiler js-spoiler" data-spoiler="Spoiler aufdecken">
     <p>Tyler Durden is Luke Skywalker’s father.</p>
 </blockquote>
+
+<blockquote class="spoiler js-spoiler" data-spoiler="Reveal spoiler">
+    <img src="https://i.stack.imgur.com/7I1jg.jpg" alt="image of unicorn" title="Tooltip">
+</blockquote>
+
 
 ```
 How about some scrollbars? Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ac turpis egestas sed tempus urna et. Est sit amet facilisis magna etiam tempor orci eu. Pretium viverra suspendisse potenti nullam ac tortor. Consectetur a erat nam at lectus urna duis convallis convallis. Vestibulum lorem sed risus ultricies tristique nulla aliquet enim. Faucibus nisl tincidunt eget nullam non nisi est sit amet. Integer quis auctor elit sed. In tellus integer feugiat scelerisque. Blandit volutpat maecenas volutpat blandit. Sed nisi lacus sed viverra tellus in. Arcu non odio euismod lacinia at quis risus. Tortor dignissim convallis aenean et tortor at risus viverra adipiscing. Nibh praesent tristique magna sit amet purus gravida quis blandit. Massa vitae tortor condimentum lacinia.
