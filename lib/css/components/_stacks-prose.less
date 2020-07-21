@@ -14,7 +14,7 @@
     // Base styling
     font-size: @fs-body2;
     line-height: @lh-lg;
-    word-wrap: break-word;
+    word-break: break-all;
 
     pre {
         word-wrap: normal;
@@ -56,24 +56,24 @@
     h4,
     h5,
     h6 {
-        font-weight: bold!important;
-        margin-bottom: .5em;
+        font-weight: bold !important;
+        margin-bottom: 0.5em;
 
         code {
-            margin-bottom: .5em;
+            margin-bottom: 0.5em;
         }
     }
 
     h1,
     h1 code {
         font-size: @fs-headline2;
-        margin-bottom: .2em;
+        margin-bottom: 0.2em;
     }
 
     h2,
     h2 code {
         font-size: @fs-headline1;
-        margin-bottom: .3em;
+        margin-bottom: 0.3em;
     }
 
     h3,
@@ -85,12 +85,12 @@
     h4 code {
         font-size: @fs-subheading;
     }
-    
+
     h5,
     h5 code {
         font-size: @fs-body3;
     }
-    
+
     h6,
     h6 code {
         font-size: @fs-body2;
@@ -144,19 +144,19 @@
         table,
         hr,
         dd {
-            margin-bottom: .5em;
+            margin-bottom: 0.5em;
         }
 
         pre {
             // Add some more spacing on the bottom
             // For a little extra optical alignment
-            margin-bottom: .8em;
+            margin-bottom: 0.8em;
         }
     }
 
     ol li,
     ul li {
-        margin-bottom: .5em;
+        margin-bottom: 0.5em;
 
         &:last-child {
             margin-bottom: 0;
@@ -322,14 +322,15 @@
     // ============================================================================
     //  $ BLOCKQUOTES
     // ----------------------------------------------------------------------------
-    blockquote, q {
+    blockquote,
+    q {
         quotes: none;
     }
 
     blockquote {
         position: relative;
         margin: 0 1em 1em 1em;
-        padding: .8em .8em .8em 1em;
+        padding: 0.8em 0.8em 0.8em 1em;
         color: var(--black-600);
 
         &:before {
@@ -349,7 +350,9 @@
         }
 
         * {
-            &:last-child { margin-bottom: 0; }
+            &:last-child {
+                margin-bottom: 0;
+            }
         }
     }
 
@@ -403,7 +406,7 @@
 
             #stacks-internals #screen-sm({
                 top: 9px; // Adjust the position in the smallest breakpoint
-            });
+            });;
         }
     }
 
@@ -412,8 +415,8 @@
     // ----------------------------------------------------------------------------
     kbd {
         display: inline-block;
-        margin: 0 .1em;
-        padding: .1em .4em;
+        margin: 0 0.1em;
+        padding: 0.1em 0.4em;
         font-family: @ff-sans;
         font-size: @fs-fine;
         line-height: @lh-lg;
@@ -467,4 +470,4 @@
     box-shadow: 0 1px 1px rgba(12, 13, 14, 0.8);
     border-color: transparent;
     border-top-color: @black-500;
-});
+});;
