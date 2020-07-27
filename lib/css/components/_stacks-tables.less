@@ -23,26 +23,20 @@
 //  ============================================================================
 //  $    BASE TABLE STYLE
 //  ----------------------------------------------------------------------------
-.s-table-container {
-    overflow-x: auto;
-    border-radius: @br-sm; // Controls overflow of rounded corners
-    @scrollbar-styles();
-}
-
 .s-table {
     display: table;
     width: 100%;
     max-width: 100%;
+    border-collapse: collapse;
     border-spacing: 0;
-    padding: 1px; // Allow room for borders to render
     font-size: @fs-body1;
 
     th,
     td {
-        box-shadow: 0 0 0 1px var(--black-100);
         padding: @su8;
-        background-color: var(--white);
-
+        border-top: 1px solid var(--black-100);
+        border-left: 1px solid var(--black-100);
+        border-right: 1px solid var(--black-100);
         vertical-align: middle;
         color: var(--fc-medium);
         text-align: left;
@@ -61,98 +55,34 @@
         color: var(--fc-dark);
     }
 
-    // Header overrides
-    thead {
-        th {
-            vertical-align: bottom;
-            white-space: nowrap;
-            background-color: var(--black-025);
-            line-height: @lh-sm;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-
-            &:not(.s-table--bulk) {
-                font-size: @fs-fine;
-            }
+    //  Custom styles when in a table head
+    thead th {
+        &:not(.s-table--bulk) {
+            font-size: @fs-fine;
         }
 
-        tr {
-            th:first-of-type {
-                border-top-left-radius: @br-sm;
-            }
-
-            th:last-of-type {
-                border-top-right-radius: @br-sm;
-            }
-        }
+        vertical-align: bottom;
+        white-space: nowrap;
+        background-color: var(--black-025);
+        line-height: @lh-sm;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
     }
 
-    // Body overrides
-    tbody {
-        tr:last-of-type {
-            td:first-child,
-            th:first-child {
-                border-bottom-left-radius: @br-sm;
-            }
-
-            td:last-child,
-            th:last-child {
-                border-bottom-right-radius: @br-sm;
-            }
-        }
-
-        // Round the table if there's only one row without headers
-        tr:only-child {
-            td:first-child,
-            th:first-child {
-                border-top-left-radius: @br-sm;
-                border-bottom-left-radius: @br-sm;
-            }
-
-            td:last-child,
-            th:last-child {
-                border-top-right-radius: @br-sm;
-                border-bottom-right-radius: @br-sm;
-            }
-        }
-
-        th {
-            font-weight: normal;
-        }
+    //  When in a table body, don't make it bold.
+    tbody th {
+        font-weight: normal;
     }
 
-    // If we have a table with a head, and a single row in the body, remove the border rounding
-    thead + tbody {
-        tr:only-child {
-            td:first-child,
-            th:first-child {
-                border-top-left-radius: 0;
-            }
-
-            td:last-child,
-            th:last-child {
-                border-top-right-radius: 0;
-            }
-        }
+    //  If it's the last row, add a bottom border
+    tr:last-of-type td,
+    tr:last-of-type th {
+        border-bottom: 1px solid var(--black-100);
     }
 
-    // Footer overrides
-    tfoot {
-        tr:last-of-type {
-            td:first-child,
-            th:first-child {
-                border-bottom-left-radius: @br-sm;
-            }
-
-            td:last-child,
-            th:last-child {
-                border-bottom-right-radius: @br-sm;
-            }
-        }
-
-        th {
-            font-weight: normal;
-        }
+    //  If two table bodies are next to each other, visually separate them
+    tbody + tbody {
+        border-top: @su2 solid var(--black-100);
     }
 }
 
@@ -230,9 +160,12 @@
     //  $$  STRIPES
     //  ------------------------------------------------------------------------
     &.s-table__stripes {
+        // Darken the header
+        thead th {
+            background-color: var(--black-050);
+        }
         // Add in stripes
-        tbody tr:nth-child(even) td,
-        tbody tr:nth-child(even) th {
+        tbody tr:nth-child(even) {
             background-color: var(--black-025);
         }
     }
@@ -259,51 +192,36 @@
     //  --  No Borders
     &.s-table__b0 {
         th,
-        td {
-            box-shadow: none;
+        td,
+        tr:last-of-type th,
+        tr:last-of-type td {
+            border-color: transparent;
         }
 
         //  Clear Header Styles
         thead th {
-            background-color: var(--white);
+            background-color: transparent;
             text-transform: initial;
             font-size: inherit;
             letter-spacing: initial;
+        }
+
+        //  This makes the border transparent, so we need to use whitespace
+        //  to achieve the same effect a 2px gray border achieves.
+        tbody + tbody {
+            border-color: transparent;
+            border-width: @su12;
         }
     }
 
     //  --  Horizontal Only with Table Outline
     &.s-table__bx {
-        th,
-        td {
-            box-shadow: 0 -1px var(--black-100), 0 1px var(--black-100);
-        }
-
-        // Header overrides
-        thead {
-            tr {
-                th:first-of-type {
-                    box-shadow: 0 -1px var(--black-100), 0 1px var(--black-100), -1px 0 var(--black-100);
-                }
-
-                th:last-of-type {
-                    box-shadow: 0 -1px var(--black-100), 1px 0 var(--black-100), 0 1px var(--black-100);
-                }
+        tr {
+            > *:not(:first-child) {
+                border-left-color: transparent;
             }
-        }
-
-        // Body overrides
-        tbody {
-            tr {
-                th:first-child,
-                td:first-child {
-                    box-shadow: 0 -1px var(--black-100), 0 1px var(--black-100), -1px 0 var(--black-100);
-                }
-
-                th:last-child,
-                td:last-child {
-                    box-shadow: 0 -1px var(--black-100), 1px 0 var(--black-100), 0 1px var(--black-100);
-                }
+            > *:not(:last-child) {
+                border-right-color: transparent;
             }
         }
     }
@@ -312,22 +230,31 @@
     &.s-table__bx-simple {
         th,
         td {
-            box-shadow: 0 -1px var(--black-100), 0 1px var(--black-100);
+            border-left-color: transparent;
+            border-right-color: transparent;
         }
         thead th {
-            box-shadow: 0 1px var(--black-100);
-
+            border-top-color: transparent;
+            border-bottom-color: var(--black-200);
             //  Clear Header Styles
-            background-color: var(--white);
+            background-color: transparent;
             text-transform: initial;
             font-size: inherit;
             letter-spacing: initial;
         }
         tbody tr {
+            &:first-of-type th,
+            &:first-of-type td {
+                border-top-color: transparent;
+            }
             &:last-of-type th,
             &:last-of-type td {
-                box-shadow: 0 -1px var(--black-100);
+                border-bottom-color: transparent;
             }
+        }
+        tfoot th,
+        tfoot td {
+            border-bottom-color: transparent;
         }
     }
 
@@ -368,12 +295,12 @@
     //  $$  Progress Bar
     //  ------------------------------------------------------------------------
     td.s-table--progress {
-        box-shadow: 0 -1px var(--black-100), -1px 0 var(--black-100), 0 1px var(--black-100);
+        border-right: none;
         text-align: right;
     }
 
     td.s-table--progress-bar {
-        box-shadow: 0 -1px var(--black-100), 1px 0 var(--black-100), 0 1px var(--black-100);
+        border-left: none;
         padding-left: 0;
         width: 120px;
     }
@@ -381,42 +308,11 @@
     //  $$  Disabled rows
     //  ------------------------------------------------------------------------
     tr.is-disabled {
-        th,
-        td {
-            background-color: var(--black-025);
-        }
+        background-color: var(--black-025);
 
         th:not(.is-enabled),
         td:not(.is-enabled) {
-            color: var(--black-300);
-        }
-    }
-
-    //  $$  Responsive
-    //  ------------------------------------------------------------------------
-    &.s-table__sticky-first {
-        th:first-child,
-        td:first-child {
-            position: sticky;
-            left: 0;
-
-            // Improve Firefox column placement
-            @supports (-moz-appearance:none) {
-                left: 1px;
-            }
-        }
-    }
-
-    &.s-table__sticky-last {
-        th:last-child,
-        td:last-child {
-            position: sticky;
-            right: 0;
-
-            // Improve Firefox column placement
-            @supports (-moz-appearance:none) {
-                right: 1px;
-            }
+            opacity: 0.3;
         }
     }
 }
