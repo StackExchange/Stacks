@@ -1757,7 +1757,7 @@ Copyright © 2019 Basecamp, LLC
 ;
 
 /**
- * @popperjs/core v2.2.0 - MIT License
+ * @popperjs/core v2.4.0 - MIT License
  */
 
 (function (global, factory) {
@@ -1853,6 +1853,20 @@ Copyright © 2019 Basecamp, LLC
     return getBoundingClientRect(getDocumentElement(element)).left + getWindowScroll(element).scrollLeft;
   }
 
+  function getComputedStyle(element) {
+    return getWindow(element).getComputedStyle(element);
+  }
+
+  function isScrollParent(element) {
+    // Firefox wants us to check `-x` and `-y` variations as well
+    var _getComputedStyle = getComputedStyle(element),
+        overflow = _getComputedStyle.overflow,
+        overflowX = _getComputedStyle.overflowX,
+        overflowY = _getComputedStyle.overflowY;
+
+    return /auto|scroll|overlay|hidden/.test(overflow + overflowY + overflowX);
+  }
+
   // Composite means it takes into account transforms as well as layout.
 
   function getCompositeRect(elementOrVirtualElement, offsetParent, isFixed) {
@@ -1860,7 +1874,7 @@ Copyright © 2019 Basecamp, LLC
       isFixed = false;
     }
 
-    var documentElement;
+    var documentElement = getDocumentElement(offsetParent);
     var rect = getBoundingClientRect(elementOrVirtualElement);
     var scroll = {
       scrollLeft: 0,
@@ -1872,7 +1886,8 @@ Copyright © 2019 Basecamp, LLC
     };
 
     if (!isFixed) {
-      if (getNodeName(offsetParent) !== 'body') {
+      if (getNodeName(offsetParent) !== 'body' || // https://github.com/popperjs/popper-core/issues/1078
+      isScrollParent(documentElement)) {
         scroll = getNodeScroll(offsetParent);
       }
 
@@ -1880,7 +1895,7 @@ Copyright © 2019 Basecamp, LLC
         offsets = getBoundingClientRect(offsetParent);
         offsets.x += offsetParent.clientLeft;
         offsets.y += offsetParent.clientTop;
-      } else if (documentElement = getDocumentElement(offsetParent)) {
+      } else if (documentElement) {
         offsets.x = getWindowScrollBarX(documentElement);
       }
     }
@@ -1909,16 +1924,15 @@ Copyright © 2019 Basecamp, LLC
       return element;
     }
 
-    return element.parentNode || // DOM Element detected
-    // $FlowFixMe: need a better way to handle this...
-    element.host || // ShadowRoot detected
-    document.ownerDocument || // Fallback to ownerDocument if available
-    document.documentElement // Or to documentElement if everything else fails
-    ;
-  }
+    return (// $FlowFixMe: this is a quicker (but less type safe) way to save quite some bytes from the bundle
+      element.assignedSlot || // step into the shadow DOM of the parent of a slotted node
+      element.parentNode || // DOM Element detected
+      // $FlowFixMe: need a better way to handle this...
+      element.host || // ShadowRoot detected
+      // $FlowFixMe: HTMLElement is a Node
+      getDocumentElement(element) // fallback
 
-  function getComputedStyle(element) {
-    return getWindow(element).getComputedStyle(element);
+    );
   }
 
   function getScrollParent(node) {
@@ -1927,16 +1941,8 @@ Copyright © 2019 Basecamp, LLC
       return node.ownerDocument.body;
     }
 
-    if (isHTMLElement(node)) {
-      // Firefox wants us to check `-x` and `-y` variations as well
-      var _getComputedStyle = getComputedStyle(node),
-          overflow = _getComputedStyle.overflow,
-          overflowX = _getComputedStyle.overflowX,
-          overflowY = _getComputedStyle.overflowY;
-
-      if (/auto|scroll|overlay|hidden/.test(overflow + overflowY + overflowX)) {
-        return node;
-      }
+    if (isHTMLElement(node) && isScrollParent(node)) {
+      return node;
     }
 
     return getScrollParent(getParentNode(node));
@@ -1949,7 +1955,8 @@ Copyright © 2019 Basecamp, LLC
 
     var scrollParent = getScrollParent(element);
     var isBody = getNodeName(scrollParent) === 'body';
-    var target = isBody ? getWindow(scrollParent) : scrollParent;
+    var win = getWindow(scrollParent);
+    var target = isBody ? [win].concat(win.visualViewport || [], isScrollParent(scrollParent) ? scrollParent : []) : scrollParent;
     var updatedList = list.concat(target);
     return isBody ? updatedList : // $FlowFixMe: isBody tells us target will be an HTMLElement here
     updatedList.concat(listScrollParents(getParentNode(target)));
@@ -1995,14 +2002,10 @@ Copyright © 2019 Basecamp, LLC
   var viewport = 'viewport';
   var popper = 'popper';
   var reference = 'reference';
-  var variationPlacements =
-  /*#__PURE__*/
-  basePlacements.reduce(function (acc, placement) {
+  var variationPlacements = /*#__PURE__*/basePlacements.reduce(function (acc, placement) {
     return acc.concat([placement + "-" + start, placement + "-" + end]);
   }, []);
-  var placements =
-  /*#__PURE__*/
-  [].concat(basePlacements, [auto]).reduce(function (acc, placement) {
+  var placements = /*#__PURE__*/[].concat(basePlacements, [auto]).reduce(function (acc, placement) {
     return acc.concat([placement, placement + "-" + start, placement + "-" + end]);
   }, []); // modifiers that need to read the DOM
 
@@ -2472,7 +2475,8 @@ Copyright © 2019 Basecamp, LLC
         window.removeEventListener('resize', instance.update, passive);
       }
     };
-  }
+  } // eslint-disable-next-line import/no-unused-modules
+
 
   var eventListeners = {
     name: 'eventListeners',
@@ -2569,7 +2573,8 @@ Copyright © 2019 Basecamp, LLC
       strategy: 'absolute',
       placement: state.placement
     });
-  }
+  } // eslint-disable-next-line import/no-unused-modules
+
 
   var popperOffsets$1 = {
     name: 'popperOffsets',
@@ -2665,8 +2670,7 @@ Copyright © 2019 Basecamp, LLC
         adaptive = _options$adaptive === void 0 ? true : _options$adaptive;
 
     {
-      var _getComputedStyle = getComputedStyle(state.elements.popper),
-          transitionProperty = _getComputedStyle.transitionProperty;
+      var transitionProperty = getComputedStyle(state.elements.popper).transitionProperty || '';
 
       if (adaptive && ['transform', 'top', 'right', 'bottom', 'left'].some(function (property) {
         return transitionProperty.indexOf(property) >= 0;
@@ -2680,13 +2684,15 @@ Copyright © 2019 Basecamp, LLC
       popper: state.elements.popper,
       popperRect: state.rects.popper,
       gpuAcceleration: gpuAcceleration
-    }; // popper offsets are always available
+    };
 
-    state.styles.popper = Object.assign({}, state.styles.popper, {}, mapToStyles(Object.assign({}, commonStyles, {
-      offsets: state.modifiersData.popperOffsets,
-      position: state.options.strategy,
-      adaptive: adaptive
-    }))); // arrow offsets may not be available
+    if (state.modifiersData.popperOffsets != null) {
+      state.styles.popper = Object.assign({}, state.styles.popper, {}, mapToStyles(Object.assign({}, commonStyles, {
+        offsets: state.modifiersData.popperOffsets,
+        position: state.options.strategy,
+        adaptive: adaptive
+      })));
+    }
 
     if (state.modifiersData.arrow != null) {
       state.styles.arrow = Object.assign({}, state.styles.arrow, {}, mapToStyles(Object.assign({}, commonStyles, {
@@ -2699,7 +2705,8 @@ Copyright © 2019 Basecamp, LLC
     state.attributes.popper = Object.assign({}, state.attributes.popper, {
       'data-popper-placement': state.placement
     });
-  }
+  } // eslint-disable-next-line import/no-unused-modules
+
 
   var computeStyles$1 = {
     name: 'computeStyles',
@@ -2742,7 +2749,7 @@ Copyright © 2019 Basecamp, LLC
     var state = _ref2.state;
     var initialStyles = {
       popper: {
-        position: 'absolute',
+        position: state.options.strategy,
         left: '0',
         top: '0',
         margin: '0'
@@ -2782,7 +2789,8 @@ Copyright © 2019 Basecamp, LLC
         });
       });
     };
-  }
+  } // eslint-disable-next-line import/no-unused-modules
+
 
   var applyStyles$1 = {
     name: 'applyStyles',
@@ -2827,10 +2835,15 @@ Copyright © 2019 Basecamp, LLC
     var _data$state$placement = data[state.placement],
         x = _data$state$placement.x,
         y = _data$state$placement.y;
-    state.modifiersData.popperOffsets.x += x;
-    state.modifiersData.popperOffsets.y += y;
+
+    if (state.modifiersData.popperOffsets != null) {
+      state.modifiersData.popperOffsets.x += x;
+      state.modifiersData.popperOffsets.y += y;
+    }
+
     state.modifiersData[name] = data;
-  }
+  } // eslint-disable-next-line import/no-unused-modules
+
 
   var offset$1 = {
     name: 'offset',
@@ -2864,9 +2877,20 @@ Copyright © 2019 Basecamp, LLC
 
   function getViewportRect(element) {
     var win = getWindow(element);
+    var visualViewport = win.visualViewport;
+    var width = win.innerWidth;
+    var height = win.innerHeight; // We don't know which browsers have buggy or odd implementations of this, so
+    // for now we're only applying it to iOS to fix the keyboard issue.
+    // Investigation required
+
+    if (visualViewport && /iPhone|iPod|iPad/.test(navigator.platform)) {
+      width = visualViewport.width;
+      height = visualViewport.height;
+    }
+
     return {
-      width: win.innerWidth,
-      height: win.innerHeight,
+      width: width,
+      height: height,
       x: 0,
       y: 0
     };
@@ -3078,6 +3102,9 @@ Copyright © 2019 Basecamp, LLC
     return overflowOffsets;
   }
 
+  /*:: type OverflowsMap = { [ComputedPlacement]: number }; */
+
+  /*;; type OverflowsMap = { [key in ComputedPlacement]: number }; */
   function computeAutoPlacement(state, options) {
     if (options === void 0) {
       options = {};
@@ -3088,13 +3115,17 @@ Copyright © 2019 Basecamp, LLC
         boundary = _options.boundary,
         rootBoundary = _options.rootBoundary,
         padding = _options.padding,
-        flipVariations = _options.flipVariations;
+        flipVariations = _options.flipVariations,
+        _options$allowedAutoP = _options.allowedAutoPlacements,
+        allowedAutoPlacements = _options$allowedAutoP === void 0 ? placements : _options$allowedAutoP;
     var variation = getVariation(placement);
-    var placements = variation ? flipVariations ? variationPlacements : variationPlacements.filter(function (placement) {
+    var placements$1 = (variation ? flipVariations ? variationPlacements : variationPlacements.filter(function (placement) {
       return getVariation(placement) === variation;
-    }) : basePlacements; // $FlowFixMe: Flow seems to have problems with two array unions...
+    }) : basePlacements).filter(function (placement) {
+      return allowedAutoPlacements.indexOf(placement) >= 0;
+    }); // $FlowFixMe: Flow seems to have problems with two array unions...
 
-    var overflows = placements.reduce(function (acc, placement) {
+    var overflows = placements$1.reduce(function (acc, placement) {
       acc[placement] = detectOverflow(state, {
         placement: placement,
         boundary: boundary,
@@ -3126,13 +3157,18 @@ Copyright © 2019 Basecamp, LLC
       return;
     }
 
-    var specifiedFallbackPlacements = options.fallbackPlacements,
+    var _options$mainAxis = options.mainAxis,
+        checkMainAxis = _options$mainAxis === void 0 ? true : _options$mainAxis,
+        _options$altAxis = options.altAxis,
+        checkAltAxis = _options$altAxis === void 0 ? true : _options$altAxis,
+        specifiedFallbackPlacements = options.fallbackPlacements,
         padding = options.padding,
         boundary = options.boundary,
         rootBoundary = options.rootBoundary,
         altBoundary = options.altBoundary,
         _options$flipVariatio = options.flipVariations,
-        flipVariations = _options$flipVariatio === void 0 ? true : _options$flipVariatio;
+        flipVariations = _options$flipVariatio === void 0 ? true : _options$flipVariatio,
+        allowedAutoPlacements = options.allowedAutoPlacements;
     var preferredPlacement = state.options.placement;
     var basePlacement = getBasePlacement(preferredPlacement);
     var isBasePlacement = basePlacement === preferredPlacement;
@@ -3143,7 +3179,8 @@ Copyright © 2019 Basecamp, LLC
         boundary: boundary,
         rootBoundary: rootBoundary,
         padding: padding,
-        flipVariations: flipVariations
+        flipVariations: flipVariations,
+        allowedAutoPlacements: allowedAutoPlacements
       }) : placement);
     }, []);
     var referenceRect = state.rects.reference;
@@ -3174,7 +3211,15 @@ Copyright © 2019 Basecamp, LLC
       }
 
       var altVariationSide = getOppositePlacement(mainVariationSide);
-      var checks = [overflow[_basePlacement] <= 0, overflow[mainVariationSide] <= 0, overflow[altVariationSide] <= 0];
+      var checks = [];
+
+      if (checkMainAxis) {
+        checks.push(overflow[_basePlacement] <= 0);
+      }
+
+      if (checkAltAxis) {
+        checks.push(overflow[mainVariationSide] <= 0, overflow[altVariationSide] <= 0);
+      }
 
       if (checks.every(function (check) {
         return check;
@@ -3220,7 +3265,8 @@ Copyright © 2019 Basecamp, LLC
       state.placement = firstFittingPlacement;
       state.reset = true;
     }
-  }
+  } // eslint-disable-next-line import/no-unused-modules
+
 
   var flip$1 = {
     name: 'flip',
@@ -3279,6 +3325,10 @@ Copyright © 2019 Basecamp, LLC
       y: 0
     };
 
+    if (!popperOffsets) {
+      return;
+    }
+
     if (checkMainAxis) {
       var mainSide = mainAxis === 'y' ? top : left;
       var altSide = mainAxis === 'y' ? bottom : right;
@@ -3330,12 +3380,13 @@ Copyright © 2019 Basecamp, LLC
 
       var _preventedOffset = within(_min, _offset, _max);
 
-      state.modifiersData.popperOffsets[altAxis] = _preventedOffset;
+      popperOffsets[altAxis] = _preventedOffset;
       data[altAxis] = _preventedOffset - _offset;
     }
 
     state.modifiersData[name] = data;
-  }
+  } // eslint-disable-next-line import/no-unused-modules
+
 
   var preventOverflow$1 = {
     name: 'preventOverflow',
@@ -3357,7 +3408,7 @@ Copyright © 2019 Basecamp, LLC
     var isVertical = [left, right].indexOf(basePlacement) >= 0;
     var len = isVertical ? 'height' : 'width';
 
-    if (!arrowElement) {
+    if (!arrowElement || !popperOffsets) {
       return;
     }
 
@@ -3367,7 +3418,7 @@ Copyright © 2019 Basecamp, LLC
     var maxProp = axis === 'y' ? bottom : right;
     var endDiff = state.rects.reference[len] + state.rects.reference[axis] - popperOffsets[axis] - state.rects.popper[len];
     var startDiff = popperOffsets[axis] - state.rects.reference[axis];
-    var arrowOffsetParent = state.elements.arrow && getOffsetParent(state.elements.arrow);
+    var arrowOffsetParent = getOffsetParent(arrowElement);
     var clientSize = arrowOffsetParent ? axis === 'y' ? arrowOffsetParent.clientHeight || 0 : arrowOffsetParent.clientWidth || 0 : 0;
     var centerToReference = endDiff / 2 - startDiff / 2; // Make sure the arrow doesn't overflow the popper if the center point is
     // outside of the popper bounds
@@ -3388,13 +3439,24 @@ Copyright © 2019 Basecamp, LLC
     var _options$element = options.element,
         arrowElement = _options$element === void 0 ? '[data-popper-arrow]' : _options$element,
         _options$padding = options.padding,
-        padding = _options$padding === void 0 ? 0 : _options$padding; // CSS selector
+        padding = _options$padding === void 0 ? 0 : _options$padding;
+
+    if (arrowElement == null) {
+      return;
+    } // CSS selector
+
 
     if (typeof arrowElement === 'string') {
       arrowElement = state.elements.popper.querySelector(arrowElement);
 
       if (!arrowElement) {
         return;
+      }
+    }
+
+    {
+      if (!isHTMLElement(arrowElement)) {
+        console.error(['Popper: "arrow" element must be an HTMLElement (not an SVGElement).', 'To use an SVG arrow, wrap it in an HTMLElement that will be used as', 'the arrow.'].join(' '));
       }
     }
 
@@ -3410,7 +3472,8 @@ Copyright © 2019 Basecamp, LLC
     state.modifiersData[name + "#persistent"] = {
       padding: mergePaddingObject(typeof padding !== 'number' ? padding : expandToHashMap(padding, basePlacements))
     };
-  }
+  } // eslint-disable-next-line import/no-unused-modules
+
 
   var arrow$1 = {
     name: 'arrow',
@@ -3470,7 +3533,8 @@ Copyright © 2019 Basecamp, LLC
       'data-popper-reference-hidden': isReferenceHidden,
       'data-popper-escaped': hasPopperEscaped
     });
-  }
+  } // eslint-disable-next-line import/no-unused-modules
+
 
   var hide$1 = {
     name: 'hide',
@@ -3481,9 +3545,7 @@ Copyright © 2019 Basecamp, LLC
   };
 
   var defaultModifiers = [eventListeners, popperOffsets$1, computeStyles$1, applyStyles$1, offset$1, flip$1, preventOverflow$1, arrow$1, hide$1];
-  var createPopper =
-  /*#__PURE__*/
-  popperGenerator({
+  var createPopper = /*#__PURE__*/popperGenerator({
     defaultModifiers: defaultModifiers
   }); // eslint-disable-next-line import/no-unused-modules
 
@@ -3514,6 +3576,13 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
+var __spreadArrays = (this && this.__spreadArrays) || function () {
+    for (var s = 0, i = 0, il = arguments.length; i < il; i++) s += arguments[i].length;
+    for (var r = Array(s), k = 0, i = 0; i < il; i++)
+        for (var a = arguments[i], j = 0, jl = a.length; j < jl; j++, k++)
+            r[k] = a[j];
+    return r;
+};
 var Stacks;
 (function (Stacks) {
     var StacksApplication = (function (_super) {
@@ -3526,7 +3595,7 @@ var Stacks;
             for (var _i = 1; _i < arguments.length; _i++) {
                 rest[_i - 1] = arguments[_i];
             }
-            var definitions = Array.isArray(head) ? head : [head].concat(rest);
+            var definitions = Array.isArray(head) ? head : __spreadArrays([head], rest);
             for (var _a = 0, definitions_1 = definitions; _a < definitions_1.length; _a++) {
                 var definition = definitions_1[_a];
                 var hasPrefix = /^s-/.test(definition.identifier);
@@ -3709,7 +3778,7 @@ var __extends = (this && this.__extends) || (function () {
                 }
                 return result;
             },
-            enumerable: true,
+            enumerable: false,
             configurable: true
         });
         ;
@@ -4029,7 +4098,7 @@ var Stacks;
                 var popoverElement = this.popoverElement;
                 return popoverElement ? popoverElement.classList.contains("is-visible") : false;
             },
-            enumerable: true,
+            enumerable: false,
             configurable: true
         });
         BasePopoverController.prototype.connect = function () {
