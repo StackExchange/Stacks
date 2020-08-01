@@ -5,80 +5,13 @@ description: Stacks provides syntax highlighting variables for use in highlight.
 ---
 
 <link rel="stylesheet" type="text/css" href="{{ "/assets/css/syntax.css" | relative_url }}?{{page.date | date: '%s%N'}}">
+<style>
+    .stacks-preview pre[class*=language-] {
+        max-height: initial;
+    }
+</style>
 
 <div class="grid grid__allcells6 fw-wrap">
-    <div class="grid--cell wmn0">
-        <h2>Prismjs</h2>
-<pre id="prismjs"><code class="language-markup">
-&lt;!doctype html&gt;
-&lt;html&gt;
-&lt;head&gt;
-    &lt;title&gt;HTML Test&lt;/title&gt;
-
-    &lt;style type=&quot;text/css&quot;&gt;
-        h1 {
-            font-size: 1em;
-        }
-        p { color: pink }
-        b { color: blue }
-        u { color: &quot;umber&quot; }
-    &lt;/style&gt;
-&lt;/head&gt;
-
-&lt;body&gt;
-    &lt;h1&gt;Hello world!&lt;/h1&gt;
-&lt;/body&gt;
-
-&lt;script type=&quot;text/javascript&quot;&gt;
-    // Say hello world until the user starts questioning
-    // the meaningfulness of their existence.
-    function helloWorld(world) {
-        for (var i = 42; --i &gt;= 0;) {
-            alert('Hello ' + String(world));
-        }
-    }
-&lt;/script&gt;
-
-&lt;/html&gt;
-</code></pre>
-    </div>
-
-    <div class="grid--cell wmn0">
-        <h2>Highlightjs</h2>
-<pre id="highlightjs"><code class="html">
-&lt;!doctype html&gt;
-&lt;html&gt;
-&lt;head&gt;
-    &lt;title&gt;HTML Test&lt;/title&gt;
-
-    &lt;style type=&quot;text/css&quot;&gt;
-        h1 {
-            font-size: 1em;
-        }
-        p { color: pink }
-        b { color: blue }
-        u { color: &quot;umber&quot; }
-    &lt;/style&gt;
-&lt;/head&gt;
-
-&lt;body&gt;
-    &lt;h1&gt;Hello world!&lt;/h1&gt;
-&lt;/body&gt;
-
-&lt;script type=&quot;text/javascript&quot;&gt;
-    // Say hello world until the user starts questioning
-    // the meaningfulness of their existence.
-    function helloWorld(world) {
-        for (var i = 42; --i &gt;= 0;) {
-            alert('Hello ' + String(world));
-        }
-    }
-&lt;/script&gt;
-
-&lt;/html&gt;
-</code></pre>
-    </div>
-
     <div class="grid--cell wmn0">
         <h2>Prettify</h2>
 <pre id="prettify" class="prettyprint"><code class="language-html">
@@ -116,9 +49,9 @@ description: Stacks provides syntax highlighting variables for use in highlight.
     </div>
 
     <div class="grid--cell wmn0">
-        <h2>Stacks docs <small>(for reference, should match Prismjs + custom styling)</small></h2>
+        <h2>Stacks docs / Highlight.js</h2>
         <div class="stacks-preview">
-{% highlight markup %}
+{% highlight xml %}
 <!doctype html>
 <html>
 <head>
@@ -153,16 +86,6 @@ description: Stacks provides syntax highlighting variables for use in highlight.
         </div>
     </div>
 </div>
-
-<!-- Prism.js -->
-<script src="https://unpkg.com/prismjs@1.20.0/components/prism-core.min.js" defer></script>
-<script src="https://unpkg.com/prismjs@1.20.0/components/prism-markup.js" defer></script>
-<script src="https://unpkg.com/prismjs@1.20.0/components/prism-clike.js" defer></script>
-<script src="https://unpkg.com/prismjs@1.20.0/components/prism-javascript.js" defer></script>
-<script src="https://unpkg.com/prismjs@1.20.0/components/prism-css.js" defer></script>
-
-<!-- Highlight.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.0/highlight.min.js"></script>
 
 <!-- Prettify -->
 <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/prettify.js"></script>
