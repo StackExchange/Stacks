@@ -1,4 +1,4 @@
-const syntaxHighlight = require("@11ty/eleventy-plugin-syntaxhighlight");
+const syntaxHighlight = require("eleventy-plugin-highlightjs");
 const pluginTOC = require("eleventy-plugin-nesting-toc");
 const markdownShortcode = require("eleventy-plugin-markdown-shortcode");
 
