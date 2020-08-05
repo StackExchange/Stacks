@@ -1,6 +1,8 @@
 const syntaxHighlight = require("eleventy-plugin-highlightjs");
 const pluginTOC = require("eleventy-plugin-nesting-toc");
 const markdownShortcode = require("eleventy-plugin-markdown-shortcode");
+const { default: Icons, Spots } = require("@stackoverflow/stacks-icons");
+const { version } = require("../package.json");
 
 module.exports = function(eleventyConfig) {
   eleventyConfig.addLayoutAlias('home', 'layouts/home.html');
@@ -9,10 +11,12 @@ module.exports = function(eleventyConfig) {
 
   // Icon shortcode
   eleventyConfig.addLiquidShortcode("icon", function(name, classes, dimension) {
-    var fs = require("fs");
-    var path = "_includes/svg-icons/" + name + ".svg";
-    var svg = fs.readFileSync(path).toString("utf-8");
+    var svg = Icons[name];
     var defaultClasses = "svg-icon icon" + name;
+
+    if (!svg) {
+      return `<span class="fc-danger">Invalid icon: ${name}</span>`;
+    }
 
     // If we have classes, add them
     if (classes != null) {
@@ -29,9 +33,12 @@ module.exports = function(eleventyConfig) {
 
   // Spot shortcode
   eleventyConfig.addLiquidShortcode("spot", function(name, classes, dimension) {
-    var fs = require("fs");
-    var path = "_includes/svg-spots/" + name + ".svg";
-    var svg = fs.readFileSync(path).toString("utf-8");
+    var svg = Spots[name];
+
+    if (!svg) {
+      return `<span class="fc-danger">Invalid spot: ${name}</span>`;
+    }
+
     var defaultClasses = "svg-spot spot" + name;
 
     // If we have classes, add them
@@ -50,8 +57,7 @@ module.exports = function(eleventyConfig) {
   // Header shortcode
   eleventyConfig.addLiquidShortcode("header", function(tag, text) {
     var slug = text.replace(/\s+/g, '-').toLowerCase();
-    var fs = require("fs");
-    var linkIcon = fs.readFileSync("_includes/svg-icons/Link.svg").toString("utf-8");
+    var linkIcon = Icons["Link"];
 
     var output = '';
     output += '<div class="grid jc-space-between ai-end pe-none stacks-header">';
@@ -64,6 +70,11 @@ module.exports = function(eleventyConfig) {
     output += '</div>';
 
     return output;
+  });
+
+  // Version shortcode
+  eleventyConfig.addLiquidShortcode("version", function() {
+    return {version}.version;
   });
 
   // Add syntax highlighting
