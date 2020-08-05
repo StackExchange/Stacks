@@ -1,11 +1,20 @@
-// reference doc https://highlightjs.readthedocs.io/en/latest/style-guide.html
-pre.hljs,
-code {
+pre[class*="language-"],
+pre.s-code-block {
     font-size: @fs-body1;
     font-family: @ff-mono;
     line-height: @lh-lg;
-    color: var(--highlight-color);
     background-color: var(--highlight-bg);
+    .btr-sm;
+    max-height: 24rem;
+    margin: 0;
+    padding: @su8 @su12;
+    overflow: auto;
+
+    @scrollbar-styles();
+}
+
+code[class*="language-"] {
+    font-family: inherit;
 
     .hljs-subst {
         color: var(--highlight-color);
