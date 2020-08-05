@@ -10,14 +10,15 @@ description: Stacks provides styling for code blocks with syntax highlighting pr
             <thead>
                 <tr>
                     <th scope="col">Class</th>
+                    <th scope="col">Applies to</th>
                     <th scope="col">Output</th>
-
                 </tr>
             </thead>
             <tbody>
                 <tr>
                     <th scope="row"><code class="stacks-code">.s-code-block</code></th>
-                    <td class="ff-mono">Adds proper styling for code.</td>
+                    <td class="ff-mono"><code class="stacks-code">pre</code></td>
+                    <td class="ff-mono">Adds proper styling to pre-formatted code.</td>
                 </tr>
             </tbody>
         </table>
@@ -28,12 +29,82 @@ description: Stacks provides styling for code blocks with syntax highlighting pr
     {% header "h3", "HTML" %}
     <div class="stacks-preview">
 {% highlight html %}
-<div class="s-code-block">
+<pre class="s-code-block language-html">
     …
-</div>
+</pre>
 {% endhighlight %}
         <div class="stacks-preview--example">
-            <div class="s-code-block"></div>
+{% highlight html %}
+<form class="grid gs4 gsy fd-column">
+    <label class="grid--cell s-label" for="question-title">Question title</label>
+    <div class="grid ps-relative">
+        <input class="grid--cell s-input" type="text" id="question-title" placeholder="e.g. Why doesn’t Stack Overflow use a custom web font?"/>
+    </div>
+</form>
+{% endhighlight %}
+        </div>
+    </div>
+
+    {% header "h3", "JavaScript" %}
+    <div class="stacks-preview">
+{% highlight html %}
+<pre class="s-code-block language-javascript">
+    …
+</pre>
+{% endhighlight %}
+        <div class="stacks-preview--example">
+{% highlight javascript %}
+import React, { Component } from 'react'
+import { IP } from '../constants/IP'
+import { withAuth0 } from '@auth0/auth0-react';
+
+class AddATournament extends Component {
+    componentDidMount() {
+        this.myNewListOfAllTournamentsWithAuth()
+    }
+}
+
+export default withAuth0(AddATournament);
+{% endhighlight %}
+        </div>
+    </div>
+
+    {% header "h3", "CSS" %}
+    <div class="stacks-preview">
+{% highlight html %}
+<pre class="s-code-block language-css">
+    …
+</pre>
+{% endhighlight %}
+        <div class="stacks-preview--example">
+{% highlight css %}
+.s-input,
+.s-textarea {
+    -webkit-appearance: none;
+    width: 100%;
+    margin: 0;
+    padding: 0.6em 0.7em;
+    border: 1px solid var(--black-200);
+    border-radius: 3px;
+    background-color: var(--white);
+    color: var(--fc-dark);
+    font-size: 13px;
+    font-family: inherit;
+    line-height: 1.15384615;
+    scrollbar-color: var(--scrollbar) transparent;
+}
+@supports (-webkit-overflow-scrolling: touch) {
+    .s-input,
+    .s-textarea {
+        font-size: 16px;
+        padding: 0.36em 0.55em;
+    }
+    .s-input::-webkit-input-placeholder,
+    .s-textarea::-webkit-input-placeholder {
+        line-height: normal !important;
+    }
+}
+{% endhighlight %}
         </div>
     </div>
 </section>
