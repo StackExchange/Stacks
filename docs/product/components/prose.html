@@ -1,0 +1,90 @@
+---
+layout: page
+title: Prose
+description: The prose component provides proper styling for rendered Markdown.
+---
+<section class="stacks-section">
+    {% header "h2", "Classes" %}
+    <div class="overflow-x-auto mb32">
+        <table class="wmn3 s-table s-table__bx-simple">
+            <thead>
+                <tr>
+                    <th scope="col">Class</th>
+                    <th scope="col">Output</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row"><code class="stacks-code">.s-prose</code></th>
+                    <td class="ff-mono">Adds proper styling for rendered Markdown.</td>
+                </tr>
+                <tr>
+                    <th scope="row"><code class="stacks-code">.s-prose__md</code></th>
+                    <td class="ff-mono">Increases the base font size and line height.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+<section class="stacks-section">
+    {% header "h2", "Examples" %}
+    {% header "h3", "Full Markdown spec" %}
+    <div class="stacks-preview">
+{% highlight html %}
+<div class="s-prose">
+    …
+</div>
+{% endhighlight %}
+        <div class="stacks-preview--example d:bg-white">
+            <div class="s-prose">
+                {% markdown '/_includes/markdown-sandbox.md' %}
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="stacks-section">
+    {% header "h3", "Example answer" %}
+    <p class="stacks-copy">The following is a <a href="https://stackoverflow.com/a/2003515/2804712">real-world answer</a> taken from Stack Overflow</p>
+    <div class="stacks-preview">
+        <div class="stacks-preview--example d:bg-white bar-sm btw1">
+            <div class="s-prose">
+                {% markdown '/_includes/markdown-post.md' %}
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="stacks-section">
+    {% header "h3", "Example meta post" %}
+    <p class="stacks-copy">The following is a <a href="https://meta.stackexchange.com/questions/350544/the-new-moderator-agreement-is-now-live-for-moderators-to-accept-across-the-netw">real-world post</a> taken from Meta Stack Overflow</p>
+    <div class="stacks-preview">
+        <div class="stacks-preview--example d:bg-white bar-sm btw1">
+            <div class="s-prose">
+                {% markdown '/_includes/markdown-prose.md' %}
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="stacks-section">
+    {% header "h2", "Sizing" %}
+    {% header "h3", "Medium" %}
+    <p class="stacks-copy">Depending on the context for displaying the prose component, it may be appropriate to size text up to maintain readability.</p>
+    <div class="stacks-preview">
+{% highlight html %}
+<div class="s-prose s-prose__md">
+    …
+</div>
+{% endhighlight %}
+        <div class="stacks-preview--example d:bg-white">
+            <div class="s-prose s-prose__md">
+                {% markdown '/_includes/markdown-readme.md' %}
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Additional javascript -->
+<script src="{{ "/assets/js/spoilers.js" | relative_url }}" defer></script>

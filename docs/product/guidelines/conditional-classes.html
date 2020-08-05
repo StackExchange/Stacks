@@ -204,10 +204,20 @@ description: Stacks provides conditional atomic classes to easily build complex 
     <p class="stacks-copy">Stacks provides darkmode-only atomic classes. By applying <code class="stacks-code">.d:bg-green-100</code>, you’re saying “In dark mode, apply a background of green 100.”</p>
     <div class="stacks-preview">
 {% highlight html %}
-<div class="bg-yellow-100 d:bg-green-100 d:bc-transparent"></div>
+<div class="bc-yellow-1 bg-yellow-100 d:bg-green-100 d:bc-transparent"></div>
 {% endhighlight %}
         <div class="stacks-preview--example">
-            <div class="bar-sm p12 bg-yellow-100 ba bc-black-2 d:bg-green-100 d:bc-transparent">This element will be yellow with a border by default but green without a border in dark mode.</div>
+            <div class="bar-sm p12 bg-yellow-100 ba bc-yellow-1 d:bg-green-100 d:bc-transparent">This element will be yellow with a border by default but green without a border in dark mode.</div>
+        </div>
+    </div>
+
+    <p class="stacks-copy">In addition to specific overrides, you can force an element’s colors to be light or dark by applying <code class="stacks-code">.theme-dark__forced</code> or <code class="stacks-code">.theme-light__forced</code>. This comes in handy when showing users a preview of light or dark interface elements.</p>
+    <div class="stacks-preview">
+{% highlight html %}
+<div class="fc-dark bg-yellow-100 ba bc-yellow-1 theme-dark__forced"></div>
+{% endhighlight %}
+        <div class="stacks-preview--example">
+            <div class="theme-dark__forced bar-sm p12 fc-dark bg-yellow-100 ba bc-yellow-1">This element will be rendered with dark mode colors regardless of theme preference.</div>
         </div>
     </div>
 </section>
