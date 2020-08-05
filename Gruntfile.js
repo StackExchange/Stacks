@@ -163,9 +163,6 @@ module.exports = function(grunt) {
         },
 
         clean: {
-            // Clean the icons directory to prepare for copying from the node dependency
-            icons: ['docs/_includes/svg-icons/'],
-
             // Clean-up the partial CSS files created in less:stacks_partials to ensure that
             // dynamic and static part compile independently of each other
             stacks_partials: ['tmp/']
@@ -178,36 +175,6 @@ module.exports = function(grunt) {
                 dest: 'docs/assets/js/',
                 flatten: true,
                 expand: true
-            },
-
-            // Copy files out of node_modules so Eleventy can use them
-            icons: {
-                expand: true,
-                cwd: 'node_modules/@stackoverflow/stacks-icons/build/lib/Icon',
-                src: '**',
-                dest: 'docs/_includes/svg-icons/',
-                filter: 'isFile',
-            },
-            iconsJson: {
-                expand: true,
-                cwd: 'node_modules/@stackoverflow/stacks-icons/build',
-                src: 'iconsEleventy.json',
-                dest: 'docs/_data/',
-                filter: 'isFile',
-            },
-            spots: {
-                expand: true,
-                cwd: 'node_modules/@stackoverflow/stacks-icons/build/lib/Spot',
-                src: '**',
-                dest: 'docs/_includes/svg-spots/',
-                filter: 'isFile',
-            },
-            spotsJson: {
-                expand: true,
-                cwd: 'node_modules/@stackoverflow/stacks-icons/build',
-                src: 'spotsEleventy.json',
-                dest: 'docs/_data/',
-                filter: 'isFile',
             },
             declarations: {
                 expand: true,
@@ -240,9 +207,8 @@ module.exports = function(grunt) {
 
     grunt.registerTask('deploy-docs',
         'Prep and build the documentation site so it is ready for deploy.',
-        ['update-icons', 'build']);
+        ['build']);
 
-    grunt.registerTask('update-icons', ['clean:icons', 'copy:icons', 'copy:spots', 'copy:iconsJson', 'copy:spotsJson']);
 
     grunt.registerTask('version', 'Creates a file with the version number inside it for Eleventy to display.', function() {
         grunt.file.write('docs/_includes/version.html', grunt.config.get('version'));
