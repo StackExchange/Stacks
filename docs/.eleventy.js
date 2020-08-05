@@ -67,7 +67,7 @@ module.exports = function(eleventyConfig) {
   });
 
   // Add syntax highlighting
-  eleventyConfig.addPlugin(syntaxHighlight);
+  eleventyConfig.addPlugin(syntaxHighlight, { className: "s-code-block" });
 
   // Add markdown shortcode
   eleventyConfig.addPlugin(markdownShortcode, {
