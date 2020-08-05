@@ -2,9 +2,6 @@
 
 module.exports = function(grunt) {
     grunt.initConfig({
-        pkg: grunt.file.readJSON('package.json'),
-        version: '<%= pkg.version %>',
-
         // Shell commands for use in Grunt tasks
         shell: {
             eleventyBuild: {
@@ -123,11 +120,6 @@ module.exports = function(grunt) {
                 files: ['lib/ts/**/*.ts'], // note: this doesn't watch any of the npm dependencies
                 tasks: ['concurrent:compile_stacks_js', 'copy:js2docs']
             },
-
-            version: {
-                files: ['package.json'],
-                tasks: ['version'],
-            },
         },
         // Run tasks in parallel
         concurrent: {
@@ -136,7 +128,6 @@ module.exports = function(grunt) {
             },
 
             serve: [
-                'version',
                 'watch',
                 'shell:eleventyServe'
             ],
@@ -208,9 +199,4 @@ module.exports = function(grunt) {
     grunt.registerTask('deploy-docs',
         'Prep and build the documentation site so it is ready for deploy.',
         ['build']);
-
-
-    grunt.registerTask('version', 'Creates a file with the version number inside it for Eleventy to display.', function() {
-        grunt.file.write('docs/_includes/version.html', grunt.config.get('version'));
-    });
 };

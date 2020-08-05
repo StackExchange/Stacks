@@ -2,6 +2,7 @@ const syntaxHighlight = require("@11ty/eleventy-plugin-syntaxhighlight");
 const pluginTOC = require("eleventy-plugin-nesting-toc");
 const markdownShortcode = require("eleventy-plugin-markdown-shortcode");
 const { default: Icons, Spots } = require("@stackoverflow/stacks-icons");
+const { version } = require("../package.json");
 
 module.exports = function(eleventyConfig) {
   eleventyConfig.addLayoutAlias('home', 'layouts/home.html');
@@ -69,6 +70,11 @@ module.exports = function(eleventyConfig) {
     output += '</div>';
 
     return output;
+  });
+
+  // Version shortcode
+  eleventyConfig.addLiquidShortcode("version", function() {
+    return {version}.version;
   });
 
   // Add syntax highlighting
