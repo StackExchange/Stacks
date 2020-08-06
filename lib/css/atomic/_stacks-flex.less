@@ -28,7 +28,7 @@
         #stacks-internals #grid-builder-settings();
 
         .create-fixed-cells(@num, @count: 1) when (@count =< @num) {
-            .grid--cell@{count} {
+            .flex--cell@{count} {
                 flex-basis: (@count * 100%) / @num;
             }
 
@@ -45,7 +45,7 @@
         .create-grid-count-cols(@num, @count: 1) when (@count =< @num) {
             .grid__allcells@{count} {
                 > .grid,
-                > .grid--cell {
+                > .flex--cell {
                     flex-basis: (@count * 100%) / @num;
                 }
             }
@@ -65,7 +65,7 @@
         //
         //      HOW IT WORKS:
         //      A quick primer on how this mixin works. The TL;DR is we're using a mixin
-        //      guard to start a loop that'll create all the desired `> .grid--cell@{count}`
+        //      guard to start a loop that'll create all the desired `> .flex--cell@{count}`
         //      classes.
         //
         //      The three mixin parameters are:
@@ -101,7 +101,7 @@
         .grid-fixed-cell-spacing(@spacing, @num, @count: 1) when (@count =< @num) {
             @cell-width: @count * 100% / @num;
 
-            > .grid--cell@{count} {
+            > .flex--cell@{count} {
                 margin: @spacing / 2;
             }
 
@@ -110,13 +110,13 @@
             //      This makes the fixed width cells to account for gutters.
             //
             //  [2] UNIFORM CHILD GRID CELLS
-            //      This class allows you to uniformly state the width of `.grid--cell`
+            //      This class allows you to uniformly state the width of `.flex--cell`
             //      divs within a `.grid` element. In particular we adjust the flex-basis
             //      and max-width here to account for gutters.
             //  ------------------------------------------------------------------------
-            > .grid--cell@{count},                                  // [1]
+            > .flex--cell@{count},                                  // [1]
             &.grid__allcells@{count} > .grid,                       // [2]
-            &.grid__allcells@{count} > .grid--cell {                // [2]
+            &.grid__allcells@{count} > .flex--cell {                // [2]
                 flex-basis: calc(~"@{cell-width} - @{spacing}");
             }
 
@@ -141,7 +141,7 @@
 
             //  --  FLUID CELLS
             > .grid,
-            > .grid--cell {
+            > .flex--cell {
                 margin: @spacing / 2;
             }
 
@@ -170,14 +170,14 @@
 .grid__fl0 {
     &,
     > .grid,
-    > .grid--cell {
+    > .flex--cell {
         flex: 0 auto;
     }
 }
 .grid__fl1 {
     &,
     > .grid,
-    > .grid--cell {
+    > .flex--cell {
         flex: 1 auto;
     }
 }
@@ -212,7 +212,7 @@
 .gsx {
     &,
     > .grid,
-    > [class*="grid--cell"] {
+    > [class*="flex--cell"] {
         margin-top: 0;
         margin-bottom: 0;
     }
@@ -222,7 +222,7 @@
 .gsy {
     &,
     > .grid,
-    > [class*="grid--cell"] {
+    > [class*="flex--cell"] {
         margin-right: 0;
         margin-left: 0;
     }

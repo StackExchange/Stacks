@@ -10,7 +10,7 @@
         {% include navigation.html %}
 
         <div id="content" class="grid fl1 ps-relative t64 py24 pl48 pr16 md:pl24 sm:pl16 sm:pr16">
-            <div class="grid--cell order-last w20 wmx2 pl24 sm:d-none print:d-none">
+            <div class="flex--cell order-last w20 wmx2 pl24 sm:d-none print:d-none">
                 <aside class="ps-sticky t64 pt16">
                     <h5 class="mb8 fw-bold tt-uppercase fs-fine fc-orange-500 mnl1">Sections</h5>
                     {{ content | toc | safe }}
@@ -20,10 +20,10 @@
                 This container’s .fl1 doesn't behave properly unless we add an explicit width.
                 https://stackoverflow.com/questions/38723559/flex-item-exceeds-its-container
             {% endcomment %}
-            <div class="grid--cell fl1 ws1">
+            <div class="flex--cell fl1 ws1">
                 {% if js %}
                     <div class="stacks-badged grid ai-center sm:jc-space-between">
-                        <h1 class="stacks-h1 grid--cell mb0">{{ title }}</h1>
+                        <h1 class="stacks-h1 flex--cell mb0">{{ title }}</h1>
                         <a href="{{ "/product/guidelines/javascript" | relative_url }}" class="grid p8 fc-white ml6">
                             <div class="bg-green-700 blr-sm p4">{% icon "Checkmark" %}</div>
                             <div class="bg-green-500 brr-sm px8 py4">javascript</div>
