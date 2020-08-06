@@ -222,16 +222,25 @@
     margin-bottom: @su48;
     .bs-sm;
 
-    &._preview-none pre[class*="language-"] {
-        .bar-sm;
+    > pre.s-code-block {
+        border-radius: @br-md @br-md 0 0;
+        border: 1px solid var(--black-100);
+    }
+
+    &._preview-none pre.s-code-block {
+        .bar-md;
     }
 }
+
+#stacks-internals #darkmode('.stacks-preview > pre.s-code-block', {
+    border-color: transparent;
+});
 
 //  Preview area
 .stacks-preview--example {
     padding: @su16;
-    border-bottom-left-radius: @br-sm;
-    border-bottom-right-radius: @br-sm;
+    border-bottom-left-radius: @br-md;
+    border-bottom-right-radius: @br-md;
     border: 1px solid var(--black-100);
     border-top-width: 0;
     font-size: @fs-body1;
