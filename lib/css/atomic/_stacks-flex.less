@@ -21,18 +21,18 @@
 //  ----------------------------------------------------------------------------
 
 #stacks-internals() {
-    #grid-builder-settings() {
+    #flex-builder-settings() {
         @grid-cols: 12;    //  Desired grid columns
     }
-    #grid-builder-helpers() {
-        #stacks-internals #grid-builder-settings();
+    #flex-builder-helpers() {
+        #stacks-internals #flex-builder-settings();
 
         .create-fixed-cells(@num, @count: 1) when (@count =< @num) {
             .flex--cell@{count} {
                 flex-basis: (@count * 100%) / @num;
             }
 
-            #stacks-internals #grid-builder-helpers .create-fixed-cells(@num, (@count + 1));
+            #stacks-internals #flex-builder-helpers .create-fixed-cells(@num, (@count + 1));
         }
 
         //  --  AUTO FIXED WIDTH CELLS
@@ -50,7 +50,7 @@
                 }
             }
 
-            #stacks-internals #grid-builder-helpers .create-grid-count-cols(@num, (@count + 1));
+            #stacks-internals #flex-builder-helpers .create-grid-count-cols(@num, (@count + 1));
         }
 
         //  --  GRID GUTTERS
@@ -120,7 +120,7 @@
                 flex-basis: calc(~"@{cell-width} - @{spacing}");
             }
 
-            #stacks-internals #grid-builder-helpers .grid-fixed-cell-spacing(@spacing, @num, (@count + 1));
+            #stacks-internals #flex-builder-helpers .grid-fixed-cell-spacing(@spacing, @num, (@count + 1));
         }
 
 
@@ -135,7 +135,7 @@
         //          left and right margins and add in top and bottom margins.
         //  ----------------------------------------------------------------------------
         .gutter-spacing(@spacing) {
-            #stacks-internals #grid-builder-settings();
+            #stacks-internals #flex-builder-settings();
 
             margin: -(@spacing / 2);
 
@@ -148,7 +148,7 @@
             //  --  FIXED WIDTH CELLS
             //      Now we call for the above mixin [1] to make sure we adjust the default
             //      widths for the new gutters.
-            #stacks-internals #grid-builder-helpers .grid-fixed-cell-spacing(@spacing, @grid-cols);
+            #stacks-internals #flex-builder-helpers .grid-fixed-cell-spacing(@spacing, @grid-cols);
         }
     }
 }
@@ -184,29 +184,29 @@
 
 
 & {
-    #stacks-internals #grid-builder-settings(); // load @grid-cols
+    #stacks-internals #flex-builder-settings(); // load @grid-cols
 
     //  $$  FIXED WIDTH CELLS
     //  ----------------------------------------------------------------------------
-    #stacks-internals #grid-builder-helpers .create-fixed-cells(@grid-cols);
+    #stacks-internals #flex-builder-helpers .create-fixed-cells(@grid-cols);
 
     //  $$  AUTO FIXED WIDTH CELLS
     //  ----------------------------------------------------------------------------
-    #stacks-internals #grid-builder-helpers .create-grid-count-cols(@grid-cols);
+    #stacks-internals #flex-builder-helpers .create-grid-count-cols(@grid-cols);
 }
 //  ============================================================================
 //  $   GRID SPACING
 //      Insert spaces or gutters in between grid cells
 //  ----------------------------------------------------------------------------
-.fs2    { #stacks-internals #grid-builder-helpers .gutter-spacing(@su2); }        //  2px
-.fs4    { #stacks-internals #grid-builder-helpers .gutter-spacing(@su4); }        //  4px
-.fs8    { #stacks-internals #grid-builder-helpers .gutter-spacing(@su8); }        //  8px
-.fs12   { #stacks-internals #grid-builder-helpers .gutter-spacing(@su12); }       //  12px
-.fs16   { #stacks-internals #grid-builder-helpers .gutter-spacing(@su16); }       //  16px
-.fs24   { #stacks-internals #grid-builder-helpers .gutter-spacing(@su24); }       //  24px
-.fs32   { #stacks-internals #grid-builder-helpers .gutter-spacing(@su32); }       //  32px
-.fs48   { #stacks-internals #grid-builder-helpers .gutter-spacing(@su48); }       //  48px
-.fs64   { #stacks-internals #grid-builder-helpers .gutter-spacing(@su64); }       //  64px
+.fs2    { #stacks-internals #flex-builder-helpers .gutter-spacing(@su2); }        //  2px
+.fs4    { #stacks-internals #flex-builder-helpers .gutter-spacing(@su4); }        //  4px
+.fs8    { #stacks-internals #flex-builder-helpers .gutter-spacing(@su8); }        //  8px
+.fs12   { #stacks-internals #flex-builder-helpers .gutter-spacing(@su12); }       //  12px
+.fs16   { #stacks-internals #flex-builder-helpers .gutter-spacing(@su16); }       //  16px
+.fs24   { #stacks-internals #flex-builder-helpers .gutter-spacing(@su24); }       //  24px
+.fs32   { #stacks-internals #flex-builder-helpers .gutter-spacing(@su32); }       //  32px
+.fs48   { #stacks-internals #flex-builder-helpers .gutter-spacing(@su48); }       //  48px
+.fs64   { #stacks-internals #flex-builder-helpers .gutter-spacing(@su64); }       //  64px
 
 //  On rows, remove top and bottom margins
 .fsx {
