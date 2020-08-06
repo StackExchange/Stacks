@@ -107,4 +107,260 @@ export default withAuth0(AddATournament);
 {% endhighlight %}
         </div>
     </div>
+
+    {% header "h3", "Java" %}
+    <div class="stacks-preview">
+{% highlight html %}
+<pre class="s-code-block language-java">
+    …
+</pre>
+{% endhighlight %}
+        <div class="stacks-preview--example">
+{% highlight java %}
+public static void main(String[] args) {
+    Dog aDog = new Dog("Max");
+    Dog oldDog = aDog;
+
+    // we pass the object to foo
+    foo(aDog);
+    // aDog variable is still pointing to the "Max" dog when foo(...) returns
+    aDog.getName().equals("Max"); // true
+    aDog.getName().equals("Fifi"); // false
+    aDog == oldDog; // true
+}
+
+public static void foo(Dog d) {
+    d.getName().equals("Max"); // true
+    // change d inside of foo() to point to a new Dog instance "Fifi"
+    d = new Dog("Fifi");
+    d.getName().equals("Fifi"); // true
+}
+{% endhighlight %}
+        </div>
+    </div>
+
+    {% header "h3", "Ruby" %}
+    <div class="stacks-preview">
+{% highlight html %}
+<pre class="s-code-block language-ruby">
+    …
+</pre>
+{% endhighlight %}
+        <div class="stacks-preview--example">
+{% highlight ruby %}
+case x
+when 1..5
+  "It's between 1 and 5"
+when 6
+  "It's 6"
+when "foo", "bar"
+  "It's either foo or bar"
+when String
+  "You passed a string"
+else
+  "You gave me #{x} -- I have no idea what to do with that."
+end
+{% endhighlight %}
+        </div>
+    </div>
+
+    {% header "h3", "Python" %}
+    <div class="stacks-preview">
+{% highlight html %}
+<pre class="s-code-block language-python">
+    …
+</pre>
+{% endhighlight %}
+        <div class="stacks-preview--example">
+{% highlight python %}
+def all_indices(value, qlist):
+    indices = []
+    idx = -1
+    while True:
+        try:
+            idx = qlist.index(value, idx+1)
+            indices.append(idx)
+        except ValueError:
+            break
+    return indices
+
+all_indices("foo", ["foo","bar","baz","foo"])
+{% endhighlight %}
+        </div>
+    </div>
+
+    {% header "h3", "Objective-C" %}
+    <div class="stacks-preview">
+{% highlight html %}
+<pre class="s-code-block language-objectivec">
+    …
+</pre>
+{% endhighlight %}
+        <div class="stacks-preview--example">
+{% highlight objectivec %}
+- (UITextField *) userName {
+    UITextField *retval = nil;
+    @synchronized(self) {
+        retval = [[userName retain] autorelease];
+    }
+    return retval;
+}
+
+- (void) setUserName:(UITextField *)userName_ {
+    @synchronized(self) {
+      [userName_ retain];
+      [userName release];
+      userName = userName_;
+    }
+}
+{% endhighlight %}
+        </div>
+    </div>
+
+    {% header "h3", "Swift" %}
+    <div class="stacks-preview">
+{% highlight html %}
+<pre class="s-code-block language-swift">
+    …
+</pre>
+{% endhighlight %}
+        <div class="stacks-preview--example">
+{% highlight swift %}
+import Foundation
+
+@objc class Person: Entity {
+  var name: String!
+  var age:  Int!
+
+  init(name: String, age: Int) {
+    /* /* ... */ */
+  }
+
+  // Return a descriptive string for this person
+  func description(offset: Int = 0) -> String {
+    return "\(name) is \(age + offset) years old"
+  }
+}
+{% endhighlight %}
+        </div>
+    </div>
+
+    {% header "h3", "Less" %}
+    <div class="stacks-preview">
+{% highlight html %}
+<pre class="s-code-block language-less">
+    …
+</pre>
+{% endhighlight %}
+        <div class="stacks-preview--example">
+{% highlight less %}
+@import "fruits";
+
+@rhythm: 1.5em;
+
+@media screen and (min-resolution: 2dppx) {
+    body {font-size: 125%}
+}
+
+section > .foo + #bar:hover [href*="less"] {
+    margin:     @rhythm 0 0 @rhythm;
+    padding:    calc(5% + 20px);
+    background: #f00ba7 url(http://placehold.alpha-centauri/42.png) no-repeat;
+    background-image: linear-gradient(-135deg, wheat, fuchsia) !important ;
+    background-blend-mode: multiply;
+}
+
+@font-face {
+    font-family: /* ? */ 'Omega';
+    src: url('../fonts/omega-webfont.woff?v=2.0.2');
+}
+
+.icon-baz::before {
+    display:     inline-block;
+    font-family: "Omega", Alpha, sans-serif;
+    content:     "\f085";
+    color:       rgba(98, 76 /* or 54 */, 231, .75);
+}
+{% endhighlight %}
+        </div>
+    </div>
+
+    {% header "h3", "Json" %}
+    <div class="stacks-preview">
+{% highlight html %}
+<pre class="s-code-block language-json">
+    …
+</pre>
+{% endhighlight %}
+        <div class="stacks-preview--example">
+{% highlight json %}
+[
+  {
+    "title": "apples",
+    "count": [12000, 20000],
+    "description": {"text": "...", "sensitive": false}
+  },
+  {
+    "title": "oranges",
+    "count": [17500, null],
+    "description": {"text": "...", "sensitive": false}
+  }
+]
+{% endhighlight %}
+        </div>
+    </div>
+
+    {% header "h3", "C Sharp" %}
+    <div class="stacks-preview">
+{% highlight html %}
+<pre class="s-code-block language-csharp">
+    …
+</pre>
+{% endhighlight %}
+        <div class="stacks-preview--example">
+{% highlight csharp %}
+using System.IO.Compression;
+
+#pragma warning disable 414, 3021
+
+namespace MyApplication
+{
+    [Obsolete("...")]
+    class Program : IInterface
+    {
+        public static List<int> JustDoIt(int count)
+        {
+            Console.WriteLine($"Hello {Name}!");
+            return new List<int>(new int[] { 1, 2, 3 })
+        }
+    }
+}
+{% endhighlight %}
+        </div>
+    </div>
+
+    {% header "h3", "SQL" %}
+    <div class="stacks-preview">
+{% highlight html %}
+<pre class="s-code-block language-sql">
+    …
+</pre>
+{% endhighlight %}
+        <div class="stacks-preview--example">
+{% highlight sql %}
+CREATE TABLE "topic" (
+    "id" serial NOT NULL PRIMARY KEY,
+    "forum_id" integer NOT NULL,
+    "subject" varchar(255) NOT NULL
+);
+ALTER TABLE "topic"
+ADD CONSTRAINT forum_id FOREIGN KEY ("forum_id")
+REFERENCES "forum" ("id");
+
+-- Initials
+insert into "topic" ("forum_id", "subject")
+values (2, 'D''artagnian');
+{% endhighlight %}
+        </div>
+    </div>
 </section>
