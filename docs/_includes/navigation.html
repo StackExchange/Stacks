@@ -1,7 +1,7 @@
 <div class="flex--cell fl-shrink0 ws2 md:w-auto md:d-none print:d-none js-navigation">
     <div class="overflow-y-scroll overflow-x-hidden bg-white z-nav py12 fs-body1 ps-fixed wmn2 t64 b0 sm:w100 sm:pb0">
         <div class="d-none sm:d-block">
-            <div class="grid fd-column ai-center">
+            <div class="d-flex fd-column ai-center">
                 {% if site-navigation %}
                     <div class="s-navigation s-navigation__wrap mx8 mb12 jc-center">
                         {% assign slug = page.url | replace:'/',' ' | truncatewords: 2 | remove:'...' %}
@@ -12,7 +12,7 @@
                         {% endfor %}
                     </div>
                 {% endif %}
-                <div class="grid fs16 ai-center fw-wrap mx8">
+                <div class="d-flex fs16 ai-center fw-wrap mx8">
                     <a class="flex--cell fc-black-300" href="https://stackoverflow.com/">
                         {% icon "LogoGlyphSm" %}
                     </a>
@@ -49,7 +49,7 @@
                                     <ul class="list-reset">
                                         {% for link in section.links %}
                                             <li>
-                                                <a class="grid jc-space-between ai-center py6 px12 s-link s-link__muted mx4 {% if page.url == link.url %}bg-orange-400 bar-pill fc-white{% endif %}" href="{{ link.url | relative_url }}">
+                                                <a class="d-flex jc-space-between ai-center py6 px12 s-link s-link__muted mx4 {% if page.url == link.url %}bg-orange-400 bar-pill fc-white{% endif %}" href="{{ link.url | relative_url }}">
                                                     <span class="flex--cell">
                                                         {{ link.title }}
                                                     </span>

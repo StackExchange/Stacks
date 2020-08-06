@@ -48,20 +48,20 @@ description: Spot illustrations are the slightly grown up version of icons with 
 
 <section class="stacks-section mb32" id="js-sortable-list">
     {% header "h2", "Spot illustrations" %}
-    <div class="ps-sticky z-nav t64 bb bc-black-3 bg-white py16 mtn8 mb16 grid jc-space-between">
+    <div class="ps-sticky z-nav t64 bb bc-black-3 bg-white py16 mtn8 mb16 d-flex jc-space-between">
         <input type="text" class="flex--cell fuzzy-search s-input s-input__search" placeholder="Search spot illustrations…" />
         {% icon "Search", "s-input-icon s-input-icon__search" %}
     </div>
-    <div class="grid fw-wrap sm:fd-column fs16 flex__allcells4 list js-icon-list">
+    <div class="d-flex fw-wrap sm:fd-column fs16 flex__allcells4 list js-icon-list">
         {% for spotName in stacks-icons.spots %}
             <div class="flex--cell">
-                <div id="{{ spotName | downcase }}" class="grid ff-column-nowrap p0 s-card h100 stacks-icon-container">
-                    <div class="grid fl2 flex__center stacks-icon-preview">
+                <div id="{{ spotName | downcase }}" class="d-flex ff-column-nowrap p0 s-card h100 stacks-icon-container">
+                    <div class="d-flex fl2 flex__center stacks-icon-preview">
                         {% spot spotName %}
                     </div>
-                    <div class="grid ai-center jc-space-between p8">
+                    <div class="d-flex ai-center jc-space-between p8">
                         <code class="flex--cell fs-caption py8 ff-mono ow-break-word js-name">@Svg.Spot.{{ spotName }}</code>
-                        <a class="grid flex__center s-btn s-btn__muted fc-black-400 p2" href="#{{ spotName | downcase }}">{% icon "Link" %}</a>
+                        <a class="d-flex flex__center s-btn s-btn__muted fc-black-400 p2" href="#{{ spotName | downcase }}">{% icon "Link" %}</a>
                     </div>
                 </div>
             </div>

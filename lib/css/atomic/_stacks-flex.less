@@ -44,7 +44,7 @@
         //  ----------------------------------------------------------------------------
         .create-flex-count-cols(@num, @count: 1) when (@count =< @num) {
             .flex__allcells@{count} {
-                > .grid,
+                > .d-flex,
                 > .flex--cell {
                     flex-basis: (@count * 100%) / @num;
                 }
@@ -115,7 +115,7 @@
             //      and max-width here to account for gutters.
             //  ------------------------------------------------------------------------
             > .flex--cell@{count},                                  // [1]
-            &.flex__allcells@{count} > .grid,                       // [2]
+            &.flex__allcells@{count} > .d-flex,                       // [2]
             &.flex__allcells@{count} > .flex--cell {                // [2]
                 flex-basis: calc(~"@{cell-width} - @{spacing}");
             }
@@ -140,7 +140,7 @@
             margin: -(@spacing / 2);
 
             //  --  FLUID CELLS
-            > .grid,
+            > .d-flex,
             > .flex--cell {
                 margin: @spacing / 2;
             }
@@ -160,7 +160,7 @@
 //      To help simplify our CSS, we create a generic box container. By default
 //      this is a row container, but we can modify the box to become a column.
 //  ----------------------------------------------------------------------------
-.grid {
+.d-flex {
     display: flex;
 }
 
@@ -169,14 +169,14 @@
 //  --------------------------------------------------------------------------
 .flex__fl0 {
     &,
-    > .grid,
+    > .d-flex,
     > .flex--cell {
         flex: 0 auto;
     }
 }
 .flex__fl1 {
     &,
-    > .grid,
+    > .d-flex,
     > .flex--cell {
         flex: 1 auto;
     }
@@ -211,7 +211,7 @@
 //  On rows, remove top and bottom margins
 .fsx {
     &,
-    > .grid,
+    > .d-flex,
     > [class*="flex--cell"] {
         margin-top: 0;
         margin-bottom: 0;
@@ -221,7 +221,7 @@
 //  On columns, remove left and right margins
 .fsy {
     &,
-    > .grid,
+    > .d-flex,
     > [class*="flex--cell"] {
         margin-right: 0;
         margin-left: 0;
