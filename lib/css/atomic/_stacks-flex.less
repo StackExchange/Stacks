@@ -15,14 +15,14 @@
 //  • ATOMIC CLASSES
 
 //  ============================================================================
-//  --  STACKS GRID MIXINS
+//  --  STACKS FLEX MIXINS
 //  ============================================================================
 //  --  FIXED COLUMN WIDTHS
 //  ----------------------------------------------------------------------------
 
 #stacks-internals() {
     #flex-builder-settings() {
-        @grid-cols: 12;    //  Desired grid columns
+        @flex-cols: 12;    //  Desired flex columns
     }
     #flex-builder-helpers() {
         #stacks-internals #flex-builder-settings();
@@ -42,7 +42,7 @@
         //      stating a fixed cell width, apply a modifying to the box container and
         //      all child elements will automatically be sized.
         //  ----------------------------------------------------------------------------
-        .create-grid-count-cols(@num, @count: 1) when (@count =< @num) {
+        .create-flex-count-cols(@num, @count: 1) when (@count =< @num) {
             .flex__allcells@{count} {
                 > .grid,
                 > .flex--cell {
@@ -50,12 +50,12 @@
                 }
             }
 
-            #stacks-internals #flex-builder-helpers .create-grid-count-cols(@num, (@count + 1));
+            #stacks-internals #flex-builder-helpers .create-flex-count-cols(@num, (@count + 1));
         }
 
-        //  --  GRID GUTTERS
+        //  --  FLEX LAYOUT GUTTERS
         //  ============================================================================
-        //      We need two mixins to properly generate grid gutters:
+        //      We need two mixins to properly generate flex layout gutters:
         //
         //      [1]  Adjusts the fixed column max-width / flex-basis if gutters are present.
         //      [2]  Generate the desired gutters.
@@ -92,13 +92,13 @@
         //      of our desired @num.
         //
         //      There are two mixins here:
-        //          • "grid-fixed-cell-row" -- This is the baseline mixin.
-        //          • "grid-fixed-cell-column" -- When the ".d-flex" is a column, change
+        //          • "flex-fixed-cell-row" -- This is the baseline mixin.
+        //          • "flex-fixed-cell-column" -- When the ".d-flex" is a column, change
         //             the margins, setting a top and bottom margin instead of left
         //             and right.
         //
         //  ----------------------------------------------------------------------------
-        .grid-fixed-cell-spacing(@spacing, @num, @count: 1) when (@count =< @num) {
+        .flex-fixed-cell-spacing(@spacing, @num, @count: 1) when (@count =< @num) {
             @cell-width: @count * 100% / @num;
 
             > .flex--cell@{count} {
@@ -109,7 +109,7 @@
             //  [1] FIXED WIDTH CELLS
             //      This makes the fixed width cells to account for gutters.
             //
-            //  [2] UNIFORM CHILD GRID CELLS
+            //  [2] UNIFORM CHILD FLEX CELLS
             //      This class allows you to uniformly state the width of `.flex--cell`
             //      divs within a `.d-flex` element. In particular we adjust the flex-basis
             //      and max-width here to account for gutters.
@@ -120,7 +120,7 @@
                 flex-basis: calc(~"@{cell-width} - @{spacing}");
             }
 
-            #stacks-internals #flex-builder-helpers .grid-fixed-cell-spacing(@spacing, @num, (@count + 1));
+            #stacks-internals #flex-builder-helpers .flex-fixed-cell-spacing(@spacing, @num, (@count + 1));
         }
 
 
@@ -148,7 +148,7 @@
             //  --  FIXED WIDTH CELLS
             //      Now we call for the above mixin [1] to make sure we adjust the default
             //      widths for the new gutters.
-            #stacks-internals #flex-builder-helpers .grid-fixed-cell-spacing(@spacing, @grid-cols);
+            #stacks-internals #flex-builder-helpers .flex-fixed-cell-spacing(@spacing, @flex-cols);
         }
     }
 }
@@ -165,7 +165,7 @@
 }
 
 //  --  UNIVERSAL FLEX WIDTHS
-//      This applies a flex value it to all of a grid's direct children.
+//      This applies a flex value it to all of a flex layout's direct children.
 //  --------------------------------------------------------------------------
 .flex__fl0 {
     &,
@@ -184,19 +184,19 @@
 
 
 & {
-    #stacks-internals #flex-builder-settings(); // load @grid-cols
+    #stacks-internals #flex-builder-settings(); // load @flex-cols
 
     //  $$  FIXED WIDTH CELLS
     //  ----------------------------------------------------------------------------
-    #stacks-internals #flex-builder-helpers .create-fixed-cells(@grid-cols);
+    #stacks-internals #flex-builder-helpers .create-fixed-cells(@flex-cols);
 
     //  $$  AUTO FIXED WIDTH CELLS
     //  ----------------------------------------------------------------------------
-    #stacks-internals #flex-builder-helpers .create-grid-count-cols(@grid-cols);
+    #stacks-internals #flex-builder-helpers .create-flex-count-cols(@flex-cols);
 }
 //  ============================================================================
-//  $   GRID SPACING
-//      Insert spaces or gutters in between grid cells
+//  $   FLEX LAYOUT SPACING
+//      Insert spaces or gutters in between flex layout cells
 //  ----------------------------------------------------------------------------
 .fs2    { #stacks-internals #flex-builder-helpers .gutter-spacing(@su2); }        //  2px
 .fs4    { #stacks-internals #flex-builder-helpers .gutter-spacing(@su4); }        //  4px
@@ -353,7 +353,7 @@
 .fl-grow5                     { flex-grow: 5; }
 
 //  --  FLEX EQUAL
-//      Equally space all children of a grid
+//      Equally space all children of a flex layout
 //  ----------------------------------------------------------------------------
 .fl-equal {
     flex-grow: 1;
