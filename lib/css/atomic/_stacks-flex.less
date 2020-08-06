@@ -43,7 +43,7 @@
         //      all child elements will automatically be sized.
         //  ----------------------------------------------------------------------------
         .create-grid-count-cols(@num, @count: 1) when (@count =< @num) {
-            .grid__allcells@{count} {
+            .flex__allcells@{count} {
                 > .grid,
                 > .flex--cell {
                     flex-basis: (@count * 100%) / @num;
@@ -115,8 +115,8 @@
             //      and max-width here to account for gutters.
             //  ------------------------------------------------------------------------
             > .flex--cell@{count},                                  // [1]
-            &.grid__allcells@{count} > .grid,                       // [2]
-            &.grid__allcells@{count} > .flex--cell {                // [2]
+            &.flex__allcells@{count} > .grid,                       // [2]
+            &.flex__allcells@{count} > .flex--cell {                // [2]
                 flex-basis: calc(~"@{cell-width} - @{spacing}");
             }
 
@@ -167,14 +167,14 @@
 //  --  UNIVERSAL FLEX WIDTHS
 //      This applies a flex value it to all of a grid's direct children.
 //  --------------------------------------------------------------------------
-.grid__fl0 {
+.flex__fl0 {
     &,
     > .grid,
     > .flex--cell {
         flex: 0 auto;
     }
 }
-.grid__fl1 {
+.flex__fl1 {
     &,
     > .grid,
     > .flex--cell {
@@ -302,7 +302,7 @@
 //      A common combination of classes is .jc-center and .ai-center.
 //      Use this class when you want both.
 //  ----------------------------------------------------------------------------
-.grid__center             { .jc-center; .ai-center; }
+.flex__center             { .jc-center; .ai-center; }
 
 //  --  ALIGN SELF
 //      Allows child containers to re-align themselves regardless
