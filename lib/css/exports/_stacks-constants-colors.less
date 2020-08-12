@@ -293,21 +293,28 @@ body,
     --scrollbar: @scrollbar;
 
     // Syntax highlighting
-    --highlight-color: @black-800;
-    --highlight-bg: var(--black-050);
-    --highlight-bg-alt: @black-100;
-
+    --highlight-color: @black-750;
+    --highlight-bg: #f6f6f6; // Between black-025 and black-050
     --highlight-comment: var(--black-400);
     --highlight-punctuation: var(--black-600);
     --highlight-namespace: #b15d08; // Orange
     --highlight-attribute: var(--powder-700);
-    --highlight-function-name: var(--blue-700);
     --highlight-literal: var(--orange-700);
-    --highlight-symbol: #9d4a95; // Purple
-    --highlight-keyword: var(--powder-700); // #b35791; // Purple
-    --highlight-variable: #527908; //707b0e; // Green
-    --highlight-url: #2b91af; // Teal
-    --highlight-diff-inserted: var(--green-300);
+    --highlight-symbol: #883780; // Purple
+    --highlight-keyword: var(--powder-700);
+    --highlight-variable: #527908; // Green
+}
+
+@supports (-webkit-overflow-scrolling: touch) {
+    .s-input,
+    .s-textarea {
+        font-size: 16px;
+        padding: 0.36em 0.55em;
+    }
+    .s-input::-webkit-input-placeholder,
+    .s-textarea::-webkit-input-placeholder {
+        line-height: normal !important;
+    }
 }
 
 //  --  Dark mode
@@ -440,19 +447,14 @@ body,
     // Syntax highlighting
     --highlight-color: @white;
     --highlight-bg: #1c1b1b;
-    --highlight-bg-alt: @black-100;
-
     --highlight-comment: #999;
     --highlight-punctuation: #ccc;
     --highlight-namespace: #f08d49;
     --highlight-attribute: #81a2be;
-    --highlight-function-name: #6196cc;
     --highlight-literal: #f08d49;
-    --highlight-symbol: #c59bc1; // Purple
+    --highlight-symbol: #c59bc1;
     --highlight-keyword: #81a2be;
     --highlight-variable: #b5bd68;
-    --highlight-url: #67cdcc;
-    --highlight-diff-inserted: #82ca9a;
 }
 
 body.theme-system {
