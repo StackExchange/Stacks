@@ -228,10 +228,26 @@ Not indented
 
 ## Tables
 
-| Syntax | Description | Whatever | Whatever | Whatever | Whatever |
-| -- | -- | -- | -- | -- | -- |
-| Header | Title | What | Title | What | What |
-| Paragraph | Text | Ever | Text | Ever | What |
+<div class="s-table-container">
+    <table class="s-table">
+        <thead>
+            <tr>
+                <th>Syntax</th>
+                <th>Whatever</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Title</td>
+                <td>Title</td>
+            </tr>
+            <tr>
+                <td>Title</td>
+                <td>Title</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
 
 ## Strikethrough
 
