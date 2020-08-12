@@ -117,23 +117,18 @@ export default withAuth0(AddATournament);
 {% endhighlight %}
         <div class="stacks-preview--example">
 {% highlight java %}
-public static void main(String[] args) {
-    Dog aDog = new Dog("Max");
-    Dog oldDog = aDog;
+package l2f.gameserver.model;
 
-    // we pass the object to foo
-    foo(aDog);
-    // aDog variable is still pointing to the "Max" dog when foo(...) returns
-    aDog.getName().equals("Max"); // true
-    aDog.getName().equals("Fifi"); // false
-    aDog == oldDog; // true
-}
+public abstract strictfp class L2Char extends L2Object {
+  public static final Short ERROR = 0x0001;
 
-public static void foo(Dog d) {
-    d.getName().equals("Max"); // true
-    // change d inside of foo() to point to a new Dog instance "Fifi"
-    d = new Dog("Fifi");
-    d.getName().equals("Fifi"); // true
+  public void moveTo(int x, int y, int z) {
+    _ai = null;
+    log("Should not be called");
+    if (1 > 5) { // what?
+      return;
+    }
+  }
 }
 {% endhighlight %}
         </div>
@@ -148,18 +143,19 @@ public static void foo(Dog d) {
 {% endhighlight %}
         <div class="stacks-preview--example">
 {% highlight ruby %}
-case x
-when 1..5
-  "It's between 1 and 5"
-when 6
-  "It's 6"
-when "foo", "bar"
-  "It's either foo or bar"
-when String
-  "You passed a string"
-else
-  "You gave me #{x} -- I have no idea what to do with that."
+# The Greeter class
+class Greeter
+  def initialize(name)
+    @name = name.capitalize
+  end
+
+  def salute
+    puts "Hello #{@name}!"
+  end
 end
+
+g = Greeter.new("world")
+g.salute
 {% endhighlight %}
         </div>
     </div>
@@ -198,6 +194,20 @@ all_indices("foo", ["foo","bar","baz","foo"])
 {% endhighlight %}
         <div class="stacks-preview--example">
 {% highlight objectivec %}
+#import <UIKit/UIKit.h>
+#import "Dependency.h"
+
+@protocol WorldDataSource
+@optional
+- (NSString*)worldName;
+@required
+- (BOOL)allowsToLive;
+@end
+
+@property (nonatomic, readonly) NSString *title;
+- (IBAction) show;
+@end
+
 - (UITextField *) userName {
     UITextField *retval = nil;
     @synchronized(self) {
