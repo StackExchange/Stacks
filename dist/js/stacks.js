@@ -4149,6 +4149,14 @@ var Stacks;
             enumerable: false,
             configurable: true
         });
+        Object.defineProperty(BasePopoverController.prototype, "isTooltip", {
+            get: function () {
+                var popoverElement = this.popoverElement;
+                return popoverElement ? popoverElement.classList.contains("s-popover__tooltip") : false;
+            },
+            enumerable: false,
+            configurable: true
+        });
         BasePopoverController.prototype.connect = function () {
             _super.prototype.connect.call(this);
             this.validate();
@@ -4169,6 +4177,7 @@ var Stacks;
             this.isVisible ? this.hide(dispatcher) : this.show(dispatcher);
         };
         BasePopoverController.prototype.show = function (dispatcher) {
+            var _this = this;
             if (dispatcher === void 0) { dispatcher = null; }
             if (this.isVisible) {
                 return;
@@ -4182,9 +4191,13 @@ var Stacks;
             if (!this.popper) {
                 this.initializePopper();
             }
-            this.popoverElement.classList.add("is-visible");
-            this.scheduleUpdate();
-            this.shown();
+            var delayMs = this.isTooltip ? 300 : 0;
+            var timeout = setTimeout(function () {
+                _this.popoverElement.classList.add("is-visible");
+                _this.scheduleUpdate();
+                _this.shown();
+            }, delayMs, this);
+            dispatcherElement.addEventListener("mouseout", function () { return clearTimeout(timeout); }, { once: true });
         };
         BasePopoverController.prototype.hide = function (dispatcher) {
             if (dispatcher === void 0) { dispatcher = null; }

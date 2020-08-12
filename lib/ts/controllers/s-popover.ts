@@ -31,6 +31,14 @@ namespace Stacks {
         }
 
         /**
+         * Returns true if the popover is a tooltip.
+         */
+        get isTooltip() {
+            var popoverElement = this.popoverElement;
+            return popoverElement ? popoverElement.classList.contains("s-popover__tooltip") : false;
+        }
+
+        /**
          * Initializes and validates controller variables
          */
         connect() {
@@ -77,12 +85,15 @@ namespace Stacks {
                 this.initializePopper();
             }
 
-            this.popoverElement!.classList.add("is-visible");
+            let delayMs = this.isTooltip ? 300 : 0;
+            let timeout = setTimeout(() => {
+                this.popoverElement!.classList.add("is-visible");
 
-            // ensure the popper has been positioned correctly
-            this.scheduleUpdate();
-
-            this.shown();
+                // ensure the popper has been positioned correctly
+                this.scheduleUpdate();
+                this.shown();
+            }, delayMs, this);
+            dispatcherElement.addEventListener("mouseout", () => clearTimeout(timeout), { once: true });
         }
 
         /**
