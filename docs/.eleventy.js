@@ -1,3 +1,4 @@
+const hljs = require("highlight.js");
 const syntaxHighlight = require("eleventy-plugin-highlightjs");
 const pluginTOC = require("eleventy-plugin-nesting-toc");
 const markdownShortcode = require("eleventy-plugin-markdown-shortcode");
@@ -82,7 +83,16 @@ module.exports = function(eleventyConfig) {
 
   // Add markdown shortcode
   eleventyConfig.addPlugin(markdownShortcode, {
-    html: true
+    html: true,
+    highlight: function (str, lang) {
+      if (lang && hljs.getLanguage(lang)) {
+        return '<pre class="language-' + lang + ' s-code-block"><code class="language-' + lang + ' s-code-block">' +
+               hljs.highlight(lang, str).value +
+               '</code></pre>';
+      }
+
+      return ''; // use external default escaping
+    }
   });
 
   // Add submenu generation
