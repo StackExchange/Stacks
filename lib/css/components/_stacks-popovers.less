@@ -16,7 +16,8 @@
 //  $   BASE STYLES
 //  ----------------------------------------------------------------------------
 .s-popover {
-    display: none;
+    visibility: hidden;
+    opacity: 0;
     position: absolute;
     max-width: 24rem;
     padding: @su12;
@@ -33,10 +34,13 @@
     &.s-popover__tooltip {
         width: auto;
         min-width: unset;
+        transition-delay: 200ms;
+        transition-property: opacity, visibility;
     }
 
     &.is-visible {
-        display: block;
+        visibility: visible;
+        opacity: 1;
     }
 
     // Auto adjust margins for auto-placed popovers
