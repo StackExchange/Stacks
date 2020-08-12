@@ -4149,14 +4149,6 @@ var Stacks;
             enumerable: false,
             configurable: true
         });
-        Object.defineProperty(BasePopoverController.prototype, "isTooltip", {
-            get: function () {
-                var popoverElement = this.popoverElement;
-                return popoverElement ? popoverElement.classList.contains("s-popover__tooltip") : false;
-            },
-            enumerable: false,
-            configurable: true
-        });
         BasePopoverController.prototype.connect = function () {
             _super.prototype.connect.call(this);
             this.validate();
@@ -4177,7 +4169,6 @@ var Stacks;
             this.isVisible ? this.hide(dispatcher) : this.show(dispatcher);
         };
         BasePopoverController.prototype.show = function (dispatcher) {
-            var _this = this;
             if (dispatcher === void 0) { dispatcher = null; }
             if (this.isVisible) {
                 return;
@@ -4191,13 +4182,9 @@ var Stacks;
             if (!this.popper) {
                 this.initializePopper();
             }
-            var delayMs = this.isTooltip ? 300 : 0;
-            var timeout = setTimeout(function () {
-                _this.popoverElement.classList.add("is-visible");
-                _this.scheduleUpdate();
-                _this.shown();
-            }, delayMs, this);
-            dispatcherElement.addEventListener("mouseout", function () { return clearTimeout(timeout); }, { once: true });
+            this.popoverElement.classList.add("is-visible");
+            this.scheduleUpdate();
+            this.shown();
         };
         BasePopoverController.prototype.hide = function (dispatcher) {
             if (dispatcher === void 0) { dispatcher = null; }
@@ -4580,6 +4567,17 @@ var Stacks;
             }
             _super.prototype.show.call(this, dispatcher);
         };
+        TooltipController.prototype.scheduleShow = function (dispatcher) {
+            var _this = this;
+            if (dispatcher === void 0) { dispatcher = null; }
+            this.activeTimeout = setTimeout(function () { return _this.show(dispatcher); }, 300);
+        };
+        TooltipController.prototype.hide = function (dispatcher) {
+            if (dispatcher === void 0) { dispatcher = null; }
+            clearTimeout(this.activeTimeout);
+            this.activeTimeout = null;
+            _super.prototype.hide.call(this, dispatcher);
+        };
         TooltipController.prototype.applyTitleAttributes = function () {
             var content;
             var htmlTitle = this.data.get("html-title");
@@ -4645,13 +4643,13 @@ var Stacks;
             }
         };
         TooltipController.prototype.bindMouseEvents = function () {
-            this.boundShow = this.boundShow || this.show.bind(this);
+            this.boundScheduleShow = this.boundScheduleShow || this.scheduleShow.bind(this);
             this.boundHide = this.boundHide || this.hide.bind(this);
-            this.referenceElement.addEventListener("mouseover", this.boundShow);
+            this.referenceElement.addEventListener("mouseover", this.boundScheduleShow);
             this.referenceElement.addEventListener("mouseout", this.boundHide);
         };
         TooltipController.prototype.unbindMouseEvents = function () {
-            this.referenceElement.removeEventListener("mouseover", this.boundShow);
+            this.referenceElement.removeEventListener("mouseover", this.boundScheduleShow);
             this.referenceElement.removeEventListener("mouseout", this.boundHide);
         };
         TooltipController.generateId = function () {
