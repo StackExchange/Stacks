@@ -35,7 +35,7 @@ module.exports = function(grunt) {
             // note that the docs CSS includes the full Stacks
             docs: {
                 files: {
-                    'docs/assets/css/stacks-documentation.css': 'docs/assets/less/stacks-documentation.less'
+                    'docs/assets/css/stacks-documentation.css': 'docs/assets/less/stacks-documentation.less',
                 }
             },
             stacks_partials: {
@@ -57,7 +57,7 @@ module.exports = function(grunt) {
             },
             docs: {
                 files: {
-                    'docs/assets/css/stacks-documentation.min.css': 'docs/assets/css/stacks-documentation.css'
+                    'docs/assets/css/stacks-documentation.min.css': 'docs/assets/css/stacks-documentation.css',
                 }
             }
         },
