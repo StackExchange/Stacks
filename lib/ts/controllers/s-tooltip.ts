@@ -63,7 +63,7 @@ namespace Stacks {
          * Cancels the scheduled tooltip popover display and hides it if already displayed
          */
         hide(dispatcher: Event | Element | null = null) {
-            clearTimeout(this.activeTimeout);
+            window.clearTimeout(this.activeTimeout);
             this.activeTimeout = null;
 
             super.hide(dispatcher);
