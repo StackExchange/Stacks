@@ -55,7 +55,8 @@ namespace Stacks {
          * Sets up a tooltip popover show after a delay.
          */
         scheduleShow(dispatcher: Event | Element | null = null) {
-            this.activeTimeout = setTimeout(() => this.show(dispatcher), 300);
+            window.clearTimeout(this.activeTimeout);
+            this.activeTimeout = window.setTimeout(() => this.show(dispatcher), 300);
         }
 
         /**
