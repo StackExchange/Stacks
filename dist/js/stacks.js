@@ -4567,6 +4567,17 @@ var Stacks;
             }
             _super.prototype.show.call(this, dispatcher);
         };
+        TooltipController.prototype.scheduleShow = function (dispatcher) {
+            var _this = this;
+            if (dispatcher === void 0) { dispatcher = null; }
+            this.activeTimeout = setTimeout(function () { return _this.show(dispatcher); }, 300);
+        };
+        TooltipController.prototype.hide = function (dispatcher) {
+            if (dispatcher === void 0) { dispatcher = null; }
+            clearTimeout(this.activeTimeout);
+            this.activeTimeout = null;
+            _super.prototype.hide.call(this, dispatcher);
+        };
         TooltipController.prototype.applyTitleAttributes = function () {
             var content;
             var htmlTitle = this.data.get("html-title");
@@ -4632,13 +4643,13 @@ var Stacks;
             }
         };
         TooltipController.prototype.bindMouseEvents = function () {
-            this.boundShow = this.boundShow || this.show.bind(this);
+            this.boundScheduleShow = this.boundScheduleShow || this.scheduleShow.bind(this);
             this.boundHide = this.boundHide || this.hide.bind(this);
-            this.referenceElement.addEventListener("mouseover", this.boundShow);
+            this.referenceElement.addEventListener("mouseover", this.boundScheduleShow);
             this.referenceElement.addEventListener("mouseout", this.boundHide);
         };
         TooltipController.prototype.unbindMouseEvents = function () {
-            this.referenceElement.removeEventListener("mouseover", this.boundShow);
+            this.referenceElement.removeEventListener("mouseover", this.boundScheduleShow);
             this.referenceElement.removeEventListener("mouseout", this.boundHide);
         };
         TooltipController.generateId = function () {
