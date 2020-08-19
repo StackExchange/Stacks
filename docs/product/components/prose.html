@@ -11,13 +11,20 @@ description: The prose component provides proper styling for rendered Markdown.
                 <tr>
                     <th scope="col">Class</th>
                     <th scope="col">Output</th>
-
                 </tr>
             </thead>
             <tbody>
                 <tr>
                     <th scope="row"><code class="stacks-code">.s-prose</code></th>
                     <td class="ff-mono">Adds proper styling for rendered Markdown.</td>
+                </tr>
+                <tr>
+                    <th scope="row"><code class="stacks-code">.s-prose__xs</code></th>
+                    <td class="ff-mono">Our most compact version with the smallest font size and line height.</td>
+                </tr>
+                <tr>
+                    <th scope="row"><code class="stacks-code">.s-prose__sm</code></th>
+                    <td class="ff-mono">Decreases the base font size and line height.</td>
                 </tr>
                 <tr>
                     <th scope="row"><code class="stacks-code">.s-prose__md</code></th>
@@ -70,6 +77,50 @@ description: The prose component provides proper styling for rendered Markdown.
 
 <section class="stacks-section">
     {% header "h2", "Sizing" %}
+
+    {% header "h3", "Extra Small" %}
+    <div class="stacks-preview">
+{% highlight html %}
+<div class="s-prose s-prose__xs">
+    …
+</div>
+{% endhighlight %}
+        <div class="stacks-preview--example d:bg-white">
+            <div class="s-prose s-prose__xs">
+                {% markdown '/_includes/markdown-readme.md' %}
+            </div>
+        </div>
+    </div>
+
+    {% header "h3", "Small" %}
+    <p class="stacks-copy">In ancilliary content like comments or side-discussions, it may be appropriate to add the small variation.</p>
+    <div class="stacks-preview">
+{% highlight html %}
+<div class="s-prose s-prose__sm">
+    …
+</div>
+{% endhighlight %}
+        <div class="stacks-preview--example d:bg-white">
+            <div class="s-prose s-prose__sm">
+                {% markdown '/_includes/markdown-readme.md' %}
+            </div>
+        </div>
+    </div>
+
+    {% header "h3", "Default" %}
+    <div class="stacks-preview">
+{% highlight html %}
+<div class="s-prose">
+    …
+</div>
+{% endhighlight %}
+        <div class="stacks-preview--example d:bg-white">
+            <div class="s-prose">
+                {% markdown '/_includes/markdown-readme.md' %}
+            </div>
+        </div>
+    </div>
+
     {% header "h3", "Medium" %}
     <p class="stacks-copy">Depending on the context for displaying the prose component, it may be appropriate to size text up to maintain readability.</p>
     <div class="stacks-preview">
