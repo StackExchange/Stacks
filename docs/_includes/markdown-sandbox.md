@@ -207,6 +207,17 @@ Not indented
     1. Mid level
         + Bottom level
 
+* List item
+
+  List paragraph
+* List item
+
+  List paragraph
+  * Subitem
+  * Subitem
+
+  List paragraph
+
 - Code within list items: indention requires blank line then 4 additional spaces beyond list indention level.
 
 1. Top level
