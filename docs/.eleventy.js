@@ -115,7 +115,7 @@ module.exports = function(eleventyConfig) {
         }
 
         var newContent =
-            '<code class="s-code-block--line-numbers nocode">' +
+            '<code class="s-code-block--line-numbers">' +
             output +
             "</code>" +
             content;
