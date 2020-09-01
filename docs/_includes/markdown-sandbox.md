@@ -269,7 +269,7 @@ Not indented
 - Create a spoiler with `>!`:
 
 <blockquote class="spoiler js-spoiler" data-spoiler="Reveal spoiler">
-    <p>Tyler Durden is Luke Skywalker’s father.</p>
+    <p>Tyler Durden is <a href="#">Luke Skywalker’s</a> father.</p>
     <p>Keyser Söze was dead the whole time.</p>
 </blockquote>
 
