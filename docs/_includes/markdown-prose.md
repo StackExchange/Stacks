@@ -1,85 +1,200 @@
-Hey folks! I’m Ben and I’m a dev on the **Teams** team here at Stack Overflow - we're the team focused on building the private Teams experience on SO. I’ve recently been working on our post editing experience and I’d like to show off some preliminary work that’s coming to the network soon.
+<p className="lead">
+  Until now, trying to style an article, document, or blog post with Tailwind has been a tedious
+  task that required a keen eye for typography and a lot of complex custom CSS.
+</p>
 
-## TL;DR
+By default, Tailwind removes all of the default browser styling from paragraphs, headings, lists and more. This ends up being really useful for building application UIs because you spend less time undoing user-agent styles, but when you _really are_ just trying to style some content that came from a rich-text editor in a CMS or a markdown file, it can be surprising and unintuitive.
 
-We’re switching our code block highlighting library from Google Prettify to highlight.js. All your favorite languages are still supported and you won’t need to change how you write posts at all. The only major change is how we *render* highlighted code blocks. In addition, we’re taking this opportunity to introduce our new highlighting theme as well. We’re rolling this out in stages, starting with MSE/MSO with other sites to follow. (See the FAQ at the bottom of this post for dates)
+We get lots of complaints about it actually, with people regularly asking us things like:
 
-## Some history on Prettify / code block highlighting
+> Why is Tailwind removing the default styles on my `h1` elements? How do I disable this? What do you mean I lose all the other base styles too?
 
-I tried to do some digging on when we first adopted Prettify, but it seems that its history goes allll the way back to site’s earliest days. [The earliest reference I could find was from back in ‘08](https://meta.stackexchange.com/a/28275/395497). I asked around internally too and the best answers I could get were along the lines of:
+We hear you, but we're not convinced that simply disabling our base styles is what you really want. You don't want to have to remove annoying margins every time you use a `p` element in a piece of your dashboard UI. And I doubt you really want your blog posts to use the user-agent styles either — you want them to look _awesome_, not awful.
 
-> ¯\\\_(ツ)_/¯ *- Everyone*
+The `@tailwindcss/typography` plugin is our attempt to give you what you _actually_ want, without any of the downsides of doing something stupid like disabling our base styles.
 
-> Ask Atwood *- [Dean](https://meta.stackexchange.com/users/267572/dean-ward)*
+It adds a new `prose` class that you can slap on any block of vanilla HTML content and turn it into a beautiful, well-formatted document:
 
-and
+```html
+<article class="prose">
+  <h1>Garlic bread with cheese: What the science tells us</h1>
+  <p>
+    For years parents have espoused the health benefits of eating garlic bread with cheese to their
+    children, with the food earning such an iconic status in our culture that kids will often dress
+    up as warm, cheesy loaf for Halloween.
+  </p>
+  <p>
+    But a recent study shows that the celebrated appetizer may be linked to a series of rabies cases
+    springing up around the country.
+  </p>
+  <!-- ... -->
+</article>
+```
 
-> If I had to guess, it was something along the lines of "there's not a lot of options, and this is used by Google so it's probably fine" *- [Kevin](https://meta.stackexchange.com/users/130213/kevin-montrose)*
+For more information about how to use the plugin and the features it includes, [read the documentation](https://github.com/tailwindcss/typography/blob/master/README.md).
 
-Eventually the wonderful [Tim Post](https://meta.stackexchange.com/users/50049/tim-post) pointed me to [Stack Overflow Podcast #11](https://stackoverflow.blog/2008/06/26/podcast-11/), aired June 2008, where Jeff and Joel talk about how incredible it was for the time and how Google uses it themselves for syntax highlighting in Google Code (RIP). They also put out a call for alternatives, which I’d have to assume came up short.
+---
 
-## Why the change?
+## What to expect from here on out
 
-Google Prettify is no longer under active development, as you all have [let](https://meta.stackexchange.com/questions/251321/google-code-prettify-seems-dead) [us](https://meta.stackexchange.com/questions/264356/update-code-prettify) [know](https://meta.stackexchange.com/questions/289694/a-stack-exchange-fork-of-google-prettify) [repeatedly](https://meta.stackexchange.com/questions/347738/google-code-prettify-has-been-officially-discontinued-its-time-for-se-to-maint). This means that no new language syntaxes<sup>1</sup> are being supported and that existing language syntaxes aren’t getting updated to support all their new features. It’s time to move on to something that supports modern front-end workflows (such as providing an npm package, for starters) and continues to evolve to meet the needs of developers.
+What follows from here is just a bunch of absolute nonsense I've written to dogfood the plugin itself. It includes every sensible typographic element I could think of, like **bold text**, unordered lists, ordered lists, code blocks, block quotes, _and even italics_.
 
-## What’s changing about how I write posts?
+It's important to cover all of these use cases for a few reasons:
 
-Absolutely nothing :). There is absolutely no change to how posts are written. We still support all the Prettify [language aliases](https://meta.stackexchange.com/a/184109/395497) you know and love, along with the [new aliases](https://github.com/highlightjs/highlight.js/blob/master/SUPPORTED_LANGUAGES.md) from highlight.js. *However*, we are not adding support for any *new* languages at this time, instead choosing to keep the initial changeset simple and aiming for current feature parity instead. All the current markdown syntax is still supported, along with determining code highlighting from tags and site defaults.
+1. We want everything to look good out of the box.
+2. Really just the first reason, that's the whole point of the plugin.
+3. Here's a third pretend reason though a list with three items looks more realistic than a list with two items.
 
-## So what *is* changing?
+Now we're going to try out another header style.
 
-The “only” changes are visual. We are updating the client-side code block *renderer* that styles your code in posts (Questions, Answers, etc) and in the editor preview. Syntax autodetection when a language is not specified should be much better overall, along with syntax highlighting coverage in general. The biggest outward facing change for the typical user is going to be our new theme (see below for details).
+### Typography should be easy
 
-## Why highlight.js? Why not…
+So that's a header for you — with any luck if we've done our job correctly that will look pretty reasonable.
 
-Why did we pick highlight.js over Prettify? Well, first off, you [asked](https://meta.stackexchange.com/questions/126608/why-doesnt-stackoverflow-use-highlight-js-instead-of-google-code-prettify) [for](https://meta.stackexchange.com/questions/242456/switching-to-highlight-js-for-syntax-highlighting) [it](https://meta.stackexchange.com/questions/278141/highlight-js-for-real-please) specifically. More convincingly, it’s [open source](https://github.com/highlightjs/highlight.js/), [actively maintained](https://github.com/highlightjs/highlight.js/releases), and overall just a solid product.
+Something a wise person once told me about typography is:
 
-We’re extremely concerned about perf here at SO (both on the client and on the server), so we needed to ensure that this major change on our hottest page on the site didn’t negatively impact our users. In our internal performance benchmarks highlight.js scored better than Prettify consistently across all browsers (except macOS Safari 13.1, where it was actually a bit slower)<sup>2</sup>. It is a *tad* heavier than Prettify<sup>3</sup>, weighing in at an extra \~17k (over the wire) after including all the languages we support across the network. This extra weight gain was acceptable to us as a tradeoff for what we were getting in return.
+> Typography is pretty important if you don't want your stuff to look like trash. Make it good then it won't be bad.
 
-Why did we pick highlight.js over other contenders? Simply put, it was the best option that served our needs. We needed a library that we could easily control for use in the browser (deferred loading, theming specific elements), while also being simple to consume via a npm package, not needing specific build steps or a special babel plugin to pull in only the parts we need. Additionally, we could run it on the server (via Node.js) to unify our syntax highlighting in our [Stacks](https://stackoverflow.design/) documentation, giving us a single syntax highlighter across our products. Also a major plus was the ability to tokenize the highlighting result for use in our new editor (stay tuned!).
+It's probably important that images look okay here by default as well:
 
-## What are some potential drawbacks?
+<figure>
+  <img
+    src="https://images.unsplash.com/photo-1556740758-90de374c12ad?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1000&q=80"
+    alt=""
+  />
+  <figcaption>
+    Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of
+    classical Latin literature from 45 BC, making it over 2000 years old.
+  </figcaption>
+</figure>
 
-The most obvious not-quite-a-drawback is that language autodetection is different from Prettify. In general, it will be much more accurate, but will possibly end up with a different result that what Prettify would give us. This isn’t so much a bad thing, as it is just a thing that might take some getting used to if you’re a Prettify power user.
+Now I'm going to show you an example of an unordered list to make sure that looks good, too:
 
-As mentioned earlier, the overall code bundle size is a bit bigger too. The vast majority of users wouldn’t even notice the change, which would only affect the first fetch since the browser will cache the file locally for subsequent hits anyways.
+- So here is the first item in this list.
+- In this example we're keeping the items short.
+- Later, we'll use longer, more complex list items.
 
-The last item is a bit of a personal preference. highlight.js tends to not highlight punctuation, which makes it a bit less colorful than other highlighters. This is [considered a feature](https://github.com/highlightjs/highlight.js/issues/1296#issuecomment-246226256). Not a deal breaker by any means, but something I should mention regardless.
+And that's the end of this section.
 
-## Designing the new theme
+## What if we stack headings?
 
-To offer some insight into how the new theme was designed, I reached out to the author, principal design systems designer [Aaron Shekey](https://meta.stackexchange.com/users/355163/aaron-shekey).
+### We should make sure that looks good, too.
 
-> Since we’re upgrading, we wanted to take this opportunity to design a Stack Overflow-flavored theme that takes advantage of newer tech like CSS variables that are aware of both light and dark modes. While we’ve improved it over the years, it’s highly likely that the current production theme simply used the stock colors provided by Prettify.
-> 
-> We’d need a theme that could work in both light and dark modes, was informed by Stack Overflow’s branded colors, and introduced a bit more contrast throughout.
-> 
-> Thankfully, we weren’t starting from scratch. When we built our Stacks documentation, we’d spent some time making our Jekyll theme display code snippets that got pretty close to accomplishing those goals. However, this was before dark mode was a thing, and we’d only built a single theme that assumed a fixed dark background. We’d have to extend this theme to light mode and revisit contrast along the way.
-> 
-> Using the [Stacks documentation](https://stackoverflow.design/product/components/code-blocks/) as a playground, we’ve now got themes in both light and dark modes that look like Stack Overflow and add or maintain contrast levels. We did our best to accomplish a contrast level of AAA, with a few variables dipping into AA. You can see the exact measurements commented in our [colors](https://github.com/StackExchange/Stacks/blob/develop/lib/css/exports/_stacks-constants-colors.less#L296-L307) [constants](https://github.com/StackExchange/Stacks/blob/develop/lib/css/exports/_stacks-constants-colors.less#L438-L449) file.
+Sometimes you have headings directly underneath each other. In those cases you often have to undo the top margin on the second heading because it usually looks better for the headings to be closer together than a paragraph followed by a heading should be.
 
-Here are a few screencaps of the new theme taken from my local development environment. You can preview more languages (with an easy dark/light mode toggle) over at the [Stacks docs](https://stackoverflow.design/product/components/code-blocks/).
+### When a heading comes after a paragraph …
 
-![](https://stackoverflow.com/c/pickles/images/s/3e733161-2b85-4e4b-91ae-c111e4bad3dd.png)
+When a heading comes after a paragraph, we need a bit more space, like I already mentioned above. Now let's see what a more complex list would look like.
 
-![](https://stackoverflow.com/c/pickles/images/s/9f53ead9-928b-415e-949c-462d72b1ffed.png)
+- **I often do this thing where list items have headings.**
 
-## FAQ
+  For some reason I think this looks cool which is unfortunate because it's pretty annoying to get the styles right.
 
-TODO more questions, formatting?
+  I often have two or three paragraphs in these list items, too, so the hard part is getting the spacing between the paragraphs, list item heading, and separate list items to all make sense. Pretty tough honestly, you could make a strong argument that you just shouldn't write this way.
 
-- Q: When is the rollout happening?
+- **Since this is a list, I need at least two items.**
 
-  A: We're planning to roll this out to meta.stackexchange and meta.stackoverflow on **Thursday, September 8th**, with a preview post on **Tuesday, September 6th**. Rollout to the rest of the network is scheduled for September 24th, after the initial testing period. This is a *soft* rollout date, dependent on any bugs/feedback we get from the community during the testing period.
+  I explained what I'm doing already in the previous list item, but a list wouldn't be a list if it only had one item, and we really want this to look realistic. That's why I've added this second list item so I actually have something to look at when writing the styles.
 
-- Q: What if I find a bug?
+- **It's not a bad idea to add a third item either.**
 
-  A: Report bugs in an answer (one per answer) to this question. We'll keep this open for a couple/few weeks (until Friday, September 18th) to address any immediate issues and then we'll update this post and ask you to post bugs as new questions after that time.
+  I think it probably would've been fine to just use two items but three is definitely not worse, and since I seem to be having no trouble making up arbitrary things to type, I might as well include it.
 
-### Footnotes
+After this sort of list I usually have a closing statement or paragraph, because it kinda looks weird jumping right to a heading.
 
-<sup>1</sup> I checked, plural of *syntax* [is syntaxes](https://english.stackexchange.com/questions/65541/plural-of-syntax). Take *that* spell-checker!
+## Code should look okay by default.
 
-<sup>2</sup> Client-side benchmarks being what they are, we measured anywhere from \~49%-60% increase in the rate of ops/second depending on the machine and browser. Outliers being Safari 13.1 which had a \~29% *decrease* (favoring prettify) and Edge “legacy” scoring a \~279% increase over prettify!
+I think most people are going to use [highlight.js](https://highlightjs.org/) or [Prism](https://prismjs.com/) or something if they want to style their code blocks but it wouldn't hurt to make them look _okay_ out of the box, even with no syntax highlighting.
 
-<sup>3</sup> Size comparisons were done comparing the `prettify-full.en.js` file taken from production vs the new `highlight.pack.js` bundle. Both were minified and served via a [webpack-dev-server](https://github.com/webpack/webpack-dev-server) instance with the [compress flag](https://webpack.js.org/configuration/dev-server/#devservercompress) set (enabling gzip support). They were then included onto a regular html page with `script` tags and measured using the built-in browser dev tools. At the time of measurement, prettify landed at `23.3kB` over the wire (meaning that the file was minified + gzipped) vs highlight.js at `40.7kB`. This is a `17.4kB` increase or about a \~74% increase in file size.
+Here's what a default `tailwind.config.js` file looks like at the time of writing:
+
+```js
+module.exports = {
+  purge: [],
+  theme: {
+    extend: {},
+  },
+  variants: {},
+  plugins: [],
+}
+```
+
+Hopefully that looks good enough to you.
+
+### What about nested lists?
+
+Nested lists basically always look bad which is why editors like Medium don't even let you do it, but I guess since some of you goofballs are going to do it we have to carry the burden of at least making it work.
+
+1. **Nested lists are rarely a good idea.**
+   - You might feel like you are being really "organized" or something but you are just creating a gross shape on the screen that is hard to read.
+   - Nested navigation in UIs is a bad idea too, keep things as flat as possible.
+   - Nesting tons of folders in your source code is also not helpful.
+2. **Since we need to have more items, here's another one.**
+   - I'm not sure if we'll bother styling more than two levels deep.
+   - Two is already too much, three is guaranteed to be a bad idea.
+   - If you nest four levels deep you belong in prison.
+3. **Two items isn't really a list, three is good though.**
+   - Again please don't nest lists if you want people to actually read your content.
+   - Nobody wants to look at this.
+   - I'm upset that we even have to bother styling this.
+
+The most annoying thing about lists in Markdown is that `<li>` elements aren't given a child `<p>` tag unless there are multiple paragraphs in the list item. That means I have to worry about styling that annoying situation too.
+
+- **For example, here's another nested list.**
+
+  But this time with a second paragraph.
+
+  - These list items won't have `<p>` tags
+  - Because they are only one line each
+
+- **But in this second top-level list item, they will.**
+
+  This is especially annoying because of the spacing on this paragraph.
+
+  - As you can see here, because I've added a second line, this list item now has a `<p>` tag.
+
+    This is the second line I'm talking about by the way.
+
+  - Finally here's another list item so it's more like a list.
+
+- A closing list item, but with no nested list, because why not?
+
+And finally a sentence to close off this section.
+
+## There are other elements we need to style
+
+I almost forgot to mention links, like [this link to the Tailwind CSS website](https://tailwindcss.com). We almost made them blue but that's so yesterday, so we went with dark gray, feels edgier.
+
+We even included table styles, check it out:
+
+| Wrestler                | Origin       | Finisher           |
+| ----------------------- | ------------ | ------------------ |
+| Bret "The Hitman" Hart  | Calgary, AB  | Sharpshooter       |
+| Stone Cold Steve Austin | Austin, TX   | Stone Cold Stunner |
+| Randy Savage            | Sarasota, FL | Elbow Drop         |
+| Vader                   | Boulder, CO  | Vader Bomb         |
+| Razor Ramon             | Chuluota, FL | Razor's Edge       |
+
+We also need to make sure inline code looks good, like if I wanted to talk about `<span>` elements or tell you the good news about `@tailwindcss/typography`.
+
+### Sometimes I even use `code` in headings
+
+Even though it's probably a bad idea, and historically I've had a hard time making it look good. This _"wrap the code blocks in backticks"_ trick works pretty well though really.
+
+Another thing I've done in the past is put a `code` tag inside of a link, like if I wanted to tell you about the [`tailwindcss/docs`](https://github.com/tailwindcss/docs) repository. I don't love that there is an underline below the backticks but it is absolutely not worth the madness it would require to avoid it.
+
+#### We haven't used an `h4` yet
+
+But now we have. Please don't use `h5` or `h6` in your content, Medium only supports two heading levels for a reason, you animals. I honestly considered using a `before` pseudo-element to scream at you if you use an `h5` or `h6`.
+
+We don't style them at all out of the box because `h4` elements are already so small that they are the same size as the body copy. What are we supposed to do with an `h5`, make it _smaller_ than the body copy? No thanks.
+
+### We still need to think about stacked headings though.
+
+#### Let's make sure we don't screw that up with `h4` elements, either.
+
+Phew, with any luck we have styled the headings above this text and they look pretty good.
+
+Let's add a closing paragraph here so things end with a decently sized block of text. I can't explain why I want things to end that way but I have to assume it's because I think things will look weird or unbalanced if there is a heading too close to the end of the document.
+
+What I've written here is probably long enough, but adding this final sentence can't hurt.
