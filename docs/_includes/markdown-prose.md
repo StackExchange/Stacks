@@ -167,13 +167,44 @@ I almost forgot to mention links, like [this link to the Tailwind CSS website](h
 
 We even included table styles, check it out:
 
-| Wrestler                | Origin       | Finisher           |
-| ----------------------- | ------------ | ------------------ |
-| Bret "The Hitman" Hart  | Calgary, AB  | Sharpshooter       |
-| Stone Cold Steve Austin | Austin, TX   | Stone Cold Stunner |
-| Randy Savage            | Sarasota, FL | Elbow Drop         |
-| Vader                   | Boulder, CO  | Vader Bomb         |
-| Razor Ramon             | Chuluota, FL | Razor's Edge       |
+<div class="s-table-container">
+<table class="s-table">
+<thead>
+<tr>
+<th>Wrestler</th>
+<th>Origin</th>
+<th>Finisher</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Bret "The Hitman" Hart</td>
+<td>Calgary, AB</td>
+<td>Sharpshooter</td>
+</tr>
+<tr>
+<td>Stone Cold Steve Austin</td>
+<td>Austin, TX</td>
+<td>Stone Cold Stunner</td>
+</tr>
+<tr>
+<td>Randy Savage</td>
+<td>Sarasota, FL</td>
+<td>Elbow Drop</td>
+</tr>
+<tr>
+<td>Vader</td>
+<td>Boulder, CO</td>
+<td>Vader Bomb</td>
+</tr>
+<tr>
+<td>Razor Ramon</td>
+<td>Chuluota, FL</td>
+<td>Razor's Edge</td>
+</tr>
+</tbody>
+</table>
+</div>
 
 We also need to make sure inline code looks good, like if I wanted to talk about `<span>` elements or tell you the good news about `@tailwindcss/typography`.
 
