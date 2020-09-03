@@ -11,13 +11,16 @@
 //  ----------------------------------------------------------------------------
 
 .s-prose {
+    --s-prose-spacing: 1.1em;
+    --s-prose-spacing-half: calc(var(--s-prose-spacing) / 2);
+
     // Base styling
     font-size: 15px; // Force a font size that doesn’t change at the smallest breakpoint
     line-height: @lh-prose;
     word-wrap: break-word;
 
     p {
-        margin-bottom: 1.2667em;
+        margin-bottom: var(--s-prose-spacing);
     }
 
     pre {
@@ -40,7 +43,7 @@
         color: var(--black-100);
         background-color: var(--black-100);
         height: 1px;
-        margin-bottom: 1.2667em;
+        margin-bottom: var(--s-prose-spacing);
     }
 
     li {
@@ -150,7 +153,7 @@
     // ----------------------------------------------------------------------------
     img {
         max-width: 100%;
-        margin-bottom: 1.2667em;
+        margin-bottom: var(--s-prose-spacing);
         vertical-align: bottom;
     }
 
@@ -163,7 +166,7 @@
     }
 
     figure {
-        margin: 0 1em 1.2667em 1em;
+        margin: 0 1em var(--s-prose-spacing) 1em;
     }
 
     // ============================================================================
@@ -172,7 +175,7 @@
     ol,
     ul {
         margin-top: 0;
-        margin-bottom: 1.2667em;
+        margin-bottom: var(--s-prose-spacing);
 
         p,
         dl,
@@ -198,19 +201,19 @@
         dd,
         ul,
         ol {
-            margin-bottom: .6em;
+            margin-bottom: var(--s-prose-spacing-half);
         }
 
         pre {
             // Add some more spacing on the bottom
             // For a little extra optical alignment
-            margin-bottom: .7em;
+            margin-bottom: calc(var(--s-prose-spacing-half) + .1em);
         }
     }
 
     ol li,
     ul li {
-        margin-bottom: .6em;
+        margin-bottom: var(--s-prose-spacing-half);
 
         &:last-child {
             margin-bottom: 0;
@@ -220,7 +223,7 @@
     li {
         > ul,
         > ol {
-            margin-top: .6em;
+            margin-top: var(--s-prose-spacing-half);
         }
     }
 
@@ -228,7 +231,7 @@
     //  $ TABLES
     // ----------------------------------------------------------------------------
     .s-table-container {
-        margin-bottom: 1.2667em;
+        margin-bottom: var(--s-prose-spacing);
     }
 
     // ============================================================================
@@ -236,7 +239,7 @@
     // ----------------------------------------------------------------------------
     dl {
         margin-top: 0;
-        margin-bottom: 1.2667em;
+        margin-bottom: var(--s-prose-spacing);
     }
 
     dt {
@@ -245,7 +248,7 @@
 
     dd {
         margin: 0;
-        margin-bottom: 1.2667em;
+        margin-bottom: var(--s-prose-spacing);
         padding: 0;
 
         &:last-child {
@@ -294,7 +297,7 @@
 
     blockquote {
         position: relative;
-        margin: 0 1em 1.2667em 1em;
+        margin: 0 1em var(--s-prose-spacing) 1em;
         padding: .8em .8em .8em 1em;
         color: var(--black-600);
 
@@ -322,7 +325,7 @@
     // Blockquotes inside list
     li {
         blockquote {
-            margin-top: 0.5em;
+            margin-top: var(--s-prose-spacing-half);
         }
     }
 
@@ -407,7 +410,7 @@
     }
 
     pre {
-        margin-bottom: 1.6em; // This is increased from 1.2667em for better optical spacing
+        margin-bottom: calc(var(--s-prose-spacing-half) + .4em); // Increase this spacing for better optical alignment
     }
 
     pre:not(.s-code-block) {
