@@ -11,12 +11,13 @@
 //  ----------------------------------------------------------------------------
 
 .s-prose {
+    --s-prose-line-height: 1.5;
     --s-prose-spacing: 1.1em;
     --s-prose-spacing-half: calc(var(--s-prose-spacing) / 2);
 
     // Base styling
     font-size: 15px; // Force a font size that doesn’t change at the smallest breakpoint
-    line-height: @lh-prose;
+    line-height: var(--s-prose-line-height);
     word-wrap: break-word;
 
     p {
@@ -390,7 +391,7 @@
         padding: .1em .6em;
         font-family: @ff-sans;
         font-size: @fs-fine;
-        line-height: @lh-prose;
+        line-height: var(--s-prose-line-height);
         color: var(--black-800);
         text-shadow: 0 1px 0 var(--white);
         background-color: var(--black-075);
