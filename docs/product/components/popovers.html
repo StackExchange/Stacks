@@ -78,9 +78,15 @@ description: Popovers are small content containers that provide a contextual ove
                     <td>Controller element</td>
                     <td class="p8 lh-lg">Dictates where to place the popover in relation to the reference element. By default, the placement value is <code class="stacks-code">bottom</code>. Accepted placements are <code class="stacks-code">auto</code>, <code class="stacks-code">top</code>, <code class="stacks-code">right</code>, <code class="stacks-code">bottom</code>, <code class="stacks-code">left</code>. Each placement can take an additional <code class="stacks-code">-start</code> and <code class="stacks-code">-end</code> variation.</td>
                 </tr>
+                <tr>
+                    <th scope="row"><code class="stacks-code">data-popper-arrow</code></th>
+                    <td><code class="stacks-code">.s-popover--arrow</code></td>
+                    <td class="p8 lh-lg">Automatically manages arrow offsets depending on preferred placement and browser offsets.</td>
+                </tr>
             </tbody>
         </table>
     </div>
+
     {% header "h3", "Interactive Events" %}
     <div class="overflow-x-auto mb32">
         <table class="wmn4 s-table s-table__bx-simple">
@@ -145,7 +151,7 @@ description: Popovers are small content containers that provide a contextual ove
                 Show example popover
             </button>
             <div id="popover-example-1" class="s-popover ws2" role="menu">
-                <div class="s-popover--arrow"></div>
+                <div class="s-popover--arrow" data-popper-arrow></div>
                 <div class="tt-uppercase fs-fine fc-light">
                     Saved filters
                 </div>
@@ -161,7 +167,7 @@ description: Popovers are small content containers that provide a contextual ove
                 Show example popover
             </button>
             <div id="popover-example-2" class="s-popover p16" role="menu">
-                <div class="s-popover--arrow"></div>
+                <div class="s-popover--arrow" data-popper-arrow></div>
                 <div class="s-empty-state wmx2">
                     {% spot "EmptyLg", "mb12" %}
                     <p>There’s no data associated with your account yet. Please check back tomorrow.</p>
@@ -177,7 +183,7 @@ description: Popovers are small content containers that provide a contextual ove
                     Follow question
                 </a>
                 <div id="popover-example-3" class="s-popover is-visible ws2" role="menu">
-                    <div class="s-popover--arrow"></div>
+                    <div class="s-popover--arrow" data-popper-arrow></div>
                     <button class="s-popover--close s-btn s-btn__muted" aria-label="Close" data-action="s-popover#toggle">{% icon "ClearSm" %}</button>
 
                     <div class="grid ai-start">
@@ -215,7 +221,7 @@ description: Popovers are small content containers that provide a contextual ove
 <div class="s-popover"
        id="popover-example"
        role="menu">
-    <div class="s-popover--arrow"></div>
+    <div class="s-popover--arrow" data-popper-arrow></div>
     …
 </div>
 {% endhighlight %}
@@ -231,7 +237,7 @@ description: Popovers are small content containers that provide a contextual ove
             <div class="s-popover wmn-initial w-auto"
                 id="popover-example"
                 role="menu">
-                <div class="s-popover--arrow"></div>
+                <div class="s-popover--arrow" data-popper-arrow></div>
                 Example popover content
             </div>
         </div>
@@ -253,7 +259,7 @@ description: Popovers are small content containers that provide a contextual ove
     </button>
 
     <div id="popover-example" class="s-popover is-visible" role="menu">
-        <div class="s-popover--arrow"></div>
+        <div class="s-popover--arrow" data-popper-arrow></div>
         <button class="s-popover--close s-btn s-btn__muted" aria-label="Close"
             data-action="s-popover#toggle">
             @Svg.ClearSm
@@ -459,7 +465,7 @@ Stacks.setTooltipHtml(el,
                 id="tooltip-example"
                 role="tooltip"
                 aria-hidden="true">
-                <div class="s-popover--arrow"></div>
+                <div class="s-popover--arrow" data-popper-arrow></div>
                 <div class="s-empty-state wmx2">
                     {% spot "EmptyLg", "mb12" %}
                     <p class="mb0">There’s no data associated with your account yet. Please check back tomorrow.</p>
@@ -486,7 +492,7 @@ Stacks.setTooltipHtml(el,
 <div class="s-popover"
        id="popover-example"
        role="menu">
-    <div class="s-popover--arrow"></div>
+    <div class="s-popover--arrow" data-popper-arrow></div>
     …
 </div>
 {% endhighlight %}
@@ -504,7 +510,7 @@ Stacks.setTooltipHtml(el,
             <div class="s-popover wmn-initial w-auto"
                 id="popover-example-with-tooltip"
                 role="menu">
-                <div class="s-popover--arrow"></div>
+                <div class="s-popover--arrow" data-popper-arrow></div>
                 <div class="tt-uppercase fs-fine fc-light">
                     Saved filters
                 </div>

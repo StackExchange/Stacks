@@ -39,21 +39,36 @@
         display: block;
     }
 
-    // Auto adjust margins for auto-placed popovers
-    &[data-popper-placement^="top"] {
-        margin-bottom: @su8 + 2px;
+    &[data-popper-placement^="top"] > .s-popover--arrow {
+        bottom: -@su6;
+
+        &:after {
+            bottom: 1px;
+        }
     }
 
-    &[data-popper-placement^="right"] {
-        margin-left: @su8 + 2px;
+    &[data-popper-placement^="bottom"] > .s-popover--arrow {
+        top: -@su6;
+
+        &:after {
+            top: 1px;
+        }
     }
 
-    &[data-popper-placement^="bottom"] {
-        margin-top: @su8 + 2px;
+    &[data-popper-placement^="left"] > .s-popover--arrow {
+        right: -@su6;
+
+        &:after {
+            left: 1px;
+        }
     }
 
-    &[data-popper-placement^="left"] {
-        margin-right: @su8 + 2px;
+    &[data-popper-placement^="right"] > .s-popover--arrow {
+        left: -@su6;
+
+        &:after {
+            right: 1px;
+        }
     }
 }
 
@@ -92,7 +107,44 @@
 //  $   BASE STYLE
 //      Sets the base arrow style for tooltips, popovers, and dropdowns.
 //  ----------------------------------------------------------------------------
+
 .s-popover--arrow,
+.s-popover--arrow:before,
+.s-popover--arrow:after {
+    position: absolute;
+    width: @su12;
+    height: @su12;
+    z-index: -1;
+}
+
+.s-popover--arrow {
+    color: var(--white);
+}
+
+#stacks-internals #darkmode('', {
+    .s-popover--arrow {
+        color: var(--black-075);
+    }
+
+    .s-popover--arrow:before {
+        background: currentColor;
+    }
+});
+
+.s-popover--arrow:before {
+    // This renders our border
+    content: '';
+    transform: rotate(45deg);
+    background: var(--black-150);
+}
+
+.s-popover--arrow:after {
+    // This renders our foreground color
+    content: '';
+    transform: rotate(45deg);
+    background: currentColor;
+}
+
 .s-popover--arrow__tl,
 .s-popover--arrow__tc,
 .s-popover--arrow__tr,
@@ -118,7 +170,6 @@
 }
 
 #stacks-internals #darkmode('', {
-    .s-popover--arrow,
     .s-popover--arrow__tl,
     .s-popover--arrow__tc,
     .s-popover--arrow__tr,
@@ -140,7 +191,6 @@
 //  ============================================================================
 //  $$  TOP
 //  ----------------------------------------------------------------------------
-.s-popover[data-popper-placement^="bottom"] .s-popover--arrow,
 .s-popover--arrow__tl,
 .s-popover--arrow__tc,
 .s-popover--arrow__tr {
@@ -160,7 +210,6 @@
 
 //  $$  BOTTOM
 //  ----------------------------------------------------------------------------
-.s-popover[data-popper-placement^="top"] .s-popover--arrow,
 .s-popover--arrow__bl,
 .s-popover--arrow__bc,
 .s-popover--arrow__br {
@@ -180,8 +229,6 @@
 
 //  $$  TOP & BOTTOM LEFT
 //  ----------------------------------------------------------------------------
-.s-popover[data-popper-placement="top-start"] .s-popover--arrow,
-.s-popover[data-popper-placement="bottom-start"] .s-popover--arrow,
 .s-popover--arrow__tl,
 .s-popover--arrow__bl {
     &:before,
@@ -192,8 +239,6 @@
 
 //  $$  TOP & BOTTOM CENTER
 //  ----------------------------------------------------------------------------
-.s-popover[data-popper-placement="top"] .s-popover--arrow,
-.s-popover[data-popper-placement="bottom"] .s-popover--arrow,
 .s-popover--arrow__tc,
 .s-popover--arrow__bc {
     &:before,
@@ -205,8 +250,6 @@
 
 //  $$  TOP & BOTTOM RIGHT
 //  ----------------------------------------------------------------------------
-.s-popover[data-popper-placement="top-end"] .s-popover--arrow,
-.s-popover[data-popper-placement="bottom-end"] .s-popover--arrow,
 .s-popover--arrow__tr,
 .s-popover--arrow__br {
     &:before,
@@ -217,7 +260,6 @@
 
 //  $$  LEFT
 //  ----------------------------------------------------------------------------
-.s-popover[data-popper-placement^="right"] .s-popover--arrow,
 .s-popover--arrow__lt,
 .s-popover--arrow__lc,
 .s-popover--arrow__lb {
@@ -237,7 +279,6 @@
 
 //  $$  RIGHT
 //  ----------------------------------------------------------------------------
-.s-popover[data-popper-placement^="left"] .s-popover--arrow,
 .s-popover--arrow__rt,
 .s-popover--arrow__rc,
 .s-popover--arrow__rb {
@@ -257,8 +298,6 @@
 
 //  $$  LEFT & RIGHT TOP
 //  ----------------------------------------------------------------------------
-.s-popover[data-popper-placement="left-start"] .s-popover--arrow,
-.s-popover[data-popper-placement="right-start"] .s-popover--arrow,
 .s-popover--arrow__lt,
 .s-popover--arrow__rt {
     &:before,
@@ -269,8 +308,6 @@
 
 //  $$  LEFT & RIGHT CENTER
 //  ----------------------------------------------------------------------------
-.s-popover[data-popper-placement="left"] .s-popover--arrow,
-.s-popover[data-popper-placement="right"] .s-popover--arrow,
 .s-popover--arrow__lc,
 .s-popover--arrow__rc {
     &:before,
@@ -282,8 +319,6 @@
 
 //  $$  LEFT & RIGHT BOTTOM
 //  ----------------------------------------------------------------------------
-.s-popover[data-popper-placement="left-end"] .s-popover--arrow,
-.s-popover[data-popper-placement="right-end"] .s-popover--arrow,
 .s-popover--arrow__lb,
 .s-popover--arrow__rb {
     &:before,
