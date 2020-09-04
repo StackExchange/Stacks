@@ -4228,7 +4228,7 @@ var Stacks;
                     {
                         name: "offset",
                         options: {
-                            offset: [0, 10]
+                            offset: [0, 12]
                         }
                     }
                 ]
