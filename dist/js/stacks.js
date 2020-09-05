@@ -4228,9 +4228,15 @@ var Stacks;
                     {
                         name: "offset",
                         options: {
-                            offset: [0, 12]
+                            offset: [0, 12],
                         }
-                    }
+                    },
+                    {
+                        name: 'arrow',
+                        options: {
+                            element: ".s-popover--arrow"
+                        },
+                    },
                 ]
             });
         };
