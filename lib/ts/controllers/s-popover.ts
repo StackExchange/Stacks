@@ -147,9 +147,15 @@ namespace Stacks {
                         name: "offset",
                         options: {
                             // Popperjs does not respect margins on the element, so set the offset here
-                            offset: [0, 12]
+                            offset: [0, 12],
                         }
-                    }
+                    },
+                    {
+                        name: 'arrow',
+                        options: {
+                            element: ".s-popover--arrow"
+                        },
+                    },
                 ]
             });
         }
