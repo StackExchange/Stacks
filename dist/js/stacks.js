@@ -4228,11 +4228,11 @@ var Stacks;
                     {
                         name: "offset",
                         options: {
-                            offset: [0, 12],
+                            offset: [0, 10],
                         }
                     },
                     {
-                        name: 'arrow',
+                        name: "arrow",
                         options: {
                             element: ".s-popover--arrow"
                         },
