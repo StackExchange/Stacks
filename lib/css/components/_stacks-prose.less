@@ -11,13 +11,17 @@
 //  ----------------------------------------------------------------------------
 
 .s-prose {
+    --s-prose-line-height: 1.5;
+    --s-prose-spacing: 1.1em;
+    --s-prose-spacing-half: calc(var(--s-prose-spacing) / 2);
+
     // Base styling
     font-size: 15px; // Force a font size that doesn’t change at the smallest breakpoint
-    line-height: @lh-prose;
+    line-height: var(--s-prose-line-height);
     word-wrap: break-word;
 
     p {
-        margin-bottom: 1.4667em;
+        margin-bottom: var(--s-prose-spacing);
     }
 
     pre {
@@ -40,7 +44,7 @@
         color: var(--black-100);
         background-color: var(--black-100);
         height: 1px;
-        margin-bottom: 1.4667em;
+        margin-bottom: var(--s-prose-spacing);
     }
 
     li {
@@ -48,6 +52,29 @@
 
         pre {
             word-wrap: normal;
+        }
+    }
+
+    p,
+    dl,
+    blockquote,
+    table,
+    .s-table-container,
+    .s-link-preview,
+    hr,
+    ol,
+    ul,
+    img,
+    pre,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        &:last-child,
+        &:only-child {
+            margin-bottom: 0;
         }
     }
 
@@ -64,41 +91,66 @@
         margin-bottom: .5em;
 
         code {
-            margin-bottom: .5em;
+            font-size: .9em;
         }
     }
 
-    h1,
-    h1 code {
+    h1 {
         font-size: @fs-headline1;
-        margin-bottom: .4em;
-    }
-
-    h2,
-    h2 code {
-        font-size: @fs-title;
         margin-bottom: .6em;
     }
 
-    h3,
-    h3 code {
+    h2 {
+        font-size: @fs-title;
+        margin-bottom: .7em;
+    }
+
+    h3 {
         font-size: @fs-subheading;
-        margin-bottom: .4em;
+        margin-bottom: .74em;
     }
 
-    h4,
-    h4 code {
+    h4 {
         font-size: @fs-body3;
+        margin-bottom: 1em;
     }
 
-    h5,
-    h5 code {
+    h5 {
         font-size: @fs-body2;
     }
 
-    h6,
-    h6 code {
+    h6 {
         font-size: @fs-body1;
+    }
+
+    img,
+    dl,
+    p,
+    pre,
+    blockquote,
+    table,
+    .s-table-container,
+    .s-link-preview,
+    dd,
+    ul,
+    ol {
+        & + h1 {
+            margin-top: 1.5667em;
+        }
+
+        & + h2 {
+            margin-top: 1.667em;
+        }
+
+        & + h3 {
+            margin-top: 1.4667em;
+        }
+
+        & + h4,
+        & + h5,
+        & + h6 {
+            margin-top: 1.6667em;
+        }
     }
 
     // ============================================================================
@@ -106,8 +158,8 @@
     // ----------------------------------------------------------------------------
     img {
         max-width: 100%;
-        margin-bottom: 1.4667em;
-        vertical-align: bottom;
+        margin-bottom: var(--s-prose-spacing);
+        display: block;
     }
 
     blockquote,
@@ -118,30 +170,29 @@
         }
     }
 
+    figure {
+        margin: 0 1em var(--s-prose-spacing) 1em;
+    }
+
     // ============================================================================
     //  $ LISTS
     // ----------------------------------------------------------------------------
     ol,
     ul {
         margin-top: 0;
-        margin-bottom: 1.4667em;
+        margin-bottom: var(--s-prose-spacing);
 
-        p:only-child,
-        img:only-child,
-        dl:only-child,
-        blockquote:only-child,
-        table:only-child,
-        hr:only-child,
-        ol:only-child,
-        ul:only-child,
-        p:last-child,
-        dl:last-child,
-        blockquote:last-child,
-        table:last-child,
-        hr:last-child,
-        ol:last-child,
-        ul:last-child {
-            margin-bottom: 0;
+        p,
+        dl,
+        blockquote,
+        table,
+        hr,
+        ol,
+        ul {
+            &:last-child,
+            &:only-child {
+                margin-bottom: 0;
+            }
         }
 
         // Within lists, we shouldn't have so much spacing
@@ -155,19 +206,19 @@
         dd,
         ul,
         ol {
-            margin-bottom: .7em;
+            margin-bottom: var(--s-prose-spacing-half);
         }
 
         pre {
             // Add some more spacing on the bottom
             // For a little extra optical alignment
-            margin-bottom: .8em;
+            margin-bottom: calc(var(--s-prose-spacing-half) + .1em);
         }
     }
 
     ol li,
     ul li {
-        margin-bottom: .7em;
+        margin-bottom: var(--s-prose-spacing-half);
 
         &:last-child {
             margin-bottom: 0;
@@ -177,7 +228,7 @@
     li {
         > ul,
         > ol {
-            margin-top: .7em;
+            margin-top: var(--s-prose-spacing-half);
         }
     }
 
@@ -185,7 +236,14 @@
     //  $ TABLES
     // ----------------------------------------------------------------------------
     .s-table-container {
-        margin-bottom: 1.4667em;
+        margin-bottom: var(--s-prose-spacing);
+    }
+
+    // ============================================================================
+    //  $ LINK PREVIEWS
+    // ----------------------------------------------------------------------------
+    .s-link-preview {
+        margin-bottom: var(--s-prose-spacing);
     }
 
     // ============================================================================
@@ -193,7 +251,7 @@
     // ----------------------------------------------------------------------------
     dl {
         margin-top: 0;
-        margin-bottom: 1.4667em;
+        margin-bottom: var(--s-prose-spacing);
     }
 
     dt {
@@ -202,7 +260,7 @@
 
     dd {
         margin: 0;
-        margin-bottom: 1.4667em;
+        margin-bottom: var(--s-prose-spacing);
         padding: 0;
 
         &:last-child {
@@ -251,7 +309,7 @@
 
     blockquote {
         position: relative;
-        margin: 0 1em 1.4667em 1em;
+        margin: 0 1em var(--s-prose-spacing) 1em;
         padding: .8em .8em .8em 1em;
         color: var(--black-600);
 
@@ -279,7 +337,7 @@
     // Blockquotes inside list
     li {
         blockquote {
-            margin-top: 0.5em;
+            margin-top: var(--s-prose-spacing-half);
         }
     }
 
@@ -343,7 +401,7 @@
         padding: .1em .6em;
         font-family: @ff-sans;
         font-size: @fs-fine;
-        line-height: @lh-prose;
+        line-height: var(--s-prose-line-height);
         color: var(--black-800);
         text-shadow: 0 1px 0 var(--white);
         background-color: var(--black-075);
@@ -364,7 +422,8 @@
     }
 
     pre {
-        margin: 0 0 1.6em 0; // This is increased from 1.4667em for better optical spacing
+        margin-top: 0;
+        margin-bottom: calc(var(--s-prose-spacing) + .4em); // Increase this spacing for better optical alignment
     }
 
     pre:not(.s-code-block) {
@@ -406,28 +465,23 @@
     &.s-prose__xs,
     &.s-prose__sm,
     &.s-prose__md {
-        h1,
-        h1 code {
+        h1 {
             font-size: @fs-headline1-relative;
         }
 
-        h2,
-        h2 code {
+        h2 {
             font-size: @fs-title-relative;
         }
 
-        h3,
-        h3 code {
+        h3 {
             font-size: @fs-subheading-relative;
         }
 
-        h4,
-        h4 code {
+        h4 {
             font-size: @fs-body3-relative;
         }
 
-        h5,
-        h5 code {
+        h5 {
             font-size: @fs-body2-relative;
         }
     }
