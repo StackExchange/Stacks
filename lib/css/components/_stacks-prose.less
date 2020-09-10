@@ -13,7 +13,7 @@
 .s-prose {
     --s-prose-line-height: 1.5;
     --s-prose-spacing: 1.1em;
-    --s-prose-spacing-half: calc(var(--s-prose-spacing) / 2);
+    --s-prose-spacing-condensed: calc(var(--s-prose-spacing) / 2); // Reduce the base spacing by half in the context of lists, etc.
 
     // Base styling
     font-size: 15px; // Force a font size that doesn’t change at the smallest breakpoint
@@ -206,19 +206,19 @@
         dd,
         ul,
         ol {
-            margin-bottom: var(--s-prose-spacing-half);
+            margin-bottom: var(--s-prose-spacing-condensed);
         }
 
         pre {
             // Add some more spacing on the bottom
             // For a little extra optical alignment
-            margin-bottom: calc(var(--s-prose-spacing-half) + .1em);
+            margin-bottom: calc(var(--s-prose-spacing-condensed) + .1em);
         }
     }
 
     ol li,
     ul li {
-        margin-bottom: var(--s-prose-spacing-half);
+        margin-bottom: var(--s-prose-spacing-condensed);
 
         &:last-child {
             margin-bottom: 0;
@@ -228,7 +228,7 @@
     li {
         > ul,
         > ol {
-            margin-top: var(--s-prose-spacing-half);
+            margin-top: var(--s-prose-spacing-condensed);
         }
     }
 
@@ -337,7 +337,7 @@
     // Blockquotes inside list
     li {
         blockquote {
-            margin-top: var(--s-prose-spacing-half);
+            margin-top: var(--s-prose-spacing-condensed);
         }
     }
 
