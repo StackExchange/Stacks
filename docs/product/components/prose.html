@@ -36,23 +36,17 @@ description: The prose component provides proper styling for rendered Markdown.
 </section>
 <section class="stacks-section">
     {% header "h2", "Examples" %}
-    {% header "h3", "Full Markdown spec" %}
+    {% header "h3", "Minimal" %}
+    <p class="stacks-copy">We modified this test document from the folks at <a href="https://github.com/tailwindcss/typography/blob/master/README.md">Tailwind</a> to demonstrate and explain our design choices.</p>
     <div class="stacks-preview">
-{% highlight html %}
-<div class="s-prose">
-    …
-</div>
-{% endhighlight %}
-        <div class="stacks-preview--example d:bg-white">
+        <div class="stacks-preview--example d:bg-white bar-sm btw1">
             <div class="s-prose">
-                {% markdown '/_includes/markdown-sandbox.md' %}
+                {% markdown '/_includes/markdown-prose.md' %}
             </div>
         </div>
     </div>
-</section>
 
-<section class="stacks-section">
-    {% header "h3", "Example answer" %}
+    {% header "h3", "Answer" %}
     <p class="stacks-copy">The following is a <a href="https://stackoverflow.com/a/2003515/2804712">real-world answer</a> taken from Stack Overflow</p>
     <div class="stacks-preview">
         <div class="stacks-preview--example d:bg-white bar-sm btw1">
@@ -61,23 +55,9 @@ description: The prose component provides proper styling for rendered Markdown.
             </div>
         </div>
     </div>
-</section>
 
-<section class="stacks-section">
-    {% header "h3", "Example meta post" %}
-    <p class="stacks-copy">The following is a <a href="https://meta.stackexchange.com/questions/350544/the-new-moderator-agreement-is-now-live-for-moderators-to-accept-across-the-netw">real-world post</a> taken from Meta Stack Exchange.</p>
-    <div class="stacks-preview">
-        <div class="stacks-preview--example d:bg-white bar-sm btw1">
-            <div class="s-prose">
-                {% markdown '/_includes/markdown-prose.md' %}
-            </div>
-        </div>
-    </div>
-</section>
-
-<section class="stacks-section">
-    {% header "h3", "Example post with a link preview" %}
-    <p class="stacks-copy">The following is a <a href="https://meta.stackexchange.com/questions/350544/the-new-moderator-agreement-is-now-live-for-moderators-to-accept-across-the-netw">real-world post</a> taken from Meta Stack Exchange.</p>
+    {% header "h3", "Link preview" %}
+    <p class="stacks-copy">Let’s see what a link preview looks like within the prose component.</p>
     <div class="stacks-preview">
         <div class="stacks-preview--example d:bg-white bar-sm btw1">
             <div class="s-prose">
@@ -124,11 +104,25 @@ module.exports = function(grunt) {
             </div>
         </div>
     </div>
+
+    {% header "h3", "Full Markdown spec" %}
+    <p class="stacks-copy">This example includes the full kitchen-sink collection of everything the Markdown spec includes.</p>
+    <div class="stacks-preview">
+{% highlight html %}
+<div class="s-prose">
+    …
+</div>
+{% endhighlight %}
+        <div class="stacks-preview--example d:bg-white">
+            <div class="s-prose">
+                {% markdown '/_includes/markdown-sandbox.md' %}
+            </div>
+        </div>
+    </div>
 </section>
 
 <section class="stacks-section">
     {% header "h2", "Sizing" %}
-
     {% header "h3", "Extra Small" %}
     <div class="stacks-preview">
 {% highlight html %}
