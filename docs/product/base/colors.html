@@ -61,10 +61,11 @@ description: To avoid specifying color values by hand, we’ve included a robust
                 <thead>
                     <tr>
                         <th scope="col" width="36px"></th>
+                        <th scope="col">CSS</th>
                         <th scope="col">Less</th>
-                        <th scope="col">Variable</th>
                         <th scope="col">Text class</th>
                         <th scope="col">Background class</th>
+                        <th scope="col">Border class</th>
                         <th scope="col" class="ta-center"><a class="s-link s-link__inherit" href="{{ "/product/guidelines/conditional-classes#hover" | relative_url }}">Hover?</a></th>
                         <th scope="col" class="ta-center"><a class="s-link s-link__inherit" href="{{ "/product/guidelines/conditional-classes#focus" | relative_url }}">Focus?</a></th>
                         <th scope="col" class="ta-center"><a class="s-link s-link__inherit" href="{{ "/product/guidelines/conditional-classes#dark-mode" | relative_url }}">Dark?</a></th>
@@ -77,9 +78,10 @@ description: To avoid specifying color values by hand, we’ve included a robust
                           <div class="stacks-swatch bar-sm bg-{{ color.name }}-{{ stop.stop }}"></div>
                         </th>
                         <td class="ff-mono">var(--{{ color.name }}-{{ stop.stop }})</td>
-                        <td class="ff-mono">#{{ stop.hex }}</td>
+                        <td class="ff-mono">@{{ color.name }}-{{ stop.stop }}</td>
                         <td class="ff-mono">.fc-{{ color.name }}-{{ stop.stop }}</td>
                         <td class="ff-mono">.bg-{{ color.name }}-{{ stop.stop }}</td>
+                        <td class="ff-mono">.bc-{{ color.name }}-{{ stop.stop }}</td>
                         <td class="ta-center">{% icon "Checkmark", "fc-green-500" %}</td>
                         <td class="ta-center">{% icon "Checkmark", "fc-green-500" %}</td>
                         <td class="ta-center">{% icon "Checkmark", "fc-green-500" %}</td>
@@ -89,10 +91,11 @@ description: To avoid specifying color values by hand, we’ve included a robust
                         <th scope="row">
                           <div class="stacks-swatch bar-sm bg-white"></div>
                         </th>
+                        <td class="ff-mono">var(--white)</td>
                         <td class="ff-mono">@white</td>
-                        <td class="ff-mono">#ffffff</td>
                         <td class="ff-mono">.fc-white</td>
                         <td class="ff-mono">.bg-white</td>
+                        <td class="ff-mono">.bc-white</td>
                         <td class="ta-center">{% icon "Checkmark", "fc-green-500" %}</td>
                         <td class="ta-center">{% icon "Checkmark", "fc-green-500" %}</td>
                         <td class="ta-center">{% icon "Checkmark", "fc-green-500" %}</td>
@@ -105,6 +108,7 @@ description: To avoid specifying color values by hand, we’ve included a robust
                         <td class="fc-light">N/A</td>
                         <td class="fc-light">N/A</td>
                         <td>.bg-transparent</td>
+                        <td>.bc-transparent</td>
                         <td class="ta-center">{% icon "Checkmark", "fc-green-500" %}</td>
                         <td></td>
                         <td></td>
