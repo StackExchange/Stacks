@@ -9,27 +9,25 @@
 
 .s-post-list-item {
     display: grid;
-    grid-template-columns: auto 1fr;
+    grid-template-columns: max-content 1fr;
     gap: @su16;
+    padding: @su16;
     align-items: start;
+    border-bottom: 1px solid var(--black-075);
+
+    &:last-child {
+        border-bottom-width: 0;
+    }
 }
 
 .s-post-list-item--stats {
-    grid-column: 1;
     display: grid;
     justify-items: end;
     gap: @su6;
-    padding: @su16;
     font-size: @fs-caption;
     color: var(--fc-light);
-
-    &:not(:last-of-type) {
-        border-bottom: 1px solid var(--black-075);
-    }
 }
 
-.s-post-list-item--content {
-    &:not(:last-of-type) {
-        border-bottom: 1px solid var(--black-075);
-    }
-}
+// .s-post-list-item--content {
+
+// }
