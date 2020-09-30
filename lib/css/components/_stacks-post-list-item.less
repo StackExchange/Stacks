@@ -7,12 +7,13 @@
 //  visit https://stackoverflow.design/
 //
 
+.s-post-list {
+    display: table;
+}
+
 .s-post-list-item {
-    display: grid;
-    grid-template-columns: max-content 1fr;
-    gap: @su16;
     padding: @su16;
-    align-items: start;
+    display: table-row;
     border-bottom: 1px solid var(--black-075);
 
     &:last-child {
@@ -21,14 +22,13 @@
 }
 
 .s-post-list-item--stats {
-    grid-column: 1;
-    display: grid;
+    display: table-cell;
     justify-items: end;
     gap: @su6;
     font-size: @fs-caption;
     color: var(--fc-light);
 }
 
-// .s-post-list-item--content {
-
-// }
+.s-post-list-item--content {
+    display: table-cell;
+}
