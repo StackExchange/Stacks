@@ -7,13 +7,9 @@
 //  visit https://stackoverflow.design/
 //
 
-.s-post-list {
-    display: table;
-}
-
 .s-post-list-item {
+    display: flex;
     padding: @su16;
-    display: table-row;
     border-bottom: 1px solid var(--black-075);
 
     &:last-child {
@@ -22,13 +18,34 @@
 }
 
 .s-post-list-item--stats {
-    display: table-cell;
+    margin-top: -1px;
+    margin-right: @su16;
+    min-width: @su96;
+    display: grid;
+    align-content: flex-start;
     justify-items: end;
-    gap: @su6;
+    gap: @su4;
     font-size: @fs-caption;
     color: var(--fc-light);
+
+    .s-post-list-item--stats-item {
+        padding: @su2 @su4;
+        white-space: nowrap;
+        border: 1px solid transparent;
+
+        &.has-answers {
+            border-radius: @br-sm;
+            color: var(--green-500);
+            border: 1px solid var(--green-500);
+
+            &.has-accepted-answer {
+                color: @white;
+                background-color: var(--green-500);
+            }
+        }
+    }
 }
 
 .s-post-list-item--content {
-    display: table-cell;
+    // padding: @su16;
 }
