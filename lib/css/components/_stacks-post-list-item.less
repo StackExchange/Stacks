@@ -8,6 +8,7 @@
 //
 
 .s-post-list-item {
+    position: relative;
     display: flex;
     border-bottom: 1px solid var(--black-075);
     padding: @su16 0;
@@ -29,6 +30,18 @@
             grid-auto-flow: column;
             margin-bottom: @su6;
         }
+    }
+}
+
+//  [1] To override .s-btn class attributes
+.s-post-list--content-button {
+    position: absolute !important; // [1]
+    top: @su8;
+    right: 0;
+    padding: @su8 !important; // [1]
+
+    .svg-icon {
+        margin: 0 !important;
     }
 }
 
@@ -57,6 +70,18 @@
                 color: @white;
                 background-color: var(--green-500);
             }
+        }
+
+        &.s-post-list-item--stats-item__warm {
+            color: var(--orange-800);
+        }
+
+        &.s-post-list-item--stats-item__hot {
+            color: var(--orange-600);
+        }
+
+        &.s-post-list-item--stats-item__supernova {
+            color: var(--orange-400);
         }
     }
 
