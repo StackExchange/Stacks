@@ -68,10 +68,10 @@ description: Atomic positioning classes allow you to quickly change an elementâ€
             </thead>
             <tbody>
                 {% for space in spacing.position-definitions %}
-                  <tr>
-                      <th scope="row">{{ space.term }}</th>
-                      <td>{{ space.define }}</td>
-                  </tr>
+                    <tr>
+                        <th scope="row">{{ space.term }}</th>
+                        <td>{{ space.define }}</td>
+                    </tr>
                 {% endfor %}
             </tbody>
         </table>
@@ -115,6 +115,7 @@ description: Atomic positioning classes allow you to quickly change an elementâ€
                 <tr>
                     <th scope="col">Prefix</th>
                     <th scope="col" class="ta-center ff-mono">0</th>
+                    <th scope="col" class="ta-center ff-mono">1px</th>
                     <th scope="col" class="ta-center ff-mono">2px</th>
                     <th scope="col" class="ta-center ff-mono">4px</th>
                     <th scope="col" class="ta-center ff-mono">6px</th>
@@ -132,14 +133,14 @@ description: Atomic positioning classes allow you to quickly change an elementâ€
                 </tr>
             </thead>
             <tbody>
-              {% for class in spacing.position %}
-              {% assign prefix-value = class.values | split: ", " %}
-                  <tr>
-                      <th scope="row" class="-cell1">{{ class.prefix }}</th>
-                      {% for values in prefix-value %}
-                       <td class="ta-center"><code class="fs1">.{{ class.prefix }}{{ values }}</code></td>
-                      {% endfor %}
-                  </tr>
+                {% for class in spacing.position %}
+                {% assign prefix-value = class.values | split: ", " %}
+                    <tr>
+                        <th scope="row" class="-cell1">{{ class.prefix }}</th>
+                        {% for values in prefix-value %}
+                            <td class="ta-center"><code class="fs1">.{{ class.prefix }}{{ values }}</code></td>
+                        {% endfor %}
+                    </tr>
                 {% endfor %}
             </tbody>
         </table>
@@ -151,6 +152,7 @@ description: Atomic positioning classes allow you to quickly change an elementâ€
             <thead>
                 <tr>
                     <th scope="col">Prefix</th>
+                    <th scope="col" class="ta-center ff-mono">-1px</th>
                     <th scope="col" class="ta-center ff-mono">-2px</th>
                     <th scope="col" class="ta-center ff-mono">-4px</th>
                     <th scope="col" class="ta-center ff-mono">-6px</th>
@@ -168,14 +170,14 @@ description: Atomic positioning classes allow you to quickly change an elementâ€
                 </tr>
             </thead>
             <tbody>
-              {% for class in spacing.negative-position %}
-              {% assign prefix-value = class.values | split: ", " %}
-                  <tr>
-                      <th scope="row" class="-cell1">{{ class.prefix }}</th>
-                      {% for values in prefix-value %}
-                       <td class="ta-center"><code class="fs1">.{{ class.prefix }}{{ values }}</code></td>
-                      {% endfor %}
-                  </tr>
+                {% for class in spacing.negative-position %}
+                {% assign prefix-value = class.values | split: ", " %}
+                    <tr>
+                        <th scope="row" class="-cell1">{{ class.prefix }}</th>
+                        {% for values in prefix-value %}
+                            <td class="ta-center"><code class="fs1">.{{ class.prefix }}{{ values }}</code></td>
+                        {% endfor %}
+                    </tr>
                 {% endfor %}
             </tbody>
         </table>
