@@ -8,6 +8,19 @@ description: To avoid specifying color values by hand, we’ve included a robust
 <section class="stacks-section">
     {% header "h2", "Stops" %}
 
+    <p class="stacks-copy">
+        Our colors are each available in a number of stops from dark to light—<code class="stacks-code">900</code> being the darkest, and <code class="stacks-code">025</code> or <code class="stacks-code">050</code> being the lightest. All stops are available as CSS and Less variables. Hex values are provided for portability outside of Stacks only, and should not be directly referenced in CSS.
+    </p>
+
+    <div class="grid ai-center mb24">
+        <div class="grid--cell fs-body2 fw-bold mr8">Display</div>
+        <div class="s-btn-group">
+            <button class="s-btn s-btn__muted s-btn__outlined s-btn__sm is-selected js-css-btn" role="button">CSS</button>
+            <button class="s-btn s-btn__muted s-btn__outlined s-btn__sm js-less-btn" role="button">Less</button>
+            <button class="s-btn s-btn__muted s-btn__outlined s-btn__sm js-hex-btn" role="button">Hex</button>
+        </div>
+    </div>
+
     <div class="grid grid__allcells4 gs16 fw-wrap">
     {% for color in colors %}
         <div class="grid--cell">
@@ -17,7 +30,9 @@ description: To avoid specifying color values by hand, we’ve included a robust
 
             {% for stop in color.stops reversed %}
                 <div class="bg-{{ color.name }}-{{ stop.stop }} ff-mono p12{% if stop.white %} fc-white{% endif %}{% if forloop.last %} bbr-md{% endif %}">
-                    {{ color.name }}-{{ stop.stop }}
+                    <span class="js-css">var(--{{ color.name }}-{{ stop.stop }})</span>
+                    <span class="js-less d-none">@{{ color.name }}-{{ stop.stop }}</span>
+                    <span class="js-hex d-none">#{{ stop.hex }}</span>
                 </div>
             {% endfor %}
         </div>
@@ -26,6 +41,11 @@ description: To avoid specifying color values by hand, we’ve included a robust
 
 <section class="stacks-section">
     {% header "h2", "Classes" %}
+
+    <p class="stacks-copy">
+        Each color stop is available as an atomic text, background, and border class. Using these atomic classes means your view will respond to dark mode appropriately. These colors are available <a href="{{ "/product/guidelines/conditional-classes#hover" | relative_url }}">conditionally</a>.
+    </p>
+
     {% for color in colors %}
         {% assign color_name = color.name | capitalize %}
 
@@ -35,8 +55,6 @@ description: To avoid specifying color values by hand, we’ve included a robust
                 <thead>
                     <tr>
                         <th scope="col" width="36px"></th>
-                        <th scope="col">CSS</th>
-                        <th scope="col">Less</th>
                         <th scope="col">Text class</th>
                         <th scope="col">Background class</th>
                         <th scope="col">Border class</th>
@@ -51,8 +69,6 @@ description: To avoid specifying color values by hand, we’ve included a robust
                         <th scope="row">
                           <div class="stacks-swatch bar-sm bg-{{ color.name }}-{{ stop.stop }}"></div>
                         </th>
-                        <td class="ff-mono">var(--{{ color.name }}-{{ stop.stop }})</td>
-                        <td class="ff-mono">@{{ color.name }}-{{ stop.stop }}</td>
                         <td class="ff-mono">.fc-{{ color.name }}-{{ stop.stop }}</td>
                         <td class="ff-mono">.bg-{{ color.name }}-{{ stop.stop }}</td>
                         <td class="ff-mono">.bc-{{ color.name }}-{{ stop.stop }}</td>
@@ -65,8 +81,6 @@ description: To avoid specifying color values by hand, we’ve included a robust
                         <th scope="row">
                           <div class="stacks-swatch bar-sm bg-white"></div>
                         </th>
-                        <td class="ff-mono">var(--white)</td>
-                        <td class="ff-mono">@white</td>
                         <td class="ff-mono">.fc-white</td>
                         <td class="ff-mono">.bg-white</td>
                         <td class="ff-mono">.bc-white</td>
@@ -78,8 +92,6 @@ description: To avoid specifying color values by hand, we’ve included a robust
                         <th scope="row">
                           <div class="stacks-swatch bar-sm bg-transparent"></div>
                         </th>
-                        <td class="fc-light">N/A</td>
-                        <td class="fc-light">N/A</td>
                         <td class="fc-light">N/A</td>
                         <td>.bg-transparent</td>
                         <td>.bc-transparent</td>
@@ -263,9 +275,6 @@ description: To avoid specifying color values by hand, we’ve included a robust
 
 <section class="stacks-section">
     {% header "h2", "Aliases" %}
-
-
-
     {% header "h3", "Body text" %}
     <div class="stacks-preview">
 {% highlight html %}
@@ -350,3 +359,6 @@ description: To avoid specifying color values by hand, we’ve included a robust
         </tbody>
     </table>
 </section>
+
+<!-- Additional javascript -->
+<script src="{{ "/assets/js/colors.js" | relative_url }}" defer></script>
