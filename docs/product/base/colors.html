@@ -6,52 +6,26 @@ description: To avoid specifying color values by hand, we’ve included a robust
 
 
 <section class="stacks-section">
-    {% header "h2", "Primary colors" %}
-    <div class="grid sm:fd-column gs16 grid__allcells4">
-        <a class="grid--cell fw-wrap p12 bg-orange-400 fc-dark d:fc-white mb12 bar-sm" href="#orange">
-            <h2 class="fs-subheading mb4">Orange</h2>
-            <p class="ff-mono mb0">@orange-400</p>
-        </a>
+    {% header "h2", "Stops" %}
 
-        <a class="grid--cell p12 bg-black-900 mb12 fc-white bar-sm" href="#black">
-            <h2 class="fs-subheading mb4">Black</h2>
-            <p class="ff-mono mb0">@black-900</p>
-        </a>
+    <div class="grid grid__allcells4 gs16 fw-wrap">
+    {% for color in colors %}
+        <div class="grid--cell">
+            <div class="px24 py32 fs-title btr-md bg-{{ color.name }}-{{ color.primary }}{% if color.white %} fc-white{% endif %}">
+                {{ color.name | capitalize }}
+            </div>
 
-        <a class="grid--cell p12 bg-blue-600 mb12 fc-white bar-sm" href="#blue">
-            <h2 class="fs-subheading mb4">Blue</h2>
-            <p class="ff-mono mb0">@blue-600</p>
-        </a>
-    </div>
+            {% for stop in color.stops reversed %}
+                <div class="bg-{{ color.name }}-{{ stop.stop }} ff-mono p12{% if stop.white %} fc-white{% endif %}{% if forloop.last %} bbr-md{% endif %}">
+                    {{ color.name }}-{{ stop.stop }}
+                </div>
+            {% endfor %}
+        </div>
+    {% endfor %}
 </section>
 
 <section class="stacks-section">
-    {% header "h2", "Accent colors" %}
-    <div class="grid sm:fd-column gs16 grid__allcells3">
-        <a class="grid--cell p12 bg-powder-100 mb12 fc-dark bar-sm" href="#powder">
-            <h2 class="fs-subheading mb4">Powder</h2>
-            <p class="ff-mono mb0">@powder-100</p>
-        </a>
-
-        <a class="grid--cell p12 bg-green-400 mb12 fc-dark bar-sm" href="#green">
-            <h2 class="fs-subheading mb4">Green</h2>
-            <p class="ff-mono mb0">@green-400</p>
-        </a>
-
-        <a class="grid--cell p12 bg-yellow-100 mb12 fc-dark bar-sm" href="#yellow">
-            <h2 class="fs-subheading mb4">Yellow</h2>
-            <p class="ff-mono mb0">@yellow-100</p>
-        </a>
-
-        <a class="grid--cell p12 bg-red-500 mb12 fc-white d:fc-black-900 bar-sm" href="#red">
-            <h2 class="fs-subheading mb4">Red</h2>
-            <p class="ff-mono mb0">@red-500</p>
-        </a>
-    </div>
-</section>
-
-<section class="stacks-section">
-    {% header "h2", "Color stops" %}
+    {% header "h2", "Classes" %}
     {% for color in colors %}
         {% assign color_name = color.name | capitalize %}
 
