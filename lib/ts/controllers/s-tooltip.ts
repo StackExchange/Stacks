@@ -8,9 +8,10 @@ namespace Stacks {
 
         protected popoverSelectorAttribute = "aria-describedby";
 
-        private boundShow!: any;
+        private boundScheduleShow!: any;
         private boundHide!: any;
         private boundHideIfWithin!: any;
+        private activeTimeout!: any;
 
         /**
          * Binds mouseover and mouseout events in addition to BasePopoverController.connect
@@ -48,6 +49,24 @@ namespace Stacks {
             }
 
             super.show(dispatcher);
+        }
+
+        /**
+         * Sets up a tooltip popover show after a delay.
+         */
+        scheduleShow(dispatcher: Event | Element | null = null) {
+            window.clearTimeout(this.activeTimeout);
+            this.activeTimeout = window.setTimeout(() => this.show(dispatcher), 300);
+        }
+
+        /**
+         * Cancels the scheduled tooltip popover display and hides it if already displayed
+         */
+        hide(dispatcher: Event | Element | null = null) {
+            window.clearTimeout(this.activeTimeout);
+            this.activeTimeout = null;
+
+            super.hide(dispatcher);
         }
 
         /**
@@ -152,10 +171,10 @@ namespace Stacks {
          * Binds mouse events to show/hide on reference element hover
          */
         private bindMouseEvents() {
-            this.boundShow = this.boundShow || this.show.bind(this);
+            this.boundScheduleShow = this.boundScheduleShow || this.scheduleShow.bind(this);
             this.boundHide = this.boundHide || this.hide.bind(this);
 
-            this.referenceElement.addEventListener("mouseover", this.boundShow);
+            this.referenceElement.addEventListener("mouseover", this.boundScheduleShow);
             this.referenceElement.addEventListener("mouseout", this.boundHide);
         }
 
@@ -163,7 +182,7 @@ namespace Stacks {
          * Unbinds all mouse events
          */
         private unbindMouseEvents() {
-            this.referenceElement.removeEventListener("mouseover", this.boundShow);
+            this.referenceElement.removeEventListener("mouseover", this.boundScheduleShow);
             this.referenceElement.removeEventListener("mouseout", this.boundHide);
         }
 

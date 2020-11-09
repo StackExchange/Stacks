@@ -3615,7 +3615,7 @@ var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
             ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
         return extendStatics(d, b);
     };
     return function (d, b) {
@@ -3739,7 +3739,7 @@ var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
             ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
         return extendStatics(d, b);
     };
     return function (d, b) {
@@ -3917,7 +3917,7 @@ var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
             ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
         return extendStatics(d, b);
     };
     return function (d, b) {
@@ -4125,7 +4125,7 @@ var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
             ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
         return extendStatics(d, b);
     };
     return function (d, b) {
@@ -4228,9 +4228,15 @@ var Stacks;
                     {
                         name: "offset",
                         options: {
-                            offset: [0, 10]
+                            offset: [0, 10],
                         }
-                    }
+                    },
+                    {
+                        name: "arrow",
+                        options: {
+                            element: ".s-popover--arrow"
+                        },
+                    },
                 ]
             });
         };
@@ -4347,7 +4353,7 @@ var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
             ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
         return extendStatics(d, b);
     };
     return function (d, b) {
@@ -4531,7 +4537,7 @@ var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
             ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
         return extendStatics(d, b);
     };
     return function (d, b) {
@@ -4566,6 +4572,18 @@ var Stacks;
                 return;
             }
             _super.prototype.show.call(this, dispatcher);
+        };
+        TooltipController.prototype.scheduleShow = function (dispatcher) {
+            var _this = this;
+            if (dispatcher === void 0) { dispatcher = null; }
+            window.clearTimeout(this.activeTimeout);
+            this.activeTimeout = window.setTimeout(function () { return _this.show(dispatcher); }, 300);
+        };
+        TooltipController.prototype.hide = function (dispatcher) {
+            if (dispatcher === void 0) { dispatcher = null; }
+            window.clearTimeout(this.activeTimeout);
+            this.activeTimeout = null;
+            _super.prototype.hide.call(this, dispatcher);
         };
         TooltipController.prototype.applyTitleAttributes = function () {
             var content;
@@ -4632,13 +4650,13 @@ var Stacks;
             }
         };
         TooltipController.prototype.bindMouseEvents = function () {
-            this.boundShow = this.boundShow || this.show.bind(this);
+            this.boundScheduleShow = this.boundScheduleShow || this.scheduleShow.bind(this);
             this.boundHide = this.boundHide || this.hide.bind(this);
-            this.referenceElement.addEventListener("mouseover", this.boundShow);
+            this.referenceElement.addEventListener("mouseover", this.boundScheduleShow);
             this.referenceElement.addEventListener("mouseout", this.boundHide);
         };
         TooltipController.prototype.unbindMouseEvents = function () {
-            this.referenceElement.removeEventListener("mouseover", this.boundShow);
+            this.referenceElement.removeEventListener("mouseover", this.boundScheduleShow);
             this.referenceElement.removeEventListener("mouseout", this.boundHide);
         };
         TooltipController.generateId = function () {

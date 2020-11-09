@@ -1,4 +1,5 @@
-const syntaxHighlight = require("@11ty/eleventy-plugin-syntaxhighlight");
+const hljs = require("highlight.js");
+const syntaxHighlight = require("eleventy-plugin-highlightjs");
 const pluginTOC = require("eleventy-plugin-nesting-toc");
 const markdownShortcode = require("eleventy-plugin-markdown-shortcode");
 const { default: Icons, Spots } = require("@stackoverflow/stacks-icons");
@@ -77,12 +78,74 @@ module.exports = function(eleventyConfig) {
     return {version}.version;
   });
 
+
+  // highlightjs line-numbering support
+  // add `linenums` or `linenums:startNumber` to the start of your code for detection
+  class HljsInsertLineNums {
+    constructor() {
+        this.shouldInsert = false;
+        this.startNumber = 1;
+    }
+
+    "before:highlight"(data) {
+        var match = /^linenums(:\d+)?/.exec(data.code);
+        if (!match) {
+            return;
+        }
+        var startNumber = +(match[1] || "").slice(1) || 1;
+
+        this.shouldInsert = true;
+        this.startNumber = startNumber;
+        data.code = data.code.replace(/^linenums(:\d+)?/, "");
+    }
+
+    "after:highlight"(result) {
+        if (!this.shouldInsert) {
+            return;
+        }
+
+        var startNumber = this.startNumber;
+
+        var content = result.value;
+        var lines = content.split(/\r?\n/);
+
+        var output = "";
+        for (var i = 0; i < lines.length; i++) {
+            output += "<div>" + (i + startNumber) + "</div>";
+        }
+
+        var newContent =
+            '<code class="s-code-block--line-numbers">' +
+            output +
+            "</code>" +
+            content;
+        result.value = newContent;
+
+        this.shouldInsert = false;
+      }
+  }
+
   // Add syntax highlighting
-  eleventyConfig.addPlugin(syntaxHighlight);
+  eleventyConfig.addPlugin(syntaxHighlight, {
+      className: "s-code-block",
+      init: function ({ hljs }) {
+          // TODO custom plugin taken from Prod - should probably be an npm package?
+          hljs.addPlugin(new HljsInsertLineNums());
+      },
+  });
 
   // Add markdown shortcode
   eleventyConfig.addPlugin(markdownShortcode, {
-    html: true
+    html: true,
+    highlight: function (str, lang) {
+      if (lang && hljs.getLanguage(lang)) {
+        return '<pre class="language-' + lang + ' s-code-block"><code class="language-' + lang + ' s-code-block">' +
+               hljs.highlight(lang, str).value +
+               '</code></pre>';
+      }
+
+      return ''; // use external default escaping
+    }
   });
 
   // Add submenu generation

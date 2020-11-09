@@ -81,6 +81,7 @@ description: Popovers are small content containers that provide a contextual ove
             </tbody>
         </table>
     </div>
+
     {% header "h3", "Interactive Events" %}
     <div class="overflow-x-auto mb32">
         <table class="wmn4 s-table s-table__bx-simple">
@@ -168,25 +169,33 @@ description: Popovers are small content containers that provide a contextual ove
                     <button class="s-btn s-btn__filled">Link an account</button>
                 </div>
             </div>
+            <button class="flex--cell s-btn s-btn__muted p4"
+                    data-controller="s-popover"
+                    data-s-popover-toggle-class="is-selected"
+                    data-s-popover-placement="top"
+                    data-action="s-popover#toggle"
+                    aria-controls="popover-example-4">
+                {% icon "HelpSm" %}
+            </button>
+            <div id="popover-example-4" class="s-popover" role="menu">
+                <div class="s-popover--arrow"></div>
+                <p>We know you hate spam, and we do too. That’s why we make it easy for you to update your email preferences or unsubscribe at anytime.</p>
+                <p class="mb0">We never share your email address with third parties for marketing purposes.</p>
+            </div>
             <div class="flex--cell ml-auto sm:ml0 sm:mt12"
                 data-controller="s-popover"
                 data-s-popover-reference-selector="#reference-element"
-                data-s-popover-placement="bottom-end">
+                data-s-popover-placement="auto">
                 <a id="reference-element" class="s-link s-link__inherit"
                     aria-controls="popover-example-3">
                     Follow question
                 </a>
-                <div id="popover-example-3" class="s-popover is-visible ws2" role="menu">
+                <div id="popover-example-3" class="s-popover is-visible wmx3" role="menu">
                     <div class="s-popover--arrow"></div>
                     <button class="s-popover--close s-btn s-btn__muted" aria-label="Close" data-action="s-popover#toggle">{% icon "ClearSm" %}</button>
-
-                    <div class="d-flex ai-start">
-                        <div class="flex--cell mr12 fc-orange-400 sm:d-none">
+                    <div class="d-flex ai-center">
+                        <div class="flex--cell mr12 fc-orange-400">
                             {% spot "Bell" %}
-                        </div>
-
-                        <div class="flex--cell mr8 fc-orange-400 sm:d-block d-none">
-                            {% icon "Bell" %}
                         </div>
 
                         <div class="flex--cell">
