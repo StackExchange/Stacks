@@ -1757,7 +1757,7 @@ Copyright © 2019 Basecamp, LLC
 ;
 
 /**
- * @popperjs/core v2.4.4 - MIT License
+ * @popperjs/core v2.5.3 - MIT License
  */
 
 (function (global, factory) {
@@ -1786,7 +1786,7 @@ Copyright © 2019 Basecamp, LLC
   function getWindow(node) {
     if (node.toString() !== '[object Window]') {
       var ownerDocument = node.ownerDocument;
-      return ownerDocument ? ownerDocument.defaultView : window;
+      return ownerDocument ? ownerDocument.defaultView || window : window;
     }
 
     return node;
@@ -1817,6 +1817,14 @@ Copyright © 2019 Basecamp, LLC
     var OwnElement = getWindow(node).HTMLElement;
     return node instanceof OwnElement || node instanceof HTMLElement;
   }
+  /*:: declare function isShadowRoot(node: mixed): boolean %checks(node instanceof
+    ShadowRoot); */
+
+
+  function isShadowRoot(node) {
+    var OwnElement = getWindow(node).ShadowRoot;
+    return node instanceof OwnElement || node instanceof ShadowRoot;
+  }
 
   function getHTMLElementScroll(element) {
     return {
@@ -1839,7 +1847,7 @@ Copyright © 2019 Basecamp, LLC
 
   function getDocumentElement(element) {
     // $FlowFixMe: assume body is always available
-    return (isElement(element) ? element.ownerDocument : element.document).documentElement;
+    return ((isElement(element) ? element.ownerDocument : element.document) || window.document).documentElement;
   }
 
   function getWindowScrollBarX(element) {
@@ -2298,13 +2306,12 @@ Copyright © 2019 Basecamp, LLC
   }
 
   function contains(parent, child) {
-    // $FlowFixMe: hasOwnProperty doesn't seem to work in tests
-    var isShadow = Boolean(child.getRootNode && child.getRootNode().host); // First, attempt with faster native method
+    var rootNode = child.getRootNode && child.getRootNode(); // First, attempt with faster native method
 
     if (parent.contains(child)) {
       return true;
     } // then fallback to custom implementation with Shadow DOM support
-    else if (isShadow) {
+    else if (isShadowRoot(rootNode)) {
         var next = child;
 
         do {
@@ -3592,15 +3599,30 @@ Copyright © 2019 Basecamp, LLC
     fn: hide
   };
 
-  var defaultModifiers = [eventListeners, popperOffsets$1, computeStyles$1, applyStyles$1, offset$1, flip$1, preventOverflow$1, arrow$1, hide$1];
+  var defaultModifiers = [eventListeners, popperOffsets$1, computeStyles$1, applyStyles$1];
   var createPopper = /*#__PURE__*/popperGenerator({
     defaultModifiers: defaultModifiers
   }); // eslint-disable-next-line import/no-unused-modules
 
-  exports.createPopper = createPopper;
-  exports.defaultModifiers = defaultModifiers;
+  var defaultModifiers$1 = [eventListeners, popperOffsets$1, computeStyles$1, applyStyles$1, offset$1, flip$1, preventOverflow$1, arrow$1, hide$1];
+  var createPopper$1 = /*#__PURE__*/popperGenerator({
+    defaultModifiers: defaultModifiers$1
+  }); // eslint-disable-next-line import/no-unused-modules
+
+  exports.applyStyles = applyStyles$1;
+  exports.arrow = arrow$1;
+  exports.computeStyles = computeStyles$1;
+  exports.createPopper = createPopper$1;
+  exports.createPopperLite = createPopper;
+  exports.defaultModifiers = defaultModifiers$1;
   exports.detectOverflow = detectOverflow;
+  exports.eventListeners = eventListeners;
+  exports.flip = flip$1;
+  exports.hide = hide$1;
+  exports.offset = offset$1;
   exports.popperGenerator = popperGenerator;
+  exports.popperOffsets = popperOffsets$1;
+  exports.preventOverflow = preventOverflow$1;
 
   Object.defineProperty(exports, '__esModule', { value: true });
 
