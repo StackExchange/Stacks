@@ -1,26 +1,12 @@
-var names = document.querySelectorAll('.js-name');
 var css = document.querySelectorAll('.js-css');
 var less = document.querySelectorAll('.js-less');
 var hex = document.querySelectorAll('.js-hex');
 
-var nameButton = document.querySelector('.js-name-btn');
 var cssButton = document.querySelector('.js-css-btn');
 var lessButton = document.querySelector('.js-less-btn');
 var hexButton = document.querySelector('.js-hex-btn');
 
-var buttons = [nameButton, cssButton, lessButton, hexButton];
-
-nameButton.addEventListener('click', function() {
-    resetSelection();
-
-    this.classList.add("is-selected");
-
-    for (var item of names) {
-        item.classList.remove('d-none');
-    }
-
-    return false;
-});
+var buttons = [cssButton, lessButton, hexButton];
 
 cssButton.addEventListener('click', function() {
     resetSelection();
@@ -61,10 +47,6 @@ hexButton.addEventListener('click', function() {
 function resetSelection() {
     for (var button of buttons) {
         button.classList.remove('is-selected');
-    }
-
-    for (var item of names) {
-        item.classList.add('d-none');
     }
 
     for (var item of css) {

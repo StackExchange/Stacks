@@ -17,8 +17,7 @@ description: To avoid specifying color values by hand, we’ve included a robust
     <div class="grid ai-center my24">
         <div class="grid--cell fs-body2 fw-bold mr8">Display</div>
         <div class="s-btn-group">
-            <button class="s-btn s-btn__muted s-btn__outlined is-selected js-name-btn" role="button">Name</button>
-            <button class="s-btn s-btn__muted s-btn__outlined js-css-btn" role="button">CSS</button>
+            <button class="s-btn s-btn__muted s-btn__outlined is-selected js-css-btn" role="button">CSS</button>
             <button class="s-btn s-btn__muted s-btn__outlined js-less-btn" role="button">
                 Less
                 <span class="s-btn--badge">
@@ -42,11 +41,16 @@ description: To avoid specifying color values by hand, we’ve included a robust
             </div>
 
             {% for stop in color.stops reversed %}
-                <div class="bg-{{ color.name }}{% if stop.stop != "" %}-{{ stop.stop }}{% endif %} ff-mono p12{% if stop.white %} fc-white{% endif %}{% if forloop.last %} bbr-md{% endif %}">
-                    <span class="js-name">{{ color.name }}{% if stop.stop != "" %}-{{ stop.stop }}{% endif %}</span>
-                    <span class="js-css d-none">var(--{{ color.name }}{% if stop.stop != "" %}-{{ stop.stop }}{% endif %})</span>
-                    <span class="js-less d-none">@{{ color.name }}{% if stop.stop != "" %}-{{ stop.stop }}{% endif %}</span>
-                    <span class="js-hex d-none">#{{ stop.hex }}</span>
+                <div class="grid ai-center jc-space-between bg-{{ color.name }}{% if stop.stop != "" %}-{{ stop.stop }}{% endif %} ff-mono p12{% if stop.white %} fc-white{% endif %}{% if forloop.last %} bbr-md{% endif %}">
+                    <div class="grid--cell js-hex d-none">
+                        {{ color.name }}{% if stop.stop != "" %}-{{ stop.stop }}{% endif %}
+                    </div>
+
+                    <div class="grid--cell">
+                        <span class="js-css">var(--{{ color.name }}{% if stop.stop != "" %}-{{ stop.stop }}{% endif %})</span>
+                        <span class="js-less d-none">@{{ color.name }}{% if stop.stop != "" %}-{{ stop.stop }}{% endif %}</span>
+                        <span class="js-hex d-none">#{{ stop.hex }}</span>
+                    </div>
                 </div>
             {% endfor %}
         </div>
