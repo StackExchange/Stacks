@@ -3,11 +3,11 @@ var monkeyList = new List('js-sortable-list', {
 });
 
 var icons = document.querySelectorAll('.js-icon-list .js-svg');
-var buttons = document.querySelectorAll('.js-color-toggle-btn');
-for (var button of buttons) {
-    button.addEventListener('click', function(event) {
-        for (var icon of icons) {
-            icon.classList.toggle('native');
-        }
-    });
-}
+var button = document.querySelector('.js-color-toggle-btn');
+button.addEventListener('click', function() {
+    for (var icon of icons) {
+        icon.classList.toggle('native');
+    }
+
+    return false;
+});
