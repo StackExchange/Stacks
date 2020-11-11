@@ -34,27 +34,54 @@ description: To avoid specifying color values by hand, we’ve included a robust
     </div>
 
     <div style="display:grid; gap:16px; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); grid-auto-flow: dense;">
-    {% for color in colors %}
-        <div class="grid--cell">
-            <div class="p24 fs-title btr-md bg-{{ color.name }}{% if color.primary != "" %}-{{ color.primary }}{% endif %}{% if color.white %} fc-white{% endif %}">
-                {{ color.name | capitalize }}
-            </div>
-
-            {% for stop in color.stops reversed %}
-                <div class="grid ai-center jc-space-between bg-{{ color.name }}{% if stop.stop != "" %}-{{ stop.stop }}{% endif %} ff-mono p12{% if stop.white %} fc-white{% endif %}{% if forloop.last %} bbr-md{% endif %}">
-                    <div class="grid--cell js-hex d-none">
-                        {{ color.name }}{% if stop.stop != "" %}-{{ stop.stop }}{% endif %}
+        {% for color in colors %}
+            {% if color.include %}
+                <div class="grid--cell">
+                    <div class="p24 fs-title btr-md bg-{{ color.name }}{% if color.primary != "" %}-{{ color.primary }}{% endif %}{% if color.white %} fc-white{% endif %}">
+                        {{ color.name | capitalize }}
                     </div>
 
-                    <div class="grid--cell">
-                        <span class="js-css">var(--{{ color.name }}{% if stop.stop != "" %}-{{ stop.stop }}{% endif %})</span>
-                        <span class="js-less d-none">@{{ color.name }}{% if stop.stop != "" %}-{{ stop.stop }}{% endif %}</span>
-                        <span class="js-hex d-none">#{{ stop.hex }}</span>
-                    </div>
+                    {% for stop in color.stops reversed %}
+                        <div class="grid ai-center jc-space-between bg-{{ color.name }}{% if stop.stop != "" %}-{{ stop.stop }}{% endif %} ff-mono p12{% if stop.white %} fc-white{% endif %}{% if forloop.last %} bbr-md{% endif %}">
+                            <div class="grid--cell js-hex d-none">
+                                {{ color.name }}{% if stop.stop != "" %}-{{ stop.stop }}{% endif %}
+                            </div>
+
+                            <div class="grid--cell">
+                                <span class="js-css">var(--{{ color.name }}{% if stop.stop != "" %}-{{ stop.stop }}{% endif %})</span>
+                                <span class="js-less d-none">@{{ color.name }}{% if stop.stop != "" %}-{{ stop.stop }}{% endif %}</span>
+                                <span class="js-hex d-none">#{{ stop.hex }}</span>
+                            </div>
+                        </div>
+                    {% endfor %}
                 </div>
+            {% endif %}
+        {% endfor %}
+
+        <div class="grid--cell">
+            {% for color in colors %}
+                {% if color.include == false %}
+                    <div class="p24 fs-title btr-md bg-{{ color.name }}{% if color.primary != "" %}-{{ color.primary }}{% endif %}{% if color.white %} fc-white{% endif %}">
+                        {{ color.name | capitalize }}
+                    </div>
+
+                    {% for stop in color.stops reversed %}
+                        <div class="grid ai-center jc-space-between bg-{{ color.name }}{% if stop.stop != "" %}-{{ stop.stop }}{% endif %} ff-mono p12{% if stop.white %} fc-white{% endif %}{% if forloop.last %} bbr-md mb16{% endif %}">
+                            <div class="grid--cell js-hex d-none">
+                                {{ color.name }}{% if stop.stop != "" %}-{{ stop.stop }}{% endif %}
+                            </div>
+
+                            <div class="grid--cell">
+                                <span class="js-css">var(--{{ color.name }}{% if stop.stop != "" %}-{{ stop.stop }}{% endif %})</span>
+                                <span class="js-less d-none">@{{ color.name }}{% if stop.stop != "" %}-{{ stop.stop }}{% endif %}</span>
+                                <span class="js-hex d-none">#{{ stop.hex }}</span>
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% endif %}
             {% endfor %}
         </div>
-    {% endfor %}
+    </div>
 </section>
 
 <section class="stacks-section">
