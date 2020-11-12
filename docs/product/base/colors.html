@@ -36,12 +36,12 @@ description: To avoid specifying color values by hand, we’ve included a robust
         {% for color in colors %}
             {% if color.include %}
                 <div class="grid--cell">
-                    <div class="p24 fs-title btr-md bg-{{ color.name }}{% if color.primary != "" %}-{{ color.primary }}{% endif %}{% if color.white %} fc-white{% endif %}">
+                    <div class="p24 fs-title btr-md bg-{{ color.name }}{% if color.primary != "" %}-{{ color.primary }}{% endif %}{% if color.white %} fc-white{% if color.flip %} d:fc-black{% endif %}{% else %}{% if color.flip %} d:fc-white{% endif %}{% endif %}">
                         {{ color.name | capitalize }}
                     </div>
 
                     {% for stop in color.stops reversed %}
-                        <div class="grid ai-center jc-space-between bg-{{ color.name }}{% if stop.stop != "" %}-{{ stop.stop }}{% endif %} ff-mono p12{% if stop.white %} fc-white{% endif %}{% if forloop.last %} bbr-md{% endif %}">
+                        <div class="grid ai-center jc-space-between bg-{{ color.name }}{% if stop.stop != "" %}-{{ stop.stop }}{% endif %} ff-mono p12{% if stop.white %} fc-white{% if stop.flip %} d:fc-black{% endif %}{% else %}{% if stop.flip %} d:fc-white{% endif %}{% endif %}{% if forloop.last %} bbr-md{% endif %}">
                             <div class="grid--cell js-hex d-none">
                                 {{ color.name }}{% if stop.stop != "" %}-{{ stop.stop }}{% endif %}
                             </div>
@@ -60,12 +60,12 @@ description: To avoid specifying color values by hand, we’ve included a robust
         <div class="grid--cell">
             {% for color in colors %}
                 {% if color.include == false %}
-                    <div class="p24 fs-title btr-md bg-{{ color.name }}{% if color.primary != "" %}-{{ color.primary }}{% endif %}{% if color.white %} fc-white{% endif %}">
+                    <div class="p24 fs-title btr-md bg-{{ color.name }}{% if color.primary != "" %}-{{ color.primary }}{% endif %}{% if color.flip %} d:fc-white{% endif %}">
                         {{ color.name | capitalize }}
                     </div>
 
                     {% for stop in color.stops reversed %}
-                        <div class="grid ai-center jc-space-between bg-{{ color.name }}{% if stop.stop != "" %}-{{ stop.stop }}{% endif %} ff-mono p12{% if stop.white %} fc-white{% endif %}{% if forloop.last %} bbr-md mb16{% endif %}">
+                        <div class="grid ai-center jc-space-between bg-{{ color.name }}{% if stop.stop != "" %}-{{ stop.stop }}{% endif %} ff-mono p12{% if forloop.last %} bbr-md mb16{% endif %}{% if stop.flip %} d:fc-white{% endif %}">
                             <div class="grid--cell js-hex d-none">
                                 {{ color.name }}{% if stop.stop != "" %}-{{ stop.stop }}{% endif %}
                             </div>
