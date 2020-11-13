@@ -397,5 +397,182 @@ description: To avoid specifying color values by hand, we’ve included a robust
     </div>
 </section>
 
+<section class="stacks-section">
+    {% header "h2", "Theming" %}
+    <p class="stacks-copy">
+        Stacks’ approach to theming is powered by CSS variables that are split into their HSL components. Our default primary color is based on Stack Overflow’s branded <code class="stacks-code">orange-400</code> represented as <code class="stacks-code">hsl(27, 90%, 55%)</code>. We can store these as separate values, apply various color operations, and then recombine them into on-demand color palettes to use for theming.
+    </p>
+
+    {% header "h3", "Variables and classes" %}
+    <div class="overflow-x-auto mb48">
+        <table class="wmn5 s-table s-table__bx-simple s-table__condensed va-middle fs-caption">
+            <thead>
+                <tr>
+                    <th scope="col" width="36px"></th>
+                    <th scope="col">Variable</th>
+                    <th scope="col">Text class</th>
+                    <th scope="col">Background class</th>
+                    <th scope="col">Border class</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row">
+                        <div class="stacks-swatch bar-sm bg-theme-primary"></div>
+                    </th>
+                    <td class="ff-mono">var(--theme-primary-color)</td>
+                    <td class="ff-mono">.fc-theme-primary</td>
+                    <td class="ff-mono">.bg-theme-primary</td>
+                    <td class="ff-mono">.bc-theme-primary</td>
+                </tr>
+                <tr>
+                    <th scope="row">
+                        <div class="stacks-swatch bar-sm" style="background-color: var(--theme-primary-color-tint-90);"></div>
+                    </th>
+                    <td class="ff-mono">var(--theme-primary-color-tint-90)</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <th scope="row">
+                        <div class="stacks-swatch bar-sm" style="background-color: var(--theme-primary-color-tint-85);"></div>
+                    </th>
+                    <td class="ff-mono">var(--theme-primary-color-tint-85)</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <th scope="row">
+                        <div class="stacks-swatch bar-sm" style="background-color: var(--theme-primary-color-tint-80);"></div>
+                    </th>
+                    <td class="ff-mono">var(--theme-primary-color-tint-80)</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <th scope="row">
+                        <div class="stacks-swatch bar-sm" style="background-color: var(--theme-primary-color-tint-70);"></div>
+                    </th>
+                    <td class="ff-mono">var(--theme-primary-color-tint-70)</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <th scope="row">
+                        <div class="stacks-swatch bar-sm" style="background-color: var(--theme-primary-color-tint-60);"></div>
+                    </th>
+                    <td class="ff-mono">var(--theme-primary-color-tint-60)</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <th scope="row">
+                        <div class="stacks-swatch bar-sm" style="background-color: var(--theme-primary-color-tint-50);"></div>
+                    </th>
+                    <td class="ff-mono">var(--theme-primary-color-tint-50)</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <th scope="row">
+                        <div class="stacks-swatch bar-sm" style="background-color: var(--theme-primary-color-lighten-10);"></div>
+                    </th>
+                    <td class="ff-mono">var(--theme-primary-color-lighten-10)</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <th scope="row">
+                        <div class="stacks-swatch bar-sm" style="background-color: var(--theme-primary-color-tint-10);"></div>
+                    </th>
+                    <td class="ff-mono">var(--theme-primary-color-tint-10)</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <th scope="row">
+                        <div class="stacks-swatch bar-sm" style="background-color: var(--theme-primary-color-darken-5);"></div>
+                    </th>
+                    <td class="ff-mono">var(--theme-primary-color-darken-5)</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <th scope="row">
+                        <div class="stacks-swatch bar-sm" style="background-color: var(--theme-primary-color-darken-10);"></div>
+                    </th>
+                    <td class="ff-mono">var(--theme-primary-color-darken-10)</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <th scope="row">
+                        <div class="stacks-swatch bar-sm" style="background-color: var(--theme-primary-color-darken-15);"></div>
+                    </th>
+                    <td class="ff-mono">var(--theme-primary-color-darken-15)</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <th scope="row">
+                        <div class="stacks-swatch bar-sm" style="background-color: var(--theme-primary-color-darken-20);"></div>
+                    </th>
+                    <td class="ff-mono">var(--theme-primary-color-darken-20)</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <th scope="row">
+                        <div class="stacks-swatch bar-sm" style="background-color: var(--theme-primary-color-darken-30);"></div>
+                    </th>
+                    <td class="ff-mono">var(--theme-primary-color-darken-30)</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <th scope="row">
+                        <div class="stacks-swatch bar-sm" style="background-color: var(--theme-primary-color-fade-50);"></div>
+                    </th>
+                    <td class="ff-mono">var(--theme-primary-color-fade-50)</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <th scope="row">
+                        <div class="stacks-swatch bar-sm" style="background-color: var(--theme-primary-color-fade-75);"></div>
+                    </th>
+                    <td class="ff-mono">var(--theme-primary-color-fade-75)</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <th scope="row">
+                        <div class="stacks-swatch bar-sm" style="background-color: var(--theme-primary-color-fade-80);"></div>
+                    </th>
+                    <td class="ff-mono">var(--theme-primary-color-fade-80)</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+
 <!-- Additional javascript -->
 <script src="{{ "/assets/js/colors.js" | relative_url }}" defer></script>
