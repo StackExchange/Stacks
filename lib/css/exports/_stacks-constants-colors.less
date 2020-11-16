@@ -533,6 +533,77 @@ body,
     --highlight-variable: #b5bd68;
     --highlight-addition: var(--green-600); // AAA 8.21
     --highlight-deletion: var(--red-700); // AA 5.51
+
+    // Theming
+
+    // Lighten and darken
+    --theme-primary-color-tint-60:   hsl(var(--theme-primary-color-h), var(--theme-primary-color-s), calc(var(--theme-primary-color-l) - 5%));
+    --theme-primary-color-tint-70:  hsl(var(--theme-primary-color-h), var(--theme-primary-color-s), calc(var(--theme-primary-color-l) - 10%));
+    --theme-primary-color-tint-80:  hsl(var(--theme-primary-color-h), var(--theme-primary-color-s), calc(var(--theme-primary-color-l) - 15%));
+    --theme-primary-color-tint-85:  hsl(var(--theme-primary-color-h), var(--theme-primary-color-s), calc(var(--theme-primary-color-l) - 20%));
+    --theme-primary-color-tint-90:  hsl(var(--theme-primary-color-h), var(--theme-primary-color-s), calc(var(--theme-primary-color-l) - 25%));
+    --theme-primary-color-lighten-10: hsl(var(--theme-primary-color-h), var(--theme-primary-color-s), calc(var(--theme-primary-color-l) + 10%));
+
+    // Tints
+    --theme-primary-color-tint-50: hsl(
+        var(--theme-primary-color-h),
+        var(--theme-primary-color-s), // If we're less than 50% blend, don't touch the saturation
+        calc(
+            (var(--theme-primary-color-l) * (1 - .1)) + (100% * .1)
+        )
+    );
+    --theme-primary-color-tint-10: hsl(
+        var(--theme-primary-color-h),
+        var(--theme-primary-color-s), // If we're less than 50% blend, don't touch the saturation
+        calc(
+            (var(--theme-primary-color-l) * (1 - .5)) + (100% * .5)
+        )
+    );
+    --theme-primary-color-darken-5: hsl(
+        var(--theme-primary-color-h),
+        calc(
+            var(--theme-primary-color-s) * .6
+        ),
+        calc(
+            (var(--theme-primary-color-l) * (1 - .6)) + (100% * .6)
+        )
+    );
+    --theme-primary-color-darken-10: hsl(
+        var(--theme-primary-color-h),
+        calc(
+            var(--theme-primary-color-s) * .7
+        ),
+        calc(
+            (var(--theme-primary-color-l) * (1 - .7)) + (100% * .7)
+        )
+    );
+    --theme-primary-color-darken-15: hsl(
+        var(--theme-primary-color-h),
+        calc(
+            var(--theme-primary-color-s) * .8
+        ),
+        calc(
+            (var(--theme-primary-color-l) * (1 - .8)) + (100% * .8)
+        )
+    );
+    --theme-primary-color-darken-20: hsl(
+        var(--theme-primary-color-h),
+        calc(
+            var(--theme-primary-color-s) * .85
+        ),
+        calc(
+            (var(--theme-primary-color-l) * (1 - .85)) + (100% * .85)
+        )
+    );
+    --theme-primary-color-darken-30: hsl(
+        var(--theme-primary-color-h),
+        calc(
+            var(--theme-primary-color-s) * .9
+        ),
+        calc(
+            (var(--theme-primary-color-l) * (1 - .9)) + (100% * .9)
+        )
+    );
 }
 
 body.theme-system {
