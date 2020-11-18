@@ -316,27 +316,22 @@ body,
     // Reassemble as a single hsl value
     --theme-primary-color: hsl(var(--theme-primary-color-h), var(--theme-primary-color-s), var(--theme-primary-color-l));
 
-    --theme-primary-400: var(--theme-primary-color);
-
-    // Lighten and darken
-
-    // Darken 5
-    --theme-primary-500:   hsl(var(--theme-primary-color-h), var(--theme-primary-color-s), calc(var(--theme-primary-color-l) - 5%));
-
-    // Darken 10
-    --theme-primary-600:  hsl(var(--theme-primary-color-h), var(--theme-primary-color-s), calc(var(--theme-primary-color-l) - 10%));
-
-    // Darken 15
-    --theme-primary-700:  hsl(var(--theme-primary-color-h), var(--theme-primary-color-s), calc(var(--theme-primary-color-l) - 15%));
+    // Darken 30
+    --theme-primary-900: hsl(var(--theme-primary-color-h), var(--theme-primary-color-s), calc(var(--theme-primary-color-l) - 30%));
 
     // Darken 20
-    --theme-primary-800:  hsl(var(--theme-primary-color-h), var(--theme-primary-color-s), calc(var(--theme-primary-color-l) - 20%));
+    --theme-primary-800: hsl(var(--theme-primary-color-h), var(--theme-primary-color-s), calc(var(--theme-primary-color-l) - 20%));
 
-    // Darken 30
-    --theme-primary-900:  hsl(var(--theme-primary-color-h), var(--theme-primary-color-s), calc(var(--theme-primary-color-l) - 30%));
+    // Darken 15
+    --theme-primary-700: hsl(var(--theme-primary-color-h), var(--theme-primary-color-s), calc(var(--theme-primary-color-l) - 15%));
 
-    // Lighten 10
-    --theme-primary-300: hsl(var(--theme-primary-color-h), var(--theme-primary-color-s), calc(var(--theme-primary-color-l) + 10%));
+    // Darken 10
+    --theme-primary-600: hsl(var(--theme-primary-color-h), var(--theme-primary-color-s), calc(var(--theme-primary-color-l) - 10%));
+
+    // Darken 5
+    --theme-primary-500: hsl(var(--theme-primary-color-h), var(--theme-primary-color-s), calc(var(--theme-primary-color-l) - 5%));
+
+    --theme-primary-400: var(--theme-primary-color);
 
     // Tint 10
     --theme-primary-350: hsl(
@@ -346,6 +341,9 @@ body,
             (var(--theme-primary-color-l) * (1 - .1)) + (100% * .1)
         )
     );
+
+    // Lighten 10
+    --theme-primary-300: hsl(var(--theme-primary-color-h), var(--theme-primary-color-s), calc(var(--theme-primary-color-l) + 10%));
 
     // Tint 50
     --theme-primary-200: hsl(
@@ -412,6 +410,7 @@ body,
     );
 
     // Fades
+    // These should be removed in favor of their opaque equivalents.
     --theme-primary-color-fade-50: hsla(var(--theme-primary-color-h), var(--theme-primary-color-s), var(--theme-primary-color-l), .5);
     --theme-primary-color-fade-75: hsla(var(--theme-primary-color-h), var(--theme-primary-color-s), var(--theme-primary-color-l), .75);
     --theme-primary-color-fade-80: hsla(var(--theme-primary-color-h), var(--theme-primary-color-s), var(--theme-primary-color-l), .8);
@@ -562,30 +561,46 @@ body,
 
     // Theming
 
-    // Lighten and darken
-    --theme-primary-color-tint-60:   hsl(var(--theme-primary-color-h), var(--theme-primary-color-s), calc(var(--theme-primary-color-l) - 5%));
-    --theme-primary-color-tint-70:  hsl(var(--theme-primary-color-h), var(--theme-primary-color-s), calc(var(--theme-primary-color-l) - 10%));
-    --theme-primary-color-tint-80:  hsl(var(--theme-primary-color-h), var(--theme-primary-color-s), calc(var(--theme-primary-color-l) - 15%));
-    --theme-primary-color-tint-85:  hsl(var(--theme-primary-color-h), var(--theme-primary-color-s), calc(var(--theme-primary-color-l) - 20%));
-    --theme-primary-color-tint-90:  hsl(var(--theme-primary-color-h), var(--theme-primary-color-s), calc(var(--theme-primary-color-l) - 25%));
-    --theme-primary-color-lighten-10: hsl(var(--theme-primary-color-h), var(--theme-primary-color-s), calc(var(--theme-primary-color-l) + 10%));
+    // Darken 30
+    --theme-primary-025: hsl(var(--theme-primary-color-h), var(--theme-primary-color-s), calc(var(--theme-primary-color-l) - 30%));
 
-    // Tints
-    --theme-primary-color-tint-50: hsl(
+    // Darken 20
+    --theme-primary-050: hsl(var(--theme-primary-color-h), var(--theme-primary-color-s), calc(var(--theme-primary-color-l) - 20%));
+
+    // Darken 15
+    --theme-primary-075: hsl(var(--theme-primary-color-h), var(--theme-primary-color-s), calc(var(--theme-primary-color-l) - 15%));
+
+    // Darken 10
+    --theme-primary-100: hsl(var(--theme-primary-color-h), var(--theme-primary-color-s), calc(var(--theme-primary-color-l) - 10%));
+
+    // Darken 5
+    --theme-primary-150: hsl(var(--theme-primary-color-h), var(--theme-primary-color-s), calc(var(--theme-primary-color-l) - 5%));
+
+    --theme-primary-200: var(--theme-primary-color);
+
+    // Tint 10
+    --theme-primary-300: hsl(
         var(--theme-primary-color-h),
         var(--theme-primary-color-s), // If we're less than 50% blend, don't touch the saturation
         calc(
             (var(--theme-primary-color-l) * (1 - .1)) + (100% * .1)
         )
     );
-    --theme-primary-color-tint-10: hsl(
+
+    // Lighten 10
+    --theme-primary-350: hsl(var(--theme-primary-color-h), var(--theme-primary-color-s), calc(var(--theme-primary-color-l) + 10%));
+
+    // Tint 50
+    --theme-primary-400: hsl(
         var(--theme-primary-color-h),
         var(--theme-primary-color-s), // If we're less than 50% blend, don't touch the saturation
         calc(
             (var(--theme-primary-color-l) * (1 - .5)) + (100% * .5)
         )
     );
-    --theme-primary-color-darken-5: hsl(
+
+    // Tint 60
+    --theme-primary-500: hsl(
         var(--theme-primary-color-h),
         calc(
             var(--theme-primary-color-s) * .6
@@ -594,7 +609,9 @@ body,
             (var(--theme-primary-color-l) * (1 - .6)) + (100% * .6)
         )
     );
-    --theme-primary-color-darken-10: hsl(
+
+    // Tint 70
+    --theme-primary-600: hsl(
         var(--theme-primary-color-h),
         calc(
             var(--theme-primary-color-s) * .7
@@ -603,7 +620,9 @@ body,
             (var(--theme-primary-color-l) * (1 - .7)) + (100% * .7)
         )
     );
-    --theme-primary-color-darken-15: hsl(
+
+    // Tint 80
+    --theme-primary-700: hsl(
         var(--theme-primary-color-h),
         calc(
             var(--theme-primary-color-s) * .8
@@ -612,7 +631,9 @@ body,
             (var(--theme-primary-color-l) * (1 - .8)) + (100% * .8)
         )
     );
-    --theme-primary-color-darken-20: hsl(
+
+    // Tint 85
+    --theme-primary-800: hsl(
         var(--theme-primary-color-h),
         calc(
             var(--theme-primary-color-s) * .85
@@ -621,7 +642,9 @@ body,
             (var(--theme-primary-color-l) * (1 - .85)) + (100% * .85)
         )
     );
-    --theme-primary-color-darken-30: hsl(
+
+    // Tint 90
+    --theme-primary-900: hsl(
         var(--theme-primary-color-h),
         calc(
             var(--theme-primary-color-s) * .9
