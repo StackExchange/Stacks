@@ -1,0 +1,70 @@
+---
+layout: page
+title: Lists
+description: Stacks provides a component for horizontal lists.
+---
+<section class="stacks-section">
+    {% header "h2", "Single link" %}
+    {% header "h3", "Single link classes" %}
+    <div class="overflow-x-auto mb32">
+        <table class="wmn4 s-table s-table__bx-simple">
+            <thead>
+                <tr>
+                    <th scope="col">Class</th>
+                    <th scope="col">Applied to</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody class="fs-caption">
+                {% for item in lists.horizontal-lists %}
+                    <tr>
+                        <th scope="row"><code class="stacks-code">{{ item.class }}</code></th>
+                        <td><code class="stacks-code bg-white">{{ item.applies }}</td>
+                        <td class="p8">{{ item.description }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</section>
+<section class="stacks-section">
+    {% header "h3", "Horizontal list examples" %}
+    <div class="stacks-preview">
+{% highlight html %}
+<ul class="s-list s-list__horizontal">
+    <li>Item 1</li>
+    <li>Item 2</li>
+</ul>
+{% endhighlight %}
+        <div class="stacks-preview--example">
+            <ul class="s-list s-list__horizontal">
+                <li>Item 1</li>
+                <li>Item 2</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="stacks-copy">
+        <div class="grid s-notice s-notice__info mb4">
+            <div class="grid--cell mr8">{% icon "Alert" %}</div>
+            <div class="grid--cell lh-lg">Since the bullets are added using an <code class="stacks-code">::after</code> pseudo-element, any text styling on your <code class="stacks-code">li</code>s will apply to the following bullet. To style the bullet separately from the text, put the text in a <code class="stacks-code">span</code>.</div>
+        </div>
+    </div>
+
+    <div class="stacks-preview">
+{% highlight html %}
+<ul class="s-list s-list__horizontal">
+    <li class="fc-blue-500">This text and the bullet will be blue</li>
+    <li class="fc-green-500"><span class="fc-red-500">This text will be red and the bullet will be green</span></li>
+    <li>Item 3</li>
+</ul>
+{% endhighlight %}
+        <div class="stacks-preview--example">
+            <ul class="s-list s-list__horizontal">
+                <li class="fc-blue-500">This text and the bullet will be blue</li>
+                <li class="fc-green-500"><span class="fc-red-500">This text will be red and the bullet will be green</span></li>
+                <li>Item 3</li>
+            </ul>
+        </div>
+    </div>
+</section>
