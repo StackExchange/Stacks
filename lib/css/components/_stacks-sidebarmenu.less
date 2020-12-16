@@ -1,0 +1,91 @@
+
+@s-sidebarmenu-outer-border-color: var(--black-100);
+@s-sidebarmenu-selected-back-color: var(--black-100);
+@s-sidebarmenu-section-padding-tb: @su8;
+
+.s-sidebarmenu {
+    color: var(--black-500);
+
+    .s-sidebarmenu--sectiontitle {
+        padding: @su6 @su16;
+        text-transform: uppercase;
+    }
+
+    .s-sidebarmenu--itemcontainer {
+        padding: 0;
+        margin: 0;
+        list-style-type: none;
+    }
+
+    a.s-sidebarmenu--item,
+    .s-sidebarmenu--item a {
+        color: inherit;
+    }
+
+    .s-sidebarmenu--item {
+        position: relative;
+        display: flex;
+        padding: @su8 @su16;
+        cursor: pointer;
+
+        .s-sidebarmenu--itemcontent {
+            flex: 1 0 auto;
+        }
+
+        &:hover {
+            color: var(--black-900);
+
+            .s-sidebarmenu--itemright {
+                font-weight: normal;
+                color: var(--black-500);
+            }
+        }
+
+        .s-sidebarmenu--itemright {
+            flex: 0 0 auto;
+        }
+
+        &::after {
+            position: absolute;
+            top: 0;
+            right: 0;
+            display: block;
+            height: 100%;
+            content: '';
+            border-right-style: solid;
+            border-right-width: 0;
+        }
+
+        &.is-selected {
+            font-weight: bold;
+            color: var(--black-900);
+            background-color: var(--black-050);
+
+            &::after {
+                position: absolute;
+                display: block;
+                content: '';
+                border-right-style: solid;
+                border-right-width: 3px;
+            }
+
+            .s-sidebarmenu--itemright {
+                font-weight: normal;
+                color: var(--black-500);
+            }
+
+            &:hover {
+                font-weight: bold;
+                color: var(--black-900);
+            }
+        }
+
+        &.indent-1 {
+            padding-left: 16px + 21px * 1;
+        }
+
+        &.indent-2 {
+            padding-left: 16px + 21px * 2;
+        }
+    }
+}
