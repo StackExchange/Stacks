@@ -25,6 +25,9 @@ namespace Stacks {
             }
         }
 
+        /**
+         * Gets all tabs within the controller.
+         */
         get tabTargets() {
             return <HTMLElement[]>Array.from(this.element.querySelectorAll("[role=tab]"));
         }
@@ -67,6 +70,10 @@ namespace Stacks {
             this.selectedTab?.focus();
         }
 
+        /**
+         * Attempts to switch to a new tab, doing nothing if the tab is already selected or
+         * the s-tablist:select event is prevented.
+         */
         private switchToTab(newTab: HTMLElement) {
 
             var oldTab = this.selectedTab;

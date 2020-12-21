@@ -140,9 +140,9 @@ description: Our navigation component is a collection of pill-shaped buttons tha
     </div>
 </section>
 <section class="stacks-section">
-    {% header "h2", "Scripted tabs" %}
+    {% header "h2", "Interactive tabs" %}
 
-    <p class="stacks-copy">This can be used with JavaScript... good docs here.</p>
+    <p class="stacks-copy">Stacks provides a Stimulus controller for interactive tab-style navigation within a single document.</p>
 
     {% header "h3", "Attributes" %}
     <div class="overflow-x-auto mb32">
@@ -228,13 +228,28 @@ description: Our navigation component is a collection of pill-shaped buttons tha
     <div class="stacks-preview">
 {% highlight html %}
 <div class="s-navigation" role="tablist" data-controller="s-tablist">
-    <button type="button" role="tab"
-            id="tab-question" aria-selected="true" aria-controls="panel-1" class="s-navigation--item is-selected">Task</button>
-    <button type="button" role="tab" id="tab-2" aria-selected="false" aria-controls="panel-2" tabindex="-1" class="s-navigation--item">Answers (2)</button>
-    <button type="button" role="tab" id="tab-3" aria-selected="false" aria-controls="panel-3" tabindex="-1" class="s-navigation--item">Duplicate A</button>
-    <button type="button" role="tab" id="tab-4" aria-selected="false" aria-controls="panel-4" tabindex="-1" class="s-navigation--item">Duplicate B</button>
+    <button type="button"
+            role="tab"
+            id="tab-question"
+            aria-selected="true"
+            aria-controls="panel-question"
+            class="s-navigation--item is-selected">Task</button>
+    <button type="button"
+            role="tab"
+            id="tab-answers"
+            aria-selected="false"
+            aria-controls="panel-answers"
+            tabindex="-1"
+            class="s-navigation--item">Answers (2)</button>
 </div>
-</button>
+
+<div id="panel-question" aria-labelledby="tab-question" tabindex="0">
+    …
+</div>
+
+<div id="panel-answers" aria-labelledby="tab-answers" tabindex="0" class="d-none">
+    …
+</div>
 {% endhighlight %}
         <div class="stacks-preview--example bg-black-025">
 
@@ -264,8 +279,6 @@ description: Our navigation component is a collection of pill-shaped buttons tha
                 <div class="fs-headline1">Potential Duplicate B</div>
                 <p>…</p>
             </div>
-
-
         </div>
     </div>
 </section>
