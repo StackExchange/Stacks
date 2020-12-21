@@ -4601,9 +4601,12 @@ var Stacks;
             configurable: true
         });
         TabListController.prototype.selectTab = function (event) {
-            this.selectedTab = event.currentTarget;
+            var _a;
+            this.switchToTab(event.currentTarget);
+            (_a = this.selectedTab) === null || _a === void 0 ? void 0 : _a.focus();
         };
         TabListController.prototype.handleKeydown = function (event) {
+            var _a;
             var tabElement = event.currentTarget;
             var tabs = this.tabTargets;
             var tabIndex = tabs.indexOf(tabElement);
@@ -4623,7 +4626,19 @@ var Stacks;
                 tabIndex = 0;
             }
             tabElement = tabs[tabIndex];
-            this.selectedTab = tabElement;
+            this.switchToTab(tabElement);
+            (_a = this.selectedTab) === null || _a === void 0 ? void 0 : _a.focus();
+        };
+        TabListController.prototype.switchToTab = function (newTab) {
+            var oldTab = this.selectedTab;
+            if (oldTab === newTab) {
+                return;
+            }
+            if (this.triggerEvent("select", { oldTab: oldTab, newTab: newTab }).defaultPrevented) {
+                return;
+            }
+            this.selectedTab = newTab;
+            this.triggerEvent("selected", { oldTab: oldTab, newTab: newTab });
         };
         Object.defineProperty(TabListController.prototype, "selectedTab", {
             get: function () {
@@ -4646,9 +4661,6 @@ var Stacks;
                         tab.setAttribute('tabindex', '-1');
                         panel === null || panel === void 0 ? void 0 : panel.classList.add('d-none');
                     }
-                }
-                if (selectedTab instanceof HTMLElement) {
-                    selectedTab.focus();
                 }
             },
             enumerable: false,

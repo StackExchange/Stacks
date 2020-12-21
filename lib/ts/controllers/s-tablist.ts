@@ -26,15 +26,27 @@ namespace Stacks {
         }
 
         get tabTargets() {
-            return Array.from(this.element.querySelectorAll("[role=tab]"));
+            return <HTMLElement[]>Array.from(this.element.querySelectorAll("[role=tab]"));
         }
 
+        /**
+         * Handles click events on individual tabs, causing them to be selected.
+         */
         selectTab(event: MouseEvent) {
-            this.selectedTab = <Element>event.currentTarget;
+            this.switchToTab(<HTMLElement>event.currentTarget);
+
+            // We need to be very agressive about selecting the current tab on click.
+            // Mouse click will not always achieve this and failing to do so will prevent
+            // keyboard navigation from working.
+            this.selectedTab?.focus();
         }
 
+        /**
+         * Handles left and right arrow keydown events on individual tabs,
+         * selecting the adjacent tab corresponding to the event.
+         */
         handleKeydown(event: KeyboardEvent) {
-            let tabElement = <Element>event.currentTarget;
+            let tabElement = <HTMLElement>event.currentTarget;
 
             var tabs = this.tabTargets;
             var tabIndex = tabs.indexOf(tabElement);
@@ -50,17 +62,36 @@ namespace Stacks {
             if (tabIndex < 0) { tabIndex = tabs.length - 1; }
             if (tabIndex >= tabs.length) { tabIndex = 0; }
 
-            tabElement = tabs[tabIndex];
-   
-            this.selectedTab = tabElement;
+            tabElement = <HTMLElement>tabs[tabIndex];
+            this.switchToTab(tabElement);
+            this.selectedTab?.focus();
         }
 
+        private switchToTab(newTab: HTMLElement) {
+
+            var oldTab = this.selectedTab;
+            if (oldTab === newTab) { return; }
+
+            if (this.triggerEvent("select", { oldTab, newTab }).defaultPrevented) { return; }
+
+            this.selectedTab = newTab;
+            this.triggerEvent("selected", { oldTab, newTab });
+        }
         
-        public get selectedTab() : Element | null {
+        /**
+         * Returns the currently selected tab or null if no tabs are selected.
+         */
+        public get selectedTab() : HTMLElement | null {
             return this.tabTargets.find(e => e.getAttribute("aria-selected") === "true") || null;
         }
         
-        public set selectedTab(selectedTab: Element | null) {
+        /**
+         * Switches the tablist to the provided tab, updating the tabs and panels
+         * to reflect the change.
+         * @param selectedTab The tab to select.  If `null` is provided or the element
+         * is not a valid tab, all tabs will be unselected.
+         */
+        public set selectedTab(selectedTab: HTMLElement | null) {
             for (let tab of this.tabTargets) {
                 let panelId = tab.getAttribute('aria-controls');
                 let panel = panelId ? document.getElementById(panelId) : null;
@@ -76,10 +107,6 @@ namespace Stacks {
                     tab.setAttribute('tabindex', '-1');
                     panel?.classList.add('d-none');
                 }
-            }
-
-            if (selectedTab instanceof HTMLElement) {
-                selectedTab.focus();
             }
         }
     }
