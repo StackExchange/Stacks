@@ -110,10 +110,11 @@ button.s-link {
 }
 
 .s-anchors {
-    .colorize-all(@name, @normal, @hover, @visited) {
+    .colorize-all(@name, @normal, @hover) {
         &.s-anchors__@{name},
         & .s-anchors.s-anchors__@{name} {
-            a:not(.s-link) {
+            a:not(.s-link),
+            .s-btn.s-btn__link {
                 color: @normal;
 
                 &:hover,
@@ -122,22 +123,28 @@ button.s-link {
                 }
 
                 &:visited {
-                    color: @visited;
+                    color: @normal;
+
+                    &:hover,
+                    &:active {
+                        color: @hover;
+                    }
                 }
             }
         }
     }
     &.s-anchors__underlined {
-        a:not(.s-link) {
+        a:not(.s-link),
+        .s-btn.s-btn__link {
             text-decoration: underline;
         }
     }
     #stacks-internals #load-config();
-    .colorize-all(default, @link-color, @link-color-hover, @link-color-visited);
-    .colorize-all(grayscale, var(--black-700), var(--black-600), var(--black-900));
-    .colorize-all(inherit, inherit, inherit, inherit);
-    .colorize-all(muted, var(--black-500), var(--black-400), var(--black-600));
-    .colorize-all(danger, var(--red-500), var(--red-400), var(--red-600));
+    .colorize-all(default, @link-color, @link-color-hover);
+    .colorize-all(grayscale, var(--black-700), var(--black-600));
+    .colorize-all(inherit, inherit, inherit);
+    .colorize-all(muted, var(--black-500), var(--black-400));
+    .colorize-all(danger, var(--red-500), var(--red-400));
 }
 
 .s-block-link {
