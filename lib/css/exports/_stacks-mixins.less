@@ -29,6 +29,27 @@
             appearance: @all;
 }
 
+//  ===========================================================================
+//  --  FOCUS VISIBLE
+//      Powered by https://github.com/WICG/focus-visible while we wait for better
+//      :focus-visible support
+//  ---------------------------------------------------------------------------
+.focus(@rules) {
+    // This will hide the focus indicator if the element receives focus via the mouse
+    .js-focus-visible & {
+        &:focus:not(.focus-visible) {
+            outline: none;
+        }
+    }
+
+    // Adds a strong focus indicator for keyboard focus.
+    .js-focus-visible & {
+        &.focus-visible {
+            outline: none;
+            @rules();
+        }
+    }
+}
 
 //  ===========================================================================
 //  --  FONT FACE
