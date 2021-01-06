@@ -737,16 +737,12 @@ body.theme-highcontrast {
     --highlight-deletion: var(--red-700);
 }
 
-body.theme-system {
-    &.theme-highcontrast {
-        @media (prefers-color-scheme: dark) {
-            .dark-highcontrast();
-        }
+body.theme-system .theme-highcontrast {
+    @media (prefers-color-scheme: dark) {
+        .dark-highcontrast();
     }
 }
 
-body.theme-dark {
-    &.theme-highcontrast {
-        .dark-highcontrast();
-    }
+body.theme-dark.theme-highcontrast {
+    .dark-highcontrast();
 }
