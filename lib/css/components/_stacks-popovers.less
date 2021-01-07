@@ -30,6 +30,12 @@
     min-width: 12rem;
     width: 100%;
 
+    .dark-mode({
+        background-color: var(--black-075);
+        border-color: transparent;
+        box-shadow: var(--bs-lg);
+    });
+
     &.s-popover__tooltip {
         width: auto;
         min-width: unset;
@@ -71,12 +77,6 @@
         }
     }
 }
-
-#stacks-internals #darkmode('.s-popover', {
-    background-color: var(--black-075);
-    border-color: transparent;
-    box-shadow: var(--bs-lg);
-});
 
 //  ============================================================================
 //  $   CLOSE BUTTON
@@ -120,23 +120,21 @@
 
 .s-popover--arrow {
     color: var(--white);
-}
 
-#stacks-internals #darkmode('', {
-    .s-popover--arrow {
+    .dark-mode({
         color: var(--black-075);
-    }
-
-    .s-popover--arrow:before {
-        background: currentColor;
-    }
-});
+    });
+}
 
 .s-popover--arrow:before {
     // This renders our border
     content: '';
     transform: rotate(45deg);
     background: var(--black-150);
+
+    .dark-mode({
+        background: currentColor !important;
+    });
 }
 
 .s-popover--arrow:after {
@@ -160,6 +158,10 @@
 .s-popover--arrow__rb {
     color: var(--white);
 
+    .dark-mode({
+        color: var(--black-075);
+    });
+
     &:before,
     &:after {
         content: "";
@@ -169,23 +171,6 @@
         border-color: transparent;
     }
 }
-
-#stacks-internals #darkmode('', {
-    .s-popover--arrow__tl,
-    .s-popover--arrow__tc,
-    .s-popover--arrow__tr,
-    .s-popover--arrow__bl,
-    .s-popover--arrow__bc,
-    .s-popover--arrow__br,
-    .s-popover--arrow__lt,
-    .s-popover--arrow__lc,
-    .s-popover--arrow__lb,
-    .s-popover--arrow__rt,
-    .s-popover--arrow__rc,
-    .s-popover--arrow__rb {
-        color: var(--black-075);
-    }
-});
 
 //  ============================================================================
 //  $   ARROW LOCATIONS
