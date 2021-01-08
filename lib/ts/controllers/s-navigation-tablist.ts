@@ -72,7 +72,7 @@ namespace Stacks {
 
         /**
          * Attempts to switch to a new tab, doing nothing if the tab is already selected or
-         * the s-tablist:select event is prevented.
+         * the s-navigation-tablist:select event is prevented.
          */
         private switchToTab(newTab: HTMLElement) {
 
@@ -118,4 +118,4 @@ namespace Stacks {
         }
     }
 }
-Stacks.application.register("s-tablist", Stacks.TabListController);
+Stacks.application.register("s-navigation-tablist", Stacks.TabListController);
