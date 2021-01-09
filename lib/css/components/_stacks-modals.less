@@ -56,6 +56,10 @@
     backface-visibility: hidden;
     transform: translate3d(0, 30%, 0) scale3d(0.6, 0.6, 0.6);
 
+    .dark-mode({
+        background-color: var(--black-100);
+    });
+
     @scrollbar-styles();
 
     transition: opacity 200ms @te-smooth 0s, z-index 0s 100ms, visibility 0s 100ms, transform 100ms @te-smooth 0s, transform 100ms @te-smooth 0s; // Transition out
@@ -65,8 +69,6 @@
         transform: translate3d(0, 0, 0) scale3d(1, 1, 1); // Transition in
     }
 }
-
-#stacks-internals #darkmode('.s-modal--dialog', { background-color: var(--black-100) });
 
 //  [1] To override .s-btn class attributes
 .s-modal--close {
