@@ -291,11 +291,6 @@ description: Our navigation component is a collection of pill-shaped buttons tha
                     <td class="p8">A unique id for the panel.  Used by the tab to identify the panel that will be shown when it is active, via <code class="stacks-code">aria-controls="{PANEL_ID}"</code>.</td>
                 </tr>
                 <tr>
-                    <th scope="row"><code class="stacks-code">tabindex="0"</code></th>
-                    <td>Tab panel elements</td>
-                    <td class="p8">Allows accessibility tools to focus the panel.</td>
-                </tr>
-                <tr>
                     <th scope="row"><code class="stacks-code">aria-labelledby="{TAB_ID}"</code></th>
                     <td>Tab panel elements</td>
                     <td class="p8">Refers to the id of the tab element that corresponds to the panel.</td>
@@ -304,6 +299,53 @@ description: Our navigation component is a collection of pill-shaped buttons tha
                     <th scope="row"><code class="stacks-code">class="d-none"</code></th>
                     <td>Initially hidden tab panel elements</td>
                     <td class="p8">Suppressed display of tab panels.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    {% header "h3", "Events" %}
+    <div class="overflow-x-auto mb32">
+        <table class="wmn4 s-table s-table__bx-simple">
+            <thead>
+                <tr>
+                    <th class="s-table--cell5" scope="col">Event</th>
+                    <th class="s-table--cell2" scope="col">Element</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody class="fs-caption">
+                <tr>
+                    <th scope="row"><code class="stacks-code">s-navigation-tablist:select</code></th>
+                    <td>Controller element</td>
+                    <td><span class="s-label--status ml0">Default preventable</span> Fires immediately before a new tab is selected.  Calling <code class="stacks-code">.preventDefault()</code> cancels the display of the tab and keeps the state unchanged.</td>
+                </tr>
+                <tr>
+                    <th scope="row"><code class="stacks-code">s-navigation-tablist:selected</code></th>
+                    <td>Controller element</td>
+                    <td>Fires immediately after the new tag has been selected.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="overflow-x-auto mb32">
+        <table class="wmn4 s-table s-table__bx-simple">
+            <thead>
+                <tr>
+                    <th class="s-table--cell5" scope="col">event.detail</th>
+                    <th class="s-table--cell2" scope="col">Applicable events</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody class="fs-caption">
+                <tr>
+                    <th scope="row"><code class="stacks-code">oldTab</code></th>
+                    <td><code class="stacks-code">s-navigation-tablist:*</code></td>
+                    <td>Contains <code class="stacks-code">HTMLElement | null</code> representing the previously selected tab, if one was selected.  This is the element with <code class="stacks-code">role="tab"</code>, not the panel itself which can be found using the tab's <code class="stacks-code">aria-controls</code> attribute.</td>
+                </tr>
+                <tr>
+                    <th scope="row"><code class="stacks-code">newTab</code></th>
+                    <td><code class="stacks-code">s-navigation-tablist:*</code></td>
+                    <td>Contains <code class="stacks-code">HTMLElement</code> representing the newly selected tab.  This is the element with <code class="stacks-code">role="tab"</code>, not the panel itself which can be found using the tab's <code class="stacks-code">aria-controls</code> attribute.</td>
                 </tr>
             </tbody>
         </table>
@@ -328,11 +370,11 @@ description: Our navigation component is a collection of pill-shaped buttons tha
             class="s-navigation--item">Answers (2)</button>
 </nav>
 
-<div id="panel-question" aria-labelledby="tab-question" tabindex="0">
+<div id="panel-question" aria-labelledby="tab-question">
     …
 </div>
 
-<div id="panel-answers" aria-labelledby="tab-answers" tabindex="0" class="d-none">
+<div id="panel-answers" aria-labelledby="tab-answers" class="d-none">
     …
 </div>
 {% endhighlight %}
@@ -345,22 +387,22 @@ description: Our navigation component is a collection of pill-shaped buttons tha
                 <button type="button" role="tab" id="tab-4" aria-selected="false" aria-controls="panel-4" tabindex="-1" class="s-navigation--item">Duplicate B</button>
             </nav>
 
-            <div id="panel-1" aria-labelledby="tab-1" tabindex="0">
+            <div id="panel-1" aria-labelledby="tab-1">
                 <div class="fs-headline1">Review the following question</div>
                 <p>…</p>
             </div>
 
-            <div id="panel-2" aria-labelledby="tab-2" tabindex="0" class="d-none">
+            <div id="panel-2" aria-labelledby="tab-2" class="d-none">
                 <div class="fs-headline1">Answers</div>
                 <p>…</p>
             </div>
 
-            <div id="panel-3" aria-labelledby="tab-2" tabindex="0" class="d-none">
+            <div id="panel-3" aria-labelledby="tab-2" class="d-none">
                 <div class="fs-headline1">Potential Duplicate A</div>
                 <p>…</p>
             </div>
 
-            <div id="panel-4" aria-labelledby="tab-2" tabindex="0" class="d-none">
+            <div id="panel-4" aria-labelledby="tab-2" class="d-none">
                 <div class="fs-headline1">Potential Duplicate B</div>
                 <p>…</p>
             </div>
