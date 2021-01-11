@@ -4195,9 +4195,7 @@ var Stacks;
             configurable: true
         });
         TabListController.prototype.selectTab = function (event) {
-            var _a;
             this.switchToTab(event.currentTarget);
-            (_a = this.selectedTab) === null || _a === void 0 ? void 0 : _a.focus();
         };
         TabListController.prototype.handleKeydown = function (event) {
             var _a;

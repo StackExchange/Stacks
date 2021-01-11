@@ -37,11 +37,6 @@ namespace Stacks {
          */
         selectTab(event: MouseEvent) {
             this.switchToTab(<HTMLElement>event.currentTarget);
-
-            // We need to be very aggressive about selecting the current tab on click.
-            // Mouse click will not always achieve this and failing to do so will prevent
-            // keyboard navigation from working.
-            this.selectedTab?.focus();
         }
 
         /**
