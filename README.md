@@ -44,4 +44,4 @@ Have a bug or feature request? First search existing or closed issues to make su
 If you’d like to contribute to Stacks, please read through our [contribution guidelines](/CONTRIBUTING.md). Included are directions for opening issues, coding standards, and notes on development.
 
 ## License
-Code and documentation copyright 2017-2020 Stack Exchange, Inc and released under the [MIT License](/LICENSE.MD).
+Code and documentation copyright 2017-2021 Stack Exchange, Inc and released under the [MIT License](/LICENSE.MD).
