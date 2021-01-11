@@ -57,6 +57,7 @@ namespace Stacks {
                 return;
             }
     
+            // Use circular navigation when users go past the first or last tab.
             if (tabIndex < 0) { tabIndex = tabs.length - 1; }
             if (tabIndex >= tabs.length) { tabIndex = 0; }
 
