@@ -63,6 +63,8 @@ namespace Stacks {
 
             tabElement = <HTMLElement>tabs[tabIndex];
             this.switchToTab(tabElement);
+
+            // Focus the newly selected tab so it can receive keyboard events.
             this.selectedTab?.focus();
         }
 
