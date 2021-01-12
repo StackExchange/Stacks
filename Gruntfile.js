@@ -177,12 +177,12 @@ module.exports = function(grunt) {
                 }
             },
             editorCSS: {
-                src: 'node_modules/@stackoverflow/stacks-editor/dist/browser.css',
+                src: 'node_modules/@stackoverflow/stacks-editor/dist/styles.css',
                 dest: 'docs/assets/css/',
                 flatten: true,
                 expand: true,
                 rename: function(dest, src) {
-                    return dest + src.replace('browser.css','stacks-editor.css');
+                    return dest + src.replace('styles.css','stacks-editor.css');
                 }
             },
             declarations: {
