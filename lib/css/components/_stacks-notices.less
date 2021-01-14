@@ -29,6 +29,11 @@
         box-shadow: var(--bs-sm);
         pointer-events: all;
     }
+
+    .s-notice--btn {
+        color: var(--fc-dark);
+        padding: @su8;
+    }
 }
 
 //  ============================================================================
@@ -45,6 +50,17 @@
     &.s-banner__important {
         background-color: var(--blue-500);
     }
+
+    // Improve the presentation of buttons
+    .s-notice--btn {
+        &:hover {
+            background-color: var(--powder-300);
+        }
+
+        &:active {
+            background-color: var(--powder-400);
+        }
+    }
 }
 
 //  $$  SUCCESS
@@ -58,6 +74,17 @@
     &.s-banner__important {
         background-color: var(--green-400);
         color: var(--black-900);
+    }
+
+    // Improve the presentation of buttons
+    .s-notice--btn {
+        &:hover {
+            background-color: var(--green-100);
+        }
+
+        &:active {
+            background-color: var(--green-200);
+        }
     }
 }
 
@@ -73,6 +100,17 @@
         background-color: var(--yellow-400);
         color: var(--black-900);
     }
+
+    // Improve the presentation of buttons
+    .s-notice--btn {
+        &:hover {
+            background-color: var(--yellow-200);
+        }
+
+        &:active {
+            background-color: var(--yellow-300);
+        }
+    }
 }
 
 //  $$  DANGER
@@ -86,6 +124,17 @@
     &.s-banner__important {
         background-color: var(--red-400);
     }
+
+    // Improve the presentation of buttons
+    .s-notice--btn {
+        &:hover {
+            background-color: var(--red-100);
+        }
+
+        &:active {
+            background-color: var(--red-200);
+        }
+    }
 }
 
 //  $$  IMPORTANT
@@ -96,14 +145,14 @@
     color: var(--white);
 }
 
-#stacks-internals #darkmode('', {
-    .s-notice__info,
-    .s-notice__success,
-    .s-notice__warning,
-    .s-notice__danger {
+.s-notice__info,
+.s-notice__success,
+.s-notice__warning,
+.s-notice__danger {
+    .dark-mode({
         border-color: transparent;
-    }
-});
+    });
+}
 
 //  ============================================================================
 //  $   TOASTS

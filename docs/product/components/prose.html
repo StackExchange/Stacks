@@ -1,0 +1,186 @@
+---
+layout: page
+title: Prose
+description: The prose component provides proper styling for rendered Markdown.
+---
+<section class="stacks-section">
+    {% header "h2", "Classes" %}
+    <div class="overflow-x-auto mb32">
+        <table class="wmn3 s-table s-table__bx-simple">
+            <thead>
+                <tr>
+                    <th scope="col">Class</th>
+                    <th scope="col">Output</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row"><code class="stacks-code">.s-prose</code></th>
+                    <td class="ff-mono">Adds proper styling for rendered Markdown.</td>
+                </tr>
+                <tr>
+                    <th scope="row"><code class="stacks-code">.s-prose__xs</code></th>
+                    <td class="ff-mono">Our most compact version with the smallest font size and line height.</td>
+                </tr>
+                <tr>
+                    <th scope="row"><code class="stacks-code">.s-prose__sm</code></th>
+                    <td class="ff-mono">Decreases the base font size and line height.</td>
+                </tr>
+                <tr>
+                    <th scope="row"><code class="stacks-code">.s-prose__md</code></th>
+                    <td class="ff-mono">Increases the base font size and line height.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+<section class="stacks-section">
+    {% header "h2", "Examples" %}
+    {% header "h3", "Minimal" %}
+    <p class="stacks-copy">We modified this test document from the folks at <a href="https://github.com/tailwindcss/typography/blob/master/README.md">Tailwind</a> to demonstrate and explain our design choices.</p>
+    <div class="stacks-preview">
+        <div class="stacks-preview--example d:bg-white bar-sm btw1">
+            <div class="s-prose">
+                {% markdown '/_includes/markdown-prose.md' %}
+            </div>
+        </div>
+    </div>
+
+    {% header "h3", "Answer" %}
+    <p class="stacks-copy">The following is a <a href="https://stackoverflow.com/a/2003515/2804712">real-world answer</a> taken from Stack Overflow</p>
+    <div class="stacks-preview">
+        <div class="stacks-preview--example d:bg-white bar-sm btw1">
+            <div class="s-prose">
+                {% markdown '/_includes/markdown-post.md' %}
+            </div>
+        </div>
+    </div>
+
+    {% header "h3", "Link preview" %}
+    <p class="stacks-copy">Let’s see what a link preview looks like within the prose component.</p>
+    <div class="stacks-preview">
+        <div class="stacks-preview--example d:bg-white bar-sm btw1">
+            <div class="s-prose">
+                <div class="s-link-preview">
+                    <div class="s-link-preview--header">
+                        <div class="s-link-preview--icon">
+                            {% icon "GitHub" %}
+                        </div>
+                        <div>
+                            <a href="https://github.com/StackExchange/Stacks/blob/develop/Gruntfile.js" class="s-link-preview--title">
+                                Gruntfile.js
+                            </a>
+                            <div class="s-link-preview--details">
+                                Located in <a href="https://github.com/StackExchange/Stacks/">StackExchange / Stacks</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="s-link-preview--code">
+{% highlight js %}
+linenums'use strict';
+
+module.exports = function(grunt) {
+    grunt.initConfig({
+        pkg: grunt.file.readJSON('package.json'),
+        version: '<%= pkg.version %>',
+
+        // Shell commands for use in Grunt tasks
+        shell: {
+            eleventyBuild: {
+                command: 'npx @11ty/eleventy',
+                options: {
+                    stderr: false,
+                    execOptions: {
+                        cwd: 'docs'
+                    }
+                }
+{% endhighlight %}
+                    </div>
+                    <div class="s-link-preview--footer">
+                        <a href="https://github.com/StackExchange/Stacks/blob/develop/Gruntfile.js" class="s-link-preview--url">https://github.com/StackExchange/Stacks/blob/develop/Gruntfile.js</a>
+                        <div class="s-link-preview--misc">(truncated)</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% header "h3", "Full Markdown spec" %}
+    <p class="stacks-copy">This example includes the full kitchen-sink collection of everything the Markdown spec includes.</p>
+    <div class="stacks-preview">
+{% highlight html %}
+<div class="s-prose">
+    …
+</div>
+{% endhighlight %}
+        <div class="stacks-preview--example d:bg-white">
+            <div class="s-prose">
+                {% markdown '/_includes/markdown-sandbox.md' %}
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="stacks-section">
+    {% header "h2", "Sizing" %}
+    {% header "h3", "Extra Small" %}
+    <div class="stacks-preview">
+{% highlight html %}
+<div class="s-prose s-prose__xs">
+    …
+</div>
+{% endhighlight %}
+        <div class="stacks-preview--example d:bg-white">
+            <div class="s-prose s-prose__xs">
+                {% markdown '/_includes/markdown-readme.md' %}
+            </div>
+        </div>
+    </div>
+
+    {% header "h3", "Small" %}
+    <p class="stacks-copy">In ancilliary content like comments or side-discussions, it may be appropriate to add the small variation.</p>
+    <div class="stacks-preview">
+{% highlight html %}
+<div class="s-prose s-prose__sm">
+    …
+</div>
+{% endhighlight %}
+        <div class="stacks-preview--example d:bg-white">
+            <div class="s-prose s-prose__sm">
+                {% markdown '/_includes/markdown-readme.md' %}
+            </div>
+        </div>
+    </div>
+
+    {% header "h3", "Default" %}
+    <div class="stacks-preview">
+{% highlight html %}
+<div class="s-prose">
+    …
+</div>
+{% endhighlight %}
+        <div class="stacks-preview--example d:bg-white">
+            <div class="s-prose">
+                {% markdown '/_includes/markdown-readme.md' %}
+            </div>
+        </div>
+    </div>
+
+    {% header "h3", "Medium" %}
+    <p class="stacks-copy">Depending on the context for displaying the prose component, it may be appropriate to size text up to maintain readability.</p>
+    <div class="stacks-preview">
+{% highlight html %}
+<div class="s-prose s-prose__md">
+    …
+</div>
+{% endhighlight %}
+        <div class="stacks-preview--example d:bg-white">
+            <div class="s-prose s-prose__md">
+                {% markdown '/_includes/markdown-readme.md' %}
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Additional javascript -->
+<script src="{{ "/assets/js/spoilers.js" | relative_url }}" defer></script>

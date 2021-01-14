@@ -14,12 +14,9 @@
 //  $   BASE STYLE
 //  ----------------------------------------------------------------------------
 .s-modal {
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
     visibility: hidden;
     position: fixed;
-
     z-index: @zi-hide; // Make sure it's also below everything so we can't interact with it.
 
     // This fills the entire viewport without having to worry about size.
@@ -59,6 +56,12 @@
     backface-visibility: hidden;
     transform: translate3d(0, 30%, 0) scale3d(0.6, 0.6, 0.6);
 
+    .dark-mode({
+        background-color: var(--black-100);
+    });
+
+    @scrollbar-styles();
+
     transition: opacity 200ms @te-smooth 0s, z-index 0s 100ms, visibility 0s 100ms, transform 100ms @te-smooth 0s, transform 100ms @te-smooth 0s; // Transition out
     will-change: visibility, z-index, opacity, transform; // Not supported by Edge
 
@@ -66,8 +69,6 @@
         transform: translate3d(0, 0, 0) scale3d(1, 1, 1); // Transition in
     }
 }
-
-#stacks-internals #darkmode('.s-modal--dialog', { background-color: var(--black-100) });
 
 //  [1] To override .s-btn class attributes
 .s-modal--close {
@@ -113,9 +114,6 @@
         color: var(--red-600);
     }
 }
-
-#stacks-internals #darkmode('.s-modal.has-danger .s-modal--dialog', { background-color: var(--black-050) });
-#stacks-internals #darkmode('.s-modal.s-modal__danger .s-modal--dialog', { background-color: var(--black-050) });
 
 //  ============================================================================
 //  $   SIZES

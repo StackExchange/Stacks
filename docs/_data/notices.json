@@ -6,6 +6,11 @@
       "description": "Default style used to separate notices from the main content."
     },
     {
+      "class": ".s-notice--btn",
+      "applies": "N/A",
+      "description": "Child element applied to .s-btn within a toast to give it a subtle tint that’s appropriate in that context."
+    },
+    {
       "class": ".s-notice__info",
       "applies": ".s-notice",
       "description": "Visual style for information notices."
@@ -40,35 +45,29 @@
     },
     {
       "type": "Toast",
-      "class": ".s-notice-toast",
+      "class": ".s-toast",
       "applies": "Container",
       "description": "Adds a container to properly fix a floating toast notice to the top-center of the page. These toasts typically disappear after a set time (i.e. 3 seconds)"
     }
   ],
   "access": [
     {
-      "item": "aria-describedby=\"[id]\"",
-      "applies": "role=\"alertdialog\"",
-      "description": "Used to reference the alert message within the dialog. If you are using <code class=\"stacks-code\">role=\"alertdialog\"</code>, <strong>this must be applied.</strong>",
-      "url": "https://www.w3.org/TR/wai-aria-1.1/#aria-describedby"
+      "item": "aria-labelledby=\"[id]\"",
+      "applies": ".s-toast",
+      "description": "Used to reference the alert message within the dialog. If you are using <code class=\"stacks-code\">.s-toast</code>, <strong>this must be applied.</strong>",
+      "url": "https://www.w3.org/TR/wai-aria-1.1/#aria-labelledby"
     },
     {
       "item": "aria-hidden=\"[state]\"",
-      "applies": ".s-notice",
-      "description": "Informs assistive technologies (such as screen readers) if they should ignore the element. This should not be confused with the HTML5 hidden attribute which tells the browser to not display an element.",
+      "applies": ".s-toast",
+      "description": "Informs assistive technologies (such as screen readers) if they should ignore the element. When applied to <code class=\"stacks-code\">.s-toast</code>, Stacks will use this attribute to show or hide the toast.",
       "url": "https://www.w3.org/TR/wai-aria-1.1/#aria-hidden"
     },
     {
-      "item": "aria-label=\"[id]\"",
-      "applies": "Message area",
-      "description": "Labels the element for assistive technologies (such as screen readers).",
+      "item": "aria-label=\"[text]\"",
+      "applies": ".s-btn",
+      "description": "Labels the element for assistive technologies (such as screen readers).  This should be used on any button that does not contain text content.",
       "url": "https://www.w3.org/TR/wai-aria-1.1/#aria-label"
-    },
-    {
-      "item": "role=\"status\"",
-      "applies": ".s-notice--banner",
-      "description": "Defines a live region with advisory information for the user, but not important enough to warrant an alert.",
-      "url": "https://www.w3.org/TR/wai-aria-1.1/#status"
     },
     {
       "item": "role=\"alert\"",
@@ -78,7 +77,7 @@
     },
     {
       "item": "role=\"alertdialog\"",
-      "applies": "Notice dialog container",
+      "applies": ".s-toast",
       "description": "The wrapping content area of an <code class=\"stacks-code\">alert</code>. Elements with the <code class=\"stacks-code\">alertdialog</code> role <strong>must</strong> use the <code class=\"stacks-code\">aria-describedby</code> attribute to reference the alert message within the dialog.",
       "url": "https://www.w3.org/TR/wai-aria-1.1/#alertdialog"
     },

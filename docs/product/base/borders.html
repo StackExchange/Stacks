@@ -70,6 +70,9 @@ description: Stacks provides atomic classes for borders.
                     <th class="s-table--cell2" scope="col">Class</th>
                     <th scope="col">Output</th>
                     <th scope="col">Definition</th>
+                    <th scope="col">
+                        <a class="s-link s-link__inherit" href="{{ "/product/guidelines/conditional-classes#responsive" | relative_url }}">Responsive?</a>
+                    </th>
                 </tr>
             </thead>
             <tbody>
@@ -78,6 +81,11 @@ description: Stacks provides atomic classes for borders.
                         <th scope="row"><code class="stacks-code">{{ border.class }}</code></th>
                         <td class="ff-mono">{{ border.output }}</td>
                         <td>{{ border.define }}</td>
+                        <td class="ta-center">
+                            {% if border.responsive %}
+                                {% icon "Checkmark", "fc-green-500" %}
+                            {% endif %}
+                        </td>
                     </tr>
                 {% endfor %}
             </tbody>
@@ -189,29 +197,39 @@ description: Stacks provides atomic classes for borders.
     {% header "h3", "Black" %}
     <div class="stacks-preview">
 {% highlight html %}
-<div class="bb bc-black-10">Black Border: Tenth Step</div>
-<div class="bb bc-black-9">Black Border: Ninth Step</div>
-<div class="bb bc-black-8">Black Border: Eighth Step</div>
-<div class="bb bc-black-7">Black Border: Seventh Step</div>
-<div class="bb bc-black-6">Black Border: Sixth Step</div>
-<div class="bb bc-black-5">Black Border: Fifth Step</div>
-<div class="bb bc-black-4">Black Border: Fourth Step</div>
-<div class="bb bc-black-3">Black Border: Third Step</div>
-<div class="bb bc-black-2">Black Border: Second Step</div>
-<div class="bb bc-black-1">Black Border: First Step</div>
+<div class="ba bc-black-900"></div>
+<div class="ba bc-black-800"></div>
+<div class="ba bc-black-750"></div>
+<div class="ba bc-black-700"></div>
+<div class="ba bc-black-600"></div>
+<div class="ba bc-black-500"></div>
+<div class="ba bc-black-400"></div>
+<div class="ba bc-black-350"></div>
+<div class="ba bc-black-300"></div>
+<div class="ba bc-black-200"></div>
+<div class="ba bc-black-150"></div>
+<div class="ba bc-black-100"></div>
+<div class="ba bc-black-075"></div>
+<div class="ba bc-black-050"></div>
+<div class="ba bc-black-025"></div>
 {% endhighlight %}
         <div class="stacks-preview--example">
-            <div class="grid ff-column-nowrap w100 gs8 gsy">
-                <div class="grid--cell ai-center p8 bb bc-black-10">Black Border: Tenth Step</div>
-                <div class="grid--cell ai-center p8 bb bc-black-9">Black Border: Ninth Step</div>
-                <div class="grid--cell ai-center p8 bb bc-black-8">Black Border: Eighth Step</div>
-                <div class="grid--cell ai-center p8 bb bc-black-7">Black Border: Seventh Step</div>
-                <div class="grid--cell ai-center p8 bb bc-black-6">Black Border: Sixth Step</div>
-                <div class="grid--cell ai-center p8 bb bc-black-5">Black Border: Fifth Step</div>
-                <div class="grid--cell ai-center p8 bb bc-black-4">Black Border: Fourth Step</div>
-                <div class="grid--cell ai-center p8 bb bc-black-3">Black Border: Third Step</div>
-                <div class="grid--cell ai-center p8 bb bc-black-2">Black Border: Second Step</div>
-                <div class="grid--cell ai-center p8 bb bc-black-1">Black Border: First Step</div>
+            <div class="grid ff-column-nowrap w100 gs12 gsy">
+                <div class="grid--cell ai-center p8 ba bc-black-900">Black 900</div>
+                <div class="grid--cell ai-center p8 ba bc-black-800">Black 800</div>
+                <div class="grid--cell ai-center p8 ba bc-black-750">Black 750</div>
+                <div class="grid--cell ai-center p8 ba bc-black-700">Black 700</div>
+                <div class="grid--cell ai-center p8 ba bc-black-600">Black 600</div>
+                <div class="grid--cell ai-center p8 ba bc-black-500">Black 500</div>
+                <div class="grid--cell ai-center p8 ba bc-black-400">Black 400</div>
+                <div class="grid--cell ai-center p8 ba bc-black-350">Black 350</div>
+                <div class="grid--cell ai-center p8 ba bc-black-300">Black 300</div>
+                <div class="grid--cell ai-center p8 ba bc-black-200">Black 200</div>
+                <div class="grid--cell ai-center p8 ba bc-black-150">Black 150</div>
+                <div class="grid--cell ai-center p8 ba bc-black-100">Black 100</div>
+                <div class="grid--cell ai-center p8 ba bc-black-075">Black 75</div>
+                <div class="grid--cell ai-center p8 ba bc-black-050">Black 50</div>
+                <div class="grid--cell ai-center p8 ba bc-black-025">Black 25</div>
             </div>
         </div>
     </div>
@@ -219,15 +237,15 @@ description: Stacks provides atomic classes for borders.
     {% header "h3", "White" %}
     <div class="stacks-preview">
 {% highlight html %}
-<div class="bb bc-white-3">White Border: Third Step</div>
-<div class="bb bc-white-2">White Border: Second Step</div>
-<div class="bb bc-white-1">White Border: First Step</div>
+<div class="ba bc-white-3">White Border: Third Step</div>
+<div class="ba bc-white-2">White Border: Second Step</div>
+<div class="ba bc-white-1">White Border: First Step</div>
 {% endhighlight %}
         <div class="stacks-preview--example bg-black-750">
-            <div class="grid ff-column-nowrap w100 gs8 gsy">
-                <div class="grid--cell ai-center p8 bb bc-white-3 fc-white">White Border: Third Step</div>
-                <div class="grid--cell ai-center p8 bb bc-white-2 fc-white">White Border: Second Step</div>
-                <div class="grid--cell ai-center p8 bb bc-white-1 fc-white">White Border: First Step</div>
+            <div class="grid ff-column-nowrap w100 gs12 gsy">
+                <div class="grid--cell ai-center p8 ba bc-white-3 fc-white">White Border: Third Step</div>
+                <div class="grid--cell ai-center p8 ba bc-white-2 fc-white">White Border: Second Step</div>
+                <div class="grid--cell ai-center p8 ba bc-white-1 fc-white">White Border: First Step</div>
             </div>
         </div>
     </div>
@@ -235,15 +253,29 @@ description: Stacks provides atomic classes for borders.
     {% header "h3", "Orange" %}
     <div class="stacks-preview">
 {% highlight html %}
-<div class="bb bc-orange-3">Dark orange border</div>
-<div class="bb bc-orange-2">Orange border</div>
-<div class="bb bc-orange-1">Light orange border</div>
+<div class="ba bc-orange-900"></div>
+<div class="ba bc-orange-800"></div>
+<div class="ba bc-orange-700"></div>
+<div class="ba bc-orange-600"></div>
+<div class="ba bc-orange-500"></div>
+<div class="ba bc-orange-400"></div>
+<div class="ba bc-orange-300"></div>
+<div class="ba bc-orange-200"></div>
+<div class="ba bc-orange-100"></div>
+<div class="ba bc-orange-050"></div>
 {% endhighlight %}
         <div class="stacks-preview--example">
-            <div class="grid ff-column-nowrap w100 gs8 gsy">
-                <div class="grid--cell ai-center p8 bb bc-orange-3">Dark Orange Border</div>
-                <div class="grid--cell ai-center p8 bb bc-orange-2">Orange Border</div>
-                <div class="grid--cell ai-center p8 bb bc-orange-1">Light Orange Border</div>
+            <div class="grid ff-column-nowrap w100 gs12 gsy">
+                <div class="grid--cell ai-center p8 ba bc-orange-900">Orange 900</div>
+                <div class="grid--cell ai-center p8 ba bc-orange-800">Orange 800</div>
+                <div class="grid--cell ai-center p8 ba bc-orange-700">Orange 700</div>
+                <div class="grid--cell ai-center p8 ba bc-orange-600">Orange 600</div>
+                <div class="grid--cell ai-center p8 ba bc-orange-500">Orange 500</div>
+                <div class="grid--cell ai-center p8 ba bc-orange-400">Orange 400</div>
+                <div class="grid--cell ai-center p8 ba bc-orange-300">Orange 300</div>
+                <div class="grid--cell ai-center p8 ba bc-orange-200">Orange 200</div>
+                <div class="grid--cell ai-center p8 ba bc-orange-100">Orange 100</div>
+                <div class="grid--cell ai-center p8 ba bc-orange-050">Orange 50</div>
             </div>
         </div>
     </div>
@@ -251,15 +283,29 @@ description: Stacks provides atomic classes for borders.
     {% header "h3", "Blue" %}
     <div class="stacks-preview">
 {% highlight html %}
-<div class="bb bc-blue-3">Dark blue border</div>
-<div class="bb bc-blue-2">Blue border</div>
-<div class="bb bc-blue-1">Light blue border</div>
+<div class="ba bc-blue-900"></div>
+<div class="ba bc-blue-800"></div>
+<div class="ba bc-blue-700"></div>
+<div class="ba bc-blue-600"></div>
+<div class="ba bc-blue-500"></div>
+<div class="ba bc-blue-400"></div>
+<div class="ba bc-blue-300"></div>
+<div class="ba bc-blue-200"></div>
+<div class="ba bc-blue-100"></div>
+<div class="ba bc-blue-050"></div>
 {% endhighlight %}
         <div class="stacks-preview--example">
-            <div class="grid ff-column-nowrap w100 gs8 gsy">
-                <div class="grid--cell ai-center p8 bb bc-blue-3">Dark blue Border</div>
-                <div class="grid--cell ai-center p8 bb bc-blue-2">Blue border</div>
-                <div class="grid--cell ai-center p8 bb bc-blue-1">Light blue border</div>
+            <div class="grid ff-column-nowrap w100 gs12 gsy">
+                <div class="grid--cell ai-center p8 ba bc-blue-900">Blue 900</div>
+                <div class="grid--cell ai-center p8 ba bc-blue-800">Blue 800</div>
+                <div class="grid--cell ai-center p8 ba bc-blue-700">Blue 700</div>
+                <div class="grid--cell ai-center p8 ba bc-blue-600">Blue 600</div>
+                <div class="grid--cell ai-center p8 ba bc-blue-500">Blue 500</div>
+                <div class="grid--cell ai-center p8 ba bc-blue-400">Blue 400</div>
+                <div class="grid--cell ai-center p8 ba bc-blue-300">Blue 300</div>
+                <div class="grid--cell ai-center p8 ba bc-blue-200">Blue 200</div>
+                <div class="grid--cell ai-center p8 ba bc-blue-100">Blue 100</div>
+                <div class="grid--cell ai-center p8 ba bc-blue-050">Blue 50</div>
             </div>
         </div>
     </div>
@@ -267,15 +313,29 @@ description: Stacks provides atomic classes for borders.
     {% header "h3", "Powder" %}
     <div class="stacks-preview">
 {% highlight html %}
-<div class="bb bc-powder-3">Dark powder border</div>
-<div class="bb bc-powder-2">Powder border</div>
-<div class="bb bc-powder-1">Light powder border</div>
+<div class="ba bc-powder-900"></div>
+<div class="ba bc-powder-800"></div>
+<div class="ba bc-powder-700"></div>
+<div class="ba bc-powder-600"></div>
+<div class="ba bc-powder-500"></div>
+<div class="ba bc-powder-400"></div>
+<div class="ba bc-powder-300"></div>
+<div class="ba bc-powder-200"></div>
+<div class="ba bc-powder-100"></div>
+<div class="ba bc-powder-050"></div>
 {% endhighlight %}
         <div class="stacks-preview--example">
-            <div class="grid ff-column-nowrap w100 gs8 gsy">
-                <div class="grid--cell ai-center p8 bb bc-powder-3">Dark powder border</div>
-                <div class="grid--cell ai-center p8 bb bc-powder-2">Powder border</div>
-                <div class="grid--cell ai-center p8 bb bc-powder-1">Light powder border</div>
+            <div class="grid ff-column-nowrap w100 gs12 gsy">
+                <div class="grid--cell ai-center p8 ba bc-powder-900">Powder 900</div>
+                <div class="grid--cell ai-center p8 ba bc-powder-800">Powder 800</div>
+                <div class="grid--cell ai-center p8 ba bc-powder-700">Powder 700</div>
+                <div class="grid--cell ai-center p8 ba bc-powder-600">Powder 600</div>
+                <div class="grid--cell ai-center p8 ba bc-powder-500">Powder 500</div>
+                <div class="grid--cell ai-center p8 ba bc-powder-400">Powder 400</div>
+                <div class="grid--cell ai-center p8 ba bc-powder-300">Powder 300</div>
+                <div class="grid--cell ai-center p8 ba bc-powder-200">Powder 200</div>
+                <div class="grid--cell ai-center p8 ba bc-powder-100">Powder 100</div>
+                <div class="grid--cell ai-center p8 ba bc-powder-050">Powder 50</div>
             </div>
         </div>
     </div>
@@ -284,15 +344,31 @@ description: Stacks provides atomic classes for borders.
     <p class="stacks-copy">Green borders can also be declared using our <code class="stacks-code">.bc-success</code> <a href="{{ '/product/base/colors#success' | relative_url }}">alias class</a>.</p>
     <div class="stacks-preview">
 {% highlight html %}
-<div class="bb bc-green-3">Dark green border</div>
-<div class="bb bc-green-2">Green border</div>
-<div class="bb bc-green-1">Light green border</div>
+<div class="ba bc-green-900"></div>
+<div class="ba bc-green-800"></div>
+<div class="ba bc-green-700"></div>
+<div class="ba bc-green-600"></div>
+<div class="ba bc-green-500"></div>
+<div class="ba bc-green-400"></div>
+<div class="ba bc-green-300"></div>
+<div class="ba bc-green-200"></div>
+<div class="ba bc-green-100"></div>
+<div class="ba bc-green-050"></div>
+<div class="ba bc-green-025"></div>
 {% endhighlight %}
         <div class="stacks-preview--example">
-            <div class="grid ff-column-nowrap w100 gs8 gsy">
-                <div class="grid--cell ai-center p8 bb bc-green-3">Dark green border</div>
-                <div class="grid--cell ai-center p8 bb bc-green-2">Green border</div>
-                <div class="grid--cell ai-center p8 bb bc-green-1">Light green border</div>
+            <div class="grid ff-column-nowrap w100 gs12 gsy">
+                <div class="grid--cell ai-center p8 ba bc-green-900">Green 900</div>
+                <div class="grid--cell ai-center p8 ba bc-green-800">Green 800</div>
+                <div class="grid--cell ai-center p8 ba bc-green-700">Green 700</div>
+                <div class="grid--cell ai-center p8 ba bc-green-600">Green 600</div>
+                <div class="grid--cell ai-center p8 ba bc-green-500">Green 500</div>
+                <div class="grid--cell ai-center p8 ba bc-green-400">Green 400</div>
+                <div class="grid--cell ai-center p8 ba bc-green-300">Green 300</div>
+                <div class="grid--cell ai-center p8 ba bc-green-200">Green 200</div>
+                <div class="grid--cell ai-center p8 ba bc-green-100">Green 100</div>
+                <div class="grid--cell ai-center p8 ba bc-green-050">Green 50</div>
+                <div class="grid--cell ai-center p8 ba bc-green-025">Green 25</div>
             </div>
         </div>
     </div>
@@ -301,15 +377,29 @@ description: Stacks provides atomic classes for borders.
     <p class="stacks-copy">Red borders can also be declared using our <code class="stacks-code">.bc-error</code> and <code class="stacks-code">.bc-danger</code> <a href="{{ '/product/base/colors#danger-and-error' | relative_url }}">alias classes</a>.</p>
     <div class="stacks-preview">
 {% highlight html %}
-<div class="bb bc-red-3">Dark red Border</div>
-<div class="bb bc-red-2">Red border</div>
-<div class="bb bc-red-1">Light red border</div>
+<div class="ba bc-red-900"></div>
+<div class="ba bc-red-800"></div>
+<div class="ba bc-red-700"></div>
+<div class="ba bc-red-600"></div>
+<div class="ba bc-red-500"></div>
+<div class="ba bc-red-400"></div>
+<div class="ba bc-red-300"></div>
+<div class="ba bc-red-200"></div>
+<div class="ba bc-red-100"></div>
+<div class="ba bc-red-050"></div>
 {% endhighlight %}
         <div class="stacks-preview--example">
-            <div class="grid ff-column-nowrap w100 gs8 gsy">
-                <div class="grid--cell ai-center p8 bb bc-red-3">Dark red border</div>
-                <div class="grid--cell ai-center p8 bb bc-red-2">Red border</div>
-                <div class="grid--cell ai-center p8 bb bc-red-1">Light red border</div>
+            <div class="grid ff-column-nowrap w100 gs12 gsy">
+                <div class="grid--cell ai-center p8 ba bc-red-900">Red 900</div>
+                <div class="grid--cell ai-center p8 ba bc-red-800">Red 800</div>
+                <div class="grid--cell ai-center p8 ba bc-red-700">Red 700</div>
+                <div class="grid--cell ai-center p8 ba bc-red-600">Red 600</div>
+                <div class="grid--cell ai-center p8 ba bc-red-500">Red 500</div>
+                <div class="grid--cell ai-center p8 ba bc-red-400">Red 400</div>
+                <div class="grid--cell ai-center p8 ba bc-red-300">Red 300</div>
+                <div class="grid--cell ai-center p8 ba bc-red-200">Red 200</div>
+                <div class="grid--cell ai-center p8 ba bc-red-100">Red 100</div>
+                <div class="grid--cell ai-center p8 ba bc-red-050">Red 50</div>
             </div>
         </div>
     </div>
@@ -318,15 +408,29 @@ description: Stacks provides atomic classes for borders.
     <p class="stacks-copy">Yellow borders can also be declared using our <code class="stacks-code">.bc-warning</code> <a href="{{ '/product/base/colors#warning' | relative_url }}">alias class</a>.</p>
     <div class="stacks-preview">
 {% highlight html %}
-<div class="bb bc-yellow-3">Dark yellow Border</div>
-<div class="bb bc-yellow-2">Yellow border</div>
-<div class="bb bc-yellow-1">Light yellow border</div>
+<div class="ba bc-yellow-900"></div>
+<div class="ba bc-yellow-800"></div>
+<div class="ba bc-yellow-700"></div>
+<div class="ba bc-yellow-600"></div>
+<div class="ba bc-yellow-500"></div>
+<div class="ba bc-yellow-400"></div>
+<div class="ba bc-yellow-300"></div>
+<div class="ba bc-yellow-200"></div>
+<div class="ba bc-yellow-100"></div>
+<div class="ba bc-yellow-050"></div>
 {% endhighlight %}
         <div class="stacks-preview--example">
-            <div class="grid ff-column-nowrap w100 gs8 gsy">
-                <div class="grid--cell ai-center p8 bb bc-yellow-3">Dark yellow border</div>
-                <div class="grid--cell ai-center p8 bb bc-yellow-2">Yellow border</div>
-                <div class="grid--cell ai-center p8 bb bc-yellow-1">Light yellow border</div>
+            <div class="grid ff-column-nowrap w100 gs12 gsy">
+                <div class="grid--cell ai-center p8 ba bc-yellow-900">Yellow 900</div>
+                <div class="grid--cell ai-center p8 ba bc-yellow-800">Yellow 800</div>
+                <div class="grid--cell ai-center p8 ba bc-yellow-700">Yellow 700</div>
+                <div class="grid--cell ai-center p8 ba bc-yellow-600">Yellow 600</div>
+                <div class="grid--cell ai-center p8 ba bc-yellow-500">Yellow 500</div>
+                <div class="grid--cell ai-center p8 ba bc-yellow-400">Yellow 400</div>
+                <div class="grid--cell ai-center p8 ba bc-yellow-300">Yellow 300</div>
+                <div class="grid--cell ai-center p8 ba bc-yellow-200">Yellow 200</div>
+                <div class="grid--cell ai-center p8 ba bc-yellow-100">Yellow 100</div>
+                <div class="grid--cell ai-center p8 ba bc-yellow-050">Yellow 50</div>
             </div>
         </div>
     </div>

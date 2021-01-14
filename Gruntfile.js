@@ -2,9 +2,6 @@
 
 module.exports = function(grunt) {
     grunt.initConfig({
-        pkg: grunt.file.readJSON('package.json'),
-        version: '<%= pkg.version %>',
-
         // Shell commands for use in Grunt tasks
         shell: {
             eleventyBuild: {
@@ -18,7 +15,7 @@ module.exports = function(grunt) {
                 }
             },
             eleventyServe: {
-                command: 'npx @11ty/eleventy --serve --incremental',
+                command: 'npx @11ty/eleventy --serve',
                 options: {
                     stderr: false,
                     execOptions: {
@@ -38,7 +35,7 @@ module.exports = function(grunt) {
             // note that the docs CSS includes the full Stacks
             docs: {
                 files: {
-                    'docs/assets/css/stacks-documentation.css': 'docs/assets/less/stacks-documentation.less'
+                    'docs/assets/css/stacks-documentation.css': 'docs/assets/less/stacks-documentation.less',
                 }
             },
             stacks_partials: {
@@ -60,7 +57,7 @@ module.exports = function(grunt) {
             },
             docs: {
                 files: {
-                    'docs/assets/css/stacks-documentation.min.css': 'docs/assets/css/stacks-documentation.css'
+                    'docs/assets/css/stacks-documentation.min.css': 'docs/assets/css/stacks-documentation.css',
                 }
             }
         },
@@ -123,11 +120,6 @@ module.exports = function(grunt) {
                 files: ['lib/ts/**/*.ts'], // note: this doesn't watch any of the npm dependencies
                 tasks: ['concurrent:compile_stacks_js', 'copy:js2docs']
             },
-
-            version: {
-                files: ['package.json'],
-                tasks: ['version'],
-            },
         },
         // Run tasks in parallel
         concurrent: {
@@ -136,7 +128,6 @@ module.exports = function(grunt) {
             },
 
             serve: [
-                'version',
                 'watch',
                 'shell:eleventyServe'
             ],
@@ -163,9 +154,6 @@ module.exports = function(grunt) {
         },
 
         clean: {
-            // Clean the icons directory to prepare for copying from the node dependency
-            icons: ['docs/_includes/svg-icons/'],
-
             // Clean-up the partial CSS files created in less:stacks_partials to ensure that
             // dynamic and static part compile independently of each other
             stacks_partials: ['tmp/']
@@ -178,22 +166,6 @@ module.exports = function(grunt) {
                 dest: 'docs/assets/js/',
                 flatten: true,
                 expand: true
-            },
-
-            // Copy files out of node_modules so Eleventy can use them
-            icons: {
-                expand: true,
-                cwd: 'node_modules/@stackoverflow/stacks-icons/build/lib/Icon',
-                src: '**',
-                dest: 'docs/_includes/svg-icons/',
-                filter: 'isFile',
-            },
-            spots: {
-                expand: true,
-                cwd: 'node_modules/@stackoverflow/stacks-icons/build/lib/Spot',
-                src: '**',
-                dest: 'docs/_includes/svg-spots/',
-                filter: 'isFile',
             },
             declarations: {
                 expand: true,
@@ -226,11 +198,5 @@ module.exports = function(grunt) {
 
     grunt.registerTask('deploy-docs',
         'Prep and build the documentation site so it is ready for deploy.',
-        ['update-icons', 'build']);
-
-    grunt.registerTask('update-icons', ['clean:icons', 'copy:icons', 'copy:spots']);
-
-    grunt.registerTask('version', 'Creates a file with the version number inside it for Eleventy to display.', function() {
-        grunt.file.write('docs/_includes/version.html', grunt.config.get('version'));
-    });
+        ['build']);
 };

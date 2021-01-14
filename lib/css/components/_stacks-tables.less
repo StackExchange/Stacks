@@ -7,6 +7,7 @@
 //  visit https://stackoverflow.design/
 //
 //  TABLE OF CONTENTS
+//  • CONTAINER
 //  • BASE TABLE STYLE
 //  • TABLE ALIGNMENT
 //    - Vertical alignment
@@ -20,6 +21,16 @@
 //    - Sortable tables
 //  • TABLE CELL SIZES
 //
+
+//  ============================================================================
+//  $    CONTAINER
+//  Give tables an optional container for responsive scrolling
+//  ----------------------------------------------------------------------------
+.s-table-container {
+    overflow-x: auto;
+    @scrollbar-styles();
+}
+
 //  ============================================================================
 //  $    BASE TABLE STYLE
 //  ----------------------------------------------------------------------------
@@ -57,16 +68,10 @@
 
     //  Custom styles when in a table head
     thead th {
-        &:not(.s-table--bulk) {
-            font-size: @fs-fine;
-        }
-
         vertical-align: bottom;
         white-space: nowrap;
         background-color: var(--black-025);
         line-height: @lh-sm;
-        text-transform: uppercase;
-        letter-spacing: 0.05em;
     }
 
     //  When in a table body, don't make it bold.
@@ -278,12 +283,6 @@
         //  If an anchor is used, it should appear like a normal header
         a {
             color: inherit;
-        }
-
-        //  Slightly align the icon
-        .svg-icon {
-            position: relative;
-            bottom: -1px;
         }
 
         //  Selected state
