@@ -388,6 +388,37 @@
     }
 }
 
+.stacks-theme-button {
+    color: var(--black-300);
+    position: relative;
+    padding-right: @su12 !important;
+
+    &:after {
+        content: "";
+        position: absolute;
+        z-index: @zi-active;
+        top: calc(~"50% - 2px");
+        right: 0;
+        border-style: solid;
+        border-width: @su4;
+        border-top-width: @su4;
+        border-bottom-width: 0;
+        border-color: currentColor transparent;
+        pointer-events: none;
+    }
+
+    &.is-selected {
+        color: var(--black-600);
+    }
+
+    &.stacks-theme-button__home {
+        color: var(--white);
+
+        &.is-selected {
+            color: var(--white);
+        }
+    }
+}
 
 .team-avatar {
     background-image: url("../img/team-avatar.png");
