@@ -29,7 +29,6 @@
 //      .dark-mode({ background-color: var(--black-100); });
 //
 //  ---------------------------------------------------------------------------
-
 .dark-mode(@rules) {
     body.theme-system & {
         @media (prefers-color-scheme: dark) {
@@ -41,6 +40,66 @@
     .theme-dark__forced & {
         @rules();
     }
+}
+
+//  -----------------------------------------------------------------------------
+//  --  Colors
+//      The following mixins let us do color math on the browser. They take a color prefix,
+//      and they expect the different values to be stored in --{prefix}-h, --{prefix}-s and --{prefix}-l
+//
+//  -----------------------------------------------------------------------------
+.load-variables(@color-prefix, @amount, @operation) {
+    @amountDecimal: @amount / 100;
+    @amountPercentage: @amount * 1%;
+    @complementDecimal: 1 - @amountDecimal;
+    @additionDecimal: 1 + @amountDecimal;
+    @vname: ~"--@{color-prefix}-@{operation}-@{amount}";
+}
+
+.get-color(@color-prefix) {
+    @vname: ~"--@{color-prefix}";
+    @{vname}: hsl(var(~"--@{color-prefix}-h"),
+                  var(~"--@{color-prefix}-s"),
+                  var(~"--@{color-prefix}-l"));
+}
+
+.native-lighten(@color-prefix, @amount) {
+    .load-variables(@color-prefix, @amount, lighten);
+    @{vname}: hsl(var(~"--@{color-prefix}-h"),
+                  var(~"--@{color-prefix}-s"),
+                  calc(var(~"--@{color-prefix}-l") + @amountPercentage));
+}
+
+.native-darken(@color-prefix, @amount) {
+    .load-variables(@color-prefix, @amount, darken);
+    @{vname}: hsl(var(~"--@{color-prefix}-h"),
+                  var(~"--@{color-prefix}-s"),
+                  calc(var(~"--@{color-prefix}-l") - @amountPercentage));
+}
+
+.native-fade(@color-prefix, @amount) {
+    .load-variables(@color-prefix, @amount, fade);
+    @{vname}: hsla(var(~"--@{color-prefix}-h"),
+                   var(~"--@{color-prefix}-s"),
+                   var(~"--@{color-prefix}-l"),
+                   @amountDecimal);
+}
+
+.native-tint(@color-prefix, @amount) {
+    .load-variables(@color-prefix, @amount, tint);
+    @ramount: 255 * @amountDecimal;
+    @gamount: 255 * @amountDecimal;
+    @bamount: 255 * @amountDecimal;
+    @{vname}: rgb(calc(@ramount + var(~"--@{color-prefix}-r") * @complementDecimal),
+                  calc(@gamount + var(~"--@{color-prefix}-g") * @complementDecimal),
+                  calc(@bamount + var(~"--@{color-prefix}-b") * @complementDecimal));
+}
+
+.native-shade(@color-prefix, @amount) {
+    .load-variables(@color-prefix, @amount, shade);
+    @{vname}: rgb(calc(var(~"--@{color-prefix}-r") * @complementDecimal),
+                  calc(var(~"--@{color-prefix}-g") * @complementDecimal),
+                  calc(var(~"--@{color-prefix}-b") * @complementDecimal));
 }
 
 
