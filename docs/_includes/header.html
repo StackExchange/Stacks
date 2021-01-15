@@ -34,7 +34,12 @@
             {% icon "Search", "s-input-icon s-input-icon__search" %}
         </div>
 
-        <button class="s-btn__unset c-pointer grid--cell fc-black-300 ml12 sm:d-none stacks-theme-button"
+        <a class="grid grid__center p8 ml-auto s-link s-link__muted d-none sm:d-block js-search-btn" href="#">
+            {% icon "Search", "js-search-icon" %}
+            {% icon "Clear", "d-none js-search-close-icon" %}
+        </a>
+
+        <button class="s-btn__unset c-pointer grid--cell ml12 s-link s-link__muted stacks-theme-button"
                 aria-controls="theming-popover"
                 data-controller="s-popover"
                 data-action="s-popover#toggle"
@@ -48,16 +53,7 @@
             id="theming-popover"
             role="menu">
             <div class="s-popover--arrow"></div>
-            <div class="grid fd-column gs12 gsy">
-                <button class="grid--cell ta-left s-btn__unset fc-black-600 c-pointer js-darkmode-btn">Toggle dark mode</button>
-                <button class="grid--cell ta-left s-btn__unset fc-black-600 c-pointer js-highcontrast-btn">Toggle high contrast</button>
-                <button class="grid--cell ta-left s-btn__unset fc-black-600 c-pointer js-theme-btn">Toggle custom theme</button>
-            </div>
+            {% include theme-menu.html %}
         </div>
-
-        <a class="grid grid__center p8 ml8 s-link s-link__muted d-none sm:d-block js-search-btn" href="#">
-            {% icon "Search", "js-search-icon" %}
-            {% icon "Clear", "d-none js-search-close-icon" %}
-        </a>
     </div>
 </div>

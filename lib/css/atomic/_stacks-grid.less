@@ -102,7 +102,7 @@
             @cell-width: @count * 100% / @num;
 
             > .grid--cell@{count} {
-                margin: @spacing / 2;
+                margin: calc(~"@{spacing} / 2");
             }
 
             //  ------------------------------------------------------------------------
@@ -137,12 +137,12 @@
         .gutter-spacing(@spacing) {
             #stacks-internals #grid-builder-settings();
 
-            margin: -(@spacing / 2);
+            margin: calc(~"-1 * @{spacing} / 2");
 
             //  --  FLUID CELLS
             > .grid,
             > .grid--cell {
-                margin: @spacing / 2;
+                margin: calc(~"@{spacing} / 2");
             }
 
             //  --  FIXED WIDTH CELLS
@@ -198,16 +198,16 @@
 //  $   GRID SPACING
 //      Insert spaces or gutters in between grid cells
 //  ----------------------------------------------------------------------------
-.gs2    { #stacks-internals #grid-builder-helpers .gutter-spacing(@su2); }        //  2px
-.gs4    { #stacks-internals #grid-builder-helpers .gutter-spacing(@su4); }        //  4px
-.gs6    { #stacks-internals #grid-builder-helpers .gutter-spacing(@su6); }        //  6px
-.gs8    { #stacks-internals #grid-builder-helpers .gutter-spacing(@su8); }        //  8px
-.gs12   { #stacks-internals #grid-builder-helpers .gutter-spacing(@su12); }       //  12px
-.gs16   { #stacks-internals #grid-builder-helpers .gutter-spacing(@su16); }       //  16px
-.gs24   { #stacks-internals #grid-builder-helpers .gutter-spacing(@su24); }       //  24px
-.gs32   { #stacks-internals #grid-builder-helpers .gutter-spacing(@su32); }       //  32px
-.gs48   { #stacks-internals #grid-builder-helpers .gutter-spacing(@su48); }       //  48px
-.gs64   { #stacks-internals #grid-builder-helpers .gutter-spacing(@su64); }       //  64px
+.gs2    { #stacks-internals #grid-builder-helpers .gutter-spacing(var(--space-2)); }        //  2px
+.gs4    { #stacks-internals #grid-builder-helpers .gutter-spacing(var(--space-4)); }        //  4px
+.gs6    { #stacks-internals #grid-builder-helpers .gutter-spacing(var(--space-6)); }        //  6px
+.gs8    { #stacks-internals #grid-builder-helpers .gutter-spacing(var(--space-8)); }        //  8px
+.gs12   { #stacks-internals #grid-builder-helpers .gutter-spacing(var(--space-12)); }       //  12px
+.gs16   { #stacks-internals #grid-builder-helpers .gutter-spacing(var(--space-16)); }       //  16px
+.gs24   { #stacks-internals #grid-builder-helpers .gutter-spacing(var(--space-24)); }       //  24px
+.gs32   { #stacks-internals #grid-builder-helpers .gutter-spacing(var(--space-32)); }       //  32px
+.gs48   { #stacks-internals #grid-builder-helpers .gutter-spacing(var(--space-48)); }       //  48px
+.gs64   { #stacks-internals #grid-builder-helpers .gutter-spacing(var(--space-64)); }       //  64px
 
 //  On rows, remove top and bottom margins
 .gsx {

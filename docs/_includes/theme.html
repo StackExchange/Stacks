@@ -31,5 +31,25 @@ Include this right at the start of body to be loaded as fast as possible to avoi
         } else {
             document.body.classList.remove("theme-custom");
         }
+
+        var spacingDefaultTheme = localStorage.getItem("spacingDefaultTheme");
+
+        if (spacingDefaultTheme === "true") {
+            document.body.classList.remove("theme-spacing-l theme-spacing-xl");
+        }
+
+        var spacingLargeTheme = localStorage.getItem("spacingLargeTheme");
+
+        if (spacingLargeTheme === "true") {
+            document.body.classList.add("theme-spacing-l");
+            document.body.classList.remove("theme-spacing-xl");
+        }
+
+        var spacingExtraLargeTheme = localStorage.getItem("spacingExtraLargeTheme");
+
+        if (spacingExtraLargeTheme === "true") {
+            document.body.classList.add("theme-spacing-xl");
+            document.body.classList.remove("theme-spacing-l");
+        }
     }());
 </script>

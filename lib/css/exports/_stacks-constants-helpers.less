@@ -43,17 +43,6 @@
 @br-lg:                 7px;
 @br-circle:             50%;
 
-
-//  ============================================================================
-//  $   BOX SHADOW (bs-)
-//  ----------------------------------------------------------------------------
-@bs-sm:                 0 @su2 @su8 fade(@black-700, 10%);
-@bs-md:                 0 @su4 @su8 fade(@black-700, 20%);
-@bs-lg:                 0 @su4 @su12 fade(@black-800, 20%);
-@bs-i-sm:               inset 0 @su2/2 @su8 0 fade(@black-700, 10%);
-@bs-i-md:               inset 0 @su2/2 @su8 0 fade(@black-700, 20%);
-@bs-i-lg:               inset 0 @su2/2 @su12 0 fade(@black-800, 20%);
-
 //  ============================================================================
 //  $  SPACING UNITS (su-)
 //  ----------------------------------------------------------------------------
@@ -70,6 +59,63 @@
 @su96:                  96px;
 @su128:                 128px;
 
+body {
+    --space-1: 1px;
+    --space-2: @su2;
+    --space-4: @su4;
+    --space-6: @su6;
+    --space-8: @su8;
+    --space-12: @su12;
+    --space-16: @su16;
+    --space-24: @su24;
+    --space-32: @su32;
+    --space-48: @su48;
+    --space-64: @su64;
+    --space-96: @su96;
+    --space-128: @su128;
+}
+
+body.theme-spacing-l {
+    --space-1: 2px;
+    --space-2: 4px;
+    --space-4: 6px;
+    --space-6: 8px;
+    --space-8: 12px;
+    --space-12: 16px;
+    --space-16: 24px;
+    --space-24: 32px;
+    --space-32: 48px;
+    --space-48: 64px;
+    --space-64: 96px;
+    --space-96: 128px;
+    --space-128: 156px;
+}
+
+body.theme-spacing-xl {
+    --space-1: 3px;
+    --space-2: 6px;
+    --space-4: 8px;
+    --space-6: 12px;
+    --space-8: 16px;
+    --space-12: 24px;
+    --space-16: 32px;
+    --space-24: 48px;
+    --space-32: 64px;
+    --space-48: 96px;
+    --space-64: 128px;
+    --space-96: 156px;
+    --space-128: 202px;
+}
+
+//  ============================================================================
+//  $   BOX SHADOW (bs-)
+//  ----------------------------------------------------------------------------
+@bs-sm:                 0 var(--space-2) var(--space-8) fade(@black-700, 10%);
+@bs-md:                 0 var(--space-4) var(--space-8) fade(@black-700, 20%);
+@bs-lg:                 0 var(--space-4) var(--space-12) fade(@black-800, 20%);
+@bs-i-sm:               inset 0 var(--space-1) var(--space-8) 0 fade(@black-700, 10%);
+@bs-i-md:               inset 0 var(--space-1) var(--space-8) 0 fade(@black-700, 20%);
+@bs-i-lg:               inset 0 var(--space-1) var(--space-12) 0 fade(@black-800, 20%);
 
 //  ============================================================================
 //  $  SIZING UNITS (su-)

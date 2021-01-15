@@ -14,8 +14,8 @@
 @import "./lib/css/stacks.less"; //  These are actual styles used in SO projects
 
 .stacks-section {
-    margin-top: @su48;
-    margin-bottom: @su48;
+    margin-top: var(--space-48);
+    margin-bottom: var(--space-48);
 }
 
 .stacks-header {
@@ -146,16 +146,16 @@
 //  --  Section Title
 .stacks-h2 {
     font-size: @fs-headline1;
-    padding-top: @su64 + @su24; // Hack for #anchor positioning
-    margin-top: -@su64 + -@su24; // Hack for #anchor positioning
+    padding-top: var(--space-48); // Hack for #anchor positioning
+    margin-top: calc(-1 * var(--space-48)); // Hack for #anchor positioning
 }
 
 //  --  Sub-section Title
 .stacks-h3 {
     font-size: @fs-subheading;
     color: var(--fc-medium);
-    padding-top: @su64 + @su24; // Hack for #anchor positioning
-    margin-top: -@su64 + -@su24; // Hack for #anchor positioning
+    padding-top: var(--space-48); // Hack for #anchor positioning
+    margin-top: calc(-1 * var(--space-48)); // Hack for #anchor positioning
 }
 
 .stacks-h4 {
@@ -185,7 +185,7 @@
 //  --   Code Tag
 //  ----------------------------------------------------------------------------
 .stacks-code {
-    padding: 3px 5px @su2 @su4;
+    padding: 3px 5px var(--space-2) var(--space-4);
     border-radius: @br-sm;
     background-color: var(--black-075);
 
@@ -219,7 +219,7 @@
 //  $   CODE STYLES
 //  ----------------------------------------------------------------------------
 .stacks-preview {
-    margin-bottom: @su48;
+    margin-bottom: var(--space-48);
     border-radius: @br-md;
     box-shadow: var(--bs-sm);
 
@@ -240,7 +240,7 @@
 
 //  Preview area
 .stacks-preview--example {
-    padding: @su16;
+    padding: var(--space-16);
     border-bottom-left-radius: @br-md;
     border-bottom-right-radius: @br-md;
     border: 1px solid var(--black-100);
@@ -268,7 +268,7 @@
 
 //  --   Preview Area
 .stacks-icon-preview {
-    padding: @su8;
+    padding: var(--space-8);
     min-height: 4em;
     border-top-left-radius: @br-sm;
     border-top-right-radius: @br-sm;
@@ -283,7 +283,7 @@
 //  ----------------------------------------------------------------------------
 
 .stacks-grid-example--cell {
-    padding: @su8;
+    padding: var(--space-8);
     border: 1px solid var(--black-100);
     background-color: var(--black-075);
     font-family: @ff-mono;
@@ -301,8 +301,8 @@
 //  $   COLORS
 //  ----------------------------------------------------------------------------
 .stacks-swatch {
-    width: @su32;
-    height: @su32;
+    width: var(--space-32);
+    height: var(--space-32);
 }
 
 //  ============================================================================
@@ -372,14 +372,15 @@
 .stacks-grid {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-column-gap: @su16;
-    grid-row-gap: @su16;
+    grid-column-gap: var(--space-16);
+    grid-row-gap: var(--space-16);
 }
 
 @media ( max-width:1200px ) {
     .stacks-grid {
         grid-template-columns: 1fr 1fr;
     }
+
 }
 
 @media ( max-width:530px ) {

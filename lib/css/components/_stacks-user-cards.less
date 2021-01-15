@@ -13,7 +13,7 @@
 .s-user-card {
     display: grid;
     grid-template-columns: auto 1fr;
-    grid-column-gap: @su8;
+    grid-column-gap: var(--space-8);
     align-items: center;
     line-height: 1;
 
@@ -25,7 +25,7 @@
     //  ---------------------------------------------------------------------------
     &.s-user-card__highlighted {
         background-color: var(--powder-100);
-        padding: @su8;
+        padding: var(--space-8);
         border-radius: @br-md;
     }
 
@@ -35,7 +35,7 @@
         align-items: start;
 
         .s-user-card--info {
-            grid-gap: @su4;
+            grid-gap: var(--space-4);
         }
 
         .s-user-card--link {
@@ -57,16 +57,16 @@
         grid-column-gap: unset; // Firefox flex layouts respect column gaps, so we need to reset this
 
         .s-user-card--time {
-            margin-right: @su6;
+            margin-right: var(--space-6);
             margin-bottom: 0;
         }
 
         .s-user-card--link {
-            margin-right: @su6;
+            margin-right: var(--space-6);
         }
 
         .s-user-card--avatar {
-            margin-right: @su6;
+            margin-right: var(--space-6);
         }
 
         .s-user-card--info {
@@ -84,16 +84,16 @@
         grid-column-gap: unset; // Firefox flex layouts respect column gaps, so we need to reset this
 
         .s-user-card--time {
-            margin-right: @su6;
+            margin-right: var(--space-6);
             margin-bottom: 0;
         }
 
         .s-user-card--link {
-            margin-right: @su6;
+            margin-right: var(--space-6);
         }
 
         .s-user-card--avatar {
-            margin-right: @su4;
+            margin-right: var(--space-4);
         }
 
         .s-user-card--rep {
@@ -117,7 +117,7 @@
     grid-row: ~"1 / 2";
     color: var(--black-500);
     font-size: @fs-caption;
-    margin-bottom: @su4;
+    margin-bottom: var(--space-4);
 }
 
 //  $   USER INFO CONTAINER
@@ -126,7 +126,7 @@
 //  ---------------------------------------------------------------------------
 .s-user-card--info {
     display: grid;
-    grid-gap: @su2;
+    grid-gap: var(--space-2);
 }
 
 //  $   USER LINK
@@ -148,7 +148,7 @@
     align-items: center;
 
     li {
-        margin-right: @su6;
+        margin-right: var(--space-6);
         font-size: @fs-caption;
     }
 }
@@ -170,7 +170,7 @@
 //      Apply layout to a bunch of child tags
 //  ---------------------------------------------------------------------------
 .s-user-card--tags {
-    padding-top: (@su2 / 2); // Optically align these a bit, but we can't use margin because of `gs[x]` being applied
+    padding-top: calc(var(--space-2) / 2); // Optically align these a bit, but we can't use margin because of `gs[x]` being applied
     min-width: 0; // Allow things to wrap
     align-items: center;
     flex-wrap: wrap;
