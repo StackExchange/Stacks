@@ -59,5 +59,30 @@ Include this right at the start of body to be loaded as fast as possible to avoi
             document.body.classList.add("theme-spacing-xl");
             document.body.classList.remove("theme-spacing-l");
         }
+
+        var fontDefaultTheme = localStorage.getItem("fontDefaultTheme");
+
+        if (fontDefaultTheme === "true") {
+            document.body.classList.remove("theme-font-l theme-font-xl");
+            document.html.classList.remove("theme-font-l theme-font-xl");
+        }
+
+        var fontLargeTheme = localStorage.getItem("fontLargeTheme");
+
+        if (fontLargeTheme === "true") {
+            document.body.classList.add("theme-font-l");
+            document.body.classList.remove("theme-font-xl");
+            document.html.classList.add("theme-font-l");
+            document.html.classList.remove("theme-font-xl");
+        }
+
+        var fontExtraLargeTheme = localStorage.getItem("fontExtraLargeTheme");
+
+        if (fontExtraLargeTheme === "true") {
+            document.body.classList.add("theme-font-xl");
+            document.body.classList.remove("theme-font-l");
+            document.html.classList.add("theme-font-xl");
+            document.html.classList.remove("theme-font-l");
+        }
     }());
 </script>

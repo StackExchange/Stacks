@@ -6,7 +6,11 @@ $(document).ready(function () {
     var spacingDefaultBtn = $(".js-spacing-default-btn");
     var spacingLargeBtn = $(".js-spacing-lg-btn");
     var spacingExtraLargeBtn = $(".js-spacing-xl-btn");
+    var fontDefaultBtn = $(".js-font-default-btn");
+    var fontLargeBtn = $(".js-font-lg-btn");
+    var fontExtraLargeBtn = $(".js-font-xl-btn");
     var body = $("body");
+    var html = $("html");
 
     darkModeBtn.click(function (e) {
         e.preventDefault();
@@ -91,6 +95,53 @@ $(document).ready(function () {
         localStorage.setItem("spacingDefaultTheme", false);
         localStorage.setItem("spacingLargeTheme", false);
         localStorage.setItem("spacingExtraLargeTheme", true);
+
+        return false;
+    });
+
+    fontDefaultBtn.click(function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+
+        body.removeClass("theme-font-l theme-font-xl");
+        html.removeClass("theme-font-l theme-font-xl");
+
+        localStorage.setItem("fontDefaultTheme", true);
+        localStorage.setItem("fontLargeTheme", false);
+        localStorage.setItem("fontExtraLargeTheme", false);
+
+        return false;
+    });
+
+    fontLargeBtn.click(function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+
+        body.removeClass("theme-font-xl");
+        body.addClass("theme-font-l");
+        html.removeClass("theme-font-xl");
+        html.addClass("theme-font-l");
+
+        localStorage.setItem("fontDefaultTheme", false);
+        localStorage.setItem("fontLargeTheme", true);
+        localStorage.setItem("fontExtraLargeTheme", false);
+
+        return false;
+    });
+
+    fontExtraLargeBtn.click(function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+
+        body.removeClass("theme-font-l");
+        body.addClass("theme-font-xl");
+
+        html.removeClass("theme-font-xl");
+        html.addClass("theme-font-l");
+
+        localStorage.setItem("fontDefaultTheme", false);
+        localStorage.setItem("fontLargeTheme", false);
+        localStorage.setItem("fontExtraLargeTheme", true);
 
         return false;
     });
