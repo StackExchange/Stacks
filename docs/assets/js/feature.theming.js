@@ -1,6 +1,7 @@
 $(document).ready(function () {
     var darkModeBtn = $(".js-darkmode-btn");
     var highContrastBtn = $(".js-highcontrast-btn");
+    var themeBtn = $(".js-theme-btn");
     var body = $("body");
 
     darkModeBtn.click(function (e) {
@@ -34,6 +35,17 @@ $(document).ready(function () {
         body.toggleClass("theme-highcontrast", !isHighContrast);
 
         localStorage.setItem("highContrastTheme", !isHighContrast);
+    });
+
+    themeBtn.click(function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+
+        var isCustom = body.hasClass("theme-custom");
+
+        body.toggleClass("theme-custom", !isCustom);
+
+        localStorage.setItem("customTheme", !isCustom);
 
         return false;
     });
