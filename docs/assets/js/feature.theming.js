@@ -1,6 +1,7 @@
 $(document).ready(function () {
     var darkModeBtn = $(".js-darkmode-btn");
     var highContrastBtn = $(".js-highcontrast-btn");
+    var dyslexicBtn = $(".js-dyslexic-btn");
     var themeBtn = $(".js-theme-btn");
     var spacingDefaultBtn = $(".js-spacing-default-btn");
     var spacingLargeBtn = $(".js-spacing-lg-btn");
@@ -92,5 +93,16 @@ $(document).ready(function () {
         localStorage.setItem("spacingExtraLargeTheme", true);
 
         return false;
+    });
+
+    dyslexicBtn.click(function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+
+        var isDyslexic = body.hasClass("theme-dyslexic");
+
+        body.toggleClass("theme-dyslexic", !isDyslexic);
+
+        localStorage.setItem("dyslexicTheme", !isDyslexic);
     });
 });
