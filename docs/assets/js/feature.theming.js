@@ -1,6 +1,7 @@
 $(document).ready(function () {
     var darkModeBtn = $(".js-darkmode-btn");
     var highContrastBtn = $(".js-highcontrast-btn");
+    var unicornButton = $(".js-unicorn-btn");
     var dyslexicBtn = $(".js-dyslexic-btn");
     var themeBtn = $(".js-theme-btn");
     var spacingDefaultBtn = $(".js-spacing-default-btn");
@@ -43,6 +44,34 @@ $(document).ready(function () {
         body.toggleClass("theme-highcontrast", !isHighContrast);
 
         localStorage.setItem("highContrastTheme", !isHighContrast);
+    });
+
+
+    
+    unicornButton.click(function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+
+        var isRainbow = body.hasClass("theme-rainbow");
+        debugger;
+
+        body.toggleClass("theme-rainbow", !isRainbow);
+
+        localStorage.setItem("rainbowTheme", !isRainbow);
+
+        var rotation = 0;
+        var speed = 5;
+
+        if(isRainbow){
+            clearInterval(window.rainbowId); 
+        } else {
+            window.rainbowId = setInterval(() => {
+                console.log(rotation);
+                document.documentElement.style.setProperty('--theme-primary-color-h', (rotation++ * speed) % 360);
+            }, 10)
+        }
+
+        return false;
     });
 
     themeBtn.click(function (e) {
