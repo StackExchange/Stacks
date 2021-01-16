@@ -24,6 +24,21 @@ Include this right at the start of body to be loaded as fast as possible to avoi
             document.body.classList.remove("theme-highcontrast");
         }
 
+        var rainbowTheme = localStorage.getItem("rainbowTheme");
+
+        if(rainbowTheme === "true") {
+            document.body.classList.add("theme-rainbow");
+
+            var rotation = 0;
+            var speed = 5;
+
+            window.rainbowId = setInterval(() => {
+                document.documentElement.style.setProperty('--theme-primary-color-h', (rotation++ * speed) % 360);
+            }, 10)
+        } else {
+            document.body.classList.remove("theme-rainbow");
+        }
+
         var dyslexicTheme = localStorage.getItem("dyslexicTheme");
 
         if (dyslexicTheme === "true") {
