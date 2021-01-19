@@ -3,26 +3,23 @@ layout: markdown-document
 title: Stack Overflow accessibility audit
 ---
 
-Howdy! Thanks for taking the time to check out our accessibility needs. We’re looking for audits of markup, missing features, and contrast levels. We’d like as close to a full audit as possible across all of our lines of business. This includes Stack Overflow, Stack Overflow for Teams, Talent & Jobs, as well as our design system.
+Howdy! Thank you for taking the time to help address Stack Overflow’s accessibility needs. We’d like as close to a full audit as possible across all of our lines of business. This includes Stack Overflow, Stack Overflow for Teams, Talent & Jobs, as well as our design system. We’re looking to audit our markup for things like tabbing & screen readers, any missing features, and contrast levels.
 
-Beyond an audit, we’re likely to have the opportunity to contract possible remediation as well.
+Beyond the audit, we think there’s an opportunity for a contractor to help with any potential remediations.
 
 Here are the main views in each category:
-
 
 ## Design system
 
 Much of our product is built with our design system [Stacks](https://stackoverflow.design). We’ll want the following:
 
-*   An audit of our components for their markup accessibility. Are we using the correct aria attributes? Does our tabbing strategy make sense? Is our JS strategy limiting in any way?
+*   An audit of our components for their markup accessibility. Are we using the correct aria attributes? Does our tabbing strategy make sense? Is our JavaScript limiting users in any way?
 *   An accessibility callout with recommendation to each component’s documentation page. Eg. “When working with our buttons, make sure that you’re only using aria-pressed when the button is a toggle.”
 *   A general colors audit making sure we’re hitting at least AA in most cases, though we are tolerant of some deviations there. This should include dark mode. I believe pretty strongly that [SAPC](https://www.myndex.com/APCA/) is a better standard to test contrast levels, so I would love to use that as a standard instead of [WCAG](https://webaim.org/resources/contrastchecker/).
 *   Help finding a group of users for user testing of our upcoming “High contrast” [theme](https://deploy-preview-556--stacks.netlify.app) that’s currently being [built](https://github.com/StackExchange/Stacks/pull/556).
 *   General documentation about our stance on accessibility, much like our [Content Guidelines](https://stackoverflow.design/content/) to help guide any future accessibility efforts.
 
-
 ## Stack Overflow
-
 *   [Question & answer](https://stackoverflow.com/questions/11227809/why-is-processing-a-sorted-array-faster-than-processing-an-unsorted-array)
 *   [Question listing](https://stackoverflow.com/questions)
 *   [Tags](https://stackoverflow.com/tags)
