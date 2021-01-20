@@ -3,6 +3,8 @@ layout: markdown-document
 title: Stack Overflow accessibility audit
 ---
 
+{% spot "WaveLg", "fc-orange-500" %}
+
 Howdy! Thank you for taking the time to help address Stack Overflow’s accessibility needs. We’d like as close to a full audit as possible across all of our lines of business. This includes Stack Overflow, Stack Overflow for Teams, Talent & Jobs, as well as our design system. We’re looking to audit our markup for things like tabbing & screen readers, any missing features, and contrast levels.
 
 Beyond the audit, we think there’s an opportunity for a contractor to help with any potential remediations.
