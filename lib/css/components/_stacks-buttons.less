@@ -61,12 +61,9 @@
     }
 
     &[disabled] {
-        opacity: 1;
-        cursor: default;
+        opacity: .5;
         pointer-events: none;
-        color: @button-disabled-color;
-        background-color: @button-disabled-background-color;
-        box-shadow: none;
+        box-shadow: none !important;
     }
 
     &.is-selected {
@@ -191,7 +188,10 @@
     }
 }
 
-#stacks-internals #darkmode('.s-btn__primary:not(.is-selected):not([disabled]) .s-btn--number, .s-btn__danger.s-btn__filled:not(.is-selected):not([disabled]) .s-btn--number', { color: @black; });
+.s-btn__primary:not(.is-selected) .s-btn--number,
+.s-btn__danger.s-btn__filled:not(.is-selected) .s-btn--number {
+    .dark-mode({ color: @black; });
+}
 
 //  ============================================================================
 //  $   DEFAULT (SECONDARY) STYLES
@@ -206,12 +206,6 @@
     &.is-selected {
         border-color: @button-outlined-selected-border-color;
     }
-
-    &[disabled] {
-        color: @button-outlined-disabled-color;
-        border-color: @button-outlined-disabled-border-color;
-        background-color: @button-outlined-disabled-background-color;
-    }
 }
 
 //  --  Base Filled Style
@@ -222,6 +216,8 @@
     background-color: @button-filled-background-color;
     border-color: @button-filled-border-color;
     box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, .7);
+
+    .dark-mode({ box-shadow: none; });
 
     &:hover,
     &:focus,
@@ -236,12 +232,6 @@
         box-shadow: none;
     }
 
-    &[disabled] {
-        background-color: @button-filled-disabled-background-color;
-        border-color: @button-filled-disabled-border-color;
-        box-shadow: none;
-    }
-
     &.is-selected {
         color: @button-filled-selected-color;
         background-color: @button-filled-selected-background-color;
@@ -249,8 +239,6 @@
         box-shadow: none;
     }
 }
-
-#stacks-internals #darkmode('.s-btn__filled', { box-shadow: none; });
 
 //  --  Muted Clear Style
 //      Creates a gray button style.
@@ -289,10 +277,6 @@
         &.is-selected {
             border-color: @button-muted-outlined-selected-border-color;
         }
-
-        &[disabled] {
-            border-color: @button-muted-outlined-disabled-border-color;
-        }
     }
 
     //  --  Filled (Gray)
@@ -301,6 +285,8 @@
         background-color: @button-muted-filled-background-color;
         border-color: transparent;
         box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, .4);
+
+        .dark-mode({ box-shadow: none; });
 
         &:hover,
         &:focus,
@@ -327,15 +313,8 @@
                 box-shadow: 0 0 0 @su4 var(--focus-ring-muted);
             }
         }
-
-        &[disabled] {
-            color: @button-muted-filled-disabled-color;
-            box-shadow: none;
-        }
     }
 }
-
-#stacks-internals #darkmode('.s-btn__muted.s-btn__filled', { box-shadow: none; });
 
 //  ============================================================================
 //  $   DANGER BUTTONS & STYLES
@@ -374,10 +353,6 @@
         &.is-selected {
             border-color: @button-danger-outlined-selected-border-color;
         }
-
-        &[disabled] {
-            border-color: @button-danger-outlined-disabled-border-color;
-        }
     }
 
     //  --  Filled
@@ -386,6 +361,8 @@
         background-color: @button-danger-filled-background-color;
         border-color: transparent;
         box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, .4);
+
+        .dark-mode({ box-shadow: none; });
 
         &:hover,
         &:focus,
@@ -416,20 +393,8 @@
         .s-btn--number {
             color: @button-danger-filled-number-color;
         }
-
-        &[disabled] {
-            color: @button-danger-filled-disabled-color;
-            background-color: @button-danger-filled-disabled-background-color;
-            box-shadow: none;
-
-            .s-btn--number {
-                color: @button-danger-filled-disabled-number-color;
-            }
-        }
     }
 }
-
-#stacks-internals #darkmode('.s-btn__danger.s-btn__filled', { box-shadow: none; });
 
 //  ============================================================================
 //  $   PRIMARY STYLE
@@ -438,6 +403,8 @@
     color: @button-primary-color;
     background-color: @button-primary-background-color;
     box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, .4);
+
+    .dark-mode({ box-shadow: none; });
 
     &:hover,
     &:focus,
@@ -459,19 +426,7 @@
     .s-btn--number {
         color: @button-primary-number-color;
     }
-
-    &[disabled] {
-        color: @button-primary-disabled-color;
-        background-color: @button-primary-disabled-background-color;
-
-        .s-btn--number {
-            color: @button-primary-disabled-number-color;
-        }
-    }
 }
-
-#stacks-internals #darkmode('.s-btn__primary', { box-shadow: none; });
-
 
 //  ============================================================================
 //  $   MISC STYLES
@@ -562,7 +517,8 @@
 
     &:hover,
     &:active,
-    &:focus {
+    &:focus,
+    &[disabled] {
         background: none;
     }
 }

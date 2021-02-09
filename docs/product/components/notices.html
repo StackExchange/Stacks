@@ -6,16 +6,19 @@ description: Notices deliver <strong>System</strong> and <strong>Engagement</str
 <!-- Example notice content -->
 <script src="{{ "/assets/js/feature.notices.js" | relative_url }}" defer></script>
 
-<div class="s-toast js-notice-toast" aria-hidden="true">
+<div class="s-toast js-notice-toast" aria-hidden="true" role="alertdialog" aria-labelledby="notice-message">
     <aside class="s-notice s-notice__success p8 pl16">
-        <div class="grid gs16 gsx ai-center jc-space-between" aria-describedby="notice-message">
-            <div class="grid--cell" aria-label="notice-message">
-                Email settings have been successfully updated.
+        <div class="grid gs16 gsx ai-center jc-space-between">
+            <div class="grid--cell" id="notice-message">
+                Toast notice message with an undo button
             </div>
-            <div class="grid--cell" aria-label="notice-dismiss">
-                <a class="s-btn s-notice--btn js-notice-close">
+            <div class="grid">
+                <button type="button" class="s-btn s-notice--btn">
+                    Undo
+                </button>
+                <button type="button" class="s-btn s-notice--btn js-notice-close" aria-label="Dismiss">
                     {% icon "ClearSm", "m0" %}
-                </a>
+                </button>
             </div>
         </div>
     </aside>
@@ -93,23 +96,23 @@ description: Notices deliver <strong>System</strong> and <strong>Engagement</str
     <p class="stacks-copy">Default style used to separate notices from the main content</p>
     <div class="stacks-preview">
 {% highlight html %}
-<aside class="s-notice s-notice__info" role="status" aria-hidden="false">…</aside>
-<aside class="s-notice s-notice__success" role="status" aria-hidden="false">…</aside>
-<aside class="s-notice s-notice__warning" role="status" aria-hidden="false">…</aside>
-<aside class="s-notice s-notice__danger" role="status" aria-hidden="false">…</aside>
+<aside class="s-notice s-notice__info" role="status">…</aside>
+<aside class="s-notice s-notice__success" role="status">…</aside>
+<aside class="s-notice s-notice__warning" role="status">…</aside>
+<aside class="s-notice s-notice__danger" role="status">…</aside>
 {% endhighlight %}
         <div class="stacks-preview--example">
             <div class="grid gs8 gsy fd-column">
-                <aside class="grid--cell s-notice s-notice__info" role="status" aria-hidden="false">
+                <aside class="grid--cell s-notice s-notice__info" role="status">
                     <p class="m0">Info filled message style</p>
                 </aside>
-                <aside class="grid--cell s-notice s-notice__success" role="status" aria-hidden="false">
+                <aside class="grid--cell s-notice s-notice__success" role="status">
                     <p class="m0">Success filled message style <a class="s-link s-link__inherit s-link__underlined" href="#">Link</a></p>
                 </aside>
-                <aside class="grid--cell s-notice s-notice__warning" role="status" aria-hidden="false">
+                <aside class="grid--cell s-notice s-notice__warning" role="status">
                     <p class="m0">Warning filled message style</p>
                 </aside>
-                <aside class="grid--cell s-notice s-notice__danger" role="status" aria-hidden="false">
+                <aside class="grid--cell s-notice s-notice__danger" role="status">
                     <p class="m0">Danger filled message style</p>
                 </aside>
             </div>
@@ -120,39 +123,27 @@ description: Notices deliver <strong>System</strong> and <strong>Engagement</str
     <p class="stacks-copy">Used sparingly for when an important notice needs to be noticed</p>
     <div class="stacks-preview">
 {% highlight html %}
-<aside class="s-notice s-notice__invert s-notice__important" role="alert" aria-hidden="false">
-    <div class="grid" role="alertdialog" aria-describedby="notice-message">
-        <div class="grid--cell" aria-label="notice-message">
-            <p class="m0">…</p>
-        </div>
-        <div class="grid--cell ml-auto" aria-label="notice-dismiss">
-            <a href="#" class="fc-white o75 js-notice-close">
-                @Svg.ClearSm
-            </a>
-        </div>
-    </div>
-</aside>
-<aside class="s-notice s-notice__info s-notice__important" role="alert" aria-hidden="false">…</aside>
-<aside class="s-notice s-notice__success s-notice__important" role="alert" aria-hidden="false">… <a class="s-link s-link__inherit s-link__underlined" href="…">…</a></aside>
-<aside class="s-notice s-notice__warning s-notice__important" role="alert" aria-hidden="false">…</aside>
-<aside class="s-notice s-notice__danger s-notice__important" role="alert" aria-hidden="false">…</aside>
+<aside class="s-notice s-notice__info s-notice__important" role="alert">…</aside>
+<aside class="s-notice s-notice__success s-notice__important" role="alert">… <a class="s-link s-link__inherit s-link__underlined" href="…">…</a></aside>
+<aside class="s-notice s-notice__warning s-notice__important" role="alert">…</aside>
+<aside class="s-notice s-notice__danger s-notice__important" role="alert">…</aside>
 {% endhighlight %}
         <div class="stacks-preview--example">
             <div class="grid gs8 gsy fd-column">
-                <aside class="grid--cell s-notice s-notice__important" role="alert" aria-hidden="false">
-                    <p class="m0" aria-label="notice-message">Inverted important message style</p>
+                <aside class="grid--cell s-notice s-notice__important" role="alert">
+                    <p class="m0">Inverted important message style</p>
                 </aside>
-                <aside class="grid--cell s-notice s-notice__info s-notice__important" role="alert" aria-hidden="false">
-                    <p class="m0" aria-label="notice-message">Info important message style. <a class="s-link s-link__inherit s-link__underlined" href="#">Link</a></p>
+                <aside class="grid--cell s-notice s-notice__info s-notice__important" role="alert">
+                    <p class="m0">Info important message style. <a class="s-link s-link__inherit s-link__underlined" href="#">Link</a></p>
                 </aside>
-                <aside class="grid--cell s-notice s-notice__success s-notice__important" role="alert" aria-hidden="false">
-                    <p class="m0" aria-label="notice-message">Success important message style</p>
+                <aside class="grid--cell s-notice s-notice__success s-notice__important" role="alert">
+                    <p class="m0">Success important message style</p>
                 </aside>
-                <aside class="grid--cell s-notice s-notice__warning s-notice__important" role="alert" aria-hidden="false">
-                    <p class="m0" aria-label="notice-message">Warning important message style</p>
+                <aside class="grid--cell s-notice s-notice__warning s-notice__important" role="alert">
+                    <p class="m0">Warning important message style</p>
                 </aside>
-                <aside class="grid--cell s-notice s-notice__danger s-notice__important" role="alert" aria-hidden="false">
-                    <p class="m0" aria-label="notice-message">Danger important message style</p>
+                <aside class="grid--cell s-notice s-notice__danger s-notice__important" role="alert">
+                    <p class="m0">Danger important message style</p>
                 </aside>
             </div>
         </div>
@@ -198,11 +189,11 @@ description: Notices deliver <strong>System</strong> and <strong>Engagement</str
     <p class="stacks-copy">Default behavior for notices that are inserted within the content area</p>
     <div class="stacks-preview">
 {% highlight html %}
-<aside class="s-notice s-notice__info" role="status" aria-hidden="false">…</aside>
+<aside class="s-notice s-notice__info" role="status">…</aside>
 {% endhighlight %}
         <div class="stacks-preview--example">
             <div class="ps-relative grid gs8 gsy fd-column jc-center">
-                <aside class="grid--cell s-notice s-notice__info" role="status" aria-hidden="false">
+                <aside class="grid--cell s-notice s-notice__info" role="status">
                     <p class="m0">Inline notice message style</p>
                 </aside>
             </div>
@@ -213,7 +204,7 @@ description: Notices deliver <strong>System</strong> and <strong>Engagement</str
     <p class="stacks-copy">Notices are often accompanied by an icon.</p>
     <div class="stacks-preview">
 {% highlight html %}
-<aside class="grid s-notice s-notice__info" aria-hidden="false" role="status">
+<aside class="grid s-notice s-notice__info" role="status">
     <div class="grid--cell mr8">
         @Svg.Alert
     </div>
@@ -223,7 +214,7 @@ description: Notices deliver <strong>System</strong> and <strong>Engagement</str
 </aside>
 {% endhighlight %}
         <div class="stacks-preview--example">
-            <aside class="grid s-notice s-notice__info" aria-hidden="false" role="status">
+            <aside class="grid s-notice s-notice__info" role="status">
                 <div class="grid--cell mr8">
                     {% icon "Alert" %}
                 </div>
@@ -235,90 +226,92 @@ description: Notices deliver <strong>System</strong> and <strong>Engagement</str
     </div>
 
     {% header "h3", "Toast" %}
-    <p class="stacks-copy">Floating notices, but aligned to the top and center of the page and they disappear after a set time. When including buttons, you can apply <code class="stacks-code">.s-notice--btn</code> to buttons to apply a toast-specific color.</p>
+    <p class="stacks-copy">Floating notices, but aligned to the top and center of the page and they disappear after a set time.  Visibility is changed with animation by toggling between <code class="stacks-code">aria-hidden="true"</code> and <code class="stacks-code">aria-hidden="false"</code>. When including buttons, you can apply <code class="stacks-code">.s-notice--btn</code> to buttons to apply a toast-specific color.</p>
     <div class="mb24 p16 bar-sm bg-black-025 ba bc-black-1">
         <button class="grid--cell s-btn s-btn__filled js-notice-toast-open">Launch example toast notice</button>
     </div>
     <div class="stacks-preview">
 {% highlight html %}
-<aside class="grid--cell s-notice s-notice__info p8 pl16 bs-sm" role="status">
-    <div class="grid gsx gs16 ai-center jc-space-between" aria-describedby="notice-message">
-        <div class="grid--cell" aria-label="notice-message">
-            Toast notice message
+<div class="s-toast" aria-hidden="true" role="alertdialog" aria-labelledby="notice-message">
+    <aside class="s-notice s-notice__success p8 pl16">
+        <div class="grid gs16 gsx ai-center jc-space-between">
+            <div class="grid--cell" id="notice-message">
+                Toast notice message with an undo button
+            </div>
+            <div class="grid">
+                <button type="button" class="s-btn s-notice--btn">
+                    Undo
+                </button>
+                <button type="button" class="s-btn s-notice--btn" aria-label="Dismiss">
+                    @Svg.ClearSm
+                </button>
+            </div>
         </div>
-        <div class="grid">
-            <a href="#" class="s-btn s-notice--btn">
-                Undo
-            </a>
-            <a href="#" class="s-btn s-notice--btn">
-                @Svg.ClearSm
-            </a>
-        </div>
-    </div>
-</aside>
+    </aside>
+</div>
 {% endhighlight %}
         <div class="stacks-preview--example">
             <div class="ps-relative grid grid__center gs8 gsy fd-column jc-center">
-                <div class="grid--cell s-notice s-notice__success p8 pl16 bs-sm" role="status">
-                    <div class="grid gsx gs16 ai-center jc-space-between" aria-describedby="notice-message">
-                        <div class="grid--cell" aria-label="notice-message">
+                <div class="grid--cell s-notice s-notice__success p8 pl16 bs-sm">
+                    <div class="grid gsx gs16 ai-center jc-space-between">
+                        <div class="grid--cell">
                             Toast notice message with an undo button
                         </div>
                         <div class="grid">
-                            <a href="#" class="s-btn s-notice--btn">
+                            <button type="button" class="s-btn s-notice--btn">
                                 Undo
-                            </a>
-                            <a href="#" class="s-btn s-notice--btn">
+                            </button>
+                            <button type="button" class="s-btn s-notice--btn" aria-label="Dismiss">
                                 {% icon "ClearSm" %}
-                            </a>
+                            </button>
                         </div>
                     </div>
                 </div>
 
-                <div class="grid--cell s-notice s-notice__info p8 pl16 bs-sm" role="status">
-                    <div class="grid gsx gs16 ai-center jc-space-between" aria-describedby="notice-message">
-                        <div class="grid--cell" aria-label="notice-message">
+                <div class="grid--cell s-notice s-notice__info p8 pl16 bs-sm">
+                    <div class="grid gsx gs16 ai-center jc-space-between">
+                        <div class="grid--cell">
                             Toast notice message with an undo button
                         </div>
                         <div class="grid">
-                            <a href="#" class="s-btn s-notice--btn">
+                            <button type="button" class="s-btn s-notice--btn">
                                 Undo
-                            </a>
-                            <a href="#" class="s-btn s-notice--btn">
+                            </button>
+                            <button type="button" class="s-btn s-notice--btn" aria-label="Dismiss">
                                 {% icon "ClearSm" %}
-                            </a>
+                            </button>
                         </div>
                     </div>
                 </div>
 
-                <div class="grid--cell s-notice s-notice__warning p8 pl16 bs-sm" role="status">
-                    <div class="grid gsx gs16 ai-center jc-space-between" aria-describedby="notice-message">
-                        <div class="grid--cell" aria-label="notice-message">
+                <div class="grid--cell s-notice s-notice__warning p8 pl16 bs-sm">
+                    <div class="grid gsx gs16 ai-center jc-space-between">
+                        <div class="grid--cell">
                             Toast notice message with an undo button
                         </div>
                         <div class="grid">
-                            <a href="#" class="s-btn s-notice--btn">
+                            <button type="button" class="s-btn s-notice--btn">
                                 Undo
-                            </a>
-                            <a href="#" class="s-btn s-notice--btn">
+                            </button>
+                            <button type="button" class="s-btn s-notice--btn" aria-label="Dismiss">
                                 {% icon "ClearSm" %}
-                            </a>
+                            </button>
                         </div>
                     </div>
                 </div>
 
-                <div class="grid--cell s-notice s-notice__danger p8 pl16 bs-sm" role="status">
-                    <div class="grid gsx gs16 ai-center jc-space-between" aria-describedby="notice-message">
-                        <div class="grid--cell" aria-label="notice-message">
+                <div class="grid--cell s-notice s-notice__danger p8 pl16 bs-sm">
+                    <div class="grid gsx gs16 ai-center jc-space-between">
+                        <div class="grid--cell">
                             Toast notice message with an undo button
                         </div>
                         <div class="grid">
-                            <a href="#" class="s-btn s-notice--btn">
+                            <button type="button" class="s-btn s-notice--btn">
                                 Undo
-                            </a>
-                            <a href="#" class="s-btn s-notice--btn">
+                            </button>
+                            <button type="button" class="s-btn s-notice--btn" aria-label="Dismiss">
                                 {% icon "ClearSm" %}
-                            </a>
+                            </button>
                         </div>
                     </div>
                 </div>

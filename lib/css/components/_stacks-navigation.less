@@ -29,16 +29,61 @@
         @scrollbar-styles();
     }
 
-    .s-navigation--item {
+    &.s-navigation__vertical {
+        flex-direction: column;
+        padding: 0;
+        margin: 0;
+
+        .s-navigation--item {
+            margin: 0;
+        }
+    }
+
+    .s-navigation--title {
+        font-size: @fs-fine;
+        font-weight: bold;
+        margin-top: @su16;
         padding: @su6 @su12;
+        text-transform: uppercase;
+
+        &:first-child {
+            margin-top: 0;
+        }
+    }
+
+    .s-navigation--item {
+        display: flex;
+        align-items: center;
+        padding: @su6 @su12;
+
+        // Reset some things for when the navigation item is also a button
+        border: none;
+        font: unset;
+        background: none;
+        box-shadow: none;
+        cursor: pointer;
+        user-select: auto;
         border-radius: 1000px;
         margin: @su2;
         color: var(--black-600);
 
         &:hover,
         &:active {
-            background: var(--black-100);
+            background: var(--black-075);
             color: var(--black-600);
+        }
+
+        // Hide focus styles if they're not needed, for example,
+        // when an element receives focus via the mouse.
+        &:focus:not(:focus-visible) {
+            outline: none;
+            box-shadow: none;
+        }
+
+        // Show focus styles on keyboard focus.
+        &:focus-visible {
+            outline: none;
+            box-shadow: 0 0 0 @su4 var(--focus-ring-muted);
         }
 
         &.is-selected {

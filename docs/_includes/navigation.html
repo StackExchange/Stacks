@@ -39,28 +39,20 @@
 
                 {% if url == slug %}
                     {% if section.sections %}
-                        <ul id="nav" class="list-reset">
-                        {% for section in section.sections %}
-                            <li class="mb16">
-                                <div class="px16 py6 fw-bold tt-uppercase fs-fine mt16">
+                        <div id="nav" class="s-navigation s-navigation__vertical mt16">
+                            {% for section in section.sections %}
+                                <div class="s-navigation--title">
                                     {{ section.title }}
                                 </div>
                                 {% if section.links %}
-                                    <ul class="list-reset">
-                                        {% for link in section.links %}
-                                            <li>
-                                                <a class="grid jc-space-between ai-center py6 px12 s-link s-link__muted mx4 {% if page.url == link.url %}bg-orange-400 bar-pill fc-white{% endif %}" href="{{ link.url | relative_url }}">
-                                                    <span class="grid--cell">
-                                                        {{ link.title }}
-                                                    </span>
-                                                </a>
-                                            </li>
-                                        {% endfor %}
-                                    </ul>
+                                    {% for link in section.links %}
+                                        <a class="s-navigation--item {% if page.url == link.url %}is-selected{% endif %}" href="{{ link.url | relative_url }}">
+                                            {{ link.title }}
+                                        </a>
+                                    {% endfor %}
                                 {% endif %}
-                            </li>
-                        {% endfor %}
-                        </ul>
+                            {% endfor %}
+                        </div>
                     {% endif %}
                 {% endif %}
             {% endfor %}
