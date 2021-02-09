@@ -1757,7 +1757,7 @@ Copyright © 2019 Basecamp, LLC
 ;
 
 /**
- * @popperjs/core v2.5.3 - MIT License
+ * @popperjs/core v2.6.0 - MIT License
  */
 
 (function (global, factory) {
@@ -1846,8 +1846,9 @@ Copyright © 2019 Basecamp, LLC
   }
 
   function getDocumentElement(element) {
-    // $FlowFixMe: assume body is always available
-    return ((isElement(element) ? element.ownerDocument : element.document) || window.document).documentElement;
+    // $FlowFixMe[incompatible-return]: assume body is always available
+    return ((isElement(element) ? element.ownerDocument : // $FlowFixMe[prop-missing]
+    element.document) || window.document).documentElement;
   }
 
   function getWindowScrollBarX(element) {
@@ -1933,12 +1934,14 @@ Copyright © 2019 Basecamp, LLC
       return element;
     }
 
-    return (// $FlowFixMe: this is a quicker (but less type safe) way to save quite some bytes from the bundle
+    return (// this is a quicker (but less type safe) way to save quite some bytes from the bundle
+      // $FlowFixMe[incompatible-return]
+      // $FlowFixMe[prop-missing]
       element.assignedSlot || // step into the shadow DOM of the parent of a slotted node
       element.parentNode || // DOM Element detected
-      // $FlowFixMe: need a better way to handle this...
+      // $FlowFixMe[incompatible-return]: need a better way to handle this...
       element.host || // ShadowRoot detected
-      // $FlowFixMe: HTMLElement is a Node
+      // $FlowFixMe[incompatible-call]: HTMLElement is a Node
       getDocumentElement(element) // fallback
 
     );
@@ -1946,7 +1949,7 @@ Copyright © 2019 Basecamp, LLC
 
   function getScrollParent(node) {
     if (['html', 'body', '#document'].indexOf(getNodeName(node)) >= 0) {
-      // $FlowFixMe: assume body is always available
+      // $FlowFixMe[incompatible-return]: assume body is always available
       return node.ownerDocument.body;
     }
 
@@ -1960,7 +1963,7 @@ Copyright © 2019 Basecamp, LLC
   /*
   given a DOM element, return the list of all scroll parents, up the list of ancesors
   until we get to the top window object. This list is what we attach scroll listeners
-  to, because if any of these parent elements scroll, we'll need to re-calculate the 
+  to, because if any of these parent elements scroll, we'll need to re-calculate the
   reference element's position.
   */
 
@@ -1974,7 +1977,7 @@ Copyright © 2019 Basecamp, LLC
     var win = getWindow(scrollParent);
     var target = isBody ? [win].concat(win.visualViewport || [], isScrollParent(scrollParent) ? scrollParent : []) : scrollParent;
     var updatedList = list.concat(target);
-    return isBody ? updatedList : // $FlowFixMe: isBody tells us target will be an HTMLElement here
+    return isBody ? updatedList : // $FlowFixMe[incompatible-call]: isBody tells us target will be an HTMLElement here
     updatedList.concat(listScrollParents(getParentNode(target)));
   }
 
@@ -2311,13 +2314,13 @@ Copyright © 2019 Basecamp, LLC
     if (parent.contains(child)) {
       return true;
     } // then fallback to custom implementation with Shadow DOM support
-    else if (isShadowRoot(rootNode)) {
+    else if (rootNode && isShadowRoot(rootNode)) {
         var next = child;
 
         do {
           if (next && parent.isSameNode(next)) {
             return true;
-          } // $FlowFixMe: need a better way to handle this...
+          } // $FlowFixMe[prop-missing]: need a better way to handle this...
 
 
           next = next.parentNode || next.host;
@@ -2364,7 +2367,7 @@ Copyright © 2019 Basecamp, LLC
 
     if (!isElement(clipperElement)) {
       return [];
-    } // $FlowFixMe: https://github.com/facebook/flow/issues/1414
+    } // $FlowFixMe[incompatible-return]: https://github.com/facebook/flow/issues/1414
 
 
     return clippingParents.filter(function (clippingParent) {
@@ -2454,11 +2457,11 @@ Copyright © 2019 Basecamp, LLC
 
       switch (variation) {
         case start:
-          offsets[mainAxis] = Math.floor(offsets[mainAxis]) - Math.floor(reference[len] / 2 - element[len] / 2);
+          offsets[mainAxis] = offsets[mainAxis] - (reference[len] / 2 - element[len] / 2);
           break;
 
         case end:
-          offsets[mainAxis] = Math.floor(offsets[mainAxis]) + Math.ceil(reference[len] / 2 - element[len] / 2);
+          offsets[mainAxis] = offsets[mainAxis] + (reference[len] / 2 - element[len] / 2);
           break;
       }
     }
@@ -2864,7 +2867,7 @@ Copyright © 2019 Basecamp, LLC
   // Zooming can change the DPR, but it seems to report a value that will
   // cleanly divide the values into the appropriate subpixels.
 
-  function roundOffsets(_ref) {
+  function roundOffsetsByDPR(_ref) {
     var x = _ref.x,
         y = _ref.y;
     var win = window;
@@ -2884,11 +2887,14 @@ Copyright © 2019 Basecamp, LLC
         offsets = _ref2.offsets,
         position = _ref2.position,
         gpuAcceleration = _ref2.gpuAcceleration,
-        adaptive = _ref2.adaptive;
+        adaptive = _ref2.adaptive,
+        roundOffsets = _ref2.roundOffsets;
 
-    var _roundOffsets = roundOffsets(offsets),
-        x = _roundOffsets.x,
-        y = _roundOffsets.y;
+    var _ref3 = roundOffsets ? roundOffsetsByDPR(offsets) : offsets,
+        _ref3$x = _ref3.x,
+        x = _ref3$x === void 0 ? 0 : _ref3$x,
+        _ref3$y = _ref3.y,
+        y = _ref3$y === void 0 ? 0 : _ref3$y;
 
     var hasX = offsets.hasOwnProperty('x');
     var hasY = offsets.hasOwnProperty('y');
@@ -2901,7 +2907,7 @@ Copyright © 2019 Basecamp, LLC
 
       if (offsetParent === getWindow(popper)) {
         offsetParent = getDocumentElement(popper);
-      } // $FlowFixMe: force type refinement, we compare offsetParent with window above, but Flow doesn't detect it
+      } // $FlowFixMe[incompatible-cast]: force type refinement, we compare offsetParent with window above, but Flow doesn't detect it
 
       /*:: offsetParent = (offsetParent: Element); */
 
@@ -2932,13 +2938,15 @@ Copyright © 2019 Basecamp, LLC
     return Object.assign(Object.assign({}, commonStyles), {}, (_Object$assign2 = {}, _Object$assign2[sideY] = hasY ? y + "px" : '', _Object$assign2[sideX] = hasX ? x + "px" : '', _Object$assign2.transform = '', _Object$assign2));
   }
 
-  function computeStyles(_ref3) {
-    var state = _ref3.state,
-        options = _ref3.options;
+  function computeStyles(_ref4) {
+    var state = _ref4.state,
+        options = _ref4.options;
     var _options$gpuAccelerat = options.gpuAcceleration,
         gpuAcceleration = _options$gpuAccelerat === void 0 ? true : _options$gpuAccelerat,
         _options$adaptive = options.adaptive,
-        adaptive = _options$adaptive === void 0 ? true : _options$adaptive;
+        adaptive = _options$adaptive === void 0 ? true : _options$adaptive,
+        _options$roundOffsets = options.roundOffsets,
+        roundOffsets = _options$roundOffsets === void 0 ? true : _options$roundOffsets;
 
     {
       var transitionProperty = getComputedStyle(state.elements.popper).transitionProperty || '';
@@ -2961,7 +2969,8 @@ Copyright © 2019 Basecamp, LLC
       state.styles.popper = Object.assign(Object.assign({}, state.styles.popper), mapToStyles(Object.assign(Object.assign({}, commonStyles), {}, {
         offsets: state.modifiersData.popperOffsets,
         position: state.options.strategy,
-        adaptive: adaptive
+        adaptive: adaptive,
+        roundOffsets: roundOffsets
       })));
     }
 
@@ -2969,7 +2978,8 @@ Copyright © 2019 Basecamp, LLC
       state.styles.arrow = Object.assign(Object.assign({}, state.styles.arrow), mapToStyles(Object.assign(Object.assign({}, commonStyles), {}, {
         offsets: state.modifiersData.arrow,
         position: 'absolute',
-        adaptive: false
+        adaptive: false,
+        roundOffsets: roundOffsets
       })));
     }
 
@@ -3000,7 +3010,7 @@ Copyright © 2019 Basecamp, LLC
         return;
       } // Flow doesn't support to extend this property, but it's the most
       // effective way to apply styles to an HTMLElement
-      // $FlowFixMe
+      // $FlowFixMe[cannot-write]
 
 
       Object.assign(element.style, style);
@@ -3049,10 +3059,7 @@ Copyright © 2019 Basecamp, LLC
 
         if (!isHTMLElement(element) || !getNodeName(element)) {
           return;
-        } // Flow doesn't support to extend this property, but it's the most
-        // effective way to apply styles to an HTMLElement
-        // $FlowFixMe
-
+        }
 
         Object.assign(element.style, style);
         Object.keys(attributes).forEach(function (attribute) {
@@ -3165,8 +3172,7 @@ Copyright © 2019 Basecamp, LLC
     var variation = getVariation(placement);
     var placements$1 = variation ? flipVariations ? variationPlacements : variationPlacements.filter(function (placement) {
       return getVariation(placement) === variation;
-    }) : basePlacements; // $FlowFixMe
-
+    }) : basePlacements;
     var allowedPlacements = placements$1.filter(function (placement) {
       return allowedAutoPlacements.indexOf(placement) >= 0;
     });
@@ -3177,7 +3183,7 @@ Copyright © 2019 Basecamp, LLC
       {
         console.error(['Popper: The `allowedAutoPlacements` option did not allow any', 'placements. Ensure the `placement` option matches the variation', 'of the allowed placements.', 'For example, "auto" cannot be used to allow "bottom-start".', 'Use "auto-start" instead.'].join(' '));
       }
-    } // $FlowFixMe: Flow seems to have problems with two array unions...
+    } // $FlowFixMe[incompatible-type]: Flow seems to have problems with two array unions...
 
 
     var overflows = allowedPlacements.reduce(function (acc, placement) {
@@ -4158,6 +4164,125 @@ var __extends = (this && this.__extends) || (function () {
 })();
 var Stacks;
 (function (Stacks) {
+    var TabListController = (function (_super) {
+        __extends(TabListController, _super);
+        function TabListController() {
+            return _super !== null && _super.apply(this, arguments) || this;
+        }
+        TabListController.prototype.connect = function () {
+            _super.prototype.connect.call(this);
+            this.boundSelectTab = this.selectTab.bind(this);
+            this.boundHandleKeydown = this.handleKeydown.bind(this);
+            for (var _i = 0, _a = this.tabTargets; _i < _a.length; _i++) {
+                var tab = _a[_i];
+                tab.addEventListener("click", this.boundSelectTab);
+                tab.addEventListener("keydown", this.boundHandleKeydown);
+            }
+        };
+        TabListController.prototype.disconnect = function () {
+            _super.prototype.disconnect.call(this);
+            for (var _i = 0, _a = this.tabTargets; _i < _a.length; _i++) {
+                var tab = _a[_i];
+                tab.removeEventListener("click", this.boundSelectTab);
+                tab.removeEventListener("keydown", this.boundHandleKeydown);
+            }
+        };
+        Object.defineProperty(TabListController.prototype, "tabTargets", {
+            get: function () {
+                return Array.from(this.element.querySelectorAll("[role=tab]"));
+            },
+            enumerable: false,
+            configurable: true
+        });
+        TabListController.prototype.selectTab = function (event) {
+            this.switchToTab(event.currentTarget);
+        };
+        TabListController.prototype.handleKeydown = function (event) {
+            var _a;
+            var tabElement = event.currentTarget;
+            var tabs = this.tabTargets;
+            var tabIndex = tabs.indexOf(tabElement);
+            if (event.key === "ArrowRight") {
+                tabIndex++;
+            }
+            else if (event.key === "ArrowLeft") {
+                tabIndex--;
+            }
+            else {
+                return;
+            }
+            if (tabIndex < 0) {
+                tabIndex = tabs.length - 1;
+            }
+            if (tabIndex >= tabs.length) {
+                tabIndex = 0;
+            }
+            tabElement = tabs[tabIndex];
+            this.switchToTab(tabElement);
+            (_a = this.selectedTab) === null || _a === void 0 ? void 0 : _a.focus();
+        };
+        TabListController.prototype.switchToTab = function (newTab) {
+            var oldTab = this.selectedTab;
+            if (oldTab === newTab) {
+                return;
+            }
+            if (this.triggerEvent("select", { oldTab: oldTab, newTab: newTab }).defaultPrevented) {
+                return;
+            }
+            this.selectedTab = newTab;
+            this.triggerEvent("selected", { oldTab: oldTab, newTab: newTab });
+        };
+        Object.defineProperty(TabListController.prototype, "selectedTab", {
+            get: function () {
+                return this.tabTargets.find(function (e) { return e.getAttribute("aria-selected") === "true"; }) || null;
+            },
+            set: function (selectedTab) {
+                for (var _i = 0, _a = this.tabTargets; _i < _a.length; _i++) {
+                    var tab = _a[_i];
+                    var panelId = tab.getAttribute('aria-controls');
+                    var panel = panelId ? document.getElementById(panelId) : null;
+                    if (tab === selectedTab) {
+                        tab.classList.add('is-selected');
+                        tab.setAttribute('aria-selected', 'true');
+                        tab.removeAttribute('tabindex');
+                        panel === null || panel === void 0 ? void 0 : panel.classList.remove('d-none');
+                    }
+                    else {
+                        tab.classList.remove('is-selected');
+                        tab.setAttribute('aria-selected', 'false');
+                        tab.setAttribute('tabindex', '-1');
+                        panel === null || panel === void 0 ? void 0 : panel.classList.add('d-none');
+                    }
+                }
+            },
+            enumerable: false,
+            configurable: true
+        });
+        return TabListController;
+    }(Stacks.StacksController));
+    Stacks.TabListController = TabListController;
+})(Stacks || (Stacks = {}));
+Stacks.application.register("s-navigation-tablist", Stacks.TabListController);
+//# sourceMappingURL=s-navigation-tablist.js.map
+
+;
+
+"use strict";
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+var Stacks;
+(function (Stacks) {
     var BasePopoverController = (function (_super) {
         __extends(BasePopoverController, _super);
         function BasePopoverController() {
@@ -4206,7 +4331,7 @@ var Stacks;
             }
             this.popoverElement.classList.add("is-visible");
             this.scheduleUpdate();
-            this.shown();
+            this.shown(dispatcherElement);
         };
         BasePopoverController.prototype.hide = function (dispatcher) {
             if (dispatcher === void 0) { dispatcher = null; }
@@ -4224,7 +4349,7 @@ var Stacks;
                 this.popper.destroy();
                 this.popper = null;
             }
-            this.hidden();
+            this.hidden(dispatcherElement);
         };
         BasePopoverController.prototype.shown = function (dispatcher) {
             if (dispatcher === void 0) { dispatcher = null; }
