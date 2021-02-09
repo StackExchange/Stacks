@@ -412,6 +412,117 @@ body,
     --theme-primary-color-fade-80: hsla(var(--theme-primary-color-h), var(--theme-primary-color-s), var(--theme-primary-color-l), .8);
     --theme-primary-color-fade-15: hsla(var(--theme-primary-color-h), var(--theme-primary-color-s), var(--theme-primary-color-l), .15);
     --theme-primary-color-fade-35: hsla(var(--theme-primary-color-h), var(--theme-primary-color-s), var(--theme-primary-color-l), .35);
+
+
+    // Primary color
+    // Split into h/s/l/a values
+    --theme-secondary-color-h: 205;
+    --theme-secondary-color-s: 100%;
+    --theme-secondary-color-l: 40%;
+
+    // Reassemble as a single hsl value
+    --theme-secondary-color: hsl(var(--theme-secondary-color-h), var(--theme-secondary-color-s), var(--theme-secondary-color-l));
+
+    // Darken 30
+    --theme-secondary-900: hsl(var(--theme-secondary-color-h), var(--theme-secondary-color-s), calc(var(--theme-secondary-color-l) - 30%));
+
+    // Darken 20
+    --theme-secondary-800: hsl(var(--theme-secondary-color-h), var(--theme-secondary-color-s), calc(var(--theme-secondary-color-l) - 20%));
+
+    // Darken 15
+    --theme-secondary-700: hsl(var(--theme-secondary-color-h), var(--theme-secondary-color-s), calc(var(--theme-secondary-color-l) - 15%));
+
+    // Darken 10
+    --theme-secondary-600: hsl(var(--theme-secondary-color-h), var(--theme-secondary-color-s), calc(var(--theme-secondary-color-l) - 10%));
+
+    // Darken 5
+    --theme-secondary-500: hsl(var(--theme-secondary-color-h), var(--theme-secondary-color-s), calc(var(--theme-secondary-color-l) - 5%));
+
+    --theme-secondary-400: var(--theme-secondary-color);
+
+    // Tint 10
+    --theme-secondary-350: hsl(
+        var(--theme-secondary-color-h),
+        var(--theme-secondary-color-s), // If we're less than 50% blend, don't touch the saturation
+        calc(
+            (var(--theme-secondary-color-l) * (1 - .1)) + (100% * .1)
+        )
+    );
+
+    // Lighten 10
+    --theme-secondary-300: hsl(var(--theme-secondary-color-h), var(--theme-secondary-color-s), calc(var(--theme-secondary-color-l) + 10%));
+
+    // Tint 50
+    --theme-secondary-200: hsl(
+        var(--theme-secondary-color-h),
+        var(--theme-secondary-color-s), // If we're less than 50% blend, don't touch the saturation
+        calc(
+            (var(--theme-secondary-color-l) * (1 - .5)) + (100% * .5)
+        )
+    );
+
+    // Tint 60
+    --theme-secondary-150: hsl(
+        var(--theme-secondary-color-h),
+        calc(
+            var(--theme-secondary-color-s) * .6
+        ),
+        calc(
+            (var(--theme-secondary-color-l) * (1 - .6)) + (100% * .6)
+        )
+    );
+
+    // Tint 70
+    --theme-secondary-100: hsl(
+        var(--theme-secondary-color-h),
+        calc(
+            var(--theme-secondary-color-s) * .7
+        ),
+        calc(
+            (var(--theme-secondary-color-l) * (1 - .7)) + (100% * .7)
+        )
+    );
+
+    // Tint 80
+    --theme-secondary-075: hsl(
+        var(--theme-secondary-color-h),
+        calc(
+            var(--theme-secondary-color-s) * .8
+        ),
+        calc(
+            (var(--theme-secondary-color-l) * (1 - .8)) + (100% * .8)
+        )
+    );
+
+    // Tint 85
+    --theme-secondary-050: hsl(
+        var(--theme-secondary-color-h),
+        calc(
+            var(--theme-secondary-color-s) * .85
+        ),
+        calc(
+            (var(--theme-secondary-color-l) * (1 - .85)) + (100% * .85)
+        )
+    );
+
+    // Tint 90
+    --theme-secondary-025: hsl(
+        var(--theme-secondary-color-h),
+        calc(
+            var(--theme-secondary-color-s) * .9
+        ),
+        calc(
+            (var(--theme-secondary-color-l) * (1 - .9)) + (100% * .9)
+        )
+    );
+
+    // Fades
+    // These should be removed in favor of their opaque equivalents.
+    --theme-secondary-color-fade-50: hsla(var(--theme-secondary-color-h), var(--theme-secondary-color-s), var(--theme-secondary-color-l), .5);
+    --theme-secondary-color-fade-75: hsla(var(--theme-secondary-color-h), var(--theme-secondary-color-s), var(--theme-secondary-color-l), .75);
+    --theme-secondary-color-fade-80: hsla(var(--theme-secondary-color-h), var(--theme-secondary-color-s), var(--theme-secondary-color-l), .8);
+    --theme-secondary-color-fade-15: hsla(var(--theme-secondary-color-h), var(--theme-secondary-color-s), var(--theme-secondary-color-l), .15);
+    --theme-secondary-color-fade-35: hsla(var(--theme-secondary-color-h), var(--theme-secondary-color-s), var(--theme-secondary-color-l), .35);
 }
 
 //  --  Dark mode
