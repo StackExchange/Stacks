@@ -4331,7 +4331,7 @@ var Stacks;
             }
             this.popoverElement.classList.add("is-visible");
             this.scheduleUpdate();
-            this.shown();
+            this.shown(dispatcherElement);
         };
         BasePopoverController.prototype.hide = function (dispatcher) {
             if (dispatcher === void 0) { dispatcher = null; }
@@ -4349,7 +4349,7 @@ var Stacks;
                 this.popper.destroy();
                 this.popper = null;
             }
-            this.hidden();
+            this.hidden(dispatcherElement);
         };
         BasePopoverController.prototype.shown = function (dispatcher) {
             if (dispatcher === void 0) { dispatcher = null; }

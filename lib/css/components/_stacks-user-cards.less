@@ -27,6 +27,11 @@
         background-color: var(--powder-100);
         padding: @su8;
         border-radius: @br-md;
+
+        .s-user-card--type {
+            color: var(--black-700);
+        }
+
     }
 
     //  $$  Full meta data
@@ -56,8 +61,23 @@
         align-items: center;
         grid-column-gap: unset; // Firefox flex layouts respect column gaps, so we need to reset this
 
+        .s-user-card--time {
+            margin-right: @su6;
+            margin-bottom: 0;
+        }
+
+        .s-user-card--link {
+            margin-right: @su6;
+        }
+
         .s-user-card--avatar {
             margin-right: @su6;
+        }
+
+        .s-user-card--info {
+            display: flex;
+            align-items: center;
+            grid-column-gap: unset; // Firefox flex layouts respect column gaps, so we need to reset this
         }
     }
 
@@ -85,7 +105,21 @@
             padding: 0;
             color: var(--black-600);
         }
+
+        .s-user-card--info {
+            display: flex;
+            align-items: center;
+            grid-column-gap: unset; // Firefox flex layouts respect column gaps, so we need to reset this
+        }
     }
+
+    .s-user-card--type {
+        grid-column: ~"1 / 3";
+        padding-top: @su4;
+        font-size: @fs-caption;
+        color: var(--orange-400);
+    }
+
 }
 
 //  $   USER CARD TIME
@@ -116,6 +150,7 @@
     font-size: @fs-caption;
     align-items: center;
     flex-wrap: wrap;
+    overflow-wrap: break-word;
 }
 
 //  $   AWARDS CONTAINER

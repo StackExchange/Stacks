@@ -82,7 +82,7 @@ namespace Stacks {
             // ensure the popper has been positioned correctly
             this.scheduleUpdate();
 
-            this.shown();
+            this.shown(dispatcherElement);
         }
 
         /**
@@ -105,7 +105,7 @@ namespace Stacks {
                 this.popper = null;
             }
 
-            this.hidden();
+            this.hidden(dispatcherElement);
         }
 
         /**
