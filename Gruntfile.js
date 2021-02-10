@@ -177,12 +177,12 @@ module.exports = function(grunt) {
                 }
             },
             highlightJs: {
-                src: 'node_modules/@highlightjs/cdn-assets/highlight.js',
+                src: 'node_modules/@highlightjs/cdn-assets/highlight.min.js',
                 dest: 'docs/assets/js/',
                 flatten: true,
                 expand: true,
                 rename: function(dest, src) {
-                    return dest + src.replace('highlight.js','library.highlight.js');
+                    return dest + src.replace('highlight.min.js','library.highlight.js');
                 }
             },
             editorCSS: {
