@@ -2,28 +2,110 @@
 layout: page
 title: Editor
 js: true
-description: The Stacks editor adds “what you see is what you get” and Markdown capabilities to textareas. It is available as a separate <a href="https://github.com/StackExchange/Stacks-Editor">Editor</a> repository.
+description: The Stacks editor adds “what you see is what you get” and Markdown capabilities to textareas. It is available as a separate <a href="https://github.com/StackExchange/Stacks-Editor">Editor</a> repository, but requires Stacks’ CSS for styling.
 ---
 <section class="stacks-section">
-    {% header "h2", "Initialization" %}
-    <p class="stacks-copy">Because of its size, the Stacks editor is bundled independently of Stacks. There are a few ways to initialize it:</p>
+    {% header "h2", "Installation" %}
+    <p class="stacks-copy">Because of its size, the Stacks editor is bundled independently of Stacks. You can install it a few ways:</p>
+
+    {% header "h3", "NPM" %}
+    <p class="stacks-copy mb48">The Stacks Editor is available as an NPM package. To make it available in your node modules, <code class="stacks-code">npm install @stackoverflow/stacks-editor</code></p>
+
+    {% header "h3", "Import via Modules or CommonJS" %}
+    <div class="stacks-preview _preview-none">
+{% highlight js %}
+import { StacksEditor } from "@stackoverflow/stacks-editor";
+// Don’t forget to include the styles as well
+import "@stackoverflow/stacks-editor/styles.css";
+
+new StacksEditor(
+    document.querySelector("#editor-container"),
+    "*Your* **markdown** here"
+);
+{% endhighlight %}
+    </div>
+
+    {% header "h3", "Import via script tag" %}
+    <div class="stacks-preview _preview-none">
+{% highlight html %}
+<!-- Include the bundled styles -->
+<link rel="stylesheet" src="path/to/node_modules/@stackoverflow/stacks-editor/dist/styles.css"
+/>
+
+<div id="editor-container"></div>
+
+<!-- highlight.js is not included in the bundle, so include it as well if you want it -->
+<script src="//unpkg.com/@highlightjs/cdn-assets@latest/highlight.min.js"></script>
+
+<!-- Include the bundle -->
+<script src="path/to/node_modules/@stackoverflow/stacks-editor/dist/app.bundle.js"></script>
+
+<!-- Initialize the editor -->
+<script>
+    new window.stacksEditor.StacksEditor(
+        document.querySelector("#editor-container"),
+        "*Your* **markdown** here",
+        {}
+    );
+</script>
+{% endhighlight %}
+    </div>
 </section>
 
+<!-- TODO add the configuration options for the editor
 <section class="stacks-section">
     {% header "h2", "Configuration" %}
     <p class="stacks-copy">There are several options you can pass to the Stacks Editor.</p>
 </section>
+-->
 
 <section class="stacks-section">
     {% header "h2", "Examples" %}
     {% header "h3", "Empty" %}
-    <div id="editor-example-1" class="mb32"></div>
+    <div class="stacks-preview">
+{% highlight html %}
+<div id="editor-example-1"></div>
 
-    {% header "h3", "Kitchen sink" %}
-    <textarea id="editor-content-2" class="d-none">
+<script>
+    new window.stacksEditor.StacksEditor(
+        document.querySelector("#editor-example-1"),
+        "",
+        {}
+    );
+</script>
+{% endhighlight %}
+        <div class="stacks-preview--example">
+            <div id="editor-example-1"></div>
+        </div>
+    </div>
+
+    {% header "h3", "Textarea content with tables enabled" %}
+    <div class="stacks-preview">
+{% highlight html %}
+<textarea id="editor-content-2" class="d-none">
+   … 
+</textarea>
+<div id="editor-example-2"></div>
+
+<script>
+    new window.stacksEditor.StacksEditor(
+        document.querySelector("#editor-example-2"),
+        document.querySelector("#editor-content-2").value,
+        {
+            parserFeatures: {
+                tables: true,
+            },
+        }
+    );
+</script>
+{% endhighlight %}
+        <div class="stacks-preview--example">
+            <textarea id="editor-content-2" class="d-none">
 {% include markdown-prose.md %}
-    </textarea>
-    <div id="editor-example-2"></div>
+            </textarea>
+            <div id="editor-example-2"></div>
+        </div>
+    </div>
 </section>
 
 <!-- Example editor CSS -->
