@@ -4164,6 +4164,125 @@ var __extends = (this && this.__extends) || (function () {
 })();
 var Stacks;
 (function (Stacks) {
+    var TabListController = (function (_super) {
+        __extends(TabListController, _super);
+        function TabListController() {
+            return _super !== null && _super.apply(this, arguments) || this;
+        }
+        TabListController.prototype.connect = function () {
+            _super.prototype.connect.call(this);
+            this.boundSelectTab = this.selectTab.bind(this);
+            this.boundHandleKeydown = this.handleKeydown.bind(this);
+            for (var _i = 0, _a = this.tabTargets; _i < _a.length; _i++) {
+                var tab = _a[_i];
+                tab.addEventListener("click", this.boundSelectTab);
+                tab.addEventListener("keydown", this.boundHandleKeydown);
+            }
+        };
+        TabListController.prototype.disconnect = function () {
+            _super.prototype.disconnect.call(this);
+            for (var _i = 0, _a = this.tabTargets; _i < _a.length; _i++) {
+                var tab = _a[_i];
+                tab.removeEventListener("click", this.boundSelectTab);
+                tab.removeEventListener("keydown", this.boundHandleKeydown);
+            }
+        };
+        Object.defineProperty(TabListController.prototype, "tabTargets", {
+            get: function () {
+                return Array.from(this.element.querySelectorAll("[role=tab]"));
+            },
+            enumerable: false,
+            configurable: true
+        });
+        TabListController.prototype.selectTab = function (event) {
+            this.switchToTab(event.currentTarget);
+        };
+        TabListController.prototype.handleKeydown = function (event) {
+            var _a;
+            var tabElement = event.currentTarget;
+            var tabs = this.tabTargets;
+            var tabIndex = tabs.indexOf(tabElement);
+            if (event.key === "ArrowRight") {
+                tabIndex++;
+            }
+            else if (event.key === "ArrowLeft") {
+                tabIndex--;
+            }
+            else {
+                return;
+            }
+            if (tabIndex < 0) {
+                tabIndex = tabs.length - 1;
+            }
+            if (tabIndex >= tabs.length) {
+                tabIndex = 0;
+            }
+            tabElement = tabs[tabIndex];
+            this.switchToTab(tabElement);
+            (_a = this.selectedTab) === null || _a === void 0 ? void 0 : _a.focus();
+        };
+        TabListController.prototype.switchToTab = function (newTab) {
+            var oldTab = this.selectedTab;
+            if (oldTab === newTab) {
+                return;
+            }
+            if (this.triggerEvent("select", { oldTab: oldTab, newTab: newTab }).defaultPrevented) {
+                return;
+            }
+            this.selectedTab = newTab;
+            this.triggerEvent("selected", { oldTab: oldTab, newTab: newTab });
+        };
+        Object.defineProperty(TabListController.prototype, "selectedTab", {
+            get: function () {
+                return this.tabTargets.find(function (e) { return e.getAttribute("aria-selected") === "true"; }) || null;
+            },
+            set: function (selectedTab) {
+                for (var _i = 0, _a = this.tabTargets; _i < _a.length; _i++) {
+                    var tab = _a[_i];
+                    var panelId = tab.getAttribute('aria-controls');
+                    var panel = panelId ? document.getElementById(panelId) : null;
+                    if (tab === selectedTab) {
+                        tab.classList.add('is-selected');
+                        tab.setAttribute('aria-selected', 'true');
+                        tab.removeAttribute('tabindex');
+                        panel === null || panel === void 0 ? void 0 : panel.classList.remove('d-none');
+                    }
+                    else {
+                        tab.classList.remove('is-selected');
+                        tab.setAttribute('aria-selected', 'false');
+                        tab.setAttribute('tabindex', '-1');
+                        panel === null || panel === void 0 ? void 0 : panel.classList.add('d-none');
+                    }
+                }
+            },
+            enumerable: false,
+            configurable: true
+        });
+        return TabListController;
+    }(Stacks.StacksController));
+    Stacks.TabListController = TabListController;
+})(Stacks || (Stacks = {}));
+Stacks.application.register("s-navigation-tablist", Stacks.TabListController);
+//# sourceMappingURL=s-navigation-tablist.js.map
+
+;
+
+"use strict";
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+var Stacks;
+(function (Stacks) {
     var BasePopoverController = (function (_super) {
         __extends(BasePopoverController, _super);
         function BasePopoverController() {
