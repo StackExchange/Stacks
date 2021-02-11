@@ -220,8 +220,8 @@
 //  $   CIRCULAR
 //  ---------------------------------------------------------------------------
 .s-progress__circular {
-    --progress-value: 0;
-    --circle-circumference: 88; // 2πr, r = 14.
+    --s-progress-value: 0;
+    --s-circle-circumference: 88; // 2πr, r = 14.
 
     background: none;
     width: @su32;
@@ -249,7 +249,7 @@
             // Multiply the circle circumference by an the opposite percentage of what we want to display
             // For example 70%, represented as a decimal is 0.7
             // The opposite of that is 0.3 so ( 1 - 0.7 )
-            stroke-dashoffset: calc( ((1 - var(--progress-value)) * var(--circle-circumference)) * 1px); // Multiply everything by 1px since Safari and Firefox require these to be in pixels
+            stroke-dashoffset: calc( ((1 - var(--s-progress-value)) * var(--s-circle-circumference)) * 1px); // Multiply everything by 1px since Safari and Firefox require these to be in pixels
         }
     }
 
