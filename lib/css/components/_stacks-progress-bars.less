@@ -221,7 +221,8 @@
 //  ---------------------------------------------------------------------------
 .s-progress__circular {
     --s-progress-value: 0;
-    @circleCircumference: (2 * pi() * 14); // 2πr, r = 14.
+    @s-progress-circle-circumference: (2 * pi() * 14); // 2πr, r = 14.
+    @s-progress-stroke-width: 4;
 
     background: none;
     width: @su32;
@@ -231,9 +232,8 @@
         // Make everything originate from the top of the circle
         transform: rotate(270deg);
 
-        @strokeWidth: 4;
         circle {
-            stroke-width: @strokeWidth;
+            stroke-width: @s-progress-stroke-width;
             fill: none;
             stroke-linecap: round;
         }
@@ -245,13 +245,13 @@
 
         circle:nth-of-type(2) {
             stroke: currentColor;
-            stroke-dasharray: @circleCircumference;
+            stroke-dasharray: @s-progress-circle-circumference;
 
             // Multiply the circle circumference by an the opposite percentage of what we want to display
             // For example 70%, represented as a decimal is 0.7
             // The opposite of that is 0.3 so ( 1 - 0.7 )
             // Additionally, since the "round" linecap adds (width / 2)px length, adjust the total offset to compensate
-            stroke-dashoffset: calc( (((1 - var(--s-progress-value)) * @circleCircumference) + @strokeWidth) * 1px); // Multiply everything by 1px since Safari and Firefox require these to be in pixels
+            stroke-dashoffset: calc( (((1 - var(--s-progress-value)) * @s-progress-circle-circumference) + @s-progress-stroke-width) * 1px); // Multiply everything by 1px since Safari and Firefox require these to be in pixels
         }
     }
 
