@@ -215,3 +215,58 @@
         }
     }
 }
+
+//  ===========================================================================
+//  $   CIRCULAR
+//  ---------------------------------------------------------------------------
+.s-progress__circular {
+    --s-progress-value: 0;
+    @s-progress-circle-circumference: (2 * pi() * 14); // 2πr, r = 14.
+    @s-progress-stroke-width: 4;
+
+    background: none;
+    width: @su32;
+    height: @su32;
+
+    .s-progress-bar {
+        // Make everything originate from the top of the circle
+        transform: rotate(270deg);
+
+        circle {
+            stroke-width: @s-progress-stroke-width;
+            fill: none;
+            stroke-linecap: round;
+        }
+
+        circle:nth-of-type(1) {
+            stroke: currentColor;
+            opacity: .4;
+        }
+
+        circle:nth-of-type(2) {
+            stroke: currentColor;
+            stroke-dasharray: @s-progress-circle-circumference;
+
+            // Multiply the circle circumference by an the opposite percentage of what we want to display
+            // For example 70%, represented as a decimal is 0.7
+            // The opposite of that is 0.3 so ( 1 - 0.7 )
+            // Additionally, since the "round" linecap adds (width / 2)px length, adjust the total offset to compensate
+            stroke-dashoffset: calc( (((1 - var(--s-progress-value)) * @s-progress-circle-circumference) + @s-progress-stroke-width) * 1px); // Multiply everything by 1px since Safari and Firefox require these to be in pixels
+        }
+    }
+
+    &.s-progress__sm {
+        width: 24px;
+        height: 24px;
+    }
+
+    &.s-progress__md {
+        width: 48px;
+        height: 48px;
+    }
+
+    &.s-progress__lg {
+        width: 64px;
+        height: 64px;
+    }
+}
