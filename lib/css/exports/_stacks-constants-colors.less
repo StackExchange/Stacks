@@ -309,220 +309,128 @@ body,
     --theme-primary-color-s: 90%;
     --theme-primary-color-l: 55%;
 
+    // Split into r/g/b values
+    --theme-primary-color-r: 244;
+    --theme-primary-color-g: 130;
+    --theme-primary-color-b: 37;
+
     // Reassemble as a single hsl value
-    --theme-primary-color: hsl(var(--theme-primary-color-h), var(--theme-primary-color-s), var(--theme-primary-color-l));
+    --theme-primary-color: .assemble-color(theme-primary-color)[@result];
 
     // Darken 30
-    --theme-primary-900: hsl(var(--theme-primary-color-h), var(--theme-primary-color-s), calc(var(--theme-primary-color-l) - 30%));
+    --theme-primary-900: .native-darken(theme-primary-color, 30)[@result];
 
     // Darken 20
-    --theme-primary-800: hsl(var(--theme-primary-color-h), var(--theme-primary-color-s), calc(var(--theme-primary-color-l) - 20%));
+    --theme-primary-800: .native-darken(theme-primary-color, 20)[@result];
 
     // Darken 15
-    --theme-primary-700: hsl(var(--theme-primary-color-h), var(--theme-primary-color-s), calc(var(--theme-primary-color-l) - 15%));
+    --theme-primary-700: .native-darken(theme-primary-color, 15)[@result];
 
     // Darken 10
-    --theme-primary-600: hsl(var(--theme-primary-color-h), var(--theme-primary-color-s), calc(var(--theme-primary-color-l) - 10%));
+    --theme-primary-600: .native-darken(theme-primary-color, 10)[@result];
 
     // Darken 5
-    --theme-primary-500: hsl(var(--theme-primary-color-h), var(--theme-primary-color-s), calc(var(--theme-primary-color-l) - 5%));
+    --theme-primary-500: .native-darken(theme-primary-color, 5)[@result];
 
+    // Unchanged primary
     --theme-primary-400: var(--theme-primary-color);
 
     // Tint 10
-    --theme-primary-350: hsl(
-        var(--theme-primary-color-h),
-        var(--theme-primary-color-s), // If we're less than 50% blend, don't touch the saturation
-        calc(
-            (var(--theme-primary-color-l) * (1 - .1)) + (100% * .1)
-        )
-    );
+    --theme-primary-350: .native-tint(theme-primary-color, 10)[@result];
 
     // Lighten 10
-    --theme-primary-300: hsl(var(--theme-primary-color-h), var(--theme-primary-color-s), calc(var(--theme-primary-color-l) + 10%));
+    --theme-primary-300: .native-lighten(theme-primary-color, 10)[@result];
 
     // Tint 50
-    --theme-primary-200: hsl(
-        var(--theme-primary-color-h),
-        var(--theme-primary-color-s), // If we're less than 50% blend, don't touch the saturation
-        calc(
-            (var(--theme-primary-color-l) * (1 - .5)) + (100% * .5)
-        )
-    );
+    --theme-primary-200: .native-tint(theme-primary-color, 50)[@result];
 
     // Tint 60
-    --theme-primary-150: hsl(
-        var(--theme-primary-color-h),
-        calc(
-            var(--theme-primary-color-s) * .6
-        ),
-        calc(
-            (var(--theme-primary-color-l) * (1 - .6)) + (100% * .6)
-        )
-    );
+    --theme-primary-150: .native-tint(theme-primary-color, 60)[@result];
 
     // Tint 70
-    --theme-primary-100: hsl(
-        var(--theme-primary-color-h),
-        calc(
-            var(--theme-primary-color-s) * .7
-        ),
-        calc(
-            (var(--theme-primary-color-l) * (1 - .7)) + (100% * .7)
-        )
-    );
+    --theme-primary-100: .native-tint(theme-primary-color, 70)[@result];
 
     // Tint 80
-    --theme-primary-075: hsl(
-        var(--theme-primary-color-h),
-        calc(
-            var(--theme-primary-color-s) * .8
-        ),
-        calc(
-            (var(--theme-primary-color-l) * (1 - .8)) + (100% * .8)
-        )
-    );
+    --theme-primary-075: .native-tint(theme-primary-color, 80)[@result];
 
     // Tint 85
-    --theme-primary-050: hsl(
-        var(--theme-primary-color-h),
-        calc(
-            var(--theme-primary-color-s) * .85
-        ),
-        calc(
-            (var(--theme-primary-color-l) * (1 - .85)) + (100% * .85)
-        )
-    );
+    --theme-primary-050: .native-tint(theme-primary-color, 85)[@result];
 
     // Tint 90
-    --theme-primary-025: hsl(
-        var(--theme-primary-color-h),
-        calc(
-            var(--theme-primary-color-s) * .9
-        ),
-        calc(
-            (var(--theme-primary-color-l) * (1 - .9)) + (100% * .9)
-        )
-    );
+    --theme-primary-025: .native-tint(theme-primary-color, 90)[@result];
 
     // Fades
     // These should be removed in favor of their opaque equivalents.
-    --theme-primary-color-fade-50: hsla(var(--theme-primary-color-h), var(--theme-primary-color-s), var(--theme-primary-color-l), .5);
-    --theme-primary-color-fade-75: hsla(var(--theme-primary-color-h), var(--theme-primary-color-s), var(--theme-primary-color-l), .75);
-    --theme-primary-color-fade-80: hsla(var(--theme-primary-color-h), var(--theme-primary-color-s), var(--theme-primary-color-l), .8);
-    --theme-primary-color-fade-15: hsla(var(--theme-primary-color-h), var(--theme-primary-color-s), var(--theme-primary-color-l), .15);
-    --theme-primary-color-fade-35: hsla(var(--theme-primary-color-h), var(--theme-primary-color-s), var(--theme-primary-color-l), .35);
+    --theme-primary-color-fade-50: .native-fade(theme-primary-color, 50)[@result];
+    --theme-primary-color-fade-75: .native-fade(theme-primary-color, 75)[@result];
+    --theme-primary-color-fade-80: .native-fade(theme-primary-color, 80)[@result];
+    --theme-primary-color-fade-15: .native-fade(theme-primary-color, 15)[@result];
+    --theme-primary-color-fade-35: .native-fade(theme-primary-color, 35)[@result];
 
 
-    // Primary color
+    // Secondary color
     // Split into h/s/l/a values
     --theme-secondary-color-h: 205;
     --theme-secondary-color-s: 100%;
     --theme-secondary-color-l: 40%;
 
+    // Split into r/g/b values
+    --theme-secondary-color-r: 0;
+    --theme-secondary-color-g: 119;
+    --theme-secondary-color-b: 204;
+
     // Reassemble as a single hsl value
-    --theme-secondary-color: hsl(var(--theme-secondary-color-h), var(--theme-secondary-color-s), var(--theme-secondary-color-l));
+    --theme-secondary-color: .assemble-color(theme-secondary-color)[@result];
 
     // Darken 30
-    --theme-secondary-900: hsl(var(--theme-secondary-color-h), var(--theme-secondary-color-s), calc(var(--theme-secondary-color-l) - 30%));
+    --theme-secondary-900: .native-darken(theme-secondary-color, 30)[@result];
 
     // Darken 20
-    --theme-secondary-800: hsl(var(--theme-secondary-color-h), var(--theme-secondary-color-s), calc(var(--theme-secondary-color-l) - 20%));
+    --theme-secondary-800: .native-darken(theme-secondary-color, 20)[@result];
 
     // Darken 15
-    --theme-secondary-700: hsl(var(--theme-secondary-color-h), var(--theme-secondary-color-s), calc(var(--theme-secondary-color-l) - 15%));
+    --theme-secondary-700: .native-darken(theme-secondary-color, 15)[@result];
 
     // Darken 10
-    --theme-secondary-600: hsl(var(--theme-secondary-color-h), var(--theme-secondary-color-s), calc(var(--theme-secondary-color-l) - 10%));
+    --theme-secondary-600: .native-darken(theme-secondary-color, 10)[@result];
 
     // Darken 5
-    --theme-secondary-500: hsl(var(--theme-secondary-color-h), var(--theme-secondary-color-s), calc(var(--theme-secondary-color-l) - 5%));
+    --theme-secondary-500: .native-darken(theme-secondary-color, 5)[@result];
 
+    // Unchanged secondary
     --theme-secondary-400: var(--theme-secondary-color);
 
     // Tint 10
-    --theme-secondary-350: hsl(
-        var(--theme-secondary-color-h),
-        var(--theme-secondary-color-s), // If we're less than 50% blend, don't touch the saturation
-        calc(
-            (var(--theme-secondary-color-l) * (1 - .1)) + (100% * .1)
-        )
-    );
+    --theme-secondary-350: .native-tint(theme-secondary-color, 10)[@result];
 
     // Lighten 10
-    --theme-secondary-300: hsl(var(--theme-secondary-color-h), var(--theme-secondary-color-s), calc(var(--theme-secondary-color-l) + 10%));
+    --theme-secondary-300: .native-lighten(theme-secondary-color, 10)[@result];
 
     // Tint 50
-    --theme-secondary-200: hsl(
-        var(--theme-secondary-color-h),
-        var(--theme-secondary-color-s), // If we're less than 50% blend, don't touch the saturation
-        calc(
-            (var(--theme-secondary-color-l) * (1 - .5)) + (100% * .5)
-        )
-    );
+    --theme-secondary-200: .native-tint(theme-secondary-color, 50)[@result];
 
     // Tint 60
-    --theme-secondary-150: hsl(
-        var(--theme-secondary-color-h),
-        calc(
-            var(--theme-secondary-color-s) * .6
-        ),
-        calc(
-            (var(--theme-secondary-color-l) * (1 - .6)) + (100% * .6)
-        )
-    );
+    --theme-secondary-150: .native-tint(theme-secondary-color, 60)[@result];
 
     // Tint 70
-    --theme-secondary-100: hsl(
-        var(--theme-secondary-color-h),
-        calc(
-            var(--theme-secondary-color-s) * .7
-        ),
-        calc(
-            (var(--theme-secondary-color-l) * (1 - .7)) + (100% * .7)
-        )
-    );
+    --theme-secondary-100: .native-tint(theme-secondary-color, 70)[@result];
 
     // Tint 80
-    --theme-secondary-075: hsl(
-        var(--theme-secondary-color-h),
-        calc(
-            var(--theme-secondary-color-s) * .8
-        ),
-        calc(
-            (var(--theme-secondary-color-l) * (1 - .8)) + (100% * .8)
-        )
-    );
+    --theme-secondary-075: .native-tint(theme-secondary-color, 80)[@result];
 
     // Tint 85
-    --theme-secondary-050: hsl(
-        var(--theme-secondary-color-h),
-        calc(
-            var(--theme-secondary-color-s) * .85
-        ),
-        calc(
-            (var(--theme-secondary-color-l) * (1 - .85)) + (100% * .85)
-        )
-    );
+    --theme-secondary-050: .native-tint(theme-secondary-color, 85)[@result];
 
     // Tint 90
-    --theme-secondary-025: hsl(
-        var(--theme-secondary-color-h),
-        calc(
-            var(--theme-secondary-color-s) * .9
-        ),
-        calc(
-            (var(--theme-secondary-color-l) * (1 - .9)) + (100% * .9)
-        )
-    );
+    --theme-secondary-025: .native-tint(theme-secondary-color, 90)[@result];
 
     // Fades
     // These should be removed in favor of their opaque equivalents.
-    --theme-secondary-color-fade-50: hsla(var(--theme-secondary-color-h), var(--theme-secondary-color-s), var(--theme-secondary-color-l), .5);
-    --theme-secondary-color-fade-75: hsla(var(--theme-secondary-color-h), var(--theme-secondary-color-s), var(--theme-secondary-color-l), .75);
-    --theme-secondary-color-fade-80: hsla(var(--theme-secondary-color-h), var(--theme-secondary-color-s), var(--theme-secondary-color-l), .8);
-    --theme-secondary-color-fade-15: hsla(var(--theme-secondary-color-h), var(--theme-secondary-color-s), var(--theme-secondary-color-l), .15);
-    --theme-secondary-color-fade-35: hsla(var(--theme-secondary-color-h), var(--theme-secondary-color-s), var(--theme-secondary-color-l), .35);
+    --theme-secondary-color-fade-50: .native-fade(theme-secondary-color, 50)[@result];
+    --theme-secondary-color-fade-75: .native-fade(theme-secondary-color, 75)[@result];
+    --theme-secondary-color-fade-80: .native-fade(theme-secondary-color, 80)[@result];
+    --theme-secondary-color-fade-15: .native-fade(theme-secondary-color, 15)[@result];
+    --theme-secondary-color-fade-35: .native-fade(theme-secondary-color, 35)[@result];
 }
 
 //  --  Dark mode
@@ -666,100 +574,92 @@ body,
     --highlight-addition: var(--green-600); // AAA 8.21
     --highlight-deletion: var(--red-700); // AA 5.51
 
-    // Theming
+    // Primary Theming
 
     // Darken 30
-    --theme-primary-025: hsl(var(--theme-primary-color-h), var(--theme-primary-color-s), calc(var(--theme-primary-color-l) - 30%));
+    --theme-primary-025: .native-darken(theme-primary-color, 30)[@result];
 
     // Darken 20
-    --theme-primary-050: hsl(var(--theme-primary-color-h), var(--theme-primary-color-s), calc(var(--theme-primary-color-l) - 20%));
+    --theme-primary-050: .native-darken(theme-primary-color, 20)[@result];
 
     // Darken 15
-    --theme-primary-075: hsl(var(--theme-primary-color-h), var(--theme-primary-color-s), calc(var(--theme-primary-color-l) - 15%));
+    --theme-primary-075: .native-darken(theme-primary-color, 15)[@result];
 
     // Darken 10
-    --theme-primary-100: hsl(var(--theme-primary-color-h), var(--theme-primary-color-s), calc(var(--theme-primary-color-l) - 10%));
+    --theme-primary-100: .native-darken(theme-primary-color, 10)[@result];
 
     // Darken 5
-    --theme-primary-150: hsl(var(--theme-primary-color-h), var(--theme-primary-color-s), calc(var(--theme-primary-color-l) - 5%));
+    --theme-primary-150: .native-darken(theme-primary-color, 5)[@result];
 
     --theme-primary-200: var(--theme-primary-color);
 
     // Tint 10
-    --theme-primary-300: hsl(
-        var(--theme-primary-color-h),
-        var(--theme-primary-color-s), // If we're less than 50% blend, don't touch the saturation
-        calc(
-            (var(--theme-primary-color-l) * (1 - .1)) + (100% * .1)
-        )
-    );
+    --theme-primary-300: .native-tint(theme-primary-color, 10)[@result];
 
     // Lighten 10
-    --theme-primary-350: hsl(var(--theme-primary-color-h), var(--theme-primary-color-s), calc(var(--theme-primary-color-l) + 10%));
+    --theme-primary-350: .native-lighten(theme-primary-color, 10)[@result];
 
     // Tint 50
-    --theme-primary-400: hsl(
-        var(--theme-primary-color-h),
-        var(--theme-primary-color-s), // If we're less than 50% blend, don't touch the saturation
-        calc(
-            (var(--theme-primary-color-l) * (1 - .5)) + (100% * .5)
-        )
-    );
+    --theme-primary-400: .native-tint(theme-primary-color, 40)[@result];
 
     // Tint 60
-    --theme-primary-500: hsl(
-        var(--theme-primary-color-h),
-        calc(
-            var(--theme-primary-color-s) * .6
-        ),
-        calc(
-            (var(--theme-primary-color-l) * (1 - .6)) + (100% * .6)
-        )
-    );
+    --theme-primary-500: .native-tint(theme-primary-color, 50)[@result];
 
     // Tint 70
-    --theme-primary-600: hsl(
-        var(--theme-primary-color-h),
-        calc(
-            var(--theme-primary-color-s) * .7
-        ),
-        calc(
-            (var(--theme-primary-color-l) * (1 - .7)) + (100% * .7)
-        )
-    );
+    --theme-primary-600: .native-tint(theme-primary-color, 60)[@result];
 
     // Tint 80
-    --theme-primary-700: hsl(
-        var(--theme-primary-color-h),
-        calc(
-            var(--theme-primary-color-s) * .8
-        ),
-        calc(
-            (var(--theme-primary-color-l) * (1 - .8)) + (100% * .8)
-        )
-    );
+    --theme-primary-700: .native-tint(theme-primary-color, 70)[@result];
 
     // Tint 85
-    --theme-primary-800: hsl(
-        var(--theme-primary-color-h),
-        calc(
-            var(--theme-primary-color-s) * .85
-        ),
-        calc(
-            (var(--theme-primary-color-l) * (1 - .85)) + (100% * .85)
-        )
-    );
+    --theme-primary-800: .native-tint(theme-primary-color, 80)[@result];
 
     // Tint 90
-    --theme-primary-900: hsl(
-        var(--theme-primary-color-h),
-        calc(
-            var(--theme-primary-color-s) * .9
-        ),
-        calc(
-            (var(--theme-primary-color-l) * (1 - .9)) + (100% * .9)
-        )
-    );
+    --theme-primary-900: .native-tint(theme-primary-color, 85)[@result];
+
+
+    // Secondary Theming
+
+    // Darken 30
+    --theme-secondary-025: .native-darken(theme-secondary-color, 30)[@result];
+
+    // Darken 20
+    --theme-secondary-050: .native-darken(theme-secondary-color, 20)[@result];
+
+    // Darken 15
+    --theme-secondary-075: .native-darken(theme-secondary-color, 15)[@result];
+
+    // Darken 10
+    --theme-secondary-100: .native-darken(theme-secondary-color, 10)[@result];
+
+    // Darken 5
+    --theme-secondary-150: .native-darken(theme-secondary-color, 5)[@result];
+
+    --theme-secondary-200: var(--theme-secondary-color);
+
+    // Tint 10
+    --theme-secondary-300: .native-tint(theme-secondary-color, 10)[@result];
+
+    // Lighten 10
+    --theme-secondary-350: .native-lighten(theme-secondary-color, 10)[@result];
+
+    // Tint 50
+    --theme-secondary-400: .native-tint(theme-secondary-color, 40)[@result];
+
+    // Tint 60
+    --theme-secondary-500: .native-tint(theme-secondary-color, 50)[@result];
+
+    // Tint 70
+    --theme-secondary-600: .native-tint(theme-secondary-color, 60)[@result];
+
+    // Tint 80
+    --theme-secondary-700: .native-tint(theme-secondary-color, 70)[@result];
+
+    // Tint 85
+    --theme-secondary-800: .native-tint(theme-secondary-color, 80)[@result];
+
+    // Tint 90
+    --theme-secondary-900: .native-tint(theme-secondary-color, 85)[@result];
 }
 
 body.theme-system {
