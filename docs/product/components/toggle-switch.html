@@ -3,6 +3,8 @@ layout: page
 title: Toggle switch
 description: Toggle switches prompt users to choose between mutually exclusive options. They are based on real-life on/off switches.
 ---
+<!-- Example toggles -->
+<script src="{{ "/assets/js/feature.toggles.js" | relative_url }}" defer></script>
 
 <div class="s-toast js-notice-toast" aria-hidden="true">
     <aside class="s-notice py16 s-notice__success" role="status" aria-hidden="false">
@@ -240,26 +242,3 @@ description: Toggle switches prompt users to choose between mutually exclusive o
         </table>
     </div>
 </section>
-
-<script>
-    window.addEventListener("load", () => {
-        $(".s-toggle-switch input[type=radio][value]").change(function(e) {
-            var topnavHeight = $(".js-stacks-topbar").outerHeight();
-            var toast = $(".js-notice-toast");
-
-            var toastOffset = topnavHeight + 16 + "px";
-
-            toast.css("top", toastOffset);
-
-            toast.find("#js-value-placeholder").text(this.value);
-
-            toast.queue(function() {
-                    $(this).attr("aria-hidden","false").dequeue();
-                })
-                .delay(3000)
-                .queue(function(e) {
-                    $(this).attr("aria-hidden","true").dequeue();
-                });
-        });
-    });
-</script>
