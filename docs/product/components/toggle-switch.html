@@ -1,10 +1,9 @@
 ---
 layout: page
 title: Toggle switch
-description: Toggle switches prompt users to choose between mutually exclusive options. They are based on real-life on/off switches.
+description: A toggle is used to quickly switch between two or more possible states. They are most commonly used for simple “on/off” switches, but can contain multiple options.
 ---
 <section class="stacks-section">
-    <p class="stacks-copy">Toggles switches are a quick way to view and switch between mutually exclusive options. Use toggles when your intent is to instantly turn something on or off or change its frequency. If a real-life on/off switch would work for the action, a toggle is probably the best component to use.</p>
     {% header "h2", "Classes" %}
     <div class="overflow-x-auto">
         <table class="wmn4 s-table s-table__bx-simple">
@@ -20,6 +19,10 @@ description: Toggle switches prompt users to choose between mutually exclusive o
                     <td>Base parent container for toggle switches</td>
                 </tr>
                 <tr>
+                    <th scope="row"><code class="stacks-code">s-toggle-switch__multiple</code></th>
+                    <td>Modifies the base container to accept multiple options</td>
+                </tr>
+                <tr>
                     <th scope="row"><code class="stacks-code">s-toggle-switch--label-off</code></th>
                     <td>Apply to the “Off” or “None” option so it’s highlighted state isn’t lit up green.</td>
                 </tr>
@@ -30,24 +33,30 @@ description: Toggle switches prompt users to choose between mutually exclusive o
 <section class="stacks-section">
     {% header "h2", "Examples" %}
     {% header "h3", "Single" %}
-    <p class="stacks-copy">Just a little toggle boy.</p>
+    <p class="stacks-copy">A single toggle is appropriate for simple “on/off” states eg. enabling emails, markdown editing, or various cookies. Toggle switches take up less space than an “on/off” radio button group and communicate their intended purpose more clearly than a checkbox that toggles functionality. They also provide consistency between desktop and mobile experiences.</p>
     <div class="stacks-preview">
     {% highlight html %}
-<div class="s-toggle-switch">
-    <input id="toggle-example-1" type="checkbox">
-    <label for="toggle-example-1"></label>
+<div class="grid ai-center">
+    <label class="grid--cell s-label" for="toggle-example-1">…</label>
+    <div class="grid--cell s-toggle-switch">
+        <input id="toggle-example-1" type="checkbox">
+        <label for="toggle-example-1"></label>
+    </div>
 </div>
     {% endhighlight %}
         <div class="stacks-preview--example">
-            <div class="s-toggle-switch">
-                <input id="toggle-example-1" type="checkbox">
-                <label for="toggle-example-1"></label>
+            <div class="grid gs8 ai-center">
+                <label class="grid--cell s-label" for="toggle-example-1">Tips and tricks email</label>
+                <div class="grid--cell s-toggle-switch">
+                    <input id="toggle-example-1" type="checkbox">
+                    <label for="toggle-example-1"></label>
+                </div>
             </div>
         </div>
     </div>
 
     {% header "h3", "3 or more options" %}
-    <p class="stacks-copy">Toggles switches can be extended to choose between three or more opposing states.</p>
+    <p class="stacks-copy">Toggles switches can be extended to choose between three or more states—in this case, the user is setting the frequency of an email digest. Use the multiple toggle instead of a radio group when unifying the aesthetics is important.</p>
     <div class="stacks-preview">
     {% highlight html %}
 <div class="grid ai-center">
