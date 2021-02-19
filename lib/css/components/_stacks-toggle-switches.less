@@ -10,29 +10,29 @@
 //  $   BASE STYLE
 //  ----------------------------------------------------------------------------
 .s-toggle-switch {
+    position: relative;
+
     input[type="checkbox"] {
-        // "Hide" it by moving it out of sight
-        // This allows users to still "tab" to it, interact via keyboard, etc
+        // Hide the checkbox underneath the .s-toggle-switch--indicator.
         opacity: 0;
         position: absolute;
-        left: -99999999px;
+        left: 0;
+        top: 0;
+        width: 44px;
+        height: 24px;
+        cursor: pointer;
 
-        + label {
+        + .s-toggle-switch--indicator {
+            pointer-events: none;
             outline: 0;
             display: block;
             width: 44px;
             height: 24px;
             position: relative;
-            cursor: pointer;
-            user-select: none;
             background: var(--black-200);
             border-radius: 1000px;
             padding: 3px;
             transition: left 0.2s ease;
-
-            -webkit-touch-callout: none;
-              -webkit-user-select: none;
-                      user-select: none;
 
             &:after,
             &:before {
@@ -55,7 +55,7 @@
             }
         }
 
-        &:checked + label {
+        &:checked + .s-toggle-switch--indicator {
             background: var(--green-400);
 
             &:after {
@@ -63,11 +63,11 @@
             }
         }
 
-        &:focus + label {
+        &:focus + .s-toggle-switch--indicator {
             box-shadow: 0 0 0 @su4 var(--focus-ring-muted);
         }
 
-        &:checked:focus + label {
+        &:checked:focus + .s-toggle-switch--indicator {
             box-shadow: 0 0 0 @su4 var(--focus-ring-success);
         }
     }
