@@ -29,7 +29,7 @@
             width: 44px;
             height: 24px;
             position: relative;
-            background: var(--black-200);
+            background: var(--black-300);
             border-radius: 1000px;
             padding: 3px;
             transition: left 0.2s ease;
@@ -90,8 +90,7 @@
             width: 100%;
             margin: 0;
             padding: 0.5em 0.7em;
-            border: 1px solid var(--black-150);
-            background-color: var(--white);
+            border-radius: 1000px;
             color: var(--black-500);
             font-size: @fs-body1;
             font-weight: 400;
@@ -103,45 +102,19 @@
             -webkit-touch-callout: none;
               -webkit-user-select: none;
                       user-select: none;
-
-            &:hover,
-            &:focus,
-            &:active {
-                background-color: var(--black-025);
-            }
-
-            //  Collapse right and left borders of adjacent options to 1px visually
-            &:not(:first-child) {
-                margin-left: -1px;
-            }
-
-            //  Round the corners on the first and last elements
-            &:first-of-type {
-                border-top-left-radius: 1000px;
-                border-bottom-left-radius: 1000px;
-            }
-            &:last-of-type {
-                border-top-right-radius: 1000px;
-                border-bottom-right-radius: 1000px;
-            }
         }
 
         //  If the input is selected, style its label accordingly.
         input[type="radio"]:checked {
             + label {
-                // Raise the z-index so its borders sit on top of adjacent borders
-                z-index: @zi-selected;
-
                 // Color activated options green
                 &.s-toggle-switch--label-off {
-                    border-color: var(--black-200);
-                    background-color: var(--black-050);
-                    color: var(--black-700);
+                    background-color: var(--black-300);
+                    color: @white;
                 }
 
                 // Color activated options green
                 &:not(.s-toggle-switch--label-off) {
-                    border-color: var(--green-400);
                     background-color: var(--green-400);
                     color: @white;
                 }
