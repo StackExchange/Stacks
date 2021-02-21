@@ -22,14 +22,16 @@
     margin-bottom: 0.75em;
 }
 
-.stacks-intro {
-    background-image: url("../img/illustration-crane.svg"), url("../img/illustration-field.svg");
-    background-position: top -35% left 15%, bottom 10% right 8%;
-    background-repeat: no-repeat, no-repeat;
+.stacks-intro-crane {
+    position: absolute;
+    top: -15%;
+    left: 17%;
+}
 
-    .dark-mode({
-        background-image: url("../img/illustration-crane-dark.svg"), url("../img/illustration-field-dark.svg");
-    });
+.stacks-intro-field {
+    position: absolute;
+    bottom: 5%;
+    right: 9%;
 }
 
 .stacks-home-nav {
@@ -37,9 +39,16 @@
 }
 
 #stacks-internals #screen-md({
-    .stacks-intro {
-        background-position: top -15% left 15%, bottom 10% right 8%;
-        background-size: 135px 327px, 537px 390px;
+    .stacks-intro-crane {
+        width: 135px;
+        height: 327px;
+        top: -8%;
+        left: 12%;
+    }
+
+    .stacks-intro-field {
+        width: 537px;
+        height: 390px;
     }
 }, @force-selector: true);
 
@@ -47,9 +56,19 @@
     .stacks-home-nav {
         margin-bottom: 170px;
     }
-    .stacks-intro {
-        background-position: top 0 left 15%, bottom 20% right 8%;
-        background-size: 90px 218px, 358px 260px;
+
+    .stacks-intro-crane {
+        width: 90px;
+        height: 218px;
+
+        top: 0;
+        left: 12%;
+    }
+
+    .stacks-intro-field {
+        width: 358px;
+        height: 260px;
+        bottom: 30%;
     }
 }, @force-selector: true);
 
@@ -57,9 +76,16 @@
     html .stacks-home-nav {
         margin-bottom: 230px;
     }
-    html .stacks-intro {
-        background-position: top 0 left 15%, bottom 50% right 0;
-        background-size: 69px 166px, 272px 197px;
+
+    html .stacks-intro-crane {
+        width: 69px;
+        height: 166px;
+    }
+
+    html .stacks-intro-field {
+        width: 272px;
+        height: 197px;
+        bottom: 33%;
     }
 }
 
