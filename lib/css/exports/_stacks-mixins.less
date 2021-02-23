@@ -105,13 +105,13 @@
                  calc(var(~"--@{color-prefix}-l") + @amountPercentage));
 }
 
-// Decrease the saturation of a color in the HSL color space by an absolute amount.
+// Decrease the lightness and saturation of a color in the HSL color space by absolute amounts.
 .native-darken-desaturate(@color-prefix, @darken-amount, @desaturate-amount) {
     @darkenAmountPercentage: .load-color-variables(@darken-amount)[@amountPercentage];
     @desaturateAmountPercentage: .load-color-variables(@desaturate-amount)[@amountPercentage];
     @result: hsl(var(~"--@{color-prefix}-h"),
-                 calc(var(~"--@{color-prefix}-s") - @desaturateAmountPercentage),
-                 calc(var(~"--@{color-prefix}-l") - @darkenAmountPercentage));
+                 clamp(10%, calc(var(~"--@{color-prefix}-s") - @desaturateAmountPercentage), 90%),
+                 clamp(20%, calc(var(~"--@{color-prefix}-l") - @darkenAmountPercentage), 100%));
 }
 
 // Decrease the lightness of a color in the HSL color space by an absolute amount.
