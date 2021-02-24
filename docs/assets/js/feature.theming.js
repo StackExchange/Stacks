@@ -1,13 +1,17 @@
 $(document).ready(function () {
-    var darkModeBtn = $(".js-darkmode-btn");
-    var themeBtn = $(".js-theme-btn");
+    var themeDarkToggleSwitch = $("#toggle-theme-dark");
+    var themeCustomToggleSwitch = $("#toggle-theme-custom");
     var body = $("body");
+    var browserPrefersDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+    var isCustom = body.hasClass("theme-custom");
+    var isDark = body.hasClass("theme-dark") || browserPrefersDark && body.hasClass("theme-system");
 
-    darkModeBtn.click(function (e) {
+    themeCustomToggleSwitch.prop("checked", isCustom);
+    themeDarkToggleSwitch.prop("checked", isDark);
+
+    themeDarkToggleSwitch.change(function (e) {
         e.preventDefault();
         e.stopPropagation();
-
-        var browserPrefersDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
 
         var isForcedDarkMode = body.hasClass("theme-dark");
         var isUnforcedDarkMode = browserPrefersDark && body.hasClass("theme-system");
@@ -20,17 +24,20 @@ $(document).ready(function () {
             body.toggleClass("theme-dark", !isForcedDarkMode);
         }
 
+        $(this).prop("checked", !(isUnforcedDarkMode || isForcedDarkMode));
+
         localStorage.setItem("forceDarkModeOn", !(isUnforcedDarkMode || isForcedDarkMode));
 
         return false;
     });
 
-    themeBtn.click(function (e) {
+    themeCustomToggleSwitch.change(function (e) {
         e.preventDefault();
         e.stopPropagation();
 
         var isCustom = body.hasClass("theme-custom");
 
+        $(this).prop("checked", !isCustom);
         body.toggleClass("theme-custom", !isCustom);
 
         localStorage.setItem("customTheme", !isCustom);
