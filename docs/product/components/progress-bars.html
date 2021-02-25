@@ -232,6 +232,88 @@ description: A component that visually communicates the completion of a task or 
 </section>
 
 <section class="stacks-section">
+    {% header "h2", "Segmented" %}
+    <p class="stacks-copy">For task tracking, switching to a segmented progress bar might be more appropriate. Our segmented
+        progress bar inherits the parent’s text color. You and your designer will need to choose an appropriate font
+        color. You’ll also need to pass the <code class="stacks-code">--s-progress-value-max</code> CSS variable the total number
+        of segments, and the <code class="stacks-code">--s-progress-value</code> CSS variable the number of completed segments..</p>
+
+<div class="stacks-preview">
+{% highlight html %}
+<div class="s-progress s-progress__segmented" style="--progress-value-max: 8; --progress-value: 4">
+    <svg viewBox="0 0 100 3" aria-valuemin="0" aria-valuemax="8" aria-valuenow="4">
+        <line x1="1" y1="1" x2="100" y2="1" />
+        <line x1="1" y1="1" x2="100" y2="1" />
+    </svg>
+</div>
+{% endhighlight %}
+    <div class="stacks-preview--example">
+        <div class="s-progress s-progress__segmented fc-blue-600" style="--progress-value: 1; --progress-value-max: 2;">
+            <svg viewBox="0 0 100 3">
+                <line x1="1" y1="1" x2="100" y2="1" />
+                <line x1="1" y1="1" x2="100" y2="1" />
+            </svg>
+        </div>
+
+        <div class="s-progress s-progress__segmented fc-orange-400" style="--progress-value: 1; --progress-value-max: 4;">
+            <svg viewBox="0 0 100 3">
+                <line x1="1" y1="1" x2="100" y2="1" />
+                <line x1="1" y1="1" x2="100" y2="1" />
+            </svg>
+        </div>
+
+        <div class="s-progress s-progress__segmented fc-green-400" style="--progress-value: 7; --progress-value-max: 10;">
+            <svg viewBox="0 0 100 3">
+                <line x1="1" y1="1" x2="100" y2="1" />
+                <line x1="1" y1="1" x2="100" y2="1" />
+            </svg>
+        </div>
+
+        <div class="s-progress s-progress__segmented fc-red-600" style="--progress-value: 18; --progress-value-max: 20;">
+            <svg viewBox="0 0 100 3">
+                <line x1="1" y1="1" x2="100" y2="1" />
+                <line x1="1" y1="1" x2="100" y2="1" />
+            </svg>
+        </div>
+    </div>
+
+    <p class="stacks-copy">By default, the segmented progress bars are 256px wide. These dimensions can be modified by adding
+        t-shirt sizing classes to <code class="stacks-code">.s-progress__segmented</code>: <code
+            class="stacks-code">.s-progress__sm</code>, <code class="stacks-code">.s-progress__md</code>, and <code
+            class="stacks-code">.s-progress__lg</code></p>
+
+    <div class="stacks-preview--example">
+        <div class="s-progress s-progress__segmented s-progress__sm" style="--progress-value-max: 4; --progress-value: 1;">
+            <svg viewBox="0 0 100 3">
+                <line x1="1" y1="1" x2="100" y2="1" />
+                <line x1="1" y1="1" x2="100" y2="1" />
+            </svg>
+        </div>
+
+        <div class="s-progress s-progress__segmented" style="--progress-value-max: 4; --progress-value: 1;">
+            <svg viewBox="0 0 100 3">
+                <line x1="1" y1="1" x2="100" y2="1" />
+                <line x1="1" y1="1" x2="100" y2="1" />
+            </svg>
+        </div>
+
+        <div class="s-progress s-progress__segmented s-progress__md" style="--progress-value-max: 4; --progress-value: 1;">
+            <svg viewBox="0 0 100 3">
+                <line x1="1" y1="1" x2="100" y2="1" />
+                <line x1="1" y1="1" x2="100" y2="1" />
+            </svg>
+        </div>
+
+        <div class="s-progress s-progress__segmented s-progress__lg" style="--progress-value-max: 4; --progress-value: 1;">
+            <svg viewBox="0 0 100 3">
+                <line x1="1" y1="1" x2="100" y2="1" />
+                <line x1="1" y1="1" x2="100" y2="1" />
+            </svg>
+        </div>
+    </div>
+</section>
+
+<section class="stacks-section">
     {% header "h2", "Privileges" %}
     <p class="stacks-copy">Taller progress bars used within Profiles to help users understand how close they are to achieving their next privilege.</p>
     <div class="stacks-preview">

@@ -270,3 +270,61 @@
         height: 64px;
     }
 }
+
+
+//  ===========================================================================
+//  $   SEQUENTIAL
+//  ---------------------------------------------------------------------------
+.s-progress__segmented {
+    width: 256px;
+    height: 24px;
+    margin: 10px;
+    background: none;
+
+    --progress-value-total-width: 100;
+    --progress-value-spacer-width: 4;
+
+    /* Params */
+    --progress-value: 0;
+    --progress-value-max: 10;
+
+    /* End result */
+    --progress-value-width: calc(var(--progress-value-total-width) / var(--progress-value-max) - var(--progress-value-spacer-width));
+    --progress-value-empty: calc(var(--progress-value-max) - var(--progress-value));
+    --progress-combined-width: var(--progress-value-width) + var(--progress-value-spacer-width);
+    --progress-leftover: calc(var(--progress-value-max) - var(--progress-value));
+
+    line {
+        stroke-width: 2px;
+        stroke-linecap: round;
+        stroke-dasharray: var(--progress-value-width) var(--progress-value-spacer-width);
+    }
+
+    line:nth-of-type(1) {
+        stroke: currentColor;
+        opacity: .4;
+    }
+
+    line:nth-of-type(2) {
+        stroke: currentColor;
+        /* Dasharrays are pattern based and the line keeps going "infinitely".
+           As such, the only way to create a line with a big empty space at the end is to make a LONG pattern
+           that is long as you could possibly want, and then add an equivalent spacing to the end.
+           Then we can offset the array to hide the starting dashes.
+        */
+        stroke-dasharray: var(--progress-value-width) var(--progress-value-spacer-width) var(--progress-value-width) var(--progress-value-spacer-width) var(--progress-value-width) var(--progress-value-spacer-width) var(--progress-value-width) var(--progress-value-spacer-width) var(--progress-value-width) var(--progress-value-spacer-width) var(--progress-value-width) var(--progress-value-spacer-width) var(--progress-value-width) var(--progress-value-spacer-width) var(--progress-value-width) var(--progress-value-spacer-width) var(--progress-value-width) var(--progress-value-spacer-width) var(--progress-value-width) var(--progress-value-spacer-width) var(--progress-value-width) var(--progress-value-spacer-width) var(--progress-value-width) var(--progress-value-spacer-width) var(--progress-value-width) var(--progress-value-spacer-width) var(--progress-value-width) var(--progress-value-spacer-width) var(--progress-value-width) var(--progress-value-spacer-width) var(--progress-value-width) var(--progress-value-spacer-width) var(--progress-value-width) var(--progress-value-spacer-width) var(--progress-value-width) var(--progress-value-spacer-width) var(--progress-value-width) var(--progress-value-spacer-width) var(--progress-value-width) var(--progress-value-spacer-width) var(--progress-value-width) 110;
+        stroke-dashoffset: calc((21 - var(--progress-value)) * (var(--progress-value-width) + var(--progress-value-spacer-width)));
+    }
+
+    &.s-progress__sm {
+        width: 128px;
+    }
+
+    &.s-progress__md {
+        width: 384px;
+    }
+
+    &.s-progress__lg {
+        width: 512px;
+    }
+}
