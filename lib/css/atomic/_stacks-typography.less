@@ -151,6 +151,26 @@ h1, h2, h3, h4, h5, h6, p {
     overflow: hidden;
 }
 
+.v-truncate-fade-sm {
+    .truncation-fade(0)
+}
+
+.v-truncate-fade-md {
+    .truncation-fade(1)
+}
+
+.v-truncate-fade-lg {
+    .truncation-fade(2)
+}
+
+.truncation-fade(@count) {
+    -webkit-mask-image: linear-gradient(180deg,#000 (pow(2, @count) * 100px - 50px),transparent); 
+    mask-image: linear-gradient(180deg,#000 (pow(2, @count) * 100px - 50px)px,transparent); 
+    overflow: hidden; 
+    max-height: pow(2, @count) * 100px;
+}
+
+
 //  --  Whitespace
 .ws-normal        { white-space: normal !important; }
 .ws-nowrap        { white-space: nowrap !important; }
