@@ -12,7 +12,7 @@
 //  _stacks-widget-dynamic.less.
 
 
-@s-sidebarwidget-content-padding: (@su16 - 1px); // subtract 1px for border
+@s-sidebarwidget-content-padding: @su16 - 1; // subtract 1px for border
 @s-sidebarwidget-content-inner-spacing: @su12; // the spacing between two adjacent simple items
 @s-sidebarwidget-content-outer-spacing: @su16; // the spacing at the start/end of a group of simple items, as well as between a complex item and its separator line
 
@@ -98,7 +98,7 @@
         font-weight: bold;
         .-action {
             font-weight: normal;
-            line-height: (1.3 * @fs-caption);  // line-height should be the same as in the outside element, so the header and action baselines line up
+            line-height: 1.3 * @fs-caption;  // line-height should be the same as in the outside element, so the header and action baselines line up
         }
     }
 
@@ -128,7 +128,7 @@
     margin: 0 0 @su4 @su8;
     color: var(--blue);
     font-size: @fs-fine;
-    line-height: (1.3 * 15px); // line-height should be the same as in the outside element, so the header and action baselines line up
+    line-height: 1.3 * 15px; // line-height should be the same as in the outside element, so the header and action baselines line up
 }
 
 table.s-sidebarwidget--content.s-sidebarwidget__items {
@@ -182,7 +182,7 @@ table.s-sidebarwidget--content.s-sidebarwidget__items {
                 left: 0;
                 height: ~"calc(100% +" @s-sidebarwidget-content-inner-spacing ~")";
                 margin-top: -(@s-sidebarwidget-content-inner-spacing / 2);
-                margin-left: -(@s-sidebarwidget-content-padding + 1); // the orange selection indicator overlaps with the widget border
+                margin-left: -@s-sidebarwidget-content-padding - 1; // the orange selection indicator overlaps with the widget border
                 border-left-width: 3px;
                 border-left-style: solid;
                 // border-left-color is set in _stacks-widget-dynamic.less
