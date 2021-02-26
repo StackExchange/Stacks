@@ -1757,13 +1757,13 @@ Copyright © 2019 Basecamp, LLC
 ;
 
 /**
- * @popperjs/core v2.6.0 - MIT License
+ * @popperjs/core v2.8.4 - MIT License
  */
 
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports) :
   typeof define === 'function' && define.amd ? define(['exports'], factory) :
-  (global = global || self, factory(global.Popper = {}));
+  (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory(global.Popper = {}));
 }(this, (function (exports) { 'use strict';
 
   function getBoundingClientRect(element) {
@@ -1822,6 +1822,11 @@ Copyright © 2019 Basecamp, LLC
 
 
   function isShadowRoot(node) {
+    // IE 11 has no ShadowRoot
+    if (typeof ShadowRoot === 'undefined') {
+      return false;
+    }
+
     var OwnElement = getWindow(node).ShadowRoot;
     return node instanceof OwnElement || node instanceof ShadowRoot;
   }
@@ -1938,9 +1943,8 @@ Copyright © 2019 Basecamp, LLC
       // $FlowFixMe[incompatible-return]
       // $FlowFixMe[prop-missing]
       element.assignedSlot || // step into the shadow DOM of the parent of a slotted node
-      element.parentNode || // DOM Element detected
-      // $FlowFixMe[incompatible-return]: need a better way to handle this...
-      element.host || // ShadowRoot detected
+      element.parentNode || ( // DOM Element detected
+      isShadowRoot(element) ? element.host : null) || // ShadowRoot detected
       // $FlowFixMe[incompatible-call]: HTMLElement is a Node
       getDocumentElement(element) // fallback
 
@@ -1968,12 +1972,14 @@ Copyright © 2019 Basecamp, LLC
   */
 
   function listScrollParents(element, list) {
+    var _element$ownerDocumen;
+
     if (list === void 0) {
       list = [];
     }
 
     var scrollParent = getScrollParent(element);
-    var isBody = getNodeName(scrollParent) === 'body';
+    var isBody = scrollParent === ((_element$ownerDocumen = element.ownerDocument) == null ? void 0 : _element$ownerDocumen.body);
     var win = getWindow(scrollParent);
     var target = isBody ? [win].concat(win.visualViewport || [], isScrollParent(scrollParent) ? scrollParent : []) : scrollParent;
     var updatedList = list.concat(target);
@@ -1991,29 +1997,21 @@ Copyright © 2019 Basecamp, LLC
       return null;
     }
 
-    var offsetParent = element.offsetParent;
-
-    if (offsetParent) {
-      var html = getDocumentElement(offsetParent);
-
-      if (getNodeName(offsetParent) === 'body' && getComputedStyle(offsetParent).position === 'static' && getComputedStyle(html).position !== 'static') {
-        return html;
-      }
-    }
-
-    return offsetParent;
+    return element.offsetParent;
   } // `.offsetParent` reports `null` for fixed elements, while absolute elements
   // return the containing block
 
 
   function getContainingBlock(element) {
+    var isFirefox = navigator.userAgent.toLowerCase().includes('firefox');
     var currentNode = getParentNode(element);
 
     while (isHTMLElement(currentNode) && ['html', 'body'].indexOf(getNodeName(currentNode)) < 0) {
       var css = getComputedStyle(currentNode); // This is non-exhaustive but covers the most common CSS properties that
       // create a containing block.
+      // https://developer.mozilla.org/en-US/docs/Web/CSS/Containing_block#identifying_the_containing_block
 
-      if (css.transform !== 'none' || css.perspective !== 'none' || css.willChange && css.willChange !== 'auto') {
+      if (css.transform !== 'none' || css.perspective !== 'none' || css.contain === 'paint' || ['transform', 'perspective'].includes(css.willChange) || isFirefox && css.willChange === 'filter' || isFirefox && css.filter && css.filter !== 'none') {
         return currentNode;
       } else {
         currentNode = currentNode.parentNode;
@@ -2033,7 +2031,7 @@ Copyright © 2019 Basecamp, LLC
       offsetParent = getTrueOffsetParent(offsetParent);
     }
 
-    if (offsetParent && getNodeName(offsetParent) === 'body' && getComputedStyle(offsetParent).position === 'static') {
+    if (offsetParent && (getNodeName(offsetParent) === 'html' || getNodeName(offsetParent) === 'body' && getComputedStyle(offsetParent).position === 'static')) {
       return window;
     }
 
@@ -2235,9 +2233,9 @@ Copyright © 2019 Basecamp, LLC
   function mergeByName(modifiers) {
     var merged = modifiers.reduce(function (merged, current) {
       var existing = merged[current.name];
-      merged[current.name] = existing ? Object.assign(Object.assign(Object.assign({}, existing), current), {}, {
-        options: Object.assign(Object.assign({}, existing.options), current.options),
-        data: Object.assign(Object.assign({}, existing.data), current.data)
+      merged[current.name] = existing ? Object.assign({}, existing, current, {
+        options: Object.assign({}, existing.options, current.options),
+        data: Object.assign({}, existing.data, current.data)
       }) : current;
       return merged;
     }, {}); // IE11 does not support Object.values
@@ -2285,19 +2283,25 @@ Copyright © 2019 Basecamp, LLC
     };
   }
 
+  var max = Math.max;
+  var min = Math.min;
+  var round = Math.round;
+
   // of the `<html>` and `<body>` rect bounds if horizontally scrollable
 
   function getDocumentRect(element) {
+    var _element$ownerDocumen;
+
     var html = getDocumentElement(element);
     var winScroll = getWindowScroll(element);
-    var body = element.ownerDocument.body;
-    var width = Math.max(html.scrollWidth, html.clientWidth, body ? body.scrollWidth : 0, body ? body.clientWidth : 0);
-    var height = Math.max(html.scrollHeight, html.clientHeight, body ? body.scrollHeight : 0, body ? body.clientHeight : 0);
+    var body = (_element$ownerDocumen = element.ownerDocument) == null ? void 0 : _element$ownerDocumen.body;
+    var width = max(html.scrollWidth, html.clientWidth, body ? body.scrollWidth : 0, body ? body.clientWidth : 0);
+    var height = max(html.scrollHeight, html.clientHeight, body ? body.scrollHeight : 0, body ? body.clientHeight : 0);
     var x = -winScroll.scrollLeft + getWindowScrollBarX(element);
     var y = -winScroll.scrollTop;
 
     if (getComputedStyle(body || html).direction === 'rtl') {
-      x += Math.max(html.clientWidth, body ? body.clientWidth : 0) - width;
+      x += max(html.clientWidth, body ? body.clientWidth : 0) - width;
     }
 
     return {
@@ -2332,7 +2336,7 @@ Copyright © 2019 Basecamp, LLC
   }
 
   function rectToClientRect(rect) {
-    return Object.assign(Object.assign({}, rect), {}, {
+    return Object.assign({}, rect, {
       left: rect.x,
       top: rect.y,
       right: rect.x + rect.width,
@@ -2383,10 +2387,10 @@ Copyright © 2019 Basecamp, LLC
     var firstClippingParent = clippingParents[0];
     var clippingRect = clippingParents.reduce(function (accRect, clippingParent) {
       var rect = getClientRectFromMixedType(element, clippingParent);
-      accRect.top = Math.max(rect.top, accRect.top);
-      accRect.right = Math.min(rect.right, accRect.right);
-      accRect.bottom = Math.min(rect.bottom, accRect.bottom);
-      accRect.left = Math.max(rect.left, accRect.left);
+      accRect.top = max(rect.top, accRect.top);
+      accRect.right = min(rect.right, accRect.right);
+      accRect.bottom = min(rect.bottom, accRect.bottom);
+      accRect.left = max(rect.left, accRect.left);
       return accRect;
     }, getClientRectFromMixedType(element, firstClippingParent));
     clippingRect.width = clippingRect.right - clippingRect.left;
@@ -2479,7 +2483,7 @@ Copyright © 2019 Basecamp, LLC
   }
 
   function mergePaddingObject(paddingObject) {
-    return Object.assign(Object.assign({}, getFreshSideObject()), paddingObject);
+    return Object.assign({}, getFreshSideObject(), paddingObject);
   }
 
   function expandToHashMap(value, keys) {
@@ -2520,7 +2524,7 @@ Copyright © 2019 Basecamp, LLC
       strategy: 'absolute',
       placement: placement
     });
-    var popperClientRect = rectToClientRect(Object.assign(Object.assign({}, popperRect), popperOffsets));
+    var popperClientRect = rectToClientRect(Object.assign({}, popperRect, popperOffsets));
     var elementClientRect = elementContext === popper ? popperClientRect : referenceClientRect; // positive = overflowing the clipping rect
     // 0 or negative = within the clipping rect
 
@@ -2580,7 +2584,7 @@ Copyright © 2019 Basecamp, LLC
       var state = {
         placement: 'bottom',
         orderedModifiers: [],
-        options: Object.assign(Object.assign({}, DEFAULT_OPTIONS), defaultOptions),
+        options: Object.assign({}, DEFAULT_OPTIONS, defaultOptions),
         modifiersData: {},
         elements: {
           reference: reference,
@@ -2595,7 +2599,7 @@ Copyright © 2019 Basecamp, LLC
         state: state,
         setOptions: function setOptions(options) {
           cleanupModifierEffects();
-          state.options = Object.assign(Object.assign(Object.assign({}, defaultOptions), state.options), options);
+          state.options = Object.assign({}, defaultOptions, state.options, options);
           state.scrollParents = {
             reference: isElement(reference) ? listScrollParents(reference) : reference.contextElement ? listScrollParents(reference.contextElement) : [],
             popper: listScrollParents(popper)
@@ -2873,8 +2877,8 @@ Copyright © 2019 Basecamp, LLC
     var win = window;
     var dpr = win.devicePixelRatio || 1;
     return {
-      x: Math.round(x * dpr) / dpr || 0,
-      y: Math.round(y * dpr) / dpr || 0
+      x: round(round(x * dpr) / dpr) || 0,
+      y: round(round(y * dpr) / dpr) || 0
     };
   }
 
@@ -2890,7 +2894,7 @@ Copyright © 2019 Basecamp, LLC
         adaptive = _ref2.adaptive,
         roundOffsets = _ref2.roundOffsets;
 
-    var _ref3 = roundOffsets ? roundOffsetsByDPR(offsets) : offsets,
+    var _ref3 = roundOffsets === true ? roundOffsetsByDPR(offsets) : typeof roundOffsets === 'function' ? roundOffsets(offsets) : offsets,
         _ref3$x = _ref3.x,
         x = _ref3$x === void 0 ? 0 : _ref3$x,
         _ref3$y = _ref3.y,
@@ -2904,23 +2908,32 @@ Copyright © 2019 Basecamp, LLC
 
     if (adaptive) {
       var offsetParent = getOffsetParent(popper);
+      var heightProp = 'clientHeight';
+      var widthProp = 'clientWidth';
 
       if (offsetParent === getWindow(popper)) {
         offsetParent = getDocumentElement(popper);
+
+        if (getComputedStyle(offsetParent).position !== 'static') {
+          heightProp = 'scrollHeight';
+          widthProp = 'scrollWidth';
+        }
       } // $FlowFixMe[incompatible-cast]: force type refinement, we compare offsetParent with window above, but Flow doesn't detect it
 
       /*:: offsetParent = (offsetParent: Element); */
 
 
       if (placement === top) {
-        sideY = bottom;
-        y -= offsetParent.clientHeight - popperRect.height;
+        sideY = bottom; // $FlowFixMe[prop-missing]
+
+        y -= offsetParent[heightProp] - popperRect.height;
         y *= gpuAcceleration ? 1 : -1;
       }
 
       if (placement === left) {
-        sideX = right;
-        x -= offsetParent.clientWidth - popperRect.width;
+        sideX = right; // $FlowFixMe[prop-missing]
+
+        x -= offsetParent[widthProp] - popperRect.width;
         x *= gpuAcceleration ? 1 : -1;
       }
     }
@@ -2932,10 +2945,10 @@ Copyright © 2019 Basecamp, LLC
     if (gpuAcceleration) {
       var _Object$assign;
 
-      return Object.assign(Object.assign({}, commonStyles), {}, (_Object$assign = {}, _Object$assign[sideY] = hasY ? '0' : '', _Object$assign[sideX] = hasX ? '0' : '', _Object$assign.transform = (win.devicePixelRatio || 1) < 2 ? "translate(" + x + "px, " + y + "px)" : "translate3d(" + x + "px, " + y + "px, 0)", _Object$assign));
+      return Object.assign({}, commonStyles, (_Object$assign = {}, _Object$assign[sideY] = hasY ? '0' : '', _Object$assign[sideX] = hasX ? '0' : '', _Object$assign.transform = (win.devicePixelRatio || 1) < 2 ? "translate(" + x + "px, " + y + "px)" : "translate3d(" + x + "px, " + y + "px, 0)", _Object$assign));
     }
 
-    return Object.assign(Object.assign({}, commonStyles), {}, (_Object$assign2 = {}, _Object$assign2[sideY] = hasY ? y + "px" : '', _Object$assign2[sideX] = hasX ? x + "px" : '', _Object$assign2.transform = '', _Object$assign2));
+    return Object.assign({}, commonStyles, (_Object$assign2 = {}, _Object$assign2[sideY] = hasY ? y + "px" : '', _Object$assign2[sideX] = hasX ? x + "px" : '', _Object$assign2.transform = '', _Object$assign2));
   }
 
   function computeStyles(_ref4) {
@@ -2966,7 +2979,7 @@ Copyright © 2019 Basecamp, LLC
     };
 
     if (state.modifiersData.popperOffsets != null) {
-      state.styles.popper = Object.assign(Object.assign({}, state.styles.popper), mapToStyles(Object.assign(Object.assign({}, commonStyles), {}, {
+      state.styles.popper = Object.assign({}, state.styles.popper, mapToStyles(Object.assign({}, commonStyles, {
         offsets: state.modifiersData.popperOffsets,
         position: state.options.strategy,
         adaptive: adaptive,
@@ -2975,7 +2988,7 @@ Copyright © 2019 Basecamp, LLC
     }
 
     if (state.modifiersData.arrow != null) {
-      state.styles.arrow = Object.assign(Object.assign({}, state.styles.arrow), mapToStyles(Object.assign(Object.assign({}, commonStyles), {}, {
+      state.styles.arrow = Object.assign({}, state.styles.arrow, mapToStyles(Object.assign({}, commonStyles, {
         offsets: state.modifiersData.arrow,
         position: 'absolute',
         adaptive: false,
@@ -2983,7 +2996,7 @@ Copyright © 2019 Basecamp, LLC
       })));
     }
 
-    state.attributes.popper = Object.assign(Object.assign({}, state.attributes.popper), {}, {
+    state.attributes.popper = Object.assign({}, state.attributes.popper, {
       'data-popper-placement': state.placement
     });
   } // eslint-disable-next-line import/no-unused-modules
@@ -3041,6 +3054,7 @@ Copyright © 2019 Basecamp, LLC
       reference: {}
     };
     Object.assign(state.elements.popper.style, initialStyles.popper);
+    state.styles = initialStyles;
 
     if (state.elements.arrow) {
       Object.assign(state.elements.arrow.style, initialStyles.arrow);
@@ -3083,7 +3097,7 @@ Copyright © 2019 Basecamp, LLC
     var basePlacement = getBasePlacement(placement);
     var invertDistance = [left, top].indexOf(basePlacement) >= 0 ? -1 : 1;
 
-    var _ref = typeof offset === 'function' ? offset(Object.assign(Object.assign({}, rects), {}, {
+    var _ref = typeof offset === 'function' ? offset(Object.assign({}, rects, {
       placement: placement
     })) : offset,
         skidding = _ref[0],
@@ -3344,8 +3358,8 @@ Copyright © 2019 Basecamp, LLC
     return axis === 'x' ? 'y' : 'x';
   }
 
-  function within(min, value, max) {
-    return Math.max(min, Math.min(value, max));
+  function within(min$1, value, max$1) {
+    return max(min$1, min(value, max$1));
   }
 
   function preventOverflow(_ref) {
@@ -3378,7 +3392,7 @@ Copyright © 2019 Basecamp, LLC
     var popperOffsets = state.modifiersData.popperOffsets;
     var referenceRect = state.rects.reference;
     var popperRect = state.rects.popper;
-    var tetherOffsetValue = typeof tetherOffset === 'function' ? tetherOffset(Object.assign(Object.assign({}, state.rects), {}, {
+    var tetherOffsetValue = typeof tetherOffset === 'function' ? tetherOffset(Object.assign({}, state.rects, {
       placement: state.placement
     })) : tetherOffset;
     var data = {
@@ -3390,13 +3404,13 @@ Copyright © 2019 Basecamp, LLC
       return;
     }
 
-    if (checkMainAxis) {
+    if (checkMainAxis || checkAltAxis) {
       var mainSide = mainAxis === 'y' ? top : left;
       var altSide = mainAxis === 'y' ? bottom : right;
       var len = mainAxis === 'y' ? 'height' : 'width';
       var offset = popperOffsets[mainAxis];
-      var min = popperOffsets[mainAxis] + overflow[mainSide];
-      var max = popperOffsets[mainAxis] - overflow[altSide];
+      var min$1 = popperOffsets[mainAxis] + overflow[mainSide];
+      var max$1 = popperOffsets[mainAxis] - overflow[altSide];
       var additive = tether ? -popperRect[len] / 2 : 0;
       var minLen = variation === start ? referenceRect[len] : popperRect[len];
       var maxLen = variation === start ? -popperRect[len] : -referenceRect[len]; // We need to include the arrow in the calculation so the arrow doesn't go
@@ -3423,26 +3437,29 @@ Copyright © 2019 Basecamp, LLC
       var offsetModifierValue = state.modifiersData.offset ? state.modifiersData.offset[state.placement][mainAxis] : 0;
       var tetherMin = popperOffsets[mainAxis] + minOffset - offsetModifierValue - clientOffset;
       var tetherMax = popperOffsets[mainAxis] + maxOffset - offsetModifierValue;
-      var preventedOffset = within(tether ? Math.min(min, tetherMin) : min, offset, tether ? Math.max(max, tetherMax) : max);
-      popperOffsets[mainAxis] = preventedOffset;
-      data[mainAxis] = preventedOffset - offset;
-    }
 
-    if (checkAltAxis) {
-      var _mainSide = mainAxis === 'x' ? top : left;
+      if (checkMainAxis) {
+        var preventedOffset = within(tether ? min(min$1, tetherMin) : min$1, offset, tether ? max(max$1, tetherMax) : max$1);
+        popperOffsets[mainAxis] = preventedOffset;
+        data[mainAxis] = preventedOffset - offset;
+      }
 
-      var _altSide = mainAxis === 'x' ? bottom : right;
+      if (checkAltAxis) {
+        var _mainSide = mainAxis === 'x' ? top : left;
 
-      var _offset = popperOffsets[altAxis];
+        var _altSide = mainAxis === 'x' ? bottom : right;
 
-      var _min = _offset + overflow[_mainSide];
+        var _offset = popperOffsets[altAxis];
 
-      var _max = _offset - overflow[_altSide];
+        var _min = _offset + overflow[_mainSide];
 
-      var _preventedOffset = within(_min, _offset, _max);
+        var _max = _offset - overflow[_altSide];
 
-      popperOffsets[altAxis] = _preventedOffset;
-      data[altAxis] = _preventedOffset - _offset;
+        var _preventedOffset = within(tether ? min(_min, tetherMin) : _min, _offset, tether ? max(_max, tetherMax) : _max);
+
+        popperOffsets[altAxis] = _preventedOffset;
+        data[altAxis] = _preventedOffset - _offset;
+      }
     }
 
     state.modifiersData[name] = data;
@@ -3457,11 +3474,19 @@ Copyright © 2019 Basecamp, LLC
     requiresIfExists: ['offset']
   };
 
+  var toPaddingObject = function toPaddingObject(padding, state) {
+    padding = typeof padding === 'function' ? padding(Object.assign({}, state.rects, {
+      placement: state.placement
+    })) : padding;
+    return mergePaddingObject(typeof padding !== 'number' ? padding : expandToHashMap(padding, basePlacements));
+  };
+
   function arrow(_ref) {
     var _state$modifiersData$;
 
     var state = _ref.state,
-        name = _ref.name;
+        name = _ref.name,
+        options = _ref.options;
     var arrowElement = state.elements.arrow;
     var popperOffsets = state.modifiersData.popperOffsets;
     var basePlacement = getBasePlacement(state.placement);
@@ -3473,7 +3498,7 @@ Copyright © 2019 Basecamp, LLC
       return;
     }
 
-    var paddingObject = state.modifiersData[name + "#persistent"].padding;
+    var paddingObject = toPaddingObject(options.padding, state);
     var arrowRect = getLayoutRect(arrowElement);
     var minProp = axis === 'y' ? top : left;
     var maxProp = axis === 'y' ? bottom : right;
@@ -3495,12 +3520,9 @@ Copyright © 2019 Basecamp, LLC
 
   function effect$2(_ref2) {
     var state = _ref2.state,
-        options = _ref2.options,
-        name = _ref2.name;
+        options = _ref2.options;
     var _options$element = options.element,
-        arrowElement = _options$element === void 0 ? '[data-popper-arrow]' : _options$element,
-        _options$padding = options.padding,
-        padding = _options$padding === void 0 ? 0 : _options$padding;
+        arrowElement = _options$element === void 0 ? '[data-popper-arrow]' : _options$element;
 
     if (arrowElement == null) {
       return;
@@ -3530,9 +3552,6 @@ Copyright © 2019 Basecamp, LLC
     }
 
     state.elements.arrow = arrowElement;
-    state.modifiersData[name + "#persistent"] = {
-      padding: mergePaddingObject(typeof padding !== 'number' ? padding : expandToHashMap(padding, basePlacements))
-    };
   } // eslint-disable-next-line import/no-unused-modules
 
 
@@ -3590,7 +3609,7 @@ Copyright © 2019 Basecamp, LLC
       isReferenceHidden: isReferenceHidden,
       hasPopperEscaped: hasPopperEscaped
     };
-    state.attributes.popper = Object.assign(Object.assign({}, state.attributes.popper), {}, {
+    state.attributes.popper = Object.assign({}, state.attributes.popper, {
       'data-popper-reference-hidden': isReferenceHidden,
       'data-popper-escaped': hasPopperEscaped
     });
