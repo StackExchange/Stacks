@@ -151,12 +151,23 @@ h1, h2, h3, h4, h5, h6, p {
     overflow: hidden;
 }
 
-.v-truncate-fade-sm {
-    .truncation-fade(0)
-}
+.v-truncate-fade {
+    overflow: hidden; 
+    -webkit-mask-image: linear-gradient(180deg, #000 150px, transparent); 
+    mask-image: linear-gradient(180deg,#000 150px,transparent); 
+    max-height: 200px;
 
-.v-truncate-fade-md {
-    .truncation-fade(1)
+    &.v-truncate-fade__sm {
+        -webkit-mask-image: linear-gradient(180deg, #000 50px, transparent); 
+        mask-image: linear-gradient(180deg,#000 50px,transparent);
+        max-height: 100px;
+    }
+
+    &.v-truncate-fade__lg {
+        -webkit-mask-image: linear-gradient(180deg, #000 350px, transparent); 
+        mask-image: linear-gradient(180deg,#000 350px,transparent); 
+        max-height: 400px;
+    }
 }
 
 .v-truncate-fade-lg {
@@ -164,10 +175,6 @@ h1, h2, h3, h4, h5, h6, p {
 }
 
 .truncation-fade(@count) {
-    -webkit-mask-image: linear-gradient(180deg, #000 (pow(2, @count) * 100px - 50px), transparent); 
-    mask-image: linear-gradient(180deg,#000 (pow(2, @count) * 100px - 50px)px,transparent); 
-    overflow: hidden; 
-    max-height: pow(2, @count) * 100px;
 }
 
 
