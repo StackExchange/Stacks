@@ -123,7 +123,6 @@
             #stacks-internals #grid-builder-helpers .grid-fixed-cell-spacing(@spacing, @num, (@count + 1));
         }
 
-
         //  ----------------------------------------------------------------------------
         //      2.  Generate the desired gutters
         //          We halve the spacing value because the spacing value should be the
@@ -137,18 +136,12 @@
         .gutter-spacing(@spacing) {
             #stacks-internals #grid-builder-settings();
 
-            margin: -(@spacing / 2);
-
-            //  --  FLUID CELLS
-            > .grid,
-            > .grid--cell {
-                margin: @spacing / 2;
-            }
+            gap: @spacing;
 
             //  --  FIXED WIDTH CELLS
             //      Now we call for the above mixin [1] to make sure we adjust the default
             //      widths for the new gutters.
-            #stacks-internals #grid-builder-helpers .grid-fixed-cell-spacing(@spacing, @grid-cols);
+            #stacks-internals #grid-builder-helpers .grid-fixed-cell-spacing((@spacing / 2), @grid-cols);
         }
     }
 }
@@ -214,8 +207,7 @@
     &,
     > .grid,
     > [class*="grid--cell"] {
-        margin-top: 0;
-        margin-bottom: 0;
+        row-gap: 0;
     }
 }
 
@@ -224,7 +216,6 @@
     &,
     > .grid,
     > [class*="grid--cell"] {
-        margin-right: 0;
-        margin-left: 0;
+        column-gap: 0;
     }
 }
