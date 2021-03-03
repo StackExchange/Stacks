@@ -151,6 +151,25 @@ h1, h2, h3, h4, h5, h6, p {
     overflow: hidden;
 }
 
+.v-truncate-fade {
+    overflow: hidden;
+    -webkit-mask-image: linear-gradient(180deg, #000 @lh-md * 9em, transparent);
+    mask-image: linear-gradient(180deg, #000 @lh-md * 9em, transparent);
+    max-height: @lh-md * 12em;
+
+    &.v-truncate-fade__sm {
+        -webkit-mask-image: linear-gradient(180deg, #000 @lh-md * 3em, transparent);
+        mask-image: linear-gradient(180deg, #000 @lh-md * 3em, transparent);
+        max-height: @lh-md * 6em;
+    }
+
+    &.v-truncate-fade__lg {
+        -webkit-mask-image: linear-gradient(180deg, #000 @lh-md * 21em, transparent);
+        mask-image: linear-gradient(180deg, #000 @lh-md * 21em, transparent);
+        max-height: @lh-md * 24em;
+    }
+}
+
 //  --  Whitespace
 .ws-normal        { white-space: normal !important; }
 .ws-nowrap        { white-space: nowrap !important; }
