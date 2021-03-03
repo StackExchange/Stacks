@@ -3,15 +3,16 @@
         <div class="d-none sm:d-block">
             <div class="grid fd-column ai-center">
                 {% if site-navigation %}
-                    <div class="s-navigation s-navigation__wrap mx8 mb12 jc-center">
+                    <nav class="s-navigation s-navigation__wrap mx8 mb12 jc-center" aria-label="Global navigation">
                         {% assign slug = page.url | replace:'/',' ' | truncatewords: 2 | remove:'...' %}
 
                         {% for section in site-navigation.sections %}
                             {% assign url = section.url | replace:'/',' ' | truncatewords: 2 | remove:'...' %}
                             <a class="s-navigation--item{% if url == slug %} is-selected{% endif %}" href="{{ section.url }}">{{ section.title }}</a>
                         {% endfor %}
-                    </div>
+                    </nav>
                 {% endif %}
+
                 <div class="grid gs16 ai-center fw-wrap mx8">
                     <a class="grid--cell fc-black-300" href="https://stackoverflow.com/">
                         {% icon "LogoGlyphSm" %}
@@ -39,7 +40,7 @@
 
                 {% if url == slug %}
                     {% if section.sections %}
-                        <div id="nav" class="s-navigation s-navigation__vertical mt16">
+                        <nav id="nav" class="s-navigation s-navigation__vertical mt16" aria-label="Navigation">
                             {% for section in section.sections %}
                                 <div class="s-navigation--title">
                                     {{ section.title }}
@@ -52,7 +53,7 @@
                                     {% endfor %}
                                 {% endif %}
                             {% endfor %}
-                        </div>
+                        </nav>
                     {% endif %}
                 {% endif %}
             {% endfor %}

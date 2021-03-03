@@ -149,7 +149,7 @@ module.exports = function(eleventyConfig) {
   });
 
   // Add submenu generation
-  eleventyConfig.addPlugin(pluginTOC, {tags: ['h2', 'h3']});
+  eleventyConfig.addPlugin(pluginTOC, {tags: ['h2', 'h3'], wrapper: 'nav aria-label="Table of contents"'});
 
   // Copy these files over to _site
   eleventyConfig.addPassthroughCopy('assets');
