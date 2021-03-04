@@ -65,7 +65,8 @@ module.exports = function(eleventyConfig) {
     output +=   '<' + tag + ' class="grid--cell fl1 stacks-' + tag + '" id="'+ slug +'">';
     output +=     '<span class="pe-auto">' + text + '</span>';
     output +=   '</' + tag + '>';
-    output +=   '<a class="grid grid__center mbn6 s-btn s-btn__muted pe-auto" title="'+ text +'" href="#'+ slug +'">';
+    output +=   '<a class="grid grid__center mbn6 s-btn s-btn__muted pe-auto" href="#'+ slug +'">';
+    output +=     '<span class="v-visible-sr">Section titled ' + text + '</span>';
     output +=     linkIcon;
     output +=   '</a>';
     output += '</div>';
