@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Menu
-description: A menu offers a list of actions or functions that a user can access.
+description: A menu offers a contextual list of actions or functions.
 ---
 <!-- <section class="stacks-section">
     {% header "h2", "Classes" %}
@@ -28,10 +28,24 @@ description: A menu offers a list of actions or functions that a user can access
 </section> -->
 <section class="stacks-section">
     {% header "h2", "Examples" %}
+    <p class="stacks-copy">
+        Don’t confuse menus for <a href="{{ '/product/components/navigation' | relative_url }}">navigation</a>. A menu displays a list of choices temporarily, and usually represent tasks or actions.
+    </p>
+
     {% header "h3", "Basic" %}
+    <p class="stacks-copy">
+        At its most basic, a menu is a simple styled list of contextual actions. Because they’re contextual, they’re usually shown within a <a href="{{ '/product/components/popovers' | relative_url }}">popover</a>. Menu items are either links or buttons styled with the <a href="{{ '/product/components/links/#block-link' | relative_url }}">block link component</a>, that can optionally be selected, or have destructive styling. When placed in a popover, you’ll want to set negative margins on the x axis to account for the popovers’ padding.
+    </p>
     <div class="stacks-preview">
 {% highlight html %}
-
+<ul class="s-menu mxn12">
+    <li>
+        <a href="…" class="s-block-link">…</a>
+    </li>
+    <li>
+        <button class="s-btn s-btn__link s-block-link">…</button>
+    </li>
+</ul>
 {% endhighlight %}
         <div class="stacks-preview--example">
             <div class="s-popover is-visible ps-relative ws2 py4" role="menu">
@@ -48,9 +62,9 @@ description: A menu offers a list of actions or functions that a user can access
                         </a>
                     </li>
                     <li>
-                        <a href="#" class="s-block-link">
+                        <button class="s-btn s-btn__link s-block-link">
                             Follow
-                        </a>
+                        </button>
                     </li>
                 </ul>
             </div>
@@ -58,9 +72,21 @@ description: A menu offers a list of actions or functions that a user can access
     </div>
 
     {% header "h3", "Titles and Dividers" %}
+    <p class="stacks-copy">
+        You can split up your menu by using either titles, dividers, or some combination of the two. Titles help group similar conceptual actions—in this example, we’ve grouped all sharing options. We’ve also split our destructive actions into their own section using a divider.
+    </p>
     <div class="stacks-preview">
 {% highlight html %}
-
+<ul class="s-menu mxn12">
+    <li class="s-menu--title" role="separator">…</li>
+    <li>
+        <a href="…" class="s-block-link">…</a>
+    </li>
+    <li class="s-menu--divider" role="separator"></li>
+    <li>
+        <a href="…" class="s-block-link s-block-link__danger">…</a>
+    </li>
+</ul>
 {% endhighlight %}
         <div class="stacks-preview--example">
             <div class="s-popover is-visible ps-relative ws2 py4" role="menu">
@@ -101,9 +127,16 @@ description: A menu offers a list of actions or functions that a user can access
     </div>
 
     {% header "h3", "Selected states" %}
+    <p class="stacks-copy">
+        Our menus also offer selected states via the block link component with its various configurations.
+    </p>
     <div class="stacks-preview">
 {% highlight html %}
-
+<ul class="s-menu mxn12">
+    <li>
+        <a href="…" class="s-block-link s-block-link__left is-selected">…</a>
+    </li>
+</ul>
 {% endhighlight %}
         <div class="stacks-preview--example">
             <div class="s-popover is-visible ps-relative ws2 py4" role="menu">
@@ -143,16 +176,39 @@ description: A menu offers a list of actions or functions that a user can access
     </div>
 
     {% header "h3", "Radio groups" %}
+    <p class="stacks-copy">
+        In the case of user management, it’s appropriate to include radio options. In this example, we’re setting a user’s role. While our examples up to this point have all been simple unordered lists, the <code class="stacks-code">s-menu</code> component works on any markup including <code class="stacks-code">fieldset</code>.
+    </p>
     <div class="stacks-preview">
 {% highlight html %}
-
+<fieldset class="s-menu mxn12">
+    <legend class="s-menu--title">…</legend>
+    <label class="s-menu--label grid" for="…">
+        <div class="grid--cell mr8">
+            <input class="s-radio" type="radio" name="…" id="…" checked>
+        </div>
+        <div class="grid--cell">
+            <div class="s-label">…</div>
+            <div class="s-description mt2">…</div>
+        </div>
+    </label>
+    <label class="s-menu--label grid" for="…">
+        <div class="grid--cell mr8">
+            <input class="s-radio" type="radio" name="…" id="…">
+        </div>
+        <div class="grid--cell">
+            <div class="s-label">…</div>
+            <div class="s-description mt2">…</div>
+        </div>
+    </label>
+</fieldset>
 {% endhighlight %}
         <div class="stacks-preview--example">
             <div class="s-popover is-visible ps-relative ws3 py4" role="menu">
                 <div class="s-popover--arrow s-popover--arrow__tc"></div>
                 <fieldset class="s-menu mxn12">
                     <legend class="s-menu--title">Roles</legend>
-                    <label class="p12 grid bt bc-black-075 c-pointer" for="choice-user-34">
+                    <label class="s-menu--label grid" for="choice-user-34">
                         <div class="grid--cell mr8">
                             <input class="s-radio" type="radio" name="choice-34" id="choice-user-34" checked>
                         </div>
@@ -161,7 +217,7 @@ description: A menu offers a list of actions or functions that a user can access
                             <div class="s-description mt2">Can view, ask, answer, and edit questions. Can also vote on and flag content.</div>
                         </div>
                     </label>
-                    <label class="p12 grid bt bc-black-075 c-pointer" for="choice-admin-34">
+                    <label class="s-menu--label grid" for="choice-admin-34">
                         <div class="grid--cell mr8">
                             <input class="s-radio" type="radio" name="choice-34" id="choice-admin-34">
                         </div>
