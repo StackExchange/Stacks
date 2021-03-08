@@ -28,12 +28,58 @@ description: Post list items summarize various content and associated meta data 
 </section>
 <section class="stacks-section">
     {% header "h2", "Examples" %}
-    <p class="stacks-copy">Post list items are a flexible component capable of previewing various content types—questions (with or without answers) or articles. Post list items are meant to be flexible, with most of its individual pieces being optional. Let's start with a full example of a few questions and an article interleaved:</p>
+    <p class="stacks-copy">Post list items are a flexible component capable of previewing various content types—questions (with or without answers) or articles. Post list items are meant to be flexible, with most of its individual pieces being optional. Let's start with a full example of a few questions and an article interleaved.</p>
 
     {% header "h3", "Full" %}
+    <p class="stacks-copy">At their most complete, list items can contain:</p>
+    <ul class="stacks-list">
+        <li>Title</li>
+        <li>Excerpt</li>
+        <li>Tags & other categorization</li>
+        <li>Author & creation date</li>
+        <li>Stats & various states</li>
+        <li>Contextual menu</li>
+        <li>Activity indicator</li>
+    </ul>
     <div class="stacks-preview">
 {% highlight html %}
+<div class="s-post-list-item">
+    <div class="s-post-list-item--stats">
+        <div class="s-post-list-item--stats-item s-activity-indicator"></div>
+        <div class="s-post-list-item--stats-item has-answers has-accepted-answer">
+            {% icon "CheckmarkSm", "va-text-bottom" %}
+            … answers
+        </div>
+        <div class="s-post-list-item--stats-item">
+            … votes
+        </div>
+        <div class="s-post-list-item--stats-item is-supernova">
+            {% icon "FireSm", "va-text-bottom mrn2" %}
+            … views
+        </div>
+    </div>
+    <div class="s-post-list-item--content">
+        <a href="…" class="s-post-list--content-title s-link">…</a>
+        <p class="s-post-list--content-excerpt">…</p>
+        <div class="s-post-list--meta">
+            <a class="s-tag" href="…">…</a>
 
+            <div class="s-user-card s-user-card__minimal">
+                <a href="…" class="s-avatar s-user-card--avatar">
+                    <img class="s-avatar--image" src="…" />
+                </a>
+                <a href="…" class="s-user-card--link">…</a>
+                <ul class="s-user-card--awards">
+                    <li class="s-user-card--rep">…</li>
+                </ul>
+                <time class="s-user-card--time">…</time>
+            </div>
+        </div>
+        <a href="…" class="s-btn s-btn__muted s-post-list--content-button">
+            {% icon "EllipsisVertical" %}
+        </a>
+    </div>
+</div>
 {% endhighlight %}
         <div class="stacks-preview--example p0">
             <div class="s-post-list-item">
@@ -52,7 +98,7 @@ description: Post list items summarize various content and associated meta data 
                     </div>
                 </div>
                 <div class="s-post-list-item--content">
-                    <a class="s-post-list--content-title s-link">
+                    <a href="#" class="s-post-list--content-title s-link">
                         How to generate the JPA entity Metamodel?
                     </a>
                     <p class="s-post-list--content-excerpt">
@@ -66,7 +112,7 @@ description: Post list items summarize various content and associated meta data 
                         <a class="s-tag" href="#">metamodel</a>
 
                         <div class="s-user-card s-user-card__minimal">
-                            <a href="…" class="s-avatar s-user-card--avatar">
+                            <a href="#" class="s-avatar s-user-card--avatar">
                                 <img class="s-avatar--image" src="{{ "/assets/img/placeholder.svg" | relative_url }}" />
                             </a>
                             <a href="#" class="s-user-card--link">Paul Wright</a>
