@@ -118,7 +118,7 @@ module.exports = function(grunt) {
 
             stacks_js: {
                 files: ['lib/ts/**/*.ts'], // note: this doesn't watch any of the npm dependencies
-                tasks: ['concurrent:compile_stacks_js', 'copy:js2docs', 'copy:jQueryJs', 'copy:highlightJs', 'copy:docsearchJs', 'copy:editorJs', 'copy:editorCSS']
+                tasks: ['concurrent:compile_stacks_js', 'copy:js2docs', 'copy:jQueryJs', 'copy:highlightJs', 'copy:docsearchJs', 'copy:listJs', 'copy:editorJs', 'copy:editorCSS']
             },
         },
         // Run tasks in parallel
@@ -136,7 +136,7 @@ module.exports = function(grunt) {
             compile: [
                 'concurrent:compile_stacks_css',
                 'ts:docs_js',
-                ['concurrent:compile_stacks_js', 'copy:js2docs', 'copy:jQueryJs', 'copy:highlightJs', 'copy:docsearchJs', 'copy:editorJs', 'copy:editorCSS']
+                ['concurrent:compile_stacks_js', 'copy:js2docs', 'copy:jQueryJs', 'copy:highlightJs', 'copy:docsearchJs', 'copy:listJs', 'copy:editorJs', 'copy:editorCSS']
             ],
 
             // Stacks JS
@@ -201,6 +201,15 @@ module.exports = function(grunt) {
                 expand: true,
                 rename: function(dest, src) {
                     return dest + src.replace('docsearch.min.js','library.docsearch.js');
+                }
+            },
+            listJs: {
+                src: 'node_modules/list.js/dist/list.min.js',
+                dest: 'docs/assets/js/',
+                flatten: true,
+                expand: true,
+                rename: function(dest, src) {
+                    return dest + src.replace('list.min.js','library.list.js');
                 }
             },
             editorCSS: {
