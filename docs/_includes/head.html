@@ -3,7 +3,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>{% if title %}{{ title | escape }} - {% endif %}{{ site.title | escape }}</title>
-    <meta name="description" content="{% if description %}{{ description }}{% else %}{{ site.description }}{% endif %}">
+    <meta name="description" content="{% if description %}{{ description | strip_html }}{% else %}{{ site.description }}{% endif %}">
 
     <!-- Favicons -->
     <link rel="shortcut icon" href="{{ "/assets/img/favicons/favicon.ico" | relative_url }}" />
