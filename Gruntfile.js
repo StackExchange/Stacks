@@ -48,8 +48,13 @@ module.exports = function(grunt) {
                 }
             }
         },
-        // Minify our compiled CSS
-        cssmin: {
+        // Minify compiled CSS using CSSnano
+        postcss: {
+            options: {
+                processors: [
+                    require('cssnano')() // minify the result
+                ]
+            },
             stacks: {
                 files: {
                     'dist/css/stacks.min.css': 'dist/css/stacks.css'
@@ -108,7 +113,7 @@ module.exports = function(grunt) {
             // On the other hand, a change to docs .less only requires recompilation of the docs CSS
             docs_less: {
                 files: ['docs/**/*.less', '!docs/_site/**'],
-                tasks: ['less:docs', 'cssmin:docs']
+                tasks: ['less:docs', 'postcss:docs']
             },
 
             docs_js: {
@@ -147,9 +152,9 @@ module.exports = function(grunt) {
             // the actual stacks, the docs CSS (which also includes Stacks, but via a LESS @import), and the partials
             // can be compiled in parallel as well
             compile_stacks_css: [
-                ['less:stacks', 'cssmin:stacks'],
+                ['less:stacks', 'postcss:stacks'],
                 ['less:stacks_partials', 'clean:stacks_partials'],
-                ['less:docs', 'cssmin:docs']
+                ['less:docs', 'postcss:docs']
             ]
         },
 
@@ -233,7 +238,7 @@ module.exports = function(grunt) {
     // Load plugins
     grunt.loadNpmTasks('grunt-shell');
     grunt.loadNpmTasks('grunt-concurrent');
-    grunt.loadNpmTasks('grunt-contrib-cssmin');
+    grunt.loadNpmTasks('grunt-postcss');
     grunt.loadNpmTasks('grunt-contrib-less');
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-concat');
