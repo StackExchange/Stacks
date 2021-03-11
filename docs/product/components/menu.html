@@ -34,7 +34,7 @@ description: A menu offers a contextual list of actions or functions.
 
     {% header "h3", "Basic" %}
     <p class="stacks-copy">
-        At its most basic, a menu is a simple styled list of contextual actions. Because they’re contextual, they’re usually shown within a <a href="{{ '/product/components/popovers' | relative_url }}">popover</a>. Menu items are either links or buttons styled with the <a href="{{ '/product/components/links/#block-link' | relative_url }}">block link component</a>, that can optionally be selected, or have destructive styling. When placed in a popover, you’ll also want to either set negative margins on the menu component to account for the popovers’ padding, or adjust the padding on the popover.
+        At its most basic, a menu is a simple styled list of contextual actions. Because they’re contextual, they’re usually shown within a <a href="{{ '/product/components/popovers' | relative_url }}">popover</a>. Menu items are either links or buttons styled with the <a href="{{ '/product/components/links/#block-link' | relative_url }}">block link component</a>, that can optionally be selected, or have destructive styling. When placed in a popover, you’ll also want to either set negative margins on the menu component to account for the popovers’ padding, or adjust the padding on the popover. You can apply <code class="stacks-code">is-disabled</code> to the menu item if needed.
     </p>
     <div class="stacks-preview">
 {% highlight html %}
@@ -43,7 +43,7 @@ description: A menu offers a contextual list of actions or functions.
         <a href="…" class="s-block-link">…</a>
     </li>
     <li role="menuitem">
-        <button class="s-btn s-btn__link s-block-link">…</button>
+        <button class="s-btn s-btn__link s-block-link is-disabled">…</button>
     </li>
 </ul>
 {% endhighlight %}
@@ -62,7 +62,7 @@ description: A menu offers a contextual list of actions or functions.
                         </a>
                     </li>
                     <li role="menuitem">
-                        <button class="s-btn s-btn__link s-block-link">
+                        <button class="s-btn s-btn__link s-block-link is-disabled">
                             Follow
                         </button>
                     </li>
@@ -215,6 +215,15 @@ description: A menu offers a contextual list of actions or functions.
                         <div class="grid--cell">
                             <div class="s-label">User</div>
                             <div class="s-description mt2">Can view, ask, answer, and edit questions. Can also vote on and flag content.</div>
+                        </div>
+                    </label>
+                    <label class="s-menu--label grid is-disabled" for="choice-moderator-34">
+                        <div class="grid--cell mr8">
+                            <input class="s-radio" type="radio" name="choice-34" id="choice-moderator-34" role="menuitemradio" disabled>
+                        </div>
+                        <div class="grid--cell">
+                            <div class="s-label">Moderator</div>
+                            <div class="s-description mt2">Everything a user can do, but can also delete and close questions.</div>
                         </div>
                     </label>
                     <label class="s-menu--label grid" for="choice-admin-34">
