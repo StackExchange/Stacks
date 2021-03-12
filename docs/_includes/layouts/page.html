@@ -21,10 +21,6 @@
                 https://stackoverflow.com/questions/38723559/flex-item-exceeds-its-container
             {% endcomment %}
             <div class="grid--cell fl1 ws1">
-                <a href="https://github.com/StackExchange/Stacks/edit/develop/docs/{{ page.inputPath }}" class="float-right s-btn">
-                    {% icon "Pencil" %}
-                    Edit on GitHub
-                </a>
                 {% if js %}
                     <div class="stacks-badged grid ai-center sm:jc-space-between">
                         <h1 class="stacks-h1 grid--cell mb0">{{ title }}</h1>
@@ -42,10 +38,13 @@
                     </p>
                 {% endif %}
                 {{ content }}
-                <a href="https://github.com/StackExchange/Stacks/edit/develop/docs/{{ page.inputPath }}" class="float-right s-btn">
-                    {% icon "Pencil" %}
-                    Edit on GitHub
-                </a>
+                <div class="grid jc-space-between fc-light my48 pt24 bt bc-black-050">
+                    <div class="grid--cell">Last edited {{ page.date }}</div>
+                    <a href="https://github.com/StackExchange/Stacks/edit/develop/docs/{{ page.inputPath }}" class="grid--cell s-btn s-btn__muted">
+                        {% icon "Pencil" %}
+                        Edit on GitHub
+                    </a>
+                </div>
             </div>
         </main>
     </div>
