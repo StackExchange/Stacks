@@ -34,39 +34,74 @@ description: A menu offers a contextual list of actions or functions.
 
     {% header "h3", "Basic" %}
     <p class="stacks-copy">
-        At its most basic, a menu is a simple styled list of contextual actions. Because they’re contextual, they’re usually shown within a <a href="{{ '/product/components/popovers' | relative_url }}">popover</a>. Menu items are either links or buttons styled with the <a href="{{ '/product/components/links/#block-link' | relative_url }}">block link component</a>, that can optionally be selected, or have destructive styling. When placed in a popover, you’ll also want to either set negative margins on the menu component to account for the popovers’ padding, or adjust the padding on the popover.
+        At its most basic, a menu is a simple styled list of contextual actions. Because they’re contextual, it’s strongly recommended that a menu is contained within a <a href="{{ '/product/components/popovers' | relative_url }}">popover</a> or a <a href="{{ '/product/components/cards' | relative_url }}">card</a>. Menu items are either links or buttons styled with the <a href="{{ '/product/components/links/#block-link' | relative_url }}">block link component</a>, that can optionally be selected or have destructive styling. When placed in various containers, you’ll need to either account for the padding on the container, or use negative margins on the menu component itself.
     </p>
     <div class="stacks-preview">
 {% highlight html %}
-<ul class="s-menu mxn12 myn8" role="menu">
-    <li role="menuitem">
-        <a href="…" class="s-block-link">…</a>
-    </li>
-    <li role="menuitem">
-        <button class="s-block-link">…</button>
-    </li>
-</ul>
+<div class="s-popover">
+    <ul class="s-menu mxn12 myn8" role="menu">
+        <li role="menuitem">
+            <a href="…" class="s-block-link">…</a>
+        </li>
+        <li role="menuitem">
+            <button class="s-block-link">…</button>
+        </li>
+    </ul>
+</div>
+
+<div class="s-card px0 py4">
+    <ul class="s-menu">
+        …
+    </ul>
+</div>
 {% endhighlight %}
         <div class="stacks-preview--example">
-            <div class="s-popover is-visible ps-relative ws2">
-                <div class="s-popover--arrow s-popover--arrow__tc"></div>
-                <ul class="s-menu mxn12 myn8" role="menu">
-                    <li role="menuitem">
-                        <a href="#" class="s-block-link">
-                            Share
-                        </a>
-                    </li>
-                    <li role="menuitem">
-                        <a href="#" class="s-block-link">
-                            Edit
-                        </a>
-                    </li>
-                    <li role="menuitem">
-                        <button class="s-block-link">
-                            Follow
-                        </button>
-                    </li>
-                </ul>
+            <div class="grid gs32 fw-wrap">
+                <div class="grid--cell">
+                    <div class="ff-mono mb16">Within a popover</div>
+                    <div class="s-popover is-visible ps-relative ws2">
+                        <div class="s-popover--arrow s-popover--arrow__tc"></div>
+                        <ul class="s-menu mxn12 myn8" role="menu">
+                            <li role="menuitem">
+                                <a href="#" class="s-block-link">
+                                    Share
+                                </a>
+                            </li>
+                            <li role="menuitem">
+                                <a href="#" class="s-block-link">
+                                    Edit
+                                </a>
+                            </li>
+                            <li role="menuitem">
+                                <button class="s-block-link">
+                                    Follow
+                                </button>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="grid--cell">
+                    <div class="ff-mono mb16">Within a card</div>
+                    <div class="s-card px0 py4">
+                        <ul class="s-menu" role="menu">
+                            <li role="menuitem">
+                                <a href="#" class="s-block-link">
+                                    Share
+                                </a>
+                            </li>
+                            <li role="menuitem">
+                                <a href="#" class="s-block-link">
+                                    Edit
+                                </a>
+                            </li>
+                            <li role="menuitem">
+                                <button class="s-block-link">
+                                    Follow
+                                </button>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -77,16 +112,18 @@ description: A menu offers a contextual list of actions or functions.
     </p>
     <div class="stacks-preview">
 {% highlight html %}
-<ul class="s-menu mxn12 myn8" role="menu">
-    <li class="s-menu--title" role="separator">…</li>
-    <li role="menuitem">
-        <a href="…" class="s-block-link">…</a>
-    </li>
-    <li class="s-menu--divider" role="separator"></li>
-    <li role="menuitem">
-        <a href="…" class="s-block-link s-block-link__danger">…</a>
-    </li>
-</ul>
+<div class="s-popover">
+    <ul class="s-menu mxn12 myn8" role="menu">
+        <li class="s-menu--title" role="separator">…</li>
+        <li role="menuitem">
+            <a href="…" class="s-block-link">…</a>
+        </li>
+        <li class="s-menu--divider" role="separator"></li>
+        <li role="menuitem">
+            <a href="…" class="s-block-link s-block-link__danger">…</a>
+        </li>
+    </ul>
+</div>
 {% endhighlight %}
         <div class="stacks-preview--example">
             <div class="s-popover is-visible ps-relative ws2">
@@ -128,15 +165,17 @@ description: A menu offers a contextual list of actions or functions.
 
     {% header "h3", "Selected states" %}
     <p class="stacks-copy">
-        Our menus also offer selected states via the block link component with its various configurations.
+        Our menus also offer selected states via the <a href="{{ '/product/components/links/#block-link' | relative_url }}">block link component</a> with its various configurations.
     </p>
     <div class="stacks-preview">
 {% highlight html %}
-<ul class="s-menu mxn12" role="menu">
-    <li role="menuitem">
-        <a href="…" class="s-block-link s-block-link__left is-selected">…</a>
-    </li>
-</ul>
+<div class="s-popover">
+    <ul class="s-menu mxn12 myn8" role="menu">
+        <li role="menuitem">
+            <a href="…" class="s-block-link s-block-link__left is-selected">…</a>
+        </li>
+    </ul>
+</div>
 {% endhighlight %}
         <div class="stacks-preview--example">
             <div class="s-popover is-visible ps-relative ws2">
@@ -181,27 +220,29 @@ description: A menu offers a contextual list of actions or functions.
     </p>
     <div class="stacks-preview">
 {% highlight html %}
-<fieldset class="s-menu mxn12 myn8" role="menu">
-    <legend class="s-menu--title">…</legend>
-    <label class="s-menu--label grid" for="…">
-        <div class="grid--cell mr8">
-            <input class="s-radio" type="radio" name="…" id="…" role="menuitemradio" checked>
-        </div>
-        <div class="grid--cell">
-            <div class="s-label">…</div>
-            <div class="s-description mt2">…</div>
-        </div>
-    </label>
-    <label class="s-menu--label grid" for="…">
-        <div class="grid--cell mr8">
-            <input class="s-radio" type="radio" name="…" id="…" role="menuitemradio">
-        </div>
-        <div class="grid--cell">
-            <div class="s-label">…</div>
-            <div class="s-description mt2">…</div>
-        </div>
-    </label>
-</fieldset>
+<div class="s-popover">
+    <fieldset class="s-menu mxn12 myn8" role="menu">
+        <legend class="s-menu--title">…</legend>
+        <label class="s-menu--label grid" for="…">
+            <div class="grid--cell mr8">
+                <input class="s-radio" type="radio" name="…" id="…" role="menuitemradio" checked>
+            </div>
+            <div class="grid--cell">
+                <div class="s-label">…</div>
+                <div class="s-description mt2">…</div>
+            </div>
+        </label>
+        <label class="s-menu--label grid" for="…">
+            <div class="grid--cell mr8">
+                <input class="s-radio" type="radio" name="…" id="…" role="menuitemradio">
+            </div>
+            <div class="grid--cell">
+                <div class="s-label">…</div>
+                <div class="s-description mt2">…</div>
+            </div>
+        </label>
+    </fieldset>
+</div>
 {% endhighlight %}
         <div class="stacks-preview--example">
             <div class="s-popover is-visible ps-relative ws3">
