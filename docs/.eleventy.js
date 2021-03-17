@@ -1,7 +1,6 @@
 const hljs = require("highlight.js");
 const syntaxHighlight = require("eleventy-plugin-highlightjs");
 const pluginTOC = require("eleventy-plugin-nesting-toc");
-const pluginDate = require('eleventy-plugin-date');
 const markdownShortcode = require("eleventy-plugin-markdown-shortcode");
 const { default: Icons, Spots } = require("@stackoverflow/stacks-icons");
 const { version } = require("../package.json");
@@ -150,9 +149,6 @@ module.exports = function(eleventyConfig) {
       return ''; // use external default escaping
     }
   });
-
-  // Add date formatting
-  eleventyConfig.addPlugin(pluginDate);
 
   // Add submenu generation
   eleventyConfig.addPlugin(pluginTOC, {tags: ['h2', 'h3'], wrapper: 'nav aria-label="Table of contents"'});
