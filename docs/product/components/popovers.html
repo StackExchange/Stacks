@@ -83,6 +83,19 @@ description: Popovers are small content containers that provide a contextual ove
                     <td>Controller element</td>
                     <td class="p8"><span class="s-label--status ml0">Optional</span> If <code class="stacks-code">true</code>, the popover will appear immediately when the Stacks controller is first connected.  This should be used in place of <code class="stacks-code">.is-visible</code> for displaying popovers on load as it will prevent the popover from appearing before it has been correctly positioned.</td>
                 </tr>
+                <tr>
+                    <th scope="row"><code class="stacks-code">data-s-popover-hide-on-outside-click="[always|never|if-in-viewport|after-dismissal]"</code></th>
+                    <td>Controller element</td>
+                    <td class="p8"><span class="s-label--status ml0">Optional</span>
+                        <ul>
+                            <li>If <code class="stacks-code">always</code>, the popover will appear disappear when outside clicks occur.</li>
+                            <li>If <code class="stacks-code">if-in-viewport</code>, the popover will appear disappear when outside clicks occur and the popover is currently in the browser's visible viewport.</li>
+                            <li>If <code class="stacks-code">never</code>, the popover will not disappear on outside clicks and will only be dismissed through other means, e.g. <code class="stacks-code">data-target="s-popover#hide"</code>.</li>
+                            <li>If <code class="stacks-code">after-dismissal</code>, the popover will not disappear on outside clicks unless it has been dismissed some other way at least once.</li>
+                        </ul>
+                        <p>If left unset, defaults to <code class="stacks-code">always</code>.</p>
+                    </td>
+                </tr>
             </tbody>
         </table>
     </div>
@@ -191,9 +204,11 @@ description: Popovers are small content containers that provide a contextual ove
                 data-controller="s-popover"
                 data-s-popover-reference-selector="#reference-element"
                 data-s-popover-placement="auto"
-                data-s-popover-auto-show="true">
+                data-s-popover-auto-show="true"
+                data-s-popover-hide-on-outside-click="if-in-viewport">
                 <a id="reference-element" class="s-link s-link__inherit"
-                    aria-controls="popover-example-3">
+                    aria-controls="popover-example-3"
+                    data-action="s-popover#toggle">
                     Follow question
                 </a>
                 <div id="popover-example-3" class="s-popover wmx3" role="menu">
