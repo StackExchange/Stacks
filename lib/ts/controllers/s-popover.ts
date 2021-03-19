@@ -1,4 +1,7 @@
 namespace Stacks {
+
+    type OutsideClickBehavior = "always" | "never" | "if-in-viewport" | "after-dismissal";
+
     export abstract class BasePopoverController extends StacksController {
         // @ts-ignore
         private popper!: Popper;
@@ -31,6 +34,36 @@ namespace Stacks {
         }
 
         /**
+         * Gets whether the element is visible in the browser's viewport.
+         */
+        get isInViewport() {
+            const element = this.popoverElement;
+            if (!this.isVisible || !element) { return false; }
+
+            // From https://stackoverflow.com/a/5354536.  Theoretically, this could be calculated using Popper's detectOverflow function,
+            // but it's unclear how to access that with out current configuration.
+
+            const rect = element.getBoundingClientRect();
+            const viewHeight = Math.max(document.documentElement.clientHeight, window.innerHeight);
+            const viewWidth = Math.max(document.documentElement.clientWidth, window.innerWidth);
+
+            return rect.bottom > 0 && rect.top < viewHeight && rect.right > 0 && rect.left < viewWidth;
+        }
+
+        protected get shouldHideOnOutsideClick() {
+            const hideBehavior = <OutsideClickBehavior>this.data.get("hide-on-outside-click");
+            switch (hideBehavior) {
+                case "after-dismissal":
+                case "never":
+                    return false;
+                case "if-in-viewport":
+                     return this.isInViewport;
+                default:
+                     return true;
+            }
+        }
+
+        /**
          * Initializes and validates controller variables
          */
         connect() {
@@ -42,6 +75,8 @@ namespace Stacks {
             } else if (this.data.get("auto-show") === "true") {
                 this.show(null);
             }
+
+            this.data.delete("auto-show");
         }
 
         /**
@@ -84,14 +119,7 @@ namespace Stacks {
             // ensure the popper has been positioned correctly
             this.scheduleUpdate();
 
-            // if the popover is being auto-shown, treat it as if it had the "is-visible" class,
-            // which does not connect the document close-on-click events
-            // TODO this behavior is poorly documented, but removing it is a regression... Fix later
-            if (!this.data.has("auto-show")) {
-                this.shown(dispatcherElement);
-            }
-
-            this.data.delete("auto-show");
+            this.shown(dispatcherElement);
         }
 
         /**
@@ -112,6 +140,11 @@ namespace Stacks {
                 // completely destroy the popper on hide; this is in line with Popper.js's performance recommendations
                 this.popper.destroy();
                 delete this.popper;
+            }
+
+            // on first interaction, hide-on-outside-click with value "after-dismissal" reverts to the default behavior
+            if (<OutsideClickBehavior>this.data.get("hide-on-outside-click") === "after-dismissal") {
+                this.data.delete("hide-on-outside-click");
             }
 
             this.hidden(dispatcherElement);
@@ -286,14 +319,14 @@ namespace Stacks {
             const target = <Node>e.target;
             // check if the document was clicked inside either the reference element or the popover itself
             // note: .contains also returns true if the node itself matches the target element
-            if (!this.referenceElement.contains(target) && !this.popoverElement!.contains(target) && document.body.contains(target)) {
+            if (this.shouldHideOnOutsideClick && !this.referenceElement.contains(target) && !this.popoverElement!.contains(target) && document.body.contains(target)) {
                 this.hide(e);
             }
         };
 
         /**
          * Forces the popover to hide if the user presses escape while it, one of its childen, or the reference element are focused
-         * @param {Event} e - The document keyup event 
+         * @param {Event} e - The document keyup event
          */
         private hideOnEscapePress(e: KeyboardEvent) {
             // if the ESC key (27) wasn't pressed or if no popovers are showing, return
