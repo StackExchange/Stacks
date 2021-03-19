@@ -4323,6 +4323,36 @@ var Stacks;
             enumerable: false,
             configurable: true
         });
+        Object.defineProperty(BasePopoverController.prototype, "isInViewport", {
+            get: function () {
+                var element = this.popoverElement;
+                if (!this.isVisible || !element) {
+                    return false;
+                }
+                var rect = element.getBoundingClientRect();
+                var viewHeight = Math.max(document.documentElement.clientHeight, window.innerHeight);
+                var viewWidth = Math.max(document.documentElement.clientWidth, window.innerWidth);
+                return rect.bottom > 0 && rect.top < viewHeight && rect.right > 0 && rect.left < viewWidth;
+            },
+            enumerable: false,
+            configurable: true
+        });
+        Object.defineProperty(BasePopoverController.prototype, "shouldHideOnOutsideClick", {
+            get: function () {
+                var hideBehavior = this.data.get("hide-on-outside-click");
+                switch (hideBehavior) {
+                    case "after-dismissal":
+                    case "never":
+                        return false;
+                    case "if-in-viewport":
+                        return this.isInViewport;
+                    default:
+                        return true;
+                }
+            },
+            enumerable: false,
+            configurable: true
+        });
         BasePopoverController.prototype.connect = function () {
             _super.prototype.connect.call(this);
             this.validate();
@@ -4332,6 +4362,7 @@ var Stacks;
             else if (this.data.get("auto-show") === "true") {
                 this.show(null);
             }
+            this.data.delete("auto-show");
         };
         BasePopoverController.prototype.disconnect = function () {
             this.hide();
@@ -4361,10 +4392,7 @@ var Stacks;
             }
             this.popoverElement.classList.add("is-visible");
             this.scheduleUpdate();
-            if (!this.data.has("auto-show")) {
-                this.shown(dispatcherElement);
-            }
-            this.data.delete("auto-show");
+            this.shown(dispatcherElement);
         };
         BasePopoverController.prototype.hide = function (dispatcher) {
             if (dispatcher === void 0) { dispatcher = null; }
@@ -4381,6 +4409,9 @@ var Stacks;
             if (this.popper) {
                 this.popper.destroy();
                 delete this.popper;
+            }
+            if (this.data.get("hide-on-outside-click") === "after-dismissal") {
+                this.data.delete("hide-on-outside-click");
             }
             this.hidden(dispatcherElement);
         };
@@ -4494,7 +4525,7 @@ var Stacks;
         };
         PopoverController.prototype.hideOnOutsideClick = function (e) {
             var target = e.target;
-            if (!this.referenceElement.contains(target) && !this.popoverElement.contains(target) && document.body.contains(target)) {
+            if (this.shouldHideOnOutsideClick && !this.referenceElement.contains(target) && !this.popoverElement.contains(target) && document.body.contains(target)) {
                 this.hide(e);
             }
         };
