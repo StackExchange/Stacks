@@ -5,12 +5,6 @@ $(document).ready(function() {
         inputSelector: '#searchbox'
     });
 
-    // Kill default behavior on empty links
-    $("a[href='#']").on("click", function(e) {
-        e.preventDefault();
-        e.stopPropagation();
-    });
-
     // Show or hide search
     var searchBar = $(".js-stacks-search-bar");
     var searchContainer = $(".js-search");
