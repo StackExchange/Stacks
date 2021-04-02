@@ -4584,7 +4584,7 @@ var Stacks;
         if (!popover.parentElement && element.parentElement) {
             referenceElement.insertAdjacentElement("afterend", popover);
         }
-        element.setAttribute("data-controller", "s-popover");
+        toggleController(element, "s-popover", true);
         if (options) {
             if (options.toggleOnClick) {
                 referenceElement.setAttribute("data-action", "click->s-popover#toggle");
@@ -4600,14 +4600,10 @@ var Stacks;
     Stacks.attachPopover = attachPopover;
     function detachPopover(element) {
         var _a = getPopover(element), isPopover = _a.isPopover, controller = _a.controller, referenceElement = _a.referenceElement, popover = _a.popover;
-        if (controller) {
-            controller.hide();
-        }
-        if (popover) {
-            popover.remove();
-        }
+        controller === null || controller === void 0 ? void 0 : controller.hide();
+        popover === null || popover === void 0 ? void 0 : popover.remove();
         if (isPopover) {
-            element.removeAttribute("data-controller");
+            toggleController(element, "s-popover", false);
             if (referenceElement) {
                 referenceElement.removeAttribute("aria-controls");
             }
@@ -4624,6 +4620,17 @@ var Stacks;
         var popoverId = referenceElement ? referenceElement.getAttribute("aria-controls") : null;
         var popover = popoverId ? document.getElementById(popoverId) : null;
         return { isPopover: isPopover, controller: controller, referenceElement: referenceElement, popover: popover };
+    }
+    function toggleController(el, controllerName, include) {
+        var _a;
+        var controllers = new Set((_a = el.getAttribute('data-controller')) === null || _a === void 0 ? void 0 : _a.split(/\s+/));
+        if (include) {
+            controllers.add(controllerName);
+        }
+        else {
+            controllers.delete(controllerName);
+        }
+        el.setAttribute('data-controller', Array.from(controllers).join(' '));
     }
 })(Stacks || (Stacks = {}));
 Stacks.application.register("s-popover", Stacks.PopoverController);
