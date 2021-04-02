@@ -457,7 +457,7 @@ namespace Stacks {
         controller?.hide();
 
         // Remove the popover if it exists
-        if (popover) { popover.remove(); }
+        popover?.remove();
 
         // Remove the popover controller and the aria-controls attributes.
         if (isPopover) {
