@@ -14,7 +14,7 @@ $(document).ready(function() {
             load() {
                 if (this.loaded) { return; }
                 setTimeout(() => {
-                    Stacks.attachPopover(this.element, `<div class="s-popover wmx1"><div class="s-popover--arrow"></div><div class="s-btn d-block">Edit</div><div class="s-btn s-btn__danger d-block">Delete</div></div>`, { autoShow: true, toggleOnClick: true });
+                    Stacks.attachPopover(this.element, `<div class="s-popover wmx1"><div class="s-popover--arrow"></div><ul class="s-menu mxn12 myn8" role="menu"><li role="menuitem"><button class="s-block-link">Share</button></li><li role="menuitem"><button class="s-block-link">Edit</button></li><li role="menuitem"><button class="s-block-link">Flag</button></li><li class="s-menu--divider" role="separator"></li><li role="menuitem"><button class="s-block-link s-block-link__danger">Delete</button></li></ul></div>`, { autoShow: true, toggleOnClick: true, placement: "bottom" });
                     this.loaded = true;
                 });
             },
