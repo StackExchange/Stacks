@@ -330,15 +330,6 @@ Stacks.application.register("section", class extends Stacks.StacksController {
             </div>
         </div>
     </div>
-    <script>
-        window.addEventListener("load", () => {
-                Stacks.addController("section", {
-                targets: ["help"],
-                showHelp(e) { Stacks.showPopover(this.helpTarget); e.stopPropagation(); },
-                hideHelp(e) { Stacks.hidePopover(this.helpTarget); },
-            });
-        });
-    </script>
 
     {% header "h4", "JavaScript configuration" %}
     <p class="stacks-copy">Situations may also arise where popovers need to be attached to an element after the document is rendered. For example, a button could have a contextual menu that is too expensive to serve up on every page load.</p>
@@ -364,20 +355,6 @@ Stacks.application.register("actions", class extends Stacks.StacksController {
         <button class="s-btn s-btn__outlined" data-controller="actions" data-action="actions#load">Show actions for this post</button>
     </div>
 </div>
-<script>
-    window.addEventListener("load", () => {
-        Stacks.addController("actions", {
-            loaded: false,
-            load() {
-                if (this.loaded) { return; }
-                setTimeout(() => {
-                    Stacks.attachPopover(this.element, `<div class="s-popover wmx1"><div class="s-popover--arrow"></div><div class="s-btn d-block">Edit</div><div class="s-btn s-btn__danger d-block">Delete</div></div>`, { autoShow: true, toggleOnClick: true });
-                    this.loaded = true;
-                });
-            },
-        });
-    });
-</script>
 </section>
 <section class="stacks-section">
     {% header "h2", "Hover tooltips" %}
