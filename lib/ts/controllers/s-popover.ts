@@ -41,7 +41,7 @@ namespace Stacks {
             if (!this.isVisible || !element) { return false; }
 
             // From https://stackoverflow.com/a/5354536.  Theoretically, this could be calculated using Popper's detectOverflow function,
-            // but it's unclear how to access that with out current configuration.
+            // but it's unclear how to access that with our current configuration.
 
             const rect = element.getBoundingClientRect();
             const viewHeight = Math.max(document.documentElement.clientHeight, window.innerHeight);
