@@ -454,7 +454,7 @@ namespace Stacks {
         const { isPopover, controller, referenceElement, popover } = getPopover(element);
 
         // Hide the popover so its events fire.
-        if (controller) { controller.hide(); }
+        controller?.hide();
 
         // Remove the popover if it exists
         if (popover) { popover.remove(); }
