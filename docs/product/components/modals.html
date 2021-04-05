@@ -413,22 +413,5 @@ document.querySelector(".js-modal-toggle").addEventListener("click", function(e)
     </div>
 </section>
 
-<script>
-    (function() {
-        document.querySelectorAll(".js-modal-open").forEach(function(el) {
-            el.addEventListener("click", function(e) {
-                e.stopPropagation();
-                e.preventDefault();
-                var targetSelector = el.dataset.target;
-                Stacks.showModal(document.querySelector(targetSelector));
-            });
-        });
-
-        document.querySelectorAll(".js-modal-close").forEach(function(el) {
-            el.addEventListener("click", function(e) {
-                e.stopPropagation();
-                e.preventDefault();
-            });
-        });
-    }());
-</script>
+<!-- Example modals javascript -->
+<script src="{{ "/assets/js/feature.modals.js" | relative_url }}" defer></script>
