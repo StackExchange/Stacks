@@ -143,7 +143,7 @@ module.exports = function(eleventyConfig) {
     highlight: function (str, lang) {
       if (lang && hljs.getLanguage(lang)) {
         return '<pre class="language-' + lang + ' s-code-block"><code class="language-' + lang + ' s-code-block">' +
-               hljs.highlight(lang, str).value +
+               hljs.highlight(str, {language: lang}).value +
                '</code></pre>';
       }
 
