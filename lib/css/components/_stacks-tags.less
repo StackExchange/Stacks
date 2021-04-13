@@ -12,7 +12,7 @@
 //      here's a mixin to state all that CSS.
 //  ---------------------------------------------------------------------------
 
-.tag-styles(@border: transparent, @background: transparent, @color: inherit) {
+.s-tag-styles(@border: transparent, @background: transparent, @color: inherit) {
     border-color: @border;
     background-color: @background;
     color: @color;
@@ -28,7 +28,7 @@
     }
 }
 
-.tag-hover-styles(@border-hover: transparent, @background-hover: transparent, @color-hover: inherit) {
+.s-tag-hover-styles(@border-hover: transparent, @background-hover: transparent, @color-hover: inherit) {
     &:hover,
     &:focus,
     &:active {
@@ -60,7 +60,7 @@
     vertical-align: middle;
     white-space: nowrap;
 
-    .tag-styles(@tags-border, @tags-background, @tags-color);
+    .s-tag-styles(@tags-border, @tags-background, @tags-color);
 
     //  -- SIZES
     &.s-tag__xs {
@@ -90,7 +90,7 @@
 
 a.s-tag {
     #stacks-internals #load-config();
-    .tag-hover-styles(@tags-border-hover, @tags-background-hover, @tags-color-hover);
+    .s-tag-hover-styles(@tags-border-hover, @tags-background-hover, @tags-color-hover);
 }
 
 //  $$  DISMISS ICON
@@ -138,31 +138,31 @@ a.s-tag {
 //  ---------------------------------------------------------------------------
 .s-tag__required {
     #stacks-internals #load-config();
-    .tag-styles(@tags-required-border, @tags-required-background, @tags-required-color);
+    .s-tag-styles(@tags-required-border, @tags-required-background, @tags-required-color);
 }
 a.s-tag__required {
     #stacks-internals #load-config();
-    .tag-hover-styles(@tags-required-border-hover, @tags-required-background-hover, @tags-required-color-hover);
+    .s-tag-hover-styles(@tags-required-border-hover, @tags-required-background-hover, @tags-required-color-hover);
 }
 
 //  $$  Moderator Tag
 //  ---------------------------------------------------------------------------
 .s-tag__moderator {
     #stacks-internals #load-config();
-    .tag-styles(@tags-moderator-border, @tags-moderator-background, @tags-moderator-color);
+    .s-tag-styles(@tags-moderator-border, @tags-moderator-background, @tags-moderator-color);
 }
 a.s-tag__moderator {
     #stacks-internals #load-config();
-    .tag-hover-styles(@tags-moderator-border-hover, @tags-moderator-background-hover, @tags-moderator-color-hover);
+    .s-tag-hover-styles(@tags-moderator-border-hover, @tags-moderator-background-hover, @tags-moderator-color-hover);
 }
 
 //  $$  Muted Tag
 //  ---------------------------------------------------------------------------
 .s-tag__muted {
     #stacks-internals #load-config();
-    .tag-styles(@tags-muted-border, @tags-muted-background, @tags-muted-color);
+    .s-tag-styles(@tags-muted-border, @tags-muted-background, @tags-muted-color);
 }
 a.s-tag__muted {
     #stacks-internals #load-config();
-    .tag-hover-styles(@tags-muted-border-hover, @tags-muted-background-hover, @tags-muted-color-hover);
+    .s-tag-hover-styles(@tags-muted-border-hover, @tags-muted-background-hover, @tags-muted-color-hover);
 }
