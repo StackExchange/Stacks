@@ -73,18 +73,7 @@
             color: var(--black-600);
         }
 
-        // Hide focus styles if they're not needed, for example,
-        // when an element receives focus via the mouse.
-        &:focus:not(:focus-visible) {
-            outline: none;
-            box-shadow: none;
-        }
-
-        // Show focus styles on keyboard focus.
-        &:focus-visible {
-            outline: none;
-            box-shadow: 0 0 0 @su4 var(--focus-ring-muted);
-        }
+        @focus-styles();
 
         &.is-selected {
             background: @navigation-link-highlight;

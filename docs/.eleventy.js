@@ -6,6 +6,7 @@ const { default: Icons, Spots } = require("@stackoverflow/stacks-icons");
 const { version } = require("../package.json");
 
 module.exports = function(eleventyConfig) {
+  eleventyConfig.setQuietMode(true); // Reduce the console output
   eleventyConfig.addLayoutAlias('home', 'layouts/home.html');
   eleventyConfig.addLayoutAlias('page', 'layouts/page.html');
   eleventyConfig.addLayoutAlias('page-nomenu', 'layouts/page-nomenu.html');
@@ -141,7 +142,7 @@ module.exports = function(eleventyConfig) {
     highlight: function (str, lang) {
       if (lang && hljs.getLanguage(lang)) {
         return '<pre class="language-' + lang + ' s-code-block"><code class="language-' + lang + ' s-code-block">' +
-               hljs.highlight(lang, str).value +
+               hljs.highlight(str, {language: lang}).value +
                '</code></pre>';
       }
 

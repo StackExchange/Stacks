@@ -16,8 +16,17 @@ $(document).ready(function() {
         navigation.addClass("md:d-none");
     }
 
+    function killEmptyLinks() {
+        // Kill default behavior on empty links
+        $("a[href='#']").on("click", function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+        });
+    }
+
     $.when($.ready).then(function() {
         regenerateMenu();
+        killEmptyLinks();
 
         window.history.replaceState({
             'href': window.location.href,
@@ -61,6 +70,7 @@ $(document).ready(function() {
                 $(document).scrollTop(0)
 
                 regenerateMenu();
+                killEmptyLinks();
 
                 // Add page load to browser history
                 window.history.pushState({

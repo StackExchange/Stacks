@@ -126,6 +126,43 @@
 }
 
 //  ===========================================================================
+//  $   SEGMENTED
+//  ---------------------------------------------------------------------------
+.s-progress.s-progress__segmented {
+    position: relative;
+
+    .s-progress--segments {
+        margin: 0;
+        padding: 0;
+        position: absolute;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: space-between;
+        list-style: none;
+
+        li {
+            display: block;
+            padding-top: 4px;
+            position: relative;
+            text-align: center;
+
+            &:not(:first-child):not(:last-child):before {
+                display: block;
+                content: "";
+                height: 100%;
+                width: 4px;
+                position: absolute;
+                top: 0;
+                left: -1px;
+                background-color: var(--white);
+            }
+        }
+    }
+}
+
+//  ===========================================================================
 //  $   STEPPED
 //  ---------------------------------------------------------------------------
 .s-progress.s-progress__stepped {
@@ -188,7 +225,7 @@
             left: 50%;
         }
     }
-    
+
     .s-progress--step.is-active {
         .s-progress--bar.s-progress--bar__left {
             background: var(--blue-500);
@@ -250,8 +287,7 @@
             // Multiply the circle circumference by an the opposite percentage of what we want to display
             // For example 70%, represented as a decimal is 0.7
             // The opposite of that is 0.3 so ( 1 - 0.7 )
-            // Additionally, since the "round" linecap adds (width / 2)px length, adjust the total offset to compensate
-            stroke-dashoffset: calc( (((1 - var(--s-progress-value)) * @s-progress-circle-circumference) + @s-progress-stroke-width) * 1px); // Multiply everything by 1px since Safari and Firefox require these to be in pixels
+            stroke-dashoffset: calc( ((1 - var(--s-progress-value)) * @s-progress-circle-circumference) * 1px); // Multiply everything by 1px since Safari and Firefox require these to be in pixels
         }
     }
 
