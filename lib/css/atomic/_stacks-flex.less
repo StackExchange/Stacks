@@ -30,7 +30,7 @@
 
         .create-fixed-cells(@num, @count: 1) when (@count =< @num) {
             .flex--cell@{count} {
-                flex-basis: (@count * 100%) / @num;
+                flex-basis: ((@count * 100%) / @num);
             }
 
             #stacks-internals #flex-builder-helpers .create-fixed-cells(@num, (@count + 1));
@@ -47,7 +47,7 @@
             .flex__allcells@{count} {
                 > .d-flex,
                 > .flex--cell {
-                    flex-basis: (@count * 100%) / @num;
+                    flex-basis: ((@count * 100%) / @num);
                 }
             }
 
@@ -103,7 +103,7 @@
             @cell-width: @count * 100% / @num;
 
             > .flex--cell@{count} {
-                margin: @spacing / 2;
+                margin: (@spacing / 2);
             }
 
             //  ------------------------------------------------------------------------
@@ -143,7 +143,7 @@
             //  --  FLUID CELLS
             > .d-flex,
             > .flex--cell {
-                margin: @spacing / 2;
+                margin: (@spacing / 2);
             }
 
             //  --  FIXED WIDTH CELLS
