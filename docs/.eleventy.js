@@ -6,6 +6,7 @@ const { default: Icons, Spots } = require("@stackoverflow/stacks-icons");
 const { version } = require("../package.json");
 
 module.exports = function(eleventyConfig) {
+  eleventyConfig.setQuietMode(true); // Reduce the console output
   eleventyConfig.addLayoutAlias('home', 'layouts/home.html');
   eleventyConfig.addLayoutAlias('page', 'layouts/page.html');
   eleventyConfig.addLayoutAlias('page-nomenu', 'layouts/page-nomenu.html');
@@ -66,6 +67,7 @@ module.exports = function(eleventyConfig) {
     output +=     '<span class="pe-auto">' + text + '</span>';
     output +=   '</' + tag + '>';
     output +=   '<a class="grid grid__center mbn6 s-btn s-btn__muted pe-auto" href="#'+ slug +'">';
+    output +=     '<span class="v-visible-sr">Section titled ' + text + '</span>';
     output +=     linkIcon;
     output +=   '</a>';
     output += '</div>';
@@ -140,7 +142,7 @@ module.exports = function(eleventyConfig) {
     highlight: function (str, lang) {
       if (lang && hljs.getLanguage(lang)) {
         return '<pre class="language-' + lang + ' s-code-block"><code class="language-' + lang + ' s-code-block">' +
-               hljs.highlight(lang, str).value +
+               hljs.highlight(str, {language: lang}).value +
                '</code></pre>';
       }
 
@@ -149,7 +151,7 @@ module.exports = function(eleventyConfig) {
   });
 
   // Add submenu generation
-  eleventyConfig.addPlugin(pluginTOC, {tags: ['h2', 'h3']});
+  eleventyConfig.addPlugin(pluginTOC, {tags: ['h2', 'h3'], wrapper: 'nav aria-label="Table of contents"'});
 
   // Copy these files over to _site
   eleventyConfig.addPassthroughCopy('assets');

@@ -11,10 +11,8 @@
 //      Any tag we use will always modify the same items, so to save time,
 //      here's a mixin to state all that CSS.
 //  ---------------------------------------------------------------------------
-& { // create a single scope to load the config into, at least for now
-#stacks-internals #load-config();
 
-.tag-styles(@border: transparent, @background: transparent, @color: inherit) {
+.s-tag-styles(@border: transparent, @background: transparent, @color: inherit) {
     border-color: @border;
     background-color: @background;
     color: @color;
@@ -30,7 +28,7 @@
     }
 }
 
-.tag-hover-styles(@border-hover: transparent, @background-hover: transparent, @color-hover: inherit) {
+.s-tag-hover-styles(@border-hover: transparent, @background-hover: transparent, @color-hover: inherit) {
     &:hover,
     &:focus,
     &:active {
@@ -46,6 +44,7 @@
 //      The same style is applied to all tags. Do not modify the core style.
 //  ---------------------------------------------------------------------------
 .s-tag {
+    #stacks-internals #load-config();
     display: inline-flex;
     align-content: center;
     justify-content: center;
@@ -61,7 +60,7 @@
     vertical-align: middle;
     white-space: nowrap;
 
-    .tag-styles(@tags-border, @tags-background, @tags-color);
+    .s-tag-styles(@tags-border, @tags-background, @tags-color);
 
     //  -- SIZES
     &.s-tag__xs {
@@ -90,7 +89,8 @@
 }
 
 a.s-tag {
-    .tag-hover-styles(@tags-border-hover, @tags-background-hover, @tags-color-hover);
+    #stacks-internals #load-config();
+    .s-tag-hover-styles(@tags-border-hover, @tags-background-hover, @tags-color-hover);
 }
 
 //  $$  DISMISS ICON
@@ -104,7 +104,7 @@ a.s-tag {
     width: @su16;
     height: @su16;
     margin-left: @su4;
-    padding: @su2 / 2;
+    padding: (@su2 / 2);
     border-radius: @br-sm;
     cursor: pointer;
 
@@ -137,36 +137,43 @@ a.s-tag {
 //  $$  Required Tag
 //  ---------------------------------------------------------------------------
 .s-tag__required {
-    .tag-styles(@tags-required-border, @tags-required-background, @tags-required-color);
+    #stacks-internals #load-config();
+    .s-tag-styles(@tags-required-border, @tags-required-background, @tags-required-color);
 }
 a.s-tag__required {
-    .tag-hover-styles(@tags-required-border-hover, @tags-required-background-hover, @tags-required-color-hover);
+    #stacks-internals #load-config();
+    .s-tag-hover-styles(@tags-required-border-hover, @tags-required-background-hover, @tags-required-color-hover);
 }
 
 //  $$  Moderator Tag
 //  ---------------------------------------------------------------------------
 .s-tag__moderator {
-    .tag-styles(@tags-moderator-border, @tags-moderator-background, @tags-moderator-color);
+    #stacks-internals #load-config();
+    .s-tag-styles(@tags-moderator-border, @tags-moderator-background, @tags-moderator-color);
 }
 a.s-tag__moderator {
-    .tag-hover-styles(@tags-moderator-border-hover, @tags-moderator-background-hover, @tags-moderator-color-hover);
+    #stacks-internals #load-config();
+    .s-tag-hover-styles(@tags-moderator-border-hover, @tags-moderator-background-hover, @tags-moderator-color-hover);
 }
 
 //  $$  Muted Tag
 //  ---------------------------------------------------------------------------
 .s-tag__muted {
-    .tag-styles(@tags-muted-border, @tags-muted-background, @tags-muted-color);
+    #stacks-internals #load-config();
+    .s-tag-styles(@tags-muted-border, @tags-muted-background, @tags-muted-color);
 }
 a.s-tag__muted {
-    .tag-hover-styles(@tags-muted-border-hover, @tags-muted-background-hover, @tags-muted-color-hover);
+    #stacks-internals #load-config();
+    .s-tag-hover-styles(@tags-muted-border-hover, @tags-muted-background-hover, @tags-muted-color-hover);
 }
 
 //  $$  Themed Tag
 //  ---------------------------------------------------------------------------
 .s-tag__themed {
-    .tag-styles(var(--theme-primary-color), var(--theme-primary-color-fade-15), var(--theme-primary-color-darken-5));
+    #stacks-internals #load-config();
+    .s-tag-styles(var(--theme-primary-color), var(--theme-primary-color-fade-15), var(--theme-primary-color-darken-5));
 }
 a.s-tag__themed {
-    .tag-hover-styles(var(--theme-primary-color-darken-5), var(--theme-primary-color-fade-35), var(--theme-primary-color-darken-10));
+    #stacks-internals #load-config();
+    .s-tag-hover-styles(var(--theme-primary-color-darken-5), var(--theme-primary-color-fade-35), var(--theme-primary-color-darken-10));
 }
-} // Close mixin config scope

@@ -1,22 +1,25 @@
-<div class="bg-black-050 ps-fixed h64 t0 l0 r0 z-nav-fixed bb bc-black-3 js-stacks-topbar print:d-none">
+<header class="bg-black-050 ps-fixed h64 t0 l0 r0 z-nav-fixed bb bc-black-3 js-stacks-topbar print:d-none">
     <div class="grid ai-center px16 h100 mx-auto wmx12 sm:jc-space-between">
         <a class="grid grid__center p8 mr8 s-link s-link__muted d-none md:d-block js-hamburger-btn" href="#">
             {% icon "Hamburger", "js-hamburger-icon" %}
             {% icon "Clear", "d-none js-hamburger-close-icon" %}
         </a>
         <a class="grid--cell js-logo" href="{{ "/" | relative_url }}">
+            <span class="v-visible-sr">Stacks home</span>
             {% icon "LogoGlyphMd", "native" %}
         </a>
+
         {% if site-navigation %}
-            <div class="s-navigation mx16 fw-nowrap sm:d-none">
+            <nav class="s-navigation mx16 fw-nowrap sm:d-none">
                 {% assign slug = page.url | replace:'/',' ' | truncatewords: 2 | remove:'...' %}
 
                 {% for section in site-navigation.sections %}
                     {% assign url = section.url | replace:'/',' ' | truncatewords: 2 | remove:'...' %}
                     <a class="s-navigation--item{% if url == slug %} is-selected{% endif %}" href="{{ section.url }}">{{ section.title }}</a>
                 {% endfor %}
-            </div>
+            </nav>
         {% endif %}
+
         <a class="grid--cell fc-black-300 ml-auto sm:d-none" title="Stack Overflow" href="https://stackoverflow.com">
             {% icon "LogoGlyphSm" %}
         </a>
@@ -75,4 +78,4 @@
             {% icon "Clear", "d-none js-search-close-icon" %}
         </a>
     </div>
-</div>
+</header>

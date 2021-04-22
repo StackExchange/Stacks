@@ -1,66 +1,88 @@
 ---
 layout: page
 title: Icons
-description: All system icons are inline SVG files, invoked via a Razor helper. The helper will insert a properly formatted and minified SVG file into your view. All icons are managed and stored within the <a href="https://github.com/StackExchange/Stacks-Icons">Icons</a> repository.
+description: Stacks provides a complete icon set, managed separately in the <a href="https://github.com/StackExchange/Stacks-Icons">Stacks-Icons</a> repository. There you’ll find deeper documentation on the various uses as well as the icons’ source in our design tool Figma.
 ---
 
 <section class="stacks-section">
-    {% header "h2", "Using the icon helpers" %}
-    <p class="stacks-copy">Our icons are delivered as a Razor helper in Stack Overflow’s production environment, a custom liquid tag in our documentation’s Eleventy site generator, and a JavaScript helper for use in prototypes.</p>
-    <p class="stacks-copy">Helpers should be used for all icons in lieu of SVG sprite sheets or raster image assets. This ensures a single source of truth for all icons.</p>
+    {% header "h2", "Usage" %}
+    <p class="stacks-copy">Stacks icons are designed to be directly injected into the markup as an <code class="stacks-code">svg</code> element. This allows us to color them on the fly using any of our atomic classes. We have different helpers in different environments.</p>
 
-    {% header "h3", "Basic" %}
+    {% header "h3", "Production" %}
+    <p class="stacks-copy">If you’re in Stack Overflow’s production environment, we have a helper that can be called with <code class="stacks-code">@Svg.</code> and the icon name, eg. <code class="stacks-code">@Svg.Alert</code>. By default, any icon will inherit the text color of the parent element. Optionally, you can pass the class <code class="stacks-code">native</code> to the icon to render any native colors that are included eg. <code class="stacks-code">@Svg.Ballon.With("native")</code>. This same syntax allows you to pass additional arbitrary classes like atomic helpers, or <code class="stacks-code">js-</code> prefixed classes.</p>
     <div class="stacks-preview">
-{% highlight html %}
-<!-- Razor -->
+{% highlight java %}
 @Svg.Logo
-
-<!-- Liquid -->
-{% icon "Logo" %}
-
-<!-- JavaScript Helper -->
-<svg data-icon="Logo"></svg>
-{% endhighlight %}
-        <div class="stacks-preview--example">
-            {% icon "Logo" %}
-        </div>
-    </div>
-
-    {% header "h3", "Native colors" %}
-    <p class="stacks-copy">By default, every icon will inherit the text color of its parent. To override this and show the icon with its native colors (Our logos, for example), you can include the <code class="stacks-code">native</code> class in the helper.</p>
-
-    <div class="stacks-preview">
-{% highlight html %}
-<!-- Razor -->
 @Svg.Logo.With("native")
-
-<!-- Liquid -->
-{% icon "Logo", "native" %}
-
-<!-- JavaScript Helper -->
-<svg data-icon="Logo" class="native"></svg>
+@Svg.Logo.With("fc-black-350 float-right js-dropdown-target")
 {% endhighlight %}
         <div class="stacks-preview--example">
-            {% icon "Logo", "native" %}
+            <div class="grid gs24 fw-wrap ff-mono">
+                <div class="grid--cell">
+                    <div class="fc-medium mb12">Default</div>
+                    {% icon "Logo" %}
+                </div>
+                <div class="grid--cell">
+                    <div class="fc-medium mb12">With native colors</div>
+                    {% icon "Logo", "native" %}
+                </div>
+                <div class="grid--cell ml-auto">
+                    <div class="fc-medium mb12">With arbitrary classes</div>
+                    {% icon "Logo", "fc-black-350 float-right js-dropdown-target" %}
+                </div>
+            </div>
         </div>
     </div>
 
-    {% header "h3", "Arbitrary classes" %}
-    <p class="stacks-copy">In fact, our helper supports arbitrary classes as well.</p>
-
+    {% header "h3", "Prototypes" %}
+    <p class="stacks-copy">Our icon set also includes a JavaScript library for use in protoypes outside our production environment. This JavaScript is loaded in our Stacks playground in <a href="https://codepen.io/pen?template=VwvKygL">Codepen</a>. If you’re building a prototype in your own environment, you’ll need to include Stacks as a dependency as well as the <a href="https://github.com/StackExchange/Stacks-Icons#using-the-front-end-helper-for-prototyping">icons library</a>.</p>
     <div class="stacks-preview">
 {% highlight html %}
-<!-- Razor -->
-@Svg.Logo.With("native float-right js-dropdown-target")
-
-<!-- Liquid -->
-{% icon "Logo", "native float-right js-dropdown-target" %}
-
-<!-- JavaScript Helper -->
-<svg data-icon="Logo" class="native float-right js-dropdown-target"></svg>
+<svg data-icon="Logo"></svg>
+<svg data-icon="Logo" class="native"></svg>
+<svg data-icon="Logo" class="fc-black-350 float-right js-dropdown-target"></svg>
 {% endhighlight %}
-        <div class="stacks-preview--example overflow-hidden">
-            {% icon "Logo", "native float-right js-dropdown-target" %}
+        <div class="stacks-preview--example">
+            <div class="grid gs24 fw-wrap ff-mono">
+                <div class="grid--cell">
+                    <div class="fc-medium mb12">Default</div>
+                    {% icon "Logo" %}
+                </div>
+                <div class="grid--cell">
+                    <div class="fc-medium mb12">With native colors</div>
+                    {% icon "Logo", "native" %}
+                </div>
+                <div class="grid--cell ml-auto">
+                    <div class="fc-medium mb12">With arbitrary classes</div>
+                    {% icon "Logo", "fc-black-350 float-right js-dropdown-target" %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% header "h3", "Documentation" %}
+    <p class="stacks-copy">For use within our documentation, we’ve also included a Liquid helper.</p>
+    <div class="stacks-preview">
+{% highlight java %}
+{% icon "Logo" %}
+{% icon "Logo", "native" %}
+{% icon "Logo", "fc-black-350 float-right js-dropdown-target" %}
+{% endhighlight %}
+        <div class="stacks-preview--example">
+            <div class="grid gs24 fw-wrap ff-mono">
+                <div class="grid--cell">
+                    <div class="fc-medium mb12">Default</div>
+                    {% icon "Logo" %}
+                </div>
+                <div class="grid--cell">
+                    <div class="fc-medium mb12">With native colors</div>
+                    {% icon "Logo", "native" %}
+                </div>
+                <div class="grid--cell ml-auto">
+                    <div class="fc-medium mb12">With arbitrary classes</div>
+                    {% icon "Logo", "fc-black-350 float-right js-dropdown-target" %}
+                </div>
+            </div>
         </div>
     </div>
 </section>
@@ -72,7 +94,6 @@ description: All system icons are inline SVG files, invoked via a Razor helper. 
         <li><a href="https://github.com/StackExchange/Stacks-Icons/issues/new">Submit a request</a> outlining the desired icon, the icon’s intended purposed, and where it will be used.</li>
         <li>If the icon is ready, <a href="https://github.com/StackExchange/Stacks-Icons/compare">submit a pull request</a> to have it to be reviewed. Please be sure to provide the same information as above.</li>
     </ol>
-    <p class="stacks-copy">If you have further questions, visit the project’s Slack channel: #stacks.</p>
 </section>
 
 <section class="stacks-section mb32" id="js-sortable-list">
@@ -100,4 +121,5 @@ description: All system icons are inline SVG files, invoked via a Razor helper. 
 </section>
 
 <!-- Additional javascript -->
+<script src="{{ "/assets/js/library.list.js" | relative_url }}" defer></script>
 <script src="{{ "/assets/js/svg-search.js" | relative_url }}" defer></script>
