@@ -3,17 +3,23 @@
         <div class="d-none sm:d-block">
             <div class="d-flex fd-column ai-center">
                 {% if site-navigation %}
-                    <div class="s-navigation s-navigation__wrap mx8 mb12 jc-center">
+                    <nav class="s-navigation s-navigation__wrap mx8 mb12 jc-center" aria-label="Global navigation">
                         {% assign slug = page.url | replace:'/',' ' | truncatewords: 2 | remove:'...' %}
 
                         {% for section in site-navigation.sections %}
                             {% assign url = section.url | replace:'/',' ' | truncatewords: 2 | remove:'...' %}
                             <a class="s-navigation--item{% if url == slug %} is-selected{% endif %}" href="{{ section.url }}">{{ section.title }}</a>
                         {% endfor %}
-                    </div>
+                    </nav>
                 {% endif %}
+<<<<<<< HEAD
                 <div class="d-flex fs16 ai-center fw-wrap mx8">
                     <a class="flex--cell fc-black-300" href="https://stackoverflow.com/">
+=======
+
+                <div class="grid gs16 ai-center fw-wrap mx8">
+                    <a class="grid--cell fc-black-300" href="https://stackoverflow.com/">
+>>>>>>> develop
                         {% icon "LogoGlyphSm" %}
                     </a>
 
@@ -39,28 +45,20 @@
 
                 {% if url == slug %}
                     {% if section.sections %}
-                        <ul id="nav" class="list-reset">
-                        {% for section in section.sections %}
-                            <li class="mb16">
-                                <div class="px16 py6 fw-bold tt-uppercase fs-fine mt16">
+                        <nav id="nav" class="s-navigation s-navigation__vertical mt16" aria-label="Navigation">
+                            {% for section in section.sections %}
+                                <div class="s-navigation--title">
                                     {{ section.title }}
                                 </div>
                                 {% if section.links %}
-                                    <ul class="list-reset">
-                                        {% for link in section.links %}
-                                            <li>
-                                                <a class="d-flex jc-space-between ai-center py6 px12 s-link s-link__muted mx4 {% if page.url == link.url %}bg-orange-400 bar-pill fc-white{% endif %}" href="{{ link.url | relative_url }}">
-                                                    <span class="flex--cell">
-                                                        {{ link.title }}
-                                                    </span>
-                                                </a>
-                                            </li>
-                                        {% endfor %}
-                                    </ul>
+                                    {% for link in section.links %}
+                                        <a class="s-navigation--item {% if page.url == link.url %}is-selected{% endif %}" href="{{ link.url | relative_url }}">
+                                            {{ link.title }}
+                                        </a>
+                                    {% endfor %}
                                 {% endif %}
-                            </li>
-                        {% endfor %}
-                        </ul>
+                            {% endfor %}
+                        </nav>
                     {% endif %}
                 {% endif %}
             {% endfor %}

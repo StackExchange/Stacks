@@ -20,6 +20,7 @@ a,
     text-decoration: none;
     color: @link-color;
     cursor: pointer;
+    user-select: auto;
 
     &.s-link__visited:visited {
         color: @link-color-visited;
@@ -101,6 +102,7 @@ button.s-link {
     border: 0;
     padding: 0;
     line-height: inherit;
+    user-select: auto;
 
     &:focus {
         outline: none;
@@ -108,10 +110,11 @@ button.s-link {
 }
 
 .s-anchors {
-    .colorize-all(@name, @normal, @hover, @visited) {
+    .colorize-all(@name, @normal, @hover) {
         &.s-anchors__@{name},
         & .s-anchors.s-anchors__@{name} {
-            a:not(.s-link) {
+            a:not(.s-link),
+            .s-btn.s-btn__link {
                 color: @normal;
 
                 &:hover,
@@ -120,46 +123,76 @@ button.s-link {
                 }
 
                 &:visited {
-                    color: @visited;
+                    color: @normal;
+
+                    &:hover,
+                    &:active {
+                        color: @hover;
+                    }
                 }
             }
         }
     }
     &.s-anchors__underlined {
-        a:not(.s-link) {
+        a:not(.s-link),
+        .s-btn.s-btn__link {
             text-decoration: underline;
         }
     }
     #stacks-internals #load-config();
-    .colorize-all(default, @link-color, @link-color-hover, @link-color-visited);
-    .colorize-all(grayscale, var(--black-700), var(--black-600), var(--black-900));
-    .colorize-all(inherit, inherit, inherit, inherit);
-    .colorize-all(muted, var(--black-500), var(--black-400), var(--black-600));
-    .colorize-all(danger, var(--red-500), var(--red-400), var(--red-600));
+    .colorize-all(default, @link-color, @link-color-hover);
+    .colorize-all(grayscale, var(--black-700), var(--black-600));
+    .colorize-all(inherit, inherit, inherit);
+    .colorize-all(muted, var(--black-500), var(--black-400));
+    .colorize-all(danger, var(--red-500), var(--red-400));
 }
 
 .s-block-link {
     display: block;
+    width: 100%;
     color: var(--black-600);
-    padding: @su6 @su8;
+    padding: @su6 @su12;
+
+    // Normalize for when applying to a button
+    cursor: pointer;
+    border: none;
+    background: transparent;
+    border-radius: 0;
+    text-align: left;
+    line-height: inherit;
 
     &:hover,
     &:active {
         color: var(--black-800);
     }
 
+    @focus-styles();
+
     &.is-selected {
         color: var(--black-800);
         font-weight: bold;
         background-color: var(--black-050);
 
+        .dark-mode({
+            background-color: var(--black-025);
+        });
+
         #stacks-internals #load-config();
         &.s-block-link__right {
-            border-right: 3px solid @block-link-highlight;
+            box-shadow: inset -3px 0 0 @block-link-highlight;
         }
 
         &.s-block-link__left {
-            border-left: 3px solid @block-link-highlight;
+            box-shadow: inset 3px 0 0 @block-link-highlight;
+        }
+    }
+
+    &.s-block-link__danger {
+        color: var(--red-500);
+
+        &:hover,
+        &:active {
+            color: var(--red-700);
         }
     }
 }

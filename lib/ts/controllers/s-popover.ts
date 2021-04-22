@@ -82,7 +82,7 @@ namespace Stacks {
             // ensure the popper has been positioned correctly
             this.scheduleUpdate();
 
-            this.shown();
+            this.shown(dispatcherElement);
         }
 
         /**
@@ -105,7 +105,7 @@ namespace Stacks {
                 this.popper = null;
             }
 
-            this.hidden();
+            this.hidden(dispatcherElement);
         }
 
         /**
@@ -146,11 +146,15 @@ namespace Stacks {
                     {
                         name: "offset",
                         options: {
-                            // Popperjs does not respect margins on the element, so set the offset here
-                            // NOTE: this value matches the CSS value of auto-placed popovers margins (@su8 + 2)
-                            offset: [0, 10]
+                            offset: [0, 10], // The entire popover should be 10px away from the element
                         }
-                    }
+                    },
+                    {
+                        name: "arrow",
+                        options: {
+                            element: ".s-popover--arrow"
+                        },
+                    },
                 ]
             });
         }

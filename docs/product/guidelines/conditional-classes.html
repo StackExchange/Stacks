@@ -62,7 +62,7 @@ description: Stacks provides conditional atomic classes to easily build complex 
     {% comment %}
         This is a terrible hack to be able to highlight our markup
     {% endcomment %}
-<pre class="language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>d-flex ai-center <span class="md:highlight">md:fd-column</span> fs16<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><br>    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>flex--cell fs-body3 <span class="lg:highlight">lg:ta-center</span><span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><br>        …<br>    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span><br>    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>flex--cell <span class="sm:highlight">sm:d-none</span><span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><br>        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>svg</span><span class="token punctuation">&gt;</span></span>…<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>svg</span><span class="token punctuation">&gt;</span></span><br>    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span><br><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span></code></pre>
+<pre class="language-html s-code-block"><code class="language-html s-code-block"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"d-flex ai-center <span class="md:highlight">md:fd-column</span> fs16"</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"flex--cell fs-body3 <span class="lg:highlight">lg:ta-center</span>"</span>&gt;</span><br>        …<br>    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"flex--cell <span class="sm:highlight">sm:d-none</span>"</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">svg</span>&gt;</span>…<span class="hljs-tag">&lt;/<span class="hljs-name">svg</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></code></pre>
         <div class="stacks-preview--example p32">
             <div class="d-flex ai-center md:fd-column fs16 js-grid">
                 <div class="flex--cell fs-body3 lg:ta-center js-grid-left">
@@ -204,10 +204,20 @@ description: Stacks provides conditional atomic classes to easily build complex 
     <p class="stacks-copy">Stacks provides darkmode-only atomic classes. By applying <code class="stacks-code">.d:bg-green-100</code>, you’re saying “In dark mode, apply a background of green 100.”</p>
     <div class="stacks-preview">
 {% highlight html %}
-<div class="bg-yellow-100 d:bg-green-100 d:bc-transparent"></div>
+<div class="bc-yellow-1 bg-yellow-100 d:bg-green-100 d:bc-transparent"></div>
 {% endhighlight %}
         <div class="stacks-preview--example">
-            <div class="bar-sm p12 bg-yellow-100 ba bc-black-2 d:bg-green-100 d:bc-transparent">This element will be yellow with a border by default but green without a border in dark mode.</div>
+            <div class="bar-sm p12 bg-yellow-100 ba bc-yellow-1 d:bg-green-100 d:bc-transparent">This element will be yellow with a border by default but green without a border in dark mode.</div>
+        </div>
+    </div>
+
+    <p class="stacks-copy">In addition to specific overrides, you can force an element’s colors to be light or dark by applying <code class="stacks-code">.theme-dark__forced</code> or <code class="stacks-code">.theme-light__forced</code>. This comes in handy when showing users a preview of light or dark interface elements.</p>
+    <div class="stacks-preview">
+{% highlight html %}
+<div class="fc-dark bg-yellow-100 ba bc-yellow-1 theme-light__forced"></div>
+{% endhighlight %}
+        <div class="stacks-preview--example">
+            <div class="theme-light__forced bar-sm p12 fc-dark bg-yellow-100 ba bc-yellow-1">This element will be rendered with light mode colors regardless of theme preference.</div>
         </div>
     </div>
 </section>
@@ -221,25 +231,25 @@ description: Stacks provides conditional atomic classes to easily build complex 
     @media (max-width: 1264px) {
         .lg\:highlight {
             padding: 3px 8px;
-            background-color: #fff;
+            background-color: var(--highlight-variable);
             border-radius: 40px;
-            color: #367D4D !important;
+            color: var(--highlight-bg);
         }
     }
     @media (max-width: 980px) {
         .md\:highlight {
             padding: 3px 8px;
-            background-color: #fff;
+            background-color: var(--highlight-variable);
             border-radius: 40px;
-            color: #367D4D !important;
+            color: var(--highlight-bg);
         }
     }
     @media (max-width: 640px) {
         .sm\:highlight {
             padding: 3px 8px;
-            background-color: #fff;
+            background-color: var(--highlight-variable);
             border-radius: 40px;
-            color: #367D4D !important;
+            color: var(--highlight-bg);
         }
     }
 </style>

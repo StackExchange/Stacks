@@ -310,8 +310,8 @@
 //  --  FLEX
 //      Graduating scale of flex-grow and flex-shrink values
 //  ----------------------------------------------------------------------------
-.fl0                      { flex: 0 auto !important; }
-.fl1                      { flex: 1 auto !important; }
+#stacks-internals #responsify('.fl0', { flex: 0 auto !important; });
+#stacks-internals #responsify('.fl1', { flex: 1 auto !important; });
 .fl2                      { flex: 2 auto !important; }
 .fl3                      { flex: 3 auto !important; }
 .fl4                      { flex: 4 auto !important; }
@@ -340,6 +340,13 @@
 .fl-grow3                     { flex-grow: 3; }
 .fl-grow4                     { flex-grow: 4; }
 .fl-grow5                     { flex-grow: 5; }
+
+//  --  FLEX NONE
+//      This is equivalent to flex: 0 0 auto.
+//      It sizes the item according to its width/height properties, but makes it
+//      fully inflexible.
+//  ----------------------------------------------------------------------------
+.fl-none                      { flex: none; }
 
 //  --  FLEX EQUAL
 //      Equally space all children of a flex layout

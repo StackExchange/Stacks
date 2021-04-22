@@ -1,17 +1,24 @@
-const syntaxHighlight = require("@11ty/eleventy-plugin-syntaxhighlight");
+const hljs = require("highlight.js");
+const syntaxHighlight = require("eleventy-plugin-highlightjs");
 const pluginTOC = require("eleventy-plugin-nesting-toc");
+const markdownShortcode = require("eleventy-plugin-markdown-shortcode");
+const { default: Icons, Spots } = require("@stackoverflow/stacks-icons");
+const { version } = require("../package.json");
 
 module.exports = function(eleventyConfig) {
+  eleventyConfig.setQuietMode(true); // Reduce the console output
   eleventyConfig.addLayoutAlias('home', 'layouts/home.html');
   eleventyConfig.addLayoutAlias('page', 'layouts/page.html');
   eleventyConfig.addLayoutAlias('page-nomenu', 'layouts/page-nomenu.html');
 
   // Icon shortcode
   eleventyConfig.addLiquidShortcode("icon", function(name, classes, dimension) {
-    var fs = require("fs");
-    var path = "_includes/svg-icons/" + name + ".svg";
-    var svg = fs.readFileSync(path).toString("utf-8");
+    var svg = Icons[name];
     var defaultClasses = "svg-icon icon" + name;
+
+    if (!svg) {
+      return `<span class="fc-danger">Invalid icon: ${name}</span>`;
+    }
 
     // If we have classes, add them
     if (classes != null) {
@@ -28,9 +35,12 @@ module.exports = function(eleventyConfig) {
 
   // Spot shortcode
   eleventyConfig.addLiquidShortcode("spot", function(name, classes, dimension) {
-    var fs = require("fs");
-    var path = "_includes/svg-spots/" + name + ".svg";
-    var svg = fs.readFileSync(path).toString("utf-8");
+    var svg = Spots[name];
+
+    if (!svg) {
+      return `<span class="fc-danger">Invalid spot: ${name}</span>`;
+    }
+
     var defaultClasses = "svg-spot spot" + name;
 
     // If we have classes, add them
@@ -49,8 +59,7 @@ module.exports = function(eleventyConfig) {
   // Header shortcode
   eleventyConfig.addLiquidShortcode("header", function(tag, text) {
     var slug = text.replace(/\s+/g, '-').toLowerCase();
-    var fs = require("fs");
-    var linkIcon = fs.readFileSync("_includes/svg-icons/Link.svg").toString("utf-8");
+    var linkIcon = Icons["Link"];
 
     var output = '';
     output += '<div class="d-flex jc-space-between ai-end pe-none stacks-header">';
@@ -58,6 +67,7 @@ module.exports = function(eleventyConfig) {
     output +=     '<span class="pe-auto">' + text + '</span>';
     output +=   '</' + tag + '>';
     output +=   '<a class="d-flex flex__center mbn6 s-btn s-btn__muted pe-auto" href="#'+ slug +'">';
+    output +=     '<span class="v-visible-sr">Section titled ' + text + '</span>';
     output +=     linkIcon;
     output +=   '</a>';
     output += '</div>';
@@ -65,11 +75,83 @@ module.exports = function(eleventyConfig) {
     return output;
   });
 
+  // Version shortcode
+  eleventyConfig.addLiquidShortcode("version", function() {
+    return {version}.version;
+  });
+
+
+  // highlightjs line-numbering support
+  // add `linenums` or `linenums:startNumber` to the start of your code for detection
+  class HljsInsertLineNums {
+    constructor() {
+        this.shouldInsert = false;
+        this.startNumber = 1;
+    }
+
+    "before:highlight"(data) {
+        var match = /^linenums(:\d+)?/.exec(data.code);
+        if (!match) {
+            return;
+        }
+        var startNumber = +(match[1] || "").slice(1) || 1;
+
+        this.shouldInsert = true;
+        this.startNumber = startNumber;
+        data.code = data.code.replace(/^linenums(:\d+)?/, "");
+    }
+
+    "after:highlight"(result) {
+        if (!this.shouldInsert) {
+            return;
+        }
+
+        var startNumber = this.startNumber;
+
+        var content = result.value;
+        var lines = content.split(/\r?\n/);
+
+        var output = "";
+        for (var i = 0; i < lines.length; i++) {
+            output += "<div>" + (i + startNumber) + "</div>";
+        }
+
+        var newContent =
+            '<code class="s-code-block--line-numbers">' +
+            output +
+            "</code>" +
+            content;
+        result.value = newContent;
+
+        this.shouldInsert = false;
+      }
+  }
+
   // Add syntax highlighting
-  eleventyConfig.addPlugin(syntaxHighlight);
+  eleventyConfig.addPlugin(syntaxHighlight, {
+      className: "s-code-block",
+      init: function ({ hljs }) {
+          // TODO custom plugin taken from Prod - should probably be an npm package?
+          hljs.addPlugin(new HljsInsertLineNums());
+      },
+  });
+
+  // Add markdown shortcode
+  eleventyConfig.addPlugin(markdownShortcode, {
+    html: true,
+    highlight: function (str, lang) {
+      if (lang && hljs.getLanguage(lang)) {
+        return '<pre class="language-' + lang + ' s-code-block"><code class="language-' + lang + ' s-code-block">' +
+               hljs.highlight(str, {language: lang}).value +
+               '</code></pre>';
+      }
+
+      return ''; // use external default escaping
+    }
+  });
 
   // Add submenu generation
-  eleventyConfig.addPlugin(pluginTOC, {tags: ['h2', 'h3']});
+  eleventyConfig.addPlugin(pluginTOC, {tags: ['h2', 'h3'], wrapper: 'nav aria-label="Table of contents"'});
 
   // Copy these files over to _site
   eleventyConfig.addPassthroughCopy('assets');

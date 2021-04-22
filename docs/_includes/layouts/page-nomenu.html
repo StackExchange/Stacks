@@ -10,7 +10,7 @@
         {% include navigation.html %}
 
         <div class="flex--cell w80 md:w100">
-            <div id="content" class="d-flex jc-space-between ps-relative t64 py24 pl48 pr16 md:pl24 sm:pl16 sm:pr16">
+            <main id="content" class="d-flex jc-space-between ps-relative t64 py24 pl48 pr16 md:pl24 sm:pl16 sm:pr16">
                 <div class="flex--cell w100">
                     {% if title %}
                         <h1 class="stacks-h1">{{ title }}</h1>
@@ -21,8 +21,14 @@
                         </p>
                     {% endif %}
                     {{ content }}
+                    <div class="d-flex jc-end mt48 mb32">
+                        <a href="https://github.com/StackExchange/Stacks/edit/develop/docs/{{ page.inputPath }}" class="flex--cell s-btn s-btn__icon s-btn__muted">
+                            {% icon "Pencil" %}
+                            Edit on GitHub
+                        </a>
+                    </div>
                 </div>
-            </div>
+            </main>
         </div>
     </div>
     {% include scripts.html %}

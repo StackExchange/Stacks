@@ -124,13 +124,7 @@
 
 @bronze: #caa789;
 @bronze-lighter: #f2e9e1;
-@bronze-darker:  #ab825f;
-
-//  $  TEXT COLORS
-//  ----------------------------------------------------------------------------
-@fc-dark: @black-900;
-@fc-medium: @black-700;
-@fc-light: @black-500;
+@bronze-darker: #ab825f;
 
 //  $  RINGS
 //  ----------------------------------------------------------------------------
@@ -155,7 +149,8 @@
 //  ----------------------------------------------------------------------------
 
 //  --  Primary Colors
-body {
+body,
+.theme-light__forced {
     --white: @white;
     --black: @black;
     --orange: @orange;
@@ -290,6 +285,23 @@ body {
 
     // Scrollbars
     --scrollbar: @scrollbar;
+
+    // Syntax highlighting
+    --highlight-bg: #f6f6f6; // Between black-025 and black-050
+    --highlight-color: @black-750; // AAA 11.78
+    --highlight-comment: #656e77; // ~black-500 AA 4.80
+    --highlight-punctuation: var(--black-600); // AA 6.48
+    --highlight-namespace: #b75501; // Custom orange AA 4.51
+    --highlight-attribute: #015692; // Custom blue AAA 7.25
+    --highlight-literal: #b75501; // Custom orange AA 4.51
+    --highlight-symbol: #803378; // Custom purple AAA 7.30
+    --highlight-keyword: #015692; // Custom blue AAA 7.07
+    --highlight-variable: #54790d; // Custom green AAA 7.25
+    --highlight-addition: @green-700; // AA 5.59
+    --highlight-deletion: @red-600; // AA 5.31
+
+    // Theming
+    --theme-body-font-color: var(--black-800);
 }
 
 //  --  Dark mode
@@ -418,6 +430,20 @@ body {
 
     // Scrollbars
     --scrollbar: rgba(255, 255, 255, .2);
+
+    // Syntax highlighting
+    --highlight-bg: #1c1b1b;
+    --highlight-color: @white; // AAA 17.19
+    --highlight-comment: #999; // AA 6.03
+    --highlight-punctuation: #ccc; // AAA 10.70
+    --highlight-namespace: #f08d49; // orange-700 AAA 7.05
+    --highlight-attribute: #88aece; // Custom powder blue AAA 7.63
+    --highlight-literal: #f08d49; // orange-700 AAA 7.05
+    --highlight-symbol: #c59bc1; // Custom purple AAA 7.23
+    --highlight-keyword: #88aece; // Custom powder blue AAA 7.63
+    --highlight-variable: #b5bd68;
+    --highlight-addition: var(--green-600); // AAA 8.21
+    --highlight-deletion: var(--red-700); // AA 5.51
 }
 
 body.theme-system {
@@ -426,6 +452,7 @@ body.theme-system {
     }
 }
 
-body.theme-dark {
+body.theme-dark,
+.theme-dark__forced {
     .dark-colors();
 }

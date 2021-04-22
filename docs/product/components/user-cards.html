@@ -34,7 +34,7 @@ description: User cards are a combination of a user and metadata about the user 
 <div class="s-user-card">
     <time class="s-user-card--time">…</time>
     <a href="…" class="s-avatar s-avatar__32 s-user-card--avatar">
-        <img class="s-avatar--image" src="https://picsum.photos/64" />
+        <img class="s-avatar--image" src="…" />
     </a>
     <div class="s-user-card--info">
         <a href="…" class="s-user-card--link">…</a>
@@ -63,6 +63,25 @@ description: User cards are a combination of a user and metadata about the user 
                     </ul>
                 </div>
             </div>
+
+            <div class="s-user-card mt16">
+                <time class="s-user-card--time">3 minutes ago</time>
+                <a href="#" class="s-avatar s-avatar__32 s-user-card--avatar">
+                    <img class="s-avatar--image" src="https://picsum.photos/64" />
+                </a>
+                <div class="s-user-card--info">
+                    <a href="#" class="s-user-card--link grid gs4">
+                        <div class="grid--cell">Paul Wright</div>
+                        <div class="grid--cell s-badge s-badge__admin s-badge__xs">Mod</div>
+                    </a>
+                    <ul class="s-user-card--awards">
+                        <li class="s-user-card--rep">2,500</li>
+                        <li class="s-award-bling s-award-bling__gold">5</li>
+                        <li class="s-award-bling s-award-bling__silver">9</li>
+                        <li class="s-award-bling s-award-bling__bronze">1</li>
+                    </ul>
+                </div>
+            </div>
         </div>
     </div>
 </section>
@@ -75,7 +94,7 @@ description: User cards are a combination of a user and metadata about the user 
 <div class="s-user-card s-user-card__highlighted">
     <time class="s-user-card--time">…</time>
     <a href="…" class="s-avatar s-avatar__32 s-user-card--avatar">
-        <img class="s-avatar--image" src="https://picsum.photos/64" />
+        <img class="s-avatar--image" src="…" />
     </a>
     <div class="s-user-card--info">
         <a href="…" class="s-user-card--link">…</a>
@@ -85,6 +104,11 @@ description: User cards are a combination of a user and metadata about the user 
             <li class="s-award-bling s-award-bling__silver">…</li>
             <li class="s-award-bling s-award-bling__bronze">…</li>
         </ul>
+    </div>
+
+    <!-- Optional -->
+    <div class="s-user-card--type">
+        @Svg.StarVerifiedSm Partner
     </div>
 </div>
 {% endhighlight %}
@@ -104,6 +128,50 @@ description: User cards are a combination of a user and metadata about the user 
                     </ul>
                 </div>
             </div>
+
+            <div class="grid gsx gs16 mt16">
+                <div class="grid--cell">
+                    <div class="s-user-card s-user-card__highlighted wmx2">
+                        <time class="s-user-card--time">3 minutes ago</time>
+                        <a href="#" class="s-avatar s-avatar__32 s-user-card--avatar">
+                            <img class="s-avatar--image" src="https://picsum.photos/64/64" />
+                        </a>
+                        <div class="s-user-card--info">
+                            <a href="#" class="s-user-card--link">Paul Wright</a>
+                            <ul class="s-user-card--awards">
+                                <li class="s-user-card--rep">2,500</li>
+                                <li class="s-award-bling s-award-bling__gold">5</li>
+                                <li class="s-award-bling s-award-bling__silver">9</li>
+                                <li class="s-award-bling s-award-bling__bronze">1</li>
+                            </ul>
+                        </div>
+                        <div class="s-user-card--type">
+                            {% icon "StarVerifiedSm" %} Star Wars Partner
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid--cell">
+                    <div class="s-user-card wmx2">
+                        <time class="s-user-card--time">3 minutes ago</time>
+                        <a href="#" class="s-avatar s-avatar__32 s-user-card--avatar">
+                            <img class="s-avatar--image" src="https://picsum.photos/64/64" />
+                        </a>
+                        <div class="s-user-card--info">
+                            <a href="#" class="s-user-card--link">Paul Wright</a>
+                            <ul class="s-user-card--awards">
+                                <li class="s-user-card--rep">2,500</li>
+                                <li class="s-award-bling s-award-bling__gold">5</li>
+                                <li class="s-award-bling s-award-bling__silver">9</li>
+                                <li class="s-award-bling s-award-bling__bronze">1</li>
+                            </ul>
+                        </div>
+                        <div class="s-user-card--type">
+                            {% icon "StarVerifiedSm" %} Star Wars Partner
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </section>
@@ -115,10 +183,13 @@ description: User cards are a combination of a user and metadata about the user 
 {% highlight html %}
 <div class="s-user-card s-user-card__full">
     <a href="…" class="s-avatar s-avatar__48 s-user-card--avatar">
-        <img class="s-avatar--image" src="https://picsum.photos/128" />
+        <img class="s-avatar--image" src="…" />
     </a>
     <div class="s-user-card--info">
-        <a href="#" class="s-user-card--link">…</a>
+        <a href="#" class="s-user-card--link grid gs4">
+            <div class="grid--cell">…</div>
+            <div class="grid--cell s-badge s-badge__staff s-badge__xs">…</div>
+        </a>
         <div class="s-user-card--location">…</div>
         <ul class="s-user-card--awards">
             <li class="s-user-card--rep">…</li>
@@ -126,11 +197,16 @@ description: User cards are a combination of a user and metadata about the user 
             <li class="s-award-bling s-award-bling__silver">…</li>
             <li class="s-award-bling s-award-bling__bronze">…</li>
         </ul>
-        <div class="s-user-card--tags">
-            <a href="…" class="s-tag s-tag__sm">…</a>
-            <a href="…" class="s-tag s-tag__sm">…</a>
-            <a href="…" class="s-tag s-tag__sm">…</a>
+        <div class="s-user-card--tags grid gs4">
+            <a href="…" class="grid--cell s-tag s-tag__xs">…</a>
+            <a href="…" class="grid--cell s-tag s-tag__xs">…</a>
+            <a href="…" class="grid--cell s-tag s-tag__xs">…</a>
         </div>
+    </div>
+
+    <!-- Optional -->
+    <div class="s-user-card--type">
+        @Svg.StarVerifiedSm Partner
     </div>
 </div>
 {% endhighlight %}
@@ -140,19 +216,90 @@ description: User cards are a combination of a user and metadata about the user 
                 <img class="s-avatar--image" src="https://picsum.photos/128" />
             </a>
             <div class="s-user-card--info">
-                <a href="#" class="s-user-card--link">Paul Wright</a>
-                <div class="s-user-card--location">New York City, NY</div>
+                <a href="#" class="s-user-card--link grid gs4">
+                    <div class="grid--cell">Paul Wright</div>
+                    <div class="grid--cell s-badge s-badge__staff s-badge__xs">Staff</div>
+                    <div class="grid--cell s-badge s-badge__admin s-badge__xs">Admin</div>
+                </a>
+                <div class="s-user-card--location">Paris, France</div>
                 <ul class="s-user-card--awards">
                     <li class="s-user-card--rep">2,500</li>
                     <li class="s-award-bling s-award-bling__gold">5</li>
                     <li class="s-award-bling s-award-bling__silver">9</li>
                     <li class="s-award-bling s-award-bling__bronze">1</li>
                 </ul>
-                <div class="s-user-card--tags">
-                    <a href="#" class="s-tag s-tag__sm">javascript</a>
-                    <a href="#" class="s-tag s-tag__sm">node.js</a>
-                    <a href="#" class="s-tag s-tag__sm">graphQL</a>
+                <div class="s-user-card--tags grid gs4">
+                    <a href="#" class="grid--cell s-tag s-tag__xs">javascript</a>
+                    <a href="#" class="grid--cell s-tag s-tag__xs">node.js</a>
+                    <a href="#" class="grid--cell s-tag s-tag__xs">graphQL</a>
                 </div>
+            </div>
+        </div>
+
+        <div class="s-user-card s-user-card__full mt16">
+            <a href="#" class="s-avatar s-avatar__48 s-user-card--avatar">
+                <img class="s-avatar--image" src="https://picsum.photos/128" />
+            </a>
+            <div class="s-user-card--info">
+                <a href="#" class="s-user-card--link grid gs4">
+                    <div class="grid--cell">Nick Craver</div>
+                    <div class="grid--cell s-badge s-badge__admin s-badge__xs">Mod</div>
+                </a>
+                <div class="s-user-card--role">Architecture Lead</div>
+                <div class="s-user-card--location">North Carolina</div>
+                <ul class="s-user-card--awards">
+                    <li class="s-user-card--rep">17k</li>
+                    <li class="s-award-bling s-award-bling__gold">108</li>
+                    <li class="s-award-bling s-award-bling__silver">265</li>
+                    <li class="s-award-bling s-award-bling__bronze">812</li>
+                </ul>
+                <div class="s-user-card--tags grid gs4">
+                    <a href="#" class="grid--cell s-tag s-tag__xs">.net</a>
+                    <a href="#" class="grid--cell s-tag s-tag__xs">sre</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="s-user-card s-user-card__full mt16">
+            <a href="#" class="s-avatar s-avatar__48 s-user-card--avatar">
+                <img class="s-avatar--image" src="https://picsum.photos/128" />
+            </a>
+            <div class="s-user-card--info">
+                <a href="#" class="s-user-card--link">
+                    Aaron Shekey
+                </a>
+                <div class="s-user-card--role">Senior Product Designer</div>
+                <div class="s-user-card--location">Minneapolis, MN</div>
+                <ul class="s-user-card--awards">
+                    <li class="s-user-card--rep">768</li>
+                    <li class="s-award-bling s-award-bling__silver">9</li>
+                    <li class="s-award-bling s-award-bling__bronze">1</li>
+                </ul>
+                <div class="s-user-card--tags grid gs4">
+                    <a href="#" class="grid--cell s-tag s-tag__xs">css</a>
+                    <a href="#" class="grid--cell s-tag s-tag__xs">javascript</a>
+                    <a href="#" class="grid--cell s-tag s-tag__xs">html</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="s-user-card s-user-card__full mt16">
+            <a href="#" class="s-avatar s-avatar__48 s-user-card--avatar">
+                <img class="s-avatar--image" src="https://picsum.photos/128" />
+            </a>
+            <div class="s-user-card--info">
+                <a href="#" class="s-user-card--link">
+                    Aaron Shekey
+                </a>
+                <div class="s-user-card--location">Minneapolis, MN</div>
+                <ul class="s-user-card--awards">
+                    <li class="s-user-card--rep">768</li>
+                    <li class="s-award-bling s-award-bling__silver">9</li>
+                    <li class="s-award-bling s-award-bling__bronze">1</li>
+                </ul>
+            </div>
+            <div class="s-user-card--type">
+                {% icon "StarVerifiedSm" %} Star Wars Partner
             </div>
         </div>
     </div>
@@ -164,14 +311,16 @@ description: User cards are a combination of a user and metadata about the user 
 {% highlight html %}
 <div class="s-user-card s-user-card__small">
     <a href="…" class="s-avatar s-avatar__24 s-user-card--avatar">
-        <img class="s-avatar--image" src="https://picsum.photos/48" />
+        <img class="s-avatar--image" src="…" />
     </a>
-    <ul class="s-user-card--awards">
-        <li class="s-user-card--rep">…</li>
-        <li class="s-award-bling s-award-bling__gold">…</li>
-        <li class="s-award-bling s-award-bling__silver">…</li>
-        <li class="s-award-bling s-award-bling__bronze">…</li>
-    </ul>
+    <div class="s-user-card--info">
+        <ul class="s-user-card--awards">
+            <li class="s-user-card--rep">…</li>
+            <li class="s-award-bling s-award-bling__gold">…</li>
+            <li class="s-award-bling s-award-bling__silver">…</li>
+            <li class="s-award-bling s-award-bling__bronze">…</li>
+        </ul>
+    </div>
 </div>
 {% endhighlight %}
         <div class="stacks-preview--example">
@@ -179,13 +328,14 @@ description: User cards are a combination of a user and metadata about the user 
                 <a href="#" class="s-avatar s-avatar__24 s-user-card--avatar">
                     <img class="s-avatar--image" src="https://picsum.photos/48" />
                 </a>
-
-                <ul class="s-user-card--awards">
-                    <li class="s-user-card--rep">2,500</li>
-                    <li class="s-award-bling s-award-bling__gold">5</li>
-                    <li class="s-award-bling s-award-bling__silver">9</li>
-                    <li class="s-award-bling s-award-bling__bronze">1</li>
-                </ul>
+                <div class="s-user-card--info">
+                    <ul class="s-user-card--awards">
+                        <li class="s-user-card--rep">2,500</li>
+                        <li class="s-award-bling s-award-bling__gold">5</li>
+                        <li class="s-award-bling s-award-bling__silver">9</li>
+                        <li class="s-award-bling s-award-bling__bronze">1</li>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
@@ -197,32 +347,38 @@ description: User cards are a combination of a user and metadata about the user 
 {% highlight html %}
 <div class="s-user-card s-user-card__minimal">
     <time class="s-user-card--time">…</time>
-    <a href="…" class="s-user-card--link">…</a>
-    <ul class="s-user-card--awards">
-        <li class="s-user-card--rep">…</li>
-    </ul>
+    <div class="s-user-card--info">
+        <a href="…" class="s-user-card--link">…</a>
+        <ul class="s-user-card--awards">
+            <li class="s-user-card--rep">…</li>
+        </ul>
+    </div>
 </div>
 
-<div class="s-user-card s-user-card__minimal mt16">
+<div class="s-user-card s-user-card__minimal">
     <time class="s-user-card--time">…</time>
     <a href="…" class="s-avatar s-user-card--avatar">
-        <img class="s-avatar--image" src="https://picsum.photos/48" />
+        <img class="s-avatar--image" src="…" />
     </a>
-    <a href="#" class="s-user-card--link">…</a>
-    <ul class="s-user-card--awards">
-        <li class="s-user-card--rep">…</li>
-    </ul>
+    <div class="s-user-card--info">
+        <a href="#" class="s-user-card--link">…</a>
+        <ul class="s-user-card--awards">
+            <li class="s-user-card--rep">…</li>
+        </ul>
+    </div>
 </div>
 {% endhighlight %}
         <div class="stacks-preview--example">
             <div class="s-user-card s-user-card__minimal">
                 <time class="s-user-card--time">3 minutes ago</time>
-                <a href="#" class="s-user-card--link">
-                    Paul Wright
-                </a>
-                <ul class="s-user-card--awards">
-                    <li class="s-user-card--rep">2,500</li>
-                </ul>
+                <div class="s-user-card--info">
+                    <a href="#" class="s-user-card--link">
+                        Paul Wright
+                    </a>
+                    <ul class="s-user-card--awards">
+                        <li class="s-user-card--rep">2,500</li>
+                    </ul>
+                </div>
             </div>
 
             <div class="s-user-card s-user-card__minimal mt16">
@@ -230,12 +386,14 @@ description: User cards are a combination of a user and metadata about the user 
                 <a href="#" class="s-avatar s-user-card--avatar">
                     <img class="s-avatar--image" src="https://picsum.photos/32" />
                 </a>
-                <a href="#" class="s-user-card--link">
-                    Paul Wright
-                </a>
-                <ul class="s-user-card--awards">
-                    <li class="s-user-card--rep">2,500</li>
-                </ul>
+                <div class="s-user-card--info">
+                    <a href="#" class="s-user-card--link">
+                        Paul Wright
+                    </a>
+                    <ul class="s-user-card--awards">
+                        <li class="s-user-card--rep">2,500</li>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
@@ -248,15 +406,43 @@ description: User cards are a combination of a user and metadata about the user 
 {% highlight html %}
 <div class="s-user-card s-user-card__deleted">
     <time class="s-user-card--time">…</time>
-    <div class="s-avatar s-avatar__32 s-user-card--avatar"></div>
+    <div class="s-avatar s-avatar__32 s-user-card--avatar">
+        <img class="s-avatar--image" src="…" />
+    </div>
     <div class="s-user-card--info">…</div>
+</div>
+
+<div class="s-user-card s-user-card__deleted s-user-card__minimal">
+    <time class="s-user-card--time">3 years ago</time>
+    <div class="s-avatar s-avatar__32 s-user-card--avatar">
+        <img class="s-avatar--image" src="…" />
+    </div>
+    <div class="s-user-card--info">
+        <div class="s-user-card--link">
+            Paul Wright
+        </div>
+    </div>
 </div>
 {% endhighlight %}
         <div class="stacks-preview--example">
             <div class="s-user-card s-user-card__deleted">
                 <time class="s-user-card--time">3 minutes ago</time>
                 <div class="s-avatar s-avatar__32 s-user-card--avatar demo-background"></div>
-                <div class="s-user-card--info">Paul Wright</div>
+                <div class="s-user-card--info">
+                    <div class="s-user-card--link">
+                        Paul Wright
+                    </div>
+                </div>
+            </div>
+
+            <div class="s-user-card s-user-card__deleted s-user-card__minimal mt16">
+                <time class="s-user-card--time">3 years ago</time>
+                <div class="s-avatar s-user-card--avatar demo-background"></div>
+                <div class="s-user-card--info">
+                    <div class="s-user-card--link">
+                        Paul Wright
+                    </div>
+                </div>
             </div>
         </div>
     </div>

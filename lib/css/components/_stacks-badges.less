@@ -63,14 +63,23 @@
     margin-left: -(@su4 + 1);
 }
 
-//  $   BADGE SIZE
+//  $   BADGE SIZES
 //  ---------------------------------------------------------------------------
 .s-badge__sm {
+    min-width: 18px;
     align-self: flex-start;
     padding-right: @su4;
-    padding-left: @su4 - 1;
+    padding-left: @su4;
     font-size: @fs-fine;
     line-height: 1.8;
+}
+
+.s-badge__xs {
+    align-self: flex-start;
+    padding-right: (@su2 / 2);
+    padding-left: (@su2 / 2);
+    font-size: @fs-fine;
+    line-height: 1.2;
 }
 
 //  $$  Badge Counts
@@ -104,6 +113,21 @@
 }
 .s-badge__important {
     .badge-styles(transparent, var(--red-600), var(--white));
+}
+
+//  $$  Users
+//  ---------------------------------------------------------------------------
+.s-badge__admin {
+    .badge-styles(transparent, var(--blue-600), var(--white));
+}
+.s-badge__moderator {
+    .badge-styles(transparent, var(--blue-600), var(--white));
+}
+.s-badge__staff {
+    .badge-styles(transparent, var(--orange-400), var(--white));
+}
+.s-badge__staff--sm {
+    .badge-styles(transparent, var(--orange-400), var(--white));
 }
 
 //  $$  Award Count

@@ -1,0 +1,309 @@
+---
+layout: page
+title: Menus
+description: A menu offers a contextual list of actions or functions.
+---
+<section class="stacks-section">
+    {% header "h2", "Classes" %}
+    <div class="overflow-x-auto mb32">
+        <table class="wmn4 s-table s-table__bx-simple">
+            <thead>
+                <tr>
+                    <th class="s-table--cell4" scope="col">Class</th>
+                    <th class="s-table--cell3" scope="col">Parent</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody class="fs-caption">
+                {% for item in menu.classes %}
+                    <tr>
+                        <th scope="row"><code class="stacks-code">{{ item.class }}</code></th>
+                        <td><code class="stacks-code">{{ item.applies }}</td>
+                        <td class="p8">{{ item.description }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</section>
+<section class="stacks-section">
+    {% header "h2", "Examples" %}
+    <p class="stacks-copy">
+        A menu displays a list of choices temporarily, and usually represent tasks or actions. Don’t confuse menus for <a href="{{ '/product/components/navigation' | relative_url }}">navigation</a>.
+    </p>
+
+    {% header "h3", "Basic" %}
+    <p class="stacks-copy">
+        At its most basic, a menu is a simple styled list of contextual actions. Because they’re contextual, it’s strongly recommended that a menu is contained within a <a href="{{ '/product/components/popovers' | relative_url }}">popover</a> or a <a href="{{ '/product/components/cards' | relative_url }}">card</a>. Menu items are either links or buttons styled with the <a href="{{ '/product/components/links/#block-link' | relative_url }}">block link component</a>, that can optionally be selected or have destructive styling. When placed in various containers, you’ll need to either account for the padding on the container, or use negative margins on the menu component itself.
+    </p>
+    <div class="stacks-preview">
+{% highlight html %}
+<div class="s-popover">
+    <ul class="s-menu mxn12 myn8" role="menu">
+        <li role="menuitem">
+            <a href="…" class="s-block-link">…</a>
+        </li>
+        <li role="menuitem">
+            <button class="s-block-link">…</button>
+        </li>
+    </ul>
+</div>
+
+<div class="s-card px0 py4">
+    <ul class="s-menu" role="menu">
+        …
+    </ul>
+</div>
+
+<ul class="s-menu" role="menu">
+    <li role="menuitem">
+        <a href="…" class="s-block-link px0">…</a>
+    </li>
+</ul>
+{% endhighlight %}
+        <div class="stacks-preview--example">
+            <div class="grid gs32 fw-wrap">
+                <div class="grid--cell">
+                    <div class="ff-mono mb16">Within a popover</div>
+                    <div class="s-popover is-visible ps-relative ws2">
+                        <div class="s-popover--arrow s-popover--arrow__tc"></div>
+                        <ul class="s-menu mxn12 myn8" role="menu">
+                            <li role="menuitem">
+                                <a href="#" class="s-block-link">
+                                    Share
+                                </a>
+                            </li>
+                            <li role="menuitem">
+                                <a href="#" class="s-block-link">
+                                    Edit
+                                </a>
+                            </li>
+                            <li role="menuitem">
+                                <button class="s-block-link">
+                                    Follow
+                                </button>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="grid--cell">
+                    <div class="ff-mono mb16">Within a card</div>
+                    <div class="s-card px0 py4">
+                        <ul class="s-menu" role="menu">
+                            <li role="menuitem">
+                                <a href="#" class="s-block-link">
+                                    Share
+                                </a>
+                            </li>
+                            <li role="menuitem">
+                                <a href="#" class="s-block-link">
+                                    Edit
+                                </a>
+                            </li>
+                            <li role="menuitem">
+                                <button class="s-block-link">
+                                    Follow
+                                </button>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="grid--cell">
+                    <div class="ff-mono mb16">No container</div>
+                    <ul class="s-menu" role="menu">
+                        <li role="menuitem">
+                            <a href="#" class="s-block-link px0">
+                                Share
+                            </a>
+                        </li>
+                        <li role="menuitem">
+                            <a href="#" class="s-block-link px0">
+                                Edit
+                            </a>
+                        </li>
+                        <li role="menuitem">
+                            <button class="s-block-link px0">
+                                Follow
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% header "h3", "Titles and Dividers" %}
+    <p class="stacks-copy">
+        You can split up your menu by using either titles, dividers, or some combination of the two. Titles help group similar conceptual actions—in this example, we’ve grouped all sharing options. We’ve also split our destructive actions into their own section using a divider.
+    </p>
+    <div class="stacks-preview">
+{% highlight html %}
+<div class="s-popover">
+    <ul class="s-menu mxn12 myn8" role="menu">
+        <li class="s-menu--title" role="separator">…</li>
+        <li role="menuitem">
+            <a href="…" class="s-block-link">…</a>
+        </li>
+        <li class="s-menu--divider" role="separator"></li>
+        <li role="menuitem">
+            <a href="…" class="s-block-link s-block-link__danger">…</a>
+        </li>
+    </ul>
+</div>
+{% endhighlight %}
+        <div class="stacks-preview--example">
+            <div class="s-popover is-visible ps-relative ws2">
+                <div class="s-popover--arrow s-popover--arrow__tc"></div>
+                <ul class="s-menu mxn12 myn8" role="menu">
+                    <li class="s-menu--title" role="separator">
+                        Share via
+                    </li>
+                    <li role="menuitem">
+                        <a href="#" class="s-block-link">
+                            Email
+                        </a>
+                    </li>
+                    <li role="menuitem">
+                        <a href="#" class="s-block-link">
+                            Facebook
+                        </a>
+                    </li>
+                    <li role="menuitem">
+                        <a href="#" class="s-block-link">
+                            Twitter
+                        </a>
+                    </li>
+                    <li class="s-menu--divider" role="separator"></li>
+                    <li role="menuitem">
+                        <a href="#" class="s-block-link s-block-link__danger">
+                            Deactivate
+                        </a>
+                    </li>
+                    <li role="menuitem">
+                        <a href="#" class="s-block-link s-block-link__danger">
+                            Delete
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    {% header "h3", "Selected states" %}
+    <p class="stacks-copy">
+        Our menus also offer selected states via the <a href="{{ '/product/components/links/#block-link' | relative_url }}">block link component</a> with its various configurations.
+    </p>
+    <div class="stacks-preview">
+{% highlight html %}
+<div class="s-popover">
+    <ul class="s-menu mxn12 myn8" role="menu">
+        <li role="menuitem">
+            <a href="…" class="s-block-link s-block-link__left is-selected">…</a>
+        </li>
+    </ul>
+</div>
+{% endhighlight %}
+        <div class="stacks-preview--example">
+            <div class="s-popover is-visible ps-relative ws2">
+                <div class="s-popover--arrow s-popover--arrow__tc"></div>
+                <ul class="s-menu mxn12 myn8" role="menu">
+                    <li role="menuitem">
+                        <a href="#" class="s-block-link">
+                            Frequent
+                        </a>
+                    </li>
+                    <li role="menuitem">
+                        <a href="#" class="s-block-link">
+                            Votes
+                        </a>
+                    </li>
+                    <li role="menuitem">
+                        <a href="#" class="s-block-link s-block-link__left is-selected">
+                            Unanswered
+                        </a>
+                    </li>
+                    <li class="s-menu--title" role="separator">
+                        Custom filters
+                    </li>
+                    <li role="menuitem">
+                        <a href="#" class="s-block-link">
+                            Frontend questions
+                        </a>
+                    </li>
+                    <li role="menuitem">
+                        <a href="#" class="s-block-link">
+                            Design systems
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    {% header "h3", "Radio groups" %}
+    <p class="stacks-copy">
+        In the case of user management, it’s appropriate to include radio options. In this example, we’re setting a user’s role. While our examples up to this point have all been simple unordered lists, the <code class="stacks-code">s-menu</code> component works on any markup including <code class="stacks-code">fieldset</code>.
+    </p>
+    <div class="stacks-preview">
+{% highlight html %}
+<div class="s-popover">
+    <fieldset class="s-menu mxn12 myn8" role="menu">
+        <legend class="s-menu--title">…</legend>
+        <label class="s-menu--label grid" for="…">
+            <div class="grid--cell mr8">
+                <input class="s-radio" type="radio" name="…" id="…" role="menuitemradio" checked>
+            </div>
+            <div class="grid--cell">
+                <div class="s-label">…</div>
+                <div class="s-description mt2">…</div>
+            </div>
+        </label>
+        <label class="s-menu--label grid" for="…">
+            <div class="grid--cell mr8">
+                <input class="s-radio" type="radio" name="…" id="…" role="menuitemradio">
+            </div>
+            <div class="grid--cell">
+                <div class="s-label">…</div>
+                <div class="s-description mt2">…</div>
+            </div>
+        </label>
+    </fieldset>
+</div>
+{% endhighlight %}
+        <div class="stacks-preview--example">
+            <div class="s-popover is-visible ps-relative ws3">
+                <div class="s-popover--arrow s-popover--arrow__tc"></div>
+                <fieldset class="s-menu mxn12 myn8" role="menu">
+                    <legend class="s-menu--title">Roles</legend>
+                    <label class="s-menu--label grid" for="choice-user-34">
+                        <div class="grid--cell mr8">
+                            <input class="s-radio" type="radio" name="choice-34" id="choice-user-34" role="menuitemradio" checked>
+                        </div>
+                        <div class="grid--cell">
+                            <div class="s-label">User</div>
+                            <div class="s-description mt2">Can view, ask, answer, and edit questions. Can also vote on and flag content.</div>
+                        </div>
+                    </label>
+                    <label class="s-menu--label grid" for="choice-moderator-34">
+                        <div class="grid--cell mr8">
+                            <input class="s-radio" type="radio" name="choice-34" id="choice-moderator-34" role="menuitemradio">
+                        </div>
+                        <div class="grid--cell">
+                            <div class="s-label">Moderator</div>
+                            <div class="s-description mt2">Everything a user can do, but can also delete and close questions.</div>
+                        </div>
+                    </label>
+                    <label class="s-menu--label grid" for="choice-admin-34">
+                        <div class="grid--cell mr8">
+                            <input class="s-radio" type="radio" name="choice-34" id="choice-admin-34" role="menuitemradio">
+                        </div>
+                        <div class="grid--cell">
+                            <div class="s-label">Admin</div>
+                            <div class="s-description mt2">Everything a moderator can do and can also manage users, permissions, and site settings.</div>
+                        </div>
+                    </label>
+                </fieldset>
+            </div>
+        </div>
+    </div>
+</section>
