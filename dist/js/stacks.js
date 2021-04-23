@@ -1757,7 +1757,7 @@ Copyright © 2019 Basecamp, LLC
 ;
 
 /**
- * @popperjs/core v2.9.2 - MIT License
+ * @popperjs/core v2.8.4 - MIT License
  */
 
 (function (global, factory) {
@@ -1780,11 +1780,10 @@ Copyright © 2019 Basecamp, LLC
     };
   }
 
-  function getWindow(node) {
-    if (node == null) {
-      return window;
-    }
+  /*:: import type { Window } from '../types'; */
 
+  /*:: declare function getWindow(node: Node | Window): Window; */
+  function getWindow(node) {
     if (node.toString() !== '[object Window]') {
       var ownerDocument = node.ownerDocument;
       return ownerDocument ? ownerDocument.defaultView || window : window;
@@ -1803,15 +1802,24 @@ Copyright © 2019 Basecamp, LLC
     };
   }
 
+  /*:: declare function isElement(node: mixed): boolean %checks(node instanceof
+    Element); */
+
   function isElement(node) {
     var OwnElement = getWindow(node).Element;
     return node instanceof OwnElement || node instanceof Element;
   }
+  /*:: declare function isHTMLElement(node: mixed): boolean %checks(node instanceof
+    HTMLElement); */
+
 
   function isHTMLElement(node) {
     var OwnElement = getWindow(node).HTMLElement;
     return node instanceof OwnElement || node instanceof HTMLElement;
   }
+  /*:: declare function isShadowRoot(node: mixed): boolean %checks(node instanceof
+    ShadowRoot); */
+
 
   function isShadowRoot(node) {
     // IE 11 has no ShadowRoot
@@ -1915,28 +1923,14 @@ Copyright © 2019 Basecamp, LLC
     };
   }
 
+  // Returns the layout rect of an element relative to its offsetParent. Layout
   // means it doesn't take into account transforms.
-
   function getLayoutRect(element) {
-    var clientRect = getBoundingClientRect(element); // Use the clientRect sizes if it's not been transformed.
-    // Fixes https://github.com/popperjs/popper-core/issues/1223
-
-    var width = element.offsetWidth;
-    var height = element.offsetHeight;
-
-    if (Math.abs(clientRect.width - width) <= 1) {
-      width = clientRect.width;
-    }
-
-    if (Math.abs(clientRect.height - height) <= 1) {
-      height = clientRect.height;
-    }
-
     return {
       x: element.offsetLeft,
       y: element.offsetTop,
-      width: width,
-      height: height
+      width: element.offsetWidth,
+      height: element.offsetHeight
     };
   }
 
@@ -2009,18 +2003,7 @@ Copyright © 2019 Basecamp, LLC
 
 
   function getContainingBlock(element) {
-    var isFirefox = navigator.userAgent.toLowerCase().indexOf('firefox') !== -1;
-    var isIE = navigator.userAgent.indexOf('Trident') !== -1;
-
-    if (isIE && isHTMLElement(element)) {
-      // In IE 9, 10 and 11 fixed elements containing block is always established by the viewport
-      var elementCss = getComputedStyle(element);
-
-      if (elementCss.position === 'fixed') {
-        return null;
-      }
-    }
-
+    var isFirefox = navigator.userAgent.toLowerCase().includes('firefox');
     var currentNode = getParentNode(element);
 
     while (isHTMLElement(currentNode) && ['html', 'body'].indexOf(getNodeName(currentNode)) < 0) {
@@ -2028,7 +2011,7 @@ Copyright © 2019 Basecamp, LLC
       // create a containing block.
       // https://developer.mozilla.org/en-US/docs/Web/CSS/Containing_block#identifying_the_containing_block
 
-      if (css.transform !== 'none' || css.perspective !== 'none' || css.contain === 'paint' || ['transform', 'perspective'].indexOf(css.willChange) !== -1 || isFirefox && css.willChange === 'filter' || isFirefox && css.filter && css.filter !== 'none') {
+      if (css.transform !== 'none' || css.perspective !== 'none' || css.contain === 'paint' || ['transform', 'perspective'].includes(css.willChange) || isFirefox && css.willChange === 'filter' || isFirefox && css.filter && css.filter !== 'none') {
         return currentNode;
       } else {
         currentNode = currentNode.parentNode;
@@ -2811,7 +2794,7 @@ Copyright © 2019 Basecamp, LLC
     passive: true
   };
 
-  function effect$2(_ref) {
+  function effect(_ref) {
     var state = _ref.state,
         instance = _ref.instance,
         options = _ref.options;
@@ -2851,7 +2834,7 @@ Copyright © 2019 Basecamp, LLC
     enabled: true,
     phase: 'write',
     fn: function fn() {},
-    effect: effect$2,
+    effect: effect,
     data: {}
   };
 
@@ -2937,8 +2920,8 @@ Copyright © 2019 Basecamp, LLC
         }
       } // $FlowFixMe[incompatible-cast]: force type refinement, we compare offsetParent with window above, but Flow doesn't detect it
 
+      /*:: offsetParent = (offsetParent: Element); */
 
-      offsetParent = offsetParent;
 
       if (placement === top) {
         sideY = bottom; // $FlowFixMe[prop-missing]
@@ -3162,7 +3145,7 @@ Copyright © 2019 Basecamp, LLC
     fn: offset
   };
 
-  var hash$1 = {
+  var hash = {
     left: 'right',
     right: 'left',
     bottom: 'top',
@@ -3170,20 +3153,23 @@ Copyright © 2019 Basecamp, LLC
   };
   function getOppositePlacement(placement) {
     return placement.replace(/left|right|bottom|top/g, function (matched) {
-      return hash$1[matched];
+      return hash[matched];
     });
   }
 
-  var hash = {
+  var hash$1 = {
     start: 'end',
     end: 'start'
   };
   function getOppositeVariationPlacement(placement) {
     return placement.replace(/start|end/g, function (matched) {
-      return hash[matched];
+      return hash$1[matched];
     });
   }
 
+  /*:: type OverflowsMap = { [ComputedPlacement]: number }; */
+
+  /*;; type OverflowsMap = { [key in ComputedPlacement]: number }; */
   function computeAutoPlacement(state, options) {
     if (options === void 0) {
       options = {};
@@ -3532,7 +3518,7 @@ Copyright © 2019 Basecamp, LLC
     state.modifiersData[name] = (_state$modifiersData$ = {}, _state$modifiersData$[axisProp] = offset, _state$modifiersData$.centerOffset = offset - center, _state$modifiersData$);
   }
 
-  function effect(_ref2) {
+  function effect$2(_ref2) {
     var state = _ref2.state,
         options = _ref2.options;
     var _options$element = options.element,
@@ -3574,7 +3560,7 @@ Copyright © 2019 Basecamp, LLC
     enabled: true,
     phase: 'main',
     fn: arrow,
-    effect: effect,
+    effect: effect$2,
     requires: ['popperOffsets'],
     requiresIfExists: ['preventOverflow']
   };
@@ -3638,22 +3624,22 @@ Copyright © 2019 Basecamp, LLC
     fn: hide
   };
 
-  var defaultModifiers$1 = [eventListeners, popperOffsets$1, computeStyles$1, applyStyles$1];
-  var createPopper$1 = /*#__PURE__*/popperGenerator({
-    defaultModifiers: defaultModifiers$1
-  }); // eslint-disable-next-line import/no-unused-modules
-
-  var defaultModifiers = [eventListeners, popperOffsets$1, computeStyles$1, applyStyles$1, offset$1, flip$1, preventOverflow$1, arrow$1, hide$1];
+  var defaultModifiers = [eventListeners, popperOffsets$1, computeStyles$1, applyStyles$1];
   var createPopper = /*#__PURE__*/popperGenerator({
     defaultModifiers: defaultModifiers
+  }); // eslint-disable-next-line import/no-unused-modules
+
+  var defaultModifiers$1 = [eventListeners, popperOffsets$1, computeStyles$1, applyStyles$1, offset$1, flip$1, preventOverflow$1, arrow$1, hide$1];
+  var createPopper$1 = /*#__PURE__*/popperGenerator({
+    defaultModifiers: defaultModifiers$1
   }); // eslint-disable-next-line import/no-unused-modules
 
   exports.applyStyles = applyStyles$1;
   exports.arrow = arrow$1;
   exports.computeStyles = computeStyles$1;
-  exports.createPopper = createPopper;
-  exports.createPopperLite = createPopper$1;
-  exports.defaultModifiers = defaultModifiers;
+  exports.createPopper = createPopper$1;
+  exports.createPopperLite = createPopper;
+  exports.defaultModifiers = defaultModifiers$1;
   exports.detectOverflow = detectOverflow;
   exports.eventListeners = eventListeners;
   exports.flip = flip$1;
@@ -4343,12 +4329,15 @@ var Stacks;
             if (this.isVisible) {
                 this.initializePopper();
             }
+            else if (this.data.get("auto-show") === "true") {
+                this.show(null);
+            }
         };
         BasePopoverController.prototype.disconnect = function () {
             this.hide();
             if (this.popper) {
                 this.popper.destroy();
-                this.popper = null;
+                delete this.popper;
             }
             _super.prototype.disconnect.call(this);
         };
@@ -4372,7 +4361,10 @@ var Stacks;
             }
             this.popoverElement.classList.add("is-visible");
             this.scheduleUpdate();
-            this.shown(dispatcherElement);
+            if (!this.data.has("auto-show")) {
+                this.shown(dispatcherElement);
+            }
+            this.data.delete("auto-show");
         };
         BasePopoverController.prototype.hide = function (dispatcher) {
             if (dispatcher === void 0) { dispatcher = null; }
@@ -4388,7 +4380,7 @@ var Stacks;
             this.popoverElement.classList.remove("is-visible");
             if (this.popper) {
                 this.popper.destroy();
-                this.popper = null;
+                delete this.popper;
             }
             this.hidden(dispatcherElement);
         };
@@ -4530,6 +4522,116 @@ var Stacks;
         return PopoverController;
     }(BasePopoverController));
     Stacks.PopoverController = PopoverController;
+    function showPopover(element) {
+        var _a = getPopover(element), isPopover = _a.isPopover, controller = _a.controller;
+        if (controller) {
+            controller.show();
+        }
+        else if (isPopover) {
+            element.setAttribute("data-s-popover-auto-show", "true");
+        }
+        else {
+            throw "element does not have data-controller=\"s-popover\"";
+        }
+    }
+    Stacks.showPopover = showPopover;
+    function hidePopover(element) {
+        var _a = getPopover(element), isPopover = _a.isPopover, controller = _a.controller, popover = _a.popover;
+        if (controller) {
+            controller.hide();
+        }
+        else if (isPopover) {
+            element.removeAttribute("data-s-popover-auto-show");
+            if (popover) {
+                popover.classList.remove("is-visible");
+            }
+        }
+        else {
+            throw "element does not have data-controller=\"s-popover\"";
+        }
+    }
+    Stacks.hidePopover = hidePopover;
+    function attachPopover(element, popover, options) {
+        var _a = getPopover(element), referenceElement = _a.referenceElement, existingPopover = _a.popover;
+        if (existingPopover) {
+            throw "element already has popover with id=\"" + existingPopover.id + "\"";
+        }
+        if (!referenceElement) {
+            throw "element has invalid data-s-popover-reference-selector attribute";
+        }
+        if (typeof popover === 'string') {
+            var elements = document.createRange().createContextualFragment(popover).children;
+            if (elements.length !== 1) {
+                throw "popover should contain a single element";
+            }
+            popover = elements[0];
+        }
+        var existingId = referenceElement.getAttribute("aria-controls");
+        var popoverId = popover.id;
+        if (!popover.classList.contains('s-popover')) {
+            throw "popover should have the \"s-popover\" class but had class=\"" + popover.className + "\"";
+        }
+        if (existingId && existingId !== popoverId) {
+            throw "element has aria-controls=\"" + existingId + "\" but popover has id=\"" + popoverId + "\"";
+        }
+        if (!popoverId) {
+            popoverId = "--stacks-s-popover-" + Math.random().toString(36).substring(2, 10);
+            popover.id = popoverId;
+        }
+        if (!existingId) {
+            referenceElement.setAttribute("aria-controls", popoverId);
+        }
+        if (!popover.parentElement && element.parentElement) {
+            referenceElement.insertAdjacentElement("afterend", popover);
+        }
+        toggleController(element, "s-popover", true);
+        if (options) {
+            if (options.toggleOnClick) {
+                referenceElement.setAttribute("data-action", "click->s-popover#toggle");
+            }
+            if (options.placement) {
+                element.setAttribute("data-s-popover-placement", options.placement);
+            }
+            if (options.autoShow) {
+                element.setAttribute("data-s-popover-auto-show", "true");
+            }
+        }
+    }
+    Stacks.attachPopover = attachPopover;
+    function detachPopover(element) {
+        var _a = getPopover(element), isPopover = _a.isPopover, controller = _a.controller, referenceElement = _a.referenceElement, popover = _a.popover;
+        controller === null || controller === void 0 ? void 0 : controller.hide();
+        popover === null || popover === void 0 ? void 0 : popover.remove();
+        if (isPopover) {
+            toggleController(element, "s-popover", false);
+            if (referenceElement) {
+                referenceElement.removeAttribute("aria-controls");
+            }
+        }
+        return popover;
+    }
+    Stacks.detachPopover = detachPopover;
+    function getPopover(element) {
+        var _a;
+        var isPopover = ((_a = element.getAttribute("data-controller")) === null || _a === void 0 ? void 0 : _a.includes("s-popover")) || false;
+        var controller = Stacks.application.getControllerForElementAndIdentifier(element, "s-popover");
+        var referenceSelector = element.getAttribute("data-s-popover-reference-selector");
+        var referenceElement = referenceSelector ? element.querySelector(referenceSelector) : element;
+        var popoverId = referenceElement ? referenceElement.getAttribute("aria-controls") : null;
+        var popover = popoverId ? document.getElementById(popoverId) : null;
+        return { isPopover: isPopover, controller: controller, referenceElement: referenceElement, popover: popover };
+    }
+    function toggleController(el, controllerName, include) {
+        var _a;
+        var controllers = new Set((_a = el.getAttribute('data-controller')) === null || _a === void 0 ? void 0 : _a.split(/\s+/));
+        if (include) {
+            controllers.add(controllerName);
+        }
+        else {
+            controllers.delete(controllerName);
+        }
+        el.setAttribute('data-controller', Array.from(controllers).join(' '));
+    }
 })(Stacks || (Stacks = {}));
 Stacks.application.register("s-popover", Stacks.PopoverController);
 //# sourceMappingURL=s-popover.js.map
