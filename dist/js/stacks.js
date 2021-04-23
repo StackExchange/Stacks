@@ -1757,7 +1757,7 @@ Copyright © 2019 Basecamp, LLC
 ;
 
 /**
- * @popperjs/core v2.8.4 - MIT License
+ * @popperjs/core v2.9.2 - MIT License
  */
 
 (function (global, factory) {
@@ -1780,10 +1780,11 @@ Copyright © 2019 Basecamp, LLC
     };
   }
 
-  /*:: import type { Window } from '../types'; */
-
-  /*:: declare function getWindow(node: Node | Window): Window; */
   function getWindow(node) {
+    if (node == null) {
+      return window;
+    }
+
     if (node.toString() !== '[object Window]') {
       var ownerDocument = node.ownerDocument;
       return ownerDocument ? ownerDocument.defaultView || window : window;
@@ -1802,24 +1803,15 @@ Copyright © 2019 Basecamp, LLC
     };
   }
 
-  /*:: declare function isElement(node: mixed): boolean %checks(node instanceof
-    Element); */
-
   function isElement(node) {
     var OwnElement = getWindow(node).Element;
     return node instanceof OwnElement || node instanceof Element;
   }
-  /*:: declare function isHTMLElement(node: mixed): boolean %checks(node instanceof
-    HTMLElement); */
-
 
   function isHTMLElement(node) {
     var OwnElement = getWindow(node).HTMLElement;
     return node instanceof OwnElement || node instanceof HTMLElement;
   }
-  /*:: declare function isShadowRoot(node: mixed): boolean %checks(node instanceof
-    ShadowRoot); */
-
 
   function isShadowRoot(node) {
     // IE 11 has no ShadowRoot
@@ -1923,14 +1915,28 @@ Copyright © 2019 Basecamp, LLC
     };
   }
 
-  // Returns the layout rect of an element relative to its offsetParent. Layout
   // means it doesn't take into account transforms.
+
   function getLayoutRect(element) {
+    var clientRect = getBoundingClientRect(element); // Use the clientRect sizes if it's not been transformed.
+    // Fixes https://github.com/popperjs/popper-core/issues/1223
+
+    var width = element.offsetWidth;
+    var height = element.offsetHeight;
+
+    if (Math.abs(clientRect.width - width) <= 1) {
+      width = clientRect.width;
+    }
+
+    if (Math.abs(clientRect.height - height) <= 1) {
+      height = clientRect.height;
+    }
+
     return {
       x: element.offsetLeft,
       y: element.offsetTop,
-      width: element.offsetWidth,
-      height: element.offsetHeight
+      width: width,
+      height: height
     };
   }
 
@@ -2003,7 +2009,18 @@ Copyright © 2019 Basecamp, LLC
 
 
   function getContainingBlock(element) {
-    var isFirefox = navigator.userAgent.toLowerCase().includes('firefox');
+    var isFirefox = navigator.userAgent.toLowerCase().indexOf('firefox') !== -1;
+    var isIE = navigator.userAgent.indexOf('Trident') !== -1;
+
+    if (isIE && isHTMLElement(element)) {
+      // In IE 9, 10 and 11 fixed elements containing block is always established by the viewport
+      var elementCss = getComputedStyle(element);
+
+      if (elementCss.position === 'fixed') {
+        return null;
+      }
+    }
+
     var currentNode = getParentNode(element);
 
     while (isHTMLElement(currentNode) && ['html', 'body'].indexOf(getNodeName(currentNode)) < 0) {
@@ -2011,7 +2028,7 @@ Copyright © 2019 Basecamp, LLC
       // create a containing block.
       // https://developer.mozilla.org/en-US/docs/Web/CSS/Containing_block#identifying_the_containing_block
 
-      if (css.transform !== 'none' || css.perspective !== 'none' || css.contain === 'paint' || ['transform', 'perspective'].includes(css.willChange) || isFirefox && css.willChange === 'filter' || isFirefox && css.filter && css.filter !== 'none') {
+      if (css.transform !== 'none' || css.perspective !== 'none' || css.contain === 'paint' || ['transform', 'perspective'].indexOf(css.willChange) !== -1 || isFirefox && css.willChange === 'filter' || isFirefox && css.filter && css.filter !== 'none') {
         return currentNode;
       } else {
         currentNode = currentNode.parentNode;
@@ -2794,7 +2811,7 @@ Copyright © 2019 Basecamp, LLC
     passive: true
   };
 
-  function effect(_ref) {
+  function effect$2(_ref) {
     var state = _ref.state,
         instance = _ref.instance,
         options = _ref.options;
@@ -2834,7 +2851,7 @@ Copyright © 2019 Basecamp, LLC
     enabled: true,
     phase: 'write',
     fn: function fn() {},
-    effect: effect,
+    effect: effect$2,
     data: {}
   };
 
@@ -2920,8 +2937,8 @@ Copyright © 2019 Basecamp, LLC
         }
       } // $FlowFixMe[incompatible-cast]: force type refinement, we compare offsetParent with window above, but Flow doesn't detect it
 
-      /*:: offsetParent = (offsetParent: Element); */
 
+      offsetParent = offsetParent;
 
       if (placement === top) {
         sideY = bottom; // $FlowFixMe[prop-missing]
@@ -3145,7 +3162,7 @@ Copyright © 2019 Basecamp, LLC
     fn: offset
   };
 
-  var hash = {
+  var hash$1 = {
     left: 'right',
     right: 'left',
     bottom: 'top',
@@ -3153,23 +3170,20 @@ Copyright © 2019 Basecamp, LLC
   };
   function getOppositePlacement(placement) {
     return placement.replace(/left|right|bottom|top/g, function (matched) {
-      return hash[matched];
+      return hash$1[matched];
     });
   }
 
-  var hash$1 = {
+  var hash = {
     start: 'end',
     end: 'start'
   };
   function getOppositeVariationPlacement(placement) {
     return placement.replace(/start|end/g, function (matched) {
-      return hash$1[matched];
+      return hash[matched];
     });
   }
 
-  /*:: type OverflowsMap = { [ComputedPlacement]: number }; */
-
-  /*;; type OverflowsMap = { [key in ComputedPlacement]: number }; */
   function computeAutoPlacement(state, options) {
     if (options === void 0) {
       options = {};
@@ -3518,7 +3532,7 @@ Copyright © 2019 Basecamp, LLC
     state.modifiersData[name] = (_state$modifiersData$ = {}, _state$modifiersData$[axisProp] = offset, _state$modifiersData$.centerOffset = offset - center, _state$modifiersData$);
   }
 
-  function effect$2(_ref2) {
+  function effect(_ref2) {
     var state = _ref2.state,
         options = _ref2.options;
     var _options$element = options.element,
@@ -3560,7 +3574,7 @@ Copyright © 2019 Basecamp, LLC
     enabled: true,
     phase: 'main',
     fn: arrow,
-    effect: effect$2,
+    effect: effect,
     requires: ['popperOffsets'],
     requiresIfExists: ['preventOverflow']
   };
@@ -3624,22 +3638,22 @@ Copyright © 2019 Basecamp, LLC
     fn: hide
   };
 
-  var defaultModifiers = [eventListeners, popperOffsets$1, computeStyles$1, applyStyles$1];
-  var createPopper = /*#__PURE__*/popperGenerator({
-    defaultModifiers: defaultModifiers
-  }); // eslint-disable-next-line import/no-unused-modules
-
-  var defaultModifiers$1 = [eventListeners, popperOffsets$1, computeStyles$1, applyStyles$1, offset$1, flip$1, preventOverflow$1, arrow$1, hide$1];
+  var defaultModifiers$1 = [eventListeners, popperOffsets$1, computeStyles$1, applyStyles$1];
   var createPopper$1 = /*#__PURE__*/popperGenerator({
     defaultModifiers: defaultModifiers$1
+  }); // eslint-disable-next-line import/no-unused-modules
+
+  var defaultModifiers = [eventListeners, popperOffsets$1, computeStyles$1, applyStyles$1, offset$1, flip$1, preventOverflow$1, arrow$1, hide$1];
+  var createPopper = /*#__PURE__*/popperGenerator({
+    defaultModifiers: defaultModifiers
   }); // eslint-disable-next-line import/no-unused-modules
 
   exports.applyStyles = applyStyles$1;
   exports.arrow = arrow$1;
   exports.computeStyles = computeStyles$1;
-  exports.createPopper = createPopper$1;
-  exports.createPopperLite = createPopper;
-  exports.defaultModifiers = defaultModifiers$1;
+  exports.createPopper = createPopper;
+  exports.createPopperLite = createPopper$1;
+  exports.defaultModifiers = defaultModifiers;
   exports.detectOverflow = detectOverflow;
   exports.eventListeners = eventListeners;
   exports.flip = flip$1;
@@ -3778,6 +3792,43 @@ var Stacks;
     Stacks.addController = addController;
 })(Stacks || (Stacks = {}));
 //# sourceMappingURL=stacks.js.map
+
+;
+
+"use strict";
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        if (typeof b !== "function" && b !== null)
+            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+var Stacks;
+(function (Stacks) {
+    var CopyController = (function (_super) {
+        __extends(CopyController, _super);
+        function CopyController() {
+            return _super !== null && _super.apply(this, arguments) || this;
+        }
+        CopyController.prototype.copy = function () {
+            this.sourceTarget.select();
+            document.execCommand("copy");
+        };
+        CopyController.targets = ["source"];
+        return CopyController;
+    }(Stacks.StacksController));
+    Stacks.CopyController = CopyController;
+})(Stacks || (Stacks = {}));
+Stacks.application.register("s-copy", Stacks.CopyController);
+//# sourceMappingURL=s-copy.js.map
 
 ;
 
