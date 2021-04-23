@@ -287,8 +287,7 @@
             // Multiply the circle circumference by an the opposite percentage of what we want to display
             // For example 70%, represented as a decimal is 0.7
             // The opposite of that is 0.3 so ( 1 - 0.7 )
-            // Additionally, since the "round" linecap adds (width / 2)px length, adjust the total offset to compensate
-            stroke-dashoffset: calc( (((1 - var(--s-progress-value)) * @s-progress-circle-circumference) + @s-progress-stroke-width) * 1px); // Multiply everything by 1px since Safari and Firefox require these to be in pixels
+            stroke-dashoffset: calc( ((1 - var(--s-progress-value)) * @s-progress-circle-circumference) * 1px); // Multiply everything by 1px since Safari and Firefox require these to be in pixels
         }
     }
 

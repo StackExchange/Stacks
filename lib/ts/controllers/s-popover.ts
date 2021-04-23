@@ -463,7 +463,7 @@ namespace Stacks {
             referenceElement.insertAdjacentElement("afterend", popover);
         }
 
-        element.setAttribute("data-controller", "s-popover");
+        toggleController(element, "s-popover", true);
 
         if (options) {
             if (options.toggleOnClick) {
@@ -487,14 +487,14 @@ namespace Stacks {
         const { isPopover, controller, referenceElement, popover } = getPopover(element);
 
         // Hide the popover so its events fire.
-        if (controller) { controller.hide(); }
+        controller?.hide();
 
         // Remove the popover if it exists
-        if (popover) { popover.remove(); }
+        popover?.remove();
 
         // Remove the popover controller and the aria-controls attributes.
         if (isPopover) {
-            element.removeAttribute("data-controller");
+            toggleController(element, "s-popover", false);
             if (referenceElement) {
                 referenceElement.removeAttribute("aria-controls");
             }
@@ -527,6 +527,22 @@ namespace Stacks {
         const popoverId = referenceElement ? referenceElement.getAttribute("aria-controls") : null;
         const popover = popoverId ? document.getElementById(popoverId) : null;
         return { isPopover, controller, referenceElement, popover };
+    }
+
+    /**
+     * Adds or removes the controller from an element's [data-controller] attribute without altering existing entries
+     * @param el The element to alter
+     * @param controllerName The name of the controller to add/remove
+     * @param include Whether to add the controllerName value
+     */
+    function toggleController(el: Element, controllerName: string, include: boolean) {
+        var controllers = new Set(el.getAttribute('data-controller')?.split(/\s+/));
+        if (include) {
+            controllers.add(controllerName);
+        } else {
+            controllers.delete(controllerName);
+        }
+        el.setAttribute('data-controller', Array.from(controllers).join(' '))
     }
 }
 
