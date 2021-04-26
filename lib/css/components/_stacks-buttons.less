@@ -35,6 +35,12 @@
     cursor: pointer;
     user-select: none;
 
+    // Guard against the difference in configurable resets
+    // Eric Meyer's reset does not include this, while normalize.css does
+    -webkit-appearance: button;
+    -moz-appearance: button;
+    appearance: button;
+
     // Override for buttons having inline-block by default
     &.grid {
         display: flex;
