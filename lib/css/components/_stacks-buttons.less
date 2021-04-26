@@ -35,11 +35,14 @@
     cursor: pointer;
     user-select: none;
 
-    // Guard against the difference in configurable resets
-    // Eric Meyer's reset does not include this, while normalize.css does
-    -webkit-appearance: button;
-    -moz-appearance: button;
-    appearance: button;
+    button &,
+    button[type="submit"] &,
+    button[type="reset"] & {
+        // Guard against the difference in configurable resets
+        // Eric Meyer's reset does not include this, while normalize.css does
+        // Correct the inability to style buttons in iOS and Safari.
+        -webkit-appearance: button;
+    }
 
     // Override for buttons having inline-block by default
     &.grid {
