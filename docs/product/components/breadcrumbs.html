@@ -30,18 +30,24 @@ description: Breadcrumbs are used to provide context for the currently-viewed pa
     {% header "h2", "Examples" %}
     <p class="stacks-copy">Breadcrumbs show users where they are within a site’s hierarchy. Breadcrumbs help orient the user and allow for navigation to previous page levels. It can be appropriate to use a breadcrumb when:</p>
     <ul class="stacks-list">
-        <li>The user is many levels of navigation deep</li>
+        <li>The user is more than 2 levels of navigation deep</li>
         <li>The current page does not have its own navigation</li>
         <li>The user needs to quickly go back to the previous parent page</li>
     </ul>
-    <p class="stacks-copy">Breadcrumbs should be the first page element—placed directly above the page’s title. The page the user is on should not appear in the breadcrumb trail, since that indicator is satisfied by the title of the page itself. Additionally, the last <code class="stacks-code">.s-breadcrumb--item</code> shouldn’t include the divider.</p>
+    <p class="stacks-copy">Breadcrumbs should be the first page element—placed directly above the page’s title. <strong>The page the user is on should not appear in the breadcrumb trail</strong>, since that indicator is satisfied by the title of the page itself. Additionally, the last <code class="stacks-code">.s-breadcrumb--item</code> shouldn’t include the divider.</p>
 
-    {% header "h3", "Text-based home link" %}
+    <p class="stacks-copy">It is <strong>not</strong> appropriate to use Breadcrumbs when:</p>
+    <ul class="stacks-list">
+        <li>There is only one level of navigation.</li>
+        <li>There isn’t a clear navigation path or the page is orphaned.</li>
+    </ul>
+
+    {% header "h3", "Stack Overflow" %}
     <div class="stacks-preview">
 {% highlight html %}
 <nav class="s-breadcrumbs mb6 sm:mb2" aria-label="breadcrumb">
     <div class="s-breadcrumbs--item">
-        <a class="s-breadcrumbs--link" href="…">Stack Overflow</a>
+        <a class="s-breadcrumbs--link" href="…" aria-label="Stack Overflow">@Svg.LogoGlyphXxs.With("mtn2")</a>
         @Svg.ArrowRightAltSm.With("s-breadcrumbs--divider")
     </div>
     <div class="s-breadcrumbs--item">
@@ -56,28 +62,59 @@ description: Breadcrumbs are used to provide context for the currently-viewed pa
         <div class="stacks-preview--example">
             <nav class="s-breadcrumbs mb6 sm:mb2" aria-label="breadcrumb">
                 <div class="s-breadcrumbs--item">
-                    <a class="s-breadcrumbs--link" href="#">Stack Overflow</a>
+                    <a class="s-breadcrumbs--link" href="#" aria-label="Stack Overflow">{% icon "LogoGlyphXxs", "mtn2" %}</a>
                     {% icon "ArrowRightAltSm", "s-breadcrumbs--divider" %}
                 </div>
                 <div class="s-breadcrumbs--item">
-                    <a class="s-breadcrumbs--link" href="#">Settings</a>
+                    <a class="s-breadcrumbs--link" href="#">Help center</a>
                     {% icon "ArrowRightAltSm", "s-breadcrumbs--divider" %}
                 </div>
                 <div class="s-breadcrumbs--item">
-                    <a class="s-breadcrumbs--link" href="#">Billing</a>
+                    <a class="s-breadcrumbs--link" href="#">Asking</a>
                 </div>
             </nav>
-            <h1 class="fs-headline1 fw-normal mb0">Payment Details</h1>
+            <h1 class="fs-headline1 fw-normal mb0">What types of questions should I avoid asking?</h1>
         </div>
     </div>
 
-    {% header "h3", "Icon-based home link" %}
-    <p class="stacks-copy">When possible, an icon can be used as the highest breadcrumb level. Take care in positioning this icon relative to the rest of the breadcrumb links.</p>
+    {% header "h3", "Stack Exchange" %}
     <div class="stacks-preview">
 {% highlight html %}
 <nav class="s-breadcrumbs mb6 sm:mb2" aria-label="breadcrumb">
     <div class="s-breadcrumbs--item">
-        <a class="s-breadcrumbs--link" href="…">@Svg.LogoGlyphXxs.With("mtn2")</a>
+        <a class="s-breadcrumbs--link" href="…" aria-label="Stack Exchange">@Svg.LogoSEXxs.With("mtn2")</a>
+        @Svg.ArrowRightAltSm.With("s-breadcrumbs--divider")
+    </div>
+    <div class="s-breadcrumbs--item">
+        <a class="s-breadcrumbs--link" href="…">…</a>
+    </div>
+</nav>
+{% endhighlight %}
+        <div class="stacks-preview--example">
+            <nav class="s-breadcrumbs mb6 sm:mb2" aria-label="breadcrumb">
+                <div class="s-breadcrumbs--item">
+                    <a class="s-breadcrumbs--link" href="#" aria-label="Stack Exchange">{% icon "LogoSEXxs", "mtn2" %}</a>
+                    {% icon "ArrowRightAltSm", "s-breadcrumbs--divider" %}
+                </div>
+                <div class="s-breadcrumbs--item">
+                    <a class="s-breadcrumbs--link" href="#">Review queues</a>
+                </div>
+            </nav>
+            <h1 class="fs-headline1 fw-normal mb0">Close votes</h1>
+        </div>
+    </div>
+
+    {% header "h3", "Team" %}
+    <div class="stacks-preview">
+{% highlight html %}
+<nav class="s-breadcrumbs mb6 sm:mb2" aria-label="breadcrumb">
+    <div class="s-breadcrumbs--item">
+        <a href="…" class="s-link s-link__muted mtn2" aria-label="…">
+            <div class="team-avatar s-avatar">
+                @Svg.ShieldXSm.With("native s-avatar--badge")
+            </div>
+            <span class="pl4">…</span>
+        </a>
         @Svg.ArrowRightAltSm.With("s-breadcrumbs--divider")
     </div>
     <div class="s-breadcrumbs--item">
@@ -92,7 +129,12 @@ description: Breadcrumbs are used to provide context for the currently-viewed pa
         <div class="stacks-preview--example">
             <nav class="s-breadcrumbs mb6 sm:mb2" aria-label="breadcrumb">
                 <div class="s-breadcrumbs--item">
-                    <a class="s-breadcrumbs--link" href="#">{% icon "LogoGlyphXxs", "mtn2" %}</a>
+                    <a href="#" class="s-link s-link__muted mtn1" aria-label="Hum">
+                        <div class="team-avatar s-avatar">
+                            {% icon "ShieldXSm", "native s-avatar--badge" %}
+                        </div>
+                        <span class="pl4">Hum</span>
+                    </a>
                     {% icon "ArrowRightAltSm", "s-breadcrumbs--divider" %}
                 </div>
                 <div class="s-breadcrumbs--item">

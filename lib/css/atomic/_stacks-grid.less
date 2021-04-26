@@ -29,7 +29,7 @@
 
         .create-fixed-cells(@num, @count: 1) when (@count =< @num) {
             .grid--cell@{count} {
-                flex-basis: (@count * 100%) / @num;
+                flex-basis: ((@count * 100%) / @num);
             }
 
             #stacks-internals #grid-builder-helpers .create-fixed-cells(@num, (@count + 1));
@@ -46,7 +46,7 @@
             .grid__allcells@{count} {
                 > .grid,
                 > .grid--cell {
-                    flex-basis: (@count * 100%) / @num;
+                    flex-basis: ((@count * 100%) / @num);
                 }
             }
 
@@ -99,10 +99,10 @@
         //
         //  ----------------------------------------------------------------------------
         .grid-fixed-cell-spacing(@spacing, @num, @count: 1) when (@count =< @num) {
-            @cell-width: @count * 100% / @num;
+            @cell-width: (@count * 100% / @num);
 
             > .grid--cell@{count} {
-                margin: @spacing / 2;
+                margin: (@spacing / 2);
             }
 
             //  ------------------------------------------------------------------------
@@ -142,7 +142,7 @@
             //  --  FLUID CELLS
             > .grid,
             > .grid--cell {
-                margin: @spacing / 2;
+                margin: (@spacing / 2);
             }
 
             //  --  FIXED WIDTH CELLS
@@ -200,6 +200,7 @@
 //  ----------------------------------------------------------------------------
 .gs2    { #stacks-internals #grid-builder-helpers .gutter-spacing(@su2); }        //  2px
 .gs4    { #stacks-internals #grid-builder-helpers .gutter-spacing(@su4); }        //  4px
+.gs6    { #stacks-internals #grid-builder-helpers .gutter-spacing(@su6); }        //  6px
 .gs8    { #stacks-internals #grid-builder-helpers .gutter-spacing(@su8); }        //  8px
 .gs12   { #stacks-internals #grid-builder-helpers .gutter-spacing(@su12); }       //  12px
 .gs16   { #stacks-internals #grid-builder-helpers .gutter-spacing(@su16); }       //  16px

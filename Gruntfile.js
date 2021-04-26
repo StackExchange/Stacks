@@ -2,9 +2,6 @@
 
 module.exports = function(grunt) {
     grunt.initConfig({
-        pkg: grunt.file.readJSON('package.json'),
-        version: '<%= pkg.version %>',
-
         // Shell commands for use in Grunt tasks
         shell: {
             eleventyBuild: {
@@ -38,7 +35,7 @@ module.exports = function(grunt) {
             // note that the docs CSS includes the full Stacks
             docs: {
                 files: {
-                    'docs/assets/css/stacks-documentation.css': 'docs/assets/less/stacks-documentation.less'
+                    'docs/assets/css/stacks-documentation.css': 'docs/assets/less/stacks-documentation.less',
                 }
             },
             stacks_partials: {
@@ -60,7 +57,7 @@ module.exports = function(grunt) {
             },
             docs: {
                 files: {
-                    'docs/assets/css/stacks-documentation.min.css': 'docs/assets/css/stacks-documentation.css'
+                    'docs/assets/css/stacks-documentation.min.css': 'docs/assets/css/stacks-documentation.css',
                 }
             }
         },
@@ -121,12 +118,7 @@ module.exports = function(grunt) {
 
             stacks_js: {
                 files: ['lib/ts/**/*.ts'], // note: this doesn't watch any of the npm dependencies
-                tasks: ['concurrent:compile_stacks_js', 'copy:js2docs']
-            },
-
-            version: {
-                files: ['package.json'],
-                tasks: ['version'],
+                tasks: ['concurrent:compile_stacks_js', 'copy:js2docs', 'copy:jQueryJs', 'copy:highlightJs', 'copy:docsearchJs', 'copy:listJs', 'copy:editorJs', 'copy:editorCSS']
             },
         },
         // Run tasks in parallel
@@ -136,7 +128,6 @@ module.exports = function(grunt) {
             },
 
             serve: [
-                'version',
                 'watch',
                 'shell:eleventyServe'
             ],
@@ -145,7 +136,7 @@ module.exports = function(grunt) {
             compile: [
                 'concurrent:compile_stacks_css',
                 'ts:docs_js',
-                ['concurrent:compile_stacks_js', 'copy:js2docs']
+                ['concurrent:compile_stacks_js', 'copy:js2docs', 'copy:jQueryJs', 'copy:highlightJs', 'copy:docsearchJs', 'copy:listJs', 'copy:editorJs', 'copy:editorCSS']
             ],
 
             // Stacks JS
@@ -163,9 +154,6 @@ module.exports = function(grunt) {
         },
 
         clean: {
-            // Clean the icons directory to prepare for copying from the node dependency
-            icons: ['docs/_includes/svg-icons/'],
-
             // Clean-up the partial CSS files created in less:stacks_partials to ensure that
             // dynamic and static part compile independently of each other
             stacks_partials: ['tmp/']
@@ -179,21 +167,59 @@ module.exports = function(grunt) {
                 flatten: true,
                 expand: true
             },
-
-            // Copy files out of node_modules so Eleventy can use them
-            svgs: {
+            editorJs: {
+                src: 'node_modules/@stackoverflow/stacks-editor/dist/app.bundle.js',
+                dest: 'docs/assets/js/',
+                flatten: true,
                 expand: true,
-                cwd: 'node_modules/@stackoverflow/stacks-icons/build/lib',
-                src: '**',
-                dest: 'docs/_includes/svg-icons/',
-                filter: 'isFile',
+                rename: function(dest, src) {
+                    return dest + src.replace('app.bundle.js','library.stacks-editor.js');
+                }
             },
-            data: {
+            jQueryJs: {
+                src: 'node_modules/jquery/dist/jquery.min.js',
+                dest: 'docs/assets/js/',
+                flatten: true,
                 expand: true,
-                cwd: 'node_modules/@stackoverflow/stacks-icons/build',
-                src: 'icons.yml',
-                dest: 'docs/_data/product/',
-                filter: 'isFile',
+                rename: function(dest, src) {
+                    return dest + src.replace('jquery.min.js','library.jquery.js');
+                }
+            },
+            highlightJs: {
+                src: 'node_modules/@highlightjs/cdn-assets/highlight.min.js',
+                dest: 'docs/assets/js/',
+                flatten: true,
+                expand: true,
+                rename: function(dest, src) {
+                    return dest + src.replace('highlight.min.js','library.highlight.js');
+                }
+            },
+            docsearchJs: {
+                src: 'node_modules/docsearch.js/dist/cdn/docsearch.min.js',
+                dest: 'docs/assets/js/',
+                flatten: true,
+                expand: true,
+                rename: function(dest, src) {
+                    return dest + src.replace('docsearch.min.js','library.docsearch.js');
+                }
+            },
+            listJs: {
+                src: 'node_modules/list.js/dist/list.min.js',
+                dest: 'docs/assets/js/',
+                flatten: true,
+                expand: true,
+                rename: function(dest, src) {
+                    return dest + src.replace('list.min.js','library.list.js');
+                }
+            },
+            editorCSS: {
+                src: 'node_modules/@stackoverflow/stacks-editor/dist/styles.css',
+                dest: 'docs/assets/css/',
+                flatten: true,
+                expand: true,
+                rename: function(dest, src) {
+                    return dest + src.replace('styles.css','stacks-editor.css');
+                }
             },
             declarations: {
                 expand: true,
@@ -226,11 +252,5 @@ module.exports = function(grunt) {
 
     grunt.registerTask('deploy-docs',
         'Prep and build the documentation site so it is ready for deploy.',
-        ['update-icons', 'build']);
-
-    grunt.registerTask('update-icons', ['clean:icons', 'copy:svgs', 'copy:data']);
-
-    grunt.registerTask('version', 'Creates a file with the version number inside it for Eleventy to display.', function() {
-        grunt.file.write('docs/_includes/version.html', grunt.config.get('version'));
-    });
+        ['build']);
 };

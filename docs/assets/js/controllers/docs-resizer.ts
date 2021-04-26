@@ -2,12 +2,12 @@
     var application = Stimulus.Application.start();
     application.register("docs-resizer", class extends Stimulus.Controller {
         static targets = ["resizable", "default"];
-        declare resizableTarget!: Element;
-        declare resizableTargets!: Element[];
-        declare hasResizableTarget!: boolean;
-        declare defaultTarget!: Element;
-        declare defaultTargets!: Element[];
-        declare hasDefaultTarget!: boolean;
+        resizableTarget!: Element;
+        resizableTargets!: Element[];
+        hasResizableTarget!: boolean;
+        defaultTarget!: Element;
+        defaultTargets!: Element[];
+        hasDefaultTarget!: boolean;
     
         private _selected!: Element | null;
         private _sizeClass!: string | null;

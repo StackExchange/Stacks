@@ -15,32 +15,6 @@
     }
 
     //  ===========================================================================
-    //  --  DARKMODE
-    //      #darkmode renders a dark mode override behind the
-    //      prefers-color-scheme: dark media query and .theme-system. It also
-    //      renders the same rules outside of the media query with .theme-dark
-    //
-    //      Usage example:
-    //
-    //      #stacks-internals #darkmode('.s-dialog', { background-color: var(--black-100); });
-    //
-    //  ---------------------------------------------------------------------------
-
-    #darkmode(@class, @rules) {
-        @classname: ~"@{class}"; // Interpolate the @class passed to us so we can generate proper CSS rules from it
-
-        body.theme-system @{classname} {
-            @media (prefers-color-scheme: dark) {
-                @rules();
-            }
-        }
-
-        body.theme-dark @{classname} {
-            @rules();
-        }
-    }
-
-    //  ===========================================================================
     //  --  RESPONSIVE (modern)
     //      #responsify renders a plain class as well as its responsive counterparts.
     //

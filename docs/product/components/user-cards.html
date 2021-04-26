@@ -1,0 +1,455 @@
+---
+layout: page
+title: User cards
+description: User cards are a combination of a user and metadata about the user or post
+---
+<section class="stacks-section">
+    {% header "h2", "Classes" %}
+    <div class="overflow-x-auto mb32">
+        <table class="wmn4 s-table s-table__bx-simple">
+            <thead>
+                <tr>
+                    <th class="s-table--cell3" scope="col">Class</th>
+                    <th class="s-table--cell3" scope="col">Applied to</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody class="fs-caption">
+                {% for item in user-cards-component.classes %}
+                    <tr>
+                        <th scope="row"><code class="stacks-code">{{ item.class }}</code></th>
+                        <td><code class="stacks-code bg-white">{{ item.applies }}</td>
+                        <td class="p8">{{ item.description }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</section>
+<section class="stacks-section">
+    {% header "h2", "Examples" %}
+    {% header "h3", "Base" %}
+    <div class="stacks-preview">
+{% highlight html %}
+<div class="s-user-card">
+    <time class="s-user-card--time">…</time>
+    <a href="…" class="s-avatar s-avatar__32 s-user-card--avatar">
+        <img class="s-avatar--image" src="…" />
+    </a>
+    <div class="s-user-card--info">
+        <a href="…" class="s-user-card--link">…</a>
+        <ul class="s-user-card--awards">
+            <li class="s-user-card--rep">…</li>
+            <li class="s-award-bling s-award-bling__gold">…</li>
+            <li class="s-award-bling s-award-bling__silver">…</li>
+            <li class="s-award-bling s-award-bling__bronze">…</li>
+        </ul>
+    </div>
+</div>
+{% endhighlight %}
+        <div class="stacks-preview--example">
+            <div class="s-user-card">
+                <time class="s-user-card--time">3 minutes ago</time>
+                <a href="#" class="s-avatar s-avatar__32 s-user-card--avatar">
+                    <img class="s-avatar--image" src="https://picsum.photos/64" />
+                </a>
+                <div class="s-user-card--info">
+                    <a href="#" class="s-user-card--link">Paul Wright</a>
+                    <ul class="s-user-card--awards">
+                        <li class="s-user-card--rep">2,500</li>
+                        <li class="s-award-bling s-award-bling__gold">5</li>
+                        <li class="s-award-bling s-award-bling__silver">9</li>
+                        <li class="s-award-bling s-award-bling__bronze">1</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="s-user-card mt16">
+                <time class="s-user-card--time">3 minutes ago</time>
+                <a href="#" class="s-avatar s-avatar__32 s-user-card--avatar">
+                    <img class="s-avatar--image" src="https://picsum.photos/64" />
+                </a>
+                <div class="s-user-card--info">
+                    <a href="#" class="s-user-card--link grid gs4">
+                        <div class="grid--cell">Paul Wright</div>
+                        <div class="grid--cell s-badge s-badge__admin s-badge__xs">Mod</div>
+                    </a>
+                    <ul class="s-user-card--awards">
+                        <li class="s-user-card--rep">2,500</li>
+                        <li class="s-award-bling s-award-bling__gold">5</li>
+                        <li class="s-award-bling s-award-bling__silver">9</li>
+                        <li class="s-award-bling s-award-bling__bronze">1</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="stacks-section">
+    {% header "h3", "Highlighted" %}
+    <p class="stacks-copy">Highlights the entire user card by adding a background color, some padding, and rounded corners. Used for post authors and edits.</p>
+    <div class="stacks-preview">
+{% highlight html %}
+<div class="s-user-card s-user-card__highlighted">
+    <time class="s-user-card--time">…</time>
+    <a href="…" class="s-avatar s-avatar__32 s-user-card--avatar">
+        <img class="s-avatar--image" src="…" />
+    </a>
+    <div class="s-user-card--info">
+        <a href="…" class="s-user-card--link">…</a>
+        <ul class="s-user-card--awards">
+            <li class="s-user-card--rep">…</li>
+            <li class="s-award-bling s-award-bling__gold">…</li>
+            <li class="s-award-bling s-award-bling__silver">…</li>
+            <li class="s-award-bling s-award-bling__bronze">…</li>
+        </ul>
+    </div>
+
+    <!-- Optional -->
+    <div class="s-user-card--type">
+        @Svg.StarVerifiedSm Partner
+    </div>
+</div>
+{% endhighlight %}
+        <div class="stacks-preview--example">
+            <div class="s-user-card s-user-card__highlighted wmx2">
+                <time class="s-user-card--time">3 minutes ago</time>
+                <a href="#" class="s-avatar s-avatar__32 s-user-card--avatar">
+                    <img class="s-avatar--image" src="https://picsum.photos/64/64" />
+                </a>
+                <div class="s-user-card--info">
+                    <a href="#" class="s-user-card--link">Paul Wright</a>
+                    <ul class="s-user-card--awards">
+                        <li class="s-user-card--rep">2,500</li>
+                        <li class="s-award-bling s-award-bling__gold">5</li>
+                        <li class="s-award-bling s-award-bling__silver">9</li>
+                        <li class="s-award-bling s-award-bling__bronze">1</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="grid gsx gs16 mt16">
+                <div class="grid--cell">
+                    <div class="s-user-card s-user-card__highlighted wmx2">
+                        <time class="s-user-card--time">3 minutes ago</time>
+                        <a href="#" class="s-avatar s-avatar__32 s-user-card--avatar">
+                            <img class="s-avatar--image" src="https://picsum.photos/64/64" />
+                        </a>
+                        <div class="s-user-card--info">
+                            <a href="#" class="s-user-card--link">Paul Wright</a>
+                            <ul class="s-user-card--awards">
+                                <li class="s-user-card--rep">2,500</li>
+                                <li class="s-award-bling s-award-bling__gold">5</li>
+                                <li class="s-award-bling s-award-bling__silver">9</li>
+                                <li class="s-award-bling s-award-bling__bronze">1</li>
+                            </ul>
+                        </div>
+                        <div class="s-user-card--type">
+                            {% icon "StarVerifiedSm" %} Star Wars Partner
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid--cell">
+                    <div class="s-user-card wmx2">
+                        <time class="s-user-card--time">3 minutes ago</time>
+                        <a href="#" class="s-avatar s-avatar__32 s-user-card--avatar">
+                            <img class="s-avatar--image" src="https://picsum.photos/64/64" />
+                        </a>
+                        <div class="s-user-card--info">
+                            <a href="#" class="s-user-card--link">Paul Wright</a>
+                            <ul class="s-user-card--awards">
+                                <li class="s-user-card--rep">2,500</li>
+                                <li class="s-award-bling s-award-bling__gold">5</li>
+                                <li class="s-award-bling s-award-bling__silver">9</li>
+                                <li class="s-award-bling s-award-bling__bronze">1</li>
+                            </ul>
+                        </div>
+                        <div class="s-user-card--type">
+                            {% icon "StarVerifiedSm" %} Star Wars Partner
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="stacks-section">
+    {% header "h3", "Full" %}
+    <p class="stacks-copy">Displays a larger avatar, best paired with additional tags meta data. Currently used in user directories.</p>
+    <div class="stacks-preview">
+{% highlight html %}
+<div class="s-user-card s-user-card__full">
+    <a href="…" class="s-avatar s-avatar__48 s-user-card--avatar">
+        <img class="s-avatar--image" src="…" />
+    </a>
+    <div class="s-user-card--info">
+        <a href="#" class="s-user-card--link grid gs4">
+            <div class="grid--cell">…</div>
+            <div class="grid--cell s-badge s-badge__staff s-badge__xs">…</div>
+        </a>
+        <div class="s-user-card--location">…</div>
+        <ul class="s-user-card--awards">
+            <li class="s-user-card--rep">…</li>
+            <li class="s-award-bling s-award-bling__gold">…</li>
+            <li class="s-award-bling s-award-bling__silver">…</li>
+            <li class="s-award-bling s-award-bling__bronze">…</li>
+        </ul>
+        <div class="s-user-card--tags grid gs4">
+            <a href="…" class="grid--cell s-tag s-tag__xs">…</a>
+            <a href="…" class="grid--cell s-tag s-tag__xs">…</a>
+            <a href="…" class="grid--cell s-tag s-tag__xs">…</a>
+        </div>
+    </div>
+
+    <!-- Optional -->
+    <div class="s-user-card--type">
+        @Svg.StarVerifiedSm Partner
+    </div>
+</div>
+{% endhighlight %}
+    <div class="stacks-preview--example">
+        <div class="s-user-card s-user-card__full">
+            <a href="#" class="s-avatar s-avatar__48 s-user-card--avatar">
+                <img class="s-avatar--image" src="https://picsum.photos/128" />
+            </a>
+            <div class="s-user-card--info">
+                <a href="#" class="s-user-card--link grid gs4">
+                    <div class="grid--cell">Paul Wright</div>
+                    <div class="grid--cell s-badge s-badge__staff s-badge__xs">Staff</div>
+                    <div class="grid--cell s-badge s-badge__admin s-badge__xs">Admin</div>
+                </a>
+                <div class="s-user-card--location">Paris, France</div>
+                <ul class="s-user-card--awards">
+                    <li class="s-user-card--rep">2,500</li>
+                    <li class="s-award-bling s-award-bling__gold">5</li>
+                    <li class="s-award-bling s-award-bling__silver">9</li>
+                    <li class="s-award-bling s-award-bling__bronze">1</li>
+                </ul>
+                <div class="s-user-card--tags grid gs4">
+                    <a href="#" class="grid--cell s-tag s-tag__xs">javascript</a>
+                    <a href="#" class="grid--cell s-tag s-tag__xs">node.js</a>
+                    <a href="#" class="grid--cell s-tag s-tag__xs">graphQL</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="s-user-card s-user-card__full mt16">
+            <a href="#" class="s-avatar s-avatar__48 s-user-card--avatar">
+                <img class="s-avatar--image" src="https://picsum.photos/128" />
+            </a>
+            <div class="s-user-card--info">
+                <a href="#" class="s-user-card--link grid gs4">
+                    <div class="grid--cell">Nick Craver</div>
+                    <div class="grid--cell s-badge s-badge__admin s-badge__xs">Mod</div>
+                </a>
+                <div class="s-user-card--role">Architecture Lead</div>
+                <div class="s-user-card--location">North Carolina</div>
+                <ul class="s-user-card--awards">
+                    <li class="s-user-card--rep">17k</li>
+                    <li class="s-award-bling s-award-bling__gold">108</li>
+                    <li class="s-award-bling s-award-bling__silver">265</li>
+                    <li class="s-award-bling s-award-bling__bronze">812</li>
+                </ul>
+                <div class="s-user-card--tags grid gs4">
+                    <a href="#" class="grid--cell s-tag s-tag__xs">.net</a>
+                    <a href="#" class="grid--cell s-tag s-tag__xs">sre</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="s-user-card s-user-card__full mt16">
+            <a href="#" class="s-avatar s-avatar__48 s-user-card--avatar">
+                <img class="s-avatar--image" src="https://picsum.photos/128" />
+            </a>
+            <div class="s-user-card--info">
+                <a href="#" class="s-user-card--link">
+                    Aaron Shekey
+                </a>
+                <div class="s-user-card--role">Senior Product Designer</div>
+                <div class="s-user-card--location">Minneapolis, MN</div>
+                <ul class="s-user-card--awards">
+                    <li class="s-user-card--rep">768</li>
+                    <li class="s-award-bling s-award-bling__silver">9</li>
+                    <li class="s-award-bling s-award-bling__bronze">1</li>
+                </ul>
+                <div class="s-user-card--tags grid gs4">
+                    <a href="#" class="grid--cell s-tag s-tag__xs">css</a>
+                    <a href="#" class="grid--cell s-tag s-tag__xs">javascript</a>
+                    <a href="#" class="grid--cell s-tag s-tag__xs">html</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="s-user-card s-user-card__full mt16">
+            <a href="#" class="s-avatar s-avatar__48 s-user-card--avatar">
+                <img class="s-avatar--image" src="https://picsum.photos/128" />
+            </a>
+            <div class="s-user-card--info">
+                <a href="#" class="s-user-card--link">
+                    Aaron Shekey
+                </a>
+                <div class="s-user-card--location">Minneapolis, MN</div>
+                <ul class="s-user-card--awards">
+                    <li class="s-user-card--rep">768</li>
+                    <li class="s-award-bling s-award-bling__silver">9</li>
+                    <li class="s-award-bling s-award-bling__bronze">1</li>
+                </ul>
+            </div>
+            <div class="s-user-card--type">
+                {% icon "StarVerifiedSm" %} Star Wars Partner
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="stacks-section">
+    {% header "h3", "Small" %}
+    <div class="stacks-preview">
+{% highlight html %}
+<div class="s-user-card s-user-card__small">
+    <a href="…" class="s-avatar s-avatar__24 s-user-card--avatar">
+        <img class="s-avatar--image" src="…" />
+    </a>
+    <div class="s-user-card--info">
+        <ul class="s-user-card--awards">
+            <li class="s-user-card--rep">…</li>
+            <li class="s-award-bling s-award-bling__gold">…</li>
+            <li class="s-award-bling s-award-bling__silver">…</li>
+            <li class="s-award-bling s-award-bling__bronze">…</li>
+        </ul>
+    </div>
+</div>
+{% endhighlight %}
+        <div class="stacks-preview--example">
+            <div class="s-user-card s-user-card__small">
+                <a href="#" class="s-avatar s-avatar__24 s-user-card--avatar">
+                    <img class="s-avatar--image" src="https://picsum.photos/48" />
+                </a>
+                <div class="s-user-card--info">
+                    <ul class="s-user-card--awards">
+                        <li class="s-user-card--rep">2,500</li>
+                        <li class="s-award-bling s-award-bling__gold">5</li>
+                        <li class="s-award-bling s-award-bling__silver">9</li>
+                        <li class="s-award-bling s-award-bling__bronze">1</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="stacks-section">
+    {% header "h3", "Minimal" %}
+    <div class="stacks-preview">
+{% highlight html %}
+<div class="s-user-card s-user-card__minimal">
+    <time class="s-user-card--time">…</time>
+    <div class="s-user-card--info">
+        <a href="…" class="s-user-card--link">…</a>
+        <ul class="s-user-card--awards">
+            <li class="s-user-card--rep">…</li>
+        </ul>
+    </div>
+</div>
+
+<div class="s-user-card s-user-card__minimal">
+    <time class="s-user-card--time">…</time>
+    <a href="…" class="s-avatar s-user-card--avatar">
+        <img class="s-avatar--image" src="…" />
+    </a>
+    <div class="s-user-card--info">
+        <a href="#" class="s-user-card--link">…</a>
+        <ul class="s-user-card--awards">
+            <li class="s-user-card--rep">…</li>
+        </ul>
+    </div>
+</div>
+{% endhighlight %}
+        <div class="stacks-preview--example">
+            <div class="s-user-card s-user-card__minimal">
+                <time class="s-user-card--time">3 minutes ago</time>
+                <div class="s-user-card--info">
+                    <a href="#" class="s-user-card--link">
+                        Paul Wright
+                    </a>
+                    <ul class="s-user-card--awards">
+                        <li class="s-user-card--rep">2,500</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="s-user-card s-user-card__minimal mt16">
+                <time class="s-user-card--time">3 minutes ago</time>
+                <a href="#" class="s-avatar s-user-card--avatar">
+                    <img class="s-avatar--image" src="https://picsum.photos/32" />
+                </a>
+                <div class="s-user-card--info">
+                    <a href="#" class="s-user-card--link">
+                        Paul Wright
+                    </a>
+                    <ul class="s-user-card--awards">
+                        <li class="s-user-card--rep">2,500</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="stacks-section">
+    {% header "h3", "Deleted" %}
+    <p class="stacks-copy">When a user is deleted, we still need to show their name, but we strip the meta data.</p>
+    <div class="stacks-preview">
+{% highlight html %}
+<div class="s-user-card s-user-card__deleted">
+    <time class="s-user-card--time">…</time>
+    <div class="s-avatar s-avatar__32 s-user-card--avatar">
+        <img class="s-avatar--image" src="…" />
+    </div>
+    <div class="s-user-card--info">…</div>
+</div>
+
+<div class="s-user-card s-user-card__deleted s-user-card__minimal">
+    <time class="s-user-card--time">3 years ago</time>
+    <div class="s-avatar s-avatar__32 s-user-card--avatar">
+        <img class="s-avatar--image" src="…" />
+    </div>
+    <div class="s-user-card--info">
+        <div class="s-user-card--link">
+            Paul Wright
+        </div>
+    </div>
+</div>
+{% endhighlight %}
+        <div class="stacks-preview--example">
+            <div class="s-user-card s-user-card__deleted">
+                <time class="s-user-card--time">3 minutes ago</time>
+                <div class="s-avatar s-avatar__32 s-user-card--avatar demo-background"></div>
+                <div class="s-user-card--info">
+                    <div class="s-user-card--link">
+                        Paul Wright
+                    </div>
+                </div>
+            </div>
+
+            <div class="s-user-card s-user-card__deleted s-user-card__minimal mt16">
+                <time class="s-user-card--time">3 years ago</time>
+                <div class="s-avatar s-user-card--avatar demo-background"></div>
+                <div class="s-user-card--info">
+                    <div class="s-user-card--link">
+                        Paul Wright
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    .demo-background {
+        background-image: url("{{ "/assets/img/anonymous-user.svg" | relative_url }}");
+    }
+</style>

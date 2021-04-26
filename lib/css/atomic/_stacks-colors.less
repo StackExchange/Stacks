@@ -25,9 +25,11 @@
         .f\:fc-@{color-name}:focus-within {
             color: var(~"--@{color-name}") !important;
         }
-        #stacks-internals #darkmode('.d\:fc-@{color-name}', {
-            color: var(~"--@{color-name}") !important;
-        });
+        .d\:fc-@{color-name} {
+            .dark-mode({
+                color: var(~"--@{color-name}") !important;
+            });
+        }
 
         .bg-@{color-name},
         .h\:bg-@{color-name}:hover,
@@ -37,9 +39,11 @@
         .f\:bg-@{color-name}:focus-within {
             background-color: var(~"--@{color-name}") !important;
         }
-        #stacks-internals #darkmode('.d\:bg-@{color-name}', {
-            background-color: var(~"--@{color-name}") !important;
-        });
+        .d\:bg-@{color-name} {
+            .dark-mode({
+                background-color: var(~"--@{color-name}") !important;
+            });
+        }
     }
 
     .standard-weights(@color) {
@@ -83,7 +87,11 @@
 }
 
 .fc-white__forced {
-    color: @white;
+    color: @white !important;
+}
+
+.fc-black__forced {
+    color: @black !important;
 }
 
 .fc-gold {
@@ -158,7 +166,8 @@
     background-color: var(--bronze-lighter) !important;
 }
 
-.bg-transparent {
+.bg-transparent,
+.h\:bg-transparent:hover {
     background-color: transparent !important;
     background-image: none !important;
 }

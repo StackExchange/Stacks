@@ -1,9 +1,9 @@
 (function(){
     Stacks.application.register("s-table", class extends Stacks.StacksController {
         static targets = ["column"];
-        declare readonly columnTarget!: Element;
-        declare readonly columnTargets!: Element[];
-    
+        readonly columnTarget!: Element;
+        readonly columnTargets!: Element[];
+
         setCurrentSort(headElem: Element, direction: "asc" | "desc" | "none") {
             if (["asc", "desc", "none"].indexOf(direction) < 0) {
                 throw "direction must be one of asc, desc, or none"

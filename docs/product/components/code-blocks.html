@@ -1,0 +1,420 @@
+---
+layout: page
+title: Code block
+description: Stacks provides styling for code blocks with syntax highlighting provided by highlight.js. Special care was taken to make sure our light and dark themes felt like Stack Overflow while maintaining near AAA color contrasts and still being distinguishable for those with a color vision deficiency.
+---
+<section class="stacks-section">
+    {% header "h2", "Classes" %}
+    <div class="overflow-x-auto mb32">
+        <table class="wmn3 s-table s-table__bx-simple">
+            <thead>
+                <tr>
+                    <th scope="col">Class</th>
+                    <th scope="col">Applies to</th>
+                    <th scope="col">Output</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row"><code class="stacks-code">.s-code-block</code></th>
+                    <td class="ff-mono"><code class="stacks-code">pre</code></td>
+                    <td class="ff-mono">Adds proper styling to pre-formatted code.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+<section class="stacks-section">
+    {% header "h2", "Examples" %}
+    <p class="stacks-copy">The following examples are a small subset of the languages that <a href="https://highlightjs.org/static/demo/"><code class="stacks-code">highlight.js</code></a> supports.</p>
+    {% header "h3", "HTML" %}
+    <div class="stacks-preview">
+{% highlight html %}
+<pre class="s-code-block language-html">
+    …
+</pre>
+{% endhighlight %}
+        <div class="stacks-preview--example">
+{% highlight html %}
+<form class="grid gs4 gsy fd-column">
+    <label class="grid--cell s-label" for="question-title">Question title</label>
+    <div class="grid ps-relative">
+        <input class="grid--cell s-input" type="text" id="question-title" placeholder="e.g. Why doesn’t Stack Overflow use a custom web font?"/>
+    </div>
+</form>
+{% endhighlight %}
+        </div>
+    </div>
+
+    {% header "h3", "JavaScript" %}
+    <div class="stacks-preview">
+{% highlight html %}
+<pre class="s-code-block language-javascript">
+    …
+</pre>
+{% endhighlight %}
+        <div class="stacks-preview--example">
+{% highlight javascript %}
+import React, { Component } from 'react'
+import { IP } from '../constants/IP'
+import { withAuth0 } from '@auth0/auth0-react';
+
+class AddATournament extends Component {
+    componentDidMount() {
+        this.myNewListOfAllTournamentsWithAuth()
+    }
+}
+
+export default withAuth0(AddATournament);
+{% endhighlight %}
+        </div>
+    </div>
+
+    {% header "h3", "CSS" %}
+    <div class="stacks-preview">
+{% highlight html %}
+<pre class="s-code-block language-css">
+    …
+</pre>
+{% endhighlight %}
+        <div class="stacks-preview--example">
+{% highlight css %}
+.s-input,
+.s-textarea {
+    -webkit-appearance: none;
+    width: 100%;
+    margin: 0;
+    padding: 0.6em 0.7em;
+    border: 1px solid var(--black-200);
+    border-radius: 3px;
+    background-color: var(--white);
+    color: var(--fc-dark);
+    font-size: 13px;
+    font-family: inherit;
+    line-height: 1.15384615;
+    scrollbar-color: var(--scrollbar) transparent;
+}
+@supports (-webkit-overflow-scrolling: touch) {
+    .s-input,
+    .s-textarea {
+        font-size: 16px;
+        padding: 0.36em 0.55em;
+    }
+    .s-input::-webkit-input-placeholder,
+    .s-textarea::-webkit-input-placeholder {
+        line-height: normal !important;
+    }
+}
+{% endhighlight %}
+        </div>
+    </div>
+
+    {% header "h3", "Java" %}
+    <div class="stacks-preview">
+{% highlight html %}
+<pre class="s-code-block language-java">
+    …
+</pre>
+{% endhighlight %}
+        <div class="stacks-preview--example">
+{% highlight java %}
+package l2f.gameserver.model;
+
+public abstract strictfp class L2Char extends L2Object {
+  public static final Short ERROR = 0x0001;
+
+  public void moveTo(int x, int y, int z) {
+    _ai = null;
+    log("Should not be called");
+    if (1 > 5) { // what?
+      return;
+    }
+  }
+}
+{% endhighlight %}
+        </div>
+    </div>
+
+    {% header "h3", "Ruby" %}
+    <div class="stacks-preview">
+{% highlight html %}
+<pre class="s-code-block language-ruby">
+    …
+</pre>
+{% endhighlight %}
+        <div class="stacks-preview--example">
+{% highlight ruby %}
+# The Greeter class
+class Greeter
+  def initialize(name)
+    @name = name.capitalize
+  end
+
+  def salute
+    puts "Hello #{@name}!"
+  end
+end
+
+g = Greeter.new("world")
+g.salute
+{% endhighlight %}
+        </div>
+    </div>
+
+    {% header "h3", "Python" %}
+    <div class="stacks-preview">
+{% highlight html %}
+<pre class="s-code-block language-python">
+    …
+</pre>
+{% endhighlight %}
+        <div class="stacks-preview--example">
+{% highlight python %}
+def all_indices(value, qlist):
+    indices = []
+    idx = -1
+    while True:
+        try:
+            idx = qlist.index(value, idx+1)
+            indices.append(idx)
+        except ValueError:
+            break
+    return indices
+
+all_indices("foo", ["foo","bar","baz","foo"])
+{% endhighlight %}
+        </div>
+    </div>
+
+    {% header "h3", "Objective-C" %}
+    <div class="stacks-preview">
+{% highlight html %}
+<pre class="s-code-block language-objectivec">
+    …
+</pre>
+{% endhighlight %}
+        <div class="stacks-preview--example">
+{% highlight objectivec %}
+#import <UIKit/UIKit.h>
+#import "Dependency.h"
+
+@protocol WorldDataSource
+@optional
+- (NSString*)worldName;
+@required
+- (BOOL)allowsToLive;
+@end
+
+@property (nonatomic, readonly) NSString *title;
+- (IBAction) show;
+@end
+
+- (UITextField *) userName {
+    UITextField *retval = nil;
+    @synchronized(self) {
+        retval = [[userName retain] autorelease];
+    }
+    return retval;
+}
+
+- (void) setUserName:(UITextField *)userName_ {
+    @synchronized(self) {
+      [userName_ retain];
+      [userName release];
+      userName = userName_;
+    }
+}
+{% endhighlight %}
+        </div>
+    </div>
+
+    {% header "h3", "Swift" %}
+    <div class="stacks-preview">
+{% highlight html %}
+<pre class="s-code-block language-swift">
+    …
+</pre>
+{% endhighlight %}
+        <div class="stacks-preview--example">
+{% highlight swift %}
+import Foundation
+
+@objc class Person: Entity {
+  var name: String!
+  var age:  Int!
+
+  init(name: String, age: Int) {
+    /* /* ... */ */
+  }
+
+  // Return a descriptive string for this person
+  func description(offset: Int = 0) -> String {
+    return "\(name) is \(age + offset) years old"
+  }
+}
+{% endhighlight %}
+        </div>
+    </div>
+
+    {% header "h3", "Less" %}
+    <div class="stacks-preview">
+{% highlight html %}
+<pre class="s-code-block language-less">
+    …
+</pre>
+{% endhighlight %}
+        <div class="stacks-preview--example">
+{% highlight less %}
+@import "fruits";
+
+@rhythm: 1.5em;
+
+@media screen and (min-resolution: 2dppx) {
+    body {font-size: 125%}
+}
+
+section > .foo + #bar:hover [href*="less"] {
+    margin:     @rhythm 0 0 @rhythm;
+    padding:    calc(5% + 20px);
+    background: #f00ba7 url(http://placehold.alpha-centauri/42.png) no-repeat;
+    background-image: linear-gradient(-135deg, wheat, fuchsia) !important ;
+    background-blend-mode: multiply;
+}
+
+@font-face {
+    font-family: /* ? */ 'Omega';
+    src: url('../fonts/omega-webfont.woff?v=2.0.2');
+}
+
+.icon-baz::before {
+    display:     inline-block;
+    font-family: "Omega", Alpha, sans-serif;
+    content:     "\f085";
+    color:       rgba(98, 76 /* or 54 */, 231, .75);
+}
+{% endhighlight %}
+        </div>
+    </div>
+
+    {% header "h3", "Json" %}
+    <div class="stacks-preview">
+{% highlight html %}
+<pre class="s-code-block language-json">
+    …
+</pre>
+{% endhighlight %}
+        <div class="stacks-preview--example">
+{% highlight json %}
+[
+  {
+    "title": "apples",
+    "count": [12000, 20000],
+    "description": {"text": "...", "sensitive": false}
+  },
+  {
+    "title": "oranges",
+    "count": [17500, null],
+    "description": {"text": "...", "sensitive": false}
+  }
+]
+{% endhighlight %}
+        </div>
+    </div>
+
+    {% header "h3", "C Sharp" %}
+    <div class="stacks-preview">
+{% highlight html %}
+<pre class="s-code-block language-csharp">
+    …
+</pre>
+{% endhighlight %}
+        <div class="stacks-preview--example">
+{% highlight csharp %}
+using System.IO.Compression;
+
+#pragma warning disable 414, 3021
+
+namespace MyApplication
+{
+    [Obsolete("...")]
+    class Program : IInterface
+    {
+        public static List<int> JustDoIt(int count)
+        {
+            Console.WriteLine($"Hello {Name}!");
+            return new List<int>(new int[] { 1, 2, 3 })
+        }
+    }
+}
+{% endhighlight %}
+        </div>
+    </div>
+
+    {% header "h3", "SQL" %}
+    <div class="stacks-preview">
+{% highlight html %}
+<pre class="s-code-block language-sql">
+    …
+</pre>
+{% endhighlight %}
+        <div class="stacks-preview--example">
+{% highlight sql %}
+CREATE TABLE "topic" (
+    "id" serial NOT NULL PRIMARY KEY,
+    "forum_id" integer NOT NULL,
+    "subject" varchar(255) NOT NULL
+);
+ALTER TABLE "topic"
+ADD CONSTRAINT forum_id FOREIGN KEY ("forum_id")
+REFERENCES "forum" ("id");
+
+-- Initials
+insert into "topic" ("forum_id", "subject")
+values (2, 'D''artagnian');
+{% endhighlight %}
+        </div>
+    </div>
+
+    {% header "h3", "Diff" %}
+    <div class="stacks-preview">
+{% highlight html %}
+<pre class="s-code-block language-diff">
+    …
+</pre>
+{% endhighlight %}
+        <div class="stacks-preview--example">
+{% highlight diff %}
+Index: languages/ini.js
+===================================================================
+--- languages/ini.js    (revision 199)
++++ languages/ini.js    (revision 200)
+@@ -1,8 +1,7 @@
+ hljs.LANGUAGES.ini =
+ {
+   case_insensitive: true,
+-  defaultMode:
+-  {
++  defaultMode: {
+     contains: ['comment', 'title', 'setting'],
+     illegal: '[^\\s]'
+   },
+
+*** /path/to/original timestamp
+--- /path/to/new      timestamp
+***************
+*** 1,3 ****
+--- 1,9 ----
++ This is an important
++ notice! It should
++ therefore be located at
++ the beginning of this
++ document!
+
+! compress the size of the
+! changes.
+
+  It is important to spell
+{% endhighlight %}
+        </div>
+    </div>
+</section>

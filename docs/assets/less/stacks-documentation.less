@@ -26,11 +26,11 @@
     background-image: url("../img/illustration-crane.svg"), url("../img/illustration-field.svg");
     background-position: top -35% left 15%, bottom 10% right 8%;
     background-repeat: no-repeat, no-repeat;
-}
 
-#stacks-internals #darkmode('.stacks-intro', {
-    background-image: url("../img/illustration-crane-dark.svg"), url("../img/illustration-field-dark.svg");
-});
+    .dark-mode({
+        background-image: url("../img/illustration-crane-dark.svg"), url("../img/illustration-field-dark.svg");
+    });
+}
 
 .stacks-home-nav {
     margin-bottom: 316px;
@@ -197,7 +197,6 @@
     vertical-align: middle;
     white-space: nowrap;
     overflow-wrap: break-word;
-    word-wrap: break-word; /* IE11 */
 }
 
 .stacks-code {
@@ -221,147 +220,38 @@
 //  ----------------------------------------------------------------------------
 .stacks-preview {
     margin-bottom: @su48;
-    .bs-sm;
+    border-radius: @br-md;
+    box-shadow: var(--bs-sm);
 
-    pre[class*="language-"] {
-        font-size: @fs-body1;
-        font-family: @ff-mono;
-        line-height: @lh-lg;
-
-        // We want our code highlighting colors to stay fixed
-        color: @white;
-
-        .btr-sm;
+    > pre.s-code-block {
+        border-radius: @br-md @br-md 0 0;
+        border: 1px solid var(--black-100);
         max-height: 24rem;
-        margin: 0;
-        padding: @su8 @su12;
-        overflow: auto;
-        background-color: @black-800;
 
-        // Don't use the mixin since we want our scrollbar colors to remain fixed
-        // since the background also remains fixed.
-        &::-webkit-scrollbar {
-            width: @su12 - @su2;
-            height: @su12 - @su2;
-            background-color: transparent;
-        }
-
-        &::-webkit-scrollbar-track {
-            border-radius: @su12 - @su2;
-            background-color: transparent;
-        }
-
-        &::-webkit-scrollbar-thumb
-        {
-            border-radius: @su12 - @su2;
-            background-color: rgba(255, 255, 255, .2);
-        }
-
-        &::-webkit-scrollbar-corner {
-            background-color: transparent;
-        }
-
-        scrollbar-color: rgba(255, 255, 255, .2) transparent;
+        .dark-mode({
+            border-color: transparent;
+        });
     }
 
-    .token.comment,
-    .token.block-comment,
-    .token.prolog,
-    .token.doctype,
-    .token.cdata {
-        color: #999;
-    }
-
-    .token.punctuation {
-        color: #ccc;
-    }
-
-    .token.tag,
-    .token.namespace,
-    .token.deleted {
-        color: #f08d49;
-    }
-
-    .token.attr-name {
-        color: #81a2be;
-    }
-
-    .token.function-name {
-        color: #6196cc;
-    }
-
-    .token.boolean,
-    .token.number,
-    .token.function {
-        color: #f08d49;
-    }
-
-    .token.property,
-    .token.class-name,
-    .token.constant,
-    .token.symbol {
-        color: #f8c555;
-    }
-
-    .token.selector,
-    .token.important,
-    .token.atrule,
-    .token.keyword,
-    .token.builtin {
-        color: #cc99cd;
-    }
-
-    .token.string,
-    .token.char,
-    .token.attr-value,
-    .token.regex,
-    .token.variable {
-        color: #b5bd68;
-    }
-
-    .token.operator,
-    .token.entity,
-    .token.url {
-        color: #67cdcc;
-    }
-
-    .token.important,
-    .token.bold {
-        font-weight: bold;
-    }
-    .token.italic {
-        font-style: italic;
-    }
-
-    .token.entity {
-        cursor: help;
-    }
-
-    .token.inserted {
-        color: @green-300;
-    }
-
-    &._preview-none pre[class*="language-"] {
-        .bar-sm;
+    &._preview-none pre.s-code-block {
+        .bar-md;
     }
 }
-
-#stacks-internals #darkmode('.stacks-preview pre[class*="language-"]', { background-color: #1c1b1b; });
 
 //  Preview area
 .stacks-preview--example {
     padding: @su16;
-    border-bottom-left-radius: @br-sm;
-    border-bottom-right-radius: @br-sm;
+    border-bottom-left-radius: @br-md;
+    border-bottom-right-radius: @br-md;
     border: 1px solid var(--black-100);
     border-top-width: 0;
     font-size: @fs-body1;
-}
 
-#stacks-internals #darkmode('.stacks-preview--example', {
-    border-color: transparent;
-    background: var(--black-025);
-});
+    .dark-mode({
+        border-color: transparent;
+        background: var(--black-025);
+    });
+}
 
 // Checkered background
 .bg-checkered {
@@ -372,6 +262,10 @@
 //  ============================================================================
 //  $   ICON PRESENTATION
 //  ----------------------------------------------------------------------------
+.stacks-icon-container {
+    scroll-margin-top: 150px;
+}
+
 //  --   Preview Area
 .stacks-icon-preview {
     padding: @su8;
@@ -492,4 +386,9 @@
     .stacks-grid {
         grid-template-columns: 1fr;
     }
+}
+
+
+.team-avatar {
+    background-image: url("../img/team-avatar.png");
 }

@@ -33,6 +33,7 @@
     text-align: center;
     text-decoration: none;
     cursor: pointer;
+    user-select: none;
 
     // Override for buttons having inline-block by default
     &.grid {
@@ -60,12 +61,9 @@
     }
 
     &[disabled] {
-        opacity: 1;
-        cursor: default;
+        opacity: .5;
         pointer-events: none;
-        color: @button-disabled-color;
-        background-color: @button-disabled-background-color;
-        box-shadow: none;
+        box-shadow: none !important;
     }
 
     &.is-selected {
@@ -139,42 +137,6 @@
         }
     }
 
-    &.s-btn__lg {
-        padding: 0.6em;
-        border-radius: @br-sm + 1;
-        font-size: @fs-headline1;
-
-        &.s-btn__dropdown {
-            padding-right: 1.5em;
-
-            &:after {
-                top: calc(~"50% - 2px");
-                right: 0.6em;
-                border-width: @su6;
-                border-top-width: @su6;
-                border-bottom-width: 0;
-            }
-        }
-    }
-
-    &.s-btn__xl {
-        padding: 0.5em;
-        border-radius: @br-sm + @br-sm;
-        font-size: @fs-headline2;
-
-        &.s-btn__dropdown {
-            padding-right: 1.3em;
-
-            &:after {
-                top: calc(~"50% - 4px");
-                right: 0.5em;
-                border-width: @su4 + 3px;
-                border-top-width: @su4 + 3px;
-                border-bottom-width: 0;
-            }
-        }
-    }
-
     .s-btn--badge {
         opacity: .5;
         display: inline-block;
@@ -190,7 +152,10 @@
     }
 }
 
-#stacks-internals #darkmode('.s-btn__primary:not(.is-selected):not([disabled]) .s-btn--number, .s-btn__danger.s-btn__filled:not(.is-selected):not([disabled]) .s-btn--number', { color: @black; });
+.s-btn__primary:not(.is-selected) .s-btn--number,
+.s-btn__danger.s-btn__filled:not(.is-selected) .s-btn--number {
+    .dark-mode({ color: @black; });
+}
 
 //  ============================================================================
 //  $   DEFAULT (SECONDARY) STYLES
@@ -205,12 +170,6 @@
     &.is-selected {
         border-color: @button-outlined-selected-border-color;
     }
-
-    &[disabled] {
-        color: @button-outlined-disabled-color;
-        border-color: @button-outlined-disabled-border-color;
-        background-color: @button-outlined-disabled-background-color;
-    }
 }
 
 //  --  Base Filled Style
@@ -221,6 +180,8 @@
     background-color: @button-filled-background-color;
     border-color: @button-filled-border-color;
     box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, .7);
+
+    .dark-mode({ box-shadow: none; });
 
     &:hover,
     &:focus,
@@ -235,12 +196,6 @@
         box-shadow: none;
     }
 
-    &[disabled] {
-        background-color: @button-filled-disabled-background-color;
-        border-color: @button-filled-disabled-border-color;
-        box-shadow: none;
-    }
-
     &.is-selected {
         color: @button-filled-selected-color;
         background-color: @button-filled-selected-background-color;
@@ -248,8 +203,6 @@
         box-shadow: none;
     }
 }
-
-#stacks-internals #darkmode('.s-btn__filled', { box-shadow: none; });
 
 //  --  Muted Clear Style
 //      Creates a gray button style.
@@ -288,10 +241,6 @@
         &.is-selected {
             border-color: @button-muted-outlined-selected-border-color;
         }
-
-        &[disabled] {
-            border-color: @button-muted-outlined-disabled-border-color;
-        }
     }
 
     //  --  Filled (Gray)
@@ -300,6 +249,8 @@
         background-color: @button-muted-filled-background-color;
         border-color: transparent;
         box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, .4);
+
+        .dark-mode({ box-shadow: none; });
 
         &:hover,
         &:focus,
@@ -326,15 +277,8 @@
                 box-shadow: 0 0 0 @su4 var(--focus-ring-muted);
             }
         }
-
-        &[disabled] {
-            color: @button-muted-filled-disabled-color;
-            box-shadow: none;
-        }
     }
 }
-
-#stacks-internals #darkmode('.s-btn__muted.s-btn__filled', { box-shadow: none; });
 
 //  ============================================================================
 //  $   DANGER BUTTONS & STYLES
@@ -373,10 +317,6 @@
         &.is-selected {
             border-color: @button-danger-outlined-selected-border-color;
         }
-
-        &[disabled] {
-            border-color: @button-danger-outlined-disabled-border-color;
-        }
     }
 
     //  --  Filled
@@ -385,6 +325,8 @@
         background-color: @button-danger-filled-background-color;
         border-color: transparent;
         box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, .4);
+
+        .dark-mode({ box-shadow: none; });
 
         &:hover,
         &:focus,
@@ -415,20 +357,8 @@
         .s-btn--number {
             color: @button-danger-filled-number-color;
         }
-
-        &[disabled] {
-            color: @button-danger-filled-disabled-color;
-            background-color: @button-danger-filled-disabled-background-color;
-            box-shadow: none;
-
-            .s-btn--number {
-                color: @button-danger-filled-disabled-number-color;
-            }
-        }
     }
 }
-
-#stacks-internals #darkmode('.s-btn__danger.s-btn__filled', { box-shadow: none; });
 
 //  ============================================================================
 //  $   PRIMARY STYLE
@@ -437,6 +367,8 @@
     color: @button-primary-color;
     background-color: @button-primary-background-color;
     box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, .4);
+
+    .dark-mode({ box-shadow: none; });
 
     &:hover,
     &:focus,
@@ -458,19 +390,7 @@
     .s-btn--number {
         color: @button-primary-number-color;
     }
-
-    &[disabled] {
-        color: @button-primary-disabled-color;
-        background-color: @button-primary-disabled-background-color;
-
-        .s-btn--number {
-            color: @button-primary-disabled-number-color;
-        }
-    }
 }
-
-#stacks-internals #darkmode('.s-btn__primary', { box-shadow: none; });
-
 
 //  ============================================================================
 //  $   MISC STYLES
@@ -539,6 +459,7 @@
     background: none;
     box-shadow: none;
     cursor: default;
+    user-select: auto;
 }
 
 .s-btn__unset:focus {
@@ -560,7 +481,8 @@
 
     &:hover,
     &:active,
-    &:focus {
+    &:focus,
+    &[disabled] {
         background: none;
     }
 }
@@ -624,20 +546,6 @@
             // If the first thing in the button is an icon, let's hide it on loading
             // We only want to modify the visibility, since we still want it to have shape and keep the same layout.
             opacity: 0;
-        }
-
-        &.s-btn__lg {
-            &:before,
-            &:after {
-                border-width: 3px;
-            }
-        }
-
-        &.s-btn__xl {
-            &:before,
-            &:after {
-                border-width: 4px;
-            }
         }
     }
 }
