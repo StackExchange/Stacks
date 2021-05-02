@@ -13,9 +13,19 @@
 //  ============================================================================
 //  $   FONT FAMILY (ff-)
 //  ----------------------------------------------------------------------------
-@ff-sans:  -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+@ff-sans:
+    -apple-system, BlinkMacSystemFont, // Render in San Francisco on macOS and iOS
+    "Segoe UI", // Render things in Segoe on Windows,
+    "Ubuntu", // Choose Ubuntu's UI font, otherwise it'll choose DejaVu Sans
+    "Noto Sans", // A fallback with a ton of added characters and symbols
+    sans-serif, // The final fallback for rendering in sans-serif. Renders as Roboto on Android
+    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"; // Make sure we're rendering emoji well
 @ff-serif: Georgia, Cambria, "Times New Roman", Times, serif;
-@ff-mono: "SF Mono", SFMono-Regular, ui-monospace, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+@ff-mono:
+    "SF Mono", SFMono-Regular, ui-monospace, // Render in San Francisco Mono on macOS and iOS. ui-monospace is what ultimately does it as of Safari 13.1
+    "Segoe UI Mono", // Render things in Segoe on Windows
+    Monaco, Consolas, // A few sensible system font choices
+    monospace; // The final fallback for rendering in monospace.
 
 body {
     --ff-sans:  @ff-sans;
