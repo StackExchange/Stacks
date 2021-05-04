@@ -637,6 +637,20 @@ fieldset {
     border-radius: @br-md;
 }
 
+.s-input__md,
+.s-textarea__md {
+    //  --  INCREASE FONT SIZE FOR MOBILE SAFARI
+    //  This keeps our inputs from zooming the page while focused
+    //  ------------------------------------------------------------------------
+    @supports (-webkit-overflow-scrolling: touch) {
+        font-size: 17px;
+
+        // Compensate for the larger font size so we generally keep the input the same size
+        padding-top: .4em;
+        padding-bottom: .4em;
+    }
+}
+
 @autofill: {
     &::-webkit-contacts-auto-fill-button {
         background-color: var(--black); // In Safari, make the autocomplete button darkmode-aware
