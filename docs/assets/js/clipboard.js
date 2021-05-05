@@ -7,31 +7,21 @@ for (var button of copyButtons) {
 
 function copyToClipboard(evt) {
     var target = evt.currentTarget;
+    var selection = window.getSelection();
+    var range = document.createRange();
 
-    var currentRange;
-    if (document.getSelection().rangeCount > 0) {
-        currentRange = document.getSelection().getRangeAt(0);
-        window.getSelection().removeRange(currentRange);
-    }
-    else {
-        currentRange = false;
-    }
+    // Grad the text
+    range.selectNodeContents(target);
+    selection.removeAllRanges();
+    selection.addRange(range);
 
-    var CopyRange = document.createRange();
+    // Copy to clipboard
+    document.execCommand('copy');
+    selection.removeAllRanges();
 
-    CopyRange.selectNode(target);
-    window.getSelection().addRange(CopyRange);
-    document.execCommand("copy");
-
-    copyNotice.setAttribute("aria-hidden", "false")
-
+    // Open a toaster
+    copyNotice.setAttribute("aria-hidden", "false");
     setTimeout(function () {
-        copyNotice.setAttribute("aria-hidden", "true")
+        copyNotice.setAttribute("aria-hidden", "true");
     }, 3000);
-
-    window.getSelection().removeRange(CopyRange);
-
-    if (currentRange) {
-        window.getSelection().addRange(currentRange);
-    }
 }
