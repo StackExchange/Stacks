@@ -1,7 +1,7 @@
 ---
 layout: page
-title: Post list item
-description: Post list items summarize various content and associated meta data into a highly configurable component.
+title: Post summary
+description: The post summary component summarizes various content and associated meta data into a highly configurable component.
 ---
 <section class="stacks-section">
     {% header "h2", "Classes" %}
@@ -15,7 +15,7 @@ description: Post list items summarize various content and associated meta data 
                 </tr>
             </thead>
             <tbody class="fs-caption">
-                {% for item in post-list-item.classes %}
+                {% for item in post-summary.classes %}
                     <tr>
                         <th scope="row"><code class="stacks-code">{{ item.class }}</code></th>
                         <td><code class="stacks-code">{{ item.applies }}</td>
@@ -28,10 +28,10 @@ description: Post list items summarize various content and associated meta data 
 </section>
 <section class="stacks-section">
     {% header "h2", "Examples" %}
-    <p class="stacks-copy">Post list items are a flexible component capable of previewing various content types—questions or articles. Post list items are meant to be flexible, allowing for each individual piece to be removed. Let’s start with a full example of a few questions and an article interleaved.</p>
+    <p class="stacks-copy">Post summaries are a flexible component capable of previewing various content types—questions or articles. Post summaries are meant to be flexible, allowing for each individual piece to be removed. Let’s start with a full example of a few questions and an article interleaved.</p>
 
     {% header "h3", "Full" %}
-    <p class="stacks-copy">At their most complete, post list items are presented in two columns and can contain:</p>
+    <p class="stacks-copy">At their most complete, post summaries are presented in two columns and can contain:</p>
     <ul class="stacks-list">
         <li>Title</li>
         <li>Excerpt</li>
@@ -43,24 +43,24 @@ description: Post list items summarize various content and associated meta data 
     <p class="stacks-copy">At the smallest breakpoint, the layout will switch to a single column.</p>
     <div class="stacks-preview">
 {% highlight html %}
-<div class="s-post-list-item">
-    <div class="s-post-list-item--stats">
-        <div class="s-post-list-item--stats-item has-answers has-accepted-answer">
+<div class="s-post-summary">
+    <div class="s-post-summary--stats">
+        <div class="s-post-summary--stats-item has-answers has-accepted-answer">
             {% icon "CheckmarkSm", "va-text-bottom" %}
             … answers
         </div>
-        <div class="s-post-list-item--stats-item">
+        <div class="s-post-summary--stats-item">
             … votes
         </div>
-        <div class="s-post-list-item--stats-item is-supernova">
+        <div class="s-post-summary--stats-item is-supernova">
             {% icon "FireSm", "va-text-bottom mrn2" %}
             … views
         </div>
     </div>
-    <div class="s-post-list-item--content">
-        <a href="…" class="s-post-list--content-title s-link">…</a>
-        <p class="s-post-list--content-excerpt">…</p>
-        <div class="s-post-list--meta">
+    <div class="s-post-summary--content">
+        <a href="…" class="s-post-summary--content-title s-link">…</a>
+        <p class="s-post-summary--content-excerpt">…</p>
+        <div class="s-post-summary--meta">
             <a class="s-tag" href="…">…</a>
 
             <div class="s-user-card s-user-card__minimal">
@@ -74,35 +74,35 @@ description: Post list items summarize various content and associated meta data 
                 <time class="s-user-card--time">…</time>
             </div>
         </div>
-        <a href="…" class="s-btn s-btn__muted s-post-list--content-menu-button">
+        <a href="…" class="s-btn s-btn__muted s-post-summary--content-menu-button">
             {% icon "EllipsisVertical" %}
         </a>
     </div>
 </div>
 {% endhighlight %}
         <div class="stacks-preview--example p0">
-            <div class="s-post-list-item">
-                <div class="s-post-list-item--stats">
-                    <div class="s-post-list-item--stats-item has-answers has-accepted-answer">
+            <div class="s-post-summary">
+                <div class="s-post-summary--stats">
+                    <div class="s-post-summary--stats-item has-answers has-accepted-answer">
                         {% icon "CheckmarkSm", "va-text-bottom" %}
                         5 answers
                     </div>
-                    <div class="s-post-list-item--stats-item">
+                    <div class="s-post-summary--stats-item">
                         95 votes
                     </div>
-                    <div class="s-post-list-item--stats-item is-supernova">
+                    <div class="s-post-summary--stats-item is-supernova">
                         {% icon "FireSm", "va-text-bottom mrn2" %}
                         104k views
                     </div>
                 </div>
-                <div class="s-post-list-item--content">
-                    <a href="#" class="s-post-list--content-title s-link">
+                <div class="s-post-summary--content">
+                    <a href="#" class="s-post-summary--content-title s-link">
                         How to generate the JPA entity Metamodel?
                     </a>
-                    <p class="s-post-list--content-excerpt">
+                    <p class="s-post-summary--content-excerpt">
                         In the spirit of type safety associated with the CriteriaQuery JPA 2.0 also has an API to support Metamodel representation of entities.
                     </p>
-                    <div class="s-post-list--meta">
+                    <div class="s-post-summary--meta">
                         <a class="s-tag" href="#">java</a>
                         <a class="s-tag" href="#">hibernate</a>
                         <a class="s-tag" href="#">jpa</a>
@@ -120,35 +120,35 @@ description: Post list items summarize various content and associated meta data 
                             <time class="s-user-card--time">asked about 2 minutes ago</time>
                         </div>
                     </div>
-                    <a href="#" class="s-btn s-btn__muted s-post-list--content-menu-button">
+                    <a href="#" class="s-btn s-btn__muted s-post-summary--content-menu-button">
                         {% icon "EllipsisVertical" %}
                     </a>
                 </div>
             </div>
 
-            <div class="s-post-list-item">
-                <div class="s-post-list-item--stats">
-                    <div class="s-post-list-item--stats-item has-answers">
+            <div class="s-post-summary">
+                <div class="s-post-summary--stats">
+                    <div class="s-post-summary--stats-item has-answers">
                         4 answers
                     </div>
-                    <div class="s-post-list-item--stats-item">
+                    <div class="s-post-summary--stats-item">
                         280 votes
                     </div>
-                    <div class="s-post-list-item--stats-item is-warm">
+                    <div class="s-post-summary--stats-item is-warm">
                         10.2k views
                     </div>
-                    <div class="s-post-list-item--stats-item has-bounty">
+                    <div class="s-post-summary--stats-item has-bounty">
                         +50
                     </div>
                 </div>
-                <div class="s-post-list-item--content">
-                    <a class="s-post-list--content-title s-link">
+                <div class="s-post-summary--content">
+                    <a class="s-post-summary--content-title s-link">
                         Cannot read property 'startsWith' of null in npm install
                     </a>
-                    <p class="s-post-list--content-excerpt">
+                    <p class="s-post-summary--content-excerpt">
                         I am creating my first react-native app. I am attempting to install the react-native command line interface as shown here. I keep getting an error when I type the command to initiate the react-native command line
                     </p>
-                    <div class="s-post-list--meta">
+                    <div class="s-post-summary--meta">
                         <a class="s-tag" href="#">node-js</a>
                         <a class="s-tag" href="#">angular</a>
                         <a class="s-tag" href="#">npm</a>
@@ -165,38 +165,38 @@ description: Post list items summarize various content and associated meta data 
                             <time class="s-user-card--time">asked about 3 minutes ago</time>
                         </div>
                     </div>
-                    <a href="#" class="s-btn s-btn__muted s-post-list--content-menu-button">
+                    <a href="#" class="s-btn s-btn__muted s-post-summary--content-menu-button">
                         {% icon "EllipsisVertical" %}
                     </a>
                 </div>
             </div>
 
-            <div class="s-post-list-item">
-                <div class="s-post-list-item--stats">
-                    <div class="s-post-list-item--stats-item">
+            <div class="s-post-summary">
+                <div class="s-post-summary--stats">
+                    <div class="s-post-summary--stats-item">
                         1 vote
                     </div>
-                    <div class="s-post-list-item--stats-item">
+                    <div class="s-post-summary--stats-item">
                         15 views
                     </div>
-                    <div class="s-post-list-item--stats-item">
+                    <div class="s-post-summary--stats-item">
                         1 minute read
                     </div>
-                    <div class="s-post-list-item--stats-item">
+                    <div class="s-post-summary--stats-item">
                         1 comment
                     </div>
                 </div>
-                <div class="s-post-list-item--content">
-                    <a href="#" class="s-post-list--content-type">
+                <div class="s-post-summary--content">
+                    <a href="#" class="s-post-summary--content-type">
                         {% icon "DocumentAlt" %} How-to guide
                     </a>
-                    <a href="#" class="s-post-list--content-title s-link">
+                    <a href="#" class="s-post-summary--content-title s-link">
                         How to run a product research study
                     </a>
-                    <p class="s-post-list--content-excerpt">
+                    <p class="s-post-summary--content-excerpt">
                         This article aims to guide you through the steps and processes you may want to consider when running research at Stack Overflow. While there are obviously many methods, this guide will focus more interview-style research. For a full list of Product Research templates, guides, and links, see this article.
                     </p>
-                    <div class="s-post-list--meta">
+                    <div class="s-post-summary--meta">
                         <a class="s-tag" href="#">ux-research</a>
 
                         <div class="s-user-card s-user-card__minimal">
@@ -210,33 +210,33 @@ description: Post list items summarize various content and associated meta data 
                             <time class="s-user-card--time">created 15 days ago</time>
                         </div>
                     </div>
-                    <a href="#" class="s-btn s-btn__muted s-post-list--content-menu-button">
+                    <a href="#" class="s-btn s-btn__muted s-post-summary--content-menu-button">
                         {% icon "EllipsisVertical" %}
                     </a>
                 </div>
             </div>
 
-            <div class="s-post-list-item">
-                <div class="s-post-list-item--stats">
-                    <div class="s-post-list-item--stats-item has-answers">
+            <div class="s-post-summary">
+                <div class="s-post-summary--stats">
+                    <div class="s-post-summary--stats-item has-answers">
                         1 answer
                     </div>
-                    <div class="s-post-list-item--stats-item">
+                    <div class="s-post-summary--stats-item">
                         1 vote
                     </div>
-                    <div class="s-post-list-item--stats-item">
+                    <div class="s-post-summary--stats-item">
                         7 views
                     </div>
                 </div>
-                <div class="s-post-list-item--content">
-                    <a href="#" class="s-post-list--content-title s-link">
+                <div class="s-post-summary--content">
+                    <a href="#" class="s-post-summary--content-title s-link">
                         {% icon "Shield", "fc-light" %}
                         EF core 3.1 - common table for entity and owned type
                     </a>
-                    <p class="s-post-list--content-excerpt">
+                    <p class="s-post-summary--content-excerpt">
                         I’m trying to implement DDD approach in my project but realized that I have too big aggregates and trying to minimize the amount of data loaded from the database. I have an aggregate Order which
                     </p>
-                    <div class="s-post-list--meta">
+                    <div class="s-post-summary--meta">
                         <a class="s-tag" href="#">c#</a>
                         <a class="s-tag" href="#">asp.net</a>
                         <a class="s-tag" href="#">entity-framework</a>
@@ -253,7 +253,7 @@ description: Post list items summarize various content and associated meta data 
                             <time class="s-user-card--time">asked about 3 minutes ago</time>
                         </div>
                     </div>
-                    <a href="#" class="s-btn s-btn__muted s-post-list--content-menu-button">
+                    <a href="#" class="s-btn s-btn__muted s-post-summary--content-menu-button">
                         {% icon "EllipsisVertical" %}
                     </a>
                 </div>
@@ -262,25 +262,25 @@ description: Post list items summarize various content and associated meta data 
     </div>
 
     {% header "h3", "Minimal" %}
-    <p class="stacks-copy">There are compact views where it’s appropriate to reduce the amount of information within the post list item. The minimal view forces the smallest breakpoint layout in any context, stacking the meta data on top and putting everything into a single column.</p>
+    <p class="stacks-copy">There are compact views where it’s appropriate to reduce the amount of information within the post summary. The minimal view forces the smallest breakpoint layout in any context, stacking the meta data on top and putting everything into a single column.</p>
     <div class="stacks-preview">
 {% highlight html %}
-<div class="s-post-list-item s-post-list-item__minimal">
-    <div class="s-post-list-item--stats">
-        <div class="s-post-list-item--stats-item">
+<div class="s-post-summary s-post-summary__minimal">
+    <div class="s-post-summary--stats">
+        <div class="s-post-summary--stats-item">
             {% icon "CheckmarkSm", "va-text-bottom" %}
             … answers
         </div>
-        <div class="s-post-list-item--stats-item">
+        <div class="s-post-summary--stats-item">
             … votes
         </div>
-        <div class="s-post-list-item--stats-item">
+        <div class="s-post-summary--stats-item">
             … views
         </div>
     </div>
-    <div class="s-post-list-item--content">
-        <a href="…" class="s-post-list--content-title s-link">…</a>
-        <div class="s-post-list--meta">
+    <div class="s-post-summary--content">
+        <a href="…" class="s-post-summary--content-title s-link">…</a>
+        <div class="s-post-summary--meta">
             <a class="s-tag" href="…">…</a>
 
             <div class="s-user-card s-user-card__minimal">
@@ -295,23 +295,23 @@ description: Post list items summarize various content and associated meta data 
 </div>
 {% endhighlight %}
         <div class="stacks-preview--example p0">
-            <div class="s-post-list-item s-post-list-item__minimal">
-                <div class="s-post-list-item--stats">
-                    <div class="s-post-list-item--stats-item">
+            <div class="s-post-summary s-post-summary__minimal">
+                <div class="s-post-summary--stats">
+                    <div class="s-post-summary--stats-item">
                         0 answers
                     </div>
-                    <div class="s-post-list-item--stats-item">
+                    <div class="s-post-summary--stats-item">
                         0 votes
                     </div>
-                    <div class="s-post-list-item--stats-item">
+                    <div class="s-post-summary--stats-item">
                         2 views
                     </div>
                 </div>
-                <div class="s-post-list-item--content">
-                    <a class="s-post-list--content-title s-link">
+                <div class="s-post-summary--content">
+                    <a class="s-post-summary--content-title s-link">
                         Clicking through a viewpager2?
                     </a>
-                    <div class="s-post-list--meta">
+                    <div class="s-post-summary--meta">
                         <a class="s-tag" href="#">android</a>
                         <a class="s-tag" href="#">android-studio</a>
                         <a class="s-tag" href="#">android-viewpager2</a>
@@ -326,23 +326,23 @@ description: Post list items summarize various content and associated meta data 
                     </div>
                 </div>
             </div>
-            <div class="s-post-list-item s-post-list-item__minimal">
-                <div class="s-post-list-item--stats">
-                    <div class="s-post-list-item--stats-item has-answers">
+            <div class="s-post-summary s-post-summary__minimal">
+                <div class="s-post-summary--stats">
+                    <div class="s-post-summary--stats-item has-answers">
                         1 answers
                     </div>
-                    <div class="s-post-list-item--stats-item">
+                    <div class="s-post-summary--stats-item">
                         0 votes
                     </div>
-                    <div class="s-post-list-item--stats-item">
+                    <div class="s-post-summary--stats-item">
                         3 views
                     </div>
                 </div>
-                <div class="s-post-list-item--content">
-                    <a class="s-post-list--content-title s-link">
+                <div class="s-post-summary--content">
+                    <a class="s-post-summary--content-title s-link">
                         What permissions does github_token require for releases from a github action
                     </a>
-                    <div class="s-post-list--meta">
+                    <div class="s-post-summary--meta">
                         <a class="s-tag" href="#">github-actions</a>
 
                         <div class="s-user-card s-user-card__minimal">
@@ -355,23 +355,23 @@ description: Post list items summarize various content and associated meta data 
                     </div>
                 </div>
             </div>
-            <div class="s-post-list-item s-post-list-item__minimal">
-                <div class="s-post-list-item--stats">
-                    <div class="s-post-list-item--stats-item">
+            <div class="s-post-summary s-post-summary__minimal">
+                <div class="s-post-summary--stats">
+                    <div class="s-post-summary--stats-item">
                         0 answers
                     </div>
-                    <div class="s-post-list-item--stats-item">
+                    <div class="s-post-summary--stats-item">
                         0 votes
                     </div>
-                    <div class="s-post-list-item--stats-item">
+                    <div class="s-post-summary--stats-item">
                         5 views
                     </div>
                 </div>
-                <div class="s-post-list-item--content">
-                    <a class="s-post-list--content-title s-link">
+                <div class="s-post-summary--content">
+                    <a class="s-post-summary--content-title s-link">
                         Parentheses is Invalid Bash
                     </a>
-                    <div class="s-post-list--meta">
+                    <div class="s-post-summary--meta">
                         <a class="s-tag" href="#">linux</a>
                         <a class="s-tag" href="#">bash</a>
                         <a class="s-tag" href="#">docker</a>

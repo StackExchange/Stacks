@@ -1,13 +1,13 @@
 //
 //  STACK OVERFLOW
-//  POST LIST ITEM
+//  POST SUMMARY
 //
 //  This CSS comes from Stacks, our CSS & Pattern library for rapidly building
 //  Stack Overflow. For documentation of all these classes and how to contribute,
 //  visit https://stackoverflow.design/
 //
 
-.s-post-list-item {
+.s-post-summary {
     position: relative;
     display: flex;
     border-bottom: 1px solid var(--black-075);
@@ -22,33 +22,33 @@
         align-items: flex-start;
     });
 
-    &.s-post-list-item__minimal {
+    &.s-post-summary__minimal {
         flex-direction: column;
         align-items: flex-start;
 
-        .s-post-list-item--stats {
+        .s-post-summary--stats {
             width: auto;
             grid-auto-flow: column;
             gap: @su6;
             margin-bottom: @su2;
         }
 
-        .s-post-list-item--stats-item {
+        .s-post-summary--stats-item {
             padding: @su2 0 @su2 0;
         }
 
-        .s-post-list-item--content {
+        .s-post-summary--content {
             width: 100%;
         }
     }
 
-    &.s-post-list-item__ignored > * {
+    &.s-post-summary__ignored > * {
         filter: grayscale();
     }
 }
 
 //  [1] To override .s-btn class attributes
-.s-post-list--content-menu-button {
+.s-post-summary--content-menu-button {
     position: absolute !important; // [1]
     top: @su8;
     right: @su8;
@@ -59,7 +59,7 @@
     }
 }
 
-.s-post-list-item--stats {
+.s-post-summary--stats {
     margin-right: @su16;
     width: @su96;
     display: grid;
@@ -70,7 +70,7 @@
     font-size: @fs-caption;
     color: var(--fc-light);
 
-    .s-post-list-item--stats-item {
+    .s-post-summary--stats-item {
         white-space: nowrap;
         border: 1px solid transparent;
 
@@ -120,10 +120,10 @@
     });
 }
 
-.s-post-list-item--content {
+.s-post-summary--content {
     flex-grow: 1;
 
-    .s-post-list--content-title {
+    .s-post-summary--content-title {
         display: inline-block;
         font-size: @fs-subheading;
         margin-bottom: @su4;
@@ -144,7 +144,7 @@
         }
     }
 
-    .s-post-list--content-type {
+    .s-post-summary--content-type {
         display: block; // If this is a link, we want it to behave as any ol' div
         color: var(--fc-medium);
         margin-bottom: @su6;
@@ -155,22 +155,22 @@
         }
     }
 
-    .s-post-list--content-excerpt {
+    .s-post-summary--content-excerpt {
         margin-bottom: @su8;
         .v-truncate2;
     }
 }
 
-.s-post-list--meta {
+.s-post-summary--meta {
     display: flex;
     align-items: center;
     flex-wrap: wrap;
 
-    --s-post-list-meta-gap: @su4;
-    margin: calc(-1 * var(--s-post-list-meta-gap)) 0 0 calc(-1 * var(--s-post-list-meta-gap));
-    width: calc(100% + var(--s-post-list-meta-gap));
+    --s-post-summary-meta-gap: @su4;
+    margin: calc(-1 * var(--s-post-summary-meta-gap)) 0 0 calc(-1 * var(--s-post-summary-meta-gap));
+    width: calc(100% + var(--s-post-summary-meta-gap));
     & > * {
-        margin: var(--s-post-list-meta-gap) 0 0 var(--s-post-list-meta-gap);
+        margin: var(--s-post-summary-meta-gap) 0 0 var(--s-post-summary-meta-gap);
     }
 
     .s-user-card {
