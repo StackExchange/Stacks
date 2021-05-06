@@ -41,7 +41,6 @@
     color: var(--fc-dark);
     font-size: @fs-body1;
     font-family: inherit;
-    line-height: @lh-sm;
 
     //  --  INCREASE FONT SIZE FOR MOBILE SAFARI
     //  This keeps our inputs from zooming the page while focused
@@ -102,7 +101,7 @@ fieldset {
     color: var(--fc-dark);
     font-family: inherit;
     font-size: @fs-body2;
-    font-weight: 700;
+    font-weight: 600;
     cursor: pointer;
 
     legend& {
@@ -635,6 +634,20 @@ fieldset {
 .s-select__xl > select {
     padding: 0.4em 0.5em;
     border-radius: @br-md;
+}
+
+.s-input__md,
+.s-textarea__md {
+    //  --  INCREASE FONT SIZE FOR MOBILE SAFARI
+    //  This keeps our inputs from zooming the page while focused
+    //  ------------------------------------------------------------------------
+    @supports (-webkit-overflow-scrolling: touch) {
+        font-size: 17px;
+
+        // Compensate for the larger font size so we generally keep the input the same size
+        padding-top: .4em;
+        padding-bottom: .4em;
+    }
 }
 
 @autofill: {

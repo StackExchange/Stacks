@@ -78,6 +78,11 @@ description: Popovers are small content containers that provide a contextual ove
                     <td>Controller element</td>
                     <td class="p8 lh-lg">Dictates where to place the popover in relation to the reference element. By default, the placement value is <code class="stacks-code">bottom</code>. Accepted placements are <code class="stacks-code">auto</code>, <code class="stacks-code">top</code>, <code class="stacks-code">right</code>, <code class="stacks-code">bottom</code>, <code class="stacks-code">left</code>. Each placement can take an additional <code class="stacks-code">-start</code> and <code class="stacks-code">-end</code> variation.</td>
                 </tr>
+                <tr>
+                    <th scope="row"><code class="stacks-code">data-s-popover-auto-show="[true|false]"</code></th>
+                    <td>Controller element</td>
+                    <td class="p8"><span class="s-label--status ml0">Optional</span> If <code class="stacks-code">true</code>, the popover will appear immediately when the Stacks controller is first connected.  This should be used in place of <code class="stacks-code">.is-visible</code> for displaying popovers on load as it will prevent the popover from appearing before it has been correctly positioned.</td>
+                </tr>
             </tbody>
         </table>
     </div>
@@ -185,12 +190,13 @@ description: Popovers are small content containers that provide a contextual ove
             <div class="grid--cell ml-auto sm:ml0 sm:mt12"
                 data-controller="s-popover"
                 data-s-popover-reference-selector="#reference-element"
-                data-s-popover-placement="auto">
+                data-s-popover-placement="auto"
+                data-s-popover-auto-show="true">
                 <a id="reference-element" class="s-link s-link__inherit"
                     aria-controls="popover-example-3">
                     Follow question
                 </a>
-                <div id="popover-example-3" class="s-popover is-visible wmx3" role="menu">
+                <div id="popover-example-3" class="s-popover wmx3" role="menu">
                     <div class="s-popover--arrow"></div>
                     <button class="s-popover--close s-btn s-btn__muted" aria-label="Close" data-action="s-popover#toggle">{% icon "ClearSm" %}</button>
 
@@ -281,6 +287,73 @@ description: Popovers are small content containers that provide a contextual ove
         </div>
     </div>
 
+    {% header "h4", "JavaScript interaction" %}
+    <p class="stacks-copy">There may be cases where you need to show or hide a popover via JavaScript. For example, if you need to show a popover at a specific time or if you need to hide a popover from an event outside of the controller, Stacks provides convenience methods to achieve this.</p>
+    <div class="stacks-preview">
+{% highlight javascript %}
+Stacks.application.register("section", class extends Stacks.StacksController {
+    static targets = ["help"];
+
+    showHelp(event) {
+         Stacks.showPopover(this.helpTarget);
+         event.stopPropagation();
+    }
+    hideHelp(event) {
+         Stacks.hidePopover(this.helpTarget);
+    }
+});
+{% endhighlight %}
+        <div class="stacks-preview--example bg-black-025">
+            <div data-controller="section">
+                <div class="s-page-title mb16">
+                    <div class="s-page-title--text">
+                        <h1 class="s-page-title--header">Lorem ipsum</h1>
+                    </div>
+                    <div class="s-page-title--actions">
+                        <button type="button" class="s-btn s-btn__muted p0"
+                                data-target="section.help"
+                                data-controller="s-popover"
+                                data-action="s-popover#toggle"
+                                data-s-popover-placement="left"
+                                aria-controls="popover-help-example">{% icon "Help" %}</button>
+                        <div class="s-popover wmn-initial w-auto"
+                             id="popover-help-example"
+                             role="menu">
+                             <div class="s-popover--arrow"></div>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        </div>
+                    </div>
+                </div>
+                <p class="fc-light">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla et metus molestie nulla luctus sodales ac luctus justo. Aenean iaculis ac ante sit amet aliquam. Duis dolor velit, imperdiet sed mauris eu, sollicitudin egestas nisl. Ut vitae nulla eu risus iaculis semper sit amet vitae tortor. Sed convallis lacus quis libero placerat finibus. Phasellus pulvinar vel nunc eu tempor. Sed pharetra magna a felis egestas placerat. Sed imperdiet dui a sem fermentum, eget consectetur elit feugiat. Phasellus non condimentum orci. Nam id molestie elit, ut gravida metus. Vivamus vel nunc risus. Maecenas posuere sit amet tellus vel laoreet. Nulla lacus mauris, rhoncus eu laoreet quis, mattis vehicula nisl. Integer efficitur quam et nisi luctus scelerisque. Mauris efficitur lectus ac malesuada congue.</p>
+                <button class="s-btn s-btn__link" data-action="section#showHelp">Click here for help</button>
+            </div>
+        </div>
+    </div>
+
+    {% header "h4", "JavaScript configuration" %}
+    <p class="stacks-copy">Situations may also arise where popovers need to be attached to an element after the document is rendered. For example, a button could have a contextual menu that is too expensive to serve up on every page load.</p>
+    <p class="stacks-copy">Popovers can be attached to an element after the fact using <code class="stacks-code">Stacks.attachPopover</code>.</p>
+    <p class="stacks-copy">This method takes three parameters, the element to attach the popover to, the popover either as an element or an HTML string, and optional options for displaying the popover.</p>
+
+    <div class="stacks-preview">
+{% highlight javascript %}
+Stacks.application.register("actions", class extends Stacks.StacksController {
+
+    var loaded = false;
+
+    async load() {
+        if (this.loaded) { return; }
+        Stacks.attachPopover(this.element,
+                             await fetch(`/posts/{postId}/actions`),
+                             { autoShow: true, toggleOnClick: true });
+        this.loaded = true;
+    }
+});
+{% endhighlight %}
+        <div class="stacks-preview--example bg-black-025">
+            <button class="s-btn s-btn__outlined s-btn__muted s-btn__dropdown" data-controller="actions" data-action="actions#load">Actions</button>
+        </div>
+    </div>
 </section>
 <section class="stacks-section">
     {% header "h2", "Hover tooltips" %}
