@@ -70,7 +70,7 @@
         // state of the controlled element (unless the element doesn't exist)
         _isCollapsedForClickable() {
             var cc = this.controlledCollapsible;
-            return cc ? !cc.classList.contains("is-expanded") : this.element.getAttribute("aria-expanded") === "false";
+            return cc ? !cc.every(element => element.classList.contains("is-expanded")) : this.element.getAttribute("aria-expanded") === "false";
         };
 
         // for checkable elements, the initial source of truth is the checked state
@@ -84,7 +84,8 @@
             if (!attr) {
                 throw "couldn't find controls"
             }
-            const result = document.getElementById(attr);
+            const controlledElements = `#${attr.replace(/ /g, ", #")}`;
+            const result = Array.from(document.querySelectorAll(controlledElements));
             if (!result) {
                 throw "couldn't find controls"
             }
@@ -127,7 +128,9 @@
                 }
             }
             this.element.setAttribute("aria-expanded", newCollapsed ? "false" : "true");
-            this.controlledCollapsible.classList.toggle("is-expanded", !newCollapsed);
+            for (let controlledElement of this.controlledCollapsible) {
+                controlledElement.classList.toggle("is-expanded", !newCollapsed);
+            }
             this._dispatchShowHideEvent(!newCollapsed);
             this._toggleClass(!newCollapsed);
         };
@@ -148,9 +151,11 @@
                 var cc = this.controlledCollapsible;
                 if (cc) {
                     var expected = !this.isCollapsed();
-                    var actual = cc.classList.contains("is-expanded");
+                    var actual = cc.some(element => element.classList.contains("is-expanded"));
                     if (expected !== actual) {
-                        cc.classList.toggle("is-expanded", expected);
+                        for (let controlledElement of this.controlledCollapsible) {
+                            controlledElement.classList.toggle("is-expanded", expected);
+                        }
                         this._dispatchShowHideEvent(expected);
                         this._toggleClass(expected);
                     }
