@@ -27,7 +27,7 @@ description: The post summary component summarizes various content and associate
     </div>
 </section>
 <section class="stacks-section">
-    {% header "h2", "Examples" %}
+    {% header "h2", "Layout Examples" %}
     <p class="stacks-copy">Post summaries are a flexible component capable of previewing various content types—questions or articles. Post summaries are meant to be flexible, allowing for each individual piece to be removed. Let’s start with a full example of a few questions and an article interleaved.</p>
 
     {% header "h3", "Full" %}
@@ -389,6 +389,178 @@ description: The post summary component summarizes various content and associate
                             <a href="#" class="s-user-card--link">thatkingguy_</a>
                             <time class="s-user-card--time">asked 8 minutes ago</time>
                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="stacks-section">
+    {% header "h2", "Stats examples" %}
+    {% header "h3", "Answered status" %}
+    <p class="stacks-copy">Within the stats section of the post summary, posts can have various answered states.</p>
+    <ul class="stacks-list">
+        <li>No answers</li>
+        <li>Has answers</li>
+        <li>Has accepted answers</li>
+    </ul>
+    <div class="stacks-preview">
+{% highlight html %}
+<!-- No answers -->
+<div class="s-post-summary--stats">
+    <div class="s-post-summary--stats-item">
+        0 answers
+    </div>
+</div>
+
+<!-- Has answers -->
+<div class="s-post-summary--stats">
+    <div class="s-post-summary--stats-item has-answers">
+        2 answers
+    </div>
+</div>
+
+<!-- Has accepted answers -->
+<div class="s-post-summary--stats">
+    <div class="s-post-summary--stats-item has-answers has-accepted-answer">
+        @Svg.CheckmarkSm.With("va-text-bottom")
+        5 answers
+    </div>
+</div>
+{% endhighlight %}
+        <div class="stacks-preview--example">
+            <div class="grid ai-center gs24 fw-wrap">
+                <div class="grid--cell w-auto s-post-summary--stats">
+                    <div class="s-post-summary--stats-item">
+                        0 answers
+                    </div>
+                    <div class="s-post-summary--stats-item">
+                        3 votes
+                    </div>
+                    <div class="s-post-summary--stats-item">
+                        32 views
+                    </div>
+                </div>
+
+                <div class="grid--cell w-auto s-post-summary--stats">
+                    <div class="s-post-summary--stats-item has-answers">
+                        2 answers
+                    </div>
+                    <div class="s-post-summary--stats-item">
+                        12 votes
+                    </div>
+                    <div class="s-post-summary--stats-item">
+                        145 views
+                    </div>
+                </div>
+
+                <div class="grid--cell w-auto s-post-summary--stats">
+                    <div class="s-post-summary--stats-item has-answers has-accepted-answer">
+                        {% icon "CheckmarkSm", "va-text-bottom" %}
+                        5 answers
+                    </div>
+                    <div class="s-post-summary--stats-item">
+                        95 votes
+                    </div>
+                    <div class="s-post-summary--stats-item">
+                        380 views
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% header "h3", "Hotness" %}
+    <p class="stacks-copy">Post stats also have various states of hotness and display in corresponding shades of orange.</p>
+    <ul class="stacks-list">
+        <li>Default</li>
+        <li>Warm</li>
+        <li>Hot</li>
+        <li>Supernova</li>
+    </ul>
+    <div class="stacks-preview">
+{% highlight html %}
+<!-- Default views -->
+<div class="s-post-summary--stats">
+    <div class="s-post-summary--stats-item">
+        23 views
+    </div>
+</div>
+
+<!-- Warm -->
+<div class="s-post-summary--stats">
+    <div class="s-post-summary--stats-item is-warm">
+        1k views
+    </div>
+</div>
+
+<!-- Hot -->
+<div class="s-post-summary--stats">
+    <div class="s-post-summary--stats-item is-hot">
+        10k views
+    </div>
+</div>
+
+<!-- Supernova -->
+<div class="s-post-summary--stats">
+    <div class="s-post-summary--stats-item">
+        @Svg.FireSm.With("va-text-bottom mrn2")
+        100k views
+    </div>
+</div>
+{% endhighlight %}
+        <div class="stacks-preview--example">
+            <div class="grid ai-center gs24 fw-wrap">
+                <div class="grid--cell w-auto s-post-summary--stats">
+                    <div class="s-post-summary--stats-item">
+                        0 answers
+                    </div>
+                    <div class="s-post-summary--stats-item">
+                        3 votes
+                    </div>
+                    <div class="s-post-summary--stats-item">
+                        23 views
+                    </div>
+                </div>
+
+                <div class="grid--cell w-auto s-post-summary--stats">
+                    <div class="s-post-summary--stats-item has-answers has-accepted-answer">
+                        {% icon "CheckmarkSm", "va-text-bottom" %}
+                        3 answers
+                    </div>
+                    <div class="s-post-summary--stats-item">
+                        28 votes
+                    </div>
+                    <div class="s-post-summary--stats-item is-warm">
+                        1k views
+                    </div>
+                </div>
+
+                <div class="grid--cell w-auto s-post-summary--stats">
+                    <div class="s-post-summary--stats-item has-answers has-accepted-answer">
+                        {% icon "CheckmarkSm", "va-text-bottom" %}
+                        10 answers
+                    </div>
+                    <div class="s-post-summary--stats-item">
+                        92 votes
+                    </div>
+                    <div class="s-post-summary--stats-item is-hot">
+                        10k views
+                    </div>
+                </div>
+
+                <div class="grid--cell w-auto s-post-summary--stats">
+                    <div class="s-post-summary--stats-item has-answers has-accepted-answer">
+                        {% icon "CheckmarkSm", "va-text-bottom" %}
+                        18 answers
+                    </div>
+                    <div class="s-post-summary--stats-item">
+                        126 votes
+                    </div>
+                    <div class="s-post-summary--stats-item is-supernova">
+                        {% icon "FireSm", "va-text-bottom" %}
+                        100k views
                     </div>
                 </div>
             </div>
