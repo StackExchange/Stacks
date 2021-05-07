@@ -29,12 +29,7 @@
         .s-post-summary--stats {
             width: auto;
             grid-auto-flow: column;
-            gap: @su6;
             margin-bottom: @su2;
-        }
-
-        .s-post-summary--stats-item {
-            padding: @su2 0 @su2 0;
         }
 
         .s-post-summary--content {
@@ -62,18 +57,22 @@
     align-content: flex-start;
     flex-shrink: 0;
     justify-items: end;
-    gap: @su6;
+    gap: @su2;
     font-size: @fs-caption;
     color: var(--fc-light);
 
     .s-post-summary--stats-item {
         white-space: nowrap;
         border: 1px solid transparent;
+        padding: @su2 @su4;
 
         &.has-answers,
         &.has-bounty {
             border-radius: @br-sm;
-            padding: @su2 @su4;
+        }
+
+        &:first-child:not(.has-answers):not(.has-bounty) {
+            padding-left: 0;
         }
 
         &.has-answers {
@@ -120,7 +119,7 @@
     .s-post-summary--content-title {
         display: inline-block;
         font-size: @fs-subheading;
-        margin-bottom: @su4;
+        margin-bottom: @su6;
         overflow-wrap: break-word;
         word-wrap: break-word;
         padding-right: @su24;
