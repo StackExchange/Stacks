@@ -9,17 +9,17 @@ description: Atomic positioning classes allow you to quickly change an elementâ€
         <table class="wmn3 s-table s-table__bx-simple">
             <thead>
                 <tr>
-                    <th scope="col">Class</th>
-                    <th scope="col">Output</th>
+                    <th class="s-table--cell2" scope="col">Class</th>
+                    <th class="s-table--cell3" scope="col">Output</th>
                     <th scope="col">Definition</th>
                     <th class="s-table--cell2 ta-center" scope="col"><a class="s-link s-link__inherit" href="{{ "/product/guidelines/conditional-classes#responsive" | relative_url }}">Responsive?</a></th>
                 </tr>
             </thead>
             <tbody>
                 {% for atomic in atomics.position %}
-                    <tr>
-                        <th scope="row"><code class="stacks-code ws-nowrap">.{{ atomic.class }}</code></th>
-                        <td class="ff-mono ws-nowrap">{{ atomic.output }}</td>
+                    <tr class="fs-caption">
+                        <th scope="row"><code class="stacks-code">.{{ atomic.class }}</code></th>
+                        <td><code class="stacks-code bg-white">{{ atomic.output }}</code></td>
                         <td>{{ atomic.define }}</td>
                         <td class="ta-center">
                             {% if atomic.responsive %}
@@ -42,7 +42,7 @@ description: Atomic positioning classes allow you to quickly change an elementâ€
 <div class="ps-fixed">â€¦</div>
 <div class="ps-unset">â€¦</div>
 {% endhighlight %}
-        <div class="stacks-preview--example overflow-y-scroll ff-mono hs2">
+        <div class="stacks-preview--example overflow-y-scroll fs-caption ff-mono hs2">
             <div class="grid w100 ps-relative">
                 <div class="ps-static p12 bg-black-075 ba bc-black-3 ws1 hs1"><strong>.ps-static</strong></div>
                 <div class="ps-relative p12 bg-black-075 ba bc-black-3 t32 r24 ws1 hs4"><strong>.ps-relative</strong><br/><br/>.t32<br/>r24</div>
@@ -62,15 +62,15 @@ description: Atomic positioning classes allow you to quickly change an elementâ€
         <table class="wmn3 s-table s-table__bx-simple">
             <thead>
                 <tr>
-                    <th scope="col">Abbreviation</th>
+                    <th class="s-table--cell2" scope="col">Abbreviation</th>
                     <th scope="col">Definition</th>
                 </tr>
             </thead>
             <tbody>
                 {% for space in spacing.position-definitions %}
                     <tr>
-                        <th scope="row"><code class="stacks-code">{{ space.term }}</code></th>
-                        <td class="ff-mono">{{ space.define }}</td>
+                        <th scope="row">{{ space.term }}</th>
+                        <td>{{ space.define }}</td>
                     </tr>
                 {% endfor %}
             </tbody>
@@ -85,24 +85,24 @@ description: Atomic positioning classes allow you to quickly change an elementâ€
 <div class="ps-absolute t64 l64"> â€¦ </div>
 <div class="ps-absolute bn8 rn8"> â€¦ </div>
 {% endhighlight %}
-        <div class="stacks-preview--example ps-relative hs2 ff-mono">
-            <div class="ps-absolute w20 bg-black-075 p12 ba bc-black-3 t12 l12">
+        <div class="stacks-preview--example ps-relative hs2">
+            <div class="ps-absolute w20 bg-black-075 p12 ba bc-black-3 ff-mono t12 l12">
                 .t12 .l12
             </div>
 
-            <div class="ps-absolute w20 bg-black-075 p12 ba bc-black-3 t48 r24">
+            <div class="ps-absolute w20 bg-black-075 p12 ba bc-black-3 ff-mono t48 r24">
                 .t48 .r24
             </div>
 
-            <div class="ps-absolute w20 bg-black-075 p12 ba bc-black-3 t50 l50">
+            <div class="ps-absolute w20 bg-black-075 p12 ba bc-black-3 ff-mono t50 l50">
                 .t50 .l50
             </div>
 
-            <div class="ps-absolute w20 bg-black-075 p12 ba bc-black-3 t64 l64">
+            <div class="ps-absolute w20 bg-black-075 p12 ba bc-black-3 ff-mono t64 l64">
                 .t64 .l64
             </div>
 
-            <div class="ps-absolute w20 bg-black-075 p12 ba bc-black-3 rn8 bn8">
+            <div class="ps-absolute w20 bg-black-075 p12 ba bc-black-3 ff-mono rn8 bn8">
                 .rn8 .bn8
             </div>
         </div>
@@ -136,9 +136,9 @@ description: Atomic positioning classes allow you to quickly change an elementâ€
                 {% for class in spacing.position %}
                 {% assign prefix-value = class.values | split: ", " %}
                     <tr>
-                        <th scope="row">{{ class.prefix }}</th>
+                        <th scope="row" class="-cell1">{{ class.prefix }}</th>
                         {% for values in prefix-value %}
-                            <td class="ta-center ff-mono">.{{ class.prefix }}{{ values }}</td>
+                            <td class="ta-center"><code class="fs1">.{{ class.prefix }}{{ values }}</code></td>
                         {% endfor %}
                     </tr>
                 {% endfor %}
@@ -173,9 +173,9 @@ description: Atomic positioning classes allow you to quickly change an elementâ€
                 {% for class in spacing.negative-position %}
                 {% assign prefix-value = class.values | split: ", " %}
                     <tr>
-                        <th scope="row">{{ class.prefix }}</th>
+                        <th scope="row" class="-cell1">{{ class.prefix }}</th>
                         {% for values in prefix-value %}
-                            <td class="ta-center ff-mono">.{{ class.prefix }}{{ values }}</td>
+                            <td class="ta-center"><code class="fs1">.{{ class.prefix }}{{ values }}</code></td>
                         {% endfor %}
                     </tr>
                 {% endfor %}

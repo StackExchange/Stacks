@@ -92,7 +92,7 @@ description: The Stacks grid system is a flexible, scaffolding system for produc
                   <tr>
                       <td><code class="stacks-code">{{ item.class }}</code></td>
                       <td><code class="stacks-code">{{ item.all }}</code></td>
-                      <td class="ff-mono">{{ item.output }}</td>
+                      <td><code class="stacks-code bg-white">{{ item.output }}</code></td>
                   </tr>
                 {% endfor %}
             </tbody>
@@ -192,7 +192,7 @@ description: The Stacks grid system is a flexible, scaffolding system for produc
         <table class="wmn3 s-table s-table__bx-simple">
             <thead>
                 <tr>
-                    <th scope="col">Class</th>
+                    <th class="s-table--cell2" scope="col">Class</th>
                     <th scope="col">Output</th>
                 </tr>
             </thead>
@@ -200,7 +200,7 @@ description: The Stacks grid system is a flexible, scaffolding system for produc
                 {% for item in grids.gutter %}
                   <tr>
                       <td><code class="stacks-code">{{ item.class }}</code></td>
-                      <td class="ff-mono">{{ item.output }}</code></td>
+                      <td>{{ item.output }}</code></td>
                   </tr>
                 {% endfor %}
             </tbody>
@@ -262,16 +262,16 @@ description: The Stacks grid system is a flexible, scaffolding system for produc
         <table class="wmn5 s-table s-table__bx-simple">
             <thead>
                 <tr>
-                    <th scope="col">Class</th>
-                    <th scope="col">Definition</th>
-                    <th class="ta-center" scope="col"><a class="s-link s-link__inherit" href="{{ "/product/guidelines/conditional-classes#responsive"", "relative_url }}">Responsive?</a></th>
+                    <th class="s-table--cell4" scope="col">Class</th>
+                    <th class="s-table--cell6" scope="col">Definition</th>
+                    <th class="s-table--cell2 ta-center" scope="col"><a class="s-link s-link__inherit" href="{{ "/product/guidelines/conditional-classes#responsive"", "relative_url }}">Responsive?</a></th>
                 </tr>
             </thead>
             <tbody>
                 {% for item in grids.atomic %}
                     <tr>
-                        <th scope="row"><code class="stacks-code ws-nowrap">{{ item.class }}</code></th>
-                        <td>{{ item.define }}</td>
+                        <th scope="row"><code class="stacks-code">{{ item.class }}</code></th>
+                        <td><p class="mb0">{{ item.define }}</p></td>
                         <td class="ta-center">
                             {% if item.responsive %}
                                 {% icon "Checkmark", "fc-green-500" %}

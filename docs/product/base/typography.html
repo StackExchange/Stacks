@@ -12,16 +12,16 @@ description: Stacks provides atomic classes to override default styling of typog
         <table class="wmn5 s-table s-table__bx-simple">
             <thead>
                 <tr>
-                    <th scope="col">Class</th>
-                    <th scope="col">Output</th>
+                    <th class="s-table--cell2" scope="col">Class</th>
+                    <th class="s-table--cell3" scope="col">Output</th>
                     <th scope="col">Definition</th>
                 </tr>
             </thead>
             <tbody>
                 {% for basic in typography.type-basic %}
-                    <tr>
+                    <tr class="fs-caption">
                         <th scope="row"><code class="stacks-code">.{{ basic.class }}</code></th>
-                        <td class="ff-mono">{{ basic.output }}</td>
+                        <td><code class="stacks-code bg-white">{{ basic.output }}</code></td>
                         <td>{{ basic.define }}</td>
                     </tr>
                 {% endfor %}
@@ -71,21 +71,21 @@ description: Stacks provides atomic classes to override default styling of typog
     {% header "h2", "Layout" %}
     {% header "h3", "Layout classes" %}
     <div class="overflow-x-auto mb32">
-        <table class="wmn5 s-table s-table__bx-simple">
+        <table class="wmn5 s-table s-table__bx-simple va-middle">
             <thead>
                 <tr>
-                    <th scope="col">Class</th>
-                    <th scope="col">Output</th>
+                    <th class="s-table--cell2" scope="col">Class</th>
+                    <th class="s-table--cell3" scope="col">Output</th>
                     <th scope="col">Definition</th>
-                    <th class="ta-center" scope="col"><a class="s-link s-link__inherit" href="{{ "/product/guidelines/conditional-classes#responsive" | relative_url }}">Responsive?</a></th>
+                    <th class="s-table--cell2 ta-center" scope="col"><a class="s-link s-link__inherit" href="{{ "/product/guidelines/conditional-classes#responsive" | relative_url }}">Responsive?</a></th>
                 </tr>
             </thead>
             <tbody>
                 {% for layout in typography.type-layout %}
-                    <tr>
-                        <th scope="row"><code class="stacks-code ws-nowrap">.{{ layout.class }}</code></th>
-                        <td class="ff-mono ws-nowrap">{{ layout.output }}</td>
-                        <td>{{ layout.define }}</td>
+                    <tr class="fs-caption">
+                        <th scope="row"><code class="stacks-code">.{{ layout.class }}</code></th>
+                        <td><code class="stacks-code bg-white">{{ layout.output }}</code></td>
+                        <td><p class="m0">{{ layout.define }}</p></td>
                         <td class="ta-center">
                             {% if layout.responsive %}
                                 {% icon "Checkmark", "fc-green-500" %}
@@ -146,15 +146,15 @@ description: Stacks provides atomic classes to override default styling of typog
         <div class="stacks-preview--example grid ff-column-nowrap gs16 gsy my0 fs-subheading">
             <div class="grid--cell">
                 <p class="ff-sans mb0">Sans Serif</p>
-                <p class="ff-mono fc-light">-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"</p>
+                <p class="ff-mono fs-caption fc-light">-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"</p>
             </div>
             <div class="grid--cell">
                 <p class="ff-serif mb0">Serif</p>
-                <p class="ff-mono fc-light">Georgia, Cambria, "Times New Roman", Times, serif</p>
+                <p class="ff-mono fs-caption fc-light">Georgia, Cambria, "Times New Roman", Times, serif</p>
             </div>
             <div class="grid--cell">
                 <p class="ff-mono mb0">Monospace</p>
-                <p class="ff-mono fc-light mb0">"SF Mono", SFMono-Regular, ui-monospace, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace</p>
+                <p class="ff-mono fs-caption fc-light mb0">"SF Mono", SFMono-Regular, ui-monospace, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace</p>
             </div>
         </div>
     </div>
@@ -179,8 +179,8 @@ description: Stacks provides atomic classes to override default styling of typog
                 {% for term in typography.fontsize %}
                     <tr>
                         <th scope="row"><code class="stacks-code">.fs-{{ term.term }}</code></th>
-                        <td class="ff-mono">{{ term.define }}</td>
-                        <td class="ff-mono">{{ term.responsive }}</td>
+                        <td><code class="stacks-code bg-white">{{ term.define }}</code></td>
+                        <td><code class="stacks-code bg-white">{{ term.responsive }}</code></td>
                     </tr>
                 {% endfor %}
             </tbody>
