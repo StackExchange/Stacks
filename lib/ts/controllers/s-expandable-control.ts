@@ -84,8 +84,7 @@
             if (!attr) {
                 throw "couldn't find controls"
             }
-            const controlledElements = `#${attr.replace(/ /g, ", #")}`;
-            const result = Array.from(document.querySelectorAll(controlledElements));
+            const result = attr.split(/\s+/g).map(s => document.getElementById(s)).filter(e => e);
             if (!result) {
                 throw "couldn't find controls"
             }
