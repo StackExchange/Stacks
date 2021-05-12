@@ -69,7 +69,7 @@
         // for non-checkable elements, the initial source of truth is the collapsed/expanded
         // state of the controlled element (unless the element doesn't exist)
         _isCollapsedForClickable() {
-            var cc = this.controlledCollapsible;
+            var cc = this.controlledCollapsibles;
             return cc ? !cc.every(element => element.classList.contains("is-expanded")) : this.element.getAttribute("aria-expanded") === "false";
         };
 
@@ -79,7 +79,7 @@
         };
 
 
-        get controlledCollapsible() {
+        get controlledCollapsibles() {
             const attr = this.element.getAttribute("aria-controls");
             if (!attr) {
                 throw "couldn't find controls"
@@ -127,7 +127,7 @@
                 }
             }
             this.element.setAttribute("aria-expanded", newCollapsed ? "false" : "true");
-            for (let controlledElement of this.controlledCollapsible) {
+            for (let controlledElement of this.controlledCollapsibles) {
                 controlledElement.classList.toggle("is-expanded", !newCollapsed);
             }
             this._dispatchShowHideEvent(!newCollapsed);
@@ -147,12 +147,12 @@
             // attribute; for checkable controls this also means setting the `is-collapsed` class
             this.element.setAttribute("aria-expanded", this.isCollapsed() ? "false" : "true");
             if (this.isCheckable) {
-                var cc = this.controlledCollapsible;
+                var cc = this.controlledCollapsibles;
                 if (cc) {
                     var expected = !this.isCollapsed();
                     var actual = cc.some(element => element.classList.contains("is-expanded"));
                     if (expected !== actual) {
-                        for (let controlledElement of this.controlledCollapsible) {
+                        for (let controlledElement of this.controlledCollapsibles) {
                             controlledElement.classList.toggle("is-expanded", expected);
                         }
                         this._dispatchShowHideEvent(expected);
