@@ -70,7 +70,7 @@
         // state of the controlled element (unless the element doesn't exist)
         _isCollapsedForClickable() {
             var cc = this.controlledCollapsibles;
-            return cc ? !cc.every(element => element.classList.contains("is-expanded")) : this.element.getAttribute("aria-expanded") === "false";
+            return cc.length > 0 ? !cc.every(element => element.classList.contains("is-expanded")) : this.element.getAttribute("aria-expanded") === "false";
         };
 
         // for checkable elements, the initial source of truth is the checked state
