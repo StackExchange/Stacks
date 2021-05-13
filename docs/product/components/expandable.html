@@ -44,6 +44,56 @@ description: An expandable, sometimes called an accordion, is an element that ca
             </div>
         </div>
     </div>
+
+    {% header "h3", "Multiple expandable elements" %}
+    <p class="stacks-copy">It's also possible to control the state multiple elements from a single  <code class="stacks-code">s-expandable-control</code> by listing all the <code class="stacks-code">ids</code> for the controlled elements in the <code class="stacks-code">aria-controls</code> attribute.</p>
+
+    <div class="stacks-preview">
+{% highlight html %}
+<div class="s-card">
+    <button class="s-btn s-btn__filled"
+        data-controller="s-expandable-control"
+        data-s-expandable-control-toggle-class="is-selected"
+        aria-expanded="false"
+        aria-controls="expandable-first expandable-last">
+            Show first and last paragraphs
+    </button>
+    <div class="s-expandable" id="expandable-first">
+        <div class="s-expandable--content">
+            …
+        </div>
+    </div>
+    …
+    <div class="s-expandable" id="expandable-last">
+        <div class="s-expandable--content">
+            …
+        </div>
+    </div>
+</div>
+{% endhighlight %}
+        <div class="stacks-preview--example">
+            <div class="s-card ws3">
+                <button class="s-btn s-btn__filled mb8"
+                    data-controller="s-expandable-control"
+                    data-s-expandable-control-toggle-class="is-selected"
+                    aria-expanded="false"
+                    aria-controls="expandable-first expandable-last">
+                        Show first and last paragraphs
+                </button>
+                <div class="s-expandable" id="expandable-first">
+                    <div class="s-expandable--content">
+                        <p class="mb8">Lorem ipsum dolor sit amet, ex iudicabit necessitatibus usu, cetero laboramus concludaturque mel no, facilisis posidonium cu cum. Pro ex senserit dissentiunt, imperdiet intellegam at sed, ex pri dicit eruditi convenire. Est harum movet gubergren ei, errem dictas evertitur ea sit, at mei oratio eligendi. Ad vis legere possit, vis ne ipsum democritum appellantur. Nullam ancillae iudicabit his ad.</p>
+                    </div>
+                </div>
+                <p class="mb8">Accusata reprimique interesset in sea, est graece dictas scriptorem ea. Consul facete mediocritatem quo et. Idque hendrerit theophrastus in vim, eum possit feugiat fastidii id. Idque invenire at quo, accusata salutandi sadipscing et qui. Eos doming adipiscing ea, eu pri debitis indoctum dissentiet. At libris labores adolescens eos, ex nec nobis aeterno.</p>
+                <div class="s-expandable" id="expandable-last">
+                    <div class="s-expandable--content">
+                        <p>Aenean aliquet vitae erat sed luctus. Nullam elementum orci id leo lacinia fringilla. Quisque rutrum mauris at mi rhoncus, vel vulputate erat pellentesque. Sed blandit rhoncus sem at pulvinar. Curabitur maximus, metus a facilisis efficitur, ipsum eros faucibus quam, nec mollis lectus nunc ut diam.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </section>
 <section class="stacks-section">
     {% header "h2", "JavaScript" %}
