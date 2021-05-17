@@ -82,7 +82,7 @@
         get controlledCollapsibles() {
             const attr = this.element.getAttribute("aria-controls");
             if (!attr) {
-                throw "couldn't find controls"
+                throw `[aria-controls="targetId1 ... targetIdN"] attribute required`;
             }
             const result = attr.split(/\s+/g)
                 .map(s => document.getElementById(s))
