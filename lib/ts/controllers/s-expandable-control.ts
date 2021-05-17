@@ -84,8 +84,10 @@
             if (!attr) {
                 throw "couldn't find controls"
             }
-            const result = attr.split(/\s+/g).map(s => document.getElementById(s)).filter((e): e is HTMLElement => !!e);
-            if (result.length == 0) {
+            const result = attr.split(/\s+/g)
+                .map(s => document.getElementById(s))
+                .filter((e): e is HTMLElement => !!e);
+            if (!result.length) {
                 throw "couldn't find controls"
             }
             return result;
