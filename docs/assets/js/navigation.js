@@ -4,6 +4,11 @@ $(document).ready(function() {
     var closeIcon = $(".js-hamburger-close-icon");
     var hamburgerIcon = $(".js-hamburger-icon");
 
+    // Disable any empty links
+    $("a[href='#']").click(function(e) {
+        e.preventDefault();
+    });
+
     function regenerateMenu () {
         // Hide the navigation if we've opened it
         hamburgerIcon.removeClass("d-none");
