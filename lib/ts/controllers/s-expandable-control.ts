@@ -70,6 +70,7 @@
         // state of the controlled element (unless the element doesn't exist)
         _isCollapsedForClickable() {
             var cc = this.controlledCollapsibles;
+            // the element is considered collapsed if *any* target element is collapsed
             return cc.length > 0 ? !cc.every(element => element.classList.contains("is-expanded")) : this.element.getAttribute("aria-expanded") === "false";
         };
 
