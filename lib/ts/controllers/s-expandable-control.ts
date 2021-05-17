@@ -150,7 +150,7 @@
             this.element.setAttribute("aria-expanded", this.isCollapsed() ? "false" : "true");
             if (this.isCheckable) {
                 var cc = this.controlledCollapsibles;
-                if (cc) {
+                if (cc.length) {
                     var expected = !this.isCollapsed();
                     if (cc.some(element => element.classList.contains("is-expanded") !== expected)) {
                         for (let controlledElement of this.controlledCollapsibles) {
