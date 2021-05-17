@@ -153,7 +153,8 @@
                 var cc = this.controlledCollapsibles;
                 if (cc.length) {
                     var expected = !this.isCollapsed();
-                    if (cc.some(element => element.classList.contains("is-expanded") !== expected)) {
+                   // if any element does not match the expected state, set them all to the expected state
+                   if (cc.some(element => element.classList.contains("is-expanded") !== expected)) {
                         for (let controlledElement of this.controlledCollapsibles) {
                             controlledElement.classList.toggle("is-expanded", expected);
                         }
