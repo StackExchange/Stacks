@@ -1,6 +1,6 @@
 pre.s-code-block {
     font-size: @fs-body1;
-    font-family: @ff-mono;
+    font-family: var(--ff-mono);
     line-height: @lh-md;
     color: var(--highlight-color);
     background-color: var(--highlight-bg);
@@ -113,8 +113,9 @@ pre.s-code-block .s-code-block--line-numbers {
     padding: @su12;
     padding-right: @su6;
     background-color: var(--black-050);
+
+    .dark-mode({
+        background-color: var(--black-025);
+    });
 }
 
-#stacks-internals #darkmode('pre.s-code-block .s-code-block--line-numbers', {
-    background-color: var(--black-025);
-});

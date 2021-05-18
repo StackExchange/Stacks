@@ -30,7 +30,7 @@
 
     code {
         font-size: @fs-body1;
-        font-family: @ff-mono;
+        font-family: var(--ff-mono);
     }
 
     sub,
@@ -405,6 +405,12 @@
         border-radius: @br-sm;
         box-shadow: 0 1px 1px rgba(12, 13, 14, 0.15), inset 0 1px 0 0 @white;
         overflow-wrap: break-word;
+
+        .dark-mode({
+            box-shadow: 0 1px 1px rgba(12, 13, 14, 0.8);
+            border-color: transparent;
+            border-top-color: @black-500;
+        });
     }
 
     // ============================================================================
@@ -482,9 +488,3 @@
         }
     }
 }
-
-#stacks-internals #darkmode('.s-prose kbd', {
-    box-shadow: 0 1px 1px rgba(12, 13, 14, 0.8);
-    border-color: transparent;
-    border-top-color: @black-500;
-});

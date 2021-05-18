@@ -35,6 +35,15 @@
     cursor: pointer;
     user-select: none;
 
+    button &,
+    button[type="submit"] &,
+    button[type="reset"] & {
+        // Guard against the difference in configurable resets
+        // Eric Meyer's reset does not include this, while normalize.css does
+        // Correct the inability to style buttons in iOS and Safari.
+        -webkit-appearance: button;
+    }
+
     // Override for buttons having inline-block by default
     &.grid {
         display: flex;
@@ -137,42 +146,6 @@
         }
     }
 
-    &.s-btn__lg {
-        padding: 0.6em;
-        border-radius: @br-sm + 1;
-        font-size: @fs-headline1;
-
-        &.s-btn__dropdown {
-            padding-right: 1.5em;
-
-            &:after {
-                top: calc(~"50% - 2px");
-                right: 0.6em;
-                border-width: @su6;
-                border-top-width: @su6;
-                border-bottom-width: 0;
-            }
-        }
-    }
-
-    &.s-btn__xl {
-        padding: 0.5em;
-        border-radius: @br-sm + @br-sm;
-        font-size: @fs-headline2;
-
-        &.s-btn__dropdown {
-            padding-right: 1.3em;
-
-            &:after {
-                top: calc(~"50% - 4px");
-                right: 0.5em;
-                border-width: @su4 + 3px;
-                border-top-width: @su4 + 3px;
-                border-bottom-width: 0;
-            }
-        }
-    }
-
     .s-btn--badge {
         opacity: .5;
         display: inline-block;
@@ -188,7 +161,10 @@
     }
 }
 
-#stacks-internals #darkmode('.s-btn__primary:not(.is-selected) .s-btn--number, .s-btn__danger.s-btn__filled:not(.is-selected) .s-btn--number', { color: @black; });
+.s-btn__primary:not(.is-selected) .s-btn--number,
+.s-btn__danger.s-btn__filled:not(.is-selected) .s-btn--number {
+    .dark-mode({ color: @black; });
+}
 
 //  ============================================================================
 //  $   DEFAULT (SECONDARY) STYLES
@@ -214,6 +190,8 @@
     border-color: @button-filled-border-color;
     box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, .7);
 
+    .dark-mode({ box-shadow: none; });
+
     &:hover,
     &:focus,
     &:active {
@@ -234,8 +212,6 @@
         box-shadow: none;
     }
 }
-
-#stacks-internals #darkmode('.s-btn__filled', { box-shadow: none; });
 
 //  --  Muted Clear Style
 //      Creates a gray button style.
@@ -283,6 +259,8 @@
         border-color: transparent;
         box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, .4);
 
+        .dark-mode({ box-shadow: none; });
+
         &:hover,
         &:focus,
         &:active {
@@ -310,8 +288,6 @@
         }
     }
 }
-
-#stacks-internals #darkmode('.s-btn__muted.s-btn__filled', { box-shadow: none; });
 
 //  ============================================================================
 //  $   DANGER BUTTONS & STYLES
@@ -359,6 +335,8 @@
         border-color: transparent;
         box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, .4);
 
+        .dark-mode({ box-shadow: none; });
+
         &:hover,
         &:focus,
         &:active {
@@ -391,8 +369,6 @@
     }
 }
 
-#stacks-internals #darkmode('.s-btn__danger.s-btn__filled', { box-shadow: none; });
-
 //  ============================================================================
 //  $   PRIMARY STYLE
 //  ============================================================================
@@ -400,6 +376,8 @@
     color: @button-primary-color;
     background-color: @button-primary-background-color;
     box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, .4);
+
+    .dark-mode({ box-shadow: none; });
 
     &:hover,
     &:focus,
@@ -422,9 +400,6 @@
         color: @button-primary-number-color;
     }
 }
-
-#stacks-internals #darkmode('.s-btn__primary', { box-shadow: none; });
-
 
 //  ============================================================================
 //  $   MISC STYLES
@@ -580,20 +555,6 @@
             // If the first thing in the button is an icon, let's hide it on loading
             // We only want to modify the visibility, since we still want it to have shape and keep the same layout.
             opacity: 0;
-        }
-
-        &.s-btn__lg {
-            &:before,
-            &:after {
-                border-width: 3px;
-            }
-        }
-
-        &.s-btn__xl {
-            &:before,
-            &:after {
-                border-width: 4px;
-            }
         }
     }
 }

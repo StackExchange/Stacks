@@ -79,15 +79,6 @@
     // without browser hacks, but that would be punishing non-broken browsers with extra
     // unnecessary compositing work.
     &, &:before, &:after {
-        // Edge: Remove the well-known "wobble". And yes, they're both necessary.
-        // My theory is that all of this triggers a different drawing/compositing/
-        // hardware acceleration mode that in some way or the other is more precise.
-        // Or something like that. I don't know.
-        @supports (-ms-ime-align:auto) {
-            filter: invert(0);
-            transform-origin: 50% 50% 1px;
-        }
-
         // Safari: At least at 1dpp resolution, Safari crops the transformed elements
         // too aggressively, leading to a very visible flat edge part of the circle.
         // This invisible box shadow increases the area that the effects work on and thus
