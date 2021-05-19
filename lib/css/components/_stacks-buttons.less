@@ -52,7 +52,7 @@
     //  Default Style (Clear)
     color: @button-color;
 
-    &:hover,
+    &:hover:not([disabled]):not(.is-selected),
     &:focus,
     &:active {
         color: @button-hover-color;
@@ -71,7 +71,7 @@
 
     &[disabled] {
         opacity: .5;
-        pointer-events: none;
+        cursor: default;
         box-shadow: none !important;
     }
 
@@ -79,10 +79,6 @@
         color: @button-selected-color;
         background: @button-selected-background-color;
         box-shadow: none;
-
-        &:focus {
-            box-shadow: 0 0 0 @su4 var(--focus-ring);
-        }
     }
 
     &.s-btn__dropdown {
@@ -192,7 +188,7 @@
 
     .dark-mode({ box-shadow: none; });
 
-    &:hover,
+    &:hover:not([disabled]):not(.is-selected),
     &:focus,
     &:active {
         color: @button-filled-hover-color;
@@ -219,7 +215,7 @@
 .s-btn__muted {
     color: @button-muted-color;
 
-    &:hover,
+    &:hover:not([disabled]):not(.is-selected),
     &:focus,
     &:active {
         color: @button-muted-hover-color;
@@ -261,7 +257,7 @@
 
         .dark-mode({ box-shadow: none; });
 
-        &:hover,
+        &:hover:not([disabled]):not(.is-selected),
         &:focus,
         &:active {
             color: @button-muted-filled-hover-color;
@@ -295,7 +291,7 @@
 .s-btn__danger {
     color: @button-danger-color;
 
-    &:hover,
+    &:hover:not([disabled]):not(.is-selected),
     &:focus,
     &:active {
         color: @button-danger-hover-color;
@@ -337,7 +333,7 @@
 
         .dark-mode({ box-shadow: none; });
 
-        &:hover,
+        &:hover:not([disabled]):not(.is-selected),
         &:focus,
         &:active {
             color: @button-danger-filled-hover-color;
@@ -379,7 +375,7 @@
 
     .dark-mode({ box-shadow: none; });
 
-    &:hover,
+    &:hover:not([disabled]):not(.is-selected),
     &:focus,
     &:active {
         color: @button-primary-hover-color;
@@ -409,7 +405,7 @@
     background-color: var(--white);
     color: var(--black-700);
 
-    &:hover,
+    &:hover:not([disabled]):not(.is-selected),
     &:focus {
         border-color: var(--black-150);
         background-color: var(--black-025);
@@ -428,7 +424,7 @@
     background-color: #385499;
     color: #fff;
 
-    &:hover,
+    &:hover:not([disabled]):not(.is-selected),
     &:focus {
         background-color: darken(#385499, 5%);
         color: #fff;
@@ -444,7 +440,7 @@
     background-color: var(--black-750);
     color: var(--white);
 
-    &:hover,
+    &:hover:not([disabled]):not(.is-selected),
     &:focus {
         background-color: var(--black-800);
         color: var(--white);
@@ -457,7 +453,7 @@
 }
 
 .s-btn__unset,
-.s-btn__unset:hover,
+.s-btn__unset:hover:not([disabled]):not(.is-selected),
 .s-btn__unset:active {
     padding: 0;
     border: none;
@@ -488,7 +484,7 @@
 
     .s-link();
 
-    &:hover,
+    &:hover:not([disabled]):not(.is-selected),
     &:active,
     &:focus,
     &[disabled] {
