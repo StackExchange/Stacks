@@ -5,7 +5,8 @@ js: true
 description: An expandable, sometimes called an accordion, is an element that can be hidden / revealed with a sliding transition.
 ---
 <section class="stacks-section">
-    {% header "h2", "Basics" %}
+    {% header "h2", "Examples" %}
+    {% header "h3", "Basic" %}
     <p class="stacks-copy">From a purely visual standpoint, all you need is a container of class <code class="stacks-code">s-expandable</code> and a child of class <code class="stacks-code">s-expandable--content</code>. Toggle the state class <code class="stacks-code">is-expanded</code> on the container to collapse / expand the content. Care must be taken to keep the collapsing functionality accessible.</p>
 
 
@@ -44,6 +45,56 @@ description: An expandable, sometimes called an accordion, is an element that ca
             </div>
         </div>
     </div>
+
+    {% header "h3", "Multiple" %}
+    <p class="stacks-copy">It’s also possible to control the state of multiple elements from a single <code class="stacks-code">s-expandable-control</code> by listing all the <code class="stacks-code">ids</code> for the controlled elements in the <code class="stacks-code">aria-controls</code> attribute.</p>
+
+    <div class="stacks-preview">
+{% highlight html %}
+<div class="s-card">
+    <button class="s-btn s-btn__filled"
+        data-controller="s-expandable-control"
+        data-s-expandable-control-toggle-class="is-selected"
+        aria-expanded="false"
+        aria-controls="expandable-first expandable-last">
+            Show first and last paragraphs
+    </button>
+    <div class="s-expandable" id="expandable-first">
+        <div class="s-expandable--content">
+            …
+        </div>
+    </div>
+    …
+    <div class="s-expandable" id="expandable-last">
+        <div class="s-expandable--content">
+            …
+        </div>
+    </div>
+</div>
+{% endhighlight %}
+        <div class="stacks-preview--example">
+            <div class="s-card ws3">
+                <button class="s-btn s-btn__filled mb8"
+                    data-controller="s-expandable-control"
+                    data-s-expandable-control-toggle-class="is-selected"
+                    aria-expanded="false"
+                    aria-controls="expandable-first expandable-last">
+                        Show first and last paragraphs
+                </button>
+                <div class="s-expandable" id="expandable-first">
+                    <div class="s-expandable--content">
+                        <p class="mb8">Lorem ipsum dolor sit amet, ex iudicabit necessitatibus usu, cetero laboramus concludaturque mel no, facilisis posidonium cu cum. Pro ex senserit dissentiunt, imperdiet intellegam at sed, ex pri dicit eruditi convenire. Est harum movet gubergren ei, errem dictas evertitur ea sit, at mei oratio eligendi. Ad vis legere possit, vis ne ipsum democritum appellantur. Nullam ancillae iudicabit his ad.</p>
+                    </div>
+                </div>
+                <p class="mb8">Accusata reprimique interesset in sea, est graece dictas scriptorem ea. Consul facete mediocritatem quo et. Idque hendrerit theophrastus in vim, eum possit feugiat fastidii id. Idque invenire at quo, accusata salutandi sadipscing et qui. Eos doming adipiscing ea, eu pri debitis indoctum dissentiet. At libris labores adolescens eos, ex nec nobis aeterno.</p>
+                <div class="s-expandable" id="expandable-last">
+                    <div class="s-expandable--content">
+                        <p>Aenean aliquet vitae erat sed luctus. Nullam elementum orci id leo lacinia fringilla. Quisque rutrum mauris at mi rhoncus, vel vulputate erat pellentesque. Sed blandit rhoncus sem at pulvinar. Curabitur maximus, metus a facilisis efficitur, ipsum eros faucibus quam, nec mollis lectus nunc ut diam.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </section>
 <section class="stacks-section">
     {% header "h2", "JavaScript" %}
@@ -51,9 +102,9 @@ description: An expandable, sometimes called an accordion, is an element that ca
     <p class="stacks-copy">In the usual case in which you have a button or other clickable element that toggles the expanded state, you can use the built-in <code class="stacks-code">s-expandable-control</code> functionality. See the <a href="{{ "/product/guidelines/javascript" | relative_url }}">JavaScript introduction</a> for general information on JS in Stacks.</p>
 
     <ol class="stacks-list">
-        <li>Give the <code class="stacks-code">s-expandable</code> an <code class="stacks-code">id</code> attribute.</li>
-        <li>Give your button an <code class="stacks-code">aria-controls</code> attribute whose value is the ID from 1.</li>
-        <li>Give your button an <code class="stacks-code">aria-expanded</code> attribute whose value is <code class="stacks-code">true</code> or <code class="stacks-code">false</code> depending on the initial state of your expandable.</li>
+        <li>Give all desired <code class="stacks-code">s-expandable</code> elements an <code class="stacks-code">id</code> attribute.</li>
+        <li>Give your button an <code class="stacks-code">aria-controls</code> attribute whose value is a space-separated list of all IDs in 1.</li>
+        <li>Give your button an <code class="stacks-code">aria-expanded</code> attribute whose value is <code class="stacks-code">true</code> or <code class="stacks-code">false</code> depending on the initial state of your expandables.</li>
         <li>Give your button a <code class="stacks-code">data-controller="s-expandable-control"</code> attribute.</li>
         <li>If your button is an element that is not focusable by default, be sure to make it keyboard-reachable with <code class="stacks-code">tabindex="0"</code></li>
         <li>Give your button an <code class="stacks-code">aria-label</code> attribute that makes it clear that this is a expanding/collapsing control, <em>unless</em> this is already clear from its text content</li>
