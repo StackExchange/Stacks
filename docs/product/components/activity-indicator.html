@@ -1,0 +1,77 @@
+---
+layout: page
+title: Activity indicator
+description: Stacks provides a small jewel for indicating new activity.
+---
+<section class="stacks-section">
+    {% header "h3", "Classes" %}
+    <div class="overflow-x-auto mb32">
+        <table class="wmn4 s-table s-table__bx-simple">
+            <thead>
+                <tr>
+                    <th scope="col">Class</th>
+                    <th scope="col">Applied to</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody class="fs-caption">
+                {% for item in activity-indicator.indicator %}
+                    <tr>
+                        <td><code class="stacks-code">{{ item.class }}</code></td>
+                        <td>{% if item.applies == "N/A" %}<em class="fc-black-350">{{ item.applies }}</em>{% else %}<code class="stacks-code">{{ item.applies }}</code>{% endif %}</td>
+                        <td>{{ item.description }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</section>
+<section class="stacks-section">
+    {% header "h3", "Examples" %}
+    <p class="stacks-copy">By default, our indicator has no positioning attached to it. Depending on your context, you can modify the activity indicator’s positioning using any combination of atomic classes. Since our activity indicator has no inherent semantic meaning, make sure to include visually-hidden, screenreader-only text.</p>
+    <div class="stacks-preview">
+{% highlight html %}
+<div class="s-activity-indicator">
+    <div class="v-visible-sr">New activity</div>
+</div>
+
+<div class="ps-relative">
+    <div class="s-activity-indicator ps-absolute tn6 ln6">
+        <div class="v-visible-sr">New activity</div>
+    </div>
+</div>
+{% endhighlight %}
+        <div class="stacks-preview--example">
+            <div class="grid fd-column gs24">
+                <div class="grid--cell">
+                    <div class="s-activity-indicator">
+                        <div class="v-visible-sr">New activity</div>
+                    </div>
+                </div>
+
+                <div class="grid--cell">
+                    <a href="#" class="s-link s-link__muted">
+                        <div class="s-avatar bg-red-400 ps-relative">
+                            <div class="s-activity-indicator ps-absolute tn6 ln6">
+                                <div class="v-visible-sr">New activity</div>
+                            </div>
+                            <div class="s-avatar--letter">G</div>
+                            {% icon "ShieldXSm", "native s-avatar--badge" %}
+                        </div>
+                        <span class="pl4">Grayson</span>
+                    </a>
+                </div>
+
+                <div class="grid--cell">
+                    <div class="fc-medium ps-relative d-inline-block">
+                        {% icon "Bell" %}
+
+                        <div class="s-activity-indicator ps-absolute tn4 rn4">
+                            <div class="v-visible-sr">New activity</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
