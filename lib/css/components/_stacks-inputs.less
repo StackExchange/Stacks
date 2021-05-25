@@ -24,13 +24,28 @@
 //  ============================================================================
 //  $  VARIABLES & MIXINS
 //  ----------------------------------------------------------------------------
-@input-padding:     0.6em 0.7em;
+@input-padding: 0.6em 0.7em;
 
-//  ============================================================================
-//  $  BASE INPUT / TEXTAREA STYLE
-//  ----------------------------------------------------------------------------
-.s-input,
-.s-textarea {
+@autofill: {
+    &::-webkit-contacts-auto-fill-button {
+        background-color: var(--black); // In Safari, make the autocomplete button darkmode-aware
+    }
+
+    &:-webkit-autofill {
+        border-color: var(--blue-300);
+        -webkit-text-fill-color: var(--black);
+        -webkit-box-shadow: 0 0 0 1000px var(--blue-050) inset; // This acts as a background color by stretching an inset box shadow across the input
+        transition: background-color 0s 50000s; // A hack to infinitely delay background styles that come from the browser.
+
+        &:focus {
+            border-color: var(--blue-300);
+            // Since the box shadow is overwritten to show a background, we have to re-add the focus outline
+            -webkit-box-shadow: 0 0 0 1000px var(--blue-050) inset, 0 0 0 @su4 var(--focus-ring);
+        }
+    }
+}
+
+@basic-styling: {
     -webkit-appearance: none; // Removes shadows we don't want in mobile Safari
     width: 100%;
     margin: 0; // A guard against Core's default margins
@@ -70,6 +85,14 @@
 
     // --  STYLE AUTOFILL STATES
     @autofill();
+}
+
+//  ============================================================================
+//  $  BASE INPUT / TEXTAREA STYLE
+//  ----------------------------------------------------------------------------
+.s-input,
+.s-textarea {
+    @basic-styling();
 }
 
 .s-input.s-input__search,
@@ -208,12 +231,12 @@ fieldset {
         pointer-events: none;
     }
     &:before {
-        top: calc(~"50% - 5px");
+        top: calc(50% - 5px);
         border-top-width: 0;
         border-bottom-width: 4px;
     }
     &:after {
-        top: calc(~"50% + 1px");
+        top: calc(50% + 1px);
         border-top-width: 4px;
         border-bottom-width: 0;
     }
@@ -641,24 +664,5 @@ fieldset {
         // Compensate for the larger font size so we generally keep the input the same size
         padding-top: 0.4em;
         padding-bottom: 0.4em;
-    }
-}
-
-@autofill: {
-    &::-webkit-contacts-auto-fill-button {
-        background-color: var(--black); // In Safari, make the autocomplete button darkmode-aware
-    }
-
-    &:-webkit-autofill {
-        border-color: var(--blue-300);
-        -webkit-text-fill-color: var(--black);
-        -webkit-box-shadow: 0 0 0 1000px var(--blue-050) inset; // This acts as a background color by stretching an inset box shadow across the input
-        transition: background-color 0s 50000s; // A hack to infinitely delay background styles that come from the browser.
-
-        &:focus {
-            border-color: var(--blue-300);
-            // Since the box shadow is overwritten to show a background, we have to re-add the focus outline
-            -webkit-box-shadow: 0 0 0 1000px var(--blue-050) inset, 0 0 0 @su4 var(--focus-ring);
-        }
     }
 }

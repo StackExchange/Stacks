@@ -24,35 +24,6 @@
     // If the s-navigation is a list, let's reset all the properties
     list-style: none;
 
-    &.s-navigation__scroll {
-        overflow-x: auto;
-        flex-wrap: nowrap;
-
-        @scrollbar-styles();
-    }
-
-    &.s-navigation__vertical {
-        flex-direction: column;
-        padding: 0;
-        margin: 0;
-
-        .s-navigation--item {
-            margin: 0;
-        }
-    }
-
-    .s-navigation--title {
-        font-size: @fs-fine;
-        font-weight: bold;
-        margin-top: @su16;
-        padding: @su6 @su12;
-        text-transform: uppercase;
-
-        &:first-child {
-            margin-top: 0;
-        }
-    }
-
     .s-navigation--item {
         display: flex;
         align-items: center;
@@ -80,6 +51,35 @@
         &.is-selected {
             background: @navigation-link-highlight;
             color: var(--white);
+        }
+    }
+
+    &.s-navigation__scroll {
+        overflow-x: auto;
+        flex-wrap: nowrap;
+
+        @scrollbar-styles();
+    }
+
+    &.s-navigation__vertical {
+        flex-direction: column;
+        padding: 0;
+        margin: 0;
+
+        .s-navigation--item {
+            margin: 0;
+        }
+    }
+
+    .s-navigation--title {
+        font-size: @fs-fine;
+        font-weight: bold;
+        margin-top: @su16;
+        padding: @su6 @su12;
+        text-transform: uppercase;
+
+        &:first-child {
+            margin-top: 0;
         }
     }
 
