@@ -195,12 +195,35 @@ p {
 
 //  --  Overflow Wrap
 //      This property will create a line break only if an entire word cannot be
-//      placed on its own line without overflowing.
-.ow-normal { overflow-wrap: normal !important; }
-.ow-break-word { overflow-wrap: break-word !important; }
-.ow-inherit { overflow-wrap: inherit !important; }
-.ow-initial { overflow-wrap: initial !important; }
-.ow-unset { overflow-wrap: unset !important; }
+//      placed on its own line without overflowing. This was formerly called
+//      word-wrap, which was an unprefixed Microsoft vendor property implemented
+//      by most browsers. Word-wrap is still a supported alias, but can be removed
+//      once we no longer support IE11.
+.ow-normal {
+    overflow-wrap: normal !important;
+    word-wrap: normal !important;
+}
+
+.ow-break-word {
+    overflow-wrap: break-word !important;
+    word-wrap: break-word !important;
+}
+
+.ow-inherit {
+    overflow-wrap: inherit !important;
+    word-wrap: inherit !important;
+}
+
+.ow-initial {
+    overflow-wrap: initial !important;
+    word-wrap: initial !important;
+}
+
+.ow-unset {
+    overflow-wrap: unset !important;
+    word-wrap: unset !important;
+}
+
 .ww-break-word { word-wrap: break-word !important; }
 
 //  --  Hyphenation
