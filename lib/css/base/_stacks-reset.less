@@ -7,11 +7,13 @@
     #include-css-reset(normalize) {
         @import "_stacks-reset-normalize.less";
     }
+    /* stylelint-disable block-no-empty */
     #include-css-reset(none) {
     }
+    /* stylelint-enable */
 }
 
-&{
+& {
     #stacks-internals #load-static-config();
     #stacks-internals #include-css-reset(@css-reset);
 }
