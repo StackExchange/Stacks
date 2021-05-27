@@ -51,6 +51,7 @@
         private events!: string[];
         private isCheckable!: boolean;
         private isRadio!: boolean;
+        private lastKeydownClickTimestamp: number = 0;
 
         initialize() {
             if (this.element.nodeName === "INPUT" && ["radio", "checkbox"].indexOf((<HTMLInputElement>this.element).type) >= 0) {
@@ -123,8 +124,18 @@
                 if (e.target !== e.currentTarget && ["A", "BUTTON"].indexOf((<HTMLElement>e.target).nodeName) >= 0) {
                     return;
                 }
-                newCollapsed = this.element.getAttribute("aria-expanded") === "true";
+                
                 e.preventDefault();
+                                
+                // Prevent "click" events from toggling the expandable within 300ms of "keydown".
+                // e.preventDefault() should have done the same, but https://bugzilla.mozilla.org/show_bug.cgi?id=1487102
+                // doesn't guarantee it.
+                if (e.type == "keydown") {
+                    this.lastKeydownClickTimestamp = Date.now();
+                } else if (e.type == "click" && Date.now() - this.lastKeydownClickTimestamp < 300) {
+                    return;
+                }
+                newCollapsed = this.element.getAttribute("aria-expanded") === "true";
                 if (e.type === "click") {
                     (<HTMLInputElement>this.element).blur();
                 }
