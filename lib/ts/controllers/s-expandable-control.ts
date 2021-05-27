@@ -132,8 +132,6 @@
                 } else if (e.type == "click" && Date.now() - this.lastKeydownClickTimestamp < 300) {
                     return;
                 }
-
-                
                 newCollapsed = this.element.getAttribute("aria-expanded") === "true";
                 if (e.type === "click") {
                     (<HTMLInputElement>this.element).blur();
