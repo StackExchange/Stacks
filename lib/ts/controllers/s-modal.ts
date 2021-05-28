@@ -4,8 +4,7 @@ namespace Stacks {
         static targets = ["modal", "initialFocus"];
 
         private modalTarget!: HTMLElement;
-        private initialFocusTarget!: HTMLElement;
-        private hasInitialFocusTarget!: boolean;
+        private initialFocusTargets!: HTMLElement[];
 
         private _boundClickFn!: any;
         private _boundKeypressFn!: any;
@@ -97,6 +96,7 @@ namespace Stacks {
 
             if (toShow) {
                 this.bindDocumentEvents();
+                this.focusInsideModal();
             }
             else {
                 this.unbindDocumentEvents();
@@ -153,58 +153,80 @@ namespace Stacks {
         }
 
         /**
+         * Gets all elements that could be tabbed to in 
+         */
+        private getAllTabbables() {
+            return <HTMLElement[]>Array.from(this.modalTarget.querySelectorAll("[href], input, select, textarea, button, [tabindex]"))
+                .filter((el: Element) => el.matches(":not([disabled]):not([tabindex='-1'])"));
+        }
+
+        private firstVisible(elements: HTMLElement[]) {
+            // https://stackoverflow.com/a/21696585
+            return elements.find(el => el.offsetParent !== null);
+        }
+
+        private lastVisible(elements: HTMLElement[]) {
+            return [...elements].reverse().find(el => el.offsetParent !== null);
+        }
+
+        /**
          * Binds tab presses on tabbable items such that tabbing only works within the modal
          */
-        private handleFocusableElements() {
+        private focusInsideModal() {
+
             // get all tabbable items
-            var allTabbables = Array.from(this.modalTarget.querySelectorAll("[href], input, select, textarea, button, [tabindex]"))
-                .filter((el: Element) => el.matches(":not([disabled]):not([tabindex='-1'])"));
+            var allTabbables = this.getAllTabbables();
 
             if (!allTabbables.length) {
                 return;
             }
 
-            var initialFocus = <HTMLElement>allTabbables[0];
+            // focus on the first focusable item within the modal, preferring targets explicitly provided by the DOM.
 
-            if (this.hasInitialFocusTarget) {
-                initialFocus = this.initialFocusTarget;
+            var initialFocus = this.firstVisible(this.initialFocusTargets) ?? this.firstVisible(allTabbables);
+            if (initialFocus) {
+                this.modalTarget.addEventListener("s-modal:shown", () => {
+                    // double check the element still exists when the event is called
+                    if (initialFocus && document.body.contains(initialFocus)) {
+                        initialFocus.focus()
+                    }
+                }, {once: true });
+            }
+        }
+
+        private keepFocusWithinModal(e: KeyboardEvent) {
+
+            // If somehow the user has tabbed out of the modal or if focus started outside the modal, push them to the first item.
+            if (!this.modalTarget.contains(<Element>e.target)) {
+                var focusTarget = this.firstVisible(this.getAllTabbables());
+                if (focusTarget) {
+                    e.preventDefault();
+                    focusTarget.focus();
+                }
+
+                return;
             }
 
-            // focus on the first focusable item within the modal
-            this.modalTarget.addEventListener("s-modal:shown", () => {
-                // double check the element still exists when the event is called
-                if (initialFocus && document.body.contains(initialFocus)) {
-                    initialFocus.focus()
+            // If we observe a tab keydown and we're on an edge, cycle the focus to the other side.
+            if (e.keyCode === 9) {
+                var tabbables = this.getAllTabbables();
+
+                var firstTabbable = this.firstVisible(tabbables);
+                var lastTabbable = this.lastVisible(tabbables);
+
+                if (firstTabbable && lastTabbable) {
+                    if (firstTabbable === lastTabbable) {
+                        e.preventDefault();
+                        firstTabbable.focus();
+                    } else if (e.shiftKey && e.target === firstTabbable) {
+                        e.preventDefault();
+                        lastTabbable.focus();
+                    } else if (!e.shiftKey && e.target === lastTabbable) {
+                        e.preventDefault();
+                        firstTabbable.focus();
+                    } 
                 }
-            }, {once: true });
-
-            var firstTabbable = <HTMLElement>allTabbables[0];
-            var lastTabbable = <HTMLElement>allTabbables[allTabbables.length - 1];
-
-            // if the first or last item is tabbed over, ensure that the focus "loops" back to the end of the array instead of leaving the modal
-            this._boundTabTrap = this._boundTabTrap || ((e: KeyboardEvent) => {
-                // if somehow the user has tabbed out of the modal or if focus started outside the modal, push them to the first item
-                if (!this.modalTarget.contains(<Element>e.target)) {
-                    e.preventDefault();
-                    firstTabbable.focus();
-                }
-
-                // if they've tabbed backwards over the first item, then go to the last item
-                if (e.target == firstTabbable && e.keyCode === 9 && e.shiftKey) {
-                    e.preventDefault();
-                    lastTabbable.focus();
-                }
-
-                // if they've tabbed forwards over the last item, then go to the first item
-                if (e.target == lastTabbable && e.keyCode === 9 && !e.shiftKey) {
-                    e.preventDefault();
-                    firstTabbable.focus();
-                }
-            });
-
-            document.addEventListener("keydown", this._boundTabTrap);
-
-            return initialFocus;
+            }
         }
 
         /**
@@ -214,11 +236,11 @@ namespace Stacks {
             // in order for removeEventListener to remove the right event, this bound function needs a constant reference
             this._boundClickFn = this._boundClickFn || this.hideOnOutsideClick.bind(this);
             this._boundKeypressFn = this._boundKeypressFn || this.hideOnEscapePress.bind(this);
+            this._boundTabTrap = this._boundTabTrap || this.keepFocusWithinModal.bind(this);
 
             document.addEventListener("mousedown", this._boundClickFn);
             document.addEventListener("keyup", this._boundKeypressFn);
-
-            this.handleFocusableElements();
+            document.addEventListener("keydown", this._boundTabTrap);
         }
 
         /**
