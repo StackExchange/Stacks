@@ -173,27 +173,16 @@ namespace Stacks {
          * Binds tab presses on tabbable items such that tabbing only works within the modal
          */
         private focusInsideModal() {
-
-            // get all tabbable items
-            var allTabbables = this.getAllTabbables();
-
-            if (!allTabbables.length) {
-                return;
-            }
-
-            // focus on the first focusable item within the modal, preferring targets explicitly provided by the DOM.
-
-            var initialFocus = this.firstVisible(this.initialFocusTargets) ?? this.firstVisible(allTabbables);
-            if (initialFocus) {
-                this.modalTarget.addEventListener("s-modal:shown", () => {
-                    // double check the element still exists when the event is called
-                    if (initialFocus && document.body.contains(initialFocus)) {
-                        initialFocus.focus()
-                    }
-                }, {once: true });
-            }
+            this.modalTarget.addEventListener("s-modal:shown", () => {
+                var initialFocus = this.firstVisible(this.initialFocusTargets) ?? this.firstVisible(this.getAllTabbables());
+                initialFocus?.focus();
+            }, {once: true });
         }
 
+
+        /**
+         * Returns keyboard focus to the modal if it has left or is about to leave.
+         */
         private keepFocusWithinModal(e: KeyboardEvent) {
 
             // If somehow the user has tabbed out of the modal or if focus started outside the modal, push them to the first item.
