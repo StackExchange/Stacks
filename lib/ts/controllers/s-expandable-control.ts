@@ -51,6 +51,7 @@
         private events!: string[];
         private isCheckable!: boolean;
         private isRadio!: boolean;
+        private lastKeydownClickTimestamp: number = 0;
 
         initialize() {
             if (this.element.nodeName === "INPUT" && ["radio", "checkbox"].indexOf((<HTMLInputElement>this.element).type) >= 0) {
@@ -69,8 +70,9 @@
         // for non-checkable elements, the initial source of truth is the collapsed/expanded
         // state of the controlled element (unless the element doesn't exist)
         _isCollapsedForClickable() {
-            var cc = this.controlledCollapsible;
-            return cc ? !cc.classList.contains("is-expanded") : this.element.getAttribute("aria-expanded") === "false";
+            var cc = this.controlledCollapsibles;
+            // the element is considered collapsed if *any* target element is collapsed
+            return cc.length > 0 ? !cc.every(element => element.classList.contains("is-expanded")) : this.element.getAttribute("aria-expanded") === "false";
         };
 
         // for checkable elements, the initial source of truth is the checked state
@@ -79,13 +81,15 @@
         };
 
 
-        get controlledCollapsible() {
+        get controlledCollapsibles() {
             const attr = this.element.getAttribute("aria-controls");
             if (!attr) {
-                throw "couldn't find controls"
+                throw `[aria-controls="targetId1 ... targetIdN"] attribute required`;
             }
-            const result = document.getElementById(attr);
-            if (!result) {
+            const result = attr.split(/\s+/g)
+                .map(s => document.getElementById(s))
+                .filter((e): e is HTMLElement => !!e);
+            if (!result.length) {
                 throw "couldn't find controls"
             }
             return result;
@@ -120,14 +124,26 @@
                 if (e.target !== e.currentTarget && ["A", "BUTTON"].indexOf((<HTMLElement>e.target).nodeName) >= 0) {
                     return;
                 }
-                newCollapsed = this.element.getAttribute("aria-expanded") === "true";
+                
                 e.preventDefault();
+                                
+                // Prevent "click" events from toggling the expandable within 300ms of "keydown".
+                // e.preventDefault() should have done the same, but https://bugzilla.mozilla.org/show_bug.cgi?id=1487102
+                // doesn't guarantee it.
+                if (e.type == "keydown") {
+                    this.lastKeydownClickTimestamp = Date.now();
+                } else if (e.type == "click" && Date.now() - this.lastKeydownClickTimestamp < 300) {
+                    return;
+                }
+                newCollapsed = this.element.getAttribute("aria-expanded") === "true";
                 if (e.type === "click") {
                     (<HTMLInputElement>this.element).blur();
                 }
             }
             this.element.setAttribute("aria-expanded", newCollapsed ? "false" : "true");
-            this.controlledCollapsible.classList.toggle("is-expanded", !newCollapsed);
+            for (let controlledElement of this.controlledCollapsibles) {
+                controlledElement.classList.toggle("is-expanded", !newCollapsed);
+            }
             this._dispatchShowHideEvent(!newCollapsed);
             this._toggleClass(!newCollapsed);
         };
@@ -145,12 +161,14 @@
             // attribute; for checkable controls this also means setting the `is-collapsed` class
             this.element.setAttribute("aria-expanded", this.isCollapsed() ? "false" : "true");
             if (this.isCheckable) {
-                var cc = this.controlledCollapsible;
-                if (cc) {
+                var cc = this.controlledCollapsibles;
+                if (cc.length) {
                     var expected = !this.isCollapsed();
-                    var actual = cc.classList.contains("is-expanded");
-                    if (expected !== actual) {
-                        cc.classList.toggle("is-expanded", expected);
+                   // if any element does not match the expected state, set them all to the expected state
+                   if (cc.some(element => element.classList.contains("is-expanded") !== expected)) {
+                        for (let controlledElement of this.controlledCollapsibles) {
+                            controlledElement.classList.toggle("is-expanded", expected);
+                        }
                         this._dispatchShowHideEvent(expected);
                         this._toggleClass(expected);
                     }

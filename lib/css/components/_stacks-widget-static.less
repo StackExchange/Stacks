@@ -28,8 +28,9 @@
     font-size: @fs-body1;
     background-color: var(--white);
 
-    &:not(.s-anchors) a:not(.button):not(.s-btn):not(.post-tag):not(.s-sidebarwidget--action):not(.s-user-card--link ) {
-        &, &:visited {
+    &:not(.s-anchors) a:not(.button):not(.s-btn):not(.post-tag):not(.s-sidebarwidget--action):not(.s-user-card--link) {
+        &,
+        &:visited {
             color: var(--black-500);
         }
     }
@@ -123,7 +124,7 @@
         }
         &[aria-expanded='true']:before {
             -webkit-transform: rotate(90deg);
-                    transform: rotate(90deg);
+            transform: rotate(90deg);
         }
     }
 }
@@ -175,8 +176,10 @@ table.s-sidebarwidget--content.s-sidebarwidget__items {
 .s-sidebarwidget--item {
     margin: @s-sidebarwidget-content-inner-spacing 0;
 
-    &, & > :first-child {
-        &[aria-current="true"], &[aria-current="page"] {
+    &,
+    & > :first-child {
+        &[aria-current="true"],
+        &[aria-current="page"] {
             position: relative;
             color: var(--black);
             font-weight: bold;
@@ -193,7 +196,8 @@ table.s-sidebarwidget--content.s-sidebarwidget__items {
                 // border-left-color is set in _stacks-widget-dynamic.less
             }
 
-            a, a:visited { // TODO: this isn't the best way to go about this. There should be a "is current" highlight without font modification for more complex cases
+            a,
+            a:visited { // TODO: this isn't the best way to go about this. There should be a "is current" highlight without font modification for more complex cases
                 color: inherit;
             }
         }
@@ -207,18 +211,20 @@ table.s-sidebarwidget--content.s-sidebarwidget__items {
     li {
         margin-top: 12px;
         padding-left: 16px;
-        background-position: 0 ~"calc((1.2em - 10px)/2)";
+        background-position: 0 calc((1.2em - 10px) / 2);
         background-repeat: no-repeat;
         background-size: auto 10px;
 
         #stacks-internals #bullet-arrow(var(--black-100));
 
-        &[aria-current="true"], &[aria-current="page"] {
+        &[aria-current="true"],
+        &[aria-current="page"] {
             // this is given a bullet-arrow in the primary color in _stacks-widget-dynamic.less
             color: var(--black);
             font-weight: bold;
 
-            a, a:visited { // TODO: see above
+            a,
+            a:visited { // TODO: see above
                 color: inherit;
             }
         }
@@ -242,7 +248,8 @@ table.s-sidebarwidget--content.s-sidebarwidget__items {
             color: var(--fc-medium);
         }
 
-        .s-sidebarwidget--header, .s-sidebarwidget--content {
+        .s-sidebarwidget--header,
+        .s-sidebarwidget--content {
             border-color: var(~"--@{name}-200");
         }
 

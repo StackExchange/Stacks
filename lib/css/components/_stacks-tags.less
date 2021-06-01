@@ -28,6 +28,12 @@
     }
 }
 
+.s-tag-selected-styles(@border: transparent, @background: transparent, @color: inherit) {
+    border-color: @border;
+    background-color: @background;
+    color: @color;
+}
+
 .s-tag-hover-styles(@border-hover: transparent, @background-hover: transparent, @color-hover: inherit) {
     &:hover,
     &:focus,
@@ -62,6 +68,10 @@
 
     .s-tag-styles(@tags-border, @tags-background, @tags-color);
 
+    &.is-selected {
+        .s-tag-selected-styles(@tags-selected-border, @tags-selected-background, @tags-selected-color);
+    }
+
     //  -- SIZES
     &.s-tag__xs {
         font-size: @fs-fine;
@@ -88,9 +98,9 @@
     }
 }
 
-a.s-tag {
+a.s-tag:not(.is-selected) {
     #stacks-internals #load-config();
-    .s-tag-hover-styles(@tags-border-hover, @tags-background-hover, @tags-color-hover);
+    .s-tag-hover-styles(@tags-hover-border, @tags-hover-background, @tags-hover-color);
 }
 
 //  $$  DISMISS ICON
@@ -123,7 +133,8 @@ a.s-tag {
     max-width: 18px;
     border-radius: @br-sm - 1;
 
-    .svg-icon, img {
+    .svg-icon,
+    img {
         width: 100%;
         height: 100%;
     }
@@ -139,10 +150,14 @@ a.s-tag {
 .s-tag__required {
     #stacks-internals #load-config();
     .s-tag-styles(@tags-required-border, @tags-required-background, @tags-required-color);
+
+    &.is-selected {
+        .s-tag-selected-styles(@tags-required-selected-border, @tags-required-selected-background, @tags-required-selected-color);
+    }
 }
-a.s-tag__required {
+a.s-tag__required:not(.is-selected) {
     #stacks-internals #load-config();
-    .s-tag-hover-styles(@tags-required-border-hover, @tags-required-background-hover, @tags-required-color-hover);
+    .s-tag-hover-styles(@tags-required-hover-border, @tags-required-hover-background, @tags-required-hover-color);
 }
 
 //  $$  Moderator Tag
@@ -150,10 +165,14 @@ a.s-tag__required {
 .s-tag__moderator {
     #stacks-internals #load-config();
     .s-tag-styles(@tags-moderator-border, @tags-moderator-background, @tags-moderator-color);
+
+    &.is-selected {
+        .s-tag-selected-styles(@tags-moderator-selected-border, @tags-moderator-selected-background, @tags-moderator-selected-color);
+    }
 }
-a.s-tag__moderator {
+a.s-tag__moderator:not(.is-selected) {
     #stacks-internals #load-config();
-    .s-tag-hover-styles(@tags-moderator-border-hover, @tags-moderator-background-hover, @tags-moderator-color-hover);
+    .s-tag-hover-styles(@tags-moderator-hover-border, @tags-moderator-hover-background, @tags-moderator-hover-color);
 }
 
 //  $$  Muted Tag
@@ -161,10 +180,14 @@ a.s-tag__moderator {
 .s-tag__muted {
     #stacks-internals #load-config();
     .s-tag-styles(@tags-muted-border, @tags-muted-background, @tags-muted-color);
+
+    &.is-selected {
+        .s-tag-selected-styles(@tags-muted-selected-border, @tags-muted-selected-background, @tags-muted-selected-color);
+    }
 }
-a.s-tag__muted {
+a.s-tag__muted:not(.is-selected) {
     #stacks-internals #load-config();
-    .s-tag-hover-styles(@tags-muted-border-hover, @tags-muted-background-hover, @tags-muted-color-hover);
+    .s-tag-hover-styles(@tags-muted-hover-border, @tags-muted-hover-background, @tags-muted-hover-color);
 }
 
 //  $$  Themed Tag
@@ -173,7 +196,7 @@ a.s-tag__muted {
     #stacks-internals #load-config();
     .s-tag-styles(var(--theme-primary-color), var(--theme-primary-color-fade-15), var(--theme-primary-color-darken-5));
 }
-a.s-tag__themed {
+a.s-tag__themed:not(.is-selected) {
     #stacks-internals #load-config();
     .s-tag-hover-styles(var(--theme-primary-color-darken-5), var(--theme-primary-color-fade-35), var(--theme-primary-color-darken-10));
 }

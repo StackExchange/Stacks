@@ -72,14 +72,14 @@
     }
 }, @force-selector: true);
 
-@media ( max-width:320px ) {
+@media (max-width: 320px) {
     html .stacks-home-nav {
         margin-bottom: 230px;
     }
 
     html .stacks-intro-crane {
-        width: 69px;
-        height: 166px;
+        background-position: top 0 left 15%, bottom 50% right 0;
+        background-size: 69px 166px, 272px 197px;
     }
 
     html .stacks-intro-field {
@@ -206,18 +206,12 @@
     padding: 3px 5px @su2 @su4;
     border-radius: @br-sm;
     background-color: var(--black-075);
-
     font-size: @fs-caption;
     font-family: var(--ff-mono);
     color: var(--fc-dark);
     line-height: @lh-xs;
-
     vertical-align: middle;
-    white-space: nowrap;
     overflow-wrap: break-word;
-}
-
-.stacks-code {
     white-space: normal;
 }
 
@@ -311,8 +305,8 @@
 
 .stacks-grid-example {
     display: flex;
-    .grid__center;
     height: 100%;
+    .grid__center;
 }
 
 //  ============================================================================
@@ -331,15 +325,15 @@
     width: 100% !important;
 
     [class^="ds-dataset-"] {
-        .algolia-docsearch-suggestion--text {
-            .algolia-docsearch-suggestion--highlight {
-                box-shadow: inset 0 -2px 0 0 rgba(68, 168, 179,.8);
-            }
-        }
-
         .algolia-docsearch-suggestion--highlight {
             color: var(--fc-medium);
             background: var(--orange-100);
+        }
+
+        .algolia-docsearch-suggestion--text {
+            .algolia-docsearch-suggestion--highlight {
+                box-shadow: inset 0 -2px 0 0 rgba(68, 168, 179, 0.8);
+            }
         }
     }
 
@@ -364,7 +358,7 @@
         overflow: visible !important;
         color: inherit !important;
         text-indent: 0 !important;
-        background: 0 0 !important
+        background: 0 0 !important;
     }
 
     @media (max-width: 640px) {
@@ -394,13 +388,13 @@
     grid-row-gap: @su16;
 }
 
-@media ( max-width:1200px ) {
+@media (max-width: 1200px) {
     .stacks-grid {
         grid-template-columns: 1fr 1fr;
     }
 }
 
-@media ( max-width:530px ) {
+@media (max-width: 530px) {
     .stacks-grid {
         grid-template-columns: 1fr;
     }
@@ -415,7 +409,7 @@
         content: "";
         position: absolute;
         z-index: @zi-active;
-        top: calc(~"50% - 2px");
+        top: calc(50% - 2px);
         right: 0;
         border-style: solid;
         border-width: @su4;
@@ -445,7 +439,6 @@
     --theme-primary-color-r: 77;
     --theme-primary-color-g: 168;
     --theme-primary-color-b: 156;
-
     --theme-secondary-color-h: 259;
     --theme-secondary-color-s: 29%;
     --theme-secondary-color-l: 55%;
@@ -506,14 +499,12 @@
     --theme-secondary-color-fade-80: hsla(var(--theme-secondary-color-h), var(--theme-secondary-color-s), var(--theme-secondary-color-l), 0.8);
     --theme-secondary-color-fade-15: hsla(var(--theme-secondary-color-h), var(--theme-secondary-color-s), var(--theme-secondary-color-l), 0.15);
     --theme-secondary-color-fade-35: hsla(var(--theme-secondary-color-h), var(--theme-secondary-color-s), var(--theme-secondary-color-l), 0.35);
-
     --theme-primary-color-h: 194;
     --theme-primary-color-s: 80%;
     --theme-primary-color-l: 51%;
     --theme-primary-color-r: 31;
     --theme-primary-color-g: 183;
     --theme-primary-color-b: 231;
-
     --theme-secondary-color-h: 302;
     --theme-secondary-color-s: 81%;
     --theme-secondary-color-l: 54%;

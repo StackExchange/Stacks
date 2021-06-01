@@ -85,7 +85,7 @@ namespace Stacks {
             var triggeredEvent = this.triggerEvent(toShow ? "show" : "hide", {
                 returnElement: this.returnElement,
                 dispatcher: this.getDispatcher(dispatchingElement)
-            });
+            }, this.modalTarget);
 
             // if this pre-show/hide event was prevented, don't attempt to continue changing the modal state
             if (triggeredEvent.defaultPrevented) {
@@ -114,12 +114,12 @@ namespace Stacks {
                     //TODO this is firing waaay to soon?
                     this.triggerEvent(toShow ? "shown" : "hidden", {
                         dispatcher: dispatchingElement
-                    });
+                    }, this.modalTarget);
                 }, { once: true });
             } else {
                 this.triggerEvent(toShow ? "shown" : "hidden", {
                     dispatcher: dispatchingElement
-                });
+                }, this.modalTarget);
             }           
         }
 

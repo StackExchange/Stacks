@@ -19,8 +19,6 @@
     margin-right: -@su2;
 }
 
-& { // create a single scope to load the config into, at least for now
-#stacks-internals #load-config();
 .s-pagination--item {
     margin-left: @su2;
     margin-right: @su2;
@@ -47,10 +45,24 @@
     &.s-pagination--item__clear {
         &,
         &:hover {
-            color: inherit;
+            border-color: var(--black-200);
+            background-color: var(--black-100);
+            color: var(--fc-dark);
+        }
+
+        &.is-selected {
             border-color: transparent;
-            background-color: transparent;
+            background-color: @pagination-select-background;
+            color: @pagination-select-color;
+        }
+
+        &.s-pagination--item__clear {
+            &,
+            &:hover {
+                color: inherit;
+                border-color: transparent;
+                background-color: transparent;
+            }
         }
     }
-}
 }

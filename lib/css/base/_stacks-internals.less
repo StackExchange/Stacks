@@ -1,5 +1,5 @@
+/* stylelint-disable */
 #stacks-internals() {
-
     // Load the configuration variables into the current scope. Example:
     //
     //     a {
@@ -27,12 +27,6 @@
     #responsify(@class, @rules) {
         @nodot-s: replace(@class, "^\.", "");
         @nodot: ~"@{nodot-s}";
-
-        & when (@class = @nodot-s) {
-            error {
-                error: @ATOMIC-CLASS-NAME-MUST-START-WITH-A-DOT;
-            }
-        }
 
         .@{nodot} {
             @rules();
@@ -233,6 +227,4 @@
         @encoded-image: escape(@image);
         background-image: url("data:image/svg+xml,@{encoded-image}");
     }
-
-
 }
