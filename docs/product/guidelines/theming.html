@@ -1,0 +1,89 @@
+---
+layout: page
+title: Theming
+description: Stacks provides a robust theming API to handle theming in various scopes.
+---
+
+<section class="stacks-section">
+    {% header "h2", "Light and Dark modes" %}
+    <p class="stacks-copy">Say, did you know we have both light and dark modes?</p>
+</section>
+
+<section class="stacks-section">
+    {% header "h2", "Scoped theming" %}
+    <p class="stacks-copy">Stacks allows for custom themes for things like Teams.</p>
+    <div class="stacks-preview">
+{% highlight html %}
+<div class="bg-theme-primary-600"></div>
+<div class="themed theme-team-001 bg-theme-primary-600"></div>
+<div class="themed theme-team-002 bg-theme-primary-600"></div>
+<div class="themed theme-team-003 bg-theme-primary-600"></div>
+
+<style>
+    .theme-team-001 {
+        --theme-primary-color-h: 2;
+        --theme-primary-color-s: 50%;
+        --theme-primary-color-l: 42%;
+        --theme-primary-color-r: 160;
+        --theme-primary-color-g: 57;
+        --theme-primary-color-b: 54;
+    }
+
+    .theme-team-002 {
+        --theme-primary-color-h: 115;
+        --theme-primary-color-s: 50%;
+        --theme-primary-color-l: 42%;
+        --theme-primary-color-r: 62;
+        --theme-primary-color-g: 160;
+        --theme-primary-color-b: 54;
+    }
+
+    .theme-team-003 {
+        --theme-primary-color-h: 313;
+        --theme-primary-color-s: 76%;
+        --theme-primary-color-l: 54%;
+        --theme-primary-color-r: 227;
+        --theme-primary-color-g: 49;
+        --theme-primary-color-b: 188;
+    }
+</style>
+{% endhighlight %}
+        <div class="stacks-preview--example">
+            <div class="grid gs8">
+                <div class="grid--cell h32 w32 bar-sm bg-theme-primary-600"></div>
+                <div class="grid--cell h32 w32 bar-sm themed theme-team-001 bg-theme-primary-600"></div>
+                <div class="grid--cell h32 w32 bar-sm themed theme-team-002 bg-theme-primary-600"></div>
+                <div class="grid--cell h32 w32 bar-sm themed theme-team-003 bg-theme-primary-600"></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    .theme-team-001 {
+        --theme-primary-color-h: 2;
+        --theme-primary-color-s: 50%;
+        --theme-primary-color-l: 42%;
+        --theme-primary-color-r: 160;
+        --theme-primary-color-g: 57;
+        --theme-primary-color-b: 54;
+    }
+
+    .theme-team-002 {
+        --theme-primary-color-h: 115;
+        --theme-primary-color-s: 50%;
+        --theme-primary-color-l: 42%;
+        --theme-primary-color-r: 62;
+        --theme-primary-color-g: 160;
+        --theme-primary-color-b: 54;
+    }
+
+    .theme-team-003 {
+        --theme-primary-color-h: 313;
+        --theme-primary-color-s: 76%;
+        --theme-primary-color-l: 54%;
+        --theme-primary-color-r: 227;
+        --theme-primary-color-g: 49;
+        --theme-primary-color-b: 188;
+    }
+</style>
