@@ -194,9 +194,13 @@ a.s-tag__muted:not(.is-selected) {
 //  ---------------------------------------------------------------------------
 .s-tag__themed {
     #stacks-internals #load-config();
-    .s-tag-styles(var(--theme-primary-color), var(--theme-primary-color-fade-15), var(--theme-primary-color-darken-5));
+    .s-tag-styles(var(--theme-primary-300), var(--theme-primary-050), var(--theme-primary-700));
+
+    &.is-selected {
+        .s-tag-selected-styles(transparent, var(--theme-primary-200), var(--theme-primary-900));
+    }
 }
 a.s-tag__themed:not(.is-selected) {
     #stacks-internals #load-config();
-    .s-tag-hover-styles(var(--theme-primary-color-darken-5), var(--theme-primary-color-fade-35), var(--theme-primary-color-darken-10));
+    .s-tag-hover-styles(var(--theme-primary-400), var(--theme-primary-100), var(--theme-primary-900));
 }
