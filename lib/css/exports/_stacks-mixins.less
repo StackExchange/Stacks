@@ -142,6 +142,15 @@
                  calc(var(~"--@{color-prefix}-b") * @complementDecimal));
 }
 
+// Set the absolute opacity of a color.
+.native-fade(@color-prefix, @amount) {
+    .load-color-variables(@amount);
+    @result: hsla(var(~"--@{color-prefix}-h"),
+                  var(~"--@{color-prefix}-s"),
+                  var(~"--@{color-prefix}-l"),
+                  @amountDecimal);
+}
+
 //  ===========================================================================
 //  Internals only beyond this point -- helpers for .font-face()
 //  ---------------------------------------------------------------------------
