@@ -18,6 +18,31 @@
     &:after { clear: both; }
 }
 
+//  ===========================================================================
+//  --  DARKMODE
+//      .darkmode renders a dark mode override behind the
+//      prefers-color-scheme: dark media query and .theme-system. It also
+//      renders the same rules outside of the media query with .theme-dark
+//
+//      Usage example:
+//
+//      .dark-mode({ background-color: var(--black-100); });
+//
+//  ---------------------------------------------------------------------------
+
+.dark-mode(@rules) {
+    body.theme-system & {
+        @media (prefers-color-scheme: dark) {
+            @rules();
+        }
+    }
+
+    body.theme-dark &,
+    .theme-dark__forced & {
+        @rules();
+    }
+}
+
 
 //  ===========================================================================
 //  --  APPEARANCE
@@ -25,8 +50,8 @@
 //  ---------------------------------------------------------------------------
 .appearance(@all) {
     -webkit-appearance: @all;
-       -moz-appearance: @all;
-            appearance: @all;
+    -moz-appearance: @all;
+    appearance: @all;
 }
 
 

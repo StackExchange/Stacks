@@ -1,6 +1,7 @@
 ---
 layout: page
 title: Navigation
+js: true
 description: Our navigation component is a collection of pill-shaped buttons that respond gracefully to various window sizes and parent containers.
 ---
 <section class="stacks-section">
@@ -27,115 +28,426 @@ description: Our navigation component is a collection of pill-shaped buttons tha
     </div>
 </section>
 <section class="stacks-section">
-    {% header "h2", "Examples" %}
+    {% header "h2", "Horizontal" %}
     <p class="stacks-copy">Care should be taken to only include at most one primary and one secondary navigation per page. Using multiple navigations with the same style can cause user confusion.</p>
     <p class="stacks-copy">Forcing a navigation to scroll is an established pattern on mobile devices, so it may be appropriate to use it in that context. Wrapping tends to make more sense on larger screens, where the user isn’t forced to scroll passed a ton of navigation chrome.</p>
 
     {% header "h3", "Default" %}
     <div class="stacks-preview">
 {% highlight html %}
-<div class="s-navigation">
-    <a href="…" class="s-navigation--item is-selected">Product</a>
-    <a href="…" class="s-navigation--item">Email</a>
-    <a href="…" class="s-navigation--item">Content</a>
-    <a href="…" class="s-navigation--item">Brand</a>
-    <a href="…" class="s-navigation--item">Marketing</a>
-</div>
+<nav>
+    <ul class="s-navigation">
+        <li><a href="…" class="s-navigation--item is-selected">…</a></li>
+        <li><a href="…" class="s-navigation--item">…</a></li>
+        <li><a href="…" class="s-navigation--item">…</a></li>
+        <li><a href="…" class="s-navigation--item">…</a></li>
+        <li><a href="…" class="s-navigation--item">…</a></li>
+    </ul>
+</nav>
 {% endhighlight %}
         <div class="stacks-preview--example">
             <p class="ff-mono mb8">Full width</p>
-            <div class="s-navigation mb32">
-                <a class="s-navigation--item is-selected">Product</a>
-                <a class="s-navigation--item">Email</a>
-                <a class="s-navigation--item">Content</a>
-                <a class="s-navigation--item">Brand</a>
-                <a class="s-navigation--item">Marketing</a>
-            </div>
+            <nav class="mb32">
+                <ul class="s-navigation">
+                    <li><a href="#" class="s-navigation--item is-selected">Product</a></li>
+                    <li><a href="#" class="s-navigation--item">Email</a></li>
+                    <li><a href="#" class="s-navigation--item">Content</a></li>
+                    <li><a href="#" class="s-navigation--item">Brand</a></li>
+                    <li><a href="#" class="s-navigation--item">Marketing</a></li>
+                </ol>
+            </nav>
 
             <p class="ff-mono mb8">Wrapped</p>
-            <div class="s-navigation wmx2">
-                <a class="s-navigation--item is-selected">Product</a>
-                <a class="s-navigation--item">Email</a>
-                <a class="s-navigation--item">Content</a>
-                <a class="s-navigation--item">Brand</a>
-                <a class="s-navigation--item">Marketing</a>
-            </div>
+            <nav class="wmx2">
+                <ul class="s-navigation">
+                    <li><a href="#" class="s-navigation--item is-selected">Product</a></li>
+                    <li><a href="#" class="s-navigation--item">Email</a></li>
+                    <li><a href="#" class="s-navigation--item">Content</a></li>
+                    <li><a href="#" class="s-navigation--item">Brand</a></li>
+                    <li><a href="#" class="s-navigation--item">Marketing</a></li>
+                </ul>
+            </nav>
         </div>
     </div>
 
     {% header "h3", "Muted" %}
     <div class="stacks-preview">
 {% highlight html %}
-<div class="s-navigation s-navigation__muted">
-    <a href="…" class="s-navigation--item is-selected">Product</a>
-    <a href="…" class="s-navigation--item">Email</a>
-    <a href="…" class="s-navigation--item">Content</a>
-    <a href="…" class="s-navigation--item">Brand</a>
-    <a href="…" class="s-navigation--item">Marketing</a>
-</div>
+<nav>
+    <ul class="s-navigation s-navigation__muted">
+        <li><a href="…" class="s-navigation--item is-selected">…</a></li>
+        <li><a href="…" class="s-navigation--item">…</a></li>
+        <li><a href="…" class="s-navigation--item">…</a></li>
+        <li><a href="…" class="s-navigation--item">…</a></li>
+        <li><a href="…" class="s-navigation--item">…</a></li>
+    </ul>
+</nav>
 {% endhighlight %}
         <div class="stacks-preview--example">
             <p class="ff-mono mb8">Full width</p>
-            <div class="s-navigation s-navigation__muted mb32">
-                <a class="s-navigation--item is-selected">Product</a>
-                <a class="s-navigation--item">Email</a>
-                <a class="s-navigation--item">Content</a>
-                <a class="s-navigation--item">Brand</a>
-                <a class="s-navigation--item">Marketing</a>
-            </div>
+            <nav class="mb32">
+                <ul class="s-navigation s-navigation__muted">
+                    <li><a href="#" class="s-navigation--item is-selected">Product</a></li>
+                    <li><a href="#" class="s-navigation--item">Email</a></li>
+                    <li><a href="#" class="s-navigation--item">Content</a></li>
+                    <li><a href="#" class="s-navigation--item">Brand</a></li>
+                    <li><a href="#" class="s-navigation--item">Marketing</a></li>
+                </ul>
+            </nav>
 
             <p class="ff-mono mb8">Wrapped</p>
-            <div class="s-navigation s-navigation__muted wmx2">
-                <a class="s-navigation--item is-selected">Product</a>
-                <a class="s-navigation--item">Email</a>
-                <a class="s-navigation--item">Content</a>
-                <a class="s-navigation--item">Brand</a>
-                <a class="s-navigation--item">Marketing</a>
-            </div>
+            <nav class="wmx2">
+                <ul class="s-navigation s-navigation__muted">
+                    <li><a href="#" class="s-navigation--item is-selected">Product</a></li>
+                    <li><a href="#" class="s-navigation--item">Email</a></li>
+                    <li><a href="#" class="s-navigation--item">Content</a></li>
+                    <li><a href="#" class="s-navigation--item">Brand</a></li>
+                    <li><a href="#" class="s-navigation--item">Marketing</a></li>
+                </ul>
+            </nav>
         </div>
     </div>
 
     {% header "h3", "Scrolling" %}
     <div class="stacks-preview">
 {% highlight html %}
-<div class="s-navigation s-navigation__scroll">
-    <a href="…" class="s-navigation--item is-selected">Product</a>
-    <a href="…" class="s-navigation--item">Email</a>
-    <a href="…" class="s-navigation--item">Content</a>
-    <a href="…" class="s-navigation--item">Brand</a>
-    <a href="…" class="s-navigation--item">Marketing</a>
-</div>
+<nav>
+    <ul class="s-navigation s-navigation__scroll">
+        <li><a href="…" class="s-navigation--item is-selected">…</a></li>
+        <li><a href="…" class="s-navigation--item">…</a></li>
+        <li><a href="…" class="s-navigation--item">…</a></li>
+        <li><a href="…" class="s-navigation--item">…</a></li>
+        <li><a href="…" class="s-navigation--item">…</a></li>
+    </ul>
+</nav>
 {% endhighlight %}
         <div class="stacks-preview--example">
-            <div class="s-navigation s-navigation__scroll wmx3">
-                <a class="s-navigation--item is-selected">Product</a>
-                <a class="s-navigation--item">Email</a>
-                <a class="s-navigation--item">Content</a>
-                <a class="s-navigation--item">Brand</a>
-                <a class="s-navigation--item">Marketing</a>
-            </div>
+            <nav class="wmx3">
+                <ul class="s-navigation s-navigation__scroll">
+                    <li><a href="#" class="s-navigation--item is-selected">Product</a></li>
+                    <li><a href="#" class="s-navigation--item">Email</a></li>
+                    <li><a href="#" class="s-navigation--item">Content</a></li>
+                    <li><a href="#" class="s-navigation--item">Brand</a></li>
+                    <li><a href="#" class="s-navigation--item">Marketing</a></li>
+                </ul>
+            </nav>
         </div>
     </div>
 
     {% header "h3", "Small" %}
     <div class="stacks-preview">
 {% highlight html %}
-<div class="s-navigation s-navigation__sm">
-    <a href="…" class="s-navigation--item is-selected">Product</a>
-    <a href="…" class="s-navigation--item">Email</a>
-    <a href="…" class="s-navigation--item">Content</a>
-    <a href="…" class="s-navigation--item">Brand</a>
-    <a href="…" class="s-navigation--item">Marketing</a>
-</div>
+<nav>
+    <ul class="s-navigation s-navigation__sm">
+        <li><a href="…" class="s-navigation--item is-selected">…</a></li>
+        <li><a href="…" class="s-navigation--item">…</a></li>
+        <li><a href="…" class="s-navigation--item">…</a></li>
+        <li><a href="…" class="s-navigation--item">…</a></li>
+        <li><a href="…" class="s-navigation--item">…</a></li>
+    </ul>
+</nav>
 {% endhighlight %}
         <div class="stacks-preview--example">
-            <div class="s-navigation s-navigation__sm">
-                <a class="s-navigation--item is-selected">Product</a>
-                <a class="s-navigation--item">Email</a>
-                <a class="s-navigation--item">Content</a>
-                <a class="s-navigation--item">Brand</a>
-                <a class="s-navigation--item">Marketing</a>
+            <nav>
+                <ul class="s-navigation s-navigation__sm">
+                    <li><a href="#" class="s-navigation--item is-selected">Product</a></li>
+                    <li><a href="#" class="s-navigation--item">Email</a></li>
+                    <li><a href="#" class="s-navigation--item">Content</a></li>
+                    <li><a href="#" class="s-navigation--item">Brand</a></li>
+                    <li><a href="#" class="s-navigation--item">Marketing</a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</section>
+
+<section class="stacks-section">
+    {% header "h2", "Vertical" %}
+    <p class="stacks-copy">Stacks also provides a vertical variation with support for section headers.</p>
+
+    {% header "h3", "Default" %}
+    <div class="stacks-preview">
+{% highlight html %}
+<nav>
+    <ul class="s-navigation s-navigation__vertical">
+        <li><a href="…" class="s-navigation--item is-selected">…</a></li>
+        <li><a href="…" class="s-navigation--item">…</a></li>
+        <li><a href="…" class="s-navigation--item">…</a></li>
+        <li><a href="…" class="s-navigation--item">…</a></li>
+        <li><a href="…" class="s-navigation--item">…</a></li>
+    </ul>
+</nav>
+{% endhighlight %}
+        <div class="stacks-preview--example">
+            <nav class="ws2">
+                <ul class="s-navigation s-navigation__vertical">
+                    <li><a href="#" class="s-navigation--item is-selected">Product</a></li>
+                    <li><a href="#" class="s-navigation--item">Email</a></li>
+                    <li><a href="#" class="s-navigation--item">Content</a></li>
+                    <li><a href="#" class="s-navigation--item">Brand</a></li>
+                    <li><a href="#" class="s-navigation--item">Marketing</a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+
+    {% header "h3", "Titles" %}
+    <div class="stacks-preview">
+{% highlight html %}
+<nav>
+    <ul class="s-navigation s-navigation__vertical">
+        <li class="s-navigation--title">…</li>
+        <li><a href="…" class="s-navigation--item is-selected">…</a></li>
+        <li><a href="…" class="s-navigation--item">…</a></li>
+
+        <li class="s-navigation--title">…</li>
+        <li><a href="…" class="s-navigation--item">…</a></li>
+        <li><a href="…" class="s-navigation--item">…</a></li>
+        <li><a href="…" class="s-navigation--item">…</a></li>
+        <li><a href="…" class="s-navigation--item">…</a></li>
+        <li><a href="…" class="s-navigation--item">…</a></li>
+    </ul>
+</nav>
+{% endhighlight %}
+        <div class="stacks-preview--example">
+            <nav class="ws2">
+                <ul class="s-navigation s-navigation__vertical">
+                    <li class="s-navigation--title">Resources</li>
+                    <li><a href="#" class="s-navigation--item is-selected">Icons</a></li>
+                    <li><a href="#" class="s-navigation--item">Spot illustrations</a></li>
+
+                    <li class="s-navigation--title">Base</li>
+                    <li><a href="#" class="s-navigation--item">Backgrounds</a></li>
+                    <li><a href="#" class="s-navigation--item">Borders</a></li>
+                    <li><a href="#" class="s-navigation--item">Border radius</a></li>
+                    <li><a href="#" class="s-navigation--item">Box shadow</a></li>
+                    <li><a href="#" class="s-navigation--item">Box sizing</a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</section>
+
+{% header "h2", "Buttons" %}
+<p class="stacks-copy">This component can be used for in-page navigation patterns, using <code class="stacks-code">button</code> elements in place of link. When doing so, it may be appropriate to annotate elements with <code class="stacks-code">role="tablist"</code> to indicate the dynamic behavior.</p>
+
+<div class="stacks-preview">
+{% highlight html %}
+<nav>
+    <ul role="tablist" class="s-navigation">
+        <li><button type="button" class="s-navigation--item is-selected" role="tab" aria-selected="true">…</button></li>
+        <li><button type="button" class="s-navigation--item" role="tab" aria-selected="false">…</button></li>
+        <li><button type="button" class="s-navigation--item" role="tab" aria-selected="false">…</button></li>
+    </ul>
+</nav>
+{% endhighlight %}
+    <div class="stacks-preview--example">
+        <nav>
+            <ul role="tablist" class="s-navigation">
+                <li><button type="button" class="s-navigation--item is-selected" role="tab" aria-selected="true">Current revision</button></li>
+                <li><button type="button" class="s-navigation--item" role="tab" aria-selected="false">Side-by-side diff</button></li>
+                <li><button type="button" class="s-navigation--item" role="tab" aria-selected="false">Inline diff</button></li>
+            </ul>
+        </nav>
+    </div>
+</div>
+
+<section class="stacks-section">
+    {% header "h2", "Interactive tabs" %}
+
+    <p class="stacks-copy">Stacks provides a Stimulus controller for interactive tab-style navigation within a single document.</p>
+
+    {% header "h3", "Attributes" %}
+    <div class="overflow-x-auto mb32">
+        <table class="wmn4 s-table s-table__bx-simple">
+            <thead>
+                <tr>
+                    <th class="s-table--cell5" scope="col">Attribute</th>
+                    <th class="s-table--cell2" scope="col">Applied to</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody class="fs-caption">
+                <tr>
+                    <th scope="row"><code class="stacks-code">data-controller="s-navigation-tablist"</code></th>
+                    <td><code class="stacks-code">.s-navigation</code></td>
+                    <td class="p8">Wires up the element to the tooltip controller.</td>
+                </tr>
+                <tr>
+                    <th scope="row"><code class="stacks-code">role="tablist"</code></th>
+                    <td><code class="stacks-code">.s-navigation</code></td>
+                    <td class="p8">Indicates to accessibility tools that the navigation element is a tab list.</td>
+                </tr>
+                <tr>
+                    <th scope="row"><code class="stacks-code">role="tab"</code></th>
+                    <td><code class="stacks-code">.s-navigation--item</code></td>
+                    <td class="p8">Indicates to accessibility tools that the navigation item is a tab.  Used by the controller to automatically connect mouse and keyboard events.</td>
+                </tr>
+                <tr>
+                    <th scope="row"><code class="stacks-code">class="s-navigation--item is-selected"</code></th>
+                    <td>Initially selected <code class="stacks-code">.s-navigation--item</code> elements</td>
+                    <td class="p8">Provides visual indication that the tab is selected.</td>
+                </tr>
+                <tr>
+                    <th scope="row"><code class="stacks-code">aria-selected="{true|false}"</code></th>
+                    <td><code class="stacks-code">.s-navigation--item</code></td>
+                    <td class="p8">Indicates to accessibility tools which tab is selected.  Used by the controller to track the selected tab.</td>
+                </tr>
+                <tr>
+                    <th scope="row"><code class="stacks-code">id="{TAB_ID}"</code></th>
+                    <td><code class="stacks-code">.s-navigation--item</code></td>
+                    <td class="p8">A unique id for the tab.  Will be used by the tab panel to refer back to the button via <code class="stacks-code">aria-labelledby="{TAB_ID}"</code>.</td>
+                </tr>
+                <tr>
+                    <th scope="row"><code class="stacks-code">aria-controls="{PANEL_ID}"</code></th>
+                    <td><code class="stacks-code">.s-navigation--item</code></td>
+                    <td class="p8">A unique id for the panel element corresponding to the tab.</td>
+                </tr>
+                <tr>
+                    <th scope="row"><code class="stacks-code">tabindex="-1"</code></th>
+                    <td>Initially unselected <code class="stacks-code">.s-navigation--item</code> elements</td>
+                    <td class="p8">Indicates to the browser that the element should be excluded from tab navigation.  When interacting with the control, arrow keys will be used to switch tabs.</td>
+                </tr>
+                <tr>
+                    <th scope="row"><code class="stacks-code">role="tabpanel"</code></th>
+                    <td>Tab panel elements</td>
+                    <td class="p8">Indicates to accessibility tools that the element is a panel corresponding to a tab.</td>
+                </tr>
+                <tr>
+                    <th scope="row"><code class="stacks-code">id="{PANEL_ID}"</code></th>
+                    <td>Tab panel elements</td>
+                    <td class="p8">A unique id for the panel.  Used by the tab to identify the panel that will be shown when it is active, via <code class="stacks-code">aria-controls="{PANEL_ID}"</code>.</td>
+                </tr>
+                <tr>
+                    <th scope="row"><code class="stacks-code">aria-labelledby="{TAB_ID}"</code></th>
+                    <td>Tab panel elements</td>
+                    <td class="p8">Refers to the id of the tab element that corresponds to the panel.</td>
+                </tr>
+                <tr>
+                    <th scope="row"><code class="stacks-code">class="d-none"</code></th>
+                    <td>Initially hidden tab panel elements</td>
+                    <td class="p8">Suppressed display of tab panels.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    {% header "h3", "Events" %}
+    <div class="overflow-x-auto mb32">
+        <table class="wmn4 s-table s-table__bx-simple">
+            <thead>
+                <tr>
+                    <th class="s-table--cell5" scope="col">Event</th>
+                    <th class="s-table--cell2" scope="col">Element</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody class="fs-caption">
+                <tr>
+                    <th scope="row"><code class="stacks-code">s-navigation-tablist:select</code></th>
+                    <td>Controller element</td>
+                    <td><span class="s-label--status ml0">Default preventable</span> Fires immediately before a new tab is selected.  Calling <code class="stacks-code">.preventDefault()</code> cancels the display of the tab and keeps the state unchanged.</td>
+                </tr>
+                <tr>
+                    <th scope="row"><code class="stacks-code">s-navigation-tablist:selected</code></th>
+                    <td>Controller element</td>
+                    <td>Fires immediately after the new tag has been selected.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="overflow-x-auto mb32">
+        <table class="wmn4 s-table s-table__bx-simple">
+            <thead>
+                <tr>
+                    <th class="s-table--cell5" scope="col">event.detail</th>
+                    <th class="s-table--cell2" scope="col">Applicable events</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody class="fs-caption">
+                <tr>
+                    <th scope="row"><code class="stacks-code">oldTab</code></th>
+                    <td><code class="stacks-code">s-navigation-tablist:*</code></td>
+                    <td>Contains <code class="stacks-code">HTMLElement | null</code> representing the previously selected tab, if one was selected.  This is the element with <code class="stacks-code">role="tab"</code>, not the panel itself which can be found using the tab's <code class="stacks-code">aria-controls</code> attribute.</td>
+                </tr>
+                <tr>
+                    <th scope="row"><code class="stacks-code">newTab</code></th>
+                    <td><code class="stacks-code">s-navigation-tablist:*</code></td>
+                    <td>Contains <code class="stacks-code">HTMLElement</code> representing the newly selected tab.  This is the element with <code class="stacks-code">role="tab"</code>, not the panel itself which can be found using the tab's <code class="stacks-code">aria-controls</code> attribute.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    {% header "h3", "Example" %}
+
+    <div class="stacks-preview">
+{% highlight html %}
+<nav>
+    <ul class="s-navigation" role="tablist" data-controller="s-navigation-tablist">
+        <li>
+            <button type="button"
+                    role="tab"
+                    id="tab-question"
+                    aria-selected="true"
+                    aria-controls="panel-question"
+                    class="s-navigation--item is-selected">Task</button>
+        </li>
+        <li>
+            <button type="button"
+                    role="tab"
+                    id="tab-answers"
+                    aria-selected="false"
+                    aria-controls="panel-answers"
+                    tabindex="-1"
+                    class="s-navigation--item">Answers</button>
+        </li>
+    </ul>
+</nav>
+
+<div id="panel-question" aria-labelledby="tab-question">
+    …
+</div>
+
+<div id="panel-answers" aria-labelledby="tab-answers" class="d-none">
+    …
+</div>
+{% endhighlight %}
+        <div class="stacks-preview--example bg-black-025">
+
+            <nav class="mb8">
+                <ul class="s-navigation" role="tablist" data-controller="s-navigation-tablist">
+                    <li><button type="button" role="tab" id="tab-1" aria-selected="true" aria-controls="panel-1" class="s-navigation--item is-selected">Task</button></li>
+                    <li><button type="button" role="tab" id="tab-2" aria-selected="false" aria-controls="panel-2" tabindex="-1" class="s-navigation--item">Answers</button></li>
+                    <li><button type="button" role="tab" id="tab-3" aria-selected="false" aria-controls="panel-3" tabindex="-1" class="s-navigation--item">Duplicate A</button></li>
+                    <li><button type="button" role="tab" id="tab-4" aria-selected="false" aria-controls="panel-4" tabindex="-1" class="s-navigation--item">Duplicate B</button></li>
+                </ul>
+            </nav>
+
+            <div id="panel-1" aria-labelledby="tab-1">
+                <div class="fs-headline1">Review the following question</div>
+                <p>…</p>
+            </div>
+
+            <div id="panel-2" aria-labelledby="tab-2" class="d-none">
+                <div class="fs-headline1">Answers</div>
+                <p>…</p>
+            </div>
+
+            <div id="panel-3" aria-labelledby="tab-2" class="d-none">
+                <div class="fs-headline1">Potential Duplicate A</div>
+                <p>…</p>
+            </div>
+
+            <div id="panel-4" aria-labelledby="tab-2" class="d-none">
+                <div class="fs-headline1">Potential Duplicate B</div>
+                <p>…</p>
             </div>
         </div>
     </div>
 </section>
+
+<script>
+    for (const link of document.querySelectorAll('.stacks-preview--example a[href="#"]')) {
+        link.addEventListener('click', (e) => e.preventDefault());
+    }
+</script>

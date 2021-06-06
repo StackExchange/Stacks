@@ -1,5 +1,5 @@
+/* stylelint-disable */
 #stacks-internals() {
-
     // Load the configuration variables into the current scope. Example:
     //
     //     a {
@@ -15,33 +15,6 @@
     }
 
     //  ===========================================================================
-    //  --  DARKMODE
-    //      #darkmode renders a dark mode override behind the
-    //      prefers-color-scheme: dark media query and .theme-system. It also
-    //      renders the same rules outside of the media query with .theme-dark
-    //
-    //      Usage example:
-    //
-    //      #stacks-internals #darkmode('.s-dialog', { background-color: var(--black-100); });
-    //
-    //  ---------------------------------------------------------------------------
-
-    #darkmode(@class, @rules) {
-        @classname: ~"@{class}"; // Interpolate the @class passed to us so we can generate proper CSS rules from it
-
-        body.theme-system @{classname} {
-            @media (prefers-color-scheme: dark) {
-                @rules();
-            }
-        }
-
-        body.theme-dark @{classname},
-        .theme-dark__forced @{classname} {
-            @rules();
-        }
-    }
-
-    //  ===========================================================================
     //  --  RESPONSIVE (modern)
     //      #responsify renders a plain class as well as its responsive counterparts.
     //
@@ -54,12 +27,6 @@
     #responsify(@class, @rules) {
         @nodot-s: replace(@class, "^\.", "");
         @nodot: ~"@{nodot-s}";
-
-        & when (@class = @nodot-s) {
-            error {
-                error: @ATOMIC-CLASS-NAME-MUST-START-WITH-A-DOT;
-            }
-        }
 
         .@{nodot} {
             @rules();
@@ -260,6 +227,4 @@
         @encoded-image: escape(@image);
         background-image: url("data:image/svg+xml,@{encoded-image}");
     }
-
-
 }

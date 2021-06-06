@@ -5,17 +5,19 @@
             {% icon "Clear", "d-none js-hamburger-close-icon" %}
         </a>
         <a class="flex--cell js-logo" href="{{ "/" | relative_url }}">
+            <span class="v-visible-sr">Stacks home</span>
             {% icon "LogoGlyphMd", "native" %}
         </a>
+
         {% if site-navigation %}
-            <div class="s-navigation mx16 fw-nowrap sm:d-none">
+            <nav class="s-navigation mx16 fw-nowrap sm:d-none">
                 {% assign slug = page.url | replace:'/',' ' | truncatewords: 2 | remove:'...' %}
 
                 {% for section in site-navigation.sections %}
                     {% assign url = section.url | replace:'/',' ' | truncatewords: 2 | remove:'...' %}
                     <a class="s-navigation--item{% if url == slug %} is-selected{% endif %}" href="{{ section.url }}">{{ section.title }}</a>
                 {% endfor %}
-            </div>
+            </nav>
         {% endif %}
         <a class="flex--cell fc-black-300 ml-auto sm:d-none" title="Stack Overflow" href="https://stackoverflow.com">
             {% icon "LogoGlyphSm" %}
@@ -42,4 +44,4 @@
             {% icon "Clear", "d-none js-search-close-icon" %}
         </a>
     </div>
-</div>
+</header>

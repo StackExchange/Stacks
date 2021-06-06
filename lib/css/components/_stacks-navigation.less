@@ -9,8 +9,7 @@
 //  TABLE OF CONTENTS
 //  • BASE STYLE
 //  • MUTED STYLE
-
-
+//
 //  ============================================================================
 //  $   BASE STYLE
 //  ----------------------------------------------------------------------------
@@ -22,6 +21,39 @@
     padding: @su2 0;
     flex-wrap: wrap;
 
+    // If the s-navigation is a list, let's reset all the properties
+    list-style: none;
+
+    .s-navigation--item {
+        display: flex;
+        align-items: center;
+        padding: @su6 @su12;
+
+        // Reset some things for when the navigation item is also a button
+        border: none;
+        font: unset;
+        background: none;
+        box-shadow: none;
+        cursor: pointer;
+        user-select: auto;
+        border-radius: 1000px;
+        margin: @su2;
+        color: var(--black-600);
+
+        &:hover,
+        &:active {
+            background: var(--black-075);
+            color: var(--black-600);
+        }
+
+        @focus-styles();
+
+        &.is-selected {
+            background: @navigation-link-highlight;
+            color: var(--white);
+        }
+    }
+
     &.s-navigation__scroll {
         overflow-x: auto;
         flex-wrap: nowrap;
@@ -29,21 +61,25 @@
         @scrollbar-styles();
     }
 
-    .s-navigation--item {
-        padding: @su6 @su12;
-        border-radius: 1000px;
-        margin: @su2;
-        color: var(--black-600);
+    &.s-navigation__vertical {
+        flex-direction: column;
+        padding: 0;
+        margin: 0;
 
-        &:hover,
-        &:active {
-            background: var(--black-100);
-            color: var(--black-600);
+        .s-navigation--item {
+            margin: 0;
         }
+    }
 
-        &.is-selected {
-            background: @navigation-link-highlight;
-            color: var(--white);
+    .s-navigation--title {
+        font-size: @fs-fine;
+        font-weight: bold;
+        margin-top: @su16;
+        padding: @su6 @su12;
+        text-transform: uppercase;
+
+        &:first-child {
+            margin-top: 0;
         }
     }
 

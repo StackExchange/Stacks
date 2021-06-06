@@ -118,7 +118,7 @@ module.exports = function(grunt) {
 
             stacks_js: {
                 files: ['lib/ts/**/*.ts'], // note: this doesn't watch any of the npm dependencies
-                tasks: ['concurrent:compile_stacks_js', 'copy:js2docs']
+                tasks: ['concurrent:compile_stacks_js', 'copy:js2docs', 'copy:jQueryJs', 'copy:highlightJs', 'copy:docsearchJs', 'copy:listJs', 'copy:editorJs', 'copy:editorCSS']
             },
         },
         // Run tasks in parallel
@@ -136,7 +136,7 @@ module.exports = function(grunt) {
             compile: [
                 'concurrent:compile_stacks_css',
                 'ts:docs_js',
-                ['concurrent:compile_stacks_js', 'copy:js2docs']
+                ['concurrent:compile_stacks_js', 'copy:js2docs', 'copy:jQueryJs', 'copy:highlightJs', 'copy:docsearchJs', 'copy:listJs', 'copy:editorJs', 'copy:editorCSS']
             ],
 
             // Stacks JS
@@ -166,6 +166,60 @@ module.exports = function(grunt) {
                 dest: 'docs/assets/js/',
                 flatten: true,
                 expand: true
+            },
+            editorJs: {
+                src: 'node_modules/@stackoverflow/stacks-editor/dist/app.bundle.js',
+                dest: 'docs/assets/js/',
+                flatten: true,
+                expand: true,
+                rename: function(dest, src) {
+                    return dest + src.replace('app.bundle.js','library.stacks-editor.js');
+                }
+            },
+            jQueryJs: {
+                src: 'node_modules/jquery/dist/jquery.min.js',
+                dest: 'docs/assets/js/',
+                flatten: true,
+                expand: true,
+                rename: function(dest, src) {
+                    return dest + src.replace('jquery.min.js','library.jquery.js');
+                }
+            },
+            highlightJs: {
+                src: 'node_modules/@highlightjs/cdn-assets/highlight.min.js',
+                dest: 'docs/assets/js/',
+                flatten: true,
+                expand: true,
+                rename: function(dest, src) {
+                    return dest + src.replace('highlight.min.js','library.highlight.js');
+                }
+            },
+            docsearchJs: {
+                src: 'node_modules/docsearch.js/dist/cdn/docsearch.min.js',
+                dest: 'docs/assets/js/',
+                flatten: true,
+                expand: true,
+                rename: function(dest, src) {
+                    return dest + src.replace('docsearch.min.js','library.docsearch.js');
+                }
+            },
+            listJs: {
+                src: 'node_modules/list.js/dist/list.min.js',
+                dest: 'docs/assets/js/',
+                flatten: true,
+                expand: true,
+                rename: function(dest, src) {
+                    return dest + src.replace('list.min.js','library.list.js');
+                }
+            },
+            editorCSS: {
+                src: 'node_modules/@stackoverflow/stacks-editor/dist/styles.css',
+                dest: 'docs/assets/css/',
+                flatten: true,
+                expand: true,
+                rename: function(dest, src) {
+                    return dest + src.replace('styles.css','stacks-editor.css');
+                }
             },
             declarations: {
                 expand: true,

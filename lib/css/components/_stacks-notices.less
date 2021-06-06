@@ -145,14 +145,14 @@
     color: var(--white);
 }
 
-#stacks-internals #darkmode('', {
-    .s-notice__info,
-    .s-notice__success,
-    .s-notice__warning,
-    .s-notice__danger {
+.s-notice__info,
+.s-notice__success,
+.s-notice__warning,
+.s-notice__danger {
+    .dark-mode({
         border-color: transparent;
-    }
-});
+    });
+}
 
 //  ============================================================================
 //  $   TOASTS
@@ -167,14 +167,14 @@
     right: @su8;
     opacity: 0;
     z-index: @zi-modals + 1; // Toasts should appear above modals
-    transform: translate3d(0,-66px,0);
+    transform: translate3d(0, -66px, 0);
     transition: transform 100ms @te-smooth-slow 0s, opacity 60ms @te-smooth-slow 0ms, visibility 0s 150ms;
     pointer-events: none;
 
     &[aria-hidden="false"] {
         visibility: visible;
         opacity: 1;
-        transform: translate3d(0,0,0);
+        transform: translate3d(0, 0, 0);
         transition: visibility 0s 0s, opacity 100ms @te-smooth 0s, transform 100ms @te-smooth 0s;
     }
 }
