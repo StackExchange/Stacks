@@ -1117,30 +1117,77 @@ description: The Stacks grid system is a flexible, scaffolding system for produc
 </section>
 
 <section class="stacks-section">
-    {% header "h2", "Flex classes" %}
-    <p class="stacks-copy">To change a flex property, use one of the following atomic classes.</p>
+    {% header "h2", "Helpers" %}
+    <p class="stacks-copy">You can control the growing and shrinking behavior of individual elements within a flex layout</p>
 
-    <div class="overflow-x-auto mb32">
-        <table class="wmn5 s-table s-table__bx-simple">
+    {% header "h3", "Helper classes" %}
+    <div class="overflow-x-auto mb48">
+        <table class="wmn3 s-table s-table__bx-simple">
             <thead>
                 <tr>
-                    <th class="s-table--cell4" scope="col">Class</th>
-                    <th class="s-table--cell6" scope="col">Definition</th>
+                    <th class="s-table--cell2" scope="col">Class</th>
+                    <th scope="col">Definition</th>
                     <th class="s-table--cell2 ta-center" scope="col"><a class="s-link s-link__inherit" href="{{ "/product/guidelines/conditional-classes#responsive"", "relative_url }}">Responsive?</a></th>
                 </tr>
             </thead>
             <tbody>
-                {% for item in grids.atomic %}
-                    <tr>
-                        <th scope="row"><code class="stacks-code">{{ item.class }}</code></th>
-                        <td><p class="mb0">{{ item.define }}</p></td>
+                {% for item in grids.helpers %}
+                  <tr>
+                        <td><code class="stacks-code ws-nowrap">{{ item.class }}</code></td>
+                        <td>{{ item.define }}</td>
                         <td class="ta-center">
                             {% if item.responsive %}
                                 {% icon "Checkmark", "fc-green-500" %}
                             {% endif %}
                         </td>
-                    </tr>
+                  </tr>
                 {% endfor %}
             </tbody>
         </table>
+    </div>
+
+    {% header "h3", "Helpers examples" %}
+    <div class="stacks-preview">
+{% highlight html %}
+<div class="grid grid__center">
+    <div class="grid--cell">…</div>
+</div>
+<div class="grid grid__fl0">
+    <div class="grid--cell">…</div>
+    <div class="grid--cell">…</div>
+    <div class="grid--cell">…</div>
+</div>
+<div class="grid grid__fl1">
+    <div class="grid--cell">…</div>
+    <div class="grid--cell">…</div>
+    <div class="grid--cell">…</div>
+</div>
+{% endhighlight %}
+        <div class="stacks-preview--example">
+            <div class="grid gs32 gsy fd-column">
+                <div class="grid--cell">
+                    <div class="mb8 ff-mono">.grid__center</div>
+                    <div class="bar-sm bg-black-025 ba bc-black-075 p8 grid grid__center hs1">
+                        <div class="grid--cell stacks-grid-example--cell">.grid--cell</div>
+                    </div>
+                </div>
+                <div class="grid--cell">
+                    <div class="mb8 ff-mono">.grid__fl0</div>
+                    <div class="bar-sm bg-black-025 ba bc-black-075 p8 grid gs4 grid__fl0">
+                        <div class="grid--cell stacks-grid-example--cell">.grid--cell</div>
+                        <div class="grid--cell stacks-grid-example--cell">.grid--cell</div>
+                        <div class="grid--cell stacks-grid-example--cell">.grid--cell</div>
+                    </div>
+                </div>
+                <div class="grid--cell">
+                    <div class="mb8 ff-mono">.grid__fl1</div>
+                    <div class="bar-sm bg-black-025 ba bc-black-075 p8 grid gs4 grid__fl1">
+                        <div class="grid--cell stacks-grid-example--cell">.grid--cell</div>
+                        <div class="grid--cell stacks-grid-example--cell">.grid--cell</div>
+                        <div class="grid--cell stacks-grid-example--cell">.grid--cell</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </section>
