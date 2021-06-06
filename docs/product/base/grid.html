@@ -255,10 +255,10 @@ description: The Stacks grid system is a flexible, scaffolding system for produc
 </section>
 
 <section class="stacks-section">
-    {% header "h2", "Justification" %}
-    <p class="stacks-copy">Utilities for controlling how flex and grid items are positioned along a container’s main axis.</p>
+    {% header "h2", "Justify content" %}
+    <p class="stacks-copy">Flex items can be controlled with atomic classes on the container’s main axis. This means controlling how a <code class="stacks-code">.grid--cell</code> is aligned left to right when in an <code class="stacks-code">.fd-row</code>, and top and bottom in an <code class="stacks-code">.fd-column</code>.</p>
 
-    {% header "h3", "Justification classes" %}
+    {% header "h3", "Justify content classes" %}
     <div class="overflow-x-auto mb48">
         <table class="wmn3 s-table s-table__bx-simple">
             <thead>
@@ -284,7 +284,7 @@ description: The Stacks grid system is a flexible, scaffolding system for produc
         </table>
     </div>
 
-    {% header "h3", "Justification examples" %}
+    {% header "h3", "Justify content examples" %}
     <div class="stacks-preview">
 {% highlight html %}
 <div class="grid jc-center">
@@ -318,10 +318,10 @@ description: The Stacks grid system is a flexible, scaffolding system for produc
     <div class="grid--cell">…</div>
 </div>
 {% endhighlight %}
-        <div class="stacks-preview--example ff-mono">
+        <div class="stacks-preview--example">
             <div class="grid gs48 gsy fd-column">
                 <div class="grid--cell ta-center">
-                    <div class="mb8">.jc-center</div>
+                    <div class="mb8 ff-mono">.jc-center</div>
                     <div class="grid gs4 jc-center">
                         <div class="grid--cell stacks-grid-example--cell">.grid--cell</div>
                         <div class="grid--cell stacks-grid-example--cell">.grid--cell</div>
@@ -329,7 +329,7 @@ description: The Stacks grid system is a flexible, scaffolding system for produc
                     </div>
                 </div>
                 <div class="grid--cell ta-right">
-                    <div class="mb8">.jc-end</div>
+                    <div class="mb8 ff-mono">.jc-end</div>
                     <div class="grid gs4 jc-end">
                         <div class="grid--cell stacks-grid-example--cell">.grid--cell</div>
                         <div class="grid--cell stacks-grid-example--cell">.grid--cell</div>
@@ -337,7 +337,7 @@ description: The Stacks grid system is a flexible, scaffolding system for produc
                     </div>
                 </div>
                 <div class="grid--cell ta-center">
-                    <div class="mb8">.jc-space-around</div>
+                    <div class="mb8 ff-mono">.jc-space-around</div>
                     <div class="grid gs4 jc-space-around">
                         <div class="grid--cell stacks-grid-example--cell">.grid--cell</div>
                         <div class="grid--cell stacks-grid-example--cell">.grid--cell</div>
@@ -345,7 +345,7 @@ description: The Stacks grid system is a flexible, scaffolding system for produc
                     </div>
                 </div>
                 <div class="grid--cell ta-center">
-                    <div class="mb8">.jc-space-between</div>
+                    <div class="mb8 ff-mono">.jc-space-between</div>
                     <div class="grid gs4 jc-space-between">
                         <div class="grid--cell stacks-grid-example--cell">.grid--cell</div>
                         <div class="grid--cell stacks-grid-example--cell">.grid--cell</div>
@@ -353,7 +353,7 @@ description: The Stacks grid system is a flexible, scaffolding system for produc
                     </div>
                 </div>
                 <div class="grid--cell ta-center">
-                    <div class="mb8">.jc-space-evenly</div>
+                    <div class="mb8 ff-mono">.jc-space-evenly</div>
                     <div class="grid gs4 jc-space-evenly">
                         <div class="grid--cell stacks-grid-example--cell">.grid--cell</div>
                         <div class="grid--cell stacks-grid-example--cell">.grid--cell</div>
@@ -361,11 +361,123 @@ description: The Stacks grid system is a flexible, scaffolding system for produc
                     </div>
                 </div>
                 <div class="grid--cell">
-                    <div class="mb8">.jc-start</div>
+                    <div class="grid ai-center mb8">
+                        <div class="grid--cell ff-mono">.jc-start</div>
+                        <div class="ml6 grid--cell bg-orange-100 fc-orange-700 px8 py2 bar-pill">Default</div>
+                    </div>
                     <div class="grid gs4 jc-start">
                         <div class="grid--cell stacks-grid-example--cell">.grid--cell</div>
                         <div class="grid--cell stacks-grid-example--cell">.grid--cell</div>
                         <div class="grid--cell stacks-grid-example--cell">.grid--cell</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="stacks-section">
+    {% header "h2", "Align items" %}
+    <p class="stacks-copy">Flex items can be controlled with atomic classes on the container’s cross axis. This means controlling how a <code class="stacks-code">.grid--cell</code> is aligned top to bottom when in an <code class="stacks-code">.fd-row</code>, and left to right in an <code class="stacks-code">.fd-column</code>.</p>
+
+    {% header "h3", "Align items classes" %}
+    <div class="overflow-x-auto mb48">
+        <table class="wmn3 s-table s-table__bx-simple">
+            <thead>
+                <tr>
+                    <th class="s-table--cell2" scope="col">Class</th>
+                    <th scope="col">Definition</th>
+                    <th class="s-table--cell2 ta-center" scope="col"><a class="s-link s-link__inherit" href="{{ "/product/guidelines/conditional-classes#responsive"", "relative_url }}">Responsive?</a></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in grids.align-items %}
+                  <tr>
+                        <td><code class="stacks-code ws-nowrap">{{ item.class }}</code></td>
+                        <td>{{ item.define }}</td>
+                        <td class="ta-center">
+                            {% if item.responsive %}
+                                {% icon "Checkmark", "fc-green-500" %}
+                            {% endif %}
+                        </td>
+                  </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    {% header "h3", "Align items examples" %}
+    <div class="stacks-preview">
+{% highlight html %}
+<div class="grid ai-baseline">
+    <div class="grid--cell">…</div>
+    <div class="grid--cell">…</div>
+    <div class="grid--cell">…</div>
+</div>
+<div class="grid ai-center">
+    <div class="grid--cell">…</div>
+    <div class="grid--cell">…</div>
+    <div class="grid--cell">…</div>
+</div>
+<div class="grid ai-end">
+    <div class="grid--cell">…</div>
+    <div class="grid--cell">…</div>
+    <div class="grid--cell">…</div>
+</div>
+<div class="grid ai-start">
+    <div class="grid--cell">…</div>
+    <div class="grid--cell">…</div>
+    <div class="grid--cell">…</div>
+</div>
+<div class="grid ai-stretch">
+    <div class="grid--cell">…</div>
+    <div class="grid--cell">…</div>
+    <div class="grid--cell">…</div>
+</div>
+{% endhighlight %}
+        <div class="stacks-preview--example">
+            <div class="grid gs32 gsy fd-column">
+                <div class="grid--cell">
+                    <div class="mb8 ff-mono">.ai-baseline</div>
+                    <div class="bar-sm bg-black-025 ba bc-black-075 p8 grid gs4 ai-baseline">
+                        <div class="grid grid__center stacks-grid-example--cell h32">.grid--cell</div>
+                        <div class="grid--cell stacks-grid-example--cell h64">.grid--cell</div>
+                        <div class="grid ai-end stacks-grid-example--cell h48">.grid--cell</div>
+                    </div>
+                </div>
+                <div class="grid--cell">
+                    <div class="mb8 ff-mono">.ai-center</div>
+                    <div class="bar-sm bg-black-025 ba bc-black-075 p8 grid gs4 ai-center">
+                        <div class="grid grid__center stacks-grid-example--cell h32">.grid--cell</div>
+                        <div class="grid grid__center stacks-grid-example--cell h64">.grid--cell</div>
+                        <div class="grid grid__center stacks-grid-example--cell h48">.grid--cell</div>
+                    </div>
+                </div>
+                <div class="grid--cell">
+                    <div class="mb8 ff-mono">.ai-end</div>
+                    <div class="bar-sm bg-black-025 ba bc-black-075 p8 grid gs4 ai-end">
+                        <div class="grid grid__center stacks-grid-example--cell h32">.grid--cell</div>
+                        <div class="grid grid__center stacks-grid-example--cell h64">.grid--cell</div>
+                        <div class="grid grid__center stacks-grid-example--cell h48">.grid--cell</div>
+                    </div>
+                </div>
+                <div class="grid--cell">
+                    <div class="mb8 ff-mono">.ai-start</div>
+                    <div class="bar-sm bg-black-025 ba bc-black-075 p8 grid gs4 ai-start">
+                        <div class="grid grid__center stacks-grid-example--cell h32">.grid--cell</div>
+                        <div class="grid grid__center stacks-grid-example--cell h64">.grid--cell</div>
+                        <div class="grid grid__center stacks-grid-example--cell h48">.grid--cell</div>
+                    </div>
+                </div>
+                <div class="grid--cell">
+                    <div class="grid ai-center mb8">
+                        <div class="grid--cell ff-mono">.ai-stretch</div>
+                        <div class="ml6 grid--cell bg-orange-100 fc-orange-700 px8 py2 bar-pill">Default</div>
+                    </div>
+                    <div class="bar-sm bg-black-025 ba bc-black-075 p8 grid gs4 ai-stretch">
+                        <div class="grid grid__center stacks-grid-example--cell h64">.grid--cell</div>
+                        <div class="grid grid__center stacks-grid-example--cell h64">.grid--cell</div>
+                        <div class="grid grid__center stacks-grid-example--cell h64">.grid--cell</div>
                     </div>
                 </div>
             </div>
