@@ -9,8 +9,8 @@
     <div class="d-flex mx-auto w100 wmx12">
         {% include navigation.html %}
 
-        <main id="content" class="grid fl1 ps-relative t64 py24 pl48 pr16 md:pl24 sm:pl16 sm:pr16">
-            <div class="grid--cell order-last w20 wmx2 pl24 sm:d-none print:d-none">
+        <main id="content" class="d-flex fl1 ps-relative t64 py24 pl48 pr16 md:pl24 sm:pl16 sm:pr16">
+            <div class="flex--cell order-last w20 wmx2 pl24 sm:d-none print:d-none">
                 <div class="ps-sticky t64 pt16">
                     <h5 class="mb8 fw-bold tt-uppercase fs-fine fc-orange-500 mnl1">Sections</h5>
                     {{ content | toc | safe }}
@@ -22,9 +22,9 @@
             {% endcomment %}
             <div class="flex--cell fl1 ws1">
                 {% if js %}
-                    <div class="stacks-badged d-flex ai-center sm:jc-space-between">
-                        <h1 class="stacks-h1 flex--cell mb0">{{ title }}</h1>
-                        <a href="{{ "/product/guidelines/javascript" | relative_url }}" class="d-flex p8 fc-white ml6">
+                    <div class="stacks-badged grid ai-center sm:jc-space-between">
+                        <h1 class="stacks-h1 grid--cell mb0">{{ title }}</h1>
+                        <a href="{{ "/product/guidelines/javascript" | relative_url }}" class="grid p8 fc-white ml6">
                             <div class="bg-green-700 blr-sm p4">{% icon "Checkmark" %}</div>
                             <div class="bg-green-500 brr-sm px8 py4">javascript</div>
                         </a>
@@ -38,8 +38,8 @@
                     </p>
                 {% endif %}
                 {{ content }}
-                <div class="grid jc-end mt48 mb32">
-                    <a href="https://github.com/StackExchange/Stacks/edit/develop/docs/{{ page.inputPath }}" class="grid--cell s-btn s-btn__icon s-btn__muted">
+                <div class="d-flex jc-end mt48 mb32">
+                    <a href="https://github.com/StackExchange/Stacks/edit/develop/docs/{{ page.inputPath }}" class="flex--cell s-btn s-btn__icon s-btn__muted">
                         {% icon "Pencil" %}
                         Edit on GitHub
                     </a>
