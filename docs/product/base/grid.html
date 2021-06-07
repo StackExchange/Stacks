@@ -226,13 +226,6 @@ description: The Stacks grid system is a flexible, scaffolding system for produc
     {% header "h2", "Nested grids" %}
     <p class="stacks-copy">Grids can be nested within each other. This allows you to create unique, custom layouts without needing to create new, custom code or override existing styles.</p>
 
-    <div class="grid s-notice s-notice__info mb48">
-        <div class="grid--cell mr8">{% icon "Alert" %}</div>
-        <div class="grid--cell lh-lg">
-            <strong>Note: Nested grids with <a href="#gutters">gutter spacing</a> will conflict with each other.</strong> If you are nesting a grid with gutter spacing into a grid that also has gutter spacing, the child's parent wrapper margins will be overwritten by the parent. To have the child grid gutter spacing honored, you must place the child grid within a <code class="stacks-code bg-powder-300">.grid--cell</code> wrapper first. This allows the parent and child grid gutter spacing to act correctly without interfering with each other.
-        </div>
-    </div>
-
     {% header "h3", "Nested examples" %}
     <div class="stacks-preview">
 {% highlight html %}
@@ -325,6 +318,63 @@ description: The Stacks grid system is a flexible, scaffolding system for produc
                         <div class="grid--cell"><div class="stacks-grid-example--cell">.gs16.gsy -- Column gutters only</div></div>
                         <div class="grid--cell"><div class="stacks-grid-example--cell">.gs16.gsy -- Column gutters only</div></div>
                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% header "h3", "Nested gutters" %}
+    <div class="grid s-notice s-notice__info mb24">
+        <div class="grid--cell mr8">{% icon "Alert" %}</div>
+        <div class="grid--cell lh-lg">
+            <strong>Note:</strong> Nested grids with <a href="#gutters">gutter spacing</a> will conflict with each other in unpredictable ways.
+        </div>
+    </div>
+    <p class="stacks-copy">If you are nesting a grid with gutter spacing into a grid that also has gutter spacing, the child’s parent wrapper margins will be overwritten by the parent. To have the child grid gutter spacing honored, you must place the child grid within a <code class="stacks-code">.grid--cell</code> wrapper first. This allows the parent and child grid gutter spacing to act correctly without interfering with each other.</p>
+
+    <div class="fc-green-500 fs-body1 fw-bold mb8">{% icon "Checkmark", "mtn1 mbn1" %} Do</div>
+    <div class="stacks-preview">
+{% highlight html %}
+<div class="grid gs32">
+    <div class="grid--cell">…</div>
+    <div class="grid--cell">
+        <div class="grid gs16">
+            <div class="grid--cell">…</div>
+            <div class="grid--cell">…</div>
+        </div>
+    </div>
+</div>
+{% endhighlight %}
+        <div class="stacks-preview--example">
+            <div class="grid gs32">
+                <div class="grid--cell stacks-grid-example--cell">.grid--cell</div>
+                <div class="grid--cell">
+                    <div class="grid gs16">
+                        <div class="grid--cell stacks-grid-example--cell">.grid--cell</div>
+                        <div class="grid--cell stacks-grid-example--cell">.grid--cell</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="fc-red-500 fs-body1 fw-bold mb8">{% icon "Clear", "mtn1 mbn1" %} Don’t</div>
+    <div class="stacks-preview">
+{% highlight html %}
+<div class="grid gs32">
+    <div class="grid--cell">…</div>
+    <div class="grid gs16">
+        <div class="grid--cell">…</div>
+        <div class="grid--cell">…</div>
+    </div>
+</div>
+{% endhighlight %}
+        <div class="stacks-preview--example">
+            <div class="grid gs32">
+                <div class="grid--cell stacks-grid-example--cell">.grid--cell</div>
+                <div class="grid gs16">
+                    <div class="grid--cell stacks-grid-example--cell">.grid--cell</div>
+                    <div class="grid--cell stacks-grid-example--cell">.grid--cell</div>
                 </div>
             </div>
         </div>
