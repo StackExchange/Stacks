@@ -287,24 +287,44 @@
   ],
   "flex": [
     {
-      "class": ".fl0",
-      "define": "Sets flex grow and shrink to 0, flex-basis to auto.",
+      "class": ".fl-grow1",
+      "define": "Sets flex-grow to allow a flex item to grow to fill any available space.",
       "responsive": true
     },
     {
-      "class": ".fl1",
-      "define": "Sets flex grow and shrink to 1, flex-basis to auto.",
+      "class": ".fl-grow0",
+      "define": "Prevents a flex item from growing.",
+      "responsive": true
+    },
+    {
+      "class": ".fl-shrink1",
+      "define": "Allows a flex item to shrink if needed.",
+      "responsive": true
+    },
+    {
+      "class": ".fl-shrink0",
+      "define": "Prevents a flex item from shrinking.",
       "responsive": true
     },
     {
       "class": ".fl-none",
-      "define": "This is equivalent to flex: 0 0 auto. It sizes the item according to its width/height properties, but makes it fully inflexible.",
-      "responsive": false
+      "define": "Prevents a flex item from growing or shrinking.",
+      "responsive": true
+    },
+    {
+      "class": ".fl-initial",
+      "define": "Allows a flex item to shrink but not grow, taking into account its initial size.",
+      "responsive": true
+    },
+    {
+      "class": ".fl-auto",
+      "define": "Allows a flex item to grow and shrink, taking into account its initial size.",
+      "responsive": true
     },
     {
       "class": ".fl-equal",
-      "define": "Sets flex grow value to 1, flex shrink to 1, and flex basis to 0, allowing for equal spacing of each child.",
-      "responsive": false
+      "define": "Allow a flex item to grow and shrink as needed, ignoring its initial size. If all children within a flex layout have .<code class='stacks-code'>.fl-equal</code> enabled, they’ll be the same size. See also <code class='stacks-code'>.grid__fl-equal</code>",
+      "responsive": true
     }
   ],
   "helpers": [
@@ -314,13 +334,13 @@
       "responsive": false
     },
     {
-      "class": ".grid__fl0",
+      "class": ".grid__fl-shrink0",
       "define": "Disables shrinking from all child elements",
       "responsive": false
     },
     {
-      "class": ".grid__fl1",
-      "define": "Makes each child element grow",
+      "class": ".grid__fl-equal",
+      "define": "Makes each child element grow equally",
       "responsive": false
     }
   ]

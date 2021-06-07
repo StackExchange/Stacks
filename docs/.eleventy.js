@@ -63,7 +63,7 @@ module.exports = function(eleventyConfig) {
 
     var output = '';
     output += '<div class="grid jc-space-between ai-end pe-none stacks-header">';
-    output +=   '<' + tag + ' class="grid--cell fl1 stacks-' + tag + '" id="'+ slug +'">';
+    output +=   '<' + tag + ' class="grid--cell fl-grow1 stacks-' + tag + '" id="'+ slug +'">';
     output +=     '<span class="pe-auto">' + text + '</span>';
     output +=   '</' + tag + '>';
     output +=   '<a class="grid grid__center mbn6 s-btn s-btn__muted pe-auto" href="#'+ slug +'">';
