@@ -3,6 +3,7 @@ layout: page
 title: Activity indicator
 description: Stacks provides a small jewel for indicating new activity.
 ---
+
 <section class="stacks-section">
     {% header "h3", "Classes" %}
     <div class="overflow-x-auto mb32">
@@ -16,11 +17,17 @@ description: Stacks provides a small jewel for indicating new activity.
             </thead>
             <tbody class="fs-caption">
                 {% for item in activity-indicator.indicator %}
-                    <tr>
-                        <td><code class="stacks-code">{{ item.class }}</code></td>
-                        <td>{% if item.applies == "N/A" %}<em class="fc-black-350">{{ item.applies }}</em>{% else %}<code class="stacks-code">{{ item.applies }}</code>{% endif %}</td>
-                        <td>{{ item.description }}</td>
-                    </tr>
+                <tr>
+                    <td><code class="stacks-code">{{ item.class }}</code></td>
+                    <td>
+                        {% if item.applies == "N/A" %}<em class="fc-black-350"
+                            >{{ item.applies }}</em
+                        >{% else %}<code class="stacks-code"
+                            >{{ item.applies }}</code
+                        >{% endif %}
+                    </td>
+                    <td>{{ item.description }}</td>
+                </tr>
                 {% endfor %}
             </tbody>
         </table>
@@ -28,19 +35,25 @@ description: Stacks provides a small jewel for indicating new activity.
 </section>
 <section class="stacks-section">
     {% header "h3", "Examples" %}
-    <p class="stacks-copy">By default, our indicator has no positioning attached to it. Depending on your context, you can modify the activity indicator’s positioning using any combination of atomic classes. Since our activity indicator has no inherent semantic meaning, make sure to include visually-hidden, screenreader-only text.</p>
+    <p class="stacks-copy">
+        By default, our indicator has no positioning attached to it. Depending
+        on your context, you can modify the activity indicator’s positioning
+        using any combination of atomic classes. Since our activity indicator
+        has no inherent semantic meaning, make sure to include visually-hidden,
+        screenreader-only text.
+    </p>
     <div class="stacks-preview">
-{% highlight html %}
-<div class="s-activity-indicator">
-    <div class="v-visible-sr">New activity</div>
-</div>
+        {% highlight html %}
+        <div class="s-activity-indicator">
+            <div class="v-visible-sr">New activity</div>
+        </div>
 
-<div class="ps-relative">
-    <div class="s-activity-indicator ps-absolute tn6 ln6">
-        <div class="v-visible-sr">New activity</div>
-    </div>
-</div>
-{% endhighlight %}
+        <div class="ps-relative">
+            <div class="s-activity-indicator ps-absolute tn6 ln6">
+                <div class="v-visible-sr">New activity</div>
+            </div>
+        </div>
+        {% endhighlight %}
         <div class="stacks-preview--example">
             <div class="grid fd-column gs24">
                 <div class="grid--cell">
@@ -52,7 +65,9 @@ description: Stacks provides a small jewel for indicating new activity.
                 <div class="grid--cell">
                     <a href="#" class="s-link s-link__muted">
                         <div class="s-avatar bg-red-400 ps-relative">
-                            <div class="s-activity-indicator ps-absolute tn6 ln6">
+                            <div
+                                class="s-activity-indicator ps-absolute tn6 ln6"
+                            >
                                 <div class="v-visible-sr">New activity</div>
                             </div>
                             <div class="s-avatar--letter">G</div>

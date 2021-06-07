@@ -7,6 +7,7 @@ Our documentation is built with Stacks itself, using its [immutable, atomic clas
 The Stacks website documents:
 
 ### Product
-- Semantic and accessible component markup
-- Cross-browser compatible Less / CSS
-- An [icon library](https://github.com/StackExchange/Stacks-Icons)
+
+-   Semantic and accessible component markup
+-   Cross-browser compatible Less / CSS
+-   An [icon library](https://github.com/StackExchange/Stacks-Icons)

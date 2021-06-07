@@ -1,387 +1,771 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:v="urn:schemas-microsoft-com:vml">
-<head>
-   <title></title> <!-- The title tag shows in email notifications, like Android 4.4. -->
-   <meta charset="utf-8"> <!-- utf-8 works for most cases -->
-   <meta name="viewport" content="width=device-width"> <!-- Forcing initial-scale shouldn't be necessary -->
-   <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!-- Use the latest (edge) version of IE rendering engine -->
-   <meta name="x-apple-disable-message-reformatting"> <!-- Disable auto-scale in iOS 10 Mail entirely -->
+<html
+    lang="en"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:o="urn:schemas-microsoft-com:office:office"
+    xmlns:v="urn:schemas-microsoft-com:vml"
+>
+    <head>
+        <title></title>
+        <!-- The title tag shows in email notifications, like Android 4.4. -->
+        <meta charset="utf-8" />
+        <!-- utf-8 works for most cases -->
+        <meta name="viewport" content="width=device-width" />
+        <!-- Forcing initial-scale shouldn't be necessary -->
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <!-- Use the latest (edge) version of IE rendering engine -->
+        <meta name="x-apple-disable-message-reformatting" />
+        <!-- Disable auto-scale in iOS 10 Mail entirely -->
 
-   <!-- Desktop Outlook chokes on web font references and defaults to Times New Roman, so we force a safe fallback font. -->
- <!--[if mso]>
- <style>
- * {
- font-family: sans-serif !important;
- }
- </style>
-<![endif]-->
+        <!-- Desktop Outlook chokes on web font references and defaults to Times New Roman, so we force a safe fallback font. -->
+        <!--[if mso]>
+            <style>
+                * {
+                    font-family: sans-serif !important;
+                }
+            </style>
+        <![endif]-->
 
-<!-- All other clients get the webfont reference; some will render the font and others will silently fail to the fallbacks. More on that here: http://stylecampaign.com/blog/2015/02/webfont-support-in-email/ -->
-<!--[if !mso]><!-->
-<link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,700" rel="stylesheet">
-<!--<![endif]-->
+        <!-- All other clients get the webfont reference; some will render the font and others will silently fail to the fallbacks. More on that here: http://stylecampaign.com/blog/2015/02/webfont-support-in-email/ -->
+        <!--[if !mso]><!-->
+        <link
+            href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,700"
+            rel="stylesheet"
+        />
+        <!--<![endif]-->
 
-<!-- CSS Reset -->
-<style type="text/css">
-    /* What it does: Remove spaces around the email design added by some email clients. */
-    /* Beware: It can remove the padding / margin and add a background color to the compose a reply window. */
-    html,
-    body {
-       margin: 0 auto !important;
-       padding: 0 !important;
-       height: 100% !important;
-       width: 100% !important;
-   }
+        <!-- CSS Reset -->
+        <style type="text/css">
+            /* What it does: Remove spaces around the email design added by some email clients. */
+            /* Beware: It can remove the padding / margin and add a background color to the compose a reply window. */
+            html,
+            body {
+                margin: 0 auto !important;
+                padding: 0 !important;
+                height: 100% !important;
+                width: 100% !important;
+            }
 
-   /* What it does: Stops email clients resizing small text. */
-   * {
-       -ms-text-size-adjust: 100%;
-       -webkit-text-size-adjust: 100%;
-   }
+            /* What it does: Stops email clients resizing small text. */
+            * {
+                -ms-text-size-adjust: 100%;
+                -webkit-text-size-adjust: 100%;
+            }
 
-   /* What it does: Centers email on Android 4.4 */
-   div[style*="margin: 16px 0"] {
-       margin:0 !important;
-   }
+            /* What it does: Centers email on Android 4.4 */
+            div[style*="margin: 16px 0"] {
+                margin: 0 !important;
+            }
 
-   /* What it does: Stops Outlook from adding extra spacing to tables. */
-   table,
-   td {
-       mso-table-lspace: 0pt !important;
-       mso-table-rspace: 0pt !important;
-   }
+            /* What it does: Stops Outlook from adding extra spacing to tables. */
+            table,
+            td {
+                mso-table-lspace: 0pt !important;
+                mso-table-rspace: 0pt !important;
+            }
 
-   /* What it does: Fixes webkit padding issue. Fix for Yahoo mail table alignment bug. Applies table-layout to the first 2 tables then removes for anything nested deeper. */
-   table {
-       border-spacing: 0 !important;
-       border-collapse: collapse !important;
-       table-layout: fixed !important;
-       margin: 0 auto !important;
-   }
-   table table table {
-       table-layout: auto;
-   }
+            /* What it does: Fixes webkit padding issue. Fix for Yahoo mail table alignment bug. Applies table-layout to the first 2 tables then removes for anything nested deeper. */
+            table {
+                border-spacing: 0 !important;
+                border-collapse: collapse !important;
+                table-layout: fixed !important;
+                margin: 0 auto !important;
+            }
+            table table table {
+                table-layout: auto;
+            }
 
-   /* What it does: Uses a better rendering method when resizing images in IE. */
-   img {
-       -ms-interpolation-mode:bicubic;
-   }
+            /* What it does: Uses a better rendering method when resizing images in IE. */
+            img {
+                -ms-interpolation-mode: bicubic;
+            }
 
-   /* What it does: A work-around for email clients meddling in triggered links. */
-   *[x-apple-data-detectors], /* iOS */
+            /* What it does: A work-around for email clients meddling in triggered links. */
+            *[x-apple-data-detectors], /* iOS */
    .unstyle-auto-detected-links *,
    .aBn {
-       border-bottom: 0 !important;
-       cursor: default !important;
-       color: inherit !important;
-       text-decoration: none !important;
-       font-size: inherit !important;
-       font-family: inherit !important;
-       font-weight: inherit !important;
-       line-height: inherit !important;
-   }
+                border-bottom: 0 !important;
+                cursor: default !important;
+                color: inherit !important;
+                text-decoration: none !important;
+                font-size: inherit !important;
+                font-family: inherit !important;
+                font-weight: inherit !important;
+                line-height: inherit !important;
+            }
 
-   /* What it does: Prevents Gmail from displaying an download button on large, non-linked images. */
-   .a6S {
-       display: none !important;
-       opacity: 0.01 !important;
-   }
-   /* If the above doesn't work, add a .g-img class to any image in question. */
-   img.g-img + div {
-       display:none !important;
-   }
+            /* What it does: Prevents Gmail from displaying an download button on large, non-linked images. */
+            .a6S {
+                display: none !important;
+                opacity: 0.01 !important;
+            }
+            /* If the above doesn't work, add a .g-img class to any image in question. */
+            img.g-img + div {
+                display: none !important;
+            }
 
-   /* What it does: Prevents underlining the button text in Windows 10 */
-   .button-link {
-       text-decoration: none !important;
-   }
+            /* What it does: Prevents underlining the button text in Windows 10 */
+            .button-link {
+                text-decoration: none !important;
+            }
 
-   /* What it does: Styles markdown links that we can't write inline CSS for. */
-   .has-markdown a,
-   .has-markdown a:visited {
-       color: #0077CC !important;
-       text-decoration: none !important;
-   }
+            /* What it does: Styles markdown links that we can't write inline CSS for. */
+            .has-markdown a,
+            .has-markdown a:visited {
+                color: #0077cc !important;
+                text-decoration: none !important;
+            }
 
-   /* What it does: Removes right gutter in Gmail iOS app: https://github.com/TedGoas/Cerberus/issues/89 */
-   /* Create one of these media queries for each additional viewport size you'd like to fix */
+            /* What it does: Removes right gutter in Gmail iOS app: https://github.com/TedGoas/Cerberus/issues/89 */
+            /* Create one of these media queries for each additional viewport size you'd like to fix */
 
-   /* iPhone 4, 4S, 5, 5S, 5C, and 5SE */
-   @media only screen and (min-device-width: 320px) and (max-device-width: 374px) {
-       .email-container {
-           min-width: 320px !important;
-       }
-   }
-   /* iPhone 6, 6S, 7, 8, and X */
-   @media only screen and (min-device-width: 375px) and (max-device-width: 413px) {
-       .email-container {
-           min-width: 375px !important;
-       }
-   }
-   /* iPhone 6+, 7+, and 8+ */
-   @media only screen and (min-device-width: 414px) {
-       .email-container {
-           min-width: 414px !important;
-       }
-   }
-</style>
-<!-- Reset list spacing because Outlook ignores much of our inline CSS. -->
- <!--[if mso]>
- <style type="text/css">
- ul,
- ol {
- margin: 0 !important;
- }
- li {
- margin-left: 30px !important;
- }
- li.list-item-first {
- margin-top: 15px !important;
- }
- li.list-item-last {
- margin-bottom: 15px !important;
- }
- </style>
-<![endif]-->
+            /* iPhone 4, 4S, 5, 5S, 5C, and 5SE */
+            @media only screen and (min-device-width: 320px) and (max-device-width: 374px) {
+                .email-container {
+                    min-width: 320px !important;
+                }
+            }
+            /* iPhone 6, 6S, 7, 8, and X */
+            @media only screen and (min-device-width: 375px) and (max-device-width: 413px) {
+                .email-container {
+                    min-width: 375px !important;
+                }
+            }
+            /* iPhone 6+, 7+, and 8+ */
+            @media only screen and (min-device-width: 414px) {
+                .email-container {
+                    min-width: 414px !important;
+                }
+            }
+        </style>
+        <!-- Reset list spacing because Outlook ignores much of our inline CSS. -->
+        <!--[if mso]>
+            <style type="text/css">
+                ul,
+                ol {
+                    margin: 0 !important;
+                }
+                li {
+                    margin-left: 30px !important;
+                }
+                li.list-item-first {
+                    margin-top: 15px !important;
+                }
+                li.list-item-last {
+                    margin-bottom: 15px !important;
+                }
+            </style>
+        <![endif]-->
 
-<!-- Progressive Enhancements -->
-<style type="text/css">
+        <!-- Progressive Enhancements -->
+        <style type="text/css">
+            /* What it does: Hover styles for buttons and tags */
+            .s-btn {
+                transition: all 100ms ease-in;
+            }
+            .s-btn__outlined:hover {
+                background: rgba(0, 119, 204, 0.05) !important;
+                color: #005999 !important;
+            }
 
-    /* What it does: Hover styles for buttons and tags */
-    .s-btn {
-       transition: all 100ms ease-in;
-   }
-   .s-btn__outlined:hover {
-       background: rgba(0,119,204,.05) !important;
-       color: #005999 !important;
-   }
+            /* Media Queries */
+            @media screen and (max-width: 590px) {
+                /* What it does: Forces elements to resize to the full width of their container. Useful for resizing images beyond their max-width. */
+                .fluid {
+                    width: 100% !important;
+                    max-width: 100% !important;
+                    height: auto !important;
+                    margin-left: auto !important;
+                    margin-right: auto !important;
+                }
 
-   /* Media Queries */
-   @media screen and (max-width: 590px) {
+                /* What it does: Forces table cells into full-width rows. */
+                .stack-column,
+                .stack-column-center {
+                    display: block !important;
+                    width: 100% !important;
+                    max-width: 100% !important;
+                    direction: ltr !important;
+                }
+                /* And center justify these ones. */
+                .stack-column-center {
+                    text-align: center !important;
+                }
 
-       /* What it does: Forces elements to resize to the full width of their container. Useful for resizing images beyond their max-width. */
-       .fluid {
-           width: 100% !important;
-           max-width: 100% !important;
-           height: auto !important;
-           margin-left: auto !important;
-           margin-right: auto !important;
-       }
+                /* Hides things in small viewports. */
+                .hide-on-mobile {
+                    display: none !important;
+                    max-height: 0 !important;
+                    overflow: hidden !important;
+                    visibility: hidden !important;
+                }
 
-       /* What it does: Forces table cells into full-width rows. */
-       .stack-column,
-       .stack-column-center {
-           display: block !important;
-           width: 100% !important;
-           max-width: 100% !important;
-           direction: ltr !important;
-       }
-       /* And center justify these ones. */
-       .stack-column-center {
-           text-align: center !important;
-       }
+                /* What it does: Utility classes to reduce spacing for smaller viewports. */
+                .sm-p {
+                    padding: 20px !important;
+                }
+                .sm-pt {
+                    padding-top: 20px !important;
+                }
+                .sm-pb {
+                    padding-bottom: 20px !important;
+                }
+                .sm-pr {
+                    padding-right: 20px !important;
+                }
+                .sm-pl {
+                    padding-left: 20px !important;
+                }
+                .sm-px {
+                    padding-left: 20px !important;
+                    padding-right: 20px !important;
+                }
+                .sm-py {
+                    padding-top: 20px !important;
+                    padding-bottom: 20px !important;
+                }
+                .sm-mb {
+                    margin-bottom: 20px !important;
+                }
+                .sm-fs27 {
+                    font-size: 27px !important;
+                    line-height: 27px !important;
+                }
+            }
+        </style>
+    </head>
 
-       /* Hides things in small viewports. */
-       .hide-on-mobile {
-           display: none !important;
-           max-height: 0 !important;
-           overflow: hidden !important;
-           visibility: hidden !important;
-       }
-
-       /* What it does: Utility classes to reduce spacing for smaller viewports. */
-       .sm-p {
-           padding: 20px !important;
-       }
-       .sm-pt {
-           padding-top: 20px !important;
-       }
-       .sm-pb {
-           padding-bottom: 20px !important;
-       }
-       .sm-pr {
-           padding-right: 20px !important;
-       }
-       .sm-pl {
-           padding-left: 20px !important;
-       }
-       .sm-px {
-           padding-left: 20px !important;
-           padding-right: 20px !important;
-       }
-       .sm-py {
-           padding-top: 20px !important;
-           padding-bottom: 20px !important;
-       }
-       .sm-mb {
-           margin-bottom: 20px !important;
-       }
-       .sm-fs27 {
-           font-size: 27px !important;
-           line-height: 27px !important;
-       }
-
-   }
-</style>
-</head>
-
-<!--
+    <!--
  The email background color is defined in three places, just below. If you chance one, remember to change the others.
  1. body tag: for most email clients
  2. center tag: for Gmail and Inbox mobile apps and web versions of Gmail, GSuite, Inbox, Yahoo, AOL, Libero, Comcast, freenet, Mail.ru, Orange.fr
  3. mso conditional: For Windows 10 Mail
 -->
-<body width="100%" style="margin: 0; background: #ffffff; mso-line-height-rule: exactly;">
-   <center style="width: 100%; background: #ffffff; text-align: left;">
- <!--[if mso | IE]>
+    <body
+        width="100%"
+        style="margin: 0; background: #ffffff; mso-line-height-rule: exactly"
+    >
+        <center style="width: 100%; background: #ffffff; text-align: left">
+            <!--[if mso | IE]>
  <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%" style="background-color: #ffffff;">
  <tr>
  <td>
  <![endif]-->
 
- <div class="email-container" style="max-width: 590px; margin: auto;">
- <!--[if mso]>
+            <div class="email-container" style="max-width: 590px; margin: auto">
+                <!--[if mso]>
  <table role="presentation" aria-hidden="true" cellspacing="0" cellpadding="0" border="0" width="537" align="center">
  <tr>
  <td>
  <![endif]-->
- <table aria-hidden="true" border="0" cellpadding="0" cellspacing="0" role="presentation" style="max-width:537px; width:100%">
-   <!-- Logo : BEGIN -->
-   <tr>
-       <td style="padding: 15px 30px 5px; text-align: left;" valign="middle" class="sm-px">
-           <a href="https://stackoverflow.com/"><img alt="Stack Overflow" border="0" height="36" src="https://d2axdqolvqmdvx.cloudfront.net/eed5c248-e9c1-4f94-aba9-df2e1e8d1735/logostackoverflow.png" width="180" /> </a>
-       </td>
-   </tr>
-   <!-- Logo : END -->
-   <!-- HTML Content with Image Background : BEGIN -->
-   <tr>
-       <td style="text-align: center;" valign="middle">
-           <img alt="Stack Overflow" src="https://d2axdqolvqmdvx.cloudfront.net/4239d5d1-3848-4a92-91ad-059c85947751/cocemailheader2x2.png" width="537" height="" border="0" style="width: 100%; max-width: 537px; height: auto; display: block;" class="g-img">
-       </td>
-   </tr>
-   <tr>
-       <td style="padding: 0 20px; background-color: #F4F8FB;">
-           <h1 style="margin: 25px 0; text-align: center; font-weight: bold; font-size: 34px; line-height: 34px; color: #F48024; font-family: arial, sans-serif;" class="sm-fs27">Join us in building a kind, collaborative community</h1>
-       </td>
-   </tr>
-   <tr>
-       <td style="padding: 0 20px 25px; background-color: #F4F8FB; border-bottom-left-radius: 5px; border-bottom-right-radius: 5px;">
-           <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="margin: auto;">
-               <tr>
-                   <td class="s-btn s-btn__outlined" style="border-radius: 4px; background-color: #ffffff; text-align: center;">
-                       <a class="s-btn s-btn__outlined" href="https://stackoverflow.com/conduct" style="background-color: #ffffff; border: 1px solid #0077cc; font-family: arial, sans-serif; font-size: 17px; line-height: 17px; color: #0077cc; text-align: center; text-decoration: none; padding: 13px 17px; display: block; border-radius: 4px; white-space: nowrap;">
-                           Read Code of Conduct
-                       </a>
-                   </td>
-               </tr>
-           </table>
-       </td>
-   </tr>
-   <!-- Hero, Centered : END -->
-   <!-- General Email Body : BEGIN -->
-   <tr>
-       <td style="padding: 30px;" class="sm-p">
-           <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="width:100%;">
-               <!-- Rich Text : BEGIN -->
-               <tr>
-                   <td style="padding-bottom: 30px; font-family: arial, sans-serif; font-size: 17px; line-height: 24px; color: #54595F; text-align: left;" class="sm-pb">
-                       <p style="margin: 0 0 15px 0;">Our new Code of Conduct came from numerous conversations with the Stack Exchange community. Together, you helped create a code that reinforces our commitment to mutual respect and kindness. Take a moment to read our newly updated <a href="https://stackoverflow.com/conduct" style="color: #0077CC; text-decoration: none;">Code of Conduct</a>.</p>
-                       <p style="margin: 0 0 15px 0;">Here are some highlights:</p>
-                       <ul style="padding: 0; margin: 0; list-style-type: disc;">
-                           <li style="margin: 0 0 10px 30px;"><strong>If you’re here to get help, make it as easy as possible for others to help you.</strong> Follow our guidelines and remember that our community is made possible by volunteers.</li>
-                           <li style="margin: 0 0 10px 30px;"><strong>If you’re here to help others, be patient and welcoming.</strong> Offer support if you see someone struggling or otherwise in need of help.
-                           </li>
-                           <li style="margin: 0 0 10px 30px;"><strong>Be clear and constructive when giving feedback, and be open when receiving it.</strong> Edits, comments, and suggestions are healthy parts of our community.</li>
-                           <li style="margin: 0 0 10px 30px;"><strong>Be kind and avoid sarcasm&mdash;tone is hard to decipher online.</strong> If a situation makes it hard to act kindly, stop participating and move on.</li>
-                           <li style="margin: 0 0 0 30px;"><strong><a href="https://stackoverflow.com/conduct#reporting" style="color: #0077CC; text-decoration: none;">Flag harmful behavior</a>, whether it’s directed at you or others.</strong> It’ll notify moderators or automatically delete the post. </li>
-                       </ul>
-                   </td>
-               </tr>
-               <tr>
-                   <td style="padding-bottom: 30px; font-family: arial, sans-serif; font-size: 17px; line-height: 24px; color: #54595F; text-align: left;" class="sm-pb">
-                       <!-- Button : BEGIN -->
-                       <table align="left" border="0" cellpadding="0" cellspacing="0" role="presentation">
-                           <tr>
-                               <td class="s-btn s-btn__outlined" style="border-radius: 4px; background: #ffffff; text-align: center;">
-                                   <a class="s-btn s-btn__outlined" href="https://stackoverflow.com/conduct" style="background: #ffffff; border: 1px solid #0077cc; font-family: arial, sans-serif; font-size: 17px; line-height: 17px; color: #0077cc; text-align: center; text-decoration: none; padding: 13px 17px; display: block; border-radius: 4px; white-space: nowrap;">
-                                       Read the full Code of Conduct
-                                   </a>
-                               </td>
-                           </tr>
-                       </table>
-                       <!-- Button : END -->
-                   </td>
-               </tr>
-               <tr>
-                   <td style="font-family: arial, sans-serif; font-size: 17px; line-height: 24px; color: #54595F; text-align: left;">
-                       <p style="margin: 0 0 15px 0;">Thanks for helping us be better.</p>
-                       <p style="margin: 0;">Jay Hanlon<br />Executive Vice President of Culture and Experience</p>
-                   </td>
-               </tr>
-               <!-- Rich Text : END -->
-           </table>
-       </td>
-   </tr>
-   <!-- Footer : BEGIN -->
-   <tr>
-       <td style="padding: 30px; background-color: #f3f3f5;" class="sm-p">
-           <table align="left" border="0" cellpadding="0" cellspacing="0" role="presentation">
-               <!-- Subscription Info : BEGIN -->
-               <tr>
-                   <td style="padding-bottom: 10px; font-size: 12px; font-family: arial, sans-serif; line-height: 126%; color: #93999F; text-align: left;">
-                       You're receiving this email because you are opted in to Stack Overflow company, product and feature announcements.
-                   </td>
-               </tr>
-               <tr>
-                   <td style="font-size: 12px; line-height: 126%; font-family: arial, sans-serif; color: #93999F; text-align: left;"><a href="#" style="color:#93999F; text-decoration:underline;">Unsubscribe from emails like this</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="#" style="color:#93999F; text-decoration:underline;">Edit email settings</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://meta.stackoverflow.com" style="color:#93999F; text-decoration:underline;">Leave feedback</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://stackexchange.com/legal/privacy-policy" style="color:#93999F; text-decoration:underline;">Privacy</a>
-                   </td>
-               </tr>
-               <!-- Subscription Info : BEGIN -->
-               <!-- HR line : BEGIN -->
-               <tr>
-                   <td style="padding: 30px 0;" valign="middle" width="100%">
-                       <table aria-hidden="true" border="0" cellpadding="0" cellspacing="0" role="presentation" style="width:100%">
-                           <tr>
-                               <td height="1" width="100%" style="font-size: 0; line-height: 0; border-top: 1px solid #D6D8DB;">&nbsp;</td>
-                           </tr>
-                       </table>
-                   </td>
-               </tr>
-               <!-- HR line : END -->
-               <!-- Sender Info : BEGIN -->
-               <tr>
-                   <td style="padding-bottom: 5px; text-align: left;">
-                       <img src="https://d2axdqolvqmdvx.cloudfront.net/beaeaa3d-e475-4bc4-ba83-98d7465c97e6/LogoSm2x.png" align="left" alt="Stack Overflow" border="0" width="111" height="22" style="display: block;">
-                   </td>
-               </tr>
-               <tr>
-                   <td class="unstyle-auto-detected-links" style="padding-bottom: 5px; font-size: 12px; line-height:16px; font-family: arial, sans-serif; color: #93999F; text-align: left;"><strong>Stack&nbsp;Overflow</strong>, 110 William Street, 28th Floor, New York, NY 10038</td>
-               </tr>
-               <!-- Sender Info : END -->
-               <!-- Heart : BEGIN -->
-               <tr>
-                   <td>
-                       <table align="left" border="0" cellpadding="0" cellspacing="0" role="presentation" style="background:#ffffff; border-radius:1px; line-height:0px">
-                           <tr>
-                               <td>
-                                   <div style="border-radius: 1px; border: 1px solid #D6D9DC; padding: 4px 6px 3px 6px; font-size: 11px; line-height: 11px; font-family: Consolas, monospace; color: #E06C77;" title="because we care">&lt;3</div>
-                               </td>
-                           </tr>
-                       </table>
-                   </td>
-               </tr>
-               <!-- Heart : END -->
-           </table>
-       </td>
-   </tr>
-   <!-- Footer : END -->
-</table>
-</div>
- <!--[if mso | IE]>
+                <table
+                    aria-hidden="true"
+                    border="0"
+                    cellpadding="0"
+                    cellspacing="0"
+                    role="presentation"
+                    style="max-width: 537px; width: 100%"
+                >
+                    <!-- Logo : BEGIN -->
+                    <tr>
+                        <td
+                            style="padding: 15px 30px 5px; text-align: left"
+                            valign="middle"
+                            class="sm-px"
+                        >
+                            <a href="https://stackoverflow.com/"
+                                ><img
+                                    alt="Stack Overflow"
+                                    border="0"
+                                    height="36"
+                                    src="https://d2axdqolvqmdvx.cloudfront.net/eed5c248-e9c1-4f94-aba9-df2e1e8d1735/logostackoverflow.png"
+                                    width="180"
+                                />
+                            </a>
+                        </td>
+                    </tr>
+                    <!-- Logo : END -->
+                    <!-- HTML Content with Image Background : BEGIN -->
+                    <tr>
+                        <td style="text-align: center" valign="middle">
+                            <img
+                                alt="Stack Overflow"
+                                src="https://d2axdqolvqmdvx.cloudfront.net/4239d5d1-3848-4a92-91ad-059c85947751/cocemailheader2x2.png"
+                                width="537"
+                                height=""
+                                border="0"
+                                style="
+                                    width: 100%;
+                                    max-width: 537px;
+                                    height: auto;
+                                    display: block;
+                                "
+                                class="g-img"
+                            />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0 20px; background-color: #f4f8fb">
+                            <h1
+                                style="
+                                    margin: 25px 0;
+                                    text-align: center;
+                                    font-weight: bold;
+                                    font-size: 34px;
+                                    line-height: 34px;
+                                    color: #f48024;
+                                    font-family: arial, sans-serif;
+                                "
+                                class="sm-fs27"
+                            >
+                                Join us in building a kind, collaborative
+                                community
+                            </h1>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td
+                            style="
+                                padding: 0 20px 25px;
+                                background-color: #f4f8fb;
+                                border-bottom-left-radius: 5px;
+                                border-bottom-right-radius: 5px;
+                            "
+                        >
+                            <table
+                                align="center"
+                                border="0"
+                                cellpadding="0"
+                                cellspacing="0"
+                                role="presentation"
+                                style="margin: auto"
+                            >
+                                <tr>
+                                    <td
+                                        class="s-btn s-btn__outlined"
+                                        style="
+                                            border-radius: 4px;
+                                            background-color: #ffffff;
+                                            text-align: center;
+                                        "
+                                    >
+                                        <a
+                                            class="s-btn s-btn__outlined"
+                                            href="https://stackoverflow.com/conduct"
+                                            style="
+                                                background-color: #ffffff;
+                                                border: 1px solid #0077cc;
+                                                font-family: arial, sans-serif;
+                                                font-size: 17px;
+                                                line-height: 17px;
+                                                color: #0077cc;
+                                                text-align: center;
+                                                text-decoration: none;
+                                                padding: 13px 17px;
+                                                display: block;
+                                                border-radius: 4px;
+                                                white-space: nowrap;
+                                            "
+                                        >
+                                            Read Code of Conduct
+                                        </a>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                    <!-- Hero, Centered : END -->
+                    <!-- General Email Body : BEGIN -->
+                    <tr>
+                        <td style="padding: 30px" class="sm-p">
+                            <table
+                                border="0"
+                                cellpadding="0"
+                                cellspacing="0"
+                                role="presentation"
+                                style="width: 100%"
+                            >
+                                <!-- Rich Text : BEGIN -->
+                                <tr>
+                                    <td
+                                        style="
+                                            padding-bottom: 30px;
+                                            font-family: arial, sans-serif;
+                                            font-size: 17px;
+                                            line-height: 24px;
+                                            color: #54595f;
+                                            text-align: left;
+                                        "
+                                        class="sm-pb"
+                                    >
+                                        <p style="margin: 0 0 15px 0">
+                                            Our new Code of Conduct came from
+                                            numerous conversations with the
+                                            Stack Exchange community. Together,
+                                            you helped create a code that
+                                            reinforces our commitment to mutual
+                                            respect and kindness. Take a moment
+                                            to read our newly updated
+                                            <a
+                                                href="https://stackoverflow.com/conduct"
+                                                style="
+                                                    color: #0077cc;
+                                                    text-decoration: none;
+                                                "
+                                                >Code of Conduct</a
+                                            >.
+                                        </p>
+                                        <p style="margin: 0 0 15px 0">
+                                            Here are some highlights:
+                                        </p>
+                                        <ul
+                                            style="
+                                                padding: 0;
+                                                margin: 0;
+                                                list-style-type: disc;
+                                            "
+                                        >
+                                            <li style="margin: 0 0 10px 30px">
+                                                <strong
+                                                    >If you’re here to get help,
+                                                    make it as easy as possible
+                                                    for others to help
+                                                    you.</strong
+                                                >
+                                                Follow our guidelines and
+                                                remember that our community is
+                                                made possible by volunteers.
+                                            </li>
+                                            <li style="margin: 0 0 10px 30px">
+                                                <strong
+                                                    >If you’re here to help
+                                                    others, be patient and
+                                                    welcoming.</strong
+                                                >
+                                                Offer support if you see someone
+                                                struggling or otherwise in need
+                                                of help.
+                                            </li>
+                                            <li style="margin: 0 0 10px 30px">
+                                                <strong
+                                                    >Be clear and constructive
+                                                    when giving feedback, and be
+                                                    open when receiving
+                                                    it.</strong
+                                                >
+                                                Edits, comments, and suggestions
+                                                are healthy parts of our
+                                                community.
+                                            </li>
+                                            <li style="margin: 0 0 10px 30px">
+                                                <strong
+                                                    >Be kind and avoid
+                                                    sarcasm&mdash;tone is hard
+                                                    to decipher online.</strong
+                                                >
+                                                If a situation makes it hard to
+                                                act kindly, stop participating
+                                                and move on.
+                                            </li>
+                                            <li style="margin: 0 0 0 30px">
+                                                <strong
+                                                    ><a
+                                                        href="https://stackoverflow.com/conduct#reporting"
+                                                        style="
+                                                            color: #0077cc;
+                                                            text-decoration: none;
+                                                        "
+                                                        >Flag harmful
+                                                        behavior</a
+                                                    >, whether it’s directed at
+                                                    you or others.</strong
+                                                >
+                                                It’ll notify moderators or
+                                                automatically delete the post.
+                                            </li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td
+                                        style="
+                                            padding-bottom: 30px;
+                                            font-family: arial, sans-serif;
+                                            font-size: 17px;
+                                            line-height: 24px;
+                                            color: #54595f;
+                                            text-align: left;
+                                        "
+                                        class="sm-pb"
+                                    >
+                                        <!-- Button : BEGIN -->
+                                        <table
+                                            align="left"
+                                            border="0"
+                                            cellpadding="0"
+                                            cellspacing="0"
+                                            role="presentation"
+                                        >
+                                            <tr>
+                                                <td
+                                                    class="
+                                                        s-btn s-btn__outlined
+                                                    "
+                                                    style="
+                                                        border-radius: 4px;
+                                                        background: #ffffff;
+                                                        text-align: center;
+                                                    "
+                                                >
+                                                    <a
+                                                        class="
+                                                            s-btn
+                                                            s-btn__outlined
+                                                        "
+                                                        href="https://stackoverflow.com/conduct"
+                                                        style="
+                                                            background: #ffffff;
+                                                            border: 1px solid
+                                                                #0077cc;
+                                                            font-family: arial,
+                                                                sans-serif;
+                                                            font-size: 17px;
+                                                            line-height: 17px;
+                                                            color: #0077cc;
+                                                            text-align: center;
+                                                            text-decoration: none;
+                                                            padding: 13px 17px;
+                                                            display: block;
+                                                            border-radius: 4px;
+                                                            white-space: nowrap;
+                                                        "
+                                                    >
+                                                        Read the full Code of
+                                                        Conduct
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                        <!-- Button : END -->
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td
+                                        style="
+                                            font-family: arial, sans-serif;
+                                            font-size: 17px;
+                                            line-height: 24px;
+                                            color: #54595f;
+                                            text-align: left;
+                                        "
+                                    >
+                                        <p style="margin: 0 0 15px 0">
+                                            Thanks for helping us be better.
+                                        </p>
+                                        <p style="margin: 0">
+                                            Jay Hanlon<br />Executive Vice
+                                            President of Culture and Experience
+                                        </p>
+                                    </td>
+                                </tr>
+                                <!-- Rich Text : END -->
+                            </table>
+                        </td>
+                    </tr>
+                    <!-- Footer : BEGIN -->
+                    <tr>
+                        <td
+                            style="padding: 30px; background-color: #f3f3f5"
+                            class="sm-p"
+                        >
+                            <table
+                                align="left"
+                                border="0"
+                                cellpadding="0"
+                                cellspacing="0"
+                                role="presentation"
+                            >
+                                <!-- Subscription Info : BEGIN -->
+                                <tr>
+                                    <td
+                                        style="
+                                            padding-bottom: 10px;
+                                            font-size: 12px;
+                                            font-family: arial, sans-serif;
+                                            line-height: 126%;
+                                            color: #93999f;
+                                            text-align: left;
+                                        "
+                                    >
+                                        You're receiving this email because you
+                                        are opted in to Stack Overflow company,
+                                        product and feature announcements.
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td
+                                        style="
+                                            font-size: 12px;
+                                            line-height: 126%;
+                                            font-family: arial, sans-serif;
+                                            color: #93999f;
+                                            text-align: left;
+                                        "
+                                    >
+                                        <a
+                                            href="#"
+                                            style="
+                                                color: #93999f;
+                                                text-decoration: underline;
+                                            "
+                                            >Unsubscribe from emails like
+                                            this</a
+                                        >&nbsp;&nbsp;&nbsp;&nbsp;<a
+                                            href="#"
+                                            style="
+                                                color: #93999f;
+                                                text-decoration: underline;
+                                            "
+                                            >Edit email settings</a
+                                        >&nbsp;&nbsp;&nbsp;&nbsp;<a
+                                            href="https://meta.stackoverflow.com"
+                                            style="
+                                                color: #93999f;
+                                                text-decoration: underline;
+                                            "
+                                            >Leave feedback</a
+                                        >&nbsp;&nbsp;&nbsp;&nbsp;<a
+                                            href="https://stackexchange.com/legal/privacy-policy"
+                                            style="
+                                                color: #93999f;
+                                                text-decoration: underline;
+                                            "
+                                            >Privacy</a
+                                        >
+                                    </td>
+                                </tr>
+                                <!-- Subscription Info : BEGIN -->
+                                <!-- HR line : BEGIN -->
+                                <tr>
+                                    <td
+                                        style="padding: 30px 0"
+                                        valign="middle"
+                                        width="100%"
+                                    >
+                                        <table
+                                            aria-hidden="true"
+                                            border="0"
+                                            cellpadding="0"
+                                            cellspacing="0"
+                                            role="presentation"
+                                            style="width: 100%"
+                                        >
+                                            <tr>
+                                                <td
+                                                    height="1"
+                                                    width="100%"
+                                                    style="
+                                                        font-size: 0;
+                                                        line-height: 0;
+                                                        border-top: 1px solid
+                                                            #d6d8db;
+                                                    "
+                                                >
+                                                    &nbsp;
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                                <!-- HR line : END -->
+                                <!-- Sender Info : BEGIN -->
+                                <tr>
+                                    <td
+                                        style="
+                                            padding-bottom: 5px;
+                                            text-align: left;
+                                        "
+                                    >
+                                        <img
+                                            src="https://d2axdqolvqmdvx.cloudfront.net/beaeaa3d-e475-4bc4-ba83-98d7465c97e6/LogoSm2x.png"
+                                            align="left"
+                                            alt="Stack Overflow"
+                                            border="0"
+                                            width="111"
+                                            height="22"
+                                            style="display: block"
+                                        />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td
+                                        class="unstyle-auto-detected-links"
+                                        style="
+                                            padding-bottom: 5px;
+                                            font-size: 12px;
+                                            line-height: 16px;
+                                            font-family: arial, sans-serif;
+                                            color: #93999f;
+                                            text-align: left;
+                                        "
+                                    >
+                                        <strong>Stack&nbsp;Overflow</strong>,
+                                        110 William Street, 28th Floor, New
+                                        York, NY 10038
+                                    </td>
+                                </tr>
+                                <!-- Sender Info : END -->
+                                <!-- Heart : BEGIN -->
+                                <tr>
+                                    <td>
+                                        <table
+                                            align="left"
+                                            border="0"
+                                            cellpadding="0"
+                                            cellspacing="0"
+                                            role="presentation"
+                                            style="
+                                                background: #ffffff;
+                                                border-radius: 1px;
+                                                line-height: 0px;
+                                            "
+                                        >
+                                            <tr>
+                                                <td>
+                                                    <div
+                                                        style="
+                                                            border-radius: 1px;
+                                                            border: 1px solid
+                                                                #d6d9dc;
+                                                            padding: 4px 6px 3px
+                                                                6px;
+                                                            font-size: 11px;
+                                                            line-height: 11px;
+                                                            font-family: Consolas,
+                                                                monospace;
+                                                            color: #e06c77;
+                                                        "
+                                                        title="because we care"
+                                                    >
+                                                        &lt;3
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                                <!-- Heart : END -->
+                            </table>
+                        </td>
+                    </tr>
+                    <!-- Footer : END -->
+                </table>
+            </div>
+            <!--[if mso | IE]>
  </td>
  </tr>
  </table>
 <![endif]-->
-</center>
-</body>
+        </center>
+    </body>
 </html>

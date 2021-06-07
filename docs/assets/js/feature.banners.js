@@ -1,4 +1,4 @@
-$(document).ready(function() {
+$(document).ready(function () {
     //  Show the system banner when you click the "Show Example" button
     var topnav = $(".js-stacks-topbar");
     var sysBanner = $(".js-notice-banner");
@@ -9,18 +9,23 @@ $(document).ready(function() {
     var sysType = $(".js-sys-banner-type");
     var sysPos = $(".js-sys-banner-position");
     var sysCloseIcon = $(".js-notice-close");
-    var typeClasses = ("s-banner__info s-banner__success s-banner__warning s-banner__danger s-banner__dark s-banner__important is-pinned");
+    var typeClasses =
+        "s-banner__info s-banner__success s-banner__warning s-banner__danger s-banner__dark s-banner__important is-pinned";
 
-    sysBannerBtn.on("click", function(e) {
+    sysBannerBtn.on("click", function (e) {
         var sysStyle = sysStyleMenu.find(":selected").data("class");
 
         e.preventDefault();
         e.stopPropagation();
 
         $(this).text("Update example");
-        topnav.css("top","");
+        topnav.css("top", "");
         sysCloseBtn.removeClass("d-none");
-        sysBanner.show().attr("aria-hidden","false").removeClass(typeClasses).addClass(sysStyle);
+        sysBanner
+            .show()
+            .attr("aria-hidden", "false")
+            .removeClass(typeClasses)
+            .addClass(sysStyle);
         sysCloseIcon.removeClass("fc-white").addClass("fc-dark");
 
         if (sysPos.is(":checked")) {
@@ -31,24 +36,25 @@ $(document).ready(function() {
         if (sysType.is(":checked")) {
             sysBanner.addClass("s-banner__important");
 
-            if (sysStyle == "s-banner__warning" || sysStyle == "s-banner__success") {
+            if (
+                sysStyle == "s-banner__warning" ||
+                sysStyle == "s-banner__success"
+            ) {
                 sysCloseIcon.removeClass("fc-white").addClass("fc-dark");
-            }
-            else {
+            } else {
                 sysCloseIcon.removeClass("fc-dark").addClass("fc-white");
             }
         }
     });
 
-    sysCloseBtn.on("click", function(e) {
+    sysCloseBtn.on("click", function (e) {
         e.preventDefault();
         e.stopPropagation();
 
         topnav.addClass("t0");
-        sysBanner.hide().attr("aria-hidden","true").removeClass(typeClasses);
+        sysBanner.hide().attr("aria-hidden", "true").removeClass(typeClasses);
 
         sysBannerBtn.text("Show example");
         sysCloseBtn.addClass("d-none");
     });
-
 });

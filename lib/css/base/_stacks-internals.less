@@ -35,17 +35,17 @@
         #stacks-internals-collect-large() {
             .lg\:@{nodot} {
                 @rules();
-            };
+            }
         }
         #stacks-internals-collect-medium() {
             .md\:@{nodot} {
                 @rules();
-            };
+            }
         }
         #stacks-internals-collect-small() {
             .sm\:@{nodot} {
                 @rules();
-            };
+            }
         }
     }
 
@@ -79,24 +79,27 @@
 
     #screen-lg(@rules, @force-selector: false) {
         #stacks-internals #load-static-config();
-        #stacks-internals #responsive-stuff(0, @rules, @breakpoints, 1, @force-selector);
+        #stacks-internals
+            #responsive-stuff(0, @rules, @breakpoints, 1, @force-selector);
     }
     #screen-md(@rules, @force-selector: false) {
         #stacks-internals #load-static-config();
-        #stacks-internals #responsive-stuff(1, @rules, @breakpoints, 1, @force-selector);
+        #stacks-internals
+            #responsive-stuff(1, @rules, @breakpoints, 1, @force-selector);
     }
     #screen-sm(@rules, @force-selector: false) {
         #stacks-internals #load-static-config();
-        #stacks-internals #responsive-stuff(2, @rules, @breakpoints, 1, @force-selector);
+        #stacks-internals
+            #responsive-stuff(2, @rules, @breakpoints, 1, @force-selector);
     }
 
     // @bp-index is 0 (large), 1 (medium), or 2 (small). @start-index is the index into the @breakpoints config option
     // which is increased recursively to exhaust the whole list.
-    #responsive-stuff(@bp-index, @rules, @breakpoints, @start-index, @force-selector: false) when (@start-index < length(@breakpoints)) {
-
+    #responsive-stuff(@bp-index, @rules, @breakpoints, @start-index, @force-selector: false)
+        when
+        (@start-index < length(@breakpoints)) {
         // If the first list element is a string, it's a selector that is prepended to the responsive class
         & when (isstring(extract(@breakpoints, @start-index))) {
-
             // the actual breakpoint; "+1" to skip the (selector) string
             @bp: extract(@breakpoints, @start-index + @bp-index + 1);
 
@@ -111,12 +114,12 @@
             }
 
             // recursively descend to handle the next breakpoint group ("+4" for the selector string and the three breakpoint values)
-            #stacks-internals #responsive-stuff(@bp-index, @rules, @breakpoints, @start-index + 4, @force-selector)
+            #stacks-internals
+                #responsive-stuff(@bp-index, @rules, @breakpoints, @start-index + 4, @force-selector);
         }
 
         // If the first list element is a number (i.e. pixel value), there is no selector string
         & when (isnumber(extract(@breakpoints, @start-index))) {
-
             // the actual breakpoint
             @bp: extract(@breakpoints, @start-index + @bp-index);
 
@@ -135,7 +138,8 @@
             }
 
             // recursively descend to handle the next breakpoint group ("+3" for the three breakpoint values)
-            #stacks-internals #responsive-stuff(@bp-index, @rules, @breakpoints, @start-index + 3, @force-selector)
+            #stacks-internals
+                #responsive-stuff(@bp-index, @rules, @breakpoints, @start-index + 3, @force-selector);
         }
     }
 
@@ -173,14 +177,17 @@
     //
     //  ---------------------------------------------------------------------------
 
-
     #build-classes(@class-prefix, @rules, @values) {
-        #stacks-internals #build-classes-with-start-index(@class-prefix, @rules, 1, false, @values);
+        #stacks-internals
+            #build-classes-with-start-index(@class-prefix, @rules, 1, false, @values);
     }
     #build-classes(responsive, @class-prefix, @rules, @values) {
-        #stacks-internals #build-classes-with-start-index(@class-prefix, @rules, 1, true, @values);
+        #stacks-internals
+            #build-classes-with-start-index(@class-prefix, @rules, 1, true, @values);
     }
-    #build-classes-with-start-index(@class-prefix, @rules, @start-index, @responsive, @values) when (@start-index <= length(@values)) {
+    #build-classes-with-start-index(@class-prefix, @rules, @start-index, @responsive, @values)
+        when
+        (@start-index <= length(@values)) {
         @val: extract(@values, @start-index);
         & when (isnumber(@val)) {
             @unitless: unit(@val);
@@ -189,37 +196,46 @@
                 @class-name: ~"@{class-prefix}n@{abs}";
 
                 & when not (@responsive) {
-                    @{class-name} { @rules(); .template(@val); }
+                    @{class-name} {
+                        @rules();
+                        .template(@val);
+                    }
                 }
 
                 & when (@responsive) {
-                    #stacks-internals #responsify(@class-name, { @rules(); .template(@val); });
+                    #stacks-internals #responsify(@class-name, { @rules(); .template(@val); });;
                 }
-
             }
             & when (@unitless >= 0) {
                 @class-name: ~"@{class-prefix}@{unitless}";
                 & when not (@responsive) {
-                    @{class-name} { @rules(); .template(@val); }
+                    @{class-name} {
+                        @rules();
+                        .template(@val);
+                    }
                 }
 
                 & when (@responsive) {
-                    #stacks-internals #responsify(@class-name, { @rules(); .template(@val); });
+                    #stacks-internals #responsify(@class-name, { @rules(); .template(@val); });;
                 }
             }
         }
         & when not (isnumber(@val)) {
             @class-name: ~"@{class-prefix}-@{val}";
-                & when not (@responsive) {
-                    @{class-name} { @rules(); .template(@val); }
+            & when not (@responsive) {
+                @{class-name} {
+                    @rules();
+                    .template(@val);
                 }
+            }
 
-                & when (@responsive) {
-                    #stacks-internals #responsify(@class-name, { @rules(); .template(@val); });
-                }
+            & when (@responsive) {
+                #stacks-internals #responsify(@class-name, { @rules(); .template(@val); });;
+            }
         }
 
-        #stacks-internals #build-classes-with-start-index(@class-prefix, @rules, @start-index + 1, @responsive, @values);
+        #stacks-internals
+            #build-classes-with-start-index(@class-prefix, @rules, @start-index + 1, @responsive, @values);
     }
 
     #bullet-arrow(@col) {

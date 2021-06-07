@@ -3,6 +3,7 @@ layout: page
 title: Visibility
 description: Atomic visibility classes allow you to quickly change an element’s visibility.
 ---
+
 <section class="stacks-section">
     {% header "h2", "Classes" %}
     <div class="overflow-x-auto mb32">
@@ -16,7 +17,9 @@ description: Atomic visibility classes allow you to quickly change an element’
             <tbody>
                 {% for atomic in atomics.visibility %}
                 <tr class="fs-caption">
-                    <th scope="row"><code class="stacks-code">.{{ atomic.class }}</code></th>
+                    <th scope="row">
+                        <code class="stacks-code">.{{ atomic.class }}</code>
+                    </th>
                     <td>{{ atomic.definition }}</td>
                 </tr>
                 {% endfor %}
@@ -26,17 +29,28 @@ description: Atomic visibility classes allow you to quickly change an element’
 
     {% header "h2", "Examples" %}
     <div class="stacks-preview">
-{% highlight html %}
-<div class="v-visible">…</div>
-<div class="v-visible-sr">…</div>
-<div class="v-hidden">…</div>
-{% endhighlight %}
+        {% highlight html %}
+        <div class="v-visible">…</div>
+        <div class="v-visible-sr">…</div>
+        <div class="v-hidden">…</div>
+        {% endhighlight %}
         <div class="stacks-preview--example fs-caption ff-mono">
             <div class="grid gs8 fw-wrap">
-                <div class="grid--cell bg-black-075 p12 ba bc-black-3 v-visible">
+                <div
+                    class="grid--cell bg-black-075 p12 ba bc-black-3 v-visible"
+                >
                     .v-visible
                 </div>
-                <div class="grid--cell bg-black-075 p12 ba bc-black-3 v-visible-sr">
+                <div
+                    class="
+                        grid--cell
+                        bg-black-075
+                        p12
+                        ba
+                        bc-black-3
+                        v-visible-sr
+                    "
+                >
                     .v-visible-sr
                 </div>
                 <div class="grid--cell bg-black-075 p12 ba bc-black-3 v-hidden">

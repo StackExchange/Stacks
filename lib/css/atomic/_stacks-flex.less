@@ -16,52 +16,80 @@
 //      This determines the direction content flows within a parent container.
 //      The default values are row.
 //  ----------------------------------------------------------------------------
-#stacks-internals #responsify('.fd-row', { flex-direction: row !important; });
-#stacks-internals #responsify('.fd-row-reverse', { flex-direction: row-reverse !important; });
-#stacks-internals #responsify('.fd-column', { flex-direction: column !important; });
-#stacks-internals #responsify('.fd-column-reverse', { flex-direction: column-reverse !important; });
+#stacks-internals #responsify('.fd-row', { flex-direction: row !important; });;
+#stacks-internals #responsify('.fd-row-reverse', { flex-direction: row-reverse !important; });;
+#stacks-internals #responsify('.fd-column', { flex-direction: column !important; });;
+#stacks-internals #responsify('.fd-column-reverse', { flex-direction: column-reverse !important; });;
 
 //  --  FLEX WRAP
 //      This determines if a parent's child items will wrap or not.
 //  ----------------------------------------------------------------------------
-#stacks-internals #responsify('.fw-wrap', { flex-wrap: wrap !important; });
-#stacks-internals #responsify('.fw-reverse', { flex-wrap: wrap-reverse !important; });
-#stacks-internals #responsify('.fw-nowrap', { flex-wrap: nowrap !important; });
+#stacks-internals #responsify('.fw-wrap', { flex-wrap: wrap !important; });;
+#stacks-internals #responsify('.fw-reverse', { flex-wrap: wrap-reverse !important; });;
+#stacks-internals #responsify('.fw-nowrap', { flex-wrap: nowrap !important; });;
 
 //  --  FLEX FLOW
 //      This is another shorthand property for flex-direction and flex-wrap.
 //      Default value is "row nowrap".
 //  ----------------------------------------------------------------------------
-.ff-row-wrap { flex-flow: row wrap !important; }
-.ff-row-nowrap { flex-flow: row nowrap !important; }
-.ff-row-reverse-wrap { flex-flow: row-reverse wrap !important; }
-.ff-row-reverse-nowrap { flex-flow: row-reverse nowrap !important; }
-.ff-column-wrap { flex-flow: column wrap !important; }
-.ff-column-nowrap { flex-flow: column nowrap !important; }
-.ff-column-reverse-wrap { flex-flow: column-reverse wrap !important; }
-.ff-column-reverse-nowrap { flex-flow: column-reverse nowrap !important; }
+.ff-row-wrap {
+    flex-flow: row wrap !important;
+}
+.ff-row-nowrap {
+    flex-flow: row nowrap !important;
+}
+.ff-row-reverse-wrap {
+    flex-flow: row-reverse wrap !important;
+}
+.ff-row-reverse-nowrap {
+    flex-flow: row-reverse nowrap !important;
+}
+.ff-column-wrap {
+    flex-flow: column wrap !important;
+}
+.ff-column-nowrap {
+    flex-flow: column nowrap !important;
+}
+.ff-column-reverse-wrap {
+    flex-flow: column-reverse wrap !important;
+}
+.ff-column-reverse-nowrap {
+    flex-flow: column-reverse nowrap !important;
+}
 
 //  --  JUSTIFY CONTENT
 //      Defines the child alignment along the parent's main axis
 //  ----------------------------------------------------------------------------
-#stacks-internals #responsify('.jc-center', { justify-content: center !important; });
-#stacks-internals #responsify('.jc-end', { justify-content: flex-end !important; });
-#stacks-internals #responsify('.jc-space-around', { justify-content: space-around !important; });
-#stacks-internals #responsify('.jc-space-between', { justify-content: space-between !important; });
-#stacks-internals #responsify('.jc-space-evenly', { justify-content: space-evenly !important; });
-#stacks-internals #responsify('.jc-start', { justify-content: flex-start !important; });
+#stacks-internals #responsify('.jc-center', { justify-content: center !important; });;
+#stacks-internals #responsify('.jc-end', { justify-content: flex-end !important; });;
+#stacks-internals #responsify('.jc-space-around', { justify-content: space-around !important; });;
+#stacks-internals #responsify('.jc-space-between', { justify-content: space-between !important; });;
+#stacks-internals #responsify('.jc-space-evenly', { justify-content: space-evenly !important; });;
+#stacks-internals #responsify('.jc-start', { justify-content: flex-start !important; });;
 
 //  --  ALIGN CONTENT
 //      Aligns the container's lines when there is extra space in the
 //      cross-axis. Note that this only works when a parent container
 //      has more than one line.
 //  ----------------------------------------------------------------------------
-.ac-center { align-content: center !important; }
-.ac-end { align-content: flex-end !important; }
-.ac-space-around { align-content: space-around !important; }
-.ac-space-between { align-content: space-between !important; }
-.ac-start { align-content: flex-start !important; }
-.ac-stretch { align-content: stretch !important; }
+.ac-center {
+    align-content: center !important;
+}
+.ac-end {
+    align-content: flex-end !important;
+}
+.ac-space-around {
+    align-content: space-around !important;
+}
+.ac-space-between {
+    align-content: space-between !important;
+}
+.ac-start {
+    align-content: flex-start !important;
+}
+.ac-stretch {
+    align-content: stretch !important;
+}
 
 //  --  ALIGN ITEMS
 //      Defines the default behavior for how child items align along
@@ -76,13 +104,16 @@
         .template(@value) when (default()) { align-items: @value !important; };
     },
     baseline center end start stretch
-);
+);;
 
 //  --  CENTER ITEMS
 //      A common combination of classes is .jc-center and .ai-center.
 //      Use this class when you want both.
 //  ----------------------------------------------------------------------------
-.grid__center { .jc-center; .ai-center; }
+.grid__center {
+    .jc-center;
+    .ai-center;
+}
 
 //  --  ALIGN SELF
 //      Allows child containers to re-align themselves regardless
@@ -96,48 +127,82 @@
         .template(@value) when (default()) { align-self: @value !important; };
     },
     auto baseline center end start stretch
-);
+);;
 
 //  --  FLEX
 //      Graduating scale of flex-grow and flex-shrink values
 //  ----------------------------------------------------------------------------
-#stacks-internals #responsify('.fl0', { flex: 0 auto !important; });
-#stacks-internals #responsify('.fl1', { flex: 1 auto !important; });
-.fl2 { flex: 2 auto !important; }
-.fl3 { flex: 3 auto !important; }
-.fl4 { flex: 4 auto !important; }
-.fl5 { flex: 5 auto !important; }
+#stacks-internals #responsify('.fl0', { flex: 0 auto !important; });;
+#stacks-internals #responsify('.fl1', { flex: 1 auto !important; });;
+.fl2 {
+    flex: 2 auto !important;
+}
+.fl3 {
+    flex: 3 auto !important;
+}
+.fl4 {
+    flex: 4 auto !important;
+}
+.fl5 {
+    flex: 5 auto !important;
+}
 
 //  --  FLEX SHRINK
 //      Specifies the flex-shrink factor, which states how much an item will
 //      shrink relative to other flex items in the container when there isn't
 //      enough space in the row. Default value is 1.
 //  ----------------------------------------------------------------------------
-.fl-shrink0 { flex-shrink: 0; }
-.fl-shrink1 { flex-shrink: 1; }
-.fl-shrink2 { flex-shrink: 2; }
-.fl-shrink3 { flex-shrink: 3; }
-.fl-shrink4 { flex-shrink: 4; }
-.fl-shrink5 { flex-shrink: 5; }
+.fl-shrink0 {
+    flex-shrink: 0;
+}
+.fl-shrink1 {
+    flex-shrink: 1;
+}
+.fl-shrink2 {
+    flex-shrink: 2;
+}
+.fl-shrink3 {
+    flex-shrink: 3;
+}
+.fl-shrink4 {
+    flex-shrink: 4;
+}
+.fl-shrink5 {
+    flex-shrink: 5;
+}
 
 //  --  FLEX GROW
 //      Specifies the flex-shrink grow, which states how much an item will
 //      grow relative to other flex items in the container when there isn't
 //      enough space in the row. Default value is 1.
 //  ----------------------------------------------------------------------------
-.fl-grow0 { flex-grow: 0; }
-.fl-grow1 { flex-grow: 1; }
-.fl-grow2 { flex-grow: 2; }
-.fl-grow3 { flex-grow: 3; }
-.fl-grow4 { flex-grow: 4; }
-.fl-grow5 { flex-grow: 5; }
+.fl-grow0 {
+    flex-grow: 0;
+}
+.fl-grow1 {
+    flex-grow: 1;
+}
+.fl-grow2 {
+    flex-grow: 2;
+}
+.fl-grow3 {
+    flex-grow: 3;
+}
+.fl-grow4 {
+    flex-grow: 4;
+}
+.fl-grow5 {
+    flex-grow: 5;
+}
 
 //  --  FLEX NONE
 //      This is equivalent to flex: 0 0 auto.
 //      It sizes the item according to its width/height properties, but makes it
 //      fully inflexible.
 //  ----------------------------------------------------------------------------
-.fl-none { flex: none; }
+.fl-none {
+    flex: none;
+}
 
 //  --  FLEX EQUAL
 //      Equally space all children of a grid
@@ -151,5 +216,5 @@
 //  --  Ordering
 //      Designate a child container's position.
 //  ----------------------------------------------------------------------------
-#stacks-internals #responsify('.order-first', { order: -1 !important; });
-#stacks-internals #responsify('.order-last', { order: 1 !important; });
+#stacks-internals #responsify('.order-first', { order: -1 !important; });;
+#stacks-internals #responsify('.order-last', { order: 1 !important; });;

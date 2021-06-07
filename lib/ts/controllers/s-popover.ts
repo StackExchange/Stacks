@@ -1,6 +1,9 @@
 namespace Stacks {
-
-    type OutsideClickBehavior = "always" | "never" | "if-in-viewport" | "after-dismissal";
+    type OutsideClickBehavior =
+        | "always"
+        | "never"
+        | "if-in-viewport"
+        | "after-dismissal";
 
     export abstract class BasePopoverController extends StacksController {
         // @ts-ignore
@@ -30,7 +33,9 @@ namespace Stacks {
          */
         get isVisible() {
             const popoverElement = this.popoverElement;
-            return popoverElement ? popoverElement.classList.contains("is-visible") : false;
+            return popoverElement
+                ? popoverElement.classList.contains("is-visible")
+                : false;
         }
 
         /**
@@ -38,28 +43,43 @@ namespace Stacks {
          */
         get isInViewport() {
             const element = this.popoverElement;
-            if (!this.isVisible || !element) { return false; }
+            if (!this.isVisible || !element) {
+                return false;
+            }
 
             // From https://stackoverflow.com/a/5354536.  Theoretically, this could be calculated using Popper's detectOverflow function,
             // but it's unclear how to access that with our current configuration.
 
             const rect = element.getBoundingClientRect();
-            const viewHeight = Math.max(document.documentElement.clientHeight, window.innerHeight);
-            const viewWidth = Math.max(document.documentElement.clientWidth, window.innerWidth);
+            const viewHeight = Math.max(
+                document.documentElement.clientHeight,
+                window.innerHeight
+            );
+            const viewWidth = Math.max(
+                document.documentElement.clientWidth,
+                window.innerWidth
+            );
 
-            return rect.bottom > 0 && rect.top < viewHeight && rect.right > 0 && rect.left < viewWidth;
+            return (
+                rect.bottom > 0 &&
+                rect.top < viewHeight &&
+                rect.right > 0 &&
+                rect.left < viewWidth
+            );
         }
 
         protected get shouldHideOnOutsideClick() {
-            const hideBehavior = <OutsideClickBehavior>this.data.get("hide-on-outside-click");
+            const hideBehavior = <OutsideClickBehavior>(
+                this.data.get("hide-on-outside-click")
+            );
             switch (hideBehavior) {
                 case "after-dismissal":
                 case "never":
                     return false;
                 case "if-in-viewport":
-                     return this.isInViewport;
+                    return this.isInViewport;
                 default:
-                     return true;
+                    return true;
             }
         }
 
@@ -94,21 +114,27 @@ namespace Stacks {
         /**
          * Toggles the visibility of the popover
          */
-        toggle(dispatcher: Event|Element|null = null) {
+        toggle(dispatcher: Event | Element | null = null) {
             this.isVisible ? this.hide(dispatcher) : this.show(dispatcher);
         }
 
         /**
          * Shows the popover if not already visible
          */
-        show(dispatcher: Event|Element|null = null) {
-            if (this.isVisible) { return; }
+        show(dispatcher: Event | Element | null = null) {
+            if (this.isVisible) {
+                return;
+            }
 
             let dispatcherElement = this.getDispatcher(dispatcher);
 
-            if (this.triggerEvent("show", {
-                dispatcher: dispatcherElement
-            }).defaultPrevented) { return; }
+            if (
+                this.triggerEvent("show", {
+                    dispatcher: dispatcherElement,
+                }).defaultPrevented
+            ) {
+                return;
+            }
 
             if (!this.popper) {
                 this.initializePopper();
@@ -125,14 +151,20 @@ namespace Stacks {
         /**
          * Hides the popover if not already hidden
          */
-        hide(dispatcher: Event|Element|null = null) {
-            if (!this.isVisible) { return; }
+        hide(dispatcher: Event | Element | null = null) {
+            if (!this.isVisible) {
+                return;
+            }
 
             let dispatcherElement = this.getDispatcher(dispatcher);
 
-            if (this.triggerEvent("hide", {
-                dispatcher: dispatcherElement
-            }).defaultPrevented) { return; }
+            if (
+                this.triggerEvent("hide", {
+                    dispatcher: dispatcherElement,
+                }).defaultPrevented
+            ) {
+                return;
+            }
 
             this.popoverElement.classList.remove("is-visible");
 
@@ -143,7 +175,10 @@ namespace Stacks {
             }
 
             // on first interaction, hide-on-outside-click with value "after-dismissal" reverts to the default behavior
-            if (<OutsideClickBehavior>this.data.get("hide-on-outside-click") === "after-dismissal") {
+            if (
+                <OutsideClickBehavior>this.data.get("hide-on-outside-click") ===
+                "after-dismissal"
+            ) {
                 this.data.delete("hide-on-outside-click");
             }
 
@@ -153,20 +188,20 @@ namespace Stacks {
         /**
          * Binds document events for this popover and fires the shown event
          */
-        protected shown(dispatcher: Element|null = null) {
+        protected shown(dispatcher: Element | null = null) {
             this.bindDocumentEvents();
             this.triggerEvent("shown", {
-                dispatcher: dispatcher
+                dispatcher: dispatcher,
             });
         }
 
         /**
          * Unbinds document events for this popover and fires the hidden event
          */
-        protected hidden(dispatcher: Element|null = null) {
+        protected hidden(dispatcher: Element | null = null) {
             this.unbindDocumentEvents();
             this.triggerEvent("hidden", {
-                dispatcher: dispatcher
+                dispatcher: dispatcher,
             });
         }
 
@@ -182,23 +217,27 @@ namespace Stacks {
          */
         private initializePopper() {
             // @ts-ignore
-            this.popper = Popper.createPopper(this.referenceElement, this.popoverElement, {
-                placement: this.data.get("placement") || "bottom",
-                modifiers: [
-                    {
-                        name: "offset",
-                        options: {
-                            offset: [0, 10], // The entire popover should be 10px away from the element
-                        }
-                    },
-                    {
-                        name: "arrow",
-                        options: {
-                            element: ".s-popover--arrow"
+            this.popper = Popper.createPopper(
+                this.referenceElement,
+                this.popoverElement,
+                {
+                    placement: this.data.get("placement") || "bottom",
+                    modifiers: [
+                        {
+                            name: "offset",
+                            options: {
+                                offset: [0, 10], // The entire popover should be 10px away from the element
+                            },
                         },
-                    },
-                ]
-            });
+                        {
+                            name: "arrow",
+                            options: {
+                                element: ".s-popover--arrow",
+                            },
+                        },
+                    ],
+                }
+            );
         }
 
         /**
@@ -211,14 +250,21 @@ namespace Stacks {
 
             // if there is an alternative reference selector and that element exists, use it (and throw if it isn't found)
             if (referenceSelector) {
-                this.referenceElement = <HTMLElement>this.element.querySelector(referenceSelector);
+                this.referenceElement = <HTMLElement>(
+                    this.element.querySelector(referenceSelector)
+                );
 
                 if (!this.referenceElement) {
-                    throw "Unable to find element by reference selector: " + referenceSelector;
+                    throw (
+                        "Unable to find element by reference selector: " +
+                        referenceSelector
+                    );
                 }
             }
 
-            const popoverId = this.referenceElement.getAttribute(this.popoverSelectorAttribute);
+            const popoverId = this.referenceElement.getAttribute(
+                this.popoverSelectorAttribute
+            );
 
             var popoverElement = null;
 
@@ -226,7 +272,7 @@ namespace Stacks {
             if (popoverId) {
                 popoverElement = document.getElementById(popoverId);
 
-                if (!popoverElement){
+                if (!popoverElement) {
                     throw `[${this.popoverSelectorAttribute}="{POPOVER_ID}"] required`;
                 }
             }
@@ -246,14 +292,14 @@ namespace Stacks {
          * Determines the correct dispatching element from a potential input
          * @param dispatcher The event or element to get the dispatcher from
          */
-        protected getDispatcher(dispatcher: Event|Element|null = null) : Element {
+        protected getDispatcher(
+            dispatcher: Event | Element | null = null
+        ): Element {
             if (dispatcher instanceof Event) {
                 return <Element>dispatcher.target;
-            }
-            else if (dispatcher instanceof Element) {
+            } else if (dispatcher instanceof Element) {
                 return dispatcher;
-            }
-            else {
+            } else {
                 return this.element;
             }
         }
@@ -279,7 +325,7 @@ namespace Stacks {
         /**
          * Toggles optional classes in addition to BasePopoverController.shown
          */
-        protected shown(dispatcher: Element|null = null) {
+        protected shown(dispatcher: Element | null = null) {
             this.toggleOptionalClasses(true);
             super.shown(dispatcher);
         }
@@ -287,7 +333,7 @@ namespace Stacks {
         /**
          * Toggles optional classes in addition to BasePopoverController.hidden
          */
-        protected hidden(dispatcher: Element|null = null) {
+        protected hidden(dispatcher: Element | null = null) {
             this.toggleOptionalClasses(false);
             super.hidden(dispatcher);
         }
@@ -296,18 +342,28 @@ namespace Stacks {
          * Binds global events to the document for hiding popovers on user interaction
          */
         protected bindDocumentEvents() {
-            this.boundHideOnOutsideClick = this.boundHideOnOutsideClick || this.hideOnOutsideClick.bind(this);
-            this.boundHideOnEscapePress = this.boundHideOnEscapePress || this.hideOnEscapePress.bind(this);
+            this.boundHideOnOutsideClick =
+                this.boundHideOnOutsideClick ||
+                this.hideOnOutsideClick.bind(this);
+            this.boundHideOnEscapePress =
+                this.boundHideOnEscapePress ||
+                this.hideOnEscapePress.bind(this);
 
-            document.addEventListener("mousedown", this.boundHideOnOutsideClick);
+            document.addEventListener(
+                "mousedown",
+                this.boundHideOnOutsideClick
+            );
             document.addEventListener("keyup", this.boundHideOnEscapePress);
         }
 
         /**
          * Unbinds global events to the document for hiding popovers on user interaction
          */
-        protected  unbindDocumentEvents() {
-            document.removeEventListener("mousedown", this.boundHideOnOutsideClick);
+        protected unbindDocumentEvents() {
+            document.removeEventListener(
+                "mousedown",
+                this.boundHideOnOutsideClick
+            );
             document.removeEventListener("keyup", this.boundHideOnEscapePress);
         }
 
@@ -319,10 +375,15 @@ namespace Stacks {
             const target = <Node>e.target;
             // check if the document was clicked inside either the reference element or the popover itself
             // note: .contains also returns true if the node itself matches the target element
-            if (this.shouldHideOnOutsideClick && !this.referenceElement.contains(target) && !this.popoverElement!.contains(target) && document.body.contains(target)) {
+            if (
+                this.shouldHideOnOutsideClick &&
+                !this.referenceElement.contains(target) &&
+                !this.popoverElement!.contains(target) &&
+                document.body.contains(target)
+            ) {
                 this.hide(e);
             }
-        };
+        }
 
         /**
          * Forces the popover to hide if the user presses escape while it, one of its childen, or the reference element are focused
@@ -341,7 +402,7 @@ namespace Stacks {
             }
 
             this.hide(e);
-        };
+        }
 
         /**
          * Toggles all classes on the originating element based on the `class-toggle` data
@@ -352,9 +413,12 @@ namespace Stacks {
                 return;
             }
             var cl = this.referenceElement.classList;
-            this.data.get("toggle-class")!.split(/\s+/).forEach(function (cls: string) {
-                cl.toggle(cls, show);
-            });
+            this.data
+                .get("toggle-class")!
+                .split(/\s+/)
+                .forEach(function (cls: string) {
+                    cl.toggle(cls, show);
+                });
         }
     }
 
@@ -377,7 +441,7 @@ namespace Stacks {
      * Helper to manually hide an s-popover element via external JS
      * @param element the element the `data-controller="s-popover"` attribute is on
      */
-     export function hidePopover(element: Element) {
+    export function hidePopover(element: Element) {
         const { isPopover, controller, popover } = getPopover(element);
 
         if (controller) {
@@ -396,11 +460,11 @@ namespace Stacks {
      * Options to use when attaching a popover via `Stacks.attachPopover`.
      * @see Stacks.attachPopover
      */
-     export interface PopoverOptions {
+    export interface PopoverOptions {
         /**
          * When true, the `click->s-popover#toggle` action will be attached to the controller element or reference element.
          */
-       toggleOnClick?: boolean;
+        toggleOnClick?: boolean;
         /**
          * When set, `data-s-popover-placement` will be set to this value on the controller element.
          */
@@ -419,20 +483,26 @@ namespace Stacks {
      *                If the popover does not have a parent element, it will be inserted as a immediately after the reference element.
      * @param options an optional collection of options to use when configuring the popover.
      */
-     export function attachPopover(element: Element, popover: Element | string, options?: PopoverOptions)
-     {
-        const { referenceElement, popover: existingPopover } = getPopover(element);
+    export function attachPopover(
+        element: Element,
+        popover: Element | string,
+        options?: PopoverOptions
+    ) {
+        const { referenceElement, popover: existingPopover } =
+            getPopover(element);
 
         if (existingPopover) {
-            throw `element already has popover with id="${existingPopover.id}"`
+            throw `element already has popover with id="${existingPopover.id}"`;
         }
 
         if (!referenceElement) {
-            throw `element has invalid data-s-popover-reference-selector attribute`
+            throw `element has invalid data-s-popover-reference-selector attribute`;
         }
 
-        if (typeof popover === 'string') {
-            const elements = document.createRange().createContextualFragment(popover).children;
+        if (typeof popover === "string") {
+            const elements = document
+                .createRange()
+                .createContextualFragment(popover).children;
             if (elements.length !== 1) {
                 throw "popover should contain a single element";
             }
@@ -442,7 +512,7 @@ namespace Stacks {
         const existingId = referenceElement.getAttribute("aria-controls");
         var popoverId = popover.id;
 
-        if (!popover.classList.contains('s-popover')) {
+        if (!popover.classList.contains("s-popover")) {
             throw `popover should have the "s-popover" class but had class="${popover.className}"`;
         }
 
@@ -451,7 +521,9 @@ namespace Stacks {
         }
 
         if (!popoverId) {
-            popoverId = "--stacks-s-popover-" + Math.random().toString(36).substring(2, 10);
+            popoverId =
+                "--stacks-s-popover-" +
+                Math.random().toString(36).substring(2, 10);
             popover.id = popoverId;
         }
 
@@ -467,10 +539,16 @@ namespace Stacks {
 
         if (options) {
             if (options.toggleOnClick) {
-                referenceElement.setAttribute("data-action", "click->s-popover#toggle");
+                referenceElement.setAttribute(
+                    "data-action",
+                    "click->s-popover#toggle"
+                );
             }
             if (options.placement) {
-                element.setAttribute("data-s-popover-placement", options.placement);
+                element.setAttribute(
+                    "data-s-popover-placement",
+                    options.placement
+                );
             }
             if (options.autoShow) {
                 element.setAttribute("data-s-popover-auto-show", "true");
@@ -484,7 +562,8 @@ namespace Stacks {
      * @returns The popover that was attached to the element.
      */
     export function detachPopover(element: Element) {
-        const { isPopover, controller, referenceElement, popover } = getPopover(element);
+        const { isPopover, controller, referenceElement, popover } =
+            getPopover(element);
 
         // Hide the popover so its events fire.
         controller?.hide();
@@ -505,13 +584,13 @@ namespace Stacks {
 
     interface GetPopoverResult {
         /** indicates whether or not the element has s-popover in its `data-controller` class */
-        isPopover: boolean,
+        isPopover: boolean;
         /** element's existing `PopoverController` or null it it has not been configured yet */
-        controller: PopoverController | null,
+        controller: PopoverController | null;
         /** popover's reference element as would live in `referenceSelector` or null if invalid */
-        referenceElement: Element | null,
+        referenceElement: Element | null;
         /** popover currently associated with the controller, or null if one does not exist in the DOM */
-        popover: HTMLElement | null
+        popover: HTMLElement | null;
     }
 
     /**
@@ -520,11 +599,23 @@ namespace Stacks {
      * @param element An element that may have `data-controller="s-popover"`.
      */
     function getPopover(element: Element): GetPopoverResult {
-        const isPopover = element.getAttribute("data-controller")?.includes("s-popover") || false;
-        const controller = Stacks.application.getControllerForElementAndIdentifier(element, "s-popover") as PopoverController;
-        const referenceSelector = element.getAttribute("data-s-popover-reference-selector");
-        const referenceElement = referenceSelector ? element.querySelector(referenceSelector) : element;
-        const popoverId = referenceElement ? referenceElement.getAttribute("aria-controls") : null;
+        const isPopover =
+            element.getAttribute("data-controller")?.includes("s-popover") ||
+            false;
+        const controller =
+            Stacks.application.getControllerForElementAndIdentifier(
+                element,
+                "s-popover"
+            ) as PopoverController;
+        const referenceSelector = element.getAttribute(
+            "data-s-popover-reference-selector"
+        );
+        const referenceElement = referenceSelector
+            ? element.querySelector(referenceSelector)
+            : element;
+        const popoverId = referenceElement
+            ? referenceElement.getAttribute("aria-controls")
+            : null;
         const popover = popoverId ? document.getElementById(popoverId) : null;
         return { isPopover, controller, referenceElement, popover };
     }
@@ -535,14 +626,20 @@ namespace Stacks {
      * @param controllerName The name of the controller to add/remove
      * @param include Whether to add the controllerName value
      */
-    function toggleController(el: Element, controllerName: string, include: boolean) {
-        var controllers = new Set(el.getAttribute('data-controller')?.split(/\s+/));
+    function toggleController(
+        el: Element,
+        controllerName: string,
+        include: boolean
+    ) {
+        var controllers = new Set(
+            el.getAttribute("data-controller")?.split(/\s+/)
+        );
         if (include) {
             controllers.add(controllerName);
         } else {
             controllers.delete(controllerName);
         }
-        el.setAttribute('data-controller', Array.from(controllers).join(' '))
+        el.setAttribute("data-controller", Array.from(controllers).join(" "));
     }
 }
 

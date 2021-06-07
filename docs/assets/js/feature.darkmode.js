@@ -6,10 +6,13 @@ $(document).ready(function () {
         e.preventDefault();
         e.stopPropagation();
 
-        var browserPrefersDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+        var browserPrefersDark =
+            window.matchMedia &&
+            window.matchMedia("(prefers-color-scheme: dark)").matches;
 
         var isForcedDarkMode = body.hasClass("theme-dark");
-        var isUnforcedDarkMode = browserPrefersDark && body.hasClass("theme-system");
+        var isUnforcedDarkMode =
+            browserPrefersDark && body.hasClass("theme-system");
 
         if (browserPrefersDark) {
             body.toggleClass("theme-system", !isUnforcedDarkMode);
@@ -19,7 +22,10 @@ $(document).ready(function () {
             body.toggleClass("theme-dark", !isForcedDarkMode);
         }
 
-        localStorage.setItem("forceDarkModeOn", !(isUnforcedDarkMode || isForcedDarkMode));
+        localStorage.setItem(
+            "forceDarkModeOn",
+            !(isUnforcedDarkMode || isForcedDarkMode)
+        );
 
         return false;
     });

@@ -1,10 +1,10 @@
-$(document).ready(function() {
+$(document).ready(function () {
     var navigation = $(".js-navigation");
     var closeIcon = $(".js-hamburger-close-icon");
     var hamburgerIcon = $(".js-hamburger-icon");
     var hamburgerBtn = $(".js-hamburger-btn");
 
-    hamburgerBtn.click(function(e) {
+    hamburgerBtn.click(function (e) {
         e.preventDefault();
         e.stopPropagation();
 

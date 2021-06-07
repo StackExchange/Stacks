@@ -32,7 +32,7 @@
                 flex-basis: ((@count * 100%) / @num);
             }
 
-            #stacks-internals #grid-builder-helpers .create-fixed-cells(@num, (@count + 1));
+            #stacks-internals #grid-builder-helpers .create-fixed-cells(@num, (@count + 1));;
         }
 
         //  --  AUTO FIXED WIDTH CELLS
@@ -50,7 +50,7 @@
                 }
             }
 
-            #stacks-internals #grid-builder-helpers .create-grid-count-cols(@num, (@count + 1));
+            #stacks-internals #grid-builder-helpers .create-grid-count-cols(@num, (@count + 1));;
         }
 
         //  --  GRID GUTTERS
@@ -98,7 +98,9 @@
         //             and right.
         //
         //  ----------------------------------------------------------------------------
-        .grid-fixed-cell-spacing(@spacing, @num, @count: 1) when (@count =< @num) {
+        .grid-fixed-cell-spacing(@spacing, @num, @count: 1)
+            when
+            (@count =< @num) {
             @cell-width: (@count * 100% / @num);
 
             > .grid--cell@{count} {
@@ -116,13 +118,13 @@
             //  ------------------------------------------------------------------------
             > .grid--cell@{count},                                  // [1]
             &.grid__allcells@{count} > .grid,                       // [2]
-            &.grid__allcells@{count} > .grid--cell {                // [2]
+            &.grid__allcells@{count} > .grid--cell {
+                // [2]
                 flex-basis: calc(~"@{cell-width} - @{spacing}");
             }
 
-            #stacks-internals #grid-builder-helpers .grid-fixed-cell-spacing(@spacing, @num, (@count + 1));
+            #stacks-internals #grid-builder-helpers .grid-fixed-cell-spacing(@spacing, @num, (@count + 1));;
         }
-
 
         //  ----------------------------------------------------------------------------
         //      2.  Generate the desired gutters
@@ -148,11 +150,12 @@
             //  --  FIXED WIDTH CELLS
             //      Now we call for the above mixin [1] to make sure we adjust the default
             //      widths for the new gutters.
-            #stacks-internals #grid-builder-helpers .grid-fixed-cell-spacing(@spacing, @grid-cols);
+            #stacks-internals
+                #grid-builder-helpers
+                .grid-fixed-cell-spacing(@spacing, @grid-cols);
         }
     }
 }
-
 
 //  ============================================================================
 //  $   GRID ELEMENTS
@@ -183,7 +186,6 @@
     }
 }
 
-
 & {
     #stacks-internals #grid-builder-settings(); // load @grid-cols
 
@@ -199,16 +201,36 @@
 //  $   GRID SPACING
 //      Insert spaces or gutters in between grid cells
 //  ----------------------------------------------------------------------------
-.gs2 { #stacks-internals #grid-builder-helpers .gutter-spacing(@su2); }
-.gs4 { #stacks-internals #grid-builder-helpers .gutter-spacing(@su4); }
-.gs6 { #stacks-internals #grid-builder-helpers .gutter-spacing(@su6); }
-.gs8 { #stacks-internals #grid-builder-helpers .gutter-spacing(@su8); }
-.gs12 { #stacks-internals #grid-builder-helpers .gutter-spacing(@su12); }
-.gs16 { #stacks-internals #grid-builder-helpers .gutter-spacing(@su16); }
-.gs24 { #stacks-internals #grid-builder-helpers .gutter-spacing(@su24); }
-.gs32 { #stacks-internals #grid-builder-helpers .gutter-spacing(@su32); }
-.gs48 { #stacks-internals #grid-builder-helpers .gutter-spacing(@su48); }
-.gs64 { #stacks-internals #grid-builder-helpers .gutter-spacing(@su64); }
+.gs2 {
+    #stacks-internals #grid-builder-helpers .gutter-spacing(@su2);
+}
+.gs4 {
+    #stacks-internals #grid-builder-helpers .gutter-spacing(@su4);
+}
+.gs6 {
+    #stacks-internals #grid-builder-helpers .gutter-spacing(@su6);
+}
+.gs8 {
+    #stacks-internals #grid-builder-helpers .gutter-spacing(@su8);
+}
+.gs12 {
+    #stacks-internals #grid-builder-helpers .gutter-spacing(@su12);
+}
+.gs16 {
+    #stacks-internals #grid-builder-helpers .gutter-spacing(@su16);
+}
+.gs24 {
+    #stacks-internals #grid-builder-helpers .gutter-spacing(@su24);
+}
+.gs32 {
+    #stacks-internals #grid-builder-helpers .gutter-spacing(@su32);
+}
+.gs48 {
+    #stacks-internals #grid-builder-helpers .gutter-spacing(@su48);
+}
+.gs64 {
+    #stacks-internals #grid-builder-helpers .gutter-spacing(@su64);
+}
 
 //  On rows, remove top and bottom margins
 .gsx {

@@ -15,7 +15,9 @@
         content: "";
         display: table;
     }
-    &:after { clear: both; }
+    &:after {
+        clear: both;
+    }
 }
 
 //  ===========================================================================
@@ -43,7 +45,6 @@
     }
 }
 
-
 //  ===========================================================================
 //  --  APPEARANCE
 //      Use this to overwrite the default appearance properties
@@ -53,7 +54,6 @@
     -moz-appearance: @all;
     appearance: @all;
 }
-
 
 //  ===========================================================================
 //  --  FONT FACE
@@ -68,10 +68,10 @@
         font-style: @style;
         font-weight: @weight;
         & when (@style=italic) {
-            #stacks-internals #font-face-src(@family, @path, @weight, " Italic");
+            #stacks-internals #font-face-src(@family, @path, @weight, " Italic");;
         }
         & when not (@style=italic) {
-            #stacks-internals #font-face-src(@family, @path, @weight, "");
+            #stacks-internals #font-face-src(@family, @path, @weight, "");;
         }
     }
 }
@@ -80,9 +80,7 @@
 //  Internals only beyond this point -- helpers for .font-face()
 //  ---------------------------------------------------------------------------
 
-
 #stacks-internals() {
-
     // Generate all common variants for local names that this font face may have.
     // The CSS spec (Font Module Level 3, Section 4.3) says to use "only the Postscript
     // name or the full font name".
@@ -97,23 +95,40 @@
     // For the weight 400 we also include the un-weight-postfixed name ("Comic Sans MS Italic").
 
     #font-face-src(@family, @path, @weight, @style-postfix) {
-        @index: round(@weight/100);
-        @weight-names: "Thin", "Extra Light", "Light", "Regular", "Medium", "Semi Bold", "Bold", "Extra Bold", "Black";
+        @index: round(@weight / 100);
+        @weight-names: "Thin", "Extra Light", "Light", "Regular", "Medium",
+            "Semi Bold", "Bold", "Extra Bold", "Black";
         @weight-name: extract(@weight-names, @index);
-        #stacks-internals #font-face-src-postfix(@family, @path, "@{weight-name}", @weight, @style-postfix);
+        #stacks-internals #font-face-src-postfix(@family, @path, "@{weight-name}", @weight, @style-postfix);;
     }
 
     #font-face-src-postfix(@family, @path, @postfix-name, @postfix-number, @style-postfix) {
         @family-nospace: replace(@family, " ", "");
-        @postfix-name-nospace: replace("@{postfix-name}@{style-postfix}", " ", "");
-        @postfix-number-nospace: replace("@{postfix-number}@{style-postfix}", " ", "");
+        @postfix-name-nospace: replace(
+            "@{postfix-name}@{style-postfix}",
+            " ",
+            ""
+        );
+        @postfix-number-nospace: replace(
+            "@{postfix-number}@{style-postfix}",
+            " ",
+            ""
+        );
 
         & when (@postfix-name="Regular") {
-            src: local("@{family} @{postfix-name}@{style-postfix}"), local("@{family-nospace}-@{postfix-name-nospace}"), local("@{family} @{postfix-number}@{style-postfix}"), local("@{family-nospace}-@{postfix-number-nospace}"), local("@{family}@{style-postfix}"), @path format("woff");
+            src: local("@{family} @{postfix-name}@{style-postfix}"),
+                local("@{family-nospace}-@{postfix-name-nospace}"),
+                local("@{family} @{postfix-number}@{style-postfix}"),
+                local("@{family-nospace}-@{postfix-number-nospace}"),
+                local("@{family}@{style-postfix}"), @path format("woff");
         }
 
         & when not (@postfix-name="Regular") {
-            src: local("@{family} @{postfix-name}@{style-postfix}"), local("@{family-nospace}-@{postfix-name-nospace}"), local("@{family} @{postfix-number}@{style-postfix}"), local("@{family-nospace}-@{postfix-number-nospace}"), @path format("woff");
+            src: local("@{family} @{postfix-name}@{style-postfix}"),
+                local("@{family-nospace}-@{postfix-name-nospace}"),
+                local("@{family} @{postfix-number}@{style-postfix}"),
+                local("@{family-nospace}-@{postfix-number-nospace}"),
+                @path format("woff");
         }
     }
 }

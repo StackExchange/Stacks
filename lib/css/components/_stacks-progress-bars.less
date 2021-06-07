@@ -37,7 +37,6 @@
     background-color: var(--green-400);
 }
 
-
 //  $$   LABEL
 //       For when there's descriptive, label copy within the progress bar
 //  ----------------------------------------------------------------------------
@@ -52,7 +51,6 @@
     color: var(--fc-dark);
     z-index: @zi-base + 2;
 }
-
 
 //  ===========================================================================
 //  $   VARIATION PROGRESS BACKGROUNDS
@@ -74,7 +72,6 @@
     }
 }
 
-
 //  ===========================================================================
 //  $   BADGE PROGRESS BARS
 //  ===========================================================================
@@ -90,7 +87,6 @@
 .s-progress__badge {
     background-color: transparent;
 }
-
 
 //  $$  GOLD
 //  ---------------------------------------------------------------------------
@@ -287,7 +283,12 @@
             // Multiply the circle circumference by an the opposite percentage of what we want to display
             // For example 70%, represented as a decimal is 0.7
             // The opposite of that is 0.3 so ( 1 - 0.7 )
-            stroke-dashoffset: calc(((1 - var(--s-progress-value)) * @s-progress-circle-circumference) * 1px); // Multiply everything by 1px since Safari and Firefox require these to be in pixels
+            stroke-dashoffset: calc(
+                (
+                        (1 - var(--s-progress-value)) *
+                            @s-progress-circle-circumference
+                    ) * 1px
+            ); // Multiply everything by 1px since Safari and Firefox require these to be in pixels
         }
     }
 

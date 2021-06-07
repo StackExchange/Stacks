@@ -1,8 +1,8 @@
 ---
 name: Feature request
 about: Suggest an idea for Stacks
-
 ---
+
 ⚠️ Please do not suggest feature ideas for Stack Overflow. This repo is for Stacks, our design system, not Stack Overflow.
 
 **Is your feature request related to a problem? Please describe.**

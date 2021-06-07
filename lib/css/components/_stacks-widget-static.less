@@ -11,7 +11,6 @@
 //  part is configurable and is in the dynamic part of Stacks as
 //  _stacks-widget-dynamic.less.
 
-
 @s-sidebarwidget-content-padding: @su16 - 1px; // subtract 1px for border
 @s-sidebarwidget-content-inner-spacing: @su12; // the spacing between two adjacent simple items
 @s-sidebarwidget-content-outer-spacing: @su16; // the spacing at the start/end of a group of simple items, as well as between a complex item and its separator line
@@ -28,7 +27,8 @@
     font-size: @fs-body1;
     background-color: var(--white);
 
-    &:not(.s-anchors) a:not(.button):not(.s-btn):not(.post-tag):not(.s-sidebarwidget--action):not(.s-user-card--link) {
+    &:not(.s-anchors)
+        a:not(.button):not(.s-btn):not(.post-tag):not(.s-sidebarwidget--action):not(.s-user-card--link) {
         &,
         &:visited {
             color: var(--black-500);
@@ -42,7 +42,7 @@
     // border-top. But because you shouldn't see the first visible item's or header's top border
     // (the widget itself provides for that border), we shift everything up by one pixel with the following pseudo-element.
     &:before {
-        content: '';
+        content: "";
         display: block;
         margin-top: -1px;
     }
@@ -56,7 +56,7 @@
     // still be visible, but at its highest point, this corner has a height of 0.27 pixels. And for
     // this sub-pixel issues, we're talking about different shades of gray. So we can live with that.
     &:after {
-        content: '';
+        content: "";
         position: absolute;
         top: -1px;
         right: -1px;
@@ -69,7 +69,11 @@
         // In order to also perfectly recreate the inner corner shape, our pseudo-element needs
         // the border on all sides. But we can only do that if we're able to hide the bottom part,
         // so this only works in browsers that support clip-path.
-        @supports ((-webkit-clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)) or (clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%))) or (-webkit-clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)) {
+        @supports (
+                (-webkit-clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%))
+                    or (clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%))
+            )
+            or (-webkit-clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)) {
             -webkit-clip-path: polygon(0% 0%, 100% 0%, 100% 50%, 0% 50%);
             clip-path: polygon(0% 0%, 100% 0%, 100% 50%, 0% 50%);
             border: 1px solid @s-sidebarwidget-outer-border-color;
@@ -86,9 +90,9 @@
     }
 }
 
-
 .s-sidebarwidget--header {
-    padding: @s-sidebarwidget-content-inner-spacing @s-sidebarwidget-content-padding;
+    padding: @s-sidebarwidget-content-inner-spacing
+        @s-sidebarwidget-content-padding;
     background: @s-sidebarwidget-header-background-color;
     color: var(--black-600);
     font-size: @fs-body2;
@@ -104,14 +108,14 @@
         font-weight: bold;
         .-action {
             font-weight: normal;
-            line-height: 1.3 * @fs-caption;  // line-height should be the same as in the outside element, so the header and action baselines line up
+            line-height: 1.3 * @fs-caption; // line-height should be the same as in the outside element, so the header and action baselines line up
         }
     }
 
     &.s-sidebarwidget__expanding-control {
         cursor: pointer;
         &:before {
-            content: '';
+            content: "";
             float: left;
             margin-top: ~"calc(1.3em / 2 - 5px)"; // 1.3 is our standard line height
             margin-right: @su12;
@@ -120,9 +124,10 @@
             border-right-width: 0;
             transition: -webkit-transform 0.3s cubic-bezier(0.4, 0.4, 0.6, 1);
             transition: transform 0.3s cubic-bezier(0.4, 0.4, 0.6, 1);
-            transition: transform 0.3s cubic-bezier(0.4, 0.4, 0.6, 1), -webkit-transform 0.3s cubic-bezier(0.4, 0.4, 0.6, 1);
+            transition: transform 0.3s cubic-bezier(0.4, 0.4, 0.6, 1),
+                -webkit-transform 0.3s cubic-bezier(0.4, 0.4, 0.6, 1);
         }
-        &[aria-expanded='true']:before {
+        &[aria-expanded="true"]:before {
             -webkit-transform: rotate(90deg);
             transform: rotate(90deg);
         }
@@ -138,7 +143,14 @@
 }
 
 table.s-sidebarwidget--content.s-sidebarwidget__items {
-    padding: (@s-sidebarwidget-content-outer-spacing - @s-sidebarwidget-content-inner-spacing) (@s-sidebarwidget-content-padding - @s-sidebarwidget-content-inner-spacing);
+    padding: (
+            @s-sidebarwidget-content-outer-spacing -
+                @s-sidebarwidget-content-inner-spacing
+        )
+        (
+            @s-sidebarwidget-content-padding -
+                @s-sidebarwidget-content-inner-spacing
+        );
     border-collapse: separate;
     border-spacing: @s-sidebarwidget-content-inner-spacing;
 
@@ -161,12 +173,17 @@ table.s-sidebarwidget--content.s-sidebarwidget__items {
 
 .s-sidebarwidget--content {
     margin: 0;
-    padding: @s-sidebarwidget-content-outer-spacing @s-sidebarwidget-content-padding;
+    padding: @s-sidebarwidget-content-outer-spacing
+        @s-sidebarwidget-content-padding;
 
     &.s-sidebarwidget__items {
         display: block;
         // the items themselves provide part of the spacing, so the content padding needs to account for that
-        padding: (@s-sidebarwidget-content-outer-spacing - @s-sidebarwidget-content-inner-spacing) @s-sidebarwidget-content-padding;
+        padding: (
+                @s-sidebarwidget-content-outer-spacing -
+                    @s-sidebarwidget-content-inner-spacing
+            )
+            @s-sidebarwidget-content-padding;
         &.s-sidebarwidget__block-items .s-sidebarwidget--item {
             .d-block;
         }
@@ -185,7 +202,7 @@ table.s-sidebarwidget--content.s-sidebarwidget__items {
             font-weight: bold;
 
             &:before {
-                content: '';
+                content: "";
                 position: absolute;
                 left: 0;
                 height: ~"calc(100% +" @s-sidebarwidget-content-inner-spacing ~")";
@@ -197,7 +214,8 @@ table.s-sidebarwidget--content.s-sidebarwidget__items {
             }
 
             a,
-            a:visited { // TODO: this isn't the best way to go about this. There should be a "is current" highlight without font modification for more complex cases
+            a:visited {
+                // TODO: this isn't the best way to go about this. There should be a "is current" highlight without font modification for more complex cases
                 color: inherit;
             }
         }
@@ -215,7 +233,7 @@ table.s-sidebarwidget--content.s-sidebarwidget__items {
         background-repeat: no-repeat;
         background-size: auto 10px;
 
-        #stacks-internals #bullet-arrow(var(--black-100));
+        #stacks-internals #bullet-arrow(var(--black-100));;
 
         &[aria-current="true"],
         &[aria-current="page"] {
@@ -224,7 +242,8 @@ table.s-sidebarwidget--content.s-sidebarwidget__items {
             font-weight: bold;
 
             a,
-            a:visited { // TODO: see above
+            a:visited {
+                // TODO: see above
                 color: inherit;
             }
         }

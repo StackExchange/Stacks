@@ -3,6 +3,7 @@ layout: page
 title: Z-Index
 description: Atomic z-index classes allow you to change an element’s z-index quickly.
 ---
+
 <section class="stacks-section">
     {% header "h2", "Classes" %}
     <div class="overflow-x-auto mb32">
@@ -15,10 +16,16 @@ description: Atomic z-index classes allow you to change an element’s z-index q
             </thead>
             <tbody>
                 {% for atomic in atomics.z-index %}
-                    <tr class="fs-caption">
-                        <th scope="row"><code class="stacks-code">.{{ atomic.class }}</code></th>
-                        <td><code class="stacks-code bg-white">{{ atomic.output }}</code></td>
-                    </tr>
+                <tr class="fs-caption">
+                    <th scope="row">
+                        <code class="stacks-code">.{{ atomic.class }}</code>
+                    </th>
+                    <td>
+                        <code class="stacks-code bg-white"
+                            >{{ atomic.output }}</code
+                        >
+                    </td>
+                </tr>
                 {% endfor %}
             </tbody>
         </table>
@@ -26,34 +33,135 @@ description: Atomic z-index classes allow you to change an element’s z-index q
 
     {% header "h2", "Examples" %}
     <div class="stacks-preview">
-{% highlight html %}
-<div class="z-base">…</div>
-<div class="z-hide">…</div>
-<div class="z-selected">…</div>
-<div class="z-active">…</div>
-<div class="z-dropdown">…</div>
-<div class="z-popover">…</div>
-<div class="z-tooltip">…</div>
-<div class="z-banner">…</div>
-<div class="z-nav">…</div>
-<div class="z-nav-fixed">…</div>
-<div class="z-modal-bg">…</div>
-<div class="z-modal">…</div>
-{% endhighlight %}
-        <div class="stacks-preview--example ps-relative fs-caption ff-mono overflow-x-auto" style="height: 552px;">
-            <div class="h100" style="width: 520px;">
-                <div class="z-base bg-black-075 p12 ba bc-black-3 ps-absolute" style="height: 80px; width: 80px;">.z-base</div>
-                <div class="z-hide bg-black-075 p12 ba bc-black-3 ps-absolute" style="height: 80px; width: 80px; top: 40px; left: 40px;"><span class="ps-absolute d-block" style="bottom: 12px; left: 12px;">.z-hide</span></div>
-                <div class="z-selected bg-black-075 p12 ba bc-black-3 ps-absolute" style="height: 80px; width: 80px; top: 80px; left: 80px;">.z-selected</div>
-                <div class="z-active bg-black-075 p12 ba bc-black-3 ps-absolute" style="height: 80px; width: 80px; top: 120px; left: 120px;">.z-active</div>
-                <div class="z-dropdown bg-black-075 p12 ba bc-black-3 ps-absolute" style="height: 80px; width: 80px; top: 160px; left: 160px;">.z-dropdown</div>
-                <div class="z-popover bg-black-075 p12 ba bc-black-3 ps-absolute" style="height: 80px; width: 80px; top: 200px; left: 200px;">.z-popover</div>
-                <div class="z-tooltip bg-black-075 p12 ba bc-black-3 ps-absolute" style="height: 80px; width: 80px; top: 240px; left: 240px;">.z-tooltip</div>
-                <div class="z-banner bg-black-075 p12 ba bc-black-3 ps-absolute" style="height: 80px; width: 80px; top: 280px; left: 280px;">.z-banner</div>
-                <div class="z-nav bg-black-075 p12 ba bc-black-3 ps-absolute" style="height: 80px; width: 80px; top: 320px; left: 320px;">.z-nav</div>
-                <div class="z-nav-fixed bg-black-075 p12 ba bc-black-3 ps-absolute" style="height: 80px; width: 80px; top: 360px; left: 360px;">.z-nav-fixed</div>
-                <div class="z-modal-bg bg-black-075 p12 ba bc-black-3 ps-absolute" style="height: 80px; width: 80px; top: 400px; left: 400px;">.z-modal-bg</div>
-                <div class="z-modal bg-black-075 p12 ba bc-black-3 ps-absolute" style="height: 80px; width: 80px; top: 440px; left: 440px;">.z-modal</div>
+        {% highlight html %}
+        <div class="z-base">…</div>
+        <div class="z-hide">…</div>
+        <div class="z-selected">…</div>
+        <div class="z-active">…</div>
+        <div class="z-dropdown">…</div>
+        <div class="z-popover">…</div>
+        <div class="z-tooltip">…</div>
+        <div class="z-banner">…</div>
+        <div class="z-nav">…</div>
+        <div class="z-nav-fixed">…</div>
+        <div class="z-modal-bg">…</div>
+        <div class="z-modal">…</div>
+        {% endhighlight %}
+        <div
+            class="
+                stacks-preview--example
+                ps-relative
+                fs-caption
+                ff-mono
+                overflow-x-auto
+            "
+            style="height: 552px"
+        >
+            <div class="h100" style="width: 520px">
+                <div
+                    class="z-base bg-black-075 p12 ba bc-black-3 ps-absolute"
+                    style="height: 80px; width: 80px"
+                >
+                    .z-base
+                </div>
+                <div
+                    class="z-hide bg-black-075 p12 ba bc-black-3 ps-absolute"
+                    style="height: 80px; width: 80px; top: 40px; left: 40px"
+                >
+                    <span
+                        class="ps-absolute d-block"
+                        style="bottom: 12px; left: 12px"
+                        >.z-hide</span
+                    >
+                </div>
+                <div
+                    class="
+                        z-selected
+                        bg-black-075
+                        p12
+                        ba
+                        bc-black-3
+                        ps-absolute
+                    "
+                    style="height: 80px; width: 80px; top: 80px; left: 80px"
+                >
+                    .z-selected
+                </div>
+                <div
+                    class="z-active bg-black-075 p12 ba bc-black-3 ps-absolute"
+                    style="height: 80px; width: 80px; top: 120px; left: 120px"
+                >
+                    .z-active
+                </div>
+                <div
+                    class="
+                        z-dropdown
+                        bg-black-075
+                        p12
+                        ba
+                        bc-black-3
+                        ps-absolute
+                    "
+                    style="height: 80px; width: 80px; top: 160px; left: 160px"
+                >
+                    .z-dropdown
+                </div>
+                <div
+                    class="z-popover bg-black-075 p12 ba bc-black-3 ps-absolute"
+                    style="height: 80px; width: 80px; top: 200px; left: 200px"
+                >
+                    .z-popover
+                </div>
+                <div
+                    class="z-tooltip bg-black-075 p12 ba bc-black-3 ps-absolute"
+                    style="height: 80px; width: 80px; top: 240px; left: 240px"
+                >
+                    .z-tooltip
+                </div>
+                <div
+                    class="z-banner bg-black-075 p12 ba bc-black-3 ps-absolute"
+                    style="height: 80px; width: 80px; top: 280px; left: 280px"
+                >
+                    .z-banner
+                </div>
+                <div
+                    class="z-nav bg-black-075 p12 ba bc-black-3 ps-absolute"
+                    style="height: 80px; width: 80px; top: 320px; left: 320px"
+                >
+                    .z-nav
+                </div>
+                <div
+                    class="
+                        z-nav-fixed
+                        bg-black-075
+                        p12
+                        ba
+                        bc-black-3
+                        ps-absolute
+                    "
+                    style="height: 80px; width: 80px; top: 360px; left: 360px"
+                >
+                    .z-nav-fixed
+                </div>
+                <div
+                    class="
+                        z-modal-bg
+                        bg-black-075
+                        p12
+                        ba
+                        bc-black-3
+                        ps-absolute
+                    "
+                    style="height: 80px; width: 80px; top: 400px; left: 400px"
+                >
+                    .z-modal-bg
+                </div>
+                <div
+                    class="z-modal bg-black-075 p12 ba bc-black-3 ps-absolute"
+                    style="height: 80px; width: 80px; top: 440px; left: 440px"
+                >
+                    .z-modal
+                </div>
             </div>
         </div>
     </div>

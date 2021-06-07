@@ -7,62 +7,100 @@ description: All email templates use a hybrid approach to reconfigure the layout
 <section class="stacks-section">
     {% header "h2", "Stacking columns" %}
     <p class="stacks-copy">
-        Media queries are a standard way to optimize layouts for small screen sizes on the web. In the email world, though, there are some “small screen scenarios” where media queries aren’t supported (eg. <a href="https://cdn-images-1.medium.com/max/2000/1*JGe_A7b8LiHZfeSGzNZE9w.png">some Gmail Apps</a>) or only partially supported (eg. some Android device native mail apps).
+        Media queries are a standard way to optimize layouts for small screen
+        sizes on the web. In the email world, though, there are some “small
+        screen scenarios” where media queries aren’t supported (eg.
+        <a
+            href="https://cdn-images-1.medium.com/max/2000/1*JGe_A7b8LiHZfeSGzNZE9w.png"
+            >some Gmail Apps</a
+        >) or only partially supported (eg. some Android device native mail
+        apps).
     </p>
     {% header "h3", "Hybrid design" %}
     <p class="stacks-copy">
-        Hybrid design uses <code class="stacks-code">inline-block</code>, <code class="stacks-code">max-width</code>, <code class="stacks-code">min-width</code>, and <a href="/email/base/mso#ghost-tables">ghost tables</a> stack columns without media queries while imposing a fixed, desktop width for Outlook.
+        Hybrid design uses <code class="stacks-code">inline-block</code>,
+        <code class="stacks-code">max-width</code>,
+        <code class="stacks-code">min-width</code>, and
+        <a href="/email/base/mso#ghost-tables">ghost tables</a> stack columns
+        without media queries while imposing a fixed, desktop width for Outlook.
     </p>
     <div class="stacks-preview _preview-none mb24">
-{% highlight html %}
-<tr>
-    <td>
-        <!--[if mso]>
+        {% highlight html %}
+        <tr>
+            <td>
+                <!--[if mso]>
         <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
         <tr>
         <td width="340">
         <![endif]-->
-            <div style="display:inline-block; width:100%; min-width:200px; max-width:340px;">
-                Column 1
-            </div>
-        <!--[if mso]>
+                <div
+                    style="
+                        display: inline-block;
+                        width: 100%;
+                        min-width: 200px;
+                        max-width: 340px;
+                    "
+                >
+                    Column 1
+                </div>
+                <!--[if mso]>
         </td>
         <td width="340">
         <![endif]-->
-            <div style="display:inline-block; width:100%; min-width:200px; max-width:340px;">
-                Column 2
-            </div>
-        <!--[if mso]>
+                <div
+                    style="
+                        display: inline-block;
+                        width: 100%;
+                        min-width: 200px;
+                        max-width: 340px;
+                    "
+                >
+                    Column 2
+                </div>
+                <!--[if mso]>
         </td>
         </tr>
         </table>
         <![endif]-->
-    </td>
-</tr>
-{% endhighlight %}
+            </td>
+        </tr>
+        {% endhighlight %}
     </div>
     <p class="stacks-copy">
-         In this example, the two columns will display side-by-side on wide, desktop displays and stack on top of each other in narrow, mobile displays. The <a href="/email/templates/promotional">promotional email template</a> uses this technique in a few places.
+        In this example, the two columns will display side-by-side on wide,
+        desktop displays and stack on top of each other in narrow, mobile
+        displays. The
+        <a href="/email/templates/promotional">promotional email template</a>
+        uses this technique in a few places.
     </p>
     {% header "h3", "Media queries" %}
     <p class="stacks-copy">
-         Once a hybrid baseline is set, media queries can be used to fine-tune a responsive email layout. Since columns are (hopefully) already stacked, media queries can be used to change the width and text alignment in small viewports.
+        Once a hybrid baseline is set, media queries can be used to fine-tune a
+        responsive email layout. Since columns are (hopefully) already stacked,
+        media queries can be used to change the width and text alignment in
+        small viewports.
     </p>
     <table class="s-table s-table__bx-simple mb32">
         <thead>
             <tr>
                 <th class="s-table--cell3" scope="col">Class</th>
                 <th scope="col">Description</th>
-           </tr>
+            </tr>
         </thead>
         <tbody>
             <tr>
                 <th class="ff-mono">stack-column</th>
-                <td>Makes table columns 100% wide and stacks them in source order.</td>
+                <td>
+                    Makes table columns 100% wide and stacks them in source
+                    order.
+                </td>
             </tr>
             <tr>
                 <th class="ff-mono">stack-column-center</th>
-                <td>Makes table columns 100% wide, stacks them in source order, and centers everything inside.</td>
+                <td>
+                    Makes table columns 100% wide, stacks them in source order,
+                    and centers everything inside.
+                </td>
             </tr>
         </tbody>
     </table>
@@ -71,14 +109,17 @@ description: All email templates use a hybrid approach to reconfigure the layout
 <section class="stacks-section">
     {% header "h2", "Responsive spacing" %}
     <p class="stacks-copy">
-        Default desktop padding for email templates is <strong>30px</strong>. Utility classes can be used to reduce spacing to <strong>20px</strong> or <strong>remove padding</strong> on smaller viewports. Useful for tightening up email layouts on mobile.
+        Default desktop padding for email templates is <strong>30px</strong>.
+        Utility classes can be used to reduce spacing to
+        <strong>20px</strong> or <strong>remove padding</strong> on smaller
+        viewports. Useful for tightening up email layouts on mobile.
     </p>
     <table class="s-table s-table__bx-simple mb32">
         <thead>
             <tr>
                 <th class="s-table--cell2" scope="col">Class</th>
                 <th scope="col">Output</th>
-           </tr>
+            </tr>
         </thead>
         <tbody>
             <tr class="ff-mono">

@@ -3,6 +3,7 @@ layout: page
 title: Lists
 description: Stacks provides a few atomic classes to help style lists.
 ---
+
 <section class="stacks-section">
     {% header "h2", "Classes" %}
     <div class="overflow-x-auto mb48">
@@ -15,10 +16,16 @@ description: Stacks provides a few atomic classes to help style lists.
             </thead>
             <tbody>
                 {% for atomic in atomics.lists %}
-                    <tr class="fs-caption">
-                        <th scope="row"><code class="stacks-code">.{{ atomic.class }}</code></th>
-                        <td><code class="stacks-code bg-white">{{ atomic.output }}</code></td>
-                    </tr>
+                <tr class="fs-caption">
+                    <th scope="row">
+                        <code class="stacks-code">.{{ atomic.class }}</code>
+                    </th>
+                    <td>
+                        <code class="stacks-code bg-white"
+                            >{{ atomic.output }}</code
+                        >
+                    </td>
+                </tr>
                 {% endfor %}
             </tbody>
         </table>
@@ -26,24 +33,32 @@ description: Stacks provides a few atomic classes to help style lists.
 </section>
 <section class="stacks-section">
     {% header "h2", "Examples" %}
-    <p class="stacks-copy">By design, our lists inherit some sensible margins by default. However, in some layouts, you may want to strip these default margins by adding <code class="stacks-code">.list-reset</code> and then explicitly choosing a list style and list style position. These classes can be applied to ordered and unordered lists interchangably, though if you’re wanting to show decimals, it’s most appropriate to mark your list up as an ordered list.</p>
+    <p class="stacks-copy">
+        By design, our lists inherit some sensible margins by default. However,
+        in some layouts, you may want to strip these default margins by adding
+        <code class="stacks-code">.list-reset</code> and then explicitly
+        choosing a list style and list style position. These classes can be
+        applied to ordered and unordered lists interchangably, though if you’re
+        wanting to show decimals, it’s most appropriate to mark your list up as
+        an ordered list.
+    </p>
 
     {% header "h3", "List Style" %}
     <div class="stacks-preview">
-{% highlight html %}
-<ol class="list-reset">
-  …
-</ol>
-<ul class="list-ls-none">
-  …
-</ul>
-<ul class="list-ls-disc">
-  …
-</ul>
-<ol class="list-ls-decimal">
-  …
-</ol>
-{% endhighlight %}
+        {% highlight html %}
+        <ol class="list-reset">
+            …
+        </ol>
+        <ul class="list-ls-none">
+            …
+        </ul>
+        <ul class="list-ls-disc">
+            …
+        </ul>
+        <ol class="list-ls-decimal">
+            …
+        </ol>
+        {% endhighlight %}
         <div class="stacks-preview--example">
             <ol class="list-reset">
                 <li>List item 1</li>
@@ -77,16 +92,19 @@ description: Stacks provides a few atomic classes to help style lists.
     </div>
 
     {% header "h3", "List Position" %}
-    <p class="stacks-copy">By default, the position of markers in a list item are outside their containing element.</p>
+    <p class="stacks-copy">
+        By default, the position of markers in a list item are outside their
+        containing element.
+    </p>
     <div class="stacks-preview">
-{% highlight html %}
-<ul class="list-reset list-ls-disc list-inside">
-  …
-</ul>
-<ul class="list-reset list-ls-disc list-outside">
-  …
-</ul>
-{% endhighlight %}
+        {% highlight html %}
+        <ul class="list-reset list-ls-disc list-inside">
+            …
+        </ul>
+        <ul class="list-reset list-ls-disc list-outside">
+            …
+        </ul>
+        {% endhighlight %}
         <div class="stacks-preview--example">
             <ul class="list-reset list-ls-disc list-inside bg-black-075 mb16">
                 <li>List item 1</li>

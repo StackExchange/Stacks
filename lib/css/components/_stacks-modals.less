@@ -29,7 +29,8 @@
     background-color: fade(@black-900, 50%); // Background remains fixed
     opacity: 0;
     backface-visibility: hidden;
-    transition: opacity 100ms @te-smooth 0s, z-index 0s 100ms, visibility 0s 100ms; // Transition out
+    transition: opacity 100ms @te-smooth 0s, z-index 0s 100ms,
+        visibility 0s 100ms; // Transition out
     will-change: visibility, z-index, opacity; // Not supported in Edge
 
     &[aria-hidden="false"],
@@ -38,7 +39,9 @@
         z-index: @zi-modals;
         opacity: 1;
         transform: translate3d(0, 0, 0) scale3d(1, 1, 1);
-        transition: opacity 100ms @te-smooth 10ms, z-index 0s 0s, visibility 0s 0s, transform 100ms @te-smooth 10ms, transform 100ms @te-smooth 10ms; // Transition in
+        transition: opacity 100ms @te-smooth 10ms, z-index 0s 0s,
+            visibility 0s 0s, transform 100ms @te-smooth 10ms,
+            transform 100ms @te-smooth 10ms; // Transition in
     }
 }
 
@@ -62,7 +65,9 @@
 
     @scrollbar-styles();
 
-    transition: opacity 200ms @te-smooth 0s, z-index 0s 100ms, visibility 0s 100ms, transform 100ms @te-smooth 0s, transform 100ms @te-smooth 0s; // Transition out
+    transition: opacity 200ms @te-smooth 0s, z-index 0s 100ms,
+        visibility 0s 100ms, transform 100ms @te-smooth 0s,
+        transform 100ms @te-smooth 0s; // Transition out
     will-change: visibility, z-index, opacity, transform; // Not supported by Edge
 
     .s-modal[aria-hidden="false"] & {
@@ -101,7 +106,6 @@
 .s-modal--footer {
     margin-top: @su24;
 }
-
 
 //  ============================================================================
 //  $   STATES

@@ -3,9 +3,19 @@ layout: page
 title: Transitions
 description: Atomic transition classes allow you to quickly apply transitions properties to an element. You can modify an element’s transition duration, property, or delay.
 ---
-<p class="stacks-copy">You can trigger CSS transitions directly with pseudo classes like <code class="stacks-code">:hover</code> which activate on mouse over, <code class="stacks-code">:focus</code> which activates when user tabs onto or clicks into an input element, or <code class="stacks-code">active</code> when a user clicks on an element.</p>
 
-<p class="stacks-copy">You can also trigger a CSS transition using JavaScript by adding or removing a class.</p>
+<p class="stacks-copy">
+    You can trigger CSS transitions directly with pseudo classes like
+    <code class="stacks-code">:hover</code> which activate on mouse over,
+    <code class="stacks-code">:focus</code> which activates when user tabs onto
+    or clicks into an input element, or
+    <code class="stacks-code">active</code> when a user clicks on an element.
+</p>
+
+<p class="stacks-copy">
+    You can also trigger a CSS transition using JavaScript by adding or removing
+    a class.
+</p>
 
 <section class="stacks-section">
     {% header "h2", "Classes" %}
@@ -21,8 +31,14 @@ description: Atomic transition classes allow you to quickly apply transitions pr
             <tbody>
                 {% for atomic in atomics.transitions %}
                 <tr class="fs-caption">
-                    <th scope="row"><code class="stacks-code">.{{ atomic.class }}</code></th>
-                    <td><code class="stacks-code bg-white">{{ atomic.output }}</code></td>
+                    <th scope="row">
+                        <code class="stacks-code">.{{ atomic.class }}</code>
+                    </th>
+                    <td>
+                        <code class="stacks-code bg-white"
+                            >{{ atomic.output }}</code
+                        >
+                    </td>
                     <td>{{ atomic.define }}</td>
                 </tr>
                 {% endfor %}
@@ -31,14 +47,28 @@ description: Atomic transition classes allow you to quickly apply transitions pr
     </div>
 
     {% header "h2", "Base transition" %}
-    <p class="stacks-copy">The base transition applies a default duration timing function to an element.</p>
+    <p class="stacks-copy">
+        The base transition applies a default duration timing function to an
+        element.
+    </p>
     <div class="stacks-preview">
-{% highlight html %}
-<div class="t">…</div>
-{% endhighlight %}
+        {% highlight html %}
+        <div class="t">…</div>
+        {% endhighlight %}
         <div class="stacks-preview--example fs-caption ff-mono">
             <div class="grid gs8 fw-wrap">
-                <div class="grid--cell bg-black-075 ba bc-black-3 bar-sm p32 t h:bg-orange-600">
+                <div
+                    class="
+                        grid--cell
+                        bg-black-075
+                        ba
+                        bc-black-3
+                        bar-sm
+                        p32
+                        t
+                        h:bg-orange-600
+                    "
+                >
                     .t
                 </div>
             </div>
@@ -48,44 +78,112 @@ description: Atomic transition classes allow you to quickly apply transitions pr
     {% header "h2", "Speed" %}
     <p class="stacks-copy">Change an elements default transition duration.</p>
     <div class="stacks-preview">
-{% highlight html %}
-<div class="t-slow">…</div>
-<div class="t-fast">…</div>
-{% endhighlight %}
+        {% highlight html %}
+        <div class="t-slow">…</div>
+        <div class="t-fast">…</div>
+        {% endhighlight %}
         <div class="stacks-preview--example fs-caption ff-mono">
             <div class="grid gs8 fw-wrap">
-                <div class="grid--cell bg-black-075 ba bc-black-3 bar-sm p32 t t-slow h:bg-orange-600">
+                <div
+                    class="
+                        grid--cell
+                        bg-black-075
+                        ba
+                        bc-black-3
+                        bar-sm
+                        p32
+                        t t-slow
+                        h:bg-orange-600
+                    "
+                >
                     .t-slow
                 </div>
-                <div class="grid--cell bg-black-075 ba bc-black-3 bar-sm p32 t t-faster h:bg-orange-600">
+                <div
+                    class="
+                        grid--cell
+                        bg-black-075
+                        ba
+                        bc-black-3
+                        bar-sm
+                        p32
+                        t t-faster
+                        h:bg-orange-600
+                    "
+                >
                     .t-fast
                 </div>
             </div>
         </div>
     </div>
 
-
     {% header "h2", "Property" %}
-    <p class="stacks-copy">Target a specific CSS property for transition, or remove the default transition.</p>
+    <p class="stacks-copy">
+        Target a specific CSS property for transition, or remove the default
+        transition.
+    </p>
     <div class="stacks-preview">
-{% highlight html %}
-<div class="t-unset">…</div>
-<div class="t-bg">…</div>
-<div class="t-opacity">…</div>
-<div class="t-shadow">…</div>
-{% endhighlight %}
+        {% highlight html %}
+        <div class="t-unset">…</div>
+        <div class="t-bg">…</div>
+        <div class="t-opacity">…</div>
+        <div class="t-shadow">…</div>
+        {% endhighlight %}
         <div class="stacks-preview--example fs-caption ff-mono">
             <div class="grid gs8 fw-wrap">
-                <div class="grid--cell bg-black-075 ba bc-black-3 bar-sm p32 t t-unset h:bg-orange-600">
+                <div
+                    class="
+                        grid--cell
+                        bg-black-075
+                        ba
+                        bc-black-3
+                        bar-sm
+                        p32
+                        t t-unset
+                        h:bg-orange-600
+                    "
+                >
                     .t-unset
                 </div>
-                <div class="grid--cell bg-black-075 ba bc-black-3 bar-sm p32 t t-bg h:bg-orange-600">
+                <div
+                    class="
+                        grid--cell
+                        bg-black-075
+                        ba
+                        bc-black-3
+                        bar-sm
+                        p32
+                        t t-bg
+                        h:bg-orange-600
+                    "
+                >
                     .t-bg
                 </div>
-                <div class="grid--cell bg-black-075 ba bc-black-3 bar-sm p32 t t-opacity h:o50">
+                <div
+                    class="
+                        grid--cell
+                        bg-black-075
+                        ba
+                        bc-black-3
+                        bar-sm
+                        p32
+                        t t-opacity
+                        h:o50
+                    "
+                >
                     .t-opacity
                 </div>
-                <div class="grid--cell bg-black-075 ba bc-black-3 bar-sm p32 t t-shadow h:bs-lg">
+                <div
+                    class="
+                        grid--cell
+                        bg-black-075
+                        ba
+                        bc-black-3
+                        bar-sm
+                        p32
+                        t t-shadow
+                        h:bs-lg
+                    "
+                >
                     .t-shadow
                 </div>
             </div>
@@ -93,18 +191,42 @@ description: Atomic transition classes allow you to quickly apply transitions pr
     </div>
 
     {% header "h2", "Delay" %}
-    <p class="stacks-copy">Refers to how long you want to wait before starting the duration.</p>
+    <p class="stacks-copy">
+        Refers to how long you want to wait before starting the duration.
+    </p>
     <div class="stacks-preview">
-{% highlight html %}
-<div class="t-delay">…</div>
-<div class="t-delay-unset">…</div>
-{% endhighlight %}
+        {% highlight html %}
+        <div class="t-delay">…</div>
+        <div class="t-delay-unset">…</div>
+        {% endhighlight %}
         <div class="stacks-preview--example fs-caption ff-mono">
             <div class="grid gs8 fw-wrap">
-                <div class="grid--cell bg-black-075 ba bc-black-3 bar-sm p32 t t-delay h:bg-orange-600">
+                <div
+                    class="
+                        grid--cell
+                        bg-black-075
+                        ba
+                        bc-black-3
+                        bar-sm
+                        p32
+                        t t-delay
+                        h:bg-orange-600
+                    "
+                >
                     .t-delay
                 </div>
-                <div class="grid--cell bg-black-075 ba bc-black-3 bar-sm p32 t t-delay-unset h:bg-orange-600">
+                <div
+                    class="
+                        grid--cell
+                        bg-black-075
+                        ba
+                        bc-black-3
+                        bar-sm
+                        p32
+                        t t-delay-unset
+                        h:bg-orange-600
+                    "
+                >
                     .t-delay-unset
                 </div>
             </div>

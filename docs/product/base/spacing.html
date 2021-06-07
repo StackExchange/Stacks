@@ -3,10 +3,21 @@ layout: page
 title: Spacing
 description: Stacks provides atomic classes to override margin and padding.
 ---
+
 <section class="stacks-section">
     {% header "h2", "Margin" %}
-    <p class="stacks-copy">Immutable margin utilities are based on our global white space scale. These can dramatically help reduce the size of large stylesheets and allow for greater flexibility and quicker iteration when designing in the browser.</p>
-    <p class="stacks-copy">Margin should never be declared outside of these utilities. This is meant to help create consistency and avoid magic numbers. If, for some reason, the default white space scale does not suit your design, customize and extend it before use.</p>
+    <p class="stacks-copy">
+        Immutable margin utilities are based on our global white space scale.
+        These can dramatically help reduce the size of large stylesheets and
+        allow for greater flexibility and quicker iteration when designing in
+        the browser.
+    </p>
+    <p class="stacks-copy">
+        Margin should never be declared outside of these utilities. This is
+        meant to help create consistency and avoid magic numbers. If, for some
+        reason, the default white space scale does not suit your design,
+        customize and extend it before use.
+    </p>
 
     {% header "h3", "Margin class abbreviations" %}
     <div class="overflow-x-auto mb32">
@@ -15,20 +26,21 @@ description: Stacks provides atomic classes to override margin and padding.
                 <tr>
                     <th class="s-table--cell2" scope="col">Abbreviation</th>
                     <th scope="col">Definition</th>
-                    <th class="s-table--cell2 ta-center" scope="col">Responsive?</th>
+                    <th class="s-table--cell2 ta-center" scope="col">
+                        Responsive?
+                    </th>
                 </tr>
             </thead>
             <tbody>
                 {% for space in spacing.margin-definitions %}
-                    <tr>
-                        <th scope="row">{{ space.term }}</th>
-                        <td>{{ space.define }}</td>
-                        <td class="ta-center">
-                            {% if space.responsive %}
-                                {% icon "Checkmark", "fc-green-500" %}
-                            {% endif %}
-                        </td>
-                    </tr>
+                <tr>
+                    <th scope="row">{{ space.term }}</th>
+                    <td>{{ space.define }}</td>
+                    <td class="ta-center">
+                        {% if space.responsive %} {% icon "Checkmark",
+                        "fc-green-500" %} {% endif %}
+                    </td>
+                </tr>
                 {% endfor %}
             </tbody>
         </table>
@@ -36,11 +48,9 @@ description: Stacks provides atomic classes to override margin and padding.
 
     {% header "h3", "Margin classes" %}
     <div class="stacks-preview">
-{% highlight html %}
-<div class="mt8 mr4 mb32 ml64">
-    …
-</div>
-{% endhighlight %}
+        {% highlight html %}
+        <div class="mt8 mr4 mb32 ml64">…</div>
+        {% endhighlight %}
         <div class="stacks-preview--example">
             <div class="mt8 mr4 mb32 ml64 bg-black-075 p12 ba bc-black-3">
                 Example div with different margins applied
@@ -70,19 +80,20 @@ description: Stacks provides atomic classes to override margin and padding.
                 </tr>
             </thead>
             <tbody>
-              {% for class in spacing.margin %}
-              {% assign prefix-value = class.values | split: ", " %}
-                    <tr>
-                        <th scope="row" class="-cell1">{{ class.prefix }}</th>
-                        {% for values in prefix-value %}
-                        <td class="ta-center"><code>.{{ class.prefix }}{{ values }}</code></td>
-                        {% endfor %}
-                        <td class="ta-center">
-                            {% if class.responsive %}
-                                {% icon "Checkmark", "fc-green-500" %}
-                            {% endif %}
-                        </td>
-                    </tr>
+                {% for class in spacing.margin %} {% assign prefix-value =
+                class.values | split: ", " %}
+                <tr>
+                    <th scope="row" class="-cell1">{{ class.prefix }}</th>
+                    {% for values in prefix-value %}
+                    <td class="ta-center">
+                        <code>.{{ class.prefix }}{{ values }}</code>
+                    </td>
+                    {% endfor %}
+                    <td class="ta-center">
+                        {% if class.responsive %} {% icon "Checkmark",
+                        "fc-green-500" %} {% endif %}
+                    </td>
+                </tr>
                 {% endfor %}
             </tbody>
         </table>
@@ -110,24 +121,29 @@ description: Stacks provides atomic classes to override margin and padding.
                 </tr>
             </thead>
             <tbody>
-              {% for class in spacing.negative-margin %}
-              {% assign prefix-value = class.values | split: ", " %}
-                  <tr>
-                      <th scope="row" class="-cell1">{{ class.prefix }}</th>
-                      {% for values in prefix-value %}
-                      <td class="ta-center"><code>.{{ class.prefix }}{{ values }}</code></td>
-                      {% endfor %}
-                  </tr>
+                {% for class in spacing.negative-margin %} {% assign
+                prefix-value = class.values | split: ", " %}
+                <tr>
+                    <th scope="row" class="-cell1">{{ class.prefix }}</th>
+                    {% for values in prefix-value %}
+                    <td class="ta-center">
+                        <code>.{{ class.prefix }}{{ values }}</code>
+                    </td>
+                    {% endfor %}
+                </tr>
                 {% endfor %}
             </tbody>
         </table>
     </div>
 
     {% header "h3", "Auto margin classes" %}
-    <p class="stacks-copy">Stacks provides additional automatic margin classes. These come in handy when positioning individual grid cells within flex layouts, or horizontally centering a block-level element.</p>
+    <p class="stacks-copy">
+        Stacks provides additional automatic margin classes. These come in handy
+        when positioning individual grid cells within flex layouts, or
+        horizontally centering a block-level element.
+    </p>
     <div class="overflow-x-auto mb32">
         <table class="wmn3 s-table s-table__bx-simple">
-
             <thead>
                 <tr>
                     <th scope="col">Direction</th>
@@ -137,39 +153,27 @@ description: Stacks provides atomic classes to override margin and padding.
             <tbody>
                 <tr>
                     <td>All directions</td>
-                    <td class="ff-mono">
-                        .m-auto
-                    </td>
+                    <td class="ff-mono">.m-auto</td>
                 </tr>
                 <tr>
                     <td>Top</td>
-                    <td class="ff-mono">
-                        .mt-auto
-                    </td>
+                    <td class="ff-mono">.mt-auto</td>
                 </tr>
                 <tr>
                     <td>Right</td>
-                    <td class="ff-mono">
-                        .mr-auto
-                    </td>
+                    <td class="ff-mono">.mr-auto</td>
                 </tr>
                 <tr>
                     <td>Bottom</td>
-                    <td class="ff-mono">
-                        .mb-auto
-                    </td>
+                    <td class="ff-mono">.mb-auto</td>
                 </tr>
                 <tr>
                     <td>Left</td>
-                    <td class="ff-mono">
-                        .ml-auto
-                    </td>
+                    <td class="ff-mono">.ml-auto</td>
                 </tr>
                 <tr>
                     <td>X axis</td>
-                    <td class="ff-mono">
-                        .mx-auto
-                    </td>
+                    <td class="ff-mono">.mx-auto</td>
                 </tr>
             </tbody>
         </table>
@@ -178,8 +182,18 @@ description: Stacks provides atomic classes to override margin and padding.
 
 <section class="stacks-section">
     {% header "h2", "Padding" %}
-    <p class="stacks-copy">Immutable padding utilities are based on a global white space scale defined with custom properties. These can dramatically help reduce the size of large stylesheets and allow for greater flexibility and quicker iteration when designing in the browser.</p>
-    <p class="stacks-copy">Padding should never be declared outside of these utilities. This is meant to help create consistency and avoid magic numbers. If, for some reason, the default white space scale does not suit your design, customize and extend it before use.</p>
+    <p class="stacks-copy">
+        Immutable padding utilities are based on a global white space scale
+        defined with custom properties. These can dramatically help reduce the
+        size of large stylesheets and allow for greater flexibility and quicker
+        iteration when designing in the browser.
+    </p>
+    <p class="stacks-copy">
+        Padding should never be declared outside of these utilities. This is
+        meant to help create consistency and avoid magic numbers. If, for some
+        reason, the default white space scale does not suit your design,
+        customize and extend it before use.
+    </p>
 
     {% header "h3", "Padding class abbreviations" %}
     <div class="overflow-x-auto mb32">
@@ -188,20 +202,21 @@ description: Stacks provides atomic classes to override margin and padding.
                 <tr>
                     <th class="s-table--cell2" scope="col">Abbreviation</th>
                     <th scope="col">Definition</th>
-                    <th class="s-table--cell2 ta-center" scope="col">Responsive?</th>
+                    <th class="s-table--cell2 ta-center" scope="col">
+                        Responsive?
+                    </th>
                 </tr>
             </thead>
             <tbody>
                 {% for space in spacing.padding-definitions %}
-                    <tr>
-                        <th scope="row">{{ space.term }}</th>
-                        <td>{{ space.define }}</td>
-                        <td class="ta-center">
-                            {% if space.responsive %}
-                                {% icon "Checkmark", "fc-green-500" %}
-                            {% endif %}
-                        </td>
-                    </tr>
+                <tr>
+                    <th scope="row">{{ space.term }}</th>
+                    <td>{{ space.define }}</td>
+                    <td class="ta-center">
+                        {% if space.responsive %} {% icon "Checkmark",
+                        "fc-green-500" %} {% endif %}
+                    </td>
+                </tr>
                 {% endfor %}
             </tbody>
         </table>
@@ -209,11 +224,9 @@ description: Stacks provides atomic classes to override margin and padding.
 
     {% header "h3", "Padding classes" %}
     <div class="stacks-preview">
-{% highlight html %}
-<div class="pt4 pr64 pb64 pl64">
-    …
-</div>
-{% endhighlight %}
+        {% highlight html %}
+        <div class="pt4 pr64 pb64 pl64">…</div>
+        {% endhighlight %}
         <div class="stacks-preview--example">
             <div class="pt4 pr64 pb64 pl64 bg-black-075 p12 ba bc-black-3">
                 Example div with different paddings applied
@@ -243,19 +256,20 @@ description: Stacks provides atomic classes to override margin and padding.
                 </tr>
             </thead>
             <tbody>
-                {% for class in spacing.padding %}
-                {% assign prefix-value = class.values | split: ", " %}
-                    <tr>
-                        <th scope="row" class="-cell1">{{ class.prefix }}</th>
-                        {% for values in prefix-value %}
-                            <td class="ta-center"><code>.{{ class.prefix }}{{ values }}</code></td>
-                        {% endfor %}
-                        <td class="ta-center">
-                            {% if class.responsive %}
-                                {% icon "Checkmark", "fc-green-500" %}
-                            {% endif %}
-                        </td>
-                    </tr>
+                {% for class in spacing.padding %} {% assign prefix-value =
+                class.values | split: ", " %}
+                <tr>
+                    <th scope="row" class="-cell1">{{ class.prefix }}</th>
+                    {% for values in prefix-value %}
+                    <td class="ta-center">
+                        <code>.{{ class.prefix }}{{ values }}</code>
+                    </td>
+                    {% endfor %}
+                    <td class="ta-center">
+                        {% if class.responsive %} {% icon "Checkmark",
+                        "fc-green-500" %} {% endif %}
+                    </td>
+                </tr>
                 {% endfor %}
             </tbody>
         </table>

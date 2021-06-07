@@ -1,426 +1,869 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:v="urn:schemas-microsoft-com:vml">
-<head>
-    <title></title> <!-- The title tag shows in email notifications, like Android 4.4. -->
-    <meta charset="utf-8"> <!-- utf-8 works for most cases -->
-    <meta name="viewport" content="width=device-width"> <!-- Forcing initial-scale shouldn't be necessary -->
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!-- Use the latest (edge) version of IE rendering engine -->
-    <meta name="x-apple-disable-message-reformatting"> <!-- Disable auto-scale in iOS 10 Mail entirely -->
+<html
+    lang="en"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:o="urn:schemas-microsoft-com:office:office"
+    xmlns:v="urn:schemas-microsoft-com:vml"
+>
+    <head>
+        <title></title>
+        <!-- The title tag shows in email notifications, like Android 4.4. -->
+        <meta charset="utf-8" />
+        <!-- utf-8 works for most cases -->
+        <meta name="viewport" content="width=device-width" />
+        <!-- Forcing initial-scale shouldn't be necessary -->
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <!-- Use the latest (edge) version of IE rendering engine -->
+        <meta name="x-apple-disable-message-reformatting" />
+        <!-- Disable auto-scale in iOS 10 Mail entirely -->
 
-    <!-- Desktop Outlook chokes on web font references and defaults to Times New Roman, so we force a safe fallback font. -->
-    <!--[if mso]>
- <style>
-            * {
-                font-family: sans-serif !important;
+        <!-- Desktop Outlook chokes on web font references and defaults to Times New Roman, so we force a safe fallback font. -->
+        <!--[if mso]>
+            <style>
+                * {
+                    font-family: sans-serif !important;
+                }
+            </style>
+        <![endif]-->
+
+        <!-- All other clients get the webfont reference; some will render the font and others will silently fail to the fallbacks. More on that here: http://stylecampaign.com/blog/2015/02/webfont-support-in-email/ -->
+        <!--[if !mso]><!-->
+        <link
+            href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,700"
+            rel="stylesheet"
+        />
+        <!--<![endif]-->
+
+        <!-- CSS Reset -->
+        <style type="text/css">
+            /* What it does: Remove spaces around the email design added by some email clients. */
+            /* Beware: It can remove the padding / margin and add a background color to the compose a reply window. */
+            html,
+            body {
+                margin: 0 auto !important;
+                padding: 0 !important;
+                height: 100% !important;
+                width: 100% !important;
             }
-        </style>
-    <![endif]-->
 
-    <!-- All other clients get the webfont reference; some will render the font and others will silently fail to the fallbacks. More on that here: http://stylecampaign.com/blog/2015/02/webfont-support-in-email/ -->
-    <!--[if !mso]><!-->
-    <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,700" rel="stylesheet">
-    <!--<![endif]-->
+            /* What it does: Stops email clients resizing small text. */
+            * {
+                -ms-text-size-adjust: 100%;
+                -webkit-text-size-adjust: 100%;
+            }
 
-    <!-- CSS Reset -->
-    <style type="text/css">
-        /* What it does: Remove spaces around the email design added by some email clients. */
-        /* Beware: It can remove the padding / margin and add a background color to the compose a reply window. */
-        html,
-        body {
-            margin: 0 auto !important;
-            padding: 0 !important;
-            height: 100% !important;
-            width: 100% !important;
-        }
+            /* What it does: Centers email on Android 4.4 */
+            div[style*="margin: 16px 0"] {
+                margin: 0 !important;
+            }
 
-        /* What it does: Stops email clients resizing small text. */
-        * {
-            -ms-text-size-adjust: 100%;
-            -webkit-text-size-adjust: 100%;
-        }
+            /* What it does: Stops Outlook from adding extra spacing to tables. */
+            table,
+            td {
+                mso-table-lspace: 0pt !important;
+                mso-table-rspace: 0pt !important;
+            }
 
-        /* What it does: Centers email on Android 4.4 */
-        div[style*="margin: 16px 0"] {
-            margin:0 !important;
-        }
+            /* What it does: Fixes webkit padding issue. Fix for Yahoo mail table alignment bug. Applies table-layout to the first 2 tables then removes for anything nested deeper. */
+            table {
+                border-spacing: 0 !important;
+                border-collapse: collapse !important;
+                table-layout: fixed !important;
+                margin: 0 auto !important;
+            }
+            table table table {
+                table-layout: auto;
+            }
 
-        /* What it does: Stops Outlook from adding extra spacing to tables. */
-        table,
-        td {
-            mso-table-lspace: 0pt !important;
-            mso-table-rspace: 0pt !important;
-        }
+            /* What it does: Uses a better rendering method when resizing images in IE. */
+            img {
+                -ms-interpolation-mode: bicubic;
+            }
 
-        /* What it does: Fixes webkit padding issue. Fix for Yahoo mail table alignment bug. Applies table-layout to the first 2 tables then removes for anything nested deeper. */
-        table {
-            border-spacing: 0 !important;
-            border-collapse: collapse !important;
-            table-layout: fixed !important;
-            margin: 0 auto !important;
-        }
-        table table table {
-            table-layout: auto;
-        }
-
-        /* What it does: Uses a better rendering method when resizing images in IE. */
-        img {
-            -ms-interpolation-mode:bicubic;
-        }
-
-        /* What it does: A work-around for email clients meddling in triggered links. */
-        *[x-apple-data-detectors],  /* iOS */
+            /* What it does: A work-around for email clients meddling in triggered links. */
+            *[x-apple-data-detectors],  /* iOS */
         .unstyle-auto-detected-links *,
         .aBn {
-            border-bottom: 0 !important;
-            cursor: default !important;
-            color: inherit !important;
-            text-decoration: none !important;
-            font-size: inherit !important;
-            font-family: inherit !important;
-            font-weight: inherit !important;
-            line-height: inherit !important;
-        }
-
-        /* What it does: Prevents Gmail from displaying an download button on large, non-linked images. */
-        .a6S {
-            display: none !important;
-            opacity: 0.01 !important;
-        }
-        /* If the above doesn't work, add a .g-img class to any image in question. */
-        img.g-img + div {
-            display:none !important;
-        }
-
-        /* What it does: Prevents underlining the button text in Windows 10 */
-        .button-link {
-            text-decoration: none !important;
-        }
-
-        /* What it does: Styles markdown links that we can't write inline CSS for. */
-        .has-markdown a,
-        .has-markdown a:visited {
-            color: #0077CC !important;
-            text-decoration: none !important;
-        }
-
-        /* What it does: Removes right gutter in Gmail iOS app: https://github.com/TedGoas/Cerberus/issues/89  */
-        /* Create one of these media queries for each additional viewport size you'd like to fix */
-
-        /* iPhone 4, 4S, 5, 5S, 5C, and 5SE */
-        @media only screen and (min-device-width: 320px) and (max-device-width: 374px) {
-            .email-container {
-                min-width: 320px !important;
+                border-bottom: 0 !important;
+                cursor: default !important;
+                color: inherit !important;
+                text-decoration: none !important;
+                font-size: inherit !important;
+                font-family: inherit !important;
+                font-weight: inherit !important;
+                line-height: inherit !important;
             }
-        }
-        /* iPhone 6, 6S, 7, 8, and X */
-        @media only screen and (min-device-width: 375px) and (max-device-width: 413px) {
-            .email-container {
-                min-width: 375px !important;
+
+            /* What it does: Prevents Gmail from displaying an download button on large, non-linked images. */
+            .a6S {
+                display: none !important;
+                opacity: 0.01 !important;
             }
-        }
-        /* iPhone 6+, 7+, and 8+ */
-        @media only screen and (min-device-width: 414px) {
-            .email-container {
-                min-width: 414px !important;
+            /* If the above doesn't work, add a .g-img class to any image in question. */
+            img.g-img + div {
+                display: none !important;
             }
-        }
-    </style>
-    <!-- Reset list spacing because Outlook ignores much of our inline CSS. -->
-    <!--[if mso]>
- <style type="text/css">
-        ul,
-        ol {
-            margin: 0 !important;
-        }
-        li {
-            margin-left: 30px !important;
-        }
-        li.list-item-first {
-            margin-top: 15px !important;
-        }
-        li.list-item-last {
-            margin-bottom: 15px !important;
-        }
-    </style>
-<![endif]-->
 
-<!-- Progressive Enhancements -->
-<style type="text/css">
+            /* What it does: Prevents underlining the button text in Windows 10 */
+            .button-link {
+                text-decoration: none !important;
+            }
 
-    /* What it does: Hover styles for buttons and tags */
-    .button-td,
-    .button-a,
-    .post-tag {
-        transition: all 100ms ease-in;
-    }
-    .button-td-primary:hover,
-    .button-a-primary:hover {
-        background: #0077CC !important;
-        border-color: #0077CC !important;
-    }
-    .button-td-white:hover,
-    .button-a-white:hover {
-        background: rgba(255,255,255,.7) !important;
-        border-color: rgba(255,255,255,.7) !important;
-    }
-    .post-tag:hover {
-        border-color: #cee0ed !important;
-        background: #cee0ed !important;
-    }
+            /* What it does: Styles markdown links that we can't write inline CSS for. */
+            .has-markdown a,
+            .has-markdown a:visited {
+                color: #0077cc !important;
+                text-decoration: none !important;
+            }
 
-    /* Media Queries */
-    @media screen and (max-width: 680px) {
+            /* What it does: Removes right gutter in Gmail iOS app: https://github.com/TedGoas/Cerberus/issues/89  */
+            /* Create one of these media queries for each additional viewport size you'd like to fix */
 
-        /* What it does: Forces elements to resize to the full width of their container. Useful for resizing images beyond their max-width. */
-        .fluid {
-            width: 100% !important;
-            max-width: 100% !important;
-            height: auto !important;
-            margin-left: auto !important;
-            margin-right: auto !important;
-        }
+            /* iPhone 4, 4S, 5, 5S, 5C, and 5SE */
+            @media only screen and (min-device-width: 320px) and (max-device-width: 374px) {
+                .email-container {
+                    min-width: 320px !important;
+                }
+            }
+            /* iPhone 6, 6S, 7, 8, and X */
+            @media only screen and (min-device-width: 375px) and (max-device-width: 413px) {
+                .email-container {
+                    min-width: 375px !important;
+                }
+            }
+            /* iPhone 6+, 7+, and 8+ */
+            @media only screen and (min-device-width: 414px) {
+                .email-container {
+                    min-width: 414px !important;
+                }
+            }
+        </style>
+        <!-- Reset list spacing because Outlook ignores much of our inline CSS. -->
+        <!--[if mso]>
+            <style type="text/css">
+                ul,
+                ol {
+                    margin: 0 !important;
+                }
+                li {
+                    margin-left: 30px !important;
+                }
+                li.list-item-first {
+                    margin-top: 15px !important;
+                }
+                li.list-item-last {
+                    margin-bottom: 15px !important;
+                }
+            </style>
+        <![endif]-->
 
-        /* What it does: Forces table cells into full-width rows. */
-        .stack-column,
-        .stack-column-center {
-            display: block !important;
-            width: 100% !important;
-            max-width: 100% !important;
-            direction: ltr !important;
-        }
-        /* And center justify these ones. */
-        .stack-column-center {
-            text-align: center !important;
-        }
+        <!-- Progressive Enhancements -->
+        <style type="text/css">
+            /* What it does: Hover styles for buttons and tags */
+            .button-td,
+            .button-a,
+            .post-tag {
+                transition: all 100ms ease-in;
+            }
+            .button-td-primary:hover,
+            .button-a-primary:hover {
+                background: #0077cc !important;
+                border-color: #0077cc !important;
+            }
+            .button-td-white:hover,
+            .button-a-white:hover {
+                background: rgba(255, 255, 255, 0.7) !important;
+                border-color: rgba(255, 255, 255, 0.7) !important;
+            }
+            .post-tag:hover {
+                border-color: #cee0ed !important;
+                background: #cee0ed !important;
+            }
 
-        /* Hides things in small viewports. */
-        .hide-on-mobile {
-            display: none !important;
-            max-height: 0 !important;
-            overflow: hidden !important;
-            visibility: hidden !important;
-        }
+            /* Media Queries */
+            @media screen and (max-width: 680px) {
+                /* What it does: Forces elements to resize to the full width of their container. Useful for resizing images beyond their max-width. */
+                .fluid {
+                    width: 100% !important;
+                    max-width: 100% !important;
+                    height: auto !important;
+                    margin-left: auto !important;
+                    margin-right: auto !important;
+                }
 
-        /* What it does: Utility classes to reduce spacing for smaller viewports. */
-        .sm-p {
-         padding: 20px !important;
-     }
-     .sm-pt {
-         padding-top: 20px !important;
-     }
-     .sm-pb {
-         padding-bottom: 20px !important;
-     }
-     .sm-pr {
-         padding-right: 20px !important;
-     }
-     .sm-pl {
-         padding-left: 20px !important;
-     }
-     .sm-px {
-         padding-left: 20px !important;
-         padding-right: 20px !important;
-     }
-     .sm-py {
-         padding-top: 20px !important;
-         padding-bottom: 20px !important;
-     }
-     .sm-mb {
-         margin-bottom: 20px !important;
-     }
-     .sm-fs34 {
-        font-size: 34px !important;
-        line-height: 34px !important;
-    }
+                /* What it does: Forces table cells into full-width rows. */
+                .stack-column,
+                .stack-column-center {
+                    display: block !important;
+                    width: 100% !important;
+                    max-width: 100% !important;
+                    direction: ltr !important;
+                }
+                /* And center justify these ones. */
+                .stack-column-center {
+                    text-align: center !important;
+                }
 
-}
-</style>
-</head>
+                /* Hides things in small viewports. */
+                .hide-on-mobile {
+                    display: none !important;
+                    max-height: 0 !important;
+                    overflow: hidden !important;
+                    visibility: hidden !important;
+                }
 
-<!--
+                /* What it does: Utility classes to reduce spacing for smaller viewports. */
+                .sm-p {
+                    padding: 20px !important;
+                }
+                .sm-pt {
+                    padding-top: 20px !important;
+                }
+                .sm-pb {
+                    padding-bottom: 20px !important;
+                }
+                .sm-pr {
+                    padding-right: 20px !important;
+                }
+                .sm-pl {
+                    padding-left: 20px !important;
+                }
+                .sm-px {
+                    padding-left: 20px !important;
+                    padding-right: 20px !important;
+                }
+                .sm-py {
+                    padding-top: 20px !important;
+                    padding-bottom: 20px !important;
+                }
+                .sm-mb {
+                    margin-bottom: 20px !important;
+                }
+                .sm-fs34 {
+                    font-size: 34px !important;
+                    line-height: 34px !important;
+                }
+            }
+        </style>
+    </head>
+
+    <!--
     The email background color is defined in three places, just below. If you chance one, remember to change the others.
     1. body tag: for most email clients
     2. center tag: for Gmail and Inbox mobile apps and web versions of Gmail, GSuite, Inbox, Yahoo, AOL, Libero, Comcast, freenet, Mail.ru, Orange.fr
     3. mso conditional: For Windows 10 Mail
 -->
-<body width="100%" style="margin: 0; background: #f3f3f5; mso-line-height-rule: exactly;">
-    <center style="width: 100%; background: #f3f3f5; text-align: left;">
-    <!--[if mso | IE]>
+    <body
+        width="100%"
+        style="margin: 0; background: #f3f3f5; mso-line-height-rule: exactly"
+    >
+        <center style="width: 100%; background: #f3f3f5; text-align: left">
+            <!--[if mso | IE]>
  <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%" style="background-color: #f3f3f5;">
  <tr>
  <td>
  <![endif]-->
 
- <div class="email-container" style="max-width: 680px; margin: auto;">
-            <!--[if mso]>
+            <div class="email-container" style="max-width: 680px; margin: auto">
+                <!--[if mso]>
  <table role="presentation" aria-hidden="true" cellspacing="0" cellpadding="0" border="0" width="680" align="center">
  <tr>
  <td>
  <![endif]-->
- <table aria-hidden="true" border="0" cellpadding="0" cellspacing="0" role="presentation" style="max-width:680px; width:100%">
-    <!-- HTML Content with Image Background : BEGIN -->
-    <tr>
-        <td style="background-image: url('https://d2axdqolvqmdvx.cloudfront.net/5cf91cf7-964e-4941-879b-886d5742c578/backgroundteams.png'); background-position: bottom center; background-size: cover; background-color: #43347D; text-align: center;">
-                        <!--[if gte mso 9]>
+                <table
+                    aria-hidden="true"
+                    border="0"
+                    cellpadding="0"
+                    cellspacing="0"
+                    role="presentation"
+                    style="max-width: 680px; width: 100%"
+                >
+                    <!-- HTML Content with Image Background : BEGIN -->
+                    <tr>
+                        <td
+                            style="
+                                background-image: url('https://d2axdqolvqmdvx.cloudfront.net/5cf91cf7-964e-4941-879b-886d5742c578/backgroundteams.png');
+                                background-position: bottom center;
+                                background-size: cover;
+                                background-color: #43347d;
+                                text-align: center;
+                            "
+                        >
+                            <!--[if gte mso 9]>
  <v:image xmlns:v="urn:schemas-microsoft-com:vml" fill="true" stroke="false" style="border: 0; display: inline-block; width: 680px; height: 410px;" src="https://d2axdqolvqmdvx.cloudfront.net/5cf91cf7-964e-4941-879b-886d5742c578/backgroundteams.png"/>
  <v:rect xmlns:v="urn:schemas-microsoft-com:vml" fill="true" stroke="false" style="border: 0; display: inline-block; position: absolute; width: 680px; height: 410px;">
  <v:fill opacity="0%" color="#43347D"/>
 <![endif]-->
-<div>
-    <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation">
-        <tr>
-            <td style="padding: 30px 30px; text-align: center;" class="sm-py">
-                <a href="hhttps://stackoverflow.com/"><img src="https://d2axdqolvqmdvx.cloudfront.net/7b6e1e90-ccfd-499b-b0da-556e3af019d1/LogoWhite.png" alt="Stack Overflow" border="0" height="30" width="150"></a>
-            </td>
-        </tr>
-        <tr>
-            <td style="padding: 0 20px 20px; text-align: center;">
-                <img src="https://d2axdqolvqmdvx.cloudfront.net/0014a679-2769-4dc8-a0a7-9953846f59eb/qanda.png" alt="Stack Overflow for Teams" border="0" height="" width="297" style="display: block; margin: auto; width: 100%; max-width: 297px; height: auto;">
-            </td>
-        </tr>
-        <tr>
-            <td style="padding: 0 20px 25px; text-align: center;">
-                <h1 style="margin: 0 0 15px; font-weight: bold; font-size: 43px; line-height: 43px; color: #ffffff; font-family: 'Roboto Slab', arial, sans-serif;" class="sm-fs34">Stack Overflow for Teams</h1>
-                <p style="margin: 0; font-size: 21px; line-height: 21px; color: #ffffff; font-family: 'Roboto Slab', arial, sans-serif;">A new way to Q&amp;A</p>
-            </td>
-        </tr>
-        <tr>
-            <td style="text-align: center; padding-bottom: 50px;">
-                <!-- Button : BEGIN -->
-                <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" align="center">
-                    <tr>
-                        <td class="button-td button-td-white" style="border-radius: 4px; background: #ffffff; text-align: center;">
-                            <a class="button-a button-a-white" href="https://stackoverflow.com/teams" style="background: #ffffff; border: 1px solid #ffffff; box-shadow: 0 0 0 0 rgba(0,149,255,0); font-family: arial, sans-serif; font-size: 17px; line-height: 17px; text-align: center; text-decoration: none; padding: 13px 17px; display: block; border-radius: 4px;"><span class="button-link" style="color:#43347D">Sign Up</span> </a>
-                        </td>
-                    </tr>
-                </table>
-                <!-- Button : END -->
-            </td>
-        </tr>
-    </table>
-</div>
-                        <!--[if gte mso 9]>
- </v:textbox>
- </v:rect>
-<![endif]-->
-</td>
-</tr>
-<!-- Hero, Centered : END -->
-<!-- General Email Body : BEGIN -->
-<tr>
-    <td style="padding: 15px 30px 30px; background-color: #ffffff;" class="sm-px sm-pb">
-        <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="width:100%;">
-            <!-- Rich Text : BEGIN -->
-            <tr>
-                <td style="padding-bottom: 30px; font-family: arial, sans-serif; font-size: 17px; line-height: 24px; color: #54595F; text-align: left;" class="sm-pb">
-                    <p style="margin: 0 0 15px 0;">Hi Ted,</p>
-                    <p style="margin: 0 0 15px 0;">You previously expressed interest in hearing more about Stack Overflow Channels or Stack Overflow for Teams.</p>
-                    <p style="margin: 0 0 15px 0;">We've alpha tested. We've beta tested. And now the wait is over!</p>
-                    <p style="margin: 0 0 15px 0;"><strong style="color: #242629;">Stack Overflow for Teams</strong> is a private, secure home for your team’s questions and answers. No more digging through stale wikis and lost emails&mdash;give your team back the time it needs to build better products.</p>
-                    <p style="margin: 0;">Try it today, with your first 14 days free.</p>
-                </td>
-            </tr>
-            <!-- Rich Text : END -->
-            <!-- Button Row : BEGIN -->
-            <tr>
-                <td style="padding-bottom: 30px;" class="sm-pb">
-                    <!-- Button : BEGIN -->
-                    <table align="left" border="0" cellpadding="0" cellspacing="0" role="presentation">
-                        <tr>
-                            <td class="button-td button-td-primary" style="border-radius: 4px; background: #0095ff; text-align: center;">
-                                <a class="button-a button-a-primary" href="https://stackoverflow.com/teams" style="background: #0095FF; border: 1px solid #0077cc; box-shadow: inset 0 1px 0 0 rgba(102,191,255,.75), 0 0 0 0 rgba(0,149,255,0); font-family: arial, sans-serif; font-size: 17px; line-height: 17px; text-align: center; text-decoration: none; padding: 13px 17px; display: block; border-radius: 4px;"><span class="button-link" style="color:#ffffff">Sign Up</span> </a>
-                            </td>
-                        </tr>
-                    </table>
-                    <!-- Button : END -->
-                </td>
-            </tr>
-            <!-- Button Row : END -->
-            <!-- Blog Article : BEGIN -->
-            <tr>
-                <td>
-                    <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="width: 100%">
-                        <tr>
-                            <td style="border-radius: 4px; border: 1px solid #D6D8DB; padding: 12px;">
-                                <table border="0" cellpadding="0" cellspacing="0" role="presentation" align="left">
+                            <div>
+                                <table
+                                    align="center"
+                                    border="0"
+                                    cellpadding="0"
+                                    cellspacing="0"
+                                    role="presentation"
+                                >
                                     <tr>
-                                        <td style="vertical-align: top;">
-                                            <img src="https://d2axdqolvqmdvx.cloudfront.net/d067095f-6bec-4322-952e-606169da4d19/iconblogpost.png" alt="blost post" height="22" width="22" style="display: block; padding-right: 12px;">
+                                        <td
+                                            style="
+                                                padding: 30px 30px;
+                                                text-align: center;
+                                            "
+                                            class="sm-py"
+                                        >
+                                            <a
+                                                href="hhttps://stackoverflow.com/"
+                                                ><img
+                                                    src="https://d2axdqolvqmdvx.cloudfront.net/7b6e1e90-ccfd-499b-b0da-556e3af019d1/LogoWhite.png"
+                                                    alt="Stack Overflow"
+                                                    border="0"
+                                                    height="30"
+                                                    width="150"
+                                            /></a>
                                         </td>
-                                        <td style="vertical-align: middle; font-family: arial, sans-serif; font-size: 15px; line-height: 19px; color: #54595F; text-align: left;">
-                                            To find out why we built Stack Overflow for Teams, <a href="https://stackoverflow.blog/2018/05/03/stack-overflow-for-teams-is-now-available" style="color: #0077CC; text-decoration: none;">read our blog post</a>.
+                                    </tr>
+                                    <tr>
+                                        <td
+                                            style="
+                                                padding: 0 20px 20px;
+                                                text-align: center;
+                                            "
+                                        >
+                                            <img
+                                                src="https://d2axdqolvqmdvx.cloudfront.net/0014a679-2769-4dc8-a0a7-9953846f59eb/qanda.png"
+                                                alt="Stack Overflow for Teams"
+                                                border="0"
+                                                height=""
+                                                width="297"
+                                                style="
+                                                    display: block;
+                                                    margin: auto;
+                                                    width: 100%;
+                                                    max-width: 297px;
+                                                    height: auto;
+                                                "
+                                            />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td
+                                            style="
+                                                padding: 0 20px 25px;
+                                                text-align: center;
+                                            "
+                                        >
+                                            <h1
+                                                style="
+                                                    margin: 0 0 15px;
+                                                    font-weight: bold;
+                                                    font-size: 43px;
+                                                    line-height: 43px;
+                                                    color: #ffffff;
+                                                    font-family: 'Roboto Slab',
+                                                        arial, sans-serif;
+                                                "
+                                                class="sm-fs34"
+                                            >
+                                                Stack Overflow for Teams
+                                            </h1>
+                                            <p
+                                                style="
+                                                    margin: 0;
+                                                    font-size: 21px;
+                                                    line-height: 21px;
+                                                    color: #ffffff;
+                                                    font-family: 'Roboto Slab',
+                                                        arial, sans-serif;
+                                                "
+                                            >
+                                                A new way to Q&amp;A
+                                            </p>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td
+                                            style="
+                                                text-align: center;
+                                                padding-bottom: 50px;
+                                            "
+                                        >
+                                            <!-- Button : BEGIN -->
+                                            <table
+                                                align="center"
+                                                border="0"
+                                                cellpadding="0"
+                                                cellspacing="0"
+                                                role="presentation"
+                                                align="center"
+                                            >
+                                                <tr>
+                                                    <td
+                                                        class="
+                                                            button-td
+                                                            button-td-white
+                                                        "
+                                                        style="
+                                                            border-radius: 4px;
+                                                            background: #ffffff;
+                                                            text-align: center;
+                                                        "
+                                                    >
+                                                        <a
+                                                            class="
+                                                                button-a
+                                                                button-a-white
+                                                            "
+                                                            href="https://stackoverflow.com/teams"
+                                                            style="
+                                                                background: #ffffff;
+                                                                border: 1px
+                                                                    solid
+                                                                    #ffffff;
+                                                                box-shadow: 0 0
+                                                                    0 0
+                                                                    rgba(
+                                                                        0,
+                                                                        149,
+                                                                        255,
+                                                                        0
+                                                                    );
+                                                                font-family: arial,
+                                                                    sans-serif;
+                                                                font-size: 17px;
+                                                                line-height: 17px;
+                                                                text-align: center;
+                                                                text-decoration: none;
+                                                                padding: 13px
+                                                                    17px;
+                                                                display: block;
+                                                                border-radius: 4px;
+                                                            "
+                                                            ><span
+                                                                class="
+                                                                    button-link
+                                                                "
+                                                                style="
+                                                                    color: #43347d;
+                                                                "
+                                                                >Sign Up</span
+                                                            >
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                            <!-- Button : END -->
                                         </td>
                                     </tr>
                                 </table>
-                            </td>
-                        </tr>
-                    </table>
-                </td>
-            </tr>
-            <!-- Blog Article : END -->
-        </table>
-    </td>
-</tr>
-<!-- Footer : BEGIN -->
-<tr>
-    <td style="padding: 30px;" class="sm-p">
-        <table align="left" border="0" cellpadding="0" cellspacing="0" role="presentation">
-            <!-- Subscription Info : BEGIN -->
-            <tr>
-                <td style="padding-bottom: 10px; font-size: 12px; font-family: arial, sans-serif; line-height: 126%; color: #93999F; text-align: left;">
-                    You're receiving this email because you signed up for updates regarding Stack Overflow Channels or Stack Overflow for Teams.
-                </td>
-            </tr>
-            <tr>
-                <td style="font-size: 12px; line-height: 126%; font-family: arial, sans-serif; color: #93999F; text-align: left;"><a href="#" style="color:#93999F; text-decoration:underline;">Unsubscribe from emails like this</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://meta.stackoverflow.com" style="color:#93999F; text-decoration:underline;">Leave feedback</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://stackexchange.com/legal/privacy-policy" style="color:#93999F; text-decoration:underline;">Privacy</a></td>
-            </tr>
-            <!-- Subscription Info : BEGIN -->
-            <!-- HR line : BEGIN -->
-            <tr>
-                <td style="padding: 30px 0;" valign="middle" width="100%">
-                    <table aria-hidden="true" border="0" cellpadding="0" cellspacing="0" role="presentation" style="width:100%">
-                        <tr>
-                            <td height="1" width="100%" style="font-size: 0; line-height: 0; border-top: 1px solid #D6D8DB;">&nbsp;</td>
-                        </tr>
-                    </table>
-                </td>
-            </tr>
-            <!-- HR line : END -->
-            <!-- Sender Info : BEGIN -->
-            <tr>
-                <td style="padding-bottom: 5px; text-align: left;">
-                    <img src="https://d2axdqolvqmdvx.cloudfront.net/beaeaa3d-e475-4bc4-ba83-98d7465c97e6/LogoSm2x.png" align="left" alt="Stack Overflow" border="0" width="111" height="22" style="display: block;">
-                </td>
-            </tr>
-            <tr>
-                <td class="unstyle-auto-detected-links" style="padding-bottom: 5px; font-size: 12px; line-height:16px; font-family: arial, sans-serif; color: #93999F; text-align: left;"><strong>Stack&nbsp;Overflow</strong>, 110 William Street, 28th Floor, New York, NY 10038</td>
-            </tr>
-            <!-- Sender Info : END -->
-            <!-- Heart : BEGIN -->
-            <tr>
-                <td>
-                    <!-- Adjust the padding so that it matches the rest of the footer. The heart should at least be left-aligned with the lines above. -->
-                    <table align="left" border="0" cellpadding="0" cellspacing="0" role="presentation" style="background:#ffffff; border-radius:1px; line-height:0px">
-                        <tr>
-                            <td>
-                                <div style="border-radius: 1px; border: 1px solid #D6D9DC; padding: 4px 6px 3px 6px; font-size: 11px; line-height: 11px; font-family: Consolas, monospace; color: #E06C77;" title="because we care">&lt;3</div>
-                            </td>
-                        </tr>
-                    </table>
-                </td>
-            </tr>
-            <!-- Heart : END -->
-        </table>
-    </td>
-</tr>
-<!-- Footer : END -->
-</table>
-</div>
-    <!--[if mso | IE]>
+                            </div>
+                            <!--[if gte mso 9]>
+ </v:textbox>
+ </v:rect>
+<![endif]-->
+                        </td>
+                    </tr>
+                    <!-- Hero, Centered : END -->
+                    <!-- General Email Body : BEGIN -->
+                    <tr>
+                        <td
+                            style="
+                                padding: 15px 30px 30px;
+                                background-color: #ffffff;
+                            "
+                            class="sm-px sm-pb"
+                        >
+                            <table
+                                border="0"
+                                cellpadding="0"
+                                cellspacing="0"
+                                role="presentation"
+                                style="width: 100%"
+                            >
+                                <!-- Rich Text : BEGIN -->
+                                <tr>
+                                    <td
+                                        style="
+                                            padding-bottom: 30px;
+                                            font-family: arial, sans-serif;
+                                            font-size: 17px;
+                                            line-height: 24px;
+                                            color: #54595f;
+                                            text-align: left;
+                                        "
+                                        class="sm-pb"
+                                    >
+                                        <p style="margin: 0 0 15px 0">
+                                            Hi Ted,
+                                        </p>
+                                        <p style="margin: 0 0 15px 0">
+                                            You previously expressed interest in
+                                            hearing more about Stack Overflow
+                                            Channels or Stack Overflow for
+                                            Teams.
+                                        </p>
+                                        <p style="margin: 0 0 15px 0">
+                                            We've alpha tested. We've beta
+                                            tested. And now the wait is over!
+                                        </p>
+                                        <p style="margin: 0 0 15px 0">
+                                            <strong style="color: #242629"
+                                                >Stack Overflow for
+                                                Teams</strong
+                                            >
+                                            is a private, secure home for your
+                                            team’s questions and answers. No
+                                            more digging through stale wikis and
+                                            lost emails&mdash;give your team
+                                            back the time it needs to build
+                                            better products.
+                                        </p>
+                                        <p style="margin: 0">
+                                            Try it today, with your first 14
+                                            days free.
+                                        </p>
+                                    </td>
+                                </tr>
+                                <!-- Rich Text : END -->
+                                <!-- Button Row : BEGIN -->
+                                <tr>
+                                    <td
+                                        style="padding-bottom: 30px"
+                                        class="sm-pb"
+                                    >
+                                        <!-- Button : BEGIN -->
+                                        <table
+                                            align="left"
+                                            border="0"
+                                            cellpadding="0"
+                                            cellspacing="0"
+                                            role="presentation"
+                                        >
+                                            <tr>
+                                                <td
+                                                    class="
+                                                        button-td
+                                                        button-td-primary
+                                                    "
+                                                    style="
+                                                        border-radius: 4px;
+                                                        background: #0095ff;
+                                                        text-align: center;
+                                                    "
+                                                >
+                                                    <a
+                                                        class="
+                                                            button-a
+                                                            button-a-primary
+                                                        "
+                                                        href="https://stackoverflow.com/teams"
+                                                        style="
+                                                            background: #0095ff;
+                                                            border: 1px solid
+                                                                #0077cc;
+                                                            box-shadow: inset 0
+                                                                    1px 0 0
+                                                                    rgba(
+                                                                        102,
+                                                                        191,
+                                                                        255,
+                                                                        0.75
+                                                                    ),
+                                                                0 0 0 0
+                                                                    rgba(
+                                                                        0,
+                                                                        149,
+                                                                        255,
+                                                                        0
+                                                                    );
+                                                            font-family: arial,
+                                                                sans-serif;
+                                                            font-size: 17px;
+                                                            line-height: 17px;
+                                                            text-align: center;
+                                                            text-decoration: none;
+                                                            padding: 13px 17px;
+                                                            display: block;
+                                                            border-radius: 4px;
+                                                        "
+                                                        ><span
+                                                            class="button-link"
+                                                            style="
+                                                                color: #ffffff;
+                                                            "
+                                                            >Sign Up</span
+                                                        >
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                        <!-- Button : END -->
+                                    </td>
+                                </tr>
+                                <!-- Button Row : END -->
+                                <!-- Blog Article : BEGIN -->
+                                <tr>
+                                    <td>
+                                        <table
+                                            border="0"
+                                            cellpadding="0"
+                                            cellspacing="0"
+                                            role="presentation"
+                                            style="width: 100%"
+                                        >
+                                            <tr>
+                                                <td
+                                                    style="
+                                                        border-radius: 4px;
+                                                        border: 1px solid
+                                                            #d6d8db;
+                                                        padding: 12px;
+                                                    "
+                                                >
+                                                    <table
+                                                        border="0"
+                                                        cellpadding="0"
+                                                        cellspacing="0"
+                                                        role="presentation"
+                                                        align="left"
+                                                    >
+                                                        <tr>
+                                                            <td
+                                                                style="
+                                                                    vertical-align: top;
+                                                                "
+                                                            >
+                                                                <img
+                                                                    src="https://d2axdqolvqmdvx.cloudfront.net/d067095f-6bec-4322-952e-606169da4d19/iconblogpost.png"
+                                                                    alt="blost post"
+                                                                    height="22"
+                                                                    width="22"
+                                                                    style="
+                                                                        display: block;
+                                                                        padding-right: 12px;
+                                                                    "
+                                                                />
+                                                            </td>
+                                                            <td
+                                                                style="
+                                                                    vertical-align: middle;
+                                                                    font-family: arial,
+                                                                        sans-serif;
+                                                                    font-size: 15px;
+                                                                    line-height: 19px;
+                                                                    color: #54595f;
+                                                                    text-align: left;
+                                                                "
+                                                            >
+                                                                To find out why
+                                                                we built Stack
+                                                                Overflow for
+                                                                Teams,
+                                                                <a
+                                                                    href="https://stackoverflow.blog/2018/05/03/stack-overflow-for-teams-is-now-available"
+                                                                    style="
+                                                                        color: #0077cc;
+                                                                        text-decoration: none;
+                                                                    "
+                                                                    >read our
+                                                                    blog post</a
+                                                                >.
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                                <!-- Blog Article : END -->
+                            </table>
+                        </td>
+                    </tr>
+                    <!-- Footer : BEGIN -->
+                    <tr>
+                        <td style="padding: 30px" class="sm-p">
+                            <table
+                                align="left"
+                                border="0"
+                                cellpadding="0"
+                                cellspacing="0"
+                                role="presentation"
+                            >
+                                <!-- Subscription Info : BEGIN -->
+                                <tr>
+                                    <td
+                                        style="
+                                            padding-bottom: 10px;
+                                            font-size: 12px;
+                                            font-family: arial, sans-serif;
+                                            line-height: 126%;
+                                            color: #93999f;
+                                            text-align: left;
+                                        "
+                                    >
+                                        You're receiving this email because you
+                                        signed up for updates regarding Stack
+                                        Overflow Channels or Stack Overflow for
+                                        Teams.
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td
+                                        style="
+                                            font-size: 12px;
+                                            line-height: 126%;
+                                            font-family: arial, sans-serif;
+                                            color: #93999f;
+                                            text-align: left;
+                                        "
+                                    >
+                                        <a
+                                            href="#"
+                                            style="
+                                                color: #93999f;
+                                                text-decoration: underline;
+                                            "
+                                            >Unsubscribe from emails like
+                                            this</a
+                                        >&nbsp;&nbsp;&nbsp;&nbsp;<a
+                                            href="https://meta.stackoverflow.com"
+                                            style="
+                                                color: #93999f;
+                                                text-decoration: underline;
+                                            "
+                                            >Leave feedback</a
+                                        >&nbsp;&nbsp;&nbsp;&nbsp;<a
+                                            href="https://stackexchange.com/legal/privacy-policy"
+                                            style="
+                                                color: #93999f;
+                                                text-decoration: underline;
+                                            "
+                                            >Privacy</a
+                                        >
+                                    </td>
+                                </tr>
+                                <!-- Subscription Info : BEGIN -->
+                                <!-- HR line : BEGIN -->
+                                <tr>
+                                    <td
+                                        style="padding: 30px 0"
+                                        valign="middle"
+                                        width="100%"
+                                    >
+                                        <table
+                                            aria-hidden="true"
+                                            border="0"
+                                            cellpadding="0"
+                                            cellspacing="0"
+                                            role="presentation"
+                                            style="width: 100%"
+                                        >
+                                            <tr>
+                                                <td
+                                                    height="1"
+                                                    width="100%"
+                                                    style="
+                                                        font-size: 0;
+                                                        line-height: 0;
+                                                        border-top: 1px solid
+                                                            #d6d8db;
+                                                    "
+                                                >
+                                                    &nbsp;
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                                <!-- HR line : END -->
+                                <!-- Sender Info : BEGIN -->
+                                <tr>
+                                    <td
+                                        style="
+                                            padding-bottom: 5px;
+                                            text-align: left;
+                                        "
+                                    >
+                                        <img
+                                            src="https://d2axdqolvqmdvx.cloudfront.net/beaeaa3d-e475-4bc4-ba83-98d7465c97e6/LogoSm2x.png"
+                                            align="left"
+                                            alt="Stack Overflow"
+                                            border="0"
+                                            width="111"
+                                            height="22"
+                                            style="display: block"
+                                        />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td
+                                        class="unstyle-auto-detected-links"
+                                        style="
+                                            padding-bottom: 5px;
+                                            font-size: 12px;
+                                            line-height: 16px;
+                                            font-family: arial, sans-serif;
+                                            color: #93999f;
+                                            text-align: left;
+                                        "
+                                    >
+                                        <strong>Stack&nbsp;Overflow</strong>,
+                                        110 William Street, 28th Floor, New
+                                        York, NY 10038
+                                    </td>
+                                </tr>
+                                <!-- Sender Info : END -->
+                                <!-- Heart : BEGIN -->
+                                <tr>
+                                    <td>
+                                        <!-- Adjust the padding so that it matches the rest of the footer. The heart should at least be left-aligned with the lines above. -->
+                                        <table
+                                            align="left"
+                                            border="0"
+                                            cellpadding="0"
+                                            cellspacing="0"
+                                            role="presentation"
+                                            style="
+                                                background: #ffffff;
+                                                border-radius: 1px;
+                                                line-height: 0px;
+                                            "
+                                        >
+                                            <tr>
+                                                <td>
+                                                    <div
+                                                        style="
+                                                            border-radius: 1px;
+                                                            border: 1px solid
+                                                                #d6d9dc;
+                                                            padding: 4px 6px 3px
+                                                                6px;
+                                                            font-size: 11px;
+                                                            line-height: 11px;
+                                                            font-family: Consolas,
+                                                                monospace;
+                                                            color: #e06c77;
+                                                        "
+                                                        title="because we care"
+                                                    >
+                                                        &lt;3
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                                <!-- Heart : END -->
+                            </table>
+                        </td>
+                    </tr>
+                    <!-- Footer : END -->
+                </table>
+            </div>
+            <!--[if mso | IE]>
  </td>
  </tr>
  </table>
 <![endif]-->
-</center>
-</body>
+        </center>
+    </body>
 </html>

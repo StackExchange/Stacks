@@ -1,8 +1,8 @@
-$(document).ready(function() {
+$(document).ready(function () {
     docsearch({
-        apiKey: '09d35fa9def5c025244d5b217778a652',
-        indexName: 'stackoverflow_design',
-        inputSelector: '#searchbox'
+        apiKey: "09d35fa9def5c025244d5b217778a652",
+        indexName: "stackoverflow_design",
+        inputSelector: "#searchbox",
     });
 
     // Show or hide search
@@ -14,7 +14,7 @@ $(document).ready(function() {
     var hamburgerBtn = $(".js-hamburger-btn");
     var logo = $(".js-logo");
 
-    searchBtn.click(function(e) {
+    searchBtn.click(function (e) {
         e.preventDefault();
         e.stopPropagation();
 
@@ -24,7 +24,7 @@ $(document).ready(function() {
         hamburgerBtn.toggleClass("md:d-block");
         logo.toggleClass("sm:d-none");
 
-        if ( searchIcon.hasClass("d-none") ) {
+        if (searchIcon.hasClass("d-none")) {
             searchBar.focus();
         }
     });

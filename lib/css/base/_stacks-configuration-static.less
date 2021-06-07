@@ -44,12 +44,16 @@
 @stacks-include-css-reset: this-is-deprecated;
 
 #stacks-config-static {
-
-    #handle-old-reset-option() when (@stacks-include-css-reset = this-is-deprecated) {
+    #handle-old-reset-option()
+        when
+        (@stacks-include-css-reset = this-is-deprecated) {
         // the variable wasn't overridden -- good!
         @css-reset: normalize; // other possible values are `meyer` and `none`
     }
-    #handle-old-reset-option() when not (@stacks-include-css-reset = this-is-deprecated) {
+    #handle-old-reset-option()
+        when
+        not
+        (@stacks-include-css-reset = this-is-deprecated) {
         // Somebody overwrote the variable, so this project is using the legacy option. Handle it.
         @css-reset: @stacks-include-css-reset;
     }

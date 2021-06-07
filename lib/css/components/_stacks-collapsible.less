@@ -40,20 +40,32 @@
 
 .s-expandable {
     display: flex;
-    -webkit-clip-path: polygon(-1000000px -1000000px, 1000000px -1000000px, 1000000px 1000000px, -1000000px 1000000px);
-    clip-path: polygon(-1000000px -1000000px, 1000000px -1000000px, 1000000px 1000000px, -1000000px 1000000px);
+    -webkit-clip-path: polygon(
+        -1000000px -1000000px,
+        1000000px -1000000px,
+        1000000px 1000000px,
+        -1000000px 1000000px
+    );
+    clip-path: polygon(
+        -1000000px -1000000px,
+        1000000px -1000000px,
+        1000000px 1000000px,
+        -1000000px 1000000px
+    );
     align-items: flex-start; // see comment above
-    transition: clip-path 0s @stacks-internals-s-expandable-transition-duration, -webkit-clip-path 0s @stacks-internals-s-expandable-transition-duration;
+    transition: clip-path 0s @stacks-internals-s-expandable-transition-duration,
+        -webkit-clip-path 0s @stacks-internals-s-expandable-transition-duration;
 
     &:after {
-        content: '';
+        content: "";
         -ms-flex-preferred-size: 0;
         flex-basis: 0;
         height: @stacks-internal-s-expandable-min-expected-height;
         max-height: 0;
-        transition:
-            height @stacks-internals-s-expandable-transition-duration linear,
-            max-height 0s @stacks-internals-s-expandable-transition-duration linear;
+        transition: height @stacks-internals-s-expandable-transition-duration
+                linear,
+            max-height 0s @stacks-internals-s-expandable-transition-duration
+                linear;
     }
 }
 
@@ -64,10 +76,12 @@
     margin-bottom: 0;
     -webkit-transform-origin: 0 0;
     transform-origin: 0 0;
-    transition:
-        margin-bottom @stacks-internals-s-expandable-transition-duration cubic-bezier(0, 0, 0, 1),
-        transform @stacks-internals-s-expandable-transition-duration cubic-bezier(1, 0, 1, 1),
-        opacity @stacks-internals-s-expandable-transition-duration cubic-bezier(1, 0, 1, 1);
+    transition: margin-bottom @stacks-internals-s-expandable-transition-duration
+            cubic-bezier(0, 0, 0, 1),
+        transform @stacks-internals-s-expandable-transition-duration
+            cubic-bezier(1, 0, 1, 1),
+        opacity @stacks-internals-s-expandable-transition-duration
+            cubic-bezier(1, 0, 1, 1);
 }
 
 .s-expandable:not(.is-expanded) {
@@ -83,13 +97,19 @@
         opacity: 0;
         -webkit-transform: scaleY(0);
         transform: scaleY(0);
-        transition:
-            margin-bottom @stacks-internals-s-expandable-transition-duration cubic-bezier(1, 0, 1, 1),
+        transition: margin-bottom
+                @stacks-internals-s-expandable-transition-duration
+                cubic-bezier(1, 0, 1, 1),
             visibility 0s @stacks-internals-s-expandable-transition-duration,
             max-height 0s @stacks-internals-s-expandable-transition-duration,
-            transform @stacks-internals-s-expandable-transition-duration cubic-bezier(0, 1, 1, 1),
-            opacity @stacks-internals-s-expandable-transition-duration cubic-bezier(0, 1, 1, 1);
-        @supports ((-webkit-clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)) or (clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%))) {
+            transform @stacks-internals-s-expandable-transition-duration
+                cubic-bezier(0, 1, 1, 1),
+            opacity @stacks-internals-s-expandable-transition-duration
+                cubic-bezier(0, 1, 1, 1);
+        @supports (
+            (-webkit-clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)) or
+                (clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%))
+        ) {
             opacity: 1;
             -webkit-transform: none;
             transform: none;
@@ -99,6 +119,7 @@
     &:after {
         height: 0;
         max-height: @stacks-internal-s-expandable-min-expected-height;
-        transition: height @stacks-internals-s-expandable-transition-duration linear;
+        transition: height @stacks-internals-s-expandable-transition-duration
+            linear;
     }
 }
