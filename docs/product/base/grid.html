@@ -39,16 +39,16 @@ description: The Stacks grid system is a flexible, scaffolding system for produc
 
 <section class="stacks-section">
     {% header "h2", "Fluid cells" %}
-    <p class="stacks-copy">By default all child elements of a grid have a default value of <code class="stacks-code">flex: 1 0 auto;</code>. This means that by default all cells will only be as wide as their content. If you would like a cell or all the cells to fill the remaining space, apply the <code class="stacks-code">.fl1</code> to the cell, or <code class="stacks-code">.grid__fl1</code> to the parent to apply to all children.</p>
+    <p class="stacks-copy">By default, all cells will only be as wide as their content. If you would like a cell or all the cells to fill the remaining space, apply the <code class="stacks-code">.fl-grow1</code> to the cell, or <code class="stacks-code">.grid__fl-equal</code> to the parent to apply to all children.</p>
 
     {% header "h3", "Fluid examples" %}
     <div class="stacks-preview">
 {% highlight html %}
 <div class="grid">
-    <div class="grid--cell fl1">…</div>
+    <div class="grid--cell fl-grow1">…</div>
     <div class="grid--cell">…</div>
 </div>
-<div class="grid grid__fl1">
+<div class="grid grid__fl-equal">
     <div class="grid--cell">…</div>
     <div class="grid--cell">…</div>
     <div class="grid--cell">…</div>
@@ -58,12 +58,12 @@ description: The Stacks grid system is a flexible, scaffolding system for produc
             <div class="grid gs16 fd-column">
                 <div class="grid--cell">
                     <div class="grid gs4">
-                        <div class="grid--cell fl1"><div class="grid grid__center h100 stacks-grid-example--cell">.grid--cell.fl1</div></div>
+                        <div class="grid--cell fl-grow1"><div class="grid grid__center h100 stacks-grid-example--cell">.grid--cell.fl-grow1</div></div>
                         <div class="grid--cell"><div class="grid grid__center h100 stacks-grid-example--cell">.grid--cell</div></div>
                     </div>
                 </div>
                 <div class="grid--cell">
-                    <div class="grid gs4 grid__fl1">
+                    <div class="grid gs4 grid__fl-equal">
                         <div class="grid--cell"><div class="grid grid__center h100 stacks-grid-example--cell">.grid--cell</div></div>
                         <div class="grid--cell"><div class="grid grid__center h100 stacks-grid-example--cell">.grid--cell</div></div>
                         <div class="grid--cell"><div class="grid grid__center h100 stacks-grid-example--cell">.grid--cell</div></div>
@@ -191,12 +191,12 @@ description: The Stacks grid system is a flexible, scaffolding system for produc
 <div class="grid grid__center">
     <div class="grid--cell">…</div>
 </div>
-<div class="grid grid__fl0">
+<div class="grid grid__fl-shrink0">
     <div class="grid--cell">…</div>
     <div class="grid--cell">…</div>
     <div class="grid--cell">…</div>
 </div>
-<div class="grid grid__fl1">
+<div class="grid grid__fl-equal">
     <div class="grid--cell">…</div>
     <div class="grid--cell">…</div>
     <div class="grid--cell">…</div>
@@ -211,16 +211,16 @@ description: The Stacks grid system is a flexible, scaffolding system for produc
                     </div>
                 </div>
                 <div class="grid--cell">
-                    <div class="mb8 ff-mono">.grid__fl0</div>
-                    <div class="bar-sm bg-black-025 ba bc-black-075 p8 grid gs4 grid__fl0">
+                    <div class="mb8 ff-mono">.grid__fl-shrink0</div>
+                    <div class="bar-sm bg-black-025 ba bc-black-075 p8 grid gs4 grid__fl-shrink0">
                         <div class="grid--cell stacks-grid-example--cell">.grid--cell</div>
                         <div class="grid--cell stacks-grid-example--cell">.grid--cell</div>
                         <div class="grid--cell stacks-grid-example--cell">.grid--cell</div>
                     </div>
                 </div>
                 <div class="grid--cell">
-                    <div class="mb8 ff-mono">.grid__fl1</div>
-                    <div class="bar-sm bg-black-025 ba bc-black-075 p8 grid gs4 grid__fl1">
+                    <div class="mb8 ff-mono">.grid__fl-equal</div>
+                    <div class="bar-sm bg-black-025 ba bc-black-075 p8 grid gs4 grid__fl-equal">
                         <div class="grid--cell stacks-grid-example--cell">.grid--cell</div>
                         <div class="grid--cell stacks-grid-example--cell">.grid--cell</div>
                         <div class="grid--cell stacks-grid-example--cell">.grid--cell</div>
@@ -249,8 +249,8 @@ description: The Stacks grid system is a flexible, scaffolding system for produc
 {% endhighlight %}
         <div class="stacks-preview--example">
             <div class="grid gs4">
-                <div class="grid--cell fl1 p12 stacks-grid-example--cell">
-                    <div class="grid gs12 grid__fl1">
+                <div class="grid--cell fl-grow1 p12 stacks-grid-example--cell">
+                    <div class="grid gs12 grid__fl-equal">
                         <div class="grid--cell"><div class="grid grid__center stacks-grid-example--cell bg-black-050">.grid--cell</div></div>
                         <div class="grid--cell"><div class="grid grid__center stacks-grid-example--cell bg-black-050">.grid--cell</div></div>
                     </div>
@@ -289,15 +289,15 @@ description: The Stacks grid system is a flexible, scaffolding system for produc
     {% header "h3", "Gutter examples" %}
     <div class="stacks-preview">
 {% highlight html %}
-<div class="grid grid__fl1 gs16">
+<div class="grid grid__fl-equal gs16">
     <div class="grid--cell">…</div>
     <div class="grid--cell">…</div>
 </div>
-<div class="grid grid__fl1 gs16 gsx">
+<div class="grid grid__fl-equal gs16 gsx">
     <div class="grid--cell">…</div>
     <div class="grid--cell">…</div>
 </div>
-<div class="grid grid__fl1 gs16 gsy">
+<div class="grid grid__fl-equal gs16 gsy">
     <div class="grid--cell">…</div>
     <div class="grid--cell">…</div>
 </div>
@@ -321,7 +321,7 @@ description: The Stacks grid system is a flexible, scaffolding system for produc
                     </div>
                 </div>
                 <div class="grid--cell bg-orange-050">
-                    <div class="grid grid__fl1 fd-column gs16 gsy">
+                    <div class="grid grid__fl-equal fd-column gs16 gsy">
                         <div class="grid--cell"><div class="stacks-grid-example--cell">.gs16.gsy -- Column gutters only</div></div>
                         <div class="grid--cell"><div class="stacks-grid-example--cell">.gs16.gsy -- Column gutters only</div></div>
                         <div class="grid--cell"><div class="stacks-grid-example--cell">.gs16.gsy -- Column gutters only</div></div>
@@ -1194,17 +1194,37 @@ description: The Stacks grid system is a flexible, scaffolding system for produc
 {% highlight html %}
 <div class="grid">
     <div class="grid--cell">…</div>
-    <div class="grid--cell fl1">…</div>
+    <div class="grid--cell fl-grow1">…</div>
     <div class="grid--cell">…</div>
 </div>
 <div class="grid">
     <div class="grid--cell">…</div>
-    <div class="grid--cell fl0">…</div>
+    <div class="grid--cell fl-grow0">…</div>
+    <div class="grid--cell">…</div>
+</div>
+<div class="grid">
+    <div class="grid--cell">…</div>
+    <div class="grid--cell fl-shrink1">…</div>
+    <div class="grid--cell">…</div>
+</div>
+<div class="grid">
+    <div class="grid--cell">…</div>
+    <div class="grid--cell fl-shrink0">…</div>
     <div class="grid--cell">…</div>
 </div>
 <div class="grid">
     <div class="grid--cell">…</div>
     <div class="grid--cell fl-none">…</div>
+    <div class="grid--cell">…</div>
+</div>
+<div class="grid">
+    <div class="grid--cell">…</div>
+    <div class="grid--cell fl-initial">…</div>
+    <div class="grid--cell">…</div>
+</div>
+<div class="grid">
+    <div class="grid--cell">…</div>
+    <div class="grid--cell fl-auto">…</div>
     <div class="grid--cell">…</div>
 </div>
 <div class="grid">
@@ -1216,29 +1236,64 @@ description: The Stacks grid system is a flexible, scaffolding system for produc
         <div class="stacks-preview--example">
             <div class="grid gs32 gsy fd-column">
                 <div class="grid--cell">
-                    <div class="mb8 ff-mono">.fl1</div>
+                    <div class="mb8 ff-mono">.fl-grow1</div>
                     <div class="bar-sm bg-black-025 ba bc-black-075 p8 grid gs4">
                         <div class="grid--cell stacks-grid-example--cell">.grid--cell</div>
-                        <div class="grid--cell stacks-grid-example--cell bg-black-100 bc-black-150 fl1">.grid--cell</div>
+                        <div class="grid--cell stacks-grid-example--cell bg-black-100 bc-black-150 fl-grow1">.grid--cell</div>
                         <div class="grid--cell stacks-grid-example--cell">.grid--cell</div>
                     </div>
                 </div>
                 <div class="grid--cell">
-                    <div class="mb8 ff-mono">.fl0</div>
+                    <div class="mb8 ff-mono">.fl-grow0</div>
                     <div class="bar-sm bg-black-025 ba bc-black-075 p8 grid gs4">
-                        <div class="grid--cell stacks-grid-example--cell fl1">.grid--cell</div>
-                        <div class="grid--cell stacks-grid-example--cell bg-black-100 bc-black-150 fl0">.grid--cell</div>
-                        <div class="grid--cell stacks-grid-example--cell fl1">.grid--cell</div>
+                        <div class="grid--cell stacks-grid-example--cell">.grid--cell</div>
+                        <div class="grid--cell stacks-grid-example--cell bg-black-100 bc-black-150 fl-grow0">.grid--cell</div>
+                        <div class="grid--cell stacks-grid-example--cell">.grid--cell</div>
                     </div>
                 </div>
                 <div class="grid--cell">
-                    <div class="mb8 ff-mono">.fl-none.ws2</div>
+                    <div class="mb8 ff-mono">.fl-shrink1</div>
                     <div class="bar-sm bg-black-025 ba bc-black-075 p8 grid gs4">
-                        <div class="grid--cell stacks-grid-example--cell fl1">.grid--cell</div>
-                        <div class="grid--cell stacks-grid-example--cell bg-black-100 bc-black-150 fl-none ws2">.grid--cell</div>
-                        <div class="grid--cell stacks-grid-example--cell fl1">.grid--cell</div>
+                        <div class="grid--cell stacks-grid-example--cell">.grid--cell</div>
+                        <div class="grid--cell stacks-grid-example--cell bg-black-100 bc-black-150 fl-shrink1">.grid--<br>cell</div>
+                        <div class="grid--cell stacks-grid-example--cell">.grid--cell</div>
                     </div>
                 </div>
+                <div class="grid--cell">
+                    <div class="mb8 ff-mono">.fl-shrink0</div>
+                    <div class="bar-sm bg-black-025 ba bc-black-075 p8 grid gs4">
+                        <div class="grid--cell stacks-grid-example--cell fl-grow1">.grid--cell</div>
+                        <div class="grid--cell stacks-grid-example--cell bg-black-100 bc-black-150 fl-shrink0">.grid--cell</div>
+                        <div class="grid--cell stacks-grid-example--cell fl-grow1">.grid--cell</div>
+                    </div>
+                </div>
+                <div class="grid--cell">
+                    <div class="mb8 ff-mono">.fl-none</div>
+                    <div class="bar-sm bg-black-025 ba bc-black-075 p8 grid gs4">
+                        <div class="grid--cell stacks-grid-example--cell fl-grow1">.grid--cell</div>
+                        <div class="grid--cell stacks-grid-example--cell bg-black-100 bc-black-150 fl-none">.grid--cell</div>
+                        <div class="grid--cell stacks-grid-example--cell fl-grow1">.grid--cell</div>
+                    </div>
+                </div>
+
+                <div class="grid--cell">
+                    <div class="mb8 ff-mono">.fl-initial</div>
+                    <div class="bar-sm bg-black-025 ba bc-black-075 p8 grid gs4">
+                        <div class="grid--cell stacks-grid-example--cell">.grid--cell</div>
+                        <div class="grid--cell stacks-grid-example--cell bg-black-100 bc-black-150 fl-initial">.grid--cell</div>
+                        <div class="grid--cell stacks-grid-example--cell">.grid--cell</div>
+                    </div>
+                </div>
+
+                <div class="grid--cell">
+                    <div class="mb8 ff-mono">.fl-auto</div>
+                    <div class="bar-sm bg-black-025 ba bc-black-075 p8 grid gs4">
+                        <div class="grid--cell stacks-grid-example--cell fl-auto">.grid--cell</div>
+                        <div class="grid--cell stacks-grid-example--cell bg-black-100 bc-black-150 fl-auto .ws2">.grid--cell.ws2</div>
+                        <div class="grid--cell stacks-grid-example--cell fl-auto">.grid--cell</div>
+                    </div>
+                </div>
+
                 <div class="grid--cell">
                     <div class="mb8 ff-mono">.fl-equal</div>
                     <div class="bar-sm bg-black-025 ba bc-black-075 p8 grid gs4">

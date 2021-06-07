@@ -88,24 +88,14 @@
 //  --  FLEX
 //      Graduating scale of flex-grow and flex-shrink values
 //  ----------------------------------------------------------------------------
-#stacks-internals #responsify('.fl0', { flex: 0 auto !important; });
-#stacks-internals #responsify('.fl1', { flex: 1 auto !important; });
-
-//  --  FLEX NONE
-//      This is equivalent to flex: 0 0 auto.
-//      It sizes the item according to its width/height properties, but makes it
-//      fully inflexible.
-//  ----------------------------------------------------------------------------
-.fl-none { flex: none; }
-
-//  --  FLEX EQUAL
-//      Equally space all children of a grid
-//  ----------------------------------------------------------------------------
-.fl-equal {
-    flex-grow: 1;
-    flex-shrink: 1;
-    flex-basis: 0;
-}
+#stacks-internals #responsify('.fl-grow1', { flex-grow: 1 !important; });
+#stacks-internals #responsify('.fl-grow0', { flex-grow: 0 !important; });
+#stacks-internals #responsify('.fl-shrink1', { flex-shrink: 1 !important; });
+#stacks-internals #responsify('.fl-shrink0', { flex-shrink: 0 !important; });
+#stacks-internals #responsify('.fl-none', { flex: none !important; });
+#stacks-internals #responsify('.fl-initial', { flex: 0 1 auto !important; });
+#stacks-internals #responsify('.fl-auto', { flex: 1 1 auto !important; });
+#stacks-internals #responsify('.fl-equal', { flex: 1 1 0% !important; });
 
 //  --  Ordering
 //      Designate a child container's position.
