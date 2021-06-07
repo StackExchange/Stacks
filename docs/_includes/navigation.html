@@ -49,6 +49,10 @@
                                     {% for link in section.links %}
                                         <a class="s-navigation--item {% if page.url == link.url %}is-selected{% endif %}" href="{{ link.url | relative_url }}">
                                             {{ link.title }}
+
+                                            {% if link.deprecated %}
+                                                <div class="ml-auto mrn4 bg-yellow-200 bar-pill fs-caption px6 py2">Deprecated</div>
+                                            {% endif %}
                                         </a>
                                     {% endfor %}
                                 {% endif %}
