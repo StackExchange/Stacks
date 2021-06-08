@@ -9,7 +9,6 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.setQuietMode(true); // Reduce the console output
   eleventyConfig.addLayoutAlias('home', 'layouts/home.html');
   eleventyConfig.addLayoutAlias('page', 'layouts/page.html');
-  eleventyConfig.addLayoutAlias('page-nomenu', 'layouts/page-nomenu.html');
 
   // Icon shortcode
   eleventyConfig.addLiquidShortcode("icon", function(name, classes, dimension) {
