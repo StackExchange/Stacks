@@ -47,7 +47,7 @@
                                 </div>
                                 {% if section.links %}
                                     {% for link in section.links %}
-                                        <a class="s-navigation--item {% if page.url == link.url %}is-selected{% endif %}" href="{{ link.url | relative_url }}">
+                                        <a class="s-navigation--item {% unless link.deprecated %}{% if page.url == link.url %}is-selected{% endif %}{% endunless %}" href="{{ link.url | relative_url }}">
                                             {{ link.title }}
 
                                             {% if link.deprecated %}
