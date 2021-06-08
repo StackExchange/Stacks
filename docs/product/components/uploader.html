@@ -1,0 +1,56 @@
+---
+layout: page
+title: File Upload
+description: File upload input.
+---
+<section class="stacks-section">
+    {% header "h2", "Classes" %}
+    <div class="overflow-x-auto mb32">
+        <table class="wmn4 s-table s-table__bx-simple">
+            <thead>
+                <tr>
+                    <th class="ws2" scope="col">Class</th>
+                    <th class="ws2" scope="col">Applied to</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody class="fs-caption">
+                {% for item in uploader-component.classes %}
+                    <tr>
+                        <th scope="row"><code class="stacks-code">{{ item.class }}</code></th>
+                        <td><code class="stacks-code bg-white">{{ item.applies }}</td>
+                        <td class="p8">{{ item.description }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</section>
+<section class="stacks-section">
+    {% header "h2", "Example" %}
+    <!-- TODO: Add copy coherently explaining Uploader component -->
+    <p class="stacks-copy">Including a file input with the class <code class="stacks-code">s-uploader--input</code> within <code class="stacks-code">s-uploader</code> will provide the correct styling for an upload section.</p>
+    <div class="stacks-preview">
+{% highlight html %}
+<div class="s-uploader">
+    <input type="file" class="s-uploader--input"/>
+    <div>
+        <div class="fs-body2">Drag files to upload</div>
+        <div class="fs-caption">Or <span class="s-link">choose your files</span>
+    </div>
+</div>
+{% endhighlight %}
+        <div class="stacks-preview--example overflow-x-auto">
+
+            <div class="s-uploader">
+                <input type="file" class="s-uploader--input"/>
+                <div>
+                    {% icon "ShieldXSm", "native s-avatar--badge" %}
+
+                    <div class="fs-body2">Drag files to upload</div>
+                    <div class="fs-caption">Or <span class="s-link">choose your files</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
