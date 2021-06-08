@@ -32,22 +32,78 @@ description: File upload input.
     <p class="stacks-copy">Including a file input with the class <code class="stacks-code">s-uploader--input</code> within <code class="stacks-code">s-uploader</code> will provide the correct styling for an upload section.</p>
     <div class="stacks-preview">
 {% highlight html %}
-<div class="s-uploader">
-    <input type="file" class="s-uploader--input"/>
+<div data-controller="s-uploader">
+    <div class="s-uploader mb24">
+        <input
+            type="file"
+            class="s-uploader--input"
+            data-target="s-uploader.input"
+            data-action="input->s-uploader#add"
+        />
+        <img
+            class="d-none hmx4 wmx100"
+            data-target="s-uploader.output"
+            data-s-uploader-show-when-valid="true"
+        />
+        <div data-s-uploader-show-when-valid="false">
+            {% icon "Image", "fc-black-350 mb8", "36" %}
+            <div class="fs-body2">Drag files to upload</div>
+            <div class="fs-caption">
+                Or <span class="s-link">choose your files</span>
+            </div>
+        </div>
+    </div>
     <div>
-        <div class="fs-body2">Drag files to upload</div>
-        <div class="fs-caption">Or <span class="s-link">choose your files</span>
+        <button
+            class="s-btn s-btn__primary"
+            data-s-uploader-enable-when-valid="true"
+            disabled
+        >Upload</button>
+        <button
+            class="s-btn d-none"
+            data-action="click->s-uploader#reset"
+            data-s-uploader-show-when-valid="true"
+        >
+            Cancel
+        </button>
     </div>
 </div>
 {% endhighlight %}
         <div class="stacks-preview--example overflow-x-auto">
-
-            <div class="s-uploader" data-controller="s-uploader">
-                <input type="file" class="s-uploader--input"  data-target="s-uploader.input" data-action="input->s-uploader#add" />
+            <div data-controller="s-uploader">
+                <div class="s-uploader mb24">
+                    <input
+                        type="file"
+                        class="s-uploader--input"
+                        data-target="s-uploader.input"
+                        data-action="input->s-uploader#add"
+                    />
+                    <img
+                        class="d-none hmx4 wmx100"
+                        data-target="s-uploader.output"
+                        data-s-uploader-show-when-valid="true"
+                    />
+                    <div data-s-uploader-show-when-valid="false">
+                        {% icon "Image", "fc-black-350 mb8", "36" %}
+                        <div class="fs-body2">Drag files to upload</div>
+                        <div class="fs-caption">
+                            Or <span class="s-link">choose your files</span>
+                        </div>
+                    </div>
+                </div>
                 <div>
-                    {% icon "Image", "fc-black-350 mb8", "36" %}
-                    <div class="fs-body2">Drag files to upload</div>
-                    <div class="fs-caption">Or <span class="s-link">choose your files</span>
+                    <button
+                        class="s-btn s-btn__primary"
+                        data-s-uploader-enable-when-valid="true"
+                        disabled
+                    >Upload</button>
+                    <button
+                        class="s-btn d-none"
+                        data-action="click->s-uploader#reset"
+                        data-s-uploader-show-when-valid="true"
+                    >
+                        Cancel
+                    </button>
                 </div>
             </div>
         </div>
