@@ -13,6 +13,7 @@ $(document).ready(function() {
     var searchBtn = $(".js-search-btn");
     var hamburgerBtn = $(".js-hamburger-btn");
     var logo = $(".js-logo");
+    var links = $(".js-links");
 
     searchBtn.click(function(e) {
         e.preventDefault();
@@ -23,6 +24,7 @@ $(document).ready(function() {
         searchContainer.toggleClass("sm:d-none");
         hamburgerBtn.toggleClass("md:d-block");
         logo.toggleClass("sm:d-none");
+        links.toggleClass("sm:d-none");
 
         if ( searchIcon.hasClass("d-none") ) {
             searchBar.focus();
