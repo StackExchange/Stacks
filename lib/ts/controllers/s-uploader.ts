@@ -1,24 +1,62 @@
 (function(){
+    // TODO: get rid of all those `any`s!!!
+    const fileToDataURL = ({ file, controller }: {
+        file: File;
+        controller: any;
+    }) => {
+        var reader = new FileReader();
+        return new Promise((resolve, reject) => {
+            reader.onload = evt => {
+                const res = evt?.target?.result;
+                if (res) {
+                    const data = file.type.indexOf('image') > -1 ? res : null;
+                    const item = { data, name: file.name, type: file.type };
+                    controller.files = [...controller.files, item];
+                    resolve(res);
+                } else {
+                    reject();
+                }
+            }
+            reader.readAsDataURL(file);
+        })
+    }
+
+    const getDataURLs = ({ files, controller }: {
+        files: FileList;
+        controller: any;
+    }) => {
+        // `files` is spread her to map over FileList... though it doesn't support iterators
+        // TODO: remove need for this ts-ignore. May require rethinging of iterator.
+        // @ts-ignore
+        return Promise.all([...files].map((file: any) => {
+            return fileToDataURL({ file, controller });
+        }));
+    }
+
     Stacks.application.register("s-uploader", class extends Stacks.StacksController {
-        static targets = ["input", "output"];
+        static targets = ["input", "preview"];
         private inputTarget: any;
-        private outputTarget: any;
+        private previewTarget: any;
+        private files: any;
+
+        initialize() {
+            this.files = [];
+        }
 
         add() {
             var controller = this;
-            var input = controller.inputTarget;
-            var output = controller.outputTarget;
-
-            if (input.files && input.files[0]) {
-                var reader = new FileReader();
-
-                reader.onload = () => output.src = reader.result;
-                reader.readAsDataURL(input.files[0]);
-                this.handleValidInput(true);
-            }
+            getDataURLs({ files: controller.inputTarget.files, controller })
+                .then(() => {
+                    controller.handleValidInput(true);
+                    controller.files.map((file: any) => {
+                        if (file.data) this.addImagePreview(file.data);
+                    })
+                });
         }
+
         handleValidInput(validInputValue: boolean) {
             var controller = this;
+            var preview = controller.previewTarget;
             var scope = controller.targets.scope;
             // TODO: This feels gross. Find a better way.
             var hideElements = scope.findAllElements('[data-s-uploader-show-when-valid="false"]');
@@ -28,20 +66,32 @@
             if (validInputValue) {
                 hideElements.map(el => el.classList.add('d-none'));
                 showElements.map(el => el.classList.remove('d-none'));
-                enableElements.map(el => el.removeAttribute('disabled'))
+                enableElements.map(el => el.removeAttribute('disabled'));
+                preview.src = controller.files[0].data;
             } else {
                 hideElements.map(el => el.classList.remove('d-none'));
                 showElements.map(el => el.classList.add('d-none'));
                 enableElements.map(el => el.setAttribute('disabled', "true"))
             }
         }
+
+        addImagePreview(src: string) {
+            var controller = this;
+            var preview = controller.previewTarget;
+            // TODO: I feel like accessing `document` is a no-no in Stimulus land
+            // consider handing it with a template tag
+            const img = document.createElement('img');
+            img.src = src;
+            preview.appendChild(img);
+        }
+
         reset() {
             var controller = this;
-            var input = controller.inputTarget;
-            var output = controller.outputTarget;
-            input.value = null;
-            output.src = '';
-            this.handleValidInput(false);
+            controller.inputTarget.value = null;
+            controller.previewTarget.innerHTML = '';
+            controller.handleValidInput(false);
+            controller.files = [];
         }
+
     });
 })();

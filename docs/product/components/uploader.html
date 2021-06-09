@@ -40,6 +40,7 @@ description: File upload input.
             class="s-uploader--input"
             data-target="s-uploader.input"
             data-action="input->s-uploader#add"
+            multiple
         />
         <label
             for="uploader"
@@ -85,23 +86,24 @@ description: File upload input.
                         class="s-uploader--input"
                         data-target="s-uploader.input"
                         data-action="input->s-uploader#add"
+                        multiple
                     />
                     <label
                         for="uploader"
                         class="s-uploader--label"
                         data-s-uploader-show-when-valid="false"
                     >
+                        <!-- TODO: replace icon with spot illustration -->
                         {% icon "Image", "fc-black-350 mb8", "36" %}
                         <div class="fs-body2">Drag files to upload</div>
                         <div class="fs-caption">
                             Or <span class="s-link">choose your files</span>
                         </div>
                     </label>
-                    <img
-                        class="d-none hmx4 wmx100"
-                        data-target="s-uploader.output"
+                    <div
+                        data-target="s-uploader.preview"
                         data-s-uploader-show-when-valid="true"
-                    />
+                    ></div>
                 </div>
                 <div>
                     <button
