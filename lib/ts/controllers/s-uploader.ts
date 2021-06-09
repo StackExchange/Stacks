@@ -13,8 +13,8 @@
                 var reader = new FileReader();
 
                 reader.onload = () => output.src = reader.result;
-                this.handleValidInput(true);
                 reader.readAsDataURL(input.files[0]);
+                this.handleValidInput(true);
             }
         }
         handleValidInput(validInputValue: boolean) {
@@ -43,13 +43,5 @@
             output.src = '';
             this.handleValidInput(false);
         }
-        // On add()
-            // show
-                // ✅ image preview
-                // cancel button?
-            // hide
-                // input inner CTA
-            // enable
-                // Upload button
     });
 })();
