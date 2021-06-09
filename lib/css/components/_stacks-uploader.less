@@ -12,7 +12,6 @@
     border-radius: @br-lg;
     border-style: dashed;
     border-width: @su4;
-    padding: @su24;
     position: relative;
     text-align: center;
 
@@ -24,9 +23,15 @@
         position: absolute;
         width: 100%;
 
-        &:focus {
+        &:focus + .s-uploader--label {
             background: var(--black-100);
             box-shadow: 0 0 0 @su4 var(--focus-ring);
         }
+    }
+    .s-uploader--label {
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+        padding: @su24;
     }
 }
