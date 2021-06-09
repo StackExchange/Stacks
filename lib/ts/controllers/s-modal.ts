@@ -196,7 +196,7 @@ namespace Stacks {
             }
 
             // If we observe a tab keydown and we're on an edge, cycle the focus to the other side.
-            if (e.keyCode === 9) {
+            if (e.key === "Tab") {
                 var tabbables = this.getAllTabbables();
 
                 var firstTabbable = this.firstVisible(tabbables);
