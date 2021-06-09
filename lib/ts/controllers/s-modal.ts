@@ -179,7 +179,6 @@ namespace Stacks {
             }, {once: true });
         }
 
-
         /**
          * Returns keyboard focus to the modal if it has left or is about to leave.
          */
