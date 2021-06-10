@@ -3,10 +3,7 @@
 
     // TODO: add /** */ JSDoc
     // TODO: generalize this function to return an array
-    const fileToDataURL = ({ file, controller }: {
-        file: File;
-        controller: any;
-    }) => {
+    const fileToDataURL = ({ file, controller }: { file: File; controller: any }) => {
         var reader = new FileReader();
         return new Promise((resolve, reject) => {
             reader.onload = evt => {
@@ -25,16 +22,11 @@
     }
 
     // TODO: add /** */ JSDoc
-    const getDataURLs = ({ files, controller }: {
-        files: FileList;
-        controller: any;
-    }) => {
+    const getDataURLs = ({ files, controller }: { files: FileList; controller: any }) => {
         // `files` is spread her to map over FileList... though it doesn't support iterators
         // TODO: remove need for this ts-ignore. May require rethinging of iterator.
         // @ts-ignore
-        return Promise.all([...files].map((file: any) => {
-            return fileToDataURL({ file, controller });
-        }));
+        return Promise.all([...files].map((file: any) => fileToDataURL({ file, controller })));
     }
 
     Stacks.application.register("s-uploader", class extends Stacks.StacksController {
@@ -52,12 +44,8 @@
             super.connect();
 
             this.handleDragActive = this.inputTarget.bind(this);
-            this.inputTarget.addEventListener("dragenter", () => {
-                this.handleDragActive(true);
-            });
-            this.inputTarget.addEventListener("dragexit", () => {
-                this.handleDragActive(false);
-            });
+            this.inputTarget.addEventListener("dragenter", () => this.handleDragActive(true));
+            this.inputTarget.addEventListener("dragexit", () => this.handleDragActive(false));
         }
 
         disconnect() {
