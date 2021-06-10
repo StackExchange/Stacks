@@ -65,7 +65,7 @@
             getDataURLs({ files: controller.inputTarget.files, controller })
                 .then(() => {
                     controller.handleVisible(true);
-                    controller.files.map((file: File) => {
+                    controller.files.slice(0, 5).map((file: File) => {
                         if (file) this.addFilePreview(file);
                     });
                     controller.handleContainerActive(true);

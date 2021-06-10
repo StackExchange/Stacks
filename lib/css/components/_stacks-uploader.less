@@ -22,7 +22,7 @@
         text-align: center;
 
         &.is-active {
-            background-color: var(--black-100);
+            background-color: var(--black-050);
         }
     }
     .s-uploader--cancel {
@@ -42,6 +42,31 @@
         &:focus:focus-visible + .s-uploader--container {
             background-color: var(--black-050);
             box-shadow: 0 0 0 @su4 var(--focus-ring);
+        }
+    }
+    .s-uploader--preview {
+        align-items: center;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        max-width: 100%;
+
+        img {
+            background-color: var(--white);
+            border-radius: @br-sm;
+            display: block;
+            max-height: 100%;
+            object-fit: contain;
+            width: 100%;
+
+            + img {
+                border-radius: 0 @br-sm @br-sm 0;
+                height: 100%;
+                margin-left: @su4;
+                max-width: @su20;
+                object-fit: cover;
+                object-position: right;
+            }
         }
     }
 }
