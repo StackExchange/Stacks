@@ -43,7 +43,6 @@
         connect() {
             super.connect();
 
-            this.handleDragActive = this.inputTarget.bind(this);
             this.inputTarget.addEventListener("dragenter", () => this.handleDragActive(true));
             this.inputTarget.addEventListener("dragexit", () => this.handleDragActive(false));
         }
