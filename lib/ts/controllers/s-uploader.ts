@@ -13,7 +13,7 @@
             reader.onload = evt => {
                 const res = evt?.target?.result;
                 if (res) {
-                    const data = file.type.indexOf('image') > -1 ? res : null;
+                    const data = file.type.indexOf("image") > -1 ? res : null;
                     const item = { data, name: file.name, type: file.type };
                     controller.files = [...controller.files, item];
                     resolve(res);
@@ -60,8 +60,7 @@
         handleInput() {
             var controller = this;
             controller.files = [];
-            controller.previewTarget.innerHTML = '';
-            console.log('should reset')
+            controller.previewTarget.innerHTML = "";
             getDataURLs({ files: controller.inputTarget.files, controller })
                 .then(() => {
                     controller.handleVisible(true);
@@ -82,14 +81,14 @@
             var enableElements = scope.findAllElements('[data-s-uploader-enable-when-valid="true"]');
 
             if (validInputValue) {
-                hideElements.map(el => el.classList.add('d-none'));
-                showElements.map(el => el.classList.remove('d-none'));
-                enableElements.map(el => el.removeAttribute('disabled'));
+                hideElements.map(el => el.classList.add("d-none"));
+                showElements.map(el => el.classList.remove("d-none"));
+                enableElements.map(el => el.removeAttribute("disabled"));
                 controller.handleContainerActive(false);
             } else {
-                hideElements.map(el => el.classList.remove('d-none'));
-                showElements.map(el => el.classList.add('d-none'));
-                enableElements.map(el => el.setAttribute('disabled', "true"))
+                hideElements.map(el => el.classList.remove("d-none"));
+                showElements.map(el => el.classList.add("d-none"));
+                enableElements.map(el => el.setAttribute("disabled", "true"))
             }
         }
 
@@ -101,11 +100,11 @@
 
             let element;
             if (isImage) {
-                element = document.createElement('img');
-                element.src = file.data || '';
+                element = document.createElement("img");
+                element.src = file.data || "";
                 element.alt = file.name;
             } else {
-                element = document.createElement('div');
+                element = document.createElement("div");
                 element.innerHTML = file.name;
             }
             preview.appendChild(element);
@@ -117,9 +116,9 @@
             var container = controller.containerTarget;
 
             if (shouldHighlight) {
-                container.classList.add('is-active');
+                container.classList.add("is-active");
             } else {
-                container.classList.remove('is-active');
+                container.classList.remove("is-active");
             }
         }
 
@@ -127,7 +126,7 @@
         reset() {
             var controller = this;
             controller.inputTarget.value = null;
-            controller.previewTarget.innerHTML = '';
+            controller.previewTarget.innerHTML = "";
             controller.handleVisible(false);
             controller.files = [];
         }
