@@ -442,20 +442,8 @@ body,
     --highlight-addition: var(--green-600); // AAA 8.21
     --highlight-deletion: var(--red-700); // AA 5.51
 }
-
-body.theme-system {
-    @media (prefers-color-scheme: dark) {
-        .dark-colors();
-    }
-}
-
-body.theme-dark,
-.theme-dark__forced {
-    .dark-colors();
-}
-
 .themed,
-.themed.theme-light__forced {
+.theme-light__forced {
     // Primary color
     // Split into h/s/l/a values
     --theme-primary-color-h: 27;
@@ -566,6 +554,18 @@ body.theme-system .themed {
 }
 
 body.theme-dark.themed,
-body.theme-dark .themed {
+body.theme-dark .themed,
+.theme-dark__forced {
     .dark-themed-colors();
+}
+
+body.theme-system {
+    @media (prefers-color-scheme: dark) {
+        .dark-colors();
+    }
+}
+
+body.theme-dark,
+.theme-dark__forced {
+    .dark-colors();
 }
