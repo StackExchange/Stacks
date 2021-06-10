@@ -1,22 +1,23 @@
 (function(){
-    interface ImageFile extends File {
+    interface FilePreview {
         data?: string;
+        name: string;
+        type: string;
     };
 
     // TODO: (all over) get rid of those `any`s!!!
 
     // TODO: add /** */ JSDoc
     // TODO: generalize this function to return an array
-    const fileToDataURL = ({ file, controller }: { file: File; controller: any }) => {
+    const fileToDataURL = (file: File) => {
         var reader = new FileReader();
         return new Promise((resolve, reject) => {
             reader.onload = evt => {
                 const res = evt?.target?.result;
                 if (res) {
-                    const data = file.type.indexOf("image") > -1 ? res : null;
-                    const item = { data, name: file.name, type: file.type };
-                    controller.files = [...controller.files, item];
-                    resolve(res);
+                    const { name, type } = file;
+                    const data = type.indexOf("image") > -1 ? res : null;
+                    resolve({ data, name, type });
                 } else {
                     reject();
                 }
@@ -26,11 +27,11 @@
     }
 
     // TODO: add /** */ JSDoc
-    const getDataURLs = ({ files, controller }: { files: FileList; controller: any }) => {
+    const getDataURLs = (files: FileList) => {
         // `files` is spread her to map over FileList... though it doesn't support iterators
         // TODO: remove need for this ts-ignore. May require rethinging of iterator.
         // @ts-ignore
-        return Promise.all([...files].map((file: File) => fileToDataURL({ file, controller })));
+        return Promise.all([...files].map((file: File) => fileToDataURL(file)));
     }
 
     Stacks.application.register("s-uploader", class extends Stacks.StacksController {
@@ -61,10 +62,11 @@
             var controller = this;
             controller.files = [];
             controller.previewTarget.innerHTML = "";
-            getDataURLs({ files: controller.inputTarget.files, controller })
-                .then(() => {
+            getDataURLs(controller.inputTarget.files)
+                .then(res => {
                     controller.handleVisible(true);
-                    controller.files.slice(0, 5).map((file: File) => {
+                    // @ts-ignore
+                    res.slice(0, 5).map((file: FilePreview) => {
                         if (file) this.addFilePreview(file);
                     });
                     controller.handleContainerActive(true);
@@ -93,7 +95,7 @@
         }
 
         // TODO: add /** */ JSDoc
-        addFilePreview(file: ImageFile) {
+        addFilePreview(file: FilePreview) {
             var controller = this;
             var preview = controller.previewTarget;
             const isImage = file.data;
