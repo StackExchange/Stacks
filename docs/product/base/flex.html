@@ -1,0 +1,1319 @@
+---
+layout: page
+title: Flex
+description: Stacks provides extensive utility and helper classes for flex layouts.
+---
+
+<section class="stacks-section">
+    <div class="s-notice s-notice__warning bar-md mb48">
+        <div class="d-flex sm:fd-column gs24 ai-center">
+            <div class="flex--item">
+                {% spot "AlertLg" %}
+            </div>
+            <div class="flex--item fs-body2 lh-lg">
+                <strong>Our flex-based “grid” classes have been renamed</strong> while we prepare for <a class="s-link s-link__underlined s-link__inherit" href="https://github.com/StackExchange/Stacks/pull/423">first-class CSS grids</a> in Stacks. Our <code class="stacks-code bg-yellow-200">.grid</code>, and <code class="stacks-code bg-yellow-200">.grid--cell</code> classes have been deprecated. Please migrate to <code class="stacks-code bg-yellow-200">.d-flex</code> and <code class="stacks-code bg-yellow-200">.flex--item</code>.
+            </div>
+        </div>
+    </div>
+
+    {% header "h2", "Basic flex layout" %}
+    <p class="stacks-copy">A flex layout is initiated with the <code class="stacks-code">.d-flex</code> class. By default, <code class="stacks-code">display: flex;</code> starts a non-wrapping row. To convert it to a column, apply the <code class="stacks-code">.fd-column</code> atomic class.</p>
+    <div class="stacks-preview">
+{% highlight html %}
+<div class="d-flex">
+    <div class="flex--item">…</div>
+    <div class="flex--item">…</div>
+</div>
+<div class="d-flex fd-column">
+    <div class="flex--item">…</div>
+    <div class="flex--item">…</div>
+</div>
+{% endhighlight %}
+        <div class="stacks-preview--example">
+            <div class="d-flex gs16 fd-column">
+                <div class="flex--item">
+                    <div class="d-flex gs4">
+                        <div class="flex--item"><div class="d-flex flex__center stacks-flex-example--item">.flex--item</div></div>
+                        <div class="flex--item"><div class="d-flex flex__center stacks-flex-example--item">.flex--item</div></div>
+                    </div>
+                </div>
+                <div class="flex--item">
+                    <div class="d-flex gs4 fd-column">
+                        <div class="flex--item"><div class="d-flex flex__center stacks-flex-example--item">.flex--item</div></div>
+                        <div class="flex--item"><div class="d-flex flex__center stacks-flex-example--item">.flex--item</div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="stacks-section">
+    {% header "h2", "Fluid" %}
+    <p class="stacks-copy">By default, all flex itesm will only be as wide as their content. If you would like a flex item or all the flex items to fill the remaining space, apply the <code class="stacks-code">.fl-grow1</code> to the individual item, or <code class="stacks-code">.flex__fl-equal</code> to the parent to apply to all children.</p>
+
+    {% header "h3", "Fluid examples" %}
+    <div class="stacks-preview">
+{% highlight html %}
+<div class="d-flex">
+    <div class="flex--item fl-grow1">…</div>
+    <div class="flex--item">…</div>
+</div>
+<div class="d-flex flex__fl-equal">
+    <div class="flex--item">…</div>
+    <div class="flex--item">…</div>
+    <div class="flex--item">…</div>
+</div>
+{% endhighlight %}
+        <div class="stacks-preview--example">
+            <div class="d-flex gs16 fd-column">
+                <div class="flex--item">
+                    <div class="d-flex gs4">
+                        <div class="flex--item fl-grow1"><div class="d-flex flex__center h100 stacks-flex-example--item">.flex--item.fl-grow1</div></div>
+                        <div class="flex--item"><div class="d-flex flex__center h100 stacks-flex-example--item">.flex--item</div></div>
+                    </div>
+                </div>
+                <div class="flex--item">
+                    <div class="d-flex gs4 flex__fl-equal">
+                        <div class="flex--item"><div class="d-flex flex__center h100 stacks-flex-example--item">.flex--item</div></div>
+                        <div class="flex--item"><div class="d-flex flex__center h100 stacks-flex-example--item">.flex--item</div></div>
+                        <div class="flex--item"><div class="d-flex flex__center h100 stacks-flex-example--item">.flex--item</div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="stacks-section">
+    {% header "h2", "Fixed cells" %}
+    <p class="stacks-copy">You can either fix the width of an individual element or fix the width of all child elements within a parent container by setting the width on the parent. The cell widths are based on a 12-column flex layout system.</p>
+
+    {% header "h3", "Fixed classes" %}
+    <div class="overflow-x-auto mb48">
+        <table class="wmn5 s-table s-table__bx-simple">
+            <thead>
+                <tr>
+                    <th scope="col">Individual Width</th>
+                    <th scope="col">Uniform Width</th>
+                    <th scope="col">Output</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in flex.flex-item %}
+                  <tr>
+                      <td><code class="stacks-code">{{ item.class }}</code></td>
+                      <td><code class="stacks-code">{{ item.all }}</code></td>
+                      <td><code class="stacks-code bg-white">{{ item.output }}</code></td>
+                  </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    {% header "h3", "Fixed examples" %}
+    <div class="stacks-preview">
+{% highlight html %}
+<div class="d-flex">
+    <div class="flex--item2">…</div>
+    <div class="flex--item10">…</div>
+</div>
+<div class="d-flex">
+    <div class="flex--item3">…</div>
+    <div class="flex--item6">…</div>
+    <div class="flex--item">…</div>
+</div>
+<div class="d-flex flex__allcells4">
+    <div class="flex--item">…</div>
+    <div class="flex--item">…</div>
+    <div class="flex--item">…</div>
+    <div class="flex--item">…</div>
+</div>
+{% endhighlight %}
+        <div class="stacks-preview--example">
+            <div class="d-flex gs32 fd-column">
+                <div class="flex--item">
+                    <div class="mb8 ff-mono">.flex--item[x]</div>
+                    <div class="bar-sm bg-black-025 ba bc-black-075 p8">
+                        <div class="d-flex gs4">
+                            <div class="flex--item2 stacks-flex-example--item ta-center">.flex--item2</div>
+                            <div class="flex--item10 stacks-flex-example--item ta-center">.flex--item10</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex--item">
+                    <div class="mb8 ff-mono">.flex--item[x] and standard .flex--item</div>
+                    <div class="bar-sm bg-black-025 ba bc-black-075 p8">
+                        <div class="d-flex gs4">
+                            <div class="flex--item3 stacks-flex-example--item ta-center">.flex--item3</div>
+                            <div class="flex--item6 stacks-flex-example--item ta-center">.flex--item6</div>
+                            <div class="flex--item stacks-flex-example--item">.flex--item</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex--item">
+                    <div class="mb8 ff-mono">.d-flex.flex__allcells4</div>
+                    <div class="bar-sm bg-black-025 ba bc-black-075 p8">
+                        <div class="d-flex gs4 flex__allcells4 fw-wrap">
+                            <div class="flex--item stacks-flex-example--item">.flex--item</div>
+                            <div class="flex--item stacks-flex-example--item">.flex--item</div>
+                            <div class="flex--item stacks-flex-example--item">.flex--item</div>
+                            <div class="flex--item stacks-flex-example--item">.flex--item</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="stacks-section">
+    {% header "h2", "Helpers" %}
+    <p class="stacks-copy">We have a few helper classes you can add to a <code class="stacks-code">.d-flex</code> container that affect the child <code class="stacks-code">.flex--item</code>s.</p>
+
+    {% header "h3", "Helper classes" %}
+    <div class="overflow-x-auto mb48">
+        <table class="wmn3 s-table s-table__bx-simple">
+            <thead>
+                <tr>
+                    <th class="s-table--cell2" scope="col">Class</th>
+                    <th scope="col">Definition</th>
+                    <th class="s-table--cell2 ta-center" scope="col"><a class="s-link s-link__inherit" href="{{ "/product/guidelines/conditional-classes#responsive"", "relative_url }}">Responsive?</a></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in flex.helpers %}
+                  <tr>
+                        <td><code class="stacks-code ws-nowrap">{{ item.class }}</code></td>
+                        <td>{{ item.define }}</td>
+                        <td class="ta-center">
+                            {% if item.responsive %}
+                                {% icon "Checkmark", "fc-green-500" %}
+                            {% endif %}
+                        </td>
+                  </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    {% header "h3", "Helpers examples" %}
+    <div class="stacks-preview">
+{% highlight html %}
+<div class="d-flex flex__center">
+    <div class="flex--item">…</div>
+</div>
+<div class="d-flex flex__fl-shrink0">
+    <div class="flex--item">…</div>
+    <div class="flex--item">…</div>
+    <div class="flex--item">…</div>
+</div>
+<div class="d-flex flex__fl-equal">
+    <div class="flex--item">…</div>
+    <div class="flex--item">…</div>
+    <div class="flex--item">…</div>
+</div>
+{% endhighlight %}
+        <div class="stacks-preview--example">
+            <div class="d-flex gs32 gsy fd-column">
+                <div class="flex--item">
+                    <div class="mb8 ff-mono">.flex__center</div>
+                    <div class="bar-sm bg-black-025 ba bc-black-075 p8 d-flex flex__center hs1">
+                        <div class="flex--item stacks-flex-example--item">.flex--item</div>
+                    </div>
+                </div>
+                <div class="flex--item">
+                    <div class="mb8 ff-mono">.flex__fl-shrink0</div>
+                    <div class="bar-sm bg-black-025 ba bc-black-075 p8 d-flex gs4 flex__fl-shrink0">
+                        <div class="flex--item stacks-flex-example--item">.flex--item</div>
+                        <div class="flex--item stacks-flex-example--item">.flex--item</div>
+                        <div class="flex--item stacks-flex-example--item">.flex--item</div>
+                    </div>
+                </div>
+                <div class="flex--item">
+                    <div class="mb8 ff-mono">.flex__fl-equal</div>
+                    <div class="bar-sm bg-black-025 ba bc-black-075 p8 d-flex gs4 flex__fl-equal">
+                        <div class="flex--item stacks-flex-example--item">.flex--item</div>
+                        <div class="flex--item stacks-flex-example--item">.flex--item</div>
+                        <div class="flex--item stacks-flex-example--item">.flex--item</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="stacks-section">
+    {% header "h2", "Nested flex layouts" %}
+    <p class="stacks-copy">Flex layouts can be nested within each other. This allows you to create unique, custom layouts without needing to create new, custom code or override existing styles.</p>
+
+    {% header "h3", "Nested examples" %}
+    <div class="stacks-preview">
+{% highlight html %}
+<div class="d-flex">
+    <div class="d-flex">
+        <div class="flex--item">…</div>
+        <div class="flex--item">…</div>
+    </div>
+    <div class="flex--item2">…</div>
+    <div class="flex--item2">…</div>
+</div>
+{% endhighlight %}
+        <div class="stacks-preview--example">
+            <div class="d-flex gs4">
+                <div class="flex--item fl-grow1 p12 stacks-flex-example--item">
+                    <div class="d-flex gs12 flex__fl-equal">
+                        <div class="flex--item"><div class="d-flex flex__center stacks-flex-example--item bg-black-050">.flex--item</div></div>
+                        <div class="flex--item"><div class="d-flex flex__center stacks-flex-example--item bg-black-050">.flex--item</div></div>
+                    </div>
+                </div>
+                <div class="flex--item2"><div class="d-flex flex__center h100 stacks-flex-example--item">.flex--item2</div></div>
+                <div class="flex--item2"><div class="d-flex flex__center h100 stacks-flex-example--item">.flex--item2</div></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="stacks-section">
+    {% header "h2", "Gutters" %}
+    <p class="stacks-copy">Sometimes gutters are desired between cells. To do so apply the appropriate class to the parent wrapper. The gutter applies a margin to all sides. The sizes available are the same as <a href="{{ /product/base/spacing | relative_url }}">the spacing units</a>.</p>
+
+    {% header "h3", "Gutter classes" %}
+    <div class="overflow-x-auto mb48">
+        <table class="wmn3 s-table s-table__bx-simple">
+            <thead>
+                <tr>
+                    <th class="s-table--cell2" scope="col">Class</th>
+                    <th scope="col">Output</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in flex.gutter %}
+                  <tr>
+                      <td><code class="stacks-code">{{ item.class }}</code></td>
+                      <td>{{ item.output }}</code></td>
+                  </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    {% header "h3", "Gutter examples" %}
+    <div class="stacks-preview">
+{% highlight html %}
+<div class="d-flex flex__fl-equal gs16">
+    <div class="flex--item">…</div>
+    <div class="flex--item">…</div>
+</div>
+<div class="d-flex flex__fl-equal gs16 gsx">
+    <div class="flex--item">…</div>
+    <div class="flex--item">…</div>
+</div>
+<div class="d-flex flex__fl-equal gs16 gsy">
+    <div class="flex--item">…</div>
+    <div class="flex--item">…</div>
+</div>
+{% endhighlight %}
+        <div class="stacks-preview--example">
+            <div class="d-flex gs32 gsy fd-column">
+                <div class="flex--item bg-orange-050">
+                    <div class="d-flex flex__allcells6 gs16 fw-wrap">
+                        <div class="flex--item"><div class="stacks-flex-example--item">.gs16</div></div>
+                        <div class="flex--item"><div class="stacks-flex-example--item">.gs16</div></div>
+                        <div class="flex--item"><div class="stacks-flex-example--item">.gs16</div></div>
+                        <div class="flex--item"><div class="stacks-flex-example--item">.gs16</div></div>
+                    </div>
+                </div>
+                <div class="flex--item bg-orange-050">
+                    <div class="d-flex flex__allcells6 gs16 gsx fw-wrap">
+                        <div class="flex--item"><div class="stacks-flex-example--item">.gs16.gsx -- Row gutters only</div></div>
+                        <div class="flex--item"><div class="stacks-flex-example--item">.gs16.gsx -- Row gutters only</div></div>
+                        <div class="flex--item"><div class="stacks-flex-example--item">.gs16.gsx -- Row gutters only</div></div>
+                        <div class="flex--item"><div class="stacks-flex-example--item">.gs16.gsx -- Row gutters only</div></div>
+                    </div>
+                </div>
+                <div class="flex--item bg-orange-050">
+                    <div class="d-flex flex__fl-equal fd-column gs16 gsy">
+                        <div class="flex--item"><div class="stacks-flex-example--item">.gs16.gsy -- Column gutters only</div></div>
+                        <div class="flex--item"><div class="stacks-flex-example--item">.gs16.gsy -- Column gutters only</div></div>
+                        <div class="flex--item"><div class="stacks-flex-example--item">.gs16.gsy -- Column gutters only</div></div>
+                        <div class="flex--item"><div class="stacks-flex-example--item">.gs16.gsy -- Column gutters only</div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% header "h3", "Nested gutters" %}
+    <div class="d-flex s-notice s-notice__info mb24">
+        <div class="flex--item mr8">{% icon "Alert" %}</div>
+        <div class="flex--item lh-lg">
+            <strong>Note:</strong> Nested flex layouts with <a href="#gutters">gutter spacing</a> will conflict with each other in unpredictable ways. <strong>TL;DR?</strong> Don’t stick a <code class="stacks-code bg-powder-300">.d-flex</code> directly into a <code class="stacks-code bg-powder-300">.d-flex</code>, instead stick a <code class="stacks-code bg-powder-300">.d-flex</code> into a <code class="stacks-code bg-powder-300">.flex--item</code> like so:
+        </div>
+    </div>
+    <p class="stacks-copy">If you are nesting a flex layout with gutter spacing into another flex layout that also has gutter spacing, the child’s parent wrapper margins will be overwritten by the parent. To have the child flex layout’s gutter spacing honored, you have to put the child flex layout within a <code class="stacks-code">.flex--item</code> wrapper first. This allows the parent and child flex layout gutter spacing to act correctly without interfering with each other.</p>
+
+    <div class="fc-green-500 fs-body1 fw-bold mb8">{% icon "Checkmark", "mtn1 mbn1" %} Do</div>
+    <div class="stacks-preview">
+{% highlight html %}
+<div class="d-flex gs32">
+    <div class="flex--item">…</div>
+    <div class="flex--item">
+        <div class="d-flex gs16">
+            <div class="flex--item">…</div>
+            <div class="flex--item">…</div>
+        </div>
+    </div>
+</div>
+{% endhighlight %}
+        <div class="stacks-preview--example">
+            <div class="d-flex gs32">
+                <div class="flex--item stacks-flex-example--item">.flex--item</div>
+                <div class="flex--item">
+                    <div class="d-flex gs16">
+                        <div class="flex--item stacks-flex-example--item">.flex--item</div>
+                        <div class="flex--item stacks-flex-example--item">.flex--item</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="fc-red-500 fs-body1 fw-bold mb8">{% icon "Clear", "mtn1 mbn1" %} Don’t</div>
+    <div class="stacks-preview">
+{% highlight html %}
+<div class="d-flex gs32">
+    <div class="flex--item">…</div>
+    <div class="d-flex gs16">
+        <div class="flex--item">…</div>
+        <div class="flex--item">…</div>
+    </div>
+</div>
+{% endhighlight %}
+        <div class="stacks-preview--example">
+            <div class="d-flex gs32">
+                <div class="flex--item stacks-flex-example--item">.flex--item</div>
+                <div class="d-flex gs16">
+                    <div class="flex--item stacks-flex-example--item">.flex--item</div>
+                    <div class="flex--item stacks-flex-example--item">.flex--item</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="stacks-section">
+    {% header "h2", "Flex direction" %}
+    <p class="stacks-copy">On a flex container, you can set the direction of the child items.</p>
+
+    {% header "h3", "Flex direction classes" %}
+    <div class="overflow-x-auto mb48">
+        <table class="wmn3 s-table s-table__bx-simple">
+            <thead>
+                <tr>
+                    <th class="s-table--cell2" scope="col">Class</th>
+                    <th scope="col">Definition</th>
+                    <th class="s-table--cell2 ta-center" scope="col"><a class="s-link s-link__inherit" href="{{ "/product/guidelines/conditional-classes#responsive"", "relative_url }}">Responsive?</a></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in flex.flex-direction %}
+                  <tr>
+                        <td><code class="stacks-code ws-nowrap">{{ item.class }}</code></td>
+                        <td>{{ item.define }}</td>
+                        <td class="ta-center">
+                            {% if item.responsive %}
+                                {% icon "Checkmark", "fc-green-500" %}
+                            {% endif %}
+                        </td>
+                  </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    {% header "h3", "Flex direction examples" %}
+    <div class="stacks-preview">
+{% highlight html %}
+<div class="d-flex fd-row">
+    <div class="flex--item">…</div>
+    <div class="flex--item">…</div>
+    <div class="flex--item">…</div>
+</div>
+<div class="d-flex fd-row-reverse">
+    <div class="flex--item">…</div>
+    <div class="flex--item">…</div>
+    <div class="flex--item">…</div>
+</div>
+<div class="d-flex fd-column">
+    <div class="flex--item">…</div>
+    <div class="flex--item">…</div>
+    <div class="flex--item">…</div>
+</div>
+<div class="d-flex fd-column-reverse">
+    <div class="flex--item">…</div>
+    <div class="flex--item">…</div>
+    <div class="flex--item">…</div>
+</div>
+{% endhighlight %}
+        <div class="stacks-preview--example">
+            <div class="d-flex gs32 gsy fd-column">
+                <div class="flex--item">
+                    <div class="d-flex ai-center mb8">
+                        <div class="flex--item ff-mono">.fd-row</div>
+                        <div class="ml6 flex--item bg-orange-100 fc-orange-700 px8 py2 bar-pill">Default</div>
+                    </div>
+                    <div class="bar-sm bg-black-025 ba bc-black-075 p8 d-flex gs4 fd-row">
+                        <div class="flex--item stacks-flex-example--item">.flex--item 1</div>
+                        <div class="flex--item stacks-flex-example--item">.flex--item 2</div>
+                        <div class="flex--item stacks-flex-example--item">.flex--item 3</div>
+                    </div>
+                </div>
+                <div class="flex--item">
+                    <div class="mb8 ff-mono">.fd-row-reverse</div>
+                    <div class="bar-sm bg-black-025 ba bc-black-075 p8 d-flex gs4 fd-row-reverse">
+                        <div class="flex--item stacks-flex-example--item">.flex--item 1</div>
+                        <div class="flex--item stacks-flex-example--item">.flex--item 2</div>
+                        <div class="flex--item stacks-flex-example--item">.flex--item 3</div>
+                    </div>
+                </div>
+                <div class="flex--item">
+                    <div class="mb8 ff-mono">.fd-column</div>
+                    <div class="bar-sm bg-black-025 ba bc-black-075 p8 d-flex gs4 fd-column">
+                        <div class="flex--item stacks-flex-example--item">.flex--item 1</div>
+                        <div class="flex--item stacks-flex-example--item">.flex--item 2</div>
+                        <div class="flex--item stacks-flex-example--item">.flex--item 3</div>
+                    </div>
+                </div>
+                <div class="flex--item">
+                    <div class="mb8 ff-mono">.fd-column-reverse</div>
+                    <div class="bar-sm bg-black-025 ba bc-black-075 p8 d-flex gs4 fd-column-reverse">
+                        <div class="flex--item stacks-flex-example--item">.flex--item 1</div>
+                        <div class="flex--item stacks-flex-example--item">.flex--item 2</div>
+                        <div class="flex--item stacks-flex-example--item">.flex--item 3</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="stacks-section">
+    {% header "h2", "Flex wrap" %}
+    <p class="stacks-copy">On a flex container, you can control if the children wrap</p>
+
+    {% header "h3", "Flex wrap classes" %}
+    <div class="overflow-x-auto mb48">
+        <table class="wmn3 s-table s-table__bx-simple">
+            <thead>
+                <tr>
+                    <th class="s-table--cell2" scope="col">Class</th>
+                    <th scope="col">Definition</th>
+                    <th class="s-table--cell2 ta-center" scope="col"><a class="s-link s-link__inherit" href="{{ "/product/guidelines/conditional-classes#responsive"", "relative_url }}">Responsive?</a></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in flex.flex-wrap %}
+                  <tr>
+                        <td><code class="stacks-code ws-nowrap">{{ item.class }}</code></td>
+                        <td>{{ item.define }}</td>
+                        <td class="ta-center">
+                            {% if item.responsive %}
+                                {% icon "Checkmark", "fc-green-500" %}
+                            {% endif %}
+                        </td>
+                  </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    {% header "h3", "Flex wrap examples" %}
+    <div class="stacks-preview">
+{% highlight html %}
+<div class="d-flex fw-wrap">
+    <div class="flex--item">…</div>
+    …
+</div>
+<div class="d-flex fw-wrap-reverse">
+    <div class="flex--item">…</div>
+    …
+</div>
+<div class="d-flex fw-nowrap">
+    <div class="flex--item">…</div>
+    …
+</div>
+{% endhighlight %}
+        <div class="stacks-preview--example">
+            <div class="d-flex gs32 gsy fd-column">
+                <div class="flex--item">
+                    <div class="mb8 ff-mono">.fw-wrap</div>
+                    <div class="bar-sm bg-black-025 ba bc-black-075 p8 d-flex gs4 fw-wrap">
+                        <div class="flex--item stacks-flex-example--item">.flex--item 1</div>
+                        <div class="flex--item stacks-flex-example--item">.flex--item 2</div>
+                        <div class="flex--item stacks-flex-example--item">.flex--item 3</div>
+                        <div class="flex--item stacks-flex-example--item">.flex--item 4</div>
+                        <div class="flex--item stacks-flex-example--item">.flex--item 5</div>
+                        <div class="flex--item stacks-flex-example--item">.flex--item 6</div>
+                        <div class="flex--item stacks-flex-example--item">.flex--item 7</div>
+                        <div class="flex--item stacks-flex-example--item">.flex--item 8</div>
+                    </div>
+                </div>
+                <div class="flex--item">
+                    <div class="mb8 ff-mono">.fw-reverse</div>
+                    <div class="bar-sm bg-black-025 ba bc-black-075 p8 d-flex gs4 fw-reverse">
+                        <div class="flex--item stacks-flex-example--item">.flex--item 1</div>
+                        <div class="flex--item stacks-flex-example--item">.flex--item 2</div>
+                        <div class="flex--item stacks-flex-example--item">.flex--item 3</div>
+                        <div class="flex--item stacks-flex-example--item">.flex--item 4</div>
+                        <div class="flex--item stacks-flex-example--item">.flex--item 5</div>
+                        <div class="flex--item stacks-flex-example--item">.flex--item 6</div>
+                        <div class="flex--item stacks-flex-example--item">.flex--item 7</div>
+                        <div class="flex--item stacks-flex-example--item">.flex--item 8</div>
+                    </div>
+                </div>
+                <div class="flex--item">
+                    <div class="d-flex ai-center mb8">
+                        <div class="flex--item ff-mono">.fw-nowrap</div>
+                        <div class="ml6 flex--item bg-orange-100 fc-orange-700 px8 py2 bar-pill">Default</div>
+                    </div>
+                    <div class="bar-sm bg-black-025 ba bc-black-075 p8 d-flex gs4 fw-nowrap overflow-x-hidden">
+                        <div class="flex--item ws-nowrap stacks-flex-example--item">.flex--item</div>
+                        <div class="flex--item ws-nowrap stacks-flex-example--item">.flex--item</div>
+                        <div class="flex--item ws-nowrap stacks-flex-example--item">.flex--item</div>
+                        <div class="flex--item ws-nowrap stacks-flex-example--item">.flex--item</div>
+                        <div class="flex--item ws-nowrap stacks-flex-example--item">.flex--item</div>
+                        <div class="flex--item ws-nowrap stacks-flex-example--item">.flex--item</div>
+                        <div class="flex--item ws-nowrap stacks-flex-example--item">.flex--item</div>
+                        <div class="flex--item ws-nowrap stacks-flex-example--item">.flex--item</div>
+                        <div class="flex--item ws-nowrap stacks-flex-example--item">.flex--item</div>
+                        <div class="flex--item ws-nowrap stacks-flex-example--item">.flex--item</div>
+                        <div class="flex--item ws-nowrap stacks-flex-example--item">.flex--item</div>
+                        <div class="flex--item ws-nowrap stacks-flex-example--item">.flex--item</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="stacks-section">
+    {% header "h2", "Justify content" %}
+    <p class="stacks-copy">Flex items can be controlled with atomic classes on the container’s main axis. This means controlling how a <code class="stacks-code">.flex--item</code> is aligned left to right when in an <code class="stacks-code">.fd-row</code>, and top and bottom in an <code class="stacks-code">.fd-column</code>.</p>
+
+    {% header "h3", "Justify content classes" %}
+    <div class="overflow-x-auto mb48">
+        <table class="wmn3 s-table s-table__bx-simple">
+            <thead>
+                <tr>
+                    <th class="s-table--cell2" scope="col">Class</th>
+                    <th scope="col">Definition</th>
+                    <th class="s-table--cell2 ta-center" scope="col"><a class="s-link s-link__inherit" href="{{ "/product/guidelines/conditional-classes#responsive"", "relative_url }}">Responsive?</a></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in flex.justification %}
+                  <tr>
+                        <td><code class="stacks-code ws-nowrap">{{ item.class }}</code></td>
+                        <td>{{ item.define }}</td>
+                        <td class="ta-center">
+                            {% if item.responsive %}
+                                {% icon "Checkmark", "fc-green-500" %}
+                            {% endif %}
+                        </td>
+                  </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    {% header "h3", "Justify content examples" %}
+    <div class="stacks-preview">
+{% highlight html %}
+<div class="d-flex jc-center">
+    <div class="flex--item">…</div>
+    <div class="flex--item">…</div>
+    <div class="flex--item">…</div>
+</div>
+<div class="d-flex jc-end">
+    <div class="flex--item">…</div>
+    <div class="flex--item">…</div>
+    <div class="flex--item">…</div>
+</div>
+<div class="d-flex jc-space-around">
+    <div class="flex--item">…</div>
+    <div class="flex--item">…</div>
+    <div class="flex--item">…</div>
+</div>
+<div class="d-flex jc-space-between">
+    <div class="flex--item">…</div>
+    <div class="flex--item">…</div>
+    <div class="flex--item">…</div>
+</div>
+<div class="d-flex jc-space-evenly">
+    <div class="flex--item">…</div>
+    <div class="flex--item">…</div>
+    <div class="flex--item">…</div>
+</div>
+<div class="d-flex jc-start">
+    <div class="flex--item">…</div>
+    <div class="flex--item">…</div>
+    <div class="flex--item">…</div>
+</div>
+{% endhighlight %}
+        <div class="stacks-preview--example">
+            <div class="d-flex gs48 gsy fd-column">
+                <div class="flex--item">
+                    <div class="mb8 ff-mono">.jc-center</div>
+                    <div class="bar-sm bg-black-025 ba bc-black-075 p8 d-flex gs4 jc-center">
+                        <div class="flex--item stacks-flex-example--item">.flex--item</div>
+                        <div class="flex--item stacks-flex-example--item">.flex--item</div>
+                        <div class="flex--item stacks-flex-example--item">.flex--item</div>
+                    </div>
+                </div>
+                <div class="flex--item">
+                    <div class="mb8 ff-mono">.jc-end</div>
+                    <div class="bar-sm bg-black-025 ba bc-black-075 p8 d-flex gs4 jc-end">
+                        <div class="flex--item stacks-flex-example--item">.flex--item</div>
+                        <div class="flex--item stacks-flex-example--item">.flex--item</div>
+                        <div class="flex--item stacks-flex-example--item">.flex--item</div>
+                    </div>
+                </div>
+                <div class="flex--item">
+                    <div class="mb8 ff-mono">.jc-space-around</div>
+                    <div class="bar-sm bg-black-025 ba bc-black-075 p8 d-flex gs4 jc-space-around">
+                        <div class="flex--item stacks-flex-example--item">.flex--item</div>
+                        <div class="flex--item stacks-flex-example--item">.flex--item</div>
+                        <div class="flex--item stacks-flex-example--item">.flex--item</div>
+                    </div>
+                </div>
+                <div class="flex--item">
+                    <div class="mb8 ff-mono">.jc-space-between</div>
+                    <div class="bar-sm bg-black-025 ba bc-black-075 p8 d-flex gs4 jc-space-between">
+                        <div class="flex--item stacks-flex-example--item">.flex--item</div>
+                        <div class="flex--item stacks-flex-example--item">.flex--item</div>
+                        <div class="flex--item stacks-flex-example--item">.flex--item</div>
+                    </div>
+                </div>
+                <div class="flex--item">
+                    <div class="mb8 ff-mono">.jc-space-evenly</div>
+                    <div class="bar-sm bg-black-025 ba bc-black-075 p8 d-flex gs4 jc-space-evenly">
+                        <div class="flex--item stacks-flex-example--item">.flex--item</div>
+                        <div class="flex--item stacks-flex-example--item">.flex--item</div>
+                        <div class="flex--item stacks-flex-example--item">.flex--item</div>
+                    </div>
+                </div>
+                <div class="flex--item">
+                    <div class="d-flex ai-center mb8">
+                        <div class="flex--item ff-mono">.jc-start</div>
+                        <div class="ml6 flex--item bg-orange-100 fc-orange-700 px8 py2 bar-pill">Default</div>
+                    </div>
+                    <div class="bar-sm bg-black-025 ba bc-black-075 p8 d-flex gs4 jc-start">
+                        <div class="flex--item stacks-flex-example--item">.flex--item</div>
+                        <div class="flex--item stacks-flex-example--item">.flex--item</div>
+                        <div class="flex--item stacks-flex-example--item">.flex--item</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="stacks-section">
+    {% header "h2", "Align items" %}
+    <p class="stacks-copy">Flex items can be controlled with atomic classes on the container’s cross axis. This means controlling how a <code class="stacks-code">.flex--item</code> is aligned top to bottom when in an <code class="stacks-code">.fd-row</code>, and left to right in an <code class="stacks-code">.fd-column</code>.</p>
+
+    {% header "h3", "Align items classes" %}
+    <div class="overflow-x-auto mb48">
+        <table class="wmn3 s-table s-table__bx-simple">
+            <thead>
+                <tr>
+                    <th class="s-table--cell2" scope="col">Class</th>
+                    <th scope="col">Definition</th>
+                    <th class="s-table--cell2 ta-center" scope="col"><a class="s-link s-link__inherit" href="{{ "/product/guidelines/conditional-classes#responsive"", "relative_url }}">Responsive?</a></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in flex.align-items %}
+                  <tr>
+                        <td><code class="stacks-code ws-nowrap">{{ item.class }}</code></td>
+                        <td>{{ item.define }}</td>
+                        <td class="ta-center">
+                            {% if item.responsive %}
+                                {% icon "Checkmark", "fc-green-500" %}
+                            {% endif %}
+                        </td>
+                  </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    {% header "h3", "Align items examples" %}
+    <div class="stacks-preview">
+{% highlight html %}
+<div class="d-flex ai-baseline">
+    <div class="flex--item">…</div>
+    <div class="flex--item">…</div>
+    <div class="flex--item">…</div>
+</div>
+<div class="d-flex ai-center">
+    <div class="flex--item">…</div>
+    <div class="flex--item">…</div>
+    <div class="flex--item">…</div>
+</div>
+<div class="d-flex ai-end">
+    <div class="flex--item">…</div>
+    <div class="flex--item">…</div>
+    <div class="flex--item">…</div>
+</div>
+<div class="d-flex ai-start">
+    <div class="flex--item">…</div>
+    <div class="flex--item">…</div>
+    <div class="flex--item">…</div>
+</div>
+<div class="d-flex ai-stretch">
+    <div class="flex--item">…</div>
+    <div class="flex--item">…</div>
+    <div class="flex--item">…</div>
+</div>
+{% endhighlight %}
+        <div class="stacks-preview--example">
+            <div class="d-flex gs32 gsy fd-column">
+                <div class="flex--item">
+                    <div class="mb8 ff-mono">.ai-baseline</div>
+                    <div class="bar-sm bg-black-025 ba bc-black-075 p8 d-flex gs4 ai-baseline">
+                        <div class="d-flex flex__center stacks-flex-example--item h32">.flex--item</div>
+                        <div class="flex--item stacks-flex-example--item h64">.flex--item</div>
+                        <div class="d-flex ai-end stacks-flex-example--item h48">.flex--item</div>
+                    </div>
+                </div>
+                <div class="flex--item">
+                    <div class="mb8 ff-mono">.ai-center</div>
+                    <div class="bar-sm bg-black-025 ba bc-black-075 p8 d-flex gs4 ai-center">
+                        <div class="d-flex flex__center stacks-flex-example--item h32">.flex--item</div>
+                        <div class="d-flex flex__center stacks-flex-example--item h64">.flex--item</div>
+                        <div class="d-flex flex__center stacks-flex-example--item h48">.flex--item</div>
+                    </div>
+                </div>
+                <div class="flex--item">
+                    <div class="mb8 ff-mono">.ai-end</div>
+                    <div class="bar-sm bg-black-025 ba bc-black-075 p8 d-flex gs4 ai-end">
+                        <div class="d-flex flex__center stacks-flex-example--item h32">.flex--item</div>
+                        <div class="d-flex flex__center stacks-flex-example--item h64">.flex--item</div>
+                        <div class="d-flex flex__center stacks-flex-example--item h48">.flex--item</div>
+                    </div>
+                </div>
+                <div class="flex--item">
+                    <div class="mb8 ff-mono">.ai-start</div>
+                    <div class="bar-sm bg-black-025 ba bc-black-075 p8 d-flex gs4 ai-start">
+                        <div class="d-flex flex__center stacks-flex-example--item h32">.flex--item</div>
+                        <div class="d-flex flex__center stacks-flex-example--item h64">.flex--item</div>
+                        <div class="d-flex flex__center stacks-flex-example--item h48">.flex--item</div>
+                    </div>
+                </div>
+                <div class="flex--item">
+                    <div class="d-flex ai-center mb8">
+                        <div class="flex--item ff-mono">.ai-stretch</div>
+                        <div class="ml6 flex--item bg-orange-100 fc-orange-700 px8 py2 bar-pill">Default</div>
+                    </div>
+                    <div class="bar-sm bg-black-025 ba bc-black-075 p8 d-flex gs4 ai-stretch">
+                        <div class="d-flex flex__center stacks-flex-example--item h64">.flex--item</div>
+                        <div class="d-flex flex__center stacks-flex-example--item h64">.flex--item</div>
+                        <div class="d-flex flex__center stacks-flex-example--item h64">.flex--item</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="stacks-section">
+    {% header "h2", "Align content" %}
+    <p class="stacks-copy">Flex items can be controlled with atomic classes on the container’s cross axis.</p>
+
+    {% header "h3", "Align content classes" %}
+    <div class="overflow-x-auto mb48">
+        <table class="wmn3 s-table s-table__bx-simple">
+            <thead>
+                <tr>
+                    <th class="s-table--cell2" scope="col">Class</th>
+                    <th scope="col">Definition</th>
+                    <th class="s-table--cell2 ta-center" scope="col"><a class="s-link s-link__inherit" href="{{ "/product/guidelines/conditional-classes#responsive"", "relative_url }}">Responsive?</a></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in flex.align-content %}
+                  <tr>
+                        <td><code class="stacks-code ws-nowrap">{{ item.class }}</code></td>
+                        <td>{{ item.define }}</td>
+                        <td class="ta-center">
+                            {% if item.responsive %}
+                                {% icon "Checkmark", "fc-green-500" %}
+                            {% endif %}
+                        </td>
+                  </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    {% header "h3", "Align content examples" %}
+    <div class="stacks-preview">
+{% highlight html %}
+<div class="d-flex ac-center">
+    <div class="flex--item">…</div>
+    <div class="flex--item">…</div>
+    <div class="flex--item">…</div>
+</div>
+<div class="d-flex ac-end">
+    <div class="flex--item">…</div>
+    <div class="flex--item">…</div>
+    <div class="flex--item">…</div>
+</div>
+<div class="d-flex ac-space-around">
+    <div class="flex--item">…</div>
+    <div class="flex--item">…</div>
+    <div class="flex--item">…</div>
+</div>
+<div class="d-flex ac-space-between">
+    <div class="flex--item">…</div>
+    <div class="flex--item">…</div>
+    <div class="flex--item">…</div>
+</div>
+<div class="d-flex ac-start">
+    <div class="flex--item">…</div>
+    <div class="flex--item">…</div>
+    <div class="flex--item">…</div>
+</div>
+<div class="d-flex ac-stretch">
+    <div class="flex--item">…</div>
+    <div class="flex--item">…</div>
+    <div class="flex--item">…</div>
+</div>
+{% endhighlight %}
+        <div class="stacks-preview--example">
+            <div class="d-flex gs48 gsy fd-column">
+                <div class="flex--item">
+                    <div class="mb8 ff-mono">.ac-center</div>
+                    <div class="bar-sm hs2 bg-black-025 ba bc-black-075 p8 d-flex gs4 ac-center fw-wrap">
+                        <div class="flex--item h-auto stacks-flex-example--item">.flex--item</div>
+                        <div class="flex--item h-auto stacks-flex-example--item">.flex--item</div>
+                        <div class="flex--item h-auto stacks-flex-example--item">.flex--item</div>
+                        <div class="flex--item h-auto stacks-flex-example--item">.flex--item</div>
+                        <div class="flex--item h-auto stacks-flex-example--item">.flex--item</div>
+                        <div class="flex--item h-auto stacks-flex-example--item">.flex--item</div>
+                        <div class="flex--item h-auto stacks-flex-example--item">.flex--item</div>
+                        <div class="flex--item h-auto stacks-flex-example--item">.flex--item</div>
+                        <div class="flex--item h-auto stacks-flex-example--item">.flex--item</div>
+                        <div class="flex--item h-auto stacks-flex-example--item">.flex--item</div>
+                        <div class="flex--item h-auto stacks-flex-example--item">.flex--item</div>
+                    </div>
+                </div>
+                <div class="flex--item">
+                    <div class="mb8 ff-mono">.ac-end</div>
+                    <div class="bar-sm hs2 bg-black-025 ba bc-black-075 p8 d-flex gs4 ac-end fw-wrap">
+                        <div class="flex--item h-auto stacks-flex-example--item">.flex--item</div>
+                        <div class="flex--item h-auto stacks-flex-example--item">.flex--item</div>
+                        <div class="flex--item h-auto stacks-flex-example--item">.flex--item</div>
+                        <div class="flex--item h-auto stacks-flex-example--item">.flex--item</div>
+                        <div class="flex--item h-auto stacks-flex-example--item">.flex--item</div>
+                        <div class="flex--item h-auto stacks-flex-example--item">.flex--item</div>
+                        <div class="flex--item h-auto stacks-flex-example--item">.flex--item</div>
+                        <div class="flex--item h-auto stacks-flex-example--item">.flex--item</div>
+                        <div class="flex--item h-auto stacks-flex-example--item">.flex--item</div>
+                        <div class="flex--item h-auto stacks-flex-example--item">.flex--item</div>
+                        <div class="flex--item h-auto stacks-flex-example--item">.flex--item</div>
+                    </div>
+                </div>
+                <div class="flex--item">
+                    <div class="mb8 ff-mono">.ac-space-around</div>
+                    <div class="bar-sm hs2 bg-black-025 ba bc-black-075 p8 d-flex gs4 ac-space-around fw-wrap">
+                        <div class="flex--item h-auto stacks-flex-example--item">.flex--item</div>
+                        <div class="flex--item h-auto stacks-flex-example--item">.flex--item</div>
+                        <div class="flex--item h-auto stacks-flex-example--item">.flex--item</div>
+                        <div class="flex--item h-auto stacks-flex-example--item">.flex--item</div>
+                        <div class="flex--item h-auto stacks-flex-example--item">.flex--item</div>
+                        <div class="flex--item h-auto stacks-flex-example--item">.flex--item</div>
+                        <div class="flex--item h-auto stacks-flex-example--item">.flex--item</div>
+                        <div class="flex--item h-auto stacks-flex-example--item">.flex--item</div>
+                        <div class="flex--item h-auto stacks-flex-example--item">.flex--item</div>
+                        <div class="flex--item h-auto stacks-flex-example--item">.flex--item</div>
+                        <div class="flex--item h-auto stacks-flex-example--item">.flex--item</div>
+                    </div>
+                </div>
+                <div class="flex--item">
+                    <div class="mb8 ff-mono">.ac-space-between</div>
+                    <div class="bar-sm hs2 bg-black-025 ba bc-black-075 p8 d-flex gs4 ac-space-between fw-wrap">
+                        <div class="flex--item h-auto stacks-flex-example--item">.flex--item</div>
+                        <div class="flex--item h-auto stacks-flex-example--item">.flex--item</div>
+                        <div class="flex--item h-auto stacks-flex-example--item">.flex--item</div>
+                        <div class="flex--item h-auto stacks-flex-example--item">.flex--item</div>
+                        <div class="flex--item h-auto stacks-flex-example--item">.flex--item</div>
+                        <div class="flex--item h-auto stacks-flex-example--item">.flex--item</div>
+                        <div class="flex--item h-auto stacks-flex-example--item">.flex--item</div>
+                        <div class="flex--item h-auto stacks-flex-example--item">.flex--item</div>
+                        <div class="flex--item h-auto stacks-flex-example--item">.flex--item</div>
+                        <div class="flex--item h-auto stacks-flex-example--item">.flex--item</div>
+                        <div class="flex--item h-auto stacks-flex-example--item">.flex--item</div>
+                    </div>
+                </div>
+                <div class="flex--item">
+                    <div class="d-flex ai-center mb8">
+                        <div class="flex--item ff-mono">.ac-start</div>
+                        <div class="ml6 flex--item bg-orange-100 fc-orange-700 px8 py2 bar-pill">Default</div>
+                    </div>
+                    <div class="bar-sm hs2 bg-black-025 ba bc-black-075 p8 d-flex gs4 ac-start fw-wrap">
+                        <div class="flex--item h-auto stacks-flex-example--item">.flex--item</div>
+                        <div class="flex--item h-auto stacks-flex-example--item">.flex--item</div>
+                        <div class="flex--item h-auto stacks-flex-example--item">.flex--item</div>
+                        <div class="flex--item h-auto stacks-flex-example--item">.flex--item</div>
+                        <div class="flex--item h-auto stacks-flex-example--item">.flex--item</div>
+                        <div class="flex--item h-auto stacks-flex-example--item">.flex--item</div>
+                        <div class="flex--item h-auto stacks-flex-example--item">.flex--item</div>
+                        <div class="flex--item h-auto stacks-flex-example--item">.flex--item</div>
+                        <div class="flex--item h-auto stacks-flex-example--item">.flex--item</div>
+                        <div class="flex--item h-auto stacks-flex-example--item">.flex--item</div>
+                        <div class="flex--item h-auto stacks-flex-example--item">.flex--item</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="stacks-section">
+    {% header "h2", "Align self" %}
+    <p class="stacks-copy">A flex container’s <code class="stacks-code">align-items</code> can be overridden on individual items within a flex layout.</p>
+
+    {% header "h3", "Align self classes" %}
+    <div class="overflow-x-auto mb48">
+        <table class="wmn3 s-table s-table__bx-simple">
+            <thead>
+                <tr>
+                    <th class="s-table--cell2" scope="col">Class</th>
+                    <th scope="col">Definition</th>
+                    <th class="s-table--cell2 ta-center" scope="col"><a class="s-link s-link__inherit" href="{{ "/product/guidelines/conditional-classes#responsive"", "relative_url }}">Responsive?</a></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in flex.align-self %}
+                  <tr>
+                        <td><code class="stacks-code ws-nowrap">{{ item.class }}</code></td>
+                        <td>{{ item.define }}</td>
+                        <td class="ta-center">
+                            {% if item.responsive %}
+                                {% icon "Checkmark", "fc-green-500" %}
+                            {% endif %}
+                        </td>
+                  </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    {% header "h3", "Align self examples" %}
+    <div class="stacks-preview">
+{% highlight html %}
+<div class="d-flex">
+    <div class="flex--item">…</div>
+    <div class="flex--item as-auto">…</div>
+    <div class="flex--item">…</div>
+</div>
+<div class="d-flex">
+    <div class="flex--item">…</div>
+    <div class="flex--item as-baseline">…</div>
+    <div class="flex--item">…</div>
+</div>
+<div class="d-flex">
+    <div class="flex--item">…</div>
+    <div class="flex--item as-center">…</div>
+    <div class="flex--item">…</div>
+</div>
+<div class="d-flex">
+    <div class="flex--item">…</div>
+    <div class="flex--item as-end">…</div>
+    <div class="flex--item">…</div>
+</div>
+<div class="d-flex">
+    <div class="flex--item">…</div>
+    <div class="flex--item as-start">…</div>
+    <div class="flex--item">…</div>
+</div>
+<div class="d-flex">
+    <div class="flex--item">…</div>
+    <div class="flex--item as-stretch">…</div>
+    <div class="flex--item">…</div>
+</div>
+{% endhighlight %}
+        <div class="stacks-preview--example">
+            <div class="d-flex gs32 gsy fd-column">
+                <div class="flex--item">
+                    <div class="d-flex ai-center mb8">
+                        <div class="flex--item ff-mono">.as-auto</div>
+                        <div class="ml6 flex--item bg-orange-100 fc-orange-700 px8 py2 bar-pill">Default</div>
+                    </div>
+                    <div class="bar-sm hs1 bg-black-025 ba bc-black-075 p8 d-flex gs4 jc-center">
+                        <div class="d-flex flex__center stacks-flex-example--item">.flex--item</div>
+                        <div class="d-flex flex__center stacks-flex-example--item bg-black-100 bc-black-150 as-auto">.flex--item</div>
+                        <div class="d-flex flex__center stacks-flex-example--item">.flex--item</div>
+                    </div>
+                </div>
+                <div class="flex--item">
+                    <div class="mb8 ff-mono">.as-baseline</div>
+                    <div class="bar-sm hs1 bg-black-025 ba bc-black-075 p8 d-flex gs4 jc-center">
+                        <div class="d-flex flex__center stacks-flex-example--item">.flex--item</div>
+                        <div class="d-flex flex__center stacks-flex-example--item bg-black-100 bc-black-150 as-baseline">.flex--item</div>
+                        <div class="d-flex flex__center stacks-flex-example--item">.flex--item</div>
+                    </div>
+                </div>
+                <div class="flex--item">
+                    <div class="mb8 ff-mono">.as-center</div>
+                    <div class="bar-sm hs1 bg-black-025 ba bc-black-075 p8 d-flex gs4 jc-center">
+                        <div class="d-flex flex__center stacks-flex-example--item">.flex--item</div>
+                        <div class="d-flex flex__center stacks-flex-example--item bg-black-100 bc-black-150 as-center">.flex--item</div>
+                        <div class="d-flex flex__center stacks-flex-example--item">.flex--item</div>
+                    </div>
+                </div>
+                <div class="flex--item">
+                    <div class="mb8 ff-mono">.as-end</div>
+                    <div class="bar-sm hs1 bg-black-025 ba bc-black-075 p8 d-flex gs4 jc-center">
+                        <div class="d-flex flex__center stacks-flex-example--item">.flex--item</div>
+                        <div class="d-flex flex__center stacks-flex-example--item bg-black-100 bc-black-150 as-end">.flex--item</div>
+                        <div class="d-flex flex__center stacks-flex-example--item">.flex--item</div>
+                    </div>
+                </div>
+                <div class="flex--item">
+                    <div class="mb8 ff-mono">.as-start</div>
+                    <div class="bar-sm hs1 bg-black-025 ba bc-black-075 p8 d-flex gs4 jc-center">
+                        <div class="d-flex flex__center stacks-flex-example--item">.flex--item</div>
+                        <div class="d-flex flex__center stacks-flex-example--item bg-black-100 bc-black-150 as-start">.flex--item</div>
+                        <div class="d-flex flex__center stacks-flex-example--item">.flex--item</div>
+                    </div>
+                </div>
+                <div class="flex--item">
+                    <div class="mb8 ff-mono">.as-stretch</div>
+                    <div class="bar-sm hs1 bg-black-025 ba bc-black-075 p8 d-flex gs4 jc-center ai-center">
+                        <div class="d-flex flex__center stacks-flex-example--item">.flex--item</div>
+                        <div class="d-flex flex__center stacks-flex-example--item bg-black-100 bc-black-150 as-stretch">.flex--item</div>
+                        <div class="d-flex flex__center stacks-flex-example--item">.flex--item</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="stacks-section">
+    {% header "h2", "Order" %}
+    <p class="stacks-copy">Within a flex layout, you can force the position of individual elements.</p>
+
+    {% header "h3", "Order classes" %}
+    <div class="overflow-x-auto mb48">
+        <table class="wmn3 s-table s-table__bx-simple">
+            <thead>
+                <tr>
+                    <th class="s-table--cell2" scope="col">Class</th>
+                    <th scope="col">Definition</th>
+                    <th class="s-table--cell2 ta-center" scope="col"><a class="s-link s-link__inherit" href="{{ "/product/guidelines/conditional-classes#responsive"", "relative_url }}">Responsive?</a></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in flex.order %}
+                  <tr>
+                        <td><code class="stacks-code ws-nowrap">{{ item.class }}</code></td>
+                        <td>{{ item.define }}</td>
+                        <td class="ta-center">
+                            {% if item.responsive %}
+                                {% icon "Checkmark", "fc-green-500" %}
+                            {% endif %}
+                        </td>
+                  </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    {% header "h3", "Order examples" %}
+    <div class="stacks-preview">
+{% highlight html %}
+<div class="d-flex">
+    <div class="flex--item">…</div>
+    <div class="flex--item">…</div>
+    <div class="flex--item order-first">…</div>
+</div>
+<div class="d-flex">
+    <div class="flex--item order-last">…</div>
+    <div class="flex--item">…</div>
+    <div class="flex--item">…</div>
+</div>
+{% endhighlight %}
+        <div class="stacks-preview--example">
+            <div class="d-flex gs32 gsy fd-column">
+                <div class="flex--item">
+                    <div class="mb8 ff-mono">.order-first</div>
+                    <div class="bar-sm bg-black-025 ba bc-black-075 p8 d-flex gs4">
+                        <div class="flex--item stacks-flex-example--item">.flex--item 1</div>
+                        <div class="flex--item stacks-flex-example--item">.flex--item 2</div>
+                        <div class="flex--item stacks-flex-example--item bg-black-100 bc-black-150 order-first">.flex--item 3</div>
+                    </div>
+                </div>
+                <div class="flex--item">
+                    <div class="mb8 ff-mono">.order-last</div>
+                    <div class="bar-sm bg-black-025 ba bc-black-075 p8 d-flex gs4">
+                        <div class="flex--item stacks-flex-example--item bg-black-100 bc-black-150 order-last">.flex--item 1</div>
+                        <div class="flex--item stacks-flex-example--item">.flex--item 2</div>
+                        <div class="flex--item stacks-flex-example--item">.flex--item 3</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="stacks-section">
+    {% header "h2", "Flex shrink and grow" %}
+    <p class="stacks-copy">You can control the growing and shrinking behavior of individual elements within a flex layout</p>
+
+    {% header "h3", "Flex classes" %}
+    <div class="overflow-x-auto mb48">
+        <table class="wmn3 s-table s-table__bx-simple">
+            <thead>
+                <tr>
+                    <th class="s-table--cell2" scope="col">Class</th>
+                    <th scope="col">Definition</th>
+                    <th class="s-table--cell2 ta-center" scope="col"><a class="s-link s-link__inherit" href="{{ "/product/guidelines/conditional-classes#responsive"", "relative_url }}">Responsive?</a></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in flex.flex %}
+                  <tr>
+                        <td><code class="stacks-code ws-nowrap">{{ item.class }}</code></td>
+                        <td>{{ item.define }}</td>
+                        <td class="ta-center">
+                            {% if item.responsive %}
+                                {% icon "Checkmark", "fc-green-500" %}
+                            {% endif %}
+                        </td>
+                  </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    {% header "h3", "Flex examples" %}
+    <div class="stacks-preview">
+{% highlight html %}
+<div class="d-flex">
+    <div class="flex--item">…</div>
+    <div class="flex--item fl-grow1">…</div>
+    <div class="flex--item">…</div>
+</div>
+<div class="d-flex">
+    <div class="flex--item">…</div>
+    <div class="flex--item fl-grow0">…</div>
+    <div class="flex--item">…</div>
+</div>
+<div class="d-flex">
+    <div class="flex--item">…</div>
+    <div class="flex--item fl-shrink1">…</div>
+    <div class="flex--item">…</div>
+</div>
+<div class="d-flex">
+    <div class="flex--item">…</div>
+    <div class="flex--item fl-shrink0">…</div>
+    <div class="flex--item">…</div>
+</div>
+<div class="d-flex">
+    <div class="flex--item">…</div>
+    <div class="flex--item fl-none">…</div>
+    <div class="flex--item">…</div>
+</div>
+<div class="d-flex">
+    <div class="flex--item">…</div>
+    <div class="flex--item fl-initial">…</div>
+    <div class="flex--item">…</div>
+</div>
+<div class="d-flex">
+    <div class="flex--item">…</div>
+    <div class="flex--item fl-auto">…</div>
+    <div class="flex--item">…</div>
+</div>
+<div class="d-flex">
+    <div class="flex--item fl-equal">…</div>
+    <div class="flex--item fl-equal">…</div>
+    <div class="flex--item fl-equal">…</div>
+</div>
+{% endhighlight %}
+        <div class="stacks-preview--example">
+            <div class="d-flex gs32 gsy fd-column">
+                <div class="flex--item">
+                    <div class="mb8 ff-mono">.fl-grow1</div>
+                    <div class="bar-sm bg-black-025 ba bc-black-075 p8 d-flex gs4">
+                        <div class="flex--item stacks-flex-example--item">.flex--item</div>
+                        <div class="flex--item stacks-flex-example--item bg-black-100 bc-black-150 fl-grow1">.flex--item</div>
+                        <div class="flex--item stacks-flex-example--item">.flex--item</div>
+                    </div>
+                </div>
+                <div class="flex--item">
+                    <div class="mb8 ff-mono">.fl-grow0</div>
+                    <div class="bar-sm bg-black-025 ba bc-black-075 p8 d-flex gs4">
+                        <div class="flex--item stacks-flex-example--item">.flex--item</div>
+                        <div class="flex--item stacks-flex-example--item bg-black-100 bc-black-150 fl-grow0">.flex--item</div>
+                        <div class="flex--item stacks-flex-example--item">.flex--item</div>
+                    </div>
+                </div>
+                <div class="flex--item">
+                    <div class="mb8 ff-mono">.fl-shrink1</div>
+                    <div class="bar-sm bg-black-025 ba bc-black-075 p8 d-flex gs4">
+                        <div class="flex--item stacks-flex-example--item">.flex--item</div>
+                        <div class="flex--item stacks-flex-example--item bg-black-100 bc-black-150 fl-shrink1">.flex--<br>item</div>
+                        <div class="flex--item stacks-flex-example--item">.flex--item</div>
+                    </div>
+                </div>
+                <div class="flex--item">
+                    <div class="mb8 ff-mono">.fl-shrink0</div>
+                    <div class="bar-sm bg-black-025 ba bc-black-075 p8 d-flex gs4">
+                        <div class="flex--item stacks-flex-example--item fl-grow1">.flex--item</div>
+                        <div class="flex--item stacks-flex-example--item bg-black-100 bc-black-150 fl-shrink0">.flex--item</div>
+                        <div class="flex--item stacks-flex-example--item fl-grow1">.flex--item</div>
+                    </div>
+                </div>
+                <div class="flex--item">
+                    <div class="mb8 ff-mono">.fl-none</div>
+                    <div class="bar-sm bg-black-025 ba bc-black-075 p8 d-flex gs4">
+                        <div class="flex--item stacks-flex-example--item fl-grow1">.flex--item</div>
+                        <div class="flex--item stacks-flex-example--item bg-black-100 bc-black-150 fl-none">.flex--item</div>
+                        <div class="flex--item stacks-flex-example--item fl-grow1">.flex--item</div>
+                    </div>
+                </div>
+
+                <div class="flex--item">
+                    <div class="mb8 ff-mono">.fl-initial</div>
+                    <div class="bar-sm bg-black-025 ba bc-black-075 p8 d-flex gs4">
+                        <div class="flex--item stacks-flex-example--item">.flex--item</div>
+                        <div class="flex--item stacks-flex-example--item bg-black-100 bc-black-150 fl-initial">.flex--item</div>
+                        <div class="flex--item stacks-flex-example--item">.flex--item</div>
+                    </div>
+                </div>
+
+                <div class="flex--item">
+                    <div class="mb8 ff-mono">.fl-auto</div>
+                    <div class="bar-sm bg-black-025 ba bc-black-075 p8 d-flex gs4">
+                        <div class="flex--item stacks-flex-example--item fl-auto">.flex--item</div>
+                        <div class="flex--item stacks-flex-example--item bg-black-100 bc-black-150 fl-auto .ws2">.flex--item.ws2</div>
+                        <div class="flex--item stacks-flex-example--item fl-auto">.flex--item</div>
+                    </div>
+                </div>
+
+                <div class="flex--item">
+                    <div class="mb8 ff-mono">.fl-equal</div>
+                    <div class="bar-sm bg-black-025 ba bc-black-075 p8 d-flex gs4">
+                        <div class="flex--item stacks-flex-example--item bg-black-100 bc-black-150 fl-equal">.flex--item</div>
+                        <div class="flex--item stacks-flex-example--item bg-black-100 bc-black-150 fl-equal">.flex--item</div>
+                        <div class="flex--item stacks-flex-example--item bg-black-100 bc-black-150 fl-equal">.flex--item</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
