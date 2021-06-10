@@ -32,33 +32,29 @@ description: File upload input.
     <p class="stacks-copy">Including a file input with the class <code class="stacks-code">s-uploader--input</code> within <code class="stacks-code">s-uploader</code> will provide the correct styling for an upload section.</p>
     <div class="stacks-preview">
 {% highlight html %}
-<div data-controller="s-uploader">
-    <div class="s-uploader mb24">
-        <input
-            id="uploader"
-            type="file"
-            class="s-uploader--input"
-            data-target="s-uploader.input"
-            data-action="input->s-uploader#add"
-            multiple
-        />
-        <label for="uploader">
-            <div
-                class="s-uploader--label"
-                data-s-uploader-show-when-valid="false"
-            >
-                {% icon "Image", "fc-black-350 mb8", "36" %}
-                <div class="fs-body2">Drag files to upload</div>
-                <div class="fs-caption">
-                    Or <span class="s-link">choose your files</span>
-                </div>
-            </div>
-        </label>
-        <img
-            class="d-none hmx4 wmx100"
-            data-target="s-uploader.output"
+<            <label class="d-block s-label mb12" for="uploader">Choose files</label>
+<div class="s-uploader" data-controller="s-uploader">
+    <input
+        id="uploader"
+        type="file"
+        class="s-uploader--input"
+        data-target="s-uploader.input"
+        data-action="input->s-uploader#handleInput"
+        multiple
+    />
+    <div class="s-uploader--container mb24" data-target="s-uploader.container">
+        <div
+            class="d-none"
+            data-target="s-uploader.preview"
             data-s-uploader-show-when-valid="true"
-        />
+        ></div>
+        <div data-s-uploader-show-when-valid="false">
+            {% icon "Image", "fc-black-350 mb8", "36" %}
+            <div class="fs-body2">Drag files to upload</div>
+            <div class="fs-caption">
+                Or <span class="s-link">choose your files</span>
+            </div>
+        </div>
     </div>
     <div>
         <button
@@ -79,36 +75,27 @@ description: File upload input.
 </div>
 {% endhighlight %}
         <div class="stacks-preview--example overflow-x-auto">
-            <div data-controller="s-uploader">
-                <div class="s-uploader mb24">
-                    <!--
-                        TODO: Consider adding a label to example
-                        to encourage best practices
-                    -->
+            <label class="d-block s-label mb12" for="uploader">Choose files</label>
+            <div class="s-uploader" data-controller="s-uploader">
+                <input
+                    id="uploader"
+                    type="file"
+                    class="s-uploader--input"
+                    data-target="s-uploader.input"
+                    data-action="input->s-uploader#handleInput"
+                    multiple
+                />
+                <div class="s-uploader--container mb24" data-target="s-uploader.container">
                     <div
-                        class="s-uploader--container"
-                        data-target="s-uploader.container"
-                    >
-                    <input
-                        id="uploader"
-                        type="file"
-                        class="s-uploader--input"
-                        data-target="s-uploader.input"
-                        data-action="input->s-uploader#handleInput"
-                        multiple
-                    />
-                    <div
-                            class="d-none"
-                            data-target="s-uploader.preview"
-                            data-s-uploader-show-when-valid="true"
-                        ></div>
-
-                        <div data-s-uploader-show-when-valid="false">
-                            {% icon "Image", "fc-black-350 mb8", "36" %}
-                            <div class="fs-body2">Drag files to upload</div>
-                            <div class="fs-caption">
-                                Or <span class="s-link">choose your files</span>
-                            </div>
+                        class="d-none"
+                        data-target="s-uploader.preview"
+                        data-s-uploader-show-when-valid="true"
+                    ></div>
+                    <div data-s-uploader-show-when-valid="false">
+                        {% icon "Image", "fc-black-350 mb8", "36" %}
+                        <div class="fs-body2">Drag files to upload</div>
+                        <div class="fs-caption">
+                            Or <span class="s-link">choose your files</span>
                         </div>
                     </div>
                 </div>
