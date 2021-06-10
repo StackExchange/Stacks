@@ -8,7 +8,6 @@
     // TODO: (all over) get rid of those `any`s!!!
 
     // TODO: add /** */ JSDoc
-    // TODO: generalize this function to return an array
     const fileToDataURL = (file: File) => {
         var reader = new FileReader();
         return new Promise((resolve, reject) => {
@@ -39,11 +38,6 @@
         private inputTarget: any;
         private previewTarget: any;
         private containerTarget!: HTMLElement;
-        private files: any;
-
-        initialize() {
-            this.files = [];
-        }
 
         connect() {
             super.connect();
@@ -59,34 +53,31 @@
 
         // TODO: add /** */ JSDoc
         handleInput() {
-            var controller = this;
-            controller.files = [];
-            controller.previewTarget.innerHTML = "";
-            getDataURLs(controller.inputTarget.files)
+            this.previewTarget.innerHTML = "";
+            getDataURLs(this.inputTarget.files)
                 .then(res => {
-                    controller.handleVisible(true);
+                    this.handleVisible(true);
                     // @ts-ignore
                     res.slice(0, 5).map((file: FilePreview) => {
                         if (file) this.addFilePreview(file);
                     });
-                    controller.handleContainerActive(true);
+                    this.handleContainerActive(true);
                 });
         }
 
         // TODO: add /** */ JSDoc
         handleVisible(validInputValue: boolean) {
-            var controller = this;
-            var scope = controller.targets.scope;
+            const { scope } = this.targets;
             // TODO: This feels gross. Find a better way.
-            var hideElements = scope.findAllElements('[data-s-uploader-show-when-valid="false"]');
-            var showElements = scope.findAllElements('[data-s-uploader-show-when-valid="true"]');
-            var enableElements = scope.findAllElements('[data-s-uploader-enable-when-valid="true"]');
+            const hideElements = scope.findAllElements('[data-s-uploader-show-when-valid="false"]');
+            const showElements = scope.findAllElements('[data-s-uploader-show-when-valid="true"]');
+            const enableElements = scope.findAllElements('[data-s-uploader-enable-when-valid="true"]');
 
             if (validInputValue) {
                 hideElements.map(el => el.classList.add("d-none"));
                 showElements.map(el => el.classList.remove("d-none"));
                 enableElements.map(el => el.removeAttribute("disabled"));
-                controller.handleContainerActive(false);
+                this.handleContainerActive(false);
             } else {
                 hideElements.map(el => el.classList.remove("d-none"));
                 showElements.map(el => el.classList.add("d-none"));
@@ -96,8 +87,7 @@
 
         // TODO: add /** */ JSDoc
         addFilePreview(file: FilePreview) {
-            var controller = this;
-            var preview = controller.previewTarget;
+            const preview = this.previewTarget;
             const isImage = file.data;
 
             let element;
@@ -115,8 +105,7 @@
 
         // TODO: add /** */ JSDoc
         handleContainerActive(shouldHighlight: boolean) {
-            var controller = this;
-            var container = controller.containerTarget;
+            var container = this.containerTarget;
 
             if (shouldHighlight) {
                 container.classList.add("is-active");
@@ -127,11 +116,9 @@
 
         // TODO: add /** */ JSDoc
         reset() {
-            var controller = this;
-            controller.inputTarget.value = null;
-            controller.previewTarget.innerHTML = "";
-            controller.handleVisible(false);
-            controller.files = [];
+            this.inputTarget.value = null;
+            this.previewTarget.innerHTML = "";
+            this.handleVisible(false);
         }
 
     });
