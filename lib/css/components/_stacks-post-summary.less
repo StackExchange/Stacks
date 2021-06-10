@@ -64,10 +64,17 @@
     color: var(--fc-light);
 
     .s-post-summary--stats-item {
+        display: flex;
+        align-items: center;
         margin-right: var(--s-post-summary-stats-gap);
         margin-bottom: var(--s-post-summary-stats-gap);
         white-space: nowrap;
         border: 1px solid transparent;
+
+        .svg-icon {
+            // Add the equivalent to a single space of margin to accomodate when we can't have whitespace in our markup
+            margin-right: 3px;
+        }
 
         &.has-answers,
         &.has-bounty {
