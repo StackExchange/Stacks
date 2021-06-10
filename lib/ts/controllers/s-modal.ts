@@ -153,24 +153,32 @@ namespace Stacks {
         }
 
         /**
-         * Gets all elements that could be tabbed to in 
+         * Gets all elements within the modal that could receive keyboard focus.
          */
         private getAllTabbables() {
-            return <HTMLElement[]>Array.from(this.modalTarget.querySelectorAll("[href], input, select, textarea, button, [tabindex]"))
+            return Array.from(this.modalTarget.querySelectorAll<HTMLElement>("[href], input, select, textarea, button, [tabindex]"))
                 .filter((el: Element) => el.matches(":not([disabled]):not([tabindex='-1'])"));
         }
 
+        /**
+         * Returns the first visible element in an array or `undefined` if no elements are visible.
+         */
         private firstVisible(elements: HTMLElement[]) {
             // https://stackoverflow.com/a/21696585
             return elements.find(el => el.offsetParent !== null);
         }
 
+        /**
+         * Returns the last visible element in an array or `undefined` if no elements are visible.
+         */
         private lastVisible(elements: HTMLElement[]) {
-            return [...elements].reverse().find(el => el.offsetParent !== null);
+            return this.firstVisible([...elements].reverse());
         }
 
         /**
-         * Binds tab presses on tabbable items such that tabbing only works within the modal
+         * Attempts to shift keyboard focus into the modal.
+         * If elements with `data-s-modal-target="initialFocus"` are present and visible, one of those will be selected.
+         * Otherwise, the first visible focusable element will receive focus.
          */
         private focusInsideModal() {
             this.modalTarget.addEventListener("s-modal:shown", () => {
