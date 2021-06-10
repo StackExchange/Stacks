@@ -7,14 +7,24 @@
 //  visit https://stackoverflow.design/
 
 .s-uploader {
-    background-color: var(--black-025);
-    border-color: var(--black-200);
-    border-radius: @br-lg;
-    border-style: dashed;
-    border-width: @su4;
     position: relative;
-    text-align: center;
 
+    .s-uploader--container {
+        align-items: center;
+        background-color: var(--black-025);
+        border-color: var(--black-200);
+        border-radius: @br-lg;
+        border-style: dashed;
+        border-width: @su4;
+        display: flex;
+        flex-direction: column;
+        padding: @su24;
+        text-align: center;
+
+        &.is-active {
+            background-color: var(--black-100);
+        }
+    }
     .s-uploader--input {
         cursor: pointer;
         height: 100%;
@@ -23,15 +33,9 @@
         position: absolute;
         width: 100%;
 
-        &:focus:focus-visible + .s-uploader--label {
+        &:focus:focus-visible + .s-uploader--container {
             background-color: var(--black-050);
             box-shadow: 0 0 0 @su4 var(--focus-ring);
         }
-    }
-    .s-uploader--label {
-        align-items: center;
-        display: flex;
-        flex-direction: column;
-        padding: @su24;
     }
 }

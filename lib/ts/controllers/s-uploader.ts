@@ -1,5 +1,8 @@
 (function(){
-    // TODO: get rid of all those `any`s!!!
+    // TODO: (all over) get rid of those `any`s!!!
+
+    // TODO: add /** */ JSDoc
+    // TODO: generalize this function to return an array
     const fileToDataURL = ({ file, controller }: {
         file: File;
         controller: any;
@@ -21,6 +24,7 @@
         })
     }
 
+    // TODO: add /** */ JSDoc
     const getDataURLs = ({ files, controller }: {
         files: FileList;
         controller: any;
@@ -34,29 +38,48 @@
     }
 
     Stacks.application.register("s-uploader", class extends Stacks.StacksController {
-        static targets = ["input", "preview"];
+        static targets = ["input", "preview", "container"];
         private inputTarget: any;
         private previewTarget: any;
+        private containerTarget!: HTMLElement;
         private files: any;
 
         initialize() {
             this.files = [];
         }
 
-        add() {
+        connect() {
+            super.connect();
+
+            this.handleDragActive = this.inputTarget.bind(this);
+            this.inputTarget.addEventListener("dragenter", () => {
+                this.handleDragActive(true);
+            });
+            this.inputTarget.addEventListener("dragexit", () => {
+                this.handleDragActive(false);
+            });
+        }
+
+        disconnect() {
+            this.inputTarget.removeEventListener("dragenter", this.handleDragActive);
+            super.disconnect();
+        }
+
+        // TODO: add /** */ JSDoc
+        handleInput() {
             var controller = this;
             getDataURLs({ files: controller.inputTarget.files, controller })
                 .then(() => {
-                    controller.handleValidInput(true);
+                    controller.handleVisible(true);
                     controller.files.map((file: any) => {
-                        if (file.data) this.addImagePreview(file.data);
+                        if (file.data) this.addFilePreview(file.data);
                     })
                 });
         }
 
-        handleValidInput(validInputValue: boolean) {
+        // TODO: add /** */ JSDoc
+        handleVisible(validInputValue: boolean) {
             var controller = this;
-            var preview = controller.previewTarget;
             var scope = controller.targets.scope;
             // TODO: This feels gross. Find a better way.
             var hideElements = scope.findAllElements('[data-s-uploader-show-when-valid="false"]');
@@ -67,7 +90,7 @@
                 hideElements.map(el => el.classList.add('d-none'));
                 showElements.map(el => el.classList.remove('d-none'));
                 enableElements.map(el => el.removeAttribute('disabled'));
-                preview.src = controller.files[0].data;
+                controller.handleDragActive(false);
             } else {
                 hideElements.map(el => el.classList.remove('d-none'));
                 showElements.map(el => el.classList.add('d-none'));
@@ -75,7 +98,8 @@
             }
         }
 
-        addImagePreview(src: string) {
+        // TODO: add /** */ JSDoc
+        addFilePreview(src: string) {
             var controller = this;
             var preview = controller.previewTarget;
             // TODO: I feel like accessing `document` is a no-no in Stimulus land
@@ -85,11 +109,24 @@
             preview.appendChild(img);
         }
 
+        // TODO: add /** */ JSDoc
+        handleDragActive(shouldHighlight: boolean) {
+            var controller = this;
+            var container = controller.containerTarget;
+
+            if (shouldHighlight) {
+                container.classList.add('is-active');
+            } else {
+                container.classList.remove('is-active');
+            }
+        }
+
+        // TODO: add /** */ JSDoc
         reset() {
             var controller = this;
             controller.inputTarget.value = null;
             controller.previewTarget.innerHTML = '';
-            controller.handleValidInput(false);
+            controller.handleVisible(false);
             controller.files = [];
         }
 
