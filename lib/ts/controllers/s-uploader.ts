@@ -1,4 +1,8 @@
 (function(){
+    interface ImageFile extends File {
+        data?: string;
+    };
+
     // TODO: (all over) get rid of those `any`s!!!
 
     // TODO: add /** */ JSDoc
@@ -26,7 +30,7 @@
         // `files` is spread her to map over FileList... though it doesn't support iterators
         // TODO: remove need for this ts-ignore. May require rethinging of iterator.
         // @ts-ignore
-        return Promise.all([...files].map((file: any) => fileToDataURL({ file, controller })));
+        return Promise.all([...files].map((file: File) => fileToDataURL({ file, controller })));
     }
 
     Stacks.application.register("s-uploader", class extends Stacks.StacksController {
@@ -43,24 +47,28 @@
         connect() {
             super.connect();
 
-            this.inputTarget.addEventListener("dragenter", () => this.handleDragActive(true));
-            this.inputTarget.addEventListener("dragexit", () => this.handleDragActive(false));
+            this.inputTarget.addEventListener("dragenter", () => this.handleContainerActive(true));
+            this.inputTarget.addEventListener("dragexit", () => this.handleContainerActive(false));
         }
 
         disconnect() {
-            this.inputTarget.removeEventListener("dragenter", this.handleDragActive);
+            this.inputTarget.removeEventListener("dragenter", this.handleContainerActive);
             super.disconnect();
         }
 
         // TODO: add /** */ JSDoc
         handleInput() {
             var controller = this;
+            controller.files = [];
+            controller.previewTarget.innerHTML = '';
+            console.log('should reset')
             getDataURLs({ files: controller.inputTarget.files, controller })
                 .then(() => {
                     controller.handleVisible(true);
-                    controller.files.map((file: any) => {
-                        if (file.data) this.addFilePreview(file.data);
-                    })
+                    controller.files.map((file: File) => {
+                        if (file) this.addFilePreview(file);
+                    });
+                    controller.handleContainerActive(true);
                 });
         }
 
@@ -77,7 +85,7 @@
                 hideElements.map(el => el.classList.add('d-none'));
                 showElements.map(el => el.classList.remove('d-none'));
                 enableElements.map(el => el.removeAttribute('disabled'));
-                controller.handleDragActive(false);
+                controller.handleContainerActive(false);
             } else {
                 hideElements.map(el => el.classList.remove('d-none'));
                 showElements.map(el => el.classList.add('d-none'));
@@ -86,18 +94,19 @@
         }
 
         // TODO: add /** */ JSDoc
-        addFilePreview(src: string) {
+        addFilePreview(file: ImageFile) {
             var controller = this;
             var preview = controller.previewTarget;
-            // TODO: I feel like accessing `document` is a no-no in Stimulus land
-            // consider handing it with a template tag
+
             const img = document.createElement('img');
-            img.src = src;
+            img.src = file.data || '';
+            img.alt = file.name;
+
             preview.appendChild(img);
         }
 
         // TODO: add /** */ JSDoc
-        handleDragActive(shouldHighlight: boolean) {
+        handleContainerActive(shouldHighlight: boolean) {
             var controller = this;
             var container = controller.containerTarget;
 
