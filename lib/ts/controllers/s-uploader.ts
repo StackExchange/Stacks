@@ -97,12 +97,18 @@
         addFilePreview(file: ImageFile) {
             var controller = this;
             var preview = controller.previewTarget;
+            const isImage = file.data;
 
-            const img = document.createElement('img');
-            img.src = file.data || '';
-            img.alt = file.name;
-
-            preview.appendChild(img);
+            let element;
+            if (isImage) {
+                element = document.createElement('img');
+                element.src = file.data || '';
+                element.alt = file.name;
+            } else {
+                element = document.createElement('div');
+                element.innerHTML = file.name;
+            }
+            preview.appendChild(element);
         }
 
         // TODO: add /** */ JSDoc
