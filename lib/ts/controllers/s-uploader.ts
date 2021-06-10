@@ -5,8 +5,6 @@
         type: string;
     };
 
-    // TODO: (all over) get rid of those `any`s!!!
-
     // TODO: add /** */ JSDoc
     const fileToDataURL = (file: File) => {
         var reader = new FileReader();
@@ -26,8 +24,7 @@
     }
 
     // TODO: add /** */ JSDoc
-    const getDataURLs = (files: FileList) => {
-        // `files` is spread her to map over FileList... though it doesn't support iterators
+    const getDataURLs = (files: FileList | null) => {
         // TODO: remove need for this ts-ignore. May require rethinging of iterator.
         // @ts-ignore
         return Promise.all([...files].map((file: File) => fileToDataURL(file)));
@@ -35,8 +32,8 @@
 
     Stacks.application.register("s-uploader", class extends Stacks.StacksController {
         static targets = ["input", "preview", "container"];
-        private inputTarget: any;
-        private previewTarget: any;
+        private inputTarget!: HTMLInputElement;
+        private previewTarget!: HTMLElement;
         private containerTarget!: HTMLElement;
 
         connect() {
@@ -47,7 +44,7 @@
         }
 
         disconnect() {
-            this.inputTarget.removeEventListener("dragenter", this.handleContainerActive);
+            this.inputTarget.removeEventListener("dragenter", () => this.handleContainerActive);
             super.disconnect();
         }
 
@@ -116,7 +113,7 @@
 
         // TODO: add /** */ JSDoc
         reset() {
-            this.inputTarget.value = null;
+            this.inputTarget.value = '';
             this.previewTarget.innerHTML = "";
             this.handleVisible(false);
         }
