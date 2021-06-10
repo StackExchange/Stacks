@@ -34,9 +34,9 @@
     }
 
     Stacks.application.register("s-uploader", class extends Stacks.StacksController {
-        static targets = ["input", "preview", "container"];
+        static targets = ["input", "previews", "container"];
         private inputTarget!: HTMLInputElement;
-        private previewTarget!: HTMLElement;
+        private previewsTarget!: HTMLElement;
         private containerTarget!: HTMLElement;
 
         connect() {
@@ -55,7 +55,7 @@
          * Handles rendering the file preview state on input change
          */
          handleInput() {
-            this.previewTarget.innerHTML = "";
+            this.previewsTarget.innerHTML = "";
             if (this.inputTarget.files) {
                 getDataURLs(this.inputTarget.files)
                     .then((res: any) => {
@@ -96,11 +96,8 @@
          * @param file - An object that contains name, type, and data (blob of image)
          */
          private addFilePreview(file: FilePreview) {
-            const preview = this.previewTarget;
-            const isImage = file.type.toString().match('image/*');
-
             let element;
-            if (isImage) {
+            if (file.type.toString().match('image/*')) {
                 element = document.createElement("img");
                 element.src = file.data?.toString() || "";
                 element.alt = file.name;
@@ -108,8 +105,8 @@
                 element = document.createElement("div");
                 element.innerHTML = file.name;
             }
-            element.classList.add("s-uploader--preview-item")
-            preview.appendChild(element);
+            element.classList.add("s-uploader--preview")
+            this.previewsTarget.appendChild(element);
         }
 
         /**
@@ -131,7 +128,7 @@
          */
          reset() {
             this.inputTarget.value = '';
-            this.previewTarget.innerHTML = "";
+            this.previewsTarget.innerHTML = "";
             this.handleVisible(false);
         }
 
