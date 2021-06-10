@@ -1,11 +1,13 @@
 (function(){
     interface FilePreview {
-        data?: string;
+        data?: Blob;
         name: string;
-        type: string;
+        type: MimeType;
     };
 
-    // TODO: add /** */ JSDoc
+    /**
+     * Returns a FilePreview object from a File type
+     */
     const fileToDataURL = (file: File) => {
         var reader = new FileReader();
         return new Promise((resolve, reject) => {
@@ -23,11 +25,12 @@
         })
     }
 
-    // TODO: add /** */ JSDoc
-    const getDataURLs = (files: FileList | null) => {
-        // TODO: remove need for this ts-ignore. May require rethinging of iterator.
-        // @ts-ignore
-        return Promise.all([...files].map((file: File) => fileToDataURL(file)));
+    /**
+     * Returns an array of FilePreview objects from a FileList
+     */
+    const getDataURLs = (files: FileList | []) => {
+        const indexes = Array.from(Array(files?.length).keys());
+        return Promise.all(indexes.map(i => fileToDataURL(files[i])));
     }
 
     Stacks.application.register("s-uploader", class extends Stacks.StacksController {
@@ -48,29 +51,35 @@
             super.disconnect();
         }
 
-        // TODO: add /** */ JSDoc
-        handleInput() {
+        /**
+         * Handles rendering the file preview state on input change
+         */
+         handleInput() {
             this.previewTarget.innerHTML = "";
-            getDataURLs(this.inputTarget.files)
-                .then(res => {
-                    this.handleVisible(true);
-                    // @ts-ignore
-                    res.slice(0, 5).map((file: FilePreview) => {
-                        if (file) this.addFilePreview(file);
+            if (this.inputTarget.files) {
+                getDataURLs(this.inputTarget.files)
+                    .then((res: any) => {
+                        this.handleVisible(true);
+                        res?.slice(0, 5).map((file: FilePreview) => {
+                            if (file) this.addFilePreview(file);
+                        });
+                        this.handleContainerActive(true);
                     });
-                    this.handleContainerActive(true);
-                });
+            }
         }
 
-        // TODO: add /** */ JSDoc
-        handleVisible(validInputValue: boolean) {
+        /**
+         * Toggles display and disabled state for select elements on valid input
+         * @param shouldPreview - A boolean indicating whether Uploader should enter/exit preview state
+         */
+         private handleVisible(shouldPreview: boolean) {
             const { scope } = this.targets;
             // TODO: This feels gross. Find a better way.
-            const hideElements = scope.findAllElements('[data-s-uploader-show-when-valid="false"]');
-            const showElements = scope.findAllElements('[data-s-uploader-show-when-valid="true"]');
-            const enableElements = scope.findAllElements('[data-s-uploader-enable-when-valid="true"]');
+            const hideElements = scope.findAllElements('[data-s-uploader-show-on-preview="false"]');
+            const showElements = scope.findAllElements('[data-s-uploader-show-on-preview="true"]');
+            const enableElements = scope.findAllElements('[data-s-uploader-enable-on-preview="true"]');
 
-            if (validInputValue) {
+            if (shouldPreview) {
                 hideElements.map(el => el.classList.add("d-none"));
                 showElements.map(el => el.classList.remove("d-none"));
                 enableElements.map(el => el.removeAttribute("disabled"));
@@ -82,15 +91,18 @@
             }
         }
 
-        // TODO: add /** */ JSDoc
-        addFilePreview(file: FilePreview) {
+        /**
+         * Adds a DOM element to preview a selected file
+         * @param file - An object that contains name, type, and data (blob of image)
+         */
+         private addFilePreview(file: FilePreview) {
             const preview = this.previewTarget;
-            const isImage = file.data;
+            const isImage = file.type.toString().match('image/*');
 
             let element;
             if (isImage) {
                 element = document.createElement("img");
-                element.src = file.data || "";
+                element.src = file.data?.toString() || "";
                 element.alt = file.name;
             } else {
                 element = document.createElement("div");
@@ -100,19 +112,24 @@
             preview.appendChild(element);
         }
 
-        // TODO: add /** */ JSDoc
-        handleContainerActive(shouldHighlight: boolean) {
+        /**
+         * Toggles display and disabled state for select elements on valid input
+         * @param active - A boolean indicating whether container is active (typically on 'dragenter')
+         */
+         private handleContainerActive(active: boolean) {
             var container = this.containerTarget;
 
-            if (shouldHighlight) {
+            if (active) {
                 container.classList.add("is-active");
             } else {
                 container.classList.remove("is-active");
             }
         }
 
-        // TODO: add /** */ JSDoc
-        reset() {
+        /**
+         * Resets the Uploader to initial state
+         */
+         reset() {
             this.inputTarget.value = '';
             this.previewTarget.innerHTML = "";
             this.handleVisible(false);
