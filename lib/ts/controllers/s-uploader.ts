@@ -107,6 +107,7 @@
                 element = document.createElement("div");
                 element.innerHTML = file.name;
             }
+            element.classList.add("s-uploader--preview-item")
             preview.appendChild(element);
         }
 

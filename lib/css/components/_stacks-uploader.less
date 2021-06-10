@@ -51,21 +51,33 @@
         justify-content: center;
         max-width: 100%;
 
-        img {
+        .s-uploader--preview-item {
+            align-items: center;
             background-color: var(--white);
             border-radius: @br-sm;
-            display: block;
-            max-height: 100%;
-            object-fit: contain;
+            display: flex;
+            height: 100%;
+            overflow: hidden;
             width: 100%;
 
-            + img {
+            &:is(img) {
+                object-fit: scale-down;
+            }
+
+            &:is(:first-child):not(img) {
+                padding: @su16;
+            }
+
+            &:not(:first-child) {
                 border-radius: 0 @br-sm @br-sm 0;
-                height: 100%;
+                color: transparent;
                 margin-left: @su4;
                 max-width: @su16;
-                object-fit: cover;
-                object-position: right;
+
+                &:is(img) {
+                    object-fit: cover;
+                    object-position: right;
+                }
             }
         }
     }
