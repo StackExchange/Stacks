@@ -60,7 +60,14 @@
             display: flex;
             height: 100%;
             overflow: hidden;
+            pointer-events: none;
+            transform-origin: center left;
 
+            each(range(5), {
+                &:nth-child(@{value}) {
+                    transform: scale(1 - ((@value - 1) * 0.06));
+                }
+            });
             &:is(img) {
                 object-fit: scale-down;
             }
@@ -70,8 +77,7 @@
             &:not(:first-child) {
                 border-radius: 0 @br-sm @br-sm 0;
                 color: transparent;
-                margin-left: @su4;
-                max-width: @su16;
+                width: @su24;
 
                 &:is(img) {
                     object-fit: cover;
