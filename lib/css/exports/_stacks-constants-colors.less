@@ -147,10 +147,7 @@
 //  ============================================================================
 //  $   CSS Variable Colors
 //  ----------------------------------------------------------------------------
-
-//  --  Primary Colors
-body,
-.theme-light__forced {
+.default-colors() {
     --white: @white;
     --black: @black;
     --orange: @orange;
@@ -442,8 +439,8 @@ body,
     --highlight-addition: var(--green-600); // AAA 8.21
     --highlight-deletion: var(--red-700); // AA 5.51
 }
-.themed,
-.theme-light__forced {
+
+.light-themed-colors() {
     // Primary color
     // Split into h/s/l/a values
     --theme-primary-color-h: 27;
@@ -546,26 +543,43 @@ body,
     --focus-ring: .native-fade(theme-secondary-color, 25)[];
 }
 
-body.theme-system.themed,
-body.theme-system .themed {
-    @media (prefers-color-scheme: dark) {
-        .dark-themed-colors();
-    }
+//  --  Light (Default)
+body,
+.theme-light__forced {
+    .default-colors();
 }
 
-body.theme-dark.themed,
-body.theme-dark .themed,
-.theme-dark__forced {
-    .dark-themed-colors();
-}
-
+//  --  Dark
 body.theme-system {
     @media (prefers-color-scheme: dark) {
         .dark-colors();
     }
 }
 
-body.theme-dark,
-.theme-dark__forced {
+body.theme-dark:not(.theme-light__forced) {
     .dark-colors();
 }
+
+//  --  Themed Light
+.themed {
+    .light-themed-colors();
+}
+
+// //  --  Themed Dark
+// body.theme-system.themed,
+// body.theme-system .themed {
+//     @media (prefers-color-scheme: dark) {
+//         .dark-themed-colors();
+//     }
+// }
+
+// body.theme-dark.themed,
+// body.theme-dark .themed,
+// .theme-dark__forced {
+//     .dark-themed-colors();
+// }
+
+// .theme-light__forced,
+// .themed:not(body.themed) .theme-light__forced {
+//     .light-themed-colors();
+// }
