@@ -43,7 +43,7 @@
             super.connect();
 
             this.inputTarget.addEventListener("dragenter", () => this.handleContainerActive(true));
-            this.inputTarget.addEventListener("dragexit", () => this.handleContainerActive(false));
+            this.inputTarget.addEventListener("dragleave", () => this.handleContainerActive(false));
         }
 
         disconnect() {
