@@ -34,20 +34,20 @@
     }
 
     Stacks.application.register("s-uploader", class extends Stacks.StacksController {
-        static targets = ["input", "previews", "container"];
+        static targets = ["input", "previews", "uploader"];
         private inputTarget!: HTMLInputElement;
         private previewsTarget!: HTMLElement;
-        private containerTarget!: HTMLElement;
+        private uploaderTarget!: HTMLElement;
 
         connect() {
             super.connect();
 
-            this.inputTarget.addEventListener("dragenter", () => this.handleContainerActive(true));
-            this.inputTarget.addEventListener("dragleave", () => this.handleContainerActive(false));
+            this.inputTarget.addEventListener("dragenter", () => this.handleUploaderActive(true));
+            this.inputTarget.addEventListener("dragleave", () => this.handleUploaderActive(false));
         }
 
         disconnect() {
-            this.inputTarget.removeEventListener("dragenter", () => this.handleContainerActive);
+            this.inputTarget.removeEventListener("dragenter", () => this.handleUploaderActive);
             super.disconnect();
         }
 
@@ -63,7 +63,7 @@
                         res?.slice(0, 5).map((file: FilePreview) => {
                             if (file) this.addFilePreview(file);
                         });
-                        this.handleContainerActive(true);
+                        this.handleUploaderActive(true);
                     });
             }
         }
@@ -87,7 +87,7 @@
                 hideElements.map(el => el.classList.remove("d-none"));
                 showElements.map(el => el.classList.add("d-none"));
                 enableElements.map(el => el.setAttribute("disabled", "true"))
-                this.handleContainerActive(false);
+                this.handleUploaderActive(false);
             }
         }
 
@@ -111,13 +111,13 @@
 
         /**
          * Toggles display and disabled state for select elements on valid input
-         * @param active - A boolean indicating whether container is active (typically on 'dragenter')
+         * @param active - A boolean indicating whether uploader is active (typically on 'dragenter')
          */
-         private handleContainerActive(active: boolean) {
+         private handleUploaderActive(active: boolean) {
             if (active) {
-                this.containerTarget.classList.add("s-uploader__active");
+                this.uploaderTarget.classList.add("s-uploader__active");
             } else {
-                this.containerTarget.classList.remove("s-uploader__active");
+                this.uploaderTarget.classList.remove("s-uploader__active");
             }
         }
 

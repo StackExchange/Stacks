@@ -25,12 +25,6 @@
         background-color: var(--black-050);
     }
 
-    .s-uploader--cancel {
-        position: absolute;
-        right: @su8;
-        top: @su8;
-        z-index: @zi-active;
-    }
     .s-uploader--input {
         cursor: pointer;
         height: 100%;
@@ -44,6 +38,41 @@
             box-shadow: 0 0 0 @su4 var(--focus-ring);
         }
     }
+    .s-uploader--preview {
+        align-items: center;
+        background-color: var(--white);
+        border-radius: @br-sm;
+        box-shadow: var(--bs-md);
+        box-sizing: border-box;
+        display: flex;
+        height: 100%;
+        overflow: hidden;
+        pointer-events: none;
+        transform-origin: center left;
+
+        each(range(5), {
+            &:nth-child(@{value}) {
+                height: 100% - ((@value - 1) * 6);
+                z-index: 6 - @value;
+            }
+        });
+        &:is(img) {
+            object-fit: scale-down;
+        }
+        &:is(:first-child):not(img) {
+            padding: @su16;
+        }
+        &:not(:first-child) {
+            border-radius: 0 @br-sm @br-sm 0;
+            color: transparent;
+            width: @su24;
+
+            &:is(img) {
+                object-fit: cover;
+                object-position: right;
+            }
+        }
+    }
     .s-uploader--previews {
         align-items: center;
         display: flex;
@@ -51,41 +80,11 @@
         height: 100%;
         justify-content: center;
         max-width: 100%;
-
-        .s-uploader--preview {
-            align-items: center;
-            background-color: var(--white);
-            border-radius: @br-sm;
-            box-shadow: var(--bs-md);
-            box-sizing: border-box;
-            display: flex;
-            height: 100%;
-            overflow: hidden;
-            pointer-events: none;
-            transform-origin: center left;
-
-            each(range(5), {
-                &:nth-child(@{value}) {
-                    height: 100% - ((@value - 1) * 6);
-                    z-index: 6 - @value;
-                }
-            });
-            &:is(img) {
-                object-fit: scale-down;
-            }
-            &:is(:first-child):not(img) {
-                padding: @su16;
-            }
-            &:not(:first-child) {
-                border-radius: 0 @br-sm @br-sm 0;
-                color: transparent;
-                width: @su24;
-
-                &:is(img) {
-                    object-fit: cover;
-                    object-position: right;
-                }
-            }
-        }
+    }
+    .s-uploader--reset {
+        position: absolute;
+        right: @su8;
+        top: @su8;
+        z-index: @zi-active;
     }
 }
