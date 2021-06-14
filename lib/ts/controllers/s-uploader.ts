@@ -83,11 +83,11 @@
                 hideElements.map(el => el.classList.add("d-none"));
                 showElements.map(el => el.classList.remove("d-none"));
                 enableElements.map(el => el.removeAttribute("disabled"));
-                this.handleContainerActive(false);
             } else {
                 hideElements.map(el => el.classList.remove("d-none"));
                 showElements.map(el => el.classList.add("d-none"));
                 enableElements.map(el => el.setAttribute("disabled", "true"))
+                this.handleContainerActive(false);
             }
         }
 
@@ -114,12 +114,10 @@
          * @param active - A boolean indicating whether container is active (typically on 'dragenter')
          */
          private handleContainerActive(active: boolean) {
-            var container = this.containerTarget;
-
             if (active) {
-                container.classList.add("is-active");
+                this.containerTarget.classList.add("s-uploader__active");
             } else {
-                container.classList.remove("is-active");
+                this.containerTarget.classList.remove("s-uploader__active");
             }
         }
 
