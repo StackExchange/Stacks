@@ -49,6 +49,31 @@ description: Uploader is a custom styled file input with added functionality to 
                     <!-- TODO: Rewrite this. It's really not dependant on it being the parent of these targets -->
                     <td class="p8">Wires up the element containing <code class="stacks-code">input</code>, <code class="stacks-code">previews</code>, and <code class="stacks-code">reset</code> targets.</td>
                 </tr>
+                <tr>
+                    <th scope="row"><code class="stacks-code">data-target="s-uploader.input"</code></th>
+                    <td>-</td>
+                    <td class="p8">-</td>
+                </tr>
+                <tr>
+                    <th scope="row"><code class="stacks-code">data-target="s-uploader.previews"</code></th>
+                    <td>-</td>
+                    <td class="p8">-</td>
+                </tr>
+                <tr>
+                    <th scope="row"><code class="stacks-code">data-s-uploader-show-on-input</code></th>
+                    <td>-</td>
+                    <td class="p8">-</td>
+                </tr>
+                <tr>
+                    <th scope="row"><code class="stacks-code">data-s-uploader-hide-on-input</code></th>
+                    <td>-</td>
+                    <td class="p8">-</td>
+                </tr>
+                <tr>
+                    <th scope="row"><code class="stacks-code">data-s-uploader-enable-on-input</code></th>
+                    <td>-</td>
+                    <td class="p8">-</td>
+                </tr>
             </tbody>
         </table>
     </div>
@@ -76,7 +101,6 @@ description: Uploader is a custom styled file input with added functionality to 
             </tbody>
         </table>
     </div>
-    <!-- TODO: Note `data-s-uploader-` attributes -->
 </section>
 <section class="stacks-section">
     {% header "h2", "Example" %}
@@ -98,16 +122,16 @@ description: Uploader is a custom styled file input with added functionality to 
         <div
             class="s-uploader--previews d-none"
             data-target="s-uploader.previews"
-            data-s-uploader-show-on-preview="true"
+            data-s-uploader-show-on-input
         ></div>
         <button
-            class="s-uploader--cancel s-btn s-btn__muted d-none"
+            class="s-uploader--reset s-btn s-btn__muted d-none"
             data-action="click->s-uploader#reset"
-            data-s-uploader-show-on-preview="true"
+            data-s-uploader-show-on-input
         >
             {% icon "ClearSm" %}
         </button>
-        <div data-s-uploader-show-on-preview="false">
+        <div data-s-uploader-hide-on-input>
             {% icon "Image", "fc-black-350 mb8", "36" %}
             <div class="fs-body2">Drag files to upload</div>
             <div class="fs-caption">
@@ -118,7 +142,7 @@ description: Uploader is a custom styled file input with added functionality to 
     <div>
         <button
             class="s-btn s-btn__primary"
-            data-s-uploader-enable-on-preview="true"
+            data-s-uploader-enable-on-input
             disabled
         >
             Upload
@@ -126,7 +150,7 @@ description: Uploader is a custom styled file input with added functionality to 
         <button
             class="s-btn d-none"
             data-action="click->s-uploader#reset"
-            data-s-uploader-show-on-preview="true"
+            data-s-uploader-show-on-input
         >
             Cancel
         </button>
@@ -136,7 +160,7 @@ description: Uploader is a custom styled file input with added functionality to 
         <div class="stacks-preview--example overflow-x-auto">
             <label class="d-block s-label mb12" for="uploader">Choose files</label>
             <div data-controller="s-uploader">
-                <div class="s-uploader mb24" data-target="s-uploader.container">
+                <div class="s-uploader mb24" data-target="s-uploader.uploader">
                     <input
                         id="uploader"
                         type="file"
@@ -148,16 +172,16 @@ description: Uploader is a custom styled file input with added functionality to 
                     <div
                         class="s-uploader--previews d-none"
                         data-target="s-uploader.previews"
-                        data-s-uploader-show-on-preview="true"
+                        data-s-uploader-show-on-input
                     ></div>
                     <button
                         class="s-uploader--reset s-btn s-btn__muted d-none"
                         data-action="click->s-uploader#reset"
-                        data-s-uploader-show-on-preview="true"
+                        data-s-uploader-show-on-input
                     >
                         {% icon "ClearSm" %}
                     </button>
-                    <div data-s-uploader-show-on-preview="false">
+                    <div data-s-uploader-hide-on-input>
                         {% icon "Image", "fc-black-350 mb8", "36" %}
                         <div class="fs-body2">Drag files to upload</div>
                         <div class="fs-caption">
@@ -168,7 +192,7 @@ description: Uploader is a custom styled file input with added functionality to 
                 <div>
                     <button
                         class="s-btn s-btn__primary"
-                        data-s-uploader-enable-on-preview="true"
+                        data-s-uploader-enable-on-input
                         disabled
                     >
                         Upload
@@ -176,7 +200,7 @@ description: Uploader is a custom styled file input with added functionality to 
                     <button
                         class="s-btn d-none"
                         data-action="click->s-uploader#reset"
-                        data-s-uploader-show-on-preview="true"
+                        data-s-uploader-show-on-input
                     >
                         Cancel
                     </button>

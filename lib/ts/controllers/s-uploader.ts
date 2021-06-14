@@ -74,10 +74,9 @@
          */
          private handleVisible(shouldPreview: boolean) {
             const { scope } = this.targets;
-            // TODO: This feels gross. Find a better way.
-            const hideElements = scope.findAllElements('[data-s-uploader-show-on-preview="false"]');
-            const showElements = scope.findAllElements('[data-s-uploader-show-on-preview="true"]');
-            const enableElements = scope.findAllElements('[data-s-uploader-enable-on-preview="true"]');
+            const hideElements = scope.findAllElements('[data-s-uploader-hide-on-input]');
+            const showElements = scope.findAllElements('[data-s-uploader-show-on-input]');
+            const enableElements = scope.findAllElements('[data-s-uploader-enable-on-input]');
 
             if (shouldPreview) {
                 hideElements.map(el => el.classList.add("d-none"));
