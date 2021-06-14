@@ -56,6 +56,7 @@
             align-items: center;
             background-color: var(--white);
             border-radius: @br-sm;
+            box-shadow: var(--bs-md);
             box-sizing: border-box;
             display: flex;
             height: 100%;
@@ -65,7 +66,8 @@
 
             each(range(5), {
                 &:nth-child(@{value}) {
-                    transform: scale(1 - ((@value - 1) * 0.06));
+                    height: 100% - ((@value - 1) * 6);
+                    z-index: 6 - @value;
                 }
             });
             &:is(img) {
