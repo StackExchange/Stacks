@@ -148,9 +148,33 @@
 //  $   CSS Variable Colors
 //  ----------------------------------------------------------------------------
 
-//  --  Primary Colors
-body,
-.theme-light__forced {
+//  --  Default theme hls/rgb
+.default-theme-colors() {
+    // Primary color
+    // Split into h/s/l/a values
+    --theme-primary-color-h: 27;
+    --theme-primary-color-s: 90%;
+    --theme-primary-color-l: 55%;
+
+    // Split into r/g/b values
+    --theme-primary-color-r: 244;
+    --theme-primary-color-g: 130;
+    --theme-primary-color-b: 37;
+
+    // Secondary color
+    // Split into h/s/l/a values
+    --theme-secondary-color-h: 205;
+    --theme-secondary-color-s: 100%;
+    --theme-secondary-color-l: 40%;
+
+    // Split into r/g/b values
+    --theme-secondary-color-r: 0;
+    --theme-secondary-color-g: 119;
+    --theme-secondary-color-b: 204;
+}
+
+//  --  Light mode
+.light-colors() {
     --white: @white;
     --black: @black;
     --orange: @orange;
@@ -302,6 +326,49 @@ body,
     --theme-body-font-color: var(--black-800);
 }
 
+.light-themed-colors() {
+    // Reassemble as a single hsl value
+    --theme-primary-color: .assemble-color(theme-primary-color)[];
+
+    // Steps
+    --theme-primary-900: .native-darken(theme-primary-color, 26)[];
+    --theme-primary-800: .native-darken(theme-primary-color, 21)[];
+    --theme-primary-700: .native-darken(theme-primary-color, 16)[];
+    --theme-primary-600: .native-darken(theme-primary-color, 10)[];
+    --theme-primary-500: .native-darken(theme-primary-color, 5)[];
+    --theme-primary-400: var(--theme-primary-color);
+    --theme-primary-350: .native-tint(theme-primary-color, 10)[];
+    --theme-primary-300: .native-tint(theme-primary-color, 35)[];
+    --theme-primary-200: .native-tint(theme-primary-color, 60)[];
+    --theme-primary-150: .native-tint(theme-primary-color, 70)[];
+    --theme-primary-100: .native-tint(theme-primary-color, 78)[];
+    --theme-primary-075: .native-tint(theme-primary-color, 85)[];
+    --theme-primary-050: .native-tint(theme-primary-color, 92)[];
+    --theme-primary-025: .native-tint(theme-primary-color, 96)[];
+
+    // Reassemble as a single hsl value
+    --theme-secondary-color: .assemble-color(theme-secondary-color)[];
+
+    // Steps
+    --theme-secondary-900: .native-darken(theme-secondary-color, 26)[];
+    --theme-secondary-800: .native-darken(theme-secondary-color, 21)[];
+    --theme-secondary-700: .native-darken(theme-secondary-color, 16)[];
+    --theme-secondary-600: .native-darken(theme-secondary-color, 10)[];
+    --theme-secondary-500: .native-darken(theme-secondary-color, 5)[];
+    --theme-secondary-400: var(--theme-secondary-color);
+    --theme-secondary-350: .native-tint(theme-secondary-color, 10)[];
+    --theme-secondary-300: .native-tint(theme-secondary-color, 35)[];
+    --theme-secondary-200: .native-tint(theme-secondary-color, 60)[];
+    --theme-secondary-150: .native-tint(theme-secondary-color, 70)[];
+    --theme-secondary-100: .native-tint(theme-secondary-color, 78)[];
+    --theme-secondary-075: .native-tint(theme-secondary-color, 85)[];
+    --theme-secondary-050: .native-tint(theme-secondary-color, 92)[];
+    --theme-secondary-025: .native-tint(theme-secondary-color, 96)[];
+
+    // Fades
+    --focus-ring: .native-fade(theme-secondary-color, 15)[];
+}
+
 //  --  Dark mode
 .dark-colors() {
     --white: #2d2d2d;
@@ -442,71 +509,6 @@ body,
     --highlight-addition: var(--green-600); // AAA 8.21
     --highlight-deletion: var(--red-700); // AA 5.51
 }
-.themed,
-.theme-light__forced {
-    // Primary color
-    // Split into h/s/l/a values
-    --theme-primary-color-h: 27;
-    --theme-primary-color-s: 90%;
-    --theme-primary-color-l: 55%;
-
-    // Split into r/g/b values
-    --theme-primary-color-r: 244;
-    --theme-primary-color-g: 130;
-    --theme-primary-color-b: 37;
-
-    // Reassemble as a single hsl value
-    --theme-primary-color: .assemble-color(theme-primary-color)[];
-
-    // Steps
-    --theme-primary-900: .native-darken(theme-primary-color, 26)[];
-    --theme-primary-800: .native-darken(theme-primary-color, 21)[];
-    --theme-primary-700: .native-darken(theme-primary-color, 16)[];
-    --theme-primary-600: .native-darken(theme-primary-color, 10)[];
-    --theme-primary-500: .native-darken(theme-primary-color, 5)[];
-    --theme-primary-400: var(--theme-primary-color);
-    --theme-primary-350: .native-tint(theme-primary-color, 10)[];
-    --theme-primary-300: .native-tint(theme-primary-color, 35)[];
-    --theme-primary-200: .native-tint(theme-primary-color, 60)[];
-    --theme-primary-150: .native-tint(theme-primary-color, 70)[];
-    --theme-primary-100: .native-tint(theme-primary-color, 78)[];
-    --theme-primary-075: .native-tint(theme-primary-color, 85)[];
-    --theme-primary-050: .native-tint(theme-primary-color, 92)[];
-    --theme-primary-025: .native-tint(theme-primary-color, 96)[];
-
-    // Secondary color
-    // Split into h/s/l/a values
-    --theme-secondary-color-h: 205;
-    --theme-secondary-color-s: 100%;
-    --theme-secondary-color-l: 40%;
-
-    // Split into r/g/b values
-    --theme-secondary-color-r: 0;
-    --theme-secondary-color-g: 119;
-    --theme-secondary-color-b: 204;
-
-    // Reassemble as a single hsl value
-    --theme-secondary-color: .assemble-color(theme-secondary-color)[];
-
-    // Steps
-    --theme-secondary-900: .native-darken(theme-secondary-color, 26)[];
-    --theme-secondary-800: .native-darken(theme-secondary-color, 21)[];
-    --theme-secondary-700: .native-darken(theme-secondary-color, 16)[];
-    --theme-secondary-600: .native-darken(theme-secondary-color, 10)[];
-    --theme-secondary-500: .native-darken(theme-secondary-color, 5)[];
-    --theme-secondary-400: var(--theme-secondary-color);
-    --theme-secondary-350: .native-tint(theme-secondary-color, 10)[];
-    --theme-secondary-300: .native-tint(theme-secondary-color, 35)[];
-    --theme-secondary-200: .native-tint(theme-secondary-color, 60)[];
-    --theme-secondary-150: .native-tint(theme-secondary-color, 70)[];
-    --theme-secondary-100: .native-tint(theme-secondary-color, 78)[];
-    --theme-secondary-075: .native-tint(theme-secondary-color, 85)[];
-    --theme-secondary-050: .native-tint(theme-secondary-color, 92)[];
-    --theme-secondary-025: .native-tint(theme-secondary-color, 96)[];
-
-    // Fades
-    --focus-ring: .native-fade(theme-secondary-color, 15)[];
-}
 
 .dark-themed-colors() {
     // Primary Theming
@@ -546,26 +548,45 @@ body,
     --focus-ring: .native-fade(theme-secondary-color, 25)[];
 }
 
-body.theme-system.themed,
-body.theme-system .themed {
+//  --  Base theme colors inherited by steps
+.base-assembled-colors() {
+    --theme-primary-color: .assemble-color(theme-primary-color)[];
+    --theme-secondary-color: .assemble-color(theme-secondary-color)[];
+}
+
+body {
+    .default-theme-colors();
+    .base-assembled-colors();
+}
+
+body:not(.theme-dark),
+body.theme-dark .theme-light__forced,
+body:not(.theme-dark) .themed,
+body.theme-dark .themed .theme-light__forced,
+body.theme-dark .theme-light__forced .themed,
+body.theme-dark .themed.theme-light__forced {
+    .light-colors();
+    .light-themed-colors();
+}
+
+body:not(.theme-dark) {
     @media (prefers-color-scheme: dark) {
+        .dark-colors();
         .dark-themed-colors();
     }
 }
 
-body.theme-dark.themed,
+body.theme-dark,
+body .theme-dark__forced,
 body.theme-dark .themed,
-.theme-dark__forced {
+body:not(.theme-dark) .themed .theme-dark__forced,
+body:not(.theme-dark) .theme-dark__forced .themed,
+body:not(.theme-dark) .themed.theme-dark__forced {
+    .dark-colors();
     .dark-themed-colors();
 }
 
-body.theme-system {
-    @media (prefers-color-scheme: dark) {
-        .dark-colors();
-    }
-}
-
-body.theme-dark,
-.theme-dark__forced {
-    .dark-colors();
+body:not(.theme-dark) .themed,
+body.theme-dark .themed {
+    .base-assembled-colors();
 }
