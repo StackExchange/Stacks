@@ -6,7 +6,8 @@
     };
 
     /**
-     * Returns a FilePreview object from a File type
+     * @param  {File} file
+     * @returns an object containing a FilePreview object
      */
     const fileToDataURL = (file: File) => {
         var reader = new FileReader();
@@ -26,7 +27,8 @@
     }
 
     /**
-     * Returns an array of FilePreview objects from a FileList
+     * @param  {FileList|[]} files
+     * @returns an array of FilePreview objects from a FileList
      */
     const getDataURLs = (files: FileList | []) => {
         const indexes = Array.from(Array(files?.length).keys());
@@ -54,7 +56,7 @@
         /**
          * Handles rendering the file preview state on input change
          */
-         handleInput() {
+        handleInput() {
             this.previewsTarget.innerHTML = "";
             if (this.inputTarget.files) {
                 getDataURLs(this.inputTarget.files)
@@ -67,12 +69,10 @@
                     });
             }
         }
-
         /**
-         * Toggles display and disabled state for select elements on valid input
-         * @param shouldPreview - A boolean indicating whether Uploader should enter/exit preview state
+         * @param  {boolean} shouldPreview - Uploader is entering a preview state
          */
-         private handleVisible(shouldPreview: boolean) {
+        private handleVisible(shouldPreview: boolean) {
             const { scope } = this.targets;
             const hideElements = scope.findAllElements('[data-s-uploader-hide-on-input]');
             const showElements = scope.findAllElements('[data-s-uploader-show-on-input]');
@@ -92,9 +92,9 @@
 
         /**
          * Adds a DOM element to preview a selected file
-         * @param file - An object that contains name, type, and data (blob of image)
+         * @param  {FilePreview} file
          */
-         private addFilePreview(file: FilePreview) {
+        private addFilePreview(file: FilePreview) {
             let element;
             if (file.type.toString().match('image/*')) {
                 element = document.createElement("img");
@@ -110,9 +110,9 @@
 
         /**
          * Toggles display and disabled state for select elements on valid input
-         * @param active - A boolean indicating whether uploader is active (typically on 'dragenter')
+         * @param  {boolean} active - Uploader is in active state (typically on 'dragenter')
          */
-         private handleUploaderActive(active: boolean) {
+        private handleUploaderActive(active: boolean) {
             if (active) {
                 this.uploaderTarget.classList.add("s-uploader__active");
             } else {
@@ -123,7 +123,7 @@
         /**
          * Resets the Uploader to initial state
          */
-         reset() {
+        reset() {
             this.inputTarget.value = '';
             this.previewsTarget.innerHTML = "";
             this.handleVisible(false);
