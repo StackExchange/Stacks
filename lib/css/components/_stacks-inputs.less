@@ -108,6 +108,34 @@ fieldset {
     min-width: 0;
     padding: 0;
     border: 0;
+
+    &[disabled] {
+        a,
+        .s-btn,
+        .s-link {
+            box-shadow: none !important;
+            opacity: 0.5;
+            pointer-events: none;
+        }
+        .s-checkbox,
+        .s-input-message,
+        .s-label,
+        .s-radio,
+        .s-toggle-switch,
+        .s-toggle-switch label {
+            cursor: not-allowed;
+            opacity: 0.5;
+        }
+
+        .s-input,
+        .s-textarea,
+        .s-select > select {
+            border-color: var(--black-075);
+            background-color: var(--black-050);
+            color: var(--black-200);
+            cursor: not-allowed;
+        }
+    }
 }
 
 //  ============================================================================
@@ -405,14 +433,9 @@ fieldset {
         border-color: var(--black-075);
         background-color: var(--black-050);
         color: var(--black-200);
-    }
-
-    //  Disabled
-    &[disabled] {
         cursor: not-allowed;
     }
 }
-
 
 //  ============================================================================
 //  $   VALIDATION STATES
