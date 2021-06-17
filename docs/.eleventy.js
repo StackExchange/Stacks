@@ -9,8 +9,6 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.setQuietMode(true); // Reduce the console output
   eleventyConfig.addLayoutAlias('home', 'layouts/home.html');
   eleventyConfig.addLayoutAlias('page', 'layouts/page.html');
-  eleventyConfig.addLayoutAlias('page-nomenu', 'layouts/page-nomenu.html');
-  eleventyConfig.addLayoutAlias('markdown-document', 'layouts/markdown-document.html');
 
   // Icon shortcode
   eleventyConfig.addLiquidShortcode("icon", function(name, classes, dimension) {
@@ -64,7 +62,7 @@ module.exports = function(eleventyConfig) {
 
     var output = '';
     output += '<div class="grid jc-space-between ai-end pe-none stacks-header">';
-    output +=   '<' + tag + ' class="grid--cell fl1 stacks-' + tag + '" id="'+ slug +'">';
+    output +=   '<' + tag + ' class="grid--cell fl-grow1 stacks-' + tag + '" id="'+ slug +'">';
     output +=     '<span class="pe-auto">' + text + '</span>';
     output +=   '</' + tag + '>';
     output +=   '<a class="grid grid__center mbn6 s-btn s-btn__muted pe-auto" href="#'+ slug +'">';
