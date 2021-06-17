@@ -114,9 +114,9 @@
          */
         private handleUploaderActive(active: boolean) {
             if (active) {
-                this.uploaderTarget.classList.add("s-uploader__active");
+                this.uploaderTarget.classList.add("is-active");
             } else {
-                this.uploaderTarget.classList.remove("s-uploader__active");
+                this.uploaderTarget.classList.remove("is-active");
             }
         }
 
