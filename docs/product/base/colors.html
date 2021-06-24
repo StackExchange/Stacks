@@ -35,18 +35,18 @@ description: To avoid specifying color values by hand, we’ve included a robust
     <div style="display:grid; gap:16px; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); grid-auto-flow: dense;">
         {% for color in colors %}
             {% if color.include %}
-                <div class="grid--cell">
+                <div class="flex--item">
                     <div class="p24 fs-title btr-md bg-{{ color.name }}{% if color.primary != "" %}-{{ color.primary }}{% endif %}{% if color.white %} fc-white{% if color.flip %} d:fc-black{% endif %}{% else %}{% if color.flip %} d:fc-white{% endif %}{% endif %}">
                         {{ color.name | capitalize }}
                     </div>
 
                     {% for stop in color.stops reversed %}
-                        <div class="grid ai-center jc-space-between bg-{{ color.name }}{% if stop.stop != "" %}-{{ stop.stop }}{% endif %} ff-mono p12{% if stop.white %} fc-white{% if stop.flip %} d:fc-black{% endif %}{% else %}{% if stop.flip %} d:fc-white{% endif %}{% endif %}{% if forloop.last %} bbr-md{% endif %}">
-                            <div class="grid--cell js-hex d-none">
+                        <div class="d-flex ai-center jc-space-between bg-{{ color.name }}{% if stop.stop != "" %}-{{ stop.stop }}{% endif %} ff-mono p12{% if stop.white %} fc-white{% if stop.flip %} d:fc-black{% endif %}{% else %}{% if stop.flip %} d:fc-white{% endif %}{% endif %}{% if forloop.last %} bbr-md{% endif %}">
+                            <div class="flex--item js-hex d-none">
                                 {{ color.name }}{% if stop.stop != "" %}-{{ stop.stop }}{% endif %}
                             </div>
 
-                            <div class="grid--cell">
+                            <div class="flex--item">
                                 <span class="js-css">var(--{{ color.name }}{% if stop.stop != "" %}-{{ stop.stop }}{% endif %})</span>
                                 <span class="js-less d-none">@{{ color.name }}{% if stop.stop != "" %}-{{ stop.stop }}{% endif %}</span>
                                 <span class="js-hex d-none">#{{ stop.hex }}</span>
@@ -57,7 +57,7 @@ description: To avoid specifying color values by hand, we’ve included a robust
             {% endif %}
         {% endfor %}
 
-        <div class="grid--cell">
+        <div class="flex--item">
             {% for color in colors %}
                 {% if color.include == false %}
                     <div class="p24 fs-title btr-md bg-{{ color.name }}{% if color.primary != "" %}-{{ color.primary }}{% endif %}{% if color.flip %} d:fc-white{% endif %}">
@@ -65,12 +65,12 @@ description: To avoid specifying color values by hand, we’ve included a robust
                     </div>
 
                     {% for stop in color.stops reversed %}
-                        <div class="grid ai-center jc-space-between bg-{{ color.name }}{% if stop.stop != "" %}-{{ stop.stop }}{% endif %} ff-mono p12{% if forloop.last %} bbr-md mb16{% endif %}{% if stop.flip %} d:fc-white{% endif %}">
-                            <div class="grid--cell js-hex d-none">
+                        <div class="d-flex ai-center jc-space-between bg-{{ color.name }}{% if stop.stop != "" %}-{{ stop.stop }}{% endif %} ff-mono p12{% if forloop.last %} bbr-md mb16{% endif %}{% if stop.flip %} d:fc-white{% endif %}">
+                            <div class="flex--item js-hex d-none">
                                 {{ color.name }}{% if stop.stop != "" %}-{{ stop.stop }}{% endif %}
                             </div>
 
-                            <div class="grid--cell">
+                            <div class="flex--item">
                                 <span class="js-css">var(--{{ color.name }}{% if stop.stop != "" %}-{{ stop.stop }}{% endif %})</span>
                                 <span class="js-less d-none">@{{ color.name }}{% if stop.stop != "" %}-{{ stop.stop }}{% endif %}</span>
                                 <span class="js-hex d-none">#{{ stop.hex }}</span>
@@ -305,11 +305,11 @@ description: To avoid specifying color values by hand, we’ve included a robust
 <p>…</p>
 <p class="fc-dark">…</p>
 {% endhighlight %}
-        <div class="stacks-preview--example grid fd-column gs16 gsy my0 fs-body2">
-            <p class="grid--cell fc-light"><strong>Color:</strong> Light <code class="stacks-code">@black-500</code></p>
-            <p class="grid--cell fc-medium"><strong>Color:</strong> Medium <code class="stacks-code">@black-700</code></p>
-            <p class="grid--cell"><strong>Color:</strong> Default <code class="stacks-code">@black-800</code></p>
-            <p class="grid--cell fc-dark"><strong>Color:</strong> Dark <code class="stacks-code">@black-900</code></p>
+        <div class="stacks-preview--example d-flex fd-column gs16 gsy my0 fs-body2">
+            <p class="flex--item fc-light"><strong>Color:</strong> Light <code class="stacks-code">@black-500</code></p>
+            <p class="flex--item fc-medium"><strong>Color:</strong> Medium <code class="stacks-code">@black-700</code></p>
+            <p class="flex--item"><strong>Color:</strong> Default <code class="stacks-code">@black-800</code></p>
+            <p class="flex--item fc-dark"><strong>Color:</strong> Dark <code class="stacks-code">@black-900</code></p>
         </div>
     </div>
 
@@ -326,21 +326,21 @@ description: To avoid specifying color values by hand, we’ve included a robust
             <tbody>
                 <tr class="ff-mono">
                     <td class="fc-danger">
-                        <div class="grid gs12">
-                            <div class="grid--cell ws-nowrap">.fc-danger</div>
-                            <div class="grid--cell ws-nowrap">.fc-error</div>
+                        <div class="d-flex gs12">
+                            <div class="flex--item ws-nowrap">.fc-danger</div>
+                            <div class="flex--item ws-nowrap">.fc-error</div>
                         </div>
                     </td>
                     <td class="p8">
-                        <div class="grid gs4">
-                            <div class="grid--cell bg-danger p8 fc-white bar-sm ws-nowrap">.bg-danger</div>
-                            <div class="grid--cell bg-error p8 fc-white bar-sm ws-nowrap">.bg-error</div>
+                        <div class="d-flex gs4">
+                            <div class="flex--item bg-danger p8 fc-white bar-sm ws-nowrap">.bg-danger</div>
+                            <div class="flex--item bg-error p8 fc-white bar-sm ws-nowrap">.bg-error</div>
                         </div>
                     </td>
                     <td class="p8">
-                        <div class="grid gs4">
-                            <div class="grid--cell ba bc-danger p8 bar-sm fc-danger ws-nowrap">.bc-danger</div>
-                            <div class="grid--cell ba bc-error p8 bar-sm fc-error ws-nowrap">.bc-error</div>
+                        <div class="d-flex gs4">
+                            <div class="flex--item ba bc-danger p8 bar-sm fc-danger ws-nowrap">.bc-danger</div>
+                            <div class="flex--item ba bc-error p8 bar-sm fc-error ws-nowrap">.bc-error</div>
                         </div>
                     </td>
                 </tr>
