@@ -83,7 +83,7 @@ description: Stacks provides a robust theming API to handle theming in various c
         <div class="stacks-preview--example">
             <div class="grid gs16 fd-column">
                 <div class="grid--cell">
-                    <div class="mb4 ff-mono">body.themed</div>
+                    <div class="mb4 ff-mono">body</div>
                     <div class="grid gs12 ai-center fw-wrap">
                         <div class="grid--cell">
                             <div class="grid--cell h32 w32 bar-md bg-theme-primary-700"></div>
@@ -187,7 +187,7 @@ description: Stacks provides a robust theming API to handle theming in various c
         <div class="stacks-preview--example bt bc-black-100 bar-md theme-light__forced">
             <div class="grid gs16 fd-column">
                 <div class="grid--cell">
-                    <div class="mb4 ff-mono fc-medium">body.themed .theme-light__forced</div>
+                    <div class="mb4 ff-mono fc-medium">body .theme-light__forced</div>
                     <div class="grid gs12 ai-center fw-wrap">
                         <div class="grid--cell">
                             <div class="grid--cell h32 w32 bar-md bg-theme-primary-700"></div>
@@ -291,7 +291,7 @@ description: Stacks provides a robust theming API to handle theming in various c
         <div class="stacks-preview--example bg-black-050 bt bc-black-100 bar-md theme-dark__forced">
             <div class="grid gs16 fd-column">
                 <div class="grid--cell">
-                    <div class="mb4 ff-mono fc-medium">body.themed .theme-dark__forced</div>
+                    <div class="mb4 ff-mono fc-medium">body .theme-dark__forced</div>
                     <div class="grid gs12 ai-center fw-wrap">
                         <div class="grid--cell">
                             <div class="grid--cell h32 w32 bar-md bg-theme-primary-700"></div>
@@ -437,3 +437,11 @@ description: Stacks provides a robust theming API to handle theming in various c
         --theme-secondary-color-b: 107;
     }
 </style>
+
+<script>
+    // TODO DEBUG BAD! DON'T MONKEY PATCH IN PROD!!!
+    // use in console via $0.var("--theme-primary-color")
+    window.Element.prototype.var = function(cssVar) {
+        return getComputedStyle(this).getPropertyValue(cssVar);
+    }
+</script>
