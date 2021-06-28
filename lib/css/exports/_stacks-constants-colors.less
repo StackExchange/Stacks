@@ -148,31 +148,52 @@
 //  $   CSS Variable Colors
 //  ----------------------------------------------------------------------------
 
-.generate-themed-variables(@primary, @secondary) {
+.generate-calculated-themed-variables(@primary, @secondary, @theme: base) {
     // Primary color
     // Split into h/s/l/a values
-    --theme-primary-color-h: hue(@primary);
-    --theme-primary-color-s: saturation(@primary);
-    --theme-primary-color-l: lightness(@primary);
+    --theme-@{theme}-primary-color-h: hue(@primary);
+    --theme-@{theme}-primary-color-s: saturation(@primary);
+    --theme-@{theme}-primary-color-l: lightness(@primary);
 
     // Split into r/g/b values
-    --theme-primary-color-r: red(@primary);
-    --theme-primary-color-g: green(@primary);
-    --theme-primary-color-b: blue(@primary);
+    --theme-@{theme}-primary-color-r: red(@primary);
+    --theme-@{theme}-primary-color-g: green(@primary);
+    --theme-@{theme}-primary-color-b: blue(@primary);
 
     // Secondary color
     // Split into h/s/l/a values
-    --theme-secondary-color-h: hue(@secondary);
-    --theme-secondary-color-s: saturation(@secondary);
-    --theme-secondary-color-l: lightness(@secondary);
+    --theme-@{theme}-secondary-color-h: hue(@secondary);
+    --theme-@{theme}-secondary-color-s: saturation(@secondary);
+    --theme-@{theme}-secondary-color-l: lightness(@secondary);
 
     // Split into r/g/b values
-    --theme-secondary-color-r: red(@secondary);
-    --theme-secondary-color-g: green(@secondary);
-    --theme-secondary-color-b: blue(@secondary);
+    --theme-@{theme}-secondary-color-r: red(@secondary);
+    --theme-@{theme}-secondary-color-g: green(@secondary);
+    --theme-@{theme}-secondary-color-b: blue(@secondary);
+}
 
-    // TODO does this ever change?
-    --theme-body-font-color: var(--black-800);
+.generate-themed-variables(@theme: theme) {
+    // Primary color
+    // Split into h/s/l/a values
+    --theme-primary-color-h: var(~"--@{theme}-primary-color-h", var(--theme-base-primary-color-h));
+    --theme-primary-color-s: var(~"--@{theme}-primary-color-s", var(--theme-base-primary-color-s));
+    --theme-primary-color-l: var(~"--@{theme}-primary-color-l", var(--theme-base-primary-color-l));
+
+    // Split into r/g/b values
+    --theme-primary-color-r: var(~"--@{theme}-primary-color-r", var(--theme-base-primary-color-r));
+    --theme-primary-color-g: var(~"--@{theme}-primary-color-g", var(--theme-base-primary-color-g));
+    --theme-primary-color-b: var(~"--@{theme}-primary-color-b", var(--theme-base-primary-color-b));
+
+    // Secondary color
+    // Split into h/s/l/a values
+    --theme-secondary-color-h: var(~"--@{theme}-secondary-color-h", var(--theme-base-secondary-color-h));
+    --theme-secondary-color-s: var(~"--@{theme}-secondary-color-s", var(--theme-base-secondary-color-s));
+    --theme-secondary-color-l: var(~"--@{theme}-secondary-color-l", var(--theme-base-secondary-color-l));
+
+    // Split into r/g/b values
+    --theme-secondary-color-r: var(~"--@{theme}-secondary-color-r", var(--theme-base-secondary-color-r));
+    --theme-secondary-color-g: var(~"--@{theme}-secondary-color-g", var(--theme-base-secondary-color-g));
+    --theme-secondary-color-b: var(~"--@{theme}-secondary-color-b", var(--theme-base-secondary-color-b));
 }
 
 //  --  Light mode
@@ -369,6 +390,9 @@
 
     // Fades
     --focus-ring: .native-fade(theme-secondary-color, 15)[];
+
+    // TODO
+    --theme-body-font-color: var(--black-800);
 }
 
 //  --  Dark mode
@@ -554,27 +578,30 @@
 
     // Fades
     --focus-ring: .native-fade(theme-secondary-color, 25)[];
+
+    // TODO
+    --theme-body-font-color: var(--black-800);
 }
 
 // rules shared between .theme-dark and .theme-system w/ prefers-color-scheme: dark
 .theme-dark-rules() {
     .dark-colors();
 
+    //.generate-themed-variables(theme-dark);
+
+    &, & .themed {
+        .generate-themed-variables(theme-dark);
+        // add in the themed "native mixins", making sure to scope to the child .themed elements so they don't use the parent's values
+        .dark-themed-colors();
+    }
+}
+
+:root {
     // specify the default colors in less, then deconstruct them
     // this keeps the hsl/rgb variables below in sync, but consumers will need to set each variable separately
     @defaultPrimaryColor: #f48225;
     @defaultSecondaryColor: #0077cc;
-
-    // TODO DEBUG ONLY
-    @defaultPrimaryColor: hotpink;
-    @defaultSecondaryColor: powderblue;
-
-    .generate-themed-variables(@defaultPrimaryColor, @defaultSecondaryColor);
-
-    &, & .themed {
-        // add in the themed "native mixins", making sure to scope to the child .themed elements so they don't use the parent's values
-        .dark-themed-colors();
-    }
+    .generate-calculated-themed-variables(@defaultPrimaryColor, @defaultSecondaryColor);
 }
 
 body:not(.theme-dark),
@@ -583,14 +610,8 @@ body.theme-system .theme-light__forced
 {
     .light-colors();
 
-    // specify the default colors in less, then deconstruct them
-    // this keeps the hsl/rgb variables below in sync, but consumers will need to set each variable separately
-    @defaultPrimaryColor: #f48225;
-    @defaultSecondaryColor: #0077cc;
-
-    .generate-themed-variables(@defaultPrimaryColor, @defaultSecondaryColor);
-
     &, & .themed {
+        .generate-themed-variables(theme-light);
         // add in the themed "native mixins", making sure to scope to the child .themed elements so they don't use the parent's values
         .light-themed-colors();
     }
