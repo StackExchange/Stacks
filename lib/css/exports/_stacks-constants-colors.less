@@ -569,11 +569,8 @@ body.theme-system .theme-light__forced
 
     .generate-themed-variables(@defaultPrimaryColor, @defaultSecondaryColor);
 
-    // add in the themed "native mixins"
-    .light-themed-colors();
-
-    & .themed {
-        // add the mixins here too so the child themes don't use the parent's values
+    &, & .themed {
+        // add in the themed "native mixins", making sure to scope to the child .themed elements so they don't use the parent's values
         .light-themed-colors();
     }
 }
@@ -594,11 +591,8 @@ body:not(.theme-dark) .theme-dark__forced
 
     .generate-themed-variables(@defaultPrimaryColor, @defaultSecondaryColor);
 
-    // add in the themed "native mixins"
-    .dark-themed-colors();
-
-    & .themed {
-        // add the mixins here too so the child themes don't use the parent's values
+    &, & .themed {
+        // add in the themed "native mixins", making sure to scope to the child .themed elements so they don't use the parent's values
         .dark-themed-colors();
     }
 }
@@ -618,10 +612,8 @@ body.theme-system {
 
         .generate-themed-variables(@defaultPrimaryColor, @defaultSecondaryColor);
 
-        .dark-themed-colors();
-
-        & .themed {
-            // add the mixins here too so the child themes don't use the parent's values
+        &, & .themed {
+            // add in the themed "native mixins", making sure to scope to the child .themed elements so they don't use the parent's values
             .dark-themed-colors();
         }
     }
