@@ -556,6 +556,27 @@
     --focus-ring: .native-fade(theme-secondary-color, 25)[];
 }
 
+// rules shared between .theme-dark and .theme-system w/ prefers-color-scheme: dark
+.theme-dark-rules() {
+    .dark-colors();
+
+    // specify the default colors in less, then deconstruct them
+    // this keeps the hsl/rgb variables below in sync, but consumers will need to set each variable separately
+    @defaultPrimaryColor: #f48225;
+    @defaultSecondaryColor: #0077cc;
+
+    // TODO DEBUG ONLY
+    @defaultPrimaryColor: hotpink;
+    @defaultSecondaryColor: powderblue;
+
+    .generate-themed-variables(@defaultPrimaryColor, @defaultSecondaryColor);
+
+    &, & .themed {
+        // add in the themed "native mixins", making sure to scope to the child .themed elements so they don't use the parent's values
+        .dark-themed-colors();
+    }
+}
+
 body:not(.theme-dark),
 body.theme-dark .theme-light__forced,
 body.theme-system .theme-light__forced
@@ -578,43 +599,11 @@ body.theme-system .theme-light__forced
 body.theme-dark,
 body:not(.theme-dark) .theme-dark__forced
 {
-    .dark-colors();
-
-    // specify the default colors in less, then deconstruct them
-    // this keeps the hsl/rgb variables below in sync, but consumers will need to set each variable separately
-    @defaultPrimaryColor: #f48225;
-    @defaultSecondaryColor: #0077cc;
-
-    // TODO DEBUG ONLY
-    @defaultPrimaryColor: hotpink;
-    @defaultSecondaryColor: powderblue;
-
-    .generate-themed-variables(@defaultPrimaryColor, @defaultSecondaryColor);
-
-    &, & .themed {
-        // add in the themed "native mixins", making sure to scope to the child .themed elements so they don't use the parent's values
-        .dark-themed-colors();
-    }
+    .theme-dark-rules();
 }
 
 body.theme-system {
     @media (prefers-color-scheme: dark) {
-        .dark-colors();
-
-        // specify the default colors in less, then deconstruct them
-        // this keeps the hsl/rgb variables below in sync, but consumers will need to set each variable separately
-        @defaultPrimaryColor: #f48225;
-        @defaultSecondaryColor: #0077cc;
-
-        // TODO DEBUG ONLY
-        @defaultPrimaryColor: hotpink;
-        @defaultSecondaryColor: powderblue;
-
-        .generate-themed-variables(@defaultPrimaryColor, @defaultSecondaryColor);
-
-        &, & .themed {
-            // add in the themed "native mixins", making sure to scope to the child .themed elements so they don't use the parent's values
-            .dark-themed-colors();
-        }
+        .theme-dark-rules();
     }
 }
