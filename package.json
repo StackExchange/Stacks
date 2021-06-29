@@ -13,13 +13,16 @@
   "unpkg": "dist/css/stacks.min.css",
   "scripts": {
     "start": "concurrently -n w: npm:start:*",
-    "grunt": "grunt",
-    "build": "grunt build",
-    "build:wp": "webpack --mode=production",
+    "build": "concurrently -n w: npm:build:*",
+    "build:bundle": "webpack --mode=production",
+    "build:docs": "webpack --mode=production --config ./docs/webpack.config.js && cd ./docs && eleventy",
     "start:webpack": "webpack --watch --config ./docs/webpack.config.js",
     "start:eleventy": "cd ./docs && eleventy --serve",
     "test": "backstop test",
-    "approve": "backstop approve"
+    "approve": "backstop approve",
+
+    "deprecated:grunt": "grunt",
+    "deprecated:build:grunt": "grunt build"
   },
   "license": "MIT",
   "dependencies": {
@@ -61,10 +64,12 @@
     "postcss-loader": "^6.1.0",
     "stylelint": "^13.13.1",
     "stylelint-config-standard": "^22.0.0",
+    "terser-webpack-plugin": "^5.1.4",
     "ts-loader": "^9.2.3",
     "typescript": "^4.2.3",
     "webpack": "^5.41.1",
-    "webpack-cli": "^4.7.2"
+    "webpack-cli": "^4.7.2",
+    "webpack-merge": "^5.8.0"
   },
   "browserslist": [
     "last 2 versions",
