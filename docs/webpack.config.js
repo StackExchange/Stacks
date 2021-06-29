@@ -51,6 +51,22 @@ module.exports = (env, argv) => {
                         "less-loader",
                     ],
                 },
+                {
+                    test: /\.css$/,
+                    use: [
+                        MiniCssExtractPlugin.loader,
+                        {
+                            loader: "css-loader",
+                            options: {
+                                importLoaders: 1,
+                                url: false,
+                            },
+                        },
+                        {
+                            loader: "postcss-loader",
+                        }
+                    ],
+                },
             ],
         },
         plugins: [
