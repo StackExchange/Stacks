@@ -1,1 +1,0 @@
-Stacks._initializing = false;
