@@ -148,28 +148,16 @@
 //  $   CSS Variable Colors
 //  ----------------------------------------------------------------------------
 
-.generate-calculated-themed-variables(@primary, @secondary, @theme: base) {
-    // Primary color
+.generate-calculated-themed-variables(@primary, @designation: primary, @theme: base) {
     // Split into h/s/l/a values
-    --theme-@{theme}-primary-color-h: hue(@primary);
-    --theme-@{theme}-primary-color-s: saturation(@primary);
-    --theme-@{theme}-primary-color-l: lightness(@primary);
+    --theme-@{theme}-@{designation}-color-h: hue(@primary);
+    --theme-@{theme}-@{designation}-color-s: saturation(@primary);
+    --theme-@{theme}-@{designation}-color-l: lightness(@primary);
 
     // Split into r/g/b values
-    --theme-@{theme}-primary-color-r: red(@primary);
-    --theme-@{theme}-primary-color-g: green(@primary);
-    --theme-@{theme}-primary-color-b: blue(@primary);
-
-    // Secondary color
-    // Split into h/s/l/a values
-    --theme-@{theme}-secondary-color-h: hue(@secondary);
-    --theme-@{theme}-secondary-color-s: saturation(@secondary);
-    --theme-@{theme}-secondary-color-l: lightness(@secondary);
-
-    // Split into r/g/b values
-    --theme-@{theme}-secondary-color-r: red(@secondary);
-    --theme-@{theme}-secondary-color-g: green(@secondary);
-    --theme-@{theme}-secondary-color-b: blue(@secondary);
+    --theme-@{theme}-@{designation}-color-r: red(@primary);
+    --theme-@{theme}-@{designation}-color-g: green(@primary);
+    --theme-@{theme}-@{designation}-color-b: blue(@primary);
 }
 
 .generate-themed-variables(@theme: theme) {
@@ -599,7 +587,8 @@
     // this keeps the hsl/rgb variables below in sync, but consumers will need to set each variable separately
     @defaultPrimaryColor: #f48225;
     @defaultSecondaryColor: #0077cc;
-    .generate-calculated-themed-variables(@defaultPrimaryColor, @defaultSecondaryColor);
+    .generate-calculated-themed-variables(@defaultPrimaryColor, primary);
+    .generate-calculated-themed-variables(@defaultSecondaryColor, secondary);
 }
 
 body:not(.theme-dark),
