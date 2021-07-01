@@ -445,11 +445,3 @@ description: Stacks provides a robust theming API to handle theming in various c
         --theme-dark-primary-color-b: 153;
     }
 </style>
-
-<script>
-    // TODO DEBUG BAD! DON'T MONKEY PATCH IN PROD!!!
-    // use in console via $0.var("--theme-primary-color")
-    window.Element.prototype.var = function(cssVar) {
-        return getComputedStyle(this).getPropertyValue(cssVar);
-    }
-</script>
