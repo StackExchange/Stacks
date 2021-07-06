@@ -15,6 +15,7 @@ module.exports = (env, argv) => {
         module: {
             rules: [
                 {
+                    // TODO remove css imports from .js files and move to .less instead
                     test: /\.css$/,
                     use: [
                         MiniCssExtractPlugin.loader,

@@ -4,6 +4,11 @@ import "../less/stacks-documentation.less";
 import "./controllers/docs-resizer";
 import "@stackoverflow/stacks-editor/dist/styles.css";
 
+import "./global.search";
+import "./global.navigation";
+import "./global.hamburger";
+import "./global.darkmode";
+
 // @ts-expect-error
 global.$ = require("jquery");
 
