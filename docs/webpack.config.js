@@ -60,23 +60,6 @@ module.exports = (_, argv) => {
                         "less-loader",
                     ],
                 },
-                {
-                    // TODO remove css imports from .js files and move to .less instead
-                    test: /\.css$/,
-                    use: [
-                        MiniCssExtractPlugin.loader,
-                        {
-                            loader: "css-loader",
-                            options: {
-                                importLoaders: 1,
-                                url: false,
-                            },
-                        },
-                        {
-                            loader: "postcss-loader",
-                        }
-                    ],
-                },
             ],
         },
         plugins: [
