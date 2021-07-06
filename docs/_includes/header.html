@@ -45,9 +45,41 @@
                 {% icon "Clear", "d-none js-search-close-icon" %}
             </button>
 
-            <button class="s-btn__unset c-pointer grid--cell fc-black-300 ml12 js-darkmode-btn" title="Toggle dark mode">
-                {% icon "Theme", "", "24" %}
+            <button class="s-btn__unset c-pointer grid--cell fc-black-300 ml12 stacks-theme-button"
+                aria-controls="theming-popover"
+                data-controller="s-popover"
+                data-action="s-popover#toggle"
+                data-s-popover-toggle-class="is-selected"
+                data-s-popover-placement="bottom-end"
+                title="Select a theme">
+                    {% icon "Theme", "", "24" %}
             </button>
+
+            <div class="s-popover w-auto wmn-initial wmx-initial"
+                id="theming-popover"
+                role="menu">
+                <div class="s-popover--arrow"></div>
+                <div class="grid fd-column gs12 gsy">
+                    <div class="grid--cell">
+                        <div class="grid ai-center jc-space-between gs8">
+                            <label class="grid--cell s-label fs-body1 fw-normal" for="toggle-theme-dark">Dark mode</label>
+                            <div class="grid--cell s-toggle-switch">
+                                <input id="toggle-theme-dark" type="checkbox">
+                                <div class="s-toggle-switch--indicator"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="grid--cell">
+                        <div class="grid ai-center jc-space-between gs8">
+                            <label class="grid--cell s-label fs-body1 fw-normal" for="toggle-theme-custom">Custom theme</label>
+                            <div class="grid--cell s-toggle-switch">
+                                <input id="toggle-theme-custom" type="checkbox">
+                                <div class="s-toggle-switch--indicator"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </header>
