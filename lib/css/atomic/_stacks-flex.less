@@ -7,8 +7,262 @@
 //  visit https://stackoverflow.design/
 //
 //  TABLE OF CONTENTS
-//  • ATOMIC CLASSES
+//  • VARIABLES
+//  • MIXINS
+//  • GRID ELEMENTS
+//  • GRID SPACING
+//  • MODIFICATIONS
+//  • ATOMIC
+//  • DEPRECATED
 //
+//  ============================================================================
+//  --  STACKS GRID MIXINS
+//  ============================================================================
+//  --  FIXED COLUMN WIDTHS
+//  ----------------------------------------------------------------------------
+
+#stacks-internals() {
+    #grid-builder-settings() {
+        @grid-cols: 12; // Desired grid columns
+    }
+    #grid-builder-helpers() {
+        #stacks-internals #grid-builder-settings();
+
+        .create-fixed-cells(@num, @count: 1) when (@count =< @num) {
+            .grid--cell@{count},
+            .flex--item@{count} {
+                flex-basis: ((@count * 100%) / @num);
+            }
+
+            #stacks-internals #grid-builder-helpers .create-fixed-cells(@num, (@count + 1));
+        }
+
+        //  --  AUTO FIXED WIDTH CELLS
+        //      Automatic adjusting width cells are great. And being able to specify a
+        //      cell's width is equally amazing. But sometimes you want to be able to
+        //      have all cell's within a box container to be the same width. Instead
+        //      stating a fixed cell width, apply a modifying to the box container and
+        //      all child elements will automatically be sized.
+        //  ----------------------------------------------------------------------------
+        .create-grid-count-cols(@num, @count: 1) when (@count =< @num) {
+            .grid__allcells@{count},
+            .flex__allcells@{count} {
+                > .grid,
+                > .d-flex,
+                > .grid--cell,
+                > .flex--item {
+                    flex-basis: ((@count * 100%) / @num);
+                }
+            }
+
+            #stacks-internals #grid-builder-helpers .create-grid-count-cols(@num, (@count + 1));
+        }
+
+        //  --  GRID GUTTERS
+        //  ============================================================================
+        //      We need two mixins to properly generate grid gutters:
+        //
+        //      [1]  Adjusts the fixed column max-width / flex-basis if gutters are present.
+        //      [2]  Generate the desired gutters.
+        //
+        //  ----------------------------------------------------------------------------
+        //      [1] Adjust width / flex-basis numbers
+        //
+        //      HOW IT WORKS:
+        //      A quick primer on how this mixin works. The TL;DR is we're using a mixin
+        //      guard to start a loop that'll create all the desired `> .grid--cell@{count}`
+        //      classes.
+        //
+        //      The three mixin parameters are:
+        //        - @spacing: the desired distance our gutters should be
+        //        - @num: the number at which we should stop our loop
+        //        - @count: the current column number
+        //
+        //      The other bit is the mixin guard portion:
+        //
+        //          when (@count =< @num)
+        //
+        //      This checks if we should run the mixin. Using a comparison operator,
+        //      it's checking to see if the current @count is equal to (=) or less
+        //      than (<) the desired @num total. If it is, run the mixin.
+        //
+        //      Next the mixin runs as normal. Using the @cell-width variable, we
+        //      calculate the cell's width. We do this here because we need to use the
+        //      CSS calc function and this makes the code a little prettier. Using the
+        //      variable, we then update the fixed cell's flex-basis and width.
+        //
+        //      Finally we call for the mixin again within itself, assigning a new
+        //      @count value: the current value + 1. This then fires off the mixin
+        //      again, creating a loop until we've generated updated widths for all
+        //      of our desired @num.
+        //
+        //      There are two mixins here:
+        //          • "grid-fixed-cell-row" -- This is the baseline mixin.
+        //          • "grid-fixed-cell-column" -- When the ".grid" is a column, change
+        //             the margins, setting a top and bottom margin instead of left
+        //             and right.
+        //
+        //  ----------------------------------------------------------------------------
+        .grid-fixed-cell-spacing(@spacing, @num, @count: 1) when (@count =< @num) {
+            @cell-width: (@count * 100% / @num);
+
+            > .grid--cell@{count},
+            > .flex--item@{count} {
+                margin: (@spacing / 2);
+            }
+
+            //  ------------------------------------------------------------------------
+            //  [1] FIXED WIDTH CELLS
+            //      This makes the fixed width cells to account for gutters.
+            //
+            //  [2] UNIFORM CHILD GRID CELLS
+            //      This class allows you to uniformly state the width of `.grid--cell`
+            //      divs within a `.grid` element. In particular we adjust the flex-basis
+            //      and max-width here to account for gutters.
+            //  ------------------------------------------------------------------------
+            > .grid--cell@{count},                                  // [1]
+            > .flex--item@{count},
+            &.grid__allcells@{count} > .grid,                       // [2]
+            &.flex__allcells@{count} > .d-flex,
+            &.grid__allcells@{count} > .grid--cell,                 // [2]
+            &.flex__allcells@{count} > .flex--item {
+                flex-basis: calc(~"@{cell-width} - @{spacing}");
+            }
+
+            #stacks-internals #grid-builder-helpers .grid-fixed-cell-spacing(@spacing, @num, (@count + 1));
+        }
+
+
+        //  ----------------------------------------------------------------------------
+        //      2.  Generate the desired gutters
+        //          We halve the spacing value because the spacing value should be the
+        //          total space between cells--not the total applied to each cell,
+        //          which would effectively double the desired total.
+        //
+        //          The "when" statements here refer to when we declare it's for a
+        //          row (default) or a column. When a column we need to reset the
+        //          left and right margins and add in top and bottom margins.
+        //  ----------------------------------------------------------------------------
+        .gutter-spacing(@spacing) {
+            #stacks-internals #grid-builder-settings();
+
+            margin: -(@spacing / 2);
+
+            //  --  FLUID CELLS
+            > .grid,
+            > .d-flex,
+            > .grid--cell,
+            > .flex--item {
+                margin: (@spacing / 2);
+            }
+
+            //  --  FIXED WIDTH CELLS
+            //      Now we call for the above mixin [1] to make sure we adjust the default
+            //      widths for the new gutters.
+            #stacks-internals #grid-builder-helpers .grid-fixed-cell-spacing(@spacing, @grid-cols);
+        }
+    }
+}
+
+
+//  ============================================================================
+//  $   GRID ELEMENTS
+//  ============================================================================
+//      To help simplify our CSS, we create a generic box container. By default
+//      this is a row container, but we can modify the box to become a column.
+//  ----------------------------------------------------------------------------
+.grid {
+    display: flex;
+}
+
+//  --  UNIVERSAL FLEX WIDTHS
+//      This applies a flex value it to all of a grid's direct children.
+//  --------------------------------------------------------------------------
+.grid__fl0,
+.grid__fl-shrink0,
+.flex__fl-shrink0 {
+    &,
+    > .grid,
+    > .d-flex,
+    > .grid--cell,
+    > .flex--item {
+        flex: 0 auto;
+    }
+}
+
+.grid__fl-equal,
+.flex__fl-equal {
+    &,
+    > .grid,
+    > .d-flex,
+    > .grid--cell,
+    > .flex--item {
+        flex: 1 1 0%;
+    }
+}
+
+// Deprecated in favor of .flex__fl-equal
+.grid__fl1 {
+    &,
+    > .grid,
+    > .d-flex,
+    > .grid--cell,
+    > .flex--item {
+        flex: 1 auto;
+    }
+}
+
+& {
+    #stacks-internals #grid-builder-settings(); // load @grid-cols
+
+    //  $$  FIXED WIDTH CELLS
+    //  ----------------------------------------------------------------------------
+    #stacks-internals #grid-builder-helpers .create-fixed-cells(@grid-cols);
+
+    //  $$  AUTO FIXED WIDTH CELLS
+    //  ----------------------------------------------------------------------------
+    #stacks-internals #grid-builder-helpers .create-grid-count-cols(@grid-cols);
+}
+//  ============================================================================
+//  $   GRID SPACING
+//      Insert spaces or gutters in between grid cells
+//  ----------------------------------------------------------------------------
+.gs2 { #stacks-internals #grid-builder-helpers .gutter-spacing(@su2); }
+.gs4 { #stacks-internals #grid-builder-helpers .gutter-spacing(@su4); }
+.gs6 { #stacks-internals #grid-builder-helpers .gutter-spacing(@su6); }
+.gs8 { #stacks-internals #grid-builder-helpers .gutter-spacing(@su8); }
+.gs12 { #stacks-internals #grid-builder-helpers .gutter-spacing(@su12); }
+.gs16 { #stacks-internals #grid-builder-helpers .gutter-spacing(@su16); }
+.gs24 { #stacks-internals #grid-builder-helpers .gutter-spacing(@su24); }
+.gs32 { #stacks-internals #grid-builder-helpers .gutter-spacing(@su32); }
+.gs48 { #stacks-internals #grid-builder-helpers .gutter-spacing(@su48); }
+.gs64 { #stacks-internals #grid-builder-helpers .gutter-spacing(@su64); }
+
+//  On rows, remove top and bottom margins
+.gsx {
+    &,
+    > .grid,
+    > .d-flex,
+    > [class*="grid--cell"],
+    > [class*="flex--item"] {
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+}
+
+//  On columns, remove left and right margins
+.gsy {
+    &,
+    > .grid,
+    > .d-flex,
+    > [class*="grid--cell"],
+    > [class*="flex--item"] {
+        margin-right: 0;
+        margin-left: 0;
+    }
+}
+
+
 //  ============================================================================
 //  $  ATOMIC CLASSES
 //  ----------------------------------------------------------------------------
@@ -27,19 +281,6 @@
 #stacks-internals #responsify('.fw-wrap', { flex-wrap: wrap !important; });
 #stacks-internals #responsify('.fw-reverse', { flex-wrap: wrap-reverse !important; });
 #stacks-internals #responsify('.fw-nowrap', { flex-wrap: nowrap !important; });
-
-//  --  FLEX FLOW
-//      This is another shorthand property for flex-direction and flex-wrap.
-//      Default value is "row nowrap".
-//  ----------------------------------------------------------------------------
-.ff-row-wrap { flex-flow: row wrap !important; }
-.ff-row-nowrap { flex-flow: row nowrap !important; }
-.ff-row-reverse-wrap { flex-flow: row-reverse wrap !important; }
-.ff-row-reverse-nowrap { flex-flow: row-reverse nowrap !important; }
-.ff-column-wrap { flex-flow: column wrap !important; }
-.ff-column-nowrap { flex-flow: column nowrap !important; }
-.ff-column-reverse-wrap { flex-flow: column-reverse wrap !important; }
-.ff-column-reverse-nowrap { flex-flow: column-reverse nowrap !important; }
 
 //  --  JUSTIFY CONTENT
 //      Defines the child alignment along the parent's main axis
@@ -82,7 +323,11 @@
 //      A common combination of classes is .jc-center and .ai-center.
 //      Use this class when you want both.
 //  ----------------------------------------------------------------------------
-.grid__center { .jc-center; .ai-center; }
+.grid__center,
+.flex__center {
+    .jc-center;
+    .ai-center;
+}
 
 //  --  ALIGN SELF
 //      Allows child containers to re-align themselves regardless
@@ -101,6 +346,42 @@
 //  --  FLEX
 //      Graduating scale of flex-grow and flex-shrink values
 //  ----------------------------------------------------------------------------
+#stacks-internals #responsify('.fl-grow1', { flex-grow: 1 !important; });
+#stacks-internals #responsify('.fl-grow0', { flex-grow: 0 !important; });
+#stacks-internals #responsify('.fl-shrink1', { flex-shrink: 1 !important; });
+#stacks-internals #responsify('.fl-shrink0', { flex-shrink: 0 !important; });
+#stacks-internals #responsify('.fl-none', { flex: none !important; });
+#stacks-internals #responsify('.fl-initial', { flex: 0 1 auto !important; });
+#stacks-internals #responsify('.fl-auto', { flex: 1 1 auto !important; });
+#stacks-internals #responsify('.fl-equal', { flex: 1 1 0% !important; });
+
+//  --  Ordering
+//      Designate a child container's position.
+//  ----------------------------------------------------------------------------
+#stacks-internals #responsify('.order-first', { order: -1 !important; });
+#stacks-internals #responsify('.order-last', { order: 1 !important; });
+
+
+//  ============================================================================
+//  $  DEPRECATED CLASSES
+//  ----------------------------------------------------------------------------
+
+//  --  FLEX FLOW
+//      This is another shorthand property for flex-direction and flex-wrap.
+//      Default value is "row nowrap".
+//  ----------------------------------------------------------------------------
+.ff-row-wrap { flex-flow: row wrap !important; }
+.ff-row-nowrap { flex-flow: row nowrap !important; }
+.ff-row-reverse-wrap { flex-flow: row-reverse wrap !important; }
+.ff-row-reverse-nowrap { flex-flow: row-reverse nowrap !important; }
+.ff-column-wrap { flex-flow: column wrap !important; }
+.ff-column-nowrap { flex-flow: column nowrap !important; }
+.ff-column-reverse-wrap { flex-flow: column-reverse wrap !important; }
+.ff-column-reverse-nowrap { flex-flow: column-reverse nowrap !important; }
+
+//  --  FLEX
+//      Graduating scale of flex-grow and flex-shrink values
+//  ----------------------------------------------------------------------------
 #stacks-internals #responsify('.fl0', { flex: 0 auto !important; });
 #stacks-internals #responsify('.fl1', { flex: 1 auto !important; });
 .fl2 { flex: 2 auto !important; }
@@ -113,8 +394,6 @@
 //      shrink relative to other flex items in the container when there isn't
 //      enough space in the row. Default value is 1.
 //  ----------------------------------------------------------------------------
-.fl-shrink0 { flex-shrink: 0; }
-.fl-shrink1 { flex-shrink: 1; }
 .fl-shrink2 { flex-shrink: 2; }
 .fl-shrink3 { flex-shrink: 3; }
 .fl-shrink4 { flex-shrink: 4; }
@@ -125,31 +404,7 @@
 //      grow relative to other flex items in the container when there isn't
 //      enough space in the row. Default value is 1.
 //  ----------------------------------------------------------------------------
-.fl-grow0 { flex-grow: 0; }
-.fl-grow1 { flex-grow: 1; }
 .fl-grow2 { flex-grow: 2; }
 .fl-grow3 { flex-grow: 3; }
 .fl-grow4 { flex-grow: 4; }
 .fl-grow5 { flex-grow: 5; }
-
-//  --  FLEX NONE
-//      This is equivalent to flex: 0 0 auto.
-//      It sizes the item according to its width/height properties, but makes it
-//      fully inflexible.
-//  ----------------------------------------------------------------------------
-.fl-none { flex: none; }
-
-//  --  FLEX EQUAL
-//      Equally space all children of a grid
-//  ----------------------------------------------------------------------------
-.fl-equal {
-    flex-grow: 1;
-    flex-shrink: 1;
-    flex-basis: 0;
-}
-
-//  --  Ordering
-//      Designate a child container's position.
-//  ----------------------------------------------------------------------------
-#stacks-internals #responsify('.order-first', { order: -1 !important; });
-#stacks-internals #responsify('.order-last', { order: 1 !important; });
