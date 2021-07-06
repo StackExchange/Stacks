@@ -1,3 +1,5 @@
+const List = require("list.js");
+
 var monkeyList = new List('js-sortable-list', {
     valueNames: ['js-name']
 });

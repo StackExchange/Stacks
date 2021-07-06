@@ -1,3 +1,11 @@
+// TODO docsearch expects `process.env`, as if it were a nodejs file, so polyfill it here
+// usually these are stripped out before they make it into the distributable, but I guess not this one...
+// @ts-expect-error
+global.process = {
+    env: {}
+};
+const docsearch = require("docsearch.js");
+
 $(document).ready(function() {
     docsearch({
         apiKey: '09d35fa9def5c025244d5b217778a652',
