@@ -36,7 +36,13 @@ description: To avoid specifying color values by hand, we’ve included a robust
         {% for color in colors %}
             <div class="grid--cell">
                 <div class="p24 fs-title btr-md bg-{{ color.name }}{% if color.primary != "" %}-{{ color.primary }}{% endif %}{% if color.white %} fc-white{% if color.flip %} d:fc-black{% endif %}{% else %}{% if color.flip %} d:fc-white{% endif %}{% endif %}">
-                    {{ color.name | capitalize }}
+                    {% if color.name == "theme-primary" %}
+                        Theme Primary
+                    {% elsif color.name == "theme-secondary" %}
+                        Theme Secondary
+                    {% else %}
+                        {{ color.name | capitalize }}
+                    {% endif %}
                 </div>
 
                 {% for stop in color.stops reversed %}
