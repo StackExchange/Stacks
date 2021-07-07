@@ -22,14 +22,16 @@
     margin-bottom: 0.75em;
 }
 
-.stacks-intro {
-    background-image: url("../img/illustration-crane.svg"), url("../img/illustration-field.svg");
-    background-position: top -35% left 15%, bottom 10% right 8%;
-    background-repeat: no-repeat, no-repeat;
+.stacks-intro-crane {
+    position: absolute;
+    top: -15%;
+    left: 17%;
+}
 
-    .dark-mode({
-        background-image: url("../img/illustration-crane-dark.svg"), url("../img/illustration-field-dark.svg");
-    });
+.stacks-intro-field {
+    position: absolute;
+    bottom: 5%;
+    right: 9%;
 }
 
 .stacks-home-nav {
@@ -37,9 +39,16 @@
 }
 
 #stacks-internals #screen-md({
-    .stacks-intro {
-        background-position: top -15% left 15%, bottom 10% right 8%;
-        background-size: 135px 327px, 537px 390px;
+    .stacks-intro-crane {
+        width: 135px;
+        height: 327px;
+        top: -8%;
+        left: 12%;
+    }
+
+    .stacks-intro-field {
+        width: 537px;
+        height: 390px;
     }
 }, @force-selector: true);
 
@@ -59,9 +68,19 @@
     .stacks-home-nav {
         margin-bottom: 170px;
     }
-    .stacks-intro {
-        background-position: top 0 left 15%, bottom 20% right 8%;
-        background-size: 90px 218px, 358px 260px;
+
+    .stacks-intro-crane {
+        width: 90px;
+        height: 218px;
+
+        top: 0;
+        left: 12%;
+    }
+
+    .stacks-intro-field {
+        width: 358px;
+        height: 260px;
+        bottom: 20%;
     }
 }, @force-selector: true);
 
@@ -70,18 +89,16 @@
         margin-bottom: 230px;
     }
 
-    html .stacks-intro {
+    html .stacks-intro-crane {
         background-position: top 0 left 15%, bottom 50% right 0;
         background-size: 69px 166px, 272px 197px;
     }
-}
 
-//  $$  404
-//  ----------------------------------------------------------------------------
-.stacks-404 {
-    background-image: url("../img/illustration-astronaut.svg");
-    background-position: 15% 15%;
-    background-repeat: no-repeat;
+    html .stacks-intro-field {
+        width: 272px;
+        height: 197px;
+        bottom: 33%;
+    }
 }
 
 //  $$  BACKGROUNDS EXAMPLE
@@ -130,7 +147,7 @@
 //  $$  TITLES
 //  ----------------------------------------------------------------------------
 .stacks-title {
-    text-shadow: 0 0 10px var(--orange-400), 0 0 10px var(--orange-400), 0 0 10px var(--orange-400);
+    text-shadow: 0 0 10px var(--theme-primary-400), 0 0 10px var(--theme-primary-400), 0 0 10px var(--theme-primary-400);
     text-rendering: optimizeLegibility;
 }
 
@@ -393,6 +410,53 @@
     .stacks-grid {
         grid-template-columns: 1fr;
     }
+}
+
+.stacks-theme-button {
+    color: var(--black-300);
+    position: relative;
+    padding-right: @su12 !important;
+
+    &:after {
+        content: "";
+        position: absolute;
+        z-index: @zi-active;
+        top: calc(50% - 2px);
+        right: 0;
+        border-style: solid;
+        border-width: @su4;
+        border-top-width: @su4;
+        border-bottom-width: 0;
+        border-color: currentColor transparent;
+        pointer-events: none;
+    }
+
+    &.is-selected {
+        color: var(--black-600);
+    }
+
+    &.stacks-theme-button__home {
+        color: var(--white);
+
+        &.is-selected {
+            color: var(--white);
+        }
+    }
+}
+
+.theme-custom {
+    --theme-base-primary-color-h: 172;
+    --theme-base-primary-color-s: 37%;
+    --theme-base-primary-color-l: 48%;
+    --theme-base-primary-color-r: 77;
+    --theme-base-primary-color-g: 168;
+    --theme-base-primary-color-b: 156;
+    --theme-base-secondary-color-h: 259;
+    --theme-base-secondary-color-s: 29%;
+    --theme-base-secondary-color-l: 55%;
+    --theme-base-secondary-color-r: 129;
+    --theme-base-secondary-color-g: 108;
+    --theme-base-secondary-color-b: 174;
 }
 
 .team-avatar {
