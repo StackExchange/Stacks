@@ -74,6 +74,33 @@ module.exports = function(eleventyConfig) {
     return output;
   });
 
+  // Tip shortcode
+  eleventyConfig.addPairedShortcode("tip", function(content, type) {
+    var spot = "";
+
+    if (type == "warning") {
+      spot = Spots["Alert"];
+      type = "s-notice__warning";
+    } else {
+      spot = Spots["AlertCircle"];
+      type = "s-notice__info";
+    }
+
+    var output = '';
+    output += '<div class="s-notice ' + type + ' bar-md mb48">';
+    output +=   '<div class="d-flex gs16 ai-start">';
+    output +=     '<div class="flex--item">';
+    output +=       spot;
+    output +=     '</div>';
+    output +=     '<div class="flex--item fs-body2 lh-lg">';
+    output +=       content
+    output +=     '</div>';
+    output +=   '</div>';
+    output += '</div>';
+
+    return output;
+  });
+
   // Version shortcode
   eleventyConfig.addLiquidShortcode("version", function() {
     return {version}.version;
