@@ -88,14 +88,10 @@ module.exports = function(eleventyConfig) {
 
     if (classes == null) {
       classes = "mb48";
-    } else {
-      classes == classes;
     }
 
     if (interiorClasses == null) {
       interiorClasses = "ai-start";
-    } else {
-      interiorClasses == interiorClasses;
     }
 
     var output = '';
