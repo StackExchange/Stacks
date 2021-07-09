@@ -614,6 +614,9 @@ Stacks.setTooltipHtml(el,
 </section>
 <section class="stacks-section">
     {% header "h2", "Manual placement" %}
+    {% tip, "warning", "mb32" %}
+        Our Stimulus popover controller handles the positioning of popovers for you. Popovers <em>can</em> be positioned manually for various legacy reasons, but we recommend using the <code class="stacks-code">s-popover</code> controller’s <code class="stacks-code">placement</code> property instead.
+    {% endtip %}
     {% header "h3", "Manual classes" %}
     <div class="overflow-x-auto mb32">
         <table class="wmn4 s-table s-table__bx-simple">
@@ -643,13 +646,6 @@ Stacks.setTooltipHtml(el,
     <p class="stacks-copy">By default, popovers are hidden and positioned absolutely. Adding the class <code class="stacks-code">.is-visible</code> will show the popover.</p>
 
     <p class="stacks-copy">If you want to set the background color to something other than the default, simply add your desired <code class="stacks-code">bg-*</code> class to the <code class="stacks-code">s-popover</code> element and a matching <code class="stacks-code">fc-*</code> class to the <code class="stacks-code">s-popover--arrow</code> element.</p>
-
-    <div class="d-flex s-notice s-notice__info mb24">
-        <div class="flex--item mr8">{% icon "Alert" %}</div>
-        <div class="flex--item lh-lg">
-            99% of the time, you’ll want to position your popover automatically. We’ve built a robust Stimulus controller to handle all the positioning for you.
-        </div>
-    </div>
 
     <div class="stacks-preview">
 {% highlight html %}
