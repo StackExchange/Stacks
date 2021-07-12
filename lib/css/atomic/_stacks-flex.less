@@ -179,6 +179,7 @@
 //      This applies a flex value it to all of a grid's direct children.
 //  --------------------------------------------------------------------------
 .grid__fl0,
+.flex__fl0,
 .grid__fl-shrink0,
 .flex__fl-shrink0 {
     &,
@@ -201,6 +202,17 @@
     }
 }
 
+// Deprecated in favor of .flex__fl-equal
+.grid__fl1,
+.flex__fl1 {
+    &,
+    > .grid,
+    > .d-flex,
+    > .grid--cell,
+    > .flex--item {
+        flex: 1 auto;
+    }
+}
 
 & {
     #stacks-internals #grid-builder-settings(); // load @grid-cols
@@ -398,14 +410,3 @@
 .fl-grow3 { flex-grow: 3; }
 .fl-grow4 { flex-grow: 4; }
 .fl-grow5 { flex-grow: 5; }
-
-
-.grid__fl1 {
-    &,
-    > .grid,
-    > .d-flex,
-    > .grid--cell,
-    > .flex--item {
-        flex: 1 auto;
-    }
-}
