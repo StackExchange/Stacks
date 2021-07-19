@@ -1,0 +1,95 @@
+//
+//  STACK OVERFLOW
+//  FILE UPLOAD -- DYNAMIC PARTS
+//
+//  This CSS comes from Stacks, our CSS & Pattern library for rapidly building
+//  Stack Overflow. For documentation of all these classes and how to contribute,
+//  visit https://stackoverflow.design/
+
+.s-uploader {
+    align-items: center;
+    background-color: var(--black-025);
+    border-color: var(--black-200);
+    border-radius: @br-lg;
+    border-style: dashed;
+    border-width: @su4;
+    display: flex;
+    flex-direction: column;
+    height: @su128;
+    justify-content: center;
+    padding: @su8 @su24;
+    position: relative;
+    text-align: center;
+
+    &.is-active {
+        background-color: var(--black-050);
+    }
+
+    // This is to for safari shadow DOM
+    // see https://github.com/StackExchange/Stacks/pull/690#issuecomment-861028193
+    input[type="file"]::file-selector-button {
+        cursor: pointer;
+    }
+    .s-uploader--input {
+        cursor: pointer;
+        height: 100%;
+        inset: 0;
+        opacity: 0;
+        position: absolute;
+        width: 100%;
+
+        &:focus:focus-visible + .s-uploader--container {
+            background-color: var(--black-050);
+            box-shadow: 0 0 0 @su4 var(--focus-ring);
+        }
+    }
+    .s-uploader--preview {
+        align-items: center;
+        background-color: var(--white);
+        border-radius: @br-sm;
+        box-shadow: var(--bs-md);
+        box-sizing: border-box;
+        display: flex;
+        height: 100%;
+        overflow: hidden;
+        pointer-events: none;
+        transform-origin: center left;
+
+        each(range(5), {
+            &:nth-child(@{value}) {
+                height: 100% - ((@value - 1) * 6);
+                z-index: 6 - @value;
+            }
+        });
+        &:is(img) {
+            object-fit: scale-down;
+        }
+        &:is(:first-child):not(img) {
+            padding: @su16;
+        }
+        &:not(:first-child) {
+            border-radius: 0 @br-sm @br-sm 0;
+            color: transparent;
+            width: @su24;
+
+            &:is(img) {
+                object-fit: cover;
+                object-position: right;
+            }
+        }
+    }
+    .s-uploader--previews {
+        align-items: center;
+        display: flex;
+        flex-direction: row;
+        height: 100%;
+        justify-content: center;
+        max-width: 100%;
+    }
+    .s-uploader--reset {
+        position: absolute;
+        right: @su8;
+        top: @su8;
+        z-index: @zi-active;
+    }
+}
