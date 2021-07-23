@@ -189,4 +189,12 @@
         transform: translate3d(0, 0, 0);
         transition: visibility 0s 0s, opacity 100ms @te-smooth 0s, transform 100ms @te-smooth 0s;
     }
+
+    @media (prefers-reduced-motion) {
+        transition: none;
+
+        &[aria-hidden="false"] {
+            transition: none;
+        }
+    }
 }
