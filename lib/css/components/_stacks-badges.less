@@ -32,7 +32,7 @@
 //  ---------------------------------------------------------------------------
 .s-badge {
     display: inline-flex;
-    align-content: center;
+    align-items: center;
     justify-content: center;
     min-width: 0;
     padding: 0 @su6;
@@ -76,10 +76,10 @@
 
 .s-badge__xs {
     align-self: flex-start;
-    padding-right: (@su2 / 2);
-    padding-left: (@su2 / 2);
+    padding-right: @su2;
+    padding-left: @su2;
     font-size: @fs-fine;
-    line-height: 1.2;
+    line-height: 1.5;
 }
 
 //  $$  Badge Counts
@@ -118,16 +118,38 @@
 //  $$  Users
 //  ---------------------------------------------------------------------------
 .s-badge__admin {
-    .badge-styles(transparent, var(--blue-600), var(--white));
+    .badge-styles(transparent, var(--theme-secondary-color), @white);
 }
 .s-badge__moderator {
-    .badge-styles(transparent, var(--blue-600), var(--white));
+    .badge-styles(transparent, var(--theme-secondary-color), @white);
+
+    &:before {
+        content: "";
+        background-image: url("data:image/svg+xml,%3Csvg width='12' height='14' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M5.528.746c.257-.329.675-.327.93 0l4.42 5.66c.258.329.257.864 0 1.192l-4.42 5.66c-.256.328-.674.327-.93 0l-4.42-5.66c-.257-.329-.256-.865 0-1.192l4.42-5.66z' fill='%23fff'/%3E%3C/svg%3E");
+        display: block;
+        width: 12px;
+        height: 14px;
+        margin-top: -1px;
+        margin-right: 3px;
+    }
+
+    &.s-badge__sm:before {
+        background-image: url("data:image/svg+xml,%3Csvg width='9' height='11' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M3.55.246c.257-.329.647-.327.903 0l3.36 4.66c.256.329.256.864 0 1.192L4.45 10.75c-.257.329-.644.327-.9 0L.192 6.098c-.256-.329-.256-.865 0-1.192L3.55.246z' fill='%23fff'/%3E%3C/svg%3E");
+        width: 9px;
+        height: 11px;
+        margin-top: 0;
+        margin-right: 2px;
+    }
+
+    &.s-badge__xs:before {
+        background-image: url("data:image/svg+xml,%3Csvg width='7' height='9' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M2.798.246c.3-.329 1.1-.327 1.399 0l2.579 3.66c.3.329.298.864 0 1.192L4.196 8.75c-.299.329-1.1.327-1.398 0L.224 5.098a.904.904 0 010-1.192L2.798.246z' fill='%23fff'/%3E%3C/svg%3E");
+        width: 7px;
+        height: 9px;
+        margin-top: 0;
+    }
 }
 .s-badge__staff {
-    .badge-styles(transparent, var(--orange-400), var(--white));
-}
-.s-badge__staff--sm {
-    .badge-styles(transparent, var(--orange-400), var(--white));
+    .badge-styles(transparent, var(--theme-primary-color), @white);
 }
 
 //  $$  Award Count

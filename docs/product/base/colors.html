@@ -32,54 +32,34 @@ description: To avoid specifying color values by hand, we’ve included a robust
         </button>
     </div>
 
-    <div style="display:grid; gap:16px; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); grid-auto-flow: dense;">
+    <div style="display: grid; gap: 16px; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); grid-auto-flow: dense;">
         {% for color in colors %}
-            {% if color.include %}
-                <div class="grid--cell">
-                    <div class="p24 fs-title btr-md bg-{{ color.name }}{% if color.primary != "" %}-{{ color.primary }}{% endif %}{% if color.white %} fc-white{% if color.flip %} d:fc-black{% endif %}{% else %}{% if color.flip %} d:fc-white{% endif %}{% endif %}">
+            <div class="flex--item">
+                <div class="p24 fs-title btr-md bg-{{ color.name }}{% if color.primary != "" %}-{{ color.primary }}{% endif %}{% if color.white %} fc-white{% if color.flip %} d:fc-black{% endif %}{% else %}{% if color.flip %} d:fc-white{% endif %}{% endif %}">
+                    {% if color.name == "theme-primary" %}
+                        Theme Primary
+                    {% elsif color.name == "theme-secondary" %}
+                        Theme Secondary
+                    {% else %}
                         {{ color.name | capitalize }}
-                    </div>
-
-                    {% for stop in color.stops reversed %}
-                        <div class="grid ai-center jc-space-between bg-{{ color.name }}{% if stop.stop != "" %}-{{ stop.stop }}{% endif %} ff-mono p12{% if stop.white %} fc-white{% if stop.flip %} d:fc-black{% endif %}{% else %}{% if stop.flip %} d:fc-white{% endif %}{% endif %}{% if forloop.last %} bbr-md{% endif %}">
-                            <div class="grid--cell js-hex d-none">
-                                {{ color.name }}{% if stop.stop != "" %}-{{ stop.stop }}{% endif %}
-                            </div>
-
-                            <div class="grid--cell">
-                                <span class="js-css">var(--{{ color.name }}{% if stop.stop != "" %}-{{ stop.stop }}{% endif %})</span>
-                                <span class="js-less d-none">@{{ color.name }}{% if stop.stop != "" %}-{{ stop.stop }}{% endif %}</span>
-                                <span class="js-hex d-none">#{{ stop.hex }}</span>
-                            </div>
-                        </div>
-                    {% endfor %}
+                    {% endif %}
                 </div>
-            {% endif %}
-        {% endfor %}
 
-        <div class="grid--cell">
-            {% for color in colors %}
-                {% if color.include == false %}
-                    <div class="p24 fs-title btr-md bg-{{ color.name }}{% if color.primary != "" %}-{{ color.primary }}{% endif %}{% if color.flip %} d:fc-white{% endif %}">
-                        {{ color.name | capitalize }}
-                    </div>
-
-                    {% for stop in color.stops reversed %}
-                        <div class="grid ai-center jc-space-between bg-{{ color.name }}{% if stop.stop != "" %}-{{ stop.stop }}{% endif %} ff-mono p12{% if forloop.last %} bbr-md mb16{% endif %}{% if stop.flip %} d:fc-white{% endif %}">
-                            <div class="grid--cell js-hex d-none">
-                                {{ color.name }}{% if stop.stop != "" %}-{{ stop.stop }}{% endif %}
-                            </div>
-
-                            <div class="grid--cell">
-                                <span class="js-css">var(--{{ color.name }}{% if stop.stop != "" %}-{{ stop.stop }}{% endif %})</span>
-                                <span class="js-less d-none">@{{ color.name }}{% if stop.stop != "" %}-{{ stop.stop }}{% endif %}</span>
-                                <span class="js-hex d-none">#{{ stop.hex }}</span>
-                            </div>
+                {% for stop in color.stops reversed %}
+                    <div class="d-flex ai-center jc-space-between bg-{{ color.name }}{% if stop.stop != "" %}-{{ stop.stop }}{% endif %} ff-mono p12{% if stop.white %} fc-white{% if stop.flip %} d:fc-black{% endif %}{% else %}{% if stop.flip %} d:fc-white{% endif %}{% endif %}{% if forloop.last %} bbr-md{% endif %}">
+                        <div class="flex--item js-hex d-none">
+                            {{ color.name }}{% if stop.stop != "" %}-{{ stop.stop }}{% endif %}
                         </div>
-                    {% endfor %}
-                {% endif %}
-            {% endfor %}
-        </div>
+
+                        <div class="flex--item">
+                            <span class="js-css">var(--{{ color.name }}{% if stop.stop != "" %}-{{ stop.stop }}{% endif %})</span>
+                            <span class="js-less d-none">@{{ color.name }}{% if stop.stop != "" %}-{{ stop.stop }}{% endif %}</span>
+                            <span class="js-hex d-none">#{{ stop.hex }}</span>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endfor %}
     </div>
 </section>
 
@@ -296,6 +276,305 @@ description: To avoid specifying color values by hand, we’ve included a robust
 </section>
 
 <section class="stacks-section">
+    {% header "h2", "Theming" %}
+    <p class="stacks-copy">
+        Stacks’s approach to theming is powered by CSS variables that are split into their HSL and RGB components. Our default primary color is based on Stack Overflow’s branded <code class="stacks-code">orange-400</code> represented as <code class="stacks-code">hsl(27, 90%, 55%)</code>. We can store these as separate values, apply various color operations, and then recombine them into on-demand color palettes to use for theming.
+    </p>
+
+    {% header "h3", "Primary" %}
+    <p class="stacks-copy">
+        These variables transform the original primary theming color into various tints and shades.
+    </p>
+    <div class="overflow-x-auto mb48">
+        <table class="wmn5 s-table s-table__bx-simple s-table__condensed va-middle fs-caption">
+            <thead>
+                <tr>
+                    <th scope="col" width="36px"></th>
+                    <th scope="col">Variable</th>
+                    <th scope="col">Text class</th>
+                    <th scope="col">Background class</th>
+                    <th scope="col">Border class</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row">
+                        <div class="stacks-swatch bar-sm bg-theme-primary-900"></div>
+                    </th>
+                    <td class="ff-mono">var(--theme-primary-900)</td>
+                    <td class="ff-mono">.fc-theme-primary-900</td>
+                    <td class="ff-mono">.bg-theme-primary-900</td>
+                    <td class="ff-mono">.bc-theme-primary-900</td>
+                </tr>
+                <tr>
+                    <th scope="row">
+                        <div class="stacks-swatch bar-sm bg-theme-primary-800"></div>
+                    </th>
+                    <td class="ff-mono">var(--theme-primary-800)</td>
+                    <td class="ff-mono">.fc-theme-primary-800</td>
+                    <td class="ff-mono">.bg-theme-primary-800</td>
+                    <td class="ff-mono">.bc-theme-primary-800</td>
+                </tr>
+                <tr>
+                    <th scope="row">
+                        <div class="stacks-swatch bar-sm bg-theme-primary-700"></div>
+                    </th>
+                    <td class="ff-mono">var(--theme-primary-700)</td>
+                    <td class="ff-mono">.fc-theme-primary-700</td>
+                    <td class="ff-mono">.bg-theme-primary-700</td>
+                    <td class="ff-mono">.bc-theme-primary-700</td>
+                </tr>
+                <tr>
+                    <th scope="row">
+                        <div class="stacks-swatch bar-sm bg-theme-primary-600"></div>
+                    </th>
+                    <td class="ff-mono">var(--theme-primary-600)</td>
+                    <td class="ff-mono">.fc-theme-primary-600</td>
+                    <td class="ff-mono">.bg-theme-primary-600</td>
+                    <td class="ff-mono">.bc-theme-primary-600</td>
+                </tr>
+                <tr>
+                    <th scope="row">
+                        <div class="stacks-swatch bar-sm bg-theme-primary-500"></div>
+                    </th>
+                    <td class="ff-mono">var(--theme-primary-500)</td>
+                    <td class="ff-mono">.fc-theme-primary-500</td>
+                    <td class="ff-mono">.bg-theme-primary-500</td>
+                    <td class="ff-mono">.bc-theme-primary-500</td>
+                </tr>
+                <tr>
+                    <th scope="row">
+                        <div class="stacks-swatch bar-sm bg-theme-primary-400"></div>
+                    </th>
+                    <td class="ff-mono">var(--theme-primary-400)</td>
+                    <td class="ff-mono">.fc-theme-primary-400</td>
+                    <td class="ff-mono">.bg-theme-primary-400</td>
+                    <td class="ff-mono">.bc-theme-primary-400</td>
+                </tr>
+                <tr>
+                    <th scope="row">
+                        <div class="stacks-swatch bar-sm bg-theme-primary-350"></div>
+                    </th>
+                    <td class="ff-mono">var(--theme-primary-350)</td>
+                    <td class="ff-mono">.fc-theme-primary-350</td>
+                    <td class="ff-mono">.bg-theme-primary-350</td>
+                    <td class="ff-mono">.bc-theme-primary-350</td>
+                </tr>
+                <tr>
+                    <th scope="row">
+                        <div class="stacks-swatch bar-sm bg-theme-primary-300"></div>
+                    </th>
+                    <td class="ff-mono">var(--theme-primary-300)</td>
+                    <td class="ff-mono">.fc-theme-primary-300</td>
+                    <td class="ff-mono">.bg-theme-primary-300</td>
+                    <td class="ff-mono">.bc-theme-primary-300</td>
+                </tr>
+                <tr>
+                    <th scope="row">
+                        <div class="stacks-swatch bar-sm bg-theme-primary-200"></div>
+                    </th>
+                    <td class="ff-mono">var(--theme-primary-200)</td>
+                    <td class="ff-mono">.fc-theme-primary-200</td>
+                    <td class="ff-mono">.bg-theme-primary-200</td>
+                    <td class="ff-mono">.bc-theme-primary-200</td>
+                </tr>
+                <tr>
+                    <th scope="row">
+                        <div class="stacks-swatch bar-sm bg-theme-primary-150"></div>
+                    </th>
+                    <td class="ff-mono">var(--theme-primary-150)</td>
+                    <td class="ff-mono">.fc-theme-primary-150</td>
+                    <td class="ff-mono">.bg-theme-primary-150</td>
+                    <td class="ff-mono">.bc-theme-primary-150</td>
+                </tr>
+                <tr>
+                    <th scope="row">
+                        <div class="stacks-swatch bar-sm bg-theme-primary-100"></div>
+                    </th>
+                    <td class="ff-mono">var(--theme-primary-100)</td>
+                    <td class="ff-mono">.fc-theme-primary-100</td>
+                    <td class="ff-mono">.bg-theme-primary-100</td>
+                    <td class="ff-mono">.bc-theme-primary-100</td>
+                </tr>
+                <tr>
+                    <th scope="row">
+                        <div class="stacks-swatch bar-sm bg-theme-primary-075"></div>
+                    </th>
+                    <td class="ff-mono">var(--theme-primary-075)</td>
+                    <td class="ff-mono">.fc-theme-primary-075</td>
+                    <td class="ff-mono">.bg-theme-primary-075</td>
+                    <td class="ff-mono">.bc-theme-primary-075</td>
+                </tr>
+                <tr>
+                    <th scope="row">
+                        <div class="stacks-swatch bar-sm bg-theme-primary-050"></div>
+                    </th>
+                    <td class="ff-mono">var(--theme-primary-050)</td>
+                    <td class="ff-mono">.fc-theme-primary-050</td>
+                    <td class="ff-mono">.bg-theme-primary-050</td>
+                    <td class="ff-mono">.bc-theme-primary-050</td>
+                </tr>
+                <tr>
+                    <th scope="row">
+                        <div class="stacks-swatch bar-sm bg-theme-primary-025"></div>
+                    </th>
+                    <td class="ff-mono">var(--theme-primary-025)</td>
+                    <td class="ff-mono">.fc-theme-primary-025</td>
+                    <td class="ff-mono">.bg-theme-primary-025</td>
+                    <td class="ff-mono">.bc-theme-primary-025</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    {% header "h3", "Secondary" %}
+    <p class="stacks-copy">
+        These variables transform the original secondary theming color into various tints and shades.
+    </p>
+    <div class="overflow-x-auto mb48">
+        <table class="wmn5 s-table s-table__bx-simple s-table__condensed va-middle fs-caption">
+            <thead>
+                <tr>
+                    <th scope="col" width="36px"></th>
+                    <th scope="col">Variable</th>
+                    <th scope="col">Text class</th>
+                    <th scope="col">Background class</th>
+                    <th scope="col">Border class</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row">
+                        <div class="stacks-swatch bar-sm bg-theme-secondary-900"></div>
+                    </th>
+                    <td class="ff-mono">var(--theme-secondary-900)</td>
+                    <td class="ff-mono">.fc-theme-secondary-900</td>
+                    <td class="ff-mono">.bg-theme-secondary-900</td>
+                    <td class="ff-mono">.bc-theme-secondary-900</td>
+                </tr>
+                <tr>
+                    <th scope="row">
+                        <div class="stacks-swatch bar-sm bg-theme-secondary-800"></div>
+                    </th>
+                    <td class="ff-mono">var(--theme-secondary-800)</td>
+                    <td class="ff-mono">.fc-theme-secondary-800</td>
+                    <td class="ff-mono">.bg-theme-secondary-800</td>
+                    <td class="ff-mono">.bc-theme-secondary-800</td>
+                </tr>
+                <tr>
+                    <th scope="row">
+                        <div class="stacks-swatch bar-sm bg-theme-secondary-700"></div>
+                    </th>
+                    <td class="ff-mono">var(--theme-secondary-700)</td>
+                    <td class="ff-mono">.fc-theme-secondary-700</td>
+                    <td class="ff-mono">.bg-theme-secondary-700</td>
+                    <td class="ff-mono">.bc-theme-secondary-700</td>
+                </tr>
+                <tr>
+                    <th scope="row">
+                        <div class="stacks-swatch bar-sm bg-theme-secondary-600"></div>
+                    </th>
+                    <td class="ff-mono">var(--theme-secondary-600)</td>
+                    <td class="ff-mono">.fc-theme-secondary-600</td>
+                    <td class="ff-mono">.bg-theme-secondary-600</td>
+                    <td class="ff-mono">.bc-theme-secondary-600</td>
+                </tr>
+                <tr>
+                    <th scope="row">
+                        <div class="stacks-swatch bar-sm bg-theme-secondary-500"></div>
+                    </th>
+                    <td class="ff-mono">var(--theme-secondary-500)</td>
+                    <td class="ff-mono">.fc-theme-secondary-500</td>
+                    <td class="ff-mono">.bg-theme-secondary-500</td>
+                    <td class="ff-mono">.bc-theme-secondary-500</td>
+                </tr>
+                <tr>
+                    <th scope="row">
+                        <div class="stacks-swatch bar-sm bg-theme-secondary-400"></div>
+                    </th>
+                    <td class="ff-mono">var(--theme-secondary-400)</td>
+                    <td class="ff-mono">.fc-theme-secondary-400</td>
+                    <td class="ff-mono">.bg-theme-secondary-400</td>
+                    <td class="ff-mono">.bc-theme-secondary-400</td>
+                </tr>
+                <tr>
+                    <th scope="row">
+                        <div class="stacks-swatch bar-sm bg-theme-secondary-350"></div>
+                    </th>
+                    <td class="ff-mono">var(--theme-secondary-350)</td>
+                    <td class="ff-mono">.fc-theme-secondary-350</td>
+                    <td class="ff-mono">.bg-theme-secondary-350</td>
+                    <td class="ff-mono">.bc-theme-secondary-350</td>
+                </tr>
+                <tr>
+                    <th scope="row">
+                        <div class="stacks-swatch bar-sm bg-theme-secondary-300"></div>
+                    </th>
+                    <td class="ff-mono">var(--theme-secondary-300)</td>
+                    <td class="ff-mono">.fc-theme-secondary-300</td>
+                    <td class="ff-mono">.bg-theme-secondary-300</td>
+                    <td class="ff-mono">.bc-theme-secondary-300</td>
+                </tr>
+                <tr>
+                    <th scope="row">
+                        <div class="stacks-swatch bar-sm bg-theme-secondary-200"></div>
+                    </th>
+                    <td class="ff-mono">var(--theme-secondary-200)</td>
+                    <td class="ff-mono">.fc-theme-secondary-200</td>
+                    <td class="ff-mono">.bg-theme-secondary-200</td>
+                    <td class="ff-mono">.bc-theme-secondary-200</td>
+                </tr>
+                <tr>
+                    <th scope="row">
+                        <div class="stacks-swatch bar-sm bg-theme-secondary-150"></div>
+                    </th>
+                    <td class="ff-mono">var(--theme-secondary-150)</td>
+                    <td class="ff-mono">.fc-theme-secondary-150</td>
+                    <td class="ff-mono">.bg-theme-secondary-150</td>
+                    <td class="ff-mono">.bc-theme-secondary-150</td>
+                </tr>
+                <tr>
+                    <th scope="row">
+                        <div class="stacks-swatch bar-sm bg-theme-secondary-100"></div>
+                    </th>
+                    <td class="ff-mono">var(--theme-secondary-100)</td>
+                    <td class="ff-mono">.fc-theme-secondary-100</td>
+                    <td class="ff-mono">.bg-theme-secondary-100</td>
+                    <td class="ff-mono">.bc-theme-secondary-100</td>
+                </tr>
+                <tr>
+                    <th scope="row">
+                        <div class="stacks-swatch bar-sm bg-theme-secondary-075"></div>
+                    </th>
+                    <td class="ff-mono">var(--theme-secondary-075)</td>
+                    <td class="ff-mono">.fc-theme-secondary-075</td>
+                    <td class="ff-mono">.bg-theme-secondary-075</td>
+                    <td class="ff-mono">.bc-theme-secondary-075</td>
+                </tr>
+                <tr>
+                    <th scope="row">
+                        <div class="stacks-swatch bar-sm bg-theme-secondary-050"></div>
+                    </th>
+                    <td class="ff-mono">var(--theme-secondary-050)</td>
+                    <td class="ff-mono">.fc-theme-secondary-050</td>
+                    <td class="ff-mono">.bg-theme-secondary-050</td>
+                    <td class="ff-mono">.bc-theme-secondary-050</td>
+                </tr>
+                <tr>
+                    <th scope="row">
+                        <div class="stacks-swatch bar-sm bg-theme-secondary-025"></div>
+                    </th>
+                    <td class="ff-mono">var(--theme-secondary-025)</td>
+                    <td class="ff-mono">.fc-theme-secondary-025</td>
+                    <td class="ff-mono">.bg-theme-secondary-025</td>
+                    <td class="ff-mono">.bc-theme-secondary-025</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+
+<section class="stacks-section">
     {% header "h2", "Aliases" %}
     {% header "h3", "Body text" %}
     <div class="stacks-preview">
@@ -305,11 +584,11 @@ description: To avoid specifying color values by hand, we’ve included a robust
 <p>…</p>
 <p class="fc-dark">…</p>
 {% endhighlight %}
-        <div class="stacks-preview--example grid fd-column gs16 gsy my0 fs-body2">
-            <p class="grid--cell fc-light"><strong>Color:</strong> Light <code class="stacks-code">@black-500</code></p>
-            <p class="grid--cell fc-medium"><strong>Color:</strong> Medium <code class="stacks-code">@black-700</code></p>
-            <p class="grid--cell"><strong>Color:</strong> Default <code class="stacks-code">@black-800</code></p>
-            <p class="grid--cell fc-dark"><strong>Color:</strong> Dark <code class="stacks-code">@black-900</code></p>
+        <div class="stacks-preview--example d-flex fd-column gs16 gsy my0 fs-body2">
+            <p class="flex--item fc-light"><strong>Color:</strong> Light <code class="stacks-code">@black-500</code></p>
+            <p class="flex--item fc-medium"><strong>Color:</strong> Medium <code class="stacks-code">@black-700</code></p>
+            <p class="flex--item"><strong>Color:</strong> Default <code class="stacks-code">@black-800</code></p>
+            <p class="flex--item fc-dark"><strong>Color:</strong> Dark <code class="stacks-code">@black-900</code></p>
         </div>
     </div>
 
@@ -326,21 +605,21 @@ description: To avoid specifying color values by hand, we’ve included a robust
             <tbody>
                 <tr class="ff-mono">
                     <td class="fc-danger">
-                        <div class="grid gs12">
-                            <div class="grid--cell ws-nowrap">.fc-danger</div>
-                            <div class="grid--cell ws-nowrap">.fc-error</div>
+                        <div class="d-flex gs12">
+                            <div class="flex--item ws-nowrap">.fc-danger</div>
+                            <div class="flex--item ws-nowrap">.fc-error</div>
                         </div>
                     </td>
                     <td class="p8">
-                        <div class="grid gs4">
-                            <div class="grid--cell bg-danger p8 fc-white bar-sm ws-nowrap">.bg-danger</div>
-                            <div class="grid--cell bg-error p8 fc-white bar-sm ws-nowrap">.bg-error</div>
+                        <div class="d-flex gs4">
+                            <div class="flex--item bg-danger p8 fc-white bar-sm ws-nowrap">.bg-danger</div>
+                            <div class="flex--item bg-error p8 fc-white bar-sm ws-nowrap">.bg-error</div>
                         </div>
                     </td>
                     <td class="p8">
-                        <div class="grid gs4">
-                            <div class="grid--cell ba bc-danger p8 bar-sm fc-danger ws-nowrap">.bc-danger</div>
-                            <div class="grid--cell ba bc-error p8 bar-sm fc-error ws-nowrap">.bc-error</div>
+                        <div class="d-flex gs4">
+                            <div class="flex--item ba bc-danger p8 bar-sm fc-danger ws-nowrap">.bc-danger</div>
+                            <div class="flex--item ba bc-error p8 bar-sm fc-error ws-nowrap">.bc-error</div>
                         </div>
                     </td>
                 </tr>
