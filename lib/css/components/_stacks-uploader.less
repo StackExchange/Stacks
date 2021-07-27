@@ -55,12 +55,16 @@
         pointer-events: none;
         transform-origin: center left;
 
-        each(range(5), {
-            &:nth-child(@{value}) {
-                height: 100% - ((@value - 1) * 6);
-                z-index: 6 - @value;
+        .iterate-preview(@limit; @n: 1) when (@n <= @limit) {
+            .iterate-preview(@limit, @n + 1);
+
+            &:nth-child(@{n}) {
+                height: 100% - ((@n - 1) * 6);
+                z-index: 6 - @n;
             }
-        });
+        }
+        .iterate-preview(5);
+
         &:is(img) {
             object-fit: scale-down;
         }
