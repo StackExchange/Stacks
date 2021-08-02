@@ -41,38 +41,38 @@ description: Uploader is a custom styled file input with added functionality to 
                 <tr>
                     <th scope="row"><code class="stacks-code">data-controller="s-uploader"</code></th>
                     <td>Controller element</td>
-                    <td class="p8">Wires up the element to the uploader controller. This may be a <code class="stacks-code">.s-uploader</code> element or a wrapper element.</td>
+                    <td>Wires up the element to the uploader controller. This may be a <code class="stacks-code">.s-uploader</code> element or a wrapper element.</td>
                 </tr>
                 <tr>
                     <th scope="row"><code class="stacks-code">data-target="s-uploader.uploader"</code></th>
                     <td><code class="stacks-code">.s-uploader</code></td>
                     <!-- TODO: Rewrite this. It's really not dependant on it being the parent of these targets -->
-                    <td class="p8">Wires up the element containing <code class="stacks-code">input</code>, <code class="stacks-code">previews</code>, and <code class="stacks-code">reset</code> targets.</td>
+                    <td>Wires up the element containing <code class="stacks-code">input</code>, <code class="stacks-code">previews</code>, and <code class="stacks-code">reset</code> targets.</td>
                 </tr>
                 <tr>
                     <th scope="row"><code class="stacks-code">data-target="s-uploader.input"</code></th>
-                    <td>-</td>
-                    <td class="p8">-</td>
+                    <td></td>
+                    <td></td>
                 </tr>
                 <tr>
                     <th scope="row"><code class="stacks-code">data-target="s-uploader.previews"</code></th>
-                    <td>-</td>
-                    <td class="p8">-</td>
+                    <td></td>
+                    <td></td>
                 </tr>
                 <tr>
                     <th scope="row"><code class="stacks-code">data-s-uploader-show-on-input</code></th>
-                    <td>-</td>
-                    <td class="p8">-</td>
+                    <td></td>
+                    <td></td>
                 </tr>
                 <tr>
                     <th scope="row"><code class="stacks-code">data-s-uploader-hide-on-input</code></th>
-                    <td>-</td>
-                    <td class="p8">-</td>
+                    <td></td>
+                    <td></td>
                 </tr>
                 <tr>
                     <th scope="row"><code class="stacks-code">data-s-uploader-enable-on-input</code></th>
-                    <td>-</td>
-                    <td class="p8">-</td>
+                    <td></td>
+                    <td></td>
                 </tr>
             </tbody>
         </table>
@@ -111,24 +111,17 @@ description: Uploader is a custom styled file input with added functionality to 
 <label class="d-block s-label mb12" for="uploader">Choose files</label>
 <div data-controller="s-uploader">
     <div class="s-uploader mb24 wmx3" data-target="s-uploader.uploader">
-        <input
-            id="uploader"
-            type="file"
-            class="s-uploader--input"
-            data-target="s-uploader.input"
-            data-action="input->s-uploader#handleInput"
-            multiple
-        />
-        <div
-            class="s-uploader--previews d-none"
-            data-target="s-uploader.previews"
-            data-s-uploader-show-on-input
-        ></div>
-        <button
-            class="s-uploader--reset s-btn s-btn__muted d-none"
-            data-action="click->s-uploader#reset"
-            data-s-uploader-show-on-input
-        >
+        <input id="uploader"
+               type="file"
+               class="s-uploader--input"
+               data-target="s-uploader.input"
+               data-action="input->s-uploader#handleInput"
+               multiple />
+        <div class="s-uploader--previews d-none"
+             data-target="s-uploader.previews"
+             data-s-uploader-show-on-input>
+        </div>
+        <button class="s-uploader--reset s-btn s-btn__muted d-none" data-action="click->s-uploader#reset" data-s-uploader-show-on-input>
             {% icon "ClearSm" %}
         </button>
         <div data-s-uploader-hide-on-input>
@@ -140,18 +133,12 @@ description: Uploader is a custom styled file input with added functionality to 
         </div>
     </div>
     <div>
-        <button
-            class="s-btn s-btn__primary"
-            data-s-uploader-enable-on-input
-            disabled
-        >
+        <button class="s-btn s-btn__primary" data-s-uploader-enable-on-input disabled>
             Upload
         </button>
-        <button
-            class="s-btn d-none"
-            data-action="click->s-uploader#reset"
-            data-s-uploader-show-on-input
-        >
+        <button class="s-btn d-none"
+                data-action="click->s-uploader#reset"
+                data-s-uploader-show-on-input>
             Cancel
         </button>
     </div>
@@ -161,24 +148,19 @@ description: Uploader is a custom styled file input with added functionality to 
             <label class="d-block s-label mb12" for="uploader">Choose files</label>
             <div data-controller="s-uploader">
                 <div class="s-uploader mb24 wmx3" data-target="s-uploader.uploader">
-                    <input
-                        id="uploader"
-                        type="file"
-                        class="s-uploader--input"
-                        data-target="s-uploader.input"
-                        data-action="input->s-uploader#handleInput"
-                        multiple
-                    />
-                    <div
-                        class="s-uploader--previews d-none"
-                        data-target="s-uploader.previews"
-                        data-s-uploader-show-on-input
-                    ></div>
-                    <button
-                        class="s-uploader--reset s-btn s-btn__muted d-none"
-                        data-action="click->s-uploader#reset"
-                        data-s-uploader-show-on-input
-                    >
+                    <input id="uploader"
+                           type="file"
+                           class="s-uploader--input"
+                           data-target="s-uploader.input"
+                           data-action="input->s-uploader#handleInput"
+                           multiple />
+                    <div class="s-uploader--previews d-none"
+                         data-target="s-uploader.previews"
+                         data-s-uploader-show-on-input>
+                    </div>
+                    <button class="s-uploader--reset s-btn s-btn__muted d-none"
+                            data-action="click->s-uploader#reset"
+                            data-s-uploader-show-on-input>
                         {% icon "ClearSm" %}
                     </button>
                     <div data-s-uploader-hide-on-input>
@@ -190,18 +172,14 @@ description: Uploader is a custom styled file input with added functionality to 
                     </div>
                 </div>
                 <div>
-                    <button
-                        class="s-btn s-btn__primary"
-                        data-s-uploader-enable-on-input
-                        disabled
-                    >
+                    <button class="s-btn s-btn__primary"
+                            data-s-uploader-enable-on-input
+                            disabled>
                         Upload
                     </button>
-                    <button
-                        class="s-btn d-none"
-                        data-action="click->s-uploader#reset"
-                        data-s-uploader-show-on-input
-                    >
+                    <button class="s-btn d-none"
+                            data-action="click->s-uploader#reset"
+                            data-s-uploader-show-on-input>
                         Cancel
                     </button>
                 </div>
