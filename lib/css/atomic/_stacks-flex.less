@@ -29,7 +29,6 @@
         #stacks-internals #grid-builder-settings();
 
         .create-fixed-cells(@num, @count: 1) when (@count =< @num) {
-            .grid--cell@{count},
             .flex--item@{count} {
                 flex-basis: ((@count * 100%) / @num);
             }
@@ -45,11 +44,8 @@
         //      all child elements will automatically be sized.
         //  ----------------------------------------------------------------------------
         .create-grid-count-cols(@num, @count: 1) when (@count =< @num) {
-            .grid__allcells@{count},
             .flex__allcells@{count} {
-                > .grid,
                 > .d-flex,
-                > .grid--cell,
                 > .flex--item {
                     flex-basis: ((@count * 100%) / @num);
                 }
@@ -106,7 +102,6 @@
         .grid-fixed-cell-spacing(@spacing, @num, @count: 1) when (@count =< @num) {
             @cell-width: (@count * 100% / @num);
 
-            > .grid--cell@{count},
             > .flex--item@{count} {
                 margin: (@spacing / 2);
             }
@@ -116,16 +111,13 @@
             //      This makes the fixed width cells to account for gutters.
             //
             //  [2] UNIFORM CHILD GRID CELLS
-            //      This class allows you to uniformly state the width of `.grid--cell`
-            //      divs within a `.grid` element. In particular we adjust the flex-basis
+            //      This class allows you to uniformly state the width of `.flex--item`
+            //      divs within a `.d-flex` element. In particular we adjust the flex-basis
             //      and max-width here to account for gutters.
             //  ------------------------------------------------------------------------
-            > .grid--cell@{count},                                  // [1]
-            > .flex--item@{count},
-            &.grid__allcells@{count} > .grid,                       // [2]
-            &.flex__allcells@{count} > .d-flex,
-            &.grid__allcells@{count} > .grid--cell,                 // [2]
-            &.flex__allcells@{count} > .flex--item {
+            > .flex--item@{count},                                  // [1]
+            &.flex__allcells@{count} > .d-flex,                     // [2]
+            &.flex__allcells@{count} > .flex--item {                // [2]
                 flex-basis: calc(~"@{cell-width} - @{spacing}");
             }
 
@@ -149,9 +141,7 @@
             margin: -(@spacing / 2);
 
             //  --  FLUID CELLS
-            > .grid,
             > .d-flex,
-            > .grid--cell,
             > .flex--item {
                 margin: (@spacing / 2);
             }
@@ -164,51 +154,30 @@
     }
 }
 
-
-//  ============================================================================
-//  $   GRID ELEMENTS
-//  ============================================================================
-//      To help simplify our CSS, we create a generic box container. By default
-//      this is a row container, but we can modify the box to become a column.
-//  ----------------------------------------------------------------------------
-.grid {
-    display: flex;
-}
-
 //  --  UNIVERSAL FLEX WIDTHS
 //      This applies a flex value it to all of a grid's direct children.
 //  --------------------------------------------------------------------------
-.grid__fl0,
 .flex__fl0,
-.grid__fl-shrink0,
 .flex__fl-shrink0 {
     &,
-    > .grid,
     > .d-flex,
-    > .grid--cell,
     > .flex--item {
         flex: 0 auto;
     }
 }
 
-.grid__fl-equal,
 .flex__fl-equal {
     &,
-    > .grid,
     > .d-flex,
-    > .grid--cell,
     > .flex--item {
         flex: 1 1 0%;
     }
 }
 
-// Deprecated in favor of .flex__fl-equal
-.grid__fl1,
-.flex__fl1 {
+.flex__fl1,
+.flex__fl-grow1 {
     &,
-    > .grid,
     > .d-flex,
-    > .grid--cell,
     > .flex--item {
         flex: 1 auto;
     }
@@ -243,9 +212,7 @@
 //  On rows, remove top and bottom margins
 .gsx {
     &,
-    > .grid,
     > .d-flex,
-    > [class*="grid--cell"],
     > [class*="flex--item"] {
         margin-top: 0;
         margin-bottom: 0;
@@ -255,9 +222,7 @@
 //  On columns, remove left and right margins
 .gsy {
     &,
-    > .grid,
     > .d-flex,
-    > [class*="grid--cell"],
     > [class*="flex--item"] {
         margin-right: 0;
         margin-left: 0;
@@ -325,7 +290,6 @@
 //      A common combination of classes is .jc-center and .ai-center.
 //      Use this class when you want both.
 //  ----------------------------------------------------------------------------
-.grid__center,
 .flex__center {
     .jc-center;
     .ai-center;
