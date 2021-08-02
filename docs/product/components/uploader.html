@@ -103,32 +103,34 @@ description: Uploader is a custom styled file input with added functionality to 
     </div>
 </section>
 <section class="stacks-section">
-    {% header "h2", "Example" %}
+    {% header "h2", "Examples" %}
     <!-- TODO: Add copy coherently explaining Uploader component -->
     <p class="stacks-copy">Including a file input with the class <code class="stacks-code">s-uploader--input</code> within <code class="stacks-code">s-uploader</code> will provide the correct styling for an upload section.</p>
+
+    {% header "h3", "Profile picture" %}
+    <p class="stacks-copy">In this example, we’re showing a single file input with an image as the example’s placeholder illustration. It would be just as appropriate to swap this <code class="stacks-code">@Svg.Spot.Image</code> for <code class="stacks-code">@Svg.Spot.DocumentAlt</code> and change the inputs copy and attributes to allow for multiple documents.</p>
     <div class="stacks-preview">
 {% highlight html %}
-<label class="d-block s-label mb4" for="uploader">Choose files</label>
+<label class="d-block s-label mb4" for="uploader">Upload a profile picture</label>
 <div data-controller="s-uploader">
     <div class="s-uploader mb24 wmx3" data-target="s-uploader.uploader">
         <input id="uploader"
                type="file"
                class="s-uploader--input"
                data-target="s-uploader.input"
-               data-action="input->s-uploader#handleInput"
-               multiple />
+               data-action="input->s-uploader#handleInput" />
         <div class="s-uploader--previews d-none"
              data-target="s-uploader.previews"
              data-s-uploader-show-on-input>
         </div>
         <button class="s-uploader--reset s-btn s-btn__muted d-none" data-action="click->s-uploader#reset" data-s-uploader-show-on-input>
-            {% icon "ClearSm" %}
+            @Svg.ClearSm
         </button>
         <div data-s-uploader-hide-on-input>
-            {% spot "Image", "fc-light mb8" %}
-            <div class="fs-body2">Drag files to upload</div>
+            @Svg.Spot.Image.With("fc-light mb8")
+            <div class="fs-body2">Drag an image to upload</div>
             <div class="fs-caption">
-                Or <span class="s-link c-black">choose your files</span>
+                Or <span class="s-link">choose your image</span>
             </div>
         </div>
     </div>
@@ -145,7 +147,88 @@ description: Uploader is a custom styled file input with added functionality to 
 </div>
 {% endhighlight %}
         <div class="stacks-preview--example overflow-x-auto">
-            <label class="d-block s-label mb4" for="uploader">Choose files</label>
+            <label class="d-block s-label mb4" for="uploader">Upload a profile picture</label>
+            <div data-controller="s-uploader">
+                <div class="s-uploader mb24 wmx3" data-target="s-uploader.uploader">
+                    <input id="uploader"
+                           type="file"
+                           class="s-uploader--input"
+                           data-target="s-uploader.input"
+                           data-action="input->s-uploader#handleInput" />
+                    <div class="s-uploader--previews d-none"
+                         data-target="s-uploader.previews"
+                         data-s-uploader-show-on-input>
+                    </div>
+                    <button class="s-uploader--reset s-btn s-btn__muted d-none"
+                            data-action="click->s-uploader#reset"
+                            data-s-uploader-show-on-input>
+                        {% icon "ClearSm" %}
+                    </button>
+                    <div data-s-uploader-hide-on-input>
+                        {% spot "Image", "fc-light mb8" %}
+                        <div class="fs-body2">Drag an image to upload</div>
+                        <div class="fs-caption">
+                            Or <span class="s-link c-pointer">choose your image</span>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <button class="s-btn s-btn__primary"
+                            data-s-uploader-enable-on-input
+                            disabled>
+                        Upload
+                    </button>
+                    <button class="s-btn d-none"
+                            data-action="click->s-uploader#reset"
+                            data-s-uploader-show-on-input>
+                        Cancel
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% header "h3", "Multiple files" %}
+    <div class="stacks-preview">
+{% highlight html %}
+<label class="d-block s-label mb4" for="uploader">Choose your files</label>
+<div data-controller="s-uploader">
+    <div class="s-uploader mb24 wmx3" data-target="s-uploader.uploader">
+        <input id="uploader"
+               type="file"
+               class="s-uploader--input"
+               data-target="s-uploader.input"
+               data-action="input->s-uploader#handleInput"
+               multiple />
+        <div class="s-uploader--previews d-none"
+             data-target="s-uploader.previews"
+             data-s-uploader-show-on-input>
+        </div>
+        <button class="s-uploader--reset s-btn s-btn__muted d-none" data-action="click->s-uploader#reset" data-s-uploader-show-on-input>
+            @Svg.ClearSm
+        </button>
+        <div data-s-uploader-hide-on-input>
+            @Svg.Spot.Image.With("fc-light mb8")
+            <div class="fs-body2">Drag some files to upload</div>
+            <div class="fs-caption">
+                Or <span class="s-link">choose your files</span>
+            </div>
+        </div>
+    </div>
+    <div>
+        <button class="s-btn s-btn__primary" data-s-uploader-enable-on-input disabled>
+            Upload
+        </button>
+        <button class="s-btn d-none"
+                data-action="click->s-uploader#reset"
+                data-s-uploader-show-on-input>
+            Cancel
+        </button>
+    </div>
+</div>
+{% endhighlight %}
+        <div class="stacks-preview--example overflow-x-auto">
+            <label class="d-block s-label mb4" for="uploader">Choose your files</label>
             <div data-controller="s-uploader">
                 <div class="s-uploader mb24 wmx3" data-target="s-uploader.uploader">
                     <input id="uploader"
@@ -164,10 +247,10 @@ description: Uploader is a custom styled file input with added functionality to 
                         {% icon "ClearSm" %}
                     </button>
                     <div data-s-uploader-hide-on-input>
-                        {% spot "Image", "fc-light mb8" %}
-                        <div class="fs-body2">Drag files to upload</div>
+                        {% spot "DocumentAlt", "fc-light mb8" %}
+                        <div class="fs-body2">Drag some files to upload</div>
                         <div class="fs-caption">
-                            Or <span class="s-link c-black">choose your files</span>
+                            Or <span class="s-link c-pointer">choose your files</span>
                         </div>
                     </div>
                 </div>
