@@ -38,7 +38,7 @@ $(document).ready(function() {
         $('#nav').on('click', 'a', function (event) {
 
             // Allow opening links in new tabs
-            if (event.metaKey) {
+            if (event.metaKey || event.ctrlKey) {
               return
             }
 
