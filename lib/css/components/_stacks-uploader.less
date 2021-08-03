@@ -10,7 +10,6 @@
     align-items: center;
     background-color: var(--black-025);
     border-radius: @br-lg;
-    background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='5' ry='5' stroke='%23C8CCD0' stroke-width='8' stroke-dasharray='7%2c 22' stroke-dashoffset='0' stroke-linecap='square'/%3e%3c/svg%3e");
     display: flex;
     flex-direction: column;
     height: @su128;
@@ -19,12 +18,64 @@
     position: relative;
     text-align: center;
 
-    .dark-mode({
-        background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='5' ry='5' stroke='%23555A5E' stroke-width='8' stroke-dasharray='7%2c 22' stroke-dashoffset='0' stroke-linecap='square'/%3e%3c/svg%3e");
-    });
+    // Add the dashed border as an SVG background mask
+    &:before {
+        --s-uploader-background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='5' ry='5' stroke='%23000000' stroke-width='8' stroke-dasharray='7%2c 22' stroke-dashoffset='0' stroke-linecap='square'/%3e%3c/svg%3e");
+        content: '';
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: var(--black-150);
+        -webkit-mask-image: var(--s-uploader-background-image);
+        mask-image: var(--s-uploader-background-image);
+        border-radius: @br-lg;
+    }
+
+    &.has-error {
+        background-color: var(--red-050);
+
+        &:before {
+            background-color: var(--red-400);
+        }
+
+        .s-link {
+            color: var(--red-900);
+        }
+    }
+
+    &.has-success {
+        background-color: var(--green-025);
+
+        &:before {
+            background-color: var(--green-400);
+        }
+
+        .s-link {
+            color: var(--green-900);
+        }
+    }
+
+    &.has-warning {
+        background-color: var(--yellow-050);
+
+        &:before {
+            background-color: var(--yellow-400);
+        }
+
+        .s-link {
+            color: var(--yellow-900);
+        }
+    }
 
     &.is-active {
         background-color: var(--black-050);
+
+        &:before {
+            background-color: var(--black-200);
+        }
     }
 
     // This is to for safari shadow DOM
