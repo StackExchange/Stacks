@@ -12,9 +12,9 @@
     border-radius: @br-lg;
     display: flex;
     flex-direction: column;
-    height: @su128;
+    min-height: @su128;
     justify-content: center;
-    padding: @su8 @su24;
+    padding: @su8 @su16;
     position: relative;
     text-align: center;
 
@@ -100,44 +100,35 @@
 
     .s-uploader--preview {
         align-items: center;
+        display: flex;
+        height: 100%;
+        overflow: hidden;
+        pointer-events: none;
+    }
+
+    .s-uploader--preview-description {
+        display: none;
+        margin-left: @su12;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    .s-uploader--preview-thumbnail {
+        align-items: center;
         background-color: var(--white);
         border-radius: @br-sm;
         box-shadow: var(--bs-md);
         box-sizing: border-box;
         display: flex;
         height: 100%;
+        max-height: @su128;
         overflow: hidden;
-        pointer-events: none;
         transform-origin: center left;
-
-        .iterate-preview(@limit; @n: 1) when (@n <= @limit) {
-            .iterate-preview(@limit, @n + 1);
-
-            &:nth-child(@{n}) {
-                height: 100% - ((@n - 1) * 6);
-                z-index: 6 - @n;
-            }
-        }
-
-        .iterate-preview(5);
 
         &:is(img) {
             object-fit: scale-down;
-        }
-
-        &:is(:first-child):not(img) {
-            padding: @su16;
-        }
-
-        &:not(:first-child) {
-            border-radius: 0 @br-sm @br-sm 0;
-            color: transparent;
-            width: @su24;
-
-            &:is(img) {
-                object-fit: cover;
-                object-position: right;
-            }
+            object-position: center;
         }
     }
 
@@ -148,8 +139,42 @@
         height: 100%;
         justify-content: center;
         max-width: 100%;
+        text-align: left;
+
+        &.has-multiple {
+            display: block;
+            height: auto;
+            padding: @su8 @su2;
+            width: 100%;
+
+            .s-uploader--preview {
+                display: flex;
+                padding: @su6 0;
+                width: 100%;
+            }
+
+            .s-uploader--preview-description {
+                display: block;
+            }
+
+            .s-uploader--preview-thumbnail {
+                height: @su32;
+                flex-shrink: 0;
+                width: @su32;
+
+                &:is(img) {
+                    object-fit: cover;
+                }
+            }
+        }
     }
 
+    .s-uploader--previews-heading {
+        color: var(--black-900);
+        font-size: @fs-body2;
+        font-weight: 600;
+        padding-bottom: @su12;
+    }
     .s-uploader--reset {
         position: absolute;
         right: @su8;

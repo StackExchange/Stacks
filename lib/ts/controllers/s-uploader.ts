@@ -62,6 +62,17 @@
                 getDataURLs(this.inputTarget.files)
                     .then((res: any) => {
                         this.handleVisible(true);
+                        let headingElement = document.createElement("div");
+
+                        const hasMultipleFiles = res.length > 1;
+                        if (hasMultipleFiles) {
+                            headingElement.classList.add("s-uploader--previews-heading");
+                            headingElement.innerHTML = `${res.length} items`;
+                            this.previewsTarget.appendChild(headingElement);
+                            this.previewsTarget.classList.add("has-multiple");
+                        } else {
+                            this.previewsTarget.classList.remove("has-multiple");
+                        }
                         res?.slice(0, 5).map((file: FilePreview) => {
                             if (file) this.addFilePreview(file);
                         });
@@ -95,17 +106,27 @@
          * @param  {FilePreview} file
          */
         private addFilePreview(file: FilePreview) {
-            let element;
+            let rowElement = document.createElement("div");
+            let descriptionElement = document.createElement("div");
+            let thumbElement;
+
             if (file.type.toString().match('image/*')) {
-                element = document.createElement("img");
-                element.src = file.data?.toString() || "";
-                element.alt = file.name;
+                thumbElement = document.createElement("img");
+                thumbElement.src = file.data?.toString() || "";
+                thumbElement.alt = file.name;
             } else {
-                element = document.createElement("div");
-                element.innerHTML = file.name;
+                thumbElement = document.createElement("div");
+                // TODO: Replace this with legit document icon.
+                thumbElement.innerHTML = `<div>?</div>`;
             }
-            element.classList.add("s-uploader--preview")
-            this.previewsTarget.appendChild(element);
+
+            thumbElement.classList.add("s-uploader--preview-thumbnail");
+            descriptionElement.classList.add("s-uploader--preview-description");
+            descriptionElement.innerHTML = file.name;
+            rowElement.classList.add("s-uploader--preview");
+            rowElement.appendChild(thumbElement);
+            rowElement.appendChild(descriptionElement);
+            this.previewsTarget.appendChild(rowElement);
         }
 
         /**
