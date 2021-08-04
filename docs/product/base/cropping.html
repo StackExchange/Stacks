@@ -1,0 +1,63 @@
+---
+layout: page
+title: Cropping
+description: CSS's <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/object-fit"><code>object-fit</code></a> property allows you to control whether an image is stretched or cropped to fit the dimensions of its <code>img</code> element.
+---
+<section class="stacks-section">
+    {% header "h2", "Classes" %}
+    <div class="overflow-x-auto mb48">
+        <table class="wmn3 s-table s-table__bx-simple">
+            <thead>
+                <tr>
+                    <th scope="col">Class</th>
+                    <th scope="col">Output</th>
+                    <th scope="col">Definition</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for atomic in atomics.cropping %}
+                    <tr class="fs-caption">
+                        <th scope="row"><code class="stacks-code">{{ atomic.class }}</code></th>
+                        <td><code class="stacks-code bg-white">{{ atomic.output }}</code></td>
+                        <td>{{ atomic.define }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    {% header "h2", "Examples" %}
+    <div class="stacks-preview">
+{% highlight html %}
+<img class="of-contain" src="…" />
+<img class="of-cover" src="…" />
+<img class="of-fill" src="…" />
+<img class="of-none" src="…" />
+<img class="of-scale-down" src="…" />
+{% endhighlight %}
+        <div class="stacks-preview--example fs-caption ff-mono">
+            <div class="d-flex gs8 fw-wrap ff-mono">
+                <div class="flex--item p12">
+                    <img class="of-contain ba bc-black-2" src="{{ "/assets/img/favicons/apple-touch-icon@2x.png" | relative_url }}" width="150" height="100"><br>
+                    .of-contain
+                </div>
+                <div class="flex--item p12">
+                    <img class="of-cover ba bc-black-2" src="{{ "/assets/img/favicons/apple-touch-icon@2x.png" | relative_url }}" width="150" height="100"><br>
+                    .of-cover
+                </div>
+                <div class="flex--item p12">
+                    <img class="of-fill ba bc-black-2" src="{{ "/assets/img/favicons/apple-touch-icon@2x.png" | relative_url }}" width="150" height="100"><br>
+                    .of-fill
+                </div>
+                <div class="flex--item p12">
+                    <img class="of-none ba bc-black-2" src="{{ "/assets/img/favicons/apple-touch-icon@2x.png" | relative_url }}" width="150" height="100"><br>
+                    .of-none
+                </div>
+                <div class="flex--item p12">
+                    <img class="of-scale-down ba bc-black-2" src="{{ "/assets/img/favicons/apple-touch-icon@2x.png" | relative_url }}" width="150" height="100"><br>
+                    .of-scale-down
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
