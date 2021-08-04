@@ -1,0 +1,98 @@
+---
+layout: page
+title: Object fit
+description: CSS’s <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/object-fit"><code class="stacks-code">object-fit</code></a> property allows you to control whether an image is stretched or cropped to fit the dimensions of its <code class="stacks-code">img</code> or <code class="stacks-code">video</code> element.
+---
+<section class="stacks-section">
+    {% header "h2", "Classes" %}
+    <div class="overflow-x-auto mb48">
+        <table class="wmn3 s-table s-table__bx-simple">
+            <thead>
+                <tr>
+                    <th class="s-table--cell2" scope="col">Class</th>
+                    <th class="s-table--cell3" scope="col">Output</th>
+                    <th scope="col">Definition</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for atomic in atomics.object-fit %}
+                    <tr class="fs-caption">
+                        <th scope="row"><code class="stacks-code">{{ atomic.class }}</code></th>
+                        <td><code class="stacks-code bg-white">{{ atomic.output }}</code></td>
+                        <td>{{ atomic.define }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    {% header "h2", "Examples" %}
+    <div class="stacks-preview">
+{% highlight html %}
+<img class="of-contain" src="…" />
+<img class="of-cover" src="…" />
+<img class="of-fill" src="…" />
+<img class="of-none" src="…" />
+<img class="of-scale-down" src="…" />
+<img class="of-none op-center" src="…" />
+{% endhighlight %}
+        <div class="stacks-preview--example ff-mono">
+            <div class="d-flex gs16 fw-wrap">
+                <div class="flex--item">
+                    <img
+                        class="of-contain ba bc-black-100 hs1 ws1"
+                        src="https://fakeimg.pl/400x240/e4e6e8"
+                        alt="placeholder for .of-contain"
+                    />
+                    <br />
+                    .of-contain
+                </div>
+                <div class="flex--item">
+                    <img
+                        class="of-cover ba bc-black-100 hs1 ws1"
+                        src="https://fakeimg.pl/400x240/e4e6e8"
+                        alt="placeholder for .of-cover"
+                    />
+                    <br />
+                    .of-cover
+                </div>
+                <div class="flex--item">
+                    <img
+                        class="of-fill ba bc-black-100 hs1 ws1"
+                        src="https://fakeimg.pl/400x240/e4e6e8"
+                        alt="placeholder for .of-fill"
+                    />
+                    <br />
+                    .of-fill
+                </div>
+                <div class="flex--item">
+                    <img
+                        class="of-none ba bc-black-100 hs1 ws1"
+                        src="https://fakeimg.pl/400x240/e4e6e8"
+                        alt="placeholder for .of-none"
+                    />
+                    <br />
+                    .of-none
+                </div>
+                <div class="flex--item">
+                    <img
+                        class="of-scale-down ba bc-black-100 hs1 ws1"
+                        src="https://fakeimg.pl/400x240/e4e6e8"
+                        alt="placeholder for .of-scale-down"
+                    />
+                    <br />
+                    .of-scale-down
+                </div>
+                <div class="flex--item">
+                    <img
+                        class="op-center of-none ba bc-black-100 hs1 ws1"
+                        src="https://fakeimg.pl/50x50/e4e6e8"
+                        alt="placeholder for .op-center.of-none"
+                    />
+                    <br />
+                    .op-center.of-none
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
