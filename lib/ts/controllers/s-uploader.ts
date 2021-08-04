@@ -106,7 +106,7 @@
          * @param  {FilePreview} file
          */
         private addFilePreview(file: FilePreview) {
-            let rowElement = document.createElement("div");
+            let previewElement = document.createElement("div");
             let descriptionElement = document.createElement("div");
             let thumbElement;
 
@@ -123,10 +123,10 @@
             thumbElement.classList.add("s-uploader--preview-thumbnail");
             descriptionElement.classList.add("s-uploader--preview-description");
             descriptionElement.innerHTML = file.name;
-            rowElement.classList.add("s-uploader--preview");
-            rowElement.appendChild(thumbElement);
-            rowElement.appendChild(descriptionElement);
-            this.previewsTarget.appendChild(rowElement);
+            previewElement.classList.add("s-uploader--preview");
+            previewElement.appendChild(thumbElement);
+            previewElement.appendChild(descriptionElement);
+            this.previewsTarget.appendChild(previewElement);
         }
 
         /**
