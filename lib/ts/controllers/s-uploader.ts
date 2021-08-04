@@ -116,8 +116,6 @@
                 thumbElement.alt = file.name;
             } else {
                 thumbElement = document.createElement("div");
-                // TODO: Replace this with legit document icon.
-                thumbElement.innerHTML = `<div>?</div>`;
             }
 
             thumbElement.classList.add("s-uploader--preview-thumbnail");
