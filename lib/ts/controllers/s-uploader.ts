@@ -62,18 +62,20 @@
                 getDataURLs(this.inputTarget.files)
                     .then((res: any) => {
                         this.handleVisible(true);
-                        let headingElement = document.createElement("div");
-
+                        const fileDisplayLimit = 10;
                         const hasMultipleFiles = res.length > 1;
+
                         if (hasMultipleFiles) {
+                            let headingElement = document.createElement("div");
                             headingElement.classList.add("s-uploader--previews-heading");
-                            headingElement.innerHTML = `${res.length} items`;
+                            headingElement.innerText = fileDisplayLimit >= res.length ?
+                                `${res.length} items` : `Showing ${fileDisplayLimit} of ${res.length} files`;
                             this.previewsTarget.appendChild(headingElement);
                             this.previewsTarget.classList.add("has-multiple");
                         } else {
                             this.previewsTarget.classList.remove("has-multiple");
                         }
-                        res?.slice(0, 5).map((file: FilePreview) => {
+                        res?.slice(0, fileDisplayLimit).map((file: FilePreview) => {
                             if (file) this.addFilePreview(file);
                         });
                         this.handleUploaderActive(true);
