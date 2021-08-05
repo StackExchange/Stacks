@@ -109,7 +109,6 @@
          */
         private addFilePreview(file: FilePreview) {
             let previewElement = document.createElement("div");
-            let descriptionElement = document.createElement("div");
             let thumbElement;
 
             if (file.type.toString().match('image/*')) {
@@ -118,14 +117,13 @@
                 thumbElement.alt = file.name;
             } else {
                 thumbElement = document.createElement("div");
+                thumbElement.innerText = file.name;
             }
 
             thumbElement.classList.add("s-uploader--preview-thumbnail");
-            descriptionElement.classList.add("s-uploader--preview-description");
-            descriptionElement.innerHTML = file.name;
-            previewElement.classList.add("s-uploader--preview");
             previewElement.appendChild(thumbElement);
-            previewElement.appendChild(descriptionElement);
+            previewElement.classList.add("s-uploader--preview");
+            previewElement.setAttribute('data-filename', file.name);
             this.previewsTarget.appendChild(previewElement);
         }
 
