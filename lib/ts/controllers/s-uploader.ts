@@ -12,7 +12,7 @@
     const fileToDataURL = (file: File) => {
         var reader = new FileReader();
         const { name, size, type } = file;
-        const fileSizeLimit = 1024 * 1024 * 10; // 10 Mb
+        const fileSizeLimit = 1024 * 1024 * 10; // 10 MB
 
         if (size < fileSizeLimit && type.indexOf("image") > -1) {
             return new Promise((resolve, reject) => {
