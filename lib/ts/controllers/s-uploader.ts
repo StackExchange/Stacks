@@ -62,7 +62,6 @@
                 const fileDisplayLimit = 10;
                 getDataURLs(this.inputTarget.files, fileDisplayLimit)
                     .then((res: any) => {
-                        console.log(res, 'res')
                         this.handleVisible(true);
                         const hasMultipleFiles = res.length > 1;
 
