@@ -11,19 +11,24 @@
      */
     const fileToDataURL = (file: File) => {
         var reader = new FileReader();
-        return new Promise((resolve, reject) => {
-            reader.onload = evt => {
-                const res = evt?.target?.result;
-                if (res) {
-                    const { name, type } = file;
-                    const data = type.indexOf("image") > -1 ? res : null;
-                    resolve({ data, name, type });
-                } else {
-                    reject();
+        const { name, size, type } = file;
+        const fileSizeLimit = 1024 * 1024 * 10; // 10 Mb
+
+        if (size < fileSizeLimit && type.indexOf("image") > -1) {
+            return new Promise((resolve, reject) => {
+                reader.onload = evt => {
+                    const res = evt?.target?.result;
+                    if (res) {
+                        resolve({ data: res, name, type });
+                    } else {
+                        reject();
+                    }
                 }
-            }
-            reader.readAsDataURL(file);
-        })
+                reader.readAsDataURL(file);
+            });
+        } else {
+            return { name, type };
+        }
     }
 
     /**
@@ -111,9 +116,9 @@
             let previewElement = document.createElement("div");
             let thumbElement;
 
-            if (file.type.toString().match('image/*')) {
+            if (file.type.toString().match('image/*') && file.data) {
                 thumbElement = document.createElement("img");
-                thumbElement.src = file.data?.toString() || "";
+                thumbElement.src = file.data.toString();
                 thumbElement.alt = file.name;
             } else {
                 thumbElement = document.createElement("div");
