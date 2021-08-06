@@ -30,8 +30,8 @@
      * @param  {FileList|[]} files
      * @returns an array of FilePreview objects from a FileList
      */
-    const getDataURLs = (files: FileList | []) => {
-        const indexes = Array.from(Array(files?.length).keys());
+    const getDataURLs = (files: FileList | [], limit: Number) => {
+        const indexes = Array.from(Array(files?.length <= limit ? files?.length : limit ).keys());
         return Promise.all(indexes.map(i => fileToDataURL(files[i])));
     }
 
@@ -59,10 +59,11 @@
         handleInput() {
             this.previewsTarget.innerHTML = "";
             if (this.inputTarget.files) {
-                getDataURLs(this.inputTarget.files)
+                const fileDisplayLimit = 10;
+                getDataURLs(this.inputTarget.files, fileDisplayLimit)
                     .then((res: any) => {
+                        console.log(res, 'res')
                         this.handleVisible(true);
-                        const fileDisplayLimit = 10;
                         const hasMultipleFiles = res.length > 1;
 
                         if (hasMultipleFiles) {
@@ -75,7 +76,7 @@
                         } else {
                             this.previewsTarget.classList.remove("has-multiple");
                         }
-                        res?.slice(0, fileDisplayLimit).map((file: FilePreview) => {
+                        res?.map((file: FilePreview) => {
                             if (file) this.addFilePreview(file);
                         });
                         this.handleUploaderActive(true);
