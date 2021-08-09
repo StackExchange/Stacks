@@ -13,6 +13,7 @@
         var reader = new FileReader();
         const { name, size, type } = file;
         const fileSizeLimit = 1024 * 1024 * 10; // 10 MB
+        const fileSizeLimit = 1024 * 1024 * 1; // 10 Mb
 
         if (size < fileSizeLimit && type.indexOf("image") > -1) {
             return new Promise((resolve, reject) => {
@@ -64,6 +65,7 @@
         handleInput() {
             this.previewsTarget.innerHTML = "";
             if (this.inputTarget.files) {
+                const count = this.inputTarget.files.length;
                 const fileDisplayLimit = 10;
                 getDataURLs(this.inputTarget.files, fileDisplayLimit)
                     .then((res: any) => {
@@ -74,7 +76,7 @@
                             let headingElement = document.createElement("div");
                             headingElement.classList.add("s-uploader--previews-heading");
                             headingElement.innerText = fileDisplayLimit >= res.length ?
-                                `${res.length} items` : `Showing ${fileDisplayLimit} of ${res.length} files`;
+                                `${count} items` : `Showing ${fileDisplayLimit} of ${count} files`;
                             this.previewsTarget.appendChild(headingElement);
                             this.previewsTarget.classList.add("has-multiple");
                         } else {
