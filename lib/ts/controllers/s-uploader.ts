@@ -13,7 +13,6 @@
         var reader = new FileReader();
         const { name, size, type } = file;
         const fileSizeLimit = 1024 * 1024 * 10; // 10 MB
-        const fileSizeLimit = 1024 * 1024 * 1; // 10 Mb
 
         if (size < fileSizeLimit && type.indexOf("image") > -1) {
             return new Promise((resolve, reject) => {
