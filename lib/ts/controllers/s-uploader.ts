@@ -5,56 +5,30 @@ namespace Stacks {
         type: string;
     };
 
-    /**
-     * @param  {File} file
-     * @returns an object containing a FilePreview object
-     */
-    const fileToDataURL = (file: File): Promise<FilePreview> => {
-        var reader = new FileReader();
-        const { name, size, type } = file;
-        const fileSizeLimit = 1024 * 1024 * 10; // 10 MB
-
-        if (size < fileSizeLimit && type.indexOf("image") > -1) {
-            return new Promise((resolve, reject) => {
-                reader.onload = evt => {
-                    const res = evt?.target?.result;
-                    if (res) {
-                        resolve({ data: res, name, type });
-                    } else {
-                        reject();
-                    }
-                }
-                reader.readAsDataURL(file);
-            });
-        } else {
-            return Promise.resolve({ name, type });
-        }
-    }
-
-    /**
-     * @param  {FileList|[]} files
-     * @returns an array of FilePreview objects from a FileList
-     */
-    const getDataURLs = (files: FileList | [], limit: Number): Promise<FilePreview[]> => {
-        const indexes = Array.from(Array(files?.length <= limit ? files?.length : limit ).keys());
-        return Promise.all(indexes.map(i => fileToDataURL(files[i])));
-    }
-
     export class UploaderController extends Stacks.StacksController {
         static targets = ["input", "previews", "uploader"];
         private inputTarget!: HTMLInputElement;
         private previewsTarget!: HTMLElement;
         private uploaderTarget!: HTMLElement;
 
+        private boundDragEnter!: any;
+        private boundDragLeave!: any;
+
+        private static readonly FILE_DISPLAY_LIMIT = 10;
+        private static readonly MAX_FILE_SIZE = 1024 * 1024 * 10; // 10 MB
+
         connect() {
             super.connect();
+            this.boundDragEnter = this.handleUploaderActive.bind(this, true);
+            this.boundDragLeave = this.handleUploaderActive.bind(this, false);
 
-            this.inputTarget.addEventListener("dragenter", () => this.handleUploaderActive(true));
-            this.inputTarget.addEventListener("dragleave", () => this.handleUploaderActive(false));
+            this.inputTarget.addEventListener("dragenter", this.boundDragEnter);
+            this.inputTarget.addEventListener("dragleave", this.boundDragLeave);
         }
 
         disconnect() {
-            this.inputTarget.removeEventListener("dragenter", () => this.handleUploaderActive);
+            this.inputTarget.removeEventListener("dragenter", this.boundDragEnter);
+            this.inputTarget.removeEventListener("dragleave", this.boundDragLeave);
             super.disconnect();
         }
 
@@ -63,10 +37,13 @@ namespace Stacks {
          */
         handleInput() {
             this.previewsTarget.innerHTML = "";
-            if (this.inputTarget.files) {
-                const count = this.inputTarget.files.length;
-                const fileDisplayLimit = 10;
-                getDataURLs(this.inputTarget.files, fileDisplayLimit)
+
+            if (!this.inputTarget.files) {
+                return;
+            }
+
+            const count = this.inputTarget.files.length;
+                this.getDataURLs(this.inputTarget.files, UploaderController.FILE_DISPLAY_LIMIT)
                     .then((res) => {
                         this.handleVisible(true);
                         const hasMultipleFiles = res.length > 1;
@@ -74,21 +51,16 @@ namespace Stacks {
                         if (hasMultipleFiles) {
                             let headingElement = document.createElement("div");
                             headingElement.classList.add("s-uploader--previews-heading");
-                            headingElement.innerText = fileDisplayLimit >= res.length ?
-                                `${count} items` : `Showing ${fileDisplayLimit} of ${count} files`;
+                            headingElement.innerText = res.length < count ?
+                                `Showing ${res.length} of ${count} files` : `${count} items`;
                             this.previewsTarget.appendChild(headingElement);
                             this.previewsTarget.classList.add("has-multiple");
                         } else {
                             this.previewsTarget.classList.remove("has-multiple");
                         }
-                        res.forEach((file) => {
-                            if (file) {
-                                this.addFilePreview(file);
-                            }
-                        });
+                        res.forEach((file) => this.addFilePreview(file));
                         this.handleUploaderActive(true);
                     });
-            }
         }
 
         /**
@@ -126,10 +98,14 @@ namespace Stacks {
          * @param  {FilePreview} file
          */
         private addFilePreview(file: FilePreview) {
+            if (!file) {
+                return;
+            }
+
             let previewElement = document.createElement("div");
             let thumbElement;
 
-            if (file.type.toString().match('image/*') && file.data) {
+            if (file.type.match('image/*') && file.data) {
                 thumbElement = document.createElement("img");
                 thumbElement.src = file.data.toString();
                 thumbElement.alt = file.name;
@@ -150,11 +126,44 @@ namespace Stacks {
          * @param  {boolean} active - Uploader is in active state (typically on 'dragenter')
          */
         private handleUploaderActive(active: boolean) {
-            if (active) {
-                this.uploaderTarget.classList.add("is-active");
+            this.uploaderTarget.classList.toggle("is-active", active);
+        }
+
+        /**
+         * @param  {File} file
+         * @returns an object containing a FilePreview object
+         */
+        private fileToDataURL(file: File): Promise<FilePreview> {
+            var reader = new FileReader();
+            const { name, size, type } = file;
+
+            if (size < UploaderController.MAX_FILE_SIZE && type.indexOf("image") > -1) {
+                return new Promise((resolve, reject) => {
+                    reader.onload = evt => {
+                        const res = evt?.target?.result;
+                        if (res) {
+                            resolve({ data: res, name, type });
+                        } else {
+                            reject();
+                        }
+                    }
+                    reader.readAsDataURL(file);
+                });
             } else {
-                this.uploaderTarget.classList.remove("is-active");
+                return Promise.resolve({ name, type });
             }
+        }
+
+        /**
+         * @param  {FileList|[]} files
+         * @returns an array of FilePreview objects from a FileList
+         */
+        private getDataURLs(files: FileList, limit: number): Promise<FilePreview[]> {
+            const promises = Array.from(files)
+                .slice(0, Math.min(limit, files.length))
+                .map(f => this.fileToDataURL(f));
+
+            return Promise.all(promises);
         }
     };
 }
