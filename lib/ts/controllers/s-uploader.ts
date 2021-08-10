@@ -1,4 +1,4 @@
-(function(){
+namespace Stacks {
     interface FilePreview {
         data?: Blob;
         name: string;
@@ -40,7 +40,7 @@
         return Promise.all(indexes.map(i => fileToDataURL(files[i])));
     }
 
-    Stacks.application.register("s-uploader", class extends Stacks.StacksController {
+    export class UploaderController extends Stacks.StacksController {
         static targets = ["input", "previews", "uploader"];
         private inputTarget!: HTMLInputElement;
         private previewsTarget!: HTMLElement;
@@ -88,6 +88,16 @@
                     });
             }
         }
+
+        /**
+         * Resets the Uploader to initial state
+         */
+        reset() {
+            this.inputTarget.value = '';
+            this.previewsTarget.innerHTML = "";
+            this.handleVisible(false);
+        }
+
         /**
          * @param  {boolean} shouldPreview - Uploader is entering a preview state
          */
@@ -144,15 +154,7 @@
                 this.uploaderTarget.classList.remove("is-active");
             }
         }
+    };
+}
 
-        /**
-         * Resets the Uploader to initial state
-         */
-        reset() {
-            this.inputTarget.value = '';
-            this.previewsTarget.innerHTML = "";
-            this.handleVisible(false);
-        }
-
-    });
-})();
+Stacks.application.register("s-uploader", Stacks.UploaderController);
