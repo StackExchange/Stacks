@@ -1,15 +1,15 @@
 namespace Stacks {
     interface FilePreview {
-        data?: Blob;
+        data?: string | ArrayBuffer;
         name: string;
-        type: MimeType;
+        type: string;
     };
 
     /**
      * @param  {File} file
      * @returns an object containing a FilePreview object
      */
-    const fileToDataURL = (file: File) => {
+    const fileToDataURL = (file: File): Promise<FilePreview> => {
         var reader = new FileReader();
         const { name, size, type } = file;
         const fileSizeLimit = 1024 * 1024 * 10; // 10 MB
@@ -27,7 +27,7 @@ namespace Stacks {
                 reader.readAsDataURL(file);
             });
         } else {
-            return { name, type };
+            return Promise.resolve({ name, type });
         }
     }
 
@@ -35,7 +35,7 @@ namespace Stacks {
      * @param  {FileList|[]} files
      * @returns an array of FilePreview objects from a FileList
      */
-    const getDataURLs = (files: FileList | [], limit: Number) => {
+    const getDataURLs = (files: FileList | [], limit: Number): Promise<FilePreview[]> => {
         const indexes = Array.from(Array(files?.length <= limit ? files?.length : limit ).keys());
         return Promise.all(indexes.map(i => fileToDataURL(files[i])));
     }
@@ -67,7 +67,7 @@ namespace Stacks {
                 const count = this.inputTarget.files.length;
                 const fileDisplayLimit = 10;
                 getDataURLs(this.inputTarget.files, fileDisplayLimit)
-                    .then((res: any) => {
+                    .then((res) => {
                         this.handleVisible(true);
                         const hasMultipleFiles = res.length > 1;
 
@@ -81,8 +81,10 @@ namespace Stacks {
                         } else {
                             this.previewsTarget.classList.remove("has-multiple");
                         }
-                        res?.map((file: FilePreview) => {
-                            if (file) this.addFilePreview(file);
+                        res.forEach((file) => {
+                            if (file) {
+                                this.addFilePreview(file);
+                            }
                         });
                         this.handleUploaderActive(true);
                     });
