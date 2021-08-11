@@ -131,6 +131,7 @@ namespace Stacks {
         }
 
         /**
+         * Converts the file data into a data URL
          * @param  {File} file
          * @returns an object containing a FilePreview object
          */
@@ -156,6 +157,7 @@ namespace Stacks {
         }
 
         /**
+         * Gets an array of FilePreviews from a FileList
          * @param  {FileList|[]} files
          * @returns an array of FilePreview objects from a FileList
          */
