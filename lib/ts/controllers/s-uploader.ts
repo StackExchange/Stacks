@@ -73,6 +73,7 @@ namespace Stacks {
         }
 
         /**
+         * Set hide/show and disabled state on elements depending on preview state
          * @param  {boolean} shouldPreview - Uploader is entering a preview state
          */
         private handleVisible(shouldPreview: boolean) {
