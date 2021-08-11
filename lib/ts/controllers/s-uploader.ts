@@ -44,7 +44,7 @@ namespace Stacks {
 
             const count = this.inputTarget.files.length;
                 this.getDataURLs(this.inputTarget.files, UploaderController.FILE_DISPLAY_LIMIT)
-                    .then((res) => {
+                    .then((res: FilePreview[]) => {
                         this.handleVisible(true);
                         const hasMultipleFiles = res.length > 1;
 
