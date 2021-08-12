@@ -26,6 +26,7 @@
         display: flex;
         align-items: center;
         padding: @su6 @su12;
+        position: relative;
 
         // Reset some things for when the navigation item is also a button
         border: none;
@@ -49,6 +50,24 @@
         &.is-selected {
             background: var(--theme-primary-color);
             color: var(--white);
+        }
+
+        &.s-navigation--item__dropdown {
+            padding-right: 2em;
+
+            &:after {
+                content: "";
+                position: absolute;
+                z-index: @zi-active;
+                top: calc(50% - 2px);
+                right: 0.9em;
+                border-style: solid;
+                border-width: @su4;
+                border-top-width: @su4;
+                border-bottom-width: 0;
+                border-color: currentColor transparent;
+                pointer-events: none;
+            }
         }
     }
 
@@ -98,6 +117,10 @@
         .s-navigation--item {
             padding: @su4 @su12;
             font-size: @fs-caption;
+
+            &.s-navigation--item__dropdown {
+                padding-right: 2em;
+            }
         }
     }
 }
