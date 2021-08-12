@@ -118,15 +118,22 @@
 //  $$  Users
 //  ---------------------------------------------------------------------------
 .s-badge__admin {
-    .badge-styles(transparent, var(--theme-secondary-color), @white);
+    .badge-styles(transparent, var(--theme-primary-075), var(--theme-primary-800));
 }
 .s-badge__moderator {
-    .badge-styles(transparent, var(--theme-secondary-color), @white);
+    .badge-styles(transparent, var(--theme-secondary-075), var(--theme-secondary-800));
 
     &:before {
+        --s-badge-moderator-icon: url("data:image/svg+xml,%3Csvg width='12' height='14' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M5.528.746c.257-.329.675-.327.93 0l4.42 5.66c.258.329.257.864 0 1.192l-4.42 5.66c-.256.328-.674.327-.93 0l-4.42-5.66c-.257-.329-.256-.865 0-1.192l4.42-5.66z' fill='%23fff'/%3E%3C/svg%3E");
+
         content: "";
-        background-image: url("data:image/svg+xml,%3Csvg width='12' height='14' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M5.528.746c.257-.329.675-.327.93 0l4.42 5.66c.258.329.257.864 0 1.192l-4.42 5.66c-.256.328-.674.327-.93 0l-4.42-5.66c-.257-.329-.256-.865 0-1.192l4.42-5.66z' fill='%23fff'/%3E%3C/svg%3E");
-        display: block;
+        display: inline-block;
+        background-color: currentColor;
+        -webkit-mask: var(--s-badge-moderator-icon) no-repeat center;
+        mask: var(--s-badge-moderator-icon) no-repeat center;
+        -webkit-mask-size: contain;
+        mask-size: contain;
+
         width: 12px;
         height: 14px;
         margin-top: -1px;
@@ -134,7 +141,8 @@
     }
 
     &.s-badge__sm:before {
-        background-image: url("data:image/svg+xml,%3Csvg width='9' height='11' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M3.55.246c.257-.329.647-.327.903 0l3.36 4.66c.256.329.256.864 0 1.192L4.45 10.75c-.257.329-.644.327-.9 0L.192 6.098c-.256-.329-.256-.865 0-1.192L3.55.246z' fill='%23fff'/%3E%3C/svg%3E");
+        --s-badge-moderator-icon: url("data:image/svg+xml,%3Csvg width='9' height='11' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M3.55.246c.257-.329.647-.327.903 0l3.36 4.66c.256.329.256.864 0 1.192L4.45 10.75c-.257.329-.644.327-.9 0L.192 6.098c-.256-.329-.256-.865 0-1.192L3.55.246z' fill='%23fff'/%3E%3C/svg%3E");
+
         width: 9px;
         height: 11px;
         margin-top: 0;
@@ -142,14 +150,16 @@
     }
 
     &.s-badge__xs:before {
-        background-image: url("data:image/svg+xml,%3Csvg width='7' height='9' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M2.798.246c.3-.329 1.1-.327 1.399 0l2.579 3.66c.3.329.298.864 0 1.192L4.196 8.75c-.299.329-1.1.327-1.398 0L.224 5.098a.904.904 0 010-1.192L2.798.246z' fill='%23fff'/%3E%3C/svg%3E");
+        --s-badge-moderator-icon: url("data:image/svg+xml,%3Csvg width='7' height='9' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M2.798.246c.3-.329 1.1-.327 1.399 0l2.579 3.66c.3.329.298.864 0 1.192L4.196 8.75c-.299.329-1.1.327-1.398 0L.224 5.098a.904.904 0 010-1.192L2.798.246z' fill='%23fff'/%3E%3C/svg%3E");
+
         width: 7px;
         height: 9px;
         margin-top: 0;
     }
 }
 .s-badge__staff {
-    .badge-styles(transparent, var(--theme-primary-color), @white);
+    // Staff badges are always "Stack Overflow Orange"
+    .badge-styles(transparent, var(--orange-100), var(--orange-900));
 }
 
 //  $$  Award Count

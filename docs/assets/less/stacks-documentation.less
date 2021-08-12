@@ -315,12 +315,6 @@
     color: var(--fc-dark);
 }
 
-.stacks-grid-example {
-    display: flex;
-    height: 100%;
-    .flex__center;
-}
-
 //  ============================================================================
 //  $   COLORS
 //  ----------------------------------------------------------------------------
@@ -390,28 +384,8 @@
 }
 
 //  ============================================================================
-//  $   Homepage grid
+//  $   Theming UI
 //  ----------------------------------------------------------------------------
-
-.stacks-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-column-gap: @su16;
-    grid-row-gap: @su16;
-}
-
-@media (max-width: 1200px) {
-    .stacks-grid {
-        grid-template-columns: 1fr 1fr;
-    }
-}
-
-@media (max-width: 530px) {
-    .stacks-grid {
-        grid-template-columns: 1fr;
-    }
-}
-
 .stacks-theme-button {
     color: var(--black-300);
     position: relative;
@@ -462,3 +436,33 @@
 .team-avatar {
     background-image: url("../img/team-avatar.png");
 }
+
+//  ============================================================================
+//  $   Highlighting
+//  ----------------------------------------------------------------------------
+#stacks-internals #screen-lg({
+    .lg\:highlight {
+        padding: 3px 8px;
+        background-color: var(--highlight-variable);
+        border-radius: 40px;
+        color: var(--highlight-bg);
+    }
+});
+
+#stacks-internals #screen-md({
+    .md\:highlight {
+        padding: 3px 8px;
+        background-color: var(--highlight-variable);
+        border-radius: 40px;
+        color: var(--highlight-bg);
+    }
+});
+
+#stacks-internals #screen-sm({
+    .sm\:highlight {
+        padding: 3px 8px;
+        background-color: var(--highlight-variable);
+        border-radius: 40px;
+        color: var(--highlight-bg);
+    }
+});

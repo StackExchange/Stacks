@@ -1,0 +1,188 @@
+//
+//  STACK OVERFLOW
+//  FILE UPLOAD -- DYNAMIC PARTS
+//
+//  This CSS comes from Stacks, our CSS & Pattern library for rapidly building
+//  Stack Overflow. For documentation of all these classes and how to contribute,
+//  visit https://stackoverflow.design/
+
+.s-uploader {
+    align-items: center;
+    background-color: var(--black-025);
+    border-radius: @br-lg;
+    display: flex;
+    min-height: @su128;
+    justify-content: center;
+    padding: @su8 @su16;
+    position: relative;
+    text-align: center;
+
+    // Add the dashed border as an SVG background mask
+    &:before {
+        --s-uploader-background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='5' ry='5' stroke='%23000000' stroke-width='8' stroke-dasharray='7%2c 22' stroke-dashoffset='0' stroke-linecap='square'/%3e%3c/svg%3e");
+        content: '';
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: var(--black-150);
+        -webkit-mask-image: var(--s-uploader-background-image);
+        mask-image: var(--s-uploader-background-image);
+        border-radius: @br-lg;
+    }
+
+    &.has-error {
+        background-color: var(--red-050);
+
+        &:before {
+            background-color: var(--red-400);
+        }
+
+        .s-link {
+            color: var(--red-900);
+        }
+    }
+
+    &.has-success {
+        background-color: var(--green-025);
+
+        &:before {
+            background-color: var(--green-400);
+        }
+
+        .s-link {
+            color: var(--green-900);
+        }
+    }
+
+    &.has-warning {
+        background-color: var(--yellow-050);
+
+        &:before {
+            background-color: var(--yellow-400);
+        }
+
+        .s-link {
+            color: var(--yellow-900);
+        }
+    }
+
+    &.is-active {
+        background-color: var(--black-050);
+
+        &:before {
+            background-color: var(--black-200);
+        }
+    }
+
+    &.is-disabled {
+        opacity: 0.5;
+    }
+
+    // This is to for safari shadow DOM
+    // see https://github.com/StackExchange/Stacks/pull/690#issuecomment-861028193
+    input[type="file"]::file-selector-button {
+        cursor: pointer;
+    }
+
+    .s-uploader--input {
+        cursor: pointer;
+        height: 100%;
+        inset: 0;
+        opacity: 0;
+        position: absolute;
+        width: 100%;
+
+        &:focus:focus-visible + .s-uploader--container {
+            background-color: var(--black-050);
+            box-shadow: 0 0 0 @su4 var(--focus-ring);
+        }
+    }
+
+    .s-uploader--preview {
+        max-width: 100%;
+        pointer-events: none;
+    }
+
+    .s-uploader--preview-thumbnail {
+        background-color: var(--white);
+        border-radius: @br-sm;
+        box-shadow: var(--bs-md);
+        max-height: @su128;
+        max-width: 100%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+
+        &:is(img) {
+            object-fit: scale-down;
+            object-position: center;
+        }
+
+        &:not(img) {
+            padding: @su16;
+        }
+    }
+
+    .s-uploader--previews {
+        max-width: 100%;
+        text-align: left;
+
+        &.has-multiple {
+            display: block;
+            height: auto;
+            padding: @su8 @su2;
+            width: 100%;
+
+            .s-uploader--preview {
+                align-items: center;
+                display: flex;
+                padding: @su6 0;
+                width: 100%;
+
+                &:after {
+                    content: attr(data-filename);
+                    display: block;
+                    margin-left: @su12;
+                    max-width: 100%;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
+                }
+            }
+
+            .s-uploader--preview-thumbnail {
+                color: transparent;
+                height: @su32;
+                flex-shrink: 0;
+                width: @su32;
+
+                &:is(img) {
+                    object-fit: cover;
+                }
+                &:not(img) {
+                    --s-uploader--preview-document-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' aria-hidden='true' fill='%23535A60' width='18' height='18' viewBox='0 0 18 18'%3E%3Cpath d='M3 3a2 2 0 012-2h6l4 4v10a2 2 0 01-2 2H5a2 2 0 01-2-2V3zm7-1.5V6h4.5L10 1.5z'%3E%3C/path%3E%3C/svg%3E");
+                    background-image: var(--s-uploader--preview-document-icon);
+                    background-position: center;
+                    background-repeat: no-repeat;
+                }
+            }
+        }
+    }
+
+    .s-uploader--previews-heading {
+        color: var(--black-900);
+        font-size: @fs-body2;
+        font-weight: 600;
+        padding-bottom: @su8;
+    }
+
+    .s-uploader--reset {
+        position: absolute;
+        right: @su8;
+        top: @su8;
+        z-index: @zi-active;
+    }
+}
