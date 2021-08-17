@@ -30,6 +30,7 @@ module.exports = function(grunt) {
             stacks: {
                 files: {
                     'dist/css/stacks.css': 'lib/css/stacks.less',
+                    'dist/css/stacks-non-responsive.css': 'lib/css/stacks-non-responsive.less',
                     'dist/css/stacks-responsive.css': 'lib/css/stacks-responsive.less'
                 }
             },
@@ -54,6 +55,7 @@ module.exports = function(grunt) {
             stacks: {
                 files: {
                     'dist/css/stacks.min.css': 'dist/css/stacks.css',
+                    'dist/css/stacks-non-responsive.min.css': 'dist/css/stacks-non-responsive.css',
                     'dist/css/stacks-responsive.min.css': 'dist/css/stacks-responsive.css'
                 }
             },
