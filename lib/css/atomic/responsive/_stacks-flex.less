@@ -1,0 +1,90 @@
+//
+//  STACK OVERFLOW
+//  FLEXBOX HELPERS
+//
+//  This CSS comes from Stacks, our CSS & Pattern library for rapidly building
+//  Stack Overflow. For documentation of all these classes and how to contribute,
+//  visit https://stackoverflow.design/
+
+//  ============================================================================
+//  $  ATOMIC CLASSES
+//  ----------------------------------------------------------------------------
+//  --  FLEX DIRECTION
+//      This determines the direction content flows within a parent container.
+//      The default values are row.
+//  ----------------------------------------------------------------------------
+#stacks-internals #responsify('.fd-row', { flex-direction: row !important; });
+#stacks-internals #responsify('.fd-row-reverse', { flex-direction: row-reverse !important; });
+#stacks-internals #responsify('.fd-column', { flex-direction: column !important; });
+#stacks-internals #responsify('.fd-column-reverse', { flex-direction: column-reverse !important; });
+
+//  --  FLEX WRAP
+//      This determines if a parent's child items will wrap or not.
+//  ----------------------------------------------------------------------------
+#stacks-internals #responsify('.fw-wrap', { flex-wrap: wrap !important; });
+#stacks-internals #responsify('.fw-reverse', { flex-wrap: wrap-reverse !important; });
+#stacks-internals #responsify('.fw-nowrap', { flex-wrap: nowrap !important; });
+
+//  --  JUSTIFY CONTENT
+//      Defines the child alignment along the parent's main axis
+//  ----------------------------------------------------------------------------
+#stacks-internals #responsify('.jc-center', { justify-content: center !important; });
+#stacks-internals #responsify('.jc-end', { justify-content: flex-end !important; });
+#stacks-internals #responsify('.jc-space-around', { justify-content: space-around !important; });
+#stacks-internals #responsify('.jc-space-between', { justify-content: space-between !important; });
+#stacks-internals #responsify('.jc-space-evenly', { justify-content: space-evenly !important; });
+#stacks-internals #responsify('.jc-start', { justify-content: flex-start !important; });
+
+//  --  ALIGN ITEMS
+//      Defines the default behavior for how child items align along
+//      the parent's cross axis. Think of it the cross-axis for
+//      justify-content.
+//  ----------------------------------------------------------------------------
+// TODO: Split these `#stacks-internals #build-classes`
+#stacks-internals #build-classes(
+    responsive,
+    '.ai',
+    {
+        .template(@value) when (@value=start), (@value=end) { align-items: ~"flex-@{value}" !important; }
+        .template(@value) when (default()) { align-items: @value !important; };
+    },
+    baseline center end start stretch
+);
+
+//  --  ALIGN SELF
+//      Allows child containers to re-align themselves regardless
+//      of the parent's main axis direction.
+//  ----------------------------------------------------------------------------
+#stacks-internals #build-classes(
+    responsive,
+    '.as',
+    {
+        .template(@value) when (@value=start), (@value=end) { align-self: ~"flex-@{value}" !important; }
+        .template(@value) when (default()) { align-self: @value !important; };
+    },
+    auto baseline center end start stretch
+);
+
+//  --  FLEX
+//      Graduating scale of flex-grow and flex-shrink values
+//  ----------------------------------------------------------------------------
+#stacks-internals #responsify('.fl-grow1', { flex-grow: 1 !important; });
+#stacks-internals #responsify('.fl-grow0', { flex-grow: 0 !important; });
+#stacks-internals #responsify('.fl-shrink1', { flex-shrink: 1 !important; });
+#stacks-internals #responsify('.fl-shrink0', { flex-shrink: 0 !important; });
+#stacks-internals #responsify('.fl-none', { flex: none !important; });
+#stacks-internals #responsify('.fl-initial', { flex: 0 1 auto !important; });
+#stacks-internals #responsify('.fl-auto', { flex: 1 1 auto !important; });
+#stacks-internals #responsify('.fl-equal', { flex: 1 1 0% !important; });
+
+//  --  Ordering
+//      Designate a child container's position.
+//  ----------------------------------------------------------------------------
+#stacks-internals #responsify('.order-first', { order: -1 !important; });
+#stacks-internals #responsify('.order-last', { order: 1 !important; });
+
+//  --  FLEX
+//      Graduating scale of flex-grow and flex-shrink values
+//  ----------------------------------------------------------------------------
+#stacks-internals #responsify('.fl0', { flex: 0 auto !important; });
+#stacks-internals #responsify('.fl1', { flex: 1 auto !important; });
