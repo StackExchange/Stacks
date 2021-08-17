@@ -29,7 +29,8 @@ module.exports = function(grunt) {
         less: {
             stacks: {
                 files: {
-                    'dist/css/stacks.css': 'lib/css/stacks.less'
+                    'dist/css/stacks.css': 'lib/css/stacks.less',
+                    'dist/css/stacks-responsive.css': 'lib/css/stacks-responsive.less'
                 }
             },
             // note that the docs CSS includes the full Stacks
@@ -52,7 +53,8 @@ module.exports = function(grunt) {
         cssmin: {
             stacks: {
                 files: {
-                    'dist/css/stacks.min.css': 'dist/css/stacks.css'
+                    'dist/css/stacks.min.css': 'dist/css/stacks.css',
+                    'dist/css/stacks-responsive.min.css': 'dist/css/stacks-responsive.css'
                 }
             },
             docs: {
