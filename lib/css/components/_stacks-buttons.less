@@ -16,13 +16,11 @@
 //  $   BASE STYLE
 //  ----------------------------------------------------------------------------
 & {
-    #stacks-internals #load-config();
-
     .s-btn {
         position: relative;
         display: inline-block;
         padding: 0.8em;
-        color: @button-color;
+        color: var(--theme-button-color);
         border: 1px solid transparent;
         border-radius: @br-sm;
         background-color: transparent;
@@ -53,13 +51,13 @@
         &:hover,
         &:focus,
         &:active {
-            color: @button-hover-color;
-            background: @button-hover-background-color;
+            color: var(--theme-button-hover-color);
+            background: var(--theme-button-hover-background-color);
             text-decoration: none;
         }
 
         &:active {
-            background: @button-active-background-color;
+            background: var(--theme-button-active-background-color);
         }
 
         &:focus {
@@ -74,8 +72,8 @@
         }
 
         &.is-selected {
-            color: @button-selected-color;
-            background: @button-selected-background-color;
+            color: var(--theme-button-selected-color);
+            background: var(--theme-button-selected-background-color);
             box-shadow: none;
 
             &:focus {
@@ -172,10 +170,10 @@
     //      Style which applies only a border.
     //  ----------------------------------------------------------------------------
     .s-btn__outlined {
-        border-color: @button-outlined-border-color;
+        border-color: var(--theme-button-outlined-border-color);
 
         &.is-selected {
-            border-color: @button-outlined-selected-border-color;
+            border-color: var(--theme-button-outlined-selected-border-color);
         }
     }
 
@@ -183,9 +181,9 @@
     //      Adds in background-colors, background-images, and/or box-shadows.
     //  ----------------------------------------------------------------------------
     .s-btn__filled {
-        color: @button-filled-color;
-        background-color: @button-filled-background-color;
-        border-color: @button-filled-border-color;
+        color: var(--theme-button-filled-color);
+        background-color: var(--theme-button-filled-background-color);
+        border-color: var(--theme-button-filled-border-color);
         box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.7);
 
         .dark-mode({ box-shadow: none; });
@@ -193,20 +191,20 @@
         &:hover,
         &:focus,
         &:active {
-            color: @button-filled-hover-color;
-            background-color: @button-filled-hover-background-color;
+            color: var(--theme-button-filled-hover-color);
+            background-color: var(--theme-button-filled-hover-background-color);
         }
 
         &:active {
-            background-color: @button-filled-active-background-color;
-            border-color: @button-filled-active-border-color;
+            background-color: var(--theme-button-filled-active-background-color);
+            border-color: var(--theme-button-filled-active-border-color);
             box-shadow: none;
         }
 
         &.is-selected {
-            color: @button-filled-selected-color;
-            background-color: @button-filled-selected-background-color;
-            border-color: @button-filled-selected-border-color;
+            color: var(--theme-button-filled-selected-color);
+            background-color: var(--theme-button-filled-selected-background-color);
+            border-color: var(--theme-button-filled-selected-border-color);
             box-shadow: none;
         }
     }
@@ -215,6 +213,7 @@
     //      Creates a gray button style.
     //  ----------------------------------------------------------------------------
     .s-btn__muted {
+        #stacks-internals #load-config();
         color: @button-muted-color;
 
         &:hover,
@@ -291,6 +290,7 @@
     //  $   DANGER BUTTONS & STYLES
     //  ============================================================================
     .s-btn__danger {
+        #stacks-internals #load-config();
         color: @button-danger-color;
 
         &:hover,
@@ -371,8 +371,8 @@
     //  $   PRIMARY STYLE
     //  ============================================================================
     .s-btn__primary {
-        color: @button-primary-color;
-        background-color: @button-primary-background-color;
+        color: var(--theme-button-primary-color);
+        background-color: var(--theme-button-primary-background-color);
         box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.4);
 
         .dark-mode({ box-shadow: none; });
@@ -380,22 +380,22 @@
         &:hover,
         &:focus,
         &:active {
-            color: @button-primary-hover-color;
-            background-color: @button-primary-hover-background-color;
+            color: var(--theme-button-primary-hover-color);
+            background-color: var(--theme-button-primary-hover-background-color);
         }
 
         &:active {
-            background-color: @button-primary-active-background-color;
+            background-color: var(--theme-button-primary-active-background-color);
             box-shadow: none;
         }
 
         &.is-selected {
-            color: @button-primary-selected-color;
-            background-color: @button-primary-selected-background-color;
+            color: var(--theme-button-primary-selected-color);
+            background-color: var(--theme-button-primary-selected-background-color);
         }
 
         .s-btn--number {
-            color: @button-primary-number-color;
+            color: var(--theme-button-primary-number-color);
         }
     }
 
