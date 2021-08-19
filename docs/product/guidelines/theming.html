@@ -78,6 +78,13 @@ description: Stacks provides a robust theming API to handle theming in various c
         --theme-base-primary-color-r: 235;
         --theme-base-primary-color-g: 59;
         --theme-base-primary-color-b: 90;
+
+        --theme-base-secondary-color-h: 349;
+        --theme-base-secondary-color-s: 81%;
+        --theme-base-secondary-color-l: 58%;
+        --theme-base-secondary-color-r: 235;
+        --theme-base-secondary-color-g: 59;
+        --theme-base-secondary-color-b: 90;
     }
 
     .theme-team-002 {
@@ -87,22 +94,44 @@ description: Stacks provides a robust theming API to handle theming in various c
         --theme-base-primary-color-r: 247;
         --theme-base-primary-color-g: 183;
         --theme-base-primary-color-b: 49;
+
+        --theme-base-secondary-color-h: 41;
+        --theme-base-secondary-color-s: 93%;
+        --theme-base-secondary-color-l: 58%;
+        --theme-base-secondary-color-r: 247;
+        --theme-base-secondary-color-g: 183;
+        --theme-base-secondary-color-b: 49;
     }
 
     .theme-team-003 {
-        --theme-base-primary-color-h: 148;
-        --theme-base-primary-color-s: 71%;
-        --theme-base-primary-color-l: 44%;
-        --theme-base-primary-color-r: 32;
-        --theme-base-primary-color-g: 191;
-        --theme-base-primary-color-b: 107;
+        --theme-base-primary-color-h: 288;
+        --theme-base-primary-color-s: 76%;
+        --theme-base-primary-color-l: 38%;
+        --theme-base-primary-color-r: 141;
+        --theme-base-primary-color-g: 23;
+        --theme-base-primary-color-b: 170;
 
+        --theme-base-secondary-color-h: 288;
+        --theme-base-secondary-color-s: 76%;
+        --theme-base-secondary-color-l: 38%;
+        --theme-base-secondary-color-r: 141;
+        --theme-base-secondary-color-g: 23;
+        --theme-base-secondary-color-b: 170;
+
+        /* Override colors for dark mode only */
         --theme-dark-primary-color-h: 288;
         --theme-dark-primary-color-s: 45%;
         --theme-dark-primary-color-l: 60%;
         --theme-dark-primary-color-r: 180;
         --theme-dark-primary-color-g: 105;
         --theme-dark-primary-color-b: 199;
+
+        --theme-dark-secondary-color-h: 288;
+        --theme-dark-secondary-color-s: 45%;
+        --theme-dark-secondary-color-l: 60%;
+        --theme-dark-secondary-color-r: 180;
+        --theme-dark-secondary-color-g: 105;
+        --theme-dark-secondary-color-b: 199;
     }
 </style>
 {% endhighlight %}
@@ -417,7 +446,139 @@ description: Stacks provides a robust theming API to handle theming in various c
     </div>
 </section>
 
+<section class="stacks-section">
+    {% header "h2", "Component theming" %}
+    <p class="stacks-copy">TODO DESCRIPTION</p>
+    <div class="stacks-preview">
+{% highlight html %}
 <style>
+    body {
+        --theme-button-primary-color: var(--text-color);
+        --theme-button-primary-background-color: var(--powder-400);
+        --theme-button-primary-hover-color: var(--text-color);
+        --theme-button-primary-hover-background-color: var(--powder-500);
+        --theme-button-primary-active-background-color: var(--powder-700);
+        --theme-button-primary-selected-color: var(--white);
+        --theme-button-primary-selected-background-color: var(--powder-700);
+        --theme-button-primary-number-color: var(--powder-900);
+    }
+</style>
+{% endhighlight %}
+        <div class="stacks-preview--example docs-custom-component-theme">
+            <div class="d-flex gs16 fd-column">
+                <div class="flex--item">
+                    <div class="mb4 ff-mono">body</div>
+                    <div class="d-flex gs12 ai-center fw-wrap">
+                        <div class="flex--item">
+                            <div class="flex--item h32 w32 bar-md bg-theme-primary-500"></div>
+                        </div>
+                        <div class="flex--item">
+                            <div class="d-flex">
+                                <input class="flex--item s-input s-input__xs wmx1 brr0">
+                                <button class="flex--item s-btn s-btn__primary s-btn__xs blr0 mln1" type="button">Subscribe</button>
+                            </div>
+                        </div>
+                        <div class="flex--item">
+                            <div class="s-pagination">
+                                <span class="s-pagination--item is-selected">1</span>
+                                <a class="s-pagination--item">2</a>
+                                <a class="s-pagination--item">Next</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex--item themed theme-team-001">
+                    <div class="mb4 ff-mono">.themed.theme-team-001</div>
+                    <div class="d-flex gs12 ai-center fw-wrap">
+                        <div class="flex--item">
+                            <div class="s-avatar s-avatar__32 bg-theme-primary-500">
+                                <div class="s-avatar--letter">C</div>
+                                {% icon "ShieldXSm", "native s-avatar--badge" %}
+                            </div>
+                        </div>
+                        <div class="flex--item">
+                            <div class="d-flex">
+                                <input class="flex--item s-input s-input__xs wmx1 brr0">
+                                <button class="flex--item s-btn s-btn__primary s-btn__xs blr0 mln1" type="button">Subscribe</button>
+                            </div>
+                        </div>
+                        <div class="flex--item">
+                            <div class="s-pagination">
+                                <span class="s-pagination--item is-selected">1</span>
+                                <a class="s-pagination--item">2</a>
+                                <a class="s-pagination--item">Next</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex--item themed theme-team-002">
+                    <div class="mb4 ff-mono">.themed.theme-team-002</div>
+                    <div class="d-flex gs12 ai-center fw-wrap">
+                        <div class="flex--item">
+                            <div class="s-avatar s-avatar__32 bg-theme-primary-500">
+                                <div class="s-avatar--letter">E</div>
+                                {% icon "ShieldXSm", "native s-avatar--badge" %}
+                            </div>
+                        </div>
+                        <div class="flex--item">
+                            <div class="d-flex">
+                                <input class="flex--item s-input s-input__xs wmx1 brr0">
+                                <button class="flex--item s-btn s-btn__primary s-btn__xs blr0 mln1" type="button">Subscribe</button>
+                            </div>
+                        </div>
+                        <div class="flex--item">
+                            <div class="s-pagination">
+                                <span class="s-pagination--item is-selected">1</span>
+                                <a class="s-pagination--item">2</a>
+                                <a class="s-pagination--item">Next</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex--item themed theme-team-003">
+                    <div class="mb4 ff-mono">.themed.theme-team-003</div>
+                    <div class="d-flex gs12 ai-center fw-wrap">
+                        <div class="flex--item">
+                            <div class="s-avatar s-avatar__32 bg-theme-primary-500">
+                                <div class="s-avatar--letter">F</div>
+                                {% icon "ShieldXSm", "native s-avatar--badge" %}
+                            </div>
+                        </div>
+                        <div class="flex--item">
+                            <div class="d-flex">
+                                <input class="flex--item s-input s-input__xs wmx1 brr0">
+                                <button class="flex--item s-btn s-btn__primary s-btn__xs blr0 mln1" type="button">Subscribe</button>
+                            </div>
+                        </div>
+                        <div class="flex--item">
+                            <div class="s-pagination">
+                                <span class="s-pagination--item is-selected">1</span>
+                                <a class="s-pagination--item">2</a>
+                                <a class="s-pagination--item">Next</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    body .docs-custom-component-theme {
+        --theme-button-primary-color: var(--text-color);
+        --theme-button-primary-background-color: var(--powder-400);
+        --theme-button-primary-hover-color: var(--text-color);
+        --theme-button-primary-hover-background-color: var(--powder-500);
+        --theme-button-primary-active-background-color: var(--powder-700);
+        --theme-button-primary-selected-color: var(--white);
+        --theme-button-primary-selected-background-color: var(--powder-700);
+        --theme-button-primary-number-color: var(--powder-900);
+    }
+
     .theme-team-001 {
         --theme-base-primary-color-h: 349;
         --theme-base-primary-color-s: 81%;
