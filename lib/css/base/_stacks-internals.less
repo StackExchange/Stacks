@@ -16,39 +16,13 @@
 
     //  ===========================================================================
     //  --  RESPONSIVE (modern)
-    //      #responsify renders a plain class as well as its responsive counterparts.
+    //      #responsive renders conditional responsive classes.
     //
     //      Usage example:
     //
-    //      #stacks-internals #responsify('.d-none', { display: none !important; });
+    //      #stacks-internals #responsive('.d-none', { display: none !important; });
     //
     //  ---------------------------------------------------------------------------
-
-    #responsify(@class, @rules) {
-        @nodot-s: replace(@class, "^\.", "");
-        @nodot: ~"@{nodot-s}";
-
-        .@{nodot} {
-            @rules();
-        }
-
-        #stacks-internals-collect-large() {
-            .lg\:@{nodot} {
-                @rules();
-            };
-        }
-        #stacks-internals-collect-medium() {
-            .md\:@{nodot} {
-                @rules();
-            };
-        }
-        #stacks-internals-collect-small() {
-            .sm\:@{nodot} {
-                @rules();
-            };
-        }
-    }
-
 
     #responsive(@class, @rules) {
         @nodot-s: replace(@class, "^\.", "");
