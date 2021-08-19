@@ -618,13 +618,15 @@
 .theme-dark-rules() {
     .dark-colors();
 
-    //.generate-themed-variables(theme-dark);
-
     &,
     & .themed {
         .generate-themed-variables(theme-dark);
         // add in the themed "native mixins", making sure to scope to the child .themed elements so they don't use the parent's values
         .dark-themed-colors();
+    }
+
+    & .themed {
+        .component-colors();
     }
 }
 
@@ -652,6 +654,10 @@ body.theme-system .theme-light__forced {
         .generate-themed-variables(theme-light);
         // add in the themed "native mixins", making sure to scope to the child .themed elements so they don't use the parent's values
         .light-themed-colors();
+    }
+
+    & .themed {
+        .component-colors();
     }
 }
 
