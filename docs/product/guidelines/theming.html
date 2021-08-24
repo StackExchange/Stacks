@@ -448,7 +448,34 @@ description: Stacks provides a robust theming API to handle theming in various c
 
 <section class="stacks-section">
     {% header "h2", "Component theming" %}
-    <p class="stacks-copy">TODO DESCRIPTION</p>
+    <p class="stacks-copy">
+        Stacks allows for theming certain components indepenently of the rest of the theme. This is useful for scenarios where you want to use a component in a theme, but not the rest of the theme.
+        To style a component, simply add the css variable overrides to the <code>body</code>. Stacks does not currently support separate variables for light / dark mode support.
+        Because of this, we recommend setting the component variables to values that are already light / dark mode aware, such as e.g. <code>--theme-primary-*</code>.
+    </p>
+    {% header "h3", "Supported components" %}
+    <div class="overflow-x-auto mb32">
+        <table class="wmn4 s-table s-table__bx-simple">
+            <thead>
+                <tr>
+                    <th class="s-table--cell3" scope="col">Component</th>
+                    <th scope="col">Supported variables</th>
+                </tr>
+            </thead>
+            <tbody class="fs-caption">
+                {% for item in theming-component-variables %}
+                    <tr>
+                        <th scope="row">
+                            <a href="{{ item.link | relative_url }}">{{ item.component }}</a>
+                        </th>
+                        <td class="p8">
+                            <code class="stacks-code">{{ item.variables }}</code>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
     <div class="stacks-preview">
 {% highlight html %}
 <style>
