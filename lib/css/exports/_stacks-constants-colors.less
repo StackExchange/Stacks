@@ -201,6 +201,50 @@
     --theme-secondary-color-b: var(~"--@{theme}-secondary-color-b", var(--theme-base-secondary-color-b));
 }
 
+.component-colors() {
+    --theme-body-font-color: var(--black-800);
+
+    // Links
+    --theme-link-color: var(--theme-secondary-400);
+    --theme-link-color-hover: var(--theme-secondary-350);
+    --theme-link-color-visited: var(--theme-secondary-500);
+
+    // Button Default (Secondary)
+    --theme-button-color: var(--theme-secondary-400);
+    --theme-button-background-color: transparent;
+    --theme-button-hover-color: var(--theme-secondary-500);
+    --theme-button-hover-background-color: var(--theme-secondary-050);
+    --theme-button-active-background-color: var(--theme-secondary-100);
+    --theme-button-selected-color: var(--theme-secondary-900);
+    --theme-button-selected-background-color: var(--theme-secondary-150);
+
+    //  Button Primary
+    --theme-button-primary-color: @white;
+    --theme-button-primary-background-color: var(--theme-secondary-400);
+    --theme-button-primary-hover-color: @white;
+    --theme-button-primary-hover-background-color: var(--theme-secondary-500);
+    --theme-button-primary-active-background-color: var(--theme-secondary-700);
+    --theme-button-primary-selected-color: var(--white);
+    --theme-button-primary-selected-background-color: var(--theme-secondary-700);
+    --theme-button-primary-number-color: var(--theme-secondary-900);
+
+    // Button Filled
+    --theme-button-filled-color: var(--theme-secondary-700);
+    --theme-button-filled-background-color: var(--theme-secondary-050);
+    --theme-button-filled-border-color: var(--theme-secondary-350);
+    --theme-button-filled-hover-color: var(--theme-secondary-800);
+    --theme-button-filled-hover-background-color: var(--theme-secondary-100);
+    --theme-button-filled-active-background-color: var(--theme-secondary-150);
+    --theme-button-filled-active-border-color: var(--theme-secondary-350);
+    --theme-button-filled-selected-color: var(--theme-secondary-900);
+    --theme-button-filled-selected-background-color: var(--theme-secondary-300);
+    --theme-button-filled-selected-border-color: var(--theme-secondary-500);
+
+    // Button Outline
+    --theme-button-outlined-border-color: var(--theme-secondary-300);
+    --theme-button-outlined-selected-border-color: var(--theme-secondary-400);
+}
+
 //  --  Light mode
 .light-colors() {
     --white: @white;
@@ -591,13 +635,15 @@
 .theme-dark-rules() {
     .dark-colors();
 
-    //.generate-themed-variables(theme-dark);
-
     &,
     & .themed {
         .generate-themed-variables(theme-dark);
         // add in the themed "native mixins", making sure to scope to the child .themed elements so they don't use the parent's values
         .dark-themed-colors();
+    }
+
+    & .themed {
+        .component-colors();
     }
 }
 
@@ -610,6 +656,11 @@
     .generate-calculated-themed-variables(@defaultSecondaryColor, secondary);
 }
 
+// place component-colors on the body directly (instead of :root) so consumers can use the --theme-* variables
+body {
+    .component-colors();
+}
+
 body:not(.theme-dark),
 body.theme-dark .theme-light__forced,
 body.theme-system .theme-light__forced {
@@ -620,6 +671,10 @@ body.theme-system .theme-light__forced {
         .generate-themed-variables(theme-light);
         // add in the themed "native mixins", making sure to scope to the child .themed elements so they don't use the parent's values
         .light-themed-colors();
+    }
+
+    & .themed {
+        .component-colors();
     }
 }
 
