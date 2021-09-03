@@ -1,0 +1,518 @@
+@import (reference) "../exports/_stacks-exports.less";
+
+.TODO-left-sidebar-toggle {
+    display: flex;// none;
+    padding: 0;
+    height: 100%;
+    width: 44px;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+
+    // NOTE: taken from source file
+    // I prefered to build hamburger icon instead of using `@Svg` helper because
+    // I could more easily animate its content (transform hamburger into x)
+    span {
+        width: 18px;
+        height: 2px;
+        background-color: var(--black-400);
+        position: relative;
+
+        &:before,
+        &:after {
+            position: absolute;
+            content: '';
+            width: 18px;
+            height: 2px;
+            left: 0;
+            background: var(--black-400);
+            top: -5px;
+            transition: all ease-in-out 0.1s;
+        }
+
+        &:after {
+            top: 5px;
+        }
+    }
+
+    // TODO
+    // Let's display hamburger icon (visually it's before logo in header)
+    // .if-responsive-and-below-breakpoint(@breakpoint-sm, {
+    //     display: flex;
+    // });
+
+    html.html__unpinned-leftnav & {
+        display: flex;
+    }
+
+    // Transforming hamburger into x
+    &.topbar-icon-on {
+        span {
+            background-color: transparent;
+
+            &:before,
+            &:after {
+                top: 0;
+                transform: rotate(-45deg);
+            }
+
+            &:after { transform: rotate(45deg); }
+        }
+    }
+}
+
+html {
+    --topbar-height: 50px; // TODO 48px/@su48?
+}
+
+// topbar specific variables
+.s-topbar, .s-topbar__auto
+{
+    // NOTE bg-color is always @black-800, except SO, SO Internationals, and their metas where it is var(--black-025); Enterprise is set to var(--theme-topbar-background-color)
+    --topbar-background-color:           var(--black-025);
+
+    // Search input
+    --topbar-search-color:               var(--black-700);
+    --topbar-search-background:          var(--white);
+    --topbar-search-placeholder:         var(--black-200);
+    --topbar-search-border:              var(--black-200);
+    --topbar-search-border-focus:        var(--blue-300);
+    --topbar-search-shadow-focus:        0 0 0 @su4 var(--focus-ring);
+
+    // Search switcher
+    --topbar-select-color:               var(--black-700);
+    --topbar-select-background:          var(--black-075);
+    --topbar-select-border:              var(--black-200);
+    --topbar-select-border-focus:        var(--blue-300);
+    --topbar-select-shadow-focus:        0 0 0 @su4 var(--focus-ring);
+
+    // topbar items
+    --topbar-item-color:                 var(--black-600);
+    --topbar-item-color-hover:           var(--black-800);
+    --topbar-item-background-hover:      var(--black-075);
+    --topbar-item-color-current:         var(--black);
+    --topbar-item-border-current:        var(--theme-primary-color);
+
+    // themed border accent
+    --topbar-accent-border:              3px solid var(--theme-primary-color);
+}
+
+// forced light topbar TODO is this actually used anywhere?
+.s-topbar.s-topbar__light {
+    --topbar-background-color:           @black-025;
+
+    // Search input
+    --topbar-search-color:               @black-700;
+    --topbar-search-background:          @white;
+    --topbar-search-placeholder:         @black-200;
+    --topbar-search-border:              @black-200;
+    --topbar-search-border-focus:        @blue-300;
+    --topbar-search-shadow-focus:        0 0 0 @su4 fade(@blue-500, 15%);
+
+    // Search switcher
+    --topbar-select-color:               @black-700;
+    --topbar-select-background:          @black-050;
+    --topbar-select-border:              @black-200;
+    --topbar-select-border-focus:        @blue-300;
+    --topbar-select-shadow-focus:        0 0 0 @su4 fade(@blue-500, 15%);
+
+    // topbar items
+    --topbar-item-color:                 @black-600;
+    --topbar-item-color-hover:           @black-800;
+    --topbar-item-background-hover:      @black-075;
+    --topbar-item-color-current:         @black;
+    --topbar-item-border-current:        var(--theme-primary-color);
+}
+
+// forced dark topbar TODO use this or require theme-dark__forced instead?
+.s-topbar.s-topbar__dark {
+    @topbar-actual-background: @black-800;
+    // TODO
+    #calc-topbar-lightness-increase() when (lightness(@topbar-actual-background) < 15%) {
+        @topbar-search-lightness-increase: 20%;
+    }
+    #calc-topbar-lightness-increase() when not (lightness(@topbar-actual-background) < 15%) {
+        @topbar-search-lightness-increase: 10%;
+    }
+    #calc-topbar-lightness-increase();
+
+    --topbar-background-color: @topbar-actual-background;
+    // Search input
+    --topbar-search-color:               lighten(@topbar-actual-background, 80% + @topbar-search-lightness-increase);
+    --topbar-search-background:          lighten(@topbar-actual-background, @topbar-search-lightness-increase);
+    --topbar-search-placeholder:         lighten(@topbar-actual-background, 60% + @topbar-search-lightness-increase);
+    --topbar-search-border:              lighten(@topbar-actual-background, @topbar-search-lightness-increase);
+    --topbar-search-border-focus:        lighten(@topbar-actual-background, 45% + @topbar-search-lightness-increase);
+    --topbar-search-shadow-focus:        0 0 0 @su4 fade(@white, 30%);
+
+    // Search switcher
+    --topbar-select-color:               lighten(@topbar-actual-background, 60% + @topbar-search-lightness-increase);
+    --topbar-select-background:          lighten(@topbar-actual-background, 10% + @topbar-search-lightness-increase);
+    --topbar-select-border:              lighten(@topbar-actual-background, 10% + @topbar-search-lightness-increase);
+    --topbar-select-border-focus:        lighten(@topbar-actual-background, 45% + @topbar-search-lightness-increase);
+    --topbar-select-shadow-focus:        0 0 0 @su4 fade(@white, 30%);
+
+    // topbar items
+    --topbar-item-color:                 @black-025;
+    --topbar-item-color-hover:           @white;
+    --topbar-item-background-hover:      @black-700;
+    --topbar-item-color-current:         @white;
+    --topbar-item-border-current:        var(--theme-primary-color);
+
+    // themed border accent
+    --topbar-accent-border:              none;
+}
+
+.s-topbar {
+    min-width: auto;
+    box-shadow: var(--bs-sm);
+    width: 100%;
+    z-index: @zi-navigation-fixed;
+    background-color: var(--topbar-background-color);
+    height: var(--topbar-height);
+    display: flex;
+    border-top: var(--topbar-accent-border);
+
+    .s-topbar--logo {
+        padding: 0 @su12;
+        height: 100%;
+        flex: 1 0 auto;
+        display: flex;
+        align-items: center;
+        background-color: transparent;
+    }
+
+    a.s-topbar--logo:hover {
+        background-color: var(--topbar-item-background-hover);
+    }
+
+    a.s-topbar--logo.topbar-icon-on {
+        background-color: var(--topbar-item-background-hover);
+    }
+
+    // TODO
+    // .-feature-notice {
+    //     text-decoration: none;
+    //     height: 100%;
+    //     display: inline-flex;
+    //     align-items: center;
+    //     margin: 0 @su4 0 0;
+
+    //     span {
+    //         border-radius: @br-sm;
+    //         background-color: @topbar-secondary-link-color;
+    //         color: @white;
+    //         font-weight: bold;
+    //         font-size: @fs-fine;
+    //         text-transform: uppercase;
+    //         padding: @su4 @su8;
+    //         margin: 0 @su8;
+    //     }
+
+    //     &:hover, &.topbar-icon-on {
+    //         background-color: @topbar-secondary-link-background-hover;
+    //         span {
+    //             background-color: @topbar-secondary-link-color-hover;
+    //         }
+    //     }
+
+    //     &.unread-feature-notice span {
+    //         background-color: @settings[@primary] ~"!important";
+    //     }
+    // }
+
+    .TODO-left-sidebar-toggle { /* hamburger -- the rest of the styling is in _leftnav.less which isn't compiled in a site-specific way (yet), so it doesn't have these vars */
+        &:hover {
+            color: var(--topbar-item-color-hover);
+            background-color: var(--topbar-item-background-hover);
+        }
+        &.topbar-icon-on {
+            color: var(--topbar-item-color-current);
+            background-color: var(--topbar-item-background-current);
+        }
+    }
+}
+
+// TODO this and -marketing-link should use the same styles
+// Main navigation: Questions, Jobs, Documentation, Users, Tags...
+// .s-topbar .navigation {
+//     // "NEW" badge that can be added to navigation item (above).
+//     .new-badge {
+//         background-color: @orange;
+//         color: @white;
+//         font-size: @fs-fine;
+//         padding: @su2 @su4;
+//         text-transform: uppercase;
+//         border-radius: 0 0 @br-sm @br-sm;
+//         line-height: 1;
+//         position: absolute;
+//         right: @su12; top: 0;
+//     }
+//
+//     // "BETA" badge that can be added to navigation item (below).
+//     .beta-badge {
+//         color: @black-200;
+//         font-size: @fs-fine;
+//         padding: @su2 0;
+//         text-transform: uppercase;
+//         border-radius: 0 0 @br-sm @br-sm;
+//         line-height: 1;
+//         position: absolute;
+//         right: @su12; top: 35px;
+//     }
+// }
+
+.s-topbar .s-topbar--navigation, .s-topbar .s-topbar--content {
+    display: flex;
+    height: 100%;
+    .list-reset;
+
+    // TODO cleanup
+    > li {
+        display: inline-flex;
+    }
+
+    .s-topbar--item {
+        color: var(--topbar-item-color);
+        display: inline-flex;
+        align-items: center;
+        padding: 0 @su12;
+        text-decoration: none;
+        white-space: nowrap;
+        position: relative;
+        white-space: nowrap;
+
+        &:hover, &:focus,
+        &.is-selected, &.is-selected:hover, &.is-selected:focus {
+            color: var(--topbar-item-color-hover);
+            background-color: var(--topbar-item-background-hover);
+            text-decoration: none;
+            outline: none;
+
+            .s-badge.s-badge__xs {
+                top: 4px;
+            }
+
+            .s-activity-indicator {
+                top: 6px;
+            }
+        }
+
+        .svg-icon {
+            vertical-align: text-top;
+        }
+
+        // TODO don't rely on these generic classes!
+        .s-badge.s-badge__xs {
+            position: absolute;
+            top: 8px;
+            right: 2px;
+            transition: top @te-smooth 0.15s;
+        }
+
+        .s-activity-indicator {
+            position: absolute;
+            top: 10px;
+            right: 2px;
+            transition: top @te-smooth 0.15s;
+        }
+    }
+}
+
+// Primary navigation: Links to products on the left
+.s-topbar .s-topbar--navigation {
+    .s-topbar--item {
+        display: inline-block;
+        padding: @su4 + @su2 @su16;
+        border-radius: 1000px;
+        align-self: center;
+
+        &.is-selected {
+            background-color: var(--theme-primary-color);
+            color: var(--white);
+
+            &:hover,
+            &:focus {
+                background-color: var(--theme-primary-600);
+                color: var(--white);
+            }
+        }
+    }
+}
+
+// Secondary navigation: CTAs & icons on the right.
+.s-topbar .s-topbar--content {
+    // allow this content to scroll if it gets too long
+    .overflow-x-auto;
+
+    // visible only for logged out users
+    // .-ctas {
+    //     padding-left: @su4;
+    //     padding-right: @su8;
+    //     white-space: nowrap;
+    // }
+}
+
+// TODO add search button classes?
+// Searchbar
+.s-topbar .s-topbar--searchbar {
+    //#build-topbar-settings-from-theme();
+    flex-grow: 1; // TODO which to use? grow or shrink?
+    flex-shrink: 10000; // Absolutely force the searchbar to shrink TODO note was here before
+    -webkit-transform: translate3d(0, 0, 0); // Solves an issue with Safari clipping things strangely when a popover is present in the topbar
+    padding: 0 @su8;
+    display: flex;
+    align-items: center;
+
+    .s-topbar--searchbar--input-group {
+        position: relative;
+        flex-grow: 1;
+
+        .s-input {
+            .blr0;
+            height: 100%;
+
+            border-color: var(--topbar-search-border);
+            background-color: var(--topbar-search-background);
+            box-shadow: var(--topbar-search-shadow);
+            color: var(--topbar-search-color);
+
+            &:focus {
+                border-color: var(--topbar-search-border-focus);
+                box-shadow: var(--topbar-search-shadow-focus);
+            }
+
+            .set-placeholder-color(var(--topbar-search-placeholder));
+        }
+    }
+
+    .s-select {
+        .wmx2; //TODO .sm:w25
+
+        margin-right: -1px;
+
+        &:before,
+        &:after {
+            border-color: var(--topbar-select-color) transparent;
+            z-index: @zi-active; // Make sure our focus ring is above the search input
+        }
+    }
+
+    .s-select > select {
+        .brr0;
+        height: 100%;
+
+        border-color: var(--topbar-select-border);
+        background-color: var(--topbar-select-background);
+        color: var(--topbar-select-color);
+
+        &:focus {
+            border-color: var(--topbar-select-border-focus);
+            box-shadow: var(--topbar-select-shadow-focus);
+            z-index: @zi-selected;
+        }
+    }
+
+    // TODO necessary?
+    .set-placeholder-color(@col) {
+        &::placeholder {
+            color: @col;
+            font-style: normal;
+        }
+    }
+
+    //TODO
+    // @media screen and (max-width: (@breakpoint-sm + 176)) {
+    //     display: none;
+    //     position: absolute;
+    //     left: 0; top: 100%; right: 0;
+    //     max-width: 100%;
+    //     padding: @su8 @su12;
+    //     background: @topbar-secondary-link-background-active;
+
+    //     &.searchbar__open {
+    //         display: block;
+    //         max-width: none;
+    //     }
+
+    //     /* In the narrow view, the search box appears like an inbox dropdown, in particular it has a light background
+    //        even if the top bar itself is dark.
+    //        Therefore the search box gets the Stack Overflow colors in that case.
+    //     */
+    //     .s-input {
+    //         border-color: var(--black-200);
+    //         background-color: var(--white);
+    //         color: var(--black-700);
+
+    //         &:focus {
+    //             border-color: var(--blue-300);
+    //             box-shadow: 0 0 0 @su4 var(--focus-ring);
+    //         }
+
+    //         .set-placeholder-color(var(--black-200));
+    //     }
+
+    //     .s-select:before,
+    //     .s-select:after {
+    //         border-color: var(--black-700) transparent;
+    //     }
+
+    //     .s-select > select {
+    //         border-color: var(--black-200);
+    //         background-color: var(--black-050);
+    //         color: var(--black-700);
+
+    //         &:focus {
+    //             border-color: var(--blue-300);
+    //             box-shadow: 0 0 0 @su4 var(--focus-ring);
+    //         }
+    //     }
+    // }
+}
+
+// TODO
+// Just trying to be nice for smaller screen resolutions...
+// What I do here is just making fonts and spacing smaller, so header can easily fit in <1090px.
+// @media screen and (max-width: 1090px) {
+//     .s-topbar {
+//         .-container {
+//             margin: 0;
+
+//             /* compensate for a potential scrollbar -- with the 8px padding, this assumes 16px for a scrollbar
+//                (which at lest matches Chrome & FF on Windows). Best we can do.
+//                Note that when the whole *site*, not just the top bar, is responsive, none of this matters.
+//             */
+//             max-width: ~'calc(100vw - @{su24})';
+//         }
+//     }
+
+//     .s-topbar .navigation {
+//         .-link {
+//             padding: 0 @su8
+//         }
+
+//         .beta-badge {
+//             right: 8px;
+//         }
+//     }
+
+//     .s-topbar .my-profile {
+//         padding-left: 5px;
+//         padding-right: 5px;
+//     }
+// }
+
+// TODO
+// @media screen and (max-width: @breakpoint-md) {
+//     .s-topbar .navigation {
+//         font-size: @fs-caption;
+//     }
+
+//     .s-topbar .my-profile {
+//         .-badges,
+//         .-rep {
+//             display: none;
+//         }
+//     }
+// }
+
