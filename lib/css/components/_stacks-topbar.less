@@ -1,6 +1,6 @@
 @import (reference) "../exports/_stacks-exports.less";
 
-.TODO-left-sidebar-toggle {
+.s-topbar--menu {
     display: flex;// none;
     padding: 0;
     height: 100%;
@@ -10,8 +10,8 @@
     justify-content: center;
 
     // NOTE: taken from source file
-    // I prefered to build hamburger icon instead of using `@Svg` helper because
-    // I could more easily animate its content (transform hamburger into x)
+    // build hamburger icon manually instead of using `@Svg` helper because
+    // we can more easily animate its content (transform hamburger into x)
     span {
         width: 18px;
         height: 2px;
@@ -35,18 +35,8 @@
         }
     }
 
-    // TODO
-    // Let's display hamburger icon (visually it's before logo in header)
-    // .if-responsive-and-below-breakpoint(@breakpoint-sm, {
-    //     display: flex;
-    // });
-
-    html.html__unpinned-leftnav & {
-        display: flex;
-    }
-
     // Transforming hamburger into x
-    &.topbar-icon-on {
+    &.is-selected {
         span {
             background-color: transparent;
 
@@ -289,8 +279,9 @@ html {
             text-decoration: none;
             outline: none;
 
-            .s-badge.s-badge__xs {
+            .s-badge.s-badge__topbar-indicator {
                 top: 4px;
+                border-color: var(--topbar-item-background-hover);
             }
 
             .s-activity-indicator {
@@ -302,12 +293,18 @@ html {
             vertical-align: text-top;
         }
 
-        // TODO don't rely on these generic classes!
-        .s-badge.s-badge__xs {
+        .s-badge.s-badge__topbar-indicator {
             position: absolute;
             top: 8px;
             right: 2px;
             transition: top @te-smooth 0.15s;
+
+            // TODO
+            font-size: 11px;
+            line-height: 1;
+            padding: 2px 3px;
+            border-radius: 5px;
+            border: 2px solid var(--topbar-background-color);
         }
 
         .s-activity-indicator {
