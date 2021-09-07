@@ -1,56 +1,5 @@
 @import (reference) "../exports/_stacks-exports.less";
 
-.s-topbar--menu {
-    display: flex;// none;
-    padding: 0;
-    height: 100%;
-    width: 44px;
-    flex-shrink: 0;
-    align-items: center;
-    justify-content: center;
-
-    // NOTE: taken from source file
-    // build hamburger icon manually instead of using `@Svg` helper because
-    // we can more easily animate its content (transform hamburger into x)
-    span {
-        width: 18px;
-        height: 2px;
-        background-color: var(--black-400);
-        position: relative;
-
-        &:before,
-        &:after {
-            position: absolute;
-            content: '';
-            width: 18px;
-            height: 2px;
-            left: 0;
-            background: var(--black-400);
-            top: -5px;
-            transition: all ease-in-out 0.1s;
-        }
-
-        &:after {
-            top: 5px;
-        }
-    }
-
-    // Transforming hamburger into x
-    &.is-selected {
-        span {
-            background-color: transparent;
-
-            &:before,
-            &:after {
-                top: 0;
-                transform: rotate(-45deg);
-            }
-
-            &:after { transform: rotate(45deg); }
-        }
-    }
-}
-
 html {
     --topbar-height: 50px; // TODO 48px/@su48?
 }
@@ -72,9 +21,6 @@ html {
     // Search switcher
     --topbar-select-color:               var(--black-700);
     --topbar-select-background:          var(--black-075);
-    --topbar-select-border:              var(--black-200);
-    --topbar-select-border-focus:        var(--blue-300);
-    --topbar-select-shadow-focus:        0 0 0 @su4 var(--focus-ring);
 
     // topbar items
     --topbar-item-color:                 var(--black-600);
@@ -102,9 +48,6 @@ html {
     // Search switcher
     --topbar-select-color:               @black-700;
     --topbar-select-background:          @black-050;
-    --topbar-select-border:              @black-200;
-    --topbar-select-border-focus:        @blue-300;
-    --topbar-select-shadow-focus:        0 0 0 @su4 fade(@blue-500, 15%);
 
     // topbar items
     --topbar-item-color:                 @black-600;
@@ -138,9 +81,6 @@ html {
     // Search switcher
     --topbar-select-color:               lighten(@topbar-actual-background, 60% + @topbar-search-lightness-increase);
     --topbar-select-background:          lighten(@topbar-actual-background, 10% + @topbar-search-lightness-increase);
-    --topbar-select-border:              lighten(@topbar-actual-background, 10% + @topbar-search-lightness-increase);
-    --topbar-select-border-focus:        lighten(@topbar-actual-background, 45% + @topbar-search-lightness-increase);
-    --topbar-select-shadow-focus:        0 0 0 @su4 fade(@white, 30%);
 
     // topbar items
     --topbar-item-color:                 @black-025;
@@ -162,6 +102,7 @@ html {
     height: var(--topbar-height);
     display: flex;
     border-top: var(--topbar-accent-border);
+    position: relative;
 
     .s-topbar--logo {
         padding: 0 @su12;
@@ -211,14 +152,62 @@ html {
     //     }
     // }
 
-    .TODO-left-sidebar-toggle { /* hamburger -- the rest of the styling is in _leftnav.less which isn't compiled in a site-specific way (yet), so it doesn't have these vars */
+    .s-topbar--menu {
+        display: flex;// none;
+        padding: 0;
+        height: 100%;
+        width: 44px;
+        flex-shrink: 0;
+        align-items: center;
+        justify-content: center;
+
+        // NOTE: taken from source file
+        // build hamburger icon manually instead of using `@Svg` helper because
+        // we can more easily animate its content (transform hamburger into x)
+        span {
+            width: 18px;
+            height: 2px;
+            background-color: var(--black-400);
+            position: relative;
+
+            &:before,
+            &:after {
+                position: absolute;
+                content: '';
+                width: 18px;
+                height: 2px;
+                left: 0;
+                background: var(--black-400);
+                top: -5px;
+                transition: all ease-in-out 0.1s;
+            }
+
+            &:after {
+                top: 5px;
+            }
+        }
+
+        // Transforming hamburger into x
+        &.is-selected {
+            color: var(--topbar-item-color-current);
+            background-color: var(--topbar-item-background-current);
+
+            span {
+                background-color: transparent;
+
+                &:before,
+                &:after {
+                    top: 0;
+                    transform: rotate(-45deg);
+                }
+
+                &:after { transform: rotate(45deg); }
+            }
+        }
+
         &:hover {
             color: var(--topbar-item-color-hover);
             background-color: var(--topbar-item-background-hover);
-        }
-        &.topbar-icon-on {
-            color: var(--topbar-item-color-current);
-            background-color: var(--topbar-item-background-current);
         }
     }
 }
@@ -321,7 +310,6 @@ html {
     }
 }
 
-
 // Primary navigation: Links to products on the left
 .s-topbar .s-topbar--navigation {
     .s-topbar--item {
@@ -351,27 +339,27 @@ html {
 
 // CTAs: Sign in, Sign up, etc. on the far right
 .s-topbar .s-topbar--ctas {
+    padding-left: @su4;
+    padding-right: @su8;
+
     li + li {
         margin-left: @su4;
     }
 
     .s-topbar--item {
         align-self: center;
-        padding-top: 8px;
-        padding-bottom: 8px;
+        padding-top: @su8;
+        padding-bottom: @su8;
     }
 }
 
-// TODO add search button classes?
 // Searchbar
 .s-topbar .s-topbar--searchbar {
-    //#build-topbar-settings-from-theme();
-    flex-grow: 1; // TODO which to use? grow or shrink?
-    flex-shrink: 10000; // Absolutely force the searchbar to shrink TODO note was here before
     -webkit-transform: translate3d(0, 0, 0); // Solves an issue with Safari clipping things strangely when a popover is present in the topbar
     padding: 0 @su8;
     display: flex;
     align-items: center;
+    flex-shrink: 10000; // force the searchbar to shrink as much as possible
 
     .s-topbar--searchbar--input-group {
         position: relative;
@@ -388,18 +376,21 @@ html {
                 box-shadow: var(--topbar-search-shadow-focus);
             }
 
-            .set-placeholder-color(var(--topbar-search-placeholder));
+            &::placeholder {
+                color: var(--topbar-search-placeholder);
+                font-style: normal;
+            }
         }
     }
 
     .s-select {
-        .wmx2; //TODO .sm:w25
+        .wmx2;
 
         margin-right: -1px;
+        color: var(--topbar-select-color);
 
         &:before,
         &:after {
-            border-color: var(--topbar-select-color) transparent;
             z-index: @zi-active; // Make sure our focus ring is above the search input
         }
     }
@@ -408,13 +399,13 @@ html {
         .brr0;
         height: 100%;
 
-        border-color: var(--topbar-select-border);
+        border-color: var(--topbar-search-border);
         background-color: var(--topbar-select-background);
         color: var(--topbar-select-color);
 
         &:focus {
-            border-color: var(--topbar-select-border-focus);
-            box-shadow: var(--topbar-select-shadow-focus);
+            border-color: var(--topbar-search-border-focus);
+            box-shadow: var(--topbar-search-shadow-focus);
             z-index: @zi-selected;
         }
     }
@@ -424,59 +415,23 @@ html {
         .blr0;
     }
 
-    // TODO necessary?
-    .set-placeholder-color(@col) {
-        &::placeholder {
-            color: @col;
-            font-style: normal;
+    #stacks-internals #screen-sm({
+        display: none;
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 100%;
+        max-width: 100%;
+        padding: @su8 @su12;
+        background: var(--topbar-item-background-hover);
+
+        &.s-topbar--searchbar__open {
+            display: flex;
+            max-width: none;
         }
-    }
 
-    //TODO
-    // @media screen and (max-width: (@breakpoint-sm + 176)) {
-    //     display: none;
-    //     position: absolute;
-    //     left: 0; top: 100%; right: 0;
-    //     max-width: 100%;
-    //     padding: @su8 @su12;
-    //     background: @topbar-secondary-link-background-active;
-
-    //     &.searchbar__open {
-    //         display: block;
-    //         max-width: none;
-    //     }
-
-    //     /* In the narrow view, the search box appears like an inbox dropdown, in particular it has a light background
-    //        even if the top bar itself is dark.
-    //        Therefore the search box gets the Stack Overflow colors in that case.
-    //     */
-    //     .s-input {
-    //         border-color: var(--black-200);
-    //         background-color: var(--white);
-    //         color: var(--black-700);
-
-    //         &:focus {
-    //             border-color: var(--blue-300);
-    //             box-shadow: 0 0 0 @su4 var(--focus-ring);
-    //         }
-
-    //         .set-placeholder-color(var(--black-200));
-    //     }
-
-    //     .s-select:before,
-    //     .s-select:after {
-    //         border-color: var(--black-700) transparent;
-    //     }
-
-    //     .s-select > select {
-    //         border-color: var(--black-200);
-    //         background-color: var(--black-050);
-    //         color: var(--black-700);
-
-    //         &:focus {
-    //             border-color: var(--blue-300);
-    //             box-shadow: 0 0 0 @su4 var(--focus-ring);
-    //         }
-    //     }
-    // }
+        .s-select {
+            .w25;
+        }
+    });
 }

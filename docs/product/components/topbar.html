@@ -38,16 +38,20 @@ description: A topbar component
                     </option>
                 </select>
             </div>
-
             <div class="s-topbar--searchbar--input-group">
                 <input type="text" placeholder="Search…" value="" autocomplete="off" class="s-input s-input__search" />
                 {% icon "Search", "s-input-icon s-input-icon__search" %}
             </div>
-
-            <button class="s-btn s-btn__icon s-btn__muted d-none sm:d-inline-flex" type="submit">{% icon "Search" %}</button>
         </form>
 
         <ol class="s-topbar--content">
+            <li>
+                <button
+                    class="s-topbar--item s-btn s-btn__icon s-btn__muted d-none sm:d-inline-flex js-search-button"
+                    type="button">
+                        {% icon "Search" %}
+                </button>
+            </li>
             <li>
                 <a href="#" class="s-topbar--item" title="Moderator inbox">
                     {% icon "Moderator" %}
@@ -156,3 +160,5 @@ description: A topbar component
         </ol>
     </header>
 </section>
+
+<script src="{{ "/assets/js/feature.topbar.js" | relative_url }}" defer></script>
