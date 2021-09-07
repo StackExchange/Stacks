@@ -252,7 +252,9 @@ html {
 //     }
 // }
 
-.s-topbar .s-topbar--navigation, .s-topbar .s-topbar--content {
+.s-topbar .s-topbar--navigation,
+.s-topbar .s-topbar--content,
+.s-topbar .s-topbar--ctas {
     display: flex;
     height: 100%;
     .list-reset;
@@ -261,7 +263,10 @@ html {
     > li {
         display: inline-flex;
     }
+}
 
+.s-topbar .s-topbar--navigation,
+.s-topbar .s-topbar--content {
     .s-topbar--item {
         color: var(--topbar-item-color);
         display: inline-flex;
@@ -316,6 +321,7 @@ html {
     }
 }
 
+
 // Primary navigation: Links to products on the left
 .s-topbar .s-topbar--navigation {
     .s-topbar--item {
@@ -341,13 +347,19 @@ html {
 .s-topbar .s-topbar--content {
     // allow this content to scroll if it gets too long
     .overflow-x-auto;
+}
 
-    // visible only for logged out users
-    // .-ctas {
-    //     padding-left: @su4;
-    //     padding-right: @su8;
-    //     white-space: nowrap;
-    // }
+// CTAs: Sign in, Sign up, etc. on the far right
+.s-topbar .s-topbar--ctas {
+    li + li {
+        margin-left: @su4;
+    }
+
+    .s-topbar--item {
+        align-self: center;
+        padding-top: 8px;
+        padding-bottom: 8px;
+    }
 }
 
 // TODO add search button classes?
@@ -366,9 +378,6 @@ html {
         flex-grow: 1;
 
         .s-input {
-            .blr0;
-            height: 100%;
-
             border-color: var(--topbar-search-border);
             background-color: var(--topbar-search-background);
             box-shadow: var(--topbar-search-shadow);
@@ -408,6 +417,11 @@ html {
             box-shadow: var(--topbar-select-shadow-focus);
             z-index: @zi-selected;
         }
+    }
+
+    // drop the left border of the search input when it is next to the select
+    .s-select + .s-topbar--searchbar--input-group > .s-input {
+        .blr0;
     }
 
     // TODO necessary?
@@ -466,50 +480,3 @@ html {
     //     }
     // }
 }
-
-// TODO
-// Just trying to be nice for smaller screen resolutions...
-// What I do here is just making fonts and spacing smaller, so header can easily fit in <1090px.
-// @media screen and (max-width: 1090px) {
-//     .s-topbar {
-//         .-container {
-//             margin: 0;
-
-//             /* compensate for a potential scrollbar -- with the 8px padding, this assumes 16px for a scrollbar
-//                (which at lest matches Chrome & FF on Windows). Best we can do.
-//                Note that when the whole *site*, not just the top bar, is responsive, none of this matters.
-//             */
-//             max-width: ~'calc(100vw - @{su24})';
-//         }
-//     }
-
-//     .s-topbar .navigation {
-//         .-link {
-//             padding: 0 @su8
-//         }
-
-//         .beta-badge {
-//             right: 8px;
-//         }
-//     }
-
-//     .s-topbar .my-profile {
-//         padding-left: 5px;
-//         padding-right: 5px;
-//     }
-// }
-
-// TODO
-// @media screen and (max-width: @breakpoint-md) {
-//     .s-topbar .navigation {
-//         font-size: @fs-caption;
-//     }
-
-//     .s-topbar .my-profile {
-//         .-badges,
-//         .-rep {
-//             display: none;
-//         }
-//     }
-// }
-
