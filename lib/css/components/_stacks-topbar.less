@@ -104,6 +104,13 @@ html {
     border-top: var(--topbar-accent-border);
     position: relative;
 
+    // TODO necessary? used to wrap content so the topbar stretches 100% w/ content at some value below that
+    .s-topbar--container {
+        width: 100%; // TODO note - consumers should use atomic classes to override this
+        display: flex;
+        margin: 0 auto;
+    }
+
     .s-topbar--logo {
         padding: 0 @su12;
         height: 100%;
@@ -315,6 +322,8 @@ html {
 
 // Searchbar
 .s-topbar .s-topbar--searchbar {
+    @inputLineHeights: @lh-sm; // ensure the line heights between the two elements match up
+
     -webkit-transform: translate3d(0, 0, 0); // Solves an issue with Safari clipping things strangely when a popover is present in the topbar
     padding: 0 @su8;
     display: flex;
@@ -331,6 +340,7 @@ html {
             background-color: var(--topbar-search-background);
             box-shadow: var(--topbar-search-shadow);
             color: var(--topbar-search-color);
+            line-height: @inputLineHeights;
 
             &:focus {
                 border-color: var(--topbar-search-border-focus);
@@ -359,6 +369,7 @@ html {
     .s-select > select {
         .brr0;
         height: 100%;
+        line-height: @inputLineHeights;
 
         border-color: var(--topbar-search-border);
         background-color: var(--topbar-select-background);
