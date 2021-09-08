@@ -117,40 +117,9 @@ html {
         background-color: var(--topbar-item-background-hover);
     }
 
-    a.s-topbar--logo.topbar-icon-on {
+    a.s-topbar--logo.is-selected {
         background-color: var(--topbar-item-background-hover);
     }
-
-    // TODO
-    // .-feature-notice {
-    //     text-decoration: none;
-    //     height: 100%;
-    //     display: inline-flex;
-    //     align-items: center;
-    //     margin: 0 @su4 0 0;
-
-    //     span {
-    //         border-radius: @br-sm;
-    //         background-color: @topbar-secondary-link-color;
-    //         color: @white;
-    //         font-weight: bold;
-    //         font-size: @fs-fine;
-    //         text-transform: uppercase;
-    //         padding: @su4 @su8;
-    //         margin: 0 @su8;
-    //     }
-
-    //     &:hover, &.topbar-icon-on {
-    //         background-color: @topbar-secondary-link-background-hover;
-    //         span {
-    //             background-color: @topbar-secondary-link-color-hover;
-    //         }
-    //     }
-
-    //     &.unread-feature-notice span {
-    //         background-color: @settings[@primary] ~"!important";
-    //     }
-    // }
 
     .s-topbar--menu {
         display: flex;// none;
@@ -211,35 +180,6 @@ html {
         }
     }
 }
-
-// TODO this and -marketing-link should use the same styles
-// Main navigation: Questions, Jobs, Documentation, Users, Tags...
-// .s-topbar .navigation {
-//     // "NEW" badge that can be added to navigation item (above).
-//     .new-badge {
-//         background-color: @orange;
-//         color: @white;
-//         font-size: @fs-fine;
-//         padding: @su2 @su4;
-//         text-transform: uppercase;
-//         border-radius: 0 0 @br-sm @br-sm;
-//         line-height: 1;
-//         position: absolute;
-//         right: @su12; top: 0;
-//     }
-//
-//     // "BETA" badge that can be added to navigation item (below).
-//     .beta-badge {
-//         color: @black-200;
-//         font-size: @fs-fine;
-//         padding: @su2 0;
-//         text-transform: uppercase;
-//         border-radius: 0 0 @br-sm @br-sm;
-//         line-height: 1;
-//         position: absolute;
-//         right: @su12; top: 35px;
-//     }
-// }
 
 .s-topbar .s-topbar--navigation,
 .s-topbar .s-topbar--content,
@@ -319,6 +259,27 @@ html {
         align-self: center;
 
         &.is-selected {
+            background-color: var(--theme-primary-color);
+            color: var(--white);
+
+            &:hover,
+            &:focus {
+                background-color: var(--theme-primary-600);
+                color: var(--white);
+            }
+        }
+    }
+
+    // TODO Stacks component? Badge?
+    .s-topbar--item.s-topbar--notice {
+        border-radius: @br-sm;
+        font-weight: bold;
+        font-size: @fs-fine;
+        text-transform: uppercase;
+        padding: @su4 @su8;
+        margin: 0 @su8;
+
+        &.is-unread {
             background-color: var(--theme-primary-color);
             color: var(--white);
 
