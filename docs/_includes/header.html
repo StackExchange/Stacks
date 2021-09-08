@@ -1,10 +1,10 @@
 <header class="bg-black-050 ps-fixed h64 t0 l0 r0 z-nav-fixed bb bc-black-3 js-stacks-topbar print:d-none">
-    <div class="grid ai-center px16 h100 mx-auto wmx12 sm:jc-space-between">
-        <a class="grid grid__center p8 mr8 s-link s-link__muted d-none md:d-block js-hamburger-btn" href="#">
+    <div class="d-flex ai-center px16 h100 mx-auto wmx12">
+        <button class="s-btn__unset c-pointer d-flex flex__center p8 mr8 fc-black-300 d-none md:d-block js-hamburger-btn">
             {% icon "Hamburger", "js-hamburger-icon" %}
             {% icon "Clear", "d-none js-hamburger-close-icon" %}
-        </a>
-        <a class="grid--cell js-logo" href="{{ "/" | relative_url }}">
+        </button>
+        <a class="flex--item js-logo" href="{{ "/" | relative_url }}">
             <span class="v-visible-sr">Stacks home</span>
             {% icon "LogoGlyphMd", "native" %}
         </a>
@@ -20,46 +20,75 @@
             </nav>
         {% endif %}
 
-        <a class="grid--cell fc-black-300 ml-auto sm:d-none" title="Stack Overflow" href="https://stackoverflow.com">
-            {% icon "LogoGlyphSm" %}
-        </a>
+        <div class="d-flex ai-center jc-end fl-grow1">
+            <div class="d-flex ai-center js-links">
+                <a class="flex--item fc-black-300 sm:d-none" title="Stack Overflow" href="https://stackoverflow.com">
+                    {% icon "LogoGlyphSm" %}
+                </a>
 
-        <a class="grid--cell fc-black-300 ml12 sm:d-none" title="Stacks on GitHub" href="https://github.com/StackExchange/Stacks">
-            {% icon "GitHub", "", "24" %}
-        </a>
+                <a class="flex--item fc-black-300 ml12 sm:ml16" title="Stacks on GitHub" href="https://github.com/StackExchange/Stacks">
+                    {% icon "GitHub", "", "24" %}
+                </a>
 
-        <a class="grid--cell fc-black-300 ml12 sm:d-none" title="Stacks Template on Codepen" href="https://codepen.io/pen?template=VwvKygL">
-            <svg aria-hidden="true" class="svg-icon iconCodepen" width="24" height="24" viewBox="0 0 18 18"><path d="M12.67 8.17l-2.98-2v-3.2l5.38 3.6-2.4 1.6zM13.9 9l1.73-1.15v2.3L13.9 9zm-4.2 2.82l2.98-2 2.4 1.62-5.38 3.59v-3.2zm-4.36-2l2.98 2v3.2l-5.38-3.58 2.4-1.61zM4.1 9l-1.73 1.15v-2.3L4.1 9zm4.2-2.82l-2.98 2-2.4-1.62L8.3 2.97v3.2zm.7 4.45L6.57 9 9 7.37 11.43 9 9 10.63zm7.99-4.19l-.01-.05-.01-.04-.02-.05-.02-.03a.6.6 0 0 0-.02-.05l-.02-.03a.69.69 0 0 0-.15-.17L16.7 6h-.02L9.4 1.11a.69.69 0 0 0-.77 0L1.3 5.99h-.02c0 .02-.02.02-.03.03a.81.81 0 0 0-.12.13.69.69 0 0 0-.03.04l-.02.03-.02.05-.02.03-.02.05v.04L1 6.44v.03a.7.7 0 0 0-.01.1v4.87a.7.7 0 0 0 0 .09l.01.03.01.05.01.04.02.05.02.03a.51.51 0 0 0 .07.12.53.53 0 0 0 .08.1c.02 0 .03.02.04.03l.03.02h.02l7.3 4.88a.69.69 0 0 0 .77 0l7.31-4.87h.02c0-.02.02-.02.03-.03a.72.72 0 0 0 .04-.04l.02-.02a.62.62 0 0 0 .13-.19l.02-.03a.6.6 0 0 0 .02-.05v-.04l.02-.05v-.03a.7.7 0 0 0 .01-.1V6.57a.7.7 0 0 0 0-.09l-.01-.03z"/></svg>
-        </a>
+                <a class="flex--item fc-black-300 ml12" title="Stacks Template on Codepen" href="https://codepen.io/pen?template=VwvKygL">
+                    <svg aria-hidden="true" class="svg-icon iconCodepen" width="24" height="24" viewBox="0 0 18 18"><path d="M12.67 8.17l-2.98-2v-3.2l5.38 3.6-2.4 1.6zM13.9 9l1.73-1.15v2.3L13.9 9zm-4.2 2.82l2.98-2 2.4 1.62-5.38 3.59v-3.2zm-4.36-2l2.98 2v3.2l-5.38-3.58 2.4-1.61zM4.1 9l-1.73 1.15v-2.3L4.1 9zm4.2-2.82l-2.98 2-2.4-1.62L8.3 2.97v3.2zm.7 4.45L6.57 9 9 7.37 11.43 9 9 10.63zm7.99-4.19l-.01-.05-.01-.04-.02-.05-.02-.03a.6.6 0 0 0-.02-.05l-.02-.03a.69.69 0 0 0-.15-.17L16.7 6h-.02L9.4 1.11a.69.69 0 0 0-.77 0L1.3 5.99h-.02c0 .02-.02.02-.03.03a.81.81 0 0 0-.12.13.69.69 0 0 0-.03.04l-.02.03-.02.05-.02.03-.02.05v.04L1 6.44v.03a.7.7 0 0 0-.01.1v4.87a.7.7 0 0 0 0 .09l.01.03.01.05.01.04.02.05.02.03a.51.51 0 0 0 .07.12.53.53 0 0 0 .08.1c.02 0 .03.02.04.03l.03.02h.02l7.3 4.88a.69.69 0 0 0 .77 0l7.31-4.87h.02c0-.02.02-.02.03-.03a.72.72 0 0 0 .04-.04l.02-.02a.62.62 0 0 0 .13-.19l.02-.03a.6.6 0 0 0 .02-.05v-.04l.02-.05v-.03a.7.7 0 0 0 .01-.1V6.57a.7.7 0 0 0 0-.09l-.01-.03z"/></svg>
+                </a>
+            </div>
 
-        <div class="grid--cell ps-relative ml16 w100 wmx3 sm:wmx-initial sm:ml0 sm:d-none js-search">
-            <input id="searchbox" class="s-input s-input__search bar-md js-stacks-search-bar" type="text" placeholder="Search Stacks…">
-            {% icon "Search", "s-input-icon s-input-icon__search" %}
-        </div>
+            <div class="flex--item ps-relative ml16 w100 wmx3 sm:wmx-initial sm:ml0 sm:d-none js-search">
+                <input id="searchbox" class="s-input s-input__search bar-md js-stacks-search-bar" type="text" placeholder="Search Stacks…">
+                {% icon "Search", "s-input-icon s-input-icon__search" %}
+            </div>
 
-        <button class="s-btn__unset c-pointer grid--cell fc-black-300 ml12 sm:d-none stacks-theme-button"
+            <button class="d-flex flex__center s-btn__unset c-pointer p8 ml-auto fc-black-300 d-none sm:d-block js-search-btn">
+                {% icon "Search", "js-search-icon" %}
+                {% icon "Clear", "d-none js-search-close-icon" %}
+            </button>
+
+            <button class="s-btn__unset c-pointer flex--item fc-black-300 ml12 stacks-theme-button"
                 aria-controls="theming-popover"
                 data-controller="s-popover"
                 data-action="s-popover#toggle"
                 data-s-popover-toggle-class="is-selected"
                 data-s-popover-placement="bottom-end"
                 title="Select a theme">
-            {% icon "Theme", "", "24" %}
-        </button>
+                    {% icon "Theme", "", "24" %}
+            </button>
 
-        <div class="s-popover w-auto wmn-initial wmx-initial"
-            id="theming-popover"
-            role="menu">
-            <div class="s-popover--arrow"></div>
-            <div class="grid fd-column gs12 gsy">
-                <button class="grid--cell ta-left s-btn__unset fc-black-600 c-pointer js-darkmode-btn">Toggle dark mode</button>
-                <button class="grid--cell ta-left s-btn__unset fc-black-600 c-pointer js-highcontrast-btn">Toggle high contrast</button>
+            <div class="s-popover w-auto wmn-initial wmx-initial"
+                id="theming-popover"
+                role="menu">
+                <div class="s-popover--arrow"></div>
+                <div class="d-flex fd-column gs12 gsy">
+                    <div class="flex--item">
+                        <div class="d-flex ai-center jc-space-between gs8">
+                            <label class="flex--item s-label fs-body1 fw-normal" for="toggle-theme-dark">Dark mode</label>
+                            <div class="flex--item s-toggle-switch">
+                                <input id="toggle-theme-dark" type="checkbox">
+                                <div class="s-toggle-switch--indicator"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex--item">
+                        <div class="d-flex ai-center jc-space-between gs8">
+                            <label class="flex--item s-label fs-body1 fw-normal" for="toggle-theme-custom">Custom theme</label>
+                            <div class="flex--item s-toggle-switch">
+                                <input id="toggle-theme-custom" type="checkbox">
+                                <div class="s-toggle-switch--indicator"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex--item">
+                        <div class="d-flex ai-center jc-space-between gs8">
+                            <label class="flex--item s-label fs-body1 fw-normal js-highcontrast-btn" for="toggle-theme-highcontrast">High contrast mode</label>
+                            <div class="flex--item s-toggle-switch">
+                                <input id="toggle-theme-highcontrast" type="checkbox">
+                                <div class="s-toggle-switch--indicator"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-
-        <a class="grid grid__center p8 ml8 s-link s-link__muted d-none sm:d-block js-search-btn" href="#">
-            {% icon "Search", "js-search-icon" %}
-            {% icon "Clear", "d-none js-search-close-icon" %}
-        </a>
     </div>
 </header>

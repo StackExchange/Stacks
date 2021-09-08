@@ -50,26 +50,26 @@ description: A few layout ideas to reconfigure columns for different screen size
 </tr>
 {% endhighlight %}
         <div class="stacks-preview--example p0" data-controller="docs-resizer">
-            <ul class="list-reset grid ai-center bb bc-black-3 p16 gs8 gsx sm:d-none">
-                <li class="grid--cell">
+            <ul class="list-reset d-flex ai-center bb bc-black-3 p16 gs8 gsx sm:d-none">
+                <li class="flex--item">
                     <a href="#" class="s-link s-link__muted py8 px12 bar-pill" data-action="click->docs-resizer#small">
                         {% icon "SmartPhone" %}
                         Small
                     </a>
                 </li>
-                <li class="grid--cell">
+                <li class="flex--item">
                     <a href="#" class="s-link s-link__muted py8 px12 bar-pill"
-                        data-action="click->docs-resizer#large" data-target="docs-resizer.default">
+                        data-action="click->docs-resizer#large" data-docs-resizer-target="default">
                         {% icon "Laptop" %}
                         Large
                     </a>
                 </li>
-                <li class="grid--cell ml16 fc-light fs-caption">
+                <li class="flex--item ml16 fc-light fs-caption">
                     (or resize the viewport)
                 </li>
             </ul>
             <div class="ta-center bg-checkered bbr-sm">
-                <iframe title="Two even columns example" height="205" frameborder="no" src="{{ '/email/patterns/snippets/two-col-even/' | relative_url }}" class="m-auto mbn4 w100 bbr-sm" data-target="docs-resizer.resizable"></iframe>
+                <iframe title="Two even columns example" height="205" frameborder="no" src="{{ '/email/patterns/snippets/two-col-even/' | relative_url }}" class="m-auto mbn4 w100 bbr-sm" data-docs-resizer-target="resizable"></iframe>
             </div>
         </div>
     </div>
@@ -119,27 +119,27 @@ description: A few layout ideas to reconfigure columns for different screen size
 </tr>
 {% endhighlight %}
         <div class="stacks-preview--example p0" data-controller="docs-resizer">
-            <ul class="list-reset grid ai-center bb bc-black-3 p16 gs8 gsx sm:d-none">
-                <li class="grid--cell">
+            <ul class="list-reset d-flex ai-center bb bc-black-3 p16 gs8 gsx sm:d-none">
+                <li class="flex--item">
                     <a href="#" class="s-link s-link__muted py8 px12 bar-pill"
                         data-action="click->docs-resizer#small">
                         {% icon "SmartPhone" %}
                         Small
                     </a>
                 </li>
-                <li class="grid--cell">
+                <li class="flex--item">
                     <a href="#" class="s-link s-link__muted py8 px12 bar-pill"
-                        data-action="click->docs-resizer#large" data-target="docs-resizer.default">
+                        data-action="click->docs-resizer#large" data-docs-resizer-target="default">
                         {% icon "Laptop" %}
                         Large
                     </a>
                 </li>
-                <li class="grid--cell ml16 fc-light fs-caption">
+                <li class="flex--item ml16 fc-light fs-caption">
                     (or resize the viewport)
                 </li>
             </ul>
             <div class="ta-center bg-checkered bbr-sm">
-                <iframe title="Two uneven columns example" height="220" frameborder="no" src="{{ '/email/patterns/snippets/two-col-uneven/' | relative_url }}" class="m-auto mbn4 w100 bbr-sm" data-target="docs-resizer.resizable"></iframe>
+                <iframe title="Two uneven columns example" height="220" frameborder="no" src="{{ '/email/patterns/snippets/two-col-uneven/' | relative_url }}" class="m-auto mbn4 w100 bbr-sm" data-docs-resizer-target="resizable"></iframe>
             </div>
         </div>
     </div>
@@ -191,36 +191,33 @@ description: A few layout ideas to reconfigure columns for different screen size
 </tr>
 {% endhighlight %}
         <div class="stacks-preview--example p0" data-controller="docs-resizer">
-            <ul class="list-reset grid ai-center bb bc-black-3 p16 gs8 gsx sm:d-none">
-                <li class="grid--cell">
+            <ul class="list-reset d-flex ai-center bb bc-black-3 p16 gs8 gsx sm:d-none">
+                <li class="flex--item">
                     <a href="#" class="s-link s-link__muted py8 px12 bar-pill"
                         data-action="click->docs-resizer#small">
                         {% icon "SmartPhone" %}
                         Small
                     </a>
                 </li>
-                <li class="grid--cell">
+                <li class="flex--item">
                     <a href="#" class="s-link s-link__muted py8 px12 bar-pill"
-                        data-action="click->docs-resizer#large" data-target="docs-resizer.default">
+                        data-action="click->docs-resizer#large" data-docs-resizer-target="default">
                         {% icon "Laptop" %}
                         Large
                     </a>
                 </li>
-                <li class="grid--cell ml16 fc-light fs-caption">
+                <li class="flex--item ml16 fc-light fs-caption">
                     (or resize the viewport)
                 </li>
             </ul>
             <div class="ta-center bg-checkered bbr-sm">
-                <iframe title="Two uneven columns reverse stacking example" height="220" frameborder="no" src="{{ '/email/patterns/snippets/two-col-uneven-reverse/' | relative_url }}" class="m-auto mbn4 bbr-sm" data-target="docs-resizer.resizable"></iframe>
+                <iframe title="Two uneven columns reverse stacking example" height="220" frameborder="no" src="{{ '/email/patterns/snippets/two-col-uneven-reverse/' | relative_url }}" class="m-auto mbn4 bbr-sm" data-docs-resizer-target="resizable"></iframe>
             </div>
         </div>
     </div>
-    <div class="grid s-notice s-notice__info mb24">
-        <div class="grid--cell mr8">{% icon "Alert" %}</div>
-        <div class="grid--cell lh-lg">
-            <strong>Note:</strong> If you add a <code class="stacks-code bg-powder-300">dir="rtl"</code> to a parent container, it will cascade down into children containers. To prevent text from reading right-to-left, add <code class="stacks-code bg-powder-300">dir="ltr"</code> to children containers.
-        </div>
-    </div>
+    {% tip %}
+        <strong>Note:</strong> If you add a <code class="stacks-code">dir="rtl"</code> to a parent container, it will cascade down into children containers. To prevent text from reading right-to-left, add <code class="stacks-code">dir="ltr"</code> to children containers.
+    {% endtip %}
 </section>
 <section class="stacks-section">
     {% header "h2", "Three even columns" %}
@@ -279,27 +276,27 @@ description: A few layout ideas to reconfigure columns for different screen size
 </tr>
 {% endhighlight %}
         <div class="stacks-preview--example p0" data-controller="docs-resizer">
-            <ul class="list-reset grid ai-center bb bc-black-3 p16 gs8 gsx sm:d-none">
-                <li class="grid--cell">
+            <ul class="list-reset d-flex ai-center bb bc-black-3 p16 gs8 gsx sm:d-none">
+                <li class="flex--item">
                     <a href="#" class="s-link s-link__muted py8 px12 bar-pill"
                         data-action="click->docs-resizer#small">
                         {% icon "SmartPhone" %}
                         Small
                     </a>
                 </li>
-                <li class="grid--cell">
+                <li class="flex--item">
                     <a href="#" class="s-link s-link__muted py8 px12 bar-pill"
-                        data-action="click->docs-resizer#large" data-target="docs-resizer.default">
+                        data-action="click->docs-resizer#large" data-docs-resizer-target="default">
                         {% icon "Laptop" %}
                         Large
                     </a>
                 </li>
-                <li class="grid--cell ml16 fc-light fs-caption">
+                <li class="flex--item ml16 fc-light fs-caption">
                     (or resize the viewport)
                 </li>
             </ul>
             <div class="ta-center bg-checkered bbr-sm">
-                <iframe title="Three even columns example" height="223" frameborder="no" src="{{ '/email/patterns/snippets/three-col-even/' | relative_url }}" class="m-auto mbn4 bbr-sm" data-target="docs-resizer.resizable"></iframe>
+                <iframe title="Three even columns example" height="223" frameborder="no" src="{{ '/email/patterns/snippets/three-col-even/' | relative_url }}" class="m-auto mbn4 bbr-sm" data-docs-resizer-target="resizable"></iframe>
             </div>
         </div>
     </div>

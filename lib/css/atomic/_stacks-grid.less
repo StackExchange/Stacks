@@ -7,224 +7,165 @@
 //  visit https://stackoverflow.design/
 //
 //  TABLE OF CONTENTS
-//  • VARIABLES
-//  • MIXINS
-//  • GRID ELEMENTS
-//  • GRID SPACING
-//  • MODIFICATIONS
+//  • GAP
+//  • GRID FLOW
+//  • GRID COLUMN TEMPLATES
+//  • COLUMN SPANS
+//  • ROW SPANS
 //
 
 //  ============================================================================
-//  --  STACKS GRID MIXINS
-//  ============================================================================
-//  --  FIXED COLUMN WIDTHS
+//  $   GAP
+//      Insert spaces or gutters in between grid items
+//      When this is available in flex layouts, this can be separated
+//      into its own section and documentation
 //  ----------------------------------------------------------------------------
-
-#stacks-internals() {
-    #grid-builder-settings() {
-        @grid-cols: 12;    //  Desired grid columns
-    }
-    #grid-builder-helpers() {
-        #stacks-internals #grid-builder-settings();
-
-        .create-fixed-cells(@num, @count: 1) when (@count =< @num) {
-            .grid--cell@{count} {
-                flex-basis: ((@count * 100%) / @num);
-            }
-
-            #stacks-internals #grid-builder-helpers .create-fixed-cells(@num, (@count + 1));
-        }
-
-        //  --  AUTO FIXED WIDTH CELLS
-        //      Automatic adjusting width cells are great. And being able to specify a
-        //      cell's width is equally amazing. But sometimes you want to be able to
-        //      have all cell's within a box container to be the same width. Instead
-        //      stating a fixed cell width, apply a modifying to the box container and
-        //      all child elements will automatically be sized.
-        //  ----------------------------------------------------------------------------
-        .create-grid-count-cols(@num, @count: 1) when (@count =< @num) {
-            .grid__allcells@{count} {
-                > .grid,
-                > .grid--cell {
-                    flex-basis: ((@count * 100%) / @num);
-                }
-            }
-
-            #stacks-internals #grid-builder-helpers .create-grid-count-cols(@num, (@count + 1));
-        }
-
-        //  --  GRID GUTTERS
-        //  ============================================================================
-        //      We need two mixins to properly generate grid gutters:
-        //
-        //      [1]  Adjusts the fixed column max-width / flex-basis if gutters are present.
-        //      [2]  Generate the desired gutters.
-        //
-        //  ----------------------------------------------------------------------------
-        //      [1] Adjust width / flex-basis numbers
-        //
-        //      HOW IT WORKS:
-        //      A quick primer on how this mixin works. The TL;DR is we're using a mixin
-        //      guard to start a loop that'll create all the desired `> .grid--cell@{count}`
-        //      classes.
-        //
-        //      The three mixin parameters are:
-        //        - @spacing: the desired distance our gutters should be
-        //        - @num: the number at which we should stop our loop
-        //        - @count: the current column number
-        //
-        //      The other bit is the mixin guard portion:
-        //
-        //          when (@count =< @num)
-        //
-        //      This checks if we should run the mixin. Using a comparison operator,
-        //      it's checking to see if the current @count is equal to (=) or less
-        //      than (<) the desired @num total. If it is, run the mixin.
-        //
-        //      Next the mixin runs as normal. Using the @cell-width variable, we
-        //      calculate the cell's width. We do this here because we need to use the
-        //      CSS calc function and this makes the code a little prettier. Using the
-        //      variable, we then update the fixed cell's flex-basis and width.
-        //
-        //      Finally we call for the mixin again within itself, assigning a new
-        //      @count value: the current value + 1. This then fires off the mixin
-        //      again, creating a loop until we've generated updated widths for all
-        //      of our desired @num.
-        //
-        //      There are two mixins here:
-        //          • "grid-fixed-cell-row" -- This is the baseline mixin.
-        //          • "grid-fixed-cell-column" -- When the ".grid" is a column, change
-        //             the margins, setting a top and bottom margin instead of left
-        //             and right.
-        //
-        //  ----------------------------------------------------------------------------
-        .grid-fixed-cell-spacing(@spacing, @num, @count: 1) when (@count =< @num) {
-            @cell-width: (@count * 100% / @num);
-
-            > .grid--cell@{count} {
-                margin: (@spacing / 2);
-            }
-
-            //  ------------------------------------------------------------------------
-            //  [1] FIXED WIDTH CELLS
-            //      This makes the fixed width cells to account for gutters.
-            //
-            //  [2] UNIFORM CHILD GRID CELLS
-            //      This class allows you to uniformly state the width of `.grid--cell`
-            //      divs within a `.grid` element. In particular we adjust the flex-basis
-            //      and max-width here to account for gutters.
-            //  ------------------------------------------------------------------------
-            > .grid--cell@{count},                                  // [1]
-            &.grid__allcells@{count} > .grid,                       // [2]
-            &.grid__allcells@{count} > .grid--cell {                // [2]
-                flex-basis: calc(~"@{cell-width} - @{spacing}");
-            }
-
-            #stacks-internals #grid-builder-helpers .grid-fixed-cell-spacing(@spacing, @num, (@count + 1));
-        }
-
-
-        //  ----------------------------------------------------------------------------
-        //      2.  Generate the desired gutters
-        //          We halve the spacing value because the spacing value should be the
-        //          total space between cells--not the total applied to each cell,
-        //          which would effectively double the desired total.
-        //
-        //          The "when" statements here refer to when we declare it's for a
-        //          row (default) or a column. When a column we need to reset the
-        //          left and right margins and add in top and bottom margins.
-        //  ----------------------------------------------------------------------------
-        .gutter-spacing(@spacing) {
-            #stacks-internals #grid-builder-settings();
-
-            margin: -(@spacing / 2);
-
-            //  --  FLUID CELLS
-            > .grid,
-            > .grid--cell {
-                margin: (@spacing / 2);
-            }
-
-            //  --  FIXED WIDTH CELLS
-            //      Now we call for the above mixin [1] to make sure we adjust the default
-            //      widths for the new gutters.
-            #stacks-internals #grid-builder-helpers .grid-fixed-cell-spacing(@spacing, @grid-cols);
-        }
-    }
-}
-
+#stacks-internals #responsify('.g2', { gap: @su2 });
+#stacks-internals #responsify('.g4', { gap: @su4; });
+#stacks-internals #responsify('.g6', { gap: @su6; });
+#stacks-internals #responsify('.g8', { gap: @su8; });
+#stacks-internals #responsify('.g12', { gap: @su12; });
+#stacks-internals #responsify('.g16', { gap: @su16; });
+#stacks-internals #responsify('.g24', { gap: @su24; });
+#stacks-internals #responsify('.g32', { gap: @su32; });
+#stacks-internals #responsify('.g48', { gap: @su48; });
+#stacks-internals #responsify('.g64', { gap: @su64; });
 
 //  ============================================================================
-//  $   GRID ELEMENTS
-//  ============================================================================
-//      To help simplify our CSS, we create a generic box container. By default
-//      this is a row container, but we can modify the box to become a column.
+//  $   GRID FLOW
 //  ----------------------------------------------------------------------------
-.grid {
-    display: flex;
-}
+#stacks-internals #responsify('.g-af-dense', { grid-auto-flow: dense; });
+#stacks-internals #responsify('.g-af-row', { grid-auto-flow: row; });
+#stacks-internals #responsify('.g-af-column', { grid-auto-flow: column; });
 
-//  --  UNIVERSAL FLEX WIDTHS
-//      This applies a flex value it to all of a grid's direct children.
-//  --------------------------------------------------------------------------
-.grid__fl0 {
-    &,
-    > .grid,
-    > .grid--cell {
-        flex: 0 auto;
-    }
-}
-.grid__fl1 {
-    &,
-    > .grid,
-    > .grid--cell {
-        flex: 1 auto;
-    }
-}
-
-
-& {
-    #stacks-internals #grid-builder-settings(); // load @grid-cols
-
-    //  $$  FIXED WIDTH CELLS
-    //  ----------------------------------------------------------------------------
-    #stacks-internals #grid-builder-helpers .create-fixed-cells(@grid-cols);
-
-    //  $$  AUTO FIXED WIDTH CELLS
-    //  ----------------------------------------------------------------------------
-    #stacks-internals #grid-builder-helpers .create-grid-count-cols(@grid-cols);
-}
 //  ============================================================================
-//  $   GRID SPACING
-//      Insert spaces or gutters in between grid cells
+//  $   GRID COLUMN TEMPLATES
 //  ----------------------------------------------------------------------------
-.gs2    { #stacks-internals #grid-builder-helpers .gutter-spacing(@su2); }        //  2px
-.gs4    { #stacks-internals #grid-builder-helpers .gutter-spacing(@su4); }        //  4px
-.gs6    { #stacks-internals #grid-builder-helpers .gutter-spacing(@su6); }        //  6px
-.gs8    { #stacks-internals #grid-builder-helpers .gutter-spacing(@su8); }        //  8px
-.gs12   { #stacks-internals #grid-builder-helpers .gutter-spacing(@su12); }       //  12px
-.gs16   { #stacks-internals #grid-builder-helpers .gutter-spacing(@su16); }       //  16px
-.gs24   { #stacks-internals #grid-builder-helpers .gutter-spacing(@su24); }       //  24px
-.gs32   { #stacks-internals #grid-builder-helpers .gutter-spacing(@su32); }       //  32px
-.gs48   { #stacks-internals #grid-builder-helpers .gutter-spacing(@su48); }       //  48px
-.gs64   { #stacks-internals #grid-builder-helpers .gutter-spacing(@su64); }       //  64px
+#stacks-internals #responsify('.grid__1', { grid-template-columns: repeat(1, minmax(0, 1fr)); });
+#stacks-internals #responsify('.grid__2', { grid-template-columns: repeat(2, minmax(0, 1fr)); });
+#stacks-internals #responsify('.grid__3', { grid-template-columns: repeat(3, minmax(0, 1fr)); });
+#stacks-internals #responsify('.grid__4', { grid-template-columns: repeat(4, minmax(0, 1fr)); });
+#stacks-internals #responsify('.grid__5', { grid-template-columns: repeat(5, minmax(0, 1fr)); });
+#stacks-internals #responsify('.grid__6', { grid-template-columns: repeat(6, minmax(0, 1fr)); });
+#stacks-internals #responsify('.grid__7', { grid-template-columns: repeat(7, minmax(0, 1fr)); });
+#stacks-internals #responsify('.grid__8', { grid-template-columns: repeat(8, minmax(0, 1fr)); });
+#stacks-internals #responsify('.grid__9', { grid-template-columns: repeat(9, minmax(0, 1fr)); });
+#stacks-internals #responsify('.grid__10', { grid-template-columns: repeat(10, minmax(0, 1fr)); });
+#stacks-internals #responsify('.grid__11', { grid-template-columns: repeat(11, minmax(0, 1fr)); });
+#stacks-internals #responsify('.grid__12', { grid-template-columns: repeat(12, minmax(0, 1fr)); });
 
-//  On rows, remove top and bottom margins
-.gsx {
-    &,
-    > .grid,
-    > [class*="grid--cell"] {
-        margin-top: 0;
-        margin-bottom: 0;
-    }
-}
+//  ============================================================================
+//  $   COLUMN SPANS
+//  ----------------------------------------------------------------------------
+#stacks-internals #responsify('.grid--col-all', { grid-column: ~"1 / -1"; });
+#stacks-internals #responsify('.grid--row-all', { grid-row: ~"1 / -1"; });
 
-//  On columns, remove left and right margins
-.gsy {
-    &,
-    > .grid,
-    > [class*="grid--cell"] {
-        margin-right: 0;
-        margin-left: 0;
-    }
-}
+#stacks-internals #responsify('.grid--col1', { grid-column: span 1; });
+#stacks-internals #responsify('.grid--col2', { grid-column: span 2; });
+#stacks-internals #responsify('.grid--col3', { grid-column: span 3; });
+#stacks-internals #responsify('.grid--col4', { grid-column: span 4; });
+#stacks-internals #responsify('.grid--col5', { grid-column: span 5; });
+#stacks-internals #responsify('.grid--col6', { grid-column: span 6; });
+#stacks-internals #responsify('.grid--col7', { grid-column: span 7; });
+#stacks-internals #responsify('.grid--col8', { grid-column: span 8; });
+#stacks-internals #responsify('.grid--col9', { grid-column: span 9; });
+#stacks-internals #responsify('.grid--col10', { grid-column: span 10; });
+#stacks-internals #responsify('.grid--col11', { grid-column: span 11; });
+#stacks-internals #responsify('.grid--col12', { grid-column: span 12; });
+
+//  ============================================================================
+//  $   ROW SPANS
+//  ----------------------------------------------------------------------------
+#stacks-internals #responsify('.grid--row1', { grid-row: span 1; });
+#stacks-internals #responsify('.grid--row2', { grid-row: span 2; });
+#stacks-internals #responsify('.grid--row3', { grid-row: span 3; });
+#stacks-internals #responsify('.grid--row4', { grid-row: span 4; });
+#stacks-internals #responsify('.grid--row5', { grid-row: span 5; });
+#stacks-internals #responsify('.grid--row6', { grid-row: span 6; });
+#stacks-internals #responsify('.grid--row7', { grid-row: span 7; });
+#stacks-internals #responsify('.grid--row8', { grid-row: span 8; });
+#stacks-internals #responsify('.grid--row9', { grid-row: span 9; });
+#stacks-internals #responsify('.grid--row10', { grid-row: span 10; });
+#stacks-internals #responsify('.grid--row11', { grid-row: span 11; });
+#stacks-internals #responsify('.grid--row12', { grid-row: span 12; });
+
+//  ============================================================================
+//  $   COLUMN START
+//  ----------------------------------------------------------------------------
+#stacks-internals #responsify('.grid--col-start1', { grid-column-start: 1; });
+#stacks-internals #responsify('.grid--col-start2', { grid-column-start: 2; });
+#stacks-internals #responsify('.grid--col-start3', { grid-column-start: 3; });
+#stacks-internals #responsify('.grid--col-start4', { grid-column-start: 4; });
+#stacks-internals #responsify('.grid--col-start5', { grid-column-start: 5; });
+#stacks-internals #responsify('.grid--col-start6', { grid-column-start: 6; });
+#stacks-internals #responsify('.grid--col-start7', { grid-column-start: 7; });
+#stacks-internals #responsify('.grid--col-start8', { grid-column-start: 8; });
+#stacks-internals #responsify('.grid--col-start9', { grid-column-start: 9; });
+#stacks-internals #responsify('.grid--col-start10', { grid-column-start: 10; });
+#stacks-internals #responsify('.grid--col-start11', { grid-column-start: 11; });
+#stacks-internals #responsify('.grid--col-start12', { grid-column-start: 12; });
+
+//  ============================================================================
+//  $   COLUMN END
+//  ----------------------------------------------------------------------------
+#stacks-internals #responsify('.grid--col-end2', { grid-column-end: 2; });
+#stacks-internals #responsify('.grid--col-end3', { grid-column-end: 3; });
+#stacks-internals #responsify('.grid--col-end4', { grid-column-end: 4; });
+#stacks-internals #responsify('.grid--col-end5', { grid-column-end: 5; });
+#stacks-internals #responsify('.grid--col-end6', { grid-column-end: 6; });
+#stacks-internals #responsify('.grid--col-end7', { grid-column-end: 7; });
+#stacks-internals #responsify('.grid--col-end8', { grid-column-end: 8; });
+#stacks-internals #responsify('.grid--col-end9', { grid-column-end: 9; });
+#stacks-internals #responsify('.grid--col-end10', { grid-column-end: 10; });
+#stacks-internals #responsify('.grid--col-end11', { grid-column-end: 11; });
+#stacks-internals #responsify('.grid--col-end12', { grid-column-end: 12; });
+#stacks-internals #responsify('.grid--col-end13', { grid-column-end: 13; });
+
+//  ============================================================================
+//  $   ROW START
+//  ----------------------------------------------------------------------------
+#stacks-internals #responsify('.grid--row-start1', { grid-row-start: 1; });
+#stacks-internals #responsify('.grid--row-start2', { grid-row-start: 2; });
+#stacks-internals #responsify('.grid--row-start3', { grid-row-start: 3; });
+#stacks-internals #responsify('.grid--row-start4', { grid-row-start: 4; });
+#stacks-internals #responsify('.grid--row-start5', { grid-row-start: 5; });
+#stacks-internals #responsify('.grid--row-start6', { grid-row-start: 6; });
+#stacks-internals #responsify('.grid--row-start7', { grid-row-start: 7; });
+#stacks-internals #responsify('.grid--row-start8', { grid-row-start: 8; });
+#stacks-internals #responsify('.grid--row-start9', { grid-row-start: 9; });
+#stacks-internals #responsify('.grid--row-start10', { grid-row-start: 10; });
+#stacks-internals #responsify('.grid--row-start11', { grid-row-start: 11; });
+#stacks-internals #responsify('.grid--row-start12', { grid-row-start: 12; });
+
+//  ============================================================================
+//  $   ROW END
+//  ----------------------------------------------------------------------------
+#stacks-internals #responsify('.grid--row-end2', { grid-row-end: 2; });
+#stacks-internals #responsify('.grid--row-end3', { grid-row-end: 3; });
+#stacks-internals #responsify('.grid--row-end4', { grid-row-end: 4; });
+#stacks-internals #responsify('.grid--row-end5', { grid-row-end: 5; });
+#stacks-internals #responsify('.grid--row-end6', { grid-row-end: 6; });
+#stacks-internals #responsify('.grid--row-end7', { grid-row-end: 7; });
+#stacks-internals #responsify('.grid--row-end8', { grid-row-end: 8; });
+#stacks-internals #responsify('.grid--row-end9', { grid-row-end: 9; });
+#stacks-internals #responsify('.grid--row-end10', { grid-row-end: 10; });
+#stacks-internals #responsify('.grid--row-end11', { grid-row-end: 11; });
+#stacks-internals #responsify('.grid--row-end12', { grid-row-end: 12; });
+#stacks-internals #responsify('.grid--row-end13', { grid-row-end: 13; });
+
+//  ============================================================================
+//  $   JUSTIFICATION
+//  ----------------------------------------------------------------------------
+#stacks-internals #responsify('.ji-auto', { justify-items: auto !important; });
+#stacks-internals #responsify('.ji-center', { justify-items: center !important; });
+#stacks-internals #responsify('.ji-start', { justify-items: start !important; });
+#stacks-internals #responsify('.ji-end', { justify-items: end !important; });
+#stacks-internals #responsify('.ji-stretch', { justify-items: stretch !important; });
+#stacks-internals #responsify('.ji-unset', { justify-items: unset !important; });
+
+#stacks-internals #responsify('.js-auto', { justify-self: auto !important; });
+#stacks-internals #responsify('.js-center', { justify-self: center !important; });
+#stacks-internals #responsify('.js-start', { justify-self: start !important; });
+#stacks-internals #responsify('.js-end', { justify-self: end !important; });
+#stacks-internals #responsify('.js-stretch', { justify-self: stretch !important; });
+#stacks-internals #responsify('.js-unset', { justify-self: unset !important; });

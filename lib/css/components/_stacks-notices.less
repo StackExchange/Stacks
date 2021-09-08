@@ -43,23 +43,28 @@
 //  ----------------------------------------------------------------------------
 .s-notice__info,
 .s-banner__info {
-    border-color: var(--powder-400);
-    background-color: var(--powder-100);
+    border-color: var(--theme-secondary-150);
+    background-color: var(--theme-secondary-050);
 
     &.s-notice__important,
     &.s-banner__important {
-        background-color: var(--blue-500);
+        background-color: var(--theme-secondary-400);
     }
 
     // Improve the presentation of buttons
     .s-notice--btn {
+        &:focus,
         &:hover {
-            background-color: var(--powder-300);
+            background-color: var(--theme-secondary-300);
         }
 
         &:active {
-            background-color: var(--powder-400);
+            background-color: var(--theme-secondary-400);
         }
+    }
+
+    code {
+        background-color: var(--theme-secondary-150);
     }
 }
 
@@ -89,6 +94,7 @@
 
     // Improve the presentation of buttons
     .s-notice--btn {
+        &:focus,
         &:hover {
             background-color: var(--green-100);
         }
@@ -125,6 +131,7 @@
 
     // Improve the presentation of buttons
     .s-notice--btn {
+        &:focus,
         &:hover {
             background-color: var(--yellow-200);
         }
@@ -132,6 +139,10 @@
         &:active {
             background-color: var(--yellow-300);
         }
+    }
+
+    code {
+        background-color: var(--yellow-200);
     }
 }
 
@@ -154,6 +165,7 @@
 
     // Improve the presentation of buttons
     .s-notice--btn {
+        &:focus,
         &:hover {
             background-color: var(--red-100);
         }
@@ -194,14 +206,18 @@
     right: @su8;
     opacity: 0;
     z-index: @zi-modals + 1; // Toasts should appear above modals
-    transform: translate3d(0,-66px,0);
+    transform: translate3d(0, -66px, 0);
     transition: transform 100ms @te-smooth-slow 0s, opacity 60ms @te-smooth-slow 0ms, visibility 0s 150ms;
     pointer-events: none;
 
     &[aria-hidden="false"] {
         visibility: visible;
         opacity: 1;
-        transform: translate3d(0,0,0);
+        transform: translate3d(0, 0, 0);
         transition: visibility 0s 0s, opacity 100ms @te-smooth 0s, transform 100ms @te-smooth 0s;
+    }
+
+    @media (prefers-reduced-motion) {
+        transform: none;
     }
 }

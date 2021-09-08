@@ -9,7 +9,6 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.setQuietMode(true); // Reduce the console output
   eleventyConfig.addLayoutAlias('home', 'layouts/home.html');
   eleventyConfig.addLayoutAlias('page', 'layouts/page.html');
-  eleventyConfig.addLayoutAlias('page-nomenu', 'layouts/page-nomenu.html');
 
   // Icon shortcode
   eleventyConfig.addLiquidShortcode("icon", function(name, classes, dimension) {
@@ -62,14 +61,49 @@ module.exports = function(eleventyConfig) {
     var linkIcon = Icons["Link"];
 
     var output = '';
-    output += '<div class="grid jc-space-between ai-end pe-none stacks-header">';
-    output +=   '<' + tag + ' class="grid--cell fl1 stacks-' + tag + '" id="'+ slug +'">';
+    output += '<div class="d-flex jc-space-between ai-end pe-none stacks-header">';
+    output +=   '<' + tag + ' class="flex--item fl-grow1 stacks-' + tag + '" id="'+ slug +'">';
     output +=     '<span class="pe-auto">' + text + '</span>';
     output +=   '</' + tag + '>';
-    output +=   '<a class="grid grid__center mbn6 s-btn s-btn__muted pe-auto" href="#'+ slug +'">';
+    output +=   '<a class="d-flex flex__center mbn6 s-btn s-btn__muted pe-auto" href="#'+ slug +'">';
     output +=     '<span class="v-visible-sr">Section titled ' + text + '</span>';
     output +=     linkIcon;
     output +=   '</a>';
+    output += '</div>';
+
+    return output;
+  });
+
+  // Tip shortcode
+  eleventyConfig.addPairedShortcode("tip", function(content, type, classes, interiorClasses) {
+    var spot = "";
+
+    if (type == "warning") {
+      spot = Spots["Alert"];
+      type = "s-notice__warning";
+    } else {
+      spot = Spots["AlertCircle"];
+      type = "s-notice__info";
+    }
+
+    if (classes == null) {
+      classes = "mb48";
+    }
+
+    if (interiorClasses == null) {
+      interiorClasses = "ai-start";
+    }
+
+    var output = '';
+    output += '<div class="s-notice bar-md s-anchors s-anchors__inherit s-anchors__underlined ' + type + ' ' + classes + '">';
+    output +=   '<div class="d-flex gs16 ' + interiorClasses + '">';
+    output +=     '<div class="flex--item">';
+    output +=       spot;
+    output +=     '</div>';
+    output +=     '<div class="flex--item fs-body2 lh-lg">';
+    output +=       content
+    output +=     '</div>';
+    output +=   '</div>';
     output += '</div>';
 
     return output;

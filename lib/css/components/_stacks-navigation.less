@@ -9,14 +9,11 @@
 //  TABLE OF CONTENTS
 //  • BASE STYLE
 //  • MUTED STYLE
-
-
+//
 //  ============================================================================
 //  $   BASE STYLE
 //  ----------------------------------------------------------------------------
 .s-navigation {
-    #stacks-internals #load-config();
-
     display: flex;
     margin: -@su2;
     padding: @su2 0;
@@ -24,6 +21,56 @@
 
     // If the s-navigation is a list, let's reset all the properties
     list-style: none;
+
+    .s-navigation--item {
+        display: flex;
+        align-items: center;
+        padding: @su6 @su12;
+        position: relative;
+
+        // Reset some things for when the navigation item is also a button
+        border: none;
+        font: unset;
+        background: none;
+        box-shadow: none;
+        cursor: pointer;
+        user-select: auto;
+        border-radius: 1000px;
+        margin: @su2;
+        white-space: nowrap;
+        color: var(--black-600);
+
+        &:hover,
+        &:active {
+            background: var(--black-075);
+            color: var(--black-600);
+        }
+
+        @focus-styles();
+
+        &.is-selected {
+            background: var(--theme-primary-color);
+            color: var(--white);
+        }
+
+        &.s-navigation--item__dropdown {
+            padding-right: 2em;
+
+            &:after {
+                content: "";
+                position: absolute;
+                z-index: @zi-active;
+                top: calc(50% - 2px);
+                right: 0.9em;
+                border-style: solid;
+                border-width: @su4;
+                border-top-width: @su4;
+                border-bottom-width: 0;
+                border-color: currentColor transparent;
+                pointer-events: none;
+            }
+        }
+    }
 
     &.s-navigation__scroll {
         overflow-x: auto;
@@ -39,6 +86,7 @@
 
         .s-navigation--item {
             margin: 0;
+            white-space: normal;
         }
     }
 
@@ -51,36 +99,6 @@
 
         &:first-child {
             margin-top: 0;
-        }
-    }
-
-    .s-navigation--item {
-        display: flex;
-        align-items: center;
-        padding: @su6 @su12;
-
-        // Reset some things for when the navigation item is also a button
-        border: none;
-        font: unset;
-        background: none;
-        box-shadow: none;
-        cursor: pointer;
-        user-select: auto;
-        border-radius: 1000px;
-        margin: @su2;
-        color: var(--black-600);
-
-        &:hover,
-        &:active {
-            background: var(--black-075);
-            color: var(--black-600);
-        }
-
-        @focus-styles();
-
-        &.is-selected {
-            background: @navigation-link-highlight;
-            color: var(--white);
         }
     }
 
@@ -101,6 +119,10 @@
         .s-navigation--item {
             padding: @su4 @su12;
             font-size: @fs-caption;
+
+            &.s-navigation--item__dropdown {
+                padding-right: 2em;
+            }
         }
     }
 }
