@@ -403,22 +403,30 @@
     //  $   MISC STYLES
     //  ============================================================================
     .s-btn__google {
-        border-color: var(--black-100);
+        border-color: var(--bc-medium);
         background-color: var(--white);
         color: var(--black-700);
 
         &:hover,
         &:focus {
-            border-color: var(--black-150);
+            border-color: var(--bc-darker);
             background-color: var(--black-025);
             color: var(--black-800);
         }
 
         &:active {
-            border-color: var(--black-200);
+            border-color: var(--bc-darkest);
             background-color: var(--black-050);
             color: var(--black-900);
         }
+        body.theme-highcontrast & {
+            &:hover,
+            &:focus,
+            &:active {
+                border-color: currentColor;
+            }
+        }
+
     }
 
     .s-btn__facebook {
