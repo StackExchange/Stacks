@@ -657,39 +657,8 @@
     }
 }
 
-:root {
-    // specify the default colors in less, then deconstruct them
-    // this keeps the hsl/rgb variables below in sync, but consumers will need to set each variable separately
-    @defaultPrimaryColor: @orange;
-    @defaultSecondaryColor: @blue;
-    .generate-calculated-themed-variables(@defaultPrimaryColor, primary);
-    .generate-calculated-themed-variables(@defaultSecondaryColor, secondary);
-}
-
-// place component-colors on the body directly (instead of :root) so consumers can use the --theme-* variables
-body {
-    .component-colors();
-}
-
-body:not(.theme-dark),
-body.theme-dark .theme-light__forced,
-body.theme-system .theme-light__forced {
-    .light-colors();
-
-    &,
-    & .themed {
-        .generate-themed-variables(theme-light);
-        // add in the themed "native mixins", making sure to scope to the child .themed elements so they don't use the parent's values
-        .light-themed-colors();
-    }
-
-    & .themed {
-        .component-colors();
-    }
-}
-
-//  --  Light high contrast
-body.theme-highcontrast {
+//  --  High contrast modes
+.light-highcontrast {
     --white: @white;
     --black: @black;
     --orange: hsl(@orange-h, 90.5%, 49%);
@@ -840,7 +809,6 @@ body.theme-highcontrast {
     --highlight-deletion: var(--red-600);
 }
 
-//  --  Dark high contrast
 .dark-highcontrast() {
     --white: #000;
     --black: #fff;
@@ -978,21 +946,63 @@ body.theme-highcontrast {
     --highlight-deletion: var(--red-700);
 }
 
-body.theme-system .theme-highcontrast {
-    @media (prefers-color-scheme: dark) {
-        .dark-highcontrast();
+:root {
+    // specify the default colors in less, then deconstruct them
+    // this keeps the hsl/rgb variables below in sync, but consumers will need to set each variable separately
+    @defaultPrimaryColor: @orange;
+    @defaultSecondaryColor: @blue;
+    .generate-calculated-themed-variables(@defaultPrimaryColor, primary);
+    .generate-calculated-themed-variables(@defaultSecondaryColor, secondary);
+}
+
+// place component-colors on the body directly (instead of :root) so consumers can use the --theme-* variables
+body {
+    .component-colors();
+}
+
+// Light mode
+body:not(.theme-dark),
+body.theme-dark .theme-light__forced,
+body.theme-system .theme-light__forced {
+    .light-colors();
+
+    &,
+    & .themed {
+        .generate-themed-variables(theme-light);
+        // add in the themed "native mixins", making sure to scope to the child .themed elements so they don't use the parent's values
+        .light-themed-colors();
+    }
+
+    & .themed {
+        .component-colors();
     }
 }
 
-body.theme-dark.theme-highcontrast {
-    .dark-highcontrast();
+// Dark mode
+body.theme-dark,
+body:not(.theme-dark) .theme-dark__forced {
+    .theme-dark-rules();
+}
+body.theme-system {
+    @media (prefers-color-scheme: dark) {
+        .theme-dark-rules();
+    }
 }
 body:not(.theme-dark) .theme-dark__forced {
     .theme-dark-rules();
 }
 
-body.theme-system {
+// High contrast mode (Light)
+body.theme-highcontrast {
+    .light-highcontrast();
+}
+
+// High contrast mode (Dark)
+body.theme-dark.theme-highcontrast {
+    .dark-highcontrast();
+}
+body.theme-system .theme-highcontrast {
     @media (prefers-color-scheme: dark) {
-        .theme-dark-rules();
+        .dark-highcontrast();
     }
 }
