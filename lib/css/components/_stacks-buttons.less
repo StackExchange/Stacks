@@ -150,6 +150,10 @@
             font-size: @fs-caption;
             line-height: @lh-xs;
             background-color: currentColor;
+
+            .highcontrast-mode({
+                opacity: 0.8;
+            });
         }
 
         .s-btn--number {
@@ -216,18 +220,6 @@
         #stacks-internals #load-config();
         color: @button-muted-color;
 
-        .highcontrast-mode({
-            &.s-btn__filled {
-                &.is-selected {
-                    color: var(--white);
-
-                    .s-btn--number {
-                        color: var(--black);
-                    }
-                }
-            }
-        });
-
         &:hover,
         &:focus,
         &:active {
@@ -270,6 +262,15 @@
 
             .dark-mode({ box-shadow: none; });
 
+            .highcontrast-mode({
+                background-color: var(--black-400);
+                color: var(--white);
+
+                .s-btn--number {
+                    color: var(--black);
+                }
+            });
+
             &:hover,
             &:focus,
             &:active {
@@ -290,6 +291,14 @@
                 color: @button-muted-filled-selected-color;
                 background-color: @button-muted-filled-selected-background-color;
                 box-shadow: none;
+
+                .highcontrast-mode({
+                    background-color: var(--black-700);
+
+                    .s-btn--number {
+                        color: var(--black);
+                    }
+                });
 
                 &:focus {
                     box-shadow: 0 0 0 @su4 var(--focus-ring-muted);
@@ -347,6 +356,14 @@
 
             .dark-mode({ box-shadow: none; });
 
+            .highcontrast-mode({
+                color: var(--white);
+
+                .s-btn--number {
+                    color: var(--black);
+                }
+            });
+
             &:hover,
             &:focus,
             &:active {
@@ -371,6 +388,11 @@
                 &:focus {
                     box-shadow: 0 0 0 @su4 var(--focus-ring-error);
                 }
+                .highcontrast-mode({
+                    .s-btn--number {
+                        color: var(--black);
+                    }
+                });
             }
 
             .s-btn--number {
