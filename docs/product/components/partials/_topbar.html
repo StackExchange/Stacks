@@ -10,60 +10,64 @@
         {% icon "LogoGlyph", "native" %}
     </a>
 
-    <ol class="s-topbar--navigation sm:d-none">
-        {% if showNotices %}
-            <li>
-                <a class="s-topbar--item s-topbar--notice is-unread">
-                    new
-                </a>
-            </li>
-        {% endif %}
-        {% if loggedOut %}
-            <li>
-                <a href="#" class="s-topbar--item">
-                    About
-                </a>
-            </li>
-            <li>
-                <a href="#" class="s-topbar--item">
-                    Products
-                </a>
-            </li>
-            <li>
-                <a href="#" class="s-topbar--item">
-                    For Teams
-                </a>
-            </li>
-        {% else %}
-            <li>
-                <a href="#" class="s-topbar--item">
-                    Products
-                </a>
-            </li>
-        {% endif %}
-    </ol>
+    {% unless hideNavigation %}
+        <ol class="s-topbar--navigation sm:d-none">
+            {% if showNotices %}
+                <li>
+                    <a class="s-topbar--item s-topbar--notice is-unread">
+                        new
+                    </a>
+                </li>
+            {% endif %}
+            {% if loggedOut %}
+                <li>
+                    <a href="#" class="s-topbar--item">
+                        About
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="s-topbar--item">
+                        Products
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="s-topbar--item">
+                        For Teams
+                    </a>
+                </li>
+            {% else %}
+                <li>
+                    <a href="#" class="s-topbar--item">
+                        Products
+                    </a>
+                </li>
+            {% endif %}
+        </ol>
+    {% endunless %}
 
-    <form id="search" class="s-topbar--searchbar" autocomplete="off">
-        {% unless loggedOut %}
-            <div class="s-select">
-                <select>
-                    <option selected="selected">
-                        All
-                    </option>
-                    <option>
-                        Public
-                    </option>
-                    <option>
-                        Private Team 1
-                    </option>
-                </select>
+    {% unless hideSearch %}
+        <form id="search" class="s-topbar--searchbar" autocomplete="off">
+            {% unless loggedOut %}
+                <div class="s-select">
+                    <select>
+                        <option selected="selected">
+                            All
+                        </option>
+                        <option>
+                            Public
+                        </option>
+                        <option>
+                            Private Team 1
+                        </option>
+                    </select>
+                </div>
+            {% endunless %}
+            <div class="s-topbar--searchbar--input-group">
+                <input type="text" placeholder="Search…" value="" autocomplete="off" class="s-input s-input__search" />
+                {% icon "Search", "s-input-icon s-input-icon__search" %}
             </div>
-        {% endunless %}
-        <div class="s-topbar--searchbar--input-group">
-            <input type="text" placeholder="Search…" value="" autocomplete="off" class="s-input s-input__search" />
-            {% icon "Search", "s-input-icon s-input-icon__search" %}
-        </div>
-    </form>
+        </form>
+    {% endunless %}
 
     {% if loggedOut %}
         <ol class="s-topbar--ctas">

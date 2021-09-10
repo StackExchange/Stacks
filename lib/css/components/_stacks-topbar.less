@@ -112,7 +112,7 @@ html {
     }
 
     .s-topbar--logo {
-        padding: 0 @su12;
+        padding: 0 @su8;
         height: 100%;
         display: flex;
         align-items: center;
@@ -206,7 +206,7 @@ html {
         color: var(--topbar-item-color);
         display: inline-flex;
         align-items: center;
-        padding: 0 @su12;
+        padding: 0 10px; // TODO @su8 or @su12?
         text-decoration: none;
         white-space: nowrap;
         position: relative;
@@ -302,12 +302,16 @@ html {
 .s-topbar .s-topbar--content {
     // allow this content to scroll if it gets too long
     .overflow-x-auto;
+    // push this section as far to the right as possible
+    margin-left: auto;
 }
 
 // CTAs: Sign in, Sign up, etc. on the far right
 .s-topbar .s-topbar--ctas {
     padding-left: @su4;
     padding-right: @su8;
+    // push this section as far to the right as possible
+    margin-left: auto;
 
     li + li {
         margin-left: @su4;
