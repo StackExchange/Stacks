@@ -32,13 +32,13 @@
 //  ---------------------------------------------------------------------------
 
 .dark-mode(@rules) {
-    body.theme-system & {
+    body.theme-system:not(.theme-highcontrast) & {
         @media (prefers-color-scheme: dark) {
             @rules();
         }
     }
 
-    body.theme-dark &,
+    body.theme-dark:not(.theme-highcontrast) &,
     .theme-dark__forced & {
         @rules();
     }
