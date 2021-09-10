@@ -77,7 +77,8 @@
 
     // Bump up the border contrast in high contrast mode
     .highcontrast-mode({
-        border-color: var(--green-300);
+        background-color: var(--green-200);
+        border-color: var(--green-400);
     });
 
     &.s-notice__important,
@@ -87,6 +88,7 @@
 
         // Bump up the text in high contrast
         .highcontrast-mode({
+            background-color: var(--green-500);
             color: var(--white);
             border-color: transparent;
         });
@@ -114,6 +116,7 @@
 
     // Bump up the border contrast in high contrast mode
     .highcontrast-mode({
+        background-color: var(--yellow-200);
         border-color: var(--yellow-700);
     });
 
@@ -156,7 +159,13 @@
 
     // Bump up the border contrast in high contrast mode
     .highcontrast-mode({
-        border-color: var(--red-300);
+        background-color: var(--red-200);
+        border-color: var(--red-500);
+
+        &.s-notice__important,
+        &.s-banner__important {
+            background-color: var(--red-500);
+        }
     });
 
     &.s-notice__important,
@@ -193,7 +202,9 @@
         border-color: transparent;
     });
     .highcontrast-mode({
-        border-color: currentColor;
+        &:not(.s-notice__important) {
+            border-color: currentColor;
+        }
     });
 }
 
