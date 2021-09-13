@@ -35,7 +35,9 @@
         user-select: none;
 
         .highcontrast-mode({
-            border-color: currentColor;
+            &:not(.s-btn__primary):not(.s-btn__github):not(.s-btn__facebook) {
+                border-color: currentColor;
+            }
         });
 
         button &,
@@ -225,6 +227,12 @@
         #stacks-internals #load-config();
         color: @button-muted-color;
 
+        .highcontrast-mode({
+            &.s-btn__filled {
+                border-color: transparent;
+            }
+        });
+
         &:hover,
         &:focus,
         &:active {
@@ -269,6 +277,7 @@
 
             .highcontrast-mode({
                 background-color: var(--black-400);
+                border-color: transparent;
                 color: var(--white);
 
                 .s-btn--number {
@@ -318,6 +327,12 @@
     .s-btn__danger {
         #stacks-internals #load-config();
         color: @button-danger-color;
+
+        .highcontrast-mode({
+            &.s-btn__filled {
+                border-color: transparent;
+            }
+        });
 
         &:hover,
         &:focus,
@@ -470,13 +485,6 @@
             background-color: var(--black-050);
             color: var(--black-900);
         }
-        .highcontrast-mode({
-            &:hover,
-            &:focus,
-            &:active {
-                border-color: currentColor;
-            }
-        });
     }
 
     .s-btn__facebook {
