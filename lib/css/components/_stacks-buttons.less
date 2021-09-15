@@ -34,11 +34,7 @@
         cursor: pointer;
         user-select: none;
 
-        .highcontrast-mode({
-            &:not(.s-btn__primary):not(.s-btn__github):not(.s-btn__facebook) {
-                border-color: currentColor;
-            }
-        });
+        .highcontrast-mode({ border-color: currentColor; });
 
         button &,
         button[type="submit"] &,
@@ -157,9 +153,7 @@
             line-height: @lh-xs;
             background-color: currentColor;
 
-            .highcontrast-mode({
-                opacity: 0.8;
-            });
+            .highcontrast-mode({ opacity: 0.8; });
         }
 
         .s-btn--number {
@@ -438,6 +432,7 @@
         });
         .highcontrast-mode({
             &:not(.is-selected) {
+                border-color: transparent;
                 color: var(--white);
             }
         });
@@ -492,6 +487,8 @@
         background-color: #385499;
         color: #fff;
 
+        .highcontrast-mode({ border-color: transparent; });
+
         &:hover,
         &:focus {
             background-color: darken(#385499, 5%);
@@ -507,6 +504,8 @@
     .s-btn__github {
         background-color: var(--black-750);
         color: var(--white);
+
+        .highcontrast-mode({ border-color: transparent; });
 
         &:hover,
         &:focus {
