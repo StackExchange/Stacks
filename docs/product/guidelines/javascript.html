@@ -20,7 +20,7 @@ description: This is an introduction to the JavaScript functionality provided by
 <section class="stacks-section">
     {% header "h2", "Using the Stacks JavaScript" %}
 
-    <p class="stacks-copy">The Stacks JavaScript components are provided as Stimulus controllers. <a href="https://stimulusjs.org/">Stimulus</a> is a library created by <a href="https://basecamp.com">Basecamp</a> (formerly 37Signals).</p>
+    <p class="stacks-copy">The Stacks JavaScript components are provided as Stimulus controllers. <a href="https://stimulus.hotwired.dev/">Stimulus</a> is a library created by <a href="https://basecamp.com">Basecamp</a>.</p>
 
     <p class="stacks-copy">Stimulus allows you to add functionality to your markup in a way that is similar to how you add styling to your markup: by modifying HTML attributes.</p>
 
@@ -68,12 +68,75 @@ Stacks.addController("greeter", {
 <section class="stacks-section">
     {% header "h2", "JavaScript classnames" %}
     <p class="stacks-copy">We prefix our JavaScript target classes with <code class="stacks-code">.js-</code> so that changing or adding a class name for styling purposes doesn’t inadvertently break our JS. This allows us to style elements with any chain of atomic or component classes from Stacks without breaking any additional JavaScript interactivity.</p>
+    <p class="stacks-copy">We also try to avoid IDs for <em>both</em> visual styling and JavaScript targeting. They aren’t reusable, visual styling can’t be overwritten by atomic classes, and, like non-<code class="stacks-code">.js-</code> classes, we can’t tell if there is JavaScript interactivity attached at a glance.</p>
 
-    <div class="stacks-preview _preview-none">
+    <div class="fc-green-500 fs-body1 fw-bold mb8">{% icon "Checkmark", "mtn1 mbn1" %} Do</div>
+    <div class="stacks-preview _preview-none mb12">
 {% highlight html %}
 <div class="s-card bs-lg js-copy">
     …
 </div>
+{% endhighlight %}
+    </div>
+
+    <div class="stacks-preview _preview-none">
+{% highlight js %}
+var button = document.querySelector('.js-copy');
+button.addEventListener('click', function() {
+    …
+});
+{% endhighlight %}
+    </div>
+
+    <div class="fc-red-500 fs-body1 fw-bold mb8">{% icon "Clear", "mtn1 mbn1" %} Don’t</div>
+    <div class="stacks-preview _preview-none mb12">
+{% highlight html %}
+<div class="s-card bs-lg">
+    …
+</div>
+{% endhighlight %}
+    </div>
+
+    <div class="stacks-preview _preview-none mb12">
+{% highlight js %}
+var button = document.querySelector('.s-card');
+button.addEventListener('click', function() {
+    …
+});
+{% endhighlight %}
+    </div>
+
+    <div class="stacks-preview _preview-none">
+{% highlight css %}
+.s-card {
+    …
+}
+{% endhighlight %}
+    </div>
+
+    <div class="fc-red-500 fs-body1 fw-bold mb8">{% icon "Clear", "mtn1 mbn1" %} Don’t</div>
+    <div class="stacks-preview _preview-none mb12">
+{% highlight html %}
+<div id="card">
+    …
+</div>
+{% endhighlight %}
+    </div>
+
+    <div class="stacks-preview _preview-none mb12">
+{% highlight js %}
+var button = document.querySelector('#card');
+button.addEventListener('click', function() {
+    …
+});
+{% endhighlight %}
+    </div>
+
+    <div class="stacks-preview _preview-none">
+{% highlight css %}
+#card {
+    …
+}
 {% endhighlight %}
     </div>
 </section>
