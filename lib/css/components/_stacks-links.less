@@ -16,14 +16,13 @@
 
 a,
 .s-link {
-    #stacks-internals #load-config();
     text-decoration: none;
-    color: @link-color;
+    color: var(--theme-link-color);
     cursor: pointer;
     user-select: auto;
 
     &.s-link__visited:visited {
-        color: @link-color-visited;
+        color: var(--theme-link-color-visited);
         text-decoration: none;
     }
 
@@ -31,7 +30,7 @@ a,
     &.s-link__visited:hover,
     &:active,
     &.s-link__visited:active {
-        color: @link-color-hover;
+        color: var(--theme-link-color-hover);
         text-decoration: none;
     }
 
@@ -139,8 +138,7 @@ button.s-link {
             text-decoration: underline;
         }
     }
-    #stacks-internals #load-config();
-    .colorize-all(default, @link-color, @link-color-hover);
+    .colorize-all(default, var(--theme-link-color), var(--theme-link-color-hover));
     .colorize-all(grayscale, var(--black-700), var(--black-600));
     .colorize-all(inherit, inherit, inherit);
     .colorize-all(muted, var(--black-500), var(--black-400));
@@ -177,13 +175,12 @@ button.s-link {
             background-color: var(--black-025);
         });
 
-        #stacks-internals #load-config();
         &.s-block-link__right {
-            box-shadow: inset -3px 0 0 @block-link-highlight;
+            box-shadow: inset -3px 0 0 var(--theme-primary-color);
         }
 
         &.s-block-link__left {
-            box-shadow: inset 3px 0 0 @block-link-highlight;
+            box-shadow: inset 3px 0 0 var(--theme-primary-color);
         }
     }
 
