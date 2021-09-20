@@ -14,56 +14,56 @@ html {
 .s-topbar, .s-topbar__auto
 {
     // NOTE bg-color is always @black-800, except SO, SO Internationals, and their metas where it is var(--black-025); Enterprise is set to var(--theme-topbar-background-color)
-    --topbar-background-color:           var(--black-025);
+    --theme-topbar-background-color:           var(--black-025);
 
     // Search input
-    --topbar-search-color:               var(--black-700);
-    --topbar-search-background:          var(--white);
-    --topbar-search-placeholder:         var(--black-200);
-    --topbar-search-border:              var(--black-200);
-    --topbar-search-border-focus:        var(--blue-300);
-    --topbar-search-shadow-focus:        0 0 0 @su4 var(--focus-ring);
+    --theme-topbar-search-color:               var(--black-700);
+    --theme-topbar-search-background:          var(--white);
+    --theme-topbar-search-placeholder:         var(--black-200);
+    --theme-topbar-search-border:              var(--black-200);
+    --theme-topbar-search-border-focus:        var(--blue-300);
+    --theme-topbar-search-shadow-focus:        0 0 0 @su4 var(--focus-ring);
 
     // Search switcher
-    --topbar-select-color:               var(--black-700);
-    --topbar-select-background:          var(--black-075);
+    --theme-topbar-select-color:               var(--black-700);
+    --theme-topbar-select-background:          var(--black-075);
 
     // topbar items
-    --topbar-item-color:                 var(--black-600);
-    --topbar-item-color-hover:           var(--black-800);
-    --topbar-item-background-hover:      var(--black-075);
-    --topbar-item-color-current:         var(--black);
-    --topbar-item-border-current:        var(--theme-primary-color);
+    --theme-topbar-item-color:                 var(--black-600);
+    --theme-topbar-item-color-hover:           var(--black-800);
+    --theme-topbar-item-background-hover:      var(--black-075);
+    --theme-topbar-item-color-current:         var(--black);
+    --theme-topbar-item-border-current:        var(--theme-primary-color);
 
     // themed border accent
-    --topbar-accent-border:              3px solid var(--theme-primary-color);
+    --theme-topbar-accent-border:              3px solid var(--theme-primary-color);
 }
 
-// forced light topbar TODO is this actually used anywhere?
+// forced light topbar
 .s-topbar__light {
-    --topbar-background-color:           @black-025;
+    --theme-topbar-background-color:           @black-025;
 
     // Search input
-    --topbar-search-color:               @black-700;
-    --topbar-search-background:          @white;
-    --topbar-search-placeholder:         @black-200;
-    --topbar-search-border:              @black-200;
-    --topbar-search-border-focus:        @blue-300;
-    --topbar-search-shadow-focus:        0 0 0 @su4 fade(@blue-500, 15%);
+    --theme-topbar-search-color:               @black-700;
+    --theme-topbar-search-background:          @white;
+    --theme-topbar-search-placeholder:         @black-200;
+    --theme-topbar-search-border:              @black-200;
+    --theme-topbar-search-border-focus:        @blue-300;
+    --theme-topbar-search-shadow-focus:        0 0 0 @su4 fade(@blue-500, 15%);
 
     // Search switcher
-    --topbar-select-color:               @black-700;
-    --topbar-select-background:          @black-050;
+    --theme-topbar-select-color:               @black-700;
+    --theme-topbar-select-background:          @black-050;
 
     // topbar items
-    --topbar-item-color:                 @black-600;
-    --topbar-item-color-hover:           @black-800;
-    --topbar-item-background-hover:      @black-075;
-    --topbar-item-color-current:         @black;
-    --topbar-item-border-current:        var(--theme-primary-color);
+    --theme-topbar-item-color:                 @black-600;
+    --theme-topbar-item-color-hover:           @black-800;
+    --theme-topbar-item-background-hover:      @black-075;
+    --theme-topbar-item-color-current:         @black;
+    --theme-topbar-item-border-current:        var(--theme-primary-color);
 }
 
-// forced dark topbar TODO use this or require theme-dark__forced instead?
+// forced dark topbar
 .s-topbar__dark {
     @topbar-actual-background: @black-800;
     // TODO
@@ -75,28 +75,28 @@ html {
     }
     #calc-topbar-lightness-increase();
 
-    --topbar-background-color: @topbar-actual-background;
+    --theme-topbar-background-color: @topbar-actual-background;
     // Search input
-    --topbar-search-color:               lighten(@topbar-actual-background, 80% + @topbar-search-lightness-increase);
-    --topbar-search-background:          lighten(@topbar-actual-background, @topbar-search-lightness-increase);
-    --topbar-search-placeholder:         lighten(@topbar-actual-background, 60% + @topbar-search-lightness-increase);
-    --topbar-search-border:              lighten(@topbar-actual-background, @topbar-search-lightness-increase);
-    --topbar-search-border-focus:        lighten(@topbar-actual-background, 45% + @topbar-search-lightness-increase);
-    --topbar-search-shadow-focus:        0 0 0 @su4 fade(@white, 30%);
+    --theme-topbar-search-color:               lighten(@topbar-actual-background, 80% + @topbar-search-lightness-increase);
+    --theme-topbar-search-background:          lighten(@topbar-actual-background, @topbar-search-lightness-increase);
+    --theme-topbar-search-placeholder:         lighten(@topbar-actual-background, 60% + @topbar-search-lightness-increase);
+    --theme-topbar-search-border:              lighten(@topbar-actual-background, @topbar-search-lightness-increase);
+    --theme-topbar-search-border-focus:        lighten(@topbar-actual-background, 45% + @topbar-search-lightness-increase);
+    --theme-topbar-search-shadow-focus:        0 0 0 @su4 fade(@white, 30%);
 
     // Search switcher
-    --topbar-select-color:               lighten(@topbar-actual-background, 60% + @topbar-search-lightness-increase);
-    --topbar-select-background:          lighten(@topbar-actual-background, 10% + @topbar-search-lightness-increase);
+    --theme-topbar-select-color:               lighten(@topbar-actual-background, 60% + @topbar-search-lightness-increase);
+    --theme-topbar-select-background:          lighten(@topbar-actual-background, 10% + @topbar-search-lightness-increase);
 
     // topbar items
-    --topbar-item-color:                 @black-025;
-    --topbar-item-color-hover:           @white;
-    --topbar-item-background-hover:      @black-700;
-    --topbar-item-color-current:         @white;
-    --topbar-item-border-current:        var(--theme-primary-color);
+    --theme-topbar-item-color:                 @black-025;
+    --theme-topbar-item-color-hover:           @white;
+    --theme-topbar-item-background-hover:      @black-700;
+    --theme-topbar-item-color-current:         @white;
+    --theme-topbar-item-border-current:        var(--theme-primary-color);
 
     // themed border accent
-    --topbar-accent-border:              none;
+    --theme-topbar-accent-border:              none;
 }
 
 .s-topbar {
@@ -104,10 +104,10 @@ html {
     box-shadow: var(--bs-sm);
     width: 100%;
     z-index: @zi-navigation-fixed;
-    background-color: var(--topbar-background-color);
+    background-color: var(--theme-topbar-background-color);
     height: var(--topbar-height);
     display: flex;
-    border-top: var(--topbar-accent-border);
+    border-top: var(--theme-topbar-accent-border);
     position: relative;
 
     // TODO necessary? used to wrap content so the topbar stretches 100% w/ content at some value below that
@@ -126,11 +126,11 @@ html {
     }
 
     a.s-topbar--logo:hover {
-        background-color: var(--topbar-item-background-hover);
+        background-color: var(--theme-topbar-item-background-hover);
     }
 
     a.s-topbar--logo.is-selected {
-        background-color: var(--topbar-item-background-hover);
+        background-color: var(--theme-topbar-item-background-hover);
     }
 
     .s-topbar--menu {
@@ -170,8 +170,8 @@ html {
 
         // Transforming hamburger into x
         &.is-selected {
-            color: var(--topbar-item-color-current);
-            background-color: var(--topbar-item-background-current);
+            color: var(--theme-topbar-item-color-current);
+            background-color: var(--theme-topbar-item-background-current);
 
             span {
                 background-color: transparent;
@@ -187,8 +187,8 @@ html {
         }
 
         &:hover {
-            color: var(--topbar-item-color-hover);
-            background-color: var(--topbar-item-background-hover);
+            color: var(--theme-topbar-item-color-hover);
+            background-color: var(--theme-topbar-item-background-hover);
         }
     }
 }
@@ -209,7 +209,7 @@ html {
 .s-topbar .s-topbar--navigation,
 .s-topbar .s-topbar--content {
     .s-topbar--item {
-        color: var(--topbar-item-color);
+        color: var(--theme-topbar-item-color);
         display: inline-flex;
         align-items: center;
         padding: 0 10px; // TODO @su8 or @su12?
@@ -220,14 +220,14 @@ html {
 
         &:hover, &:focus,
         &.is-selected, &.is-selected:hover, &.is-selected:focus {
-            color: var(--topbar-item-color-hover);
-            background-color: var(--topbar-item-background-hover);
+            color: var(--theme-topbar-item-color-hover);
+            background-color: var(--theme-topbar-item-background-hover);
             text-decoration: none;
             outline: none;
 
             .s-badge.s-badge__topbar-indicator {
                 top: 4px;
-                border-color: var(--topbar-item-background-hover);
+                border-color: var(--theme-topbar-item-background-hover);
             }
 
             .s-activity-indicator {
@@ -250,7 +250,7 @@ html {
             line-height: 1;
             padding: 2px 3px;
             border-radius: 5px;
-            border: 2px solid var(--topbar-background-color);
+            border: 2px solid var(--theme-topbar-background-color);
         }
 
         .s-activity-indicator {
@@ -346,19 +346,19 @@ html {
         flex-grow: 1;
 
         .s-input {
-            border-color: var(--topbar-search-border);
-            background-color: var(--topbar-search-background);
-            box-shadow: var(--topbar-search-shadow);
-            color: var(--topbar-search-color);
+            border-color: var(--theme-topbar-search-border);
+            background-color: var(--theme-topbar-search-background);
+            box-shadow: var(--theme-topbar-search-shadow);
+            color: var(--theme-topbar-search-color);
             line-height: @inputLineHeights;
 
             &:focus {
-                border-color: var(--topbar-search-border-focus);
-                box-shadow: var(--topbar-search-shadow-focus);
+                border-color: var(--theme-topbar-search-border-focus);
+                box-shadow: var(--theme-topbar-search-shadow-focus);
             }
 
             &::placeholder {
-                color: var(--topbar-search-placeholder);
+                color: var(--theme-topbar-search-placeholder);
                 font-style: normal;
             }
         }
@@ -368,7 +368,7 @@ html {
         .wmx2;
 
         margin-right: -1px;
-        color: var(--topbar-select-color);
+        color: var(--theme-topbar-select-color);
 
         &:before,
         &:after {
@@ -381,13 +381,13 @@ html {
         height: 100%;
         line-height: @inputLineHeights;
 
-        border-color: var(--topbar-search-border);
-        background-color: var(--topbar-select-background);
-        color: var(--topbar-select-color);
+        border-color: var(--theme-topbar-search-border);
+        background-color: var(--theme-topbar-select-background);
+        color: var(--theme-topbar-select-color);
 
         &:focus {
-            border-color: var(--topbar-search-border-focus);
-            box-shadow: var(--topbar-search-shadow-focus);
+            border-color: var(--theme-topbar-search-border-focus);
+            box-shadow: var(--theme-topbar-search-shadow-focus);
             z-index: @zi-selected;
         }
     }
@@ -405,7 +405,7 @@ html {
         top: 100%;
         max-width: 100%;
         padding: @su8 @su12;
-        background: var(--topbar-item-background-hover);
+        background: var(--theme-topbar-item-background-hover);
 
         &.s-topbar--searchbar__open {
             display: flex;
