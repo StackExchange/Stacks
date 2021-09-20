@@ -1,151 +1,151 @@
 <header class="s-topbar {{ additionalClass }}">
-<div class="s-topbar--container {{ containerClass }}">
-    {% if showMenu %}
-        <a href="#" class="s-topbar--menu"><span></span></a>
-    {% else %}
-        <a href="#" class="s-topbar--menu d-none sm:d-flex"><span></span></a>
-    {% endif %}
+    <div class="s-topbar--container {{ containerClass }}">
+        {% if showMenu %}
+            <a href="#" class="s-topbar--menu"><span></span></a>
+        {% else %}
+            <a href="#" class="s-topbar--menu d-none sm:d-flex"><span></span></a>
+        {% endif %}
 
-    <a href="#" class="s-topbar--logo">
-        {% icon "LogoGlyph", "native" %}
-    </a>
+        <a href="#" class="s-topbar--logo">
+            {% icon "LogoGlyph", "native" %}
+        </a>
 
-    {% unless hideNavigation %}
-        <ol class="s-topbar--navigation sm:d-none">
-            {% if showNotices %}
-                <li>
-                    <a class="s-topbar--item s-topbar--notice is-unread">
-                        new
-                    </a>
-                </li>
-            {% endif %}
-            {% if loggedOut %}
-                <li>
-                    <a href="#" class="s-topbar--item">
-                        About
-                    </a>
-                </li>
-                <li>
-                    <a href="#" class="s-topbar--item">
-                        Products
-                    </a>
-                </li>
-                <li>
-                    <a href="#" class="s-topbar--item">
-                        For Teams
-                    </a>
-                </li>
-            {% else %}
-                <li>
-                    <a href="#" class="s-topbar--item">
-                        Products
-                    </a>
-                </li>
-            {% endif %}
-        </ol>
-    {% endunless %}
+        {% unless hideNavigation %}
+            <ol class="s-topbar--navigation sm:d-none">
+                {% if showNotices %}
+                    <li>
+                        <a class="s-topbar--item s-topbar--notice is-unread">
+                            new
+                        </a>
+                    </li>
+                {% endif %}
+                {% if loggedOut %}
+                    <li>
+                        <a href="#" class="s-topbar--item">
+                            About
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="s-topbar--item">
+                            Products
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="s-topbar--item">
+                            For Teams
+                        </a>
+                    </li>
+                {% else %}
+                    <li>
+                        <a href="#" class="s-topbar--item">
+                            Products
+                        </a>
+                    </li>
+                {% endif %}
+            </ol>
+        {% endunless %}
 
-    {% unless hideSearch %}
-        <form id="search" class="s-topbar--searchbar" autocomplete="off">
-            {% unless loggedOut %}
-                <div class="s-select">
-                    <select>
-                        <option selected="selected">
-                            All
-                        </option>
-                        <option>
-                            Public
-                        </option>
-                        <option>
-                            Private Team 1
-                        </option>
-                    </select>
+        {% unless hideSearch %}
+            <form id="search" class="s-topbar--searchbar" autocomplete="off">
+                {% unless loggedOut %}
+                    <div class="s-select">
+                        <select>
+                            <option selected="selected">
+                                All
+                            </option>
+                            <option>
+                                Public
+                            </option>
+                            <option>
+                                Private Team 1
+                            </option>
+                        </select>
+                    </div>
+                {% endunless %}
+                <div class="s-topbar--searchbar--input-group">
+                    <input type="text" placeholder="Search…" value="" autocomplete="off" class="s-input s-input__search" />
+                    {% icon "Search", "s-input-icon s-input-icon__search" %}
                 </div>
-            {% endunless %}
-            <div class="s-topbar--searchbar--input-group">
-                <input type="text" placeholder="Search…" value="" autocomplete="off" class="s-input s-input__search" />
-                {% icon "Search", "s-input-icon s-input-icon__search" %}
-            </div>
-        </form>
-    {% endunless %}
+            </form>
+        {% endunless %}
 
-    {% if loggedOut %}
-        <ol class="s-topbar--ctas">
-            <li>
-                <a href="#" class="s-topbar--item s-btn s-btn__filled">Log in</a>
-            </li>
-            <li>
-                <a href="#" class="s-topbar--item s-btn s-btn__primary">Sign up</a>
-            </li>
-        </ol>
-    {% else %}
-        <ol class="s-topbar--content">
-            <li>
-                <button
-                    class="s-topbar--item s-btn s-btn__icon s-btn__muted d-none sm:d-inline-flex js-search-button"
-                    type="button">
-                        {% icon "Search" %}
-                </button>
-            </li>
-            {% if isMod %}
+        {% if loggedOut %}
+            <ol class="s-topbar--ctas">
                 <li>
-                    <a href="#" class="s-topbar--item" title="Moderator inbox">
-                        {% icon "Moderator" %}
+                    <a href="#" class="s-topbar--item s-btn s-btn__filled">Log in</a>
+                </li>
+                <li>
+                    <a href="#" class="s-topbar--item s-btn s-btn__primary">Sign up</a>
+                </li>
+            </ol>
+        {% else %}
+            <ol class="s-topbar--content">
+                <li>
+                    <button
+                        class="s-topbar--item s-btn s-btn__icon s-btn__muted d-none sm:d-inline-flex js-search-button"
+                        type="button">
+                            {% icon "Search" %}
+                    </button>
+                </li>
+                {% if isMod %}
+                    <li>
+                        <a href="#" class="s-topbar--item" title="Moderator inbox">
+                            {% icon "Moderator" %}
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="s-topbar--item" title="8 posts flagged for moderator attention">
+                            <span class="s-badge s-badge__bounty">8</span>
+                        </a>
+                    </li>
+                {% endif %}
+                <li>
+                    <a href="#" class="s-topbar--item s-user-card s-user-card__small">
+                        <span class="s-avatar s-avatar__24 s-user-card--avatar">
+                            <img class="s-avatar--image" src="{{ "/assets/img/anonymous-user.svg" | relative_url }}" />
+                            <span class="v-visible-sr">John Doe</span>
+                        </span>
+                        <div class="s-user-card--info">
+                            <ul class="s-user-card--awards">
+                                <li class="s-user-card--rep">3,145</li>
+                                <li class="s-award-bling s-award-bling__gold">3</li>
+                                <li class="s-award-bling s-award-bling__silver">9</li>
+                                <li class="s-award-bling s-award-bling__bronze">20</li>
+                            </ul>
+                        </div>
                     </a>
                 </li>
                 <li>
-                    <a href="#" class="s-topbar--item" title="8 posts flagged for moderator attention">
-                        <span class="s-badge s-badge__bounty">8</span>
+                    <a href="#" class="s-topbar--item" title="Inbox">
+                        {% icon "Inbox" %}
+                        <span class="s-badge s-badge__important s-badge__topbar-indicator">0</span>
                     </a>
                 </li>
-            {% endif %}
-            <li>
-                <a href="#" class="s-topbar--item s-user-card s-user-card__small">
-                    <span class="s-avatar s-avatar__24 s-user-card--avatar">
-                        <img class="s-avatar--image" src="{{ "/assets/img/anonymous-user.svg" | relative_url }}" />
-                        <span class="v-visible-sr">John Doe</span>
-                    </span>
-                    <div class="s-user-card--info">
-                        <ul class="s-user-card--awards">
-                            <li class="s-user-card--rep">3,145</li>
-                            <li class="s-award-bling s-award-bling__gold">3</li>
-                            <li class="s-award-bling s-award-bling__silver">9</li>
-                            <li class="s-award-bling s-award-bling__bronze">20</li>
-                        </ul>
-                    </div>
-                </a>
-            </li>
-            <li>
-                <a href="#" class="s-topbar--item" title="Inbox">
-                    {% icon "Inbox" %}
-                    <span class="s-badge s-badge__important s-badge__topbar-indicator">0</span>
-                </a>
-            </li>
-            <li>
-                <a href="#" class="s-topbar--item" title="Achievements">
-                    {% icon "Achievements" %}
-                    <span class="s-badge s-badge__answered s-badge__topbar-indicator">+0</span>
-                </a>
-            </li>
-            <li>
-                <a href="#" class="s-topbar--item" title="Review queues">
-                    {% icon "ReviewQueue" %}
-                    <div class="s-activity-indicator">
-                        <div class="v-visible-sr">New activity</div>
-                    </div>
-                </a>
-            </li>
-            <li>
-                <a href="#" class="s-topbar--item" title="Help center">
-                    {% icon "Help" %}
-                </a>
-            </li>
-            <li>
-                <a href="#" class="s-topbar--item" title="Site switcher">
-                    {% icon "StackExchange" %}
-                </a>
-            </li>
-        </ol>
-    {% endif %}
-</div>
+                <li>
+                    <a href="#" class="s-topbar--item" title="Achievements">
+                        {% icon "Achievements" %}
+                        <span class="s-badge s-badge__answered s-badge__topbar-indicator">+0</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="s-topbar--item" title="Review queues">
+                        {% icon "ReviewQueue" %}
+                        <div class="s-activity-indicator">
+                            <div class="v-visible-sr">New activity</div>
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="s-topbar--item" title="Help center">
+                        {% icon "Help" %}
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="s-topbar--item" title="Site switcher">
+                        {% icon "StackExchange" %}
+                    </a>
+                </li>
+            </ol>
+        {% endif %}
+    </div>
 </header>
