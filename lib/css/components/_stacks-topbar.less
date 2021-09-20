@@ -5,40 +5,6 @@
 @import (reference) "../atomic/_stacks-width-height.less";
 @import (reference) "../atomic/_stacks-borders.less";
 
-html {
-    --topbar-height: @su48;
-}
-
-// TODO move these into _stacks-constants-colors.less / .component-colors()?
-// topbar specific variables
-.s-topbar, .s-topbar__auto
-{
-    // NOTE bg-color is always @black-800, except SO, SO Internationals, and their metas where it is var(--black-025); Enterprise is set to var(--theme-topbar-background-color)
-    --theme-topbar-background-color:           var(--black-025);
-
-    // Search input
-    --theme-topbar-search-color:               var(--black-700);
-    --theme-topbar-search-background:          var(--white);
-    --theme-topbar-search-placeholder:         var(--black-200);
-    --theme-topbar-search-border:              var(--black-200);
-    --theme-topbar-search-border-focus:        var(--blue-300);
-    --theme-topbar-search-shadow-focus:        0 0 0 @su4 var(--focus-ring);
-
-    // Search switcher
-    --theme-topbar-select-color:               var(--black-700);
-    --theme-topbar-select-background:          var(--black-075);
-
-    // topbar items
-    --theme-topbar-item-color:                 var(--black-600);
-    --theme-topbar-item-color-hover:           var(--black-800);
-    --theme-topbar-item-background-hover:      var(--black-075);
-    --theme-topbar-item-color-current:         var(--black);
-    --theme-topbar-item-border-current:        var(--theme-primary-color);
-
-    // themed border accent
-    --theme-topbar-accent-border:              3px solid var(--theme-primary-color);
-}
-
 // forced light topbar
 .s-topbar__light {
     --theme-topbar-background-color:           @black-025;
@@ -148,7 +114,7 @@ html {
         span {
             width: 18px;
             height: 2px;
-            background-color: var(--black-400);
+            background-color: var(--theme-topbar-item-color);
             position: relative;
 
             &:before,
@@ -158,7 +124,7 @@ html {
                 width: 18px;
                 height: 2px;
                 left: 0;
-                background: var(--black-400);
+                background: var(--theme-topbar-item-color);
                 top: -5px;
                 transition: all ease-in-out 0.1s;
             }
