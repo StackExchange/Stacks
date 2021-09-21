@@ -247,13 +247,17 @@
     border-radius: @br-md;
     box-shadow: var(--bs-sm);
 
+    .highcontrast-mode({
+        box-shadow: none;
+    });
+
     > pre.s-code-block {
         border-radius: @br-md @br-md 0 0;
-        border: 1px solid var(--black-100);
+        border: 1px solid var(--bc-medium);
         max-height: 24rem;
 
         .dark-mode({
-            border-color: transparent;
+            border-color: var(--bc-lighter);
         });
     }
 
@@ -267,13 +271,16 @@
     padding: @su16;
     border-bottom-left-radius: @br-md;
     border-bottom-right-radius: @br-md;
-    border: 1px solid var(--black-100);
+    border: 1px solid var(--bc-medium);
     border-top-width: 0;
     font-size: @fs-body1;
 
     .dark-mode({
-        border-color: transparent;
+        border-color: var(--bc-lighter);
         background: var(--black-025);
+    });
+    .highcontrast-mode({
+        background: var(--black-050);
     });
 }
 
@@ -308,7 +315,7 @@
 
 .stacks-flex-example--item {
     padding: @su8;
-    border: 1px solid var(--black-100);
+    border: 1px solid var(--bc-medium);
     background-color: var(--black-075);
     font-family: var(--ff-mono);
     font-size: @fs-caption;

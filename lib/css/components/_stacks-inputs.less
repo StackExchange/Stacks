@@ -50,7 +50,7 @@
     width: 100%;
     margin: 0; // A guard against Core's default margins
     padding: @input-padding;
-    border: 1px solid var(--black-200);
+    border: 1px solid var(--bc-darker);
     border-radius: @br-sm;
     background-color: var(--white);
     color: var(--fc-dark);
@@ -73,11 +73,19 @@
     //  ------------------------------------------------------------------------
     &::-webkit-input-placeholder {
         color: var(--black-200);
+
+        .highcontrast-mode({
+            color: var(--black-400);
+        });
     }
 
     &::placeholder {
         color: var(--black-200);
         opacity: 1;
+
+        .highcontrast-mode({
+            color: var(--black-400);
+        });
     }
 
     // --  STYLE SCROLLBARS
@@ -139,6 +147,10 @@ fieldset {
     font-weight: 400;
     vertical-align: text-bottom;
 
+    .highcontrast-mode({
+        border: 1px solid currentColor;
+    });
+
     &.s-label--status__required {
         background-color: var(--red-100);
         color: var(--red-600);
@@ -179,7 +191,7 @@ fieldset {
 //  ----------------------------------------------------------------------------
 .s-input-fill {
     padding: @input-padding;
-    border: 1px solid var(--black-200);
+    border: 1px solid var(--bc-darker);
     border-right-width: 0;
     border-left-width: 0;
     background-color: var(--black-050);
@@ -255,7 +267,7 @@ fieldset {
         height: 100%; // Fill the height of its parent
         padding: @input-padding;
         padding-right: @su32;
-        border: 1px solid var(--black-200);
+        border: 1px solid var(--bc-darker);
         border-radius: @br-sm;
         background-color: var(--white);
         outline: 0;
@@ -310,7 +322,7 @@ fieldset {
         margin: 0; // A guard against Core's default margins
         width: 1em;
         height: 1em;
-        border: 1px solid var(--black-200);
+        border: 1px solid var(--bc-darker);
         background-color: var(--white);
         outline: 0;
         font-size: inherit;
@@ -380,6 +392,10 @@ fieldset {
         box-shadow: 0 0 0 @su4 var(--focus-ring);
         color: var(--black);
         outline: 0;
+
+        .highcontrast-mode({
+            border-color: var(--black);
+        })
     }
 
     .s-input:focus,
@@ -405,6 +421,11 @@ fieldset {
         border-color: var(--black-075);
         background-color: var(--black-050);
         color: var(--black-200);
+
+        .highcontrast-mode({
+            border-color: currentColor;
+            color: var(--black-300);
+        });
     }
 
     //  Disabled
@@ -543,7 +564,7 @@ fieldset {
 .is-disabled {
     .s-select:before,
     .s-select:after {
-        border-color: var(--black-200) transparent;
+        border-color: var(--bc-darker) transparent;
     }
 
     .s-label,
@@ -557,6 +578,10 @@ fieldset {
 
     .s-input-icon {
         color: var(--black-200);
+
+        .highcontrast-mode({
+            color: var(--black-400);
+        });
     }
 
     .s-label {
@@ -578,6 +603,10 @@ fieldset {
         right: auto;
         left: 0.7em;
         color: var(--black-200);
+
+        .highcontrast-mode({
+            color: var(--black-400);
+        });
     }
 }
 

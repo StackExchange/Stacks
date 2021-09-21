@@ -22,7 +22,7 @@
     padding: @su12;
     z-index: @zi-popovers;
     border-radius: @br-md;
-    border: 1px solid var(--black-100);
+    border: 1px solid var(--bc-medium);
     background-color: var(--white);
     box-shadow: var(--bs-md);
     color: var(--fc-dark);
@@ -32,7 +32,7 @@
 
     .dark-mode({
         background-color: var(--black-075);
-        border-color: transparent;
+        border-color: var(--bc-light);
         box-shadow: var(--bs-lg);
     });
 
@@ -54,6 +54,10 @@
         &:after {
             bottom: 1px;
             box-shadow: 2px 2px 5px 0 hsla(0, 0, 0, 0.07), 2px 2px 2px -1px hsla(0, 0, 0, 0.1);
+
+            .highcontrast-mode({
+                box-shadow: 1px 1px 0 0 var(--bc-medium);
+            });
         }
     }
 
@@ -66,6 +70,10 @@
         &:after {
             top: 1px;
             box-shadow: -1px -1px 1px 0 hsla(0, 0, 0, 0.12);
+
+            .highcontrast-mode({
+                box-shadow: -1px -1px 0 0 var(--bc-medium);
+            });
         }
     }
 
@@ -78,6 +86,10 @@
         &:after {
             right: 1px;
             box-shadow: 2px -2px 5px 0 hsla(0, 0, 0, 0.07), 2px -2px 2px -1px hsla(0, 0, 0, 0.1);
+
+            .highcontrast-mode({
+                box-shadow: 1px -1px 0 0 var(--bc-medium);
+            });
         }
     }
 
@@ -90,6 +102,10 @@
         &:after {
             left: 1px;
             box-shadow: -2px 2px 5px 0 hsla(0, 0, 0, 0.07), -2px 2px 2px -1px hsla(0, 0, 0, 0.1);
+
+            .highcontrast-mode({
+                box-shadow: -1px 1px 0 0 var(--bc-medium);
+            });
         }
     }
 

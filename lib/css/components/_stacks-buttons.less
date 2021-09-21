@@ -34,6 +34,8 @@
         cursor: pointer;
         user-select: none;
 
+        .highcontrast-mode({ border-color: currentColor; });
+
         button &,
         button[type="submit"] &,
         button[type="reset"] & {
@@ -150,6 +152,8 @@
             font-size: @fs-caption;
             line-height: @lh-xs;
             background-color: currentColor;
+
+            .highcontrast-mode({ opacity: 0.8; });
         }
 
         .s-btn--number {
@@ -159,7 +163,8 @@
 
     .s-btn__primary:not(.is-selected) .s-btn--number,
     .s-btn__danger.s-btn__filled:not(.is-selected) .s-btn--number {
-        .dark-mode({ color: @black; });
+        .dark-mode({ color: var(--white); });
+        .highcontrast-mode({ color: var(--black); });
     }
 
     //  ============================================================================
@@ -216,6 +221,12 @@
         #stacks-internals #load-config();
         color: @button-muted-color;
 
+        .highcontrast-mode({
+            &.s-btn__filled {
+                border-color: transparent;
+            }
+        });
+
         &:hover,
         &:focus,
         &:active {
@@ -258,6 +269,16 @@
 
             .dark-mode({ box-shadow: none; });
 
+            .highcontrast-mode({
+                background-color: var(--black-400);
+                border-color: transparent;
+                color: var(--white);
+
+                .s-btn--number {
+                    color: var(--black);
+                }
+            });
+
             &:hover,
             &:focus,
             &:active {
@@ -279,6 +300,14 @@
                 background-color: @button-muted-filled-selected-background-color;
                 box-shadow: none;
 
+                .highcontrast-mode({
+                    background-color: var(--black-700);
+
+                    .s-btn--number {
+                        color: var(--black);
+                    }
+                });
+
                 &:focus {
                     box-shadow: 0 0 0 @su4 var(--focus-ring-muted);
                 }
@@ -292,6 +321,12 @@
     .s-btn__danger {
         #stacks-internals #load-config();
         color: @button-danger-color;
+
+        .highcontrast-mode({
+            &.s-btn__filled {
+                border-color: transparent;
+            }
+        });
 
         &:hover,
         &:focus,
@@ -335,6 +370,14 @@
 
             .dark-mode({ box-shadow: none; });
 
+            .highcontrast-mode({
+                color: var(--white);
+
+                .s-btn--number {
+                    color: var(--black);
+                }
+            });
+
             &:hover,
             &:focus,
             &:active {
@@ -359,6 +402,11 @@
                 &:focus {
                     box-shadow: 0 0 0 @su4 var(--focus-ring-error);
                 }
+                .highcontrast-mode({
+                    .s-btn--number {
+                        color: var(--black);
+                    }
+                });
             }
 
             .s-btn--number {
@@ -375,7 +423,20 @@
         background-color: var(--theme-button-primary-background-color);
         box-shadow: inset 0 1px 0 0 hsla(0, 0%, 100%, 0.4);
 
-        .dark-mode({ box-shadow: none; });
+        .dark-mode({
+            box-shadow: none;
+
+            &:not(.is-selected) {
+                color: var(--black);
+            }
+        });
+        .highcontrast-mode({
+            &:not(.is-selected) {
+                border-color: transparent;
+                color: var(--white);
+            }
+        });
+
 
         &:hover,
         &:focus,
@@ -403,19 +464,19 @@
     //  $   MISC STYLES
     //  ============================================================================
     .s-btn__google {
-        border-color: var(--black-100);
+        border-color: var(--bc-medium);
         background-color: var(--white);
         color: var(--black-700);
 
         &:hover,
         &:focus {
-            border-color: var(--black-150);
+            border-color: var(--bc-darker);
             background-color: var(--black-025);
             color: var(--black-800);
         }
 
         &:active {
-            border-color: var(--black-200);
+            border-color: var(--bc-darkest);
             background-color: var(--black-050);
             color: var(--black-900);
         }
@@ -425,6 +486,8 @@
         border-color: transparent;
         background-color: #385499;
         color: #fff;
+
+        .highcontrast-mode({ border-color: transparent; });
 
         &:hover,
         &:focus {
@@ -441,6 +504,8 @@
     .s-btn__github {
         background-color: var(--black-750);
         color: var(--white);
+
+        .highcontrast-mode({ border-color: transparent; });
 
         &:hover,
         &:focus {
