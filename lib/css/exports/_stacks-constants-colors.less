@@ -201,7 +201,7 @@
     --theme-secondary-color-b: var(~"--@{theme}-secondary-color-b", var(--theme-base-secondary-color-b));
 }
 
-.component-colors() {
+.component-colors {
     --theme-body-font-color: var(--black-800);
 
     // Links
@@ -659,7 +659,7 @@
     }
 
     & .themed {
-        .component-colors();
+        &:extend(.component-colors);
     }
 }
 
@@ -1015,7 +1015,7 @@
 
 // place component-colors on the body directly (instead of :root) so consumers can use the --theme-* variables
 body {
-    .component-colors();
+    &:extend(.component-colors);
 }
 
 // Light mode
@@ -1032,7 +1032,7 @@ body.theme-system .theme-light__forced {
     }
 
     & .themed {
-        .component-colors();
+        &:extend(.component-colors);
     }
 }
 
