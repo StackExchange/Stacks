@@ -176,6 +176,8 @@ namespace Stacks {
 
             this.referenceElement.addEventListener("mouseover", this.boundScheduleShow);
             this.referenceElement.addEventListener("mouseout", this.boundHide);
+            this.referenceElement.addEventListener("focus", this.boundScheduleShow);
+            this.referenceElement.addEventListener("blur", this.boundHide);
         }
 
         /**
@@ -184,6 +186,8 @@ namespace Stacks {
         private unbindMouseEvents() {
             this.referenceElement.removeEventListener("mouseover", this.boundScheduleShow);
             this.referenceElement.removeEventListener("mouseout", this.boundHide);
+            this.referenceElement.removeEventListener("focus", this.boundScheduleShow);
+            this.referenceElement.removeEventListener("blur", this.boundHide);
         }
 
         /**
