@@ -201,7 +201,7 @@
     --theme-secondary-color-b: var(~"--@{theme}-secondary-color-b", var(--theme-base-secondary-color-b));
 }
 
-.component-colors() {
+.component-colors {
     --theme-body-font-color: var(--black-800);
 
     // Links
@@ -219,9 +219,9 @@
     --theme-button-selected-background-color: var(--theme-secondary-150);
 
     //  Button Primary
-    --theme-button-primary-color: @white;
+    --theme-button-primary-color: var(--white);
     --theme-button-primary-background-color: var(--theme-secondary-400);
-    --theme-button-primary-hover-color: @white;
+    --theme-button-primary-hover-color: var(--white);
     --theme-button-primary-hover-background-color: var(--theme-secondary-500);
     --theme-button-primary-active-background-color: var(--theme-secondary-700);
     --theme-button-primary-selected-color: var(--white);
@@ -361,6 +361,14 @@
     --bronze-lighter: @bronze-lighter;
     --bronze-darker: @bronze-darker;
 
+    // Border colors
+    --bc-lightest: var(--black-025);
+    --bc-lighter: var(--black-050);
+    --bc-light: var(--black-075);
+    --bc-medium: var(--black-100);
+    --bc-dark: var(--black-150);
+    --bc-darker: var(--black-200);
+
     // Font colors
     --fc-dark: @black-900;
     --fc-medium: @black-700;
@@ -378,7 +386,7 @@
     --bs-lg: @bs-lg;
 
     // Scrollbars
-    --scrollbar: @scrollbar;
+    --scrollbar: hsla(0, 0, 0, 0.2);
 
     // Syntax highlighting
     --highlight-bg: hsl(0, 0%, 96.5%); // Between black-025 and black-050
@@ -551,6 +559,14 @@
     --bronze-lighter: hsl(@bronze-h, 13%, 27%);
     --bronze-darker: @bronze-darker;
 
+    // Border colors
+    --bc-lightest: var(--black-025);
+    --bc-lighter: var(--black-050);
+    --bc-light: var(--black-075);
+    --bc-medium: var(--black-100);
+    --bc-dark: var(--black-150);
+    --bc-darker: var(--black-200);
+
     // Font colors
     --fc-dark: var(--black-900);
     --fc-medium: var(--black-700);
@@ -643,8 +659,355 @@
     }
 
     & .themed {
-        .component-colors();
+        &:extend(.component-colors);
     }
+}
+
+//  --  High contrast modes
+.light-highcontrast() {
+    --white: hsl(0, 0%, 100%);
+    --black: hsl(0, 0%, 0%);
+
+    // Black
+    --black-025: hsl(@black-h, @black-s, 97.5%);
+    --black-050: hsl(@black-h, @black-s, 95%);
+    --black-075: hsl(@black-h, @black-s, 92.5%);
+    --black-100: hsl(@black-h, @black-s, 90%);
+    --black-150: hsl(@black-h, @black-s, 87.5%);
+    --black-200: hsl(@black-h, @black-s, 85%);
+    --black-300: hsl(@black-h, @black-s, 35%);
+    --black-350: hsl(@black-h, @black-s, 32.5%);
+    --black-400: hsl(@black-h, @black-s, 30%);
+    --black-500: hsl(@black-h, @black-s, 25%);
+    --black-600: hsl(@black-h, @black-s, 20%);
+    --black-700: hsl(@black-h, @black-s, 15%);
+    --black-750: hsl(@black-h, @black-s, 10%);
+    --black-800: hsl(@black-h, @black-s, 5%);
+    --black-900: hsl(@black-h, @black-s, 0%);
+
+    // Orange
+    --orange-050: hsl(@orange-h, 100%, 97.5%);
+    --orange-100: hsl(@orange-h, 100%, 94%);
+    --orange-200: hsl(@orange-h, 100%, 88%);
+    --orange-300: hsl(@orange-h, 100%, 82%);
+    --orange-400: hsl(@orange-h, 100%, 34%);
+    --orange-500: hsl(@orange-h, 100%, 29%);
+    --orange-600: hsl(@orange-h, 100%, 24%);
+    --orange-700: hsl(@orange-h, 100%, 19%);
+    --orange-800: hsl(@orange-h, 100%, 13%);
+    --orange-900: hsl(@orange-h, 100%, 8%);
+
+    // Blue
+    --blue-050: hsl(@blue-h, 100%, 97.5%);
+    --blue-100: hsl(@blue-h, 100%, 95%);
+    --blue-200: hsl(@blue-h, 100%, 90%);
+    --blue-300: hsl(@blue-h, 100%, 85%);
+    --blue-400: hsl(@blue-h, 100%, 25%);
+    --blue-500: hsl(@blue-h, 100%, 20%);
+    --blue-600: hsl(@blue-h, 100%, 15%);
+    --blue-700: hsl(@blue-h, 100%, 10%);
+    --blue-800: hsl(@blue-h, 100%, 7.5%);
+    --blue-900: hsl(@blue-h, 100%, 5%);
+
+    // Powder
+    --powder-050: hsl(@powder-h, 100%, 97.5%);
+    --powder-100: hsl(@powder-h, 85%, 96%);
+    --powder-200: hsl(@powder-h, 75%, 92%);
+    --powder-300: hsl(@powder-h, 70%, 88%);
+    --powder-400: hsl(@powder-h, 55%, 28%);
+    --powder-500: hsl(@powder-h, 60%, 24%);
+    --powder-600: hsl(@powder-h, 70%, 20%);
+    --powder-700: hsl(@powder-h, 75%, 16%);
+    --powder-800: hsl(@powder-h, 75%, 12%);
+    --powder-900: hsl(@powder-h, 75%, 8%);
+
+    // Green
+    --green-025: hsl(@green-h, 100%, 97%);
+    --green-050: hsl(@green-h, 100%, 96%);
+    --green-100: hsl(@green-h, 100%, 94%);
+    --green-200: hsl(@green-h, 100%, 88%);
+    --green-300: hsl(@green-h, 100%, 82%);
+    --green-400: hsl(@green-h, 100%, 18%);
+    --green-500: hsl(@green-h, 100%, 15%);
+    --green-600: hsl(@green-h, 100%, 12%);
+    --green-700: hsl(@green-h, 100%, 9%);
+    --green-800: hsl(@green-h, 100%, 6%);
+    --green-900: hsl(@green-h, 100%, 3%);
+
+    // Yellow
+    --yellow-050: hsl(@yellow-h, 100%, 95%);
+    --yellow-100: hsl(@yellow-h, 100%, 92%);
+    --yellow-200: hsl(@yellow-h, 95%, 85%);
+    --yellow-300: hsl(@yellow-h, 95%, 78%);
+    --yellow-400: hsl(@yellow-h, 100%, 28%);
+    --yellow-500: hsl(@yellow-h, 100%, 26%);
+    --yellow-600: hsl(@yellow-h, 100%, 23%);
+    --yellow-700: hsl(@yellow-h, 100%, 19%);
+    --yellow-800: hsl(@yellow-h, 100%, 13%);
+    --yellow-900: hsl(@yellow-h, 100%, 7%);
+
+    // Red
+    --red-050: hsl(@red-h, 100%, 97.5%);
+    --red-100: hsl(@red-h, 100%, 95%);
+    --red-200: hsl(@red-h, 100%, 90%);
+    --red-300: hsl(@red-h, 100%, 85%);
+    --red-400: hsl(@red-h, 100%, 35%);
+    --red-500: hsl(@red-h, 100%, 29%);
+    --red-600: hsl(@red-h, 100%, 23%);
+    --red-700: hsl(@red-h, 100%, 17%);
+    --red-800: hsl(@red-h, 100%, 11%);
+    --red-900: hsl(@red-h, 100%, 7%);
+
+    // Gold
+    --gold: hsl(@gold-h, 100%, 50%);
+    --gold-lighter: hsl(@gold-h, 100%, 91%);
+    --gold-darker: hsl(@gold-h - 3, 100%, 20%);
+
+    // Silver
+    --silver: hsl(@silver-h, 6%, 72%);
+    --silver-lighter: hsl(@silver-h, 6%, 91%);
+    --silver-darker: hsl(@silver-h, 6%, 30%);
+
+    // Bronze
+    --bronze: hsl(@bronze-h, 38%, 65%);
+    --bronze-lighter: hsl(@bronze-h, 40%, 92%);
+    --bronze-darker: hsl(@bronze-h, 31%, 25%);
+
+    // Border colors
+    --bc-lightest: var(--black-400);
+    --bc-lighter: var(--black-400);
+    --bc-light: var(--black-400);
+    --bc-medium: var(--black-400);
+    --bc-dark: var(--black-700);
+    --bc-darker: var(--black-900);
+
+    // Font colors
+    --fc-dark: var(--black-900);
+    --fc-medium: var(--black-700);
+    --fc-light: var(--black-500);
+
+    // Focus rings
+    --focus-ring: fade(@blue-600, 50%);
+    --focus-ring-success: fade(@green-600, 50%);
+    --focus-ring-warning: fade(@yellow-600, 50%);
+    --focus-ring-error: fade(@red-600, 50%);
+    --focus-ring-muted: fade(@black-800, 50%);
+
+    // Shadows
+    --bs-sm: none;
+    --bs-md: none;
+    --bs-lg: none;
+
+    // Scrollbars
+    --scrollbar: var(--black);
+
+    // Syntax highlighting
+    --highlight-bg: hsl(0, 0%, 96.5%); // Between black-025 and black-050
+    --highlight-color: var(--black-750);
+    --highlight-comment: hsl(213, 7%, 33%); // Custom black
+    --highlight-punctuation: var(--black-600);
+    --highlight-namespace: hsl(16, 94%, 31%); // Custom orange
+    --highlight-attribute: hsl(215, 100%, 35%); // Custom blue
+    --highlight-literal: hsl(16, 94%, 31%); // Custom orange
+    --highlight-symbol: hsl(309, 45%, 31%); // Custom purple
+    --highlight-keyword: hsl(215, 100%, 35%); // Custom blue
+    --highlight-variable: hsl(88, 100%, 19%); // Custom green
+    --highlight-addition: var(--green-500);
+    --highlight-deletion: var(--red-500);
+
+    // High contrast theme override
+    &:extend(.highcontrast-themed-colors);
+}
+
+.dark-highcontrast() {
+    --white: hsl(0, 0%, 0%);
+    --black: hsl(0, 0%, 100%);
+
+    // Black
+    --black-025: hsl(@black-h, @black-s, 2.5%);
+    --black-050: hsl(@black-h, @black-s, 5%);
+    --black-075: hsl(@black-h, @black-s, 7.5%);
+    --black-100: hsl(@black-h, @black-s, 10%);
+    --black-150: hsl(@black-h, @black-s, 12.5%);
+    --black-200: hsl(@black-h, @black-s, 15%);
+    --black-300: hsl(@black-h, @black-s, 65%);
+    --black-350: hsl(@black-h, @black-s, 67.5%);
+    --black-400: hsl(@black-h, @black-s, 70%);
+    --black-500: hsl(@black-h, @black-s, 75%);
+    --black-600: hsl(@black-h, @black-s, 80%);
+    --black-700: hsl(@black-h, @black-s, 85%);
+    --black-750: hsl(@black-h, @black-s, 90%);
+    --black-800: hsl(@black-h, @black-s, 95%);
+    --black-900: hsl(@black-h, @black-s, 100%);
+
+    // Orange
+    --orange-050: hsl(@orange-h, 100%, 4%);
+    --orange-100: hsl(@orange-h, 100%, 8%);
+    --orange-200: hsl(@orange-h, 100%, 16%);
+    --orange-300: hsl(@orange-h, 100%, 24%);
+    --orange-400: hsl(@orange-h, 100%, 64%);
+    --orange-500: hsl(@orange-h, 100%, 71%);
+    --orange-600: hsl(@orange-h, 100%, 77%);
+    --orange-700: hsl(@orange-h, 100%, 82%);
+    --orange-800: hsl(@orange-h, 100%, 87%);
+    --orange-900: hsl(@orange-h, 100%, 91%);
+
+    // Blue
+    --blue-050: hsl(@blue-h, 100%, 3%);
+    --blue-100: hsl(@blue-h, 100%, 6%);
+    --blue-200: hsl(@blue-h, 100%, 12%);
+    --blue-300: hsl(@blue-h, 100%, 18%);
+    --blue-400: hsl(@blue-h, 100%, 75%);
+    --blue-500: hsl(@blue-h, 100%, 80%);
+    --blue-600: hsl(@blue-h, 100%, 85%);
+    --blue-700: hsl(@blue-h, 100%, 90%);
+    --blue-800: hsl(@blue-h, 100%, 92.5%);
+    --blue-900: hsl(@blue-h, 100%, 95%);
+
+    // Powder
+    --powder-050: hsl(@powder-h, 100%, 6%);
+    --powder-100: hsl(@powder-h, 90%, 8%);
+    --powder-200: hsl(@powder-h, 80%, 14%);
+    --powder-300: hsl(@powder-h, 60%, 20%);
+    --powder-400: hsl(@powder-h, 55%, 72%);
+    --powder-500: hsl(@powder-h, 60%, 76%);
+    --powder-600: hsl(@powder-h, 70%, 80%);
+    --powder-700: hsl(@powder-h, 75%, 84%);
+    --powder-800: hsl(@powder-h, 75%, 88%);
+    --powder-900: hsl(@powder-h, 75%, 92%);
+
+    // Green
+    --green-025: hsl(@green-h, 100%, 3%);
+    --green-050: hsl(@green-h, 100%, 4%);
+    --green-100: hsl(@green-h, 100%, 6%);
+    --green-200: hsl(@green-h, 100%, 12%);
+    --green-300: hsl(@green-h, 100%, 18%);
+    --green-400: hsl(@green-h, 100%, 65%);
+    --green-500: hsl(@green-h, 100%, 71%);
+    --green-600: hsl(@green-h, 100%, 77%);
+    --green-700: hsl(@green-h, 100%, 83%);
+    --green-800: hsl(@green-h, 100%, 89%);
+    --green-900: hsl(@green-h, 100%, 94%);
+
+    // Yellow
+    --yellow-050: hsl(@yellow-h, 100%, 4%);
+    --yellow-100: hsl(@yellow-h, 100%, 8%);
+    --yellow-200: hsl(@yellow-h, 95%, 16%);
+    --yellow-300: hsl(@yellow-h, 95%, 24%);
+    --yellow-400: hsl(@yellow-h, 100%, 55%);
+    --yellow-500: hsl(@yellow-h, 100%, 63%);
+    --yellow-600: hsl(@yellow-h, 100%, 71%);
+    --yellow-700: hsl(@yellow-h, 100%, 79%);
+    --yellow-800: hsl(@yellow-h, 100%, 87%);
+    --yellow-900: hsl(@yellow-h, 100%, 95%);
+
+    // Red
+    --red-050: hsl(@red-h, 100%, 4%);
+    --red-100: hsl(@red-h, 100%, 8%);
+    --red-200: hsl(@red-h, 100%, 16%);
+    --red-300: hsl(@red-h, 100%, 24%);
+    --red-400: hsl(@red-h, 100%, 70%);
+    --red-500: hsl(@red-h, 100%, 75%);
+    --red-600: hsl(@red-h, 100%, 80%);
+    --red-700: hsl(@red-h, 100%, 85%);
+    --red-800: hsl(@red-h, 100%, 90%);
+    --red-900: hsl(@red-h, 100%, 95%);
+
+    // Gold
+    --gold: hsl(@gold-h, 100%, 50%);
+    --gold-lighter: hsl(@gold-h - 3, 100%, 9%);
+    --gold-darker: hsl(@gold-h - 3, 100%, 80%);
+
+    // Silver
+    --silver: hsl(@silver-h, 6%, 72%);
+    --silver-lighter: hsl(@silver-h, 5%, 9%);
+    --silver-darker: hsl(@silver-h, 5%, 70%);
+
+    // Bronze
+    --bronze: hsl(@bronze-h, 38%, 65%);
+    --bronze-lighter: hsl(@bronze-h, 40%, 8%);
+    --bronze-darker: hsl(@bronze-h, 46.7%, 75%);
+
+    // Border colors
+    --bc-lightest: var(--black-400);
+    --bc-lighter: var(--black-400);
+    --bc-light: var(--black-400);
+    --bc-medium: var(--black-400);
+    --bc-dark: var(--black-700);
+    --bc-darker: var(--black-900);
+
+    // Focus rings
+    --focus-ring: fade(@blue-600, 50%);
+    --focus-ring-success: fade(@green-600, 50%);
+    --focus-ring-warning: fade(@yellow-600, 50%);
+    --focus-ring-error: fade(@red-600, 50%);
+    --focus-ring-muted: fade(@black-800, 50%);
+
+    // Font colors
+    --fc-dark: var(--black-900);
+    --fc-medium: var(--black-700);
+    --fc-light: var(--black-500);
+
+    // Shadows
+    --bs-sm: none;
+    --bs-md: none;
+    --bs-lg: none;
+
+    // Scrollbars
+    --scrollbar: var(--black);
+
+    // Syntax highlighting
+    --highlight-bg: hsl(0, 0%, 10%);
+    --highlight-color: hsl(0, 0%, 100%);
+    --highlight-comment: hsl(0, 0%, 99%); // Custom gray
+    --highlight-punctuation: hsl(0, 0%, 99%); // Custom gray
+    --highlight-namespace: hsl(36, 96%, 71%); // Custom orange
+    --highlight-attribute: hsl(200, 57%, 85%); // Custom blue
+    --highlight-literal: hsl(36, 96%, 71%); // Custom orange
+    --highlight-symbol: hsl(304, 39%, 85%); // Custom purple
+    --highlight-keyword: hsl(200, 57%, 85%); // Custom blue
+    --highlight-variable: hsl(62, 71%, 81%); // Custom green
+    --highlight-addition: var(--green-600);
+    --highlight-deletion: var(--red-700);
+
+    // High contrast theme override
+    &:extend(.highcontrast-themed-colors);
+}
+
+.highcontrast-themed-colors {
+    // Primary Theming
+    --theme-primary-color: var(--orange-400);
+    --theme-primary-025: var(--orange-050);
+    --theme-primary-050: var(--orange-050);
+    --theme-primary-075: var(--orange-050);
+    --theme-primary-100: var(--orange-100);
+    --theme-primary-150: var(--orange-100);
+    --theme-primary-200: var(--orange-200);
+    --theme-primary-300: var(--orange-300);
+    --theme-primary-350: var(--orange-300);
+    --theme-primary-400: var(--orange-400);
+    --theme-primary-500: var(--orange-500);
+    --theme-primary-600: var(--orange-600);
+    --theme-primary-700: var(--orange-700);
+    --theme-primary-800: var(--orange-800);
+    --theme-primary-900: var(--orange-900);
+
+    // Secondary Theming
+    --theme-secondary-color: var(--blue-400);
+    --theme-secondary-025: var(--blue-050);
+    --theme-secondary-050: var(--blue-050);
+    --theme-secondary-075: var(--blue-050);
+    --theme-secondary-100: var(--blue-100);
+    --theme-secondary-150: var(--blue-100);
+    --theme-secondary-200: var(--blue-200);
+    --theme-secondary-300: var(--blue-300);
+    --theme-secondary-350: var(--blue-300);
+    --theme-secondary-400: var(--blue-400);
+    --theme-secondary-500: var(--blue-500);
+    --theme-secondary-600: var(--blue-600);
+    --theme-secondary-700: var(--blue-700);
+    --theme-secondary-800: var(--blue-800);
+    --theme-secondary-900: var(--blue-900);
 }
 
 :root {
@@ -658,9 +1021,10 @@
 
 // place component-colors on the body directly (instead of :root) so consumers can use the --theme-* variables
 body {
-    .component-colors();
+    &:extend(.component-colors);
 }
 
+// Light mode
 body:not(.theme-dark),
 body.theme-dark .theme-light__forced,
 body.theme-system .theme-light__forced {
@@ -674,17 +1038,35 @@ body.theme-system .theme-light__forced {
     }
 
     & .themed {
-        .component-colors();
+        &:extend(.component-colors);
     }
 }
 
+// Dark mode
 body.theme-dark,
 body:not(.theme-dark) .theme-dark__forced {
     .theme-dark-rules();
 }
-
 body.theme-system {
     @media (prefers-color-scheme: dark) {
         .theme-dark-rules();
+    }
+}
+
+// High contrast mode (Light)
+body.theme-highcontrast:not(.theme-dark),
+body.theme-dark.theme-highcontrast .theme-light__forced,
+body.theme-system.theme-highcontrast .theme-light__forced {
+    .light-highcontrast();
+}
+
+// High contrast mode (Dark)
+body.theme-dark.theme-highcontrast,
+body.theme-highcontrast:not(.theme-dark) .theme-dark__forced {
+    .dark-highcontrast();
+}
+body.theme-system.theme-highcontrast {
+    @media (prefers-color-scheme: dark) {
+        .dark-highcontrast();
     }
 }
