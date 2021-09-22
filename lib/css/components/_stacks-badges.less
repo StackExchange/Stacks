@@ -46,7 +46,7 @@
     vertical-align: middle;
     white-space: nowrap;
 
-    .badge-styles(var(--black-100), var(--black-050), var(--black-700));
+    .badge-styles(var(--bc-medium), var(--black-050), var(--black-700));
 
     a&:hover {
         text-decoration: none;
@@ -93,6 +93,14 @@
 .s-badge__bronze {
     .badge-styles(var(--bronze-darker), var(--bronze-lighter), var(--black-700));
 }
+.s-badge__gold,
+.s-badge__silver,
+.s-badge__bronze {
+    .highcontrast-mode({
+        border-color: currentColor;
+        color: var(--black-900);
+    });
+}
 
 //  $$  Number Counts
 //  ---------------------------------------------------------------------------
@@ -101,15 +109,19 @@
 }
 .s-badge__votes {
     .badge-styles(var(--black-150), var(--white), var(--black-700));
+
+    .highcontrast-mode({ border-color: currentColor; });
 }
 .s-badge__answered {
     .badge-styles(transparent, var(--green-400), var(--white));
 }
 .s-badge__rep {
     .badge-styles(var(--green-400), var(--white), var(--green-500));
+    .highcontrast-mode({ border-color: currentColor; });
 }
 .s-badge__rep-down {
     .badge-styles(var(--red-400), var(--white), var(--red-500));
+    .highcontrast-mode({ border-color: currentColor; });
 }
 .s-badge__important {
     .badge-styles(transparent, var(--red-600), var(--white));
@@ -119,9 +131,11 @@
 //  ---------------------------------------------------------------------------
 .s-badge__admin {
     .badge-styles(var(--theme-primary-200), var(--theme-primary-075), var(--theme-primary-800));
+    .highcontrast-mode({ border-color: currentColor; });
 }
 .s-badge__moderator {
     .badge-styles(var(--theme-secondary-200), var(--theme-secondary-075), var(--theme-secondary-800));
+    .highcontrast-mode({ border-color: currentColor; });
 
     &:before {
         --s-badge-moderator-icon: url("data:image/svg+xml,%3Csvg width='12' height='14' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M5.528.746c.257-.329.675-.327.93 0l4.42 5.66c.258.329.257.864 0 1.192l-4.42 5.66c-.256.328-.674.327-.93 0l-4.42-5.66c-.257-.329-.256-.865 0-1.192l4.42-5.66z' fill='%23fff'/%3E%3C/svg%3E");
@@ -160,6 +174,7 @@
 .s-badge__staff {
     // Staff badges are always "Stack Overflow Orange"
     .badge-styles(var(--orange-300), var(--orange-100), var(--orange-900));
+    .highcontrast-mode({ border-color: currentColor; });
 }
 
 //  $$  Award Count
