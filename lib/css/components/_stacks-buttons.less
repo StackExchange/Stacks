@@ -16,13 +16,11 @@
 //  $   BASE STYLE
 //  ----------------------------------------------------------------------------
 & {
-    #stacks-internals #load-config();
-
     .s-btn {
         position: relative;
         display: inline-block;
         padding: 0.8em;
-        color: @button-color;
+        color: var(--theme-button-color);
         border: 1px solid transparent;
         border-radius: @br-sm;
         background-color: transparent;
@@ -35,6 +33,8 @@
         text-decoration: none;
         cursor: pointer;
         user-select: none;
+
+        .highcontrast-mode({ border-color: currentColor; });
 
         button &,
         button[type="submit"] &,
@@ -53,13 +53,13 @@
         &:hover,
         &:focus,
         &:active {
-            color: @button-hover-color;
-            background: @button-hover-background-color;
+            color: var(--theme-button-hover-color);
+            background: var(--theme-button-hover-background-color);
             text-decoration: none;
         }
 
         &:active {
-            background: @button-active-background-color;
+            background: var(--theme-button-active-background-color);
         }
 
         &:focus {
@@ -74,8 +74,8 @@
         }
 
         &.is-selected {
-            color: @button-selected-color;
-            background: @button-selected-background-color;
+            color: var(--theme-button-selected-color);
+            background: var(--theme-button-selected-background-color);
             box-shadow: none;
 
             &:focus {
@@ -152,6 +152,8 @@
             font-size: @fs-caption;
             line-height: @lh-xs;
             background-color: currentColor;
+
+            .highcontrast-mode({ opacity: 0.8; });
         }
 
         .s-btn--number {
@@ -161,7 +163,8 @@
 
     .s-btn__primary:not(.is-selected) .s-btn--number,
     .s-btn__danger.s-btn__filled:not(.is-selected) .s-btn--number {
-        .dark-mode({ color: @black; });
+        .dark-mode({ color: var(--white); });
+        .highcontrast-mode({ color: var(--black); });
     }
 
     //  ============================================================================
@@ -172,10 +175,10 @@
     //      Style which applies only a border.
     //  ----------------------------------------------------------------------------
     .s-btn__outlined {
-        border-color: @button-outlined-border-color;
+        border-color: var(--theme-button-outlined-border-color);
 
         &.is-selected {
-            border-color: @button-outlined-selected-border-color;
+            border-color: var(--theme-button-outlined-selected-border-color);
         }
     }
 
@@ -183,30 +186,30 @@
     //      Adds in background-colors, background-images, and/or box-shadows.
     //  ----------------------------------------------------------------------------
     .s-btn__filled {
-        color: @button-filled-color;
-        background-color: @button-filled-background-color;
-        border-color: @button-filled-border-color;
-        box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.7);
+        color: var(--theme-button-filled-color);
+        background-color: var(--theme-button-filled-background-color);
+        border-color: var(--theme-button-filled-border-color);
+        box-shadow: inset 0 1px 0 0 hsla(0, 0, 100%, 0.7);
 
         .dark-mode({ box-shadow: none; });
 
         &:hover,
         &:focus,
         &:active {
-            color: @button-filled-hover-color;
-            background-color: @button-filled-hover-background-color;
+            color: var(--theme-button-filled-hover-color);
+            background-color: var(--theme-button-filled-hover-background-color);
         }
 
         &:active {
-            background-color: @button-filled-active-background-color;
-            border-color: @button-filled-active-border-color;
+            background-color: var(--theme-button-filled-active-background-color);
+            border-color: var(--theme-button-filled-active-border-color);
             box-shadow: none;
         }
 
         &.is-selected {
-            color: @button-filled-selected-color;
-            background-color: @button-filled-selected-background-color;
-            border-color: @button-filled-selected-border-color;
+            color: var(--theme-button-filled-selected-color);
+            background-color: var(--theme-button-filled-selected-background-color);
+            border-color: var(--theme-button-filled-selected-border-color);
             box-shadow: none;
         }
     }
@@ -215,7 +218,14 @@
     //      Creates a gray button style.
     //  ----------------------------------------------------------------------------
     .s-btn__muted {
+        #stacks-internals #load-config();
         color: @button-muted-color;
+
+        .highcontrast-mode({
+            &.s-btn__filled {
+                border-color: transparent;
+            }
+        });
 
         &:hover,
         &:focus,
@@ -255,9 +265,19 @@
             color: @button-muted-filled-color;
             background-color: @button-muted-filled-background-color;
             border-color: transparent;
-            box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.4);
+            box-shadow: inset 0 1px 0 0 hsla(0, 0%, 100%, 0.4);
 
             .dark-mode({ box-shadow: none; });
+
+            .highcontrast-mode({
+                background-color: var(--black-400);
+                border-color: transparent;
+                color: var(--white);
+
+                .s-btn--number {
+                    color: var(--black);
+                }
+            });
 
             &:hover,
             &:focus,
@@ -280,6 +300,14 @@
                 background-color: @button-muted-filled-selected-background-color;
                 box-shadow: none;
 
+                .highcontrast-mode({
+                    background-color: var(--black-700);
+
+                    .s-btn--number {
+                        color: var(--black);
+                    }
+                });
+
                 &:focus {
                     box-shadow: 0 0 0 @su4 var(--focus-ring-muted);
                 }
@@ -291,7 +319,14 @@
     //  $   DANGER BUTTONS & STYLES
     //  ============================================================================
     .s-btn__danger {
+        #stacks-internals #load-config();
         color: @button-danger-color;
+
+        .highcontrast-mode({
+            &.s-btn__filled {
+                border-color: transparent;
+            }
+        });
 
         &:hover,
         &:focus,
@@ -331,9 +366,17 @@
             color: @button-danger-filled-color;
             background-color: @button-danger-filled-background-color;
             border-color: transparent;
-            box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.4);
+            box-shadow: inset 0 1px 0 0 hsla(0, 0%, 100%, 0.4);
 
             .dark-mode({ box-shadow: none; });
+
+            .highcontrast-mode({
+                color: var(--white);
+
+                .s-btn--number {
+                    color: var(--black);
+                }
+            });
 
             &:hover,
             &:focus,
@@ -359,6 +402,11 @@
                 &:focus {
                     box-shadow: 0 0 0 @su4 var(--focus-ring-error);
                 }
+                .highcontrast-mode({
+                    .s-btn--number {
+                        color: var(--black);
+                    }
+                });
             }
 
             .s-btn--number {
@@ -371,31 +419,44 @@
     //  $   PRIMARY STYLE
     //  ============================================================================
     .s-btn__primary {
-        color: @button-primary-color;
-        background-color: @button-primary-background-color;
-        box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.4);
+        color: var(--theme-button-primary-color);
+        background-color: var(--theme-button-primary-background-color);
+        box-shadow: inset 0 1px 0 0 hsla(0, 0%, 100%, 0.4);
 
-        .dark-mode({ box-shadow: none; });
+        .dark-mode({
+            box-shadow: none;
+
+            &:not(.is-selected) {
+                color: var(--black);
+            }
+        });
+        .highcontrast-mode({
+            &:not(.is-selected) {
+                border-color: transparent;
+                color: var(--white);
+            }
+        });
+
 
         &:hover,
         &:focus,
         &:active {
-            color: @button-primary-hover-color;
-            background-color: @button-primary-hover-background-color;
+            color: var(--theme-button-primary-hover-color);
+            background-color: var(--theme-button-primary-hover-background-color);
         }
 
         &:active {
-            background-color: @button-primary-active-background-color;
+            background-color: var(--theme-button-primary-active-background-color);
             box-shadow: none;
         }
 
         &.is-selected {
-            color: @button-primary-selected-color;
-            background-color: @button-primary-selected-background-color;
+            color: var(--theme-button-primary-selected-color);
+            background-color: var(--theme-button-primary-selected-background-color);
         }
 
         .s-btn--number {
-            color: @button-primary-number-color;
+            color: var(--theme-button-primary-number-color);
         }
     }
 
@@ -403,19 +464,19 @@
     //  $   MISC STYLES
     //  ============================================================================
     .s-btn__google {
-        border-color: var(--black-100);
+        border-color: var(--bc-medium);
         background-color: var(--white);
         color: var(--black-700);
 
         &:hover,
         &:focus {
-            border-color: var(--black-150);
+            border-color: var(--bc-darker);
             background-color: var(--black-025);
             color: var(--black-800);
         }
 
         &:active {
-            border-color: var(--black-200);
+            border-color: var(--bc-darkest);
             background-color: var(--black-050);
             color: var(--black-900);
         }
@@ -425,6 +486,8 @@
         border-color: transparent;
         background-color: #385499;
         color: #fff;
+
+        .highcontrast-mode({ border-color: transparent; });
 
         &:hover,
         &:focus {
@@ -441,6 +504,8 @@
     .s-btn__github {
         background-color: var(--black-750);
         color: var(--white);
+
+        .highcontrast-mode({ border-color: transparent; });
 
         &:hover,
         &:focus {

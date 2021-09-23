@@ -5,11 +5,12 @@ description: Stacks provides a robust theming API to handle theming in various c
 ---
 
 <section class="stacks-section">
-    {% header "h2", "Light and dark modes" %}
-    <p class="stacks-copy">Stacks supports light and dark modes. By using Stacks, you will get dark mode for free. By using a Stacks component, an atomic color class, or CSS variable directly, your theme will switch appropriately based on the following methods: </p>
+    {% header "h2", "Light, dark, and high contrast modes" %}
+    <p class="stacks-copy">Stacks supports light, dark, and high contrast modes. By using Stacks, you will get each of these modes for free. By using a Stacks component, an atomic color class, or CSS variable directly, your theme will switch appropriately based on the following methods: </p>
     <ol class="stacks-list">
         <li>You can apply <code class="stacks-code">.theme-system</code> to the <code class="stacks-code">body</code> element. This will change colors based on the <code class="stacks-code">prefers-color-scheme</code> media query, which is ultimately powered by the user’s system or browser settings. This can be preferable for folks who have their system turn to dark mode based on ambient light or time of day.</li>
         <li>Alternatively, you can set a dark mode that is not system dependent by attaching <code class="stacks-code">.theme-dark</code> to the <code class="stacks-code">body</code> element.</li>
+        <li>Adding <code class="stacks-code">.theme-highcontrast</code> to the <code class="stacks-code">body</code> element will boost colors to WCAG Level AAA contrast ratios in as many places as possible. This mode stacks on top of both light and dark modes. The only exception is branded themed colors remain untouched by high contrast mode.</li>
     </ol>
     <p class="stacks-copy">There are also <a class="s-link" href="{{ "/product/guidelines/conditional-classes#dark-mode" | relative_url }}">conditional classes</a> that can be applied to override assumed dark mode colors, force light mode, or to force dark mode. Forcing modes can be good for previews in admin-only situations.</p>
 </section>
@@ -78,6 +79,13 @@ description: Stacks provides a robust theming API to handle theming in various c
         --theme-base-primary-color-r: 235;
         --theme-base-primary-color-g: 59;
         --theme-base-primary-color-b: 90;
+
+        --theme-base-secondary-color-h: 349;
+        --theme-base-secondary-color-s: 81%;
+        --theme-base-secondary-color-l: 58%;
+        --theme-base-secondary-color-r: 235;
+        --theme-base-secondary-color-g: 59;
+        --theme-base-secondary-color-b: 90;
     }
 
     .theme-team-002 {
@@ -87,22 +95,44 @@ description: Stacks provides a robust theming API to handle theming in various c
         --theme-base-primary-color-r: 247;
         --theme-base-primary-color-g: 183;
         --theme-base-primary-color-b: 49;
+
+        --theme-base-secondary-color-h: 41;
+        --theme-base-secondary-color-s: 93%;
+        --theme-base-secondary-color-l: 58%;
+        --theme-base-secondary-color-r: 247;
+        --theme-base-secondary-color-g: 183;
+        --theme-base-secondary-color-b: 49;
     }
 
     .theme-team-003 {
-        --theme-base-primary-color-h: 148;
-        --theme-base-primary-color-s: 71%;
-        --theme-base-primary-color-l: 44%;
-        --theme-base-primary-color-r: 32;
-        --theme-base-primary-color-g: 191;
-        --theme-base-primary-color-b: 107;
+        --theme-base-primary-color-h: 288;
+        --theme-base-primary-color-s: 76%;
+        --theme-base-primary-color-l: 38%;
+        --theme-base-primary-color-r: 141;
+        --theme-base-primary-color-g: 23;
+        --theme-base-primary-color-b: 170;
 
+        --theme-base-secondary-color-h: 288;
+        --theme-base-secondary-color-s: 76%;
+        --theme-base-secondary-color-l: 38%;
+        --theme-base-secondary-color-r: 141;
+        --theme-base-secondary-color-g: 23;
+        --theme-base-secondary-color-b: 170;
+
+        /* Override colors for dark mode only */
         --theme-dark-primary-color-h: 288;
         --theme-dark-primary-color-s: 45%;
         --theme-dark-primary-color-l: 60%;
         --theme-dark-primary-color-r: 180;
         --theme-dark-primary-color-g: 105;
         --theme-dark-primary-color-b: 199;
+
+        --theme-dark-secondary-color-h: 288;
+        --theme-dark-secondary-color-s: 45%;
+        --theme-dark-secondary-color-l: 60%;
+        --theme-dark-secondary-color-r: 180;
+        --theme-dark-secondary-color-g: 105;
+        --theme-dark-secondary-color-b: 199;
     }
 </style>
 {% endhighlight %}
