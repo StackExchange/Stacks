@@ -65,6 +65,19 @@
 #stacks-internals #screen-sm({
     #stacks-internals-collect-small();
 });
+
+// We need printing styles to be last so they can override all other styles.
+.print\:d-block {
+    @media print {
+        display: block !important;
+    }
+}
+
+.print\:d-none {
+    @media print {
+        display: none !important;
+    }
+}
 /* stylelint-enable */
 
 //  --  CONFIG

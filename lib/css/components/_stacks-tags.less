@@ -17,6 +17,10 @@
     background-color: @background;
     color: @color;
 
+    .highcontrast-mode({
+        border-color: currentColor;
+    });
+
     .s-tag--dismiss {
         color: inherit;
         background-color: transparent;
@@ -24,6 +28,10 @@
         &:hover {
             color: @white; // We want this color to remain fixed regardless of dark mode
             background-color: @color;
+
+            .highcontrast-mode({
+                color: var(--white); // We do not want this color to remain fixed
+            });
         }
     }
 }
@@ -32,6 +40,10 @@
     border-color: @border;
     background-color: @background;
     color: @color;
+
+    .highcontrast-mode({
+        border-color: currentColor;
+    });
 }
 
 .s-tag-hover-styles(@border-hover: transparent, @background-hover: transparent, @color-hover: inherit) {
@@ -41,6 +53,10 @@
         border-color: @border-hover;
         background-color: @background-hover;
         color: @color-hover;
+
+        .highcontrast-mode({
+            border-color: currentColor;
+        });
     }
 }
 
