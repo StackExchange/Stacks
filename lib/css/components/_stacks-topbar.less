@@ -101,7 +101,7 @@
     }
 
     .s-topbar--menu {
-        display: flex;// none;
+        display: flex;
         padding: 0;
         height: 100%;
         width: 44px;
@@ -109,23 +109,24 @@
         align-items: center;
         justify-content: center;
 
-        // NOTE: taken from source file
+        // NOTE: taken from original SO source file
         // build hamburger icon manually instead of using `@Svg` helper because
         // we can more easily animate its content (transform hamburger into x)
         span {
-            width: 18px;
-            height: 2px;
-            background-color: var(--theme-topbar-item-color);
-            position: relative;
+            &,
+            &:before,
+            &:after {
+                width: @su16;
+                height: 2px;
+                background-color: var(--theme-topbar-item-color);
+                position: relative;
+            }
 
             &:before,
             &:after {
                 position: absolute;
                 content: '';
-                width: 18px;
-                height: 2px;
                 left: 0;
-                background: var(--theme-topbar-item-color);
                 top: -5px;
                 transition: all ease-in-out 0.1s;
             }
