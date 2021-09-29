@@ -1,9 +1,9 @@
-<header class="s-topbar {{ additionalClass }} z-base">
+<header class="s-topbar {{ additionalClass }} z-base js-topbar-example">
     <div class="s-topbar--container {{ containerClass }}">
         {% if showMenu %}
-            <a href="#" class="s-topbar--menu js-topbar-menu"><span></span></a>
+            <a href="#" class="s-topbar--menu"><span></span></a>
         {% else %}
-            <a href="#" class="s-topbar--menu d-none sm:d-flex js-topbar-menu"><span></span></a>
+            <a href="#" class="s-topbar--menu d-none sm:d-flex"><span></span></a>
         {% endif %}
 
         <a href="#" class="s-topbar--logo">
@@ -19,14 +19,14 @@
                         </a>
                     </li>
                 {% endif %}
-                {% if loggedOut %}
+                {% if showFullNavigation %}
                     <li>
                         <a href="#" class="s-topbar--item">
                             About
                         </a>
                     </li>
                     <li>
-                        <a href="#" class="s-topbar--item">
+                        <a href="#" class="s-topbar--item is-selected">
                             Products
                         </a>
                     </li>
@@ -47,7 +47,7 @@
 
         {% unless hideSearch %}
             <form id="search" class="s-topbar--searchbar" autocomplete="off">
-                {% unless loggedOut %}
+                {% unless hideSelect %}
                     <div class="s-select">
                         <select>
                             <option selected="selected">
@@ -69,7 +69,7 @@
             </form>
         {% endunless %}
 
-        {% if loggedOut %}
+        {% if showCtas %}
             <ol class="s-topbar--ctas">
                 <li>
                     <a href="#" class="s-topbar--item s-btn s-btn__filled">Log in</a>
@@ -80,13 +80,15 @@
             </ol>
         {% else %}
             <ol class="s-topbar--content">
-                <li>
-                    <button
-                        class="s-topbar--item s-btn s-btn__icon s-btn__muted d-none sm:d-inline-flex js-search-button"
-                        type="button">
-                            {% icon "Search" %}
-                    </button>
-                </li>
+                {% unless hideSearch %}
+                    <li>
+                        <button
+                            class="s-topbar--item s-btn s-btn__icon s-btn__muted d-none sm:d-inline-flex js-search-button"
+                            type="button">
+                                {% icon "Search" %}
+                        </button>
+                    </li>
+                {% endunless %}
                 {% if isMod %}
                     <li>
                         <a href="#" class="s-topbar--item" title="Moderator inbox">
@@ -99,26 +101,28 @@
                         </a>
                     </li>
                 {% endif %}
-                <li>
-                    <a href="#" class="s-topbar--item s-user-card s-user-card__small">
-                        <span class="s-avatar s-avatar__24 s-user-card--avatar">
-                            <img class="s-avatar--image" src="{{ "/assets/img/anonymous-user.svg" | relative_url }}" />
-                            <span class="v-visible-sr">John Doe</span>
-                        </span>
-                        <div class="s-user-card--info">
-                            <ul class="s-user-card--awards">
-                                <li class="s-user-card--rep">3,145</li>
-                                <li class="s-award-bling s-award-bling__gold">3</li>
-                                <li class="s-award-bling s-award-bling__silver">9</li>
-                                <li class="s-award-bling s-award-bling__bronze">20</li>
-                            </ul>
-                        </div>
-                    </a>
-                </li>
+                {% unless hideUserCard %}
+                    <li>
+                        <a href="#" class="s-topbar--item s-user-card s-user-card__small">
+                            <span class="s-avatar s-avatar__24 s-user-card--avatar">
+                                <img class="s-avatar--image" src="{{ "/assets/img/anonymous-user.svg" | relative_url }}" />
+                                <span class="v-visible-sr">John Doe</span>
+                            </span>
+                            <div class="s-user-card--info">
+                                <ul class="s-user-card--awards">
+                                    <li class="s-user-card--rep">3,145</li>
+                                    <li class="s-award-bling s-award-bling__gold">3</li>
+                                    <li class="s-award-bling s-award-bling__silver">9</li>
+                                    <li class="s-award-bling s-award-bling__bronze">20</li>
+                                </ul>
+                            </div>
+                        </a>
+                    </li>
+                {% endunless %}
                 <li>
                     <a href="#" class="s-topbar--item" title="Inbox">
                         {% icon "Inbox" %}
-                        <span class="s-activity-indicator">3</span>
+                        <span class="s-activity-indicator s-activity-indicator__danger">3</span>
                     </a>
                 </li>
                 <li>
