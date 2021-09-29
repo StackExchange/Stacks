@@ -5,66 +5,6 @@
 @import (reference) "../atomic/_stacks-width-height.less";
 @import (reference) "../atomic/_stacks-borders.less";
 
-// forced light topbar
-.s-topbar__light {
-    --theme-topbar-background-color: @black-025;
-
-    // Search input
-    --theme-topbar-search-color: @black-700;
-    --theme-topbar-search-background: @white;
-    --theme-topbar-search-placeholder: @black-200;
-    --theme-topbar-search-border: @black-200;
-    --theme-topbar-search-border-focus: @blue-300;
-    --theme-topbar-search-shadow-focus: 0 0 0 @su4 var(--focus-ring);
-
-    // Search switcher
-    --theme-topbar-select-color: @black-700;
-    --theme-topbar-select-background: @black-050;
-
-    // topbar items
-    --theme-topbar-item-color: @black-600;
-    --theme-topbar-item-color-hover: @black-800;
-    --theme-topbar-item-background-hover: @black-075;
-    --theme-topbar-item-color-current: @black;
-    --theme-topbar-item-border-current: var(--theme-primary-color);
-}
-
-// forced dark topbar
-.s-topbar__dark {
-    @topbar-actual-background: @black-800;
-    // TODO
-    #calc-topbar-lightness-increase() when (lightness(@topbar-actual-background) < 15%) {
-        @topbar-search-lightness-increase: 20%;
-    }
-    #calc-topbar-lightness-increase() when not (lightness(@topbar-actual-background) < 15%) {
-        @topbar-search-lightness-increase: 10%;
-    }
-    #calc-topbar-lightness-increase();
-
-    --theme-topbar-background-color: @topbar-actual-background;
-    // Search input
-    --theme-topbar-search-color: lighten(@topbar-actual-background, 80% + @topbar-search-lightness-increase);
-    --theme-topbar-search-background: lighten(@topbar-actual-background, @topbar-search-lightness-increase);
-    --theme-topbar-search-placeholder: lighten(@topbar-actual-background, 60% + @topbar-search-lightness-increase);
-    --theme-topbar-search-border: lighten(@topbar-actual-background, @topbar-search-lightness-increase);
-    --theme-topbar-search-border-focus: lighten(@topbar-actual-background, 45% + @topbar-search-lightness-increase);
-    --theme-topbar-search-shadow-focus: 0 0 0 @su4 fade(@white, 30%);
-
-    // Search switcher
-    --theme-topbar-select-color: lighten(@topbar-actual-background, 60% + @topbar-search-lightness-increase);
-    --theme-topbar-select-background: lighten(@topbar-actual-background, 10% + @topbar-search-lightness-increase);
-
-    // topbar items
-    --theme-topbar-item-color: @black-025;
-    --theme-topbar-item-color-hover: @white;
-    --theme-topbar-item-background-hover: @black-700;
-    --theme-topbar-item-color-current: @white;
-    --theme-topbar-item-border-current: var(--theme-primary-color);
-
-    // themed border accent
-    --theme-topbar-accent-border: none;
-}
-
 .s-topbar {
     min-width: auto;
     box-shadow: var(--bs-sm);
@@ -75,13 +15,16 @@
     display: flex;
     border-top: var(--theme-topbar-accent-border);
     position: relative;
+    align-items: center;
 
     // Wraps the content so the topbar stretches 100% w/ content at some value below that
     .s-topbar--container {
         width: @s-full; // wmx12; Consumers should use atomic classes to override this
         max-width: 100%;
+        height: 100%;
         display: flex;
         margin: 0 auto;
+        align-items: center;
     }
 
     .s-topbar--logo {
@@ -160,7 +103,78 @@
     }
 }
 
-.s-topbar .s-topbar--navigation,
+// forced light topbar
+.s-topbar.s-topbar__light {
+    --theme-topbar-background-color: @black-025;
+
+    // Search input
+    --theme-topbar-search-color: @black-700;
+    --theme-topbar-search-background: @white;
+    --theme-topbar-search-placeholder: @black-200;
+    --theme-topbar-search-border: @black-200;
+    --theme-topbar-search-border-focus: @blue-300;
+    --theme-topbar-search-shadow-focus: 0 0 0 @su4 var(--focus-ring);
+
+    // Search switcher
+    --theme-topbar-select-color: @black-700;
+    --theme-topbar-select-background: @black-050;
+
+    // topbar items
+    --theme-topbar-item-color: @black-600;
+    --theme-topbar-item-color-hover: @black-800;
+    --theme-topbar-item-background-hover: @black-075;
+    --theme-topbar-item-color-current: @black;
+    --theme-topbar-item-border-current: var(--theme-primary-color);
+
+    // TODO
+    // &:extend(body:not(.theme-dark));
+    // &:extend(.component-colors);
+}
+
+// forced dark topbar
+.s-topbar.s-topbar__dark {
+    @topbar-actual-background: @black-800;
+    // TODO
+    #calc-topbar-lightness-increase() when (lightness(@topbar-actual-background) < 15%) {
+        @topbar-search-lightness-increase: 20%;
+    }
+    #calc-topbar-lightness-increase() when not (lightness(@topbar-actual-background) < 15%) {
+        @topbar-search-lightness-increase: 10%;
+    }
+    #calc-topbar-lightness-increase();
+
+    --theme-topbar-background-color: @topbar-actual-background;
+    // Search input
+    --theme-topbar-search-color: lighten(@topbar-actual-background, 80% + @topbar-search-lightness-increase);
+    --theme-topbar-search-background: lighten(@topbar-actual-background, @topbar-search-lightness-increase);
+    --theme-topbar-search-placeholder: lighten(@topbar-actual-background, 60% + @topbar-search-lightness-increase);
+    --theme-topbar-search-border: lighten(@topbar-actual-background, @topbar-search-lightness-increase);
+    --theme-topbar-search-border-focus: lighten(@topbar-actual-background, 45% + @topbar-search-lightness-increase);
+    --theme-topbar-search-shadow-focus: 0 0 0 @su4 fade(@white, 30%);
+
+    // Search switcher
+    --theme-topbar-select-color: lighten(@topbar-actual-background, 60% + @topbar-search-lightness-increase);
+    --theme-topbar-select-background: lighten(@topbar-actual-background, 10% + @topbar-search-lightness-increase);
+
+    // topbar items
+    --theme-topbar-item-color: @black-025;
+    --theme-topbar-item-color-hover: @white;
+    --theme-topbar-item-background-hover: @black-700;
+    --theme-topbar-item-color-current: @white;
+    --theme-topbar-item-border-current: var(--theme-primary-color);
+
+    // themed border accent
+    --theme-topbar-accent-border: none;
+
+    // TODO
+    // &:extend(body.theme-dark);
+    // &:extend(.component-colors);
+
+    // // themed border accent
+    // --theme-topbar-accent-border: none;
+}
+
+//.s-topbar .s-topbar--navigation,
 .s-topbar .s-topbar--content,
 .s-topbar .s-topbar--ctas {
     display: flex;
@@ -173,8 +187,13 @@
     }
 }
 
-.s-topbar .s-topbar--navigation,
+//.s-topbar .s-topbar--navigation,
 .s-topbar .s-topbar--content {
+    // allow this content to scroll if it gets too long
+    .overflow-x-auto;
+    // push this section as far to the right as possible
+    margin-left: auto;
+
     .s-topbar--item {
         color: var(--theme-topbar-item-color);
         display: inline-flex;
@@ -212,54 +231,27 @@
     }
 }
 
-// Primary navigation: Links to products on the left
-.s-topbar .s-topbar--navigation {
-    .s-topbar--item {
-        display: inline-block;
-        padding: @su4 + @su2 @su16;
-        border-radius: 1000px;
-        align-self: center;
+.s-topbar--notice {
+    &:extend(.s-badge);
 
-        &.is-selected {
-            background-color: var(--theme-primary-color);
-            color: var(--white);
+    text-transform: uppercase;
+    font-size: @fs-fine;
+    font-weight: 700;
+    .badge-styles(transparent, transparent, var(--theme-topbar-item-color));
 
-            &:hover,
-            &:focus {
-                background-color: var(--theme-primary-600);
-                color: var(--white);
-            }
-        }
+    &:hover,
+    &:focus {
+        .badge-styles(var(--theme-topbar-item-background-hover), var(--theme-topbar-item-background-hover), var(--theme-topbar-item-color-hover));
     }
 
-    // TODO Stacks component? Badge?
-    .s-topbar--item.s-topbar--notice {
-        border-radius: @br-sm;
-        font-weight: 700;
-        font-size: @fs-fine;
-        text-transform: uppercase;
-        padding: @su4 @su8;
-        margin: 0 @su8;
+    &.is-unread {
+        .badge-styles(var(--theme-primary-color), var(--theme-primary-color), var(--white));
 
-        &.is-unread {
-            background-color: var(--theme-primary-color);
-            color: var(--white);
-
-            &:hover,
-            &:focus {
-                background-color: var(--theme-primary-600);
-                color: var(--white);
-            }
+        &:hover,
+        &:focus {
+            .badge-styles(var(--theme-primary-600), var(--theme-primary-600), var(--white));
         }
     }
-}
-
-// Secondary navigation: CTAs & icons on the right.
-.s-topbar .s-topbar--content {
-    // allow this content to scroll if it gets too long
-    .overflow-x-auto;
-    // push this section as far to the right as possible
-    margin-left: auto;
 }
 
 // CTAs: Sign in, Sign up, etc. on the far right

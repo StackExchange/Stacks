@@ -9,35 +9,33 @@
         <a href="#" class="s-topbar--logo">
             {% icon "LogoGlyph", "native" %}
         </a>
+        {% if showNotices %}
+        <a href="#" class="s-topbar--notice is-unread">
+            new
+        </a>
+        {% endif %}
 
         {% unless hideNavigation %}
-            <ol class="s-topbar--navigation sm:d-none">
-                {% if showNotices %}
-                    <li>
-                        <a class="s-topbar--item s-topbar--notice is-unread">
-                            new
-                        </a>
-                    </li>
-                {% endif %}
+            <ol class="s-navigation sm:d-none">
                 {% if showFullNavigation %}
                     <li>
-                        <a href="#" class="s-topbar--item">
+                        <a href="#" class="s-navigation--item">
                             About
                         </a>
                     </li>
                     <li>
-                        <a href="#" class="s-topbar--item is-selected">
+                        <a href="#" class="s-navigation--item is-selected">
                             Products
                         </a>
                     </li>
                     <li>
-                        <a href="#" class="s-topbar--item">
+                        <a href="#" class="s-navigation--item">
                             For Teams
                         </a>
                     </li>
                 {% else %}
                     <li>
-                        <a href="#" class="s-topbar--item">
+                        <a href="#" class="s-navigation--item">
                             Products
                         </a>
                     </li>

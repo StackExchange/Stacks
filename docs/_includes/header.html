@@ -7,12 +7,12 @@
         </a>
 
         {% if site-navigation %}
-            <ul class="s-topbar--navigation ml16 sm:d-none">
+            <ul class="s-navigation ml16 sm:d-none">
                 {% assign slug = page.url | replace:'/',' ' | truncatewords: 2 | remove:'...' %}
 
                 {% for section in site-navigation.sections %}
                     {% assign url = section.url | replace:'/',' ' | truncatewords: 2 | remove:'...' %}
-                    <li><a class="s-topbar--item{% if url == slug %} is-selected{% endif %}" href="{{ section.url }}">{{ section.title }}</a></li>
+                    <li><a class="s-navigation--item{% if url == slug %} is-selected{% endif %}" href="{{ section.url }}">{{ section.title }}</a></li>
                 {% endfor %}
             </ul>
         {% endif %}
