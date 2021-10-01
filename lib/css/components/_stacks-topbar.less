@@ -126,9 +126,8 @@
     --theme-topbar-item-color-current: @black;
     --theme-topbar-item-border-current: var(--theme-primary-color);
 
-    // TODO
-    // &:extend(body:not(.theme-dark));
-    // &:extend(.component-colors);
+    // TODO this only works 100% perfectly in light mode, due to child elements inheriting current theme colors
+    // TODO extend forced light mode instead of overriding
 }
 
 // forced dark topbar
@@ -166,12 +165,21 @@
     // themed border accent
     --theme-topbar-accent-border: none;
 
-    // TODO
-    // &:extend(body.theme-dark);
-    // &:extend(.component-colors);
+    // TODO this only works 100% perfectly in dark mode, due to child elements inheriting current theme colors
+    // TODO extend forced dark mode instead of overriding
+}
 
-    // // themed border accent
-    // --theme-topbar-accent-border: none;
+// TODO HACK remove once light/dark topbars are inheriting forced themes correctly
+.s-topbar.s-topbar__dark,
+.s-topbar.s-topbar__light {
+    .s-navigation--item {
+        color: var(--theme-topbar-item-color);
+    }
+
+    .s-navigation--item:hover {
+        color: var(--theme-topbar-item-color-hover);
+        background-color: var(--theme-topbar-item-background-hover);
+    }
 }
 
 //.s-topbar .s-topbar--navigation,
