@@ -6,7 +6,32 @@
 @import (reference) "../atomic/_stacks-borders.less";
 @import (reference) "./_stacks-badges.less";
 
+.s-topbar-theme() {
+    --topbar-height: @su48; // TODO move this somewhere else?
+    --theme-topbar-background-color: var(--black-025);
+
+    // Search input
+    --theme-topbar-search-color: var(--black-700);
+    --theme-topbar-search-background: var(--white);
+    --theme-topbar-search-placeholder: var(--black-200);
+    --theme-topbar-search-border: var(--bc-darker);
+    --theme-topbar-search-border-focus: var(--blue-300);
+    --theme-topbar-search-shadow-focus: 0 0 0 @su4 var(--focus-ring);
+
+    // Search switcher
+    --theme-topbar-select-color: var(--black-700);
+    --theme-topbar-select-background: var(--black-050);
+
+    // topbar items
+    --theme-topbar-item-color: var(--black-600);
+    --theme-topbar-item-color-hover: var(--black-800);
+    --theme-topbar-item-background-hover: var(--black-075);
+    --theme-topbar-item-color-current: var(--black);
+    --theme-topbar-item-border-current: var(--theme-primary-color);
+}
+
 .s-topbar {
+    .s-topbar-theme();
     min-width: auto;
     box-shadow: var(--bs-sm);
     width: 100%;
@@ -104,84 +129,57 @@
     }
 }
 
-// forced light topbar
-.s-topbar__light {
-    --theme-topbar-background-color: @black-025;
-
-    // Search input
-    --theme-topbar-search-color: @black-700;
-    --theme-topbar-search-background: @white;
-    --theme-topbar-search-placeholder: @black-200;
-    --theme-topbar-search-border: @black-200;
-    --theme-topbar-search-border-focus: @blue-300;
-    --theme-topbar-search-shadow-focus: 0 0 0 @su4 var(--focus-ring);
-
-    // Search switcher
-    --theme-topbar-select-color: @black-700;
-    --theme-topbar-select-background: @black-050;
-
-    // topbar items
-    --theme-topbar-item-color: @black-600;
-    --theme-topbar-item-color-hover: @black-800;
-    --theme-topbar-item-background-hover: @black-075;
-    --theme-topbar-item-color-current: @black;
-    --theme-topbar-item-border-current: var(--theme-primary-color);
-
-    // TODO this only works 100% perfectly in light mode, due to child elements inheriting current theme colors
-    // TODO extend forced light mode instead of overriding
-}
-
 // forced dark topbar
-.s-topbar__dark {
-    @topbar-actual-background: @black-800;
-    // TODO
-    #calc-topbar-lightness-increase() when (lightness(@topbar-actual-background) < 15%) {
-        @topbar-search-lightness-increase: 20%;
-    }
-    #calc-topbar-lightness-increase() when not (lightness(@topbar-actual-background) < 15%) {
-        @topbar-search-lightness-increase: 10%;
-    }
-    #calc-topbar-lightness-increase();
+// .s-topbar__dark {
+//     @topbar-actual-background: @black-800;
+//     // TODO
+//     #calc-topbar-lightness-increase() when (lightness(@topbar-actual-background) < 15%) {
+//         @topbar-search-lightness-increase: 20%;
+//     }
+//     #calc-topbar-lightness-increase() when not (lightness(@topbar-actual-background) < 15%) {
+//         @topbar-search-lightness-increase: 10%;
+//     }
+//     #calc-topbar-lightness-increase();
 
-    --theme-topbar-background-color: @topbar-actual-background;
-    // Search input
-    --theme-topbar-search-color: lighten(@topbar-actual-background, 80% + @topbar-search-lightness-increase);
-    --theme-topbar-search-background: lighten(@topbar-actual-background, @topbar-search-lightness-increase);
-    --theme-topbar-search-placeholder: lighten(@topbar-actual-background, 60% + @topbar-search-lightness-increase);
-    --theme-topbar-search-border: lighten(@topbar-actual-background, @topbar-search-lightness-increase);
-    --theme-topbar-search-border-focus: lighten(@topbar-actual-background, 45% + @topbar-search-lightness-increase);
-    --theme-topbar-search-shadow-focus: 0 0 0 @su4 fade(@white, 30%);
+//     --theme-topbar-background-color: @topbar-actual-background;
+//     // Search input
+//     --theme-topbar-search-color: lighten(@topbar-actual-background, 80% + @topbar-search-lightness-increase);
+//     --theme-topbar-search-background: lighten(@topbar-actual-background, @topbar-search-lightness-increase);
+//     --theme-topbar-search-placeholder: lighten(@topbar-actual-background, 60% + @topbar-search-lightness-increase);
+//     --theme-topbar-search-border: lighten(@topbar-actual-background, @topbar-search-lightness-increase);
+//     --theme-topbar-search-border-focus: lighten(@topbar-actual-background, 45% + @topbar-search-lightness-increase);
+//     --theme-topbar-search-shadow-focus: 0 0 0 @su4 fade(@white, 30%);
 
-    // Search switcher
-    --theme-topbar-select-color: lighten(@topbar-actual-background, 60% + @topbar-search-lightness-increase);
-    --theme-topbar-select-background: lighten(@topbar-actual-background, 10% + @topbar-search-lightness-increase);
+//     // Search switcher
+//     --theme-topbar-select-color: lighten(@topbar-actual-background, 60% + @topbar-search-lightness-increase);
+//     --theme-topbar-select-background: lighten(@topbar-actual-background, 10% + @topbar-search-lightness-increase);
 
-    // topbar items
-    --theme-topbar-item-color: @black-025;
-    --theme-topbar-item-color-hover: @white;
-    --theme-topbar-item-background-hover: @black-700;
-    --theme-topbar-item-color-current: @white;
-    --theme-topbar-item-border-current: var(--theme-primary-color);
+//     // topbar items
+//     --theme-topbar-item-color: @black-025;
+//     --theme-topbar-item-color-hover: @white;
+//     --theme-topbar-item-background-hover: @black-700;
+//     --theme-topbar-item-color-current: @white;
+//     --theme-topbar-item-border-current: var(--theme-primary-color);
 
-    // themed border accent
-    --theme-topbar-accent-border: none;
+//     // themed border accent
+//     --theme-topbar-accent-border: none;
 
-    // TODO this only works 100% perfectly in dark mode, due to child elements inheriting current theme colors
-    // TODO extend forced dark mode instead of overriding
-}
+//     // TODO this only works 100% perfectly in dark mode, due to child elements inheriting current theme colors
+//     // TODO extend forced dark mode instead of overriding
+// }
 
 // TODO HACK remove once light/dark topbars are inheriting forced themes correctly
-.s-topbar.s-topbar__dark,
-.s-topbar.s-topbar__light {
-    .s-navigation--item {
-        color: var(--theme-topbar-item-color);
-    }
+// .s-topbar.s-topbar__dark,
+// .s-topbar.s-topbar__light {
+//     .s-navigation--item {
+//         color: var(--theme-topbar-item-color);
+//     }
 
-    .s-navigation--item:hover {
-        color: var(--theme-topbar-item-color-hover);
-        background-color: var(--theme-topbar-item-background-hover);
-    }
-}
+//     .s-navigation--item:hover {
+//         color: var(--theme-topbar-item-color-hover);
+//         background-color: var(--theme-topbar-item-background-hover);
+//     }
+// }
 
 //.s-topbar .s-topbar--navigation,
 .s-topbar .s-topbar--content,

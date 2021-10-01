@@ -64,11 +64,12 @@ description: The topbar component is a navigation bar that is placed at the top 
     <div class="stacks-preview">
 {% highlight html %}
 <header class="s-topbar">…</header>
-<header class="s-topbar s-topbar__light">…</header>
-<header class="s-topbar s-topbar__dark">…</header>
+<header class="s-topbar theme-dark__forced">…</header>
+<header class="s-topbar theme-light__forced">…</header>
 {% endhighlight %}
         <div class="stacks-preview--example">
-            {% assign variations = "s-topbar__auto,s-topbar__dark,s-topbar__light" | split: "," %}
+            <!-- TODO: Remove this __dark/light heading hack -->
+            {% assign variations = "s-topbar__auto,theme-dark__forced __dark,theme-light__forced __light" | split: "," %}
             <div class="d-grid g24 grid__1">
                 {% for variation in variations %}
                     <div class="grid--item">
