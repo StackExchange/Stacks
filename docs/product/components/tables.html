@@ -1084,4 +1084,23 @@ description: Tables are used to list all information from a data set. The base s
             </table>
         </div>
     </div>
+
+    {% header "h2", "Atomic classes" %}
+    <p class="stacks-copy">Further control of table behavior is possible with atomic classes. For example, you can make non-table markup display as a table layout with <code class="stacks-code">.d-table</code> and <code class="stacks-code">.d-table-cell</code>.</p>
+    <table class="s-table s-table__bx-simple">
+        <thead>
+            <tr>
+                <th scope="col" class="s-table--cell3">Class</th>
+                <th scope="col">Output</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in tables.atomic %}
+            <tr>
+                <td><code class="stacks-code">{{ item.class }}</code></td>
+                <td class="ff-mono">{{ item.output }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 </section>
