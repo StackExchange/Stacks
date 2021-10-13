@@ -1,4 +1,3 @@
-// TODO cleanup
 $(".js-topbar-example .js-search-button").on("click", function() {
     $(this).closest(".s-topbar")
         .find(".s-topbar--searchbar")
