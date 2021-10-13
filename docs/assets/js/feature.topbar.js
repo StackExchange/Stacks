@@ -4,7 +4,7 @@ $(".js-topbar-example .js-search-button").on("click", function() {
         .toggleClass("s-topbar--searchbar__open");
 });
 
-$(".js-topbar-example .s-topbar--menu").on("click", function() {
+$(".js-topbar-example .s-topbar--menu-btn").on("click", function() {
     $(this).toggleClass("is-selected");
 });
 
