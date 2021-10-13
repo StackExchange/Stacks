@@ -1,3 +1,14 @@
+//
+//  STACK OVERFLOW
+//  TOPBAR
+//
+//  This CSS comes from Stacks, our CSS & Pattern library for rapidly building
+//  Stack Overflow. For documentation of all these classes and how to contribute,
+//  visit https://stackoverflow.design/
+//
+//  ============================================================================
+//  $   BASE STYLE
+//  ----------------------------------------------------------------------------
 .s-topbar {
     min-width: auto;
     box-shadow: var(--bs-sm);
@@ -98,7 +109,9 @@
     }
 }
 
-// forced light topbar
+//  ===========================================================================
+//  $   LIGHT
+//  ---------------------------------------------------------------------------
 .s-topbar__light {
     --theme-topbar-background-color: @black-025;
 
@@ -125,7 +138,9 @@
     // TODO extend forced light mode instead of overriding
 }
 
-// forced dark topbar
+//  ===========================================================================
+//  $   DARK
+//  ---------------------------------------------------------------------------
 .s-topbar__dark {
     @topbar-actual-background: @black-800;
     // TODO
@@ -138,6 +153,7 @@
     #calc-topbar-lightness-increase();
 
     --theme-topbar-background-color: @topbar-actual-background;
+
     // Search input
     --theme-topbar-search-color: lighten(@topbar-actual-background, 80% + @topbar-search-lightness-increase);
     --theme-topbar-search-background: lighten(@topbar-actual-background, @topbar-search-lightness-increase);
@@ -150,14 +166,14 @@
     --theme-topbar-select-color: lighten(@topbar-actual-background, 60% + @topbar-search-lightness-increase);
     --theme-topbar-select-background: lighten(@topbar-actual-background, 10% + @topbar-search-lightness-increase);
 
-    // topbar items
+    // Items
     --theme-topbar-item-color: @black-025;
     --theme-topbar-item-color-hover: @white;
     --theme-topbar-item-background-hover: @black-700;
     --theme-topbar-item-color-current: @white;
     --theme-topbar-item-border-current: var(--theme-primary-color);
 
-    // themed border accent
+    // Themed border accent
     --theme-topbar-accent-border: none;
 
     // TODO this only works 100% perfectly in dark mode, due to child elements inheriting current theme colors
@@ -179,7 +195,9 @@
     }
 }
 
-//.s-topbar .s-topbar--navigation,
+//  ===========================================================================
+//  $   CONTENT & CTAS
+//  ---------------------------------------------------------------------------
 .s-topbar .s-topbar--content,
 .s-topbar .s-topbar--ctas {
     display: flex;
@@ -191,7 +209,6 @@
     }
 }
 
-//.s-topbar .s-topbar--navigation,
 .s-topbar .s-topbar--content {
     // allow this content to scroll if it gets too long
     overflow-x: auto;
@@ -236,6 +253,27 @@
     }
 }
 
+// CTAs: Sign in, Sign up, etc. on the far right
+.s-topbar .s-topbar--ctas {
+    padding-left: @su4;
+    padding-right: @su8;
+    // push this section as far to the right as possible
+    margin-left: auto;
+
+    li + li {
+        margin-left: @su4;
+    }
+
+    .s-topbar--item {
+        align-self: center;
+        padding-top: @su8;
+        padding-bottom: @su8;
+    }
+}
+
+//  ===========================================================================
+//  $   NOTICE
+//  ---------------------------------------------------------------------------
 .s-topbar--notice {
     &:extend(.s-badge);
 
@@ -262,25 +300,9 @@
     }
 }
 
-// CTAs: Sign in, Sign up, etc. on the far right
-.s-topbar .s-topbar--ctas {
-    padding-left: @su4;
-    padding-right: @su8;
-    // push this section as far to the right as possible
-    margin-left: auto;
-
-    li + li {
-        margin-left: @su4;
-    }
-
-    .s-topbar--item {
-        align-self: center;
-        padding-top: @su8;
-        padding-bottom: @su8;
-    }
-}
-
-// Searchbar
+//  ===========================================================================
+//  $   SEARCHBAR
+//  ---------------------------------------------------------------------------
 .s-topbar .s-topbar--searchbar {
     @inputLineHeights: @lh-sm; // ensure the line heights between the two elements match up
 
@@ -344,7 +366,7 @@
         }
     }
 
-    // drop the left border of the search input when it is next to the select
+    // Drop the left border of the search input when it is next to the select
     .s-select + .s-topbar--searchbar--input-group > .s-input {
         .blr0;
     }
