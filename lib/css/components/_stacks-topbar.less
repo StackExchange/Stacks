@@ -127,7 +127,7 @@
     --theme-topbar-select-color: @black-700;
     --theme-topbar-select-background: @black-050;
 
-    // topbar items
+    // Items
     --theme-topbar-item-color: @black-600;
     --theme-topbar-item-color-hover: @black-800;
     --theme-topbar-item-background-hover: @black-075;
@@ -210,11 +210,9 @@
 }
 
 .s-topbar .s-topbar--content {
-    // allow this content to scroll if it gets too long
-    overflow-x: auto;
-    @scrollbar-styles();
-    // push this section as far to the right as possible
-    margin-left: auto;
+    overflow-x: auto; // Allow this content to scroll if it gets too long
+    @scrollbar-styles(); // Style the scrollbars
+    margin-left: auto; // Push this section as far to the right as possible
 
     .s-topbar--item {
         color: var(--theme-topbar-item-color);
@@ -257,8 +255,7 @@
 .s-topbar .s-topbar--ctas {
     padding-left: @su4;
     padding-right: @su8;
-    // push this section as far to the right as possible
-    margin-left: auto;
+    margin-left: auto; // Push this section as far to the right as possible
 
     li + li {
         margin-left: @su4;
@@ -304,13 +301,13 @@
 //  $   SEARCHBAR
 //  ---------------------------------------------------------------------------
 .s-topbar .s-topbar--searchbar {
-    @inputLineHeights: @lh-sm; // ensure the line heights between the two elements match up
+    @inputLineHeights: @lh-sm; // Ensure the line heights between the elements match up
 
     -webkit-transform: translate3d(0, 0, 0); // Solves an issue with Safari clipping things strangely when a popover is present in the topbar
     padding: 0 @su8;
     display: flex;
     align-items: center;
-    flex-shrink: 10000; // force the searchbar to shrink as much as possible if there's no extra space
+    flex-shrink: 10000; // Force the searchbar to shrink as much as possible if there's no extra space
     flex-grow: 1; //...but allow it to grow if there *is* extra space
 
     .s-topbar--searchbar--input-group {
