@@ -173,15 +173,17 @@
 }
 
 // TODO HACK remove once light/dark topbars are inheriting forced themes correctly
-.s-topbar.s-topbar__dark,
-.s-topbar.s-topbar__light {
-    .s-navigation--item {
-        color: var(--theme-topbar-item-color);
-    }
+.s-topbar__dark,
+.s-topbar__light {
+    &.s-topbar {
+        .s-navigation--item {
+            color: var(--theme-topbar-item-color);
+        }
 
-    .s-navigation--item:hover {
-        color: var(--theme-topbar-item-color-hover);
-        background-color: var(--theme-topbar-item-background-hover);
+        .s-navigation--item:hover {
+            color: var(--theme-topbar-item-color-hover);
+            background-color: var(--theme-topbar-item-background-hover);
+        }
     }
 }
 
