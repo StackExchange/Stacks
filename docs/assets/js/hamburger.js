@@ -2,7 +2,7 @@ $(document).ready(function() {
     var navigation = $(".js-navigation");
     var hamburgerBtn = $(".js-hamburger-btn");
 
-    hamburgerBtn.click(function(e) {
+    hamburgerBtn.on("click", function(e) {
         e.preventDefault();
         e.stopPropagation();
 
