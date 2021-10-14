@@ -146,6 +146,9 @@
 //  $   LIGHT
 //  ---------------------------------------------------------------------------
 .s-topbar__light {
+    // TODO this only works 100% perfectly in light mode, due to child elements inheriting current theme colors
+    // TODO extend forced light mode instead of overriding
+
     --theme-topbar-background-color: @black-025;
 
     // Search input
@@ -167,7 +170,7 @@
     --theme-topbar-item-color-current: @black;
     --theme-topbar-item-border-current: var(--theme-primary-color);
 
-    // TODO HACK remove once light/dark topbars are inheriting forced themes correctly
+    // TODO HACK remove everything below once light/dark topbars are inheriting forced themes correctly
     // redefine the variables for extra contrast in high-contrast mode
     .highcontrast-mode({
         // Topbar items
@@ -177,14 +180,16 @@
         --theme-topbar-item-color-current: @black;
     });
 
-    // TODO this only works 100% perfectly in light mode, due to child elements inheriting current theme colors
-    // TODO extend forced light mode instead of overriding
+    --scrollbar: hsla(0, 0%, 0%, 0.2);
 }
 
 //  ===========================================================================
 //  $   DARK
 //  ---------------------------------------------------------------------------
 .s-topbar__dark {
+    // TODO this only works 100% perfectly in dark mode, due to child elements inheriting current theme colors
+    // TODO extend forced dark mode instead of overriding
+
     @topbar-actual-background: @black-800;
     // TODO
     #calc-topbar-lightness-increase() when (lightness(@topbar-actual-background) < 15%) {
@@ -219,7 +224,7 @@
     // Themed border accent
     --theme-topbar-accent-border: none;
 
-    // TODO HACK remove once light/dark topbars are inheriting forced themes correctly
+    // TODO HACK remove everything below once light/dark topbars are inheriting forced themes correctly
     // redefine the variables for extra contrast in high-contrast mode
     .highcontrast-mode({
         // Topbar items
@@ -233,8 +238,7 @@
         }
     });
 
-    // TODO this only works 100% perfectly in dark mode, due to child elements inheriting current theme colors
-    // TODO extend forced dark mode instead of overriding
+    --scrollbar: hsla(0, 0%, 100%, 0.2);
 }
 
 //  ===========================================================================
