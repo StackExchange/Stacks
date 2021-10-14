@@ -21,6 +21,28 @@
     position: relative;
     align-items: center;
 
+    // redefine the variables for extra contrast in high-contrast mode
+    .highcontrast-mode({
+        // Search input
+        --theme-topbar-search-color: var(--theme-topbar-item-color);
+        --theme-topbar-search-background: var(--theme-topbar-background-color);
+        --theme-topbar-search-placeholder: var(--theme-topbar-item-color);
+        --theme-topbar-search-border: var(--theme-topbar-item-color);
+        --theme-topbar-search-border-focus: var(--theme-topbar-item-color);
+
+        // Search switcher
+        --theme-topbar-select-color: var(--theme-topbar-item-color);
+        --theme-topbar-select-background: var(--theme-topbar-background-color);
+
+        // Topbar items
+        --theme-topbar-item-color: var(--black-800);
+        --theme-topbar-item-color-hover: var(--black-900);
+        --theme-topbar-item-background-hover: var(--black-200);
+        --theme-topbar-item-color-current: var(--black);
+    });
+
+    .highcontrast-mode({ border-bottom: 1px solid currentColor; });
+
     // Wraps the content so the topbar stretches 100% w/ content at some value below that
     .s-topbar--container {
         width: @s-full; // wmx12; Consumers should use atomic classes to override this
@@ -107,6 +129,17 @@
             background-color: var(--theme-topbar-item-background-hover);
         }
     }
+
+    .s-navigation {
+        .s-navigation--item {
+            color: var(--theme-topbar-item-color);
+        }
+
+        .s-navigation--item:hover {
+            color: var(--theme-topbar-item-color-hover);
+            background-color: var(--theme-topbar-item-background-hover);
+        }
+    }
 }
 
 //  ===========================================================================
@@ -133,6 +166,16 @@
     --theme-topbar-item-background-hover: @black-075;
     --theme-topbar-item-color-current: @black;
     --theme-topbar-item-border-current: var(--theme-primary-color);
+
+    // TODO HACK remove once light/dark topbars are inheriting forced themes correctly
+    // redefine the variables for extra contrast in high-contrast mode
+    .highcontrast-mode({
+        // Topbar items
+        --theme-topbar-item-color: @black-800;
+        --theme-topbar-item-color-hover: @black-900;
+        --theme-topbar-item-background-hover: @black-075;
+        --theme-topbar-item-color-current: @black;
+    });
 
     // TODO this only works 100% perfectly in light mode, due to child elements inheriting current theme colors
     // TODO extend forced light mode instead of overriding
@@ -176,23 +219,22 @@
     // Themed border accent
     --theme-topbar-accent-border: none;
 
+    // TODO HACK remove once light/dark topbars are inheriting forced themes correctly
+    // redefine the variables for extra contrast in high-contrast mode
+    .highcontrast-mode({
+        // Topbar items
+        --theme-topbar-item-color: @white;
+        --theme-topbar-item-color-hover: @white;
+        --theme-topbar-item-background-hover: @black-700;
+        --theme-topbar-item-color-current: @white;
+
+        .s-badge {
+            border-color: currentColor;
+        }
+    });
+
     // TODO this only works 100% perfectly in dark mode, due to child elements inheriting current theme colors
     // TODO extend forced dark mode instead of overriding
-}
-
-// TODO HACK remove once light/dark topbars are inheriting forced themes correctly
-.s-topbar__dark,
-.s-topbar__light {
-    &.s-topbar {
-        .s-navigation--item {
-            color: var(--theme-topbar-item-color);
-        }
-
-        .s-navigation--item:hover {
-            color: var(--theme-topbar-item-color-hover);
-            background-color: var(--theme-topbar-item-background-hover);
-        }
-    }
 }
 
 //  ===========================================================================
@@ -332,6 +374,10 @@
                 color: var(--theme-topbar-search-placeholder);
                 font-style: normal;
             }
+        }
+
+        .s-input-icon {
+            color: var(--theme-topbar-search-placeholder);
         }
     }
 
