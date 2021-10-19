@@ -206,6 +206,12 @@
             box-shadow: none;
         }
 
+        &:focus {
+            .highcontrast-mode({
+                box-shadow: 0 0 0 @su4 var(--focus-ring);
+            });
+        }
+
         &.is-selected {
             color: var(--theme-button-filled-selected-color);
             background-color: var(--theme-button-filled-selected-background-color);
@@ -293,6 +299,7 @@
 
             &:focus {
                 box-shadow: 0 0 0 @su4 var(--focus-ring-muted);
+                .highcontrast-mode({ box-shadow: 0 0 0 @su4 var(--focus-ring-muted); });
             }
 
             &.is-selected {
@@ -341,6 +348,7 @@
 
         &:focus {
             box-shadow: 0 0 0 @su4 var(--focus-ring-error);
+            .highcontrast-mode({ box-shadow: 0 0 0 @su4 var(--focus-ring-error); });
         }
 
         &.is-selected {
@@ -373,6 +381,10 @@
             .highcontrast-mode({
                 color: var(--white);
 
+                &:focus {
+                    box-shadow: 0 0 0 @su4 var(--focus-ring-error);
+                }
+
                 .s-btn--number {
                     color: var(--black);
                 }
@@ -383,6 +395,7 @@
             &:active {
                 color: @button-danger-filled-hover-color;
                 background-color: @button-danger-filled-hover-background-color;
+                box-shadow: 0 0 0 @su4 var(--focus-ring-error);
             }
 
             &:active {
@@ -437,7 +450,6 @@
             }
         });
 
-
         &:hover,
         &:focus,
         &:active {
@@ -448,6 +460,12 @@
         &:active {
             background-color: var(--theme-button-primary-active-background-color);
             box-shadow: none;
+        }
+
+        &:focus {
+            .highcontrast-mode({
+                box-shadow: 0 0 0 @su4 var(--focus-ring);
+            });
         }
 
         &.is-selected {
