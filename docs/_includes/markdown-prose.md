@@ -183,7 +183,7 @@ We also need to make sure inline code looks good, like if I wanted to talk about
 
 ### Sometimes I even use `code` in headings
 
-Another thing I’ve done in the past is put a `code` tag inside of a link, like if I wanted to tell you about the [`stackexchange/stacks`](https://github.com/stackexchange/stacks) repository. I don’t love that there is an underline below the backticks but it is absolutely not worth the madness it would require to avoid it.
+Another thing I’ve done in the past is put a `code` tag inside of a link, like if I wanted to tell you about the [`stackexchange/stacks`](https://github.com/stackexchange/stacks) repository.
 
 ### We still need to think about stacked headings though.
 

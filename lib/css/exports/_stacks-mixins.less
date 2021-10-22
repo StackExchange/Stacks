@@ -60,6 +60,17 @@
     }
 }
 
+.highcontrast-dark-mode(@rules) {
+    body.theme-highcontrast.theme-system & {
+        @media (prefers-color-scheme: dark) {
+            @rules();
+        }
+    }
+    body.theme-highcontrast.theme-dark & {
+        @rules();
+    }
+}
+
 //  ===========================================================================
 //  --  APPEARANCE
 //      Use this to overwrite the default appearance properties
