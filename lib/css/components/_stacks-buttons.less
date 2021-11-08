@@ -34,7 +34,13 @@
         cursor: pointer;
         user-select: none;
 
-        .highcontrast-mode({ border-color: currentColor; });
+        .highcontrast-mode({
+            border-color: currentColor;
+
+            &:not(.s-btn__link):not(.s-btn__unset) {
+                text-decoration: none;
+            }
+        });
 
         button &,
         button[type="submit"] &,
