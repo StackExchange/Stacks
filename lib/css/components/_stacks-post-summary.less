@@ -182,3 +182,42 @@
         margin-left: auto;
     }
 }
+
+.s-post-summary--answer {
+    position: relative;
+    margin: @su16 1em 0 1em;
+    padding: 0.5em 0 0.5em calc(1em + @su4);
+
+    + .s-post-summary--answer {
+        margin-top: @su16;
+    }
+
+    &:before {
+        content: "";
+        display: block;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        width: @su4;
+        border-radius: @su8;
+        background: var(--black-150);
+
+        .highcontrast-mode({
+            background: var(--black-600);
+        });
+    }
+
+    .s-post-summary--stats {
+        width: auto;
+        flex-direction: row;
+        align-items: center;
+        margin-bottom: @su4;
+    }
+
+    .s-post-summary--answer-excerpt {
+        color: var(--black-600);
+        margin-bottom: @su8;
+        .v-truncate4;
+    }
+}
