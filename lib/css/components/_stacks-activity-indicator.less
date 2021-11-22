@@ -13,9 +13,33 @@
 
 .s-activity-indicator {
     display: inline-block;
-    width: @su12;
+    min-width: @su12;
     height: @su12;
+    padding-left: @su4;
+    padding-right: @su4;
+    line-height: 1.1; // Custom line-height to satisfy 1x screens
     background-color: var(--theme-secondary-400);
     box-shadow: 0 0 0 @su4 var(--focus-ring);
-    border-radius: 100%;
+    border-radius: 1000px;
+    font-size: @fs-fine;
+    font-weight: 600;
+    color: @white;
+    text-transform: uppercase;
+
+    .highcontrast-mode({ color: var(--white); });
+}
+
+.s-activity-indicator__success {
+    background-color: var(--green-500);
+    box-shadow: 0 0 0 @su4 var(--focus-ring-success);
+}
+
+.s-activity-indicator__warning {
+    background-color: var(--yellow-600);
+    box-shadow: 0 0 0 @su4 var(--focus-ring-warning);
+}
+
+.s-activity-indicator__danger {
+    background-color: var(--red-500);
+    box-shadow: 0 0 0 @su4 var(--focus-ring-error);
 }

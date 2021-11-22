@@ -322,8 +322,8 @@
             top: 0;
             bottom: 0;
             left: 0;
-            width: 4px;
-            border-radius: 8px;
+            width: @su4;
+            border-radius: @su8;
             background: var(--black-150);
 
             .highcontrast-mode({
@@ -429,6 +429,11 @@
         color: var(--black-800);
         background-color: var(--black-075);
         border-radius: @br-sm;
+    }
+
+    // When contained within a link, we want the code to be link-colored
+    *:not(.s-code-block) > a code {
+        color: var(--theme-link-color);
     }
 
     pre {
