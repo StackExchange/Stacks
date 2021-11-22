@@ -1,18 +1,30 @@
 $(document).ready(function() {
     // Cache some variables
     var navigation = $(".js-navigation");
-    var closeIcon = $(".js-hamburger-close-icon");
-    var hamburgerIcon = $(".js-hamburger-icon");
+    var hamburgerBtn = $(".js-hamburger-btn");
+
+    // Disable any empty links
+    $("a[href='#']").click(function(e) {
+        e.preventDefault();
+    });
 
     function regenerateMenu () {
         // Hide the navigation if we've opened it
-        hamburgerIcon.removeClass("d-none");
-        closeIcon.addClass("d-none");
+        hamburgerBtn.removeClass("is-selected");
         navigation.addClass("md:d-none");
+    }
+
+    function killEmptyLinks() {
+        // Kill default behavior on empty links
+        $("a[href='#']").on("click", function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+        });
     }
 
     $.when($.ready).then(function() {
         regenerateMenu();
+        killEmptyLinks();
 
         window.history.replaceState({
             'href': window.location.href,
@@ -24,7 +36,7 @@ $(document).ready(function() {
         $('#nav').on('click', 'a', function (event) {
 
             // Allow opening links in new tabs
-            if (event.metaKey) {
+            if (event.metaKey || event.ctrlKey) {
               return
             }
 
@@ -56,6 +68,7 @@ $(document).ready(function() {
                 $(document).scrollTop(0)
 
                 regenerateMenu();
+                killEmptyLinks();
 
                 // Add page load to browser history
                 window.history.pushState({

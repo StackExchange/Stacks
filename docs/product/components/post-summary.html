@@ -1,0 +1,700 @@
+---
+layout: page
+title: Post summary
+description: The post summary component summarizes various content and associated meta data into a highly configurable component.
+---
+<section class="stacks-section">
+    {% header "h2", "Classes" %}
+    <div class="overflow-x-auto mb32">
+        <table class="wmn4 s-table s-table__bx-simple">
+            <thead>
+                <tr>
+                    <th class="s-table--cell4" scope="col">Class</th>
+                    <th class="s-table--cell3" scope="col">Parent</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody class="fs-caption">
+                {% for item in post-summary.classes %}
+                    <tr>
+                        <th scope="row"><code class="stacks-code">{{ item.class }}</code></th>
+                        <td><code class="stacks-code">{{ item.applies }}</td>
+                        <td class="p8">{{ item.description }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</section>
+<section class="stacks-section">
+    {% header "h2", "Layout Examples" %}
+    <p class="stacks-copy">Post summaries are a flexible component capable of previewing various content types—questions or articles. Post summaries are meant to be flexible, allowing for each individual piece to be removed. Let’s start with a full example of a few questions and an article interleaved.</p>
+
+    {% header "h3", "Full" %}
+    <p class="stacks-copy">At their most complete, post summaries are presented in two columns and can contain:</p>
+    <ul class="stacks-list">
+        <li>Title</li>
+        <li>Excerpt</li>
+        <li>Tags & other categorization</li>
+        <li>Author & creation date</li>
+        <li>Stats & various states</li>
+        <li>Contextual menu</li>
+    </ul>
+    <p class="stacks-copy">At the smallest breakpoint, the layout will switch to a single column.</p>
+    <div class="stacks-preview">
+{% highlight html %}
+<div class="s-post-summary">
+    <div class="s-post-summary--stats">
+        <div class="s-post-summary--stats-item has-answers has-accepted-answer">
+            @Svg.CheckmarkSm.With("va-text-bottom")
+            … answers
+        </div>
+        <div class="s-post-summary--stats-item">
+            … votes
+        </div>
+        <div class="s-post-summary--stats-item is-supernova">
+            @Svg.FireSm.With("va-text-bottom mrn2")
+            … views
+        </div>
+    </div>
+    <div class="s-post-summary--content">
+        <div class="s-post-summary--content-type">
+            <a href="…" class="s-link s-link__grayscale">
+                @Svg… …
+            </a>
+        </div>
+        <a href="…" class="s-post-summary--content-title s-link">…</a>
+        <p class="s-post-summary--content-excerpt">…</p>
+        <div class="s-post-summary--meta">
+            <div class="s-post-summary--meta-tags">
+                <a class="s-tag" href="…">…</a>
+            </div>
+
+            <div class="s-user-card s-user-card__minimal">
+                <a href="…" class="s-avatar s-user-card--avatar">
+                    <img class="s-avatar--image" src="…" />
+                </a>
+                <a href="…" class="s-user-card--link">…</a>
+                <ul class="s-user-card--awards">
+                    <li class="s-user-card--rep">…</li>
+                </ul>
+                <time class="s-user-card--time">…</time>
+            </div>
+        </div>
+        <a href="…" class="s-btn s-btn__muted s-post-summary--content-menu-button">
+            @Svg.EllipsisVertical
+        </a>
+    </div>
+</div>
+{% endhighlight %}
+        <div class="stacks-preview--example p0">
+            <div class="s-post-summary">
+                <div class="s-post-summary--stats">
+                    <div class="s-post-summary--stats-item has-answers has-accepted-answer">
+                        {% icon "CheckmarkSm", "va-text-bottom" %}
+                        5 answers
+                    </div>
+                    <div class="s-post-summary--stats-item">
+                        95 votes
+                    </div>
+                    <div class="s-post-summary--stats-item is-supernova">
+                        {% icon "FireSm", "va-text-bottom mrn2" %}
+                        104k views
+                    </div>
+                </div>
+                <div class="s-post-summary--content">
+                    <a href="#" class="s-post-summary--content-title s-link">
+                        How to generate the JPA entity Metamodel?
+                    </a>
+                    <p class="s-post-summary--content-excerpt">
+                        In the spirit of type safety associated with the CriteriaQuery JPA 2.0 also has an API to support Metamodel representation of entities.
+                    </p>
+                    <div class="s-post-summary--meta">
+                        <div class="s-post-summary--meta-tags">
+                            <a class="s-tag" href="#">java</a>
+                            <a class="s-tag" href="#">hibernate</a>
+                            <a class="s-tag" href="#">jpa</a>
+                            <a class="s-tag" href="#">annotation-processing</a>
+                            <a class="s-tag" href="#">metamodel</a>
+                        </div>
+
+                        <div class="s-user-card s-user-card__minimal">
+                            <a href="#" class="s-avatar s-user-card--avatar">
+                                <img class="s-avatar--image" src="{{ "/assets/img/placeholder.svg" | relative_url }}" />
+                            </a>
+                            <a href="#" class="s-user-card--link">Paul Wright</a>
+                            <ul class="s-user-card--awards">
+                                <li class="s-user-card--rep">1350</li>
+                            </ul>
+                            <time class="s-user-card--time">asked about 2 minutes ago</time>
+                        </div>
+                    </div>
+                    <a href="#" class="s-btn s-btn__muted s-post-summary--content-menu-button">
+                        {% icon "EllipsisVertical" %}
+                    </a>
+                </div>
+            </div>
+
+            <div class="s-post-summary">
+                <div class="s-post-summary--stats">
+                    <div class="s-post-summary--stats-item has-answers">
+                        4 answers
+                    </div>
+                    <div class="s-post-summary--stats-item">
+                        280 votes
+                    </div>
+                    <div class="s-post-summary--stats-item is-warm">
+                        10.2k views
+                    </div>
+                    <div class="s-post-summary--stats-item has-bounty">
+                        +50
+                    </div>
+                </div>
+                <div class="s-post-summary--content">
+                    <a class="s-post-summary--content-title s-link">
+                        Cannot read property 'startsWith' of null in npm install
+                    </a>
+                    <p class="s-post-summary--content-excerpt">
+                        I am creating my first react-native app. I am attempting to install the react-native command line interface as shown here. I keep getting an error when I type the command to initiate the react-native command line
+                    </p>
+                    <div class="s-post-summary--meta">
+                        <div class="s-post-summary--meta-tags">
+                            <a class="s-tag" href="#">node-js</a>
+                            <a class="s-tag" href="#">angular</a>
+                            <a class="s-tag" href="#">npm</a>
+                            <a class="s-tag" href="#">javascript</a>
+                        </div>
+
+                        <div class="s-user-card s-user-card__minimal">
+                            <a href="#" class="s-avatar s-user-card--avatar">
+                                <img class="s-avatar--image" src="{{ "/assets/img/placeholder.svg" | relative_url }}" />
+                            </a>
+                            <a href="#" class="s-user-card--link">Aaron Shekey</a>
+                            <ul class="s-user-card--awards">
+                                <li class="s-user-card--rep">205</li>
+                            </ul>
+                            <time class="s-user-card--time">asked about 3 minutes ago</time>
+                        </div>
+                    </div>
+                    <a href="#" class="s-btn s-btn__muted s-post-summary--content-menu-button">
+                        {% icon "EllipsisVertical" %}
+                    </a>
+                </div>
+            </div>
+
+            <div class="s-post-summary">
+                <div class="s-post-summary--stats">
+                    <div class="s-post-summary--stats-item">
+                        1 vote
+                    </div>
+                    <div class="s-post-summary--stats-item">
+                        15 views
+                    </div>
+                    <div class="s-post-summary--stats-item">
+                        1 minute read
+                    </div>
+                    <div class="s-post-summary--stats-item">
+                        1 comment
+                    </div>
+                </div>
+                <div class="s-post-summary--content">
+                    <div class="s-post-summary--content-type">
+                        <a href="#" class="s-link s-link__grayscale">{% icon "DocumentAlt" %} How-to guide</a>
+                    </div>
+                    <a href="#" class="s-post-summary--content-title s-link">
+                        How to run a product research study
+                    </a>
+                    <p class="s-post-summary--content-excerpt">
+                        This article aims to guide you through the steps and processes you may want to consider when running research at Stack Overflow. While there are obviously many methods, this guide will focus more interview-style research. For a full list of Product Research templates, guides, and links, see this article.
+                    </p>
+                    <div class="s-post-summary--meta">
+                        <div class="s-post-summary--meta-tags">
+                            <a class="s-tag" href="#">ux-research</a>
+                        </div>
+
+                        <div class="s-user-card s-user-card__minimal">
+                            <a href="#" class="s-avatar s-user-card--avatar">
+                                <img class="s-avatar--image" src="{{ "/assets/img/placeholder.svg" | relative_url }}" />
+                            </a>
+                            <a href="#" class="s-user-card--link">Mithila Fox</a>
+                            <ul class="s-user-card--awards">
+                                <li class="s-user-card--rep">323</li>
+                            </ul>
+                            <time class="s-user-card--time">created 15 days ago</time>
+                        </div>
+                    </div>
+                    <a href="#" class="s-btn s-btn__muted s-post-summary--content-menu-button">
+                        {% icon "EllipsisVertical" %}
+                    </a>
+                </div>
+            </div>
+
+            <div class="s-post-summary">
+                <div class="s-post-summary--stats">
+                    <div class="s-post-summary--stats-item has-answers">
+                        1 answer
+                    </div>
+                    <div class="s-post-summary--stats-item">
+                        1 vote
+                    </div>
+                    <div class="s-post-summary--stats-item">
+                        7 views
+                    </div>
+                </div>
+                <div class="s-post-summary--content">
+                    <a href="#" class="s-post-summary--content-title s-link">
+                        {% icon "Shield", "fc-light" %}
+                        EF core 3.1 - common table for entity and owned type
+                    </a>
+                    <p class="s-post-summary--content-excerpt">
+                        I’m trying to implement DDD approach in my project but realized that I have too big aggregates and trying to minimize the amount of data loaded from the database. I have an aggregate Order which
+                    </p>
+                    <div class="s-post-summary--meta">
+                        <div class="s-post-summary--meta-tags">
+                            <a class="s-tag" href="#">c#</a>
+                            <a class="s-tag" href="#">asp.net</a>
+                            <a class="s-tag" href="#">entity-framework</a>
+                            <a class="s-tag" href="#">domain-driven-design</a>
+                        </div>
+
+                        <div class="s-user-card s-user-card__minimal">
+                            <a href="#" class="s-avatar s-user-card--avatar">
+                                <img class="s-avatar--image" src="{{ "/assets/img/placeholder.svg" | relative_url }}" />
+                            </a>
+                            <a href="#" class="s-user-card--link">dantey89</a>
+                            <ul class="s-user-card--awards">
+                                <li class="s-user-card--rep">1,315</li>
+                            </ul>
+                            <time class="s-user-card--time">asked about 3 minutes ago</time>
+                        </div>
+                    </div>
+                    <a href="#" class="s-btn s-btn__muted s-post-summary--content-menu-button">
+                        {% icon "EllipsisVertical" %}
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% header "h3", "Minimal" %}
+    <p class="stacks-copy">There are compact views where it’s appropriate to reduce the amount of information within the post summary. The minimal view forces the smallest breakpoint layout in any context, stacking the meta data on top and putting everything into a single column.</p>
+    <div class="stacks-preview">
+{% highlight html %}
+<div class="s-post-summary s-post-summary__minimal">
+    <div class="s-post-summary--stats">
+        <div class="s-post-summary--stats-item">
+            @Svg.CheckmarkSm.With("va-text-bottom")
+            … answers
+        </div>
+        <div class="s-post-summary--stats-item">
+            … votes
+        </div>
+        <div class="s-post-summary--stats-item">
+            … views
+        </div>
+    </div>
+    <div class="s-post-summary--content">
+        <a href="…" class="s-post-summary--content-title s-link">…</a>
+        <div class="s-post-summary--meta">
+            <div class="s-post-summary--meta-tags">
+                <a class="s-tag" href="…">…</a>
+            </div>
+
+            <div class="s-user-card s-user-card__minimal">
+                <a href="…" class="s-avatar s-user-card--avatar">
+                    <img class="s-avatar--image" src="…" />
+                </a>
+                <a href="…" class="s-user-card--link">…</a>
+                <time class="s-user-card--time">…</time>
+            </div>
+        </div>
+    </div>
+</div>
+{% endhighlight %}
+        <div class="stacks-preview--example p0">
+            <div class="s-post-summary s-post-summary__minimal">
+                <div class="s-post-summary--stats">
+                    <div class="s-post-summary--stats-item">
+                        0 answers
+                    </div>
+                    <div class="s-post-summary--stats-item">
+                        0 votes
+                    </div>
+                    <div class="s-post-summary--stats-item">
+                        2 views
+                    </div>
+                </div>
+                <div class="s-post-summary--content">
+                    <a class="s-post-summary--content-title s-link">
+                        Clicking through a viewpager2?
+                    </a>
+                    <div class="s-post-summary--meta">
+                        <div class="s-post-summary--meta-tags">
+                            <a class="s-tag" href="#">android</a>
+                            <a class="s-tag" href="#">android-studio</a>
+                            <a class="s-tag" href="#">android-viewpager2</a>
+                        </div>
+
+                        <div class="s-user-card s-user-card__minimal">
+                            <a href="…" class="s-avatar s-user-card--avatar">
+                                <img class="s-avatar--image" src="{{ "/assets/img/placeholder.svg" | relative_url }}" />
+                            </a>
+                            <a href="#" class="s-user-card--link">Callum Osborne</a>
+                            <time class="s-user-card--time">asked about 1 minute ago</time>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="s-post-summary s-post-summary__minimal">
+                <div class="s-post-summary--stats">
+                    <div class="s-post-summary--stats-item has-answers">
+                        1 answers
+                    </div>
+                    <div class="s-post-summary--stats-item">
+                        0 votes
+                    </div>
+                    <div class="s-post-summary--stats-item">
+                        3 views
+                    </div>
+                </div>
+                <div class="s-post-summary--content">
+                    <a class="s-post-summary--content-title s-link">
+                        What permissions does github_token require for releases from a github action
+                    </a>
+                    <div class="s-post-summary--meta">
+                        <div class="s-post-summary--meta-tags">
+                            <a class="s-tag" href="#">github-actions</a>
+                        </div>
+
+                        <div class="s-user-card s-user-card__minimal">
+                            <a href="…" class="s-avatar s-user-card--avatar">
+                                <img class="s-avatar--image" src="{{ "/assets/img/placeholder.svg" | relative_url }}" />
+                            </a>
+                            <a href="#" class="s-user-card--link">GuiFalourd</a>
+                            <time class="s-user-card--time">answered 4 minutes ago</time>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="s-post-summary s-post-summary__minimal">
+                <div class="s-post-summary--stats">
+                    <div class="s-post-summary--stats-item">
+                        0 answers
+                    </div>
+                    <div class="s-post-summary--stats-item">
+                        0 votes
+                    </div>
+                    <div class="s-post-summary--stats-item">
+                        5 views
+                    </div>
+                </div>
+                <div class="s-post-summary--content">
+                    <a class="s-post-summary--content-title s-link">
+                        Parentheses is Invalid Bash
+                    </a>
+                    <div class="s-post-summary--meta">
+                        <div class="s-post-summary--meta-tags">
+                            <a class="s-tag" href="#">linux</a>
+                            <a class="s-tag" href="#">bash</a>
+                            <a class="s-tag" href="#">docker</a>
+                            <a class="s-tag" href="#">shell</a>
+                        </div>
+
+                        <div class="s-user-card s-user-card__minimal">
+                            <a href="…" class="s-avatar s-user-card--avatar">
+                                <img class="s-avatar--image" src="{{ "/assets/img/placeholder.svg" | relative_url }}" />
+                            </a>
+                            <a href="#" class="s-user-card--link">thatkingguy_</a>
+                            <time class="s-user-card--time">asked 8 minutes ago</time>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="stacks-section">
+    {% header "h2", "Answers" %}
+    <p class="stacks-copy">Previews of answers can also be attached to the post summary as needed.</p>
+    <div class="stacks-preview">
+{% highlight html %}
+<div class="s-post-summary">
+    …
+    <div class="s-post-summary--content">
+        <a href="…" class="s-post-summary--content-title s-link">…</a>
+        <div class="s-post-summary--meta">…</div>
+
+        <div class="s-post-summary--answer">
+            <div class="s-post-summary--stats">
+                <div class="s-post-summary--stats-item has-answers has-accepted-answer">
+                    @Svg.CheckmarkSm.With("va-text-bottom") Accepted answer
+                </div>
+                <div class="s-post-summary--stats-item">
+                    … votes
+                </div>
+            </div>
+            <p class="s-post-summary--answer-excerpt">
+                …
+            </p>
+            <div class="s-post-summary--meta">
+                <a class="s-link" href="…">
+                    View answer
+                </a>
+
+                <div class="s-user-card s-user-card__minimal">
+                    <a href="…" class="s-avatar s-user-card--avatar">
+                        <img class="s-avatar--image" src="…" />
+                    </a>
+                    <a href="…" class="s-user-card--link">…</a>
+                    <time class="s-user-card--time">…</time>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endhighlight %}
+        <div class="stacks-preview--example p0">
+            <div class="s-post-summary">
+                <div class="s-post-summary--stats">
+                    <div class="s-post-summary--stats-item has-answers has-accepted-answer">
+                        {% icon "CheckmarkSm", "va-text-bottom" %} 2 answers
+                    </div>
+                    <div class="s-post-summary--stats-item">
+                        2 votes
+                    </div>
+                    <div class="s-post-summary--stats-item">
+                        1k views
+                    </div>
+                </div>
+                <div class="s-post-summary--content">
+                    <a class="s-post-summary--content-title s-link">
+                        Azure API Management and Backend Web API
+                    </a>
+                    <p class="s-post-summary--content-excerpt">
+                        Right now, I have enabled basic authentication to the developer portal in API Management. Also, I have enabled OAuth 2.0 authentication for the back end server (user Authorization). So, if i login to the developer portal, i can see two fields - Subscription Key and Authorization. The Subscription key will be the developer's subscription to the portal and the Authorization will be the OAuth authorization which is required for the back end server.
+                    </p>
+                    <div class="s-post-summary--meta">
+                        <div class="s-post-summary--meta-tags">
+                            <a class="s-tag" href="#">azure</a>
+                            <a class="s-tag" href="#">asp.net-web-api</a>
+                            <a class="s-tag" href="#">oauth-2.0</a>
+                            <a class="s-tag" href="#">azure-active-directory</a>
+                        </div>
+
+                        <div class="s-user-card s-user-card__minimal">
+                            <a href="…" class="s-avatar s-user-card--avatar">
+                                <img class="s-avatar--image" src="{{ "/assets/img/placeholder.svg" | relative_url }}" />
+                            </a>
+                            <a href="#" class="s-user-card--link">karel</a>
+                            <time class="s-user-card--time">asked 3 minutes ago</time>
+                        </div>
+                    </div>
+                    <div class="s-post-summary--answer">
+                        <div class="s-post-summary--stats">
+                            <div class="s-post-summary--stats-item has-answers has-accepted-answer">
+                                {% icon "CheckmarkSm", "va-text-bottom" %} Accepted answer
+                            </div>
+                            <div class="s-post-summary--stats-item">
+                                2 votes
+                            </div>
+                        </div>
+                        <p class="s-post-summary--answer-excerpt">Subscription keys in APIM are tied to a user and product, thus if you change (or create new one) product to not require subscription (option available at creation time or in product settings) no subscription key would be needed to call any API included into such products. The downside is that all such calls would be treated by APIM as anonymous and shown in analytics as such.</p>
+                        <div class="s-post-summary--meta">
+                            <a class="s-link" href="#">
+                                View answer
+                            </a>
+
+                            <div class="s-user-card s-user-card__minimal">
+                                <a href="…" class="s-avatar s-user-card--avatar">
+                                    <img class="s-avatar--image" src="{{ "/assets/img/placeholder.svg" | relative_url }}" />
+                                </a>
+                                <a href="#" class="s-user-card--link">Aaron Shekey</a>
+                                <time class="s-user-card--time">answered 1 minute ago</time>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="s-post-summary--answer">
+                        <div class="s-post-summary--stats">
+                            <div class="s-post-summary--stats-item">
+                                2 votes
+                            </div>
+                        </div>
+                        <p class="s-post-summary--answer-excerpt">Yeah, you can do that (a bit of a hack). You have to use REST Api for that, specifically this call. For me it didn't work to edit the existing API (they key was still there), but when I've created new API, key wasn't there:</p>
+                        <div class="s-post-summary--meta">
+                            <a class="s-link" href="#">
+                                View answer
+                            </a>
+
+                            <div class="s-user-card s-user-card__minimal">
+                                <a href="…" class="s-avatar s-user-card--avatar">
+                                    <img class="s-avatar--image" src="{{ "/assets/img/placeholder.svg" | relative_url }}" />
+                                </a>
+                                <a href="#" class="s-user-card--link">4c74356b41</a>
+                                <time class="s-user-card--time">answered 3 minutes ago</time>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="stacks-section">
+    {% header "h2", "Stats examples" %}
+    {% header "h3", "Answered status" %}
+    <p class="stacks-copy">Within the stats section of the post summary, posts can have various answered states. A checkmark icon is displayed in questions that have accepted answers.</p>
+    <ul class="stacks-list">
+        <li>No answers</li>
+        <li>Has answers</li>
+        <li>Has accepted answers</li>
+    </ul>
+    <div class="stacks-preview">
+{% highlight html %}
+<!-- No answers -->
+<div class="s-post-summary--stats-item">
+    0 answers
+</div>
+
+<!-- Has answers -->
+<div class="s-post-summary--stats-item has-answers">
+    2 answers
+</div>
+
+<!-- Has accepted answers -->
+<div class="s-post-summary--stats-item has-answers has-accepted-answer">
+    @Svg.CheckmarkSm.With("va-text-bottom")
+    5 answers
+</div>
+{% endhighlight %}
+        <div class="stacks-preview--example">
+            <div class="d-flex ai-center gs24 fw-wrap">
+                <div class="flex--item w-auto s-post-summary--stats">
+                    <div class="s-post-summary--stats-item">
+                        0 answers
+                    </div>
+                    <div class="s-post-summary--stats-item">
+                        3 votes
+                    </div>
+                    <div class="s-post-summary--stats-item">
+                        32 views
+                    </div>
+                </div>
+
+                <div class="flex--item w-auto s-post-summary--stats">
+                    <div class="s-post-summary--stats-item has-answers">
+                        2 answers
+                    </div>
+                    <div class="s-post-summary--stats-item">
+                        12 votes
+                    </div>
+                    <div class="s-post-summary--stats-item">
+                        145 views
+                    </div>
+                </div>
+
+                <div class="flex--item w-auto s-post-summary--stats">
+                    <div class="s-post-summary--stats-item has-answers has-accepted-answer">
+                        {% icon "CheckmarkSm", "va-text-bottom" %}
+                        5 answers
+                    </div>
+                    <div class="s-post-summary--stats-item">
+                        95 votes
+                    </div>
+                    <div class="s-post-summary--stats-item">
+                        380 views
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% header "h3", "Hotness" %}
+    <p class="stacks-copy">Post stats also have various states of hotness and display in corresponding shades of orange. A fire icon is added in the supernova level of popularity.</p>
+    <ul class="stacks-list">
+        <li>Default</li>
+        <li>Warm</li>
+        <li>Hot</li>
+        <li>Supernova</li>
+    </ul>
+    <div class="stacks-preview">
+{% highlight html %}
+<!-- Default views -->
+<div class="s-post-summary--stats-item">
+    23 views
+</div>
+
+<!-- Warm -->
+<div class="s-post-summary--stats-item is-warm">
+    1k views
+</div>
+
+<!-- Hot -->
+<div class="s-post-summary--stats-item is-hot">
+    10k views
+</div>
+
+<!-- Supernova -->
+<div class="s-post-summary--stats-item is-supernova">
+    @Svg.FireSm.With("va-text-bottom mrn2")
+    100k views
+</div>
+{% endhighlight %}
+        <div class="stacks-preview--example">
+            <div class="d-flex ai-center gs24 fw-wrap">
+                <div class="flex--item w-auto s-post-summary--stats">
+                    <div class="s-post-summary--stats-item">
+                        0 answers
+                    </div>
+                    <div class="s-post-summary--stats-item">
+                        3 votes
+                    </div>
+                    <div class="s-post-summary--stats-item">
+                        23 views
+                    </div>
+                </div>
+
+                <div class="flex--item w-auto s-post-summary--stats">
+                    <div class="s-post-summary--stats-item has-answers has-accepted-answer">
+                        {% icon "CheckmarkSm", "va-text-bottom" %}
+                        3 answers
+                    </div>
+                    <div class="s-post-summary--stats-item">
+                        28 votes
+                    </div>
+                    <div class="s-post-summary--stats-item is-warm">
+                        1k views
+                    </div>
+                </div>
+
+                <div class="flex--item w-auto s-post-summary--stats">
+                    <div class="s-post-summary--stats-item has-answers has-accepted-answer">
+                        {% icon "CheckmarkSm", "va-text-bottom" %}
+                        10 answers
+                    </div>
+                    <div class="s-post-summary--stats-item">
+                        92 votes
+                    </div>
+                    <div class="s-post-summary--stats-item is-hot">
+                        10k views
+                    </div>
+                </div>
+
+                <div class="flex--item w-auto s-post-summary--stats">
+                    <div class="s-post-summary--stats-item has-answers has-accepted-answer">
+                        {% icon "CheckmarkSm", "va-text-bottom" %}
+                        18 answers
+                    </div>
+                    <div class="s-post-summary--stats-item">
+                        126 votes
+                    </div>
+                    <div class="s-post-summary--stats-item is-supernova">
+                        {% icon "FireSm", "va-text-bottom" %}
+                        100k views
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

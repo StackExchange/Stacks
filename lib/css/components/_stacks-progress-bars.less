@@ -68,6 +68,10 @@
 .s-progress__privilege {
     .s-progress--bar {
         background-color: var(--green-050);
+
+        .highcontrast-mode({
+            background-color: var(--green-200);
+        });
     }
     .s-progress--label {
         border-color: var(--green-400);
@@ -126,6 +130,43 @@
 }
 
 //  ===========================================================================
+//  $   SEGMENTED
+//  ---------------------------------------------------------------------------
+.s-progress.s-progress__segmented {
+    position: relative;
+
+    .s-progress--segments {
+        margin: 0;
+        padding: 0;
+        position: absolute;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: space-between;
+        list-style: none;
+
+        li {
+            display: block;
+            padding-top: 4px;
+            position: relative;
+            text-align: center;
+
+            &:not(:first-child):not(:last-child):before {
+                display: block;
+                content: "";
+                height: 100%;
+                width: 4px;
+                position: absolute;
+                top: 0;
+                left: -1px;
+                background-color: var(--white);
+            }
+        }
+    }
+}
+
+//  ===========================================================================
 //  $   STEPPED
 //  ---------------------------------------------------------------------------
 .s-progress.s-progress__stepped {
@@ -153,7 +194,7 @@
         border-radius: 0;
         padding: @su12 @su6 0 @su6;
         text-align: center;
-        color: var(--black-200);
+        color: var(--black-300);
         z-index: @zi-base;
     }
 
@@ -162,19 +203,23 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        background: var(--black-200);
+        background: var(--black-300);
         border-radius: 100%;
         width: @su24;
         height: @su24;
         z-index: @zi-selected;
         color: @white;
+
+        .highcontrast-mode({
+            color: var(--white);
+        });
     }
 
     .s-progress--bar {
         position: absolute;
         top: 9px;
         height: @su6;
-        background: var(--black-200);
+        background: var(--black-300);
         z-index: @zi-base;
         border-radius: 0;
 
@@ -188,14 +233,14 @@
             left: 50%;
         }
     }
-    
+
     .s-progress--step.is-active {
         .s-progress--bar.s-progress--bar__left {
-            background: var(--blue-500);
+            background: var(--theme-secondary-400);
         }
 
         .s-progress--stop {
-            background: var(--blue-500);
+            background: var(--theme-secondary-400);
             box-shadow: 0 0 0 @su6 var(--focus-ring);
         }
 
@@ -207,7 +252,7 @@
     .s-progress--step.is-complete {
         .s-progress--bar,
         .s-progress--stop {
-            background: var(--blue-500);
+            background: var(--theme-secondary-400);
         }
 
         .s-progress--label {
@@ -240,7 +285,7 @@
 
         circle:nth-of-type(1) {
             stroke: currentColor;
-            opacity: .4;
+            opacity: 0.4;
         }
 
         circle:nth-of-type(2) {
@@ -250,8 +295,7 @@
             // Multiply the circle circumference by an the opposite percentage of what we want to display
             // For example 70%, represented as a decimal is 0.7
             // The opposite of that is 0.3 so ( 1 - 0.7 )
-            // Additionally, since the "round" linecap adds (width / 2)px length, adjust the total offset to compensate
-            stroke-dashoffset: calc( (((1 - var(--s-progress-value)) * @s-progress-circle-circumference) + @s-progress-stroke-width) * 1px); // Multiply everything by 1px since Safari and Firefox require these to be in pixels
+            stroke-dashoffset: calc(((1 - var(--s-progress-value)) * @s-progress-circle-circumference) * 1px); // Multiply everything by 1px since Safari and Firefox require these to be in pixels
         }
     }
 

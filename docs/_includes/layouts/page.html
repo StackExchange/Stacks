@@ -3,28 +3,30 @@
 {% include head.html %}
 
 <body class="theme-system">
-    {% include darkmode.html %}
+    {% include theme.html %}
     {% include header.html %}
 
-    <div class="grid mx-auto w100 wmx12">
+    <div class="d-flex mx-auto w100 wmx12">
         {% include navigation.html %}
 
-        <div id="content" class="grid fl1 ps-relative t64 py24 pl48 pr16 md:pl24 sm:pl16 sm:pr16">
-            <div class="grid--cell order-last w20 wmx2 pl24 sm:d-none print:d-none">
-                <aside class="ps-sticky t64 pt16">
-                    <h5 class="mb8 fw-bold tt-uppercase fs-fine fc-orange-500 mnl1">Sections</h5>
-                    {{ content | toc | safe }}
-                </aside>
-            </div>
+        <main id="content" class="d-flex fl-grow1 ps-relative t64 py24 pl48 md:pl24 sm:pl16 sm:pr16">
+            {% if menu %}
+                <div class="flex--item order-last ml32 sm:d-none print:d-none" style="width: 14rem;">
+                    <div class="ps-fixed t64 b0 py12 overflow-y-auto" style="width: 14rem;">
+                        <h5 class="mt16 mb8 fw-bold tt-uppercase fs-fine fc-theme-primary mnl1">Sections</h5>
+                        {{ content | toc | safe }}
+                    </div>
+                </div>
+            {% endif %}
             {% comment %}
-                This container’s .fl1 doesn't behave properly unless we add an explicit width.
+                This container’s .fl-grow1 doesn't behave properly unless we add an explicit width.
                 https://stackoverflow.com/questions/38723559/flex-item-exceeds-its-container
             {% endcomment %}
-            <div class="grid--cell fl1 ws1">
+            <div class="flex--item fl-grow1 ws1">
                 {% if js %}
-                    <div class="stacks-badged grid ai-center sm:jc-space-between">
-                        <h1 class="stacks-h1 grid--cell mb0">{{ title }}</h1>
-                        <a href="{{ "/product/guidelines/javascript" | relative_url }}" class="grid p8 fc-white ml6">
+                    <div class="stacks-badged d-flex ai-center sm:jc-space-between">
+                        <h1 class="stacks-h1 flex--item mb0">{{ title }}</h1>
+                        <a href="{{ "/product/guidelines/javascript" | relative_url }}" class="d-flex p8 fc-white ml6">
                             <div class="bg-green-700 blr-sm p4">{% icon "Checkmark" %}</div>
                             <div class="bg-green-500 brr-sm px8 py4">javascript</div>
                         </a>
@@ -38,8 +40,14 @@
                     </p>
                 {% endif %}
                 {{ content }}
+                <div class="d-flex jc-end mt48 mb32">
+                    <a href="https://github.com/StackExchange/Stacks/edit/develop/docs/{{ page.inputPath }}" class="flex--item s-btn s-btn__icon s-btn__muted">
+                        {% icon "Pencil" %}
+                        Edit on GitHub
+                    </a>
+                </div>
             </div>
-        </div>
+        </main>
     </div>
     {% include scripts.html %}
 </body>

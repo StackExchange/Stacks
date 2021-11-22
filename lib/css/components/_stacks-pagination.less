@@ -19,29 +19,29 @@
     margin-right: -@su2;
 }
 
-& { // create a single scope to load the config into, at least for now
-#stacks-internals #load-config();
 .s-pagination--item {
     margin-left: @su2;
     margin-right: @su2;
     padding: 0 @su8;
     background-color: transparent;
     border-radius: @br-sm;
-    border: 1px solid var(--black-100);
+    border: 1px solid var(--bc-medium);
     font-size: @fs-body1;
     line-height: @lh-xl;
     color: var(--fc-medium);
 
+    .highcontrast-mode({ text-decoration: none; });
+
     &:hover {
-        border-color: var(--black-200);
+        border-color: var(--bc-darker);
         background-color: var(--black-100);
         color: var(--fc-dark);
     }
 
     &.is-selected {
         border-color: transparent;
-        background-color: @pagination-select-background;
-        color: @pagination-select-color;
+        background-color: var(--theme-primary-color);
+        color: var(--white);
     }
 
     &.s-pagination--item__clear {
@@ -52,5 +52,4 @@
             background-color: transparent;
         }
     }
-}
 }

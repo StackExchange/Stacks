@@ -13,43 +13,50 @@
 //      The following items are elements which we DO NOT allow communities
 //      to modify via variables.
 //  ----------------------------------------------------------------------------
-@import "base/_stacks-reset";
-@import "base/_stacks-icons";
+@import "base/_stacks-reset.less";
+@import "base/_stacks-icons.less";
 
 //  --  COMPONENTS
-@import "components/_stacks-avatars";
-@import "components/_stacks-badges";
-@import "components/_stacks-blank-states";
-@import "components/_stacks-breadcrumbs";
-@import "components/_stacks-button-groups";
-@import "components/_stacks-cards";
-@import "components/_stacks-code-blocks";
-@import "components/_stacks-collapsible";
-@import "components/_stacks-inputs";
-@import "components/_stacks-modals";
-@import "components/_stacks-page-titles";
+@import "components/_stacks-activity-indicator.less";
+@import "components/_stacks-avatars.less";
+@import "components/_stacks-badges.less";
+@import "components/_stacks-blank-states.less";
+@import "components/_stacks-breadcrumbs.less";
+@import "components/_stacks-button-groups.less";
+@import "components/_stacks-cards.less";
+@import "components/_stacks-code-blocks.less";
+@import "components/_stacks-collapsible.less";
+@import "components/_stacks-inputs.less";
+@import "components/_stacks-menu.less";
+@import "components/_stacks-modals.less";
+@import "components/_stacks-navigation.less";
+@import "components/_stacks-page-titles.less";
 @import "components/_stacks-popovers.less";
-@import "components/_stacks-progress-bars";
-@import "components/_stacks-prose";
-@import "components/_stacks-spinner";
-@import "components/_stacks-tables";
-@import "components/_stacks-toggle-switches";
-@import "components/_stacks-user-cards";
-@import "components/_stacks-widget-static";
+@import "components/_stacks-post-summary.less";
+@import "components/_stacks-progress-bars.less";
+@import "components/_stacks-prose.less";
+@import "components/_stacks-spinner.less";
+@import "components/_stacks-tables.less";
+@import "components/_stacks-toggle-switches.less";
+@import "components/_stacks-topbar.less";
+@import "components/_stacks-uploader.less";
+@import "components/_stacks-user-cards.less";
+@import "components/_stacks-widget-static.less";
 
 //  --  LESS CONSTANTS AND MIXINS
-@import "exports/_stacks-exports";
+@import "exports/_stacks-exports.less";
 
 //  --  ATOMIC CLASSES
-@import "atomic/_stacks-borders";
-@import "atomic/_stacks-colors";
-@import "atomic/_stacks-flex";
-@import "atomic/_stacks-grid";
-@import "atomic/_stacks-spacing";
-@import "atomic/_stacks-typography";
-@import "atomic/_stacks-misc";
-@import "atomic/_stacks-width-height";
+@import "atomic/_stacks-borders.less";
+@import "atomic/_stacks-colors.less";
+@import "atomic/_stacks-flex.less";
+@import "atomic/_stacks-grid.less";
+@import "atomic/_stacks-spacing.less";
+@import "atomic/_stacks-typography.less";
+@import "atomic/_stacks-misc.less";
+@import "atomic/_stacks-width-height.less";
 
+/* stylelint-disable */
 #stacks-internals #screen-lg({
     #stacks-internals-collect-large();
 });
@@ -59,6 +66,20 @@
 #stacks-internals #screen-sm({
     #stacks-internals-collect-small();
 });
+
+// We need printing styles to be last so they can override all other styles.
+.print\:d-block {
+    @media print {
+        display: block !important;
+    }
+}
+
+.print\:d-none {
+    @media print {
+        display: none !important;
+    }
+}
+/* stylelint-enable */
 
 //  --  CONFIG
 @import "base/_stacks-configuration-static.less";

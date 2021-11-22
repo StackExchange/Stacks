@@ -16,6 +16,7 @@
     grid-column-gap: @su8;
     align-items: center;
     line-height: 1;
+    padding: @su8;
 
     //  ===========================================================================
     //  $   STYLE VARIATIONS
@@ -24,14 +25,12 @@
     //  $$  Highlighted
     //  ---------------------------------------------------------------------------
     &.s-user-card__highlighted {
-        background-color: var(--powder-100);
-        padding: @su8;
+        background-color: var(--theme-secondary-025);
         border-radius: @br-md;
 
         .s-user-card--type {
             color: var(--black-700);
         }
-
     }
 
     //  $$  Full meta data
@@ -51,7 +50,7 @@
     //  $$  Deleted
     //  ---------------------------------------------------------------------------
     &.s-user-card__deleted {
-        color: var(--black-500)
+        color: var(--black-500);
     }
 
     //  $$  Small size
@@ -60,6 +59,7 @@
         display: flex;
         align-items: center;
         grid-column-gap: unset; // Firefox flex layouts respect column gaps, so we need to reset this
+        padding: 0;
 
         .s-user-card--time {
             margin-right: @su6;
@@ -87,14 +87,17 @@
         display: flex;
         align-items: center;
         grid-column-gap: unset; // Firefox flex layouts respect column gaps, so we need to reset this
+        padding: 0;
 
         .s-user-card--time {
-            margin-right: @su6;
+            margin-right: @su4;
             margin-bottom: 0;
+            white-space: nowrap;
         }
 
         .s-user-card--link {
-            margin-right: @su6;
+            margin-right: @su4;
+            white-space: nowrap;
         }
 
         .s-user-card--avatar {
@@ -117,9 +120,8 @@
         grid-column: ~"1 / 3";
         padding-top: @su4;
         font-size: @fs-caption;
-        color: var(--orange-400);
+        color: var(--theme-primary-400);
     }
-
 }
 
 //  $   USER CARD TIME

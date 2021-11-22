@@ -1,0 +1,34 @@
+{% comment %}
+Include this right at the start of body to be loaded as fast as possible to avoid a FOUC
+{% endcomment %}
+<script>
+    (function () {
+        var forceSetting = localStorage.getItem("forceDarkModeOn");
+        var forceHighContrast = localStorage.getItem("forceHighContrastModeOn");
+        var browserPrefersDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+        var darkModeEnabled = forceSetting === "true" || (!forceSetting && browserPrefersDark);
+
+        if (browserPrefersDark) {
+            document.body.classList.toggle("theme-system", darkModeEnabled);
+            document.body.classList.toggle("theme-dark", false);
+        }
+        else {
+            document.body.classList.toggle("theme-system", true);
+            document.body.classList.toggle("theme-dark", darkModeEnabled);
+        }
+
+        var customTheme = localStorage.getItem("customTheme");
+
+        if (customTheme === "true") {
+            document.body.classList.add("theme-custom");
+        } else {
+            document.body.classList.remove("theme-custom");
+        }
+
+        if (forceHighContrast === "true") {
+            document.body.classList.add("theme-highcontrast");
+        } else {
+            document.body.classList.remove("theme-highcontrast");
+        }
+    }());
+</script>

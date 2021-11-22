@@ -45,9 +45,9 @@
     th,
     td {
         padding: @su8;
-        border-top: 1px solid var(--black-100);
-        border-left: 1px solid var(--black-100);
-        border-right: 1px solid var(--black-100);
+        border-top: 1px solid var(--bc-medium);
+        border-left: 1px solid var(--bc-medium);
+        border-right: 1px solid var(--bc-medium);
         vertical-align: middle;
         color: var(--fc-medium);
         text-align: left;
@@ -82,12 +82,12 @@
     //  If it's the last row, add a bottom border
     tr:last-of-type td,
     tr:last-of-type th {
-        border-bottom: 1px solid var(--black-100);
+        border-bottom: 1px solid var(--bc-medium);
     }
 
     //  If two table bodies are next to each other, visually separate them
     tbody + tbody {
-        border-top: @su2 solid var(--black-100);
+        border-top: @su2 solid var(--bc-medium);
     }
 }
 
@@ -240,7 +240,7 @@
         }
         thead th {
             border-top-color: transparent;
-            border-bottom-color: var(--black-200);
+            border-bottom-color: var(--bc-darker);
             //  Clear Header Styles
             background-color: transparent;
             text-transform: initial;
@@ -312,6 +312,10 @@
         th:not(.is-enabled),
         td:not(.is-enabled) {
             opacity: 0.3;
+
+            .highcontrast-mode({
+                opacity: 0.8;
+            });
         }
     }
 }
@@ -321,17 +325,17 @@
 //  ============================================================================
 //  $$  General Column Sizes
 //  ----------------------------------------------------------------------------
-@table-columns: 100% / 12;
+@table-columns: (100% / 12);
 
-.s-table--cell1     { width: @table-columns * 1; }
-.s-table--cell2     { width: @table-columns * 2; }
-.s-table--cell3     { width: @table-columns * 3; }
-.s-table--cell4     { width: @table-columns * 4; }
-.s-table--cell5     { width: @table-columns * 5; }
-.s-table--cell6     { width: @table-columns * 6; }
-.s-table--cell7     { width: @table-columns * 7; }
-.s-table--cell8     { width: @table-columns * 8; }
-.s-table--cell9     { width: @table-columns * 9; }
-.s-table--cell10    { width: @table-columns * 10; }
-.s-table--cell11    { width: @table-columns * 11; }
-.s-table--cell12    { width: @table-columns * 12; }
+.s-table--cell1 { width: @table-columns * 1; }
+.s-table--cell2 { width: @table-columns * 2; }
+.s-table--cell3 { width: @table-columns * 3; }
+.s-table--cell4 { width: @table-columns * 4; }
+.s-table--cell5 { width: @table-columns * 5; }
+.s-table--cell6 { width: @table-columns * 6; }
+.s-table--cell7 { width: @table-columns * 7; }
+.s-table--cell8 { width: @table-columns * 8; }
+.s-table--cell9 { width: @table-columns * 9; }
+.s-table--cell10 { width: @table-columns * 10; }
+.s-table--cell11 { width: @table-columns * 11; }
+.s-table--cell12 { width: @table-columns * 12; }

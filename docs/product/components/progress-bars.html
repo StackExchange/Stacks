@@ -62,6 +62,10 @@ description: A component that visually communicates the completion of a task or 
                     <td>A modifying class applied to <code class="stacks-code">.s-progress__badge</code>, it is used when a bronze badge progress bar is desired.</td>
                 </tr>
                 <tr>
+                    <th scope="row"><code class="stacks-code">.s-progress__segmented</code></th>
+                    <td>A modifying class applied to <code class="stacks-code">.s-progress</code> for a segmented progress bar</td>
+                </tr>
+                <tr>
                     <th scope="row"><code class="stacks-code">.s-progress__stepped</code></th>
                     <td>A modifying class applied to <code class="stacks-code">.s-progress</code> for a stepped progress bar</td>
                 </tr>
@@ -136,14 +140,14 @@ description: A component that visually communicates the completion of a task or 
     <div class="s-progress--bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="33" style="width: 33%"></div>
 </div>
 {% endhighlight %}
-        <div class="grid gs16 gsy fd-column stacks-preview--example">
-            <div class="grid--cell s-progress">
+        <div class="d-flex gs16 gsy fd-column stacks-preview--example">
+            <div class="flex--item s-progress">
                 <div class="s-progress--bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="33" style="width: 33%"></div>
             </div>
-            <div class="grid--cell s-progress">
+            <div class="flex--item s-progress">
                 <div class="s-progress--bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="66" style="width: 66%"></div>
             </div>
-            <div class="grid--cell s-progress">
+            <div class="flex--item s-progress">
                 <div class="s-progress--bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="100" style="width: 100%"></div>
             </div>
         </div>
@@ -165,14 +169,14 @@ description: A component that visually communicates the completion of a task or 
     <div class="s-progress--bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="66" style="width: 66%"></div>
 </div>
 {% endhighlight %}
-        <div class="grid gs16 gsy fd-column stacks-preview--example">
-            <div class="grid--cell">
+        <div class="d-flex gs16 gsy fd-column stacks-preview--example">
+            <div class="flex--item">
                 <label class="s-label d-inline-flex my8 fw-normal" for="brandprogress">Brand</label>
                 <div class="s-progress s-progress__brand" id="brandprogress">
                     <div class="s-progress--bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="33" style="width: 33%"></div>
                 </div>
             </div>
-            <div class="grid--cell">
+            <div class="flex--item">
                 <label class="s-label d-inline-flex my8 fw-normal" for="infoprogress">Info</label>
                 <div class="s-progress s-progress__info" id="infoprogress">
                     <div class="s-progress--bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="66" style="width: 66%"></div>
@@ -198,30 +202,37 @@ description: A component that visually communicates the completion of a task or 
 </div>
 {% endhighlight %}
         <div class="stacks-preview--example">
-            <div class="grid fw-wrap gs16">
-                <div class="grid--cell s-progress s-progress__circular s-progress__sm fc-blue-600" style="--s-progress-value: .22">
-                    <svg class="s-progress-bar" viewbox="0 0 32 32" aria-valuemin="0" aria-valuemax="100" aria-valuenow="22">
+            <div class="d-flex fw-wrap gs16">
+                <div class="flex--item s-progress s-progress__circular s-progress__sm fc-blue-600" style="--s-progress-value: 0">
+                    <svg class="s-progress-bar" viewbox="0 0 32 32" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
                         <circle cx="16" cy="16" r="14"></circle>
                         <circle cx="16" cy="16" r="14"></circle>
                     </svg>
                 </div>
 
-                <div class="grid--cell s-progress s-progress__circular fc-orange-400" style="--s-progress-value: .75">
+                <div class="flex--item s-progress s-progress__circular fc-orange-400" style="--s-progress-value: .5">
+                    <svg class="s-progress-bar" viewbox="0 0 32 32" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50">
+                        <circle cx="16" cy="16" r="14"></circle>
+                        <circle cx="16" cy="16" r="14"></circle>
+                    </svg>
+                </div>
+
+                <div class="flex--item s-progress s-progress__circular s-progress__md fc-green-400" style="--s-progress-value: .75">
                     <svg class="s-progress-bar" viewbox="0 0 32 32" aria-valuemin="0" aria-valuemax="100" aria-valuenow="75">
                         <circle cx="16" cy="16" r="14"></circle>
                         <circle cx="16" cy="16" r="14"></circle>
                     </svg>
                 </div>
 
-                <div class="grid--cell s-progress s-progress__circular s-progress__md fc-green-400" style="--s-progress-value: .48">
-                    <svg class="s-progress-bar" viewbox="0 0 32 32" aria-valuemin="0" aria-valuemax="100" aria-valuenow="48">
+                <div class="flex--item s-progress s-progress__circular s-progress__lg fc-red-600" style="--s-progress-value: .94">
+                    <svg class="s-progress-bar" viewbox="0 0 32 32" aria-valuemin="0" aria-valuemax="100" aria-valuenow="94">
                         <circle cx="16" cy="16" r="14"></circle>
                         <circle cx="16" cy="16" r="14"></circle>
                     </svg>
                 </div>
 
-                <div class="grid--cell s-progress s-progress__circular s-progress__lg fc-red-600" style="--s-progress-value: .08">
-                    <svg class="s-progress-bar" viewbox="0 0 32 32" aria-valuemin="0" aria-valuemax="100" aria-valuenow="8">
+                <div class="flex--item s-progress s-progress__circular s-progress__lg fc-blue-600" style="--s-progress-value: 1">
+                    <svg class="s-progress-bar" viewbox="0 0 32 32" aria-valuemin="0" aria-valuemax="100" aria-valuenow="100">
                         <circle cx="16" cy="16" r="14"></circle>
                         <circle cx="16" cy="16" r="14"></circle>
                     </svg>
@@ -237,33 +248,33 @@ description: A component that visually communicates the completion of a task or 
     <div class="stacks-preview">
 {% highlight html %}
 <div class="s-progress s-progress__privilege">
-    <label class="grid gs4 gsx grid__center m0 s-progress--label" for="badgegold-progress">
-        @Svg.PromoteDemote.With("grid--cell")
-        <div class="grid--cell">Access Review Queues</div>
+    <label class="d-flex gs4 gsx flex__center m0 s-progress--label" for="badgegold-progress">
+        @Svg.PromoteDemote.With("flex--item")
+        <div class="flex--item">Access Review Queues</div>
     </label>
     <div class="s-progress--bar" id="badgegold-progress" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="25" style="width: 25%;"></div>
 </div>
 {% endhighlight %}
         <div class="stacks-preview--example">
-            <div class="grid gs8">
-                <div class="grid--cell s-progress s-progress__privilege">
-                    <label class="grid gs4 gsx grid__center m0 s-progress--label" for="badgegold-progress">
-                        {% icon "PromoteDemote", "grid--cell" %}
-                        <div class="grid--cell">Access Review Queues</div>
+            <div class="d-flex gs8">
+                <div class="flex--item s-progress s-progress__privilege">
+                    <label class="d-flex gs4 gsx flex__center m0 s-progress--label" for="badgegold-progress">
+                        {% icon "PromoteDemote", "flex--item" %}
+                        <div class="flex--item">Access Review Queues</div>
                     </label>
                     <div class="s-progress--bar" id="badgegold-progress" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="25" style="width: 25%;"></div>
                 </div>
-                <div class="grid--cell s-progress s-progress__privilege">
-                    <label class="grid gs4 gsx grid__center m0 s-progress--label" for="badgesilver-progress">
-                        {% icon "AchievementsSm", "grid--cell" %}
-                        <div class="grid--cell">Trusted user</div>
+                <div class="flex--item s-progress s-progress__privilege">
+                    <label class="d-flex gs4 gsx flex__center m0 s-progress--label" for="badgesilver-progress">
+                        {% icon "AchievementsSm", "flex--item" %}
+                        <div class="flex--item">Trusted user</div>
                     </label>
                     <div class="s-progress--bar" id="badgegold-progress" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50" style="width: 50%;"></div>
                 </div>
-                <div class="grid--cell s-progress s-progress__privilege">
-                    <label class="grid gs4 gsx grid__center m0 s-progress--label" for="badgebronze-progress">
-                        {% icon "PromoteDemote", "grid--cell" %}
-                        <div class="grid--cell">Protect questions</div>
+                <div class="flex--item s-progress s-progress__privilege">
+                    <label class="d-flex gs4 gsx flex__center m0 s-progress--label" for="badgebronze-progress">
+                        {% icon "PromoteDemote", "flex--item" %}
+                        <div class="flex--item">Protect questions</div>
                     </label>
                     <div class="s-progress--bar" id="badgegold-progress" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="75" style="width: 75%;"></div>
                 </div>
@@ -279,52 +290,85 @@ description: A component that visually communicates the completion of a task or 
 {% highlight html %}
 <!-- Gold Badge -->
 <div class="s-progress s-progress__badge s-progress__gold">
-    <label class="grid gs4 gsx m0 s-progress--label" for="badgegold-progress">
-        <img class="grid--cell s-badge--image" src="BadgeGold.svg" aria-hidden="true">
-        <div class="grid grid__center fl1 s-badge--label">Electorate</div>
+    <label class="d-flex gs4 gsx m0 s-progress--label" for="badgegold-progress">
+        <img class="flex--item s-badge--image" src="BadgeGold.svg" aria-hidden="true">
+        <div class="d-flex flex__center fl-grow1 s-badge--label">Electorate</div>
     </label>
     <div class="s-progress--bar" id="badgegold-progress" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="25" style="width: 25%;"></div>
 </div>
 <!-- Silver Badge -->
 <div class="s-progress s-progress__badge s-progress__silver">
-    <label class="grid gs4 gsx m0 s-progress--label" for="badgesilver-progress">
-        <img class="grid--cell s-badge--image" src="BadgeSilver.svg" aria-hidden="true">
-        <div class="grid grid__center fl1 s-badge--label">Civic Duty - 162/300</div>
+    <label class="d-flex gs4 gsx m0 s-progress--label" for="badgesilver-progress">
+        <img class="flex--item s-badge--image" src="BadgeSilver.svg" aria-hidden="true">
+        <div class="d-flex flex__center fl-grow1 s-badge--label">Civic Duty - 162/300</div>
     </label>
     <div class="s-progress--bar" id="badgegold-progress" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50" style="width: 50%;"></div>
 </div>
 <!-- Bronze Badge -->
 <div class="s-progress s-progress__badge s-progress__bronze">
-    <label class="grid gs4 gsx m0 s-progress--label" for="badgebronze-progress">
-        <img class="grid--cell s-badge--image" src="BadgeBronze.svg" aria-hidden="true">
-        <div class="grid grid__center fl1 s-badge--label">Proofreader - 16/100</div>
+    <label class="d-flex gs4 gsx m0 s-progress--label" for="badgebronze-progress">
+        <img class="flex--item s-badge--image" src="BadgeBronze.svg" aria-hidden="true">
+        <div class="d-flex flex__center fl-grow1 s-badge--label">Proofreader - 16/100</div>
     </label>
     <div class="s-progress--bar" id="badgegold-progress" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="75" style="width: 75%;"></div>
 </div>
 {% endhighlight %}
         <div class="stacks-preview--example">
-            <div class="grid gs16">
-                <div class="grid--cell s-progress s-progress__badge s-progress__gold">
-                    <label class="grid gs4 gsx m0 s-progress--label" for="badgegold-progress">
-                        <img class="grid--cell s-badge--image" src="/assets/img/BadgeGold.svg" aria-hidden="true">
-                        <div class="grid grid__center fl1 s-badge--label">Electorate</div>
+            <div class="d-flex gs16">
+                <div class="flex--item s-progress s-progress__badge s-progress__gold">
+                    <label class="d-flex gs4 gsx m0 s-progress--label" for="badgegold-progress">
+                        <img class="flex--item s-badge--image" src="/assets/img/BadgeGold.svg" aria-hidden="true">
+                        <div class="d-flex flex__center fl-grow1 s-badge--label">Electorate</div>
                     </label>
                     <div class="s-progress--bar" id="badgegold-progress" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="25" style="width: 25%;"></div>
                 </div>
-                <div class="grid--cell s-progress s-progress__badge s-progress__silver">
-                    <label class="grid gs4 gsx m0 s-progress--label" for="badgesilver-progress">
-                        <img class="grid--cell s-badge--image" src="/assets/img/BadgeSilver.svg" aria-hidden="true">
-                        <div class="grid grid__center fl1 s-badge--label">Civic Duty - 162/300</div>
+                <div class="flex--item s-progress s-progress__badge s-progress__silver">
+                    <label class="d-flex gs4 gsx m0 s-progress--label" for="badgesilver-progress">
+                        <img class="flex--item s-badge--image" src="/assets/img/BadgeSilver.svg" aria-hidden="true">
+                        <div class="d-flex flex__center fl-grow1 s-badge--label">Civic Duty - 162/300</div>
                     </label>
                     <div class="s-progress--bar" id="badgegold-progress" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50" style="width: 50%;"></div>
                 </div>
-                <div class="grid--cell s-progress s-progress__badge s-progress__bronze">
-                    <label class="grid gs4 gsx m0 s-progress--label" for="badgebronze-progress">
-                        <img class="grid--cell s-badge--image" src="/assets/img/BadgeBronze.svg" aria-hidden="true">
-                        <div class="grid grid__center fl1 s-badge--label">Proofreader - 16/100</div>
+                <div class="flex--item s-progress s-progress__badge s-progress__bronze">
+                    <label class="d-flex gs4 gsx m0 s-progress--label" for="badgebronze-progress">
+                        <img class="flex--item s-badge--image" src="/assets/img/BadgeBronze.svg" aria-hidden="true">
+                        <div class="d-flex flex__center fl-grow1 s-badge--label">Proofreader - 16/100</div>
                     </label>
                     <div class="s-progress--bar" id="badgegold-progress" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="75" style="width: 75%;"></div>
                 </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="stacks-section">
+    {% header "h2", "Segmented" %}
+    <p class="stacks-copy">Stacks provides dividers to create segmented progress bars. The progess bar can be either independent of the dividers, or locked to them.</p>
+    <div class="stacks-preview">
+{% highlight html %}
+<div class="s-progress s-progress__segmented">
+    <div class="s-progress--bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="75" style="width: 75%;"></div>
+    <ol class="s-progress--segments">
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ol>
+</div>
+{% endhighlight %}
+        <div class="stacks-preview--example">
+            <div class="s-progress s-progress__segmented">
+                <div class="s-progress--bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="75" style="width: 75%;"></div>
+                <ol class="s-progress--segments">
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                </ol>
             </div>
         </div>
     </div>

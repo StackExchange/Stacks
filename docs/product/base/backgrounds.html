@@ -13,7 +13,6 @@ description: Atomic classes for controlling the background properties of an elem
                 <tr>
                     <th scope="col">Class</th>
                     <th scope="col">Output</th>
-
                 </tr>
             </thead>
             <tbody>
@@ -37,7 +36,6 @@ description: Atomic classes for controlling the background properties of an elem
                 <tr>
                     <th scope="col">Class</th>
                     <th scope="col">Output</th>
-
                 </tr>
             </thead>
             <tbody>
@@ -61,7 +59,6 @@ description: Atomic classes for controlling the background properties of an elem
                 <tr>
                     <th scope="col">Class</th>
                     <th scope="col">Output</th>
-
                 </tr>
             </thead>
             <tbody>
@@ -89,16 +86,16 @@ description: Atomic classes for controlling the background properties of an elem
 <div class="bg-no-repeat bg-top">…</div>
 {% endhighlight %}
         <div class="stacks-preview--example">
-            <div class="grid grid__allcells3 w100 gs8 fc-black-800 ff-mono fw-wrap">
-                <div class="grid--cell p12 bg-black-075 hs1 ba bc-black-3 stacks-bg-img bg-no-repeat bg-bottom">.bg-bottom</div>
-                <div class="grid--cell p12 bg-black-075 hs1 ba bc-black-3 stacks-bg-img bg-no-repeat bg-center">.bg-center</div>
-                <div class="grid--cell p12 bg-black-075 hs1 ba bc-black-3 stacks-bg-img bg-no-repeat bg-left">.bg-left</div>
-                <div class="grid--cell p12 bg-black-075 hs1 ba bc-black-3 stacks-bg-img bg-no-repeat bg-left-bottom">.bg-left-bottom</div>
-                <div class="grid--cell p12 bg-black-075 hs1 ba bc-black-3 stacks-bg-img bg-no-repeat bg-left-top">.bg-left-top</div>
-                <div class="grid--cell p12 bg-black-075 hs1 ba bc-black-3 stacks-bg-img bg-no-repeat bg-right">.bg-right</div>
-                <div class="grid--cell p12 bg-black-075 hs1 ba bc-black-3 stacks-bg-img bg-no-repeat bg-right-bottom">.bg-right-bottom</div>
-                <div class="grid--cell p12 bg-black-075 hs1 ba bc-black-3 stacks-bg-img bg-no-repeat bg-right-top">.bg-right-top</div>
-                <div class="grid--cell p12 bg-black-075 hs1 ba bc-black-3 stacks-bg-img bg-no-repeat bg-top">.bg-top</div>
+            <div class="d-flex flex__allitems3 w100 gs8 fc-black-800 ff-mono fw-wrap">
+                <div class="flex--item p12 bg-black-075 hs1 ba bc-black-3 stacks-bg-img bg-no-repeat bg-bottom">.bg-bottom</div>
+                <div class="flex--item p12 bg-black-075 hs1 ba bc-black-3 stacks-bg-img bg-no-repeat bg-center">.bg-center</div>
+                <div class="flex--item p12 bg-black-075 hs1 ba bc-black-3 stacks-bg-img bg-no-repeat bg-left">.bg-left</div>
+                <div class="flex--item p12 bg-black-075 hs1 ba bc-black-3 stacks-bg-img bg-no-repeat bg-left-bottom">.bg-left-bottom</div>
+                <div class="flex--item p12 bg-black-075 hs1 ba bc-black-3 stacks-bg-img bg-no-repeat bg-left-top">.bg-left-top</div>
+                <div class="flex--item p12 bg-black-075 hs1 ba bc-black-3 stacks-bg-img bg-no-repeat bg-right">.bg-right</div>
+                <div class="flex--item p12 bg-black-075 hs1 ba bc-black-3 stacks-bg-img bg-no-repeat bg-right-bottom">.bg-right-bottom</div>
+                <div class="flex--item p12 bg-black-075 hs1 ba bc-black-3 stacks-bg-img bg-no-repeat bg-right-top">.bg-right-top</div>
+                <div class="flex--item p12 bg-black-075 hs1 ba bc-black-3 stacks-bg-img bg-no-repeat bg-top">.bg-top</div>
             </div>
         </div>
     </div>
@@ -113,7 +110,6 @@ description: Atomic classes for controlling the background properties of an elem
                 <tr>
                     <th scope="col">Class</th>
                     <th scope="col">Output</th>
-
                 </tr>
             </thead>
             <tbody>
@@ -125,5 +121,48 @@ description: Atomic classes for controlling the background properties of an elem
                 {% endfor %}
             </tbody>
         </table>
+    </div>
+</section>
+
+<section class="stacks-section">
+    {% header "h2", "Background image" %}
+    {% header "h3", "Background image classes" %}
+    <div class="overflow-x-auto mb32">
+        <table class="wmn3 s-table s-table__bx-simple">
+            <thead>
+                <tr>
+                    <th scope="col">Class</th>
+                    <th scope="col">Output</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for background-image in backgrounds.background-image %}
+                    <tr>
+                        <th scope="row"><code class="stacks-code">{{ background-image.class }}</code></th>
+                        <td class="ff-mono">{{ background-image.output }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</section>
+
+<section class="stacks-section">
+    {% header "h2", "Background utilities" %}
+
+    {% header "h3", "Confetti" %}
+    <p class="stacks-copy">Adding the confetti background utility adds confetti to any block-level element. You can choose the animated version, or static version. The animated version respects <code class="stacks-code">prefers-reduced-motion</code> and displays the static version of the background when necessary. No JavaScript required.</p>
+    <div class="stacks-preview">
+{% highlight html %}
+<div class="bg-confetti-animated">…</div>
+<div class="bg-confetti-static">…</div>
+{% endhighlight %}
+        <div class="stacks-preview--example">
+            <div class="ff-mono mb4">Animated</div>
+            <div class="bg-confetti-animated hs1"></div>
+
+            <div class="ff-mono mt16 mb4">Static</div>
+            <div class="bg-confetti-static h64"></div>
+        </div>
     </div>
 </section>
