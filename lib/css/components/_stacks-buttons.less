@@ -34,7 +34,13 @@
         cursor: pointer;
         user-select: none;
 
-        .highcontrast-mode({ border-color: currentColor; });
+        .highcontrast-mode({
+            border-color: currentColor;
+
+            &:not(.s-btn__link):not(.s-btn__unset) {
+                text-decoration: none;
+            }
+        });
 
         button &,
         button[type="submit"] &,
@@ -395,7 +401,6 @@
             &:active {
                 color: @button-danger-filled-hover-color;
                 background-color: @button-danger-filled-hover-background-color;
-                box-shadow: 0 0 0 @su4 var(--focus-ring-error);
             }
 
             &:active {
@@ -494,9 +499,12 @@
         }
 
         &:active {
-            border-color: var(--bc-darkest);
             background-color: var(--black-050);
             color: var(--black-900);
+        }
+
+        &:focus {
+            box-shadow: 0 0 0 @su4 var(--focus-ring-muted);
         }
     }
 
@@ -535,11 +543,16 @@
             background-color: var(--black-900);
             color: var(--white);
         }
+
+        &:focus {
+            box-shadow: 0 0 0 @su4 var(--focus-ring-muted);
+        }
     }
 
     .s-btn__unset,
     .s-btn__unset:hover,
-    .s-btn__unset:active {
+    .s-btn__unset:active,
+    .s-btn__unset:focus {
         padding: 0;
         border: none;
         outline: none;
@@ -550,10 +563,6 @@
         box-shadow: none;
         cursor: default;
         user-select: auto;
-    }
-
-    .s-btn__unset:focus {
-        color: unset;
     }
 
     .s-btn__link {
@@ -574,6 +583,15 @@
         &:focus,
         &[disabled] {
             background: none;
+            box-shadow: none;
+        }
+
+        &.s-btn__dropdown {
+            padding-right: 0.9em;
+
+            &:after {
+                right: 0;
+            }
         }
     }
 
