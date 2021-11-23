@@ -103,9 +103,7 @@
         .flex-fixed-item-spacing(@spacing, @num, @count: 1) when (@count =< @num) {
             @item-width: (@count * 100% / @num);
 
-            > .flex--item@{count} {
-                margin: (@spacing / 2);
-            }
+            gap: @spacing;
 
             //  ------------------------------------------------------------------------
             //  [1] FIXED WIDTH ITEMS
@@ -141,13 +139,7 @@
         .gutter-spacing(@spacing) {
             #stacks-internals #flex-builder-settings();
 
-            margin: -(@spacing / 2);
-
-            //  --  FLUID ITEMS
-            > .d-flex,
-            > .flex--item {
-                margin: (@spacing / 2);
-            }
+            gap: @spacing;
 
             //  --  FIXED WIDTH ITEMS
             //      Now we call for the above mixin [1] to make sure we adjust the default
@@ -217,8 +209,7 @@
     &,
     > .d-flex,
     > [class*="flex--item"] {
-        margin-top: 0;
-        margin-bottom: 0;
+        row-gap: 0;
     }
 }
 
@@ -227,8 +218,7 @@
     &,
     > .d-flex,
     > [class*="flex--item"] {
-        margin-right: 0;
-        margin-left: 0;
+        column-gap: 0;
     }
 }
 
