@@ -44,7 +44,6 @@
         //      all child elements will automatically be sized.
         //  ----------------------------------------------------------------------------
         .create-flex-count-cols(@num, @count: 1) when (@count =< @num) {
-            .flex__allcells@{count},
             .flex__allitems@{count} {
                 > .d-flex,
                 > .flex--item {
@@ -117,9 +116,7 @@
             //      and max-width here to account for gutters.
             //  ------------------------------------------------------------------------
             > .flex--item@{count},                                  // [1]
-            &.flex__allcells@{count} > .d-flex,                     // [2]
             &.flex__allitems@{count} > .d-flex,                     // [2]
-            &.flex__allcells@{count} > .flex--item,                 // [2]
             &.flex__allitems@{count} > .flex--item {                // [2]
                 flex-basis: calc(~"@{item-width} - @{spacing}");
             }
