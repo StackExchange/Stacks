@@ -226,11 +226,12 @@
 }
 
 .s-post-summary__watched {
-    background: linear-gradient(to bottom, var(--yellow-050) 0%, hsla(0, 0%, 100%, 0) 100%);
-
-    .dark-mode({
-        background: linear-gradient(to bottom, var(--yellow-050) 0%, hsla(0, 0%, 0%, 0) 100%);
-    });
+    // Safari doesn’t deal well with gradients fading to transparent.
+    // We’ll hard code white at 0% opacity, but we need to pay attention to dark mode.
+    // background-image: linear-gradient(170deg, var(--yellow-050), hsla(0, 0%, 100%, 0) 52%);
+    // .dark-mode({
+    //     background-image: linear-gradient(170deg, var(--yellow-050), hsla(0, 0%, 0%, 0) 52%);
+    // });
 
     .s-post-summary--content-title {
         color: var(--yellow-800);
@@ -270,11 +271,11 @@
 
 .s-post-summary__ignored {
     opacity: 0.7;
-    background: linear-gradient(to bottom, var(--black-050) 0%, hsla(0, 0%, 100%, 0) 100%);
 
-    .dark-mode({
-        background: linear-gradient(to bottom, var(--black-050) 0%, hsla(0, 0%, 0%, 0) 100%);
-    });
+    // background-image: linear-gradient(170deg, var(--black-050), hsla(0, 0%, 100%, 0) 52%);
+    // .dark-mode({
+    //     background-image: linear-gradient(170deg, var(--black-050), hsla(0, 0%, 0%, 0) 52%);
+    // });
 
     .s-post-summary--content-title {
         color: var(--black-600);
@@ -309,11 +310,11 @@
 }
 
 .s-post-summary__deleted {
-    background: linear-gradient(to bottom, var(--red-050) 0%, hsla(0, 0%, 100%, 0) 100%);
+    // background-image: linear-gradient(170deg, var(--red-050), hsla(0, 0%, 100%, 0) 52%);
 
-    .dark-mode({
-        background: linear-gradient(to bottom, var(--red-050) 0%, hsla(0, 0%, 0%, 0) 100%);
-    });
+    // .dark-mode({
+    //     background-image: linear-gradient(170deg, var(--red-050), hsla(0, 0%, 0%, 0) 52%);
+    // });
 
     .s-post-summary--content-title {
         color: var(--red-700);
