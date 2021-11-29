@@ -137,12 +137,16 @@ description: Input elements are used to gather information from users.
     </div>
 
     {% header "h4", "Error" %}
+    {% tip, "warning", "mb24" %}
+        <p class="mb0">In addition to using the "error" state for a field, be sure to use the <a href="https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Techniques/Using_the_aria-invalid_attributev"><code class="stacks-code">aria-invalid</code></a> attribute to indicate to assistive technology that respective fields have failed validation.</p>
+    {% endtip %}
+
     <div class="stacks-preview">
 {% highlight html %}
 <div class="d-flex gs4 gsy fd-column has-error">
     <label class="flex--item s-label" for="example-error">Username</label>
     <div class="d-flex ps-relative">
-        <input class="s-input" id="example-error" type="text" placeholder="e.g. johndoe111" aria-describedby="example-error-desc" />
+        <input class="s-input" id="example-error" type="text" placeholder="e.g. johndoe111" aria-describedby="example-error-desc" aria-invalid="true" />
         @Svg.AlertCircle.With("s-input-icon")
     </div>
     <p id="example-error-desc" class="flex--item s-input-message">You must provide a username. <a>Forgot your username?</a></p>
