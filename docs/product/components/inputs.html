@@ -102,8 +102,11 @@ description: Input elements are used to gather information from users.
     <p class="stacks-copy">
         In most cases, validation states shouldn’t be shown until after the user has submitted the form. There are certain exceptions where it can be appropriate to show a validation state without form submission—after a sufficient delay. For example, validating the existence of a username can occur after the user has stopped typing, or when they’ve deselected the input.
     </p>
-    <p class="stacks-copy mb32">
+    <p class="stacks-copy">
         Once the user is presented validation states, they can be cleared as soon as the user interacts with the form field. For example, the error state for an incorrect password should be cleared as soon as the user focuses the input to re-enter their password.
+    </p>
+    <p class="stacks-copy mb32">
+        Similarly to using <code class="stacks-code">for</code> with labels, validation messages below inputs should be associated with their respective fields using the <code class="stacks-code">aria-describedby</code> attribute for accessible behavior.
     </p>
 
     {% header "h3", "Validation examples" %}
@@ -113,10 +116,10 @@ description: Input elements are used to gather information from users.
 <div class="d-flex gs4 gsy fd-column has-warning">
     <label class="flex--item s-label" for="example-warning">Username</label>
     <div class="d-flex ps-relative">
-        <input class="s-input" id="example-warning" type="text" placeholder="" />
+        <input class="s-input" id="example-warning" type="text" placeholder="" aria-describedby="example-warning-desc" />
         @Svg.Alert.With("s-input-icon")
     </div>
-    <p class="flex--item s-input-message">Caps lock is on! <a>Having trouble entering your username?</a></p>
+    <p id="example-warning-desc" class="flex--item s-input-message">Caps lock is on! <a>Having trouble entering your username?</a></p>
 </div>
 {% endhighlight %}
         <div class="stacks-preview--example">
@@ -124,10 +127,10 @@ description: Input elements are used to gather information from users.
                 <div class="d-flex gs4 gsy fd-column has-warning">
                     <label class="flex--item s-label" for="example-warning">Username</label>
                     <div class="d-flex ps-relative">
-                        <input class="s-input" id="example-warning" type="text" value="AA" />
+                        <input class="s-input" id="example-warning" type="text" value="AA" aria-describedby="example-warning-desc" />
                         {% icon "Alert", "s-input-icon" %}
                     </div>
-                    <p class="flex--item s-input-message">Caps lock is on! <a>Having trouble entering your username?</a></p>
+                    <p id="example-warning-desc" class="flex--item s-input-message">Caps lock is on! <a>Having trouble entering your username?</a></p>
                 </div>
             </div>
         </div>
@@ -137,12 +140,12 @@ description: Input elements are used to gather information from users.
     <div class="stacks-preview">
 {% highlight html %}
 <div class="d-flex gs4 gsy fd-column has-error">
-    <label class="flex--item s-label" for="example-warning">Username</label>
+    <label class="flex--item s-label" for="example-error">Username</label>
     <div class="d-flex ps-relative">
-        <input class="s-input" id="example-warning" type="text" placeholder="e.g. johndoe111" />
+        <input class="s-input" id="example-error" type="text" placeholder="e.g. johndoe111" aria-describedby="example-error-desc" />
         @Svg.AlertCircle.With("s-input-icon")
     </div>
-    <p class="flex--item s-input-message">You must provide a username. <a>Forgot your username?</a></p>
+    <p id="example-error-desc" class="flex--item s-input-message">You must provide a username. <a>Forgot your username?</a></p>
 </div>
 {% endhighlight %}
         <div class="stacks-preview--example">
@@ -150,10 +153,10 @@ description: Input elements are used to gather information from users.
                 <div class="d-flex gs4 gsy fd-column has-error">
                     <label class="flex--item s-label" for="example-error">Username</label>
                     <div class="d-flex ps-relative">
-                        <input class="s-input" id="example-error" type="text" />
+                        <input class="s-input" id="example-error" type="text" aria-describedby="example-error-desc" />
                         {% icon "AlertCircle", "s-input-icon" %}
                     </div>
-                    <p class="flex--item s-input-message">You must provide a username. <a>Forgot your username?</a></p>
+                    <p id="example-error-desc" class="flex--item s-input-message">You must provide a username. <a>Forgot your username?</a></p>
                 </div>
             </div>
         </div>
@@ -163,12 +166,12 @@ description: Input elements are used to gather information from users.
     <div class="stacks-preview">
 {% highlight html %}
 <div class="d-flex gs4 gsy fd-column has-success">
-    <label class="flex--item s-label" for="example-warning">Username</label>
+    <label class="flex--item s-label" for="example-success">Username</label>
     <div class="d-flex ps-relative">
-        <input class="s-input" id="example-warning" type="text" />
+        <input class="s-input" id="example-success" type="text" aria-describedby="example-success-desc" />
         @Svg.Checkmark.With("s-input-icon")
     </div>
-    <p class="flex--item s-input-message">That name is available! <a>Why do we require a username?</a></p>
+    <p id="example-success-desc" class="flex--item s-input-message">That name is available! <a>Why do we require a username?</a></p>
 </div>
 {% endhighlight %}
         <div class="stacks-preview--example">
@@ -176,10 +179,10 @@ description: Input elements are used to gather information from users.
                 <div class="d-flex gs4 gsy fd-column has-success">
                     <label class="flex--item s-label" for="example-success">Username</label>
                     <div class="d-flex ps-relative">
-                        <input class="s-input" id="example-success" type="text" value="aaronshekey" />
+                        <input class="s-input" id="example-success" type="text" value="aaronshekey" aria-describedby="example-success-desc" />
                         {% icon "Checkmark", "s-input-icon" %}
                     </div>
-                    <p class="flex--item s-input-message">That name is available! <a>Why do we require a username?</a></p>
+                    <p id="example-success-desc" class="flex--item s-input-message">That name is available! <a>Why do we require a username?</a></p>
                 </div>
             </div>
         </div>
