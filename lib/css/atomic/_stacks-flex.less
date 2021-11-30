@@ -101,7 +101,7 @@
         //
         //  ----------------------------------------------------------------------------
         .flex-fixed-item-spacing(@spacing, @num, @count: 1) when (@count =< @num) {
-            @item-width: (@count * 100% / @num);
+            @itemWidth: (@count * 100% / @num);
 
             > .flex--item@{count} {
                 margin: (@spacing / 2);
@@ -121,7 +121,7 @@
             &.flex__allitems@{count} > .d-flex,                     // [2]
             &.flex__allcells@{count} > .flex--item,                 // [2]
             &.flex__allitems@{count} > .flex--item {                // [2]
-                flex-basis: calc(~"@{item-width} - @{spacing}");
+                flex-basis: calc(~"@{itemWidth} - @{spacing}");
             }
 
             #stacks-internals #flex-builder-helpers .flex-fixed-item-spacing(@spacing, @num, (@count + 1));

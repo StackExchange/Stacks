@@ -1,9 +1,34 @@
 const hljs = require("highlight.js");
 const syntaxHighlight = require("eleventy-plugin-highlightjs");
 const pluginTOC = require("eleventy-plugin-nesting-toc");
+const markdownIt = require("markdown-it")("commonmark");
 const markdownShortcode = require("eleventy-plugin-markdown-shortcode");
 const { default: Icons, Spots } = require("@stackoverflow/stacks-icons");
 const { version } = require("../package.json");
+
+// customize markdown-it rendering to add our classes
+markdownIt.use(function(md) {
+  // mapping of tag: classes
+  const customClasses = {
+    "code": "stacks-code"
+  }
+
+  const addClasses = function(tokens) {
+    tokens.forEach(function(token) {
+      if (token.tag in customClasses) {
+        token.attrJoin("class", customClasses[token.tag]);
+      }
+
+      if (token.children) {
+        addClasses(token.children);
+      }
+    });
+  };
+
+  md.core.ruler.push("add-custom-classes", function(state) {
+    addClasses(state.tokens);
+  });
+});
 
 module.exports = function(eleventyConfig) {
   eleventyConfig.setQuietMode(true); // Reduce the console output
@@ -114,6 +139,9 @@ module.exports = function(eleventyConfig) {
     return {version}.version;
   });
 
+  eleventyConfig.addLiquidFilter("markdown", function(content) {
+    return markdownIt.renderInline(content);
+  });
 
   // highlightjs line-numbering support
   // add `linenums` or `linenums:startNumber` to the start of your code for detection

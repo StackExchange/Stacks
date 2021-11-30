@@ -415,6 +415,133 @@ description: The post summary component summarizes various content and associate
 </section>
 
 <section class="stacks-section">
+    {% header "h2", "Answers" %}
+    <p class="stacks-copy">Previews of answers can also be attached to the post summary as needed.</p>
+    <div class="stacks-preview">
+{% highlight html %}
+<div class="s-post-summary">
+    …
+    <div class="s-post-summary--content">
+        <a href="…" class="s-post-summary--content-title s-link">…</a>
+        <div class="s-post-summary--meta">…</div>
+
+        <div class="s-post-summary--answer">
+            <div class="s-post-summary--stats">
+                <div class="s-post-summary--stats-item has-answers has-accepted-answer">
+                    @Svg.CheckmarkSm.With("va-text-bottom") Accepted answer
+                </div>
+                <div class="s-post-summary--stats-item">
+                    … votes
+                </div>
+            </div>
+            <p class="s-post-summary--answer-excerpt">
+                …
+            </p>
+            <div class="s-post-summary--meta">
+                <a class="s-link" href="…">
+                    View answer
+                </a>
+
+                <div class="s-user-card s-user-card__minimal">
+                    <a href="…" class="s-avatar s-user-card--avatar">
+                        <img class="s-avatar--image" src="…" />
+                    </a>
+                    <a href="…" class="s-user-card--link">…</a>
+                    <time class="s-user-card--time">…</time>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endhighlight %}
+        <div class="stacks-preview--example p0">
+            <div class="s-post-summary">
+                <div class="s-post-summary--stats">
+                    <div class="s-post-summary--stats-item has-answers has-accepted-answer">
+                        {% icon "CheckmarkSm", "va-text-bottom" %} 2 answers
+                    </div>
+                    <div class="s-post-summary--stats-item">
+                        2 votes
+                    </div>
+                    <div class="s-post-summary--stats-item">
+                        1k views
+                    </div>
+                </div>
+                <div class="s-post-summary--content">
+                    <a class="s-post-summary--content-title s-link">
+                        Azure API Management and Backend Web API
+                    </a>
+                    <p class="s-post-summary--content-excerpt">
+                        Right now, I have enabled basic authentication to the developer portal in API Management. Also, I have enabled OAuth 2.0 authentication for the back end server (user Authorization). So, if i login to the developer portal, i can see two fields - Subscription Key and Authorization. The Subscription key will be the developer's subscription to the portal and the Authorization will be the OAuth authorization which is required for the back end server.
+                    </p>
+                    <div class="s-post-summary--meta">
+                        <div class="s-post-summary--meta-tags">
+                            <a class="s-tag" href="#">azure</a>
+                            <a class="s-tag" href="#">asp.net-web-api</a>
+                            <a class="s-tag" href="#">oauth-2.0</a>
+                            <a class="s-tag" href="#">azure-active-directory</a>
+                        </div>
+
+                        <div class="s-user-card s-user-card__minimal">
+                            <a href="…" class="s-avatar s-user-card--avatar">
+                                <img class="s-avatar--image" src="{{ "/assets/img/placeholder.svg" | relative_url }}" />
+                            </a>
+                            <a href="#" class="s-user-card--link">karel</a>
+                            <time class="s-user-card--time">asked 3 minutes ago</time>
+                        </div>
+                    </div>
+                    <div class="s-post-summary--answer">
+                        <div class="s-post-summary--stats">
+                            <div class="s-post-summary--stats-item has-answers has-accepted-answer">
+                                {% icon "CheckmarkSm", "va-text-bottom" %} Accepted answer
+                            </div>
+                            <div class="s-post-summary--stats-item">
+                                2 votes
+                            </div>
+                        </div>
+                        <p class="s-post-summary--answer-excerpt">Subscription keys in APIM are tied to a user and product, thus if you change (or create new one) product to not require subscription (option available at creation time or in product settings) no subscription key would be needed to call any API included into such products. The downside is that all such calls would be treated by APIM as anonymous and shown in analytics as such.</p>
+                        <div class="s-post-summary--meta">
+                            <a class="s-link" href="#">
+                                View answer
+                            </a>
+
+                            <div class="s-user-card s-user-card__minimal">
+                                <a href="…" class="s-avatar s-user-card--avatar">
+                                    <img class="s-avatar--image" src="{{ "/assets/img/placeholder.svg" | relative_url }}" />
+                                </a>
+                                <a href="#" class="s-user-card--link">Aaron Shekey</a>
+                                <time class="s-user-card--time">answered 1 minute ago</time>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="s-post-summary--answer">
+                        <div class="s-post-summary--stats">
+                            <div class="s-post-summary--stats-item">
+                                2 votes
+                            </div>
+                        </div>
+                        <p class="s-post-summary--answer-excerpt">Yeah, you can do that (a bit of a hack). You have to use REST Api for that, specifically this call. For me it didn't work to edit the existing API (they key was still there), but when I've created new API, key wasn't there:</p>
+                        <div class="s-post-summary--meta">
+                            <a class="s-link" href="#">
+                                View answer
+                            </a>
+
+                            <div class="s-user-card s-user-card__minimal">
+                                <a href="…" class="s-avatar s-user-card--avatar">
+                                    <img class="s-avatar--image" src="{{ "/assets/img/placeholder.svg" | relative_url }}" />
+                                </a>
+                                <a href="#" class="s-user-card--link">4c74356b41</a>
+                                <time class="s-user-card--time">answered 3 minutes ago</time>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="stacks-section">
     {% header "h2", "Stats examples" %}
     {% header "h3", "Answered status" %}
     <p class="stacks-copy">Within the stats section of the post summary, posts can have various answered states. A checkmark icon is displayed in questions that have accepted answers.</p>

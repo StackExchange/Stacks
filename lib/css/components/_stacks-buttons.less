@@ -34,7 +34,13 @@
         cursor: pointer;
         user-select: none;
 
-        .highcontrast-mode({ border-color: currentColor; });
+        .highcontrast-mode({
+            border-color: currentColor;
+
+            &:not(.s-btn__link):not(.s-btn__unset) {
+                text-decoration: none;
+            }
+        });
 
         button &,
         button[type="submit"] &,
@@ -206,6 +212,12 @@
             box-shadow: none;
         }
 
+        &:focus {
+            .highcontrast-mode({
+                box-shadow: 0 0 0 @su4 var(--focus-ring);
+            });
+        }
+
         &.is-selected {
             color: var(--theme-button-filled-selected-color);
             background-color: var(--theme-button-filled-selected-background-color);
@@ -293,6 +305,7 @@
 
             &:focus {
                 box-shadow: 0 0 0 @su4 var(--focus-ring-muted);
+                .highcontrast-mode({ box-shadow: 0 0 0 @su4 var(--focus-ring-muted); });
             }
 
             &.is-selected {
@@ -341,6 +354,7 @@
 
         &:focus {
             box-shadow: 0 0 0 @su4 var(--focus-ring-error);
+            .highcontrast-mode({ box-shadow: 0 0 0 @su4 var(--focus-ring-error); });
         }
 
         &.is-selected {
@@ -372,6 +386,10 @@
 
             .highcontrast-mode({
                 color: var(--white);
+
+                &:focus {
+                    box-shadow: 0 0 0 @su4 var(--focus-ring-error);
+                }
 
                 .s-btn--number {
                     color: var(--black);
@@ -437,7 +455,6 @@
             }
         });
 
-
         &:hover,
         &:focus,
         &:active {
@@ -448,6 +465,12 @@
         &:active {
             background-color: var(--theme-button-primary-active-background-color);
             box-shadow: none;
+        }
+
+        &:focus {
+            .highcontrast-mode({
+                box-shadow: 0 0 0 @su4 var(--focus-ring);
+            });
         }
 
         &.is-selected {
@@ -476,9 +499,12 @@
         }
 
         &:active {
-            border-color: var(--bc-darkest);
             background-color: var(--black-050);
             color: var(--black-900);
+        }
+
+        &:focus {
+            box-shadow: 0 0 0 @su4 var(--focus-ring-muted);
         }
     }
 
@@ -517,11 +543,16 @@
             background-color: var(--black-900);
             color: var(--white);
         }
+
+        &:focus {
+            box-shadow: 0 0 0 @su4 var(--focus-ring-muted);
+        }
     }
 
     .s-btn__unset,
     .s-btn__unset:hover,
-    .s-btn__unset:active {
+    .s-btn__unset:active,
+    .s-btn__unset:focus {
         padding: 0;
         border: none;
         outline: none;
@@ -532,10 +563,6 @@
         box-shadow: none;
         cursor: default;
         user-select: auto;
-    }
-
-    .s-btn__unset:focus {
-        color: unset;
     }
 
     .s-btn__link {
@@ -556,6 +583,15 @@
         &:focus,
         &[disabled] {
             background: none;
+            box-shadow: none;
+        }
+
+        &.s-btn__dropdown {
+            padding-right: 0.9em;
+
+            &:after {
+                right: 0;
+            }
         }
     }
 
