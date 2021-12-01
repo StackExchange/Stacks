@@ -13,6 +13,9 @@ description: To avoid specifying color values by hand, we’ve included a robust
     <p class="stacks-copy">
         If your layout can’t be built using atomic color classes, all stops are available as CSS variables. Referencing the CSS variables directly will make sure dark mode is properly accounted for. If working in a legacy context, referencing our colors as Less variables is preferred to Hex, though both are deprecated. A common refactor is replacing <code class="stacks-code">background-color: @white;</code> with <code class="stacks-code">background-color: var(--white);</code> to make sure a legacy component is aware of dark mode when a deeper refactor isn’t possible.
     </p>
+    <p class="stacks-copy">
+        When dark mode is enabled, the values of numbered color variables will be inverted from what they are with dark mode disabled—<code class="stacks-code">900</code> being the lightest, and <code class="stacks-code">025</code> or <code class="stacks-code">050</code> being the darkest. This is because the values don't represent lightness, but rather contrast with the background. The same also applies to <code class="stacks-code">lighter</code> variants of non-numbered color variables.
+    </p>
 
     <div class="s-btn-group jc-end mt24 mb16">
         <button class="s-btn s-btn__muted s-btn__outlined is-selected js-css-btn" role="button">
