@@ -70,7 +70,10 @@
         border: 1px solid transparent;
 
         &.has-answers,
-        &.has-bounty {
+        &.has-bounty,
+        &.is-watched,
+        &.is-ignored,
+        &.is-deleted {
             border-radius: @br-sm;
             padding: @su2 @su4;
         }
@@ -219,5 +222,52 @@
         color: var(--black-600);
         margin-bottom: @su8;
         .v-truncate4;
+    }
+}
+
+.s-post-summary__watched .is-watched {
+    color: var(--white);
+    background-color: var(--yellow-600);
+}
+
+.s-post-summary__ignored .is-ignored {
+    color: var(--white);
+    background-color: var(--black-600);
+}
+
+.s-post-summary__deleted .is-deleted {
+    color: @white;
+    background-color: var(--red-500);
+}
+
+.s-post-summary__ignored,
+.s-post-summary__deleted {
+    .s-post-summary--content {
+        opacity: 0.7;
+    }
+
+    .s-post-summary--stats-item:not(.is-ignored):not(.is-deleted) {
+        opacity: 0.7;
+        filter: grayscale(100%);
+    }
+
+    .s-post-summary--content-title {
+        color: var(--black-600);
+
+        &:hover {
+            color: var(--black-500);
+        }
+
+        &:visited {
+            color: var(--black-700);
+        }
+    }
+
+    .s-post-summary--content-excerpt {
+        color: var(--black-500);
+    }
+
+    .s-post-summary--meta {
+        filter: grayscale(100%);
     }
 }
