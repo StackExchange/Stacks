@@ -26,7 +26,7 @@
         background-color: transparent;
 
         &:hover {
-            color: @white; // We want this color to remain fixed regardless of dark mode
+            color: @background;
             background-color: @color;
 
             .highcontrast-mode({
@@ -82,12 +82,12 @@
     vertical-align: middle;
     white-space: nowrap;
 
-    .s-tag-styles(@tags-border, @tags-background, @tags-color);
+    .s-tag-styles(var(--theme-tag-border-color), var(--theme-tag-background-color), var(--theme-tag-color));
 
     .highcontrast-mode({ text-decoration: none; });
 
     &.is-selected {
-        .s-tag-selected-styles(@tags-selected-border, @tags-selected-background, @tags-selected-color);
+        .s-tag-selected-styles(transparent, var(--theme-secondary-200), var(--theme-secondary-900));
     }
 
     //  -- SIZES
@@ -118,7 +118,7 @@
 
 a.s-tag:not(.is-selected) {
     #stacks-internals #load-config();
-    .s-tag-hover-styles(@tags-hover-border, @tags-hover-background, @tags-hover-color);
+    .s-tag-hover-styles(var(--theme-tag-hover-border-color), var(--theme-tag-hover-background-color), var(--theme-tag-hover-color));
 }
 
 //  $$  DISMISS ICON
@@ -206,19 +206,4 @@ a.s-tag__moderator:not(.is-selected) {
 a.s-tag__muted:not(.is-selected) {
     #stacks-internals #load-config();
     .s-tag-hover-styles(@tags-muted-hover-border, @tags-muted-hover-background, @tags-muted-hover-color);
-}
-
-//  $$  Themed Tag
-//  ---------------------------------------------------------------------------
-.s-tag__themed {
-    #stacks-internals #load-config();
-    .s-tag-styles(var(--theme-primary-300), var(--theme-primary-050), var(--theme-primary-700));
-
-    &.is-selected {
-        .s-tag-selected-styles(transparent, var(--theme-primary-200), var(--theme-primary-900));
-    }
-}
-a.s-tag__themed:not(.is-selected) {
-    #stacks-internals #load-config();
-    .s-tag-hover-styles(var(--theme-primary-400), var(--theme-primary-100), var(--theme-primary-900));
 }
