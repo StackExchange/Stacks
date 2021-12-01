@@ -225,8 +225,32 @@
     }
 }
 
+.s-post-summary__watched .is-watched {
+    color: var(--white);
+    background-color: var(--yellow-600);
+}
+
+.s-post-summary__ignored .is-ignored {
+    color: var(--white);
+    background-color: var(--black-600);
+}
+
+.s-post-summary__deleted .is-deleted {
+    color: @white;
+    background-color: var(--red-500);
+}
+
 .s-post-summary__ignored,
 .s-post-summary__deleted {
+    .s-post-summary--content {
+        opacity: 0.7;
+    }
+
+    .s-post-summary--stats-item:not(.is-ignored):not(.is-deleted) {
+        opacity: 0.7;
+        filter: grayscale(100%);
+    }
+
     .s-post-summary--content-title {
         color: var(--black-600);
 
@@ -241,67 +265,6 @@
 
     .s-post-summary--content-excerpt {
         color: var(--black-500);
-    }
-}
-
-.s-post-summary__watched {
-    .s-post-summary--content-title {
-        color: var(--black-800);
-
-        &:hover {
-            color: var(--black-700);
-        }
-
-        &:visited {
-            color: var(--black-900);
-        }
-    }
-
-    .s-post-summary--stats-item {
-        &.is-watched {
-            color: var(--white);
-            background-color: var(--yellow-600);
-        }
-
-        &:not(.is-watched) {
-            filter: grayscale(100%);
-        }
-    }
-
-    .s-post-summary--meta {
-        filter: grayscale(100%);
-    }
-}
-
-.s-post-summary__ignored {
-    opacity: 0.7;
-
-    .s-post-summary--stats-item {
-        &.is-ignored {
-            color: var(--white);
-            background-color: var(--black-600);
-        }
-
-        &:not(.is-ignored) {
-            filter: grayscale(100%);
-        }
-    }
-
-    .s-post-summary--meta {
-        filter: grayscale(100%);
-    }
-}
-
-.s-post-summary__deleted {
-    .s-post-summary--stats-item {
-        &.is-deleted {
-            color: @white;
-            background-color: var(--red-500);
-        }
-
-        &:not(.is-deleted) {
-            filter: grayscale(100%);
-        }
     }
 
     .s-post-summary--meta {
