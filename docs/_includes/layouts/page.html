@@ -41,31 +41,23 @@
                 {% endif %}
                 {{ content }}
 
-                <form name="feedback-{{ title | downcase | replace: ' ', '-' }}" method="POST" data-netlify="true" action="{{ "/success" | relative_url }}">
-                    <div class="my48 d-flex">
-                        <div class="flex--item mr8">
-                            <button class="d-block s-btn s-btn__muted p4">{% icon "ArrowUpLg" %}</button>
-                            <button class="d-block s-btn s-btn__muted p4">{% icon "ArrowDownLg" %}</button>
-                        </div>
-                        <div class="flex--item fl-grow1 pt24 mtn4">
-                            <label class="d-inline-block c-pointer" for="feedback-form">
-                                <div class="fs-title fw-bold mb0">Did you find this doc useful?</div>
-                                <div class="stacks-copy mb12">Your feedback helps us improve our docs</div>
-                            </label>
+                <form class="my48 name="feedback-{{ title | downcase | replace: ' ', '-' }}" method="POST" data-netlify="true" action="{{ "/success" | relative_url }}">
+                    <label class="d-inline-block c-pointer" for="feedback-form">
+                        <div class="fs-title fw-bold mb0">Got any feedback?</div>
+                        <div class="stacks-copy mb12">Did we mess something up? Is there a typo? Send us your feedback anonymously using this form.</div>
+                    </label>
 
-                            <textarea class="s-textarea s-textarea__md hmn1 mb12" id="feedback-form" name="additional-feedback" placeholder="Got some more feedback? Send it to us anonymously using this form."></textarea>
+                    <textarea class="s-textarea s-textarea__md hmn1 mb12" id="feedback-form" name="additional-feedback" placeholder="Tell us how we can improve this page…"></textarea>
 
-                            <div class="d-flex gs8 ai-center">
-                                <button type="submit" class="flex--item s-btn s-btn__outlined s-btn__muted">Send feedback</button>
-                                <a href="https://github.com/StackExchange/Stacks/edit/develop/docs/{{ page.inputPath }}" class="ml-auto flex--item s-btn s-btn__icon s-btn__muted">
-                                    {% icon "Pencil" %}
-                                    Edit on GitHub
-                                </a>
-                                <a href="https://github.com/StackExchange/Stacks/issues/new/choose" class="flex--item s-btn s-btn__icon s-btn__muted">
-                                    File an issue on GitHub
-                                </a>
-                            </div>
-                        </div>
+                    <div class="d-flex gs8 ai-center">
+                        <button type="submit" class="flex--item s-btn s-btn__outlined s-btn__muted">Send feedback</button>
+                        <a href="https://github.com/StackExchange/Stacks/edit/develop/docs/{{ page.inputPath }}" class="ml-auto flex--item s-btn s-btn__icon s-btn__muted">
+                            {% icon "Pencil" %}
+                            Edit on GitHub
+                        </a>
+                        <a href="https://github.com/StackExchange/Stacks/issues/new/choose" class="flex--item s-btn s-btn__icon s-btn__muted">
+                            File an issue on GitHub
+                        </a>
                     </div>
                 </form>
             </div>
