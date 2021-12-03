@@ -41,7 +41,7 @@
                 {% endif %}
                 {{ content }}
 
-                <form>
+                <form name="feedback-{{ title | downcase | replace: ' ', '-' }}" method="POST" data-netlify="true" action="{{ "/success" | relative_url }}">
                     <div class="my48 d-flex">
                         <div class="flex--item mr8">
                             <button class="d-block s-btn s-btn__muted p4">{% icon "ArrowUpLg" %}</button>
@@ -56,7 +56,7 @@
                             <textarea class="s-textarea s-textarea__md hmn1 mb12" id="feedback-form" placeholder="Got some more feedback? Send it to us anonymously using this form."></textarea>
 
                             <div class="d-flex gs8 ai-center">
-                                <button class="flex--item s-btn s-btn__outlined s-btn__muted">Send feedback</button>
+                                <button type="submit" class="flex--item s-btn s-btn__outlined s-btn__muted">Send feedback</button>
                                 <a href="https://github.com/StackExchange/Stacks/edit/develop/docs/{{ page.inputPath }}" class="ml-auto flex--item s-btn s-btn__icon s-btn__muted">
                                     {% icon "Pencil" %}
                                     Edit on GitHub
