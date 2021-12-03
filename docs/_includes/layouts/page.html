@@ -42,26 +42,30 @@
                 {{ content }}
 
                 <form>
-                    <div class="mt48 d-flex ai-center jc-space-between">
-                        <div class="flex--item">
-                            <h5 class="fs-title mb0">Did you find this doc useful?</h5>
-                            <p class="stacks-copy">Your feedback helps us improve our docs</p>
+                    <div class="my48 d-flex">
+                        <div class="flex--item mr8">
+                            <button class="d-block s-btn s-btn__muted p4">{% icon "ArrowUpLg" %}</button>
+                            <button class="d-block s-btn s-btn__muted p4">{% icon "ArrowDownLg" %}</button>
                         </div>
-                        <div class="flex--item">
-                            <button class="s-btn s-btn__unset bg-green-200 fc-green-800 bar-circle">{% icon "ThumbsUp" %}</button>
-                            <button class="s-btn s-btn__unset bg-red-200 fc-red-800 bar-circle">{% icon "ThumbsDown" %}</button>
+                        <div class="flex--item fl-grow1 pt24 mtn4">
+                            <label class="d-inline-block c-pointer" for="feedback-form">
+                                <div class="fs-title fw-bold mb0">Did you find this doc useful?</div>
+                                <div class="stacks-copy mb12">Your feedback helps us improve our docs</div>
+                            </label>
+
+                            <textarea class="s-textarea s-textarea__md hmn1 mb12" id="feedback-form" placeholder="Got some more feedback? Send it to us anonymously using this form."></textarea>
+
+                            <div class="d-flex gs8 ai-center">
+                                <button class="flex--item s-btn s-btn__outlined s-btn__muted">Send feedback</button>
+                                <a href="https://github.com/StackExchange/Stacks/edit/develop/docs/{{ page.inputPath }}" class="ml-auto flex--item s-btn s-btn__icon s-btn__muted">
+                                    {% icon "Pencil" %}
+                                    Edit on GitHub
+                                </a>
+                                <a href="#" class="flex--item s-btn s-btn__icon s-btn__muted">
+                                    File an issue on GitHub
+                                </a>
+                            </div>
                         </div>
-                    </div>
-
-                    <label class="d-inline-block s-label mb4" for="feedback-form">Got anything else to add?</label>
-                    <textarea class="s-textarea hmn2 mb16" id="feedback-form" placeholder="This feedback is anonymous, so feel free to be honest and candid"></textarea>
-
-                    <div class="d-flex jc-space-between ai-center">
-                        <button class="flex--item s-btn s-btn__outlined s-btn__muted">Send feedback</button>
-                        <a href="https://github.com/StackExchange/Stacks/edit/develop/docs/{{ page.inputPath }}" class="flex--item s-btn s-btn__icon s-btn__muted">
-                            {% icon "Pencil" %}
-                            Edit on GitHub
-                        </a>
                     </div>
                 </form>
             </div>
