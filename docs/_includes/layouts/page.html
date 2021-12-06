@@ -41,27 +41,48 @@
                 {% endif %}
                 {{ content }}
 
-                <form class="my48" name="feedback-{{ title | downcase | replace: ' ', '-' }}" method="POST" data-netlify="true" action="{{ "/success" | relative_url }}">
-                    <label class="d-inline-block c-pointer" for="feedback-form">
-                        <div class="fs-title fw-bold mb0">Got any feedback?</div>
-                        <div class="stacks-copy mb12">Did we mess something up? Is there a typo? Send us your feedback anonymously using this form.</div>
-                    </label>
+                <div class="d-flex my48">
+                    <div class="flex--item mr8">
+                        <form class="js-feedback-form" name="quick-positive-feedback-{{ title | downcase | replace: ' ', '-' }}" method="POST" data-netlify="true" action="{{ "/success" | relative_url }}">
+                            <button class="d-block s-btn s-btn__muted p4" type="submit" data-controller="s-tooltip" title="Quickly let the team know that this page is workin’" data-s-tooltip-placement="right">{% icon "ArrowUpLg" %}</button>
+                        </form>
 
-                    <textarea class="s-textarea s-textarea__md hmn1 mb12" id="feedback-form" name="additional-feedback" placeholder="Tell us how we can improve this page…"></textarea>
-
-                    <div class="d-flex gs8 ai-center">
-                        <button type="submit" class="flex--item s-btn s-btn__outlined s-btn__muted">Send feedback</button>
-                        <a href="https://github.com/StackExchange/Stacks/edit/develop/docs/{{ page.inputPath }}" class="ml-auto flex--item s-btn s-btn__icon s-btn__muted">
-                            {% icon "Pencil" %}
-                            Edit on GitHub
-                        </a>
-                        <a href="https://github.com/StackExchange/Stacks/issues/new/choose" class="flex--item s-btn s-btn__icon s-btn__muted">
-                            File an issue on GitHub
-                        </a>
+                        <form class="js-feedback-form" name="quick-negative-feedback-{{ title | downcase | replace: ' ', '-' }}" method="POST" data-netlify="true" action="{{ "/success" | relative_url }}">
+                            <button class="d-block s-btn s-btn__muted p4" type="submit" data-controller="s-tooltip" title="Quickly let us know that this page needs improvement" data-s-tooltip-placement="right">{% icon "ArrowDownLg" %}</button>
+                        </form>
                     </div>
-                </form>
+
+                    <form class="flex--item fl-grow1 mtn4 pt24 js-feedback-form" name="feedback-{{ title | downcase | replace: ' ', '-' }}" method="POST" data-netlify="true" action="{{ "/success" | relative_url }}">
+                        <label class="d-inline-block c-pointer" for="feedback-form">
+                            <div class="fs-title fw-bold mb0">How’d we do?</div>
+                            <div class="stacks-copy mb12">Anonymously upvote, downvote, or send additional feedback below.</div>
+                        </label>
+
+                        <textarea class="s-textarea s-textarea__md hmn1 mb12" id="feedback-form" name="additional-feedback" placeholder="Tell us how we can improve this page…" required></textarea>
+
+                        <div class="d-flex gs8 ai-center sm:fd-column sm:ai-stretch">
+                            <button type="submit" class="flex--item s-btn s-btn__outlined s-btn__muted">Send feedback</button>
+                            <a href="https://github.com/StackExchange/Stacks/edit/develop/docs/{{ page.inputPath }}" class="ml-auto sm:ml4 flex--item s-btn s-btn__icon s-btn__muted">
+                                {% icon "Pencil" %}
+                                Edit on GitHub
+                            </a>
+                            <a href="https://github.com/StackExchange/Stacks/issues/new/choose" class="flex--item s-btn s-btn__icon s-btn__muted">
+                                File an issue on GitHub
+                            </a>
+                        </div>
+                    </form>
+                </div>
             </div>
         </main>
+    </div>
+
+    <div class="s-toast js-feedback-toast" aria-hidden="true" role="alertdialog">
+        <aside class="s-notice s-notice__success d-flex p8 pl16">
+            <div class="flex--item mr8">{% icon "Checkmark", "mt2 fc-green-500" %}</div>
+            <div class="flex--item lh-lg">
+                Thanks! We’ve received your feedback.
+            </div>
+        </aside>
     </div>
     {% include scripts.html %}
 </body>
