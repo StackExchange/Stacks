@@ -30,6 +30,10 @@
     min-width: 12rem;
     width: 100%;
 
+    // Guard against popovers being in a container with white-space: nowrap
+    // Without this, the content pops *out* of the popover.
+    white-space: normal; 
+
     .dark-mode({
         background-color: var(--black-075);
         border-color: var(--bc-light);
