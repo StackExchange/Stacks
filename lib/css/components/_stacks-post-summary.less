@@ -11,7 +11,7 @@
     position: relative;
     display: flex;
     border-bottom: 1px solid var(--bc-light);
-    padding: @su16;
+    padding: var(--su16);
 
     &:last-child {
         border-bottom-width: 0;
@@ -41,9 +41,9 @@
 //  [1] To override .s-btn class attributes
 .s-post-summary--content-menu-button {
     position: absolute !important; // [1]
-    top: @su8;
-    right: @su8;
-    padding: @su8 !important; // [1]
+    top: var(--su8);
+    right: var(--su8);
+    padding: var(--su8) !important; // [1]
 
     .svg-icon {
         margin: 0 !important;
@@ -51,10 +51,10 @@
 }
 
 .s-post-summary--stats {
-    --s-post-summary-stats-gap: @su6; // Replace with gap property as soon as browser support makes sense.
-    margin-right: @su8;
-    margin-bottom: -@su2;
-    width: @su96;
+    --s-post-summary-stats-gap: var(--su6); // Replace with gap property as soon as browser support makes sense.
+    margin-right: var(--su8);
+    margin-bottom: -var(--su2);
+    width: var(--su96);
     display: flex;
     flex-direction: column;
     flex-shrink: 0;
@@ -75,7 +75,7 @@
         &.is-ignored,
         &.is-deleted {
             border-radius: @br-sm;
-            padding: @su2 @su4;
+            padding: var(--su2) var(--su4);
         }
 
         &.has-answers {
@@ -124,16 +124,16 @@
     .s-post-summary--content-title {
         display: inline-block;
         font-size: @fs-body3;
-        margin-bottom: @su6;
+        margin-bottom: var(--su6);
         overflow-wrap: break-word;
         word-wrap: break-word;
-        padding-right: @su24;
+        padding-right: var(--su24);
 
         .iconShield {
             color: var(--black-600);
             vertical-align: baseline;
             position: relative;
-            bottom: -@su2;
+            bottom: -var(--su2);
 
             #stacks-internals #screen-sm({
                 vertical-align: text-bottom;
@@ -144,23 +144,23 @@
 
     .s-post-summary--content-type {
         color: var(--fc-medium);
-        margin-bottom: @su2;
+        margin-bottom: var(--su2);
 
         .svg-icon {
-            margin-left: -@su2;
+            margin-left: -var(--su2);
             color: var(--fc-light);
         }
     }
 
     .s-post-summary--content-excerpt {
-        margin-top: -@su2;
-        margin-bottom: @su8;
+        margin-top: -var(--su2);
+        margin-bottom: var(--su8);
         .v-truncate2;
     }
 }
 
 .s-post-summary--meta {
-    --s-post-summary-tags-gap: @su4;  // Replace with gap property as soon as browser support makes sense.
+    --s-post-summary-tags-gap: var(--su4);  // Replace with gap property as soon as browser support makes sense.
 
     display: flex;
     align-items: center;
@@ -188,11 +188,11 @@
 
 .s-post-summary--answer {
     position: relative;
-    margin: @su16 1em 0 1em;
-    padding: 0.5em 0 0.5em calc(1em + @su4);
+    margin: var(--su16) 1em 0 1em;
+    padding: 0.5em 0 0.5em calc(1em + var(--su4));
 
     + .s-post-summary--answer {
-        margin-top: @su16;
+        margin-top: var(--su16);
     }
 
     &:before {
@@ -202,8 +202,8 @@
         top: 0;
         bottom: 0;
         left: 0;
-        width: @su4;
-        border-radius: @su8;
+        width: var(--su4);
+        border-radius: var(--su8);
         background: var(--black-150);
 
         .highcontrast-mode({
@@ -215,12 +215,12 @@
         width: auto;
         flex-direction: row;
         align-items: center;
-        margin-bottom: @su4;
+        margin-bottom: var(--su4);
     }
 
     .s-post-summary--answer-excerpt {
         color: var(--black-600);
-        margin-bottom: @su8;
+        margin-bottom: var(--su8);
         .v-truncate4;
     }
 }
