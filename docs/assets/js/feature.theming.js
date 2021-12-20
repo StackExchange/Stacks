@@ -2,15 +2,18 @@ $(document).ready(function () {
     var themeDarkToggleSwitch = $("#toggle-theme-dark");
     var themeCustomToggleSwitch = $("#toggle-theme-custom");
     var themeHighcontrastToggleSwitch = $("#toggle-theme-highcontrast");
+    var themeDyslexicToggleSwitch = $("#toggle-theme-dyslexic");
     var body = $("body");
     var browserPrefersDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
     var isCustom = body.hasClass("theme-custom");
+    var isDyslexic = body.hasClass("theme-dyslexic");
     var isDark = body.hasClass("theme-dark") || browserPrefersDark && body.hasClass("theme-system");
     var isHighcontrast = body.hasClass("theme-highcontrast");
 
     themeCustomToggleSwitch.prop("checked", isCustom);
     themeDarkToggleSwitch.prop("checked", isDark);
     themeHighcontrastToggleSwitch.prop("checked", isHighcontrast);
+    themeDyslexicToggleSwitch.prop("checked", isDyslexic);
 
     themeDarkToggleSwitch.change(function (e) {
         e.preventDefault();
@@ -44,6 +47,20 @@ $(document).ready(function () {
         body.toggleClass("theme-custom", !isCustom);
 
         localStorage.setItem("customTheme", !isCustom);
+
+        return false;
+    });
+
+    themeDyslexicToggleSwitch.change(function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+
+        var isDyslexic = body.hasClass("theme-dyslexic");
+
+        $(this).prop("checked", !isDyslexic);
+        body.toggleClass("theme-dyslexic", !isDyslexic);
+
+        localStorage.setItem("dyslexicTheme", !isDyslexic);
 
         return false;
     });
