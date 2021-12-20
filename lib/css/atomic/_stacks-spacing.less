@@ -34,150 +34,253 @@ body {
 //  ============================================================================
 //  $   MARGIN
 //  ----------------------------------------------------------------------------
-//  $$  All margin
+//  $$ 0 margin
+.m0 { margin: 0 !important; }
+.mt0 { margin-top: 0 !important; }
+.mr0 { margin-right: 0 !important; }
+.mb0 { margin-bottom: 0 !important; }
+.ml0 { margin-left: 0 !important; }
+.mx0 { margin-left: 0 !important; margin-right: 0 !important; }
+.my0 { margin-top: 0 !important; margin-bottom: 0 !important; }
+
+//  $$ auto margin
+.m-auto { margin: auto !important; }
+.mt-auto { margin-top: auto !important; }
+.mr-auto { margin-right: auto !important; }
+.mb-auto { margin-bottom: auto !important; }
+.ml-auto { margin-left: auto !important; }
+.mx-auto { margin-left: auto !important; margin-right: auto !important; }
+.my-auto { margin-top: auto !important; margin-bottom: auto !important; }
+
+// $$ Margin
 #stacks-internals #build-classes(
     responsive,
-    '.m', { .template(@value) { margin: @value !important; } },
-    0 (@su2/2) @su2 @su4 @su6 @su8 @su12 @su16 @su24 @su32 @su48 @su64 @su96 @su128 auto -@su2 -@su4 -@su6 -@su8 -@su12 -@su16 -@su24 -@su32 -@su48 -@su64 -@su96 -@su128
+    '.m',
+    { .template(@value) { margin: var(~"--su@{value}") !important; } },
+    1 2 4 6 8 12 16 24 32 48 64 96 128
 );
 
-//  $$  Top margin
+// $$ Margin negative
 #stacks-internals #build-classes(
     responsive,
-    '.mt', { .template(@value) { margin-top: @value !important; } },
-    0 (@su2/2) @su2 @su4 @su6 @su8 @su12 @su16 @su24 @su32 @su48 @su64 @su96 @su128
+    '.mn',
+    { .template(@value) { margin: calc(var(~"--su@{value}") * -1) !important; } },
+    1 2 4 6 8 12 16 24 32 48 64 96 128
 );
 
-//  $$ Negative & auto top margin
-#stacks-internals #build-classes(
-    '.mt', { .template(@value) { margin-top: @value !important; } },
-    auto -(@su2/2) -@su2 -@su4 -@su6 -@su8 -@su12 -@su16 -@su24 -@su32 -@su48 -@su64 -@su96 -@su128
-);
-
-//  $$  Right margin
+// $$ Top margin
 #stacks-internals #build-classes(
     responsive,
-    '.mr', { .template(@value) { margin-right: @value !important; } },
-    0 (@su2/2) @su2 @su4 @su6 @su8 @su12 @su16 @su24 @su32 @su48 @su64 @su96 @su128
+    '.mt',
+    { .template(@value) { margin-top: var(~"--su@{value}") !important; } },
+    1 2 4 6 8 12 16 24 32 48 64 96 128
 );
 
-//  $$ Negative & auto right margin
-#stacks-internals #build-classes(
-    '.mr', { .template(@value) { margin-right: @value !important; } },
-    auto -(@su2/2) -@su2 -@su4 -@su6 -@su8 -@su12 -@su16 -@su24 -@su32 -@su48 -@su64 -@su96 -@su128
-);
-
-//  $$  Bottom margin
+// $$ Top margin negative
 #stacks-internals #build-classes(
     responsive,
-    '.mb', { .template(@value) { margin-bottom: @value !important; } },
-    0 (@su2/2) @su2 @su4 @su6 @su8 @su12 @su16 @su24 @su32 @su48 @su64 @su96 @su128
+    '.mtn',
+    { .template(@value) { margin-top: calc(var(~"--su@{value}") * -1) !important; } },
+    1 2 4 6 8 12 16 24 32 48 64 96 128
 );
 
-//  $$ Negative & auto bottom margin
-#stacks-internals #build-classes(
-    '.mb', { .template(@value) { margin-bottom: @value !important; } },
-    auto -(@su2/2) -@su2 -@su4 -@su6 -@su8 -@su12 -@su16 -@su24 -@su32 -@su48 -@su64 -@su96 -@su128
-);
-
-//  $$  Left margin
+// $$ Right margin
 #stacks-internals #build-classes(
     responsive,
-    '.ml', { .template(@value) { margin-left: @value !important; } },
-    0 (@su2/2) @su2 @su4 @su6 @su8 @su12 @su16 @su24 @su32 @su48 @su64 @su96 @su128
+    '.mr',
+    { .template(@value) { margin-right: var(~"--su@{value}") !important; } },
+    1 2 4 6 8 12 16 24 32 48 64 96 128
 );
 
-//  $$ Negative & auto left margin
+// $$ Right margin negative
 #stacks-internals #build-classes(
-    '.ml', { .template(@value) { margin-left: @value !important; } },
-    auto -(@su2/2) -@su2 -@su4 -@su6 -@su8 -@su12 -@su16 -@su24 -@su32 -@su48 -@su64 -@su96 -@su128
+    responsive,
+    '.mrn',
+    { .template(@value) { margin-right: calc(var(~"--su@{value}") * -1) !important; } },
+    1 2 4 6 8 12 16 24 32 48 64 96 128
 );
 
-//  $$  X-Axis margin
+// $$ Bottom margin
 #stacks-internals #build-classes(
-    '.mx', { .template(@value) { margin-left: @value !important; margin-right: @value !important; } },
-    0 (@su2/2) @su2 @su4 @su6 @su8 @su12 @su16 @su24 @su32 @su48 @su64 @su96 @su128 auto -(@su2/2) -@su2 -@su4 -@su8 -@su12 -@su16 -@su24 -@su32 -@su48 -@su64 -@su96 -@su128
+    responsive,
+    '.mb',
+    { .template(@value) { margin-bottom: var(~"--su@{value}") !important; } },
+    1 2 4 6 8 12 16 24 32 48 64 96 128
 );
 
-//  $$  Y-Axis margin
+// $$ Bottom margin negative
 #stacks-internals #build-classes(
-    '.my', { .template(@value) { margin-top: @value !important; margin-bottom: @value !important; } },
-    0 (@su2/2) @su2 @su4 @su6 @su8 @su12 @su16 @su24 @su32 @su48 @su64 @su96 @su128 auto -(@su2/2) -@su2 -@su4 -@su8 -@su12 -@su16 -@su24 -@su32 -@su48 -@su64 -@su96 -@su128
+    responsive,
+    '.mbn',
+    { .template(@value) { margin-bottom: calc(var(~"--su@{value}") * -1) !important; } },
+    1 2 4 6 8 12 16 24 32 48 64 96 128
+);
+
+// $$ Left margin
+#stacks-internals #build-classes(
+    responsive,
+    '.ml',
+    { .template(@value) { margin-left: var(~"--su@{value}") !important; } },
+    1 2 4 6 8 12 16 24 32 48 64 96 128
+);
+
+// $$ Left margin negative
+#stacks-internals #build-classes(
+    responsive,
+    '.mln',
+    { .template(@value) { margin-left: calc(var(~"--su@{value}") * -1) !important; } },
+    1 2 4 6 8 12 16 24 32 48 64 96 128
+);
+
+#stacks-internals #build-classes(
+    '.mx', { .template(@value) { margin-left: var(~"--su@{value}") !important; margin-right: var(~"--su@{value}") !important; } },
+    1 2 4 6 8 12 16 24 32 48 64 96 128
+);
+
+#stacks-internals #build-classes(
+    '.my', { .template(@value) { margin-top: var(~"--su@{value}") !important; margin-bottom: var(~"--su@{value}") !important; } },
+    1 2 4 6 8 12 16 24 32 48 64 96 128
 );
 
 //  ============================================================================
 //  $   PADDING
 //  ----------------------------------------------------------------------------
-//  $$  All padding
+
+//  $$ 0 padding
+.p0 { padding: 0 !important; }
+.pt0 { padding-top: 0 !important; }
+.pr0 { padding-right: 0 !important; }
+.pb0 { padding-bottom: 0 !important; }
+.pl0 { padding-left: 0 !important; }
+.px0 { padding-left: 0 !important; padding-right: 0 !important; }
+.py0 { padding-top: 0 !important; padding-bottom: 0 !important; }
+
 #stacks-internals #build-classes(
     responsive,
-    '.p', { .template(@value) { padding: @value !important; } },
-    0 (@su2/2) @su2 @su4 @su6 @su8 @su12 @su16 @su24 @su32 @su48 @su64 @su96 @su128
+    '.p', { .template(@value) { padding: var(~"--su@{value}") !important; } },
+    1 2 4 6 8 12 16 24 32 48 64 96 128
 );
 
 //  $$  Top Padding
 #stacks-internals #build-classes(
     responsive,
-    '.pt', { .template(@value) { padding-top: @value !important; } },
-    0 (@su2/2) @su2 @su4 @su6 @su8 @su12 @su16 @su24 @su32 @su48 @su64 @su96 @su128
+    '.pt', { .template(@value) { padding-top: var(~"--su@{value}") !important; } },
+    1 2 4 6 8 12 16 24 32 48 64 96 128
 );
 
 //  $$  Right Padding
 #stacks-internals #build-classes(
     responsive,
-    '.pr', { .template(@value) { padding-right: @value !important; } },
-    0 (@su2/2) @su2 @su4 @su6 @su8 @su12 @su16 @su24 @su32 @su48 @su64 @su96 @su128
+    '.pr', { .template(@value) { padding-right: var(~"--su@{value}") !important; } },
+    1 2 4 6 8 12 16 24 32 48 64 96 128
 );
 
 //  $$  Bottom Padding
 #stacks-internals #build-classes(
     responsive,
-    '.pb', { .template(@value) { padding-bottom: @value !important; } },
-    0 (@su2/2) @su2 @su4 @su6 @su8 @su12 @su16 @su24 @su32 @su48 @su64 @su96 @su128
+    '.pb', { .template(@value) { padding-bottom: var(~"--su@{value}") !important; } },
+    1 2 4 6 8 12 16 24 32 48 64 96 128
 );
 
 //  $$  Left Padding
 #stacks-internals #build-classes(
     responsive,
-    '.pl', { .template(@value) { padding-left: @value !important; } },
-    0 (@su2/2) @su2 @su4 @su6 @su8 @su12 @su16 @su24 @su32 @su48 @su64 @su96 @su128
+    '.pl', { .template(@value) { padding-left: var(~"--su@{value}") !important; } },
+    1 2 4 6 8 12 16 24 32 48 64 96 128
 );
 
 //  $$  X-Axis Padding
 #stacks-internals #build-classes(
-    '.px', { .template(@value) { padding-left: @value !important; padding-right: @value !important; } },
-    0 (@su2/2) @su2 @su4 @su6 @su8 @su12 @su16 @su24 @su32 @su48 @su64 @su96 @su128
+    '.px', { .template(@value) { padding-left: var(~"--su@{value}") !important; padding-right: var(~"--su@{value}") !important; } },
+    1 2 4 6 8 12 16 24 32 48 64 96 128
 );
 
 //  $$  Y-Axis Padding
 #stacks-internals #build-classes(
-    '.py', { .template(@value) { padding-top: @value !important; padding-bottom: @value !important; } },
-    0 (@su2/2) @su2 @su4 @su6 @su8 @su12 @su16 @su24 @su32 @su48 @su64 @su96 @su128
+    '.py', { .template(@value) { padding-top: var(~"--su@{value}") !important; padding-bottom: var(~"--su@{value}") !important; } },
+    1 2 4 6 8 12 16 24 32 48 64 96 128
 );
 
 //  ============================================================================
 //  $   POSITIONING
 //  ----------------------------------------------------------------------------
+
 //  $$ Top
 #stacks-internals #build-classes(
+    responsive,
+    '.t', { .template(@value) { top: var(~"--su@{value}") !important; } },
+    1 2 4 6 8 12 16 24 32 48 64 96 128
+);
+
+//  $$ Top 0, percent
+#stacks-internals #build-classes(
     '.t', { .template(@value) { top: @value !important; } },
-    0 1px -1px @su2 -@su2 @su4 -@su4 @su6 -@su6 @su8 -@su8 @su12 -@su12 @su16 -@su16 @su24 -@su24 @su32 -@su32 @su48 -@su48 @su64 -@su64 @su96 -@su96 @su128 -@su128 50% -50% 100% -100%
+    0 50% -50% 100% -100%
+);
+
+//  $$ Top negative
+#stacks-internals #build-classes(
+    responsive,
+    '.tn', { .template(@value) { top: calc(var(~"--su@{value}") * -1) !important; } },
+    1 2 4 6 8 12 16 24 32 48 64 96 128
 );
 
 //  $$ Right
 #stacks-internals #build-classes(
+    responsive,
+    '.r', { .template(@value) { right: var(~"--su@{value}") !important; } },
+    1 2 4 6 8 12 16 24 32 48 64 96 128
+);
+
+//  $$ Right 0, percent
+#stacks-internals #build-classes(
     '.r', { .template(@value) { right: @value !important; } },
-    0 1px -1px @su2 -@su2 @su4 -@su4 @su6 -@su6 @su8 -@su8 @su12 -@su12 @su16 -@su16 @su24 -@su24 @su32 -@su32 @su48 -@su48 @su64 -@su64 @su96 -@su96 @su128 -@su128 50% -50% 100% -100%
+    0 50% -50% 100% -100%
+);
+
+//  $$ Right negative
+#stacks-internals #build-classes(
+    responsive,
+    '.rn', { .template(@value) { right: calc(var(~"--su@{value}") * -1) !important; } },
+    1 2 4 6 8 12 16 24 32 48 64 96 128
 );
 
 //  $$ Bottom
 #stacks-internals #build-classes(
+    responsive,
+    '.b', { .template(@value) { bottom: var(~"--su@{value}") !important; } },
+    1 2 4 6 8 12 16 24 32 48 64 96 128
+);
+
+//  $$ Bottom 0, percent
+#stacks-internals #build-classes(
     '.b', { .template(@value) { bottom: @value !important; } },
-    0 1px -1px @su2 -@su2 @su4 -@su4 @su6 -@su6 @su8 -@su8 @su12 -@su12 @su16 -@su16 @su24 -@su24 @su32 -@su32 @su48 -@su48 @su64 -@su64 @su96 -@su96 @su128 -@su128 50% -50% 100% -100%
+    0 50% -50% 100% -100%
+);
+
+//  $$ Bottom negative
+#stacks-internals #build-classes(
+    responsive,
+    '.bn', { .template(@value) { bottom: calc(var(~"--su@{value}") * -1) !important; } },
+    1 2 4 6 8 12 16 24 32 48 64 96 128
 );
 
 //  $$ Left
 #stacks-internals #build-classes(
+    responsive,
+    '.l', { .template(@value) { left: var(~"--su@{value}") !important; } },
+    1 2 4 6 8 12 16 24 32 48 64 96 128
+);
+
+//  $$ Left 0, percent
+#stacks-internals #build-classes(
     '.l', { .template(@value) { left: @value !important; } },
-    0 1px -1px @su2 -@su2 @su4 -@su4 @su6 -@su6 @su8 -@su8 @su12 -@su12 @su16 -@su16 @su24 -@su24 @su32 -@su32 @su48 -@su48 @su64 -@su64 @su96 -@su96 @su128 -@su128 50% -50% 100% -100%
+    0 50% -50% 100% -100%
+);
+
+//  $$ Left negative
+#stacks-internals #build-classes(
+    responsive,
+    '.ln', { .template(@value) { left: calc(var(~"--su@{value}") * -1) !important; } },
+    1 2 4 6 8 12 16 24 32 48 64 96 128
 );
