@@ -2,15 +2,18 @@ $(document).ready(function () {
     var themeDarkToggleSwitch = $("#toggle-theme-dark");
     var themeCustomToggleSwitch = $("#toggle-theme-custom");
     var themeHighcontrastToggleSwitch = $("#toggle-theme-highcontrast");
+    var themeHighdensityToggleSwitch = $("#toggle-theme-highdensity");
     var body = $("body");
     var browserPrefersDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
     var isCustom = body.hasClass("theme-custom");
     var isDark = body.hasClass("theme-dark") || browserPrefersDark && body.hasClass("theme-system");
     var isHighcontrast = body.hasClass("theme-highcontrast");
+    var isHighdensity = body.hasClass("theme-highdensity");
 
     themeCustomToggleSwitch.prop("checked", isCustom);
     themeDarkToggleSwitch.prop("checked", isDark);
     themeHighcontrastToggleSwitch.prop("checked", isHighcontrast);
+    themeHighdensityToggleSwitch.prop("checked", isHighdensity);
 
     themeDarkToggleSwitch.change(function (e) {
         e.preventDefault();
@@ -58,6 +61,20 @@ $(document).ready(function () {
         body.toggleClass("theme-highcontrast", !isHighcontrast);
 
         localStorage.setItem("forceHighContrastModeOn", !isHighcontrast);
+
+        return false;
+    });
+
+    themeHighdensityToggleSwitch.change(function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+
+        var isHighdensity = body.hasClass("theme-highdensity");
+
+        $(this).prop("checked", !isHighdensity);
+        body.toggleClass("theme-highdensity", !isHighdensity);
+
+        localStorage.setItem("forceHighDensityModeOn", !isHighdensity);
 
         return false;
     });

@@ -5,6 +5,7 @@ Include this right at the start of body to be loaded as fast as possible to avoi
     (function () {
         var forceSetting = localStorage.getItem("forceDarkModeOn");
         var forceHighContrast = localStorage.getItem("forceHighContrastModeOn");
+        var forceHighDensity = localStorage.getItem("forceHighDensityModeOn");
         var browserPrefersDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
         var darkModeEnabled = forceSetting === "true" || (!forceSetting && browserPrefersDark);
 
@@ -29,6 +30,12 @@ Include this right at the start of body to be loaded as fast as possible to avoi
             document.body.classList.add("theme-highcontrast");
         } else {
             document.body.classList.remove("theme-highcontrast");
+        }
+
+        if (forceHighDensity === "true") {
+            document.body.classList.add("theme-highdensity");
+        } else {
+            document.body.classList.remove("theme-highdensity");
         }
     }());
 </script>
