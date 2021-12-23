@@ -4,9 +4,31 @@ title: Backgrounds
 description: Debug page for checking themed components.
 ---
 
-<div>TODO CONTROLS</div>
+<fieldset class="d-flex gs8 gsy fd-column mb24">
+    <legend class="flex--item s-label">Modifiers</legend>
+    <div class="flex--item">
+        <div class="d-flex gs16">
+            <div class="flex--item">
+                <div class="d-flex gs8 gsx">
+                    <div class="flex--item">
+                        <input class="s-checkbox js-modifier-checkbox" type="checkbox" id="modifier-1" value="theme-light__forced bg-white" />
+                    </div>
+                    <label class="flex--item s-label fw-normal" for="modifier-1">theme-light__forced</label>
+                </div>
+            </div>
+            <div class="flex--item">
+                <div class="d-flex gs8 gsx">
+                    <div class="flex--item">
+                        <input class="s-checkbox js-modifier-checkbox" type="checkbox" id="modifier-2" value="theme-dark__forced bg-white" />
+                    </div>
+                    <label class="flex--item s-label fw-normal" for="modifier-2">theme-dark__forced</label>
+                </div>
+            </div>
+        </div>
+    </div>
+</fieldset>
 
-<div class="d-grid grid__2 g24 ai-start">
+<div class="d-grid grid__2 g24 ai-start js-component-container">
     <h2 class="grid--item grid--col-all m0">Components</h2>
 
     <div class="grid--item d-grid g16">
@@ -250,6 +272,17 @@ description: Debug page for checking themed components.
         return template;
     }
 
+    function setModifier(e) {
+        const el = e.target;
+        const classes = el.value.split(" ");
+        const checked = el.checked;
+        const container = document.querySelector(".js-component-container");
+
+        classes.forEach(c => {
+            container.classList.toggle(c, checked);
+        });
+    }
+
     function init() {
         generateStopSwatches();
 
@@ -272,6 +305,8 @@ description: Debug page for checking themed components.
 
         // fill swatch color text *after* the generated swatches have been added to the page
         fillSwatchColorText();
+
+        document.querySelectorAll(".js-modifier-checkbox").forEach(el => el.addEventListener("change", setModifier));
     }
 
     window.addEventListener("load", init);
