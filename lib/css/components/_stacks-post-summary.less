@@ -70,7 +70,14 @@
         border: 1px solid transparent;
 
         &.has-answers,
-        &.has-bounty {
+        &.has-bounty,
+        &.is-watched,
+        &.is-ignored,
+        &.is-deleted,
+        &.is-published,
+        &.is-draft,
+        &.is-review,
+        &.is-rejected {
             border-radius: @br-sm;
             padding: @su2 @su4;
         }
@@ -105,6 +112,26 @@
         &.is-supernova {
             color: var(--orange-400);
         }
+
+        &.is-published {
+            color: var(--black-800);
+            background-color: var(--black-050);
+        }
+
+        &.is-draft {
+            color: var(--white);
+            background-color: var(--blue-700);
+        }
+
+        &.is-review {
+            color: var(--white);
+            background-color: var(--yellow-700);
+        }
+
+        &.is-rejected {
+            color: var(--white);
+            background-color: var(--red-600);
+        }
     }
 
     #stacks-internals #screen-md({
@@ -120,7 +147,7 @@
 
     .s-post-summary--content-title {
         display: inline-block;
-        font-size: @fs-subheading;
+        font-size: @fs-body3;
         margin-bottom: @su6;
         overflow-wrap: break-word;
         word-wrap: break-word;
@@ -219,5 +246,52 @@
         color: var(--black-600);
         margin-bottom: @su8;
         .v-truncate4;
+    }
+}
+
+.s-post-summary__watched .is-watched {
+    color: var(--white);
+    background-color: var(--yellow-600);
+}
+
+.s-post-summary__ignored .is-ignored {
+    color: var(--white);
+    background-color: var(--black-600);
+}
+
+.s-post-summary__deleted .is-deleted {
+    color: @white;
+    background-color: var(--red-500);
+}
+
+.s-post-summary__ignored,
+.s-post-summary__deleted {
+    .s-post-summary--content {
+        opacity: 0.7;
+    }
+
+    .s-post-summary--stats-item:not(.is-ignored):not(.is-deleted) {
+        opacity: 0.7;
+        filter: grayscale(100%);
+    }
+
+    .s-post-summary--content-title {
+        color: var(--black-600);
+
+        &:hover {
+            color: var(--black-500);
+        }
+
+        &:visited {
+            color: var(--black-700);
+        }
+    }
+
+    .s-post-summary--content-excerpt {
+        color: var(--black-500);
+    }
+
+    .s-post-summary--meta {
+        filter: grayscale(100%);
     }
 }

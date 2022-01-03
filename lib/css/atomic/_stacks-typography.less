@@ -194,11 +194,6 @@ p {
 .wb-unset { word-break: unset !important; }
 
 //  --  Overflow Wrap
-//      This property will create a line break only if an entire word cannot be
-//      placed on its own line without overflowing. This was formerly called
-//      word-wrap, which was an unprefixed Microsoft vendor property implemented
-//      by most browsers. Word-wrap is still a supported alias, but can be removed
-//      once we no longer support IE11.
 .ow-normal {
     overflow-wrap: normal !important;
     word-wrap: normal !important;
@@ -224,8 +219,6 @@ p {
     word-wrap: unset !important;
 }
 
-.ww-break-word { word-wrap: break-word !important; }
-
 //  --  Hyphenation
 .hyphens-none { hyphens: none !important; }
 .hyphens-auto {
@@ -235,9 +228,31 @@ p {
 }
 .hyphens-unset { hyphens: unset !important; }
 
+//  --  Break word
+.break-word {
+    word-break: break-word !important;
+    word-wrap: break-word !important;
+    overflow-wrap: break-word !important;
+    -webkit-hyphens: auto !important;
+    -moz-hyphens: auto !important;
+    -ms-hyphens: auto !important;
+    hyphens: auto !important;
+}
+
 //  ============================================================================
 //  $   LISTS
 //  ----------------------------------------------------------------------------
+ul,
+ol {
+    padding: 0;
+    margin-left: 2.8em;
+
+    ul,
+    ol {
+        margin-bottom: 0;
+    }
+}
+
 .list-reset {
     list-style: none;
     margin: 0;

@@ -37,7 +37,6 @@
     background-color: var(--green-400);
 }
 
-
 //  $$   LABEL
 //       For when there's descriptive, label copy within the progress bar
 //  ----------------------------------------------------------------------------
@@ -52,7 +51,6 @@
     color: var(--fc-dark);
     z-index: @zi-base + 2;
 }
-
 
 //  ===========================================================================
 //  $   VARIATION PROGRESS BACKGROUNDS
@@ -75,9 +73,12 @@
     }
     .s-progress--label {
         border-color: var(--green-400);
+        display: flex;
+        gap: @su4;
+        align-items: center;
+        justify-content: center;
     }
 }
-
 
 //  ===========================================================================
 //  $   BADGE PROGRESS BARS
@@ -95,6 +96,20 @@
     background-color: transparent;
 }
 
+.s-progress__badge {
+    .s-progress--label {
+        display: flex;
+        gap: @su4;
+        align-items: center;
+        padding-left: 1em;
+        padding-right: 1em;
+
+        .s-badge--label {
+            text-align: center;
+            flex-grow: 1;
+        }
+    }
+}
 
 //  $$  GOLD
 //  ---------------------------------------------------------------------------

@@ -44,7 +44,6 @@
         //      all child elements will automatically be sized.
         //  ----------------------------------------------------------------------------
         .create-flex-count-cols(@num, @count: 1) when (@count =< @num) {
-            .flex__allcells@{count},
             .flex__allitems@{count} {
                 > .d-flex,
                 > .flex--item {
@@ -101,7 +100,7 @@
         //
         //  ----------------------------------------------------------------------------
         .flex-fixed-item-spacing(@spacing, @num, @count: 1) when (@count =< @num) {
-            @item-width: (@count * 100% / @num);
+            @itemWidth: (@count * 100% / @num);
 
             > .flex--item@{count} {
                 margin: (@spacing / 2);
@@ -117,11 +116,9 @@
             //      and max-width here to account for gutters.
             //  ------------------------------------------------------------------------
             > .flex--item@{count},                                  // [1]
-            &.flex__allcells@{count} > .d-flex,                     // [2]
             &.flex__allitems@{count} > .d-flex,                     // [2]
-            &.flex__allcells@{count} > .flex--item,                 // [2]
             &.flex__allitems@{count} > .flex--item {                // [2]
-                flex-basis: calc(~"@{item-width} - @{spacing}");
+                flex-basis: calc(~"@{itemWidth} - @{spacing}");
             }
 
             #stacks-internals #flex-builder-helpers .flex-fixed-item-spacing(@spacing, @num, (@count + 1));
@@ -160,7 +157,6 @@
 //  --  UNIVERSAL FLEX WIDTHS
 //      This applies a flex value it to all of a flex's direct children.
 //  --------------------------------------------------------------------------
-.flex__fl0,
 .flex__fl-shrink0 {
     &,
     > .d-flex,
@@ -177,7 +173,6 @@
     }
 }
 
-.flex__fl1,
 .flex__fl-grow1 {
     &,
     > .d-flex,
