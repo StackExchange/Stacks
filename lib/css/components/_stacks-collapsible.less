@@ -48,24 +48,26 @@
     &:after {
         content: '';
         -ms-flex-preferred-size: 0;
-            flex-basis: 0;
+        flex-basis: 0;
         height: @stacks-internal-s-expandable-min-expected-height;
-        max-height: 0px;
-        transition: height @stacks-internals-s-expandable-transition-duration linear,
-                    max-height 0s @stacks-internals-s-expandable-transition-duration linear;
+        max-height: 0;
+        transition:
+            height @stacks-internals-s-expandable-transition-duration linear,
+            max-height 0s @stacks-internals-s-expandable-transition-duration linear;
     }
 }
 
 .s-expandable--content {
     -ms-flex-preferred-size: 100%;
-        flex-basis: 100%;
+    flex-basis: 100%;
     max-height: 1000000px;
     margin-bottom: 0;
     -webkit-transform-origin: 0 0;
-            transform-origin: 0 0;
-    transition: margin-bottom @stacks-internals-s-expandable-transition-duration cubic-bezier(0, 0, 0, 1),
-                transform @stacks-internals-s-expandable-transition-duration cubic-bezier(1, 0, 1, 1),
-                opacity @stacks-internals-s-expandable-transition-duration cubic-bezier(1, 0, 1, 1);
+    transform-origin: 0 0;
+    transition:
+        margin-bottom @stacks-internals-s-expandable-transition-duration cubic-bezier(0, 0, 0, 1),
+        transform @stacks-internals-s-expandable-transition-duration cubic-bezier(1, 0, 1, 1),
+        opacity @stacks-internals-s-expandable-transition-duration cubic-bezier(1, 0, 1, 1);
 }
 
 .s-expandable:not(.is-expanded) {
@@ -80,16 +82,17 @@
         margin-bottom: -@stacks-internal-s-expandable-max-expected-height;
         opacity: 0;
         -webkit-transform: scaleY(0);
-                transform: scaleY(0);
-        transition: margin-bottom @stacks-internals-s-expandable-transition-duration cubic-bezier(1, 0, 1, 1),
-                    visibility 0s @stacks-internals-s-expandable-transition-duration,
-                    max-height 0s @stacks-internals-s-expandable-transition-duration,
-                    transform @stacks-internals-s-expandable-transition-duration cubic-bezier(0, 1, 1, 1),
-                    opacity @stacks-internals-s-expandable-transition-duration cubic-bezier(0, 1, 1, 1);
+        transform: scaleY(0);
+        transition:
+            margin-bottom @stacks-internals-s-expandable-transition-duration cubic-bezier(1, 0, 1, 1),
+            visibility 0s @stacks-internals-s-expandable-transition-duration,
+            max-height 0s @stacks-internals-s-expandable-transition-duration,
+            transform @stacks-internals-s-expandable-transition-duration cubic-bezier(0, 1, 1, 1),
+            opacity @stacks-internals-s-expandable-transition-duration cubic-bezier(0, 1, 1, 1);
         @supports ((-webkit-clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)) or (clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%))) {
             opacity: 1;
             -webkit-transform: none;
-                    transform: none;
+            transform: none;
         }
     }
 

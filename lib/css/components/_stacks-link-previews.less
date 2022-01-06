@@ -10,7 +10,7 @@
 //  $   BASE STYLE
 //  ----------------------------------------------------------------------------
 .s-link-preview {
-    border: 1px solid var(--black-100);
+    border: 1px solid var(--bc-medium);
     border-radius: @br-sm;
     text-align: left;
     box-shadow: var(--bs-sm);
@@ -21,7 +21,7 @@
     background: var(--black-025);
     border-top-left-radius: @br-sm;
     border-top-right-radius: @br-sm;
-    border-bottom: 1px solid var(--black-100);
+    border-bottom: 1px solid var(--bc-medium);
     padding: @su12 @su8;
 }
 
@@ -37,22 +37,25 @@
 }
 
 a.s-link-preview--title {
-    #stacks-internals #load-config();
     text-decoration: none;
-    color: @link-color;
+    color: var(--theme-link-color);
     cursor: pointer;
 
     &.s-link__visited:visited {
-        color: @link-color-visited;
+        color: var(--theme-link-color);
         text-decoration: none;
+
+        .highcontrast-mode({ text-decoration: underline; });
     }
 
     &:hover,
     &.s-link__visited:hover,
     &:active,
     &.s-link__visited:active {
-        color: @link-color-hover;
+        color: var(--theme-link-color-hover);
         text-decoration: none;
+
+        .highcontrast-mode({ text-decoration: underline; });
     }
 }
 
@@ -89,7 +92,7 @@ a.s-link-preview--title {
     background: var(--black-025);
     border-bottom-left-radius: @br-sm;
     border-bottom-right-radius: @br-sm;
-    border-top: 1px solid var(--black-100);
+    border-top: 1px solid var(--bc-medium);
     padding: @su12;
     font-size: @fs-caption;
 

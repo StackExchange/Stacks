@@ -1,36 +1,98 @@
 ---
 layout: page
 title: Grid
-description: The Stacks grid system is a flexible, scaffolding system for product layouts. It’s an extensive system that provides fixed cell widths, gutter spacing, and flex atomic classes.
+description: Atomic CSS grid classes allow you to quickly add native css grids to your container.
 ---
-
 <section class="stacks-section">
-    {% header "h2", "Basic grid" %}
-    <p class="stacks-copy">A grid is initiated with the <code class="stacks-code">.grid</code> class. By default, <code class="stacks-code">display: flex;</code> starts a non-wrapping row. To convert it to a column, apply the <code class="stacks-code">.fd-column</code> helper class.</p>
+    {% header "h2", "Overview" %}
+    {% tip, "warning", "mb24" %}
+        <p>Looking for our old flex grid? <a href="{{ "/product/base/flex" | relative_url }}">Flex layouts</a> have been moved and renamed now that CSS grid is here. Our <code class="stacks-code">.grid</code>, and <code class="stacks-code">.grid--cell</code> classes have been removed in favor of <code class="stacks-code">.d-flex</code> and <code class="stacks-code">.flex--item</code>.</p>
+        <p class="mb0">If you need to continue using the old <code class="stacks-code">.grid</code>, and <code class="stacks-code">.grid--cell</code> classes, Stacks provides a <a href="https://unpkg.com/@stackoverflow/stacks/dist/css/stacks-flexgrid-shim.min.css">shim</a> for backwards compatability.</p>
+    {% endtip %}
+
+    <p class="stacks-copy">CSS Grids are the most powerful layout system available in CSS. It has two dimensions, meaning it can handle both columns and rows simultaneously, unlike <a href="{{ "/product/base/flex" | relative_url }}">flex layouts</a> which can only do one at a time. Applying <code class="stacks-code">.d-grid</code> to a container will lay out its children according to the CSS Grid layout spec. Adding atomic modifying classes will change the layout’s behavior. Applying classes to an individual <code class="stacks-code">.grid--item</code> will change that cell’s behavior.</p>
+
+    {% header "h3", "Examples" %}
     <div class="stacks-preview">
 {% highlight html %}
-<div class="grid">
-    <div class="grid--cell">…</div>
-    <div class="grid--cell">…</div>
-</div>
-<div class="grid fd-column">
-    <div class="grid--cell">…</div>
-    <div class="grid--cell">…</div>
+<div class="d-grid">
+    <div class="grid--item">…</div>
 </div>
 {% endhighlight %}
-        <div class="stacks-preview--example">
-            <div class="grid gs16 fd-column grid__fl1">
-                <div class="grid--cell">
-                    <div class="grid">
-                        <div class="grid--cell"><div class="grid grid__center stacks-grid-example--cell">.grid--cell</div></div>
-                        <div class="grid--cell"><div class="grid grid__center stacks-grid-example--cell">.grid--cell</div></div>
+        <div class="stacks-preview--example ff-mono">
+            <div>
+                .d-grid .grid__4 .g16
+                <div class="d-none sm:d-inline-block sm:highlight">.sm:g-af-row</div>
+            </div>
+            <div class="mt16 d-grid g16 grid__4 sm:g-af-row">
+                <div class="grid--item bg-black-075 p12 ba bc-black-3 grid--col-all">
+                    <div>.grid--item</div>
+                    <div>.grid--col-all</div>
+                </div>
+                <div class="grid--item bg-black-075 p12 ba bc-black-3 grid--col1 grid--row2 md:grid--col-all">
+                    <div>.grid--item</div>
+                    <div class="md:d-none">.grid--col1</div>
+                    <div class="d-none md:d-inline-block md:highlight">.md:grid--col-all</div>
+                    <div>.grid--row2</div>
+                </div>
+                <div class="grid--item bg-black-075 p12 ba bc-black-3 grid--col3 md:grid--col-all">
+                    <div>.grid--item</div>
+                    <div class="md:d-none">.grid--col3</div>
+                    <div class="d-none md:d-inline-block md:highlight">.md:grid--col-all</div>
+                    <div class="mb16">.grid__2</div>
+
+                    <div>.d-grid</div>
+                    <div>.g16</div>
+                    <div class="sm:d-none">.grid__2</div>
+                    <div class="d-none sm:d-inline-block sm:highlight">.sm:g-af-row</div>
+                    <div class="mt16 d-grid grid__2 g16 sm:g-af-row">
+                        <div class="grid--item bg-black-100 p12 ba bc-black-4 sm:grid--col-all">
+                            <div>.grid--item</div>
+                            <div class="d-none sm:d-inline-block sm:highlight">.sm:grid--col-all</div>
+                        </div>
+                        <div class="grid--item bg-black-100 p12 ba bc-black-4 sm:grid--col-all">
+                            <div>.grid--item</div>
+                            <div class="d-none sm:d-inline-block sm:highlight">.sm:grid--col-all</div>
+                        </div>
+                        <div class="grid--item bg-black-100 p12 ba bc-black-4 sm:grid--col-all">
+                            <div>.grid--item</div>
+                            <div class="d-none sm:d-inline-block sm:highlight">.sm:grid--col-all</div>
+                        </div>
+                        <div class="grid--item bg-black-100 p12 ba bc-black-4 sm:grid--col-all">
+                            <div>.grid--item</div>
+                            <div class="d-none sm:d-inline-block sm:highlight">.sm:grid--col-all</div>
+                        </div>
                     </div>
                 </div>
-                <div class="grid--cell">
-                    <div class="grid ff-column-nowrap">
-                        <div class="grid--cell"><div class="grid grid__center stacks-grid-example--cell">.grid--cell</div></div>
-                        <div class="grid--cell"><div class="grid grid__center stacks-grid-example--cell">.grid--cell</div></div>
-                    </div>
+                <div class="grid--item bg-black-075 p12 ba bc-black-3 grid--col2">
+                    <div>.grid--item</div>
+                    <div>.grid--col2</div>
+                </div>
+                <div class="grid--item bg-black-075 p12 ba bc-black-3 grid--col1 md:grid--col2">
+                    <div>.grid--item</div>
+                    <div class="md:d-none">.grid--col1</div>
+                    <div class="d-none md:d-inline-block md:highlight">.md:grid--col2</div>
+                </div>
+                <div class="bg-black-075 p12 ba bc-black-3 grid--col-all">
+                    <div>.grid--item</div>
+                    <div>.grid--col-all</div>
+                </div>
+                <div class="grid--item bg-black-075 p12 ba bc-black-3 md:grid--col2 md:grid--row2">
+                    <div class="md:d-none">.grid--item</div>
+                    <div class="d-none md:d-inline-block md:highlight mb4">.md:grid--col2</div>
+                    <div class="d-none md:d-inline-block md:highlight">.md:has-row-2</div>
+                </div>
+                <div class="grid--item bg-black-075 p12 ba bc-black-3 md:grid--col2">
+                    <div class="md:d-none">.grid--item</div>
+                    <div class="d-none md:d-inline-block md:highlight">.md:grid--col2</div>
+                </div>
+                <div class="grid--item bg-black-075 p12 ba bc-black-3 md:grid--col2">
+                    <div class="md:d-none">.grid--item</div>
+                    <div class="d-none md:d-inline-block md:highlight">.md:grid--col2</div>
+                </div>
+                <div class="grid--item bg-black-075 p12 ba bc-black-3 md:grid--col-all">
+                    <div class="md:d-none">.grid--item</div>
+                    <div class="d-none md:d-inline-block md:highlight">.md:grid--col-all</div>
                 </div>
             </div>
         </div>
@@ -38,240 +100,25 @@ description: The Stacks grid system is a flexible, scaffolding system for produc
 </section>
 
 <section class="stacks-section">
-    {% header "h2", "Fluid cells" %}
-    <p class="stacks-copy">By default all child elements of a grid have a default value of <code class="stacks-code">flex: 1 0 auto;</code>. This means that by default all cells will only be as wide as their content. If you would like a cell or all the cells to fill the remaining space, apply the <code class="stacks-code">.fl1</code> to the cell, or <code class="stacks-code">.grid__fl1</code> to the parent to apply to all children.</p>
-
-    {% header "h3", "Fluid examples" %}
-    <div class="stacks-preview">
-{% highlight html %}
-<div class="grid">
-    <div class="grid--cell fl1">…</div>
-    <div class="grid--cell">…</div>
-</div>
-<div class="grid grid__fl1">
-    <div class="grid--cell">…</div>
-    <div class="grid--cell">…</div>
-    <div class="grid--cell">…</div>
-</div>
-{% endhighlight %}
-        <div class="stacks-preview--example">
-            <div class="grid gs16 fd-column grid__fl1">
-                <div class="grid--cell">
-                    <div class="grid">
-                        <div class="grid--cell fl1"><div class="grid grid__center h100 stacks-grid-example--cell">.grid--cell.fl1</div></div>
-                        <div class="grid--cell"><div class="grid grid__center h100 stacks-grid-example--cell">.grid--cell</div></div>
-                    </div>
-                </div>
-                <div class="grid--cell">
-                    <div class="grid grid__fl1">
-                        <div class="grid--cell"><div class="grid grid__center h100 stacks-grid-example--cell">.grid--cell</div></div>
-                        <div class="grid--cell"><div class="grid grid__center h100 stacks-grid-example--cell">.grid--cell</div></div>
-                        <div class="grid--cell"><div class="grid grid__center h100 stacks-grid-example--cell">.grid--cell</div></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-<section class="stacks-section">
-    {% header "h2", "Fixed cells" %}
-    <p class="stacks-copy">You can either fix the width of an individual element or fix the width of all child elements within a parent container by setting the width on the parent. The cell widths are based on a 12-column grid system.</p>
-
-    {% header "h3", "Fixed classes" %}
+    {% header "h2", "Spacing" %}
+    <p class="stacks-copy">The most powerful aspect of CSS grids are its native gutters. To add space between columns and rows add one of the following classes to your grid container.</p>
+    {% header "h3", "Spacing classes" %}
     <div class="overflow-x-auto mb48">
-        <table class="wmn5 s-table s-table__bx-simple">
+        <table class="wmn4 s-table s-table__bx-simple">
             <thead>
                 <tr>
-                    <th scope="col">Individual Width</th>
-                    <th scope="col">Uniform Width</th>
-                    <th scope="col">Output</th>
+                    <th class="s-table--cell3" scope="col">Class</th>
+                    <th class="s-table--cell3" scope="col">Output</th>
+                    <th scope="col">Definition</th>
+                    <th class="s-table--cell2 ta-center" scope="col"><a class="s-link s-link__inherit" href="{{ "/product/guidelines/conditional-classes#responsive" | relative_url }}">Responsive?</a></th>
                 </tr>
             </thead>
             <tbody>
-                {% for item in grids.grid-cell %}
-                  <tr>
-                      <td><code class="stacks-code">{{ item.class }}</code></td>
-                      <td><code class="stacks-code">{{ item.all }}</code></td>
-                      <td><code class="stacks-code bg-white">{{ item.output }}</code></td>
-                  </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-    </div>
-
-    {% header "h3", "Fixed examples" %}
-    <div class="stacks-preview">
-{% highlight html %}
-<div class="grid">
-    <div class="grid--cell2">…</div>
-    <div class="grid--cell10">…</div>
-</div>
-<div class="grid">
-    <div class="grid--cell3">…</div>
-    <div class="grid--cell6">…</div>
-    <div class="grid--cell">…</div>
-</div>
-<div class="grid grid__allcells4">
-    <div class="grid--cell">…</div>
-    <div class="grid--cell">…</div>
-    <div class="grid--cell">…</div>
-    <div class="grid--cell">…</div>
-</div>
-{% endhighlight %}
-        <div class="stacks-preview--example">
-            <div class="grid gs16 fd-column grid__fl1">
-                <div class="grid--cell">
-                    <div class="grid">
-                        <div class="grid--cell2"><div class="grid grid__center stacks-grid-example--cell">.grid--cell2</div></div>
-                        <div class="grid--cell10"><div class="grid grid__center stacks-grid-example--cell">.grid--cell10</div></div>
-                    </div>
-                </div>
-                <div class="grid--cell">
-                    <div class="grid">
-                        <div class="grid--cell3"><div class="grid grid__center stacks-grid-example--cell">.grid--cell3</div></div>
-                        <div class="grid--cell6"><div class="grid grid__center stacks-grid-example--cell">.grid--cell6</div></div>
-                        <div class="grid--cell"><div class="grid grid__center stacks-grid-example--cell">.grid--cell</div></div>
-                    </div>
-                </div>
-                <div class="grid--cell">
-                    <div class="grid grid__allcells4 fw-wrap">
-                        <div class="grid--cell"><div class="grid grid__center stacks-grid-example--cell">.grid--cell</div></div>
-                        <div class="grid--cell"><div class="grid grid__center stacks-grid-example--cell">.grid--cell</div></div>
-                        <div class="grid--cell"><div class="grid grid__center stacks-grid-example--cell">.grid--cell</div></div>
-                        <div class="grid--cell"><div class="grid grid__center stacks-grid-example--cell">.grid--cell</div></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-<section class="stacks-section">
-    {% header "h2", "Nested grids" %}
-    <p class="stacks-copy">Grids can be nested within each other. This allows you to create unique, custom layouts without needing to create new, custom code or override existing styles.</p>
-
-    <div class="grid s-notice s-notice__info mb48">
-        <div class="grid--cell mr8">{% icon "Alert" %}</div>
-        <div class="grid--cell lh-lg">
-            <strong>Note: Nested grids with <a href="#gutters">gutter spacing</a> will conflict with each other.</strong> If you are nesting a grid with gutter spacing into a grid that also has gutter spacing, the child's parent wrapper margins will be overwritten by the parent. To have the child grid gutter spacing honored, you must place the child grid within a <code class="stacks-code bg-powder-300">.grid--cell</code> wrapper first. This allows the parent and child grid gutter spacing to act correctly without interfering with each other.
-        </div>
-    </div>
-
-    {% header "h3", "Nested examples" %}
-    <div class="stacks-preview">
-{% highlight html %}
-<div class="grid">
-    <div class="grid">
-        <div class="grid--cell">…</div>
-        <div class="grid--cell">…</div>
-    </div>
-    <div class="grid--cell2">…</div>
-    <div class="grid--cell2">…</div>
-</div>
-{% endhighlight %}
-        <div class="stacks-preview--example">
-            <div class="grid">
-                <div class="grid--cell fl1 p4 stacks-grid-example--cell">
-                    <div class="grid gs12 grid__fl1">
-                        <div class="grid--cell"><div class="grid grid__center stacks-grid-example--cell bg-black-050">.grid--cell</div></div>
-                        <div class="grid--cell"><div class="grid grid__center stacks-grid-example--cell bg-black-050">.grid--cell</div></div>
-                    </div>
-                </div>
-                <div class="grid--cell2"><div class="grid grid__center h100 stacks-grid-example--cell">.grid--cell2</div></div>
-                <div class="grid--cell2"><div class="grid grid__center h100 stacks-grid-example--cell">.grid--cell2</div></div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<section class="stacks-section">
-    {% header "h2", "Gutters" %}
-    <p class="stacks-copy">Sometimes gutters are desired between cells. To do so apply the appropriate class to the parent wrapper. The gutter applies a margin to all sides. The sizes available are the same as <a href="{{ /product/base/spacing | relative_url }}">the spacing units</a>.</p>
-
-    {% header "h3", "Gutter classes" %}
-    <div class="overflow-x-auto mb48">
-        <table class="wmn3 s-table s-table__bx-simple">
-            <thead>
-                <tr>
-                    <th class="s-table--cell2" scope="col">Class</th>
-                    <th scope="col">Output</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for item in grids.gutter %}
-                  <tr>
-                      <td><code class="stacks-code">{{ item.class }}</code></td>
-                      <td>{{ item.output }}</code></td>
-                  </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-    </div>
-
-    {% header "h3", "Gutter examples" %}
-    <div class="stacks-preview">
-{% highlight html %}
-<div class="grid grid__fl1 gs16">
-    <div class="grid--cell">…</div>
-    <div class="grid--cell">…</div>
-</div>
-<div class="grid grid__fl1 gs16 gsx">
-    <div class="grid--cell">…</div>
-    <div class="grid--cell">…</div>
-</div>
-<div class="grid grid__fl1 gs16 gsy">
-    <div class="grid--cell">…</div>
-    <div class="grid--cell">…</div>
-</div>
-{% endhighlight %}
-        <div class="stacks-preview--example">
-            <div class="grid gs32 gsy fd-column">
-                <div class="grid--cell bg-orange-050">
-                    <div class="grid grid__allcells6 gs16 fw-wrap">
-                        <div class="grid--cell"><div class="stacks-grid-example--cell">.gs16</div></div>
-                        <div class="grid--cell"><div class="stacks-grid-example--cell">.gs16</div></div>
-                        <div class="grid--cell"><div class="stacks-grid-example--cell">.gs16</div></div>
-                        <div class="grid--cell"><div class="stacks-grid-example--cell">.gs16</div></div>
-                    </div>
-                </div>
-                <div class="grid--cell bg-orange-050">
-                    <div class="grid grid__allcells6 gs16 gsx fw-wrap">
-                        <div class="grid--cell"><div class="stacks-grid-example--cell">.gs16.gsx -- Row gutters only</div></div>
-                        <div class="grid--cell"><div class="stacks-grid-example--cell">.gs16.gsx -- Row gutters only</div></div>
-                        <div class="grid--cell"><div class="stacks-grid-example--cell">.gs16.gsx -- Row gutters only</div></div>
-                        <div class="grid--cell"><div class="stacks-grid-example--cell">.gs16.gsx -- Row gutters only</div></div>
-                    </div>
-                </div>
-                <div class="grid--cell bg-orange-050">
-                    <div class="grid grid__fl1 fd-column gs16 gsy">
-                        <div class="grid--cell"><div class="stacks-grid-example--cell">.gs16.gsy -- Column gutters only</div></div>
-                        <div class="grid--cell"><div class="stacks-grid-example--cell">.gs16.gsy -- Column gutters only</div></div>
-                        <div class="grid--cell"><div class="stacks-grid-example--cell">.gs16.gsy -- Column gutters only</div></div>
-                        <div class="grid--cell"><div class="stacks-grid-example--cell">.gs16.gsy -- Column gutters only</div></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<section class="stacks-section">
-    {% header "h2", "Flex classes" %}
-    <p class="stacks-copy">To change a flex property, use one of the following atomic classes.</p>
-
-    <div class="overflow-x-auto mb32">
-        <table class="wmn5 s-table s-table__bx-simple">
-            <thead>
-                <tr>
-                    <th class="s-table--cell4" scope="col">Class</th>
-                    <th class="s-table--cell6" scope="col">Definition</th>
-                    <th class="s-table--cell2 ta-center" scope="col"><a class="s-link s-link__inherit" href="{{ "/product/guidelines/conditional-classes#responsive"", "relative_url }}">Responsive?</a></th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for item in grids.atomic %}
-                    <tr>
-                        <th scope="row"><code class="stacks-code">{{ item.class }}</code></th>
-                        <td><p class="mb0">{{ item.define }}</p></td>
+                {% for item in grid.spacing %}
+                    <tr class="fs-caption">
+                        <th scope="row"><code class="stacks-code">.{{ item.class }}</code></th>
+                        <td><code class="stacks-code bg-white">{{ item.output }}</code></td>
+                        <td>{{ item.define }}</td>
                         <td class="ta-center">
                             {% if item.responsive %}
                                 {% icon "Checkmark", "fc-green-500" %}
@@ -281,4 +128,714 @@ description: The Stacks grid system is a flexible, scaffolding system for produc
                 {% endfor %}
             </tbody>
         </table>
+    </div>
+
+    {% header "h3", "Spacing examples" %}
+    <div class="stacks-preview">
+{% highlight html %}
+<div class="d-grid g0">…</div>
+<div class="d-grid g1">…</div>
+<div class="d-grid g2">…</div>
+<div class="d-grid g4">…</div>
+<div class="d-grid g8">…</div>
+<div class="d-grid g12">…</div>
+<div class="d-grid g16">…</div>
+<div class="d-grid g24">…</div>
+<div class="d-grid g32">…</div>
+<div class="d-grid g48">…</div>
+<div class="d-grid g64">…</div>
+{% endhighlight %}
+        <div class="stacks-preview--example ff-mono">
+            <div class="mb16 d-grid g0 grid__3 bg-black-075 ba bc-black-3 p16">
+                <div class="grid--item bg-black-100 p8 h32 ba bc-black-4">
+                    .g0
+                </div>
+                <div class="grid--item bg-black-100 p8 h32 ba bc-black-4"></div>
+                <div class="grid--item bg-black-100 p8 h32 ba bc-black-4"></div>
+                <div class="grid--item bg-black-100 p8 h32 ba bc-black-4"></div>
+                <div class="grid--item bg-black-100 p8 h32 ba bc-black-4"></div>
+                <div class="grid--item bg-black-100 p8 h32 ba bc-black-4"></div>
+            </div>
+
+            <div class="mb16 d-grid g1 grid__3 bg-black-075 ba bc-black-3 p16">
+                <div class="grid--item bg-black-100 p8 h32 ba bc-black-4">
+                    .g1
+                </div>
+                <div class="grid--item bg-black-100 p8 h32 ba bc-black-4"></div>
+                <div class="grid--item bg-black-100 p8 h32 ba bc-black-4"></div>
+                <div class="grid--item bg-black-100 p8 h32 ba bc-black-4"></div>
+                <div class="grid--item bg-black-100 p8 h32 ba bc-black-4"></div>
+                <div class="grid--item bg-black-100 p8 h32 ba bc-black-4"></div>
+            </div>
+
+            <div class="mb16 d-grid g2 grid__3 bg-black-075 ba bc-black-3 p16">
+                <div class="grid--item bg-black-100 p8 h32 ba bc-black-4">
+                    .g2
+                </div>
+                <div class="grid--item bg-black-100 p8 h32 ba bc-black-4"></div>
+                <div class="grid--item bg-black-100 p8 h32 ba bc-black-4"></div>
+                <div class="grid--item bg-black-100 p8 h32 ba bc-black-4"></div>
+                <div class="grid--item bg-black-100 p8 h32 ba bc-black-4"></div>
+                <div class="grid--item bg-black-100 p8 h32 ba bc-black-4"></div>
+            </div>
+
+            <div class="mb16 d-grid g4 grid__3 bg-black-075 ba bc-black-3 p16">
+                <div class="grid--item bg-black-100 p8 h32 ba bc-black-4">
+                    .g4
+                </div>
+                <div class="grid--item bg-black-100 p8 h32 ba bc-black-4"></div>
+                <div class="grid--item bg-black-100 p8 h32 ba bc-black-4"></div>
+                <div class="grid--item bg-black-100 p8 h32 ba bc-black-4"></div>
+                <div class="grid--item bg-black-100 p8 h32 ba bc-black-4"></div>
+                <div class="grid--item bg-black-100 p8 h32 ba bc-black-4"></div>
+            </div>
+
+            <div class="mb16 d-grid g8 grid__3 bg-black-075 ba bc-black-3 p16">
+                <div class="grid--item bg-black-100 p8 h32 ba bc-black-4">
+                    .g8
+                </div>
+                <div class="grid--item bg-black-100 p8 h32 ba bc-black-4"></div>
+                <div class="grid--item bg-black-100 p8 h32 ba bc-black-4"></div>
+                <div class="grid--item bg-black-100 p8 h32 ba bc-black-4"></div>
+                <div class="grid--item bg-black-100 p8 h32 ba bc-black-4"></div>
+                <div class="grid--item bg-black-100 p8 h32 ba bc-black-4"></div>
+            </div>
+
+            <div class="mb16 d-grid g12 grid__3 bg-black-075 ba bc-black-3 p16">
+                <div class="grid--item bg-black-100 p8 h32 ba bc-black-4">
+                    .g12
+                </div>
+                <div class="grid--item bg-black-100 p8 h32 ba bc-black-4"></div>
+                <div class="grid--item bg-black-100 p8 h32 ba bc-black-4"></div>
+                <div class="grid--item bg-black-100 p8 h32 ba bc-black-4"></div>
+                <div class="grid--item bg-black-100 p8 h32 ba bc-black-4"></div>
+                <div class="grid--item bg-black-100 p8 h32 ba bc-black-4"></div>
+            </div>
+
+            <div class="mb16 d-grid g16 grid__3 bg-black-075 ba bc-black-3 p16">
+                <div class="grid--item bg-black-100 p8 h32 ba bc-black-4">
+                    .g16
+                </div>
+                <div class="grid--item bg-black-100 p8 h32 ba bc-black-4"></div>
+                <div class="grid--item bg-black-100 p8 h32 ba bc-black-4"></div>
+                <div class="grid--item bg-black-100 p8 h32 ba bc-black-4"></div>
+                <div class="grid--item bg-black-100 p8 h32 ba bc-black-4"></div>
+                <div class="grid--item bg-black-100 p8 h32 ba bc-black-4"></div>
+            </div>
+
+            <div class="mb16 d-grid g24 grid__3 bg-black-075 ba bc-black-3 p16">
+                <div class="grid--item bg-black-100 p8 h32 ba bc-black-4">
+                    .g24
+                </div>
+                <div class="grid--item bg-black-100 p8 h32 ba bc-black-4"></div>
+                <div class="grid--item bg-black-100 p8 h32 ba bc-black-4"></div>
+                <div class="grid--item bg-black-100 p8 h32 ba bc-black-4"></div>
+                <div class="grid--item bg-black-100 p8 h32 ba bc-black-4"></div>
+                <div class="grid--item bg-black-100 p8 h32 ba bc-black-4"></div>
+            </div>
+
+            <div class="mb16 d-grid g32 grid__3 bg-black-075 ba bc-black-3 p16">
+                <div class="grid--item bg-black-100 p8 h32 ba bc-black-4">
+                    .g32
+                </div>
+                <div class="grid--item bg-black-100 p8 h32 ba bc-black-4"></div>
+                <div class="grid--item bg-black-100 p8 h32 ba bc-black-4"></div>
+                <div class="grid--item bg-black-100 p8 h32 ba bc-black-4"></div>
+                <div class="grid--item bg-black-100 p8 h32 ba bc-black-4"></div>
+                <div class="grid--item bg-black-100 p8 h32 ba bc-black-4"></div>
+            </div>
+
+            <div class="mb16 d-grid g48 grid__3 bg-black-075 ba bc-black-3 p16">
+                <div class="grid--item bg-black-100 p8 h32 ba bc-black-4">
+                    .g48
+                </div>
+                <div class="grid--item bg-black-100 p8 h32 ba bc-black-4"></div>
+                <div class="grid--item bg-black-100 p8 h32 ba bc-black-4"></div>
+                <div class="grid--item bg-black-100 p8 h32 ba bc-black-4"></div>
+                <div class="grid--item bg-black-100 p8 h32 ba bc-black-4"></div>
+                <div class="grid--item bg-black-100 p8 h32 ba bc-black-4"></div>
+            </div>
+
+            <div class="d-grid g64 grid__3 bg-black-075 ba bc-black-3 p16">
+                <div class="grid--item bg-black-100 p8 h32 ba bc-black-4">
+                    .g64
+                </div>
+                <div class="grid--item bg-black-100 p8 h32 ba bc-black-4"></div>
+                <div class="grid--item bg-black-100 p8 h32 ba bc-black-4"></div>
+                <div class="grid--item bg-black-100 p8 h32 ba bc-black-4"></div>
+                <div class="grid--item bg-black-100 p8 h32 ba bc-black-4"></div>
+                <div class="grid--item bg-black-100 p8 h32 ba bc-black-4"></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="stacks-section">
+    {% header "h2", "Columns" %}
+    <p class="stacks-copy">To define a discrete number of columns in your grid layout, you can add a <code class="stacks-code">grid__[x]</code> modifying class.</p>
+
+    {% header "h3", "Column classes" %}
+    <div class="overflow-x-auto mb48">
+        <table class="wmn4 s-table s-table__bx-simple">
+            <thead>
+                <tr>
+                    <th class="s-table--cell2" scope="col">Class</th>
+                    <th class="s-table--cell4" scope="col">Output</th>
+                    <th scope="col">Definition</th>
+                    <th class="s-table--cell2 ta-center" scope="col"><a class="s-link s-link__inherit" href="{{ "/product/guidelines/conditional-classes#responsive" | relative_url }}">Responsive?</a></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in grid.column-templates %}
+                    <tr class="fs-caption">
+                        <th scope="row"><code class="stacks-code">.{{ item.class }}</code></th>
+                        <td><code class="stacks-code bg-white">{{ item.output }}</code></td>
+                        <td>{{ item.define }}</td>
+                        <td class="ta-center">
+                            {% if item.responsive %}
+                                {% icon "Checkmark", "fc-green-500" %}
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    {% header "h3", "Columns examples" %}
+    <div class="stacks-preview">
+{% highlight html %}
+<div class="d-grid grid__1">…</div>
+<div class="d-grid grid__2">…</div>
+<div class="d-grid grid__3">…</div>
+<div class="d-grid grid__4">…</div>
+<div class="d-grid grid__5">…</div>
+<div class="d-grid grid__6">…</div>
+<div class="d-grid grid__7">…</div>
+<div class="d-grid grid__8">…</div>
+<div class="d-grid grid__9">…</div>
+<div class="d-grid grid__10">…</div>
+<div class="d-grid grid__11">…</div>
+<div class="d-grid grid__12">…</div>
+{% endhighlight %}
+        <div class="stacks-preview--example ff-mono">
+            <div class="mb16 d-grid g16 grid__1">
+                <div class="grid--item bg-black-075 p12 ba bc-black-3">1</div>
+            </div>
+
+            <div class="mb16 d-grid g16 grid__2">
+                <div class="grid--item bg-black-075 p12 ba bc-black-3">1</div>
+                <div class="grid--item bg-black-075 p12 ba bc-black-3">2</div>
+            </div>
+
+            <div class="mb16 d-grid g16 grid__3">
+                <div class="grid--item bg-black-075 p12 ba bc-black-3">1</div>
+                <div class="grid--item bg-black-075 p12 ba bc-black-3">2</div>
+                <div class="grid--item bg-black-075 p12 ba bc-black-3">3</div>
+            </div>
+
+            <div class="mb16 d-grid g16 grid__4">
+                <div class="grid--item bg-black-075 p12 ba bc-black-3">1</div>
+                <div class="grid--item bg-black-075 p12 ba bc-black-3">2</div>
+                <div class="grid--item bg-black-075 p12 ba bc-black-3">3</div>
+                <div class="grid--item bg-black-075 p12 ba bc-black-3">4</div>
+            </div>
+
+            <div class="mb16 d-grid g16 grid__5">
+                <div class="grid--item bg-black-075 p12 ba bc-black-3">1</div>
+                <div class="grid--item bg-black-075 p12 ba bc-black-3">2</div>
+                <div class="grid--item bg-black-075 p12 ba bc-black-3">3</div>
+                <div class="grid--item bg-black-075 p12 ba bc-black-3">4</div>
+                <div class="grid--item bg-black-075 p12 ba bc-black-3">5</div>
+            </div>
+
+            <div class="mb16 d-grid g16 grid__6">
+                <div class="grid--item bg-black-075 p12 ba bc-black-3">1</div>
+                <div class="grid--item bg-black-075 p12 ba bc-black-3">2</div>
+                <div class="grid--item bg-black-075 p12 ba bc-black-3">3</div>
+                <div class="grid--item bg-black-075 p12 ba bc-black-3">4</div>
+                <div class="grid--item bg-black-075 p12 ba bc-black-3">5</div>
+                <div class="grid--item bg-black-075 p12 ba bc-black-3">6</div>
+            </div>
+
+            <div class="mb16 d-grid g16 grid__7">
+                <div class="grid--item bg-black-075 p12 ba bc-black-3">1</div>
+                <div class="grid--item bg-black-075 p12 ba bc-black-3">2</div>
+                <div class="grid--item bg-black-075 p12 ba bc-black-3">3</div>
+                <div class="grid--item bg-black-075 p12 ba bc-black-3">4</div>
+                <div class="grid--item bg-black-075 p12 ba bc-black-3">5</div>
+                <div class="grid--item bg-black-075 p12 ba bc-black-3">6</div>
+                <div class="grid--item bg-black-075 p12 ba bc-black-3">7</div>
+            </div>
+
+            <div class="mb16 d-grid g16 grid__8">
+                <div class="grid--item bg-black-075 p12 ba bc-black-3">1</div>
+                <div class="grid--item bg-black-075 p12 ba bc-black-3">2</div>
+                <div class="grid--item bg-black-075 p12 ba bc-black-3">3</div>
+                <div class="grid--item bg-black-075 p12 ba bc-black-3">4</div>
+                <div class="grid--item bg-black-075 p12 ba bc-black-3">5</div>
+                <div class="grid--item bg-black-075 p12 ba bc-black-3">6</div>
+                <div class="grid--item bg-black-075 p12 ba bc-black-3">7</div>
+                <div class="grid--item bg-black-075 p12 ba bc-black-3">8</div>
+            </div>
+
+            <div class="mb16 d-grid g16 grid__9">
+                <div class="grid--item bg-black-075 p12 ba bc-black-3">1</div>
+                <div class="grid--item bg-black-075 p12 ba bc-black-3">2</div>
+                <div class="grid--item bg-black-075 p12 ba bc-black-3">3</div>
+                <div class="grid--item bg-black-075 p12 ba bc-black-3">4</div>
+                <div class="grid--item bg-black-075 p12 ba bc-black-3">5</div>
+                <div class="grid--item bg-black-075 p12 ba bc-black-3">6</div>
+                <div class="grid--item bg-black-075 p12 ba bc-black-3">7</div>
+                <div class="grid--item bg-black-075 p12 ba bc-black-3">8</div>
+                <div class="grid--item bg-black-075 p12 ba bc-black-3">9</div>
+            </div>
+
+            <div class="mb16 d-grid g16 grid__10">
+                <div class="grid--item bg-black-075 p12 ba bc-black-3">1</div>
+                <div class="grid--item bg-black-075 p12 ba bc-black-3">2</div>
+                <div class="grid--item bg-black-075 p12 ba bc-black-3">3</div>
+                <div class="grid--item bg-black-075 p12 ba bc-black-3">4</div>
+                <div class="grid--item bg-black-075 p12 ba bc-black-3">5</div>
+                <div class="grid--item bg-black-075 p12 ba bc-black-3">6</div>
+                <div class="grid--item bg-black-075 p12 ba bc-black-3">7</div>
+                <div class="grid--item bg-black-075 p12 ba bc-black-3">8</div>
+                <div class="grid--item bg-black-075 p12 ba bc-black-3">9</div>
+                <div class="grid--item bg-black-075 p12 ba bc-black-3">10</div>
+            </div>
+
+            <div class="mb16 d-grid g16 grid__11">
+                <div class="grid--item bg-black-075 p12 ba bc-black-3">1</div>
+                <div class="grid--item bg-black-075 p12 ba bc-black-3">2</div>
+                <div class="grid--item bg-black-075 p12 ba bc-black-3">3</div>
+                <div class="grid--item bg-black-075 p12 ba bc-black-3">4</div>
+                <div class="grid--item bg-black-075 p12 ba bc-black-3">5</div>
+                <div class="grid--item bg-black-075 p12 ba bc-black-3">6</div>
+                <div class="grid--item bg-black-075 p12 ba bc-black-3">7</div>
+                <div class="grid--item bg-black-075 p12 ba bc-black-3">8</div>
+                <div class="grid--item bg-black-075 p12 ba bc-black-3">9</div>
+                <div class="grid--item bg-black-075 p12 ba bc-black-3">10</div>
+                <div class="grid--item bg-black-075 p12 ba bc-black-3">11</div>
+            </div>
+
+            <div class="d-grid g16 grid__12">
+                <div class="grid--item bg-black-075 p12 ba bc-black-3">1</div>
+                <div class="grid--item bg-black-075 p12 ba bc-black-3">2</div>
+                <div class="grid--item bg-black-075 p12 ba bc-black-3">3</div>
+                <div class="grid--item bg-black-075 p12 ba bc-black-3">4</div>
+                <div class="grid--item bg-black-075 p12 ba bc-black-3">5</div>
+                <div class="grid--item bg-black-075 p12 ba bc-black-3">6</div>
+                <div class="grid--item bg-black-075 p12 ba bc-black-3">7</div>
+                <div class="grid--item bg-black-075 p12 ba bc-black-3">8</div>
+                <div class="grid--item bg-black-075 p12 ba bc-black-3">9</div>
+                <div class="grid--item bg-black-075 p12 ba bc-black-3">10</div>
+                <div class="grid--item bg-black-075 p12 ba bc-black-3">11</div>
+                <div class="grid--item bg-black-075 p12 ba bc-black-3">12</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="stacks-section">
+    {% header "h2", "Column and row spans" %}
+    <p class="stacks-copy">You can apply <code class="stacks-code">grid--col[x]</code> to your columns, and <code class="stacks-code">grid--row[x]</code> to your rows to span a specific number of columns or rows.</p>
+    {% header "h3", "Column classes" %}
+    <div class="overflow-x-auto mb48">
+        <table class="wmn4 s-table s-table__bx-simple">
+            <thead>
+                <tr>
+                    <th class="s-table--cell3" scope="col">Class</th>
+                    <th class="s-table--cell3" scope="col">Output</th>
+                    <th scope="col">Definition</th>
+                    <th class="s-table--cell2 ta-center" scope="col"><a class="s-link s-link__inherit" href="{{ "/product/guidelines/conditional-classes#responsive" | relative_url }}">Responsive?</a></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in grid.columns %}
+                    <tr class="fs-caption">
+                        <th scope="row"><code class="stacks-code">.{{ item.class }}</code></th>
+                        <td><code class="stacks-code bg-white">{{ item.output }}</code></td>
+                        <td>{{ item.define }}</td>
+                        <td class="ta-center">
+                            {% if item.responsive %}
+                                {% icon "Checkmark", "fc-green-500" %}
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    {% header "h3", "Column examples" %}
+    <div class="stacks-preview">
+{% highlight html %}
+<div class="d-grid grid__12">
+    <div class="grid--col-all">…</div>
+    <div class="grid--col1">…</div>
+    <div class="grid--col2">…</div>
+    <div class="grid--col3">…</div>
+    <div class="grid--col4">…</div>
+    <div class="grid--col5">…</div>
+    <div class="grid--col6">…</div>
+    <div class="grid--col7">…</div>
+    <div class="grid--col8">…</div>
+    <div class="grid--col9">…</div>
+    <div class="grid--col10">…</div>
+    <div class="grid--col11">…</div>
+    <div class="grid--col12">…</div>
+</div>
+{% endhighlight %}
+        <div class="stacks-preview--example ff-mono ws-nowrap">
+            <div class="d-grid grid__12 mb16">
+                <div class="bg-black-075 p12 ba bc-black-3 grid--col-all">.grid--col-all</div>
+            </div>
+            <div class="d-grid grid__12 mb16">
+                <div class="bg-black-075 p12 ba bc-black-3 grid--col1">.grid--col1</div>
+            </div>
+            <div class="d-grid grid__12 mb16">
+                <div class="bg-black-075 p12 ba bc-black-3 grid--col2">.grid--col2</div>
+            </div>
+            <div class="d-grid grid__12 mb16">
+                <div class="bg-black-075 p12 ba bc-black-3 grid--col3">.grid--col3</div>
+            </div>
+            <div class="d-grid grid__12 mb16">
+                <div class="bg-black-075 p12 ba bc-black-3 grid--col4">.grid--col4</div>
+            </div>
+            <div class="d-grid grid__12 mb16">
+                <div class="bg-black-075 p12 ba bc-black-3 grid--col5">.grid--col5</div>
+            </div>
+            <div class="d-grid grid__12 mb16">
+                <div class="bg-black-075 p12 ba bc-black-3 grid--col6">.grid--col6</div>
+            </div>
+            <div class="d-grid grid__12 mb16">
+                <div class="bg-black-075 p12 ba bc-black-3 grid--col7">.grid--col7</div>
+            </div>
+            <div class="d-grid grid__12 mb16">
+                <div class="bg-black-075 p12 ba bc-black-3 grid--col8">.grid--col8</div>
+            </div>
+            <div class="d-grid grid__12 mb16">
+                <div class="bg-black-075 p12 ba bc-black-3 grid--col9">.grid--col9</div>
+            </div>
+            <div class="d-grid grid__12 mb16">
+                <div class="bg-black-075 p12 ba bc-black-3 grid--col10">.grid--col10</div>
+            </div>
+            <div class="d-grid grid__12 mb16">
+                <div class="bg-black-075 p12 ba bc-black-3 grid--col11">.grid--col11</div>
+            </div>
+            <div class="d-grid grid__12">
+                <div class="bg-black-075 p12 ba bc-black-3 grid--col12">.grid--col12</div>
+            </div>
+        </div>
+    </div>
+
+    {% header "h3", "Row classes" %}
+    <div class="overflow-x-auto mb48">
+        <table class="wmn4 s-table s-table__bx-simple">
+            <thead>
+                <tr>
+                    <th class="s-table--cell3" scope="col">Class</th>
+                    <th class="s-table--cell3" scope="col">Output</th>
+                    <th scope="col">Definition</th>
+                    <th class="s-table--cell2 ta-center" scope="col"><a class="s-link s-link__inherit" href="{{ "/product/guidelines/conditional-classes#responsive" | relative_url }}">Responsive?</a></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in grid.rows %}
+                    <tr class="fs-caption">
+                        <th scope="row"><code class="stacks-code">.{{ item.class }}</code></th>
+                        <td><code class="stacks-code bg-white">{{ item.output }}</code></td>
+                        <td>{{ item.define }}</td>
+                        <td class="ta-center">
+                            {% if item.responsive %}
+                                {% icon "Checkmark", "fc-green-500" %}
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    {% header "h3", "Row example" %}
+    <div class="stacks-preview">
+{% highlight html %}
+<div class="d-grid grid__4">
+    <div class="grid--col2 grid--row4">…</div>
+    <div class="grid--col2">…</div>
+    <div class="grid--col2">…</div>
+    <div class="grid--col2">…</div>
+    <div class="grid--col2">…</div>
+</div>
+{% endhighlight %}
+        <div class="stacks-preview--example ff-mono ws-nowrap">
+            <div class="d-grid grid__4 g16">
+                <div class="bg-black-075 p12 ba bc-black-3 grid--col2 grid--row4">
+                    <div>.grid--col2</div>
+                    <div>.grid--row4</div>
+                </div>
+                <div class="bg-black-075 p12 ba bc-black-3 grid--col2">.grid--col2</div>
+                <div class="bg-black-075 p12 ba bc-black-3 grid--col2">.grid--col2</div>
+                <div class="bg-black-075 p12 ba bc-black-3 grid--col2">.grid--col2</div>
+                <div class="bg-black-075 p12 ba bc-black-3 grid--col2">.grid--col2</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="stacks-section">
+    {% header "h2", "Autoflow" %}
+    <p class="stacks-copy">If you have grid items that you don’t explicitly place on the grid, the auto-placement algorithm kicks in to automatically place the items.</p>
+
+    {% header "h3", "Autoflow classes" %}
+    <div class="overflow-x-auto mb48">
+        <table class="wmn4 s-table s-table__bx-simple">
+            <thead>
+                <tr>
+                    <th class="s-table--cell3" scope="col">Class</th>
+                    <th class="s-table--cell3" scope="col">Output</th>
+                    <th scope="col">Definition</th>
+                    <th class="s-table--cell2 ta-center" scope="col"><a class="s-link s-link__inherit" href="{{ "/product/guidelines/conditional-classes#responsive" | relative_url }}">Responsive?</a></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in grid.autoflow %}
+                    <tr class="fs-caption">
+                        <th scope="row"><code class="stacks-code">.{{ item.class }}</code></th>
+                        <td><code class="stacks-code bg-white">{{ item.output }}</code></td>
+                        <td>{{ item.define }}</td>
+                        <td class="ta-center">
+                            {% if item.responsive %}
+                                {% icon "Checkmark", "fc-green-500" %}
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    {% header "h3", "Autoflow examples" %}
+    <div class="stacks-preview">
+{% highlight html %}
+<div class="d-grid g-af-row">…</div>
+<div class="d-grid g-af-column">…</div>
+<div class="d-grid g-af-dense">…</div>
+{% endhighlight %}
+        <div class="stacks-preview--example ff-mono">
+            <div class="mb16">.g-af-row</div>
+            <div class="mb32 d-grid g16 g-af-row">
+                <div class="grid--item bg-black-075 p12 ba bc-black-3">1</div>
+                <div class="grid--item bg-black-075 p12 ba bc-black-3">2</div>
+                <div class="grid--item bg-black-075 p12 ba bc-black-3">3</div>
+            </div>
+
+            <div class="mb16">.g-af-column</div>
+            <div class="mb32 d-grid g16 g-af-column grid__12">
+                <div class="grid--item bg-black-075 p12 ba bc-black-3">1</div>
+                <div class="grid--item bg-black-075 p12 ba bc-black-3">2</div>
+                <div class="grid--item bg-black-075 p12 ba bc-black-3">3</div>
+                <div class="grid--item bg-black-075 p12 ba bc-black-3">4</div>
+                <div class="grid--item bg-black-075 p12 ba bc-black-3">5</div>
+                <div class="grid--item bg-black-075 p12 ba bc-black-3">6</div>
+                <div class="grid--item bg-black-075 p12 ba bc-black-3">7</div>
+                <div class="grid--item bg-black-075 p12 ba bc-black-3">8</div>
+                <div class="grid--item bg-black-075 p12 ba bc-black-3">9</div>
+                <div class="grid--item bg-black-075 p12 ba bc-black-3">10</div>
+                <div class="grid--item bg-black-075 p12 ba bc-black-3">11</div>
+                <div class="grid--item bg-black-075 p12 ba bc-black-3">12</div>
+            </div>
+
+            <div class="mb16">.g-af-dense</div>
+            <div class="d-grid g16 g-af-dense grid__6">
+                <div class="grid--item bg-black-075 p12 ba bc-black-3">1</div>
+                <div class="grid--item bg-black-075 p12 ba bc-black-3">2</div>
+                <div class="grid--col4 bg-black-075 p12 ba bc-black-3">3</div>
+                <div class="grid--item bg-black-075 p12 ba bc-black-3">4</div>
+                <div class="grid--item bg-black-075 p12 ba bc-black-3">5</div>
+                <div class="grid--col5 bg-black-075 p12 ba bc-black-3">6</div>
+                <div class="grid--item bg-black-075 p12 ba bc-black-3">7</div>
+                <div class="grid--item bg-black-075 p12 ba bc-black-3">8</div>
+                <div class="grid--item bg-black-075 p12 ba bc-black-3">9</div>
+                <div class="grid--item bg-black-075 p12 ba bc-black-3">10</div>
+                <div class="grid--item bg-black-075 p12 ba bc-black-3">11</div>
+                <div class="grid--col6 bg-black-075 p12 ba bc-black-3">12</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="stacks-section">
+    {% header "h2", "Start and end" %}
+    <p class="stacks-copy">If you’d like to offset a column or row and specify its start and end positioning classes, you can apply these atomic classes.</p>
+
+    {% header "h3", "Column start and end classes" %}
+    <div class="overflow-x-auto mb48">
+        <table class="wmn4 s-table s-table__bx-simple">
+            <thead>
+                <tr>
+                    <th class="s-table--cell3" scope="col">Class</th>
+                    <th class="s-table--cell3" scope="col">Output</th>
+                    <th scope="col">Definition</th>
+                    <th class="s-table--cell2 ta-center" scope="col"><a class="s-link s-link__inherit" href="{{ "/product/guidelines/conditional-classes#responsive" | relative_url }}">Responsive?</a></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in grid.column-start-end %}
+                    <tr class="fs-caption">
+                        <th scope="row"><code class="stacks-code">.{{ item.class }}</code></th>
+                        <td><code class="stacks-code bg-white">{{ item.output }}</code></td>
+                        <td>{{ item.define }}</td>
+                        <td class="ta-center">
+                            {% if item.responsive %}
+                                {% icon "Checkmark", "fc-green-500" %}
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    {% header "h3", "Column start and end examples" %}
+    <div class="stacks-preview">
+{% highlight html %}
+<div class="d-grid grid__4">
+    <div class="grid--col-start1 grid--col-end4">…</div>
+    <div class="grid--col-start2 grid--col-end4">…</div>
+    <div class="grid--col2 grid--col-end5">…</div>
+</div>
+{% endhighlight %}
+        <div class="stacks-preview--example ff-mono ws-nowrap">
+            <div class="d-grid grid__4 mb16">
+                <div class="bg-black-075 p12 ba bc-black-3 grid--col-start1 grid--col-end4">.grid--col-start1 .grid--col-end4</div>
+            </div>
+            <div class="d-grid grid__4 mb16">
+                <div class="bg-black-075 p12 ba bc-black-3 grid--col-start2 grid--col-end4">.grid--col-start2 .grid--col-end4</div>
+            </div>
+            <div class="d-grid grid__4">
+                <div class="bg-black-075 p12 ba bc-black-3 grid--col2 grid--col-end5">.grid--col2 .grid--col-end5</div>
+            </div>
+        </div>
+    </div>
+
+    {% header "h3", "Row start and end classes" %}
+    <div class="overflow-x-auto mb48">
+        <table class="wmn4 s-table s-table__bx-simple">
+            <thead>
+                <tr>
+                    <th class="s-table--cell3" scope="col">Class</th>
+                    <th class="s-table--cell3" scope="col">Output</th>
+                    <th scope="col">Definition</th>
+                    <th class="s-table--cell2 ta-center" scope="col"><a class="s-link s-link__inherit" href="{{ "/product/guidelines/conditional-classes#responsive" | relative_url }}">Responsive?</a></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in grid.row-start-end %}
+                    <tr class="fs-caption">
+                        <th scope="row"><code class="stacks-code">.{{ item.class }}</code></th>
+                        <td><code class="stacks-code bg-white">{{ item.output }}</code></td>
+                        <td>{{ item.define }}</td>
+                        <td class="ta-center">
+                            {% if item.responsive %}
+                                {% icon "Checkmark", "fc-green-500" %}
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    {% header "h3", "Row start and end examples" %}
+    <div class="stacks-preview">
+{% highlight html %}
+<div class="d-grid grid__4">
+    <div class="grid--col2 grid--row-start2 grid--row-end4">…</div>
+    <div class="grid--col2">…</div>
+    <div class="grid--col2">…</div>
+    <div class="grid--col2">…</div>
+    <div class="grid--col2">…</div>
+</div>
+{% endhighlight %}
+        <div class="stacks-preview--example ff-mono ws-nowrap">
+            <div class="d-grid grid__4 g16">
+                <div class="bg-black-075 p12 ba bc-black-3 grid--col2 grid--row-start2 grid--row-end4">
+                    <div>.grid--col2</div>
+                    <div>.grid--row-start2</div>
+                    <div>.grid--row-end4</div>
+                </div>
+                <div class="bg-black-075 p12 ba bc-black-3 grid--col2">.grid--col2</div>
+                <div class="bg-black-075 p12 ba bc-black-3 grid--col2">.grid--col2</div>
+                <div class="bg-black-075 p12 ba bc-black-3 grid--col2">.grid--col2</div>
+                <div class="bg-black-075 p12 ba bc-black-3 grid--col2">.grid--col2</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="stacks-section">
+    {% header "h2", "Alignment" %}
+    <p class="stacks-copy">On the grid container, you can apply <code class="stacks-code">align-items</code> to the y axis and <code class="stacks-code">justify-items</code> to the x axis. On individual items, you can apply <code class="stacks-code">align-self</code> on the y axis, and <code class="stacks-code">justify-self</code> on the x axis.</p>
+
+    {% header "h3", "Alignment classes" %}
+    <div class="overflow-x-auto mb48">
+        <table class="wmn4 s-table s-table__bx-simple">
+            <thead>
+                <tr>
+                    <th class="s-table--cell3" scope="col">Class</th>
+                    <th class="s-table--cell3" scope="col">Output</th>
+                    <th scope="col">Definition</th>
+                    <th class="s-table--cell2 ta-center" scope="col"><a class="s-link s-link__inherit" href="{{ "/product/guidelines/conditional-classes#responsive" | relative_url }}">Responsive?</a></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in grid.alignment %}
+                    <tr class="fs-caption">
+                        <th scope="row"><code class="stacks-code">.{{ item.class }}</code></th>
+                        <td><code class="stacks-code bg-white">{{ item.output }}</code></td>
+                        <td>{{ item.define }}</td>
+                        <td class="ta-center">
+                            {% if item.responsive %}
+                                {% icon "Checkmark", "fc-green-500" %}
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    {% header "h3", "Alignment examples" %}
+    <div class="stacks-preview">
+{% highlight html %}
+<div class="d-grid ji-center ai-center">
+    <div class="grid--item as-start">…</div>
+    <div class="grid--item">…</div>
+    <div class="grid--item js-end">…</div>
+    …
+</div>
+{% endhighlight %}
+        <div class="stacks-preview--example ff-mono">
+            <div class="mb16">Default</div>
+            <div class="d-grid g-af-column mb24">
+                <div class="grid--item bg-black-075 p12 ba bc-black-3">1</div>
+                <div class="grid--item bg-black-075 p12 ba bc-black-3">2</div>
+                <div class="grid--item bg-black-075 p12 ba bc-black-3">3</div>
+                <div class="grid--item bg-black-075 p12 ba bc-black-3">4</div>
+                <div class="grid--item bg-black-075 p12 ba bc-black-3">5</div>
+                <div class="grid--item bg-black-075 p12 ba bc-black-3">6</div>
+            </div>
+
+            <div class="mb16">.ji-center .ai-center</div>
+            <div class="d-grid g-af-column ji-center ai-center h96">
+                <div class="grid--item bg-black-075 p12 ba bc-black-3 h48 as-start">1 .as-start</div>
+                <div class="grid--item bg-black-075 p12 ba bc-black-3 h64">2</div>
+                <div class="grid--item bg-black-075 p12 ba bc-black-3 as-stretch">3 .as-stretch</div>
+                <div class="grid--item bg-black-075 p12 ba bc-black-3 h64 js-end">4 .js-end</div>
+                <div class="grid--item bg-black-075 p12 ba bc-black-3 h64">5</div>
+                <div class="grid--item bg-black-075 p12 ba bc-black-3 h64">6</div>
+            </div>
+        </div>
+    </div>
 </section>

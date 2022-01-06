@@ -1,14 +1,39 @@
 const hljs = require("highlight.js");
 const syntaxHighlight = require("eleventy-plugin-highlightjs");
 const pluginTOC = require("eleventy-plugin-nesting-toc");
+const markdownIt = require("markdown-it")("commonmark");
 const markdownShortcode = require("eleventy-plugin-markdown-shortcode");
 const { default: Icons, Spots } = require("@stackoverflow/stacks-icons");
 const { version } = require("../package.json");
 
+// customize markdown-it rendering to add our classes
+markdownIt.use(function(md) {
+  // mapping of tag: classes
+  const customClasses = {
+    "code": "stacks-code"
+  }
+
+  const addClasses = function(tokens) {
+    tokens.forEach(function(token) {
+      if (token.tag in customClasses) {
+        token.attrJoin("class", customClasses[token.tag]);
+      }
+
+      if (token.children) {
+        addClasses(token.children);
+      }
+    });
+  };
+
+  md.core.ruler.push("add-custom-classes", function(state) {
+    addClasses(state.tokens);
+  });
+});
+
 module.exports = function(eleventyConfig) {
+  eleventyConfig.setQuietMode(true); // Reduce the console output
   eleventyConfig.addLayoutAlias('home', 'layouts/home.html');
   eleventyConfig.addLayoutAlias('page', 'layouts/page.html');
-  eleventyConfig.addLayoutAlias('page-nomenu', 'layouts/page-nomenu.html');
 
   // Icon shortcode
   eleventyConfig.addLiquidShortcode("icon", function(name, classes, dimension) {
@@ -61,14 +86,49 @@ module.exports = function(eleventyConfig) {
     var linkIcon = Icons["Link"];
 
     var output = '';
-    output += '<div class="grid jc-space-between ai-end pe-none stacks-header">';
-    output +=   '<' + tag + ' class="grid--cell fl1 stacks-' + tag + '" id="'+ slug +'">';
+    output += '<div class="d-flex jc-space-between ai-end pe-none stacks-header">';
+    output +=   '<' + tag + ' class="flex--item fl-grow1 stacks-' + tag + '" id="'+ slug +'">';
     output +=     '<span class="pe-auto">' + text + '</span>';
     output +=   '</' + tag + '>';
-    output +=   '<a class="grid grid__center mbn6 s-btn s-btn__muted pe-auto" href="#'+ slug +'">';
+    output +=   '<a class="d-flex flex__center mbn6 s-btn s-btn__muted pe-auto" href="#'+ slug +'">';
     output +=     '<span class="v-visible-sr">Section titled ' + text + '</span>';
     output +=     linkIcon;
     output +=   '</a>';
+    output += '</div>';
+
+    return output;
+  });
+
+  // Tip shortcode
+  eleventyConfig.addPairedShortcode("tip", function(content, type, classes, interiorClasses) {
+    var spot = "";
+
+    if (type == "warning") {
+      spot = Spots["Alert"];
+      type = "s-notice__warning";
+    } else {
+      spot = Spots["AlertCircle"];
+      type = "s-notice__info";
+    }
+
+    if (classes == null) {
+      classes = "mb48";
+    }
+
+    if (interiorClasses == null) {
+      interiorClasses = "ai-start";
+    }
+
+    var output = '';
+    output += '<div class="s-notice bar-md s-anchors s-anchors__inherit s-anchors__underlined ' + type + ' ' + classes + '">';
+    output +=   '<div class="d-flex gs16 ' + interiorClasses + '">';
+    output +=     '<div class="flex--item">';
+    output +=       spot;
+    output +=     '</div>';
+    output +=     '<div class="flex--item fs-body2 lh-lg">';
+    output +=       content
+    output +=     '</div>';
+    output +=   '</div>';
     output += '</div>';
 
     return output;
@@ -79,6 +139,9 @@ module.exports = function(eleventyConfig) {
     return {version}.version;
   });
 
+  eleventyConfig.addLiquidFilter("markdown", function(content) {
+    return markdownIt.renderInline(content);
+  });
 
   // highlightjs line-numbering support
   // add `linenums` or `linenums:startNumber` to the start of your code for detection
@@ -141,7 +204,7 @@ module.exports = function(eleventyConfig) {
     highlight: function (str, lang) {
       if (lang && hljs.getLanguage(lang)) {
         return '<pre class="language-' + lang + ' s-code-block"><code class="language-' + lang + ' s-code-block">' +
-               hljs.highlight(lang, str).value +
+               hljs.highlight(str, {language: lang}).value +
                '</code></pre>';
       }
 

@@ -1,0 +1,167 @@
+---
+layout: page
+title: Topbar
+description: The topbar component is a navigation bar that is placed at the top of the page.
+---
+
+<section class="stacks-section">
+    {% header "h2", "Classes" %}
+    <div class="overflow-x-auto mb32">
+        <table class="wmn4 s-table s-table__bx-simple">
+            <thead>
+                <tr>
+                    <th class="s-table--cell4" scope="col">Class</th>
+                    <th class="s-table--cell3" scope="col">Applies to</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody class="fs-caption">
+                {% for item in topbar %}
+                    <tr>
+                        <th scope="row"><code class="stacks-code">{{ item.class }}</code></th>
+                        <td>{{ item.applies | default: "N/A" | markdown | newline_to_br }}</td>
+                        <td>{{ item.description | markdown }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</section>
+
+<section class="stacks-section">
+    {% header "h2", "Basic usage" %}
+    <p class="stacks-copy">At their most basic, our topbar component provides branding and context for the user. In this example, we have a scaled back version showing some global navigation, user settings & preferences, and notifications.</p>
+    <div class="stacks-preview">
+{% highlight html %}
+<header class="s-topbar">
+    <div class="s-topbar--container">
+        <a href="…" class="s-topbar--menu-btn"><span></span></a>
+        <a href="…" class="s-topbar--logo">@Svg.LogoGlyph.with("native")</a>
+
+        <ol class="s-topbar--content">
+            <li>
+                <a href="…" class="s-topbar--item s-user-card s-user-card__small">…</a>
+            </li>
+            <li>
+                <a href="…" class="s-topbar--item">
+                    @Svg.Inbox <span class="s-activity-indicator">…</span>
+                </a>
+            </li>
+            <li><a href="…" class="s-topbar--item">…</a></li>
+        </ol>
+    </div>
+</header>
+{% endhighlight %}
+        <div class="stacks-preview--example">
+            {% include partials/_topbar.html with hideNavigation: true, hideSearch: true, showMenu: true  %}
+        </div>
+    </div>
+</section>
+
+<section class="stacks-section">
+    {% header "h2", "Advanced usage" %}
+    <p class="stacks-copy">Depending on the user's authentication levels, we may need to include lots of options and menus. The topbar can include new marketing notifications, marketing navigation, a search bar, user details, moderator tools, review queues, achievements, inbox, help, and various bits of navigation.</p>
+
+    {% header "h3", "Theming" %}
+    <p class="stacks-copy">By default, the topbar automatically switches between light and dark modes as expected. In specific products like Teams, we choose to force a dark version to help the user differentiate between contexts. You can choose either light or dark by applying their respective classes to the main component.</p>
+    <div class="stacks-preview">
+{% highlight html %}
+<header class="s-topbar">…</header>
+<header class="s-topbar s-topbar__light">…</header>
+<header class="s-topbar s-topbar__dark">…</header>
+{% endhighlight %}
+        <div class="stacks-preview--example">
+            {% assign variations = "s-topbar__auto,s-topbar__dark,s-topbar__light" | split: "," %}
+            <div class="d-grid g24 grid__1">
+                {% for variation in variations %}
+                    <div class="grid--item">
+                        <h4 class="fs-body2 mb8">{{ variation | split: "__" | last | capitalize }}</h4>
+                        {% include partials/_topbar.html with additionalClass: variation, isMod: true %}
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    {% header "h3", "Search bar" %}
+    <p class="stacks-copy">The topbar can also include a search bar. Depending on the user’s products, it may be appropriate to add a select menu to choose the context for their search.</p>
+    <div class="stacks-preview">
+{% highlight html %}
+<header class="s-topbar">
+    <a href="…" class="s-topbar--logo">…</a>
+
+    <form id="search" class="s-topbar--searchbar" autocomplete="off">
+        <div class="s-select">
+            <select>…</select>
+        </div>
+        <div class="s-topbar--searchbar--input-group">
+            <input type="text" placeholder="Search…" value="" autocomplete="off" class="s-input s-input__search" />
+            @Svg.Search.With("s-input-icon s-input-icon__search")
+        </div>
+    </form>
+
+    <ol class="s-topbar--content">…</ol>
+</header>
+{% endhighlight %}
+        <div class="stacks-preview--example">
+            <div class="d-grid g24 grid__1">
+                <div class="grid--item">
+                    <h4 class="fs-body2 mb8">With select</h4>
+                    {% include partials/_topbar.html with showNavigation: false, hideUserCard: true %}
+                </div>
+                <div class="grid--item">
+                    <h4 class="fs-body2 mb8">Input only</h4>
+                    {% include partials/_topbar.html with showNavigation: false, hideUserCard: true, hideSelect: true %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% header "h3", "Navigation / Notices / CTAs" %}
+    <p class="stacks-copy">If a user is logged out, or is anonymous, we provide a container for various calls to actions. This is a less opinionated container that only provides layout without styling of the individual children.</p>
+    <div class="stacks-preview">
+{% highlight html %}
+<header class="s-topbar">
+    <a href="…" class="s-topbar--menu-btn">…</a>
+    <a href="…" class="s-topbar--logo">…</a>
+
+    <a href="#" class="s-topbar--notice is-unread">
+        New
+    </a>
+
+    <ol class="s-topbar--navigation">
+        <li><a href="…" class="s-topbar--item">About</a></li>
+        <li><a href="…" class="s-topbar--item is-selected">Products</a></li>
+        <li><a href="…" class="s-topbar--item">For Teams</a></li>
+    </ol>
+
+    <ol class="s-topbar--ctas">
+        <li>
+            <a href="…" class="s-topbar--item s-btn s-btn__filled">Log in</a>
+        </li>
+        <li>
+            <a href="…" class="s-topbar--item s-btn s-btn__primary">Sign up</a>
+        </li>
+    </ol>
+</header>
+{% endhighlight %}
+        <div class="stacks-preview--example">
+            {% include partials/_topbar.html with showNotices: true, showFullNavigation: true, hideSearch: true, showCtas: true  %}
+        </div>
+    </div>
+
+    {% header "h3", "Variable content width" %}
+    <p class="stacks-copy">By default, the topbar has a container that is full width, up to our widest point as defined by our global variables. If you need to override this, you can apply any combination of atomic base classes to the container.</p>
+    <div class="stacks-preview">
+{% highlight html %}
+<header class="s-topbar">
+    <div class="s-topbar--container wmx75">…</div>
+</header>
+{% endhighlight %}
+        <div class="stacks-preview--example">
+            {% include partials/_topbar.html with containerClass: "wmx75", hideUserCard: true  %}
+        </div>
+    </div>
+</section>
+
+<script src="{{ "/assets/js/feature.topbar.js" | relative_url }}" defer></script>

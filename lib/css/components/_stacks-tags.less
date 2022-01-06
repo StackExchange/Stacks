@@ -11,32 +11,52 @@
 //      Any tag we use will always modify the same items, so to save time,
 //      here's a mixin to state all that CSS.
 //  ---------------------------------------------------------------------------
-& { // create a single scope to load the config into, at least for now
-#stacks-internals #load-config();
 
-.tag-styles(@border: transparent, @background: transparent, @color: inherit) {
+.s-tag-styles(@border: transparent, @background: transparent, @color: inherit) {
     border-color: @border;
     background-color: @background;
     color: @color;
+
+    .highcontrast-mode({
+        border-color: currentColor;
+    });
 
     .s-tag--dismiss {
         color: inherit;
         background-color: transparent;
 
         &:hover {
-            color: @white; // We want this color to remain fixed regardless of dark mode
+            color: @background;
             background-color: @color;
+
+            .highcontrast-mode({
+                color: var(--white); // We do not want this color to remain fixed
+            });
         }
     }
 }
 
-.tag-hover-styles(@border-hover: transparent, @background-hover: transparent, @color-hover: inherit) {
+.s-tag-selected-styles(@border: transparent, @background: transparent, @color: inherit) {
+    border-color: @border;
+    background-color: @background;
+    color: @color;
+
+    .highcontrast-mode({
+        border-color: currentColor;
+    });
+}
+
+.s-tag-hover-styles(@border-hover: transparent, @background-hover: transparent, @color-hover: inherit) {
     &:hover,
     &:focus,
     &:active {
         border-color: @border-hover;
         background-color: @background-hover;
         color: @color-hover;
+
+        .highcontrast-mode({
+            border-color: currentColor;
+        });
     }
 }
 
@@ -46,6 +66,7 @@
 //      The same style is applied to all tags. Do not modify the core style.
 //  ---------------------------------------------------------------------------
 .s-tag {
+    #stacks-internals #load-config();
     display: inline-flex;
     align-content: center;
     justify-content: center;
@@ -61,7 +82,13 @@
     vertical-align: middle;
     white-space: nowrap;
 
-    .tag-styles(@tags-border, @tags-background, @tags-color);
+    .s-tag-styles(var(--theme-tag-border-color), var(--theme-tag-background-color), var(--theme-tag-color));
+
+    .highcontrast-mode({ text-decoration: none; });
+
+    &.is-selected {
+        .s-tag-selected-styles(transparent, var(--theme-secondary-200), var(--theme-secondary-900));
+    }
 
     //  -- SIZES
     &.s-tag__xs {
@@ -89,12 +116,13 @@
     }
 }
 
-a.s-tag {
-    .tag-hover-styles(@tags-border-hover, @tags-background-hover, @tags-color-hover);
+a.s-tag:not(.is-selected) {
+    #stacks-internals #load-config();
+    .s-tag-hover-styles(var(--theme-tag-hover-border-color), var(--theme-tag-hover-background-color), var(--theme-tag-hover-color));
 }
 
 //  $$  DISMISS ICON
-//      Style adjument to @Svg.ClearSm
+//      Style adjustment to @Svg.ClearSm
 //  ---------------------------------------------------------------------------
 .s-tag--dismiss {
     display: flex;
@@ -123,7 +151,8 @@ a.s-tag {
     max-width: 18px;
     border-radius: @br-sm - 1;
 
-    .svg-icon, img {
+    .svg-icon,
+    img {
         width: 100%;
         height: 100%;
     }
@@ -137,27 +166,44 @@ a.s-tag {
 //  $$  Required Tag
 //  ---------------------------------------------------------------------------
 .s-tag__required {
-    .tag-styles(@tags-required-border, @tags-required-background, @tags-required-color);
+    #stacks-internals #load-config();
+    .s-tag-styles(@tags-required-border, @tags-required-background, @tags-required-color);
+
+    &.is-selected {
+        .s-tag-selected-styles(@tags-required-selected-border, @tags-required-selected-background, @tags-required-selected-color);
+    }
 }
-a.s-tag__required {
-    .tag-hover-styles(@tags-required-border-hover, @tags-required-background-hover, @tags-required-color-hover);
+a.s-tag__required:not(.is-selected) {
+    #stacks-internals #load-config();
+    .s-tag-hover-styles(@tags-required-hover-border, @tags-required-hover-background, @tags-required-hover-color);
 }
 
 //  $$  Moderator Tag
 //  ---------------------------------------------------------------------------
 .s-tag__moderator {
-    .tag-styles(@tags-moderator-border, @tags-moderator-background, @tags-moderator-color);
+    #stacks-internals #load-config();
+    .s-tag-styles(@tags-moderator-border, @tags-moderator-background, @tags-moderator-color);
+
+    &.is-selected {
+        .s-tag-selected-styles(@tags-moderator-selected-border, @tags-moderator-selected-background, @tags-moderator-selected-color);
+    }
 }
-a.s-tag__moderator {
-    .tag-hover-styles(@tags-moderator-border-hover, @tags-moderator-background-hover, @tags-moderator-color-hover);
+a.s-tag__moderator:not(.is-selected) {
+    #stacks-internals #load-config();
+    .s-tag-hover-styles(@tags-moderator-hover-border, @tags-moderator-hover-background, @tags-moderator-hover-color);
 }
 
 //  $$  Muted Tag
 //  ---------------------------------------------------------------------------
 .s-tag__muted {
-    .tag-styles(@tags-muted-border, @tags-muted-background, @tags-muted-color);
+    #stacks-internals #load-config();
+    .s-tag-styles(@tags-muted-border, @tags-muted-background, @tags-muted-color);
+
+    &.is-selected {
+        .s-tag-selected-styles(@tags-muted-selected-border, @tags-muted-selected-background, @tags-muted-selected-color);
+    }
 }
-a.s-tag__muted {
-    .tag-hover-styles(@tags-muted-border-hover, @tags-muted-background-hover, @tags-muted-color-hover);
+a.s-tag__muted:not(.is-selected) {
+    #stacks-internals #load-config();
+    .s-tag-hover-styles(@tags-muted-hover-border, @tags-muted-hover-background, @tags-muted-hover-color);
 }
-} // Close mixin config scope

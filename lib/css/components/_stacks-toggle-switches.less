@@ -14,6 +14,7 @@
 
     input[type="checkbox"] {
         // Hide the checkbox underneath the .s-toggle-switch--indicator.
+        margin: 0; // guard against production adding 5px of margin to these
         opacity: 0;
         position: absolute;
         left: 0;
@@ -48,6 +49,10 @@
                 border-radius: 50%;
                 background: @white;
                 transition: left 0.1s ease;
+
+                .highcontrast-mode({
+                    background: var(--white);
+                });
             }
 
             &:before {
@@ -100,8 +105,8 @@
             cursor: pointer;
 
             -webkit-touch-callout: none;
-              -webkit-user-select: none;
-                      user-select: none;
+            -webkit-user-select: none;
+            user-select: none;
         }
 
         //  If the input is selected, style its label accordingly.
@@ -111,12 +116,20 @@
                 &.s-toggle-switch--label-off {
                     background-color: var(--black-300);
                     color: @white;
+
+                    .highcontrast-mode({
+                        color: var(--white);
+                    });
                 }
 
                 // Color activated options green
                 &:not(.s-toggle-switch--label-off) {
                     background-color: var(--green-400);
                     color: @white;
+
+                    .highcontrast-mode({
+                        color: var(--white);
+                    });
                 }
             }
         }

@@ -16,8 +16,8 @@
 @s-sidebarwidget-content-inner-spacing: @su12; // the spacing between two adjacent simple items
 @s-sidebarwidget-content-outer-spacing: @su16; // the spacing at the start/end of a group of simple items, as well as between a complex item and its separator line
 
-@s-sidebarwidget-outer-border-color: var(--black-100);
-@s-sidebarwidget-content-separator-color: var(--black-075);
+@s-sidebarwidget-outer-border-color: var(--bc-medium);
+@s-sidebarwidget-content-separator-color: var(--bc-light);
 @s-sidebarwidget-header-background-color: var(--black-025);
 
 .s-sidebarwidget {
@@ -28,8 +28,9 @@
     font-size: @fs-body1;
     background-color: var(--white);
 
-    &:not(.s-anchors) a:not(.button):not(.s-btn):not(.post-tag):not(.s-sidebarwidget--action):not(.s-user-card--link ) {
-        &, &:visited {
+    &:not(.s-anchors) a:not(.button):not(.s-btn):not(.post-tag):not(.s-sidebarwidget--action):not(.s-user-card--link) {
+        &,
+        &:visited {
             color: var(--black-500);
         }
     }
@@ -93,6 +94,11 @@
     font-size: @fs-body2;
     font-weight: normal;
 
+    &:first-child {
+        border-top-left-radius: @br-sm;
+        border-top-right-radius: @br-sm;
+    }
+
     &.s-sidebarwidget__small-bold-text {
         font-size: @fs-caption;
         font-weight: bold;
@@ -110,7 +116,7 @@
             margin-top: ~"calc(1.3em / 2 - 5px)"; // 1.3 is our standard line height
             margin-right: @su12;
             border: 5px solid transparent;
-            border-left-color: var(--black-200);
+            border-left-color: var(--bc-darker);
             border-right-width: 0;
             transition: -webkit-transform 0.3s cubic-bezier(0.4, 0.4, 0.6, 1);
             transition: transform 0.3s cubic-bezier(0.4, 0.4, 0.6, 1);
@@ -118,7 +124,7 @@
         }
         &[aria-expanded='true']:before {
             -webkit-transform: rotate(90deg);
-                    transform: rotate(90deg);
+            transform: rotate(90deg);
         }
     }
 }
@@ -170,8 +176,10 @@ table.s-sidebarwidget--content.s-sidebarwidget__items {
 .s-sidebarwidget--item {
     margin: @s-sidebarwidget-content-inner-spacing 0;
 
-    &, & > :first-child {
-        &[aria-current="true"], &[aria-current="page"] {
+    &,
+    & > :first-child {
+        &[aria-current="true"],
+        &[aria-current="page"] {
             position: relative;
             color: var(--black);
             font-weight: bold;
@@ -188,7 +196,8 @@ table.s-sidebarwidget--content.s-sidebarwidget__items {
                 // border-left-color is set in _stacks-widget-dynamic.less
             }
 
-            a, a:visited { // TODO: this isn't the best way to go about this. There should be a "is current" highlight without font modification for more complex cases
+            a,
+            a:visited { // TODO: this isn't the best way to go about this. There should be a "is current" highlight without font modification for more complex cases
                 color: inherit;
             }
         }
@@ -202,18 +211,20 @@ table.s-sidebarwidget--content.s-sidebarwidget__items {
     li {
         margin-top: 12px;
         padding-left: 16px;
-        background-position: 0 ~"calc((1.2em - 10px)/2)";
+        background-position: 0 calc((1.2em - 10px) / 2);
         background-repeat: no-repeat;
         background-size: auto 10px;
 
         #stacks-internals #bullet-arrow(var(--black-100));
 
-        &[aria-current="true"], &[aria-current="page"] {
+        &[aria-current="true"],
+        &[aria-current="page"] {
             // this is given a bullet-arrow in the primary color in _stacks-widget-dynamic.less
             color: var(--black);
             font-weight: bold;
 
-            a, a:visited { // TODO: see above
+            a,
+            a:visited { // TODO: see above
                 color: inherit;
             }
         }
@@ -232,17 +243,30 @@ table.s-sidebarwidget--content.s-sidebarwidget__items {
         border-color: var(~"--@{name}-200");
         background-color: var(~"--@{name}-050");
 
+        .highcontrast-mode({
+            border-color: var(~"--@{name}-700");
+        });
+
         .s-sidebarwidget--header {
             background-color: var(~"--@{name}-100");
             color: var(--fc-medium);
         }
 
-        .s-sidebarwidget--header, .s-sidebarwidget--content {
+        .s-sidebarwidget--header,
+        .s-sidebarwidget--content {
             border-color: var(~"--@{name}-200");
+
+            .highcontrast-mode({
+                border-color: var(~"--@{name}-700");
+            });
         }
 
         &:after {
             border-color: var(~"--@{name}-200");
+
+            .highcontrast-mode({
+                border-color: var(~"--@{name}-700");
+            });
         }
     }
 }

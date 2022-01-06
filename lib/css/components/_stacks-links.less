@@ -16,23 +16,24 @@
 
 a,
 .s-link {
-    #stacks-internals #load-config();
     text-decoration: none;
-    color: @link-color;
+    color: var(--theme-link-color);
     cursor: pointer;
     user-select: auto;
 
+    .highcontrast-mode({
+        text-decoration: underline;
+    });
+
     &.s-link__visited:visited {
-        color: @link-color-visited;
-        text-decoration: none;
+        color: var(--theme-link-color-visited);
     }
 
     &:hover,
     &.s-link__visited:hover,
     &:active,
     &.s-link__visited:active {
-        color: @link-color-hover;
-        text-decoration: none;
+        color: var(--theme-link-color-hover);
     }
 
     &.s-link__grayscale {
@@ -93,6 +94,25 @@ a,
     &.s-link__underlined {
         text-decoration: underline !important;
     }
+
+    &.s-link__dropdown {
+        position: relative;
+        padding-right: 0.9em;
+
+        &:after {
+            content: "";
+            position: absolute;
+            z-index: @zi-active;
+            top: calc(50% - 2px);
+            right: 0;
+            border-style: solid;
+            border-width: @su4;
+            border-top-width: @su4;
+            border-bottom-width: 0;
+            border-color: currentColor transparent;
+            pointer-events: none;
+        }
+    }
 }
 
 button.s-link {
@@ -103,6 +123,7 @@ button.s-link {
     padding: 0;
     line-height: inherit;
     user-select: auto;
+    font-family: inherit;
 
     &:focus {
         outline: none;
@@ -139,8 +160,7 @@ button.s-link {
             text-decoration: underline;
         }
     }
-    #stacks-internals #load-config();
-    .colorize-all(default, @link-color, @link-color-hover);
+    .colorize-all(default, var(--theme-link-color), var(--theme-link-color-hover));
     .colorize-all(grayscale, var(--black-700), var(--black-600));
     .colorize-all(inherit, inherit, inherit);
     .colorize-all(muted, var(--black-500), var(--black-400));
@@ -149,26 +169,50 @@ button.s-link {
 
 .s-block-link {
     display: block;
+    width: 100%;
     color: var(--black-600);
-    padding: @su6 @su8;
+    padding: @su6 @su12;
+
+    // Normalize for when applying to a button
+    cursor: pointer;
+    border: none;
+    background: transparent;
+    border-radius: 0;
+    text-align: left;
+    line-height: inherit;
+    font-family: inherit;
 
     &:hover,
     &:active {
         color: var(--black-800);
     }
 
+    @focus-styles();
+
     &.is-selected {
         color: var(--black-800);
         font-weight: bold;
         background-color: var(--black-050);
 
-        #stacks-internals #load-config();
+        .dark-mode({
+            background-color: var(--black-025);
+        });
+
         &.s-block-link__right {
-            border-right: 3px solid @block-link-highlight;
+            box-shadow: inset -3px 0 0 var(--theme-primary-color);
         }
 
         &.s-block-link__left {
-            border-left: 3px solid @block-link-highlight;
+            box-shadow: inset 3px 0 0 var(--theme-primary-color);
+        }
+    }
+
+    &.s-block-link__danger {
+        color: var(--red-500);
+
+        &:hover,
+        &:active {
+            color: var(--red-700);
         }
     }
 }
