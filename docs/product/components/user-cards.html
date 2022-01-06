@@ -343,20 +343,22 @@ description: User cards are a combination of a user and metadata about the user 
 
 <section class="stacks-section">
     {% header "h3", "Minimal" %}
+    <p class="stacks-copy">
+        Minimal user cards reduce the amount of information down to who asked the question, how much rep they have, and when the action was taken. To read as plainly as possible, e.g. “Paul Wright modified 3 minutes ago,” we change the positioning of the time, and remove any reputation bling, leaving just the aggregated reputation.
+    </p>
     <div class="stacks-preview">
 {% highlight html %}
 <div class="s-user-card s-user-card__minimal">
-    <time class="s-user-card--time">…</time>
     <div class="s-user-card--info">
         <a href="…" class="s-user-card--link">…</a>
         <ul class="s-user-card--awards">
             <li class="s-user-card--rep">…</li>
         </ul>
     </div>
+    <time class="s-user-card--time">…</time>
 </div>
 
 <div class="s-user-card s-user-card__minimal">
-    <time class="s-user-card--time">…</time>
     <a href="…" class="s-avatar s-user-card--avatar">
         <img class="s-avatar--image" src="…" />
     </a>
@@ -366,23 +368,11 @@ description: User cards are a combination of a user and metadata about the user 
             <li class="s-user-card--rep">…</li>
         </ul>
     </div>
+    <time class="s-user-card--time">…</time>
 </div>
 {% endhighlight %}
         <div class="stacks-preview--example">
-            <div class="s-user-card s-user-card__minimal">
-                <time class="s-user-card--time">3 minutes ago</time>
-                <div class="s-user-card--info">
-                    <a href="#" class="s-user-card--link">
-                        Paul Wright
-                    </a>
-                    <ul class="s-user-card--awards">
-                        <li class="s-user-card--rep">2,500</li>
-                    </ul>
-                </div>
-            </div>
-
             <div class="s-user-card s-user-card__minimal mt16">
-                <time class="s-user-card--time">3 minutes ago</time>
                 <a href="#" class="s-avatar s-user-card--avatar">
                     <img class="s-avatar--image" src="{{ "/assets/img/placeholder.svg" | relative_url }}" />
                 </a>
@@ -394,6 +384,19 @@ description: User cards are a combination of a user and metadata about the user 
                         <li class="s-user-card--rep">2,500</li>
                     </ul>
                 </div>
+                <time class="s-user-card--time">asked 3 minutes ago</time>
+            </div>
+
+            <div class="s-user-card s-user-card__minimal mt16">
+                <div class="s-user-card--info">
+                    <a href="#" class="s-user-card--link">
+                        Paul Wright
+                    </a>
+                    <ul class="s-user-card--awards">
+                        <li class="s-user-card--rep">2,500</li>
+                    </ul>
+                </div>
+                <time class="s-user-card--time">asked 3 minutes ago</time>
             </div>
         </div>
     </div>
