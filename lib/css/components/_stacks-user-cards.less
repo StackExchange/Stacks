@@ -39,10 +39,6 @@
     &.s-user-card__full {
         align-items: start;
 
-        .s-user-card--info {
-            gap: @su4;
-        }
-
         .s-user-card--link {
             font-size: @fs-body2;
         }
@@ -63,7 +59,7 @@
         padding: 0;
 
         .s-user-card--info {
-            display: flex;
+            flex-direction: row;
             align-items: center;
         }
     }
@@ -89,9 +85,8 @@
         }
 
         .s-user-card--info {
-            display: flex;
+            flex-direction: row;
             align-items: center;
-            gap: @su4;
         }
     }
 
@@ -121,8 +116,9 @@
 //      vertical grid layout
 //  ---------------------------------------------------------------------------
 .s-user-card--info {
-    display: grid;
-    gap: @su2;
+    display: flex;
+    flex-direction: column;
+    gap: @su4;
 }
 
 //  $   USER LINK
@@ -167,7 +163,6 @@
 //      Apply layout to a bunch of child tags
 //  ---------------------------------------------------------------------------
 .s-user-card--tags {
-    padding-top: (@su2 / 2); // Optically align these a bit, but we can't use margin because of `gs[x]` being applied
     min-width: 0; // Allow things to wrap
     align-items: center;
     flex-wrap: wrap;
