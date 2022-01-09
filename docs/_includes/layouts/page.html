@@ -26,7 +26,7 @@
                 {% if js %}
                     <div class="stacks-badged d-flex ai-center sm:jc-space-between">
                         <h1 class="stacks-h1 flex--item mb0">{{ title }}</h1>
-                        <a href="{{ "/product/guidelines/javascript" | relative_url }}" class="d-flex p8 fc-white ml6">
+                        <a href="{{ "/product/guidelines/javascript" | url }}" class="d-flex p8 fc-white ml6">
                             <div class="bg-green-700 blr-sm p4">{% icon "Checkmark" %}</div>
                             <div class="bg-green-500 brr-sm px8 py4">javascript</div>
                         </a>
@@ -43,16 +43,16 @@
 
                 <div class="d-flex my48">
                     <div class="flex--item mr8">
-                        <form class="js-feedback-form" name="quick-positive-feedback-{{ title | downcase | replace: ' ', '-' }}" method="POST" data-netlify="true" action="{{ "/success" | relative_url }}">
+                        <form class="js-feedback-form" name="quick-positive-feedback-{{ title | downcase | replace: ' ', '-' }}" method="POST" data-netlify="true" action="{{ "/success" | url }}">
                             <button class="d-block s-btn s-btn__muted p4" type="submit" data-controller="s-tooltip" title="Quickly let the team know that this page is workin’" data-s-tooltip-placement="right">{% icon "ArrowUpLg" %}</button>
                         </form>
 
-                        <form class="js-feedback-form" name="quick-negative-feedback-{{ title | downcase | replace: ' ', '-' }}" method="POST" data-netlify="true" action="{{ "/success" | relative_url }}">
+                        <form class="js-feedback-form" name="quick-negative-feedback-{{ title | downcase | replace: ' ', '-' }}" method="POST" data-netlify="true" action="{{ "/success" | url }}">
                             <button class="d-block s-btn s-btn__muted p4" type="submit" data-controller="s-tooltip" title="Quickly let us know that this page needs improvement" data-s-tooltip-placement="right">{% icon "ArrowDownLg" %}</button>
                         </form>
                     </div>
 
-                    <form class="flex--item fl-grow1 mtn4 pt24 js-feedback-form" name="feedback-{{ title | downcase | replace: ' ', '-' }}" method="POST" data-netlify="true" action="{{ "/success" | relative_url }}">
+                    <form class="flex--item fl-grow1 mtn4 pt24 js-feedback-form" name="feedback-{{ title | downcase | replace: ' ', '-' }}" method="POST" data-netlify="true" action="{{ "/success" | url }}">
                         <label class="d-inline-block c-pointer" for="feedback-form">
                             <div class="fs-title fw-bold mb0">How’d we do?</div>
                             <div class="stacks-copy mb12">Anonymously upvote, downvote, or send additional feedback below.</div>
