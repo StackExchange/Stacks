@@ -13,7 +13,8 @@
 .s-user-card {
     display: grid;
     grid-template-columns: auto 1fr;
-    grid-column-gap: @su8;
+    column-gap: @su8;
+    row-gap: @su4;
     align-items: center;
     line-height: 1;
     padding: @su8;
@@ -38,10 +39,6 @@
     &.s-user-card__full {
         align-items: start;
 
-        .s-user-card--info {
-            grid-gap: @su4;
-        }
-
         .s-user-card--link {
             font-size: @fs-body2;
         }
@@ -58,26 +55,12 @@
     &.s-user-card__small {
         display: flex;
         align-items: center;
-        grid-column-gap: unset; // Firefox flex layouts respect column gaps, so we need to reset this
+        gap: @su4;
         padding: 0;
 
-        .s-user-card--time {
-            margin-right: @su6;
-            margin-bottom: 0;
-        }
-
-        .s-user-card--link {
-            margin-right: @su6;
-        }
-
-        .s-user-card--avatar {
-            margin-right: @su6;
-        }
-
         .s-user-card--info {
-            display: flex;
+            flex-direction: row;
             align-items: center;
-            grid-column-gap: unset; // Firefox flex layouts respect column gaps, so we need to reset this
         }
     }
 
@@ -86,41 +69,35 @@
     &.s-user-card__minimal {
         display: flex;
         align-items: center;
-        grid-column-gap: unset; // Firefox flex layouts respect column gaps, so we need to reset this
+        gap: @su4;
         padding: 0;
 
         .s-user-card--time {
-            margin-right: @su4;
-            margin-bottom: 0;
             white-space: nowrap;
         }
 
         .s-user-card--link {
-            margin-right: @su4;
             white-space: nowrap;
         }
 
-        .s-user-card--avatar {
-            margin-right: @su4;
-        }
-
         .s-user-card--rep {
-            padding: 0;
             color: var(--black-600);
         }
 
         .s-user-card--info {
-            display: flex;
+            flex-direction: row;
             align-items: center;
-            grid-column-gap: unset; // Firefox flex layouts respect column gaps, so we need to reset this
         }
     }
 
     .s-user-card--type {
         grid-column: ~"1 / 3";
-        padding-top: @su4;
         font-size: @fs-caption;
         color: var(--theme-primary-400);
+
+        a {
+            color: inherit;
+        }
     }
 }
 
@@ -132,7 +109,6 @@
     grid-row: ~"1 / 2";
     color: var(--black-500);
     font-size: @fs-caption;
-    margin-bottom: @su4;
 }
 
 //  $   USER INFO CONTAINER
@@ -140,8 +116,9 @@
 //      vertical grid layout
 //  ---------------------------------------------------------------------------
 .s-user-card--info {
-    display: grid;
-    grid-gap: @su2;
+    display: flex;
+    flex-direction: column;
+    gap: @su4;
 }
 
 //  $   USER LINK
@@ -162,9 +139,9 @@
     .list-reset;
     display: flex;
     align-items: center;
+    gap: @su6;
 
     li {
-        margin-right: @su6;
         font-size: @fs-caption;
     }
 }
@@ -186,7 +163,6 @@
 //      Apply layout to a bunch of child tags
 //  ---------------------------------------------------------------------------
 .s-user-card--tags {
-    padding-top: (@su2 / 2); // Optically align these a bit, but we can't use margin because of `gs[x]` being applied
     min-width: 0; // Allow things to wrap
     align-items: center;
     flex-wrap: wrap;
