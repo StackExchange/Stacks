@@ -961,12 +961,15 @@ Is anyone aware of a fully functional implementation of this API (to generate th
 </div>
 
 <div class="s-post-summary s-post-summary__deleted">
-    …
-    <div class="is-deleted">
-        @Svg.TrashSm
+    <div class="s-post-summary--stats">
+        <div class="s-post-summary--stats-item is-deleted">
+            @Svg.TrashSm
+            Deleted
+        </div>
+        …
     </div>
     …
-</div>
+ </div>
 {% endhighlight %}
         <div class="stacks-preview--example p0">
             <div class="s-post-summary s-post-summary__watched">
@@ -1060,7 +1063,11 @@ Is anyone aware of a fully functional implementation of this API (to generate th
 
             <div class="s-post-summary s-post-summary__deleted">
                 <div class="s-post-summary--stats">
-                    <div class="s-post-summary--stats-item s-post-summary--stats-item__emphasized">
+                    <div class="s-post-summary--stats-item is-deleted">
+                        {% icon "TrashSm" %}
+                        Deleted
+                    </div>
+                    <div class="s-post-summary--stats-item">
                         0 votes
                     </div>
                     <div class="s-post-summary--stats-item">
@@ -1079,9 +1086,6 @@ Is anyone aware of a fully functional implementation of this API (to generate th
                     </p>
                     <div class="s-post-summary--meta">
                         <div class="s-post-summary--meta-tags">
-                            <div class="s-tag bg-red-600 fc-white d-flex flex__center g2" title="This post has been deleted">
-                                {% icon "TrashSm" %}
-                            </div>
                             <a class="s-tag" href="#">spring</a>
                             <a class="s-tag" href="#">spring-boot</a>
                             <a class="s-tag" href="#">authentication</a>

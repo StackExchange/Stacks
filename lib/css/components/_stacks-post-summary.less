@@ -77,6 +77,7 @@
 
         &.has-answers,
         &.has-bounty,
+        &.is-deleted,
         &.is-published,
         &.is-draft,
         &.is-review,
@@ -286,17 +287,13 @@
     background-color: var(--red-050);
 
     .is-deleted {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: @su2;
-        border-radius: var(--bs-sm);
-        background-color: var(--red-600);
-        color: var(--white);
+        color: @white;
+        background-color: var(--red-500);
     }
 }
 
-.s-post-summary__ignored {
+.s-post-summary__ignored,
+.s-post-summary__deleted {
     .s-post-summary--content {
         opacity: 0.7;
     }
