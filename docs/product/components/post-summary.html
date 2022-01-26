@@ -952,34 +952,27 @@ Is anyone aware of a fully functional implementation of this API (to generate th
     <div class="stacks-preview">
 {% highlight html %}
 <div class="s-post-summary s-post-summary__watched">
-    <div class="s-post-summary--stats">
-        <div class="s-post-summary--stats-item is-watched">
-            @Svg.EyeSm
-            Watched
-        </div>
+    …
+    <a class="s-tag s-tag__watched">
+        @Svg.EyeSm
         …
-    </div>
+    </a>
     …
 </div>
 
 <div class="s-post-summary s-post-summary__ignored">
-    <div class="s-post-summary--stats">
-        <div class="s-post-summary--stats-item is-ignored">
-            @Svg.EyeOffSm
-            Ignored
-        </div>
+    …
+    <a class="s-tag s-tag__ignored">
+        @Svg.EyeOffSm
         …
-    </div>
+    </a>
     …
 </div>
 
 <div class="s-post-summary s-post-summary__deleted">
-    <div class="s-post-summary--stats">
-        <div class="s-post-summary--stats-item is-deleted">
-            @Svg.TrashSm
-            Deleted
-        </div>
-        …
+    …
+    <div class="is-deleted">
+        @Svg.TrashSm
     </div>
     …
 </div>
@@ -987,10 +980,6 @@ Is anyone aware of a fully functional implementation of this API (to generate th
         <div class="stacks-preview--example p0">
             <div class="s-post-summary s-post-summary__watched">
                 <div class="s-post-summary--stats">
-                    <div class="s-post-summary--stats-item is-watched">
-                        {% icon "EyeSm" %}
-                        Watched
-                    </div>
                     <div class="s-post-summary--stats-item">
                         10 votes
                     </div>
@@ -1011,6 +1000,7 @@ Is anyone aware of a fully functional implementation of this API (to generate th
                     </p>
                     <div class="s-post-summary--meta">
                         <div class="s-post-summary--meta-tags">
+                            <a class="s-tag s-tag__watched" href="#">{% icon "EyeSm" %} asp</a>
                             <a class="s-tag" href="#">asp.net</a>
                             <a class="s-tag" href="#">asp.net-mvc</a>
                         </div>
@@ -1034,10 +1024,6 @@ Is anyone aware of a fully functional implementation of this API (to generate th
 
             <div class="s-post-summary s-post-summary__ignored">
                 <div class="s-post-summary--stats">
-                    <div class="s-post-summary--stats-item is-ignored">
-                        {% icon "EyeOffSm" %}
-                        Ignored
-                    </div>
                     <div class="s-post-summary--stats-item">
                         3 votes
                     </div>
@@ -1057,8 +1043,8 @@ Is anyone aware of a fully functional implementation of this API (to generate th
                     </p>
                     <div class="s-post-summary--meta">
                         <div class="s-post-summary--meta-tags">
+                            <a class="s-tag s-tag__ignored" href="#">{% icon "EyeOffSm" %} regex</a>
                             <a class="s-tag" href="#">php</a>
-                            <a class="s-tag" href="#">regex</a>
                             <a class="s-tag" href="#">redirect</a>
                             <a class="s-tag" href="#">parameters</a>
                             <a class="s-tag" href="#">wildcard</a>
@@ -1083,10 +1069,6 @@ Is anyone aware of a fully functional implementation of this API (to generate th
 
             <div class="s-post-summary s-post-summary__deleted">
                 <div class="s-post-summary--stats">
-                    <div class="s-post-summary--stats-item is-deleted">
-                        {% icon "TrashSm" %}
-                        Deleted
-                    </div>
                     <div class="s-post-summary--stats-item">
                         0 votes
                     </div>
@@ -1106,6 +1088,9 @@ Is anyone aware of a fully functional implementation of this API (to generate th
                     </p>
                     <div class="s-post-summary--meta">
                         <div class="s-post-summary--meta-tags">
+                            <div class="s-tag bg-red-600 fc-white d-flex flex__center g2" title="This post has been deleted">
+                                {% icon "TrashSm" %}
+                            </div>
                             <a class="s-tag" href="#">spring</a>
                             <a class="s-tag" href="#">spring-boot</a>
                             <a class="s-tag" href="#">authentication</a>
