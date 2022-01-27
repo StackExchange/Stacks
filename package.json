@@ -10,12 +10,29 @@
     "dist",
     "lib"
   ],
+  "main": "dist/cjs/index.js",
+  "module": "dist/mjs/index.js",
+  "types": "dist/types/index.d.ts",
+  "less": "lib/css/stacks.less",
+  "style": "dist/css/stacks.css",
+  "exports": {
+    ".": {
+      "import": "./dist/mjs/index.js",
+      "require": "./dist/cjs/index.js"
+    }
+  },
   "unpkg": "dist/css/stacks.min.css",
   "scripts": {
     "start": "grunt",
-    "build": "grunt build",
+    "build": "concurrently \"npm:build:*\"",
+    "build:grunt": "grunt build",
+    "build:ts-cjs": "tsc -p tsconfig-cjs.json",
+    "build:ts-mjs": "tsc -p tsconfig.json",
+    "build:pkg-cjs": "echo {\"type\": \"commonjs\"} > dist/cjs/package.json",
+    "build:pkg-mjs": "echo {\"type\": \"module\"} > dist/mjs/package.json",
     "test": "backstop test",
-    "approve": "backstop approve"
+    "approve": "backstop approve",
+    "prepare": "npm run build:ts"
   },
   "license": "MIT",
   "dependencies": {
@@ -28,6 +45,7 @@
     "@stackoverflow/stacks-editor": "^0.4.1",
     "@stackoverflow/stacks-icons": "^2.26.0",
     "backstopjs": "^6.0.4",
+    "concurrently": "^7.0.0",
     "docsearch.js": "^2.6.3",
     "eleventy-plugin-highlightjs": "^0.3.0",
     "eleventy-plugin-markdown-shortcode": "^1.1.0",

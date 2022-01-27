@@ -64,13 +64,10 @@ module.exports = function(grunt) {
         // Minify and concatenate JS
         ts: {
             stacks_js: {
-                tsconfig: "lib/tsconfig.json"
+                tsconfig: "tsconfig.json"
             },
             docs_js: {
                 tsconfig: "docs/assets/js/tsconfig.json"
-            },
-            options: {
-                declaration: true
             }
         },
         uglify: {
@@ -89,9 +86,8 @@ module.exports = function(grunt) {
                     'dist/js/stacks.js': [
                         'node_modules/stimulus/dist/stimulus.umd.js',
                         'node_modules/@popperjs/core/dist/umd/popper.js',
-                        'build/lib/ts/stacks.js',
-                        'build/lib/ts/controllers/**/*.js',
-                        'build/lib/ts/finalize.js'
+                        'dist/cjs/stacks.js',
+                        'dist/cjs/controllers/**/*.js',
                     ]
                 }
             }
@@ -220,12 +216,6 @@ module.exports = function(grunt) {
                 rename: function(dest, src) {
                     return dest + src.replace('styles.css','stacks-editor.css');
                 }
-            },
-            declarations: {
-                expand: true,
-                cwd: 'build/lib/ts',
-                src: 'stacks.d.ts',
-                dest: 'dist/js/'
             }
         },
     });
@@ -248,7 +238,7 @@ module.exports = function(grunt) {
 
     grunt.registerTask('build',
         'Compile all JS and LESS files and rebuild the documentation site.',
-        ['concurrent:compile', 'shell:eleventyBuild', 'copy:declarations']);
+        ['concurrent:compile', 'shell:eleventyBuild']);
 
     grunt.registerTask('deploy-docs',
         'Prep and build the documentation site so it is ready for deploy.',
