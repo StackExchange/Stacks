@@ -34,6 +34,26 @@
             width: 100%;
         }
     }
+
+    &.s-post-summary__legacy {
+        .s-post-summary--stats {
+            width: auto;
+            margin-right: @su16;
+            flex-direction: row;
+            align-items: center;
+            gap: @su12;
+
+            .s-post-summary--stats-item {
+                min-width: 50px;
+                height: 50px;
+                flex-direction: column;
+
+                .s-post-summary--stats-item-number {
+                    font-size: @fs-body3;
+                }
+            }
+        }
+    }
 }
 
 //  [1] To override .s-btn class attributes
@@ -49,7 +69,7 @@
 }
 
 .s-post-summary--stats {
-    --s-post-summary-stats-gap: @su6; // Replace with gap property as soon as browser support makes sense.
+    gap: @su6;
     margin-right: @su8;
     margin-bottom: -@su2;
     width: @su96 + @su12;
@@ -65,8 +85,6 @@
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        margin-right: var(--s-post-summary-stats-gap);
-        margin-bottom: var(--s-post-summary-stats-gap);
         white-space: nowrap;
         border: 1px solid transparent;
 
