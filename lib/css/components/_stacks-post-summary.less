@@ -47,11 +47,45 @@
                 min-width: 50px;
                 height: 50px;
                 flex-direction: column;
+                gap: 0;
+
+                &.s-post-summary--stats-item__emphasized {
+                    color: inherit;
+                }
+
+                &.has-accepted-answer .svg-icon {
+                    display: none;
+                }
 
                 .s-post-summary--stats-item-number {
                     font-size: @fs-body3;
                 }
             }
+
+            #stacks-internals #screen-md({
+                flex-direction: row;
+                align-items: center;
+                gap: @su8;
+
+                .s-post-summary--stats-item {
+                    min-width: auto;
+                    height: auto;
+                    flex-direction: row;
+                    gap: 3px; // HTML spacing
+
+                    .s-post-summary--stats-item-number {
+                        font-size: inherit;
+                    }
+
+                    &.s-post-summary--stats-item__emphasized {
+                        color: var(--fc-dark);
+                    }
+
+                    &.has-accepted-answer .svg-icon {
+                        display: block;
+                    }
+                }
+            });
         }
     }
 }
@@ -70,8 +104,8 @@
 
 .s-post-summary--stats {
     gap: @su6;
-    margin-right: @su8;
-    margin-bottom: -@su2;
+    margin-right: @su12;
+    margin-bottom: @su4;
     width: @su96 + @su12;
     display: flex;
     flex-direction: column;
@@ -83,14 +117,11 @@
 
     .s-post-summary--stats-item {
         display: inline-flex;
+        gap: 3px; // HTML spacing
         align-items: center;
         justify-content: center;
         white-space: nowrap;
         border: 1px solid transparent;
-
-        .svg-icon {
-            margin-right: @su4;
-        }
 
         &.s-post-summary--stats-item__emphasized {
             color: var(--fc-dark);
