@@ -26,10 +26,8 @@
     "start": "grunt",
     "build": "concurrently \"npm:build:*\"",
     "build:grunt": "grunt build",
-    "build:ts-cjs": "tsc -p tsconfig-cjs.json",
-    "build:ts-mjs": "tsc -p tsconfig.json",
-    "build:pkg-cjs": "echo {\"type\": \"commonjs\"} > dist/cjs/package.json",
-    "build:pkg-mjs": "echo {\"type\": \"module\"} > dist/mjs/package.json",
+    "build:ts-cjs": "tsc -p tsconfig-cjs.json && echo {\"type\": \"commonjs\"} > dist/cjs/package.json",
+    "build:ts-mjs": "tsc -p tsconfig.json && echo {\"type\": \"module\"} > dist/mjs/package.json",
     "test": "backstop test",
     "approve": "backstop approve",
     "prepare": "npm run build"
