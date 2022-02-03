@@ -49,9 +49,9 @@
 }
 
 .s-post-summary--stats {
-    --s-post-summary-stats-gap: @su6; // Replace with gap property as soon as browser support makes sense.
-    margin-right: @su8;
-    margin-bottom: -@su2;
+    gap: @su6;
+    margin-right: @su16;
+    margin-bottom: @su4;
     width: @su96 + @su12;
     display: flex;
     flex-direction: column;
@@ -63,19 +63,18 @@
 
     .s-post-summary--stats-item {
         display: inline-flex;
+        gap: 0.3em;
         align-items: center;
         justify-content: center;
-        margin-right: var(--s-post-summary-stats-gap);
-        margin-bottom: var(--s-post-summary-stats-gap);
         white-space: nowrap;
         border: 1px solid transparent;
 
-        .svg-icon {
-            margin-right: @su4;
-        }
-
         &.s-post-summary--stats-item__emphasized {
             color: var(--fc-dark);
+        }
+
+        .s-post-summary--stats-item-number {
+            font-weight: 500;
         }
 
         &.has-answers,
@@ -216,28 +215,21 @@
 }
 
 .s-post-summary--meta {
-    --s-post-summary-tags-gap: @su4;  // Replace with gap property as soon as browser support makes sense.
-
     display: flex;
     align-items: center;
     justify-content: space-between;
     flex-wrap: wrap;
-    margin-bottom: calc(-1 * var(--s-post-summary-tags-gap));
+    column-gap: @su6;
+    row-gap: @su8;
 
     .s-post-summary--meta-tags {
         display: flex;
         flex-wrap: wrap;
-        margin-right: var(--s-post-summary-tags-gap);
-
-        & > * {
-            margin-right: var(--s-post-summary-tags-gap);
-            margin-bottom: var(--s-post-summary-tags-gap);
-        }
+        gap: @su4;
     }
 
     .s-user-card {
         flex-wrap: wrap;
-        margin-bottom: var(--s-post-summary-tags-gap);
         margin-left: auto;
         justify-content: flex-end;
     }
