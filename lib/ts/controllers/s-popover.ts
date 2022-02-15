@@ -1,4 +1,5 @@
-import { application, StacksController } from "../stacks";
+import { application} from "../application";
+import {StacksController} from "../controller";
 
 type OutsideClickBehavior = "always" | "never" | "if-in-viewport" | "after-dismissal";
 

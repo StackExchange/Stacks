@@ -1,4 +1,4 @@
-import {StacksController} from "../stacks";
+import {StacksController} from "../controller";
 
 export class TabListController extends StacksController {
 

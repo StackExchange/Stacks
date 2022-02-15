@@ -1,4 +1,4 @@
-import { StacksController } from "../stacks";
+import {StacksController} from "../controller";
 
 function buildIndex(section: HTMLTableSectionElement): HTMLTableCellElement[][] {
     const result = buildIndexOrGetCellSlot(section);

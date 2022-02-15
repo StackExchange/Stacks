@@ -1,4 +1,5 @@
-import { application, StacksController } from "../stacks";
+import { application} from "../application";
+import {StacksController} from "../controller";
 
 export class ModalController extends StacksController {
     static targets = ["modal", "initialFocus"];

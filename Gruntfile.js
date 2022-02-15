@@ -63,33 +63,8 @@ module.exports = function(grunt) {
         },
         // Minify and concatenate JS
         ts: {
-            stacks_js: {
-                tsconfig: "tsconfig.json"
-            },
             docs_js: {
                 tsconfig: "docs/assets/js/tsconfig.json"
-            }
-        },
-        uglify: {
-            stacks_js: {
-                files: {
-                    'dist/js/stacks.min.js': ['dist/js/stacks.js']
-                }
-            },
-        },
-        concat: {
-            stacks_js: {
-                options: {
-                    separator: '\n\n;\n\n'
-                },
-                files: {
-                    'dist/js/stacks.js': [
-                        'node_modules/stimulus/dist/stimulus.umd.js',
-                        'node_modules/@popperjs/core/dist/umd/popper.js',
-                        'dist/cjs/stacks.js',
-                        'dist/cjs/controllers/**/*.js',
-                    ]
-                }
             }
         },
         // Watch for files to change and run tasks when they do
@@ -111,11 +86,6 @@ module.exports = function(grunt) {
                 files: ['docs/assets/js/controllers/*.js'],
                 tasks: ['ts:docs_js']
             },
-
-            stacks_js: {
-                files: ['lib/ts/**/*.ts'], // note: this doesn't watch any of the npm dependencies
-                tasks: ['concurrent:compile_stacks_js', 'copy:js2docs', 'copy:jQueryJs', 'copy:highlightJs', 'copy:docsearchJs', 'copy:listJs', 'copy:editorJs', 'copy:editorCSS']
-            },
         },
         // Run tasks in parallel
         concurrent: {
@@ -132,12 +102,7 @@ module.exports = function(grunt) {
             compile: [
                 'concurrent:compile_stacks_css',
                 'ts:docs_js',
-                ['concurrent:compile_stacks_js', 'copy:js2docs', 'copy:jQueryJs', 'copy:highlightJs', 'copy:docsearchJs', 'copy:listJs', 'copy:editorJs', 'copy:editorCSS']
-            ],
-
-            // Stacks JS
-            compile_stacks_js: [
-                ['ts:stacks_js', 'concat:stacks_js', 'uglify:stacks_js'],
+                ['copy:js2docs', 'copy:jQueryJs', 'copy:highlightJs', 'copy:docsearchJs', 'copy:listJs', 'copy:editorJs', 'copy:editorCSS']
             ],
 
             // the actual stacks, the docs CSS (which also includes Stacks, but via a LESS @import), and the partials

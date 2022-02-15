@@ -1,4 +1,4 @@
-import { application } from "../stacks";
+import { application } from "../application";
 import { BasePopoverController, PopoverController } from "./s-popover";
 
 export interface TooltipOptions {

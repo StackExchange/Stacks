@@ -1,4 +1,4 @@
-import { StacksController } from "../stacks";
+import {StacksController} from "../controller";
 
 // Radio buttons only trigger a change event when they're *checked*, but not when
 // they're *unchecked*. Therefore, if we have an active `s-collapsible-control` in

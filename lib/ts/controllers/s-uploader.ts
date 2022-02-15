@@ -1,4 +1,4 @@
-import { StacksController } from "../stacks";
+import {StacksController} from "../controller";
 
 interface FilePreview {
     data?: string | ArrayBuffer;
