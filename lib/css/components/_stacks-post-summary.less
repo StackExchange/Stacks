@@ -34,6 +34,65 @@
             width: 100%;
         }
     }
+
+    &.s-post-summary__legacy {
+        padding-left: 0; // Since stats have padding, we don't need it on the parent
+        column-gap: @su8;
+
+        .s-post-summary--stats {
+            width: auto;
+            flex-direction: row;
+            align-items: center;
+            gap: @su2;
+            margin: 0;
+
+            .s-post-summary--stats-item {
+                min-width: @su64;
+                height: @su48;
+                flex-direction: column;
+                gap: 0;
+                font-size: @fs-caption;
+
+                &.s-post-summary--stats-item__emphasized {
+                    color: inherit;
+                }
+
+                &.has-accepted-answer .svg-icon {
+                    display: none;
+                }
+
+                .s-post-summary--stats-item-number {
+                    font-weight: normal;
+                    font-size: @fs-body3;
+                }
+            }
+
+            #stacks-internals #screen-md({
+                flex-direction: row;
+                align-items: center;
+                gap: @su8;
+
+                .s-post-summary--stats-item {
+                    min-width: auto;
+                    height: auto;
+                    flex-direction: row;
+                    gap: 3px; // HTML spacing
+
+                    .s-post-summary--stats-item-number {
+                        font-size: inherit;
+                    }
+
+                    &.s-post-summary--stats-item__emphasized {
+                        color: var(--fc-dark);
+                    }
+
+                    &.has-accepted-answer .svg-icon {
+                        display: block;
+                    }
+                }
+            });
+        }
+    }
 }
 
 //  [1] To override .s-btn class attributes
