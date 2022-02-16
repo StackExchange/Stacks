@@ -84,7 +84,8 @@
         &.is-draft,
         &.is-review,
         &.is-closed,
-        &.is-archived {
+        &.is-archived,
+        &.is-pinned {
             border-radius: @br-sm;
             padding: @su2 @su4;
         }
@@ -148,6 +149,11 @@
             color: var(--black-900);
             background-color: var(--black-100);
             border-color: var(--black-600);
+        }
+
+        &.is-pinned {
+            color: var(--white);
+            background-color: var(--black-800);
         }
     }
 
@@ -306,6 +312,10 @@
     }
 }
 
+.s-post-summary__pinned {
+    background-color: var(--black-025);
+}
+
 .s-post-summary__ignored,
 .s-post-summary__deleted {
     .s-post-summary--content {
@@ -318,7 +328,8 @@
     }
 
     .s-post-summary--content-title {
-        &, & .s-link {
+        &,
+        & .s-link {
             color: var(--black-600);
 
             &:hover {

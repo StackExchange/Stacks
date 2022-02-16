@@ -1335,6 +1335,17 @@ Is anyone aware of a fully functional implementation of this API (to generate th
     <p class="stacks-copy">Post summaries change their appearance based on being watched, ignored, or deleted. Articles can also have varying draft states.</p>
     <div class="stacks-preview">
 {% highlight html %}
+<div class="s-post-summary s-post-summary__pinned">
+    <div class="s-post-summary--stats">
+        <div class="s-post-summary--stats-item is-pinned">
+            @Svg.TackSm
+            Pinned
+        </div>
+        …
+    </div>
+    …
+ </div>
+
 <div class="s-post-summary s-post-summary__watched">
     …
     <a class="s-tag s-tag__watched">
@@ -1363,6 +1374,70 @@ Is anyone aware of a fully functional implementation of this API (to generate th
  </div>
 {% endhighlight %}
         <div class="stacks-preview--example p0">
+            <div class="s-post-summary s-post-summary__pinned">
+                <div class="s-post-summary--stats">
+                    <div class="s-post-summary--stats-item is-pinned">
+                        {% icon "TackSm" %}
+                        Pinned
+                    </div>
+                    <div class="s-post-summary--stats-item s-post-summary--stats-item__emphasized">
+                        <span class="s-post-summary--stats-item-number">
+                            10
+                        </span>
+                        <span class="s-post-summary--stats-item-unit">
+                            votes
+                        </span>
+                    </div>
+                    <div class="s-post-summary--stats-item">
+                        <span class="s-post-summary--stats-item-number">
+                            12
+                        </span>
+                        <span class="s-post-summary--stats-item-unit">
+                            views
+                        </span>
+                    </div>
+                    <div class="s-post-summary--stats-item">
+                        <span class="s-post-summary--stats-item-number">
+                            1
+                        </span>
+                        <span class="s-post-summary--stats-item-unit">
+                            minute read
+                        </span>
+                    </div>
+                </div>
+                <div class="s-post-summary--content">
+                    <div class="s-post-summary--content-type">
+                        <a href="#" class="s-link s-link__grayscale">{% icon "DocumentAlt" %} Knowledge Article</a>
+                    </div>
+                    <h3 class="s-post-summary--content-title">
+                        <a href="#">Network graph of popular tags on Stack Overflow</a>
+                    </h3>
+                    <p class="s-post-summary--content-excerpt">
+                        I wanted to see how different tags related to each other. The below graph depicts associations between popular tags on our site. Description of analysis: I started looking at the 1000 most popular tags on questions in 2021. I created a list of tags cross joined by the question ID (so if a question contains tags for both Python and Numpy, it would show up in my list). I scaled up by the number of answers each question received (noting that some tag combos had 0 answers) -and then counted each distinct combination of each tag. Due to limitations in graphing, I only displayed the top ~2500 tag combinations - which accounts for tags combos that had more than 40 answers over the entire year.
+                    </p>
+                    <div class="s-post-summary--meta">
+                        <div class="s-post-summary--meta-tags">
+                            <a class="s-tag" href="#">data</a>
+                            <a class="s-tag" href="#">data-insights</a>
+                        </div>
+
+                        <div class="s-user-card s-user-card__minimal">
+                            <a href="#" class="s-avatar s-user-card--avatar">
+                                <img class="s-avatar--image" src="{{ "/assets/img/placeholder.svg" | relative_url }}" />
+                            </a>
+                            <a href="#" class="s-user-card--link">Nimantha</a>
+                            <ul class="s-user-card--awards">
+                                <li class="s-user-card--rep">5,337</li>
+                            </ul>
+                            <time class="s-user-card--time">modified 18 minutes ago</time>
+                        </div>
+                    </div>
+                    <a href="#" class="s-btn s-btn__muted s-post-summary--content-menu-button">
+                        {% icon "EllipsisVertical" %}
+                    </a>
+                </div>
+            </div>
+
             <div class="s-post-summary s-post-summary__watched">
                 <div class="s-post-summary--stats">
                     <div class="s-post-summary--stats-item s-post-summary--stats-item__emphasized">
