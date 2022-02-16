@@ -219,4 +219,21 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.addPassthroughCopy('assets');
   eleventyConfig.addPassthroughCopy('email/templates/code');
   eleventyConfig.addPassthroughCopy('email/templates/examples');
+
+  // Things we need to copy from our parent folder
+  eleventyConfig.addPassthroughCopy({
+      // Stacks proper
+      '../dist/js/stacks.min.js': 'assets/js/stacks.min.js',
+      // Stacks Editor
+      '../node_modules/@stackoverflow/stacks-editor/dist/app.bundle.js': 'assets/js/library.stacks-editor.js',
+      '../node_modules/@stackoverflow/stacks-editor/dist/styles.css': 'assets/css/stacks-editor.css',
+      // jQuery
+      '../node_modules/jquery/dist/jquery.min.js': 'assets/js/library.jquery.js',
+      // Highlight.js
+      '../node_modules/@highlightjs/cdn-assets/highlight.min.js': 'assets/js/library.highlight.js',
+      // Doc Search
+      '../node_modules/docsearch.js/dist/cdn/docsearch.min.js': 'assets/js/library.docsearch.js',
+      // List.js
+      '../node_modules/list.js/dist/list.min.js': 'assets/js/library.list.js',
+  });
 }

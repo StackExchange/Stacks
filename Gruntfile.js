@@ -102,7 +102,6 @@ module.exports = function(grunt) {
             compile: [
                 'concurrent:compile_stacks_css',
                 'ts:docs_js',
-                ['copy:js2docs', 'copy:jQueryJs', 'copy:highlightJs', 'copy:docsearchJs', 'copy:listJs', 'copy:editorJs', 'copy:editorCSS']
             ],
 
             // the actual stacks, the docs CSS (which also includes Stacks, but via a LESS @import), and the partials
@@ -120,69 +119,6 @@ module.exports = function(grunt) {
             stacks_partials: ['tmp/']
         },
 
-        copy: {
-            // copy the compiled JS files into the Eleventy source
-            js2docs: {
-                src: 'dist/js/*.js',
-                dest: 'docs/assets/js/',
-                flatten: true,
-                expand: true
-            },
-            editorJs: {
-                src: 'node_modules/@stackoverflow/stacks-editor/dist/app.bundle.js',
-                dest: 'docs/assets/js/',
-                flatten: true,
-                expand: true,
-                rename: function(dest, src) {
-                    return dest + src.replace('app.bundle.js','library.stacks-editor.js');
-                }
-            },
-            jQueryJs: {
-                src: 'node_modules/jquery/dist/jquery.min.js',
-                dest: 'docs/assets/js/',
-                flatten: true,
-                expand: true,
-                rename: function(dest, src) {
-                    return dest + src.replace('jquery.min.js','library.jquery.js');
-                }
-            },
-            highlightJs: {
-                src: 'node_modules/@highlightjs/cdn-assets/highlight.min.js',
-                dest: 'docs/assets/js/',
-                flatten: true,
-                expand: true,
-                rename: function(dest, src) {
-                    return dest + src.replace('highlight.min.js','library.highlight.js');
-                }
-            },
-            docsearchJs: {
-                src: 'node_modules/docsearch.js/dist/cdn/docsearch.min.js',
-                dest: 'docs/assets/js/',
-                flatten: true,
-                expand: true,
-                rename: function(dest, src) {
-                    return dest + src.replace('docsearch.min.js','library.docsearch.js');
-                }
-            },
-            listJs: {
-                src: 'node_modules/list.js/dist/list.min.js',
-                dest: 'docs/assets/js/',
-                flatten: true,
-                expand: true,
-                rename: function(dest, src) {
-                    return dest + src.replace('list.min.js','library.list.js');
-                }
-            },
-            editorCSS: {
-                src: 'node_modules/@stackoverflow/stacks-editor/dist/styles.css',
-                dest: 'docs/assets/css/',
-                flatten: true,
-                expand: true,
-                rename: function(dest, src) {
-                    return dest + src.replace('styles.css','stacks-editor.css');
-                }
-            }
-        },
     });
 
     // Load plugins
