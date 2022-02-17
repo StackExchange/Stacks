@@ -34,6 +34,87 @@
             width: 100%;
         }
     }
+
+    &.s-post-summary__legacy {
+        padding-left: 0; // Since stats have padding, we don't need it on the parent
+
+        #stacks-internals #screen-md({
+            padding-left: @su16;
+        });
+
+        .s-post-summary--stats {
+            width: auto;
+            flex-direction: row;
+            align-items: center;
+            gap: @su2;
+
+            .s-post-summary--stats-item {
+                min-width: @su64;
+                height: @su48;
+                flex-direction: column;
+                gap: 0;
+                font-size: @fs-caption;
+
+                &.s-post-summary--stats-item__emphasized {
+                    color: inherit;
+                }
+
+                &.has-accepted-answer .svg-icon {
+                    display: none;
+                }
+
+                .s-post-summary--stats-item-number {
+                    font-weight: normal;
+                    font-size: @fs-body3;
+                }
+
+                &.is-deleted,
+                &.is-published,
+                &.is-draft,
+                &.is-review,
+                &.is-closed,
+                &.is-archived,
+                &.is-pinned {
+                    display: none;
+                }
+            }
+
+            #stacks-internals #screen-md({
+                flex-direction: row;
+                align-items: center;
+                gap: @su8;
+
+                .s-post-summary--stats-item {
+                    min-width: auto;
+                    height: auto;
+                    flex-direction: row;
+                    gap: 3px; // HTML spacing
+
+                    .s-post-summary--stats-item-number {
+                        font-size: inherit;
+                    }
+
+                    &.s-post-summary--stats-item__emphasized {
+                        color: var(--fc-dark);
+                    }
+
+                    &.has-accepted-answer .svg-icon {
+                        display: block;
+                    }
+
+                    &.is-deleted,
+                    &.is-published,
+                    &.is-draft,
+                    &.is-review,
+                    &.is-closed,
+                    &.is-archived,
+                    &.is-pinned {
+                        display: block;
+                    }
+                }
+            });
+        }
+    }
 }
 
 //  [1] To override .s-btn class attributes
@@ -84,7 +165,8 @@
         &.is-draft,
         &.is-review,
         &.is-closed,
-        &.is-archived {
+        &.is-archived,
+        &.is-pinned {
             border-radius: @br-sm;
             padding: @su2 @su4;
         }
@@ -149,6 +231,11 @@
             background-color: var(--black-100);
             border-color: var(--black-600);
         }
+
+        &.is-pinned {
+            color: var(--white);
+            background-color: var(--black-800);
+        }
     }
 
     #stacks-internals #screen-md({
@@ -167,9 +254,10 @@
         font-size: @fs-body3;
         margin-top: -0.15rem; // Optical alignment to compensate for title's containing block
         margin-bottom: @su6;
-        overflow-wrap: break-word;
-        word-wrap: break-word;
         padding-right: @su24;
+        line-height: @lh-md;
+        font-weight: normal;
+        .break-word;
 
         .iconShield {
             color: var(--black-600);
@@ -181,6 +269,22 @@
                 vertical-align: text-bottom;
                 bottom: 0;
             });
+        }
+
+        a {
+            .break-word;
+
+            color: var(--theme-post-title-color);
+            font-family: var(--theme-post-title-font-family);
+
+            &:visited {
+                color: var(--theme-post-title-color-visited);
+            }
+
+            &:hover,
+            &:active {
+                color: var(--theme-post-title-color-hover);
+            }
         }
     }
 
@@ -197,6 +301,7 @@
     .s-post-summary--content-excerpt {
         margin-top: -@su2;
         margin-bottom: @su8;
+        font-family: var(--theme-post-body-font-family);
         color: var(--fc-medium);
         .v-truncate2;
         .break-word;
@@ -288,6 +393,10 @@
     }
 }
 
+.s-post-summary__pinned {
+    background-color: var(--black-025);
+}
+
 .s-post-summary__ignored,
 .s-post-summary__deleted {
     .s-post-summary--content {
@@ -299,17 +408,16 @@
         filter: grayscale(100%);
     }
 
-    .s-post-summary--content-title {
-        &, & .s-link {
-            color: var(--black-600);
+    .s-post-summary--content-title a {
+        color: var(--black-600);
 
-            &:hover {
-                color: var(--black-500);
-            }
+        &:hover,
+        &:active {
+            color: var(--black-500);
+        }
 
-            &:visited {
-                color: var(--black-700);
-            }
+        &:visited {
+            color: var(--black-700);
         }
     }
 
