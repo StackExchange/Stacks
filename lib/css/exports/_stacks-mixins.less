@@ -19,6 +19,22 @@
     &:after { clear: both; }
 }
 
+//  ============================================================================
+//  --  LIGHTMODE
+//      .light-mode-forced ensures light color scheme is used in .theme-light__forced
+//
+//      .light-mode-forced({ color: var(--black-900) });
+//
+//  ---------------------------------------------------------------------------
+
+.light-mode-forced(@rules) {
+    .theme-light__forced &,
+    body.theme-system .theme-light__forced &,
+    body.theme-dark .theme-light__forced & {
+        @rules();
+    }
+}
+
 //  ===========================================================================
 //  --  DARKMODE
 //      .darkmode renders a dark mode override behind the
@@ -39,7 +55,8 @@
     }
 
     body.theme-dark &,
-    .theme-dark__forced & {
+    .theme-dark__forced &,
+    body.theme-system .theme-dark__forced & {
         @rules();
     }
 }
