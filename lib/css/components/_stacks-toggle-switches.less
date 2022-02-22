@@ -112,7 +112,6 @@
         //  If the input is selected, style its label accordingly.
         input[type="radio"]:checked {
             + label {
-                // Color activated options green
                 &.s-toggle-switch--label-off {
                     background-color: var(--black-300);
                     color: @white;
@@ -131,6 +130,14 @@
                         color: var(--white);
                     });
                 }
+            }
+
+            &:focus + label.s-toggle-switch--label-off {
+                box-shadow: 0 0 0 @su4 var(--focus-ring-muted);
+            }
+
+            &:focus + label:not(.s-toggle-switch--label-off) {
+                box-shadow: 0 0 0 @su4 var(--focus-ring-success);
             }
         }
     }
