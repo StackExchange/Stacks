@@ -37,7 +37,6 @@
     background-color: var(--green-400);
 }
 
-
 //  $$   LABEL
 //       For when there's descriptive, label copy within the progress bar
 //  ----------------------------------------------------------------------------
@@ -53,7 +52,6 @@
     z-index: @zi-base + 2;
 }
 
-
 //  ===========================================================================
 //  $   VARIATION PROGRESS BACKGROUNDS
 //  ---------------------------------------------------------------------------
@@ -68,12 +66,19 @@
 .s-progress__privilege {
     .s-progress--bar {
         background-color: var(--green-050);
+
+        .highcontrast-mode({
+            background-color: var(--green-200);
+        });
     }
     .s-progress--label {
         border-color: var(--green-400);
+        display: flex;
+        gap: @su4;
+        align-items: center;
+        justify-content: center;
     }
 }
-
 
 //  ===========================================================================
 //  $   BADGE PROGRESS BARS
@@ -91,6 +96,20 @@
     background-color: transparent;
 }
 
+.s-progress__badge {
+    .s-progress--label {
+        display: flex;
+        gap: @su4;
+        align-items: center;
+        padding-left: 1em;
+        padding-right: 1em;
+
+        .s-badge--label {
+            text-align: center;
+            flex-grow: 1;
+        }
+    }
+}
 
 //  $$  GOLD
 //  ---------------------------------------------------------------------------
@@ -190,7 +209,7 @@
         border-radius: 0;
         padding: @su12 @su6 0 @su6;
         text-align: center;
-        color: var(--black-200);
+        color: var(--black-300);
         z-index: @zi-base;
     }
 
@@ -199,19 +218,23 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        background: var(--black-200);
+        background: var(--black-300);
         border-radius: 100%;
         width: @su24;
         height: @su24;
         z-index: @zi-selected;
         color: @white;
+
+        .highcontrast-mode({
+            color: var(--white);
+        });
     }
 
     .s-progress--bar {
         position: absolute;
         top: 9px;
         height: @su6;
-        background: var(--black-200);
+        background: var(--black-300);
         z-index: @zi-base;
         border-radius: 0;
 
@@ -228,11 +251,11 @@
 
     .s-progress--step.is-active {
         .s-progress--bar.s-progress--bar__left {
-            background: var(--blue-500);
+            background: var(--theme-secondary-400);
         }
 
         .s-progress--stop {
-            background: var(--blue-500);
+            background: var(--theme-secondary-400);
             box-shadow: 0 0 0 @su6 var(--focus-ring);
         }
 
@@ -244,7 +267,7 @@
     .s-progress--step.is-complete {
         .s-progress--bar,
         .s-progress--stop {
-            background: var(--blue-500);
+            background: var(--theme-secondary-400);
         }
 
         .s-progress--label {
@@ -277,7 +300,7 @@
 
         circle:nth-of-type(1) {
             stroke: currentColor;
-            opacity: .4;
+            opacity: 0.4;
         }
 
         circle:nth-of-type(2) {
@@ -287,7 +310,7 @@
             // Multiply the circle circumference by an the opposite percentage of what we want to display
             // For example 70%, represented as a decimal is 0.7
             // The opposite of that is 0.3 so ( 1 - 0.7 )
-            stroke-dashoffset: calc( ((1 - var(--s-progress-value)) * @s-progress-circle-circumference) * 1px); // Multiply everything by 1px since Safari and Firefox require these to be in pixels
+            stroke-dashoffset: calc(((1 - var(--s-progress-value)) * @s-progress-circle-circumference) * 1px); // Multiply everything by 1px since Safari and Firefox require these to be in pixels
         }
     }
 

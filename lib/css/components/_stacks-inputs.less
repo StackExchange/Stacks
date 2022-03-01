@@ -24,18 +24,33 @@
 //  ============================================================================
 //  $  VARIABLES & MIXINS
 //  ----------------------------------------------------------------------------
-@input-padding:     0.6em 0.7em;
+@input-padding: 0.6em 0.7em;
 
-//  ============================================================================
-//  $  BASE INPUT / TEXTAREA STYLE
-//  ----------------------------------------------------------------------------
-.s-input,
-.s-textarea {
+@autofill: {
+    &::-webkit-contacts-auto-fill-button {
+        background-color: var(--black); // In Safari, make the autocomplete button darkmode-aware
+    }
+
+    &:-webkit-autofill {
+        border-color: var(--blue-300);
+        -webkit-text-fill-color: var(--black);
+        -webkit-box-shadow: 0 0 0 1000px var(--theme-secondary-050) inset; // This acts as a background color by stretching an inset box shadow across the input
+        transition: background-color 0s 50000s; // A hack to infinitely delay background styles that come from the browser.
+
+        &:focus {
+            border-color: var(--blue-300);
+            // Since the box shadow is overwritten to show a background, we have to re-add the focus outline
+            -webkit-box-shadow: 0 0 0 1000px var(--blue-050) inset, 0 0 0 @su4 var(--focus-ring);
+        }
+    }
+}
+
+@basic-styling: {
     -webkit-appearance: none; // Removes shadows we don't want in mobile Safari
     width: 100%;
     margin: 0; // A guard against Core's default margins
     padding: @input-padding;
-    border: 1px solid var(--black-200);
+    border: 1px solid var(--bc-darker);
     border-radius: @br-sm;
     background-color: var(--white);
     color: var(--fc-dark);
@@ -47,7 +62,7 @@
     //  ------------------------------------------------------------------------
     @supports (-webkit-overflow-scrolling: touch) {
         font-size: 16px;
-        padding: .36em .55em; // Compensate for the larger font size so we generally keep the input the same size
+        padding: 0.36em 0.55em; // Compensate for the larger font size so we generally keep the input the same size
 
         &::-webkit-input-placeholder {
             line-height: normal !important;
@@ -58,11 +73,19 @@
     //  ------------------------------------------------------------------------
     &::-webkit-input-placeholder {
         color: var(--black-200);
+
+        .highcontrast-mode({
+            color: var(--black-400);
+        });
     }
 
     &::placeholder {
         color: var(--black-200);
         opacity: 1;
+
+        .highcontrast-mode({
+            color: var(--black-400);
+        });
     }
 
     // --  STYLE SCROLLBARS
@@ -70,6 +93,14 @@
 
     // --  STYLE AUTOFILL STATES
     @autofill();
+}
+
+//  ============================================================================
+//  $  BASE INPUT / TEXTAREA STYLE
+//  ----------------------------------------------------------------------------
+.s-input,
+.s-textarea {
+    @basic-styling();
 }
 
 .s-input.s-input__search,
@@ -85,6 +116,33 @@ fieldset {
     min-width: 0;
     padding: 0;
     border: 0;
+
+    &[disabled] {
+        a,
+        .s-btn,
+        .s-link {
+            box-shadow: none !important;
+            opacity: 0.5;
+            pointer-events: none;
+        }
+
+        .s-checkbox,
+        .s-input-message,
+        .s-label,
+        .s-radio,
+        .s-toggle-switch,
+        .s-toggle-switch label {
+            cursor: not-allowed;
+            opacity: 0.5;
+        }
+
+        .s-input,
+        .s-textarea,
+        .s-select > select {
+            cursor: not-allowed;
+            opacity: 0.5;
+        }
+    }
 }
 
 //  ============================================================================
@@ -96,10 +154,9 @@ fieldset {
     font-family: inherit;
     font-size: @fs-body2;
     font-weight: 600;
-    cursor: pointer;
 
-    legend& {
-        cursor: default; // Reset cursor when it's a legend
+    &[for] {
+        cursor: pointer;
     }
 }
 
@@ -117,9 +174,17 @@ fieldset {
     font-weight: 400;
     vertical-align: text-bottom;
 
+    .highcontrast-mode({
+        border: 1px solid currentColor;
+    });
+
     &.s-label--status__required {
         background-color: var(--red-100);
         color: var(--red-600);
+
+        .dark-mode({
+            color: var(--red-800);
+        });
     }
 
     &.s-label--status__new {
@@ -157,7 +222,7 @@ fieldset {
 //  ----------------------------------------------------------------------------
 .s-input-fill {
     padding: @input-padding;
-    border: 1px solid var(--black-200);
+    border: 1px solid var(--bc-darker);
     border-right-width: 0;
     border-left-width: 0;
     background-color: var(--black-050);
@@ -208,12 +273,12 @@ fieldset {
         pointer-events: none;
     }
     &:before {
-        top: calc(~"50% - 5px");
+        top: calc(50% - 5px);
         border-top-width: 0;
         border-bottom-width: 4px;
     }
     &:after {
-        top: calc(~"50% + 1px");
+        top: calc(50% + 1px);
         border-top-width: 4px;
         border-bottom-width: 0;
     }
@@ -224,8 +289,8 @@ fieldset {
     > select {
         //  [1] Reset the appearance
         -webkit-appearance: none;
-           -moz-appearance: none;
-                appearance: none;
+        -moz-appearance: none;
+        appearance: none;
 
         //  [2] Update the styles
         position: relative; // This prevents Firefox from requiring a second click to select options
@@ -233,7 +298,7 @@ fieldset {
         height: 100%; // Fill the height of its parent
         padding: @input-padding;
         padding-right: @su32;
-        border: 1px solid var(--black-200);
+        border: 1px solid var(--bc-darker);
         border-radius: @br-sm;
         background-color: var(--white);
         outline: 0;
@@ -260,7 +325,7 @@ fieldset {
         //  ------------------------------------------------------------------------
         @supports (-webkit-overflow-scrolling: touch) {
             font-size: 16px;
-            padding: .4em .55em; // Compensate for the larger font size so we generally keep the input the same size
+            padding: 0.4em 0.55em; // Compensate for the larger font size so we generally keep the input the same size
         }
 
         // --  STYLE AUTOFILL STATES
@@ -288,7 +353,7 @@ fieldset {
         margin: 0; // A guard against Core's default margins
         width: 1em;
         height: 1em;
-        border: 1px solid var(--black-200);
+        border: 1px solid var(--bc-darker);
         background-color: var(--white);
         outline: 0;
         font-size: inherit;
@@ -312,30 +377,23 @@ fieldset {
         background-repeat: no-repeat;
         background-size: contain;
 
-        //  Disabled
-        &[disabled] {
-            border-color: var(--black-200);
-            background-color: var(--black-075);
-        }
-
         &:checked {
-            border-color: var(--blue-500) !important;
-            background-color: var(--blue-500);
+            border-color: var(--theme-secondary-400) !important;
+            background-color: var(--theme-secondary-400);
             background-image: url("data:image/svg+xml,%3Csvg width='11' height='11' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M10 3.41L8.59 2 4 6.59 2.41 5 1 6.41l3 3z' fill='%23fff'/%3E%3C/svg%3E");
 
-            &:focus {
-                border-color: var(--blue-500);
-            }
+            .highcontrast-dark-mode({
+                border-color: var(--blue-700) !important;
+                background-color: var(--blue-300);
+            });
 
-            //  Disabled
-            &[disabled] {
-                border-color: var(--black-500) !important;
-                background-color: var(--black-400);
+            &:focus {
+                border-color: var(--theme-secondary-400);
             }
         }
 
         &:focus {
-            border-color: var(--blue-300);
+            border-color: var(--theme-secondary-300);
             box-shadow: 0 0 0 @su4 var(--focus-ring);
         }
     }
@@ -348,9 +406,14 @@ fieldset {
         border-radius: @br-circle;
 
         &:checked {
-            border-color: var(--blue-500);
+            border-color: var(--theme-secondary-400);
             border-width: 0.30769231em;
             background-color: @white; // This should always be white regardless of dark mode
+
+            .highcontrast-dark-mode({
+                border-color: var(--blue-300);
+                outline: 1px solid var(--black);
+            });
         }
 
         &:focus {
@@ -366,11 +429,15 @@ fieldset {
 //  Focus
 & {
     @focus-style: {
-        border-color: var(--blue-300);
+        border-color: var(--theme-secondary-300);
         box-shadow: 0 0 0 @su4 var(--focus-ring);
         color: var(--black);
         outline: 0;
-    };
+
+        .highcontrast-mode({
+            border-color: var(--black);
+        })
+    }
 
     .s-input:focus,
     .s-input.has-focus,
@@ -392,17 +459,20 @@ fieldset {
     //  Disabled, Read-only
     &[disabled],
     &[read-only] {
-        border-color: var(--black-075);
-        background-color: var(--black-050);
-        color: var(--black-200);
+        cursor: not-allowed;
+        opacity: 0.5;
+
+        .highcontrast-mode({
+            opacity: 0.5;
+        });
     }
 
     //  Disabled
     &[disabled] {
         cursor: not-allowed;
+        opacity: 0.5;
     }
 }
-
 
 //  ============================================================================
 //  $   VALIDATION STATES
@@ -533,7 +603,7 @@ fieldset {
 .is-disabled {
     .s-select:before,
     .s-select:after {
-        border-color: var(--black-200) transparent;
+        border-color: var(--bc-darker) transparent;
     }
 
     .s-label,
@@ -547,6 +617,10 @@ fieldset {
 
     .s-input-icon {
         color: var(--black-200);
+
+        .highcontrast-mode({
+            color: var(--black-400);
+        });
     }
 
     .s-label {
@@ -568,6 +642,10 @@ fieldset {
         right: auto;
         left: 0.7em;
         color: var(--black-200);
+
+        .highcontrast-mode({
+            color: var(--black-400);
+        });
     }
 }
 
@@ -616,6 +694,11 @@ fieldset {
     border-radius: @br-sm + 1;
 }
 
+.s-textarea__md {
+    padding-top: 0.72em;
+    padding-bottom: 0.72em;
+}
+
 .s-input__lg,
 .s-textarea__lg,
 .s-select__lg > select {
@@ -639,26 +722,7 @@ fieldset {
         font-size: 17px;
 
         // Compensate for the larger font size so we generally keep the input the same size
-        padding-top: .4em;
-        padding-bottom: .4em;
+        padding-top: 0.4em;
+        padding-bottom: 0.4em;
     }
 }
-
-@autofill: {
-    &::-webkit-contacts-auto-fill-button {
-        background-color: var(--black); // In Safari, make the autocomplete button darkmode-aware
-    }
-
-    &:-webkit-autofill {
-        border-color: var(--blue-300);
-        -webkit-text-fill-color: var(--black);
-        -webkit-box-shadow: 0 0 0px 1000px var(--blue-050) inset; // This acts as a background color by stretching an inset box shadow across the input
-        transition: background-color 0s 50000s; // A hack to infinitely delay background styles that come from the browser.
-
-        &:focus {
-            border-color: var(--blue-300);
-            // Since the box shadow is overwritten to show a background, we have to re-add the focus outline
-            -webkit-box-shadow: 0 0 0 1000px var(--blue-050) inset, 0 0 0 @su4 var(--focus-ring);
-        }
-    }
-};

@@ -1,8 +1,7 @@
 $(document).ready(function() {
     // Cache some variables
     var navigation = $(".js-navigation");
-    var closeIcon = $(".js-hamburger-close-icon");
-    var hamburgerIcon = $(".js-hamburger-icon");
+    var hamburgerBtn = $(".js-hamburger-btn");
 
     // Disable any empty links
     $("a[href='#']").click(function(e) {
@@ -11,8 +10,7 @@ $(document).ready(function() {
 
     function regenerateMenu () {
         // Hide the navigation if we've opened it
-        hamburgerIcon.removeClass("d-none");
-        closeIcon.addClass("d-none");
+        hamburgerBtn.removeClass("is-selected");
         navigation.addClass("md:d-none");
     }
 
@@ -38,7 +36,7 @@ $(document).ready(function() {
         $('#nav').on('click', 'a', function (event) {
 
             // Allow opening links in new tabs
-            if (event.metaKey) {
+            if (event.metaKey || event.ctrlKey) {
               return
             }
 

@@ -1,6 +1,7 @@
 ---
 layout: page
 title: Box shadow
+figma: https://www.figma.com/file/BKF0Bk7gymjt8cAdQcPtF7/Box-Shadows
 description: Box shadow atomic classes allow you to change an element’s box shadow quickly.
 ---
 <section class="stacks-section">
@@ -13,13 +14,14 @@ description: Box shadow atomic classes allow you to change an element’s box sh
                     <th scope="col">Output</th>
                     <th scope="col" class="ta-center"><a class="s-link s-link__inherit" href="{{ "/product/guidelines/conditional-classes#hover" | relative_url }}">Hover?</a></th>
                     <th scope="col" class="ta-center"><a class="s-link s-link__inherit" href="{{ "/product/guidelines/conditional-classes#focus" | relative_url }}">Focus?</a></th>
+                    <th scope="col" class="ta-center"><a class="s-link s-link__inherit" href="{{ "/product/guidelines/conditional-classes#responsive" | relative_url }}">Responsive?</a></th>
                 </tr>
             </thead>
             <tbody>
                 {% for atomic in atomics.box-shadow %}
                     <tr class="fs-caption">
                         <th scope="row"><code class="stacks-code">.{{ atomic.class }}</code></th>
-                        <td><code class="stacks-code bg-white">{{ atomic.output }}</code></td>
+                        <td><code class="stacks-code bg-white pl0">{{ atomic.output }}</code></td>
                         <td class="ta-center">
                             {% if atomic.hover %}
                                 {% icon "Checkmark", "fc-green-500" %}
@@ -27,6 +29,11 @@ description: Box shadow atomic classes allow you to change an element’s box sh
                         </td>
                         <td class="ta-center">
                             {% if atomic.focus %}
+                                {% icon "Checkmark", "fc-green-500" %}
+                            {% endif %}
+                        </td>
+                        <td class="ta-center">
+                            {% if atomic.responsive %}
                                 {% icon "Checkmark", "fc-green-500" %}
                             {% endif %}
                         </td>
@@ -42,22 +49,24 @@ description: Box shadow atomic classes allow you to change an element’s box sh
 <div class="bs-sm">…</div>
 <div class="bs-md">…</div>
 <div class="bs-lg">…</div>
+<div class="bs-xl">…</div>
+<div class="bs-ring">…</div>
 {% endhighlight %}
         <div class="stacks-preview--example fs-caption ff-mono">
-            <div class="grid jc-space-between grid__allcells3 mb16">
-                <div class="grid--cell fd-column p12 bs-sm bar-sm h96">
+            <div class="d-grid grid__4 lg:grid__3 sm:grid__2 g16">
+                <div class="flex--item fd-column p12 bs-sm bar-sm h96">
                     .bs-sm
                 </div>
-                <div class="grid--cell fd-column p12 bs-md bar-sm h96">
+                <div class="flex--item fd-column p12 bs-md bar-sm h96">
                     .bs-md
                 </div>
-                <div class="grid--cell fd-column p12 bs-lg bar-sm h96">
+                <div class="flex--item fd-column p12 bs-lg bar-sm h96">
                     .bs-lg
                 </div>
-            </div>
-
-            <div class="grid jc-space-between grid__allcells3">
-                <div class="grid--cell fd-column p12 bs-ring bar-sm h96">
+                <div class="flex--item fd-column p12 bs-xl bar-sm h96">
+                    .bs-xl
+                </div>
+                <div class="flex--item fd-column p12 bs-ring bar-sm h96">
                     .bs-ring
                 </div>
             </div>
