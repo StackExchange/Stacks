@@ -90,7 +90,7 @@ System.out.println("Code Block!");
     - [Meta Stack Exchange with tooltip](https://meta.stackexchange.com 'TopQuestions')
     - [Meta Stack Exchange with tooltip](https://meta.stackexchange.com (TopQuestions))   
     - \[Escaped link to Meta Stack Exchange](https://meta.stackexchange.com)
-    - [No protocol link to Meta Stack Exchange](https://meta.stackexchange.com)
+    - [No protocol link to Meta Stack Exchange](meta.stackexchange.com)
 
 - Reference links:
     - [Meta Stack Exchange][1]
@@ -359,7 +359,7 @@ Only some [basic HTML elements are whitelisted](https://meta.stackexchange.com/q
 
 - `<a>`: `href` then `title`
 
-  <a href="https//meta.stackexchange.com/" title="Tooltip">_Meta Stack Exchange_</a>
+  <a href="http://meta.stackexchange.com/" title="Tooltip">_Meta Stack Exchange_</a>
 - `<b>` or `<strong>`: no attributes
 
   <b>Bold</b> and <strong>Strong</strong>
