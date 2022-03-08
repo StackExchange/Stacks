@@ -34,6 +34,87 @@
             width: 100%;
         }
     }
+
+    &.s-post-summary__legacy {
+        padding-left: 0; // Since stats have padding, we don't need it on the parent
+
+        #stacks-internals #screen-md({
+            padding-left: @su16;
+        });
+
+        .s-post-summary--stats {
+            width: auto;
+            flex-direction: row;
+            align-items: center;
+            gap: @su2;
+
+            .s-post-summary--stats-item {
+                min-width: @su64;
+                height: @su48;
+                flex-direction: column;
+                gap: 0;
+                font-size: @fs-caption;
+
+                &.s-post-summary--stats-item__emphasized {
+                    color: inherit;
+                }
+
+                &.has-accepted-answer .svg-icon {
+                    display: none;
+                }
+
+                .s-post-summary--stats-item-number {
+                    font-weight: normal;
+                    font-size: @fs-body3;
+                }
+
+                &.is-deleted,
+                &.is-published,
+                &.is-draft,
+                &.is-review,
+                &.is-closed,
+                &.is-archived,
+                &.is-pinned {
+                    display: none;
+                }
+            }
+
+            #stacks-internals #screen-md({
+                flex-direction: row;
+                align-items: center;
+                gap: @su8;
+
+                .s-post-summary--stats-item {
+                    min-width: auto;
+                    height: auto;
+                    flex-direction: row;
+                    gap: 3px; // HTML spacing
+
+                    .s-post-summary--stats-item-number {
+                        font-size: inherit;
+                    }
+
+                    &.s-post-summary--stats-item__emphasized {
+                        color: var(--fc-dark);
+                    }
+
+                    &.has-accepted-answer .svg-icon {
+                        display: block;
+                    }
+
+                    &.is-deleted,
+                    &.is-published,
+                    &.is-draft,
+                    &.is-review,
+                    &.is-closed,
+                    &.is-archived,
+                    &.is-pinned {
+                        display: block;
+                    }
+                }
+            });
+        }
+    }
 }
 
 //  [1] To override .s-btn class attributes
@@ -49,9 +130,9 @@
 }
 
 .s-post-summary--stats {
-    --s-post-summary-stats-gap: @su6; // Replace with gap property as soon as browser support makes sense.
-    margin-right: @su8;
-    margin-bottom: -@su2;
+    gap: @su6;
+    margin-right: @su16;
+    margin-bottom: @su4;
     width: @su96 + @su12;
     display: flex;
     flex-direction: column;
@@ -63,19 +144,18 @@
 
     .s-post-summary--stats-item {
         display: inline-flex;
+        gap: 0.3em;
         align-items: center;
         justify-content: center;
-        margin-right: var(--s-post-summary-stats-gap);
-        margin-bottom: var(--s-post-summary-stats-gap);
         white-space: nowrap;
         border: 1px solid transparent;
 
-        .svg-icon {
-            margin-right: @su4;
-        }
-
         &.s-post-summary--stats-item__emphasized {
             color: var(--fc-dark);
+        }
+
+        .s-post-summary--stats-item-number {
+            font-weight: 500;
         }
 
         &.has-answers,
@@ -85,7 +165,8 @@
         &.is-draft,
         &.is-review,
         &.is-closed,
-        &.is-archived {
+        &.is-archived,
+        &.is-pinned {
             border-radius: @br-sm;
             padding: @su2 @su4;
         }
@@ -150,6 +231,11 @@
             background-color: var(--black-100);
             border-color: var(--black-600);
         }
+
+        &.is-pinned {
+            color: var(--white);
+            background-color: var(--black-700);
+        }
     }
 
     #stacks-internals #screen-md({
@@ -167,21 +253,36 @@
         display: block;
         font-size: @fs-body3;
         margin-top: -0.15rem; // Optical alignment to compensate for title's containing block
-        margin-bottom: @su6;
-        overflow-wrap: break-word;
-        word-wrap: break-word;
+        margin-bottom: 0.3846rem;
         padding-right: @su24;
+        line-height: @lh-md;
+        font-weight: normal;
+        .break-word;
 
         .iconShield {
-            color: var(--black-600);
-            vertical-align: baseline;
-            position: relative;
-            bottom: -@su2;
+            color: var(--fc-light);
+        }
 
-            #stacks-internals #screen-sm({
-                vertical-align: text-bottom;
-                bottom: 0;
-            });
+        .svg-icon {
+            vertical-align: text-bottom; // Optical alignment
+            position: relative;
+            top: -1px;
+        }
+
+        a {
+            .break-word;
+
+            color: var(--theme-post-title-color);
+            font-family: var(--theme-post-title-font-family);
+
+            &:visited {
+                color: var(--theme-post-title-color-visited);
+            }
+
+            &:hover,
+            &:active {
+                color: var(--theme-post-title-color-hover);
+            }
         }
     }
 
@@ -198,8 +299,10 @@
     .s-post-summary--content-excerpt {
         margin-top: -@su2;
         margin-bottom: @su8;
+        font-family: var(--theme-post-body-font-family);
         color: var(--fc-medium);
         .v-truncate2;
+        .break-word;
 
         &.s-post-summary--content-excerpt__sm {
             .v-truncate1;
@@ -216,28 +319,21 @@
 }
 
 .s-post-summary--meta {
-    --s-post-summary-tags-gap: @su4;  // Replace with gap property as soon as browser support makes sense.
-
     display: flex;
     align-items: center;
     justify-content: space-between;
     flex-wrap: wrap;
-    margin-bottom: calc(-1 * var(--s-post-summary-tags-gap));
+    column-gap: @su6;
+    row-gap: @su8;
 
     .s-post-summary--meta-tags {
         display: flex;
         flex-wrap: wrap;
-        margin-right: var(--s-post-summary-tags-gap);
-
-        & > * {
-            margin-right: var(--s-post-summary-tags-gap);
-            margin-bottom: var(--s-post-summary-tags-gap);
-        }
+        gap: @su4;
     }
 
     .s-user-card {
         flex-wrap: wrap;
-        margin-bottom: var(--s-post-summary-tags-gap);
         margin-left: auto;
         justify-content: flex-end;
     }
@@ -306,17 +402,16 @@
         filter: grayscale(100%);
     }
 
-    .s-post-summary--content-title {
-        &, & .s-link {
-            color: var(--black-600);
+    .s-post-summary--content-title a {
+        color: var(--black-600);
 
-            &:hover {
-                color: var(--black-500);
-            }
+        &:hover,
+        &:active {
+            color: var(--black-500);
+        }
 
-            &:visited {
-                color: var(--black-700);
-            }
+        &:visited {
+            color: var(--black-700);
         }
     }
 
