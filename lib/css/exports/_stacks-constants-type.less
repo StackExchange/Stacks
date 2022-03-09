@@ -13,24 +13,33 @@
 //  ============================================================================
 //  $   FONT FAMILY (ff-)
 //  ----------------------------------------------------------------------------
-@ff-sans:
-    -apple-system, BlinkMacSystemFont, // San Francisco on macOS and iOS
-    "Segoe UI", // Windows
-    "Liberation Sans", // Linux
-    sans-serif; // The final fallback for rendering in sans-serif.
+// -apple-system, BlinkMacSystemFont, // San Francisco on macOS and iOS
+// "Segoe UI", // Windows
+// "Liberation Sans", // Linux
+// sans-serif; // The final fallback for rendering in sans-serif.
+
+// ui-monospace, // San Francisco Mono on macOS and iOS
+// "Cascadia Mono", "Segoe UI Mono", // Newer Windows monospace fonts that are optionally installed. Most likely to be rendered in Consolas
+// "Liberation Mono", // Linux
+// Menlo, Monaco, Consolas, // A few sensible system font choices
+// monospace; // The final fallback for rendering in monospace.
+
+@ff-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", "Liberation Sans", sans-serif;
 @ff-serif: Georgia, Cambria, "Times New Roman", Times, serif;
-@ff-mono:
-    ui-monospace, // San Francisco Mono on macOS and iOS
-    "Cascadia Mono", "Segoe UI Mono", // Newer Windows monospace fonts that are optionally installed. Most likely to be rendered in Consolas
-    "Liberation Mono", // Linux
-    Menlo, Monaco, Consolas, // A few sensible system font choices
-    monospace; // The final fallback for rendering in monospace.
+@ff-mono: ui-monospace, "Cascadia Mono", "Segoe UI Mono", "Liberation Mono", Menlo, Monaco, Consolas, monospace;
+@ff-dyslexic: "Comic Sans", "Comic Sans MS", "Chalkboard", "ChalkboardSE-Regular", "TSCu_Comic";
 
 body {
     --ff-sans: @ff-sans;
     --ff-serif: @ff-serif;
     --ff-mono: @ff-mono;
     --theme-body-font-family: var(--ff-sans);
+}
+
+body.theme-dyslexic {
+    --ff-sans: @ff-dyslexic, @ff-sans;
+    --ff-serif: @ff-dyslexic, @ff-sans;
+    --ff-mono: Comic Mono;
 }
 
 //  ============================================================================
