@@ -219,4 +219,8 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.addPassthroughCopy('assets');
   eleventyConfig.addPassthroughCopy('email/templates/code');
   eleventyConfig.addPassthroughCopy('email/templates/examples');
+
+  // Ignore liquid parsing on these files
+  eleventyConfig.ignores.add('email/templates/code');
+  eleventyConfig.ignores.add('email/templates/examples');
 }

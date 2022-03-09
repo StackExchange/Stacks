@@ -12,12 +12,12 @@ description: Stacks provides a robust theming API to handle theming in various c
         <li>Alternatively, you can set a dark mode that is not system dependent by attaching <code class="stacks-code">.theme-dark</code> to the <code class="stacks-code">body</code> element.</li>
         <li>Adding <code class="stacks-code">.theme-highcontrast</code> to the <code class="stacks-code">body</code> element will boost colors to WCAG Level AAA contrast ratios in as many places as possible. This mode stacks on top of both light and dark modes. The only exception is branded themed colors remain untouched by high contrast mode.</li>
     </ol>
-    <p class="stacks-copy">There are also <a class="s-link" href="{{ "/product/guidelines/conditional-classes#dark-mode" | relative_url }}">conditional classes</a> that can be applied to override assumed dark mode colors, force light mode, or to force dark mode. Forcing modes can be good for previews in admin-only situations.</p>
+    <p class="stacks-copy">There are also <a class="s-link" href="{{ "/product/guidelines/conditional-classes#dark-mode" | url }}">conditional classes</a> that can be applied to override assumed dark mode colors, force light mode, or to force dark mode. Forcing modes can be good for previews in admin-only situations.</p>
 </section>
 
 <section class="stacks-section">
     {% header "h2", "Global theming" %}
-    <p class="stacks-copy">Like light and dark modes, Stacks has baked-in theming available as primary and secondary CSS color variables. These can be overridden in various scopes. By default, the Stacks primary and secondary variables are Stack Overflow’s branded orange and blue, respectively, at a global scope, affecting every element on the page. These can be overridden in the context of your product, e.g. Teams, a Collective, or Stack Exchange Site. Both primary and secondary colors are available in the full spectrum of <a class="s-link" href="{{ "/product/base/colors/#theming" | relative_url }}">atomic classes and variables</a>.</p>
+    <p class="stacks-copy">Like light and dark modes, Stacks has baked-in theming available as primary and secondary CSS color variables. These can be overridden in various scopes. By default, the Stacks primary and secondary variables are Stack Overflow’s branded orange and blue, respectively, at a global scope, affecting every element on the page. These can be overridden in the context of your product, e.g. Teams, a Collective, or Stack Exchange Site. Both primary and secondary colors are available in the full spectrum of <a class="s-link" href="{{ "/product/base/colors/#theming" | url }}">atomic classes and variables</a>.</p>
     <p class="stacks-copy">At its core, our theming is powered by CSS variables that are split into primary and secondary <code class="stacks-code">H</code>, <code class="stacks-code">S</code>, <code class="stacks-code">L</code>, and <code class="stacks-code">R</code>, <code class="stacks-code">G</code>, <code class="stacks-code">B</code> values. For example:</p>
 
     <div class="stacks-preview _preview-none mb24">
@@ -38,7 +38,7 @@ description: Stacks provides a robust theming API to handle theming in various c
 {% endhighlight %}
     </div>
 
-    <p class="stacks-copy">These then get combined to generate the <a class="s-link" href="{{ "/product/base/colors/#theming" | relative_url }}">full set of color stops</a>. Overriding them is as simple as redefining those individual theming variables.</p>
+    <p class="stacks-copy">These then get combined to generate the <a class="s-link" href="{{ "/product/base/colors/#theming" | url }}">full set of color stops</a>. Overriding them is as simple as redefining those individual theming variables.</p>
 
     <p class="stacks-copy">By default, we take those single primary and secondary colors and generate an appropriate dark mode equivalent. However, what if your branding color is dark purple—or black? You can pass an optional dark mode override:</p>
 
