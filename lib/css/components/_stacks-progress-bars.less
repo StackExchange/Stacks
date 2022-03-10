@@ -18,8 +18,8 @@
 .s-progress,
 .s-progress--bar {
     position: relative;
-    min-height: @su4;
-    min-width: @su6;
+    min-height: var(--sus4);
+    min-width: var(--sus6);
     border-radius: @br-sm;
 }
 
@@ -47,7 +47,7 @@
     border-radius: @br-md;
     border: 1px solid transparent;
     font-size: @fs-caption;
-    line-height: @lh-xs;
+    line-height: var(--lh-xs);
     color: var(--fc-dark);
     z-index: @zi-base + 2;
 }
@@ -74,7 +74,7 @@
     .s-progress--label {
         border-color: var(--green-400);
         display: flex;
-        gap: @su4;
+        gap: var(--su4);
         align-items: center;
         justify-content: center;
     }
@@ -99,7 +99,7 @@
 .s-progress__badge {
     .s-progress--label {
         display: flex;
-        gap: @su4;
+        gap: var(--su4);
         align-items: center;
         padding-left: 1em;
         padding-right: 1em;
@@ -207,7 +207,7 @@
         font-size: @fs-body1;
         border: 0;
         border-radius: 0;
-        padding: @su12 @su6 0 @su6;
+        padding: var(--su12) var(--su6) 0 var(--su6);
         text-align: center;
         color: var(--black-300);
         z-index: @zi-base;
@@ -220,8 +220,8 @@
         justify-content: center;
         background: var(--black-300);
         border-radius: 100%;
-        width: @su24;
-        height: @su24;
+        width: var(--sus24);
+        height: var(--sus24);
         z-index: @zi-selected;
         color: @white;
 
@@ -232,8 +232,8 @@
 
     .s-progress--bar {
         position: absolute;
-        top: 9px;
-        height: @su6;
+        top: calc(var(--sus8) + var(--sus1));
+        height: var(--sus6);
         background: var(--black-300);
         z-index: @zi-base;
         border-radius: 0;
@@ -256,7 +256,7 @@
 
         .s-progress--stop {
             background: var(--theme-secondary-400);
-            box-shadow: 0 0 0 @su6 var(--focus-ring);
+            box-shadow: 0 0 0 var(--sus6) var(--focus-ring);
         }
 
         .s-progress--label {
@@ -282,18 +282,17 @@
 .s-progress__circular {
     --s-progress-value: 0;
     @s-progress-circle-circumference: (2 * pi() * 14); // 2πr, r = 14.
-    @s-progress-stroke-width: 4;
 
     background: none;
-    width: @su32;
-    height: @su32;
+    width: var(--sus32);
+    height: var(--sus32);
 
     .s-progress-bar {
         // Make everything originate from the top of the circle
         transform: rotate(270deg);
 
         circle {
-            stroke-width: @s-progress-stroke-width;
+            stroke-width: var(--sus4);
             fill: none;
             stroke-linecap: round;
         }
@@ -315,17 +314,17 @@
     }
 
     &.s-progress__sm {
-        width: 24px;
-        height: 24px;
+        width: var(--sus24);
+        height: var(--sus24);
     }
 
     &.s-progress__md {
-        width: 48px;
-        height: 48px;
+        width: var(--sus48);
+        height: var(--sus48);
     }
 
     &.s-progress__lg {
-        width: 64px;
-        height: 64px;
+        width: var(--sus64);
+        height: var(--sus64);
     }
 }

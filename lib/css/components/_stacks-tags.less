@@ -71,8 +71,8 @@
     align-items: center;
     justify-content: center;
     min-width: 0;
-    padding-left: @su4;
-    padding-right: @su4;
+    padding-left: var(--su4);
+    padding-right: var(--su4);
     border-style: solid;
     border-width: 1px;
     border-radius: @br-sm;
@@ -94,22 +94,22 @@
     &.s-tag__xs {
         font-size: @fs-fine;
         line-height: 1.4;
-        padding-left: @su2;
-        padding-right: @su2;
+        padding-left: var(--su2);
+        padding-right: var(--su2);
     }
     &.s-tag__sm {
         font-size: @fs-caption;
         line-height: 1.5;
     }
     &.s-tag__md {
-        padding-left: @su6;
-        padding-right: @su6;
+        padding-left: var(--su6);
+        padding-right: var(--su6);
         font-size: @fs-body2;
         line-height: 1.733333333;
     }
     &.s-tag__lg {
-        padding-left: @su6;
-        padding-right: @su6;
+        padding-left: var(--su6);
+        padding-right: var(--su6);
         border-radius: @br-sm + 1;
         font-size: @fs-subheading;
         line-height: 1.684210526;
@@ -129,10 +129,10 @@ a.s-tag:not(.is-selected) {
     align-content: center;
     align-self: center;
     justify-content: center;
-    width: @su16;
-    height: @su16;
-    margin-left: @su4;
-    padding: (@su2 / 2);
+    width: var(--sus16);
+    height: var(--sus16);
+    margin-left: var(--su4);
+    padding: var(--su1);
     border-radius: @br-sm;
     cursor: pointer;
 
@@ -147,8 +147,8 @@ a.s-tag:not(.is-selected) {
 .s-tag--sponsor {
     display: inline-flex;
     align-self: center;
-    margin: -(@su2 + 1) @su4 -(@su2) -(@su2);
-    max-width: 18px;
+    margin: calc(var(--su1) * -1) var(--su4) calc(var(--su2) * -1) calc(var(--su2) * -1);
+    max-width: calc(var(--sus16) + var(--sus2));
     border-radius: @br-sm - 1;
 
     .svg-icon,
@@ -220,7 +220,7 @@ a.s-tag__muted:not(.is-selected) {
         display: block;
         width: 14px;
         height: 14px;
-        margin-right: @su2;
+        margin-right: var(--su2);
         background-color: currentColor;
         position: absolute;
         left: 4px;

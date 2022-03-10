@@ -14,8 +14,8 @@
 @import "./lib/css/stacks.less"; //  These are actual styles used in SO projects
 
 .stacks-section {
-    margin-top: @su48;
-    margin-bottom: @su48;
+    margin-top: var(--su48);
+    margin-bottom: var(--su48);
 }
 
 .stacks-header {
@@ -161,7 +161,7 @@
 .stacks-h4 {
     margin-bottom: 0;
     font-weight: 600;
-    line-height: @lh-sm;
+    line-height: var(--lh-sm);
     color: var(--fc-dark);
     text-rendering: optimizeLegibility;
 }
@@ -180,16 +180,16 @@
 //  --  Section Title
 .stacks-h2 {
     font-size: @fs-headline1;
-    padding-top: @su64 + @su24; // Hack for #anchor positioning
-    margin-top: -@su64 + -@su24; // Hack for #anchor positioning
+    padding-top: calc(var(--su96) - var(--su8)); // Hack for #anchor positioning
+    margin-top: calc((var(--su96) - var(--su8)) * -1); // Hack for #anchor positioning
 }
 
 //  --  Sub-section Title
 .stacks-h3 {
     font-size: @fs-subheading;
     color: var(--fc-medium);
-    padding-top: @su64 + @su24; // Hack for #anchor positioning
-    margin-top: -@su64 + -@su24; // Hack for #anchor positioning
+    padding-top: calc(var(--su96) - var(--su8)); // Hack for #anchor positioning
+    margin-top: calc((var(--su96) - var(--su8)) * -1); // Hack for #anchor positioning
 }
 
 .stacks-h4 {
@@ -203,7 +203,7 @@
     margin-top: 0;
     margin-bottom: 1em;
     font-size: @fs-body3;
-    line-height: @lh-lg;
+    line-height: var(--lh-lg);
     color: var(--fc-medium);
 
     strong {
@@ -219,13 +219,13 @@
 //  --   Code Tag
 //  ----------------------------------------------------------------------------
 .stacks-code {
-    padding: 3px 5px @su2 @su4;
+    padding: 3px 5px var(--su2) var(--su4);
     border-radius: @br-sm;
     background-color: var(--black-075);
     font-size: @fs-caption;
     font-family: var(--ff-mono);
     color: var(--fc-dark);
-    line-height: @lh-xs;
+    line-height: var(--lh-xs);
     vertical-align: middle;
     overflow-wrap: break-word;
     white-space: normal;
@@ -238,7 +238,7 @@
 .stacks-list {
     margin-bottom: 1em;
     font-size: @fs-body3;
-    line-height: @lh-lg;
+    line-height: var(--lh-lg);
     color: var(--fc-medium);
 }
 
@@ -247,7 +247,7 @@
 //  $   CODE STYLES
 //  ----------------------------------------------------------------------------
 .stacks-preview {
-    margin-bottom: @su48;
+    margin-bottom: var(--su48);
     border-radius: @br-md;
     box-shadow: var(--bs-sm);
 
@@ -272,7 +272,7 @@
 
 //  Preview area
 .stacks-preview--example {
-    padding: @su16;
+    padding: var(--su16);
     border-bottom-left-radius: @br-md;
     border-bottom-right-radius: @br-md;
     border: 1px solid var(--bc-medium);
@@ -300,7 +300,7 @@
 
 //  --   Preview Area
 .stacks-icon-preview {
-    padding: @su8;
+    padding: var(--su8);
     min-height: 4em;
     border-top-left-radius: @br-sm;
     border-top-right-radius: @br-sm;
@@ -319,7 +319,7 @@
 //  ----------------------------------------------------------------------------
 
 .stacks-flex-example--item {
-    padding: @su8;
+    padding: var(--su8);
     border: 1px solid var(--bc-medium);
     background-color: var(--black-075);
     font-family: var(--ff-mono);
@@ -331,8 +331,8 @@
 //  $   COLORS
 //  ----------------------------------------------------------------------------
 .stacks-swatch {
-    width: @su32;
-    height: @su32;
+    width: var(--sus32);
+    height: var(--sus32);
 }
 
 //  ============================================================================
@@ -401,17 +401,17 @@
 .stacks-theme-button {
     color: var(--black-300);
     position: relative;
-    padding-right: @su24 !important;
+    padding-right: var(--sus24) !important;
 
     &:after {
         content: "";
         position: absolute;
         z-index: @zi-active;
-        top: calc(50% - 2px);
-        right: @su12 - @su2;
+        top: calc(50% - var(--sus2));
+        right: calc(var(--sus12) - var(--sus2));
         border-style: solid;
-        border-width: @su4;
-        border-top-width: @su4;
+        border-width: var(--sus4);
+        border-top-width: var(--sus4);
         border-bottom-width: 0;
         border-color: currentColor transparent;
         pointer-events: none;
