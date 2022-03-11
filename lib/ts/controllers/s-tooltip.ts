@@ -141,21 +141,15 @@ export class TooltipController extends BasePopoverController {
     protected bindDocumentEvents() {
         this.boundHideIfWithin = this.boundHideIfWithin || this.hideIfWithin.bind(this);
 
-            this.referenceElement.addEventListener("mouseover", this.boundScheduleShow);
-            this.referenceElement.addEventListener("mouseout", this.boundHide);
-            this.referenceElement.addEventListener("focus", this.boundScheduleShow);
-            this.referenceElement.addEventListener("blur", this.boundHide);
-        }
+        document.addEventListener("s-popover:shown", this.boundHideIfWithin);
+    }
 
-        /**
-         * Unbinds all mouse events
-         */
-        private unbindMouseEvents() {
-            this.referenceElement.removeEventListener("mouseover", this.boundScheduleShow);
-            this.referenceElement.removeEventListener("mouseout", this.boundHide);
-            this.referenceElement.removeEventListener("focus", this.boundScheduleShow);
-            this.referenceElement.removeEventListener("blur", this.boundHide);
-        }
+    /**
+     * Unbinds all mouse events
+     */
+    protected unbindDocumentEvents() {
+        document.removeEventListener("s-popover:shown", this.boundHideIfWithin);
+    }
 
     /**
      * Attempts to generate a new tooltip popover from the title attribute if no popover
@@ -184,6 +178,8 @@ export class TooltipController extends BasePopoverController {
 
         this.referenceElement.addEventListener("mouseover", this.boundScheduleShow);
         this.referenceElement.addEventListener("mouseout", this.boundHide);
+        this.referenceElement.addEventListener("focus", this.boundScheduleShow);
+        this.referenceElement.addEventListener("blur", this.boundHide);
     }
 
     /**
@@ -192,6 +188,8 @@ export class TooltipController extends BasePopoverController {
     private unbindMouseEvents() {
         this.referenceElement.removeEventListener("mouseover", this.boundScheduleShow);
         this.referenceElement.removeEventListener("mouseout", this.boundHide);
+        this.referenceElement.removeEventListener("focus", this.boundScheduleShow);
+        this.referenceElement.removeEventListener("blur", this.boundHide);
     }
 
     /**
