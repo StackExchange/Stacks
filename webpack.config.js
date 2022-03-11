@@ -8,9 +8,7 @@ module.exports = (_, argv) => {
         mode: isProd ? "production" : "development",
         devtool: isProd ? false : "inline-source-map",
         entry: {
-            // add the same entry twice, once to minify, once to not (see optimization entry below)
             "stacks": "./lib/ts/index.ts",
-            "stacks.min": "./lib/ts/index.ts",
         },
         output: {
             filename: "js/[name].js",
@@ -23,12 +21,6 @@ module.exports = (_, argv) => {
                     test: /\.tsx?$/,
                     exclude: /node_modules/,
                     use: [
-                        {
-                            loader: "babel-loader",
-                            options: {
-                                presets: ["@babel/preset-env"],
-                            },
-                        },
                         {
                             loader: "ts-loader",
                         },
@@ -52,13 +44,6 @@ module.exports = (_, argv) => {
                     ],
                 },
             ],
-        },
-        optimization: {
-            minimizer: [
-                new TerserPlugin({
-                    include: /\.min\./
-                })
-            ]
         },
         plugins: [
             new MiniCssExtractPlugin({
