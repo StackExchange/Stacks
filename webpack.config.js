@@ -1,5 +1,4 @@
 const path = require("path");
-const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const TerserPlugin = require("terser-webpack-plugin");
 
@@ -16,6 +15,7 @@ module.exports = (_, argv) => {
         output: {
             filename: "js/[name].js",
             path: path.resolve(__dirname, "dist"),
+            clean: true,
         },
         module: {
             rules: [
@@ -63,8 +63,7 @@ module.exports = (_, argv) => {
         plugins: [
             new MiniCssExtractPlugin({
                 filename: "css/[name].css",
-            }),
-            new CleanWebpackPlugin(),
+            })
         ],
         resolve: {
             extensions: [".tsx", ".ts", ".js"],

@@ -1,7 +1,6 @@
 const fs = require("fs");
 const path = require("path");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 
 module.exports = (_, argv) => {
     const isProd = argv.mode === "production"
@@ -25,6 +24,7 @@ module.exports = (_, argv) => {
         output: {
             filename: "[name].js",
             path: path.resolve(__dirname, "assets/dist"),
+            clean: true,
         },
         module: {
             rules: [
@@ -63,12 +63,7 @@ module.exports = (_, argv) => {
             ],
         },
         plugins: [
-            new MiniCssExtractPlugin(),
-            new CleanWebpackPlugin({
-                isDry: !isProd,
-                // TODO the `cd ./docs` kills this plugin...
-                dangerouslyAllowCleanPatternsOutsideProject: !isProd
-            })
+            new MiniCssExtractPlugin()
         ],
         resolve: {
             extensions: [".tsx", ".ts", ".js"],
