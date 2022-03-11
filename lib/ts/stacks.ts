@@ -1,6 +1,6 @@
 import * as Stimulus from "stimulus";
 
-class StacksApplication extends Stimulus.Application {
+export class StacksApplication extends Stimulus.Application {
     static _initializing = true;
 
     load(...definitions: Stimulus.Definition[]): void
@@ -25,6 +25,10 @@ class StacksApplication extends Stimulus.Application {
         const application = new StacksApplication(element, schema);
         application.start();
         return application;
+    }
+
+    static finalize() {
+        StacksApplication._initializing = false;
     }
 }
 

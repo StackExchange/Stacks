@@ -34,6 +34,9 @@ Stacks.setTooltipHtml = setTooltipHtml;
 // @ts-expect-error
 Stacks.setTooltipText = setTooltipText;
 
+Stacks.StacksApplication.finalize();
+
+// TODO export everything above and let the importing module take care if it instead
 export { Stacks };
 
 //TODO
