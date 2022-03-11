@@ -378,7 +378,7 @@ export function showPopover(element: HTMLElement) {
  * Helper to manually hide an s-popover element via external JS
  * @param element the element the `data-controller="s-popover"` attribute is on
  */
-    export function hidePopover(element: Element) {
+export function hidePopover(element: Element) {
     const { isPopover, controller, popover } = getPopover(element);
 
     if (controller) {
@@ -397,7 +397,7 @@ export function showPopover(element: HTMLElement) {
  * Options to use when attaching a popover via `Stacks.attachPopover`.
  * @see Stacks.attachPopover
  */
-    export interface PopoverOptions {
+export interface PopoverOptions {
     /**
      * When true, the `click->s-popover#toggle` action will be attached to the controller element or reference element.
      */
@@ -420,7 +420,7 @@ export function showPopover(element: HTMLElement) {
  *                If the popover does not have a parent element, it will be inserted as a immediately after the reference element.
  * @param options an optional collection of options to use when configuring the popover.
  */
-    export function attachPopover(element: Element, popover: Element | string, options?: PopoverOptions)
+export function attachPopover(element: Element, popover: Element | string, options?: PopoverOptions)
     {
     const { referenceElement, popover: existingPopover } = getPopover(element);
 
