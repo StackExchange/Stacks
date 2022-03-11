@@ -49,6 +49,10 @@
                 border-radius: 50%;
                 background: @white;
                 transition: left 0.1s ease;
+
+                .highcontrast-mode({
+                    background: var(--white);
+                });
             }
 
             &:before {
@@ -108,17 +112,32 @@
         //  If the input is selected, style its label accordingly.
         input[type="radio"]:checked {
             + label {
-                // Color activated options green
                 &.s-toggle-switch--label-off {
                     background-color: var(--black-300);
                     color: @white;
+
+                    .highcontrast-mode({
+                        color: var(--white);
+                    });
                 }
 
                 // Color activated options green
                 &:not(.s-toggle-switch--label-off) {
                     background-color: var(--green-400);
                     color: @white;
+
+                    .highcontrast-mode({
+                        color: var(--white);
+                    });
                 }
+            }
+
+            &:focus + label.s-toggle-switch--label-off {
+                box-shadow: 0 0 0 @su4 var(--focus-ring-muted);
+            }
+
+            &:focus + label:not(.s-toggle-switch--label-off) {
+                box-shadow: 0 0 0 @su4 var(--focus-ring-success);
             }
         }
     }

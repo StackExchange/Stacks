@@ -5,7 +5,7 @@ description: This page provides some common typography patterns for email.
 ---
 <section class="stacks-section">
     <p class="stacks-copy">
-        It’s safe and accessible to use semantic HTML tags like <code class="stacks-code">&lt;h&gt;</code>, <code class="stacks-code">&lt;p&gt;</code>, and <code class="stacks-code">&lt;ul&gt;</code> for text in email just as we do for the web. The main difference in email is that <a href="{{ "/email/guidelines/faq#why-do-we-have-to-write-css-inline?" | relative_url }}">CSS should be written inline</a> to specify intended styles (like the color of an anchor tag) and zero out unintended defaults (like the margin around a <code class="stacks-code">&lt;p&gt;</code> tag).
+        It’s safe and accessible to use semantic HTML tags like <code class="stacks-code">&lt;h&gt;</code>, <code class="stacks-code">&lt;p&gt;</code>, and <code class="stacks-code">&lt;ul&gt;</code> for text in email just as we do for the web. The main difference in email is that <a href="{{ "/email/guidelines/faq#why-do-we-have-to-write-css-inline?" | url }}">CSS should be written inline</a> to specify intended styles (like the color of an anchor tag) and zero out unintended defaults (like the margin around a <code class="stacks-code">&lt;p&gt;</code> tag).
     </p>
 </section>
 <section class="stacks-section">
@@ -92,12 +92,9 @@ description: This page provides some common typography patterns for email.
         </div>
     </div>
 
-    <div class="grid s-notice s-notice__info mb48">
-        <div class="grid--cell mr8">{% icon "Alert" %}</div>
-        <div class="grid--cell lh-lg">
-            <strong>Note:</strong> Using <code class="stacks-code bg-powder-300">class="has-markdown"</code> applies styles defined in the <code class="stacks-code bg-powder-300">&lt;style&gt;</code> tag. Only <a href="https://www.campaignmonitor.com/css/style-element/style-in-head/">email clients that support <code class="stacks-code bg-powder-300">&lt;style&gt;</code> in <code class="stacks-code bg-powder-300">&lt;head&gt;</code></a> will render <code class="stacks-code bg-powder-300">has-markdown</code> links properly.
-        </div>
-    </div>
+    {% tip %}
+        <strong>Note:</strong> Using <code class="stacks-code">class="has-markdown"</code> applies styles defined in the <code class="stacks-code">&lt;style&gt;</code> tag. Only <a href="https://www.campaignmonitor.com/css/style-element/style-in-head/">email clients that support</a> <code class="stacks-code">&lt;style&gt;</code> in <code class="stacks-code">&lt;head&gt;</code> will render <code class="stacks-code">has-markdown</code> links properly.
+    {% endtip %}
 
     {% header "h3", "Auto-detected links" %}
     <p class="stacks-copy">
@@ -114,12 +111,9 @@ description: This page provides some common typography patterns for email.
         </div>
     </div>
 
-    <div class="grid s-notice s-notice__info mb48">
-        <div class="grid--cell mr8">{% icon "Alert" %}</div>
-        <div class="grid--cell lh-lg">
-            <strong>Note:</strong> Using <code class="stacks-code bg-powder-300">class="unstyle-auto-detected-links"</code> applies styles defined in the <code class="stacks-code bg-powder-300">&lt;style&gt;</code> tag. Only <a href="https://www.campaignmonitor.com/css/style-element/style-in-head/">email clients that support <code class="stacks-code bg-powder-300">&lt;style&gt;</code> in <code class="stacks-code bg-powder-300">&lt;head&gt;</code></a> will render <code class="stacks-code bg-powder-300">has-markdown</code> links properly.
-        </div>
-    </div>
+    {% tip %}
+        <strong>Note:</strong> Using <code class="stacks-code">class="unstyle-auto-detected-links"</code> applies styles defined in the <code class="stacks-code">&lt;style&gt;</code> tag. Only <a href="https://www.campaignmonitor.com/css/style-element/style-in-head/">email clients that support</a> <code class="stacks-code">&lt;style&gt;</code> in <code class="stacks-code">&lt;head&gt;</code> will render <code class="stacks-code">has-markdown</code> links properly.
+    {% endtip %}
 </section>
 <section class="stacks-section">
     {% header "h2", "Code" %}
@@ -143,12 +137,9 @@ console.log("request body: " + pm.globals.get("switch_json"));</code></pre>
             <p style="margin: 0;">Format <code style="padding: 1px 5px; background-color: #EFF0F1; color: #242729; font-size: 13px; font-family: Consolas, Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace, sans-serif;">inline code</code> like this.</p>
         </div>
     </div>
-    <div class="grid s-notice s-notice__warning mb48">
-        <div class="grid--cell mr8">{% icon "AlertCircle" %}</div>
-        <div class="grid--cell lh-lg">
-            <strong>Known Issue:</strong> in Windows Outlook 2003 - 2019, preformatted code blocks <a href="https://i.stack.imgur.com/OCP1l.png">appear like this</a>.
-        </div>
-    </div>
+    {% tip %}
+        <strong>Known Issue:</strong> in Windows Outlook 2003 - 2019, preformatted code blocks <a href="https://i.stack.imgur.com/OCP1l.png">appear like this</a>.
+    {% endtip %}
 </section>
 <section class="stacks-section">
     {% header "h2", "Blockquotes" %}
@@ -166,12 +157,9 @@ console.log("request body: " + pm.globals.get("switch_json"));</code></pre>
             </blockquote>
         </div>
     </div>
-    <div class="grid s-notice s-notice__warning mb48">
-        <div class="grid--cell mr8">{% icon "AlertCircle" %}</div>
-        <div class="grid--cell lh-lg">
-            <strong>Known Issue:</strong> in Windows Outlook 2003 - 2019, blockquotes <a href="https://i.stack.imgur.com/8yz38.png">appear like this</a>.
-        </div>
-    </div>
+    {% tip %}
+        <strong>Known Issue:</strong> in Windows Outlook 2003 - 2019, blockquotes <a href="https://i.stack.imgur.com/8yz38.png">appear like this</a>.
+    {% endtip %}
 </section>
 <section class="stacks-section">
     {% header "h2", "Preventing text wrapping" %}

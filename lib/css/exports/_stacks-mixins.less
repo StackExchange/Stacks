@@ -1,3 +1,4 @@
+/* stylelint-disable indentation */
 //
 //  STACK OVERFLOW
 //  MIXINS
@@ -43,6 +44,32 @@
     }
 }
 
+//  ===========================================================================
+//  --  HIGHCONTRAST
+//      .highcontrast-mode renders a high contrast mode override for .theme-highcontrast
+//
+//      Usage example:
+//
+//      .highcontrast-mode({ background-color: var(--black-100); });
+//
+//  ---------------------------------------------------------------------------
+
+.highcontrast-mode(@rules) {
+    body.theme-highcontrast & {
+        @rules();
+    }
+}
+
+.highcontrast-dark-mode(@rules) {
+    body.theme-highcontrast.theme-system & {
+        @media (prefers-color-scheme: dark) {
+            @rules();
+        }
+    }
+    body.theme-highcontrast.theme-dark & {
+        @rules();
+    }
+}
 
 //  ===========================================================================
 //  --  APPEARANCE
@@ -59,7 +86,7 @@
 //  --  FONT FACE
 //      Used to load hosted, custom webfonts. You must provide the font's
 //      full file path in the mixin. All modern browsers the WOFF file format.
-//      Will automaticall add various local()s to try using already-installed
+//      Will automatically add various local()s to try using already-installed
 //      fonts before downloading.
 //  ---------------------------------------------------------------------------
 .font-face(@family, @path, @weight, @style) {
@@ -74,6 +101,80 @@
             #stacks-internals #font-face-src(@family, @path, @weight, "");
         }
     }
+}
+
+
+//  =============================================================================
+//  --  COLORS
+//      The following mixins let us do color math on the browser. They take a
+//      color prefix, and they expect the different values to be stored in
+//      --{prefix}-h, --{prefix}-s and --{prefix}-l
+//  -----------------------------------------------------------------------------
+
+.load-color-variables(@amount) {
+    @amountDecimal: (@amount / 100);
+    @amountPercentage: @amount * 1%;
+    @complementDecimal: 1 - @amountDecimal;
+    @additionDecimal: 1 + @amountDecimal;
+}
+
+.assemble-color(@color-prefix) {
+    @result: hsl(var(~"--@{color-prefix}-h"),
+                 var(~"--@{color-prefix}-s"),
+                 var(~"--@{color-prefix}-l"));
+}
+
+// Increase the lightness of a color in the HSL color space by an absolute amount.
+.native-lighten(@color-prefix, @amount) {
+    .load-color-variables(@amount);
+    @result: hsl(var(~"--@{color-prefix}-h"),
+                 var(~"--@{color-prefix}-s"),
+                 calc(var(~"--@{color-prefix}-l") + @amountPercentage));
+}
+
+// Decrease the lightness and saturation of a color in the HSL color space by absolute amounts.
+.native-darken-desaturate(@color-prefix, @darken-amount, @desaturate-amount) {
+    @darkenAmountPercentage: .load-color-variables(@darken-amount)[@amountPercentage];
+    @desaturateAmountPercentage: .load-color-variables(@desaturate-amount)[@amountPercentage];
+    @result: hsl(var(~"--@{color-prefix}-h"),
+                 clamp(10%, calc(var(~"--@{color-prefix}-s") - @desaturateAmountPercentage), 90%),
+                 clamp(20%, calc(var(~"--@{color-prefix}-l") - @darkenAmountPercentage), 100%));
+}
+
+// Decrease the lightness of a color in the HSL color space by an absolute amount.
+.native-darken(@color-prefix, @amount) {
+    .load-color-variables(@amount);
+    @result: hsl(var(~"--@{color-prefix}-h"),
+                 var(~"--@{color-prefix}-s"),
+                 calc(var(~"--@{color-prefix}-l") - @amountPercentage));
+}
+
+// Mix color with white in variable proportion
+.native-tint(@color-prefix, @amount) {
+    .load-color-variables(@amount);
+    @ramount: 255 * @amountDecimal;
+    @gamount: 255 * @amountDecimal;
+    @bamount: 255 * @amountDecimal;
+    @result: rgb(calc(@ramount + var(~"--@{color-prefix}-r") * @complementDecimal),
+                 calc(@gamount + var(~"--@{color-prefix}-g") * @complementDecimal),
+                 calc(@bamount + var(~"--@{color-prefix}-b") * @complementDecimal));
+}
+
+// Mix color with black in variable proportion
+.native-shade(@color-prefix, @amount) {
+    .load-color-variables(@amount);
+    @result: rgb(calc(var(~"--@{color-prefix}-r") * @complementDecimal),
+                 calc(var(~"--@{color-prefix}-g") * @complementDecimal),
+                 calc(var(~"--@{color-prefix}-b") * @complementDecimal));
+}
+
+// Set the absolute opacity of a color.
+.native-fade(@color-prefix, @amount) {
+    .load-color-variables(@amount);
+    @result: hsla(var(~"--@{color-prefix}-h"),
+                  var(~"--@{color-prefix}-s"),
+                  var(~"--@{color-prefix}-l"),
+                  @amountDecimal);
 }
 
 //  ===========================================================================

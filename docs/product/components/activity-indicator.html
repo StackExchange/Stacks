@@ -4,7 +4,7 @@ title: Activity indicator
 description: Stacks provides a small jewel for indicating new activity.
 ---
 <section class="stacks-section">
-    {% header "h3", "Classes" %}
+    {% header "h2", "Classes" %}
     <div class="overflow-x-auto mb32">
         <table class="wmn4 s-table s-table__bx-simple">
             <thead>
@@ -27,29 +27,79 @@ description: Stacks provides a small jewel for indicating new activity.
     </div>
 </section>
 <section class="stacks-section">
-    {% header "h3", "Examples" %}
-    <p class="stacks-copy">By default, our indicator has no positioning attached to it. Depending on your context, you can modify the activity indicator’s positioning using any combination of atomic classes. Since our activity indicator has no inherent semantic meaning, make sure to include visually-hidden, screenreader-only text.</p>
+    {% header "h2", "Examples" %}
+    {% header "h3", "Default" %}
+    <p class="stacks-copy">By default, our indicator has no positioning attached to it. Depending on your context, you can modify the activity indicator’s positioning using any combination of atomic classes. Since our activity indicator has no inherent semantic meaning, make sure to include <a href="{{ '/product/base/visibility/' | url }}">visually-hidden, screenreader-only</a> text with the <code class="stacks-code">v-visible-sr</code> class.</p>
     <div class="stacks-preview">
 {% highlight html %}
 <div class="s-activity-indicator">
     <div class="v-visible-sr">New activity</div>
 </div>
 
+<div class="s-activity-indicator">
+    …
+    <div class="v-visible-sr">…</div>
+</div>
+
+<div class="s-activity-indicator">
+    …
+    <div class="v-visible-sr">…</div>
+</div>
+
+<div class="s-activity-indicator">
+    …
+    <div class="v-visible-sr">…</div>
+</div>
+
+<div class="s-activity-indicator">
+    …
+</div>
+
+<a href="#" class="s-link s-link__muted">
+    <div class="s-avatar bg-red-400 ps-relative">
+        <div class="s-activity-indicator ps-absolute tn6 ln6">
+            <div class="v-visible-sr">…</div>
+        </div>
+        <div class="s-avatar--letter">…</div>
+        @Svg.ShieldXSm.With("native s-avatar--badge")
+    </div>
+    <span class="pl4">…</span>
+</a>
+
 <div class="ps-relative">
-    <div class="s-activity-indicator ps-absolute tn6 ln6">
-        <div class="v-visible-sr">New activity</div>
+    @Svg.Bell
+
+    <div class="s-activity-indicator ps-absolute tn4 rn4">
+        <div class="v-visible-sr">…</div>
     </div>
 </div>
 {% endhighlight %}
         <div class="stacks-preview--example">
-            <div class="grid fd-column gs24">
-                <div class="grid--cell">
-                    <div class="s-activity-indicator">
-                        <div class="v-visible-sr">New activity</div>
-                    </div>
+            <div class="d-flex gs24 ai-center fw-wrap">
+                <div class="flex--item s-activity-indicator">
+                    <div class="v-visible-sr">New activity</div>
                 </div>
 
-                <div class="grid--cell">
+                <div class="flex--item s-activity-indicator">
+                    3
+                    <div class="v-visible-sr">New activity</div>
+                </div>
+
+                <div class="flex--item s-activity-indicator">
+                    12
+                    <div class="v-visible-sr">New activity</div>
+                </div>
+
+                <div class="flex--item s-activity-indicator">
+                    370
+                    <div class="v-visible-sr">New activity</div>
+                </div>
+
+                <div class="flex--item s-activity-indicator">
+                    New
+                </div>
+
+                <div class="flex--item">
                     <a href="#" class="s-link s-link__muted">
                         <div class="s-avatar bg-red-400 ps-relative">
                             <div class="s-activity-indicator ps-absolute tn6 ln6">
@@ -62,14 +112,43 @@ description: Stacks provides a small jewel for indicating new activity.
                     </a>
                 </div>
 
-                <div class="grid--cell">
-                    <div class="fc-medium ps-relative d-inline-block">
+                <div class="flex--item">
+                    <div class="fc-medium ps-relative">
                         {% icon "Bell" %}
 
                         <div class="s-activity-indicator ps-absolute tn4 rn4">
                             <div class="v-visible-sr">New activity</div>
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% header "h3", "Variations" %}
+    <p class="stacks-copy">Stacks also provides alternative styling for success, warning, and danger states.</p>
+    <div class="stacks-preview">
+{% highlight html %}
+<div class="s-activity-indicator s-activity-indicator__success">
+    <div class="v-visible-sr">…</div>
+</div>
+<div class="s-activity-indicator s-activity-indicator__warning">
+    <div class="v-visible-sr">…</div>
+</div>
+<div class="s-activity-indicator s-activity-indicator__danger">
+    <div class="v-visible-sr">…</div>
+</div>
+{% endhighlight %}
+        <div class="stacks-preview--example">
+            <div class="d-flex gs24 ai-center fw-wrap">
+                <div class="flex--item s-activity-indicator s-activity-indicator__success">
+                    <div class="v-visible-sr">New activity</div>
+                </div>
+                <div class="flex--item s-activity-indicator s-activity-indicator__warning">
+                    <div class="v-visible-sr">New activity</div>
+                </div>
+                <div class="flex--item s-activity-indicator s-activity-indicator__danger">
+                    <div class="v-visible-sr">New activity</div>
                 </div>
             </div>
         </div>

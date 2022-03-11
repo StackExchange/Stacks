@@ -1,6 +1,7 @@
 ---
 layout: page
 title: Colors
+figma: https://www.figma.com/file/KL7VJKlVDqpxgaP1UP4xxQ3U/Colors
 description: To avoid specifying color values by hand, we’ve included a robust set of color variables. For maintainability, please use these instead of hardcoding color values.
 ---
 
@@ -12,6 +13,9 @@ description: To avoid specifying color values by hand, we’ve included a robust
     </p>
     <p class="stacks-copy">
         If your layout can’t be built using atomic color classes, all stops are available as CSS variables. Referencing the CSS variables directly will make sure dark mode is properly accounted for. If working in a legacy context, referencing our colors as Less variables is preferred to Hex, though both are deprecated. A common refactor is replacing <code class="stacks-code">background-color: @white;</code> with <code class="stacks-code">background-color: var(--white);</code> to make sure a legacy component is aware of dark mode when a deeper refactor isn’t possible.
+    </p>
+    <p class="stacks-copy">
+        When dark mode is enabled, the values of numbered color variables will be inverted from what they are with dark mode disabled—<code class="stacks-code">900</code> being the lightest, and <code class="stacks-code">025</code> or <code class="stacks-code">050</code> being the darkest. This is because the values don't represent lightness, but rather contrast with the background. The same also applies to <code class="stacks-code">lighter</code> variants of non-numbered color variables.
     </p>
 
     <div class="s-btn-group jc-end mt24 mb16">
@@ -32,54 +36,34 @@ description: To avoid specifying color values by hand, we’ve included a robust
         </button>
     </div>
 
-    <div style="display:grid; gap:16px; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); grid-auto-flow: dense;">
+    <div style="display: grid; gap: 16px; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); grid-auto-flow: dense;">
         {% for color in colors %}
-            {% if color.include %}
-                <div class="grid--cell">
-                    <div class="p24 fs-title btr-md bg-{{ color.name }}{% if color.primary != "" %}-{{ color.primary }}{% endif %}{% if color.white %} fc-white{% if color.flip %} d:fc-black{% endif %}{% else %}{% if color.flip %} d:fc-white{% endif %}{% endif %}">
+            <div class="flex--item">
+                <div class="p24 fs-title btr-md bg-{{ color.name }}{% if color.primary != "" %}-{{ color.primary }}{% endif %}{% if color.white %} fc-white{% if color.flip %} d:fc-black{% endif %}{% else %}{% if color.flip %} d:fc-white{% endif %}{% endif %}">
+                    {% if color.name == "theme-primary" %}
+                        Theme Primary
+                    {% elsif color.name == "theme-secondary" %}
+                        Theme Secondary
+                    {% else %}
                         {{ color.name | capitalize }}
-                    </div>
-
-                    {% for stop in color.stops reversed %}
-                        <div class="grid ai-center jc-space-between bg-{{ color.name }}{% if stop.stop != "" %}-{{ stop.stop }}{% endif %} ff-mono p12{% if stop.white %} fc-white{% if stop.flip %} d:fc-black{% endif %}{% else %}{% if stop.flip %} d:fc-white{% endif %}{% endif %}{% if forloop.last %} bbr-md{% endif %}">
-                            <div class="grid--cell js-hex d-none">
-                                {{ color.name }}{% if stop.stop != "" %}-{{ stop.stop }}{% endif %}
-                            </div>
-
-                            <div class="grid--cell">
-                                <span class="js-css">var(--{{ color.name }}{% if stop.stop != "" %}-{{ stop.stop }}{% endif %})</span>
-                                <span class="js-less d-none">@{{ color.name }}{% if stop.stop != "" %}-{{ stop.stop }}{% endif %}</span>
-                                <span class="js-hex d-none">#{{ stop.hex }}</span>
-                            </div>
-                        </div>
-                    {% endfor %}
+                    {% endif %}
                 </div>
-            {% endif %}
-        {% endfor %}
 
-        <div class="grid--cell">
-            {% for color in colors %}
-                {% if color.include == false %}
-                    <div class="p24 fs-title btr-md bg-{{ color.name }}{% if color.primary != "" %}-{{ color.primary }}{% endif %}{% if color.flip %} d:fc-white{% endif %}">
-                        {{ color.name | capitalize }}
-                    </div>
-
-                    {% for stop in color.stops reversed %}
-                        <div class="grid ai-center jc-space-between bg-{{ color.name }}{% if stop.stop != "" %}-{{ stop.stop }}{% endif %} ff-mono p12{% if forloop.last %} bbr-md mb16{% endif %}{% if stop.flip %} d:fc-white{% endif %}">
-                            <div class="grid--cell js-hex d-none">
-                                {{ color.name }}{% if stop.stop != "" %}-{{ stop.stop }}{% endif %}
-                            </div>
-
-                            <div class="grid--cell">
-                                <span class="js-css">var(--{{ color.name }}{% if stop.stop != "" %}-{{ stop.stop }}{% endif %})</span>
-                                <span class="js-less d-none">@{{ color.name }}{% if stop.stop != "" %}-{{ stop.stop }}{% endif %}</span>
-                                <span class="js-hex d-none">#{{ stop.hex }}</span>
-                            </div>
+                {% for stop in color.stops reversed %}
+                    <div class="d-flex ai-center jc-space-between bg-{{ color.name }}{% if stop.stop != "" %}-{{ stop.stop }}{% endif %} ff-mono p12{% if stop.white %} fc-white{% if stop.flip %} d:fc-black{% endif %}{% else %}{% if stop.flip %} d:fc-white{% endif %}{% endif %}{% if forloop.last %} bbr-md{% endif %}">
+                        <div class="flex--item js-hex d-none">
+                            {{ color.name }}{% if stop.stop != "" %}-{{ stop.stop }}{% endif %}
                         </div>
-                    {% endfor %}
-                {% endif %}
-            {% endfor %}
-        </div>
+
+                        <div class="flex--item">
+                            <span class="js-css">var(--{{ color.name }}{% if stop.stop != "" %}-{{ stop.stop }}{% endif %})</span>
+                            <span class="js-less d-none">@{{ color.name }}{% if stop.stop != "" %}-{{ stop.stop }}{% endif %}</span>
+                            <span class="js-hex d-none">#{{ stop.hex }}</span>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endfor %}
     </div>
 </section>
 
@@ -87,7 +71,7 @@ description: To avoid specifying color values by hand, we’ve included a robust
     {% header "h2", "Classes" %}
 
     <p class="stacks-copy">
-        Each color stop is available as an atomic text, background, and border class. Using these atomic classes means your view will respond to dark mode appropriately. These colors are available <a href="{{ "/product/guidelines/conditional-classes#hover" | relative_url }}">conditionally</a>.
+        Each color stop is available as an atomic text, background, and border class. Using these atomic classes means your view will respond to dark mode appropriately. These colors are available <a href="{{ "/product/guidelines/conditional-classes#hover" | url }}">conditionally</a>.
     </p>
 
     {% for color in colors %}
@@ -103,16 +87,16 @@ description: To avoid specifying color values by hand, we’ve included a robust
                             <th scope="col">Text class</th>
                             <th scope="col">Background class</th>
                             <th scope="col">Border class</th>
-                            <th scope="col" class="ta-center"><a class="s-link s-link__inherit" href="{{ "/product/guidelines/conditional-classes#hover" | relative_url }}">Hover?</a></th>
-                            <th scope="col" class="ta-center"><a class="s-link s-link__inherit" href="{{ "/product/guidelines/conditional-classes#focus" | relative_url }}">Focus?</a></th>
-                            <th scope="col" class="ta-center"><a class="s-link s-link__inherit" href="{{ "/product/guidelines/conditional-classes#dark-mode" | relative_url }}">Dark?</a></th>
+                            <th scope="col" class="ta-center"><a class="s-link s-link__inherit" href="{{ "/product/guidelines/conditional-classes#hover" | url }}">Hover?</a></th>
+                            <th scope="col" class="ta-center"><a class="s-link s-link__inherit" href="{{ "/product/guidelines/conditional-classes#focus" | url }}">Focus?</a></th>
+                            <th scope="col" class="ta-center"><a class="s-link s-link__inherit" href="{{ "/product/guidelines/conditional-classes#dark-mode" | url }}">Dark?</a></th>
                         </tr>
                     </thead>
                     <tbody>
                         {% for stop in color.stops %}
                         <tr>
                             <th scope="row">
-                            <div class="stacks-swatch bar-sm bg-{{ color.name }}-{{ stop.stop }}"></div>
+                            <div class="stacks-swatch bar-sm bs-sm bg-{{ color.name }}-{{ stop.stop }}"></div>
                             </th>
                             <td class="ff-mono">.fc-{{ color.name }}-{{ stop.stop }}</td>
                             <td class="ff-mono">.bg-{{ color.name }}-{{ stop.stop }}</td>
@@ -124,7 +108,7 @@ description: To avoid specifying color values by hand, we’ve included a robust
                         {% endfor %}
                         <tr class="ff-mono">
                             <th scope="row">
-                            <div class="stacks-swatch bar-sm bg-white"></div>
+                            <div class="stacks-swatch bar-sm bs-sm bg-white"></div>
                             </th>
                             <td class="ff-mono">.fc-white</td>
                             <td class="ff-mono">.bg-white</td>
@@ -135,12 +119,23 @@ description: To avoid specifying color values by hand, we’ve included a robust
                         </tr>
                         <tr class="ff-mono">
                             <th scope="row">
-                            <div class="stacks-swatch bar-sm bg-transparent"></div>
+                            <div class="stacks-swatch bar-sm bs-sm bg-transparent"></div>
                             </th>
                             <td class="fc-light">N/A</td>
                             <td>.bg-transparent</td>
                             <td>.bc-transparent</td>
                             <td class="ta-center">{% icon "Checkmark", "fc-green-500" %}</td>
+                            <td></td>
+                            <td class="ta-center">{% icon "Checkmark", "fc-green-500" %}</td>
+                        </tr>
+                        <tr class="ff-mono">
+                            <th scope="row">
+                            <div class="stacks-swatch bar-sm bs-sm bg-inherit"></div>
+                            </th>
+                            <td>.fc-inherit</td>
+                            <td>.bg-inherit</td>
+                            <td>.bc-inherit</td>
+                            <td></td>
                             <td></td>
                             <td></td>
                         </tr>
@@ -158,9 +153,9 @@ description: To avoid specifying color values by hand, we’ve included a robust
                     <th scope="col" style="width:36px;"></th>
                     <th scope="col">Text class</th>
                     <th scope="col">Background class</th>
-                    <th scope="col" class="ta-center"><a class="s-link s-link__inherit" href="{{ "/product/guidelines/conditional-classes#hover" | relative_url }}">Hover?</a></th>
-                    <th scope="col" class="ta-center"><a class="s-link s-link__inherit" href="{{ "/product/guidelines/conditional-classes#focus" | relative_url }}">Focus?</a></th>
-                    <th scope="col" class="ta-center"><a class="s-link s-link__inherit" href="{{ "/product/guidelines/conditional-classes#dark-mode" | relative_url }}">Dark?</a></th>
+                    <th scope="col" class="ta-center"><a class="s-link s-link__inherit" href="{{ "/product/guidelines/conditional-classes#hover" | url }}">Hover?</a></th>
+                    <th scope="col" class="ta-center"><a class="s-link s-link__inherit" href="{{ "/product/guidelines/conditional-classes#focus" | url }}">Focus?</a></th>
+                    <th scope="col" class="ta-center"><a class="s-link s-link__inherit" href="{{ "/product/guidelines/conditional-classes#dark-mode" | url }}">Dark?</a></th>
                 </tr>
             </thead>
             <tbody>
@@ -206,9 +201,9 @@ description: To avoid specifying color values by hand, we’ve included a robust
                     <th scope="col" style="width:36px;"></th>
                     <th scope="col">Text class</th>
                     <th scope="col">Background class</th>
-                    <th scope="col" class="ta-center"><a class="s-link s-link__inherit" href="{{ "/product/guidelines/conditional-classes#hover" | relative_url }}">Hover?</a></th>
-                    <th scope="col" class="ta-center"><a class="s-link s-link__inherit" href="{{ "/product/guidelines/conditional-classes#focus" | relative_url }}">Focus?</a></th>
-                    <th scope="col" class="ta-center"><a class="s-link s-link__inherit" href="{{ "/product/guidelines/conditional-classes#dark-mode" | relative_url }}">Dark?</a></th>
+                    <th scope="col" class="ta-center"><a class="s-link s-link__inherit" href="{{ "/product/guidelines/conditional-classes#hover" | url }}">Hover?</a></th>
+                    <th scope="col" class="ta-center"><a class="s-link s-link__inherit" href="{{ "/product/guidelines/conditional-classes#focus" | url }}">Focus?</a></th>
+                    <th scope="col" class="ta-center"><a class="s-link s-link__inherit" href="{{ "/product/guidelines/conditional-classes#dark-mode" | url }}">Dark?</a></th>
                 </tr>
             </thead>
             <tbody>
@@ -254,9 +249,9 @@ description: To avoid specifying color values by hand, we’ve included a robust
                     <th scope="col" style="width:36px;"></th>
                     <th scope="col">Text class</th>
                     <th scope="col">Background class</th>
-                    <th scope="col" class="ta-center"><a class="s-link s-link__inherit" href="{{ "/product/guidelines/conditional-classes#hover" | relative_url }}">Hover?</a></th>
-                    <th scope="col" class="ta-center"><a class="s-link s-link__inherit" href="{{ "/product/guidelines/conditional-classes#focus" | relative_url }}">Focus?</a></th>
-                    <th scope="col" class="ta-center"><a class="s-link s-link__inherit" href="{{ "/product/guidelines/conditional-classes#dark-mode" | relative_url }}">Dark?</a></th>
+                    <th scope="col" class="ta-center"><a class="s-link s-link__inherit" href="{{ "/product/guidelines/conditional-classes#hover" | url }}">Hover?</a></th>
+                    <th scope="col" class="ta-center"><a class="s-link s-link__inherit" href="{{ "/product/guidelines/conditional-classes#focus" | url }}">Focus?</a></th>
+                    <th scope="col" class="ta-center"><a class="s-link s-link__inherit" href="{{ "/product/guidelines/conditional-classes#dark-mode" | url }}">Dark?</a></th>
                 </tr>
             </thead>
             <tbody>
@@ -296,6 +291,305 @@ description: To avoid specifying color values by hand, we’ve included a robust
 </section>
 
 <section class="stacks-section">
+    {% header "h2", "Theming" %}
+    <p class="stacks-copy">
+        Stacks’s approach to theming is powered by CSS variables that are split into their HSL and RGB components. Our default primary color is based on Stack Overflow’s branded <code class="stacks-code">orange-400</code> represented as <code class="stacks-code">hsl(27, 90%, 55%)</code>. We can store these as separate values, apply various color operations, and then recombine them into on-demand color palettes to use for theming.
+    </p>
+
+    {% header "h3", "Primary" %}
+    <p class="stacks-copy">
+        These variables transform the original primary theming color into various tints and shades.
+    </p>
+    <div class="overflow-x-auto mb48">
+        <table class="wmn5 s-table s-table__bx-simple s-table__condensed va-middle fs-caption">
+            <thead>
+                <tr>
+                    <th scope="col" width="36px"></th>
+                    <th scope="col">Variable</th>
+                    <th scope="col">Text class</th>
+                    <th scope="col">Background class</th>
+                    <th scope="col">Border class</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row">
+                        <div class="stacks-swatch bar-sm bg-theme-primary-900"></div>
+                    </th>
+                    <td class="ff-mono">var(--theme-primary-900)</td>
+                    <td class="ff-mono">.fc-theme-primary-900</td>
+                    <td class="ff-mono">.bg-theme-primary-900</td>
+                    <td class="ff-mono">.bc-theme-primary-900</td>
+                </tr>
+                <tr>
+                    <th scope="row">
+                        <div class="stacks-swatch bar-sm bg-theme-primary-800"></div>
+                    </th>
+                    <td class="ff-mono">var(--theme-primary-800)</td>
+                    <td class="ff-mono">.fc-theme-primary-800</td>
+                    <td class="ff-mono">.bg-theme-primary-800</td>
+                    <td class="ff-mono">.bc-theme-primary-800</td>
+                </tr>
+                <tr>
+                    <th scope="row">
+                        <div class="stacks-swatch bar-sm bg-theme-primary-700"></div>
+                    </th>
+                    <td class="ff-mono">var(--theme-primary-700)</td>
+                    <td class="ff-mono">.fc-theme-primary-700</td>
+                    <td class="ff-mono">.bg-theme-primary-700</td>
+                    <td class="ff-mono">.bc-theme-primary-700</td>
+                </tr>
+                <tr>
+                    <th scope="row">
+                        <div class="stacks-swatch bar-sm bg-theme-primary-600"></div>
+                    </th>
+                    <td class="ff-mono">var(--theme-primary-600)</td>
+                    <td class="ff-mono">.fc-theme-primary-600</td>
+                    <td class="ff-mono">.bg-theme-primary-600</td>
+                    <td class="ff-mono">.bc-theme-primary-600</td>
+                </tr>
+                <tr>
+                    <th scope="row">
+                        <div class="stacks-swatch bar-sm bg-theme-primary-500"></div>
+                    </th>
+                    <td class="ff-mono">var(--theme-primary-500)</td>
+                    <td class="ff-mono">.fc-theme-primary-500</td>
+                    <td class="ff-mono">.bg-theme-primary-500</td>
+                    <td class="ff-mono">.bc-theme-primary-500</td>
+                </tr>
+                <tr>
+                    <th scope="row">
+                        <div class="stacks-swatch bar-sm bg-theme-primary-400"></div>
+                    </th>
+                    <td class="ff-mono">var(--theme-primary-400)</td>
+                    <td class="ff-mono">.fc-theme-primary-400</td>
+                    <td class="ff-mono">.bg-theme-primary-400</td>
+                    <td class="ff-mono">.bc-theme-primary-400</td>
+                </tr>
+                <tr>
+                    <th scope="row">
+                        <div class="stacks-swatch bar-sm bg-theme-primary-350"></div>
+                    </th>
+                    <td class="ff-mono">var(--theme-primary-350)</td>
+                    <td class="ff-mono">.fc-theme-primary-350</td>
+                    <td class="ff-mono">.bg-theme-primary-350</td>
+                    <td class="ff-mono">.bc-theme-primary-350</td>
+                </tr>
+                <tr>
+                    <th scope="row">
+                        <div class="stacks-swatch bar-sm bg-theme-primary-300"></div>
+                    </th>
+                    <td class="ff-mono">var(--theme-primary-300)</td>
+                    <td class="ff-mono">.fc-theme-primary-300</td>
+                    <td class="ff-mono">.bg-theme-primary-300</td>
+                    <td class="ff-mono">.bc-theme-primary-300</td>
+                </tr>
+                <tr>
+                    <th scope="row">
+                        <div class="stacks-swatch bar-sm bg-theme-primary-200"></div>
+                    </th>
+                    <td class="ff-mono">var(--theme-primary-200)</td>
+                    <td class="ff-mono">.fc-theme-primary-200</td>
+                    <td class="ff-mono">.bg-theme-primary-200</td>
+                    <td class="ff-mono">.bc-theme-primary-200</td>
+                </tr>
+                <tr>
+                    <th scope="row">
+                        <div class="stacks-swatch bar-sm bg-theme-primary-150"></div>
+                    </th>
+                    <td class="ff-mono">var(--theme-primary-150)</td>
+                    <td class="ff-mono">.fc-theme-primary-150</td>
+                    <td class="ff-mono">.bg-theme-primary-150</td>
+                    <td class="ff-mono">.bc-theme-primary-150</td>
+                </tr>
+                <tr>
+                    <th scope="row">
+                        <div class="stacks-swatch bar-sm bg-theme-primary-100"></div>
+                    </th>
+                    <td class="ff-mono">var(--theme-primary-100)</td>
+                    <td class="ff-mono">.fc-theme-primary-100</td>
+                    <td class="ff-mono">.bg-theme-primary-100</td>
+                    <td class="ff-mono">.bc-theme-primary-100</td>
+                </tr>
+                <tr>
+                    <th scope="row">
+                        <div class="stacks-swatch bar-sm bg-theme-primary-075"></div>
+                    </th>
+                    <td class="ff-mono">var(--theme-primary-075)</td>
+                    <td class="ff-mono">.fc-theme-primary-075</td>
+                    <td class="ff-mono">.bg-theme-primary-075</td>
+                    <td class="ff-mono">.bc-theme-primary-075</td>
+                </tr>
+                <tr>
+                    <th scope="row">
+                        <div class="stacks-swatch bar-sm bg-theme-primary-050"></div>
+                    </th>
+                    <td class="ff-mono">var(--theme-primary-050)</td>
+                    <td class="ff-mono">.fc-theme-primary-050</td>
+                    <td class="ff-mono">.bg-theme-primary-050</td>
+                    <td class="ff-mono">.bc-theme-primary-050</td>
+                </tr>
+                <tr>
+                    <th scope="row">
+                        <div class="stacks-swatch bar-sm bg-theme-primary-025"></div>
+                    </th>
+                    <td class="ff-mono">var(--theme-primary-025)</td>
+                    <td class="ff-mono">.fc-theme-primary-025</td>
+                    <td class="ff-mono">.bg-theme-primary-025</td>
+                    <td class="ff-mono">.bc-theme-primary-025</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    {% header "h3", "Secondary" %}
+    <p class="stacks-copy">
+        These variables transform the original secondary theming color into various tints and shades.
+    </p>
+    <div class="overflow-x-auto mb48">
+        <table class="wmn5 s-table s-table__bx-simple s-table__condensed va-middle fs-caption">
+            <thead>
+                <tr>
+                    <th scope="col" width="36px"></th>
+                    <th scope="col">Variable</th>
+                    <th scope="col">Text class</th>
+                    <th scope="col">Background class</th>
+                    <th scope="col">Border class</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row">
+                        <div class="stacks-swatch bar-sm bg-theme-secondary-900"></div>
+                    </th>
+                    <td class="ff-mono">var(--theme-secondary-900)</td>
+                    <td class="ff-mono">.fc-theme-secondary-900</td>
+                    <td class="ff-mono">.bg-theme-secondary-900</td>
+                    <td class="ff-mono">.bc-theme-secondary-900</td>
+                </tr>
+                <tr>
+                    <th scope="row">
+                        <div class="stacks-swatch bar-sm bg-theme-secondary-800"></div>
+                    </th>
+                    <td class="ff-mono">var(--theme-secondary-800)</td>
+                    <td class="ff-mono">.fc-theme-secondary-800</td>
+                    <td class="ff-mono">.bg-theme-secondary-800</td>
+                    <td class="ff-mono">.bc-theme-secondary-800</td>
+                </tr>
+                <tr>
+                    <th scope="row">
+                        <div class="stacks-swatch bar-sm bg-theme-secondary-700"></div>
+                    </th>
+                    <td class="ff-mono">var(--theme-secondary-700)</td>
+                    <td class="ff-mono">.fc-theme-secondary-700</td>
+                    <td class="ff-mono">.bg-theme-secondary-700</td>
+                    <td class="ff-mono">.bc-theme-secondary-700</td>
+                </tr>
+                <tr>
+                    <th scope="row">
+                        <div class="stacks-swatch bar-sm bg-theme-secondary-600"></div>
+                    </th>
+                    <td class="ff-mono">var(--theme-secondary-600)</td>
+                    <td class="ff-mono">.fc-theme-secondary-600</td>
+                    <td class="ff-mono">.bg-theme-secondary-600</td>
+                    <td class="ff-mono">.bc-theme-secondary-600</td>
+                </tr>
+                <tr>
+                    <th scope="row">
+                        <div class="stacks-swatch bar-sm bg-theme-secondary-500"></div>
+                    </th>
+                    <td class="ff-mono">var(--theme-secondary-500)</td>
+                    <td class="ff-mono">.fc-theme-secondary-500</td>
+                    <td class="ff-mono">.bg-theme-secondary-500</td>
+                    <td class="ff-mono">.bc-theme-secondary-500</td>
+                </tr>
+                <tr>
+                    <th scope="row">
+                        <div class="stacks-swatch bar-sm bg-theme-secondary-400"></div>
+                    </th>
+                    <td class="ff-mono">var(--theme-secondary-400)</td>
+                    <td class="ff-mono">.fc-theme-secondary-400</td>
+                    <td class="ff-mono">.bg-theme-secondary-400</td>
+                    <td class="ff-mono">.bc-theme-secondary-400</td>
+                </tr>
+                <tr>
+                    <th scope="row">
+                        <div class="stacks-swatch bar-sm bg-theme-secondary-350"></div>
+                    </th>
+                    <td class="ff-mono">var(--theme-secondary-350)</td>
+                    <td class="ff-mono">.fc-theme-secondary-350</td>
+                    <td class="ff-mono">.bg-theme-secondary-350</td>
+                    <td class="ff-mono">.bc-theme-secondary-350</td>
+                </tr>
+                <tr>
+                    <th scope="row">
+                        <div class="stacks-swatch bar-sm bg-theme-secondary-300"></div>
+                    </th>
+                    <td class="ff-mono">var(--theme-secondary-300)</td>
+                    <td class="ff-mono">.fc-theme-secondary-300</td>
+                    <td class="ff-mono">.bg-theme-secondary-300</td>
+                    <td class="ff-mono">.bc-theme-secondary-300</td>
+                </tr>
+                <tr>
+                    <th scope="row">
+                        <div class="stacks-swatch bar-sm bg-theme-secondary-200"></div>
+                    </th>
+                    <td class="ff-mono">var(--theme-secondary-200)</td>
+                    <td class="ff-mono">.fc-theme-secondary-200</td>
+                    <td class="ff-mono">.bg-theme-secondary-200</td>
+                    <td class="ff-mono">.bc-theme-secondary-200</td>
+                </tr>
+                <tr>
+                    <th scope="row">
+                        <div class="stacks-swatch bar-sm bg-theme-secondary-150"></div>
+                    </th>
+                    <td class="ff-mono">var(--theme-secondary-150)</td>
+                    <td class="ff-mono">.fc-theme-secondary-150</td>
+                    <td class="ff-mono">.bg-theme-secondary-150</td>
+                    <td class="ff-mono">.bc-theme-secondary-150</td>
+                </tr>
+                <tr>
+                    <th scope="row">
+                        <div class="stacks-swatch bar-sm bg-theme-secondary-100"></div>
+                    </th>
+                    <td class="ff-mono">var(--theme-secondary-100)</td>
+                    <td class="ff-mono">.fc-theme-secondary-100</td>
+                    <td class="ff-mono">.bg-theme-secondary-100</td>
+                    <td class="ff-mono">.bc-theme-secondary-100</td>
+                </tr>
+                <tr>
+                    <th scope="row">
+                        <div class="stacks-swatch bar-sm bg-theme-secondary-075"></div>
+                    </th>
+                    <td class="ff-mono">var(--theme-secondary-075)</td>
+                    <td class="ff-mono">.fc-theme-secondary-075</td>
+                    <td class="ff-mono">.bg-theme-secondary-075</td>
+                    <td class="ff-mono">.bc-theme-secondary-075</td>
+                </tr>
+                <tr>
+                    <th scope="row">
+                        <div class="stacks-swatch bar-sm bg-theme-secondary-050"></div>
+                    </th>
+                    <td class="ff-mono">var(--theme-secondary-050)</td>
+                    <td class="ff-mono">.fc-theme-secondary-050</td>
+                    <td class="ff-mono">.bg-theme-secondary-050</td>
+                    <td class="ff-mono">.bc-theme-secondary-050</td>
+                </tr>
+                <tr>
+                    <th scope="row">
+                        <div class="stacks-swatch bar-sm bg-theme-secondary-025"></div>
+                    </th>
+                    <td class="ff-mono">var(--theme-secondary-025)</td>
+                    <td class="ff-mono">.fc-theme-secondary-025</td>
+                    <td class="ff-mono">.bg-theme-secondary-025</td>
+                    <td class="ff-mono">.bc-theme-secondary-025</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+
+<section class="stacks-section">
     {% header "h2", "Aliases" %}
     {% header "h3", "Body text" %}
     <div class="stacks-preview">
@@ -305,11 +599,11 @@ description: To avoid specifying color values by hand, we’ve included a robust
 <p>…</p>
 <p class="fc-dark">…</p>
 {% endhighlight %}
-        <div class="stacks-preview--example grid fd-column gs16 gsy my0 fs-body2">
-            <p class="grid--cell fc-light"><strong>Color:</strong> Light <code class="stacks-code">@black-500</code></p>
-            <p class="grid--cell fc-medium"><strong>Color:</strong> Medium <code class="stacks-code">@black-700</code></p>
-            <p class="grid--cell"><strong>Color:</strong> Default <code class="stacks-code">@black-800</code></p>
-            <p class="grid--cell fc-dark"><strong>Color:</strong> Dark <code class="stacks-code">@black-900</code></p>
+        <div class="stacks-preview--example d-flex fd-column gs16 gsy my0 fs-body2">
+            <p class="flex--item fc-light"><strong>Color:</strong> Light <code class="stacks-code">@black-500</code></p>
+            <p class="flex--item fc-medium"><strong>Color:</strong> Medium <code class="stacks-code">@black-700</code></p>
+            <p class="flex--item"><strong>Color:</strong> Default <code class="stacks-code">@black-800</code></p>
+            <p class="flex--item fc-dark"><strong>Color:</strong> Dark <code class="stacks-code">@black-900</code></p>
         </div>
     </div>
 
@@ -326,21 +620,21 @@ description: To avoid specifying color values by hand, we’ve included a robust
             <tbody>
                 <tr class="ff-mono">
                     <td class="fc-danger">
-                        <div class="grid gs12">
-                            <div class="grid--cell ws-nowrap">.fc-danger</div>
-                            <div class="grid--cell ws-nowrap">.fc-error</div>
+                        <div class="d-flex gs12">
+                            <div class="flex--item ws-nowrap">.fc-danger</div>
+                            <div class="flex--item ws-nowrap">.fc-error</div>
                         </div>
                     </td>
                     <td class="p8">
-                        <div class="grid gs4">
-                            <div class="grid--cell bg-danger p8 fc-white bar-sm ws-nowrap">.bg-danger</div>
-                            <div class="grid--cell bg-error p8 fc-white bar-sm ws-nowrap">.bg-error</div>
+                        <div class="d-flex gs4">
+                            <div class="flex--item bg-danger p8 fc-white bar-sm ws-nowrap">.bg-danger</div>
+                            <div class="flex--item bg-error p8 fc-white bar-sm ws-nowrap">.bg-error</div>
                         </div>
                     </td>
                     <td class="p8">
-                        <div class="grid gs4">
-                            <div class="grid--cell ba bc-danger p8 bar-sm fc-danger ws-nowrap">.bc-danger</div>
-                            <div class="grid--cell ba bc-error p8 bar-sm fc-error ws-nowrap">.bc-error</div>
+                        <div class="d-flex gs4">
+                            <div class="flex--item ba bc-danger p8 bar-sm fc-danger ws-nowrap">.bc-danger</div>
+                            <div class="flex--item ba bc-error p8 bar-sm fc-error ws-nowrap">.bc-error</div>
                         </div>
                     </td>
                 </tr>
@@ -398,4 +692,4 @@ description: To avoid specifying color values by hand, we’ve included a robust
 </section>
 
 <!-- Additional javascript -->
-<script src="{{ "/assets/dist/entry.colors.js" | relative_url }}" defer></script>
+<script src="{{ "/assets/dist/entry.colors.js" | url }}" defer></script>

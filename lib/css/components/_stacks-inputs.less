@@ -34,7 +34,7 @@
     &:-webkit-autofill {
         border-color: var(--blue-300);
         -webkit-text-fill-color: var(--black);
-        -webkit-box-shadow: 0 0 0 1000px var(--blue-050) inset; // This acts as a background color by stretching an inset box shadow across the input
+        -webkit-box-shadow: 0 0 0 1000px var(--theme-secondary-050) inset; // This acts as a background color by stretching an inset box shadow across the input
         transition: background-color 0s 50000s; // A hack to infinitely delay background styles that come from the browser.
 
         &:focus {
@@ -50,7 +50,7 @@
     width: 100%;
     margin: 0; // A guard against Core's default margins
     padding: @input-padding;
-    border: 1px solid var(--black-200);
+    border: 1px solid var(--bc-darker);
     border-radius: @br-sm;
     background-color: var(--white);
     color: var(--fc-dark);
@@ -73,11 +73,19 @@
     //  ------------------------------------------------------------------------
     &::-webkit-input-placeholder {
         color: var(--black-200);
+
+        .highcontrast-mode({
+            color: var(--black-400);
+        });
     }
 
     &::placeholder {
         color: var(--black-200);
         opacity: 1;
+
+        .highcontrast-mode({
+            color: var(--black-400);
+        });
     }
 
     // --  STYLE SCROLLBARS
@@ -108,6 +116,33 @@ fieldset {
     min-width: 0;
     padding: 0;
     border: 0;
+
+    &[disabled] {
+        a,
+        .s-btn,
+        .s-link {
+            box-shadow: none !important;
+            opacity: 0.5;
+            pointer-events: none;
+        }
+
+        .s-checkbox,
+        .s-input-message,
+        .s-label,
+        .s-radio,
+        .s-toggle-switch,
+        .s-toggle-switch label {
+            cursor: not-allowed;
+            opacity: 0.5;
+        }
+
+        .s-input,
+        .s-textarea,
+        .s-select > select {
+            cursor: not-allowed;
+            opacity: 0.5;
+        }
+    }
 }
 
 //  ============================================================================
@@ -139,9 +174,17 @@ fieldset {
     font-weight: 400;
     vertical-align: text-bottom;
 
+    .highcontrast-mode({
+        border: 1px solid currentColor;
+    });
+
     &.s-label--status__required {
         background-color: var(--red-100);
         color: var(--red-600);
+
+        .dark-mode({
+            color: var(--red-800);
+        });
     }
 
     &.s-label--status__new {
@@ -179,7 +222,7 @@ fieldset {
 //  ----------------------------------------------------------------------------
 .s-input-fill {
     padding: @input-padding;
-    border: 1px solid var(--black-200);
+    border: 1px solid var(--bc-darker);
     border-right-width: 0;
     border-left-width: 0;
     background-color: var(--black-050);
@@ -255,7 +298,7 @@ fieldset {
         height: 100%; // Fill the height of its parent
         padding: @input-padding;
         padding-right: @su32;
-        border: 1px solid var(--black-200);
+        border: 1px solid var(--bc-darker);
         border-radius: @br-sm;
         background-color: var(--white);
         outline: 0;
@@ -310,7 +353,7 @@ fieldset {
         margin: 0; // A guard against Core's default margins
         width: 1em;
         height: 1em;
-        border: 1px solid var(--black-200);
+        border: 1px solid var(--bc-darker);
         background-color: var(--white);
         outline: 0;
         font-size: inherit;
@@ -335,17 +378,22 @@ fieldset {
         background-size: contain;
 
         &:checked {
-            border-color: var(--blue-500) !important;
-            background-color: var(--blue-500);
+            border-color: var(--theme-secondary-400) !important;
+            background-color: var(--theme-secondary-400);
             background-image: url("data:image/svg+xml,%3Csvg width='11' height='11' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M10 3.41L8.59 2 4 6.59 2.41 5 1 6.41l3 3z' fill='%23fff'/%3E%3C/svg%3E");
 
+            .highcontrast-dark-mode({
+                border-color: var(--blue-700) !important;
+                background-color: var(--blue-300);
+            });
+
             &:focus {
-                border-color: var(--blue-500);
+                border-color: var(--theme-secondary-400);
             }
         }
 
         &:focus {
-            border-color: var(--blue-300);
+            border-color: var(--theme-secondary-300);
             box-shadow: 0 0 0 @su4 var(--focus-ring);
         }
     }
@@ -358,9 +406,14 @@ fieldset {
         border-radius: @br-circle;
 
         &:checked {
-            border-color: var(--blue-500);
+            border-color: var(--theme-secondary-400);
             border-width: 0.30769231em;
             background-color: @white; // This should always be white regardless of dark mode
+
+            .highcontrast-dark-mode({
+                border-color: var(--blue-300);
+                outline: 1px solid var(--black);
+            });
         }
 
         &:focus {
@@ -376,10 +429,14 @@ fieldset {
 //  Focus
 & {
     @focus-style: {
-        border-color: var(--blue-300);
+        border-color: var(--theme-secondary-300);
         box-shadow: 0 0 0 @su4 var(--focus-ring);
         color: var(--black);
         outline: 0;
+
+        .highcontrast-mode({
+            border-color: var(--black);
+        })
     }
 
     .s-input:focus,
@@ -402,17 +459,20 @@ fieldset {
     //  Disabled, Read-only
     &[disabled],
     &[read-only] {
-        border-color: var(--black-075);
-        background-color: var(--black-050);
-        color: var(--black-200);
+        cursor: not-allowed;
+        opacity: 0.5;
+
+        .highcontrast-mode({
+            opacity: 0.5;
+        });
     }
 
     //  Disabled
     &[disabled] {
         cursor: not-allowed;
+        opacity: 0.5;
     }
 }
-
 
 //  ============================================================================
 //  $   VALIDATION STATES
@@ -543,7 +603,7 @@ fieldset {
 .is-disabled {
     .s-select:before,
     .s-select:after {
-        border-color: var(--black-200) transparent;
+        border-color: var(--bc-darker) transparent;
     }
 
     .s-label,
@@ -557,6 +617,10 @@ fieldset {
 
     .s-input-icon {
         color: var(--black-200);
+
+        .highcontrast-mode({
+            color: var(--black-400);
+        });
     }
 
     .s-label {
@@ -578,6 +642,10 @@ fieldset {
         right: auto;
         left: 0.7em;
         color: var(--black-200);
+
+        .highcontrast-mode({
+            color: var(--black-400);
+        });
     }
 }
 
@@ -624,6 +692,11 @@ fieldset {
     padding-top: 0.5em;
     padding-bottom: 0.5em;
     border-radius: @br-sm + 1;
+}
+
+.s-textarea__md {
+    padding-top: 0.72em;
+    padding-bottom: 0.72em;
 }
 
 .s-input__lg,

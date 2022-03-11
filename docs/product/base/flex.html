@@ -5,17 +5,6 @@ description: Stacks provides extensive utility and helper classes for flex layou
 ---
 
 <section class="stacks-section">
-    <div class="s-notice s-notice__warning bar-md mb48">
-        <div class="d-flex sm:fd-column gs24 ai-center">
-            <div class="flex--item">
-                {% spot "AlertLg" %}
-            </div>
-            <div class="flex--item fs-body2 lh-lg">
-                <strong>Our flex-based “grid” classes have been renamed</strong> while we prepare for <a class="s-link s-link__underlined s-link__inherit" href="https://github.com/StackExchange/Stacks/pull/693">first-class CSS grids</a> in Stacks. Our <code class="stacks-code bg-yellow-200">.grid</code>, and <code class="stacks-code bg-yellow-200">.grid--cell</code> classes have been deprecated. Please migrate to <code class="stacks-code bg-yellow-200">.d-flex</code> and <code class="stacks-code bg-yellow-200">.flex--item</code>.
-            </div>
-        </div>
-    </div>
-
     {% header "h2", "Basic flex layout" %}
     <p class="stacks-copy">A flex layout is initiated with the <code class="stacks-code">.d-flex</code> class. By default, <code class="stacks-code">display: flex;</code> starts a non-wrapping row. To convert it to a column, apply the <code class="stacks-code">.fd-column</code> atomic class.</p>
     <div class="stacks-preview">
@@ -50,7 +39,7 @@ description: Stacks provides extensive utility and helper classes for flex layou
 
 <section class="stacks-section">
     {% header "h2", "Fluid" %}
-    <p class="stacks-copy">By default, all flex itesm will only be as wide as their content. If you would like a flex item or all the flex items to fill the remaining space, apply the <code class="stacks-code">.fl-grow1</code> to the individual item, or <code class="stacks-code">.flex__fl-equal</code> to the parent to apply to all children.</p>
+    <p class="stacks-copy">By default, all flex items will only be as wide as their content. If you would like a flex item or all the flex items to fill the remaining space, apply the <code class="stacks-code">.fl-grow1</code> to the individual item, or <code class="stacks-code">.flex__fl-equal</code> to the parent to apply to all children.</p>
 
     {% header "h3", "Fluid examples" %}
     <div class="stacks-preview">
@@ -122,7 +111,7 @@ description: Stacks provides extensive utility and helper classes for flex layou
     <div class="flex--item6">…</div>
     <div class="flex--item">…</div>
 </div>
-<div class="d-flex flex__allcells4">
+<div class="d-flex flex__allitems4">
     <div class="flex--item">…</div>
     <div class="flex--item">…</div>
     <div class="flex--item">…</div>
@@ -151,9 +140,9 @@ description: Stacks provides extensive utility and helper classes for flex layou
                     </div>
                 </div>
                 <div class="flex--item">
-                    <div class="mb8 ff-mono">.d-flex.flex__allcells4</div>
+                    <div class="mb8 ff-mono">.d-flex.flex__allitems4</div>
                     <div class="bar-sm bg-black-025 ba bc-black-075 p8">
-                        <div class="d-flex gs4 flex__allcells4 fw-wrap">
+                        <div class="d-flex gs4 flex__allitems4 fw-wrap">
                             <div class="flex--item stacks-flex-example--item">.flex--item</div>
                             <div class="flex--item stacks-flex-example--item">.flex--item</div>
                             <div class="flex--item stacks-flex-example--item">.flex--item</div>
@@ -177,7 +166,7 @@ description: Stacks provides extensive utility and helper classes for flex layou
                 <tr>
                     <th class="s-table--cell2" scope="col">Class</th>
                     <th scope="col">Definition</th>
-                    <th class="s-table--cell2 ta-center" scope="col"><a class="s-link s-link__inherit" href="{{ "/product/guidelines/conditional-classes#responsive"", "relative_url }}">Responsive?</a></th>
+                    <th class="s-table--cell2 ta-center" scope="col"><a class="s-link s-link__inherit" href="{{ "/product/guidelines/conditional-classes#responsive" | url }}">Responsive?</a></th>
                 </tr>
             </thead>
             <tbody>
@@ -275,7 +264,7 @@ description: Stacks provides extensive utility and helper classes for flex layou
 
 <section class="stacks-section">
     {% header "h2", "Gutters" %}
-    <p class="stacks-copy">Sometimes gutters are desired between cells. To do so apply the appropriate class to the parent wrapper. The gutter applies a margin to all sides. The sizes available are the same as <a href="{{ /product/base/spacing | relative_url }}">the spacing units</a>.</p>
+    <p class="stacks-copy">Sometimes gutters are desired between cells. To do so apply the appropriate class to the parent wrapper. The gutter applies a margin to all sides. The sizes available are the same as <a href="{{ "/product/base/spacing" | url }}">the spacing units</a>.</p>
 
     {% header "h3", "Gutter classes" %}
     <div class="overflow-x-auto mb48">
@@ -316,7 +305,7 @@ description: Stacks provides extensive utility and helper classes for flex layou
         <div class="stacks-preview--example">
             <div class="d-flex gs32 gsy fd-column">
                 <div class="flex--item bg-orange-050">
-                    <div class="d-flex flex__allcells6 gs16 fw-wrap">
+                    <div class="d-flex flex__allitems6 gs16 fw-wrap">
                         <div class="flex--item"><div class="stacks-flex-example--item">.gs16</div></div>
                         <div class="flex--item"><div class="stacks-flex-example--item">.gs16</div></div>
                         <div class="flex--item"><div class="stacks-flex-example--item">.gs16</div></div>
@@ -324,7 +313,7 @@ description: Stacks provides extensive utility and helper classes for flex layou
                     </div>
                 </div>
                 <div class="flex--item bg-orange-050">
-                    <div class="d-flex flex__allcells6 gs16 gsx fw-wrap">
+                    <div class="d-flex flex__allitems6 gs16 gsx fw-wrap">
                         <div class="flex--item"><div class="stacks-flex-example--item">.gs16.gsx -- Row gutters only</div></div>
                         <div class="flex--item"><div class="stacks-flex-example--item">.gs16.gsx -- Row gutters only</div></div>
                         <div class="flex--item"><div class="stacks-flex-example--item">.gs16.gsx -- Row gutters only</div></div>
@@ -344,12 +333,9 @@ description: Stacks provides extensive utility and helper classes for flex layou
     </div>
 
     {% header "h3", "Nested gutters" %}
-    <div class="d-flex s-notice s-notice__info mb24">
-        <div class="flex--item mr8">{% icon "Alert" %}</div>
-        <div class="flex--item lh-lg">
-            <strong>Note:</strong> Nested flex layouts with <a href="#gutters">gutter spacing</a> will conflict with each other in unpredictable ways. <strong>TL;DR?</strong> Don’t stick a <code class="stacks-code bg-powder-300">.d-flex</code> directly into a <code class="stacks-code bg-powder-300">.d-flex</code>, instead stick a <code class="stacks-code bg-powder-300">.d-flex</code> into a <code class="stacks-code bg-powder-300">.flex--item</code> like so:
-        </div>
-    </div>
+    {% tip, "warning" %}
+        <strong>Note:</strong> Nested flex layouts with <a href="#gutters">gutter spacing</a> will conflict with each other in unpredictable ways. <strong>TL;DR?</strong> Don’t stick a <code class="stacks-code">.d-flex</code> directly into a <code class="stacks-code">.d-flex</code>, instead stick a <code class="stacks-code">.d-flex</code> into a <code class="stacks-code">.flex--item</code> like so:
+    {% endtip %}
     <p class="stacks-copy">If you are nesting a flex layout with gutter spacing into another flex layout that also has gutter spacing, the child’s parent wrapper margins will be overwritten by the parent. To have the child flex layout’s gutter spacing honored, you have to put the child flex layout within a <code class="stacks-code">.flex--item</code> wrapper first. This allows the parent and child flex layout gutter spacing to act correctly without interfering with each other.</p>
 
     <div class="fc-green-500 fs-body1 fw-bold mb8">{% icon "Checkmark", "mtn1 mbn1" %} Do</div>
@@ -412,7 +398,7 @@ description: Stacks provides extensive utility and helper classes for flex layou
                 <tr>
                     <th class="s-table--cell2" scope="col">Class</th>
                     <th scope="col">Definition</th>
-                    <th class="s-table--cell2 ta-center" scope="col"><a class="s-link s-link__inherit" href="{{ "/product/guidelines/conditional-classes#responsive"", "relative_url }}">Responsive?</a></th>
+                    <th class="s-table--cell2 ta-center" scope="col"><a class="s-link s-link__inherit" href="{{ "/product/guidelines/conditional-classes#responsive" | url }}">Responsive?</a></th>
                 </tr>
             </thead>
             <tbody>
@@ -508,7 +494,7 @@ description: Stacks provides extensive utility and helper classes for flex layou
                 <tr>
                     <th class="s-table--cell2" scope="col">Class</th>
                     <th scope="col">Definition</th>
-                    <th class="s-table--cell2 ta-center" scope="col"><a class="s-link s-link__inherit" href="{{ "/product/guidelines/conditional-classes#responsive"", "relative_url }}">Responsive?</a></th>
+                    <th class="s-table--cell2 ta-center" scope="col"><a class="s-link s-link__inherit" href="{{ "/product/guidelines/conditional-classes#responsive" | url }}">Responsive?</a></th>
                 </tr>
             </thead>
             <tbody>
@@ -607,7 +593,7 @@ description: Stacks provides extensive utility and helper classes for flex layou
                 <tr>
                     <th class="s-table--cell2" scope="col">Class</th>
                     <th scope="col">Definition</th>
-                    <th class="s-table--cell2 ta-center" scope="col"><a class="s-link s-link__inherit" href="{{ "/product/guidelines/conditional-classes#responsive"", "relative_url }}">Responsive?</a></th>
+                    <th class="s-table--cell2 ta-center" scope="col"><a class="s-link s-link__inherit" href="{{ "/product/guidelines/conditional-classes#responsive" | url }}">Responsive?</a></th>
                 </tr>
             </thead>
             <tbody>
@@ -729,7 +715,7 @@ description: Stacks provides extensive utility and helper classes for flex layou
                 <tr>
                     <th class="s-table--cell2" scope="col">Class</th>
                     <th scope="col">Definition</th>
-                    <th class="s-table--cell2 ta-center" scope="col"><a class="s-link s-link__inherit" href="{{ "/product/guidelines/conditional-classes#responsive"", "relative_url }}">Responsive?</a></th>
+                    <th class="s-table--cell2 ta-center" scope="col"><a class="s-link s-link__inherit" href="{{ "/product/guidelines/conditional-classes#responsive" | url }}">Responsive?</a></th>
                 </tr>
             </thead>
             <tbody>
@@ -838,7 +824,7 @@ description: Stacks provides extensive utility and helper classes for flex layou
                 <tr>
                     <th class="s-table--cell2" scope="col">Class</th>
                     <th scope="col">Definition</th>
-                    <th class="s-table--cell2 ta-center" scope="col"><a class="s-link s-link__inherit" href="{{ "/product/guidelines/conditional-classes#responsive"", "relative_url }}">Responsive?</a></th>
+                    <th class="s-table--cell2 ta-center" scope="col"><a class="s-link s-link__inherit" href="{{ "/product/guidelines/conditional-classes#responsive" | url }}">Responsive?</a></th>
                 </tr>
             </thead>
             <tbody>
@@ -992,7 +978,7 @@ description: Stacks provides extensive utility and helper classes for flex layou
                 <tr>
                     <th class="s-table--cell2" scope="col">Class</th>
                     <th scope="col">Definition</th>
-                    <th class="s-table--cell2 ta-center" scope="col"><a class="s-link s-link__inherit" href="{{ "/product/guidelines/conditional-classes#responsive"", "relative_url }}">Responsive?</a></th>
+                    <th class="s-table--cell2 ta-center" scope="col"><a class="s-link s-link__inherit" href="{{ "/product/guidelines/conditional-classes#responsive" | url }}">Responsive?</a></th>
                 </tr>
             </thead>
             <tbody>
@@ -1114,7 +1100,7 @@ description: Stacks provides extensive utility and helper classes for flex layou
                 <tr>
                     <th class="s-table--cell2" scope="col">Class</th>
                     <th scope="col">Definition</th>
-                    <th class="s-table--cell2 ta-center" scope="col"><a class="s-link s-link__inherit" href="{{ "/product/guidelines/conditional-classes#responsive"", "relative_url }}">Responsive?</a></th>
+                    <th class="s-table--cell2 ta-center" scope="col"><a class="s-link s-link__inherit" href="{{ "/product/guidelines/conditional-classes#responsive" | url }}">Responsive?</a></th>
                 </tr>
             </thead>
             <tbody>
@@ -1181,7 +1167,7 @@ description: Stacks provides extensive utility and helper classes for flex layou
                 <tr>
                     <th class="s-table--cell2" scope="col">Class</th>
                     <th scope="col">Definition</th>
-                    <th class="s-table--cell2 ta-center" scope="col"><a class="s-link s-link__inherit" href="{{ "/product/guidelines/conditional-classes#responsive"", "relative_url }}">Responsive?</a></th>
+                    <th class="s-table--cell2 ta-center" scope="col"><a class="s-link s-link__inherit" href="{{ "/product/guidelines/conditional-classes#responsive" | url }}">Responsive?</a></th>
                 </tr>
             </thead>
             <tbody>

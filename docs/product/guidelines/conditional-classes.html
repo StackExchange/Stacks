@@ -8,14 +8,11 @@ description: Stacks provides conditional atomic classes to easily build complex 
     {% header "h2", "Responsive" %}
     <p class="stacks-copy">Many utility classes in Stacks are also available in screen-size specific variations. For example, the <code class="stacks-code">.d-none</code> utility can be applied to small browser widths and below using the <code class="stacks-code">.sm:d-none</code> class, on medium browser widths and below using the <code class="stacks-code">.md:d-none</code> class, and on large browser widths and below using the <code class="stacks-code">.lg:d-none</code> class.</p>
 
-    <p class="stacks-copy">This is done using predefined max-width media query breakpoints represented by t-shirt sizes. A common example would be to apply <code class="stacks-code">.md:fd-column</code> to a grid. This means, “At the medium breakpoint and smaller, switch the grid from columns to rows by applying <code class="stacks-code">fd-column</code>.”</p>
+    <p class="stacks-copy">This is done using predefined max-width media query breakpoints represented by t-shirt sizes. A common example would be to apply <code class="stacks-code">.md:fd-column</code> to a flex layout. This means, “At the medium breakpoint and smaller, switch the flex layout from columns to rows by applying <code class="stacks-code">fd-column</code>.”</p>
 
-    <div class="grid s-notice s-notice__info">
-        <div class="grid--cell mr8">{% icon "Alert" %}</div>
-        <div class="grid--cell lh-lg">
-            <strong>Note:</strong> Our font size classes, <code class="stacks-code bg-powder-300">.fs-[x]</code> are automatically adjusted at the smallest breakpoint.
-        </div>
-    </div>
+    {% tip, "", "", "ai-center sm:ai-start" %}
+        <strong>Note:</strong> Our font size classes, <code class="stacks-code">.fs-[x]</code> are automatically adjusted at the smallest breakpoint.
+    {% endtip %}
 </section>
 
 <section class="stacks-section">
@@ -64,11 +61,11 @@ description: Stacks provides conditional atomic classes to easily build complex 
     {% endcomment %}
 <pre class="language-html s-code-block"><code class="language-html s-code-block"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"d-flex flex__center <span class="md:highlight">md:fd-column</span> gs16"</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"flex--item wmx3 fs-body3 <span class="lg:highlight">lg:ta-center</span>"</span>&gt;</span><br>        …<br>    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"flex--item <span class="md:highlight">md:order-first</span> <span class="sm:highlight">sm:d-none</span>"</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">svg</span>&gt;</span>…<span class="hljs-tag">&lt;/<span class="hljs-name">svg</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></code></pre>
         <div class="stacks-preview--example p32">
-            <div class="grid grid__center md:fd-column gs16 js-grid">
-                <div class="grid--cell wmx3 fs-body3 lg:ta-center js-grid-left">
+            <div class="d-flex flex__center md:fd-column gs16 js-grid">
+                <div class="flex--item wmx3 fs-body3 lg:ta-center js-grid-left">
                     Stack Overflow for Teams is a private, secure home for your team’s questions and answers. No more digging through stale wikis and lost emails—give your team back the time it needs to build better products.
                 </div>
-                <div class="grid--cell sm:d-none md:order-first js-grid-right">
+                <div class="flex--item sm:d-none md:order-first js-grid-right">
                     {% spot "RocketXL" %}
                 </div>
             </div>
@@ -112,7 +109,7 @@ description: Stacks provides conditional atomic classes to easily build complex 
 {% endhighlight %}
         <div class="stacks-preview--example">
             <div class="s-card print:d-none">This element will be removed from the page while printing.</div>
-            <div class="s-card d-none print:d-none">This element will only be shown when printing.</div>
+            <div class="s-card d-none print:d-block">This element will only be shown when printing.</div>
         </div>
     </div>
 </section>
@@ -139,30 +136,3 @@ description: Stacks provides conditional atomic classes to easily build complex 
         </div>
     </div>
 </section>
-
-<style>
-    @media (max-width: 1264px) {
-        .lg\:highlight {
-            padding: 3px 8px;
-            background-color: var(--highlight-variable);
-            border-radius: 40px;
-            color: var(--highlight-bg);
-        }
-    }
-    @media (max-width: 980px) {
-        .md\:highlight {
-            padding: 3px 8px;
-            background-color: var(--highlight-variable);
-            border-radius: 40px;
-            color: var(--highlight-bg);
-        }
-    }
-    @media (max-width: 640px) {
-        .sm\:highlight {
-            padding: 3px 8px;
-            background-color: var(--highlight-variable);
-            border-radius: 40px;
-            color: var(--highlight-bg);
-        }
-    }
-</style>
