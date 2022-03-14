@@ -36,8 +36,8 @@ Stacks.setTooltipText = setTooltipText;
 
 Stacks.StacksApplication.finalize();
 
-// TODO export everything above and let the importing module take care if it instead
-export { Stacks };
+// TODO es6 export everything above and let the importing module take care if it instead
+export = Stacks;
 
 //TODO
 //Stacks.application._initializing = false;
