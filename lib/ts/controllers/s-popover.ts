@@ -85,7 +85,8 @@ namespace Stacks {
         disconnect() {
             this.hide();
             if (this.floatingUI) {
-                this.floatingUI.destroy();
+                // TODO: See if something similar is still necessary
+                // this.floatingUI.destroy();
                 delete this.floatingUI;
             }
             super.disconnect();
@@ -137,8 +138,9 @@ namespace Stacks {
             this.popoverElement.classList.remove("is-visible");
 
             if (this.floatingUI) {
+                // TODO: See if something similar is still necessary
                 // completely destroy the popper on hide; this is in line with Popper.js's performance recommendations
-                this.floatingUI.destroy();
+                // this.floatingUI.destroy();
                 delete this.floatingUI;
             }
 
@@ -181,28 +183,43 @@ namespace Stacks {
          * Initializes the Popper for this instance
          */
         private initializeFloatingUI() {
+            var popoverElement = this.popoverElement;
+            var arrowElement = popoverElement.querySelector(".s-popover--arrow");
             // @ts-ignore
-            // this.floatingUI = FloatingUICore.computePosition(this.refrenceElement, this.popoverElement, {
-            // // @ts-ignore
-            // middleware: [ FloatingUICore.offset(), FloatingUICore.flip(), FloatingUICore.shift() ]
-            // });
-            // this.floatingUI = FloatingUICore.createPopper(this.referenceElement, this.popoverElement, {
-            //     placement: this.data.get("placement") || "bottom",
-            //     modifiers: [
-            //         {
-            //             name: "offset",
-            //             options: {
-            //                 offset: [0, 10], // The entire popover should be 10px away from the element
-            //             }
-            //         },
-            //         {
-            //             name: "arrow",
-            //             options: {
-            //                 element: ".s-popover--arrow"
-            //             },
-            //         },
-            //     ]
-            // });
+            this.floatingUI = FloatingUIDOM.computePosition(this.referenceElement, popoverElement, {
+                placement: this.data.get("placement") || "bottom",
+                middleware: [
+                    // @ts-ignore
+                    FloatingUIDOM.offset(10), FloatingUIDOM.flip(), FloatingUIDOM.shift({ padding: 10 }),
+                    // @ts-ignore
+                    FloatingUIDOM.arrow({ element: arrowEl }),
+                ],
+                // @ts-ignore
+            }).then(({middlewareData, placement, x, y}) => {
+                const {x: arrowX, y: arrowY} = middlewareData.arrow;
+
+                Object.assign(popoverElement.style, {
+                    left: `${x}px`,
+                    top: `${y}px`,
+                });
+
+                // @ts-ignore
+                const staticSide = {
+                    top: 'bottom',
+                    right: 'left',
+                    bottom: 'top',
+                    left: 'right',
+                }[placement.split('-')[0]];
+
+                if (arrowElement) {
+                    // @ts-ignore
+                    Object.assign(arrowElement.style, {
+                        // TODO: Fix arrow positioning
+                        transform: `translateX(${(arrowX || 0)}px) translateY(${(arrowY || 0)}px)`,
+                        [staticSide]: '-4px',
+                    });
+                }
+            });
         }
 
         /**
@@ -267,7 +284,8 @@ namespace Stacks {
          */
         protected scheduleUpdate() {
             if (this.floatingUI && this.isVisible) {
-                this.floatingUI.update();
+                // TODO reimplement update
+                // this.floatingUI.update();
             }
         }
     }
