@@ -4,7 +4,7 @@ namespace Stacks {
 
     export abstract class BasePopoverController extends StacksController {
         // @ts-ignore
-        private popper!: Popper;
+        private floatingUI!: FloatingUICore;
 
         protected popoverElement!: HTMLElement;
 
@@ -71,7 +71,7 @@ namespace Stacks {
             this.validate();
             if (this.isVisible) {
                 // just call initialize here, not show. This keeps already visible popovers from adding/firing document events
-                this.initializePopper();
+                this.initializeFloatingUI();
             } else if (this.data.get("auto-show") === "true") {
                 this.show(null);
             }
@@ -84,9 +84,10 @@ namespace Stacks {
          */
         disconnect() {
             this.hide();
-            if (this.popper) {
-                this.popper.destroy();
-                delete this.popper;
+            if (this.floatingUI) {
+                // TODO: See if something similar is still necessary
+                // this.floatingUI.destroy();
+                delete this.floatingUI;
             }
             super.disconnect();
         }
@@ -110,8 +111,8 @@ namespace Stacks {
                 dispatcher: dispatcherElement
             }).defaultPrevented) { return; }
 
-            if (!this.popper) {
-                this.initializePopper();
+            if (!this.floatingUI) {
+                this.initializeFloatingUI();
             }
 
             this.popoverElement!.classList.add("is-visible");
@@ -136,10 +137,11 @@ namespace Stacks {
 
             this.popoverElement.classList.remove("is-visible");
 
-            if (this.popper) {
+            if (this.floatingUI) {
+                // TODO: See if something similar is still necessary
                 // completely destroy the popper on hide; this is in line with Popper.js's performance recommendations
-                this.popper.destroy();
-                delete this.popper;
+                // this.floatingUI.destroy();
+                delete this.floatingUI;
             }
 
             // on first interaction, hide-on-outside-click with value "after-dismissal" reverts to the default behavior
@@ -180,24 +182,43 @@ namespace Stacks {
         /**
          * Initializes the Popper for this instance
          */
-        private initializePopper() {
+        private initializeFloatingUI() {
+            var popoverElement = this.popoverElement;
+            var arrowElement = popoverElement.querySelector(".s-popover--arrow");
             // @ts-ignore
-            this.popper = Popper.createPopper(this.referenceElement, this.popoverElement, {
+            this.floatingUI = FloatingUIDOM.computePosition(this.referenceElement, popoverElement, {
                 placement: this.data.get("placement") || "bottom",
-                modifiers: [
-                    {
-                        name: "offset",
-                        options: {
-                            offset: [0, 10], // The entire popover should be 10px away from the element
-                        }
-                    },
-                    {
-                        name: "arrow",
-                        options: {
-                            element: ".s-popover--arrow"
-                        },
-                    },
-                ]
+                middleware: [
+                    // @ts-ignore
+                    FloatingUIDOM.offset(10), FloatingUIDOM.flip(), FloatingUIDOM.shift({ padding: 10 }),
+                    // @ts-ignore
+                    FloatingUIDOM.arrow({ element: arrowEl }),
+                ],
+                // @ts-ignore
+            }).then(({middlewareData, placement, x, y}) => {
+                const {x: arrowX, y: arrowY} = middlewareData.arrow;
+
+                Object.assign(popoverElement.style, {
+                    left: `${x}px`,
+                    top: `${y}px`,
+                });
+
+                // @ts-ignore
+                const staticSide = {
+                    top: 'bottom',
+                    right: 'left',
+                    bottom: 'top',
+                    left: 'right',
+                }[placement.split('-')[0]];
+
+                if (arrowElement) {
+                    // @ts-ignore
+                    Object.assign(arrowElement.style, {
+                        // TODO: Fix arrow positioning
+                        transform: `translateX(${(arrowX || 0)}px) translateY(${(arrowY || 0)}px)`,
+                        [staticSide]: '-4px',
+                    });
+                }
             });
         }
 
@@ -262,8 +283,9 @@ namespace Stacks {
          * Schedules the popover to update on the next animation frame if visible
          */
         protected scheduleUpdate() {
-            if (this.popper && this.isVisible) {
-                this.popper.update();
+            if (this.floatingUI && this.isVisible) {
+                // TODO reimplement update
+                // this.floatingUI.update();
             }
         }
     }
