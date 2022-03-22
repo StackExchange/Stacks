@@ -66,7 +66,6 @@
 //      The same style is applied to all tags. Do not modify the core style.
 //  ---------------------------------------------------------------------------
 .s-tag {
-    #stacks-internals #load-config();
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -117,7 +116,6 @@
 }
 
 a.s-tag:not(.is-selected) {
-    #stacks-internals #load-config();
     .s-tag-hover-styles(var(--theme-tag-hover-border-color), var(--theme-tag-hover-background-color), var(--theme-tag-hover-color));
 }
 
@@ -166,46 +164,40 @@ a.s-tag:not(.is-selected) {
 //  $$  Required Tag
 //  ---------------------------------------------------------------------------
 .s-tag__required {
-    #stacks-internals #load-config();
-    .s-tag-styles(@tags-required-border, @tags-required-background, @tags-required-color);
+    .s-tag-styles(var(--bc-darker), var(--black-075), var(--black-700));
 
     &.is-selected {
-        .s-tag-selected-styles(@tags-required-selected-border, @tags-required-selected-background, @tags-required-selected-color);
+        .s-tag-selected-styles(var(--black-500), var(--black-200), var(--black-900));
     }
 }
 a.s-tag__required:not(.is-selected) {
-    #stacks-internals #load-config();
-    .s-tag-hover-styles(@tags-required-hover-border, @tags-required-hover-background, @tags-required-hover-color);
+    .s-tag-hover-styles(var(--black-300), var(--black-100), var(--black-800));
 }
 
 //  $$  Moderator Tag
 //  ---------------------------------------------------------------------------
 .s-tag__moderator {
-    #stacks-internals #load-config();
-    .s-tag-styles(@tags-moderator-border, @tags-moderator-background, @tags-moderator-color);
+    .s-tag-styles(var(--red-200), var(--red-050), var(--red-800));
 
     &.is-selected {
-        .s-tag-selected-styles(@tags-moderator-selected-border, @tags-moderator-selected-background, @tags-moderator-selected-color);
+        .s-tag-selected-styles(var(--red-400), var(--red-200), var(--red-800));
     }
 }
 a.s-tag__moderator:not(.is-selected) {
-    #stacks-internals #load-config();
-    .s-tag-hover-styles(@tags-moderator-hover-border, @tags-moderator-hover-background, @tags-moderator-hover-color);
+    .s-tag-hover-styles(var(--red-300), var(--red-100), var(--red-900));
 }
 
 //  $$  Muted Tag
 //  ---------------------------------------------------------------------------
 .s-tag__muted {
-    #stacks-internals #load-config();
-    .s-tag-styles(@tags-muted-border, @tags-muted-background, @tags-muted-color);
+    .s-tag-styles(transparent, var(--black-075), var(--black-700));
 
     &.is-selected {
-        .s-tag-selected-styles(@tags-muted-selected-border, @tags-muted-selected-background, @tags-muted-selected-color);
+        .s-tag-selected-styles(transparent, var(--black-200), var(--black-900));
     }
 }
 a.s-tag__muted:not(.is-selected) {
-    #stacks-internals #load-config();
-    .s-tag-hover-styles(@tags-muted-hover-border, @tags-muted-hover-background, @tags-muted-hover-color);
+    .s-tag-hover-styles(transparent, var(--black-100), var(--black-800));
 }
 
 //  $$  Tag with Icons (watched, ignored)
