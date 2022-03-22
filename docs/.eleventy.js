@@ -134,6 +134,35 @@ module.exports = function(eleventyConfig) {
     return output;
   });
 
+  // Copy button shortcode
+  eleventyConfig.addLiquidShortcode("copybutton", function(name) {
+    var checkmarkIcon = Icons["Checkmark"];
+    var copyIcon = Icons["Copy"];
+    var tooltipId = "tooltip-" + (name || Math.floor(Math.random() * 1000));
+
+    var output = '';
+    output += '<button'
+    output += ' class="s-btn s-btn__muted s-btn__icon ps-absolute t8 r8"';
+    output += ' data-action="clipboard#copy"';
+    output += ' data-s-tooltip-placement="top"';
+    output += ' data-controller="s-tooltip"';
+    output += ' aria-describedby="' + tooltipId + '"';
+    output += '>';
+    output +=  '<span class="d-none" data-show-on-copy>' + checkmarkIcon + '</span>';
+    output +=  '<span data-hide-on-copy>' + copyIcon + '</span>';
+    output += '</button>'
+    output += '<div class="s-popover s-popover__tooltip"';
+    output += ' id="' + tooltipId + '"';
+    output += ' role="tooltip"';
+    output += ' aria-hidden="true">';
+    output +=   '<div class="s-popover--arrow"></div>';
+    output +=   '<span class="d-none" data-show-on-copy>Copied</span>';
+    output +=   '<span data-hide-on-copy>Copy</span>';
+    output += '</div>';
+
+    return output;
+  });
+
   // Version shortcode
   eleventyConfig.addLiquidShortcode("version", function() {
     return {version}.version;
