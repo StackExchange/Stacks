@@ -58,5 +58,11 @@ module.exports = (_, argv) => {
         resolve: {
             extensions: [".tsx", ".ts", ".js"],
         },
+        devServer: {
+            webSocketURL: {
+                // 11ty/browsersync steal the default port (8080), so set it to something else
+                port: 8081
+            }
+        }
     };
 };
