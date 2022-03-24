@@ -1,43 +1,20 @@
 import '../css/stacks.less';
+import { ExpandableController, ModalController, PopoverController, TableController, TabListController, TooltipController, UploaderController } from './controllers';
+import { application, StacksApplication } from './stacks';
 
-import { ExpandableController } from './controllers/s-expandable-control';
-import { hideModal, ModalController, showModal } from './controllers/s-modal';
-import { TabListController } from './controllers/s-navigation-tablist';
-import { attachPopover, detachPopover, hidePopover, PopoverController, showPopover } from './controllers/s-popover';
-import { TableController } from './controllers/s-table';
-import { setTooltipHtml, setTooltipText, TooltipController } from './controllers/s-tooltip';
-import { UploaderController } from './controllers/s-uploader';
-import * as Stacks from './stacks';
+// register all built-in controllers
+application.register("s-expandable-control", ExpandableController);
+application.register("s-modal", ModalController);
+application.register("s-navigation-tablist", TabListController);
+application.register("s-popover", PopoverController);
+application.register("s-table", TableController);
+application.register("s-tooltip", TooltipController);
+application.register("s-uploader", UploaderController);
 
-Stacks.application.register("s-expandable-control", ExpandableController);
-Stacks.application.register("s-modal", ModalController);
-Stacks.application.register("s-navigation-tablist", TabListController);
-Stacks.application.register("s-popover", PopoverController);
-Stacks.application.register("s-table", TableController);
-Stacks.application.register("s-tooltip", TooltipController);
-Stacks.application.register("s-uploader", UploaderController);
+// finalize the application to guard our controller namespace
+StacksApplication.finalize();
 
-// @ts-expect-error
-Stacks.showModal = showModal;
-// @ts-expect-error
-Stacks.hideModal = hideModal;
-// @ts-expect-error
-Stacks.showPopover = showPopover;
-// @ts-expect-error
-Stacks.hidePopover = hidePopover;
-// @ts-expect-error
-Stacks.attachPopover = attachPopover;
-// @ts-expect-error
-Stacks.detachPopover = detachPopover;
-// @ts-expect-error
-Stacks.setTooltipHtml = setTooltipHtml;
-// @ts-expect-error
-Stacks.setTooltipText = setTooltipText;
-
-Stacks.StacksApplication.finalize();
-
-// TODO es6 export everything above and let the importing module take care if it instead
-export = Stacks;
-
-//TODO
-//Stacks.application._initializing = false;
+// export all controllers w/ helpers
+export * from "./controllers";
+// export the entirety of the contents of stacks.ts
+export * from "./stacks";

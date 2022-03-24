@@ -1,7 +1,7 @@
 import "../../../lib/ts/index";
 import "../less/stacks-documentation.less";
 import "./controllers/docs-resizer";
-import Stacks from "../../../lib/ts/index";
+import * as Stacks from "../../../lib/ts/index";
 
 // @ts-expect-error
 global.$ = require("jquery");
