@@ -32,9 +32,7 @@ module.exports = (_, argv) => {
                     test: /\.tsx?$/,
                     exclude: /node_modules/,
                     use: [
-                        {
-                            loader: "ts-loader",
-                        },
+                        "ts-loader",
                     ],
                 },
                 {
@@ -48,9 +46,7 @@ module.exports = (_, argv) => {
                                 url: false,
                             },
                         },
-                        {
-                            loader: "postcss-loader",
-                        },
+                        "postcss-loader",
                         "less-loader",
                     ],
                 },
