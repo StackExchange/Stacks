@@ -192,7 +192,7 @@ namespace Stacks {
                     // @ts-ignore
                     FloatingUIDOM.offset(10), FloatingUIDOM.flip(), FloatingUIDOM.shift({ padding: 10 }),
                     // @ts-ignore
-                    FloatingUIDOM.arrow({ element: arrowEl }),
+                    FloatingUIDOM.arrow({ element: arrowElement }),
                 ],
                 // @ts-ignore
             }).then(({middlewareData, placement, x, y}) => {
