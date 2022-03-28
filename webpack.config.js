@@ -16,7 +16,7 @@ const baseConfig = (isProd, minify) => ({
         path: path.resolve(__dirname, "dist"),
         // don't empty out the dist folder when running the second build
         clean: minify,
-        //compareBeforeEmit: true,
+        compareBeforeEmit: true,
         library: "Stacks",
         libraryTarget: "umd",
     },
