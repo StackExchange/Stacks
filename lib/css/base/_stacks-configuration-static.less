@@ -5,11 +5,6 @@
 // OPTIONS
 // -------
 //
-// #stacks-config-static { @css-reset: normalize; }
-//
-//      `normalize` is the default, which will include normalize.css (the Nicolas Gallagher reset). Other
-//      legal options are `meyer` for the Eric Meyer reset, and `none` if no CSS reset should be compiled in.
-//
 //
 // #stacks-config-static { @breakpoints: 1264px, 980px, 640px; }
 //
@@ -39,21 +34,7 @@
 //      is on the root element, because the selector-free breakpoint group still applies.
 //
 //      Any selector, if given, MUST select the root (html) element.
-//
-// Previously, the CSS reset option was a simple global variable. For backwards compatibility, we'll handle it correctly for a bit.
-@stacks-include-css-reset: this-is-deprecated;
 
 #stacks-config-static {
-
-    #handle-old-reset-option() when (@stacks-include-css-reset = this-is-deprecated) {
-        // the variable wasn't overridden -- good!
-        @css-reset: normalize; // other possible values are `meyer` and `none`
-    }
-    #handle-old-reset-option() when not (@stacks-include-css-reset = this-is-deprecated) {
-        // Somebody overwrote the variable, so this project is using the legacy option. Handle it.
-        @css-reset: @stacks-include-css-reset;
-    }
-    #handle-old-reset-option();
-
     @breakpoints: @breakpoint-lg, @breakpoint-md, @breakpoint-sm;
 }
