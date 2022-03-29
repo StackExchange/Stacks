@@ -216,7 +216,8 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.addPlugin(pluginTOC, {tags: ['h2', 'h3'], wrapper: 'nav aria-label="Table of contents"'});
 
   // Copy these files over to _site
-  eleventyConfig.addPassthroughCopy('assets');
+  eleventyConfig.addPassthroughCopy('assets/dist');
+  eleventyConfig.addPassthroughCopy('assets/img');
   eleventyConfig.addPassthroughCopy('email/templates/code');
   eleventyConfig.addPassthroughCopy('email/templates/examples');
 
