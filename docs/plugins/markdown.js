@@ -1,9 +1,24 @@
 const hljs = require("highlight.js");
-const markdownIt = require("markdown-it")("commonmark");
-const markdownShortcode = require("eleventy-plugin-markdown-shortcode");
+const MarkdownIt = require("markdown-it");
+const fs = require("fs");
 
 module.exports = {
   configFunction(eleventyConfig) {
+    // create our shared markdownit instance
+    const markdownIt = MarkdownIt("commonmark", {
+      html: true,
+      // have markdownit use hljs for syntax highlighting
+      highlight: function (str, lang) {
+        if (lang && hljs.getLanguage(lang)) {
+          return '<pre class="language-' + lang + ' s-code-block"><code class="language-' + lang + ' s-code-block">' +
+                hljs.highlight(str, {language: lang}).value +
+                '</code></pre>';
+        }
+
+        return ''; // use external default escaping
+      }
+    });
+
     // customize markdown-it rendering to add our classes
     markdownIt.use(function (md) {
       // mapping of tag: classes
@@ -28,22 +43,21 @@ module.exports = {
       });
     });
 
+    /**
+     * Renders markdown strings to html:
+     * {{ "**foo** _bar_" | markdown }}
+     */
     eleventyConfig.addLiquidFilter("markdown", function (content) {
       return markdownIt.renderInline(content);
     });
 
-    // Add markdown shortcode
-    eleventyConfig.addPlugin(markdownShortcode, {
-      html: true,
-      highlight: function (str, lang) {
-        if (lang && hljs.getLanguage(lang)) {
-          return '<pre class="language-' + lang + ' s-code-block"><code class="language-' + lang + ' s-code-block">' +
-                hljs.highlight(str, {language: lang}).value +
-                '</code></pre>';
-        }
-
-        return ''; // use external default escaping
-      }
+    /**
+     * Reads and renders markdown files:
+     * {% markdown '/path/to/foo.md' %}
+     */
+    eleventyConfig.addShortcode("markdown", function (file) {
+        let data = fs.readFileSync(`.${file}`);
+        return markdownIt.render(data.toString());
     });
   }
 }
