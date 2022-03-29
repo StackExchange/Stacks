@@ -17,7 +17,5 @@ module.exports = {
         "no-console": "error",
         "no-alert": "error",
         "no-process-env": "error",
-        // TODO this one is a pain to fix w/ ProseMirror's Class<T extends Schema = any> types
-        "@typescript-eslint/no-unsafe-argument": "off",
     },
 };
