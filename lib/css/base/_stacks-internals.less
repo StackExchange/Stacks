@@ -1,9 +1,5 @@
 /* stylelint-disable */
 #stacks-internals() {
-    #load-static-config() {
-        #stacks-config-static();
-    }
-
     //  ===========================================================================
     //  --  RESPONSIVE (modern)
     //      #responsify renders a plain class as well as its responsive counterparts.
@@ -43,7 +39,7 @@
     //  --  RESPONSIVE
     //      The three #screen-XX mixins wrap the given rules in the appropriate
     //      media queries and (if applicable) selector prefixes for all breakpoint
-    //      groups that have been defined in the static configuration section.
+    //      groups that have been defined in the `@breakpoints` Less variable.
     //
     //      Usage example:
     //
@@ -68,15 +64,12 @@
     //  ---------------------------------------------------------------------------
 
     #screen-lg(@rules, @force-selector: false) {
-        #stacks-internals #load-static-config();
         #stacks-internals #responsive-stuff(0, @rules, @breakpoints, 1, @force-selector);
     }
     #screen-md(@rules, @force-selector: false) {
-        #stacks-internals #load-static-config();
         #stacks-internals #responsive-stuff(1, @rules, @breakpoints, 1, @force-selector);
     }
     #screen-sm(@rules, @force-selector: false) {
-        #stacks-internals #load-static-config();
         #stacks-internals #responsive-stuff(2, @rules, @breakpoints, 1, @force-selector);
     }
 
