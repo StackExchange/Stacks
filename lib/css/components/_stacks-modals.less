@@ -17,7 +17,7 @@
     display: flex;
     visibility: hidden;
     position: fixed;
-    z-index: @zi-hide; // Make sure it's also below everything so we can't interact with it.
+    z-index: var(--zi-hide); // Make sure it's also below everything so we can't interact with it.
 
     // This fills the entire viewport without having to worry about size.
     top: 0;
@@ -35,7 +35,7 @@
     &[aria-hidden="false"],
     &[aria-hidden="false"] .s-modal--dialog {
         visibility: visible;
-        z-index: @zi-modals;
+        z-index: var(--zi-modals);
         opacity: 1;
         transform: translate3d(0, 0, 0) scale3d(1, 1, 1);
         transition: opacity 100ms @te-smooth 10ms, z-index 0s 0s, visibility 0s 0s, transform 100ms @te-smooth 10ms, transform 100ms @te-smooth 10ms; // Transition in
@@ -45,7 +45,7 @@
 .s-modal--dialog {
     overflow-y: auto;
     visibility: hidden;
-    z-index: @zi-hide; // Make sure it's also below everything so we can't interact with it.
+    z-index: var(--zi-hide); // Make sure it's also below everything so we can't interact with it.
     max-width: 600px;
     max-height: 100%;
     padding: @su24;
