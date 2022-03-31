@@ -23,7 +23,7 @@
 .s-sidebarwidget {
     position: relative; // so that it's the positioning parent for the :after
     border: 1px solid @s-sidebarwidget-outer-border-color;
-    border-radius: @br-sm;
+    border-radius: var(--br-sm);
     box-shadow: var(--bs-sm);
     font-size: var(--fs-body1);
     background-color: var(--white);
@@ -61,9 +61,10 @@
         top: -1px;
         right: -1px;
         left: -1px;
-        height: 2px + @br-sm; // we need 2px border + 2px border radius to have the correct corner shape
+        // TODO: this makes no sense. revisit.
+        height: calc(2px + var(--br-sm)); // we need 2px border + 2px border radius to have the correct corner shape
         border-top: 1px solid @s-sidebarwidget-outer-border-color;
-        border-radius: @br-sm;
+        border-radius: var(--br-sm);
         pointer-events: none; // if the top item is clickable, then we don't want to prevent clicking the top 2 pixels
 
         // In order to also perfectly recreate the inner corner shape, our pseudo-element needs
@@ -95,8 +96,8 @@
     font-weight: normal;
 
     &:first-child {
-        border-top-left-radius: @br-sm;
-        border-top-right-radius: @br-sm;
+        border-top-left-radius: var(--br-sm);
+        border-top-right-radius: var(--br-sm);
     }
 
     &.s-sidebarwidget__small-bold-text {

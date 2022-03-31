@@ -22,7 +22,7 @@
         padding: 0.8em;
         color: var(--theme-button-color);
         border: 1px solid transparent;
-        border-radius: @br-sm;
+        border-radius: var(--br-sm);
         background-color: transparent;
         outline: none;
         font-family: inherit;
@@ -95,7 +95,7 @@
             &:after {
                 content: "";
                 position: absolute;
-                z-index: @zi-active;
+                z-index: var(--zi-active);
                 top: calc(50% - 2px);
                 right: 0.8em;
                 border-style: solid;
@@ -134,8 +134,10 @@
 
         &.s-btn__md {
             padding: 0.7em;
-            border-radius: @br-sm + 1;
+            border-radius: calc(var(--br-sm) + 1px);
             font-size: var(--fs-body3);
+            border-radius: calc(var(--br-sm) + 1px);
+            font-size: @fs-body3;
 
             &.s-btn__dropdown {
                 padding-right: 1.8em;
@@ -153,7 +155,7 @@
         .s-btn--badge {
             opacity: 0.5;
             display: inline-block;
-            border-radius: @br-sm;
+            border-radius: var(--br-sm);
             padding: @su2 (@su4 - 1px);
             font-size: var(--fs-caption);
             line-height: var(--lh-xs);
@@ -604,7 +606,7 @@
             vertical-align: baseline;
             margin-top: -0.3em;         // [1]
             margin-bottom: -0.3em;      // [1]
-            transition: opacity 200ms @te-smooth; // Animate the transition to .is-loading
+            transition: opacity 200ms var(--te-smooth); // Animate the transition to .is-loading
         }
     }
 
@@ -626,7 +628,7 @@
                 border-width: 2px;
                 border-style: solid;
                 border-color: currentColor;
-                border-radius: @br-circle;
+                border-radius: var(--br-circle);
             }
 
             &:after {
@@ -640,7 +642,7 @@
                 border-style: solid;
                 border-color: transparent;
                 border-left-color: currentColor;
-                border-radius: @br-circle;
+                border-radius: var(--br-circle);
                 animation: s-spinner-rotate 0.9s infinite cubic-bezier(0.5, 0.1, 0.5, 0.9);
                 // see _stacks-spinner.less for an explanation of the following two
                 filter: invert(0); // (*)

@@ -51,7 +51,7 @@
     margin: 0; // A guard against Core's default margins
     padding: @input-padding;
     border: 1px solid var(--bc-darker);
-    border-radius: @br-sm;
+    border-radius: var(--br-sm);
     background-color: var(--white);
     color: var(--fc-dark);
     font-size: var(--fs-body1);
@@ -238,14 +238,14 @@ fieldset {
 
     &.order-first {
         border-left-width: 1px;
-        border-top-left-radius: @br-sm;
-        border-bottom-left-radius: @br-sm;
+        border-top-left-radius: var(--br-sm);
+        border-bottom-left-radius: var(--br-sm);
     }
 
     &.order-last {
         border-right-width: 1px;
-        border-top-right-radius: @br-sm;
-        border-bottom-right-radius: @br-sm;
+        border-top-right-radius: var(--br-sm);
+        border-bottom-right-radius: var(--br-sm);
     }
 }
 
@@ -265,7 +265,7 @@ fieldset {
     &:after {
         content: "";
         position: absolute;
-        z-index: @zi-selected;
+        z-index: var(--zi-selected);
         right: 13px;
         border-color: currentColor transparent;
         border-style: solid;
@@ -299,7 +299,7 @@ fieldset {
         padding: @input-padding;
         padding-right: @su32;
         border: 1px solid var(--bc-darker);
-        border-radius: @br-sm;
+        border-radius: var(--br-sm);
         background-color: var(--white);
         outline: 0;
         font-size: var(--fs-body1);
@@ -372,7 +372,7 @@ fieldset {
 //  ----------------------------------------------------------------------------
 .s-checkbox {
     @supports ((-webkit-appearance: none) or (-moz-appearance: none) or (appearance: none)) {
-        border-radius: @br-sm;
+        border-radius: var(--br-sm);
         background-position: center center;
         background-repeat: no-repeat;
         background-size: contain;
@@ -403,7 +403,7 @@ fieldset {
 //  ----------------------------------------------------------------------------
 .s-radio {
     @supports ((-webkit-appearance: none) or (-moz-appearance: none) or (appearance: none)) {
-        border-radius: @br-circle;
+        border-radius: var(--br-circle);
 
         &:checked {
             border-color: var(--theme-secondary-400);
@@ -691,7 +691,7 @@ fieldset {
 .s-select__md > select {
     padding-top: 0.5em;
     padding-bottom: 0.5em;
-    border-radius: @br-sm + 1;
+    border-radius: calc(var(--br-sm) + 1px);
 }
 
 .s-textarea__md {
@@ -703,14 +703,14 @@ fieldset {
 .s-textarea__lg,
 .s-select__lg > select {
     padding: 0.45em 0.6em;
-    border-radius: @br-sm + 1;
+    border-radius: calc(var(--br-sm) + 1px);
 }
 
 .s-input__xl,
 .s-textarea__xl,
 .s-select__xl > select {
     padding: 0.4em 0.5em;
-    border-radius: @br-md;
+    border-radius: var(--br-md);
 }
 
 .s-input__md,
