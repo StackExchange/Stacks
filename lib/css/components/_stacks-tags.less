@@ -66,7 +66,6 @@
 //      The same style is applied to all tags. Do not modify the core style.
 //  ---------------------------------------------------------------------------
 .s-tag {
-    #stacks-internals #load-config();
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -75,8 +74,8 @@
     padding-right: var(--su4);
     border-style: solid;
     border-width: 1px;
-    border-radius: @br-sm;
-    font-size: @fs-caption;
+    border-radius: var(--br-sm);
+    font-size: var(--fs-caption);
     line-height: 1.846153846;
     text-decoration: none;
     vertical-align: middle;
@@ -92,32 +91,31 @@
 
     //  -- SIZES
     &.s-tag__xs {
-        font-size: @fs-fine;
+        font-size: var(--fs-fine);
         line-height: 1.4;
         padding-left: var(--su2);
         padding-right: var(--su2);
     }
     &.s-tag__sm {
-        font-size: @fs-caption;
+        font-size: var(--fs-caption);
         line-height: 1.5;
     }
     &.s-tag__md {
         padding-left: var(--su6);
         padding-right: var(--su6);
-        font-size: @fs-body2;
+        font-size: var(--fs-body2);
         line-height: 1.733333333;
     }
     &.s-tag__lg {
         padding-left: var(--su6);
         padding-right: var(--su6);
-        border-radius: @br-sm + 1;
-        font-size: @fs-subheading;
+        border-radius: calc(var(--br-sm) + 1px);
+        font-size: var(--fs-subheading);
         line-height: 1.684210526;
     }
 }
 
 a.s-tag:not(.is-selected) {
-    #stacks-internals #load-config();
     .s-tag-hover-styles(var(--theme-tag-hover-border-color), var(--theme-tag-hover-background-color), var(--theme-tag-hover-color));
 }
 
@@ -133,7 +131,7 @@ a.s-tag:not(.is-selected) {
     height: var(--sus16);
     margin-left: var(--su4);
     padding: var(--su1);
-    border-radius: @br-sm;
+    border-radius: var(--br-sm);
     cursor: pointer;
 
     &:hover {
@@ -149,7 +147,7 @@ a.s-tag:not(.is-selected) {
     align-self: center;
     margin: calc(var(--su1) * -1) var(--su4) calc(var(--su2) * -1) calc(var(--su2) * -1);
     max-width: calc(var(--sus16) + var(--sus2));
-    border-radius: @br-sm - 1;
+    border-radius: calc(var(--br-sm) - 1px);
 
     .svg-icon,
     img {
@@ -166,46 +164,40 @@ a.s-tag:not(.is-selected) {
 //  $$  Required Tag
 //  ---------------------------------------------------------------------------
 .s-tag__required {
-    #stacks-internals #load-config();
-    .s-tag-styles(@tags-required-border, @tags-required-background, @tags-required-color);
+    .s-tag-styles(var(--bc-darker), var(--black-075), var(--black-700));
 
     &.is-selected {
-        .s-tag-selected-styles(@tags-required-selected-border, @tags-required-selected-background, @tags-required-selected-color);
+        .s-tag-selected-styles(var(--black-500), var(--black-200), var(--black-900));
     }
 }
 a.s-tag__required:not(.is-selected) {
-    #stacks-internals #load-config();
-    .s-tag-hover-styles(@tags-required-hover-border, @tags-required-hover-background, @tags-required-hover-color);
+    .s-tag-hover-styles(var(--black-300), var(--black-100), var(--black-800));
 }
 
 //  $$  Moderator Tag
 //  ---------------------------------------------------------------------------
 .s-tag__moderator {
-    #stacks-internals #load-config();
-    .s-tag-styles(@tags-moderator-border, @tags-moderator-background, @tags-moderator-color);
+    .s-tag-styles(var(--red-200), var(--red-050), var(--red-800));
 
     &.is-selected {
-        .s-tag-selected-styles(@tags-moderator-selected-border, @tags-moderator-selected-background, @tags-moderator-selected-color);
+        .s-tag-selected-styles(var(--red-400), var(--red-200), var(--red-800));
     }
 }
 a.s-tag__moderator:not(.is-selected) {
-    #stacks-internals #load-config();
-    .s-tag-hover-styles(@tags-moderator-hover-border, @tags-moderator-hover-background, @tags-moderator-hover-color);
+    .s-tag-hover-styles(var(--red-300), var(--red-100), var(--red-900));
 }
 
 //  $$  Muted Tag
 //  ---------------------------------------------------------------------------
 .s-tag__muted {
-    #stacks-internals #load-config();
-    .s-tag-styles(@tags-muted-border, @tags-muted-background, @tags-muted-color);
+    .s-tag-styles(transparent, var(--black-075), var(--black-700));
 
     &.is-selected {
-        .s-tag-selected-styles(@tags-muted-selected-border, @tags-muted-selected-background, @tags-muted-selected-color);
+        .s-tag-selected-styles(transparent, var(--black-200), var(--black-900));
     }
 }
 a.s-tag__muted:not(.is-selected) {
-    #stacks-internals #load-config();
-    .s-tag-hover-styles(@tags-muted-hover-border, @tags-muted-hover-background, @tags-muted-hover-color);
+    .s-tag-hover-styles(transparent, var(--black-100), var(--black-800));
 }
 
 //  $$  Tag with Icons (watched, ignored)

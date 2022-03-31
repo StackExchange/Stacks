@@ -74,6 +74,7 @@
     font-weight: 800;
 }
 
+// TODO remove font-family Less variables. Keeping them here for now for comments.
 @ff-sans:
     -apple-system, BlinkMacSystemFont, // San Francisco on macOS and iOS
     "Segoe UI Adjusted", "Segoe UI", // Windows
@@ -87,53 +88,66 @@
     Menlo, Monaco, Consolas, // A few sensible system font choices
     monospace; // The final fallback for rendering in monospace.
 
+html,
 body {
     --ff-sans: @ff-sans;
     --ff-serif: @ff-serif;
     --ff-mono: @ff-mono;
     --theme-body-font-family: var(--ff-sans);
 
-    --lh-base: 13;
+    //  ============================================================================
+    //  $   FONT SIZES (fs-)
+    //      Base font-size is 13px.
+    //  ----------------------------------------------------------------------------
+    --fs-fine:           11px;
+    --fs-caption:        12px;
+    --fs-body1:          13px;
+
+    //  Relative to the root element
+    --fs-body2:               1.153846154rem;
+    --fs-body3:               1.307692308rem;
+    --fs-subheading:          1.461538462rem;
+    --fs-title:               1.615384615rem;
+    --fs-headline1:           2.076923077rem;
+    --fs-headline2:           2.615384615rem;
+    --fs-display1:            3.307692308rem;
+    --fs-display2:            4.230769231rem;
+    --fs-display3:            5.307692308rem;
+    --fs-display4:            7.615384615rem;
+
+    //  Relative to the parent
+    --fs-body2-relative:      1.153846154em;
+    --fs-body3-relative:      1.307692308em;
+    --fs-subheading-relative: 1.461538462em;
+    --fs-title-relative:      1.615384615em;
+    --fs-headline1-relative:  2.076923077em;
+    --fs-headline2-relative:  2.615384615em;
+    --fs-display1-relative:   3.307692308em;
+    --fs-display2-relative:   4.230769231em;
+    --fs-display3-relative:   5.307692308em;
+    --fs-display4-relative:   7.615384615em;
+
+    --fs-base: 13px;
+
     //  ============================================================================
     //  $   LINE HEIGHT (lh-)
     //  ----------------------------------------------------------------------------
-    --lh-xs: 1;
-    --lh-sm: calc((var(--lh-base) + 2) / var(--lh-base));
-    --lh-md: calc((var(--lh-base) + 4) / var(--lh-base));
-    --lh-lg: calc((var(--lh-base) + 8) / var(--lh-base));
-    --lh-xl: calc((var(--lh-base) + 12) / var(--lh-base));
-    --lh-xxl: 2;
+    // Need to remove the unit off the font-size to make line-height unitless
+    // FIXME this shouldn't be public. Find a way to use unitless `--fs-base`.
+    --stacks-internals-lh-unit: 13;
+
+    // Now the various line-height variables
+    --lh-xs:    1;
+    --lh-sm:    calc((var(--stacks-internals-lh-unit) + 2) / var(--stacks-internals-lh-unit));
+    --lh-md:    calc((var(--stacks-internals-lh-unit) + 4) / var(--stacks-internals-lh-unit));
+    --lh-lg:    calc((var(--stacks-internals-lh-unit) + 8) / var(--stacks-internals-lh-unit));
+    --lh-xl:    calc((var(--stacks-internals-lh-unit) + 12) / var(--stacks-internals-lh-unit));
+    --lh-xxl:   2;
+
+    --lh-base: var(--lh-md);
+
+    //      Holdover line-heights from production. These are NOT to be used and
+    //      need to be deprecated.
+    //  ----------------------------------------------------------------------------
+    --lh-6:      ((var(--stacks-internals-lh-unit) + 6) / var(--stacks-internals-lh-unit));
 }
-
-//  ============================================================================
-//  $   FONT SIZES (fs-)
-//      Base font-size is 13px.
-//  ----------------------------------------------------------------------------
-@fs-base: 13px;
-@fs-fine:           11px;
-@fs-caption:        12px;
-@fs-body1:          13px;
-
-//  Relative to the root element
-@fs-body2:               1.153846154rem;
-@fs-body3:               1.307692308rem;
-@fs-subheading:          1.461538462rem;
-@fs-title:               1.615384615rem;
-@fs-headline1:           2.076923077rem;
-@fs-headline2:           2.615384615rem;
-@fs-display1:            3.307692308rem;
-@fs-display2:            4.230769231rem;
-@fs-display3:            5.307692308rem;
-@fs-display4:            7.615384615rem;
-
-//  Relative to the parent
-@fs-body2-relative:      1.153846154em;
-@fs-body3-relative:      1.307692308em;
-@fs-subheading-relative: 1.461538462em;
-@fs-title-relative:      1.615384615em;
-@fs-headline1-relative:  2.076923077em;
-@fs-headline2-relative:  2.615384615em;
-@fs-display1-relative:   3.307692308em;
-@fs-display2-relative:   4.230769231em;
-@fs-display3-relative:   5.307692308em;
-@fs-display4-relative:   7.615384615em;

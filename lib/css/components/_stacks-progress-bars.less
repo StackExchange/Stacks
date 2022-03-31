@@ -20,7 +20,7 @@
     position: relative;
     min-height: var(--sus4);
     min-width: var(--sus6);
-    border-radius: @br-sm;
+    border-radius: var(--br-sm);
 }
 
 //  $$   PROGRESS WRAPPER
@@ -44,12 +44,12 @@
     position: absolute;
     width: 100%;
     height: 100%;
-    border-radius: @br-md;
+    border-radius: var(--br-md);
     border: 1px solid transparent;
-    font-size: @fs-caption;
+    font-size: var(--fs-caption);
     line-height: var(--lh-xs);
     color: var(--fc-dark);
-    z-index: @zi-base + 2;
+    z-index: calc(var(--zi-base) + 2);
 }
 
 //  ===========================================================================
@@ -88,7 +88,7 @@
 .s-progress__badge,
 .s-progress__badge .s-progress--bar {
     min-height: 2em;
-    border-radius: @br-md;
+    border-radius: var(--br-md);
 }
 
 .s-progress__privilege,
@@ -204,13 +204,13 @@
         display: block;
         width: auto;
         height: auto;
-        font-size: @fs-body1;
+        font-size: var(--fs-body1);
         border: 0;
         border-radius: 0;
         padding: var(--su12) var(--su6) 0 var(--su6);
         text-align: center;
         color: var(--black-300);
-        z-index: @zi-base;
+        z-index: var(--zi-base);
     }
 
     .s-progress--stop {
@@ -222,7 +222,7 @@
         border-radius: 100%;
         width: var(--sus24);
         height: var(--sus24);
-        z-index: @zi-selected;
+        z-index: var(--zi-selected);
         color: @white;
 
         .highcontrast-mode({
@@ -235,7 +235,7 @@
         top: calc(var(--sus8) + var(--sus1));
         height: var(--sus6);
         background: var(--black-300);
-        z-index: @zi-base;
+        z-index: var(--zi-base);
         border-radius: 0;
 
         &.s-progress--bar__left {

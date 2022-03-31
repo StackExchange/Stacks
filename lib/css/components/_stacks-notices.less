@@ -17,9 +17,9 @@
 .s-notice {
     padding: var(--su16);
     border: 1px solid transparent;
-    border-radius: @br-sm;
+    border-radius: var(--br-sm);
     color: var(--fc-medium);
-    font-size: @fs-body1;
+    font-size: var(--fs-body1);
 
     .s-toast & {
         max-width: 44rem;
@@ -215,16 +215,16 @@
     left: var(--su8);
     right: var(--su8);
     opacity: 0;
-    z-index: @zi-modals + 1; // Toasts should appear above modals
+    z-index: calc(var(--zi-modals) + 1); // Toasts should appear above modals
     transform: translate3d(0, -66px, 0);
-    transition: transform 100ms @te-smooth-slow 0s, opacity 60ms @te-smooth-slow 0ms, visibility 0s 150ms;
+    transition: transform 100ms var(--te-smooth-slow) 0s, opacity 60ms var(--te-smooth-slow) 0ms, visibility 0s 150ms;
     pointer-events: none;
 
     &[aria-hidden="false"] {
         visibility: visible;
         opacity: 1;
         transform: translate3d(0, 0, 0);
-        transition: visibility 0s 0s, opacity 100ms @te-smooth 0s, transform 100ms @te-smooth 0s;
+        transition: visibility 0s 0s, opacity 100ms var(--te-smooth) 0s, transform 100ms var(--te-smooth) 0s;
     }
 
     @media (prefers-reduced-motion) {

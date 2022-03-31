@@ -17,7 +17,7 @@
     display: flex;
     visibility: hidden;
     position: fixed;
-    z-index: @zi-hide; // Make sure it's also below everything so we can't interact with it.
+    z-index: var(--zi-hide); // Make sure it's also below everything so we can't interact with it.
 
     // This fills the entire viewport without having to worry about size.
     top: 0;
@@ -29,27 +29,27 @@
     background-color: fade(@black-900, 50%); // Background remains fixed
     opacity: 0;
     backface-visibility: hidden;
-    transition: opacity 100ms @te-smooth 0s, z-index 0s 100ms, visibility 0s 100ms; // Transition out
+    transition: opacity 100ms var(--te-smooth) 0s, z-index 0s 100ms, visibility 0s 100ms; // Transition out
     will-change: visibility, z-index, opacity; // Not supported in Edge
 
     &[aria-hidden="false"],
     &[aria-hidden="false"] .s-modal--dialog {
         visibility: visible;
-        z-index: @zi-modals;
+        z-index: var(--zi-modals);
         opacity: 1;
         transform: translate3d(0, 0, 0) scale3d(1, 1, 1);
-        transition: opacity 100ms @te-smooth 10ms, z-index 0s 0s, visibility 0s 0s, transform 100ms @te-smooth 10ms, transform 100ms @te-smooth 10ms; // Transition in
+        transition: opacity 100ms var(--te-smooth) 10ms, z-index 0s 0s, visibility 0s 0s, transform 100ms var(--te-smooth) 10ms, transform 100ms var(--te-smooth) 10ms; // Transition in
     }
 }
 
 .s-modal--dialog {
     overflow-y: auto;
     visibility: hidden;
-    z-index: @zi-hide; // Make sure it's also below everything so we can't interact with it.
+    z-index: var(--zi-hide); // Make sure it's also below everything so we can't interact with it.
     max-width: 600px;
     max-height: 100%;
     padding: var(--su24);
-    border-radius: @br-lg;
+    border-radius: var(--br-lg);
     background-color: var(--white);
     box-shadow: var(--bs-lg);
     opacity: 0;
@@ -62,7 +62,7 @@
 
     @scrollbar-styles();
 
-    transition: opacity 200ms @te-smooth 0s, z-index 0s 100ms, visibility 0s 100ms, transform 100ms @te-smooth 0s, transform 100ms @te-smooth 0s; // Transition out
+    transition: opacity 200ms var(--te-smooth) 0s, z-index 0s 100ms, visibility 0s 100ms, transform 100ms var(--te-smooth) 0s, transform 100ms var(--te-smooth) 0s; // Transition out
     will-change: visibility, z-index, opacity, transform; // Not supported by Edge
 
     .s-modal[aria-hidden="false"] & {
@@ -88,7 +88,7 @@
 .s-modal--header {
     margin-bottom: var(--su16);
     color: var(--fc-dark);
-    font-size: @fs-headline1;
+    font-size: var(--fs-headline1);
     font-weight: normal;
     line-height: var(--lh-sm);
 }
