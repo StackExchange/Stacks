@@ -67,17 +67,38 @@
             </form>
         {% endunless %}
 
-        {% if showCtas %}
-            <ol class="s-topbar--ctas">
-                <li>
-                    <a href="#" class="s-topbar--item s-btn s-btn__filled ws-nowrap">Log in</a>
-                </li>
-                <li>
-                    <a href="#" class="s-topbar--item s-btn s-btn__primary ws-nowrap">Sign up</a>
-                </li>
-            </ol>
-        {% else %}
-            <ol class="s-topbar--content">
+        <ol class="s-topbar--content">
+            <li>
+                <a href="#" class="s-topbar--item" title="Inbox">
+                    {% icon "Inbox" %}
+                    <span class="s-activity-indicator s-activity-indicator__danger">3</span>
+                </a>
+            </li>
+            <li>
+                <a href="#" class="s-topbar--item" title="Achievements">
+                    {% icon "Achievements" %}
+                    <span class="s-activity-indicator s-activity-indicator__success">+10</span>
+                </a>
+            </li>
+            <li>
+                <a href="#" class="s-topbar--item" title="Review queues">
+                    {% icon "ReviewQueue" %}
+                    <div class="s-activity-indicator s-activity-indicator__danger">
+                        <div class="v-visible-sr">New activity</div>
+                    </div>
+                </a>
+            </li>
+            <li>
+                <a href="#" class="s-topbar--item" title="Help center">
+                    {% icon "Help" %}
+                </a>
+            </li>
+            <li>
+                <a href="#" class="s-topbar--item" title="Site switcher">
+                    {% icon "StackExchange" %}
+                </a>
+            </li>
+            {% unless showCtas %}
                 {% unless hideSearch %}
                     <li>
                         <button
@@ -117,37 +138,14 @@
                         </a>
                     </li>
                 {% endunless %}
+            {% else %}
                 <li>
-                    <a href="#" class="s-topbar--item" title="Inbox">
-                        {% icon "Inbox" %}
-                        <span class="s-activity-indicator s-activity-indicator__danger">3</span>
-                    </a>
+                    <a href="#" class="s-topbar--item s-topbar--item__unset s-btn s-btn__filled ws-nowrap">Log in</a>
                 </li>
                 <li>
-                    <a href="#" class="s-topbar--item" title="Achievements">
-                        {% icon "Achievements" %}
-                        <span class="s-activity-indicator s-activity-indicator__success">+10</span>
-                    </a>
+                    <a href="#" class="s-topbar--item s-topbar--item__unset ml4 s-btn s-btn__primary ws-nowrap">Sign up</a>
                 </li>
-                <li>
-                    <a href="#" class="s-topbar--item" title="Review queues">
-                        {% icon "ReviewQueue" %}
-                        <div class="s-activity-indicator s-activity-indicator__danger">
-                            <div class="v-visible-sr">New activity</div>
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="#" class="s-topbar--item" title="Help center">
-                        {% icon "Help" %}
-                    </a>
-                </li>
-                <li>
-                    <a href="#" class="s-topbar--item" title="Site switcher">
-                        {% icon "StackExchange" %}
-                    </a>
-                </li>
-            </ol>
-        {% endif %}
+            {% endunless %}
+        </ol>
     </div>
 </header>
