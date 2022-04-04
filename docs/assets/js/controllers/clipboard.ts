@@ -1,8 +1,7 @@
-import * as Stimulus from "stimulus";
+import { Application, Controller } from "stimulus";
 
 (function(){
-    var application = Stimulus.Application.start();
-    application.register("clipboard", class extends Stimulus.Controller {
+    Application.start().register("clipboard", class extends Controller {
         static targets = ["source"];
         sourceTarget!: HTMLElement;
 
