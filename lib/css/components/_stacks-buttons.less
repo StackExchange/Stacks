@@ -22,13 +22,13 @@
         padding: 0.8em;
         color: var(--theme-button-color);
         border: 1px solid transparent;
-        border-radius: @br-sm;
+        border-radius: var(--br-sm);
         background-color: transparent;
         outline: none;
         font-family: inherit;
-        font-size: @fs-body1;
+        font-size: var(--fs-body1);
         font-weight: normal;
-        line-height: @lh-sm;
+        line-height: var(--lh-sm);
         text-align: center;
         text-decoration: none;
         cursor: pointer;
@@ -70,7 +70,7 @@
 
         &:focus {
             outline: none;
-            box-shadow: 0 0 0 @su4 var(--focus-ring);
+            box-shadow: 0 0 0 var(--su-static4) var(--focus-ring);
         }
 
         &[disabled] {
@@ -85,7 +85,7 @@
             box-shadow: none;
 
             &:focus {
-                box-shadow: 0 0 0 @su4 var(--focus-ring);
+                box-shadow: 0 0 0 var(--su-static4) var(--focus-ring);
             }
         }
 
@@ -95,12 +95,12 @@
             &:after {
                 content: "";
                 position: absolute;
-                z-index: @zi-active;
+                z-index: var(--zi-active);
                 top: calc(50% - 2px);
                 right: 0.8em;
                 border-style: solid;
-                border-width: @su4;
-                border-top-width: @su4;
+                border-width: var(--su-static4);
+                border-top-width: var(--su-static4);
                 border-bottom-width: 0;
                 border-color: currentColor transparent;
                 pointer-events: none;
@@ -109,7 +109,7 @@
 
         &.s-btn__xs {
             padding: 0.6em;
-            font-size: @fs-fine;
+            font-size: var(--fs-fine);
 
             &.s-btn__dropdown {
                 padding-right: 1.5em;
@@ -117,15 +117,15 @@
                 &:after {
                     top: calc(50% - 2px);
                     right: 0.6em;
-                    border-width: @su4 - 1px;
-                    border-top-width: @su4 - 1px;
+                    border-width: calc(var(--su-static4) - var(--su-static1));
+                    border-top-width: calc(var(--su-static4) - var(--su-static1));
                     border-bottom-width: 0;
                 }
             }
         }
 
         &.s-btn__sm {
-            font-size: @fs-caption;
+            font-size: var(--fs-caption);
 
             &.s-btn__dropdown {
                 padding-right: 2.05em;
@@ -134,8 +134,8 @@
 
         &.s-btn__md {
             padding: 0.7em;
-            border-radius: @br-sm + 1;
-            font-size: @fs-body3;
+            border-radius: calc(var(--br-sm) + 1px);
+            font-size: var(--fs-body3);
 
             &.s-btn__dropdown {
                 padding-right: 1.8em;
@@ -143,8 +143,8 @@
                 &:after {
                     top: calc(50% - 2px);
                     right: 0.7em;
-                    border-width: @su4 + 1px;
-                    border-top-width: @su4 + 1px;
+                    border-width: calc(var(--su-static4) + var(--su-static1));
+                    border-top-width: calc(var(--su-static4) + var(--su-static1));
                     border-bottom-width: 0;
                 }
             }
@@ -153,10 +153,10 @@
         .s-btn--badge {
             opacity: 0.5;
             display: inline-block;
-            border-radius: @br-sm;
-            padding: @su2 (@su4 - 1px);
-            font-size: @fs-caption;
-            line-height: @lh-xs;
+            border-radius: var(--br-sm);
+            padding: var(--su2) calc(var(--su4) - var(--su1));
+            font-size: var(--fs-caption);
+            line-height: var(--lh-xs);
             background-color: currentColor;
 
             .highcontrast-mode({ opacity: 0.8; });
@@ -214,7 +214,7 @@
 
         &:focus {
             .highcontrast-mode({
-                box-shadow: 0 0 0 @su4 var(--focus-ring);
+                box-shadow: 0 0 0 var(--su-static4) var(--focus-ring);
             });
         }
 
@@ -230,8 +230,7 @@
     //      Creates a gray button style.
     //  ----------------------------------------------------------------------------
     .s-btn__muted {
-        #stacks-internals #load-config();
-        color: @button-muted-color;
+        color: var(--black-500);
 
         .highcontrast-mode({
             &.s-btn__filled {
@@ -242,40 +241,40 @@
         &:hover,
         &:focus,
         &:active {
-            color: @button-muted-hover-color;
-            background-color: @button-muted-hover-background-color;
+            color: var(--black-600);
+            background-color: var(--black-025);
         }
 
         &:active {
-            background: @button-muted-active-background-color;
+            background: var(--black-050);
         }
 
         &:focus {
-            box-shadow: 0 0 0 @su4 var(--focus-ring-muted);
+            box-shadow: 0 0 0 var(--su-static4) var(--focus-ring-muted);
         }
 
         &.is-selected {
-            color: @button-muted-selected-color;
-            background-color: @button-muted-selected-background-color;
+            color: var(--black-700);
+            background-color: var(--black-075);
 
             &:focus {
-                box-shadow: 0 0 0 @su4 var(--focus-ring-muted);
+                box-shadow: 0 0 0 var(--su-static4) var(--focus-ring-muted);
             }
         }
 
         //  --  Muted (Gray)
         &.s-btn__outlined {
-            border-color: @button-muted-outlined-border-color;
+            border-color: var(--black-300);
 
             &.is-selected {
-                border-color: @button-muted-outlined-selected-border-color;
+                border-color: var(--black-400);
             }
         }
 
         //  --  Filled (Gray)
         &.s-btn__filled {
-            color: @button-muted-filled-color;
-            background-color: @button-muted-filled-background-color;
+            color: var(--black-700);
+            background-color: var(--black-100);
             border-color: transparent;
             box-shadow: inset 0 1px 0 0 hsla(0, 0%, 100%, 0.4);
 
@@ -294,23 +293,23 @@
             &:hover,
             &:focus,
             &:active {
-                color: @button-muted-filled-hover-color;
-                background-color: @button-muted-filled-hover-background-color;
+                color: var(--black-700);
+                background-color: var(--black-150);
             }
 
             &:active {
-                background-color: @button-muted-filled-active-background-color;
+                background-color: var(--black-200);
                 box-shadow: none;
             }
 
             &:focus {
-                box-shadow: 0 0 0 @su4 var(--focus-ring-muted);
-                .highcontrast-mode({ box-shadow: 0 0 0 @su4 var(--focus-ring-muted); });
+                box-shadow: 0 0 0 var(--su-static4) var(--focus-ring-muted);
+                .highcontrast-mode({ box-shadow: 0 0 0 var(--su-static4) var(--focus-ring-muted); });
             }
 
             &.is-selected {
-                color: @button-muted-filled-selected-color;
-                background-color: @button-muted-filled-selected-background-color;
+                color: var(--black-800);
+                background-color: var(--black-350);
                 box-shadow: none;
 
                 .highcontrast-mode({
@@ -322,7 +321,7 @@
                 });
 
                 &:focus {
-                    box-shadow: 0 0 0 @su4 var(--focus-ring-muted);
+                    box-shadow: 0 0 0 var(--su-static4) var(--focus-ring-muted);
                 }
             }
         }
@@ -332,8 +331,7 @@
     //  $   DANGER BUTTONS & STYLES
     //  ============================================================================
     .s-btn__danger {
-        #stacks-internals #load-config();
-        color: @button-danger-color;
+        color: var(--red-600);
 
         .highcontrast-mode({
             &.s-btn__filled {
@@ -344,41 +342,41 @@
         &:hover,
         &:focus,
         &:active {
-            color: @button-danger-hover-color;
-            background-color: @button-danger-hover-background-color;
+            color: var(--red-700);
+            background-color: var(--red-050);
         }
 
         &:active {
-            background-color: @button-danger-active-background-color;
+            background-color: var(--red-100);
         }
 
         &:focus {
-            box-shadow: 0 0 0 @su4 var(--focus-ring-error);
-            .highcontrast-mode({ box-shadow: 0 0 0 @su4 var(--focus-ring-error); });
+            box-shadow: 0 0 0 var(--su-static4) var(--focus-ring-error);
+            .highcontrast-mode({ box-shadow: 0 0 0 var(--su-static4) var(--focus-ring-error); });
         }
 
         &.is-selected {
-            color: @button-danger-selected-color;
-            background-color: @button-danger-selected-background-color;
+            color: var(--red-900);
+            background-color: var(--red-200);
 
             &:focus {
-                box-shadow: 0 0 0 @su4 var(--focus-ring-error);
+                box-shadow: 0 0 0 var(--su-static4) var(--focus-ring-error);
             }
         }
 
         //  --  Outlined
         &.s-btn__outlined {
-            border-color: @button-danger-outlined-border-color;
+            border-color: var(--red-500);
 
             &.is-selected {
-                border-color: @button-danger-outlined-selected-border-color;
+                border-color: var(--red-600);
             }
         }
 
         //  --  Filled
         &.s-btn__filled {
-            color: @button-danger-filled-color;
-            background-color: @button-danger-filled-background-color;
+            color: @white;
+            background-color: var(--red-500);
             border-color: transparent;
             box-shadow: inset 0 1px 0 0 hsla(0, 0%, 100%, 0.4);
 
@@ -388,7 +386,7 @@
                 color: var(--white);
 
                 &:focus {
-                    box-shadow: 0 0 0 @su4 var(--focus-ring-error);
+                    box-shadow: 0 0 0 var(--su-static4) var(--focus-ring-error);
                 }
 
                 .s-btn--number {
@@ -399,26 +397,26 @@
             &:hover,
             &:focus,
             &:active {
-                color: @button-danger-filled-hover-color;
-                background-color: @button-danger-filled-hover-background-color;
+                color: @white;
+                background-color: var(--red-600);
             }
 
             &:active {
-                background-color: @button-danger-filled-active-background-color;
+                background-color: var(--red-700);
                 box-shadow: none;
             }
 
             &:focus {
-                box-shadow: 0 0 0 @su4 var(--focus-ring-error);
+                box-shadow: 0 0 0 var(--su-static4) var(--focus-ring-error);
             }
 
             &.is-selected {
-                color: @button-danger-filled-selected-color;
-                background-color: @button-danger-filled-selected-background-color;
+                color: var(--white);
+                background-color: var(--red-800);
                 box-shadow: none;
 
                 &:focus {
-                    box-shadow: 0 0 0 @su4 var(--focus-ring-error);
+                    box-shadow: 0 0 0 var(--su-static4) var(--focus-ring-error);
                 }
                 .highcontrast-mode({
                     .s-btn--number {
@@ -428,7 +426,7 @@
             }
 
             .s-btn--number {
-                color: @button-danger-filled-number-color;
+                color: var(--black-900);
             }
         }
     }
@@ -469,7 +467,7 @@
 
         &:focus {
             .highcontrast-mode({
-                box-shadow: 0 0 0 @su4 var(--focus-ring);
+                box-shadow: 0 0 0 var(--su-static4) var(--focus-ring);
             });
         }
 
@@ -504,7 +502,7 @@
         }
 
         &:focus {
-            box-shadow: 0 0 0 @su4 var(--focus-ring-muted);
+            box-shadow: 0 0 0 var(--su-static4) var(--focus-ring-muted);
         }
     }
 
@@ -545,7 +543,7 @@
         }
 
         &:focus {
-            box-shadow: 0 0 0 @su4 var(--focus-ring-muted);
+            box-shadow: 0 0 0 var(--su-static4) var(--focus-ring-muted);
         }
     }
 
@@ -606,7 +604,7 @@
             vertical-align: baseline;
             margin-top: -0.3em;         // [1]
             margin-bottom: -0.3em;      // [1]
-            transition: opacity 200ms @te-smooth; // Animate the transition to .is-loading
+            transition: opacity 200ms var(--te-smooth); // Animate the transition to .is-loading
         }
     }
 
@@ -628,7 +626,7 @@
                 border-width: 2px;
                 border-style: solid;
                 border-color: currentColor;
-                border-radius: @br-circle;
+                border-radius: var(--br-circle);
             }
 
             &:after {
@@ -642,7 +640,7 @@
                 border-style: solid;
                 border-color: transparent;
                 border-left-color: currentColor;
-                border-radius: @br-circle;
+                border-radius: var(--br-circle);
                 animation: s-spinner-rotate 0.9s infinite cubic-bezier(0.5, 0.1, 0.5, 0.9);
                 // see _stacks-spinner.less for an explanation of the following two
                 filter: invert(0); // (*)

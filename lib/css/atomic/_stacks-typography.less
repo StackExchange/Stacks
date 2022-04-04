@@ -26,21 +26,21 @@ p {
 //  $   TEXT SIZES
 //  ----------------------------------------------------------------------------
 //  Declare font sizes
-.fs-display4 { font-size: @fs-display4 !important; }
-.fs-display3 { font-size: @fs-display3 !important; }
-.fs-display2 { font-size: @fs-display2 !important; }
-.fs-display1 { font-size: @fs-display1 !important; }
-.fs-headline2 { font-size: @fs-headline2 !important; }
-.fs-headline1 { font-size: @fs-headline1 !important; }
-.fs-title { font-size: @fs-title !important; }
-.fs-subheading { font-size: @fs-subheading !important; }
-.fs-body3 { font-size: @fs-body3 !important; }
-.fs-body2 { font-size: @fs-body2 !important; }
-.fs-body1 { font-size: @fs-body1 !important; }
+.fs-display4 { font-size: var(--fs-display4) !important; }
+.fs-display3 { font-size: var(--fs-display3) !important; }
+.fs-display2 { font-size: var(--fs-display2) !important; }
+.fs-display1 { font-size: var(--fs-display1) !important; }
+.fs-headline2 { font-size: var(--fs-headline2) !important; }
+.fs-headline1 { font-size: var(--fs-headline1) !important; }
+.fs-title { font-size: var(--fs-title) !important; }
+.fs-subheading { font-size: var(--fs-subheading) !important; }
+.fs-body3 { font-size: var(--fs-body3) !important; }
+.fs-body2 { font-size: var(--fs-body2) !important; }
+.fs-body1 { font-size: var(--fs-body1) !important; }
 
 .fs-caption,
-.fs-category { font-size: @fs-caption !important; }
-.fs-fine { font-size: @fs-fine !important; }
+.fs-category { font-size: var(--fs-caption) !important; }
+.fs-fine { font-size: var(--fs-fine) !important; }
 
 #stacks-internals #screen-sm({
     .fs-display4 { font-size: 3.8rem !important; }
@@ -62,7 +62,7 @@ p {
     // If a top border is desired
     &.has-border {
         width: 100%;
-        padding: @su4 0;
+        padding: var(--su4) 0;
         border-top: 1px solid var(--bc-medium);
     }
 }
@@ -77,12 +77,12 @@ p {
 //  ============================================================================
 //  $   LINE HEIGHTS
 //  ----------------------------------------------------------------------------
-.lh-xs { line-height: @lh-xs !important; }
-.lh-sm { line-height: @lh-sm !important; }
-.lh-md { line-height: @lh-md !important; }
-.lh-lg { line-height: @lh-lg !important; }
-.lh-xl { line-height: @lh-xl !important; }
-.lh-xxl { line-height: @lh-xxl !important; }
+.lh-xs { line-height: var(--lh-xs) !important; }
+.lh-sm { line-height: var(--lh-sm) !important; }
+.lh-md { line-height: var(--lh-md) !important; }
+.lh-lg { line-height: var(--lh-lg) !important; }
+.lh-xl { line-height: var(--lh-xl) !important; }
+.lh-xxl { line-height: var(--lh-xxl) !important; }
 .lh-unset { line-height: initial !important; }
 
 //  ============================================================================
@@ -160,20 +160,20 @@ p {
 
 .v-truncate-fade {
     overflow: hidden;
-    -webkit-mask-image: linear-gradient(180deg, #000 @lh-md * 9em, transparent);
-    mask-image: linear-gradient(180deg, #000 @lh-md * 9em, transparent);
-    max-height: @lh-md * 12em;
+    -webkit-mask-image: linear-gradient(180deg, #000 calc(var(--lh-md) * 9em), transparent);
+    mask-image: linear-gradient(180deg, #000 calc(var(--lh-md) * 9em), transparent);
+    max-height: calc(var(--lh-md) * 12em);
 
     &.v-truncate-fade__sm {
-        -webkit-mask-image: linear-gradient(180deg, #000 @lh-md * 3em, transparent);
-        mask-image: linear-gradient(180deg, #000 @lh-md * 3em, transparent);
-        max-height: @lh-md * 6em;
+        -webkit-mask-image: linear-gradient(180deg, #000 calc(var(--lh-md) * 3em), transparent);
+        mask-image: linear-gradient(180deg, #000 calc(var(--lh-md) * 3em), transparent);
+        max-height: calc(var(--lh-md) * 6em);
     }
 
     &.v-truncate-fade__lg {
-        -webkit-mask-image: linear-gradient(180deg, #000 @lh-md * 21em, transparent);
-        mask-image: linear-gradient(180deg, #000 @lh-md * 21em, transparent);
-        max-height: @lh-md * 24em;
+        -webkit-mask-image: linear-gradient(180deg, #000 calc(var(--lh-md) * 21em), transparent);
+        mask-image: linear-gradient(180deg, #000 calc(var(--lh-md) * 21em), transparent);
+        max-height: calc(var(--lh-md) * 24em);
     }
 }
 

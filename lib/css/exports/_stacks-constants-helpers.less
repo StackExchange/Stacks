@@ -16,23 +16,40 @@
 //  • spacing units (su-)
 //  • transition easings (te-)
 //
-//  ============================================================================
-//  $   Z-INDEX (zi-)
-//      Used for a bird's eye view of components dependent on the z-axis.
-//      Try to avoid customizing these.
-//  ----------------------------------------------------------------------------
-@zi-hide:               -1;     //  Hide something all the elements
-@zi-base:               0;      //  Reset to 0
-@zi-selected:           25;     //  Pop above siblings
-@zi-active:             30;     //  Pop above selected siblings
-@zi-dropdown:           1000;   //  Dropdowns
-@zi-popovers:           2000;   //  Popovers, Popups, Autocompletes
-@zi-tooltips:           3000;   //  Tooltips
-@zi-banners:            4000;   //  Banners
-@zi-navigation:         5000;   //  Navigation Bars
-@zi-navigation-fixed:   5050;   //  Fixed navigation bars
-@zi-modals:             9000;   //  Modals
-@zi-modals-background:  @zi-modals - 50;
+body {
+    // Z-Index
+    --zi-hide:               -1;     //  Hide something all the elements
+    --zi-base:               0;      //  Reset to 0
+    --zi-selected:           25;     //  Pop above siblings
+    --zi-active:             30;     //  Pop above selected siblings
+    --zi-dropdown:           1000;   //  Dropdowns
+    --zi-popovers:           2000;   //  Popovers, Popups, Autocompletes
+    --zi-tooltips:           3000;   //  Tooltips
+    --zi-banners:            4000;   //  Banners
+    --zi-navigation:         5000;   //  Navigation Bars
+    --zi-navigation-fixed:   5050;   //  Fixed navigation bars
+    --zi-modals-background:  8050;   //  Modals background
+    --zi-modals:             9000;   //  Modals
+
+    // Border Radius
+    --br-sm:                 3px;
+    --br-md:                 5px;
+    --br-lg:                 7px;
+    --br-circle:             50%;
+
+    // Transition easings
+    --te-smooth-slow:        cubic-bezier(0.25, 0.46, 0.45, 0.94);       // easeOutQuad
+    --te-smooth:             cubic-bezier(0.165, 0.84, 0.44, 1);         // easeOutQuart
+    --te-smooth-quick:       cubic-bezier(0.19, 1, 0.22, 1);             // easeOutExpo
+    --te-back-out:           cubic-bezier(0.175, 0.885, 0.32, 1.275);    // easeOutBack
+    --te-back-in-out:        cubic-bezier(0.68, -0.55, 0.265, 1.55);     // easeInOutBack
+    --te-ease-in:            cubic-bezier(0.47, 0, 0.745, 0.715);        // easeIn
+    --te-ease-in-out:        cubic-bezier(0.445, 0.05, 0.55, 0.95);      // easeInOut
+    --te-ease-out:           cubic-bezier(0.39, 0.575, 0.565, 1);        // easeOut
+
+    --default-transition-duration:       0.1s;
+    --transition-time:                   var(--default-transition-duration);
+}
 
 //  ============================================================================
 //  $   RESPONSIVE BREAKPOINTS
@@ -42,16 +59,9 @@
 @breakpoint-sm: 640px;
 
 //  ============================================================================
-//  $   BORDER RADIUS (br-)
-//  ----------------------------------------------------------------------------
-@br-sm:                 3px;
-@br-md:                 5px;
-@br-lg:                 7px;
-@br-circle:             50%;
-
-//  ============================================================================
 //  $  SPACING UNITS (su-)
 //  ----------------------------------------------------------------------------
+// TODO: Remove once CSS varible spacing units are used everywhere
 @su1:                   1px;
 @su2:                   2px;
 @su4:                   4px;
@@ -73,42 +83,23 @@
 @s-full: 97.2307692rem; // Based on a pixel size of 1264px;
 @s-step: (@s-full / 12);
 
-// TODO These helpers allow us to create our own timing functions with
-// cubic-bezier ~ but perhaps the default timing functions are acceptable?
-
-//  ============================================================================
-//  $   TRANSITION EASINGS (te-)
-//  ----------------------------------------------------------------------------
-@te-smooth-slow:        cubic-bezier(0.25, 0.46, 0.45, 0.94);       // easeOutQuad
-@te-smooth:             cubic-bezier(0.165, 0.84, 0.44, 1);         // easeOutQuart
-@te-smooth-quick:       cubic-bezier(0.19, 1, 0.22, 1);             // easeOutExpo
-@te-back-out:           cubic-bezier(0.175, 0.885, 0.32, 1.275);    // easeOutBack
-@te-back-in-out:        cubic-bezier(0.68, -0.55, 0.265, 1.55);     // easeInOutBack
-@te-ease-in:            cubic-bezier(0.47, 0, 0.745, 0.715);        // easeIn
-@te-ease-in-out:        cubic-bezier(0.445, 0.05, 0.55, 0.95);      // easeInOut
-@te-ease-out:           cubic-bezier(0.39, 0.575, 0.565, 1);        // easeOut
-
-@default-transition-duration:       0.1s;
-@transition-time:                   @default-transition-duration;
-
-
 //  ============================================================================
 //  $   SCROLLBAR STYLING
 //  ----------------------------------------------------------------------------
 @scrollbar-styles: {
     &::-webkit-scrollbar {
-        width: @su12 - @su2;
-        height: @su12 - @su2;
+        width: calc(var(--su-static12) - var(--su-static2));
+        height: calc(var(--su-static12) - var(--su-static2));
         background-color: transparent;
     }
 
     &::-webkit-scrollbar-track {
-        border-radius: @su12 - @su2;
+        border-radius: calc(var(--su-static12) - var(--su-static2));
         background-color: transparent;
     }
 
     &::-webkit-scrollbar-thumb {
-        border-radius: @su12 - @su2;
+        border-radius: calc(var(--su-static12) - var(--su-static2));
         background-color: var(--scrollbar);
     }
 
@@ -134,6 +125,6 @@
     // Show focus styles on keyboard focus.
     &:focus-visible {
         outline: none;
-        box-shadow: 0 0 0 @su4 var(--focus-ring-muted);
+        box-shadow: 0 0 0 var(--su-static4) var(--focus-ring-muted);
     }
 }

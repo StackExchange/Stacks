@@ -1,17 +1,16 @@
 ---
 layout: page
 title: Banners
-figma: https://www.figma.com/file/9MG6BQ5X0FlHV0rQ3c9ugA/Banners
 description: Banners are a type of <a href="/product/components/notices">notice</a>, delivering both system and engagement messaging. These are highly intrusive messaging methods and so should be used appropriately.
 ---
 <!-- Additional javascript -->
-<script src="{{ "/assets/js/feature.banners.js" | url }}" defer></script>
+<script src="{{ "/assets/dist/entry.banners.js" | url }}" defer></script>
 
 <!-- Override stacks classes for demos -->
 <style>
 .s-banner[aria-hidden=false] {
-    -webkit-transform: translate3d(0, 63px, 0);
-    transform: translate3d(0, 63px, 0);
+    -webkit-transform: translate3d(0, calc(var(--su64) - var(--su1)), 0);
+    transform: translate3d(0, calc(var(--su64) - var(--su1)), 0);
 }
 .s-banner[aria-hidden=false].is-pinned {
     -webkit-transform: translate3d(0, 0, 0);
@@ -19,17 +18,17 @@ description: Banners are a type of <a href="/product/components/notices">notice<
 }
 </style>
 <aside class="s-banner js-notice-banner" role="alert" aria-hidden="true">
-    <div class="d-flex flex__center jc-space-between s-banner--container" role="alertdialog" aria-describedby="notice-message">
-        <div class="d-flex gs8 gsx mx0" aria-label="notice-message">
-            <div class="flex--item">
+    <div class="grid grid__center jc-space-between s-banner--container" role="alertdialog" aria-describedby="notice-message">
+        <div class="grid gs8 gsx mx0" aria-label="notice-message">
+            <div class="grid--cell">
                 {% icon "Lock" %}
             </div>
-            <div class="d-flex ai-center">
+            <div class="grid ai-center">
                 <p class="m0"><strong>Stacks is currently frozen in read-only mode.</strong> Contact the team to restore access.</p>
             </div>
         </div>
-        <div class="flex--item ml-auto myn8" aria-label="notice-dismiss">
-            <a class="p8 s-btn d-flex flex__center fc-dark js-notice-close" role="status" aria-hidden="true">
+        <div class="grid--cell ml-auto myn8" aria-label="notice-dismiss">
+            <a class="p8 s-btn grid grid__center fc-dark js-notice-close" role="status" aria-hidden="true">
                 {% icon "ClearSm", "m0" %}
             </a>
         </div>
@@ -79,11 +78,11 @@ description: Banners are a type of <a href="/product/components/notices">notice<
 {% endhighlight %}
         <div class="stacks-preview--example">
             <div class="p16 bar-sm bg-black-050 ba bc-black-3">
-                <div class="d-flex gs24 ai-center fw-wrap">
-                    <div class="flex--item">
-                        <div class="d-flex gs8 gsx ai-center">
-                            <label class="flex--item s-label fs-body1" for="sys-banner-style">Style</label>
-                            <div class="flex--item s-select">
+                <div class="grid gs24 ai-center fw-wrap">
+                    <div class="grid--cell">
+                        <div class="grid gs8 gsx ai-center">
+                            <label class="grid--cell s-label fs-body1" for="sys-banner-style">Style</label>
+                            <div class="grid--cell s-select">
                                 <select id="sys-banner-style" class="js-sys-banner-style-menu">
                                     <option name="sys-banner-style" id="sys-banner-style-info" data-class="s-banner__info" selected>Info</option>
                                     <option name="sys-banner-style" id="sys-banner-style-success" data-class="s-banner__success">Success</option>
@@ -93,20 +92,20 @@ description: Banners are a type of <a href="/product/components/notices">notice<
                             </div>
                         </div>
                     </div>
-                    <div class="flex--item">
-                        <div class="d-flex gs8 gsx ai-center">
-                            <input type="checkbox" id="sys-banner-type" class="flex--item s-checkbox js-sys-banner-type">
-                            <label class="flex--item s-label fs-body1" for="sys-banner-type">Important?</label>
+                    <div class="grid--cell">
+                        <div class="grid gs8 gsx ai-center">
+                            <input type="checkbox" id="sys-banner-type" class="grid--cell s-checkbox js-sys-banner-type">
+                            <label class="grid--cell s-label fs-body1" for="sys-banner-type">Important?</label>
                         </div>
                     </div>
-                    <div class="flex--item">
-                        <div class="d-flex gs8 gsx ai-center">
-                            <input type="checkbox" id="sys-banner-position" class="flex--item s-checkbox js-sys-banner-position">
-                            <label class="flex--item s-label fs-body1" for="sys-banner-position">Pinned?</label>
+                    <div class="grid--cell">
+                        <div class="grid gs8 gsx ai-center">
+                            <input type="checkbox" id="sys-banner-position" class="grid--cell s-checkbox js-sys-banner-position">
+                            <label class="grid--cell s-label fs-body1" for="sys-banner-position">Pinned?</label>
                         </div>
                     </div>
-                    <button class="flex--item s-btn s-btn__filled js-sys-banner-show">Show example</button>
-                    <button class="flex--item s-btn s-btn__danger js-sys-banner-remove d-none">Remove example</button>
+                    <button class="grid--cell s-btn s-btn__filled js-sys-banner-show">Show example</button>
+                    <button class="grid--cell s-btn s-btn__danger js-sys-banner-remove d-none">Remove example</button>
                 </div>
             </div>
         </div>

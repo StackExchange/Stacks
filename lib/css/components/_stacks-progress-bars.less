@@ -18,9 +18,9 @@
 .s-progress,
 .s-progress--bar {
     position: relative;
-    min-height: @su4;
-    min-width: @su6;
-    border-radius: @br-sm;
+    min-height: var(--su-static4);
+    min-width: var(--su-static6);
+    border-radius: var(--br-sm);
 }
 
 //  $$   PROGRESS WRAPPER
@@ -44,12 +44,12 @@
     position: absolute;
     width: 100%;
     height: 100%;
-    border-radius: @br-md;
+    border-radius: var(--br-md);
     border: 1px solid transparent;
-    font-size: @fs-caption;
-    line-height: @lh-xs;
+    font-size: var(--fs-caption);
+    line-height: var(--lh-xs);
     color: var(--fc-dark);
-    z-index: @zi-base + 2;
+    z-index: calc(var(--zi-base) + 2);
 }
 
 //  ===========================================================================
@@ -74,7 +74,7 @@
     .s-progress--label {
         border-color: var(--green-400);
         display: flex;
-        gap: @su4;
+        gap: var(--su4);
         align-items: center;
         justify-content: center;
     }
@@ -88,7 +88,7 @@
 .s-progress__badge,
 .s-progress__badge .s-progress--bar {
     min-height: 2em;
-    border-radius: @br-md;
+    border-radius: var(--br-md);
 }
 
 .s-progress__privilege,
@@ -99,7 +99,7 @@
 .s-progress__badge {
     .s-progress--label {
         display: flex;
-        gap: @su4;
+        gap: var(--su4);
         align-items: center;
         padding-left: 1em;
         padding-right: 1em;
@@ -204,13 +204,13 @@
         display: block;
         width: auto;
         height: auto;
-        font-size: @fs-body1;
+        font-size: var(--fs-body1);
         border: 0;
         border-radius: 0;
-        padding: @su12 @su6 0 @su6;
+        padding: var(--su12) var(--su6) 0 var(--su6);
         text-align: center;
         color: var(--black-300);
-        z-index: @zi-base;
+        z-index: var(--zi-base);
     }
 
     .s-progress--stop {
@@ -220,9 +220,9 @@
         justify-content: center;
         background: var(--black-300);
         border-radius: 100%;
-        width: @su24;
-        height: @su24;
-        z-index: @zi-selected;
+        width: var(--su-static24);
+        height: var(--su-static24);
+        z-index: var(--zi-selected);
         color: @white;
 
         .highcontrast-mode({
@@ -232,10 +232,10 @@
 
     .s-progress--bar {
         position: absolute;
-        top: 9px;
-        height: @su6;
+        top: calc(var(--su-static8) + var(--su-static1));
+        height: var(--su-static6);
         background: var(--black-300);
-        z-index: @zi-base;
+        z-index: var(--zi-base);
         border-radius: 0;
 
         &.s-progress--bar__left {
@@ -256,7 +256,7 @@
 
         .s-progress--stop {
             background: var(--theme-secondary-400);
-            box-shadow: 0 0 0 @su6 var(--focus-ring);
+            box-shadow: 0 0 0 var(--su-static6) var(--focus-ring);
         }
 
         .s-progress--label {
@@ -282,18 +282,17 @@
 .s-progress__circular {
     --s-progress-value: 0;
     @s-progress-circle-circumference: (2 * pi() * 14); // 2πr, r = 14.
-    @s-progress-stroke-width: 4;
 
     background: none;
-    width: @su32;
-    height: @su32;
+    width: var(--su-static32);
+    height: var(--su-static32);
 
     .s-progress-bar {
         // Make everything originate from the top of the circle
         transform: rotate(270deg);
 
         circle {
-            stroke-width: @s-progress-stroke-width;
+            stroke-width: var(--su-static4);
             fill: none;
             stroke-linecap: round;
         }
@@ -315,17 +314,17 @@
     }
 
     &.s-progress__sm {
-        width: 24px;
-        height: 24px;
+        width: var(--su-static24);
+        height: var(--su-static24);
     }
 
     &.s-progress__md {
-        width: 48px;
-        height: 48px;
+        width: var(--su-static48);
+        height: var(--su-static48);
     }
 
     &.s-progress__lg {
-        width: 64px;
-        height: 64px;
+        width: var(--su-static64);
+        height: var(--su-static64);
     }
 }
