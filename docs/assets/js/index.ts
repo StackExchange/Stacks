@@ -1,5 +1,6 @@
 import "../../../lib/ts/index";
 import "../less/stacks-documentation.less";
+import "./controllers/clipboard";
 import "./controllers/docs-resizer";
 import * as Stacks from "../../../lib/ts/index";
 

@@ -1,3 +1,5 @@
+import * as Stimulus from "stimulus";
+
 (function(){
     var application = Stimulus.Application.start();
     application.register("clipboard", class extends Stimulus.Controller {
