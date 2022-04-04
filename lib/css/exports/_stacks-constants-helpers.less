@@ -61,6 +61,7 @@ body {
 //  ============================================================================
 //  $  SPACING UNITS (su-)
 //  ----------------------------------------------------------------------------
+// TODO: Remove once CSS varible spacing units are used everywhere
 @su1:                   1px;
 @su2:                   2px;
 @su4:                   4px;
@@ -87,18 +88,18 @@ body {
 //  ----------------------------------------------------------------------------
 @scrollbar-styles: {
     &::-webkit-scrollbar {
-        width: @su12 - @su2;
-        height: @su12 - @su2;
+        width: calc(var(--su-static12) - var(--su-static2));
+        height: calc(var(--su-static12) - var(--su-static2));
         background-color: transparent;
     }
 
     &::-webkit-scrollbar-track {
-        border-radius: @su12 - @su2;
+        border-radius: calc(var(--su-static12) - var(--su-static2));
         background-color: transparent;
     }
 
     &::-webkit-scrollbar-thumb {
-        border-radius: @su12 - @su2;
+        border-radius: calc(var(--su-static12) - var(--su-static2));
         background-color: var(--scrollbar);
     }
 
@@ -124,6 +125,6 @@ body {
     // Show focus styles on keyboard focus.
     &:focus-visible {
         outline: none;
-        box-shadow: 0 0 0 @su4 var(--focus-ring-muted);
+        box-shadow: 0 0 0 var(--su-static4) var(--focus-ring-muted);
     }
 }

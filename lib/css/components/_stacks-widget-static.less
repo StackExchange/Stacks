@@ -11,7 +11,7 @@
 //  part is configurable and is in the dynamic part of Stacks as
 //  _stacks-widget-dynamic.less.
 
-
+// TODO: Figure out a way to use spacing unit CSS variables here
 @s-sidebarwidget-content-padding: @su16 - 1px; // subtract 1px for border
 @s-sidebarwidget-content-inner-spacing: @su12; // the spacing between two adjacent simple items
 @s-sidebarwidget-content-outer-spacing: @su16; // the spacing at the start/end of a group of simple items, as well as between a complex item and its separator line
@@ -115,7 +115,7 @@
             content: '';
             float: left;
             margin-top: ~"calc(1.3em / 2 - 5px)"; // 1.3 is our standard line height
-            margin-right: @su12;
+            margin-right: var(--su12);
             border: 5px solid transparent;
             border-left-color: var(--bc-darker);
             border-right-width: 0;
@@ -132,7 +132,7 @@
 
 .s-sidebarwidget--action {
     float: right;
-    margin: 0 0 @su4 @su8;
+    margin: 0 0 var(--su4) var(--su8);
     color: var(--blue);
     font-size: var(--fs-fine);
     line-height: 1.3 * 15px; // line-height should be the same as in the outside element, so the header and action baselines line up
@@ -207,7 +207,7 @@ table.s-sidebarwidget--content.s-sidebarwidget__items {
 .s-sidebarwidget--subnav {
     list-style-type: none;
     padding-left: 0;
-    margin-left: @su8;
+    margin-left: var(--su8);
 
     li {
         margin-top: 12px;

@@ -11,7 +11,7 @@
     position: relative;
     display: flex;
     border-bottom: 1px solid var(--bc-light);
-    padding: @su16;
+    padding: var(--su16);
 
     &:last-child {
         border-bottom-width: 0;
@@ -39,18 +39,18 @@
         padding-left: 0; // Since stats have padding, we don't need it on the parent
 
         #stacks-internals #screen-md({
-            padding-left: @su16;
+            padding-left: var(--su16);
         });
 
         .s-post-summary--stats {
             width: auto;
             flex-direction: row;
             align-items: center;
-            gap: @su2;
+            gap: var(--su2);
 
             .s-post-summary--stats-item {
-                min-width: @su64;
-                height: @su48;
+                min-width: var(--su64);
+                height: var(--su48);
                 flex-direction: column;
                 gap: 0;
                 font-size: var(--fs-caption);
@@ -82,7 +82,7 @@
             #stacks-internals #screen-md({
                 flex-direction: row;
                 align-items: center;
-                gap: @su8;
+                gap: var(--su8);
 
                 .s-post-summary--stats-item {
                     min-width: auto;
@@ -120,9 +120,9 @@
 //  [1] To override .s-btn class attributes
 .s-post-summary--content-menu-button {
     position: absolute !important; // [1]
-    top: @su8;
-    right: @su8;
-    padding: @su8 !important; // [1]
+    top: var(--su8);
+    right: var(--su8);
+    padding: var(--su8) !important; // [1]
 
     .svg-icon {
         margin: 0 !important;
@@ -130,10 +130,10 @@
 }
 
 .s-post-summary--stats {
-    gap: @su6;
-    margin-right: @su16;
-    margin-bottom: @su4;
-    width: @su96 + @su12;
+    gap: var(--su6);
+    margin-right: var(--su16);
+    margin-bottom: var(--su4);
+    width: calc(var(--su96) + var(--su12));
     display: flex;
     flex-direction: column;
     flex-shrink: 0;
@@ -168,7 +168,7 @@
         &.is-archived,
         &.is-pinned {
             border-radius: var(--br-sm);
-            padding: @su2 @su4;
+            padding: var(--su2) var(--su4);
         }
 
         &.has-answers {
@@ -254,7 +254,7 @@
         font-size: var(--fs-body3);
         margin-top: -0.15rem; // Optical alignment to compensate for title's containing block
         margin-bottom: 0.3846rem;
-        padding-right: @su24;
+        padding-right: var(--su24);
         line-height: var(--lh-md);
         font-weight: normal;
         .break-word;
@@ -288,17 +288,17 @@
 
     .s-post-summary--content-type {
         color: var(--fc-medium);
-        margin-bottom: @su4;
+        margin-bottom: var(--su4);
 
         .svg-icon {
-            margin-left: -@su2;
+            margin-left: calc(var(--su2) * -1);
             color: var(--fc-light);
         }
     }
 
     .s-post-summary--content-excerpt {
-        margin-top: -@su2;
-        margin-bottom: @su8;
+        margin-top: calc(var(--su2) * -1);
+        margin-bottom: var(--su8);
         font-family: var(--theme-post-body-font-family);
         color: var(--fc-medium);
         .v-truncate2;
@@ -323,13 +323,13 @@
     align-items: center;
     justify-content: space-between;
     flex-wrap: wrap;
-    column-gap: @su6;
-    row-gap: @su8;
+    column-gap: var(--su6);
+    row-gap: var(--su8);
 
     .s-post-summary--meta-tags {
         display: flex;
         flex-wrap: wrap;
-        gap: @su4;
+        gap: var(--su4);
     }
 
     .s-user-card {
@@ -341,11 +341,11 @@
 
 .s-post-summary--answer {
     position: relative;
-    margin: @su16 1em 0 1em;
-    padding: 0.5em 0 0.5em calc(1em + @su4);
+    margin: var(--su16) 1em 0 1em;
+    padding: 0.5em 0 0.5em calc(1em + var(--su4));
 
     + .s-post-summary--answer {
-        margin-top: @su16;
+        margin-top: var(--su16);
     }
 
     &:before {
@@ -355,8 +355,8 @@
         top: 0;
         bottom: 0;
         left: 0;
-        width: @su4;
-        border-radius: @su8;
+        width: var(--su4);
+        border-radius: var(--su8);
         background: var(--black-150);
 
         .highcontrast-mode({
@@ -368,12 +368,12 @@
         width: auto;
         flex-direction: row;
         align-items: center;
-        margin-bottom: @su4;
+        margin-bottom: var(--su4);
     }
 
     .s-post-summary--answer-excerpt {
         color: var(--black-600);
-        margin-bottom: @su8;
+        margin-bottom: var(--su8);
         .v-truncate4;
     }
 }

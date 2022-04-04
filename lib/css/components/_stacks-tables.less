@@ -44,7 +44,7 @@
 
     th,
     td {
-        padding: @su8;
+        padding: var(--su8);
         border-top: 1px solid var(--bc-medium);
         border-left: 1px solid var(--bc-medium);
         border-right: 1px solid var(--bc-medium);
@@ -53,7 +53,7 @@
         text-align: left;
 
         &.s-table--bulk {
-            width: @su32 - @su2;
+            width: calc(var(--su32) - var(--su2));
         }
 
         .s-checkbox {
@@ -87,7 +87,7 @@
 
     //  If two table bodies are next to each other, visually separate them
     tbody + tbody {
-        border-top: @su2 solid var(--bc-medium);
+        border-top: var(--su-static2) solid var(--bc-medium);
     }
 }
 
@@ -181,14 +181,14 @@
     &.s-table__sm {
         th,
         td {
-            padding: @su4;
+            padding: var(--su4);
         }
     }
     //  --  LARGE
     &.s-table__lg {
         th,
         td {
-            padding: @su12;
+            padding: var(--su12);
         }
     }
 
@@ -215,7 +215,7 @@
         //  to achieve the same effect a 2px gray border achieves.
         tbody + tbody {
             border-color: transparent;
-            border-width: @su12;
+            border-width: var(--su-static12);
         }
     }
 
@@ -268,7 +268,7 @@
     .s-table--totals {
         th,
         td {
-            padding-top: @su12;
+            padding-top: var(--su12);
             font-size: var(--fs-subheading);
             font-weight: bold;
         }
