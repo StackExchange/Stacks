@@ -40,7 +40,7 @@
         &:focus {
             border-color: var(--blue-300);
             // Since the box shadow is overwritten to show a background, we have to re-add the focus outline
-            -webkit-box-shadow: 0 0 0 1000px var(--blue-050) inset, 0 0 0 @su4 var(--focus-ring);
+            -webkit-box-shadow: 0 0 0 1000px var(--blue-050) inset, 0 0 0 var(--su-static4) var(--focus-ring);
         }
     }
 }
@@ -51,10 +51,10 @@
     margin: 0; // A guard against Core's default margins
     padding: @input-padding;
     border: 1px solid var(--bc-darker);
-    border-radius: @br-sm;
+    border-radius: var(--br-sm);
     background-color: var(--white);
     color: var(--fc-dark);
-    font-size: @fs-body1;
+    font-size: var(--fs-body1);
     font-family: inherit;
 
     //  --  INCREASE FONT SIZE FOR MOBILE SAFARI
@@ -105,7 +105,7 @@
 
 .s-input.s-input__search,
 .s-input.s-input__creditcard {
-    padding-left: @su32;
+    padding-left: var(--su-static32);
 }
 
 
@@ -149,10 +149,10 @@ fieldset {
 //  $  LABELS
 //  ============================================================================
 .s-label {
-    padding: 0 @su2; // Helps the label visually line up with inputs
+    padding: 0 var(--su2); // Helps the label visually line up with inputs
     color: var(--fc-dark);
     font-family: inherit;
-    font-size: @fs-body2;
+    font-size: var(--fs-body2);
     font-weight: 600;
 
     &[for] {
@@ -165,12 +165,12 @@ fieldset {
 //      Is this form item required or optional? Flag the status for users.
 //      Default styling is optional.
 .s-label--status {
-    margin-left: @su4;
-    padding: @su2 @su8;
+    margin-left: var(--su4);
+    padding: var(--su2) var(--su8);
     border-radius: 1000px;
     background-color: var(--black-050);
     color: var(--fc-medium);
-    font-size: @fs-caption;
+    font-size: var(--fs-caption);
     font-weight: 400;
     vertical-align: text-bottom;
 
@@ -203,9 +203,9 @@ fieldset {
 //  $  TEXT STYLES
 //  ============================================================================
 .s-description {
-    padding: 0 @su2; // Helps the label visually line up with inputs
+    padding: 0 var(--su2); // Helps the label visually line up with inputs
     color: var(--fc-medium);
-    font-size: @fs-caption;
+    font-size: var(--fs-caption);
 }
 
 .s-label .s-description,
@@ -229,7 +229,7 @@ fieldset {
     color: var(--fc-medium);
     font-family: inherit;
     white-space: nowrap;
-    line-height: @lh-sm;
+    line-height: var(--lh-sm);
 
     &.s-input-fill__clear {
         border-color: transparent;
@@ -238,14 +238,14 @@ fieldset {
 
     &.order-first {
         border-left-width: 1px;
-        border-top-left-radius: @br-sm;
-        border-bottom-left-radius: @br-sm;
+        border-top-left-radius: var(--br-sm);
+        border-bottom-left-radius: var(--br-sm);
     }
 
     &.order-last {
         border-right-width: 1px;
-        border-top-right-radius: @br-sm;
-        border-bottom-right-radius: @br-sm;
+        border-top-right-radius: var(--br-sm);
+        border-bottom-right-radius: var(--br-sm);
     }
 }
 
@@ -265,7 +265,7 @@ fieldset {
     &:after {
         content: "";
         position: absolute;
-        z-index: @zi-selected;
+        z-index: var(--zi-selected);
         right: 13px;
         border-color: currentColor transparent;
         border-style: solid;
@@ -297,15 +297,15 @@ fieldset {
         width: 100%;
         height: 100%; // Fill the height of its parent
         padding: @input-padding;
-        padding-right: @su32;
+        padding-right: var(--su32);
         border: 1px solid var(--bc-darker);
-        border-radius: @br-sm;
+        border-radius: var(--br-sm);
         background-color: var(--white);
         outline: 0;
-        font-size: @fs-body1;
+        font-size: var(--fs-body1);
         font-family: inherit;
         color: var(--black);
-        line-height: @lh-sm;
+        line-height: var(--lh-sm);
 
         &::-moz-focus-inner {
             outline: none !important;
@@ -372,7 +372,7 @@ fieldset {
 //  ----------------------------------------------------------------------------
 .s-checkbox {
     @supports ((-webkit-appearance: none) or (-moz-appearance: none) or (appearance: none)) {
-        border-radius: @br-sm;
+        border-radius: var(--br-sm);
         background-position: center center;
         background-repeat: no-repeat;
         background-size: contain;
@@ -394,7 +394,7 @@ fieldset {
 
         &:focus {
             border-color: var(--theme-secondary-300);
-            box-shadow: 0 0 0 @su4 var(--focus-ring);
+            box-shadow: 0 0 0 var(--su-static4) var(--focus-ring);
         }
     }
 }
@@ -403,7 +403,7 @@ fieldset {
 //  ----------------------------------------------------------------------------
 .s-radio {
     @supports ((-webkit-appearance: none) or (-moz-appearance: none) or (appearance: none)) {
-        border-radius: @br-circle;
+        border-radius: var(--br-circle);
 
         &:checked {
             border-color: var(--theme-secondary-400);
@@ -417,7 +417,7 @@ fieldset {
         }
 
         &:focus {
-            box-shadow: 0 0 0 @su4 var(--focus-ring);
+            box-shadow: 0 0 0 var(--su-static4) var(--focus-ring);
         }
     }
 }
@@ -430,7 +430,7 @@ fieldset {
 & {
     @focus-style: {
         border-color: var(--theme-secondary-300);
-        box-shadow: 0 0 0 @su4 var(--focus-ring);
+        box-shadow: 0 0 0 var(--su-static4) var(--focus-ring);
         color: var(--black);
         outline: 0;
 
@@ -485,15 +485,15 @@ fieldset {
     position: relative;
 
     .s-input {
-        padding-right: @su32;
+        padding-right: var(--su32);
     }
 
     .s-select .s-input-icon {
-        right: @su32;
+        right: var(--su32);
     }
 
     .s-textarea {
-        padding-right: @su48;
+        padding-right: var(--su48);
 
         ~ .s-input-icon {
             top: 1.5em;
@@ -517,7 +517,7 @@ fieldset {
         border-color: var(--yellow-600);
 
         &:focus {
-            box-shadow: 0 0 0 @su4 var(--focus-ring-warning);
+            box-shadow: 0 0 0 var(--su-static4) var(--focus-ring-warning);
         }
     }
 
@@ -545,7 +545,7 @@ fieldset {
         border-color: var(--red-400);
 
         &:focus {
-            box-shadow: 0 0 0 @su4 var(--focus-ring-error);
+            box-shadow: 0 0 0 var(--su-static4) var(--focus-ring-error);
         }
     }
 
@@ -577,7 +577,7 @@ fieldset {
         border-color: var(--green-400);
 
         &:focus {
-            box-shadow: 0 0 0 @su4 var(--focus-ring-success);
+            box-shadow: 0 0 0 var(--su-static4) var(--focus-ring-success);
         }
     }
 
@@ -653,8 +653,8 @@ fieldset {
 //      Set some baseline styles
 //  ----------------------------------------------------------------------------
 .s-input-message {
-    padding: @su2;
-    font-size: @fs-caption;
+    padding: var(--su2);
+    font-size: var(--fs-caption);
 }
 
 //  $$  SIZES
@@ -663,25 +663,25 @@ fieldset {
 .s-textarea__sm,
 .s-label__sm,
 .s-select__sm > select {
-    font-size: @fs-caption;
+    font-size: var(--fs-caption);
 }
 .s-input__md,
 .s-textarea__md,
 .s-label__md,
 .s-select__md > select {
-    font-size: @fs-body3;
+    font-size: var(--fs-body3);
 }
 .s-input__lg,
 .s-textarea__lg,
 .s-label__lg,
 .s-select__lg > select {
-    font-size: @fs-title;
+    font-size: var(--fs-title);
 }
 .s-input__xl,
 .s-textarea__xl,
 .s-label__xl,
 .s-select__xl > select {
-    font-size: @fs-headline1;
+    font-size: var(--fs-headline1);
 }
 
 //  $$  PADDING ADJUSTMENTS WITHIN SIZES
@@ -691,7 +691,7 @@ fieldset {
 .s-select__md > select {
     padding-top: 0.5em;
     padding-bottom: 0.5em;
-    border-radius: @br-sm + 1;
+    border-radius: calc(var(--br-sm) + 1px);
 }
 
 .s-textarea__md {
@@ -703,14 +703,14 @@ fieldset {
 .s-textarea__lg,
 .s-select__lg > select {
     padding: 0.45em 0.6em;
-    border-radius: @br-sm + 1;
+    border-radius: calc(var(--br-sm) + 1px);
 }
 
 .s-input__xl,
 .s-textarea__xl,
 .s-select__xl > select {
     padding: 0.4em 0.5em;
-    border-radius: @br-md;
+    border-radius: var(--br-md);
 }
 
 .s-input__md,

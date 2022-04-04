@@ -29,18 +29,18 @@
 //  ----------------------------------------------------------------------------
 .s-banner {
     position: fixed;
-    z-index: @zi-navigation-fixed - 1; // Tuck below topbar
+    z-index: calc(var(--zi-navigation-fixed) - 1); // Tuck below topbar
     top: 0;
     right: 0;
     left: 0;
     width: 100%;
-    padding: @su12;
+    padding: var(--su12);
     border-top: 1px solid transparent;
     border-bottom: 1px solid transparent;
     border-radius: 0;
     box-shadow: none;
     color: var(--fc-medium);
-    font-size: @fs-body1;
+    font-size: var(--fs-body1);
 
     // If you want to hide and reveal the banner
     &[aria-hidden="true"] {
@@ -59,7 +59,7 @@
 
     //  If you want to put the banner above the topbar
     &.is-pinned {
-        z-index: @zi-navigation-fixed + 1;
+        z-index: calc(var(--zi-navigation-fixed) + 1);
         -webkit-transform: translate3d(0, 0, 0);
         transform: translate3d(0, 0, 0);
     }

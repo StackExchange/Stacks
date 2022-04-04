@@ -15,8 +15,8 @@
 //  ----------------------------------------------------------------------------
 .s-navigation {
     display: flex;
-    margin: -@su2;
-    padding: @su2 0;
+    margin: calc(var(--su2) * -1);
+    padding: var(--su2) 0;
     flex-wrap: wrap;
 
     // If the s-navigation is a list, let's reset all the properties
@@ -25,7 +25,7 @@
     .s-navigation--item {
         display: flex;
         align-items: center;
-        padding: @su6 @su12;
+        padding: var(--su6) var(--su12);
         position: relative;
 
         // Reset some things for when the navigation item is also a button
@@ -36,7 +36,7 @@
         cursor: pointer;
         user-select: auto;
         border-radius: 1000px;
-        margin: @su2;
+        margin: var(--su2);
         white-space: nowrap;
         color: var(--black-600);
 
@@ -72,12 +72,12 @@
             &:after {
                 content: "";
                 position: absolute;
-                z-index: @zi-active;
+                z-index: var(--zi-active);
                 top: calc(50% - 2px);
                 right: 0.9em;
                 border-style: solid;
-                border-width: @su4;
-                border-top-width: @su4;
+                border-width: var(--su-static4);
+                border-top-width: var(--su-static4);
                 border-bottom-width: 0;
                 border-color: currentColor transparent;
                 pointer-events: none;
@@ -104,10 +104,10 @@
     }
 
     .s-navigation--title {
-        font-size: @fs-fine;
+        font-size: var(--fs-fine);
         font-weight: bold;
-        margin-top: @su16;
-        padding: @su6 @su12;
+        margin-top: var(--su16);
+        padding: var(--su6) var(--su12);
         text-transform: uppercase;
 
         &:first-child {
@@ -135,8 +135,8 @@
     //  ----------------------------------------------------------------------------
     &.s-navigation__sm {
         .s-navigation--item {
-            padding: @su4 @su12;
-            font-size: @fs-caption;
+            padding: var(--su4) var(--su12);
+            font-size: var(--fs-caption);
 
             &.s-navigation--item__dropdown {
                 padding-right: 2em;
