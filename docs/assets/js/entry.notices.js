@@ -4,11 +4,12 @@ $(document).ready(function() {
     var toast = $(".js-notice-toast");
     var closeBtn = $(".js-notice-close");
 
-    $(".js-notice-toast-open").click(function(e) {
+    $(".js-notice-toast-open").on("click", function(e) {
         var toastOffset = topnavHeight + 16 + "px";
 
         toast.css("top", toastOffset);
 
+        // TODO find a replacement for jQuery queue
         toast.queue(function() {
                 $(this).attr("aria-hidden","false").dequeue();
             })
@@ -18,7 +19,7 @@ $(document).ready(function() {
             });
     });
 
-    closeBtn.click(function(e) {
+    closeBtn.on("click", function(e) {
         e.preventDefault();
         e.stopPropagation();
 

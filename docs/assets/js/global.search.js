@@ -18,8 +18,9 @@ $(document).ready(function() {
     var searchCloseIcon = $(".js-search-close-icon");
     var searchIcon = $(".js-search-icon");
     var searchBtn = $(".js-search-btn");
+    var searchInput = document.getElementById("searchbox");
 
-    searchBtn.click(function(e) {
+    searchBtn.on("click", function(e) {
         e.preventDefault();
         e.stopPropagation();
 
@@ -28,7 +29,7 @@ $(document).ready(function() {
         searchContainer.toggleClass("s-topbar--searchbar__open");
 
         if (searchContainer.hasClass("s-topbar--searchbar__open") ) {
-            searchContainer.find("input").focus();
+            searchInput.focus();
         }
     });
 });

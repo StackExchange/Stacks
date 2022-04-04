@@ -12,7 +12,7 @@ $(document).ready(function () {
     themeDarkToggleSwitch.prop("checked", isDark);
     themeHighcontrastToggleSwitch.prop("checked", isHighcontrast);
 
-    themeDarkToggleSwitch.change(function (e) {
+    themeDarkToggleSwitch.on("change", function (e) {
         e.preventDefault();
         e.stopPropagation();
 
@@ -34,7 +34,7 @@ $(document).ready(function () {
         return false;
     });
 
-    themeCustomToggleSwitch.change(function (e) {
+    themeCustomToggleSwitch.on("change", function (e) {
         e.preventDefault();
         e.stopPropagation();
 
@@ -48,7 +48,7 @@ $(document).ready(function () {
         return false;
     });
 
-    themeHighcontrastToggleSwitch.change(function (e) {
+    themeHighcontrastToggleSwitch.on("change", function (e) {
         e.preventDefault();
         e.stopPropagation();
 

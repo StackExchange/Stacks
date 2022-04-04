@@ -4,7 +4,7 @@ $(document).ready(function() {
     var hamburgerBtn = $(".js-hamburger-btn");
 
     // Disable any empty links
-    $("a[href='#']").click(function(e) {
+    $("a[href='#']").on("click", function(e) {
         e.preventDefault();
     });
 

@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    $(".js-spoiler").click(function(e) {
+    $(".js-spoiler").on("click", function(e) {
         $(this).addClass("is-visible");
     });
 });

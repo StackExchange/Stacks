@@ -4,7 +4,7 @@ import "./controllers/docs-resizer";
 import * as Stacks from "../../../lib/ts/index";
 
 // @ts-expect-error
-global.$ = require("jquery");
+global.$ = require("cash-dom");
 // @ts-expect-error
 global.Stacks = Stacks;
 
