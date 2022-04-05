@@ -11,18 +11,17 @@
 //  part is configurable and is in the dynamic part of Stacks as
 //  widget-dynamic.less.
 
-// TODO: Figure out a way to use spacing unit CSS variables here
-@s-sidebarwidget-content-padding: 15px; // subtract 1px for border
-@s-sidebarwidget-content-inner-spacing: 12px; // the spacing between two adjacent simple items
-@s-sidebarwidget-content-outer-spacing: 16px; // the spacing at the start/end of a group of simple items, as well as between a complex item and its separator line
-
-@s-sidebarwidget-outer-border-color: var(--bc-medium);
-@s-sidebarwidget-content-separator-color: var(--bc-light);
-@s-sidebarwidget-header-background-color: var(--black-025);
-
 .s-sidebarwidget {
+    --s-sidebarwidget-content-padding: calc(var(--su16) - var(--su1)); // subtract 1px for border
+    --s-sidebarwidget-content-inner-spacing: var(--su12); // the spacing between two adjacent simple items
+    --s-sidebarwidget-content-outer-spacing: var(--su16); // the spacing at the start/end of a group of simple items, as well as between a complex item and its separator line
+
+    --s-sidebarwidget-outer-border-color: var(--bc-medium);
+    --s-sidebarwidget-content-separator-color: var(--bc-light);
+    --s-sidebarwidget-header-background-color: var(--black-025);
+
     position: relative; // so that it's the positioning parent for the :after
-    border: 1px solid @s-sidebarwidget-outer-border-color;
+    border: 1px solid var(--s-sidebarwidget-outer-border-color);
     border-radius: var(--br-sm);
     box-shadow: var(--bs-sm);
     font-size: var(--fs-body1);
@@ -63,7 +62,7 @@
         left: -1px;
         // TODO: this makes no sense. revisit.
         height: calc(2px + var(--br-sm)); // we need 2px border + 2px border radius to have the correct corner shape
-        border-top: 1px solid @s-sidebarwidget-outer-border-color;
+        border-top: 1px solid var(--s-sidebarwidget-outer-border-color);
         border-radius: var(--br-sm);
         pointer-events: none; // if the top item is clickable, then we don't want to prevent clicking the top 2 pixels
 
@@ -73,14 +72,14 @@
         @supports ((-webkit-clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)) or (clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%))) or (-webkit-clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)) {
             -webkit-clip-path: polygon(0% 0%, 100% 0%, 100% 50%, 0% 50%);
             clip-path: polygon(0% 0%, 100% 0%, 100% 50%, 0% 50%);
-            border: 1px solid @s-sidebarwidget-outer-border-color;
+            border: 1px solid var(--s-sidebarwidget-outer-border-color);
         }
     }
 }
 
 .s-sidebarwidget--header,
 .s-sidebarwidget--content {
-    border-top: 1px solid @s-sidebarwidget-content-separator-color;
+    border-top: 1px solid var(--s-sidebarwidget-content-separator-color);
 
     &:active {
         outline: none;
@@ -89,8 +88,8 @@
 
 
 .s-sidebarwidget--header {
-    padding: @s-sidebarwidget-content-inner-spacing @s-sidebarwidget-content-padding;
-    background: @s-sidebarwidget-header-background-color;
+    padding: var(--s-sidebarwidget-content-inner-spacing) var(--s-sidebarwidget-content-padding);
+    background: var(--s-sidebarwidget-header-background-color);
     color: var(--black-600);
     font-size: var(--fs-body2);
     font-weight: normal;
@@ -139,9 +138,9 @@
 }
 
 table.s-sidebarwidget--content.s-sidebarwidget__items {
-    padding: (@s-sidebarwidget-content-outer-spacing - @s-sidebarwidget-content-inner-spacing) (@s-sidebarwidget-content-padding - @s-sidebarwidget-content-inner-spacing);
+    padding: calc(var(--s-sidebarwidget-content-outer-spacing) - var(--s-sidebarwidget-content-inner-spacing)) calc(var(--s-sidebarwidget-content-padding) - var(--s-sidebarwidget-content-inner-spacing));
     border-collapse: separate;
-    border-spacing: @s-sidebarwidget-content-inner-spacing;
+    border-spacing: var(--s-sidebarwidget-content-inner-spacing);
 
     tr.-item {
         display: table-row;
@@ -162,12 +161,12 @@ table.s-sidebarwidget--content.s-sidebarwidget__items {
 
 .s-sidebarwidget--content {
     margin: 0;
-    padding: @s-sidebarwidget-content-outer-spacing @s-sidebarwidget-content-padding;
+    padding: var(--s-sidebarwidget-content-outer-spacing) var(--s-sidebarwidget-content-padding);
 
     &.s-sidebarwidget__items {
         display: block;
         // the items themselves provide part of the spacing, so the content padding needs to account for that
-        padding: (@s-sidebarwidget-content-outer-spacing - @s-sidebarwidget-content-inner-spacing) @s-sidebarwidget-content-padding;
+        padding: calc(var(--s-sidebarwidget-content-outer-spacing) - var(--s-sidebarwidget-content-inner-spacing)) var(--s-sidebarwidget-content-padding);
         &.s-sidebarwidget__block-items .s-sidebarwidget--item {
             .d-block;
         }
@@ -175,7 +174,7 @@ table.s-sidebarwidget--content.s-sidebarwidget__items {
 }
 
 .s-sidebarwidget--item {
-    margin: @s-sidebarwidget-content-inner-spacing 0;
+    margin: var(--s-sidebarwidget-content-inner-spacing) 0;
 
     &,
     & > :first-child {
@@ -189,9 +188,9 @@ table.s-sidebarwidget--content.s-sidebarwidget__items {
                 content: '';
                 position: absolute;
                 left: 0;
-                height: ~"calc(100% +" @s-sidebarwidget-content-inner-spacing ~")";
-                margin-top: -(@s-sidebarwidget-content-inner-spacing / 2);
-                margin-left: -@s-sidebarwidget-content-padding - 1; // the orange selection indicator overlaps with the widget border
+                height: calc(100% + var(--s-sidebarwidget-content-inner-spacing));
+                margin-top: calc(var(--s-sidebarwidget-content-inner-spacing) / 2 * -1);
+                margin-left: calc(var(--s-sidebarwidget-content-padding) * -1 - 1px); // the orange selection indicator overlaps with the widget border
                 border-left-width: 3px;
                 border-left-style: solid;
                 // border-left-color is set in widget-dynamic.less
@@ -204,6 +203,7 @@ table.s-sidebarwidget--content.s-sidebarwidget__items {
         }
     }
 }
+
 .s-sidebarwidget--subnav {
     list-style-type: none;
     padding-left: 0;
