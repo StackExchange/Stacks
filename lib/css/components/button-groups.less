@@ -1,0 +1,104 @@
+//
+//  STACK OVERFLOW
+//  BUTTON GROUPS
+//
+//  This CSS comes from Stacks, our CSS & Pattern library for rapidly building
+//  Stack Overflow. For documentation of all these classes and how to contribute,
+//  visit https://stackoverflow.design/
+//
+//  TABLE OF CONTENTS
+//  • BUTTON GROUP CONTAINER
+
+//  ============================================================================
+//  $   CONTAINER
+//  ----------------------------------------------------------------------------
+.s-btn-group {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 1px; // Compensate for buttons having a margin bottom of -1px to account for row wrapping
+
+    .s-btn {
+        margin-bottom: -1px; // When wrapping we need to account for the border
+        white-space: nowrap; // When the buttons wrap, they get super tall and mess up the whole layout
+
+        // If it isn't the last button, we should slide the button over to account for border thickness
+        &:not(:last-child) {
+            margin-right: -1px;
+        }
+
+        // We don't want border-radii on interior buttons
+        &:not(:first-child):not(:last-child) {
+            border-radius: 0;
+        }
+
+        // Kill the right border radius on the first button
+        &:first-child:not(:only-child) {
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 0;
+        }
+
+        // Kill the left border radius on the last button
+        &:last-child:not(:only-child) {
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
+        }
+
+        // When the button is active or selected, it should pop above its siblings
+        &.is-selected {
+            z-index: var(--zi-selected);
+        }
+
+        .highcontrast-mode({
+            &.is-selected {
+                background-color: var(--black-400);
+                color: var(--white);
+
+                .s-btn--number {
+                    color: var(--black);
+                }
+            }
+        });
+
+        &:active {
+            z-index: var(--zi-active);
+        }
+
+        #stacks-internals #screen-sm({
+            padding-left: 0.4em;
+            padding-right: 0.4em;
+        }, @force-selector: true);
+    }
+
+    #stacks-internals #screen-sm({
+        .s-btn.s-btn__dropdown {
+            padding-right: 1.2em;
+
+            &:after {
+                right: 0.4em;
+            }
+        }
+    }, @force-selector: true);
+
+    .s-btn-group--container {
+        display: flex;
+
+        .s-btn {
+            margin-right: -1px; // We should slide buttons over to account for border thickness
+        }
+
+        &:not(:first-child):not(:last-child) .s-btn {
+            border-radius: 0;
+        }
+
+        &:first-child .s-btn {
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 0;
+            margin-left: 0;
+        }
+
+        &:last-child .s-btn {
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
+        }
+    }
+}

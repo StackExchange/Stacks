@@ -1,0 +1,425 @@
+//
+//  STACK OVERFLOW
+//  POST SUMMARY
+//
+//  This CSS comes from Stacks, our CSS & Pattern library for rapidly building
+//  Stack Overflow. For documentation of all these classes and how to contribute,
+//  visit https://stackoverflow.design/
+//
+
+.s-post-summary {
+    position: relative;
+    display: flex;
+    border-bottom: 1px solid var(--bc-light);
+    padding: var(--su16);
+
+    &:last-child {
+        border-bottom-width: 0;
+    }
+
+    #stacks-internals #screen-md({
+        flex-direction: column;
+    });
+
+    &.s-post-summary__minimal {
+        flex-direction: column;
+
+        .s-post-summary--stats {
+            width: auto;
+            flex-direction: row;
+            align-items: center;
+        }
+
+        .s-post-summary--content {
+            width: 100%;
+        }
+    }
+
+    &.s-post-summary__legacy {
+        padding-left: 0; // Since stats have padding, we don't need it on the parent
+
+        #stacks-internals #screen-md({
+            padding-left: var(--su16);
+        });
+
+        .s-post-summary--stats {
+            width: auto;
+            flex-direction: row;
+            align-items: center;
+            gap: var(--su2);
+
+            .s-post-summary--stats-item {
+                min-width: var(--su64);
+                height: var(--su48);
+                flex-direction: column;
+                gap: 0;
+                font-size: var(--fs-caption);
+
+                &.s-post-summary--stats-item__emphasized {
+                    color: inherit;
+                }
+
+                &.has-accepted-answer .svg-icon {
+                    display: none;
+                }
+
+                .s-post-summary--stats-item-number {
+                    font-weight: normal;
+                    font-size: var(--fs-body3);
+                }
+
+                &.is-deleted,
+                &.is-published,
+                &.is-draft,
+                &.is-review,
+                &.is-closed,
+                &.is-archived,
+                &.is-pinned {
+                    display: none;
+                }
+            }
+
+            #stacks-internals #screen-md({
+                flex-direction: row;
+                align-items: center;
+                gap: var(--su8);
+
+                .s-post-summary--stats-item {
+                    min-width: auto;
+                    height: auto;
+                    flex-direction: row;
+                    gap: 3px; // HTML spacing
+
+                    .s-post-summary--stats-item-number {
+                        font-size: inherit;
+                    }
+
+                    &.s-post-summary--stats-item__emphasized {
+                        color: var(--fc-dark);
+                    }
+
+                    &.has-accepted-answer .svg-icon {
+                        display: block;
+                    }
+
+                    &.is-deleted,
+                    &.is-published,
+                    &.is-draft,
+                    &.is-review,
+                    &.is-closed,
+                    &.is-archived,
+                    &.is-pinned {
+                        display: block;
+                    }
+                }
+            });
+        }
+    }
+}
+
+//  [1] To override .s-btn class attributes
+.s-post-summary--content-menu-button {
+    position: absolute !important; // [1]
+    top: var(--su8);
+    right: var(--su8);
+    padding: var(--su8) !important; // [1]
+
+    .svg-icon {
+        margin: 0 !important;
+    }
+}
+
+.s-post-summary--stats {
+    gap: var(--su6);
+    margin-right: var(--su16);
+    margin-bottom: var(--su4);
+    width: calc(var(--su96) + var(--su12));
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    font-size: var(--fs-body1);
+    color: var(--fc-light);
+
+    .s-post-summary--stats-item {
+        display: inline-flex;
+        gap: 0.3em;
+        align-items: center;
+        justify-content: center;
+        white-space: nowrap;
+        border: 1px solid transparent;
+
+        &.s-post-summary--stats-item__emphasized {
+            color: var(--fc-dark);
+        }
+
+        .s-post-summary--stats-item-number {
+            font-weight: 500;
+        }
+
+        &.has-answers,
+        &.has-bounty,
+        &.is-deleted,
+        &.is-published,
+        &.is-draft,
+        &.is-review,
+        &.is-closed,
+        &.is-archived,
+        &.is-pinned {
+            border-radius: var(--br-sm);
+            padding: var(--su2) var(--su4);
+        }
+
+        &.has-answers {
+            color: var(--green-600);
+            border: 1px solid var(--green-600);
+
+            &.has-accepted-answer {
+                color: @white;
+                background-color: var(--green-500);
+                border-color: var(--green-500);
+
+                .highcontrast-mode({
+                    color: var(--white);
+                });
+            }
+        }
+
+        &.has-bounty {
+            color: var(--white);
+            background-color: var(--blue-600);
+        }
+
+        &.is-warm {
+            color: var(--orange-800);
+        }
+
+        &.is-hot {
+            color: var(--orange-600);
+        }
+
+        &.is-supernova {
+            color: var(--orange-400);
+        }
+
+        &.is-published {
+            color: var(--black-800);
+            background-color: var(--black-050);
+        }
+
+        &.is-draft {
+            color: var(--blue-900);
+            background-color: var(--blue-100);
+            border-color: var(--blue-600);
+        }
+
+        &.is-review {
+            color: var(--yellow-900);
+            background-color: var(--yellow-100);
+            border-color: var(--yellow-600);
+        }
+
+        &.is-closed {
+            color: var(--red-900);
+            background-color: var(--red-100);
+            border-color: var(--red-600);
+        }
+
+        &.is-archived {
+            color: var(--black-900);
+            background-color: var(--black-100);
+            border-color: var(--black-600);
+        }
+
+        &.is-pinned {
+            color: var(--white);
+            background-color: var(--black-700);
+        }
+    }
+
+    #stacks-internals #screen-md({
+        flex-direction: row;
+        align-items: center;
+        width: auto;
+    });
+}
+
+.s-post-summary--content {
+    flex-grow: 1;
+    max-width: 100%;
+
+    .s-post-summary--content-title {
+        display: block;
+        font-size: var(--fs-body3);
+        margin-top: -0.15rem; // Optical alignment to compensate for title's containing block
+        margin-bottom: 0.3846rem;
+        padding-right: var(--su24);
+        line-height: var(--lh-md);
+        font-weight: normal;
+        .break-word;
+
+        .iconShield {
+            color: var(--fc-light);
+        }
+
+        .svg-icon {
+            vertical-align: text-bottom; // Optical alignment
+            position: relative;
+            top: -1px;
+        }
+
+        a {
+            .break-word;
+
+            color: var(--theme-post-title-color);
+            font-family: var(--theme-post-title-font-family);
+
+            &:visited {
+                color: var(--theme-post-title-color-visited);
+            }
+
+            &:hover,
+            &:active {
+                color: var(--theme-post-title-color-hover);
+            }
+        }
+    }
+
+    .s-post-summary--content-type {
+        color: var(--fc-medium);
+        margin-bottom: var(--su4);
+
+        .svg-icon {
+            margin-left: calc(var(--su2) * -1);
+            color: var(--fc-light);
+        }
+    }
+
+    .s-post-summary--content-excerpt {
+        margin-top: calc(var(--su2) * -1);
+        margin-bottom: var(--su8);
+        font-family: var(--theme-post-body-font-family);
+        color: var(--fc-medium);
+        .v-truncate2;
+        .break-word;
+
+        &.s-post-summary--content-excerpt__sm {
+            .v-truncate1;
+        }
+
+        &.s-post-summary--content-excerpt__md {
+            .v-truncate3;
+        }
+
+        &.s-post-summary--content-excerpt__lg {
+            .v-truncate4;
+        }
+    }
+}
+
+.s-post-summary--meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    column-gap: var(--su6);
+    row-gap: var(--su8);
+
+    .s-post-summary--meta-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--su4);
+    }
+
+    .s-user-card {
+        flex-wrap: wrap;
+        margin-left: auto;
+        justify-content: flex-end;
+    }
+}
+
+.s-post-summary--answer {
+    position: relative;
+    margin: var(--su16) 1em 0 1em;
+    padding: 0.5em 0 0.5em calc(1em + var(--su4));
+
+    + .s-post-summary--answer {
+        margin-top: var(--su16);
+    }
+
+    &:before {
+        content: "";
+        display: block;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        width: var(--su4);
+        border-radius: var(--su8);
+        background: var(--black-150);
+
+        .highcontrast-mode({
+            background: var(--black-600);
+        });
+    }
+
+    .s-post-summary--stats {
+        width: auto;
+        flex-direction: row;
+        align-items: center;
+        margin-bottom: var(--su4);
+    }
+
+    .s-post-summary--answer-excerpt {
+        color: var(--black-600);
+        margin-bottom: var(--su8);
+        .v-truncate4;
+    }
+}
+
+.s-post-summary__watched {
+    background-color: var(--yellow-050);
+}
+
+.s-post-summary__deleted {
+    background-color: var(--red-050);
+
+    .is-deleted {
+        color: @white;
+        background-color: var(--red-500);
+    }
+}
+
+.s-post-summary__ignored,
+.s-post-summary__deleted {
+    .s-post-summary--content {
+        opacity: 0.6;
+    }
+
+    .s-post-summary--stats-item:not(.is-deleted) {
+        opacity: 0.6;
+        filter: grayscale(100%);
+    }
+
+    .s-post-summary--content-title a {
+        color: var(--black-600);
+
+        &:hover,
+        &:active {
+            color: var(--black-500);
+        }
+
+        &:visited {
+            color: var(--black-700);
+        }
+    }
+
+    .s-post-summary--content-excerpt {
+        color: var(--black-500);
+    }
+
+    .s-post-summary--meta {
+        filter: grayscale(100%);
+    }
+}

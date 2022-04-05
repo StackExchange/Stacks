@@ -1,0 +1,209 @@
+//
+//  STACK OVERFLOW
+//  BADGES
+//
+//  This CSS comes from Stacks, our CSS & Pattern library for rapidly building
+//  Stack Overflow. For documentation of all these classes and how to contribute,
+//  visit https://stackoverflow.design/
+//
+//  TABLE OF CONTENTS
+//  • BASE STYLE
+//  • STYLE VARIATIONS
+//  • LAYOUTS & SIZES
+//
+//  ===========================================================================
+//  $   MIXIN
+//      Any badge we use will always modify the same items, so to save time,
+//      here's a mixin to state all that CSS.
+//  ---------------------------------------------------------------------------
+.badge-styles(@border: transparent, @background: transparent, @color: inherit) {
+    border-color: @border;
+    background-color: @background;
+    color: @color;
+}
+
+//  ===========================================================================
+//  $   BASE STYLE
+//      The same style is applied to all badges. Do not modify the core style.
+//  ---------------------------------------------------------------------------
+.s-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 0;
+    padding: 0 var(--su6);
+    border-width: 1px;
+    border-style: solid;
+    border-radius: var(--br-sm);
+    font-size: var(--fs-caption);
+    font-weight: normal;
+    line-height: 2;
+    text-decoration: none;
+    vertical-align: middle;
+    white-space: nowrap;
+
+    .badge-styles(var(--bc-medium), var(--black-050), var(--black-700));
+
+    a&:hover {
+        text-decoration: none;
+    }
+}
+
+//  $   BADGE IMAGE
+//      When we have a badge image
+//  ---------------------------------------------------------------------------
+.s-badge--image {
+    display: inline-flex;
+    align-self: center;
+    margin-right: var(--su1);
+    margin-left: calc((var(--su4) + var(--su1)) * -1);
+}
+
+//  $   BADGE SIZES
+//  ---------------------------------------------------------------------------
+.s-badge__sm {
+    min-width: 18px;
+    align-self: flex-start;
+    padding-right: var(--su4);
+    padding-left: var(--su4);
+    font-size: var(--fs-fine);
+    line-height: 1.8;
+}
+
+.s-badge__xs {
+    align-self: flex-start;
+    padding-right: var(--su2);
+    padding-left: var(--su2);
+    font-size: var(--fs-fine);
+    line-height: 1.5;
+}
+
+//  $$  Badge Counts
+//  ---------------------------------------------------------------------------
+.s-badge__gold {
+    .badge-styles(var(--gold-darker), var(--gold-lighter), var(--black-700));
+}
+.s-badge__silver {
+    .badge-styles(var(--silver-darker), var(--silver-lighter), var(--black-700));
+}
+.s-badge__bronze {
+    .badge-styles(var(--bronze-darker), var(--bronze-lighter), var(--black-700));
+}
+.s-badge__gold,
+.s-badge__silver,
+.s-badge__bronze {
+    .highcontrast-mode({
+        border-color: currentColor;
+        color: var(--black-900);
+    });
+}
+
+//  $$  Number Counts
+//  ---------------------------------------------------------------------------
+.s-badge__bounty {
+    .badge-styles(transparent, var(--blue-600), var(--white));
+}
+.s-badge__votes {
+    .badge-styles(var(--black-150), var(--white), var(--black-700));
+
+    .highcontrast-mode({ border-color: currentColor; });
+}
+.s-badge__answered {
+    .badge-styles(transparent, var(--green-400), var(--white));
+}
+.s-badge__rep {
+    .badge-styles(var(--green-400), var(--white), var(--green-500));
+    .highcontrast-mode({ border-color: currentColor; });
+}
+.s-badge__rep-down {
+    .badge-styles(var(--red-400), var(--white), var(--red-500));
+    .highcontrast-mode({ border-color: currentColor; });
+}
+.s-badge__important {
+    .badge-styles(transparent, var(--red-600), var(--white));
+}
+
+//  $$  Users
+//  ---------------------------------------------------------------------------
+.s-badge__admin {
+    .badge-styles(var(--theme-primary-200), var(--theme-primary-075), var(--theme-primary-800));
+    .highcontrast-mode({ border-color: currentColor; });
+}
+.s-badge__moderator {
+    .badge-styles(var(--theme-secondary-200), var(--theme-secondary-075), var(--theme-secondary-800));
+    .highcontrast-mode({ border-color: currentColor; });
+
+    &:before {
+        --s-badge-moderator-icon: url("data:image/svg+xml,%3Csvg width='12' height='14' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M5.528.746c.257-.329.675-.327.93 0l4.42 5.66c.258.329.257.864 0 1.192l-4.42 5.66c-.256.328-.674.327-.93 0l-4.42-5.66c-.257-.329-.256-.865 0-1.192l4.42-5.66z' fill='%23fff'/%3E%3C/svg%3E");
+
+        content: "";
+        display: inline-block;
+        background-color: currentColor;
+        -webkit-mask: var(--s-badge-moderator-icon) no-repeat center;
+        mask: var(--s-badge-moderator-icon) no-repeat center;
+        -webkit-mask-size: contain;
+        mask-size: contain;
+
+        width: 12px;
+        height: 14px;
+        margin-top: -1px;
+        margin-right: 3px;
+    }
+
+    &.s-badge__sm:before {
+        --s-badge-moderator-icon: url("data:image/svg+xml,%3Csvg width='9' height='11' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M3.55.246c.257-.329.647-.327.903 0l3.36 4.66c.256.329.256.864 0 1.192L4.45 10.75c-.257.329-.644.327-.9 0L.192 6.098c-.256-.329-.256-.865 0-1.192L3.55.246z' fill='%23fff'/%3E%3C/svg%3E");
+
+        width: 9px;
+        height: 11px;
+        margin-top: 0;
+        margin-right: 2px;
+    }
+
+    &.s-badge__xs:before {
+        --s-badge-moderator-icon: url("data:image/svg+xml,%3Csvg width='7' height='9' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M3 .246c.3-.329.701-.327 1 0L6.776 4c.3.329.298.672 0 1L4 8.75c-.299.329-.702.327-1 0L.224 5c-.284-.324-.285-.675 0-1L3 .246z' fill='%23fff'/%3E%3C/svg%3E");
+
+        width: 7px;
+        height: 9px;
+        margin-top: 0;
+    }
+}
+
+.s-badge__staff {
+    // Staff badges are always "Stack Overflow Orange"
+    .badge-styles(var(--orange-300), var(--orange-100), var(--orange-900));
+    .highcontrast-mode({ border-color: currentColor; });
+}
+
+//  $$  Award Count
+//  ---------------------------------------------------------------------------
+.s-award-bling {
+    display: flex;
+    align-items: center;
+    color: inherit;
+
+    &:before {
+        content: "";
+        margin-right: 4px;
+        width: 8px;
+        height: 8px;
+        border-radius: 100%;
+    }
+
+    &.s-award-bling__gold {
+        &:before {
+            background-color: var(--gold);
+        }
+    }
+
+    &.s-award-bling__silver {
+        &:before {
+            background-color: var(--silver);
+        }
+    }
+
+    &.s-award-bling__bronze {
+        &:before {
+            background-color: var(--bronze);
+        }
+    }
+}

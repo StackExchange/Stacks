@@ -1,0 +1,20 @@
+// the default CSS reset is normalize.css; other possibilities are the Eric Meyer reset, and no reset at all.
+
+#stacks-internals() {
+    #include-css-reset(meyer) {
+        @import "reset-meyer.less";
+    }
+    #include-css-reset(normalize) {
+        @import "reset-normalize.less";
+    }
+    /* stylelint-disable block-no-empty */
+    #include-css-reset(none) {
+    }
+    /* stylelint-enable */
+}
+
+& {
+    #stacks-internals #load-static-config();
+    #stacks-internals #include-css-reset(@css-reset);
+}
+

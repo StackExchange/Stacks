@@ -1,0 +1,44 @@
+//
+//  STACK OVERFLOW
+//  BODY & HTML STYLES
+//
+//  This CSS comes from Stacks, our CSS & Pattern library for rapidly building
+//  Stack Overflow. For documentation of all these classes and how to contribute,
+//  visit https://stackoverflow.design/
+//
+//  This is where all the magic happens.
+//
+//  TABLE OF CONTENTS
+//  • BODY / HTML
+//
+//  ============================================================================
+//  $   BODY / HTML
+//      Various properties we need to reset to make everything better.
+//  ----------------------------------------------------------------------------
+
+html,
+body {
+    color: var(--theme-body-font-color);
+    font-family: var(--theme-body-font-family);
+    font-size: var(--fs-base);
+    line-height: var(--lh-base);
+}
+
+#stacks-internals #screen-sm({
+    &,
+    body {
+        font-size: 11px;
+    }
+}, @force-selector: true);
+
+body {
+    box-sizing: border-box;
+    min-height: 100%;
+    background-color: var(--theme-background-color);
+
+    *,
+    *:before,
+    *:after {
+        box-sizing: inherit;
+    }
+}
