@@ -6,7 +6,7 @@ module.exports = {
         var tooltipId = "tooltip-" + (name || Math.floor(Math.random() * 1000));
 
         var output = `<button
-          class="s-btn s-btn__muted s-btn__icon ps-absolute t8 r8"
+          class="stacks-copy-btn s-btn s-btn__muted s-btn__outlined s-btn__icon ps-absolute p4 bg-black-050 bc-black-100 t8 r8"
           data-action="clipboard#copy"
           data-s-tooltip-placement="top"
           data-controller="s-tooltip"
