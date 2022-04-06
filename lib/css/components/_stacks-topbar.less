@@ -214,7 +214,7 @@
     --theme-topbar-select-background: lighten(@topbar-actual-background, 10% + @topbar-search-lightness-increase);
 
     // Items
-    --theme-topbar-item-color: @black-025;
+    --theme-topbar-item-color: @black-100;
     --theme-topbar-item-color-hover: @white;
     --theme-topbar-item-background-hover: @black-700;
     --theme-topbar-item-color-current: @white;
@@ -243,8 +243,7 @@
 //  ===========================================================================
 //  $   CONTENT & CTAS
 //  ---------------------------------------------------------------------------
-.s-topbar .s-topbar--content,
-.s-topbar .s-topbar--ctas {
+.s-topbar .s-topbar--content {
     display: flex;
     height: 100%;
     .list-reset;
@@ -252,14 +251,12 @@
     & > li {
         display: inline-flex;
     }
-}
 
-.s-topbar .s-topbar--content {
     overflow-x: auto; // Allow this content to scroll if it gets too long
     @scrollbar-styles(); // Style the scrollbars
     margin-left: auto; // Push this section as far to the right as possible
 
-    .s-topbar--item {
+    .s-topbar--item:not(.s-topbar--item__unset) {
         color: var(--theme-topbar-item-color);
         display: inline-flex;
         align-items: center;
@@ -294,21 +291,9 @@
             transition: top @te-smooth 0.15s;
         }
     }
-}
 
-// CTAs: Sign in, Sign up, etc. on the far right
-.s-topbar .s-topbar--ctas {
-    padding-left: @su4;
-    padding-right: @su8;
-    overflow-x: auto; // Allow this content to scroll if it gets too long
-    @scrollbar-styles(); // Style the scrollbars
-    margin-left: auto; // Push this section as far to the right as possible
-
-    li + li {
-        margin-left: @su4;
-    }
-
-    .s-topbar--item {
+    // provide only layout styling for unset items
+    .s-topbar--item__unset {
         align-self: center;
         padding-top: @su8;
         padding-bottom: @su8;
