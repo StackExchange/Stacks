@@ -103,7 +103,7 @@
             @itemWidth: (@count * 100% / @num);
 
             > .flex--item@{count} {
-                margin: (@spacing / 2);
+                margin: calc(~"@{spacing}" / 2);
             }
 
             //  ------------------------------------------------------------------------
@@ -138,12 +138,12 @@
         .gutter-spacing(@spacing) {
             #stacks-internals #flex-builder-settings();
 
-            margin: -(@spacing / 2);
+            margin: calc(~"@{spacing}" / 2 * -1);
 
             //  --  FLUID ITEMS
             > .d-flex,
             > .flex--item {
-                margin: (@spacing / 2);
+                margin: calc(~"@{spacing}" / 2);
             }
 
             //  --  FIXED WIDTH ITEMS
@@ -197,16 +197,16 @@
 //      Insert spaces or gutters in between flex items
 //  ----------------------------------------------------------------------------
 // TODO: Make this play nice with spacing units… or yeet this in the age of gap
-.gs2 { #stacks-internals #flex-builder-helpers .gutter-spacing(@su2); }
-.gs4 { #stacks-internals #flex-builder-helpers .gutter-spacing(@su4); }
-.gs6 { #stacks-internals #flex-builder-helpers .gutter-spacing(@su6); }
-.gs8 { #stacks-internals #flex-builder-helpers .gutter-spacing(@su8); }
-.gs12 { #stacks-internals #flex-builder-helpers .gutter-spacing(@su12); }
-.gs16 { #stacks-internals #flex-builder-helpers .gutter-spacing(@su16); }
-.gs24 { #stacks-internals #flex-builder-helpers .gutter-spacing(@su24); }
-.gs32 { #stacks-internals #flex-builder-helpers .gutter-spacing(@su32); }
-.gs48 { #stacks-internals #flex-builder-helpers .gutter-spacing(@su48); }
-.gs64 { #stacks-internals #flex-builder-helpers .gutter-spacing(@su64); }
+.gs2 { #stacks-internals #flex-builder-helpers .gutter-spacing(var(--su2)); }
+.gs4 { #stacks-internals #flex-builder-helpers .gutter-spacing(var(--su4)); }
+.gs6 { #stacks-internals #flex-builder-helpers .gutter-spacing(var(--su6)); }
+.gs8 { #stacks-internals #flex-builder-helpers .gutter-spacing(var(--su8)); }
+.gs12 { #stacks-internals #flex-builder-helpers .gutter-spacing(var(--su12)); }
+.gs16 { #stacks-internals #flex-builder-helpers .gutter-spacing(var(--su16)); }
+.gs24 { #stacks-internals #flex-builder-helpers .gutter-spacing(var(--su24)); }
+.gs32 { #stacks-internals #flex-builder-helpers .gutter-spacing(var(--su32)); }
+.gs48 { #stacks-internals #flex-builder-helpers .gutter-spacing(var(--su48)); }
+.gs64 { #stacks-internals #flex-builder-helpers .gutter-spacing(var(--su64)); }
 
 //  On rows, remove top and bottom margins
 .gsx {
