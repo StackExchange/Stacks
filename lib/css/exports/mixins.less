@@ -1,0 +1,237 @@
+/* stylelint-disable indentation */
+//
+//  STACK OVERFLOW
+//  MIXINS
+//
+//  This CSS comes from Stacks, our CSS & Pattern library for rapidly building
+//  Stack Overflow. For documentation of all these classes and how to contribute,
+//  visit https://stackoverflow.design/
+//
+//  ============================================================================
+//  $   Clearfix
+//  -----------------------------------------------------------------------------
+.clearfix() {
+    &:before,
+    &:after {
+        content: "";
+        display: table;
+    }
+    &:after { clear: both; }
+}
+
+//  ============================================================================
+//  --  LIGHTMODE
+//      .light-mode-forced ensures light color scheme is used in .theme-light__forced
+//
+//      .light-mode-forced({ color: var(--black-900) });
+//
+//  ---------------------------------------------------------------------------
+
+.light-mode-forced(@rules) {
+    .theme-light__forced &,
+    body.theme-system .theme-light__forced &,
+    body.theme-dark .theme-light__forced & {
+        @rules();
+    }
+}
+
+//  ===========================================================================
+//  --  DARKMODE
+//      .darkmode renders a dark mode override behind the
+//      prefers-color-scheme: dark media query and .theme-system. It also
+//      renders the same rules outside of the media query with .theme-dark
+//
+//      Usage example:
+//
+//      .dark-mode({ background-color: var(--black-100); });
+//
+//  ---------------------------------------------------------------------------
+
+.dark-mode(@rules) {
+    body.theme-system & {
+        @media (prefers-color-scheme: dark) {
+            @rules();
+        }
+    }
+
+    body.theme-dark &,
+    .theme-dark__forced &,
+    body.theme-system .theme-dark__forced & {
+        @rules();
+    }
+}
+
+//  ===========================================================================
+//  --  HIGHCONTRAST
+//      .highcontrast-mode renders a high contrast mode override for .theme-highcontrast
+//
+//      Usage example:
+//
+//      .highcontrast-mode({ background-color: var(--black-100); });
+//
+//  ---------------------------------------------------------------------------
+
+.highcontrast-mode(@rules) {
+    body.theme-highcontrast & {
+        @rules();
+    }
+}
+
+.highcontrast-dark-mode(@rules) {
+    body.theme-highcontrast.theme-system & {
+        @media (prefers-color-scheme: dark) {
+            @rules();
+        }
+    }
+    body.theme-highcontrast.theme-dark & {
+        @rules();
+    }
+}
+
+//  ===========================================================================
+//  --  APPEARANCE
+//      Use this to overwrite the default appearance properties
+//  ---------------------------------------------------------------------------
+.appearance(@all) {
+    -webkit-appearance: @all;
+    -moz-appearance: @all;
+    appearance: @all;
+}
+
+
+//  ===========================================================================
+//  --  FONT FACE
+//      Used to load hosted, custom webfonts. You must provide the font's
+//      full file path in the mixin. All modern browsers the WOFF file format.
+//      Will automatically add various local()s to try using already-installed
+//      fonts before downloading.
+//  ---------------------------------------------------------------------------
+.font-face(@family, @path, @weight, @style) {
+    @font-face {
+        font-family: "@{family}";
+        font-style: @style;
+        font-weight: @weight;
+        & when (@style=italic) {
+            #stacks-internals #font-face-src(@family, @path, @weight, " Italic");
+        }
+        & when not (@style=italic) {
+            #stacks-internals #font-face-src(@family, @path, @weight, "");
+        }
+    }
+}
+
+
+//  =============================================================================
+//  --  COLORS
+//      The following mixins let us do color math on the browser. They take a
+//      color prefix, and they expect the different values to be stored in
+//      --{prefix}-h, --{prefix}-s and --{prefix}-l
+//  -----------------------------------------------------------------------------
+
+.load-color-variables(@amount) {
+    @amountDecimal: (@amount / 100);
+    @amountPercentage: @amount * 1%;
+    @complementDecimal: 1 - @amountDecimal;
+    @additionDecimal: 1 + @amountDecimal;
+}
+
+.assemble-color(@color-prefix) {
+    @result: hsl(var(~"--@{color-prefix}-h"),
+                 var(~"--@{color-prefix}-s"),
+                 var(~"--@{color-prefix}-l"));
+}
+
+// Increase the lightness of a color in the HSL color space by an absolute amount.
+.native-lighten(@color-prefix, @amount) {
+    .load-color-variables(@amount);
+    @result: hsl(var(~"--@{color-prefix}-h"),
+                 var(~"--@{color-prefix}-s"),
+                 calc(var(~"--@{color-prefix}-l") + @amountPercentage));
+}
+
+// Decrease the lightness and saturation of a color in the HSL color space by absolute amounts.
+.native-darken-desaturate(@color-prefix, @darken-amount, @desaturate-amount) {
+    @darkenAmountPercentage: .load-color-variables(@darken-amount)[@amountPercentage];
+    @desaturateAmountPercentage: .load-color-variables(@desaturate-amount)[@amountPercentage];
+    @result: hsl(var(~"--@{color-prefix}-h"),
+                 clamp(10%, calc(var(~"--@{color-prefix}-s") - @desaturateAmountPercentage), 90%),
+                 clamp(20%, calc(var(~"--@{color-prefix}-l") - @darkenAmountPercentage), 100%));
+}
+
+// Decrease the lightness of a color in the HSL color space by an absolute amount.
+.native-darken(@color-prefix, @amount) {
+    .load-color-variables(@amount);
+    @result: hsl(var(~"--@{color-prefix}-h"),
+                 var(~"--@{color-prefix}-s"),
+                 calc(var(~"--@{color-prefix}-l") - @amountPercentage));
+}
+
+// Mix color with white in variable proportion
+.native-tint(@color-prefix, @amount) {
+    .load-color-variables(@amount);
+    @ramount: 255 * @amountDecimal;
+    @gamount: 255 * @amountDecimal;
+    @bamount: 255 * @amountDecimal;
+    @result: rgb(calc(@ramount + var(~"--@{color-prefix}-r") * @complementDecimal),
+                 calc(@gamount + var(~"--@{color-prefix}-g") * @complementDecimal),
+                 calc(@bamount + var(~"--@{color-prefix}-b") * @complementDecimal));
+}
+
+// Mix color with black in variable proportion
+.native-shade(@color-prefix, @amount) {
+    .load-color-variables(@amount);
+    @result: rgb(calc(var(~"--@{color-prefix}-r") * @complementDecimal),
+                 calc(var(~"--@{color-prefix}-g") * @complementDecimal),
+                 calc(var(~"--@{color-prefix}-b") * @complementDecimal));
+}
+
+// Set the absolute opacity of a color.
+.native-fade(@color-prefix, @amount) {
+    .load-color-variables(@amount);
+    @result: hsla(var(~"--@{color-prefix}-h"),
+                  var(~"--@{color-prefix}-s"),
+                  var(~"--@{color-prefix}-l"),
+                  @amountDecimal);
+}
+
+//  ===========================================================================
+//  Internals only beyond this point -- helpers for .font-face()
+//  ---------------------------------------------------------------------------
+
+
+#stacks-internals() {
+
+    // Generate all common variants for local names that this font face may have.
+    // The CSS spec (Font Module Level 3, Section 4.3) says to use "only the Postscript
+    // name or the full font name".
+    // For example, given the family "Comic Sans MS", weight 800, italic, we're
+    // trying these local names:
+    //
+    // - Comic Sans MS Extra Bold Italic
+    // - ComicSansMS-ExtraBoldItalic
+    // - Comic Sans MS 800 Italic
+    // - ComicSansMS-800Italic
+    //
+    // For the weight 400 we also include the un-weight-postfixed name ("Comic Sans MS Italic").
+
+    #font-face-src(@family, @path, @weight, @style-postfix) {
+        @index: round(@weight/100);
+        @weight-names: "Thin", "Extra Light", "Light", "Regular", "Medium", "Semi Bold", "Bold", "Extra Bold", "Black";
+        @weight-name: extract(@weight-names, @index);
+        #stacks-internals #font-face-src-postfix(@family, @path, "@{weight-name}", @weight, @style-postfix);
+    }
+
+    #font-face-src-postfix(@family, @path, @postfix-name, @postfix-number, @style-postfix) {
+        @family-nospace: replace(@family, " ", "");
+        @postfix-name-nospace: replace("@{postfix-name}@{style-postfix}", " ", "");
+        @postfix-number-nospace: replace("@{postfix-number}@{style-postfix}", " ", "");
+
+        & when (@postfix-name="Regular") {
+            src: local("@{family} @{postfix-name}@{style-postfix}"), local("@{family-nospace}-@{postfix-name-nospace}"), local("@{family} @{postfix-number}@{style-postfix}"), local("@{family-nospace}-@{postfix-number-nospace}"), local("@{family}@{style-postfix}"), @path format("woff");
+        }
+
+        & when not (@postfix-name="Regular") {
+            src: local("@{family} @{postfix-name}@{style-postfix}"), local("@{family-nospace}-@{postfix-name-nospace}"), local("@{family} @{postfix-number}@{style-postfix}"), local("@{family-nospace}-@{postfix-number-nospace}"), @path format("woff");
+        }
+    }
+}

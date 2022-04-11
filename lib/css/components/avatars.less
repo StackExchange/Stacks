@@ -1,0 +1,189 @@
+//
+//  STACK OVERFLOW
+//  AVATARS
+//
+//  This CSS comes from Stacks, our CSS & Pattern library for rapidly building
+//  Stack Overflow. For documentation of all these classes and how to contribute,
+//  visit https://stackoverflow.design/
+//
+//  TABLE OF CONTENTS
+//  • AVATARS
+//  • TEAM AVATARS
+//
+
+//  ============================================================================
+//  $   TEAM AVATARS
+//  ----------------------------------------------------------------------------
+
+.s-avatar {
+    display: inline-block; // Make sure the avatar has structure regardless of the element eg. span vs. div
+    position: relative;
+    width: var(--su-static16);
+    height: var(--su-static16);
+    border-radius: var(--br-sm);
+    background-color: @white; // Force a white background color for when we have transparent avatars
+    background-repeat: no-repeat;
+    background-size: 100%;
+    vertical-align: bottom; // Make our avatars play more nicely with text next to it.
+
+    .highcontrast-mode({
+        background-color: var(--black);
+        box-shadow: 0 0 0 1px var(--black);
+
+        .s-avatar--letter {
+            color: var(--white);
+        }
+    });
+
+    .s-avatar--letter {
+        display: block; // Make sure we're treating the letter as a block-level element
+        color: @white; // Force a light appearance of text rendering
+        font-size: 11px; // Force a font size so the avatar text doesn't get smaller as the window resizes
+        font-weight: bold;
+        line-height: 1.4; // Guards against some line-height trolling from the parent
+        text-align: center;
+        text-transform: uppercase; // Force uppercase in avatars when team name is lowercase
+        // We don't need text selection on our letter
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+    }
+
+    .s-avatar--badge {
+        position: absolute;
+        right: -4px;
+        bottom: -4px;
+    }
+
+    .s-avatar--image {
+        width: var(--su-static16);
+        height: var(--su-static16);
+        border-radius: var(--br-sm);
+        display: block;
+    }
+
+    &.s-avatar__24 {
+        width: var(--su-static24);
+        height: var(--su-static24);
+
+        .s-avatar--letter {
+            font-size: 16px; // Force the font size regardless of the parent
+        }
+
+        .s-avatar--badge {
+            -webkit-transform: scale(1.1);
+            transform: scale(1.1);
+        }
+
+        .s-avatar--image {
+            width: var(--su-static24);
+            height: var(--su-static24);
+        }
+    }
+
+    &.s-avatar__32 {
+        width: var(--su-static32);
+        height: var(--su-static32);
+        border-radius: var(--br-md);
+
+        .s-avatar--letter {
+            font-size: 22px; // Force the font size regardless of the parent
+        }
+
+        .s-avatar--badge {
+            -webkit-transform: scale(1.3);
+            transform: scale(1.3);
+        }
+
+        .s-avatar--image {
+            width: var(--su-static32);
+            height: var(--su-static32);
+            border-radius: var(--br-md);
+        }
+    }
+
+    &.s-avatar__48 {
+        width: var(--su-static48);
+        height: var(--su-static48);
+        border-radius: var(--br-md);
+
+        .s-avatar--letter {
+            font-size: 34px; // Force the font size regardless of the parent
+        }
+
+        .s-avatar--badge {
+            -webkit-transform: scale(1.6);
+            transform: scale(1.6);
+        }
+
+        .s-avatar--image {
+            width: var(--su-static48);
+            height: var(--su-static48);
+            border-radius: var(--br-md);
+        }
+    }
+
+    &.s-avatar__64 {
+        width: var(--su-static64);
+        height: var(--su-static64);
+        border-radius: var(--br-lg);
+
+        .s-avatar--letter {
+            font-size: 44px; // Force the font size regardless of the parent
+        }
+
+        .s-avatar--badge {
+            -webkit-transform: scale(2.4);
+            transform: scale(2.4);
+        }
+
+        .s-avatar--image {
+            width: var(--su-static64);
+            height: var(--su-static64);
+            border-radius: var(--br-lg);
+        }
+    }
+
+    &.s-avatar__96 {
+        width: var(--su-static96);
+        height: var(--su-static96);
+        border-radius: calc(var(--br-lg) + var(--br-sm));
+
+        .s-avatar--letter {
+            font-size: 66px; // Force the font size regardless of the parent
+        }
+
+        .s-avatar--badge {
+            -webkit-transform: scale(3);
+            transform: scale(3);
+        }
+
+        .s-avatar--image {
+            width: var(--su-static96);
+            height: var(--su-static96);
+            border-radius: calc(var(--br-lg) + var(--br-sm));
+        }
+    }
+
+    &.s-avatar__128 {
+        width: var(--su-static128);
+        height: var(--su-static128);
+        border-radius: calc(var(--br-lg) + var(--br-lg));
+
+        .s-avatar--letter {
+            font-size: 88px; // Force the font size regardless of the parent
+        }
+
+        .s-avatar--badge {
+            -webkit-transform: scale(3);
+            transform: scale(3);
+        }
+
+        .s-avatar--image {
+            width: var(--su-static128);
+            height: var(--su-static128);
+            border-radius: calc(var(--br-lg) + var(--br-lg));
+        }
+    }
+}

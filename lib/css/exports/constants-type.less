@@ -1,0 +1,153 @@
+//
+//  STACK OVERFLOW
+//  CONSTANTS -- TYPOGRAPHY
+//
+//  This CSS comes from Stacks, our CSS & Pattern library for rapidly building
+//  Stack Overflow. For documentation of all these classes and how to contribute,
+//  visit https://stackoverflow.design/
+//
+//  These are the Stacks type variables. These should be used in place of
+//  hard-coded values within CSS declarations.
+//
+//
+//  ============================================================================
+//  $   FONT FAMILY (ff-)
+//  ----------------------------------------------------------------------------
+
+// Add Segoe UI Adjusted as a font family, and adjust its baseline
+@font-face {
+    font-family: "Segoe UI Adjusted";
+    src: local(Segoe UI);
+    ascent-override: 95%;
+}
+
+// Segoe UI is variable, but only in Windows 11, so add all the variants
+@font-face {
+    font-family: "Segoe UI Adjusted";
+    src: local(Segoe UI Italic);
+    ascent-override: 95%;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: "Segoe UI Adjusted";
+    src: local(Segoe UI Semibold);
+    ascent-override: 95%;
+    font-weight: 600;
+}
+
+@font-face {
+    font-family: "Segoe UI Adjusted";
+    src: local(Segoe UI Semibold Italic);
+    ascent-override: 95%;
+    font-style: italic;
+    font-weight: 600;
+}
+
+@font-face {
+    font-family: "Segoe UI Adjusted";
+    src: local(Segoe UI Bold);
+    ascent-override: 90%;
+    font-weight: 700;
+}
+
+@font-face {
+    font-family: "Segoe UI Adjusted";
+    src: local(Segoe UI Bold Italic);
+    ascent-override: 95%;
+    font-style: italic;
+    font-weight: 700;
+}
+
+@font-face {
+    font-family: "Segoe UI Adjusted";
+    src: local(Segoe UI Black);
+    ascent-override: 95%;
+    font-weight: 800;
+}
+
+@font-face {
+    font-family: "Segoe UI Adjusted";
+    src: local(Segoe UI Black Italic);
+    ascent-override: 95%;
+    font-style: italic;
+    font-weight: 800;
+}
+
+// TODO remove font-family Less variables. Keeping them here for now for comments.
+@ff-sans:
+    -apple-system, BlinkMacSystemFont, // San Francisco on macOS and iOS
+    "Segoe UI Adjusted", "Segoe UI", // Windows
+    "Liberation Sans", // Linux
+    sans-serif; // The final fallback for rendering in sans-serif.
+@ff-serif: Georgia, Cambria, "Times New Roman", Times, serif;
+@ff-mono:
+    ui-monospace, // San Francisco Mono on macOS and iOS
+    "Cascadia Mono", "Segoe UI Mono", // Newer Windows monospace fonts that are optionally installed. Most likely to be rendered in Consolas
+    "Liberation Mono", // Linux
+    Menlo, Monaco, Consolas, // A few sensible system font choices
+    monospace; // The final fallback for rendering in monospace.
+
+html,
+body {
+    --ff-sans: @ff-sans;
+    --ff-serif: @ff-serif;
+    --ff-mono: @ff-mono;
+    --theme-body-font-family: var(--ff-sans);
+
+    //  ============================================================================
+    //  $   FONT SIZES (fs-)
+    //      Base font-size is 13px.
+    //  ----------------------------------------------------------------------------
+    --fs-fine:           11px;
+    --fs-caption:        12px;
+    --fs-body1:          13px;
+
+    //  Relative to the root element
+    --fs-body2:               1.153846154rem;
+    --fs-body3:               1.307692308rem;
+    --fs-subheading:          1.461538462rem;
+    --fs-title:               1.615384615rem;
+    --fs-headline1:           2.076923077rem;
+    --fs-headline2:           2.615384615rem;
+    --fs-display1:            3.307692308rem;
+    --fs-display2:            4.230769231rem;
+    --fs-display3:            5.307692308rem;
+    --fs-display4:            7.615384615rem;
+
+    //  Relative to the parent
+    --fs-body2-relative:      1.153846154em;
+    --fs-body3-relative:      1.307692308em;
+    --fs-subheading-relative: 1.461538462em;
+    --fs-title-relative:      1.615384615em;
+    --fs-headline1-relative:  2.076923077em;
+    --fs-headline2-relative:  2.615384615em;
+    --fs-display1-relative:   3.307692308em;
+    --fs-display2-relative:   4.230769231em;
+    --fs-display3-relative:   5.307692308em;
+    --fs-display4-relative:   7.615384615em;
+
+    --fs-base: 13px;
+
+    //  ============================================================================
+    //  $   LINE HEIGHT (lh-)
+    //  ----------------------------------------------------------------------------
+    // Need to remove the unit off the font-size to make line-height unitless
+    // FIXME this shouldn't be public. Find a way to use unitless `--fs-base`.
+    --stacks-internals-lh-unit: 13;
+
+    // Now the various line-height variables
+    --lh-xs:    1;
+    --lh-sm:    calc((var(--stacks-internals-lh-unit) + 2) / var(--stacks-internals-lh-unit));
+    --lh-md:    calc((var(--stacks-internals-lh-unit) + 4) / var(--stacks-internals-lh-unit));
+    --lh-lg:    calc((var(--stacks-internals-lh-unit) + 8) / var(--stacks-internals-lh-unit));
+    --lh-xl:    calc((var(--stacks-internals-lh-unit) + 12) / var(--stacks-internals-lh-unit));
+    --lh-xxl:   2;
+
+    --lh-base: var(--lh-md);
+
+    //      Holdover line-heights from production. These are NOT to be used and
+    //      need to be deprecated.
+    //  ----------------------------------------------------------------------------
+    --lh-6:      ((var(--stacks-internals-lh-unit) + 6) / var(--stacks-internals-lh-unit));
+}

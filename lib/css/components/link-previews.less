@@ -1,0 +1,136 @@
+//
+//  STACK OVERFLOW
+//  LINK UNFURLS
+//
+//  This CSS comes from Stacks, our CSS & Pattern library for rapidly building
+//  Stack Overflow. For documentation of all these classes and how to contribute,
+//  visit https://stackoverflow.design/
+//
+//  ============================================================================
+//  $   BASE STYLE
+//  ----------------------------------------------------------------------------
+.s-link-preview {
+    border: 1px solid var(--bc-medium);
+    border-radius: var(--br-sm);
+    text-align: left;
+    box-shadow: var(--bs-sm);
+}
+
+.s-link-preview--header {
+    display: flex;
+    background: var(--black-025);
+    border-top-left-radius: var(--br-sm);
+    border-top-right-radius: var(--br-sm);
+    border-bottom: 1px solid var(--bc-medium);
+    padding: var(--su12) var(--su8);
+}
+
+.s-link-preview--icon {
+    margin-right: var(--su8);
+    color: var(--black-800); // Set the default color of the integration's icon. Most likely this will be overridden by the integration icon's native colors.
+}
+
+.s-link-preview--title {
+    font-size: var(--fs-body3);
+    font-weight: bold;
+    color: var(--black-900);
+}
+
+a.s-link-preview--title {
+    text-decoration: none;
+    color: var(--theme-link-color);
+    cursor: pointer;
+
+    &.s-link__visited:visited {
+        color: var(--theme-link-color);
+        text-decoration: none;
+
+        .highcontrast-mode({ text-decoration: underline; });
+    }
+
+    &:hover,
+    &.s-link__visited:hover,
+    &:active,
+    &.s-link__visited:active {
+        color: var(--theme-link-color-hover);
+        text-decoration: none;
+
+        .highcontrast-mode({ text-decoration: underline; });
+    }
+}
+
+.s-link-preview--details {
+    font-size: var(--fs-caption);
+    color: var(--black-500);
+    margin-top: var(--su2);
+
+    #stacks-internals #screen-sm({
+        margin-top: var(--su4);
+    });
+}
+
+.s-link-preview--body {
+    padding: var(--su12);
+    font-size: var(--fs-body2);
+
+    *:last-child {
+        margin-bottom: 0;
+    }
+}
+
+.s-link-preview--code {
+    pre {
+        border-radius: 0 !important;
+        margin: 0;
+        max-height: 400px;
+    }
+}
+
+.s-link-preview--footer {
+    display: flex;
+    justify-content: space-between;
+    background: var(--black-025);
+    border-bottom-left-radius: var(--br-sm);
+    border-bottom-right-radius: var(--br-sm);
+    border-top: 1px solid var(--bc-medium);
+    padding: var(--su12);
+    font-size: var(--fs-caption);
+
+    #stacks-internals #screen-sm({
+        flex-direction: column;
+    });
+}
+
+.s-link-preview--url {
+    overflow: hidden;
+    max-width: 100%;
+    text-overflow: ellipsis !important;
+    white-space: nowrap;
+}
+
+.s-link-preview--misc {
+    color: var(--black-500);
+    padding-left: var(--su4);
+
+    #stacks-internals #screen-sm({
+        padding-left: 0;
+        padding-top: var(--su2);
+    });
+}
+
+.s-link-preview--details a,
+.s-link-preview--footer a {
+    text-decoration: none;
+    cursor: pointer;
+    color: var(--black-500);
+
+    &:visited {
+        color: var(--black-700);
+    }
+
+    &:hover,
+    &:active,
+    &:focus {
+        color: var(--black-600);
+    }
+}

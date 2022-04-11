@@ -1,0 +1,237 @@
+//
+//  TAGS
+//
+//  TABLE OF CONTENTS
+//  • BASE STYLE
+//  • STYLE VARIATIONS
+//  • LAYOUTS & SIZES
+//
+//  ===========================================================================
+//  $   MIXIN
+//      Any tag we use will always modify the same items, so to save time,
+//      here's a mixin to state all that CSS.
+//  ---------------------------------------------------------------------------
+
+.s-tag-styles(@border: transparent, @background: transparent, @color: inherit) {
+    border-color: @border;
+    background-color: @background;
+    color: @color;
+
+    .highcontrast-mode({
+        border-color: currentColor;
+    });
+
+    .s-tag--dismiss {
+        color: inherit;
+        background-color: transparent;
+
+        &:hover {
+            color: @background;
+            background-color: @color;
+
+            .highcontrast-mode({
+                color: var(--white); // We do not want this color to remain fixed
+            });
+        }
+    }
+}
+
+.s-tag-selected-styles(@border: transparent, @background: transparent, @color: inherit) {
+    border-color: @border;
+    background-color: @background;
+    color: @color;
+
+    .highcontrast-mode({
+        border-color: currentColor;
+    });
+}
+
+.s-tag-hover-styles(@border-hover: transparent, @background-hover: transparent, @color-hover: inherit) {
+    &:hover,
+    &:focus,
+    &:active {
+        border-color: @border-hover;
+        background-color: @background-hover;
+        color: @color-hover;
+
+        .highcontrast-mode({
+            border-color: currentColor;
+        });
+    }
+}
+
+
+//  ===========================================================================
+//  $   BASE STYLE
+//      The same style is applied to all tags. Do not modify the core style.
+//  ---------------------------------------------------------------------------
+.s-tag {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 0;
+    padding-left: var(--su4);
+    padding-right: var(--su4);
+    border-style: solid;
+    border-width: 1px;
+    border-radius: var(--br-sm);
+    font-size: var(--fs-caption);
+    line-height: 1.846153846;
+    text-decoration: none;
+    vertical-align: middle;
+    white-space: nowrap;
+
+    .s-tag-styles(var(--theme-tag-border-color), var(--theme-tag-background-color), var(--theme-tag-color));
+
+    .highcontrast-mode({ text-decoration: none; });
+
+    &.is-selected {
+        .s-tag-selected-styles(transparent, var(--theme-secondary-200), var(--theme-secondary-900));
+    }
+
+    //  -- SIZES
+    &.s-tag__xs {
+        font-size: var(--fs-fine);
+        line-height: 1.4;
+        padding-left: var(--su2);
+        padding-right: var(--su2);
+    }
+    &.s-tag__sm {
+        font-size: var(--fs-caption);
+        line-height: 1.5;
+    }
+    &.s-tag__md {
+        padding-left: var(--su6);
+        padding-right: var(--su6);
+        font-size: var(--fs-body2);
+        line-height: 1.733333333;
+    }
+    &.s-tag__lg {
+        padding-left: var(--su6);
+        padding-right: var(--su6);
+        border-radius: calc(var(--br-sm) + 1px);
+        font-size: var(--fs-subheading);
+        line-height: 1.684210526;
+    }
+}
+
+a.s-tag:not(.is-selected) {
+    .s-tag-hover-styles(var(--theme-tag-hover-border-color), var(--theme-tag-hover-background-color), var(--theme-tag-hover-color));
+}
+
+//  $$  DISMISS ICON
+//      Style adjustment to @Svg.ClearSm
+//  ---------------------------------------------------------------------------
+.s-tag--dismiss {
+    display: flex;
+    align-content: center;
+    align-self: center;
+    justify-content: center;
+    width: var(--su-static16);
+    height: var(--su-static16);
+    margin-left: var(--su4);
+    padding: var(--su1);
+    border-radius: var(--br-sm);
+    cursor: pointer;
+
+    &:hover {
+        color: var(--white);
+    }
+}
+
+//  $$  SPONSOR IMAGE
+//      The small sponsor favicon displayed within a tag
+//  ---------------------------------------------------------------------------
+.s-tag--sponsor {
+    display: inline-flex;
+    align-self: center;
+    margin: calc(var(--su1) * -1) var(--su4) calc(var(--su2) * -1) calc(var(--su2) * -1);
+    max-width: calc(var(--su-static16) + var(--su-static2));
+    border-radius: calc(var(--br-sm) - 1px);
+
+    .svg-icon,
+    img {
+        width: 100%;
+        height: 100%;
+    }
+}
+
+
+//  ===========================================================================
+//  $   STYLE VARIATIONS
+//      This is what can be modified on each community (for the most part).
+//  ===========================================================================
+//  $$  Required Tag
+//  ---------------------------------------------------------------------------
+.s-tag__required {
+    .s-tag-styles(var(--bc-darker), var(--black-075), var(--black-700));
+
+    &.is-selected {
+        .s-tag-selected-styles(var(--black-500), var(--black-200), var(--black-900));
+    }
+}
+a.s-tag__required:not(.is-selected) {
+    .s-tag-hover-styles(var(--black-300), var(--black-100), var(--black-800));
+}
+
+//  $$  Moderator Tag
+//  ---------------------------------------------------------------------------
+.s-tag__moderator {
+    .s-tag-styles(var(--red-200), var(--red-050), var(--red-800));
+
+    &.is-selected {
+        .s-tag-selected-styles(var(--red-400), var(--red-200), var(--red-800));
+    }
+}
+a.s-tag__moderator:not(.is-selected) {
+    .s-tag-hover-styles(var(--red-300), var(--red-100), var(--red-900));
+}
+
+//  $$  Muted Tag
+//  ---------------------------------------------------------------------------
+.s-tag__muted {
+    .s-tag-styles(transparent, var(--black-075), var(--black-700));
+
+    &.is-selected {
+        .s-tag-selected-styles(transparent, var(--black-200), var(--black-900));
+    }
+}
+a.s-tag__muted:not(.is-selected) {
+    .s-tag-hover-styles(transparent, var(--black-100), var(--black-800));
+}
+
+//  $$  Tag with Icons (watched, ignored)
+//  ---------------------------------------------------------------------------
+.s-tag__watched,
+.s-tag__ignored {
+    position: relative;
+    padding-left: 22px;
+
+    &:before {
+        content: "";
+        display: block;
+        width: 14px;
+        height: 14px;
+        margin-right: var(--su2);
+        background-color: currentColor;
+        position: absolute;
+        left: 4px;
+        top: calc(50% - 7px);
+        -webkit-mask: var(--s-tag-icon) no-repeat center;
+        mask: var(--s-tag-icon) no-repeat center;
+        -webkit-mask-size: contain;
+        mask-size: contain;
+    }
+}
+
+//  $$  Watched Tag
+//  ---------------------------------------------------------------------------
+.s-tag__watched {
+    --s-tag-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 14 14'%3E%3Cpath d='M7.05 1C2.63 1 0 6.5 0 6.5S2.63 12 7.05 12C11.38 12 14 6.5 14 6.5S11.37 1 7.05 1ZM7 10.17A3.59 3.59 0 0 1 3.5 6.5 3.6 3.6 0 0 1 7 2.83c1.94 0 3.5 1.65 3.5 3.67A3.57 3.57 0 0 1 7 10.17Zm0-1.84c.97 0 1.75-.81 1.75-1.83S7.97 4.67 7 4.67s-1.75.81-1.75 1.83S6.03 8.33 7 8.33Z'/%3E%3C/svg%3E");
+}
+
+//  $$  Ignored Tag
+//  ---------------------------------------------------------------------------
+.s-tag__ignored {
+    --s-tag-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 14 14'%3E%3Cpath d='M3.52 7.38 1.58 9.26A12.38 12.38 0 0 1 0 7s2.63-5.14 7.05-5.14c.66 0 1.28.12 1.86.32L7.44 3.6a3.48 3.48 0 0 0-3.92 3.78ZM5.3 9.99c.5.28 1.1.44 1.71.44 1.94 0 3.5-1.53 3.5-3.43 0-.62-.17-1.21-.47-1.72L8.7 6.6a1.73 1.73 0 0 1-2.08 2.07L5.29 10Zm6.23-6.19A12.7 12.7 0 0 1 14 7s-2.63 5.14-6.95 5.14A6.1 6.1 0 0 1 4 11.3L2.27 13l-1.4-1.36L11.9 1l1.23 1.2-1.6 1.6Z'/%3E%3C/svg%3E");
+}

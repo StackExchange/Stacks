@@ -1,0 +1,197 @@
+//
+//  STACK OVERFLOW
+//  POPOVERS
+//
+//  This CSS comes from Stacks, our CSS & Pattern library for rapidly building
+//  Stack Overflow. For documentation of all these classes and how to contribute,
+//  visit https://stackoverflow.design/
+//
+//  TABLE OF CONTENTS
+//  • VARIABLES
+//  • BASE STYLE
+//  • ARROWS
+//  • LOCATIONS
+//
+//  ============================================================================
+//  $   BASE STYLES
+//  ----------------------------------------------------------------------------
+.s-popover {
+    display: none;
+    position: absolute;
+    max-width: 24rem;
+    padding: var(--su12);
+    z-index: var(--zi-popovers);
+    border-radius: var(--br-md);
+    border: 1px solid var(--bc-medium);
+    background-color: var(--white);
+    box-shadow: var(--bs-md);
+    color: var(--fc-dark);
+    font-size: var(--fs-body1);
+    min-width: 12rem;
+    width: 100%;
+
+    // Guard against popovers being in a container with white-space: nowrap
+    // Without this, the content pops *out* of the popover.
+    white-space: normal; 
+
+    .dark-mode({
+        background-color: var(--black-075);
+        border-color: var(--bc-light);
+        box-shadow: var(--bs-lg);
+    });
+
+    &.s-popover__tooltip {
+        width: auto;
+        min-width: unset;
+    }
+
+    &.is-visible {
+        display: block;
+    }
+
+    &[data-popper-placement^="top"] > .s-popover--arrow,
+    .s-popover--arrow__bc,
+    .s-popover--arrow__bl,
+    .s-popover--arrow__br {
+        bottom: calc(var(--su6) * -1);
+
+        &:after {
+            bottom: 1px;
+            box-shadow: 2px 2px 5px 0 hsla(0, 0, 0, 0.07), 2px 2px 2px -1px hsla(0, 0, 0, 0.1);
+
+            .highcontrast-mode({
+                box-shadow: 1px 1px 0 0 var(--bc-medium);
+            });
+        }
+    }
+
+    &[data-popper-placement^="bottom"] > .s-popover--arrow,
+    .s-popover--arrow__tc,
+    .s-popover--arrow__tl,
+    .s-popover--arrow__tr {
+        top: calc(var(--su6) * -1);
+
+        &:after {
+            top: 1px;
+            box-shadow: -1px -1px 1px 0 hsla(0, 0, 0, 0.12);
+
+            .highcontrast-mode({
+                box-shadow: -1px -1px 0 0 var(--bc-medium);
+            });
+        }
+    }
+
+    &[data-popper-placement^="left"] > .s-popover--arrow,
+    .s-popover--arrow__rc,
+    .s-popover--arrow__rt,
+    .s-popover--arrow__rb {
+        right: calc(var(--su6) * -1);
+
+        &:after {
+            right: 1px;
+            box-shadow: 2px -2px 5px 0 hsla(0, 0, 0, 0.07), 2px -2px 2px -1px hsla(0, 0, 0, 0.1);
+
+            .highcontrast-mode({
+                box-shadow: 1px -1px 0 0 var(--bc-medium);
+            });
+        }
+    }
+
+    &[data-popper-placement^="right"] > .s-popover--arrow,
+    .s-popover--arrow__lc,
+    .s-popover--arrow__lt,
+    .s-popover--arrow__lb {
+        left: calc(var(--su6) * -1);
+
+        &:after {
+            left: 1px;
+            box-shadow: -2px 2px 5px 0 hsla(0, 0, 0, 0.07), -2px 2px 2px -1px hsla(0, 0, 0, 0.1);
+
+            .highcontrast-mode({
+                box-shadow: -1px 1px 0 0 var(--bc-medium);
+            });
+        }
+    }
+
+    .s-popover--arrow__tc,
+    .s-popover--arrow__bc {
+        left: calc(50% - var(--su6));
+    }
+
+    .s-popover--arrow__lc,
+    .s-popover--arrow__rc {
+        top: calc(50% - var(--su6));
+    }
+
+    .s-popover--arrow__tr,
+    .s-popover--arrow__br {
+        right: var(--su12);
+    }
+
+    .s-popover--arrow__rb,
+    .s-popover--arrow__lb {
+        bottom: var(--su12);
+    }
+}
+
+//  ============================================================================
+//  $   CLOSE BUTTON
+//  ----------------------------------------------------------------------------
+
+.s-popover--close {
+    float: right; // Use floats for title wrapping
+    top: calc(var(--su8) * -1); // Compensate for s-popover's padding
+    right: calc(var(--su8) * -1); // Compensate for s-popover's padding
+    padding: var(--su8) !important;
+}
+
+//  ============================================================================
+//  $   ARROWS
+//  ----------------------------------------------------------------------------
+//
+//  TABLE OF CONTENTS
+//  • BASE STYLE
+//  • LOCATIONS
+//      • TOP
+//      • BOTTOM
+//      • TOP & BOTTOM DIRECTIONS (Left, Center, Right)
+//      • LEFT
+//      • RIGHT
+//      • LEFT & RIGHT DIRECTIONS (Top, Center, Bottom)
+//
+//  ============================================================================
+//  $   BASE STYLE
+//      Sets the base arrow style for tooltips, popovers, and dropdowns.
+//  ----------------------------------------------------------------------------
+
+.s-popover--arrow,
+.s-popover--arrow:before,
+.s-popover--arrow:after {
+    position: absolute;
+    display: block;
+    width: var(--su12);
+    height: var(--su12);
+    z-index: -1;
+}
+
+.s-popover--arrow {
+    color: var(--white);
+
+    .dark-mode({
+        color: var(--black-075);
+    });
+}
+
+.s-popover--arrow:before {
+    // This renders our border
+    content: '';
+    transform: rotate(45deg);
+}
+
+.s-popover--arrow:after {
+    // This renders our foreground color
+    content: '';
+    transform: rotate(45deg);
+    border-radius: 1.5px;
+    background: currentColor;
+}

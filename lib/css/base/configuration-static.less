@@ -1,0 +1,61 @@
+// DEPRECATED - DO NOT USE
+//
+// Usage of these options is similar to what's described in configuration-dynamic.less, but the options
+// in this file also apply to the "static" part of Stacks. In particular this means that these options cannot
+// be different per-site in the Q&A project, because the static part is a shared CSS file across all Q&A sites.
+
+// OPTIONS
+// -------
+//
+// #stacks-config-static { @css-reset: normalize; }
+//
+//      `normalize` is the default, which will include normalize.css (the Nicolas Gallagher reset). Other
+//      legal options are `meyer` for the Eric Meyer reset, and `none` if no CSS reset should be compiled in.
+//
+//
+// #stacks-config-static { @breakpoints: 1264px, 980px, 640px; }
+//
+//      @breakpoints is a list of values "optional_selector1, large_breakpoint1, medium_breakpoint1, small_breakpoint1, optional_selector2, ..."
+//
+//      Example:
+//
+//          @breakpoints:
+//              1264px, 980px, 640px,
+//              'html.smaller_breakpoints', 1164px, 880px, 540px,
+//              'html.even_smaller_breakpoints', 200px, 100px, 50px;
+//
+//      This will generate the responsive atomic classes for each group of breakpoints. If a breakpoint group is preceded by a string,
+//      that string will be prepended to the selector, so the breakpoints can be different based on a root element class. This also allows
+//      you to completely disable the responsive atomic class unless a modifier class is present somewhere, by not providing a
+//      breakpoint group that has no selector. Note that it doesn't make sense to have more than one group that leaves the selector off.
+//      Also note that if you have a group *with* a selector and a group *without* one, or selectors that aren't mutually exclusive otherwise,
+//      you may end up with undesireable effects. For example:
+//
+//          <html class="smaller_breakpoints"
+//              ...
+//              <div class="lg:d-none"></div>
+//              ...
+//          </html>
+//
+//      With the example @breakpoints setting from above, this <div> will be hidden below 1264px even though the smaller_breakpoints class
+//      is on the root element, because the selector-free breakpoint group still applies.
+//
+//      Any selector, if given, MUST select the root (html) element.
+//
+// Previously, the CSS reset option was a simple global variable. For backwards compatibility, we'll handle it correctly for a bit.
+@stacks-include-css-reset: this-is-deprecated;
+
+#stacks-config-static {
+
+    #handle-old-reset-option() when (@stacks-include-css-reset = this-is-deprecated) {
+        // the variable wasn't overridden -- good!
+        @css-reset: normalize; // other possible values are `meyer` and `none`
+    }
+    #handle-old-reset-option() when not (@stacks-include-css-reset = this-is-deprecated) {
+        // Somebody overwrote the variable, so this project is using the legacy option. Handle it.
+        @css-reset: @stacks-include-css-reset;
+    }
+    #handle-old-reset-option();
+
+    @breakpoints: @breakpoint-lg, @breakpoint-md, @breakpoint-sm;
+}

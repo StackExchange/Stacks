@@ -1,0 +1,130 @@
+//
+//  STACK OVERFLOW
+//  CODE BLOCKS
+//
+//  This CSS comes from Stacks, our CSS & Pattern library for rapidly building
+//  Stack Overflow. For documentation of all these classes and how to contribute,
+//  visit https://stackoverflow.design/
+//
+
+pre.s-code-block {
+    font-size: var(--fs-body1);
+    font-family: var(--ff-mono);
+    line-height: var(--lh-md);
+    color: var(--highlight-color);
+    background-color: var(--highlight-bg);
+    border-radius: var(--br-md);
+    margin: 0;
+    padding: var(--su12);
+    overflow: auto;
+
+    @scrollbar-styles();
+}
+
+code[class*="language-"],
+pre.s-code-block > code {
+    font-family: inherit;
+
+    .hljs-subst {
+        color: var(--highlight-color);
+    }
+
+    .hljs-comment {
+        color: var(--highlight-comment);
+    }
+
+    .hljs-keyword,
+    .hljs-selector-tag,
+    .hljs-meta-keyword,
+    .hljs-doctag,
+    .hljs-section {
+        color: var(--highlight-keyword);
+    }
+
+    .hljs-attr {
+        color: var(--highlight-attribute);
+    }
+
+    .hljs-attribute {
+        color: var(--highlight-symbol);
+    }
+
+    .hljs-name,
+    .hljs-type,
+    .hljs-number,
+    .hljs-selector-id,
+    .hljs-quote,
+    .hljs-template-tag {
+        color: var(--highlight-namespace);
+    }
+
+    .hljs-selector-class {
+        color: var(--highlight-keyword);
+    }
+
+    .hljs-string,
+    .hljs-regexp,
+    .hljs-symbol,
+    .hljs-variable,
+    .hljs-template-variable,
+    .hljs-link,
+    .hljs-selector-attr {
+        color: var(--highlight-variable);
+    }
+
+    .hljs-meta,
+    .hljs-selector-pseudo {
+        color: var(--highlight-keyword);
+    }
+
+    .hljs-built_in,
+    .hljs-title,
+    .hljs-literal {
+        color: var(--highlight-literal);
+    }
+
+    .hljs-bullet,
+    .hljs-code {
+        color: var(--highlight-punctuation);
+    }
+
+    .hljs-meta-string {
+        color: var(--highlight-variable);
+    }
+
+    .hljs-deletion {
+        color: var(--highlight-deletion);
+    }
+
+    .hljs-addition {
+        color: var(--highlight-addition);
+    }
+
+    .hljs-emphasis {
+        font-style: italic;
+    }
+
+    .hljs-strong {
+        font-weight: bold;
+    }
+}
+
+pre.s-code-block .s-code-block--line-numbers {
+    float: left;
+    color: var(--black-300);
+    text-align: right;
+    border-width: 0;
+    border-style: solid;
+    border-color: var(--bc-medium);
+    border-right-width: 1px;
+    margin: calc(var(--su12) * -1);
+    margin-right: var(--su12);
+    padding: var(--su12);
+    padding-right: var(--su6);
+    background-color: var(--black-050);
+
+    .dark-mode({
+        background-color: var(--black-025);
+    });
+}
+

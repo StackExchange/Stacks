@@ -1,0 +1,133 @@
+//
+//  STACK OVERFLOW
+//  MODALS
+//
+//  This CSS comes from Stacks, our CSS & Pattern library for rapidly building
+//  Stack Overflow. For documentation of all these classes and how to contribute,
+//  visit https://stackoverflow.design/
+//
+//  TABLE OF CONTENTS
+//  • BASE STYLE
+//  • LAYOUT TRANSITIONS
+//
+//  ============================================================================
+//  $   BASE STYLE
+//  ----------------------------------------------------------------------------
+.s-modal {
+    display: flex;
+    visibility: hidden;
+    position: fixed;
+    z-index: var(--zi-hide); // Make sure it's also below everything so we can't interact with it.
+
+    // This fills the entire viewport without having to worry about size.
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    align-items: center;
+    justify-content: center;
+    background-color: fade(@black-900, 50%); // Background remains fixed
+    opacity: 0;
+    backface-visibility: hidden;
+    transition: opacity 100ms var(--te-smooth) 0s, z-index 0s 100ms, visibility 0s 100ms; // Transition out
+    will-change: visibility, z-index, opacity; // Not supported in Edge
+
+    &[aria-hidden="false"],
+    &[aria-hidden="false"] .s-modal--dialog {
+        visibility: visible;
+        z-index: var(--zi-modals);
+        opacity: 1;
+        transform: translate3d(0, 0, 0) scale3d(1, 1, 1);
+        transition: opacity 100ms var(--te-smooth) 10ms, z-index 0s 0s, visibility 0s 0s, transform 100ms var(--te-smooth) 10ms, transform 100ms var(--te-smooth) 10ms; // Transition in
+    }
+}
+
+.s-modal--dialog {
+    overflow-y: auto;
+    visibility: hidden;
+    z-index: var(--zi-hide); // Make sure it's also below everything so we can't interact with it.
+    max-width: 600px;
+    max-height: 100%;
+    padding: var(--su24);
+    border-radius: var(--br-lg);
+    background-color: var(--white);
+    box-shadow: var(--bs-lg);
+    opacity: 0;
+    backface-visibility: hidden;
+    transform: translate3d(0, 30%, 0) scale3d(0.6, 0.6, 0.6);
+
+    .dark-mode({
+        background-color: var(--black-100);
+    });
+
+    @scrollbar-styles();
+
+    transition: opacity 200ms var(--te-smooth) 0s, z-index 0s 100ms, visibility 0s 100ms, transform 100ms var(--te-smooth) 0s, transform 100ms var(--te-smooth) 0s; // Transition out
+    will-change: visibility, z-index, opacity, transform; // Not supported by Edge
+
+    .s-modal[aria-hidden="false"] & {
+        transform: translate3d(0, 0, 0) scale3d(1, 1, 1); // Transition in
+    }
+}
+
+//  [1] To override .s-btn class attributes
+.s-modal--close {
+    position: absolute !important; // [1]
+    top: var(--su8);
+    right: var(--su8);
+    padding: var(--su12) !important; // [1]
+
+    .svg-icon {
+        margin: 0 !important;
+    }
+}
+
+//  ============================================================================
+//  $   DIALOG PIECES
+//  ----------------------------------------------------------------------------
+.s-modal--header {
+    margin-bottom: var(--su16);
+    color: var(--fc-dark);
+    font-size: var(--fs-headline1);
+    font-weight: normal;
+    line-height: var(--lh-sm);
+}
+
+.s-modal--body {
+    margin-bottom: var(--su24);
+    color: var(--fc-medium);
+}
+
+.s-modal--footer {
+    margin-top: var(--su24);
+}
+
+
+//  ============================================================================
+//  $   STATES
+//  ----------------------------------------------------------------------------
+.s-modal.has-danger,
+.s-modal.s-modal__danger {
+    background-color: darken(fade(@red-900, 50%), 23%);
+
+    .s-modal--header {
+        color: var(--red-600);
+    }
+}
+
+.s-modal.s-modal__celebration .s-modal--dialog {
+    padding-top: var(--su64);
+    .bg-confetti-animated;
+
+    .s-modal--close {
+        top: var(--su48);
+    }
+}
+
+//  ============================================================================
+//  $   SIZES
+//  ----------------------------------------------------------------------------
+.s-modal__full {
+    max-width: calc(100% - var(--su48));
+    max-height: calc(100% - var(--su48));
+}
