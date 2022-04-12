@@ -27,7 +27,12 @@ description: Badges are labels used for flags, earned achievements, and number t
                                     </span>
                                 </span>
                             {% else %}
-                                <span class="{{ item.html }}">{{ item.label }}</span>
+                                <span class="{{ item.html }}">
+                                    {% if item.icon %}
+                                        {% icon item.icon, "mr4" %}
+                                    {% endif %}
+                                    {{ item.label }}
+                                </span>
                             {% endif %}
                         </td>
                         <td>{{ item.description }}</td>
