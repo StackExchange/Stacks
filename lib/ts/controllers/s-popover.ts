@@ -302,8 +302,6 @@ export class PopoverController extends BasePopoverController {
     public override connect(): void {
         super.connect();
 
-        //Make sure the popover is screen reader friendly
-        this.referenceElement.setAttribute("role", "button");
         this.toggleAccessibilityAttributes();
     }
 
