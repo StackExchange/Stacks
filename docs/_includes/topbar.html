@@ -1,12 +1,12 @@
 <header class="s-topbar {{ additionalClass }} z-base js-topbar-example">
     <div class="s-topbar--container {{ containerClass }}">
         {% if showMenu %}
-            <a href="#" class="s-topbar--menu-btn"><span></span></a>
+            <a href="#" class="s-topbar--menu-btn" aria-label="menu"><span></span></a>
         {% else %}
-            <a href="#" class="s-topbar--menu-btn d-none sm:d-flex"><span></span></a>
+            <a href="#" class="s-topbar--menu-btn d-none sm:d-flex" aria-label="menu"><span></span></a>
         {% endif %}
 
-        <a href="#" class="s-topbar--logo">
+        <a href="#" class="s-topbar--logo" aria-label="logo">
             {% icon "LogoGlyph", "native" %}
         </a>
         {% if showNotices %}
@@ -44,10 +44,10 @@
         {% endunless %}
 
         {% unless hideSearch %}
-            <form id="search" class="s-topbar--searchbar" autocomplete="off">
+            <form class="s-topbar--searchbar" autocomplete="off">
                 {% unless hideSelect %}
                     <div class="s-select">
-                        <select>
+                        <select aria-label="Search scope">
                             <option selected="selected">
                                 All
                             </option>
@@ -69,19 +69,19 @@
 
         <ol class="s-topbar--content">
             <li>
-                <a href="#" class="s-topbar--item" title="Inbox">
+                <a href="#" class="s-topbar--item" aria-label="Inbox">
                     {% icon "Inbox" %}
                     <span class="s-activity-indicator s-activity-indicator__danger">3</span>
                 </a>
             </li>
             <li>
-                <a href="#" class="s-topbar--item" title="Achievements">
+                <a href="#" class="s-topbar--item" aria-label="Achievements">
                     {% icon "Achievements" %}
                     <span class="s-activity-indicator s-activity-indicator__success">+10</span>
                 </a>
             </li>
             <li>
-                <a href="#" class="s-topbar--item" title="Review queues">
+                <a href="#" class="s-topbar--item" aria-label="Review queues">
                     {% icon "ReviewQueue" %}
                     <div class="s-activity-indicator s-activity-indicator__danger">
                         <div class="v-visible-sr">New activity</div>
@@ -89,12 +89,12 @@
                 </a>
             </li>
             <li>
-                <a href="#" class="s-topbar--item" title="Help center">
+                <a href="#" class="s-topbar--item" aria-label="Help center">
                     {% icon "Help" %}
                 </a>
             </li>
             <li>
-                <a href="#" class="s-topbar--item" title="Site switcher">
+                <a href="#" class="s-topbar--item" aria-label="Site switcher">
                     {% icon "StackExchange" %}
                 </a>
             </li>
@@ -124,7 +124,7 @@
                     <li>
                         <a href="#" class="s-topbar--item s-user-card s-user-card__small">
                             <span class="s-avatar s-avatar__24 s-user-card--avatar">
-                                <img class="s-avatar--image" src="{{ "/assets/img/anonymous-user.svg" | url }}" />
+                                <img class="s-avatar--image" alt="demo avatar" src="{{ "/assets/img/anonymous-user.svg" | url }}" />
                                 <span class="v-visible-sr">John Doe</span>
                             </span>
                             <div class="s-user-card--info">
