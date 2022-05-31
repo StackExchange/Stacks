@@ -41,7 +41,7 @@
         align-items: center;
         border-bottom: none;
         gap: var(--su12);
-        padding: var(--su12);
+        padding: var(--su4) var(--su12);
 
         .s-post-summary--stats {
             align-items: center;
@@ -64,13 +64,24 @@
             .v-visible-sr;
         }
         .s-post-summary--content {
+            align-items: center;
             display: flex;
             flex-direction: row;
+            gap: var(--su12);
         }
         .s-post-summary--content-title{
             flex-grow: 1;
             font-size: var(--fs-body1);
             margin-bottom: 0;
+
+            a {
+                .v-truncate2;
+            }
+        }
+        .s-post-summary--content-menu-button {
+            margin-right: calc(var(--su8) * -1);
+            inset: initial;
+            position: relative !important;
         }
         .s-post-summary--meta {
             .s-user-card {
