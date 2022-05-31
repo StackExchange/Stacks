@@ -18,7 +18,9 @@
     }
 
     #stacks-internals #screen-md({
-        flex-direction: column;
+        &:not(.s-post-summary__micro) {
+            flex-direction: column;
+        }
     });
 
     &.s-post-summary__minimal {
@@ -32,6 +34,48 @@
 
         .s-post-summary--content {
             width: 100%;
+        }
+    }
+
+    &.s-post-summary__micro {
+        align-items: center;
+        border-bottom: none;
+        gap: var(--su12);
+        padding: var(--su12);
+
+        .s-post-summary--stats {
+            align-items: center;
+            flex-direction: row;
+            font-size: var(--fs-caption);
+            margin: 0;
+            width: auto;
+
+            .s-post-summary--stats-item {
+                border-radius: var(--br-sm);
+                padding: calc(var(--su2) + var(--su1)) var(--su4);
+                width: calc(var(--su32) + var(--su6));
+
+                &:not(.has-answers) {
+                    border: 1px solid var(--black-150);
+                }
+            }
+        }
+        .s-post-summary--stats-item-unit {
+            .v-visible-sr;
+        }
+        .s-post-summary--content {
+            display: flex;
+            flex-direction: row;
+        }
+        .s-post-summary--content-title{
+            flex-grow: 1;
+            font-size: var(--fs-body1);
+            margin-bottom: 0;
+        }
+        .s-post-summary--meta {
+            .s-user-card {
+                flex-wrap: nowrap;
+            }
         }
     }
 
