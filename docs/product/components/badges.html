@@ -5,42 +5,9 @@ figma: https://www.figma.com/file/i2HeoRFKn6MXAWn2UuTDHc/Badges
 description: Badges are labels used for flags, earned achievements, and number totals.
 ---
 <section class="stacks-section">
-    {% header "h2", "Classes" %}
-    <div class="overflow-x-auto mb32" tabindex="0">
-        <table class="wmn5 s-table s-table__bx-simple va-middle">
-            <thead>
-                <tr>
-                    <th class="s-table--cell3" scope="col">Class</th>
-                    <th class="s-table--cell2" scope="col">Example</th>
-                    <th scope="col">Description</th>
-                </tr>
-            </thead>
-            <tbody class="fs-caption">
-                {% for item in badges %}
-                    <tr>
-                        <th scope="row"><code class="stacks-code">.{{ item.class }}</code></th>
-                        <td>
-                            {% if item.repType %}
-                                <span class="{{ item.html }}">
-                                    <span class="s-award-bling s-award-bling__{{ item.repType }}">
-                                        {{ item.label }}
-                                    </span>
-                                </span>
-                            {% else %}
-                                <span class="{{ item.html }}">{{ item.label }}</span>
-                            {% endif %}
-                        </td>
-                        <td>{{ item.description }}</td>
-                    </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-    </div>
-</section>
-
-<section class="stacks-section">
-    {% header "h2", "Examples" %}
-    {% header "h3", "Badges default" %}
+    {% header "h2", "Styles" %}
+    {% header "h3", "Default" %}
+    <p class="stacks-copy">Achievement badges that a user earns within a community.</p>
     <div class="stacks-preview">
 {% highlight html %}
 <span class="s-badge">
@@ -60,27 +27,51 @@ description: Badges are labels used for flags, earned achievements, and number t
 </span>
 {% endhighlight %}
         <div class="stacks-preview--example">
-            <div class="d-flex gs4 fw-wrap">
-                <span class="flex--item s-badge">
-                    <span class="s-award-bling s-award-bling__gold">
-                        Great Question
-                    </span>
-                </span>
-                <span class="flex--item s-badge">
-                    <span class="s-award-bling s-award-bling__silver">
-                        Favorite Question
-                    </span>
-                </span>
-                <span class="flex--item s-badge">
-                    <span class="s-award-bling s-award-bling__bronze">
-                        Altruist
-                    </span>
-                </span>
+            <div class="overflow-x-auto">
+                <table class="wmn5 s-table s-table__bx-simple">
+                    <thead>
+                        <tr>
+                            <th scope="col">Example</th>
+                            <th scope="col" class="s-table--cell2">Class</th>
+                            <th scope="col">Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for badge in badges.default %}
+                            {% assign types = badge.classes %}
+                            {% for type in types %}
+                                <tr>
+                                    <td class="va-middle pr8">
+                                        <span class="{{ type.html }}">
+                                            {% if type.repType != nil %}
+                                                <span class="s-award-bling s-award-bling__{{ type.repType }}">
+                                                    {{ type.label }}
+                                                </span>
+                                            {% else %}
+                                                {{ type.label }}
+                                            {% endif %}
+                                        </span>
+                                    </td>
+                                    <td class="va-middle">
+                                        <div class="d-flex g4 fw-wrap">
+                                            <code class="stacks-code">.s-badge</code>
+                                            {% if type.class != nil %}
+                                                <code class="stacks-code">.{{ type.class }}</code>
+                                            {% endif %}
+                                        </div>
+                                    </td>
+                                    <td class="va-middle">{{ type.description }}</td>
+                                </tr>
+                            {% endfor %}
+                        {% endfor %}
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
 
     {% header "h3", "Badge counts" %}
+    <p class="stacks-copy">Badge that displays the total number of badges of a type a user has earned.</p>
     <div class="stacks-preview">
 {% highlight html %}
 <span class="s-badge s-badge__gold">
@@ -100,27 +91,51 @@ description: Badges are labels used for flags, earned achievements, and number t
 </span>
 {% endhighlight %}
         <div class="stacks-preview--example">
-            <div class="d-flex gs4 fw-wrap">
-                <span class="flex--item s-badge s-badge__gold">
-                    <span class="s-award-bling s-award-bling__gold">
-                        635
-                    </span> 
-                </span>
-                <span class="flex--item s-badge s-badge__silver">
-                    <span class="s-award-bling s-award-bling__silver">
-                        7624
-                    </span> 
-                </span>
-                <span class="flex--item s-badge s-badge__bronze">
-                    <span class="s-award-bling s-award-bling__bronze">
-                        8234
-                    </span> 
-                </span>
+            <div class="overflow-x-auto">
+                <table class="wmn5 s-table s-table__bx-simple">
+                    <thead>
+                        <tr>
+                            <th scope="col">Example</th>
+                            <th scope="col" class="s-table--cell4">Class</th>
+                            <th scope="col">Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for badge in badges.counts %}
+                            {% assign types = badge.classes %}
+                            {% for type in types %}
+                                <tr>
+                                    <td class="va-middle pr8">
+                                        <span class="{{ type.html }}">
+                                            {% if type.repType != nil %}
+                                                <span class="s-award-bling s-award-bling__{{ type.repType }}">
+                                                    {{ type.label }}
+                                                </span>
+                                            {% else %}
+                                                {{ type.label }}
+                                            {% endif %}
+                                        </span>
+                                    </td>
+                                    <td class="va-middle">
+                                        <div class="d-flex g4 fw-wrap">
+                                            <code class="stacks-code">.s-badge</code>
+                                            {% if type.class != nil %}
+                                                <code class="stacks-code">.{{ type.class }}</code>
+                                            {% endif %}
+                                        </div>
+                                    </td>
+                                    <td class="va-middle">{{ type.description }}</td>
+                                </tr>
+                            {% endfor %}
+                        {% endfor %}
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
 
     {% header "h3", "Number counts" %}
+    <p class="stacks-copy">Badge that display a number value related to an action or state.</p>
     <div class="stacks-preview">
 {% highlight html %}
 <span class="s-badge s-badge__bounty">+100</span>
@@ -131,13 +146,214 @@ description: Badges are labels used for flags, earned achievements, and number t
 <span class="s-badge s-badge__important">99+</span>
 {% endhighlight %}
         <div class="stacks-preview--example">
-            <div class="d-flex gs4 fw-wrap">
-                <span class="flex--item s-badge s-badge__bounty">+100</span>
-                <span class="flex--item s-badge s-badge__votes">38</span>
-                <span class="flex--item s-badge s-badge__answered">154</span>
-                <span class="flex--item s-badge s-badge__rep">+15</span>
-                <span class="flex--item s-badge s-badge__rep-down">-2</span>
-                <span class="flex--item s-badge s-badge__important">99+</span>
+            <div class="overflow-x-auto">
+                <table class="wmn5 s-table s-table__bx-simple">
+                    <thead>
+                        <tr>
+                            <th scope="col">Example</th>
+                            <th scope="col" class="s-table--cell4">Class</th>
+                            <th scope="col">Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for badge in badges.number %}
+                            {% assign types = badge.classes %}
+                            {% for type in types %}
+                                <tr>
+                                    <td class="va-middle pr8">
+                                        <span class="{{ type.html }}">
+                                            {% if type.repType != nil %}
+                                                <span class="s-award-bling s-award-bling__{{ type.repType }}">
+                                                    {{ type.label }}
+                                                </span>
+                                            {% else %}
+                                                {{ type.label }}
+                                            {% endif %}
+                                        </span>
+                                    </td>
+                                    <td class="va-middle">
+                                        <div class="d-flex g4 fw-wrap">
+                                            <code class="stacks-code">.s-badge</code>
+                                            {% if type.class != nil %}
+                                                <code class="stacks-code">.{{ type.class }}</code>
+                                            {% endif %}
+                                        </div>
+                                    </td>
+                                    <td class="va-middle">{{ type.description }}</td>
+                                </tr>
+                            {% endfor %}
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    {% header "h3", "Icon badges" %}
+    <div class="stacks-preview">
+{% highlight html %}
+<span class="s-badge s-badge__icon">@Svg.Filter Filtered</span>
+{% endhighlight %}
+        <div class="stacks-preview--example">
+            <div class="overflow-x-auto">
+                <table class="wmn5 s-table s-table__bx-simple">
+                    <thead>
+                        <tr>
+                            <th scope="col">Example</th>
+                            <th scope="col" class="s-table--cell4">Class</th>
+                            <th scope="col">Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for badge in badges.icon %}
+                            {% assign types = badge.classes %}
+                            {% for type in types %}
+                                <tr>
+                                    <td class="va-middle pr8">
+                                        <span class="{{ type.html }}">
+                                            {% if type.icon != nil %}
+                                                {% icon type.icon %}
+                                                {{ type.label }}
+                                            {% else %}
+                                                {{ type.label }}
+                                            {% endif %}
+                                        </span>
+                                    </td>
+                                    <td class="va-middle">
+                                        <div class="d-flex g4 fw-wrap">
+                                            <code class="stacks-code">.s-badge</code>
+                                            {% if type.class != nil %}
+                                                <code class="stacks-code">.{{ type.class }}</code>
+                                            {% endif %}
+                                            {% if badge.class != nil %}
+                                                <code class="flex--item stacks-code">.{{ badge.class }}</code>
+                                            {% endif %}
+                                        </div>
+                                    </td>
+                                    <td class="va-middle">{{ type.description }}</td>
+                                </tr>
+                            {% endfor %}
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    {% header "h3", "Badge states" %}
+    <div class="stacks-preview">
+{% highlight html %}
+<span class="s-badge s-badge__icon s-badge__info">
+    @Svg.PencilSm Draft
+</span>
+<span class="s-badge s-badge__icon s-badge__warning">
+    @Svg.EyeSm Review
+</span>
+<span class="s-badge s-badge__icon s-badge__muted">
+    @Svg.ArchiveSm Archived
+</span>
+<span class="s-badge s-badge__icon s-badge__danger">
+    @Svg.NotInterestedSm Closed
+</span>
+{% endhighlight %}
+        <div class="stacks-preview--example">
+            <div class="overflow-x-auto">
+                <table class="wmn5 s-table s-table__bx-simple">
+                    <thead>
+                        <tr>
+                            <th scope="col">Example</th>
+                            <th scope="col" class="s-table--cell4">Class</th>
+                            <th scope="col">Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for badge in badges.states %}
+                            {% assign types = badge.classes %}
+                            {% for type in types %}
+                                <tr>
+                                    <td class="va-middle pr8">
+                                        <span class="{{ type.html }}">
+                                            {% if type.icon != nil %}
+                                                {% icon type.icon %}
+                                                {{ type.label }}
+                                            {% else %}
+                                                {{ type.label }}
+                                            {% endif %}
+                                        </span>
+                                    </td>
+                                    <td class="va-middle">
+                                        <div class="d-flex g4 fw-wrap">
+                                            <code class="stacks-code">.s-badge</code>
+                                            {% if type.class != nil %}
+                                                <code class="stacks-code">.{{ type.class }}</code>
+                                            {% endif %}
+                                            {% if badge.class != nil %}
+                                                <code class="flex--item stacks-code">.{{ badge.class }}</code>
+                                            {% endif %}
+                                        </div>
+                                    </td>
+                                    <td class="va-middle">{{ type.description }}</td>
+                                </tr>
+                            {% endfor %}
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    {% header "h3", "Filled badges" %}
+    <div class="stacks-preview">
+{% highlight html %}
+<span class="s-badge s-badge__icon s-badge__muted s-badge__filled">
+    @Svg.TackSm Pinned
+</span>
+<span class="s-badge s-badge__icon s-badge__danger s-badge__filled">
+    @Svg.TrashSm Deleted
+</span>
+{% endhighlight %}
+        <div class="stacks-preview--example">
+            <div class="overflow-x-auto">
+                <table class="wmn5 s-table s-table__bx-simple">
+                    <thead>
+                        <tr>
+                            <th scope="col">Example</th>
+                            <th scope="col" class="s-table--cell4">Class</th>
+                            <th scope="col">Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for badge in badges.filled %}
+                            {% assign types = badge.classes %}
+                            {% for type in types %}
+                                <tr>
+                                    <td class="va-middle pr8">
+                                        <span class="{{ type.html }}">
+                                            {% if type.icon != nil %}
+                                                {% icon type.icon %}
+                                                {{ type.label }}
+                                            {% else %}
+                                                {{ type.label }}
+                                            {% endif %}
+                                        </span>
+                                    </td>
+                                    <td class="va-middle">
+                                        <div class="d-flex g4 fw-wrap">
+                                            <code class="stacks-code">.s-badge</code>
+                                            {% if type.class != nil %}
+                                                <code class="stacks-code">.{{ type.class }}</code>
+                                            {% endif %}
+                                            {% if badge.class != nil %}
+                                                <code class="flex--item stacks-code">.{{ badge.class }}</code>
+                                            {% endif %}
+                                        </div>
+                                    </td>
+                                    <td class="va-middle">{{ type.description }}</td>
+                                </tr>
+                            {% endfor %}
+                        {% endfor %}
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
@@ -155,17 +371,40 @@ description: Badges are labels used for flags, earned achievements, and number t
 <span class="s-badge s-badge__staff s-badge__sm">Staff</span>
 <span class="s-badge s-badge__staff s-badge__xs">Staff</span>
 {% endhighlight %}
-        <div class="stacks-preview--example"> 
-            <div class="d-flex gs4 fw-wrap">
-                <span class="flex--item s-badge s-badge__admin">Admin</span>
-                <span class="flex--item s-badge s-badge__sm s-badge__admin">Admin</span>
-                <span class="flex--item s-badge s-badge__xs s-badge__admin">Admin</span>
-                <span class="flex--item s-badge s-badge__moderator">Moderator</span>
-                <span class="flex--item s-badge s-badge__sm s-badge__moderator">Mod</span>
-                <span class="flex--item s-badge s-badge__xs s-badge__moderator">Mod</span>
-                <span class="flex--item s-badge s-badge__staff">Staff</span>
-                <span class="flex--item s-badge s-badge__sm s-badge__staff">Staff</span>
-                <span class="flex--item s-badge s-badge__xs s-badge__staff">Staff</span>
+        <div class="stacks-preview--example">
+            <div class="overflow-x-auto">
+                <table class="wmn5 s-table s-table__bx-simple">
+                    <thead>
+                        <tr>
+                            <th scope="col">Examples</th>
+                            <th scope="col" class="s-table--cell4">Class</th>
+                            <th scope="col">Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for badge in badges.users %}
+                            {% assign types = badge.classes %}
+                            {% for type in types %}
+                                <tr>
+                                    <td class="va-middle pr8">
+                                        <span class="{{ type.html }}">{{ type.label }}</span>
+                                        <span class="{{ type.html }} ml2 s-badge__sm">{{ type.labelSm }}</span>
+                                        <span class="{{ type.html }} ml2 s-badge__xs">{{ type.labelSm }}</span>
+                                    </td>
+                                    <td class="va-middle">
+                                        <div class="d-flex g4 fw-wrap">
+                                            <code class="stacks-code">.s-badge</code>
+                                            {% if type.class != nil %}
+                                                <code class="stacks-code">.{{ type.class }}</code>
+                                            {% endif %}
+                                        </div>
+                                    </td>
+                                    <td class="va-middle">{{ type.description }}</td>
+                                </tr>
+                            {% endfor %}
+                        {% endfor %}
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
@@ -175,15 +414,49 @@ description: Badges are labels used for flags, earned achievements, and number t
 {% highlight html %}
 <span class="s-badge">Regular</span>
 <span class="s-badge s-badge__sm">Small</span>
-<span class="s-badge s-badge__sm s-badge__gold">Small gold</span>
-<span class="s-badge s-badge__xs s-badge__gold">Extra small</span>
+<span class="s-badge s-badge__xs">Extra small</span>
 {% endhighlight %}
         <div class="stacks-preview--example">
-            <div class="d-flex gs4 fw-wrap">
-                <span class="flex--item s-badge">Regular</span>
-                <span class="flex--item s-badge s-badge__sm">Small</span>
-                <span class="flex--item s-badge s-badge__sm s-badge__gold">Small gold</span>
-                <span class="flex--item s-badge s-badge__xs">Extra small</span>
+            <div class="overflow-x-auto">
+                <table class="wmn5 s-table s-table__bx-simple">
+                    <thead>
+                        <tr>
+                            <th scope="col">Example</th>
+                            <th scope="col" class="s-table--cell4">Class</th>
+                            <th scope="col">Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for badge in badges.sizes %}
+                            {% assign types = badge.classes %}
+                            {% for type in types %}
+                                <tr>
+                                    <td class="va-middle pr8">
+                                        <span class="{{ type.html }}">
+                                            {% if type.icon != nil %}
+                                                {% icon type.icon %} {{ type.label }}
+                                            {% else %}
+                                                {{ type.label }}
+                                            {% endif %}
+                                        </span>
+                                    </td>
+                                    <td class="va-middle">
+                                        <div class="d-flex g4 fw-wrap">
+                                            <code class="stacks-code">.s-badge</code>
+                                            {% if type.class != nil %}
+                                                <code class="stacks-code">.{{ type.class }}</code>
+                                            {% endif %}
+                                            {% if badge.class != nil %}
+                                                <code class="flex--item stacks-code">.{{ badge.class }}</code>
+                                            {% endif %}
+                                        </div>
+                                    </td>
+                                    <td class="va-middle">{{ type.description }}</td>
+                                </tr>
+                            {% endfor %}
+                        {% endfor %}
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
