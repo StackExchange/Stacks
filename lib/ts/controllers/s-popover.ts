@@ -278,19 +278,31 @@ export class PopoverController extends BasePopoverController {
     private boundHideOnEscapePress!: any;
 
     /**
-     * Toggles optional classes in addition to BasePopoverController.shown
+     * Toggles optional classes and accessibility attributes in addition to BasePopoverController.shown
      */
-    protected shown(dispatcher: Element|null = null) {
+    protected override shown(dispatcher: Element|null = null) {
         this.toggleOptionalClasses(true);
+        this.toggleAccessibilityAttributes(true);
         super.shown(dispatcher);
     }
 
     /**
-     * Toggles optional classes in addition to BasePopoverController.hidden
+     * Toggles optional classes and accessibility attributes in addition to BasePopoverController.hidden
      */
-    protected hidden(dispatcher: Element|null = null) {
+    protected override hidden(dispatcher: Element|null = null) {
         this.toggleOptionalClasses(false);
+        this.toggleAccessibilityAttributes(false);
         super.hidden(dispatcher);
+    }
+
+
+    /**
+     * Initializes accessibility attributes in addition to BasePopoverController.connect
+     */
+    public override connect(): void {
+        super.connect();
+
+        this.toggleAccessibilityAttributes();
     }
 
     /**
@@ -307,7 +319,7 @@ export class PopoverController extends BasePopoverController {
     /**
      * Unbinds global events to the document for hiding popovers on user interaction
      */
-    protected  unbindDocumentEvents() {
+    protected unbindDocumentEvents() {
         document.removeEventListener("mousedown", this.boundHideOnOutsideClick);
         document.removeEventListener("keyup", this.boundHideOnEscapePress);
     }
@@ -356,6 +368,14 @@ export class PopoverController extends BasePopoverController {
         this.data.get("toggle-class")!.split(/\s+/).forEach(function (cls: string) {
             cl.toggle(cls, show);
         });
+    }
+
+    /**
+     * Toggles accessibility attributes based on whether the popover is shown or not
+     * @param {boolean=} show - A boolean indicating whether this is being triggered by a show or hide.
+     */
+    private toggleAccessibilityAttributes(show?: boolean) {
+        this.referenceElement.ariaExpanded = show?.toString() || this.referenceElement.ariaExpanded || 'false';
     }
 }
 
