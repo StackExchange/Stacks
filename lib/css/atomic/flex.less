@@ -103,7 +103,7 @@
             @itemWidth: (@count * 100% / @num);
 
             > .flex--item@{count} {
-                margin: calc(~"@{spacing}" / 2);
+                margin: calc(@spacing / 2);
             }
 
             //  ------------------------------------------------------------------------
@@ -118,7 +118,7 @@
             > .flex--item@{count},                                  // [1]
             &.flex__allitems@{count} > .d-flex,                     // [2]
             &.flex__allitems@{count} > .flex--item {                // [2]
-                flex-basis: calc(~"@{itemWidth} - @{spacing}");
+                flex-basis: calc(@itemWidth - @spacing);
             }
 
             #stacks-internals #flex-builder-helpers .flex-fixed-item-spacing(@spacing, @num, (@count + 1));
@@ -138,12 +138,12 @@
         .gutter-spacing(@spacing) {
             #stacks-internals #flex-builder-settings();
 
-            margin: calc(~"@{spacing}" / 2 * -1);
+            margin: calc(@spacing / 2 * -1);
 
             //  --  FLUID ITEMS
             > .d-flex,
             > .flex--item {
-                margin: calc(~"@{spacing}" / 2);
+                margin: calc(@spacing / 2);
             }
 
             //  --  FIXED WIDTH ITEMS
