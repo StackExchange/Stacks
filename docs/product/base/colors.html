@@ -39,7 +39,7 @@ description: To avoid specifying color values by hand, we’ve included a robust
     <div class="d-grid g16 g-af-dense" style="grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));">
         {% for color in colors %}
             <div class="flex--item">
-                <div class="p24 fs-title btr-md bg-{{ color.name }}{% if color.primary != "" %}-{{ color.primary }}{% endif %}{% if color.white %} fc-white{% if color.flip %} d:fc-black{% endif %}{% else %}{% if color.flip %} d:fc-white{% endif %}{% endif %}">
+                <div class="p24 fs-title btr-md bg-{{ color.name }}{% if color.primary != "" %}-{{ color.primary }}{% endif %}{% if color.white %} fc-white{% if color.flip %} d:fc-black{% endif %}{% else %}{% if color.flip %} d:fc-white{% endif %}{% endif %}{% if color.name == "white" %} ba bc-black-100{% endif %}">
                     {% if color.name == "theme-primary" %}
                         Theme Primary
                     {% elsif color.name == "theme-secondary" %}
@@ -50,7 +50,7 @@ description: To avoid specifying color values by hand, we’ve included a robust
                 </div>
 
                 {% for stop in color.stops reversed %}
-                    <div class="d-flex ai-center jc-space-between bg-{{ color.name }}{% if stop.stop != "" %}-{{ stop.stop }}{% endif %} ff-mono p12{% if stop.white %} fc-white{% if stop.flip %} d:fc-black{% endif %}{% else %}{% if stop.flip %} d:fc-white{% endif %}{% endif %}{% if forloop.last %} bbr-md{% endif %}">
+                    <div class="d-flex ai-center jc-space-between bg-{{ color.name }}{% if stop.stop != "" %}-{{ stop.stop }}{% endif %} ff-mono p12{% if stop.white %} fc-white{% if stop.flip %} d:fc-black{% endif %}{% else %}{% if stop.flip %} d:fc-white{% endif %}{% endif %}{% if forloop.last %} bbr-md{% endif %}{% if color.name == "white" %} ba bc-black-100 btw0{% endif %}">
                         <div class="flex--item js-hex d-none">
                             {{ color.name }}{% if stop.stop != "" %}-{{ stop.stop }}{% endif %}
                         </div>
