@@ -13,3 +13,4 @@ import "./global.navigation";
 import "./global.hamburger";
 import "./global.theming";
 import "./global.feedback";
+import "./global.a11y-checker";
