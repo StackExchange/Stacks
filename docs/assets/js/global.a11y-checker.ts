@@ -1,3 +1,5 @@
+// TODO: fix ts error that made me add a ts-ignore
+// @ts-ignore
 import * as axe from "axe-core";
 import { AxeResults, ImpactValue } from "axe-core";
 
@@ -12,7 +14,9 @@ function renderAccessibilityButton() {
 }
 
 function scan() {
-    setLoadingState();
+    if (a11yButton) {
+        setLoadingState(a11yButton);
+    }
     setTimeout(doRun, 10); // shove axe scan into the background to keep our UI responsive
 
     function doRun() {
@@ -22,33 +26,36 @@ function scan() {
     }
 }
 
-function setLoadingState() {
-    a11yButton?.classList.add("is-loading");
-    a11yButton?.textContent = "Scanning…";
+function setLoadingState(a11yButton: Element) {
+    a11yButton.classList.add("is-loading");
+    a11yButton.textContent = "Scanning…";
 }
 
 function reportResults(results: AxeResults) {
-    let filteredViolations = results
-        .violations
-        .filter(v => impactLevelsToInclude.includes(v.impact));
+    const { violations } =  results;
+    let filteredViolations;
 
-    updateAccessibilityButton(filteredViolations)
+    if (violations) {
+        filteredViolations  = violations.filter(v => {
+            return v.impact && impactLevelsToInclude.includes(v.impact);
+        });
+        if (filteredViolations.length > 0) {
+            console.warn("Accessibility issues found!");
+            console.table(filteredViolations);
 
-    if (filteredViolations.length > 0) {
-        console.warn("Accessibility issues found!");
-        console.table(filteredViolations);
-    }
-
-    for (let violation of filteredViolations) {
-        for (let affectedNode of violation.nodes) {
-            affectedNode.target.forEach(targets => {
-                document.querySelectorAll(targets).forEach(target => {
-                    target.classList.add("ba", "baw2", "bas-dashed", "bc-error");
-                    // @ts-ignore
-                    target.addEventListener("mouseenter", (e) => showViolationDetails(e, violation, affectedNode));
-                });
-            })
+            for (let violation of filteredViolations) {
+                for (let affectedNode of violation.nodes) {
+                    affectedNode.target.forEach(targets => {
+                        document.querySelectorAll(targets).forEach(target => {
+                            target.classList.add("ba", "baw2", "bas-dashed", "bc-error");
+                            // @ts-ignore
+                            target.addEventListener("mouseenter", (e) => showViolationDetails(e, violation, affectedNode));
+                        });
+                    })
+                }
+            }
         }
+        updateAccessibilityButton(filteredViolations);
     }
 }
 
@@ -60,7 +67,7 @@ function updateAccessibilityButton(violations: axe.Result[]) {
         a11yButton.textContent = "Accessibility issues ";
         a11yButton.append(`<span class="s-btn--badge"><span class="s-btn--number">${violations.length}</span></span>`)
 
-        // a11yButton.off("click"); // prevent triggering another accessibility scan when we want to toggle the violation popover instead
+        a11yButton.removeEventListener("click", scan); // prevent triggering another accessibility scan when we want to toggle the violation popover instead
     }
 }
 
@@ -76,12 +83,15 @@ function showViolationDetails(event: Event, violation: axe.Result, affectedNode:
 <div class="mb4"><strong>Impact: </strong> <span>${escapeHtml(affectedNode.impact)}</span></div>
 <pre class="mb4 s-code-block fs-fine ws-pre-wrap">${escapeHtml(affectedNode.failureSummary)}</pre>
 `
-    a11yViolationInfo?.innerHTML = reportHtml;
+    if (a11yViolationInfo) {
+        a11yViolationInfo.innerHTML = reportHtml;
+    }
 }
 
 // https://stackoverflow.com/a/6234804/1370722
-function escapeHtml(unsafe) {
-    return unsafe
+// TODO: add type
+function escapeHtml(unsafe: any) {
+    return unsafe && unsafe
         .replace(/&/g, "&amp;")
         .replace(/</g, "&lt;")
         .replace(/>/g, "&gt;")
