@@ -63,10 +63,20 @@ function updateAccessibilityButton(violations: axe.Result[]) {
     a11yButton?.classList.remove("is-loading");
 
     if (violations.length > 0 && a11yButton) {
-        a11yButton.classList.add("s-btn__danger", "s-btn--badge", "s-btn__dropdown");
-        a11yButton.textContent = "Accessibility issues ";
-        a11yButton.append(`<span class="s-btn--badge"><span class="s-btn--number">${violations.length}</span></span>`)
-
+        a11yButton.classList.add(
+            "s-btn__danger",
+            "s-btn--badge",
+            "s-btn__dropdown"
+        );
+        const issuesEl = `
+<span>
+<span>Accessibility issues</span>
+<span class="s-btn--badge">
+<span class="s-btn--number">${violations.length}</span>
+</span>
+</span>
+`;
+        a11yButton.innerHTML = issuesEl;
         a11yButton.removeEventListener("click", scan); // prevent triggering another accessibility scan when we want to toggle the violation popover instead
     }
 }
