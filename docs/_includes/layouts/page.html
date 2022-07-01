@@ -100,14 +100,19 @@
             </div>
         </aside>
     </div>
-    <button class="s-btn s-btn__filled z-nav-fixed ps-fixed b12 r12 js-a11y-btn" role="button"
-        aria-controls="a11y-popover"
-        data-controller="s-popover"
-        data-action="s-popover#toggle"
-        data-s-popover-placement="top-end"
-        data-s-popover-toggle-class="is-selected">
-        Accessibility scan
-    </button>
+    <div class="s-btn-group ps-fixed b12 r12">
+        <button class="s-btn s-btn__filled z-nav-fixed js-a11y-scan-btn" role="button">
+            Accessibility scan
+        </button>
+        <button class="d-none s-btn s-btn__filled s-btn__danger s-btn__dropdown z-nav-fixed js-a11y-issues-btn" role="button"
+            aria-controls="a11y-popover"
+            data-controller="s-popover"
+            data-action="s-popover#toggle"
+            data-s-popover-placement="top-end"
+            data-s-popover-toggle-class="is-selected">
+            No issues detected
+        </button>
+    </div>
     <div class="s-popover" id="a11y-popover">
         <div class="s-popover--arrow"></div>
         <div class="js-a11y-violation-info">
