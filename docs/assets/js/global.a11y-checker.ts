@@ -6,17 +6,17 @@ import { AxeResults, ImpactValue } from "axe-core";
 // to increase or decrease the scope of issues we're reporting, change this
 const impactLevelsToInclude: ImpactValue[] = ["serious", "critical"];
 
-const a11yScanButton = document.querySelector(".js-a11y-scan-btn");
-const a11yIssuesButton = document.querySelector(".js-a11y-issues-btn");
+const a11yScanBtn = document.querySelector(".js-a11y-scan-btn");
+const a11yIssuesBtn = document.querySelector(".js-a11y-issues-btn");
 const a11yViolationInfo = document.querySelector(".js-a11y-violation-info");
 
 function renderAccessibilityButton() {
-    a11yScanButton?.addEventListener("click", scan);
+    a11yScanBtn?.addEventListener("click", scan);
 }
 
 function scan() {
-    if (a11yScanButton) {
-        setLoadingState(a11yScanButton);
+    if (a11yScanBtn) {
+        setLoadingState(a11yScanBtn);
     }
     setTimeout(doRun, 10); // shove axe scan into the background to keep our UI responsive
 
@@ -29,9 +29,9 @@ function scan() {
     }
 }
 
-function setLoadingState(a11yScanButton: Element) {
-    a11yScanButton.classList.add("is-loading");
-    a11yScanButton.textContent = "Scanning…";
+function setLoadingState(a11yScanBtn: Element) {
+    a11yScanBtn.classList.add("is-loading");
+    a11yScanBtn.textContent = "Scanning…";
 }
 
 function reportResults(results: AxeResults) {
@@ -70,13 +70,13 @@ function reportResults(results: AxeResults) {
 }
 
 function updateAccessibilityButton(violations: axe.Result[]) {
-    a11yScanButton?.classList.remove("is-loading");
+    a11yScanBtn?.classList.remove("is-loading");
 
-    if (a11yIssuesButton && a11yScanButton) {
+    if (a11yIssuesBtn && a11yScanBtn) {
         if (violations.length === 0) {
-            a11yIssuesButton.classList.remove("s-btn__danger");
+            a11yIssuesBtn.classList.remove("s-btn__danger");
         } else {
-            a11yIssuesButton.classList.add("s-btn__danger");
+            a11yIssuesBtn.classList.add("s-btn__danger");
         }
         const issuesEl = `
 <span>
@@ -86,10 +86,10 @@ function updateAccessibilityButton(violations: axe.Result[]) {
 </span>
 </span>
 `;
-        a11yIssuesButton.classList.remove("d-none")
-        a11yScanButton.textContent = "Rescan";
-        a11yIssuesButton.innerHTML = issuesEl;
-        // a11yScanButton.removeEventListener("click", scan); // prevent triggering another accessibility scan when we want to toggle the violation popover instead
+        a11yIssuesBtn.classList.remove("d-none")
+        a11yScanBtn.textContent = "Rescan";
+        a11yIssuesBtn.innerHTML = issuesEl;
+        // a11yScanBtn.removeEventListener("click", scan); // prevent triggering another accessibility scan when we want to toggle the violation popover instead
     }
 }
 
@@ -127,8 +127,7 @@ function escapeHtml(unsafe: any) {
     );
 }
 
-renderAccessibilityButton();
-
 // @ts-ignore
 $(document).ready(function () {
+    a11yScanBtn?.addEventListener("click", scan);
 });
