@@ -22,7 +22,9 @@ function scan() {
     function doRun() {
         axe.run()
             .then(reportResults)
-            .catch(error => console.error("error running accessibility scan", error));
+            .catch((error) =>
+                console.error("error running accessibility scan", error)
+            );
     }
 }
 
@@ -32,26 +34,33 @@ function setLoadingState(a11yButton: Element) {
 }
 
 function reportResults(results: AxeResults) {
-    const { violations } =  results;
+    const { violations } = results;
     let filteredViolations;
 
     if (violations) {
-        filteredViolations  = violations.filter(v => {
+        filteredViolations = violations.filter((v) => {
             return v.impact && impactLevelsToInclude.includes(v.impact);
         });
         if (filteredViolations.length > 0) {
             console.warn("Accessibility issues found!");
             console.table(filteredViolations);
 
-            for (let violation of filteredViolations) {
-                for (let affectedNode of violation.nodes) {
-                    affectedNode.target.forEach(targets => {
-                        document.querySelectorAll(targets).forEach(target => {
-                            target.classList.add("ba", "baw2", "bas-dashed", "bc-error");
+            for (const violation of filteredViolations) {
+                for (const affectedNode of violation.nodes) {
+                    affectedNode.target.forEach((targets) => {
+                        document.querySelectorAll(targets).forEach((target) => {
+                            target.classList.add(
+                                "ba",
+                                "baw2",
+                                "bas-dashed",
+                                "bc-error"
+                            );
                             // @ts-ignore
-                            target.addEventListener("mouseenter", (e) => showViolationDetails(e, violation, affectedNode));
+                            target.addEventListener("mouseenter", (e) =>
+                                showViolationDetails(e, violation, affectedNode)
+                            );
                         });
-                    })
+                    });
                 }
             }
         }
@@ -81,7 +90,11 @@ function updateAccessibilityButton(violations: axe.Result[]) {
     }
 }
 
-function showViolationDetails(event: Event, violation: axe.Result, affectedNode: axe.NodeResult) {
+function showViolationDetails(
+    event: Event,
+    violation: axe.Result,
+    affectedNode: axe.NodeResult
+) {
     console.group("Accessibility issue");
     console.warn("Violation: ", violation);
     console.warn("Affected Node: ", affectedNode);
@@ -92,7 +105,7 @@ function showViolationDetails(event: Event, violation: axe.Result, affectedNode:
 <div class="mb4"><strong>Help: </strong> <span><a href="${escapeHtml(violation.helpUrl)}">${escapeHtml(violation.help)}</a></span></div>
 <div class="mb4"><strong>Impact: </strong> <span>${escapeHtml(affectedNode.impact)}</span></div>
 <pre class="mb4 s-code-block fs-fine ws-pre-wrap">${escapeHtml(affectedNode.failureSummary)}</pre>
-`
+`;
     if (a11yViolationInfo) {
         a11yViolationInfo.innerHTML = reportHtml;
     }
@@ -101,15 +114,18 @@ function showViolationDetails(event: Event, violation: axe.Result, affectedNode:
 // https://stackoverflow.com/a/6234804/1370722
 // TODO: add type
 function escapeHtml(unsafe: any) {
-    return unsafe && unsafe
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;")
-        .replace(/'/g, "&#039;");
+    return (
+        unsafe &&
+        unsafe
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;")
+            .replace(/"/g, "&quot;")
+            .replace(/'/g, "&#039;")
+    );
 }
 
 // @ts-ignore
-$(document).ready(function() {
+$(document).ready(function () {
     renderAccessibilityButton();
 });
