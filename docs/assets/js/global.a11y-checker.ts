@@ -57,7 +57,7 @@ function reportResults(results: AxeResults) {
                             );
                             // @ts-ignore
                             target.addEventListener("mouseenter", (e) =>
-                                showViolationDetails(e, violation, affectedNode)
+                                showViolationDetails(violation, affectedNode)
                             );
                         });
                     });
@@ -91,7 +91,6 @@ function updateAccessibilityButton(violations: axe.Result[]) {
 }
 
 function showViolationDetails(
-    event: Event,
     violation: axe.Result,
     affectedNode: axe.NodeResult
 ) {
