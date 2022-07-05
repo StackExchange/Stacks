@@ -9,6 +9,8 @@ const impactLevelsToInclude: ImpactValue[] = ["serious", "critical"];
 const a11yScanBtn = document.querySelector(".js-a11y-scan-btn");
 const a11yIssuesBtn = document.querySelector(".js-a11y-issues-btn");
 const a11yViolationInfo = document.querySelector(".js-a11y-violation-info");
+const errorClasses: string[] = ["ba", "baw2", "bas-dashed", "bc-error", "axe-error"];
+const btnLoadingClasses: string[] = ["is-loading", "s-btn__muted"];
 
 function renderAccessibilityButton() {
     a11yScanBtn?.addEventListener("click", scan);
@@ -18,6 +20,10 @@ function scan() {
     if (a11yScanBtn) {
         setLoadingState(a11yScanBtn);
     }
+    document.querySelectorAll(".axe-error").forEach(el => {
+        el.classList.remove(...errorClasses);
+    });
+
     setTimeout(doRun, 10); // shove axe scan into the background to keep our UI responsive
 
     function doRun() {
@@ -30,7 +36,8 @@ function scan() {
 }
 
 function setLoadingState(a11yScanBtn: Element) {
-    a11yScanBtn.classList.add("is-loading");
+    a11yScanBtn.classList.add(...btnLoadingClasses);
+    a11yScanBtn.setAttribute("disabled", "true");
     a11yScanBtn.textContent = "Scanning…";
 }
 
@@ -45,19 +52,12 @@ function reportResults(results: AxeResults) {
         if (filteredViolations.length > 0) {
             console.warn("Accessibility issues found!");
             console.table(filteredViolations);
-
             for (const violation of filteredViolations) {
                 for (const affectedNode of violation.nodes) {
                     affectedNode.target.forEach((targets) => {
                         document.querySelectorAll(targets).forEach((target) => {
-                            target.classList.add(
-                                "ba",
-                                "baw2",
-                                "bas-dashed",
-                                "bc-error"
-                            );
-                            // @ts-ignore
-                            target.addEventListener("mouseenter", (e) =>
+                            target.classList.add(...errorClasses);
+                            target.addEventListener("mouseenter", () =>
                                 showViolationDetails(violation, affectedNode)
                             );
                         });
@@ -70,9 +70,10 @@ function reportResults(results: AxeResults) {
 }
 
 function updateAccessibilityButton(violations: axe.Result[]) {
-    a11yScanBtn?.classList.remove("is-loading");
-
     if (a11yIssuesBtn && a11yScanBtn) {
+        a11yScanBtn.classList.remove(...btnLoadingClasses);
+        a11yScanBtn.removeAttribute("disabled");
+
         if (violations.length === 0) {
             a11yIssuesBtn.classList.remove("s-btn__danger");
         } else {
@@ -89,7 +90,6 @@ function updateAccessibilityButton(violations: axe.Result[]) {
         a11yIssuesBtn.classList.remove("d-none")
         a11yScanBtn.textContent = "Rescan";
         a11yIssuesBtn.innerHTML = issuesEl;
-        // a11yScanBtn.removeEventListener("click", scan); // prevent triggering another accessibility scan when we want to toggle the violation popover instead
     }
 }
 
