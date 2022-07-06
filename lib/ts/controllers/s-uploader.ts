@@ -87,10 +87,17 @@ export class UploaderController extends Stacks.StacksController {
             hideElements.map(el => el.classList.add("d-none"));
             showElements.map(el => el.classList.remove("d-none"));
             enableElements.map(el => el.removeAttribute("disabled"));
+            enableElements.forEach(el => {
         } else {
-            hideElements.map(el => el.classList.remove("d-none"));
-            showElements.map(el => el.classList.add("d-none"));
-            enableElements.map(el => el.setAttribute("disabled", "true"))
+            hideElements.forEach(el => {
+                el.classList.remove("d-none");
+            });
+            showElements.forEach(el => {
+                el.classList.add("d-none");
+            });
+            enableElements.forEach(el => {
+                el.setAttribute("disabled", "true");
+            });
             this.handleUploaderActive(false);
         }
     }
