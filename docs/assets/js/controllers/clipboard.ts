@@ -21,12 +21,20 @@ import { Application, Controller } from "stimulus";
             const hideElements = scope.findAllElements('[data-hide-on-copy]');
             const showElements = scope.findAllElements('[data-show-on-copy]');
 
-            hideElements.forEach(el => el.classList.add("d-none"));
-            showElements.forEach(el => el.classList.remove("d-none"));
+            hideElements.forEach(el => {
+                el.classList.add("d-none");
+            });
+            showElements.forEach(el => {
+                el.classList.remove("d-none");
+            });
 
             setTimeout(function () {
-                hideElements.forEach(el => el.classList.remove("d-none"));
-                showElements.forEach(el => el.classList.add("d-none"));
+                hideElements.forEach(el => {
+                    el.classList.remove("d-none");
+                });
+                showElements.forEach(el => {
+                    el.classList.add("d-none");
+                });
             }, 3000);
         }
     });
