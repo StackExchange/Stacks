@@ -8,7 +8,7 @@ module.exports = {
       var output = `
 <div class="stacks-clipboard-content ps-relative" data-controller="clipboard">
   <button
-    class="stacks-copy-btn s-btn s-btn__muted s-btn__outlined s-btn__icon ps-absolute p4 bg-black-050 bc-black-100 t8 r8"
+    class="stacks-copy-btn s-btn s-btn__muted s-btn__outlined s-btn__icon ps-absolute p8 bc-black-100 brw0 btw0 btlr0 bbrr0 t1 r1"
     data-action="clipboard#copy"
     data-s-tooltip-placement="top"
     data-controller="s-tooltip"
