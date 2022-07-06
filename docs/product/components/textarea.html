@@ -22,12 +22,12 @@ description: Multi-line inputs used by users to enter longer text portions.
     </div>
 </section>
 
-<section id="inputs" class="stacks-section">
+<section id="states" class="stacks-section">
     {% header "h2", "Validation states" %}
     <p class="stacks-copy">Validation states provides the user feedback based on their interaction (or lack of interaction) with a textarea. These styles are applied by applying the appropriate class to the wrapping parent container.</p>
 
     {% header "h3", "Validation classes" %}
-    <div class="overflow-x-auto mb32">
+    <div class="overflow-x-auto mb32" tabindex="0">
         <table class="wmn5 s-table s-table__bx-simple">
             <thead>
                 <tr>
@@ -90,9 +90,9 @@ description: Multi-line inputs used by users to enter longer text portions.
 {% endhighlight %}
         <div class="stacks-preview--example">
             <div class="d-flex gs4 gsy fd-column has-error">
-                <label class="flex--item s-label" for="example-success">Description</label>
+                <label class="flex--item s-label" for="example-success1">Description</label>
                 <div class="d-flex ps-relative">
-                    <textarea class="flex--item s-textarea" id="example-success" placeholder="Please describe your problem"></textarea>
+                    <textarea class="flex--item s-textarea" id="example-success1" placeholder="Please describe your problem"></textarea>
                     {% icon "AlertCircle", "s-input-icon" %}
                 </div>
                 <p class="flex--item s-input-message">A description must be provided.</p>
@@ -114,9 +114,9 @@ description: Multi-line inputs used by users to enter longer text portions.
 {% endhighlight %}
         <div class="stacks-preview--example">
             <div class="d-flex gs4 gsy fd-column has-success">
-                <label class="flex--item s-label" for="example-success">Description</label>
+                <label class="flex--item s-label" for="example-success2">Description</label>
                 <div class="d-flex ps-relative">
-                    <textarea class="flex--item s-textarea" id="example-success" placeholder="Please describe your problem">How do you know your company is ready for a design system? How do you implement one without too many pain points? How do you efficiently maintain one once it’s built?</textarea>
+                    <textarea class="flex--item s-textarea" id="example-success2" placeholder="Please describe your problem">How do you know your company is ready for a design system? How do you implement one without too many pain points? How do you efficiently maintain one once it’s built?</textarea>
                     {% icon "Checkmark", "s-input-icon" %}
                 </div>
                 <p class="flex--item s-input-message">Thanks for providing a description.</p>
@@ -127,7 +127,7 @@ description: Multi-line inputs used by users to enter longer text portions.
 
 <section class="stacks-section">
     {% header "h2", "Sizes" %}
-    <div class="overflow-x-auto mb32">
+    <div class="overflow-x-auto mb32" tabindex="0">
         <table class="wmn5 s-table s-table__bx-simple va-middle">
             <thead>
                 <tr>
@@ -145,7 +145,7 @@ description: Multi-line inputs used by users to enter longer text portions.
                         <th scope="row">{{ item.name }}</th>
                         <td>{{ item.size }}</td>
                         <td>{% if item.class == "N/A" %}<em class="fc-light">{{ item.class }}</em>{% else %}<code class="stacks-code">.{{ item.class }}</code>{% endif %}</td>
-                        <td><textarea class="s-textarea {% if item.class != 'N/A' %}{{ item.class }}{% endif %}">Not sure what to ask? Recurring questions, onboarding procedures, local setups, and FAQs all make for useful questions.</textarea></td>
+                        <td><textarea class="s-textarea {% if item.class != 'N/A' %}{{ item.class }}{% endif %}" aria-label="demo textarea">Not sure what to ask? Recurring questions, onboarding procedures, local setups, and FAQs all make for useful questions.</textarea></td>
                     </tr>
                     {% endfor %}
                 {% endfor %}

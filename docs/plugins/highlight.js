@@ -51,6 +51,9 @@ module.exports = {
     // Add syntax highlighting
     eleventyConfig.addPlugin(syntaxHighlight, {
       className: "s-code-block",
+      preAttributes: {
+        tabindex: "0",
+      },
       init: function ({ hljs }) {
           // TODO custom plugin taken from Prod - should probably be an npm package?
           hljs.addPlugin(new HljsInsertLineNums());

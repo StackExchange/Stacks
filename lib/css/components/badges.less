@@ -59,6 +59,13 @@
     margin-left: calc((var(--su4) + var(--su1)) * -1);
 }
 
+//  $   BADGE ICON
+//      When we have a badge icon
+//  ---------------------------------------------------------------------------
+.s-badge__icon {
+    gap: 0.3em;
+}
+
 //  $   BADGE SIZES
 //  ---------------------------------------------------------------------------
 .s-badge__sm {
@@ -172,6 +179,44 @@
     // Staff badges are always "Stack Overflow Orange"
     .badge-styles(var(--orange-300), var(--orange-100), var(--orange-900));
     .highcontrast-mode({ border-color: currentColor; });
+}
+
+//  $$  States
+//  ---------------------------------------------------------------------------
+&.s-badge__danger {
+    color: var(--red-900);
+    background-color: var(--red-100);
+    border-color: var(--red-600);
+
+    &.s-badge__filled {
+        color: @white;
+        background-color: var(--red-500);
+        border-color: transparent;
+    }
+}
+
+&.s-badge__info {
+    color: var(--blue-900);
+    background-color: var(--blue-100);
+    border-color: var(--blue-600);
+}
+
+&.s-badge__warning {
+    color: var(--yellow-900);
+    background-color: var(--yellow-100);
+    border-color: var(--yellow-600);
+}
+
+&.s-badge__muted {
+    color: var(--black-900);
+    background-color: var(--black-100);
+    border-color: var(--black-600);
+
+    &.s-badge__filled {
+        color: var(--white);
+        background-color: var(--black-700);
+        border-color: transparent;
+    }
 }
 
 //  $$  Award Count

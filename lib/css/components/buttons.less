@@ -452,6 +452,13 @@
                 color: var(--white);
             }
         });
+        .light-mode-forced({
+            box-shadow: inset 0 1px 0 0 hsla(0, 0%, 100%, 0.4);
+
+            &:not(.is-selected) {
+                color: var(--white);
+            }
+        });
 
         &:hover,
         &:focus,
@@ -553,7 +560,7 @@
     .s-btn__unset:focus {
         padding: 0;
         border: none;
-        outline: none;
+        outline: initial;
         font: unset;
         border-radius: 0;
         color: unset;
@@ -568,7 +575,7 @@
         padding: 0;
         border: none;
         border-radius: 0;
-        outline: none;
+        outline: initial;
         font: inherit;
         background: none;
         box-shadow: none;
@@ -590,6 +597,14 @@
             &:after {
                 right: 0;
             }
+        }
+    }
+
+    .s-btn__unset,
+    .s-btn__link {
+        &:focus,
+        &:focus-visible {
+            outline-style: auto;
         }
     }
 

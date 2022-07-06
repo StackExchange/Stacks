@@ -247,7 +247,7 @@
     // Topbar Search input
     --theme-topbar-search-color: var(--black-700);
     --theme-topbar-search-background: var(--white);
-    --theme-topbar-search-placeholder: var(--black-200);
+    --theme-topbar-search-placeholder: var(--black-400);
     --theme-topbar-search-border: var(--black-200);
     --theme-topbar-search-border-focus: var(--blue-300);
     --theme-topbar-search-shadow-focus: 0 0 0 var(--su-static4) var(--focus-ring);
@@ -474,9 +474,6 @@
 
     // Fades
     --focus-ring: .native-fade(theme-secondary-color, 15)[];
-
-    // TODO
-    --theme-body-font-color: var(--black-800);
 }
 
 //  --  Dark mode
@@ -673,9 +670,6 @@
 
     // Fades
     --focus-ring: .native-fade(theme-secondary-color, 25)[];
-
-    // TODO
-    --theme-body-font-color: var(--black-800);
 }
 
 // rules shared between .theme-dark and .theme-system w/ prefers-color-scheme: dark
@@ -684,12 +678,10 @@
 
     &,
     & .themed {
+        color: var(--theme-body-font-color);
         .generate-themed-variables(theme-dark);
         // add in the themed "native mixins", making sure to scope to the child .themed elements so they don't use the parent's values
         .dark-themed-colors();
-    }
-
-    & .themed {
         &:extend(.component-colors);
     }
 }
@@ -1053,9 +1045,6 @@
 }
 
 // place component-colors on the body directly (instead of :root) so consumers can use the --theme-* variables
-body {
-    &:extend(.component-colors);
-}
 
 // Light mode
 body:not(.theme-dark),
@@ -1065,12 +1054,10 @@ body.theme-system .theme-light__forced {
 
     &,
     & .themed {
+        color: var(--theme-body-font-color);
         .generate-themed-variables(theme-light);
         // add in the themed "native mixins", making sure to scope to the child .themed elements so they don't use the parent's values
         .light-themed-colors();
-    }
-
-    & .themed {
         &:extend(.component-colors);
     }
 }
