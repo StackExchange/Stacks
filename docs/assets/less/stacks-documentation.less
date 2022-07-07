@@ -273,9 +273,17 @@
     > .stacks-clipboard-content pre.s-code-block {
         border-radius: var(--br-md) var(--br-md) 0 0;
         border: 1px solid var(--bc-medium);
+        display: flex; // flex layout for scroll padding
         max-height: 24rem;
         padding-right: var(--su32);
 
+        // pseudo element to pad scrollable region to compensate for copy button
+        &:after {
+            content: "";
+            display: block;
+            height: var(--su-static1);
+            width: var(--su-static128);
+        }
         .dark-mode({
             border-color: var(--bc-lighter);
         });
