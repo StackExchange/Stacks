@@ -2,13 +2,13 @@ const { default: Icons } = require("@stackoverflow/stacks-icons");
 
 module.exports = {
   configFunction(eleventyConfig) {
-    eleventyConfig.addPairedShortcode("copybutton", function(content) {
+    eleventyConfig.addPairedShortcode("copybutton", function(content, classes, btnClasses) {
       var tooltipId = "tooltip-" + Math.floor(Math.random() * 1000);
 
       var output = `
-<div class="stacks-clipboard-content ps-relative" data-controller="clipboard">
+<div class="stacks-clipboard-content ps-relative ${classes}" data-controller="clipboard">
   <button
-    class="stacks-copy-btn s-btn s-btn__muted s-btn__icon ps-absolute p4 t8 r8"
+    class="stacks-copy-btn s-btn s-btn__muted s-btn__icon ps-absolute p4 ${btnClasses}"
     data-action="clipboard#copy"
     data-s-tooltip-placement="top"
     data-controller="s-tooltip"
