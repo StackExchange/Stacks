@@ -9,7 +9,7 @@ export class StacksApplication extends Stimulus.Application {
         const definitions = Array.isArray(head) ? head : [head, ...rest];
 
         for (const definition of definitions) {
-            var hasPrefix = /^s-/.test(definition.identifier);
+            const hasPrefix = /^s-/.test(definition.identifier);
             if (StacksApplication._initializing && !hasPrefix) {
                 throw "Stacks-created Stimulus controller names must start with \"s-\".";
             }
@@ -46,7 +46,7 @@ export class StacksController extends Stimulus.Controller {
     };
     protected triggerEvent<T>(eventName: string, detail?: T, optionalElement?: Element) {
         const namespacedName = this.identifier + ":" + eventName;
-        var event : CustomEvent<T>;
+        let event : CustomEvent<T>;
         try {
             event = new CustomEvent(namespacedName, {bubbles: true, cancelable: true, detail: detail});
         } catch (ex) {
@@ -70,7 +70,7 @@ export function createController(controllerDefinition: ControllerDefinition): ty
         ? class Controller extends StacksController { static targets = controllerDefinition.targets! }
         : class Controller extends StacksController {};
 
-    for (var prop in controllerDefinition) {
+    for (const prop in controllerDefinition) {
         if (prop !== "targets" && controllerDefinition.hasOwnProperty(prop)) {
             Object.defineProperty(
                 Controller.prototype,

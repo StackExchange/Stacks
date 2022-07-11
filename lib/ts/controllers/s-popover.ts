@@ -105,7 +105,7 @@ export abstract class BasePopoverController extends Stacks.StacksController {
     show(dispatcher: Event|Element|null = null) {
         if (this.isVisible) { return; }
 
-        let dispatcherElement = this.getDispatcher(dispatcher);
+        const dispatcherElement = this.getDispatcher(dispatcher);
 
         if (this.triggerEvent("show", {
             dispatcher: dispatcherElement
@@ -129,7 +129,7 @@ export abstract class BasePopoverController extends Stacks.StacksController {
     hide(dispatcher: Event|Element|null = null) {
         if (!this.isVisible) { return; }
 
-        let dispatcherElement = this.getDispatcher(dispatcher);
+        const dispatcherElement = this.getDispatcher(dispatcher);
 
         if (this.triggerEvent("hide", {
             dispatcher: dispatcherElement
@@ -206,7 +206,7 @@ export abstract class BasePopoverController extends Stacks.StacksController {
      * Validates the popover settings and attempts to set necessary internal variables
      */
     private validate() {
-        var referenceSelector = this.data.get("reference-selector");
+        const referenceSelector = this.data.get("reference-selector");
 
         this.referenceElement = <HTMLElement>this.element;
 
@@ -221,7 +221,7 @@ export abstract class BasePopoverController extends Stacks.StacksController {
 
         const popoverId = this.referenceElement.getAttribute(this.popoverSelectorAttribute);
 
-        var popoverElement = null;
+        let popoverElement = null;
 
         // if the popover is named, attempt to fetch it (and throw an error if it doesn't exist)
         if (popoverId) {
@@ -364,8 +364,8 @@ export class PopoverController extends BasePopoverController {
         if (!this.data.has("toggle-class")) {
             return;
         }
-        var cl = this.referenceElement.classList;
         this.data.get("toggle-class")!.split(/\s+/).forEach(function (cls: string) {
+        const cl = this.referenceElement.classList;
             cl.toggle(cls, show);
         });
     }
@@ -461,7 +461,7 @@ export function attachPopover(element: Element, popover: Element | string, optio
     }
 
     const existingId = referenceElement.getAttribute("aria-controls");
-    var popoverId = popover.id;
+    let popoverId = popover.id;
 
     if (!popover.classList.contains('s-popover')) {
         throw `popover should have the "s-popover" class but had class="${popover.className}"`;
@@ -557,7 +557,7 @@ function getPopover(element: Element): GetPopoverResult {
  * @param include Whether to add the controllerName value
  */
 function toggleController(el: Element, controllerName: string, include: boolean) {
-    var controllers = new Set(el.getAttribute('data-controller')?.split(/\s+/));
+    const controllers = new Set(el.getAttribute('data-controller')?.split(/\s+/));
     if (include) {
         controllers.add(controllerName);
     } else {

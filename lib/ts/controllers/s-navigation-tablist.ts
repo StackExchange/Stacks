@@ -11,7 +11,7 @@ export class TabListController extends Stacks.StacksController {
         this.boundSelectTab = this.selectTab.bind(this);
         this.boundHandleKeydown = this.handleKeydown.bind(this);
 
-        for (let tab of this.tabTargets) {
+        for (const tab of this.tabTargets) {
             tab.addEventListener("click", this.boundSelectTab);
             tab.addEventListener("keydown", this.boundHandleKeydown);
         }
@@ -20,7 +20,7 @@ export class TabListController extends Stacks.StacksController {
     disconnect() {
         super.disconnect();
 
-        for (let tab of this.tabTargets) {
+        for (const tab of this.tabTargets) {
             tab.removeEventListener("click", this.boundSelectTab);
             tab.removeEventListener("keydown", this.boundHandleKeydown);
         }
@@ -47,8 +47,8 @@ export class TabListController extends Stacks.StacksController {
     handleKeydown(event: KeyboardEvent) {
         let tabElement = <HTMLElement>event.currentTarget;
 
-        var tabs = this.tabTargets;
-        var tabIndex = tabs.indexOf(tabElement);
+        const tabs = this.tabTargets;
+        let tabIndex = tabs.indexOf(tabElement);
 
         if (event.key === "ArrowRight") {
             tabIndex++;
@@ -75,7 +75,7 @@ export class TabListController extends Stacks.StacksController {
      */
     private switchToTab(newTab: HTMLElement) {
 
-        var oldTab = this.selectedTab;
+        const oldTab = this.selectedTab;
         if (oldTab === newTab) { return; }
 
         if (this.triggerEvent("select", { oldTab, newTab }).defaultPrevented) { return; }
@@ -98,9 +98,9 @@ export class TabListController extends Stacks.StacksController {
      * is not a valid tab, all tabs will be unselected.
      */
     public set selectedTab(selectedTab: HTMLElement | null) {
-        for (let tab of this.tabTargets) {
-            let panelId = tab.getAttribute('aria-controls');
-            let panel = panelId ? document.getElementById(panelId) : null;
+        for (const tab of this.tabTargets) {
+            const panelId = tab.getAttribute('aria-controls');
+            const panel = panelId ? document.getElementById(panelId) : null;
 
             if (tab === selectedTab) {
                 tab.classList.add('is-selected');
