@@ -115,7 +115,7 @@ export abstract class BasePopoverController extends Stacks.StacksController {
             this.initializePopper();
         }
 
-        this.popoverElement!.classList.add("is-visible");
+        this.popoverElement.classList.add("is-visible");
 
         // ensure the popper has been positioned correctly
         this.scheduleUpdate();
@@ -332,7 +332,7 @@ export class PopoverController extends BasePopoverController {
         const target = <Node>e.target;
         // check if the document was clicked inside either the reference element or the popover itself
         // note: .contains also returns true if the node itself matches the target element
-        if (this.shouldHideOnOutsideClick && !this.referenceElement.contains(target) && !this.popoverElement!.contains(target) && document.body.contains(target)) {
+        if (this.shouldHideOnOutsideClick && !this.referenceElement.contains(target) && !this.popoverElement.contains(target) && document.body.contains(target)) {
             this.hide(e);
         }
     };
@@ -349,7 +349,7 @@ export class PopoverController extends BasePopoverController {
 
         // check if the target was inside the popover element and refocus the triggering element
         // note: .contains also returns true if the node itself matches the target element
-        if (this.popoverElement!.contains(<Node>e.target)) {
+        if (this.popoverElement.contains(<Node>e.target)) {
             this.referenceElement.focus();
         }
 
@@ -364,8 +364,10 @@ export class PopoverController extends BasePopoverController {
         if (!this.data.has("toggle-class")) {
             return;
         }
-        this.data.get("toggle-class")!.split(/\s+/).forEach(function (cls: string) {
+
+        const toggleClass = this.data.get("toggle-class") || "";
         const cl = this.referenceElement.classList;
+        toggleClass.split(/\s+/).forEach(function (cls: string) {
             cl.toggle(cls, show);
         });
     }

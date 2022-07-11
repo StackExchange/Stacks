@@ -52,7 +52,7 @@ export class StacksController extends Stimulus.Controller {
         } catch (ex) {
             // Internet Explorer
             event = document.createEvent("CustomEvent");
-            event.initCustomEvent(namespacedName, true, true, detail!);
+            event.initCustomEvent(namespacedName, true, true, detail);
         }
         (optionalElement || this.element).dispatchEvent(event);
         return event;
