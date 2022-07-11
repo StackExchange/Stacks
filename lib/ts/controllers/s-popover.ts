@@ -263,7 +263,7 @@ export abstract class BasePopoverController extends Stacks.StacksController {
      */
     protected scheduleUpdate() {
         if (this.popper && this.isVisible) {
-            this.popper.update();
+            void this.popper.update();
         }
     }
 }
