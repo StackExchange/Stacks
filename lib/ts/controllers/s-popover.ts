@@ -87,6 +87,8 @@ export abstract class BasePopoverController extends Stacks.StacksController {
         this.hide();
         if (this.popper) {
             this.popper.destroy();
+            // eslint-disable-next-line
+            // @ts-ignore The operand of a 'delete' operator must be optional .ts(2790)
             delete this.popper;
         }
         super.disconnect();
@@ -140,6 +142,8 @@ export abstract class BasePopoverController extends Stacks.StacksController {
         if (this.popper) {
             // completely destroy the popper on hide; this is in line with Popper.js's performance recommendations
             this.popper.destroy();
+            // eslint-disable-next-line
+            // @ts-ignore The operand of a 'delete' operator must be optional .ts(2790)
             delete this.popper;
         }
 
