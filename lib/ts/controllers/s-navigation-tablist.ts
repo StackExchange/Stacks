@@ -2,8 +2,8 @@ import * as Stacks from "../stacks";
 
 export class TabListController extends Stacks.StacksController {
 
-    private boundSelectTab: any; // (event: MouseEvent) => void;
-    private boundHandleKeydown: any // (event: KeyboardEvent) => void;
+    private boundSelectTab!: (event: MouseEvent) => void;
+    private boundHandleKeydown!: (event: KeyboardEvent) => void;
 
     connect() {
         super.connect();

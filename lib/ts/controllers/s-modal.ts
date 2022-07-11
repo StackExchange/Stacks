@@ -6,12 +6,12 @@ export class ModalController extends Stacks.StacksController {
     private modalTarget!: HTMLElement;
     private initialFocusTargets!: HTMLElement[];
 
-    private _boundClickFn!: any;
-    private _boundKeypressFn!: any;
+    private _boundClickFn!: (event: MouseEvent) => void;
+    private _boundKeypressFn!: (event: KeyboardEvent) => void;
 
     private returnElement!: HTMLElement;
 
-    private _boundTabTrap!: any;
+    private _boundTabTrap!: (event: KeyboardEvent) => void;
 
     connect () {
         this.validate();

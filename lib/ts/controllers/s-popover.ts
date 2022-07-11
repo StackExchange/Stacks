@@ -274,8 +274,8 @@ export class PopoverController extends BasePopoverController {
 
     protected popoverSelectorAttribute = "aria-controls";
 
-    private boundHideOnOutsideClick!: any;
-    private boundHideOnEscapePress!: any;
+    private boundHideOnOutsideClick!: (event: MouseEvent) => void;
+    private boundHideOnEscapePress!:  (event: KeyboardEvent) => void;
 
     /**
      * Toggles optional classes and accessibility attributes in addition to BasePopoverController.shown
