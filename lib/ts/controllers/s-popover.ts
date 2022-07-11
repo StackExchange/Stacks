@@ -458,6 +458,7 @@ export function attachPopover(element: Element, popover: Element | string, optio
     }
 
     if (typeof popover === 'string') {
+        // eslint-disable-next-line no-unsanitized/method
         const elements = document.createRange().createContextualFragment(popover).children;
         if (elements.length !== 1) {
             throw "popover should contain a single element";
