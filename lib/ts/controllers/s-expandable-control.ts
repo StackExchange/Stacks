@@ -56,12 +56,12 @@ export class ExpandableController extends Stacks.StacksController {
 
     initialize() {
         if (this.element.nodeName === "INPUT" && ["radio", "checkbox"].indexOf((<HTMLInputElement>this.element).type) >= 0) {
-            this.isCollapsed = this._isCollapsedForCheckable;
+            this.isCollapsed = this._isCollapsedForCheckable.bind(this);
             this.events = ["change", RADIO_OFF_EVENT];
             this.isCheckable = true;
             this.isRadio = (<HTMLInputElement>this.element).type === "radio";
         } else {
-            this.isCollapsed = this._isCollapsedForClickable;
+            this.isCollapsed = this._isCollapsedForClickable.bind(this);
             this.events = ["click", "keydown"];
         }
         this.listener = this.listener.bind(this);
@@ -151,7 +151,7 @@ export class ExpandableController extends Stacks.StacksController {
 
     connect() {
         this.events.forEach(e => {
-            this.element.addEventListener(e, this.listener);
+            this.element.addEventListener(e, this.listener.bind(this));
         }, this);
 
         if (this.isRadio) {
@@ -179,8 +179,7 @@ export class ExpandableController extends Stacks.StacksController {
 
     disconnect() {
         this.events.forEach(e => {
-            // eslint-disable-next-line @typescript-eslint/unbound-method
-            this.element.removeEventListener(e, this.listener);
+            this.element.removeEventListener(e, this.listener.bind(this));
         }, this);
 
         if (this.isRadio) {
