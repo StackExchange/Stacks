@@ -29,8 +29,8 @@ export class TabListController extends Stacks.StacksController {
     /**
      * Gets all tabs within the controller.
      */
-    get tabTargets() {
-        return <HTMLElement[]>Array.from(this.element.querySelectorAll("[role=tab]"));
+    get tabTargets(): HTMLElement[] {
+        return Array.from(this.element.querySelectorAll("[role=tab]"));
     }
 
     /**
@@ -62,7 +62,7 @@ export class TabListController extends Stacks.StacksController {
         if (tabIndex < 0) { tabIndex = tabs.length - 1; }
         if (tabIndex >= tabs.length) { tabIndex = 0; }
 
-        tabElement = <HTMLElement>tabs[tabIndex];
+        tabElement = tabs[tabIndex];
         this.switchToTab(tabElement);
 
         // Focus the newly selected tab so it can receive keyboard events.
