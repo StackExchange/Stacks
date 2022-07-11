@@ -9,36 +9,34 @@ export class TableController extends Stacks.StacksController {
         if (["asc", "desc", "none"].indexOf(direction) < 0) {
             throw "direction must be one of asc, desc, or none"
         }
-        var controller = this;
-        this.columnTargets.forEach(function (target) {
-            var isCurrrent = target === headElem;
+        this.columnTargets.forEach((target) => {
+            const isCurrrent = target === headElem;
 
             target.classList.toggle("is-sorted", isCurrrent && direction !== "none");
 
             target.querySelectorAll(".js-sorting-indicator").forEach(function (icon) {
-                var visible = isCurrrent ? direction : "none";
+                const visible = isCurrrent ? direction : "none";
                 icon.classList.toggle("d-none", !icon.classList.contains("js-sorting-indicator-" + visible));
             });
 
             if (!isCurrrent || direction === "none") {
-                controller.removeElementData(target, "sort-direction");
+                this.removeElementData(target, "sort-direction");
             } else {
-                controller.setElementData(target, "sort-direction", direction);
+                this.setElementData(target, "sort-direction", direction);
             }
         });
     };
 
     sort(evt: Event) {
-        var controller = this;
-        var colHead = evt.currentTarget;
+        const colHead = evt.currentTarget;
         if (!(colHead instanceof HTMLTableCellElement)) {
             throw "invalid event target";
         }
-        var table = this.element as HTMLTableElement;
-        var tbody = table.tBodies[0];
+        const table = this.element as HTMLTableElement;
+        const tbody = table.tBodies[0];
 
         // the column slot number of the clicked header
-        var colno = getCellSlot(colHead);
+        const colno = getCellSlot(colHead);
 
         if (colno < 0) { // this shouldn't happen if the clicked element is actually a column head
             return;
@@ -46,23 +44,23 @@ export class TableController extends Stacks.StacksController {
 
         // an index of the <tbody>, so we can find out for each row which <td> element is
         // in the same column slot as the header
-        var slotIndex = buildIndex(tbody);
+        const slotIndex = buildIndex(tbody);
 
         // the default behavior when clicking a header is to sort by this column in ascending
         // direction, *unless* it is already sorted that way
-        var direction = this.getElementData(colHead, "sort-direction") === "asc" ? -1 : 1;
+        const direction = this.getElementData(colHead, "sort-direction") === "asc" ? -1 : 1;
 
-        var rows = Array.from(table.tBodies[0].rows);
+        const rows = Array.from(table.tBodies[0].rows);
 
         // if this is still false after traversing the data, that means all values are integers (or empty)
         // and thus we'll sort numerically.
-        var anyNonInt = false;
+        let anyNonInt = false;
 
         // data will be a list of tuples [value, rowNum], where value is what we're sorting by
-        var data: [string | number, number][] = [];
-        var firstBottomRow: HTMLTableRowElement;
-        rows.forEach(function (row, index) {
-            var force = controller.getElementData(row, "sort-to");
+        const data: [string | number, number][] = [];
+        let firstBottomRow: HTMLTableRowElement;
+        rows.forEach((row, index) => {
+            const force = this.getElementData(row, "sort-to");
             if (force === "top") {
                 return; // rows not added to the list will automatically end up at the top
             } else if (force === "bottom") {
@@ -71,7 +69,7 @@ export class TableController extends Stacks.StacksController {
                 }
                 return;
             }
-            var cell = slotIndex[index][colno];
+            const cell = slotIndex[index][colno];
             if (!cell) {
                 data.push(["", index]);
                 return;
@@ -79,10 +77,10 @@ export class TableController extends Stacks.StacksController {
 
             // unless the to-be-sorted-by value is explicitly provided on the element via this attribute,
             // the value we're using is the cell's text, trimmed of any whitespace
-            var explicit = controller.getElementData(cell, "sort-val");
-            var d = typeof explicit === "string" ? explicit : cell.textContent!.trim();
+            const explicit = this.getElementData(cell, "sort-val");
+            const d = typeof explicit === "string" ? explicit : cell.textContent!.trim();
 
-            if ((d !== "") && (parseInt(d, 10) + "" !== d)) {
+            if ((d !== "") && (`${parseInt(d, 10)}` !== d)) {
                 anyNonInt = true;
             }
             data.push([d, index]);
@@ -114,7 +112,7 @@ export class TableController extends Stacks.StacksController {
 
         // this is the actual reordering of the table rows
         data.forEach(function (tup) {
-            var row = rows[tup[1]];
+            const row = rows[tup[1]];
             row.parentElement!.removeChild(row);
             if (firstBottomRow) {
                 tbody.insertBefore(row, firstBottomRow);
@@ -165,29 +163,29 @@ function getCellSlot(cell: HTMLTableCellElement): number {
 // If the second argument is given, it's a <td> or <th> that we're trying to find, and the algorithm
 // stops as soon as it has found it and the function returns its slot number.
 function buildIndexOrGetCellSlot(section: HTMLTableSectionElement, findCell?: HTMLTableCellElement) {
-    var index = [];
-    var curRow = section.children[0];
+    const index = [];
+    let curRow = section.children[0];
 
     // the elements of these two arrays are synchronized; the first array contains table cell elements,
     // the second one contains a number that indicates for how many more rows this elements will
     // exist (i.e. the value is initially one less than the cell's rowspan, and will be decreased for each row)
-    var growing: HTMLTableCellElement[] = [];
-    var growingRowsLeft: number[] = [];
+    const growing: HTMLTableCellElement[] = [];
+    const growingRowsLeft: number[] = [];
 
     // continue while we have actual <tr>'s left *or* we still have rowspan'ed elements that aren't done
     while (curRow || growingRowsLeft.some(function (e) { return e !== 0; })) {
-        var curIndexRow: HTMLTableCellElement[] = [];
+        const curIndexRow: HTMLTableCellElement[] = [];
         index.push(curIndexRow);
 
-        var curSlot = 0;
+        let curSlot = 0;
         if (curRow) {
-            for (var curCellInd = 0; curCellInd < curRow.children.length; curCellInd++) {
+            for (let curCellInd = 0; curCellInd < curRow.children.length; curCellInd++) {
                 while (growingRowsLeft[curSlot]) {
                     growingRowsLeft[curSlot]--;
                     curIndexRow[curSlot] = growing[curSlot];
                     curSlot++;
                 }
-                var cell = curRow.children[curCellInd];
+                const cell = curRow.children[curCellInd];
                 if (!(cell instanceof HTMLTableCellElement)) {
                     throw "invalid table"
                 }
@@ -197,7 +195,7 @@ function buildIndexOrGetCellSlot(section: HTMLTableSectionElement, findCell?: HT
                 if (cell === findCell) {
                     return curSlot;
                 }
-                var nextFreeSlot = curSlot + cell.colSpan;
+                const nextFreeSlot = curSlot + cell.colSpan;
                 for (; curSlot < nextFreeSlot; curSlot++) {
                     growingRowsLeft[curSlot] = cell.rowSpan - 1; // if any of these is already growing, the table is broken -- no guarantees of anything
                     growing[curSlot] = cell;
