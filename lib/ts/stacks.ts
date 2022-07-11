@@ -23,6 +23,7 @@ export class StacksApplication extends Stimulus.Application {
 
     static start(element?: Element, schema?: Stimulus.Schema): StacksApplication {
         const application = new StacksApplication(element, schema);
+        // eslint-disable-next-line @typescript-eslint/no-floating-promises
         application.start();
         return application;
     }
@@ -51,6 +52,7 @@ export class StacksController extends Stimulus.Controller {
             event = new CustomEvent(namespacedName, {bubbles: true, cancelable: true, detail: detail});
         } catch (ex) {
             // Internet Explorer
+            // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
             event = document.createEvent("CustomEvent");
             event.initCustomEvent(namespacedName, true, true, detail);
         }
@@ -66,11 +68,13 @@ export interface ControllerDefinition {
     targets?: string[];
 }
 export function createController(controllerDefinition: ControllerDefinition): typeof StacksController {
+    // eslint-disable-next-line no-prototype-builtins
     const Controller = controllerDefinition.hasOwnProperty("targets")
         ? class Controller extends StacksController { static targets = controllerDefinition.targets! }
         : class Controller extends StacksController {};
 
     for (const prop in controllerDefinition) {
+        // eslint-disable-next-line no-prototype-builtins
         if (prop !== "targets" && controllerDefinition.hasOwnProperty(prop)) {
             Object.defineProperty(
                 Controller.prototype,
