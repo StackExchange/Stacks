@@ -182,7 +182,6 @@ export abstract class BasePopoverController extends Stacks.StacksController {
      * Initializes the Popper for this instance
      */
     private initializePopper() {
-        // @ts-ignore
         this.popper = createPopper(this.referenceElement, this.popoverElement, {
             placement: this.data.get("placement") as Placement || "bottom",
             modifiers: [
