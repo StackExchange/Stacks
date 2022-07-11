@@ -52,7 +52,7 @@ export class ExpandableController extends Stacks.StacksController {
     private events!: string[];
     private isCheckable!: boolean;
     private isRadio!: boolean;
-    private lastKeydownClickTimestamp: number = 0;
+    private lastKeydownClickTimestamp = 0;
 
     initialize() {
         if (this.element.nodeName === "INPUT" && ["radio", "checkbox"].indexOf((<HTMLInputElement>this.element).type) >= 0) {
