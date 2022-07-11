@@ -9,7 +9,9 @@ export class TableController extends Stacks.StacksController {
         if (["asc", "desc", "none"].indexOf(direction) < 0) {
             throw "direction must be one of asc, desc, or none"
         }
-        this.columnTargets.forEach((target) => {
+        // eslint-disable-next-line @typescript-eslint/no-this-alias
+        const controller = this;
+        this.columnTargets.forEach(function (target) {
             const isCurrrent = target === headElem;
 
             target.classList.toggle("is-sorted", isCurrrent && direction !== "none");
@@ -20,14 +22,16 @@ export class TableController extends Stacks.StacksController {
             });
 
             if (!isCurrrent || direction === "none") {
-                this.removeElementData(target, "sort-direction");
+                controller.removeElementData(target, "sort-direction");
             } else {
-                this.setElementData(target, "sort-direction", direction);
+                controller.setElementData(target, "sort-direction", direction);
             }
         });
     };
 
     sort(evt: Event) {
+        // eslint-disable-next-line @typescript-eslint/no-this-alias
+        const controller = this;
         const colHead = evt.currentTarget;
         if (!(colHead instanceof HTMLTableCellElement)) {
             throw "invalid event target";
@@ -59,8 +63,8 @@ export class TableController extends Stacks.StacksController {
         // data will be a list of tuples [value, rowNum], where value is what we're sorting by
         const data: [string | number, number][] = [];
         let firstBottomRow: HTMLTableRowElement;
-        rows.forEach((row, index) => {
-            const force = this.getElementData(row, "sort-to");
+        rows.forEach(function (row, index) {
+            const force = controller.getElementData(row, "sort-to");
             if (force === "top") {
                 return; // rows not added to the list will automatically end up at the top
             } else if (force === "bottom") {
@@ -77,7 +81,7 @@ export class TableController extends Stacks.StacksController {
 
             // unless the to-be-sorted-by value is explicitly provided on the element via this attribute,
             // the value we're using is the cell's text, trimmed of any whitespace
-            const explicit = this.getElementData(cell, "sort-val");
+            const explicit = controller.getElementData(cell, "sort-val");
             const d = typeof explicit === "string" ? explicit : cell.textContent!.trim();
 
             if ((d !== "") && (`${parseInt(d, 10)}` !== d)) {
