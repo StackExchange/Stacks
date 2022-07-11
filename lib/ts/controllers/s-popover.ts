@@ -1,11 +1,11 @@
 import { createPopper, Placement } from '@popperjs/core';
+import type * as Popper from '@popperjs/core';
 import * as Stacks from "../stacks";
 
 type OutsideClickBehavior = "always" | "never" | "if-in-viewport" | "after-dismissal";
 
 export abstract class BasePopoverController extends Stacks.StacksController {
-    // @ts-ignore
-    private popper!: Popper;
+    private popper!: Popper.Instance;
 
     protected popoverElement!: HTMLElement;
 
