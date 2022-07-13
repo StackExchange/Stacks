@@ -66,7 +66,7 @@ export class TooltipController extends BasePopoverController {
      */
     hide(dispatcher: Event | Element | null = null) {
         window.clearTimeout(this.activeTimeout);
-        this.activeTimeout = 0; // TODO change this back to `null` and type it properly
+        this.activeTimeout = 0;
 
         super.hide(dispatcher);
     }
