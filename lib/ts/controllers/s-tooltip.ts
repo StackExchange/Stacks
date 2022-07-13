@@ -101,7 +101,7 @@ export class TooltipController extends BasePopoverController {
 
         var popover = document.getElementById(popoverId);
         if (!popover) {
-            popover = document.createElement("div");
+            popover = document.createElement("div") as any as HTMLElement;
             popover.id = popoverId;
             popover.className = "s-popover s-popover__tooltip pe-none";
             popover.setAttribute("aria-hidden", "true");

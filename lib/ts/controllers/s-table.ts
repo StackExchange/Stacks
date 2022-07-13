@@ -142,7 +142,7 @@ function getCellSlot(cell: HTMLTableCellElement): number {
     if (!(cell.parentElement && cell.parentElement.parentElement instanceof HTMLTableSectionElement)) {
         throw "invalid table"
     }
-    const result = buildIndexOrGetCellSlot(cell.parentElement.parentElement, cell);
+    const result = buildIndexOrGetCellSlot(cell.parentElement.parentElement as any as HTMLTableSectionElement, cell);
     if (typeof result !== "number") {
         throw "shouldn't happen"
     }
