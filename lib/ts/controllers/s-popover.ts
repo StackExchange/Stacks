@@ -224,7 +224,7 @@ export abstract class BasePopoverController extends Stacks.StacksController {
 
         const popoverId = this.referenceElement.getAttribute(this.popoverSelectorAttribute);
 
-        let popoverElement = null;
+        let popoverElement: HTMLElement | null = null;
 
         // if the popover is named, attempt to fetch it (and throw an error if it doesn't exist)
         if (popoverId) {
