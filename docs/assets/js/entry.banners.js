@@ -21,7 +21,6 @@ $(document).ready(function() {
         topnav.css("top","");
         sysCloseBtn.removeClass("d-none");
         sysBanner.show().attr("aria-hidden","false").removeClass(typeClasses).addClass(sysStyle);
-        sysCloseIcon.removeClass("fc-white").addClass("fc-dark");
 
         if (sysPos.is(":checked")) {
             topnav.removeClass("t0").css("top", sysBannerHeight + "px");
@@ -30,13 +29,6 @@ $(document).ready(function() {
 
         if (sysType.is(":checked")) {
             sysBanner.addClass("s-banner__important");
-
-            if (sysStyle == "s-banner__warning" || sysStyle == "s-banner__success") {
-                sysCloseIcon.removeClass("fc-white").addClass("fc-dark");
-            }
-            else {
-                sysCloseIcon.removeClass("fc-dark").addClass("fc-white");
-            }
         }
     });
 
