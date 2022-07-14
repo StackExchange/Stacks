@@ -49,6 +49,9 @@
     &.s-notice__important,
     &.s-banner__important {
         background-color: var(--theme-secondary-400);
+
+        .dark-mode({ background-color: var(--theme-secondary-500); });
+        .highcontrast-mode({ border-color: transparent; });
     }
 
     // Improve the presentation of buttons
@@ -75,7 +78,6 @@
     border-color: var(--green-200);
     background-color: var(--green-050);
 
-    // Bump up the border contrast in high contrast mode
     .highcontrast-mode({
         background-color: var(--green-200);
         border-color: var(--green-400);
@@ -86,11 +88,14 @@
         background-color: var(--green-400);
         color: var(--black-900);
 
-        // Bump up the text in high contrast
-        .highcontrast-mode({
+        .dark-mode({
             background-color: var(--green-500);
             color: var(--white);
+        });
+        .highcontrast-mode({
+            background-color: var(--green-500);
             border-color: transparent;
+            color: var(--white);
         });
     }
 
@@ -114,7 +119,6 @@
     border-color: var(--yellow-300);
     background-color: var(--yellow-050);
 
-    // Bump up the border contrast in high contrast mode
     .highcontrast-mode({
         background-color: var(--yellow-200);
         border-color: var(--yellow-700);
@@ -125,11 +129,14 @@
         background-color: var(--yellow-400);
         color: var(--black-900);
 
-        // Bump up the text in high contrast
-        .highcontrast-mode({
+        .dark-mode({
             background-color: var(--yellow-500);
             color: var(--white);
+        });
+        .highcontrast-mode({
+            background-color: var(--yellow-500);
             border-color: transparent;
+            color: var(--white);
         });
     }
 
@@ -157,20 +164,17 @@
     border-color: var(--red-200);
     background-color: var(--red-050);
 
-    // Bump up the border contrast in high contrast mode
-    .highcontrast-mode({
-        background-color: var(--red-200);
-        border-color: var(--red-500);
-
-        &.s-notice__important,
-        &.s-banner__important {
-            background-color: var(--red-500);
-        }
-    });
-
     &.s-notice__important,
     &.s-banner__important {
-        background-color: var(--red-400);
+        background-color: var(--red-500);
+
+        .dark-mode({
+            background-color: var(--red-600);
+        });
+        .highcontrast-mode({
+            border-color: transparent;
+            color: var(--white);
+        });
     }
 
     // Improve the presentation of buttons
