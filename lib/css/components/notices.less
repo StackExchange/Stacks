@@ -15,129 +15,141 @@
         --_btn-active-bg-color: var(--black-150);
         --_code-bg-color: transparent;
 
-        .dark-mode({ --_bc: transparent; });
-        .highcontrast-mode({ --_bc: currentColor; });
-
-        &.s-@{name}__important {
-            --_bc: transparent;
-            --_bg-color: var(--black-700);
-            --_fc: var(--white);
-            --_code-bg-color: transparent;
-
-            .highcontrast-mode({ --_bc: currentColor; });
-        }
-
-        &.s-@{name}__danger,
-        &.s-@{name}__info,
-        &.s-@{name}__success,
-        &.s-@{name}__warning {
-            .dark-mode({ --_bc: transparent; });
-
-            &.s-@{name}__important {
-                --_bc: transparent;
-                --_bg-color: var(--black-700);
-                --_fc: var(--white);
-                --_code-bg-color: transparent;
-
-                .highcontrast-mode({ --_bc: currentColor; });
-            }
-        }
-
         &.s-@{name}__danger {
             --_bc: var(--red-200);
             --_bg-color: var(--red-050);
             --_btn-focus-bg-color: var(--red-100);
             --_btn-active-bg-color: var(--red-200);
-
-            .highcontrast-mode({
-                --_bc: var(--red-400);
-                --_bg-color: var(--red-200);
-            });
-
-            &.s-@{name}__important {
-                --_bg-color: var(--red-400);
-                
-                .highcontrast-mode({
-                    --_bc: var(--red-500);
-                    --_bg-color: var(--red-500);
-                });
-            }
-
         }
-
         &.s-@{name}__info {
             --_bc: var(--theme-secondary-150);
             --_bg-color: var(--theme-secondary-050);
             --_btn-focus-bg-color: var(--theme-secondary-100);
             --_btn-active-bg-color: var(--theme-secondary-150);
             --_code-bg-color: var(--theme-secondary-150);
-
-            &.s-@{name}__important {
-                --_bg-color: var(--theme-secondary-400);
-                --_code-bg-color: inherit;
-            }
         }
-
         &.s-@{name}__success {
             --_bc: var(--green-200);
             --_bg-color: var(--green-050);
             --_btn-focus-bg-color: var(--green-100);
             --_btn-active-bg-color: var(--green-200);
-
-            .highcontrast-mode({
-                --_bc: var(--green-400);
-                --_bg-color: var(--green-200);
-            });
-
-            &.s-@{name}__important {
-                --_bg-color: var(--green-400);
-                --_fc: var(--black-900);
-
-                .highcontrast-mode({
-                    --_bc: transparent;
-                    --_bg-color: var(--green-500);
-                    --_fc: var(--white);
-                });
-            }
         }
-
         &.s-@{name}__warning {
             --_bc: var(--yellow-300);
             --_bg-color: var(--yellow-050);
             --_btn-focus-bg-color: var(--yellow-200);
             --_btn-active-bg-color: var(--yellow-300);
             --_code-bg-color: var(--yellow-200);
-
-            .highcontrast-mode({
-                --_bc: var(--yellow-700);
-                --_bg-color: var(--yellow-200);
-            });
-
-            &.s-@{name}__important {
-                --_bg-color: var(--yellow-400);
+        }
+        &.s-@{name}__important {
+            --_bc: transparent;
+            --_bg-color: var(--black-700);
+            --_fc: var(--white);
+            --_btn-focus-bg-color: var(--black-800);
+            --_btn-active-bg-color: var(--black-900);
+    
+            &.s-@{name}__danger,
+            &.s-@{name}__info,
+            &.s-@{name}__success,
+            &.s-@{name}__warning {
+                --_bc: transparent;
+            }
+            &.s-@{name}__danger {
+                --_bg-color: var(--red-400);
+                --_btn-focus-bg-color: var(--red-500);
+                --_btn-active-bg-color: var(--red-600);
+            }
+            &.s-@{name}__info {
+                --_bg-color: var(--theme-secondary-400);
+                --_btn-focus-bg-color: var(--theme-secondary-500);
+                --_btn-active-bg-color: var(--theme-secondary-600);
+            }
+            &.s-@{name}__success {
+                --_bg-color: var(--green-400);
                 --_fc: var(--black-900);
-
-                .highcontrast-mode({
-                    --_bc: transparent;
-                    --_bg-color: var(--yellow-500);
-                    --_fc: var(--white);
-                });
+                --_btn-focus-bg-color: var(--green-500);
+                --_btn-active-bg-color: var(--green-600);
+            }
+            &.s-@{name}__warning {
+                --_bg-color: var(--yellow-400);
+                --_btn-focus-bg-color: var(--yellow-500);
+                --_btn-active-bg-color: var(--yellow-600);
+                --_fc: var(--black-900);
             }
         }
 
+        // dark mode overrides
+        .dark-mode({
+            &.s-@{name}__danger,
+            &.s-@{name}__info,
+            &.s-@{name}__success,
+            &.s-@{name}__warning {
+                --_bc: transparent;
+            }
+        });
+
+        // high contrast mode overrides
+        .highcontrast-mode({
+            &:not(.s-@{name}__important) {
+                --_bc: currentColor;
+            }
+            &.s-@{name}__danger {
+                --_bg-color: var(--red-200);
+            }
+            &.s-@{name}__info {
+                --_bg-color: var(--theme-secondary-100);
+            }
+            &.s-@{name}__success {
+                --_bg-color: var(--green-200);
+            }
+            &.s-@{name}__warning {
+                --_bg-color: var(--yellow-200);
+            }
+            &.s-@{name}__important {
+                &.s-@{name}__danger {
+                    --_bg-color: var(--red-500);
+                }
+                &.s-@{name}__info {
+                    --_bg-color: var(--theme-secondary-400);
+                }
+                &.s-@{name}__success {
+                    --_bg-color: var(--green-500);
+                    --_fc: var(--white);
+                }
+                &.s-@{name}__warning {
+                    --_bg-color: var(--yellow-500);
+                    --_fc: var(--white);
+                }
+            }
+        });
+
+        // high contrast + dark mode overrides
+        .highcontrast-dark-mode({
+            &:not(.s-@{name}__important) {
+                &.s-@{name}__danger,
+                &.s-@{name}__info,
+                &.s-@{name}__success,
+                &.s-@{name}__warning {
+                    --_bc: currentColor;
+                }
+                &.s-@{name}__info {
+                    --_bg-color: var(--theme-secondary-100);
+                }
+            }
+        });
+
         background-color: var(--_bg-color);
-        border: 1px solid var(--_bc);
-        border-radius: var(--br-sm);
+        border-color: var(--_bc);
+        border-style: solid;
         color: var(--_fc);
         font-size: var(--fs-body1);
-        padding: var(--su16);
 
         code {
             background-color: var(--_code-bg-color);
         }
 
         .s-@{name}--btn {
-            color: var(--fc-dark);
+            color: inherit;
             padding: var(--su8);
 
             &:focus,
@@ -149,29 +161,72 @@
                 background-color: var(--_btn-active-bg-color);
             }
         }
-
-        // & when (@name = banner) {
-        //     outline: 5px solid green;
-        // }
-        & when (@name = notice) {
-            .s-toast & {
-                max-width: 44rem;
-                width: 100%;
-                padding-top: var(--su8);
-                padding-bottom: var(--su8);
-                box-shadow: var(--bs-sm);
-                pointer-events: all;
-            }
-        }
     }
 }
 
+// Banner
 .build-component(banner);
-.build-component(notice);
+.s-banner {
+    border-width: var(--su-static1) 0;
+    inset: 0 0 auto 0;
+    padding: var(--su12);
+    position: fixed;
+    width: 100%;
+    z-index: calc(var(--zi-navigation-fixed) - 1); // Tuck below topbar
 
-//  ============================================================================
-//  $   TOASTS
-//  ----------------------------------------------------------------------------
+    //      When we use .s-banner, we need to adjust the padding-top on
+    //      the body tag. This class correctly adjusts the body padding ONLY if
+    //      the notice is one line. If it wraps to multiple lines, more classes or
+    //      (ideally) JS will need to be used to determine the notice's height
+    //      at the time of render. The padding value is determined like so:
+    //
+    //      50px (top bar) + 44px (notice height) - 1px (bottom border)
+    //
+    //      The borders subtraction are necessary to neatly tuck everything together.
+    //  ----------------------------------------------------------------------------
+    &__body-pt {
+        padding-top: 93px;
+    }
+
+    //  If you want to put the banner above the topbar
+    &.is-pinned {
+        z-index: calc(var(--zi-navigation-fixed) + 1);
+        -webkit-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0);
+    }
+
+    // If you want to hide and reveal the banner
+    &[aria-hidden="true"] {
+        visibility: hidden;
+        opacity: 0;
+        -webkit-transform: translate3d(0, -50px, 0);
+        transform: translate3d(0, -50px, 0);
+    }
+    &[aria-hidden="false"] {
+        visibility: visible;
+        opacity: 1;
+        -webkit-transform: translate3d(0, 49px, 0);
+        transform: translate3d(0, 49px, 0);
+    }
+
+    // When we want to keep hero content capped
+    .s-banner--container {
+        position: relative;
+        width: 100%;
+        max-width: calc(var(--s-step) * 10);
+        margin: 0 auto;
+    }
+}
+
+// Notice
+.build-component(notice);
+.s-notice {
+    border-radius: var(--br-sm);
+    border-width: var(--su-static1);
+    padding: var(--su16);
+}
+
+// Toast
 .s-toast {
     visibility: hidden;
     position: fixed;
@@ -195,5 +250,14 @@
 
     @media (prefers-reduced-motion) {
         transform: none;
+    }
+
+    .s-notice {
+        max-width: 44rem;
+        width: 100%;
+        padding-top: var(--su8);
+        padding-bottom: var(--su8);
+        box-shadow: var(--bs-sm);
+        pointer-events: all;
     }
 }
