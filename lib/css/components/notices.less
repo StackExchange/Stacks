@@ -55,9 +55,9 @@
                 --_bc: transparent;
             }
             &.s-@{name}__danger {
-                --_bg-color: var(--red-400);
-                --_btn-focus-bg-color: var(--red-500);
-                --_btn-active-bg-color: var(--red-600);
+                --_bg-color: var(--red-500);
+                --_btn-focus-bg-color: var(--red-600);
+                --_btn-active-bg-color: var(--red-700);
             }
             &.s-@{name}__info {
                 --_bg-color: var(--theme-secondary-400);
@@ -85,6 +85,11 @@
             &.s-@{name}__success,
             &.s-@{name}__warning {
                 --_bc: transparent;
+            }
+            &.s-@{name}__important {
+                &.s-@{name}__danger {
+                    --_fc: var(--black-900);
+                }
             }
         });
 
@@ -134,6 +139,11 @@
                 }
                 &.s-@{name}__info {
                     --_bg-color: var(--theme-secondary-100);
+                }
+            }
+            &.s-@{name}__important {
+                &.s-@{name}__danger {
+                    --_fc: var(--white);
                 }
             }
         });
