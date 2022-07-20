@@ -8,170 +8,20 @@
 //
 .build-component(@name) {
     .s-@{name} {
-        --_bc: var(--bc-light);
-        --_bg-color: var(--black-050);
-        --_fc: var(--fc-medium);
-        --_btn-focus-bg-color: var(--black-100);
-        --_btn-active-bg-color: var(--black-150);
-        --_code-bg-color: transparent;
-
-        &.s-@{name}__danger {
-            --_bc: var(--red-200);
-            --_bg-color: var(--red-050);
-            --_btn-focus-bg-color: var(--red-100);
-            --_btn-active-bg-color: var(--red-200);
-        }
-        &.s-@{name}__info {
-            --_bc: var(--theme-secondary-150);
-            --_bg-color: var(--theme-secondary-050);
-            --_btn-focus-bg-color: var(--theme-secondary-100);
-            --_btn-active-bg-color: var(--theme-secondary-150);
-            --_code-bg-color: var(--theme-secondary-150);
-        }
-        &.s-@{name}__success {
-            --_bc: var(--green-200);
-            --_bg-color: var(--green-050);
-            --_btn-focus-bg-color: var(--green-100);
-            --_btn-active-bg-color: var(--green-200);
-        }
-        &.s-@{name}__warning {
-            --_bc: var(--yellow-300);
-            --_bg-color: var(--yellow-050);
-            --_btn-focus-bg-color: var(--yellow-200);
-            --_btn-active-bg-color: var(--yellow-300);
-            --_code-bg-color: var(--yellow-200);
-        }
-        &.s-@{name}__important {
-            --_bc: transparent;
-            --_bg-color: var(--black-700);
-            --_fc: var(--white);
-            --_btn-focus-bg-color: var(--black-800);
-            --_btn-active-bg-color: var(--black-900);
-    
-            &.s-@{name}__danger,
-            &.s-@{name}__info,
-            &.s-@{name}__success,
-            &.s-@{name}__warning {
-                --_bc: transparent;
-            }
-            &.s-@{name}__danger {
-                --_bg-color: var(--red-500);
-                --_btn-focus-bg-color: var(--red-600);
-                --_btn-active-bg-color: var(--red-700);
-            }
-            &.s-@{name}__info {
-                --_bg-color: var(--theme-secondary-400);
-                --_btn-focus-bg-color: var(--theme-secondary-500);
-                --_btn-active-bg-color: var(--theme-secondary-600);
-            }
-            &.s-@{name}__success {
-                --_bg-color: var(--green-400);
-                --_fc: var(--black-900);
-                --_btn-focus-bg-color: var(--green-500);
-                --_btn-active-bg-color: var(--green-600);
-            }
-            &.s-@{name}__warning {
-                --_bg-color: var(--yellow-400);
-                --_btn-focus-bg-color: var(--yellow-500);
-                --_btn-active-bg-color: var(--yellow-600);
-                --_fc: var(--black-900);
-            }
+        &:not(.s-@{name}__important) {
+            .dark-mode({ --_bc: var(--_bg); });
+            .highcontrast-mode({ --_bc: currentColor; });
+            .highcontrast-dark-mode({ --_bc: currentColor; });
         }
 
-        // dark mode overrides
-        .dark-mode({
-            &.s-@{name}__danger,
-            &.s-@{name}__info,
-            &.s-@{name}__success,
-            &.s-@{name}__warning {
-                --_bc: transparent;
-            }
-            &.s-@{name}__important {
-                &.s-@{name}__danger {
-                    --_bg-color: var(--red-400);
-                    --_fc: var(--black-900);
-                }
-                &.s-@{name}__info {
-                    --_bg-color: var(--theme-secondary-300);
-                    --_fc: var(--black-900);
-                }
-                &.s-@{name}__success {
-                    --_bg-color: var(--green-500);
-                    --_fc: var(--white);
-                }
-                &.s-@{name}__warning {
-                    --_bg-color: var(--yellow-600);
-                    --_fc: var(--white);
-                }
-            }
-        });
-
-        // high contrast mode overrides
-        .highcontrast-mode({
-            &:not(.s-@{name}__important) {
-                --_bc: currentColor;
-            }
-            &.s-@{name}__danger {
-                --_bg-color: var(--red-200);
-            }
-            &.s-@{name}__info {
-                --_bg-color: var(--theme-secondary-100);
-            }
-            &.s-@{name}__success {
-                --_bg-color: var(--green-200);
-            }
-            &.s-@{name}__warning {
-                --_bg-color: var(--yellow-200);
-            }
-            &.s-@{name}__important {
-                &.s-@{name}__danger {
-                    --_bg-color: var(--red-500);
-                }
-                &.s-@{name}__info {
-                    --_bg-color: var(--theme-secondary-400);
-                }
-                &.s-@{name}__success {
-                    --_bg-color: var(--green-500);
-                    --_fc: var(--white);
-                }
-                &.s-@{name}__warning {
-                    --_bg-color: var(--yellow-700);
-                    --_fc: var(--white);
-                }
-            }
-        });
-
-        // high contrast + dark mode overrides
-        .highcontrast-dark-mode({
-            &:not(.s-@{name}__important) {
-                &.s-@{name}__danger,
-                &.s-@{name}__info,
-                &.s-@{name}__success,
-                &.s-@{name}__warning {
-                    --_bc: currentColor;
-                }
-                &.s-@{name}__info {
-                    --_bg-color: var(--theme-secondary-100);
-                }
-            }
-            &.s-@{name}__important {
-                &.s-@{name}__danger,
-                &.s-@{name}__info,
-                &.s-@{name}__success,
-                &.s-@{name}__warning {
-                    --_fc: var(--white);
-                }
-            }
-        });
-
-        background-color: var(--_bg-color);
-        border-color: var(--_bc);
+        background: var(--_bg, var(--black-050));
+        border-color: var(--_bc, var(--bc-medium));
         border-style: solid;
-        color: var(--_fc);
+        color: var(--_fc, var(--fc-medium));
         font-size: var(--fs-body1);
 
         code {
-            background-color: var(--_code-bg-color);
+            background: var(--_code-bg, transparent);
         }
 
         .s-@{name}--btn {
@@ -180,26 +30,146 @@
 
             &:focus,
             &:hover {
-                background-color: var(--_btn-focus-bg-color);
+                background: var(--_btn-focus-bg, var(--black-100));
             }
 
             &:active {
-                background-color: var(--_btn-active-bg-color);
+                background: var(--_btn-active-bg, var(--black-150));
             }
+        }
+    }
+    .s-@{name}__important {
+        --_bc: var(--_bg);
+        --_bg: var(--black-700);
+        --_fc: var(--white);
+        --_btn-focus-bg: var(--black-800);
+        --_btn-active-bg: var(--black-900);
+
+        .highcontrast-mode({ --_bc: var(--_bg); });
+    }
+    .s-@{name}__danger {
+        --_bc: var(--red-200);
+        --_bg: var(--red-050);
+        --_btn-focus-bg: var(--red-100);
+        --_btn-active-bg: var(--red-200);
+
+        &:not(.s-@{name}__important) {
+            .highcontrast-mode({
+                --_bg: var(--red-200);
+            });
+        }
+        &.s-@{name}__important {
+            --_bc: var(--_bg);
+            --_bg: var(--red-500);
+            --_btn-focus-bg: var(--red-600);
+            --_btn-active-bg: var(--red-700);
+
+            .dark-mode({
+                --_bg: var(--red-400);
+                --_fc: var(--black-900);
+            });
+            .highcontrast-dark-mode({
+                --_bg: var(--red-500);
+                --_fc: var(--white);
+            });
+        }
+    }
+    .s-@{name}__info {
+        --_bc: var(--theme-secondary-150);
+        --_bg: var(--theme-secondary-050);
+        --_btn-focus-bg: var(--theme-secondary-100);
+        --_btn-active-bg: var(--theme-secondary-150);
+        --_code-bg: var(--theme-secondary-150);
+
+        &:not(.s-@{name}__important) {
+            .highcontrast-mode({
+                --_bg: var(--theme-secondary-100);
+            });
+            .highcontrast-dark-mode({
+                --_bg: var(--theme-secondary-100);
+            });
+        }
+        &.s-@{name}__important {
+            --_bc: var(--_bg);
+            --_bg: var(--theme-secondary-400);
+            --_btn-focus-bg: var(--theme-secondary-500);
+            --_btn-active-bg: var(--theme-secondary-600);
+
+            .dark-mode({
+                --_bg: var(--theme-secondary-300);
+                --_fc: var(--black-900);
+            });
+            .highcontrast-dark-mode({
+                --_bg: var(--theme-secondary-400);
+                --_fc: var(--white);
+            });
+        }
+    }
+    .s-@{name}__success {
+        --_bc: var(--green-200);
+        --_bg: var(--green-050);
+        --_btn-focus-bg: var(--green-100);
+        --_btn-active-bg: var(--green-200);
+
+        &:not(.s-@{name}__important) {
+            .highcontrast-mode({
+                --_bg: var(--green-200);
+            });
+        }
+        &.s-@{name}__important {
+            --_bc: var(--_bg);
+            --_bg: var(--green-400);
+            --_fc: var(--black-900);
+            --_btn-focus-bg: var(--green-500);
+            --_btn-active-bg: var(--green-600);
+
+            .dark-mode({
+                --_bg: var(--green-500);
+                --_fc: var(--white);
+            });
+            .highcontrast-mode({
+                --_bg: var(--green-500);
+                --_fc: var(--white);
+            });
+        }
+    }
+    .s-@{name}__warning {
+        --_bc: var(--yellow-300);
+        --_bg: var(--yellow-050);
+        --_btn-focus-bg: var(--yellow-200);
+        --_btn-active-bg: var(--yellow-300);
+        --_code-bg: var(--yellow-200);
+
+        &:not(.s-@{name}__important) {
+            .highcontrast-mode({
+                --_bg: var(--yellow-200);
+            }); 
+        }
+        &.s-@{name}__important {
+            --_bc: var(--_bg);
+            --_bg: var(--yellow-400);
+            --_btn-focus-bg: var(--yellow-500);
+            --_btn-active-bg: var(--yellow-600);
+            --_fc: var(--black-900);
+
+            .dark-mode({
+                --_bg: var(--yellow-600);
+                --_fc: var(--white);
+            });
+            .highcontrast-mode({
+                --_bg: var(--yellow-700);
+                --_fc: var(--white);
+            });
         }
     }
 }
 
 // Banner
+// TODO deprecate .s-banner (by turning it into a modifier on .s-notice)
+// This would reduce the amount of CSS we ship to the client and simplify our codebase
 .build-component(banner);
 .s-banner {
-    border-width: var(--su-static1) 0;
-    inset: 0 0 auto 0;
-    padding: var(--su12);
-    position: fixed;
-    width: 100%;
-    z-index: calc(var(--zi-navigation-fixed) - 1); // Tuck below topbar
-
+    --_x-offset: 0;
     //      When we use .s-banner, we need to adjust the padding-top on
     //      the body tag. This class correctly adjusts the body padding ONLY if
     //      the notice is one line. If it wraps to multiple lines, more classes or
@@ -213,28 +183,21 @@
     &__body-pt {
         padding-top: 93px;
     }
-
     //  If you want to put the banner above the topbar
     &.is-pinned {
         z-index: calc(var(--zi-navigation-fixed) + 1);
-        -webkit-transform: translate3d(0, 0, 0);
-        transform: translate3d(0, 0, 0);
     }
-
     // If you want to hide and reveal the banner
     &[aria-hidden="true"] {
+        --_x-offset: -50px; // TODO convert to su vars
         visibility: hidden;
         opacity: 0;
-        -webkit-transform: translate3d(0, -50px, 0);
-        transform: translate3d(0, -50px, 0);
     }
     &[aria-hidden="false"] {
+        --_x-offset: 49px; // TODO convert to su vars
         visibility: visible;
         opacity: 1;
-        -webkit-transform: translate3d(0, 49px, 0);
-        transform: translate3d(0, 49px, 0);
     }
-
     // When we want to keep hero content capped
     .s-banner--container {
         position: relative;
@@ -242,6 +205,15 @@
         max-width: calc(var(--s-step) * 10);
         margin: 0 auto;
     }
+
+    border-width: var(--su-static1) 0;
+    inset: 0 0 auto 0;
+    padding: var(--su12);
+    position: fixed;
+    width: 100%;
+    z-index: calc(var(--zi-navigation-fixed) - 1); // Tuck below topbar
+    -webkit-transform: translate3d(0, var(--_x-offset), 0);
+    transform: translate3d(0, var(--_x-offset), 0);
 }
 
 // Notice
