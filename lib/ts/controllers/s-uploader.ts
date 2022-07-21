@@ -12,8 +12,8 @@ export class UploaderController extends Stacks.StacksController {
     private previewsTarget!: HTMLElement;
     private uploaderTarget!: HTMLElement;
 
-    private boundDragEnter!: any;
-    private boundDragLeave!: any;
+    private boundDragEnter!: () => void;
+    private boundDragLeave!: () => void;
 
     private static readonly FILE_DISPLAY_LIMIT = 10;
     private static readonly MAX_FILE_SIZE = 1024 * 1024 * 10; // 10 MB
@@ -50,7 +50,7 @@ export class UploaderController extends Stacks.StacksController {
                     const hasMultipleFiles = res.length > 1;
 
                     if (hasMultipleFiles) {
-                        let headingElement = document.createElement("div");
+                        const headingElement = document.createElement("div");
                         headingElement.classList.add("s-uploader--previews-heading");
                         headingElement.innerText = res.length < count ?
                             `Showing ${res.length} of ${count} files` : `${count} items`;
@@ -61,7 +61,9 @@ export class UploaderController extends Stacks.StacksController {
                     }
                     res.forEach((file) => this.addFilePreview(file));
                     this.handleUploaderActive(true);
-                });
+                })
+                // TODO consider rendering an error message
+                .catch(() => null);
     }
 
     /**
@@ -84,13 +86,25 @@ export class UploaderController extends Stacks.StacksController {
         const enableElements = scope.findAllElements('[data-s-uploader-enable-on-input]');
 
         if (shouldPreview) {
-            hideElements.map(el => el.classList.add("d-none"));
-            showElements.map(el => el.classList.remove("d-none"));
-            enableElements.map(el => el.removeAttribute("disabled"));
+            hideElements.forEach(el => {
+                el.classList.add("d-none");
+            });
+            showElements.forEach(el => {
+                el.classList.remove("d-none");
+            });
+            enableElements.forEach(el => {
+                el.removeAttribute("disabled");
+            });
         } else {
-            hideElements.map(el => el.classList.remove("d-none"));
-            showElements.map(el => el.classList.add("d-none"));
-            enableElements.map(el => el.setAttribute("disabled", "true"))
+            hideElements.forEach(el => {
+                el.classList.remove("d-none");
+            });
+            showElements.forEach(el => {
+                el.classList.add("d-none");
+            });
+            enableElements.forEach(el => {
+                el.setAttribute("disabled", "true");
+            });
             this.handleUploaderActive(false);
         }
     }
@@ -104,7 +118,7 @@ export class UploaderController extends Stacks.StacksController {
             return;
         }
 
-        let previewElement = document.createElement("div");
+        const previewElement = document.createElement("div");
         let thumbElement;
 
         if (file.type.match('image/*') && file.data) {
@@ -137,7 +151,7 @@ export class UploaderController extends Stacks.StacksController {
      * @returns an object containing a FilePreview object
      */
     private fileToDataURL(file: File): Promise<FilePreview> {
-        var reader = new FileReader();
+        const reader = new FileReader();
         const { name, size, type } = file;
 
         if (size < UploaderController.MAX_FILE_SIZE && type.indexOf("image") > -1) {
