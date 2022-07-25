@@ -1,5 +1,5 @@
 
-const { default: Icons } = require("@stackoverflow/stacks-icons");
+const { Icons } = require("@stackoverflow/stacks-icons");
 
 module.exports = {
   configFunction(eleventyConfig) {
