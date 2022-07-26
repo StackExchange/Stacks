@@ -1,10 +1,10 @@
-const { default: Icons, Spots } = require("@stackoverflow/stacks-icons");
+const { Icons, Spots } = require("@stackoverflow/stacks-icons");
 
 module.exports = {
   configFunction(eleventyConfig) {
     // Icon shortcode
     eleventyConfig.addLiquidShortcode("icon", function(name, classes, dimension) {
-      var svg = Icons[name];
+      var svg = Icons["Icon" + name];
       var defaultClasses = "svg-icon icon" + name;
 
       if (!svg) {
@@ -26,7 +26,7 @@ module.exports = {
 
     // Spot shortcode
     eleventyConfig.addLiquidShortcode("spot", function(name, classes, dimension) {
-      var svg = Spots[name];
+      var svg = Spots["Spot" + name];
 
       if (!svg) {
         return `<span class="fc-danger">Invalid spot: ${name}</span>`;
