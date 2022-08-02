@@ -6,10 +6,10 @@ module.exports = {
         var spot = "";
 
         if (type == "warning") {
-          spot = Spots["Alert"];
+          spot = Spots.SpotAlert;
           type = "s-notice__warning";
         } else {
-          spot = Spots["AlertCircle"];
+          spot = Spots.SpotAlertCircle;
           type = "s-notice__info";
         }
 
