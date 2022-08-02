@@ -1,7 +1,7 @@
 import * as Stacks from '../stacks';
 
 // Radio buttons only trigger a change event when they're *checked*, but not when
-// they're *unchecked*. Therefore, if we have an active `s-collapsible-control` in
+// they're *unchecked*. Therefore, if we have an active `s-expandable-control` in
 // the document, we listen for change events on *all* radio buttons and find any
 // other radio buttons in the same `name` group, triggering a custom event on all
 // of them so the controller can re-evaluate.
@@ -71,7 +71,7 @@ export class ExpandableController extends Stacks.StacksController {
     // for non-checkable elements, the initial source of truth is the collapsed/expanded
     // state of the controlled element (unless the element doesn't exist)
     _isCollapsedForClickable() {
-        const cc = this.controlledCollapsibles;
+        const cc = this.controlledExpandables;
         // the element is considered collapsed if *any* target element is collapsed
         return cc.length > 0 ? !cc.every(element => element.classList.contains("is-expanded")) : this.element.getAttribute("aria-expanded") === "false";
     };
@@ -82,7 +82,7 @@ export class ExpandableController extends Stacks.StacksController {
     };
 
 
-    get controlledCollapsibles() {
+    get controlledExpandables() {
         const attr = this.element.getAttribute("aria-controls");
         if (!attr) {
             throw `[aria-controls="targetId1 ... targetIdN"] attribute required`;
@@ -142,7 +142,7 @@ export class ExpandableController extends Stacks.StacksController {
             }
         }
         this.element.setAttribute("aria-expanded", newCollapsed ? "false" : "true");
-        for (const controlledElement of this.controlledCollapsibles) {
+        for (const controlledElement of this.controlledExpandables) {
             controlledElement.classList.toggle("is-expanded", !newCollapsed);
         }
         this._dispatchShowHideEvent(!newCollapsed);
@@ -162,12 +162,12 @@ export class ExpandableController extends Stacks.StacksController {
         // attribute; for checkable controls this also means setting the `is-collapsed` class
         this.element.setAttribute("aria-expanded", this.isCollapsed() ? "false" : "true");
         if (this.isCheckable) {
-            const cc = this.controlledCollapsibles;
+            const cc = this.controlledExpandables;
             if (cc.length) {
                 const expected = !this.isCollapsed();
                 // if any element does not match the expected state, set them all to the expected state
                 if (cc.some(element => element.classList.contains("is-expanded") !== expected)) {
-                    for (const controlledElement of this.controlledCollapsibles) {
+                    for (const controlledElement of this.controlledExpandables) {
                         controlledElement.classList.toggle("is-expanded", expected);
                     }
                     this._dispatchShowHideEvent(expected);
