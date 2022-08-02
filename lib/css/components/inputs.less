@@ -462,17 +462,26 @@ fieldset {
 .s-input,
 .s-textarea,
 .s-select > select {
-    //  Disabled, Read-only
-    &[disabled],
-    &[read-only] {
-        cursor: not-allowed;
-        opacity: var(--_o-disabled-static);
-    }
-
     //  Disabled
     &[disabled] {
         cursor: not-allowed;
         opacity: var(--_o-disabled-static);
+    }
+
+    //  Readonly
+    //  Note: The readonly attribute is not supported on select elements
+    //  See https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/readonly
+    //  and https://github.com/StackExchange/Stacks/pull/1040#discussion_r931144086
+    &[readonly],
+    .is-readonly & {
+        border-color: var(--bc-light);
+        background-color: var(--black-050);
+        color: var(--black-200);
+        cursor: not-allowed;
+
+        .highcontrast-mode({
+            color: var(--fc-light);
+        });
     }
 }
 
@@ -481,6 +490,7 @@ fieldset {
 //      Classes are applied at the wrapping container level.
 //  ----------------------------------------------------------------------------
 .is-disabled,
+.is-readonly,
 .has-success,
 .has-error,
 .has-warning {
@@ -619,6 +629,22 @@ fieldset {
 
     .s-input-icon {
         color: var(--black-400);
+    }
+
+    .s-label {
+        cursor: not-allowed;
+    }
+}
+
+//  $$  READONLY
+//  ----------------------------------------------------------------------------
+.is-readonly {
+    .s-input-icon {
+        color: var(--black-200);
+
+        .highcontrast-mode({
+            color: var(--fc-light);
+        });
     }
 
     .s-label {

@@ -638,50 +638,12 @@
     }
 
     //  $$  Loading Icon
-    //      Adds a loading icon into the button
+    //      see spinner.less for full implementation
     //  ----------------------------------------------------------------------------
-    .s-btn {
-        &.is-loading {
-            padding-left: 2.2em;
-
-            &:before {
-                content: "";
-                position: absolute;
-                opacity: 0.3;
-                left: 0.6em;
-                top: calc(50% - 0.6em);
-                width: 1.23076923em;
-                height: 1.23076923em;
-                border-width: 2px;
-                border-style: solid;
-                border-color: currentColor;
-                border-radius: var(--br-circle);
-            }
-
-            &:after {
-                content: "";
-                position: absolute;
-                left: 0.6em;
-                top: calc(50% - 0.6em);
-                width: 1.23076923em;
-                height: 1.23076923em;
-                border-width: 2px;
-                border-style: solid;
-                border-color: transparent;
-                border-left-color: currentColor;
-                border-radius: var(--br-circle);
-                animation: s-spinner-rotate 0.9s infinite cubic-bezier(0.5, 0.1, 0.5, 0.9);
-                // see spinner.less for an explanation of the following two
-                filter: invert(0); // (*)
-                transform-origin: 50% 50% 1px; // (*)
-            }
-
-            .svg-icon:first-child {
-                margin-left: -23px;
-                // If the first thing in the button is an icon, let's hide it on loading
-                // We only want to modify the visibility, since we still want it to have shape and keep the same layout.
-                opacity: 0;
-            }
-        }
+    .s-btn.is-loading  .svg-icon:first-child {
+        margin-left: -23px;
+        // If the first thing in the button is an icon, let's hide it on loading
+        // We only want to modify the visibility, since we still want it to have shape and keep the same layout.
+        opacity: 0;
     }
 }
