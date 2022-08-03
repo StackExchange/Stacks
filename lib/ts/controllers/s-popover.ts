@@ -380,7 +380,9 @@ export class PopoverController extends BasePopoverController {
      * @param {boolean=} show - A boolean indicating whether this is being triggered by a show or hide.
      */
     private toggleAccessibilityAttributes(show?: boolean) {
-        this.referenceElement.ariaExpanded = show?.toString() || this.referenceElement.ariaExpanded || 'false';
+        const expandedValue = show?.toString() || this.referenceElement.ariaExpanded || "false";
+        this.referenceElement.ariaExpanded = expandedValue;
+        this.referenceElement.setAttribute("aria-expanded", expandedValue);
     }
 }
 
