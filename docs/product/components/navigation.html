@@ -257,20 +257,20 @@ description: Our navigation component is a collection of pill-shaped buttons tha
 <div class="stacks-preview">
 {% highlight html %}
 <nav aria-label="…">
-    <ul role="tablist" class="s-navigation">
-        <li><button type="button" class="s-navigation--item is-selected" role="tab" aria-selected="true">…</button></li>
-        <li><button type="button" class="s-navigation--item" role="tab" aria-selected="false">…</button></li>
-        <li><button type="button" class="s-navigation--item" role="tab" aria-selected="false">…</button></li>
-    </ul>
+    <div role="tablist" class="s-navigation">
+        <button type="button" class="s-navigation--item is-selected" role="tab" aria-selected="true">…</button>
+        <button type="button" class="s-navigation--item" role="tab" aria-selected="false">…</button>
+        <button type="button" class="s-navigation--item" role="tab" aria-selected="false">…</button>
+    </div>
 </nav>
 {% endhighlight %}
     <div class="stacks-preview--example">
         <nav aria-label="button navigation">
-            <ul role="tablist" class="s-navigation">
-                <li><button type="button" class="s-navigation--item is-selected" role="tab" aria-selected="true">Current revision</button></li>
-                <li><button type="button" class="s-navigation--item" role="tab" aria-selected="false">Side-by-side diff</button></li>
-                <li><button type="button" class="s-navigation--item" role="tab" aria-selected="false">Inline diff</button></li>
-            </ul>
+            <div role="tablist" class="s-navigation">
+                <button type="button" class="s-navigation--item is-selected" aria-selected="true">Current revision</button>
+                <button type="button" class="s-navigation--item" role="tab" aria-selected="false">Side-by-side diff</button>
+                <button type="button" class="s-navigation--item" role="tab" aria-selected="false">Inline diff</button>
+            </div>
         </nav>
     </div>
 </div>
@@ -406,25 +406,21 @@ description: Our navigation component is a collection of pill-shaped buttons tha
     <div class="stacks-preview">
 {% highlight html %}
 <nav aria-label="…">
-    <ul class="s-navigation" role="tablist" data-controller="s-navigation-tablist">
-        <li>
-            <button type="button"
-                    role="tab"
-                    id="tab-question"
-                    aria-selected="true"
-                    aria-controls="panel-question"
-                    class="s-navigation--item is-selected">Task</button>
-        </li>
-        <li>
-            <button type="button"
-                    role="tab"
-                    id="tab-answers"
-                    aria-selected="false"
-                    aria-controls="panel-answers"
-                    tabindex="-1"
-                    class="s-navigation--item">Answers</button>
-        </li>
-    </ul>
+    <div class="s-navigation" role="tablist" data-controller="s-navigation-tablist">
+        <button type="button"
+                role="tab"
+                id="tab-question"
+                aria-selected="true"
+                aria-controls="panel-question"
+                class="s-navigation--item is-selected">Task</button>
+        <button type="button"
+                role="tab"
+                id="tab-answers"
+                aria-selected="false"
+                aria-controls="panel-answers"
+                tabindex="-1"
+                class="s-navigation--item">Answers</button>
+    </div>
 </nav>
 
 <div id="panel-question" aria-labelledby="tab-question">
@@ -438,12 +434,12 @@ description: Our navigation component is a collection of pill-shaped buttons tha
         <div class="stacks-preview--example bg-black-025">
 
             <nav class="mb8" aria-label="example tablist navigation">
-                <ul class="s-navigation" role="tablist" data-controller="s-navigation-tablist">
-                    <li><button type="button" role="tab" id="tab-1" aria-selected="true" aria-controls="panel-1" class="s-navigation--item is-selected">Task</button></li>
-                    <li><button type="button" role="tab" id="tab-2" aria-selected="false" aria-controls="panel-2" tabindex="-1" class="s-navigation--item">Answers</button></li>
-                    <li><button type="button" role="tab" id="tab-3" aria-selected="false" aria-controls="panel-3" tabindex="-1" class="s-navigation--item">Duplicate A</button></li>
-                    <li><button type="button" role="tab" id="tab-4" aria-selected="false" aria-controls="panel-4" tabindex="-1" class="s-navigation--item">Duplicate B</button></li>
-                </ul>
+                <div class="s-navigation" role="tablist" data-controller="s-navigation-tablist">
+                    <button type="button" role="tab" id="tab-1" aria-selected="true" aria-controls="panel-1" class="s-navigation--item is-selected">Task</button>
+                    <button type="button" role="tab" id="tab-2" aria-selected="false" aria-controls="panel-2" tabindex="-1" class="s-navigation--item">Answers</button>
+                    <button type="button" role="tab" id="tab-3" aria-selected="false" aria-controls="panel-3" tabindex="-1" class="s-navigation--item">Duplicate A</button>
+                    <button type="button" role="tab" id="tab-4" aria-selected="false" aria-controls="panel-4" tabindex="-1" class="s-navigation--item">Duplicate B</button>
+                </div>
             </nav>
 
             <div id="panel-1" aria-labelledby="tab-1">
