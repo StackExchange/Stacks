@@ -74,7 +74,7 @@
         }
 
         &[disabled] {
-            opacity: 0.5;
+            opacity: var(--_o-disabled-static);
             pointer-events: none;
             box-shadow: none !important;
         }
@@ -151,15 +151,13 @@
         }
 
         .s-btn--badge {
-            opacity: 0.5;
+            opacity: var(--_o-disabled);
             display: inline-block;
             border-radius: var(--br-sm);
             padding: var(--su2) calc(var(--su4) - var(--su1));
             font-size: var(--fs-caption);
             line-height: var(--lh-xs);
             background-color: currentColor;
-
-            .highcontrast-mode({ opacity: 0.8; });
         }
 
         .s-btn--number {
@@ -197,7 +195,11 @@
         border-color: var(--theme-button-filled-border-color);
         box-shadow: inset 0 1px 0 0 hsla(0, 0, 100%, 0.7);
 
-        .dark-mode({ box-shadow: none; });
+        .dark-mode({
+            &:not(:focus) {
+                box-shadow: none;
+            }
+        });
 
         &:hover,
         &:focus,
@@ -278,7 +280,11 @@
             border-color: transparent;
             box-shadow: inset 0 1px 0 0 hsla(0, 0%, 100%, 0.4);
 
-            .dark-mode({ box-shadow: none; });
+            .dark-mode({
+                &:not(:focus) {
+                    box-shadow: none;
+                }
+            });
 
             .highcontrast-mode({
                 background-color: var(--black-400);
@@ -380,7 +386,11 @@
             border-color: transparent;
             box-shadow: inset 0 1px 0 0 hsla(0, 0%, 100%, 0.4);
 
-            .dark-mode({ box-shadow: none; });
+            .dark-mode({
+                &:not(:focus) {
+                    box-shadow: none;
+                }
+            });
 
             .highcontrast-mode({
                 color: var(--white);
@@ -440,15 +450,19 @@
         box-shadow: inset 0 1px 0 0 hsla(0, 0%, 100%, 0.4);
 
         .dark-mode({
-            box-shadow: none;
+            &:not(:focus) {
+                box-shadow: none;
+            }
 
             &:not(.is-selected) {
+                background-color: var(--theme-secondary-300);
                 color: var(--black);
             }
         });
         .highcontrast-mode({
             &:not(.is-selected) {
                 border-color: transparent;
+                background-color: var(--theme-secondary-400);
                 color: var(--white);
             }
         });
@@ -624,50 +638,12 @@
     }
 
     //  $$  Loading Icon
-    //      Adds a loading icon into the button
+    //      see spinner.less for full implementation
     //  ----------------------------------------------------------------------------
-    .s-btn {
-        &.is-loading {
-            padding-left: 2.2em;
-
-            &:before {
-                content: "";
-                position: absolute;
-                opacity: 0.3;
-                left: 0.6em;
-                top: calc(50% - 0.6em);
-                width: 1.23076923em;
-                height: 1.23076923em;
-                border-width: 2px;
-                border-style: solid;
-                border-color: currentColor;
-                border-radius: var(--br-circle);
-            }
-
-            &:after {
-                content: "";
-                position: absolute;
-                left: 0.6em;
-                top: calc(50% - 0.6em);
-                width: 1.23076923em;
-                height: 1.23076923em;
-                border-width: 2px;
-                border-style: solid;
-                border-color: transparent;
-                border-left-color: currentColor;
-                border-radius: var(--br-circle);
-                animation: s-spinner-rotate 0.9s infinite cubic-bezier(0.5, 0.1, 0.5, 0.9);
-                // see spinner.less for an explanation of the following two
-                filter: invert(0); // (*)
-                transform-origin: 50% 50% 1px; // (*)
-            }
-
-            .svg-icon:first-child {
-                margin-left: -23px;
-                // If the first thing in the button is an icon, let's hide it on loading
-                // We only want to modify the visibility, since we still want it to have shape and keep the same layout.
-                opacity: 0;
-            }
-        }
+    .s-btn.is-loading  .svg-icon:first-child {
+        margin-left: -23px;
+        // If the first thing in the button is an icon, let's hide it on loading
+        // We only want to modify the visibility, since we still want it to have shape and keep the same layout.
+        opacity: 0;
     }
 }
