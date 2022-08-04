@@ -1,6 +1,7 @@
 import * as Stacks from "../stacks";
 
 export class TabListController extends Stacks.StacksController {
+    private ariaAttr!: string;
 
     private boundSelectTab!: (event: MouseEvent) => void;
     private boundHandleKeydown!: (event: KeyboardEvent) => void;
@@ -11,7 +12,14 @@ export class TabListController extends Stacks.StacksController {
         this.boundSelectTab = this.selectTab.bind(this);
         this.boundHandleKeydown = this.handleKeydown.bind(this);
 
+        this.ariaAttr = "aria-selected";
+
         for (const tab of this.tabTargets) {
+            // aria-selected is an invalid attribute for button elements. Use aria-pressed instead.
+            // See: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button#aria_state_information
+            if (tab.nodeName === "BUTTON") {
+                this.ariaAttr = "aria-pressed";
+            }
             tab.addEventListener("click", this.boundSelectTab);
             tab.addEventListener("keydown", this.boundHandleKeydown);
         }
@@ -88,7 +96,7 @@ export class TabListController extends Stacks.StacksController {
      * Returns the currently selected tab or null if no tabs are selected.
      */
     public get selectedTab() : HTMLElement | null {
-        return this.tabTargets.find(e => e.getAttribute("aria-selected") === "true") || null;
+        return this.tabTargets.find(e => e.getAttribute(this.ariaAttr) === "true") || null;
     }
     
     /**
@@ -104,12 +112,12 @@ export class TabListController extends Stacks.StacksController {
 
             if (tab === selectedTab) {
                 tab.classList.add('is-selected');
-                tab.setAttribute('aria-selected', 'true');
+                tab.setAttribute(this.ariaAttr, 'true');
                 tab.removeAttribute('tabindex');
                 panel?.classList.remove('d-none');
             } else {
                 tab.classList.remove('is-selected');
-                tab.setAttribute('aria-selected', 'false');
+                tab.setAttribute(this.ariaAttr, 'false');
                 tab.setAttribute('tabindex', '-1');
                 panel?.classList.add('d-none');
             }
