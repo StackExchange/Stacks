@@ -159,8 +159,12 @@ export class ExpandableController extends Stacks.StacksController {
         }
 
         // synchronize state -- in all cases, this means setting the correct `aria-expanded`
-        // attribute; for checkable controls this also means setting the `is-collapsed` class
-        this.element.setAttribute("aria-expanded", this.isCollapsed() ? "false" : "true");
+        // attribute; for checkable controls this also means setting the `is-collapsed` class.
+        // Note: aria-expanded is currently an invalid attribute on radio elements
+        // Support for aria-expanded is being debated by the W3C https://github.com/w3c/aria/issues/1404 as recently as June 2022
+        if (!this.isRadio) {
+            this.element.setAttribute("aria-expanded", this.isCollapsed() ? "false" : "true");
+        }
         if (this.isCheckable) {
             const cc = this.controlledExpandables;
             if (cc.length) {
