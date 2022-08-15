@@ -6,39 +6,38 @@
 //  Stack Overflow. For documentation of all these classes and how to contribute,
 //  visit https://stackoverflow.design/
 //
-.construct-notice-component(@name) {
-    .s-@{name} {
-        &:not(.s-@{name}__important) {
-            .dark-mode({ --_bc: var(--_bg); });
-            .highcontrast-mode({ --_bc: currentColor; });
-            .highcontrast-dark-mode({ --_bc: currentColor; });
+.construct-notice-component() {
+    background: var(--_bg, var(--black-050));
+    border-color: var(--_bc, var(--bc-medium));
+    border-style: solid;
+    color: var(--_fc, var(--fc-medium));
+    font-size: var(--fs-body1);
+
+    code {
+        background: var(--_code-bg, transparent);
+    }
+
+    & &--btn {
+        color: inherit;
+        padding: var(--su8);
+
+        &:focus,
+        &:hover {
+            background: var(--_btn-focus-bg, var(--black-100));
         }
 
-        background: var(--_bg, var(--black-050));
-        border-color: var(--_bc, var(--bc-medium));
-        border-style: solid;
-        color: var(--_fc, var(--fc-medium));
-        font-size: var(--fs-body1);
-
-        code {
-            background: var(--_code-bg, transparent);
-        }
-
-        .s-@{name}--btn {
-            color: inherit;
-            padding: var(--su8);
-
-            &:focus,
-            &:hover {
-                background: var(--_btn-focus-bg, var(--black-100));
-            }
-
-            &:active {
-                background: var(--_btn-active-bg, var(--black-150));
-            }
+        &:active {
+            background: var(--_btn-active-bg, var(--black-150));
         }
     }
-    .s-@{name}__important {
+
+    &:not(&__important) {
+        .dark-mode({ --_bc: var(--_bg); });
+        .highcontrast-mode({ --_bc: currentColor; });
+        .highcontrast-dark-mode({ --_bc: currentColor; });
+    }
+
+    &__important {
         --_bc: var(--_bg);
         --_bg: var(--black-700);
         --_fc: var(--white);
@@ -47,128 +46,128 @@
 
         .highcontrast-mode({ --_bc: var(--_bg); });
     }
-    .s-@{name}__danger {
+
+    &__danger {
         --_bc: var(--red-200);
         --_bg: var(--red-050);
         --_btn-focus-bg: var(--red-100);
         --_btn-active-bg: var(--red-200);
-
-        &:not(.s-@{name}__important) {
-            .highcontrast-mode({
-                --_bg: var(--red-200);
-            });
-        }
-        &.s-@{name}__important {
-            --_bc: var(--_bg);
-            --_bg: var(--red-500);
-            --_btn-focus-bg: var(--red-600);
-            --_btn-active-bg: var(--red-700);
-
-            .dark-mode({
-                --_bg: var(--red-400);
-                --_fc: var(--black-900);
-            });
-            .highcontrast-dark-mode({
-                --_bg: var(--red-500);
-                --_fc: var(--white);
-            });
-        }
     }
-    .s-@{name}__info {
+    &__danger:not(&__important) {
+        .highcontrast-mode({
+            --_bg: var(--red-200);
+        });
+    }
+    &__danger&__important {
+        --_bc: var(--_bg);
+        --_bg: var(--red-500);
+        --_btn-focus-bg: var(--red-600);
+        --_btn-active-bg: var(--red-700);
+
+        .dark-mode({
+            --_bg: var(--red-400);
+            --_fc: var(--black-900);
+        });
+        .highcontrast-dark-mode({
+            --_bg: var(--red-500);
+            --_fc: var(--white);
+        });
+    }
+
+    &__info {
         --_bc: var(--theme-secondary-150);
         --_bg: var(--theme-secondary-050);
         --_btn-focus-bg: var(--theme-secondary-100);
         --_btn-active-bg: var(--theme-secondary-150);
         --_code-bg: var(--theme-secondary-150);
-
-        &:not(.s-@{name}__important) {
-            .highcontrast-mode({
-                --_bg: var(--theme-secondary-100);
-            });
-            .highcontrast-dark-mode({
-                --_bg: var(--theme-secondary-100);
-            });
-        }
-        &.s-@{name}__important {
-            --_bc: var(--_bg);
-            --_bg: var(--theme-secondary-400);
-            --_btn-focus-bg: var(--theme-secondary-500);
-            --_btn-active-bg: var(--theme-secondary-600);
-
-            .dark-mode({
-                --_bg: var(--theme-secondary-300);
-                --_fc: var(--black-900);
-            });
-            .highcontrast-dark-mode({
-                --_bg: var(--theme-secondary-400);
-                --_fc: var(--white);
-            });
-        }
     }
-    .s-@{name}__success {
+    &__info:not(&__important) {
+        .highcontrast-mode({
+            --_bg: var(--theme-secondary-100);
+        });
+        .highcontrast-dark-mode({
+            --_bg: var(--theme-secondary-100);
+        });
+    }
+    &__info&__important {
+        --_bc: var(--_bg);
+        --_bg: var(--theme-secondary-400);
+        --_btn-focus-bg: var(--theme-secondary-500);
+        --_btn-active-bg: var(--theme-secondary-600);
+
+        .dark-mode({
+            --_bg: var(--theme-secondary-300);
+            --_fc: var(--black-900);
+        });
+        .highcontrast-dark-mode({
+            --_bg: var(--theme-secondary-400);
+            --_fc: var(--white);
+        });
+    }
+
+    &__success {
         --_bc: var(--green-200);
         --_bg: var(--green-050);
         --_btn-focus-bg: var(--green-100);
         --_btn-active-bg: var(--green-200);
-
-        &:not(.s-@{name}__important) {
-            .highcontrast-mode({
-                --_bg: var(--green-200);
-            });
-        }
-        &.s-@{name}__important {
-            --_bc: var(--_bg);
-            --_bg: var(--green-400);
-            --_fc: var(--black-900);
-            --_btn-focus-bg: var(--green-500);
-            --_btn-active-bg: var(--green-600);
-
-            .dark-mode({
-                --_bg: var(--green-500);
-                --_fc: var(--white);
-            });
-            .highcontrast-mode({
-                --_bg: var(--green-500);
-                --_fc: var(--white);
-            });
-        }
     }
-    .s-@{name}__warning {
+    &__success:not(&__important) {
+        .highcontrast-mode({
+            --_bg: var(--green-200);
+        });
+    }
+    &__success&__important {
+        --_bc: var(--_bg);
+        --_bg: var(--green-400);
+        --_fc: var(--black-900);
+        --_btn-focus-bg: var(--green-500);
+        --_btn-active-bg: var(--green-600);
+
+        .dark-mode({
+            --_bg: var(--green-500);
+            --_fc: var(--white);
+        });
+        .highcontrast-mode({
+            --_bg: var(--green-500);
+            --_fc: var(--white);
+        });
+    }
+
+    &__warning {
         --_bc: var(--yellow-300);
         --_bg: var(--yellow-050);
         --_btn-focus-bg: var(--yellow-200);
         --_btn-active-bg: var(--yellow-300);
         --_code-bg: var(--yellow-200);
+    }
+    &__warning:not(&__important) {
+        .highcontrast-mode({
+            --_bg: var(--yellow-200);
+        });
+    }
+    &__warning&__important {
+        --_bc: var(--_bg);
+        --_bg: var(--yellow-400);
+        --_btn-focus-bg: var(--yellow-500);
+        --_btn-active-bg: var(--yellow-600);
+        --_fc: var(--black-900);
 
-        &:not(.s-@{name}__important) {
-            .highcontrast-mode({
-                --_bg: var(--yellow-200);
-            }); 
-        }
-        &.s-@{name}__important {
-            --_bc: var(--_bg);
-            --_bg: var(--yellow-400);
-            --_btn-focus-bg: var(--yellow-500);
-            --_btn-active-bg: var(--yellow-600);
-            --_fc: var(--black-900);
-
-            .dark-mode({
-                --_bg: var(--yellow-600);
-                --_fc: var(--white);
-            });
-            .highcontrast-mode({
-                --_bg: var(--yellow-700);
-                --_fc: var(--white);
-            });
-        }
+        .dark-mode({
+            --_bg: var(--yellow-600);
+            --_fc: var(--white);
+        });
+        .highcontrast-mode({
+            --_bg: var(--yellow-700);
+            --_fc: var(--white);
+        });
     }
 }
 
 // Banner
 // TODO deprecate .s-banner (by turning it into a modifier on .s-notice)
 // This would reduce the amount of CSS we ship to the client and simplify our codebase
-.construct-notice-component(banner);
 .s-banner {
+    .construct-notice-component();
     --_x-offset: 0;
     //      When we use .s-banner, we need to adjust the padding-top on
     //      the body tag. This class correctly adjusts the body padding ONLY if
@@ -217,8 +216,8 @@
 }
 
 // Notice
-.construct-notice-component(notice);
 .s-notice {
+    .construct-notice-component();
     border-radius: var(--br-sm);
     border-width: var(--su-static1);
     padding: var(--su16);
