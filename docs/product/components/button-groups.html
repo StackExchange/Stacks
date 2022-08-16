@@ -140,14 +140,18 @@ description: Button groups are a collection of buttons. This component is used i
     </div>
 </section>
 
-<!-- Page specific javascript -->
 <script>
-    $(function() {
-        $(".js-btn-group-item").on("click", function(e) {
+    document.querySelectorAll('.js-btn-group-item').forEach(buttonGroup => {
+        buttonGroup.addEventListener('click', e => {
             e.preventDefault();
             e.stopPropagation();
-            $(".js-btn-group").find(".js-btn-group-item").removeClass("is-selected");
-            $(this).addClass("is-selected");
+            const btns = buttonGroup.closest('.s-btn-group').querySelectorAll('.js-btn-group-item');
+            btns.forEach(btn => {
+                btn.classList.remove('is-selected');
+                btn.removeAttribute('aria-current');
+            });
+            buttonGroup.classList.add('is-selected');
+            buttonGroup.setAttribute('aria-current', 'true');
         });
     });
 </script>
