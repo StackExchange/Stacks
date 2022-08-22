@@ -113,7 +113,7 @@ System.out.println("Code Block!");
 - Image links - surround an image with a link. 
   [![An image of a unicorn](https://i.stack.imgur.com/7I1jg.jpg)](http://example.com)
 - A bunch of images in a row
-  <img src="https://i.stack.imgur.com/7I1jg.jpg" width="100"><img src="https://i.stack.imgur.com/7I1jg.jpg" width="100"><img src="https://i.stack.imgur.com/7I1jg.jpg" width="100">
+  <img src="https://i.stack.imgur.com/7I1jg.jpg" width="100" alt="a unicorn"><img src="https://i.stack.imgur.com/7I1jg.jpg" width="100" alt="a unicorn"><img src="https://i.stack.imgur.com/7I1jg.jpg" width="100" alt="a unicorn">
 
 ## Headers
 
@@ -274,7 +274,7 @@ Not indented
 </blockquote>
 
 <blockquote class="spoiler js-spoiler" data-spoiler="Reveal spoiler">
-    <img src="https://i.stack.imgur.com/7I1jg.jpg" alt="image of unicorn" title="Tooltip">
+    <img src="https://i.stack.imgur.com/7I1jg.jpg" alt="a unicorn" title="Tooltip">
 </blockquote>
 
 <!-- ## Stack Exchange Extensions to Markdown
@@ -397,23 +397,23 @@ Only some [basic HTML elements are whitelisted](https://meta.stackexchange.com/q
 
 - `<img>`: `src` then `width` then `height` then `alt` then `title`
 
-  <img src="https://i.stack.imgur.com/7I1jg.jpg" alt="image of unicorn" title="Tooltip">
+  <img src="https://i.stack.imgur.com/7I1jg.jpg" alt="a unicorn" title="Tooltip">
 
   - Specifying one of `width` or `height` scales the image; must specify both to change the aspect ratio.  They can't be `px` and they max out at 999.
 
-    <img src="https://i.stack.imgur.com/7I1jg.jpg" width="999">
+    <img src="https://i.stack.imgur.com/7I1jg.jpg" width="999" alt="a unicorn">
 
-    <img src="https://i.stack.imgur.com/7I1jg.jpg" width="100">
+    <img src="https://i.stack.imgur.com/7I1jg.jpg" width="100" alt="a unicorn">
 
-    <img src="https://i.stack.imgur.com/7I1jg.jpg" height="999">
+    <img src="https://i.stack.imgur.com/7I1jg.jpg" height="999" alt="a unicorn">
 
-    <img src="https://i.stack.imgur.com/7I1jg.jpg" width="999" height="100">
+    <img src="https://i.stack.imgur.com/7I1jg.jpg" width="999" height="100" alt="a unicorn">
 
-    <img src="https://i.stack.imgur.com/7I1jg.jpg" width="100" height="999">
+    <img src="https://i.stack.imgur.com/7I1jg.jpg" width="100" height="999" alt="a unicorn">
 
     - Animated gifs are supported
 
-      <img src="https://i.stack.imgur.com/AXtId.gif">
+      <img src="https://i.stack.imgur.com/AXtId.gif" alt="waffles">
 
 - `<kbd>`: no attributes
 

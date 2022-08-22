@@ -12,8 +12,6 @@
 //    - Base Style (Input / Textarea)
 //    - Textarea Styles
 //    - Fieldset Resets
-//  • Labels
-//  • Label Statuses
 //  • Text Styles
 //  • Connected Input Fills
 //  • Select Menus
@@ -45,7 +43,11 @@
     }
 }
 
-@basic-styling: {
+//  ============================================================================
+//  $  BASE INPUT / TEXTAREA STYLE
+//  ----------------------------------------------------------------------------
+.s-input,
+.s-textarea {
     -webkit-appearance: none; // Removes shadows we don't want in mobile Safari
     width: 100%;
     margin: 0; // A guard against Core's default margins
@@ -95,14 +97,6 @@
     @autofill();
 }
 
-//  ============================================================================
-//  $  BASE INPUT / TEXTAREA STYLE
-//  ----------------------------------------------------------------------------
-.s-input,
-.s-textarea {
-    @basic-styling();
-}
-
 .s-input.s-input__search,
 .s-input.s-input__creditcard {
     padding-left: var(--su-static32);
@@ -122,82 +116,27 @@ fieldset {
         .s-btn,
         .s-link {
             box-shadow: none !important;
-            opacity: 0.5;
+            opacity: var(--_o-disabled-static);
             pointer-events: none;
         }
 
         .s-checkbox,
         .s-input-message,
-        .s-label,
         .s-radio,
         .s-toggle-switch,
         .s-toggle-switch label {
             cursor: not-allowed;
-            opacity: 0.5;
+            opacity: var(--_o-disabled-static);
         }
 
         .s-input,
         .s-textarea,
         .s-select > select {
             cursor: not-allowed;
-            opacity: 0.5;
+            opacity: var(--_o-disabled-static);
         }
     }
 }
-
-//  ============================================================================
-//  $  LABELS
-//  ============================================================================
-.s-label {
-    padding: 0 var(--su2); // Helps the label visually line up with inputs
-    color: var(--fc-dark);
-    font-family: inherit;
-    font-size: var(--fs-body2);
-    font-weight: 600;
-
-    &[for] {
-        cursor: pointer;
-    }
-}
-
-//  $$  LABEL STATUS FLAG
-//  ----------------------------------------------------------------------------
-//      Is this form item required or optional? Flag the status for users.
-//      Default styling is optional.
-.s-label--status {
-    margin-left: var(--su4);
-    padding: var(--su2) var(--su8);
-    border-radius: 1000px;
-    background-color: var(--black-050);
-    color: var(--fc-medium);
-    font-size: var(--fs-caption);
-    font-weight: 400;
-    vertical-align: text-bottom;
-
-    .highcontrast-mode({
-        border: 1px solid currentColor;
-    });
-
-    &.s-label--status__required {
-        background-color: var(--red-100);
-        color: var(--red-600);
-
-        .dark-mode({
-            color: var(--red-800);
-        });
-    }
-
-    &.s-label--status__new {
-        background-color: var(--green-100);
-        color: var(--green-700);
-    }
-
-    &.s-label--status__beta {
-        background-color: var(--blue-100);
-        color: var(--blue-700);
-    }
-}
-
 
 //  ============================================================================
 //  $  TEXT STYLES
@@ -206,14 +145,6 @@ fieldset {
     padding: 0 var(--su2); // Helps the label visually line up with inputs
     color: var(--fc-medium);
     font-size: var(--fs-caption);
-}
-
-.s-label .s-description,
-.s-label .s-input-message {
-    padding: 0;
-    margin-top: 4px;
-    margin-bottom: 0;
-    font-weight: normal;
 }
 
 //  ============================================================================
@@ -363,7 +294,7 @@ fieldset {
 
     //  Disabled
     &[disabled] {
-        opacity: 0.5;
+        opacity: var(--_o-disabled-static);
         cursor: not-allowed;
     }
 }
@@ -377,10 +308,9 @@ fieldset {
         background-repeat: no-repeat;
         background-size: contain;
 
-        &:checked {
+        &:checked, &:indeterminate {
             border-color: var(--theme-secondary-400) !important;
             background-color: var(--theme-secondary-400);
-            background-image: url("data:image/svg+xml,%3Csvg width='11' height='11' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M10 3.41L8.59 2 4 6.59 2.41 5 1 6.41l3 3z' fill='%23fff'/%3E%3C/svg%3E");
 
             .highcontrast-dark-mode({
                 border-color: var(--blue-700) !important;
@@ -390,6 +320,13 @@ fieldset {
             &:focus {
                 border-color: var(--theme-secondary-400);
             }
+        }
+
+        &:checked {
+            background-image: url("data:image/svg+xml,%3Csvg width='11' height='11' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M10 3.41L8.59 2 4 6.59 2.41 5 1 6.41l3 3z' fill='%23fff'/%3E%3C/svg%3E");
+        }
+        &:indeterminate {
+            background-image: url("data:image/svg+xml,%3Csvg width='11' height='11' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M2 4.5 h7 v2 h-7 z' fill='%23fff'/%3E%3C/svg%3E");
         }
 
         &:focus {
@@ -456,21 +393,26 @@ fieldset {
 .s-input,
 .s-textarea,
 .s-select > select {
-    //  Disabled, Read-only
-    &[disabled],
-    &[read-only] {
-        cursor: not-allowed;
-        opacity: 0.5;
-
-        .highcontrast-mode({
-            opacity: 0.5;
-        });
-    }
-
     //  Disabled
     &[disabled] {
         cursor: not-allowed;
-        opacity: 0.5;
+        opacity: var(--_o-disabled-static);
+    }
+
+    //  Readonly
+    //  Note: The readonly attribute is not supported on select elements
+    //  See https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/readonly
+    //  and https://github.com/StackExchange/Stacks/pull/1040#discussion_r931144086
+    &[readonly],
+    .is-readonly & {
+        border-color: var(--bc-light);
+        background-color: var(--black-050);
+        color: var(--black-200);
+        cursor: not-allowed;
+
+        .highcontrast-mode({
+            color: var(--fc-light);
+        });
     }
 }
 
@@ -479,6 +421,7 @@ fieldset {
 //      Classes are applied at the wrapping container level.
 //  ----------------------------------------------------------------------------
 .is-disabled,
+.is-readonly,
 .has-success,
 .has-error,
 .has-warning {
@@ -606,21 +549,24 @@ fieldset {
         border-color: var(--bc-darker) transparent;
     }
 
-    .s-label,
     .s-description {
-        opacity: 0.5;
-
-        .s-description {
-            opacity: unset;
-        }
+        opacity: var(--_o-disabled-static);
     }
 
     .s-input-icon {
         color: var(--black-400);
     }
+}
 
-    .s-label {
-        cursor: not-allowed;
+//  $$  READONLY
+//  ----------------------------------------------------------------------------
+.is-readonly {
+    .s-input-icon {
+        color: var(--black-200);
+
+        .highcontrast-mode({
+            color: var(--fc-light);
+        });
     }
 }
 
@@ -653,25 +599,21 @@ fieldset {
 //  ----------------------------------------------------------------------------
 .s-input__sm,
 .s-textarea__sm,
-.s-label__sm,
 .s-select__sm > select {
     font-size: var(--fs-caption);
 }
 .s-input__md,
 .s-textarea__md,
-.s-label__md,
 .s-select__md > select {
     font-size: var(--fs-body3);
 }
 .s-input__lg,
 .s-textarea__lg,
-.s-label__lg,
 .s-select__lg > select {
     font-size: var(--fs-title);
 }
 .s-input__xl,
 .s-textarea__xl,
-.s-label__xl,
 .s-select__xl > select {
     font-size: var(--fs-headline1);
 }

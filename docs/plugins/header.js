@@ -1,12 +1,12 @@
 
-const { default: Icons } = require("@stackoverflow/stacks-icons");
+const { Icons } = require("@stackoverflow/stacks-icons");
 
 module.exports = {
   configFunction(eleventyConfig) {
     // Header shortcode
     eleventyConfig.addLiquidShortcode("header", function(tag, text) {
       var slug = text.replace(/\s+/g, '-').toLowerCase();
-      var linkIcon = Icons["Link"];
+      var linkIcon = Icons.IconLink;
 
       var output = '';
       output += '<div class="d-flex jc-space-between ai-end pe-none stacks-header">';
