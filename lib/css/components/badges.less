@@ -12,208 +12,37 @@
 //  • LAYOUTS & SIZES
 //
 //  ===========================================================================
+//  $   MIXIN
+//      Any badge we use will always modify the same items, so to save time,
+//      here's a mixin to state all that CSS.
+//  ---------------------------------------------------------------------------
+.badge-styles(@border: transparent, @background: transparent, @color: inherit) {
+    border-color: @border;
+    background-color: @background;
+    color: @color;
+}
+
+//  ===========================================================================
 //  $   BASE STYLE
 //      The same style is applied to all badges. Do not modify the core style.
 //  ---------------------------------------------------------------------------
 .s-badge {
-    --_as: initial;
-    --_bc: var(--bc-medium);
-    --_bg-color: var(--black-050);
-    --_fc: var(--black-700);
-    --_fs: var(--fs-caption);
-    --_g: initial;
-    --_lh: var(--lh-xxl);
-    --_px: var(--su6);
-    --_py: 0;
-    --_wmn: 0;
-
-    // Badge icon
-    &.s-badge__icon {
-        --_g: 0.3em;
-    }
-
-    // Badge sizes
-    &.s-badge__sm {
-        --_as: flex-start;
-        --_fs: var(--fs-fine);
-        --_lh: 1.8;
-        --_px: var(--su4);
-        --_wmn: calc(var(--su-static16) + var(--su-static2));
-    }
-    &.s-badge__xs {
-        --_as: flex-start;
-        --_fs: var(--fs-fine);
-        --_lh: 1.5;
-        --_px: var(--su2);
-    }
-
-    // Badge counts
-    .s-badge__gold {
-        --_bc: var(--gold-darker);
-        --_bg-color: var(--gold-lighter);
-    }
-    .s-badge__silver {
-        --_bc: var(--silver-darker);
-        --_bg-color: var(--silver-lighter);
-    }
-    .s-badge__bronze {
-        --_bc: var(--bronze-darker);
-        --_bg-color: var(--bronze-lighter);
-    }
-    .s-badge__gold,
-    .s-badge__silver,
-    .s-badge__bronze {
-        .highcontrast-mode({
-            --_bc: currentColor;
-            --_fs: var(--black-900);
-        });
-    }
-
-    // Number counts
-    &.s-badge__bounty {
-        --_bg-color: var(--blue-600);
-    }
-    &.s-badge__votes {
-        --_bc: var(--black-150);
-        --_fc: var(--black-700);
-    }
-    &.s-badge__answered {
-        --_bg-color: var(--green-400);
-    }
-    &.s-badge__rep {
-        --_bc: var(--green-400);
-        --_fc: var(--green-500);
-    }
-    &.s-badge__rep-down {
-        --_bc: var(--red-400);
-        --_fc: var(--red-500);
-    }
-    &.s-badge__important {
-        --_bg-color: var(--red-600);
-    }
-    &.s-badge__bounty,
-    &.s-badge__answered,
-    &.s-badge__important {
-        --_bc: transparent;
-        --_fc: var(--white);
-    }
-    &.s-badge__votes,
-    &.s-badge__rep,
-    &.s-badge__rep-down {
-        --_bg-color: var(--white);
-        .highcontrast-mode({ --_bc: currentColor; });
-    }
-
-    // Badge users
-    &.s-badge__admin {
-        --_bc: var(--theme-primary-200);
-        --_bg-color: var(--theme-primary-075);
-        --_fc: var(--theme-primary-800);
-    }
-    &.s-badge__moderator {
-        --_bc: var(--theme-secondary-200);
-        --_bg-color: var(--theme-secondary-075);
-        --_fc: var(--theme-secondary-800);
-        // TODO convert px values to custom properties
-        --_mod-icon-w: 12px;
-        --_mod-icon-h: 14px;
-        --_mod-icon-mt: -1px;
-        --_mod-icon-mr: 3px;
-        --_mod-icon: url("data:image/svg+xml,%3Csvg width='12' height='14' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M5.528.746c.257-.329.675-.327.93 0l4.42 5.66c.258.329.257.864 0 1.192l-4.42 5.66c-.256.328-.674.327-.93 0l-4.42-5.66c-.257-.329-.256-.865 0-1.192l4.42-5.66z' fill='%23fff'/%3E%3C/svg%3E");
-
-        &.s-badge__sm {
-            // TODO convert px values to custom properties
-            --_mod-icon-w: 9px;
-            --_mod-icon-h: 11px;
-            --_mod-icon-mt: 0;
-            --_mod-icon-mr: 2px;
-            --_mod-icon: url("data:image/svg+xml,%3Csvg width='9' height='11' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M3.55.246c.257-.329.647-.327.903 0l3.36 4.66c.256.329.256.864 0 1.192L4.45 10.75c-.257.329-.644.327-.9 0L.192 6.098c-.256-.329-.256-.865 0-1.192L3.55.246z' fill='%23fff'/%3E%3C/svg%3E");
-        }
-
-        &.s-badge__xs {
-            // TODO convert px values to custom properties
-            --_mod-icon-w: 7px;
-            --_mod-icon-h: 9px;
-            --_mod-icon-mt: 0;
-            --_mod-icon: url("data:image/svg+xml,%3Csvg width='7' height='9' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M3 .246c.3-.329.701-.327 1 0L6.776 4c.3.329.298.672 0 1L4 8.75c-.299.329-.702.327-1 0L.224 5c-.284-.324-.285-.675 0-1L3 .246z' fill='%23fff'/%3E%3C/svg%3E");
-        }
-        &:before {
-            content: "";
-            display: inline-block;
-            background-color: currentColor;
-            width: var(--_mod-icon-w);
-            height: var(--_mod-icon-h);
-            margin-top: var(--_mod-icon-mt);
-            margin-right: var(--_mod-icon-mr);
-            -webkit-mask: var(--_mod-icon) no-repeat center;
-            mask: var(--_mod-icon) no-repeat center;
-            -webkit-mask-size: contain;
-            mask-size: contain;
-        }
-    }
-    // Staff badges are always "Stack Overflow Orange"
-    &.s-badge__staff {
-        --_bc: var(--orange-300);
-        --_bg-color: var(--orange-100);
-        --_fc: var(--orange-900);
-    }
-    &.s-badge__admin,
-    &.s-badge__moderator,
-    &.s-badge__staff {
-        .highcontrast-mode({ --_bc: currentColor; });
-    }
-
-    // Badge states
-    &.s-badge__danger {
-        --_bc: var(--red-600);
-        --_bg-color: var(--red-100);
-        --_fc: var(--red-900);
-
-        &.s-badge__filled {
-            --_bc: transparent;
-            --_bg-color: var(--red-500);
-            --_fc: @white;
-        }
-    }
-    &.s-badge__info {
-        --_bc: var(--blue-600);
-        --_bg-color: var(--blue-100);
-        --_fc: var(--blue-900);
-    }
-    &.s-badge__warning {
-        --_bc: var(--yellow-600);
-        --_bg-color: var(--yellow-100);
-        --_fc: var(--yellow-900);
-    }
-    &.s-badge__muted {
-        --_bc: var(--black-600);
-        --_bg-color: var(--black-100);
-        --_fc: var(--black-900);
-
-        &.s-badge__filled {
-            --_bc: transparent;
-            --_bg-color: var(--black-700);
-            --_fc: var(--white);
-        }
-    }
-    
-    align-items: center;
-    align-self: var(--_as);
-    background-color: var(--_bg-color);
-    border: var(--su-static1) solid var(--_bc);
-    border-radius: var(--br-sm);
-    color: var(--_fc);
     display: inline-flex;
-    gap: var(--_g);
+    align-items: center;
     justify-content: center;
-    font-size: var(--_fs);
+    min-width: 0;
+    padding: 0 var(--su6);
+    border-width: 1px;
+    border-style: solid;
+    border-radius: var(--br-sm);
+    font-size: var(--fs-caption);
     font-weight: normal;
-    line-height: var(--_lh);
-    min-width: var(--_wmn);
-    padding: var(--_py) var(--_px);
+    line-height: 2;
     text-decoration: none;
     vertical-align: middle;
     white-space: nowrap;
+
+    .badge-styles(var(--bc-medium), var(--black-050), var(--black-700));
 
     a&:hover {
         text-decoration: none;
@@ -395,28 +224,33 @@
 //  $$  Award Count
 //  ---------------------------------------------------------------------------
 .s-award-bling {
-    --_bling-bg-color: none;
-
     display: flex;
     align-items: center;
     color: inherit;
 
-    &.s-award-bling__gold:before {
-        --_bling-bg-color: var(--gold);
-    }
-    &.s-award-bling__silver:before {
-        --_bling-bg-color: var(--silver);
-    }
-    &.s-award-bling__bronze:before {
-        --_bling-bg-color: var(--bronze);
-    }
-
     &:before {
-        background-color: var(--_bling-bg-color);
         content: "";
         margin-right: 4px;
         width: 8px;
         height: 8px;
         border-radius: 100%;
+    }
+
+    &.s-award-bling__gold {
+        &:before {
+            background-color: var(--gold);
+        }
+    }
+
+    &.s-award-bling__silver {
+        &:before {
+            background-color: var(--silver);
+        }
+    }
+
+    &.s-award-bling__bronze {
+        &:before {
+            background-color: var(--bronze);
+        }
     }
 }
