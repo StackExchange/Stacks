@@ -16,11 +16,52 @@
 //  ----------------------------------------------------------------------------
 
 .s-avatar {
+    --_size: var(--su-static16);
+    --_br: var(--br-sm);
+    --_fs-letter: calc(var(--su-static12) - var(--su-static1));
+    --_scale-badge: 1;
+
+    &.s-avatar__24 {
+        --_size: var(--su-static24);
+        --_fs-letter: var(--su-static16);
+        --_scale-badge: 1.1;
+    }
+    &.s-avatar__32 {
+        --_size: var(--su-static32);
+        --_br: var(--br-md);
+        --_fs-letter: calc(var(--su-static24) - var(--su-static2));
+        --_scale-badge: 1.3;
+    }
+    &.s-avatar__48 {
+        --_size: var(--su-static48);
+        --_br: var(--br-md);
+        --_fs-letter: calc(var(--su-static32) + var(--su-static2));
+        --_scale-badge: 1.6;
+    }
+    &.s-avatar__64 {
+        --_size: var(--su-static64);
+        --_br: var(--br-lg);
+        --_fs-letter: calc(var(--su-static48) - var(--su-static4));
+        --_scale-badge: 2.4;
+    }
+    &.s-avatar__96 {
+        --_size: var(--su-static96);
+        --_br: calc(var(--br-lg) + var(--br-sm));
+        --_fs-letter: calc(var(--su-static64) + var(--su-static2));
+        --_scale-badge: 3;
+    }
+    &.s-avatar__128 {
+        --_size: var(--su-static128);
+        --_br: calc(var(--br-lg) + var(--br-sm));
+        --_fs-letter: calc(var(--su-static96) - var(--su-static8));
+        --_scale-badge: 3;
+    }
+
     display: inline-block; // Make sure the avatar has structure regardless of the element eg. span vs. div
     position: relative;
-    width: var(--su-static16);
-    height: var(--su-static16);
-    border-radius: var(--br-sm);
+    width: var(--_size);
+    height: var(--_size);
+    border-radius: var(--_br);
     background-color: @white; // Force a white background color for when we have transparent avatars
     background-repeat: no-repeat;
     background-size: 100%;
@@ -39,7 +80,7 @@
     .s-avatar--letter {
         display: block; // Make sure we're treating the letter as a block-level element
         color: @white; // Force a light appearance of text rendering
-        font-size: 11px; // Force a font size so the avatar text doesn't get smaller as the window resizes
+        font-size: var(--_fs-letter); // Force a font size so the avatar text doesn't get smaller as the window resizes
         font-weight: bold;
         line-height: 1.4; // Guards against some line-height trolling from the parent
         text-align: center;
@@ -55,136 +96,14 @@
         position: absolute;
         right: -4px;
         bottom: -4px;
+        -webkit-transform: scale(var(--_scale-badge));
+        transform: scale(var(--_scale-badge));
     }
 
     .s-avatar--image {
-        width: var(--su-static16);
-        height: var(--su-static16);
-        border-radius: var(--br-sm);
+        width: var(--_size);
+        height: var(--_size);
+        border-radius: var(--_br);
         display: block;
-    }
-
-    &.s-avatar__24 {
-        width: var(--su-static24);
-        height: var(--su-static24);
-
-        .s-avatar--letter {
-            font-size: 16px; // Force the font size regardless of the parent
-        }
-
-        .s-avatar--badge {
-            -webkit-transform: scale(1.1);
-            transform: scale(1.1);
-        }
-
-        .s-avatar--image {
-            width: var(--su-static24);
-            height: var(--su-static24);
-        }
-    }
-
-    &.s-avatar__32 {
-        width: var(--su-static32);
-        height: var(--su-static32);
-        border-radius: var(--br-md);
-
-        .s-avatar--letter {
-            font-size: 22px; // Force the font size regardless of the parent
-        }
-
-        .s-avatar--badge {
-            -webkit-transform: scale(1.3);
-            transform: scale(1.3);
-        }
-
-        .s-avatar--image {
-            width: var(--su-static32);
-            height: var(--su-static32);
-            border-radius: var(--br-md);
-        }
-    }
-
-    &.s-avatar__48 {
-        width: var(--su-static48);
-        height: var(--su-static48);
-        border-radius: var(--br-md);
-
-        .s-avatar--letter {
-            font-size: 34px; // Force the font size regardless of the parent
-        }
-
-        .s-avatar--badge {
-            -webkit-transform: scale(1.6);
-            transform: scale(1.6);
-        }
-
-        .s-avatar--image {
-            width: var(--su-static48);
-            height: var(--su-static48);
-            border-radius: var(--br-md);
-        }
-    }
-
-    &.s-avatar__64 {
-        width: var(--su-static64);
-        height: var(--su-static64);
-        border-radius: var(--br-lg);
-
-        .s-avatar--letter {
-            font-size: 44px; // Force the font size regardless of the parent
-        }
-
-        .s-avatar--badge {
-            -webkit-transform: scale(2.4);
-            transform: scale(2.4);
-        }
-
-        .s-avatar--image {
-            width: var(--su-static64);
-            height: var(--su-static64);
-            border-radius: var(--br-lg);
-        }
-    }
-
-    &.s-avatar__96 {
-        width: var(--su-static96);
-        height: var(--su-static96);
-        border-radius: calc(var(--br-lg) + var(--br-sm));
-
-        .s-avatar--letter {
-            font-size: 66px; // Force the font size regardless of the parent
-        }
-
-        .s-avatar--badge {
-            -webkit-transform: scale(3);
-            transform: scale(3);
-        }
-
-        .s-avatar--image {
-            width: var(--su-static96);
-            height: var(--su-static96);
-            border-radius: calc(var(--br-lg) + var(--br-sm));
-        }
-    }
-
-    &.s-avatar__128 {
-        width: var(--su-static128);
-        height: var(--su-static128);
-        border-radius: calc(var(--br-lg) + var(--br-lg));
-
-        .s-avatar--letter {
-            font-size: 88px; // Force the font size regardless of the parent
-        }
-
-        .s-avatar--badge {
-            -webkit-transform: scale(3);
-            transform: scale(3);
-        }
-
-        .s-avatar--image {
-            width: var(--su-static128);
-            height: var(--su-static128);
-            border-radius: calc(var(--br-lg) + var(--br-lg));
-        }
     }
 }
