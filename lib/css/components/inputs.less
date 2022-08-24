@@ -268,6 +268,30 @@ fieldset {
 //  ============================================================================
 //  $   CHECKBOXES & RADIOS
 //  ----------------------------------------------------------------------------
+// TODO Overall, would _love_ to drop .s-radio entirely since it largely is just .s-checkbox
+// TODO would _love_ to use .s-checkbox instead, with no class on the input itself
+.s-checkbox-item, .s-radio-item {
+    display: flex;
+    gap: var(--su8);
+    align-items: center;
+
+    .s-label {
+        font-weight: normal;
+    }
+
+    // TODO drop the need for an is-disabled class on the item/parent
+}
+
+.s-checkbox-group, .s-radio-group {
+    display: flex;
+    flex-direction: column;
+    gap: var(--su8);
+
+    &.s-checkbox-group__horizontal {
+        flex-direction: row;
+    }
+}
+
 .s-checkbox,
 .s-radio {
     //  [1]   Check to see if we can use custom styles, if so reset the defaults
