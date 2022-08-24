@@ -105,7 +105,6 @@ export class TooltipController extends BasePopoverController {
             popover = document.createElement("div");
             popover.id = popoverId;
             popover.className = "s-popover s-popover__tooltip pe-none";
-            popover.setAttribute("aria-hidden", "true");
             popover.setAttribute("role", "tooltip");
 
             const parentNode = this.element.parentNode;
