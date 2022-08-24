@@ -275,11 +275,13 @@ fieldset {
     gap: var(--su8);
     align-items: center;
 
+    [disabled] + .s-label {
+        &:extend(.is-disabled .s-label);
+    }
+
     .s-label {
         font-weight: normal;
     }
-
-    // TODO drop the need for an is-disabled class on the item/parent
 }
 
 .s-checkbox-group, .s-radio-group {
