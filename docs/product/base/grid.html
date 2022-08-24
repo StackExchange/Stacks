@@ -5,12 +5,7 @@ description: Atomic CSS grid classes allow you to quickly add native css grids t
 ---
 <section class="stacks-section">
     {% header "h2", "Overview" %}
-    {% tip, "warning", "mb24" %}
-        <p>Looking for our old flex grid? <a href="{{ "/product/base/flex" | relative_url }}">Flex layouts</a> have been moved and renamed now that CSS grid is here. Our <code class="stacks-code">.grid</code>, and <code class="stacks-code">.grid--cell</code> classes have been removed in favor of <code class="stacks-code">.d-flex</code> and <code class="stacks-code">.flex--item</code>.</p>
-        <p class="mb0">If you need to continue using the old <code class="stacks-code">.grid</code>, and <code class="stacks-code">.grid--cell</code> classes, Stacks provides a <a href="https://unpkg.com/@stackoverflow/stacks/dist/css/stacks-flexgrid-shim.min.css">shim</a> for backwards compatability.</p>
-    {% endtip %}
-
-    <p class="stacks-copy">CSS Grids are the most powerful layout system available in CSS. It has two dimensions, meaning it can handle both columns and rows simultaneously, unlike <a href="{{ "/product/base/flex" | relative_url }}">flex layouts</a> which can only do one at a time. Applying <code class="stacks-code">.d-grid</code> to a container will lay out its children according to the CSS Grid layout spec. Adding atomic modifying classes will change the layout’s behavior. Applying classes to an individual <code class="stacks-code">.grid--item</code> will change that cell’s behavior.</p>
+    <p class="stacks-copy">CSS Grids are the most powerful layout system available in CSS. It has two dimensions, meaning it can handle both columns and rows simultaneously, unlike <a href="{{ "/product/base/flex" | url }}">flex layouts</a> which can only do one at a time. Applying <code class="stacks-code">.d-grid</code> to a container will lay out its children according to the CSS Grid layout spec. Adding atomic modifying classes will change the layout’s behavior. Applying classes to an individual <code class="stacks-code">.grid--item</code> will change that cell’s behavior.</p>
 
     {% header "h3", "Examples" %}
     <div class="stacks-preview">
@@ -103,14 +98,14 @@ description: Atomic CSS grid classes allow you to quickly add native css grids t
     {% header "h2", "Spacing" %}
     <p class="stacks-copy">The most powerful aspect of CSS grids are its native gutters. To add space between columns and rows add one of the following classes to your grid container.</p>
     {% header "h3", "Spacing classes" %}
-    <div class="overflow-x-auto mb48">
+    <div class="overflow-x-auto mb48" tabindex="0">
         <table class="wmn4 s-table s-table__bx-simple">
             <thead>
                 <tr>
                     <th class="s-table--cell3" scope="col">Class</th>
                     <th class="s-table--cell3" scope="col">Output</th>
                     <th scope="col">Definition</th>
-                    <th class="s-table--cell2 ta-center" scope="col"><a class="s-link s-link__inherit" href="{{ "/product/guidelines/conditional-classes#responsive" | relative_url }}">Responsive?</a></th>
+                    <th class="s-table--cell2 ta-center" scope="col"><a class="s-link s-link__inherit" href="{{ "/product/guidelines/conditional-classes#responsive" | url }}">Responsive?</a></th>
                 </tr>
             </thead>
             <tbody>
@@ -275,14 +270,14 @@ description: Atomic CSS grid classes allow you to quickly add native css grids t
     <p class="stacks-copy">To define a discrete number of columns in your grid layout, you can add a <code class="stacks-code">grid__[x]</code> modifying class.</p>
 
     {% header "h3", "Column classes" %}
-    <div class="overflow-x-auto mb48">
+    <div class="overflow-x-auto mb48" tabindex="0">
         <table class="wmn4 s-table s-table__bx-simple">
             <thead>
                 <tr>
                     <th class="s-table--cell2" scope="col">Class</th>
                     <th class="s-table--cell4" scope="col">Output</th>
                     <th scope="col">Definition</th>
-                    <th class="s-table--cell2 ta-center" scope="col"><a class="s-link s-link__inherit" href="{{ "/product/guidelines/conditional-classes#responsive" | relative_url }}">Responsive?</a></th>
+                    <th class="s-table--cell2 ta-center" scope="col"><a class="s-link s-link__inherit" href="{{ "/product/guidelines/conditional-classes#responsive" | url }}">Responsive?</a></th>
                 </tr>
             </thead>
             <tbody>
@@ -317,6 +312,7 @@ description: Atomic CSS grid classes allow you to quickly add native css grids t
 <div class="d-grid grid__10">…</div>
 <div class="d-grid grid__11">…</div>
 <div class="d-grid grid__12">…</div>
+<div class="d-grid grid__auto">…</div>
 {% endhighlight %}
         <div class="stacks-preview--example ff-mono">
             <div class="mb16 d-grid g16 grid__1">
@@ -418,7 +414,7 @@ description: Atomic CSS grid classes allow you to quickly add native css grids t
                 <div class="grid--item bg-black-075 p12 ba bc-black-3">11</div>
             </div>
 
-            <div class="d-grid g16 grid__12">
+            <div class="mb32 d-grid g16 grid__12">
                 <div class="grid--item bg-black-075 p12 ba bc-black-3">1</div>
                 <div class="grid--item bg-black-075 p12 ba bc-black-3">2</div>
                 <div class="grid--item bg-black-075 p12 ba bc-black-3">3</div>
@@ -432,6 +428,13 @@ description: Atomic CSS grid classes allow you to quickly add native css grids t
                 <div class="grid--item bg-black-075 p12 ba bc-black-3">11</div>
                 <div class="grid--item bg-black-075 p12 ba bc-black-3">12</div>
             </div>
+
+            <div class="d-grid g16 grid__auto">
+                <div class="grid--item bg-black-075 p12 ba bc-black-3">1</div>
+                <div class="grid--item bg-black-075 p12 ba bc-black-3">2</div>
+                <div class="grid--item bg-black-075 p12 ba bc-black-3">3</div>
+                <div class="grid--item bg-black-075 p12 ba bc-black-3">4</div>
+            </div>
         </div>
     </div>
 </section>
@@ -439,15 +442,15 @@ description: Atomic CSS grid classes allow you to quickly add native css grids t
 <section class="stacks-section">
     {% header "h2", "Column and row spans" %}
     <p class="stacks-copy">You can apply <code class="stacks-code">grid--col[x]</code> to your columns, and <code class="stacks-code">grid--row[x]</code> to your rows to span a specific number of columns or rows.</p>
-    {% header "h3", "Column classes" %}
-    <div class="overflow-x-auto mb48">
+    {% header "h3", "Column spanning classes" %}
+    <div class="overflow-x-auto mb48" tabindex="0">
         <table class="wmn4 s-table s-table__bx-simple">
             <thead>
                 <tr>
                     <th class="s-table--cell3" scope="col">Class</th>
                     <th class="s-table--cell3" scope="col">Output</th>
                     <th scope="col">Definition</th>
-                    <th class="s-table--cell2 ta-center" scope="col"><a class="s-link s-link__inherit" href="{{ "/product/guidelines/conditional-classes#responsive" | relative_url }}">Responsive?</a></th>
+                    <th class="s-table--cell2 ta-center" scope="col"><a class="s-link s-link__inherit" href="{{ "/product/guidelines/conditional-classes#responsive" | url }}">Responsive?</a></th>
                 </tr>
             </thead>
             <tbody>
@@ -530,14 +533,14 @@ description: Atomic CSS grid classes allow you to quickly add native css grids t
     </div>
 
     {% header "h3", "Row classes" %}
-    <div class="overflow-x-auto mb48">
+    <div class="overflow-x-auto mb48" tabindex="0">
         <table class="wmn4 s-table s-table__bx-simple">
             <thead>
                 <tr>
                     <th class="s-table--cell3" scope="col">Class</th>
                     <th class="s-table--cell3" scope="col">Output</th>
                     <th scope="col">Definition</th>
-                    <th class="s-table--cell2 ta-center" scope="col"><a class="s-link s-link__inherit" href="{{ "/product/guidelines/conditional-classes#responsive" | relative_url }}">Responsive?</a></th>
+                    <th class="s-table--cell2 ta-center" scope="col"><a class="s-link s-link__inherit" href="{{ "/product/guidelines/conditional-classes#responsive" | url }}">Responsive?</a></th>
                 </tr>
             </thead>
             <tbody>
@@ -588,14 +591,14 @@ description: Atomic CSS grid classes allow you to quickly add native css grids t
     <p class="stacks-copy">If you have grid items that you don’t explicitly place on the grid, the auto-placement algorithm kicks in to automatically place the items.</p>
 
     {% header "h3", "Autoflow classes" %}
-    <div class="overflow-x-auto mb48">
+    <div class="overflow-x-auto mb48" tabindex="0">
         <table class="wmn4 s-table s-table__bx-simple">
             <thead>
                 <tr>
                     <th class="s-table--cell3" scope="col">Class</th>
                     <th class="s-table--cell3" scope="col">Output</th>
                     <th scope="col">Definition</th>
-                    <th class="s-table--cell2 ta-center" scope="col"><a class="s-link s-link__inherit" href="{{ "/product/guidelines/conditional-classes#responsive" | relative_url }}">Responsive?</a></th>
+                    <th class="s-table--cell2 ta-center" scope="col"><a class="s-link s-link__inherit" href="{{ "/product/guidelines/conditional-classes#responsive" | url }}">Responsive?</a></th>
                 </tr>
             </thead>
             <tbody>
@@ -670,14 +673,14 @@ description: Atomic CSS grid classes allow you to quickly add native css grids t
     <p class="stacks-copy">If you’d like to offset a column or row and specify its start and end positioning classes, you can apply these atomic classes.</p>
 
     {% header "h3", "Column start and end classes" %}
-    <div class="overflow-x-auto mb48">
+    <div class="overflow-x-auto mb48" tabindex="0">
         <table class="wmn4 s-table s-table__bx-simple">
             <thead>
                 <tr>
                     <th class="s-table--cell3" scope="col">Class</th>
                     <th class="s-table--cell3" scope="col">Output</th>
                     <th scope="col">Definition</th>
-                    <th class="s-table--cell2 ta-center" scope="col"><a class="s-link s-link__inherit" href="{{ "/product/guidelines/conditional-classes#responsive" | relative_url }}">Responsive?</a></th>
+                    <th class="s-table--cell2 ta-center" scope="col"><a class="s-link s-link__inherit" href="{{ "/product/guidelines/conditional-classes#responsive" | url }}">Responsive?</a></th>
                 </tr>
             </thead>
             <tbody>
@@ -720,14 +723,14 @@ description: Atomic CSS grid classes allow you to quickly add native css grids t
     </div>
 
     {% header "h3", "Row start and end classes" %}
-    <div class="overflow-x-auto mb48">
+    <div class="overflow-x-auto mb48" tabindex="0">
         <table class="wmn4 s-table s-table__bx-simple">
             <thead>
                 <tr>
                     <th class="s-table--cell3" scope="col">Class</th>
                     <th class="s-table--cell3" scope="col">Output</th>
                     <th scope="col">Definition</th>
-                    <th class="s-table--cell2 ta-center" scope="col"><a class="s-link s-link__inherit" href="{{ "/product/guidelines/conditional-classes#responsive" | relative_url }}">Responsive?</a></th>
+                    <th class="s-table--cell2 ta-center" scope="col"><a class="s-link s-link__inherit" href="{{ "/product/guidelines/conditional-classes#responsive" | url }}">Responsive?</a></th>
                 </tr>
             </thead>
             <tbody>
@@ -779,14 +782,14 @@ description: Atomic CSS grid classes allow you to quickly add native css grids t
     <p class="stacks-copy">On the grid container, you can apply <code class="stacks-code">align-items</code> to the y axis and <code class="stacks-code">justify-items</code> to the x axis. On individual items, you can apply <code class="stacks-code">align-self</code> on the y axis, and <code class="stacks-code">justify-self</code> on the x axis.</p>
 
     {% header "h3", "Alignment classes" %}
-    <div class="overflow-x-auto mb48">
+    <div class="overflow-x-auto mb48" tabindex="0">
         <table class="wmn4 s-table s-table__bx-simple">
             <thead>
                 <tr>
                     <th class="s-table--cell3" scope="col">Class</th>
                     <th class="s-table--cell3" scope="col">Output</th>
                     <th scope="col">Definition</th>
-                    <th class="s-table--cell2 ta-center" scope="col"><a class="s-link s-link__inherit" href="{{ "/product/guidelines/conditional-classes#responsive" | relative_url }}">Responsive?</a></th>
+                    <th class="s-table--cell2 ta-center" scope="col"><a class="s-link s-link__inherit" href="{{ "/product/guidelines/conditional-classes#responsive" | url }}">Responsive?</a></th>
                 </tr>
             </thead>
             <tbody>

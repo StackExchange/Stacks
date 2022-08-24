@@ -5,7 +5,7 @@ description: The prose component provides proper styling for rendered Markdown.
 ---
 <section class="stacks-section">
     {% header "h2", "Classes" %}
-    <div class="overflow-x-auto mb32">
+    <div class="overflow-x-auto mb32" tabindex="0">
         <table class="wmn3 s-table s-table__bx-simple">
             <thead>
                 <tr>
@@ -40,7 +40,7 @@ description: The prose component provides proper styling for rendered Markdown.
     <p class="stacks-copy">We modified this test document from the folks at <a href="https://github.com/tailwindcss/typography/blob/master/README.md">Tailwind</a> to demonstrate and explain our design choices.</p>
     <div class="stacks-preview">
         <div class="stacks-preview--example d:bg-white bar-sm btw1">
-            <div class="s-prose">
+            <div class="s-prose" role="presentation">
                 {% markdown '/_includes/markdown-prose.md' %}
             </div>
         </div>
@@ -50,7 +50,7 @@ description: The prose component provides proper styling for rendered Markdown.
     <p class="stacks-copy">The following is a <a href="https://stackoverflow.com/a/2003515/2804712">real-world answer</a> taken from Stack Overflow</p>
     <div class="stacks-preview">
         <div class="stacks-preview--example d:bg-white bar-sm btw1">
-            <div class="s-prose">
+            <div class="s-prose" role="presentation">
                 {% markdown '/_includes/markdown-post.md' %}
             </div>
         </div>
@@ -114,7 +114,7 @@ module.exports = function(grunt) {
 </div>
 {% endhighlight %}
         <div class="stacks-preview--example d:bg-white">
-            <div class="s-prose">
+            <div class="s-prose" role="presentation">
                 {% markdown '/_includes/markdown-sandbox.md' %}
             </div>
         </div>
@@ -131,7 +131,7 @@ module.exports = function(grunt) {
 </div>
 {% endhighlight %}
         <div class="stacks-preview--example d:bg-white">
-            <div class="s-prose s-prose__xs">
+            <div class="s-prose s-prose__xs" role="presentation">
                 {% markdown '/_includes/markdown-readme.md' %}
             </div>
         </div>
@@ -146,7 +146,7 @@ module.exports = function(grunt) {
 </div>
 {% endhighlight %}
         <div class="stacks-preview--example d:bg-white">
-            <div class="s-prose s-prose__sm">
+            <div class="s-prose s-prose__sm" role="presentation">
                 {% markdown '/_includes/markdown-readme.md' %}
             </div>
         </div>
@@ -160,7 +160,7 @@ module.exports = function(grunt) {
 </div>
 {% endhighlight %}
         <div class="stacks-preview--example d:bg-white">
-            <div class="s-prose">
+            <div class="s-prose" role="presentation">
                 {% markdown '/_includes/markdown-readme.md' %}
             </div>
         </div>
@@ -175,7 +175,7 @@ module.exports = function(grunt) {
 </div>
 {% endhighlight %}
         <div class="stacks-preview--example d:bg-white">
-            <div class="s-prose s-prose__md">
+            <div class="s-prose s-prose__md" role="presentation">
                 {% markdown '/_includes/markdown-readme.md' %}
             </div>
         </div>
@@ -183,4 +183,4 @@ module.exports = function(grunt) {
 </section>
 
 <!-- Additional javascript -->
-<script src="{{ "/assets/js/spoilers.js" | relative_url }}" defer></script>
+<script src="{{ "/assets/dist/entry.prose.js" | url }}" defer></script>

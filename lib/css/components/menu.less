@@ -1,0 +1,47 @@
+//
+//  STACK OVERFLOW
+//  MENU
+//
+//  This CSS comes from Stacks, our CSS & Pattern library for rapidly building
+//  Stack Overflow. For documentation of all these classes and how to contribute,
+//  visit https://stackoverflow.design/
+//
+
+.s-menu {
+    .list-reset;
+
+    .s-menu--title {
+        padding: var(--su8) var(--su12);
+        text-transform: uppercase;
+        font-size: var(--fs-fine);
+        color: var(--black-600);
+    }
+
+    li + .s-menu--title {
+        margin-top: var(--su12);
+    }
+
+    .s-menu--divider {
+        margin: var(--su8) 0;
+        height: 1px;
+        background-color: var(--bc-light);
+
+        .dark-mode({
+            background-color: var(--bc-lightest);
+        });
+    }
+
+    .s-menu--label {
+        cursor: pointer;
+        padding: var(--su12);
+        border-top: 1px solid var(--bc-light);
+
+        .dark-mode({
+            border-top-color: var(--bc-lightest);
+        });
+
+        &.is-disabled {
+            cursor: not-allowed;
+        }
+    }
+}

@@ -1,20 +1,20 @@
 <!DOCTYPE html>
 <html lang="en-us">
-{% include head.html %}
+{% include 'head.html' %}
 
 <body class="theme-system">
-    {% include theme.html %}
-    {% include header.html %}
+    {% include 'theme.html' %}
+    {% include 'header.html' %}
 
     <div class="d-flex mx-auto w100 wmx12">
-        {% include navigation.html %}
+        {% include 'navigation.html' %}
 
         <main id="content" class="d-flex fl-grow1 ps-relative t64 py24 pl48 md:pl24 sm:pl16 sm:pr16">
-            {% if menu %}
+            {% if hide-menu != true %}
                 <div class="flex--item order-last ml32 sm:d-none print:d-none" style="width: 14rem;">
                     <div class="ps-fixed t64 b0 py12 overflow-y-auto" style="width: 14rem;">
                         <h5 class="mt16 mb8 fw-bold tt-uppercase fs-fine fc-theme-primary mnl1">Sections</h5>
-                        {{ content | toc | safe }}
+                        {{ content | toc }}
                     </div>
                 </div>
             {% endif %}
@@ -28,7 +28,7 @@
                         <h1 class="stacks-h1 flex--item mb0 mr-auto">{{ title }}</h1>
 
                         {% if js %}
-                            <a href="{{ "/product/guidelines/javascript" | relative_url }}" class="d-flex fc-white">
+                            <a href="{{ "/product/guidelines/javascript" }}" class="d-flex fc-white">
                                 <div class="bg-green-700 blr-sm p4">{% icon "Checkmark" %}</div>
                                 <div class="d-flex flex__center bg-green-500 brr-sm px8 py4">JavaScript</div>
                             </a>
@@ -55,16 +55,20 @@
 
                 <div class="d-flex my48">
                     <div class="flex--item mr8">
-                        <form class="js-feedback-form" name="quick-positive-feedback-{{ title | downcase | replace: ' ', '-' }}" method="POST" data-netlify="true" action="{{ "/success" | relative_url }}">
-                            <button class="d-block s-btn s-btn__muted p4" type="submit" data-controller="s-tooltip" title="Quickly let the team know that this page is workin’" data-s-tooltip-placement="right">{% icon "ArrowUpLg" %}</button>
+                        <form class="js-feedback-form" name="quick-positive-feedback-{{ title | downcase | replace: ' ', '-' }}" method="POST" data-netlify="true" action="{{ "/success" | url }}">
+                            <button class="d-block s-btn s-btn__muted p4" type="submit"
+                                data-controller="s-tooltip" title="Quickly let the team know that this page is workin’"
+                                data-s-tooltip-placement="right">{% icon "ArrowUpLg" %}<span class="v-visible-sr">Send positive feedback</span></button>
                         </form>
 
-                        <form class="js-feedback-form" name="quick-negative-feedback-{{ title | downcase | replace: ' ', '-' }}" method="POST" data-netlify="true" action="{{ "/success" | relative_url }}">
-                            <button class="d-block s-btn s-btn__muted p4" type="submit" data-controller="s-tooltip" title="Quickly let us know that this page needs improvement" data-s-tooltip-placement="right">{% icon "ArrowDownLg" %}</button>
+                        <form class="js-feedback-form" name="quick-negative-feedback-{{ title | downcase | replace: ' ', '-' }}" method="POST" data-netlify="true" action="{{ "/success" | url }}">
+                            <button class="d-block s-btn s-btn__muted p4" type="submit"
+                                data-controller="s-tooltip" title="Quickly let us know that this page needs improvement"
+                                data-s-tooltip-placement="right">{% icon "ArrowDownLg" %}<span class="v-visible-sr">Send negative feedback</span></button>
                         </form>
                     </div>
 
-                    <form class="flex--item fl-grow1 mtn4 pt24 js-feedback-form" name="feedback-{{ title | downcase | replace: ' ', '-' }}" method="POST" data-netlify="true" action="{{ "/success" | relative_url }}">
+                    <form class="flex--item fl-grow1 mtn4 pt24 js-feedback-form" name="feedback-{{ title | downcase | replace: ' ', '-' }}" method="POST" data-netlify="true" action="{{ "/success" | url }}">
                         <label class="d-inline-block c-pointer" for="feedback-form">
                             <div class="fs-title fw-bold mb0">How’d we do?</div>
                             <div class="stacks-copy mb12">Anonymously upvote, downvote, or send additional feedback below.</div>
@@ -96,6 +100,6 @@
             </div>
         </aside>
     </div>
-    {% include scripts.html %}
+    {% include 'scripts.html' %}
 </body>
 </html>

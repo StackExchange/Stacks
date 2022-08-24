@@ -1,0 +1,330 @@
+//
+//  STACK OVERFLOW
+//  PROGRESS BARS
+//
+//  This CSS comes from Stacks, our CSS & Pattern library for rapidly building
+//  Stack Overflow. For documentation of all these classes and how to contribute,
+//  visit https://stackoverflow.design/
+//
+//  TABLE OF CONTENTS
+//  • BASE STYLE
+//  • VARIATION PROGRESS BACKGROUNDS
+//  • BADGES
+//  • STEPPED
+
+//  ============================================================================
+//  $   BASE STYLE
+//  ----------------------------------------------------------------------------
+.s-progress,
+.s-progress--bar {
+    position: relative;
+    min-height: var(--su-static4);
+    min-width: var(--su-static6);
+    border-radius: var(--br-sm);
+}
+
+//  $$   PROGRESS WRAPPER
+//  ----------------------------------------------------------------------------
+.s-progress {
+    width: 100%;
+    background-color: var(--black-200);
+}
+
+//  $$   BAR
+//  ----------------------------------------------------------------------------
+.s-progress--bar {
+    height: 100%;
+    background-color: var(--green-400);
+}
+
+//  $$   LABEL
+//       For when there's descriptive, label copy within the progress bar
+//  ----------------------------------------------------------------------------
+.s-progress--label {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: var(--br-md);
+    border: 1px solid transparent;
+    font-size: var(--fs-caption);
+    line-height: var(--lh-xs);
+    color: var(--fc-dark);
+    z-index: calc(var(--zi-base) + 2);
+}
+
+//  ===========================================================================
+//  $   VARIATION PROGRESS BACKGROUNDS
+//  ---------------------------------------------------------------------------
+.s-progress__brand .s-progress--bar {
+    background-color: var(--orange-500);
+}
+
+.s-progress__info .s-progress--bar {
+    background-color: var(--blue-500);
+}
+
+.s-progress__privilege {
+    .s-progress--bar {
+        background-color: var(--green-050);
+
+        .highcontrast-mode({
+            background-color: var(--green-200);
+        });
+    }
+    .s-progress--label {
+        border-color: var(--green-400);
+        display: flex;
+        gap: var(--su4);
+        align-items: center;
+        justify-content: center;
+    }
+}
+
+//  ===========================================================================
+//  $   BADGE PROGRESS BARS
+//  ===========================================================================
+.s-progress__privilege,
+.s-progress__privilege .s-progress--bar,
+.s-progress__badge,
+.s-progress__badge .s-progress--bar {
+    min-height: 2em;
+    border-radius: var(--br-md);
+}
+
+.s-progress__privilege,
+.s-progress__badge {
+    background-color: transparent;
+}
+
+.s-progress__badge {
+    .s-progress--label {
+        display: flex;
+        gap: var(--su4);
+        align-items: center;
+        padding-left: 1em;
+        padding-right: 1em;
+
+        .s-badge--label {
+            text-align: center;
+            flex-grow: 1;
+        }
+    }
+}
+
+//  $$  GOLD
+//  ---------------------------------------------------------------------------
+.s-progress__gold {
+    .s-progress--bar {
+        background-color: var(--gold-lighter);
+    }
+    .s-progress--label {
+        border-color: var(--gold-darker);
+    }
+}
+
+//  $$  SILVER
+//  ---------------------------------------------------------------------------
+.s-progress__silver {
+    .s-progress--bar {
+        background-color: var(--silver-lighter);
+    }
+    .s-progress--label {
+        border-color: var(--silver-darker);
+    }
+}
+
+//  $$  BRONZE
+//  ---------------------------------------------------------------------------
+.s-progress__bronze {
+    .s-progress--bar {
+        background-color: var(--bronze-lighter);
+    }
+    .s-progress--label {
+        border-color: var(--bronze-darker);
+    }
+}
+
+//  ===========================================================================
+//  $   SEGMENTED
+//  ---------------------------------------------------------------------------
+.s-progress.s-progress__segmented {
+    position: relative;
+
+    .s-progress--segments {
+        margin: 0;
+        padding: 0;
+        position: absolute;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: space-between;
+        list-style: none;
+
+        li {
+            display: block;
+            padding-top: 4px;
+            position: relative;
+            text-align: center;
+
+            &:not(:first-child):not(:last-child):before {
+                display: block;
+                content: "";
+                height: 100%;
+                width: 4px;
+                position: absolute;
+                top: 0;
+                left: -1px;
+                background-color: var(--white);
+            }
+        }
+    }
+}
+
+//  ===========================================================================
+//  $   STEPPED
+//  ---------------------------------------------------------------------------
+.s-progress.s-progress__stepped {
+    background: transparent;
+    display: flex;
+
+    .s-progress--step {
+        display: flex;
+        flex-grow: 1;
+        flex-shrink: 1;
+        flex-basis: 0;
+        flex-direction: column;
+        align-items: center;
+        position: relative;
+    }
+
+    .s-progress--label {
+        // Override a ton of properties
+        position: static;
+        display: block;
+        width: auto;
+        height: auto;
+        font-size: var(--fs-body1);
+        border: 0;
+        border-radius: 0;
+        padding: var(--su12) var(--su6) 0 var(--su6);
+        text-align: center;
+        color: var(--black-500);
+        z-index: var(--zi-base);
+    }
+
+    .s-progress--stop {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: var(--black-300);
+        border-radius: 100%;
+        width: var(--su-static24);
+        height: var(--su-static24);
+        z-index: var(--zi-selected);
+        color: @white;
+
+        .highcontrast-mode({
+            color: var(--white);
+        });
+    }
+
+    .s-progress--bar {
+        position: absolute;
+        top: calc(var(--su-static8) + var(--su-static1));
+        height: var(--su-static6);
+        background: var(--black-300);
+        z-index: var(--zi-base);
+        border-radius: 0;
+
+        &.s-progress--bar__left {
+            left: 0;
+            right: 50%;
+        }
+
+        &.s-progress--bar__right {
+            right: 0;
+            left: 50%;
+        }
+    }
+
+    .s-progress--step.is-active {
+        .s-progress--bar.s-progress--bar__left {
+            background: var(--theme-secondary-400);
+        }
+
+        .s-progress--stop {
+            background: var(--theme-secondary-400);
+            box-shadow: 0 0 0 var(--su-static6) var(--focus-ring);
+        }
+
+        .s-progress--label {
+            color: var(--fc-dark);
+        }
+    }
+
+    .s-progress--step.is-complete {
+        .s-progress--bar,
+        .s-progress--stop {
+            background: var(--theme-secondary-400);
+        }
+
+        .s-progress--label {
+            color: var(--fc-dark);
+        }
+    }
+}
+
+//  ===========================================================================
+//  $   CIRCULAR
+//  ---------------------------------------------------------------------------
+.s-progress__circular {
+    --s-progress-value: 0;
+    @s-progress-circle-circumference: (2 * pi() * 14); // 2πr, r = 14.
+
+    background: none;
+    width: var(--su-static32);
+    height: var(--su-static32);
+
+    .s-progress-bar {
+        // Make everything originate from the top of the circle
+        transform: rotate(270deg);
+
+        circle {
+            stroke-width: var(--su-static4);
+            fill: none;
+            stroke-linecap: round;
+        }
+
+        circle:nth-of-type(1) {
+            stroke: currentColor;
+            opacity: 0.4;
+        }
+
+        circle:nth-of-type(2) {
+            stroke: currentColor;
+            stroke-dasharray: @s-progress-circle-circumference;
+
+            // Multiply the circle circumference by an the opposite percentage of what we want to display
+            // For example 70%, represented as a decimal is 0.7
+            // The opposite of that is 0.3 so ( 1 - 0.7 )
+            stroke-dashoffset: calc(((1 - var(--s-progress-value)) * @s-progress-circle-circumference) * 1px); // Multiply everything by 1px since Safari and Firefox require these to be in pixels
+        }
+    }
+
+    &.s-progress__sm {
+        width: var(--su-static24);
+        height: var(--su-static24);
+    }
+
+    &.s-progress__md {
+        width: var(--su-static48);
+        height: var(--su-static48);
+    }
+
+    &.s-progress__lg {
+        width: var(--su-static64);
+        height: var(--su-static64);
+    }
+}

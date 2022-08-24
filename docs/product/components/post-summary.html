@@ -5,7 +5,7 @@ description: The post summary component summarizes various content and associate
 ---
 <section class="stacks-section">
     {% header "h2", "Classes" %}
-    <div class="overflow-x-auto mb32">
+    <div class="overflow-x-auto mb32" tabindex="0">
         <table class="wmn4 s-table s-table__bx-simple">
             <thead>
                 <tr>
@@ -77,7 +77,9 @@ description: The post summary component summarizes various content and associate
                 @Svg… …
             </a>
         </div>
-        <a href="…" class="s-post-summary--content-title s-link">…</a>
+        <h3 class="s-post-summary--content-title">
+            <a href="…" class="s-link">…</a>
+        </h3>
         <p class="s-post-summary--content-excerpt">…</p>
         <div class="s-post-summary--meta">
             <div class="s-post-summary--meta-tags">
@@ -87,6 +89,7 @@ description: The post summary component summarizes various content and associate
             <div class="s-user-card s-user-card__minimal">
                 <a href="…" class="s-avatar s-user-card--avatar">
                     <img class="s-avatar--image" src="…" />
+                    <span class="v-visible-sr">…</span>
                 </a>
                 <a href="…" class="s-user-card--link">…</a>
                 <ul class="s-user-card--awards">
@@ -97,6 +100,7 @@ description: The post summary component summarizes various content and associate
         </div>
         <a href="…" class="s-btn s-btn__muted s-post-summary--content-menu-button">
             @Svg.EllipsisVertical
+            <span class="v-visible-sr">…</span>
         </a>
     </div>
 </div>
@@ -131,9 +135,9 @@ description: The post summary component summarizes various content and associate
                     </div>
                 </div>
                 <div class="s-post-summary--content">
-                    <a href="#" class="s-post-summary--content-title s-link">
-                        How to generate the JPA entity Metamodel?
-                    </a>
+                    <h3 class="s-post-summary--content-title">
+                        <a href="#">How to generate the JPA entity Metamodel?</a>
+                    </h3>
                     <p class="s-post-summary--content-excerpt">
                         In the spirit of type safety associated with the CriteriaQuery JPA 2.0 also has an API to support Metamodel representation of entities.
                     </p>
@@ -148,7 +152,8 @@ description: The post summary component summarizes various content and associate
 
                         <div class="s-user-card s-user-card__minimal">
                             <a href="#" class="s-avatar s-user-card--avatar">
-                                <img class="s-avatar--image" src="{{ "/assets/img/placeholder.svg" | relative_url }}" />
+                                <img class="s-avatar--image" src="{{ "/assets/img/placeholder.svg" | url }}" alt="placeholder avatar" />
+                                <span class="v-visible-sr">Paul Wright</span>
                             </a>
                             <a href="#" class="s-user-card--link">Paul Wright</a>
                             <ul class="s-user-card--awards">
@@ -159,6 +164,7 @@ description: The post summary component summarizes various content and associate
                     </div>
                     <a href="#" class="s-btn s-btn__muted s-post-summary--content-menu-button">
                         {% icon "EllipsisVertical" %}
+                        <span class="v-visible-sr">menu</span>
                     </a>
                 </div>
             </div>
@@ -189,14 +195,14 @@ description: The post summary component summarizes various content and associate
                             views
                         </span>
                     </div>
-                    <div class="s-post-summary--stats-item has-bounty">
+                    <div class="s-post-summary--stats-item s-badge s-badge__bounty">
                         +50
                     </div>
                 </div>
                 <div class="s-post-summary--content">
-                    <a class="s-post-summary--content-title s-link">
-                        Cannot read property 'startsWith' of null in npm install
-                    </a>
+                    <h3 class="s-post-summary--content-title">
+                        <a href="#">Cannot read property 'startsWith' of null in npm install</a>
+                    </h3>
                     <p class="s-post-summary--content-excerpt">
                         I am creating my first react-native app. I am attempting to install the react-native command line interface as shown here. I keep getting an error when I type the command to initiate the react-native command line
                     </p>
@@ -210,7 +216,8 @@ description: The post summary component summarizes various content and associate
 
                         <div class="s-user-card s-user-card__minimal">
                             <a href="#" class="s-avatar s-user-card--avatar">
-                                <img class="s-avatar--image" src="{{ "/assets/img/placeholder.svg" | relative_url }}" />
+                                <img class="s-avatar--image" src="{{ "/assets/img/placeholder.svg" | url }}" alt="placeholder avatar" />
+                                <span class="v-visible-sr">Aaron Shekey</span>
                             </a>
                             <a href="#" class="s-user-card--link">Aaron Shekey</a>
                             <ul class="s-user-card--awards">
@@ -221,6 +228,7 @@ description: The post summary component summarizes various content and associate
                     </div>
                     <a href="#" class="s-btn s-btn__muted s-post-summary--content-menu-button">
                         {% icon "EllipsisVertical" %}
+                        <span class="v-visible-sr">menu</span>
                     </a>
                 </div>
             </div>
@@ -264,9 +272,9 @@ description: The post summary component summarizes various content and associate
                     <div class="s-post-summary--content-type">
                         <a href="#" class="s-link s-link__grayscale">{% icon "DocumentAlt" %} How-to guide</a>
                     </div>
-                    <a href="#" class="s-post-summary--content-title s-link">
-                        How to run a product research study
-                    </a>
+                    <h3 class="s-post-summary--content-title">
+                        <a href="#">How to run a product research study</a>
+                    </h3>
                     <p class="s-post-summary--content-excerpt">
                         This article aims to guide you through the steps and processes you may want to consider when running research at Stack Overflow. While there are obviously many methods, this guide will focus more interview-style research. For a full list of Product Research templates, guides, and links, see this article.
                     </p>
@@ -277,7 +285,8 @@ description: The post summary component summarizes various content and associate
 
                         <div class="s-user-card s-user-card__minimal">
                             <a href="#" class="s-avatar s-user-card--avatar">
-                                <img class="s-avatar--image" src="{{ "/assets/img/placeholder.svg" | relative_url }}" />
+                                <img class="s-avatar--image" src="{{ "/assets/img/placeholder.svg" | url }}" alt="placeholder avatar" />
+                                <span class="v-visible-sr">Mithila Fox</span>
                             </a>
                             <a href="#" class="s-user-card--link">Mithila Fox</a>
                             <ul class="s-user-card--awards">
@@ -288,6 +297,7 @@ description: The post summary component summarizes various content and associate
                     </div>
                     <a href="#" class="s-btn s-btn__muted s-post-summary--content-menu-button">
                         {% icon "EllipsisVertical" %}
+                        <span class="v-visible-sr">menu</span>
                     </a>
                 </div>
             </div>
@@ -320,10 +330,12 @@ description: The post summary component summarizes various content and associate
                     </div>
                 </div>
                 <div class="s-post-summary--content">
-                    <a href="#" class="s-post-summary--content-title s-link">
-                        {% icon "Shield", "fc-light" %}
-                        EF core 3.1 - common table for entity and owned type
-                    </a>
+                    <h3 class="s-post-summary--content-title">
+                        <a href="#">
+                            {% icon "Shield" %}
+                            EF core 3.1 - common table for entity and owned type
+                        </a>
+                    </h3>
                     <p class="s-post-summary--content-excerpt">
                         I’m trying to implement DDD approach in my project but realized that I have too big aggregates and trying to minimize the amount of data loaded from the database. I have an aggregate Order which
                     </p>
@@ -337,7 +349,8 @@ description: The post summary component summarizes various content and associate
 
                         <div class="s-user-card s-user-card__minimal">
                             <a href="#" class="s-avatar s-user-card--avatar">
-                                <img class="s-avatar--image" src="{{ "/assets/img/placeholder.svg" | relative_url }}" />
+                                <img class="s-avatar--image" src="{{ "/assets/img/placeholder.svg" | url }}" alt="placeholder avatar" />
+                                <span class="v-visible-sr">dantey89</span>
                             </a>
                             <a href="#" class="s-user-card--link">dantey89</a>
                             <ul class="s-user-card--awards">
@@ -348,6 +361,7 @@ description: The post summary component summarizes various content and associate
                     </div>
                     <a href="#" class="s-btn s-btn__muted s-post-summary--content-menu-button">
                         {% icon "EllipsisVertical" %}
+                        <span class="v-visible-sr">menu</span>
                     </a>
                 </div>
             </div>
@@ -387,7 +401,9 @@ description: The post summary component summarizes various content and associate
         </div>
     </div>
     <div class="s-post-summary--content">
-        <a href="…" class="s-post-summary--content-title s-link">…</a>
+        <h3 class="s-post-summary--content-title">
+            <a href="…">…</a>
+        </h3>
         <div class="s-post-summary--meta">
             <div class="s-post-summary--meta-tags">
                 <a class="s-tag" href="…">…</a>
@@ -396,6 +412,7 @@ description: The post summary component summarizes various content and associate
             <div class="s-user-card s-user-card__minimal">
                 <a href="…" class="s-avatar s-user-card--avatar">
                     <img class="s-avatar--image" src="…" />
+                    <span class="v-visible-sr">…</span>
                 </a>
                 <a href="…" class="s-user-card--link">…</a>
                 <time class="s-user-card--time">…</time>
@@ -433,9 +450,9 @@ description: The post summary component summarizes various content and associate
                     </div>
                 </div>
                 <div class="s-post-summary--content">
-                    <a class="s-post-summary--content-title s-link">
-                        Clicking through a viewpager2?
-                    </a>
+                    <h3 class="s-post-summary--content-title">
+                        <a href="#">Clicking through a viewpager2?</a>
+                    </h3>
                     <div class="s-post-summary--meta">
                         <div class="s-post-summary--meta-tags">
                             <a class="s-tag" href="#">android</a>
@@ -445,7 +462,8 @@ description: The post summary component summarizes various content and associate
 
                         <div class="s-user-card s-user-card__minimal">
                             <a href="#" class="s-avatar s-user-card--avatar">
-                                <img class="s-avatar--image" src="{{ "/assets/img/placeholder.svg" | relative_url }}" />
+                                <img class="s-avatar--image" src="{{ "/assets/img/placeholder.svg" | url }}" alt="placeholder avatar" />
+                                <span class="v-visible-sr">Callum Osborne</span>
                             </a>
                             <a href="#" class="s-user-card--link">Callum Osborne</a>
                             <time class="s-user-card--time">asked about 1 minute ago</time>
@@ -481,9 +499,9 @@ description: The post summary component summarizes various content and associate
                     </div>
                 </div>
                 <div class="s-post-summary--content">
-                    <a class="s-post-summary--content-title s-link">
-                        What permissions does github_token require for releases from a github action
-                    </a>
+                    <h3 class="s-post-summary--content-title">
+                        <a href="#">What permissions does github_token require for releases from a github action</a>
+                    </h3>
                     <div class="s-post-summary--meta">
                         <div class="s-post-summary--meta-tags">
                             <a class="s-tag" href="#">github-actions</a>
@@ -491,7 +509,8 @@ description: The post summary component summarizes various content and associate
 
                         <div class="s-user-card s-user-card__minimal">
                             <a href="#" class="s-avatar s-user-card--avatar">
-                                <img class="s-avatar--image" src="{{ "/assets/img/placeholder.svg" | relative_url }}" />
+                                <img class="s-avatar--image" src="{{ "/assets/img/placeholder.svg" | url }}" alt="placeholder avatar" />
+                                <span class="v-visible-sr">GuiFalourd</span>
                             </a>
                             <a href="#" class="s-user-card--link">GuiFalourd</a>
                             <time class="s-user-card--time">answered 4 minutes ago</time>
@@ -527,9 +546,9 @@ description: The post summary component summarizes various content and associate
                     </div>
                 </div>
                 <div class="s-post-summary--content">
-                    <a class="s-post-summary--content-title s-link">
-                        Parentheses is Invalid Bash
-                    </a>
+                    <h3 class="s-post-summary--content-title">
+                        <a href="#">Parentheses is Invalid Bash</a>
+                    </h3>
                     <div class="s-post-summary--meta">
                         <div class="s-post-summary--meta-tags">
                             <a class="s-tag" href="#">linux</a>
@@ -540,7 +559,8 @@ description: The post summary component summarizes various content and associate
 
                         <div class="s-user-card s-user-card__minimal">
                             <a href="#" class="s-avatar s-user-card--avatar">
-                                <img class="s-avatar--image" src="{{ "/assets/img/placeholder.svg" | relative_url }}" />
+                                <img class="s-avatar--image" src="{{ "/assets/img/placeholder.svg" | url }}" alt="placeholder avatar" />
+                                <span class="v-visible-sr">thatkingguy_</span>
                             </a>
                             <a href="#" class="s-user-card--link">thatkingguy_</a>
                             <time class="s-user-card--time">asked 8 minutes ago</time>
@@ -591,9 +611,9 @@ description: The post summary component summarizes various content and associate
                     </div>
                 </div>
                 <div class="s-post-summary--content">
-                    <a href="#" class="s-post-summary--content-title s-link">
-                        How to generate the JPA entity Metamodel?
-                    </a>
+                    <h3 class="s-post-summary--content-title">
+                        <a href="#">How to generate the JPA entity Metamodel?</a>
+                    </h3>
                     <div class="s-post-summary--meta">
                         <div class="s-post-summary--meta-tags">
                             <a class="s-tag" href="#">java</a>
@@ -605,7 +625,8 @@ description: The post summary component summarizes various content and associate
 
                         <div class="s-user-card s-user-card__minimal">
                             <a href="#" class="s-avatar s-user-card--avatar">
-                                <img class="s-avatar--image" src="{{ "/assets/img/placeholder.svg" | relative_url }}" />
+                                <img class="s-avatar--image" src="{{ "/assets/img/placeholder.svg" | url }}" alt="placeholder avatar" />
+                                <span class="v-visible-sr">Paul Wright</span>
                             </a>
                             <a href="#" class="s-user-card--link">Paul Wright</a>
                             <ul class="s-user-card--awards">
@@ -616,6 +637,7 @@ description: The post summary component summarizes various content and associate
                     </div>
                     <a href="#" class="s-btn s-btn__muted s-post-summary--content-menu-button">
                         {% icon "EllipsisVertical" %}
+                        <span class="v-visible-sr">menu</span>
                     </a>
                 </div>
             </div>
@@ -649,9 +671,9 @@ description: The post summary component summarizes various content and associate
                     </div>
                 </div>
                 <div class="s-post-summary--content">
-                    <a href="#" class="s-post-summary--content-title s-link">
-                        How to generate the JPA entity Metamodel?
-                    </a>
+                    <h3 class="s-post-summary--content-title">
+                        <a href="#">How to generate the JPA entity Metamodel?</a>
+                    </h3>
                     <p class="s-post-summary--content-excerpt s-post-summary--content-excerpt__sm">
                         In the spirit of type safety associated with the CriteriaQuery JPA 2.0 also has an API to support Metamodel representation of entities.
 
@@ -668,7 +690,8 @@ Is anyone aware of a fully functional implementation of this API (to generate th
 
                         <div class="s-user-card s-user-card__minimal">
                             <a href="#" class="s-avatar s-user-card--avatar">
-                                <img class="s-avatar--image" src="{{ "/assets/img/placeholder.svg" | relative_url }}" />
+                                <img class="s-avatar--image" src="{{ "/assets/img/placeholder.svg" | url }}" alt="placeholder avatar" />
+                                <span class="v-visible-sr">Paul Wright</span>
                             </a>
                             <a href="#" class="s-user-card--link">Paul Wright</a>
                             <ul class="s-user-card--awards">
@@ -679,6 +702,7 @@ Is anyone aware of a fully functional implementation of this API (to generate th
                     </div>
                     <a href="#" class="s-btn s-btn__muted s-post-summary--content-menu-button">
                         {% icon "EllipsisVertical" %}
+                        <span class="v-visible-sr">menu</span>
                     </a>
                 </div>
             </div>
@@ -712,9 +736,9 @@ Is anyone aware of a fully functional implementation of this API (to generate th
                     </div>
                 </div>
                 <div class="s-post-summary--content">
-                    <a href="#" class="s-post-summary--content-title s-link">
-                        How to generate the JPA entity Metamodel?
-                    </a>
+                    <h3 class="s-post-summary--content-title">
+                        <a href="#">How to generate the JPA entity Metamodel?</a>
+                    </h3>
                     <p class="s-post-summary--content-excerpt">
                         In the spirit of type safety associated with the CriteriaQuery JPA 2.0 also has an API to support Metamodel representation of entities. Is anyone aware of a fully functional implementation of this API (to generate the Metamodel as opposed to creating the metamodel classes manually)? It would be awesome if someone also knows the steps for setting this up in Eclipse (I assume it's as simple as setting up an annotation processor, but you never know).
                     </p>
@@ -729,7 +753,8 @@ Is anyone aware of a fully functional implementation of this API (to generate th
 
                         <div class="s-user-card s-user-card__minimal">
                             <a href="#" class="s-avatar s-user-card--avatar">
-                                <img class="s-avatar--image" src="{{ "/assets/img/placeholder.svg" | relative_url }}" />
+                                <img class="s-avatar--image" src="{{ "/assets/img/placeholder.svg" | url }}" alt="placeholder avatar" />
+                                <span class="v-visible-sr">Paul Wright</span>
                             </a>
                             <a href="#" class="s-user-card--link">Paul Wright</a>
                             <ul class="s-user-card--awards">
@@ -740,6 +765,7 @@ Is anyone aware of a fully functional implementation of this API (to generate th
                     </div>
                     <a href="#" class="s-btn s-btn__muted s-post-summary--content-menu-button">
                         {% icon "EllipsisVertical" %}
+                        <span class="v-visible-sr">menu</span>
                     </a>
                 </div>
             </div>
@@ -773,9 +799,9 @@ Is anyone aware of a fully functional implementation of this API (to generate th
                     </div>
                 </div>
                 <div class="s-post-summary--content">
-                    <a href="#" class="s-post-summary--content-title s-link">
-                        How to generate the JPA entity Metamodel?
-                    </a>
+                    <h3 class="s-post-summary--content-title">
+                        <a href="#">How to generate the JPA entity Metamodel?</a>
+                    </h3>
                     <p class="s-post-summary--content-excerpt s-post-summary--content-excerpt__md">
                         In the spirit of type safety associated with the CriteriaQuery JPA 2.0 also has an API to support Metamodel representation of entities. Is anyone aware of a fully functional implementation of this API (to generate the Metamodel as opposed to creating the metamodel classes manually)? It would be awesome if someone also knows the steps for setting this up in Eclipse (I assume it's as simple as setting up an annotation processor, but you never know).
                     </p>
@@ -790,7 +816,8 @@ Is anyone aware of a fully functional implementation of this API (to generate th
 
                         <div class="s-user-card s-user-card__minimal">
                             <a href="#" class="s-avatar s-user-card--avatar">
-                                <img class="s-avatar--image" src="{{ "/assets/img/placeholder.svg" | relative_url }}" />
+                                <img class="s-avatar--image" src="{{ "/assets/img/placeholder.svg" | url }}" alt="placeholder avatar" />
+                                <span class="v-visible-sr">Paul Wright</span>
                             </a>
                             <a href="#" class="s-user-card--link">Paul Wright</a>
                             <ul class="s-user-card--awards">
@@ -801,6 +828,7 @@ Is anyone aware of a fully functional implementation of this API (to generate th
                     </div>
                     <a href="#" class="s-btn s-btn__muted s-post-summary--content-menu-button">
                         {% icon "EllipsisVertical" %}
+                        <span class="v-visible-sr">menu</span>
                     </a>
                 </div>
             </div>
@@ -834,9 +862,9 @@ Is anyone aware of a fully functional implementation of this API (to generate th
                     </div>
                 </div>
                 <div class="s-post-summary--content">
-                    <a href="#" class="s-post-summary--content-title s-link">
-                        How to generate the JPA entity Metamodel?
-                    </a>
+                    <h3 class="s-post-summary--content-title">
+                        <a href="#">How to generate the JPA entity Metamodel?</a>
+                    </h3>
                     <p class="s-post-summary--content-excerpt s-post-summary--content-excerpt__lg">
                         In the spirit of type safety associated with the CriteriaQuery JPA 2.0 also has an API to support Metamodel representation of entities. Is anyone aware of a fully functional implementation of this API (to generate the Metamodel as opposed to creating the metamodel classes manually)? It would be awesome if someone also knows the steps for setting this up in Eclipse (I assume it's as simple as setting up an annotation processor, but you never know).
                     </p>
@@ -851,7 +879,8 @@ Is anyone aware of a fully functional implementation of this API (to generate th
 
                         <div class="s-user-card s-user-card__minimal">
                             <a href="#" class="s-avatar s-user-card--avatar">
-                                <img class="s-avatar--image" src="{{ "/assets/img/placeholder.svg" | relative_url }}" />
+                                <img class="s-avatar--image" src="{{ "/assets/img/placeholder.svg" | url }}" alt="placeholder avatar" />
+                                <span class="v-visible-sr">Paul Wright</span>
                             </a>
                             <a href="#" class="s-user-card--link">Paul Wright</a>
                             <ul class="s-user-card--awards">
@@ -862,6 +891,7 @@ Is anyone aware of a fully functional implementation of this API (to generate th
                     </div>
                     <a href="#" class="s-btn s-btn__muted s-post-summary--content-menu-button">
                         {% icon "EllipsisVertical" %}
+                        <span class="v-visible-sr">menu</span>
                     </a>
                 </div>
             </div>
@@ -877,9 +907,10 @@ Is anyone aware of a fully functional implementation of this API (to generate th
 <div class="s-post-summary">
     …
     <div class="s-post-summary--content">
-        <a href="…" class="s-post-summary--content-title s-link">…</a>
+        <h3 class="s-post-summary--content-title">
+            <a href="…">…</a>
+        </h3>
         <div class="s-post-summary--meta">…</div>
-
         <div class="s-post-summary--answer">
             <div class="s-post-summary--stats">
                 <div class="s-post-summary--stats-item s-post-summary--stats-item__emphasized">
@@ -905,6 +936,7 @@ Is anyone aware of a fully functional implementation of this API (to generate th
                 <div class="s-user-card s-user-card__minimal">
                     <a href="…" class="s-avatar s-user-card--avatar">
                         <img class="s-avatar--image" src="…" />
+                        <span class="v-visible-sr">…</span>
                     </a>
                     <a href="…" class="s-user-card--link">…</a>
                     <time class="s-user-card--time">…</time>
@@ -944,9 +976,9 @@ Is anyone aware of a fully functional implementation of this API (to generate th
                     </div>
                 </div>
                 <div class="s-post-summary--content">
-                    <a class="s-post-summary--content-title s-link">
-                        Azure API Management and Backend Web API
-                    </a>
+                    <h3 class="s-post-summary--content-title">
+                        <a href="#">Azure API Management and Backend Web API</a>
+                    </h3>
                     <p class="s-post-summary--content-excerpt">
                         Right now, I have enabled basic authentication to the developer portal in API Management. Also, I have enabled OAuth 2.0 authentication for the back end server (user Authorization). So, if i login to the developer portal, i can see two fields - Subscription Key and Authorization. The Subscription key will be the developer's subscription to the portal and the Authorization will be the OAuth authorization which is required for the back end server.
                     </p>
@@ -960,7 +992,8 @@ Is anyone aware of a fully functional implementation of this API (to generate th
 
                         <div class="s-user-card s-user-card__minimal">
                             <a href="#" class="s-avatar s-user-card--avatar">
-                                <img class="s-avatar--image" src="{{ "/assets/img/placeholder.svg" | relative_url }}" />
+                                <img class="s-avatar--image" src="{{ "/assets/img/placeholder.svg" | url }}" alt="placeholder avatar" />
+                                <span class="v-visible-sr">karel</span>
                             </a>
                             <a href="#" class="s-user-card--link">karel</a>
                             <time class="s-user-card--time">asked 3 minutes ago</time>
@@ -988,7 +1021,8 @@ Is anyone aware of a fully functional implementation of this API (to generate th
 
                             <div class="s-user-card s-user-card__minimal">
                                 <a href="#" class="s-avatar s-user-card--avatar">
-                                    <img class="s-avatar--image" src="{{ "/assets/img/placeholder.svg" | relative_url }}" />
+                                    <img class="s-avatar--image" src="{{ "/assets/img/placeholder.svg" | url }}" alt="placeholder avatar" />
+                                    <span class="v-visible-sr">Aaron Shekey</span>
                                 </a>
                                 <a href="#" class="s-user-card--link">Aaron Shekey</a>
                                 <time class="s-user-card--time">answered 1 minute ago</time>
@@ -1014,7 +1048,8 @@ Is anyone aware of a fully functional implementation of this API (to generate th
 
                             <div class="s-user-card s-user-card__minimal">
                                 <a href="#" class="s-avatar s-user-card--avatar">
-                                    <img class="s-avatar--image" src="{{ "/assets/img/placeholder.svg" | relative_url }}" />
+                                    <img class="s-avatar--image" src="{{ "/assets/img/placeholder.svg" | url }}" alt="placeholder avatar" />
+                                    <span class="v-visible-sr">4c74356b41</span>
                                 </a>
                                 <a href="#" class="s-user-card--link">4c74356b41</a>
                                 <time class="s-user-card--time">answered 3 minutes ago</time>
@@ -1328,6 +1363,17 @@ Is anyone aware of a fully functional implementation of this API (to generate th
     <p class="stacks-copy">Post summaries change their appearance based on being watched, ignored, or deleted. Articles can also have varying draft states.</p>
     <div class="stacks-preview">
 {% highlight html %}
+<div class="s-post-summary s-post-summary__pinned">
+    <div class="s-post-summary--stats">
+        <div class="s-post-summary--stats-item s-badge s-badge__icon s-badge__muted s-badge__filled">
+            @Svg.TackSm
+            Pinned
+        </div>
+        …
+    </div>
+    …
+ </div>
+
 <div class="s-post-summary s-post-summary__watched">
     …
     <a class="s-tag s-tag__watched">
@@ -1346,7 +1392,7 @@ Is anyone aware of a fully functional implementation of this API (to generate th
 
 <div class="s-post-summary s-post-summary__deleted">
     <div class="s-post-summary--stats">
-        <div class="s-post-summary--stats-item is-deleted">
+        <div class="s-post-summary--stats-item s-badge s-badge__icon s-badge__danger s-badge__filled">
             @Svg.TrashSm
             Deleted
         </div>
@@ -1356,6 +1402,72 @@ Is anyone aware of a fully functional implementation of this API (to generate th
  </div>
 {% endhighlight %}
         <div class="stacks-preview--example p0">
+            <div class="s-post-summary s-post-summary__pinned">
+                <div class="s-post-summary--stats">
+                    <div class="s-post-summary--stats-item s-badge s-badge__icon s-badge__muted s-badge__filled">
+                        {% icon "TackSm" %}
+                        Pinned
+                    </div>
+                    <div class="s-post-summary--stats-item s-post-summary--stats-item__emphasized">
+                        <span class="s-post-summary--stats-item-number">
+                            10
+                        </span>
+                        <span class="s-post-summary--stats-item-unit">
+                            votes
+                        </span>
+                    </div>
+                    <div class="s-post-summary--stats-item">
+                        <span class="s-post-summary--stats-item-number">
+                            12
+                        </span>
+                        <span class="s-post-summary--stats-item-unit">
+                            views
+                        </span>
+                    </div>
+                    <div class="s-post-summary--stats-item">
+                        <span class="s-post-summary--stats-item-number">
+                            1
+                        </span>
+                        <span class="s-post-summary--stats-item-unit">
+                            minute read
+                        </span>
+                    </div>
+                </div>
+                <div class="s-post-summary--content">
+                    <div class="s-post-summary--content-type">
+                        <a href="#" class="s-link s-link__grayscale">{% icon "DocumentAlt" %} Knowledge Article</a>
+                    </div>
+                    <h3 class="s-post-summary--content-title">
+                        <a href="#">Network graph of popular tags on Stack Overflow</a>
+                    </h3>
+                    <p class="s-post-summary--content-excerpt">
+                        I wanted to see how different tags related to each other. The below graph depicts associations between popular tags on our site. Description of analysis: I started looking at the 1000 most popular tags on questions in 2021. I created a list of tags cross joined by the question ID (so if a question contains tags for both Python and Numpy, it would show up in my list). I scaled up by the number of answers each question received (noting that some tag combos had 0 answers) -and then counted each distinct combination of each tag. Due to limitations in graphing, I only displayed the top ~2500 tag combinations - which accounts for tags combos that had more than 40 answers over the entire year.
+                    </p>
+                    <div class="s-post-summary--meta">
+                        <div class="s-post-summary--meta-tags">
+                            <a class="s-tag" href="#">data</a>
+                            <a class="s-tag" href="#">data-insights</a>
+                        </div>
+
+                        <div class="s-user-card s-user-card__minimal">
+                            <a href="#" class="s-avatar s-user-card--avatar">
+                                <img class="s-avatar--image" src="{{ "/assets/img/placeholder.svg" | url }}" alt="placeholder avatar" />
+                                <span class="v-visible-sr">Aaron Shekey</span>
+                            </a>
+                            <a href="#" class="s-user-card--link">Aaron Shekey</a>
+                            <ul class="s-user-card--awards">
+                                <li class="s-user-card--rep">1,025</li>
+                            </ul>
+                            <time class="s-user-card--time">posted 1 minute ago</time>
+                        </div>
+                    </div>
+                    <a href="#" class="s-btn s-btn__muted s-post-summary--content-menu-button">
+                        {% icon "EllipsisVertical" %}
+                        <span class="v-visible-sr">menu</span>
+                    </a>
+                </div>
+            </div>
+
             <div class="s-post-summary s-post-summary__watched">
                 <div class="s-post-summary--stats">
                     <div class="s-post-summary--stats-item s-post-summary--stats-item__emphasized">
@@ -1385,9 +1497,9 @@ Is anyone aware of a fully functional implementation of this API (to generate th
                     </div>
                 </div>
                 <div class="s-post-summary--content">
-                    <a class="s-post-summary--content-title s-link">
-                        Could not load type 'System.Web.Optimization.StyleBundle'
-                    </a>
+                    <h3 class="s-post-summary--content-title">
+                        <a href="#">Could not load type 'System.Web.Optimization.StyleBundle'</a>
+                    </h3>
                     <p class="s-post-summary--content-excerpt">
                         Sometimes after build and launch my MVC4 web app I got this error. It can dissapear after rebuild or not. Same issue I got after publish to Windows Azure. Does anybody know how to fix this error?
                     </p>
@@ -1400,7 +1512,8 @@ Is anyone aware of a fully functional implementation of this API (to generate th
 
                         <div class="s-user-card s-user-card__minimal">
                             <a href="#" class="s-avatar s-user-card--avatar">
-                                <img class="s-avatar--image" src="{{ "/assets/img/placeholder.svg" | relative_url }}" />
+                                <img class="s-avatar--image" src="{{ "/assets/img/placeholder.svg" | url }}" alt="placeholder avatar" />
+                                <span class="v-visible-sr">Nimantha</span>
                             </a>
                             <a href="#" class="s-user-card--link">Nimantha</a>
                             <ul class="s-user-card--awards">
@@ -1411,6 +1524,7 @@ Is anyone aware of a fully functional implementation of this API (to generate th
                     </div>
                     <a href="#" class="s-btn s-btn__muted s-post-summary--content-menu-button">
                         {% icon "EllipsisVertical" %}
+                        <span class="v-visible-sr">menu</span>
                     </a>
                 </div>
             </div>
@@ -1443,9 +1557,9 @@ Is anyone aware of a fully functional implementation of this API (to generate th
                     </div>
                 </div>
                 <div class="s-post-summary--content">
-                    <a class="s-post-summary--content-title s-link">
-                        PHP URL Param redirects - with wildcards/regex
-                    </a>
+                    <h3 class="s-post-summary--content-title">
+                        <a href="#">PHP URL Param redirects - with wildcards/regex</a>
+                    </h3>
                     <p class="s-post-summary--content-excerpt">
                         I recently found this solution for doing php url variable to header location redirects. It's so much more manageable compared to htaccess for mass redirects, however one thing I want to next work out templates, guides, and links, see this article.
                     </p>
@@ -1460,7 +1574,8 @@ Is anyone aware of a fully functional implementation of this API (to generate th
 
                         <div class="s-user-card s-user-card__minimal">
                             <a href="#" class="s-avatar s-user-card--avatar">
-                                <img class="s-avatar--image" src="{{ "/assets/img/placeholder.svg" | relative_url }}" />
+                                <img class="s-avatar--image" src="{{ "/assets/img/placeholder.svg" | url }}" alt="placeholder avatar" />
+                                <span class="v-visible-sr">Jase Wolf</span>
                             </a>
                             <a href="#" class="s-user-card--link">Jase Wolf</a>
                             <ul class="s-user-card--awards">
@@ -1471,13 +1586,14 @@ Is anyone aware of a fully functional implementation of this API (to generate th
                     </div>
                     <a href="#" class="s-btn s-btn__muted s-post-summary--content-menu-button">
                         {% icon "EllipsisVertical" %}
+                        <span class="v-visible-sr">menu</span>
                     </a>
                 </div>
             </div>
 
             <div class="s-post-summary s-post-summary__deleted">
                 <div class="s-post-summary--stats">
-                    <div class="s-post-summary--stats-item is-deleted">
+                    <div class="s-post-summary--stats-item s-badge s-badge__icon s-badge__danger s-badge__filled">
                         {% icon "TrashSm" %}
                         Deleted
                     </div>
@@ -1507,9 +1623,9 @@ Is anyone aware of a fully functional implementation of this API (to generate th
                     </div>
                 </div>
                 <div class="s-post-summary--content">
-                    <a class="s-post-summary--content-title s-link">
-                        Adding authentication based on API key and API secret to APIs in Spring Boot application
-                    </a>
+                    <h3 class="s-post-summary--content-title">
+                        <a href="#">Adding authentication based on API key and API secret to APIs in Spring Boot application</a>
+                    </h3>
                     <p class="s-post-summary--content-excerpt">
                         I am working on a Spring Boot application with user authentication is based on Oauth2 2ith 2FA. Now, I would like to call the APIs in my application from the third-party client as well, say from another service.
                     </p>
@@ -1524,7 +1640,8 @@ Is anyone aware of a fully functional implementation of this API (to generate th
 
                         <div class="s-user-card s-user-card__minimal">
                             <a href="#" class="s-avatar s-user-card--avatar">
-                                <img class="s-avatar--image" src="{{ "/assets/img/placeholder.svg" | relative_url }}" />
+                                <img class="s-avatar--image" src="{{ "/assets/img/placeholder.svg" | url }}" alt="placeholder avatar" />
+                                <span class="v-visible-sr">Joy</span>
                             </a>
                             <a href="#" class="s-user-card--link">Joy</a>
                             <ul class="s-user-card--awards">
@@ -1535,13 +1652,14 @@ Is anyone aware of a fully functional implementation of this API (to generate th
                     </div>
                     <a href="#" class="s-btn s-btn__muted s-post-summary--content-menu-button">
                         {% icon "EllipsisVertical" %}
+                        <span class="v-visible-sr">menu</span>
                     </a>
                 </div>
             </div>
 
             <div class="s-post-summary">
                 <div class="s-post-summary--stats">
-                    <div class="s-post-summary--stats-item is-draft">
+                    <div class="s-post-summary--stats-item s-badge s-badge__icon s-badge__info">
                         {% icon "PencilSm" %}
                         Draft
                     </div>
@@ -1582,9 +1700,9 @@ Is anyone aware of a fully functional implementation of this API (to generate th
                     <div class="s-post-summary--content-type">
                         <a href="#" class="s-link s-link__grayscale">{% icon "DocumentAlt" %} How-to guide</a>
                     </div>
-                    <a class="s-post-summary--content-title s-link">
-                        How to make sql_mode empty on Cloud SQL
-                    </a>
+                    <h3 class="s-post-summary--content-title">
+                        <a href="#">How to make sql_mode empty on Cloud SQL</a>
+                    </h3>
                     <p class="s-post-summary--content-excerpt">
                         Cloud SQL allows users to customize several flags that allow you to adjust options and configure and tune a database instance. In the case of the sql_mode flag, there are several options that are
                     </p>
@@ -1597,7 +1715,8 @@ Is anyone aware of a fully functional implementation of this API (to generate th
 
                         <div class="s-user-card s-user-card__minimal">
                             <a href="#" class="s-avatar s-user-card--avatar">
-                                <img class="s-avatar--image" src="{{ "/assets/img/placeholder.svg" | relative_url }}" />
+                                <img class="s-avatar--image" src="{{ "/assets/img/placeholder.svg" | url }}" alt="placeholder avatar" />
+                                <span class="v-visible-sr">gabidavila</span>
                             </a>
                             <a href="#" class="s-user-card--link">gabidavila</a>
                             <ul class="s-user-card--awards">
@@ -1608,13 +1727,14 @@ Is anyone aware of a fully functional implementation of this API (to generate th
                     </div>
                     <a href="#" class="s-btn s-btn__muted s-post-summary--content-menu-button">
                         {% icon "EllipsisVertical" %}
+                        <span class="v-visible-sr">menu</span>
                     </a>
                 </div>
             </div>
 
             <div class="s-post-summary">
                 <div class="s-post-summary--stats">
-                    <div class="s-post-summary--stats-item is-review">
+                    <div class="s-post-summary--stats-item s-badge s-badge__icon s-badge__warning">
                         {% icon "EyeSm" %}
                         Review
                     </div>
@@ -1655,9 +1775,9 @@ Is anyone aware of a fully functional implementation of this API (to generate th
                     <div class="s-post-summary--content-type">
                         <a href="#" class="s-link s-link__grayscale">{% icon "DocumentAlt" %} How-to Guide</a>
                     </div>
-                    <a class="s-post-summary--content-title s-link">
-                        How to make sql_mode empty on Cloud SQL
-                    </a>
+                    <h3 class="s-post-summary--content-title">
+                        <a href="#">How to make sql_mode empty on Cloud SQL</a>
+                    </h3>
                     <p class="s-post-summary--content-excerpt">
                         In Android apps that use Firebase Authentication, you can always get the user who is currently signed in with code like: FirebaseAuth auth = FirebaseAuth.getInstance(); FirebaseUser user = auth.get
                     </p>
@@ -1669,7 +1789,8 @@ Is anyone aware of a fully functional implementation of this API (to generate th
 
                         <div class="s-user-card s-user-card__minimal">
                             <a href="#" class="s-avatar s-user-card--avatar">
-                                <img class="s-avatar--image" src="{{ "/assets/img/placeholder.svg" | relative_url }}" />
+                                <img class="s-avatar--image" src="{{ "/assets/img/placeholder.svg" | url }}" alt="placeholder avatar" />
+                                <span class="v-visible-sr">Frank van Puffelen</span>
                             </a>
                             <a href="#" class="s-user-card--link">Frank van Puffelen</a>
                             <ul class="s-user-card--awards">
@@ -1680,13 +1801,14 @@ Is anyone aware of a fully functional implementation of this API (to generate th
                     </div>
                     <a href="#" class="s-btn s-btn__muted s-post-summary--content-menu-button">
                         {% icon "EllipsisVertical" %}
+                        <span class="v-visible-sr">menu</span>
                     </a>
                 </div>
             </div>
 
             <div class="s-post-summary">
                 <div class="s-post-summary--stats">
-                    <div class="s-post-summary--stats-item is-closed">
+                    <div class="s-post-summary--stats-item s-badge s-badge__icon s-badge__danger">
                         {% icon "NotInterestedSm" %}
                         Closed
                     </div>
@@ -1711,9 +1833,9 @@ Is anyone aware of a fully functional implementation of this API (to generate th
                     <div class="s-post-summary--content-type">
                         <a href="#" class="s-link s-link__grayscale">{% icon "DocumentAlt" %} How-to Guide</a>
                     </div>
-                    <a class="s-post-summary--content-title s-link">
-                        How to make sql_mode empty on Cloud SQL
-                    </a>
+                    <h3 class="s-post-summary--content-title">
+                        <a href="#">How to make sql_mode empty on Cloud SQL</a>
+                    </h3>
                     <p class="s-post-summary--content-excerpt">
                         In Android apps that use Firebase Authentication, you can always get the user who is currently signed in with code like: FirebaseAuth auth = FirebaseAuth.getInstance(); FirebaseUser user = auth.get
                     </p>
@@ -1725,7 +1847,7 @@ Is anyone aware of a fully functional implementation of this API (to generate th
 
                         <div class="s-user-card s-user-card__minimal">
                             <a href="#" class="s-avatar s-user-card--avatar">
-                                <img class="s-avatar--image" src="{{ "/assets/img/placeholder.svg" | relative_url }}" />
+                                <img class="s-avatar--image" src="{{ "/assets/img/placeholder.svg" | url }}" alt="placeholder avatar" />
                             </a>
                             <a href="#" class="s-user-card--link">Frank van Puffelen</a>
                             <ul class="s-user-card--awards">
@@ -1736,13 +1858,14 @@ Is anyone aware of a fully functional implementation of this API (to generate th
                     </div>
                     <a href="#" class="s-btn s-btn__muted s-post-summary--content-menu-button">
                         {% icon "EllipsisVertical" %}
+                        <span class="v-visible-sr">menu</span>
                     </a>
                 </div>
             </div>
 
             <div class="s-post-summary">
                 <div class="s-post-summary--stats">
-                    <div class="s-post-summary--stats-item is-archived">
+                    <div class="s-post-summary--stats-item s-badge s-badge__icon s-badge__muted">
                         {% icon "ArchiveSm" %}
                         Archived
                     </div>
@@ -1783,9 +1906,9 @@ Is anyone aware of a fully functional implementation of this API (to generate th
                     <div class="s-post-summary--content-type">
                         <a href="#" class="s-link s-link__grayscale">{% icon "DocumentAlt" %} Announcement</a>
                     </div>
-                    <a class="s-post-summary--content-title s-link">
-                        Faster Cloud Storage transfers using the gcloud command-line
-                    </a>
+                    <h3 class="s-post-summary--content-title">
+                        <a href="#">Faster Cloud Storage transfers using the gcloud command-line</a>
+                    </h3>
                     <p class="s-post-summary--content-excerpt">
                         We’re pleased to announce gcloud storage, a new set of Cloud Storage commands in Cloud SDK that includes a new approach to parallelization that can accelerate both small and large data migrations.
                     </p>
@@ -1798,7 +1921,8 @@ Is anyone aware of a fully functional implementation of this API (to generate th
 
                         <div class="s-user-card s-user-card__minimal">
                             <a href="#" class="s-avatar s-user-card--avatar">
-                                <img class="s-avatar--image" src="{{ "/assets/img/placeholder.svg" | relative_url }}" />
+                                <img class="s-avatar--image" src="{{ "/assets/img/placeholder.svg" | url }}" alt="placeholder avatar" />
+                                <a href="#" class="s-user-card--link">Frank van Puffelen</a>
                             </a>
                             <a href="#" class="s-user-card--link">thomasmaclean</a>
                             <ul class="s-user-card--awards">
@@ -1809,6 +1933,7 @@ Is anyone aware of a fully functional implementation of this API (to generate th
                     </div>
                     <a href="#" class="s-btn s-btn__muted s-post-summary--content-menu-button">
                         {% icon "EllipsisVertical" %}
+                        <span class="v-visible-sr">menu</span>
                     </a>
                 </div>
             </div>

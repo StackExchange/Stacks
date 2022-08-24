@@ -308,14 +308,53 @@ description: A checkable input that visually shows if an option is true or false
             </fieldset>
         </div>
     </div>
+
+    {% header "h3", "Indeterminate state" %}
+    <p class="stacks-copy">Checkboxes can be styled by using the <code>:indeterminate</code> pseudo class.</p>
+    {% tip, "", "mb32" %}
+        <strong>Note:</strong> The <code>:indeterminate</code> pseudo class can only be set via JavaScript. Use the <code>HTMLInputElement</code> object's <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/checkbox#indeterminate_state_checkboxes"><code>indeterminate</code></a> property to set the state.
+    {% endtip %}
+
+    <div class="stacks-preview">
+{% highlight html %}
+<fieldset class="d-flex gs8 gsy fd-column">
+    <div class="flex--item">
+        <div class="d-flex gs8 gsx">
+            <div class="flex--item">
+                <input class="s-checkbox" type="checkbox" name="" id="indeterminate-checkbox-1" />
+            </div>
+            <label class="flex--item s-label fw-normal" for="indeterminate-checkbox-1">
+                Select all
+            </label>
+        </div>
+    </div>
+</fieldset>
+
+<script>
+    document.getElementById("indeterminate-checkbox-1").indeterminate = true;
+</script>
+{% endhighlight %}
+        <div class="stacks-preview--example">
+            <fieldset class="d-flex gs8 gsy fd-column">
+                <div class="flex--item">
+                    <div class="d-flex gs8 gsx">
+                        <div class="flex--item">
+                            <input class="s-checkbox" type="checkbox" name="" id="indeterminate-checkbox-1" />
+                        </div>
+                        <label class="flex--item s-label fw-normal" for="indeterminate-checkbox-1">Select all</label>
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+    </div>
 </section>
 
 <section class="stacks-section">
     {% header "h2", "Validation states" %}
-    <p class="stacks-copy">Checkboxes use the same validation states as <a href="{{ "/product/components/inputs" | relative_url }}">inputs</a>.</p>
+    <p class="stacks-copy">Checkboxes use the same validation states as <a href="{{ "/product/components/inputs" | url }}">inputs</a>.</p>
 
     {% header "h3", "Validation classes" %}
-    <div class="overflow-x-auto mb32">
+    <div class="overflow-x-auto mb32" tabindex="0">
         <table class="wmn4 s-table s-table__bx-simple">
             <thead>
                 <tr>
@@ -431,3 +470,7 @@ description: A checkable input that visually shows if an option is true or false
         </div>
     </div>
 </section>
+
+<script>
+    document.getElementById("indeterminate-checkbox-1").indeterminate = true;
+</script>

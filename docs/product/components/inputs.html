@@ -4,9 +4,9 @@ title: Inputs
 figma: https://www.figma.com/file/GQB9GupHvraMioGRPbwKhO/Form-Elements
 description: Input elements are used to gather information from users.
 ---
-<section id="inputs" class="stacks-section">
+<section class="stacks-section">
     {% header "h2", "Base style" %}
-    <p class="stacks-copy">Inputs are normally paired with a label, but there times when they can be used without a label. Placeholder text should primarily be used as a content prompt and only provided when needed.</p>
+    <p class="stacks-copy">Inputs are normally paired with a label, but there are times when they can be used without a label. Placeholder text should primarily be used as a content prompt and only provided when needed.</p>
 
     <div class="stacks-preview">
 {% highlight html %}
@@ -26,7 +26,15 @@ description: Input elements are used to gather information from users.
     <label class="flex--item s-label" for="example-item2">Display name</label>
     <div class="d-flex ps-relative">
         <input class="s-input" id="example-item2" type="text" placeholder="Enter your input here" disabled />
-        @Svg.Lock.With("s-input-icon fc-black-300")
+        @Svg.Lock.With("s-input-icon fc-black-400")
+    </div>
+</div>
+
+<div class="d-flex gs4 gsy fd-column ps-relative is-readonly">
+    <label class="flex--item s-label" for="example-item3">Legal Name</label>
+    <div class="d-flex ps-relative">
+        <input class="s-input" id="example-item3" type="text" placeholder="Enter your input here" readonly />
+        @Svg.Lock.With("s-input-icon fc-black-400")
     </div>
 </div>
 {% endhighlight %}
@@ -50,7 +58,16 @@ description: Input elements are used to gather information from users.
                         <label class="flex--item s-label" for="example-item2">Display name</label>
                         <div class="d-flex ps-relative">
                             <input class="s-input" id="example-item2" type="text" placeholder="Enter your input here" disabled />
-                            {% icon "Lock", "s-input-icon fc-black-300" %}
+                            {% icon "Lock", "s-input-icon fc-black-400" %}
+                        </div>
+                    </div>
+                </div>
+                <div class="flex--item">
+                    <div class="d-flex gs4 gsy fd-column ps-relative is-readonly">
+                        <label class="flex--item s-label" for="example-item3">Legal name</label>
+                        <div class="d-flex ps-relative">
+                            <input class="s-input" id="example-item3" type="text" placeholder="Enter your input here" readonly value="Prefilled readonly input" />
+                            {% icon "Lock", "s-input-icon" %}
                         </div>
                     </div>
                 </div>
@@ -70,12 +87,12 @@ description: Input elements are used to gather information from users.
     <p class="stacks-copy">For more information, please read Gov.UK's article, <a href="https://accessibility.blog.gov.uk/2016/07/22/using-the-fieldset-and-legend-elements/" target="_blank"><em>"Using the fieldset and legend elements"</em></a>.</p>
 </section>
 
-<section id="inputs" class="stacks-section">
+<section class="stacks-section">
     {% header "h2", "Validation states" %}
     <p class="stacks-copy">Validation states provides the user feedback based on their interaction (or lack of interaction) with an input. These styles are applied by applying the appropriate class to the wrapping parent container.</p>
 
     {% header "h3", "Validation classes" %}
-    <div class="overflow-x-auto mb32">
+    <div class="overflow-x-auto mb32" tabindex="0">
         <table class="wmn4 s-table s-table__bx-simple">
             <thead>
                 <tr>
@@ -194,7 +211,7 @@ description: Input elements are used to gather information from users.
     </div>
 </section>
 
-<section id="inputs" class="stacks-section">
+<section class="stacks-section">
     {% header "h2", "Icons" %}
     {% header "h3", "Search" %}
     <p class="stacks-copy">Stacks provides helper classes to consistently style an input used for search. First, wrap your search input in an element with relative positioning. Then, and add <code class="stacks-code">s-input__search</code> to the input itself. Finally, be sure to add <code class="stacks-code">s-input-icon</code> and <code class="stacks-code">s-input-icon__search</code> to the search icon.</p>
@@ -202,13 +219,15 @@ description: Input elements are used to gather information from users.
     <div class="stacks-preview">
 {% highlight html %}
 <div class="ps-relative">
-    <input class="s-input s-input__search" type="text" placeholder="Search…" />
+    <label class="v-visible-sr" for="example-search">Search</label>
+    <input class="s-input s-input__search" id="example-search" type="text" placeholder="Search…" />
     @Svg.Search.With("s-input-icon s-input-icon__search")
 </div>
 {% endhighlight %}
         <div class="stacks-preview--example">
             <div class="ps-relative">
-                <input class="s-input s-input__search" type="text" placeholder="Search…" />
+                <label class="v-visible-sr" for="example-search">Search</label>
+                <input class="s-input s-input__search" id="example-search" type="text" placeholder="Search…" />
                 {% icon "Search", "s-input-icon s-input-icon__search" %}
             </div>
         </div>
@@ -218,22 +237,24 @@ description: Input elements are used to gather information from users.
     <div class="stacks-preview">
 {% highlight html %}
 <div class="ps-relative">
-    <input class="s-input s-input__creditcard" type="text" />
+    <label class="v-visible-sr" for="example-creditcard">Credit Card</label>
+    <input class="s-input s-input__creditcard" id="example-creditcard" type="text" />
     @Svg.CreditCard.With("s-input-icon s-input-icon__creditcard")
 </div>
 {% endhighlight %}
         <div class="stacks-preview--example">
             <div class="ps-relative">
-                <input class="s-input s-input__creditcard" type="text" />
+                <label class="v-visible-sr" for="example-creditcard">Credit Card</label>
+                <input class="s-input s-input__creditcard" id="example-creditcard" type="text" />
                 {% icon "CreditCard", "s-input-icon s-input-icon__creditcard" %}
             </div>
         </div>
     </div>
 </section>
 
-<section id="inputs" class="stacks-section">
+<section class="stacks-section">
     {% header "h2", "Sizes" %}
-    <div class="overflow-x-auto mb32">
+    <div class="overflow-x-auto mb32" tabindex="0">
         <table class="wmn5 s-table s-table__bx-simple va-middle">
             <thead>
                 <tr>

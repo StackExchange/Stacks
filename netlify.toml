@@ -4,7 +4,9 @@
 [Build]
   base = "/"
   publish = "docs/_site/"
-  command = "grunt deploy-docs"
+  command = "npm run build:docs"
+  # don't build deploy previews on PRs opened by dependabot
+  ignore = "git log -1 --pretty=%B | grep dependabot"
 
 [[redirects]]
   from = "/favicon.ico"

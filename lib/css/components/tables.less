@@ -1,0 +1,337 @@
+//
+//  STACK OVERFLOW
+//  TABLES
+//
+//  This CSS comes from Stacks, our CSS & Pattern library for rapidly building
+//  Stack Overflow. For documentation of all these classes and how to contribute,
+//  visit https://stackoverflow.design/
+//
+//  TABLE OF CONTENTS
+//  • CONTAINER
+//  • BASE TABLE STYLE
+//  • TABLE ALIGNMENT
+//    - Vertical alignment
+//    - Text alignment
+//  • LAYOUT VARIATIONS
+//    - Stripes
+//    - Spacing
+//    - Borders
+//    - Backgrounds
+//    - Totals row
+//    - Sortable tables
+//  • TABLE CELL SIZES
+//
+
+//  ============================================================================
+//  $    CONTAINER
+//  Give tables an optional container for responsive scrolling
+//  ----------------------------------------------------------------------------
+.s-table-container {
+    overflow-x: auto;
+    @scrollbar-styles();
+}
+
+//  ============================================================================
+//  $    BASE TABLE STYLE
+//  ----------------------------------------------------------------------------
+.s-table {
+    display: table;
+    width: 100%;
+    max-width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+    font-size: var(--fs-body1);
+
+    th,
+    td {
+        padding: var(--su8);
+        border-top: 1px solid var(--bc-medium);
+        border-left: 1px solid var(--bc-medium);
+        border-right: 1px solid var(--bc-medium);
+        vertical-align: middle;
+        color: var(--fc-medium);
+        text-align: left;
+
+        &.s-table--bulk {
+            width: calc(var(--su32) - var(--su2));
+        }
+
+        .s-checkbox {
+            display: block;
+        }
+    }
+
+    th {
+        font-weight: bold;
+        color: var(--fc-dark);
+    }
+
+    //  Custom styles when in a table head
+    thead th {
+        vertical-align: bottom;
+        white-space: nowrap;
+        background-color: var(--black-025);
+        line-height: var(--lh-sm);
+    }
+
+    //  When in a table body, don't make it bold.
+    tbody th {
+        font-weight: normal;
+    }
+
+    //  If it's the last row, add a bottom border
+    tr:last-of-type td,
+    tr:last-of-type th {
+        border-bottom: 1px solid var(--bc-medium);
+    }
+
+    //  If two table bodies are next to each other, visually separate them
+    tbody + tbody {
+        border-top: var(--su-static2) solid var(--bc-medium);
+    }
+}
+
+//  ============================================================================
+//  $    ALIGNMENTS
+//  ----------------------------------------------------------------------------
+.s-table {
+    //  $$  VERTICAL ALIGNMENT
+    //      This applies vertical alignment classes to all of a table's cells.
+    //  ------------------------------------------------------------------------
+    //  --  TOP
+    &.va-top {
+        th,
+        td {
+            vertical-align: top;
+        }
+    }
+
+    //  --  MIDDLE
+    &.va-middle {
+        th,
+        td {
+            vertical-align: middle;
+        }
+    }
+
+    //  --  BOTTOM
+    &.va-bottom {
+        th,
+        td {
+            vertical-align: bottom;
+        }
+    }
+
+    //  $$  TEXT ALIGNMENT
+    //      This applies the text alignment classes to all of a table's cells.
+    //  ------------------------------------------------------------------------
+    //  --  LEFT ALIGN
+    &.ta-left {
+        th,
+        td {
+            text-align: left;
+        }
+    }
+
+    //  --  CENTER ALIGN
+    &.ta-center {
+        th,
+        td {
+            text-align: center;
+        }
+    }
+
+    //  --  RIGHT ALIGN
+    &.ta-right {
+        th,
+        td {
+            text-align: right;
+        }
+    }
+
+    //  --  JUSTIFY ALIGN
+    &.ta-justify {
+        th,
+        td {
+            text-align: justify;
+        }
+    }
+}
+
+//  ============================================================================
+//  $    LAYOUT VARIATIONS
+//  ----------------------------------------------------------------------------
+.s-table {
+    //  $$  STRIPES
+    //  ------------------------------------------------------------------------
+    &.s-table__stripes {
+        // Darken the header
+        thead th {
+            background-color: var(--black-050);
+        }
+        // Add in stripes
+        tbody tr:nth-child(even) {
+            background-color: var(--black-025);
+        }
+    }
+
+    //  $$  SPACING
+    //  ------------------------------------------------------------------------
+    //  --  SMALL
+    &.s-table__sm {
+        th,
+        td {
+            padding: var(--su4);
+        }
+    }
+    //  --  LARGE
+    &.s-table__lg {
+        th,
+        td {
+            padding: var(--su12);
+        }
+    }
+
+    //  $$  BORDERS
+    //  ------------------------------------------------------------------------
+    //  --  No Borders
+    &.s-table__b0 {
+        th,
+        td,
+        tr:last-of-type th,
+        tr:last-of-type td {
+            border-color: transparent;
+        }
+
+        //  Clear Header Styles
+        thead th {
+            background-color: transparent;
+            text-transform: initial;
+            font-size: inherit;
+            letter-spacing: initial;
+        }
+
+        //  This makes the border transparent, so we need to use whitespace
+        //  to achieve the same effect a 2px gray border achieves.
+        tbody + tbody {
+            border-color: transparent;
+            border-width: var(--su-static12);
+        }
+    }
+
+    //  --  Horizontal Only with Table Outline
+    &.s-table__bx {
+        tr {
+            > *:not(:first-child) {
+                border-left-color: transparent;
+            }
+            > *:not(:last-child) {
+                border-right-color: transparent;
+            }
+        }
+    }
+
+    //  --  Horizontal Only without Table Outline
+    &.s-table__bx-simple {
+        th,
+        td {
+            border-left-color: transparent;
+            border-right-color: transparent;
+        }
+        thead th {
+            border-top-color: transparent;
+            border-bottom-color: var(--bc-darker);
+            //  Clear Header Styles
+            background-color: transparent;
+            text-transform: initial;
+            font-size: inherit;
+            letter-spacing: initial;
+        }
+        tbody tr {
+            &:first-of-type th,
+            &:first-of-type td {
+                border-top-color: transparent;
+            }
+            &:last-of-type th,
+            &:last-of-type td {
+                border-bottom-color: transparent;
+            }
+        }
+        tfoot th,
+        tfoot td {
+            border-bottom-color: transparent;
+        }
+    }
+
+    //  $$  TOTALS ROW
+    //  ------------------------------------------------------------------------
+    .s-table--totals {
+        th,
+        td {
+            padding-top: var(--su12);
+            font-size: var(--fs-subheading);
+            font-weight: bold;
+        }
+    }
+
+    //  $$  Sortable Table Columns
+    //  ------------------------------------------------------------------------
+    &.s-table__sortable thead th {
+        color: var(--fc-light);
+        cursor: pointer;
+
+        //  If an anchor is used, it should appear like a normal header
+        a {
+            color: inherit;
+        }
+
+        //  Selected state
+        &.is-sorted {
+            color: var(--black-900);
+        }
+    }
+
+    //  $$  Progress Bar
+    //  ------------------------------------------------------------------------
+    td.s-table--progress {
+        border-right: none;
+        text-align: right;
+    }
+
+    td.s-table--progress-bar {
+        border-left: none;
+        padding-left: 0;
+        width: 120px;
+    }
+
+    //  $$  Disabled rows
+    //  ------------------------------------------------------------------------
+    tr.is-disabled {
+        background-color: var(--black-025);
+
+        th:not(.is-enabled),
+        td:not(.is-enabled) {
+            opacity: calc(var(--_o-disabled) * 0.6); // 0.5 * 0.6 = 0.3
+        }
+    }
+}
+
+//  ============================================================================
+//  $  TABLE CELL SIZES
+//  ============================================================================
+//  $$  General Column Sizes
+//  ----------------------------------------------------------------------------
+@table-columns: (100% / 12);
+
+.s-table--cell1 { width: @table-columns * 1; }
+.s-table--cell2 { width: @table-columns * 2; }
+.s-table--cell3 { width: @table-columns * 3; }
+.s-table--cell4 { width: @table-columns * 4; }
+.s-table--cell5 { width: @table-columns * 5; }
+.s-table--cell6 { width: @table-columns * 6; }
+.s-table--cell7 { width: @table-columns * 7; }
+.s-table--cell8 { width: @table-columns * 8; }
+.s-table--cell9 { width: @table-columns * 9; }
+.s-table--cell10 { width: @table-columns * 10; }
+.s-table--cell11 { width: @table-columns * 11; }
+.s-table--cell12 { width: @table-columns * 12; }

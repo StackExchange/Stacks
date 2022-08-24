@@ -5,7 +5,7 @@ figma: https://www.figma.com/file/WYBYiGnyr5qemIm93ZcTf8/Notices
 description: Notices deliver <strong>System</strong> and <strong>Engagement</strong> messaging, informing the user about product or account statuses and related actions.
 ---
 <!-- Example notice content -->
-<script src="{{ "/assets/js/feature.notices.js" | relative_url }}" defer></script>
+<script src="{{ "/assets/dist/entry.notices.js" | url }}" defer></script>
 
 <div class="s-toast js-notice-toast" aria-hidden="true" role="alertdialog" aria-labelledby="notice-message">
     <aside class="s-notice s-notice__success p8 pl16">
@@ -27,7 +27,7 @@ description: Notices deliver <strong>System</strong> and <strong>Engagement</str
 
 <section class="stacks-section">
     {% header "h2", "Accessibility" %}
-    <div class="overflow-x-auto mb32">
+    <div class="overflow-x-auto mb32" tabindex="0">
         <table class="wmn5 s-table s-table__bx-simple">
             <thead>
                 <tr>
@@ -62,7 +62,7 @@ description: Notices deliver <strong>System</strong> and <strong>Engagement</str
 <section class="stacks-section">
     {% header "h2", "Visual styles" %}
     {% header "h3", "Classes" %}
-    <div class="overflow-x-auto mb32">
+    <div class="overflow-x-auto mb32" tabindex="0">
         <table class="wmn5 s-table s-table__bx-simple">
             <thead>
                 <tr>
@@ -97,6 +97,7 @@ description: Notices deliver <strong>System</strong> and <strong>Engagement</str
     <p class="stacks-copy">Default style used to separate notices from the main content</p>
     <div class="stacks-preview">
 {% highlight html %}
+<aside class="s-notice" role="status">…</aside>
 <aside class="s-notice s-notice__info" role="status">…</aside>
 <aside class="s-notice s-notice__success" role="status">…</aside>
 <aside class="s-notice s-notice__warning" role="status">…</aside>
@@ -104,6 +105,9 @@ description: Notices deliver <strong>System</strong> and <strong>Engagement</str
 {% endhighlight %}
         <div class="stacks-preview--example">
             <div class="d-flex gs8 gsy fd-column">
+                <aside class="flex--item s-notice" role="status">
+                    <p class="m0">Default filled message style</p>
+                </aside>
                 <aside class="flex--item s-notice s-notice__info" role="status">
                     <p class="m0">Info filled message style</p>
                 </aside>
@@ -154,7 +158,7 @@ description: Notices deliver <strong>System</strong> and <strong>Engagement</str
 
 <section class="stacks-section">
     {% header "h2", "Behaviors" %}
-    <div class="overflow-x-auto mb32">
+    <div class="overflow-x-auto mb32" tabindex="0">
         <table class="wmn4 s-table s-table__bx-simple">
             <thead>
                 <tr>
@@ -256,7 +260,8 @@ description: Notices deliver <strong>System</strong> and <strong>Engagement</str
 {% endhighlight %}
         <div class="stacks-preview--example">
             <div class="ps-relative d-flex flex__center gs8 gsy fd-column jc-center">
-                <div class="flex--item s-notice s-notice__success p8 pl16">
+
+                <div class="flex--item s-notice s-notice__info p8 pl16">
                     <div class="d-flex gsx gs16 ai-center jc-space-between">
                         <div class="flex--item">
                             Toast notice message with an undo button
@@ -272,7 +277,7 @@ description: Notices deliver <strong>System</strong> and <strong>Engagement</str
                     </div>
                 </div>
 
-                <div class="flex--item s-notice s-notice__info p8 pl16">
+                <div class="flex--item s-notice s-notice__success p8 pl16">
                     <div class="d-flex gsx gs16 ai-center jc-space-between">
                         <div class="flex--item">
                             Toast notice message with an undo button

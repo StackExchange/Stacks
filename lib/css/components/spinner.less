@@ -1,0 +1,145 @@
+//
+//  STACK OVERFLOW
+//  SPINNER
+//
+//  This CSS comes from Stacks, our CSS & Pattern library for rapidly building
+//  Stack Overflow. For documentation of all these classes and how to contribute,
+//  visit https://stackoverflow.design/
+//
+//  TABLE OF CONTENTS
+//  • BASE STYLE
+//
+//  ============================================================================
+//  $   SPINNER BASE STYLE
+//  ----------------------------------------------------------------------------
+
+.s-spinner {
+    position: relative;
+    width: var(--su-static24);
+    height: var(--su-static24);
+    text-align: left; // When within a parent that has text-align: center, the spinner's entire container spins, not just the spinner. Let's force text-align left so things spin internally.
+
+    &:before,
+    &:after {
+        content: '';
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        border: 3px solid currentColor;
+        border-radius: var(--br-circle);
+    }
+    &:before {
+        opacity: 0.25;
+        transform: rotate(90deg); // (*)
+    }
+    &:after {
+        border-top-color: transparent;
+        border-right-color: transparent;
+        border-bottom-color: transparent;
+        animation: s-spinner-rotate 0.9s infinite cubic-bezier(0.5, 0.1, 0.5, 0.9);
+    }
+
+    &.s-spinner__xs {
+        width: var(--su-static12);
+        height: var(--su-static12);
+        &:before,
+        &:after {
+            border-width: 1px;
+        }
+    }
+
+    &.s-spinner__sm {
+        width: var(--su-static16);
+        height: var(--su-static16);
+        &:before,
+        &:after {
+            border-width: var(--su-static2);
+        }
+    }
+
+    &.s-spinner__md {
+        width: var(--su-static32);
+        height: var(--su-static32);
+        &:before,
+        &:after {
+            border-width: var(--su-static4);
+        }
+    }
+
+    &.s-spinner__lg {
+        width: var(--su-static48);
+        height: var(--su-static48);
+        &:before,
+        &:after {
+            border-width: var(--su-static6);
+        }
+    }
+
+    // Cross-browser fixes. These are all practically no-ops, so we could just specify them
+    // without browser hacks, but that would be punishing non-broken browsers with extra
+    // unnecessary compositing work.
+    &,
+    &:before,
+    &:after {
+        // Safari: At least at 1dpp resolution, Safari crops the transformed elements
+        // too aggressively, leading to a very visible flat edge part of the circle.
+        // This invisible box shadow increases the area that the effects work on and thus
+        // makes the circle round again.
+        //
+        // Targeting only Safari:
+        // https://browserstrangeness.bitbucket.io/css_hacks.html#safari
+        @media not all and (min-resolution: 0.001dpcm) {
+            @supports (-webkit-appearance:none) and (stroke-color:transparent) {
+                box-shadow: 0 0 0 2px transparent;
+            }
+        }
+    }
+}
+
+.is-loading {
+    position: relative;
+    padding-left: 2.2em;
+
+    &:before {
+        content: "";
+        position: absolute;
+        opacity: 0.3;
+        left: 0.6em;
+        top: calc(50% - 0.6em);
+        width: 1.23076923em;
+        height: 1.23076923em;
+        border-width: 2px;
+        border-style: solid;
+        border-color: currentColor;
+        border-radius: var(--br-circle);
+    }
+
+    &:after {
+        content: "";
+        position: absolute;
+        left: 0.6em;
+        top: calc(50% - 0.6em);
+        width: 1.23076923em;
+        height: 1.23076923em;
+        border-width: 2px;
+        border-style: solid;
+        border-color: transparent;
+        border-left-color: currentColor;
+        border-radius: var(--br-circle);
+        animation: s-spinner-rotate 0.9s infinite
+            cubic-bezier(0.5, 0.1, 0.5, 0.9);
+        // see _stacks-spinner.less for an explanation of the following two
+        filter: invert(0); // (*)
+        transform-origin: 50% 50% 1px; // (*)
+    }
+}
+
+// Keyframes
+@keyframes s-spinner-rotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}

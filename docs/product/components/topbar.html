@@ -6,7 +6,7 @@ description: The topbar component is a navigation bar that is placed at the top 
 
 <section class="stacks-section">
     {% header "h2", "Classes" %}
-    <div class="overflow-x-auto mb32">
+    <div class="overflow-x-auto mb32" tabindex="0">
         <table class="wmn4 s-table s-table__bx-simple">
             <thead>
                 <tr>
@@ -43,7 +43,7 @@ description: The topbar component is a navigation bar that is placed at the top 
                 <a href="…" class="s-topbar--item s-user-card s-user-card__small">…</a>
             </li>
             <li>
-                <a href="…" class="s-topbar--item">
+                <a href="…" class="s-topbar--item" aria-label="Inbox">
                     @Svg.Inbox <span class="s-activity-indicator">…</span>
                 </a>
             </li>
@@ -53,7 +53,7 @@ description: The topbar component is a navigation bar that is placed at the top 
 </header>
 {% endhighlight %}
         <div class="stacks-preview--example">
-            {% include partials/_topbar.html with hideNavigation: true, hideSearch: true, showMenu: true  %}
+            {% render 'topbar.html', hideNavigation: true, hideSearch: true, showMenu: true %}
         </div>
     </div>
 </section>
@@ -67,8 +67,8 @@ description: The topbar component is a navigation bar that is placed at the top 
     <div class="stacks-preview">
 {% highlight html %}
 <header class="s-topbar">…</header>
-<header class="s-topbar s-topbar__light">…</header>
 <header class="s-topbar s-topbar__dark">…</header>
+<header class="s-topbar s-topbar__light">…</header>
 {% endhighlight %}
         <div class="stacks-preview--example">
             {% assign variations = "s-topbar__auto,s-topbar__dark,s-topbar__light" | split: "," %}
@@ -76,7 +76,7 @@ description: The topbar component is a navigation bar that is placed at the top 
                 {% for variation in variations %}
                     <div class="grid--item">
                         <h4 class="fs-body2 mb8">{{ variation | split: "__" | last | capitalize }}</h4>
-                        {% include partials/_topbar.html with additionalClass: variation, isMod: true %}
+                        {% render 'topbar.html', additionalClass: variation, isMod: true %}
                     </div>
                 {% endfor %}
             </div>
@@ -92,7 +92,7 @@ description: The topbar component is a navigation bar that is placed at the top 
 
     <form id="search" class="s-topbar--searchbar" autocomplete="off">
         <div class="s-select">
-            <select>…</select>
+            <select aria-label="Search scope">…</select>
         </div>
         <div class="s-topbar--searchbar--input-group">
             <input type="text" placeholder="Search…" value="" autocomplete="off" class="s-input s-input__search" />
@@ -107,11 +107,11 @@ description: The topbar component is a navigation bar that is placed at the top 
             <div class="d-grid g24 grid__1">
                 <div class="grid--item">
                     <h4 class="fs-body2 mb8">With select</h4>
-                    {% include partials/_topbar.html with showNavigation: false, hideUserCard: true %}
+                    {% render 'topbar.html', showNavigation: false, hideUserCard: true %}
                 </div>
                 <div class="grid--item">
                     <h4 class="fs-body2 mb8">Input only</h4>
-                    {% include partials/_topbar.html with showNavigation: false, hideUserCard: true, hideSelect: true %}
+                    {% render 'topbar.html', showNavigation: false, hideUserCard: true, hideSelect: true %}
                 </div>
             </div>
         </div>
@@ -130,23 +130,23 @@ description: The topbar component is a navigation bar that is placed at the top 
     </a>
 
     <ol class="s-navigation">
-        <li><a href="…" class="s-topbar--item">About</a></li>
-        <li><a href="…" class="s-topbar--item is-selected">Products</a></li>
-        <li><a href="…" class="s-topbar--item">For Teams</a></li>
+        <li><a href="…" class="s-navigation--item">About</a></li>
+        <li><a href="…" class="s-navigation--item is-selected">Products</a></li>
+        <li><a href="…" class="s-navigation--item">For Teams</a></li>
     </ol>
 
-    <ol class="s-topbar--ctas">
+    <ol class="s-topbar--content">
         <li>
-            <a href="…" class="s-topbar--item s-btn s-btn__filled">Log in</a>
+            <a href="…" class="s-topbar--item s-topbar--item__unset s-btn s-btn__filled">Log in</a>
         </li>
         <li>
-            <a href="…" class="s-topbar--item s-btn s-btn__primary">Sign up</a>
+            <a href="…" class="s-topbar--item s-topbar--item__unset ml4 s-btn s-btn__primary">Sign up</a>
         </li>
     </ol>
 </header>
 {% endhighlight %}
         <div class="stacks-preview--example">
-            {% include partials/_topbar.html with showNotices: true, showFullNavigation: true, hideSearch: true, showCtas: true  %}
+            {% render 'topbar.html', showNotices: true, showFullNavigation: true, hideSearch: true, showCtas: true  %}
         </div>
     </div>
 
@@ -159,9 +159,9 @@ description: The topbar component is a navigation bar that is placed at the top 
 </header>
 {% endhighlight %}
         <div class="stacks-preview--example">
-            {% include partials/_topbar.html with containerClass: "wmx75", hideUserCard: true  %}
+            {% render 'topbar.html', containerClass: "wmx75", hideUserCard: true  %}
         </div>
     </div>
 </section>
 
-<script src="{{ "/assets/js/feature.topbar.js" | relative_url }}" defer></script>
+<script src="{{ "/assets/dist/entry.topbar.js" | url }}" defer></script>

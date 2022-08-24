@@ -1,0 +1,662 @@
+//
+//  STACK OVERFLOW
+//  INPUTS
+//
+//  This CSS comes from Stacks, our CSS & Pattern library for rapidly building
+//  Stack Overflow. For documentation of all these classes and how to contribute,
+//  visit https://stackoverflow.design/
+//
+//  TABLE OF CONTENTS
+//  • Variables
+//  • Inputs
+//    - Base Style (Input / Textarea)
+//    - Textarea Styles
+//    - Fieldset Resets
+//  • Text Styles
+//  • Connected Input Fills
+//  • Select Menus
+//  • Checkbox & Radio
+//  • Input States
+//  • Validation States
+//  • Input Sizes
+//  ============================================================================
+//  $  VARIABLES & MIXINS
+//  ----------------------------------------------------------------------------
+@input-padding: 0.6em 0.7em;
+
+@autofill: {
+    &::-webkit-contacts-auto-fill-button {
+        background-color: var(--black); // In Safari, make the autocomplete button darkmode-aware
+    }
+
+    &:-webkit-autofill {
+        border-color: var(--blue-300);
+        -webkit-text-fill-color: var(--black);
+        -webkit-box-shadow: 0 0 0 1000px var(--theme-secondary-050) inset; // This acts as a background color by stretching an inset box shadow across the input
+        transition: background-color 0s 50000s; // A hack to infinitely delay background styles that come from the browser.
+
+        &:focus {
+            border-color: var(--blue-300);
+            // Since the box shadow is overwritten to show a background, we have to re-add the focus outline
+            -webkit-box-shadow: 0 0 0 1000px var(--blue-050) inset, 0 0 0 var(--su-static4) var(--focus-ring);
+        }
+    }
+}
+
+//  ============================================================================
+//  $  BASE INPUT / TEXTAREA STYLE
+//  ----------------------------------------------------------------------------
+.s-input,
+.s-textarea {
+    -webkit-appearance: none; // Removes shadows we don't want in mobile Safari
+    width: 100%;
+    margin: 0; // A guard against Core's default margins
+    padding: @input-padding;
+    border: 1px solid var(--bc-darker);
+    border-radius: var(--br-sm);
+    background-color: var(--white);
+    color: var(--fc-dark);
+    font-size: var(--fs-body1);
+    font-family: inherit;
+
+    //  --  INCREASE FONT SIZE FOR MOBILE SAFARI
+    //  This keeps our inputs from zooming the page while focused
+    //  ------------------------------------------------------------------------
+    @supports (-webkit-overflow-scrolling: touch) {
+        font-size: 16px;
+        padding: 0.36em 0.55em; // Compensate for the larger font size so we generally keep the input the same size
+
+        &::-webkit-input-placeholder {
+            line-height: normal !important;
+        }
+    }
+
+    //  --  PLACEHOLDER
+    //  ------------------------------------------------------------------------
+    &::-webkit-input-placeholder {
+        color: var(--black-200);
+
+        .highcontrast-mode({
+            color: var(--black-400);
+        });
+    }
+
+    &::placeholder {
+        color: var(--black-200);
+        opacity: 1;
+
+        .highcontrast-mode({
+            color: var(--black-400);
+        });
+    }
+
+    // --  STYLE SCROLLBARS
+    @scrollbar-styles();
+
+    // --  STYLE AUTOFILL STATES
+    @autofill();
+}
+
+.s-input.s-input__search,
+.s-input.s-input__creditcard {
+    padding-left: var(--su-static32);
+}
+
+
+//  ============================================================================
+//  $  FIELDSET
+//  ----------------------------------------------------------------------------
+fieldset {
+    min-width: 0;
+    padding: 0;
+    border: 0;
+
+    &[disabled] {
+        a,
+        .s-btn,
+        .s-link {
+            box-shadow: none !important;
+            opacity: var(--_o-disabled-static);
+            pointer-events: none;
+        }
+
+        .s-checkbox,
+        .s-input-message,
+        .s-radio,
+        .s-toggle-switch,
+        .s-toggle-switch label {
+            cursor: not-allowed;
+            opacity: var(--_o-disabled-static);
+        }
+
+        .s-input,
+        .s-textarea,
+        .s-select > select {
+            cursor: not-allowed;
+            opacity: var(--_o-disabled-static);
+        }
+    }
+}
+
+//  ============================================================================
+//  $  TEXT STYLES
+//  ============================================================================
+.s-description {
+    padding: 0 var(--su2); // Helps the label visually line up with inputs
+    color: var(--fc-medium);
+    font-size: var(--fs-caption);
+}
+
+//  ============================================================================
+//  $   CONNECTED INPUTS
+//      To visually connect inputs together
+//  ----------------------------------------------------------------------------
+.s-input-fill {
+    padding: @input-padding;
+    border: 1px solid var(--bc-darker);
+    border-right-width: 0;
+    border-left-width: 0;
+    background-color: var(--black-050);
+    color: var(--fc-medium);
+    font-family: inherit;
+    white-space: nowrap;
+    line-height: var(--lh-sm);
+
+    &.s-input-fill__clear {
+        border-color: transparent;
+        background-color: transparent;
+    }
+
+    &.order-first {
+        border-left-width: 1px;
+        border-top-left-radius: var(--br-sm);
+        border-bottom-left-radius: var(--br-sm);
+    }
+
+    &.order-last {
+        border-right-width: 1px;
+        border-top-right-radius: var(--br-sm);
+        border-bottom-right-radius: var(--br-sm);
+    }
+}
+
+
+//  ============================================================================
+//  $   SELECT MENUS
+//  ----------------------------------------------------------------------------
+.s-select {
+    position: relative;
+    color: var(--fc-dark);
+
+    //  --  MENU ARROWS
+    //      To customize the visual appearance of the select menu arrows, we
+    //      need to recreate them on the wrapping .select div.
+    //  ------------------------------------------------------------------------
+    &:before,
+    &:after {
+        content: "";
+        position: absolute;
+        z-index: var(--zi-selected);
+        right: 13px;
+        border-color: currentColor transparent;
+        border-style: solid;
+        border-width: 4px;
+        pointer-events: none;
+    }
+    &:before {
+        top: calc(50% - 5px);
+        border-top-width: 0;
+        border-bottom-width: 4px;
+    }
+    &:after {
+        top: calc(50% + 1px);
+        border-top-width: 4px;
+        border-bottom-width: 0;
+    }
+
+    //  --  MENU
+    //      Now we can style the visual appearance of the select menu;
+    //  ------------------------------------------------------------------------
+    > select {
+        //  [1] Reset the appearance
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+
+        //  [2] Update the styles
+        position: relative; // This prevents Firefox from requiring a second click to select options
+        width: 100%;
+        height: 100%; // Fill the height of its parent
+        padding: @input-padding;
+        padding-right: var(--su32);
+        border: 1px solid var(--bc-darker);
+        border-radius: var(--br-sm);
+        background-color: var(--white);
+        outline: 0;
+        font-size: var(--fs-body1);
+        font-family: inherit;
+        color: var(--black);
+        line-height: var(--lh-sm);
+
+        &::-moz-focus-inner {
+            outline: none !important;
+        }
+
+        &:-moz-focusring {
+            color: transparent;
+            text-shadow: 0 0 0 #000;
+        }
+
+        &::-ms-expand {
+            display: none;
+        }
+
+        //  --  INCREASE FONT SIZE FOR MOBILE SAFARI
+        //  This keeps our inputs from zooming the page while focused
+        //  ------------------------------------------------------------------------
+        @supports (-webkit-overflow-scrolling: touch) {
+            font-size: 16px;
+            padding: 0.4em 0.55em; // Compensate for the larger font size so we generally keep the input the same size
+        }
+
+        // --  STYLE AUTOFILL STATES
+        @autofill();
+    }
+}
+
+
+//  ============================================================================
+//  $   CHECKBOXES & RADIOS
+//  ----------------------------------------------------------------------------
+.s-checkbox,
+.s-radio {
+    //  [1]   Check to see if we can use custom styles, if so reset the defaults
+    //  ------------------------------------------------------------------------
+    @supports ((-webkit-appearance: none) or (-moz-appearance: none) or (appearance: none)) {
+        .appearance(none);
+
+        &::-ms-check {
+            display: none;
+        }
+
+        //  [2]  Now re-style the checkboxes and radios
+        //  ------------------------------------------------------------------------
+        margin: 0; // A guard against Core's default margins
+        width: 1em;
+        height: 1em;
+        border: 1px solid var(--bc-darker);
+        background-color: var(--white);
+        outline: 0;
+        font-size: inherit;
+        vertical-align: middle;
+        cursor: pointer;
+    }
+
+    //  Disabled
+    &[disabled] {
+        opacity: var(--_o-disabled-static);
+        cursor: not-allowed;
+    }
+}
+
+//  $$  CHECKBOXES
+//  ----------------------------------------------------------------------------
+.s-checkbox {
+    @supports ((-webkit-appearance: none) or (-moz-appearance: none) or (appearance: none)) {
+        border-radius: var(--br-sm);
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-size: contain;
+
+        &:checked, &:indeterminate {
+            border-color: var(--theme-secondary-400) !important;
+            background-color: var(--theme-secondary-400);
+
+            .highcontrast-dark-mode({
+                border-color: var(--blue-700) !important;
+                background-color: var(--blue-300);
+            });
+
+            &:focus {
+                border-color: var(--theme-secondary-400);
+            }
+        }
+
+        &:checked {
+            background-image: url("data:image/svg+xml,%3Csvg width='11' height='11' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M10 3.41L8.59 2 4 6.59 2.41 5 1 6.41l3 3z' fill='%23fff'/%3E%3C/svg%3E");
+        }
+        &:indeterminate {
+            background-image: url("data:image/svg+xml,%3Csvg width='11' height='11' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M2 4.5 h7 v2 h-7 z' fill='%23fff'/%3E%3C/svg%3E");
+        }
+
+        &:focus {
+            border-color: var(--theme-secondary-300);
+            box-shadow: 0 0 0 var(--su-static4) var(--focus-ring);
+        }
+    }
+}
+
+//  $$  RADIOS
+//  ----------------------------------------------------------------------------
+.s-radio {
+    @supports ((-webkit-appearance: none) or (-moz-appearance: none) or (appearance: none)) {
+        border-radius: var(--br-circle);
+
+        &:checked {
+            border-color: var(--theme-secondary-400);
+            border-width: 0.30769231em;
+            background-color: @white; // This should always be white regardless of dark mode
+
+            .highcontrast-dark-mode({
+                border-color: var(--blue-300);
+                outline: 1px solid var(--black);
+            });
+        }
+
+        &:focus {
+            box-shadow: 0 0 0 var(--su-static4) var(--focus-ring);
+        }
+    }
+}
+
+//  ============================================================================
+//  $   STATES
+//      The many states for inputs and select menus.
+//  ----------------------------------------------------------------------------
+//  Focus
+& {
+    @focus-style: {
+        border-color: var(--theme-secondary-300);
+        box-shadow: 0 0 0 var(--su-static4) var(--focus-ring);
+        color: var(--black);
+        outline: 0;
+
+        .highcontrast-mode({
+            border-color: var(--black);
+        })
+    }
+
+    .s-input:focus,
+    .s-input.has-focus,
+    .s-textarea:focus,
+    .s-select > select:focus {
+        @focus-style();
+    }
+
+    // This needs to be separate from the one above, because in browsers that don't support :focus-within
+    // it's a syntax error, rendering the whole selector null and void.
+    .s-input:focus-within {
+        @focus-style();
+    }
+}
+
+.s-input,
+.s-textarea,
+.s-select > select {
+    //  Disabled
+    &[disabled] {
+        cursor: not-allowed;
+        opacity: var(--_o-disabled-static);
+    }
+
+    //  Readonly
+    //  Note: The readonly attribute is not supported on select elements
+    //  See https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/readonly
+    //  and https://github.com/StackExchange/Stacks/pull/1040#discussion_r931144086
+    &[readonly],
+    .is-readonly & {
+        border-color: var(--bc-light);
+        background-color: var(--black-050);
+        color: var(--black-200);
+        cursor: not-allowed;
+
+        .highcontrast-mode({
+            color: var(--fc-light);
+        });
+    }
+}
+
+//  ============================================================================
+//  $   VALIDATION STATES
+//      Classes are applied at the wrapping container level.
+//  ----------------------------------------------------------------------------
+.is-disabled,
+.is-readonly,
+.has-success,
+.has-error,
+.has-warning {
+    position: relative;
+
+    .s-input {
+        padding-right: var(--su32);
+    }
+
+    .s-select .s-input-icon {
+        right: var(--su32);
+    }
+
+    .s-textarea {
+        padding-right: var(--su48);
+
+        ~ .s-input-icon {
+            top: 1.5em;
+            right: 1.5em;
+        }
+    }
+
+    .s-input-message a {
+        text-decoration: underline;
+    }
+}
+
+//  $$  WARNING
+//  ----------------------------------------------------------------------------
+.has-warning {
+    .s-input,
+    .s-textarea,
+    .s-checkbox,
+    .s-radio:not(:checked),
+    .s-select > select {
+        border-color: var(--yellow-600);
+
+        &:focus {
+            box-shadow: 0 0 0 var(--su-static4) var(--focus-ring-warning);
+        }
+    }
+
+    .s-input-message {
+        color: var(--yellow-800);
+
+        a {
+            color: var(--yellow-900);
+        }
+    }
+
+    .s-input-icon {
+        color: var(--yellow-600);
+    }
+}
+
+//  $$  ERROR
+//  ----------------------------------------------------------------------------
+.has-error {
+    .s-input,
+    .s-textarea,
+    .s-checkbox,
+    .s-radio:not(:checked),
+    .s-select > select {
+        border-color: var(--red-400);
+
+        &:focus {
+            box-shadow: 0 0 0 var(--su-static4) var(--focus-ring-error);
+        }
+    }
+
+    .s-input-message {
+        color: var(--red-500);
+
+        a {
+            color: var(--red-800);
+
+            &:hover {
+                color: var(--red-900);
+            }
+        }
+    }
+
+    .s-input-icon {
+        color: var(--red-400);
+    }
+}
+
+//  $$  SUCCESS
+//  ----------------------------------------------------------------------------
+.has-success {
+    .s-input,
+    .s-textarea,
+    .s-checkbox,
+    .s-radio:not(:checked),
+    .s-select > select {
+        border-color: var(--green-400);
+
+        &:focus {
+            box-shadow: 0 0 0 var(--su-static4) var(--focus-ring-success);
+        }
+    }
+
+    .s-input-message {
+        color: var(--green-500);
+
+        a {
+            color: var(--green-800);
+
+            &:hover {
+                color: var(--green-900);
+            }
+        }
+    }
+
+    .s-input-icon {
+        color: var(--green-400);
+    }
+}
+
+//  $$  DISABLED
+//  ----------------------------------------------------------------------------
+.is-disabled {
+    .s-select:before,
+    .s-select:after {
+        border-color: var(--bc-darker) transparent;
+    }
+
+    .s-description {
+        opacity: var(--_o-disabled-static);
+    }
+
+    .s-input-icon {
+        color: var(--black-400);
+    }
+}
+
+//  $$  READONLY
+//  ----------------------------------------------------------------------------
+.is-readonly {
+    .s-input-icon {
+        color: var(--black-200);
+
+        .highcontrast-mode({
+            color: var(--fc-light);
+        });
+    }
+}
+
+//  $$  ICONS
+//  ----------------------------------------------------------------------------
+.s-input-icon {
+    position: absolute;
+    top: 50%;
+    right: 0.7em;
+    margin-top: -9px; // Half the icon's height at 18px for centering;
+    pointer-events: none;
+
+    &.s-input-icon__search,
+    &.s-input-icon__creditcard {
+        right: auto;
+        left: 0.7em;
+        color: var(--black-400);
+    }
+}
+
+//  $$  MESSAGE
+//      Set some baseline styles
+//  ----------------------------------------------------------------------------
+.s-input-message {
+    padding: var(--su2);
+    font-size: var(--fs-caption);
+}
+
+//  $$  SIZES
+//  ----------------------------------------------------------------------------
+.s-input__sm,
+.s-textarea__sm,
+.s-select__sm > select {
+    font-size: var(--fs-caption);
+}
+.s-input__md,
+.s-textarea__md,
+.s-select__md > select {
+    font-size: var(--fs-body3);
+}
+.s-input__lg,
+.s-textarea__lg,
+.s-select__lg > select {
+    font-size: var(--fs-title);
+}
+.s-input__xl,
+.s-textarea__xl,
+.s-select__xl > select {
+    font-size: var(--fs-headline1);
+}
+
+//  $$  PADDING ADJUSTMENTS WITHIN SIZES
+//  ----------------------------------------------------------------------------
+.s-input__md,
+.s-textarea__md,
+.s-select__md > select {
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+    border-radius: calc(var(--br-sm) + 1px);
+}
+
+.s-textarea__md {
+    padding-top: 0.72em;
+    padding-bottom: 0.72em;
+}
+
+.s-input__lg,
+.s-textarea__lg,
+.s-select__lg > select {
+    padding: 0.45em 0.6em;
+    border-radius: calc(var(--br-sm) + 1px);
+}
+
+.s-input__xl,
+.s-textarea__xl,
+.s-select__xl > select {
+    padding: 0.4em 0.5em;
+    border-radius: var(--br-md);
+}
+
+.s-input__md,
+.s-textarea__md {
+    //  --  INCREASE FONT SIZE FOR MOBILE SAFARI
+    //  This keeps our inputs from zooming the page while focused
+    //  ------------------------------------------------------------------------
+    @supports (-webkit-overflow-scrolling: touch) {
+        font-size: 17px;
+
+        // Compensate for the larger font size so we generally keep the input the same size
+        padding-top: 0.4em;
+        padding-bottom: 0.4em;
+    }
+}

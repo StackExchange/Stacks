@@ -7,7 +7,7 @@ description: Popovers are small content containers that provide a contextual ove
 ---
 <section class="stacks-section">
     {% header "h2", "Classes" %}
-    <div class="overflow-x-auto mb32">
+    <div class="overflow-x-auto mb32" tabindex="0">
         <table class="wmn4 s-table s-table__bx-simple">
             <thead>
                 <tr>
@@ -34,7 +34,7 @@ description: Popovers are small content containers that provide a contextual ove
     <p class="stacks-copy">Stacks provides a Stimulus controller that allows you to interactively display a popover from a source element. Positioning and arrow direction are managed for you by <a href="https://popper.js.org">Popper.js</a>, a powerful popover positioning library we’ve added as a dependency.  These popovers are automatically hidden when user click outside the popover or tap the <kbd>Esc</kbd> key.</kbd></p>
 
     {% header "h3", "Interactive Attributes" %}
-    <div class="overflow-x-auto mb32">
+    <div class="overflow-x-auto mb32" tabindex="0">
         <table class="wmn4 s-table s-table__bx-simple">
             <thead>
                 <tr>
@@ -102,7 +102,7 @@ description: Popovers are small content containers that provide a contextual ove
     </div>
 
     {% header "h3", "Interactive Events" %}
-    <div class="overflow-x-auto mb32">
+    <div class="overflow-x-auto mb32" tabindex="0">
         <table class="wmn4 s-table s-table__bx-simple">
             <thead>
                 <tr>
@@ -135,7 +135,7 @@ description: Popovers are small content containers that provide a contextual ove
             </tbody>
         </table>
     </div>
-    <div class="overflow-x-auto mb32">
+    <div class="overflow-x-auto mb32" tabindex="0">
         <table class="wmn4 s-table s-table__bx-simple">
             <thead>
                 <tr>
@@ -162,7 +162,8 @@ description: Popovers are small content containers that provide a contextual ove
                         data-s-popover-placement="top-start"
                         data-s-popover-toggle-class="is-selected"
                         data-action="s-popover#toggle"
-                        aria-controls="popover-example-1">
+                        aria-controls="popover-example-1"
+                        aria-expanded="false">
                     Show example popover
                 </button>
                 <div id="popover-example-1" class="s-popover ws2" role="menu">
@@ -178,7 +179,8 @@ description: Popovers are small content containers that provide a contextual ove
                         data-controller="s-popover"
                         data-s-popover-toggle-class="is-selected"
                         data-action="s-popover#toggle"
-                        aria-controls="popover-example-2">
+                        aria-controls="popover-example-2"
+                        aria-expanded="false">
                     Show example popover
                 </button>
                 <div id="popover-example-2" class="s-popover p16" role="menu">
@@ -194,8 +196,10 @@ description: Popovers are small content containers that provide a contextual ove
                         data-s-popover-toggle-class="is-selected"
                         data-s-popover-placement="top"
                         data-action="s-popover#toggle"
-                        aria-controls="popover-example-4">
+                        aria-controls="popover-example-4"
+                        aria-expanded="false">
                     {% icon "InfoSm" %}
+                    <span class="v-visible-sr">info</span>
                 </button>
                 <div id="popover-example-4" class="s-popover" role="menu">
                     <div class="s-popover--arrow"></div>
@@ -209,12 +213,17 @@ description: Popovers are small content containers that provide a contextual ove
                     data-s-popover-auto-show="true"
                     data-s-popover-hide-on-outside-click="never">
                     <a id="reference-element" class="s-link s-link__inherit"
-                        aria-controls="popover-example-3">
+                        aria-controls="popover-example-3"
+                        aria-expanded="true">
                         Follow question
                     </a>
-                    <div id="popover-example-3" class="s-popover wmx3" role="menu">
+                    <div id="popover-example-3" class="s-popover wmx3">
                         <div class="s-popover--arrow"></div>
-                        <button class="s-popover--close s-btn s-btn__muted" aria-label="Close" data-action="s-popover#toggle">{% icon "ClearSm" %}</button>
+                        <button class="s-popover--close s-btn s-btn__muted"
+                            aria-label="Close"
+                            data-action="s-popover#toggle">
+                            {% icon "ClearSm" %}
+                        </button>
 
                         <div class="d-flex ai-center">
                             <div class="flex--item mr12 fc-orange-400">
@@ -239,6 +248,7 @@ description: Popovers are small content containers that provide a contextual ove
 {% highlight html %}
 <button class="s-btn s-btn__dropdown" role="button"
         aria-controls="popover-example"
+        aria-expanded="false"
         data-controller="s-popover"
         data-action="s-popover#toggle"
         data-s-popover-placement="bottom-start"
@@ -255,6 +265,7 @@ description: Popovers are small content containers that provide a contextual ove
         <div class="stacks-preview--example">
             <button class="s-btn s-btn__primary s-btn__dropdown" role="button"
                     aria-controls="popover-example"
+                    aria-expanded="false"
                     data-controller="s-popover"
                     data-action="s-popover#toggle"
                     data-s-popover-placement="bottom-start"
@@ -281,6 +292,7 @@ description: Popovers are small content containers that provide a contextual ove
 
     <button id="reference-element" class="s-btn s-btn__filled s-btn__dropdown"
             aria-controls="popover-example"
+            aria-expanded="true"
             data-action="s-popover#toggle">
         …
     </button>
@@ -320,11 +332,11 @@ Stacks.application.register("section", class extends Stacks.StacksController {
     }
 });
 {% endhighlight %}
-        <div class="stacks-preview--example bg-black-025">
+        <section class="stacks-preview--example bg-black-025">
             <div data-controller="section">
                 <div class="s-page-title mb16">
                     <div class="s-page-title--text">
-                        <h1 class="s-page-title--header">Lorem ipsum</h1>
+                        <h1 class="s-page-title--header" role="presentation">Lorem ipsum</h1>
                     </div>
                     <div class="s-page-title--actions">
                         <button type="button" class="s-btn s-btn__muted p0"
@@ -332,7 +344,11 @@ Stacks.application.register("section", class extends Stacks.StacksController {
                                 data-controller="s-popover"
                                 data-action="s-popover#toggle"
                                 data-s-popover-placement="left"
-                                aria-controls="popover-help-example">{% icon "Help" %}</button>
+                                aria-controls="popover-help-example"
+                                aria-expanded="false">
+                                    {% icon "Help" %}
+                                    <span class="v-visible-sr">help</span>
+                                </button>
                         <div class="s-popover wmn-initial w-auto"
                              id="popover-help-example"
                              role="menu">
@@ -344,10 +360,10 @@ Stacks.application.register("section", class extends Stacks.StacksController {
                 <p class="fc-light">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla et metus molestie nulla luctus sodales ac luctus justo. Aenean iaculis ac ante sit amet aliquam. Duis dolor velit, imperdiet sed mauris eu, sollicitudin egestas nisl. Ut vitae nulla eu risus iaculis semper sit amet vitae tortor. Sed convallis lacus quis libero placerat finibus. Phasellus pulvinar vel nunc eu tempor. Sed pharetra magna a felis egestas placerat. Sed imperdiet dui a sem fermentum, eget consectetur elit feugiat. Phasellus non condimentum orci. Nam id molestie elit, ut gravida metus. Vivamus vel nunc risus. Maecenas posuere sit amet tellus vel laoreet. Nulla lacus mauris, rhoncus eu laoreet quis, mattis vehicula nisl. Integer efficitur quam et nisi luctus scelerisque. Mauris efficitur lectus ac malesuada congue.</p>
                 <button class="s-btn s-btn__link" data-action="section#showHelp">Click here for help</button>
             </div>
-        </div>
+        </section>
     </div>
 
-    {% header "h4", "JavaScript configuration" %}
+    {% header "h4", "JavaScript configuration (popovers)" %}
     <p class="stacks-copy">Situations may also arise where popovers need to be attached to an element after the document is rendered. For example, a button could have a contextual menu that is too expensive to serve up on every page load.</p>
     <p class="stacks-copy">Popovers can be attached to an element after the fact using <code class="stacks-code">Stacks.attachPopover</code>.</p>
     <p class="stacks-copy">This method takes three parameters, the element to attach the popover to, the popover either as an element or an HTML string, and optional options for displaying the popover.</p>
@@ -368,7 +384,12 @@ Stacks.application.register("actions", class extends Stacks.StacksController {
 });
 {% endhighlight %}
         <div class="stacks-preview--example bg-black-025">
-            <button class="s-btn s-btn__outlined s-btn__muted s-btn__dropdown" data-controller="actions" data-action="actions#load">Actions</button>
+            <button class="s-btn s-btn__outlined s-btn__muted s-btn__dropdown"
+                data-controller="actions"
+                data-action="actions#load"
+                aria-expanded="false">
+                Actions
+            </button>
         </div>
     </div>
 </section>
@@ -378,7 +399,7 @@ Stacks.application.register("actions", class extends Stacks.StacksController {
     <p class="stacks-copy">When a popover is intended only for display as an on-hover tooltip and contains no interactive text, the <code class="stacks-code">s-tooltip</code> controller can be used in place of <code class="stacks-code">s-popover</code>. This is a separate controller that can be used alongside <code class="stacks-code">s-popover</code> on a single target element.</p>
 
     {% header "h3", "Hover attributes" %}
-    <div class="overflow-x-auto mb32">
+    <div class="overflow-x-auto mb32" tabindex="0">
         <table class="wmn4 s-table s-table__bx-simple">
             <thead>
                 <tr>
@@ -427,7 +448,7 @@ Stacks.application.register("actions", class extends Stacks.StacksController {
         </table>
     </div>
     {% header "h3", "Hover events" %}
-    <div class="overflow-x-auto mb32">
+    <div class="overflow-x-auto mb32" tabindex="0">
         <table class="wmn4 s-table s-table__bx-simple">
             <thead>
                 <tr>
@@ -460,7 +481,7 @@ Stacks.application.register("actions", class extends Stacks.StacksController {
             </tbody>
         </table>
     </div>
-    <div class="overflow-x-auto mb32">
+    <div class="overflow-x-auto mb32" tabindex="0">
         <table class="wmn4 s-table s-table__bx-simple">
             <thead>
                 <tr>
@@ -503,7 +524,7 @@ Stacks.application.register("actions", class extends Stacks.StacksController {
         </div>
     </div>
 
-    {% header "h4", "JavaScript configuration" %}
+    {% header "h4", "JavaScript configuration (tooltips)" %}
     <p class="stacks-copy">In cases where the tooltip needs to display simple text or HTML, the popover can be configured using JavaScript. Plain text tooltips will render characters like &lt;, &gt;, and &amp; as is. HTML tooltips will render the HTML as expected.</p>
     <div class="stacks-preview">
 {% highlight javascript %}
@@ -536,6 +557,7 @@ Stacks.setTooltipHtml(el,
 {% highlight html %}
 <button class="s-btn" role="button"
         aria-describedby="tooltip-example"
+        aria-expanded="false"
         data-controller="s-tooltip"
         data-s-tooltip-placement="top-start">
     …
@@ -575,6 +597,7 @@ Stacks.setTooltipHtml(el,
 {% highlight html %}
 <button class="s-btn s-btn__dropdown" role="button"
         aria-controls="popover-example"
+        aria-expanded="false"
         data-controller="s-popover s-tooltip"
         data-action="s-popover#toggle"
         data-s-popover-placement="bottom-start"
@@ -593,6 +616,7 @@ Stacks.setTooltipHtml(el,
         <div class="stacks-preview--example">
             <button class="s-btn s-btn__primary s-btn__dropdown" role="button"
                     aria-controls="popover-example-with-tooltip"
+                    aria-expanded="false"
                     data-controller="s-popover s-tooltip"
                     data-action="s-popover#toggle"
                     data-s-popover-placement="bottom-start"
@@ -621,7 +645,7 @@ Stacks.setTooltipHtml(el,
         Our Stimulus popover controller handles the positioning of popovers for you. Popovers <em>can</em> be positioned manually for various legacy reasons, but we recommend using the <code class="stacks-code">s-popover</code> controller’s <code class="stacks-code">placement</code> property instead.
     {% endtip %}
     {% header "h3", "Manual classes" %}
-    <div class="overflow-x-auto mb32">
+    <div class="overflow-x-auto mb32" tabindex="0">
         <table class="wmn4 s-table s-table__bx-simple">
             <thead>
                 <tr>
@@ -749,4 +773,4 @@ Stacks.setTooltipHtml(el,
 </section>
 
 <!-- Example popover javascript -->
-<script src="{{ "/assets/js/feature.popovers.js" | relative_url }}" defer></script>
+<script src="{{ "/assets/dist/entry.popovers.js" | url }}" defer></script>

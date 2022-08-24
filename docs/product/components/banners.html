@@ -5,13 +5,13 @@ figma: https://www.figma.com/file/9MG6BQ5X0FlHV0rQ3c9ugA/Banners
 description: Banners are a type of <a href="/product/components/notices">notice</a>, delivering both system and engagement messaging. These are highly intrusive messaging methods and so should be used appropriately.
 ---
 <!-- Additional javascript -->
-<script src="{{ "/assets/js/feature.banners.js" | relative_url }}" defer></script>
+<script src="{{ "/assets/dist/entry.banners.js" | url }}" defer></script>
 
 <!-- Override stacks classes for demos -->
 <style>
 .s-banner[aria-hidden=false] {
-    -webkit-transform: translate3d(0, 63px, 0);
-    transform: translate3d(0, 63px, 0);
+    -webkit-transform: translate3d(0, calc(var(--su64) - var(--su1)), 0);
+    transform: translate3d(0, calc(var(--su64) - var(--su1)), 0);
 }
 .s-banner[aria-hidden=false].is-pinned {
     -webkit-transform: translate3d(0, 0, 0);
@@ -20,7 +20,7 @@ description: Banners are a type of <a href="/product/components/notices">notice<
 </style>
 <aside class="s-banner js-notice-banner" role="alert" aria-hidden="true">
     <div class="d-flex flex__center jc-space-between s-banner--container" role="alertdialog" aria-describedby="notice-message">
-        <div class="d-flex gs8 gsx mx0" aria-label="notice-message">
+        <div class="d-flex g8" aria-label="notice message">
             <div class="flex--item">
                 {% icon "Lock" %}
             </div>
@@ -28,8 +28,8 @@ description: Banners are a type of <a href="/product/components/notices">notice<
                 <p class="m0"><strong>Stacks is currently frozen in read-only mode.</strong> Contact the team to restore access.</p>
             </div>
         </div>
-        <div class="flex--item ml-auto myn8" aria-label="notice-dismiss">
-            <a class="p8 s-btn d-flex flex__center fc-dark js-notice-close" role="status" aria-hidden="true">
+        <div class="flex--item ml-auto myn8" aria-label="dismiss notice">
+            <a class="p8 s-btn d-flex flex__center s-banner--btn js-notice-close" role="status" aria-hidden="true">
                 {% icon "ClearSm", "m0" %}
             </a>
         </div>
@@ -42,12 +42,12 @@ description: Banners are a type of <a href="/product/components/notices">notice<
         <li><strong>Above everything else:</strong> If the system banner is related to the entire website (e.g. the website is in read-only), place the banner first. <em>These cannot be dismissed until the issue is resolved.</em> To pin a system banner to the top of the browser window, add <code class="stacks-code">.is-pinned</code>.</li>
         <li><strong>Below the top navigation bar:</strong> This is the default location for all system banners. Use these banners when it affects only a particular area of the product (e.g. when a product subscription is about to expire).</li>
     </ol>
-    <p class="stacks-copy">Since system banners are a type of notice, you can use the following <a href="{{ "/product/components/notices#visual-styles" | relative_url }}">notice visual styles</a> in conjunction with <code class="stacks-code">.s-banner</code>:</p>
+    <p class="stacks-copy">Since system banners are a type of notice, you can use the following <a href="{{ "/product/components/notices#visual-styles" | url }}">notice visual styles</a> in conjunction with <code class="stacks-code">.s-banner</code>:</p>
 </section>
 
 <section class="stacks-section">
     {% header "h2", "Classes" %}
-    <div class="overflow-x-auto mb32">
+    <div class="overflow-x-auto mb32" tabindex="0">
         <table class="wmn5 s-table s-table__bx-simple">
             <thead>
                 <tr>
@@ -79,9 +79,9 @@ description: Banners are a type of <a href="/product/components/notices">notice<
 {% endhighlight %}
         <div class="stacks-preview--example">
             <div class="p16 bar-sm bg-black-050 ba bc-black-3">
-                <div class="d-flex gs24 ai-center fw-wrap">
+                <div class="d-flex g24 ai-center fw-wrap">
                     <div class="flex--item">
-                        <div class="d-flex gs8 gsx ai-center">
+                        <div class="d-flex g8 ai-center">
                             <label class="flex--item s-label fs-body1" for="sys-banner-style">Style</label>
                             <div class="flex--item s-select">
                                 <select id="sys-banner-style" class="js-sys-banner-style-menu">
@@ -94,13 +94,13 @@ description: Banners are a type of <a href="/product/components/notices">notice<
                         </div>
                     </div>
                     <div class="flex--item">
-                        <div class="d-flex gs8 gsx ai-center">
+                        <div class="d-flex g8 ai-center">
                             <input type="checkbox" id="sys-banner-type" class="flex--item s-checkbox js-sys-banner-type">
                             <label class="flex--item s-label fs-body1" for="sys-banner-type">Important?</label>
                         </div>
                     </div>
                     <div class="flex--item">
-                        <div class="d-flex gs8 gsx ai-center">
+                        <div class="d-flex g8 ai-center">
                             <input type="checkbox" id="sys-banner-position" class="flex--item s-checkbox js-sys-banner-position">
                             <label class="flex--item s-label fs-body1" for="sys-banner-position">Pinned?</label>
                         </div>

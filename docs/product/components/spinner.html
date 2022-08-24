@@ -4,8 +4,8 @@ title: Spinner
 description: A loading spinner is used for indicating a loading state of a page or section. It is colored according to the currently applying font color.
 ---
 <section class="stacks-section">
-    {% header "h3", "Classes" %}
-    <div class="overflow-x-auto mb32">
+    {% header "h2", "Classes" %}
+    <div class="overflow-x-auto mb32" tabindex="0">
         <table class="wmn4 s-table s-table__bx-simple">
             <thead>
                 <tr>
@@ -17,7 +17,7 @@ description: A loading spinner is used for indicating a loading state of a page 
             <tbody class="fs-caption">
                 {% for item in spinner.spinner %}
                     <tr>
-                        <td><code class="stacks-code">{{ item.class }}</code></td>
+                        <td><code class="stacks-code ws-nowrap">{{ item.class }}</code></td>
                         <td>{% if item.applies == "N/A" %}<em class="fc-black-350">{{ item.applies }}</em>{% else %}<code class="stacks-code">{{ item.applies }}</code>{% endif %}</td>
                         <td>{{ item.description }}</td>
                     </tr>
@@ -27,8 +27,8 @@ description: A loading spinner is used for indicating a loading state of a page 
     </div>
 </section>
 <section class="stacks-section">
-    {% header "h3", "Examples" %}
-    <p class="stacks-copy">The spinner’s colors are based on the font color of the element, which will usually be inherited from its parent. If you need to apply a color override, the <a href="{{ "/product/base/colors" | relative_url }}">font color classes</a> can provide themability. In most situations, a black and white spinner based on the default font color will be appropriate.</p>
+    {% header "h2", "Examples" %}
+    <p class="stacks-copy">The spinner’s colors are based on the font color of the element, which will usually be inherited from its parent. If you need to apply a color override, the <a href="{{ "/product/base/colors" | url }}">font color classes</a> can provide themability. In most situations, a black and white spinner based on the default font color will be appropriate.</p>
     <p class="stacks-copy">For accessibility, it’s important to add fallback loading text that is visible to screen readers. Additionally, you should add <code class="stacks-code">aria-busy="true"</code> to the component that triggered the loading state while the spinner is shown.</p>
     <div class="stacks-preview">
 {% highlight html %}
@@ -46,6 +46,9 @@ description: A loading spinner is used for indicating a loading state of a page 
 </div>
 <div class="s-spinner s-spinner__lg fc-theme-primary">
     <div class="v-visible-sr">Loading…</div>
+</div>
+<div class="is-loading">
+    Loading…
 </div>
 {% endhighlight %}
         <div class="stacks-preview--example">
@@ -73,6 +76,11 @@ description: A loading spinner is used for indicating a loading state of a page 
                 <div class="flex--item">
                     <div class="s-spinner s-spinner__lg fc-theme-primary">
                         <div class="v-visible-sr">Loading…</div>
+                    </div>
+                </div>
+                <div class="flex--item">
+                    <div class="is-loading">
+                        Loading…
                     </div>
                 </div>
             </div>

@@ -36,7 +36,7 @@ description: Stacks provides a complete icon set, managed separately in the <a h
     </div>
 
     {% header "h3", "Prototypes" %}
-    <p class="stacks-copy">Our icon set also includes a JavaScript library for use in protoypes outside our production environment. This JavaScript is loaded in our Stacks playground in <a href="https://codepen.io/pen?template=VwvKygL">Codepen</a>. If you’re building a prototype in your own environment, you’ll need to include Stacks as a dependency as well as the <a href="https://github.com/StackExchange/Stacks-Icons#using-the-front-end-helper-for-prototyping">icons library</a>.</p>
+    <p class="stacks-copy">Our icon set also includes a JavaScript library for use in protoypes outside our production environment. This JavaScript is loaded in our Stacks playground in <a href="https://codepen.io/pen?template=wvmRgdp">Codepen</a>. If you’re building a prototype in your own environment, you’ll need to include Stacks as a dependency as well as the <a href="https://github.com/StackExchange/Stacks-Icons#using-the-front-end-helper-for-prototyping">icons library</a>.</p>
     <div class="stacks-preview">
 {% highlight html %}
 <svg data-icon="Logo"></svg>
@@ -113,7 +113,10 @@ description: Stacks provides a complete icon set, managed separately in the <a h
                     </div>
                     <div class="d-flex ai-center jc-space-between p8">
                         <code class="flex--item fs-caption py8 ff-mono ow-break-word js-name">@Svg.{{ iconName }}</code>
-                        <a class="d-flex flex__center s-btn s-btn__muted fc-black-400 p2" href="#{{ iconName | downcase }}">{% icon "Link" %}</a>
+                        <a class="d-flex flex__center s-btn s-btn__muted fc-black-400 p2" href="#{{ iconName | downcase }}">
+                            {% icon "Link" %}
+                            <span class="v-visible-sr">{{ iconName }} icon</span>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -122,5 +125,4 @@ description: Stacks provides a complete icon set, managed separately in the <a h
 </section>
 
 <!-- Additional javascript -->
-<script src="{{ "/assets/js/library.list.js" | relative_url }}" defer></script>
-<script src="{{ "/assets/js/svg-search.js" | relative_url }}" defer></script>
+<script src="{{ "/assets/dist/entry.icons.js" | url }}" defer></script>

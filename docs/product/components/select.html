@@ -84,7 +84,7 @@ description: A selectable menu list from which a user can make a single selectio
     <p class="stacks-copy">Validation states provides the user feedback based on their interaction (or lack of interaction) with a select menu. These styles are applied by applying the appropriate class to the wrapping parent container.</p>
 
     {% header "h3", "Validation classes" %}
-    <div class="overflow-x-auto mb32">
+    <div class="overflow-x-auto mb32" tabindex="0">
         <table class="wmn4 s-table s-table__bx-simple">
             <thead>
                 <tr>
@@ -238,7 +238,7 @@ description: A selectable menu list from which a user can make a single selectio
 
 <section class="stacks-section">
     {% header "h2", "Sizes" %}
-    <div class="overflow-x-auto mb32">
+    <div class="overflow-x-auto mb32" tabindex="0">
         <table class="wmn5 s-table s-table__bx-simple va-middle">
             <thead>
                 <tr>
@@ -256,7 +256,7 @@ description: A selectable menu list from which a user can make a single selectio
                         <th scope="row">{{ item.name }}</th>
                         <td>{{ item.size }}</td>
                         <td>{% if item.class == "N/A" %}<em class="fc-light">{{ item.class }}</em>{% else %}<code class="stacks-code">.{{ item.class }}</code>{% endif %}</td>
-                        <td><div class="d-flex s-select {{ item.class }}"><select><option>1 Example</option><option>2 Options</option></select></div></td>
+                        <td><div class="d-flex s-select {{ item.class }}"><select aria-label="demo select {{ item.class }}"><option>1 Example</option><option>2 Options</option></select></div></td>
                     </tr>
                     {% endfor %}
                 {% endfor %}

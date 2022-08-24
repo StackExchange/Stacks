@@ -1,3 +1,5 @@
+import * as Stimulus from "stimulus";
+
 (function(){
     var application = Stimulus.Application.start();
     application.register("docs-resizer", class extends Stimulus.Controller {
@@ -8,10 +10,10 @@
         defaultTarget!: Element;
         defaultTargets!: Element[];
         hasDefaultTarget!: boolean;
-    
+
         private _selected!: Element | null;
         private _sizeClass!: string | null;
-    
+
         connect() {
             this._selected = null;
             this._sizeClass = null;
@@ -24,15 +26,15 @@
                 }, 0);
             }
         };
-    
+
         small(e: Event) {
             this._handleSizeEvent(e, "w40");
         };
-    
+
         large(e: Event) {
             this._handleSizeEvent(e, "w100");
         };
-    
+
         _handleSizeEvent(evt: Event, cls: string) {
             if (!(evt.currentTarget instanceof Element)) {
                 throw "unexpected event"
