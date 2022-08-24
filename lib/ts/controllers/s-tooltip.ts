@@ -173,7 +173,6 @@ export class TooltipController extends BasePopoverController {
     }
 
     private hideOnEscapeKeyEvent(event: KeyboardEvent) {
-        console.log("weeeee")
         if (event.key === "Escape") {
             this.hide();
         }
