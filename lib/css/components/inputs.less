@@ -270,7 +270,7 @@ fieldset {
 //  ----------------------------------------------------------------------------
 // TODO Overall, would _love_ to drop .s-radio entirely since it largely is just .s-checkbox
 // TODO would _love_ to use .s-checkbox instead, with no class on the input itself
-.s-checkbox-item, .s-radio-item {
+.s-checkbox-control, .s-radio-control {
     display: flex;
     gap: var(--su8);
     align-items: center;
@@ -289,8 +289,13 @@ fieldset {
     flex-direction: column;
     gap: var(--su8);
 
-    &.s-checkbox-group__horizontal {
+    &&__horizontal {
         flex-direction: row;
+    }
+
+    // TODO HACK? <legend> isn't respecting gap...
+    legend.s-label {
+        margin-bottom: var(--su8);
     }
 }
 
