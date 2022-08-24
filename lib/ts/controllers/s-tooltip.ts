@@ -13,6 +13,7 @@ export class TooltipController extends BasePopoverController {
     private boundScheduleShow!: () => void;
     private boundHide!: () => void;
     private boundHideIfWithin!: () => void;
+    private boundHideOnEscapeKeyEvent!: () => void;
     private activeTimeout!: number;
 
     /**
@@ -27,12 +28,14 @@ export class TooltipController extends BasePopoverController {
         if (window.matchMedia("(hover: hover)").matches) {
             this.bindMouseEvents();
         }
+        this.bindKeyboardEvents();
     }
 
     /**
      * Unbinds mouse events in addition to BasePopoverController.disconnect
      */
     disconnect() {
+        this.unbindKeyboardEvents();
         this.unbindMouseEvents();
         super.disconnect();
     }
@@ -169,6 +172,34 @@ export class TooltipController extends BasePopoverController {
         }
     }
 
+    private hideOnEscapeKeyEvent(event: KeyboardEvent) {
+        console.log("weeeee")
+        if (event.key === "Escape") {
+            this.hide();
+        }
+    }
+    /**
+     * Binds mouse events to show/hide on reference element hover
+     */
+     private bindKeyboardEvents() {
+        this.boundScheduleShow = this.boundScheduleShow || this.scheduleShow.bind(this);
+        this.boundHide = this.boundHide || this.hide.bind(this);
+        this.boundHideOnEscapeKeyEvent = this.boundHideOnEscapeKeyEvent || this.hideOnEscapeKeyEvent.bind(this);
+
+        this.referenceElement.addEventListener("focus", this.boundScheduleShow);
+        this.referenceElement.addEventListener("blur", this.boundHide);
+        document.addEventListener("keyup", this.boundHideOnEscapeKeyEvent);
+    }
+    /**
+     * Unbinds all mouse events
+     */
+     private unbindKeyboardEvents() {
+        this.referenceElement.removeEventListener("focus", this.boundScheduleShow);
+        this.referenceElement.removeEventListener("blur", this.boundHide);
+        document.removeEventListener("keyup", this.boundHideOnEscapeKeyEvent);
+    }
+
+
     /**
      * Binds mouse events to show/hide on reference element hover
      */
@@ -178,8 +209,6 @@ export class TooltipController extends BasePopoverController {
 
         this.referenceElement.addEventListener("mouseover", this.boundScheduleShow);
         this.referenceElement.addEventListener("mouseout", this.boundHide);
-        this.referenceElement.addEventListener("focus", this.boundScheduleShow);
-        this.referenceElement.addEventListener("blur", this.boundHide);
     }
 
     /**
