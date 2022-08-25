@@ -68,7 +68,7 @@ export class TooltipController extends BasePopoverController {
     /**
      * Cancels the scheduled tooltip popover display and hides it if already displayed
      */
-    hide(dispatcher: Event | Element | null = null) {
+    scheduleHide(dispatcher: Event | Element | null = null) {
         window.clearTimeout(this.activeTimeout);
         this.activeTimeout = window.setTimeout(() => super.hide(dispatcher), 100);
     }
@@ -174,13 +174,13 @@ export class TooltipController extends BasePopoverController {
      */
     private hideIfWithin(event: Event) {
         if ((<Element>event.target!).contains(this.referenceElement)) {
-            this.hide();
+            this.scheduleHide();
         }
     }
 
     private hideOnEscapeKeyEvent(event: KeyboardEvent) {
         if (event.key === "Escape") {
-            this.hide();
+            this.scheduleHide();
         }
     }
     /**
@@ -188,7 +188,7 @@ export class TooltipController extends BasePopoverController {
      */
      private bindKeyboardEvents() {
         this.boundScheduleShow = this.boundScheduleShow || this.scheduleShow.bind(this);
-        this.boundHide = this.boundHide || this.hide.bind(this);
+        this.boundHide = this.boundHide || this.scheduleHide.bind(this);
         this.boundHideOnEscapeKeyEvent = this.boundHideOnEscapeKeyEvent || this.hideOnEscapeKeyEvent.bind(this);
 
         this.referenceElement.addEventListener("focus", this.boundScheduleShow);
@@ -210,7 +210,7 @@ export class TooltipController extends BasePopoverController {
      */
     private bindMouseEvents() {
         this.boundScheduleShow = this.boundScheduleShow || this.scheduleShow.bind(this);
-        this.boundHide = this.boundHide || this.hide.bind(this);
+        this.boundHide = this.boundHide || this.scheduleHide.bind(this);
         this.boundClearActiveTimeout = this.boundClearActiveTimeout || this.clearActiveTimeout.bind(this);
 
         this.referenceElement.addEventListener("mouseover", this.boundScheduleShow);
