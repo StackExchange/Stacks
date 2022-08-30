@@ -155,12 +155,16 @@ description: Sidebar widgets are flexible containers that provide a lot of patte
         Besides <code class="stacks-code">s-sidebarwidget--content</code>, the other possible child class is <code class="stacks-code">s-sidebarwidget--header</code>, which unsurprisingly creates a header. Headers can be used both as a title for the widget, as well as to create several sections inside the widget.
     </p>
 
+    {% tip, "warning", "mb32" %}
+    The examples of <code class="stacks-code">s-sidebarwidget--header</code> are shown shown added to <code class="stacks-code">h2</code> elements in examples, but the appropriate heading level may differ depending on context. Please use the appropriate heading level for the context to ensure <a href="https://www.w3.org/WAI/tutorials/page-structure/headings/#heading-ranks">heading levels only increase by 1</a>.
+    {% endtip %}
+
     <div class="stacks-preview">
 {% highlight html %}
 <div class="s-sidebarwidget">
-    <div class="s-sidebarwidget--header">
+    <h2 class="s-sidebarwidget--header">
         Stats
-    </div>
+    </h2>
     <table class="s-sidebarwidget--content s-sidebarwidget__items">
         <tbody>
             <tr class="s-sidebarwidget--item">
@@ -181,9 +185,9 @@ description: Sidebar widgets are flexible containers that provide a lot of patte
 {% endhighlight %}
         <div class="stacks-preview--example overflow-x-auto">
             <div class="s-sidebarwidget ws3 mx-auto">
-                <div class="s-sidebarwidget--header">
+                <h2 class="s-sidebarwidget--header" role="presentation">
                     Stats
-                </div>
+                </h2>
                 <table class="s-sidebarwidget--content s-sidebarwidget__items">
                     <tbody>
                         <tr class="s-sidebarwidget--item">
@@ -211,18 +215,18 @@ description: Sidebar widgets are flexible containers that provide a lot of patte
     <div class="stacks-preview">
 {% highlight html %}
 <div class="s-sidebarwidget">
-    <div class="s-sidebarwidget--header s-sidebarwidget__small-bold-text">
+    <h2 class="s-sidebarwidget--header s-sidebarwidget__small-bold-text">
         Stats
-    </div>
+    </h2>
     <table class="s-sidebarwidget--content s-sidebarwidget__items">
         <tr class="s-sidebarwidget--item">
             <td class="tc-black-350">created</td>
             <td>9 years, 1 month ago</td>
         </tr>
     </table>
-    <div class="s-sidebarwidget--header s-sidebarwidget__small-bold-text">
+    <h2 class="s-sidebarwidget--header s-sidebarwidget__small-bold-text">
         Recent Hot Answers
-    </div>
+    </h2>
     <ul class="s-sidebarwidget--content s-sidebarwidget__items">
         <li class="s-sidebarwidget--item"><a href="…">…</a></li>
     </ul>
@@ -230,9 +234,9 @@ description: Sidebar widgets are flexible containers that provide a lot of patte
 {% endhighlight %}
         <div class="stacks-preview--example overflow-x-auto">
             <div class="s-sidebarwidget ws3 mx-auto">
-                <div class="s-sidebarwidget--header s-sidebarwidget__small-bold-text">
+                <h2 class="s-sidebarwidget--header s-sidebarwidget__small-bold-text" role="presentation">
                     Stats
-                </div>
+                </h2>
                 <table class="s-sidebarwidget--content s-sidebarwidget__items">
                     <tr class="s-sidebarwidget--item">
                         <td class="tc-black-350">created</td>
@@ -251,9 +255,9 @@ description: Sidebar widgets are flexible containers that provide a lot of patte
                         <td>164</td>
                     </tr>
                 </table>
-                <div class="s-sidebarwidget--header s-sidebarwidget__small-bold-text">
+                <h2 class="s-sidebarwidget--header s-sidebarwidget__small-bold-text" role="presentation">
                     Recent Hot Answers
-                </div>
+                </h2>
                 <ul class="s-sidebarwidget--content s-sidebarwidget__items">
                     <li class="s-sidebarwidget--item"><a href="#">Currying-in function and ES6 destructing</a></li>
                     <li class="s-sidebarwidget--item"><a href="#">JSON data concatenate two data </a></li>
@@ -284,7 +288,11 @@ description: Sidebar widgets are flexible containers that provide a lot of patte
             <div class="d-flex flex__allitems6 gs16 md:fd-column">
                 <div class="flex--item">
                     <div class="s-sidebarwidget s-sidebarwidget__yellow">
-                        <div class="s-sidebarwidget--header s-sidebarwidget__small-bold-text">Featured on Meta</div>
+                        <h2
+                            class="s-sidebarwidget--header s-sidebarwidget__small-bold-text"
+                            role="presentation">
+                            Featured on Meta
+                        </h2>
                         <ul class="s-sidebarwidget--content s-sidebarwidget__items">
                             <li class="s-sidebarwidget--item">
                                 <img src="https://meta.stackoverflow.com/content/Sites/stackoverflowmeta/img/icon-32.png" alt="Meta Stack Overflow" width="16" height="16" class="mr12">
@@ -295,7 +303,11 @@ description: Sidebar widgets are flexible containers that provide a lot of patte
                                 <a href="#">Documentation is read-only. What’s next?</a>
                             </li>
                         </ul>
-                        <div class="s-sidebarwidget--header s-sidebarwidget__small-bold-text">Blog</div>
+                        <h2
+                            class="s-sidebarwidget--header s-sidebarwidget__small-bold-text"
+                            role="presentation">
+                            Blog
+                        </h2>
                         <ul class="s-sidebarwidget--content s-sidebarwidget__items">
                             <li class="s-sidebarwidget--item"><a href="#">Introducing Channels: Private Q&A for Your Team</a></li>
                             <li class="s-sidebarwidget--item"><a href="#">Raise Your Voice: Proclaim the Need for Net Neutrality</a></li>
@@ -305,7 +317,7 @@ description: Sidebar widgets are flexible containers that provide a lot of patte
 
                 <div class="flex--item">
                     <div class="s-sidebarwidget s-sidebarwidget__blue mb16">
-                        <div class="s-sidebarwidget--header">Options</div>
+                        <h2 class="s-sidebarwidget--header" role="presentation">Options</h2>
                         <div class="s-sidebarwidget--content s-sidebarwidget__items">
                             <a href="#" class="s-sidebarwidget--item s-btn s-btn__primary jc-center">
                                 Job preferences
@@ -346,9 +358,9 @@ description: Sidebar widgets are flexible containers that provide a lot of patte
     <div class="stacks-preview">
 {% highlight html %}
 <nav class="s-sidebarwidget">
-    <div class="s-sidebarwidget--header">
+    <h2 class="s-sidebarwidget--header">
         Personal Information
-    </div>
+    </h2>
     <ul class="s-sidebarwidget--content s-sidebarwidget__items">
         <li class="s-sidebarwidget--item">
             <a href="…">
@@ -361,9 +373,9 @@ description: Sidebar widgets are flexible containers that provide a lot of patte
             </a>
         </li>
     </ul>
-    <div class="s-sidebarwidget--header">
+    <h2 class="s-sidebarwidget--header">
         Site Settings
-    </div>
+    </h2>
     <ul class="s-sidebarwidget--content s-sidebarwidget__items">
         <li class="s-sidebarwidget--item">
             <a href="…">Preferences</a>
@@ -376,17 +388,17 @@ description: Sidebar widgets are flexible containers that provide a lot of patte
 {% endhighlight %}
         <div class="stacks-preview--example overflow-x-auto">
             <nav class="s-sidebarwidget ws3 mx-auto" aria-label="example nav 1">
-                <div class="s-sidebarwidget--header">
+                <h2 class="s-sidebarwidget--header" role="presentation">
                     Personal Information
-                </div>
+                </h2>
                 <ul class="s-sidebarwidget--content s-sidebarwidget__items">
                     <li class="s-sidebarwidget--item"><a href="#">Edit Profile</a></li>
                     <li class="s-sidebarwidget--item" aria-current="page"><a href="#">Developer Story Preferences</a></li>
                     <li class="s-sidebarwidget--item"><a href="#">Job Match Preferences</a></li>
                 </ul>
-                <div class="s-sidebarwidget--header">
+                <h2 class="s-sidebarwidget--header" role="presentation">
                     Site Settings
-                </div>
+                </h2>
                 <ul class="s-sidebarwidget--content s-sidebarwidget__items">
                     <li class="s-sidebarwidget--item"><a href="#">Preferences</a></li>
                     <li class="s-sidebarwidget--item"><a href="#">Flair</a></li>
@@ -478,12 +490,12 @@ description: Sidebar widgets are flexible containers that provide a lot of patte
     <div class="stacks-preview">
 {% highlight html %}
 <div class="s-sidebarwidget">
-    <div class="s-sidebarwidget--header">
+    <h2 class="s-sidebarwidget--header">
         <a class="s-sidebarwidget--action" href="…">
             Edit
         </a>
         Watched Tags
-    </div>
+    </h2>
     <div class="s-sidebarwidget--content">
         <div class="d-flex gs4">
             <a class="flex--item s-tag" href="…">css</a>
@@ -496,12 +508,12 @@ description: Sidebar widgets are flexible containers that provide a lot of patte
         <div class="stacks-preview--example overflow-x-auto">
             <div class="d-flex gs16 ai-start md:fd-column">
                 <div class="flex--item s-sidebarwidget">
-                    <div class="s-sidebarwidget--header">
+                    <h2 class="s-sidebarwidget--header" role="presentation">
                         <a class="s-sidebarwidget--action" href="#">
                             Edit
                         </a>
                         Watched tags
-                    </div>
+                    </h2>
                     <div class="s-sidebarwidget--content">
                         <div class="d-flex gs4">
                             <a class="flex--item s-tag" href="#">css</a>
@@ -509,12 +521,12 @@ description: Sidebar widgets are flexible containers that provide a lot of patte
                             <a class="flex--item s-tag" href="#">accessibility</a>
                         </div>
                     </div>
-                    <div class="s-sidebarwidget--header">
+                    <h2 class="s-sidebarwidget--header" role="presentation">
                         <a class="s-sidebarwidget--action" href="#">
                             Edit
                         </a>
                         Ignored tags
-                    </div>
+                    </h2>
                     <div class="s-sidebarwidget--content">
                         <div class="d-flex gs4">
                             <a class="flex--item s-tag" href="#">twitter-bootstrap</a>
@@ -525,12 +537,12 @@ description: Sidebar widgets are flexible containers that provide a lot of patte
                 </div>
 
                 <div class="flex--item s-sidebarwidget">
-                    <div class="s-sidebarwidget--header s-sidebarwidget__small-bold-text">
+                    <h2 class="s-sidebarwidget--header s-sidebarwidget__small-bold-text" role="presentation">
                         <a class="s-sidebarwidget--action" href="#">
                             Clear
                         </a>
                         2 Recent searches
-                    </div>
+                    </h2>
                     <table class="s-sidebarwidget--content s-sidebarwidget__items">
                         <tbody>
                             <tr class="s-sidebarwidget--item">
@@ -564,7 +576,7 @@ description: Sidebar widgets are flexible containers that provide a lot of patte
     <div class="stacks-preview">
 {% highlight html %}
 <div class="s-sidebarwidget">
-    <div class="s-sidebarwidget--header s-sidebarwidget__small-bold-text
+    <h2 class="s-sidebarwidget--header s-sidebarwidget__small-bold-text
                 s-sidebarwidget__expanding-control"
                 aria-expanded="true"
                 aria-controls="recent-searches"
@@ -575,7 +587,7 @@ description: Sidebar widgets are flexible containers that provide a lot of patte
             Clear
         </a>
         2 Recent Searches
-    </div>
+    </h2>
     <div class="s-expandable" id="recent-searches">
         <div class="s-expandable--content">
             <table class="s-sidebarwidget--content s-sidebarwidget__items">
@@ -598,18 +610,19 @@ description: Sidebar widgets are flexible containers that provide a lot of patte
 {% endhighlight %}
         <div class="stacks-preview--example overflow-x-auto">
             <div class="s-sidebarwidget ws3 mx-auto">
-                <div class="s-sidebarwidget--header s-sidebarwidget__small-bold-text
+                <h2 class="s-sidebarwidget--header s-sidebarwidget__small-bold-text
                             s-sidebarwidget__expanding-control"
                             aria-expanded="true"
                             aria-controls="recent-searches"
                             aria-label="toggle recent searches"
                             data-controller="s-expandable-control"
-                            tabindex="0">
+                            tabindex="0"
+                            role="presentation">
                     <a class="s-sidebarwidget--action" href="#">
                         Clear
                     </a>
                     2 Recent searches
-                </div>
+                </h2>
                 <div class="s-expandable" id="recent-searches">
                     <div class="s-expandable--content">
                         <table class="s-sidebarwidget--content s-sidebarwidget__items">
@@ -626,15 +639,16 @@ description: Sidebar widgets are flexible containers that provide a lot of patte
                         </table>
                     </div>
                 </div>
-                <div class="s-sidebarwidget--header s-sidebarwidget__small-bold-text
+                <h2 class="s-sidebarwidget--header s-sidebarwidget__small-bold-text
                             s-sidebarwidget__expanding-control
                             aria-expanded="false"
                             aria-controls="favorites"
                             aria-label="toggle favorites"
                             data-controller="s-expandable-control"
-                            tabindex="0">
+                            tabindex="0"
+                            role="presentation">
                     0 Favorites
-                </div>
+                </h2>
                 <div class="s-expandable" id="favorites">
                     <div class="s-sidebarwidget--content s-sidebarwidget__items
                                 s-expandable--content">

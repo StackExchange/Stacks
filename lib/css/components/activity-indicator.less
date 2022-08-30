@@ -12,13 +12,29 @@
 //  ----------------------------------------------------------------------------
 
 .s-activity-indicator {
+    --_focus-ring: var(--focus-ring);
+    --_bg-color: var(--theme-secondary-400);
+
+    &.s-activity-indicator__success {
+        --_bg-color: var(--green-500);
+        --_focus-ring: var(--focus-ring-success);
+    }
+    &.s-activity-indicator__warning {
+        --_bg-color: var(--yellow-600);
+        --_focus-ring: var(--focus-ring-warning);
+    }
+    &.s-activity-indicator__danger {
+        --_bg-color: var(--red-500);
+        --_focus-ring: var(--focus-ring-error);
+    }
+
     display: inline-block;
     min-width: var(--su-static12);
     min-height: var(--su-static12);
     padding: var(--su2) var(--su4);
     line-height: 1.1; // Custom line-height to satisfy 1x screens
-    background-color: var(--theme-secondary-400);
-    box-shadow: 0 0 0 var(--su-static4) var(--focus-ring);
+    background-color: var(--_bg-color);
+    box-shadow: 0 0 0 var(--su-static4) var(--_focus-ring);
     border-radius: 1000px;
     font-size: var(--fs-fine);
     font-weight: 600;
@@ -26,19 +42,4 @@
     text-transform: uppercase;
 
     .highcontrast-mode({ color: var(--white); });
-}
-
-.s-activity-indicator__success {
-    background-color: var(--green-500);
-    box-shadow: 0 0 0 var(--su-static4) var(--focus-ring-success);
-}
-
-.s-activity-indicator__warning {
-    background-color: var(--yellow-600);
-    box-shadow: 0 0 0 var(--su-static4) var(--focus-ring-warning);
-}
-
-.s-activity-indicator__danger {
-    background-color: var(--red-500);
-    box-shadow: 0 0 0 var(--su-static4) var(--focus-ring-error);
 }
