@@ -354,6 +354,12 @@
 
         .s-post-summary--stats-item {
 
+            &.is-warm,
+            &.is-hot,
+            &.is-supernova {
+                color: var(--black-500);
+            }
+
             &.has-answers {
                 color: var(--black-600);
                 border: 1px solid var(--black-075);
@@ -412,15 +418,18 @@
         &:hover,
         &:active,
         &:focus {
+            border-color: transparent;
             color: var(--black-600);
         }
     }
 
     .s-user-card {
-        .s-user-card--link {
-            color: var(--black-500);
+        .s-badge {
+            filter: grayscale(100%);
         }
 
+        a,
+        .s-user-card--link,
         .s-user-card--rep,
         .s-user-card--time {
             color: var(--black-500);
