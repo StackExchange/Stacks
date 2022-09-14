@@ -8,40 +8,40 @@
 //
 
 .s-post-summary {
-    // --_state-* are custom properties to broadly override colors for a given post summary state
-    --_bb: var(--su1) solid var(--bc-light);
-    --_bg: unset;
+    // --_ps-state-* are custom properties to broadly override colors for a given post summary state
+    --_ps-bb: var(--su1) solid var(--bc-light);
+    --_ps-bg: unset;
     // Child components
-    --_content-excerpt-fc: var(--_state-fc, var(--fc-medium));
-    --_content-title-a-fc: var(--_state-fc, var(--theme-post-title-color));
-    --_content-title-a-fc-hover: var(--_state-fc, var(--theme-post-title-color-hover));
-    --_content-title-a-fc-visited: var(--_state-fc, var(--theme-post-title-color-visited));
-    --_stats-ai: flex-end;
-    --_stats-fc: var(--_state-fc, var(--fc-light));
-    --_stats-fd: column;
-    --_stats-w: calc(var(--su96) + var(--su12));
+    --_ps-content-excerpt-fc: var(--_ps-state-fc, var(--fc-medium));
+    --_ps-content-title-a-fc: var(--_ps-state-fc, var(--theme-post-title-color));
+    --_ps-content-title-a-fc-hover: var(--_ps-state-fc, var(--theme-post-title-color-hover));
+    --_ps-content-title-a-fc-visited: var(--_ps-state-fc, var(--theme-post-title-color-visited));
+    --_ps-stats-ai: flex-end;
+    --_ps-stats-fc: var(--_ps-state-fc, var(--fc-light));
+    --_ps-stats-fd: column;
+    --_ps-stats-w: calc(var(--su96) + var(--su12));
     // Stats item modifiers
-    --_has-answers-bc: var(--green-700);
-    --_has-answers-bg: unset;
-    --_has-answers-fc: var(--green-700);
-    --_has-accepted-answers-bc: var(--green-700);
-    --_has-accepted-answers-bg: var(--green-700);
-    --_has-accepted-answers-fc: var(--white);
-    --_stats-item-emphasized-fc: var(--_state-fc, var(--fc-dark));
+    --_ps-has-answers-bc: var(--green-700);
+    --_ps-has-answers-bg: unset;
+    --_ps-has-answers-fc: var(--green-700);
+    --_ps-has-accepted-answers-bc: var(--green-700);
+    --_ps-has-accepted-answers-bg: var(--green-700);
+    --_ps-has-accepted-answers-fc: var(--white);
+    --_ps-stats-item-emphasized-fc: var(--_ps-state-fc, var(--fc-dark));
 
     #stacks-internals #screen-md({
-        --_stats-ai: center;
-        --_stats-fd: row;
-        --_stats-w: auto;
+        --_ps-stats-ai: center;
+        --_ps-stats-fd: row;
+        --_ps-stats-w: auto;
 
         flex-direction: column;
     });
 
     &__minimal,
     &--answer {
-        --_stats-ai: center;
-        --_stats-fd: row;
-        --_stats-w: auto;
+        --_ps-stats-ai: center;
+        --_ps-stats-fd: row;
+        --_ps-stats-w: auto;
     }
 
     // Variants ----------------------------------------------------------------
@@ -58,7 +58,7 @@
     // multiple
     &&__deleted,
     &&__ignored {
-        --_state-fc: var(--black-500);
+        --_ps-state-fc: var(--black-500);
 
         // TODO: remove rule for `a` once Core replaces `.post-tag` with `.s-tag`
         .s-post-summary--meta-tags > a,
@@ -67,7 +67,7 @@
             &:active,
             &:hover,
             &:focus {
-                background-color: var(--_meta-tags-tag-bg);
+                background-color: var(--_ps-meta-tags-tag-bg);
                 border-color: transparent;
                 color: var(--black-600);
             }
@@ -89,13 +89,13 @@
 
     &&__deleted,
     &&__watched {
-        background-color: var(--_bg);
+        background-color: var(--_ps-bg);
     }
 
     // deleted
     &&__deleted {
-        --_bg: var(--red-025);
-        --_meta-tags-tag-bg: var(--black-075);
+        --_ps-bg: var(--red-025);
+        --_ps-meta-tags-tag-bg: var(--black-075);
 
         .is-deleted,
         .s-badge__danger.s-badge__filled {
@@ -109,19 +109,19 @@
 
     // ignored
     &&__ignored {
-        --_has-answers-bc: var(--black-075);
-        --_has-answers-bg: var(--black-075);
-        --_has-answers-fc: var(--black-600);
-        --_has-accepted-answers-bc: var(--black-075);
-        --_has-accepted-answers-bg: var(--black-075);
-        --_has-accepted-answers-fc: var(--black-600);
-        --_meta-tags-tag-bg: var(--black-050);
+        --_ps-has-answers-bc: var(--black-075);
+        --_ps-has-answers-bg: var(--black-075);
+        --_ps-has-answers-fc: var(--black-600);
+        --_ps-has-accepted-answers-bc: var(--black-075);
+        --_ps-has-accepted-answers-bg: var(--black-075);
+        --_ps-has-accepted-answers-fc: var(--black-600);
+        --_ps-meta-tags-tag-bg: var(--black-050);
     }
 
     // watched
     &&__watched {
-        --_bg: var(--yellow-050);
-        --_stats-fc: var(--black-500);
+        --_ps-bg: var(--yellow-050);
+        --_ps-stats-fc: var(--black-500);
 
         .s-user-card {
             .s-user-card--rep,
@@ -173,7 +173,7 @@
     }
 
     &--content-excerpt {
-        color: var( --_content-excerpt-fc);
+        color: var( --_ps-content-excerpt-fc);
         font-family: var(--theme-post-body-font-family);
         margin-top: calc(var(--su2) * -1);
         margin-bottom: var(--su8);
@@ -228,16 +228,16 @@
         a {
             .break-word;
 
-            color: var(--_content-title-a-fc);
+            color: var(--_ps-content-title-a-fc);
             font-family: var(--theme-post-title-font-family);
 
             &:visited {
-                color: var(--_content-title-a-fc-visited);
+                color: var(--_ps-content-title-a-fc-visited);
             }
 
             &:hover,
             &:active {
-                color: var(--_content-title-a-fc-hover);
+                color: var(--_ps-content-title-a-fc-hover);
             }
         }
     }
@@ -276,10 +276,10 @@
 
     // stats
     &--stats {
-        align-items: var(--_stats-ai);
-        color: var(--_stats-fc);
-        flex-direction: var(--_stats-fd);
-        width: var(--_stats-w);
+        align-items: var(--_ps-stats-ai);
+        color: var(--_ps-stats-fc);
+        flex-direction: var(--_ps-stats-fd);
+        width: var(--_ps-stats-w);
 
         display: flex;
         flex-shrink: 0;
@@ -321,14 +321,14 @@
         }
 
         &.has-answers {
-            background-color: var(--_has-answers-bg);
-            border: var(--su1) solid var(--_has-answers-bc);
-            color: var(--_has-answers-fc);
+            background-color: var(--_ps-has-answers-bg);
+            border: var(--su1) solid var(--_ps-has-answers-bc);
+            color: var(--_ps-has-answers-fc);
 
             &.has-accepted-answer {
-                background-color: var(--_has-accepted-answers-bg);
-                border-color: var(--_has-accepted-answers-bc);
-                color: var(--_has-accepted-answers-fc);
+                background-color: var(--_ps-has-accepted-answers-bg);
+                border-color: var(--_ps-has-accepted-answers-bc);
+                color: var(--_ps-has-accepted-answers-fc);
             }
         }
 
@@ -339,15 +339,15 @@
         }
 
         &.is-warm {
-            color: var(--_state-fc, var(--yellow-900));
+            color: var(--_ps-state-fc, var(--yellow-900));
         }
 
         &.is-hot {
-            color: var(--_state-fc, var(--orange-800));
+            color: var(--_ps-state-fc, var(--orange-800));
         }
 
         &.is-supernova {
-            color: var(--_state-fc, var(--red-800));
+            color: var(--_ps-state-fc, var(--red-800));
         }
 
         &.is-published {
@@ -385,7 +385,7 @@
         }
 
         &__emphasized {
-            color: var(--_stats-item-emphasized-fc);
+            color: var(--_ps-stats-item-emphasized-fc);
         }
     }
 
@@ -395,11 +395,11 @@
 
     // .s-post-summary base styling
     &:last-child {
-        --_bb: none;
+        --_ps-bb: none;
     }
 
-    background-color: var(--_bg);
-    border-bottom: var(--_bb);
+    background-color: var(--_ps-bg);
+    border-bottom: var(--_ps-bb);
     display: flex;
     padding: var(--su16);
     position: relative;
