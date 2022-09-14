@@ -88,23 +88,7 @@
         --_bg: var(--yellow-050);
         --_stats-fc: var(--black-500);
 
-        .s-post-summary--content-title > a {
-            &,
-            &:hover,
-            &:active {
-                color: var(--blue-700);
-            }
-
-            &:visited {
-                color: var(--blue-800);
-            }
-        }
-
         .s-user-card {
-            .s-user-card--link {
-                color: var(--blue-700);
-            }
-
             .s-user-card--rep,
             .s-user-card--time {
                 color: var(--black-600);
@@ -124,21 +108,32 @@
         --_content-title-a-fc-hover: var(--black-500);
         --_content-title-a-fc-visited: var(--black-500);
 
+        // TODO: remove rule for `a` once Core replaces `.post-tag` with `.s-tag`
+        .s-post-summary--meta-tags > a,
         .s-post-summary--meta-tags > .s-tag {
             &,
             &:active,
             &:hover,
             &:focus {
                 background-color: var(--_meta-tags-tag-bg);
+                border-color: transparent;
                 color: var(--black-600);
             }
         }
 
-        .s-post-summary--meta > *:not(.s-post-summary--meta-tags) {
-            color: var(--black-600);
+        .s-post-summary--stats-item {
+            &.is-warm,
+            &.is-hot,
+            &.is-supernova {
+                color: var(--black-500);
+            }
         }
-
         .s-user-card {
+            .s-badge {
+                filter: grayscale(100%);
+            }
+
+            a,
             .s-user-card--link,
             .s-user-card--rep,
             .s-user-card--time {
@@ -354,7 +349,7 @@
         }
 
         &.is-warm {
-            color: var(--yellow-800);
+            color: var(--yellow-900);
         }
 
         &.is-hot {
