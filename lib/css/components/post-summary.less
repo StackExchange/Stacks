@@ -8,15 +8,16 @@
 //
 
 .s-post-summary {
+    // --_state-* are custom properties to broadly override colors for a given post summary state
     --_bb: var(--su1) solid var(--bc-light);
     --_bg: unset;
     // Child components
-    --_content-excerpt-fc: var(--fc-medium);
-    --_content-title-a-fc: var(--theme-post-title-color);
-    --_content-title-a-fc-hover: var(--theme-post-title-color-hover);
-    --_content-title-a-fc-visited: var(--theme-post-title-color-visited);
+    --_content-excerpt-fc: var(--_state-fc, var(--fc-medium));
+    --_content-title-a-fc: var(--_state-fc, var(--theme-post-title-color));
+    --_content-title-a-fc-hover: var(--_state-fc, var(--theme-post-title-color-hover));
+    --_content-title-a-fc-visited: var(--_state-fc, var(--theme-post-title-color-visited));
     --_stats-ai: flex-end;
-    --_stats-fc: var(--fc-light);
+    --_stats-fc: var(--_state-fc, var(--fc-light));
     --_stats-fd: column;
     --_stats-w: calc(var(--su96) + var(--su12));
     // Stats item modifiers
@@ -26,7 +27,7 @@
     --_has-accepted-answers-bc: var(--green-700);
     --_has-accepted-answers-bg: var(--green-700);
     --_has-accepted-answers-fc: var(--white);
-    --_stats-item-emphasized-fc: var(--fc-dark);
+    --_stats-item-emphasized-fc: var(--_state-fc, var(--fc-dark));
 
     #stacks-internals #screen-md({
         --_stats-ai: center;
@@ -57,10 +58,7 @@
     // multiple
     &&__deleted,
     &&__ignored {
-        --_content-excerpt-fc: var(--black-500);
-        --_content-title-a-fc: var(--black-500);
-        --_content-title-a-fc-hover: var(--black-500);
-        --_content-title-a-fc-visited: var(--black-500);
+        --_state-fc: var(--black-500);
 
         // TODO: remove rule for `a` once Core replaces `.post-tag` with `.s-tag`
         .s-post-summary--meta-tags > a,
@@ -75,13 +73,6 @@
             }
         }
 
-        .s-post-summary--stats-item {
-            &.is-warm,
-            &.is-hot,
-            &.is-supernova {
-                color: var(--black-500);
-            }
-        }
         .s-user-card {
             .s-badge {
                 filter: grayscale(100%);
@@ -113,7 +104,6 @@
             });
 
             background-color: var(--red-600);
-            color: var(--white);
         }
     }
 
@@ -126,8 +116,6 @@
         --_has-accepted-answers-bg: var(--black-075);
         --_has-accepted-answers-fc: var(--black-600);
         --_meta-tags-tag-bg: var(--black-050);
-        --_stats-fc: var(--black-500);
-        --_stats-item-emphasized-fc: var(--black-500);
     }
 
     // watched
@@ -351,15 +339,15 @@
         }
 
         &.is-warm {
-            color: var(--yellow-900);
+            color: var(--_state-fc, var(--yellow-900));
         }
 
         &.is-hot {
-            color: var(--orange-800);
+            color: var(--_state-fc, var(--orange-800));
         }
 
         &.is-supernova {
-            color: var(--red-800);
+            color: var(--_state-fc, var(--red-800));
         }
 
         &.is-published {
