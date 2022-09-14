@@ -37,6 +37,7 @@
         flex-direction: column;
     });
 
+    // Variants ----------------------------------------------------------------
     &__minimal,
     &--answer {
         --_ps-stats-ai: center;
@@ -44,8 +45,6 @@
         --_ps-stats-w: auto;
     }
 
-    // Variants ----------------------------------------------------------------
-    // minimal
     &&__minimal {
         .s-post-summary--content {
             width: 100%;
@@ -55,7 +54,6 @@
     }
 
     // States ------------------------------------------------------------------
-    // multiple
     &&__deleted,
     &&__ignored {
         --_ps-state-fc: var(--black-500);
@@ -82,7 +80,7 @@
             .s-user-card--link,
             .s-user-card--rep,
             .s-user-card--time {
-                color: var(--black-500);
+                color: var(--_ps-state-fc);
             }
         }
     }
@@ -92,7 +90,6 @@
         background-color: var(--_ps-bg);
     }
 
-    // deleted
     &&__deleted {
         --_ps-bg: var(--red-025);
         --_ps-meta-tags-tag-bg: var(--black-075);
@@ -107,7 +104,6 @@
         }
     }
 
-    // ignored
     &&__ignored {
         --_ps-has-answers-bc: var(--black-075);
         --_ps-has-answers-bg: var(--black-075);
@@ -118,7 +114,6 @@
         --_ps-meta-tags-tag-bg: var(--black-050);
     }
 
-    // watched
     &&__watched {
         --_ps-bg: var(--yellow-050);
         --_ps-stats-fc: var(--black-500);
@@ -132,8 +127,7 @@
     }
 
 
-        // Child Elements ----------------------------------------------------------
-    // answer
+    // Child Elements ----------------------------------------------------------
     &--answer {
         position: relative;
         margin: var(--su16) 1em 0 1em;
@@ -166,7 +160,6 @@
         .v-truncate4;
     }
 
-    // content
     &--content {
         flex-grow: 1;
         max-width: 100%;
@@ -252,7 +245,6 @@
         }
     }
 
-    // meta
     &--meta {
         align-items: center;
         column-gap: var(--su6);
@@ -274,7 +266,6 @@
         gap: var(--su4);
     }
 
-    // stats
     &--stats {
         align-items: var(--_ps-stats-ai);
         color: var(--_ps-stats-fc);
