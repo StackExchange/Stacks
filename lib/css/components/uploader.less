@@ -7,21 +7,21 @@
 //  visit https://stackoverflow.design/
 
 .s-uploader {
-    --_bg: var(--black-025);
-    --_bg-focus: var(--black-050);
-    --_bg-bc: var(--black-150);
-    --_focus-ring-color: var(--focus-ring);
+    --_up-bg: var(--black-025);
+    --_up-bg-focus: var(--black-050);
+    --_up-bg-bc: var(--black-150);
+    --_up-focus-ring-color: var(--focus-ring);
 
     // Static custom properties (not redefined but repeated enough to warrant a custom property)
-    --_bg-b-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='5' ry='5' stroke='%23000000' stroke-width='8' stroke-dasharray='7%2c 22' stroke-dashoffset='0' stroke-linecap='square'/%3e%3c/svg%3e");
+    --_up-bg-b-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='5' ry='5' stroke='%23000000' stroke-width='8' stroke-dasharray='7%2c 22' stroke-dashoffset='0' stroke-linecap='square'/%3e%3c/svg%3e");
 
     .highcontrast-mode({
-        --_bg-bc-hc: var(--black-400);
+        --_up-bg-bc-hc: var(--black-400);
     });
 
     &.is-active {
-        --_bg: var(--black-050);
-        --_bg-bc: var(--black-200);
+        --_up-bg: var(--black-050);
+        --_up-bg-bc: var(--black-200);
     }
 
     &.is-disabled {
@@ -29,37 +29,37 @@
     }
 
     &.has-error {
-        --_bg: var(--red-050);
-        --_bg-focus: var(--red-100);
-        --_bg-bc: var(--red-400);
-        --_bg-bc-hc-state: var(--red-400);
-        --_focus-ring-color: var(--focus-ring-error);
-        --_link-fc: var(--red-900);
+        --_up-bg: var(--red-050);
+        --_up-bg-focus: var(--red-100);
+        --_up-bg-bc: var(--red-400);
+        --_up-bg-bc-hc-state: var(--red-400);
+        --_up-focus-ring-color: var(--focus-ring-error);
+        --_up-link-fc: var(--red-900);
     }
 
     &.has-success {
-        --_bg: var(--green-025);
-        --_bg-focus: var(--green-050);
-        --_bg-bc: var(--green-400);
-        --_bg-bc-hc-state: var(--green-400);
-        --_focus-ring-color: var(--focus-ring-success);
-        --_link-fc: var(--green-900);
+        --_up-bg: var(--green-025);
+        --_up-bg-focus: var(--green-050);
+        --_up-bg-bc: var(--green-400);
+        --_up-bg-bc-hc-state: var(--green-400);
+        --_up-focus-ring-color: var(--focus-ring-success);
+        --_up-link-fc: var(--green-900);
     }
 
     &.has-warning {
-        --_bg: var(--yellow-050);
-        --_bg-focus: var(--yellow-100);
-        --_bg-bc: var(--yellow-400);
-        --_bg-bc-hc-state: var(--yellow-400);
-        --_focus-ring-color: var(--focus-ring-warning);
-        --_link-fc: var(--yellow-900);
+        --_up-bg: var(--yellow-050);
+        --_up-bg-focus: var(--yellow-100);
+        --_up-bg-bc: var(--yellow-400);
+        --_up-bg-bc-hc-state: var(--yellow-400);
+        --_up-focus-ring-color: var(--focus-ring-warning);
+        --_up-link-fc: var(--yellow-900);
     }
 
     &.has-error,
     &.has-success,
     &.has-warning {
         .s-link {
-            color: var(--_link-fc);
+            color: var(--_up-link-fc);
         }
     }
 
@@ -70,7 +70,7 @@
     }
     .s-uploader--container {
         align-items: center;
-        background-color: var(--_bg);
+        background-color: var(--_up-bg);
         border-radius: var(--br-lg);
         display: flex;
         flex-direction: column;
@@ -82,9 +82,9 @@
 
         // Add the dashed border as an SVG background mask
         &:before {
-            -webkit-mask-image: var(--_bg-b-image);
-            mask-image: var(--_bg-b-image);
-            background-color: var(--_bg-bc-hc-state, var(--_bg-bc-hc, var(--_bg-bc)));
+            -webkit-mask-image: var(--_up-bg-b-image);
+            mask-image: var(--_up-bg-b-image);
+            background-color: var(--_up-bg-bc-hc-state, var(--_up-bg-bc-hc, var(--_up-bg-bc)));
             content: '';
             border-radius: var(--br-lg);
             display: block;
@@ -102,8 +102,8 @@
         z-index: var(--zi-selected);
 
         &:focus:focus-visible + .s-uploader--container {
-            background-color: var(--_bg-focus);
-            box-shadow: 0 0 0 var(--su-static4) var(--_focus-ring-color);
+            background-color: var(--_up-bg-focus);
+            box-shadow: 0 0 0 var(--su-static4) var(--_up-focus-ring-color);
         }
     }
     .s-uploader--preview {
