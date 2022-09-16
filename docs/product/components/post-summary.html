@@ -1940,3 +1940,345 @@ Is anyone aware of a fully functional implementation of this API (to generate th
         </div>
     </div>
 </section>
+<section class="stacks-section">
+    {% header "h2", "Playground" %}
+    <p class="stacks-copy">Post summaries change their appearance based on being watched, ignored, or deleted. Articles can also have varying draft states.</p>
+    <div class="stacks-preview--example bt bc-black-075 btr-lg p0">
+        <div id="ps-playground" class="s-post-summary">
+            <div class="s-post-summary--stats">
+                {% for badge in post-summary.playground.badges %}
+                    <div
+                        id="ps-badge-{{ badge.label }}"
+                        class="s-post-summary--stats-item s-badge s-badge__icon {{ badge.class }} d-none"
+                        data-group="ps-badges">
+                        {% icon badge.icon %}
+                        {{ badge.label }}
+                    </div>
+                {% endfor %}
+                {% for stat in post-summary.playground.stats %}
+                    <div
+                        id="ps-stat-{{ stat.name }}"
+                        class="s-post-summary--stats-item {{ stat.class }} {% unless stat.show %} d-none{% endunless %}">
+                        <span class="s-post-summary--stats-item-number" data-type="{{ stat.name }}" data-group="ps-count">
+                            {{ stat.count }}
+                        </span>
+                        <span class="s-post-summary--stats-item-unit">
+                            {{ stat.label }}
+                        </span>
+                    </div>
+                {% endfor %}
+            </div>
+            <div class="s-post-summary--content">
+                <div id="ps-type" class="s-post-summary--content-type d-none">
+                    <a href="#" class="s-link s-link__grayscale">{% icon "DocumentAlt" %} Knowledge Article</a>
+                </div>
+                <div id="ps-title" class="s-post-summary--content-title">
+                    <a href="#">{{ post-summary.playground.title }}</a>
+                </div>
+                <p id="ps-excerpt" class="s-post-summary--content-excerpt">
+                    {{ post-summary.playground.excerpt }}
+                </p>
+                <div class="s-post-summary--meta">
+                    <div id="ps-tags" class="s-post-summary--meta-tags">
+                        {% for tag in post-summary.playground.tags %}
+                            <a id="ps-tag-{{ tag.label }}" class="s-tag {{ tag.class }}" href="#">
+                                {{ tag.label }}
+                            </a>
+                        {% endfor %}
+                    </div>
+
+                    <div id="ps-user-card" class="s-user-card s-user-card__minimal">
+                        <a href="#" class="s-avatar s-user-card--avatar">
+                            <img class="s-avatar--image" src="{{ "/assets/img/placeholder.svg" | url }}" alt="placeholder avatar" />
+                            <span class="v-visible-sr">{{ post-summary.playground.user }}</span>
+                        </a>
+                        <a href="#" class="s-user-card--link">{{ post-summary.playground.user }}</a>
+                        <ul class="s-user-card--awards">
+                            <li class="s-user-card--rep">{{ post-summary.playground.rep }}</li>
+                        </ul>
+                        <time class="s-user-card--time">posted {{ post-summary.playground.when }}</time>
+                    </div>
+                </div>
+
+                {% for answer in post-summary.playground.answers %}
+                    <div class="s-post-summary--answer d-none">
+                        <div class="s-post-summary--stats">
+                            <div class="s-post-summary--stats-item s-post-summary--stats-item__emphasized">
+                                <span class="s-post-summary--stats-item-number">
+                                    {{ answer.votes }}
+                                </span>
+                                <span class="s-post-summary--stats-item-unit">
+                                    votes
+                                </span>
+                            </div>
+                            {% if answer.accepted %}
+                                <div class="s-post-summary--stats-item has-answers has-accepted-answer">
+                                    <svg aria-hidden="true" class="svg-icon iconCheckmarkSm" width="14" height="14" viewBox="0 0 14 14"><path d="M13 3.41 11.59 2 5 8.59 2.41 6 1 7.41l4 4 8-8Z"></path></svg> Accepted answer
+                                </div>
+                            {% endif %}
+                        </div>
+                        <p class="s-post-summary--answer-excerpt">
+                            {{ answer.excerpt }}
+                        </p>
+                        <div class="s-post-summary--meta">
+                            <a class="s-link" href="#">
+                                View answer
+                            </a>
+
+                            <div class="s-user-card s-user-card__minimal">
+                                <a href="#" class="s-avatar s-user-card--avatar">
+                                    <img class="s-avatar--image" src="/assets/img/placeholder.svg" alt="placeholder avatar">
+                                    <span class="v-visible-sr">{{ answer.name }}</span>
+                                </a>
+                                <a href="#" class="s-user-card--link">{{ answer.name }}</a>
+                                <time class="s-user-card--time">answered {{ answer.time }}</time>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+
+                <a id="ps-menu-btn" href="#" class="s-btn s-btn__muted s-post-summary--content-menu-button">
+                    {% icon "EllipsisVertical" %}
+                    <span class="v-visible-sr">menu</span>
+                </a>
+            </div>
+        </div>
+
+        <div id="ps-controls" class="d-flex fd-column g16 px16 py12">
+            <div class="d-flex fw-wrap g16 jc-space-between">
+                <div class="d-flex fw-wrap g16">
+
+                    <div class="d-flex g8 ai-center">
+                        <div class="s-toggle-switch">
+                            <input id="ps-control-layout" type="checkbox">
+                            <div class="s-toggle-switch--indicator"></div>
+                        </div>
+                        <label class="s-label" for="ps-control-layout">Minimal layout</label>
+                    </div>
+
+                    <div class="d-flex g8 ai-center">
+                        <div class="s-toggle-switch">
+                            <input id="ps-control-type" type="checkbox">
+                            <div class="s-toggle-switch--indicator"></div>
+                        </div>
+                        <label class="s-label" for="ps-control-type">Show type</label>
+                    </div>
+
+                </div>
+                <div class="d-flex g16">
+
+                    <div class="d-flex g8 ai-center">
+                        <label class="s-label" for="ps-control-excerpt-size">Excerpt size</label>
+                        <div class="s-select">
+                            <select id="ps-control-excerpt-size">
+                                {% for size in post-summary.playground.excerptSizes %}
+                                    <option value="{% if size %}s-post-summary--content-excerpt__{{ size }}{% endif %}" id="ps-control-excerpt-size-{{ size }}">{{ size | "Default" }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="d-flex g16 fw-wrap">
+                        <div class="d-flex g8 ai-center">
+                            <label class="s-label" for="ps-control-excerpt-size">Hotness</label>
+                            <div class="s-select">
+                                <select id="ps-control-stat-views-hotness">
+                                    {% for temp in post-summary.playground.hotness %}
+                                        <option value="{% if temp %}is-{{ temp }}{% endif %}" id="ps-control-hotness-{{ temp }}">{{ temp | "Default" }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="d-flex g16 fw-wrap">
+                        <div class="d-flex g8 ai-center">
+                            <label class="s-label" for="ps-control-answer-state">Answers</label>
+                            <div class="s-select">
+                                <select id="ps-control-stat-answer-state">
+                                    {% for state in post-summary.playground.answerStates %}
+                                        <option
+                                            value="{% if state %}{{ state }}{% endif %}"
+                                            id="ps-control-answer-state-{{ state }}">
+                                            {{ state | "Default" }}
+                                        </option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="d-flex g4 fd-column">
+                <label class="s-label" for="ps-control-title">Title</label>
+                <input id="ps-control-title" type="text" class="s-input" value="{{post-summary.playground.title}}">
+            </div>
+
+            <div class="d-flex g4 fd-column">
+                <label class="s-label" for="ps-control-excerpt">Excerpt</label>
+                <textarea id="ps-control-excerpt" type="text" class="s-textarea">{{post-summary.playground.excerpt}}</textarea>
+            </div>
+
+            <div class="d-flex g16 fw-wrap">
+                <div class="d-flex g4 fd-column">
+                    <label class="s-label" for="ps-control-badge">Badge</label>
+                    <div class="s-select">
+                        <select id="ps-control-badge">
+                            <option name="ps-badge-none" id="ps-control-badge-none" selected="true">No badge</option>
+                            {% for badge in post-summary.playground.badges %}
+                                <option value="ps-badge-{{ badge.label }}" id="ps-control-badge-{{ badge.label }}">
+                                    {{ badge.label }}
+                                </option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+
+                {% for stat in post-summary.playground.stats %}
+                    <div class="d-flex g4 fd-column">
+                        <label class="s-label" for="ps-control-count-{{ stat.name }}" data-type="{{ stat.name }}">
+                            {{ stat.name }}
+                        </label>
+                        <input
+                            id="ps-control-count-{{ stat.name }}"
+                            type="text"
+                            class="s-input s-input__sm wmx1"
+                            value="{{ stat.count}}"
+                            data-group="ps-control-count"
+                            data-controls="#ps-stat-{{ stat.name }}">
+                    </div>
+                {% endfor %}
+            </div>
+
+            <div class="d-flex g16 fw-wrap">
+                {% for stat in post-summary.playground.stats %}
+                    <div class="d-flex g8 ai-center">
+                        <div class="s-toggle-switch">
+                            <input
+                                id="ps-control-{{ stat.name }}"
+                                type="checkbox" {% if stat.show %}checked{% endif %}
+                                data-group="ps-control-stat"
+                                data-controls="#ps-stat-{{ stat.name }}">
+                            <div class="s-toggle-switch--indicator"></div>
+                        </div>
+                        <label class="s-label" for="ps-control-{{ stat.name }}">{{ stat.name }}</label>
+                    </div>
+                {% endfor %}
+            </div>
+
+        </div>
+    </div>
+
+</section>
+
+<script>
+    // post summary elements
+    const ps = document.querySelector("#ps-playground");
+    
+    const psControlLayout = document.querySelector("#ps-control-layout");
+    // Title
+    const psTitle = document.querySelector("#ps-title").querySelector('a');
+    const psControlTitle = document.querySelector("#ps-control-title");
+    // Excerpt
+    const psExcerpt = document.querySelector("#ps-excerpt");
+    const psControlExcerpt = document.querySelector("#ps-control-excerpt");
+    const psControlExcerptSize = document.querySelector("#ps-control-excerpt-size");
+    // Type
+    const psType = document.querySelector("#ps-type");
+    const psControlType = document.querySelector("#ps-control-type");
+    // Badge
+    const psBadges = document.querySelectorAll("[data-group='ps-badges']");
+    const psControlBadge = document.querySelector("#ps-control-badge");
+    // Stat
+    const psControlStats = document.querySelectorAll("[data-group='ps-control-stat']");
+    const psControlCounts = document.querySelectorAll("[data-group='ps-control-count']");
+    // Views hotness
+    const psViews = document.querySelector("#ps-stat-views");
+    const psControlViewsHotness = document.querySelector("#ps-control-stat-views-hotness");
+    // Answer state
+    const psAnswer = document.querySelector("#ps-stat-answers");
+    const psControlAnswerState = document.querySelector("#ps-control-stat-answer-state");
+
+    // toggle minimal layout
+    psControlLayout.addEventListener("change", (event) => {
+        ps.classList.toggle("s-post-summary__minimal");
+    });
+    // toggle type
+    psControlType.addEventListener("change", (event) => {
+        psType.classList.toggle("d-none");
+    });
+    // change title
+    psControlTitle.addEventListener("keyup", (event) => {
+        psTitle.textContent = event.target.value;
+    });
+    // change excerpt
+    psControlExcerpt.addEventListener("keyup", (event) => {
+        psExcerpt.textContent = event.target.value;
+    });
+    // change excerpt size
+    psControlExcerptSize.addEventListener("change", (event) => {
+        psExcerpt.classList = "s-post-summary--content-excerpt ";
+        const value = event.target.value;
+
+        if (value) {
+            psExcerpt.classList += value;
+        }
+    });
+    // show/hide badge
+    psControlBadge.addEventListener("change", (event) => {
+        psBadges.forEach(psBadge => psBadge.classList.add("d-none"));
+        const el = document.querySelector(`#${event.target.value}`);
+
+        if (el) {
+            el.classList.remove("d-none");
+        }
+    });
+    // change stat counts
+    psControlCounts.forEach(psControlCount => {
+        psControlCount.addEventListener("keyup", (event) => {
+            const el = document.querySelector(event.target.getAttribute("data-controls")).querySelector("[data-group='ps-count']");
+            const { value } = event.target;
+
+            if (el && value) {
+                el.textContent = value;
+            }
+        });
+    });
+    // show/hide stats
+    psControlStats.forEach(psControlStat => {
+        psControlStat.addEventListener("change", (event) => {
+            const el = document.querySelector(event.target.getAttribute("data-controls"));
+            console.log(psControlStat, el)
+
+            if (el) {
+                el.classList.toggle('d-none');
+            }
+        });
+    });
+    // set views hotness
+    psControlViewsHotness.addEventListener("change", (event) => {
+        psViews.classList = "s-post-summary--stats-item ";
+        const value = event.target.value;
+
+        if (value) {
+            psViews.classList += value;
+        }
+    });
+    // set answer state
+    console.log(psControlAnswerState, psAnswer)
+    psControlAnswerState.addEventListener("change", (event) => {
+        psAnswer.classList = "s-post-summary--stats-item ";
+        const value = event.target.value;
+
+        if (value) {
+            psAnswer.classList += value;
+
+            if (value === "has-accepted-answer") {
+                psAnswer.classList += " has-answers";
+            }
+        }
+    });
+    // show/hide tags
+</script>
