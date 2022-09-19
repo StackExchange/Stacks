@@ -53,6 +53,7 @@
         --_ps-has-accepted-answers-bc: transparent;
         --_ps-has-accepted-answers-bg: var(--black-075);
         --_ps-has-accepted-answers-fc: var(--black-500);
+        --_ps-meta-tags-tag-bg: var(--black-050);
         --_ps-state-fc: var(--black-500);
 
         .s-post-summary--meta-tags {
@@ -104,33 +105,31 @@
         }
     }
 
-    &&__ignored {
-        --_ps-meta-tags-tag-bg: var(--black-050);
-    }
-
     &&__watched {
-        --_ps-bg: var(--yellow-050);
-        --_ps-stats-fc: var(--black-500);
-        --_ps-content-title-a-fc: var(--theme-link-color-dark, var(--theme-post-title-color));
-        --_ps-content-title-a-fc-hover: var(--theme-link-color-dark-hover, var(--theme-post-title-color-hover));
-        --_ps-content-title-a-fc-visited: var(--theme-link-color-dark-visited, var(--theme-post-title-color-visited));
+        &:not(.s-post-summary__deleted):not(.s-post-summary__ignored) {
+            --_ps-bg: var(--yellow-050);
+            --_ps-stats-fc: var(--black-500);
+            --_ps-content-title-a-fc: var(--theme-link-color-dark, var(--theme-post-title-color));
+            --_ps-content-title-a-fc-hover: var(--theme-link-color-dark-hover, var(--theme-post-title-color-hover));
+            --_ps-content-title-a-fc-visited: var(--theme-link-color-dark-visited, var(--theme-post-title-color-visited));
 
-        .s-user-card {
-            a {
-                color: var(--_ps-content-title-a-fc);
-
-                &:hover,
-                &:active {
-                    color: var(--_ps-content-title-a-fc-hover);
+            .s-user-card {
+                a {
+                    color: var(--_ps-content-title-a-fc);
+    
+                    &:hover,
+                    &:active {
+                        color: var(--_ps-content-title-a-fc-hover);
+                    }
+                    &:visited {
+                        color: var(--_ps-content-title-a-fc-visited);
+                    }
                 }
-                &:visited {
-                    color: var(--_ps-content-title-a-fc-visited);
+    
+                .s-user-card--rep,
+                .s-user-card--time {
+                    color: var(--black-600);
                 }
-            }
-
-            .s-user-card--rep,
-            .s-user-card--time {
-                color: var(--black-600);
             }
         }
     }
