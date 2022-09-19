@@ -1943,7 +1943,262 @@ Is anyone aware of a fully functional implementation of this API (to generate th
 <section class="stacks-section">
     {% header "h2", "Playground" %}
     <p class="stacks-copy">Post summaries change their appearance based on being watched, ignored, or deleted. Articles can also have varying draft states.</p>
-    <div class="stacks-preview--example bt bc-black-075 btr-lg p0">
+
+    <div id="ps-controls" class="d-flex g48 fd-column p16 ba bbw0 bc-black-075 btr-sm bg-black-025">
+
+        <div class="d-flex fd-column g16">
+            <div class="fs-title fw-bold">Text & layout</div>
+            <!-- Title -->
+            <div class="d-flex g4 fd-column">
+                <label class="s-label" for="ps-control-title">Title</label>
+                <input id="ps-control-title" type="text" class="s-input" value="{{post-summary.playground.title}}">
+            </div>
+            <!-- Excerpt -->
+            <div class="d-flex g4 fd-column">
+                <label class="s-label" for="ps-control-excerpt">Excerpt</label>
+                <textarea id="ps-control-excerpt" type="text" class="s-textarea">{{post-summary.playground.excerpt}}</textarea>
+            </div>
+            <!-- Excerpt size -->
+            <div class="d-flex fw-wrap g16 jc-space-between">
+                <div class="d-flex g8 ai-center">
+                    <label class="s-label c-default">Excerpt size</label>
+                    <div class="s-toggle-switch s-toggle-switch__multiple">
+                        <input
+                            type="radio"
+                            name="ps-control-excerpt-size"
+                            id="ps-control-excerpt-size-default"
+                            checked>
+                        <label
+                            for="ps-control-excerpt-size-default"
+                            class="s-toggle-switch--label-off">
+                            Default
+                        </label>
+                        {% for size in post-summary.playground.excerptSizes %}
+                            <input
+                                type="radio"
+                                name="ps-control-excerpt-size"
+                                id="ps-control-excerpt-size-{{ size }}"
+                                data-class="s-post-summary--content-excerpt__{{ size }}">
+                            <label for="ps-control-excerpt-size-{{ size }}">{{ size }}</label>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            <!-- Toggles -->
+            <div class="d-flex fw-wrap g16">
+                <!-- Post summary layout -->
+                {% for toggle in post-summary.playground.layoutToggles %}
+                    <div class="d-flex g8 ai-center">
+                        <label class="s-label" for="ps-control-{{ toggle.id }}">{{ toggle.name }}</label>
+                        <div class="s-toggle-switch">
+                            <input
+                                type="checkbox"
+                                id="ps-control-{{ toggle.id }}"
+                                data-controls="{{ toggle.controls }}"
+                                data-class="{{ toggle.class }}"
+                                data-type="ps-control-toggle">
+                            <div class="s-toggle-switch--indicator"></div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="d-flex fd-column g16">
+            <div class="fs-title fw-bold">States</div>
+            <!-- Badge -->
+            <div class="d-flex fw-wrap g16 jc-space-between">
+                <div class="d-flex g8 ai-center">
+                    <label class="s-label c-default">Badge</label>
+                    <div class="s-toggle-switch s-toggle-switch__multiple">
+                        <input
+                            type="radio"
+                            name="ps-control-badge"
+                            id="ps-control-badge-none"
+                            checked>
+                        <label
+                            for="ps-control-badge-none"
+                            class="s-toggle-switch--label-off">
+                            None
+                        </label>
+                        {% for badge in post-summary.playground.badges %}
+                            <input
+                                type="radio"
+                                name="ps-control-badge"
+                                id="ps-control-badge-{{ badge.label }}"
+                                data-controls="#ps-badge-{{ badge.label }}">
+                            <label for="ps-control-badge-{{ badge.label }}" >{{ badge.label }}</label>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            <div class="d-flex fw-wrap g16">
+                <!-- Post summary modifiers -->
+                {% for toggle in post-summary.playground.stateToggles %}
+                    <div class="d-flex g8 ai-center">
+                        <label class="s-label" for="ps-control-{{ toggle.id }}">{{ toggle.name }}</label>
+                        <div class="s-toggle-switch">
+                            <input
+                                type="checkbox"
+                                id="ps-control-{{ toggle.id }}"
+                                data-controls="{{ toggle.controls }}"
+                                data-class="{{ toggle.class }}"
+                                data-type="ps-control-toggle">
+                            <div class="s-toggle-switch--indicator"></div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="d-flex fd-column g16">
+            <div class="fs-title fw-bold">Stat states</div>
+            <!-- Answers -->
+            <div class="d-flex fw-wrap g16 jc-space-between">
+                <div class="d-flex g8 ai-center">
+                    <label class="s-label c-default">Answers</label>
+                    <div class="s-toggle-switch s-toggle-switch__multiple">
+                        <input
+                            type="radio"
+                            name="ps-control-answer-state"
+                            id="ps-control-answer-state-none"
+                            checked>
+                        <label
+                            for="ps-control-answer-state-none"
+                            class="s-toggle-switch--label-off">
+                            Default
+                        </label>
+                        {% for state in post-summary.playground.answerStates %}
+                            <input
+                                type="radio"
+                                name="ps-control-answer-state"
+                                id="ps-control-answer-state-{{ state.name }}"
+                                data-class="{{ state.class }}">
+                            <label for="ps-control-answer-state-{{ state.name }}">{{ state.name }}</label>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            <!-- Hotness -->
+            <div class="d-flex fw-wrap g16 jc-space-between">
+                <div class="d-flex g8 ai-center">
+                    <label class="s-label c-default">Hotness</label>
+                    <div class="s-toggle-switch s-toggle-switch__multiple">
+                        <input
+                            type="radio"
+                            name="ps-control-hotness"
+                            id="ps-control-hotness-default"
+                            checked>
+                        <label
+                            for="ps-control-hotness-default"
+                            class="s-toggle-switch--label-off">
+                            Default
+                        </label>
+                        {% for level in post-summary.playground.hotness %}
+                            <input
+                                type="radio"
+                                name="ps-control-hotness"
+                                id="ps-control-hotness-{{ level }}"
+                                data-class="is-{{ level }}">
+                            <label for="ps-control-hotness-{{ level }}">{{ level }}</label>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="d-flex fd-column g16">
+            <div class="fs-title fw-bold">Stat item toggles</div>
+            <!-- Stat toggles -->
+            <div class="d-flex g16 fw-wrap">
+                {% for stat in post-summary.playground.stats %}
+                    <div class="d-flex g8 ai-center">
+                        <label class="s-label" for="ps-control-{{ stat.name }}">{{ stat.name }}</label>
+                        <div class="s-toggle-switch">
+                            <input
+                                id="ps-control-{{ stat.name }}"
+                                type="checkbox" {% if stat.show %}checked{% endif %}
+                                data-group="ps-control-stat"
+                                data-controls="#ps-stat-{{ stat.name }}">
+                            <div class="s-toggle-switch--indicator"></div>
+                        </div>
+                    </div>
+                {% endfor %}
+                <!-- Element toggles -->
+                {% for toggle in post-summary.playground.statToggles %}
+                    <div class="d-flex g8 ai-center">
+                        <label class="s-label" for="ps-control-{{ toggle.id }}">{{ toggle.name }}</label>
+                        <div class="s-toggle-switch">
+                            <input
+                                type="checkbox"
+                                id="ps-control-{{ toggle.id }}"
+                                data-controls="{{ toggle.controls }}"
+                                data-type="ps-control-toggle">
+                            <div class="s-toggle-switch--indicator"></div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="d-flex fd-column g16">
+            <div class="fs-title fw-bold">Stat item counts</div>
+            <!-- Stat counts -->
+            <div class="d-flex g16 fw-wrap">
+                {% for stat in post-summary.playground.stats %}
+                    <div class="d-flex g4 fd-column">
+                        <label class="s-label" for="ps-control-count-{{ stat.name }}" data-type="{{ stat.name }}">
+                            {{ stat.name }}
+                        </label>
+                        <input
+                            id="ps-control-count-{{ stat.name }}"
+                            type="text"
+                            class="s-input s-input__sm wmx1"
+                            value="{{ stat.count }}"
+                            data-group="ps-control-count"
+                            data-controls="#ps-stat-{{ stat.name }}">
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="d-flex fd-column g16">
+            <div class="fs-title fw-bold">Other</div>
+            <div class="d-flex fw-wrap g16">
+                <!-- Tags to show -->
+                <div class="d-flex g4 fd-column">
+                    <label class="s-label" for="ps-control-tag-count">Tags</label>
+                    <div class="s-toggle-switch">
+                        <input
+                            type="number"
+                            class="s-input s-input__sm wmx1"
+                            id="ps-control-tag-count"
+                            name="ps-control-tag-count"
+                            value="10"
+                            min="0"
+                            max="10">
+                    </div>
+                </div>
+                <!-- Element toggles -->
+                {% for toggle in post-summary.playground.otherToggles %}
+                    <div class="d-flex g8 ai-center">
+                        <label class="s-label" for="ps-control-{{ toggle.id }}">{{ toggle.name }}</label>
+                        <div class="s-toggle-switch">
+                            <input
+                                type="checkbox"
+                                id="ps-control-{{ toggle.id }}"
+                                data-controls="{{ toggle.controls }}"
+                                data-type="ps-control-toggle">
+                            <div class="s-toggle-switch--indicator"></div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+
+        </div>
+    </div>
+
+    <div class="stacks-preview--example bt bc-black-075 bbr-lg btr0 p0">
         <div id="ps-playground" class="s-post-summary">
             <div class="s-post-summary--stats">
                 {% for badge in post-summary.playground.badges %}
@@ -1967,6 +2222,12 @@ Is anyone aware of a fully functional implementation of this API (to generate th
                         </span>
                     </div>
                 {% endfor %}
+                <div
+                    id="ps-bounty"
+                    class="s-post-summary--stats-item has-bounty d-none"
+                    title="this question has an open bounty worth 100 reputation">
+                    +100
+                </div>
             </div>
             <div class="s-post-summary--content">
                 <div id="ps-type" class="s-post-summary--content-type d-none">
@@ -1980,6 +2241,12 @@ Is anyone aware of a fully functional implementation of this API (to generate th
                 </p>
                 <div class="s-post-summary--meta">
                     <div id="ps-tags" class="s-post-summary--meta-tags">
+                        <a
+                            id="ps-collective"
+                            class="s-avatar s-avatar__24 va-text-top bg-theme-primary d-none"
+                            data-controller="s-tooltip"
+                            title="AudioBubble Collective"
+                            href="#"></a>
                         {% for tag in post-summary.playground.tags %}
                             <a id="ps-tag-{{ tag.label }}" class="s-tag {{ tag.class }}" href="#">
                                 {{ tag.label }}
@@ -2001,7 +2268,7 @@ Is anyone aware of a fully functional implementation of this API (to generate th
                 </div>
 
                 {% for answer in post-summary.playground.answers %}
-                    <div class="s-post-summary--answer d-none">
+                    <div id="ps-answers" class="s-post-summary--answer d-none">
                         <div class="s-post-summary--stats">
                             <div class="s-post-summary--stats-item s-post-summary--stats-item__emphasized">
                                 <span class="s-post-summary--stats-item-number">
@@ -2044,170 +2311,59 @@ Is anyone aware of a fully functional implementation of this API (to generate th
             </div>
         </div>
 
-        <div id="ps-controls" class="d-flex fd-column g16 px16 py12">
-            <div class="d-flex fw-wrap g16 jc-space-between">
-                <div class="d-flex fw-wrap g16">
-
-                    <div class="d-flex g8 ai-center">
-                        <div class="s-toggle-switch">
-                            <input id="ps-control-layout" type="checkbox">
-                            <div class="s-toggle-switch--indicator"></div>
-                        </div>
-                        <label class="s-label" for="ps-control-layout">Minimal layout</label>
-                    </div>
-
-                    <div class="d-flex g8 ai-center">
-                        <div class="s-toggle-switch">
-                            <input id="ps-control-type" type="checkbox">
-                            <div class="s-toggle-switch--indicator"></div>
-                        </div>
-                        <label class="s-label" for="ps-control-type">Show type</label>
-                    </div>
-
-                </div>
-                <div class="d-flex g16">
-
-                    <div class="d-flex g8 ai-center">
-                        <label class="s-label" for="ps-control-excerpt-size">Excerpt size</label>
-                        <div class="s-select">
-                            <select id="ps-control-excerpt-size">
-                                {% for size in post-summary.playground.excerptSizes %}
-                                    <option value="{% if size %}s-post-summary--content-excerpt__{{ size }}{% endif %}" id="ps-control-excerpt-size-{{ size }}">{{ size | "Default" }}</option>
-                                {% endfor %}
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="d-flex g16 fw-wrap">
-                        <div class="d-flex g8 ai-center">
-                            <label class="s-label" for="ps-control-excerpt-size">Hotness</label>
-                            <div class="s-select">
-                                <select id="ps-control-stat-views-hotness">
-                                    {% for temp in post-summary.playground.hotness %}
-                                        <option value="{% if temp %}is-{{ temp }}{% endif %}" id="ps-control-hotness-{{ temp }}">{{ temp | "Default" }}</option>
-                                    {% endfor %}
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="d-flex g16 fw-wrap">
-                        <div class="d-flex g8 ai-center">
-                            <label class="s-label" for="ps-control-answer-state">Answers</label>
-                            <div class="s-select">
-                                <select id="ps-control-stat-answer-state">
-                                    {% for state in post-summary.playground.answerStates %}
-                                        <option
-                                            value="{% if state %}{{ state }}{% endif %}"
-                                            id="ps-control-answer-state-{{ state }}">
-                                            {{ state | "Default" }}
-                                        </option>
-                                    {% endfor %}
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-
-            <div class="d-flex g4 fd-column">
-                <label class="s-label" for="ps-control-title">Title</label>
-                <input id="ps-control-title" type="text" class="s-input" value="{{post-summary.playground.title}}">
-            </div>
-
-            <div class="d-flex g4 fd-column">
-                <label class="s-label" for="ps-control-excerpt">Excerpt</label>
-                <textarea id="ps-control-excerpt" type="text" class="s-textarea">{{post-summary.playground.excerpt}}</textarea>
-            </div>
-
-            <div class="d-flex g16 fw-wrap">
-                <div class="d-flex g4 fd-column">
-                    <label class="s-label" for="ps-control-badge">Badge</label>
-                    <div class="s-select">
-                        <select id="ps-control-badge">
-                            <option name="ps-badge-none" id="ps-control-badge-none" selected="true">No badge</option>
-                            {% for badge in post-summary.playground.badges %}
-                                <option value="ps-badge-{{ badge.label }}" id="ps-control-badge-{{ badge.label }}">
-                                    {{ badge.label }}
-                                </option>
-                            {% endfor %}
-                        </select>
-                    </div>
-                </div>
-
-                {% for stat in post-summary.playground.stats %}
-                    <div class="d-flex g4 fd-column">
-                        <label class="s-label" for="ps-control-count-{{ stat.name }}" data-type="{{ stat.name }}">
-                            {{ stat.name }}
-                        </label>
-                        <input
-                            id="ps-control-count-{{ stat.name }}"
-                            type="text"
-                            class="s-input s-input__sm wmx1"
-                            value="{{ stat.count}}"
-                            data-group="ps-control-count"
-                            data-controls="#ps-stat-{{ stat.name }}">
-                    </div>
-                {% endfor %}
-            </div>
-
-            <div class="d-flex g16 fw-wrap">
-                {% for stat in post-summary.playground.stats %}
-                    <div class="d-flex g8 ai-center">
-                        <div class="s-toggle-switch">
-                            <input
-                                id="ps-control-{{ stat.name }}"
-                                type="checkbox" {% if stat.show %}checked{% endif %}
-                                data-group="ps-control-stat"
-                                data-controls="#ps-stat-{{ stat.name }}">
-                            <div class="s-toggle-switch--indicator"></div>
-                        </div>
-                        <label class="s-label" for="ps-control-{{ stat.name }}">{{ stat.name }}</label>
-                    </div>
-                {% endfor %}
-            </div>
-
-        </div>
     </div>
 
 </section>
 
 <script>
-    // post summary elements
-    const ps = document.querySelector("#ps-playground");
-    
-    const psControlLayout = document.querySelector("#ps-control-layout");
+    const toggleClass = (toggleCondition, el, className) => {
+        const classNames = className?.split(" ") || [];
+
+        if (classNames.length) {
+            if (toggleCondition) {
+                el.classList.add(...classNames);
+            } else {
+                el.classList.remove(...classNames);
+            }
+        }
+    }
+    // toggles
+    const psControlToggles = document.querySelectorAll("[data-type='ps-control-toggle']");
     // Title
     const psTitle = document.querySelector("#ps-title").querySelector('a');
     const psControlTitle = document.querySelector("#ps-control-title");
     // Excerpt
     const psExcerpt = document.querySelector("#ps-excerpt");
     const psControlExcerpt = document.querySelector("#ps-control-excerpt");
-    const psControlExcerptSize = document.querySelector("#ps-control-excerpt-size");
-    // Type
-    const psType = document.querySelector("#ps-type");
-    const psControlType = document.querySelector("#ps-control-type");
+    const psControlExcerptSize = document.querySelectorAll("[name='ps-control-excerpt-size']");
     // Badge
     const psBadges = document.querySelectorAll("[data-group='ps-badges']");
-    const psControlBadge = document.querySelector("#ps-control-badge");
+    const psControlBadge = document.querySelectorAll("[name='ps-control-badge']");
     // Stat
     const psControlStats = document.querySelectorAll("[data-group='ps-control-stat']");
     const psControlCounts = document.querySelectorAll("[data-group='ps-control-count']");
     // Views hotness
     const psViews = document.querySelector("#ps-stat-views");
-    const psControlViewsHotness = document.querySelector("#ps-control-stat-views-hotness");
+    const psControlHotness = document.querySelectorAll("[name='ps-control-hotness']");
     // Answer state
     const psAnswer = document.querySelector("#ps-stat-answers");
-    const psControlAnswerState = document.querySelector("#ps-control-stat-answer-state");
+    const psControlAnswerState = document.querySelectorAll("[name='ps-control-answer-state']");
+    // Answer state
+    const psTags = document.querySelector("#ps-tags");
+    const psControlTagCount = document.querySelector("#ps-control-tag-count");
 
-    // toggle minimal layout
-    psControlLayout.addEventListener("change", (event) => {
-        ps.classList.toggle("s-post-summary__minimal");
-    });
-    // toggle type
-    psControlType.addEventListener("change", (event) => {
-        psType.classList.toggle("d-none");
+    // post toggles
+    psControlToggles.forEach(toggle => {
+        toggle.addEventListener("change", (event) => {
+            const value = event.target.getAttribute("data-class");
+            const el = document.querySelector(event.target.getAttribute("data-controls"));
+
+            if (value) {
+                toggleClass(event.target.checked, el, value);
+            } else {
+                toggleClass(!event.target.checked, el, "d-none");
+            }
+        });
     });
     // change title
     psControlTitle.addEventListener("keyup", (event) => {
@@ -2218,27 +2374,29 @@ Is anyone aware of a fully functional implementation of this API (to generate th
         psExcerpt.textContent = event.target.value;
     });
     // change excerpt size
-    psControlExcerptSize.addEventListener("change", (event) => {
-        psExcerpt.classList = "s-post-summary--content-excerpt ";
-        const value = event.target.value;
+    psControlExcerptSize.forEach(control => control.addEventListener("change", (event) => {
+        const value = event.target.getAttribute("data-class");
+        psExcerpt.classList = "s-post-summary--content-excerpt";
 
         if (value) {
-            psExcerpt.classList += value;
+            toggleClass(value.indexOf("none") > -1, psExcerpt, "d-none");
+            toggleClass(value && value.indexOf("none") === -1, psExcerpt, value);
         }
-    });
+    }));
     // show/hide badge
-    psControlBadge.addEventListener("change", (event) => {
+    psControlBadge.forEach(control => control.addEventListener("change", (event) => {
         psBadges.forEach(psBadge => psBadge.classList.add("d-none"));
-        const el = document.querySelector(`#${event.target.value}`);
+        const el = document.querySelector(event.target.getAttribute("data-controls"));
 
         if (el) {
-            el.classList.remove("d-none");
+            toggleClass(false, el, "d-none");
         }
-    });
+    }));
     // change stat counts
     psControlCounts.forEach(psControlCount => {
         psControlCount.addEventListener("keyup", (event) => {
-            const el = document.querySelector(event.target.getAttribute("data-controls")).querySelector("[data-group='ps-count']");
+            const controlTargetEl = event.target.getAttribute("data-controls");
+            const el = document.querySelector(controlTargetEl).querySelector("[data-group='ps-count']");
             const { value } = event.target;
 
             if (el && value) {
@@ -2249,36 +2407,42 @@ Is anyone aware of a fully functional implementation of this API (to generate th
     // show/hide stats
     psControlStats.forEach(psControlStat => {
         psControlStat.addEventListener("change", (event) => {
-            const el = document.querySelector(event.target.getAttribute("data-controls"));
-            console.log(psControlStat, el)
+            const controlTargetEl = event.target.getAttribute("data-controls");
+            const el = document.querySelector(controlTargetEl);
 
-            if (el) {
-                el.classList.toggle('d-none');
-            }
+            toggleClass(!event.target.checked, el, "d-none");
         });
     });
     // set views hotness
-    psControlViewsHotness.addEventListener("change", (event) => {
-        psViews.classList = "s-post-summary--stats-item ";
-        const value = event.target.value;
+    psControlHotness.forEach(control => control.addEventListener("change", (event) => {
+        psViews.classList = "s-post-summary--stats-item";
+        const value = event.target.getAttribute("data-class");
 
-        if (value) {
-            psViews.classList += value;
-        }
-    });
+        toggleClass(value, psViews, value);
+    }));
     // set answer state
-    console.log(psControlAnswerState, psAnswer)
-    psControlAnswerState.addEventListener("change", (event) => {
-        psAnswer.classList = "s-post-summary--stats-item ";
-        const value = event.target.value;
+    psControlAnswerState.forEach(control => control.addEventListener("change", (event) => {
+        psAnswer.classList = "s-post-summary--stats-item";
+        const value = event.target.getAttribute("data-class");
 
         if (value) {
-            psAnswer.classList += value;
-
-            if (value === "has-accepted-answer") {
-                psAnswer.classList += " has-answers";
-            }
+            toggleClass(value, psAnswer, value);
         }
+    }));
+    // tag count
+    psControlTagCount.addEventListener("change", (event) => {
+        const count = event.target.value;
+
+        psTags.querySelectorAll('.s-tag').forEach((tag, i) => {
+            if (i >= count) {
+                tag.classList.add('d-none');
+            } else {
+                tag.classList.remove('d-none');
+            }
+        });
     });
-    // show/hide tags
+
+    // see https://meta.stackexchange.local/developer/theme/post-summary
+    // toggle legacy stat support
+    // toggle community owned
 </script>
