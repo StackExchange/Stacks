@@ -1,237 +1,221 @@
-//
-//  TAGS
-//
-//  TABLE OF CONTENTS
-//  • BASE STYLE
-//  • STYLE VARIATIONS
-//  • LAYOUTS & SIZES
-//
-//  ===========================================================================
-//  $   MIXIN
-//      Any tag we use will always modify the same items, so to save time,
-//      here's a mixin to state all that CSS.
-//  ---------------------------------------------------------------------------
-
-.s-tag-styles(@border: transparent, @background: transparent, @color: inherit) {
-    border-color: @border;
-    background-color: @background;
-    color: @color;
+.s-tag {
+    --_ta-bc: var(--theme-tag-border-color);
+    --_ta-bg: var(--theme-tag-background-color);
+    --_ta-br: var(--br-sm);
+    --_ta-fc: var(--theme-tag-color);
+    --_ta-fs: var(--fs-caption);
+    --_ta-lh: 1.846153846;
+    --_ta-pl: var(--_ta-px);
+    --_ta-pr: var(--_ta-px);
+    --_ta-px: var(--su4);
+    // hover, focus, active
+    --_ta-bc-hover: var(--theme-tag-hover-border-color);
+    --_ta-bg-hover: var(--theme-tag-hover-background-color);
+    --_ta-fc-hover: var(--theme-tag-hover-color);
+    // .is-selected
+    --_ta-bc-selected: transparent;
+    --_ta-bg-selected: var(--theme-secondary-200);
+    --_ta-fc-selected: var(--theme-secondary-900);
 
     .highcontrast-mode({
-        border-color: currentColor;
+        --_ta-bc: currentColor;
+
+        text-decoration: none;
     });
 
-    .s-tag--dismiss {
-        color: inherit;
-        background-color: transparent;
+    // SIZES
+    &&__xs {
+        --_ta-fs: var(--fs-fine);
+        --_ta-lh: 1.4;
+        --_ta-px: var(--su2);
+    }
+    &&__sm {
+        --_ta-fs: var(--fs-caption);
+        --_ta-lh: 1.5;
+    }
+    &&__md {
+        --_ta-px: var(--su6);
+        --_ta-fs: var(--fs-body2);
+        --_ta-lh: 1.733333333;
+    }
+    &&__lg {
+        --_ta-br: calc(var(--br-sm) + 1px);
+        --_ta-fs: var(--fs-subheading);
+        --_ta-lh: 1.684210526;
+        --_ta-px: var(--su6);
+    }
 
-        &:hover {
-            color: @background;
-            background-color: @color;
+    &__ignored,
+    &__watched {
+        --_ta-pl: calc(var(--su-static24) - var(--su-static2)); // 22px
+        --_ta-before-size: calc(var(--su-static16) - var(--su-static2)); // 14px
+        // --_ta-before-icon defined per variant
+
+        &:before {
+            height: var(--_ta-before-size);
+            width: var(--_ta-before-size);
+            -webkit-mask: var(--_ta-before-icon) no-repeat center;
+            mask: var(--_ta-before-icon) no-repeat center;
+
+            background-color: currentColor;
+            content: "";
+            display: block;
+            left: var(--su-static4);
+            margin-right: var(--su2);
+            position: absolute;
+            top: calc(50% - calc(var(--su-static8) - var(--su-static1)));
+            -webkit-mask-size: contain;
+            mask-size: contain;
+        }
+        position: relative;
+    }
+
+    &__ignored {
+        --_ta-before-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 14 14'%3E%3Cpath d='M3.52 7.38 1.58 9.26A12.38 12.38 0 0 1 0 7s2.63-5.14 7.05-5.14c.66 0 1.28.12 1.86.32L7.44 3.6a3.48 3.48 0 0 0-3.92 3.78ZM5.3 9.99c.5.28 1.1.44 1.71.44 1.94 0 3.5-1.53 3.5-3.43 0-.62-.17-1.21-.47-1.72L8.7 6.6a1.73 1.73 0 0 1-2.08 2.07L5.29 10Zm6.23-6.19A12.7 12.7 0 0 1 14 7s-2.63 5.14-6.95 5.14A6.1 6.1 0 0 1 4 11.3L2.27 13l-1.4-1.36L11.9 1l1.23 1.2-1.6 1.6Z'/%3E%3C/svg%3E");
+    }
+
+    &__moderator {
+        --_ta-bc: var(--red-200);
+        --_ta-bg: var(--red-050);
+        --_ta-fc: var(--red-800);
+        --_ta-bc-hover: var(--red-300);
+        --_ta-bg-hover: var(--red-100);
+        --_ta-fc-hover: var(--red-900);
+        --_ta-bc-selected: var(--red-400);
+        --_ta-bg-selected: var(--red-200);
+        --_ta-fc-selected: var(--red-800);
+    }
+
+    &__muted {
+        --_ta-bc: transparent;
+        --_ta-bg: var(--black-075);
+        --_ta-fc: var(--black-700);
+        --_ta-bc-hover: transparent;
+        --_ta-bg-hover: var(--black-100);
+        --_ta-fc-hover: var(--black-800);
+        --_ta-bc-selected: transparent;
+        --_ta-bg-selected: var(--black-200);
+        --_ta-fc-selected: var(--black-900);
+    }
+
+    &__required {
+        --_ta-bc: var(--bc-darker);
+        --_ta-bg: var(--black-075);
+        --_ta-fc: var(--black-700);
+        --_ta-bc-hover: var(--black-300);
+        --_ta-bg-hover: var(--black-100);
+        --_ta-fc-hover: var(--black-800);
+        --_ta-bc-selected: var(--black-500);
+        --_ta-bg-selected: var(--black-200);
+        --_ta-fc-selected: var(--black-900);
+    }
+
+    &__watched {
+        --_ta-before-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 14 14'%3E%3Cpath d='M7.05 1C2.63 1 0 6.5 0 6.5S2.63 12 7.05 12C11.38 12 14 6.5 14 6.5S11.37 1 7.05 1ZM7 10.17A3.59 3.59 0 0 1 3.5 6.5 3.6 3.6 0 0 1 7 2.83c1.94 0 3.5 1.65 3.5 3.67A3.57 3.57 0 0 1 7 10.17Zm0-1.84c.97 0 1.75-.81 1.75-1.83S7.97 4.67 7 4.67s-1.75.81-1.75 1.83S6.03 8.33 7 8.33Z'/%3E%3C/svg%3E");
+    }
+
+    // STATES
+    a&:not(.is-selected) {
+        &:hover,
+        &:focus,
+        &:active {
+            background-color: var(--_ta-bg-hover);
+            border-color: var(--_ta-bc-hover);
+            color: var(--_ta-fc-hover);
 
             .highcontrast-mode({
-                color: var(--white); // We do not want this color to remain fixed
+                border-color: currentColor;
             });
         }
     }
-}
 
-.s-tag-selected-styles(@border: transparent, @background: transparent, @color: inherit) {
-    border-color: @border;
-    background-color: @background;
-    color: @color;
+    // Selected
+    &.is-selected {
+        &,
+        a&,
+        a&:active,
+        a&:hover,
+        a&:focus {
+            background-color: var(--_ta-bg-selected);
+            border-color: var(--_ta-bc-selected);
+            color: var(--_ta-fc-selected);
 
-    .highcontrast-mode({
-        border-color: currentColor;
-    });
-}
-
-.s-tag-hover-styles(@border-hover: transparent, @background-hover: transparent, @color-hover: inherit) {
-    &:hover,
-    &:focus,
-    &:active {
-        border-color: @border-hover;
-        background-color: @background-hover;
-        color: @color-hover;
-
-        .highcontrast-mode({
-            border-color: currentColor;
-        });
+            .highcontrast-mode({
+                border-color: currentColor;
+            });
+        }
     }
-}
 
+    // Interaction states
+    a&:not(.is-selected) {
+        &:hover,
+        &:focus,
+        &:active {
+            background-color: var(--_ta-bg-hover);
+            border-color: var(--_ta-bc-hover);
+            color: var(--_ta-fc-hover);
 
-//  ===========================================================================
-//  $   BASE STYLE
-//      The same style is applied to all tags. Do not modify the core style.
-//  ---------------------------------------------------------------------------
-.s-tag {
-    display: inline-flex;
+            .highcontrast-mode({
+                border-color: currentColor;
+            });
+        }
+    }
+
+    background-color: var(--_ta-bg);
+    border: 1px solid var(--_ta-bc);
+    border-radius: var(--_ta-br);
+    color: var(--_ta-fc);
+    font-size: var(--_ta-fs);
+    line-height: var(--_ta-lh);
+    padding-left: var(--_ta-pl);
+    padding-right: var(--_ta-pr);
+
     align-items: center;
+    display: inline-flex;
     justify-content: center;
     min-width: 0;
-    padding-left: var(--su4);
-    padding-right: var(--su4);
-    border-style: solid;
-    border-width: 1px;
-    border-radius: var(--br-sm);
-    font-size: var(--fs-caption);
-    line-height: 1.846153846;
     text-decoration: none;
     vertical-align: middle;
     white-space: nowrap;
-
-    .s-tag-styles(var(--theme-tag-border-color), var(--theme-tag-background-color), var(--theme-tag-color));
-
-    .highcontrast-mode({ text-decoration: none; });
-
-    &.is-selected {
-        .s-tag-selected-styles(transparent, var(--theme-secondary-200), var(--theme-secondary-900));
-    }
-
-    //  -- SIZES
-    &.s-tag__xs {
-        font-size: var(--fs-fine);
-        line-height: 1.4;
-        padding-left: var(--su2);
-        padding-right: var(--su2);
-    }
-    &.s-tag__sm {
-        font-size: var(--fs-caption);
-        line-height: 1.5;
-    }
-    &.s-tag__md {
-        padding-left: var(--su6);
-        padding-right: var(--su6);
-        font-size: var(--fs-body2);
-        line-height: 1.733333333;
-    }
-    &.s-tag__lg {
-        padding-left: var(--su6);
-        padding-right: var(--su6);
-        border-radius: calc(var(--br-sm) + 1px);
-        font-size: var(--fs-subheading);
-        line-height: 1.684210526;
-    }
 }
 
-a.s-tag:not(.is-selected) {
-    .s-tag-hover-styles(var(--theme-tag-hover-border-color), var(--theme-tag-hover-background-color), var(--theme-tag-hover-color));
-}
-
-//  $$  DISMISS ICON
-//      Style adjustment to @Svg.ClearSm
-//  ---------------------------------------------------------------------------
+// ELEMENTS
+// Style adjustment to @Svg.ClearSm
 .s-tag--dismiss {
-    display: flex;
+    &:hover {
+        .highcontrast-mode({
+            color: var(--white);
+        });
+
+        background-color: var(--_ta-fc);
+        color: var(--_ta-bg);
+    }
+
     align-content: center;
     align-self: center;
-    justify-content: center;
-    width: var(--su-static16);
+    background-color: transparent;
+    border-radius: var(--br-sm);
+    color: inherit;
+    cursor: pointer;
+    display: flex;
     height: var(--su-static16);
+    justify-content: center;
     margin-left: var(--su4);
     padding: var(--su1);
-    border-radius: var(--br-sm);
-    cursor: pointer;
-
-    &:hover {
-        color: var(--white);
-    }
+    width: var(--su-static16);
 }
 
-//  $$  SPONSOR IMAGE
-//      The small sponsor favicon displayed within a tag
-//  ---------------------------------------------------------------------------
+// The small sponsor favicon displayed within a tag
 .s-tag--sponsor {
-    display: inline-flex;
-    align-self: center;
-    margin: calc(var(--su1) * -1) var(--su4) calc(var(--su2) * -1) calc(var(--su2) * -1);
-    max-width: calc(var(--su-static16) + var(--su-static2));
-    border-radius: calc(var(--br-sm) - 1px);
-
-    .svg-icon,
-    img {
+    img,
+    .svg-icon {
         width: 100%;
         height: 100%;
     }
-}
 
-
-//  ===========================================================================
-//  $   STYLE VARIATIONS
-//      This is what can be modified on each community (for the most part).
-//  ===========================================================================
-//  $$  Required Tag
-//  ---------------------------------------------------------------------------
-.s-tag__required {
-    .s-tag-styles(var(--bc-darker), var(--black-075), var(--black-700));
-
-    &.is-selected {
-        .s-tag-selected-styles(var(--black-500), var(--black-200), var(--black-900));
-    }
-}
-a.s-tag__required:not(.is-selected) {
-    .s-tag-hover-styles(var(--black-300), var(--black-100), var(--black-800));
-}
-
-//  $$  Moderator Tag
-//  ---------------------------------------------------------------------------
-.s-tag__moderator {
-    .s-tag-styles(var(--red-200), var(--red-050), var(--red-800));
-
-    &.is-selected {
-        .s-tag-selected-styles(var(--red-400), var(--red-200), var(--red-800));
-    }
-}
-a.s-tag__moderator:not(.is-selected) {
-    .s-tag-hover-styles(var(--red-300), var(--red-100), var(--red-900));
-}
-
-//  $$  Muted Tag
-//  ---------------------------------------------------------------------------
-.s-tag__muted {
-    .s-tag-styles(transparent, var(--black-075), var(--black-700));
-
-    &.is-selected {
-        .s-tag-selected-styles(transparent, var(--black-200), var(--black-900));
-    }
-}
-a.s-tag__muted:not(.is-selected) {
-    .s-tag-hover-styles(transparent, var(--black-100), var(--black-800));
-}
-
-//  $$  Tag with Icons (watched, ignored)
-//  ---------------------------------------------------------------------------
-.s-tag__watched,
-.s-tag__ignored {
-    position: relative;
-    padding-left: 22px;
-
-    &:before {
-        content: "";
-        display: block;
-        width: 14px;
-        height: 14px;
-        margin-right: var(--su2);
-        background-color: currentColor;
-        position: absolute;
-        left: 4px;
-        top: calc(50% - 7px);
-        -webkit-mask: var(--s-tag-icon) no-repeat center;
-        mask: var(--s-tag-icon) no-repeat center;
-        -webkit-mask-size: contain;
-        mask-size: contain;
-    }
-}
-
-//  $$  Watched Tag
-//  ---------------------------------------------------------------------------
-.s-tag__watched {
-    --s-tag-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 14 14'%3E%3Cpath d='M7.05 1C2.63 1 0 6.5 0 6.5S2.63 12 7.05 12C11.38 12 14 6.5 14 6.5S11.37 1 7.05 1ZM7 10.17A3.59 3.59 0 0 1 3.5 6.5 3.6 3.6 0 0 1 7 2.83c1.94 0 3.5 1.65 3.5 3.67A3.57 3.57 0 0 1 7 10.17Zm0-1.84c.97 0 1.75-.81 1.75-1.83S7.97 4.67 7 4.67s-1.75.81-1.75 1.83S6.03 8.33 7 8.33Z'/%3E%3C/svg%3E");
-}
-
-//  $$  Ignored Tag
-//  ---------------------------------------------------------------------------
-.s-tag__ignored {
-    --s-tag-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 14 14'%3E%3Cpath d='M3.52 7.38 1.58 9.26A12.38 12.38 0 0 1 0 7s2.63-5.14 7.05-5.14c.66 0 1.28.12 1.86.32L7.44 3.6a3.48 3.48 0 0 0-3.92 3.78ZM5.3 9.99c.5.28 1.1.44 1.71.44 1.94 0 3.5-1.53 3.5-3.43 0-.62-.17-1.21-.47-1.72L8.7 6.6a1.73 1.73 0 0 1-2.08 2.07L5.29 10Zm6.23-6.19A12.7 12.7 0 0 1 14 7s-2.63 5.14-6.95 5.14A6.1 6.1 0 0 1 4 11.3L2.27 13l-1.4-1.36L11.9 1l1.23 1.2-1.6 1.6Z'/%3E%3C/svg%3E");
+    align-self: center;
+    border-radius: calc(var(--br-sm) - 1px);
+    display: inline-flex;
+    margin: calc(var(--su1) * -1) var(--su4) calc(var(--su2) * -1) calc(var(--su2) * -1);
+    max-width: calc(var(--su-static16) + var(--su-static2));
 }
