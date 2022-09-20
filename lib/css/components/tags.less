@@ -74,6 +74,7 @@
         --_ta-before-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 14 14'%3E%3Cpath d='M3.52 7.38 1.58 9.26A12.38 12.38 0 0 1 0 7s2.63-5.14 7.05-5.14c.66 0 1.28.12 1.86.32L7.44 3.6a3.48 3.48 0 0 0-3.92 3.78ZM5.3 9.99c.5.28 1.1.44 1.71.44 1.94 0 3.5-1.53 3.5-3.43 0-.62-.17-1.21-.47-1.72L8.7 6.6a1.73 1.73 0 0 1-2.08 2.07L5.29 10Zm6.23-6.19A12.7 12.7 0 0 1 14 7s-2.63 5.14-6.95 5.14A6.1 6.1 0 0 1 4 11.3L2.27 13l-1.4-1.36L11.9 1l1.23 1.2-1.6 1.6Z'/%3E%3C/svg%3E");
     }
 
+    // moderator overrides other muted and required, required overrides muted
     &__moderator {
         --_ta-bc: var(--red-200);
         --_ta-bg: var(--red-050);
@@ -86,7 +87,7 @@
         --_ta-fc-selected: var(--red-800);
     }
 
-    &__muted {
+    &__muted:not(.s-tag__moderator):not(.s-tag__required) {
         --_ta-bc: transparent;
         --_ta-bg: var(--black-075);
         --_ta-fc: var(--black-700);
@@ -98,7 +99,7 @@
         --_ta-fc-selected: var(--black-900);
     }
 
-    &__required {
+    &__required:not(.s-tag__moderator) {
         --_ta-bc: var(--bc-darker);
         --_ta-bg: var(--black-075);
         --_ta-fc: var(--black-700);
