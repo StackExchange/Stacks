@@ -1,146 +1,142 @@
-//
-//  STACK OVERFLOW
-//  NAVIGATION
-//
-//  This CSS comes from Stacks, our CSS & Pattern library for rapidly building
-//  Stack Overflow. For documentation of all these classes and how to contribute,
-//  visit https://stackoverflow.design/
-//
-//  TABLE OF CONTENTS
-//  • BASE STYLE
-//  • MUTED STYLE
-//
-//  ============================================================================
-//  $   BASE STYLE
-//  ----------------------------------------------------------------------------
 .s-navigation {
-    display: flex;
-    margin: calc(var(--su2) * -1);
-    padding: var(--su2) 0;
-    flex-wrap: wrap;
+    --_na-fd: row;
+    --_na-fw: wrap;
+    --_na-p: var(--su2) 0;
+    --_na-gap: var(--su4);
 
-    // If the s-navigation is a list, let's reset all the properties
-    list-style: none;
-
-    .s-navigation--item {
-        display: flex;
-        align-items: center;
-        padding: var(--su6) var(--su12);
-        position: relative;
-
-        // Reset some things for when the navigation item is also a button
-        border: none;
-        font: unset;
-        background: none;
-        box-shadow: none;
-        cursor: pointer;
-        user-select: auto;
-        border-radius: 1000px;
-        margin: var(--su2);
-        white-space: nowrap;
-        color: var(--black-600);
-
-        &:hover,
-        &:active {
-            background: var(--black-075);
-            color: var(--black-600);
-
-            .highcontrast-mode({
-                background: var(--black-600);
-                color: var(--black-100);
-            });
-        }
-
-        @focus-styles();
-
-        &.is-selected {
-            background: var(--theme-primary-color);
-            color: var(--white);
-
-            &:hover,
-            &:active {
-                background: var(--theme-primary-600);
-                color: var(--white);
-            }
-
-            .highcontrast-mode({ text-decoration: none; });
-        }
-
-        &.s-navigation--item__dropdown {
-            padding-right: 2em;
-
-            &:after {
-                content: "";
-                position: absolute;
-                z-index: var(--zi-active);
-                top: calc(50% - 2px);
-                right: 0.9em;
-                border-style: solid;
-                border-width: var(--su-static4);
-                border-top-width: var(--su-static4);
-                border-bottom-width: 0;
-                border-color: currentColor transparent;
-                pointer-events: none;
-            }
-        }
-    }
-
-    &.s-navigation__scroll {
+    &&__scroll {
+        --_na-fw: nowrap;
         overflow-x: auto;
-        flex-wrap: nowrap;
-
         @scrollbar-styles();
     }
 
-    &.s-navigation__vertical {
-        flex-direction: column;
-        padding: 0;
-        margin: 0;
-
-        .s-navigation--item {
-            margin: 0;
-            white-space: normal;
-        }
+    // ORIENTATION
+    &&__vertical {
+        --_na-fd: column;
+        --_na-gap: 0;
+        --_na-p: 0;
     }
 
-    .s-navigation--title {
-        font-size: var(--fs-fine);
-        font-weight: bold;
-        margin-top: var(--su16);
-        padding: var(--su6) var(--su12);
-        text-transform: uppercase;
+    flex-direction: var(--_na-fd);
+    flex-wrap: var(--_na-fw);
+    gap: var(--_na-gap);
+    padding: var(--_na-p);
 
-        &:first-child {
-            margin-top: 0;
-        }
-    }
+    display: flex;
+    list-style: none; // If the s-navigation is a list, let's reset all the properties
+    margin: 0;
+}
 
-    //  ============================================================================
-    //  $   MUTED STYLE
-    //  ----------------------------------------------------------------------------
-    &.s-navigation__muted .s-navigation--item {
+.s-navigation--item {
+    --_na-item-bg: none;
+    --_na-item-fc: var(--black-600);
+    --_na-item-fs: unset;
+    --_na-item-p: var(--su6) var(--su12);
+    --_na-item-py: var(--su12);
+    --_na-item-ws: nowrap;
+    // hover
+    --_na-item-bg-hover: var(--black-075);
+    --_na-item-fc-hover: var(--_na-item-fc);
+
+    .highcontrast-mode({
+        --_na-item-bg-hover: var(--black-600);
+        --_na-item-fc-hover: var(--black-100);
+    });
+
+    // VARIANTS
+    // Muted
+    .s-navigation__muted & {
         &.is-selected {
-            background: var(--black-050);
-            color: var(--black-800);
+            --_na-item-bg: var(--black-050);
+            --_na-item-fc: var(--black-800);
+            --_na-item-bg-hover: var(--_na-item-bg);
+            --_na-item-fc-hover: var(--_na-item-fc);
 
             .highcontrast-mode({
-                background: var(--black-800);
-                color: var(--black-050);
+                --_na-item-bg: var(--black-800);
+                --_na-item-fc: var(--black-050);
             });
         }
     }
 
-    //  ============================================================================
-    //  $   SMALL SIZE
-    //  ----------------------------------------------------------------------------
-    &.s-navigation__sm {
-        .s-navigation--item {
-            padding: var(--su4) var(--su12);
-            font-size: var(--fs-caption);
-
-            &.s-navigation--item__dropdown {
-                padding-right: 2em;
-            }
-        }
+    // ORIENTATIONS
+    // Vertical
+    .s-navigation__vertical & {
+        --_na-item-ws: normal;
     }
+
+    // SIZES
+    // Small
+    .s-navigation__sm & {
+        --_na-item-fs: var(--fs-caption);
+        --_na-item-p: var(--su4) var(--su12);
+    }
+
+    // STATES
+    // Selected
+    &.is-selected {
+        --_na-item-bg: var(--theme-primary-color);
+        --_na-item-fc: var(--white);
+        --_na-item-bg-hover: var(--theme-primary-600);
+
+        .highcontrast-mode({
+            text-decoration: none;
+        });
+    }
+
+    // MODIFIERS
+    &&__dropdown {
+        &:after {
+            border-style: solid;
+            border-width: var(--su-static4) var(--su-static4) 0 var(--su-static4);
+            border-color: currentColor transparent;
+            content: "";
+            pointer-events: none;
+            position: absolute;
+            right: 0.9em;
+            top: calc(50% - 2px);
+            z-index: var(--zi-active);
+        }
+
+        padding-right: 2em;
+    }
+
+    // Interaction states
+    &:hover,
+    &:active {
+        background-color: var(--_na-item-bg-hover);
+        color: var(--_na-item-fc-hover);
+    }
+
+    @focus-styles();
+
+    background-color: var(--_na-item-bg);
+    color: var(--_na-item-fc);
+    font: unset; // Needs to come before font-size for cascade
+    font-size: var(--_na-item-fs);
+    padding: var(--_na-item-p);
+    white-space: var(--_na-item-ws);
+
+    align-items: center;
+    border: none; // Reset some things for when the navigation item is also a button
+    border-radius: 1000px;
+    box-shadow: none;
+    cursor: pointer;
+    display: flex;
+    position: relative;
+    user-select: auto;
+}
+
+.s-navigation--title {
+    --_na-title-mt: var(--su16);
+
+    &:first-child {
+        --_na-title-mt: 0;
+    }
+
+    font-size: var(--fs-fine);
+    font-weight: bold;
+    margin-top: var(--_na-title-mt);
+    padding: var(--su6) var(--su12);
+    text-transform: uppercase;
 }
