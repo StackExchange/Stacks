@@ -1,145 +1,114 @@
-//
-//  STACK OVERFLOW
-//  TOGGLE SWITCHES
-//
-//  This CSS comes from Stacks, our CSS & Pattern library for rapidly building
-//  Stack Overflow. For documentation of all these classes and how to contribute,
-//  visit https://stackoverflow.design/
-//
-//  ============================================================================
-//  $   BASE STYLE
-//  ----------------------------------------------------------------------------
 .s-toggle-switch {
-    position: relative;
+    --_ts-bg: var(--black-300);
+    --_ts-bg-ps: left center;
+    // --_ts-bs is defined when needed
 
+    input[type="checkbox"]&,
+    // TODO DEPRECATED: drop support for nested input[type="checkbox"]
     input[type="checkbox"] {
-        // Hide the checkbox underneath the .s-toggle-switch--indicator.
-        margin: 0; // guard against production adding 5px of margin to these
-        opacity: 0;
-        position: absolute;
-        left: 0;
-        top: 0;
-        width: 44px;
-        height: 24px;
+        &:checked {
+            --_ts-bg: var(--green-400);
+            --_ts-bg-ps: right center;
+
+            &:focus {
+                --_ts-bs-color: var(--focus-ring-success);
+            }
+        }
+
+        &:focus {
+            --_ts-bs-color: var(--focus-ring-muted);
+            --_ts-bs: 0 0 0 var(--su-static4) var(--_ts-bs-color);
+
+            outline: none;
+        }
+        
+        &[disabled] {
+            cursor: default;
+        }
+
+        background-color: var(--_ts-bg);
+        background-position: var(--_ts-bg-ps);
+        box-shadow: var(--_ts-bs, unset);
+
+        appearance: none;
+        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%23fff'/%3e%3c/svg%3e"); // The white dot within the toggle
+        background-size: contain;
+        background-repeat: no-repeat;
+        border-radius: 1000px;
         cursor: pointer;
-
-        + .s-toggle-switch--indicator {
-            pointer-events: none;
-            outline: 0;
-            display: block;
-            width: 44px;
-            height: 24px;
-            position: relative;
-            background: var(--black-300);
-            border-radius: 1000px;
-            padding: 3px;
-            transition: left 0.2s ease;
-
-            &:after,
-            &:before {
-                position: relative;
-                display: block;
-                content: "";
-                width: 50%;
-                height: 100%;
-            }
-
-            &:after {
-                left: 0;
-                border-radius: 50%;
-                background: @white;
-                transition: left 0.1s ease;
-
-                .highcontrast-mode({
-                    background: var(--white);
-                });
-            }
-
-            &:before {
-                display: none;
-            }
-        }
-
-        &:checked + .s-toggle-switch--indicator {
-            background: var(--green-400);
-
-            &:after {
-                left: 50%;
-            }
-        }
-
-        &:focus + .s-toggle-switch--indicator {
-            box-shadow: 0 0 0 var(--su-static4) var(--focus-ring-muted);
-        }
-
-        &:checked:focus + .s-toggle-switch--indicator {
-            box-shadow: 0 0 0 var(--su-static4) var(--focus-ring-success);
-        }
+        height: var(--su-static24);
+        margin: 0; // guard against production adding 5px of margin to these
+        transition: background-position 0.2s ease;
+        vertical-align: top;
+        width: calc(var(--su-static48) - var(--su-static4));
     }
 
-    &.s-toggle-switch__multiple {
-        display: flex;
-        align-items: stretch;
+    // TODO split single and multiple toggle into two seperate components
+    &&__multiple {
+        --_ts-multiple-bg: unset;
+        // --_ts-multiple-bs is defined when needed
+        --_ts-multiple-fc: var(--black-500);
 
-        //  First hide the radio buttons
         input[type="radio"] {
-            position: absolute;
             left: -999em;
-            opacity: 0;
             margin: 0;
+            opacity: 0;
+            position: absolute;
+
+            &:checked {
+                + label {
+                    &.s-toggle-switch--label-off {
+                        --_ts-multiple-bg: var(--black-500);
+                        --_ts-multiple-fc: var(--white);
+
+                        .dark-mode({
+                            --_ts-multiple-bg: var(--black-350);
+                        });
+                    }
+
+                    &:not(.s-toggle-switch--label-off) {
+                        --_ts-multiple-bg: var(--green-400);
+                        --_ts-multiple-fc: @white;
+
+                        .highcontrast-mode({
+                            --_ts-multiple-fc: var(--white);
+                        });
+                    }
+                }
+
+                &:focus + label {
+                    --_ts-bs-color: var(--focus-ring-success);
+                    --_ts-multiple-bs: 0 0 0 var(--su-static4) var(--_ts-bs-color);
+
+                    &.s-toggle-switch--label-off {
+                        --_ts-bs-color: var(--focus-ring-muted);
+                    }
+                }
+            }
         }
 
-        //  Next modifications to option cells
         label {
-            //  Style the base label
-            width: 100%;
-            margin: 0;
-            padding: 0.5em 0.7em;
+            background-color: var(--_ts-multiple-bg);
+            box-shadow: var(--_ts-multiple-bs, unset);
+            color: var(--_ts-multiple-fc);
+
             border-radius: 1000px;
-            color: var(--black-500);
+            cursor: pointer;
             font-size: var(--fs-body1);
             font-weight: 400;
             line-height: 1;
+            margin: 0;
+            padding: 0.5em 0.7em;
             text-align: center;
             white-space: nowrap;
-            cursor: pointer;
+            width: 100%;
 
             -webkit-touch-callout: none;
             -webkit-user-select: none;
             user-select: none;
         }
 
-        //  If the input is selected, style its label accordingly.
-        input[type="radio"]:checked {
-            + label {
-                &.s-toggle-switch--label-off {
-                    background-color: var(--black-500);
-                    color: var(--white);
-
-                    .dark-mode({
-                        background-color: var(--black-350);
-                        // color: var(--black);
-                    });
-                }
-
-                // Color activated options green
-                &:not(.s-toggle-switch--label-off) {
-                    background-color: var(--green-400);
-                    color: @white;
-
-                    .highcontrast-mode({
-                        color: var(--white);
-                    });
-                }
-            }
-
-            &:focus + label.s-toggle-switch--label-off {
-                box-shadow: 0 0 0 var(--su-static4) var(--focus-ring-muted);
-            }
-
-            &:focus + label:not(.s-toggle-switch--label-off) {
-                box-shadow: 0 0 0 var(--su-static4) var(--focus-ring-success);
-            }
-        }
+        align-items: stretch;
+        display: flex;
     }
 }
