@@ -100,17 +100,13 @@
         }
 
         &.has-answers {
-            color: var(--green-600);
-            border: 1px solid var(--green-600);
+            color: var(--green-700);
+            border: 1px solid var(--green-700);
 
             &.has-accepted-answer {
-                color: @white;
-                background-color: var(--green-500);
-                border-color: var(--green-500);
-
-                .highcontrast-mode({
-                    color: var(--white);
-                });
+                color: var(--white);
+                background-color: var(--green-700);
+                border-color: var(--green-700);
             }
         }
 
@@ -121,15 +117,15 @@
         }
 
         &.is-warm {
-            color: var(--orange-800);
+            color: var(--yellow-900);
         }
 
         &.is-hot {
-            color: var(--orange-600);
+            color: var(--orange-800);
         }
 
         &.is-supernova {
-            color: var(--orange-400);
+            color: var(--red-800);
         }
 
         &.is-published {
@@ -309,38 +305,76 @@
 
 .s-post-summary__watched {
     background-color: var(--yellow-050);
+
+    .s-post-summary--stats {
+        color: var(--black-500);
+    }
+
+    .s-user-card {
+        .s-user-card--rep,
+        .s-user-card--time {
+            color: var(--black-600);
+        }
+    }
 }
 
 .s-post-summary__deleted {
-    background-color: var(--red-050);
+    background-color: var(--red-025);
+
+    .s-badge__filled {
+        color: var(--white);
+
+        .dark-mode({
+            background-color: var(--red-800)
+        });
+    }
 
     .is-deleted {
-        color: @white;
-        background-color: var(--red-500);
+        color: var(--white);
+        background-color: var(--red-600);
+    }
+
+    .s-post-summary--meta-tags {
+        // TODO: remove rule for `a`, `.post-tag` once Core replaces `.post-tag` with `.s-tag`
+        a,
+        .post-tag,
+        .s-tag {
+            &,
+            &:hover,
+            &:active,
+            &:focus {
+                background-color: var(--black-075);
+            }
+        }
+    }
+}
+
+.s-post-summary__ignored {
+    .s-post-summary--meta-tags {
+        // TODO: remove rule for `a`, `.post-tag` once Core replaces `.post-tag` with `.s-tag`
+        a,
+        .post-tag,
+        .s-tag {
+            &,
+            &:hover,
+            &:active,
+            &:focus {
+                background-color: var(--black-050);
+            }
+        }
     }
 }
 
 .s-post-summary__ignored,
 .s-post-summary__deleted {
-    .s-post-summary--content > *:not(.s-post-summary--content-menu-button):not(.s-post-summary--meta) {
-        opacity: calc(var(--_o-disabled-static) * 1.2); // 0.5 * 1.2 = 0.6
-    }
-    // TODO DEPRECATED remove `:not(.is-deleted)`
-    .s-post-summary--stats-item:not(.s-badge):not(.is-deleted) {
-        opacity: calc(var(--_o-disabled-static) * 1.2); // 0.5 * 1.2 = 0.6
-        filter: grayscale(100%);
-    }
 
-    .s-post-summary--content-title a {
-        color: var(--black-600);
+    .s-post-summary--content-title > a {
+        color: var(--black-500);
 
         &:hover,
-        &:active {
-            color: var(--black-500);
-        }
-
+        &:active,
         &:visited {
-            color: var(--black-700);
+            color: var(--black-500);
         }
     }
 
@@ -349,12 +383,63 @@
     }
 
     .s-post-summary--meta > *:not(.s-post-summary--meta-tags) {
-        opacity: calc(var(--_o-disabled-static) * 1.2); // 0.5 * 1.2 = 0.6
-        filter: grayscale(100%);
+        color: var(--black-600);
     }
 
-    .s-post-summary--meta-tags > a {
-        opacity: calc(var(--_o-disabled-static) * 1.2); // 0.5 * 1.2 = 0.6
-        filter: grayscale(100%);
+    .s-post-summary--meta-tags {
+        // TODO: remove rule for `a`, `.post-tag` once Core replaces `.post-tag` with `.s-tag`
+        a,
+        .post-tag,
+        .s-tag {
+            &,
+            &:hover,
+            &:active,
+            &:focus {
+                border-color: transparent;
+                color: var(--black-600);
+            }
+        }
+    }
+
+    .s-post-summary--stats {
+        color: var(--black-500);
+
+        .s-post-summary--stats-item {
+
+            &.is-warm,
+            &.is-hot,
+            &.is-supernova {
+                color: var(--black-500);
+            }
+
+            &.has-answers {
+                color: var(--black-500);
+                background-color: transparent;
+                border-color: var(--black-300);
+
+                &.has-accepted-answer {
+                    color: var(--black-600);
+                    background-color: var(--black-075);
+                    border-color: transparent;
+                }
+            }
+        }
+
+        .s-post-summary--stats-item__emphasized {
+            color: var(--black-500);
+        }
+    }
+
+    .s-user-card {
+        .s-badge {
+            filter: grayscale(100%);
+        }
+
+        a,
+        .s-user-card--link,
+        .s-user-card--rep,
+        .s-user-card--time {
+            color: var(--black-500);
+        }
     }
 }

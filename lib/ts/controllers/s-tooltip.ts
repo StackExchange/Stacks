@@ -13,6 +13,8 @@ export class TooltipController extends BasePopoverController {
     private boundScheduleShow!: () => void;
     private boundHide!: () => void;
     private boundHideIfWithin!: () => void;
+    private boundHideOnEscapeKeyEvent!: () => void;
+    private boundClearActiveTimeout!: () => void;
     private activeTimeout!: number;
 
     /**
@@ -27,12 +29,14 @@ export class TooltipController extends BasePopoverController {
         if (window.matchMedia("(hover: hover)").matches) {
             this.bindMouseEvents();
         }
+        this.bindKeyboardEvents();
     }
 
     /**
      * Unbinds mouse events in addition to BasePopoverController.disconnect
      */
     disconnect() {
+        this.unbindKeyboardEvents();
         this.unbindMouseEvents();
         super.disconnect();
     }
@@ -64,11 +68,16 @@ export class TooltipController extends BasePopoverController {
     /**
      * Cancels the scheduled tooltip popover display and hides it if already displayed
      */
-    hide(dispatcher: Event | Element | null = null) {
+    scheduleHide(dispatcher: Event | Element | null = null) {
         window.clearTimeout(this.activeTimeout);
-        this.activeTimeout = 0;
+        this.activeTimeout = window.setTimeout(() => super.hide(dispatcher), 100);
+    }
 
-        super.hide(dispatcher);
+    /**
+     * Cancels the activeTimeout
+     */
+     clearActiveTimeout() {
+        clearTimeout(this.activeTimeout);
     }
 
     /**
@@ -104,8 +113,7 @@ export class TooltipController extends BasePopoverController {
         if (!popover) {
             popover = document.createElement("div");
             popover.id = popoverId;
-            popover.className = "s-popover s-popover__tooltip pe-none";
-            popover.setAttribute("aria-hidden", "true");
+            popover.className = "s-popover s-popover__tooltip";
             popover.setAttribute("role", "tooltip");
 
             const parentNode = this.element.parentNode;
@@ -166,21 +174,49 @@ export class TooltipController extends BasePopoverController {
      */
     private hideIfWithin(event: Event) {
         if ((<Element>event.target!).contains(this.referenceElement)) {
-            this.hide();
+            this.scheduleHide();
         }
     }
+
+    private hideOnEscapeKeyEvent(event: KeyboardEvent) {
+        if (event.key === "Escape") {
+            this.scheduleHide();
+        }
+    }
+    /**
+     * Binds mouse events to show/hide on reference element hover
+     */
+     private bindKeyboardEvents() {
+        this.boundScheduleShow = this.boundScheduleShow || this.scheduleShow.bind(this);
+        this.boundHide = this.boundHide || this.scheduleHide.bind(this);
+        this.boundHideOnEscapeKeyEvent = this.boundHideOnEscapeKeyEvent || this.hideOnEscapeKeyEvent.bind(this);
+
+        this.referenceElement.addEventListener("focus", this.boundScheduleShow);
+        this.referenceElement.addEventListener("blur", this.boundHide);
+        document.addEventListener("keyup", this.boundHideOnEscapeKeyEvent);
+    }
+    /**
+     * Unbinds all mouse events
+     */
+     private unbindKeyboardEvents() {
+        this.referenceElement.removeEventListener("focus", this.boundScheduleShow);
+        this.referenceElement.removeEventListener("blur", this.boundHide);
+        document.removeEventListener("keyup", this.boundHideOnEscapeKeyEvent);
+    }
+
 
     /**
      * Binds mouse events to show/hide on reference element hover
      */
     private bindMouseEvents() {
         this.boundScheduleShow = this.boundScheduleShow || this.scheduleShow.bind(this);
-        this.boundHide = this.boundHide || this.hide.bind(this);
+        this.boundHide = this.boundHide || this.scheduleHide.bind(this);
+        this.boundClearActiveTimeout = this.boundClearActiveTimeout || this.clearActiveTimeout.bind(this);
 
         this.referenceElement.addEventListener("mouseover", this.boundScheduleShow);
         this.referenceElement.addEventListener("mouseout", this.boundHide);
-        this.referenceElement.addEventListener("focus", this.boundScheduleShow);
-        this.referenceElement.addEventListener("blur", this.boundHide);
+        this.popoverElement.addEventListener("mouseover", this.boundClearActiveTimeout);
+        this.popoverElement.addEventListener("mouseout", this.boundHide);
     }
 
     /**
@@ -191,6 +227,8 @@ export class TooltipController extends BasePopoverController {
         this.referenceElement.removeEventListener("mouseout", this.boundHide);
         this.referenceElement.removeEventListener("focus", this.boundScheduleShow);
         this.referenceElement.removeEventListener("blur", this.boundHide);
+        this.popoverElement.removeEventListener("mouseover", this.boundClearActiveTimeout);
+        this.popoverElement.removeEventListener("mouseout", this.boundHide);
     }
 
     /**
@@ -232,7 +270,6 @@ export function setTooltipText(element: Element, text: string, options?: Tooltip
  * @param options Options for rendering the tooltip.
  */
 function applyOptionsAndTitleAttributes(element: Element, options?: TooltipOptions) {
-
     if (options && options.placement) {
         element.setAttribute("data-s-tooltip-placement", options.placement);
     }
