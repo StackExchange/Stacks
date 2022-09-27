@@ -40,7 +40,7 @@ It’s probably important that images look okay here by default as well:
 
 <img
   src="https://images.unsplash.com/photo-1556740758-90de374c12ad?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1000&q=80"
-  alt=""
+  alt="two people performing a transaction at a counter on either side of a point of sale system in a trendy salon"
 />
 
 Now I’m going to show you an example of an unordered list to make sure that looks good, too:

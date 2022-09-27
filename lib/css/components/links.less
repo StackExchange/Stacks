@@ -190,6 +190,8 @@ button.s-link {
     @focus-styles();
 
     &.is-selected {
+        --_li-block-bs: inset var(--_li-block-bs-offset-x, 3px) 0 0 var(--theme-primary-color);
+
         color: var(--black-800);
         font-weight: bold;
         background-color: var(--black-050);
@@ -199,11 +201,21 @@ button.s-link {
         });
 
         &.s-block-link__right {
-            box-shadow: inset -3px 0 0 var(--theme-primary-color);
+            --_li-block-bs-offset-x: -3px;
         }
 
-        &.s-block-link__left {
-            box-shadow: inset 3px 0 0 var(--theme-primary-color);
+        &.s-block-link__left,
+        &.s-block-link__right {
+            box-shadow: var(--_li-block-bs);
+
+            &:focus:not(:focus-visible),
+            &:focus-visible {
+                outline: none;
+            }
+
+            &:focus-visible {
+                box-shadow: var(--_li-block-bs), 0 0 0 var(--su-static4) var(--focus-ring-muted);
+            }
         }
     }
 

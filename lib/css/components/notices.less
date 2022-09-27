@@ -6,206 +6,224 @@
 //  Stack Overflow. For documentation of all these classes and how to contribute,
 //  visit https://stackoverflow.design/
 //
-//  TABLE OF CONTENTS
-//  • BASE STYLE
-//  • LAYOUT TRANSITIONS
-//
-//  ============================================================================
-//  $   BASE STYLES
-//  ----------------------------------------------------------------------------
-//  $$  FILLED, MUTED
-.s-notice {
-    padding: var(--su16);
-    border: 1px solid transparent;
-    border-radius: var(--br-sm);
-    color: var(--fc-medium);
+.construct-notice-component() {
+    background: var(--_no-bg, var(--black-050));
+    border-color: var(--_no-bc, var(--bc-medium));
+    border-style: solid;
+    color: var(--_no-fc, var(--fc-medium));
     font-size: var(--fs-body1);
 
-    .s-toast & {
-        max-width: 44rem;
-        width: 100%;
-        padding-top: var(--su8);
-        padding-bottom: var(--su8);
-        box-shadow: var(--bs-sm);
-        pointer-events: all;
+    code {
+        background: var(--_no-code-bg, transparent);
     }
 
-    .s-notice--btn {
-        color: var(--fc-dark);
+    & &--btn {
+        color: inherit;
         padding: var(--su8);
-    }
-}
 
-//  ============================================================================
-//  $   VISUAL STYLES
-//  ============================================================================
-//  $$  INFO
-//  ----------------------------------------------------------------------------
-.s-notice__info,
-.s-banner__info {
-    border-color: var(--theme-secondary-150);
-    background-color: var(--theme-secondary-050);
-
-    &.s-notice__important,
-    &.s-banner__important {
-        background-color: var(--theme-secondary-400);
-    }
-
-    // Improve the presentation of buttons
-    .s-notice--btn {
         &:focus,
         &:hover {
-            background-color: var(--theme-secondary-300);
+            background: var(--_no-btn-focus-bg, var(--black-100));
         }
 
         &:active {
-            background-color: var(--theme-secondary-400);
+            background: var(--_no-btn-active-bg, var(--black-150));
         }
     }
 
-    code {
-        background-color: var(--theme-secondary-150);
+    &:not(&__important) {
+        .dark-mode({ --_no-bc: var(--_no-bg); });
+        .highcontrast-mode({ --_no-bc: currentColor; });
+        .highcontrast-dark-mode({ --_no-bc: currentColor; });
     }
-}
 
-//  $$  SUCCESS
-//  ----------------------------------------------------------------------------
-.s-notice__success,
-.s-banner__success {
-    border-color: var(--green-200);
-    background-color: var(--green-050);
+    &__important {
+        --_no-bc: var(--_no-bg);
+        --_no-bg: var(--black-700);
+        --_no-fc: var(--white);
+        --_no-btn-focus-bg: var(--black-800);
+        --_no-btn-active-bg: var(--black-900);
 
-    // Bump up the border contrast in high contrast mode
-    .highcontrast-mode({
-        background-color: var(--green-200);
-        border-color: var(--green-400);
-    });
+        .highcontrast-mode({ --_no-bc: var(--_no-bg); });
+    }
 
-    &.s-notice__important,
-    &.s-banner__important {
-        background-color: var(--green-400);
-        color: var(--black-900);
-
-        // Bump up the text in high contrast
+    &__danger {
+        --_no-bc: var(--red-200);
+        --_no-bg: var(--red-050);
+        --_no-btn-focus-bg: var(--red-100);
+        --_no-btn-active-bg: var(--red-200);
+    }
+    &__danger:not(&__important) {
         .highcontrast-mode({
-            background-color: var(--green-500);
-            color: var(--white);
-            border-color: transparent;
+            --_no-bg: var(--red-200);
+        });
+    }
+    &__danger&__important {
+        --_no-bc: var(--_no-bg);
+        --_no-bg: var(--red-500);
+        --_no-btn-focus-bg: var(--red-600);
+        --_no-btn-active-bg: var(--red-700);
+
+        .dark-mode({
+            --_no-bg: var(--red-400);
+            --_no-fc: var(--black-900);
+        });
+        .highcontrast-dark-mode({
+            --_no-bg: var(--red-500);
+            --_no-fc: var(--white);
         });
     }
 
-    // Improve the presentation of buttons
-    .s-notice--btn {
-        &:focus,
-        &:hover {
-            background-color: var(--green-100);
-        }
-
-        &:active {
-            background-color: var(--green-200);
-        }
+    &__info {
+        --_no-bc: var(--theme-secondary-150);
+        --_no-bg: var(--theme-secondary-050);
+        --_no-btn-focus-bg: var(--theme-secondary-100);
+        --_no-btn-active-bg: var(--theme-secondary-150);
+        --_no-code-bg: var(--theme-secondary-150);
     }
-}
-
-//  $$  WARNING
-//  ----------------------------------------------------------------------------
-.s-notice__warning,
-.s-banner__warning {
-    border-color: var(--yellow-300);
-    background-color: var(--yellow-050);
-
-    // Bump up the border contrast in high contrast mode
-    .highcontrast-mode({
-        background-color: var(--yellow-200);
-        border-color: var(--yellow-700);
-    });
-
-    &.s-notice__important,
-    &.s-banner__important {
-        background-color: var(--yellow-400);
-        color: var(--black-900);
-
-        // Bump up the text in high contrast
+    &__info:not(&__important) {
         .highcontrast-mode({
-            background-color: var(--yellow-500);
-            color: var(--white);
-            border-color: transparent;
+            --_no-bg: var(--theme-secondary-100);
+        });
+        .highcontrast-dark-mode({
+            --_no-bg: var(--theme-secondary-100);
+        });
+    }
+    &__info&__important {
+        --_no-bc: var(--_no-bg);
+        --_no-bg: var(--theme-secondary-400);
+        --_no-btn-focus-bg: var(--theme-secondary-500);
+        --_no-btn-active-bg: var(--theme-secondary-600);
+
+        .dark-mode({
+            --_no-bg: var(--theme-secondary-300);
+            --_no-fc: var(--black-900);
+        });
+        .highcontrast-dark-mode({
+            --_no-bg: var(--theme-secondary-400);
+            --_no-fc: var(--white);
         });
     }
 
-    // Improve the presentation of buttons
-    .s-notice--btn {
-        &:focus,
-        &:hover {
-            background-color: var(--yellow-200);
-        }
+    &__success {
+        --_no-bc: var(--green-200);
+        --_no-bg: var(--green-050);
+        --_no-btn-focus-bg: var(--green-100);
+        --_no-btn-active-bg: var(--green-200);
+    }
+    &__success:not(&__important) {
+        .highcontrast-mode({
+            --_no-bg: var(--green-200);
+        });
+    }
+    &__success&__important {
+        --_no-bc: var(--_no-bg);
+        --_no-bg: var(--green-400);
+        --_no-fc: var(--black-900);
+        --_no-btn-focus-bg: var(--green-500);
+        --_no-btn-active-bg: var(--green-600);
 
-        &:active {
-            background-color: var(--yellow-300);
-        }
+        .dark-mode({
+            --_no-bg: var(--green-500);
+            --_no-fc: var(--white);
+        });
+        .highcontrast-mode({
+            --_no-bg: var(--green-500);
+            --_no-fc: var(--white);
+        });
     }
 
-    code {
-        background-color: var(--yellow-200);
+    &__warning {
+        --_no-bc: var(--yellow-300);
+        --_no-bg: var(--yellow-050);
+        --_no-btn-focus-bg: var(--yellow-200);
+        --_no-btn-active-bg: var(--yellow-300);
+        --_no-code-bg: var(--yellow-200);
+    }
+    &__warning:not(&__important) {
+        .highcontrast-mode({
+            --_no-bg: var(--yellow-200);
+        });
+    }
+    &__warning&__important {
+        --_no-bc: var(--_no-bg);
+        --_no-bg: var(--yellow-400);
+        --_no-btn-focus-bg: var(--yellow-500);
+        --_no-btn-active-bg: var(--yellow-600);
+        --_no-fc: var(--black-900);
+
+        .dark-mode({
+            --_no-bg: var(--yellow-600);
+            --_no-fc: var(--white);
+        });
+        .highcontrast-mode({
+            --_no-bg: var(--yellow-700);
+            --_no-fc: var(--white);
+        });
     }
 }
 
-//  $$  DANGER
-//  ----------------------------------------------------------------------------
-.s-notice__danger,
-.s-banner__danger {
-    border-color: var(--red-200);
-    background-color: var(--red-050);
-
-    // Bump up the border contrast in high contrast mode
-    .highcontrast-mode({
-        background-color: var(--red-200);
-        border-color: var(--red-500);
-
-        &.s-notice__important,
-        &.s-banner__important {
-            background-color: var(--red-500);
-        }
-    });
-
-    &.s-notice__important,
-    &.s-banner__important {
-        background-color: var(--red-400);
+// Banner
+// TODO deprecate .s-banner (by turning it into a modifier on .s-notice)
+// This would reduce the amount of CSS we ship to the client and simplify our codebase
+.s-banner {
+    .construct-notice-component();
+    --_no-x-offset: 0;
+    //      When we use .s-banner, we need to adjust the padding-top on
+    //      the body tag. This class correctly adjusts the body padding ONLY if
+    //      the notice is one line. If it wraps to multiple lines, more classes or
+    //      (ideally) JS will need to be used to determine the notice's height
+    //      at the time of render. The padding value is determined like so:
+    //
+    //      50px (top bar) + 44px (notice height) - 1px (bottom border)
+    //
+    //      The borders subtraction are necessary to neatly tuck everything together.
+    //  ----------------------------------------------------------------------------
+    &__body-pt {
+        padding-top: 93px;
+    }
+    //  If you want to put the banner above the topbar
+    &.is-pinned {
+        z-index: calc(var(--zi-navigation-fixed) + 1);
+    }
+    // If you want to hide and reveal the banner
+    &[aria-hidden="true"] {
+        --_no-x-offset: -50px; // TODO convert to su vars
+        visibility: hidden;
+        opacity: 0;
+    }
+    &[aria-hidden="false"] {
+        --_no-x-offset: 49px; // TODO convert to su vars
+        visibility: visible;
+        opacity: 1;
+    }
+    // When we want to keep hero content capped
+    .s-banner--container {
+        position: relative;
+        width: 100%;
+        max-width: calc(var(--s-step) * 10);
+        margin: 0 auto;
     }
 
-    // Improve the presentation of buttons
-    .s-notice--btn {
-        &:focus,
-        &:hover {
-            background-color: var(--red-100);
-        }
-
-        &:active {
-            background-color: var(--red-200);
-        }
-    }
+    border-width: var(--su-static1) 0;
+    inset: 0 0 auto 0;
+    padding: var(--su12);
+    position: fixed;
+    width: 100%;
+    z-index: calc(var(--zi-navigation-fixed) - 1); // Tuck below topbar
+    -webkit-transform: translate3d(0, var(--_no-x-offset), 0);
+    transform: translate3d(0, var(--_no-x-offset), 0);
 }
 
-//  $$  IMPORTANT
-//  ----------------------------------------------------------------------------
-.s-notice__important {
-    border-color: transparent;
-    background-color: var(--black-700);
-    color: var(--white);
+// Notice
+.s-notice {
+    .construct-notice-component();
+    border-radius: var(--br-sm);
+    border-width: var(--su-static1);
+    padding: var(--su16);
 }
 
-.s-notice__info,
-.s-notice__success,
-.s-notice__warning,
-.s-notice__danger {
-    .dark-mode({ border-color: transparent; });
-    .highcontrast-mode({ border-color: currentColor; });
-
-}
-
-//  ============================================================================
-//  $   TOASTS
-//  ----------------------------------------------------------------------------
+// Toast
 .s-toast {
     visibility: hidden;
     position: fixed;
@@ -229,5 +247,14 @@
 
     @media (prefers-reduced-motion) {
         transform: none;
+    }
+
+    .s-notice {
+        max-width: 44rem;
+        width: 100%;
+        padding-top: var(--su8);
+        padding-bottom: var(--su8);
+        box-shadow: var(--bs-sm);
+        pointer-events: all;
     }
 }

@@ -1,11 +1,11 @@
 import { createPopper, Placement } from '@popperjs/core';
+import type * as Popper from '@popperjs/core';
 import * as Stacks from "../stacks";
 
 type OutsideClickBehavior = "always" | "never" | "if-in-viewport" | "after-dismissal";
 
 export abstract class BasePopoverController extends Stacks.StacksController {
-    // @ts-ignore
-    private popper!: Popper;
+    private popper!: Popper.Instance;
 
     protected popoverElement!: HTMLElement;
 
@@ -87,6 +87,8 @@ export abstract class BasePopoverController extends Stacks.StacksController {
         this.hide();
         if (this.popper) {
             this.popper.destroy();
+            // eslint-disable-next-line
+            // @ts-ignore The operand of a 'delete' operator must be optional .ts(2790)
             delete this.popper;
         }
         super.disconnect();
@@ -105,7 +107,7 @@ export abstract class BasePopoverController extends Stacks.StacksController {
     show(dispatcher: Event|Element|null = null) {
         if (this.isVisible) { return; }
 
-        let dispatcherElement = this.getDispatcher(dispatcher);
+        const dispatcherElement = this.getDispatcher(dispatcher);
 
         if (this.triggerEvent("show", {
             dispatcher: dispatcherElement
@@ -115,7 +117,7 @@ export abstract class BasePopoverController extends Stacks.StacksController {
             this.initializePopper();
         }
 
-        this.popoverElement!.classList.add("is-visible");
+        this.popoverElement.classList.add("is-visible");
 
         // ensure the popper has been positioned correctly
         this.scheduleUpdate();
@@ -129,7 +131,7 @@ export abstract class BasePopoverController extends Stacks.StacksController {
     hide(dispatcher: Event|Element|null = null) {
         if (!this.isVisible) { return; }
 
-        let dispatcherElement = this.getDispatcher(dispatcher);
+        const dispatcherElement = this.getDispatcher(dispatcher);
 
         if (this.triggerEvent("hide", {
             dispatcher: dispatcherElement
@@ -140,6 +142,8 @@ export abstract class BasePopoverController extends Stacks.StacksController {
         if (this.popper) {
             // completely destroy the popper on hide; this is in line with Popper.js's performance recommendations
             this.popper.destroy();
+            // eslint-disable-next-line
+            // @ts-ignore The operand of a 'delete' operator must be optional .ts(2790)
             delete this.popper;
         }
 
@@ -182,7 +186,6 @@ export abstract class BasePopoverController extends Stacks.StacksController {
      * Initializes the Popper for this instance
      */
     private initializePopper() {
-        // @ts-ignore
         this.popper = createPopper(this.referenceElement, this.popoverElement, {
             placement: this.data.get("placement") as Placement || "bottom",
             modifiers: [
@@ -206,7 +209,7 @@ export abstract class BasePopoverController extends Stacks.StacksController {
      * Validates the popover settings and attempts to set necessary internal variables
      */
     private validate() {
-        var referenceSelector = this.data.get("reference-selector");
+        const referenceSelector = this.data.get("reference-selector");
 
         this.referenceElement = <HTMLElement>this.element;
 
@@ -221,7 +224,7 @@ export abstract class BasePopoverController extends Stacks.StacksController {
 
         const popoverId = this.referenceElement.getAttribute(this.popoverSelectorAttribute);
 
-        var popoverElement = null;
+        let popoverElement: HTMLElement | null = null;
 
         // if the popover is named, attempt to fetch it (and throw an error if it doesn't exist)
         if (popoverId) {
@@ -264,7 +267,7 @@ export abstract class BasePopoverController extends Stacks.StacksController {
      */
     protected scheduleUpdate() {
         if (this.popper && this.isVisible) {
-            this.popper.update();
+            void this.popper.update();
         }
     }
 }
@@ -274,8 +277,8 @@ export class PopoverController extends BasePopoverController {
 
     protected popoverSelectorAttribute = "aria-controls";
 
-    private boundHideOnOutsideClick!: any;
-    private boundHideOnEscapePress!: any;
+    private boundHideOnOutsideClick!: (event: MouseEvent) => void;
+    private boundHideOnEscapePress!:  (event: KeyboardEvent) => void;
 
     /**
      * Toggles optional classes and accessibility attributes in addition to BasePopoverController.shown
@@ -332,7 +335,7 @@ export class PopoverController extends BasePopoverController {
         const target = <Node>e.target;
         // check if the document was clicked inside either the reference element or the popover itself
         // note: .contains also returns true if the node itself matches the target element
-        if (this.shouldHideOnOutsideClick && !this.referenceElement.contains(target) && !this.popoverElement!.contains(target) && document.body.contains(target)) {
+        if (this.shouldHideOnOutsideClick && !this.referenceElement.contains(target) && !this.popoverElement.contains(target) && document.body.contains(target)) {
             this.hide(e);
         }
     };
@@ -349,7 +352,7 @@ export class PopoverController extends BasePopoverController {
 
         // check if the target was inside the popover element and refocus the triggering element
         // note: .contains also returns true if the node itself matches the target element
-        if (this.popoverElement!.contains(<Node>e.target)) {
+        if (this.popoverElement.contains(<Node>e.target)) {
             this.referenceElement.focus();
         }
 
@@ -364,8 +367,10 @@ export class PopoverController extends BasePopoverController {
         if (!this.data.has("toggle-class")) {
             return;
         }
-        var cl = this.referenceElement.classList;
-        this.data.get("toggle-class")!.split(/\s+/).forEach(function (cls: string) {
+
+        const toggleClass = this.data.get("toggle-class") || "";
+        const cl = this.referenceElement.classList;
+        toggleClass.split(/\s+/).forEach(function (cls: string) {
             cl.toggle(cls, show);
         });
     }
@@ -375,7 +380,9 @@ export class PopoverController extends BasePopoverController {
      * @param {boolean=} show - A boolean indicating whether this is being triggered by a show or hide.
      */
     private toggleAccessibilityAttributes(show?: boolean) {
-        this.referenceElement.ariaExpanded = show?.toString() || this.referenceElement.ariaExpanded || 'false';
+        const expandedValue = show?.toString() || this.referenceElement.ariaExpanded || "false";
+        this.referenceElement.ariaExpanded = expandedValue;
+        this.referenceElement.setAttribute("aria-expanded", expandedValue);
     }
 }
 
@@ -453,6 +460,7 @@ export function attachPopover(element: Element, popover: Element | string, optio
     }
 
     if (typeof popover === 'string') {
+        // eslint-disable-next-line no-unsanitized/method
         const elements = document.createRange().createContextualFragment(popover).children;
         if (elements.length !== 1) {
             throw "popover should contain a single element";
@@ -461,7 +469,7 @@ export function attachPopover(element: Element, popover: Element | string, optio
     }
 
     const existingId = referenceElement.getAttribute("aria-controls");
-    var popoverId = popover.id;
+    let popoverId = popover.id;
 
     if (!popover.classList.contains('s-popover')) {
         throw `popover should have the "s-popover" class but had class="${popover.className}"`;
@@ -557,7 +565,7 @@ function getPopover(element: Element): GetPopoverResult {
  * @param include Whether to add the controllerName value
  */
 function toggleController(el: Element, controllerName: string, include: boolean) {
-    var controllers = new Set(el.getAttribute('data-controller')?.split(/\s+/));
+    const controllers = new Set(el.getAttribute('data-controller')?.split(/\s+/));
     if (include) {
         controllers.add(controllerName);
     } else {

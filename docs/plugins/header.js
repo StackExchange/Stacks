@@ -6,7 +6,7 @@ module.exports = {
     // Header shortcode
     eleventyConfig.addLiquidShortcode("header", function(tag, text) {
       var slug = text.replace(/\s+/g, '-').toLowerCase();
-      var linkIcon = Icons["Link"];
+      var linkIcon = Icons.IconLink;
 
       var output = '';
       output += '<div class="d-flex jc-space-between ai-end pe-none stacks-header">';

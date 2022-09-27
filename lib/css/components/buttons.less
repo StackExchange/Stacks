@@ -40,9 +40,10 @@
     // Number
     --_number-fc: var(--white);
 
-    &[disabled] {
+    &[disabled],
+    &[aria-disabled="true"] {
         --_bs: none !important;
-        opacity: 0.5;
+        opacity: var(--_o-disabled-static);
         pointer-events: none;
     }
 
@@ -126,43 +127,7 @@
     }
 
     // Additional elements
-    // TODO generalize .is-loading so it can be used elsewhere
-    // See: https://github.com/StackExchange/Stacks-Editor/blob/main/src/styles/custom-components.less#L124
     &.is-loading {
-        padding-left: 2.2em;
-
-        &:before {
-            content: "";
-            position: absolute;
-            opacity: 0.3;
-            left: 0.6em;
-            top: calc(50% - 0.6em);
-            width: 1.23076923em;
-            height: 1.23076923em;
-            border-width: 2px;
-            border-style: solid;
-            border-color: currentColor;
-            border-radius: var(--br-circle);
-        }
-
-        &:after {
-            content: "";
-            position: absolute;
-            left: 0.6em;
-            top: calc(50% - 0.6em);
-            width: 1.23076923em;
-            height: 1.23076923em;
-            border-width: 2px;
-            border-style: solid;
-            border-color: transparent;
-            border-left-color: currentColor;
-            border-radius: var(--br-circle);
-            animation: s-spinner-rotate 0.9s infinite cubic-bezier(0.5, 0.1, 0.5, 0.9);
-            // see spinner.less for an explanation of the following two
-            filter: invert(0); // (*)
-            transform-origin: 50% 50% 1px; // (*)
-        }
-
         .svg-icon:first-child {
             margin-left: -23px;
             // If the first thing in the button is an icon, let's hide it on loading
@@ -256,7 +221,7 @@
 
 // ELEMENTS --------------------------------------------------------------------
 .s-btn--badge {
-    opacity: 0.8;
+    opacity: var(--_o-disabled);
     display: inline-block;
     border-radius: var(--br-sm);
     padding: var(--su2) calc(var(--su4) - var(--su1));
@@ -435,7 +400,8 @@
     &:hover,
     &:active,
     &:focus,
-    &[disabled] {
+    &[disabled],
+    &[aria-disabled="true"] {
         --_bg: none;
         --_bg-active: none;
         --_bg-hover: none;

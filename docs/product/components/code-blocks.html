@@ -10,7 +10,7 @@ description: Stacks provides styling for code blocks with syntax highlighting pr
             <thead>
                 <tr>
                     <th scope="col">Class</th>
-                    <th scope="col">Applies to</th>
+                    <th scope="col" class="s-table--cell2">Applies to</th>
                     <th scope="col">Output</th>
                 </tr>
             </thead>
@@ -20,12 +20,23 @@ description: Stacks provides styling for code blocks with syntax highlighting pr
                     <td class="ff-mono"><code class="stacks-code">pre</code></td>
                     <td class="ff-mono">Adds proper styling to pre-formatted code.</td>
                 </tr>
+                <tr>
+                    <th scope="row"><code class="stacks-code">.linenums</code></th>
+                    <td class="ff-mono"><code class="stacks-code">.s-code-block</code></td>
+                    <td class="ff-mono">Adds a line numbers column to the code block.</td>
+                </tr>
+                <tr>
+                    <th scope="row"><code class="stacks-code">.linenums:&lt;n&gt;</code></th>
+                    <td class="ff-mono"><code class="stacks-code">.s-code-block</code></td>
+                    <td class="ff-mono">Adds a line numbers column to the code block starting at a number <code class="stacks-code">&lt;n&gt;</code>.</td>
+                </tr>
             </tbody>
         </table>
     </div>
 </section>
+
 <section class="stacks-section">
-    {% header "h2", "Examples" %}
+    {% header "h2", "Language examples" %}
     <p class="stacks-copy">The following examples are a small subset of the languages that <a href="https://highlightjs.org/static/demo/"><code class="stacks-code">highlight.js</code></a> supports.</p>
     {% header "h3", "HTML" %}
     <div class="stacks-preview">
@@ -414,6 +425,55 @@ Index: languages/ini.js
 ! changes.
 
   It is important to spell
+{% endhighlight %}
+        </div>
+    </div>
+</section>
+
+<section class="stacks-section">
+    {% header "h2", "Line numbers" %}
+    <p class="stacks-copy">Add <code class="stacks-code">.linenums</code></a> to include line numbers on a code block.</p>
+    {% header "h3", "Default" %}
+    <div class="stacks-preview">
+{% highlight html %}
+<pre class="s-code-block language-html linenums">
+    …
+</pre>
+{% endhighlight %}
+        <div class="stacks-preview--example">
+{% highlight html %}
+linenums<form class="d-flex g4 fd-column">
+    <label class="s-label" for="full-name">Name</label>
+    <div class="d-flex">
+        <input class="s-input" type="text" id="full-name"/>
+    </div>
+</form>
+{% endhighlight %}
+        </div>
+    </div>
+
+    {% header "h3", "Offset" %}
+    <p class="stacks-copy">Append a number preceeded by <code class="stacks-code">:</code> to <code class="stacks-code">.linenums</code> to offset the start of the line numbers.</p>
+    <div class="stacks-preview">
+{% highlight html %}
+<pre class="s-code-block language-json linenums:23">
+    …
+</pre>
+{% endhighlight %}
+        <div class="stacks-preview--example">
+{% highlight json %}
+linenums:23[
+  {
+    "title": "apples",
+    "count": [12000, 20000],
+    "description": {"text": "...", "sensitive": false}
+  },
+  {
+    "title": "oranges",
+    "count": [17500, null],
+    "description": {"text": "...", "sensitive": false}
+  }
+]
 {% endhighlight %}
         </div>
     </div>
