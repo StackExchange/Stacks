@@ -20,6 +20,7 @@
 //    - Totals row
 //    - Sortable tables
 //  • TABLE CELL SIZES
+//  • TABLE BORDER WITH SIZES ON ZOOM
 //
 
 //  ============================================================================
@@ -41,7 +42,7 @@
     border-collapse: collapse;
     border-spacing: 0;
     font-size: var(--fs-body1);
-    border: 0.01px solid var(--bc-medium); // A quick and dirty workaround with 0.01px, because the Browser will fallback to at least 1px
+    border: 0.01px solid var(--bc-medium); // Using 0.01 is workaround for border-with calculation, because the Browser will fallback to at least 1px
     th,
     td {
         padding: var(--su8);
@@ -298,25 +299,6 @@
     }
 }
 
-@media (min-resolution: 120dpi) {
-    table, th, td {
-      border-width: 0.75px;
-    }
-  }
-  
-  @media (min-resolution: 144dpi) {
-    table, th, td {
-      border-width: 0.666px;
-    }
-  }
-  
-  @media (min-resolution: 192dpi) {
-    table, th, td {
-      border-width: 0.5px;
-    }
-  }
-
-
 //  ============================================================================
 //  $  TABLE CELL SIZES
 //  ============================================================================
@@ -336,3 +318,24 @@
 .s-table--cell10 { width: @table-columns * 10; }
 .s-table--cell11 { width: @table-columns * 11; }
 .s-table--cell12 { width: @table-columns * 12; }
+
+//  ============================================================================
+//  $  TABLE BORDER WITH SIZES ON ZOOM
+//  ============================================================================
+@media (min-resolution: 120dpi) {
+    table, th, td {
+      border-width: 0.75px;
+    }
+  }
+  
+  @media (min-resolution: 144dpi) {
+    table, th, td {
+      border-width: 0.666px;
+    }
+  }
+  
+  @media (min-resolution: 192dpi) {
+    table, th, td {
+      border-width: 0.5px;
+    }
+  }
