@@ -268,11 +268,11 @@ fieldset {
 //  ============================================================================
 //  $   CHECKBOXES & RADIOS
 //  ----------------------------------------------------------------------------
-// TODO Overall, would _love_ to drop .s-radio entirely since it largely is just .s-checkbox
-// TODO would _love_ to use .s-checkbox instead, with no class on the input itself
-.s-checkbox-control, .s-radio-control {
+// TODO would _love_ to use .s-check instead, with no class on the input itself
+.s-check-control {
     display: flex;
     gap: var(--su8);
+    align-items: center;
 
     [disabled] + .s-label {
         &:extend(.is-disabled .s-label);
@@ -283,7 +283,7 @@ fieldset {
     }
 }
 
-.s-checkbox-group, .s-radio-group {
+.s-check-group {
     display: flex;
     flex-direction: column;
     gap: var(--su8);
@@ -295,6 +295,14 @@ fieldset {
     // TODO HACK? <legend> isn't respecting gap...
     legend.s-label {
         margin-bottom: var(--su8);
+    }
+
+    // manually align the checkboxes and radios to the top of the group
+    .s-check-control {
+        align-items: flex-start;
+    }
+    .s-checkbox, .s-radio {
+        margin-top: calc(var(--su2) + var(--su1)); // 3px
     }
 }
 
@@ -312,7 +320,6 @@ fieldset {
         //  [2]  Now re-style the checkboxes and radios
         //  ------------------------------------------------------------------------
         margin: 0; // A guard against Core's default margins
-        margin-top: calc(var(--su2) + var(--su1)); // 3px
         width: 1em;
         height: 1em;
         border: 1px solid var(--bc-darker);
