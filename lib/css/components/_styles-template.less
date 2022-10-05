@@ -13,7 +13,8 @@
     // --_{component-abreviation}-{child-component-name}-{property-shorthand}: {value};
     --_cn-image-bg: var(--red-500);
 
-    // THEME/MODE STYLES
+    // CONTEXTUAL STYLES
+    // These may include themes/modes or modifications based on parent containers
     .highcontrast-mode({
         --_cn-bg: var(--black-400);
 
@@ -21,6 +22,9 @@
             --_cn-image-bg: var(--white);
         }
     });
+    .s-special-parent & {
+        --_cn-bg: transparent;
+    }
 
     // MODIFIERS
     // Modifiers are considered to be classes that can be combined with other modifiers outside of their respective groupings without collisions
