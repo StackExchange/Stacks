@@ -37,7 +37,7 @@
     // Label status flag
     // Is this form item required or optional? Flag the status for users.
     // Default styling is optional.
-    &--status {
+    & &--status {
         --_la-status-b: none;
         --_la-status-bg: var(--black-050);
         --_la-status-fc: var(--fc-medium);
@@ -46,23 +46,24 @@
             --_la-status-b: var(--su-static1) solid currentColor;
         });
 
-        &&__beta {
+        // TODO: include child component class (without variant) on selector
+        &__beta {
             --_la-status-bg: var(--blue-100);
             --_la-status-fc: var(--blue-700);
         }
-        &&__new {
+        &__new {
             --_la-status-bg: var(--green-100);
             --_la-status-fc: var(--green-700);
-
+    
             .dark-mode({
                 --_la-status-bg: var(--green-050);
                 --_la-status-fc: var(--green-800);
             });
         }
-        &&__required {
+        &__required {
             --_la-status-bg: var(--red-100);
             --_la-status-fc: var(--red-700);
-
+    
             .dark-mode({
                 --_la-status-bg: var(--red-050);
                 --_la-status-fc: var(--red-800);
