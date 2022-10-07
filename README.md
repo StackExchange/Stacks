@@ -33,7 +33,25 @@ To contribute to Stacks documentation or its CSS library, you’ll need to build
 Having trouble getting these steps to work? Open [an issue](https://github.com/StackExchange/Stacks/issues/new) with a `setup` label.
 
 ## Testing Stacks
-Stacks has implemented visual regression testing with [Backstop](https://github.com/garris/BackstopJS). To test if your new feature introduces visual regressions, run `npm run test` in a new Terminal window while Stacks is running. After the tests have run, a new browser window with any regressions will show. If the regressions are desired, you can run `npm run approve` to establish the new baseline.
+
+### Component Tests
+🚧 Work in Progress 🚧
+
+Component tests are written with [DOM Testing Library](https://testing-library.com/docs/dom-testing-library/intro).
+Please follow the library's principles and documentation to write tests.
+
+Stacks uses [Web Test Runner](https://modern-web.dev/docs/test-runner/overview/) and [Playwright](https://modern-web.dev/docs/test-runner/browser-launchers/playwright/) to run tests in a real browser context
+
+Execute the component tests suite via running:
+```sh
+$ npm test
+```
+or if you prefer watch mode run:
+```sh
+$ npm run test:watch
+```
+### Visual Regression Tests
+Stacks has implemented visual regression testing with [Backstop](https://github.com/garris/BackstopJS). To test if your new feature introduces visual regressions, run `npm run test:regression` in a new Terminal window while Stacks is running. After the tests have run, a new browser window with any regressions will show. If the regressions are desired, you can run `npm run approve` to establish the new baseline.
 
 Individual routes to test are found in [backstop.json](/backstop.json)
 
