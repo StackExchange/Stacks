@@ -11,23 +11,19 @@
     --_up-bg-focus: var(--black-050);
     --_up-bg-bc: var(--black-150);
     --_up-focus-ring-color: var(--focus-ring);
-
     // Static custom properties (not redefined but repeated enough to warrant a custom property)
     --_up-bg-b-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='5' ry='5' stroke='%23000000' stroke-width='8' stroke-dasharray='7%2c 22' stroke-dashoffset='0' stroke-linecap='square'/%3e%3c/svg%3e");
 
-    .highcontrast-mode({
-        --_up-bg-bc-hc: var(--black-400);
-    });
+    .highcontrast-mode({ --_up-bg-bc-hc: var(--black-400); });
 
+    // MODIFIERS
     &.is-active {
         --_up-bg: var(--black-050);
         --_up-bg-bc: var(--black-200);
     }
-
     &.is-disabled {
         opacity: var(--_o-disabled-static);
     }
-
     &.has-error {
         --_up-bg: var(--red-050);
         --_up-bg-focus: var(--red-100);
@@ -36,7 +32,6 @@
         --_up-focus-ring-color: var(--focus-ring-error);
         --_up-link-fc: var(--red-900);
     }
-
     &.has-success {
         --_up-bg: var(--green-025);
         --_up-bg-focus: var(--green-050);
@@ -45,7 +40,6 @@
         --_up-focus-ring-color: var(--focus-ring-success);
         --_up-link-fc: var(--green-900);
     }
-
     &.has-warning {
         --_up-bg: var(--yellow-050);
         --_up-bg-focus: var(--yellow-100);
@@ -54,7 +48,6 @@
         --_up-focus-ring-color: var(--focus-ring-warning);
         --_up-link-fc: var(--yellow-900);
     }
-
     &.has-error,
     &.has-success,
     &.has-warning {
@@ -63,12 +56,13 @@
         }
     }
 
-    // This is to for safari shadow DOM
+    //  CHILD ELEMENTS
+    // This is for safari shadow DOM
     // see https://github.com/StackExchange/Stacks/pull/690#issuecomment-861028193
     input[type="file"]::file-selector-button {
         cursor: pointer;
     }
-    .s-uploader--container {
+    & &--container {
         align-items: center;
         background-color: var(--_up-bg);
         border-radius: var(--br-lg);
@@ -92,7 +86,7 @@
             inset: 0;
         }
     }
-    .s-uploader--input {
+    & &--input {
         cursor: pointer;
         height: 100%;
         inset: 0;
@@ -106,12 +100,11 @@
             box-shadow: 0 0 0 var(--su-static4) var(--_up-focus-ring-color);
         }
     }
-    .s-uploader--preview {
+    & &--preview {
         max-width: 100%;
         pointer-events: none;
     }
-
-    .s-uploader--preview-thumbnail {
+    & &--preview-thumbnail {
         background-color: var(--white);
         border-radius: var(--br-sm);
         box-shadow: var(--bs-md);
@@ -132,8 +125,7 @@
             padding: var(--su16);
         }
     }
-
-    .s-uploader--previews {
+    & &--previews {
         max-width: 100%;
         text-align: left;
 
@@ -177,15 +169,13 @@
             }
         }
     }
-
-    .s-uploader--previews-heading {
+    & &--previews-heading {
         color: var(--black-900);
         font-size: var(--fs-body2);
         font-weight: 600;
         padding-bottom: var(--su8);
     }
-
-    .s-uploader--reset {
+    & &--reset {
         position: absolute;
         right: var(--su8);
         top: var(--su8);
