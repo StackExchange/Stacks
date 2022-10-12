@@ -6,6 +6,7 @@ const highlightPlugin = require("./plugins/highlight");
 const iconPlugin = require("./plugins/icons");
 const tipPlugin = require("./plugins/tip");
 const markdownPlugin = require("./plugins/markdown");
+const copyButtonPlugin = require("./plugins/copy-button");
 
 module.exports = function(eleventyConfig) {
   eleventyConfig.setQuietMode(true); // Reduce the console output
@@ -15,6 +16,7 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.addPlugin(iconPlugin);
   eleventyConfig.addPlugin(headerPlugin);
   eleventyConfig.addPlugin(tipPlugin);
+  eleventyConfig.addPlugin(copyButtonPlugin);
 
   // Version shortcode
   eleventyConfig.addLiquidShortcode("version", function() {

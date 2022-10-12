@@ -231,6 +231,20 @@
     white-space: normal;
 }
 
+//  ============================================================================
+//  $  CODE COPY BUTTON
+//  ----------------------------------------------------------------------------
+.stacks-copy-btn {
+    .svg-icon,
+    .svg-icon * {
+        pointer-events: none;
+    }
+
+    .iconCheckmark {
+        color: var(--green-500);
+    }
+}
+
 
 //  ============================================================================
 //  $  LISTS
@@ -255,11 +269,26 @@
         box-shadow: none;
     });
 
-    > pre.s-code-block {
+    .stacks-copy-btn {
+        right: var(--su-static8);
+        top: var(--su-static8);
+    }
+
+    > pre.s-code-block,
+    > .stacks-clipboard-content pre.s-code-block {
         border-radius: var(--br-md) var(--br-md) 0 0;
         border: 1px solid var(--bc-medium);
+        display: flex; // flex layout for scroll padding
         max-height: 24rem;
+        padding-right: var(--su32);
 
+        // pseudo element to pad scrollable region to compensate for copy button
+        &:after {
+            content: "";
+            display: block;
+            height: var(--su-static1);
+            width: var(--su-static128);
+        }
         .dark-mode({
             border-color: var(--bc-lighter);
         });
