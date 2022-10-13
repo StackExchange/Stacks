@@ -1,41 +1,50 @@
 import * as Stacks from "../stacks";
 
+/**
+ * The string values of these enumerations should correspond with `aria-sort` valid values.
+ *
+ * @see https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-sort#values
+ */
+enum SortOrder {
+    Ascending = 'ascending',
+    Descending = 'descending',
+    None = 'none',
+}
+
 export class TableController extends Stacks.StacksController {
     static targets = ["column"];
-    readonly columnTarget!: Element;
-    readonly columnTargets!: Element[];
+    readonly columnTarget!: HTMLTableCellElement;
+    readonly columnTargets!: HTMLTableCellElement[];
 
-    setCurrentSort(headElem: Element, direction: "asc" | "desc" | "none") {
-        if (["asc", "desc", "none"].indexOf(direction) < 0) {
-            throw "direction must be one of asc, desc, or none"
-        }
-        // eslint-disable-next-line @typescript-eslint/no-this-alias
-        const controller = this;
-        this.columnTargets.forEach(function (target) {
-            const isCurrrent = target === headElem;
+    connect() {
+        this.columnTargets.forEach(this.ensureHeadersAreClickable);
+    }
 
-            target.classList.toggle("is-sorted", isCurrrent && direction !== "none");
+    private setCurrentSort(headElem: Element, direction: SortOrder) {
+        this.columnTargets.forEach((target: HTMLTableCellElement) => {
+            const isCurrent = target === headElem;
+            const classSuffix = isCurrent
+                ? (direction === SortOrder.Ascending ? 'asc' : 'desc')
+                : SortOrder.None;
 
-            target.querySelectorAll(".js-sorting-indicator").forEach(function (icon) {
-                const visible = isCurrrent ? direction : "none";
-                icon.classList.toggle("d-none", !icon.classList.contains("js-sorting-indicator-" + visible));
+            target.classList.toggle("is-sorted", isCurrent && direction !== SortOrder.None);
+
+            target.querySelectorAll(".js-sorting-indicator").forEach((icon) => {
+                icon.classList.toggle("d-none", !icon.classList.contains("js-sorting-indicator-" + classSuffix));
             });
 
-            if (!isCurrrent || direction === "none") {
-                controller.removeElementData(target, "sort-direction");
-            } else {
-                controller.setElementData(target, "sort-direction", direction);
-            }
+            target.setAttribute('aria-sort', direction);
         });
     };
 
     sort(evt: Event) {
         // eslint-disable-next-line @typescript-eslint/no-this-alias
         const controller = this;
-        const colHead = evt.currentTarget;
-        if (!(colHead instanceof HTMLTableCellElement)) {
+        const sortTriggerEl = evt.currentTarget;
+        if (!(sortTriggerEl instanceof HTMLButtonElement)) {
             throw "invalid event target";
         }
+        const colHead = sortTriggerEl.parentElement as HTMLTableCellElement;
         const table = this.element as HTMLTableElement;
         const tbody = table.tBodies[0];
 
@@ -52,7 +61,7 @@ export class TableController extends Stacks.StacksController {
 
         // the default behavior when clicking a header is to sort by this column in ascending
         // direction, *unless* it is already sorted that way
-        const direction = this.getElementData(colHead, "sort-direction") === "asc" ? -1 : 1;
+        const direction = colHead.getAttribute('aria-sort') === SortOrder.Ascending ? -1 : 1;
 
         const rows = Array.from(table.tBodies[0].rows);
 
@@ -127,9 +136,37 @@ export class TableController extends Stacks.StacksController {
 
         // update the UI and set the `data-sort-direction` attribute if appropriate, so that the next click
         // will cause sorting in descending direction
-        this.setCurrentSort(colHead, direction === 1 ? "asc" : "desc");
+        this.setCurrentSort(colHead, direction === 1 ? SortOrder.Ascending : SortOrder.Descending);
     }
 
+    /**
+     * Transform legacy header markup into the new markup.
+     *
+     * @param headerEl
+     * @private
+     */
+    private ensureHeadersAreClickable(headerEl: HTMLTableCellElement) {
+        const headerAction = headerEl.getAttribute('data-action');
+        const headerViolatesA11y = headerAction !== null && headerAction.substring(0, 5) === 'click';
+        const lacksSortableClass = !headerEl.classList.contains('s-table--sortable-column');
+
+        if (lacksSortableClass) {
+            headerEl.classList.add('s-table--sortable-column');
+        }
+
+        if (headerViolatesA11y) {
+            if (process.env.NODE_ENV !== 'production') {
+                console.warn('s-table :: a `<th>` should not have a data-action="click->..." attribute.');
+            }
+
+            headerEl.removeAttribute('data-action');
+            headerEl.innerHTML = `
+                <button class="s-table--clickable-header" data-action="${headerAction}">
+                    ${headerEl.innerHTML}
+                </button>
+            `;
+        }
+    }
 }
 
 function buildIndex(section: HTMLTableSectionElement): HTMLTableCellElement[][] {
