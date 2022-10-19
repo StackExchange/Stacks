@@ -1,44 +1,37 @@
-//
-//  STACK OVERFLOW
-//  BREADCRUMBS
-//
-//  This CSS comes from Stacks, our CSS & Pattern library for rapidly building
-//  Stack Overflow. For documentation of all these classes and how to contribute,
-//  visit https://stackoverflow.design/
-//
-
 .s-breadcrumbs {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: start;
-    color: var(--black-200);
-    font-size: var(--fs-caption);
+    --_br-divider-px: var(--su4);
+    --_br-link-fc: var(--fc-light);
 
-    .s-breadcrumbs--item {
+    // CONTEXTUAL STYLES
+    #stacks-internals #screen-sm({
+        --_br-divider-px: var(--su2);
+    });
+
+    // CHILD ELEMENTS
+    & &--item {
+        align-items: center;
         display: flex;
         flex-wrap: nowrap;
-        align-items: center;
-        margin-top: var(--su2);
         margin-bottom: var(--su2);
+        margin-top: var(--su2);
     }
-
-    .s-breadcrumbs--divider {
-        margin-right: var(--su4);
-        margin-left: var(--su4);
-
+    & &--divider {
         .highcontrast-mode({ color: var(--fc-light); });
 
-        #stacks-internals #screen-sm({
-            margin-right: var(--su2);
-            margin-left: var(--su2);
-        });
+        margin-left: var(--_br-divider-px);
+        margin-right: var(--_br-divider-px);
     }
-
-    .s-breadcrumbs--link {
-        color: var(--fc-light);
+    & &--link {
+        color: var(--_br-link-fc);
 
         &:hover {
-            color: var(--fc-medium);
+            --_br-link-fc: var(--fc-medium);
         }
     }
+
+    align-items: flex-start;
+    color: var(--black-200);
+    display: flex;
+    flex-wrap: wrap;
+    font-size: var(--fs-caption);
 }
