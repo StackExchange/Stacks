@@ -1,0 +1,49 @@
+---
+layout: page
+title: Award bling
+figma: https://www.figma.com/file/i2HeoRFKn6MXAWn2UuTDHc/Badges
+description: Award bling is used to indicate award type in badges, topbar, and user cards.
+---
+<section class="stacks-section">
+    {% header "h2", "Types" %}
+    <p class="stacks-copy">Use award bling to indicate the type of award.</p>
+    <div class="stacks-preview">
+{% highlight html %}
+<span class="s-award-bling s-award-bling__gold">…</span>
+<span class="s-award-bling s-award-bling__silver">…</span>
+<span class="s-award-bling s-award-bling__bronze">…</span>
+{% endhighlight %}
+        <div class="stacks-preview--example">
+            <div class="overflow-x-auto" tabindex="0">
+                <table class="wmn5 s-table s-table__bx-simple">
+                    <thead>
+                        <tr>
+                            <th scope="col">Example</th>
+                            <th scope="col" class="s-table--cell5">Class</th>
+                            <th scope="col">Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for bling in award-bling.types %}
+                            <tr>
+                                <td class="va-middle pr8">
+                                    <span class="s-award-bling s-award-bling__{{ bling.repType }}">
+                                        {{ bling.label }}
+                                        <span class="v-visible-sr">{{ bling.repType }} awards</span>
+                                    </span>
+                                </td>
+                                <td class="va-middle">
+                                    <div class="d-flex g4 fw-wrap">
+                                        <code class="stacks-code">.s-award-bling</code>
+                                        <code class="stacks-code">.s-award-bling__{{ bling.repType }}</code>
+                                    </div>
+                                </td>
+                                <td class="va-middle">{{ bling.description }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>

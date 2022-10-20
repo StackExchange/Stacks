@@ -1,71 +1,9 @@
-//
-//  STACK OVERFLOW
-//  AVATARS
-//
-//  This CSS comes from Stacks, our CSS & Pattern library for rapidly building
-//  Stack Overflow. For documentation of all these classes and how to contribute,
-//  visit https://stackoverflow.design/
-//
-//  TABLE OF CONTENTS
-//  • AVATARS
-//  • TEAM AVATARS
-//
-
-//  ============================================================================
-//  $   TEAM AVATARS
-//  ----------------------------------------------------------------------------
-
 .s-avatar {
-    --_size: var(--su-static16);
-    --_br: var(--br-sm);
-    --_fs-letter: calc(var(--su-static12) - var(--su-static1));
-    --_scale-badge: 1;
-
-    &.s-avatar__24 {
-        --_size: var(--su-static24);
-        --_fs-letter: var(--su-static16);
-        --_scale-badge: 1.1;
-    }
-    &.s-avatar__32 {
-        --_size: var(--su-static32);
-        --_br: var(--br-md);
-        --_fs-letter: calc(var(--su-static24) - var(--su-static2));
-        --_scale-badge: 1.3;
-    }
-    &.s-avatar__48 {
-        --_size: var(--su-static48);
-        --_br: var(--br-md);
-        --_fs-letter: calc(var(--su-static32) + var(--su-static2));
-        --_scale-badge: 1.6;
-    }
-    &.s-avatar__64 {
-        --_size: var(--su-static64);
-        --_br: var(--br-lg);
-        --_fs-letter: calc(var(--su-static48) - var(--su-static4));
-        --_scale-badge: 2.4;
-    }
-    &.s-avatar__96 {
-        --_size: var(--su-static96);
-        --_br: calc(var(--br-lg) + var(--br-sm));
-        --_fs-letter: calc(var(--su-static64) + var(--su-static2));
-        --_scale-badge: 3;
-    }
-    &.s-avatar__128 {
-        --_size: var(--su-static128);
-        --_br: calc(var(--br-lg) + var(--br-sm));
-        --_fs-letter: calc(var(--su-static96) - var(--su-static8));
-        --_scale-badge: 3;
-    }
-
-    display: inline-block; // Make sure the avatar has structure regardless of the element eg. span vs. div
-    position: relative;
-    width: var(--_size);
-    height: var(--_size);
-    border-radius: var(--_br);
-    background-color: @white; // Force a white background color for when we have transparent avatars
-    background-repeat: no-repeat;
-    background-size: 100%;
-    vertical-align: bottom; // Make our avatars play more nicely with text next to it.
+    --_av-size: var(--su-static16);
+    --_av-bg: @white; // Force a white background color for when we have transparent avatars
+    --_av-br: var(--br-sm);
+    --_av-fs-letter: calc(var(--su-static12) - var(--su-static1));
+    --_av-scale-badge: 1;
 
     .highcontrast-mode({
         background-color: var(--black);
@@ -77,10 +15,65 @@
         }
     });
 
-    .s-avatar--letter {
+    // VARIANTS
+    // Sizes
+    &&__32,
+    &&__48 {
+        --_av-br: var(--br-md);
+    }
+    &&__96,
+    &&__128 {
+        --_av-br: calc(var(--br-lg) + var(--br-sm));
+        --_av-scale-badge: 3;
+    }
+    &&__24 {
+        --_av-size: var(--su-static24);
+        --_av-fs-letter: var(--su-static16);
+        --_av-scale-badge: 1.1;
+    }
+    &&__32 {
+        --_av-size: var(--su-static32);
+        --_av-fs-letter: calc(var(--su-static24) - var(--su-static2));
+        --_av-scale-badge: 1.3;
+    }
+    &&__48 {
+        --_av-size: var(--su-static48);
+        --_av-fs-letter: calc(var(--su-static32) + var(--su-static2));
+        --_av-scale-badge: 1.6;
+    }
+    &&__64 {
+        --_av-size: var(--su-static64);
+        --_av-br: var(--br-lg);
+        --_av-fs-letter: calc(var(--su-static48) - var(--su-static4));
+        --_av-scale-badge: 2.4;
+    }
+    &&__96 {
+        --_av-size: var(--su-static96);
+        --_av-fs-letter: calc(var(--su-static64) + var(--su-static2));
+    }
+    &&__128 {
+        --_av-size: var(--su-static128);
+        --_av-fs-letter: calc(var(--su-static96) - var(--su-static8));
+    }
+
+    // CHILD ELEMENTS
+    & &--badge {
+        bottom: calc(var(--su-static4) * -1); // -4px
+        position: absolute;
+        right: calc(var(--su-static4) * -1); // -4px
+        -webkit-transform: scale(var(--_av-scale-badge));
+        transform: scale(var(--_av-scale-badge));
+    }
+    & &--image {
+        border-radius: var(--_av-br);
+        display: block;
+        height: var(--_av-size);
+        width: var(--_av-size);
+    }
+    & &--letter {
         display: block; // Make sure we're treating the letter as a block-level element
         color: @white; // Force a light appearance of text rendering
-        font-size: var(--_fs-letter); // Force a font size so the avatar text doesn't get smaller as the window resizes
+        font-size: var(--_av-fs-letter); // Force a font size so the avatar text doesn't get smaller as the window resizes
         font-weight: bold;
         line-height: 1.4; // Guards against some line-height trolling from the parent
         text-align: center;
@@ -92,18 +85,14 @@
         user-select: none;
     }
 
-    .s-avatar--badge {
-        position: absolute;
-        right: -4px;
-        bottom: -4px;
-        -webkit-transform: scale(var(--_scale-badge));
-        transform: scale(var(--_scale-badge));
-    }
+    background-color: var(--_av-bg); 
+    border-radius: var(--_av-br);
+    height: var(--_av-size);
+    width: var(--_av-size);
 
-    .s-avatar--image {
-        width: var(--_size);
-        height: var(--_size);
-        border-radius: var(--_br);
-        display: block;
-    }
+    background-repeat: no-repeat;
+    background-size: 100%;
+    display: inline-block; // Make sure the avatar has structure regardless of the element eg. span vs. div
+    position: relative;
+    vertical-align: bottom; // Make our avatars play more nicely with text next to it.
 }

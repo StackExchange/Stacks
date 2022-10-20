@@ -1,55 +1,52 @@
-//
-//  STACK OVERFLOW
-//  PAGINATION
-//
-//  This CSS comes from Stacks, our CSS & Pattern library for rapidly building
-//  Stack Overflow. For documentation of all these classes and how to contribute,
-//  visit https://stackoverflow.design/
-//
-//  TABLE OF CONTENTS
-//  • BASE STYLE
-//
-//  ============================================================================
-//  $    BASE STYLE
-//  ----------------------------------------------------------------------------
 .s-pagination {
+   & &--item {
+        --_pa-item-bg: transparent;
+        --_pa-item-bc: var(--bc-medium);
+        --_pa-item-fc: var(--fc-medium);
+        // hover
+        --_pa-item-bg-hover: var(--black-100);
+        --_pa-item-bc-hover: var(--bc-darker);
+        --_pa-item-fc-hover: var(--fc-dark);
+
+        .highcontrast-mode({ text-decoration: none; });
+
+        // MODIFIERS
+        &.is-selected {
+            --_pa-item-bg: var(--theme-primary-color);
+            --_pa-item-bc: transparent;
+            --_pa-item-fc: var(--white);
+        }
+        &&__clear {
+            --_pa-item-bg: transparent;
+            --_pa-item-bc: transparent;
+            --_pa-item-fc: inherit;
+        }
+        // override hover styles to match base styles
+        &.is-selected,
+        &&__clear {
+            --_pa-item-bc-hover: var(--_pa-item-bc);
+            --_pa-item-bg-hover: var(--_pa-item-bg);
+            --_pa-item-fc-hover: var(--_pa-item-fc);
+        }
+
+        // INTERACTION
+        &:hover {
+            background-color: var(--_pa-item-bg-hover);
+            border-color: var(--_pa-item-bc-hover);
+            color: var(--_pa-item-fc-hover);
+        }
+
+        background-color: var(--_pa-item-bg);
+        border: 1px solid var(--_pa-item-bc);
+        color: var(--_pa-item-fc);
+
+        border-radius: var(--br-sm);
+        font-size: var(--fs-body1);
+        line-height: var(--lh-xl);
+        padding: 0 var(--su8);
+    }
+
     display: flex;
     flex-wrap: wrap;
-    margin-left: calc(var(--su2) * -1);
-    margin-right: calc(var(--su2) * -1);
-}
-
-.s-pagination--item {
-    margin-left: var(--su2);
-    margin-right: var(--su2);
-    padding: 0 var(--su8);
-    background-color: transparent;
-    border-radius: var(--br-sm);
-    border: 1px solid var(--bc-medium);
-    font-size: var(--fs-body1);
-    line-height: var(--lh-xl);
-    color: var(--fc-medium);
-
-    .highcontrast-mode({ text-decoration: none; });
-
-    &:hover {
-        border-color: var(--bc-darker);
-        background-color: var(--black-100);
-        color: var(--fc-dark);
-    }
-
-    &.is-selected {
-        border-color: transparent;
-        background-color: var(--theme-primary-color);
-        color: var(--white);
-    }
-
-    &.s-pagination--item__clear {
-        &,
-        &:hover {
-            color: inherit;
-            border-color: transparent;
-            background-color: transparent;
-        }
-    }
+    gap: var(--su4);
 }
