@@ -1,28 +1,20 @@
-//
-//  STACK OVERFLOW
-//  FILE UPLOAD -- DYNAMIC PARTS
-//
-//  This CSS comes from Stacks, our CSS & Pattern library for rapidly building
-//  Stack Overflow. For documentation of all these classes and how to contribute,
-//  visit https://stackoverflow.design/
-
 .s-uploader {
     --_up-bg: var(--black-025);
     --_up-bg-focus: var(--black-050);
     --_up-bg-bc: var(--black-150);
     --_up-focus-ring-color: var(--focus-ring);
-    // Static custom properties (not redefined but repeated enough to warrant a custom property)
     --_up-bg-b-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='5' ry='5' stroke='%23000000' stroke-width='8' stroke-dasharray='7%2c 22' stroke-dashoffset='0' stroke-linecap='square'/%3e%3c/svg%3e");
 
+    // CONTEXTUAL STYLES
     .highcontrast-mode({ --_up-bg-bc-hc: var(--black-400); });
 
-    // MODIFIERS
-    &.is-active {
-        --_up-bg: var(--black-050);
-        --_up-bg-bc: var(--black-200);
-    }
-    &.is-disabled {
-        opacity: var(--_o-disabled-static);
+    // STATES
+    &.has-error,
+    &.has-success,
+    &.has-warning {
+        .s-link {
+            color: var(--_up-link-fc);
+        }
     }
     &.has-error {
         --_up-bg: var(--red-050);
@@ -48,21 +40,28 @@
         --_up-focus-ring-color: var(--focus-ring-warning);
         --_up-link-fc: var(--yellow-900);
     }
-    &.has-error,
-    &.has-success,
-    &.has-warning {
-        .s-link {
-            color: var(--_up-link-fc);
-        }
+    &.is-active {
+        --_up-bg: var(--black-050);
+        --_up-bg-bc: var(--black-200);
+    }
+    &.is-disabled {
+        opacity: var(--_o-disabled-static);
     }
 
+
     //  CHILD ELEMENTS
-    // This is for safari shadow DOM
-    // see https://github.com/StackExchange/Stacks/pull/690#issuecomment-861028193
-    input[type="file"]::file-selector-button {
-        cursor: pointer;
-    }
     & &--container {
+        &:before { // Add the dashed border as an SVG background mask
+            -webkit-mask-image: var(--_up-bg-b-image);
+            mask-image: var(--_up-bg-b-image);
+            background-color: var(--_up-bg-bc-hc-state, var(--_up-bg-bc-hc, var(--_up-bg-bc)));
+            content: '';
+            border-radius: var(--br-lg);
+            display: block;
+            position: absolute;
+            inset: 0;
+        }
+
         align-items: center;
         background-color: var(--_up-bg);
         border-radius: var(--br-lg);
@@ -73,20 +72,13 @@
         padding: var(--su8) var(--su16);
         position: relative;
         text-align: center;
-
-        // Add the dashed border as an SVG background mask
-        &:before {
-            -webkit-mask-image: var(--_up-bg-b-image);
-            mask-image: var(--_up-bg-b-image);
-            background-color: var(--_up-bg-bc-hc-state, var(--_up-bg-bc-hc, var(--_up-bg-bc)));
-            content: '';
-            border-radius: var(--br-lg);
-            display: block;
-            position: absolute;
-            inset: 0;
-        }
     }
     & &--input {
+        &:focus:focus-visible + .s-uploader--container {
+            background-color: var(--_up-bg-focus);
+            box-shadow: 0 0 0 var(--su-static4) var(--_up-focus-ring-color);
+        }
+
         cursor: pointer;
         height: 100%;
         inset: 0;
@@ -94,26 +86,12 @@
         position: absolute;
         width: 100%;
         z-index: var(--zi-selected);
-
-        &:focus:focus-visible + .s-uploader--container {
-            background-color: var(--_up-bg-focus);
-            box-shadow: 0 0 0 var(--su-static4) var(--_up-focus-ring-color);
-        }
     }
     & &--preview {
         max-width: 100%;
         pointer-events: none;
     }
     & &--preview-thumbnail {
-        background-color: var(--white);
-        border-radius: var(--br-sm);
-        box-shadow: var(--bs-md);
-        max-height: var(--su-static128);
-        max-width: 100%;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-
         .highcontrast-mode({ border: 1px solid var(--black); });
 
         &:is(img) {
@@ -124,11 +102,17 @@
         &:not(img) {
             padding: var(--su16);
         }
+
+        background-color: var(--white);
+        border-radius: var(--br-sm);
+        box-shadow: var(--bs-md);
+        max-height: var(--su-static128);
+        max-width: 100%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
     }
     & &--previews {
-        max-width: 100%;
-        text-align: left;
-
         &.has-multiple {
             display: block;
             height: auto;
@@ -151,7 +135,6 @@
                     white-space: nowrap;
                 }
             }
-
             .s-uploader--preview-thumbnail {
                 color: transparent;
                 height: var(--su-static32);
@@ -168,6 +151,9 @@
                 }
             }
         }
+
+        max-width: 100%;
+        text-align: left;
     }
     & &--previews-heading {
         color: var(--black-900);
@@ -180,6 +166,11 @@
         right: var(--su8);
         top: var(--su8);
         z-index: var(--zi-active);
+    }
+    // This is for safari shadow DOM
+    // see https://github.com/StackExchange/Stacks/pull/690#issuecomment-861028193
+    input[type="file"]::file-selector-button {
+        cursor: pointer;
     }
 
     position: relative;

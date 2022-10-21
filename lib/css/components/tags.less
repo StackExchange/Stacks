@@ -23,6 +23,23 @@
         text-decoration: none;
     });
 
+    // STATES
+    &.is-selected {
+        &,
+        a&,
+        a&:active,
+        a&:hover,
+        a&:focus {
+            background-color: var(--_ta-bg-selected);
+            border-color: var(--_ta-bc-selected);
+            color: var(--_ta-fc-selected);
+
+            .highcontrast-mode({
+                border-color: currentColor;
+            });
+        }
+    }
+
     // MODIFIERS
     // Sizes
     &&__xs {
@@ -157,7 +174,6 @@
         max-width: calc(var(--su-static16) + var(--su-static2));
     }
 
-
     // INTERACTION
     a&:not(.is-selected) {
         &:hover,
@@ -166,22 +182,6 @@
             background-color: var(--_ta-bg-hover);
             border-color: var(--_ta-bc-hover);
             color: var(--_ta-fc-hover);
-
-            .highcontrast-mode({
-                border-color: currentColor;
-            });
-        }
-    }
-    // Selected
-    &.is-selected {
-        &,
-        a&,
-        a&:active,
-        a&:hover,
-        a&:focus {
-            background-color: var(--_ta-bg-selected);
-            border-color: var(--_ta-bc-selected);
-            color: var(--_ta-fc-selected);
 
             .highcontrast-mode({
                 border-color: currentColor;
