@@ -11,31 +11,18 @@ enum SortOrder {
     None = 'none',
 }
 
+const sortedHeaderBackground = 'bg-powder-200';
+const sortedColumnBackground = 'bg-powder-100';
+
 export class TableController extends Stacks.StacksController {
-    static targets = ["column"];
     readonly columnTarget!: HTMLTableCellElement;
     readonly columnTargets!: HTMLTableCellElement[];
+
+    static targets = ["column"];
 
     connect() {
         this.columnTargets.forEach(this.ensureHeadersAreClickable);
     }
-
-    private setCurrentSort(headElem: Element, direction: SortOrder) {
-        this.columnTargets.forEach((target: HTMLTableCellElement) => {
-            const isCurrent = target === headElem;
-            const classSuffix = isCurrent
-                ? (direction === SortOrder.Ascending ? 'asc' : 'desc')
-                : SortOrder.None;
-
-            target.classList.toggle("is-sorted", isCurrent && direction !== SortOrder.None);
-
-            target.querySelectorAll(".js-sorting-indicator").forEach((icon) => {
-                icon.classList.toggle("d-none", !icon.classList.contains("js-sorting-indicator-" + classSuffix));
-            });
-
-            target.setAttribute('aria-sort', direction);
-        });
-    };
 
     sort(evt: Event) {
         // eslint-disable-next-line @typescript-eslint/no-this-alias
@@ -91,7 +78,7 @@ export class TableController extends Stacks.StacksController {
             // unless the to-be-sorted-by value is explicitly provided on the element via this attribute,
             // the value we're using is the cell's text, trimmed of any whitespace
             const explicit = controller.getElementData(cell, "sort-val");
-            const d = typeof explicit === "string" ? explicit : cell.textContent!.trim();
+            const d = explicit != null ? explicit : cell.textContent!.trim();
 
             if ((d !== "") && (`${parseInt(d, 10)}` !== d)) {
                 anyNonInt = true;
@@ -124,9 +111,16 @@ export class TableController extends Stacks.StacksController {
         });
 
         // this is the actual reordering of the table rows
-        data.forEach(function (tup) {
-            const row = rows[tup[1]];
+        data.forEach(([_, rowIndex]) => {
+            const row = rows[rowIndex];
             row.parentElement!.removeChild(row);
+
+            for (let i = 0; i < row.cells.length; i++) {
+                const cell = row.cells.item(i);
+
+                cell?.classList.toggle(sortedColumnBackground, i === colno);
+            }
+
             if (firstBottomRow) {
                 tbody.insertBefore(row, firstBottomRow);
             } else {
@@ -136,32 +130,45 @@ export class TableController extends Stacks.StacksController {
 
         // update the UI and set the `data-sort-direction` attribute if appropriate, so that the next click
         // will cause sorting in descending direction
-        this.setCurrentSort(colHead, direction === 1 ? SortOrder.Ascending : SortOrder.Descending);
+        this.updateSortedColumnStyles(colHead, direction === 1 ? SortOrder.Ascending : SortOrder.Descending);
+    }
+
+    private updateSortedColumnStyles(targetColumnHeader: Element, direction: SortOrder): void {
+        // Loop through all sortable columns and remove their sorting direction
+        // (if any), and only leave/set a sorting on `targetColumnHeader`.
+        this.columnTargets.forEach((header: HTMLTableCellElement) => {
+            const isCurrent = header === targetColumnHeader;
+            const classSuffix = isCurrent
+                ? (direction === SortOrder.Ascending ? 'asc' : 'desc')
+                : SortOrder.None;
+
+            header.classList.toggle('is-sorted', isCurrent && direction !== SortOrder.None);
+            header.classList.toggle(sortedHeaderBackground, isCurrent);
+            header.setAttribute('aria-sort', direction);
+            header.querySelectorAll('.js-sorting-indicator').forEach((icon) => {
+                icon.classList.toggle('d-none', !icon.classList.contains('js-sorting-indicator-' + classSuffix));
+            });
+        });
     }
 
     /**
      * Transform legacy header markup into the new markup.
      *
      * @param headerEl
-     * @private
      */
     private ensureHeadersAreClickable(headerEl: HTMLTableCellElement) {
         const headerAction = headerEl.getAttribute('data-action');
-        const headerViolatesA11y = headerAction !== null && headerAction.substring(0, 5) === 'click';
-        const lacksSortableClass = !headerEl.classList.contains('s-table--sortable-column');
 
-        if (lacksSortableClass) {
-            headerEl.classList.add('s-table--sortable-column');
-        }
-
-        if (headerViolatesA11y) {
+        // Legacy markup that violates accessibility practices; change the DOM
+        if (headerAction !== null && headerAction.substring(0, 5) === 'click') {
             if (process.env.NODE_ENV !== 'production') {
-                console.warn('s-table :: a `<th>` should not have a data-action="click->..." attribute.');
+                console.warn('s-table :: a `<th>` should not have a `data-action="click->..."` attribute. https://stackoverflow.design/product/components/tables/#javascript-example');
+                console.warn('target: ', headerEl);
             }
 
             headerEl.removeAttribute('data-action');
             headerEl.innerHTML = `
-                <button class="s-table--clickable-header" data-action="${headerAction}">
+                <button data-action="${headerAction}">
                     ${headerEl.innerHTML}
                 </button>
             `;
