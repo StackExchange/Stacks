@@ -24,7 +24,7 @@ export class TableController extends Stacks.StacksController {
         this.columnTargets.forEach(this.ensureHeadersAreClickable);
     }
 
-    sort(evt: Event) {
+    sort(evt: PointerEvent) {
         // eslint-disable-next-line @typescript-eslint/no-this-alias
         const controller = this;
         const sortTriggerEl = evt.currentTarget;
@@ -144,10 +144,15 @@ export class TableController extends Stacks.StacksController {
 
             header.classList.toggle('is-sorted', isCurrent && direction !== SortOrder.None);
             header.classList.toggle(sortedHeaderBackground, isCurrent);
-            header.setAttribute('aria-sort', direction);
             header.querySelectorAll('.js-sorting-indicator').forEach((icon) => {
                 icon.classList.toggle('d-none', !icon.classList.contains('js-sorting-indicator-' + classSuffix));
             });
+
+            if (isCurrent) {
+                header.setAttribute('aria-sort', direction);
+            } else {
+                header.removeAttribute('aria-sort');
+            }
         });
     }
 
