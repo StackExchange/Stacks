@@ -1,45 +1,36 @@
-//
-//  STACK OVERFLOW
-//  ACTIVITY INDICATOR
-//
-//  This CSS comes from Stacks, our CSS & Pattern library for rapidly building
-//  Stack Overflow. For documentation of all these classes and how to contribute,
-//  visit https://stackoverflow.design/
-//
-
-//  ============================================================================
-//  $   ACTIVITY INDICATOR
-//  ----------------------------------------------------------------------------
-
 .s-activity-indicator {
     --_ai-focus-ring: var(--focus-ring);
-    --_ai-bg-color: var(--theme-secondary-400);
+    --_ai-bg: var(--theme-secondary-400);
+    --_ai-fc: @white;
 
-    &.s-activity-indicator__success {
+    // CONTEXTUAL STYLES
+    .highcontrast-mode({ --_ai-fc: var(--white); });
+
+    // VARIANTS
+    &&__success {
         --_ai-bg-color: var(--green-500);
         --_ai-focus-ring: var(--focus-ring-success);
     }
-    &.s-activity-indicator__warning {
+    &&__warning {
         --_ai-bg-color: var(--yellow-600);
         --_ai-focus-ring: var(--focus-ring-warning);
     }
-    &.s-activity-indicator__danger {
+    &&__danger {
         --_ai-bg-color: var(--red-500);
         --_ai-focus-ring: var(--focus-ring-error);
     }
 
+    background-color: var(--_ai-bg);
+    box-shadow: 0 0 0 var(--su-static4) var(--_ai-focus-ring);
+    color: var(--_ai-fc);
+
+    border-radius: 1000px;
     display: inline-block;
+    font-size: var(--fs-fine);
+    font-weight: 600;
+    line-height: 1.1; // Custom line-height to satisfy 1x screens
     min-width: var(--su-static12);
     min-height: var(--su-static12);
     padding: var(--su2) var(--su4);
-    line-height: 1.1; // Custom line-height to satisfy 1x screens
-    background-color: var(--_ai-bg-color);
-    box-shadow: 0 0 0 var(--su-static4) var(--_ai-focus-ring);
-    border-radius: 1000px;
-    font-size: var(--fs-fine);
-    font-weight: 600;
-    color: @white;
     text-transform: uppercase;
-
-    .highcontrast-mode({ color: var(--white); });
 }

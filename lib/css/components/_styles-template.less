@@ -1,0 +1,78 @@
+// This is an example of the expected structure for component-specific styles
+// In some cases, deviations from this structure are warranted if we need to maintain a legacy structure
+.s-component-name {
+    // BASE COMPONENT-SPECIFIC CUSTOM PROPERTIES
+    // --_{component-abbreviation}-{property-shorthand}: {value};
+    --_cn-bg: var(--blue-500);
+    --_cn-h: var(--su-static16);
+    --_cn-fd: row-reverse;
+    // VARIANT CUSTOM PROPERTIES
+    // --_{component-abbreviation}-{property-shorthand}-{variant-name}: {value};
+    --_cn-fc-filled: var(--green-500);
+    // CHILD COMPONENT CUSTOM PROPERTIES
+    // --_{component-abreviation}-{child-component-name}-{property-shorthand}: {value};
+    --_cn-image-bg: var(--red-500);
+
+    // CONTEXTUAL STYLES
+    // These may include themes/modes, responsive styles, or modifications based on parent containers
+    .highcontrast-mode({
+        --_cn-bg: var(--black-400);
+
+        .s-avatar--letter {
+            --_cn-image-bg: var(--white);
+        }
+    });
+    .s-special-parent & {
+        --_cn-bg: transparent;
+    }
+
+    // STATES
+    // These are generally classes prefixed with `.is-` or `.has-`
+    &.is-selected {
+        --_cn-bg: var(--orange-200);
+    }
+
+    // MODIFIERS
+    // Modifiers are considered to be classes that can be combined with other modifiers outside of their respective groupings without collisions
+    // Sizes
+    &&__xs {
+        --_cn-h: var(--su-static2);
+    }
+    &&__sm {
+        --_cn-h: var(--su-static12);
+    }
+    // Orientation
+    &&__vertical {
+        --_cn-fd: column;
+    }
+
+    // VARIANTS
+    // Variants are expected to be used exclusive of one another. In other words, you should only use one variant class at a time
+    &&__info {
+        --_cn-bg: var(--yellow-100);
+
+        &.s-component-name__filled {
+            --_cn-bg-filled: var(--yellow-800);
+        }
+    }
+
+    // CHILD ELEMENTS
+    & &--image {
+        background-color: var(--_cn-image-bg);
+    }
+
+    // INTERACTION
+    &:hover {
+        --_cn-bg: var(--_black-050);
+    }
+
+    // STYLES MODIFIED BY COMPONENT-SPECIFIC CUSTOM PROPERTIES
+    background-color: var(--_cn-bg-filled, var(--_cn-bg));
+    flex-direction: var(--_cn-fd);
+    height: var(--_cn-h);
+
+    // STATIC COMPONENT STYLES
+    display: flex;
+    position: relative;
+    vertical-align: bottom;
+}
