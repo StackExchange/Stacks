@@ -17,5 +17,5 @@ In case the team has already agreed on a decision and no further async discussio
 
 ### Disclaimer
 
-As of today, the primary audience for these ADRs artefacts is the Stacks Core Team. If circumnstances will change and we feel a broader audience should get involved in the decision making process we could look into evolving our process in something a bit more formal like the internal [Stack Overflow RFC process](https://github.com/StackEng/StackOverflow/blob/master/docs/rfcs/0001-lightweight-rfc-process.md).
+As of today, the primary audience for these ADRs artifacts is the Stacks Core Team. If circumstances will change and we feel a broader audience should get involved in the decision making process we could look into evolving our process in something a bit more formal like the internal [Stack Overflow RFC process](https://github.com/StackEng/StackOverflow/blob/master/docs/rfcs/0001-lightweight-rfc-process.md).
 
