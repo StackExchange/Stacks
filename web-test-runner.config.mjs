@@ -4,6 +4,7 @@ import _postcss from "rollup-plugin-postcss";
 import _replace from "@rollup/plugin-replace";
 import _commonjs from "@rollup/plugin-commonjs";
 import { playwrightLauncher } from "@web/test-runner-playwright";
+import { visualRegressionPlugin } from "@web/test-runner-visual-regression/plugin";
 
 import {
     fromRollupWithFix,
@@ -15,7 +16,7 @@ const replace = fromRollup(_replace);
 const commonjs = fromRollupWithFix(_commonjs);
 
 export default {
-    files: "lib/test/**/*.test.(ts|tsx)",
+    files: "lib/test/**/!(*.visual).test.ts",
     browsers: [
         playwrightLauncher({ product: "chromium" }),
         playwrightLauncher({ product: "firefox" }),
@@ -34,5 +35,8 @@ export default {
         commonjs(),
         fixExportNamedExports(),
         esbuildPlugin({ ts: true }),
+        visualRegressionPlugin({
+            update: process.argv.includes("--update-visual-baseline"),
+        }),
     ],
 };
