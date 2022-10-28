@@ -1,80 +1,105 @@
 .s-prose {
-    --s-prose-line-height: 1.5;
+    --_pr-lh: 1.5;
     --s-prose-spacing: 1.1em;
     --s-prose-spacing-condensed: calc(var(--s-prose-spacing) / 2); // Reduce the base spacing by half in the context of lists, etc.
 
-    // Base styling
-    font-size: 15px; // Force a font size that doesn’t change at the smallest breakpoint
-    line-height: var(--s-prose-line-height);
-    overflow-wrap: break-word;
-
-    p {
-        margin-bottom: var(--s-prose-spacing);
-    }
-
-    pre {
-        overflow-wrap: normal;
-    }
-
-    code {
-        font-size: var(--fs-body1);
-        font-family: var(--ff-mono);
-    }
-
-    sub,
-    sup {
-        code {
-            font-size: 90%;
-        }
-    }
-
-    hr {
-        border: 0;
-        color: var(--black-100);
-        background-color: var(--black-100);
-        height: 1px;
-        margin-bottom: var(--s-prose-spacing);
-
-        .highcontrast-mode({
+    // CONDITIONAL STYLES
+    .highcontrast-mode({
+        hr {
             color: var(--black-500);
             background-color: var(--black-500);
-        });
-    }
+        }
+    });
+    #stacks-internals #screen-sm({
+        .spoiler:afer {
+            top: 9px; // Adjust the position in the smallest breakpoint
+        }
+    });
 
-    li {
-        overflow-wrap: break-word;
-
-        pre {
-            overflow-wrap: normal;
+    // MODIFIERS
+    &&__xs,
+    &&__sm,
+    &&__md {
+        h1 {
+            font-size: var(--fs-headline1-relative);
+        }
+        h2 {
+            font-size: var(--fs-title-relative);
+        }
+        h3 {
+            font-size: var(--fs-subheading-relative);
+        }
+        h4 {
+            font-size: var(--fs-body3-relative);
+        }
+        h5 {
+            font-size: var(--fs-body2-relative);
         }
     }
+    &&__xs {
+        font-size: var(--fs-caption);
+        line-height: var(--lh-sm);
+    }
+    &&__sm {
+        font-size: var(--fs-body1);
+        line-height: var(--lh-md);
+    }
+    &&__md {
+        font-size: var(--fs-body3);
+        line-height: var(--lh-xl);
+    }
 
-    p,
-    dl,
+    // CHILD ELEMENTS
+    // Last/only child
     blockquote,
-    table,
-    .s-table-container,
-    .s-link-preview,
-    hr,
-    ol,
-    ul,
-    img,
-    pre,
+    dl,
     h1,
     h2,
     h3,
     h4,
     h5,
-    h6 {
+    h6,
+    hr,
+    img,
+    ol,
+    p,
+    pre,
+    table,
+    ul,
+    .s-link-preview,
+    .s-table-container {
         &:last-child,
         &:only-child {
             margin-bottom: 0;
         }
     }
-
-    // ============================================================================
-    //  $ HEADERS
-    // ----------------------------------------------------------------------------
+    // Headings
+    blockquote,
+    dd,
+    dl,
+    img,
+    ol,
+    p,
+    pre,
+    table,
+    ul,
+    .s-link-preview,
+    .s-table-container {
+        & + h1 { // TODO: remove &. I don't think it's necessary
+            margin-top: 1.5667em;
+        }
+        & + h2 {
+            margin-top: 1.667em;
+        }
+        & + h3 {
+            margin-top: 1.4667em;
+        }
+        & + h4,
+        & + h5,
+        & + h6 {
+            margin-top: 1.6667em;
+        }
+    }
     h1,
     h2,
     h3,
@@ -83,409 +108,298 @@
     h6 {
         font-weight: bold !important;
         margin-bottom: 0.5em;
-
-        code {
-            font-size: 0.9em;
-        }
     }
-
     h1 {
         font-size: var(--fs-headline1);
         margin-bottom: 0.6em;
     }
-
     h2 {
         font-size: var(--fs-title);
         margin-bottom: 0.7em;
     }
-
     h3 {
         font-size: var(--fs-subheading);
         margin-bottom: 0.74em;
     }
-
     h4 {
         font-size: var(--fs-body3);
         margin-bottom: 1em;
     }
-
     h5 {
         font-size: var(--fs-body2);
     }
-
     h6 {
         font-size: var(--fs-body1);
     }
 
-    img,
-    dl,
-    p,
-    pre,
+    // Others child elements
     blockquote,
-    table,
-    .s-table-container,
-    .s-link-preview,
+    q {
+        quotes: none;
+    }
     dd,
-    ul,
-    ol {
-        & + h1 {
-            margin-top: 1.5667em;
-        }
-
-        & + h2 {
-            margin-top: 1.667em;
-        }
-
-        & + h3 {
-            margin-top: 1.4667em;
-        }
-
-        & + h4,
-        & + h5,
-        & + h6 {
-            margin-top: 1.6667em;
-        }
+    dl,
+    .s-table-container,
+    .s-link-preview {
+        margin-bottom: var(--s-prose-spacing); // TODO: make sure this overrides margin set on dd
     }
-
-    // ============================================================================
-    //  $ IMAGES
-    // ----------------------------------------------------------------------------
-    img {
-        max-width: 100%;
-        margin-bottom: var(--s-prose-spacing);
-        vertical-align: bottom;
-    }
-
-    blockquote,
-    li,
-    p {
-        img {
-            margin-bottom: 0;
-        }
-    }
-
-    // ============================================================================
-    //  $ LISTS
-    // ----------------------------------------------------------------------------
     ol,
     ul {
-        margin-top: 0;
-        margin-bottom: var(--s-prose-spacing);
-
-        p,
-        dl,
         blockquote,
-        table,
+        dl,
         hr,
         ol,
+        p,
+        table,
         ul {
             &:last-child,
             &:only-child {
                 margin-bottom: 0;
             }
         }
-
-        // Within lists, we shouldn't have so much spacing
-        // in between block-level elements.
-        dl,
-        p,
         blockquote,
-        table,
-        hr,
         dd,
-        ul,
-        ol {
+        dl,
+        hr,
+        ol,
+        p,
+        table,
+        ul {
+            margin-bottom: var(--s-prose-spacing-condensed); // Within lists, we shouldn't have so much spacing  in between block-level elements.
+        }
+        li {
+            &:last-child {
+                margin-bottom: 0;
+            }
+
             margin-bottom: var(--s-prose-spacing-condensed);
         }
-
+        li > & {
+            margin-top: var(--s-prose-spacing-condensed);
+        }
         pre {
             // Add some more spacing on the bottom
             // For a little extra optical alignment
             margin-bottom: calc(var(--s-prose-spacing-condensed) + 0.1em);
         }
-    }
 
-    ol li,
-    ul li {
-        margin-bottom: var(--s-prose-spacing-condensed);
-
-        &:last-child {
-            margin-bottom: 0;
-        }
-    }
-
-    li {
-        > ul,
-        > ol {
-            margin-top: var(--s-prose-spacing-condensed);
-        }
-    }
-
-    // ============================================================================
-    //  $ TABLES
-    // ----------------------------------------------------------------------------
-    .s-table-container {
         margin-bottom: var(--s-prose-spacing);
-    }
-
-    // ============================================================================
-    //  $ LINK PREVIEWS
-    // ----------------------------------------------------------------------------
-    .s-link-preview {
-        margin-bottom: var(--s-prose-spacing);
-    }
-
-    // ============================================================================
-    //  $ DEFINITION LISTS
-    // ----------------------------------------------------------------------------
-    dl {
         margin-top: 0;
-        margin-bottom: var(--s-prose-spacing);
     }
-
-    dt {
-        font-weight: bold;
-    }
-
-    dd {
-        margin: 0;
-        margin-bottom: var(--s-prose-spacing);
-        padding: 0;
-
-        &:last-child {
-            margin-bottom: 0;
-        }
-    }
-
-    // The outer div enforces a max-width of 640px. The inner div has a height of 35 pixels, and a
-    // padding-bottom of 56.25%. Padding percentages, even for top/bottom, are always relative
-    // to the *width*, so the padding always has an aspect ratio of 1/0.5625, or 16/9. Thus in total,
-    // the iframe has a height of 35 + width * 9/16. 35 pixels is the height of youtube's player controls,
-    // so we have exactly the space we need for video + controls. The iframe is positioned absolutely
-    // because only in that case does the containing block include the padding. The inner div exists
-    // because without it you couldn't correctly handle max-width (as there obviously isn't a max-padding-bottom).
-    .youtube-embed {
-        width: 100%;
-        max-width: 640px;
-        position: relative;
-
-        > div {
-            width: 100%;
-            height: 35px;
-            padding-bottom: 56.25%;
-            position: relative;
-
-            iframe {
-                position: absolute;
-                width: 100%;
-                height: 100%;
-            }
-        }
-    }
-
-    .soundcloud-embed iframe {
-        width: 100%;
-        max-width: 640px;
-        height: 116px;
-    }
-
-    // ============================================================================
-    //  $ BLOCKQUOTES
-    // ----------------------------------------------------------------------------
-    blockquote,
-    q {
-        quotes: none;
-    }
-
     blockquote {
-        position: relative;
-        margin: 0 1em var(--s-prose-spacing) 1em;
-        padding: 0.8em 0.8em 0.8em 1em;
-        color: var(--black-600);
-
         &:before {
-            content: "";
-            display: block;
-            position: absolute;
-            top: 0;
-            bottom: 0;
-            left: 0;
-            width: var(--su4);
-            border-radius: var(--su-static8);
-            background: var(--black-150);
-
             .highcontrast-mode({
                 background: var(--black-600);
             });
-        }
 
-        blockquote {
+            background: var(--black-150);
+            border-radius: var(--su-static8);
+            bottom: 0;
+            content: "";
+            display: block;
+            left: 0;
+            position: absolute;
+            top: 0;
+            width: var(--su4);
+        }
+        *:last-child {
+            margin-bottom: 0;
+        }
+        & & {
             margin-left: 0; // We don't need the intial indentation on nested blockquotes
         }
-
-        * {
-            &:last-child { margin-bottom: 0; }
-        }
-    }
-
-    // Blockquotes inside list
-    li {
-        blockquote {
+        li & {
             margin-top: var(--s-prose-spacing-condensed);
         }
-    }
 
-    // ============================================================================
-    //  $ SPOILERS
-    // ----------------------------------------------------------------------------
+        color: var(--black-600);
+        margin: 0 1em var(--s-prose-spacing) 1em;
+        padding: 0.8em 0.8em 0.8em 1em;
+        position: relative;
+    }
+    code {
+        *:not(.s-code-block) > & {
+            padding: var(--su2) var(--su4);
+            color: var(--black-800);
+            background-color: var(--black-075);
+            border-radius: var(--br-sm);
+        }
+        *:not(.s-code-block) > a & {
+            color: var(--theme-link-color); // When contained within a link, we want the code to be link-colored
+        }
+        h1 &,
+        h2 &,
+        h3 &,
+        h4 &,
+        h5 &,
+        h6 & {
+            font-size: 0.9em;
+        }
+        sub &,
+        sup & {
+            font-size: 90%;
+        }
+
+        font-size: var(--fs-body1);
+        font-family: var(--ff-mono);
+    }
+    dd {
+        &:last-child {
+            margin-bottom: 0;
+        }
+
+        margin: 0;
+        padding: 0;
+    }
+    dl {
+        margin-top: 0;
+    }
+    dt {
+        font-weight: bold;
+    }
+    hr {
+        border: 0;
+        color: var(--black-100);
+        background-color: var(--black-100);
+        height: 1px;
+        margin-bottom: var(--s-prose-spacing);
+    }
+    iframe {
+        .soundcloud-embed & {
+            height: 116px;
+            max-width: 640px;
+            width: 100%;
+        }
+        .youtube-embed > div & {
+            height: 100%;
+            position: absolute;
+            width: 100%;
+        }
+    }
+    img {
+        blockquote &,
+        li &,
+        p & {
+            margin-bottom: 0;
+        }
+        max-width: 100%;
+        margin-bottom: var(--s-prose-spacing);
+        vertical-align: bottom;
+    }
+    kbd {
+        .dark-mode({
+            border-color: transparent;
+            border-top-color: @black-500;
+            box-shadow: 0 1px 1px hsla(210, 8%, 5%, 0.8);
+        });
+
+        background-color: var(--black-075);
+        border-radius: var(--br-sm);
+        border: 1px solid var(--black-300);
+        box-shadow: 0 1px 1px hsla(210, 8%, 5%, 0.15), inset 0 1px 0 0 @white;
+        color: var(--black-800);
+        display: inline-block;
+        font-family: var(--ff-sans);
+        font-size: var(--fs-fine);
+        line-height: var(--_pr-lh);
+        margin: 0 0.1em;
+        overflow-wrap: break-word;
+        padding: 0.1em 0.6em;
+        text-shadow: 0 1px 0 var(--white);
+    }
+    li {
+        overflow-wrap: break-word;
+    }
+    p {
+        margin-bottom: var(--s-prose-spacing);
+    }
+    pre {
+        &:not(.s-code-block) {
+            code { // Reset the code element when contained within a <pre>
+                background-color: transparent;
+                border-radius: 0;
+                padding: 0;
+            }
+
+            @scrollbar-styles();
+            background-color: var(--highlight-bg);
+            border-radius: var(--br-md);
+            color: var(--highlight-color);
+            font-size: var(--fs-body1);
+            line-height: var(--lh-md);
+            max-height: 600px;
+            overflow: auto;
+            padding: var(--su12);
+            width: auto;
+        }
+        &,
+        li & {
+            overflow-wrap: normal;
+        }
+
+        margin-top: 0;
+        margin-bottom: calc(var(--s-prose-spacing) + 0.4em); // Increase this spacing for better optical alignment
+    }
     .spoiler {
+        &:after {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' aria-hidden='true' fill='rgb(132, 141, 149)' width='18' height='18' viewBox='0 0 18 18'%3E%3Cpath d='M9 17A8 8 0 119 1a8 8 0 010 16zM8 4v6h2V4H8zm0 8v2h2v-2H8z'%3E%3C/path%3E%3C/svg%3E");
+            background-position: center right;
+            background-repeat: no-repeat;
+            color: var(--black-500);
+            content: attr(data-spoiler) " ";
+            font-size: var(--fs-body1);
+            padding-right: 22px;
+            pointer-events: none;
+            position: absolute;
+            right: 1em;
+            top: 1em;
+            transition: opacity 0.1s ease-in-out;
+        }
+        &.is-visible {
+            &:after {
+                opacity: 0;
+            }
+            > * {
+                opacity: 1;
+                visibility: visible;
+            }
+
+            cursor: auto;
+        }
+        > * {
+            opacity: 0;
+            transition: opacity 0.1s ease-in-out;
+            visibility: hidden; // hidden elements don't respond to mouse events, but still retain their space
+        }
+
         background: var(--black-050);
         border-radius: var(--br-md);
         color: var(--black-800);
         cursor: pointer;
         min-height: var(--su-static48); // TODO: Let's find a solution that doesn't have a magic number
-
-        > * {
-            visibility: hidden; // hidden elements don't respond to mouse events, but still retain their space
-            opacity: 0;
-            transition: opacity 0.1s ease-in-out;
+    }
+    .youtube-embed { // [1]
+        > div {
+            height: 35px;
+            padding-bottom: 56.25%;
+            position: relative;
+            width: 100%;
         }
 
-        &.is-visible {
-            cursor: auto;
-
-            > * {
-                visibility: visible;
-                opacity: 1;
-            }
-
-            &:after {
-                opacity: 0;
-            }
-        }
-
-        &:after {
-            content: attr(data-spoiler) " ";
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' aria-hidden='true' fill='rgb(132, 141, 149)' width='18' height='18' viewBox='0 0 18 18'%3E%3Cpath d='M9 17A8 8 0 119 1a8 8 0 010 16zM8 4v6h2V4H8zm0 8v2h2v-2H8z'%3E%3C/path%3E%3C/svg%3E");
-            background-repeat: no-repeat;
-            background-position: center right;
-            font-size: var(--fs-body1);
-            color: var(--black-500);
-            padding-right: 22px;
-            position: absolute;
-            top: 1em;
-            right: 1em;
-            transition: opacity 0.1s ease-in-out;
-            pointer-events: none;
-
-            #stacks-internals #screen-sm({
-                top: 9px; // Adjust the position in the smallest breakpoint
-            });
-        }
+        max-width: 640px;
+        position: relative;
+        width: 100%;
     }
 
-    // ============================================================================
-    //  $ KEYBOARD
-    // ----------------------------------------------------------------------------
-    kbd {
-        display: inline-block;
-        margin: 0 0.1em;
-        padding: 0.1em 0.6em;
-        font-family: var(--ff-sans);
-        font-size: var(--fs-fine);
-        line-height: var(--s-prose-line-height);
-        color: var(--black-800);
-        text-shadow: 0 1px 0 var(--white);
-        background-color: var(--black-075);
-        border: 1px solid var(--black-300);
-        border-radius: var(--br-sm);
-        box-shadow: 0 1px 1px hsla(210, 8%, 5%, 0.15), inset 0 1px 0 0 @white;
-        overflow-wrap: break-word;
-
-        .dark-mode({
-            box-shadow: 0 1px 1px hsla(210, 8%, 5%, 0.8);
-            border-color: transparent;
-            border-top-color: @black-500;
-        });
-    }
-
-    // ============================================================================
-    //  $ CODE STYLES
-    // ----------------------------------------------------------------------------
-    *:not(.s-code-block) > code {
-        padding: var(--su2) var(--su4);
-        color: var(--black-800);
-        background-color: var(--black-075);
-        border-radius: var(--br-sm);
-    }
-
-    // When contained within a link, we want the code to be link-colored
-    *:not(.s-code-block) > a code {
-        color: var(--theme-link-color);
-    }
-
-    pre {
-        margin-top: 0;
-        margin-bottom: calc(var(--s-prose-spacing) + 0.4em); // Increase this spacing for better optical alignment
-    }
-
-    pre:not(.s-code-block) {
-        padding: var(--su12);
-        color: var(--highlight-color);
-        width: auto;
-        max-height: 600px;
-        overflow: auto;
-        font-size: var(--fs-body1);
-        line-height: var(--lh-md);
-        background-color: var(--highlight-bg);
-        border-radius: var(--br-md);
-
-        // Reset the code element when contained within a <pre>
-        code {
-            background-color: transparent;
-            padding: 0;
-            border-radius: 0;
-        }
-
-        @scrollbar-styles();
-    }
-
-    &.s-prose__xs {
-        font-size: var(--fs-caption);
-        line-height: var(--lh-sm);
-    }
-
-    &.s-prose__sm {
-        font-size: var(--fs-body1);
-        line-height: var(--lh-md);
-    }
-
-    &.s-prose__md {
-        font-size: var(--fs-body3);
-        line-height: var(--lh-xl);
-    }
-
-    &.s-prose__xs,
-    &.s-prose__sm,
-    &.s-prose__md {
-        h1 {
-            font-size: var(--fs-headline1-relative);
-        }
-
-        h2 {
-            font-size: var(--fs-title-relative);
-        }
-
-        h3 {
-            font-size: var(--fs-subheading-relative);
-        }
-
-        h4 {
-            font-size: var(--fs-body3-relative);
-        }
-
-        h5 {
-            font-size: var(--fs-body2-relative);
-        }
-    }
+    font-size: 15px; // Force a font size that doesn’t change at the smallest breakpoint
+    line-height: var(--_pr-lh);
+    overflow-wrap: break-word;
 }
+
+// [1] The outer div enforces a max-width of 640px. The inner div has a height of 35 pixels, and a
+// padding-bottom of 56.25%. Padding percentages, even for top/bottom, are always relative
+// to the *width*, so the padding always has an aspect ratio of 1/0.5625, or 16/9. Thus in total,
+// the iframe has a height of 35 + width * 9/16. 35 pixels is the height of youtube's player controls,
+// so we have exactly the space we need for video + controls. The iframe is positioned absolutely
+// because only in that case does the containing block include the padding. The inner div exists
+// because without it you couldn't correctly handle max-width (as there obviously isn't a max-padding-bottom).
