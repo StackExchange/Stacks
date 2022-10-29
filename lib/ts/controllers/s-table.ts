@@ -11,9 +11,6 @@ enum SortOrder {
     None = 'none',
 }
 
-const sortedHeaderBackground = 'bg-powder-200';
-const sortedColumnBackground = 'bg-powder-100';
-
 export class TableController extends Stacks.StacksController {
     readonly columnTarget!: HTMLTableCellElement;
     readonly columnTargets!: HTMLTableCellElement[];
@@ -115,12 +112,6 @@ export class TableController extends Stacks.StacksController {
             const row = rows[rowIndex];
             row.parentElement!.removeChild(row);
 
-            for (let i = 0; i < row.cells.length; i++) {
-                const cell = row.cells.item(i);
-
-                cell?.classList.toggle(sortedColumnBackground, i === colno);
-            }
-
             if (firstBottomRow) {
                 tbody.insertBefore(row, firstBottomRow);
             } else {
@@ -143,7 +134,6 @@ export class TableController extends Stacks.StacksController {
                 : SortOrder.None;
 
             header.classList.toggle('is-sorted', isCurrent && direction !== SortOrder.None);
-            header.classList.toggle(sortedHeaderBackground, isCurrent);
             header.querySelectorAll('.js-sorting-indicator').forEach((icon) => {
                 icon.classList.toggle('d-none', !icon.classList.contains('js-sorting-indicator-' + classSuffix));
             });
