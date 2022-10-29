@@ -1,5 +1,8 @@
 import * as Stacks from "../stacks";
 
+const sortedHeaderBackground = 'bg-powder-200';
+const sortedColumnBackground = 'bg-powder-100';
+
 export class TableController extends Stacks.StacksController {
     static targets = ["column"];
     readonly columnTarget!: Element;
@@ -15,7 +18,7 @@ export class TableController extends Stacks.StacksController {
             const isCurrrent = target === headElem;
 
             target.classList.toggle("is-sorted", isCurrrent && direction !== "none");
-
+            target.classList.toggle(sortedHeaderBackground, isCurrrent);
             target.querySelectorAll(".js-sorting-indicator").forEach(function (icon) {
                 const visible = isCurrrent ? direction : "none";
                 icon.classList.toggle("d-none", !icon.classList.contains("js-sorting-indicator-" + visible));
@@ -118,6 +121,13 @@ export class TableController extends Stacks.StacksController {
         data.forEach(function (tup) {
             const row = rows[tup[1]];
             row.parentElement!.removeChild(row);
+
+            for (let i = 0; i < row.cells.length; i++) {
+                const cell = row.cells.item(i);
+
+                cell?.classList.toggle(sortedColumnBackground, i === colno);
+            }
+
             if (firstBottomRow) {
                 tbody.insertBefore(row, firstBottomRow);
             } else {
