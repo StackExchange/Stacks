@@ -2,8 +2,6 @@
 
 **Date:** [YYYY-MM-DD]
 
-**Status:** [ 🚧 Proposed | ✅ Accepted | 🚫 Rejected ]
-
 **Related PR:** [#xxxx (when applicable)]
 
 ### Issue
