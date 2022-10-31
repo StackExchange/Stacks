@@ -4,7 +4,6 @@ An architecture decision record (ADR) is a document that captures an important a
 ### Goal
 We want to record important design decisions to help current and future contributors of the library to understand the reasons for doing things a certain way.
 
-
 ### Lightweight Process
 
 - Create a new branch on this repository and copy `adrs/0000-template.md` to a new file with the next free number.
@@ -13,7 +12,6 @@ We want to record important design decisions to help current and future contribu
 - Once consensus is reached and approvals given using the Github review system, the PR can be merged.
 
 In case the team has already agreed on a decision and no further async discussion is necessary just go ahead an record it directly without opening any PR.
-
 
 ### Disclaimer
 
