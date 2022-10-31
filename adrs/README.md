@@ -7,7 +7,7 @@ We want to record important design decisions to help current and future contribu
 ### Lightweight Process
 
 - Create a new branch on this repository and copy `adrs/0000-template.md` to a new file with the next free number.
-- Modify the template to add details about your proposal and add any supporting picture under the `adrs/images` folder.
+- Modify the template to add details about your proposal and add any supporting diagram preferably in [ASCII](https://textik.com/).
 - Make a Pull Request (PR) for your branch.
 - Once consensus is reached and approvals given using the Github review system, the PR can be merged.
 
