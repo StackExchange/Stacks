@@ -29,76 +29,86 @@
 // (no longer visible) element itself to remain at the top, thereby forcing the excess pixels to be added
 // above the top, not below the bottom. And because extending content above the document top will not do
 // anything to the document height, there is no jumping during the transition.
-
-@stacks-internals-s-expandable-transition-duration: 100ms;
+// see custom property "--_ex-transition-duration"
 
 // Per the answer referenced above, the component can only guarantee smooth transitions if above a minimum
 // height and can only guarantee the element will be hidden is below a maximimum height.
 // The minimum height has been set at 10px because that's below the height of a single line of text in an s-description.
-@stacks-internal-s-expandable-min-expected-height: 10px;
-@stacks-internal-s-expandable-max-expected-height: 1500px;
+// see custom properties "--_ex-min-expected-height" and "--_ex-content-mb"
 
 .s-expandable {
-    display: flex;
-    -webkit-clip-path: polygon(-1000000px -1000000px, 1000000px -1000000px, 1000000px 1000000px, -1000000px 1000000px);
-    clip-path: polygon(-1000000px -1000000px, 1000000px -1000000px, 1000000px 1000000px, -1000000px 1000000px);
-    align-items: flex-start; // see comment above
-    transition: clip-path 0s @stacks-internals-s-expandable-transition-duration, -webkit-clip-path 0s @stacks-internals-s-expandable-transition-duration;
+    // CONSTANTS
+    --_ex-clip-path: polygon(-1000000px -1000000px, 1000000px -1000000px, 1000000px 1000000px, -1000000px 1000000px);
+    --_ex-min-expected-height: 10px;
+    --_ex-transition-duration: 100ms;
+    // VARIABLES
+    --_ex-after-h: 10px;
+    --_ex-after-hmx: 0;
+    --_ex-after-transition:
+        height var(--_ex-transition-duration) linear,
+        max-height 0s var(--_ex-transition-duration) linear;
+    --_ex-content-hmx: 1000000px;
+    --_ex-content-mb: 0;
+    --_ex-content-o: unset;
+    --_ex-content-transform: unset;
+    --_ex-content-transition:
+        margin-bottom var(--_ex-transition-duration) cubic-bezier(0, 0, 0, 1),
+        transform var(--_ex-transition-duration) cubic-bezier(1, 0, 1, 1),
+        opacity var(--_ex-transition-duration) cubic-bezier(1, 0, 1, 1);
 
-    &:after {
-        content: '';
-        -ms-flex-preferred-size: 0;
-        flex-basis: 0;
-        height: @stacks-internal-s-expandable-min-expected-height;
-        max-height: 0;
-        transition:
-            height @stacks-internals-s-expandable-transition-duration linear,
-            max-height 0s @stacks-internals-s-expandable-transition-duration linear;
-    }
-}
+    &:not(.is-expanded) {
+        --_ex-after-h: 0;
+        --_ex-after-hmx: var(--_ex-min-expected-height);
+        --_ex-after-transition: height var(--_ex-min-expected-height) linear;
+        --_ex-content-hmx: 0;
+        --_ex-content-mb: -1500px;
+        --_ex-content-o: 0;
+        --_ex-content-transform: scaleY(0);
+        --_ex-content-transition:
+            margin-bottom var(--_ex-transition-duration) cubic-bezier(1, 0, 1, 1),
+            visibility 0s var(--_ex-transition-duration),
+            max-height 0s var(--_ex-transition-duration),
+            transform var(--_ex-transition-duration) cubic-bezier(0, 1, 1, 1),
+            opacity var(--_ex-transition-duration) cubic-bezier(0, 1, 1, 1);
 
-.s-expandable--content {
-    -ms-flex-preferred-size: 100%;
-    flex-basis: 100%;
-    max-height: 1000000px;
-    margin-bottom: 0;
-    -webkit-transform-origin: 0 0;
-    transform-origin: 0 0;
-    transition:
-        margin-bottom @stacks-internals-s-expandable-transition-duration cubic-bezier(0, 0, 0, 1),
-        transform @stacks-internals-s-expandable-transition-duration cubic-bezier(1, 0, 1, 1),
-        opacity @stacks-internals-s-expandable-transition-duration cubic-bezier(1, 0, 1, 1);
-}
-
-.s-expandable:not(.is-expanded) {
-    overflow: hidden;
-    -webkit-clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
-    clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
-    transition: none;
-
-    .s-expandable--content {
-        visibility: hidden;
-        max-height: 0;
-        margin-bottom: -@stacks-internal-s-expandable-max-expected-height;
-        opacity: 0;
-        -webkit-transform: scaleY(0);
-        transform: scaleY(0);
-        transition:
-            margin-bottom @stacks-internals-s-expandable-transition-duration cubic-bezier(1, 0, 1, 1),
-            visibility 0s @stacks-internals-s-expandable-transition-duration,
-            max-height 0s @stacks-internals-s-expandable-transition-duration,
-            transform @stacks-internals-s-expandable-transition-duration cubic-bezier(0, 1, 1, 1),
-            opacity @stacks-internals-s-expandable-transition-duration cubic-bezier(0, 1, 1, 1);
-        @supports ((-webkit-clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)) or (clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%))) {
-            opacity: 1;
-            -webkit-transform: none;
-            transform: none;
+        & .s-expandable--content {
+            @supports ((-webkit-clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)) or (clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%))) {
+                --_ex-content-o: 1;
+                --_ex-content-transform: none;
+            }
         }
+
+        -webkit-clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+        clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+        overflow: hidden;
+        transition: none;
+    }
+    &:after {
+        height: var(--_ex-after-h);
+        max-height: var(--_ex-after-hmx);
+        transition: var(--_ex-after-transition);
+
+        -ms-flex-preferred-size: 0;
+        content: '';
+        flex-basis: 0;
+    }
+    & &--content {
+        max-height: var(--_ex-content-hmx);
+        margin-bottom: var(--_ex-content-mb);
+        opacity: var(--_ex-content-o);
+        -webkit-transform: var(--_ex-content-transform);
+        transform: var(--_ex-content-transform);
+
+        -ms-flex-preferred-size: 100%;
+        flex-basis: 100%;
+        -webkit-transform-origin: 0 0;
+        transform-origin: 0 0;
+        transition: var(--_ex-content-transition);
     }
 
-    &:after {
-        height: 0;
-        max-height: @stacks-internal-s-expandable-min-expected-height;
-        transition: height @stacks-internals-s-expandable-transition-duration linear;
-    }
-}
+    align-items: flex-start; // see comment above
+    display: flex;
+    -webkit-clip-path: var(--_ex-clip-path);
+    clip-path: var(--_ex-clip-path);
+    transition: clip-path 0s var(--_ex-transition-duration), -webkit-clip-path 0s var(--_ex-transition-duration);
+  }
