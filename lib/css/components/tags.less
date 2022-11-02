@@ -23,6 +23,23 @@
         text-decoration: none;
     });
 
+    // STATES
+    &.is-selected {
+        &,
+        a&,
+        a&:active,
+        a&:hover,
+        a&:focus {
+            background-color: var(--_ta-bg-selected);
+            border-color: var(--_ta-bc-selected);
+            color: var(--_ta-fc-selected);
+
+            .highcontrast-mode({
+                border-color: currentColor;
+            });
+        }
+    }
+
     // MODIFIERS
     // Sizes
     &&__xs {
@@ -47,7 +64,10 @@
     }
 
     // VARIANTS
+    // NOTE: ignored and watched variants are used in core with the .post-tag class (in place of the base tag .s-tag)
+    &__ignored, // TODO: remove all single `&` ignored styles once core no longer requires them
     &&__ignored,
+    &__watched, // TODO: remove all single `&` watched styles once core no longer requires them
     &&__watched {
         --_ta-pl: calc(var(--su-static24) - var(--su-static2)); // 22px
         --_ta-before-size: calc(var(--su-static16) - var(--su-static2)); // 14px
@@ -71,6 +91,7 @@
         }
         position: relative;
     }
+    &__ignored, // TODO: remove all single `&` ignored styles once core no longer requires them
     &&__ignored {
         --_ta-before-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 14 14'%3E%3Cpath d='M3.52 7.38 1.58 9.26A12.38 12.38 0 0 1 0 7s2.63-5.14 7.05-5.14c.66 0 1.28.12 1.86.32L7.44 3.6a3.48 3.48 0 0 0-3.92 3.78ZM5.3 9.99c.5.28 1.1.44 1.71.44 1.94 0 3.5-1.53 3.5-3.43 0-.62-.17-1.21-.47-1.72L8.7 6.6a1.73 1.73 0 0 1-2.08 2.07L5.29 10Zm6.23-6.19A12.7 12.7 0 0 1 14 7s-2.63 5.14-6.95 5.14A6.1 6.1 0 0 1 4 11.3L2.27 13l-1.4-1.36L11.9 1l1.23 1.2-1.6 1.6Z'/%3E%3C/svg%3E");
     }
@@ -110,6 +131,7 @@
         --_ta-bg-selected: var(--black-200);
         --_ta-fc-selected: var(--black-900);
     }
+    &__watched, // TODO: remove all single `&` watched styles once core no longer requires them
     &&__watched {
         --_ta-before-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 14 14'%3E%3Cpath d='M7.05 1C2.63 1 0 6.5 0 6.5S2.63 12 7.05 12C11.38 12 14 6.5 14 6.5S11.37 1 7.05 1ZM7 10.17A3.59 3.59 0 0 1 3.5 6.5 3.6 3.6 0 0 1 7 2.83c1.94 0 3.5 1.65 3.5 3.67A3.57 3.57 0 0 1 7 10.17Zm0-1.84c.97 0 1.75-.81 1.75-1.83S7.97 4.67 7 4.67s-1.75.81-1.75 1.83S6.03 8.33 7 8.33Z'/%3E%3C/svg%3E");
     }
@@ -152,7 +174,6 @@
         max-width: calc(var(--su-static16) + var(--su-static2));
     }
 
-
     // INTERACTION
     a&:not(.is-selected) {
         &:hover,
@@ -161,22 +182,6 @@
             background-color: var(--_ta-bg-hover);
             border-color: var(--_ta-bc-hover);
             color: var(--_ta-fc-hover);
-
-            .highcontrast-mode({
-                border-color: currentColor;
-            });
-        }
-    }
-    // Selected
-    &.is-selected {
-        &,
-        a&,
-        a&:active,
-        a&:hover,
-        a&:focus {
-            background-color: var(--_ta-bg-selected);
-            border-color: var(--_ta-bc-selected);
-            color: var(--_ta-fc-selected);
 
             .highcontrast-mode({
                 border-color: currentColor;
