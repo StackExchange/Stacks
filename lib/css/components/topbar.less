@@ -1,14 +1,9 @@
-//
-//  STACK OVERFLOW
-//  TOPBAR
-//
-//  This CSS comes from Stacks, our CSS & Pattern library for rapidly building
-//  Stack Overflow. For documentation of all these classes and how to contribute,
-//  visit https://stackoverflow.design/
-//
-//  ============================================================================
-//  $   BASE STYLE
-//  ----------------------------------------------------------------------------
+.topbar-notice-styles(@border: transparent, @background: transparent, @color: inherit) {
+    border-color: @border;
+    background-color: @background;
+    color: @color;
+}
+
 .s-topbar {
     min-width: auto;
     box-shadow: var(--bs-sm);
@@ -318,19 +313,19 @@
     margin-right: var(--su8);
     flex-shrink: 0;
 
-    .badge-styles(transparent, transparent, var(--theme-topbar-item-color));
+    .topbar-notice-styles(transparent, transparent, var(--theme-topbar-item-color));
 
     &:hover,
     &:focus {
-        .badge-styles(var(--theme-topbar-item-background-hover), var(--theme-topbar-item-background-hover), var(--theme-topbar-item-color-hover));
+        .topbar-notice-styles(var(--theme-topbar-item-background-hover), var(--theme-topbar-item-background-hover), var(--theme-topbar-item-color-hover));
     }
 
     &.is-unread {
-        .badge-styles(var(--theme-primary-color), var(--theme-primary-color), var(--white));
+        .topbar-notice-styles(var(--theme-primary-color), var(--theme-primary-color), var(--white));
 
         &:hover,
         &:focus {
-            .badge-styles(var(--theme-primary-600), var(--theme-primary-600), var(--white));
+            .topbar-notice-styles(var(--theme-primary-600), var(--theme-primary-600), var(--white));
         }
     }
 }

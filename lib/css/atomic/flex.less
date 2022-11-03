@@ -54,6 +54,8 @@
             #stacks-internals #flex-builder-helpers .create-flex-count-cols(@num, (@count + 1));
         }
 
+        // DEPRECATED - START
+        //
         //  --  FLEX GUTTERS
         //  ============================================================================
         //      We need two mixins to properly generate flex gutters:
@@ -151,6 +153,38 @@
             //      widths for the new gutters.
             #stacks-internals #flex-builder-helpers .flex-fixed-item-spacing(@spacing, @flex-cols);
         }
+        //
+        // DEPRECATED - END
+
+        //  -- FLEX GAP
+        //  ------------------------------------------------------------------------
+        //  [1] FIXED WIDTH ITEMS
+        //      This makes the fixed width items to account for gaps.
+        //
+        //  [2] UNIFORM CHILD FLEX ITEMS
+        //      This class allows you to uniformly state the width of `.flex--item`
+        //      divs within a `.d-flex` element. In particular we adjust the flex-basis
+        //      and max-width here to account for gaps.
+        //  ------------------------------------------------------------------------
+        .flex-fixed-item-spacing-gap(@spacing, @num, @count: 1) when (@count =< @num) {
+            @itemWidth: (@count * 100% / @num);
+            @gapRatio: ((@num - @count) / @num);
+
+            > .flex--item@{count},                                  // [1]
+            &.flex__allitems@{count} > .d-flex,                     // [2]
+            &.flex__allitems@{count} > .flex--item {                // [2]
+                flex-basis: calc(~"@{itemWidth} - (@{spacing} * @{gapRatio})");
+            }
+
+            #stacks-internals #flex-builder-helpers .flex-fixed-item-spacing-gap(@spacing, @num, (@count + 1));
+        }
+
+
+        .gap-spacing(@spacing) {
+            #stacks-internals #flex-builder-settings();
+
+            #stacks-internals #flex-builder-helpers .flex-fixed-item-spacing-gap(@spacing, @flex-cols);
+        }
     }
 }
 
@@ -194,9 +228,24 @@
 }
 //  ============================================================================
 //  $   FLEX SPACING
-//      Insert spaces or gutters in between flex items
+//      Insert spaces or gaps in between flex items
 //  ----------------------------------------------------------------------------
-// TODO: Make this play nice with spacing units… or yeet this in the age of gap
+.g0, .gx0, .gy0 { #stacks-internals #flex-builder-helpers .gap-spacing(var(--su0)); }
+.g1, .gx1, .gy1 { #stacks-internals #flex-builder-helpers .gap-spacing(var(--su1)); }
+.g2, .gx2, .gy2 { #stacks-internals #flex-builder-helpers .gap-spacing(var(--su2)); }
+.g4, .gx4, .gy4 { #stacks-internals #flex-builder-helpers .gap-spacing(var(--su4)); }
+.g6, .gx6, .gy6 { #stacks-internals #flex-builder-helpers .gap-spacing(var(--su6)); }
+.g8, .gx8, .gy8 { #stacks-internals #flex-builder-helpers .gap-spacing(var(--su8)); }
+.g12, .gx12, .gy12 { #stacks-internals #flex-builder-helpers .gap-spacing(var(--su12)); }
+.g16, .gx16, .gy16 { #stacks-internals #flex-builder-helpers .gap-spacing(var(--su16)); }
+.g24, .gx24, .gy24 { #stacks-internals #flex-builder-helpers .gap-spacing(var(--su24)); }
+.g32, .gx32, .gy32 { #stacks-internals #flex-builder-helpers .gap-spacing(var(--su32)); }
+.g48, .gx48, .gy48 { #stacks-internals #flex-builder-helpers .gap-spacing(var(--su48)); }
+.g64, .gx64, .gy64 { #stacks-internals #flex-builder-helpers .gap-spacing(var(--su64)); }
+
+
+// DEPRECATED - START
+//
 .gs2 { #stacks-internals #flex-builder-helpers .gutter-spacing(var(--su2)); }
 .gs4 { #stacks-internals #flex-builder-helpers .gutter-spacing(var(--su4)); }
 .gs6 { #stacks-internals #flex-builder-helpers .gutter-spacing(var(--su6)); }
@@ -227,6 +276,8 @@
         margin-left: 0;
     }
 }
+//
+// DEPRECATED - END
 
 
 //  ============================================================================
