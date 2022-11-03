@@ -1,125 +1,124 @@
 .s-link-preview {
+    --_lp-details-mt: var(--su2);
+    --_lp-footer-fd: unset;
+    --_lp-misc-pl: var(--su4);
+    --_lp-misc-pt: unset;
+
+    // CONTEXTUAL STYLES
+    #stacks-internals #screen-sm({
+        --_lp-details-mt: var(--su4);
+        --_lp-footer-fd: column;
+        --_lp-misc-pl: 0;
+        --_lp-misc-pt: var(--su2);
+    });
+
+    // CHILD ELEMENTS
+    & &--details,
+    & &--footer {
+        a {
+            &:visited {
+                color: var(--black-700);
+            }
+            &:hover,
+            &:active,
+            &:focus {
+                color: var(--black-600);
+            }
+
+            color: var(--black-500);
+            cursor: pointer;
+            text-decoration: none;
+        }
+    }
+    & &--body {
+        *:last-child {
+            margin-bottom: 0;
+        }
+
+        font-size: var(--fs-body2);
+        padding: var(--su12);
+    }
+    & &--code {
+        pre {
+            border-radius: 0 !important;
+            margin: 0;
+            max-height: 400px;
+        }
+    }
+    & &--details {
+        margin-top: var(--_lp-details-mt);
+
+        color: var(--black-500);
+        font-size: var(--fs-caption);
+    }
+    & &--footer {
+        flex-direction: var(--_lp-footer-fd);
+
+        background: var(--black-025);
+        border-bottom-left-radius: var(--br-sm);
+        border-bottom-right-radius: var(--br-sm);
+        border-top: 1px solid var(--bc-medium);
+        display: flex;
+        font-size: var(--fs-caption);
+        justify-content: space-between;
+        padding: var(--su12);
+    }
+    & &--header {
+        background: var(--black-025);
+        border-bottom: 1px solid var(--bc-medium);
+        border-top-left-radius: var(--br-sm);
+        border-top-right-radius: var(--br-sm);
+        display: flex;
+        padding: var(--su12) var(--su8);
+    }
+    & &--icon {
+        color: var(--black-800); // Set the default color of the integration's icon. Most likely this will be overridden by the integration icon's native colors.
+        margin-right: var(--su8);
+    }
+    & &--misc {
+        padding-left: var(--_lp-misc-pl);
+        padding-top: var(--_lp-misc-pt);
+
+        color: var(--black-500);
+    }
+    & &--title {
+        color: var(--black-900);
+        font-size: var(--fs-body3);
+        font-weight: bold;
+    }
+    & a&--title {
+        &:active,
+        &:hover{
+            &,
+            &.s-link__visited {
+                color: var(--theme-link-color-hover);
+            }
+        }
+        &:active,
+        &:hover,
+        &.s-link__visited:active,
+        &.s-link__visited:hover,
+        &.s-link__visited:visited {
+            .highcontrast-mode({ text-decoration: underline; });
+            text-decoration: none;
+        }
+        &.s-link__visited:visited {
+            color: var(--theme-link-color);
+        }
+
+        color: var(--theme-link-color);
+        cursor: pointer;
+        text-decoration: none;
+    }
+    & &--url {
+        max-width: 100%;
+        overflow: hidden;
+        text-overflow: ellipsis !important;
+        white-space: nowrap;
+    }
+
     border: 1px solid var(--bc-medium);
     border-radius: var(--br-sm);
-    text-align: left;
     box-shadow: var(--bs-sm);
-}
-
-.s-link-preview--header {
-    display: flex;
-    background: var(--black-025);
-    border-top-left-radius: var(--br-sm);
-    border-top-right-radius: var(--br-sm);
-    border-bottom: 1px solid var(--bc-medium);
-    padding: var(--su12) var(--su8);
-}
-
-.s-link-preview--icon {
-    margin-right: var(--su8);
-    color: var(--black-800); // Set the default color of the integration's icon. Most likely this will be overridden by the integration icon's native colors.
-}
-
-.s-link-preview--title {
-    font-size: var(--fs-body3);
-    font-weight: bold;
-    color: var(--black-900);
-}
-
-a.s-link-preview--title {
-    text-decoration: none;
-    color: var(--theme-link-color);
-    cursor: pointer;
-
-    &.s-link__visited:visited {
-        color: var(--theme-link-color);
-        text-decoration: none;
-
-        .highcontrast-mode({ text-decoration: underline; });
-    }
-
-    &:hover,
-    &.s-link__visited:hover,
-    &:active,
-    &.s-link__visited:active {
-        color: var(--theme-link-color-hover);
-        text-decoration: none;
-
-        .highcontrast-mode({ text-decoration: underline; });
-    }
-}
-
-.s-link-preview--details {
-    font-size: var(--fs-caption);
-    color: var(--black-500);
-    margin-top: var(--su2);
-
-    #stacks-internals #screen-sm({
-        margin-top: var(--su4);
-    });
-}
-
-.s-link-preview--body {
-    padding: var(--su12);
-    font-size: var(--fs-body2);
-
-    *:last-child {
-        margin-bottom: 0;
-    }
-}
-
-.s-link-preview--code {
-    pre {
-        border-radius: 0 !important;
-        margin: 0;
-        max-height: 400px;
-    }
-}
-
-.s-link-preview--footer {
-    display: flex;
-    justify-content: space-between;
-    background: var(--black-025);
-    border-bottom-left-radius: var(--br-sm);
-    border-bottom-right-radius: var(--br-sm);
-    border-top: 1px solid var(--bc-medium);
-    padding: var(--su12);
-    font-size: var(--fs-caption);
-
-    #stacks-internals #screen-sm({
-        flex-direction: column;
-    });
-}
-
-.s-link-preview--url {
-    overflow: hidden;
-    max-width: 100%;
-    text-overflow: ellipsis !important;
-    white-space: nowrap;
-}
-
-.s-link-preview--misc {
-    color: var(--black-500);
-    padding-left: var(--su4);
-
-    #stacks-internals #screen-sm({
-        padding-left: 0;
-        padding-top: var(--su2);
-    });
-}
-
-.s-link-preview--details a,
-.s-link-preview--footer a {
-    text-decoration: none;
-    cursor: pointer;
-    color: var(--black-500);
-
-    &:visited {
-        color: var(--black-700);
-    }
-
-    &:hover,
-    &:active,
-    &:focus {
-        color: var(--black-600);
-    }
+    text-align: left;
 }
