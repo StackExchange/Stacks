@@ -75,7 +75,8 @@
 
     // Modifiers ---------------------------------------------------------------
     // Styles
-    &.is-selected {
+    &.is-selected,
+    .s-btn--radio:checked + & {
         --_bg: var(--_bg-selected);
         --_bs: none;
         --_fc: var(--_fc-selected);
@@ -181,18 +182,20 @@
         --_p: 0.7em;
     }
 
-    &:focus {
+    &:focus,
+    .s-btn--radio:checked:focus + & {
         box-shadow: var(--_focus-ring);
         outline: none;
     }
 
+    // TODO: account for radio buttons
     &:not(.is-selected) {
         &:hover,
         &:focus {
             background-color: var(--_bg-hover);
             color: var(--_fc-hover);
         }
-    
+
         &:active {
             background-color: var(--_bg-active);
             color: var(--_fc-active);
@@ -232,6 +235,9 @@
 
 .s-btn--number {
     color: var(--_number-fc);
+}
+.s-btn--radio {
+    .v-visible-sr;
 }
 
 // VARIANTS --------------------------------------------------------------------
