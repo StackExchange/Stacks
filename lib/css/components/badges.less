@@ -1,222 +1,228 @@
-//
-//  STACK OVERFLOW
-//  BADGES
-//
-//  This CSS comes from Stacks, our CSS & Pattern library for rapidly building
-//  Stack Overflow. For documentation of all these classes and how to contribute,
-//  visit https://stackoverflow.design/
-//
-//  TABLE OF CONTENTS
-//  • BASE STYLE
-//  • STYLE VARIATIONS
-//  • LAYOUTS & SIZES
-//
-//  ===========================================================================
-//  $   MIXIN
-//      Any badge we use will always modify the same items, so to save time,
-//      here's a mixin to state all that CSS.
-//  ---------------------------------------------------------------------------
-.badge-styles(@border: transparent, @background: transparent, @color: inherit) {
-    border-color: @border;
-    background-color: @background;
-    color: @color;
-}
-
-//  ===========================================================================
-//  $   BASE STYLE
-//      The same style is applied to all badges. Do not modify the core style.
-//  ---------------------------------------------------------------------------
 .s-badge {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    min-width: 0;
-    padding: 0 var(--su6);
-    border-width: 1px;
-    border-style: solid;
-    border-radius: var(--br-sm);
-    font-size: var(--fs-caption);
-    font-weight: normal;
-    line-height: 2;
-    text-decoration: none;
-    vertical-align: middle;
-    white-space: nowrap;
+    --_ba-as: unset;
+    --_ba-bc: var(--bc-medium);
+    --_ba-bg: var(--black-050);
+    --_ba-fc: var(--black-700);
+    --_ba-fs: var(--fs-caption);
+    --_ba-g: 0.3em;
+    --_ba-lh: 2;
+    --_ba-px: var(--su6);
+    --_ba-py: 0;
+    --_ba-wmn: 0;
 
-    .badge-styles(var(--bc-medium), var(--black-050), var(--black-700));
+    // CONTEXTUAL STYLES
+    .highcontrast-mode({
+        // Badge counts
+        &&__gold,
+        &&__silver,
+        &&__bronze,
+        // Number counts
+        &&__rep,
+        &&__rep-down,
+        &&__votes,
+        // Users
+        &&__admin,
+        &&__moderator,
+        &&__staff {
+            --_ba-bc: currentColor;
+        }
+    });
 
+    // MODIFIERS
+    // Sizes
+    &&__xs,
+    &&__sm {
+        --_ba-as: flex-start;
+        --_ba-fs: var(--fs-fine);
+    }
+    &&__xs {
+        --_ba-lh: 1.5;
+        --_ba-px: var(--su2);
+        --_ba-wmn: calc(var(--su-static16) + var(--su-static2));
+    }
+    &&__sm {
+        --_ba-lh: 1.8;
+        --_ba-px: var(--su4);
+        --_ba-wmn: calc(var(--su-static16) + var(--su-static2));
+    }
+
+    // Badge counts
+    &&__gold,
+    &&__silver,
+    &&__bronze {
+        --_ba-fc: var(--black-700);
+
+        .highcontrast-mode({ --_ba-fc: var(--black-900); });
+    }
+    &&__gold {
+        --_ba-bc: var(--gold-darker);
+        --_ba-bg: var(--gold-lighter);
+    }
+    &&__silver {
+        --_ba-bc: var(--silver-darker);
+        --_ba-bg: var(--silver-lighter);
+    }
+    &&__bronze {
+        --_ba-bc: var(--bronze-darker);
+        --_ba-bg: var(--bronze-lighter);
+    }
+
+    // Number counts
+    &&__answered,
+    &&__bounty,
+    &&__important {
+        --_ba-bc: transparent;
+        --_ba-fc: var(--white);
+    }
+    &&__rep,
+    &&__rep-down,
+    &&__votes {
+        --_ba-bg: var(--white);
+    }
+    &&__answered {
+        --_ba-bg: var(--green-400);
+    }
+    &&__bounty {
+        --_ba-bg: var(--blue-600);
+    }
+    &&__important {
+        --_ba-bg: var(--red-600);
+    }
+    &&__rep {
+        --_ba-bc: var(--green-400);
+        --_ba-fc: var(--green-500);
+    }
+    &&__rep-down {
+        --_ba-bc: var(--red-400);
+        --_ba-fc: var(--red-500);
+    }
+    &&__votes {
+        --_ba-bc: var(--black-150);
+        --_ba-fc: var(--black-700);
+    }
+
+    // Users
+    &&__admin {
+        --_ba-bc: var(--theme-primary-200);
+        --_ba-bg: var(--theme-primary-075);
+        --_ba-fc: var(--theme-primary-800);
+    }
+    &&__moderator {
+        --_ba-bc: var(--theme-secondary-200);
+        --_ba-bg: var(--theme-secondary-075);
+        --_ba-fc: var(--theme-secondary-800);
+        --_ba-g:  calc(var(--su-static4) - var(--su-static1)); // 3px
+        // :before icon
+        --_ba-before-h: calc(var(--su-static16) - var(--su-static2)); // 14px
+        --_ba-before-icon: url("data:image/svg+xml,%3Csvg width='12' height='14' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M5.528.746c.257-.329.675-.327.93 0l4.42 5.66c.258.329.257.864 0 1.192l-4.42 5.66c-.256.328-.674.327-.93 0l-4.42-5.66c-.257-.329-.256-.865 0-1.192l4.42-5.66z' fill='%23fff'/%3E%3C/svg%3E");
+        --_ba-before-mt:  calc(var(--su-static1) * -1); // -1px
+        --_ba-before-w: var(--su-static12);
+
+        // Sizes
+        &.s-badge__xs {
+            --_ba-before-h: calc(var(--su-static8) + var(--su-static1)); // 9px
+            --_ba-before-icon: url("data:image/svg+xml,%3Csvg width='7' height='9' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M3 .246c.3-.329.701-.327 1 0L6.776 4c.3.329.298.672 0 1L4 8.75c-.299.329-.702.327-1 0L.224 5c-.284-.324-.285-.675 0-1L3 .246z' fill='%23fff'/%3E%3C/svg%3E");
+            --_ba-before-mt: 0;
+            --_ba-before-w: calc(var(--su-static8) - var(--su-static1)); // 7px
+        }
+        &.s-badge__sm {
+            --_ba-g: var(--su-static2);
+            --_ba-before-h: calc(var(--su-static12) - var(--su-static1)); // 11px
+            --_ba-before-icon: url("data:image/svg+xml,%3Csvg width='9' height='11' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M3.55.246c.257-.329.647-.327.903 0l3.36 4.66c.256.329.256.864 0 1.192L4.45 10.75c-.257.329-.644.327-.9 0L.192 6.098c-.256-.329-.256-.865 0-1.192L3.55.246z' fill='%23fff'/%3E%3C/svg%3E");
+            --_ba-before-mt: 0;
+            --_ba-before-w: calc(var(--su-static8) + var(--su-static1)); // 9px
+        }
+
+        &:before {
+            height: var(--_ba-before-h);
+            margin-top: var(--_ba-before-mt);
+            width: var(--_ba-before-w);
+
+            content: "";
+            display: inline-block;
+            background-color: currentColor;
+            -webkit-mask: var(--_ba-before-icon) no-repeat center;
+            mask: var(--_ba-before-icon) no-repeat center;
+            -webkit-mask-size: contain;
+            mask-size: contain;
+        }
+    }
+    &&__staff {
+        // Staff badges are always "Stack Overflow Orange"
+        --_ba-bc: var(--orange-300);
+        --_ba-bg: var(--orange-100);
+        --_ba-fc: var(--orange-900);
+    }
+
+    // VARIANTS
+    &&__danger,
+    &&__muted {
+        &.s-badge__filled {
+            --_ba-bc: transparent;
+        }
+    }
+    &&__danger {
+        --_ba-bc: var(--red-600);
+        --_ba-bg: var(--red-100);
+        --_ba-fc: var(--red-900);
+
+        &.s-badge__filled {
+            --_ba-bg: var(--red-500);
+            --_ba-fc: @white;
+
+            .highcontrast-mode({ --_ba-fc: var(--white); });
+        }
+    }
+    &&__info {
+        --_ba-bc: var(--blue-600);
+        --_ba-bg: var(--blue-100);
+        --_ba-fc: var(--blue-900);
+    }
+    &&__warning {
+        --_ba-bc: var(--yellow-600);
+        --_ba-bg: var(--yellow-100);
+        --_ba-fc: var(--yellow-900);
+    }
+    &&__muted {
+        --_ba-bc: var(--black-600);
+        --_ba-bg: var(--black-100);
+        --_ba-fc: var(--black-900);
+
+        &.s-badge__filled {
+            --_ba-bg: var(--black-700);
+            --_ba-fc: var(--white);
+        }
+    }
+
+    // CHILD ELEMENTS
+    & &--image {
+        display: inline-flex;
+        align-self: center;
+        margin-right: var(--su1);
+        margin-left: calc((var(--su4) + var(--su1)) * -1);
+    }
+
+    // INTERACTION
     a&:hover {
         text-decoration: none;
     }
-}
 
-//  $   BADGE IMAGE
-//      When we have a badge image
-//  ---------------------------------------------------------------------------
-.s-badge--image {
+    align-self: var(--_ba-as);
+    background-color: var(--_ba-bg);
+    border: var(--su-static1) solid var(--_ba-bc);
+    color: var(--_ba-fc);
+    font-size: var(--_ba-fs);
+    gap: var(--_ba-g);
+    line-height: var(--_ba-lh);
+    min-width: var(--_ba-wmn);
+    padding: var(--_ba-py) var(--_ba-px);
+
+    align-items: center;
+    border-radius: var(--br-sm);
     display: inline-flex;
-    align-self: center;
-    margin-right: var(--su1);
-    margin-left: calc((var(--su4) + var(--su1)) * -1);
-}
-
-//  $   BADGE ICON
-//      When we have a badge icon
-//  ---------------------------------------------------------------------------
-.s-badge__icon {
-    gap: 0.3em;
-}
-
-//  $   BADGE SIZES
-//  ---------------------------------------------------------------------------
-.s-badge__sm {
-    min-width: 18px;
-    align-self: flex-start;
-    padding-right: var(--su4);
-    padding-left: var(--su4);
-    font-size: var(--fs-fine);
-    line-height: 1.8;
-}
-
-.s-badge__xs {
-    align-self: flex-start;
-    padding-right: var(--su2);
-    padding-left: var(--su2);
-    font-size: var(--fs-fine);
-    line-height: 1.5;
-}
-
-//  $$  Badge Counts
-//  ---------------------------------------------------------------------------
-.s-badge__gold {
-    .badge-styles(var(--gold-darker), var(--gold-lighter), var(--black-700));
-}
-.s-badge__silver {
-    .badge-styles(var(--silver-darker), var(--silver-lighter), var(--black-700));
-}
-.s-badge__bronze {
-    .badge-styles(var(--bronze-darker), var(--bronze-lighter), var(--black-700));
-}
-.s-badge__gold,
-.s-badge__silver,
-.s-badge__bronze {
-    .highcontrast-mode({
-        border-color: currentColor;
-        color: var(--black-900);
-    });
-}
-
-//  $$  Number Counts
-//  ---------------------------------------------------------------------------
-.s-badge__bounty {
-    .badge-styles(transparent, var(--blue-600), var(--white));
-}
-.s-badge__votes {
-    .badge-styles(var(--black-150), var(--white), var(--black-700));
-
-    .highcontrast-mode({ border-color: currentColor; });
-}
-.s-badge__answered {
-    .badge-styles(transparent, var(--green-400), var(--white));
-}
-.s-badge__rep {
-    .badge-styles(var(--green-400), var(--white), var(--green-500));
-    .highcontrast-mode({ border-color: currentColor; });
-}
-.s-badge__rep-down {
-    .badge-styles(var(--red-400), var(--white), var(--red-500));
-    .highcontrast-mode({ border-color: currentColor; });
-}
-.s-badge__important {
-    .badge-styles(transparent, var(--red-600), var(--white));
-}
-
-//  $$  Users
-//  ---------------------------------------------------------------------------
-.s-badge__admin {
-    .badge-styles(var(--theme-primary-200), var(--theme-primary-075), var(--theme-primary-800));
-    .highcontrast-mode({ border-color: currentColor; });
-}
-.s-badge__moderator {
-    .badge-styles(var(--theme-secondary-200), var(--theme-secondary-075), var(--theme-secondary-800));
-    .highcontrast-mode({ border-color: currentColor; });
-
-    &:before {
-        --s-badge-moderator-icon: url("data:image/svg+xml,%3Csvg width='12' height='14' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M5.528.746c.257-.329.675-.327.93 0l4.42 5.66c.258.329.257.864 0 1.192l-4.42 5.66c-.256.328-.674.327-.93 0l-4.42-5.66c-.257-.329-.256-.865 0-1.192l4.42-5.66z' fill='%23fff'/%3E%3C/svg%3E");
-
-        content: "";
-        display: inline-block;
-        background-color: currentColor;
-        -webkit-mask: var(--s-badge-moderator-icon) no-repeat center;
-        mask: var(--s-badge-moderator-icon) no-repeat center;
-        -webkit-mask-size: contain;
-        mask-size: contain;
-
-        width: 12px;
-        height: 14px;
-        margin-top: -1px;
-        margin-right: 3px;
-    }
-
-    &.s-badge__sm:before {
-        --s-badge-moderator-icon: url("data:image/svg+xml,%3Csvg width='9' height='11' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M3.55.246c.257-.329.647-.327.903 0l3.36 4.66c.256.329.256.864 0 1.192L4.45 10.75c-.257.329-.644.327-.9 0L.192 6.098c-.256-.329-.256-.865 0-1.192L3.55.246z' fill='%23fff'/%3E%3C/svg%3E");
-
-        width: 9px;
-        height: 11px;
-        margin-top: 0;
-        margin-right: 2px;
-    }
-
-    &.s-badge__xs:before {
-        --s-badge-moderator-icon: url("data:image/svg+xml,%3Csvg width='7' height='9' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M3 .246c.3-.329.701-.327 1 0L6.776 4c.3.329.298.672 0 1L4 8.75c-.299.329-.702.327-1 0L.224 5c-.284-.324-.285-.675 0-1L3 .246z' fill='%23fff'/%3E%3C/svg%3E");
-
-        width: 7px;
-        height: 9px;
-        margin-top: 0;
-    }
-}
-
-.s-badge__staff {
-    // Staff badges are always "Stack Overflow Orange"
-    .badge-styles(var(--orange-300), var(--orange-100), var(--orange-900));
-    .highcontrast-mode({ border-color: currentColor; });
-}
-
-//  $$  States
-//  ---------------------------------------------------------------------------
-&.s-badge__danger {
-    color: var(--red-900);
-    background-color: var(--red-100);
-    border-color: var(--red-600);
-
-    &.s-badge__filled {
-        color: @white;
-        background-color: var(--red-500);
-        border-color: transparent;
-
-        .highcontrast-mode({ color: var(--white); });
-    }
-}
-
-&.s-badge__info {
-    color: var(--blue-900);
-    background-color: var(--blue-100);
-    border-color: var(--blue-600);
-}
-
-&.s-badge__warning {
-    color: var(--yellow-900);
-    background-color: var(--yellow-100);
-    border-color: var(--yellow-600);
-}
-
-&.s-badge__muted {
-    color: var(--black-900);
-    background-color: var(--black-100);
-    border-color: var(--black-600);
-
-    &.s-badge__filled {
-        color: var(--white);
-        background-color: var(--black-700);
-        border-color: transparent;
-    }
+    font-weight: normal;
+    justify-content: center;
+    text-decoration: none;
+    vertical-align: middle;
+    white-space: nowrap;
 }
