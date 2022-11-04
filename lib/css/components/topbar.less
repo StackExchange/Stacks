@@ -241,6 +241,15 @@
 //  ===========================================================================
 //  $   CONTENT & CTAS
 //  ---------------------------------------------------------------------------
+.s-topbar--navigation {
+    display: flex;
+    height: 100%;
+
+    overflow-x: auto; // Allow this content to scroll if it gets too long
+    @scrollbar-styles(); // Style the scrollbars
+    margin-left: auto; // Push this section as far to the right as possible
+}
+
 .s-topbar .s-topbar--content {
     display: flex;
     height: 100%;
@@ -250,6 +259,7 @@
         display: inline-flex;
     }
 
+    // TODO remove once all topbars include necessary nav.s-topbar--navigation wrapper elements
     overflow-x: auto; // Allow this content to scroll if it gets too long
     @scrollbar-styles(); // Style the scrollbars
     margin-left: auto; // Push this section as far to the right as possible
