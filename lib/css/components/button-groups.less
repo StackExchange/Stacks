@@ -1,84 +1,73 @@
 .s-btn-group {
-    display: flex;
-    flex-wrap: wrap;
-    margin-bottom: 1px; // Compensate for buttons having a margin bottom of -1px to account for row wrapping
-
-    // .s-btn-group--radio assumes all .s-btn elements are of the same type `label`
-    &.s-btn-group--radio {
-       .s-btn {
-            // We don't want border-radii on interior buttons
-            &:not(:first-of-type):not(:last-of-type) {
-                border-radius: 0;
-            }
-            &:first-of-type:not(:last-of-type) {
-                border-top-right-radius: 0;
-                border-bottom-right-radius: 0;
-            }
-            &:last-of-type:not(:first-of-type) {
-                border-top-left-radius: 0;
-                border-bottom-left-radius: 0;
-            }
-            // If it isn't the last button, we should slide the button over to account for border thickness
-            &:not(:last-of-type) {
-                margin-right: -1px;
-            }
-        }
-    }
-    &:not(.s-btn-group--radio) {
+    // CONTEXTUAL STYLES
+    #stacks-internals #screen-sm({
         .s-btn {
-            // We don't want border-radii on interior buttons
-            &:not(:first-child):not(:last-child) {
-                border-radius: 0;
-            }
-            // Kill the right border radius on the first button
-            &:first-child:not(:only-child) {
-                border-top-right-radius: 0;
-                border-bottom-right-radius: 0;
-            }
-            // Kill the left border radius on the last button
-            &:last-child:not(:only-child) {
-                border-top-left-radius: 0;
-                border-bottom-left-radius: 0;
-            }
-            // If it isn't the last button, we should slide the button over to account for border thickness
-            &:not(:last-child) {
-                margin-right: -1px;
-            }
-        }
-    }
-    .s-btn {
-        margin-bottom: -1px; // When wrapping we need to account for the border
-        white-space: nowrap; // When the buttons wrap, they get super tall and mess up the whole layout
-
-        #stacks-internals #screen-sm({
-            padding-left: 0.4em;
-            padding-right: 0.4em;
-
             &.s-btn__dropdown {
                 padding-right: 1.2em;
-
+                
                 &:after {
                     right: 0.4em;
                 }
             }
-        }, @force-selector: true);
 
-        &:active {
-            z-index: var(--zi-active);
+            padding-left: 0.4em;
+            padding-right: 0.4em;
         }
-
-        &.is-selected,
-        .s-btn--radio:checked + & {
-            z-index: var(--zi-selected); // When the button is active or selected, it should pop above its siblings
-
-            .highcontrast-mode({
+    }, @force-selector: true);
+    .highcontrast-mode({
+        .s-btn {
+            &.is-selected,
+            &--radio:checked + .s-btn {
                 background-color: var(--black-400);
+                border-color: var(--black-400);
                 color: var(--white);
 
                 .s-btn--number {
                     color: var(--black);
                 }
-            });
+            }
         }
+    });
+
+    // VARIANTS
+    &:not(&--radio) .s-btn:not(:first-child):not(:last-child),
+    &&--radio .s-btn:not(:first-of-type):not(:last-of-type) {
+        border-radius: 0;
     }
+    &:not(&--radio) .s-btn:first-child:not(:only-child),
+    &&--radio .s-btn:first-of-type:not(:last-of-type) {
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+    }
+    &:not(&--radio) .s-btn:last-child:not(:only-child),
+    &&--radio .s-btn:last-of-type:not(:first-of-type) {
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+    }
+    &:not(&--radio) .s-btn:not(:last-child),
+    &&--radio .s-btn:not(:last-of-type) {
+        margin-right: calc(var(--su-static1) * -1);
+    }
+
+    // CHILD ELEMENTS
+    .s-btn {
+        &:active {
+            z-index: var(--zi-active);
+        }
+        &.is-selected,
+        .s-btn--radio:checked + & {
+            z-index: var(--zi-selected); // When the button is active or selected, it should pop above its siblings
+        }
+
+        margin-bottom: calc(var(--su-static1) * -1); // When wrapping we need to account for the border
+        white-space: nowrap; // When the buttons wrap, they get super tall and mess up the whole layout
+    }
+
+    // STATIC COMPONENT STYLES
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: var(--su-static1); // Compensate for buttons having a margin bottom of -1px to account for row wrapping
+
+
+
 }
