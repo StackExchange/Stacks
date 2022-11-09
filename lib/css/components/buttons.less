@@ -42,31 +42,8 @@
     --_btn-number-fc-selected: var(--_btn-number-fc);
 
     // CONTEXTUAL STYLES
-    // TODO: consider nesting contextual styles
     .dark-mode({
         --_btn-bs: none;
-
-        &.s-btn {
-            &__danger {
-                &.s-btn__filled {
-                    --_btn-filled-fc: var(--black);
-                    --_btn-filled-fc-selected: var(--white);
-                    --_btn-number-fc: var(--white);
-                    --_btn-number-fc-selected: var(--black);
-                }
-            }
-            &__primary {
-                --_btn-bg: var(--theme-secondary-300);
-                --_btn-bg-active: var(--_btn-bg);
-                --_btn-bg-hover: var(--_btn-bg);
-                --_btn-fc: var(--black);
-                --_btn-fc-active: var(--_btn-fc);
-                --_btn-fc-hover: var(--_btn-fc);
-                --_btn-fc-selected: var(--white);
-                --_btn-number-fc: var(--white);
-                --_btn-number-fc-selected: var(--black);
-            }
-        }
     });
     .highcontrast-mode({
         --_btn-bc: currentColor;
@@ -74,49 +51,8 @@
         --_btn-outlined-bc: var(--_btn-bc);
         --_btn-bc-selected: var(--_btn-bc);
         --_btn-badge-o: 0.8;
-
-        &.s-btn {
-            &__danger,
-            &__muted {
-                --_btn-filled-bc: transparent;
-            }
-            &__muted {
-                --_btn-filled-bg: var(--black-400);
-                --_btn-filled-bg-active: var(--_btn-filled-bg);
-                --_btn-filled-bg-hover: var(--_btn-filled-bg);
-                --_btn-filled-bg-selected: var(--black-700);
-                --_btn-filled-fc: var(--white);
-                --_btn-filled-fc-selected: var(--_btn-filled-fc);
-
-                &.s-btn__filled {
-                    --_btn-number-fc: var(--black);
-                }
-            }
-            &__primary {
-                --_btn-bc: transparent;
-            }
-            &__facebook,
-            &__github {
-                --_btn-bc: transparent;
-            }
-        }
     });
-    .highcontrast-dark-mode({
-        &.s-btn {
-            &__danger {
-                &.s-btn__filled {
-                    --_btn-filled-fc: var(--white);
-                    --_btn-number-fc: var(--black);
-                    --_btn-number-fc-selected: var(--black);
-                }
-            }
-            &__primary {
-                --_btn-bg: var(--theme-secondary-400);
-                --_btn-fc: var(--white);
-                --_btn-number-fc: var(--black);
-            }
-        }
-    });
+
     // STATES
     &[disabled],
     &[aria-disabled="true"] {
@@ -265,6 +201,12 @@
     }
 
     // VARIANTS
+    &&__danger,
+    &&__muted {
+        .highcontrast-mode({
+            --_btn-filled-bc: transparent;
+        });
+    }
     &&__danger {
         --_btn-bg-active: var(--red-100);
         --_btn-bg-hover: var(--red-050);
@@ -293,13 +235,18 @@
         &.s-btn__filled {
             --_btn-number-fc: var(--black);
 
-    //         &:not(.is-selected) {
-    //             .highcontrast-dark-mode({
-    //                 --_btn-number-fc: var(--black);
-    //             });
-    //         }
+            .dark-mode({
+                --_btn-filled-fc: var(--black);
+                --_btn-filled-fc-selected: var(--white);
+                --_btn-number-fc: var(--white);
+                --_btn-number-fc-selected: var(--black);
+            });
+            .highcontrast-dark-mode({
+                --_btn-filled-fc: var(--white);
+                --_btn-number-fc: var(--black);
+                --_btn-number-fc-selected: var(--black);
+            });
         }
-
     }
     &&__muted {
         --_btn-bg-active: var(--black-050);
@@ -325,6 +272,19 @@
         --_btn-outlined-bc-selected: var(--black-400);
         --_btn-outlined-bg-selected: var(--_btn-bg-selected);
         --_btn-outlined-fc-selected: var(--_btn-fc-selected);
+
+        .highcontrast-mode({
+            --_btn-filled-bg: var(--black-400);
+            --_btn-filled-bg-active: var(--_btn-filled-bg);
+            --_btn-filled-bg-hover: var(--_btn-filled-bg);
+            --_btn-filled-bg-selected: var(--black-700);
+            --_btn-filled-fc: var(--white);
+            --_btn-filled-fc-selected: var(--_btn-filled-fc);
+
+            &.s-btn__filled {
+                --_btn-number-fc: var(--black);
+            }
+        });
     }
     &&__primary {
         --_btn-bg: var(--theme-button-primary-background-color);
@@ -337,8 +297,34 @@
         --_btn-fc-hover: var(--theme-button-primary-hover-color);
         --_btn-fc-selected: var(--theme-button-primary-selected-color);
         --_btn-number-fc: var(--theme-button-primary-number-color);
+
+        .dark-mode({
+            --_btn-bg: var(--theme-secondary-300);
+            --_btn-bg-active: var(--_btn-bg);
+            --_btn-bg-hover: var(--_btn-bg);
+            --_btn-fc: var(--black);
+            --_btn-fc-active: var(--_btn-fc);
+            --_btn-fc-hover: var(--_btn-fc);
+            --_btn-fc-selected: var(--white);
+            --_btn-number-fc: var(--white);
+            --_btn-number-fc-selected: var(--black);
+        });
+        .highcontrast-mode({
+            --_btn-bc: transparent;
+        });
+        .highcontrast-dark-mode({
+            --_btn-bg: var(--theme-secondary-400);
+            --_btn-fc: var(--white);
+            --_btn-number-fc: var(--black);
+        });
     }
     // Social
+    &&__facebook,
+    &&__github {
+        .highcontrast-mode({
+            --_btn-bc: transparent;
+        });
+    }
     &&__facebook {
         @_fb-brand: #385499;
         --_btn-bc: transparent;
