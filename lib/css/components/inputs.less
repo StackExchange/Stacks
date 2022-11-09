@@ -244,6 +244,44 @@ fieldset {
 //  ============================================================================
 //  $   CHECKBOXES & RADIOS
 //  ----------------------------------------------------------------------------
+// TODO would _love_ to use .s-check instead, with no class on the input itself
+.s-check-control {
+    display: flex;
+    gap: var(--su8);
+    align-items: center;
+
+    [disabled] + .s-label {
+        &:extend(.is-disabled .s-label);
+    }
+
+    .s-label {
+        font-weight: normal;
+    }
+}
+
+.s-check-group {
+    display: flex;
+    flex-direction: column;
+    gap: var(--su8);
+
+    &&__horizontal {
+        flex-direction: row;
+    }
+
+    // TODO HACK? <legend> isn't respecting gap...
+    legend.s-label {
+        margin-bottom: var(--su8);
+    }
+
+    // manually align the checkboxes and radios to the top of the group
+    .s-check-control {
+        align-items: flex-start;
+    }
+    .s-checkbox, .s-radio {
+        margin-top: calc(var(--su2) + var(--su1)); // 3px
+    }
+}
+
 .s-checkbox,
 .s-radio {
     //  [1]   Check to see if we can use custom styles, if so reset the defaults
