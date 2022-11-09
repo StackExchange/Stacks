@@ -75,7 +75,8 @@
             opacity: 0; // [2]
         }
     }
-    &.is-selected {
+    &.is-selected,
+    &--radio:checked + & {
         background-color: var(--_btn-bg-selected);
         border-color: var(--_btn-bc-selected);
         box-shadow: none;
@@ -84,27 +85,25 @@
         .s-btn--number {
             color: var(--_btn-number-fc-selected);
         }
-    }
-
-    // MODIFIERS
-    &&__filled {
-        &.is-selected {
+        &.s-btn__filled { // this needs to live here to adapt to radio button-group
             border-color: var(--_btn-filled-bc-selected);
             background-color: var(--_btn-filled-bg-selected);
             color: var(--_btn-filled-fc-selected);
         }
+        &.s-btn__outlined { // this needs to live here to adapt to radio button-group
+            border-color: var(--_btn-outlined-bc-selected);
+            background-color: var(--_btn-outlined-bg-selected);
+            color: var(--_btn-outlined-fc-selected);
+        }
+    }
 
+    // MODIFIERS
+    &&__filled {
         border-color: var(--_btn-filled-bc);
         background-color: var(--_btn-filled-bg);
         color: var(--_btn-filled-fc);
     }
     &&__outlined {
-        &.is-selected {
-            border-color: var(--_btn-outlined-bc-selected);
-            background-color: var(--_btn-outlined-bg-selected);
-            color: var(--_btn-outlined-fc-selected);
-        }
-
         border-color: var(--_btn-outlined-bc);
         background-color: var(--_btn-outlined-bg);
     }
@@ -377,22 +376,18 @@
     // INTERACTION
     &:not(.is-selected):not(&__link):not(&__unset) {
         &:hover, &:focus {
-            &.s-btn {
-                &__filled {
-                    background-color: var(--_btn-filled-bg-hover);
-                    color: var(--_btn-filled-fc-hover);
-                }
+            &.s-btn__filled {
+                background-color: var(--_btn-filled-bg-hover);
+                color: var(--_btn-filled-fc-hover);
             }
 
             background-color: var(--_btn-bg-hover);
             color: var(--_btn-fc-hover);
         }
         &:active {
-            &.s-btn {
-                &__filled {
-                    background-color: var(--_btn-filled-bg-active);
-                    color: var(--_btn-filled-fc-active);
-                }
+            &.s-btn__filled {
+                background-color: var(--_btn-filled-bg-active);
+                color: var(--_btn-filled-fc-active);
             }
 
             background-color: var(--_btn-bg-active);
