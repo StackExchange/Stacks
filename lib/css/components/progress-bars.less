@@ -48,15 +48,13 @@
         --_pr-label-g: var(--su4);
     }
     &&__badge {
-        // TODO: turn into custom properties
-        .s-progress--label {
-            align-items: center;
-            padding-left: 1em;
-            padding-right: 1em;
+        --_pr-label-ai: center;
+        --_pr-label-px: 1em;
 
+        .s-progress--label {
             .s-badge--label {
-                text-align: center;
                 flex-grow: 1;
+                text-align: center;
             }
         }
     }
@@ -66,18 +64,19 @@
         --s-progress-value: 0;
         @s-progress-circle-circumference: (2 * pi() * 14); // 2πr, r = 14.
 
-        &.s-progress__sm {
-            --_pr-size: var(--su-static24);
-        }
-        &.s-progress__md {
-            --_pr-size: var(--su-static48);
-        }
-        &.s-progress__lg {
-            --_pr-size: var(--su-static64);
+        &.s-progress {
+            &__sm {
+                --_pr-size: var(--su-static24);
+            }
+            &__md {
+                --_pr-size: var(--su-static48);
+            }
+            &__lg {
+                --_pr-size: var(--su-static64);
+            }
         }
         // TODO: consider renaming to `.s-progress--bar`
-        // It may necessitate wrapping below child element in a `&:not(&__circular)`
-        .s-progress-bar {
+        .s-progress-bar { // It may necessitate wrapping element in a `&:not(&__circular)`
             circle {
                 &:nth-of-type(1) {
                     opacity: 0.4;
@@ -85,10 +84,7 @@
                 }
                 &:nth-of-type(2) {
                     stroke: currentColor;
-                    stroke-dasharray: @s-progress-circle-circumference;
-                    // Multiply the circle circumference by an the opposite percentage of what we want to display
-                    // For example 70%, represented as a decimal is 0.7
-                    // The opposite of that is 0.3 so ( 1 - 0.7 )
+                    stroke-dasharray: @s-progress-circle-circumference; // [1]
                     stroke-dashoffset: calc(((1 - var(--s-progress-value)) * @s-progress-circle-circumference) * 1px); // Multiply everything by 1px since Safari and Firefox require these to be in pixels
                 }
 
@@ -108,6 +104,97 @@
 
         .highcontrast-mode({ --_pr-bar-bg: var(--green-200); });
     }
+    // TODO move `.s-progress__stepped` to entirely separate component (or consider deprecating)
+    &&__stepped { // There's so little overlap with the base .s-progress that it doesn't make sense as a variant
+        background: transparent;
+        display: flex;
+
+        .s-progress {
+            &--bar {
+                &.s-progress--bar {
+                    &__left {
+                        left: 0;
+                        right: 50%;
+                    }
+                    &__right {
+                        left: 50%;
+                        right: 0;
+                    }
+                }
+
+                background: var(--black-300);
+                border-radius: 0;
+                height: var(--su-static6);
+                position: absolute;
+                top: calc(var(--su-static8) + var(--su-static1));
+                z-index: var(--zi-base);
+            }
+            &--label { // Override a ton of properties
+                border: 0;
+                border-radius: 0;
+                color: var(--black-500);
+                display: block;
+                font-size: var(--fs-body1);
+                height: auto;
+                padding: var(--su12) var(--su6) 0 var(--su6);
+                position: static;
+                text-align: center;
+                width: auto;
+                z-index: var(--zi-base);
+            }
+            &--step {
+                &.is-active {
+                    .s-progress {
+                        &--bar.s-progress--bar__left {
+                            background: var(--theme-secondary-400);
+                        }
+                        &--label {
+                            color: var(--fc-dark);
+                        }
+                        &--stop {
+                            background: var(--theme-secondary-400);
+                            box-shadow: 0 0 0 var(--su-static6) var(--focus-ring);
+                        }
+                    }
+                }
+                &.is-complete {
+                    .s-progress {
+                        &--bar,
+                        &--stop {
+                            background: var(--theme-secondary-400);
+                        }
+                        &--label {
+                            color: var(--fc-dark);
+                        }
+                    }
+                }
+
+                align-items: center;
+                display: flex;
+                flex-basis: 0;
+                flex-direction: column;
+                flex-grow: 1;
+                flex-shrink: 1;
+                position: relative;
+            }
+            &--stop {
+                .highcontrast-mode({
+                    color: var(--white);
+                });
+
+                align-items: center;
+                background: var(--black-300);
+                border-radius: 100%;
+                color: @white;
+                display: flex;
+                height: var(--su-static24);
+                justify-content: center;
+                position: relative;
+                width: var(--su-static24);
+                z-index: var(--zi-selected);
+            }
+        }
+    }
 
     // CHILD ELEMENTS
     & &--bar {
@@ -125,6 +212,8 @@
         display: var(--_pr-label-d);
         gap: var(--_pr-label-g);
         justify-content: var(--_pr-label-jc);
+        padding-left: var(--_pr-label-px);
+        padding-right: var(--_pr-label-px);
 
         border-radius: var(--br-md);
         color: var(--fc-dark);
@@ -175,97 +264,6 @@
     width: var(--_pr-size, var(--_pr-w));
 }
 
-// TODO move `.s-progress__stepped` to entirely separate component
-// There's so little overlap with the base .s-progress that it doesn't make sense as a variant
-.s-progress.s-progress__stepped {
-    background: transparent;
-    display: flex;
-
-    .s-progress--step {
-        align-items: center;
-        display: flex;
-        flex-basis: 0;
-        flex-direction: column;
-        flex-grow: 1;
-        flex-shrink: 1;
-        position: relative;
-    }
-
-    .s-progress--label {
-        // Override a ton of properties
-        border-radius: 0;
-        border: 0;
-        color: var(--black-500);
-        display: block;
-        font-size: var(--fs-body1);
-        height: auto;
-        padding: var(--su12) var(--su6) 0 var(--su6);
-        position: static;
-        text-align: center;
-        width: auto;
-        z-index: var(--zi-base);
-    }
-
-    .s-progress--stop {
-        align-items: center;
-        background: var(--black-300);
-        border-radius: 100%;
-        color: @white;
-        display: flex;
-        height: var(--su-static24);
-        justify-content: center;
-        position: relative;
-        width: var(--su-static24);
-        z-index: var(--zi-selected);
-
-        .highcontrast-mode({
-            color: var(--white);
-        });
-    }
-
-    .s-progress--bar {
-        position: absolute;
-        top: calc(var(--su-static8) + var(--su-static1));
-        height: var(--su-static6);
-        background: var(--black-300);
-        z-index: var(--zi-base);
-        border-radius: 0;
-
-        &.s-progress--bar__left {
-            left: 0;
-            right: 50%;
-        }
-
-        &.s-progress--bar__right {
-            right: 0;
-            left: 50%;
-        }
-    }
-
-    .s-progress--step.is-active {
-        .s-progress--bar.s-progress--bar__left {
-            background: var(--theme-secondary-400);
-        }
-
-        .s-progress--stop {
-            background: var(--theme-secondary-400);
-            box-shadow: 0 0 0 var(--su-static6) var(--focus-ring);
-        }
-
-        .s-progress--label {
-            color: var(--fc-dark);
-        }
-    }
-
-    .s-progress--step.is-complete {
-        .s-progress--bar,
-        .s-progress--stop {
-            background: var(--theme-secondary-400);
-        }
-
-        .s-progress--label {
-            color: var(--fc-dark);
-        }
-    }
-}
-
+// [1] Multiply the circle circumference by an the opposite percentage of what we want to display
+//      For example 70%, represented as a decimal is 0.7
+//      The opposite of that is 0.3 so ( 1 - 0.7 )
