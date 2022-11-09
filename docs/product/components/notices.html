@@ -4,12 +4,13 @@ title: Notices
 figma: https://www.figma.com/file/WYBYiGnyr5qemIm93ZcTf8/Notices
 description: Notices deliver <strong>System</strong> and <strong>Engagement</strong> messaging, informing the user about product or account statuses and related actions.
 ---
+<!-- TODO: Add accessibility section with differences between <aside> and status/alert roles and when to use them -->
 <!-- Example notice content -->
 <script src="{{ "/assets/dist/entry.notices.js" | url }}" defer></script>
 
 <div class="s-toast js-notice-toast" aria-hidden="true" role="alertdialog" aria-labelledby="notice-message">
     <aside class="s-notice s-notice__success p8 pl16">
-        <div class="d-flex gs16 gsx ai-center jc-space-between">
+        <div class="d-flex gx16 ai-center jc-space-between">
             <div class="flex--item" id="notice-message">
                 Toast notice message with an undo button
             </div>
@@ -97,29 +98,29 @@ description: Notices deliver <strong>System</strong> and <strong>Engagement</str
     <p class="stacks-copy">Default style used to separate notices from the main content</p>
     <div class="stacks-preview">
 {% highlight html %}
-<aside class="s-notice" role="status">…</aside>
-<aside class="s-notice s-notice__info" role="status">…</aside>
-<aside class="s-notice s-notice__success" role="status">…</aside>
-<aside class="s-notice s-notice__warning" role="status">…</aside>
-<aside class="s-notice s-notice__danger" role="status">…</aside>
+<div class="s-notice" role="status">…</div>
+<div class="s-notice s-notice__info" role="status">…</div>
+<div class="s-notice s-notice__success" role="status">…</div>
+<div class="s-notice s-notice__warning" role="status">…</div>
+<div class="s-notice s-notice__danger" role="status">…</div>
 {% endhighlight %}
         <div class="stacks-preview--example">
-            <div class="d-flex gs8 gsy fd-column">
-                <aside class="flex--item s-notice" role="status">
+            <div class="d-flex gy8 fd-column">
+                <div class="flex--item s-notice" role="status">
                     <p class="m0">Default filled message style</p>
-                </aside>
-                <aside class="flex--item s-notice s-notice__info" role="status">
+                </div>
+                <div class="flex--item s-notice s-notice__info" role="status">
                     <p class="m0">Info filled message style</p>
-                </aside>
-                <aside class="flex--item s-notice s-notice__success" role="status">
+                </div>
+                <div class="flex--item s-notice s-notice__success" role="status">
                     <p class="m0">Success filled message style <a class="s-link s-link__inherit s-link__underlined" href="#">Link</a></p>
-                </aside>
-                <aside class="flex--item s-notice s-notice__warning" role="status">
+                </div>
+                <div class="flex--item s-notice s-notice__warning" role="status">
                     <p class="m0">Warning filled message style</p>
-                </aside>
-                <aside class="flex--item s-notice s-notice__danger" role="status">
+                </div>
+                <div class="flex--item s-notice s-notice__danger" role="status">
                     <p class="m0">Danger filled message style</p>
-                </aside>
+                </div>
             </div>
         </div>
     </div>
@@ -128,29 +129,29 @@ description: Notices deliver <strong>System</strong> and <strong>Engagement</str
     <p class="stacks-copy">Used sparingly for when an important notice needs to be noticed</p>
     <div class="stacks-preview">
 {% highlight html %}
-<aside class="s-notice s-notice__important" role="alert">…</aside>
-<aside class="s-notice s-notice__info s-notice__important" role="alert">…</aside>
-<aside class="s-notice s-notice__success s-notice__important" role="alert">… <a class="s-link s-link__inherit s-link__underlined" href="…">…</a></aside>
-<aside class="s-notice s-notice__warning s-notice__important" role="alert">…</aside>
-<aside class="s-notice s-notice__danger s-notice__important" role="alert">…</aside>
+<div class="s-notice s-notice__important" role="alert">…</div>
+<div class="s-notice s-notice__info s-notice__important" role="alert">…</div>
+<div class="s-notice s-notice__success s-notice__important" role="alert">… <a class="s-link s-link__inherit s-link__underlined" href="…">…</a></div>
+<div class="s-notice s-notice__warning s-notice__important" role="alert">…</div>
+<div class="s-notice s-notice__danger s-notice__important" role="alert">…</div>
 {% endhighlight %}
         <div class="stacks-preview--example">
-            <div class="d-flex gs8 gsy fd-column">
-                <aside class="flex--item s-notice s-notice__important" role="alert">
+            <div class="d-flex gy8 fd-column">
+                <div class="flex--item s-notice s-notice__important" role="alert">
                     <p class="m0">Inverted important message style</p>
-                </aside>
-                <aside class="flex--item s-notice s-notice__info s-notice__important" role="alert">
+                </div>
+                <div class="flex--item s-notice s-notice__info s-notice__important" role="alert">
                     <p class="m0">Info important message style. <a class="s-link s-link__inherit s-link__underlined" href="#">Link</a></p>
-                </aside>
-                <aside class="flex--item s-notice s-notice__success s-notice__important" role="alert">
+                </div>
+                <div class="flex--item s-notice s-notice__success s-notice__important" role="alert">
                     <p class="m0">Success important message style</p>
-                </aside>
-                <aside class="flex--item s-notice s-notice__warning s-notice__important" role="alert">
+                </div>
+                <div class="flex--item s-notice s-notice__warning s-notice__important" role="alert">
                     <p class="m0">Warning important message style</p>
-                </aside>
-                <aside class="flex--item s-notice s-notice__danger s-notice__important" role="alert">
+                </div>
+                <div class="flex--item s-notice s-notice__danger s-notice__important" role="alert">
                     <p class="m0">Danger important message style</p>
-                </aside>
+                </div>
             </div>
         </div>
     </div>
@@ -195,13 +196,13 @@ description: Notices deliver <strong>System</strong> and <strong>Engagement</str
     <p class="stacks-copy">Default behavior for notices that are inserted within the content area</p>
     <div class="stacks-preview">
 {% highlight html %}
-<aside class="s-notice s-notice__info" role="status">…</aside>
+<div class="s-notice s-notice__info" role="status">…</div>
 {% endhighlight %}
         <div class="stacks-preview--example">
-            <div class="ps-relative d-flex gs8 gsy fd-column jc-center">
-                <aside class="flex--item s-notice s-notice__info" role="status">
+            <div class="ps-relative d-flex gy8 fd-column jc-center">
+                <div class="flex--item s-notice s-notice__info" role="status">
                     <p class="m0">Inline notice message style</p>
-                </aside>
+                </div>
             </div>
         </div>
     </div>
@@ -210,24 +211,24 @@ description: Notices deliver <strong>System</strong> and <strong>Engagement</str
     <p class="stacks-copy">Notices are often accompanied by an icon.</p>
     <div class="stacks-preview">
 {% highlight html %}
-<aside class="d-flex s-notice s-notice__info" role="status">
+<div class="d-flex s-notice s-notice__info" role="status">
     <div class="flex--item mr8">
         @Svg.Alert
     </div>
     <div class="flex--item lh-lg">
         …
     </div>
-</aside>
+</div>
 {% endhighlight %}
         <div class="stacks-preview--example">
-            <aside class="d-flex s-notice s-notice__info" role="status">
+            <div class="d-flex s-notice s-notice__info" role="status">
                 <div class="flex--item mr8">
                     {% icon "Alert" %}
                 </div>
                 <div class="flex--item lh-lg">
                     This question and its answers are locked because the question is off-topic but has historical significance. It is not currently accepting new answers or interactions.
                 </div>
-            </aside>
+            </div>
         </div>
     </div>
 
@@ -242,7 +243,7 @@ description: Notices deliver <strong>System</strong> and <strong>Engagement</str
 {% highlight html %}
 <div class="s-toast" aria-hidden="true" role="alertdialog" aria-labelledby="notice-message">
     <aside class="s-notice s-notice__success p8 pl16">
-        <div class="d-flex gs16 gsx ai-center jc-space-between">
+        <div class="d-flex gx16 ai-center jc-space-between">
             <div class="flex--item" id="notice-message">
                 Toast notice message with an undo button
             </div>
@@ -259,10 +260,10 @@ description: Notices deliver <strong>System</strong> and <strong>Engagement</str
 </div>
 {% endhighlight %}
         <div class="stacks-preview--example">
-            <div class="ps-relative d-flex flex__center gs8 gsy fd-column jc-center">
+            <div class="ps-relative d-flex flex__center gy8 fd-column jc-center">
 
                 <div class="flex--item s-notice s-notice__info p8 pl16">
-                    <div class="d-flex gsx gs16 ai-center jc-space-between">
+                    <div class="d-flex gx16 ai-center jc-space-between">
                         <div class="flex--item">
                             Toast notice message with an undo button
                         </div>
@@ -278,7 +279,7 @@ description: Notices deliver <strong>System</strong> and <strong>Engagement</str
                 </div>
 
                 <div class="flex--item s-notice s-notice__success p8 pl16">
-                    <div class="d-flex gsx gs16 ai-center jc-space-between">
+                    <div class="d-flex gx16 ai-center jc-space-between">
                         <div class="flex--item">
                             Toast notice message with an undo button
                         </div>
@@ -294,7 +295,7 @@ description: Notices deliver <strong>System</strong> and <strong>Engagement</str
                 </div>
 
                 <div class="flex--item s-notice s-notice__warning p8 pl16">
-                    <div class="d-flex gsx gs16 ai-center jc-space-between">
+                    <div class="d-flex gx16 ai-center jc-space-between">
                         <div class="flex--item">
                             Toast notice message with an undo button
                         </div>
@@ -310,7 +311,7 @@ description: Notices deliver <strong>System</strong> and <strong>Engagement</str
                 </div>
 
                 <div class="flex--item s-notice s-notice__danger p8 pl16">
-                    <div class="d-flex gsx gs16 ai-center jc-space-between">
+                    <div class="d-flex gx16 ai-center jc-space-between">
                         <div class="flex--item">
                             Toast notice message with an undo button
                         </div>

@@ -23,7 +23,7 @@ module.exports = {
 
         var output = '';
         output += '<div class="s-notice bar-md s-anchors s-anchors__inherit s-anchors__underlined ' + type + ' ' + classes + '">';
-        output +=   '<div class="d-flex gs16 ' + interiorClasses + '">';
+        output +=   '<div class="d-flex g16 ' + interiorClasses + '">';
         output +=     '<div class="flex--item">';
         output +=       spot;
         output +=     '</div>';
