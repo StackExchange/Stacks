@@ -76,10 +76,9 @@
         }
     }
     &.is-selected,
-    &--radio:checked + & {
+    .s-btn-group.s-btn-group--radio &--radio:checked + & {
         background-color: var(--_bu-bg-selected);
         border-color: var(--_bu-bc-selected);
-        box-shadow: none;
         color: var(--_bu-fc-selected);
 
         .s-btn--number {
@@ -94,6 +93,18 @@
             border-color: var(--_bu-outlined-bc-selected);
             background-color: var(--_bu-outlined-bg-selected);
             color: var(--_bu-outlined-fc-selected);
+
+            &.s-btn__muted {
+                .highcontrast-mode({
+                    --_bu-outlined-bc-selected: var(--_bu-filled-bc-selected);
+                    --_bu-outlined-bg-selected: var(--_bu-filled-bg-selected);
+                    --_bu-outlined-fc-selected: var(--_bu-filled-fc-selected);
+                    --_bu-number-fc-selected: var(--_bu-filled-bg-selected);
+                });
+            }
+        }
+        &:not(:focus) {
+            box-shadow: none;
         }
     }
 
@@ -394,21 +405,27 @@
             color: var(--_bu-fc-active);
         }
     }
-    .s-btn-group.s-btn-group--radio &--radio:checked + & { // ensures checked buttons in button groups retain expected hover/focus styling
-        &:hover, &:focus {
-            background-color: var(--_bu-bg-selected);
-            color: var(--_bu-fc-selected);
+    // .s-btn-group &--radio:checked + &,
+    // .s-btn-group &.is-selected {
+    //     --_bu-bc-active: var(--_bu-bc-selected);
+    //     --_bu-bg-active: var(--_bu-bg-selected);
+    //     --_bu-fc-active: var(--_bu-fc-selected);
+    //     --_bu-bc-hover: var(--_bu-bc-selected);
+    //     --_bu-bg-hover: var(--_bu-bg-selected);
+    //     --_bu-fc-hover: var(--_bu-fc-selected);
 
-            &.s-btn__filled {
-                background-color: var(--_bu-filled-bg-selected);
-                color: var(--_bu-filled-fc-selected);
-            }
-            &.s-btn__outlined {
-                background-color: var(--_bu-outlined-bg-selected);
-                color: var(--_bu-outlined-fc-selected);
-            }
-        }
-    }
+    //     .highcontrast-mode({
+    //         &.s-btn__outlined {
+    //             --_bu-bc-selected: var(--black-400);
+    //             --_bu-bg-selected: var(--black-400);
+    //             --_bu-fc-selected: var(--white);
+    //             --_bu-bc-selected-hover: var(--_bu-bc-selected);
+    //             --_bu-bg-selected-hover: var(--_bu-bg-selected);
+    //             --_bu-fc-selected-hover: var(--_bu-fc-selected);
+    //             --_bu-number-fc: var(--black);
+    //         }
+    //     });
+    // }
     &:focus,
     &--radio:checked:focus + & {
         box-shadow: var(--_bu-focus-ring);
