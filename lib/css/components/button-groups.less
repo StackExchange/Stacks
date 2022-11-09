@@ -17,7 +17,7 @@
     .highcontrast-mode({
         .s-btn {
             &.is-selected,
-            &--radio:checked + .s-btn {
+            &--radio:checked + & {
                 background-color: var(--black-400);
                 border-color: var(--black-400);
                 color: var(--white);
@@ -55,7 +55,7 @@
             z-index: var(--zi-active);
         }
         &.is-selected,
-        .s-btn--radio:checked + & {
+        &--radio:checked + .s-btn {
             z-index: var(--zi-selected); // When the button is active or selected, it should pop above its siblings
         }
 
@@ -67,7 +67,4 @@
     display: flex;
     flex-wrap: wrap;
     margin-bottom: var(--su-static1); // Compensate for buttons having a margin bottom of -1px to account for row wrapping
-
-
-
 }
