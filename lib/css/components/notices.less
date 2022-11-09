@@ -1,201 +1,210 @@
-.construct-notice-component() {
-    background: var(--_no-bg, var(--black-050));
-    border-color: var(--_no-bc, var(--bc-medium));
-    border-style: solid;
-    color: var(--_no-fc, var(--fc-medium));
-    font-size: var(--fs-body1);
+.construct-notice-component(@baseClass) {
+    // BASE COMPONENT-SPECIFIC CUSTOM PROPERTIES
+    --_no-bc: var(--bc-medium);
+    --_no-bg: var(--black-050);
+    --_no-fc: var(--fc-medium);
+    --_no-btn-bg-focus: var(--black-100);
+    --_no-btn-bg-active: var(--black-150);
 
-    code {
-        background: var(--_no-code-bg, transparent);
-    }
-
-    & &--btn {
-        color: inherit;
-        padding: var(--su8);
-
-        &:focus,
-        &:hover {
-            background: var(--_no-btn-focus-bg, var(--black-100));
-        }
-
-        &:active {
-            background: var(--_no-btn-active-bg, var(--black-150));
-        }
-    }
-
+    // MODIFIERS
     &:not(&__important) {
-        .dark-mode({ --_no-bc: var(--_no-bg); });
-        .highcontrast-mode({ --_no-bc: currentColor; });
-        .highcontrast-dark-mode({ --_no-bc: currentColor; });
+        .dark-mode({
+            --_no-bc: var(--_no-bg);
+        });
+        .highcontrast-mode({
+            --_no-bc: currentColor;
+        });
+        .highcontrast-dark-mode({
+            --_no-bc: currentColor;
+        });
     }
-
     &__important {
         --_no-bc: var(--_no-bg);
         --_no-bg: var(--black-700);
         --_no-fc: var(--white);
-        --_no-btn-focus-bg: var(--black-800);
-        --_no-btn-active-bg: var(--black-900);
+        --_no-btn-bg-focus: var(--black-800);
+        --_no-btn-bg-active: var(--black-900);
 
-        .highcontrast-mode({ --_no-bc: var(--_no-bg); });
+        .highcontrast-mode({
+            --_no-bc: var(--_no-bg);
+        });
     }
 
+    // VARIANTS
     &__danger {
         --_no-bc: var(--red-200);
         --_no-bg: var(--red-050);
-        --_no-btn-focus-bg: var(--red-100);
-        --_no-btn-active-bg: var(--red-200);
-    }
-    &__danger:not(&__important) {
-        .highcontrast-mode({
-            --_no-bg: var(--red-200);
-        });
-    }
-    &__danger&__important {
-        --_no-bc: var(--_no-bg);
-        --_no-bg: var(--red-500);
-        --_no-btn-focus-bg: var(--red-600);
-        --_no-btn-active-bg: var(--red-700);
+        --_no-btn-bg-active: var(--red-200);
+        --_no-btn-bg-focus: var(--red-100);
 
-        .dark-mode({
-            --_no-bg: var(--red-400);
-            --_no-fc: var(--black-900);
-        });
-        .highcontrast-dark-mode({
+        &:not(.@{baseClass}__important) {
+            .highcontrast-mode({
+                --_no-bg: var(--red-200);
+            });
+        }
+        &.@{baseClass}__important {
+            --_no-bc: var(--_no-bg);
             --_no-bg: var(--red-500);
-            --_no-fc: var(--white);
-        });
-    }
+            --_no-btn-bg-active: var(--red-700);
+            --_no-btn-bg-focus: var(--red-600);
 
+            .dark-mode({
+                --_no-bg: var(--red-400);
+                --_no-fc: var(--black-900);
+            });
+            .highcontrast-dark-mode({
+                --_no-bg: var(--red-500);
+                --_no-fc: var(--white);
+            });
+        }
+    }
     &__info {
         --_no-bc: var(--theme-secondary-150);
         --_no-bg: var(--theme-secondary-050);
-        --_no-btn-focus-bg: var(--theme-secondary-100);
-        --_no-btn-active-bg: var(--theme-secondary-150);
+        --_no-btn-bg-focus: var(--theme-secondary-100);
+        --_no-btn-bg-active: var(--theme-secondary-150);
         --_no-code-bg: var(--theme-secondary-150);
-    }
-    &__info:not(&__important) {
-        .highcontrast-mode({
-            --_no-bg: var(--theme-secondary-100);
-        });
-        .highcontrast-dark-mode({
-            --_no-bg: var(--theme-secondary-100);
-        });
-    }
-    &__info&__important {
-        --_no-bc: var(--_no-bg);
-        --_no-bg: var(--theme-secondary-400);
-        --_no-btn-focus-bg: var(--theme-secondary-500);
-        --_no-btn-active-bg: var(--theme-secondary-600);
 
-        .dark-mode({
-            --_no-bg: var(--theme-secondary-300);
-            --_no-fc: var(--black-900);
-        });
-        .highcontrast-dark-mode({
+        &:not(.@{baseClass}__important) {
+            .highcontrast-mode({
+                --_no-bg: var(--theme-secondary-100);
+            });
+            .highcontrast-dark-mode({
+                --_no-bg: var(--theme-secondary-100);
+            });
+        }
+        &.@{baseClass}__important {
+            --_no-bc: var(--_no-bg);
             --_no-bg: var(--theme-secondary-400);
-            --_no-fc: var(--white);
-        });
-    }
+            --_no-btn-bg-active: var(--theme-secondary-600);
+            --_no-btn-bg-focus: var(--theme-secondary-500);
 
+            .dark-mode({
+                --_no-bg: var(--theme-secondary-300);
+                --_no-fc: var(--black-900);
+            });
+            .highcontrast-dark-mode({
+                --_no-bg: var(--theme-secondary-400);
+                --_no-fc: var(--white);
+            });
+        }
+    }
     &__success {
         --_no-bc: var(--green-200);
         --_no-bg: var(--green-050);
-        --_no-btn-focus-bg: var(--green-100);
-        --_no-btn-active-bg: var(--green-200);
-    }
-    &__success:not(&__important) {
-        .highcontrast-mode({
-            --_no-bg: var(--green-200);
-        });
-    }
-    &__success&__important {
-        --_no-bc: var(--_no-bg);
-        --_no-bg: var(--green-400);
-        --_no-fc: var(--black-900);
-        --_no-btn-focus-bg: var(--green-500);
-        --_no-btn-active-bg: var(--green-600);
+        --_no-btn-bg-active: var(--green-200);
+        --_no-btn-bg-focus: var(--green-100);
 
-        .dark-mode({
-            --_no-bg: var(--green-500);
-            --_no-fc: var(--white);
-        });
-        .highcontrast-mode({
-            --_no-bg: var(--green-500);
-            --_no-fc: var(--white);
-        });
-    }
+        &:not(.@{baseClass}__important) {
+            .highcontrast-mode({
+                --_no-bg: var(--green-200);
+            });
+        }
+        &.@{baseClass}__important {
+            --_no-bc: var(--_no-bg);
+            --_no-bg: var(--green-400);
+            --_no-fc: var(--black-900);
+            --_no-btn-bg-active: var(--green-600);
+            --_no-btn-bg-focus: var(--green-500);
 
+            .dark-mode({
+                --_no-bg: var(--green-500);
+                --_no-fc: var(--white);
+            });
+            .highcontrast-mode({
+                --_no-bg: var(--green-500);
+                --_no-fc: var(--white);
+            });
+        }
+    }
     &__warning {
         --_no-bc: var(--yellow-300);
         --_no-bg: var(--yellow-050);
-        --_no-btn-focus-bg: var(--yellow-200);
-        --_no-btn-active-bg: var(--yellow-300);
+        --_no-btn-bg-active: var(--yellow-300);
+        --_no-btn-bg-focus: var(--yellow-200);
         --_no-code-bg: var(--yellow-200);
-    }
-    &__warning:not(&__important) {
-        .highcontrast-mode({
-            --_no-bg: var(--yellow-200);
-        });
-    }
-    &__warning&__important {
-        --_no-bc: var(--_no-bg);
-        --_no-bg: var(--yellow-400);
-        --_no-btn-focus-bg: var(--yellow-500);
-        --_no-btn-active-bg: var(--yellow-600);
-        --_no-fc: var(--black-900);
 
-        .dark-mode({
-            --_no-bg: var(--yellow-600);
-            --_no-fc: var(--white);
-        });
-        .highcontrast-mode({
-            --_no-bg: var(--yellow-700);
-            --_no-fc: var(--white);
-        });
+        &:not(.@{baseClass}__important) {
+            .highcontrast-mode({
+                --_no-bg: var(--yellow-200);
+            });
+        }
+        &.@{baseClass}__important {
+            --_no-bc: var(--_no-bg);
+            --_no-bg: var(--yellow-400);
+            --_no-fc: var(--black-900);
+            --_no-btn-bg-active: var(--yellow-600);
+            --_no-btn-bg-focus: var(--yellow-500);
+
+            .dark-mode({
+                --_no-bg: var(--yellow-600);
+                --_no-fc: var(--white);
+            });
+            .highcontrast-mode({
+                --_no-bg: var(--yellow-700);
+                --_no-fc: var(--white);
+            });
+        }
     }
+
+    // CHILD ELEMENTS
+    code {
+        background: var(--_no-code-bg, transparent);
+    }
+    & &--btn {
+        &:focus,
+        &:hover {
+            background: var(--_no-btn-bg-focus);
+        }
+        &:active {
+            background: var(--_no-btn-bg-active);
+        }
+
+        color: inherit;
+        padding: var(--su8);
+    }
+
+    // STYLES MODIFIED BY COMPONENT-SPECIFIC CUSTOM PROPERTIES
+    background: var(--_no-bg);
+    border-color: var(--_no-bc);
+    color: var(--_no-fc);
+
+    border-style: solid;
+    font-size: var(--fs-body1);
 }
 
 // Banner
 // TODO deprecate .s-banner (by turning it into a modifier on .s-notice)
 // This would reduce the amount of CSS we ship to the client and simplify our codebase
 .s-banner {
-    .construct-notice-component();
-    --_no-x-offset: 0;
-    //      When we use .s-banner, we need to adjust the padding-top on
-    //      the body tag. This class correctly adjusts the body padding ONLY if
-    //      the notice is one line. If it wraps to multiple lines, more classes or
-    //      (ideally) JS will need to be used to determine the notice's height
-    //      at the time of render. The padding value is determined like so:
-    //
-    //      50px (top bar) + 44px (notice height) - 1px (bottom border)
-    //
-    //      The borders subtraction are necessary to neatly tuck everything together.
-    //  ----------------------------------------------------------------------------
+    --_no-x-offset: 0; // [1]
+    .construct-notice-component(s-banner);
+
+    &[aria-hidden="true"] { // If you want to hide and reveal the banner
+        --_no-x-offset: calc(var(--su48) + var(--su2) * -1) // -50px
+        opacity: 0;
+        visibility: hidden;
+    }
+    &[aria-hidden="false"] {
+        --_no-x-offset: calc(var(--su48) + var(--su1)); // 49px
+        opacity: 1;
+        visibility: visible;
+    }
+    &.is-pinned { //  If you want to put the banner above the topbar
+        z-index: calc(var(--zi-navigation-fixed) + 1);
+    }
     &__body-pt {
         padding-top: 93px;
     }
-    //  If you want to put the banner above the topbar
-    &.is-pinned {
-        z-index: calc(var(--zi-navigation-fixed) + 1);
-    }
-    // If you want to hide and reveal the banner
-    &[aria-hidden="true"] {
-        --_no-x-offset: -50px; // TODO convert to su vars
-        visibility: hidden;
-        opacity: 0;
-    }
-    &[aria-hidden="false"] {
-        --_no-x-offset: 49px; // TODO convert to su vars
-        visibility: visible;
-        opacity: 1;
-    }
-    // When we want to keep hero content capped
-    .s-banner--container {
+    & &--container { // When we want to keep hero content capped
+        margin: 0 auto;
+        max-width: calc(var(--s-step) * 10);
         position: relative;
         width: 100%;
-        max-width: calc(var(--s-step) * 10);
-        margin: 0 auto;
     }
+
+    -webkit-transform: translate3d(0, var(--_no-x-offset), 0);
+    transform: translate3d(0, var(--_no-x-offset), 0);
 
     border-width: var(--su-static1) 0;
     inset: 0 0 auto 0;
@@ -203,13 +212,12 @@
     position: fixed;
     width: 100%;
     z-index: calc(var(--zi-navigation-fixed) - 1); // Tuck below topbar
-    -webkit-transform: translate3d(0, var(--_no-x-offset), 0);
-    transform: translate3d(0, var(--_no-x-offset), 0);
 }
 
 // Notice
 .s-notice {
-    .construct-notice-component();
+    .construct-notice-component(s-notice);
+
     border-radius: var(--br-sm);
     border-width: var(--su-static1);
     padding: var(--su16);
@@ -217,36 +225,43 @@
 
 // Toast
 .s-toast {
-    visibility: hidden;
-    position: fixed;
-    display: flex;
-    justify-content: center;
-    top: var(--su16);
-    left: var(--su8);
-    right: var(--su8);
-    opacity: 0;
-    z-index: calc(var(--zi-modals) + 1); // Toasts should appear above modals
-    transform: translate3d(0, -66px, 0);
-    transition: transform 100ms var(--te-smooth-slow) 0s, opacity 60ms var(--te-smooth-slow) 0ms, visibility 0s 150ms;
-    pointer-events: none;
-
+    @media (prefers-reduced-motion) {
+        transform: none !important;
+    }
     &[aria-hidden="false"] {
-        visibility: visible;
         opacity: 1;
         transform: translate3d(0, 0, 0);
         transition: visibility 0s 0s, opacity 100ms var(--te-smooth) 0s, transform 100ms var(--te-smooth) 0s;
-    }
-
-    @media (prefers-reduced-motion) {
-        transform: none;
+        visibility: visible;
     }
 
     .s-notice {
-        max-width: 44rem;
-        width: 100%;
-        padding-top: var(--su8);
-        padding-bottom: var(--su8);
         box-shadow: var(--bs-sm);
+        max-width: 44rem;
+        padding-bottom: var(--su8);
+        padding-top: var(--su8);
         pointer-events: all;
+        width: 100%;
     }
+
+    display: flex;
+    justify-content: center;
+    left: var(--su8);
+    opacity: 0;
+    pointer-events: none;
+    position: fixed;
+    right: var(--su8);
+    top: var(--su16);
+    transform: translate3d(0, -66px, 0);
+    transition: transform 100ms var(--te-smooth-slow) 0s, opacity 60ms var(--te-smooth-slow) 0ms, visibility 0s 150ms;
+    visibility: hidden;
+    z-index: calc(var(--zi-modals) + 1); // Toasts should appear above modals
 }
+
+//  [1] When we use .s-banner, we need to adjust the padding-top on
+//      the body tag. This class correctly adjusts the body padding ONLY if
+//      the notice is one line. If it wraps to multiple lines, more classes or
+//      (ideally) JS will need to be used to determine the notice's height
+//      at the time of render. The padding value is determined like so:
+//      50px (top bar) + 44px (notice height) - 1px (bottom border)
+//      The borders subtraction are necessary to neatly tuck everything together.
