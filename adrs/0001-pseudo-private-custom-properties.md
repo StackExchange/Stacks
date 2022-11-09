@@ -20,7 +20,7 @@ Defining a structure for component styles using pseudo-private custom properties
 - **Prepare us for native CSS component styles**. Adopting a PPCP approach gives us the opportunity to reduce our dependency on a preprocessor and anticipate a future where a preprocessor is entirely unnecessary.
 
 ### Additional info
-Inspiration for this approach initially came from [Lea Verou’s presentation titled “CSS Variable Secrets at CSS Day 2022](https://www.youtube.com/watch?v=ZuZizqDF4q8&amp;ab_channel=WebConferencesAmsterdam)
+Inspiration for this approach initially came from [Lea Verou’s presentation titled “CSS Variable Secrets at CSS Day 2022](https://youtu.be/ZuZizqDF4q8)
 
 #### See also
 [Stacks components _style-template.less](https://github.com/StackExchange/Stacks/blob/develop/lib/css/components/_styles-template.less)
