@@ -67,7 +67,7 @@ Defining a structure for component styles using pseudo-private custom properties
     // Modifiers are considered to be classes that can be combined with other modifiers outside of their respective groupings without collisions
     // Sizes
     &&__xs {
-        --_cn-h: var(--su-static2);
+        --_cn-h: var(--su-static2); // [1] see end of file
     }
     &&__sm {
         --_cn-h: var(--su-static12);
@@ -107,6 +107,9 @@ Defining a structure for component styles using pseudo-private custom properties
     position: relative;
     vertical-align: bottom;
 }
+
+//  [1] Multiline comments should be placed at the end of the file and should
+//      be referenced a bracketed number.
 ```
 
 </details>
