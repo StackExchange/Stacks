@@ -5,10 +5,14 @@
 **Related PR:** #1172
 
 ## Issue
-Component styles are difficult to maintain. This is due to:
+Component styles are difficult to maintain. This is because:
 
-1. Disjointed styles .less files amongst components. Within components, we currently sometime will output contextual, variant, modifier, interaction styles with the base component class and sometimes we don’t. These styles will might be in alphabetical order, by some logical order, in the order added, or seemingly randomly. Many component style .less files include a large preamble and table of contents that are seldom updated to reflect the current state of the component. 
-2. Complex cascade for component styles within variants, modifiers and theme contexts. This makes scanning .less files cumbersome, maintaining styles difficult, and changes liable to cause regressions.
+1. Component styles are written with a lack of a standardized structure.
+    a. The ordering of styles are inconsistent. These styles could be in alphabetical order, by some logical order, in the order added, or seemingly randomly.
+    b. The base component class isn't consistently included in the selector for sibiling and child classes.
+    c. Many component styles include a large preamble and table of contents that are seldom updated to reflect the current state of the component. These are more of a liability and than a benefit.
+2. The cascade of styles for a given component can cause conflicts among styles. Because component styles can get rather complex, resulting in [a style unexpectedly being overridden by another](https://github.com/StackExchange/Stacks/issues/957).
+3. Complex cascade for component styles within variants, modifiers and theme contexts. This makes scanning .less files cumbersome, maintaining styles difficult, and changes liable to cause regressions.
 
 ## Decision
 Defining a structure for component styles using pseudo-private custom properties (PPCP) addresses the issues and includes a few other benefits:
@@ -18,7 +22,6 @@ Defining a structure for component styles using pseudo-private custom properties
 
 ### Secondary benefits
 - **Prepare us for native CSS component styles**. Adopting a PPCP approach gives us the opportunity to reduce our dependency on a preprocessor and anticipate a future where a preprocessor is entirely unnecessary.
-
 
 ### Component styles template
 
