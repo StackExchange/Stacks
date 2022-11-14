@@ -4,11 +4,11 @@
 
 **Related PR:** [#xxxx (when applicable)]
 
-### Issue
+## Issue
 [describe in few sentences the problem we need to solve]
 
-### Decision
+## Decision
 [describe in few sentences the proposed solution to the issue]
 
-### Additional info
+## Additional info
 [anything else you'd like to add; remove this section if it is empty]
