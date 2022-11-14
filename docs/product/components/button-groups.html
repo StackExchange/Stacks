@@ -62,25 +62,25 @@ description: Button groups are a collection of buttons. This component is used i
 <div class="s-btn-group">
     <button class="s-btn s-btn__muted s-btn__outlined" role="button">Newest</button>
     <button class="s-btn s-btn__muted s-btn__outlined" role="button">Frequent</button>
-    <form class="s-btn-group--container">
+    <form>
         <button class="s-btn s-btn__muted s-btn__outlined is-selected" role="button" aria-current="true">Votes</button>
     </form>
     <button class="s-btn s-btn__muted s-btn__outlined" role="button">Active</button>
-    <form class="s-btn-group--container">
+    <form>
         <button class="s-btn s-btn__muted s-btn__outlined" role="button">Unanswered</button>
     </form>
 </div>
 {% endhighlight %}
         <div class="stacks-preview--example">
-            <div class="s-btn-group js-btn-group">
-                <button class="s-btn s-btn__muted s-btn__outlined js-btn-group-item" role="button">Newest</button>
-                <button class="s-btn s-btn__muted s-btn__outlined js-btn-group-item" role="button">Frequent</button>
-                <form class="s-btn-group--container">
-                    <button class="s-btn s-btn__muted s-btn__outlined is-selected js-btn-group-item" role="button" aria-current="true">Votes</button>
+            <div class="s-btn-group">
+                <button class="s-btn s-btn__muted s-btn__outlined" role="button">Newest</button>
+                <button class="s-btn s-btn__muted s-btn__outlined" role="button">Frequent</button>
+                <form>
+                    <button class="s-btn s-btn__muted s-btn__outlined is-selected" role="button" aria-current="true">Votes</button>
                 </form>
-                <button class="s-btn s-btn__muted s-btn__outlined js-btn-group-item" role="button">Active</button>
-                <form class="s-btn-group--container">
-                    <button class="s-btn s-btn__muted s-btn__outlined js-btn-group-item" role="button">Unanswered</button>
+                <button class="s-btn s-btn__muted s-btn__outlined" role="button">Active</button>
+                <form>
+                    <button class="s-btn s-btn__muted s-btn__outlined" role="button">Unanswered</button>
                 </form>
             </div>
         </div>
@@ -123,18 +123,61 @@ description: Button groups are a collection of buttons. This component is used i
                         <span class="s-btn--number">197</span>
                     </span>
                 </button>
-                <button class="s-btn s-btn__muted s-btn__outlined js-btn-group-item" role="button">
+                <button class="s-btn s-btn__muted s-btn__outlined js-btn-group-item  s-btn__dropdown" role="button">
                     Inactive
                     <span class="s-btn--badge">
                         <span class="s-btn--number">37</span>
                     </span>
                 </button>
-                <button class="s-btn s-btn__muted s-btn__outlined is-selected js-btn-group-item" role="button">
+                <button class="s-btn s-btn__muted s-btn__outlined is-selected js-btn-group-item" role="button" aria-current="true">
                     All
                     <span class="s-btn--badge">
                         <span class="s-btn--number">234</span>
                     </span>
                 </button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="stacks-section">
+    {% header "h2", "Radio" %}
+    <p class="stacks-copy">
+        Button groups can be implemented using radio elements with the modifier class <code class="stacks-code">.s-btn-group--radio</code>. This modifier class assumes all buttons are styled <code class="stacks-code">label</code> elements.
+    </p>
+    <div class="stacks-preview">
+{% highlight html %}
+<div class="s-btn-group">
+    <div class="s-btn-group s-btn-group--radio">
+        <input class="s-btn--radio" type="radio" name="example-btn-group" id="example-btn-group-1" />
+        <label class="s-btn s-btn__muted s-btn__outlined" for="example-btn-group-1">
+            Active
+        </label>
+        <input class="s-btn--radio" type="radio" name="example-btn-group" id="example-btn-group-2" />
+        <label class="s-btn s-btn__muted s-btn__outlined" for="example-btn-group-2">
+            Inactive
+        </label>
+        <input class="s-btn--radio" type="radio" name="example-btn-group" id="example-btn-group-3" checked />
+        <label class="s-btn s-btn__muted s-btn__outlined" for="example-btn-group-3">
+            All
+        </label>
+    </div>
+</div>
+{% endhighlight %}
+        <div class="stacks-preview--example">
+            <div class="s-btn-group s-btn-group--radio">
+                <input class="s-btn--radio" type="radio" name="example-btn-group" id="example-btn-group-1" />
+                <label class="s-btn s-btn__muted s-btn__outlined" for="example-btn-group-1">
+                    Active
+                </label>
+                <input class="s-btn--radio" type="radio" name="example-btn-group" id="example-btn-group-2" />
+                <label class="s-btn s-btn__muted s-btn__outlined" for="example-btn-group-2">
+                    Inactive
+                </label>
+                <input class="s-btn--radio" type="radio" name="example-btn-group" id="example-btn-group-3" checked />
+                <label class="s-btn s-btn__muted s-btn__outlined" for="example-btn-group-3">
+                    All
+                </label>
             </div>
         </div>
     </div>

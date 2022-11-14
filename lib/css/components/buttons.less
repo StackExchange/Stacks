@@ -1,634 +1,450 @@
-& {
-    .s-btn {
-        position: relative;
-        display: inline-block;
-        padding: 0.8em;
-        color: var(--theme-button-color);
-        border: 1px solid transparent;
-        border-radius: var(--br-sm);
-        background-color: transparent;
-        outline: none;
-        font-family: inherit;
-        font-size: var(--fs-body1);
-        font-weight: normal;
-        line-height: var(--lh-sm);
-        text-align: center;
+.s-btn {
+    // BASE COMPONENT-SPECIFIC CUSTOM PROPERTIES
+    --_bu-baw: var(--su-static1);
+    --_bu-bc: transparent;
+    --_bu-bg: transparent;
+    --_bu-br: var(--br-sm);
+    --_bu-bs: inset 0 var(--su-static1) 0 0 hsla(0, 0, 100%, 0.7);
+    --_bu-fc: var(--theme-button-color);
+    --_bu-focus-ring: 0 0 0 var(--su-static4) var(--focus-ring);
+    --_bu-fs: var(--fs-body1);
+    --_bu-p: 0.8em;
+    // STATE AND INTERACTION CUSTOM PROPERTIES
+    --_bu-bc-selected: transparent;
+    --_bu-bg-active: var(--theme-button-active-background-color);
+    --_bu-bg-hover: var(--theme-button-hover-background-color);
+    --_bu-bg-selected: var(--theme-button-selected-background-color);
+    --_bu-fc-active: var(--theme-button-hover-color); // Note: hover color used here intentionally
+    --_bu-fc-hover: var(--theme-button-hover-color);
+    --_bu-fc-selected: var(--theme-button-selected-color);
+    // Filled
+    --_bu-filled-bc: var(--theme-button-filled-border-color);
+    --_bu-filled-bc-active: var(--theme-button-filled-active-border-color);
+    --_bu-filled-bg-hover: var(--theme-button-filled-hover-background-color);
+    --_bu-filled-bc-selected: var(--theme-button-filled-selected-border-color);
+    --_bu-filled-bg: var(--theme-button-filled-background-color);
+    --_bu-filled-bg-active: var(--theme-button-filled-active-background-color);
+    --_bu-filled-bg-selected: var(--theme-button-filled-selected-background-color);
+    --_bu-filled-fc: var(--theme-button-filled-color);
+    --_bu-filled-fc-active: var(--theme-button-filled-hover-color); // Note: hover color used here intentionally
+    --_bu-filled-fc-hover: var(--theme-button-filled-hover-color);
+    --_bu-filled-fc-selected: var(--theme-button-filled-selected-color);
+    // Outlined
+    --_bu-outlined-bc: var(--theme-button-outlined-border-color);
+    --_bu-outlined-bg: var(--theme-button-outlined-background-color);
+    --_bu-outlined-bc-selected: var(--theme-button-outlined-selected-border-color);
+    --_bu-outlined-bg-selected: var(--theme-button-selected-background-color);
+    --_bu-outlined-fc-selected: var(--theme-button-selected-color);
+    // CHILD COMPONENT CUSTOM PROPERTIES
+    --_bu-badge-o: 0.5;
+    --_bu-dropdown-bw: var(--su-static4);
+    --_bu-number-fc: var(--white);
+    --_bu-number-fc-selected: var(--_bu-number-fc);
+
+    // CONTEXTUAL STYLES
+    .dark-mode({
+        --_bu-bs: none;
+    });
+    .highcontrast-mode({
+        --_bu-bc: currentColor;
+        --_bu-filled-bc: var(--_bu-bc);
+        --_bu-outlined-bc: var(--_bu-bc);
+        --_bu-bc-selected: var(--_bu-bc);
+        --_bu-badge-o: 0.8;
+    });
+
+    // STATES
+    &[disabled],
+    &[aria-disabled="true"] {
+        --_bu-bs: none !important;
+        opacity: var(--_o-disabled-static);
+        pointer-events: none;
         text-decoration: none;
-        cursor: pointer;
-        user-select: none;
-
-        .highcontrast-mode({
-            border-color: currentColor;
-
-            &:not(.s-btn__link):not(.s-btn__unset) {
-                text-decoration: none;
-            }
-        });
-
-        button &,
-        button[type="submit"] &,
-        button[type="reset"] & {
-            // Guard against the difference in configurable resets
-            // Eric Meyer's reset does not include this, while normalize.css does
-            // Correct the inability to style buttons in iOS and Safari.
-            -webkit-appearance: button;
+    }
+    button &,
+    button[type="submit"] &,
+    button[type="reset"] & {
+        -webkit-appearance: button; // [1]
+    }
+    &.grid {
+        display: flex; // Override &&__danger buttons having inline-block by default
+    }
+    &.is-loading {
+        .svg-icon:first-child {
+            margin-left: -23px;
+            opacity: 0; // [2]
         }
-
-        // Override for buttons having inline-block by default
-        &.grid {
-            display: flex;
-        }
-
-        &:hover,
-        &:focus,
-        &:active {
-            color: var(--theme-button-hover-color);
-            background: var(--theme-button-hover-background-color);
-            text-decoration: none;
-        }
-
-        &:active {
-            background: var(--theme-button-active-background-color);
-        }
-
-        &:focus {
-            outline: none;
-            box-shadow: 0 0 0 var(--su-static4) var(--focus-ring);
-        }
-
-        &[disabled],
-        &[aria-disabled="true"] {
-            opacity: var(--_o-disabled-static);
-            pointer-events: none;
-            box-shadow: none !important;
-        }
-
-        &.is-selected {
-            color: var(--theme-button-selected-color);
-            background: var(--theme-button-selected-background-color);
-            box-shadow: none;
-
-            &:focus {
-                box-shadow: 0 0 0 var(--su-static4) var(--focus-ring);
-            }
-        }
-
-        &.s-btn__dropdown {
-            padding-right: 2em;
-
-            &:after {
-                content: "";
-                position: absolute;
-                z-index: var(--zi-active);
-                top: calc(50% - 2px);
-                right: 0.8em;
-                border-style: solid;
-                border-width: var(--su-static4);
-                border-top-width: var(--su-static4);
-                border-bottom-width: 0;
-                border-color: currentColor transparent;
-                pointer-events: none;
-            }
-        }
-
-        &.s-btn__xs {
-            padding: 0.6em;
-            font-size: var(--fs-fine);
-
-            &.s-btn__dropdown {
-                padding-right: 1.5em;
-
-                &:after {
-                    top: calc(50% - 2px);
-                    right: 0.6em;
-                    border-width: calc(var(--su-static4) - var(--su-static1));
-                    border-top-width: calc(var(--su-static4) - var(--su-static1));
-                    border-bottom-width: 0;
-                }
-            }
-        }
-
-        &.s-btn__sm {
-            font-size: var(--fs-caption);
-
-            &.s-btn__dropdown {
-                padding-right: 2.05em;
-            }
-        }
-
-        &.s-btn__md {
-            padding: 0.7em;
-            border-radius: calc(var(--br-sm) + 1px);
-            font-size: var(--fs-body3);
-
-            &.s-btn__dropdown {
-                padding-right: 1.8em;
-
-                &:after {
-                    top: calc(50% - 2px);
-                    right: 0.7em;
-                    border-width: calc(var(--su-static4) + var(--su-static1));
-                    border-top-width: calc(var(--su-static4) + var(--su-static1));
-                    border-bottom-width: 0;
-                }
-            }
-        }
-
-        .s-btn--badge {
-            opacity: var(--_o-disabled);
-            display: inline-block;
-            border-radius: var(--br-sm);
-            padding: var(--su2) calc(var(--su4) - var(--su1));
-            font-size: var(--fs-caption);
-            line-height: var(--lh-xs);
-            background-color: currentColor;
-        }
+    }
+    &.is-selected,
+    .s-btn-group.s-btn-group--radio &--radio:checked + & {
+        background-color: var(--_bu-bg-selected);
+        border-color: var(--_bu-bc-selected);
+        color: var(--_bu-fc-selected);
 
         .s-btn--number {
-            color: var(--white);
+            color: var(--_bu-number-fc-selected);
         }
-    }
-
-    .s-btn__primary:not(.is-selected) .s-btn--number,
-    .s-btn__danger.s-btn__filled:not(.is-selected) .s-btn--number {
-        .dark-mode({ color: var(--white); });
-        .highcontrast-mode({ color: var(--black); });
-    }
-
-    //  ============================================================================
-    //  $   DEFAULT (SECONDARY) STYLES
-    //  ============================================================================
-
-    //  --  Base Outline Style
-    //      Style which applies only a border.
-    //  ----------------------------------------------------------------------------
-    .s-btn__outlined {
-        border-color: var(--theme-button-outlined-border-color);
-
-        &.is-selected {
-            border-color: var(--theme-button-outlined-selected-border-color);
+        &.s-btn__filled { // this needs to live here to adapt to radio button-group
+            border-color: var(--_bu-filled-bc-selected);
+            background-color: var(--_bu-filled-bg-selected);
+            color: var(--_bu-filled-fc-selected);
         }
-    }
+        &.s-btn__outlined { // this needs to live here to adapt to radio button-group
+            border-color: var(--_bu-outlined-bc-selected);
+            background-color: var(--_bu-outlined-bg-selected);
+            color: var(--_bu-outlined-fc-selected);
 
-    //  --  Base Filled Style
-    //      Adds in background-colors, background-images, and/or box-shadows.
-    //  ----------------------------------------------------------------------------
-    .s-btn__filled {
-        color: var(--theme-button-filled-color);
-        background-color: var(--theme-button-filled-background-color);
-        border-color: var(--theme-button-filled-border-color);
-        box-shadow: inset 0 1px 0 0 hsla(0, 0, 100%, 0.7);
-
-        .dark-mode({
-            &:not(:focus) {
-                box-shadow: none;
-            }
-        });
-
-        &:hover,
-        &:focus,
-        &:active {
-            color: var(--theme-button-filled-hover-color);
-            background-color: var(--theme-button-filled-hover-background-color);
-        }
-
-        &:active {
-            background-color: var(--theme-button-filled-active-background-color);
-            border-color: var(--theme-button-filled-active-border-color);
-            box-shadow: none;
-        }
-
-        &:focus {
-            .highcontrast-mode({
-                box-shadow: 0 0 0 var(--su-static4) var(--focus-ring);
-            });
-        }
-
-        &.is-selected {
-            color: var(--theme-button-filled-selected-color);
-            background-color: var(--theme-button-filled-selected-background-color);
-            border-color: var(--theme-button-filled-selected-border-color);
-            box-shadow: none;
-        }
-    }
-
-    //  --  Muted Clear Style
-    //      Creates a gray button style.
-    //  ----------------------------------------------------------------------------
-    .s-btn__muted {
-        color: var(--black-500);
-
-        .highcontrast-mode({
-            &.s-btn__filled {
-                border-color: transparent;
-            }
-        });
-
-        &:hover,
-        &:focus,
-        &:active {
-            color: var(--black-600);
-            background-color: var(--black-025);
-        }
-
-        &:active {
-            background: var(--black-050);
-        }
-
-        &:focus {
-            box-shadow: 0 0 0 var(--su-static4) var(--focus-ring-muted);
-        }
-
-        &.is-selected {
-            color: var(--black-700);
-            background-color: var(--black-075);
-
-            &:focus {
-                box-shadow: 0 0 0 var(--su-static4) var(--focus-ring-muted);
-            }
-        }
-
-        //  --  Muted (Gray)
-        &.s-btn__outlined {
-            border-color: var(--black-300);
-
-            &.is-selected {
-                border-color: var(--black-400);
-            }
-        }
-
-        //  --  Filled (Gray)
-        &.s-btn__filled {
-            color: var(--black-700);
-            background-color: var(--black-100);
-            border-color: transparent;
-            box-shadow: inset 0 1px 0 0 hsla(0, 0%, 100%, 0.4);
-
-            .dark-mode({
-                &:not(:focus) {
-                    box-shadow: none;
-                }
-            });
-
-            .highcontrast-mode({
-                background-color: var(--black-400);
-                border-color: transparent;
-                color: var(--white);
-
-                .s-btn--number {
-                    color: var(--black);
-                }
-            });
-
-            &:hover,
-            &:focus,
-            &:active {
-                color: var(--black-700);
-                background-color: var(--black-150);
-            }
-
-            &:active {
-                background-color: var(--black-200);
-                box-shadow: none;
-            }
-
-            &:focus {
-                box-shadow: 0 0 0 var(--su-static4) var(--focus-ring-muted);
-                .highcontrast-mode({ box-shadow: 0 0 0 var(--su-static4) var(--focus-ring-muted); });
-            }
-
-            &.is-selected {
-                color: var(--black-800);
-                background-color: var(--black-350);
-                box-shadow: none;
-
+            &.s-btn__muted {
                 .highcontrast-mode({
-                    background-color: var(--black-700);
-
-                    .s-btn--number {
-                        color: var(--black);
-                    }
-                });
-
-                &:focus {
-                    box-shadow: 0 0 0 var(--su-static4) var(--focus-ring-muted);
-                }
-            }
-        }
-    }
-
-    //  ============================================================================
-    //  $   DANGER BUTTONS & STYLES
-    //  ============================================================================
-    .s-btn__danger {
-        color: var(--red-600);
-
-        .highcontrast-mode({
-            &.s-btn__filled {
-                border-color: transparent;
-            }
-        });
-
-        &:hover,
-        &:focus,
-        &:active {
-            color: var(--red-700);
-            background-color: var(--red-050);
-        }
-
-        &:active {
-            background-color: var(--red-100);
-        }
-
-        &:focus {
-            box-shadow: 0 0 0 var(--su-static4) var(--focus-ring-error);
-            .highcontrast-mode({ box-shadow: 0 0 0 var(--su-static4) var(--focus-ring-error); });
-        }
-
-        &.is-selected {
-            color: var(--red-900);
-            background-color: var(--red-200);
-
-            &:focus {
-                box-shadow: 0 0 0 var(--su-static4) var(--focus-ring-error);
-            }
-        }
-
-        //  --  Outlined
-        &.s-btn__outlined {
-            border-color: var(--red-500);
-
-            &.is-selected {
-                border-color: var(--red-600);
-            }
-        }
-
-        //  --  Filled
-        &.s-btn__filled {
-            color: @white;
-            background-color: var(--red-500);
-            border-color: transparent;
-            box-shadow: inset 0 1px 0 0 hsla(0, 0%, 100%, 0.4);
-
-            .dark-mode({
-                &:not(:focus) {
-                    box-shadow: none;
-                }
-            });
-
-            .highcontrast-mode({
-                color: var(--white);
-
-                &:focus {
-                    box-shadow: 0 0 0 var(--su-static4) var(--focus-ring-error);
-                }
-
-                .s-btn--number {
-                    color: var(--black);
-                }
-            });
-
-            &:hover,
-            &:focus,
-            &:active {
-                color: @white;
-                background-color: var(--red-600);
-            }
-
-            &:active {
-                background-color: var(--red-700);
-                box-shadow: none;
-            }
-
-            &:focus {
-                box-shadow: 0 0 0 var(--su-static4) var(--focus-ring-error);
-            }
-
-            &.is-selected {
-                color: var(--white);
-                background-color: var(--red-800);
-                box-shadow: none;
-
-                &:focus {
-                    box-shadow: 0 0 0 var(--su-static4) var(--focus-ring-error);
-                }
-                .highcontrast-mode({
-                    .s-btn--number {
-                        color: var(--black);
-                    }
+                    --_bu-outlined-bc-selected: var(--_bu-filled-bc-selected);
+                    --_bu-outlined-bg-selected: var(--_bu-filled-bg-selected);
+                    --_bu-outlined-fc-selected: var(--_bu-filled-fc-selected);
+                    --_bu-number-fc-selected: var(--_bu-filled-bg-selected);
                 });
             }
-
-            .s-btn--number {
-                color: var(--black-900);
-            }
         }
     }
-
-    //  ============================================================================
-    //  $   PRIMARY STYLE
-    //  ============================================================================
-    .s-btn__primary {
-        color: var(--theme-button-primary-color);
-        background-color: var(--theme-button-primary-background-color);
-        box-shadow: inset 0 1px 0 0 hsla(0, 0%, 100%, 0.4);
-
-        .dark-mode({
-            &:not(:focus) {
-                box-shadow: none;
-            }
-
-            &:not(.is-selected) {
-                background-color: var(--theme-secondary-300);
-                color: var(--black);
-            }
-        });
-        .highcontrast-mode({
-            &:not(.is-selected) {
-                border-color: transparent;
-                background-color: var(--theme-secondary-400);
-                color: var(--white);
-            }
-        });
-        .light-mode-forced({
-            box-shadow: inset 0 1px 0 0 hsla(0, 0%, 100%, 0.4);
-
-            &:not(.is-selected) {
-                color: var(--white);
-            }
-        });
-
-        &:hover,
-        &:focus,
-        &:active {
-            color: var(--theme-button-primary-hover-color);
-            background-color: var(--theme-button-primary-hover-background-color);
-        }
-
-        &:active {
-            background-color: var(--theme-button-primary-active-background-color);
-            box-shadow: none;
-        }
-
-        &:focus {
-            .highcontrast-mode({
-                box-shadow: 0 0 0 var(--su-static4) var(--focus-ring);
-            });
-        }
-
-        &.is-selected {
-            color: var(--theme-button-primary-selected-color);
-            background-color: var(--theme-button-primary-selected-background-color);
-        }
-
-        .s-btn--number {
-            color: var(--theme-button-primary-number-color);
-        }
-    }
-
-    //  ============================================================================
-    //  $   MISC STYLES
-    //  ============================================================================
-    .s-btn__google {
-        border-color: var(--bc-medium);
-        background-color: var(--white);
-        color: var(--black-700);
-
-        &:hover,
-        &:focus {
-            border-color: var(--bc-darker);
-            background-color: var(--black-025);
-            color: var(--black-800);
-        }
-
-        &:active {
-            background-color: var(--black-050);
-            color: var(--black-900);
-        }
-
-        &:focus {
-            box-shadow: 0 0 0 var(--su-static4) var(--focus-ring-muted);
-        }
-    }
-
-    .s-btn__facebook {
-        border-color: transparent;
-        background-color: #385499;
-        color: #fff;
-
-        .highcontrast-mode({ border-color: transparent; });
-
-        &:hover,
-        &:focus {
-            background-color: darken(#385499, 5%);
-            color: #fff;
-        }
-
-        &:active {
-            background-color: darken(#385499, 10%);
-            color: #fff;
-        }
-    }
-
-    .s-btn__github {
-        background-color: var(--black-750);
-        color: var(--white);
-
-        .highcontrast-mode({ border-color: transparent; });
-
-        &:hover,
-        &:focus {
-            background-color: var(--black-800);
-            color: var(--white);
-        }
-
-        &:active {
-            background-color: var(--black-900);
-            color: var(--white);
-        }
-
-        &:focus {
-            box-shadow: 0 0 0 var(--su-static4) var(--focus-ring-muted);
-        }
-    }
-
-    .s-btn__unset,
-    .s-btn__unset:hover,
-    .s-btn__unset:active,
-    .s-btn__unset:focus {
-        padding: 0;
-        border: none;
-        outline: initial;
-        font: unset;
-        border-radius: 0;
-        color: unset;
-        background: none;
+    &.is-selected:not(:focus),
+    .s-btn-group.s-btn-group--radio &--radio:checked:not(:focus) + & {
         box-shadow: none;
-        cursor: default;
-        user-select: auto;
     }
 
-    .s-btn__link {
-        display: inline;
-        padding: 0;
-        border: none;
-        border-radius: 0;
-        outline: initial;
-        font: inherit;
-        background: none;
-        box-shadow: none;
-        text-align: inherit;
-
-        .s-link();
-
-        &:hover,
-        &:active,
-        &:focus,
-        &[disabled]
-        &[aria-disabled="true"] {
-            background: none;
-            box-shadow: none;
-        }
-
-        &.s-btn__dropdown {
-            padding-right: 0.9em;
-
-            &:after {
-                right: 0;
-            }
-        }
+    // MODIFIERS
+    &&__filled {
+        border-color: var(--_bu-filled-bc);
+        background-color: var(--_bu-filled-bg);
+        color: var(--_bu-filled-fc);
+    }
+    &&__outlined {
+        border-color: var(--_bu-outlined-bc);
+        background-color: var(--_bu-outlined-bg);
     }
 
-    .s-btn__unset,
-    .s-btn__link {
+    // Resets
+    &&__link,
+    &&__unset {
         &:focus,
         &:focus-visible {
             outline-style: auto;
         }
+
+        outline: initial;
+    }
+    &&__link {
+        --_bu-baw: 0;
+        --_bu-br: 0;
+        --_bu-bs: none;
+        --_bu-focus-ring: none;
+        --_bu-p: 0;
+
+        &,
+        &:hover,
+        &:active,
+        &:focus,
+        &[disabled],
+        &[aria-disabled="true"] {
+            --_bu-bg: none;
+        }
+        &.s-btn__dropdown {
+            padding-right: 0.9em;
+        }
+
+        .s-link();
+        display: inline;
+        font: inherit;
+        text-align: inherit;
+    }
+    &&__unset {
+        &,
+        &:hover,
+        &:active,
+        &:focus {
+            --_bu-baw: 0;
+            --_bu-bg: none;
+            --_bu-br: 0;
+            --_bu-bs: none;
+            --_bu-fc: unset;
+            --_bu-focus-ring: none;
+            --_bu-p: 0;
+
+            cursor: default;
+            font: unset;
+            user-select: auto;
+        }
     }
 
-    .s-btn__icon {
-        //  -- BUTTONS WITH ICONS
-        //  ------------------------------------------------------------------------
-        //  [1] Most svg icons are 18px tall, but the button's line-height is 1 (13px).
-        //      This means we need to off set the margin y-axis so we don't add
-        //      additional height to the button.
-        //  ------------------------------------------------------------------------
+    // Pseudo-elements and child-based modifiers
+    &&__dropdown {
+        &:after {
+            border-color: currentColor transparent;
+            border-style: solid;
+            border-width: var(--_bu-dropdown-bw);
+            border-bottom-width: 0;
+            content: "";
+            pointer-events: none;
+            position: absolute;
+            right: var(--_bu-p);
+            top: calc(50% - var(--su-static2));
+            z-index: var(--zi-active);
+        }
+
+        padding-right: calc(var(--_bu-p) * 2.5);
+    }
+    &&__icon {
         .svg-icon {
             vertical-align: baseline;
-            margin-top: -0.3em;         // [1]
-            margin-bottom: -0.3em;      // [1]
+            margin-top: -0.3em; // [3]
+            margin-bottom: -0.3em; // [3]
             transition: opacity 200ms var(--te-smooth); // Animate the transition to .is-loading
         }
     }
 
-    //  $$  Loading Icon
-    //      see spinner.less for full implementation
-    //  ----------------------------------------------------------------------------
-    .s-btn.is-loading  .svg-icon:first-child {
-        margin-left: -23px;
-        // If the first thing in the button is an icon, let's hide it on loading
-        // We only want to modify the visibility, since we still want it to have shape and keep the same layout.
-        opacity: 0;
+    // Size
+    &&__xs {
+        --_bu-dropdown-bw: calc(var(--su-static4) - var(--su-static1));
+        --_bu-fs: var(--fs-fine);
+        --_bu-p: 0.6em;
     }
+    &&__sm {
+        --_bu-fs: var(--fs-caption);
+    }
+    &&__md {
+        --_bu-br: calc(var(--br-sm) + var(--su-static1));
+        --_bu-fs: var(--fs-body3);
+        --_bu-p: 0.7em;
+    }
+
+    // VARIANTS
+    &&__danger,
+    &&__muted {
+        .highcontrast-mode({
+            --_bu-filled-bc: transparent;
+        });
+    }
+    &&__danger {
+        --_bu-bg-active: var(--red-100);
+        --_bu-bg-hover: var(--red-050);
+        --_bu-bg-selected: var(--red-200);
+        --_bu-bs: inset 0 var(--su-static1) 0 0 hsla(0, 0%, 100%, 0.4);
+        --_bu-fc: var(--red-600);
+        --_bu-fc-active: var(--_bu-fc);
+        --_bu-fc-hover: var(--red-700);
+        --_bu-fc-selected: var(--red-900);
+        --_bu-focus-ring: 0 0 0 var(--su-static4) var(--focus-ring-error);
+        --_bu-filled-bc: transparent;
+        --_bu-filled-bc-selected: var(--_bu-filled-bc);
+        --_bu-filled-bg: var(--red-500);
+        --_bu-filled-bg-active: var(--red-700);
+        --_bu-filled-bg-hover: var(--red-600);
+        --_bu-filled-bg-selected: var(--red-800);
+        --_bu-filled-fc: var(--white);
+        --_bu-filled-fc-active: var(--_bu-filled-fc);
+        --_bu-filled-fc-hover: var(--_bu-filled-fc);
+        --_bu-filled-fc-selected: var(--_bu-filled-fc);
+        --_bu-outlined-bc: var(--red-500);
+        --_bu-outlined-bc-selected: var(--red-700);
+        --_bu-outlined-bg-selected: var(--_bu-bg-selected);
+        --_bu-outlined-fc-selected: var(--_bu-fc-selected);
+
+        &.s-btn__filled {
+            --_bu-number-fc: var(--black);
+
+            .dark-mode({
+                --_bu-filled-fc: var(--black);
+                --_bu-filled-fc-selected: var(--white);
+                --_bu-number-fc: var(--white);
+                --_bu-number-fc-selected: var(--black);
+            });
+            .highcontrast-dark-mode({
+                --_bu-filled-fc: var(--white);
+                --_bu-number-fc: var(--black);
+                --_bu-number-fc-selected: var(--black);
+            });
+        }
+    }
+    &&__muted {
+        --_bu-bg-active: var(--black-050);
+        --_bu-bg-hover: var(--black-025);
+        --_bu-bg-selected: var(--black-075);
+        --_bu-bs: inset 0 var(--su-static1) 0 0 hsla(0, 0%, 100%, 0.4);
+        --_bu-fc: var(--black-500);
+        --_bu-fc-active: var(--_bu-fc);
+        --_bu-fc-hover: var(--black-600);
+        --_bu-fc-selected: var(--black-700);
+        --_bu-focus-ring: 0 0 0 var(--su-static4) var(--focus-ring-muted);
+        --_bu-filled-bc: transparent;
+        --_bu-filled-bc-selected: var(--_bu-filled-bc);
+        --_bu-filled-bg: var(--black-100);
+        --_bu-filled-bg-active: var(--black-200);
+        --_bu-filled-bg-hover: var(--black-150);
+        --_bu-filled-bg-selected: var(--black-350);
+        --_bu-filled-fc: var(--black-700);
+        --_bu-filled-fc-active: var(--_bu-filled-fc);
+        --_bu-filled-fc-hover: var(--_bu-filled-fc);
+        --_bu-filled-fc-selected: var(--black-800);
+        --_bu-outlined-bc: var(--black-300);
+        --_bu-outlined-bc-selected: var(--black-400);
+        --_bu-outlined-bg-selected: var(--_bu-bg-selected);
+        --_bu-outlined-fc-selected: var(--_bu-fc-selected);
+
+        .highcontrast-mode({
+            --_bu-filled-bg: var(--black-400);
+            --_bu-filled-bg-active: var(--black-600);
+            --_bu-filled-bg-hover: var(--black-500);
+            --_bu-filled-bg-selected: var(--black-700);
+            --_bu-filled-fc: var(--white);
+            --_bu-filled-fc-selected: var(--_bu-filled-fc);
+
+            &.s-btn__filled {
+                --_bu-number-fc: var(--black);
+            }
+        });
+    }
+    &&__primary {
+        --_bu-bg: var(--theme-button-primary-background-color);
+        --_bu-bg-active: var(--theme-button-primary-active-background-color);
+        --_bu-bg-hover: var(--theme-button-primary-hover-background-color);
+        --_bu-bg-selected: var(--theme-button-primary-selected-background-color);
+        --_bu-bs: inset 0 1px 0 0 hsla(0, 0%, 100%, 0.4);
+        --_bu-fc: var(--theme-button-primary-color);
+        --_bu-fc-active: var(--theme-button-primary-hover-color);
+        --_bu-fc-hover: var(--theme-button-primary-hover-color);
+        --_bu-fc-selected: var(--theme-button-primary-selected-color);
+        --_bu-number-fc: var(--theme-button-primary-number-color);
+
+        .dark-mode({
+            --_bu-bg: var(--theme-secondary-300);
+            --_bu-bg-active: var(--theme-secondary-400);
+            --_bu-bg-hover: var(--theme-secondary-350);
+            --_bu-fc: var(--black);
+            --_bu-fc-active: var(--_bu-fc);
+            --_bu-fc-hover: var(--_bu-fc);
+            --_bu-fc-selected: var(--white);
+            --_bu-number-fc: var(--white);
+            --_bu-number-fc-selected: var(--black);
+        });
+        .highcontrast-mode({
+            --_bu-bc: transparent;
+        });
+        .highcontrast-dark-mode({
+            --_bu-bg: var(--theme-secondary-400);
+            --_bu-bg-active: var(--theme-secondary-600);
+            --_bu-bg-hover: var(--theme-secondary-500);
+            --_bu-fc: var(--white);
+            --_bu-number-fc: var(--black);
+        });
+    }
+
+    // Social
+    &&__facebook,
+    &&__github {
+        .highcontrast-mode({
+            --_bu-bc: transparent;
+        });
+    }
+    &&__facebook {
+        @_fb-brand: #385499;
+        --_bu-bc: transparent;
+        --_bu-bg: @_fb-brand;
+        --_bu-bg-active: darken(@_fb-brand, 10%);
+        --_bu-bg-hover: darken(@_fb-brand, 5%);
+        --_bu-fc: #fff;
+        --_bu-fc-active: var(--_bu-fc);
+        --_bu-fc-hover: var(--_bu-fc);
+        --_bu-hc-bc: transparent;
+    }
+    &&__google {
+        --_bu-bc: var(--bc-medium);
+        --_bu-bg: var(--white);
+        --_bu-bg-active: var(--black-050);
+        --_bu-bg-hover: var(--black-025);
+        --_bu-fc: var(--fc-medium);
+        --_bu-fc-active: var(--fc-dark);
+        --_bu-fc-hover: var(--black-800);
+        --_bu-focus-ring: 0 0 0 var(--su-static4) var(--focus-ring-muted);
+    }
+    &&__github {
+        --_bu-bg: var(--black-750);
+        --_bu-bg-active: var(--black);
+        --_bu-bg-hover: var(--black-800);
+        --_bu-fc: var(--white);
+        --_bu-fc-active: var(--white);
+        --_bu-fc-hover: var(--white);
+        --_bu-focus-ring: 0 0 0 var(--su-static4) var(--focus-ring-muted);
+        --_bu-hc-bc: transparent;
+    }
+
+    // CHILD ELEMENTS
+    & &--badge {
+        opacity: var(--_bu-badge-o);
+        display: inline-block;
+        border-radius: var(--br-sm);
+        padding: var(--su2) calc(var(--su4) - var(--su1));
+        font-size: var(--fs-caption);
+        line-height: var(--lh-xs);
+        background-color: currentColor;
+    }
+    & &--number {
+        color: var(--_bu-number-fc);
+    }
+    &--radio { // This lives alongside a .s-btn element
+        .v-visible-sr;
+    }
+
+    // INTERACTION
+    &:not(.is-selected):not(&__link):not(&__unset) {
+        &:hover, &:focus {
+            &.s-btn__filled {
+                background-color: var(--_bu-filled-bg-hover);
+                color: var(--_bu-filled-fc-hover);
+            }
+
+            background-color: var(--_bu-bg-hover);
+            color: var(--_bu-fc-hover);
+        }
+        &:active {
+            &.s-btn__filled {
+                background-color: var(--_bu-filled-bg-active);
+                color: var(--_bu-filled-fc-active);
+            }
+
+            background-color: var(--_bu-bg-active);
+            color: var(--_bu-fc-active);
+        }
+    }
+    &:focus,
+    &--radio:focus + & {
+        box-shadow: var(--_bu-focus-ring);
+        outline: none;
+    }
+
+    // STYLES MODIFIED BY COMPONENT-SPECIFIC CUSTOM PROPERTIES
+    background-color: var(--_bu-bg);
+    border: var(--_bu-baw) solid var(--_bu-bc);
+    border-radius: var(--_bu-br);
+    box-shadow: var(--_bu-bs);
+    color: var(--_bu-fc);
+    font-size: var(--_bu-fs);
+    padding: var(--_bu-p);
+
+    // STATIC COMPONENT STYLES
+    cursor: pointer;
+    display: inline-block;
+    font-family: inherit;
+    font-weight: normal;
+    line-height: var(--lh-sm);
+    position: relative;
+    outline: none;
+    text-align: center;
+    text-decoration: none;
+    user-select: none;
 }
+
+//  [1] Guard against the difference in configurable resets
+//      Eric Meyer's reset does not include this, while normalize.css does
+//      Correct the inability to style buttons in iOS and Safari.
+//  [2] If the first thing in the button is an icon, let's hide it on loading
+//      We only want to modify the visibility, since we still want it to have shape and keep the same layout.
+//  [3] Most svg icons are 18px tall, but the button's line-height is 1 (13px).
+//      This means we need to off set the margin y-axis so we don't add
+//      additional height to the button.
