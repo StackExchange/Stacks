@@ -2,7 +2,7 @@
 
 **Date:** 2022-11-03
 
-**Related PR:** #1172
+**Related PR:** [#1172](https://github.com/StackExchange/Stacks/pull/1172)
 
 ## Issue
 Component styles are difficult to maintain. This is because:
