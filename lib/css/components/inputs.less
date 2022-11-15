@@ -1,92 +1,162 @@
-@input-padding: 0.6em 0.7em;
-
-@autofill: {
-    &::-webkit-contacts-auto-fill-button {
-        background-color: var(--black); // In Safari, make the autocomplete button darkmode-aware
-    }
-
-    &:-webkit-autofill {
-        border-color: var(--blue-300);
-        -webkit-text-fill-color: var(--black);
-        -webkit-box-shadow: 0 0 0 1000px var(--theme-secondary-050) inset; // This acts as a background color by stretching an inset box shadow across the input
-        transition: background-color 0s 50000s; // A hack to infinitely delay background styles that come from the browser.
-
-        &:focus {
-            border-color: var(--blue-300);
-            // Since the box shadow is overwritten to show a background, we have to re-add the focus outline
-            -webkit-box-shadow: 0 0 0 1000px var(--blue-050) inset, 0 0 0 var(--su-static4) var(--focus-ring);
-        }
-    }
-}
-
-//  ============================================================================
-//  $  BASE INPUT / TEXTAREA STYLE
-//  ----------------------------------------------------------------------------
 .s-input,
 .s-textarea {
-    -webkit-appearance: none; // Removes shadows we don't want in mobile Safari
-    width: 100%;
-    margin: 0; // A guard against Core's default margins
-    padding: @input-padding;
-    border: 1px solid var(--bc-darker);
-    border-radius: var(--br-sm);
-    background-color: var(--white);
-    color: var(--fc-dark);
-    font-size: var(--fs-body1);
-    font-family: inherit;
+    --_in-br: var(--br-sm);
+    --_in-fs: var(--fs-body1);
+    --_in-px: 0.7em;
+    --_in-py: 0.6em;
+    --_in-webkit-ph-fc: var(--black-200);
 
-    //  --  INCREASE FONT SIZE FOR MOBILE SAFARI
-    //  This keeps our inputs from zooming the page while focused
-    //  ------------------------------------------------------------------------
+    // CONTEXTUAL STYLES
     @supports (-webkit-overflow-scrolling: touch) {
-        font-size: 16px;
-        padding: 0.36em 0.55em; // Compensate for the larger font size so we generally keep the input the same size
+        --_in-fs: var(--su-static16); // 16px — Increase font size for mobile safari. This keeps our inputs from zooming the page while focused.
+        --_in-px: 0.55em;
+        --_in-py: 0.36em;
 
         &::-webkit-input-placeholder {
             line-height: normal !important;
         }
     }
+    .highcontrast-mode({
+        --_in-placeholder-fc: var(--black-400);
+    });
 
-    //  --  PLACEHOLDER
-    //  ------------------------------------------------------------------------
+    // MODIFIERS
+    &&__sm {
+        --_in-fs: var(--fs-caption);
+    }
+    &&__md {
+        @supports (-webkit-overflow-scrolling: touch) {
+            --_in-fs: 17px;
+            --_in-py: 0.4em;
+        }
+
+        --_in-br: calc(var(--br-sm) + 1px);
+        --_in-fs: var(--fs-body3);
+    }
+    &&__lg {
+        --_in-br: calc(var(--br-sm) + 1px);
+        --_in-fs: var(--fs-title);
+        --_in-px: 0.6em;
+        --_in-py: 0.45em;
+    }
+    &&__xl {
+        --_in-br: var(--br-md);
+        --_in-fs: var(--fs-headline1);
+        --_in-px: 0.5em;
+        --_in-py: 0.4em;
+    }
+
+    // CHILD ELEMENTS
+    &::placeholder,
     &::-webkit-input-placeholder {
-        color: var(--black-200);
-
-        .highcontrast-mode({
-            color: var(--black-400);
-        });
+        color: var(--_in-webkit-ph-fc);
     }
-
     &::placeholder {
-        color: var(--black-200);
         opacity: 1;
+    }
+    &:-webkit-autofill {
+        &:focus {
+            border-color: var(--blue-300);
+            // Since the box shadow is overwritten to show a background, we have to re-add the focus outline
+            -webkit-box-shadow: 0 0 0 1000px var(--blue-050) inset, 0 0 0 var(--su-static4) var(--focus-ring);
+        }
 
-        .highcontrast-mode({
-            color: var(--black-400);
-        });
+        -webkit-box-shadow: 0 0 0 1000px var(--theme-secondary-050) inset; // This acts as a background color by stretching an inset box shadow across the input
+        -webkit-text-fill-color: var(--black);
+        border-color: var(--blue-300);
+        transition: background-color 0s 50000s; // A hack to infinitely delay background styles that come from the browser.
+
+    }
+    &::-webkit-contacts-auto-fill-button {
+        background-color: var(--black); // In Safari, make the autocomplete button darkmode-aware
+    }
+    &&__creditcard,
+    &&__search {
+        --_in-pl: var(--su-static32);
     }
 
-    // --  STYLE SCROLLBARS
     @scrollbar-styles();
+    border-radius: var(--_in-br);
+    font-size: var(--_in-fs);
+    padding: var(--_in-py) var(--_in-px) var(--_in-py) var(--_in-pl, var(--_in-px));
 
-    // --  STYLE AUTOFILL STATES
-    @autofill();
+    -webkit-appearance: none; // Removes shadows we don't want in mobile Safari
+    background-color: var(--white);
+    border: var(--su-static1) solid var(--bc-darker);
+    color: var(--fc-dark);
+    font-family: inherit;
+    margin: 0; // A guard against Core's default margins
+    width: 100%;
+}
+.s-input {
+    &&__md {
+        --_in-py: 0.5em;
+    }
+}
+.s-textarea {
+    &&__md {
+        --_in-py: 0.72em;
+    }
 }
 
-.s-input.s-input__search,
-.s-input.s-input__creditcard {
-    padding-left: var(--su-static32);
+// Other input-related elements
+.s-input-fill {
+    --_if-bc: var(--bc-darker);
+    --_if-bg: var(--black-050);
+    --_if-blw: 0;
+    --_if-blr: unset;
+    --_if-brr: unset;
+    --_if-brw: 0;
+
+    &&__clear {
+        --_if-bc: transparent;
+        --_if-bg: transparent;
+    }
+    &.order-first {
+        --_if-blw: var(--su-static1);
+        --_if-blr: var(--br-sm);
+    }
+    &.order-last {
+        --_if-brw: var(--su-static1);
+        --_if-brr: var(--br-sm);
+    }
+
+    background-color: var(--_if-bg);
+    border: var(--su-static1) solid var(--_if-bc);
+    border-left-width: var(--_if-blw);
+    border-radius: var(--_if-blr) var(--_if-brr) var(--_if-brr) var(--_if-blr);
+    border-right-width: var(--_if-brw);
+
+    color: var(--fc-medium);
+    font-family: inherit;
+    line-height: var(--lh-sm);
+    padding: 0.6em 0.7em;
+    white-space: nowrap;
+}
+.s-input-icon {
+    --_ii-r: 0.7em;
+
+    &&__creditcard,
+    &&__search {
+        --_ii-r: auto;
+
+        color: var(--black-400);
+        left: 0.7em;
+    }
+
+    right: var(--_ii-r);
+
+    margin-top: -9px; // Half the icon's height at 18px for centering;
+    pointer-events: none;
+    position: absolute;
+    top: 50%;
+}
+.s-input-message {
+    font-size: var(--fs-caption);
+    padding: var(--su2);
 }
 
-
-//  ============================================================================
-//  $  FIELDSET
-//  ----------------------------------------------------------------------------
-fieldset {
-    min-width: 0;
-    padding: 0;
-    border: 0;
-
+fieldset { // TODO move to standalone file
     &[disabled] {
         a,
         .s-btn,
@@ -97,169 +167,45 @@ fieldset {
         }
 
         .s-checkbox,
+        .s-input,
         .s-input-message,
         .s-radio,
+        .s-select > select,
+        .s-textarea,
         .s-toggle-switch,
         .s-toggle-switch label {
             cursor: not-allowed;
             opacity: var(--_o-disabled-static);
         }
-
-        .s-input,
-        .s-textarea,
-        .s-select > select {
-            cursor: not-allowed;
-            opacity: var(--_o-disabled-static);
-        }
     }
+
+    border: 0;
+    min-width: 0;
+    padding: 0;
 }
 
-//  ============================================================================
-//  $  TEXT STYLES
-//  ============================================================================
-.s-description {
-    padding: 0 var(--su2); // Helps the label visually line up with inputs
+.s-description { // TODO move to standalone file description.less (or to labels.less)
     color: var(--fc-medium);
     font-size: var(--fs-caption);
+    padding: 0 var(--su2); // Helps the label visually line up with inputs
 }
 
-//  ============================================================================
-//  $   CONNECTED INPUTS
-//      To visually connect inputs together
-//  ----------------------------------------------------------------------------
-.s-input-fill {
-    padding: @input-padding;
-    border: 1px solid var(--bc-darker);
-    border-right-width: 0;
-    border-left-width: 0;
-    background-color: var(--black-050);
-    color: var(--fc-medium);
-    font-family: inherit;
-    white-space: nowrap;
-    line-height: var(--lh-sm);
-
-    &.s-input-fill__clear {
-        border-color: transparent;
-        background-color: transparent;
-    }
-
-    &.order-first {
-        border-left-width: 1px;
-        border-top-left-radius: var(--br-sm);
-        border-bottom-left-radius: var(--br-sm);
-    }
-
-    &.order-last {
-        border-right-width: 1px;
-        border-top-right-radius: var(--br-sm);
-        border-bottom-right-radius: var(--br-sm);
-    }
-}
-
-
-//  ============================================================================
-//  $   SELECT MENUS
-//  ----------------------------------------------------------------------------
-.s-select {
-    position: relative;
-    color: var(--fc-dark);
-
-    //  --  MENU ARROWS
-    //      To customize the visual appearance of the select menu arrows, we
-    //      need to recreate them on the wrapping .select div.
-    //  ------------------------------------------------------------------------
-    &:before,
-    &:after {
-        content: "";
-        position: absolute;
-        z-index: var(--zi-selected);
-        right: 13px;
-        border-color: currentColor transparent;
-        border-style: solid;
-        border-width: 4px;
-        pointer-events: none;
-    }
-    &:before {
-        top: calc(50% - 5px);
-        border-top-width: 0;
-        border-bottom-width: 4px;
-    }
-    &:after {
-        top: calc(50% + 1px);
-        border-top-width: 4px;
-        border-bottom-width: 0;
-    }
-
-    //  --  MENU
-    //      Now we can style the visual appearance of the select menu;
-    //  ------------------------------------------------------------------------
-    > select {
-        //  [1] Reset the appearance
-        -webkit-appearance: none;
-        -moz-appearance: none;
-        appearance: none;
-
-        //  [2] Update the styles
-        position: relative; // This prevents Firefox from requiring a second click to select options
-        width: 100%;
-        height: 100%; // Fill the height of its parent
-        padding: @input-padding;
-        padding-right: var(--su32);
-        border: 1px solid var(--bc-darker);
-        border-radius: var(--br-sm);
-        background-color: var(--white);
-        outline: 0;
-        font-size: var(--fs-body1);
-        font-family: inherit;
-        color: var(--black);
-        line-height: var(--lh-sm);
-
-        &::-moz-focus-inner {
-            outline: none !important;
-        }
-
-        &:-moz-focusring {
-            color: transparent;
-            text-shadow: 0 0 0 #000;
-        }
-
-        &::-ms-expand {
-            display: none;
-        }
-
-        //  --  INCREASE FONT SIZE FOR MOBILE SAFARI
-        //  This keeps our inputs from zooming the page while focused
-        //  ------------------------------------------------------------------------
-        @supports (-webkit-overflow-scrolling: touch) {
-            font-size: 16px;
-            padding: 0.4em 0.55em; // Compensate for the larger font size so we generally keep the input the same size
-        }
-
-        // --  STYLE AUTOFILL STATES
-        @autofill();
-    }
-}
-
-
-//  ============================================================================
-//  $   CHECKBOXES & RADIOS
-//  ----------------------------------------------------------------------------
 // TODO would _love_ to use .s-check instead, with no class on the input itself
-.s-check-control {
-    display: flex;
-    gap: var(--su8);
-    align-items: center;
-
-    [disabled] + .s-label {
-        &:extend(.is-disabled .s-label);
-    }
-
+.s-check-control { // TOOD move to standalone file check.less
     .s-label {
+        [disabled] + & {
+            &:extend(.is-disabled .s-label);
+        }
+
         font-weight: normal;
     }
+
+    align-items: center;
+    display: flex;
+    gap: var(--su8);
 }
 
-.s-check-group {
+.s-check-group { // TOOD move to standalone file checks-radios.less
     display: flex;
     flex-direction: column;
     gap: var(--su8);
@@ -283,7 +229,7 @@ fieldset {
 }
 
 .s-checkbox,
-.s-radio {
+.s-radio { // TOOD move to standalone file checks-radios.less
     //  [1]   Check to see if we can use custom styles, if so reset the defaults
     //  ------------------------------------------------------------------------
     @supports ((-webkit-appearance: none) or (-moz-appearance: none) or (appearance: none)) {
@@ -315,7 +261,7 @@ fieldset {
 
 //  $$  CHECKBOXES
 //  ----------------------------------------------------------------------------
-.s-checkbox {
+.s-checkbox { // TOOD move to standalone file checks-radios.less
     @supports ((-webkit-appearance: none) or (-moz-appearance: none) or (appearance: none)) {
         border-radius: var(--br-sm);
         background-position: center center;
@@ -352,7 +298,7 @@ fieldset {
 
 //  $$  RADIOS
 //  ----------------------------------------------------------------------------
-.s-radio {
+.s-radio { // TOOD move to standalone file checks-radios.less
     @supports ((-webkit-appearance: none) or (-moz-appearance: none) or (appearance: none)) {
         border-radius: var(--br-circle);
 
@@ -373,12 +319,7 @@ fieldset {
     }
 }
 
-//  ============================================================================
-//  $   STATES
-//      The many states for inputs and select menus.
-//  ----------------------------------------------------------------------------
-//  Focus
-& {
+& { // TODO figure out what this is doing
     @focus-style: {
         border-color: var(--theme-secondary-300);
         box-shadow: 0 0 0 var(--su-static4) var(--focus-ring);
@@ -405,67 +346,59 @@ fieldset {
 }
 
 .s-input,
-.s-textarea,
-.s-select > select {
-    //  Disabled
-    &[disabled] {
+.s-textarea {
+    &[disabled],
+    &[readonly],
+    .is-readonly & {
         cursor: not-allowed;
-        opacity: var(--_o-disabled-static);
     }
-
     //  Readonly
     //  Note: The readonly attribute is not supported on select elements
     //  See https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/readonly
     //  and https://github.com/StackExchange/Stacks/pull/1040#discussion_r931144086
     &[readonly],
     .is-readonly & {
-        border-color: var(--bc-light);
-        background-color: var(--black-050);
-        color: var(--black-200);
-        cursor: not-allowed;
-
         .highcontrast-mode({
             color: var(--fc-light);
         });
+
+        background-color: var(--black-050);
+        border-color: var(--bc-light);
+        color: var(--black-200);
+        cursor: not-allowed;
+    }
+    &[disabled] {
+        opacity: var(--_o-disabled-static);
     }
 }
 
-//  ============================================================================
-//  $   VALIDATION STATES
-//      Classes are applied at the wrapping container level.
-//  ----------------------------------------------------------------------------
 .is-disabled,
 .is-readonly,
 .has-success,
 .has-error,
-.has-warning {
-    position: relative;
-
+.has-warning { // TODO move to standalone file (global-state.less?)
     .s-input {
         padding-right: var(--su32);
     }
-
+    .s-input-message a {
+        text-decoration: underline;
+    }
     .s-select .s-input-icon {
         right: var(--su32);
     }
-
     .s-textarea {
-        padding-right: var(--su48);
-
         ~ .s-input-icon {
             top: 1.5em;
             right: 1.5em;
         }
+
+        padding-right: var(--su48);
     }
 
-    .s-input-message a {
-        text-decoration: underline;
-    }
+    position: relative;
 }
 
-//  $$  WARNING
-//  ----------------------------------------------------------------------------
-.has-warning {
+.has-warning { // TODO move to standalone file (global-state.less?)
     .s-input,
     .s-textarea,
     .s-checkbox,
@@ -477,23 +410,18 @@ fieldset {
             box-shadow: 0 0 0 var(--su-static4) var(--focus-ring-warning);
         }
     }
-
-    .s-input-message {
-        color: var(--yellow-800);
-
-        a {
-            color: var(--yellow-900);
-        }
-    }
-
     .s-input-icon {
         color: var(--yellow-600);
     }
-}
+    .s-input-message {
+        a {
+            color: var(--yellow-900);
+        }
 
-//  $$  ERROR
-//  ----------------------------------------------------------------------------
-.has-error {
+        color: var(--yellow-800);
+    }
+}
+.has-error { // TODO move to standalone file (global-state.less?)
     .s-input,
     .s-textarea,
     .s-checkbox,
@@ -505,7 +433,6 @@ fieldset {
             box-shadow: 0 0 0 var(--su-static4) var(--focus-ring-error);
         }
     }
-
     .s-input-message {
         color: var(--red-500);
 
@@ -517,15 +444,11 @@ fieldset {
             }
         }
     }
-
     .s-input-icon {
         color: var(--red-400);
     }
 }
-
-//  $$  SUCCESS
-//  ----------------------------------------------------------------------------
-.has-success {
+.has-success { // TODO move to standalone file (global-state.less?)
     .s-input,
     .s-textarea,
     .s-checkbox,
@@ -554,123 +477,24 @@ fieldset {
         color: var(--green-400);
     }
 }
-
-//  $$  DISABLED
-//  ----------------------------------------------------------------------------
-.is-disabled {
+.is-disabled { // TODO move to standalone file (global-state.less?)
     .s-select:before,
     .s-select:after {
         border-color: var(--bc-darker) transparent;
     }
-
     .s-description {
         opacity: var(--_o-disabled-static);
     }
-
     .s-input-icon {
         color: var(--black-400);
     }
 }
-
-//  $$  READONLY
-//  ----------------------------------------------------------------------------
-.is-readonly {
+.is-readonly { // TODO move to standalone file (global-state.less?)
     .s-input-icon {
-        color: var(--black-200);
-
         .highcontrast-mode({
             color: var(--fc-light);
         });
-    }
-}
 
-//  $$  ICONS
-//  ----------------------------------------------------------------------------
-.s-input-icon {
-    position: absolute;
-    top: 50%;
-    right: 0.7em;
-    margin-top: -9px; // Half the icon's height at 18px for centering;
-    pointer-events: none;
-
-    &.s-input-icon__search,
-    &.s-input-icon__creditcard {
-        right: auto;
-        left: 0.7em;
-        color: var(--black-400);
-    }
-}
-
-//  $$  MESSAGE
-//      Set some baseline styles
-//  ----------------------------------------------------------------------------
-.s-input-message {
-    padding: var(--su2);
-    font-size: var(--fs-caption);
-}
-
-//  $$  SIZES
-//  ----------------------------------------------------------------------------
-.s-input__sm,
-.s-textarea__sm,
-.s-select__sm > select {
-    font-size: var(--fs-caption);
-}
-.s-input__md,
-.s-textarea__md,
-.s-select__md > select {
-    font-size: var(--fs-body3);
-}
-.s-input__lg,
-.s-textarea__lg,
-.s-select__lg > select {
-    font-size: var(--fs-title);
-}
-.s-input__xl,
-.s-textarea__xl,
-.s-select__xl > select {
-    font-size: var(--fs-headline1);
-}
-
-//  $$  PADDING ADJUSTMENTS WITHIN SIZES
-//  ----------------------------------------------------------------------------
-.s-input__md,
-.s-textarea__md,
-.s-select__md > select {
-    padding-top: 0.5em;
-    padding-bottom: 0.5em;
-    border-radius: calc(var(--br-sm) + 1px);
-}
-
-.s-textarea__md {
-    padding-top: 0.72em;
-    padding-bottom: 0.72em;
-}
-
-.s-input__lg,
-.s-textarea__lg,
-.s-select__lg > select {
-    padding: 0.45em 0.6em;
-    border-radius: calc(var(--br-sm) + 1px);
-}
-
-.s-input__xl,
-.s-textarea__xl,
-.s-select__xl > select {
-    padding: 0.4em 0.5em;
-    border-radius: var(--br-md);
-}
-
-.s-input__md,
-.s-textarea__md {
-    //  --  INCREASE FONT SIZE FOR MOBILE SAFARI
-    //  This keeps our inputs from zooming the page while focused
-    //  ------------------------------------------------------------------------
-    @supports (-webkit-overflow-scrolling: touch) {
-        font-size: 17px;
-
-        // Compensate for the larger font size so we generally keep the input the same size
-        padding-top: 0.4em;
-        padding-bottom: 0.4em;
+        color: var(--black-200);
     }
 }
