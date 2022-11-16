@@ -1,7 +1,12 @@
 .s-input,
 .s-textarea {
+    --_in-bc: var(--bc-darker);
+    --_in-bg: var(--white);
     --_in-br: var(--br-sm);
+    --_in-c: unset;
+    --_in-fc: var(--fc-dark);
     --_in-fs: var(--fs-body1);
+    --_in-o: unset;
     --_in-px: 0.7em;
     --_in-py: 0.6em;
     --_in-webkit-ph-fc: var(--black-200);
@@ -18,7 +23,26 @@
     }
     .highcontrast-mode({
         --_in-placeholder-fc: var(--black-400);
+
+        &[readonly],
+        .is-readonly & {
+            --_in-fc: var(--fc-light);
+        }
     });
+    &[disabled],
+    &[readonly],
+    .is-readonly & {
+        --_in-c: not-allowed;
+    }
+    &[readonly],
+    .is-readonly & { // [1]
+        --_in-bg: var(--black-050);
+        --_in-bc: var(--bc-light);
+        --_in-fc: var(--black-200);
+    }
+    &[disabled] {
+        --_in-o: var(--_o-disabled-static);
+    }
 
     // MODIFIERS
     &&__sm {
@@ -75,15 +99,22 @@
         --_in-pl: var(--su-static32);
     }
 
+    // INTERACTION
+    &:focus{
+        @input-focus-style();
+    }
+
     @scrollbar-styles();
+    background-color: var(--_in-bg);
+    border: var(--su-static1) solid var(--_in-bc);
     border-radius: var(--_in-br);
+    color: var(--_in-fc);
+    cursor: var(--_in-c);
     font-size: var(--_in-fs);
+    opacity: var(--_in-o);
     padding: var(--_in-py) var(--_in-px) var(--_in-py) var(--_in-pl, var(--_in-px));
 
     -webkit-appearance: none; // Removes shadows we don't want in mobile Safari
-    background-color: var(--white);
-    border: var(--su-static1) solid var(--bc-darker);
-    color: var(--fc-dark);
     font-family: inherit;
     margin: 0; // A guard against Core's default margins
     width: 100%;
@@ -310,6 +341,11 @@ fieldset { // TODO move to standalone file
         color: var(--black-200);
     }
 }
+
+//  [1] The readonly attribute is not supported on select elements
+//      See https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/readonly
+//      and https://github.com/StackExchange/Stacks/pull/1040#discussion_r931144086
+
 //  [2] This needs to be separate from the other references @input-focus-style,
 //      because in browsers that don't support :focus-within it's a syntax error,
 //      rendering the whole selector null and void.
