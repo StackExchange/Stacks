@@ -89,6 +89,9 @@
     width: 100%;
 }
 .s-input {
+    &:focus-within { // [2]
+        @input-focus-style();
+    }
     &&__md {
         --_in-py: 0.5em;
     }
@@ -307,3 +310,6 @@ fieldset { // TODO move to standalone file
         color: var(--black-200);
     }
 }
+//  [2] This needs to be separate from the other references @input-focus-style,
+//      because in browsers that don't support :focus-within it's a syntax error,
+//      rendering the whole selector null and void.
