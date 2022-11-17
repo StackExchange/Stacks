@@ -1,0 +1,245 @@
+.s-sidebarwidget {
+    --_sw-content-px: calc(var(--su16) - var(--su1)); // subtract 1px for border
+    --_sw-content-spacing-inner: var(--su12); // the spacing between two adjacent simple items
+    --_sw-content-spacing-outer: var(--su16); // the spacing at the start/end of a group of simple items, as well as between a complex item and its separator line
+    --_sw-bc: var(--bc-medium);
+    --_sw-content-bc: var(--bc-light);
+    --_sw-header-bg: var(--black-025);
+
+    & &--header {
+        &.s-sidebarwidget__small-bold-text {
+            font-size: var(--fs-caption);
+            font-weight: bold;
+            .s-sidebarwidget--action {
+                font-weight: normal;
+                line-height: calc(1.3 * var(--fs-caption));  // line-height should be the same as in the outside element, so the header and action baselines line up
+            }
+        }
+
+        &.s-sidebarwidget__expanding-control {
+            cursor: pointer;
+            &:before {
+                content: '';
+                float: left;
+                margin-top: ~"calc(1.3em / 2 - 5px)"; // 1.3 is our standard line height
+                margin-right: var(--su12);
+                border: 5px solid transparent;
+                border-left-color: var(--bc-darker);
+                border-right-width: 0;
+                transition: transform 0.3s cubic-bezier(0.4, 0.4, 0.6, 1);
+            }
+            &[aria-expanded='true']:before {
+                transform: rotate(90deg);
+            }
+        }
+
+        &:first-child {
+            border-top-left-radius: var(--br-sm);
+            border-top-right-radius: var(--br-sm);
+        }
+
+        &:active {
+            outline: none;
+        }
+
+        border-top: 1px solid var(--_sw-content-bc);
+        padding: var(--_sw-content-spacing-inner) var(--_sw-content-px);
+        background: var(--_sw-header-bg);
+        color: var(--black-600);
+        font-size: var(--fs-body2);
+        font-weight: normal;
+        margin: 0;
+    }
+
+    & &--action {
+        float: right;
+        margin: 0 0 var(--su4) var(--su8);
+        color: var(--blue);
+        font-size: var(--fs-fine);
+        line-height: 1.3 * 15px; // line-height should be the same as in the outside element, so the header and action baselines line up
+    }
+
+    & &--content {
+        &.s-sidebarwidget__items {
+            display: block;
+            // the items themselves provide part of the spacing, so the content padding needs to account for that
+            padding: calc(var(--_sw-content-spacing-outer) - var(--_sw-content-spacing-inner)) var(--_sw-content-px);
+            &.s-sidebarwidget__block-items .s-sidebarwidget--item {
+                .d-block
+            }
+        }
+
+        &:active {
+            outline: none;
+        }
+
+        &:not(table) {
+            &:not(.s-sidebarwidget__items) {
+                display: flex;
+            }
+            &:not(.s-sidebarwidget__block-items) .s-sidebarwidget--item {
+                display: flex;
+            }
+        }
+
+        border-top: 1px solid var(--_sw-content-bc);
+        padding: var(--_sw-content-spacing-outer) var(--_sw-content-px);
+        margin: 0; // TODO: better understand expandable - perhaps we should add !important to the expandable margin style?
+    }
+
+    & &--item {
+        &,
+        & > :first-child {
+            &[aria-current="true"],
+            &[aria-current="page"] {
+                position: relative;
+                color: var(--black);
+                font-weight: bold;
+
+                &:before {
+                    content: '';
+                    position: absolute;
+                    left: 0;
+                    height: calc(100% + var(--_sw-content-spacing-inner));
+                    margin-top: calc(var(--_sw-content-spacing-inner) / 2 * -1);
+                    margin-left: calc(var(--_sw-content-px) * -1 - 1px); // the orange selection indicator overlaps with the widget border
+                    border-left-width: 3px;
+                    border-left-style: solid;
+                    border-left-color: var(--theme-primary-color);
+                }
+
+                a,
+                a:visited { // TODO: this isn't the best way to go about this. There should be a "is current" highlight without font modification for more complex cases
+                    color: inherit;
+                }
+            }
+        }
+
+        margin: var(--_sw-content-spacing-inner) 0;
+    }
+
+    & &--subnav {
+        li {
+            #stacks-internals #bullet-arrow(var(--black-100));
+
+            &[aria-current="true"],
+            &[aria-current="page"] {
+                #stacks-internals #bullet-arrow(var(--theme-primary-color));
+                color: var(--black);
+                font-weight: bold;
+
+                a,
+                a:visited { // TODO: see above
+                    color: inherit;
+                }
+            }
+
+            margin-top: var(--su-static12);
+            padding-left: var(--su-static16);
+            background-position: 0 calc((1.2em - 10px) / 2);
+            background-repeat: no-repeat;
+            background-size: auto 10px;
+        }
+
+        list-style-type: none;
+        padding-left: 0;
+        margin-left: var(--su8);
+    }
+
+    & table.s-sidebarwidget--content.s-sidebarwidget__items {
+        tr.s-sidebarwidget--item {
+            display: table-row;
+            td {
+                padding: 0;
+            }
+        }
+
+        padding: calc(var(--_sw-content-spacing-outer) - var(--_sw-content-spacing-inner)) calc(var(--_sw-content-px) - var(--_sw-content-spacing-inner));
+        border-collapse: separate;
+        border-spacing: var(--_sw-content-spacing-inner);
+    }
+
+    &:not(.s-anchors) a:not(.button):not(.s-btn):not(.post-tag):not(&--action):not(.s-user-card--link) {
+        &,
+        &:visited {
+            color: var(--black-500);
+        }
+    }
+
+    &:before { // [1]
+        content: '';
+        display: block;
+        margin-top: -1px;
+    }
+
+    &:after { // [2]
+        content: '';
+        position: absolute;
+        top: -1px;
+        right: -1px;
+        left: -1px;
+        // TODO: this makes no sense. revisit.
+        height: calc(2px + var(--br-sm)); // we need 2px border + 2px border radius to have the correct corner shape
+        border-radius: var(--br-sm);
+        pointer-events: none; // if the top item is clickable, then we don't want to prevent clicking the top 2 pixels
+        clip-path: polygon(0% 0%, 100% 0%, 100% 50%, 0% 50%); // [3]
+        border: 1px solid var(--_sw-bc);
+    }
+
+    position: relative; // so that it's the positioning parent for the :after
+    border: 1px solid var(--_sw-bc);
+    border-radius: var(--br-sm);
+    box-shadow: var(--bs-sm);
+    font-size: var(--fs-body1);
+    background-color: var(--white);
+
+    // COLOR ALTERNATIVES
+    .alternate-color(blue);
+    .alternate-color(yellow);
+    .alternate-color(green);
+}
+
+
+// COLOR ALTERNATIVES
+.alternate-color(@name) {
+    &.s-sidebarwidget__@{name} {
+        --_sw-bc: var(~"--@{name}-200");
+
+        .highcontrast-mode({
+            --_sw-bc: var(~"--@{name}-700");
+        });
+
+        border-color: var(--_sw-bc);
+        background-color: var(~"--@{name}-050");
+
+        .s-sidebarwidget--header {
+            background-color: var(~"--@{name}-100");
+            color: var(--fc-medium);
+        }
+
+        .s-sidebarwidget--header,
+        .s-sidebarwidget--content,
+        &:after {
+            border-color: var(--_sw-bc);
+        }
+    }
+}
+
+// [1] We must support things like collapsible (in particular invisble) elements, wrapper elements,
+// etc. Therefore every .-content and .-header must stand on its own; we cannot rely on things
+// like :first-child, because the *first* child may not be the first *visible* child, and it may
+// also be the :first-child of some wrapper. This is why every .-header and .-content has a
+// border-top. But because you shouldn't see the first visible item's or header's top border
+// (the widget itself provides for that border), we shift everything up by one pixel with the following pseudo-element.
+
+// [2] However, because of the above, the top item's divider line now sits above the .s-sidebarwidget's top
+// border. We could fix this by using overflow: hidden, but that would constrain users of
+// .s-sidebarwidget to never have things like tooltips, autocompletes or the like that reach outside
+// the widget boundaries.
+// What we do instead is re-create the widget's top border in an absolutely positioned :after,
+// which sits above our item's top border. Technically, a tiny corner of the item's border will
+// still be visible, but at its highest point, this corner has a height of 0.27 pixels. And for
+// this sub-pixel issues, we're talking about different shades of gray. So we can live with that.
+
+// [3] In order to also perfectly recreate the inner corner shape, our pseudo-element needs
+// the border on all sides. But we can only do that if we're able to hide the bottom part
