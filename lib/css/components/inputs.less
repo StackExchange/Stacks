@@ -1,15 +1,18 @@
 .s-input,
 .s-textarea {
     --_in-bc: var(--bc-darker);
+    --_in-bc-focus: var(--theme-secondary-300);
     --_in-bg: var(--white);
     --_in-br: var(--br-sm);
+    --_in-bs-focus: 0 0 0 var(--su-static4) var(--focus-ring);
     --_in-c: unset;
     --_in-fc: var(--fc-dark);
+    --_in-fc-focus: var(--black);
     --_in-fs: var(--fs-body1);
     --_in-o: unset;
     --_in-px: 0.7em;
     --_in-py: 0.6em;
-    --_in-webkit-ph-fc: var(--black-200);
+    --_in-placeholder-fc: var(--black-200);
 
     // CONTEXTUAL STYLES
     @supports (-webkit-overflow-scrolling: touch) {
@@ -22,20 +25,22 @@
         }
     }
     .highcontrast-mode({
+        --_in-bc: var(--black);
         --_in-placeholder-fc: var(--black-400);
-
-        &[readonly],
-        .is-readonly & {
-            --_in-fc: var(--fc-light);
-        }
     });
+    &[readonly],
+    .is-readonly & {
+        .highcontrast-mode({
+            --_in-fc: var(--fc-light);
+        });
+    }
     &[disabled],
     &[readonly],
     .is-readonly & {
         --_in-c: not-allowed;
     }
     &[readonly],
-    .is-readonly & { // [1]
+    .is-readonly & {
         --_in-bg: var(--black-050);
         --_in-bc: var(--bc-light);
         --_in-fc: var(--black-200);
@@ -45,6 +50,21 @@
     }
 
     // MODIFIERS
+    .has-error & {
+        --_in-bc: var(--red-400);
+        --_in-bc-focus: var(--red-400);
+        --_in-bs-focus: 0 0 0 var(--su-static4) var(--focus-ring-error);
+    }
+    .has-success & {
+        --_in-bc: var(--green-400);
+        --_in-bc-focus: var(--green-400);
+        --_in-bs-focus: 0 0 0 var(--su-static4) var(--focus-ring-success);
+    }
+    .has-warning & {
+        --_in-bc: var(--yellow-600);
+        --_in-bc-focus: var(--yellow-600);
+        --_in-bs-focus: 0 0 0 var(--su-static4) var(--focus-ring-warning);
+    }
     &&__sm {
         --_in-fs: var(--fs-caption);
     }
@@ -73,7 +93,7 @@
     // CHILD ELEMENTS
     &::placeholder,
     &::-webkit-input-placeholder {
-        color: var(--_in-webkit-ph-fc);
+        color: var(--_in-placeholder-fc);
     }
     &::placeholder {
         opacity: 1;
@@ -101,7 +121,10 @@
 
     // INTERACTION
     &:focus{
-        @input-focus-style();
+        border-color: var(--_in-bc-focus);
+        box-shadow: var(--_in-bs-focus);
+        color: var(--_in-fc-focus);
+        outline: 0;
     }
 
     @scrollbar-styles();
@@ -120,9 +143,17 @@
     width: 100%;
 }
 .s-input {
-    &:focus-within { // [2]
-        @input-focus-style();
+    &:focus-within {
+        .highcontrast-mode({
+            --_in-bc-focus: var(--black);
+        });
+
+        border-color: var(--_in-bc-focus);
+        box-shadow: var(--_in-bs-focus);
+        color: var(--_in-fc-focus);
+        outline: 0;
     }
+
     &&__md {
         --_in-py: 0.5em;
     }
@@ -168,8 +199,29 @@
     white-space: nowrap;
 }
 .s-input-icon {
+    --_ii-fc: unset;
     --_ii-r: 0.7em;
 
+    // MODIFIERS
+    .has-error & {
+        --_ii-fc: var(--red-400);
+    }
+    .has-success & {
+        --_ii-fc: var(--green-400);
+    }
+    .has-warning & {
+        --_ii-fc: var(--yellow-600);
+    }
+    .is-disabled & {
+        --_ii-fc: var(--black-400);
+    }
+    .is-readonly & {
+        --_ii-fc: var(--black-200);
+
+        .highcontrast-mode({
+            --_ii-fc: var(--fc-light);
+        });
+    }
     &&__creditcard,
     &&__search {
         --_ii-r: auto;
@@ -178,6 +230,7 @@
         left: 0.7em;
     }
 
+    color: var(--_ii-fc);
     right: var(--_ii-r);
 
     margin-top: -9px; // Half the icon's height at 18px for centering;
@@ -186,6 +239,37 @@
     top: 50%;
 }
 .s-input-message {
+    --_im-fc: unset;
+    --_im-a-fc: unset;
+    --_im-a-fc-hover: unset;
+
+    // MODIFIERS
+    .has-error & {
+        --_im-fc: var(--red-500);
+        --_im-a-fc: var(--red-800);
+        --_im-a-fc-hover: var(--red-900);
+    }
+    .has-success & {
+        --_im-fc: var(--green-500);
+        --_im-a-fc: var(--green-800);
+        --_im-a-fc-hover: var(--green-900);
+    }
+    .has-warning & {
+        --_im-fc: var(--yellow-800);
+        --_im-a-fc: var(--yellow-900);
+    }
+
+    // CHILD ELEMENTS
+    a {
+        &:hover {
+            color: var(--_im-a-fc-hover);
+        }
+
+        color: var(--_im-a-fc);
+    }
+
+    color: var(--_im-fc);
+
     font-size: var(--fs-caption);
     padding: var(--su2);
 }
@@ -243,109 +327,3 @@ fieldset { // TODO move to standalone file
 
     position: relative;
 }
-
-.has-warning { // TODO move to standalone file (global-state.less?)
-    .s-input,
-    .s-textarea,
-    .s-checkbox,
-    .s-radio:not(:checked),
-    .s-select > select {
-        border-color: var(--yellow-600);
-
-        &:focus {
-            box-shadow: 0 0 0 var(--su-static4) var(--focus-ring-warning);
-        }
-    }
-    .s-input-icon {
-        color: var(--yellow-600);
-    }
-    .s-input-message {
-        a {
-            color: var(--yellow-900);
-        }
-
-        color: var(--yellow-800);
-    }
-}
-.has-error { // TODO move to standalone file (global-state.less?)
-    .s-input,
-    .s-textarea,
-    .s-checkbox,
-    .s-radio:not(:checked),
-    .s-select > select {
-        border-color: var(--red-400);
-
-        &:focus {
-            box-shadow: 0 0 0 var(--su-static4) var(--focus-ring-error);
-        }
-    }
-    .s-input-message {
-        color: var(--red-500);
-
-        a {
-            color: var(--red-800);
-
-            &:hover {
-                color: var(--red-900);
-            }
-        }
-    }
-    .s-input-icon {
-        color: var(--red-400);
-    }
-}
-.has-success { // TODO move to standalone file (global-state.less?)
-    .s-input,
-    .s-textarea,
-    .s-checkbox,
-    .s-radio:not(:checked),
-    .s-select > select {
-        border-color: var(--green-400);
-
-        &:focus {
-            box-shadow: 0 0 0 var(--su-static4) var(--focus-ring-success);
-        }
-    }
-
-    .s-input-message {
-        color: var(--green-500);
-
-        a {
-            color: var(--green-800);
-
-            &:hover {
-                color: var(--green-900);
-            }
-        }
-    }
-
-    .s-input-icon {
-        color: var(--green-400);
-    }
-}
-.is-disabled { // TODO move to standalone file (global-state.less?)
-    .s-select:before,
-    .s-select:after {
-        border-color: var(--bc-darker) transparent;
-    }
-    .s-input-icon {
-        color: var(--black-400);
-    }
-}
-.is-readonly { // TODO move to standalone file (global-state.less?)
-    .s-input-icon {
-        .highcontrast-mode({
-            color: var(--fc-light);
-        });
-
-        color: var(--black-200);
-    }
-}
-
-//  [1] The readonly attribute is not supported on select elements
-//      See https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/readonly
-//      and https://github.com/StackExchange/Stacks/pull/1040#discussion_r931144086
-
-//  [2] This needs to be separate from the other references @input-focus-style,
-//      because in browsers that don't support :focus-within it's a syntax error,
-//      rendering the whole selector null and void.
