@@ -28,6 +28,9 @@
         --_in-bc: var(--black);
         --_in-placeholder-fc: var(--black-400);
     });
+
+
+    // MODIFIERS
     &[readonly],
     .is-readonly & {
         .highcontrast-mode({
@@ -48,8 +51,6 @@
     &[disabled] {
         --_in-o: var(--_o-disabled-static);
     }
-
-    // MODIFIERS
     .has-error & {
         --_in-bc: var(--red-400);
         --_in-bc-focus: var(--red-400);
@@ -143,6 +144,14 @@
     width: 100%;
 }
 .s-input {
+    .is-disabled &,
+    .is-readonly &,
+    .has-success &,
+    .has-error &,
+    .has-warning & {
+        padding-right: var(--su32);
+    }
+
     &:focus-within {
         .highcontrast-mode({
             --_in-bc-focus: var(--black);
@@ -159,6 +168,18 @@
     }
 }
 .s-textarea {
+    .is-disabled &,
+    .is-readonly &,
+    .has-success &,
+    .has-error &,
+    .has-warning & {
+        ~ .s-input-icon {
+            top: 1.5em;
+            right: 1.5em;
+        }
+
+        padding-right: var(--su48);
+    }
     &&__md {
         --_in-py: 0.72em;
     }
@@ -243,6 +264,16 @@
     --_im-a-fc: unset;
     --_im-a-fc-hover: unset;
 
+    .is-disabled &,
+    .is-readonly &,
+    .has-success &,
+    .has-error &,
+    .has-warning & {
+        a {
+            text-decoration: underline;
+        }
+    }
+
     // MODIFIERS
     .has-error & {
         --_im-fc: var(--red-500);
@@ -307,23 +338,5 @@ fieldset { // TODO move to standalone file
 .has-success,
 .has-error,
 .has-warning { // TODO move to standalone file (global-state.less?)
-    .s-input {
-        padding-right: var(--su32);
-    }
-    .s-input-message a {
-        text-decoration: underline;
-    }
-    .s-select .s-input-icon {
-        right: var(--su32);
-    }
-    .s-textarea {
-        ~ .s-input-icon {
-            top: 1.5em;
-            right: 1.5em;
-        }
-
-        padding-right: var(--su48);
-    }
-
     position: relative;
 }
