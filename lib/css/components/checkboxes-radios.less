@@ -1,5 +1,79 @@
-// TODO would _love_ to use .s-check instead, with no class on the input itself
-.s-check-control {
+.s-checkbox,
+.s-radio {
+    appearance: none;
+
+    &::-ms-check {
+        display: none;
+    }
+    margin: 0; // A guard against Core's default margins
+    width: 1em;
+    height: 1em;
+    border: 1px solid var(--bc-darker);
+    background-color: var(--white);
+    outline: 0;
+    font-size: inherit;
+    vertical-align: middle;
+    cursor: pointer;
+
+    //  Disabled
+    fieldset[disabled] &,
+    &[disabled] {
+        opacity: var(--_o-disabled-static);
+        cursor: not-allowed;
+    }
+}
+.s-checkbox {
+    border-radius: var(--br-sm);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: contain;
+
+    &:checked, &:indeterminate {
+        border-color: var(--theme-secondary-400) !important;
+        background-color: var(--theme-secondary-400);
+
+        .highcontrast-dark-mode({
+            border-color: var(--blue-700) !important;
+            background-color: var(--blue-300);
+        });
+
+        &:focus {
+            border-color: var(--theme-secondary-400);
+        }
+    }
+
+    &:checked {
+        background-image: url("data:image/svg+xml,%3Csvg width='11' height='11' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M10 3.41L8.59 2 4 6.59 2.41 5 1 6.41l3 3z' fill='%23fff'/%3E%3C/svg%3E");
+    }
+    &:indeterminate {
+        background-image: url("data:image/svg+xml,%3Csvg width='11' height='11' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M2 4.5 h7 v2 h-7 z' fill='%23fff'/%3E%3C/svg%3E");
+    }
+
+    &:focus {
+        border-color: var(--theme-secondary-300);
+        box-shadow: 0 0 0 var(--su-static4) var(--focus-ring);
+    }
+}
+.s-radio {
+    border-radius: var(--br-circle);
+
+    &:checked {
+        border-color: var(--theme-secondary-400);
+        border-width: 0.30769231em;
+        background-color: @white; // This should always be white regardless of dark mode
+
+        .highcontrast-dark-mode({
+            border-color: var(--blue-300);
+            outline: 1px solid var(--black);
+        });
+    }
+
+    &:focus {
+        box-shadow: 0 0 0 var(--su-static4) var(--focus-ring);
+    }
+}
+
+.s-check-control { // TODO would _love_ to use .s-check instead, with no class on the input itself
     .s-label {
         [disabled] + & {
             &:extend(.is-disabled .s-label);
@@ -12,7 +86,6 @@
     display: flex;
     gap: var(--su8);
 }
-
 .s-check-group {
     display: flex;
     flex-direction: column;
@@ -33,98 +106,6 @@
     }
     .s-checkbox, .s-radio {
         margin-top: calc(var(--su2) + var(--su1)); // 3px
-    }
-}
-
-.s-checkbox,
-.s-radio {
-    //  [1]   Check to see if we can use custom styles, if so reset the defaults
-    //  ------------------------------------------------------------------------
-    @supports ((-webkit-appearance: none) or (-moz-appearance: none) or (appearance: none)) {
-        .appearance(none);
-
-        &::-ms-check {
-            display: none;
-        }
-
-        //  [2]  Now re-style the checkboxes and radios
-        //  ------------------------------------------------------------------------
-        margin: 0; // A guard against Core's default margins
-        width: 1em;
-        height: 1em;
-        border: 1px solid var(--bc-darker);
-        background-color: var(--white);
-        outline: 0;
-        font-size: inherit;
-        vertical-align: middle;
-        cursor: pointer;
-    }
-
-    //  Disabled
-    fieldset[disabled] &,
-    &[disabled] {
-        opacity: var(--_o-disabled-static);
-        cursor: not-allowed;
-    }
-}
-
-//  $$  CHECKBOXES
-//  ----------------------------------------------------------------------------
-.s-checkbox {
-    @supports ((-webkit-appearance: none) or (-moz-appearance: none) or (appearance: none)) {
-        border-radius: var(--br-sm);
-        background-position: center center;
-        background-repeat: no-repeat;
-        background-size: contain;
-
-        &:checked, &:indeterminate {
-            border-color: var(--theme-secondary-400) !important;
-            background-color: var(--theme-secondary-400);
-
-            .highcontrast-dark-mode({
-                border-color: var(--blue-700) !important;
-                background-color: var(--blue-300);
-            });
-
-            &:focus {
-                border-color: var(--theme-secondary-400);
-            }
-        }
-
-        &:checked {
-            background-image: url("data:image/svg+xml,%3Csvg width='11' height='11' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M10 3.41L8.59 2 4 6.59 2.41 5 1 6.41l3 3z' fill='%23fff'/%3E%3C/svg%3E");
-        }
-        &:indeterminate {
-            background-image: url("data:image/svg+xml,%3Csvg width='11' height='11' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M2 4.5 h7 v2 h-7 z' fill='%23fff'/%3E%3C/svg%3E");
-        }
-
-        &:focus {
-            border-color: var(--theme-secondary-300);
-            box-shadow: 0 0 0 var(--su-static4) var(--focus-ring);
-        }
-    }
-}
-
-//  $$  RADIOS
-//  ----------------------------------------------------------------------------
-.s-radio {
-    @supports ((-webkit-appearance: none) or (-moz-appearance: none) or (appearance: none)) {
-        border-radius: var(--br-circle);
-
-        &:checked {
-            border-color: var(--theme-secondary-400);
-            border-width: 0.30769231em;
-            background-color: @white; // This should always be white regardless of dark mode
-
-            .highcontrast-dark-mode({
-                border-color: var(--blue-300);
-                outline: 1px solid var(--black);
-            });
-        }
-
-        &:focus {
-            box-shadow: 0 0 0 var(--su-static4) var(--focus-ring);
-        }
     }
 }
 
