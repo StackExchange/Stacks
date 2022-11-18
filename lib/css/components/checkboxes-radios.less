@@ -1,16 +1,38 @@
 .s-checkbox,
 .s-radio {
+    --_ch-baw: var(--su-static1);
+    --_ch-bc: var(--bc-darker);
+    --_ch-bc-focus: var(--theme-secondary-300);
+    --_ch-bg: var(--white);
+    --_ch-bg-image: unset;
+    --_ch-bs-focus: 0 0 0 var(--su-static4) var(--focus-ring);
     // CONTEXTUAL STYLES
     fieldset[disabled] &,
     &[disabled] {
         cursor: not-allowed;
         opacity: var(--_o-disabled-static);
     }
+    .s-check-control & {
+        &[disabled] + .s-label {
+            &:extend(.is-disabled .s-label);
+        }
+    }
+    .s-check-group & {
+        margin-top: calc(var(--su2) + var(--su1)); // 3px
+    }
 
     // STATE
     &::-ms-check { // TODO do we still need this? I don't think so, but help me Windows peeps!
         display: none;
     }
+
+    // INTERACTION
+    &:focus {
+        box-shadow: var(--_ch-bs-focus);
+    }
+
+    background-color: var(--_ch-bg);
+    border: var(--_ch-baw) solid var(--_ch-bc);
 
     appearance: none;
     cursor: pointer;
@@ -22,11 +44,6 @@
     width: 1em;
 }
 .s-checkbox {
-    --_ch-bc: var(--bc-darker);
-    --_ch-bc-focus: var(--theme-secondary-300);
-    --_ch-bg: var(--white);
-    --_ch-bg-image: unset;
-
     // CONTEXTUAL STYLES
     .highcontrast-dark-mode({
         &:checked, &:indeterminate {
@@ -55,12 +72,9 @@
     // INTERACTION
     &:focus {
         border-color: var(--_ch-bc-focus);
-        box-shadow: 0 0 0 var(--su-static4) var(--focus-ring);
     }
 
-    background-color: var(--_ch-bg);
     background-image: var(--_ch-bg-image);
-    border: var(--su-static1) solid var(--_ch-bc);
 
     background-position: center center;
     background-repeat: no-repeat;
@@ -68,51 +82,62 @@
     border-radius: var(--br-sm);
 }
 .s-radio {
-    --_ra-baw: var(--su-static1);
-    --_ra-bc: var(--bc-darker);
-    --_ra-bg: var(--white);
-
     // CONTEXTUAL STYLES
     .highcontrast-dark-mode({
         &:checked {
-            --_ra-bc: var(--blue-300);
+            --_ch-bc: var(--blue-300);
             outline: var(--su-static1) solid var(--black);
         }
     });
     .dark-mode({
         &:checked {
-            --_ra-bg: var(--black);
+            --_ch-bg: var(--black);
         }
     });
 
     // STATES
     &:checked {
-        --_ra-baw: 0.30769231em;
-        --_ra-bc: var(--theme-secondary-400);
-        --_ra-bg: var(--white);
+        --_ch-baw: 0.30769231em;
+        --_ch-bc: var(--theme-secondary-400);
+        --_ch-bg: var(--white); // TODO seems to not change anything. Investigate
     }
-
-    // INTERACTION
-    &:focus {
-        box-shadow: 0 0 0 var(--su-static4) var(--focus-ring);
-    }
-
-    background-color: var(--_ra-bg);
-    border: var(--_ra-baw) solid var(--_ra-bc);
 
     border-radius: var(--br-circle);
 }
-
+.s-checkbox,
+.s-radio:not(:checked) {
+    .has-error &,
+    .has-success &,
+    .has-warning & {
+        --_ch-bc-focus: var(--_ch-bc);
+    }
+    .has-error & {
+        --_ch-bc: var(--red-400);
+        --_ch-bs-focus: 0 0 0 var(--su-static4) var(--focus-ring-error);
+    }
+    .has-success & {
+        --_ch-bc: var(--green-400);
+        --_ch-bs-focus: 0 0 0 var(--su-static4) var(--focus-ring-success);
+    }
+    .has-warning & {
+        --_ch-bc: var(--yellow-600);
+        --_ch-bs-focus: 0 0 0 var(--su-static4) var(--focus-ring-warning);
+    }
+}
 .s-check-control { // TODO would _love_ to use .s-check instead, with no class on the input itself
-    .s-label {
-        [disabled] + & {
-            &:extend(.is-disabled .s-label); // TODO this probably doesn't work post-refactor. Fix it.
-        }
+    --_cc-ai: center;
 
+    // CONTEXTUAL STYLES
+    .s-check-group & {
+        --_cc-ai: flex-start; // manually align the checkboxes and radios to the top of the group
+    }
+
+    // CHILD ELEMENTS
+    .s-label {
         font-weight: normal;
     }
 
-    align-items: center;
+    align-items: var(--_cc-ai);
     display: flex;
     gap: var(--su8);
 }
@@ -125,50 +150,12 @@
     }
 
     // CHILD ELEMENTS
-    .s-checkbox,
-    .s-radio {
-        margin-top: calc(var(--su2) + var(--su1)); // 3px
-    }
     legend.s-label { // TODO HACK? <legend> isn't respecting gap...
         margin-bottom: var(--su8);
-    }
-    .s-check-control { // manually align the checkboxes and radios to the top of the group
-        align-items: flex-start;
     }
 
     flex-direction: var(--_cg-fd);
 
     display: flex;
     gap: var(--su8);
-}
-
-.has-warning { // TODO move these styles to their component contexts
-    .s-checkbox,
-    .s-radio:not(:checked) {
-        border-color: var(--yellow-600);
-
-        &:focus {
-            box-shadow: 0 0 0 var(--su-static4) var(--focus-ring-warning);
-        }
-    }
-}
-.has-error { // TODO move these styles to their component contexts
-    .s-checkbox,
-    .s-radio:not(:checked) {
-        border-color: var(--red-400);
-
-        &:focus {
-            box-shadow: 0 0 0 var(--su-static4) var(--focus-ring-error);
-        }
-    }
-}
-.has-success { // TODO move these styles to their component contexts
-    .s-checkbox,
-    .s-radio:not(:checked) {
-        border-color: var(--green-400);
-
-        &:focus {
-            box-shadow: 0 0 0 var(--su-static4) var(--focus-ring-success);
-        }
-    }
 }
