@@ -37,19 +37,21 @@
             --_in-fc: var(--fc-light);
         });
     }
+    fieldset[disabled] &,
     &[disabled],
     &[readonly],
     .is-readonly & {
         --_in-c: not-allowed;
+    }
+    fieldset[disabled] &,
+    &[disabled] {
+        --_in-o: var(--_o-disabled-static);
     }
     &[readonly],
     .is-readonly & {
         --_in-bg: var(--black-050);
         --_in-bc: var(--bc-light);
         --_in-fc: var(--black-200);
-    }
-    &[disabled] {
-        --_in-o: var(--_o-disabled-static);
     }
     .has-error & {
         --_in-bc: var(--red-400);
@@ -273,6 +275,10 @@
             text-decoration: underline;
         }
     }
+    fieldset[disabled] & {
+        cursor: not-allowed;
+        opacity: var(--_o-disabled-static);
+    }
 
     // MODIFIERS
     .has-error & {
@@ -303,24 +309,4 @@
 
     font-size: var(--fs-caption);
     padding: var(--su2);
-}
-
-fieldset { // TODO move to standalone file
-    &[disabled] {
-        .s-checkbox,
-        .s-input,
-        .s-input-message,
-        .s-radio,
-        .s-select > select,
-        .s-textarea,
-        .s-toggle-switch,
-        .s-toggle-switch label {
-            cursor: not-allowed;
-            opacity: var(--_o-disabled-static);
-        }
-    }
-
-    border: 0;
-    min-width: 0;
-    padding: 0;
 }
