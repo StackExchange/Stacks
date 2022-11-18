@@ -1,9 +1,19 @@
 import '../css/stacks.less';
-import { ExpandableController, ModalController, PopoverController, TableController, TabListController, TooltipController, UploaderController } from './controllers';
+import {
+    ExpandableController,
+    KeyboardShortcutController,
+    ModalController,
+    PopoverController,
+    TableController,
+    TabListController,
+    TooltipController,
+    UploaderController
+} from './controllers';
 import { application, StacksApplication } from './stacks';
 
 // register all built-in controllers
 application.register("s-expandable-control", ExpandableController);
+application.register("s-keyboard-shortcut", KeyboardShortcutController);
 application.register("s-modal", ModalController);
 application.register("s-navigation-tablist", TabListController);
 application.register("s-popover", PopoverController);

@@ -1,5 +1,6 @@
 // export all controllers *with helpers* so they can be bulk re-exported by the package entry point
 export { ExpandableController } from './s-expandable-control';
+export { KeyboardShortcutController } from './s-keyboard-shortcut';
 export { hideModal, ModalController, showModal } from './s-modal';
 export { TabListController } from './s-navigation-tablist';
 export { attachPopover, detachPopover, hidePopover, BasePopoverController, PopoverController, showPopover } from './s-popover';
