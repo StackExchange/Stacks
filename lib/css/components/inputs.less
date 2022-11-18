@@ -30,12 +30,6 @@
     });
 
     // MODIFIERS
-    &[readonly],
-    .is-readonly & {
-        .highcontrast-mode({
-            --_in-fc: var(--fc-light);
-        });
-    }
     fieldset[disabled] &,
     &[disabled],
     &[readonly],
@@ -48,24 +42,41 @@
     }
     &[readonly],
     .is-readonly & {
+        .highcontrast-mode({
+            --_in-fc: var(--fc-light);
+        });
+
         --_in-bg: var(--black-050);
         --_in-bc: var(--bc-light);
         --_in-fc: var(--black-200);
+        --_in-fc-focus: var(--_in-fc);
     }
     .has-error & {
         --_in-bc: var(--red-400);
         --_in-bc-focus: var(--red-400);
         --_in-bs-focus: 0 0 0 var(--su-static4) var(--focus-ring-error);
+
+        .highcontrast-mode({
+            --_in-bc: var(--red-400);
+        });
     }
     .has-success & {
         --_in-bc: var(--green-400);
         --_in-bc-focus: var(--green-400);
         --_in-bs-focus: 0 0 0 var(--su-static4) var(--focus-ring-success);
+
+        .highcontrast-mode({
+            --_in-bc: var(--green-400);
+        });
     }
     .has-warning & {
         --_in-bc: var(--yellow-600);
         --_in-bc-focus: var(--yellow-600);
         --_in-bs-focus: 0 0 0 var(--su-static4) var(--focus-ring-warning);
+
+        .highcontrast-mode({
+            --_in-bc: var(--yellow-600);
+        });
     }
     &&__sm {
         --_in-fs: var(--fs-caption);
