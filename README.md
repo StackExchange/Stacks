@@ -34,25 +34,23 @@ Having trouble getting these steps to work? Open [an issue](https://github.com/S
 
 ## Testing Stacks
 
-### Component Tests
-🚧 Work in Progress 🚧
+### Unit/Component Tests
 
-Component tests are written with [DOM Testing Library](https://testing-library.com/docs/dom-testing-library/intro).
+Unit/Component tests are written with [DOM Testing Library](https://testing-library.com/docs/dom-testing-library/intro).
 Please follow the library's principles and documentation to write tests.
 
-Stacks uses [Web Test Runner](https://modern-web.dev/docs/test-runner/overview/) and [Playwright](https://modern-web.dev/docs/test-runner/browser-launchers/playwright/) to run tests in a real browser context
+Stacks uses [Web Test Runner](https://modern-web.dev/docs/test-runner/overview/) and [Playwright](https://modern-web.dev/docs/test-runner/browser-launchers/playwright/) to run tests in a real browser context.
 
-Execute the component tests suite via running:
+Execute the unit/component tests suite via running:
 ```sh
-npm test
+npm run test:unit
 ```
 or if you prefer watch mode run:
 ```sh
-npm run test:watch
+npm run test:unit:watch
 ```
 
 ### Visual Regression Tests
-🚧 Work in Progress 🚧
 
 This [Web Test Runner plugin](https://www.npmjs.com/package/@web/test-runner-visual-regression) is used to run visual regression tests. [DOM Testing Library](https://testing-library.com/docs/dom-testing-library/intro).
 Visual regression tests end with this suffix `*.visual.test.ts`.
@@ -70,7 +68,7 @@ npm run test:visual:update
 Failing tests (including diffs) can be found under `screenshots/[browser]/failed/` folders.
 
 ### Visual Regression Tests (Legacy)
-Stacks has implemented visual regression testing with [Backstop](https://github.com/garris/BackstopJS). To test if your new feature introduces visual regressions, run `npm run test:regression` in a new Terminal window while Stacks is running. After the tests have run, a new browser window with any regressions will show. If the regressions are desired, you can run `npm run approve` to establish the new baseline.
+Stacks has implemented visual regression testing with [Backstop](https://github.com/garris/BackstopJS). To test if your new feature introduces visual regressions, run `npm run test:legacy:regression` in a new Terminal window while Stacks is running. After the tests have run, a new browser window with any regressions will show. If the regressions are desired, you can run `npm run test:legacy:regression:update` to establish the new baseline.
 
 Individual routes to test are found in [backstop.json](/backstop.json)
 
