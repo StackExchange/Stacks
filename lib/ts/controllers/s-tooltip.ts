@@ -173,7 +173,7 @@ export class TooltipController extends BasePopoverController {
      * @param event An event object from s-popover:shown
      */
     private hideIfWithin(event: Event) {
-        if ((<Element>event.target!).contains(this.referenceElement)) {
+        if ((<Element>event.target).contains(this.referenceElement)) {
             this.scheduleHide();
         }
     }
