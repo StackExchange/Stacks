@@ -20,7 +20,7 @@
         color: var(--blue);
         float: right;
         font-size: var(--fs-fine);
-        line-height: 1.3 * 15px; // line-height should be the same as in the outside element, so the header and action baselines line up
+        line-height: calc(var(--fs-body1) * 1.5); // 19.5px - line-height should be the same as in the outside element, so the header and action baselines line up
         margin: 0 0 var(--su4) var(--su8);
     }
 
@@ -45,7 +45,7 @@
             }
         }
 
-        border-top: 1px solid var(--_sw-content-bc);
+        border-top: var(--su-static1) solid var(--_sw-content-bc);
         margin: 0;
         padding: var(--_sw-content-spacing-outer) var(--_sw-content-px);
     }
@@ -59,7 +59,7 @@
                 content: '';
                 float: left;
                 margin-right: var(--su12);
-                margin-top: ~"calc(1.3em / 2 - 5px)"; // 1.3 is our standard line height
+                margin-top: calc(calc(var(--lh-base) * 1em) / 2 - 5px); // 1.3 is our standard line height
                 transition: transform 0.3s cubic-bezier(0.4, 0.4, 0.6, 1);
             }
 
@@ -73,7 +73,7 @@
         &.s-sidebarwidget__small-bold-text {
             .s-sidebarwidget--action {
                 font-weight: normal;
-                line-height: calc(1.3 * var(--fs-caption));  // line-height should be the same as in the outside element, so the header and action baselines line up
+                line-height: calc(var(--lh-base) * var(--fs-caption)); // line-height should be the same as in the outside element, so the header and action baselines line up
             }
 
             font-size: var(--fs-caption);
@@ -90,7 +90,7 @@
         }
 
         background: var(--black-025);
-        border-top: 1px solid var(--_sw-header-bc);
+        border-top: var(--su-static1) solid var(--_sw-header-bc);
         color: var(--black-600);
         font-size: var(--fs-body2);
         font-weight: normal;
@@ -106,11 +106,11 @@
                 &:before {
                     border-left-color: var(--theme-primary-color);
                     border-left-style: solid;
-                    border-left-width: 3px;
+                    border-left-width: calc(var(--su-static1) * 3); // 3px
                     content: '';
                     height: calc(100% + var(--_sw-content-spacing-inner));
                     left: 0;
-                    margin-left: calc(var(--_sw-content-px) * -1 - 1px); // the orange selection indicator overlaps with the widget border
+                    margin-left: calc(var(--_sw-content-px) * -1 - var(--su-static1)); // the orange selection indicator overlaps with the widget border
                     margin-top: calc(var(--_sw-content-spacing-inner) / 2 * -1);
                     position: absolute;
                 }
@@ -180,25 +180,25 @@
     &:before { // [1]
         content: '';
         display: block;
-        margin-top: -1px;
+        margin-top: calc(var(--su-static1) * -1); // -1px
     }
 
     &:after { // [2]
-        border: 1px solid var(--_sw-after-bc);
+        border: var(--su-static1) solid var(--_sw-after-bc);
         border-radius: var(--br-sm);
         clip-path: polygon(0% 0%, 100% 0%, 100% 50%, 0% 50%); // [3]
         content: '';
         // TODO: this makes no sense. revisit.
         height: calc(2px + var(--br-sm)); // we need 2px border + 2px border radius to have the correct corner shape
-        left: -1px;
+        left: calc(var(--su-static1) * -1); // -1px
         pointer-events: none; // if the top item is clickable, then we don't want to prevent clicking the top 2 pixels
         position: absolute;
-        right: -1px;
-        top: -1px;
+        right: calc(var(--su-static1) * -1); // -1px
+        top: calc(var(--su-static1) * -1); // -1px
     }
 
     background-color: var(--white);
-    border: 1px solid var(--_sw-bc);
+    border: var(--su-static1) solid var(--_sw-bc);
     border-radius: var(--br-sm);
     box-shadow: var(--bs-sm);
     font-size: var(--fs-body1);
