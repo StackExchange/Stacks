@@ -77,6 +77,9 @@ npm run test:unit:watch
 
 ### Visual Regression Tests
 
+**Prerequisit:** In order to pull and upload baseline images you need to have `git lfs` installed in your local machine. Please follow [this guide](https://docs.github.com/en/repositories/working-with-files/managing-large-files/installing-git-large-file-storage) to install that.
+
+
 This [Web Test Runner plugin](https://www.npmjs.com/package/@web/test-runner-visual-regression) is used to run visual regression tests. [DOM Testing Library](https://testing-library.com/docs/dom-testing-library/intro).
 Visual regression tests end with this suffix `*.visual.test.ts`.
 
