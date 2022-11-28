@@ -20,6 +20,8 @@ Stacks documentation can be found at https://stackoverflow.design/
 
 - [Using Stacks](#using-stacks)
 - [Building Stacks](#building-stacks)
+- [Linting Stacks](#linting-stacks)
+- [Testing Stacks](#testing-stacks)
 - [Bugs and feature requests](#bugs-and-feature-requests)
 - [Contributing](#contributing)
 - [License](#license)
@@ -32,8 +34,31 @@ To contribute to Stacks documentation or its CSS library, you’ll need to build
 
 Having trouble getting these steps to work? Open [an issue](https://github.com/StackExchange/Stacks/issues/new) with a `setup` label.
 
+## Linting Stacks
+
+Run all lint suites by running:
+```sh
+npm run lint
+```
+
+Lint the styles (stylelint) by running:
+```sh
+npm run lint:css
+```
+Lint the typescript source code (eslint) via running:
+```sh
+npm run lint:ts
+```
+Lint the source code format (prettier) via running:
+```sh
+npm run lint:format
+```
 ## Testing Stacks
 
+Run all test suites by running:
+```sh
+npm test
+```
 ### Unit/Component Tests
 
 Unit/Component tests are written with [DOM Testing Library](https://testing-library.com/docs/dom-testing-library/intro).
@@ -41,7 +66,7 @@ Please follow the library's principles and documentation to write tests.
 
 Stacks uses [Web Test Runner](https://modern-web.dev/docs/test-runner/overview/) and [Playwright](https://modern-web.dev/docs/test-runner/browser-launchers/playwright/) to run tests in a real browser context.
 
-Execute the unit/component tests suite via running:
+Execute the unit/component tests suite by running:
 ```sh
 npm run test:unit
 ```
@@ -55,7 +80,7 @@ npm run test:unit:watch
 This [Web Test Runner plugin](https://www.npmjs.com/package/@web/test-runner-visual-regression) is used to run visual regression tests. [DOM Testing Library](https://testing-library.com/docs/dom-testing-library/intro).
 Visual regression tests end with this suffix `*.visual.test.ts`.
 
-Execute the visual regression tests suite via running:
+Execute the visual regression tests suite by running:
 ```sh
 npm run test:visual
 ```
