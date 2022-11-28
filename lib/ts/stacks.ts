@@ -92,8 +92,8 @@ export function createController(
         : class Controller extends StacksController {};
 
     for (const prop in controllerDefinition) {
-        // eslint-disable-next-line no-prototype-builtins
         const ownPropDescriptor =
+            // eslint-disable-next-line no-prototype-builtins
             controllerDefinition.hasOwnProperty(prop) &&
             Object.getOwnPropertyDescriptor(controllerDefinition, prop);
         if (prop !== "targets" && ownPropDescriptor) {
