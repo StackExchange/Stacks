@@ -134,14 +134,14 @@ body {
     //  ----------------------------------------------------------------------------
     // Need to remove the unit off the font-size to make line-height unitless
     // FIXME this shouldn't be public. Find a way to use unitless `--fs-base`.
-    @stacks-internals-lh-unit: 13;
+    --stacks-internals-lh-unit: 13;
 
     // Now the various line-height variables
     --lh-xs:    1;
-    --lh-sm:    calc((@stacks-internals-lh-unit + 2) / @stacks-internals-lh-unit);
-    --lh-md:    calc((@stacks-internals-lh-unit + 4) / @stacks-internals-lh-unit);
-    --lh-lg:    calc((@stacks-internals-lh-unit + 8) / @stacks-internals-lh-unit);
-    --lh-xl:    calc((@stacks-internals-lh-unit + 12) / @stacks-internals-lh-unit);
+    --lh-sm:    calc((var(--stacks-internals-lh-unit) + 2) / var(--stacks-internals-lh-unit));
+    --lh-md:    calc((var(--stacks-internals-lh-unit) + 4) / var(--stacks-internals-lh-unit));
+    --lh-lg:    calc((var(--stacks-internals-lh-unit) + 8) / var(--stacks-internals-lh-unit));
+    --lh-xl:    calc((var(--stacks-internals-lh-unit) + 12) / var(--stacks-internals-lh-unit));
     --lh-xxl:   2;
 
     --lh-base: var(--lh-md);
@@ -149,5 +149,5 @@ body {
     //      Holdover line-heights from production. These are NOT to be used and
     //      need to be deprecated.
     //  ----------------------------------------------------------------------------
-    --lh-6:      calc((@stacks-internals-lh-unit + 6) / @stacks-internals-lh-unit);
+    --lh-6:      ((var(--stacks-internals-lh-unit) + 6) / var(--stacks-internals-lh-unit));
 }
