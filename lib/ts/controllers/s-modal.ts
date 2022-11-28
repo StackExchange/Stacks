@@ -220,7 +220,7 @@ export class ModalController extends Stacks.StacksController {
                 } else if (!e.shiftKey && e.target === lastTabbable) {
                     e.preventDefault();
                     firstTabbable.focus();
-                } 
+                }
             }
         }
     }
@@ -255,7 +255,7 @@ export class ModalController extends Stacks.StacksController {
         const target = <Node>e.target;
         // check if the document was clicked inside either the toggle element or the modal itself
         // note: .contains also returns true if the node itself matches the target element
-        if (!this.modalTarget.querySelector(".s-modal--dialog")!.contains(target) && document.body.contains(target)) {
+        if (!this.modalTarget.querySelector(".s-modal--dialog")?.contains(target) && document.body.contains(target)) {
             this._toggle(false, e);
         }
     }

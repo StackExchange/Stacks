@@ -82,7 +82,7 @@ export class TableController extends Stacks.StacksController {
             // unless the to-be-sorted-by value is explicitly provided on the element via this attribute,
             // the value we're using is the cell's text, trimmed of any whitespace
             const explicit = controller.getElementData(cell, "sort-val");
-            const d = typeof explicit === "string" ? explicit : cell.textContent!.trim();
+            const d = typeof explicit === "string" ? explicit : cell.textContent?.trim() ?? '';
 
             if ((d !== "") && (`${parseInt(d, 10)}` !== d)) {
                 anyNonInt = true;
@@ -117,7 +117,7 @@ export class TableController extends Stacks.StacksController {
         // this is the actual reordering of the table rows
         data.forEach(function (tup) {
             const row = rows[tup[1]];
-            row.parentElement!.removeChild(row);
+            row.parentElement?.removeChild(row);
             if (firstBottomRow) {
                 tbody.insertBefore(row, firstBottomRow);
             } else {
@@ -214,8 +214,8 @@ function buildIndexOrGetCellSlot(section: HTMLTableSectionElement, findCell?: HT
             }
             curSlot++;
         }
-        if (curRow) {
-            curRow = curRow.nextElementSibling!;
+        if (curRow?.nextElementSibling) {
+            curRow = curRow.nextElementSibling;
         }
     }
     return findCell ? -1 : index; /* if findCell was given but we end up here, that means it isn't in this section */

@@ -63,23 +63,24 @@ export class StacksController extends Stimulus.Controller {
 
 // ControllerDefinition/createController/addController is here to make
 // it easier to consume Stimulus from ES5 files (without classes)
-export interface ControllerDefinition {
-    [name: string]: any;
+export interface ControllerDefinition { 
+    [name: string]: unknown;
     targets?: string[];
 }
 export function createController(controllerDefinition: ControllerDefinition): typeof StacksController {
     // eslint-disable-next-line no-prototype-builtins
     const Controller = controllerDefinition.hasOwnProperty("targets")
-        ? class Controller extends StacksController { static targets = controllerDefinition.targets! }
+        ? class Controller extends StacksController { static targets = controllerDefinition.targets ?? []}
         : class Controller extends StacksController {};
 
     for (const prop in controllerDefinition) {
         // eslint-disable-next-line no-prototype-builtins
-        if (prop !== "targets" && controllerDefinition.hasOwnProperty(prop)) {
+        const ownPropDescriptor = controllerDefinition.hasOwnProperty(prop) && Object.getOwnPropertyDescriptor(controllerDefinition, prop);
+        if (prop !== "targets" && ownPropDescriptor) {
             Object.defineProperty(
                 Controller.prototype,
                 prop,
-                Object.getOwnPropertyDescriptor(controllerDefinition, prop)!
+                ownPropDescriptor
             );
         }
     }
