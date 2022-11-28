@@ -45,9 +45,13 @@ export class TooltipController extends BasePopoverController {
      * Attempts to show the tooltip popover so long as no other Stacks-managed popover is
      * present on the page.
      */
-    show(dispatcher: Event|Element|null = null) {
+    show(dispatcher: Event | Element | null = null) {
         // check and see if this controller coexists with a popover
-        const controller = Stacks.application.getControllerForElementAndIdentifier(this.element, "s-popover");
+        const controller =
+            Stacks.application.getControllerForElementAndIdentifier(
+                this.element,
+                "s-popover"
+            );
 
         // if the controller exists and already has a visible popover, don't show the tooltip
         if (controller && (<PopoverController>controller).isVisible) {
@@ -62,7 +66,10 @@ export class TooltipController extends BasePopoverController {
      */
     scheduleShow(dispatcher: Event | Element | null = null) {
         window.clearTimeout(this.activeTimeout);
-        this.activeTimeout = window.setTimeout(() => this.show(dispatcher), 300);
+        this.activeTimeout = window.setTimeout(
+            () => this.show(dispatcher),
+            300
+        );
     }
 
     /**
@@ -70,13 +77,16 @@ export class TooltipController extends BasePopoverController {
      */
     scheduleHide(dispatcher: Event | Element | null = null) {
         window.clearTimeout(this.activeTimeout);
-        this.activeTimeout = window.setTimeout(() => super.hide(dispatcher), 100);
+        this.activeTimeout = window.setTimeout(
+            () => super.hide(dispatcher),
+            100
+        );
     }
 
     /**
      * Cancels the activeTimeout
      */
-     clearActiveTimeout() {
+    clearActiveTimeout() {
         clearTimeout(this.activeTimeout);
     }
 
@@ -84,13 +94,14 @@ export class TooltipController extends BasePopoverController {
      * Applies data-s-tooltip-html-title and title attributes.
      */
     applyTitleAttributes() {
-
         let content: Node;
 
         const htmlTitle = this.data.get("html-title");
         if (htmlTitle) {
             // eslint-disable-next-line no-unsanitized/method
-            content = document.createRange().createContextualFragment(htmlTitle);
+            content = document
+                .createRange()
+                .createContextualFragment(htmlTitle);
         } else {
             const plainTitle = this.element.getAttribute("title");
             if (plainTitle) {
@@ -135,7 +146,10 @@ export class TooltipController extends BasePopoverController {
         if (arrow) {
             popover.appendChild(arrow);
         } else {
-            popover.insertAdjacentHTML("beforeend", `<div class="s-popover--arrow"></div>`);
+            popover.insertAdjacentHTML(
+                "beforeend",
+                `<div class="s-popover--arrow"></div>`
+            );
         }
 
         this.scheduleUpdate();
@@ -148,7 +162,8 @@ export class TooltipController extends BasePopoverController {
      * the page.
      */
     protected bindDocumentEvents() {
-        this.boundHideIfWithin = this.boundHideIfWithin || this.hideIfWithin.bind(this);
+        this.boundHideIfWithin =
+            this.boundHideIfWithin || this.hideIfWithin.bind(this);
 
         document.addEventListener("s-popover:shown", this.boundHideIfWithin);
     }
@@ -186,10 +201,13 @@ export class TooltipController extends BasePopoverController {
     /**
      * Binds mouse events to show/hide on reference element hover
      */
-     private bindKeyboardEvents() {
-        this.boundScheduleShow = this.boundScheduleShow || this.scheduleShow.bind(this);
+    private bindKeyboardEvents() {
+        this.boundScheduleShow =
+            this.boundScheduleShow || this.scheduleShow.bind(this);
         this.boundHide = this.boundHide || this.scheduleHide.bind(this);
-        this.boundHideOnEscapeKeyEvent = this.boundHideOnEscapeKeyEvent || this.hideOnEscapeKeyEvent.bind(this);
+        this.boundHideOnEscapeKeyEvent =
+            this.boundHideOnEscapeKeyEvent ||
+            this.hideOnEscapeKeyEvent.bind(this);
 
         this.referenceElement.addEventListener("focus", this.boundScheduleShow);
         this.referenceElement.addEventListener("blur", this.boundHide);
@@ -198,24 +216,34 @@ export class TooltipController extends BasePopoverController {
     /**
      * Unbinds all mouse events
      */
-     private unbindKeyboardEvents() {
-        this.referenceElement.removeEventListener("focus", this.boundScheduleShow);
+    private unbindKeyboardEvents() {
+        this.referenceElement.removeEventListener(
+            "focus",
+            this.boundScheduleShow
+        );
         this.referenceElement.removeEventListener("blur", this.boundHide);
         document.removeEventListener("keyup", this.boundHideOnEscapeKeyEvent);
     }
-
 
     /**
      * Binds mouse events to show/hide on reference element hover
      */
     private bindMouseEvents() {
-        this.boundScheduleShow = this.boundScheduleShow || this.scheduleShow.bind(this);
+        this.boundScheduleShow =
+            this.boundScheduleShow || this.scheduleShow.bind(this);
         this.boundHide = this.boundHide || this.scheduleHide.bind(this);
-        this.boundClearActiveTimeout = this.boundClearActiveTimeout || this.clearActiveTimeout.bind(this);
+        this.boundClearActiveTimeout =
+            this.boundClearActiveTimeout || this.clearActiveTimeout.bind(this);
 
-        this.referenceElement.addEventListener("mouseover", this.boundScheduleShow);
+        this.referenceElement.addEventListener(
+            "mouseover",
+            this.boundScheduleShow
+        );
         this.referenceElement.addEventListener("mouseout", this.boundHide);
-        this.popoverElement.addEventListener("mouseover", this.boundClearActiveTimeout);
+        this.popoverElement.addEventListener(
+            "mouseover",
+            this.boundClearActiveTimeout
+        );
         this.popoverElement.addEventListener("mouseout", this.boundHide);
     }
 
@@ -223,11 +251,20 @@ export class TooltipController extends BasePopoverController {
      * Unbinds all mouse events
      */
     private unbindMouseEvents() {
-        this.referenceElement.removeEventListener("mouseover", this.boundScheduleShow);
+        this.referenceElement.removeEventListener(
+            "mouseover",
+            this.boundScheduleShow
+        );
         this.referenceElement.removeEventListener("mouseout", this.boundHide);
-        this.referenceElement.removeEventListener("focus", this.boundScheduleShow);
+        this.referenceElement.removeEventListener(
+            "focus",
+            this.boundScheduleShow
+        );
         this.referenceElement.removeEventListener("blur", this.boundHide);
-        this.popoverElement.removeEventListener("mouseover", this.boundClearActiveTimeout);
+        this.popoverElement.removeEventListener(
+            "mouseover",
+            this.boundClearActiveTimeout
+        );
         this.popoverElement.removeEventListener("mouseout", this.boundHide);
     }
 
@@ -236,7 +273,9 @@ export class TooltipController extends BasePopoverController {
      */
     private static generateId() {
         // generate a random number, then convert to a well formatted string
-        return "--stacks-s-tooltip-" + Math.random().toString(36).substring(2, 10);
+        return (
+            "--stacks-s-tooltip-" + Math.random().toString(36).substring(2, 10)
+        );
     }
 }
 
@@ -246,7 +285,11 @@ export class TooltipController extends BasePopoverController {
  * @param html An HTML string to populate the tooltip with.
  * @param options Options for rendering the tooltip.
  */
-export function setTooltipHtml(element: Element, html: string, options?: TooltipOptions) {
+export function setTooltipHtml(
+    element: Element,
+    html: string,
+    options?: TooltipOptions
+) {
     element.setAttribute("data-s-tooltip-html-title", html);
     element.removeAttribute("title");
     applyOptionsAndTitleAttributes(element, options);
@@ -258,7 +301,11 @@ export function setTooltipHtml(element: Element, html: string, options?: Tooltip
  * @param text A plain text string to populate the tooltip with.
  * @param options Options for rendering the tooltip.
  */
-export function setTooltipText(element: Element, text: string, options?: TooltipOptions) {
+export function setTooltipText(
+    element: Element,
+    text: string,
+    options?: TooltipOptions
+) {
     element.setAttribute("title", text);
     element.removeAttribute("data-s-tooltip-html-title");
     applyOptionsAndTitleAttributes(element, options);
@@ -269,17 +316,28 @@ export function setTooltipText(element: Element, text: string, options?: Tooltip
  * @param element The element to add a tooltip to.
  * @param options Options for rendering the tooltip.
  */
-function applyOptionsAndTitleAttributes(element: Element, options?: TooltipOptions) {
+function applyOptionsAndTitleAttributes(
+    element: Element,
+    options?: TooltipOptions
+) {
     if (options && options.placement) {
         element.setAttribute("data-s-tooltip-placement", options.placement);
     }
 
-    const controller = <TooltipController>Stacks.application.getControllerForElementAndIdentifier(element, "s-tooltip");
+    const controller = <TooltipController>(
+        Stacks.application.getControllerForElementAndIdentifier(
+            element,
+            "s-tooltip"
+        )
+    );
 
     if (controller) {
         controller.applyTitleAttributes();
     } else {
         const dataController = element.getAttribute("data-controller");
-        element.setAttribute("data-controller", `${dataController ? dataController : ""} s-tooltip`);
+        element.setAttribute(
+            "data-controller",
+            `${dataController ? dataController : ""} s-tooltip`
+        );
     }
 }

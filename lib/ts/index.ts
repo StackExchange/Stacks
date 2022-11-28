@@ -1,6 +1,14 @@
-import '../css/stacks.less';
-import { ExpandableController, ModalController, PopoverController, TableController, TabListController, TooltipController, UploaderController } from './controllers';
-import { application, StacksApplication } from './stacks';
+import "../css/stacks.less";
+import {
+    ExpandableController,
+    ModalController,
+    PopoverController,
+    TableController,
+    TabListController,
+    TooltipController,
+    UploaderController,
+} from "./controllers";
+import { application, StacksApplication } from "./stacks";
 
 // register all built-in controllers
 application.register("s-expandable-control", ExpandableController);
