@@ -48,4 +48,17 @@ export default {
             files: "lib/test/**/*.visual.test.ts",
         },
     ],
+
+    // settle on a font-family for visual regression tests across operating systems
+    testRunnerHtml: (testFramework) =>
+        `<html>
+            <body>
+                <style>
+                    body {
+                        font-family: Arial;
+                    }
+                </style>
+                <script type="module" src="${testFramework}"></scrip>
+            </body>
+        </html>`,
 };
