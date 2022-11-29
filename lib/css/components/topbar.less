@@ -54,29 +54,7 @@
             --theme-topbar-item-color-current: @black;
         }
 
-        border-bottom: 1px solid currentColor;
-    });
-
-    #stacks-internals #screen-sm({
-        & &--searchbar {
-            display: none;
-            position: absolute;
-            left: 0;
-            right: 0;
-            top: 100%;
-            max-width: 100%;
-            padding: var(--su8) var(--su12);
-            background: var(--theme-topbar-item-background-hover);
-
-            .s-select {
-                .w25;
-            }
-
-            &.s-topbar--searchbar__open {
-                display: flex;
-                max-width: none;
-            }
-        }
+        border-bottom: var(--su-static1) solid currentColor;
     });
 
     // STATES
@@ -342,6 +320,26 @@
     }
 
     & &--searchbar {
+        #stacks-internals #screen-sm({ // TODO Consider moving to CONDITIONAL STYLES section
+            background: var(--theme-topbar-item-background-hover);
+            display: none;
+            left: 0;
+            max-width: 100%;
+            padding: var(--su8) var(--su12);
+            position: absolute;
+            right: 0;
+            top: 100%;
+
+            .s-select {
+                .w25;
+            }
+
+            &.s-topbar--searchbar__open {
+                display: flex;
+                max-width: none;
+            }
+        });
+
         .s-topbar--searchbar--input-group {
             .s-input {
                 &::placeholder {
