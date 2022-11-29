@@ -5,19 +5,12 @@
 }
 
 .s-topbar {
-    min-width: auto;
-    box-shadow: var(--bs-sm);
-    width: 100%;
-    z-index: var(--zi-navigation-fixed);
-    background-color: var(--theme-topbar-background-color);
-    height: var(--theme-topbar-height);
-    display: flex;
-    border-top: var(--theme-topbar-accent-border);
-    position: relative;
-    align-items: center;
+    // BASE COMPONENT-SPECIFIC CUSTOM PROPERTIES
+    // VARIANT CUSTOM PROPERTIES
+    // CHILD COMPONENT CUSTOM PROPERTIES
 
-    // Redefine the variables for extra contrast in high-contrast mode
-    .highcontrast-mode({
+    // CONTEXTUAL STYLES
+    .highcontrast-mode({ // Redefine the variables for extra contrast in high-contrast mode
         // Search input
         --theme-topbar-search-color: var(--theme-topbar-item-color);
         --theme-topbar-search-background: var(--theme-topbar-background-color);
@@ -34,21 +27,213 @@
         --theme-topbar-item-color-hover: var(--black-900);
         --theme-topbar-item-background-hover: var(--black-200);
         --theme-topbar-item-color-current: var(--black);
+
+        &&__dark {
+            // TODO HACK remove everything below once light/dark topbars are inheriting forced themes correctly
+            // redefine the variables for extra contrast in high-contrast mode
+
+            // Topbar items
+            --theme-topbar-item-color: @white;
+            --theme-topbar-item-color-hover: @white;
+            --theme-topbar-item-background-hover: @black-700;
+            --theme-topbar-item-color-current: @white;
+
+            .s-badge {
+                border-color: currentColor;
+            }
+        }
+
+        &&__light {
+            // TODO HACK remove everything below once light/dark topbars are inheriting forced themes correctly
+            // redefine the variables for extra contrast in high-contrast mode
+
+            // Topbar items
+            --theme-topbar-item-color: @black-800;
+            --theme-topbar-item-color-hover: @black-900;
+            --theme-topbar-item-background-hover: @black-075;
+            --theme-topbar-item-color-current: @black;
+        }
+
+        border-bottom: 1px solid currentColor;
     });
 
-    .highcontrast-mode({ border-bottom: 1px solid currentColor; });
+    #stacks-internals #screen-sm({
+        & &--searchbar {
+            display: none;
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 100%;
+            max-width: 100%;
+            padding: var(--su8) var(--su12);
+            background: var(--theme-topbar-item-background-hover);
 
-    // Wraps the content so the topbar stretches 100% w/ content at some value below that
-    .s-topbar--container {
-        width: var(--s-full); // wmx12; Consumers should use atomic classes to override this
-        max-width: 100%;
-        height: 100%;
-        display: flex;
-        margin: 0 auto;
-        align-items: center;
+            .s-select {
+                .w25;
+            }
+
+            &.s-topbar--searchbar__open {
+                display: flex;
+                max-width: none;
+            }
+        }
+    });
+
+    // STATES
+    // MODIFIERS
+    // VARIANTS
+    &&__dark {
+        // TODO this only works 100% perfectly in dark mode, due to child elements inheriting current theme colors
+        // TODO extend forced dark mode instead of overriding
+        @topbar-actual-background: @black-800;
+        // TODO
+        #calc-topbar-lightness-increase() when (lightness(@topbar-actual-background) < 15%) {
+            @topbar-search-lightness-increase: 20%;
+        }
+        #calc-topbar-lightness-increase() when not (lightness(@topbar-actual-background) < 15%) {
+            @topbar-search-lightness-increase: 10%;
+        }
+        #calc-topbar-lightness-increase();
+
+        --theme-topbar-background-color: @topbar-actual-background;
+
+        // Search input
+        --theme-topbar-search-color: lighten(@topbar-actual-background, 80% + @topbar-search-lightness-increase);
+        --theme-topbar-search-background: lighten(@topbar-actual-background, @topbar-search-lightness-increase);
+        --theme-topbar-search-placeholder: lighten(@topbar-actual-background, 60% + @topbar-search-lightness-increase);
+        --theme-topbar-search-border: lighten(@topbar-actual-background, 20% + @topbar-search-lightness-increase);
+        --theme-topbar-search-border-focus: lighten(@topbar-actual-background, 45% + @topbar-search-lightness-increase);
+        --theme-topbar-search-shadow-focus: 0 0 0 var(--su-static4) fade(@white, 30%);
+
+        // Search switcher
+        --theme-topbar-select-color: lighten(@topbar-actual-background, 60% + @topbar-search-lightness-increase);
+        --theme-topbar-select-background: lighten(@topbar-actual-background, 10% + @topbar-search-lightness-increase);
+
+        // Items
+        --theme-topbar-item-color: @black-100;
+        --theme-topbar-item-color-hover: @white;
+        --theme-topbar-item-background-hover: @black-700;
+        --theme-topbar-item-color-current: @white;
+        --theme-topbar-item-border-current: var(--theme-primary-color);
+
+        // Themed border accent
+        --theme-topbar-accent-border: none;
+
+        --scrollbar: hsla(0, 0%, 100%, 0.2);
     }
 
-    .s-topbar--logo {
+    &&__light {
+        // TODO this only works 100% perfectly in light mode, due to child elements inheriting current theme colors
+        // TODO extend forced light mode instead of overriding
+
+        --theme-topbar-background-color: @black-025;
+
+        // Search input
+        --theme-topbar-search-color: @black-700;
+        --theme-topbar-search-background: @white;
+        --theme-topbar-search-placeholder: @black-400;
+        --theme-topbar-search-border: @black-200;
+        --theme-topbar-search-border-focus: @blue-300;
+        --theme-topbar-search-shadow-focus: 0 0 0 var(--su-static4) var(--focus-ring);
+
+        // Search switcher
+        --theme-topbar-select-color: @black-700;
+        --theme-topbar-select-background: @black-050;
+
+        // Items
+        --theme-topbar-item-color: @black-600;
+        --theme-topbar-item-color-hover: @black-800;
+        --theme-topbar-item-background-hover: @black-075;
+        --theme-topbar-item-color-current: @black;
+        --theme-topbar-item-border-current: var(--theme-primary-color);
+
+    
+        .highcontrast-mode({
+        });
+
+        --scrollbar: hsla(0, 0%, 0%, 0.2);
+    }
+
+    // CHILD ELEMENTS
+    & a&--logo {
+        &.is-selected {
+            background-color: var(--theme-topbar-item-background-hover);
+
+        }
+        &:hover {
+            background-color: var(--theme-topbar-item-background-hover);
+        }
+    }
+
+    & &--container { // Wraps the content so the topbar stretches 100% w/ content at some value below that
+        align-items: center;
+        display: flex;
+        height: 100%;
+        margin: 0 auto;
+        max-width: 100%;
+        width: var(--s-full); // wmx12; Consumers should use atomic classes to override this
+    }
+
+    & &--content {
+        display: flex;
+        height: 100%;
+        .list-reset;
+
+        & > li {
+            display: inline-flex;
+        }
+
+        // TODO remove once all topbars include necessary nav.s-topbar--navigation wrapper elements
+        overflow-x: auto; // Allow this content to scroll if it gets too long
+        @scrollbar-styles(); // Style the scrollbars
+        margin-left: auto; // Push this section as far to the right as possible
+
+        .s-topbar--item:not(.s-topbar--item__unset) {
+            .s-activity-indicator {
+                box-shadow: 0 0 0 var(--su-static2)  var(--theme-topbar-background-color);
+                position: absolute;
+                right: 2px;
+                top: calc(50% - 14px);
+                transition: top var(--te-smooth) 0.15s;
+            }
+
+            .svg-icon {
+                vertical-align: text-top;
+            }
+
+            &:hover,
+            &:focus,
+            &.is-selected,
+            &.is-selected:hover,
+            &.is-selected:focus {
+                .s-activity-indicator {
+                    box-shadow: 0 0 0 var(--su-static2) var(--theme-topbar-item-background-hover);
+                    top: calc(50% - 18px);
+                }
+
+                background-color: var(--theme-topbar-item-background-hover);
+                color: var(--theme-topbar-item-color-hover);
+                outline: none;
+                text-decoration: none;
+            }
+
+            align-items: center;
+            color: var(--theme-topbar-item-color);
+            display: inline-flex;
+            padding: 0 calc(var(--su12) - var(--su2));
+            position: relative;
+            text-decoration: none;
+            white-space: nowrap;
+        }
+
+        .s-topbar--item__unset { // provide only layout styling for unset items
+            align-self: center;
+            padding-bottom: var(--su8);
+            padding-top: var(--su8);
+        }
+    }
+
+    & &--logo {
         padding: 0 var(--su8);
         height: 100%;
         display: flex;
@@ -56,380 +241,208 @@
         background-color: transparent;
     }
 
-    a.s-topbar--logo:hover {
-        background-color: var(--theme-topbar-item-background-hover);
-    }
-
-    a.s-topbar--logo.is-selected {
-        background-color: var(--theme-topbar-item-background-hover);
-    }
-
-    .s-topbar--menu-btn {
-        display: flex;
-        height: 100%;
-        padding: 0 var(--su16);
-        flex-shrink: 0;
-        align-items: center;
-        justify-content: center;
-
-        // Build a hamburger icon manually using spans instead of using `@Svg` helper so
-        // we can more easily animate its content and transform the hamburger into an x
-        span {
+    & &--menu-btn {
+        span { // [1]
             &,
-            &:before,
-            &:after {
-                width: var(--su-static16);
-                height: var(--su-static2);
+            &:after,
+            &:before {
                 background-color: var(--theme-topbar-item-color);
-                position: relative;
+                height: var(--su-static2);
+                width: var(--su-static16);
             }
 
-            &:before,
-            &:after {
-                position: absolute;
+            &:after,
+            &:before {
                 content: '';
                 left: 0;
-                top: -5px;
-                transition: top, transform;
+                position: absolute;
                 transition-duration: 0.1s;
                 transition-timing-function: ease-in-out;
+                transition: top, transform;
             }
 
             &:after {
                 top: 5px;
             }
+            &:before {
+                top: -5px;
+            }
+
+            position: relative;
         }
 
-        // Transforming hamburger into x
-        &.is-selected {
-            color: var(--theme-topbar-item-color-current);
-            background-color: var(--theme-topbar-item-background-current);
-
+        &.is-selected { // Transforming hamburger into x
             span {
-                background-color: transparent;
+                &:after,
+                &:before {
+                        top: 0;
+                }
 
-                &:before,
                 &:after {
-                    top: 0;
+                    transform: rotate(45deg);
+                }
+
+                &:before {
                     transform: rotate(-45deg);
                 }
 
-                &:after { transform: rotate(45deg); }
+                background-color: transparent;
             }
+
+            background-color: var(--theme-topbar-item-background-current);
+            color: var(--theme-topbar-item-color-current);
         }
 
         &:hover {
             color: var(--theme-topbar-item-color-hover);
             background-color: var(--theme-topbar-item-background-hover);
         }
-    }
 
-    .s-navigation {
-        .s-navigation--item:focus-visible {
-            box-shadow: var(--theme-topbar-search-shadow-focus);
-        }
-        .s-navigation--item:not(.is-selected) {
-            color: var(--theme-topbar-item-color);
-        }
-
-        .s-navigation--item:not(.is-selected):hover {
-            color: var(--theme-topbar-item-color-hover);
-            background-color: var(--theme-topbar-item-background-hover);
-        }
-    }
-}
-
-//  ===========================================================================
-//  $   LIGHT
-//  ---------------------------------------------------------------------------
-.s-topbar__light {
-    // TODO this only works 100% perfectly in light mode, due to child elements inheriting current theme colors
-    // TODO extend forced light mode instead of overriding
-
-    --theme-topbar-background-color: @black-025;
-
-    // Search input
-    --theme-topbar-search-color: @black-700;
-    --theme-topbar-search-background: @white;
-    --theme-topbar-search-placeholder: @black-400;
-    --theme-topbar-search-border: @black-200;
-    --theme-topbar-search-border-focus: @blue-300;
-    --theme-topbar-search-shadow-focus: 0 0 0 var(--su-static4) var(--focus-ring);
-
-    // Search switcher
-    --theme-topbar-select-color: @black-700;
-    --theme-topbar-select-background: @black-050;
-
-    // Items
-    --theme-topbar-item-color: @black-600;
-    --theme-topbar-item-color-hover: @black-800;
-    --theme-topbar-item-background-hover: @black-075;
-    --theme-topbar-item-color-current: @black;
-    --theme-topbar-item-border-current: var(--theme-primary-color);
-
-    // TODO HACK remove everything below once light/dark topbars are inheriting forced themes correctly
-    // redefine the variables for extra contrast in high-contrast mode
-    .highcontrast-mode({
-        // Topbar items
-        --theme-topbar-item-color: @black-800;
-        --theme-topbar-item-color-hover: @black-900;
-        --theme-topbar-item-background-hover: @black-075;
-        --theme-topbar-item-color-current: @black;
-    });
-
-    --scrollbar: hsla(0, 0%, 0%, 0.2);
-}
-
-//  ===========================================================================
-//  $   DARK
-//  ---------------------------------------------------------------------------
-.s-topbar__dark {
-    // TODO this only works 100% perfectly in dark mode, due to child elements inheriting current theme colors
-    // TODO extend forced dark mode instead of overriding
-
-    @topbar-actual-background: @black-800;
-    // TODO
-    #calc-topbar-lightness-increase() when (lightness(@topbar-actual-background) < 15%) {
-        @topbar-search-lightness-increase: 20%;
-    }
-    #calc-topbar-lightness-increase() when not (lightness(@topbar-actual-background) < 15%) {
-        @topbar-search-lightness-increase: 10%;
-    }
-    #calc-topbar-lightness-increase();
-
-    --theme-topbar-background-color: @topbar-actual-background;
-
-    // Search input
-    --theme-topbar-search-color: lighten(@topbar-actual-background, 80% + @topbar-search-lightness-increase);
-    --theme-topbar-search-background: lighten(@topbar-actual-background, @topbar-search-lightness-increase);
-    --theme-topbar-search-placeholder: lighten(@topbar-actual-background, 60% + @topbar-search-lightness-increase);
-    --theme-topbar-search-border: lighten(@topbar-actual-background, 20% + @topbar-search-lightness-increase);
-    --theme-topbar-search-border-focus: lighten(@topbar-actual-background, 45% + @topbar-search-lightness-increase);
-    --theme-topbar-search-shadow-focus: 0 0 0 var(--su-static4) fade(@white, 30%);
-
-    // Search switcher
-    --theme-topbar-select-color: lighten(@topbar-actual-background, 60% + @topbar-search-lightness-increase);
-    --theme-topbar-select-background: lighten(@topbar-actual-background, 10% + @topbar-search-lightness-increase);
-
-    // Items
-    --theme-topbar-item-color: @black-100;
-    --theme-topbar-item-color-hover: @white;
-    --theme-topbar-item-background-hover: @black-700;
-    --theme-topbar-item-color-current: @white;
-    --theme-topbar-item-border-current: var(--theme-primary-color);
-
-    // Themed border accent
-    --theme-topbar-accent-border: none;
-
-    // TODO HACK remove everything below once light/dark topbars are inheriting forced themes correctly
-    // redefine the variables for extra contrast in high-contrast mode
-    .highcontrast-mode({
-        // Topbar items
-        --theme-topbar-item-color: @white;
-        --theme-topbar-item-color-hover: @white;
-        --theme-topbar-item-background-hover: @black-700;
-        --theme-topbar-item-color-current: @white;
-
-        .s-badge {
-            border-color: currentColor;
-        }
-    });
-
-    --scrollbar: hsla(0, 0%, 100%, 0.2);
-}
-
-//  ===========================================================================
-//  $   CONTENT & CTAS
-//  ---------------------------------------------------------------------------
-.s-topbar--navigation {
-    display: flex;
-    height: 100%;
-
-    overflow-x: auto; // Allow this content to scroll if it gets too long
-    @scrollbar-styles(); // Style the scrollbars
-    margin-left: auto; // Push this section as far to the right as possible
-}
-
-.s-topbar .s-topbar--content {
-    display: flex;
-    height: 100%;
-    .list-reset;
-
-    & > li {
-        display: inline-flex;
-    }
-
-    // TODO remove once all topbars include necessary nav.s-topbar--navigation wrapper elements
-    overflow-x: auto; // Allow this content to scroll if it gets too long
-    @scrollbar-styles(); // Style the scrollbars
-    margin-left: auto; // Push this section as far to the right as possible
-
-    .s-topbar--item:not(.s-topbar--item__unset) {
-        color: var(--theme-topbar-item-color);
-        display: inline-flex;
         align-items: center;
-        padding: 0 calc(var(--su12) - var(--su2));
-        text-decoration: none;
-        white-space: nowrap;
-        position: relative;
-
-        &:hover,
-        &:focus,
-        &.is-selected,
-        &.is-selected:hover,
-        &.is-selected:focus {
-            color: var(--theme-topbar-item-color-hover);
-            background-color: var(--theme-topbar-item-background-hover);
-            text-decoration: none;
-            outline: none;
-
-            .s-activity-indicator {
-                top: calc(50% - 18px);
-                box-shadow: 0 0 0 var(--su-static2) var(--theme-topbar-item-background-hover);
-            }
-        }
-
-        .svg-icon {
-            vertical-align: text-top;
-        }
-
-        .s-activity-indicator {
-            position: absolute;
-            top: calc(50% - 14px);
-            right: 2px;
-            transition: top var(--te-smooth) 0.15s;
-            box-shadow: 0 0 0 var(--su-static2)  var(--theme-topbar-background-color);
-        }
-    }
-
-    // provide only layout styling for unset items
-    .s-topbar--item__unset {
-        align-self: center;
-        padding-top: var(--su8);
-        padding-bottom: var(--su8);
-    }
-}
-
-//  ===========================================================================
-//  $   NOTICE
-//  ---------------------------------------------------------------------------
-.s-topbar--notice {
-    &:extend(.s-badge);
-
-    text-transform: uppercase;
-    font-size: var(--fs-fine);
-    font-weight: 700;
-    margin-left: var(--su8);
-    margin-right: var(--su8);
-    flex-shrink: 0;
-
-    .topbar-notice-styles(transparent, transparent, var(--theme-topbar-item-color));
-
-    &:hover,
-    &:focus {
-        .topbar-notice-styles(var(--theme-topbar-item-background-hover), var(--theme-topbar-item-background-hover), var(--theme-topbar-item-color-hover));
-    }
-
-    &.is-unread {
-        .topbar-notice-styles(var(--theme-primary-color), var(--theme-primary-color), var(--white));
-
-        &:hover,
-        &:focus {
-            .topbar-notice-styles(var(--theme-primary-600), var(--theme-primary-600), var(--white));
-        }
-    }
-}
-
-//  ===========================================================================
-//  $   SEARCHBAR
-//  ---------------------------------------------------------------------------
-.s-topbar .s-topbar--searchbar {
-    @inputLineHeights: var(--lh-sm); // Ensure the line heights between the elements match up
-    padding: 0 var(--su8);
-    display: flex;
-    align-items: center;
-    flex-shrink: 10000; // Force the searchbar to shrink as much as possible if there's no extra space
-    flex-grow: 1; //...but allow it to grow if there *is* extra space
-
-    .s-topbar--searchbar--input-group {
-        position: relative;
-        flex-grow: 1;
-
-        .s-input {
-            border-color: var(--theme-topbar-search-border);
-            background-color: var(--theme-topbar-search-background);
-            box-shadow: var(--theme-topbar-search-shadow);
-            color: var(--theme-topbar-search-color);
-            display: block;
-            line-height: @inputLineHeights;
-
-            &:focus {
-                border-color: var(--theme-topbar-search-border-focus);
-                box-shadow: var(--theme-topbar-search-shadow-focus);
-            }
-
-            &::placeholder {
-                color: var(--theme-topbar-search-placeholder);
-                font-style: normal;
-            }
-        }
-
-        .s-input-icon {
-            color: var(--theme-topbar-search-placeholder);
-        }
-    }
-
-    .s-select {
-        .wmx2;
-
-        align-self: stretch;
-        margin-right: -1px;
-        color: var(--theme-topbar-select-color);
-
-        &:before,
-        &:after {
-            z-index: var(--zi-active); // Make sure our focus ring is above the search input
-        }
-    }
-
-    .s-select > select {
-        .brr0;
+        display: flex;
+        flex-shrink: 0;
         height: 100%;
-        line-height: @inputLineHeights;
+        justify-content: center;
+        padding: 0 var(--su16);
+    }
 
-        border-color: var(--theme-topbar-search-border);
-        background-color: var(--theme-topbar-select-background);
-        color: var(--theme-topbar-select-color);
+    & &--navigation {
+        @scrollbar-styles(); // Style the scrollbars
+        display: flex;
+        height: 100%;
+        margin-left: auto; // Push this section as far to the right as possible
+        overflow-x: auto; // Allow this content to scroll if it gets too long
+    }
 
-        &:focus {
-            border-color: var(--theme-topbar-search-border-focus);
-            box-shadow: var(--theme-topbar-search-shadow-focus);
-            z-index: var(--zi-selected);
+    & &--notice {
+        &:extend(.s-badge);
+
+        .topbar-notice-styles(transparent, transparent, var(--theme-topbar-item-color));
+
+        &.is-unread {
+            &:hover,
+            &:focus {
+                .topbar-notice-styles(var(--theme-primary-600), var(--theme-primary-600), var(--white));
+            }
+
+            .topbar-notice-styles(var(--theme-primary-color), var(--theme-primary-color), var(--white));
         }
+
+        &:hover,
+        &:focus {
+            .topbar-notice-styles(var(--theme-topbar-item-background-hover), var(--theme-topbar-item-background-hover), var(--theme-topbar-item-color-hover));
+        }
+
+        flex-shrink: 0;
+        font-size: var(--fs-fine);
+        font-weight: 700;
+        margin-left: var(--su8);
+        margin-right: var(--su8);
+        text-transform: uppercase;
     }
 
-    // Drop the left border of the search input when it is next to the select
-    .s-select + .s-topbar--searchbar--input-group > .s-input {
-        .blr0;
-    }
+    & &--searchbar {
+        .s-topbar--searchbar--input-group {
+            .s-input {
+                &::placeholder {
+                    color: var(--theme-topbar-search-placeholder);
+                    font-style: normal;
+                }
 
-    #stacks-internals #screen-sm({
-        display: none;
-        position: absolute;
-        left: 0;
-        right: 0;
-        top: 100%;
-        max-width: 100%;
-        padding: var(--su8) var(--su12);
-        background: var(--theme-topbar-item-background-hover);
+                &:focus {
+                    border-color: var(--theme-topbar-search-border-focus);
+                    box-shadow: var(--theme-topbar-search-shadow-focus);
+                }
 
-        &.s-topbar--searchbar__open {
-            display: flex;
-            max-width: none;
+                background-color: var(--theme-topbar-search-background);
+                border-color: var(--theme-topbar-search-border);
+                box-shadow: var(--theme-topbar-search-shadow);
+                color: var(--theme-topbar-search-color);
+                display: block;
+                line-height: @inputLineHeights;
+            }
+
+            .s-input-icon {
+                color: var(--theme-topbar-search-placeholder);
+            }
+
+            flex-grow: 1;
+            position: relative;
         }
 
         .s-select {
-            .w25;
+            &:after,
+            &:before {
+                z-index: var(--zi-active); // Make sure our focus ring is above the search input
+            }
+
+            & > select {
+                &:focus {
+                    border-color: var(--theme-topbar-search-border-focus);
+                    box-shadow: var(--theme-topbar-search-shadow-focus);
+                    z-index: var(--zi-selected);
+                }
+
+                .brr0;
+                background-color: var(--theme-topbar-select-background);
+                border-color: var(--theme-topbar-search-border);
+                color: var(--theme-topbar-select-color);
+                height: 100%;
+                line-height: @inputLineHeights;
+            }
+
+            & + .s-topbar--searchbar--input-group > .s-input { // Drop the left border of the search input when it is next to the select
+                .blr0;
+            }
+
+            .wmx2; // TODO
+            align-self: stretch;
+            color: var(--theme-topbar-select-color);
+            margin-right: -1px;
         }
-    });
+
+        @inputLineHeights: var(--lh-sm); // Ensure the line heights between the elements match up
+        align-items: center;
+        display: flex;
+        flex-grow: 1; // Allow the searchbar to grow if there *is* extra space
+        flex-shrink: 10000; // Force the searchbar to shrink as much as possible if there's no extra space
+        padding: 0 var(--su8);
+    }
+
+    .s-navigation {
+        .s-navigation {
+            &--item {
+                &:not(.is-selected) {
+                    &:hover {
+                        color: var(--theme-topbar-item-color-hover);
+                        background-color: var(--theme-topbar-item-background-hover);
+                    }
+
+                    color: var(--theme-topbar-item-color);
+                }
+
+                &:focus-visible {
+                    box-shadow: var(--theme-topbar-search-shadow-focus);
+                }
+            }
+        }
+
+    }
+    // INTERACTION
+    // STYLES MODIFIED BY COMPONENT-SPECIFIC CUSTOM PROPERTIES
+
+    // STATIC COMPONENT STYLES
+    align-items: center;
+    background-color: var(--theme-topbar-background-color);
+    border-top: var(--theme-topbar-accent-border);
+    box-shadow: var(--bs-sm);
+    display: flex;
+    height: var(--theme-topbar-height);
+    min-width: auto;
+    position: relative;
+    width: 100%;
+    z-index: var(--zi-navigation-fixed);
 }
+
+//  [1] Build a hamburger icon manually using spans instead of using `@Svg` helper so
+//      we can more easily animate its content and transform the hamburger into an x
