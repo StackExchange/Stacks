@@ -1,9 +1,10 @@
-name: Main
+name: CI
 
 on:
   push:
-    branches:
-      - '**'
+    branches: [develop]
+  pull_request:
+    branches: [develop]
 
 jobs:
   build-and-test:
@@ -11,12 +12,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: ⬇️ Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           lfs: true
 
       - name: ⎔ Setup node
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
           node-version: 'lts/*'
 
@@ -29,4 +30,9 @@ jobs:
       - name: ▶️ Lint and Test
         run: |
           npm run lint
-          npm run test
+          npm run test -- --config web-test-runner.config.ci.mjs
+
+# cancel the jobs if another workflow is kicked off for the same branch
+concurrency:
+    group: ${{ github.workflow }}-${{ github.ref }}
+    cancel-in-progress: true

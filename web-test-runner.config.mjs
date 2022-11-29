@@ -16,7 +16,6 @@ const replace = fromRollup(_replace);
 const commonjs = fromRollupWithFix(_commonjs);
 
 export default {
-    files: "lib/test/**/!(*.visual).test.ts",
     browsers: [
         playwrightLauncher({ product: "chromium" }),
         playwrightLauncher({ product: "firefox" }),
@@ -38,5 +37,15 @@ export default {
         visualRegressionPlugin({
             update: process.argv.includes("--update-visual-baseline"),
         }),
+    ],
+    groups: [
+        {
+            name: "unit",
+            files: "lib/test/**/!(*.visual).test.ts",
+        },
+        {
+            name: "visual",
+            files: "lib/test/**/*.visual.test.ts",
+        },
     ],
 };
