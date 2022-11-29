@@ -58,7 +58,7 @@ export default {
                         font-family: Arial;
                     }
                 </style>
-                <script type="module" src="${testFramework}"></scrip>
+                <script type="module" src="${testFramework}"></script>
             </body>
         </html>`,
 };
