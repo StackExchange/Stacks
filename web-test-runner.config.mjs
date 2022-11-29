@@ -18,7 +18,21 @@ const commonjs = fromRollupWithFix(_commonjs);
 export default {
     browsers: [
         playwrightLauncher({ product: "chromium" }),
-        playwrightLauncher({ product: "firefox" }),
+        playwrightLauncher({
+            product: "firefox",
+            launchOptions: {
+                firefoxUserPrefs: {
+                    "toolkit.telemetry.reportingpolicy.firstRun": false,
+                    "browser.shell.checkDefaultBrowser": false,
+                    "browser.bookmarks.restore_default_bookmarks": false,
+                    "dom.disable_open_during_load": false,
+                    "dom.max_script_run_time": 0,
+                    "dom.min_background_timeout_value": 10,
+                    "extensions.autoDisableScopes": 0,
+                    "extensions.enabledScopes": 15,
+                },
+            },
+        }),
         playwrightLauncher({ product: "webkit" }),
     ],
     nodeResolve: { browser: true },
