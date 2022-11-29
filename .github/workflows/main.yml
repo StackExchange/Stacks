@@ -31,10 +31,12 @@ jobs:
         run: |
           npm run lint
           npm run test -- --config web-test-runner.config.ci.mjs
+
+      - name: ⬆️ Upload Visual Regression Test Results
         uses: actions/upload-artifact@v3
         if: failure()
         with:
-          name: visual-regression-diffs
+          name: visual-regression-test-results
           path: screenshots
 
 
