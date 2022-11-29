@@ -125,21 +125,15 @@
         --theme-topbar-item-color-current: @black;
         --theme-topbar-item-border-current: var(--theme-primary-color);
 
-    
-        .highcontrast-mode({
-        });
-
         --scrollbar: hsla(0, 0%, 0%, 0.2);
     }
 
     // CHILD ELEMENTS
     & a&--logo {
+        &:hover,
         &.is-selected {
             background-color: var(--theme-topbar-item-background-hover);
 
-        }
-        &:hover {
-            background-color: var(--theme-topbar-item-background-hover);
         }
     }
 
@@ -153,24 +147,16 @@
     }
 
     & &--content {
-        display: flex;
-        height: 100%;
-        .list-reset;
 
         & > li {
             display: inline-flex;
         }
 
-        // TODO remove once all topbars include necessary nav.s-topbar--navigation wrapper elements
-        overflow-x: auto; // Allow this content to scroll if it gets too long
-        @scrollbar-styles(); // Style the scrollbars
-        margin-left: auto; // Push this section as far to the right as possible
-
         .s-topbar--item:not(.s-topbar--item__unset) {
             .s-activity-indicator {
                 box-shadow: 0 0 0 var(--su-static2)  var(--theme-topbar-background-color);
                 position: absolute;
-                right: 2px;
+                right: var(--su-static2);
                 top: calc(50% - 14px);
                 transition: top var(--te-smooth) 0.15s;
             }
@@ -209,14 +195,23 @@
             padding-bottom: var(--su8);
             padding-top: var(--su8);
         }
+
+        .list-reset;
+        display: flex;
+        height: 100%;
+
+        // TODO remove once all topbars include necessary nav.s-topbar--navigation wrapper elements
+        overflow-x: auto; // Allow this content to scroll if it gets too long
+        @scrollbar-styles(); // Style the scrollbars
+        margin-left: auto; // Push this section as far to the right as possible
     }
 
     & &--logo {
-        padding: 0 var(--su8);
-        height: 100%;
-        display: flex;
         align-items: center;
         background-color: transparent;
+        display: flex;
+        height: 100%;
+        padding: 0 var(--su8);
     }
 
     & &--menu-btn {
@@ -249,11 +244,17 @@
             position: relative;
         }
 
+        &.is-selected,
+        &:hover {
+            background-color: var(--theme-topbar-item-background-hover);
+            color: var(--theme-topbar-item-color-hover);
+        }
+
         &.is-selected { // Transforming hamburger into x
             span {
                 &:after,
                 &:before {
-                        top: 0;
+                    top: 0;
                 }
 
                 &:after {
@@ -266,14 +267,6 @@
 
                 background-color: transparent;
             }
-
-            background-color: var(--theme-topbar-item-background-current);
-            color: var(--theme-topbar-item-color-current);
-        }
-
-        &:hover {
-            color: var(--theme-topbar-item-color-hover);
-            background-color: var(--theme-topbar-item-background-hover);
         }
 
         align-items: center;
@@ -331,7 +324,7 @@
             top: 100%;
 
             .s-select {
-                .w25;
+                width: 25%;
             }
 
             &.s-topbar--searchbar__open {
@@ -381,22 +374,24 @@
                     z-index: var(--zi-selected);
                 }
 
-                .brr0;
                 background-color: var(--theme-topbar-select-background);
+                border-bottom-right-radius: 0;
                 border-color: var(--theme-topbar-search-border);
+                border-top-right-radius: 0;
                 color: var(--theme-topbar-select-color);
                 height: 100%;
                 line-height: @inputLineHeights;
             }
 
             & + .s-topbar--searchbar--input-group > .s-input { // Drop the left border of the search input when it is next to the select
-                .blr0;
+                border-bottom-left-radius: 0;
+                border-top-left-radius: 0;
             }
 
-            .wmx2; // TODO
             align-self: stretch;
             color: var(--theme-topbar-select-color);
-            margin-right: -1px;
+            margin-right: calc(var(--su-static1) * -1);
+            max-width: calc(var(--s-step) * 2);
         }
 
         @inputLineHeights: var(--lh-sm); // Ensure the line heights between the elements match up
@@ -426,10 +421,7 @@
         }
 
     }
-    // INTERACTION
-    // STYLES MODIFIED BY COMPONENT-SPECIFIC CUSTOM PROPERTIES
 
-    // STATIC COMPONENT STYLES
     align-items: center;
     background-color: var(--theme-topbar-background-color);
     border-top: var(--theme-topbar-accent-border);
