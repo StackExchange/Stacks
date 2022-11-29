@@ -756,7 +756,7 @@ description: Tables are used to list all information from a data set. The base s
                 {% for item in tables.data-attributes %}
                     <tr>
                         <th scope="row"><code class="stacks-code">{{ item.attribute }}</code></th>
-                        <td><code class="stacks-code">{{ item.applies }}</td>
+                        <td><code class="stacks-code">{{ item.applies }}</code></td>
                         <td class="p8">{{ item.description }}</td>
                     </tr>
                 {% endfor %}
@@ -771,19 +771,25 @@ description: Tables are used to list all information from a data set. The base s
     <table class="s-table s-table__sortable" data-controller="s-table">
         <thead>
             <tr>
-                <th data-s-table-target="column" data-action="click->s-table#sort">
-                    Season
-                    @Svg.ArrowUpSm.With("js-sorting-indicator js-sorting-indicator-asc d-none")
-                    @Svg.ArrowDownSm.With("js-sorting-indicator js-sorting-indicator-desc d-none")
-                    @Svg.ArrowUpDownSm.With("js-sorting-indicator js-sorting-indicator-none")
+                <th data-s-table-target="column">
+                    <button data-action="click->s-table#sort">
+                        Season
+                        @Svg.ArrowUpSm.With("js-sorting-indicator js-sorting-indicator-asc d-none")
+                        @Svg.ArrowDownSm.With("js-sorting-indicator js-sorting-indicator-desc d-none")
+                        @Svg.ArrowUpDownSm.With("js-sorting-indicator js-sorting-indicator-none")
+                    </button>
                 </th>
-                <th data-s-table-target="column" data-action="click->s-table#sort">
-                    Starts in month
-                    …
+                <th data-s-table-target="column">
+                    <button data-action="click->s-table#sort">
+                        Starts in month
+                        …
+                    </button>
                 </th>
-                <th data-s-table-target="column" data-action="click->s-table#sort">
-                    Typical temperature in °C
-                    …
+                <th data-s-table-target="column">
+                    <button data-action="click->s-table#sort">
+                        Typical temperature in °C
+                        …
+                    </button>
                 </th>
             </tr>
         </thead>
@@ -805,23 +811,29 @@ description: Tables are used to list all information from a data set. The base s
                 <table class="s-table s-table__sortable" data-controller="s-table">
                     <thead>
                         <tr>
-                            <th data-s-table-target="column" data-action="click->s-table#sort">
-                                Season
-                                {% icon "ArrowUpSm", "js-sorting-indicator js-sorting-indicator-asc d-none" %}
-                                {% icon "ArrowDownSm", "js-sorting-indicator js-sorting-indicator-desc d-none" %}
-                                {% icon "ArrowUpDownSm", "js-sorting-indicator js-sorting-indicator-none" %}
+                            <th data-s-table-target="column">
+                                <button data-action="click->s-table#sort">
+                                    Season
+                                    {% icon "ArrowUpSm", "js-sorting-indicator js-sorting-indicator-asc d-none" %}
+                                    {% icon "ArrowDownSm", "js-sorting-indicator js-sorting-indicator-desc d-none" %}
+                                    {% icon "ArrowUpDownSm", "js-sorting-indicator js-sorting-indicator-none" %}
+                                </button>
                             </th>
-                            <th data-s-table-target="column" data-action="click->s-table#sort">
-                                Starts in month
-                                {% icon "ArrowUpSm", "js-sorting-indicator js-sorting-indicator-asc d-none" %}
-                                {% icon "ArrowDownSm", "js-sorting-indicator js-sorting-indicator-desc d-none" %}
-                                {% icon "ArrowUpDownSm", "js-sorting-indicator js-sorting-indicator-none" %}
+                            <th data-s-table-target="column">
+                                <button data-action="click->s-table#sort">
+                                    Starts in month
+                                    {% icon "ArrowUpSm", "js-sorting-indicator js-sorting-indicator-asc d-none" %}
+                                    {% icon "ArrowDownSm", "js-sorting-indicator js-sorting-indicator-desc d-none" %}
+                                    {% icon "ArrowUpDownSm", "js-sorting-indicator js-sorting-indicator-none" %}
+                                </button>
                             </th>
-                            <th data-s-table-target="column" data-action="click->s-table#sort">
-                                Typical temperature in °C
-                                {% icon "ArrowUpSm", "js-sorting-indicator js-sorting-indicator-asc d-none" %}
-                                {% icon "ArrowDownSm", "js-sorting-indicator js-sorting-indicator-desc d-none" %}
-                                {% icon "ArrowUpDownSm", "js-sorting-indicator js-sorting-indicator-none" %}
+                            <th data-s-table-target="column">
+                                <button data-action="click->s-table#sort">
+                                    Typical temperature in °C
+                                    {% icon "ArrowUpSm", "js-sorting-indicator js-sorting-indicator-asc d-none" %}
+                                    {% icon "ArrowDownSm", "js-sorting-indicator js-sorting-indicator-desc d-none" %}
+                                    {% icon "ArrowUpDownSm", "js-sorting-indicator js-sorting-indicator-none" %}
+                                </button>
                             </th>
                         </tr>
                     </thead>

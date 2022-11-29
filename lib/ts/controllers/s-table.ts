@@ -1,41 +1,34 @@
 import * as Stacks from "../stacks";
 
+/**
+ * The string values of these enumerations should correspond with `aria-sort` valid values.
+ *
+ * @see https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-sort#values
+ */
+enum SortOrder {
+    Ascending = 'ascending',
+    Descending = 'descending',
+    None = 'none',
+}
+
 export class TableController extends Stacks.StacksController {
+    readonly columnTarget!: HTMLTableCellElement;
+    readonly columnTargets!: HTMLTableCellElement[];
+
     static targets = ["column"];
-    readonly columnTarget!: Element;
-    readonly columnTargets!: Element[];
 
-    setCurrentSort(headElem: Element, direction: "asc" | "desc" | "none") {
-        if (["asc", "desc", "none"].indexOf(direction) < 0) {
-            throw "direction must be one of asc, desc, or none"
-        }
+    connect() {
+        this.columnTargets.forEach(this.ensureHeadersAreClickable);
+    }
+
+    sort(evt: PointerEvent) {
         // eslint-disable-next-line @typescript-eslint/no-this-alias
         const controller = this;
-        this.columnTargets.forEach(function (target) {
-            const isCurrrent = target === headElem;
-
-            target.classList.toggle("is-sorted", isCurrrent && direction !== "none");
-
-            target.querySelectorAll(".js-sorting-indicator").forEach(function (icon) {
-                const visible = isCurrrent ? direction : "none";
-                icon.classList.toggle("d-none", !icon.classList.contains("js-sorting-indicator-" + visible));
-            });
-
-            if (!isCurrrent || direction === "none") {
-                controller.removeElementData(target, "sort-direction");
-            } else {
-                controller.setElementData(target, "sort-direction", direction);
-            }
-        });
-    };
-
-    sort(evt: Event) {
-        // eslint-disable-next-line @typescript-eslint/no-this-alias
-        const controller = this;
-        const colHead = evt.currentTarget;
-        if (!(colHead instanceof HTMLTableCellElement)) {
+        const sortTriggerEl = evt.currentTarget;
+        if (!(sortTriggerEl instanceof HTMLButtonElement)) {
             throw "invalid event target";
         }
+        const colHead = sortTriggerEl.parentElement as HTMLTableCellElement;
         const table = this.element as HTMLTableElement;
         const tbody = table.tBodies[0];
 
@@ -52,7 +45,7 @@ export class TableController extends Stacks.StacksController {
 
         // the default behavior when clicking a header is to sort by this column in ascending
         // direction, *unless* it is already sorted that way
-        const direction = this.getElementData(colHead, "sort-direction") === "asc" ? -1 : 1;
+        const direction = colHead.getAttribute('aria-sort') === SortOrder.Ascending ? -1 : 1;
 
         const rows = Array.from(table.tBodies[0].rows);
 
@@ -82,7 +75,7 @@ export class TableController extends Stacks.StacksController {
             // unless the to-be-sorted-by value is explicitly provided on the element via this attribute,
             // the value we're using is the cell's text, trimmed of any whitespace
             const explicit = controller.getElementData(cell, "sort-val");
-            const d = typeof explicit === "string" ? explicit : cell.textContent!.trim();
+            const d = explicit != null ? explicit : cell.textContent!.trim();
 
             if ((d !== "") && (`${parseInt(d, 10)}` !== d)) {
                 anyNonInt = true;
@@ -115,9 +108,10 @@ export class TableController extends Stacks.StacksController {
         });
 
         // this is the actual reordering of the table rows
-        data.forEach(function (tup) {
-            const row = rows[tup[1]];
+        data.forEach(([_, rowIndex]) => {
+            const row = rows[rowIndex];
             row.parentElement!.removeChild(row);
+
             if (firstBottomRow) {
                 tbody.insertBefore(row, firstBottomRow);
             } else {
@@ -127,9 +121,54 @@ export class TableController extends Stacks.StacksController {
 
         // update the UI and set the `data-sort-direction` attribute if appropriate, so that the next click
         // will cause sorting in descending direction
-        this.setCurrentSort(colHead, direction === 1 ? "asc" : "desc");
+        this.updateSortedColumnStyles(colHead, direction === 1 ? SortOrder.Ascending : SortOrder.Descending);
     }
 
+    private updateSortedColumnStyles(targetColumnHeader: Element, direction: SortOrder): void {
+        // Loop through all sortable columns and remove their sorting direction
+        // (if any), and only leave/set a sorting on `targetColumnHeader`.
+        this.columnTargets.forEach((header: HTMLTableCellElement) => {
+            const isCurrent = header === targetColumnHeader;
+            const classSuffix = isCurrent
+                ? (direction === SortOrder.Ascending ? 'asc' : 'desc')
+                : SortOrder.None;
+
+            header.classList.toggle('is-sorted', isCurrent && direction !== SortOrder.None);
+            header.querySelectorAll('.js-sorting-indicator').forEach((icon) => {
+                icon.classList.toggle('d-none', !icon.classList.contains('js-sorting-indicator-' + classSuffix));
+            });
+
+            if (isCurrent) {
+                header.setAttribute('aria-sort', direction);
+            } else {
+                header.removeAttribute('aria-sort');
+            }
+        });
+    }
+
+    /**
+     * Transform legacy header markup into the new markup.
+     *
+     * @param headerEl
+     */
+    private ensureHeadersAreClickable(headerEl: HTMLTableCellElement) {
+        const headerAction = headerEl.getAttribute('data-action');
+
+        // Legacy markup that violates accessibility practices; change the DOM
+        if (headerAction !== null && headerAction.substring(0, 5) === 'click') {
+            if (process.env.NODE_ENV !== 'production') {
+                console.warn('s-table :: a `<th>` should not have a `data-action="click->..."` attribute. https://stackoverflow.design/product/components/tables/#javascript-example');
+                console.warn('target: ', headerEl);
+            }
+
+            headerEl.removeAttribute('data-action');
+            headerEl.innerHTML = `
+                <button data-action="${headerAction}">
+                    ${headerEl.innerHTML}
+                </button>
+            `;
+        }
+    }
 }
 
 function buildIndex(section: HTMLTableSectionElement): HTMLTableCellElement[][] {
