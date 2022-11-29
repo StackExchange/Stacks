@@ -9,7 +9,7 @@ const user = userEvent.setup();
 describe("tooltip", () => {
     it("should not introduce visual regressions", async () => {
         const wrapper = await fixture(html`
-            <div style="height: 100px; width: 155px; display: inline-block;">
+            <div style="height: 100px; width: 160px; display: inline-block;">
                 <button
                     class="s-btn s-btn__filled"
                     role="button"
