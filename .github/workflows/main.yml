@@ -31,6 +31,12 @@ jobs:
         run: |
           npm run lint
           npm run test -- --config web-test-runner.config.ci.mjs
+        uses: actions/upload-artifact@v3
+        if: failure()
+        with:
+          name: visual-regression-diffs
+          path: screenshots
+
 
 # cancel the jobs if another workflow is kicked off for the same branch
 concurrency:
