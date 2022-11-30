@@ -37,18 +37,19 @@ description: The topbar component is a navigation bar that is placed at the top 
     <div class="s-topbar--container">
         <a href="…" class="s-topbar--menu-btn"><span></span></a>
         <a href="…" class="s-topbar--logo">@Svg.LogoGlyph.with("native")</a>
-
-        <ol class="s-topbar--content">
-            <li>
-                <a href="…" class="s-topbar--item s-user-card s-user-card__small">…</a>
-            </li>
-            <li>
-                <a href="…" class="s-topbar--item" aria-label="Inbox">
-                    @Svg.Inbox <span class="s-activity-indicator">…</span>
-                </a>
-            </li>
-            <li><a href="…" class="s-topbar--item">…</a></li>
-        </ol>
+        <nav class="s-topbar--navigation" aria-label="notifications, help, and network">
+            <ol class="s-topbar--content">
+                <li>
+                    <a href="…" class="s-topbar--item s-user-card s-user-card__small">…</a>
+                </li>
+                <li>
+                    <a href="…" class="s-topbar--item" aria-label="Inbox">
+                        @Svg.Inbox <span class="s-activity-indicator">…</span>
+                    </a>
+                </li>
+                <li><a href="…" class="s-topbar--item">…</a></li>
+            </ol>
+        </nav>
     </div>
 </header>
 {% endhighlight %}
@@ -100,7 +101,9 @@ description: The topbar component is a navigation bar that is placed at the top 
         </div>
     </form>
 
-    <ol class="s-topbar--content">…</ol>
+    <nav class="s-topbar--navigation" aria-label="primary navigation">
+        <ol class="s-topbar--content">…</ol>
+    </nav>
 </header>
 {% endhighlight %}
         <div class="stacks-preview--example">
@@ -129,20 +132,24 @@ description: The topbar component is a navigation bar that is placed at the top 
         New
     </a>
 
-    <ol class="s-navigation">
-        <li><a href="…" class="s-navigation--item">About</a></li>
-        <li><a href="…" class="s-navigation--item is-selected">Products</a></li>
-        <li><a href="…" class="s-navigation--item">For Teams</a></li>
-    </ol>
+    <nav aria-label="More from Stack Overflow">
+        <ol class="s-navigation">
+            <li><a href="…" class="s-navigation--item">About</a></li>
+            <li><a href="…" class="s-navigation--item is-selected">Products</a></li>
+            <li><a href="…" class="s-navigation--item">For Teams</a></li>
+        </ol>
+    </nav>
 
-    <ol class="s-topbar--content">
-        <li>
-            <a href="…" class="s-topbar--item s-topbar--item__unset s-btn s-btn__filled">Log in</a>
-        </li>
-        <li>
-            <a href="…" class="s-topbar--item s-topbar--item__unset ml4 s-btn s-btn__primary">Sign up</a>
-        </li>
-    </ol>
+    <nav class="s-topbar--navigation" aria-label="Log in or sign up">
+        <ol class="s-topbar--content">
+            <li>
+                <a href="…" class="s-topbar--item s-topbar--item__unset s-btn s-btn__filled">Log in</a>
+            </li>
+            <li>
+                <a href="…" class="s-topbar--item s-topbar--item__unset ml4 s-btn s-btn__primary">Sign up</a>
+            </li>
+        </ol>
+    </nav>
 </header>
 {% endhighlight %}
         <div class="stacks-preview--example">
