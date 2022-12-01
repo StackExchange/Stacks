@@ -77,7 +77,7 @@ npm run test:unit:watch
 
 ### Visual Regression Tests
 
-**Prerequisit:** 
+**Prerequisite:** 
 In order to pull and upload baseline images you need to have `git lfs` installed in your local machine. Please follow [this guide](https://docs.github.com/en/repositories/working-with-files/managing-large-files/installing-git-large-file-storage) to install that.
 
 
