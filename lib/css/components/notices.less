@@ -152,6 +152,10 @@
         background: var(--_no-code-bg, transparent);
     }
     & &--btn {
+        // TODO: decouple .s-notice--btn from .s-btn
+        &:not(:focus) {
+            box-shadow: none; // This will prevent default .s-btn box-shadow from showing
+        }
         &:focus,
         &:hover {
             background: var(--_no-btn-bg-focus);
