@@ -198,7 +198,7 @@ function buildIndexOrGetCellSlot(
     findCell?: HTMLTableCellElement
 ) {
     const index = [];
-    let curRow = section.children[0];
+    let curRow: Element | null = section.children[0];
 
     // the elements of these two arrays are synchronized; the first array contains table cell elements,
     // the second one contains a number that indicates for how many more rows this elements will
@@ -253,7 +253,7 @@ function buildIndexOrGetCellSlot(
             }
             curSlot++;
         }
-        if (curRow?.nextElementSibling) {
+        if (curRow) {
             curRow = curRow.nextElementSibling;
         }
     }
