@@ -7,19 +7,29 @@ export class TableController extends Stacks.StacksController {
 
     setCurrentSort(headElem: Element, direction: "asc" | "desc" | "none") {
         if (["asc", "desc", "none"].indexOf(direction) < 0) {
-            throw "direction must be one of asc, desc, or none"
+            throw "direction must be one of asc, desc, or none";
         }
         // eslint-disable-next-line @typescript-eslint/no-this-alias
         const controller = this;
         this.columnTargets.forEach(function (target) {
             const isCurrrent = target === headElem;
 
-            target.classList.toggle("is-sorted", isCurrrent && direction !== "none");
+            target.classList.toggle(
+                "is-sorted",
+                isCurrrent && direction !== "none"
+            );
 
-            target.querySelectorAll(".js-sorting-indicator").forEach(function (icon) {
-                const visible = isCurrrent ? direction : "none";
-                icon.classList.toggle("d-none", !icon.classList.contains("js-sorting-indicator-" + visible));
-            });
+            target
+                .querySelectorAll(".js-sorting-indicator")
+                .forEach(function (icon) {
+                    const visible = isCurrrent ? direction : "none";
+                    icon.classList.toggle(
+                        "d-none",
+                        !icon.classList.contains(
+                            "js-sorting-indicator-" + visible
+                        )
+                    );
+                });
 
             if (!isCurrrent || direction === "none") {
                 controller.removeElementData(target, "sort-direction");
@@ -27,7 +37,7 @@ export class TableController extends Stacks.StacksController {
                 controller.setElementData(target, "sort-direction", direction);
             }
         });
-    };
+    }
 
     sort(evt: Event) {
         // eslint-disable-next-line @typescript-eslint/no-this-alias
@@ -42,7 +52,8 @@ export class TableController extends Stacks.StacksController {
         // the column slot number of the clicked header
         const colno = getCellSlot(colHead);
 
-        if (colno < 0) { // this shouldn't happen if the clicked element is actually a column head
+        if (colno < 0) {
+            // this shouldn't happen if the clicked element is actually a column head
             return;
         }
 
@@ -52,7 +63,8 @@ export class TableController extends Stacks.StacksController {
 
         // the default behavior when clicking a header is to sort by this column in ascending
         // direction, *unless* it is already sorted that way
-        const direction = this.getElementData(colHead, "sort-direction") === "asc" ? -1 : 1;
+        const direction =
+            this.getElementData(colHead, "sort-direction") === "asc" ? -1 : 1;
 
         const rows = Array.from(table.tBodies[0].rows);
 
@@ -82,9 +94,12 @@ export class TableController extends Stacks.StacksController {
             // unless the to-be-sorted-by value is explicitly provided on the element via this attribute,
             // the value we're using is the cell's text, trimmed of any whitespace
             const explicit = controller.getElementData(cell, "sort-val");
-            const d = typeof explicit === "string" ? explicit : cell.textContent!.trim();
+            const d =
+                typeof explicit === "string"
+                    ? explicit
+                    : cell.textContent?.trim() ?? "";
 
-            if ((d !== "") && (`${parseInt(d, 10)}` !== d)) {
+            if (d !== "" && `${parseInt(d, 10)}` !== d) {
                 anyNonInt = true;
             }
             data.push([d, index]);
@@ -94,7 +109,10 @@ export class TableController extends Stacks.StacksController {
         // having the lowest possible value (i.e. sorted to the top if ascending, bottom if descending)
         if (!anyNonInt) {
             data.forEach(function (tuple) {
-                tuple[0] = tuple[0] === "" ? Number.MIN_VALUE : parseInt(tuple[0] as string, 10);
+                tuple[0] =
+                    tuple[0] === ""
+                        ? Number.MIN_VALUE
+                        : parseInt(tuple[0] as string, 10);
             });
         }
 
@@ -117,7 +135,7 @@ export class TableController extends Stacks.StacksController {
         // this is the actual reordering of the table rows
         data.forEach(function (tup) {
             const row = rows[tup[1]];
-            row.parentElement!.removeChild(row);
+            row.parentElement?.removeChild(row);
             if (firstBottomRow) {
                 tbody.insertBefore(row, firstBottomRow);
             } else {
@@ -129,26 +147,35 @@ export class TableController extends Stacks.StacksController {
         // will cause sorting in descending direction
         this.setCurrentSort(colHead, direction === 1 ? "asc" : "desc");
     }
-
 }
 
-function buildIndex(section: HTMLTableSectionElement): HTMLTableCellElement[][] {
+function buildIndex(
+    section: HTMLTableSectionElement
+): HTMLTableCellElement[][] {
     const result = buildIndexOrGetCellSlot(section);
     if (!(result instanceof Array)) {
-        throw "shouldn't happen"
+        throw "shouldn't happen";
     }
     return result;
 }
 
 function getCellSlot(cell: HTMLTableCellElement): number {
-    if (!(cell.parentElement && cell.parentElement.parentElement instanceof HTMLTableSectionElement)) {
-        throw "invalid table"
+    if (
+        !(
+            cell.parentElement &&
+            cell.parentElement.parentElement instanceof HTMLTableSectionElement
+        )
+    ) {
+        throw "invalid table";
     }
-    const result = buildIndexOrGetCellSlot(cell.parentElement.parentElement, cell);
+    const result = buildIndexOrGetCellSlot(
+        cell.parentElement.parentElement,
+        cell
+    );
     if (typeof result !== "number") {
-        throw "shouldn't happen"
+        throw "shouldn't happen";
     }
-    return result
+    return result;
 }
 
 // Just because a <td> is the 4th *child* of its <tr> doesn't mean it belongs to the 4th *column*
@@ -166,9 +193,12 @@ function getCellSlot(cell: HTMLTableCellElement): number {
 //
 // If the second argument is given, it's a <td> or <th> that we're trying to find, and the algorithm
 // stops as soon as it has found it and the function returns its slot number.
-function buildIndexOrGetCellSlot(section: HTMLTableSectionElement, findCell?: HTMLTableCellElement) {
+function buildIndexOrGetCellSlot(
+    section: HTMLTableSectionElement,
+    findCell?: HTMLTableCellElement
+) {
     const index = [];
-    let curRow = section.children[0];
+    let curRow: Element | null = section.children[0];
 
     // the elements of these two arrays are synchronized; the first array contains table cell elements,
     // the second one contains a number that indicates for how many more rows this elements will
@@ -177,13 +207,22 @@ function buildIndexOrGetCellSlot(section: HTMLTableSectionElement, findCell?: HT
     const growingRowsLeft: number[] = [];
 
     // continue while we have actual <tr>'s left *or* we still have rowspan'ed elements that aren't done
-    while (curRow || growingRowsLeft.some(function (e) { return e !== 0; })) {
+    while (
+        curRow ||
+        growingRowsLeft.some(function (e) {
+            return e !== 0;
+        })
+    ) {
         const curIndexRow: HTMLTableCellElement[] = [];
         index.push(curIndexRow);
 
         let curSlot = 0;
         if (curRow) {
-            for (let curCellInd = 0; curCellInd < curRow.children.length; curCellInd++) {
+            for (
+                let curCellInd = 0;
+                curCellInd < curRow.children.length;
+                curCellInd++
+            ) {
                 while (growingRowsLeft[curSlot]) {
                     growingRowsLeft[curSlot]--;
                     curIndexRow[curSlot] = growing[curSlot];
@@ -191,7 +230,7 @@ function buildIndexOrGetCellSlot(section: HTMLTableSectionElement, findCell?: HT
                 }
                 const cell = curRow.children[curCellInd];
                 if (!(cell instanceof HTMLTableCellElement)) {
-                    throw "invalid table"
+                    throw "invalid table";
                 }
                 if (getComputedStyle(cell).display === "none") {
                     continue;
@@ -215,8 +254,10 @@ function buildIndexOrGetCellSlot(section: HTMLTableSectionElement, findCell?: HT
             curSlot++;
         }
         if (curRow) {
-            curRow = curRow.nextElementSibling!;
+            curRow = curRow.nextElementSibling;
         }
     }
-    return findCell ? -1 : index; /* if findCell was given but we end up here, that means it isn't in this section */
+    return findCell
+        ? -1
+        : index; /* if findCell was given but we end up here, that means it isn't in this section */
 }

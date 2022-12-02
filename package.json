@@ -25,8 +25,10 @@
     "test": "backstop test",
     "approve": "backstop approve",
     "prepublishOnly": "npm run build",
-    "lint:eslint": "eslint .",
-    "lint:prettier": "prettier --check . --end-of-line auto"
+    "lint": "concurrently -n w: npm:lint:*",
+    "lint:ts": "eslint ./lib/ts",
+    "lint:css": "stylelint ./lib/css",
+    "lint:format": "prettier --check ./lib"
   },
   "license": "MIT",
   "dependencies": {
