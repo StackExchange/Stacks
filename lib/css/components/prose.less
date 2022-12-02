@@ -24,6 +24,9 @@
     --_pr-spacing: 1.1em;
     --_pr-spacing-condensed: calc(var(--_pr-spacing) / 2); // Reduce the base spacing by half in the context of lists, etc.
     --_pr-spoiler-transition: opacity 0.1s ease-in-out;
+    // TEMP HOT FIX FOR .s-editor [1]
+    --s-prose-spacing: var(--_pr-spacing); // TODO remove once addressed in StackExchange/Stacks-Editor
+    --s-prose-spacing-condensed: var(--_pr-spacing-condensed); // TODO remove once addressed in StackExchange/Stacks-Editor
 
     // CONDITIONAL STYLES
     .dark-mode({
@@ -164,6 +167,7 @@
         quotes: none;
     }
     dd,
+    div,
     dl,
     .s-table-container,
     .s-link-preview {
@@ -371,7 +375,7 @@
         color: var(--black-800);
         min-height: var(--su-static48); // TODO: Let's find a solution that doesn't have a magic number
     }
-    .youtube-embed { // [1]
+    .youtube-embed { // [2]
         > div {
             iframe {
                 height: 100%;
@@ -395,7 +399,10 @@
     overflow-wrap: break-word;
 }
 
-// [1] The outer div enforces a max-width of 640px. The inner div has a height of 35 pixels, and a
+// [1]  StackExchange/Stacks-Editor references `--s-prose-spacing` and `--s-prose-spacing-condensed`.
+// Going forward, it shouldn't but for now, I've introduced a hotfix to define those custom properties.
+
+// [2] The outer div enforces a max-width of 640px. The inner div has a height of 35 pixels, and a
 // padding-bottom of 56.25%. Padding percentages, even for top/bottom, are always relative
 // to the *width*, so the padding always has an aspect ratio of 1/0.5625, or 16/9. Thus in total,
 // the iframe has a height of 35 + width * 9/16. 35 pixels is the height of youtube's player controls,

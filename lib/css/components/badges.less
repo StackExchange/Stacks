@@ -19,7 +19,7 @@
         // Number counts
         &&__rep,
         &&__rep-down,
-        &&__votes,
+        &&__votes:not(&__answered),
         // Users
         &&__admin,
         &&__moderator,
@@ -76,7 +76,7 @@
     }
     &&__rep,
     &&__rep-down,
-    &&__votes {
+    &&__votes:not(&__answered) {
         --_ba-bg: var(--white);
     }
     &&__answered {
@@ -96,7 +96,7 @@
         --_ba-bc: var(--red-400);
         --_ba-fc: var(--red-500);
     }
-    &&__votes {
+    &&__votes:not(&__answered) {
         --_ba-bc: var(--black-150);
         --_ba-fc: var(--black-700);
     }
@@ -195,6 +195,7 @@
     }
 
     // CHILD ELEMENTS
+    &--image, // Included with no base class to account for usage in .s-progress__badge
     & &--image {
         display: inline-flex;
         align-self: center;
