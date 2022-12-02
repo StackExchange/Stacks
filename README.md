@@ -53,6 +53,7 @@ Lint the source code format (prettier) via running:
 ```sh
 npm run lint:format
 ```
+
 ## Testing Stacks
 
 Run all test suites by running:
