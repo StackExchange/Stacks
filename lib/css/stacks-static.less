@@ -1,24 +1,11 @@
-//
-//  STACK OVERFLOW
-//  STATIC STACK ELEMENTS
-//
-//  This CSS comes from Stacks, our CSS & Pattern library for rapidly building
-//  Stack Overflow. For documentation of all these classes and how to contribute,
-//  visit https://stackoverflow.design/
-//
-//  This is where all the magic happens.
-//
-//  ============================================================================
-//  $   STATIC ELEMENTS
-//      The following items are elements which we DO NOT allow communities
-//      to modify via variables.
-//  ----------------------------------------------------------------------------
+// stacks-static.less contains styles which we DO NOT allow communities to modify via variables
+// BASE
 @import "base/reset.less";
 @import "base/fieldset.less";
 @import "base/icons.less";
 @import "exports/global-modifiers.less";
 
-//  --  COMPONENTS
+// COMPONENTS
 @import "components/activity-indicator.less";
 @import "components/award-bling.less";
 @import "components/avatars.less";
@@ -50,10 +37,10 @@
 @import "components/uploader.less";
 @import "components/user-cards.less";
 
-//  --  LESS CONSTANTS AND MIXINS
+// LESS CONSTANTS AND MIXINS
 @import "exports/exports.less";
 
-//  --  ATOMIC CLASSES
+// ATOMIC CLASSES
 @import "atomic/borders.less";
 @import "atomic/colors.less";
 @import "atomic/flex.less";
@@ -75,20 +62,18 @@
     #stacks-internals-collect-small();
 });
 
-// We need printing styles to be last so they can override all other styles.
-.print\:d-block {
-    @media print {
+@media print { // We need printing styles to be last so they can override all other styles.
+    .print\:d-block & {
         display: block !important;
     }
-}
-
-.print\:d-none {
-    @media print {
+    .print\:d-none & {
         display: none !important;
     }
 }
 /* stylelint-enable */
 
-//  --  CONFIG
+// CONFIG
 @import "base/configuration-static.less";
 @import "base/internals.less";
+
+// [1] The following items are elements which we DO NOT allow communities to modify via variables.
