@@ -46,7 +46,7 @@ export default {
         esbuildPlugin({ ts: true }),
         visualRegressionPlugin({
             update: process.argv.includes("--update-visual-baseline"),
-            failureThreshold: 3,
+            failureThreshold: 5,
             failureThresholdType: "percent",
         }),
     ],
