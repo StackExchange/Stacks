@@ -15,6 +15,8 @@ Introduce 2 initial categories of tests for Stacks to increase confidence workin
 - Component/Unit Tests
 - Component Visual Regression Tests
 
+Remove legacy regression tests (BackstopJS).
+
 General guidelines:
 - Tests run in a headless browser context ([wtr + playwright](https://modern-web.dev/docs/test-runner/overview/)) to provide higher level of confidence
 - DOM Querying and Events Simulation are done as much as possible with [testing-library](https://testing-library.com/) and [user-event](https://testing-library.com/docs/user-event/intro/) instead of reaching out directly to DOM APIs
@@ -36,9 +38,7 @@ Guidelines:
 
 ### Additional Guidelines
 
-- All tests and linters runs in a GH workflow for every commit on any branch.
-
-- BackstopJS tests will be gradually retired in favor of the more targeted component visual regression tests approach.
+- All tests and linters runs in a GH workflow for every commit and pull requests on develop branch.
 
 - Tests will be gradually added to existing components as developers need to change them. New components should always be accompanied by tests.
 
