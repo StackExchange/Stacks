@@ -67,8 +67,8 @@ export default {
             <body>
                 <style>
                     body {
-                            --ff-sans: Arial;
-                            --ff-mono: "Courier New";
+                        --ff-sans: Arial;
+                        --ff-mono: "Courier New";
                     }
                 </style>
                 <script type="module" src="${testFramework}"></script>
