@@ -7,79 +7,83 @@
     @ta-cell-border: var(--su-static1) solid var(--bc-medium);
     @ta-columns: (100% / 12);
 
-    --_ta-cell-bb: unset;
-    --_ta-cell-ta: left;
-    --_ta-cell-va: middle;
-    --_ta-cell-w: unset;
-
-    --_ta-th-fw: bold;
+    --_ta-tbody-tbody-bc: var(--bc-medium);
+    --_ta-tbody-tbody-bw: var(--su-static2);
+    --_ta-tbody-tr-even-bg: unset;
+    --_ta-td-bbw: 0;
+    --_ta-td-bc: var(--bc-medium);
+    --_ta-td-fs: unset;
+    --_ta-td-fw: unset;
+    --_ta-td-p: var(--su8);
+    --_ta-td-ta: left;
+    --_ta-td-va: middle;
+    --_ta-th-w: unset;
+    --_ta-thead-th-bg: var(--black-025);
+    --_ta-th-bbw: 0;
+    --_ta-th-bc: var(--bc-medium);
+    --_ta-th-fs: unset;
+    --_ta-th-p: var(--su8);
+    --_ta-th-ta: left;
+    --_ta-th-va: middle;
+    --_ta-th-w: unset;
 
     // VARIANTS
-    &&__stripes { // TODO: PPCP-ify
-        // Darken the header
-        thead th {
-            background-color: var(--black-050);
-        }
-        // Add in stripes
-        tbody tr:nth-child(even) {
-            background-color: var(--black-025);
-        }
+    &&__stripes {
+        --_ta-tbody-tr-even-bg: var(--black-025);
+        --_ta-thead-th-bg: var(--black-050);
     }
 
     // MODIFIERS
     &.ta-left {
-        --_ta-cell-ta: left;
+        --_ta-td-ta: left;
+        --_ta-th-ta: left;
     }
 
     &.ta-center {
-        --_ta-cell-ta: center;
+        --_ta-td-ta: center;
+        --_ta-th-ta: center;
     }
 
     &.ta-right {
-        --_ta-cell-ta: right;
+        --_ta-td-ta: right;
+        --_ta-th-ta: right;
     }
 
     &.ta-justify {
-        --_ta-cell-ta: justify;
+        --_ta-td-ta: justify;
+        --_ta-th-ta: justify;
     }
 
     &.va-top {
-        --_ta-cell-va: top;
+        --_ta-td-va: top;
+        --_ta-th-va: top;
     }
 
     &.va-middle {
-        --_ta-cell-va: middle;
+        --_ta-td-va: middle;
+        --_ta-th-va: middle;
     }
 
     &.va-bottom {
-        --_ta-cell-va: bottom;
+        --_ta-td-va: bottom;
+        --_ta-th-va: bottom;
     }
 
-    &&__b0 { // No Borders // TODO: PPCP-ify
-        th,
-        td,
-        tr:last-of-type th,
-        tr:last-of-type td {
-            border-color: transparent;
-        }
+    &&__b0 {
+        --_ta-td-bc: transparent;
+        --_ta-th-bc: transparent;
+        --_ta-tbody-tbody-bc: transparent; // [1]
+        --_ta-tbody-tbody-bw: var(--su-static12); // [1]
+        --_ta-thead-th-bg: transparent;
 
-        //  Clear Header Styles
         thead th {
-            background-color: transparent;
-            text-transform: initial;
             font-size: inherit;
+            text-transform: initial;
             letter-spacing: initial;
         }
-
-        //  This makes the border transparent, so we need to use whitespace
-        //  to achieve the same effect a 2px gray border achieves.
-        tbody + tbody {
-            border-color: transparent;
-            border-width: var(--su-static12);
-        }
     }
 
-    &&__bx { // Horizontal Only with Table Outline // TODO: PPCP-ify
+    &&__bx {
         tr {
             > *:not(:first-child) {
                 border-left-color: transparent;
@@ -90,21 +94,17 @@
         }
     }
 
-    &&__bx-simple { // Horizontal Only without Table Outline // TODO: PPCP-ify
-        th,
-        td {
+    &&__bx-simple {
+        --_ta-thead-th-bg: transparent;
+        --_ta-foot-td-bc: transparent;
+        --_ta-foot-th-bc: transparent;
+
+        td,
+        th {
             border-left-color: transparent;
             border-right-color: transparent;
         }
-        thead th {
-            border-top-color: transparent;
-            border-bottom-color: var(--bc-darker);
-            //  Clear Header Styles
-            background-color: transparent;
-            text-transform: initial;
-            font-size: inherit;
-            letter-spacing: initial;
-        }
+
         tbody tr {
             &:first-of-type th,
             &:first-of-type td {
@@ -115,143 +115,177 @@
                 border-bottom-color: transparent;
             }
         }
-        tfoot th,
-        tfoot td {
-            border-bottom-color: transparent;
+
+        thead th {
+            border-top-color: transparent;
+            border-bottom-color: var(--bc-darker);
+            font-size: inherit;
+            text-transform: initial;
+            letter-spacing: initial;
         }
     }
 
-    &&__sm { // TODO: PPCP-ify
-        th,
-        td {
-            padding: var(--su4);
+    &&__sortable {
+        thead th {
+            a { //  If an anchor is used, it should appear like a normal header
+                color: inherit;
+            }
+
+            &.is-sorted { //  Selected state
+                color: var(--black-900);
+            }
+
+            color: var(--fc-light);
+            cursor: pointer;
         }
     }
 
-    &&__lg { // TODO: PPCP-ify
-        th,
-        td {
-            padding: var(--su12);
-        }
+    &&__sm {
+        --_ta-td-p: var(--su4);
+        --_ta-th-p: var(--su4);
     }
 
-    &&__sortable thead th { // TODO: PPCP-ify
-        color: var(--fc-light);
-        cursor: pointer;
-
-        //  If an anchor is used, it should appear like a normal header
-        a {
-            color: inherit;
-        }
-
-        //  Selected state
-        &.is-sorted {
-            color: var(--black-900);
-        }
+    &&__lg {
+        --_ta-td-p: var(--su12);
+        --_ta-th-p: var(--su12);
     }
 
     // CHILD ELEMENTS
-    td,
+    & &--cell {
+        .generate-cell-widths-classes(@n, @i: 1) when (@i =< @n) {
+            &@{i} { // generates iterated cell classes
+                @ta-cell-w: @ta-columns * @i;
+                --_ta-td-w: @ta-cell-w;
+                --_ta-th-w: @ta-cell-w;
+            }
+            .generate-cell-widths-classes(@n, (@i + 1));
+        }
+  
+        .generate-cell-widths-classes(12);
+    }
+
+    & &--progress {
+    }
+
+    & &--progress-bar {
+    }
+
+    & &--totals {
+        --_ta-td-fs: var(--fs-subheading);
+        --_ta-td-pt: var(--su12);
+        --_ta-td-fw: bold;
+        --_ta-th-fs: var(--fs-subheading);
+        --_ta-th-pt: var(--su12);
+    }
+
+    tbody {
+        + tbody { // If two table bodies are next to each other, visually separate them
+            border-top: var(--_ta-tbody-tbody-bw) solid var(--_ta-tbody-tbody-bc);
+        }
+
+        th {
+            font-weight: normal;
+        }
+
+        tr {
+            &:nth-child(2n) {
+                background-color: var(--_ta-tbody-tr-even-bg);
+            }
+        }
+    }
+
+    td {
+        .s-checkbox {
+            display: block;
+        }
+
+        &.s-table--bulk {
+            --_ta-td-w: calc(var(--su32) - var(--su2)); // 30px;
+        }
+
+        &.s-table--progress {
+            --_ta-td-ta: right;
+            --_ta-td-brw: 0;
+        }
+
+        &.s-table--progress-bar {
+            --_ta-td-blw: 0;
+            --_ta-td-pl: 0;
+            --_ta-td-w: 120px;
+        }
+
+        border: var(--su-static1) solid var(--_ta-td-bc);
+        border-bottom-width: var(--_ta-td-bbw, var(--su-static1));
+        border-left-width: var(--_ta-td-blw, var(--su-static1));
+        border-right-width: var(--_ta-td-brw, var(--su-static1));
+        border-top-width: var(--_ta-td-btw, var(--su-static1));
+        font-size: var(--_ta-td-fs);
+        font-weight: var(--_ta-td-fw);
+        padding: var(--_ta-td-p);
+        padding-left: var(--_ta-td-pl, var(--_ta-td-p));
+        padding-top: var(--_ta-td-pt, var(--_ta-td-p));
+        text-align: var(--_ta-td-ta);
+        vertical-align: var(--_ta-td-va);
+        width: var(--_ta-td-w);
+
+        color: var(--fc-medium);
+    }
+
+    tfoot {
+        td {
+            border-bottom-color: var(--_ta-foot-td-bc, var(--_ta-td-bc));
+        }
+
+        th {
+            border-bottom-color: var(--_ta-foot-th-bc, var(--_ta-td-bc));
+        }
+    }
+
     th {
         .s-checkbox {
             display: block;
         }
 
-        border-bottom: var(--_ta-cell-bb);
-        text-align: var(--_ta-cell-ta);
-        width: var(--_ta-cell-w);
-
-        border-left: @ta-cell-border;
-        border-right: @ta-cell-border;
-        border-top: @ta-cell-border;
-        padding: var(--su8);
-    }
-
-    tbody {
-        + tbody {
-            border-top: var(--su-static2) solid var(--bc-medium); // If two table bodies are next to each other, visually separate them
+        &.s-table--bulk {
+            --_ta-th-w: calc(var(--su32) - var(--su2)); // 30px;
         }
 
-        th {
-            --_ta-th-fw: normal; //  When in a table body, don't make it bold.
-        }
-    }
-
-    td {
-        vertical-align: var(--_ta-cell-va);
-
-        color: var(--fc-medium);
-    }
-
-    th {
-        font-weight: var(--_ta-th-fw);
-        vertical-align: var(--_ta-th-va, var(--_ta-cell-va));
+        border: var(--su-static1) solid var(--_ta-th-bc);
+        border-width: var(--su-static1) var(--su-static1) var(--_ta-th-bbw);
+        font-size: var(--_ta-th-fs);
+        padding: var(--_ta-th-p);
+        padding-top: var(--_ta-th-pt, var(--_ta-th-p));
+        text-align: var(--_ta-th-ta);
+        vertical-align: var(--_ta-th-va);
+        width: var(--_ta-th-w);
 
         color: var(--fc-dark);
+        font-weight: bold;
     }
 
-    thead th { // Custom styles when in a table head
-        --_ta-th-va: bottom;
+    thead {
+        th {
+            background-color: var(--_ta-thead-th-bg);
 
-        background-color: var(--black-025);
-        line-height: var(--lh-sm);
-        white-space: nowrap;
+            line-height: var(--lh-sm);
+            vertical-align: bottom;
+            white-space: nowrap;
+        }
     }
 
     tr {
         &:last-of-type {
-            --_ta-cell-bb: @ta-cell-border; // If it's the last row, add a bottom border
+            --_ta-td-bbw: var(--su-static1);
+            --_ta-th-bbw: var(--su-static1);
         }
 
-        &.is-disabled { // Disabled rows // TODO: PPCP-ify
+        &.is-disabled {
             background-color: var(--black-025);
 
             th:not(.is-enabled),
             td:not(.is-enabled) {
                 opacity: calc(var(--_o-disabled) * 0.6); // 0.5 * 0.6 = 0.3
             }
-        }
-    }
-
-    & &--bulk {
-        &td,
-        &th { // TODO: investigate this style
-            --_ta-cell-w: calc(var(--su32) - var(--su2));
-        }
-    }
-
-    & &--cell {
-        .generate-cell-widths-classes(@n, @i: 1) when (@i =< @n) {
-            &@{i} { // generates iterated cell classes
-                width: @ta-columns * @i;
-            }
-            .generate-cell-widths-classes(@n, (@i + 1));
-        }
-
-        .generate-cell-widths-classes(12);
-    }
-
-    & &--progress { // TODO: PPCP-ify
-        &td {
-            border-right: none;
-            text-align: right;
-        }
-    }
-
-    & &--progress-bar { // TODO: PPCP-ify
-        &td {
-            border-left: none;
-            padding-left: 0;
-            width: 120px;
-        }
-    }
-
-    & &--totals { // TODO: PPCP-ify
-        th,
-        td {
-            padding-top: var(--su12);
-            font-size: var(--fs-subheading);
-            font-weight: bold;
         }
     }
 
@@ -262,3 +296,6 @@
     max-width: 100%;
     width: 100%;
 }
+
+// [1]  This makes the border transparent, so we need to use whitespace
+//      to achieve the same effect a 2px gray border achieves.
