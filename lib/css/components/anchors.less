@@ -1,0 +1,36 @@
+.colorize-all(@name, @normal, @hover) {
+    &&__@{name},
+    & &&__@{name} {
+        a:not(.s-link),
+        .s-btn.s-btn__link {
+            &:hover,
+            &:active {
+                &,
+                &:visited {
+                    color: @hover;
+                }
+            }
+
+            &:visited {
+                color: @normal;
+            }
+
+            color: @normal;
+        }
+    }
+}
+
+.s-anchors {
+    &&__underlined {
+        a:not(.s-link),
+        .s-btn.s-btn__link {
+            text-decoration: underline;
+        }
+    }
+
+    .colorize-all(default, var(--theme-link-color), var(--theme-link-color-hover));
+    .colorize-all(grayscale, var(--black-700), var(--black-600));
+    .colorize-all(inherit, inherit, inherit);
+    .colorize-all(muted, var(--black-500), var(--black-400));
+    .colorize-all(danger, var(--red-500), var(--red-400));
+}

@@ -1,0 +1,79 @@
+a.s-block-link,
+.s-block-link {
+    // CONTEXTUAL STYLES
+    .dark-mode({
+        &.is-selected {
+            background-color: var(--black-025);
+        }
+    });
+
+    // STATES
+    &.is-selected {
+        --_li-block-bs: inset var(--_li-block-bs-offset-x, 3px) 0 0 var(--theme-primary-color);
+
+        &,
+        &:visited {
+            color: var(--black-800);
+        }
+
+        background-color: var(--black-050);
+        font-weight: bold;
+    }
+
+    // MODIFIERS
+    &&__left,
+    &&__right {
+        &.is-selected {
+            &:focus:not(:focus-visible),
+            &:focus-visible {
+                outline: none;
+            }
+
+            &:focus-visible {
+                box-shadow: var(--_li-block-bs), 0 0 0 var(--su-static4) var(--focus-ring-muted);
+            }
+
+            box-shadow: var(--_li-block-bs);
+        }
+    }
+
+    &&__right {
+        &.is-selected {
+            --_li-block-bs-offset-x: -3px;
+        }
+    }
+
+    // VARIANTS
+    &&__danger {
+        &:active,
+        &:hover {
+            color: var(--red-700);
+        }
+
+        color: var(--red-500);
+    }
+
+    &:active,
+    &:hover {
+        color: var(--black-800);
+    }
+
+    &:visited {
+        color: var(--black-600);
+    }
+
+    @focus-styles();
+    background: transparent; // [1]
+    border-radius: 0; // [1]
+    border: none; // [1]
+    color: var(--black-600);
+    cursor: pointer; // [1]
+    display: block;
+    font-family: inherit; // [1]
+    line-height: inherit; // [1]
+    padding: var(--su6) var(--su12);
+    text-align: left; // [1]
+    width: 100%;
+}
+
+//  [1] Normalize for when applying to a button
