@@ -33,6 +33,8 @@ Defining a structure for component styles using pseudo-private custom properties
 // This is an example of the expected structure for component-specific styles
 // In some cases, deviations from this structure are warranted if we need to maintain a legacy structure
 .s-component-name {
+    // COMPONENT-SPECIFIC CONSTANTS
+    @cn-transition-duration: 100ms;
     // BASE COMPONENT-SPECIFIC CUSTOM PROPERTIES
     // --_{component-abbreviation}-{property-shorthand}: {value};
     --_cn-bg: var(--blue-500);
@@ -54,6 +56,7 @@ Defining a structure for component styles using pseudo-private custom properties
             --_cn-image-bg: var(--white);
         }
     });
+
     .s-special-parent & {
         --_cn-bg: transparent;
     }
@@ -70,9 +73,11 @@ Defining a structure for component styles using pseudo-private custom properties
     &&__xs {
         --_cn-h: var(--su-static2); // [1] see end of file
     }
+
     &&__sm {
         --_cn-h: var(--su-static12);
     }
+
     // Orientation
     &&__vertical {
         --_cn-fd: column;
@@ -106,6 +111,7 @@ Defining a structure for component styles using pseudo-private custom properties
     // STATIC COMPONENT STYLES
     display: flex;
     position: relative;
+    transition: all @cn-transition-duration;
     vertical-align: bottom;
 }
 

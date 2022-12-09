@@ -3,77 +3,71 @@
     --_na-fw: wrap;
     --_na-p: var(--su2) 0;
     --_na-gap: var(--su4);
+    --_na-item-bg: none;
+    --_na-item-fc: var(--black-600);
+    --_na-item-fs: unset;
+    --_na-item-p: var(--su6) var(--su12);
+    --_na-item-py: var(--su12);
+    --_na-item-ws: nowrap;
+    --_na-item-bg-hover: var(--black-075);
+    --_na-item-fc-hover: var(--_na-item-fc);
+    --_na-item-selected-bg: var(--theme-primary-color);
+    --_na-item-selected-fc: var(--white);
+    --_na-item-selected-bg-hover: var(--theme-primary-600);
+    --_na-title-mt: var(--su16);
+
+    // CONTEXTUAL STYLES
+    .highcontrast-mode({
+        --_na-item-bg-hover: var(--black-600);
+        --_na-item-fc-hover: var(--black-100);
+    });
 
     // MODIFIERS
     &&__scroll {
         --_na-fw: nowrap;
+
         overflow-x: auto;
         @scrollbar-styles();
     }
-    // Sizes
+
     &&__sm {
-        .s-navigation--item {
-            --_na-item-fs: var(--fs-caption);
-            --_na-item-p: var(--su4) var(--su12);
-        }
+        --_na-item-fs: var(--fs-caption);
+        --_na-item-p: var(--su4) var(--su12);
     }
-    // Orientation
+
     &&__vertical {
         --_na-fd: column;
         --_na-gap: 0;
         --_na-p: 0;
-
-        .s-navigation--item {
-            --_na-item-ws: normal;
-        }
+        --_na-item-ws: normal;
     }
 
     // VARIANTS
     &&__muted {
-        .s-navigation--item {
-            &.is-selected {
-                --_na-item-bg: var(--black-050);
-                --_na-item-fc: var(--black-800);
-                --_na-item-bg-hover: var(--_na-item-bg);
-                --_na-item-fc-hover: var(--_na-item-fc);
+        --_na-item-selected-bg: var(--black-050);
+        --_na-item-selected-fc: var(--black-800);
+        --_na-item-selected-bg-hover: var(--_na-item-bg);
 
-                .highcontrast-mode({
-                    --_na-item-bg: var(--black-800);
-                    --_na-item-fc: var(--black-050);
-                });
-            }
-        }
+        .highcontrast-mode({
+            --_na-item-selected-bg: var(--black-800);
+            --_na-item-selected-fc: var(--black-050);
+            --_na-item-selected-bg-hover: var(--black-900);
+        });
     }
 
     // CHILD ELEMENTS
     & &--item {
-        --_na-item-bg: none;
-        --_na-item-fc: var(--black-600);
-        --_na-item-fs: unset;
-        --_na-item-p: var(--su6) var(--su12);
-        --_na-item-py: var(--su12);
-        --_na-item-ws: nowrap;
-        // hover
-        --_na-item-bg-hover: var(--black-075);
-        --_na-item-fc-hover: var(--_na-item-fc);
-
-        .highcontrast-mode({
-            --_na-item-bg-hover: var(--black-600);
-            --_na-item-fc-hover: var(--black-100);
-        });
-
-        // STATES
         &.is-selected {
-            --_na-item-bg: var(--theme-primary-color);
-            --_na-item-fc: var(--white);
-            --_na-item-bg-hover: var(--theme-primary-600);
+            --_na-item-bg: var(--_na-item-selected-bg);
+            --_na-item-fc: var(--_na-item-selected-fc);
+            --_na-item-fc-hover: var(--_na-item-fc);
+            --_na-item-bg-hover: var(--_na-item-selected-bg-hover);
 
             .highcontrast-mode({
                 text-decoration: none;
             });
         }
 
-        // MODIFIERS
         // TODO: include child component class (without variant) on selector
         &__dropdown {
             &:after {
@@ -91,7 +85,6 @@
             padding-right: 2em;
         }
 
-        // INTERACTION
         &:hover,
         &:active {
             background-color: var(--_na-item-bg-hover);
@@ -116,9 +109,8 @@
         position: relative;
         user-select: auto;
     }
-    & &--title {
-        --_na-title-mt: var(--su16);
 
+    & &--title {
         &:first-child {
             --_na-title-mt: 0;
         }
