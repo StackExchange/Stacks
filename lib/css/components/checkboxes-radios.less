@@ -6,17 +6,20 @@
     --_ch-bg: var(--white);
     --_ch-bg-image: unset;
     --_ch-bs-focus: 0 0 0 var(--su-static4) var(--focus-ring);
+
     // CONTEXTUAL STYLES
     fieldset[disabled] &,
     &[disabled] {
         cursor: not-allowed;
         opacity: var(--_o-disabled-static);
     }
+
     .s-check-control & {
         &[disabled] + .s-label {
             &:extend(.is-disabled .s-label);
         }
     }
+
     .s-check-group & {
         margin-top: calc(var(--su2) + var(--su1)); // 3px
     }
@@ -43,7 +46,9 @@
     vertical-align: middle;
     width: 1em;
 }
+
 .s-checkbox {
+
     // CONTEXTUAL STYLES
     .highcontrast-dark-mode({
         &:checked, &:indeterminate {
@@ -62,9 +67,11 @@
             --_ch-bc-focus: var(--theme-secondary-400);
         }
     }
+
     &:checked {
         --_ch-bg-image: url("data:image/svg+xml,%3Csvg width='11' height='11' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M10 3.41L8.59 2 4 6.59 2.41 5 1 6.41l3 3z' fill='%23fff'/%3E%3C/svg%3E");
     }
+
     &:indeterminate {
         --_ch-bg-image: url("data:image/svg+xml,%3Csvg width='11' height='11' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M2 4.5 h7 v2 h-7 z' fill='%23fff'/%3E%3C/svg%3E");
     }
@@ -81,7 +88,9 @@
     background-size: contain;
     border-radius: var(--br-sm);
 }
+
 .s-radio {
+
     // CONTEXTUAL STYLES
     .highcontrast-dark-mode({
         &:checked {
@@ -89,6 +98,7 @@
             outline: var(--su-static1) solid var(--black);
         }
     });
+
     .dark-mode({
         &:checked {
             --_ch-bg: var(--black);
@@ -104,6 +114,7 @@
 
     border-radius: var(--br-circle);
 }
+
 .s-checkbox,
 .s-radio:not(:checked) {
     .has-error &,
@@ -111,19 +122,23 @@
     .has-warning & {
         --_ch-bc-focus: var(--_ch-bc);
     }
+
     .has-error & {
         --_ch-bc: var(--red-400);
         --_ch-bs-focus: 0 0 0 var(--su-static4) var(--focus-ring-error);
     }
+
     .has-success & {
         --_ch-bc: var(--green-400);
         --_ch-bs-focus: 0 0 0 var(--su-static4) var(--focus-ring-success);
     }
+
     .has-warning & {
         --_ch-bc: var(--yellow-600);
         --_ch-bs-focus: 0 0 0 var(--su-static4) var(--focus-ring-warning);
     }
 }
+
 .s-check-control { // TODO would _love_ to use .s-check instead, with no class on the input itself
     --_cc-ai: center;
 
@@ -141,6 +156,7 @@
     display: flex;
     gap: var(--su8);
 }
+
 .s-check-group {
     --_cg-fd: column;
 

@@ -24,6 +24,7 @@
             line-height: normal !important;
         }
     }
+
     .highcontrast-mode({
         --_in-bc: var(--black);
         --_in-placeholder-fc: var(--black-400);
@@ -36,10 +37,12 @@
     .is-readonly & {
         --_in-c: not-allowed;
     }
+
     fieldset[disabled] &,
     &[disabled] {
         --_in-o: var(--_o-disabled-static);
     }
+
     &[readonly],
     .is-readonly & {
         .highcontrast-mode({
@@ -51,6 +54,7 @@
         --_in-fc: var(--black-200);
         --_in-fc-focus: var(--_in-fc);
     }
+
     .has-error & {
         --_in-bc: var(--red-400);
         --_in-bc-focus: var(--red-400);
@@ -60,6 +64,7 @@
             --_in-bc: var(--red-400);
         });
     }
+
     .has-success & {
         --_in-bc: var(--green-400);
         --_in-bc-focus: var(--green-400);
@@ -69,6 +74,7 @@
             --_in-bc: var(--green-400);
         });
     }
+
     .has-warning & {
         --_in-bc: var(--yellow-600);
         --_in-bc-focus: var(--yellow-600);
@@ -78,9 +84,12 @@
             --_in-bc: var(--yellow-600);
         });
     }
+
+    // Sizes
     &&__sm {
         --_in-fs: var(--fs-caption);
     }
+
     &&__md {
         @supports (-webkit-overflow-scrolling: touch) {
             --_in-fs: 17px;
@@ -90,12 +99,14 @@
         --_in-br: calc(var(--br-sm) + 1px);
         --_in-fs: var(--fs-body3);
     }
+
     &&__lg {
         --_in-br: calc(var(--br-sm) + 1px);
         --_in-fs: var(--fs-title);
         --_in-px: 0.6em;
         --_in-py: 0.45em;
     }
+
     &&__xl {
         --_in-br: var(--br-md);
         --_in-fs: var(--fs-headline1);
@@ -108,9 +119,11 @@
     &::-webkit-input-placeholder {
         color: var(--_in-placeholder-fc);
     }
+
     &::placeholder {
         opacity: 1;
     }
+
     &:-webkit-autofill {
         &:focus {
             border-color: var(--blue-300);
@@ -122,11 +135,12 @@
         -webkit-text-fill-color: var(--black);
         border-color: var(--blue-300);
         transition: background-color 0s 50000s; // A hack to infinitely delay background styles that come from the browser.
-
     }
+
     &::-webkit-contacts-auto-fill-button {
         background-color: var(--black); // In Safari, make the autocomplete button darkmode-aware
     }
+
     &&__creditcard,
     &&__search {
         --_in-pl: var(--su-static32);
@@ -155,6 +169,7 @@
     margin: 0; // A guard against Core's default margins
     width: 100%;
 }
+
 .s-input {
     .is-disabled &,
     .is-readonly &,
@@ -179,6 +194,7 @@
         --_in-py: 0.5em;
     }
 }
+
 .s-textarea {
     .is-disabled &,
     .is-readonly &,
@@ -186,12 +202,13 @@
     .has-error &,
     .has-warning & {
         ~ .s-input-icon {
-            top: 1.5em;
             right: 1.5em;
+            top: 1.5em;
         }
 
         padding-right: var(--su48);
     }
+
     &&__md {
         --_in-py: 0.72em;
     }
@@ -210,10 +227,12 @@
         --_if-bc: transparent;
         --_if-bg: transparent;
     }
+
     &.order-first {
         --_if-blw: var(--su-static1);
         --_if-blr: var(--br-sm);
     }
+
     &.order-last {
         --_if-brw: var(--su-static1);
         --_if-brr: var(--br-sm);
@@ -222,8 +241,8 @@
     background-color: var(--_if-bg);
     border: var(--su-static1) solid var(--_if-bc);
     border-left-width: var(--_if-blw);
-    border-radius: var(--_if-blr) var(--_if-brr) var(--_if-brr) var(--_if-blr);
     border-right-width: var(--_if-brw);
+    border-radius: var(--_if-blr) var(--_if-brr) var(--_if-brr) var(--_if-blr);
 
     color: var(--fc-medium);
     font-family: inherit;
@@ -231,6 +250,7 @@
     padding: 0.6em 0.7em;
     white-space: nowrap;
 }
+
 .s-input-icon {
     --_ii-fc: unset;
     --_ii-r: 0.7em;
@@ -239,15 +259,19 @@
     .has-error & {
         --_ii-fc: var(--red-400);
     }
+
     .has-success & {
         --_ii-fc: var(--green-400);
     }
+
     .has-warning & {
         --_ii-fc: var(--yellow-600);
     }
+
     .is-disabled & {
         --_ii-fc: var(--black-400);
     }
+
     .is-readonly & {
         --_ii-fc: var(--black-200);
 
@@ -255,6 +279,7 @@
             --_ii-fc: var(--fc-light);
         });
     }
+
     &&__creditcard,
     &&__search {
         --_ii-r: auto;
@@ -285,6 +310,7 @@
             text-decoration: underline;
         }
     }
+
     fieldset[disabled] & {
         cursor: not-allowed;
         opacity: var(--_o-disabled-static);
@@ -296,11 +322,13 @@
         --_im-a-fc: var(--red-800);
         --_im-a-fc-hover: var(--red-900);
     }
+
     .has-success & {
         --_im-fc: var(--green-500);
         --_im-a-fc: var(--green-800);
         --_im-a-fc-hover: var(--green-900);
     }
+
     .has-warning & {
         --_im-fc: var(--yellow-800);
         --_im-a-fc: var(--yellow-900);

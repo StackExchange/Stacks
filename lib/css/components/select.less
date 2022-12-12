@@ -28,39 +28,47 @@
             right: var(--su32);
         }
     }
+
     .is-disabled & {
         --_se-arrow-bc: var(--bc-darker) transparent;
     }
+
     &&__sm {
         --_se-select-fs: var(--fs-caption);
     }
+
     &&__md {
         --_se-select-br: calc(var(--br-sm) + var(--su-static1));
         --_se-select-fs: var(--fs-body3);
         --_se-select-py: 0.5em;
     }
+
     &&__lg {
         --_se-select-br: calc(var(--br-sm) + var(--su-static1));
         --_se-select-fs: var(--fs-title);
         --_se-select-px: 0.6em;
         --_se-select-py: 0.45em;
     }
+
     &&__xl {
         --_se-select-br: var(--br-md);
         --_se-select-fs: var(--fs-headline1);
         --_se-select-px: 0.5em;
         --_se-select-py: 0.4em;
     }
+
     .has-error & {
         --_se-select-bc: var(--red-400);
         --_se-select-bc-focus: var(--red-400);
         --_se-select-bs-focus: 0 0 0 var(--su-static4) var(--focus-ring-error);
     }
+
     .has-success & {
         --_se-select-bc: var(--green-400);
         --_se-select-bc-focus: var(--green-400);
         --_se-select-bs-focus: 0 0 0 var(--su-static4) var(--focus-ring-success);
     }
+
     .has-warning & {
         --_se-select-bc: var(--yellow-600);
         --_se-select-bc-focus: var(--yellow-600);
@@ -87,6 +95,7 @@
             }
         }
     }
+
     &:before,
     &:after { // menu arrows
         border-color: var(--_se-arrow-bc);
@@ -98,14 +107,17 @@
         right: calc(var(--su-static12) + var(--su-static1));
         z-index: var(--zi-selected);
     }
+
     &:after {
         border-bottom-width: 0;
         top: calc(50% + var(--su-static1));
     }
+
     &:before {
         border-top-width: 0;
         top: calc(50% - calc(var(--_se-arrow-size) + var(--su-static1)));
     }
+
     > select { // Menu
         // CONTEXTUAL STYLES
         fieldset[disabled] &,
@@ -113,6 +125,7 @@
             cursor: not-allowed;
             opacity: var(--_o-disabled-static);
         }
+
         &[readonly],
         .is-readonly & { // [1]
             --_se-select-bc: var(--bc-light);
@@ -130,10 +143,12 @@
         &::-moz-focus-inner {
             outline: none !important;
         }
+
         &:-moz-focusring {
             color: transparent;
             text-shadow: 0 0 0 #000;
         }
+
         &::-ms-expand {
             display: none;
         }
@@ -144,9 +159,9 @@
                 --_se-select-bc-focus: var(--black);
             });
 
+            border-color: var(--_se-select-bc-focus);
             box-shadow: var(--_se-select-bs-focus);
 
-            border-color: var(--_se-select-bc-focus);
             color: var(--black);
             outline: 0;
         }
