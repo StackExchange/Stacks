@@ -1,27 +1,3 @@
-//
-//  STACK OVERFLOW
-//  INPUTS
-//
-//  This CSS comes from Stacks, our CSS & Pattern library for rapidly building
-//  Stack Overflow. For documentation of all these classes and how to contribute,
-//  visit https://stackoverflow.design/
-//
-//  TABLE OF CONTENTS
-//  • Variables
-//  • Inputs
-//    - Base Style (Input / Textarea)
-//    - Textarea Styles
-//    - Fieldset Resets
-//  • Text Styles
-//  • Connected Input Fills
-//  • Select Menus
-//  • Checkbox & Radio
-//  • Input States
-//  • Validation States
-//  • Input Sizes
-//  ============================================================================
-//  $  VARIABLES & MIXINS
-//  ----------------------------------------------------------------------------
 @input-padding: 0.6em 0.7em;
 
 @autofill: {
@@ -268,6 +244,44 @@ fieldset {
 //  ============================================================================
 //  $   CHECKBOXES & RADIOS
 //  ----------------------------------------------------------------------------
+// TODO would _love_ to use .s-check instead, with no class on the input itself
+.s-check-control {
+    display: flex;
+    gap: var(--su8);
+    align-items: center;
+
+    [disabled] + .s-label {
+        &:extend(.is-disabled .s-label);
+    }
+
+    .s-label {
+        font-weight: normal;
+    }
+}
+
+.s-check-group {
+    display: flex;
+    flex-direction: column;
+    gap: var(--su8);
+
+    &&__horizontal {
+        flex-direction: row;
+    }
+
+    // TODO HACK? <legend> isn't respecting gap...
+    legend.s-label {
+        margin-bottom: var(--su8);
+    }
+
+    // manually align the checkboxes and radios to the top of the group
+    .s-check-control {
+        align-items: flex-start;
+    }
+    .s-checkbox, .s-radio {
+        margin-top: calc(var(--su2) + var(--su1)); // 3px
+    }
+}
+
 .s-checkbox,
 .s-radio {
     //  [1]   Check to see if we can use custom styles, if so reset the defaults
@@ -595,34 +609,18 @@ fieldset {
     font-size: var(--fs-caption);
 }
 
-//  $$  SIZES
+//  $$  PADDING ADJUSTMENTS AND SIZES
 //  ----------------------------------------------------------------------------
 .s-input__sm,
 .s-textarea__sm,
 .s-select__sm > select {
     font-size: var(--fs-caption);
 }
+
 .s-input__md,
 .s-textarea__md,
 .s-select__md > select {
     font-size: var(--fs-body3);
-}
-.s-input__lg,
-.s-textarea__lg,
-.s-select__lg > select {
-    font-size: var(--fs-title);
-}
-.s-input__xl,
-.s-textarea__xl,
-.s-select__xl > select {
-    font-size: var(--fs-headline1);
-}
-
-//  $$  PADDING ADJUSTMENTS WITHIN SIZES
-//  ----------------------------------------------------------------------------
-.s-input__md,
-.s-textarea__md,
-.s-select__md > select {
     padding-top: 0.5em;
     padding-bottom: 0.5em;
     border-radius: calc(var(--br-sm) + 1px);
@@ -636,6 +634,7 @@ fieldset {
 .s-input__lg,
 .s-textarea__lg,
 .s-select__lg > select {
+    font-size: var(--fs-title);
     padding: 0.45em 0.6em;
     border-radius: calc(var(--br-sm) + 1px);
 }
@@ -643,6 +642,7 @@ fieldset {
 .s-input__xl,
 .s-textarea__xl,
 .s-select__xl > select {
+    font-size: var(--fs-headline1);
     padding: 0.4em 0.5em;
     border-radius: var(--br-md);
 }

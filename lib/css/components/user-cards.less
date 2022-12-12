@@ -1,169 +1,120 @@
-//
-//  STACK OVERFLOW
-//  USER CARDS
-//
-//  This CSS comes from Stacks, our CSS & Pattern library for rapidly building
-//  Stack Overflow. For documentation of all these classes and how to contribute,
-//  visit https://stackoverflow.design/
-//
-//  ============================================================================
-//  $  BASE
-//  ----------------------------------------------------------------------------
-
 .s-user-card {
-    display: grid;
-    grid-template-columns: auto 1fr;
-    column-gap: var(--su8);
-    row-gap: var(--su4);
-    align-items: center;
-    line-height: 1;
-    padding: var(--su8);
+    --_uc-ai: center;
+    --_uc-bg: unset;
+    --_uc-bar: unset;
+    --_uc-d: grid;
+    --_uc-fc: unset;
+    --_uc-g: var(--su4) var(--su8);
+    --_uc-p: var(--su8);
+    --_uc-info-ai: unset;
+    --_uc-info-fd: column;
+    --_uc-link-fs: var(--fs-caption);
+    --_uc-link-ws: unset;
+    --_uc-rep-fc: unset;
+    --_uc-time-fc: var(--black-500);
+    --_uc-time-ws: unset;
+    --_uc-type-fc: var(--theme-primary-400);
 
-    //  ===========================================================================
-    //  $   STYLE VARIATIONS
-    //      Modify the presentation of the user card
-    //  ===========================================================================
-    //  $$  Highlighted
-    //  ---------------------------------------------------------------------------
-    &.s-user-card__highlighted {
-        background-color: var(--theme-secondary-050);
-        border-radius: var(--br-md);
-
-        .s-user-card--type {
-            color: var(--black-700);
-        }
+    // MODIFIERS
+    &&__deleted {
+        --_uc-fc: var(--black-500);
+    }
+    &&__highlighted {
+        --_uc-bg: var(--theme-secondary-050);
+        --_uc-bar: var(--br-md);
+        --_uc-time-fc: var(--black-600);
+        --_uc-type-fc: var(--black-700);
     }
 
-    //  $$  Full meta data
-    //  ---------------------------------------------------------------------------
-    &.s-user-card__full {
-        align-items: start;
+    // VARIANTS
+    &&__minimal,
+    &&__small {
+        --_uc-d: flex;
+        --_uc-g: var(--su4);
+        --_uc-p: 0;
+        --_uc-info-ai: center;
+        --_uc-info-fd: row;
 
-        .s-user-card--link {
-            font-size: var(--fs-body2);
-        }
+    }
+    &&__full {
+        --_uc-ai: flex-start;
+        --_uc-link-fs: var(--fs-body2);
+    }
+    &&__minimal {
+        --_uc-link-ws: nowrap;
+        --_uc-rep-fc: var(--black-600);
+        --_uc-time-ws: nowrap;
     }
 
-    //  $$  Deleted
-    //  ---------------------------------------------------------------------------
-    &.s-user-card__deleted {
+    // CHILD ELEMENTS
+    & &--location,
+    & &--role {
+        font-size: var(--fs-caption);
         color: var(--black-500);
     }
+    & &--awards {
+        li {
+            font-size: var(--fs-caption);
+        }
 
-    //  $$  Small size
-    //  ---------------------------------------------------------------------------
-    &.s-user-card__small {
-        display: flex;
+        .list-reset;
         align-items: center;
-        gap: var(--su4);
-        padding: 0;
-
-        .s-user-card--info {
-            flex-direction: row;
-            align-items: center;
-        }
-    }
-
-    //  $$  A minimal presentation
-    //  ---------------------------------------------------------------------------
-    &.s-user-card__minimal {
         display: flex;
-        align-items: center;
-        gap: var(--su4);
-        padding: 0;
-
-        .s-user-card--time {
-            white-space: nowrap;
-        }
-
-        .s-user-card--link {
-            white-space: nowrap;
-        }
-
-        .s-user-card--rep {
-            color: var(--black-600);
-        }
-
-        .s-user-card--info {
-            flex-direction: row;
-            align-items: center;
-        }
+        gap: var(--su6);
     }
+    & &--info {
+        align-items: var(--_uc-info-ai);
+        flex-direction: var(--_uc-info-fd);
 
-    .s-user-card--type {
-        grid-column: ~"1 / 3";
+        display: flex;
+        gap: var(--su4);
+    }
+    & &--link {
+        font-size: var(--_uc-link-fs);
+        white-space: var(--_uc-link-ws);
+
+        align-items: center;
+        flex-wrap: wrap;
+        min-width: 0; // Allow things to wrap
+        overflow-wrap: break-word;
+    }
+    & &--rep {
+        color: var(--_uc-rep-fc);
+
+        font-weight: 700;
+    }
+    & &--tags {
+        align-items: center;
+        min-width: 0; // Allow things to wrap
+        flex-wrap: wrap;
+    }
+    & &--time {
+        color: var(--_uc-time-fc);
+        white-space: var(--_uc-time-ws);
+
         font-size: var(--fs-caption);
-        color: var(--theme-primary-400);
-
+        grid-column: ~"1 / 3";
+        grid-row: ~"1 / 2";
+    }
+    & &--type {
         a {
             color: inherit;
         }
-    }
-}
 
-//  $   USER CARD TIME
-//      Optional element used for displaying time since an action happened
-//  ---------------------------------------------------------------------------
-.s-user-card--time {
-    grid-column: ~"1 / 3";
-    grid-row: ~"1 / 2";
-    color: var(--black-500);
-    font-size: var(--fs-caption);
-}
+        color: var(--_uc-type-fc);
 
-//  $   USER INFO CONTAINER
-//      An optional container for extra meta info that applies a
-//      vertical grid layout
-//  ---------------------------------------------------------------------------
-.s-user-card--info {
-    display: flex;
-    flex-direction: column;
-    gap: var(--su4);
-}
-
-//  $   USER LINK
-//      Styles the link to the user's profile appropriately
-//  ---------------------------------------------------------------------------
-.s-user-card--link {
-    min-width: 0; // Allow things to wrap
-    font-size: var(--fs-caption);
-    align-items: center;
-    flex-wrap: wrap;
-    overflow-wrap: break-word;
-}
-
-//  $   AWARDS CONTAINER
-//      A container for reputation and various awards
-//  ---------------------------------------------------------------------------
-.s-user-card--awards {
-    .list-reset;
-    display: flex;
-    align-items: center;
-    gap: var(--su6);
-
-    li {
         font-size: var(--fs-caption);
+        grid-column: ~"1 / 3";
     }
-}
 
-.s-user-card--rep {
-    font-weight: 700;
-}
+    align-items: var(--_uc-ai);
+    background-color: var(--_uc-bg);
+    border-radius: var(--_uc-bar);
+    color: var(--_uc-fc);
+    display: var(--_uc-d);
+    gap: var(--_uc-g);
 
-//  $   USER META DATA
-//      Add the proper styling to various user data
-//  ---------------------------------------------------------------------------
-.s-user-card--location,
-.s-user-card--role {
-    font-size: var(--fs-caption);
-    color: var(--black-500);
-}
-
-//  $   TAGS CONTAINER
-//      Apply layout to a bunch of child tags
-//  ---------------------------------------------------------------------------
-.s-user-card--tags {
-    min-width: 0; // Allow things to wrap
-    align-items: center;
-    flex-wrap: wrap;
+    grid-template-columns: auto 1fr;
+    line-height: 1;
+    padding: var(--_uc-p);
 }

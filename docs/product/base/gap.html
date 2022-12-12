@@ -1,0 +1,187 @@
+---
+layout: page
+title: Gap
+description: Atomic CSS gap classes allow you to set spacing on the direct children of elements with <code class="stacks-code">flexbox</code> and <code class="stacks-code">grid</code> layouts.
+---
+<section class="stacks-section">
+    {% header "h2", "Gap classes" %}
+    <div class="overflow-x-auto mb48" tabindex="0">
+        <table class="wmn4 s-table s-table__bx-simple">
+            <thead>
+                <tr>
+                    <th class="s-table--cell3" scope="col">Class</th>
+                    <th class="s-table--cell3" scope="col">Output</th>
+                    <th scope="col">Definition</th>
+                    <th class="s-table--cell2 ta-center" scope="col"><a class="s-link s-link__inherit" href="{{ "/product/guidelines/conditional-classes#responsive" | url }}">Responsive?</a></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in gap.gap %}
+                    <tr class="fs-caption">
+                        <th scope="row"><code class="stacks-code">.{{ item.class }}</code></th>
+                        <td><code class="stacks-code bg-white">{{ item.output }}</code></td>
+                        <td>{{ item.define }}</td>
+                        <td class="ta-center">
+                            {% if item.responsive %}
+                                {% icon "Checkmark", "fc-green-500" %}
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    {% header "h3", "Examples" %}
+    <div class="stacks-preview">
+{% highlight html %}
+<div class="d-grid g0">…</div>
+<div class="d-grid g1">…</div>
+<div class="d-grid g2">…</div>
+<div class="d-grid g4">…</div>
+<div class="d-grid g8">…</div>
+<div class="d-grid g12">…</div>
+<div class="d-grid g16">…</div>
+<div class="d-grid g24">…</div>
+<div class="d-grid g32">…</div>
+<div class="d-grid g48">…</div>
+<div class="d-grid g64">…</div>
+{% endhighlight %}
+        <div class="stacks-preview--example ff-mono">
+            {% for item in gap.gap %}
+                <div class="mb16 d-grid {{ item.class }} grid__3 bg-black-075 ba bc-black-3 p16">
+                    <div class="grid--item bg-black-100 p8 h32 ba bc-black-4">
+                        .{{ item.class }}
+                    </div>
+                    <div class="grid--item bg-black-100 p8 h32 ba bc-black-4"></div>
+                    <div class="grid--item bg-black-100 p8 h32 ba bc-black-4"></div>
+                    <div class="grid--item bg-black-100 p8 h32 ba bc-black-4"></div>
+                    <div class="grid--item bg-black-100 p8 h32 ba bc-black-4"></div>
+                    <div class="grid--item bg-black-100 p8 h32 ba bc-black-4"></div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<section class="stacks-section">
+    <!-- TODO: write description -->
+    {% header "h2", "Column gap" %}
+    <p class="stacks-copy">Spacing can be set on just the x-axis with <code class="stacks-code">.gx</code> classes. They can be used independently or in combination with other atomic gap classes.</p>
+    <div class="overflow-x-auto mb48" tabindex="0">
+        <table class="wmn4 s-table s-table__bx-simple">
+            <thead>
+                <tr>
+                    <th class="s-table--cell3" scope="col">Class</th>
+                    <th scope="col">Definition</th>
+                    <th class="s-table--cell2 ta-center" scope="col"><a class="s-link s-link__inherit" href="{{ "/product/guidelines/conditional-classes#responsive" | url }}">Responsive?</a></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in gap.column %}
+                    <tr class="fs-caption">
+                        <th scope="row"><code class="stacks-code">.{{ item.class }}</code></th>
+                        <td>{{ item.define }}</td>
+                        <td class="ta-center">
+                            {% if item.responsive %}
+                                {% icon "Checkmark", "fc-green-500" %}
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    {% header "h3", "Column examples" %}
+    <div class="stacks-preview">
+{% highlight html %}
+<div class="d-grid gx0">…</div>
+<div class="d-grid gx1">…</div>
+<div class="d-grid gx2">…</div>
+<div class="d-grid gx4">…</div>
+<div class="d-grid gx8">…</div>
+<div class="d-grid gx12">…</div>
+<div class="d-grid gx16">…</div>
+<div class="d-grid gx24">…</div>
+<div class="d-grid gx32">…</div>
+<div class="d-grid gx48">…</div>
+<div class="d-grid gx64">…</div>
+{% endhighlight %}
+        <div class="stacks-preview--example ff-mono">
+            {% for item in gap.column %}
+                <div class="mb16 d-grid {{ item.class }} grid__3 bg-black-075 ba bc-black-3 p16">
+                    <div class="grid--item bg-black-100 p8 h32 ba bc-black-4">
+                        .{{ item.class }}
+                    </div>
+                    <div class="grid--item bg-black-100 p8 h32 ba bc-black-4"></div>
+                    <div class="grid--item bg-black-100 p8 h32 ba bc-black-4"></div>
+                    <div class="grid--item bg-black-100 p8 h32 ba bc-black-4"></div>
+                    <div class="grid--item bg-black-100 p8 h32 ba bc-black-4"></div>
+                    <div class="grid--item bg-black-100 p8 h32 ba bc-black-4"></div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<section class="stacks-section">
+    <!-- TODO: write description -->
+    {% header "h2", "Row gap" %}
+    <p class="stacks-copy">Spacing can be set on just the y-axis with <code class="stacks-code">.gy</code> classes. They can be used independently or in combination with other atomic gap classes.</p>
+    <div class="overflow-x-auto mb48" tabindex="0">
+        <table class="wmn4 s-table s-table__bx-simple">
+            <thead>
+                <tr>
+                    <th class="s-table--cell3" scope="col">Class</th>
+                    <th scope="col">Definition</th>
+                    <th class="s-table--cell2 ta-center" scope="col"><a class="s-link s-link__inherit" href="{{ "/product/guidelines/conditional-classes#responsive" | url }}">Responsive?</a></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in gap.row %}
+                    <tr class="fs-caption">
+                        <th scope="row"><code class="stacks-code">.{{ item.class }}</code></th>
+                        <td>{{ item.define }}</td>
+                        <td class="ta-center">
+                            {% if item.responsive %}
+                                {% icon "Checkmark", "fc-green-500" %}
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    {% header "h3", "Row examples" %}
+    <div class="stacks-preview">
+{% highlight html %}
+<div class="d-grid gy0">…</div>
+<div class="d-grid gy1">…</div>
+<div class="d-grid gy2">…</div>
+<div class="d-grid gy4">…</div>
+<div class="d-grid gy8">…</div>
+<div class="d-grid gy12">…</div>
+<div class="d-grid gy16">…</div>
+<div class="d-grid gy24">…</div>
+<div class="d-grid gy32">…</div>
+<div class="d-grid gy48">…</div>
+<div class="d-grid gy64">…</div>
+{% endhighlight %}
+        <div class="stacks-preview--example ff-mono">
+            {% for item in gap.row %}
+                <div class="mb16 d-grid {{ item.class }} grid__3 bg-black-075 ba bc-black-3 p16">
+                    <div class="grid--item bg-black-100 p8 h32 ba bc-black-4">
+                        .{{ item.class }}
+                    </div>
+                    <div class="grid--item bg-black-100 p8 h32 ba bc-black-4"></div>
+                    <div class="grid--item bg-black-100 p8 h32 ba bc-black-4"></div>
+                    <div class="grid--item bg-black-100 p8 h32 ba bc-black-4"></div>
+                    <div class="grid--item bg-black-100 p8 h32 ba bc-black-4"></div>
+                    <div class="grid--item bg-black-100 p8 h32 ba bc-black-4"></div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
