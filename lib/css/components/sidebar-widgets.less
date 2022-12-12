@@ -1,14 +1,23 @@
 .s-sidebarwidget {
-    // CONSTANTS
-    --_sw-content-px: calc(var(--su16) - var(--su1)); // subtract 1px for border
-    --_sw-content-spacing-inner: var(--su12); // the spacing between two adjacent simple items
-    --_sw-content-spacing-outer: var(--su16); // the spacing at the start/end of a group of simple items, as well as between a complex item and its separator line
-
-    // VARIABLES
+    // COMPONENT-SPECIFIC CONSTANTS
+    @sw-content-px: calc(var(--su16) - var(--su1)); // subtract 1px for border
+    @sw-content-spacing-inner: var(--su12); // the spacing between two adjacent simple items
+    @sw-content-spacing-outer: var(--su16); // the spacing at the start/end of a group of simple items, as well as between a complex item and its separator line
+    // COMPONENT-SPECIFIC CUSTOM PROPERTIES
     --_sw-bc: var(--bc-medium);
     --_sw-after-bc: var(--_sw-bc);
     --_sw-content-bc: var(--bc-light);
     --_sw-header-bc: var(--_sw-content-bc);
+
+    // MODIFIERS
+    &:not(.s-anchors) {
+        a:not(.button):not(.post-tag):not(.s-btn):not(.s-sidebarwidget--action):not(.s-user-card--link) {
+            &,
+            &:visited {
+                color: var(--black-500);
+            }
+        }
+    }
 
     // VARIANTS
     .alternate-color(blue);
@@ -25,19 +34,6 @@
     }
 
     & &--content {
-        &.s-sidebarwidget__items {
-            &,
-            &.s-sidebarwidget__block-items .s-sidebarwidget--item {
-                display: block;
-            }
-
-            padding: calc(var(--_sw-content-spacing-outer) - var(--_sw-content-spacing-inner)) var(--_sw-content-px); // the items themselves provide part of the spacing, so the content padding needs to account for that
-        }
-
-        &:active {
-            outline: none;
-        }
-
         &:not(table) {
             &:not(.s-sidebarwidget__items),
             &:not(.s-sidebarwidget__block-items) .s-sidebarwidget--item {
@@ -45,44 +41,59 @@
             }
         }
 
+        &.s-sidebarwidget__items {
+            &,
+            &.s-sidebarwidget__block-items .s-sidebarwidget--item {
+                display: block;
+            }
+
+            padding: calc(@sw-content-spacing-outer - @sw-content-spacing-inner) @sw-content-px; // the items themselves provide part of the spacing, so the content padding needs to account for that
+        }
+
+        &:active {
+            outline: none;
+        }
+
         border-top: var(--su-static1) solid var(--_sw-content-bc);
         margin: 0;
-        padding: var(--_sw-content-spacing-outer) var(--_sw-content-px);
+        padding: @sw-content-spacing-outer @sw-content-px;
     }
 
     & &--header {
-        &.s-sidebarwidget__expanding-control {
-            &:before {
-                border: calc(var(--su-static4) + var(--su-static1)) solid transparent;
-                border-left-color: var(--bc-darker);
-                border-right-width: 0;
-                content: '';
-                float: left;
-                margin-right: var(--su12);
-                margin-top: calc(calc(var(--lh-base) * 1em) / 2 - 5px); // 1.3 is our standard line height
-                transition: transform 0.3s cubic-bezier(0.4, 0.4, 0.6, 1);
-            }
-
-            &[aria-expanded='true']:before {
-                transform: rotate(90deg);
-            }
-
-            cursor: pointer;
-        }
-
-        &.s-sidebarwidget__small-bold-text {
-            .s-sidebarwidget--action {
-                font-weight: normal;
-                line-height: calc(var(--lh-base) * var(--fs-caption)); // line-height should be the same as in the outside element, so the header and action baselines line up
-            }
-
-            font-size: var(--fs-caption);
-            font-weight: bold;
-        }
-
         &:first-child {
             border-top-left-radius: var(--br-sm);
             border-top-right-radius: var(--br-sm);
+        }
+
+        &.s-sidebarwidget {
+            &__expanding-control {
+                &:before {
+                    border: calc(var(--su-static4) + var(--su-static1)) solid transparent;
+                    border-left-color: var(--bc-darker);
+                    border-right-width: 0;
+                    content: '';
+                    float: left;
+                    margin-right: var(--su12);
+                    margin-top: calc(calc(var(--lh-base) * 1em) / 2 - 5px); // 1.3 is our standard line height
+                    transition: transform 0.3s cubic-bezier(0.4, 0.4, 0.6, 1);
+                }
+
+                &[aria-expanded='true']:before {
+                    transform: rotate(90deg);
+                }
+
+                cursor: pointer;
+            }
+
+            &__small-bold-text {
+                .s-sidebarwidget--action {
+                    font-weight: normal;
+                    line-height: calc(var(--lh-base) * var(--fs-caption)); // line-height should be the same as in the outside element, so the header and action baselines line up
+                }
+
+                font-size: var(--fs-caption);
+                font-weight: bold;
+            }
         }
 
         &:active {
@@ -95,7 +106,7 @@
         font-size: var(--fs-body2);
         font-weight: normal;
         margin: 0;
-        padding: var(--_sw-content-spacing-inner) var(--_sw-content-px);
+        padding: @sw-content-spacing-inner @sw-content-px;
     }
 
     & &--item {
@@ -108,16 +119,18 @@
                     border-left-style: solid;
                     border-left-width: calc(var(--su-static1) * 3); // 3px
                     content: '';
-                    height: calc(100% + var(--_sw-content-spacing-inner));
+                    height: calc(100% + @sw-content-spacing-inner);
                     left: 0;
-                    margin-left: calc(var(--_sw-content-px) * -1 - var(--su-static1)); // the orange selection indicator overlaps with the widget border
-                    margin-top: calc(var(--_sw-content-spacing-inner) / 2 * -1);
+                    margin-left: calc(@sw-content-px * -1 - var(--su-static1)); // the orange selection indicator overlaps with the widget border
+                    margin-top: calc(@sw-content-spacing-inner / 2 * -1);
                     position: absolute;
                 }
 
-                a,
-                a:visited { // TODO: this isn't the best way to go about this. There should be a "is current" highlight without font modification for more complex cases
-                    color: inherit;
+                a { // TODO: this isn't the best way to go about this. There should be a "is current" highlight without font modification for more complex cases
+                    &,
+                    &:visited {
+                        color: inherit;
+                    }
                 }
 
                 color: var(--black);
@@ -126,16 +139,18 @@
             }
         }
 
-        margin: var(--_sw-content-spacing-inner) 0;
+        margin: @sw-content-spacing-inner 0;
     }
 
     & &--subnav {
         li {
             &[aria-current="page"],
             &[aria-current="true"] {
-                a,
-                a:visited {
-                    color: inherit;
+                a {
+                    &,
+                    &:visited {
+                        color: inherit;
+                    }
                 }
 
                 #stacks-internals #bullet-arrow(var(--theme-primary-color));
@@ -166,15 +181,8 @@
         }
 
         border-collapse: separate;
-        border-spacing: var(--_sw-content-spacing-inner);
-        padding: calc(var(--_sw-content-spacing-outer) - var(--_sw-content-spacing-inner)) calc(var(--_sw-content-px) - var(--_sw-content-spacing-inner));
-    }
-
-    &:not(.s-anchors) a:not(.button):not(.s-btn):not(.post-tag):not(&--action):not(.s-user-card--link) {
-        &,
-        &:visited {
-            color: var(--black-500);
-        }
+        border-spacing: @sw-content-spacing-inner;
+        padding: calc(@sw-content-spacing-outer - @sw-content-spacing-inner) calc(@sw-content-px - @sw-content-spacing-inner);
     }
 
     &:before { // [1]
@@ -215,15 +223,15 @@
             --_sw-bc: var(~"--@{name}-700");
         });
 
+        &:after,
+        .s-sidebarwidget--content,
+        .s-sidebarwidget--header {
+            border-color: var(--_sw-bc);
+        }
+
         .s-sidebarwidget--header {
             background-color: var(~"--@{name}-100");
             color: var(--fc-medium);
-        }
-
-        .s-sidebarwidget--header,
-        .s-sidebarwidget--content,
-        &:after {
-            border-color: var(--_sw-bc);
         }
 
         background-color: var(~"--@{name}-050");
