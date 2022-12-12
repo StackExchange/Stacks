@@ -36,6 +36,7 @@
         --_ps-stats-fd: row;
         --_ps-stats-w: auto;
     }
+
     &&__minimal {
         .s-post-summary--content {
             width: 100%;
@@ -55,9 +56,9 @@
         --_ps-has-accepted-answers-fc: var(--black-600);
         --_ps-meta-tags-tag-bg: var(--black-050);
         --_ps-state-fc: var(--black-500);
+
         .s-post-summary--meta-tags {
-            // TODO: remove rule for `a` once Core replaces `.post-tag` with `.s-tag`
-            a,
+            a, // TODO: remove rule for `a` once Core replaces `.post-tag` with `.s-tag`
             .post-tag,
             .s-tag {
                 &,
@@ -70,15 +71,17 @@
                 }
             }
         }
+
         .s-user-card {
-            .s-badge {
-                filter: grayscale(100%);
-            }
             a,
             .s-user-card--link,
             .s-user-card--rep,
             .s-user-card--time {
                 color: var(--_ps-state-fc);
+            }
+
+            .s-badge {
+                filter: grayscale(100%);
             }
         }
     }
@@ -86,6 +89,7 @@
     &&__watched {
         background-color: var(--_ps-bg);
     }
+
     &&__deleted {
         --_ps-bg: var(--red-025);
         --_ps-meta-tags-tag-bg: var(--black-075);
@@ -99,6 +103,7 @@
             background-color: var(--red-600);
         }
     }
+
     &&__watched {
         &:not(.s-post-summary__deleted):not(.s-post-summary__ignored) {
             --_ps-bg: var(--yellow-050);
@@ -109,16 +114,18 @@
 
             .s-user-card {
                 a {
-                    color: var(--_ps-content-title-a-fc);
-
-                    &:hover,
-                    &:active {
+                    &:active,
+                    &:hover {
                         color: var(--_ps-content-title-a-fc-hover);
                     }
+
                     &:visited {
                         color: var(--_ps-content-title-a-fc-visited);
                     }
+
+                    color: var(--_ps-content-title-a-fc);
                 }
+
                 .s-user-card--rep,
                 .s-user-card--time {
                     color: var(--black-600);
@@ -135,60 +142,65 @@
             }
 
             &:before {
-                content: "";
-                display: block;
-                position: absolute;
-                top: 0;
-                bottom: 0;
-                left: 0;
-                width: var(--su4);
-                border-radius: var(--su8);
-                background: var(--black-150);
-
                 .highcontrast-mode({
                     background: var(--black-600);
                 });
+
+                background: var(--black-150);
+                border-radius: var(--su8);
+                bottom: 0;
+                content: "";
+                display: block;
+                left: 0;
+                position: absolute;
+                top: 0;
+                width: var(--su4);
             }
 
             margin: var(--su16) 1em 0 1em;
             padding: 0.5em 0 0.5em calc(1em + var(--su4));
             position: relative;
         }
+
         &--answer-excerpt {
+            .v-truncate4;
             color: var(--black-600);
             margin-bottom: var(--su8);
-            .v-truncate4;
         }
+
         &--content {
             flex-grow: 1;
             max-width: 100%;
         }
+
         &--content-excerpt {
             &&__sm {
                 .v-truncate1;
             }
+
             &&__md {
                 .v-truncate3;
             }
+
             &&__lg {
                 .v-truncate4;
             }
 
+            .break-word;
+            .v-truncate2;
             color: var( --_ps-content-excerpt-fc);
             font-family: var(--theme-post-body-font-family);
             margin-top: calc(var(--su2) * -1);
             margin-bottom: var(--su8);
-            .break-word;
-            .v-truncate2;
         }
+
         &--content-menu-button {
             .svg-icon {
                 margin: 0 !important;
             }
 
-            //  [1] To override .s-btn class attributes
-            padding: var(--su8) !important; // [1]
-            position: absolute !important; // [1]
+            padding: var(--su8) !important; // To override .s-btn class attributes
+            position: absolute !important; // To override .s-btn class attributes
             right: var(--su8);
             top: var(--su8);
         }
@@ -198,24 +210,27 @@
                 &:visited {
                     color: var(--_ps-content-title-a-fc-visited);
                 }
-                &:hover,
-                &:active {
+                &:active,
+                &:hover {
                     color: var(--_ps-content-title-a-fc-hover);
                 }
 
+                .break-word;
                 color: var(--_ps-content-title-a-fc);
                 font-family: var(--theme-post-title-font-family);
-                .break-word;
             }
+
             .iconShield {
                 color: var(--fc-light);
             }
+
             .svg-icon {
                 position: relative;
                 top: calc(var(--su1) * -1);
                 vertical-align: text-bottom; // Optical alignment
             }
 
+            .break-word;
             display: block;
             font-size: var(--fs-body3);
             font-weight: normal;
@@ -223,8 +238,8 @@
             margin-bottom: 0.3846rem;
             margin-top: -0.15rem; // Optical alignment to compensate for title's containing block
             padding-right: var(--su24);
-            .break-word;
         }
+
         &--content-type {
             .svg-icon {
                 color: var(--fc-light);
@@ -234,6 +249,7 @@
             color: var(--fc-medium);
             margin-bottom: var(--su4);
         }
+
         &--meta {
             .s-user-card {
                 flex-wrap: wrap;
@@ -248,11 +264,13 @@
             justify-content: space-between;
             row-gap: var(--su8);
         }
+
         &--meta-tags {
             display: flex;
             flex-wrap: wrap;
             gap: var(--su4);
         }
+
         &--stats {
             align-items: var(--_ps-stats-ai);
             color: var(--_ps-stats-fc);
@@ -267,6 +285,7 @@
             margin-bottom: var(--su4);
             margin-right: var(--su16);
         }
+
         &--stats-item {
             &:not(.s-badge) {
                 align-items: center;
@@ -276,24 +295,26 @@
                 justify-content: center;
                 white-space: nowrap;
             }
+
             &.s-badge {
                 font-size: var(--fs-body1);
                 line-height: var(--lh-md);
                 padding: var(--su2) var(--su4);
             }
+
             &.has-answers,
-            // TODO DEPRECATED: Remove .has-bounty styling
-            &.has-bounty,
-            &.is-deleted,
-            &.is-published,
-            &.is-draft,
-            &.is-review,
-            &.is-closed,
+            &.has-bounty, // TODO DEPRECATED: Remove .has-bounty styling
             &.is-archived,
-            &.is-pinned {
+            &.is-closed,
+            &.is-deleted,
+            &.is-draft,
+            &.is-pinned,
+            &.is-published,
+            &.is-review {
                 border-radius: var(--br-sm);
                 padding: var(--su2) var(--su4);
             }
+
             &.has-answers {
                 &.has-accepted-answer {
                     background-color: var(--_ps-has-accepted-answers-bg);
@@ -305,57 +326,65 @@
                 border: var(--su1) solid var(--_ps-has-answers-bc);
                 color: var(--_ps-has-answers-fc);
             }
-            // TODO DEPRECATED: Remove and replace with references with `s-badge s-badge__bounty`
-            &.has-bounty {
+
+            &.has-bounty { // TODO DEPRECATED: Remove and replace with references with `s-badge s-badge__bounty`
                 background-color: var(--blue-600);
                 color: var(--white);
             }
+
+            // Hotness
             &.is-warm {
                 color: var(--_ps-state-fc, var(--yellow-900));
             }
+
             &.is-hot {
                 color: var(--_ps-state-fc, var(--orange-800));
             }
+
             &.is-supernova {
                 color: var(--_ps-state-fc, var(--red-800));
             }
-            &.is-published {
-                background-color: var(--black-050);
-                color: var(--black-800);
-            }
-            // TODO DEPRECATED: Remove and replace with references with `s-badge s-badge__info s-badge__icon`
-            &.is-draft {
-                background-color: var(--blue-100);
-                border-color: var(--blue-600);
-                color: var(--blue-900);
-            }
-            // TODO DEPRECATED: Remove and replace with references with `s-badge s-badge__warning s-badge__icon`
-            &.is-review {
-                background-color: var(--yellow-100);
-                border-color: var(--yellow-600);
-                color: var(--yellow-900);
-            }
-            // TODO DEPRECATED: Remove and replace with references with `s-badge s-badge__danger s-badge__icon`
-            &.is-closed {
-                background-color: var(--red-100);
-                border-color: var(--red-600);
-                color: var(--red-900);
-            }
-            // TODO DEPRECATED: Remove and replace with references with `s-badge s-badge__muted s-badge__icon`
-            &.is-archived {
+
+            // Status
+            &.is-archived { // TODO DEPRECATED: Remove and replace with references with `s-badge s-badge__muted s-badge__icon`
                 background-color: var(--black-100);
                 border-color: var(--black-600);
                 color: var(--black-900);
             }
-            // TODO DEPRECATED: Remove and replace with references with `s-badge s-badge__muted s-badge__filled s-badge__icon`
-            &.is-pinned {
+
+            &.is-closed { // TODO DEPRECATED: Remove and replace with references with `s-badge s-badge__danger s-badge__icon`
+                background-color: var(--red-100);
+                border-color: var(--red-600);
+                color: var(--red-900);
+            }
+
+            &.is-draft { // TODO DEPRECATED: Remove and replace with references with `s-badge s-badge__info s-badge__icon`
+                background-color: var(--blue-100);
+                border-color: var(--blue-600);
+                color: var(--blue-900);
+            }
+
+            &.is-pinned { // TODO DEPRECATED: Remove and replace with references with `s-badge s-badge__muted s-badge__filled s-badge__icon`
                 background-color: var(--black-700);
                 color: var(--white);
             }
+
+            &.is-published {
+                background-color: var(--black-050);
+                color: var(--black-800);
+            }
+
+            &.is-review { // TODO DEPRECATED: Remove and replace with references with `s-badge s-badge__warning s-badge__icon`
+                background-color: var(--yellow-100);
+                border-color: var(--yellow-600);
+                color: var(--yellow-900);
+            }
+
             &__emphasized {
                 color: var(--_ps-stats-item-emphasized-fc);
             }
         }
+
         &--stats-item-number {
             font-weight: 500;
         }
