@@ -10,19 +10,20 @@
     --_ba-py: 0;
     --_ba-wmn: 0;
 
+    // CONTEXTUAL STYLES
     .highcontrast-mode({
         // Badge counts
-        &__gold,
-        &__silver,
-        &__bronze,
+        &&__gold,
+        &&__silver,
+        &&__bronze,
         // Number counts
-        &__rep,
-        &__rep-down,
-        &__votes,
+        &&__rep,
+        &&__rep-down,
+        &&__votes:not(&__answered),
         // Users
-        &__admin,
-        &__moderator,
-        &__staff {
+        &&__admin,
+        &&__moderator,
+        &&__staff {
             --_ba-bc: currentColor;
         }
     });
@@ -75,7 +76,7 @@
     }
     &&__rep,
     &&__rep-down,
-    &&__votes {
+    &&__votes:not(&__answered) {
         --_ba-bg: var(--white);
     }
     &&__answered {
@@ -95,7 +96,7 @@
         --_ba-bc: var(--red-400);
         --_ba-fc: var(--red-500);
     }
-    &&__votes {
+    &&__votes:not(&__answered) {
         --_ba-bc: var(--black-150);
         --_ba-fc: var(--black-700);
     }
@@ -193,6 +194,8 @@
         }
     }
 
+    // CHILD ELEMENTS
+    &--image, // Included with no base class to account for usage in .s-progress__badge
     & &--image {
         display: inline-flex;
         align-self: center;
@@ -200,6 +203,7 @@
         margin-left: calc((var(--su4) + var(--su1)) * -1);
     }
 
+    // INTERACTION
     a&:hover {
         text-decoration: none;
     }
