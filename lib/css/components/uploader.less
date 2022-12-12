@@ -133,39 +133,37 @@
             padding: var(--su8) var(--su2);
             width: 100%;
 
-            .s-uploader {
-                &--preview {
-                    align-items: center;
-                    display: flex;
-                    padding: var(--su6) 0;
-                    width: 100%;
-
-                    &:after {
-                        content: attr(data-filename);
-                        display: block;
-                        margin-left: var(--su12);
-                        max-width: 100%;
-                        overflow: hidden;
-                        text-overflow: ellipsis;
-                        white-space: nowrap;
-                    }
+            .s-uploader--preview {
+                &:after {
+                    content: attr(data-filename);
+                    display: block;
+                    margin-left: var(--su12);
+                    max-width: 100%;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
                 }
 
-                &--preview-thumbnail {
-                    color: transparent;
-                    height: var(--su-static32);
-                    flex-shrink: 0;
-                    width: var(--su-static32);
+                align-items: center;
+                display: flex;
+                padding: var(--su6) 0;
+                width: 100%;
+            }
 
-                    &:is(img) {
-                        object-fit: cover;
-                    }
-                    &:not(img) {
-                        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' aria-hidden='true' fill='%23535A60' width='18' height='18' viewBox='0 0 18 18'%3E%3Cpath d='M3 3a2 2 0 012-2h6l4 4v10a2 2 0 01-2 2H5a2 2 0 01-2-2V3zm7-1.5V6h4.5L10 1.5z'%3E%3C/path%3E%3C/svg%3E");
-                        background-position: center;
-                        background-repeat: no-repeat;
-                    }
+            .s-uploader--preview-thumbnail {
+                &:is(img) {
+                    object-fit: cover;
                 }
+                &:not(img) {
+                    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' aria-hidden='true' fill='%23535A60' width='18' height='18' viewBox='0 0 18 18'%3E%3Cpath d='M3 3a2 2 0 012-2h6l4 4v10a2 2 0 01-2 2H5a2 2 0 01-2-2V3zm7-1.5V6h4.5L10 1.5z'%3E%3C/path%3E%3C/svg%3E");
+                    background-position: center;
+                    background-repeat: no-repeat;
+                }
+
+                color: transparent;
+                height: var(--su-static32);
+                flex-shrink: 0;
+                width: var(--su-static32);
             }
         }
 
