@@ -22,6 +22,7 @@ Stacks documentation can be found at https://stackoverflow.design/
 - [Building Stacks](#building-stacks)
 - [Linting Stacks](#linting-stacks)
 - [Testing Stacks](#testing-stacks)
+- [Releasing Stacks](#release-a-new-version-of-stacks)
 - [Bugs and feature requests](#bugs-and-feature-requests)
 - [Contributing](#contributing)
 - [License](#license)
@@ -58,6 +59,36 @@ npm run lint:format
 Stacks has implemented visual regression testing with [Backstop](https://github.com/garris/BackstopJS). To test if your new feature introduces visual regressions, run `npm run test` in a new Terminal window while Stacks is running. After the tests have run, a new browser window with any regressions will show. If the regressions are desired, you can run `npm run approve` to establish the new baseline.
 
 Individual routes to test are found in [backstop.json](/backstop.json)
+
+## Releasing a new version of Stacks
+Stacks uses [Semantic Versioning](https://semver.org/), is distributed via [npm](https://www.npmjs.com/package/@stackoverflow/stacks), and publishes [release notes on Github](https://github.com/StackExchange/Stacks/releases). Follow the steps below to release a new version of Stacks.
+
+### Bump the version number
+```sh
+npm version [major | minor | patch]
+```
+
+### Push the new tag
+```sh
+git push && git push --tags
+```
+
+### Create release notes [on Github](https://github.com/StackExchange/Stacks/releases/new)
+
+1. Visit https://github.com/StackExchange/Stacks/releases/new
+1. Choose your new version from the "Choose a tag" dropdown
+1. Click "Generate release notes"
+1. Cleanup and complete the release notes
+    - Prominently mention any breaking changes, if applicable
+    - Include a "What's Changed" section in the release notes
+    - Mention significant bug fixes
+    - Mention new features
+    - Mention significant under-the-hood changes that could impact consumers
+
+### Ship your newly created version to [npm](https://www.npmjs.com/package/@stackoverflow/stacks)
+```sh
+npm publish
+```
 
 ## Bugs and feature requests
 Have a bug or feature request? First search existing or closed issues to make sure the issue hasn’t been noted yet. If not, review our [issue guidelines](/CONTRIBUTING.md#open-an-issue) for submitting [a bug report](/CONTRIBUTING.md#reporting-bugs) or [feature request](/CONTRIBUTING.md#feature-requests).
