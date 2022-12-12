@@ -4,20 +4,24 @@
     --_ai-fc: @white;
 
     // CONTEXTUAL STYLES
-    .highcontrast-mode({ --_ai-fc: var(--white); });
+    .highcontrast-mode({
+        --_ai-fc: var(--white);
+    });
 
     // VARIANTS
+    &&__danger {
+        --_ai-bg: var(--red-500);
+        --_ai-focus-ring: var(--focus-ring-error);
+    }
+
     &&__success {
         --_ai-bg: var(--green-500);
         --_ai-focus-ring: var(--focus-ring-success);
     }
+
     &&__warning {
         --_ai-bg: var(--yellow-600);
         --_ai-focus-ring: var(--focus-ring-warning);
-    }
-    &&__danger {
-        --_ai-bg: var(--red-500);
-        --_ai-focus-ring: var(--focus-ring-error);
     }
 
     background-color: var(--_ai-bg);
