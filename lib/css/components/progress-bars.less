@@ -1,5 +1,7 @@
 .s-progress {
-    // BASE COMPONENT-SPECIFIC CUSTOM PROPERTIES
+    // COMPONENT-SPECIFIC CONSTANTS
+    @pr-circle-circumference: (2 * pi() * 14); // 2πr, r = 14.
+    // COMPONENT-SPECIFIC CUSTOM PROPERTIES
     --_pr-bar: var(--br-sm);
     --_pr-bg: var(--black-200);
     --_pr-h: unset;
@@ -20,17 +22,21 @@
     &&__brand {
         --_pr-bar-bg: var(--orange-500);
     }
+
     &&__bronze {
         --_pr-bar-bg: var(--bronze-lighter);
         --_pr-label-bc: var(--bronze-darker);
     }
+
     &&__gold {
         --_pr-bar-bg: var(--gold-lighter);
         --_pr-label-bc: var(--gold-darker);
     }
+
     &&__info {
         --_pr-bar-bg: var(--blue-500);
     }
+
     &&__silver {
         --_pr-bar-bg: var(--silver-lighter);
         --_pr-label-bc: var(--silver-darker);
@@ -47,6 +53,7 @@
         --_pr-label-d: flex;
         --_pr-label-g: var(--su4);
     }
+
     &&__badge {
         --_pr-label-ai: center;
         --_pr-label-px: 1em;
@@ -58,23 +65,26 @@
             }
         }
     }
+
     &&__circular {
         --_pr-bg: transparent;
         --_pr-size: var(--su-static32);
         --s-progress-value: 0;
-        @s-progress-circle-circumference: (2 * pi() * 14); // 2πr, r = 14.
 
         &.s-progress {
             &__sm {
                 --_pr-size: var(--su-static24);
             }
+
             &__md {
                 --_pr-size: var(--su-static48);
             }
+
             &__lg {
                 --_pr-size: var(--su-static64);
             }
         }
+
         // TODO: consider renaming to `.s-progress--bar`
         .s-progress-bar { // It may necessitate wrapping element in a `&:not(&__circular)`
             circle {
@@ -84,8 +94,8 @@
                 }
                 &:nth-of-type(2) {
                     stroke: currentColor;
-                    stroke-dasharray: @s-progress-circle-circumference; // [1]
-                    stroke-dashoffset: calc(((1 - var(--s-progress-value)) * @s-progress-circle-circumference) * 1px); // Multiply everything by 1px since Safari and Firefox require these to be in pixels
+                    stroke-dasharray: @pr-circle-circumference; // [1]
+                    stroke-dashoffset: calc(((1 - var(--s-progress-value)) * @pr-circle-circumference) * 1px); // Multiply everything by 1px since Safari and Firefox require these to be in pixels
                 }
 
                 fill: none;
@@ -96,6 +106,7 @@
             transform: rotate(270deg); // Make everything originate from the top of the circle
         }
     }
+
     &&__privilege {
         --_pr-bar-bg: var(--green-050);
         --_pr-label-ai: center;
@@ -104,6 +115,7 @@
 
         .highcontrast-mode({ --_pr-bar-bg: var(--green-200); });
     }
+
     // TODO move `.s-progress__stepped` to entirely separate component (or consider deprecating)
     &&__stepped { // There's so little overlap with the base .s-progress that it doesn't make sense as a variant
         background: transparent;
@@ -116,6 +128,7 @@
                         left: 0;
                         right: 50%;
                     }
+
                     &__right {
                         left: 50%;
                         right: 0;
@@ -129,6 +142,7 @@
                 top: calc(var(--su-static8) + var(--su-static1));
                 z-index: var(--zi-base);
             }
+
             &--label { // Override a ton of properties
                 border: 0;
                 border-radius: 0;
@@ -142,27 +156,32 @@
                 width: auto;
                 z-index: var(--zi-base);
             }
+
             &--step {
                 &.is-active {
                     .s-progress {
                         &--bar.s-progress--bar__left {
                             background: var(--theme-secondary-400);
                         }
+
                         &--label {
                             color: var(--fc-dark);
                         }
+
                         &--stop {
                             background: var(--theme-secondary-400);
                             box-shadow: 0 0 0 var(--su-static6) var(--focus-ring);
                         }
                     }
                 }
+
                 &.is-complete {
                     .s-progress {
                         &--bar,
                         &--stop {
                             background: var(--theme-secondary-400);
                         }
+
                         &--label {
                             color: var(--fc-dark);
                         }
@@ -177,6 +196,7 @@
                 flex-shrink: 1;
                 position: relative;
             }
+
             &--stop {
                 .highcontrast-mode({
                     color: var(--white);
@@ -206,6 +226,7 @@
         min-width: var(--su-static6);
         position: relative;
     }
+
     & &--label {
         align-items: var(--_pr-label-ai);
         border: var(--su-static1) solid var(--_pr-label-bc);
@@ -224,6 +245,7 @@
         width: 100%;
         z-index: calc(var(--zi-base) + 2);
     }
+
     & &--segments { // DEPRECATED: AFAICT, this is unused in core (as well as it's intended parent variant class `.s-progress__segmented`)
         li {
             &:not(:first-child):not(:last-child):before {
@@ -231,7 +253,7 @@
                 content: "";
                 display: block;
                 height: 100%;
-                left: calc(var(--su-static) * -1); // -1px
+                left: calc(var(--su-static1) * -1); // -1px
                 position: absolute;
                 top: 0;
                 width: var(--su-static4);
