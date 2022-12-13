@@ -90,6 +90,14 @@ git push && git push --tags
 npm publish
 ```
 
+### Merge `develop` into `production` and push
+```sh
+git checkout production && git merge develop && git push
+```
+
+### Push the updated docs site
+Head to [Netlify](https://app.netlify.com), navigate to the Stacks overview, click on "Production deploys", and select "Deploy site" from the "Trigger deploy" dropdown.
+
 ## Bugs and feature requests
 Have a bug or feature request? First search existing or closed issues to make sure the issue hasn’t been noted yet. If not, review our [issue guidelines](/CONTRIBUTING.md#open-an-issue) for submitting [a bug report](/CONTRIBUTING.md#reporting-bugs) or [feature request](/CONTRIBUTING.md#feature-requests).
 
