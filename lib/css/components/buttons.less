@@ -4,7 +4,7 @@
     --_bu-bc: transparent;
     --_bu-bg: transparent;
     --_bu-br: var(--br-sm);
-    --_bu-bs: inset 0 var(--su-static1) 0 0 hsla(0, 0, 100%, 0.7);
+    --_bu-bs: none;
     --_bu-fc: var(--theme-button-color);
     --_bu-focus-ring: 0 0 0 var(--su-static4) var(--focus-ring);
     --_bu-fs: var(--fs-body1);
@@ -45,6 +45,7 @@
     .dark-mode({
         --_bu-bs: none;
     });
+
     .highcontrast-mode({
         --_bu-bc: currentColor;
         --_bu-filled-bc: var(--_bu-bc);
@@ -61,20 +62,24 @@
         pointer-events: none;
         text-decoration: none;
     }
+
     button &,
     button[type="submit"] &,
     button[type="reset"] & {
         -webkit-appearance: button; // [1]
     }
+
     &.grid {
         display: flex; // Override &&__danger buttons having inline-block by default
     }
+
     &.is-loading {
         .svg-icon:first-child {
             margin-left: -23px;
             opacity: 0; // [2]
         }
     }
+
     &.is-selected,
     .s-btn-group.s-btn-group--radio &--radio:checked + & {
         background-color: var(--_bu-bg-selected);
@@ -84,6 +89,7 @@
         .s-btn--number {
             color: var(--_bu-number-fc-selected);
         }
+
         &.s-btn__filled { // this needs to live here to adapt to radio button-group
             border-color: var(--_bu-filled-bc-selected);
             background-color: var(--_bu-filled-bg-selected);
@@ -104,6 +110,7 @@
             }
         }
     }
+
     &.is-selected:not(:focus),
     .s-btn-group.s-btn-group--radio &--radio:checked:not(:focus) + & {
         box-shadow: none;
@@ -111,10 +118,13 @@
 
     // MODIFIERS
     &&__filled {
+        --_bu-bs: inset 0 var(--su-static1) 0 0 hsla(0, 0, 100%, 0.7);
+
         border-color: var(--_bu-filled-bc);
         background-color: var(--_bu-filled-bg);
         color: var(--_bu-filled-fc);
     }
+
     &&__outlined {
         border-color: var(--_bu-outlined-bc);
         background-color: var(--_bu-outlined-bg);
@@ -130,6 +140,7 @@
 
         outline: initial;
     }
+
     &&__link {
         --_bu-baw: 0;
         --_bu-br: 0;
@@ -145,6 +156,7 @@
         &[aria-disabled="true"] {
             --_bu-bg: none;
         }
+
         &.s-btn__dropdown {
             padding-right: 0.9em;
         }
@@ -154,6 +166,7 @@
         font: inherit;
         text-align: inherit;
     }
+
     &&__unset {
         &,
         &:hover,
@@ -190,6 +203,7 @@
 
         padding-right: calc(var(--_bu-p) * 2.5);
     }
+
     &&__icon {
         .svg-icon {
             vertical-align: baseline;
@@ -205,9 +219,11 @@
         --_bu-fs: var(--fs-fine);
         --_bu-p: 0.6em;
     }
+
     &&__sm {
         --_bu-fs: var(--fs-caption);
     }
+
     &&__md {
         --_bu-br: calc(var(--br-sm) + var(--su-static1));
         --_bu-fs: var(--fs-body3);
@@ -221,6 +237,7 @@
             --_bu-filled-bc: transparent;
         });
     }
+
     &&__danger {
         --_bu-bg-active: var(--red-100);
         --_bu-bg-hover: var(--red-050);
@@ -255,6 +272,7 @@
                 --_bu-number-fc: var(--white);
                 --_bu-number-fc-selected: var(--black);
             });
+
             .highcontrast-dark-mode({
                 --_bu-filled-fc: var(--white);
                 --_bu-number-fc: var(--black);
@@ -262,6 +280,7 @@
             });
         }
     }
+
     &&__muted {
         --_bu-bg-active: var(--black-050);
         --_bu-bg-hover: var(--black-025);
@@ -300,6 +319,7 @@
             }
         });
     }
+
     &&__primary {
         --_bu-bg: var(--theme-button-primary-background-color);
         --_bu-bg-active: var(--theme-button-primary-active-background-color);
@@ -323,9 +343,11 @@
             --_bu-number-fc: var(--white);
             --_bu-number-fc-selected: var(--black);
         });
+
         .highcontrast-mode({
             --_bu-bc: transparent;
         });
+
         .highcontrast-dark-mode({
             --_bu-bg: var(--theme-secondary-400);
             --_bu-bg-active: var(--theme-secondary-600);
@@ -342,6 +364,7 @@
             --_bu-bc: transparent;
         });
     }
+
     &&__facebook {
         @_fb-brand: #385499;
         --_bu-bc: transparent;
@@ -353,6 +376,7 @@
         --_bu-fc-hover: var(--_bu-fc);
         --_bu-hc-bc: transparent;
     }
+
     &&__google {
         --_bu-bc: var(--bc-medium);
         --_bu-bg: var(--white);
@@ -363,6 +387,7 @@
         --_bu-fc-hover: var(--black-800);
         --_bu-focus-ring: 0 0 0 var(--su-static4) var(--focus-ring-muted);
     }
+
     &&__github {
         --_bu-bg: var(--black-750);
         --_bu-bg-active: var(--black);
@@ -384,11 +409,22 @@
         line-height: var(--lh-xs);
         background-color: currentColor;
     }
+
     & &--number {
         color: var(--_bu-number-fc);
     }
-    &--radio { // This lives alongside a .s-btn element
-        .v-visible-sr;
+
+    &--radio { // This lives alongside a .s-btn element. These styles are the equivelent of `.v-visible-sr`
+        border: 0;
+        clip-path: inset(50%);
+        clip: rect(1px, 1px, 1px, 1px);
+        height: 1px;
+        margin: -1px;
+        overflow-wrap: normal;
+        overflow: hidden;
+        padding: 0;
+        position: absolute;
+        width: 1px;
     }
 
     // INTERACTION
@@ -402,6 +438,7 @@
             background-color: var(--_bu-bg-hover);
             color: var(--_bu-fc-hover);
         }
+
         &:active {
             &.s-btn__filled {
                 background-color: var(--_bu-filled-bg-active);
@@ -412,13 +449,13 @@
             color: var(--_bu-fc-active);
         }
     }
+
     &:focus,
     &--radio:focus + & {
         box-shadow: var(--_bu-focus-ring);
         outline: none;
     }
 
-    // STYLES MODIFIED BY COMPONENT-SPECIFIC CUSTOM PROPERTIES
     background-color: var(--_bu-bg);
     border: var(--_bu-baw) solid var(--_bu-bc);
     border-radius: var(--_bu-br);
@@ -427,7 +464,6 @@
     font-size: var(--_bu-fs);
     padding: var(--_bu-p);
 
-    // STATIC COMPONENT STYLES
     cursor: pointer;
     display: inline-block;
     font-family: inherit;

@@ -35,11 +35,13 @@
         --_ba-as: flex-start;
         --_ba-fs: var(--fs-fine);
     }
+
     &&__xs {
         --_ba-lh: 1.5;
         --_ba-px: var(--su2);
         --_ba-wmn: calc(var(--su-static16) + var(--su-static2));
     }
+
     &&__sm {
         --_ba-lh: 1.8;
         --_ba-px: var(--su4);
@@ -52,16 +54,21 @@
     &&__bronze {
         --_ba-fc: var(--black-700);
 
-        .highcontrast-mode({ --_ba-fc: var(--black-900); });
+        .highcontrast-mode({
+            --_ba-fc: var(--black-900);
+        });
     }
+
     &&__gold {
         --_ba-bc: var(--gold-darker);
         --_ba-bg: var(--gold-lighter);
     }
+
     &&__silver {
         --_ba-bc: var(--silver-darker);
         --_ba-bg: var(--silver-lighter);
     }
+
     &&__bronze {
         --_ba-bc: var(--bronze-darker);
         --_ba-bg: var(--bronze-lighter);
@@ -74,28 +81,35 @@
         --_ba-bc: transparent;
         --_ba-fc: var(--white);
     }
+
     &&__rep,
     &&__rep-down,
     &&__votes:not(&__answered) {
         --_ba-bg: var(--white);
     }
+
     &&__answered {
         --_ba-bg: var(--green-400);
     }
+
     &&__bounty {
         --_ba-bg: var(--blue-600);
     }
+
     &&__important {
         --_ba-bg: var(--red-600);
     }
+
     &&__rep {
         --_ba-bc: var(--green-400);
         --_ba-fc: var(--green-500);
     }
+
     &&__rep-down {
         --_ba-bc: var(--red-400);
         --_ba-fc: var(--red-500);
     }
+
     &&__votes:not(&__answered) {
         --_ba-bc: var(--black-150);
         --_ba-fc: var(--black-700);
@@ -107,6 +121,7 @@
         --_ba-bg: var(--theme-primary-075);
         --_ba-fc: var(--theme-primary-800);
     }
+
     &&__moderator {
         --_ba-bc: var(--theme-secondary-200);
         --_ba-bg: var(--theme-secondary-075);
@@ -125,6 +140,7 @@
             --_ba-before-mt: 0;
             --_ba-before-w: calc(var(--su-static8) - var(--su-static1)); // 7px
         }
+
         &.s-badge__sm {
             --_ba-g: var(--su-static2);
             --_ba-before-h: calc(var(--su-static12) - var(--su-static1)); // 11px
@@ -147,6 +163,7 @@
             mask-size: contain;
         }
     }
+
     &&__staff {
         // Staff badges are always "Stack Overflow Orange"
         --_ba-bc: var(--orange-300);
@@ -161,6 +178,7 @@
             --_ba-bc: transparent;
         }
     }
+
     &&__danger {
         --_ba-bc: var(--red-600);
         --_ba-bg: var(--red-100);
@@ -170,7 +188,9 @@
             --_ba-bg: var(--red-500);
             --_ba-fc: @white;
 
-            .highcontrast-mode({ --_ba-fc: var(--white); });
+            .highcontrast-mode({
+                --_ba-fc: var(--white);
+            });
         }
     }
     &&__info {
@@ -178,11 +198,13 @@
         --_ba-bg: var(--blue-100);
         --_ba-fc: var(--blue-900);
     }
+
     &&__warning {
         --_ba-bc: var(--yellow-600);
         --_ba-bg: var(--yellow-100);
         --_ba-fc: var(--yellow-900);
     }
+
     &&__muted {
         --_ba-bc: var(--black-600);
         --_ba-bg: var(--black-100);
@@ -195,9 +217,10 @@
     }
 
     // CHILD ELEMENTS
+    &--image, // Included with no base class to account for usage in .s-progress__badge
     & &--image {
-        display: inline-flex;
         align-self: center;
+        display: inline-flex;
         margin-right: var(--su1);
         margin-left: calc((var(--su4) + var(--su1)) * -1);
     }

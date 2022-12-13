@@ -1,5 +1,4 @@
 .construct-notice-component(@baseClass) {
-    // BASE COMPONENT-SPECIFIC CUSTOM PROPERTIES
     --_no-bc: var(--bc-medium);
     --_no-bg: var(--black-050);
     --_no-fc: var(--fc-medium);
@@ -11,13 +10,16 @@
         .dark-mode({
             --_no-bc: var(--_no-bg);
         });
+
         .highcontrast-mode({
             --_no-bc: currentColor;
         });
+
         .highcontrast-dark-mode({
             --_no-bc: currentColor;
         });
     }
+
     &__important {
         --_no-bc: var(--_no-bg);
         --_no-bg: var(--black-700);
@@ -42,6 +44,7 @@
                 --_no-bg: var(--red-200);
             });
         }
+
         &.@{baseClass}__important {
             --_no-bc: var(--_no-bg);
             --_no-bg: var(--red-500);
@@ -52,12 +55,14 @@
                 --_no-bg: var(--red-400);
                 --_no-fc: var(--black-900);
             });
+
             .highcontrast-dark-mode({
                 --_no-bg: var(--red-500);
                 --_no-fc: var(--white);
             });
         }
     }
+
     &__info {
         --_no-bc: var(--theme-secondary-150);
         --_no-bg: var(--theme-secondary-050);
@@ -69,10 +74,12 @@
             .highcontrast-mode({
                 --_no-bg: var(--theme-secondary-100);
             });
+
             .highcontrast-dark-mode({
                 --_no-bg: var(--theme-secondary-100);
             });
         }
+
         &.@{baseClass}__important {
             --_no-bc: var(--_no-bg);
             --_no-bg: var(--theme-secondary-400);
@@ -83,12 +90,14 @@
                 --_no-bg: var(--theme-secondary-300);
                 --_no-fc: var(--black-900);
             });
+
             .highcontrast-dark-mode({
                 --_no-bg: var(--theme-secondary-400);
                 --_no-fc: var(--white);
             });
         }
     }
+
     &__success {
         --_no-bc: var(--green-200);
         --_no-bg: var(--green-050);
@@ -100,6 +109,7 @@
                 --_no-bg: var(--green-200);
             });
         }
+
         &.@{baseClass}__important {
             --_no-bc: var(--_no-bg);
             --_no-bg: var(--green-400);
@@ -111,12 +121,14 @@
                 --_no-bg: var(--green-500);
                 --_no-fc: var(--white);
             });
+
             .highcontrast-mode({
                 --_no-bg: var(--green-500);
                 --_no-fc: var(--white);
             });
         }
     }
+
     &__warning {
         --_no-bc: var(--yellow-300);
         --_no-bg: var(--yellow-050);
@@ -129,6 +141,7 @@
                 --_no-bg: var(--yellow-200);
             });
         }
+
         &.@{baseClass}__important {
             --_no-bc: var(--_no-bg);
             --_no-bg: var(--yellow-400);
@@ -140,6 +153,7 @@
                 --_no-bg: var(--yellow-600);
                 --_no-fc: var(--white);
             });
+
             .highcontrast-mode({
                 --_no-bg: var(--yellow-700);
                 --_no-fc: var(--white);
@@ -151,13 +165,20 @@
     code {
         background: var(--_no-code-bg, transparent);
     }
+
     & &--btn {
+        // TODO: decouple .s-notice--btn from .s-btn
+        &:not(:focus) {
+            box-shadow: none; // This will prevent default .s-btn box-shadow from showing
+        }
+
+        &:active {
+            background: var(--_no-btn-bg-active);
+        }
+
         &:focus,
         &:hover {
             background: var(--_no-btn-bg-focus);
-        }
-        &:active {
-            background: var(--_no-btn-bg-active);
         }
 
         color: inherit;
@@ -185,17 +206,21 @@
         opacity: 0;
         visibility: hidden;
     }
+
     &[aria-hidden="false"] {
         --_no-x-offset: calc(var(--su48) + var(--su1)); // 49px
         opacity: 1;
         visibility: visible;
     }
+
     &.is-pinned { //  If you want to put the banner above the topbar
         z-index: calc(var(--zi-navigation-fixed) + 1);
     }
+
     &__body-pt {
         padding-top: 93px;
     }
+
     & &--container { // When we want to keep hero content capped
         margin: 0 auto;
         max-width: calc(var(--s-step) * 10);
@@ -203,13 +228,12 @@
         width: 100%;
     }
 
-    -webkit-transform: translate3d(0, var(--_no-x-offset), 0);
-    transform: translate3d(0, var(--_no-x-offset), 0);
-
     border-width: var(--su-static1) 0;
     inset: 0 0 auto 0;
     padding: var(--su12);
     position: fixed;
+    -webkit-transform: translate3d(0, var(--_no-x-offset), 0);
+    transform: translate3d(0, var(--_no-x-offset), 0);
     width: 100%;
     z-index: calc(var(--zi-navigation-fixed) - 1); // Tuck below topbar
 }
@@ -228,6 +252,7 @@
     @media (prefers-reduced-motion) {
         transform: none !important;
     }
+
     &[aria-hidden="false"] {
         opacity: 1;
         transform: translate3d(0, 0, 0);
