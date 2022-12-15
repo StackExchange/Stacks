@@ -1,5 +1,7 @@
 # Stacks
 
+[![ci status][gh-action-badge]][gh-action-url] [![npm version][npm-badge]][npm-url]
+
 Stacks is Stack Overflow’s design system. It includes the resources needed to create consistent, predictable interfaces and workflows that conform to Stack Overflow’s principles, design language, and best practices.
 
 Our documentation is built with Stacks itself, using its [immutable, atomic classes](http://johnpolacek.com/rethinking/) and components.
@@ -105,3 +107,8 @@ If you’d like to contribute to Stacks, please read through our [contribution g
 
 ## License
 Code and documentation copyright 2017-2022 Stack Exchange, Inc and released under the [MIT License](/LICENSE.MD).
+
+[gh-action-url]: https://github.com/StackExchange/Stacks/actions/workflows/main.yml
+[gh-action-badge]: https://github.com/StackExchange/Stacks/actions/workflows/main.yml/badge.svg?branch=develop
+[npm-url]: https://npmjs.org/package/@stackoverflow/stacks
+[npm-badge]: https://img.shields.io/npm/v/@stackoverflow/stacks.svg
