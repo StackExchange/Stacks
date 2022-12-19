@@ -1,4 +1,4 @@
-# [Transition Stacks to a monorepo]
+# Transition Stacks to a monorepo
 
 **Date:** 2022-11-28
 
