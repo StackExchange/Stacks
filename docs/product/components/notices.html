@@ -8,7 +8,7 @@ description: Notices deliver <strong>System</strong> and <strong>Engagement</str
 <!-- Example notice content -->
 <script src="{{ "/assets/dist/entry.notices.js" | url }}" defer></script>
 
-<div class="s-toast js-notice-toast" aria-hidden="true" role="alertdialog" aria-labelledby="notice-message">
+<div class="s-toast" id="launch-notice-base" aria-hidden="true" role="alertdialog" aria-labelledby="notice-message" data-controller="s-notice" data-s-notice-target="notice" data-s-notice-return-element=".js-notice-open[data-target='#launch-notice-base']" data-s-notice-remove-when-hidden="false">
     <aside class="s-notice s-notice__success p8 pl16">
         <div class="d-flex gx16 ai-center jc-space-between">
             <div class="flex--item" id="notice-message">
@@ -18,7 +18,7 @@ description: Notices deliver <strong>System</strong> and <strong>Engagement</str
                 <button type="button" class="s-btn s-notice--btn">
                     Undo
                 </button>
-                <button type="button" class="s-btn s-notice--btn js-notice-close" aria-label="Dismiss">
+                <button type="button" class="s-btn s-notice--btn js-notice-close" aria-label="Dismiss" data-action="s-notice#hide">
                     {% icon "ClearSm", "m0" %}
                 </button>
             </div>
@@ -234,11 +234,13 @@ description: Notices deliver <strong>System</strong> and <strong>Engagement</str
 
     {% header "h3", "Toast" %}
     <p class="stacks-copy">Floating notices, but aligned to the top and center of the page and they disappear after a set time.  Visibility is changed with animation by toggling between <code class="stacks-code">aria-hidden="true"</code> and <code class="stacks-code">aria-hidden="false"</code>. When including buttons, you can apply <code class="stacks-code">.s-notice--btn</code> to buttons to apply a toast-specific color.</p>
+    <!-- TODO: document controller attributes -->
     <div class="stacks-preview bs-none">
-        <div class="stacks-preview--example ba bar-sm bg-black-025">
-            <button class="flex--item s-btn s-btn__filled js-notice-toast-open">Launch example toast notice</button>
+        <div class="stacks-preview--example ba bar-sm bg-black-025 d-flex g8 fw-wrap">
+            <button class="flex--item s-btn s-btn__filled js-notice-open" data-toggle="s-notice" data-target="#launch-notice-base">Launch example toast notice</button>
         </div>
     </div>
+
     <div class="stacks-preview">
 {% highlight html %}
 <div class="s-toast" aria-hidden="true" role="alertdialog" aria-labelledby="notice-message">

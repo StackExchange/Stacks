@@ -2,6 +2,7 @@ import "../css/stacks.less";
 import {
     ExpandableController,
     ModalController,
+    NoticeController,
     PopoverController,
     TableController,
     TabListController,
@@ -13,6 +14,7 @@ import { application, StacksApplication } from "./stacks";
 // register all built-in controllers
 application.register("s-expandable-control", ExpandableController);
 application.register("s-modal", ModalController);
+application.register("s-notice", NoticeController);
 application.register("s-navigation-tablist", TabListController);
 application.register("s-popover", PopoverController);
 application.register("s-table", TableController);
