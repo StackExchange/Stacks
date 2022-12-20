@@ -5,7 +5,7 @@
     "type": "git",
     "url": "https://github.com/StackExchange/Stacks.git"
   },
-  "version": "1.6.5",
+  "version": "1.6.6",
   "files": [
     "dist",
     "lib"
@@ -22,8 +22,11 @@
     "build:docs": "webpack --mode=production --config ./docs/webpack.config.js && cd ./docs && eleventy",
     "start:webpack": "webpack --watch --config ./docs/webpack.config.js",
     "start:eleventy": "cd ./docs && eleventy --serve",
-    "test": "backstop test",
-    "approve": "backstop approve",
+    "test": "web-test-runner",
+    "test:unit": "web-test-runner --group=unit",
+    "test:unit:watch": "web-test-runner --group=unit --watch",
+    "test:visual": "web-test-runner --group=visual",
+    "test:visual:update": "web-test-runner --group=visual --update-visual-baseline",
     "prepublishOnly": "npm run build",
     "lint": "concurrently -n w: npm:lint:*",
     "lint:ts": "eslint ./lib/ts",
@@ -38,12 +41,21 @@
   "devDependencies": {
     "@11ty/eleventy": "^1.0.2",
     "@highlightjs/cdn-assets": "^11.6.0",
+    "@open-wc/testing": "^3.1.7",
+    "@rollup/plugin-commonjs": "^24.0.0",
+    "@rollup/plugin-replace": "^5.0.1",
     "@stackoverflow/stacks-editor": "^0.8.2",
     "@stackoverflow/stacks-icons": "^3.1.0",
+    "@testing-library/dom": "^8.19.0",
+    "@testing-library/user-event": "^14.4.3",
     "@typescript-eslint/eslint-plugin": "^5.42.0",
     "@typescript-eslint/parser": "^5.46.0",
-    "backstopjs": "^6.1.4",
-    "concurrently": "^7.5.0",
+    "@web/dev-server-esbuild": "^0.3.3",
+    "@web/dev-server-rollup": "https://github.com/giamir/web/raw/fix-dev-server-rollup/packages/dev-server-rollup/web-dev-server-rollup-0.3.19.tgz",
+    "@web/test-runner": "^0.15.0",
+    "@web/test-runner-playwright": "^0.9.0",
+    "@web/test-runner-visual-regression": "^0.7.0",
+    "concurrently": "^7.6.0",
     "css-loader": "^6.7.2",
     "cssnano": "^5.1.14",
     "docsearch.js": "^2.6.3",
@@ -60,12 +72,13 @@
     "postcss-less": "^6.0.0",
     "postcss-loader": "^7.0.1",
     "prettier": "^2.7.1",
+    "rollup-plugin-postcss": "^4.0.2",
     "stylelint": "^14.16.0",
     "stylelint-config-recommended": "^9.0.0",
     "stylelint-config-standard": "^29.0.0",
     "terser-webpack-plugin": "^5.3.6",
     "ts-loader": "^9.4.2",
-    "typescript": "^4.9.3",
+    "typescript": "^4.9.4",
     "webpack": "^5.75.0",
     "webpack-cli": "^5.0.0",
     "webpack-merge": "^5.8.0"
@@ -84,5 +97,8 @@
     "not and_uc > 0",
     "not Samsung > 0",
     "not Android > 0"
-  ]
+  ],
+  "overrides": {
+    "aria-query": "~5.0.0"
+  }
 }
