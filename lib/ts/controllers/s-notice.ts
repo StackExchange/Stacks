@@ -2,8 +2,6 @@ import * as Stacks from "../stacks";
 
 export class NoticeController extends Stacks.StacksController {
     // TODO consider including focus capturing
-    // TODO add auto-dismissal data-attr (value and/or bool)
-    // TODO consider generalizing this to a broad show/hide controller
     static targets = ["notice"];
 
     private noticeTarget!: HTMLElement;
@@ -11,6 +9,7 @@ export class NoticeController extends Stacks.StacksController {
     private _boundClickFn!: (event: MouseEvent) => void;
     private _boundKeypressFn!: (event: KeyboardEvent) => void;
 
+    private activeTimeout!: number;
     private returnElement!: HTMLElement;
 
     connect() {
@@ -109,10 +108,12 @@ export class NoticeController extends Stacks.StacksController {
 
         if (toShow) {
             this.bindDocumentEvents();
+            this.hideAfterTimeout();
         } else {
             this.unbindDocumentEvents();
             this.focusReturnElement();
             this.removeNoticeOnHide();
+            this.clearActiveTimeout();
         }
 
         // check for transitionend support
@@ -188,6 +189,26 @@ export class NoticeController extends Stacks.StacksController {
     }
 
     /**
+     * Hide the element after a delay
+     */
+    private hideAfterTimeout() {
+        if (this.data.get("prevent-auto-hide") === "true" || this.data.get("hide-after-timeout") === "0") {
+            return;
+        }
+
+        const timeout = parseInt(this.data.get("hide-after-timeout") as string, 10) || 3000;
+
+        this.activeTimeout = window.setTimeout(() => this.hide(), timeout);
+    }
+
+    /**
+     * Cancels the activeTimeout
+     */
+    clearActiveTimeout() {
+        clearTimeout(this.activeTimeout);
+    }
+
+        /**
      * Binds global events to the document for hiding notices on user interaction
      */
     private bindDocumentEvents() {
