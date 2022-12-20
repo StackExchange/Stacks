@@ -192,7 +192,7 @@ export class NoticeController extends Stacks.StacksController {
      * Hide the element after a delay
      */
     private hideAfterTimeout() {
-        if (this.data.get("prevent-auto-hide") === "true" || this.data.get("hide-after-timeout") === "0") {
+        if (this.data.get("auto-hide") !== "true" || this.data.get("hide-after-timeout") === "0") {
             return;
         }
 
@@ -241,6 +241,7 @@ export class NoticeController extends Stacks.StacksController {
             !this.noticeTarget
                 ?.contains(target) &&
             document.body.contains(target)
+            && this.data.get("hide-on-outside-click") === "true"
         ) {
             this._toggle(false, e);
         }
