@@ -71,9 +71,7 @@ $(document).ready(function() {
     });
 
     document.querySelectorAll(".js-banner-close").forEach(function(el) {
-        console.log(el)
         el.addEventListener("click", function(e) {
-            console.log(el)
             e.stopPropagation();
             e.preventDefault();
             var targetSelector = el.dataset.target;
