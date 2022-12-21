@@ -1,10 +1,10 @@
 import * as Stacks from "../stacks";
 
-export class NoticeController extends Stacks.StacksController {
+export class ToastController extends Stacks.StacksController {
     // TODO consider including focus capturing
-    static targets = ["notice"];
+    static targets = ["toast"];
 
-    private noticeTarget!: HTMLElement;
+    private toastTarget!: HTMLElement;
 
     private _boundClickFn!: (event: MouseEvent) => void;
     private _boundKeypressFn!: (event: KeyboardEvent) => void;
@@ -24,28 +24,28 @@ export class NoticeController extends Stacks.StacksController {
     }
 
     /**
-     * Toggles the visibility of the notice
+     * Toggles the visibility of the toast
      */
     toggle(dispatcher: Event | Element | null = null) {
         this._toggle(undefined, dispatcher);
     }
 
     /**
-     * Shows the notice
+     * Shows the toast
      */
     show(dispatcher: Event | Element | null = null) {
         this._toggle(true, dispatcher);
     }
 
     /**
-     * Hides the notice
+     * Hides the toast
      */
     hide(dispatcher: Event | Element | null = null) {
         this._toggle(false, dispatcher);
     }
 
     /**
-     * Validates the notice settings and attempts to set necessary internal variables
+     * Validates the toast settings and attempts to set necessary internal variables
      */
     private validate() {
         // check for returnElement support
@@ -65,7 +65,7 @@ export class NoticeController extends Stacks.StacksController {
     }
 
     /**
-     * Toggles the visibility of the notice element
+     * Toggles the visibility of the toast element
      * @param show Optional parameter that force shows/hides the element or toggles it if left undefined
      */
     private _toggle(
@@ -74,9 +74,9 @@ export class NoticeController extends Stacks.StacksController {
     ) {
         let toShow = show;
         const isVisible =
-            this.noticeTarget.getAttribute("aria-hidden") === "false";
+            this.toastTarget.getAttribute("aria-hidden") === "false";
 
-        // if we're letting the class toggle, we need to figure out if the notice is visible manually
+        // if we're letting the class toggle, we need to figure out if the toast is visible manually
         if (typeof toShow === "undefined") {
             toShow = !isVisible;
         }
@@ -95,16 +95,16 @@ export class NoticeController extends Stacks.StacksController {
                 returnElement: this.returnElement,
                 dispatcher: this.getDispatcher(dispatchingElement),
             },
-            this.noticeTarget
+            this.toastTarget
         );
 
-        // if this pre-show/hide event was prevented, don't attempt to continue changing the notice state
+        // if this pre-show/hide event was prevented, don't attempt to continue changing the toast state
         if (triggeredEvent.defaultPrevented) {
             return;
         }
 
         this.returnElement = triggeredEvent.detail.returnElement;
-        this.noticeTarget.setAttribute("aria-hidden", toShow ? "false" : "true");
+        this.toastTarget.setAttribute("aria-hidden", toShow ? "false" : "true");
 
         if (toShow) {
             this.bindDocumentEvents();
@@ -112,18 +112,18 @@ export class NoticeController extends Stacks.StacksController {
         } else {
             this.unbindDocumentEvents();
             this.focusReturnElement();
-            this.removeNoticeOnHide();
+            this.removeToastOnHide();
             this.clearActiveTimeout();
         }
 
         // check for transitionend support
         const supportsTransitionEnd =
-            this.noticeTarget.ontransitionend !== undefined;
+            this.toastTarget.ontransitionend !== undefined;
 
         // shown/hidden events trigger after toggling the class
         if (supportsTransitionEnd) {
-            // wait until after the notice finishes transitioning to fire the event
-            this.noticeTarget.addEventListener(
+            // wait until after the toast finishes transitioning to fire the event
+            this.toastTarget.addEventListener(
                 "transitionend",
                 () => {
                     //TODO this is firing waaay to soon?
@@ -132,7 +132,7 @@ export class NoticeController extends Stacks.StacksController {
                         {
                             dispatcher: dispatchingElement,
                         },
-                        this.noticeTarget
+                        this.toastTarget
                     );
                 },
                 { once: true }
@@ -143,21 +143,21 @@ export class NoticeController extends Stacks.StacksController {
                 {
                     dispatcher: dispatchingElement,
                 },
-                this.noticeTarget
+                this.toastTarget
             );
         }
     }
 
     /**
-     * Listens for the s-notice:hidden event and focuses the returnElement when it is fired
+     * Listens for the s-toast:hidden event and focuses the returnElement when it is fired
      */
     private focusReturnElement() {
         if (!this.returnElement) {
             return;
         }
 
-        this.noticeTarget.addEventListener(
-            "s-notice:hidden",
+        this.toastTarget.addEventListener(
+            "s-toast:hidden",
             () => {
                 // double check the element still exists when the event is called
                 if (
@@ -174,13 +174,13 @@ export class NoticeController extends Stacks.StacksController {
     /**
      * Remove the element on hide if the `remove-when-hidden` flag is set
      */
-    private removeNoticeOnHide() {
+    private removeToastOnHide() {
         if (this.data.get("remove-when-hidden") !== "true") {
             return;
         }
 
-        this.noticeTarget.addEventListener(
-            "s-notice:hidden",
+        this.toastTarget.addEventListener(
+            "s-toast:hidden",
             () => {
                 this.element.remove();
             },
@@ -192,7 +192,7 @@ export class NoticeController extends Stacks.StacksController {
      * Hide the element after a delay
      */
     private hideAfterTimeout() {
-        if (this.data.get("auto-hide") !== "true" || this.data.get("hide-after-timeout") === "0") {
+        if (this.data.get("prevent-auto-hide") === "true" || this.data.get("hide-after-timeout") === "0") {
             return;
         }
 
@@ -209,7 +209,7 @@ export class NoticeController extends Stacks.StacksController {
     }
 
         /**
-     * Binds global events to the document for hiding notices on user interaction
+     * Binds global events to the document for hiding toasts on user interaction
      */
     private bindDocumentEvents() {
         // in order for removeEventListener to remove the right event, this bound function needs a constant reference
@@ -223,7 +223,7 @@ export class NoticeController extends Stacks.StacksController {
     }
 
     /**
-     * Unbinds global events to the document for hiding notices on user interaction
+     * Unbinds global events to the document for hiding toasts on user interaction
      */
     private unbindDocumentEvents() {
         document.removeEventListener("mousedown", this._boundClickFn);
@@ -231,30 +231,30 @@ export class NoticeController extends Stacks.StacksController {
     }
 
     /**
-     * Forces the notice to hide if a user clicks outside of it or its reference element
+     * Forces the toast to hide if a user clicks outside of it or its reference element
      */
     private hideOnOutsideClick(e: Event) {
         const target = <Node>e.target;
-        // check if the document was clicked inside either the toggle element or the notice itself
+        // check if the document was clicked inside either the toggle element or the toast itself
         // note: .contains also returns true if the node itself matches the target element
         if (
-            !this.noticeTarget
+            !this.toastTarget
                 ?.contains(target) &&
             document.body.contains(target)
-            && this.data.get("hide-on-outside-click") === "true"
+            && this.data.get("hide-on-outside-click") !== "false"
         ) {
             this._toggle(false, e);
         }
     }
 
     /**
-     * Forces the notice to hide if the user presses escape while it, one of its childen, or the reference element are focused
+     * Forces the toast to hide if the user presses escape while it, one of its childen, or the reference element are focused
      */
     private hideOnEscapePress(e: KeyboardEvent) {
-        // if the ESC key (27) wasn't pressed or if no notices are showing, return
+        // if the ESC key (27) wasn't pressed or if no toasts are showing, return
         if (
             e.which !== 27 ||
-            this.noticeTarget.getAttribute("aria-hidden") === "true"
+            this.toastTarget.getAttribute("aria-hidden") === "true"
         ) {
             return;
         }
@@ -278,34 +278,34 @@ export class NoticeController extends Stacks.StacksController {
 }
 
 /**
- * Helper to manually show an s-notice element via external JS
- * @param element the element the `data-controller="s-notice"` attribute is on
+ * Helper to manually show an s-toast element via external JS
+ * @param element the element the `data-controller="s-toast"` attribute is on
  */
-export function showNotice(element: HTMLElement) {
-    toggleNotice(element, true);
+export function showToast(element: HTMLElement) {
+    toggleToast(element, true);
 }
 
 /**
- * Helper to manually hide an s-notice element via external JS
- * @param element the element the `data-controller="s-notice"` attribute is on
+ * Helper to manually hide an s-toast element via external JS
+ * @param element the element the `data-controller="s-toast"` attribute is on
  */
-export function hideNotice(element: HTMLElement) {
-    toggleNotice(element, false);
+export function hideToast(element: HTMLElement) {
+    toggleToast(element, false);
 }
 
 /**
- * Helper to manually show an s-notice element via external JS
- * @param element the element the `data-controller="s-notice"` attribute is on
- * @param show whether to force show/hide the notice; toggles the notice if left undefined
+ * Helper to manually show an s-toast element via external JS
+ * @param element the element the `data-controller="s-toast"` attribute is on
+ * @param show whether to force show/hide the toast; toggles the toast if left undefined
  */
-function toggleNotice(element: HTMLElement, show?: boolean | undefined) {
+function toggleToast(element: HTMLElement, show?: boolean | undefined) {
     const controller = Stacks.application.getControllerForElementAndIdentifier(
         element,
-        "s-notice"
-    ) as NoticeController;
+        "s-toast"
+    ) as ToastController;
 
     if (!controller) {
-        throw "Unable to get s-notice controller from element";
+        throw "Unable to get s-toast controller from element";
     }
 
     show ? controller.show() : controller.hide();

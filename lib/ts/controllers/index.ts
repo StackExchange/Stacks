@@ -2,7 +2,7 @@
 export { ExpandableController } from "./s-expandable-control";
 export { hideModal, ModalController, showModal } from "./s-modal";
 export { hideBanner, BannerController, showBanner } from "./s-banner";
-export { hideNotice, NoticeController, showNotice } from "./s-notice";
+export { hideToast, ToastController, showToast } from "./s-toast";
 export { TabListController } from "./s-navigation-tablist";
 export {
     attachPopover,

@@ -1,18 +1,18 @@
 $(document).ready(function() {
     var toastOffset = $(".js-stacks-topbar").outerHeight() + 16 + "px";
 
-    document.querySelectorAll(".js-notice-open").forEach(function(el) {
+    document.querySelectorAll(".js-toast-open").forEach(function(el) {
         el.addEventListener("click", function(e) {
             e.stopPropagation();
             e.preventDefault();
             var targetSelector = el.dataset.target;
-            var noticeEl = document.querySelector(targetSelector);
+            var toastEl = document.querySelector(targetSelector);
 
-            if (!noticeEl.style.top) {
-                noticeEl.style.top = toastOffset;
+            if (!toastEl.style.top) {
+                toastEl.style.top = toastOffset;
             }
 
-            Stacks.showNotice(noticeEl);
+            Stacks.showToast(toastEl);
         });
     });
 });
