@@ -1,10 +1,10 @@
 import * as Stacks from "../stacks";
 
 export class ToastController extends Stacks.StacksController {
-    // TODO consider including focus capturing
-    static targets = ["toast"];
+    static targets = ["toast", "initialFocus"];
 
     private toastTarget!: HTMLElement;
+    private initialFocusTargets!: HTMLElement[];
 
     private _boundClickFn!: (event: MouseEvent) => void;
     private _boundKeypressFn!: (event: KeyboardEvent) => void;
@@ -109,6 +109,10 @@ export class ToastController extends Stacks.StacksController {
         if (toShow) {
             this.bindDocumentEvents();
             this.hideAfterTimeout();
+
+            if (this.data.get("prevent-focus-capture") !== "true") {
+                this.focusInsideToast();
+            }
         } else {
             this.unbindDocumentEvents();
             this.focusReturnElement();
@@ -208,7 +212,45 @@ export class ToastController extends Stacks.StacksController {
         clearTimeout(this.activeTimeout);
     }
 
-        /**
+    /**
+     * Gets all elements within the toast that could receive keyboard focus.
+     */
+    private getAllTabbables() {
+        return Array.from(
+            this.toastTarget.querySelectorAll<HTMLElement>(
+                "[href], input, select, textarea, button, [tabindex]"
+            )
+        ).filter((el: Element) =>
+            el.matches(":not([disabled]):not([tabindex='-1'])")
+        );
+    }
+
+    /**
+     * Returns the first visible element in an array or `undefined` if no elements are visible.
+     */
+    private firstVisible(elements?: HTMLElement[]) {
+        // https://stackoverflow.com/a/21696585
+        return elements?.find((el) => el.offsetParent !== null);
+    }
+
+    /**
+     * Attempts to shift keyboard focus into the toast.
+     * If elements with `data-s-toast-target="initialFocus"` are present and visible, one of those will be selected.
+     * Otherwise, the first visible focusable element will receive focus.
+     */
+    private focusInsideToast() {
+        this.toastTarget.addEventListener(
+            "s-toast:shown",
+            () => {
+                const initialFocus =
+                    this.firstVisible(this.initialFocusTargets) ??
+                    this.firstVisible(this.getAllTabbables());
+                initialFocus?.focus();
+            },
+            { once: true }
+        );
+    }
+    /**
      * Binds global events to the document for hiding toasts on user interaction
      */
     private bindDocumentEvents() {
