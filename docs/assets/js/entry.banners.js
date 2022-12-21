@@ -65,7 +65,7 @@ $(document).ready(function() {
             var targetSelector = el.dataset.target;
             var bannerEl = document.querySelector(targetSelector);
 
-            Stacks.showNotice(bannerEl);
+            Stacks.showBanner(bannerEl);
             setShowHideBtns(true);
         });
     });
@@ -77,7 +77,7 @@ $(document).ready(function() {
             var targetSelector = el.dataset.target;
             var bannerEl = document.querySelector(targetSelector);
 
-            Stacks.hideNotice(bannerEl);
+            Stacks.hideBanner(bannerEl);
             setShowHideBtns(false);
         });
     });

@@ -7,24 +7,6 @@ description: Banners are a type of <a href="/product/components/notices">notice<
 <!-- Additional javascript -->
 <script src="{{ "/assets/dist/entry.banners.js" | url }}" defer></script>
 
-<aside class="s-banner s-banner__info js-notice-banner" id="launch-banner-base" aria-hidden="true" role="alert" aria-labelledby="banner-message" data-controller="s-notice" data-s-notice-target="notice" data-s-notice-return-element=".js-banner-open[data-target='#launch-banner-base']">
-    <div class="d-flex flex__center jc-space-between s-banner--container" role="alertdialog" aria-describedby="banner-message">
-        <div class="d-flex g8" aria-label="banner message">
-            <div class="flex--item">
-                <svg aria-hidden="true" class="svg-icon iconLock" width="18" height="18" viewBox="0 0 18 18"><path d="M16 9a2 2 0 0 0-2-2V6A5 5 0 0 0 4 6v1a2 2 0 0 0-2 2v6c0 1.1.9 2 2 2h10a2 2 0 0 0 2-2V9Zm-7 5a2 2 0 1 1 0-4 2 2 0 0 1 0 4Zm3.1-7H5.9V6a3.1 3.1 0 0 1 6.2 0v1Z"></path></svg>
-            </div>
-            <div class="d-flex ai-center">
-                <p class="m0"><strong>Stacks is currently frozen in read-only mode.</strong> Contact the team to restore access.</p>
-            </div>
-        </div>
-        <div class="flex--item ml-auto myn8">
-            <button type="button" class="s-btn s-banner--btn js-banner-close" aria-label="Dismiss" data-toggle="s-notice" data-target="#launch-banner-base">
-                {% icon "ClearSm", "m0" %}
-            </button>
-        </div>
-    </div>
-</aside>
-
 <!-- Override stacks classes for demos -->
 <style>
 .s-banner[aria-hidden=false] {
@@ -36,6 +18,23 @@ description: Banners are a type of <a href="/product/components/notices">notice<
     transform: translate3d(0, 0, 0);
 }
 </style>
+<aside class="s-banner s-banner__info js-notice-banner" id="launch-banner-base" aria-hidden="true" role="alert" aria-labelledby="banner-message" data-controller="s-banner" data-s-banner-target="banner">
+    <div class="d-flex flex__center jc-space-between s-banner--container" role="alertdialog" aria-describedby="banner-message">
+        <div class="d-flex g8" aria-label="banner message">
+            <div class="flex--item">
+                <svg aria-hidden="true" class="svg-icon iconLock" width="18" height="18" viewBox="0 0 18 18"><path d="M16 9a2 2 0 0 0-2-2V6A5 5 0 0 0 4 6v1a2 2 0 0 0-2 2v6c0 1.1.9 2 2 2h10a2 2 0 0 0 2-2V9Zm-7 5a2 2 0 1 1 0-4 2 2 0 0 1 0 4Zm3.1-7H5.9V6a3.1 3.1 0 0 1 6.2 0v1Z"></path></svg>
+            </div>
+            <div class="d-flex ai-center">
+                <p class="m0"><strong>Stacks is currently frozen in read-only mode.</strong> Contact the team to restore access.</p>
+            </div>
+        </div>
+        <div class="flex--item ml-auto myn8">
+            <button type="button" class="s-btn s-banner--btn js-banner-close" aria-label="Dismiss" data-toggle="s-banner" data-target="#launch-banner-base">
+                {% icon "ClearSm", "m0" %}
+            </button>
+        </div>
+    </div>
+</aside>
 
 <section class="stacks-section">
     <p class="stacks-copy">System banners are used for <strong>system</strong> messaging. They are full-width notices placed in one of two locations:</p>
@@ -106,8 +105,8 @@ description: Banners are a type of <a href="/product/components/notices">notice<
                             <label class="flex--item s-label fs-body1" for="sys-banner-position">Pinned?</label>
                         </div>
                     </div>
-                    <button class="flex--item s-btn s-btn__filled js-banner-open" data-toggle="s-notice" data-target="#launch-banner-base">Show example</button>
-                    <button class="flex--item s-btn s-btn__danger d-none js-banner-close" data-toggle="s-notice" data-target="#launch-banner-base">Remove example</button>
+                    <button class="flex--item s-btn s-btn__filled js-banner-open" data-toggle="s-banner" data-target="#launch-banner-base">Show example</button>
+                    <button class="flex--item s-btn s-btn__danger d-none js-banner-close" data-toggle="s-banner" data-target="#launch-banner-base">Remove example</button>
                 </div>
             </div>
         </div>
