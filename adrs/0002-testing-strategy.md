@@ -46,4 +46,6 @@ Guidelines:
 
 
 ## Additional info
-[Supporting PR](https://github.com/StackExchange/Stacks/pull/1194) illustrating the new approach to testing.
+
+- [Supporting PR](https://github.com/StackExchange/Stacks/pull/1194) illustrating the new approach to testing.
+- [ADR #0004: Stacks Accessibility Testing Strategy](/adrs/0004-accessibility-testing-strategy.md)
