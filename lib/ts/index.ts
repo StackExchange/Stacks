@@ -2,10 +2,10 @@ import "../css/stacks.less";
 import {
     ExpandableController,
     ModalController,
-    ToastController,
     PopoverController,
     TableController,
     TabListController,
+    ToastController,
     TooltipController,
     UploaderController,
 } from "./controllers";
