@@ -12,7 +12,7 @@ The Stacks repo is growing in complexity and will soon require many different de
 
 Despite shipping many different concepts (atomic classes, CSS components, JS components), the interdependency chains are relatively linear. This means that we can fairly trivially split the repo into smaller portions.
 
-Our current codebase could be split like so:
+For example, our current codebase could be split like so:
 - Atomic classes (no dependencies)
 - CSS Components (depends on Atomic components)
 - JS Components (depends on Stimulus, Popper.js, CSS + Atomic components)
