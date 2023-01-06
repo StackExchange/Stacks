@@ -5,7 +5,7 @@
 **Related PR:** [#1217](https://github.com/StackExchange/Stacks/pull/1217)
 
 ## Issue
-We currently rely on manual testing, third-party audits, and user reports to identify and fix accessibility issues. The only semi-automated testing we currently Furthermore, while we've generally aspired to WCAG 2.1 AA compliance, we haven't codified the accessibility success criteria for our components.
+We currently rely on manual testing, third-party audits, and user reports to identify and fix accessibility issues. The only semi-automated accessibility testing we do is via Mabl and is initiated manually. Furthermore, while we've generally aspired to WCAG 2.1 AA compliance, we haven't codified the accessibility success criteria for our components.
 
 **A defined success criteria and automated accessibility testing will reduce the effort needed to build and maintain accessibile components.**
 
