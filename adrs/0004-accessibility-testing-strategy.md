@@ -25,8 +25,6 @@ Introduce the following automated accessibility testing for Stacks:
 
 Components can be rendered in different combinations of light/dark and high contrast modes. We should test components in all of these contexts to ensure they meet the success criteria.
 
-<!-- TODO: Is it neccessary to test against different viewport dimensions or specific input methods? If so, mention them here and specify *how* we should test in these contexts -->
-
 ### Additional Guidelines
 
 - All tests and linters runs in a GH workflow for every commit and pull requests on develop branch.
