@@ -36,7 +36,7 @@ describe("s-banner", () => {
         expect(banner.getAttribute("aria-hidden")).to.equal("true");
         button.addEventListener('click', () => Stacks.showBanner(banner));
 
-        expect(banner).to.have.attribute('aria-hidden', 'false');
         await user.click(button);
+        expect(banner).to.have.attribute('aria-hidden', 'false');
     });
 });
