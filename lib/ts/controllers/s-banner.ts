@@ -1,7 +1,6 @@
 import * as Stacks from "../stacks";
 
 export class BannerController extends Stacks.StacksController {
-    // TODO consider including focus capturing
     static targets = ["banner"];
 
     private bannerTarget!: HTMLElement;

@@ -33,7 +33,7 @@ describe("s-banner", () => {
         const button = screen.getByRole("button");
         const banner = screen.getByTestId("test-banner");
 
-        expect(banner.getAttribute("aria-hidden")).to.equal("true");
+        expect(banner).to.have.attribute('aria-hidden', 'true');
         button.addEventListener('click', () => Stacks.showBanner(banner));
 
         await user.click(button);
