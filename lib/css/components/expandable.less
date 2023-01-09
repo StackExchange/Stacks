@@ -13,10 +13,6 @@
     --_ex-content-mb: 0;
     --_ex-content-o: unset;
     --_ex-content-transform: unset;
-    --_ex-content-transition:
-        margin-bottom @ex-transition-duration cubic-bezier(0, 0, 0, 1),
-        transform @ex-transition-duration cubic-bezier(1, 0, 1, 1),
-        opacity @ex-transition-duration cubic-bezier(1, 0, 1, 1);
 
     &:not(.is-expanded) {
         --_ex-after-h: 0;
@@ -26,12 +22,6 @@
         --_ex-content-mb: -1500px;
         --_ex-content-o: 0;
         --_ex-content-transform: scaleY(0);
-        --_ex-content-transition:
-            margin-bottom @ex-transition-duration cubic-bezier(1, 0, 1, 1),
-            visibility 0s @ex-transition-duration,
-            max-height 0s @ex-transition-duration,
-            transform @ex-transition-duration cubic-bezier(0, 1, 1, 1),
-            opacity @ex-transition-duration cubic-bezier(0, 1, 1, 1);
 
         & .s-expandable--content {
             @supports ((-webkit-clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)) or (clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%))) {
