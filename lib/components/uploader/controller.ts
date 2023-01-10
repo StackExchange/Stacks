@@ -1,4 +1,4 @@
-import * as Stacks from "../stacks";
+import * as Stacks from "../../ts/stacks";
 
 interface FilePreview {
     data?: string | ArrayBuffer;

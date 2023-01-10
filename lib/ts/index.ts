@@ -1,4 +1,4 @@
-import "../css/stacks.less";
+import "../stacks.less";
 import {
     ExpandableController,
     ModalController,

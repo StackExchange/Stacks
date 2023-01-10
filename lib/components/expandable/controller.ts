@@ -1,4 +1,4 @@
-import * as Stacks from "../stacks";
+import * as Stacks from "../../ts/stacks";
 
 // Radio buttons only trigger a change event when they're *checked*, but not when
 // they're *unchecked*. Therefore, if we have an active `s-expandable-control` in

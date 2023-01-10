@@ -1,4 +1,4 @@
-import * as Stacks from "../stacks";
+import * as Stacks from "../../ts/stacks";
 
 export class TableController extends Stacks.StacksController {
     static targets = ["column"];

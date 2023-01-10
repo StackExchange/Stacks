@@ -1,4 +1,4 @@
-import * as Stacks from "../stacks";
+import * as Stacks from "../../ts/stacks";
 
 export class TabListController extends Stacks.StacksController {
     private boundSelectTab!: (event: MouseEvent) => void;
