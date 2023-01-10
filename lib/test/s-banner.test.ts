@@ -9,13 +9,7 @@ const user = userEvent.setup();
 describe("s-banner", () => {
     it("should make banner visible", async () => {
         await fixture(html`
-            <button
-                class="s-btn js-banner-open"
-                data-toggle="s-banner"
-                data-target="#test-banner"
-            >
-                Show test banner
-            </button>
+            <button data-toggle="s-banner" data-target="#test-banner">Show test banner</button>
             <aside
                 data-testid="test-banner"
                 class="s-banner"
