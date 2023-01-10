@@ -1,7 +1,7 @@
 import { html, fixture, expect } from "@open-wc/testing";
 import { screen, waitForElementToBeRemoved } from "@testing-library/dom";
 import userEvent from "@testing-library/user-event";
-import "../ts/index";
+import "../index";
 
 const user = userEvent.setup();
 

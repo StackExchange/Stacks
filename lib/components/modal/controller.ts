@@ -1,4 +1,4 @@
-import * as Stacks from "../../ts/stacks";
+import * as Stacks from "../../stacks";
 
 export class ModalController extends Stacks.StacksController {
     static targets = ["modal", "initialFocus"];

@@ -53,11 +53,11 @@ export default {
     groups: [
         {
             name: "unit",
-            files: "lib/test/**/!(*.visual).test.ts",
+            files: "lib/components/**/!(*.visual).test.ts",
         },
         {
             name: "visual",
-            files: "lib/test/**/*.visual.test.ts",
+            files: "lib/components/**/*.visual.test.ts",
         },
     ],
 

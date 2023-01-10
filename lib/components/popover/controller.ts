@@ -1,6 +1,6 @@
 import { createPopper, Placement } from "@popperjs/core";
 import type * as Popper from "@popperjs/core";
-import * as Stacks from "../../ts/stacks";
+import * as Stacks from "../../stacks";
 
 type OutsideClickBehavior =
     | "always"

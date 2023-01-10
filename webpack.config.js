@@ -9,7 +9,7 @@ const baseConfig = (isProd, minify) => ({
     devtool: isProd ? false : "inline-source-map",
     entry: {
         // add .min to the file names of minified bundles
-        [minify ? "stacks.min" : "stacks"]: "./lib/ts/index.ts",
+        [minify ? "stacks.min" : "stacks"]: "./lib/index.ts",
     },
     output: {
         filename: `js/[name].js`,
