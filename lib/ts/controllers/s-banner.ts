@@ -3,7 +3,7 @@ import * as Stacks from "../stacks";
 export class BannerController extends Stacks.StacksController {
     static targets = ["banner"];
 
-    private bannerTarget!: HTMLElement;
+    declare readonly bannerTarget: HTMLElement;
 
     /**
      * Toggles the visibility of the banner
