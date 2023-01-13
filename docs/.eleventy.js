@@ -4,6 +4,7 @@ const { version } = require("../package.json");
 const headerPlugin = require("./plugins/header");
 const highlightPlugin = require("./plugins/highlight");
 const iconPlugin = require("./plugins/icons");
+const bannerExamplePlugin = require("./plugins/banner-example");
 const tipPlugin = require("./plugins/tip");
 const markdownPlugin = require("./plugins/markdown");
 
@@ -12,6 +13,7 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.addLayoutAlias('home', 'layouts/home.html');
   eleventyConfig.addLayoutAlias('page', 'layouts/page.html');
 
+  eleventyConfig.addPlugin(bannerExamplePlugin);
   eleventyConfig.addPlugin(iconPlugin);
   eleventyConfig.addPlugin(headerPlugin);
   eleventyConfig.addPlugin(tipPlugin);
