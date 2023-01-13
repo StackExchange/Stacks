@@ -3,8 +3,8 @@ import * as Stacks from "../stacks";
 export class ToastController extends Stacks.StacksController {
     static targets = ["toast", "initialFocus"];
 
-    private toastTarget!: HTMLElement;
-    private initialFocusTargets!: HTMLElement[];
+    declare readonly toastTarget: HTMLElement;
+    declare readonly initialFocusTargets: HTMLElement[];
 
     private _boundClickFn!: (event: MouseEvent) => void;
     private _boundKeypressFn!: (event: KeyboardEvent) => void;
