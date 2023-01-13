@@ -2,7 +2,7 @@ import { html, fixture, expect } from "@open-wc/testing";
 import { screen } from "@testing-library/dom";
 import userEvent from "@testing-library/user-event";
 import "../ts/index";
-import * as Stacks from "../ts/index";
+import { showBanner, hideBanner } from "../ts/index";
 
 const user = userEvent.setup();
 
@@ -28,7 +28,7 @@ describe("s-banner", () => {
         const banner = screen.getByTestId("test-banner");
 
         expect(banner).to.have.attribute('aria-hidden', 'true');
-        button.addEventListener('click', () => Stacks.showBanner(banner));
+        button.addEventListener('click', () => showBanner(banner));
 
         await user.click(button);
         expect(banner).to.have.attribute('aria-hidden', 'false');
@@ -57,7 +57,7 @@ describe("s-banner", () => {
         const banner = screen.getByTestId("test-banner");
 
         expect(banner).to.have.attribute('aria-hidden', 'false');
-        button.addEventListener('click', () => Stacks.hideBanner(banner));
+        button.addEventListener('click', () => hideBanner(banner));
 
         await user.click(button);
         expect(banner).to.have.attribute('aria-hidden', 'true');
