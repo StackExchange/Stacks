@@ -7,18 +7,18 @@ import * as Stacks from "../ts/index";
 const user = userEvent.setup();
 
 describe("s-banner", () => {
-    it("should make banner visible", async () => {
+    it("trigger should make banner visible", async () => {
         await fixture(html`
             <button data-toggle="s-banner" data-target="#test-banner">Show test banner</button>
             <aside
-                data-testid="test-banner"
-                class="s-banner"
-                id="test-banner"
-                aria-hidden="true"
                 role="alert"
+                id="test-banner"
+                class="s-banner"
                 aria-labelledby="banner-message"
+                aria-hidden="true"
                 data-controller="s-banner"
                 data-s-banner-target="banner"
+                data-testid="test-banner"
             >
                 Test banner
             </aside>
@@ -32,5 +32,34 @@ describe("s-banner", () => {
 
         await user.click(button);
         expect(banner).to.have.attribute('aria-hidden', 'false');
+    });
+
+    it("trigger should hide banner", async () => {
+        await fixture(html`
+            <aside
+                role="alert"
+                id="test-banner"
+                class="s-banner"
+                aria-labelledby="banner-message"
+                aria-hidden="false"
+                data-controller="s-banner"
+                data-s-banner-target="banner"
+                data-testid="test-banner"
+            >
+                Test banner
+                <button type="button" class="s-btn s-banner--btn" aria-label="Dismiss" data-toggle="s-banner" data-target="#test-banner">
+                    Close banner
+                </button>
+            </aside>
+        `);
+
+        const button = screen.getByRole("button");
+        const banner = screen.getByTestId("test-banner");
+
+        expect(banner).to.have.attribute('aria-hidden', 'false');
+        button.addEventListener('click', () => Stacks.hideBanner(banner));
+
+        await user.click(button);
+        expect(banner).to.have.attribute('aria-hidden', 'true');
     });
 });
