@@ -30,7 +30,7 @@ describe("s-btn", () => {
         // Test each s-btn variant
         btnStyles.variants.forEach((variant) => {
             const testid = `s-btn-${theme}-${variant}`;
-            it(`a11y: all base ${variant} styles should be accessible in ${theme} mode`, async () => {
+            it(`a11y: base ${variant} styles in ${theme} mode should be accessible`, async () => {
                 await fixture(
                     generateBtn({
                         theme,
@@ -46,7 +46,7 @@ describe("s-btn", () => {
             // Test each s-btn variant with each (standard) modifier
             btnStyles.modifiers.forEach((modifier) => {
                 const testid = `s-btn-${theme}-${variant}-${modifier}`;
-                it(`a11y: all ${variant} styles with ${modifier} modifier should be accessible in ${theme} mode`, async () => {
+                it(`a11y: ${variant} + ${modifier} styles in ${theme} mode should be accessible`, async () => {
                     await fixture(
                         generateBtn({
                             theme,
@@ -61,23 +61,6 @@ describe("s-btn", () => {
             });
         });
 
-        // Test each s-btn size
-        btnStyles.sizes.forEach((size) => {
-            const testid = `s-btn-${theme}-${size}`;
-            it(`a11y: all ${size} styles should be accessible in ${theme} mode`, async () => {
-                await fixture(
-                    generateBtn({
-                        theme,
-                        testid,
-                        classes: `s-btn__primary s-btn__${size}`,
-                    })
-                );
-                const button = screen.getByTestId(testid);
-                // TODO add conditional option for high contrast mode to test against AAA
-                await expect(button).to.be.accessible();
-            });
-        });
-
         // Test each standalone s-btn style
         [
             ...btnStyles.modifiers,
@@ -86,7 +69,7 @@ describe("s-btn", () => {
             ...btnStyles.social,
         ].forEach((style) => {
             const testid = `s-btn-${theme}-${style}`;
-            it(`a11y: all ${style} styles should be accessible in ${theme} mode`, async () => {
+            it(`a11y: primary + ${style} styles in ${theme} mode should be accessible`, async () => {
                 await fixture(
                     generateBtn({
                         theme,
