@@ -5,7 +5,7 @@
 **Related PR:** [#1217](https://github.com/StackExchange/Stacks/pull/1217)
 
 ## Issue
-We currently rely on manual testing, third-party audits, and user reports to identify and fix accessibility issues. The only semi-automated accessibility testing we do is via Mabl and is initiated manually. Furthermore, while we've generally aspired to WCAG 2.1 AA compliance, we haven't codified the accessibility success criteria for our components.
+We currently rely on manual testing, third-party audits, and user reports to identify and fix accessibility issues. The only semi-automated accessibility testing we do is via Mabl, which is initiated manually and tests instead of individual components. Furthermore, while we've generally aspired to WCAG 2.1 AA compliance, we haven't codified the accessibility success criteria for our components.
 
 **A defined success criteria and automated accessibility testing will reduce the effort needed to build and maintain accessibile components.**
 
@@ -18,12 +18,15 @@ Introduce the following success criteria for the accessibility Stacks components
 
 Introduce the following automated accessibility testing for Stacks:
 
-<!-- TODO: Choose *tbd* accessibility testing library to test components in isolation ([wtr](https://modern-web.dev/docs/test-runner/commands/#accessibility-snapshot) is my current top choice, but I'm also exploring other options mentioned in [this PR comment thread](https://github.com/StackExchange/Stacks/pull/1195#discussion_r1037616024)) -->
-- Integrate current Mabl testing for our documentation pages into our CI pipeline
+- All components should include accessibility tests using the [`chai-a11y-axe` plugin](https://open-wc.org/docs/testing/chai-a11y-axe/#chai-tdd-ui) in unit test files.
 
 ### Contexts to consider
 
 Components can be rendered in different combinations of light/dark and high contrast modes. We should test components in all of these contexts to ensure they meet the success criteria.
+
+#### A note on viewport widths
+
+Though accessibility issues can arise at any viewport width, accessibility issues tend arise primarily from invalid markup and color contrast issues. Because of this, we should focus on testing components at the default viewport width and use discression when adding tests for different viewport widths.
 
 ### Additional Guidelines
 
