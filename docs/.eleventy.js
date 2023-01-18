@@ -6,7 +6,6 @@ const highlightPlugin = require("./plugins/highlight");
 const iconPlugin = require("./plugins/icons");
 const tipPlugin = require("./plugins/tip");
 const markdownPlugin = require("./plugins/markdown");
-const codeblockTabsPlugin = require("./plugins/codeblock-tabs");
 
 module.exports = function(eleventyConfig) {
   eleventyConfig.setQuietMode(true); // Reduce the console output
@@ -16,7 +15,6 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.addPlugin(iconPlugin);
   eleventyConfig.addPlugin(headerPlugin);
   eleventyConfig.addPlugin(tipPlugin);
-  eleventyConfig.addPlugin(codeblockTabsPlugin);
 
   // Version shortcode
   eleventyConfig.addLiquidShortcode("version", function() {
