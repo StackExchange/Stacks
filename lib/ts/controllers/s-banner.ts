@@ -64,7 +64,10 @@ export class BannerController extends Stacks.StacksController {
             return;
         }
 
-        this.bannerTarget.setAttribute("aria-hidden", toShow ? "false" : "true");
+        this.bannerTarget.setAttribute(
+            "aria-hidden",
+            toShow ? "false" : "true"
+        );
 
         if (!toShow) {
             this.removeBannerOnHide();

@@ -5,13 +5,25 @@ import "../ts/index";
 const testBanner = (variant = "info", important = false) => {
     const importantClass = important ? "s-banner__important" : "";
 
-    return html`<aside class="s-banner s-banner__${variant} ${importantClass} is-pinned ps-relatives" role="alert" aria-hidden="false">
-        <div class="d-flex flex__center jc-space-between s-banner--container" role="alertdialog" aria-describedby="banner-message">
-            <div aria-label="banner message">Test Banner: ${variant} ${importantClass}</div>
-            <div class="ml-auto myn8"><span class="s-btn s-banner--btn">Close</span></div>
+    return html`<aside
+        class="s-banner s-banner__${variant} ${importantClass} is-pinned ps-relatives"
+        role="alert"
+        aria-hidden="false"
+    >
+        <div
+            class="d-flex flex__center jc-space-between s-banner--container"
+            role="alertdialog"
+            aria-describedby="banner-message"
+        >
+            <div aria-label="banner message">
+                Test Banner: ${variant} ${importantClass}
+            </div>
+            <div class="ml-auto myn8">
+                <span class="s-btn s-banner--btn">Close</span>
+            </div>
         </div>
-    </aside>`
-}
+    </aside>`;
+};
 
 describe("s-banner", () => {
     it("should not introduce visual regressions for info banner", async () => {

@@ -6,9 +6,11 @@ const testToast = (variant = "info", important = false) => {
     const importantClass = important ? "s-notice__important" : "";
 
     return html`<div class="s-toast" aria-hidden="false">
-        <aside class="s-notice s-notice__${variant} ${importantClass}">Test toast: ${variant} ${importantClass}</aside>
-    </div>`
-}
+        <aside class="s-notice s-notice__${variant} ${importantClass}">
+            Test toast: ${variant} ${importantClass}
+        </aside>
+    </div>`;
+};
 
 describe("s-toast", () => {
     it("should not introduce visual regressions for info toast", async () => {

@@ -196,11 +196,15 @@ export class ToastController extends Stacks.StacksController {
      * Hide the element after a delay
      */
     private hideAfterTimeout() {
-        if (this.data.get("prevent-auto-hide") === "true" || this.data.get("hide-after-timeout") === "0") {
+        if (
+            this.data.get("prevent-auto-hide") === "true" ||
+            this.data.get("hide-after-timeout") === "0"
+        ) {
             return;
         }
 
-        const timeout = parseInt(this.data.get("hide-after-timeout") as string, 10) || 3000;
+        const timeout =
+            parseInt(this.data.get("hide-after-timeout") as string, 10) || 3000;
 
         this.activeTimeout = window.setTimeout(() => this.hide(), timeout);
     }
@@ -280,10 +284,9 @@ export class ToastController extends Stacks.StacksController {
         // check if the document was clicked inside either the toggle element or the toast itself
         // note: .contains also returns true if the node itself matches the target element
         if (
-            !this.toastTarget
-                ?.contains(target) &&
-            document.body.contains(target)
-            && this.data.get("hide-on-outside-click") !== "false"
+            !this.toastTarget?.contains(target) &&
+            document.body.contains(target) &&
+            this.data.get("hide-on-outside-click") !== "false"
         ) {
             this._toggle(false, e);
         }

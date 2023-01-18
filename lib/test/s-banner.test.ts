@@ -9,7 +9,9 @@ const user = userEvent.setup();
 describe("s-banner", () => {
     it("trigger should make banner visible", async () => {
         await fixture(html`
-            <button data-toggle="s-banner" data-target="#test-banner">Show test banner</button>
+            <button data-toggle="s-banner" data-target="#test-banner">
+                Show test banner
+            </button>
             <aside
                 role="alert"
                 id="test-banner"
@@ -27,11 +29,11 @@ describe("s-banner", () => {
         const button = screen.getByRole("button");
         const banner = screen.getByTestId("test-banner");
 
-        expect(banner).to.have.attribute('aria-hidden', 'true');
-        button.addEventListener('click', () => showBanner(banner));
+        expect(banner).to.have.attribute("aria-hidden", "true");
+        button.addEventListener("click", () => showBanner(banner));
 
         await user.click(button);
-        expect(banner).to.have.attribute('aria-hidden', 'false');
+        expect(banner).to.have.attribute("aria-hidden", "false");
     });
 
     it("trigger should hide banner", async () => {
@@ -47,7 +49,13 @@ describe("s-banner", () => {
                 data-testid="test-banner"
             >
                 Test banner
-                <button type="button" class="s-btn s-banner--btn" aria-label="Dismiss" data-toggle="s-banner" data-target="#test-banner">
+                <button
+                    type="button"
+                    class="s-btn s-banner--btn"
+                    aria-label="Dismiss"
+                    data-toggle="s-banner"
+                    data-target="#test-banner"
+                >
                     Close banner
                 </button>
             </aside>
@@ -56,10 +64,10 @@ describe("s-banner", () => {
         const button = screen.getByRole("button");
         const banner = screen.getByTestId("test-banner");
 
-        expect(banner).to.have.attribute('aria-hidden', 'false');
-        button.addEventListener('click', () => hideBanner(banner));
+        expect(banner).to.have.attribute("aria-hidden", "false");
+        button.addEventListener("click", () => hideBanner(banner));
 
         await user.click(button);
-        expect(banner).to.have.attribute('aria-hidden', 'true');
+        expect(banner).to.have.attribute("aria-hidden", "true");
     });
 });
