@@ -45,8 +45,9 @@ describe("s-avatar", () => {
     baseThemes.forEach((baseTheme) => {
         // Test light, dark theme
         colorThemes.forEach((colorTheme) => {
-            const testidBase = `s-avatar-${baseTheme ? `${baseTheme}-` : ""
-                }${colorTheme}`;
+            const testidBase = `s-avatar-${
+                baseTheme ? `${baseTheme}-` : ""
+            }${colorTheme}`;
             const theme = [baseTheme, colorTheme].filter(Boolean);
 
             // Test each size
@@ -57,8 +58,9 @@ describe("s-avatar", () => {
 
                 // Test each size with each child
                 ["", ...avatarStyles.children].forEach((child) => {
-                    const testidChildren = `${testidSize}${child ? `-with-${child}` : ""
-                        }`;
+                    const testidChildren = `${testidSize}${
+                        child ? `-with-${child}` : ""
+                    }`;
                     makeTest({
                         child,
                         classes: classesSize,
