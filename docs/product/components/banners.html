@@ -10,18 +10,18 @@ description: Banners are a type of <a href="/product/components/notices">notice<
 
 <!-- Override stacks classes for demos -->
 <style>
-.s-banner[aria-hidden=false] {
-    -webkit-transform: translate3d(0, calc(var(--su64) - var(--su1)), 0);
-    transform: translate3d(0, calc(var(--su64) - var(--su1)), 0);
-}
-.s-banner[aria-hidden=false].is-pinned {
-    -webkit-transform: translate3d(0, 0, 0);
-    transform: translate3d(0, 0, 0);
-}
+    .s-banner[aria-hidden=false] {
+        -webkit-transform: translate3d(0, calc(var(--su64) - var(--su1)), 0);
+        transform: translate3d(0, calc(var(--su64) - var(--su1)), 0);
+    }
+    .s-banner[aria-hidden=false].is-pinned {
+        -webkit-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0);
+    }
 </style>
-<aside class="s-banner js-notice-banner" role="alert" aria-hidden="true">
-    <div class="d-flex flex__center jc-space-between s-banner--container" role="alertdialog" aria-describedby="notice-message">
-        <div class="d-flex g8" aria-label="notice message">
+<aside class="s-banner s-banner__info js-notice-banner" id="launch-banner-base" aria-hidden="true" role="alert" aria-labelledby="banner-message" data-controller="s-banner" data-s-banner-target="banner">
+    <div class="d-flex flex__center jc-space-between s-banner--container" role="alertdialog" aria-describedby="banner-message">
+        <div class="d-flex g8" aria-label="banner message">
             <div class="flex--item">
                 {% icon "Lock" %}
             </div>
@@ -29,10 +29,10 @@ description: Banners are a type of <a href="/product/components/notices">notice<
                 <p class="m0"><strong>Stacks is currently frozen in read-only mode.</strong> Contact the team to restore access.</p>
             </div>
         </div>
-        <div class="flex--item ml-auto myn8" aria-label="dismiss notice">
-            <a class="p8 s-btn d-flex flex__center s-banner--btn js-notice-close" role="status" aria-hidden="true">
+        <div class="flex--item ml-auto myn8">
+            <button type="button" class="s-btn s-banner--btn js-banner-close" aria-label="Dismiss" data-toggle="s-banner" data-target="#launch-banner-base">
                 {% icon "ClearSm", "m0" %}
-            </a>
+            </button>
         </div>
     </div>
 </aside>
@@ -51,65 +51,247 @@ description: Banners are a type of <a href="/product/components/notices">notice<
     <div class="overflow-x-auto mb32" tabindex="0">
         <table class="wmn5 s-table s-table__bx-simple">
             <thead>
-                <tr>
-                    <th scope="col" class="s-table--cell3">Class</th>
-                    <th scope="col" class="s-table--cell3">Applies to</th>
-                    <th scope="col">Description</th>
-                </tr>
+            <tr>
+                <th scope="col" class="s-table--cell3">Class</th>
+                <th scope="col" class="s-table--cell3">Applies to</th>
+                <th scope="col">Description</th>
+            </tr>
             </thead>
             <tbody>
-                {% for item in banners.system %}
-                <tr>
-                    <td><code class="stacks-code">{{ item.class }}</code></td>
-                    <td>{% if item.applies == "N/A" %}<em class="fc-black-350">{{ item.applies }}</em>{% else %}<code class="stacks-code">{{ item.applies }}</code>{% endif %}</td>
-                    <td>{{ item.description }}</td>
-                </tr>
-                {% endfor %}
+            {% for item in banners.system %}
+            <tr>
+                <td><code class="stacks-code">{{ item.class }}</code></td>
+                <td>{% if item.applies == "N/A" %}<em class="fc-black-350">{{ item.applies }}</em>{% else %}<code class="stacks-code">{{ item.applies }}</code>{% endif %}</td>
+                <td>{{ item.description }}</td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% header "h2", "JavaScript" %}
+    <p class="stacks-copy">The <code class="stacks-code">.s-banner</code> component includes a controller to show and hide the banner programitically. While it is optional, at least including the functionality to close the banner is recommended.</p>
+
+    {% header "h3", "Attributes" %}
+    <div class="overflow-x-auto mb32" tabindex="0">
+        <table class="wmn4 s-table s-table__bx-simple">
+            <thead>
+            <tr>
+                <th class="s-table--cell5" scope="col">Attribute</th>
+                <th class="s-table--cell2" scope="col">Applied to</th>
+                <th scope="col">Description</th>
+            </tr>
+            </thead>
+            <tbody class="fs-caption">
+            <tr>
+                <th scope="row"><code class="stacks-code">data-controller="s-banner"</code></th>
+                <td>Controller element</td>
+                <td class="p8">Wires up the element to the banner controller. This may be a <code class="stacks-code">.s-banner</code> element or a wrapper element.</td>
+            </tr>
+            <tr>
+                <th scope="row"><code class="stacks-code">data-s-banner-target="banner"</code></th>
+                <td>.s-banner element</td>
+                <td class="p8">Wires up the element that is to be shown/hidden</td>
+            </tr>
+            <tr>
+                <th scope="row"><code class="stacks-code">data-s-banner-remove-when-hidden="true"</code></th>
+                <td>Controller element</td>
+                <td class="p8"><span class="s-label--status ml0">Optional</span> Removes the banner from the DOM entirely when it is hidden</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    {% header "h3", "Events" %}
+    <div class="overflow-x-auto mb32" tabindex="0">
+        <table class="wmn4 s-table s-table__bx-simple">
+            <thead>
+            <tr>
+                <th class="s-table--cell5" scope="col">Event</th>
+                <th class="s-table--cell2" scope="col">Element</th>
+                <th scope="col">Description</th>
+            </tr>
+            </thead>
+            <tbody class="fs-caption">
+            <tr>
+                <th scope="row"><code class="stacks-code">s-banner:show</code></th>
+                <td>Banner target</td>
+                <td><span class="s-label--status ml0">Default preventable</span> Fires immediately before showing the banner. Calling <code class="stacks-code">.preventDefault()</code> cancels the display of the banner.</td>
+            </tr>
+            <tr>
+                <th scope="row"><code class="stacks-code">s-banner:shown</code></th>
+                <td>Banner target</td>
+                <td>Fires after the banner has been visually shown</td>
+            </tr>
+            <tr>
+                <th scope="row"><code class="stacks-code">s-banner:hide</code></th>
+                <td>Banner target</td>
+                <td><span class="s-label--status ml0">Default preventable</span> Fires immediately before hiding the banner. Calling <code class="stacks-code">.preventDefault()</code> cancels the removal of the banner.</td>
+            </tr>
+            <tr>
+                <th scope="row"><code class="stacks-code">s-banner:hidden</code></th>
+                <td>Banner target</td>
+                <td>Fires after the banner has been visually hidden</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="overflow-x-auto mb32" tabindex="0">
+        <table class="wmn4 s-table s-table__bx-simple">
+            <thead>
+            <tr>
+                <th class="s-table--cell5" scope="col">event.detail</th>
+                <th class="s-table--cell2" scope="col">Applicable events</th>
+                <th scope="col">Description</th>
+            </tr>
+            </thead>
+            <tbody class="fs-caption">
+            <tr>
+                <th scope="row"><code class="stacks-code">dispatcher</code></th>
+                <td><code class="stacks-code">s-banner:*</code></td>
+                <td>Contains the <code class="stacks-code">Element</code> that initiated the event. For instance, the button clicked to show, the element clicked outside the banner that caused it to hide, etc.</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    {% header "h3", "Helpers" %}
+    <div class="overflow-x-auto mb32" tabindex="0">
+        <table class="wmn4 s-table s-table__bx-simple">
+            <thead>
+            <tr>
+                <th class="s-table--cell2" scope="col">Function</th>
+                <th class="s-table--cell4" scope="col">Parameters</th>
+                <th scope="col">Description</th>
+            </tr>
+            </thead>
+            <tbody class="fs-caption">
+            <tr>
+                <th scope="row"><code class="stacks-code">Stacks.showBanner</code></th>
+                <td>
+                    <code class="stacks-code">element</code>: the element the <code class="stacks-code">data-controller="s-banner"</code> attribute is on <br><br>
+                </td>
+                <td>Helper to manually show an s-banner element via external JS</td>
+            </tr>
+            <tr>
+                <th scope="row"><code class="stacks-code">Stacks.hideBanner</code></th>
+                <td>
+                    <code class="stacks-code">element</code>: the element the <code class="stacks-code">data-controller="s-banner"</code> attribute is on <br><br>
+                </td>
+                <td>Helper to manually hide an s-banner element via external JS</td>
+            </tr>
             </tbody>
         </table>
     </div>
 
     {% header "h2", "Examples" %}
-    <div class="stacks-preview">
-{% highlight html %}
-<aside class="s-banner s-banner__info s-banner__important" role="alert" aria-hidden="false">…</aside>
-<aside class="s-banner s-banner__success s-banner__important" role="alert" aria-hidden="false">…</aside>
-<aside class="s-banner s-banner__warning s-banner__important" role="alert" aria-hidden="false">…</aside>
-<aside class="s-banner s-banner__danger s-banner__important" role="alert" aria-hidden="false">…</aside>
-<aside class="s-banner s-banner__important" role="alert" aria-hidden="false">…</aside>
-{% endhighlight %}
-        <div class="stacks-preview--example">
-            <div class="p16 bar-sm bg-black-050 ba bc-black-3">
-                <div class="d-flex g24 ai-center fw-wrap">
-                    <div class="flex--item">
-                        <div class="d-flex g8 ai-center">
-                            <label class="flex--item s-label fs-body1" for="sys-banner-style">Style</label>
-                            <div class="flex--item s-select">
-                                <select id="sys-banner-style" class="js-sys-banner-style-menu">
-                                    <option name="sys-banner-style" id="sys-banner-style-info" data-class="s-banner__info" selected>Info</option>
-                                    <option name="sys-banner-style" id="sys-banner-style-success" data-class="s-banner__success">Success</option>
-                                    <option name="sys-banner-style" id="sys-banner-style-warning" data-class="s-banner__warning">Warning</option>
-                                    <option name="sys-banner-style" id="sys-banner-style-danger" data-class="s-banner__danger">Danger</option>
-                                </select>
-                            </div>
+    <div class="stacks-preview bs-none">
+        <div class="stacks-preview--example ba bar-sm bg-black-025 d-flex g8 fw-wrap">
+            <div class="d-flex g24 ai-center fw-wrap">
+                <div class="flex--item">
+                    <div class="d-flex g8 ai-center">
+                        <label class="flex--item s-label fs-body1" for="sys-banner-style">Style</label>
+                        <div class="flex--item s-select">
+                            <select id="sys-banner-style" class="js-sys-banner-style-menu">
+                                <option name="sys-banner-style" id="sys-banner-style-info" data-class="s-banner__info" selected>Info</option>
+                                <option name="sys-banner-style" id="sys-banner-style-success" data-class="s-banner__success">Success</option>
+                                <option name="sys-banner-style" id="sys-banner-style-warning" data-class="s-banner__warning">Warning</option>
+                                <option name="sys-banner-style" id="sys-banner-style-danger" data-class="s-banner__danger">Danger</option>
+                            </select>
                         </div>
                     </div>
-                    <div class="flex--item">
-                        <div class="d-flex g8 ai-center">
-                            <input type="checkbox" id="sys-banner-type" class="flex--item s-checkbox js-sys-banner-type">
-                            <label class="flex--item s-label fs-body1" for="sys-banner-type">Important?</label>
-                        </div>
-                    </div>
-                    <div class="flex--item">
-                        <div class="d-flex g8 ai-center">
-                            <input type="checkbox" id="sys-banner-position" class="flex--item s-checkbox js-sys-banner-position">
-                            <label class="flex--item s-label fs-body1" for="sys-banner-position">Pinned?</label>
-                        </div>
-                    </div>
-                    <button class="flex--item s-btn s-btn__filled js-sys-banner-show">Show example</button>
-                    <button class="flex--item s-btn s-btn__danger js-sys-banner-remove d-none">Remove example</button>
                 </div>
+                <div class="flex--item">
+                    <div class="d-flex g8 ai-center">
+                        <input type="checkbox" id="sys-banner-type" class="flex--item s-checkbox js-sys-banner-type">
+                        <label class="flex--item s-label fs-body1" for="sys-banner-type">Important?</label>
+                    </div>
+                </div>
+                <div class="flex--item">
+                    <div class="d-flex g8 ai-center">
+                        <input type="checkbox" id="sys-banner-position" class="flex--item s-checkbox js-sys-banner-position">
+                        <label class="flex--item s-label fs-body1" for="sys-banner-position">Pinned?</label>
+                    </div>
+                </div>
+                <button class="flex--item s-btn s-btn__filled js-banner-open" data-toggle="s-banner" data-target="#launch-banner-base">Show example</button>
+                <button class="flex--item s-btn s-btn__danger s-btn__outlined d-none js-banner-close" data-toggle="s-banner" data-target="#launch-banner-base">Remove example</button>
             </div>
         </div>
     </div>
+
+    {% header "h3", "Info" %}
+    <div class="stacks-preview">
+        {% highlight html %}
+        <aside class="s-banner s-banner__info" role="alert" aria-hidden="false">…</aside>
+        <aside class="s-banner s-banner__info s-banner__important" role="alert" aria-hidden="false">…</aside>
+        {% endhighlight %}
+        <div class="stacks-preview--example ps-relative">
+            {% bannerExample "info" %}
+            {% bannerExample "info", "true", "mt8" %}
+        </div>
+    </div>
+
+    {% header "h3", "Success" %}
+    <div class="stacks-preview">
+        {% highlight html %}
+        <aside class="s-banner s-banner__success" role="alert" aria-hidden="false">…</aside>
+        <aside class="s-banner s-banner__success s-banner__important" role="alert" aria-hidden="false">…</aside>
+        {% endhighlight %}
+        <div class="stacks-preview--example ps-relative">
+            {% bannerExample "success" %}
+            {% bannerExample "success", "true", "mt8" %}
+        </div>
+    </div>
+
+    {% header "h3", "Warning" %}
+    <div class="stacks-preview">
+        {% highlight html %}
+        <aside class="s-banner s-banner__warning" role="alert" aria-hidden="false">…</aside>
+        <aside class="s-banner s-banner__warning s-banner__important" role="alert" aria-hidden="false">…</aside>
+        {% endhighlight %}
+        <div class="stacks-preview--example ps-relative">
+            {% bannerExample "warning" %}
+            {% bannerExample "warning", "true", "mt8" %}
+        </div>
+    </div>
+
+    {% header "h3", "Danger" %}
+    <div class="stacks-preview">
+        {% highlight html %}
+        <aside class="s-banner s-banner__danger" role="alert" aria-hidden="false">…</aside>
+        <aside class="s-banner s-banner__danger s-banner__important" role="alert" aria-hidden="false">…</aside>
+        {% endhighlight %}
+        <div class="stacks-preview--example ps-relative">
+            {% bannerExample "danger" %}
+            {% bannerExample "danger", "true", "mt8" %}
+        </div>
+    </div>
+
+    {% header "h2", "JavaScript Example" %}
+    <div class="stacks-preview _preview-none">
+        {% highlight html %}
+        <aside
+            role="alert"
+            id="example-banner"
+            class="s-banner"
+            aria-labelledby="example-message"
+            aria-hidden="true"
+            data-controller="s-banner"
+            data-s-banner-target="banner">
+            Example banner
+        </aside>
+        …
+        <button
+            data-toggle="s-banner"
+            data-target="#example-banner">
+            Show banner
+        </button>
+        {% endhighlight %}
+    </div>
+
+    <div class="stacks-preview _preview-none">
+        {% highlight javascript %}
+        document.querySelector(".js-banner-toggle").addEventListener("click", function(e) {
+        Stacks.showBanner(document.querySelector("#example-banner"));
+        });
+        {% endhighlight %}
+    </div>
+
 </section>
