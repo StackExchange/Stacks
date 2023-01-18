@@ -28,7 +28,7 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.addPlugin(markdownPlugin);
 
   // Add submenu generation
-  eleventyConfig.addPlugin(pluginTOC, {tags: ['h2', 'h3'], wrapper: 'nav aria-label="Table of contents"'});
+  eleventyConfig.addPlugin(pluginTOC, {tags: ['h2', 'h3'], wrapper: 'nav aria-label="Table of contents"', wrapperClass: 'toc s-anchors s-anchors__muted'});
 
   // Copy these files over to _site
   eleventyConfig.addPassthroughCopy('assets/dist');
