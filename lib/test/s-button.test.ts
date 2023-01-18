@@ -2,6 +2,7 @@ import { html, fixture, expect } from "@open-wc/testing";
 import { screen } from "@testing-library/dom";
 import "../ts/index";
 
+// TODO abstract to a helper file… maybe create a helper function to test in all themes
 const colorThemes = ["theme-dark", "theme-light"];
 const baseThemes = ["", "theme-highcontrast"];
 
@@ -19,8 +20,8 @@ const btnStyles = {
 const modifierCombos = [
     ...btnStyles.modifiers,
     btnStyles.modifiers.flatMap((v, i) => {
-        btnStyles.modifiers.slice(i + 1).map(w => v + ' ' + w)
-    })
+        btnStyles.modifiers.slice(i + 1).map((w) => v + " " + w);
+    }),
 ];
 
 const makeTest = ({ testid, theme, classes, child = "" }) => {
@@ -31,7 +32,7 @@ const makeTest = ({ testid, theme, classes, child = "" }) => {
             data-testid="${testid}"
         >
             Ask question
-            <span class="s-btn--badge${child !== "badge" && " d-none"}">
+            <span class="${child === "badge" ? "s-btn--badge" : "d-none"}">
                 <span class="s-btn--number">198</span>
             </span>
         </button>`);
@@ -45,24 +46,42 @@ const makeTest = ({ testid, theme, classes, child = "" }) => {
 };
 
 describe("s-btn", () => {
-    baseThemes.forEach((baseTheme) => { // Test default, high contrast themes
-        colorThemes.forEach((colorTheme) => { // Test light, dark theme
-            const testidBase = `s-btn-${baseTheme ? `${baseTheme}-` : ""}${colorTheme}`;
+    // Test default, high contrast themes
+    baseThemes.forEach((baseTheme) => {
+        // Test light, dark theme
+        colorThemes.forEach((colorTheme) => {
+            const testidBase = `s-btn-${
+                baseTheme ? `${baseTheme}-` : ""
+            }${colorTheme}`;
             const theme = [baseTheme, colorTheme].filter(Boolean);
 
-            ["", ...modifierCombos].forEach((modifier) => { // Test each combination of base modifiers
-                const castModifier = (<string>modifier);
-                const testidModifier = castModifier ? `-${castModifier.replace(" ", "-")}` : "";
-                const modifierClasses = castModifier ? ` s-btn__${castModifier.replace(" ", " s-btn__")}` : "";
+            // Test each combination of base modifiers
+            ["", ...modifierCombos].forEach((modifier) => {
+                const castModifier = <string>modifier;
+                const testidModifier = castModifier
+                    ? `-${castModifier.replace(" ", "-")}`
+                    : "";
+                const modifierClasses = castModifier
+                    ? ` s-btn__${castModifier.replace(" ", " s-btn__")}`
+                    : "";
 
-                ["", ...btnStyles.variants].forEach((variant) => { // Test each variant
+                // Test each variant
+                ["", ...btnStyles.variants].forEach((variant) => {
                     const variantClasses = variant ? ` s-btn__${variant}` : "";
                     const classesVariant = ` ${variantClasses}${modifierClasses}`;
                     const testidVariant = `${testidBase}-${variant}${testidModifier}`;
 
-                    [...btnStyles.children].forEach((child) => { // Test each variant with each child
-                        const testidChildren = `${testidVariant}${child ? `-with-${child}` : ""}`;
-                        makeTest({ child, classes: classesVariant, testid: testidChildren, theme });
+                    // Test each variant with each child
+                    [...btnStyles.children].forEach((child) => {
+                        const testidChildren = `${testidVariant}${
+                            child ? `-with-${child}` : ""
+                        }`;
+                        makeTest({
+                            child,
+                            classes: classesVariant,
+                            testid: testidChildren,
+                            theme,
+                        });
                     });
 
                     [
@@ -71,17 +90,34 @@ describe("s-btn", () => {
                         ...btnStyles.resets, // Test each reset
                         ...btnStyles.social, // Test each social style
                     ].forEach((style) => {
-                        const testidStyle = `${testidVariant}${style ? `-${style}` : ""}`;
-                        const classesStyle = `${classesVariant}${style ? ` s-btn__${style}` : ""}}`;
+                        const testidStyle = `${testidVariant}${
+                            style ? `-${style}` : ""
+                        }`;
+                        const classesStyle = `${classesVariant}${
+                            style ? ` s-btn__${style}` : ""
+                        }}`;
 
-                        makeTest({ classes: classesStyle, testid: testidStyle, theme });
+                        makeTest({
+                            classes: classesStyle,
+                            testid: testidStyle,
+                            theme,
+                        });
                     });
 
-                    [...btnStyles.globalModifiers].forEach((globalModifier) => { // Test each globalModifier
-                        const testidGlobal = `${testidVariant}${globalModifier ? `-${globalModifier}` : ""}`;
-                        const classesGlobal = `${classesVariant}${globalModifier ? ` ${globalModifier}` : ""}`;
+                    // Test each globalModifier
+                    [...btnStyles.globalModifiers].forEach((globalModifier) => {
+                        const testidGlobal = `${testidVariant}${
+                            globalModifier ? `-${globalModifier}` : ""
+                        }`;
+                        const classesGlobal = `${classesVariant}${
+                            globalModifier ? ` ${globalModifier}` : ""
+                        }`;
 
-                        makeTest({ classes: classesGlobal, testid: testidGlobal, theme });
+                        makeTest({
+                            classes: classesGlobal,
+                            testid: testidGlobal,
+                            theme,
+                        });
                     });
                 });
             });
