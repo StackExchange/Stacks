@@ -7,22 +7,33 @@ const baseThemes = ["", "theme-highcontrast"];
 
 const btnStyles = {
     variants: ["danger", "muted", "primary"],
-    modifiers: ["filled", "outlined", "dropdown", "icon"],
+    modifiers: ["filled", "outlined"],
+    secondaryModifiers: ["dropdown", "icon"],
+    globalModifiers: ["is-loading"],
     sizes: ["xs", "sm", "md"],
     resets: ["link", "unset"],
     social: ["facebook", "github", "google"],
+    children: ["badge"],
 };
 
-const makeTest = ({ testid, theme, classes }) => {
-    it(`a11y: ${classes} styles in ${theme.join(
-        " + "
-    )} should be accessible`, async () => {
+const modifierCombos = [
+    ...btnStyles.modifiers,
+    btnStyles.modifiers.flatMap((v, i) => {
+        btnStyles.modifiers.slice(i + 1).map(w => v + ' ' + w)
+    })
+];
+
+const makeTest = ({ testid, theme, classes, child = "" }) => {
+    it(`a11y: ${testid} styles in should be accessible`, async () => {
         await fixture(html`<button
-            class="s-btn ${classes}"
+            class="s-btn${classes}"
             role="button"
             data-testid="${testid}"
         >
             Ask question
+            <span class="s-btn--badge${child !== "badge" && " d-none"}">
+                <span class="s-btn--number">198</span>
+            </span>
         </button>`);
 
         document.body.className = "";
@@ -34,56 +45,46 @@ const makeTest = ({ testid, theme, classes }) => {
 };
 
 describe("s-btn", () => {
-    // Test s-btn in each theme
-    baseThemes.forEach((baseTheme) => {
-        colorThemes.forEach((colorTheme) => {
-            const baseTestid = `s-btn-${baseTheme ? `${baseTheme}-` : ""
-                }${colorTheme}`;
+    baseThemes.forEach((baseTheme) => { // Test default, high contrast themes
+        colorThemes.forEach((colorTheme) => { // Test light, dark theme
+            const testidBase = `s-btn-${baseTheme ? `${baseTheme}-` : ""}${colorTheme}`;
             const theme = [baseTheme, colorTheme].filter(Boolean);
 
-            // Test each s-btn variant
-            btnStyles.variants.forEach((variant) => {
-                const testid = `${baseTestid}-${variant}`;
-                makeTest({
-                    testid,
-                    theme,
-                    classes: `s-btn__${variant}`,
-                });
+            ["", ...modifierCombos].forEach((modifier) => { // Test each combination of base modifiers
+                const castModifier = (<string>modifier);
+                const testidModifier = castModifier ? `-${castModifier.replace(" ", "-")}` : "";
+                const modifierClasses = castModifier ? ` s-btn__${castModifier.replace(" ", " s-btn__")}` : "";
 
-                // Test each s-btn variant with each (standard) modifier
-                btnStyles.modifiers.forEach((modifier) => {
-                    const testid = `${baseTestid}-${variant}-${modifier}`;
-                    makeTest({
-                        testid,
-                        theme,
-                        classes: `s-btn__${variant} s-btn__${modifier}`,
+                ["", ...btnStyles.variants].forEach((variant) => { // Test each variant
+                    const variantClasses = variant ? ` s-btn__${variant}` : "";
+                    const classesVariant = ` ${variantClasses}${modifierClasses}`;
+                    const testidVariant = `${testidBase}-${variant}${testidModifier}`;
+
+                    [...btnStyles.children].forEach((child) => { // Test each variant with each child
+                        const testidChildren = `${testidVariant}${child ? `-with-${child}` : ""}`;
+                        makeTest({ child, classes: classesVariant, testid: testidChildren, theme });
+                    });
+
+                    [
+                        "", // Test no additional classes
+                        ...btnStyles.sizes, // Test each size
+                        ...btnStyles.resets, // Test each reset
+                        ...btnStyles.social, // Test each social style
+                    ].forEach((style) => {
+                        const testidStyle = `${testidVariant}${style ? `-${style}` : ""}`;
+                        const classesStyle = `${classesVariant}${style ? ` s-btn__${style}` : ""}}`;
+
+                        makeTest({ classes: classesStyle, testid: testidStyle, theme });
+                    });
+
+                    [...btnStyles.globalModifiers].forEach((globalModifier) => { // Test each globalModifier
+                        const testidGlobal = `${testidVariant}${globalModifier ? `-${globalModifier}` : ""}`;
+                        const classesGlobal = `${classesVariant}${globalModifier ? ` ${globalModifier}` : ""}`;
+
+                        makeTest({ classes: classesGlobal, testid: testidGlobal, theme });
                     });
                 });
             });
-
-            // Test each standalone s-btn style
-            [
-                ...btnStyles.modifiers,
-                ...btnStyles.sizes,
-                ...btnStyles.resets,
-                ...btnStyles.social,
-            ].forEach((style) => {
-                const testid = `${baseTestid}-${style}`;
-                makeTest({
-                    testid,
-                    theme,
-                    classes: `s-btn__primary s-btn__${style}`,
-                });
-            });
-
-            // TODO test with child elements
-            // badge
-            // number
-            // radio
-            // &.is-loading
-            // with child icon?
         });
     });
-
-    // Add tests for .s-btn-group
 });
