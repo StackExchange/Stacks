@@ -1,4 +1,5 @@
 // export all controllers *with helpers* so they can be bulk re-exported by the package entry point
+export { ConditionalField } from "./s-conditional-field";
 export { ExpandableController } from "./s-expandable-control";
 export { hideModal, ModalController, showModal } from "./s-modal";
 export { hideBanner, BannerController, showBanner } from "./s-banner";
