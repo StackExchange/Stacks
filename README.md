@@ -24,6 +24,7 @@ Stacks documentation can be found at https://stackoverflow.design/
 - [Building Stacks](#building-stacks)
 - [Linting Stacks](#linting-stacks)
 - [Testing Stacks](#testing-stacks)
+- [Releasing Stacks](#release-a-new-version-of-stacks)
 - [Bugs and feature requests](#bugs-and-feature-requests)
 - [Contributing](#contributing)
 - [License](#license)
@@ -98,6 +99,44 @@ npm run test:visual:update
 ```
 
 Failing tests (including diffs) can be found under `screenshots/[browser]/failed/` folders.
+
+## Releasing a new version of Stacks
+Stacks uses [Semantic Versioning](https://semver.org/), is distributed via [npm](https://www.npmjs.com/package/@stackoverflow/stacks), and publishes [release notes on Github](https://github.com/StackExchange/Stacks/releases). Follow the steps below to release a new version of Stacks.
+
+### Bump the version number
+```sh
+npm version [major | minor | patch]
+```
+
+### Push the new tag
+```sh
+git push && git push --tags
+```
+
+### Create release notes [on Github](https://github.com/StackExchange/Stacks/releases/new)
+
+1. Visit https://github.com/StackExchange/Stacks/releases/new
+1. Choose your new version from the "Choose a tag" dropdown
+1. Click "Generate release notes"
+1. Cleanup and complete the release notes
+    - Prominently mention any breaking changes, if applicable
+    - Include a "What's Changed" section in the release notes
+    - Mention significant bug fixes
+    - Mention new features
+    - Mention significant under-the-hood changes that could impact consumers
+
+### Ship your newly created version to [npm](https://www.npmjs.com/package/@stackoverflow/stacks)
+```sh
+npm publish
+```
+
+### Merge `develop` into `production` and push
+```sh
+git checkout production && git merge develop && git push
+```
+
+### Push the updated docs site
+Head to [Netlify](https://app.netlify.com), navigate to the Stacks overview, click on "Production deploys", and select "Deploy site" from the "Trigger deploy" dropdown.
 
 ## Bugs and feature requests
 Have a bug or feature request? First search existing or closed issues to make sure the issue hasn’t been noted yet. If not, review our [issue guidelines](/CONTRIBUTING.md#open-an-issue) for submitting [a bug report](/CONTRIBUTING.md#reporting-bugs) or [feature request](/CONTRIBUTING.md#feature-requests).

@@ -1,4 +1,4 @@
-import * as Stimulus from "stimulus";
+import * as Stimulus from "@hotwired/stimulus";
 
 export class StacksApplication extends Stimulus.Application {
     static _initializing = true;
