@@ -13,6 +13,21 @@ a,
 
     // STATES
     &.s-link {
+        &__danger,
+        &__grayscale,
+        &__inherit,
+        &__muted,
+        &__visited {
+            &:visited {
+                &:active,
+                &:hover {
+                    color: var(--_li-fc-hover);
+                }
+
+                color: var(--_li-fc-visited);
+            }
+        }
+
         // MODIFIERS
         &__dropdown {
             &:after {
@@ -78,14 +93,7 @@ a,
     // INTERACTION
     &:active,
     &:hover {
-        &,
-        &:visited {
-            color: var(--_li-fc-hover);
-        }
-    }
-
-    &:visited {
-        color: var(--_li-fc-visited);
+        color: var(--_li-fc-hover);
     }
 
     color: var(--_li-fc);
