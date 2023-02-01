@@ -74,22 +74,7 @@
     // CHILD ELEMENTS
     select&,
     & > select {
-        &::-webkit-contacts-auto-fill-button {
-            background-color: var(--black); // In Safari, make the autocomplete button darkmode-aware
-        }
-
-        &:-webkit-autofill {
-            border-color: var(--blue-300);
-            -webkit-text-fill-color: var(--black);
-            -webkit-box-shadow: 0 0 0 1000px var(--theme-secondary-050) inset; // This acts as a background color by stretching an inset box shadow across the input
-            transition: background-color 0s 50000s; // A hack to infinitely delay background styles that come from the browser.
-
-            &:focus {
-                border-color: var(--blue-300);
-                // Since the box shadow is overwritten to show a background, we have to re-add the focus outline
-                -webkit-box-shadow: 0 0 0 1000px var(--blue-050) inset, 0 0 0 var(--su-static4) var(--focus-ring);
-            }
-        }
+        .webkit-autofill();
     }
 
     &:before,
