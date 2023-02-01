@@ -183,6 +183,56 @@
                   @amountDecimal);
 }
 
+//  =============================================================================
+//  --  SIZE STYLES
+//      The following mixins let us generate pseudo-private custom properties
+//      for common sizes. They expect a size (@size), a prefix for the custom
+//      property (@prefix), and an array of comma-separates abbreviated styles
+//      (@styles).
+//  -----------------------------------------------------------------------------
+
+.size-styles(@size, @prefix, @styles, @index: 0) {
+    & when (@index <= length(@styles)) {
+        @style: extract(@styles, @index);
+
+        // xs
+        & when (@size = xs) and (@style = fs) {
+            --_@{prefix}-fs: var(--fs-fine);
+        }
+
+        // sm
+        & when (@size = sm) and (@style = fs) {
+            --_@{prefix}-fs: var(--fs-caption);
+        }
+
+        // md
+        & when (@size = md) and (@style = br) {
+            --_@{prefix}-br: calc(var(--br-sm) + var(--su-static1));
+            }
+        & when (@size = md) and (@style = fs) {
+            --_@{prefix}-fs: var(--fs-body3);
+        }
+
+        // lg
+        & when (@size = lg) and (@style = br) {
+            --_@{prefix}-br: calc(var(--br-sm) + var(--su-static1));
+        }
+        & when (@size = lg) and (@style = fs) {
+                --_@{prefix}-fs: var(--fs-title);
+        }
+
+        // xl
+        & when (@size = xl) and (@style = br) {
+            --_@{prefix}-br: var(--br-md);
+        }
+        & when (@size = xl) and (@style = fs) {
+            --_@{prefix}-fs: var(--fs-headline1);
+        }
+
+        .size-styles(@prefix, @size, @styles, @index: @index + 1);
+    }
+}
+
 //  ===========================================================================
 //  Internals only beyond this point -- helpers for .font-face()
 //  ---------------------------------------------------------------------------
