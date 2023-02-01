@@ -28,6 +28,9 @@ export default {
                     "ui.allPointerCapabilities": 0x02 | 0x04,
                 },
             },
+            exclude: [
+                "lib/test/**/*.a11y.test.ts"
+            ],
         }),
         playwrightLauncher({ product: "webkit" }),
     ],
@@ -52,8 +55,15 @@ export default {
     ],
     groups: [
         {
+            name: "a11y",
+            files: "lib/test/**/*.a11y.test.ts",
+            browsers: [
+                playwrightLauncher({ product: "chromium" }),
+            ]
+        },
+        {
             name: "unit",
-            files: "lib/test/**/!(*.visual).test.ts",
+            files: "lib/test/**/!(*.visual|*.a11y).test.ts",
         },
         {
             name: "visual",

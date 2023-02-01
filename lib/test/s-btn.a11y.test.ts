@@ -10,7 +10,7 @@ const baseThemes = ["", "theme-highcontrast"];
 
 const btnStyles = {
     variants: ["danger", "muted", "primary"],
-    modifiers: ["filled", "outlined"],
+    modifiers: ["filled", "outlined", "filled-outlined"],
     secondaryModifiers: ["dropdown", "icon"],
     globalModifiers: ["is-loading"],
     sizes: ["xs", "sm", "md"],
@@ -19,13 +19,6 @@ const btnStyles = {
     // TODO reinstate children test once we add ability to skip tests or resolve badge contrast issues
     // children: ["badge"],
 };
-
-const modifierCombos = [
-    ...btnStyles.modifiers,
-    btnStyles.modifiers.flatMap((v, i) => {
-        btnStyles.modifiers.slice(i + 1).map((w) => v + " " + w);
-    }),
-];
 
 const makeTest = ({ testid, theme, classes, child = "" }) => {
     it(`a11y: ${testid} styles in should be accessible`, async () => {
@@ -48,31 +41,27 @@ const makeTest = ({ testid, theme, classes, child = "" }) => {
     });
 };
 
+const buildTestid = (arr) => arr.filter(Boolean).join('-');
+
 describe("s-btn", () => {
     // Test default, high contrast themes
     baseThemes.forEach((baseTheme) => {
         // Test light, dark theme
         colorThemes.forEach((colorTheme) => {
-            const testidBase = `s-btn-${
-                baseTheme ? `${baseTheme}-` : ""
-            }${colorTheme}`;
             const theme = [baseTheme, colorTheme].filter(Boolean);
+            const testidBase = buildTestid(["s-btn", ...theme]);
 
             // Test each combination of base modifiers
-            ["", ...modifierCombos].forEach((modifier) => {
-                const castModifier = <string>modifier;
-                const testidModifier = castModifier?.replace
-                    ? `-${castModifier.replace(" ", "-")}`
-                    : "";
-                const modifierClasses = castModifier?.replace
-                    ? ` s-btn__${castModifier.replace(" ", " s-btn__")}`
+            ["", ...btnStyles.modifiers].forEach((modifier) => {
+                const modifierClasses = modifier
+                    ? ` s-btn__${modifier.replace("-", " s-btn__")}`
                     : "";
 
                 // Test each variant
                 ["", ...btnStyles.variants].forEach((variant) => {
                     const variantClasses = variant ? ` s-btn__${variant}` : "";
                     const classesVariant = ` ${variantClasses}${modifierClasses}`;
-                    const testidVariant = `${testidBase}-${variant}${testidModifier}`;
+                    const testidVariant = buildTestid([testidBase, variant, modifier]);
 
                     // Test each variant with each child
                     // TODO reinstate children test once we add ability to skip tests or resolve badge contrast issues
@@ -94,12 +83,10 @@ describe("s-btn", () => {
                         ...btnStyles.resets, // Test each reset
                         ...btnStyles.social, // Test each social style
                     ].forEach((style) => {
-                        const testidStyle = `${testidVariant}${
-                            style ? `-${style}` : ""
-                        }`;
+                        const testidStyle = buildTestid([testidVariant, style]);
                         const classesStyle = `${classesVariant}${
                             style ? ` s-btn__${style}` : ""
-                        }}`;
+                        }`;
 
                         makeTest({
                             classes: classesStyle,
@@ -110,9 +97,7 @@ describe("s-btn", () => {
 
                     // Test each globalModifier
                     [...btnStyles.globalModifiers].forEach((globalModifier) => {
-                        const testidGlobal = `${testidVariant}${
-                            globalModifier ? `-${globalModifier}` : ""
-                        }`;
+                        const testidGlobal = buildTestid([testidVariant, globalModifier]);
                         const classesGlobal = `${classesVariant}${
                             globalModifier ? ` ${globalModifier}` : ""
                         }`;
