@@ -28,9 +28,6 @@ export default {
                     "ui.allPointerCapabilities": 0x02 | 0x04,
                 },
             },
-            exclude: [
-                "lib/test/**/*.a11y.test.ts"
-            ],
         }),
         playwrightLauncher({ product: "webkit" }),
     ],
