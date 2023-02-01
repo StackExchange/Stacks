@@ -55,35 +55,12 @@
         --_in-fc-focus: var(--_in-fc);
     }
 
-    .has-error & {
-        --_in-bc: var(--red-400);
-        --_in-bc-focus: var(--red-400);
-        --_in-bs-focus: 0 0 0 var(--su-static4) var(--focus-ring-error);
-
-        .highcontrast-mode({
-            --_in-bc: var(--red-400);
-        });
-    }
-
-    .has-success & {
-        --_in-bc: var(--green-400);
-        --_in-bc-focus: var(--green-400);
-        --_in-bs-focus: 0 0 0 var(--su-static4) var(--focus-ring-success);
-
-        .highcontrast-mode({
-            --_in-bc: var(--green-400);
-        });
-    }
-
-    .has-warning & {
-        --_in-bc: var(--yellow-600);
-        --_in-bc-focus: var(--yellow-600);
-        --_in-bs-focus: 0 0 0 var(--su-static4) var(--focus-ring-warning);
-
-        .highcontrast-mode({
-            --_in-bc: var(--yellow-600);
-        });
-    }
+    .validation-states(
+        in,
+        { .highcontrast-mode({ --_in-bc: var(--red-400); }); },
+        { .highcontrast-mode({ --_in-bc: var(--green-400); }); },
+        { .highcontrast-mode({ --_in-bc: var(--yellow-600); }); }
+    );
 
     // Sizes
     &&__sm {
@@ -153,13 +130,9 @@
 }
 
 .s-input {
-    .is-disabled &,
-    .is-readonly &,
-    .has-success &,
-    .has-error &,
-    .has-warning & {
+    .input-states({
         padding-right: var(--su32);
-    }
+    });
 
     &:focus-within {
         .highcontrast-mode({
@@ -178,13 +151,9 @@
 }
 
 .s-textarea {
-    .is-disabled &,
-    .is-readonly &,
-    .has-success &,
-    .has-error &,
-    .has-warning & {
+    .input-states({
         padding-right: var(--su48);
-    }
+    });
 
     &&__md {
         --_in-py: 0.72em;
@@ -283,15 +252,11 @@
     --_im-a-fc: unset;
     --_im-a-fc-hover: unset;
 
-    .is-disabled &,
-    .is-readonly &,
-    .has-success &,
-    .has-error &,
-    .has-warning & {
+    .input-states({
         a {
             text-decoration: underline;
         }
-    }
+    });
 
     fieldset[disabled] & {
         cursor: not-allowed;

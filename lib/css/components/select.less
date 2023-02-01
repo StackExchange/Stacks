@@ -19,13 +19,11 @@
     }
 
     // MODIFIERS
-    .is-disabled &,
-    .is-readonly &,
-    .has-success &,
-    .has-error &,
-    .has-warning & {
+    .input-states({
         position: relative;
-    }
+    });
+
+    .validation-states(se-select);
 
     .is-disabled & {
         --_se-arrow-bc: var(--bc-darker) transparent;
@@ -51,24 +49,6 @@
         .size-styles(xl; se-select; @styles: br, fs);
         --_se-select-px: 0.5em;
         --_se-select-py: 0.4em;
-    }
-
-    .has-error & {
-        --_se-select-bc: var(--red-400);
-        --_se-select-bc-focus: var(--red-400);
-        --_se-select-bs-focus: 0 0 0 var(--su-static4) var(--focus-ring-error);
-    }
-
-    .has-success & {
-        --_se-select-bc: var(--green-400);
-        --_se-select-bc-focus: var(--green-400);
-        --_se-select-bs-focus: 0 0 0 var(--su-static4) var(--focus-ring-success);
-    }
-
-    .has-warning & {
-        --_se-select-bc: var(--yellow-600);
-        --_se-select-bc-focus: var(--yellow-600);
-        --_se-select-bs-focus: 0 0 0 var(--su-static4) var(--focus-ring-warning);
     }
 
     // CHILD ELEMENTS
