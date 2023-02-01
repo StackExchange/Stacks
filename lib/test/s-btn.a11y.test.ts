@@ -41,7 +41,7 @@ const makeTest = ({ testid, theme, classes, child = "" }) => {
     });
 };
 
-const buildTestid = (arr) => arr.filter(Boolean).join('-');
+const buildTestid = (arr) => arr.filter(Boolean).join("-");
 
 describe("s-btn", () => {
     // Test default, high contrast themes
@@ -61,7 +61,11 @@ describe("s-btn", () => {
                 ["", ...btnStyles.variants].forEach((variant) => {
                     const variantClasses = variant ? ` s-btn__${variant}` : "";
                     const classesVariant = ` ${variantClasses}${modifierClasses}`;
-                    const testidVariant = buildTestid([testidBase, variant, modifier]);
+                    const testidVariant = buildTestid([
+                        testidBase,
+                        variant,
+                        modifier,
+                    ]);
 
                     // Test each variant with each child
                     // TODO reinstate children test once we add ability to skip tests or resolve badge contrast issues
@@ -97,7 +101,10 @@ describe("s-btn", () => {
 
                     // Test each globalModifier
                     [...btnStyles.globalModifiers].forEach((globalModifier) => {
-                        const testidGlobal = buildTestid([testidVariant, globalModifier]);
+                        const testidGlobal = buildTestid([
+                            testidVariant,
+                            globalModifier,
+                        ]);
                         const classesGlobal = `${classesVariant}${
                             globalModifier ? ` ${globalModifier}` : ""
                         }`;
