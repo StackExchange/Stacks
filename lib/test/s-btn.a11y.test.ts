@@ -21,7 +21,7 @@ const btnStyles = {
 };
 
 const makeTest = ({ testid, theme, classes, child = "" }) => {
-    it(`a11y: ${testid} styles in should be accessible`, async () => {
+    it(`a11y: ${testid} should be accessible`, async () => {
         await fixture(html`<button
             class="s-btn${classes}"
             role="button"

@@ -12,7 +12,7 @@ const avatarStyles = {
 };
 
 const makeTest = ({ testid, theme, classes, child = "" }) => {
-    it(`a11y: ${testid} styles in should be accessible`, async () => {
+    it(`a11y: ${testid} should be accessible`, async () => {
         await fixture(html`<a
             href="#"
             class="s-avatar${classes}"
