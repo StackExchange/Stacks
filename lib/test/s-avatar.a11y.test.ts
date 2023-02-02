@@ -59,7 +59,10 @@ describe("s-avatar", () => {
 
                 // Test each size with each child
                 ["", ...avatarStyles.children].forEach((child) => {
-                    const testidChildren = buildTestid([testidSize, `with-${child}`]);
+                    const testidChildren = buildTestid([
+                        testidSize,
+                        `with-${child}`,
+                    ]);
 
                     makeTest({
                         child,
