@@ -40,27 +40,27 @@ const makeTest = ({ testid, theme, classes, child = "" }) => {
     });
 };
 
+// TODO move to test utils
+const buildTestid = (arr) => arr.filter(Boolean).join("-");
+
 describe("s-avatar", () => {
     // Test default, high contrast themes
     baseThemes.forEach((baseTheme) => {
         // Test light, dark theme
         colorThemes.forEach((colorTheme) => {
-            const testidBase = `s-avatar-${
-                baseTheme ? `${baseTheme}-` : ""
-            }${colorTheme}`;
             const theme = [baseTheme, colorTheme].filter(Boolean);
+            const testidBase = buildTestid(["s-avatar", ...theme]);
 
             // Test each size
             ["", ...avatarStyles.sizes].forEach((size) => {
                 const sizeClasses = size ? ` s-avatar__${size}` : "";
                 const classesSize = ` ${sizeClasses}`;
-                const testidSize = `${testidBase}-${size}`;
+                const testidSize = buildTestid([testidBase, size]);
 
                 // Test each size with each child
                 ["", ...avatarStyles.children].forEach((child) => {
-                    const testidChildren = `${testidSize}${
-                        child ? `-with-${child}` : ""
-                    }`;
+                    const testidChildren = buildTestid([testidSize, `with-${child}`]);
+
                     makeTest({
                         child,
                         classes: classesSize,

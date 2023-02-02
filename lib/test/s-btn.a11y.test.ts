@@ -41,6 +41,7 @@ const makeTest = ({ testid, theme, classes, child = "" }) => {
     });
 };
 
+// TODO move to test utils
 const buildTestid = (arr) => arr.filter(Boolean).join("-");
 
 describe("s-btn", () => {
