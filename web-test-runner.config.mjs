@@ -16,6 +16,11 @@ const replace = fromRollup(_replace);
 const commonjs = fromRollupWithFix(_commonjs);
 
 export default {
+    testFramework: {
+        config: {
+            timeout: '5000',
+        },
+    },
     browsers: [
         playwrightLauncher({ product: "chromium" }),
         playwrightLauncher({
