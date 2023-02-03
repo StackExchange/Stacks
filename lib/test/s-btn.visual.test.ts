@@ -6,9 +6,9 @@ describe("s-btn", () => {
     it("should not introduce visual regressions for loading button", async () => {
         // Adding a padded wrapper to avoid GitHub Actions diff discrepancies
         const btn = await fixture(html`
-            <span class="p16">
+            <div style="height: 40px; width: 100px; display: inline-block;">
                 <button class="s-btn is-loading" type="button">Loading</button>
-            </span>
+            </div>
         `);
 
         await visualDiff(btn, "s-btn-is-loading");
