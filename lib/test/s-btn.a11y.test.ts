@@ -1,5 +1,4 @@
-import { html, fixture, expect } from "@open-wc/testing";
-import { screen } from "@testing-library/dom";
+import { buildTestid, makeTest } from "../ts/test-utils";
 import "../ts/index";
 
 // TODO abstract to a helper file…
@@ -19,30 +18,6 @@ const btnStyles = {
     // TODO reinstate children test once we add ability to skip tests or resolve badge contrast issues
     // children: ["badge"],
 };
-
-const makeTest = ({ testid, theme, classes, child = "" }) => {
-    it(`a11y: ${testid} should be accessible`, async () => {
-        await fixture(html`<button
-            class="s-btn${classes}"
-            role="button"
-            data-testid="${testid}"
-        >
-            Ask question
-            <span class="${child === "badge" ? "s-btn--badge" : "d-none"}">
-                <span class="s-btn--number">198</span>
-            </span>
-        </button>`);
-
-        document.body.className = "";
-        document.body.classList.add(...theme);
-        const button = screen.getByTestId(testid);
-        // TODO add conditional option for high contrast mode to test against AAA
-        await expect(button).to.be.accessible();
-    });
-};
-
-// TODO move to test utils
-const buildTestid = (arr) => arr.filter(Boolean).join("-");
 
 describe("s-btn", () => {
     // Test default, high contrast themes
@@ -88,31 +63,32 @@ describe("s-btn", () => {
                         ...btnStyles.resets, // Test each reset
                         ...btnStyles.social, // Test each social style
                     ].forEach((style) => {
-                        const testidStyle = buildTestid([testidVariant, style]);
-                        const classesStyle = `${classesVariant}${
-                            style ? ` s-btn__${style}` : ""
-                        }`;
-
                         makeTest({
-                            classes: classesStyle,
-                            testid: testidStyle,
+                            attributes: {
+                                class: `s-btn${classesVariant}${
+                                    style ? ` s-btn__${style}` : ""
+                                }`,
+                                role: "button",
+                            },
+                            children: "Ask question",
+                            tag: "button",
+                            testid: buildTestid([testidVariant, style]),
                             theme,
                         });
                     });
 
                     // Test each globalModifier
                     [...btnStyles.globalModifiers].forEach((globalModifier) => {
-                        const testidGlobal = buildTestid([
-                            testidVariant,
-                            globalModifier,
-                        ]);
-                        const classesGlobal = `${classesVariant}${
-                            globalModifier ? ` ${globalModifier}` : ""
-                        }`;
-
                         makeTest({
-                            classes: classesGlobal,
-                            testid: testidGlobal,
+                            attributes: {
+                                class: `s-btn${classesVariant}${
+                                    globalModifier ? ` ${globalModifier}` : ""
+                                }`,
+                                role: "button",
+                            },
+                            children: "Ask question",
+                            tag: "button",
+                            testid: buildTestid([testidVariant, globalModifier]),
                             theme,
                         });
                     });
