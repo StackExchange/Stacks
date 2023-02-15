@@ -191,11 +191,11 @@
 //      (@styles).
 //  -----------------------------------------------------------------------------
 
-.size-styles(@size, @prefix, @styles, @index: 0) {
-    & when (@index <= length(@styles)) {
+.size-styles(@size, @prefix, @styles, @index: length(@styles)) {
+    & when (@index > 0) {
         @style: extract(@styles, @index);
 
-        // xs
+              // xs
         & when (@size = xs) and (@style = fs) {
             --_@{prefix}-fs: var(--fs-fine);
         }
@@ -229,7 +229,7 @@
             --_@{prefix}-fs: var(--fs-headline1);
         }
 
-        .size-styles(@prefix, @size, @styles, @index: @index + 1);
+        .size-styles(@size, @prefix, @styles, @index: @index - 1);
     }
 }
 
