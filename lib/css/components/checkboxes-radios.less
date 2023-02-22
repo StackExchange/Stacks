@@ -1,0 +1,158 @@
+.s-checkbox,
+.s-radio {
+    --_ch-baw: var(--su-static1);
+    --_ch-bc: var(--bc-darker);
+    --_ch-bc-focus: var(--theme-secondary-300);
+    --_ch-bg: var(--white);
+    --_ch-bg-image: unset;
+    --_ch-bs-focus: 0 0 0 var(--su-static4) var(--focus-ring);
+
+    // CONTEXTUAL STYLES
+    fieldset[disabled] &,
+    &[disabled] {
+        cursor: not-allowed;
+        opacity: var(--_o-disabled-static);
+    }
+
+    .s-check-control & {
+        &[disabled] + .s-label {
+            &:extend(.is-disabled .s-label);
+        }
+    }
+
+    .s-check-group & {
+        margin-top: calc(var(--su2) + var(--su1)); // 3px
+    }
+
+    input& {
+        flex-shrink: 0;
+    }
+
+    // INTERACTION
+    &:focus {
+        box-shadow: var(--_ch-bs-focus);
+    }
+
+    background-color: var(--_ch-bg);
+    border: var(--_ch-baw) solid var(--_ch-bc);
+
+    appearance: none;
+    cursor: pointer;
+    font-size: inherit;
+    height: 1em;
+    margin: 0; // A guard against Core's default margins
+    outline: 0;
+    vertical-align: middle;
+    width: 1em;
+}
+
+.s-checkbox {
+
+    // CONTEXTUAL STYLES
+    .highcontrast-dark-mode({
+        &:checked, &:indeterminate {
+            --_ch-bc: var(--blue-700) !important;
+            --_ch-bc-focus: var(--_ch-bc);
+            --_ch-bg: var(--blue-300);
+        }
+    });
+
+    // STATES
+    &:checked, &:indeterminate {
+        --_ch-bc: var(--theme-secondary-400) !important;
+        --_ch-bg: var(--theme-secondary-400);
+
+        &:focus {
+            --_ch-bc-focus: var(--theme-secondary-400);
+        }
+    }
+
+    &:checked {
+        --_ch-bg-image: url("data:image/svg+xml,%3Csvg width='11' height='11' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M10 3.41L8.59 2 4 6.59 2.41 5 1 6.41l3 3z' fill='%23fff'/%3E%3C/svg%3E");
+    }
+
+    &:indeterminate {
+        --_ch-bg-image: url("data:image/svg+xml,%3Csvg width='11' height='11' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M2 4.5 h7 v2 h-7 z' fill='%23fff'/%3E%3C/svg%3E");
+    }
+
+    // INTERACTION
+    &:focus {
+        border-color: var(--_ch-bc-focus);
+    }
+
+    background-image: var(--_ch-bg-image);
+
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    border-radius: var(--br-sm);
+}
+
+.s-radio {
+
+    // CONTEXTUAL STYLES
+    .highcontrast-dark-mode({
+        &:checked {
+            --_ch-bc: var(--blue-300);
+            outline: var(--su-static1) solid var(--black);
+        }
+    });
+
+    .dark-mode({
+        &:checked {
+            --_ch-bg: var(--black);
+        }
+    });
+
+    // STATES
+    &:checked {
+        --_ch-baw: 0.30769231em;
+        --_ch-bc: var(--theme-secondary-400);
+        --_ch-bg: var(--white);
+    }
+
+    border-radius: var(--br-circle);
+}
+
+.s-checkbox,
+.s-radio:not(:checked) {
+    .validation-states(ch);
+}
+
+.s-check-control { // TODO would _love_ to use .s-check instead, with no class on the input itself
+    --_cc-ai: center;
+
+    // CONTEXTUAL STYLES
+    .s-check-group & {
+        --_cc-ai: flex-start; // manually align the checkboxes and radios to the top of the group
+    }
+
+    // CHILD ELEMENTS
+    .s-label {
+        font-weight: normal;
+    }
+
+    align-items: var(--_cc-ai);
+    display: flex;
+    gap: var(--su8);
+}
+
+.s-check-group {
+    --_cg-fd: column;
+
+    // MODIFIERS
+    &&__horizontal {
+        --_cg-fd: row;
+    }
+
+    // CHILD ELEMENTS
+    // TODO HACK? <legend> isn't respecting gap...
+    legend.s-label {
+        margin-bottom: var(--su8);
+    }
+
+    flex-direction: var(--_cg-fd);
+
+    display: flex;
+    gap: var(--su8);
+}

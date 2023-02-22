@@ -31,6 +31,11 @@ export default {
         }),
         playwrightLauncher({ product: "webkit" }),
     ],
+    testFramework: {
+        config: {
+            timeout: '5000',
+        },
+    },
     nodeResolve: { browser: true },
     mimeTypes: {
         "**/*.less": "js",
@@ -52,8 +57,15 @@ export default {
     ],
     groups: [
         {
+            name: "a11y",
+            files: "lib/test/**/*.a11y.test.ts",
+            browsers: [
+                playwrightLauncher({ product: "chromium" }),
+            ]
+        },
+        {
             name: "unit",
-            files: "lib/test/**/!(*.visual).test.ts",
+            files: "lib/test/**/!(*.visual|*.a11y).test.ts",
         },
         {
             name: "visual",
