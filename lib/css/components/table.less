@@ -127,8 +127,22 @@
 
     &&__sortable {
         thead th {
-            a { //  If an anchor is used, it should appear like a normal header
+            a,
+            button { //  If an anchor is used, it should appear like a normal header
                 color: inherit;
+            }
+
+            button {
+                appearance: none;
+                background-color: transparent;
+                border: 0;
+                padding: var(--su8);
+                text-align: left;
+                width: 100%;
+            }
+
+            &[data-s-table-target="column"] { // If this column is sortable, then the padding will come from the button
+                padding: 0;
             }
 
             &.is-sorted { //  Selected state
