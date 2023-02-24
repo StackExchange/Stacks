@@ -1,14 +1,3 @@
-//
-//  STACK OVERFLOW
-//  TOPBAR
-//
-//  This CSS comes from Stacks, our CSS & Pattern library for rapidly building
-//  Stack Overflow. For documentation of all these classes and how to contribute,
-//  visit https://stackoverflow.design/
-//
-//  ============================================================================
-//  $   BASE STYLE
-//  ----------------------------------------------------------------------------
 .topbar-notice-styles(@border: transparent, @background: transparent, @color: inherit) {
     border-color: @border;
     background-color: @background;
@@ -252,6 +241,15 @@
 //  ===========================================================================
 //  $   CONTENT & CTAS
 //  ---------------------------------------------------------------------------
+.s-topbar--navigation {
+    display: flex;
+    height: 100%;
+
+    overflow-x: auto; // Allow this content to scroll if it gets too long
+    @scrollbar-styles(); // Style the scrollbars
+    margin-left: auto; // Push this section as far to the right as possible
+}
+
 .s-topbar .s-topbar--content {
     display: flex;
     height: 100%;
@@ -261,6 +259,7 @@
         display: inline-flex;
     }
 
+    // TODO remove once all topbars include necessary nav.s-topbar--navigation wrapper elements
     overflow-x: auto; // Allow this content to scroll if it gets too long
     @scrollbar-styles(); // Style the scrollbars
     margin-left: auto; // Push this section as far to the right as possible

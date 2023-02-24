@@ -4,20 +4,21 @@ title: Notices
 figma: https://www.figma.com/file/WYBYiGnyr5qemIm93ZcTf8/Notices
 description: Notices deliver <strong>System</strong> and <strong>Engagement</strong> messaging, informing the user about product or account statuses and related actions.
 ---
+<!-- TODO: Add accessibility section with differences between <aside> and status/alert roles and when to use them -->
 <!-- Example notice content -->
-<script src="{{ "/assets/dist/entry.notices.js" | url }}" defer></script>
+<script src="{{ "/assets/dist/entry.toasts.js" | url }}" defer></script>
 
-<div class="s-toast js-notice-toast" aria-hidden="true" role="alertdialog" aria-labelledby="notice-message">
-    <aside class="s-notice s-notice__success p8 pl16">
+<div class="s-toast" id="launch-toast-base" aria-hidden="true" role="alertdialog" aria-labelledby="toast-message" data-controller="s-toast" data-s-toast-target="toast" data-s-toast-return-element=".js-toast-open[data-target='#launch-toast-base']">
+    <aside class="s-notice s-notice__info p8 pl16">
         <div class="d-flex gx16 ai-center jc-space-between">
-            <div class="flex--item" id="notice-message">
+            <div class="flex--item" id="toast-message">
                 Toast notice message with an undo button
             </div>
             <div class="d-flex">
                 <button type="button" class="s-btn s-notice--btn">
                     Undo
                 </button>
-                <button type="button" class="s-btn s-notice--btn js-notice-close" aria-label="Dismiss">
+                <button type="button" class="s-btn s-notice--btn js-toast-close" aria-label="Dismiss" data-action="s-toast#hide">
                     {% icon "ClearSm", "m0" %}
                 </button>
             </div>
@@ -54,6 +55,141 @@ description: Notices deliver <strong>System</strong> and <strong>Engagement</str
                     <td>{{ item.description }} (<a href="{{ item.url }}" target="_blank">Source</a>)</td>
                 </tr>
                 {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</section>
+
+<section class="stacks-section">
+    {% header "h2", "JavaScript" %}
+    {% header "h3", "Attributes" %}
+    <div class="overflow-x-auto mb32" tabindex="0">
+        <table class="wmn4 s-table s-table__bx-simple">
+            <thead>
+                <tr>
+                    <th class="s-table--cell5" scope="col">Attribute</th>
+                    <th class="s-table--cell2" scope="col">Applied to</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody class="fs-caption">
+                <tr>
+                    <th scope="row"><code class="stacks-code">data-controller="s-toast"</code></th>
+                    <td>Controller element</td>
+                    <td class="p8">Wires up the element to the toast controller. This may be a <code class="stacks-code">.s-toast</code> element or a wrapper element.</td>
+                </tr>
+                <tr>
+                    <th scope="row"><code class="stacks-code">data-s-toast-target="toast"</code></th>
+                    <td>.s-toast element</td>
+                    <td class="p8">Wires up the element that is to be shown/hidden</td>
+                </tr>
+                <tr>
+                    <th scope="row"><code class="stacks-code">data-s-toast-target="initialFocus"</code></th>
+                    <td>Any child focusable element</td>
+                    <td class="p8"><span class="s-label--status ml0">Optional</span> Designates which element to focus on toast show. If absent, defaults to the first focusable element within the toast.</td>
+                </tr>
+                <tr>
+                    <th scope="row"><code class="stacks-code">data-action="s-toast#toggle"</code></th>
+                    <td>Toggling element</td>
+                    <td class="p8">Wires up the element to toggle the visibility of a toast</td>
+                </tr>
+                <tr>
+                    <th scope="row"><code class="stacks-code">data-s-toast-return-element="[css selector]"</code></th>
+                    <td>Controller element</td>
+                    <td class="p8"><span class="s-label--status ml0">Optional</span> Designates the element to return focus to when the toast is closed. If left unset, focus is not altered on close.</td>
+                </tr>
+                <tr>
+                    <th scope="row"><code class="stacks-code">data-s-toast-remove-when-hidden="true"</code></th>
+                    <td>Controller element</td>
+                    <td class="p8"><span class="s-label--status ml0">Optional</span> Removes the toast from the DOM entirely when it is hidden</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    {% header "h3", "Events" %}
+    <div class="overflow-x-auto mb32" tabindex="0">
+        <table class="wmn4 s-table s-table__bx-simple">
+            <thead>
+                <tr>
+                    <th class="s-table--cell5" scope="col">Event</th>
+                    <th class="s-table--cell2" scope="col">Element</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody class="fs-caption">
+                <tr>
+                    <th scope="row"><code class="stacks-code">s-toast:show</code></th>
+                    <td>Toast target</td>
+                    <td><span class="s-label--status ml0">Default preventable</span> Fires immediately before showing the toast. Calling <code class="stacks-code">.preventDefault()</code> cancels the display of the toast.</td>
+                </tr>
+                <tr>
+                    <th scope="row"><code class="stacks-code">s-toast:shown</code></th>
+                    <td>Toast target</td>
+                    <td>Fires after the toast has been visually shown</td>
+                </tr>
+                <tr>
+                    <th scope="row"><code class="stacks-code">s-toast:hide</code></th>
+                    <td>Toast target</td>
+                    <td><span class="s-label--status ml0">Default preventable</span> Fires immediately before hiding the toast. Calling <code class="stacks-code">.preventDefault()</code> cancels the removal of the toast.</td>
+                </tr>
+                <tr>
+                    <th scope="row"><code class="stacks-code">s-toast:hidden</code></th>
+                    <td>Toast target</td>
+                    <td>Fires after the toast has been visually hidden</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="overflow-x-auto mb32" tabindex="0">
+        <table class="wmn4 s-table s-table__bx-simple">
+            <thead>
+                <tr>
+                    <th class="s-table--cell5" scope="col">event.detail</th>
+                    <th class="s-table--cell2" scope="col">Applicable events</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody class="fs-caption">
+                <tr>
+                    <th scope="row"><code class="stacks-code">dispatcher</code></th>
+                    <td><code class="stacks-code">s-toast:*</code></td>
+                    <td>Contains the <code class="stacks-code">Element</code> that initiated the event. For instance, the button clicked to show, the element clicked outside the toast that caused it to hide, etc.</td>
+                </tr>
+            </tbody>
+            <tbody class="fs-caption">
+                <tr>
+                    <th scope="row"><code class="stacks-code">returnElement</code></th>
+                    <td><code class="stacks-code">s-toast:show</code>, <code class="stacks-code">s-toast:hide</code></td>
+                    <td>Contains the <code class="stacks-code">Element</code> to return focus to on hide. If a value is set to this property inside an event listener, it will be updated on the controller as well.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    {% header "h3", "Helpers" %}
+    <div class="overflow-x-auto mb32" tabindex="0">
+        <table class="wmn4 s-table s-table__bx-simple">
+            <thead>
+                <tr>
+                    <th class="s-table--cell2" scope="col">Function</th>
+                    <th class="s-table--cell4" scope="col">Parameters</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody class="fs-caption">
+                <tr>
+                    <th scope="row"><code class="stacks-code">Stacks.showToast</code></th>
+                    <td>
+                        <code class="stacks-code">element</code>: the element the <code class="stacks-code">data-controller="s-toast"</code> attribute is on <br><br>
+                    </td>
+                    <td>Helper to manually show an s-toast element via external JS</td>
+                </tr>
+                <tr>
+                    <th scope="row"><code class="stacks-code">Stacks.hideToast</code></th>
+                    <td>
+                        <code class="stacks-code">element</code>: the element the <code class="stacks-code">data-controller="s-toast"</code> attribute is on <br><br>
+                    </td>
+                    <td>Helper to manually hide an s-toast element via external JS</td>
+                </tr>
             </tbody>
         </table>
     </div>
@@ -97,29 +233,29 @@ description: Notices deliver <strong>System</strong> and <strong>Engagement</str
     <p class="stacks-copy">Default style used to separate notices from the main content</p>
     <div class="stacks-preview">
 {% highlight html %}
-<aside class="s-notice" role="status">…</aside>
-<aside class="s-notice s-notice__info" role="status">…</aside>
-<aside class="s-notice s-notice__success" role="status">…</aside>
-<aside class="s-notice s-notice__warning" role="status">…</aside>
-<aside class="s-notice s-notice__danger" role="status">…</aside>
+<div class="s-notice" role="status">…</div>
+<div class="s-notice s-notice__info" role="status">…</div>
+<div class="s-notice s-notice__success" role="status">…</div>
+<div class="s-notice s-notice__warning" role="status">…</div>
+<div class="s-notice s-notice__danger" role="status">…</div>
 {% endhighlight %}
         <div class="stacks-preview--example">
             <div class="d-flex gy8 fd-column">
-                <aside class="flex--item s-notice" role="status">
+                <div class="flex--item s-notice" role="status">
                     <p class="m0">Default filled message style</p>
-                </aside>
-                <aside class="flex--item s-notice s-notice__info" role="status">
+                </div>
+                <div class="flex--item s-notice s-notice__info" role="status">
                     <p class="m0">Info filled message style</p>
-                </aside>
-                <aside class="flex--item s-notice s-notice__success" role="status">
+                </div>
+                <div class="flex--item s-notice s-notice__success" role="status">
                     <p class="m0">Success filled message style <a class="s-link s-link__inherit s-link__underlined" href="#">Link</a></p>
-                </aside>
-                <aside class="flex--item s-notice s-notice__warning" role="status">
+                </div>
+                <div class="flex--item s-notice s-notice__warning" role="status">
                     <p class="m0">Warning filled message style</p>
-                </aside>
-                <aside class="flex--item s-notice s-notice__danger" role="status">
+                </div>
+                <div class="flex--item s-notice s-notice__danger" role="status">
                     <p class="m0">Danger filled message style</p>
-                </aside>
+                </div>
             </div>
         </div>
     </div>
@@ -128,29 +264,29 @@ description: Notices deliver <strong>System</strong> and <strong>Engagement</str
     <p class="stacks-copy">Used sparingly for when an important notice needs to be noticed</p>
     <div class="stacks-preview">
 {% highlight html %}
-<aside class="s-notice s-notice__important" role="alert">…</aside>
-<aside class="s-notice s-notice__info s-notice__important" role="alert">…</aside>
-<aside class="s-notice s-notice__success s-notice__important" role="alert">… <a class="s-link s-link__inherit s-link__underlined" href="…">…</a></aside>
-<aside class="s-notice s-notice__warning s-notice__important" role="alert">…</aside>
-<aside class="s-notice s-notice__danger s-notice__important" role="alert">…</aside>
+<div class="s-notice s-notice__important" role="alert">…</div>
+<div class="s-notice s-notice__info s-notice__important" role="alert">…</div>
+<div class="s-notice s-notice__success s-notice__important" role="alert">… <a class="s-link s-link__inherit s-link__underlined" href="…">…</a></div>
+<div class="s-notice s-notice__warning s-notice__important" role="alert">…</div>
+<div class="s-notice s-notice__danger s-notice__important" role="alert">…</div>
 {% endhighlight %}
         <div class="stacks-preview--example">
             <div class="d-flex gy8 fd-column">
-                <aside class="flex--item s-notice s-notice__important" role="alert">
+                <div class="flex--item s-notice s-notice__important" role="alert">
                     <p class="m0">Inverted important message style</p>
-                </aside>
-                <aside class="flex--item s-notice s-notice__info s-notice__important" role="alert">
+                </div>
+                <div class="flex--item s-notice s-notice__info s-notice__important" role="alert">
                     <p class="m0">Info important message style. <a class="s-link s-link__inherit s-link__underlined" href="#">Link</a></p>
-                </aside>
-                <aside class="flex--item s-notice s-notice__success s-notice__important" role="alert">
+                </div>
+                <div class="flex--item s-notice s-notice__success s-notice__important" role="alert">
                     <p class="m0">Success important message style</p>
-                </aside>
-                <aside class="flex--item s-notice s-notice__warning s-notice__important" role="alert">
+                </div>
+                <div class="flex--item s-notice s-notice__warning s-notice__important" role="alert">
                     <p class="m0">Warning important message style</p>
-                </aside>
-                <aside class="flex--item s-notice s-notice__danger s-notice__important" role="alert">
+                </div>
+                <div class="flex--item s-notice s-notice__danger s-notice__important" role="alert">
                     <p class="m0">Danger important message style</p>
-                </aside>
+                </div>
             </div>
         </div>
     </div>
@@ -195,13 +331,13 @@ description: Notices deliver <strong>System</strong> and <strong>Engagement</str
     <p class="stacks-copy">Default behavior for notices that are inserted within the content area</p>
     <div class="stacks-preview">
 {% highlight html %}
-<aside class="s-notice s-notice__info" role="status">…</aside>
+<div class="s-notice s-notice__info" role="status">…</div>
 {% endhighlight %}
         <div class="stacks-preview--example">
             <div class="ps-relative d-flex gy8 fd-column jc-center">
-                <aside class="flex--item s-notice s-notice__info" role="status">
+                <div class="flex--item s-notice s-notice__info" role="status">
                     <p class="m0">Inline notice message style</p>
-                </aside>
+                </div>
             </div>
         </div>
     </div>
@@ -210,37 +346,48 @@ description: Notices deliver <strong>System</strong> and <strong>Engagement</str
     <p class="stacks-copy">Notices are often accompanied by an icon.</p>
     <div class="stacks-preview">
 {% highlight html %}
-<aside class="d-flex s-notice s-notice__info" role="status">
+<div class="d-flex s-notice s-notice__info" role="status">
     <div class="flex--item mr8">
         @Svg.Alert
     </div>
     <div class="flex--item lh-lg">
         …
     </div>
-</aside>
+</div>
 {% endhighlight %}
         <div class="stacks-preview--example">
-            <aside class="d-flex s-notice s-notice__info" role="status">
+            <div class="d-flex s-notice s-notice__info" role="status">
                 <div class="flex--item mr8">
                     {% icon "Alert" %}
                 </div>
                 <div class="flex--item lh-lg">
                     This question and its answers are locked because the question is off-topic but has historical significance. It is not currently accepting new answers or interactions.
                 </div>
-            </aside>
+            </div>
         </div>
     </div>
 
     {% header "h3", "Toast" %}
     <p class="stacks-copy">Floating notices, but aligned to the top and center of the page and they disappear after a set time.  Visibility is changed with animation by toggling between <code class="stacks-code">aria-hidden="true"</code> and <code class="stacks-code">aria-hidden="false"</code>. When including buttons, you can apply <code class="stacks-code">.s-notice--btn</code> to buttons to apply a toast-specific color.</p>
+    
+    <!-- TODO: document controller attributes -->
     <div class="stacks-preview bs-none">
-        <div class="stacks-preview--example ba bar-sm bg-black-025">
-            <button class="flex--item s-btn s-btn__filled js-notice-toast-open">Launch example toast notice</button>
+        <div class="stacks-preview--example ba bar-sm bg-black-025 d-flex g8 fw-wrap">
+            <button class="flex--item s-btn s-btn__filled js-toast-open" data-toggle="s-toast" data-target="#launch-toast-base">Launch example toast notice</button>
         </div>
     </div>
+
     <div class="stacks-preview">
 {% highlight html %}
-<div class="s-toast" aria-hidden="true" role="alertdialog" aria-labelledby="notice-message">
+<div
+    role="alertdialog"
+    id="example-toast"
+    class="s-toast"
+    aria-hidden="true"
+    aria-labelledby="toast-message"
+    data-controller="s-toast"
+    data-s-toast-target="toast"
+    data-s-toast-return-element=".js-example-toast-open[data-target='#example-toast']">
     <aside class="s-notice s-notice__success p8 pl16">
         <div class="d-flex gx16 ai-center jc-space-between">
             <div class="flex--item" id="notice-message">

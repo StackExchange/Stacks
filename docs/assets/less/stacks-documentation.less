@@ -11,7 +11,7 @@
 //  ============================================================================
 //  $   IMPORTS
 //  ----------------------------------------------------------------------------
-@import "../../../lib/css/stacks.less"; //  These are actual styles used in SO projects
+@import (reference) "../../../lib/css/stacks.less"; //  These are actual styles used in SO projects
 
 .stacks-section {
     margin-top: var(--su48);
@@ -125,8 +125,6 @@
 
         li a {
             .d-block;
-            .s-link;
-            .s-link__muted;
             .fs-body1;
             .lh-sm;
             .py2;
@@ -195,6 +193,21 @@
 .stacks-h4 {
     font-size: var(--fs-body3);
     color: var(--fc-light);
+}
+
+// -- Custom dotnet badge colors
+// follows the dotnet brand guidelines at https://github.com/dotnet/brand/blob/main/dotnet-brand-guidelines.pdf
+.stacks-badge-dotnet--icon {
+    background-color: #2b0b98;
+    .dark-mode({
+        background-color: #dfd8f7;
+    });
+}
+.stacks-badge-dotnet--text {
+    background-color: #512bd4;
+    .dark-mode({
+        background-color: #9e92c7;
+    });
 }
 
 //  $$  PARAGRAPHS
@@ -318,12 +331,15 @@
 //  ----------------------------------------------------------------------------
 
 .stacks-flex-example--item {
-    padding: var(--su8);
-    border: 1px solid var(--bc-medium);
-    background-color: var(--black-075);
-    font-family: var(--ff-mono);
-    font-size: var(--fs-caption);
-    color: var(--fc-dark);
+    &,
+    .s-table td& {
+        background-color: var(--black-075);
+        border: var(--su-static1) solid var(--bc-medium);
+        color: var(--fc-dark);
+        font-family: var(--ff-mono);
+        font-size: var(--fs-caption);
+        padding: var(--su8);
+    }
 }
 
 //  ============================================================================

@@ -2,29 +2,42 @@
     --_ts-bg: var(--black-300);
     --_ts-bg-ps: left center;
     --_ts-bs-color: transparent;
-    // multiple
     --_ts-multiple-bg: unset;
     --_ts-multiple-fc: var(--black-500);
 
-    // TODO split single and multiple toggle into two seperate components
-    &&__multiple {
+    fieldset[disabled] & {
+        &,
+        & label {
+            cursor: not-allowed;
+            opacity: var(--_o-disabled-static);
+        }
+    }
+
+    &&__multiple { // TODO split single and multiple toggle into two seperate components
         input[type="radio"] {
             &:checked {
                 + label {
                     &.s-toggle-switch--label-off {
                         --_ts-multiple-bg: var(--black-500);
                         --_ts-multiple-fc: var(--white);
+
                         .dark-mode({ --_ts-multiple-bg: var(--black-350); });
                     }
+
                     &:not(.s-toggle-switch--label-off) {
                         --_ts-multiple-bg: var(--green-400);
                         --_ts-multiple-fc: @white;
+
                         .highcontrast-mode({ --_ts-multiple-fc: var(--white); });
                     }
                 }
+
                 &:focus + label {
                     --_ts-bs-color: var(--focus-ring-success);
-                    &.s-toggle-switch--label-off { --_ts-bs-color: var(--focus-ring-muted); }
+
+                    &.s-toggle-switch--label-off {
+                        --_ts-bs-color: var(--focus-ring-muted);
+                    }
                 }
             }
 
@@ -33,6 +46,7 @@
             opacity: 0;
             position: absolute;
         }
+
         label {
             background-color: var(--_ts-multiple-bg);
             box-shadow: 0 0 0 var(--su-static4) var(--_ts-bs-color);
@@ -67,10 +81,12 @@
                 --_ts-bs-color: var(--focus-ring-success);
             }
         }
+
         &:focus {
             --_ts-bs-color: var(--focus-ring-muted);
             outline: none;
         }
+
         &[disabled] {
             cursor: default;
         }

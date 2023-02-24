@@ -1,25 +1,24 @@
 .s-tag {
     --_ta-bc: var(--theme-tag-border-color);
+    --_ta-bc-hover: var(--theme-tag-hover-border-color);
+    --_ta-bc-selected: transparent;
     --_ta-bg: var(--theme-tag-background-color);
+    --_ta-bg-hover: var(--theme-tag-hover-background-color);
+    --_ta-bg-selected: var(--theme-secondary-200);
     --_ta-br: var(--br-sm);
     --_ta-fc: var(--theme-tag-color);
+    --_ta-fc-hover: var(--theme-tag-hover-color);
+    --_ta-fc-selected: var(--theme-secondary-900);
     --_ta-fs: var(--fs-caption);
     --_ta-lh: 1.846153846;
     --_ta-pl: var(--_ta-px);
     --_ta-pr: var(--_ta-px);
     --_ta-px: var(--su4);
-    // hover, focus, active
-    --_ta-bc-hover: var(--theme-tag-hover-border-color);
-    --_ta-bg-hover: var(--theme-tag-hover-background-color);
-    --_ta-fc-hover: var(--theme-tag-hover-color);
-    // .is-selected
-    --_ta-bc-selected: transparent;
-    --_ta-bg-selected: var(--theme-secondary-200);
-    --_ta-fc-selected: var(--theme-secondary-900);
 
     // CONTEXTUAL STYLES
     .highcontrast-mode({
         --_ta-bc: currentColor;
+
         text-decoration: none;
     });
 
@@ -30,25 +29,25 @@
         a&:active,
         a&:hover,
         a&:focus {
-            background-color: var(--_ta-bg-selected);
-            border-color: var(--_ta-bc-selected);
-            color: var(--_ta-fc-selected);
-
             .highcontrast-mode({
                 border-color: currentColor;
             });
+
+            background-color: var(--_ta-bg-selected);
+            border-color: var(--_ta-bc-selected);
+            color: var(--_ta-fc-selected);
         }
     }
 
     // MODIFIERS
     // Sizes
     &&__xs {
-        --_ta-fs: var(--fs-fine);
+        .size-styles(xs; ta; @styles: fs);
         --_ta-lh: 1.4;
         --_ta-px: var(--su2);
     }
     &&__sm {
-        --_ta-fs: var(--fs-caption);
+        .size-styles(sm; ta; @styles: fs);
         --_ta-lh: 1.5;
     }
     &&__md {
@@ -57,7 +56,7 @@
         --_ta-lh: 1.733333333;
     }
     &&__lg {
-        --_ta-br: calc(var(--br-sm) + 1px);
+        --_ta-br: calc(var(--br-sm) + var(--su-static1));
         --_ta-fs: var(--fs-subheading);
         --_ta-lh: 1.684210526;
         --_ta-px: var(--su6);
@@ -89,12 +88,15 @@
             -webkit-mask-size: contain;
             mask-size: contain;
         }
+
         position: relative;
     }
+
     &__ignored, // TODO: remove all single `&` ignored styles once core no longer requires them
     &&__ignored {
         --_ta-before-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 14 14'%3E%3Cpath d='M3.52 7.38 1.58 9.26A12.38 12.38 0 0 1 0 7s2.63-5.14 7.05-5.14c.66 0 1.28.12 1.86.32L7.44 3.6a3.48 3.48 0 0 0-3.92 3.78ZM5.3 9.99c.5.28 1.1.44 1.71.44 1.94 0 3.5-1.53 3.5-3.43 0-.62-.17-1.21-.47-1.72L8.7 6.6a1.73 1.73 0 0 1-2.08 2.07L5.29 10Zm6.23-6.19A12.7 12.7 0 0 1 14 7s-2.63 5.14-6.95 5.14A6.1 6.1 0 0 1 4 11.3L2.27 13l-1.4-1.36L11.9 1l1.23 1.2-1.6 1.6Z'/%3E%3C/svg%3E");
     }
+
     // moderator overrides other muted and required, required overrides muted
     &&__moderator {
         --_ta-bc: var(--red-200);
@@ -107,6 +109,7 @@
         --_ta-bg-selected: var(--red-200);
         --_ta-fc-selected: var(--red-800);
     }
+
     &&__muted:not(&__moderator):not(&__required) {
         --_ta-bc: transparent;
         --_ta-bg: var(--black-075);
@@ -120,6 +123,7 @@
 
         .highcontrast-mode({ --_ta-bc: currentColor; }); // Specificity has bit us, so we need this override
     }
+
     &&__required:not(&__moderator) {
         --_ta-bc: var(--bc-darker);
         --_ta-bg: var(--black-075);
@@ -160,6 +164,7 @@
         padding: var(--su1);
         width: var(--su-static16);
     }
+
     & &--sponsor { // The small sponsor favicon displayed within a tag
         img,
         .svg-icon {
@@ -179,13 +184,13 @@
         &:hover,
         &:focus,
         &:active {
-            background-color: var(--_ta-bg-hover);
-            border-color: var(--_ta-bc-hover);
-            color: var(--_ta-fc-hover);
-
             .highcontrast-mode({
                 border-color: currentColor;
             });
+
+            background-color: var(--_ta-bg-hover);
+            border-color: var(--_ta-bc-hover);
+            color: var(--_ta-fc-hover);
         }
     }
 

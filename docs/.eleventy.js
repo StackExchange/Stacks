@@ -4,6 +4,7 @@ const { version } = require("../package.json");
 const headerPlugin = require("./plugins/header");
 const highlightPlugin = require("./plugins/highlight");
 const iconPlugin = require("./plugins/icons");
+const bannerExamplePlugin = require("./plugins/banner-example");
 const tipPlugin = require("./plugins/tip");
 const markdownPlugin = require("./plugins/markdown");
 
@@ -12,6 +13,7 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.addLayoutAlias('home', 'layouts/home.html');
   eleventyConfig.addLayoutAlias('page', 'layouts/page.html');
 
+  eleventyConfig.addPlugin(bannerExamplePlugin);
   eleventyConfig.addPlugin(iconPlugin);
   eleventyConfig.addPlugin(headerPlugin);
   eleventyConfig.addPlugin(tipPlugin);
@@ -26,7 +28,7 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.addPlugin(markdownPlugin);
 
   // Add submenu generation
-  eleventyConfig.addPlugin(pluginTOC, {tags: ['h2', 'h3'], wrapper: 'nav aria-label="Table of contents"'});
+  eleventyConfig.addPlugin(pluginTOC, {tags: ['h2', 'h3'], wrapper: 'nav aria-label="Table of contents"', wrapperClass: 'toc s-anchors s-anchors__muted'});
 
   // Copy these files over to _site
   eleventyConfig.addPassthroughCopy('assets/dist');
