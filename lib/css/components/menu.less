@@ -3,31 +3,36 @@
     --_me-label-btc: var(--bc-light);
     --_me-label-cursor: pointer;
 
+    // CONTEXTUAL STYLES
     .dark-mode({
         --_me-divider-bg: var(--bc-lightest);
         --_me-label-btc: var(--bc-lightest);
     });
 
+    // CHILD ELEMENTS
     & &--divider {
         background-color: var(--_me-divider-bg);
         height: var(--su-static1);
         margin: var(--su8) 0;
     }
+
     & &--label {
         &.is-disabled {
             --_me-label-cursor: not-allowed;
         }
 
+        border-top: var(--su-static1) solid var(--_me-label-btc);
         cursor: var(--_me-label-cursor);
-        border-top: 1px solid var(--_me-label-btc);
         padding: var(--su12);
     }
+
     & &--title {
         color: var(--black-600);
         font-size: var(--fs-fine);
         padding: var(--su8) var(--su12);
         text-transform: uppercase;
     }
+
     & li + &--title {
         margin-top: var(--su12);
     }
