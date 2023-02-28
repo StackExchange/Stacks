@@ -1,0 +1,19 @@
+.s-check-group {
+    --_cg-fd: column;
+
+    // MODIFIERS
+    &&__horizontal {
+        --_cg-fd: row;
+    }
+
+    // CHILD ELEMENTS
+    // TODO HACK? <legend> isn't respecting gap...
+    legend.s-label {
+        margin-bottom: var(--su8);
+    }
+
+    flex-direction: var(--_cg-fd);
+
+    display: flex;
+    gap: var(--su8);
+}
