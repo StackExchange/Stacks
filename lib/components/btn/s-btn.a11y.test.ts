@@ -20,7 +20,17 @@ const btnStyles = {
     // children: ["badge"],
 };
 
-const makeTest = ({ testid, theme, classes, child = "" }) => {
+const makeTest = ({
+    classes,
+    testid,
+    theme,
+    child = ""
+} : {
+    classes: string,
+    child?: string,
+    testid: string,
+    theme: string[],
+}) => {
     it(`a11y: ${testid} should be accessible`, async () => {
         await fixture(html`<button
             class="s-btn${classes}"
@@ -37,12 +47,13 @@ const makeTest = ({ testid, theme, classes, child = "" }) => {
         document.body.classList.add(...theme);
         const button = screen.getByTestId(testid);
         // TODO add conditional option for high contrast mode to test against AAA
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
         await expect(button).to.be.accessible();
     });
 };
 
 // TODO move to test utils
-const buildTestid = (arr) => arr.filter(Boolean).join("-");
+const buildTestid = (arr: string[]) => arr.filter(Boolean).join("-");
 
 describe("s-btn", () => {
     // Test default, high contrast themes

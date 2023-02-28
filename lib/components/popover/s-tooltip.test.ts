@@ -19,10 +19,12 @@ describe("s-tooltip", () => {
             </button>
         `);
 
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
         expect(screen.queryByRole("tooltip")).to.be.null;
 
         await user.hover(trigger);
         const tooltip = await screen.findByRole("tooltip");
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
         expect(tooltip).to.be.visible;
 
         await user.unhover(trigger);
@@ -54,9 +56,11 @@ describe("s-tooltip", () => {
 
         await user.hover(button);
         const tooltip = await screen.findByRole("tooltip");
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
         expect(tooltip).to.be.visible;
 
         await user.hover(svg);
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
         expect(tooltip).to.be.visible;
     });
 });
