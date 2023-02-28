@@ -15,12 +15,12 @@ const makeTest = ({
     classes,
     testid,
     theme,
-    child = ""
-} : {
-    classes: string,
-    child?: string,
-    testid: string,
-    theme: string[],
+    child = "",
+}: {
+    classes: string;
+    child?: string;
+    testid: string;
+    theme: string[];
 }) => {
     it(`a11y: ${testid} should be accessible`, async () => {
         await fixture(html`<a
