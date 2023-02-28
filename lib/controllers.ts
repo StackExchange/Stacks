@@ -3,7 +3,7 @@ export {
     BannerController,
     hideBanner,
     showBanner,
-} from "./components/notice/banner-controller";
+} from "./components/banner/controller";
 export { ExpandableController } from "./components/expandable/controller";
 export {
     ModalController,
@@ -24,7 +24,7 @@ export {
     ToastController,
     hideToast,
     showToast,
-} from "./components/notice/toast-controller";
+} from "./components/toast/controller";
 export {
     setTooltipHtml,
     setTooltipText,
