@@ -1,0 +1,48 @@
+.s-input-message {
+    --_im-fc: unset;
+    --_im-a-fc: unset;
+    --_im-a-fc-hover: unset;
+
+    .input-states({
+        a {
+            text-decoration: underline;
+        }
+    });
+
+    fieldset[disabled] & {
+        cursor: not-allowed;
+        opacity: var(--_o-disabled-static);
+    }
+
+    // MODIFIERS
+    .has-error & {
+        --_im-fc: var(--red-500);
+        --_im-a-fc: var(--red-800);
+        --_im-a-fc-hover: var(--red-900);
+    }
+
+    .has-success & {
+        --_im-fc: var(--green-500);
+        --_im-a-fc: var(--green-800);
+        --_im-a-fc-hover: var(--green-900);
+    }
+
+    .has-warning & {
+        --_im-fc: var(--yellow-800);
+        --_im-a-fc: var(--yellow-900);
+    }
+
+    // CHILD ELEMENTS
+    a {
+        &:hover {
+            color: var(--_im-a-fc-hover);
+        }
+
+        color: var(--_im-a-fc);
+    }
+
+    color: var(--_im-fc);
+
+    font-size: var(--fs-caption);
+    padding: var(--su2);
+}
