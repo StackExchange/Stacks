@@ -31,6 +31,11 @@ export default {
         }),
         playwrightLauncher({ product: "webkit" }),
     ],
+    testFramework: {
+        config: {
+            timeout: '5000',
+        },
+    },
     nodeResolve: { browser: true },
     mimeTypes: {
         "**/*.less": "js",
@@ -52,8 +57,15 @@ export default {
     ],
     groups: [
         {
+            name: "a11y",
+            files: "lib/components/**/*.a11y.test.ts",
+            browsers: [
+                playwrightLauncher({ product: "chromium" }),
+            ]
+        },
+        {
             name: "unit",
-            files: "lib/components/**/!(*.visual).test.ts",
+            files: "lib/components/**/!(*.visual|*.a11y).test.ts",
         },
         {
             name: "visual",
@@ -62,6 +74,7 @@ export default {
     ],
 
     // settle on a font-family for visual regression tests across operating systems
+    // animation disable CSS taken from https://github.com/microsoft/playwright/issues/7548#issuecomment-881897256
     testRunnerHtml: (testFramework) =>
         `<html>
             <body>
@@ -69,6 +82,15 @@ export default {
                     body {
                         --ff-sans: Arial;
                         --ff-mono: "Courier New";
+                    }
+                    *,
+                    *::before,
+                    *::after {
+                        -moz-animation: none !important;
+                        -moz-transition: none !important;
+                        animation: none !important;
+                        caret-color: transparent !important;
+                        transition: none !important;
                     }
                 </style>
                 <script type="module" src="${testFramework}"></script>

@@ -4,10 +4,9 @@ import "./controllers/docs-resizer";
 import * as Stacks from "../../../lib/index";
 
 // @ts-expect-error
-global.$ = require("jquery");
-// @ts-expect-error
 global.Stacks = Stacks;
 
+import "./global.jquery";
 import "./global.search";
 import "./global.navigation";
 import "./global.hamburger";

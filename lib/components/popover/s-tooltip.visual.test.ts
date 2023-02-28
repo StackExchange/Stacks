@@ -2,7 +2,7 @@ import { html, fixture } from "@open-wc/testing";
 import { screen } from "@testing-library/dom";
 import userEvent from "@testing-library/user-event";
 import { visualDiff } from "@web/test-runner-visual-regression";
-import "../ts/index";
+import "../../index";
 
 const user = userEvent.setup();
 

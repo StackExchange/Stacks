@@ -1,55 +1,53 @@
-//
-//  STACK OVERFLOW
-//  STATIC STACK ELEMENTS
-//
-//  This CSS comes from Stacks, our CSS & Pattern library for rapidly building
-//  Stack Overflow. For documentation of all these classes and how to contribute,
-//  visit https://stackoverflow.design/
-//
-//  This is where all the magic happens.
-//
-//  ============================================================================
-//  $   STATIC ELEMENTS
-//      The following items are elements which we DO NOT allow communities
-//      to modify via variables.
-//  ----------------------------------------------------------------------------
+// stacks-static.less contains styles which we DO NOT allow communities to modify via variables
+// BASE
 @import "base/reset.less";
 @import "base/icon.less";
+@import "base/fieldset.less";
+@import "base/icon.less";
+@import "input-utils.less";
 
 //  --  COMPONENTS
 @import "components/activity-indicator/style.less";
 @import "components/anchor/style.less";
-@import "components/award-bling/style.less";
 @import "components/avatar/style.less";
+@import "components/award-bling/style.less";
 @import "components/badge/style.less";
-@import "components/empty-state/style.less";
 @import "components/block-link/style.less";
 @import "components/breadcrumbs/style.less";
-@import "components/button-group/style.less";
+@import "components/btn/style.less";
+@import "components/btn-group/style.less";
 @import "components/card/style.less";
+@import "components/checkbox-radio/style.less";
 @import "components/code-block/style.less";
+@import "components/description/style.less";
+@import "components/empty-state/style.less";
 @import "components/expandable/style.less";
 @import "components/input/style.less";
 @import "components/label/style.less";
 @import "components/link/style.less";
+@import "components/link-preview/style.less";
 @import "components/menu/style.less";
 @import "components/modal/style.less";
 @import "components/navigation/style.less";
+@import "components/notice/style.less";
 @import "components/page-title/style.less";
+@import "components/pagination/style.less";
 @import "components/popover/style.less";
 @import "components/post-summary/style.less";
 @import "components/progress-bar/style.less";
 @import "components/prose/style.less";
+@import "components/select/style.less";
 @import "components/sidebar-widget/style.less";
 @import "components/spinner/style.less";
 @import "components/table/style.less";
 @import "components/table-container/style.less";
+@import "components/tag/style.less";
 @import "components/toggle-switch/style.less";
 @import "components/topbar/style.less";
 @import "components/uploader/style.less";
 @import "components/user-card/style.less";
 
-//  --  LESS CONSTANTS AND MIXINS
+// LESS CONSTANTS AND MIXINS
 @import "exports/exports.less";
 
 //  --  ATOMIC CLASSES
@@ -74,20 +72,16 @@
     #stacks-internals-collect-small();
 });
 
-// We need printing styles to be last so they can override all other styles.
-.print\:d-block {
-    @media print {
+@media print { // We need printing styles to be last so they can override all other styles.
+    .print\:d-block & {
         display: block !important;
     }
-}
-
-.print\:d-none {
-    @media print {
+    .print\:d-none & {
         display: none !important;
     }
 }
 /* stylelint-enable */
 
-//  --  CONFIG
+// CONFIG
 @import "base/configuration-static.less";
 @import "base/internal.less";
