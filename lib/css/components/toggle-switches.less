@@ -5,6 +5,14 @@
     --_ts-multiple-bg: unset;
     --_ts-multiple-fc: var(--black-500);
 
+    fieldset[disabled] & {
+        &,
+        & label {
+            cursor: not-allowed;
+            opacity: var(--_o-disabled-static);
+        }
+    }
+
     &&__multiple { // TODO split single and multiple toggle into two seperate components
         input[type="radio"] {
             &:checked {

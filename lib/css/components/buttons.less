@@ -57,6 +57,7 @@
     });
 
     // STATES
+    fieldset[disabled] &,
     &[disabled],
     &[aria-disabled="true"] {
         --_bu-bs: none !important;
@@ -221,18 +222,17 @@
 
     // Size
     &&__xs {
+        .size-styles(xs; bu; @styles: fs);
         --_bu-dropdown-bw: calc(var(--su-static4) - var(--su-static1));
-        --_bu-fs: var(--fs-fine);
         --_bu-p: 0.6em;
     }
 
     &&__sm {
-        --_bu-fs: var(--fs-caption);
+        .size-styles(sm; bu; @styles: fs);
     }
 
     &&__md {
-        --_bu-br: calc(var(--br-sm) + var(--su-static1));
-        --_bu-fs: var(--fs-body3);
+        .size-styles(md; bu; @styles: br, fs);
         --_bu-p: 0.7em;
     }
 

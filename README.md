@@ -24,7 +24,7 @@ Stacks documentation can be found at https://stackoverflow.design/
 - [Building Stacks](#building-stacks)
 - [Linting Stacks](#linting-stacks)
 - [Testing Stacks](#testing-stacks)
-- [Releasing Stacks](#release-a-new-version-of-stacks)
+- [Releasing Stacks](#releasing-a-new-version-of-stacks)
 - [Bugs and feature requests](#bugs-and-feature-requests)
 - [Contributing](#contributing)
 - [License](#license)
