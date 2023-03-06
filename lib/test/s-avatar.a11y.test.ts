@@ -1,4 +1,4 @@
-import { buildTestid, makeTest } from "../ts/test-utils";
+import { buildTestid, makeA11yTest, getTestVariations } from "../ts/test-utils";
 import "../ts/index";
 
 // TODO abstract to a helper file… maybe create a helper function to test in all themes
@@ -26,6 +26,24 @@ const getChild = (child) => {
 }
 
 describe("s-avatar", () => {
+    // getTestVariations({
+    //     baseClass: "s-avatar",
+    //     variants:["24", "32", "48", "64", "96", "128"],
+    // }).forEach(({testid, classes, theme}) => {
+    //     ["", "image", "letter"].forEach((child) => {
+    //         makeA11yTest({
+    //             attributes: {
+    //                 class: classes,
+    //                 role: "button",
+    //             },
+    //             children: getChild(child),
+    //             tag: "button",
+    //             testid,
+    //             theme
+    //         });
+    //     });
+    // });
+
     // Test default, high contrast themes
     baseThemes.forEach((baseTheme) => {
         // Test light, dark theme
@@ -41,7 +59,7 @@ describe("s-avatar", () => {
 
                 // Test each size with each child
                 ["", ...avatarStyles.children].forEach((child) => {
-                    makeTest({
+                    makeA11yTest({
                         testid: buildTestid([testidSize, `with-${child}`]),
                         tag: "a",
                         theme,
