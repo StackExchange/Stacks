@@ -1,7 +1,7 @@
 import { getTestVariations, makeTest, makeTestElement } from "../ts/test-utils";
 import "../ts/index";
 
-const testBannerChild = (testid) => `
+const testElementChild = (testid) => `
     <div
         class="d-flex flex__center jc-space-between s-banner--container"
         role="alertdialog"
@@ -31,7 +31,7 @@ describe("s-banner", () => {
                     role: "alert",
                     ariaHidden: "false",
                 },
-                children: testBannerChild(testid),
+                children: testElementChild(testid),
                 tag: "aside",
                 testid,
             }),
