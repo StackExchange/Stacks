@@ -11,7 +11,7 @@ interface TestOptions {
     testHighContrast: boolean;
     includeNullVariant: boolean;
     includeNullModifier: boolean;
-};
+}
 
 interface TestModifiers {
     primary?: string[];
@@ -29,7 +29,7 @@ interface TestProps {
 const attrObjToString = (attrs: Record<string, string>): string => {
     const attrString = Object.keys(attrs).map((key) => {
         return `${key}="${attrs[key]}"` || "";
-    })
+    });
     return attrString.join(" ") || "";
 };
 
@@ -58,61 +58,79 @@ export const getTestVariations = ({
 }) => {
     const testVariations: TestProps[] = [];
 
-    const makeClass = (modifier: string) => modifier
-        ? ` ${baseClass}__${modifier.replace("-", ` ${baseClass}__`)}`
-        : "";
+    const makeClass = (modifier: string) =>
+        modifier
+            ? ` ${baseClass}__${modifier.replace("-", ` ${baseClass}__`)}`
+            : "";
 
     // Test default, high contrast themes
     [...(options.testHighContrast ? baseThemes : [""])].forEach((baseTheme) => {
-        
         // Test light, dark theme
-        [...(options.testColorThemes ? colorThemes : [""])].forEach((colorTheme) => {
-            const theme = [baseTheme, colorTheme].filter(Boolean);
-            const testidBase = buildTestid([baseClass, ...theme]);
-            
-            // TODO account for no primary/secondary modifiers
-            ["", ...<[]>modifiers.primary].forEach((primaryModifier) => {
-                const primaryClasses = makeClass(primaryModifier);
-        
-                ["", ...<[]>modifiers.secondary].forEach((secondaryModifier) => {
-                    const secondaryClasses = makeClass(secondaryModifier);
-        
-                    ["", ...variants].forEach((variant) => {
-                        const variantClasses = makeClass(variant);
-                        const classesVariant =
-                            ` ${variantClasses}${primaryClasses}${secondaryClasses}`;
-                        const testidVariant = buildTestid([
-                            testidBase,
-                            variant,
-                            [primaryModifier, secondaryModifier].filter(Boolean).join("-"),
-                        ]);
-        
-                        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-                        testVariations.push({
-                            testid: testidVariant,
-                            classes: classesVariant,
-                            theme
-                        });
+        [...(options.testColorThemes ? colorThemes : [""])].forEach(
+            (colorTheme) => {
+                const theme = [baseTheme, colorTheme].filter(Boolean);
+                const testidBase = buildTestid([baseClass, ...theme]);
+
+                // TODO account for no primary/secondary modifiers
+                ["", ...(<[]>modifiers.primary)].forEach((primaryModifier) => {
+                    const primaryClasses = makeClass(primaryModifier);
+
+                    ["", ...(<[]>modifiers.secondary)].forEach(
+                        (secondaryModifier) => {
+                            const secondaryClasses =
+                                makeClass(secondaryModifier);
+
+                            ["", ...(<[]>modifiers.global)].forEach(
+                                (globalModifier) => {
+                                    const globalClasses =
+                                        makeClass(globalModifier);
+
+                                    ["", ...variants].forEach((variant) => {
+                                        const variantClasses =
+                                            makeClass(variant);
+                                        const classesVariant = ` ${variantClasses}${primaryClasses}${secondaryClasses}${globalClasses}`;
+                                        const testidVariant = buildTestid([
+                                            testidBase,
+                                            variant,
+                                            [
+                                                primaryModifier,
+                                                secondaryModifier,
+                                                globalModifier,
+                                            ]
+                                                .filter(Boolean)
+                                                .join("-"),
+                                        ]);
+
+                                        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+                                        testVariations.push({
+                                            testid: testidVariant,
+                                            classes: classesVariant,
+                                            theme,
+                                        });
+                                    });
+                                }
+                            );
+                        }
+                    );
+                });
+
+                // create standalone modifiers test props
+                modifiers?.standalone?.forEach((standaloneModifier) => {
+                    const standaloneClasses = makeClass(standaloneModifier);
+                    const testidVariant = buildTestid([
+                        testidBase,
+                        standaloneModifier,
+                    ]);
+
+                    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+                    testVariations.push({
+                        testid: testidVariant,
+                        classes: standaloneClasses,
+                        theme,
                     });
                 });
-            });
-
-            // create standalone modifiers test props
-            modifiers?.standalone?.forEach((standaloneModifier) => {
-                const standaloneClasses = makeClass(standaloneModifier);
-                const testidVariant = buildTestid([
-                    testidBase,
-                    standaloneModifier
-                ]);
-
-                // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-                testVariations.push({
-                    testid: testidVariant,
-                    classes: standaloneClasses,
-                    theme
-                });
-            });
-        });
+            }
+        );
     });
 
     return testVariations;
@@ -133,7 +151,7 @@ export const makeTestElement = ({
         tag: unsafeStatic(tag),
         attributes: unsafeStatic(attrObjToString(attributes).toString()),
         children: unsafeStatic(children),
-    }
+    };
 
     return html`
         <${unsafe.tag}
@@ -158,8 +176,8 @@ export const makeA11yTest = ({
     testid: string;
     theme: string[];
 }) => {
-  it(`a11y: ${testid} should be accessible`, async () => {
-        await fixture(makeTestElement({attributes, children, tag, testid}));
+    it(`a11y: ${testid} should be accessible`, async () => {
+        await fixture(makeTestElement({ attributes, children, tag, testid }));
 
         document.body.className = "";
         document.body.classList.add(...theme);
@@ -167,7 +185,7 @@ export const makeA11yTest = ({
         // TODO add conditional option for high contrast mode to test against AAA
         // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
         await expect(el).to.be.accessible();
-  });
+    });
 };
 
 // TODO: create `makeTests` function to generate tests for all variants and modifiers

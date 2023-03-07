@@ -23,7 +23,7 @@ const getChild = (child) => {
         default:
             return "";
     }
-}
+};
 
 describe("s-avatar", () => {
     // getTestVariations({

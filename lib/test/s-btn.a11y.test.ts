@@ -7,17 +7,14 @@ describe("s-btn", () => {
         variants: ["danger", "muted", "primary"],
         modifiers: {
             primary: ["filled", "outlined", "filled-outlined"],
-            secondary: [
-                ...["xs", "sm", "md"],
-                ...["dropdown", "icon"]
-            ],
+            secondary: [...["xs", "sm", "md"], ...["dropdown", "icon"]],
             global: ["is-loading"],
             standalone: [
                 ...["link", "unset"],
                 ...["facebook", "github", "google"],
             ],
         },
-    }).forEach(({testid, classes, theme}) => {
+    }).forEach(({ testid, classes, theme }) => {
         makeA11yTest({
             attributes: {
                 class: classes,
@@ -26,7 +23,7 @@ describe("s-btn", () => {
             children: "Ask question",
             tag: "button",
             testid,
-            theme
+            theme,
         });
     });
 });
