@@ -1,4 +1,4 @@
-import { makeA11yTest, getTestVariations } from "../ts/test-utils";
+import { makeTest, makeTestElement, getTestVariations } from "../ts/test-utils";
 import "../ts/index";
 
 describe("s-btn", () => {
@@ -15,15 +15,19 @@ describe("s-btn", () => {
             ],
         },
     }).forEach(({ testid, classes, theme }) => {
-        makeA11yTest({
-            attributes: {
-                class: classes,
-                role: "button",
-            },
-            children: "Ask question",
-            tag: "button",
+        makeTest({
+            element: makeTestElement({
+                attributes: {
+                    class: classes,
+                    role: "button",
+                },
+                children: "Ask question",
+                tag: "button",
+                testid,
+            }),
             testid,
             theme,
+            type: "a11y",
         });
     });
 });

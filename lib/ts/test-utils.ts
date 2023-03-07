@@ -1,5 +1,6 @@
 import { html, fixture, expect, unsafeStatic } from "@open-wc/testing";
 import { screen } from "@testing-library/dom";
+import { visualDiff } from "@web/test-runner-visual-regression";
 
 // TODO reinstate "theme-dark" test once we add ability to skip tests or resolve dark mode contrast issues
 // const colorThemes = ["theme-dark", "theme-light"];
@@ -84,7 +85,7 @@ export const getTestVariations = ({
                                     ["", ...variants].forEach((variant) => {
                                         const variantClasses =
                                             makeClass(variant);
-                                        const classesVariant = ` ${variantClasses}${primaryClasses}${secondaryClasses}${globalClasses}`;
+                                        const classesVariant = `${baseClass} ${variantClasses}${primaryClasses}${secondaryClasses}${globalClasses}`;
                                         const testidVariant = buildTestid([
                                             testidBase,
                                             variant,
@@ -160,27 +161,49 @@ export const makeTestElement = ({
     `;
 };
 
-export const makeA11yTest = ({
-    attributes = {},
-    children = "",
-    tag = "div",
+export const makeTest = ({
+    description,
+    element,
     testid,
-    theme,
+    theme = [],
+    type,
 }: {
-    attributes?: Record<string, string>;
-    children?: string;
-    tag?: string;
+    description?: string;
+    element: any; // TODO type properly
     testid: string;
-    theme: string[];
+    theme?: string[];
+    type: "a11y" | "visual";
 }) => {
-    it(`a11y: ${testid} should be accessible`, async () => {
-        await fixture(makeTestElement({ attributes, children, tag, testid }));
-        console.log(testid);
-        document.body.className = "";
-        document.body.classList.add(...theme);
+    const getDescription = (type: string) => {
+        switch (type) {
+            case "a11y":
+                return "should be accessible";
+            case "visual":
+                return "should not introduce visual regressions";
+            default:
+                return "";
+        }
+    };
+
+    it(`${type}: ${testid} ${description || getDescription(type)}`, async () => {
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+        await fixture(element);
         const el = screen.getByTestId(testid);
-        // TODO add conditional option for high contrast mode to test against AAA
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
-        await expect(el).to.be.accessible();
+
+        document.body.className = "";
+
+        if (theme.length) {
+            document.body.classList.add(...theme);
+        }
+
+        if (type === "a11y") {
+            // TODO add conditional option for high contrast mode to test against AAA
+            // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
+            await expect(el).to.be.accessible();
+        }
+
+        if (type === "visual") {
+            await visualDiff(el, testid);
+        }
     });
 };
