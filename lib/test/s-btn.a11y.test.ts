@@ -1,4 +1,4 @@
-import { buildTestid, makeA11yTest, getTestVariations } from "../ts/test-utils";
+import { makeA11yTest, getTestVariations } from "../ts/test-utils";
 import "../ts/index";
 
 describe("s-btn", () => {

@@ -38,12 +38,7 @@ export const buildTestid = (arr: string[]) => arr.filter(Boolean).join("-");
 export const getTestVariations = ({
     baseClass,
     variants = [],
-    modifiers = {
-        primary: [""],
-        secondary: [""],
-        global: [""],
-        standalone: [""],
-    },
+    modifiers,
     options = {
         testColorThemes: true,
         testHighContrast: true,
@@ -70,18 +65,19 @@ export const getTestVariations = ({
             (colorTheme) => {
                 const theme = [baseTheme, colorTheme].filter(Boolean);
                 const testidBase = buildTestid([baseClass, ...theme]);
+                const primaryModifiers = modifiers?.primary ? ["", ...(<[]>modifiers.primary)] : [""];
+                const secondaryModifiers = modifiers?.secondary ? ["", ...(<[]>modifiers.secondary)] : [""];
+                const globalModifiers = modifiers?.global ? ["", ...(<[]>modifiers.global)] : [""];
 
-                // TODO account for no primary/secondary modifiers
-                ["", ...(<[]>modifiers.primary)].forEach((primaryModifier) => {
+                primaryModifiers.forEach((primaryModifier) => {
                     const primaryClasses = makeClass(primaryModifier);
 
-                    ["", ...(<[]>modifiers.secondary)].forEach(
+                    secondaryModifiers.forEach(
                         (secondaryModifier) => {
                             const secondaryClasses =
                                 makeClass(secondaryModifier);
 
-                            ["", ...(<[]>modifiers.global)].forEach(
-                                (globalModifier) => {
+                                globalModifiers.forEach((globalModifier) => {
                                     const globalClasses =
                                         makeClass(globalModifier);
 
@@ -133,7 +129,8 @@ export const getTestVariations = ({
         );
     });
 
-    return testVariations;
+    // Sorting for readability
+    return testVariations.sort((a, b) => a.testid.localeCompare(b.testid));
 };
 
 export const makeTestElement = ({
@@ -178,7 +175,7 @@ export const makeA11yTest = ({
 }) => {
     it(`a11y: ${testid} should be accessible`, async () => {
         await fixture(makeTestElement({ attributes, children, tag, testid }));
-
+        console.log(testid);
         document.body.className = "";
         document.body.classList.add(...theme);
         const el = screen.getByTestId(testid);
@@ -187,27 +184,3 @@ export const makeA11yTest = ({
         await expect(el).to.be.accessible();
     });
 };
-
-// TODO: create `makeTests` function to generate tests for all variants and modifiers
-// s-avatar example:
-// makeTests({
-//     baseClass: "s-avatar",
-//     variants: null,
-//     modifiers: {
-//         basePrimary: ["24", "32", "48", "64", "96", "128"],
-//     },
-//     children: [
-//         `<img
-//             class="s-avatar--image"
-//             src="https://picsum.photos/48"
-//             alt="team logo"
-//         />`,
-//         `<div class="s-avatar--letter" aria-hidden="true">S</div>`,
-//     ],
-//     options: {
-//         testColorThemes: true,
-//         testHighContrast: true,
-//         includeNullVariant: false,
-//         includeNullModifier: true,
-//     },
-// });
