@@ -58,7 +58,7 @@ const baseConfig = (isProd, minify) => ({
     },
     plugins: [
         new MiniCssExtractPlugin({
-            filename: `[name].css`,
+            filename: `css/[name].css`,
         })
     ],
     resolve: {
