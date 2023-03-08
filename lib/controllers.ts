@@ -3,14 +3,14 @@ export {
     BannerController,
     hideBanner,
     showBanner,
-} from "./components/banner/controller";
-export { ExpandableController } from "./components/expandable/controller";
+} from "./components/banner/banner";
+export { ExpandableController } from "./components/expandable/expandable";
 export {
     ModalController,
     hideModal,
     showModal,
-} from "./components/modal/controller";
-export { TabListController } from "./components/navigation/controller";
+} from "./components/modal/modal";
+export { TabListController } from "./components/navigation/navigation";
 export {
     attachPopover,
     detachPopover,
@@ -18,16 +18,16 @@ export {
     BasePopoverController,
     PopoverController,
     showPopover,
-} from "./components/popover/controller";
-export { TableController } from "./components/table/controller";
+} from "./components/popover/popover";
+export { TableController } from "./components/table/table";
 export {
     ToastController,
     hideToast,
     showToast,
-} from "./components/toast/controller";
+} from "./components/toast/toast";
 export {
     setTooltipHtml,
     setTooltipText,
     TooltipController,
 } from "./components/popover/tooltip-controller";
-export { UploaderController } from "./components/uploader/controller";
+export { UploaderController } from "./components/uploader/uploader";

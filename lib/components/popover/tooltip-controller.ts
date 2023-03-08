@@ -1,5 +1,5 @@
 import * as Stacks from "../../stacks";
-import { BasePopoverController, PopoverController } from "./controller";
+import { BasePopoverController, PopoverController } from "./popover";
 
 export interface TooltipOptions {
     placement: string;
