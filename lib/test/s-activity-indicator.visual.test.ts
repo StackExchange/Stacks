@@ -7,13 +7,13 @@ describe("s-activity-indicator", () => {
         baseClass: "s-activity-indicator",
         variants: ["danger", "success", "warning"],
     }).forEach(({ testid, classes, theme }) => {
-        [null, "new"].forEach((child) => {
+        ["", "new"].forEach((child) => {
             const testidModified = child ? `${testid}-${child}` : testid;
 
             makeTest({
                 element: html`
                     <div
-                        class="d-inline-flex p8"
+                        class="d-inline-flex ai-center jc-center hs1 ws1 p8"
                         data-testid="${testidModified}"
                     >
                         ${makeTestElement({

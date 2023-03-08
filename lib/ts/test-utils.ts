@@ -83,11 +83,9 @@ export const getTestVariations = ({
                         const secondaryClasses = makeClass(secondaryModifier);
 
                         globalModifiers.forEach((globalModifier) => {
-                            const globalClasses = makeClass(globalModifier);
-
                             ["", ...variants].forEach((variant) => {
                                 const variantClasses = makeClass(variant);
-                                const classesVariant = `${baseClass} ${variantClasses}${primaryClasses}${secondaryClasses}${globalClasses}`;
+                                const classesVariant = `${baseClass} ${variantClasses}${primaryClasses}${secondaryClasses} ${globalModifier}`;
                                 const testidVariant = buildTestid([
                                     testidBase,
                                     variant,
@@ -122,7 +120,7 @@ export const getTestVariations = ({
                     // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
                     testVariations.push({
                         testid: testidVariant,
-                        classes: standaloneClasses,
+                        classes: makeClass(standaloneClasses),
                         theme,
                     });
                 });
