@@ -66,49 +66,49 @@ export const getTestVariations = ({
             (colorTheme) => {
                 const theme = [baseTheme, colorTheme].filter(Boolean);
                 const testidBase = buildTestid([baseClass, ...theme]);
-                const primaryModifiers = modifiers?.primary ? ["", ...(<[]>modifiers.primary)] : [""];
-                const secondaryModifiers = modifiers?.secondary ? ["", ...(<[]>modifiers.secondary)] : [""];
-                const globalModifiers = modifiers?.global ? ["", ...(<[]>modifiers.global)] : [""];
+                const primaryModifiers = modifiers?.primary
+                    ? ["", ...(<[]>modifiers.primary)]
+                    : [""];
+                const secondaryModifiers = modifiers?.secondary
+                    ? ["", ...(<[]>modifiers.secondary)]
+                    : [""];
+                const globalModifiers = modifiers?.global
+                    ? ["", ...(<[]>modifiers.global)]
+                    : [""];
 
                 primaryModifiers.forEach((primaryModifier) => {
                     const primaryClasses = makeClass(primaryModifier);
 
-                    secondaryModifiers.forEach(
-                        (secondaryModifier) => {
-                            const secondaryClasses =
-                                makeClass(secondaryModifier);
+                    secondaryModifiers.forEach((secondaryModifier) => {
+                        const secondaryClasses = makeClass(secondaryModifier);
 
-                                globalModifiers.forEach((globalModifier) => {
-                                    const globalClasses =
-                                        makeClass(globalModifier);
+                        globalModifiers.forEach((globalModifier) => {
+                            const globalClasses = makeClass(globalModifier);
 
-                                    ["", ...variants].forEach((variant) => {
-                                        const variantClasses =
-                                            makeClass(variant);
-                                        const classesVariant = `${baseClass} ${variantClasses}${primaryClasses}${secondaryClasses}${globalClasses}`;
-                                        const testidVariant = buildTestid([
-                                            testidBase,
-                                            variant,
-                                            [
-                                                primaryModifier,
-                                                secondaryModifier,
-                                                globalModifier,
-                                            ]
-                                                .filter(Boolean)
-                                                .join("-"),
-                                        ]);
+                            ["", ...variants].forEach((variant) => {
+                                const variantClasses = makeClass(variant);
+                                const classesVariant = `${baseClass} ${variantClasses}${primaryClasses}${secondaryClasses}${globalClasses}`;
+                                const testidVariant = buildTestid([
+                                    testidBase,
+                                    variant,
+                                    [
+                                        primaryModifier,
+                                        secondaryModifier,
+                                        globalModifier,
+                                    ]
+                                        .filter(Boolean)
+                                        .join("-"),
+                                ]);
 
-                                        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-                                        testVariations.push({
-                                            testid: testidVariant,
-                                            classes: classesVariant,
-                                            theme,
-                                        });
-                                    });
-                                }
-                            );
-                        }
-                    );
+                                // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+                                testVariations.push({
+                                    testid: testidVariant,
+                                    classes: classesVariant,
+                                    theme,
+                                });
+                            });
+                        });
+                    });
                 });
 
                 // create standalone modifiers test props
@@ -185,7 +185,9 @@ export const makeTest = ({
         }
     };
 
-    it(`${type}: ${testid} ${description || getDescription(type)}`, async () => {
+    it(`${type}: ${testid} ${
+        description || getDescription(type)
+    }`, async () => {
         // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
         await fixture(element);
         const el = screen.getByTestId(testid);

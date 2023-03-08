@@ -5,7 +5,11 @@ import "../ts/index";
 const testElement = (testid, variant = "info", important = false) => {
     const importantClass = important ? "s-notice__important" : "";
 
-    return html`<div data-testid="${testid}" class="s-toast" aria-hidden="false">
+    return html`<div
+        data-testid="${testid}"
+        class="s-toast"
+        aria-hidden="false"
+    >
         <aside class="s-notice s-notice__${variant} ${importantClass}">
             Test toast: ${variant} ${importantClass}
         </aside>
@@ -15,7 +19,9 @@ const testElement = (testid, variant = "info", important = false) => {
 describe("s-toast", () => {
     ["info", "success", "warning", "danger"].forEach((variant) => {
         [false, true].forEach((important) => {
-            const testid = important ? `s-toast-${variant}-important` : `s-toast-${variant}`;
+            const testid = important
+                ? `s-toast-${variant}-important`
+                : `s-toast-${variant}`;
 
             makeTest({
                 element: testElement(testid, variant, important),

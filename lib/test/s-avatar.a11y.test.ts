@@ -2,7 +2,7 @@ import { makeTest, makeTestElement, getTestVariations } from "../ts/test-utils";
 import "../ts/index";
 
 const getChild = (child) => {
-    const srEl = `<span class="v-visible-sr">Stack Overflow</span>`
+    const srEl = `<span class="v-visible-sr">Stack Overflow</span>`;
     switch (child) {
         case "image":
             return `<img
@@ -40,7 +40,7 @@ describe("s-avatar", () => {
                 }),
                 testid: currentTestId,
                 theme,
-                type: "a11y"
+                type: "a11y",
             });
         });
     });
