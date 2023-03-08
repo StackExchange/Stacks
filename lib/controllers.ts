@@ -29,5 +29,5 @@ export {
     setTooltipHtml,
     setTooltipText,
     TooltipController,
-} from "./components/popover/tooltip-controller";
+} from "./components/popover/tooltip";
 export { UploaderController } from "./components/uploader/uploader";
