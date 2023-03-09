@@ -214,7 +214,6 @@ const runComponentTest = ({
     });
 };
 
-// TODO come up with sensible naming convention for functions
 export {
     buildTestElement,
     getComponentTestVariations,
