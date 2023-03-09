@@ -60,8 +60,6 @@ describe("s-btn", () => {
     // loading button
     const loadingBtnTestid = "s-btn-is-loading";
     makeTest({
-        description:
-            "should not introduce visual regressions for loading button",
         // Adding a padded wrapper to avoid GitHub Actions diff discrepancies
         element: html`
             <div

@@ -140,13 +140,11 @@ const getTestVariations = ({
 };
 
 const makeTest = ({
-    description,
     element,
     testid,
     theme = [],
     type,
 }: {
-    description?: string;
     element: any; // TODO type properly
     testid: string;
     theme?: string[];
@@ -163,9 +161,7 @@ const makeTest = ({
         }
     };
 
-    it(`${type}: ${testid} ${
-        description || getDescription(type)
-    }`, async () => {
+    it(`${type}: ${testid} ${getDescription(type)}`, async () => {
         // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
         await fixture(element);
         const el = screen.getByTestId(testid);
