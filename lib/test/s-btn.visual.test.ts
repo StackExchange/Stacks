@@ -1,6 +1,6 @@
 import { html } from "@open-wc/testing";
-import { makeTest } from "../ts/test-utils";
-// import { getTestVariations, makeTest, makeTestElement } from "../ts/test-utils";
+import { runComponentTest } from "../ts/test-utils";
+// import { getComponentTestVariations, runComponentTest, buildTestElement } from "../ts/test-utils";
 import "../ts/index";
 
 // TODO uncomment when btn tests are generated below
@@ -19,7 +19,7 @@ import "../ts/index";
 describe("s-btn", () => {
     // TODO re-enable test when test-utils functions are stable
     // TODO test disabled states, interaction pseudo-classes
-    // getTestVariations({
+    // getComponentTestVariations({
     //     baseClass: "s-btn",
     //     variants: ["danger", "muted", "primary"],
     //     modifiers: {
@@ -35,13 +35,13 @@ describe("s-btn", () => {
     //     ["", "badge"].forEach((child) => {
     //         const testidBase = child ? `${testid}-${child}` : testid;
 
-    //         makeTest({
+    //         runComponentTest({
     //             element: html`
     //                 <div
     //                     class="bg-black-100 d-inline-flex ai-center jc-center hs1 ws2 p8"
     //                     data-testid="${testidBase}"
     //                 >
-    //                     ${makeTestElement({
+    //                     ${buildTestElement({
     //                         attributes: {
     //                             class: classes,
     //                             type: "button",
@@ -61,7 +61,7 @@ describe("s-btn", () => {
 
     // loading button
     const loadingBtnTestid = "s-btn-is-loading";
-    makeTest({
+    runComponentTest({
         // Adding a padded wrapper to avoid GitHub Actions diff discrepancies
         element: html`
             <div

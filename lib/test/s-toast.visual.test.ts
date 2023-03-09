@@ -1,4 +1,4 @@
-import { makeTest } from "../ts/test-utils";
+import { runComponentTest } from "../ts/test-utils";
 import { html } from "@open-wc/testing";
 import "../ts/index";
 
@@ -23,7 +23,7 @@ describe("s-toast", () => {
                 ? `s-toast-${variant}-important`
                 : `s-toast-${variant}`;
 
-            makeTest({
+            runComponentTest({
                 element: testElement(testid, variant, important),
                 testid: testid,
                 type: "visual",

@@ -1,8 +1,12 @@
-import { makeTest, makeTestElement, getTestVariations } from "../ts/test-utils";
+import {
+    runComponentTest,
+    buildTestElement,
+    getComponentTestVariations,
+} from "../ts/test-utils";
 import "../ts/index";
 
 describe("s-btn", () => {
-    getTestVariations({
+    getComponentTestVariations({
         baseClass: "s-btn",
         variants: ["danger", "muted", "primary"],
         modifiers: {
@@ -15,8 +19,8 @@ describe("s-btn", () => {
             ],
         },
     }).forEach(({ testid, classes, theme }) => {
-        makeTest({
-            element: makeTestElement({
+        runComponentTest({
+            element: buildTestElement({
                 attributes: {
                     class: classes,
                     role: "button",

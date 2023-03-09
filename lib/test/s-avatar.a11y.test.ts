@@ -1,4 +1,8 @@
-import { makeTest, makeTestElement, getTestVariations } from "../ts/test-utils";
+import {
+    runComponentTest,
+    buildTestElement,
+    getComponentTestVariations,
+} from "../ts/test-utils";
 import "../ts/index";
 
 const getChild = (child) => {
@@ -22,15 +26,15 @@ const getChild = (child) => {
 };
 
 describe("s-avatar", () => {
-    getTestVariations({
+    getComponentTestVariations({
         baseClass: "s-avatar",
         variants: ["24", "32", "48", "64", "96", "128"],
     }).forEach(({ testid, classes, theme }) => {
         ["", "image", "letter"].forEach((child) => {
             const currentTestId = child ? `${testid}-${child}` : testid;
 
-            makeTest({
-                element: makeTestElement({
+            runComponentTest({
+                element: buildTestElement({
                     attributes: {
                         class: classes,
                     },

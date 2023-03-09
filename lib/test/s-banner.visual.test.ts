@@ -1,4 +1,8 @@
-import { getTestVariations, makeTest, makeTestElement } from "../ts/test-utils";
+import {
+    getComponentTestVariations,
+    runComponentTest,
+    buildTestElement,
+} from "../ts/test-utils";
 import "../ts/index";
 
 const testElementChild = (testid) => `
@@ -17,15 +21,15 @@ const testElementChild = (testid) => `
 `;
 
 describe("s-banner", () => {
-    getTestVariations({
+    getComponentTestVariations({
         baseClass: "s-banner",
         variants: ["info", "success", "warning", "danger"],
         modifiers: {
             primary: ["important"],
         },
     }).forEach(({ testid, classes, theme }) => {
-        makeTest({
-            element: makeTestElement({
+        runComponentTest({
+            element: buildTestElement({
                 attributes: {
                     class: classes,
                     role: "alert",

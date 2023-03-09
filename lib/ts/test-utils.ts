@@ -6,22 +6,24 @@ import { visualDiff } from "@web/test-runner-visual-regression";
 // const colorThemes = ["dark", "light"];
 const colorThemes = ["light"];
 const baseThemes = ["", "highcontrast"];
+
 type Themes = ["light" | "dark" | "highcontrast" | ""];
-interface TestOptions {
+
+type TestOptions = {
     testColorThemes: boolean;
     testHighContrast: boolean;
     includeNullVariant: boolean;
     includeNullModifier: boolean;
 }
 
-interface TestModifiers {
+type TestModifiers = {
     primary?: string[];
     secondary?: string[];
     global?: string[];
     standalone?: string[];
 }
 
-interface TestProps {
+type TestProps = {
     classes: string;
     testid: string;
     theme?: Themes;
@@ -33,8 +35,6 @@ const attrObjToString = (attrs: Record<string, string>): string => {
     });
     return attrString.join(" ") || "";
 };
-
-const buildTestid = (arr: string[]) => arr.filter(Boolean).join("-");
 
 const buildClasses = ({
     baseClass,
@@ -50,7 +50,36 @@ const buildClasses = ({
     ...unprefixed.filter((x) => x),
 ].join(" ");
 
-const getTestVariations = ({
+const buildTestElement = ({
+    attributes = {},
+    children = "",
+    tag = "div",
+    testid,
+}: {
+    attributes?: Record<string, string>;
+    children?: string;
+    tag?: string;
+    testid: string;
+}) => {
+    const unsafe = {
+        tag: unsafeStatic(tag),
+        attributes: unsafeStatic(attrObjToString(attributes).toString()),
+        children: unsafeStatic(children),
+    };
+
+    return html`
+        <${unsafe.tag}
+            ${unsafe.attributes}
+            data-testid="${testid}"
+        >
+            ${unsafe.children}
+        </${unsafe.tag}>
+    `;
+};
+
+const buildTestid = (arr: string[]) => arr.filter(Boolean).join("-");
+
+const getComponentTestVariations = ({
     baseClass,
     variants = [],
     modifiers,
@@ -139,7 +168,7 @@ const getTestVariations = ({
     return testVariations.sort((a, b) => a.testid.localeCompare(b.testid));
 };
 
-const makeTest = ({
+const runComponentTest = ({
     element,
     testid,
     theme,
@@ -185,38 +214,9 @@ const makeTest = ({
     });
 };
 
-const makeTestElement = ({
-    attributes = {},
-    children = "",
-    tag = "div",
-    testid,
-}: {
-    attributes?: Record<string, string>;
-    children?: string;
-    tag?: string;
-    testid: string;
-}) => {
-    const unsafe = {
-        tag: unsafeStatic(tag),
-        attributes: unsafeStatic(attrObjToString(attributes).toString()),
-        children: unsafeStatic(children),
-    };
-
-    return html`
-        <${unsafe.tag}
-            ${unsafe.attributes}
-            data-testid="${testid}"
-        >
-            ${unsafe.children}
-        </${unsafe.tag}>
-    `;
-};
-
 // TODO come up with sensible naming convention for functions
 export {
-    buildTestid,
-    buildClasses,
-    getTestVariations,
-    makeTestElement,
-    makeTest,
+    buildTestElement,
+    getComponentTestVariations,
+    runComponentTest,
 }
