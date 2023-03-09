@@ -14,26 +14,26 @@ type TestOptions = {
     testHighContrast: boolean;
     includeNullVariant: boolean;
     includeNullModifier: boolean;
-}
+};
 
 type TestModifiers = {
     primary?: string[];
     secondary?: string[];
     global?: string[];
     standalone?: string[];
-}
+};
 
 type TestProps = {
     classes: string;
     testid: string;
     theme?: Themes;
-}
+};
 
 type ComponentTestVariation = {
     classes: string;
     testid: string;
     theme?: Themes;
-}
+};
 
 const attrObjToString = (attrs: Record<string, string>): string => {
     const attrString = Object.keys(attrs).map((key) => {
@@ -50,11 +50,12 @@ const buildClasses = ({
     baseClass: string;
     prefixed?: string[];
     unprefixed?: string[];
-}) => [
-    baseClass,
-    ...prefixed.filter((x) => x).map((suffix) => `${baseClass}__${suffix}`),
-    ...unprefixed.filter((x) => x),
-].join(" ");
+}) =>
+    [
+        baseClass,
+        ...prefixed.filter((x) => x).map((suffix) => `${baseClass}__${suffix}`),
+        ...unprefixed.filter((x) => x),
+    ].join(" ");
 
 const buildTestElement = ({
     attributes = {},
@@ -155,10 +156,7 @@ const getComponentTestVariations = ({
                 // create standalone modifiers test props
                 modifiers?.standalone?.forEach((standaloneModifier) => {
                     testVariations.push({
-                        testid: buildTestid([
-                            testidBase,
-                            standaloneModifier,
-                        ]),
+                        testid: buildTestid([testidBase, standaloneModifier]),
                         classes: buildClasses({
                             baseClass,
                             prefixed: [standaloneModifier],
@@ -220,8 +218,4 @@ const runComponentTest = ({
     });
 };
 
-export {
-    buildTestElement,
-    getComponentTestVariations,
-    runComponentTest,
-}
+export { buildTestElement, getComponentTestVariations, runComponentTest };
