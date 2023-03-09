@@ -16,6 +16,7 @@ const getChild = (child) => {
 };
 
 describe("s-btn", () => {
+    // TODO re-enable test when test-utils functions are stable
     // TODO test disabled states, interaction pseudo-classes
     // getTestVariations({
     //     baseClass: "s-btn",
