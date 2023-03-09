@@ -1,6 +1,7 @@
 import "../css/stacks.less";
 import {
     BannerController,
+    ConditionalField,
     ExpandableController,
     ModalController,
     PopoverController,
@@ -14,6 +15,7 @@ import { application, StacksApplication } from "./stacks";
 
 // register all built-in controllers
 application.register("s-banner", BannerController);
+application.register("s-conditional-field", ConditionalField);
 application.register("s-expandable-control", ExpandableController);
 application.register("s-modal", ModalController);
 application.register("s-toast", ToastController);

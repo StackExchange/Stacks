@@ -1,0 +1,87 @@
+---
+layout: page
+js: true
+title: Conditional Fields
+description: Forms occasionally need to support branching meaning that extra fields will be displayed depending on the values entered to previous fields.
+---
+
+<section class="stacks-section">
+    {% tip "mb24" %}
+        <strong>Accessibility Consideration:</strong> There is currently no accepted approach for creating conditional fields that does not introduce accessibility concerns for Assistive Technology users. It is recommended that large forms that have complex branching be designed to span across multiple pages; read <a href="https://accessibility.blog.gov.uk/2021/09/21/an-update-on-the-accessibility-of-conditionally-revealed-questions/">Gov.UK's article on conditionally revealed questions</a> for more information.
+    {% endtip %}
+
+    {% header "h2", "Radio Buttons" %}
+    {% capture example_one %}
+<fieldset class="s-check-group g8">
+    <legend class="s-label">Support topic I'd like to ask about</legend>
+    <div class="s-check-control">
+        <input type="radio" name="support-topic" id="account-issue" value="account-issue">
+        <label for="account-issue" class="s-label">Account Issue</label>
+    </div>
+
+    <fieldset
+        class="d-none s-check-group g8 pl24"
+        data-controller="s-conditional-field"
+        data-s-conditional-field-target-id-value="account-issue"
+        data-s-conditional-field-operator-value="=="
+        data-s-conditional-field-expected-value="account-issue"
+    >
+        <legend class="v-visible-sr">Account action I want to perform</legend>
+
+        <div class="s-check-control">
+            <input type="radio" name="account-issue" id="lost-password" value="lost-password">
+            <label for="lost-password" class="s-label">I lost my password</label>
+        </div>
+        <div class="s-check-control">
+            <input type="radio" name="account-issue" id="add-remove-creds" value="add-remove-credentials">
+            <label for="add-remove-creds" class="s-label">I need to add or remove login credentials</label>
+        </div>
+        <div class="s-check-control">
+            <input type="radio" name="account-issue" id="delete-user-profile" value="delete-user-profile">
+            <label for="delete-user-profile" class="s-label">I need to delete my user profile</label>
+        </div>
+        <div class="s-check-control">
+            <input type="radio" name="account-issue" id="merge-user-profiles" value="merge-user-profiles">
+            <label for="merge-user-profiles" class="s-label">I need to merge user profiles</label>
+        </div>
+
+        <div
+            class="d-none"
+            data-controller="s-conditional-field"
+            data-s-conditional-field-target-id-value="merge-user-profiles"
+            data-s-conditional-field-operator-value="=="
+            data-s-conditional-field-expected-value="merge-user-profiles"
+        >
+            <div class="d-flex fd-column gy4 pl24">
+                <div class="flex--item">
+                    <label for="account-id" class="s-label">Account ID</label>
+                </div>
+                <div class="flex--item">
+                    <input type="number" class="s-input" id="account-id">
+                </div>
+            </div>
+        </div>
+    </fieldset>
+
+    <div class="s-check-control">
+        <input type="radio" name="support-topic" id="stack-exchange-qa-issue" value="stack-exchange-qa-issue">
+        <label for="stack-exchange-qa-issue" class="s-label">Stack Exchange Q&A Issue</label>
+    </div>
+    <div class="s-check-control">
+        <input type="radio" name="support-topic" id="trust-and-safety" value="trust-and-safety">
+        <label for="trust-and-safety" class="s-label">Trust and Safety</label>
+    </div>
+    <div class="s-check-control">
+        <input type="radio" name="support-topic" id="other-topic" value="other-topic">
+        <label for="other-topic" class="s-label">Other</label>
+    </div>
+</fieldset>
+    {% endcapture %}
+
+    <div class="stacks-preview">
+        {{ example_one | highlight: "html" }}
+        <div class="stacks-preview--example">
+            {{ example_one }}
+        </div>
+    </div>
+</section>
