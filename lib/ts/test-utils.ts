@@ -29,6 +29,12 @@ type TestProps = {
     theme?: Themes;
 }
 
+type ComponentTestVariation = {
+    classes: string;
+    testid: string;
+    theme?: Themes;
+}
+
 const attrObjToString = (attrs: Record<string, string>): string => {
     const attrString = Object.keys(attrs).map((key) => {
         return `${key}="${attrs[key]}"` || "";
@@ -94,7 +100,7 @@ const getComponentTestVariations = ({
     variants?: string[];
     modifiers?: TestModifiers;
     options?: TestOptions;
-}) => {
+}): ComponentTestVariation[] => {
     const testVariations: TestProps[] = [];
 
     // Test default, high contrast themes
