@@ -3,17 +3,18 @@ import { makeTest } from "../ts/test-utils";
 // import { getTestVariations, makeTest, makeTestElement } from "../ts/test-utils";
 import "../ts/index";
 
-const getChild = (child) => {
-    switch (child) {
-        case "badge":
-            return `Ask question
-                <span class="s-btn--badge">
-                    <span class="s-btn--number">198</span>
-                </span>`;
-        default:
-            return "Ask question";
-    }
-};
+// TODO uncomment when btn tests are generated below
+// const getChild = (child) => {
+//     switch (child) {
+//         case "badge":
+//             return `Ask question
+//                 <span class="s-btn--badge">
+//                     <span class="s-btn--number">198</span>
+//                 </span>`;
+//         default:
+//             return "Ask question";
+//     }
+// };
 
 describe("s-btn", () => {
     // TODO re-enable test when test-utils functions are stable
