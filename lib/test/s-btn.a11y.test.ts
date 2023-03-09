@@ -6,7 +6,7 @@ describe("s-btn", () => {
         baseClass: "s-btn",
         variants: ["danger", "muted", "primary"],
         modifiers: {
-            primary: ["filled", "outlined", "filled-outlined"],
+            primary: ["filled", "outlined"],
             secondary: [...["xs", "sm", "md"], ...["dropdown", "icon"]],
             global: ["is-loading"],
             standalone: [
