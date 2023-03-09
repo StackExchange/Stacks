@@ -2,11 +2,11 @@ import { html, fixture, expect, unsafeStatic } from "@open-wc/testing";
 import { screen } from "@testing-library/dom";
 import { visualDiff } from "@web/test-runner-visual-regression";
 
-// TODO reinstate "theme-dark" test once we add ability to skip tests or resolve dark mode contrast issues
-// const colorThemes = ["theme-dark", "theme-light"];
-const colorThemes = ["theme-light"];
-const baseThemes = ["", "theme-highcontrast"];
-
+// TODO reinstate "dark" test once we add ability to skip tests or resolve dark mode contrast issues
+// const colorThemes = ["dark", "light"];
+const colorThemes = ["light"];
+const baseThemes = ["", "highcontrast"];
+type Themes = ["light" | "dark" | "highcontrast" | ""];
 interface TestOptions {
     testColorThemes: boolean;
     testHighContrast: boolean;
@@ -24,7 +24,7 @@ interface TestModifiers {
 interface TestProps {
     classes: string;
     testid: string;
-    theme: string[];
+    theme?: Themes;
 }
 
 const attrObjToString = (attrs: Record<string, string>): string => {
@@ -73,7 +73,7 @@ const getTestVariations = ({
         // Test light, dark theme
         [...(options.testColorThemes ? colorThemes : [""])].forEach(
             (colorTheme) => {
-                const theme = [baseTheme, colorTheme].filter(Boolean);
+                const theme = [baseTheme, colorTheme].filter(Boolean) as Themes;
                 const testidBase = buildTestid([baseClass, ...theme]);
                 const primaryModifiers = modifiers?.primary
                     ? ["", ...(<[]>modifiers.primary)]
@@ -142,12 +142,12 @@ const getTestVariations = ({
 const makeTest = ({
     element,
     testid,
-    theme = [],
+    theme,
     type,
 }: {
     element: any; // TODO type properly
     testid: string;
-    theme?: string[];
+    theme?: Themes;
     type: "a11y" | "visual";
 }) => {
     const getDescription = (type: string) => {
@@ -168,8 +168,9 @@ const makeTest = ({
 
         document.body.className = "";
 
-        if (theme.length) {
-            document.body.classList.add(...theme);
+        if (theme?.length) {
+            const prefixedThemes = theme.map((t) => `theme-${t}`);
+            document.body.classList.add(...prefixedThemes);
         }
 
         if (type === "a11y") {
