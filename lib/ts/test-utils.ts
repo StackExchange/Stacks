@@ -34,9 +34,23 @@ const attrObjToString = (attrs: Record<string, string>): string => {
     return attrString.join(" ") || "";
 };
 
-export const buildTestid = (arr: string[]) => arr.filter(Boolean).join("-");
+const buildTestid = (arr: string[]) => arr.filter(Boolean).join("-");
 
-export const getTestVariations = ({
+const buildClasses = ({
+    baseClass,
+    prefixed = [],
+    unprefixed = [],
+}: {
+    baseClass: string;
+    prefixed?: string[];
+    unprefixed?: string[];
+}) => [
+    baseClass,
+    ...prefixed.filter((x) => x).map((suffix) => `${baseClass}__${suffix}`),
+    ...unprefixed.filter((x) => x),
+].join(" ");
+
+const getTestVariations = ({
     baseClass,
     variants = [],
     modifiers,
@@ -53,11 +67,6 @@ export const getTestVariations = ({
     options?: TestOptions;
 }) => {
     const testVariations: TestProps[] = [];
-
-    const makeClass = (modifier: string) =>
-        modifier
-            ? ` ${baseClass}__${modifier.replace("-", ` ${baseClass}__`)}`
-            : "";
 
     // Test default, high contrast themes
     [...(options.testHighContrast ? baseThemes : [""])].forEach((baseTheme) => {
@@ -77,31 +86,30 @@ export const getTestVariations = ({
                     : [""];
 
                 primaryModifiers.forEach((primaryModifier) => {
-                    const primaryClasses = makeClass(primaryModifier);
-
                     secondaryModifiers.forEach((secondaryModifier) => {
-                        const secondaryClasses = makeClass(secondaryModifier);
-
                         globalModifiers.forEach((globalModifier) => {
                             ["", ...variants].forEach((variant) => {
-                                const variantClasses = makeClass(variant);
-                                const classesVariant = `${baseClass} ${variantClasses}${primaryClasses}${secondaryClasses} ${globalModifier}`;
-                                const testidVariant = buildTestid([
-                                    testidBase,
-                                    variant,
-                                    [
-                                        primaryModifier,
-                                        secondaryModifier,
-                                        globalModifier,
-                                    ]
-                                        .filter(Boolean)
-                                        .join("-"),
-                                ]);
-
-                                // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
                                 testVariations.push({
-                                    testid: testidVariant,
-                                    classes: classesVariant,
+                                    classes: buildClasses({
+                                        baseClass,
+                                        prefixed: [
+                                            variant,
+                                            primaryModifier,
+                                            secondaryModifier,
+                                        ],
+                                        unprefixed: [globalModifier],
+                                    }),
+                                    testid: buildTestid([
+                                        testidBase,
+                                        variant,
+                                        [
+                                            primaryModifier,
+                                            secondaryModifier,
+                                            globalModifier,
+                                        ]
+                                            .filter(Boolean)
+                                            .join("-"),
+                                    ]),
                                     theme,
                                 });
                             });
@@ -111,16 +119,15 @@ export const getTestVariations = ({
 
                 // create standalone modifiers test props
                 modifiers?.standalone?.forEach((standaloneModifier) => {
-                    const standaloneClasses = makeClass(standaloneModifier);
-                    const testidVariant = buildTestid([
-                        testidBase,
-                        standaloneModifier,
-                    ]);
-
-                    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
                     testVariations.push({
-                        testid: testidVariant,
-                        classes: makeClass(standaloneClasses),
+                        testid: buildTestid([
+                            testidBase,
+                            standaloneModifier,
+                        ]),
+                        classes: buildClasses({
+                            baseClass,
+                            prefixed: [standaloneModifier],
+                        }),
                         theme,
                     });
                 });
@@ -132,34 +139,7 @@ export const getTestVariations = ({
     return testVariations.sort((a, b) => a.testid.localeCompare(b.testid));
 };
 
-export const makeTestElement = ({
-    attributes = {},
-    children = "",
-    tag = "div",
-    testid,
-}: {
-    attributes?: Record<string, string>;
-    children?: string;
-    tag?: string;
-    testid: string;
-}) => {
-    const unsafe = {
-        tag: unsafeStatic(tag),
-        attributes: unsafeStatic(attrObjToString(attributes).toString()),
-        children: unsafeStatic(children),
-    };
-
-    return html`
-        <${unsafe.tag}
-            ${unsafe.attributes}
-            data-testid="${testid}"
-        >
-            ${unsafe.children}
-        </${unsafe.tag}>
-    `;
-};
-
-export const makeTest = ({
+const makeTest = ({
     description,
     element,
     testid,
@@ -207,3 +187,39 @@ export const makeTest = ({
         }
     });
 };
+
+const makeTestElement = ({
+    attributes = {},
+    children = "",
+    tag = "div",
+    testid,
+}: {
+    attributes?: Record<string, string>;
+    children?: string;
+    tag?: string;
+    testid: string;
+}) => {
+    const unsafe = {
+        tag: unsafeStatic(tag),
+        attributes: unsafeStatic(attrObjToString(attributes).toString()),
+        children: unsafeStatic(children),
+    };
+
+    return html`
+        <${unsafe.tag}
+            ${unsafe.attributes}
+            data-testid="${testid}"
+        >
+            ${unsafe.children}
+        </${unsafe.tag}>
+    `;
+};
+
+// TODO come up with sensible naming convention for functions
+export {
+    buildTestid,
+    buildClasses,
+    getTestVariations,
+    makeTestElement,
+    makeTest,
+}
