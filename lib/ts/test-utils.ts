@@ -16,14 +16,14 @@ type TestOptions = {
     includeNullModifier: boolean;
 };
 
-type TestModifiers = {
+type ComponentTestModifiers = {
     primary?: string[];
     secondary?: string[];
     global?: string[];
     standalone?: string[];
 };
 
-type TestProps = {
+type ComponentTestProps = {
     classes: string;
     testid: string;
     theme?: Themes;
@@ -99,10 +99,10 @@ const getComponentTestVariations = ({
 }: {
     baseClass: string;
     variants?: string[];
-    modifiers?: TestModifiers;
+    modifiers?: ComponentTestModifiers;
     options?: TestOptions;
 }): ComponentTestVariation[] => {
-    const testVariations: TestProps[] = [];
+    const testVariations: ComponentTestProps[] = [];
 
     // Test default, high contrast themes
     [...(options.testHighContrast ? baseThemes : [""])].forEach((baseTheme) => {
