@@ -16,6 +16,29 @@ type TestOptions = {
     includeNullModifier: boolean;
 };
 
+type TestTypes = "visual" | "a11y";
+
+interface ComponentTestVariationArgs {
+    baseClass: string;
+    variants?: string[];
+    modifiers?: ComponentTestModifiers;
+    options?: TestOptions;
+}
+
+interface ComponentTestArgs extends ComponentTestVariationArgs {
+    attributes?: Record<string, string>;
+    children?: {
+        [key: string]: string;
+    };
+    tag?: string;
+    template?: (args: {
+        component: unknown;
+        tag?: string;
+        testid: string;
+    }) => ReturnType<typeof html>;
+    type: TestTypes;
+}
+
 type ComponentTestModifiers = {
     primary?: string[];
     secondary?: string[];
@@ -24,12 +47,7 @@ type ComponentTestModifiers = {
 };
 
 type ComponentTestProps = {
-    classes: string;
-    testid: string;
-    theme?: Themes;
-};
-
-type ComponentTestVariation = {
+    // TODO consider renaming
     classes: string;
     testid: string;
     theme?: Themes;
@@ -96,12 +114,7 @@ const getComponentTestVariations = ({
         includeNullVariant: false,
         includeNullModifier: true,
     },
-}: {
-    baseClass: string;
-    variants?: string[];
-    modifiers?: ComponentTestModifiers;
-    options?: TestOptions;
-}): ComponentTestVariation[] => {
+}: ComponentTestVariationArgs): ComponentTestProps[] => {
     const testVariations: ComponentTestProps[] = [];
 
     // Test default, high contrast themes
@@ -181,9 +194,9 @@ const runComponentTest = ({
     element: any; // TODO type properly
     testid: string;
     theme?: Themes;
-    type: "a11y" | "visual";
+    type: TestTypes;
 }) => {
-    const getDescription = (type: string) => {
+    const getDescription = (type: TestTypes) => {
         switch (type) {
             case "a11y":
                 return "should be accessible";
@@ -218,4 +231,72 @@ const runComponentTest = ({
     });
 };
 
-export { buildTestElement, getComponentTestVariations, runComponentTest };
+const runComponentTests = ({
+    baseClass,
+    variants = [],
+    modifiers,
+    options = {
+        testColorThemes: true,
+        testHighContrast: true,
+        includeNullVariant: false,
+        includeNullModifier: true,
+    },
+    attributes,
+    children,
+    tag,
+    template,
+    type,
+}: ComponentTestArgs) => {
+    getComponentTestVariations({
+        baseClass,
+        variants,
+        modifiers,
+        options,
+    }).forEach(({ testid, classes, theme }) => {
+        const allChildren: {
+            [key: string]: string;
+        } = children ? { ...children } : { default: "" };
+
+        Object.keys(allChildren).forEach((key) => {
+            const children = allChildren[key];
+            const testidModified =
+                key !== "default" ? `${testid}-${key}` : testid;
+            const element = template
+                ? html`${template({
+                      testid: testidModified,
+                      component: buildTestElement({
+                          attributes: {
+                              class: classes,
+                              ...attributes,
+                          },
+                          children,
+                          testid: `${testidModified}-nested`,
+                          tag,
+                      }),
+                  })}`
+                : buildTestElement({
+                      attributes: {
+                          class: classes,
+                          ...attributes,
+                      },
+                      children,
+                      testid: testidModified,
+                      tag,
+                  });
+
+            runComponentTest({
+                element,
+                testid: testidModified,
+                theme,
+                type,
+            });
+        });
+    });
+};
+
+export {
+    buildTestElement,
+    getComponentTestVariations,
+    runComponentTest,
+    runComponentTests,
+};
