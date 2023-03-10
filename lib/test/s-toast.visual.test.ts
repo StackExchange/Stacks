@@ -1,33 +1,27 @@
-import { runComponentTest } from "../ts/test-utils";
+import { runComponentTests } from "../ts/test-utils";
 import { html } from "@open-wc/testing";
 import "../ts/index";
 
-const testElement = (testid, variant = "info", important = false) => {
-    const importantClass = important ? "s-notice__important" : "";
-
-    return html`<div
-        data-testid="${testid}"
-        class="s-toast"
-        aria-hidden="false"
-    >
-        <aside class="s-notice s-notice__${variant} ${importantClass}">
-            Test toast: ${variant} ${importantClass}
-        </aside>
-    </div>`;
-};
-
-describe("s-toast", () => {
-    ["info", "success", "warning", "danger"].forEach((variant) => {
-        [false, true].forEach((important) => {
-            const testid = important
-                ? `s-toast-${variant}-important`
-                : `s-toast-${variant}`;
-
-            runComponentTest({
-                element: testElement(testid, variant, important),
-                testid: testid,
-                type: "visual",
-            });
-        });
+describe("s-toast > s-notice", () => {
+    // This is a test of notice component wrapped in a toast component
+    runComponentTests({
+        type: "visual",
+        baseClass: "s-notice", // s-toast is a wrapper around s-notice
+        variants: ["info", "success", "warning", "danger"],
+        modifiers: {
+            primary: ["important"],
+        },
+        attributes: {
+            ariaHidden: "false",
+        },
+        children: {
+            toast: "Test toast",
+        },
+        tag: "aside",
+        template: ({ component, testid }) => html`
+            <div data-testid="${testid}" class="s-toast" aria-hidden="false">
+                ${component}
+            </div>
+        `,
     });
 });

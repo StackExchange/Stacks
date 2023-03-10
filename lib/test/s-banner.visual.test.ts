@@ -1,18 +1,14 @@
-import {
-    getComponentTestVariations,
-    runComponentTest,
-    buildTestElement,
-} from "../ts/test-utils";
+import { runComponentTests } from "../ts/test-utils";
 import "../ts/index";
 
-const testElementChild = (testid) => `
+const bannerChild = `
     <div
         class="d-flex flex__center jc-space-between s-banner--container"
         role="alertdialog"
         aria-describedby="banner-message"
     >
         <div aria-label="banner message">
-            Test Banner: ${testid}
+            Test Banner
         </div>
         <div class="ml-auto myn8">
             <span class="s-btn s-banner--btn">Close</span>
@@ -21,27 +17,20 @@ const testElementChild = (testid) => `
 `;
 
 describe("s-banner", () => {
-    getComponentTestVariations({
+    runComponentTests({
+        type: "visual",
         baseClass: "s-banner",
         variants: ["info", "success", "warning", "danger"],
         modifiers: {
             primary: ["important"],
         },
-    }).forEach(({ testid, classes, theme }) => {
-        runComponentTest({
-            element: buildTestElement({
-                attributes: {
-                    class: classes,
-                    role: "alert",
-                    ariaHidden: "false",
-                },
-                children: testElementChild(testid),
-                tag: "aside",
-                testid,
-            }),
-            testid,
-            theme,
-            type: "visual",
-        });
+        attributes: {
+            role: "alert",
+            ariaHidden: "false",
+        },
+        children: {
+            default: bannerChild,
+        },
+        tag: "aside",
     });
 });

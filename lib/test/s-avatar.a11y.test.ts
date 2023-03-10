@@ -1,8 +1,4 @@
-import {
-    runComponentTest,
-    buildTestElement,
-    getComponentTestVariations,
-} from "../ts/test-utils";
+import { runComponentTests } from "../ts/test-utils";
 import "../ts/index";
 
 const getChild = (child) => {
@@ -26,26 +22,15 @@ const getChild = (child) => {
 };
 
 describe("s-avatar", () => {
-    getComponentTestVariations({
+    runComponentTests({
+        type: "a11y",
         baseClass: "s-avatar",
         variants: ["24", "32", "48", "64", "96", "128"],
-    }).forEach(({ testid, classes, theme }) => {
-        ["", "image", "letter"].forEach((child) => {
-            const currentTestId = child ? `${testid}-${child}` : testid;
-
-            runComponentTest({
-                element: buildTestElement({
-                    attributes: {
-                        class: classes,
-                    },
-                    children: getChild(child),
-                    tag: "span",
-                    testid: currentTestId,
-                }),
-                testid: currentTestId,
-                theme,
-                type: "a11y",
-            });
-        });
+        children: {
+            default: getChild(""),
+            image: getChild("image"),
+            letter: getChild("letter"),
+        },
+        tag: "span",
     });
 });

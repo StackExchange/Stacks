@@ -1,6 +1,6 @@
 import { html } from "@open-wc/testing";
 import { runComponentTest } from "../ts/test-utils";
-// import { getComponentTestVariations, runComponentTest, buildTestElement } from "../ts/test-utils";
+import { runComponentTests } from "../ts/test-utils";
 import "../ts/index";
 
 // TODO uncomment when btn tests are generated below
@@ -19,7 +19,8 @@ import "../ts/index";
 describe("s-btn", () => {
     // TODO re-enable test when test-utils functions are stable
     // TODO test disabled states, interaction pseudo-classes
-    // getComponentTestVariations({
+    // runComponentTests({
+    //     type: "visual",
     //     baseClass: "s-btn",
     //     variants: ["danger", "muted", "primary"],
     //     modifiers: {
@@ -31,32 +32,24 @@ describe("s-btn", () => {
     //             ...["facebook", "github", "google"],
     //         ],
     //     },
-    // }).forEach(({ testid, classes, theme }) => {
-    //     ["", "badge"].forEach((child) => {
-    //         const testidBase = child ? `${testid}-${child}` : testid;
-
-    //         runComponentTest({
-    //             element: html`
-    //                 <div
-    //                     class="bg-black-100 d-inline-flex ai-center jc-center hs1 ws2 p8"
-    //                     data-testid="${testidBase}"
-    //                 >
-    //                     ${buildTestElement({
-    //                         attributes: {
-    //                             class: classes,
-    //                             type: "button",
-    //                         },
-    //                         children: getChild(child),
-    //                         tag: "button",
-    //                         testid: `${testidBase}-nested`,
-    //                     })}
-    //                 </div>
-    //             `,
-    //             testid: testidBase,
-    //             theme,
-    //             type: "visual",
-    //         });
-    //     });
+    //     attributes: {
+    //         role: "button",
+    //     },
+    //     children: {
+    //         default: "Ask question",
+    //     },
+    //     tag: "button",
+    //     template: ({
+    //         component,
+    //         testid,
+    //     }) => html`
+    //         <div
+    //             class="bg-black-100 d-inline-flex ai-center jc-center hs1 ws2 p8"
+    //             data-testid="${testid}"
+    //         >
+    //             ${component}
+    //         </div>
+    //     `,
     // });
 
     // loading button
