@@ -24,7 +24,7 @@ describe("s-btn", () => {
         tag: "button",
         excludedTestids: [
             /s-btn-dark/, // TODO remove exclusion when contrast bugs are fixed
-            /primary-outlined/ // This combination is not supported
+            /primary-outlined/, // This combination is not supported
         ],
     });
 });

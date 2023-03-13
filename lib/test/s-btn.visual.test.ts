@@ -38,10 +38,7 @@ describe("s-btn", () => {
             badge: getChild("badge"),
         },
         tag: "button",
-        template: ({
-            component,
-            testid,
-        }) => html`
+        template: ({ component, testid }) => html`
             <div
                 class="bg-black-100 d-inline-flex ai-center jc-center hs1 ws2 p8"
                 data-testid="${testid}"
@@ -50,7 +47,7 @@ describe("s-btn", () => {
             </div>
         `,
         excludedTestids: [
-            /primary-outlined/ // This combination is not supported
+            /primary-outlined/, // This combination is not supported
         ],
     });
 });
