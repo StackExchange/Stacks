@@ -331,7 +331,4 @@ const skipTest = ({
     return excludeTest;
 };
 
-export {
-    runComponentTest,
-    runComponentTests,
-};
+export { runComponentTest, runComponentTests };
