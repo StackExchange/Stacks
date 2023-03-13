@@ -2,9 +2,7 @@ import { html, fixture, expect, unsafeStatic } from "@open-wc/testing";
 import { screen } from "@testing-library/dom";
 import { visualDiff } from "@web/test-runner-visual-regression";
 
-// TODO reinstate "dark" test once we add ability to skip tests or resolve dark mode contrast issues
-// const colorThemes = ["dark", "light"];
-const colorThemes = ["light"];
+const colorThemes = ["dark", "light"];
 const baseThemes = ["", "highcontrast"];
 
 type Themes = ["light" | "dark" | "highcontrast" | ""];
