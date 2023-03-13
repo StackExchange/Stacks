@@ -50,7 +50,6 @@ describe("s-btn", () => {
             </div>
         `,
         excludedTestids: [
-            /dropdown-is-loading/, // TODO remove exclusion when bug is fixed
             /primary-outlined/ // This combination is not supported
         ],
     });
