@@ -264,19 +264,15 @@ const runComponentTests = ({
                 key !== "default" ? `${testid}-${key}` : testid;
             const children = allChildren[key];
 
-            const excludeTest = excludedTestids.some((pattern) => {
-                if (pattern instanceof RegExp) {
-                    return pattern.test(testidModified);
-                } else {
-                    return pattern === testidModified;
-                }
+            const shouldSkipTest = skipTest({
+                excludedTestids,
+                testid: testidModified,
+                type,
             });
 
-            if (excludeTest) {
-                console.log("Skipping:", testidModified);
+            if (shouldSkipTest) {
+                return;
             }
-
-            if (excludeTest) return;
 
             const element = template
                 ? html`${template({
@@ -309,6 +305,32 @@ const runComponentTests = ({
             });
         });
     });
+};
+
+const skipTest = ({
+    excludedTestids,
+    testid,
+    type,
+}: {
+    excludedTestids: (string | RegExp)[];
+    testid: string;
+    type: TestTypes;
+}): boolean => {
+    const excludeTest = excludedTestids.some((pattern) => {
+        if (pattern instanceof RegExp) {
+            return pattern.test(testid);
+        } else {
+            return pattern === testid;
+        }
+    });
+
+    if (excludeTest) {
+        it.skip(`${type}: ${testid} (skipped)`, () => {
+            return;
+        });
+    }
+
+    return excludeTest;
 };
 
 export {
