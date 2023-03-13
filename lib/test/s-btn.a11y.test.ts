@@ -22,5 +22,8 @@ describe("s-btn", () => {
             default: "Ask question",
         },
         tag: "button",
+        excludedTestids: [
+            /primary-outlined/ // This combination is not supported
+        ],
     });
 });
