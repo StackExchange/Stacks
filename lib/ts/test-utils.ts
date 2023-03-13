@@ -30,6 +30,7 @@ interface ComponentTestArgs extends ComponentTestVariationArgs {
     children?: {
         [key: string]: string;
     };
+    excludedTestids?: (string | RegExp)[];
     tag?: string;
     template?: (args: {
         component: unknown;
@@ -243,6 +244,7 @@ const runComponentTests = ({
     },
     attributes,
     children,
+    excludedTestids = [],
     tag,
     template,
     type,
@@ -258,9 +260,24 @@ const runComponentTests = ({
         } = children ? { ...children } : { default: "" };
 
         Object.keys(allChildren).forEach((key) => {
-            const children = allChildren[key];
             const testidModified =
                 key !== "default" ? `${testid}-${key}` : testid;
+            const children = allChildren[key];
+
+            const excludeTest = excludedTestids.some((pattern) => {
+                if (pattern instanceof RegExp) {
+                    return pattern.test(testidModified);
+                } else {
+                    return pattern === testidModified;
+                }
+            });
+
+            if (excludeTest) {
+                console.log("Skipping:", testidModified);
+            }
+
+            if (excludeTest) return;
+
             const element = template
                 ? html`${template({
                       testid: testidModified,
@@ -295,8 +312,6 @@ const runComponentTests = ({
 };
 
 export {
-    buildTestElement,
-    getComponentTestVariations,
     runComponentTest,
     runComponentTests,
 };
