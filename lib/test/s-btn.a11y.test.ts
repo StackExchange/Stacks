@@ -16,7 +16,7 @@ describe("s-btn", () => {
             ],
         },
         attributes: {
-            role: "button",
+            type: "button",
         },
         children: {
             default: "Ask question",
