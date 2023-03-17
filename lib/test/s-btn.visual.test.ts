@@ -1,16 +1,52 @@
-import { html, fixture } from "@open-wc/testing";
-import { visualDiff } from "@web/test-runner-visual-regression";
+import { html } from "@open-wc/testing";
+import { runComponentTests } from "../ts/test-utils";
 import "../ts/index";
 
-describe("s-btn", () => {
-    it("should not introduce visual regressions for loading button", async () => {
-        // Adding a padded wrapper to avoid GitHub Actions diff discrepancies
-        const btn = await fixture(html`
-            <div style="height: 38px; width: 88px; display: inline-block;">
-                <button class="s-btn is-loading" type="button">Loading</button>
-            </div>
-        `);
+const getChild = (child) => {
+    switch (child) {
+        case "badge":
+            return `Ask question
+                <span class="s-btn--badge">
+                    <span class="s-btn--number">198</span>
+                </span>`;
+        default:
+            return "Ask question";
+    }
+};
 
-        await visualDiff(btn, "s-btn-is-loading");
+describe("s-btn", () => {
+    // TODO test disabled states, interaction pseudo-classes
+    runComponentTests({
+        type: "visual",
+        baseClass: "s-btn",
+        variants: ["danger", "muted", "primary"],
+        modifiers: {
+            primary: ["filled", "outlined"],
+            secondary: [...["xs", "sm", "md"], ...["dropdown", "icon"]],
+            global: ["is-loading"],
+            standalone: [
+                ...["link", "unset"],
+                ...["facebook", "github", "google"],
+            ],
+        },
+        attributes: {
+            type: "button",
+        },
+        children: {
+            default: getChild(""),
+            badge: getChild("badge"),
+        },
+        tag: "button",
+        template: ({ component, testid }) => html`
+            <div
+                class="bg-black-100 d-inline-flex ai-center jc-center hs1 ws2 p8"
+                data-testid="${testid}"
+            >
+                ${component}
+            </div>
+        `,
+        excludedTestids: [
+            /primary-outlined/, // This combination is not supported
+        ],
     });
 });
