@@ -362,7 +362,7 @@ const runComponentTests = ({
             });
 
             const shouldExcludeTest = excludeOrSkipTest({
-                patterns: skippedTestids,
+                patterns: excludedTestids,
                 testid: testidModified,
                 type,
             });
