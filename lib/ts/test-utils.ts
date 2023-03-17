@@ -89,9 +89,13 @@ interface ComponentTestsArgs extends ComponentTestVariationArgs {
         [key: string]: string;
     };
     /**
-     * testids of tests to skip
+     * testids of tests to exclude from testing
      */
     excludedTestids?: (string | RegExp)[];
+    /**
+     * testids of tests to skip
+     */
+    skippedTestids?: (string | RegExp)[];
     /**
      * HTML tag name of the test element
      */
@@ -330,6 +334,7 @@ const runComponentTests = ({
     attributes,
     children,
     excludedTestids = [],
+    skippedTestids = [],
     tag,
     template,
     type,
@@ -349,13 +354,20 @@ const runComponentTests = ({
                 key !== "default" ? `${testid}-${key}` : testid;
             const children = allChildren[key];
 
-            const shouldSkipTest = skipTest({
-                excludedTestids,
+            const shouldSkipTest = excludeOrSkipTest({
+                patterns: skippedTestids,
+                skip: true,
                 testid: testidModified,
                 type,
             });
 
-            if (shouldSkipTest) {
+            const shouldExcludeTest = excludeOrSkipTest({
+                patterns: skippedTestids,
+                testid: testidModified,
+                type,
+            });
+
+            if (shouldSkipTest || shouldExcludeTest) {
                 return;
             }
 
@@ -392,30 +404,42 @@ const runComponentTests = ({
     });
 };
 
-const skipTest = ({
-    excludedTestids,
+const matchTestidByPattern = ({
+    testid,
+    pattern,
+}: {
+    testid: string;
+    pattern: string | RegExp;
+}): boolean => {
+    if (pattern instanceof RegExp) {
+        return pattern.test(testid);
+    } else {
+        return pattern === testid;
+    }
+};
+
+const excludeOrSkipTest = ({
+    patterns,
+    skip = false,
     testid,
     type,
 }: {
-    excludedTestids: (string | RegExp)[];
+    patterns: (string | RegExp)[];
+    skip?: boolean;
     testid: string;
     type: TestTypes;
 }): boolean => {
-    const excludeTest = excludedTestids.some((pattern) => {
-        if (pattern instanceof RegExp) {
-            return pattern.test(testid);
-        } else {
-            return pattern === testid;
-        }
+    const matchesTest = patterns.some((pattern) => {
+        return matchTestidByPattern({ testid, pattern });
     });
 
-    if (excludeTest) {
+    if (matchesTest && skip) {
         it.skip(`${type}: ${testid} (skipped)`, () => {
             return;
         });
     }
 
-    return excludeTest;
+    return matchesTest;
 };
 
 export { runComponentTest, runComponentTests };
