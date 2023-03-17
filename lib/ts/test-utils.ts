@@ -1,7 +1,7 @@
 import { html, fixture, expect, unsafeStatic } from "@open-wc/testing";
 import { screen } from "@testing-library/dom";
 import { visualDiff } from "@web/test-runner-visual-regression";
-import type { TemplateResult } from 'lit-html';
+import type { TemplateResult } from "lit-html";
 
 const colorThemes = ["dark", "light"];
 const baseThemes = ["", "highcontrast"];
@@ -51,8 +51,7 @@ interface ComponentTestVariationArgs {
      * Options for the test
      */
     options?: TestOptions;
-};
-
+}
 
 type ComponentTestArgs = {
     /**
@@ -113,7 +112,7 @@ interface ComponentTestsArgs extends ComponentTestVariationArgs {
      * Type of test to run
      */
     type: TestTypes;
-};
+}
 
 type ComponentTestModifiers = {
     /**
