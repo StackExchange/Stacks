@@ -17,6 +17,7 @@
         margin-bottom @ex-transition-duration cubic-bezier(0, 0, 0, 1),
         transform @ex-transition-duration cubic-bezier(1, 0, 1, 1),
         opacity @ex-transition-duration cubic-bezier(1, 0, 1, 1);
+    --_ex-content-v: unset;
 
     &:not(.is-expanded) {
         --_ex-after-h: 0;
@@ -32,6 +33,7 @@
             max-height 0s @ex-transition-duration,
             transform @ex-transition-duration cubic-bezier(0, 1, 1, 1),
             opacity @ex-transition-duration cubic-bezier(0, 1, 1, 1);
+        --_ex-content-v: hidden;
 
         & .s-expandable--content {
             @supports ((-webkit-clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)) or (clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%))) {
@@ -62,6 +64,7 @@
         opacity: var(--_ex-content-o);
         -webkit-transform: var(--_ex-content-transform);
         transform: var(--_ex-content-transform);
+        visibility: var(--_ex-content-v);
 
         -ms-flex-preferred-size: 100%;
         flex-basis: 100%;

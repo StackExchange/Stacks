@@ -1,88 +1,36 @@
-import { html, fixture, expect } from "@open-wc/testing";
-import { screen } from "@testing-library/dom";
+import { runComponentTests } from "../../test/test-utils";
 import "../../index";
 
-// TODO abstract to a helper file… maybe create a helper function to test in all themes
-const colorThemes = ["theme-dark", "theme-light"];
-const baseThemes = ["", "theme-highcontrast"];
-
-const avatarStyles = {
-    sizes: ["24", "32", "48", "64", "96", "128"],
-    children: ["image", "letter"],
-};
-
-const makeTest = ({
-    classes,
-    testid,
-    theme,
-    child = "",
-}: {
-    classes: string;
-    child?: string;
-    testid: string;
-    theme: string[];
-}) => {
-    it(`a11y: ${testid} should be accessible`, async () => {
-        await fixture(html`<a
-            href="#"
-            class="s-avatar${classes}"
-            data-testid="${testid}"
-        >
-            <div
-                class="${child === "letter" ? "s-avatar--letter" : "d-none"}"
-                aria-hidden="true"
-            >
-                S
-            </div>
-            <img
-                class="${child === "image" ? "s-avatar--image" : "d-none"}"
+const getChild = (child: string): string => {
+    const srEl = `<span class="v-visible-sr">Stack Overflow</span>`;
+    switch (child) {
+        case "image":
+            return `<img
+                class="s-avatar--image"
                 src="https://picsum.photos/48"
                 alt="team logo"
-            />
-            <span class="v-visible-sr">Stack Overflow</span>
-        </a>`);
-
-        document.body.className = "";
-        document.body.classList.add(...theme);
-        const avatar = screen.getByTestId(testid);
-        // TODO add conditional option for high contrast mode to test against AAA
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
-        await expect(avatar).to.be.accessible();
-    });
+            />${srEl}`;
+        case "letter":
+            return `<div
+                class="s-avatar--letter"
+                aria-hidden="true">
+                    S
+            </div>${srEl}`;
+        default:
+            return srEl;
+    }
 };
 
-// TODO move to test utils
-const buildTestid = (arr: string[]) => arr.filter(Boolean).join("-");
-
 describe("s-avatar", () => {
-    // Test default, high contrast themes
-    baseThemes.forEach((baseTheme) => {
-        // Test light, dark theme
-        colorThemes.forEach((colorTheme) => {
-            const theme = [baseTheme, colorTheme].filter(Boolean);
-            const testidBase = buildTestid(["s-avatar", ...theme]);
-
-            // Test each size
-            ["", ...avatarStyles.sizes].forEach((size) => {
-                const sizeClasses = size ? ` s-avatar__${size}` : "";
-                const classesSize = ` ${sizeClasses}`;
-                const testidSize = buildTestid([testidBase, size]);
-
-                // Test each size with each child
-                ["", ...avatarStyles.children].forEach((child) => {
-                    const testidChildren = buildTestid([
-                        testidSize,
-                        `with-${child}`,
-                    ]);
-
-                    makeTest({
-                        child,
-                        classes: classesSize,
-                        testid: testidChildren,
-                        theme,
-                    });
-                });
-            });
-        });
+    runComponentTests({
+        type: "a11y",
+        baseClass: "s-avatar",
+        variants: ["24", "32", "48", "64", "96", "128"],
+        children: {
+            default: getChild(""),
+            image: getChild("image"),
+            letter: getChild("letter"),
+        },
+        tag: "span",
     });
 });
