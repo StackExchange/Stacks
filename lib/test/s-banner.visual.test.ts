@@ -1,4 +1,4 @@
-import { runComponentTests } from "../ts/test-utils";
+import { runComponentTests } from "./test-utils";
 import "../ts/index";
 
 const bannerChild = `
