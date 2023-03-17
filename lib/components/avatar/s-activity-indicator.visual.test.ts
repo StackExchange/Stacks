@@ -1,6 +1,6 @@
 import { html } from "@open-wc/testing";
-import { runComponentTests } from "./test-utils";
-import "../ts/index";
+import { runComponentTests } from "../../test/test-utils";
+import "../../index";
 
 describe("s-activity-indicator", () => {
     runComponentTests({
