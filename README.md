@@ -9,25 +9,25 @@ Our documentation is built with Stacks itself, using its [immutable, atomic clas
 The Stacks website documents:
 
 ### Product
-- Semantic and accessible component markup
-- Cross-browser compatible Less / CSS
-- An [icon library](https://github.com/StackExchange/Stacks-Icons)
+- Semantic and accessible component markup.
+- Cross-browser compatible Less / CSS.
+- An [icon library](https://github.com/StackExchange/Stacks-Icons).
 
 ### Email
-- Email templates & components
+- Email templates & components.
 
-Stacks documentation can be found at https://stackoverflow.design/
+Stacks documentation can be found at https://stackoverflow.design/.
 
 ## Table of contents
 
-- [Using Stacks](#using-stacks)
-- [Building Stacks](#building-stacks)
-- [Linting Stacks](#linting-stacks)
-- [Testing Stacks](#testing-stacks)
-- [Releasing Stacks](#releasing-a-new-version-of-stacks)
-- [Bugs and feature requests](#bugs-and-feature-requests)
-- [Contributing](#contributing)
-- [License](#license)
+- [Using Stacks](#using-stacks).
+- [Building Stacks](#building-stacks).
+- [Linting Stacks](#linting-stacks).
+- [Testing Stacks](#testing-stacks).
+- [Releasing Stacks](#releasing-a-new-version-of-stacks).
+- [Bugs and feature requests](#bugs-and-feature-requests).
+- [Contributing](#contributing).
+- [License](#license).
 
 ## Using Stacks
 Using Stacks is outlined in our [usage guidelines](https://stackoverflow.design/product/guidelines/using-stacks).
@@ -115,15 +115,15 @@ git push && git push --tags
 
 ### Create release notes [on Github](https://github.com/StackExchange/Stacks/releases/new)
 
-1. Visit https://github.com/StackExchange/Stacks/releases/new
-1. Choose your new version from the "Choose a tag" dropdown
-1. Click "Generate release notes"
-1. Cleanup and complete the release notes
-    - Prominently mention any breaking changes, if applicable
-    - Include a "What's Changed" section in the release notes
-    - Mention significant bug fixes
-    - Mention new features
-    - Mention significant under-the-hood changes that could impact consumers
+1. Visit https://github.com/StackExchange/Stacks/releases/new.
+1. Choose your new version from the "Choose a tag" dropdown.
+1. Click "Generate release notes".
+1. Cleanup and complete the release notes:
+    - Prominently mention any breaking changes, if applicable.
+    - Include a "What's Changed" section in the release notes.
+    - Mention significant bug fixes.
+    - Mention new features.
+    - Mention significant under-the-hood changes that could impact consumers.
 
 ### Ship your newly created version to [npm](https://www.npmjs.com/package/@stackoverflow/stacks)
 ```sh
