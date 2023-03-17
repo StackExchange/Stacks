@@ -1,52 +1,139 @@
 import { html, fixture, expect, unsafeStatic } from "@open-wc/testing";
 import { screen } from "@testing-library/dom";
 import { visualDiff } from "@web/test-runner-visual-regression";
+import type { TemplateResult } from 'lit-html';
 
 const colorThemes = ["dark", "light"];
 const baseThemes = ["", "highcontrast"];
-
 type Themes = ["light" | "dark" | "highcontrast" | ""];
+type TestTypes = "visual" | "a11y";
 
 type TestOptions = {
+    /**
+     * Enable tests for all color themes
+     * default: true
+     */
     testColorThemes: boolean;
+    /**
+     * Enable tests for high contrast
+     * default: true
+     */
     testHighContrast: boolean;
+    /**
+     * Include tests for the component without any variants applied
+     * default: true
+     */
     includeNullVariant: boolean;
+    /**
+     * Include tests for the component without any modifiers applied
+     * default: true
+     */
     includeNullModifier: boolean;
 };
 
-type TestTypes = "visual" | "a11y";
-
 interface ComponentTestVariationArgs {
+    /**
+     * Base class of the component
+     * (e.g. "s-component")
+     */
     baseClass: string;
+    /**
+     * Variants of the component
+     * (e.g. ["primary", "secondary"])
+     */
     variants?: string[];
+    /**
+     * Modifiers of the component
+     * (e.g. { primary: ["filled", "outlined"], secondary: ["xs", "sm", "md"] })
+     */
     modifiers?: ComponentTestModifiers;
+    /**
+     * Options for the test
+     */
     options?: TestOptions;
-}
+};
 
-interface ComponentTestArgs extends ComponentTestVariationArgs {
+
+type ComponentTestArgs = {
+    /**
+     * The element to test
+     * use the `html` template tag to render the element
+     */
+    element: TemplateResult;
+    /**
+     * testid of the test
+     * (e.g. "s-component-primary-important")
+     */
+    testid: string;
+    /**
+     * Theme to apply to the test element
+     */
+    theme?: Themes;
+    /**
+     * Type of test to run
+     */
+    type: TestTypes;
+};
+
+interface ComponentTestsArgs extends ComponentTestVariationArgs {
+    /**
+     * Additional html attributes applied to the test element
+     * (e.g. { role: "button",  id: "id" } -> <element role="button" id="id">  )
+     */
     attributes?: Record<string, string>;
+    /**
+     * Child elements to render inside the test element
+     * (if key `default` is used, the testid will not include the child name)
+     */
     children?: {
         [key: string]: string;
     };
+    /**
+     * testids of tests to skip
+     */
     excludedTestids?: (string | RegExp)[];
+    /**
+     * HTML tag name of the test element
+     */
     tag?: string;
+    /**
+     * Function that returns a template for the test element
+     * used to wrap the component test element in a container
+     */
     template?: (args: {
         component: unknown;
         tag?: string;
         testid: string;
     }) => ReturnType<typeof html>;
+    /**
+     * Type of test to run
+     */
     type: TestTypes;
-}
+};
 
 type ComponentTestModifiers = {
+    /**
+     * Primary grouping of modifiers to test
+     * The base class will be used as a prefix for these modifiers
+     */
     primary?: string[];
+    /**
+     * Secondary grouping of modifiers to test
+     * The base class will be used as a prefix for these modifiers
+     */
     secondary?: string[];
+    /**
+     * Grouping of modifers to test that will not be prefixed with the base class
+     */
     global?: string[];
+    /**
+     * Modifiers to test individually
+     * The base class will be used as a prefix for these modifiers
+     */
     standalone?: string[];
 };
 
 type ComponentTestProps = {
-    // TODO consider renaming
     classes: string;
     testid: string;
     theme?: Themes;
@@ -115,7 +202,6 @@ const getComponentTestVariations = ({
     },
 }: ComponentTestVariationArgs): ComponentTestProps[] => {
     const testVariations: ComponentTestProps[] = [];
-
     // Test default, high contrast themes
     [...(options.testHighContrast ? baseThemes : [""])].forEach((baseTheme) => {
         // Test light, dark theme
@@ -184,17 +270,15 @@ const getComponentTestVariations = ({
     return testVariations.sort((a, b) => a.testid.localeCompare(b.testid));
 };
 
+/**
+ * Constructs and runs an individual test for a component
+ */
 const runComponentTest = ({
     element,
     testid,
     theme,
     type,
-}: {
-    element: any; // TODO type properly
-    testid: string;
-    theme?: Themes;
-    type: TestTypes;
-}) => {
+}: ComponentTestArgs) => {
     const getDescription = (type: TestTypes) => {
         switch (type) {
             case "a11y":
@@ -230,6 +314,9 @@ const runComponentTest = ({
     });
 };
 
+/**
+ * Constructs and runs tests for a component with a each provided combination
+ */
 const runComponentTests = ({
     baseClass,
     variants = [],
@@ -246,7 +333,7 @@ const runComponentTests = ({
     tag,
     template,
     type,
-}: ComponentTestArgs) => {
+}: ComponentTestsArgs) => {
     getComponentTestVariations({
         baseClass,
         variants,
