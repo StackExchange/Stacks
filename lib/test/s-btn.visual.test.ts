@@ -2,7 +2,6 @@ import { html } from "@open-wc/testing";
 import { runComponentTests } from "../ts/test-utils";
 import "../ts/index";
 
-// TODO uncomment when btn tests are generated below
 const getChild = (child) => {
     switch (child) {
         case "badge":
