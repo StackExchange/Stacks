@@ -23,7 +23,7 @@ const getChild = (child: string): string => {
 
 describe("s-avatar", () => {
     runComponentTests({
-        type: "a11y",
+        type: "visual",
         baseClass: "s-avatar",
         variants: ["24", "32", "48", "64", "96", "128"],
         children: {
