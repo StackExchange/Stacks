@@ -1,7 +1,7 @@
 import { runComponentTests } from "../../test/test-utils";
 import "../../index";
 
-const getChild = (child: string): string => {
+const getChild = (child?: string): string => {
     const srEl = `<span class="v-visible-sr">Stack Overflow</span>`;
     switch (child) {
         case "image":
@@ -27,7 +27,7 @@ describe("s-avatar", () => {
         baseClass: "s-avatar",
         variants: ["24", "32", "48", "64", "96", "128"],
         children: {
-            default: getChild(""),
+            default: getChild(),
             image: getChild("image"),
             letter: getChild("letter"),
         },

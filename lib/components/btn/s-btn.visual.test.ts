@@ -2,7 +2,7 @@ import { html } from "@open-wc/testing";
 import { runComponentTests } from "../../test/test-utils";
 import "../../index";
 
-const getChild = (child: string): string => {
+const getChild = (child?: string): string => {
     switch (child) {
         case "badge":
             return `Ask question
@@ -33,7 +33,7 @@ describe("s-btn", () => {
             type: "button",
         },
         children: {
-            default: getChild(""),
+            default: getChild(),
             badge: getChild("badge"),
         },
         tag: "button",
