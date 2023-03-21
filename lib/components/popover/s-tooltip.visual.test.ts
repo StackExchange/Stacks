@@ -6,7 +6,7 @@ import "../../index";
 
 const user = userEvent.setup();
 
-describe("s-tooltip", () => {
+describe("tooltip", () => {
     it("should not introduce visual regressions", async () => {
         const wrapper = await fixture(html`
             <div style="height: 100px; width: 160px; display: inline-block;">

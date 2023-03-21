@@ -2,7 +2,7 @@ import { html } from "@open-wc/testing";
 import { runComponentTests } from "../../test/test-utils";
 import "../../index";
 
-describe("s-activity-indicator", () => {
+describe("activity-indicator", () => {
     runComponentTests({
         type: "visual",
         baseClass: "s-activity-indicator",

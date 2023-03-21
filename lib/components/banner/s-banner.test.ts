@@ -6,7 +6,7 @@ import { showBanner, hideBanner } from "../../controllers";
 
 const user = userEvent.setup();
 
-describe("s-banner", () => {
+describe("banner", () => {
     it("trigger should make banner visible", async () => {
         await fixture(html`
             <button data-toggle="s-banner" data-target="#test-banner">

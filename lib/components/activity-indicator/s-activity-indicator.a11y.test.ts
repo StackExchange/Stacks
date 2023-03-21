@@ -1,7 +1,7 @@
 import { runComponentTests } from "../../test/test-utils";
 import "../../index";
 
-describe("s-activity-indicator", () => {
+describe("activity-indicator", () => {
     runComponentTests({
         type: "a11y",
         baseClass: "s-activity-indicator",

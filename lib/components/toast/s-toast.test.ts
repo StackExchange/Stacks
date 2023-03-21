@@ -30,7 +30,7 @@ const testToast = (hidden = true) => html` <button
         </aside>
     </div>`;
 
-describe("s-toast", () => {
+describe("toast", () => {
     it("trigger should make toast visible", async () => {
         await fixture(testToast(true));
 

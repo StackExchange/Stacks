@@ -21,7 +21,7 @@ const getChild = (child?: string): string => {
     }
 };
 
-describe("s-avatar", () => {
+describe("avatar", () => {
     runComponentTests({
         type: "visual",
         baseClass: "s-avatar",

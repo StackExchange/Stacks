@@ -5,7 +5,7 @@ import "../../index";
 
 const user = userEvent.setup();
 
-describe("s-tooltip", () => {
+describe("tooltip", () => {
     it("should make the tooltip element visible on hover (after a delay)", async () => {
         const trigger = await fixture(html`
             <button

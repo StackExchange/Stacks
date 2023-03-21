@@ -16,7 +16,7 @@ const bannerChild = `
     </div>
 `;
 
-describe("s-banner", () => {
+describe("banner", () => {
     runComponentTests({
         type: "visual",
         baseClass: "s-banner",
