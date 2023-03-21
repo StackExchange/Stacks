@@ -1,7 +1,7 @@
 import { runComponentTests } from "../../test/test-utils";
 import "../../index";
 
-describe("btn", () => {
+describe("button", () => {
     runComponentTests({
         type: "a11y",
         baseClass: "s-btn",

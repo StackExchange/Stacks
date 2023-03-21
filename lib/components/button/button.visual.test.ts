@@ -14,7 +14,7 @@ const getChild = (child?: string): string => {
     }
 };
 
-describe("btn", () => {
+describe("button", () => {
     // TODO test disabled states, interaction pseudo-classes
     runComponentTests({
         type: "visual",
