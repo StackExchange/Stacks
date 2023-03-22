@@ -1,44 +1,43 @@
 name: CI
 
 on:
-  push:
-    branches: [develop]
-  pull_request:
-    branches: [develop]
+    push:
+        branches: [develop]
+    pull_request:
+        branches: [develop]
 
 jobs:
-  build-and-test:
-    name: Build and Test
-    runs-on: ubuntu-latest
-    steps:
-      - name: ⬇️ Checkout
-        uses: actions/checkout@v3
-        with:
-          lfs: true
+    build-and-test:
+        name: Build and Test
+        runs-on: ubuntu-latest
+        steps:
+            - name: ⬇️ Checkout
+              uses: actions/checkout@v3
+              with:
+                  lfs: true
 
-      - name: ⎔ Setup node
-        uses: actions/setup-node@v3
-        with:
-          node-version: 'lts/*'
+            - name: ⎔ Setup node
+              uses: actions/setup-node@v3
+              with:
+                  node-version: "lts/*"
 
-      - name: 🏗 Install and Build
-        run: |
-          npm ci
-          npx playwright install --with-deps
-          npm run build
+            - name: 🏗 Install and Build
+              run: |
+                  npm ci
+                  npx playwright install --with-deps
+                  npm run build
 
-      - name: ▶️ Lint and Test
-        run: |
-          npm run lint
-          npm run test -- --config web-test-runner.config.ci.mjs
+            - name: ▶️ Lint and Test
+              run: |
+                  npm run lint
+                  npm run test -- --config web-test-runner.config.ci.mjs npm run test --config web-test-runner.config.ci.mjs
 
-      - name: ⬆️ Upload Visual Regression Test Results
-        uses: actions/upload-artifact@v3
-        if: failure()
-        with:
-          name: visual-regression-test-results
-          path: screenshots
-
+            - name: ⬆️ Upload Visual Regression Test Results
+              uses: actions/upload-artifact@v3
+              if: failure()
+              with:
+                  name: visual-regression-test-results
+                  path: screenshots
 
 # cancel the jobs if another workflow is kicked off for the same branch
 concurrency:
