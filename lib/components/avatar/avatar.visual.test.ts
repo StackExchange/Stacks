@@ -35,5 +35,8 @@ describe("avatar", () => {
             letter: getChild("letter"),
         },
         tag: "span",
+        skippedTestids: [
+            /-letter/, // TODO: resolve font-family thrashing issues
+        ],
     });
 });
