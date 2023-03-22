@@ -434,7 +434,7 @@ const excludeOrSkipTest = ({
 
     if (matchesTest && skip) {
         it.skip(`${type}: ${testid} (skipped)`, () => {
-            return;
+            return true;
         });
     }
 
