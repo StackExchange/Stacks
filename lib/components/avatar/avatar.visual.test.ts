@@ -25,6 +25,7 @@ const getChild = (child?: string): string => {
 };
 
 describe("avatar", () => {
+    console.log("nonsense console log to trigger test");
     runComponentTests({
         type: "visual",
         baseClass: "s-avatar",
