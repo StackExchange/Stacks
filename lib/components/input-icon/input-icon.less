@@ -1,0 +1,45 @@
+.s-input-icon {
+    --_ii-fc: unset;
+    --_ii-r: 0.7em;
+
+    // MODIFIERS
+    .has-error & {
+        --_ii-fc: var(--red-400);
+    }
+
+    .has-success & {
+        --_ii-fc: var(--green-400);
+    }
+
+    .has-warning & {
+        --_ii-fc: var(--yellow-600);
+    }
+
+    .is-disabled & {
+        --_ii-fc: var(--black-400);
+    }
+
+    .is-readonly & {
+        --_ii-fc: var(--black-200);
+
+        .highcontrast-mode({
+            --_ii-fc: var(--fc-light);
+        });
+    }
+
+    &&__creditcard,
+    &&__search {
+        --_ii-r: auto;
+
+        color: var(--black-400);
+        left: 0.7em;
+    }
+
+    color: var(--_ii-fc);
+    right: var(--_ii-r);
+
+    margin-top: -9px; // Half the icon's height at 18px for centering;
+    pointer-events: none;
+    position: absolute;
+    top: 50%;
+}

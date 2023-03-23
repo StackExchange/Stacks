@@ -1,0 +1,93 @@
+// stacks-static.less contains styles which we DO NOT allow communities to modify via variables
+// BASE
+@import "base/reset.less";
+@import "base/fieldset.less";
+@import "base/icon.less";
+@import "input-utils.less";
+
+//  --  COMPONENTS
+@import "components/activity-indicator/activity-indicator.less";
+@import "components/anchor/anchor.less";
+@import "components/avatar/avatar.less";
+@import "components/award-bling/award-bling.less";
+@import "components/badge/badge.less";
+@import "components/banner/banner.less";
+@import "components/block-link/block-link.less";
+@import "components/breadcrumbs/breadcrumbs.less";
+@import "components/button/button.less";
+@import "components/button-group/button-group.less";
+@import "components/card/card.less";
+@import "components/check-control/check-control.less";
+@import "components/check-group/check-group.less";
+@import "components/checkbox_radio/checkbox_radio.less";
+@import "components/code-block/code-block.less";
+@import "components/description/description.less";
+@import "components/empty-state/empty-state.less";
+@import "components/expandable/expandable.less";
+@import "components/input_textarea/input_textarea.less";
+@import "components/input-fill/input-fill.less";
+@import "components/input-icon/input-icon.less";
+@import "components/input-message/input-message.less";
+@import "components/label/label.less";
+@import "components/link/link.less";
+@import "components/link-preview/link-preview.less";
+@import "components/menu/menu.less";
+@import "components/modal/modal.less";
+@import "components/navigation/navigation.less";
+@import "components/notice/notice.less";
+@import "components/page-title/page-title.less";
+@import "components/pagination/pagination.less";
+@import "components/popover/popover.less";
+@import "components/post-summary/post-summary.less";
+@import "components/progress-bar/progress-bar.less";
+@import "components/prose/prose.less";
+@import "components/select/select.less";
+@import "components/sidebar-widget/sidebar-widget.less";
+@import "components/spinner/spinner.less";
+@import "components/table/table.less";
+@import "components/table-container/table-container.less";
+@import "components/tag/tag.less";
+@import "components/toast/toast.less";
+@import "components/toggle-switch/toggle-switch.less";
+@import "components/topbar/topbar.less";
+@import "components/uploader/uploader.less";
+@import "components/user-card/user-card.less";
+
+// LESS CONSTANTS AND MIXINS
+@import "exports/exports.less";
+
+//  --  ATOMIC CLASSES
+@import "atomic/border.less";
+@import "atomic/color.less";
+@import "atomic/flex.less";
+@import "atomic/gap.less";
+@import "atomic/grid.less";
+@import "atomic/spacing.less";
+@import "atomic/typography.less";
+@import "atomic/misc.less";
+@import "atomic/width-height.less";
+
+/* stylelint-disable */
+#stacks-internals #screen-lg({
+    #stacks-internals-collect-large();
+});
+#stacks-internals #screen-md({
+    #stacks-internals-collect-medium();
+});
+#stacks-internals #screen-sm({
+    #stacks-internals-collect-small();
+});
+
+@media print { // We need printing styles to be last so they can override all other styles.
+    .print\:d-block & {
+        display: block !important;
+    }
+    .print\:d-none & {
+        display: none !important;
+    }
+}
+/* stylelint-enable */
+
+// CONFIG
+@import "base/configuration-static.less";
+@import "base/internal.less";
