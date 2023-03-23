@@ -83,7 +83,9 @@ function customReporter(opts) {
         },
 
         onTestRunFinished({ sessions }) {
-            const failedSessions = sessions.filter((s) => !s.passed);
+            const failedSessions = sessions.filter(
+                (s) => !s.skipped && !s.passed
+            );
             if (failedSessions.length > 0) {
                 logger.log("\n\nErrors Reported in Tests:\n\n");
                 reportTestsErrors(
