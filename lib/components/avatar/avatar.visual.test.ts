@@ -1,3 +1,4 @@
+import { html } from "@open-wc/testing";
 import { runComponentTests } from "../../test/test-utils";
 import "../../index";
 
@@ -34,7 +35,18 @@ describe("avatar", () => {
             image: getChild("image"),
             letter: getChild("letter"),
         },
-        tag: "span",
+        attributes: {
+            "href": "#",
+        },
+        tag: "a",
+        template: ({ component, testid }) => html`
+            <div
+                data-testid="${testid}"
+                class="d-inline-flex ai-center jc-center hmn1 wmn1 p8"
+            >
+                ${component}
+            </div>
+        `,
         skippedTestids: [
             /-letter/, // TODO: resolve font-family thrashing issues
         ],
