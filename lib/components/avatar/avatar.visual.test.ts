@@ -36,7 +36,7 @@ describe("avatar", () => {
             letter: getChild("letter"),
         },
         attributes: {
-            "href": "#",
+            href: "#",
         },
         tag: "a",
         template: ({ component, testid }) => html`
