@@ -3,6 +3,9 @@ layout: page
 title: Truncation
 description: Stacks provides utility classes for various types of truncation.
 ---
+<!-- Additional javascript -->
+<script src="{{ "/assets/dist/entry.truncation.js" | url }}" defer></script>
+
 <section class="stacks-section">
     {% header "h2", "Classes" %}
     <div class="overflow-x-auto mb32" tabindex="0">
@@ -39,6 +42,39 @@ description: Stacks provides utility classes for various types of truncation.
                     <td><code class="stacks-code">.v-truncate-fade__lg</code></td>
                     <td><code class="stacks-code">.v-truncate-fade</code></td>
                     <td>Increases the amount of visible text.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    {% header "h2", "JavaScript" %}
+    <p class="stacks-copy">Optionally, you can use the <code class="stacks-code">s-truncation</code> component to limit the length of text in an element, while retaining as much of the original markup as possible. It's an useful option when dealing with elements that contain more than just plain text, which aren't truncated by the regular CSS classes.</p>
+
+    {% header "h3", "Attributes" %}
+    <div class="overflow-x-auto mb32" tabindex="0">
+        <table class="wmn4 s-table s-table__bx-simple">
+            <thead>
+                <tr>
+                    <th class="s-table--cell5" scope="col">Attribute</th>
+                    <th class="s-table--cell2" scope="col">Applied to</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody class="fs-caption">
+                <tr>
+                    <th scope="row"><code class="stacks-code">data-controller="s-truncation"</code></th>
+                    <td>Controller element</td>
+                    <td class="p8">Wires up the element to the truncate controller.</td>
+                </tr>
+                <tr>
+                    <th scope="row"><code class="stacks-code">data-s-truncation-length="[x]"</code></th>
+                    <td>Controller element</td>
+                    <td class="p8">Sets the character limit for the text inside the element</td>
+                </tr>
+                <tr>
+                    <th scope="row"><code class="stacks-code">data-s-truncation-truncated="[true|false]"</code></th>
+                    <td>Controller element</td>
+                    <td class="p8">Sets the trucation state for the element. Default is <code class="stacks-code">false</code></code></td>
                 </tr>
             </tbody>
         </table>
@@ -107,4 +143,41 @@ description: Stacks provides utility classes for various types of truncation.
             </div> 
         </div>
     </div>
+
+    {% header "h3", "JavaScript Examples" %}
+    <p class="stacks-copy">CSS offers truncation on arbitrarily-long strings. This can help sanitize user-inputted things like bios, locations, or display names. In order for text truncation to work, it should be applied to a block-level element. Truncation can only apply to text/strings, not arbitrary block-level elements.</p>
+
+    <div class="stacks-preview">
+        {% highlight html %}
+<div data-controller="s-truncation" data-s-truncation-length="130">
+    …
+</div>
+        {% endhighlight %}
+        <div class="stacks-preview--example d-grid grid__6 gx12">
+            <div class="grid--col4">
+                <div data-controller="s-truncation" data-s-truncation-length="130" data-s-truncation-truncated="false" class="js-truncation-example">
+                    <p>In <a href="https://www.destroyallsoftware.com/talks/wat">Gary Bernhardt's Wat talk</a> from 2012 there's this example:</p>
+                    {% highlight javascript %}
+> new Array(16).join("wat" + 1);
+> "wat1wat1wat1wat1wat1wat1wat1wat1wat1wat1wat1wat1wat1wat1wat1" 
+> 
+> new Array(16).join("wat" - 1) + " Batman!";
+> "NaNNaNNaNNaNNaNNaNNaNNaNNaNNaNNaNNaNNaNNaNNaN Batman!" 
+                    {% endhighlight %}
+    
+                    <p class="mt12">So allow me to paraphrase an earlier remark in the presentation:</p>
+                    <blockquote class="bg-black-025 pl12 py4 ml16 bl">Exactly, right!? Like, what is even going on? I <span class="fs-italic">don't even understand</span> what person would think that any of this is a good idea!</blockquote>
+                </div>
+            </div>
+            <div class="grid--col2">
+                <div class="d-grid grid__2 g8 ai-center">
+                    <label class="grid--item s-label" for="content-length">Content length</label>
+                    <input class="grid--item s-input js-truncation-length" type="number" value="130" autocomplete="off">
+                    <label class="grid--item s-label" for="toggle-example">Truncate</label>
+                    <input class="grid--item s-toggle-switch js-truncation-toggle" id="toggle-truncate" type="checkbox" autocomplete="off">
+                </div>
+            </div>
+        </div>
+    </div>
+
 </section>

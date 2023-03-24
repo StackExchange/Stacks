@@ -31,3 +31,9 @@ export {
     TooltipController,
 } from "./components/popover/tooltip";
 export { UploaderController } from "./components/uploader/uploader";
+export {
+    TruncationController,
+    toggleTruncation,
+    restoreContent,
+    truncateContent
+} from "./components/truncation/truncation";

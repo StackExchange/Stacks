@@ -9,6 +9,7 @@ import {
     ToastController,
     TooltipController,
     UploaderController,
+    TruncationController
 } from "./controllers";
 import { application, StacksApplication } from "./stacks";
 
@@ -22,6 +23,7 @@ application.register("s-popover", PopoverController);
 application.register("s-table", TableController);
 application.register("s-tooltip", TooltipController);
 application.register("s-uploader", UploaderController);
+application.register("s-truncation", TruncationController);
 
 // finalize the application to guard our controller namespace
 StacksApplication.finalize();
