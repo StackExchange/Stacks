@@ -1,11 +1,14 @@
 
 interface MatchResult extends Page {
     type: MatchType;
+    matches?: Matches;
+}
+interface Matches {
     section?: Section;
     subtitle?: FragmentTitle;
-    code?: string;
+    codes?: string[];
     text?: string;
-}
+} 
 interface Page {
     id: number;
     url: string;
@@ -68,22 +71,28 @@ interface FragmentTitle {
 
             const url = m.url + getUrlFragment(m, searchTerm)
 
-            const showSubtitle = m.subtitle?.text // [MatchType.SectionTitleExactMatch, MatchType.SectionTitlePartialMatch].includes(m.type)
-            const showSection = m.section // [MatchType.CodePartialMatch, MatchType.CodePartialMatch].includes(m.type)
-            const sectionTitle = m.subtitle?.text || m.section?.subtitles[0]?.text || ""
-            const showDescription = !showSection
-            
+            const titleMatch = [MatchType.TitleExactMatch, MatchType.TitlePartialMatch].includes(m.type)
+            const descMatch = [MatchType.DescriptionPartialMatch].includes(m.type)
+            const showDescription = titleMatch || descMatch
+
             const html = /*html*/
                 `<li><a href="${url}" class="d-block p8 h:bg-powder-050">
                     <div class="d-flex ai-center fw-wrap g4">
                         <span class="bg-powder-050 bar-md p4 px8 fc-black">${m.category}</span>
                         <span class="fs-body2">${highlightText(titleCase(m.title), searchTerm)}</span>
-                        ${m.subtitle?.text ? /*html*/`<span> &gt; <span> <span class="fs-body1">${highlightText(titleCase(m.subtitle.text), searchTerm)}</span>` : ""}
+                        ${m.matches?.subtitle?.text
+                            ? /*html*/`<span> &gt; <span> <span class="fs-body1">${highlightText(titleCase(m.matches?.subtitle.text), searchTerm)}</span>`
+                            : ""
+                        }
                     </div>
                     ${showDescription ? getDescription(m.description, searchTerm) : ""}
                     
-                    ${m.code ? /*html*/`<code class="d-inline-block my4 stacks-code" >${highlightText(m.code, searchTerm)}</code>` : ""}
-                    ${m.text ? /*html*/`<div class="fc-black pl8">${highlightTextSnippet(m.text, searchTerm)}</div>` : ""}
+                    ${!titleMatch && m.matches?.codes?.length
+                        ? m.matches.codes.map(code => {
+                            return /*html*/`<code class="d-inline-block my4 stacks-code" >${highlightText(code, searchTerm)}</code>`
+                        }).join("") 
+                        : ""}
+                    ${!titleMatch && m.matches?.text ? /*html*/`<div class="fc-black pl8">${highlightTextSnippet(m.matches?.text, searchTerm)}</div>` : ""}
                 </a></li>`;
             return html
         })
@@ -96,7 +105,7 @@ interface FragmentTitle {
 
     function getDescription(desc: string | undefined, searchTerm: string) {
         if (!desc) return ""
-        const descHtml = desc.includes(searchTerm)
+        const descHtml = desc.indexOf(searchTerm) > 150
             ? highlightTextSnippet(titleCase(desc), searchTerm)
             : highlightText(truncateString(titleCase(desc)), searchTerm)
             
@@ -125,7 +134,7 @@ interface FragmentTitle {
 
         // get starting point
         var prev_counter = 0
-        var prev_words = 2
+        var prev_words = 4
         var prev_index = startPos
         for (var i = startPos - 1; i > 0; i--) {
             if (text[i] === " ") { //word
@@ -138,7 +147,7 @@ interface FragmentTitle {
 
         // get ending point
         var next_counter = 0
-        var next_words = 8
+        var next_words = 10
         var next_index = startPos
         for (var i = startPos - 1; i < text.length; i++) {
             next_index = i
@@ -166,10 +175,11 @@ interface FragmentTitle {
             return ""
         }
         // if matched subtitle, go to section
-        if ([MatchType.SectionTitleExactMatch, MatchType.SectionTitlePartialMatch].includes(match.type) && match.subtitle?.href) {
-            return "#" + match.subtitle.href
+        if ([MatchType.SectionTitleExactMatch, MatchType.SectionTitlePartialMatch].includes(match.type) && match.matches?.subtitle?.href) {
+            return "#" + match.matches?.subtitle?.href
         }
         // fallback to text fragments - https://developer.mozilla.org/en-US/docs/Web/Text_fragments
+        // TODO - there are some places this doesn't work
         return `#:~:text=${searchTerm}`
     }
 
@@ -189,8 +199,10 @@ interface FragmentTitle {
                         return [{
                             type: MatchType.SectionTitleExactMatch,
                             ...p,
-                            section,
-                            subtitle,
+                            matches: {
+                                section,
+                                subtitle,
+                            }
                         }]
                     }
                 }
@@ -218,8 +230,10 @@ interface FragmentTitle {
                         return [{
                             type: MatchType.SectionTitlePartialMatch,
                             ...p,
-                            section,
-                            subtitle,
+                            matches: {
+                                section,
+                                subtitle,
+                            }
                         }]
                     }
                 }
@@ -232,16 +246,16 @@ interface FragmentTitle {
         // code partial match
         const codePartialMatches = pages.flatMap(p => {
             for (const section of p.sections) {
-                for (const code of section.codes) {
-                    // TODO - render all matching codes
-                    if (code?.includes(searchTerm)) {
-                        return [{
-                            type: MatchType.CodePartialMatch,
-                            ...p,
+                const matchingCodes = section.codes.filter(c => c.includes(searchTerm))
+                if (matchingCodes.length) {
+                    return [{
+                        type: MatchType.CodePartialMatch,
+                        ...p,
+                        matches: {
                             section,
-                            code,
-                        }]
-                    }
+                            codes: matchingCodes
+                        },
+                    }]
                 }
             }
             return [];
@@ -256,8 +270,10 @@ interface FragmentTitle {
                     return [{
                         type: MatchType.ParagraphPartialMatch,
                         ...p,
-                        section,
-                        text: section.text
+                        matches: {
+                            section,
+                            text: section.text
+                        }
                     }]
                 }
             }
@@ -285,5 +301,4 @@ enum MatchType {
     SectionTitlePartialMatch,
     CodePartialMatch,
     ParagraphPartialMatch
-    // TODO Multi Term Match?
 }
