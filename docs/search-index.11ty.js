@@ -21,11 +21,11 @@ class SearchIndex {
             dom.window.document.querySelectorAll(".stacks-preview").forEach(e => e.remove());
             
             const sections = [...dom.window.document.querySelectorAll("section")].map(sect => {
-                const { title, subtitles } = getTitleAndSubtitles(sect)
+                const subtitles = getTitleAndSubtitles(sect)
                 const codes = [...sect.querySelectorAll(".stacks-code:not(.bg-white)")].map(el => el.textContent.toLowerCase())
                 const paragraphs = [...sect.querySelectorAll("p")].map(el => el.textContent.toLowerCase())
-                const text = trimExtraWhiteSpace(paragraphs.join(" "))
-                return { title, subtitles, codes, text }
+                const text = encodeText(trimExtraWhiteSpace(paragraphs.join(" ")))
+                return { subtitles, codes, text }
             });
         
             return {
@@ -37,8 +37,15 @@ class SearchIndex {
             };
         });
 
+        const categorySort = {
+            "Product": 1,
+            "Email": 2,
+            "Content": 3,
+            "Brand" : 4
+        }
+
         // remove pages without title property and add id
-        const searchData = pages.filter(x => x.title).map((el, id) => ({ id, ...el }))
+        const searchData = pages.filter(x => x.title).map((el, id) => ({ id, ...el })).sort((a,b) => categorySort[a.category] - categorySort[b.category])
 
         var stringified = JSON.stringify(searchData, null, 2);
         return stringified;
@@ -48,9 +55,19 @@ class SearchIndex {
 module.exports = SearchIndex;
 
 function htmlToText(html) {
+    if (!html) return ""
     // get raw text portion of html string
     const dom = new jsdom.JSDOM(html);
     return dom.window.document.body.textContent
+}
+
+function encodeText(input) {
+    if (!input) return ""
+    // TODO - use HE
+    input = input.replace(/&/g, '&amp;');
+    input = input.replace(/</g, '&lt;');
+    input = input.replace(/>/g, '&gt;');
+    return input;
 }
 
 function getCategory(url) {
@@ -71,29 +88,12 @@ function removeGenericHeaders(titles) {
 }
 
 function getTitleAndSubtitles (element) {
-    
-    const h2s = removeGenericHeaders([...element.querySelectorAll("h2")].map(el => ({ href: el.id, text: el.textContent.toLowerCase() })));
-    const h3s = removeGenericHeaders([...element.querySelectorAll("h3")].map(el => ({ href: el.id, text: el.textContent.toLowerCase() })));
-    const h4s = removeGenericHeaders([...element.querySelectorAll("h4")].map(el => ({ href: el.id, text: el.textContent.toLowerCase() })));
-
-    if (h2s.length) {
-        return {
-            title: h2s[0],
-            subtitles: [...h2s.slice(1), ...h3s, ...h4s]
-        }
-    } else if (h3s.length) {
-        return {
-            title: h3s[0],
-            subtitles: [...h3s.slice(1), ...h4s]
-        }
-    } else if (h4s.length) {
-        return {
-            title: h4s[0],
-            subtitles: [...h4s.slice(1)]
-        }
-    }
-    return {
-        title: { href: null, text: null },
-        subtitles: []
-    }
+    const headers = [
+        ...element.querySelectorAll("h2"),
+        ...element.querySelectorAll("h3"),
+        ...element.querySelectorAll("h4"),
+    ]
+    const headerData = headers.map(el => ({ href: el.id, text: el.textContent.toLowerCase() }))
+    const subtitles = removeGenericHeaders(headerData)
+    return subtitles
 }
