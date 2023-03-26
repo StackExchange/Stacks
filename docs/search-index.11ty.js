@@ -30,8 +30,9 @@ class SearchIndex {
         
             return {
                 url: item.url,
+                category: getCategory(item.url),
                 title: title?.toLowerCase(),
-                description: description?.toLowerCase(),
+                description: htmlToText(description)?.toLowerCase(),
                 sections,
             };
         });
@@ -45,6 +46,20 @@ class SearchIndex {
 }
 
 module.exports = SearchIndex;
+
+function htmlToText(html) {
+    // get raw text portion of html string
+    const dom = new jsdom.JSDOM(html);
+    return dom.window.document.body.textContent
+}
+
+function getCategory(url) {
+    if (url.startsWith("/product")) return "Product"
+    if (url.startsWith("/email")) return "Email"
+    if (url.startsWith("/content")) return "Content"
+    if (url.startsWith("/brand")) return "Brand"
+    return ""
+}
 
 function trimExtraWhiteSpace(text) {
     return text.replace(/\s+/g, " ")
