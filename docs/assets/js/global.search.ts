@@ -58,7 +58,7 @@ interface FragmentTitle {
             return
         }
 
-        const matches = findMatches(searchTerm).slice(0,5);
+        const matches = findMatches(searchTerm);
 
         if (!matches.length) {
             resultbox.innerHTML = /*html*/
@@ -124,6 +124,7 @@ interface FragmentTitle {
     }
 
     function highlightText(text: string, match: string) {
+        // TODO: what if match is "."
         var reg = new RegExp(match.trim(), 'gi')
         var result = text.replace(reg, "<mark class='d-inline-block bg-orange-100 fw-bold mxn1 px1'>$&</mark>")
         return result.replaceAll("...", /*html*/`<span class="fc-black-150">...</span>`);
@@ -183,105 +184,109 @@ interface FragmentTitle {
         return `#:~:text=${searchTerm}`
     }
 
+    type MatchFunction = (page: Page[]) => MatchResult[];
 
-    function findMatches(searchTerm: string): MatchResult[] {
+    function findMatches(searchTerm: string, limit = 5): MatchResult[] {
         const matches = new Map<number, MatchResult>();
-        // title exact match
-        const titleMatches = pages.filter(p => p.title === searchTerm).map(page => ({type: MatchType.TitleExactMatch, ...page}))
-        pushIfNew(matches, titleMatches)
-        if (matches.size > 5) [...matches.values()]
 
-        // section title exact match
-        const sectionTitleMatches = pages.flatMap(p => {
-            for (const section of p.sections) {
-                for (const subtitle of section.subtitles) {
-                    if (subtitle.text === searchTerm) {
-                        return [{
-                            type: MatchType.SectionTitleExactMatch,
-                            ...p,
-                            matches: {
-                                section,
-                                subtitle,
+        const matchFunctions: Record<number, MatchFunction> = {
+            [MatchType.TitleExactMatch]: (pages) => {
+                return pages
+                    .filter(p => p.title === searchTerm)
+                    .map<MatchResult>(page => ({ type: MatchType.TitleExactMatch, ...page }))
+            },
+            [MatchType.SectionTitleExactMatch]: (pages) => {
+                return pages.flatMap(p => {
+                    for (const section of p.sections) {
+                        for (const subtitle of section.subtitles) {
+                            if (subtitle.text === searchTerm) {
+                                return [{
+                                    type: MatchType.SectionTitleExactMatch,
+                                    ...p,
+                                    matches: {
+                                        section,
+                                        subtitle,
+                                    }
+                                }]
                             }
-                        }]
-                    }
-                }
-            }
-            return [];
-        })
-        pushIfNew(matches, sectionTitleMatches)
-        if (matches.size > 5) [...matches.values()]
-        
-        // title partial match
-        const titlePartialMatches = pages.filter(p => p.title.includes(searchTerm)).map(page => ({type: MatchType.TitlePartialMatch, ...page}))
-        pushIfNew(matches, titlePartialMatches)
-        if (matches.size > 5) [...matches.values()]
-        
-        // description partial match
-        const descPartialMatches = pages.filter(p => p.description?.includes(searchTerm)).map(page => ({type: MatchType.DescriptionPartialMatch, ...page}))
-        pushIfNew(matches, descPartialMatches)
-        if (matches.size > 5) [...matches.values()]
-        
-        // section title partial match
-        const sectionTitlePartialMatches = pages.flatMap(p => {
-            for (const section of p.sections) {
-                for (const subtitle of section.subtitles) {
-                    if (subtitle.text?.includes(searchTerm)) {
-                        return [{
-                            type: MatchType.SectionTitlePartialMatch,
-                            ...p,
-                            matches: {
-                                section,
-                                subtitle,
-                            }
-                        }]
-                    }
-                }
-            }
-            return [];
-        })
-        pushIfNew(matches, sectionTitlePartialMatches)
-        if (matches.size > 5) [...matches.values()]
-        
-        // code partial match
-        const codePartialMatches = pages.flatMap(p => {
-            for (const section of p.sections) {
-                const matchingCodes = section.codes.filter(c => c.includes(searchTerm))
-                if (matchingCodes.length) {
-                    return [{
-                        type: MatchType.CodePartialMatch,
-                        ...p,
-                        matches: {
-                            section,
-                            codes: matchingCodes
-                        },
-                    }]
-                }
-            }
-            return [];
-        })
-        pushIfNew(matches, codePartialMatches)
-        if (matches.size > 5) [...matches.values()]
-        
-        // paragraph partial match
-        const paragraphPartialMatches = pages.flatMap(p => {
-            for (const section of p.sections) {
-                if (section.text.includes(searchTerm)) {
-                    return [{
-                        type: MatchType.ParagraphPartialMatch,
-                        ...p,
-                        matches: {
-                            section,
-                            text: section.text
                         }
-                    }]
-                }
-            }
-            return [];
-        })
-        pushIfNew(matches, paragraphPartialMatches)
+                    }
+                    return [];
+                })
+            },
+            [MatchType.TitlePartialMatch]: (pages) => {
+                return pages
+                    .filter(p => p.title.includes(searchTerm))
+                    .map(page => ({ type: MatchType.TitlePartialMatch, ...page }))
+            },
+            [MatchType.DescriptionPartialMatch]: (pages) => {
+                return pages
+                    .filter(p => p.description?.includes(searchTerm))
+                    .map(page => ({ type: MatchType.DescriptionPartialMatch, ...page }))
+            },
+            [MatchType.SectionTitlePartialMatch]: (pages) => {
+                return pages.flatMap(p => {
+                    for (const section of p.sections) {
+                        for (const subtitle of section.subtitles) {
+                            if (subtitle.text?.includes(searchTerm)) {
+                                return [{
+                                    type: MatchType.SectionTitlePartialMatch,
+                                    ...p,
+                                    matches: {
+                                        section,
+                                        subtitle,
+                                    }
+                                }]
+                            }
+                        }
+                    }
+                    return [];
+                })
+            },
+            [MatchType.CodePartialMatch]: (pages) => {
+                return pages.flatMap(p => {
+                    for (const section of p.sections) {
+                        const matchingCodes = section.codes.filter(c => c.includes(searchTerm))
+                        if (matchingCodes.length) {
+                            return [{
+                                type: MatchType.CodePartialMatch,
+                                ...p,
+                                matches: {
+                                    section,
+                                    codes: matchingCodes
+                                },
+                            }]
+                        }
+                    }
+                    return [];
+                })
+            },
+            [MatchType.ParagraphPartialMatch]: (pages) => {
+                return pages.flatMap(p => {
+                    for (const section of p.sections) {
+                        if (section.text.includes(searchTerm)) {
+                            return [{
+                                type: MatchType.ParagraphPartialMatch,
+                                ...p,
+                                matches: {
+                                    section,
+                                    text: section.text
+                                }
+                            }]
+                        }
+                    }
+                    return [];
+                })
+            },
+        }
+
+        for (const matchFunc of Object.values(matchFunctions)) {
+            const newMatches = matchFunc(pages)
+            pushIfNew(matches, newMatches)
+            if (matches.size > limit) { break }
+        }
         
-        return [...matches.values()]
+        return [...matches.values()].slice(0,limit)
     }
 
     function pushIfNew(matches: Map<number, MatchResult>, incoming: MatchResult[]) {
