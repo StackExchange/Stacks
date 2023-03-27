@@ -31,14 +31,14 @@ interface FragmentTitle {
     const resp = await fetch("/search.json")
     const pages = await resp.json() as Page[];
     
-    var searchbox = document.getElementById("searchbox") as HTMLInputElement
-    var resultbox = document.getElementById("search-results")!
+    const searchbox = document.getElementById("searchbox") as HTMLInputElement
+    const resultbox = document.getElementById("search-results")!
 
     searchbox.addEventListener("focus", function () { 
         resultbox.classList.remove("d-none")
     })
     // TODO: Also handle blur
-    document.addEventListener("click", function(e) {
+    document.addEventListener("click", function (e: MouseEvent) {
         // if click wasn't from search, close search
         if (!(e.target as HTMLElement).closest("#searchbox,#search-results")) {
             resultbox.classList.add("d-none")
@@ -48,9 +48,10 @@ interface FragmentTitle {
     // TODO: handle focus / change events
     // TODO: debounce if needed
     searchbox.addEventListener("keyup", handleSearch)
+
         
     function handleSearch() {
-        var searchTerm = searchbox.value.toLowerCase();
+        const searchTerm = searchbox.value.toLowerCase();
 
         if (!searchTerm) {
             resultbox.innerHTML = /*html*/
@@ -119,14 +120,14 @@ interface FragmentTitle {
     }
 
     function highlightTextSnippet(text: string, match: string) {
-        var snippet = getTextSnippet(text,match)
+        const snippet = getTextSnippet(text,match)
         return highlightText(snippet, match)
     }
 
     function highlightText(text: string, match: string) {
         // TODO: what if match is "."
-        var reg = new RegExp(match.trim(), 'gi')
-        var result = text.replace(reg, "<mark class='d-inline-block bg-orange-100 fw-bold mxn1 px1'>$&</mark>")
+        const reg = new RegExp(match.trim(), 'gi')
+        const result = text.replace(reg, "<mark class='d-inline-block bg-orange-100 fw-bold mxn1 px1'>$&</mark>")
         return result.replaceAll("...", /*html*/`<span class="fc-black-150">...</span>`);
     }
 
@@ -134,10 +135,10 @@ interface FragmentTitle {
         const startPos = text.toLowerCase().indexOf(match)
 
         // get starting point
-        var prev_counter = 0
-        var prev_words = 4
-        var prev_index = startPos
-        for (var i = startPos - 1; i > 0; i--) {
+        const prev_words = 4
+        let prev_counter = 0
+        let prev_index = startPos
+        for (let i = startPos - 1; i > 0; i--) {
             if (text[i] === " ") { //word
                 // increment prev_counter
                 prev_counter++
@@ -147,10 +148,10 @@ interface FragmentTitle {
         }
 
         // get ending point
-        var next_counter = 0
-        var next_words = 10
-        var next_index = startPos
-        for (var i = startPos - 1; i < text.length; i++) {
+        const next_words = 10
+        let next_counter = 0
+        let next_index = startPos
+        for (let i = startPos - 1; i < text.length; i++) {
             next_index = i
             if (text[i] === " ") { //word
                 // increment prev_counter
@@ -159,7 +160,7 @@ interface FragmentTitle {
             }
         }
 
-        var snippet = text.slice(prev_index, next_index + 1)
+        const snippet = text.slice(prev_index, next_index + 1)
         const prefix = prev_index > 0 ? '... ' : ""
         const suffix = next_index < text.length - 1 ? " ..." : ""
         const result = prefix + snippet + suffix
@@ -226,6 +227,7 @@ interface FragmentTitle {
             },
             [MatchType.SectionTitlePartialMatch]: (pages) => {
                 return pages.flatMap(p => {
+                    // TODO - return multiple matches?
                     for (const section of p.sections) {
                         for (const subtitle of section.subtitles) {
                             if (subtitle.text?.includes(searchTerm)) {

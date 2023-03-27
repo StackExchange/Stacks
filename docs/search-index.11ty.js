@@ -11,8 +11,8 @@ class SearchIndex {
     }
 
     render(data) {
-        let pages = data.collections.all.map((item) => {
-            var { title, description } = item.data;
+        const pages = data.collections.all.map((item) => {
+            const { title, description } = item.data;
 
             // convert html to DOM for easier traversal and retrieval
             const dom = new jsdom.JSDOM(item.templateContent);
@@ -44,10 +44,12 @@ class SearchIndex {
             "Brand" : 4
         }
 
-        // remove pages without title property and add id
-        const searchData = pages.filter(x => x.title).map((el, id) => ({ id, ...el })).sort((a,b) => categorySort[a.category] - categorySort[b.category])
+        // remove pages without title property and add id, and sort
+        const searchData = pages
+            .filter(x => x.title).map((el, id) => ({ id, ...el }))
+            .sort((a, b) => categorySort[a.category] - categorySort[b.category])
 
-        var stringified = JSON.stringify(searchData, null, 2);
+        const stringified = JSON.stringify(searchData, null, 2);
         return stringified;
     }
 }
@@ -87,7 +89,8 @@ function removeGenericHeaders(titles) {
     return titles.filter(t => !genericHeaders.includes(t.text))  
 }
 
-function getTitleAndSubtitles (element) {
+function getTitleAndSubtitles(element) {
+    // don't just select "h2,h3,h4" - want headers in hierarchy order
     const headers = [
         ...element.querySelectorAll("h2"),
         ...element.querySelectorAll("h3"),
