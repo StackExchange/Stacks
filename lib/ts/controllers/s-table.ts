@@ -5,10 +5,10 @@ import * as Stacks from "../stacks";
  *
  * @see https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-sort#values
  */
-enum SortOrder {
-    Ascending = 'ascending',
-    Descending = 'descending',
-    None = 'none',
+export enum SortOrder {
+    Ascending = "ascending",
+    Descending = "descending",
+    None = "none",
 }
 
 export class TableController extends Stacks.StacksController {
@@ -47,7 +47,7 @@ export class TableController extends Stacks.StacksController {
         // the default behavior when clicking a header is to sort by this column in ascending
         // direction, *unless* it is already sorted that way
         const direction =
-            colHead.getAttribute('aria-sort') === SortOrder.Ascending ? -1 : 1;
+            colHead.getAttribute("aria-sort") === SortOrder.Ascending ? -1 : 1;
 
         const rows = Array.from(table.tBodies[0].rows);
 
@@ -77,7 +77,7 @@ export class TableController extends Stacks.StacksController {
             // unless the to-be-sorted-by value is explicitly provided on the element via this attribute,
             // the value we're using is the cell's text, trimmed of any whitespace
             const explicit = controller.getElementData(cell, "sort-val");
-            const d = explicit != null ? explicit : cell.textContent!.trim();
+            const d = explicit ?? cell.textContent?.trim() ?? "";
 
             if (d !== "" && `${parseInt(d, 10)}` !== d) {
                 anyNonInt = true;
@@ -115,7 +115,7 @@ export class TableController extends Stacks.StacksController {
         // this is the actual reordering of the table rows
         data.forEach(([_, rowIndex]) => {
             const row = rows[rowIndex];
-            row.parentElement!.removeChild(row);
+            row.parentElement?.removeChild(row);
 
             if (firstBottomRow) {
                 tbody.insertBefore(row, firstBottomRow);
@@ -126,100 +126,114 @@ export class TableController extends Stacks.StacksController {
 
         // update the UI and set the `data-sort-direction` attribute if appropriate, so that the next click
         // will cause sorting in descending direction
-        this.updateSortedColumnStyles(colHead, direction === 1 ? SortOrder.Ascending : SortOrder.Descending);
+        this.updateSortedColumnStyles(
+            colHead,
+            direction === 1 ? SortOrder.Ascending : SortOrder.Descending
+        );
     }
 
-    private updateSortedColumnStyles(targetColumnHeader: Element, direction: SortOrder): void {
+    private updateSortedColumnStyles = (
+        targetColumnHeader: Element,
+        direction: SortOrder
+    ): void => {
         // Loop through all sortable columns and remove their sorting direction
         // (if any), and only leave/set a sorting on `targetColumnHeader`.
         this.columnTargets.forEach((header: HTMLTableCellElement) => {
             const isCurrent = header === targetColumnHeader;
             const classSuffix = isCurrent
-                ? (direction === SortOrder.Ascending ? 'asc' : 'desc')
+                ? direction === SortOrder.Ascending
+                    ? "asc"
+                    : "desc"
                 : SortOrder.None;
 
-            header.classList.toggle('is-sorted', isCurrent && direction !== SortOrder.None);
-            header.querySelectorAll('.js-sorting-indicator').forEach((icon) => {
-                icon.classList.toggle('d-none', !icon.classList.contains('js-sorting-indicator-' + classSuffix));
+            header.classList.toggle(
+                "is-sorted",
+                isCurrent && direction !== SortOrder.None
+            );
+            header.querySelectorAll(".js-sorting-indicator").forEach((icon) => {
+                icon.classList.toggle(
+                    "d-none",
+                    !icon.classList.contains(
+                        "js-sorting-indicator-" + classSuffix
+                    )
+                );
             });
 
             if (isCurrent) {
-                header.setAttribute('aria-sort', direction);
+                header.setAttribute("aria-sort", direction);
             } else {
-                header.removeAttribute('aria-sort');
+                header.removeAttribute("aria-sort");
             }
         });
-    }
+    };
 
     /**
      * Transform legacy header markup into the new markup.
      *
      * @param headerEl
      */
-    private ensureHeadersAreClickable(headerEl: HTMLTableCellElement) {
-        const headerAction = headerEl.getAttribute('data-action');
+    private ensureHeadersAreClickable = (headerEl: HTMLTableCellElement) => {
+        const headerAction = headerEl.getAttribute("data-action");
 
         // Legacy markup that violates accessibility practices; change the DOM
-        if (headerAction !== null && headerAction.substring(0, 5) === 'click') {
-            if (process.env.NODE_ENV !== 'production') {
-                console.warn('s-table :: a `<th>` should not have a `data-action="click->..."` attribute. https://stackoverflow.design/product/components/tables/#javascript-example');
-                console.warn('target: ', headerEl);
-            }
+        if (headerAction !== null && headerAction.substring(0, 5) === "click") {
+            headerEl.removeAttribute("data-action");
 
-            headerEl.removeAttribute('data-action');
+            // eslint-disable-next-line no-unsanitized/property
             headerEl.innerHTML = `
                 <button data-action="${headerAction}">
                     ${headerEl.innerHTML}
                 </button>
             `;
         }
-    }
+    };
 }
 
-function buildIndex(
+export function buildIndex(
     section: HTMLTableSectionElement
 ): HTMLTableCellElement[][] {
     const result = buildIndexOrGetCellSlot(section);
-    if (!(result instanceof Array)) {
+
+    if (!Array.isArray(result)) {
         throw "shouldn't happen";
     }
+
     return result;
 }
 
-function getCellSlot(cell: HTMLTableCellElement): number {
-    if (
-        !(
-            cell.parentElement &&
-            cell.parentElement.parentElement instanceof HTMLTableSectionElement
-        )
-    ) {
+export function getCellSlot(cell: HTMLTableCellElement): number {
+    const tableElement = cell.parentElement?.parentElement;
+
+    if (!(tableElement instanceof HTMLTableSectionElement)) {
         throw "invalid table";
     }
-    const result = buildIndexOrGetCellSlot(
-        cell.parentElement.parentElement,
-        cell
-    );
+
+    const result = buildIndexOrGetCellSlot(tableElement, cell);
+
     if (typeof result !== "number") {
         throw "shouldn't happen";
     }
+
     return result;
 }
 
-// Just because a <td> is the 4th *child* of its <tr> doesn't mean it belongs to the 4th *column*
-// of the table. Previous cells may have a colspan; cells in previous rows may have a rowspan.
-// Because we need to know which header cells and data cells belong together, we have to 1) find out
-// which column number (or "slot" as we call it here) the header cell has, and 2) for each row find
-// out which <td> cell corresponds to this slot (because those are the rows we're sorting by).
-//
-// That's what the following function does. If the second argument is not given, it returns an index
-// of the table, which is an array of arrays. Each of the sub-arrays corresponds to a table row. The
-// indices of the sub-array correspond to column slots; the values are the actual table cell elements.
-// For example index[4][3] is the <td> or <th> in row 4, column 3 of the table section (<tbody> or <thead>).
-// Note that this element is not necessarily even in the 4th (zero-based) <tr> -- if it has a rowSpan > 1,
-// it may also be in a previous <tr>.
-//
-// If the second argument is given, it's a <td> or <th> that we're trying to find, and the algorithm
-// stops as soon as it has found it and the function returns its slot number.
+/**
+ * Just because a <td> is the 4th *child* of its <tr> doesn't mean it belongs to the 4th *column*
+ * of the table. Previous cells may have a colspan; cells in previous rows may have a rowspan.
+ * Because we need to know which header cells and data cells belong together, we have to 1) find out
+ * which column number (or "slot" as we call it here) the header cell has, and 2) for each row find
+ * out which <td> cell corresponds to this slot (because those are the rows we're sorting by).
+ *
+ * That's what the following function does. If the second argument is not given, it returns an index
+ * of the table, which is an array of arrays. Each of the sub-arrays corresponds to a table row. The
+ * indices of the sub-array correspond to column slots; the values are the actual table cell elements.
+ * For example index[4][3] is the <td> or <th> in row 4, column 3 of the table section (<tbody> or <thead>).
+ * Note that this element is not necessarily even in the 4th (zero-based) <tr> -- if it has a rowSpan > 1,
+ * it may also be in a previous <tr>.
+ *
+ * If the second argument is given, it's a <td> or <th> that we're trying to find, and the algorithm
+ * stops as soon as it has found it and the function returns its slot number.
+ */
 function buildIndexOrGetCellSlot(
     section: HTMLTableSectionElement,
     findCell?: HTMLTableCellElement
@@ -234,38 +248,39 @@ function buildIndexOrGetCellSlot(
     const growingRowsLeft: number[] = [];
 
     // continue while we have actual <tr>'s left *or* we still have rowspan'ed elements that aren't done
-    while (
-        curRow ||
-        growingRowsLeft.some(function (e) {
-            return e !== 0;
-        })
-    ) {
+    while (curRow || growingRowsLeft.some((e) => e !== 0)) {
         const curIndexRow: HTMLTableCellElement[] = [];
         index.push(curIndexRow);
 
         let curSlot = 0;
         if (curRow) {
             for (
-                let curCellInd = 0;
-                curCellInd < curRow.children.length;
-                curCellInd++
+                let curCellIdx = 0;
+                curCellIdx < curRow.children.length;
+                curCellIdx++
             ) {
                 while (growingRowsLeft[curSlot]) {
                     growingRowsLeft[curSlot]--;
                     curIndexRow[curSlot] = growing[curSlot];
                     curSlot++;
                 }
-                const cell = curRow.children[curCellInd];
+
+                const cell = curRow.children[curCellIdx];
+
                 if (!(cell instanceof HTMLTableCellElement)) {
                     throw "invalid table";
                 }
+
                 if (getComputedStyle(cell).display === "none") {
                     continue;
                 }
+
                 if (cell === findCell) {
                     return curSlot;
                 }
+
                 const nextFreeSlot = curSlot + cell.colSpan;
+
                 for (; curSlot < nextFreeSlot; curSlot++) {
                     growingRowsLeft[curSlot] = cell.rowSpan - 1; // if any of these is already growing, the table is broken -- no guarantees of anything
                     growing[curSlot] = cell;
@@ -273,18 +288,21 @@ function buildIndexOrGetCellSlot(
                 }
             }
         }
+
         while (curSlot < growing.length) {
             if (growingRowsLeft[curSlot]) {
                 growingRowsLeft[curSlot]--;
                 curIndexRow[curSlot] = growing[curSlot];
             }
+
             curSlot++;
         }
+
         if (curRow) {
             curRow = curRow.nextElementSibling;
         }
     }
-    return findCell
-        ? -1
-        : index; /* if findCell was given but we end up here, that means it isn't in this section */
+
+    // if findCell was given, but we end up here, that means it isn't in this section
+    return findCell ? -1 : index;
 }
