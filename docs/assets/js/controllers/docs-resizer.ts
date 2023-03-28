@@ -1,4 +1,4 @@
-import * as Stimulus from "stimulus";
+import * as Stimulus from "@hotwired/stimulus";
 
 (function(){
     var application = Stimulus.Application.start();

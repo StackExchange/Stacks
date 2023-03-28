@@ -1,0 +1,148 @@
+.s-popover {
+    --_po-bg: var(--white);
+    --_po-bc: var(--bc-medium);
+    --_po-bs: var(--bs-md);
+    --_po-d: none;
+    --_po-wmn: 12rem;
+    --_po-w: 100%;
+    // arrow
+    --_po-arrow-fc: var(--white);
+    --_po-arrow-b: unset;
+    --_po-arrow-l: unset;
+    --_po-arrow-r: unset;
+    --_po-arrow-t: unset;
+    --_po-arrow-ps: calc(var(--su6) * -1); // ps suffix used for placement, not positioning value
+    --_po-arrow-after-b: unset;
+    --_po-arrow-after-l: unset;
+    --_po-arrow-after-r: unset;
+    --_po-arrow-after-t: unset;
+    --_po-arrow-after-bs: unset;
+
+    // CONTEXTUAL STYLES
+    .dark-mode({
+        --_po-bg: var(--black-075);
+        --_po-bc: var(--bc-light);
+        --_po-bs: var(--bs-lg);
+        --_po-arrow-fc: var(--black-075);
+    });
+
+    // MODIFIERS
+    &.is-visible {
+        --_po-d: block;
+    }
+
+    &&__tooltip {
+        --_po-wmn: unset;
+        --_po-w: auto;
+    }
+
+    // CHILD ELEMENTS
+    // Arrow
+    &[data-popper-placement^="top"] > &--arrow,
+    & &--arrow__bc,
+    & &--arrow__bl,
+    & &--arrow__br {
+        --_po-arrow-b: var(--_po-arrow-ps);
+        --_po-arrow-after-b: var(--su-static1);
+        --_po-arrow-after-bs: 2px 2px 5px 0 hsla(0, 0%, 0%, 0.07), 2px 2px 2px -1px hsla(0, 0%, 0%, 0.1);
+        .highcontrast-mode({ --_po-arrow-after-bs: 1px 1px 0 0 var(--bc-medium); });
+    }
+    &[data-popper-placement^="bottom"] > &--arrow,
+    & &--arrow__tc,
+    & &--arrow__tl,
+    & &--arrow__tr {
+        --_po-arrow-t: var(--_po-arrow-ps);
+        --_po-arrow-after-t: var(--su-static1);
+        --_po-arrow-after-bs: -1px -1px 1px 0 hsla(0, 0%, 0%, 0.12);
+        .highcontrast-mode({ --_po-arrow-after-bs: -1px -1px 0 0 var(--bc-medium); });
+    }
+    &[data-popper-placement^="left"] > &--arrow,
+    & &--arrow__rc,
+    & &--arrow__rt,
+    & &--arrow__rb {
+        --_po-arrow-r: var(--_po-arrow-ps);
+        --_po-arrow-after-r: var(--su-static1);
+        --_po-arrow-after-bs: 2px -2px 5px 0 hsla(0, 0%, 0%, 0.07), 2px -2px 2px -1px hsla(0, 0%, 0%, 0.1);
+        .highcontrast-mode({ --_po-arrow-after-bs: 1px -1px 0 0 var(--bc-medium); });
+    }
+    &[data-popper-placement^="right"] > &--arrow,
+    & &--arrow__lc,
+    & &--arrow__lt,
+    & &--arrow__lb {
+        --_po-arrow-l: var(--_po-arrow-ps);
+        --_po-arrow-after-l: var(--su-static1);
+        --_po-arrow-after-bs: -2px 2px 5px 0 hsla(0, 0%, 0%, 0.07), -2px 2px 2px -1px hsla(0, 0%, 0%, 0.1);
+        .highcontrast-mode({ --_po-arrow-after-bs: -1px 1px 0 0 var(--bc-medium); });
+    }
+    & &--arrow__tc,
+    & &--arrow__bc {
+        --_po-arrow-l: calc(50% - var(--su6));
+    }
+    & &--arrow__lc,
+    & &--arrow__rc {
+        --_po-arrow-t: calc(50% - var(--su6));
+    }
+    & &--arrow__tr,
+    .s-popover--arrow__br {
+        --_po-arrow-r: var(--su12);
+    }
+    & &--arrow__rb,
+    & &--arrow__lb {
+        --_po-arrow-b: var(--su12);
+    }
+    & &--arrow {
+        &,
+        &:before,
+        &:after {
+            display: block;
+            height: var(--su12);
+            position: absolute;
+            width: var(--su12);
+            z-index: -1;
+        }
+        &:before, // This renders our border
+        &:after {
+            content: '';
+            transform: rotate(45deg);
+        }
+        &:after { // This renders our foreground color
+            bottom: var(--_po-arrow-after-b);
+            box-shadow: var(--_po-arrow-after-bs);
+            left: var(--_po-arrow-after-l);
+            right: var(--_po-arrow-after-r);
+            top: var(--_po-arrow-after-t);
+
+            background: currentColor;
+            border-radius: calc(var(--su-static1) * 1.5);
+        }
+
+        bottom: var(--_po-arrow-b);
+        color: var(--_po-arrow-fc);
+        left: var(--_po-arrow-l);
+        right: var(--_po-arrow-r);
+        top: var(--_po-arrow-t);
+    }
+    // Close btn
+    & &--close {
+        float: right; // Use floats for title wrapping
+        top: calc(var(--su8) * -1); // Compensate for s-popover's padding
+        right: calc(var(--su8) * -1); // Compensate for s-popover's padding
+        padding: var(--su8) !important;
+    }
+
+    background-color: var(--_po-bg);
+    border: 1px solid var(--_po-bc);
+    box-shadow: var(--_po-bs);
+    display: var(--_po-d);
+    min-width: var(--_po-wmn);
+    width: var(--_po-w);
+
+    border-radius: var(--br-md);
+    color: var(--fc-dark);
+    font-size: var(--fs-body1);
+    max-width: 24rem;
+    padding: var(--su12);
+    position: absolute;
+    white-space: normal; // Guard against popovers being in a container with white-space: nowrap. Without this, the content pops *out* of the popover.
+    z-index: var(--zi-popovers);
+}

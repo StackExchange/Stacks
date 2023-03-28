@@ -1,0 +1,51 @@
+// See also ./lib/components/notice/notice.less
+// TODO deprecate .s-banner (by turning it into a modifier on .s-notice)
+// This would reduce the amount of CSS we ship to the client and simplify our codebase
+.s-banner {
+    --_no-x-offset: 0; // [1]
+    .construct-notice-component(s-banner);
+
+    &[aria-hidden="true"] { // If you want to hide and reveal the banner
+        --_no-x-offset: calc(var(--su48) + var(--su2) * -1); // -50px
+        opacity: 0;
+        visibility: hidden;
+    }
+
+    &[aria-hidden="false"] {
+        --_no-x-offset: calc(var(--su48) + var(--su1)); // 49px
+        opacity: 1;
+        visibility: visible;
+    }
+
+    &.is-pinned { //  If you want to put the banner above the topbar
+        z-index: calc(var(--zi-navigation-fixed) + 1);
+    }
+
+    &__body-pt {
+        padding-top: 93px;
+    }
+
+    & &--container { // When we want to keep hero content capped
+        margin: 0 auto;
+        max-width: calc(var(--s-step) * 10);
+        position: relative;
+        width: 100%;
+    }
+
+    border-width: var(--su-static1) 0;
+    inset: 0 0 auto 0;
+    padding: var(--su12);
+    position: fixed;
+    -webkit-transform: translate3d(0, var(--_no-x-offset), 0);
+    transform: translate3d(0, var(--_no-x-offset), 0);
+    width: 100%;
+    z-index: calc(var(--zi-navigation-fixed) - 1); // Tuck below topbar
+}
+
+//  [1] When we use .s-banner, we need to adjust the padding-top on
+//      the body tag. This class correctly adjusts the body padding ONLY if
+//      the notice is one line. If it wraps to multiple lines, more classes or
+//      (ideally) JS will need to be used to determine the notice's height
+//      at the time of render. The padding value is determined like so:
+//      50px (top bar) + 44px (notice height) - 1px (bottom border)
+//      The borders subtraction are necessary to neatly tuck everything together.

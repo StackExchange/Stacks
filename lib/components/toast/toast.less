@@ -1,0 +1,35 @@
+// See also ./lib/components/notice/notice.less
+.s-toast {
+    @media (prefers-reduced-motion) {
+        transform: none !important;
+    }
+
+    &[aria-hidden="false"] {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+        transition: visibility 0s 0s, opacity 100ms var(--te-smooth) 0s, transform 100ms var(--te-smooth) 0s;
+        visibility: visible;
+    }
+
+    .s-notice {
+        box-shadow: var(--bs-sm);
+        max-width: 44rem;
+        padding-bottom: var(--su8);
+        padding-top: var(--su8);
+        pointer-events: all;
+        width: 100%;
+    }
+
+    display: flex;
+    justify-content: center;
+    left: var(--su8);
+    opacity: 0;
+    pointer-events: none;
+    position: fixed;
+    right: var(--su8);
+    top: var(--su16);
+    transform: translate3d(0, -66px, 0);
+    transition: transform 100ms var(--te-smooth-slow) 0s, opacity 60ms var(--te-smooth-slow) 0ms, visibility 0s 150ms;
+    visibility: hidden;
+    z-index: calc(var(--zi-modals) + 1); // Toasts should appear above modals
+}
