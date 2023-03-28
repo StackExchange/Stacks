@@ -1,5 +1,10 @@
 *.md
 .vscode/
 dist/
-# TODO: prettier is breaking less files while formatting
+# TODO: prettier breaks less files containing namespaced mixins with whitespaces
+# BEFORE PRETTIER: #stacks-internals #responsify('.w25', { width: 25% !important; });
+# AFTER PRETTIER:  #stacks-internals #responsify('.w25', { width: 25% !important; });;
+# Using whitespaces between namespaces and mixins is deprecated: #stacks-internals #responsify()
+# Instead we should use: #stacks-internals.responsify() which also doesn't bother prettier
+# https://lesscss.org/features/#mixins-feature-namespaces
 *.less
