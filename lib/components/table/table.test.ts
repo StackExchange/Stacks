@@ -1,8 +1,8 @@
 import { html, fixture, expect } from "@open-wc/testing";
 import { screen } from "@testing-library/dom";
 import userEvent from "@testing-library/user-event";
-import { buildIndex, getCellSlot } from "../ts/controllers/s-table";
-import "../ts/index";
+import { buildIndex, getCellSlot } from "./table";
+import "../../index";
 
 const user = userEvent.setup();
 
