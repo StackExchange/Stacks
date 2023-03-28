@@ -1,0 +1,119 @@
+.s-expandable { // [1]
+    // COMPONENT-SPECIFIC CONSTANTS
+    @ex-clip-path: polygon(-1000000px -1000000px, 1000000px -1000000px, 1000000px 1000000px, -1000000px 1000000px);
+    @ex-min-expected-height: 10px;
+    @ex-transition-duration: 100ms;
+    // COMPONENT-SPECIFIC CUSTOM PROPERTIES
+    --_ex-after-h: 10px;
+    --_ex-after-hmx: 0;
+    --_ex-after-transition:
+        height @ex-transition-duration linear,
+        max-height 0s @ex-transition-duration linear;
+    --_ex-content-hmx: 1000000px;
+    --_ex-content-mb: 0;
+    --_ex-content-o: unset;
+    --_ex-content-transform: unset;
+    --_ex-content-transition:
+        margin-bottom @ex-transition-duration cubic-bezier(0, 0, 0, 1),
+        transform @ex-transition-duration cubic-bezier(1, 0, 1, 1),
+        opacity @ex-transition-duration cubic-bezier(1, 0, 1, 1);
+    --_ex-content-v: unset;
+
+    &:not(.is-expanded) {
+        --_ex-after-h: 0;
+        --_ex-after-hmx: @ex-min-expected-height;
+        --_ex-after-transition: height @ex-min-expected-height linear;
+        --_ex-content-hmx: 0;
+        --_ex-content-mb: -1500px;
+        --_ex-content-o: 0;
+        --_ex-content-transform: scaleY(0);
+        --_ex-content-transition:
+            margin-bottom @ex-transition-duration cubic-bezier(1, 0, 1, 1),
+            visibility 0s @ex-transition-duration,
+            max-height 0s @ex-transition-duration,
+            transform @ex-transition-duration cubic-bezier(0, 1, 1, 1),
+            opacity @ex-transition-duration cubic-bezier(0, 1, 1, 1);
+        --_ex-content-v: hidden;
+
+        & .s-expandable--content {
+            @supports ((-webkit-clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)) or (clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%))) {
+                --_ex-content-o: 0;
+                --_ex-content-transform: none;
+            }
+        }
+
+        -webkit-clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+        clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+        overflow: hidden;
+        transition: none;
+    }
+
+    &:after {
+        height: var(--_ex-after-h);
+        max-height: var(--_ex-after-hmx);
+        transition: var(--_ex-after-transition);
+
+        -ms-flex-preferred-size: 0;
+        content: '';
+        flex-basis: 0;
+    }
+
+    & &--content {
+        max-height: var(--_ex-content-hmx);
+        margin-bottom: var(--_ex-content-mb);
+        opacity: var(--_ex-content-o);
+        -webkit-transform: var(--_ex-content-transform);
+        transform: var(--_ex-content-transform);
+        visibility: var(--_ex-content-v);
+
+        -ms-flex-preferred-size: 100%;
+        flex-basis: 100%;
+        -webkit-transform-origin: 0 0;
+        transform-origin: 0 0;
+        transition: var(--_ex-content-transition);
+    }
+
+    align-items: flex-start; // see comment above
+    display: flex;
+    -webkit-clip-path: @ex-clip-path;
+    clip-path: @ex-clip-path;
+    transition: clip-path 0s var(--_ex-transition-duration), -webkit-clip-path 0s var(--_ex-transition-duration);
+}
+
+// [1] see http://stackoverflow.com/a/43965099 for how this works:
+
+// Notes on the clip-path stuff: What we would really like is overflow: hidden during the transition,
+// but not when the element is expanded. Unfortunately, although the CSS spec provides for it, there's
+// no browser support yet for transitioning non-interpolatable properties, and therefore we cannot say
+// "change overflow to visible *after* the transition".
+//
+// So we use clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%), which is essentially the same
+// as overflow: hidden, but unlike overflow, clip-path is interpolatable -- but only if the opposite state
+// is also a polygon, and has the same vertice count. So our version of overflow: visible is a rectangle
+// of 2x2 million pixels, which should be enough for everybody (TM).
+//
+// At the time of writing, clip-path works in Chrome, Firefox Beta, and Safari (with vendor prefix).
+//
+// In browsers that do not support this yet, we have to have another way to prevent the expandable content
+// from being visible below the bottom edge during the transition, and the best I could come up with is
+// transitioning to scaleY(0) with a timing function that's faster than the height-reducing transitions.
+// This does kinda look like a deliberate effect, even more so if we also transition to transparency
+// (which we therefore do), so I feel it's an okay fallback.
+//
+// We still set overflow to hidden in the collapsed state (which also applies to the collapsing transition),
+// we just can't do that for the expanding transition.
+//
+// A major drawback of clip-path is that even though the content is clipped (not visible), it will still
+// contribute to the document height. This caused a jumping around of the scrollbar (and possibly even
+// of the viewport) when the expandable was at the bottom of the page, because once the negative bottom
+// margin of the -expandable-group exceeds the actual height, any additional pixels were added on to the
+// bottom. The fix is to set the -expandable-group's flex alignment to flex-start, which forces the
+// (no longer visible) element itself to remain at the top, thereby forcing the excess pixels to be added
+// above the top, not below the bottom. And because extending content above the document top will not do
+// anything to the document height, there is no jumping during the transition.
+// see "@ex-transition-duration"
+
+// Per the answer referenced above, the component can only guarantee smooth transitions if above a minimum
+// height and can only guarantee the element will be hidden is below a maximimum height.
+// The minimum height has been set at 10px because that's below the height of a single line of text in an s-description.
+// see "@ex-min-expected-height" and "--_ex-content-mb"

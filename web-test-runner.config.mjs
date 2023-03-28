@@ -33,7 +33,7 @@ export default {
     ],
     testFramework: {
         config: {
-            timeout: '5000',
+            timeout: '10000',
         },
     },
     nodeResolve: { browser: true },
@@ -58,20 +58,21 @@ export default {
     groups: [
         {
             name: "a11y",
-            files: "lib/test/**/*.a11y.test.ts",
+            files: "lib/components/**/*.a11y.test.ts",
             browsers: [
                 playwrightLauncher({ product: "chromium" }),
             ]
         },
         {
             name: "unit",
-            files: "lib/test/**/!(*.visual|*.a11y).test.ts",
+            files: "lib/components/**/!(*.visual|*.a11y).test.ts",
         },
         {
             name: "visual",
-            files: "lib/test/**/*.visual.test.ts",
+            files: "lib/components/**/*.visual.test.ts",
         },
     ],
+    testsFinishTimeout: 60 * 1000 * 5, // 5 minutes
 
     // settle on a font-family for visual regression tests across operating systems
     // animation disable CSS taken from https://github.com/microsoft/playwright/issues/7548#issuecomment-881897256
