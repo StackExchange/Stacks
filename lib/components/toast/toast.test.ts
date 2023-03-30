@@ -37,12 +37,10 @@ describe("toast", () => {
         const button = screen.getAllByRole("button")[0]; // Trigger button
         const toast = screen.getByTestId("test-toast");
 
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
         expect(toast).to.have.attribute("aria-hidden", "true");
         button.addEventListener("click", () => showToast(toast));
 
         await user.click(button);
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
         expect(toast).to.have.attribute("aria-hidden", "false");
     });
 
@@ -52,12 +50,10 @@ describe("toast", () => {
         const button = screen.getAllByRole("button")[1]; // Close button
         const toast = screen.getByTestId("test-toast");
 
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
         expect(toast).to.have.attribute("aria-hidden", "false");
         button.addEventListener("click", () => hideToast(toast));
 
         await user.click(button);
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
         expect(toast).to.have.attribute("aria-hidden", "true");
     });
 

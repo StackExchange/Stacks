@@ -28,7 +28,6 @@ describe("expandable-control", () => {
             expanded: false,
         });
 
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
         expect(
             screen.queryByRole("button", {
                 name: "inside expandable",
@@ -43,7 +42,6 @@ describe("expandable-control", () => {
             expanded: true,
         });
 
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
         expect(
             screen.getByRole("button", {
                 name: "inside expandable",
