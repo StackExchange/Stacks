@@ -22,6 +22,7 @@ Stacks documentation can be found at https://stackoverflow.design/
 
 - [Using Stacks](#using-stacks)
 - [Building Stacks](#building-stacks)
+- [Format Stacks](#format-stacks)
 - [Linting Stacks](#linting-stacks)
 - [Testing Stacks](#testing-stacks)
 - [Releasing Stacks](#releasing-a-new-version-of-stacks)
@@ -36,6 +37,13 @@ Using Stacks is outlined in our [usage guidelines](https://stackoverflow.design/
 To contribute to Stacks documentation or its CSS library, you’ll need to build Stacks locally. View our [building guidelines](https://stackoverflow.design/product/guidelines/building).
 
 Having trouble getting these steps to work? Open [an issue](https://github.com/StackExchange/Stacks/issues/new) with a `setup` label.
+
+## Format Stacks
+
+Format the source code with prettier via running:
+```sh
+npm run format
+```
 
 ## Linting Stacks
 

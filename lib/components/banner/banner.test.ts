@@ -29,12 +29,10 @@ describe("banner", () => {
         const button = screen.getByRole("button");
         const banner = screen.getByTestId("test-banner");
 
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
         expect(banner).to.have.attribute("aria-hidden", "true");
         button.addEventListener("click", () => showBanner(banner));
 
         await user.click(button);
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
         expect(banner).to.have.attribute("aria-hidden", "false");
     });
 
@@ -66,12 +64,10 @@ describe("banner", () => {
         const button = screen.getByRole("button");
         const banner = screen.getByTestId("test-banner");
 
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
         expect(banner).to.have.attribute("aria-hidden", "false");
         button.addEventListener("click", () => hideBanner(banner));
 
         await user.click(button);
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
         expect(banner).to.have.attribute("aria-hidden", "true");
     });
 });
