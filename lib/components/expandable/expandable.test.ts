@@ -7,7 +7,7 @@ const user = userEvent.setup();
 
 describe("expandable-control", () => {
     it("should focus on expandable content only when expanded", async () => {
-        const trigger = await fixture(html`
+        await fixture(html`
             <button
                 data-controller="s-expandable-control"
                 aria-expanded="false"
@@ -35,7 +35,7 @@ describe("expandable-control", () => {
             })
         ).to.be.null;
 
-        await userEvent.click(expandableTrigger);
+        await user.click(expandableTrigger);
 
         // expandable is now expanded
         expandableTrigger = screen.getByRole("button", {
