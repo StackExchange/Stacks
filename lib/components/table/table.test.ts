@@ -282,11 +282,11 @@ describe("s-table", () => {
                 expect(tableIndex).to.satisfy((rows: typeof tableIndex) =>
                     rows.every((row) => row.length === 3)
                 );
-                expect(tableIndex[1][0]).to.equal(
+                await expect(tableIndex[1][0]).to.equal(
                     tableIndex[1][1],
                     "the Winter cell is expected to be referenced twice in this index"
                 );
-                expect(tableIndex[2][1]).to.equal(
+                await expect(tableIndex[2][1]).to.equal(
                     tableIndex[2][2],
                     "the April cell is expected to be referenced twice in this index"
                 );
@@ -326,11 +326,11 @@ describe("s-table", () => {
                 expect(tableIndex).to.satisfy((rows: typeof tableIndex) =>
                     rows.every((row) => row.length === 3)
                 );
-                expect(tableIndex[1][0]).to.equal(
+                await expect(tableIndex[1][0]).to.equal(
                     tableIndex[0][0],
                     "the Fall cell is expected to be referenced twice across multiple rows"
                 );
-                expect(tableIndex[3][0]).to.equal(
+                await expect(tableIndex[3][0]).to.equal(
                     tableIndex[2][0],
                     "the Spring cell is expected to be referenced twice in this index"
                 );
@@ -352,7 +352,7 @@ describe("s-table", () => {
                     assert.isNotNull(columnCell);
                     assert.instanceOf(columnCell, HTMLTableCellElement);
 
-                    expect(getCellSlot(columnCell)).to.equal(index);
+                    await expect(getCellSlot(columnCell)).to.equal(index);
                 });
             });
         });
