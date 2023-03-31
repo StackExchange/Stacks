@@ -352,7 +352,7 @@ describe("s-table", () => {
                     assert.isNotNull(columnCell);
                     assert.instanceOf(columnCell, HTMLTableCellElement);
 
-                    await expect(getCellSlot(columnCell)).to.equal(index);
+                    void expect(getCellSlot(columnCell)).to.equal(index);
                 });
             });
         });
