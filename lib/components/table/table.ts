@@ -12,8 +12,8 @@ export enum SortOrder {
 }
 
 export class TableController extends Stacks.StacksController {
-    readonly columnTarget!: HTMLTableCellElement;
-    readonly columnTargets!: HTMLTableCellElement[];
+    declare columnTarget: HTMLTableCellElement;
+    declare columnTargets: HTMLTableCellElement[];
 
     static targets = ["column"];
 
@@ -189,6 +189,11 @@ export class TableController extends Stacks.StacksController {
     };
 }
 
+/**
+ * @internal This function is exported for testing purposes but is not a part of our public API
+ *
+ * @param section
+ */
 export function buildIndex(
     section: HTMLTableSectionElement
 ): HTMLTableCellElement[][] {
@@ -201,6 +206,11 @@ export function buildIndex(
     return result;
 }
 
+/**
+ * @internal This function is exported for testing purposes but is not a part of our public API
+ *
+ * @param cell
+ */
 export function getCellSlot(cell: HTMLTableCellElement): number {
     const tableElement = cell.parentElement?.parentElement;
 

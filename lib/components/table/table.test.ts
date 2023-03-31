@@ -1,13 +1,14 @@
-import { html, fixture, expect } from "@open-wc/testing";
+import { assert, expect, fixture, html } from "@open-wc/testing";
 import { screen } from "@testing-library/dom";
 import userEvent from "@testing-library/user-event";
-import { buildIndex, getCellSlot } from "./table";
+import { buildIndex, getCellSlot, SortOrder } from "./table";
 import "../../index";
+import { AsLiterals } from "../../test/test-utils";
 
 const user = userEvent.setup();
 
 const mockSortableTable = () => {
-    const testSortabledIcons = (modifier: string) => html`
+    const sortDirectionIcons = (modifier: string) => html`
         <svg
             data-testid="test-sortable-${modifier}-svg-asc"
             aria-hidden="true"
@@ -45,29 +46,38 @@ const mockSortableTable = () => {
             <table class="s-table s-table__sortable" data-controller="s-table">
                 <thead>
                     <tr>
-                        <th data-s-table-target="column">
+                        <th
+                            data-s-table-target="column"
+                            data-testid="test-sortable-season-col"
+                        >
                             <button
                                 data-action="click->s-table#sort"
-                                data-testid="test-sortable-season-button"
+                                data-testid="test-sortable-season-btn"
                             >
-                                Season ${testSortabledIcons("season")}
+                                Season ${sortDirectionIcons("season")}
                             </button>
                         </th>
-                        <th data-s-table-target="column">
+                        <th
+                            data-s-table-target="column"
+                            data-testid="test-sortable-month-col"
+                        >
                             <button
                                 data-action="click->s-table#sort"
-                                data-testid="test-sortable-month-button"
+                                data-testid="test-sortable-month-btn"
                             >
-                                Starts in month ${testSortabledIcons("month")}
+                                Starts in month ${sortDirectionIcons("month")}
                             </button>
                         </th>
-                        <th data-s-table-target="column">
+                        <th
+                            data-s-table-target="column"
+                            data-testid="test-sortable-temp-col"
+                        >
                             <button
                                 data-action="click->s-table#sort"
-                                data-testid="test-sortable-temp-button"
+                                data-testid="test-sortable-temp-btn"
                             >
                                 Typical temperature in °C
-                                ${testSortabledIcons("temp")}
+                                ${sortDirectionIcons("temp")}
                             </button>
                         </th>
                     </tr>
@@ -103,57 +113,141 @@ const mockSortableTable = () => {
     `;
 };
 
-const testAriaHiddenSvgs = (allSvgs: string[], visible?: string) => {
-    return allSvgs.forEach((svg) => {
-        const svgEl = screen.getByTestId(svg);
-
-        if (svg === visible) {
-            expect(svgEl).to.have.attribute("aria-hidden", "false");
-        } else {
-            expect(svgEl).to.have.attribute("aria-hidden", "true");
-        }
-    });
-};
-
 describe("s-table", () => {
-    describe("Stimulus.js controller", () => {
-        it("table sort updates on click", async () => {
+    describe("Column sorting indicators", () => {
+        const allColIds = [
+            "test-sortable-season-col",
+            "test-sortable-month-col",
+            "test-sortable-temp-col",
+        ] as const;
+        type ColId = AsLiterals<typeof allColIds>;
+
+        const allSvgIds = [
+            "test-sortable-season-svg-asc",
+            "test-sortable-season-svg-desc",
+            "test-sortable-season-svg-none",
+            "test-sortable-month-svg-asc",
+            "test-sortable-month-svg-desc",
+            "test-sortable-month-svg-none",
+            "test-sortable-temp-svg-asc",
+            "test-sortable-temp-svg-desc",
+            "test-sortable-temp-svg-none",
+        ] as const;
+        type SvgId = AsLiterals<typeof allSvgIds>;
+
+        const expectThisColumnToBeSorted = (
+            columnId?: ColId,
+            order?: SortOrder
+        ) => {
+            allColIds.forEach((colId) => {
+                const columnEl = screen.getByTestId(colId);
+
+                if (columnId === colId) {
+                    expect(columnEl).to.have.attribute("aria-sort", order);
+                } else {
+                    expect(columnEl).to.not.have.attribute("aria-sort");
+                }
+            });
+        };
+
+        const expectTheseIndicatorsToBeVisible = (visibleIds: SvgId[]) => {
+            allSvgIds.forEach((svgId) => {
+                const svgEl = screen.getByTestId(svgId);
+
+                if (visibleIds.includes(svgId)) {
+                    expect(svgEl).to.not.have.class("d-none");
+                } else {
+                    expect(svgEl).to.have.class("d-none");
+                }
+            });
+        };
+
+        beforeEach(async () => {
             await fixture(mockSortableTable());
+        });
 
-            const sortButtonSeason = screen.getByTestId(
-                "test-sortable-season-button"
-            );
-            const sortButtonMonth = screen.getByTestId(
-                "test-sortable-month-button"
-            );
+        it("should start toggle correctly between ASC/DESC after initial click", async () => {
+            const seasonColumn = screen.getByTestId("test-sortable-season-btn");
 
-            // const table = screen.getByTestId("test-sortable-table");
-            const allSvgs = [
-                "test-sortable-season-svg-asc",
-                "test-sortable-season-svg-desc",
+            // Starting off in a fresh state, the "None" SVG icon should be visible
+            expectThisColumnToBeSorted();
+            expectTheseIndicatorsToBeVisible([
                 "test-sortable-season-svg-none",
-                "test-sortable-month-svg-asc",
-                "test-sortable-month-svg-desc",
                 "test-sortable-month-svg-none",
-            ];
-
-            testAriaHiddenSvgs(allSvgs);
+                "test-sortable-temp-svg-none",
+            ]);
 
             // Cycle through all season sort options
-            await user.click(sortButtonSeason);
-            testAriaHiddenSvgs(allSvgs, "test-sortable-season-svg-asc");
-            await user.click(sortButtonSeason);
-            testAriaHiddenSvgs(allSvgs, "test-sortable-season-svg-desc");
-            await user.click(sortButtonSeason);
-            testAriaHiddenSvgs(allSvgs, "test-sortable-season-svg-none");
-            await user.click(sortButtonSeason);
-            testAriaHiddenSvgs(allSvgs);
+            await user.click(seasonColumn);
+            expectThisColumnToBeSorted(
+                "test-sortable-season-col",
+                SortOrder.Ascending
+            );
+            expectTheseIndicatorsToBeVisible([
+                "test-sortable-season-svg-asc",
+                "test-sortable-month-svg-none",
+                "test-sortable-temp-svg-none",
+            ]);
 
-            // Set month sort then switch to season sort
-            await user.click(sortButtonMonth);
-            testAriaHiddenSvgs(allSvgs, "test-sortable-month-svg-asc");
-            await user.click(sortButtonSeason);
-            testAriaHiddenSvgs(allSvgs, "test-sortable-season-svg-asc");
+            await user.click(seasonColumn);
+            expectThisColumnToBeSorted(
+                "test-sortable-season-col",
+                SortOrder.Descending
+            );
+            expectTheseIndicatorsToBeVisible([
+                "test-sortable-season-svg-desc",
+                "test-sortable-month-svg-none",
+                "test-sortable-temp-svg-none",
+            ]);
+
+            // Clicking on a sorted column repeatedly will only toggle between ASC/DESC
+            await user.click(seasonColumn);
+            expectThisColumnToBeSorted(
+                "test-sortable-season-col",
+                SortOrder.Ascending
+            );
+            expectTheseIndicatorsToBeVisible([
+                "test-sortable-season-svg-asc",
+                "test-sortable-month-svg-none",
+                "test-sortable-temp-svg-none",
+            ]);
+        });
+
+        it('should toggle back a column indicator to "None" when another column is clicked', async () => {
+            const seasonColumn = screen.getByTestId("test-sortable-season-btn");
+            const monthColumn = screen.getByTestId("test-sortable-month-btn");
+
+            // Starting off in a fresh state, the "None" SVG icon should be visible
+            expectThisColumnToBeSorted();
+            expectTheseIndicatorsToBeVisible([
+                "test-sortable-season-svg-none",
+                "test-sortable-month-svg-none",
+                "test-sortable-temp-svg-none",
+            ]);
+
+            // Click season first; ASC indicator for Season column only should be visible
+            await user.click(seasonColumn);
+            expectThisColumnToBeSorted(
+                "test-sortable-season-col",
+                SortOrder.Ascending
+            );
+            expectTheseIndicatorsToBeVisible([
+                "test-sortable-season-svg-asc",
+                "test-sortable-month-svg-none",
+                "test-sortable-temp-svg-none",
+            ]);
+
+            // Click on month next
+            await user.click(monthColumn);
+            expectThisColumnToBeSorted(
+                "test-sortable-month-col",
+                SortOrder.Ascending
+            );
+            expectTheseIndicatorsToBeVisible([
+                "test-sortable-season-svg-none",
+                "test-sortable-month-svg-asc",
+                "test-sortable-temp-svg-none",
+            ]);
         });
     });
 
@@ -248,14 +342,16 @@ describe("s-table", () => {
                 await fixture(mockSortableTable());
 
                 [
-                    "test-sortable-season-button",
-                    "test-sortable-month-button",
-                    "test-sortable-temp-button",
+                    "test-sortable-season-btn",
+                    "test-sortable-month-btn",
+                    "test-sortable-temp-btn",
                 ].forEach((testID, index) => {
                     const buttonElement = screen.getByTestId(testID);
                     const columnCell = buttonElement.parentElement;
 
-                    expect(columnCell).to.not.be.null;
+                    assert.isNotNull(columnCell);
+                    assert.instanceOf(columnCell, HTMLTableCellElement);
+
                     expect(getCellSlot(columnCell)).to.equal(index);
                 });
             });
