@@ -294,7 +294,6 @@ const runComponentTest = ({
     };
 
     it(`${type}: ${testid} ${getDescription(type)}`, async () => {
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
         await fixture(element);
         const el = screen.getByTestId(testid);
 
@@ -307,7 +306,6 @@ const runComponentTest = ({
 
         if (type === "a11y") {
             // TODO add conditional option for high contrast mode to test against AAA
-            // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
             await expect(el).to.be.accessible();
         }
 

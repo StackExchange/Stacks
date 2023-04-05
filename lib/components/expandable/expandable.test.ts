@@ -7,7 +7,7 @@ const user = userEvent.setup();
 
 describe("expandable-control", () => {
     it("should focus on expandable content only when expanded", async () => {
-        const trigger = await fixture(html`
+        await fixture(html`
             <button
                 data-controller="s-expandable-control"
                 aria-expanded="false"
@@ -28,14 +28,13 @@ describe("expandable-control", () => {
             expanded: false,
         });
 
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
         expect(
             screen.queryByRole("button", {
                 name: "inside expandable",
             })
         ).to.be.null;
 
-        await userEvent.click(expandableTrigger);
+        await user.click(expandableTrigger);
 
         // expandable is now expanded
         expandableTrigger = screen.getByRole("button", {
@@ -43,7 +42,6 @@ describe("expandable-control", () => {
             expanded: true,
         });
 
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
         expect(
             screen.getByRole("button", {
                 name: "inside expandable",
