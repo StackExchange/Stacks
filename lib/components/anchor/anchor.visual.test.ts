@@ -13,16 +13,13 @@ describe("anchors", () => {
             </p>`,
         },
         template: ({ component, testid }) => html`
-            <div
-                class="d-inline-block ws2 p8"
-                data-testid="${testid}"
-            >
+            <div class="d-inline-block ws2 p8" data-testid="${testid}">
                 ${component}
             </div>
         `,
         options: {
             ...defaultOptions,
             includeNullVariant: false,
-        }
+        },
     });
 });
