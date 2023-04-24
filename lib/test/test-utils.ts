@@ -5,6 +5,13 @@ import type { TemplateResult } from "lit-html";
 
 const colorThemes = ["dark", "light"];
 const baseThemes = ["", "highcontrast"];
+export const defaultOptions = {
+    testColorThemes: true,
+    testHighContrast: true,
+    includeNullVariant: false,
+    includeNullModifier: true,
+};
+
 type Themes = ["light" | "dark" | "highcontrast" | ""];
 type TestTypes = "visual" | "a11y";
 
@@ -197,12 +204,7 @@ const getComponentTestVariations = ({
     baseClass,
     variants = [],
     modifiers,
-    options = {
-        testColorThemes: true,
-        testHighContrast: true,
-        includeNullVariant: false,
-        includeNullModifier: true,
-    },
+    options = defaultOptions,
 }: ComponentTestVariationArgs): ComponentTestProps[] => {
     const testVariations: ComponentTestProps[] = [];
     // Test default, high contrast themes
@@ -322,12 +324,7 @@ const runComponentTests = ({
     baseClass,
     variants = [],
     modifiers,
-    options = {
-        testColorThemes: true,
-        testHighContrast: true,
-        includeNullVariant: false,
-        includeNullModifier: true,
-    },
+    options = defaultOptions,
     attributes,
     children,
     excludedTestids = [],
