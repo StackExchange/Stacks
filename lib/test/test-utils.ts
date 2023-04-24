@@ -8,7 +8,7 @@ const baseThemes = ["", "highcontrast"];
 export const defaultOptions = {
     testColorThemes: true,
     testHighContrast: true,
-    includeNullVariant: false,
+    includeNullVariant: true,
     includeNullModifier: true,
 };
 
@@ -214,8 +214,13 @@ const getComponentTestVariations = ({
             (colorTheme) => {
                 const theme = [baseTheme, colorTheme].filter(Boolean) as Themes;
                 const testidBase = buildTestid([baseClass, ...theme]);
+                const allVariants = options.includeNullVariant
+                    ? ["", ...variants]
+                    : variants;
                 const primaryModifiers = modifiers?.primary
-                    ? ["", ...(<[]>modifiers.primary)]
+                    ? options.includeNullModifier
+                        ? ["", ...(<[]>modifiers.primary)]
+                        : modifiers.primary
                     : [""];
                 const secondaryModifiers = modifiers?.secondary
                     ? ["", ...(<[]>modifiers.secondary)]
@@ -227,7 +232,7 @@ const getComponentTestVariations = ({
                 primaryModifiers.forEach((primaryModifier) => {
                     secondaryModifiers.forEach((secondaryModifier) => {
                         globalModifiers.forEach((globalModifier) => {
-                            ["", ...variants].forEach((variant) => {
+                            allVariants.forEach((variant) => {
                                 testVariations.push({
                                     classes: buildClasses({
                                         baseClass,
