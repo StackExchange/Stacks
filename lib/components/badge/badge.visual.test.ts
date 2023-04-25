@@ -7,7 +7,7 @@ const variants = {
     blings: ["gold", "silver", "bronze"],
     numbers: ["answered", "bounty", "important", "rep", "rep-down", "votes"],
     states: {
-        filled: ["danger", "muted",],
+        filled: ["danger", "muted"],
         other: ["info", "warning"],
     },
     users: ["admin", "moderator", "staff"],
@@ -66,7 +66,7 @@ describe("badge", () => {
         },
         children: {
             default: "with icon",
-        //     icon: Icons.IconEyeSm,  // TODO fix the icon imports
+            //     icon: Icons.IconEyeSm,  // TODO fix the icon imports
         },
         options: {
             ...defaultOptions,
@@ -86,7 +86,7 @@ describe("badge", () => {
         },
         children: {
             default: "filled",
-        //     icon: Icons.IconEyeOffSm,  // TODO fix the icon imports
+            //     icon: Icons.IconEyeOffSm,  // TODO fix the icon imports
         },
         options: {
             ...defaultOptions,
