@@ -5,10 +5,12 @@ const bannerChild = `
     <div
         class="d-flex flex__center jc-space-between s-banner--container"
         role="alertdialog"
-        aria-describedby="banner-message"
+        aria-labelledby="banner-title"
+        aria-describedby="banner-description"
     >
         <div aria-label="banner message">
-            Test Banner
+            <h2 id="banner-title">Banner heading</h2>
+            <p id="banner-description">Banner description</p>
         </div>
         <div class="ml-auto myn8">
             <span class="s-btn s-banner--btn">Close</span>
@@ -31,6 +33,5 @@ describe("banner", () => {
         children: {
             default: bannerChild,
         },
-        tag: "aside",
     });
 });
