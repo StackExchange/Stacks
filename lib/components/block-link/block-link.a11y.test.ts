@@ -8,7 +8,7 @@ const blockLinkTemplate = ({ component, testid }: any) => html`<div
     data-testid="${testid}"
 >
     ${component}
-</div>`
+</div>`;
 
 describe("block-link", () => {
     // Base block link
@@ -38,9 +38,7 @@ describe("block-link", () => {
             ...defaultOptions,
             includeNullModifier: false,
         },
-        skippedTestids: [
-            "s-block-link-dark-danger",
-        ],
+        skippedTestids: ["s-block-link-dark-danger"],
         template: blockLinkTemplate,
     });
 

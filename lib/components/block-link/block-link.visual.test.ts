@@ -8,7 +8,7 @@ const blockLinkTemplate = ({ component, testid }: any) => html`<div
     data-testid="${testid}"
 >
     ${component}
-</div>`
+</div>`;
 
 describe("block-link", () => {
     // Base block link
