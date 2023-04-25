@@ -13,6 +13,7 @@ const variants = {
     users: ["admin", "moderator", "staff"],
 };
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const template = ({ component, testid }: any) => html`
     <div
         class="d-inline-flex ai-center jc-center hs1 ws1 p8"
