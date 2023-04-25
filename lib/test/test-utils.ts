@@ -350,7 +350,7 @@ const runComponentTests = ({
 
         Object.keys(allChildren).forEach((key) => {
             const testidModified =
-                key !== "default" ? `${testid}-${key}` : testid;
+                (key !== "default" ? `${testid}-${key}` : testid).replace(" ", "-");
             const children = allChildren[key];
 
             const shouldSkipTest = excludeOrSkipTest({
