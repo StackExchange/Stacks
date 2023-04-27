@@ -9,7 +9,7 @@ checkTypes.forEach((type) => {
         const checkEls: {
             type: CheckGroup;
             id: string;
-            state?: "checked" | "unchecked" | "indeterminate",
+            state?: "checked" | "unchecked" | "indeterminate";
         }[] = [
             { type, id: `test-${type}1`, state: "checked" },
             { type, id: `test-${type}2` },
@@ -22,7 +22,9 @@ checkTypes.forEach((type) => {
             children: {
                 default: `
                     <legend class="s-label">${type} group</legend>
-                    ${checkEls.map(({ type, state, id }, index) => `
+                    ${checkEls
+                        .map(
+                            ({ type, state, id }, index) => `
                         <div class="s-check-control">
                             <input
                                 class="s-${type}"
@@ -35,7 +37,9 @@ checkTypes.forEach((type) => {
                                 <p class="s-input-message">Description</p>
                             </label>
                         </div>
-                    `).join("")}
+                    `
+                        )
+                        .join("")}
                 `,
             },
             options: {

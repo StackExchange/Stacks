@@ -11,7 +11,7 @@ const checkTypes: CheckGroup[] = ["checkbox", "radio"];
             const checkEls: {
                 type: CheckGroup;
                 id: string;
-                state?: "checked" | "unchecked" | "indeterminate",
+                state?: "checked" | "unchecked" | "indeterminate";
             }[] = [
                 { type, id: `test-${type}1`, state: "checked" },
                 { type, id: `test-${type}2` },
@@ -21,13 +21,15 @@ const checkTypes: CheckGroup[] = ["checkbox", "radio"];
                 tag: "fieldset",
                 baseClass: "s-check-group",
                 attributes: {
-                    class: isHorizontal ?  "hs1 ws3 p8" : "hs2 ws2 p8",
+                    class: isHorizontal ? "hs1 ws3 p8" : "hs2 ws2 p8",
                 },
                 variants: isHorizontal ? ["horizontal"] : [],
                 children: {
                     default: `
                         <legend class="s-label">${type} group</legend>
-                        ${checkEls.map(({ type, state, id }, index) => `
+                        ${checkEls
+                            .map(
+                                ({ type, state, id }, index) => `
                             <div class="s-check-control">
                                 <input
                                     class="s-${type}"
@@ -40,7 +42,9 @@ const checkTypes: CheckGroup[] = ["checkbox", "radio"];
                                     <p class="s-input-message">Description</p>
                                 </label>
                             </div>
-                        `).join("")}
+                        `
+                            )
+                            .join("")}
                     `,
                 },
                 options: {

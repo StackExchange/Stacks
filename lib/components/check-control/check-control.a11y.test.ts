@@ -33,7 +33,7 @@ import "../../index";
                 skippedTestids: [
                     /^s-check-control-dark-has-error-(checked|unchecked)-(checkbox|radio)$/,
                     /^s-check-control-light-has-(success|warning)-(checked|unchecked)-(checkbox|radio)$/,
-                ]
+                ],
             });
         });
     });
