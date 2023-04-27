@@ -387,7 +387,7 @@ const runComponentTests = ({
                 : buildTestElement({
                       attributes: {
                           ...attributes,
-                        class: `${classes} ${attributes?.class || ""}`,
+                          class: `${classes} ${attributes?.class || ""}`,
                       },
                       children,
                       testid: testidModified,
