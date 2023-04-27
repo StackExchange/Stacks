@@ -4,7 +4,7 @@ import "../../index";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const cardTemplate = ({ component, testid }: any) => html`<div
-    class="d-inline-flex ai-center jc-center hs2 ws3 p16"
+    class="d-inline-flex ai-center jc-center hs2 ws3 p8"
     data-testid="${testid}"
 >
     ${component}
