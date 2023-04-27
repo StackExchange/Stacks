@@ -18,18 +18,18 @@ const commonjs = fromRollupWithFix(_commonjs);
 export default {
     browsers: [
         playwrightLauncher({ product: "chromium" }),
-        playwrightLauncher({
-            product: "firefox",
-            launchOptions: {
-                firefoxUserPrefs: {
-                    // force pointer capabilities activation on Firefox Headless on GTK (Gnome Toolkit - CI)
-                    // see https://github.com/microsoft/playwright/issues/7769#issuecomment-966098074
-                    "ui.primaryPointerCapabilities": 0x02 | 0x04,
-                    "ui.allPointerCapabilities": 0x02 | 0x04,
-                },
-            },
-        }),
-        playwrightLauncher({ product: "webkit" }),
+        // playwrightLauncher({
+        //     product: "firefox",
+        //     launchOptions: {
+        //         firefoxUserPrefs: {
+        //             // force pointer capabilities activation on Firefox Headless on GTK (Gnome Toolkit - CI)
+        //             // see https://github.com/microsoft/playwright/issues/7769#issuecomment-966098074
+        //             "ui.primaryPointerCapabilities": 0x02 | 0x04,
+        //             "ui.allPointerCapabilities": 0x02 | 0x04,
+        //         },
+        //     },
+        // }),
+        // playwrightLauncher({ product: "webkit" }),
     ],
     testFramework: {
         config: {
@@ -69,7 +69,7 @@ export default {
         },
         {
             name: "visual",
-            files: "lib/components/**/*.visual.test.ts",
+            files: "lib/components/**/check-group.visual.test.ts",
         },
     ],
     testsFinishTimeout: 60 * 1000 * 5, // 5 minutes

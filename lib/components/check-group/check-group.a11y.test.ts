@@ -4,7 +4,7 @@ import "../../index";
 type CheckGroup = "checkbox" | "radio";
 const checkTypes: CheckGroup[] = ["checkbox", "radio"];
 
-checkTypes.map((type) => {
+checkTypes.forEach((type) => {
     describe("s-check-group", () => {
         const checkEls: {
             type: CheckGroup;
@@ -18,6 +18,7 @@ checkTypes.map((type) => {
             type: "a11y",
             tag: "fieldset",
             baseClass: "s-check-group",
+            variants: ["horizontal"],
             children: {
                 default: `
                     <legend class="s-label">${type} group</legend>

@@ -10,10 +10,10 @@ const checkboxTemplate = ({ component, testid }: any) => html`<div
     ${component}
 </div>`;
 
-["checkbox", "radio"].map((type) => {
+["checkbox", "radio"].forEach((type) => {
     describe(type, () => {
         // TODO include indeterminate
-        ["checked", "unchecked"].map((state) => {
+        ["checked", "unchecked"].forEach((state) => {
             runComponentTests({
                 type: "visual",
                 tag: "input",

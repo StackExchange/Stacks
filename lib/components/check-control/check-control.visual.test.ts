@@ -1,10 +1,10 @@
 import { defaultOptions, runComponentTests } from "../../test/test-utils";
 import "../../index";
 
-["checkbox", "radio"].map((type) => {
+["checkbox", "radio"].forEach((type) => {
     describe("s-check-control", () => {
         // TODO include indeterminate
-        ["checked", "unchecked"].map((state) => {
+        ["checked", "unchecked"].forEach((state) => {
             runComponentTests({
                 type: "visual",
                 baseClass: "s-check-control",
