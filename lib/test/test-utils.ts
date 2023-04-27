@@ -27,6 +27,11 @@ type TestOptions = {
      */
     testHighContrast: boolean;
     /**
+     * Provide a custom testid suffix
+     * default: undefined
+     */
+    testidSuffix?: string;
+    /**
      * Include tests for the component without any variants applied
      * default: true
      */
@@ -347,11 +352,16 @@ const runComponentTests = ({
         const allChildren: {
             [key: string]: string;
         } = children ? { ...children } : { default: "" };
+        const { testidSuffix } = options;
 
         Object.keys(allChildren).forEach((key) => {
-            const testidModified = (
+            let testidModified = (
                 key !== "default" ? `${testid}-${key}` : testid
             ).replace(" ", "-");
+            testidModified = testidSuffix
+                ? `${testidModified}-${testidSuffix}`
+                : testidModified;
+
             const children = allChildren[key];
 
             const shouldSkipTest = excludeOrSkipTest({
