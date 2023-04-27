@@ -28,9 +28,6 @@ describe("card", () => {
         type: "visual",
         baseClass: "s-card",
         variants: ["muted"],
-        modifiers: {
-            global: ["bs-sm", "bs-md", "bs-lg"],
-        },
         children: {
             default: baseChild,
         },
