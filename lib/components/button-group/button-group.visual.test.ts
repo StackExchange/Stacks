@@ -36,25 +36,26 @@ const getButton = ({
             ${isSelected ? `aria-current="true"` : ""}
             role="button">
                 ${children}
-            </button>`
+            </button>`;
 };
 
-const getBaseButtons = (isRadio?: boolean): string => [
-    {children: "Newest", isSelected: true, isRadio},
-    {children: "Frequent", isRadio},
-    {children: "Active", isRadio},
-    {children: "Bountied", isRadio},
-    {children: "Unanswered", isRadio},
-].map(getButton).join("");
+const getBaseButtons = (isRadio?: boolean): string =>
+    [
+        { children: "Newest", isSelected: true, isRadio },
+        { children: "Frequent", isRadio },
+        { children: "Active", isRadio },
+        { children: "Bountied", isRadio },
+        { children: "Unanswered", isRadio },
+    ]
+        .map(getButton)
+        .join("");
 
 describe("button-group", () => {
     [false, true].forEach((isRadio) => {
         runComponentTests({
             type: "visual",
             baseClass: "s-btn-group",
-            modifiers: isRadio
-                ? {primary: ["radio"] }
-                : {},
+            modifiers: isRadio ? { primary: ["radio"] } : {},
             children: {
                 default: getBaseButtons(isRadio),
             },
