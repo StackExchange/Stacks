@@ -376,8 +376,8 @@ const runComponentTests = ({
                       testid: testidModified,
                       component: buildTestElement({
                           attributes: {
-                              class: classes,
                               ...attributes,
+                              class: `${classes} ${attributes?.class || ""}`,
                           },
                           children,
                           testid: `${testidModified}-nested`,
@@ -386,8 +386,8 @@ const runComponentTests = ({
                   })}`
                 : buildTestElement({
                       attributes: {
-                          class: classes,
                           ...attributes,
+                        class: `${classes} ${attributes?.class || ""}`,
                       },
                       children,
                       testid: testidModified,
