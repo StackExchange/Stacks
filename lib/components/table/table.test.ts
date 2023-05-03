@@ -12,51 +12,59 @@ const iconData = [
         direction: "asc",
         classes: "iconArrowUpSm js-sorting-indicator-asc d-none",
         pathD: "M3 9h8L7 5 3 9Z",
-    }, {
+    },
+    {
         direction: "desc",
         classes: "iconArrowDownSm js-sorting-indicator-desc d-none",
         pathD: "M3 5h8L7 9 3 5Z",
-    }, {
+    },
+    {
         direction: "none",
         classes: "iconArrowUpDownSm js-sorting-indicator-none",
         pathD: "m7 2 4 4H3l4-4Zm0 10 4-4H3l4 4Z",
     },
 ];
 
-const sortDirectionIcons = (modifier: string) => iconData.map((icon) => html`
-    <svg
-        data-testid="test-sortable-${modifier}-svg-${icon.direction}"
-        aria-hidden="true"
-        class="svg-icon js-sorting-indicator ${icon.classes}"
-        width="14"
-        height="14"
-        viewBox="0 0 14 14"
-    >
-        <path d="${icon.pathD}"></path>
-    </svg>
-`);
+const sortDirectionIcons = (modifier: string) =>
+    iconData.map(
+        (icon) => html`
+            <svg
+                data-testid="test-sortable-${modifier}-svg-${icon.direction}"
+                aria-hidden="true"
+                class="svg-icon js-sorting-indicator ${icon.classes}"
+                width="14"
+                height="14"
+                viewBox="0 0 14 14"
+            >
+                <path d="${icon.pathD}"></path>
+            </svg>
+        `
+    );
 
-const getTh = (label: string, modifier: string, useButton: boolean) => useButton ? html`
-    <th
-        data-s-table-target="column"
-        data-testid="test-sortable-${modifier}-col"
-    >
-        <button
-            data-action="click->s-table#sort"
-            data-testid="test-sortable-${modifier}-btn"
-        >
-            ${label} ${sortDirectionIcons(modifier)}
-        </button>
-    </th>
-` : html`
-    <th
-        data-s-table-target="column"
-        data-action="click->s-table#sort"
-        data-testid="test-sortable-${modifier}-col"
-    >
-        ${label} ${sortDirectionIcons(modifier)}
-    </th>
-`;
+const getTh = (label: string, modifier: string, useButton: boolean) =>
+    useButton
+        ? html`
+              <th
+                  data-s-table-target="column"
+                  data-testid="test-sortable-${modifier}-col"
+              >
+                  <button
+                      data-action="click->s-table#sort"
+                      data-testid="test-sortable-${modifier}-btn"
+                  >
+                      ${label} ${sortDirectionIcons(modifier)}
+                  </button>
+              </th>
+          `
+        : html`
+              <th
+                  data-s-table-target="column"
+                  data-action="click->s-table#sort"
+                  data-testid="test-sortable-${modifier}-col"
+              >
+                  ${label} ${sortDirectionIcons(modifier)}
+              </th>
+          `;
 
 const mockSortableTable = (useButton: boolean) => {
     return html`
@@ -67,7 +75,6 @@ const mockSortableTable = (useButton: boolean) => {
                         ${getTh("Season", "season", useButton)}
                         ${getTh("Month", "month", useButton)}
                         ${getTh("Temperature", "temp", useButton)}
-
                     </tr>
                 </thead>
                 <tbody>

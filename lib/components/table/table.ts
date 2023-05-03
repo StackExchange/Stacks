@@ -22,7 +22,9 @@ export class TableController extends Stacks.StacksController {
         const controller = this;
         const sortTriggerEl = evt.currentTarget;
         const triggerIsButton = sortTriggerEl instanceof HTMLButtonElement;
-        const colHead = (triggerIsButton ? sortTriggerEl.parentElement : sortTriggerEl) as HTMLTableCellElement;
+        const colHead = (
+            triggerIsButton ? sortTriggerEl.parentElement : sortTriggerEl
+        ) as HTMLTableCellElement;
         const table = this.element as HTMLTableElement;
         const tbody = table.tBodies[0];
 
