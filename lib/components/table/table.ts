@@ -17,18 +17,12 @@ export class TableController extends Stacks.StacksController {
 
     static targets = ["column"];
 
-    connect() {
-        this.columnTargets.forEach(this.ensureHeadersAreClickable);
-    }
-
     sort(evt: PointerEvent) {
         // eslint-disable-next-line @typescript-eslint/no-this-alias
         const controller = this;
         const sortTriggerEl = evt.currentTarget;
-        if (!(sortTriggerEl instanceof HTMLButtonElement)) {
-            throw "invalid event target";
-        }
-        const colHead = sortTriggerEl.parentElement as HTMLTableCellElement;
+        const triggerIsButton = sortTriggerEl instanceof HTMLButtonElement;
+        const colHead = (triggerIsButton ? sortTriggerEl.parentElement : sortTriggerEl) as HTMLTableCellElement;
         const table = this.element as HTMLTableElement;
         const tbody = table.tBodies[0];
 
@@ -165,27 +159,6 @@ export class TableController extends Stacks.StacksController {
                 header.removeAttribute("aria-sort");
             }
         });
-    };
-
-    /**
-     * Transform legacy header markup into the new markup.
-     *
-     * @param headerEl
-     */
-    private ensureHeadersAreClickable = (headerEl: HTMLTableCellElement) => {
-        const headerAction = headerEl.getAttribute("data-action");
-
-        // Legacy markup that violates accessibility practices; change the DOM
-        if (headerAction !== null && headerAction.substring(0, 5) === "click") {
-            headerEl.removeAttribute("data-action");
-
-            // eslint-disable-next-line no-unsanitized/property
-            headerEl.innerHTML = `
-                <button data-action="${headerAction}">
-                    ${headerEl.innerHTML}
-                </button>
-            `;
-        }
     };
 }
 
