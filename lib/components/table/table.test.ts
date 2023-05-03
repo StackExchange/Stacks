@@ -109,8 +109,11 @@ const mockSortableTable = (useButton: boolean) => {
 };
 
 describe("s-table", () => {
+    // Current, legacy markup
     [true, false].forEach((useButton) => {
-        describe("Column sorting indicators", () => {
+        describe(`Column sorting indicators${
+            useButton ? "" : " (legacy markup)"
+        }`, () => {
             const allColIds = [
                 "test-sortable-season-col",
                 "test-sortable-month-col",
