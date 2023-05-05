@@ -20,7 +20,7 @@ const bannerChild = `
 
 describe("banner", () => {
     runComponentTests({
-        type: "visual",
+        type: "a11y",
         baseClass: "s-banner",
         variants: ["info", "success", "warning", "danger"],
         modifiers: {
