@@ -21,7 +21,10 @@ export class TableController extends Stacks.StacksController {
         // eslint-disable-next-line @typescript-eslint/no-this-alias
         const controller = this;
         const sortTriggerEl = evt.currentTarget;
+        // TODO: support *only* button as trigger in next major release
         const triggerIsButton = sortTriggerEl instanceof HTMLButtonElement;
+        // the below conditional is here for backward compatibility with the old API
+        // where we did not advise buttons as sortable column head triggers
         const colHead = (
             triggerIsButton ? sortTriggerEl.parentElement : sortTriggerEl
         ) as HTMLTableCellElement;
