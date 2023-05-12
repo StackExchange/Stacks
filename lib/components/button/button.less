@@ -79,7 +79,7 @@
 
     &.is-loading {
         .svg-icon:first-child {
-            margin-left: -23px;
+            margin-left: calc((var(--su-static24) - var(--su-static1)) * -1); // -23px
             opacity: 0; // [2]
         }
 
@@ -424,14 +424,14 @@
     &--radio { // This lives alongside a .s-btn element. These styles are the equivelent of `.v-visible-sr`
         border: 0;
         clip-path: inset(50%);
-        clip: rect(1px, 1px, 1px, 1px);
-        height: 1px;
-        margin: -1px;
+        clip: rect(var(--su-static1), var(--su-static1), var(--su-static1), var(--su-static1)); // rect(1px, 1px, 1px, 1px)
+        height: var(--su-static1);
+        margin: calc(var(--su-static1) * -1); // -1px
         overflow-wrap: normal;
         overflow: hidden;
         padding: 0;
         position: absolute;
-        width: 1px;
+        width: var(--su-static1);
     }
 
     // INTERACTION
