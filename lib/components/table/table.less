@@ -122,8 +122,23 @@
 
     &&__sortable {
         thead th {
-            a { //  If an anchor is used, it should appear like a normal header
+            a,
+            button { //  If an anchor is used, it should appear like a normal header
                 color: inherit;
+            }
+
+            button {
+                appearance: none;
+                background-color: transparent;
+                border: 0;
+                cursor: pointer;
+                display: flex;
+                gap: var(--su-static4);
+                font-weight: inherit;
+                margin: calc(var(--_ta-th-p) * -1);
+                padding: var(--_ta-th-p);
+                text-align: left;
+                width: calc(100% + calc(var(--_ta-th-p) * 2));
             }
 
             &.is-sorted { //  Selected state

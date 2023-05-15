@@ -5,6 +5,13 @@ import type { TemplateResult } from "lit-html";
 
 const colorThemes = ["dark", "light"];
 const baseThemes = ["", "highcontrast"];
+export const defaultOptions = {
+    testColorThemes: true,
+    testHighContrast: true,
+    includeNullVariant: true,
+    includeNullModifier: true,
+};
+
 type Themes = ["light" | "dark" | "highcontrast" | ""];
 type TestTypes = "visual" | "a11y";
 
@@ -19,6 +26,11 @@ type TestOptions = {
      * default: true
      */
     testHighContrast: boolean;
+    /**
+     * Provide a custom testid suffix
+     * default: undefined
+     */
+    testidSuffix?: string;
     /**
      * Include tests for the component without any variants applied
      * default: true
@@ -197,12 +209,7 @@ const getComponentTestVariations = ({
     baseClass,
     variants = [],
     modifiers,
-    options = {
-        testColorThemes: true,
-        testHighContrast: true,
-        includeNullVariant: false,
-        includeNullModifier: true,
-    },
+    options = defaultOptions,
 }: ComponentTestVariationArgs): ComponentTestProps[] => {
     const testVariations: ComponentTestProps[] = [];
     // Test default, high contrast themes
@@ -212,8 +219,13 @@ const getComponentTestVariations = ({
             (colorTheme) => {
                 const theme = [baseTheme, colorTheme].filter(Boolean) as Themes;
                 const testidBase = buildTestid([baseClass, ...theme]);
+                const allVariants = options.includeNullVariant
+                    ? ["", ...variants]
+                    : variants;
                 const primaryModifiers = modifiers?.primary
-                    ? ["", ...(<[]>modifiers.primary)]
+                    ? options.includeNullModifier
+                        ? ["", ...(<[]>modifiers.primary)]
+                        : modifiers.primary
                     : [""];
                 const secondaryModifiers = modifiers?.secondary
                     ? ["", ...(<[]>modifiers.secondary)]
@@ -225,7 +237,7 @@ const getComponentTestVariations = ({
                 primaryModifiers.forEach((primaryModifier) => {
                     secondaryModifiers.forEach((secondaryModifier) => {
                         globalModifiers.forEach((globalModifier) => {
-                            ["", ...variants].forEach((variant) => {
+                            allVariants.forEach((variant) => {
                                 testVariations.push({
                                     classes: buildClasses({
                                         baseClass,
@@ -322,12 +334,7 @@ const runComponentTests = ({
     baseClass,
     variants = [],
     modifiers,
-    options = {
-        testColorThemes: true,
-        testHighContrast: true,
-        includeNullVariant: false,
-        includeNullModifier: true,
-    },
+    options = defaultOptions,
     attributes,
     children,
     excludedTestids = [],
@@ -345,10 +352,16 @@ const runComponentTests = ({
         const allChildren: {
             [key: string]: string;
         } = children ? { ...children } : { default: "" };
+        const { testidSuffix } = options;
 
         Object.keys(allChildren).forEach((key) => {
-            const testidModified =
-                key !== "default" ? `${testid}-${key}` : testid;
+            let testidModified = (
+                key !== "default" ? `${testid}-${key}` : testid
+            ).replace(" ", "-");
+            testidModified = testidSuffix
+                ? `${testidModified}-${testidSuffix}`
+                : testidModified;
+
             const children = allChildren[key];
 
             const shouldSkipTest = excludeOrSkipTest({
@@ -373,8 +386,8 @@ const runComponentTests = ({
                       testid: testidModified,
                       component: buildTestElement({
                           attributes: {
-                              class: classes,
                               ...attributes,
+                              class: `${classes} ${attributes?.class || ""}`,
                           },
                           children,
                           testid: `${testidModified}-nested`,
@@ -383,8 +396,8 @@ const runComponentTests = ({
                   })}`
                 : buildTestElement({
                       attributes: {
-                          class: classes,
                           ...attributes,
+                          class: `${classes} ${attributes?.class || ""}`,
                       },
                       children,
                       testid: testidModified,
@@ -440,3 +453,14 @@ const excludeOrSkipTest = ({
 };
 
 export { runComponentTest, runComponentTests };
+
+/**
+ * Convert a const array of strings into a union type of the array's values.
+ *
+ * @example
+ * ```
+ * const arrayOfStrings = ['Stacky', 'Ben', 'Dan', 'Giamir'] as const;
+ * type StringLiterals = AsLiterals<typeof arrayOfStrings>; // 'Stacky' | 'Ben' | 'Dan' | 'Giamir'
+ * ```
+ */
+export type AsLiterals<T extends Readonly<string[]>> = T[number];
