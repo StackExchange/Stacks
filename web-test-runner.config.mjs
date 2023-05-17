@@ -69,7 +69,7 @@ export default {
         },
         {
             name: "visual",
-            files: "lib/components/**/check-group.visual.test.ts",
+            files: "lib/components/**/*.visual.test.ts",
         },
     ],
     testsFinishTimeout: 60 * 1000 * 5, // 5 minutes
