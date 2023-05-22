@@ -1,0 +1,40 @@
+.s-activity-indicator {
+    --_ai-focus-ring: var(--focus-ring);
+    --_ai-bg: var(--theme-secondary-400);
+    --_ai-fc: @white;
+
+    // CONTEXTUAL STYLES
+    .highcontrast-mode({
+        --_ai-fc: var(--white);
+    });
+
+    // VARIANTS
+    &&__danger {
+        --_ai-bg: var(--red-500);
+        --_ai-focus-ring: var(--focus-ring-error);
+    }
+
+    &&__success {
+        --_ai-bg: var(--green-500);
+        --_ai-focus-ring: var(--focus-ring-success);
+    }
+
+    &&__warning {
+        --_ai-bg: var(--yellow-600);
+        --_ai-focus-ring: var(--focus-ring-warning);
+    }
+
+    background-color: var(--_ai-bg);
+    box-shadow: 0 0 0 var(--su-static4) var(--_ai-focus-ring);
+    color: var(--_ai-fc);
+
+    border-radius: 1000px;
+    display: inline-block;
+    font-size: var(--fs-fine);
+    font-weight: 600;
+    line-height: 1.1; // Custom line-height to satisfy 1x screens
+    min-width: var(--su-static12);
+    min-height: var(--su-static12);
+    padding: var(--su2) var(--su4);
+    text-transform: uppercase;
+}

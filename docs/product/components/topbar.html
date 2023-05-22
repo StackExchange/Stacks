@@ -1,6 +1,7 @@
 ---
 layout: page
 title: Topbar
+razor: https://razor.stackoverflow.design/components/topbar
 description: The topbar component is a navigation bar that is placed at the top of the page.
 ---
 
@@ -37,22 +38,23 @@ description: The topbar component is a navigation bar that is placed at the top 
     <div class="s-topbar--container">
         <a href="…" class="s-topbar--menu-btn"><span></span></a>
         <a href="…" class="s-topbar--logo">@Svg.LogoGlyph.with("native")</a>
-
-        <ol class="s-topbar--content">
-            <li>
-                <a href="…" class="s-topbar--item s-user-card s-user-card__small">…</a>
-            </li>
-            <li>
-                <a href="…" class="s-topbar--item" aria-label="Inbox">
-                    @Svg.Inbox <span class="s-activity-indicator">…</span>
-                </a>
-            </li>
-            <li><a href="…" class="s-topbar--item">…</a></li>
-        </ol>
+        <nav class="s-topbar--navigation" aria-label="notifications, help, and network">
+            <ol class="s-topbar--content">
+                <li>
+                    <a href="…" class="s-topbar--item s-user-card s-user-card__small">…</a>
+                </li>
+                <li>
+                    <a href="…" class="s-topbar--item" aria-label="Inbox">
+                        @Svg.Inbox <span class="s-activity-indicator">…</span>
+                    </a>
+                </li>
+                <li><a href="…" class="s-topbar--item">…</a></li>
+            </ol>
+        </nav>
     </div>
 </header>
 {% endhighlight %}
-        <div class="stacks-preview--example">
+        <div class="stacks-preview--example bg-black-025">
             {% render 'topbar.html', hideNavigation: true, hideSearch: true, showMenu: true %}
         </div>
     </div>
@@ -70,7 +72,7 @@ description: The topbar component is a navigation bar that is placed at the top 
 <header class="s-topbar s-topbar__dark">…</header>
 <header class="s-topbar s-topbar__light">…</header>
 {% endhighlight %}
-        <div class="stacks-preview--example">
+        <div class="stacks-preview--example bg-black-025">
             {% assign variations = "s-topbar__auto,s-topbar__dark,s-topbar__light" | split: "," %}
             <div class="d-grid g24 grid__1">
                 {% for variation in variations %}
@@ -100,10 +102,12 @@ description: The topbar component is a navigation bar that is placed at the top 
         </div>
     </form>
 
-    <ol class="s-topbar--content">…</ol>
+    <nav class="s-topbar--navigation" aria-label="primary navigation">
+        <ol class="s-topbar--content">…</ol>
+    </nav>
 </header>
 {% endhighlight %}
-        <div class="stacks-preview--example">
+        <div class="stacks-preview--example bg-black-025">
             <div class="d-grid g24 grid__1">
                 <div class="grid--item">
                     <h4 class="fs-body2 mb8">With select</h4>
@@ -129,23 +133,27 @@ description: The topbar component is a navigation bar that is placed at the top 
         New
     </a>
 
-    <ol class="s-navigation">
-        <li><a href="…" class="s-navigation--item">About</a></li>
-        <li><a href="…" class="s-navigation--item is-selected">Products</a></li>
-        <li><a href="…" class="s-navigation--item">For Teams</a></li>
-    </ol>
+    <nav aria-label="More from Stack Overflow">
+        <ol class="s-navigation">
+            <li><a href="…" class="s-navigation--item">About</a></li>
+            <li><a href="…" class="s-navigation--item is-selected">Products</a></li>
+            <li><a href="…" class="s-navigation--item">For Teams</a></li>
+        </ol>
+    </nav>
 
-    <ol class="s-topbar--content">
-        <li>
-            <a href="…" class="s-topbar--item s-topbar--item__unset s-btn s-btn__filled">Log in</a>
-        </li>
-        <li>
-            <a href="…" class="s-topbar--item s-topbar--item__unset ml4 s-btn s-btn__primary">Sign up</a>
-        </li>
-    </ol>
+    <nav class="s-topbar--navigation" aria-label="Log in or sign up">
+        <ol class="s-topbar--content">
+            <li>
+                <a href="…" class="s-topbar--item s-topbar--item__unset s-btn s-btn__filled">Log in</a>
+            </li>
+            <li>
+                <a href="…" class="s-topbar--item s-topbar--item__unset ml4 s-btn s-btn__primary">Sign up</a>
+            </li>
+        </ol>
+    </nav>
 </header>
 {% endhighlight %}
-        <div class="stacks-preview--example">
+        <div class="stacks-preview--example bg-black-025">
             {% render 'topbar.html', showNotices: true, showFullNavigation: true, hideSearch: true, showCtas: true  %}
         </div>
     </div>
@@ -158,7 +166,7 @@ description: The topbar component is a navigation bar that is placed at the top 
     <div class="s-topbar--container wmx75">…</div>
 </header>
 {% endhighlight %}
-        <div class="stacks-preview--example">
+        <div class="stacks-preview--example bg-black-025">
             {% render 'topbar.html', containerClass: "wmx75", hideUserCard: true  %}
         </div>
     </div>

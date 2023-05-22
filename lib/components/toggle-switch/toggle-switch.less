@@ -1,0 +1,110 @@
+.s-toggle-switch {
+    --_ts-bg: var(--black-300);
+    --_ts-bg-ps: left center;
+    --_ts-bs-color: transparent;
+    --_ts-multiple-bg: unset;
+    --_ts-multiple-fc: var(--black-500);
+
+    fieldset[disabled] & {
+        &,
+        & label {
+            cursor: not-allowed;
+            opacity: var(--_o-disabled-static);
+        }
+    }
+
+    &&__multiple { // TODO split single and multiple toggle into two seperate components
+        input[type="radio"] {
+            &:checked {
+                + label {
+                    &.s-toggle-switch--label-off {
+                        --_ts-multiple-bg: var(--black-500);
+                        --_ts-multiple-fc: var(--white);
+
+                        .dark-mode({ --_ts-multiple-bg: var(--black-350); });
+                    }
+
+                    &:not(.s-toggle-switch--label-off) {
+                        --_ts-multiple-bg: var(--green-400);
+                        --_ts-multiple-fc: @white;
+
+                        .highcontrast-mode({ --_ts-multiple-fc: var(--white); });
+                    }
+                }
+
+                &:focus + label {
+                    --_ts-bs-color: var(--focus-ring-success);
+
+                    &.s-toggle-switch--label-off {
+                        --_ts-bs-color: var(--focus-ring-muted);
+                    }
+                }
+            }
+
+            left: -999em;
+            margin: 0;
+            opacity: 0;
+            position: absolute;
+        }
+
+        label {
+            background-color: var(--_ts-multiple-bg);
+            box-shadow: 0 0 0 var(--su-static4) var(--_ts-bs-color);
+            color: var(--_ts-multiple-fc);
+
+            border-radius: 1000px;
+            cursor: pointer;
+            font-size: var(--fs-body1);
+            font-weight: 400;
+            line-height: 1;
+            margin: 0;
+            padding: 0.5em 0.7em;
+            text-align: center;
+            white-space: nowrap;
+            width: 100%;
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            user-select: none;
+        }
+
+        align-items: stretch;
+        display: flex;
+    }
+
+    input[type="checkbox"], // TODO DEPRECATED: drop support for nested input[type="checkbox"]
+    input[type="checkbox"]& {
+        &:checked {
+            --_ts-bg: var(--green-400);
+            --_ts-bg-ps: right center;
+
+            &:focus {
+                --_ts-bs-color: var(--focus-ring-success);
+            }
+        }
+
+        &:focus {
+            --_ts-bs-color: var(--focus-ring-muted);
+            outline: none;
+        }
+
+        &[disabled] {
+            cursor: default;
+        }
+
+        background-color: var(--_ts-bg);
+        background-position: var(--_ts-bg-ps);
+        box-shadow: 0 0 0 var(--su-static4) var(--_ts-bs-color);
+
+        appearance: none;
+        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%23fff'/%3e%3c/svg%3e"); // The white dot within the toggle
+        background-size: contain;
+        background-repeat: no-repeat;
+        border-radius: 1000px;
+        cursor: pointer;
+        height: var(--su-static24);
+        margin: 0; // guard against production adding 5px of margin to these
+        transition: background-position 0.2s ease;
+        vertical-align: top;
+        width: calc(var(--su-static48) - var(--su-static4));
+    }
+}

@@ -1,0 +1,113 @@
+.s-modal {
+    --_mo-bg: fade(@black-900, 50%); // Background remains fixed
+    --_mo-hmx: unset;
+    --_mo-wmx: unset;
+    --_mo-close-t: var(--su8);
+    --_mo-dialog-bg: var(--white);
+    --_mo-dialog-pt: var(--su24);
+    --_mo-header-fc: var(--fc-dark);
+
+    // CONTEXTUAL STYLES
+    &[aria-hidden="false"] {
+        &,
+        .s-modal--dialog {
+            opacity: 1;
+            transform: translate3d(0, 0, 0) scale3d(1, 1, 1);
+            transition: opacity 100ms var(--te-smooth) 10ms, z-index 0s 0s, visibility 0s 0s, transform 100ms var(--te-smooth) 10ms, transform 100ms var(--te-smooth) 10ms; // Transition in
+            visibility: visible;
+            z-index: var(--zi-modals);
+        }
+    }
+
+    // MODIFIERS
+    &&__celebration {
+        --_mo-close-t: var(--su48);
+        --_mo-dialog-pt: var(--su64);
+
+        .s-modal--dialog {
+            .bg-confetti-animated;
+        }
+    }
+
+    &&__full {
+        --_mo-hmx: calc(100% - var(--su48));
+        --_mo-wmx: calc(100% - var(--su48));
+    }
+
+    // VARIANTS
+    &.has-danger,
+    &&__danger {
+        --_mo-bg: darken(fade(@red-900, 50%), 23%);
+        --_mo-header-fc: var(--red-600);
+    }
+
+    // CHILD ELEMENTS
+    & &--body {
+        color: var(--fc-medium);
+        margin-bottom: var(--su24);
+    }
+
+    & &--close {
+        //  [1] To override .s-btn class attributes
+        .svg-icon {
+            margin: 0 !important;
+        }
+
+        padding: var(--su12) !important; // [1]
+        position: absolute !important; // [1]
+        right: var(--su8);
+        top: var(--_mo-close-t);
+    }
+
+    & &--dialog {
+        .dark-mode({
+            --_mo-dialog-bg: var(--black-100);
+        });
+
+        padding: var(--_mo-dialog-pt) var(--su24) var(--su24);
+
+        @scrollbar-styles();
+        backface-visibility: hidden;
+        background-color: var(--_mo-dialog-bg);
+        border-radius: var(--br-lg);
+        box-shadow: var(--bs-lg);
+        max-height: 100%;
+        max-width: 600px;
+        opacity: 0;
+        overflow-y: auto;
+        transform: translate3d(0, 30%, 0) scale3d(0.6, 0.6, 0.6);
+        transition: opacity 200ms var(--te-smooth) 0s, z-index 0s 100ms, visibility 0s 100ms, transform 100ms var(--te-smooth) 0s, transform 100ms var(--te-smooth) 0s; // Transition out
+        visibility: hidden;
+        will-change: visibility, z-index, opacity, transform; // Not supported by Edge
+        z-index: var(--zi-hide); // Make sure it's also below everything so we can't interact with it.
+    }
+
+    & &--footer {
+        margin-top: var(--su24);
+    }
+
+    & &--header {
+        color: var(--_mo-header-fc);
+
+        font-size: var(--fs-headline1);
+        font-weight: normal;
+        line-height: var(--lh-sm);
+        margin-bottom: var(--su16);
+    }
+
+    background-color: var(--_mo-bg);
+    max-height: var(--_mo-hmx);
+    max-width: var(--_mo-wmx);
+
+    align-items: center;
+    backface-visibility: hidden;
+    display: flex;
+    inset: 0; // This fills the entire viewport without having to worry about size.
+    justify-content: center;
+    opacity: 0;
+    position: fixed;
+    transition: opacity 100ms var(--te-smooth) 0s, z-index 0s 100ms, visibility 0s 100ms; // Transition out
+    visibility: hidden;
+    will-change: visibility, z-index, opacity; // Not supported in Edge
+    z-index: var(--zi-hide); // Make sure it's also below everything so we can't interact with it.
+}

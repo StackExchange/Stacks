@@ -1,0 +1,426 @@
+//
+//  STACK OVERFLOW
+//  FLEXBOX HELPERS
+//
+//  This CSS comes from Stacks, our CSS & Pattern library for rapidly building
+//  Stack Overflow. For documentation of all these classes and how to contribute,
+//  visit https://stackoverflow.design/
+//
+//  TABLE OF CONTENTS
+//  • VARIABLES
+//  • MIXINS
+//  • FLEX ELEMENTS
+//  • FLEX SPACING
+//  • MODIFICATIONS
+//  • ATOMIC
+//  • DEPRECATED
+//
+//  ============================================================================
+//  --  STACKS FLEX LAYOUT MIXINS
+//  ============================================================================
+//  --  FIXED COLUMN WIDTHS
+//  ----------------------------------------------------------------------------
+
+#stacks-internals() {
+    #flex-builder-settings() {
+        @flex-cols: 12; // Desired flex columns
+    }
+    #flex-builder-helpers() {
+        #stacks-internals #flex-builder-settings();
+
+        .create-fixed-items(@num, @count: 1) when (@count =< @num) {
+            .flex--item@{count} {
+                flex-basis: ((@count * 100%) / @num);
+            }
+
+            #stacks-internals #flex-builder-helpers .create-fixed-items(@num, (@count + 1));
+        }
+
+        //  --  AUTO FIXED WIDTH ITEMS
+        //      Automatic adjusting width items are great. And being able to specify an
+        //      item's width is equally amazing. But sometimes you want to be able to
+        //      have all items within a box container to be the same width. Instead
+        //      stating a fixed item width, apply a modifying to the box container and
+        //      all child elements will automatically be sized.
+        //  ----------------------------------------------------------------------------
+        .create-flex-count-cols(@num, @count: 1) when (@count =< @num) {
+            .flex__allitems@{count} {
+                > .d-flex,
+                > .flex--item {
+                    flex-basis: ((@count * 100%) / @num);
+                }
+            }
+
+            #stacks-internals #flex-builder-helpers .create-flex-count-cols(@num, (@count + 1));
+        }
+
+        // DEPRECATED - START
+        //
+        //  --  FLEX GUTTERS
+        //  ============================================================================
+        //      We need two mixins to properly generate flex gutters:
+        //
+        //      [1]  Adjusts the fixed column max-width / flex-basis if gutters are present.
+        //      [2]  Generate the desired gutters.
+        //
+        //  ----------------------------------------------------------------------------
+        //      [1] Adjust width / flex-basis numbers
+        //
+        //      HOW IT WORKS:
+        //      A quick primer on how this mixin works. The TL;DR is we're using a mixin
+        //      guard to start a loop that'll create all the desired `> .flex--item@{count}`
+        //      classes.
+        //
+        //      The three mixin parameters are:
+        //        - @spacing: the desired distance our gutters should be
+        //        - @num: the number at which we should stop our loop
+        //        - @count: the current column number
+        //
+        //      The other bit is the mixin guard portion:
+        //
+        //          when (@count =< @num)
+        //
+        //      This checks if we should run the mixin. Using a comparison operator,
+        //      it's checking to see if the current @count is equal to (=) or less
+        //      than (<) the desired @num total. If it is, run the mixin.
+        //
+        //      Next the mixin runs as normal. Using the @item-width variable, we
+        //      calculate the item's width. We do this here because we need to use the
+        //      CSS calc function and this makes the code a little prettier. Using the
+        //      variable, we then update the fixed item's flex-basis and width.
+        //
+        //      Finally we call for the mixin again within itself, assigning a new
+        //      @count value: the current value + 1. This then fires off the mixin
+        //      again, creating a loop until we've generated updated widths for all
+        //      of our desired @num.
+        //
+        //      There are two mixins here:
+        //          • "flex-fixed-item-row" -- This is the baseline mixin.
+        //          • "flex-fixed-item-column" -- When the ".d-flex" is a column, change
+        //             the margins, setting a top and bottom margin instead of left
+        //             and right.
+        //
+        //  ----------------------------------------------------------------------------
+        .flex-fixed-item-spacing(@spacing, @num, @count: 1) when (@count =< @num) {
+            @itemWidth: (@count * 100% / @num);
+
+            > .flex--item@{count} {
+                margin: calc(~"@{spacing}" / 2);
+            }
+
+            //  ------------------------------------------------------------------------
+            //  [1] FIXED WIDTH ITEMS
+            //      This makes the fixed width items to account for gutters.
+            //
+            //  [2] UNIFORM CHILD FLEX ITEMS
+            //      This class allows you to uniformly state the width of `.flex--item`
+            //      divs within a `.d-flex` element. In particular we adjust the flex-basis
+            //      and max-width here to account for gutters.
+            //  ------------------------------------------------------------------------
+            > .flex--item@{count},                                  // [1]
+            &.flex__allitems@{count} > .d-flex,                     // [2]
+            &.flex__allitems@{count} > .flex--item {                // [2]
+                flex-basis: calc(~"@{itemWidth} - @{spacing}");
+            }
+
+            #stacks-internals #flex-builder-helpers .flex-fixed-item-spacing(@spacing, @num, (@count + 1));
+        }
+
+
+        //  ----------------------------------------------------------------------------
+        //      2.  Generate the desired gutters
+        //          We halve the spacing value because the spacing value should be the
+        //          total space between items--not the total applied to each item,
+        //          which would effectively double the desired total.
+        //
+        //          The "when" statements here refer to when we declare it's for a
+        //          row (default) or a column. When a column we need to reset the
+        //          left and right margins and add in top and bottom margins.
+        //  ----------------------------------------------------------------------------
+        .gutter-spacing(@spacing) {
+            #stacks-internals #flex-builder-settings();
+
+            margin: calc(~"@{spacing}" / 2 * -1);
+
+            //  --  FLUID ITEMS
+            > .d-flex,
+            > .flex--item {
+                margin: calc(~"@{spacing}" / 2);
+            }
+
+            //  --  FIXED WIDTH ITEMS
+            //      Now we call for the above mixin [1] to make sure we adjust the default
+            //      widths for the new gutters.
+            #stacks-internals #flex-builder-helpers .flex-fixed-item-spacing(@spacing, @flex-cols);
+        }
+        //
+        // DEPRECATED - END
+
+        //  -- FLEX GAP
+        //  ------------------------------------------------------------------------
+        //  [1] FIXED WIDTH ITEMS
+        //      This makes the fixed width items to account for gaps.
+        //
+        //  [2] UNIFORM CHILD FLEX ITEMS
+        //      This class allows you to uniformly state the width of `.flex--item`
+        //      divs within a `.d-flex` element. In particular we adjust the flex-basis
+        //      and max-width here to account for gaps.
+        //  ------------------------------------------------------------------------
+        .flex-fixed-item-spacing-gap(@spacing, @num, @count: 1) when (@count =< @num) {
+            @itemWidth: (@count * 100% / @num);
+            @gapRatio: ((@num - @count) / @num);
+
+            > .flex--item@{count},                                  // [1]
+            &.flex__allitems@{count} > .d-flex,                     // [2]
+            &.flex__allitems@{count} > .flex--item {                // [2]
+                flex-basis: calc(~"@{itemWidth} - (@{spacing} * @{gapRatio})");
+            }
+
+            #stacks-internals #flex-builder-helpers .flex-fixed-item-spacing-gap(@spacing, @num, (@count + 1));
+        }
+
+
+        .gap-spacing(@spacing) {
+            #stacks-internals #flex-builder-settings();
+
+            #stacks-internals #flex-builder-helpers .flex-fixed-item-spacing-gap(@spacing, @flex-cols);
+        }
+    }
+}
+
+//  --  UNIVERSAL FLEX WIDTHS
+//      This applies a flex value it to all of a flex's direct children.
+//  --------------------------------------------------------------------------
+.flex__fl-shrink0 {
+    &,
+    > .d-flex,
+    > .flex--item {
+        flex: 0 auto;
+    }
+}
+
+.flex__fl-equal {
+    &,
+    > .d-flex,
+    > .flex--item {
+        flex: 1 1 0%;
+    }
+}
+
+.flex__fl-grow1 {
+    &,
+    > .d-flex,
+    > .flex--item {
+        flex: 1 auto;
+    }
+}
+
+& {
+    #stacks-internals #flex-builder-settings(); // load @flex-cols
+
+    //  $$  FIXED WIDTH ITEMS
+    //  ----------------------------------------------------------------------------
+    #stacks-internals #flex-builder-helpers .create-fixed-items(@flex-cols);
+
+    //  $$  AUTO FIXED WIDTH ITEMS
+    //  ----------------------------------------------------------------------------
+    #stacks-internals #flex-builder-helpers .create-flex-count-cols(@flex-cols);
+}
+//  ============================================================================
+//  $   FLEX SPACING
+//      Insert spaces or gaps in between flex items
+//  ----------------------------------------------------------------------------
+.g0, .gx0, .gy0 { #stacks-internals #flex-builder-helpers .gap-spacing(var(--su0)); }
+.g1, .gx1, .gy1 { #stacks-internals #flex-builder-helpers .gap-spacing(var(--su1)); }
+.g2, .gx2, .gy2 { #stacks-internals #flex-builder-helpers .gap-spacing(var(--su2)); }
+.g4, .gx4, .gy4 { #stacks-internals #flex-builder-helpers .gap-spacing(var(--su4)); }
+.g6, .gx6, .gy6 { #stacks-internals #flex-builder-helpers .gap-spacing(var(--su6)); }
+.g8, .gx8, .gy8 { #stacks-internals #flex-builder-helpers .gap-spacing(var(--su8)); }
+.g12, .gx12, .gy12 { #stacks-internals #flex-builder-helpers .gap-spacing(var(--su12)); }
+.g16, .gx16, .gy16 { #stacks-internals #flex-builder-helpers .gap-spacing(var(--su16)); }
+.g24, .gx24, .gy24 { #stacks-internals #flex-builder-helpers .gap-spacing(var(--su24)); }
+.g32, .gx32, .gy32 { #stacks-internals #flex-builder-helpers .gap-spacing(var(--su32)); }
+.g48, .gx48, .gy48 { #stacks-internals #flex-builder-helpers .gap-spacing(var(--su48)); }
+.g64, .gx64, .gy64 { #stacks-internals #flex-builder-helpers .gap-spacing(var(--su64)); }
+
+
+// DEPRECATED - START
+//
+.gs2 { #stacks-internals #flex-builder-helpers .gutter-spacing(var(--su2)); }
+.gs4 { #stacks-internals #flex-builder-helpers .gutter-spacing(var(--su4)); }
+.gs6 { #stacks-internals #flex-builder-helpers .gutter-spacing(var(--su6)); }
+.gs8 { #stacks-internals #flex-builder-helpers .gutter-spacing(var(--su8)); }
+.gs12 { #stacks-internals #flex-builder-helpers .gutter-spacing(var(--su12)); }
+.gs16 { #stacks-internals #flex-builder-helpers .gutter-spacing(var(--su16)); }
+.gs24 { #stacks-internals #flex-builder-helpers .gutter-spacing(var(--su24)); }
+.gs32 { #stacks-internals #flex-builder-helpers .gutter-spacing(var(--su32)); }
+.gs48 { #stacks-internals #flex-builder-helpers .gutter-spacing(var(--su48)); }
+.gs64 { #stacks-internals #flex-builder-helpers .gutter-spacing(var(--su64)); }
+
+//  On rows, remove top and bottom margins
+.gsx {
+    &,
+    > .d-flex,
+    > [class*="flex--item"] {
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+}
+
+//  On columns, remove left and right margins
+.gsy {
+    &,
+    > .d-flex,
+    > [class*="flex--item"] {
+        margin-right: 0;
+        margin-left: 0;
+    }
+}
+//
+// DEPRECATED - END
+
+
+//  ============================================================================
+//  $  ATOMIC CLASSES
+//  ----------------------------------------------------------------------------
+//  --  FLEX DIRECTION
+//      This determines the direction content flows within a parent container.
+//      The default values are row.
+//  ----------------------------------------------------------------------------
+#stacks-internals #responsify('.fd-row', { flex-direction: row !important; });
+#stacks-internals #responsify('.fd-row-reverse', { flex-direction: row-reverse !important; });
+#stacks-internals #responsify('.fd-column', { flex-direction: column !important; });
+#stacks-internals #responsify('.fd-column-reverse', { flex-direction: column-reverse !important; });
+
+//  --  FLEX WRAP
+//      This determines if a parent's child items will wrap or not.
+//  ----------------------------------------------------------------------------
+#stacks-internals #responsify('.fw-wrap', { flex-wrap: wrap !important; });
+#stacks-internals #responsify('.fw-reverse', { flex-wrap: wrap-reverse !important; });
+#stacks-internals #responsify('.fw-nowrap', { flex-wrap: nowrap !important; });
+
+//  --  JUSTIFY CONTENT
+//      Defines the child alignment along the parent's main axis
+//  ----------------------------------------------------------------------------
+#stacks-internals #responsify('.jc-center', { justify-content: center !important; });
+#stacks-internals #responsify('.jc-end', { justify-content: flex-end !important; });
+#stacks-internals #responsify('.jc-space-around', { justify-content: space-around !important; });
+#stacks-internals #responsify('.jc-space-between', { justify-content: space-between !important; });
+#stacks-internals #responsify('.jc-space-evenly', { justify-content: space-evenly !important; });
+#stacks-internals #responsify('.jc-start', { justify-content: flex-start !important; });
+
+//  --  ALIGN CONTENT
+//      Aligns the container's lines when there is extra space in the
+//      cross-axis. Note that this only works when a parent container
+//      has more than one line.
+//  ----------------------------------------------------------------------------
+.ac-center { align-content: center !important; }
+.ac-end { align-content: flex-end !important; }
+.ac-space-around { align-content: space-around !important; }
+.ac-space-between { align-content: space-between !important; }
+.ac-start { align-content: flex-start !important; }
+.ac-stretch { align-content: stretch !important; }
+
+//  --  ALIGN ITEMS
+//      Defines the default behavior for how child items align along
+//      the parent's cross axis. Think of it the cross-axis for
+//      justify-content.
+//  ----------------------------------------------------------------------------
+#stacks-internals #build-classes(
+    responsive,
+    '.ai',
+    {
+        .template(@value) when (@value=start), (@value=end) { align-items: ~"flex-@{value}" !important; }
+        .template(@value) when (default()) { align-items: @value !important; };
+    },
+    baseline center end start stretch
+);
+
+//  --  CENTER ITEMS
+//      A common combination of classes is .jc-center and .ai-center.
+//      Use this class when you want both.
+//  ----------------------------------------------------------------------------
+.flex__center {
+    .jc-center;
+    .ai-center;
+}
+
+//  --  ALIGN SELF
+//      Allows child containers to re-align themselves regardless
+//      of the parent's main axis direction.
+//  ----------------------------------------------------------------------------
+#stacks-internals #build-classes(
+    responsive,
+    '.as',
+    {
+        .template(@value) when (@value=start), (@value=end) { align-self: ~"flex-@{value}" !important; }
+        .template(@value) when (default()) { align-self: @value !important; };
+    },
+    auto baseline center end start stretch
+);
+
+//  --  FLEX
+//      Graduating scale of flex-grow and flex-shrink values
+//  ----------------------------------------------------------------------------
+#stacks-internals #responsify('.fl-grow1', { flex-grow: 1 !important; });
+#stacks-internals #responsify('.fl-grow0', { flex-grow: 0 !important; });
+#stacks-internals #responsify('.fl-shrink1', { flex-shrink: 1 !important; });
+#stacks-internals #responsify('.fl-shrink0', { flex-shrink: 0 !important; });
+#stacks-internals #responsify('.fl-none', { flex: none !important; });
+#stacks-internals #responsify('.fl-initial', { flex: 0 1 auto !important; });
+#stacks-internals #responsify('.fl-auto', { flex: 1 1 auto !important; });
+#stacks-internals #responsify('.fl-equal', { flex: 1 1 0% !important; });
+
+//  --  Ordering
+//      Designate a child container's position.
+//  ----------------------------------------------------------------------------
+#stacks-internals #responsify('.order-first', { order: -1 !important; });
+#stacks-internals #responsify('.order-last', { order: 1 !important; });
+
+
+//  ============================================================================
+//  $  DEPRECATED CLASSES
+//  ----------------------------------------------------------------------------
+
+//  --  FLEX FLOW
+//      This is another shorthand property for flex-direction and flex-wrap.
+//      Default value is "row nowrap".
+//  ----------------------------------------------------------------------------
+.ff-row-wrap { flex-flow: row wrap !important; }
+.ff-row-nowrap { flex-flow: row nowrap !important; }
+.ff-row-reverse-wrap { flex-flow: row-reverse wrap !important; }
+.ff-row-reverse-nowrap { flex-flow: row-reverse nowrap !important; }
+.ff-column-wrap { flex-flow: column wrap !important; }
+.ff-column-nowrap { flex-flow: column nowrap !important; }
+.ff-column-reverse-wrap { flex-flow: column-reverse wrap !important; }
+.ff-column-reverse-nowrap { flex-flow: column-reverse nowrap !important; }
+
+//  --  FLEX
+//      Graduating scale of flex-grow and flex-shrink values
+//  ----------------------------------------------------------------------------
+#stacks-internals #responsify('.fl0', { flex: 0 auto !important; });
+#stacks-internals #responsify('.fl1', { flex: 1 auto !important; });
+.fl2 { flex: 2 auto !important; }
+.fl3 { flex: 3 auto !important; }
+.fl4 { flex: 4 auto !important; }
+.fl5 { flex: 5 auto !important; }
+
+//  --  FLEX SHRINK
+//      Specifies the flex-shrink factor, which states how much an item will
+//      shrink relative to other flex items in the container when there isn't
+//      enough space in the row. Default value is 1.
+//  ----------------------------------------------------------------------------
+.fl-shrink2 { flex-shrink: 2; }
+.fl-shrink3 { flex-shrink: 3; }
+.fl-shrink4 { flex-shrink: 4; }
+.fl-shrink5 { flex-shrink: 5; }
+
+//  --  FLEX GROW
+//      Specifies the flex-shrink grow, which states how much an item will
+//      grow relative to other flex items in the container when there isn't
+//      enough space in the row. Default value is 1.
+//  ----------------------------------------------------------------------------
+.fl-grow2 { flex-grow: 2; }
+.fl-grow3 { flex-grow: 3; }
+.fl-grow4 { flex-grow: 4; }
+.fl-grow5 { flex-grow: 5; }

@@ -1,6 +1,7 @@
 ---
 layout: page
 title: Popovers
+razor: https://razor.stackoverflow.design/components/popover
 js: true
 figma: https://www.figma.com/file/LLHB9oIQ6DmOHQNVbGYrH4/Popovers
 description: Popovers are small content containers that provide a contextual overlay. They can be used as in-context feature explanations, dropdowns, or tooltips.
@@ -156,13 +157,14 @@ description: Popovers are small content containers that provide a contextual ove
     {% header "h3", "Examples" %}
     <div class="stacks-preview bs-none">
         <div class="stacks-preview--example ba bar-sm bg-black-025">
-            <div class="d-flex ai-center gs8 sm:fd-column">
+            <div class="d-flex ai-center g8 sm:fd-column">
                 <button class="flex--item s-btn s-btn__filled"
                         data-controller="s-popover"
                         data-s-popover-placement="top-start"
                         data-s-popover-toggle-class="is-selected"
                         data-action="s-popover#toggle"
-                        aria-controls="popover-example-1">
+                        aria-controls="popover-example-1"
+                        aria-expanded="false">
                     Show example popover
                 </button>
                 <div id="popover-example-1" class="s-popover ws2" role="menu">
@@ -178,7 +180,8 @@ description: Popovers are small content containers that provide a contextual ove
                         data-controller="s-popover"
                         data-s-popover-toggle-class="is-selected"
                         data-action="s-popover#toggle"
-                        aria-controls="popover-example-2">
+                        aria-controls="popover-example-2"
+                        aria-expanded="false">
                     Show example popover
                 </button>
                 <div id="popover-example-2" class="s-popover p16" role="menu">
@@ -194,7 +197,8 @@ description: Popovers are small content containers that provide a contextual ove
                         data-s-popover-toggle-class="is-selected"
                         data-s-popover-placement="top"
                         data-action="s-popover#toggle"
-                        aria-controls="popover-example-4">
+                        aria-controls="popover-example-4"
+                        aria-expanded="false">
                     {% icon "InfoSm" %}
                     <span class="v-visible-sr">info</span>
                 </button>
@@ -210,12 +214,17 @@ description: Popovers are small content containers that provide a contextual ove
                     data-s-popover-auto-show="true"
                     data-s-popover-hide-on-outside-click="never">
                     <a id="reference-element" class="s-link s-link__inherit"
-                        aria-controls="popover-example-3">
+                        aria-controls="popover-example-3"
+                        aria-expanded="true">
                         Follow question
                     </a>
                     <div id="popover-example-3" class="s-popover wmx3">
                         <div class="s-popover--arrow"></div>
-                        <button class="s-popover--close s-btn s-btn__muted" aria-label="Close" data-action="s-popover#toggle">{% icon "ClearSm" %}</button>
+                        <button class="s-popover--close s-btn s-btn__muted"
+                            aria-label="Close"
+                            data-action="s-popover#toggle">
+                            {% icon "ClearSm" %}
+                        </button>
 
                         <div class="d-flex ai-center">
                             <div class="flex--item mr12 fc-orange-400">
@@ -240,6 +249,7 @@ description: Popovers are small content containers that provide a contextual ove
 {% highlight html %}
 <button class="s-btn s-btn__dropdown" role="button"
         aria-controls="popover-example"
+        aria-expanded="false"
         data-controller="s-popover"
         data-action="s-popover#toggle"
         data-s-popover-placement="bottom-start"
@@ -256,6 +266,7 @@ description: Popovers are small content containers that provide a contextual ove
         <div class="stacks-preview--example">
             <button class="s-btn s-btn__primary s-btn__dropdown" role="button"
                     aria-controls="popover-example"
+                    aria-expanded="false"
                     data-controller="s-popover"
                     data-action="s-popover#toggle"
                     data-s-popover-placement="bottom-start"
@@ -282,6 +293,7 @@ description: Popovers are small content containers that provide a contextual ove
 
     <button id="reference-element" class="s-btn s-btn__filled s-btn__dropdown"
             aria-controls="popover-example"
+            aria-expanded="true"
             data-action="s-popover#toggle">
         …
     </button>
@@ -325,7 +337,7 @@ Stacks.application.register("section", class extends Stacks.StacksController {
             <div data-controller="section">
                 <div class="s-page-title mb16">
                     <div class="s-page-title--text">
-                        <h1 class="s-page-title--header">Lorem ipsum</h1>
+                        <h1 class="s-page-title--header" role="presentation">Lorem ipsum</h1>
                     </div>
                     <div class="s-page-title--actions">
                         <button type="button" class="s-btn s-btn__muted p0"
@@ -333,7 +345,8 @@ Stacks.application.register("section", class extends Stacks.StacksController {
                                 data-controller="s-popover"
                                 data-action="s-popover#toggle"
                                 data-s-popover-placement="left"
-                                aria-controls="popover-help-example">
+                                aria-controls="popover-help-example"
+                                aria-expanded="false">
                                     {% icon "Help" %}
                                     <span class="v-visible-sr">help</span>
                                 </button>
@@ -351,7 +364,7 @@ Stacks.application.register("section", class extends Stacks.StacksController {
         </section>
     </div>
 
-    {% header "h4", "JavaScript configuration" %}
+    {% header "h4", "JavaScript configuration (popovers)" %}
     <p class="stacks-copy">Situations may also arise where popovers need to be attached to an element after the document is rendered. For example, a button could have a contextual menu that is too expensive to serve up on every page load.</p>
     <p class="stacks-copy">Popovers can be attached to an element after the fact using <code class="stacks-code">Stacks.attachPopover</code>.</p>
     <p class="stacks-copy">This method takes three parameters, the element to attach the popover to, the popover either as an element or an HTML string, and optional options for displaying the popover.</p>
@@ -372,7 +385,12 @@ Stacks.application.register("actions", class extends Stacks.StacksController {
 });
 {% endhighlight %}
         <div class="stacks-preview--example bg-black-025">
-            <button class="s-btn s-btn__outlined s-btn__muted s-btn__dropdown" data-controller="actions" data-action="actions#load">Actions</button>
+            <button class="s-btn s-btn__outlined s-btn__muted s-btn__dropdown"
+                data-controller="actions"
+                data-action="actions#load"
+                aria-expanded="false">
+                Actions
+            </button>
         </div>
     </div>
 </section>
@@ -418,7 +436,7 @@ Stacks.application.register("actions", class extends Stacks.StacksController {
                     <td class="p8">If <code class="stacks-code">aria-describedby</code> is not present or valid, and the title attribute exists, the title will be removed from the element and be used to create a popover immediately after the element. All content will be escaped and inserted as text.</td>
                 </tr>
                 <tr>
-                    <th scope="row"><code class="stacks-code">s-popover-html-title="{TITLE}"</code></th>
+                    <th scope="row"><code class="stacks-code">data-s-tooltip-html-title="{TITLE}"</code></th>
                     <td>Controller element</td>
                     <td class="p8">Acts the exact same as the <code class="stacks-code">title</code> attribute, but inserts the raw text directly as html. If both this and the <code class="stacks-code">title</code> attribute exist on the element, this attribute will be used.</td>
                 </tr>
@@ -507,7 +525,7 @@ Stacks.application.register("actions", class extends Stacks.StacksController {
         </div>
     </div>
 
-    {% header "h4", "JavaScript configuration" %}
+    {% header "h4", "JavaScript configuration (tooltips)" %}
     <p class="stacks-copy">In cases where the tooltip needs to display simple text or HTML, the popover can be configured using JavaScript. Plain text tooltips will render characters like &lt;, &gt;, and &amp; as is. HTML tooltips will render the HTML as expected.</p>
     <div class="stacks-preview">
 {% highlight javascript %}
@@ -540,6 +558,7 @@ Stacks.setTooltipHtml(el,
 {% highlight html %}
 <button class="s-btn" role="button"
         aria-describedby="tooltip-example"
+        aria-expanded="false"
         data-controller="s-tooltip"
         data-s-tooltip-placement="top-start">
     …
@@ -579,6 +598,7 @@ Stacks.setTooltipHtml(el,
 {% highlight html %}
 <button class="s-btn s-btn__dropdown" role="button"
         aria-controls="popover-example"
+        aria-expanded="false"
         data-controller="s-popover s-tooltip"
         data-action="s-popover#toggle"
         data-s-popover-placement="bottom-start"
@@ -597,6 +617,7 @@ Stacks.setTooltipHtml(el,
         <div class="stacks-preview--example">
             <button class="s-btn s-btn__primary s-btn__dropdown" role="button"
                     aria-controls="popover-example-with-tooltip"
+                    aria-expanded="false"
                     data-controller="s-popover s-tooltip"
                     data-action="s-popover#toggle"
                     data-s-popover-placement="bottom-start"
@@ -662,7 +683,7 @@ Stacks.setTooltipHtml(el,
 </div>
 {% endhighlight %}
         <div class="stacks-preview--example bg-black-025">
-            <div class="d-flex gs16 flex__allitems4 fw-wrap">
+            <div class="d-flex g16 flex__allitems4 fw-wrap">
                 <div class="flex--item">
                     <div class="s-popover ps-relative z-base is-visible">
                         <div class="s-popover--arrow s-popover--arrow__tc"></div>

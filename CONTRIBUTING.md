@@ -203,6 +203,7 @@ Writing markup in a JavaScript file makes the content harder to find, harder to 
  - Use our pre-defined color variables instead of hard-coding hex values where possible.
  - Quote attribute values in selectors, e.g., `input[type="text"]`. [They’re only optional in some cases](http://mathiasbynens.be/notes/unquoted-attribute-values#css), and it’s a good practice for consistency.
  - Generally, we should avoid specifying `0` as a value, but when doing so avoid specifying units for zero values, e.g., `margin: 0;` instead of `margin: 0px;`.
+ - Do not use atomic classes as mixins
 
 #### Declaration Order
 Instead of ordering declarations alphabetically, we logically group items together. [Field Manuals](https://manuals.gravitydept.com/code/css/properties) does a great job explaining this idea. Ordering Less this way helps people to understand maintain the code.

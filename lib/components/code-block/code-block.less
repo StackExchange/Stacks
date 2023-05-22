@@ -1,0 +1,116 @@
+.s-code-block {
+    --_cb-line-numbers-bg: var(--black-050);
+
+    // CONTEXTUAL STYLES
+    .dark-mode({
+        --_cb-line-numbers-bg: var(--black-025);
+    });
+
+    // CHILD COMPONENTS
+    code[class*="language-"] &,
+    pre& > code {
+        .hljs-built_in,
+        .hljs-literal,
+        .hljs-title {
+            color: var(--highlight-literal);
+        }
+
+        .hljs-bullet,
+        .hljs-code {
+            color: var(--highlight-punctuation);
+        }
+
+        .hljs-doctag,
+        .hljs-keyword,
+        .hljs-meta-keyword,
+        .hljs-meta,
+        .hljs-section,
+        .hljs-selector-class,
+        .hljs-selector-pseudo,
+        .hljs-selector-tag {
+            color: var(--highlight-keyword);
+        }
+
+        .hljs-name,
+        .hljs-number,
+        .hljs-quote,
+        .hljs-selector-id,
+        .hljs-template-tag,
+        .hljs-type {
+            color: var(--highlight-namespace);
+        }
+
+        .hljs-link,
+        .hljs-meta-string,
+        .hljs-regexp,
+        .hljs-selector-attr,
+        .hljs-string,
+        .hljs-symbol,
+        .hljs-template-variable,
+        .hljs-variable {
+            color: var(--highlight-variable);
+        }
+
+        .hljs-addition {
+            color: var(--highlight-addition);
+        }
+
+        .hljs-attr {
+            color: var(--highlight-attribute);
+        }
+
+        .hljs-attribute {
+            color: var(--highlight-symbol);
+        }
+
+        .hljs-comment {
+            color: var(--highlight-comment);
+        }
+
+        .hljs-deletion {
+            color: var(--highlight-deletion);
+        }
+
+        .hljs-emphasis {
+            font-style: italic;
+        }
+
+        .hljs-strong {
+            font-weight: bold;
+        }
+
+        .hljs-subst {
+            color: var(--highlight-color);
+        }
+
+        font-family: inherit;
+    }
+
+    pre& {
+        .s-code-block--line-numbers {
+            background-color: var(--_cb-line-numbers-bg);
+
+            border-color: var(--bc-medium);
+            border-style: solid;
+            border-width: 0 var(--su-static1) 0 0;
+            color: var(--black-300);
+            float: left;
+            margin: calc(var(--su12) * -1);
+            margin-right: var(--su12);
+            padding: var(--su12);
+            padding-right: var(--su6);
+            text-align: right;
+        }
+
+        @scrollbar-styles();
+        background-color: var(--highlight-bg);
+        border-radius: var(--br-md);
+        color: var(--highlight-color);
+        font-family: var(--ff-mono);
+        font-size: var(--fs-body1);
+        line-height: var(--lh-md);
+        margin: 0;
+        overflow: auto;
+        padding: var(--su12);
+    }
+}

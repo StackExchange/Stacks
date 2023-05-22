@@ -1,0 +1,108 @@
+.s-avatar {
+    --_av-size: var(--su-static16);
+    --_av-bg: @white; // Force a white background color for when we have transparent avatars
+    --_av-br: var(--br-sm);
+    --_av-fs-letter: calc(var(--su-static12) - var(--su-static1));
+    --_av-scale-badge: 1;
+
+    // CONTEXTUAL STYLES
+    .highcontrast-mode({
+        .s-avatar--letter {
+            color: var(--white);
+        }
+
+        background-color: var(--black);
+        box-shadow: 0 0 0 1px var(--black);
+        color: var(--white);
+    });
+
+    // MODIFIERS
+    // Sizes
+    &&__32,
+    &&__48 {
+        --_av-br: var(--br-md);
+    }
+
+    &&__96,
+    &&__128 {
+        --_av-br: calc(var(--br-lg) + var(--br-sm));
+        --_av-scale-badge: 3;
+    }
+
+    &&__24 {
+        --_av-size: var(--su-static24);
+        --_av-fs-letter: var(--su-static16);
+        --_av-scale-badge: 1.1;
+    }
+
+    &&__32 {
+        --_av-size: var(--su-static32);
+        --_av-fs-letter: calc(var(--su-static24) - var(--su-static2));
+        --_av-scale-badge: 1.3;
+    }
+
+    &&__48 {
+        --_av-size: var(--su-static48);
+        --_av-fs-letter: calc(var(--su-static32) + var(--su-static2));
+        --_av-scale-badge: 1.6;
+    }
+
+    &&__64 {
+        --_av-size: var(--su-static64);
+        --_av-br: var(--br-lg);
+        --_av-fs-letter: calc(var(--su-static48) - var(--su-static4));
+        --_av-scale-badge: 2.4;
+    }
+
+    &&__96 {
+        --_av-size: var(--su-static96);
+        --_av-fs-letter: calc(var(--su-static64) + var(--su-static2));
+    }
+
+    &&__128 {
+        --_av-size: var(--su-static128);
+        --_av-fs-letter: calc(var(--su-static96) - var(--su-static8));
+    }
+
+    // CHILD ELEMENTS
+    & &--badge {
+        bottom: calc(var(--su-static4) * -1); // -4px
+        position: absolute;
+        right: calc(var(--su-static4) * -1); // -4px
+        -webkit-transform: scale(var(--_av-scale-badge));
+        transform: scale(var(--_av-scale-badge));
+    }
+
+    & &--image {
+        border-radius: var(--_av-br);
+        display: block;
+        height: var(--_av-size);
+        width: var(--_av-size);
+    }
+
+    & &--letter {
+        color: @white; // Force a light appearance of text rendering
+        display: block; // Make sure we're treating the letter as a block-level element
+        font-size: var(--_av-fs-letter); // Force a font size so the avatar text doesn't get smaller as the window resizes
+        font-weight: bold;
+        line-height: 1.4; // Guards against some line-height trolling from the parent
+        text-align: center;
+        text-transform: uppercase; // Force uppercase in avatars when team name is lowercase
+        // We don't need text selection on our letter
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+    }
+
+    background-color: var(--_av-bg); 
+    border-radius: var(--_av-br);
+    height: var(--_av-size);
+    width: var(--_av-size);
+
+    background-repeat: no-repeat;
+    background-size: 100%;
+    display: inline-block; // Make sure the avatar has structure regardless of the element eg. span vs. div
+    position: relative;
+    vertical-align: bottom; // Make our avatars play more nicely with text next to it.
+}

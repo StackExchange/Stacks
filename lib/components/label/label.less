@@ -1,0 +1,111 @@
+.s-label {
+    --_la-fs: var(--fs-body2);
+
+    // CONTEXTUAL STYLES
+    &[for] {
+        cursor: pointer;
+    }
+
+    fieldset[disabled] &,
+    .is-disabled & {
+        .s-description {
+            opacity: unset;
+        }
+
+        cursor: not-allowed;
+        opacity: var(--_o-disabled-static);
+    }
+
+    .is-readonly & {
+        cursor: not-allowed;
+    }
+
+    // MODIFIERS
+    // Sizes
+    &&__sm {
+        .size-styles(sm; la; @styles: fs);
+    }
+
+    &&__md {
+        .size-styles(md; la; @styles: fs);
+    }
+
+    &&__lg {
+        .size-styles(lg; la; @styles: fs);
+    }
+
+    &&__xl {
+        .size-styles(xl; la; @styles: fs);
+    }
+
+    // CHILD ELEMENTS
+    // Label status flag
+    // Is this form item required or optional? Flag the status for users.
+    // Default styling is optional.
+    &--status { // TODO convert to require parent class for styling [1]
+        --_la-status-b: none;
+        --_la-status-bg: var(--black-050);
+        --_la-status-fc: var(--fc-medium);
+
+        .highcontrast-mode({
+            --_la-status-b: var(--su-static1) solid currentColor;
+        });
+
+        // TODO: include child component class (without variant) on selector
+        &__beta {
+            --_la-status-bg: var(--blue-100);
+            --_la-status-fc: var(--blue-700);
+        }
+
+        &__new {
+            --_la-status-bg: var(--green-100);
+            --_la-status-fc: var(--green-700);
+
+            .dark-mode({
+                --_la-status-bg: var(--green-050);
+                --_la-status-fc: var(--green-800);
+            });
+        }
+
+        &__required {
+            --_la-status-bg: var(--red-100);
+            --_la-status-fc: var(--red-700);
+
+            .dark-mode({
+                --_la-status-bg: var(--red-050);
+                --_la-status-fc: var(--red-800);
+            });
+        }
+
+        background-color: var(--_la-status-bg);
+        border: var(--_la-status-b);
+        color: var(--_la-status-fc);
+
+        border-radius: 1000px;
+        font-size: var(--fs-caption);
+        font-weight: 400;
+        margin-left: var(--su4);
+        padding: var(--su2) var(--su8);
+        vertical-align: text-bottom;
+    }
+
+    .s-description,
+    .s-input-message {
+        font-weight: normal;
+        margin-bottom: 0;
+        margin-top: var(--su4);
+        padding: 0;
+    }
+
+    font-size: var(--_la-fs);
+
+    color: var(--fc-dark);
+    font-family: inherit;
+    font-weight: 600;
+    padding: 0 var(--su2); // Helps the label visually line up with inputs
+}
+
+// [1] In Core, we have *many* instances of `.s-label--status` used without the `.s-label` parent.
+//     While I'd prefer to enforce the requirement of the parent class, it's too much of a lift at this moment.
+//     We'll come back to it, hopefully when we have a pill component to replace the current usage of `.s-label--status`
+//     without the base label class.

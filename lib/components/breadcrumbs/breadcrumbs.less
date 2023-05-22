@@ -1,0 +1,41 @@
+.s-breadcrumbs {
+    --_br-divider-px: var(--su4);
+    --_br-link-fc: var(--fc-light);
+
+    // CONTEXTUAL STYLES
+    #stacks-internals #screen-sm({
+        --_br-divider-px: var(--su2);
+    });
+
+    // CHILD ELEMENTS
+    & &--divider {
+        .highcontrast-mode({
+            color: var(--fc-light);
+        });
+
+        margin-left: var(--_br-divider-px);
+        margin-right: var(--_br-divider-px);
+    }
+
+    & &--item {
+        align-items: center;
+        display: flex;
+        flex-wrap: nowrap;
+        margin-bottom: var(--su2);
+        margin-top: var(--su2);
+    }
+
+    & &--link {
+        color: var(--_br-link-fc);
+
+        &:hover {
+            --_br-link-fc: var(--fc-medium);
+        }
+    }
+
+    align-items: flex-start;
+    color: var(--black-200);
+    display: flex;
+    flex-wrap: wrap;
+    font-size: var(--fs-caption);
+}

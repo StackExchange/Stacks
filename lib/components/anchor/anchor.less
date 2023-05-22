@@ -1,0 +1,61 @@
+.s-anchors {
+    // CUSTOM PROPERTIED DEFINED WITHIN VARIANTS
+    // --_an-a-fc
+    // --_an-a-fc-hover
+
+    // MODIFIERS
+    &&__underlined {
+        a:not(.s-link),
+        .s-btn.s-btn__link {
+            text-decoration: underline;
+        }
+    }
+
+    // VARIANTS
+    &&__danger {
+        --_an-a-fc: var(--red-500);
+        --_an-a-fc-hover: var(--red-400);
+    }
+
+    &&__default {
+        --_an-a-fc: var(--theme-link-color);
+        --_an-a-fc-hover: var(--theme-link-color-hover);
+    }
+
+    &&__grayscale {
+        --_an-a-fc: var(--black-700);
+        --_an-a-fc-hover: var(--black-600);
+    }
+
+    &&__inherit {
+        --_an-a-fc: inherit;
+        --_an-a-fc-hover: inherit;
+    }
+
+    &&__muted {
+        --_an-a-fc: var(--black-500);
+        --_an-a-fc-hover: var(--black-400);
+    }
+
+    &&__danger,
+    &&__default,
+    &&__grayscale,
+    &&__inherit,
+    &&__muted {
+        a:not(.s-link),
+        .s-btn.s-btn__link {
+            &:hover,
+            &:active {
+                &,
+                &:visited {
+                    color: var(--_an-a-fc-hover);
+                }
+            }
+
+            &,
+            &:visited {
+                color: var(--_an-a-fc, inherit);
+            }
+        }
+    }
+}

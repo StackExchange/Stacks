@@ -1,0 +1,51 @@
+.s-page-title {
+    --_pt-ai: flex-end;
+    --_pt-fd: row;
+    --_pt-actions-ml: var(--su8);
+    --_pt-actions-mt: unset;
+    --_pt-breadcrums-mb: var(--su8);
+
+    // CONTEXTUAL STYLES
+    #stacks-internals #screen-sm({
+        --_pt-breadcrums-mb: var(--su2);
+    });
+    #stacks-internals #screen-md({
+        --_pt-ai: flex-start;
+        --_pt-fd: column;
+        --_pt-actions-ml: 0;
+        --_pt-actions-mt: var(--su8);
+    });
+
+    // CHILD ELEMENTS
+    & &--actions {
+        margin-left: var(--_pt-actions-ml);
+        margin-top: var(--_pt-actions-mt);
+        flex-shrink: 0;
+    }
+    & &--description {
+        color: var(--fc-light);
+        font-size: var(--fs-body2);
+        margin-bottom: 0;
+        margin-top: var(--su4);
+    }
+    & &--header {
+        color: var(--fc-dark);
+        font-size: var(--fs-headline1);
+        font-weight: normal;
+        line-height: var(--lh-sm);
+        margin: 0;
+        margin-bottom: 0; // TODO: investigate why this exists. I assume it's so margin-bottom isn't overridden, but 🤷‍♂️
+    }
+    .s-breadcrumbs {
+        margin-bottom: var(--_pt-breadcrums-mb);
+    }
+
+    align-items: var(--_pt-ai);
+    flex-direction: var(--_pt-fd);
+
+    border-bottom: 1px solid var(--bc-medium);
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: var(--su16);
+    width: 100%;
+}

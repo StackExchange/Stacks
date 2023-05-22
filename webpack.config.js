@@ -9,7 +9,7 @@ const baseConfig = (isProd, minify) => ({
     devtool: isProd ? false : "inline-source-map",
     entry: {
         // add .min to the file names of minified bundles
-        [minify ? "stacks.min" : "stacks"]: "./lib/ts/index.ts",
+        [minify ? "stacks.min" : "stacks"]: "./lib/index.ts",
     },
     output: {
         filename: `js/[name].js`,
@@ -26,7 +26,12 @@ const baseConfig = (isProd, minify) => ({
                 test: /\.tsx?$/,
                 exclude: /node_modules/,
                 use: [
-                    "ts-loader",
+                    {
+                        loader: "ts-loader",
+                        options: {
+                            configFile: "tsconfig.build.json",
+                        },
+                    },
                 ],
             },
             {
@@ -44,8 +49,8 @@ const baseConfig = (isProd, minify) => ({
                         loader: "postcss-loader",
                         options: {
                             postcssOptions: {
-                                plugins: minify ? [require('cssnano')] : [],
-                            }
+                                plugins: minify ? [require("cssnano")] : [],
+                            },
                         },
                     },
                     "less-loader",
@@ -59,7 +64,7 @@ const baseConfig = (isProd, minify) => ({
     plugins: [
         new MiniCssExtractPlugin({
             filename: `css/[name].css`,
-        })
+        }),
     ],
     resolve: {
         extensions: [".tsx", ".ts", ".js"],

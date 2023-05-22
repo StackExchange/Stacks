@@ -1,0 +1,195 @@
+.s-uploader {
+    // COMPONENT-SPECIFIC CONSTANTS
+    --_up-bg-b-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='5' ry='5' stroke='%23000000' stroke-width='8' stroke-dasharray='7%2c 22' stroke-dashoffset='0' stroke-linecap='square'/%3e%3c/svg%3e"); // Keeping this a custom property to save a few bytes
+    // COMPONENT-SPECIFIC CUSTOM PROPERTIES
+    --_up-bg: var(--black-025);
+    --_up-bg-focus: var(--black-050);
+    --_up-bg-bc: var(--black-150);
+    --_up-focus-ring-color: var(--focus-ring);
+
+    // CONTEXTUAL STYLES
+    .highcontrast-mode({
+        --_up-bg-bc-hc: var(--black-400);
+    });
+
+    // STATES
+    &.has-error,
+    &.has-success,
+    &.has-warning {
+        .s-link {
+            color: var(--_up-link-fc);
+        }
+    }
+
+    &.has-error {
+        --_up-bg: var(--red-050);
+        --_up-bg-focus: var(--red-100);
+        --_up-bg-bc: var(--red-400);
+        --_up-bg-bc-hc-state: var(--red-400);
+        --_up-focus-ring-color: var(--focus-ring-error);
+        --_up-link-fc: var(--red-900);
+    }
+
+    &.has-success {
+        --_up-bg: var(--green-025);
+        --_up-bg-focus: var(--green-050);
+        --_up-bg-bc: var(--green-400);
+        --_up-bg-bc-hc-state: var(--green-400);
+        --_up-focus-ring-color: var(--focus-ring-success);
+        --_up-link-fc: var(--green-900);
+    }
+
+    &.has-warning {
+        --_up-bg: var(--yellow-050);
+        --_up-bg-focus: var(--yellow-100);
+        --_up-bg-bc: var(--yellow-400);
+        --_up-bg-bc-hc-state: var(--yellow-400);
+        --_up-focus-ring-color: var(--focus-ring-warning);
+        --_up-link-fc: var(--yellow-900);
+    }
+
+    &.is-active {
+        --_up-bg: var(--black-050);
+        --_up-bg-bc: var(--black-200);
+    }
+
+    &.is-disabled {
+        opacity: var(--_o-disabled-static);
+    }
+
+    //  CHILD ELEMENTS
+    & &--container {
+        &:before { // Add the dashed border as an SVG background mask
+            -webkit-mask-image: var(--_up-bg-b-image);
+            mask-image: var(--_up-bg-b-image);
+            background-color: var(--_up-bg-bc-hc-state, var(--_up-bg-bc-hc, var(--_up-bg-bc)));
+            border-radius: var(--br-lg);
+            content: '';
+            display: block;
+            inset: 0;
+            position: absolute;
+        }
+
+        align-items: center;
+        background-color: var(--_up-bg);
+        border-radius: var(--br-lg);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        min-height: var(--su-static128);
+        padding: var(--su8) var(--su16);
+        position: relative;
+        text-align: center;
+    }
+
+    & &--input {
+        &:focus:focus-visible + .s-uploader--container {
+            background-color: var(--_up-bg-focus);
+            box-shadow: 0 0 0 var(--su-static4) var(--_up-focus-ring-color);
+        }
+
+        cursor: pointer;
+        height: 100%;
+        inset: 0;
+        opacity: 0;
+        position: absolute;
+        width: 100%;
+        z-index: var(--zi-selected);
+    }
+
+    & &--preview {
+        max-width: 100%;
+        pointer-events: none;
+    }
+
+    & &--preview-thumbnail {
+        .highcontrast-mode({
+            border: var(--su-static1) solid var(--black);
+        });
+
+        &:is(img) {
+            object-fit: scale-down;
+            object-position: center;
+        }
+
+        &:not(img) {
+            padding: var(--su16);
+        }
+
+        background-color: var(--white);
+        border-radius: var(--br-sm);
+        box-shadow: var(--bs-md);
+        max-height: var(--su-static128);
+        max-width: 100%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    & &--previews {
+        &.has-multiple {
+            display: block;
+            height: auto;
+            padding: var(--su8) var(--su2);
+            width: 100%;
+
+            .s-uploader--preview {
+                &:after {
+                    content: attr(data-filename);
+                    display: block;
+                    margin-left: var(--su12);
+                    max-width: 100%;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
+                }
+
+                align-items: center;
+                display: flex;
+                padding: var(--su6) 0;
+                width: 100%;
+            }
+
+            .s-uploader--preview-thumbnail {
+                &:is(img) {
+                    object-fit: cover;
+                }
+                &:not(img) {
+                    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' aria-hidden='true' fill='%23535A60' width='18' height='18' viewBox='0 0 18 18'%3E%3Cpath d='M3 3a2 2 0 012-2h6l4 4v10a2 2 0 01-2 2H5a2 2 0 01-2-2V3zm7-1.5V6h4.5L10 1.5z'%3E%3C/path%3E%3C/svg%3E");
+                    background-position: center;
+                    background-repeat: no-repeat;
+                }
+
+                color: transparent;
+                height: var(--su-static32);
+                flex-shrink: 0;
+                width: var(--su-static32);
+            }
+        }
+
+        max-width: 100%;
+        text-align: left;
+    }
+
+    & &--previews-heading {
+        color: var(--black-900);
+        font-size: var(--fs-body2);
+        font-weight: 600;
+        padding-bottom: var(--su8);
+    }
+
+    & &--reset {
+        position: absolute;
+        right: var(--su8);
+        top: var(--su8);
+        z-index: var(--zi-active);
+    }
+
+    // This is for safari shadow DOM
+    // see https://github.com/StackExchange/Stacks/pull/690#issuecomment-861028193
+    input[type="file"]::file-selector-button {
+        cursor: pointer;
+    }
+
+    position: relative;
+}

@@ -1,8 +1,9 @@
 ---
 layout: page
 title: Button groups
+razor: https://razor.stackoverflow.design/components/button-group
 figma: https://www.figma.com/file/9p5HuZwl9KXP9HpBZuvBoT/Button-Groups
-description: Button groups are a collection of buttons. This component is used in our questions view, and is frequently used in conjunction with other form elements such as search fields and sorting dropdowns. If the content you’re interacting with is a simple paring down or filter of the current view, it’s appropriate to use the <code class="stacks-code">.s-btn-group</code> component. Add the class <code class="stacks-code">.is-selected</code> to show the currently-selected button.
+description: Button groups are a collection of buttons. This component is used in our questions view, and is frequently used in conjunction with other form elements such as search fields and sorting dropdowns. If the content you’re interacting with is a simple paring down or filter of the current view, it’s appropriate to use the <code class="stacks-code">.s-btn-group</code> component. Add the class <code class="stacks-code">.is-selected</code> and the <code class="stacks-code">aria-current</code> attribute with the <a href="https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-current#values">appropriate value</a> to show the currently selected button.
 ---
 <section class="stacks-section">
     {% header "h2", "Classes" %}
@@ -28,6 +29,33 @@ description: Button groups are a collection of buttons. This component is used i
     </div>
 </section>
 
+
+{% header "h2", "Accessibility" %}
+<p class="stacks-copy">
+    When used as navigation or a filter, button groups should include the <code class="stacks-code">aria-current</code> attribute with the <a href="https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-current#values">appropriate value</a>.
+</p>
+
+<section class="stacks-section">
+    <div class="overflow-x-auto mb32" tabindex="0">
+        <table class="wmn4 s-table s-table__bx-simple">
+            <thead>
+                <tr>
+                    <th scope="col" class="s-table--cell3">Item</th>
+                    <th scope="col" class="s-table--cell3">Applied to</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code class="stacks-code">aria-current="[value]"</code></td>
+                    <td><code class="stacks-code">.s-btn.is-selected</code></td>
+                    <td>When using a button group for navigation or filtering, include the <code class="stacks-code">aria-current</code> attribute with the <a href="https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-current#values">appropriate value</a> to the selected button. Most commonly used values are <code class="stacks-code">page</code>, <code class="stacks-code">step</code>, and <code class="stacks-code">true</code>.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+
 <section class="stacks-section">
     {% header "h2", "Example" %}
     <div class="stacks-preview">
@@ -35,25 +63,25 @@ description: Button groups are a collection of buttons. This component is used i
 <div class="s-btn-group">
     <button class="s-btn s-btn__muted s-btn__outlined" role="button">Newest</button>
     <button class="s-btn s-btn__muted s-btn__outlined" role="button">Frequent</button>
-    <form class="s-btn-group--container">
-        <button class="s-btn s-btn__muted s-btn__outlined is-selected" role="button">Votes</button>
+    <form>
+        <button class="s-btn s-btn__muted s-btn__outlined is-selected" role="button" aria-current="true">Votes</button>
     </form>
     <button class="s-btn s-btn__muted s-btn__outlined" role="button">Active</button>
-    <form class="s-btn-group--container">
+    <form>
         <button class="s-btn s-btn__muted s-btn__outlined" role="button">Unanswered</button>
     </form>
 </div>
 {% endhighlight %}
         <div class="stacks-preview--example">
-            <div class="s-btn-group js-btn-group">
-                <button class="s-btn s-btn__muted s-btn__outlined js-btn-group-item" role="button">Newest</button>
-                <button class="s-btn s-btn__muted s-btn__outlined js-btn-group-item" role="button">Frequent</button>
-                <form class="s-btn-group--container">
-                    <button class="s-btn s-btn__muted s-btn__outlined is-selected js-btn-group-item" role="button">Votes</button>
+            <div class="s-btn-group">
+                <button class="s-btn s-btn__muted s-btn__outlined" role="button">Newest</button>
+                <button class="s-btn s-btn__muted s-btn__outlined" role="button">Frequent</button>
+                <form>
+                    <button class="s-btn s-btn__muted s-btn__outlined is-selected" role="button" aria-current="true">Votes</button>
                 </form>
-                <button class="s-btn s-btn__muted s-btn__outlined js-btn-group-item" role="button">Active</button>
-                <form class="s-btn-group--container">
-                    <button class="s-btn s-btn__muted s-btn__outlined js-btn-group-item" role="button">Unanswered</button>
+                <button class="s-btn s-btn__muted s-btn__outlined" role="button">Active</button>
+                <form>
+                    <button class="s-btn s-btn__muted s-btn__outlined" role="button">Unanswered</button>
                 </form>
             </div>
         </div>
@@ -80,7 +108,7 @@ description: Button groups are a collection of buttons. This component is used i
             <span class="s-btn--number">37</span>
         </span>
     </button>
-    <button class="s-btn s-btn__muted s-btn__outlined is-selected" role="button">
+    <button class="s-btn s-btn__muted s-btn__outlined is-selected" role="button" aria-current="true">
         All
         <span class="s-btn--badge">
             <span class="s-btn--number">234</span>
@@ -96,13 +124,13 @@ description: Button groups are a collection of buttons. This component is used i
                         <span class="s-btn--number">197</span>
                     </span>
                 </button>
-                <button class="s-btn s-btn__muted s-btn__outlined js-btn-group-item" role="button">
+                <button class="s-btn s-btn__muted s-btn__outlined js-btn-group-item  s-btn__dropdown" role="button">
                     Inactive
                     <span class="s-btn--badge">
                         <span class="s-btn--number">37</span>
                     </span>
                 </button>
-                <button class="s-btn s-btn__muted s-btn__outlined is-selected js-btn-group-item" role="button">
+                <button class="s-btn s-btn__muted s-btn__outlined is-selected js-btn-group-item" role="button" aria-current="true">
                     All
                     <span class="s-btn--badge">
                         <span class="s-btn--number">234</span>
@@ -113,14 +141,59 @@ description: Button groups are a collection of buttons. This component is used i
     </div>
 </section>
 
-<!-- Page specific javascript -->
+<section class="stacks-section">
+    {% header "h2", "Radio" %}
+    <p class="stacks-copy">
+        Button groups can be implemented using radio elements with the modifier class <code class="stacks-code">.s-btn-group--radio</code>. This modifier class assumes all buttons are styled <code class="stacks-code">label</code> elements.
+    </p>
+    <div class="stacks-preview">
+{% highlight html %}
+<div class="s-btn-group s-btn-group--radio">
+    <input class="s-btn--radio" type="radio" name="example-btn-group" id="example-btn-group-1" />
+    <label class="s-btn s-btn__muted s-btn__outlined" for="example-btn-group-1">
+        Active
+    </label>
+    <input class="s-btn--radio" type="radio" name="example-btn-group" id="example-btn-group-2" />
+    <label class="s-btn s-btn__muted s-btn__outlined" for="example-btn-group-2">
+        Inactive
+    </label>
+    <input class="s-btn--radio" type="radio" name="example-btn-group" id="example-btn-group-3" checked />
+    <label class="s-btn s-btn__muted s-btn__outlined" for="example-btn-group-3">
+        All
+    </label>
+</div>
+{% endhighlight %}
+        <div class="stacks-preview--example">
+            <div class="s-btn-group s-btn-group--radio">
+                <input class="s-btn--radio" type="radio" name="example-btn-group" id="example-btn-group-1" />
+                <label class="s-btn s-btn__muted s-btn__outlined" for="example-btn-group-1">
+                    Active
+                </label>
+                <input class="s-btn--radio" type="radio" name="example-btn-group" id="example-btn-group-2" />
+                <label class="s-btn s-btn__muted s-btn__outlined" for="example-btn-group-2">
+                    Inactive
+                </label>
+                <input class="s-btn--radio" type="radio" name="example-btn-group" id="example-btn-group-3" checked />
+                <label class="s-btn s-btn__muted s-btn__outlined" for="example-btn-group-3">
+                    All
+                </label>
+            </div>
+        </div>
+    </div>
+</section>
+
 <script>
-    $(function() {
-        $(".js-btn-group-item").on("click", function(e) {
+    document.querySelectorAll('.js-btn-group-item').forEach(buttonGroup => {
+        buttonGroup.addEventListener('click', e => {
             e.preventDefault();
             e.stopPropagation();
-            $(".js-btn-group").find(".js-btn-group-item").removeClass("is-selected");
-            $(this).addClass("is-selected");
+            const btns = buttonGroup.closest('.s-btn-group').querySelectorAll('.js-btn-group-item');
+            btns.forEach(btn => {
+                btn.classList.remove('is-selected');
+                btn.removeAttribute('aria-current');
+            });
+            buttonGroup.classList.add('is-selected');
+            buttonGroup.setAttribute('aria-current', 'true');
         });
     });
 </script>

@@ -1,0 +1,103 @@
+.s-spinner {
+    --_sp-baw: calc(var(--su-static1) * 3); // 3px
+    --_sp-size: var(--su-static24);
+
+    // MODIFIERS
+    &&__xs {
+        --_sp-baw: var(--su-static1);
+        --_sp-size: var(--su-static12);
+    }
+
+    &&__sm {
+        --_sp-baw: var(--su-static2);
+        --_sp-size: var(--su-static16);
+    }
+
+    &&__md {
+        --_sp-baw: var(--su-static4);
+        --_sp-size: var(--su-static32);
+    }
+
+    &&__lg {
+        --_sp-baw: var(--su-static6);
+        --_sp-size: var(--su-static48);
+    }
+
+    // CHILD ELEMENTS
+    &:after,
+    &:before {
+        border: var(--_sp-baw) solid currentColor;
+
+        border-radius: var(--br-circle);
+        content: '';
+        height: 100%;
+        position: absolute;
+        width: 100%;
+    }
+
+    &:after {
+        border-top-color: transparent;
+        border-right-color: transparent;
+        border-bottom-color: transparent;
+        animation: s-spinner-rotate 0.9s infinite cubic-bezier(0.5, 0.1, 0.5, 0.9);
+    }
+
+    &:before {
+        opacity: 0.25;
+        transform: rotate(90deg); // [1]
+    }
+
+    height: var(--_sp-size);
+    width: var(--_sp-size);
+
+    position: relative;
+    text-align: left; // [2]
+}
+
+.is-loading {
+    --_li-offset: 0.6em;
+    --_il-size: 1.23076923em;
+
+    &:after,
+    &:before {
+        border-radius: var(--br-circle);
+        border-style: solid;
+        border-width: var(--su-static2);
+        content: "";
+        height: var(--_il-size);
+        left: var(--_li-offset);
+        position: absolute;
+        top: calc(50% - var(--_li-offset));
+        width: var(--_il-size);
+    }
+
+    &:after {
+        animation: s-spinner-rotate 0.9s infinite cubic-bezier(0.5, 0.1, 0.5, 0.9);
+        border-color: transparent;
+        border-left-color: currentColor;
+        filter: invert(0); // [1]
+        transform-origin: 50% 50% 1px; // [1]
+    }
+
+    &:before {
+        border-color: currentColor;
+        opacity: 0.3;
+    }
+
+    padding-left: 2.2em;
+    position: relative;
+}
+
+// Keyframes
+@keyframes s-spinner-rotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+// [1] no-op to reduce wobble in Edge. More info: https://github.com/StackExchange/Stacks/blob/d2af26aca06c47e3f1f7a638e49b221a9e28e450/lib/css/components/_stacks-spinner.less#L16-L26
+
+// [2] When within a parent that has text-align: center, the spinner's entire container spins, not just the spinner. Let's force text-align left so things spin internally.

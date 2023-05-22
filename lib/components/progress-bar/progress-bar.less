@@ -1,0 +1,291 @@
+.s-progress {
+    // COMPONENT-SPECIFIC CONSTANTS
+    @pr-circle-circumference: (2 * pi() * 14); // 2πr, r = 14.
+    // COMPONENT-SPECIFIC CUSTOM PROPERTIES
+    --_pr-bar: var(--br-sm);
+    --_pr-bg: var(--black-200);
+    --_pr-h: unset;
+    --_pr-size: unset;
+    --_pr-w: 100%;
+    --_pr-hmn: var(--su-static4);
+    --_pr-bar-bar: var(--br-sm);
+    --_pr-bar-bg: var(--green-400);
+    --_pr-bar-hmn: var(--su-static4);
+    --_pr-label-ai: unset;
+    --_pr-label-bc: transparent;
+    --_pr-label-d: unset;
+    --_pr-label-g: unset;
+    --_pr-label-jc: unset;
+    --_pr-label-px: unset;
+
+    // MODIFIERS
+    &&__brand {
+        --_pr-bar-bg: var(--orange-500);
+    }
+
+    &&__bronze {
+        --_pr-bar-bg: var(--bronze-lighter);
+        --_pr-label-bc: var(--bronze-darker);
+    }
+
+    &&__gold {
+        --_pr-bar-bg: var(--gold-lighter);
+        --_pr-label-bc: var(--gold-darker);
+    }
+
+    &&__info {
+        --_pr-bar-bg: var(--blue-500);
+    }
+
+    &&__silver {
+        --_pr-bar-bg: var(--silver-lighter);
+        --_pr-label-bc: var(--silver-darker);
+    }
+
+    // VARIANTS
+    &&__badge,
+    &&__privilege {
+        --_pr-bar: var(--br-md);
+        --_pr-bg: transparent;
+        --_pr-hmn: 2em;
+        --_pr-bar-bar: var(--br-md);
+        --_pr-bar-hmn: 2em;
+        --_pr-label-d: flex;
+        --_pr-label-g: var(--su4);
+    }
+
+    &&__badge {
+        --_pr-label-ai: center;
+        --_pr-label-px: 1em;
+
+        .s-progress--label {
+            .s-badge--label {
+                flex-grow: 1;
+                text-align: center;
+            }
+        }
+    }
+
+    &&__circular {
+        --_pr-bg: transparent;
+        --_pr-size: var(--su-static32);
+        --s-progress-value: 0;
+
+        &.s-progress {
+            &__sm {
+                --_pr-size: var(--su-static24);
+            }
+
+            &__md {
+                --_pr-size: var(--su-static48);
+            }
+
+            &__lg {
+                --_pr-size: var(--su-static64);
+            }
+        }
+
+        // TODO: consider renaming to `.s-progress--bar`
+        .s-progress-bar { // It may necessitate wrapping element in a `&:not(&__circular)`
+            circle {
+                &:nth-of-type(1) {
+                    opacity: 0.4;
+                    stroke: currentColor;
+                }
+                &:nth-of-type(2) {
+                    stroke: currentColor;
+                    stroke-dasharray: @pr-circle-circumference; // [1]
+                    stroke-dashoffset: calc(((1 - var(--s-progress-value)) * @pr-circle-circumference) * 1px); // Multiply everything by 1px since Safari and Firefox require these to be in pixels
+                }
+
+                fill: none;
+                stroke-linecap: round;
+                stroke-width: var(--su-static4);
+            }
+
+            transform: rotate(270deg); // Make everything originate from the top of the circle
+        }
+    }
+
+    &&__privilege {
+        --_pr-bar-bg: var(--green-050);
+        --_pr-label-ai: center;
+        --_pr-label-bc: var(--green-400);
+        --_pr-label-jc: center;
+
+        .highcontrast-mode({ --_pr-bar-bg: var(--green-200); });
+    }
+
+    // TODO move `.s-progress__stepped` to entirely separate component (or consider deprecating)
+    &&__stepped { // There's so little overlap with the base .s-progress that it doesn't make sense as a variant
+        background: transparent;
+        display: flex;
+
+        .s-progress {
+            &--bar {
+                &.s-progress--bar {
+                    &__left {
+                        left: 0;
+                        right: 50%;
+                    }
+
+                    &__right {
+                        left: 50%;
+                        right: 0;
+                    }
+                }
+
+                background: var(--black-300);
+                border-radius: 0;
+                height: var(--su-static6);
+                position: absolute;
+                top: calc(var(--su-static8) + var(--su-static1));
+                z-index: var(--zi-base);
+            }
+
+            &--label { // Override a ton of properties
+                border: 0;
+                border-radius: 0;
+                color: var(--black-500);
+                display: block;
+                font-size: var(--fs-body1);
+                height: auto;
+                padding: var(--su12) var(--su6) 0 var(--su6);
+                position: static;
+                text-align: center;
+                width: auto;
+                z-index: var(--zi-base);
+            }
+
+            &--step {
+                &.is-active {
+                    .s-progress {
+                        &--bar.s-progress--bar__left {
+                            background: var(--theme-secondary-400);
+                        }
+
+                        &--label {
+                            color: var(--fc-dark);
+                        }
+
+                        &--stop {
+                            background: var(--theme-secondary-400);
+                            box-shadow: 0 0 0 var(--su-static6) var(--focus-ring);
+                        }
+                    }
+                }
+
+                &.is-complete {
+                    .s-progress {
+                        &--bar,
+                        &--stop {
+                            background: var(--theme-secondary-400);
+                        }
+
+                        &--label {
+                            color: var(--fc-dark);
+                        }
+                    }
+                }
+
+                align-items: center;
+                display: flex;
+                flex-basis: 0;
+                flex-direction: column;
+                flex-grow: 1;
+                flex-shrink: 1;
+                position: relative;
+            }
+
+            &--stop {
+                .highcontrast-mode({
+                    color: var(--white);
+                });
+
+                align-items: center;
+                background: var(--black-300);
+                border-radius: 100%;
+                color: @white;
+                display: flex;
+                height: var(--su-static24);
+                justify-content: center;
+                position: relative;
+                width: var(--su-static24);
+                z-index: var(--zi-selected);
+            }
+        }
+    }
+
+    // CHILD ELEMENTS
+    & &--bar {
+        background-color: var(--_pr-bar-bg);
+        border-radius: var(--_pr-bar);
+        min-height: var(--_pr-hmn);
+
+        height: 100%;
+        min-width: var(--su-static6);
+        position: relative;
+    }
+
+    & &--label {
+        align-items: var(--_pr-label-ai);
+        border: var(--su-static1) solid var(--_pr-label-bc);
+        display: var(--_pr-label-d);
+        gap: var(--_pr-label-g);
+        justify-content: var(--_pr-label-jc);
+        padding-left: var(--_pr-label-px);
+        padding-right: var(--_pr-label-px);
+
+        border-radius: var(--br-md);
+        color: var(--fc-dark);
+        font-size: var(--fs-caption);
+        height: 100%;
+        line-height: var(--lh-xs);
+        position: absolute;
+        width: 100%;
+        z-index: calc(var(--zi-base) + 2);
+    }
+
+    & &--segments { // DEPRECATED: AFAICT, this is unused in core (as well as it's intended parent variant class `.s-progress__segmented`)
+        li {
+            &:not(:first-child):not(:last-child):before {
+                background-color: var(--white);
+                content: "";
+                display: block;
+                height: 100%;
+                left: calc(var(--su-static1) * -1); // -1px
+                position: absolute;
+                top: 0;
+                width: var(--su-static4);
+            }
+
+            display: block;
+            padding-top: var(--su-static4);
+            position: relative;
+            text-align: center;
+        }
+
+        display: flex;
+        height: 100%;
+        justify-content: space-between;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        position: absolute;
+        top: 0;
+        width: 100%;
+    }
+
+    background-color: var(--_pr-bg);
+    border-radius: var(--_pr-bar);
+    height: var(--_pr-size, var(--_pr-h));
+    min-height: var(--_pr-hmn);
+
+    min-width: var(--su-static6);
+    position: relative;
+    width: var(--_pr-size, var(--_pr-w));
+}
+
+// [1] Multiply the circle circumference by an the opposite percentage of what we want to display
+//      For example 70%, represented as a decimal is 0.7
+//      The opposite of that is 0.3 so ( 1 - 0.7 )

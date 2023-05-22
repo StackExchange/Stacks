@@ -1,6 +1,7 @@
 ---
 layout: page
 title: Toggle switch
+razor: https://razor.stackoverflow.design/components/toggle
 figma: https://www.figma.com/file/DhmEdwQjfSugeNAfDSnbJa/Toggle-Switches
 description: A toggle is used to quickly switch between two or more possible states. They are most commonly used for simple “on/off” switches, but can contain multiple options.
 ---
@@ -17,15 +18,11 @@ description: A toggle is used to quickly switch between two or more possible sta
             <tbody class="fs-caption">
                 <tr>
                     <th scope="row"><code class="stacks-code">.s-toggle-switch</code></th>
-                    <td>Base parent container for toggle switches</td>
-                </tr>
-                <tr>
-                    <th scope="row"><code class="stacks-code">.s-toggle-switch--indicator</code></th>
-                    <td>Renders the toggle switch</td>
+                    <td>Class to apply toggle switch styling to <code class="stacks-code">input[type="checkbox"]</code> or on a parent of multiple <code class="stacks-code">input[type="radio"]</code> elements.</td>
                 </tr>
                 <tr>
                     <th scope="row"><code class="stacks-code">.s-toggle-switch__multiple</code></th>
-                    <td>Modifies the base container to accept multiple options</td>
+                    <td>Modifies the base container to accept multiple options.</td>
                 </tr>
                 <tr>
                     <th scope="row"><code class="stacks-code">.s-toggle-switch--label-off</code></th>
@@ -36,26 +33,39 @@ description: A toggle is used to quickly switch between two or more possible sta
     </div>
 </section>
 <section class="stacks-section">
+    {% tip, "warning", "mb24" %}
+        <strong>Deprecation:</strong> <a href="https://github.com/StackExchange/Stacks/pull/1121#issue-1381594434">the markup for toggle switches has changed</a>. Please update your toggle switches to match the markup structure detailed on this page.
+    {% endtip %}
     {% header "h2", "Examples" %}
     {% header "h3", "Single" %}
     <p class="stacks-copy">A single toggle is appropriate for simple “on/off” states eg. enabling emails, markdown editing, or various cookies. Toggle switches take up less space than an “on/off” radio button group and communicate their intended purpose more clearly than a checkbox that toggles functionality. They also provide consistency between desktop and mobile experiences.</p>
     <div class="stacks-preview">
     {% highlight html %}
-<div class="d-flex ai-center">
-    <label class="flex--item s-label" for="toggle-example-1">…</label>
-    <div class="flex--item s-toggle-switch">
-        <input id="toggle-example-1" type="checkbox">
-        <div class="s-toggle-switch--indicator"></div>
-    </div>
+<div class="d-flex ai-center g8">
+    <label class="s-label" for="toggle-example-default">…</label>
+    <input class="s-toggle-switch" id="toggle-example-default" type="checkbox">
+</div>
+<div class="d-flex ai-center g8">
+    <label class="s-label" for="toggle-example-checked">…</label>
+    <input class="s-toggle-switch" id="toggle-example-checked" type="checkbox" checked>
+</div>
+<div class="d-flex ai-center g8">
+    <label class="s-label" for="toggle-example-disabled">…</label>
+    <input class="s-toggle-switch" id="toggle-example-disabled" type="checkbox" disabled>
 </div>
     {% endhighlight %}
-        <div class="stacks-preview--example">
-            <div class="d-flex gs8 ai-center">
-                <label class="flex--item s-label" for="toggle-example-1">Tips and tricks email</label>
-                <div class="flex--item s-toggle-switch">
-                    <input id="toggle-example-1" type="checkbox">
-                    <div class="s-toggle-switch--indicator"></div>
-                </div>
+        <div class="stacks-preview--example d-flex fw-wrap g16">
+            <div class="d-flex ai-center g8">
+                <label class="s-label" for="toggle-example-default">Default</label>
+                <input class="s-toggle-switch" id="toggle-example-default" type="checkbox">
+            </div>
+            <div class="d-flex ai-center g8">
+                <label class="s-label" for="toggle-example-checked">Checked</label>
+                <input class="s-toggle-switch" id="toggle-example-checked" type="checkbox" checked>
+            </div>
+            <div class="d-flex ai-center g8">
+                <label class="s-label" for="toggle-example-disabled">Disabled</label>
+                <input class="s-toggle-switch" id="toggle-example-disabled" type="checkbox" disabled>
             </div>
         </div>
     </div>
@@ -64,9 +74,9 @@ description: A toggle is used to quickly switch between two or more possible sta
     <p class="stacks-copy">Toggles switches can be extended to choose between three or more states—in this case, the user is setting the frequency of an email digest. Use the multiple toggle instead of a radio group when unifying the aesthetics is important.</p>
     <div class="stacks-preview">
     {% highlight html %}
-<div class="d-flex gs8 ai-center">
-    <label class="flex--item s-label c-default">…</label>
-    <div class="flex--item s-toggle-switch s-toggle-switch__multiple">
+<div class="d-flex ai-center g8">
+    <label class="s-label c-default">…</label>
+    <div class="s-toggle-switch s-toggle-switch__multiple">
         <input type="radio" name="group" id="four" checked>
         <label for="four" class="s-toggle-switch--label-off">Off</label>
         <input type="radio" name="group" id="one">
@@ -78,10 +88,10 @@ description: A toggle is used to quickly switch between two or more possible sta
     </div>
 </div>
     {% endhighlight %}
-        <div class="stacks-preview--example">
-            <div class="d-flex gs8 ai-center">
-                <label class="flex--item c-default s-label">Email frequency</label>
-                <div class="flex--item s-toggle-switch s-toggle-switch__multiple mr8">
+        <div class="stacks-preview--example d-flex fd-column g24">
+            <div class="d-flex ai-center g8">
+                <label class="c-default s-label">Email frequency</label>
+                <div class="s-toggle-switch s-toggle-switch__multiple">
                     <input type="radio" name="example2" id="example2-off" checked value="Off">
                     <label for="example2-off" class="s-toggle-switch--label-off">Off</label>
                     <input type="radio" name="example2" id="example2-w" value="Weekly">
@@ -92,9 +102,9 @@ description: A toggle is used to quickly switch between two or more possible sta
                     <label for="example2-3">3 hrs</label>
                 </div>
             </div>
-            <div class="d-flex gs8 ai-center mt24">
-                <label class="flex--item c-default s-label">Encryption</label>
-                <div class="flex--item s-toggle-switch s-toggle-switch__multiple mr8">
+            <div class="d-flex ai-center g8">
+                <label class="c-default s-label">Encryption</label>
+                <div class="s-toggle-switch s-toggle-switch__multiple">
                     <input type="radio" name="example3" id="example3-off" value="Off">
                     <label for="example3-off" class="s-toggle-switch--label-off">Off</label>
                     <input type="radio" name="example3" id="example3-a" value="Automatic" checked>

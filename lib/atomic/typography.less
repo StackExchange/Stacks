@@ -1,0 +1,267 @@
+//
+//  STACK OVERFLOW
+//  TYPOGRAPHY
+//
+//  This CSS comes from Stacks, our CSS & Pattern library for rapidly building
+//  Stack Overflow. For documentation of all these classes and how to contribute,
+//  visit https://stackoverflow.design/
+//
+//  TABLE OF CONTENTS
+//  • ATOMIC CLASSES
+//
+//  ============================================================================
+//  $   TYPE RESETS
+//  ----------------------------------------------------------------------------
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+    margin-top: 0;
+}
+
+//  ============================================================================
+//  $   TEXT SIZES
+//  ----------------------------------------------------------------------------
+//  Declare font sizes
+.fs-display4 { font-size: var(--fs-display4) !important; }
+.fs-display3 { font-size: var(--fs-display3) !important; }
+.fs-display2 { font-size: var(--fs-display2) !important; }
+.fs-display1 { font-size: var(--fs-display1) !important; }
+.fs-headline2 { font-size: var(--fs-headline2) !important; }
+.fs-headline1 { font-size: var(--fs-headline1) !important; }
+.fs-title { font-size: var(--fs-title) !important; }
+.fs-subheading { font-size: var(--fs-subheading) !important; }
+.fs-body3 { font-size: var(--fs-body3) !important; }
+.fs-body2 { font-size: var(--fs-body2) !important; }
+.fs-body1 { font-size: var(--fs-body1) !important; }
+
+.fs-caption,
+.fs-category { font-size: var(--fs-caption) !important; }
+.fs-fine { font-size: var(--fs-fine) !important; }
+
+#stacks-internals #screen-sm({
+    .fs-display4 { font-size: 3.8rem !important; }
+    .fs-display3 { font-size: 3.3rem !important; }
+    .fs-display2 { font-size: 3rem !important; }
+    .fs-display1 { font-size: 2.6rem !important; }
+    .fs-headline2 { font-size: 2.3rem !important; }
+    .fs-headline1 { font-size: 2rem !important; }
+    .fs-title { font-size: 1.8rem !important; }
+    .fs-subheading { font-size: 1.6rem !important; }
+    .fs-body3 { font-size: 1.4rem !important; }
+    .fs-body2 { font-size: 1.3rem !important; }
+}, @force-selector: true);
+
+.fs-category {
+    font-weight: 600;
+    text-transform: uppercase;
+
+    // If a top border is desired
+    &.has-border {
+        width: 100%;
+        padding: var(--su4) 0;
+        border-top: 1px solid var(--bc-medium);
+    }
+}
+
+//  ============================================================================
+//  $$  TEXT COLORS
+//  ----------------------------------------------------------------------------
+.fc-dark { color: var(--fc-dark) !important; }
+.fc-medium { color: var(--fc-medium) !important; }
+.fc-light { color: var(--fc-light) !important; }
+
+//  ============================================================================
+//  $   LINE HEIGHTS
+//  ----------------------------------------------------------------------------
+.lh-xs { line-height: var(--lh-xs) !important; }
+.lh-sm { line-height: var(--lh-sm) !important; }
+.lh-md { line-height: var(--lh-md) !important; }
+.lh-lg { line-height: var(--lh-lg) !important; }
+.lh-xl { line-height: var(--lh-xl) !important; }
+.lh-xxl { line-height: var(--lh-xxl) !important; }
+.lh-unset { line-height: initial !important; }
+
+//  ============================================================================
+//  $$  TEXT STYLES & UTILITIES
+//  ----------------------------------------------------------------------------
+//  --  Font Family
+.ff-sans { font-family: var(--ff-sans) !important; }
+.ff-serif { font-family: var(--ff-serif) !important; }
+.ff-mono { font-family: var(--ff-mono) !important; }
+.ff-inherit { font-family: inherit !important; }
+
+//  --  Font Weight
+.fw-normal { font-weight: 400 !important; }
+.fw-bold { font-weight: 600 !important; }
+
+//  --  Font Styles
+.fs-normal { font-style: normal !important; }
+.fs-italic { font-style: italic !important; }
+.fs-unset { font-style: unset !important; }
+
+//  --  Text Align
+#stacks-internals #responsify('.ta-left', { text-align: left !important; });
+#stacks-internals #responsify('.ta-center', { text-align: center !important; });
+#stacks-internals #responsify('.ta-right', { text-align: right !important; });
+.ta-justify { text-align: justify !important; }
+.ta-unset { text-align: unset !important; }
+
+//  --  Text Decoration
+.td-none { text-decoration: none !important; }
+.td-underline { text-decoration: underline !important; }
+
+//  --  Text Transform
+.tt-capitalize { text-transform: capitalize !important; }
+.tt-lowercase { text-transform: lowercase !important; }
+.tt-uppercase { text-transform: uppercase !important; }
+.tt-none { text-transform: none !important; }
+.tt-unset { text-transform: unset !important; }
+
+//  --  Text Truncate
+.truncate {
+    overflow: hidden;
+    max-width: 100%;
+    text-overflow: ellipsis !important;
+    white-space: nowrap;
+}
+
+.v-truncate1 {
+    .truncation(1);
+}
+
+.v-truncate2 {
+    .truncation(2);
+}
+
+.v-truncate3 {
+    .truncation(3);
+}
+
+.v-truncate4 {
+    .truncation(4);
+}
+
+.v-truncate5 {
+    .truncation(5);
+}
+
+.truncation(@count) {
+    // Despite these all being webkit-specific properties, this works across
+    // Safari, Chrome, Edge, and Firefox.
+    display: -webkit-box;
+    -webkit-line-clamp: @count;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.v-truncate-fade {
+    overflow: hidden;
+    -webkit-mask-image: linear-gradient(180deg, #000 calc(var(--lh-md) * 9em), transparent);
+    mask-image: linear-gradient(180deg, #000 calc(var(--lh-md) * 9em), transparent);
+    max-height: calc(var(--lh-md) * 12em);
+
+    &.v-truncate-fade__sm {
+        -webkit-mask-image: linear-gradient(180deg, #000 calc(var(--lh-md) * 3em), transparent);
+        mask-image: linear-gradient(180deg, #000 calc(var(--lh-md) * 3em), transparent);
+        max-height: calc(var(--lh-md) * 6em);
+    }
+
+    &.v-truncate-fade__lg {
+        -webkit-mask-image: linear-gradient(180deg, #000 calc(var(--lh-md) * 21em), transparent);
+        mask-image: linear-gradient(180deg, #000 calc(var(--lh-md) * 21em), transparent);
+        max-height: calc(var(--lh-md) * 24em);
+    }
+}
+
+//  --  Whitespace
+.ws-normal { white-space: normal !important; }
+.ws-nowrap { white-space: nowrap !important; }
+.ws-pre { white-space: pre !important; }
+.ws-pre-wrap { white-space: pre-wrap !important; }
+.ws-pre-line { white-space: pre-line !important; }
+.ws-unset { white-space: unset !important; }
+
+//  --  Word Break
+.wb-normal { word-break: normal !important; }
+.wb-break-all { word-break: break-all !important; }
+.wb-keep-all { word-break: keep-all !important; }
+.wb-inherit { word-break: inherit !important; }
+.wb-initial { word-break: initial !important; }
+.wb-unset { word-break: unset !important; }
+
+//  --  Overflow Wrap
+.ow-normal {
+    overflow-wrap: normal !important;
+}
+
+.ow-break-word {
+    overflow-wrap: break-word !important;
+}
+
+.ow-inherit {
+    overflow-wrap: inherit !important;
+}
+
+.ow-initial {
+    overflow-wrap: initial !important;
+}
+
+.ow-unset {
+    overflow-wrap: unset !important;
+}
+
+//  --  Hyphenation
+.hyphens-none { hyphens: none !important; }
+.hyphens-auto {
+    -ms-hyphens: auto !important;
+    -webkit-hyphens: auto !important;
+    hyphens: auto !important;
+}
+.hyphens-unset { hyphens: unset !important; }
+
+//  --  Break word
+.break-word {
+    word-break: break-word !important;
+    overflow-wrap: break-word !important;
+    -webkit-hyphens: auto !important;
+    -moz-hyphens: auto !important;
+    -ms-hyphens: auto !important;
+    hyphens: auto !important;
+}
+
+//  ============================================================================
+//  $   LISTS
+//  ----------------------------------------------------------------------------
+ul,
+ol {
+    padding: 0;
+    margin-left: 2.8em;
+
+    ul,
+    ol {
+        margin-bottom: 0;
+    }
+}
+
+ul { list-style-type: disc; }
+ol { list-style-type: decimal; }
+
+.list-reset {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+//  --  List Style Types
+.list-ls-none { list-style: none !important; }
+.list-ls-disc { list-style-type: disc !important; }
+.list-ls-decimal { list-style-type: decimal !important; }
+.list-ls-unset { list-style-type: unset !important; }
+
+//  --  List Position
+.list-inside { list-style-position: inside !important; }
+.list-outside { list-style-position: outside !important; }

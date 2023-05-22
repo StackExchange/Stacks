@@ -1,0 +1,134 @@
+.s-navigation {
+    --_na-fd: row;
+    --_na-fw: wrap;
+    --_na-p: var(--su2) 0;
+    --_na-gap: var(--su4);
+    --_na-item-bg: none;
+    --_na-item-fc: var(--black-600);
+    --_na-item-fs: unset;
+    --_na-item-p: var(--su6) var(--su12);
+    --_na-item-py: var(--su12);
+    --_na-item-ws: nowrap;
+    --_na-item-bg-hover: var(--black-075);
+    --_na-item-fc-hover: var(--_na-item-fc);
+    --_na-item-selected-bg: var(--theme-primary-color);
+    --_na-item-selected-fc: var(--white);
+    --_na-item-selected-bg-hover: var(--theme-primary-600);
+    --_na-title-mt: var(--su16);
+
+    // CONTEXTUAL STYLES
+    .highcontrast-mode({
+        --_na-item-bg-hover: var(--black-600);
+        --_na-item-fc-hover: var(--black-100);
+    });
+
+    // MODIFIERS
+    &&__scroll {
+        --_na-fw: nowrap;
+
+        overflow-x: auto;
+        @scrollbar-styles();
+    }
+
+    &&__sm {
+        --_na-item-fs: var(--fs-caption);
+        --_na-item-p: var(--su4) var(--su12);
+    }
+
+    &&__vertical {
+        --_na-fd: column;
+        --_na-gap: 0;
+        --_na-p: 0;
+        --_na-item-ws: normal;
+    }
+
+    // VARIANTS
+    &&__muted {
+        --_na-item-selected-bg: var(--black-050);
+        --_na-item-selected-fc: var(--black-800);
+        --_na-item-selected-bg-hover: var(--_na-item-bg);
+
+        .highcontrast-mode({
+            --_na-item-selected-bg: var(--black-800);
+            --_na-item-selected-fc: var(--black-050);
+            --_na-item-selected-bg-hover: var(--black-900);
+        });
+    }
+
+    // CHILD ELEMENTS
+    & &--item {
+        &.is-selected {
+            --_na-item-bg: var(--_na-item-selected-bg);
+            --_na-item-fc: var(--_na-item-selected-fc);
+            --_na-item-fc-hover: var(--_na-item-fc);
+            --_na-item-bg-hover: var(--_na-item-selected-bg-hover);
+
+            .highcontrast-mode({
+                text-decoration: none;
+            });
+        }
+
+        // TODO: include child component class (without variant) on selector
+        &__dropdown {
+            &:after {
+                border-style: solid;
+                border-width: var(--su-static4) var(--su-static4) 0 var(--su-static4);
+                border-color: currentColor transparent;
+                content: "";
+                pointer-events: none;
+                position: absolute;
+                right: 0.9em;
+                top: calc(50% - 2px);
+                z-index: var(--zi-active);
+            }
+
+            padding-right: 2em;
+        }
+
+        &:hover,
+        &:active {
+            background-color: var(--_na-item-bg-hover);
+            color: var(--_na-item-fc-hover);
+        }
+
+        @focus-styles();
+
+        background-color: var(--_na-item-bg);
+        color: var(--_na-item-fc);
+        font: unset; // Needs to come before font-size for cascade
+        font-size: var(--_na-item-fs);
+        padding: var(--_na-item-p);
+        white-space: var(--_na-item-ws);
+
+        align-items: center;
+        border: none; // Reset some things for when the navigation item is also a button
+        border-radius: 1000px;
+        box-shadow: none;
+        cursor: pointer;
+        display: flex;
+        position: relative;
+        user-select: auto;
+    }
+
+    & &--title {
+        &:first-child {
+            --_na-title-mt: 0;
+        }
+
+        margin-top: var(--_na-title-mt);
+
+        font-size: var(--fs-fine);
+        font-weight: bold;
+        padding: var(--su6) var(--su12);
+        text-transform: uppercase;
+    }
+
+    flex-direction: var(--_na-fd);
+    flex-wrap: var(--_na-fw);
+    gap: var(--_na-gap);
+    padding: var(--_na-p);
+
+    display: flex;
+    list-style: none; // If the s-navigation is a list, let's reset all the properties
+    margin: 0;
+}
