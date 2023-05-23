@@ -58,9 +58,20 @@
         --_ps-meta-tags-tag-fc: var(--_ps-state-fc);
         --_ps-state-fc: var(--black-500);
 
-        .s-post-summary--content > *:not(.s-post-summary--content-menu-button),
+        .s-post-summary--content > *:not(.s-post-summary--content-menu-button):not(.s-post-summary--meta):not(.s-popover),
+        .s-post-summary--meta > *:not(.s-post-summary--meta-tags) > *,
         .s-post-summary--stats > *:not(.s-badge__danger) {
             opacity: 0.75;
+        }
+
+        .s-post-summary--meta .s-post-summary--meta-tags {
+            > ul > li > a,
+            > a,
+            .post-tag,
+            .s-tag,
+            .s-user-card {
+                opacity: 0.75;
+            }
         }
 
         .s-post-summary--meta-tags {
