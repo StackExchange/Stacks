@@ -274,11 +274,15 @@
         }
 
         &--meta {
-            > *:not(.s-post-summary--meta-tags) > * {
+            > *:not(.s-post-summary--meta-tags):not(.s-user-card) > * {
                 opacity: var(--_ps-o);
             }
 
             .s-user-card {
+                > *:not(.magic-popup) {
+                    opacity: var(--_ps-o);
+                }
+
                 flex-wrap: wrap;
                 justify-content: flex-end;
                 margin-left: auto;
