@@ -648,37 +648,25 @@
     // Reassemble as a single hsl value
     --theme-secondary-color: .assemble-color(theme-secondary-color)[];
 
-    // Primary Theming
-    --theme-primary-025: .native-darken-desaturate(theme-primary-color, 17, 82)[];
-    --theme-primary-050: .native-darken-desaturate(theme-primary-color, 15, 47)[];
-    --theme-primary-075: .native-darken-desaturate(theme-primary-color, 13, 39)[];
-    --theme-primary-100: .native-darken-desaturate(theme-primary-color, 11, 32)[];
-    --theme-primary-150: .native-darken-desaturate(theme-primary-color, 9, 23)[];
-    --theme-primary-200: .native-darken-desaturate(theme-primary-color, 7, 15)[];
-    --theme-primary-300: .native-darken-desaturate(theme-primary-color, 5, 7)[];
-    --theme-primary-350: var(--theme-primary-color);
-    --theme-primary-400: .native-tint(theme-primary-color, 21)[];
-    --theme-primary-500: .native-tint(theme-primary-color, 36)[];
-    --theme-primary-600: .native-tint(theme-primary-color, 51)[];
-    --theme-primary-700: .native-tint(theme-primary-color, 66)[];
-    --theme-primary-800: .native-tint(theme-primary-color, 81)[];
-    --theme-primary-900: .native-tint(theme-primary-color, 96)[];
+    .dark-themed-colors-generator(@variant) {
+        --theme-@{variant}-025: .native-darken-desaturate(~"theme-@{variant}-color", 31, 73.3)[];
+        --theme-@{variant}-050: .native-darken-desaturate(~"theme-@{variant}-color", 15, 47)[];
+        --theme-@{variant}-075: .native-darken-desaturate(~"theme-@{variant}-color", 13, 39)[];
+        --theme-@{variant}-100: .native-darken-desaturate(~"theme-@{variant}-color", 11, 32)[];
+        --theme-@{variant}-150: .native-darken-desaturate(~"theme-@{variant}-color", 9, 23)[];
+        --theme-@{variant}-200: .native-darken-desaturate(~"theme-@{variant}-color", 7, 15)[];
+        --theme-@{variant}-300: .native-darken-desaturate(~"theme-@{variant}-color", 5, 7)[];
+        --theme-@{variant}-350: var(~"--theme-@{variant}-color");
+        --theme-@{variant}-400: .native-tint(~"theme-@{variant}-color", 21)[];
+        --theme-@{variant}-500: .native-tint(~"theme-@{variant}-color", 36)[];
+        --theme-@{variant}-600: .native-tint(~"theme-@{variant}-color", 51)[];
+        --theme-@{variant}-700: .native-tint(~"theme-@{variant}-color", 66)[];
+        --theme-@{variant}-800: .native-tint(~"theme-@{variant}-color", 81)[];
+        --theme-@{variant}-900: .native-tint(~"theme-@{variant}-color", 96)[];
+    }
 
-    // Secondary Theming
-    --theme-secondary-025: .native-darken-desaturate(theme-secondary-color, 17, 82)[];
-    --theme-secondary-050: .native-darken-desaturate(theme-secondary-color, 15, 47)[];
-    --theme-secondary-075: .native-darken-desaturate(theme-secondary-color, 13, 39)[];
-    --theme-secondary-100: .native-darken-desaturate(theme-secondary-color, 11, 32)[];
-    --theme-secondary-150: .native-darken-desaturate(theme-secondary-color, 9, 23)[];
-    --theme-secondary-200: .native-darken-desaturate(theme-secondary-color, 7, 15)[];
-    --theme-secondary-300: .native-darken-desaturate(theme-secondary-color, 5, 7)[];
-    --theme-secondary-350: var(--theme-secondary-color);
-    --theme-secondary-400: .native-tint(theme-secondary-color, 21)[];
-    --theme-secondary-500: .native-tint(theme-secondary-color, 36)[];
-    --theme-secondary-600: .native-tint(theme-secondary-color, 51)[];
-    --theme-secondary-700: .native-tint(theme-secondary-color, 66)[];
-    --theme-secondary-800: .native-tint(theme-secondary-color, 81)[];
-    --theme-secondary-900: .native-tint(theme-secondary-color, 96)[];
+    .dark-themed-colors-generator(primary);
+    .dark-themed-colors-generator(secondary);
 
     // Fades
     --focus-ring: .native-fade(theme-secondary-color, 25)[];
