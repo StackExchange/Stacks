@@ -6,13 +6,13 @@
 
 .s-topbar {
     min-width: auto;
-    box-shadow: var(--bs-sm);
     width: 100%;
     z-index: var(--zi-navigation-fixed);
     background-color: var(--theme-topbar-background-color);
     height: var(--theme-topbar-height);
     display: flex;
     border-top: var(--theme-topbar-accent-border);
+    border-bottom: var(--theme-topbar-bottom-border);
     position: relative;
     align-items: center;
 
@@ -146,7 +146,8 @@
     // TODO this only works 100% perfectly in light mode, due to child elements inheriting current theme colors
     // TODO extend forced light mode instead of overriding
 
-    --theme-topbar-background-color: @black-025;
+    --theme-topbar-background-color: @white;
+    --theme-topbar-bottom-border: 1px solid @black-100;
 
     // Search input
     --theme-topbar-search-color: @black-700;
@@ -198,6 +199,7 @@
     #calc-topbar-lightness-increase();
 
     --theme-topbar-background-color: @topbar-actual-background;
+    --theme-topbar-bottom-border: 1px solid @topbar-actual-background;
 
     // Search input
     --theme-topbar-search-color: lighten(@topbar-actual-background, 80% + @topbar-search-lightness-increase);
