@@ -6,7 +6,7 @@
 
 ## Issue
 
-We should define scales for anything that will take them (line-height, spacing/sizing, colors, radii, weights, animation) using custom properties so we can ease the task of making broad alterations and provide an inlet to creating an API to expose to consumers if we see fit. For a bonus, this has the potential for greater ease of choice and customization is of our UI _by the user_, which is an accessibility [best](https://www.markettailor.io/blog/role-of-personalization-in-increasing-website-accessibility) [practice](https://www.getstark.co/blog/why-personalization-is-key-to-your-accessibility-toolbox).
+We should define scales for anything that will take them (line-height, spacing/sizing, colors, radii, weights, animation) using custom properties. This makes broad alterations easier and simplifies the process of adding APIs to expose to consumers when we see fit. For a bonus, this lays the groundwork for greater ease of choice and customization of our UI _by the user_, which is an accessibility [best](https://www.markettailor.io/blog/role-of-personalization-in-increasing-website-accessibility) [practice](https://www.getstark.co/blog/why-personalization-is-key-to-your-accessibility-toolbox).
 
 ## Decision
 
@@ -14,7 +14,7 @@ Use our `--su` and `--su-static` custom properties to define sizing/spacing for 
 
 ### Alignment with Stacks philosophy
 
-Stacks operates with the philosophy that a some abstraction and restriction of markup, styling, and interactivity leads to a better developer experience, more consistent design, and improved maintainability. For instance, we have atomic color classes that help our UIs have a consistent look and reduce dev effort by providing a subset of colors to choose from, plus they allow for quick color adjustments across our entire codebase by just changing a few values in Stacks. Taking this further, high contrast mode wouldn't have been feasible without the centralized color definitions within Stacks.
+Stacks operates with the philosophy that some abstraction and restriction of markup, styling, and interactivity leads to a better developer experience, more consistent design, and improved maintainability. For instance, we have atomic color classes that help our UIs have a consistent look and reduce dev effort by providing a subset of colors to choose from, plus they allow for quick color adjustments across our entire codebase by just changing a few values in Stacks. Taking this further, high contrast mode wouldn't have been feasible without the centralized color definitions within Stacks.
 
 Applying spacing units to our components encourages us to adhere to a scale, justify when we choose not to, and allows us to make the same broad changes as we do with other values (just like the color + high contrast example in the paragraph above). Our spacing units come in two forms: static and dynamic. The static ones use static pixel values (think `--su-static24: 24px;`), while the dynamic ones take that static value and multiply it by a base spacing unit value (like `--su24: calc(var(--su-static24) * var(--su-base));`). This opens the door to potential dynamic spacing values. With these in place, it becomes more trivial to adjust the spacing across Stacks (and it's consumers) UI.
 
