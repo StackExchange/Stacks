@@ -6,7 +6,7 @@
 
 ## Issue
 
-We should define scales for anything that will take them (line-height, spacing/sizing, colors, radii, weights, animation) using with custom properties so we can ease the task of making broad alterations and provide an inlet to creating an API to expose to consumers if we see fit. For a bonus, this has the potential for greater ease of choice and customization is of our UI _by the user_, which is an accessibility [best](https://www.markettailor.io/blog/role-of-personalization-in-increasing-website-accessibility) [practice](https://www.getstark.co/blog/why-personalization-is-key-to-your-accessibility-toolbox).
+We should define scales for anything that will take them (line-height, spacing/sizing, colors, radii, weights, animation) using custom properties so we can ease the task of making broad alterations and provide an inlet to creating an API to expose to consumers if we see fit. For a bonus, this has the potential for greater ease of choice and customization is of our UI _by the user_, which is an accessibility [best](https://www.markettailor.io/blog/role-of-personalization-in-increasing-website-accessibility) [practice](https://www.getstark.co/blog/why-personalization-is-key-to-your-accessibility-toolbox).
 
 ## Decision
 
