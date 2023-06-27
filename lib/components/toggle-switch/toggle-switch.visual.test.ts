@@ -6,9 +6,7 @@ describe("toggle-switch", () => {
     // Single toggle switch
     [true, false].forEach((checked) => {
         [true, false].forEach((disabled) => {
-            const idSuffix = `${checked ? "-checked" : ""}${
-                disabled ? "-disabled" : ""
-            }`;
+            const idSuffix = `${checked ? "-checked" : ""}${disabled ? "-disabled" : ""}`;
             const id = `toggle-switch${idSuffix}`;
 
             runComponentTests({
@@ -45,13 +43,9 @@ describe("toggle-switch", () => {
             },
             children: {
                 default: `
-                    <input type="radio" name="group" id="four" ${
-                        offChecked ? "checked" : ""
-                    }>
+                    <input type="radio" name="group" id="four" ${offChecked ? "checked" : ""}>
                     <label for="four" class="s-toggle-switch--label-off">Off</label>
-                    <input type="radio" name="group" id="one" ${
-                        !offChecked ? "checked" : ""
-                    }>
+                    <input type="radio" name="group" id="one" ${!offChecked ? "checked" : ""}>
                     <label for="one">Weekly</label>
                     <input type="radio" name="group" id="two">
                     <label for="two">Daily</label>
