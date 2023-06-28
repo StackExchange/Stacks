@@ -1,6 +1,7 @@
 import { defaultOptions, runComponentTests } from "../../test/test-utils";
 import "../../index";
 
+// TODO check for visited styling
 const link = (text = "", visited = true, classes = "") => `<a class="${classes}" href="${visited ? "/" : "https://stackoverflow.design/404-unvisited"}">${text}</a>`;
 
 describe("anchors", () => {
