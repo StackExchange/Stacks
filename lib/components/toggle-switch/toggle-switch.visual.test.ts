@@ -21,7 +21,7 @@ describe("toggle-switch", () => {
                 attributes: {
                     id,
                     type: "checkbox",
-                    ...(checked ? { checked: "checked" } : {}),
+                    ...(checked ? { checked: "" } : {}),
                     ...(disabled ? { disabled: "" } : {}),
                 },
                 template: ({ component, testid }) => html`
@@ -46,11 +46,11 @@ describe("toggle-switch", () => {
             children: {
                 default: `
                     <input type="radio" name="group" id="four" ${
-                        offChecked ? "checked" : ""
+                        offChecked ? 'checked=""' : ""
                     }>
                     <label for="four" class="s-toggle-switch--label-off">Off</label>
                     <input type="radio" name="group" id="one" ${
-                        !offChecked ? "checked" : ""
+                        !offChecked ? 'checked=""' : ""
                     }>
                     <label for="one">Weekly</label>
                     <input type="radio" name="group" id="two">
