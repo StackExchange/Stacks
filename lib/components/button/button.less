@@ -2,7 +2,7 @@
     // BASE COMPONENT-SPECIFIC CUSTOM PROPERTIES
     --_bu-baw: var(--su-static1);
     --_bu-bc: transparent;
-    --_bu-bg: transparent;
+    // --_bu-bg: inherit; // [1]
     --_bu-br: var(--br-md);
     --_bu-bs: none;
     --_bu-fc: var(--theme-button-color);
@@ -75,7 +75,7 @@
     button &,
     button[type="submit"] &,
     button[type="reset"] & {
-        -webkit-appearance: button; // [1]
+        -webkit-appearance: button; // [2]
     }
 
     &.grid {
@@ -85,7 +85,7 @@
     &.is-loading {
         .svg-icon:first-child {
             margin-left: calc((var(--su-static24) - var(--su-static1)) * -1); // -23px
-            opacity: 0; // [2]
+            opacity: 0; // [3]
         }
 
         padding-left: 2.2em;
@@ -137,7 +137,7 @@
 
     &&__outlined {
         border-color: var(--_bu-outlined-bc);
-        background-color: var(--_bu-outlined-bg);
+        background-color: var(--_bu-outlined-bg, inherit);
     }
 
     // Resets
@@ -220,8 +220,8 @@
     &&__icon {
         .svg-icon {
             vertical-align: baseline;
-            margin-top: -0.3em; // [3]
-            margin-bottom: -0.3em; // [3]
+            margin-top: -0.3em; // [4]
+            margin-bottom: -0.3em; // [4]
             transition: opacity 200ms var(--te-smooth); // Animate the transition to .is-loading
         }
     }
@@ -479,7 +479,7 @@
         outline: none;
     }
 
-    background-color: var(--_bu-bg);
+    background-color: var(--_bu-bg, inherit); // [1]
     border: var(--_bu-baw) solid var(--_bu-bc);
     border-radius: var(--_bu-br);
     box-shadow: var(--_bu-bs);
@@ -499,11 +499,14 @@
     user-select: none;
 }
 
-//  [1] Guard against the difference in configurable resets
+//  [1] Passing `inherit` as a custom property value has no effect, instead we
+//      provide it as a fallback value for when --_bu-bg is not defined
+//      For more info, see https://stackoverflow.com/a/53239881/652353
+//  [2] Guard against the difference in configurable resets
 //      Eric Meyer's reset does not include this, while normalize.css does
 //      Correct the inability to style buttons in iOS and Safari.
-//  [2] If the first thing in the button is an icon, let's hide it on loading
+//  [3] If the first thing in the button is an icon, let's hide it on loading
 //      We only want to modify the visibility, since we still want it to have shape and keep the same layout.
-//  [3] Most svg icons are 18px tall, but the button's line-height is 1 (13px).
+//  [4] Most svg icons are 18px tall, but the button's line-height is 1 (13px).
 //      This means we need to off set the margin y-axis so we don't add
 //      additional height to the button.
