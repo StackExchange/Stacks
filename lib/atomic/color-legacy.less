@@ -1,0 +1,79 @@
+// DEPRECATED
+& {
+    .color-legacy(@color-name) {
+        .fc-@{color-name},
+        .h\:fc-@{color-name}:hover,
+        .f\:fc-@{color-name}:focus,
+        .f\:fc-@{color-name}:focus-within {
+            color: var(~"--@{color-name}-legacy") !important;
+        }
+        .d\:fc-@{color-name} {
+            .dark-mode({
+                color: var(~"--@{color-name}-legacy") !important;
+            });
+        }
+
+        .bg-@{color-name},
+        .h\:bg-@{color-name}:hover,
+        .f\:bg-@{color-name}:focus,
+        .f\:bg-@{color-name}:focus-within {
+            background-color: var(~"--@{color-name}-legacy") !important;
+        }
+        .d\:bg-@{color-name} {
+            .dark-mode({
+                background-color: var(~"--@{color-name}-legacy") !important;
+            });
+        }
+    }
+
+    .standard-weights(@color) {
+        .color(~"@{color}-legacy-900");
+        .color(~"@{color}-legacy-800");
+        .color(~"@{color}-legacy-700");
+        .color(~"@{color}-legacy-600");
+        .color(~"@{color}-legacy-500");
+        .color(~"@{color}-legacy-400");
+        .color(~"@{color}-legacy-300");
+        .color(~"@{color}-legacy-200");
+        .color(~"@{color}-legacy-100");
+        .color(~"@{color}-legacy-050");
+    }
+
+    .standard-weights(black);
+    .standard-weights(orange);
+    .standard-weights(blue);
+    .standard-weights(powder);
+    .standard-weights(green);
+    .standard-weights(yellow);
+    .standard-weights(red);
+    .standard-weights(theme-primary);
+    .standard-weights(theme-secondary);
+
+    // Additional color names
+    .color(white);
+    .color(black);
+    .color(black-750);
+    .color(black-350);
+    .color(black-150);
+    .color(black-075);
+    .color(black-025);
+    .color(green-025);
+    .color(red-025);
+    .color(theme-primary-350);
+    .color(theme-primary-150);
+    .color(theme-primary-075);
+    .color(theme-primary-025);
+    .color(theme-secondary-350);
+    .color(theme-secondary-150);
+    .color(theme-secondary-075);
+    .color(theme-secondary-025);
+
+    .fc-success-legacy { &:extend(.fc-green-legacy-600); }
+    .fc-warning-legacy { &:extend(.fc-yellow-legacy-600); }
+    .fc-error-legacy,
+    .fc-danger-legacy { &:extend(.fc-red-legacy-500); }
+    .bg-success-legacy { &:extend(.bg-green-legacy-500); }
+    .bg-warning-legacy { &:extend(.bg-yellow-legacy-600); }
+    .bg-error-legacy,
+    .bg-danger-legacy { &:extend(.bg-red-legacy-500); }
+}
