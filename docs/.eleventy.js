@@ -7,6 +7,7 @@ const iconPlugin = require("./plugins/icons");
 const bannerExamplePlugin = require("./plugins/banner-example");
 const tipPlugin = require("./plugins/tip");
 const markdownPlugin = require("./plugins/markdown");
+const htmlmin = require("html-minifier");
 
 module.exports = function(eleventyConfig) {
   eleventyConfig.setQuietMode(true); // Reduce the console output
@@ -39,4 +40,19 @@ module.exports = function(eleventyConfig) {
   // Ignore liquid parsing on these files
   eleventyConfig.ignores.add('email/templates/code');
   eleventyConfig.ignores.add('email/templates/examples');
+
+  eleventyConfig.addTransform("htmlmin", function(content, outputPath) {
+    if (outputPath && outputPath.endsWith(".html")) {
+      const shouldMinify = !content.includes("---");
+      if (shouldMinify) {
+        let minified = htmlmin.minify(content, {
+          useShortDoctype: true,
+          removeComments: true,
+          collapseWhitespace: true
+        });
+        return minified;
+      }
+    }
+    return content;
+  });
 }
