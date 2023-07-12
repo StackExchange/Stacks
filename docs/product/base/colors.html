@@ -6,6 +6,52 @@ description: To avoid specifying color values by hand, we’ve included a robust
 ---
 
 <section class="stacks-section">
+    {% header "h2", "New Colors (temp)" %}
+
+    <div class="d-grid g16 g-af-dense mt16 mb32" style="grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));">
+        {% for group in colors.current %}
+            {% assign groupClasses = "" %}
+
+            {% if group.name == "white" %}
+                {% assign groupClasses = "ba bc-black-200" %}
+            {% endif %}
+            <div class="bar-md overflow-hidden {{ groupClasses }}">
+                {% assign bg = "bg-" | append: group.name %}
+                {% if group.bg %}
+                    {% assign bg = "bg-" | append: group.name | append: "-" | append: group.bg %}
+                {% endif %}
+
+                {% assign fc = "fc-white" %}
+                {% if group.fc %}
+                   {% assign fc = "fc-" | append: group.fc %}
+                {% endif %}
+
+                <div class="p24 fs-title {{ bg }} {{ fc }} {{ group.classes }}">
+                    {{ group.name | capitalize }}
+                </div>
+
+                {% for stop in group.stops %}
+                    {% assign name = group.name %}
+                    {% if stop != "" %}
+                        {% assign name = group.name | append: "-" | append: stop %}
+                    {% endif %}
+
+                    {% assign stopFc = "fc-black" %}
+                    {% if group.invert contains stop %}
+                        {% assign stopFc = "fc-white" %}
+                    {% endif %}
+
+                    {% if group.name == "white" %}
+                        {% assign additionalClasses = "bt bc-black-200" %}
+                    {% endif %}
+                    <div class="p12 bg-{{ name }} {{ stopFc }} {{ additionalClasses }}">
+                        {{ name }}
+                    </div>
+                {% endfor %}
+            </div>
+        {% endfor %}
+    </div>
+
     {% header "h2", "Stops" %}
 
     <p class="stacks-copy">
@@ -37,7 +83,7 @@ description: To avoid specifying color values by hand, we’ve included a robust
     </div>
 
     <div class="d-grid g16 g-af-dense" style="grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));">
-        {% for color in colors %}
+        {% for color in colors.legacy %}
             <div class="flex--item">
                 <div class="p24 fs-title btr-md bg-{{ color.name }}{% if color.primary != "" %}-{{ color.primary }}{% endif %}{% if color.white %} fc-white{% if color.flip %} d:fc-black{% endif %}{% else %}{% if color.flip %} d:fc-white{% endif %}{% endif %}{% if color.name == "white" %} ba bc-black-100{% endif %}">
                     {% if color.name == "theme-primary" %}
@@ -74,7 +120,7 @@ description: To avoid specifying color values by hand, we’ve included a robust
         Each color stop is available as an atomic text, background, and border class. Using these atomic classes means your view will respond to dark mode appropriately. These colors are available <a href="{{ "/product/guidelines/conditional-classes#hover" | url }}">conditionally</a>.
     </p>
 
-    {% for color in colors %}
+    {% for color in colors.legacy %}
         {% if color.include %}
             {% assign color_name = color.name | capitalize %}
 
