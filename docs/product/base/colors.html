@@ -73,9 +73,14 @@ description: To avoid specifying color values by hand, we’ve included a robust
                                 </div>
 
                                 {% for stop in set.stops %}
-                                    {% assign name = set.name %}
+                                    {% assign nameSuffix = "" %}
+                                    {% if group.name == "new" %}
+                                        {% assign nameSuffix = "-new" %}
+                                    {% endif %}
+                                    {% assign name = set.name | append: nameSuffix %}
+
                                     {% if stop != "" %}
-                                        {% assign name = set.name | append: "-" | append: stop %}
+                                        {% assign name = set.name | append: nameSuffix | append: "-" | append: stop %}
                                     {% endif %}
 
                                     {% assign stopFc = "fc-black" %}
