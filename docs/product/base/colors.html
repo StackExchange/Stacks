@@ -6,52 +6,6 @@ description: To avoid specifying color values by hand, we’ve included a robust
 ---
 
 <section class="stacks-section">
-    {% header "h2", "New Colors (temp)" %}
-
-    <div class="d-grid g16 g-af-dense mt16 mb32" style="grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));">
-        {% for group in colors.current %}
-            {% assign groupClasses = "" %}
-
-            {% if group.name == "white" %}
-                {% assign groupClasses = "ba bc-black-200" %}
-            {% endif %}
-            <div class="bar-md overflow-hidden {{ groupClasses }}">
-                {% assign bg = "bg-" | append: group.name %}
-                {% if group.bg %}
-                    {% assign bg = "bg-" | append: group.name | append: "-" | append: group.bg %}
-                {% endif %}
-
-                {% assign fc = "fc-white" %}
-                {% if group.fc %}
-                   {% assign fc = "fc-" | append: group.fc %}
-                {% endif %}
-
-                <div class="p24 fs-title {{ bg }} {{ fc }} {{ group.classes }}">
-                    {{ group.name | capitalize }}
-                </div>
-
-                {% for stop in group.stops %}
-                    {% assign name = group.name %}
-                    {% if stop != "" %}
-                        {% assign name = group.name | append: "-" | append: stop %}
-                    {% endif %}
-
-                    {% assign stopFc = "fc-black" %}
-                    {% if group.invert contains stop %}
-                        {% assign stopFc = "fc-white" %}
-                    {% endif %}
-
-                    {% if group.name == "white" %}
-                        {% assign additionalClasses = "bt bc-black-200" %}
-                    {% endif %}
-                    <div class="p12 bg-{{ name }} {{ stopFc }} {{ additionalClasses }}">
-                        {{ name }}
-                    </div>
-                {% endfor %}
-            </div>
-        {% endfor %}
-    </div>
-
     {% header "h2", "Stops" %}
 
     <p class="stacks-copy">
@@ -64,53 +18,57 @@ description: To avoid specifying color values by hand, we’ve included a robust
         When dark mode is enabled, the values of numbered color variables will be inverted from what they are with dark mode disabled—<code class="stacks-code">900</code> being the lightest, and <code class="stacks-code">025</code> or <code class="stacks-code">050</code> being the darkest. This is because the values don't represent lightness, but rather contrast with the background. The same also applies to <code class="stacks-code">lighter</code> variants of non-numbered color variables.
     </p>
 
-    <div class="s-btn-group jc-end mt24 mb16">
-        <button class="s-btn s-btn__muted s-btn__outlined is-selected js-css-btn" role="button">
-            CSS
-        </button>
-        <button class="s-btn s-btn__muted s-btn__outlined js-less-btn" role="button">
-            Less
-            <span class="s-btn--badge">
-                <span class="s-btn--number">Deprecated</span>
-            </span>
-        </button>
-        <button class="s-btn s-btn__muted s-btn__outlined js-hex-btn" role="button">
-            Hex
-            <span class="s-btn--badge">
-                <span class="s-btn--number">Deprecated</span>
-            </span>
-        </button>
-    </div>
+    {% for group in colors %}
+        {% assign groupHeading = group.name | append: " colors" | capitalize %}
+        {% header "h3", groupHeading %}
 
-    <div class="d-grid g16 g-af-dense" style="grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));">
-        {% for color in colors.legacy %}
-            <div class="flex--item">
-                <div class="p24 fs-title btr-md bg-{{ color.name }}{% if color.primary != "" %}-{{ color.primary }}{% endif %}{% if color.white %} fc-white{% if color.flip %} d:fc-black{% endif %}{% else %}{% if color.flip %} d:fc-white{% endif %}{% endif %}{% if color.name == "white" %} ba bc-black-100{% endif %}">
-                    {% if color.name == "theme-primary" %}
-                        Theme Primary
-                    {% elsif color.name == "theme-secondary" %}
-                        Theme Secondary
-                    {% else %}
-                        {{ color.name | capitalize }}
+        <div class="d-grid g16 g-af-dense mt16 mb32" style="grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));">
+            {% for set in group.sets %}
+                <div>
+                    {% assign groupClasses = "" %}
+
+                    {% if set.name == "white" %}
+                        {% assign groupClasses = "ba bc-black-200" %}
                     {% endif %}
-                </div>
+                    <div class="bar-md overflow-hidden {{ groupClasses }}">
+                        {% assign bg = "bg-" | append: set.name %}
+                        {% if set.bg %}
+                            {% assign bg = "bg-" | append: set.name | append: "-" | append: set.bg %}
+                        {% endif %}
 
-                {% for stop in color.stops reversed %}
-                    <div class="d-flex ai-center jc-space-between bg-{{ color.name }}{% if stop.stop != "" %}-{{ stop.stop }}{% endif %} ff-mono p12{% if stop.white %} fc-white{% if stop.flip %} d:fc-black{% endif %}{% else %}{% if stop.flip %} d:fc-white{% endif %}{% endif %}{% if forloop.last %} bbr-md{% endif %}{% if color.name == "white" %} ba bc-black-100 btw0{% endif %}">
-                        <div class="flex--item js-hex d-none">
-                            {{ color.name }}{% if stop.stop != "" %}-{{ stop.stop }}{% endif %}
+                        {% assign fc = "fc-white" %}
+                        {% if set.fc %}
+                        {% assign fc = "fc-" | append: set.fc %}
+                        {% endif %}
+
+                        <div class="p24 fs-title {{ bg }} {{ fc }} {{ set.classes }}">
+                            {{ set.name | capitalize }}
                         </div>
 
-                        <div class="flex--item">
-                            <span class="js-css">var(--{{ color.name }}{% if stop.stop != "" %}-{{ stop.stop }}{% endif %})</span>
-                            <span class="js-less d-none">@{{ color.name }}{% if stop.stop != "" %}-{{ stop.stop }}{% endif %}</span>
-                            <span class="js-hex d-none">#{{ stop.hex }}</span>
-                        </div>
+                        {% for stop in set.stops %}
+                            {% assign name = set.name %}
+                            {% if stop != "" %}
+                                {% assign name = set.name | append: "-" | append: stop %}
+                            {% endif %}
+
+                            {% assign stopFc = "fc-black" %}
+                            {% if set.invert contains stop %}
+                                {% assign stopFc = "fc-white" %}
+                            {% endif %}
+
+                            {% assign additionalClasses = "" %}
+                            {% if set.name == "white" %}
+                                {% assign additionalClasses = "bt bc-black-200" %}
+                            {% endif %}
+                            <div class="p12 bg-{{ name }} {{ stopFc }} {{ additionalClasses }}">
+                                {{ name }}
+                            </div>
+                        {% endfor %}
                     </div>
-                {% endfor %}
-            </div>
-        {% endfor %}
-    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% endfor %}
 </section>
 
 <section class="stacks-section">
