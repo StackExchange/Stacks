@@ -135,12 +135,15 @@ description: To avoid specifying color values by hand, we’ve included a robust
                         <tbody>
                             {% for stop in set.stops %}
                                 {% assign naHTML = "<span class=\"fc-black-500\">N/A</span>" %}
-                                {% assign stopSuffix = "" %}
-                                {% if stop != "" %}
-                                    {% assign stopSuffix = "-" | append: stop %}
+                                {% assign nameSuffix = "" %}
+                                {% if group.name == "new" %}
+                                    {% assign nameSuffix = "-new" %}
                                 {% endif %}
+                                {% assign name = set.name | append: nameSuffix %}
 
-                                {% assign name = set.name | append: stopSuffix %}
+                                {% if stop != "" %}
+                                    {% assign name = set.name | append: nameSuffix | append: "-" | append: stop %}
+                                {% endif %}
                                 <tr>
                                     <th scope="row">
                                         <div class="stacks-swatch bar-sm bs-sm bg-{{ name }}"></div>
