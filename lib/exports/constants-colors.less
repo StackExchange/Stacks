@@ -1,22 +1,56 @@
 @import (reference) "./mixins.less";
 
-.create-color-variables(@sets, @index) when (@index > 0) {
+.create-colors(@sets, @index, @type: variable) when (@index > 0) {
     @set: extract(@sets, @index);
     @name: extract(@set, 1);
     @arr: extract(@set, 2);
 
-    // Loop over array
-    .loop-over-array(@i) when (@i > 0) {
+    .create-color(@i) when (@i > 0) {
         @value: extract(@arr, @i);
         @stop: extract(@value, 1);
         @color: extract(@value, 2);
-        --_@{name}-new-@{stop}: @color;
+        @color-name: ~"@{name}-new-@{stop}";
+        @variable: ~"--_@{color-name}";
+        @propertyValue: ~"var(@{variable}) !important";
 
-        .loop-over-array(@i - 1);
+        & when (@type = variable) {
+            // Create custom property assignment
+            @{variable}: @color;
+        }
+
+        & when (@type = classes) {
+            // Create bg atomic class assignments
+            .bg-@{color-name},
+            .h\:bg-@{color-name}:hover,
+            .f\:bg-@{color-name}:focus,
+            .f\:bg-@{color-name}:focus-within {
+                background-color: @propertyValue;
+            }
+
+            // Create fc atomic class assignments
+            .fc-@{color-name},
+            .h\:fc-@{color-name}:hover,
+            .f\:fc-@{color-name}:focus,
+            .f\:fc-@{color-name}:focus-within {
+                color: @propertyValue;
+            }
+
+            // Create dark mode atomic class assignments
+            .dark-mode({
+                .d\:bg-@{color-name} {
+                    background-color: @propertyValue;
+                }
+                .d\:fc-@{color-name} {
+                    color: @propertyValue;
+                }
+            });
+        }
+
+        .create-color(@i - 1);
     }
 
-    .loop-over-array(length(@arr));
-    .create-color-variables(@sets, @index - 1);
+    .create-color(length(@arr));
+    .create-colors(@sets, @index - 1, @type);
 }
 
 // TODO add theme sets
@@ -1253,12 +1287,17 @@
 
 // place component-colors on the body directly (instead of :root) so consumers can use the --theme-* variables
 
+// generated atomic color classes
+body {
+    .create-colors(@sets-light, length(@sets-light), classes);
+}
+
 // Light mode
 body:not(.theme-dark),
 body.theme-dark .theme-light__forced,
 body.theme-system .theme-light__forced {
     .light-colors();
-    .create-color-variables(@sets-light, length(@sets-light));
+    .create-colors(@sets-light, length(@sets-light));
 
     &,
     & .themed {
@@ -1274,7 +1313,7 @@ body.theme-system .theme-light__forced {
 body.theme-dark,
 body:not(.theme-dark) .theme-dark__forced {
     .theme-dark-rules();
-    .create-color-variables(@sets-dark, length(@sets-dark));
+    .create-colors(@sets-dark, length(@sets-dark));
 }
 body.theme-system {
     @media (prefers-color-scheme: dark) {
@@ -1287,18 +1326,18 @@ body.theme-highcontrast:not(.theme-dark),
 body.theme-dark.theme-highcontrast .theme-light__forced,
 body.theme-system.theme-highcontrast .theme-light__forced {
     .light-highcontrast();
-    .create-color-variables(@sets-hc, length(@sets-hc));
+    .create-colors(@sets-hc, length(@sets-hc));
 }
 
 // High contrast mode (Dark)
 body.theme-dark.theme-highcontrast,
 body.theme-highcontrast:not(.theme-dark) .theme-dark__forced {
     .dark-highcontrast();
-    .create-color-variables(@sets-hc-dark, length(@sets-hc-dark));
+    .create-colors(@sets-hc-dark, length(@sets-hc-dark));
 }
 body.theme-system.theme-highcontrast {
     @media (prefers-color-scheme: dark) {
         .dark-highcontrast();
-        .create-color-variables(@sets-hc-dark, length(@sets-hc-dark));
+        .create-colors(@sets-hc-dark, length(@sets-hc-dark));
     }
 }
