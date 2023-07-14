@@ -1,0 +1,44 @@
+& {
+    .color(@color-name) {
+        .fc-@{color-name},
+        .h\:fc-@{color-name}:hover,
+        .f\:fc-@{color-name}:focus,
+        .f\:fc-@{color-name}:focus-within {
+            color: var(~"--_@{color-name}") !important;
+        }
+        .d\:fc-@{color-name} {
+            .dark-mode({
+                color: var(~"--_@{color-name}") !important;
+            });
+        }
+
+        .bg-@{color-name},
+        .h\:bg-@{color-name}:hover,
+        .f\:bg-@{color-name}:focus,
+        .f\:bg-@{color-name}:focus-within {
+            background-color: var(~"--_@{color-name}") !important;
+        }
+        .d\:bg-@{color-name} {
+            .dark-mode({
+                background-color: var(~"--_@{color-name}") !important;
+            });
+        }
+    }
+
+    .standard-weights(@color) {
+        .color(~"@{color}-new-600");
+        .color(~"@{color}-new-500");
+        .color(~"@{color}-new-400");
+        .color(~"@{color}-new-300");
+        .color(~"@{color}-new-200");
+        .color(~"@{color}-new-100");
+    }
+
+    .standard-weights(orange);
+    .standard-weights(blue);
+    .standard-weights(green);
+    .standard-weights(yellow);
+    .standard-weights(red);
+    .standard-weights(theme-primary);
+    .standard-weights(theme-secondary);
+}

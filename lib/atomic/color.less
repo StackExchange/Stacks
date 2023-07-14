@@ -1,28 +1,15 @@
-//
-//  STACK OVERFLOW
-//  COLORS
-//
-//  This CSS comes from Stacks, our CSS & Pattern library for rapidly building
-//  Stack Overflow. For documentation of all these classes and how to contribute,
-//  visit https://stackoverflow.design/
-//
-//  ============================================================================
-//  UTILITY OVERRIDES
-//  Instead of re-adding colors to unique class names, use these atomic classes
-//  for text and background colors
-//  ============================================================================
-
+// DEPRECATED
 & {
     .color(@color-name) {
         .fc-@{color-name},
         .h\:fc-@{color-name}:hover,
         .f\:fc-@{color-name}:focus,
         .f\:fc-@{color-name}:focus-within {
-            color: var(~"--_@{color-name}") !important;
+            color: var(~"--@{color-name}") !important;
         }
         .d\:fc-@{color-name} {
             .dark-mode({
-                color: var(~"--_@{color-name}") !important;
+                color: var(~"--@{color-name}") !important;
             });
         }
 
@@ -30,29 +17,181 @@
         .h\:bg-@{color-name}:hover,
         .f\:bg-@{color-name}:focus,
         .f\:bg-@{color-name}:focus-within {
-            background-color: var(~"--_@{color-name}") !important;
+            background-color: var(~"--@{color-name}") !important;
         }
         .d\:bg-@{color-name} {
             .dark-mode({
-                background-color: var(~"--_@{color-name}") !important;
+                background-color: var(~"--@{color-name}") !important;
             });
         }
     }
 
     .standard-weights(@color) {
-        .color(~"@{color}-new-600");
-        .color(~"@{color}-new-500");
-        .color(~"@{color}-new-400");
-        .color(~"@{color}-new-300");
-        .color(~"@{color}-new-200");
-        .color(~"@{color}-new-100");
+        .color(~"@{color}-900");
+        .color(~"@{color}-800");
+        .color(~"@{color}-700");
+        .color(~"@{color}-600");
+        .color(~"@{color}-500");
+        .color(~"@{color}-400");
+        .color(~"@{color}-300");
+        .color(~"@{color}-200");
+        .color(~"@{color}-100");
+        .color(~"@{color}-050");
     }
 
+    .standard-weights(black);
     .standard-weights(orange);
     .standard-weights(blue);
+    .standard-weights(powder);
     .standard-weights(green);
     .standard-weights(yellow);
     .standard-weights(red);
     .standard-weights(theme-primary);
     .standard-weights(theme-secondary);
+
+    // Additional color names
+    .color(white);
+    .color(black);
+    .color(black-750);
+    .color(black-350);
+    .color(black-150);
+    .color(black-075);
+    .color(black-025);
+    .color(green-025);
+    .color(red-025);
+    .color(theme-primary-350);
+    .color(theme-primary-150);
+    .color(theme-primary-075);
+    .color(theme-primary-025);
+    .color(theme-secondary-350);
+    .color(theme-secondary-150);
+    .color(theme-secondary-075);
+    .color(theme-secondary-025);
+
+    .fc-success { &:extend(.fc-green-600); }
+    .fc-warning { &:extend(.fc-yellow-600); }
+    .fc-error,
+    .fc-danger { &:extend(.fc-red-500); }
+    .bg-success { &:extend(.bg-green-500); }
+    .bg-warning { &:extend(.bg-yellow-600); }
+    .bg-error,
+    .bg-danger { &:extend(.bg-red-500); }
+}
+
+.fc-theme-primary {
+    color: var(--theme-primary-color) !important;
+}
+
+.bg-theme-primary {
+    background-color: var(--theme-primary-color) !important;
+}
+
+.bc-theme-primary {
+    border-color: var(--theme-primary-color) !important;
+}
+
+.fc-theme-secondary {
+    color: var(--theme-secondary-color) !important;
+}
+
+.bg-theme-secondary {
+    background-color: var(--theme-secondary-color) !important;
+}
+
+.bc-theme-secondary {
+    border-color: var(--theme-secondary-color) !important;
+}
+
+.fc-white__forced {
+    color: @white !important;
+}
+
+.fc-black__forced {
+    color: @black !important;
+}
+
+.fc-gold {
+    color: var(--gold) !important;
+}
+
+.fc-gold-darker {
+    color: var(--gold-darker) !important;
+}
+
+.fc-gold-lighter {
+    color: var(--gold-lighter) !important;
+}
+
+.bg-gold {
+    background-color: var(--gold) !important;
+}
+
+.bg-gold-darker {
+    background-color: var(--gold-darker) !important;
+}
+
+.bg-gold-lighter {
+    background-color: var(--gold-lighter) !important;
+}
+
+.fc-silver {
+    color: var(--silver) !important;
+}
+
+.fc-silver-darker {
+    color: var(--silver-darker) !important;
+}
+
+.fc-silver-lighter {
+    color: var(--silver-lighter) !important;
+}
+
+.bg-silver {
+    background-color: var(--silver) !important;
+}
+
+.bg-silver-darker {
+    background-color: var(--silver-darker) !important;
+}
+
+.bg-silver-lighter {
+    background-color: var(--silver-lighter) !important;
+}
+
+.fc-bronze {
+    color: var(--bronze) !important;
+}
+
+.fc-bronze-darker {
+    color: var(--bronze-darker) !important;
+}
+
+.fc-bronze-lighter {
+    color: var(--bronze-lighter) !important;
+}
+
+.bg-bronze {
+    background-color: var(--bronze) !important;
+}
+
+.bg-bronze-darker {
+    background-color: var(--bronze-darker) !important;
+}
+
+.bg-bronze-lighter {
+    background-color: var(--bronze-lighter) !important;
+}
+
+.bg-transparent,
+.h\:bg-transparent:hover {
+    background-color: transparent !important;
+    background-image: none !important;
+}
+
+.bg-inherit {
+    background-color: inherit !important;
+}
+
+.fc-inherit {
+    color: inherit !important;
 }

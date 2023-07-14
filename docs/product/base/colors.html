@@ -5,38 +5,12 @@ figma: https://www.figma.com/file/KL7VJKlVDqpxgaP1UP4xxQ3U/Colors
 description: To avoid specifying color values by hand, we’ve included a robust set of color variables. For maintainability, please use these instead of hardcoding color values.
 ---
 
-<div class="s-btn-group">
-    {% for group in colors %}
-        {% assign isSelected = "" %}
-        {% if group.name == "new" %}
-            {% assign isSelected = "is-selected" %}
-        {% endif %}
-        <button
-            class="s-btn s-btn__muted s-btn__outlined {{ isSelected }} js-color-group-btn"
-            role="button"
-            data-tab="{{ group.name }}"
-        >
-            {{ group.name | capitalize }}
-            {% if group.status %}
-                <span class="s-btn--badge">
-                    <span class="s-btn--number">{{ group.status | capitalize }}</span>
-                </span>
-            {% endif %}
-        </button>
-    {% endfor %}
-</div>
-
 <section class="stacks-section">
     {% header "h2", "Stops" %}
 
     {% for group in colors %}
-        {% assign groupClasses = "" %}
-        {% if group.name != "new" %}
-            {% assign groupClasses = "d-none" %}
-        {% endif %}
-        <div class="{{ groupClasses }}" data-tabpanel="{{ group.name }}">
-            {% if group.name == "legacy" %}
-
+        {% if group.name == "legacy" %}
+            <div data-tabpanel="{{ group.name }}">
                 <p class="stacks-copy">
                     Our colors are each available in a number of stops from dark to light—<code class="stacks-code">900</code> being the darkest, and <code class="stacks-code">025</code> or <code class="stacks-code">050</code> being the lightest. All stops are available as various text, background, and border color classes.
                 </p>
@@ -46,64 +20,150 @@ description: To avoid specifying color values by hand, we’ve included a robust
                 <p class="stacks-copy">
                     When dark mode is enabled, the values of numbered color variables will be inverted from what they are with dark mode disabled—<code class="stacks-code">900</code> being the lightest, and <code class="stacks-code">025</code> or <code class="stacks-code">050</code> being the darkest. This is because the values don't represent lightness, but rather contrast with the background. The same also applies to <code class="stacks-code">lighter</code> variants of non-numbered color variables.
                 </p>
-            {% endif %}
 
-            <div class="d-grid g16 g-af-dense mt16 mb32" style="grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));">
-                {% for set in group.sets %}
-                    {% if set.name != "transparent" and set.name != "inherit" %}
-                        <div>
-                            {% assign groupClasses = "" %}
+                <div class="d-grid g16 g-af-dense my32" style="grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));">
+                    {% for set in group.sets %}
+                        {% if set.name != "transparent" and set.name != "inherit" %}
+                            <div>
+                                {% assign setClasses = "" %}
 
-                            {% if set.name == "white" %}
-                                {% assign groupClasses = "ba bc-black-200" %}
-                            {% endif %}
-                            <div class="bar-md overflow-hidden {{ groupClasses }}">
-                                {% assign bg = "bg-" | append: set.name %}
-                                {% if set.bg %}
-                                    {% assign bg = "bg-" | append: set.name | append: "-" | append: set.bg %}
+                                {% if set.name == "white" %}
+                                    {% assign setClasses = "ba bc-black-200" %}
                                 {% endif %}
-
-                                {% assign fc = "fc-white" %}
-                                {% if set.fc %}
-                                {% assign fc = "fc-" | append: set.fc %}
-                                {% endif %}
-
-                                <div class="p24 fs-title {{ bg }} {{ fc }} {{ set.classes }}">
-                                    {{ set.name | capitalize }}
-                                </div>
-
-                                {% for stop in set.stops %}
-                                    {% assign nameSuffix = "" %}
-                                    {% if group.name == "new" %}
-                                        {% assign nameSuffix = "-new" %}
-                                    {% endif %}
-                                    {% assign name = set.name | append: nameSuffix %}
-
-                                    {% if stop != "" %}
-                                        {% assign name = set.name | append: nameSuffix | append: "-" | append: stop %}
+                                <div class="bar-md overflow-hidden {{ setClasses }}">
+                                    {% assign bg = "bg-" | append: set.name %}
+                                    {% if set.bg %}
+                                        {% assign bg = "bg-" | append: set.name | append: "-" | append: set.bg %}
                                     {% endif %}
 
-                                    {% assign stopFc = "fc-black" %}
-                                    {% if set.invert contains stop %}
-                                        {% assign stopFc = "fc-white" %}
+                                    {% assign fc = "fc-white" %}
+                                    {% if set.fc %}
+                                    {% assign fc = "fc-" | append: set.fc %}
                                     {% endif %}
 
-                                    {% assign additionalClasses = "" %}
-                                    {% if set.name == "white" %}
-                                        {% assign additionalClasses = "bt bc-black-200" %}
-                                    {% endif %}
-                                    <div class="p12 bg-{{ name }} {{ stopFc }} {{ additionalClasses }}">
-                                        {{ name }}
+                                    <div class="p24 fs-title {{ bg }} {{ fc }} {{ set.classes }}">
+                                        {{ set.name | capitalize }}
                                     </div>
-                                {% endfor %}
+
+                                    {% for stop in set.stops %}
+                                        {% assign nameSuffix = "" %}
+                                        {% if group.name == "new" %}
+                                            {% assign nameSuffix = "-new" %}
+                                        {% endif %}
+                                        {% assign name = set.name | append: nameSuffix %}
+
+                                        {% if stop != "" %}
+                                            {% assign name = set.name | append: nameSuffix | append: "-" | append: stop %}
+                                        {% endif %}
+
+                                        {% assign stopFc = "fc-black" %}
+                                        {% if set.invert contains stop %}
+                                            {% assign stopFc = "fc-white" %}
+                                        {% endif %}
+
+                                        {% assign additionalClasses = "" %}
+                                        {% if set.name == "white" %}
+                                            {% assign additionalClasses = "bt bc-black-200" %}
+                                        {% endif %}
+                                        <div class="p12 bg-{{ name }} {{ stopFc }} {{ additionalClasses }}">
+                                            {{ name }}
+                                        </div>
+                                    {% endfor %}
+                                </div>
                             </div>
-                        </div>
-                    {% endif %}
-                {% endfor %}
+                        {% endif %}
+                    {% endfor %}
+                </div>
             </div>
-        </div>
+        {% endif %}
     {% endfor %}
 </section>
+
+<section class="stacks-section">
+    {% header "h2", "Classes2" %}
+
+    <p class="stacks-copy">
+        Each color stop is available as an atomic text, background, and border class. Using these atomic classes means your view will respond to dark mode appropriately. These colors are available <a href="{{ "/product/guidelines/conditional-classes#hover" | url }}">conditionally</a>.
+    </p>
+
+    {% for group in colors %}
+        {% if group.name == "legacy" %}
+            <div>
+                {% for set in group.sets %}
+                    <div class="overflow-x-auto mb48" tabindex="0">
+                        <table class="wmn5 s-table s-table__bx-simple s-table__condensed va-middle fs-caption">
+                            <thead>
+                                <tr>
+                                    <th scope="col" width="36px"></th>
+                                    <th scope="col">Text class</th>
+                                    <th scope="col">Background class</th>
+                                    <th scope="col">Border class</th>
+                                    <th scope="col" class="ta-center"><a class="s-link s-link__inherit" href="{{ "/product/guidelines/conditional-classes#hover" | url }}">Hover?</a></th>
+                                    <th scope="col" class="ta-center"><a class="s-link s-link__inherit" href="{{ "/product/guidelines/conditional-classes#focus" | url }}">Focus?</a></th>
+                                    <th scope="col" class="ta-center"><a class="s-link s-link__inherit" href="{{ "/product/guidelines/conditional-classes#dark-mode" | url }}">Dark?</a></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for stop in set.stops %}
+                                    {% assign naHTML = "<span class=\"fc-black-500\">N/A</span>" %}
+                                    {% assign stopSuffix = "" %}
+                                    {% if stop != "" %}
+                                        {% assign stopSuffix = "-" | append: stop %}
+                                    {% endif %}
+
+                                    {% assign name = set.name | append: stopSuffix %}
+                                    <tr>
+                                        <th scope="row">
+                                            <div class="stacks-swatch bar-sm bs-sm bg-{{ name }}"></div>
+                                        </th>
+                                        <td class="ff-mono">
+                                            {% if set.exclude.class.fc contains stop %}
+                                                {{ naHTML }}
+                                            {% else %}
+                                                .fc-{{ name }}
+                                            {% endif %}
+                                        </td>
+                                        <td class="ff-mono">
+                                            {% if set.exclude.class.bg contains stop %}
+                                                {{ naHTML }}
+                                            {% else %}
+                                                .bg-{{ name }}
+                                            {% endif %}
+                                        </td>
+                                        <td class="ff-mono">
+                                            {% if set.exclude.class.bc contains stop %}
+                                                {{ naHTML }}
+                                            {% else %}
+                                                .bc-{{ name }}
+                                            {% endif %}
+                                        </td>
+                                        <td class="ta-center">
+                                            {% unless set.exclude.hover contains stop %}
+                                                {% icon "Checkmark", "fc-green-500" %}
+                                            {% endunless %}
+                                        </td>
+                                        <td class="ta-center">
+                                            {% unless set.exclude.focus contains stop %}
+                                                {% icon "Checkmark", "fc-green-500" %}
+                                            {% endunless %}
+                                        </td>
+                                        <td class="ta-center">
+                                            {% unless set.exclude.dark contains stop %}
+                                                {% icon "Checkmark", "fc-green-500" %}
+                                            {% endunless %}
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+
+                            </tbody>
+                        </table>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% endfor %}
+</section>
+
 
 <section class="stacks-section">
     {% header "h2", "Classes" %}
@@ -112,92 +172,519 @@ description: To avoid specifying color values by hand, we’ve included a robust
         Each color stop is available as an atomic text, background, and border class. Using these atomic classes means your view will respond to dark mode appropriately. These colors are available <a href="{{ "/product/guidelines/conditional-classes#hover" | url }}">conditionally</a>.
     </p>
 
-    {% for group in colors %}
-        {% assign groupClasses = "" %}
-        {% if group.name != "new" %}
-            {% assign groupClasses = "d-none" %}
+    {% for color in colors %}
+        {% if color.include %}
+            {% assign color_name = color.name | capitalize %}
+
+            {% header "h3", color_name %}
+            <div class="overflow-x-auto mb48" tabindex="0">
+                <table class="wmn5 s-table s-table__bx-simple s-table__condensed va-middle fs-caption">
+                    <thead>
+                        <tr>
+                            <th scope="col" width="36px"></th>
+                            <th scope="col">Text class</th>
+                            <th scope="col">Background class</th>
+                            <th scope="col">Border class</th>
+                            <th scope="col" class="ta-center"><a class="s-link s-link__inherit" href="{{ "/product/guidelines/conditional-classes#hover" | url }}">Hover?</a></th>
+                            <th scope="col" class="ta-center"><a class="s-link s-link__inherit" href="{{ "/product/guidelines/conditional-classes#focus" | url }}">Focus?</a></th>
+                            <th scope="col" class="ta-center"><a class="s-link s-link__inherit" href="{{ "/product/guidelines/conditional-classes#dark-mode" | url }}">Dark?</a></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for stop in color.stops %}
+                        <tr>
+                            <th scope="row">
+                            <div class="stacks-swatch bar-sm bs-sm bg-{{ color.name }}-{{ stop.stop }}"></div>
+                            </th>
+                            <td class="ff-mono">.fc-{{ color.name }}-{{ stop.stop }}</td>
+                            <td class="ff-mono">.bg-{{ color.name }}-{{ stop.stop }}</td>
+                            <td class="ff-mono">.bc-{{ color.name }}-{{ stop.stop }}</td>
+                            <td class="ta-center">{% icon "Checkmark", "fc-green-500" %}</td>
+                            <td class="ta-center">{% icon "Checkmark", "fc-green-500" %}</td>
+                            <td class="ta-center">{% icon "Checkmark", "fc-green-500" %}</td>
+                        </tr>
+                        {% endfor %}
+                        <tr class="ff-mono">
+                            <th scope="row">
+                            <div class="stacks-swatch bar-sm bs-sm bg-white"></div>
+                            </th>
+                            <td class="ff-mono">.fc-white</td>
+                            <td class="ff-mono">.bg-white</td>
+                            <td class="ff-mono">.bc-white</td>
+                            <td class="ta-center">{% icon "Checkmark", "fc-green-500" %}</td>
+                            <td class="ta-center">{% icon "Checkmark", "fc-green-500" %}</td>
+                            <td class="ta-center">{% icon "Checkmark", "fc-green-500" %}</td>
+                        </tr>
+                        <tr class="ff-mono">
+                            <th scope="row">
+                            <div class="stacks-swatch bar-sm bs-sm bg-transparent"></div>
+                            </th>
+                            <td class="fc-light">N/A</td>
+                            <td>.bg-transparent</td>
+                            <td>.bc-transparent</td>
+                            <td class="ta-center">{% icon "Checkmark", "fc-green-500" %}</td>
+                            <td></td>
+                            <td class="ta-center">{% icon "Checkmark", "fc-green-500" %}</td>
+                        </tr>
+                        <tr class="ff-mono">
+                            <th scope="row">
+                            <div class="stacks-swatch bar-sm bs-sm bg-inherit"></div>
+                            </th>
+                            <td>.fc-inherit</td>
+                            <td>.bg-inherit</td>
+                            <td>.bc-inherit</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         {% endif %}
-        <div class="{{ groupClasses }}" data-tabpanel="{{ group.name }}">
-            {% for set in group.sets %}
-                <div class="overflow-x-auto mb48" tabindex="0">
-                    <table class="wmn5 s-table s-table__bx-simple s-table__condensed va-middle fs-caption">
-                        <thead>
-                            <tr>
-                                <th scope="col" width="36px"></th>
-                                <th scope="col">Text class</th>
-                                <th scope="col">Background class</th>
-                                <th scope="col">Border class</th>
-                                <th scope="col" class="ta-center"><a class="s-link s-link__inherit" href="{{ "/product/guidelines/conditional-classes#hover" | url }}">Hover?</a></th>
-                                <th scope="col" class="ta-center"><a class="s-link s-link__inherit" href="{{ "/product/guidelines/conditional-classes#focus" | url }}">Focus?</a></th>
-                                <th scope="col" class="ta-center"><a class="s-link s-link__inherit" href="{{ "/product/guidelines/conditional-classes#dark-mode" | url }}">Dark?</a></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {% for stop in set.stops %}
-                                {% assign naHTML = "<span class=\"fc-black-500\">N/A</span>" %}
-                                {% assign stopSuffix = "" %}
-                                {% if stop != "" %}
-                                    {% assign stopSuffix = "-" | append: stop %}
-                                {% endif %}
-
-                                {% assign name = set.name | append: stopSuffix %}
-                                <tr>
-                                    <th scope="row">
-                                        <div class="stacks-swatch bar-sm bs-sm bg-{{ name }}"></div>
-                                    </th>
-                                    <td class="ff-mono">
-                                        {% if set.exclude.class.fc contains stop %}
-                                            {{ naHTML }}
-                                        {% else %}
-                                            .fc-{{ name }}
-                                        {% endif %}
-                                    </td>
-                                    <td class="ff-mono">
-                                        {% if set.exclude.class.bg contains stop %}
-                                            {{ naHTML }}
-                                        {% else %}
-                                            .bg-{{ name }}
-                                        {% endif %}
-                                    </td>
-                                    <td class="ff-mono">
-                                        {% if set.exclude.class.bc contains stop %}
-                                            {{ naHTML }}
-                                        {% else %}
-                                            .bc-{{ name }}
-                                        {% endif %}
-                                    </td>
-                                    <td class="ta-center">
-                                        {% unless set.exclude.hover contains stop %}
-                                            {% icon "Checkmark", "fc-green-500" %}
-                                        {% endunless %}
-                                    </td>
-                                    <td class="ta-center">
-                                        {% unless set.exclude.focus contains stop %}
-                                            {% icon "Checkmark", "fc-green-500" %}
-                                        {% endunless %}
-                                    </td>
-                                    <td class="ta-center">
-                                        {% unless set.exclude.dark contains stop %}
-                                            {% icon "Checkmark", "fc-green-500" %}
-                                        {% endunless %}
-                                    </td>
-                                </tr>
-                            {% endfor %}
-
-                        </tbody>
-                    </table>
-                </div>
-            {% endfor %}
-        </div>
     {% endfor %}
+
+    {% header "h3", "Gold" %}
+    <div class="overflow-x-auto mb48" tabindex="0">
+        <table class="wmn5 s-table s-table__bx-simple s-table__condensed va-middle fs-caption">
+            <thead>
+                <tr>
+                    <th scope="col" style="width:36px;"></th>
+                    <th scope="col">Text class</th>
+                    <th scope="col">Background class</th>
+                    <th scope="col" class="ta-center"><a class="s-link s-link__inherit" href="{{ "/product/guidelines/conditional-classes#hover" | url }}">Hover?</a></th>
+                    <th scope="col" class="ta-center"><a class="s-link s-link__inherit" href="{{ "/product/guidelines/conditional-classes#focus" | url }}">Focus?</a></th>
+                    <th scope="col" class="ta-center"><a class="s-link s-link__inherit" href="{{ "/product/guidelines/conditional-classes#dark-mode" | url }}">Dark?</a></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="ff-mono">
+                    <th scope="row">
+                        <div class="stacks-swatch bar-sm bg-gold"></div>
+                    </th>
+                    <td>.fc-gold</td>
+                    <td>.bg-gold</td>
+                    <td class="ta-center"></td>
+                    <td class="ta-center"></td>
+                    <td class="ta-center"></td>
+                </tr>
+                <tr class="ff-mono">
+                    <th scope="row">
+                        <div class="stacks-swatch bar-sm bg-gold-darker"></div>
+                    </th>
+                    <td>.fc-gold-darker</td>
+                    <td>.bg-gold-darker</td>
+                    <td class="ta-center"></td>
+                    <td class="ta-center"></td>
+                    <td class="ta-center"></td>
+                </tr>
+                <tr class="ff-mono">
+                    <th scope="row">
+                        <div class="stacks-swatch bar-sm bg-gold-lighter"></div>
+                    </th>
+                    <td>.fc-gold-lighter</td>
+                    <td>.bg-gold-lighter</td>
+                    <td class="ta-center"></td>
+                    <td class="ta-center"></td>
+                    <td class="ta-center"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    {% header "h3", "Silver" %}
+    <div class="overflow-x-auto mb48" tabindex="0">
+        <table class="wmn5 s-table s-table__bx-simple s-table__condensed va-middle fs-caption">
+            <thead>
+                <tr>
+                    <th scope="col" style="width:36px;"></th>
+                    <th scope="col">Text class</th>
+                    <th scope="col">Background class</th>
+                    <th scope="col" class="ta-center"><a class="s-link s-link__inherit" href="{{ "/product/guidelines/conditional-classes#hover" | url }}">Hover?</a></th>
+                    <th scope="col" class="ta-center"><a class="s-link s-link__inherit" href="{{ "/product/guidelines/conditional-classes#focus" | url }}">Focus?</a></th>
+                    <th scope="col" class="ta-center"><a class="s-link s-link__inherit" href="{{ "/product/guidelines/conditional-classes#dark-mode" | url }}">Dark?</a></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="ff-mono">
+                    <th scope="row">
+                        <div class="stacks-swatch bar-sm bg-silver"></div>
+                    </th>
+                    <td>.fc-silver</td>
+                    <td>.bg-silver</td>
+                    <td class="ta-center"></td>
+                    <td class="ta-center"></td>
+                    <td class="ta-center"></td>
+                </tr>
+                <tr class="ff-mono">
+                    <th scope="row">
+                        <div class="stacks-swatch bar-sm bg-silver-darker"></div>
+                    </th>
+                    <td>.fc-silver-darker</td>
+                    <td>.bg-silver-darker</td>
+                    <td class="ta-center"></td>
+                    <td class="ta-center"></td>
+                    <td class="ta-center"></td>
+                </tr>
+                <tr class="ff-mono">
+                    <th scope="row">
+                        <div class="stacks-swatch bar-sm bg-silver-lighter"></div>
+                    </th>
+                    <td>.fc-silver-lighter</td>
+                    <td>.bg-silver-lighter</td>
+                    <td class="ta-center"></td>
+                    <td class="ta-center"></td>
+                    <td class="ta-center"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    {% header "h3", "Bronze" %}
+    <div class="overflow-x-auto mb48" tabindex="0">
+        <table class="wmn5 s-table s-table__bx-simple s-table__condensed va-middle fs-caption">
+            <thead>
+                <tr>
+                    <th scope="col" style="width:36px;"></th>
+                    <th scope="col">Text class</th>
+                    <th scope="col">Background class</th>
+                    <th scope="col" class="ta-center"><a class="s-link s-link__inherit" href="{{ "/product/guidelines/conditional-classes#hover" | url }}">Hover?</a></th>
+                    <th scope="col" class="ta-center"><a class="s-link s-link__inherit" href="{{ "/product/guidelines/conditional-classes#focus" | url }}">Focus?</a></th>
+                    <th scope="col" class="ta-center"><a class="s-link s-link__inherit" href="{{ "/product/guidelines/conditional-classes#dark-mode" | url }}">Dark?</a></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="ff-mono">
+                    <th scope="row">
+                        <div class="stacks-swatch bar-sm bg-bronze"></div>
+                    </th>
+                    <td>.fc-bronze</td>
+                    <td>.bg-bronze</td>
+                    <td class="ta-center"></td>
+                    <td class="ta-center"></td>
+                    <td class="ta-center"></td>
+                </tr>
+                <tr class="ff-mono">
+                    <th scope="row">
+                        <div class="stacks-swatch bar-sm bg-bronze-darker"></div>
+                    </th>
+                    <td>.fc-bronze-darker</td>
+                    <td>.bg-bronze-darker</td>
+                    <td class="ta-center"></td>
+                    <td class="ta-center"></td>
+                    <td class="ta-center"></td>
+                </tr>
+                <tr class="ff-mono">
+                    <th scope="row">
+                        <div class="stacks-swatch bar-sm bg-bronze-lighter"></div>
+                    </th>
+                    <td>.fc-bronze-lighter</td>
+                    <td>.bg-bronze-lighter</td>
+                    <td class="ta-center"></td>
+                    <td class="ta-center"></td>
+                    <td class="ta-center"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </section>
 
-<!-- TODO find a good place for this info -->
 <section class="stacks-section">
     {% header "h2", "Theming" %}
     <p class="stacks-copy">
         Stacks’s approach to theming is powered by CSS variables that are split into their HSL and RGB components. Our default primary color is based on Stack Overflow’s branded <code class="stacks-code">orange-400</code> represented as <code class="stacks-code">hsl(27, 90%, 55%)</code>. We can store these as separate values, apply various color operations, and then recombine them into on-demand color palettes to use for theming.
     </p>
+
+    {% header "h3", "Primary" %}
+    <p class="stacks-copy">
+        These variables transform the original primary theming color into various tints and shades.
+    </p>
+    <div class="overflow-x-auto mb48" tabindex="0">
+        <table class="wmn5 s-table s-table__bx-simple s-table__condensed va-middle fs-caption">
+            <thead>
+                <tr>
+                    <th scope="col" width="36px"></th>
+                    <th scope="col">Variable</th>
+                    <th scope="col">Text class</th>
+                    <th scope="col">Background class</th>
+                    <th scope="col">Border class</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row">
+                        <div class="stacks-swatch bar-sm bg-theme-primary-900"></div>
+                    </th>
+                    <td class="ff-mono">var(--theme-primary-900)</td>
+                    <td class="ff-mono">.fc-theme-primary-900</td>
+                    <td class="ff-mono">.bg-theme-primary-900</td>
+                    <td class="ff-mono">.bc-theme-primary-900</td>
+                </tr>
+                <tr>
+                    <th scope="row">
+                        <div class="stacks-swatch bar-sm bg-theme-primary-800"></div>
+                    </th>
+                    <td class="ff-mono">var(--theme-primary-800)</td>
+                    <td class="ff-mono">.fc-theme-primary-800</td>
+                    <td class="ff-mono">.bg-theme-primary-800</td>
+                    <td class="ff-mono">.bc-theme-primary-800</td>
+                </tr>
+                <tr>
+                    <th scope="row">
+                        <div class="stacks-swatch bar-sm bg-theme-primary-700"></div>
+                    </th>
+                    <td class="ff-mono">var(--theme-primary-700)</td>
+                    <td class="ff-mono">.fc-theme-primary-700</td>
+                    <td class="ff-mono">.bg-theme-primary-700</td>
+                    <td class="ff-mono">.bc-theme-primary-700</td>
+                </tr>
+                <tr>
+                    <th scope="row">
+                        <div class="stacks-swatch bar-sm bg-theme-primary-600"></div>
+                    </th>
+                    <td class="ff-mono">var(--theme-primary-600)</td>
+                    <td class="ff-mono">.fc-theme-primary-600</td>
+                    <td class="ff-mono">.bg-theme-primary-600</td>
+                    <td class="ff-mono">.bc-theme-primary-600</td>
+                </tr>
+                <tr>
+                    <th scope="row">
+                        <div class="stacks-swatch bar-sm bg-theme-primary-500"></div>
+                    </th>
+                    <td class="ff-mono">var(--theme-primary-500)</td>
+                    <td class="ff-mono">.fc-theme-primary-500</td>
+                    <td class="ff-mono">.bg-theme-primary-500</td>
+                    <td class="ff-mono">.bc-theme-primary-500</td>
+                </tr>
+                <tr>
+                    <th scope="row">
+                        <div class="stacks-swatch bar-sm bg-theme-primary-400"></div>
+                    </th>
+                    <td class="ff-mono">var(--theme-primary-400)</td>
+                    <td class="ff-mono">.fc-theme-primary-400</td>
+                    <td class="ff-mono">.bg-theme-primary-400</td>
+                    <td class="ff-mono">.bc-theme-primary-400</td>
+                </tr>
+                <tr>
+                    <th scope="row">
+                        <div class="stacks-swatch bar-sm bg-theme-primary-350"></div>
+                    </th>
+                    <td class="ff-mono">var(--theme-primary-350)</td>
+                    <td class="ff-mono">.fc-theme-primary-350</td>
+                    <td class="ff-mono">.bg-theme-primary-350</td>
+                    <td class="ff-mono">.bc-theme-primary-350</td>
+                </tr>
+                <tr>
+                    <th scope="row">
+                        <div class="stacks-swatch bar-sm bg-theme-primary-300"></div>
+                    </th>
+                    <td class="ff-mono">var(--theme-primary-300)</td>
+                    <td class="ff-mono">.fc-theme-primary-300</td>
+                    <td class="ff-mono">.bg-theme-primary-300</td>
+                    <td class="ff-mono">.bc-theme-primary-300</td>
+                </tr>
+                <tr>
+                    <th scope="row">
+                        <div class="stacks-swatch bar-sm bg-theme-primary-200"></div>
+                    </th>
+                    <td class="ff-mono">var(--theme-primary-200)</td>
+                    <td class="ff-mono">.fc-theme-primary-200</td>
+                    <td class="ff-mono">.bg-theme-primary-200</td>
+                    <td class="ff-mono">.bc-theme-primary-200</td>
+                </tr>
+                <tr>
+                    <th scope="row">
+                        <div class="stacks-swatch bar-sm bg-theme-primary-150"></div>
+                    </th>
+                    <td class="ff-mono">var(--theme-primary-150)</td>
+                    <td class="ff-mono">.fc-theme-primary-150</td>
+                    <td class="ff-mono">.bg-theme-primary-150</td>
+                    <td class="ff-mono">.bc-theme-primary-150</td>
+                </tr>
+                <tr>
+                    <th scope="row">
+                        <div class="stacks-swatch bar-sm bg-theme-primary-100"></div>
+                    </th>
+                    <td class="ff-mono">var(--theme-primary-100)</td>
+                    <td class="ff-mono">.fc-theme-primary-100</td>
+                    <td class="ff-mono">.bg-theme-primary-100</td>
+                    <td class="ff-mono">.bc-theme-primary-100</td>
+                </tr>
+                <tr>
+                    <th scope="row">
+                        <div class="stacks-swatch bar-sm bg-theme-primary-075"></div>
+                    </th>
+                    <td class="ff-mono">var(--theme-primary-075)</td>
+                    <td class="ff-mono">.fc-theme-primary-075</td>
+                    <td class="ff-mono">.bg-theme-primary-075</td>
+                    <td class="ff-mono">.bc-theme-primary-075</td>
+                </tr>
+                <tr>
+                    <th scope="row">
+                        <div class="stacks-swatch bar-sm bg-theme-primary-050"></div>
+                    </th>
+                    <td class="ff-mono">var(--theme-primary-050)</td>
+                    <td class="ff-mono">.fc-theme-primary-050</td>
+                    <td class="ff-mono">.bg-theme-primary-050</td>
+                    <td class="ff-mono">.bc-theme-primary-050</td>
+                </tr>
+                <tr>
+                    <th scope="row">
+                        <div class="stacks-swatch bar-sm bg-theme-primary-025"></div>
+                    </th>
+                    <td class="ff-mono">var(--theme-primary-025)</td>
+                    <td class="ff-mono">.fc-theme-primary-025</td>
+                    <td class="ff-mono">.bg-theme-primary-025</td>
+                    <td class="ff-mono">.bc-theme-primary-025</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    {% header "h3", "Secondary" %}
+    <p class="stacks-copy">
+        These variables transform the original secondary theming color into various tints and shades.
+    </p>
+    <div class="overflow-x-auto mb48" tabindex="0">
+        <table class="wmn5 s-table s-table__bx-simple s-table__condensed va-middle fs-caption">
+            <thead>
+                <tr>
+                    <th scope="col" width="36px"></th>
+                    <th scope="col">Variable</th>
+                    <th scope="col">Text class</th>
+                    <th scope="col">Background class</th>
+                    <th scope="col">Border class</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row">
+                        <div class="stacks-swatch bar-sm bg-theme-secondary-900"></div>
+                    </th>
+                    <td class="ff-mono">var(--theme-secondary-900)</td>
+                    <td class="ff-mono">.fc-theme-secondary-900</td>
+                    <td class="ff-mono">.bg-theme-secondary-900</td>
+                    <td class="ff-mono">.bc-theme-secondary-900</td>
+                </tr>
+                <tr>
+                    <th scope="row">
+                        <div class="stacks-swatch bar-sm bg-theme-secondary-800"></div>
+                    </th>
+                    <td class="ff-mono">var(--theme-secondary-800)</td>
+                    <td class="ff-mono">.fc-theme-secondary-800</td>
+                    <td class="ff-mono">.bg-theme-secondary-800</td>
+                    <td class="ff-mono">.bc-theme-secondary-800</td>
+                </tr>
+                <tr>
+                    <th scope="row">
+                        <div class="stacks-swatch bar-sm bg-theme-secondary-700"></div>
+                    </th>
+                    <td class="ff-mono">var(--theme-secondary-700)</td>
+                    <td class="ff-mono">.fc-theme-secondary-700</td>
+                    <td class="ff-mono">.bg-theme-secondary-700</td>
+                    <td class="ff-mono">.bc-theme-secondary-700</td>
+                </tr>
+                <tr>
+                    <th scope="row">
+                        <div class="stacks-swatch bar-sm bg-theme-secondary-600"></div>
+                    </th>
+                    <td class="ff-mono">var(--theme-secondary-600)</td>
+                    <td class="ff-mono">.fc-theme-secondary-600</td>
+                    <td class="ff-mono">.bg-theme-secondary-600</td>
+                    <td class="ff-mono">.bc-theme-secondary-600</td>
+                </tr>
+                <tr>
+                    <th scope="row">
+                        <div class="stacks-swatch bar-sm bg-theme-secondary-500"></div>
+                    </th>
+                    <td class="ff-mono">var(--theme-secondary-500)</td>
+                    <td class="ff-mono">.fc-theme-secondary-500</td>
+                    <td class="ff-mono">.bg-theme-secondary-500</td>
+                    <td class="ff-mono">.bc-theme-secondary-500</td>
+                </tr>
+                <tr>
+                    <th scope="row">
+                        <div class="stacks-swatch bar-sm bg-theme-secondary-400"></div>
+                    </th>
+                    <td class="ff-mono">var(--theme-secondary-400)</td>
+                    <td class="ff-mono">.fc-theme-secondary-400</td>
+                    <td class="ff-mono">.bg-theme-secondary-400</td>
+                    <td class="ff-mono">.bc-theme-secondary-400</td>
+                </tr>
+                <tr>
+                    <th scope="row">
+                        <div class="stacks-swatch bar-sm bg-theme-secondary-350"></div>
+                    </th>
+                    <td class="ff-mono">var(--theme-secondary-350)</td>
+                    <td class="ff-mono">.fc-theme-secondary-350</td>
+                    <td class="ff-mono">.bg-theme-secondary-350</td>
+                    <td class="ff-mono">.bc-theme-secondary-350</td>
+                </tr>
+                <tr>
+                    <th scope="row">
+                        <div class="stacks-swatch bar-sm bg-theme-secondary-300"></div>
+                    </th>
+                    <td class="ff-mono">var(--theme-secondary-300)</td>
+                    <td class="ff-mono">.fc-theme-secondary-300</td>
+                    <td class="ff-mono">.bg-theme-secondary-300</td>
+                    <td class="ff-mono">.bc-theme-secondary-300</td>
+                </tr>
+                <tr>
+                    <th scope="row">
+                        <div class="stacks-swatch bar-sm bg-theme-secondary-200"></div>
+                    </th>
+                    <td class="ff-mono">var(--theme-secondary-200)</td>
+                    <td class="ff-mono">.fc-theme-secondary-200</td>
+                    <td class="ff-mono">.bg-theme-secondary-200</td>
+                    <td class="ff-mono">.bc-theme-secondary-200</td>
+                </tr>
+                <tr>
+                    <th scope="row">
+                        <div class="stacks-swatch bar-sm bg-theme-secondary-150"></div>
+                    </th>
+                    <td class="ff-mono">var(--theme-secondary-150)</td>
+                    <td class="ff-mono">.fc-theme-secondary-150</td>
+                    <td class="ff-mono">.bg-theme-secondary-150</td>
+                    <td class="ff-mono">.bc-theme-secondary-150</td>
+                </tr>
+                <tr>
+                    <th scope="row">
+                        <div class="stacks-swatch bar-sm bg-theme-secondary-100"></div>
+                    </th>
+                    <td class="ff-mono">var(--theme-secondary-100)</td>
+                    <td class="ff-mono">.fc-theme-secondary-100</td>
+                    <td class="ff-mono">.bg-theme-secondary-100</td>
+                    <td class="ff-mono">.bc-theme-secondary-100</td>
+                </tr>
+                <tr>
+                    <th scope="row">
+                        <div class="stacks-swatch bar-sm bg-theme-secondary-075"></div>
+                    </th>
+                    <td class="ff-mono">var(--theme-secondary-075)</td>
+                    <td class="ff-mono">.fc-theme-secondary-075</td>
+                    <td class="ff-mono">.bg-theme-secondary-075</td>
+                    <td class="ff-mono">.bc-theme-secondary-075</td>
+                </tr>
+                <tr>
+                    <th scope="row">
+                        <div class="stacks-swatch bar-sm bg-theme-secondary-050"></div>
+                    </th>
+                    <td class="ff-mono">var(--theme-secondary-050)</td>
+                    <td class="ff-mono">.fc-theme-secondary-050</td>
+                    <td class="ff-mono">.bg-theme-secondary-050</td>
+                    <td class="ff-mono">.bc-theme-secondary-050</td>
+                </tr>
+                <tr>
+                    <th scope="row">
+                        <div class="stacks-swatch bar-sm bg-theme-secondary-025"></div>
+                    </th>
+                    <td class="ff-mono">var(--theme-secondary-025)</td>
+                    <td class="ff-mono">.fc-theme-secondary-025</td>
+                    <td class="ff-mono">.bg-theme-secondary-025</td>
+                    <td class="ff-mono">.bc-theme-secondary-025</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </section>
 
 <section class="stacks-section">
@@ -211,10 +698,10 @@ description: To avoid specifying color values by hand, we’ve included a robust
 <p class="fc-dark">…</p>
 {% endhighlight %}
         <div class="stacks-preview--example my8 fs-body2">
-            <p class="fc-light"><strong>Color:</strong> Light <code class="stacks-code">black-500</code></p>
-            <p class="fc-medium"><strong>Color:</strong> Medium <code class="stacks-code">black-700</code></p>
-            <p><strong>Color:</strong> Default <code class="stacks-code">black-800</code></p>
-            <p class="fc-dark"><strong>Color:</strong> Dark <code class="stacks-code">black-900</code></p>
+            <p class="fc-light"><strong>Color:</strong> Light <code class="stacks-code">@black-500</code></p>
+            <p class="fc-medium"><strong>Color:</strong> Medium <code class="stacks-code">@black-700</code></p>
+            <p><strong>Color:</strong> Default <code class="stacks-code">@black-800</code></p>
+            <p class="fc-dark"><strong>Color:</strong> Dark <code class="stacks-code">@black-900</code></p>
         </div>
     </div>
 
@@ -301,6 +788,3 @@ description: To avoid specifying color values by hand, we’ve included a robust
         </table>
     </div>
 </section>
-
-<!-- Additional javascript -->
-<script src="{{ "/assets/dist/entry.colors.js" | url }}" defer></script>
