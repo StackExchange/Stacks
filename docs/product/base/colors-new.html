@@ -50,22 +50,31 @@ description: To avoid specifying color values by hand, we’ve included a robust
 
             <div class="d-grid g16 g-af-dense mt16 mb32" style="grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));">
                 {% for set in group.sets %}
+
+                    {% assign nameSuffix = "" %}
+                    {% if group.name == "new" %}
+                        {% assign nameSuffix = "-new" %}
+                    {% endif %}
+                    {% assign setName = set.name | append: nameSuffix %}
+
                     {% if set.name != "transparent" and set.name != "inherit" %}
                         <div>
                             {% assign setClasses = "" %}
 
-                            {% if set.name == "white" %}
+                            {% if set.name contains "white" %}
                                 {% assign setClasses = "ba bc-black-200" %}
                             {% endif %}
+
                             <div class="bar-md overflow-hidden {{ setClasses }}">
-                                {% assign bg = "bg-" | append: set.name %}
+                                {% assign bg = "bg-" | append: setName | replace: " ", "-" %}
+
                                 {% if set.bg %}
-                                    {% assign bg = "bg-" | append: set.name | append: "-" | append: set.bg %}
+                                    {% assign bg = "bg-" | append: setName | append: "-" | append: set.bg | replace: " ", "-" %}
                                 {% endif %}
 
                                 {% assign fc = "fc-white" %}
                                 {% if set.fc %}
-                                {% assign fc = "fc-" | append: set.fc %}
+                                    {% assign fc = "fc-" | append: set.fc %}
                                 {% endif %}
 
                                 <div class="p24 fs-title {{ bg }} {{ fc }} {{ set.classes }}">
@@ -73,14 +82,10 @@ description: To avoid specifying color values by hand, we’ve included a robust
                                 </div>
 
                                 {% for stop in set.stops %}
-                                    {% assign nameSuffix = "" %}
-                                    {% if group.name == "new" %}
-                                        {% assign nameSuffix = "-new" %}
-                                    {% endif %}
-                                    {% assign name = set.name | append: nameSuffix %}
+                                    {% assign name = setName %}
 
                                     {% if stop != "" %}
-                                        {% assign name = set.name | append: nameSuffix | append: "-" | append: stop %}
+                                        {% assign name = setName | append: "-" | append: stop | replace: " ", "-" %}
                                     {% endif %}
 
                                     {% assign stopFc = "fc-black" %}
@@ -89,7 +94,7 @@ description: To avoid specifying color values by hand, we’ve included a robust
                                     {% endif %}
 
                                     {% assign additionalClasses = "" %}
-                                    {% if set.name == "white" %}
+                                    {% if set.name contains "white" %}
                                         {% assign additionalClasses = "bt bc-black-200" %}
                                     {% endif %}
                                     <div class="p12 bg-{{ name }} {{ stopFc }} {{ additionalClasses }}">

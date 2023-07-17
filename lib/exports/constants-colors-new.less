@@ -1,3 +1,32 @@
+.create-color-classes(@color-name, @property-value) {
+    // Create bg atomic class assignments
+    .bg-@{color-name},
+    .h\:bg-@{color-name}:hover,
+    .f\:bg-@{color-name}:focus,
+    .f\:bg-@{color-name}:focus-within {
+        background-color: @property-value;
+    }
+
+    // Create fc atomic class assignments
+    .fc-@{color-name},
+    .h\:fc-@{color-name}:hover,
+    .f\:fc-@{color-name}:focus,
+    .f\:fc-@{color-name}:focus-within {
+        color: @property-value;
+    }
+
+    // Create dark mode atomic class assignments
+    .dark-mode({
+        .d\:bg-@{color-name} {
+            background-color: @property-value;
+        }
+        .d\:fc-@{color-name} {
+            color: @property-value;
+        }
+    });
+}
+
+// @type: "variable" | "classes"
 .create-colors(@sets, @index, @type: variable) when (@index > 0) {
     @set: extract(@sets, @index);
     @name: extract(@set, 1);
@@ -8,10 +37,11 @@
         @stop: extract(@value, 1);
         @color: extract(@value, 2);
 
+        // TODO get rid of "new" suffix when old colors are labelled legacy
         @suffix: if((@stop = ""), "-new", ~"-new-@{stop}");
         @color-name: ~"@{name}@{suffix}";
         @variable: ~"--_@{color-name}";
-        @propertyValue: ~"var(@{variable}) !important";
+        @property-value: ~"var(@{variable}) !important";
 
         & when (@type = variable) {
             // Create custom property assignment
@@ -20,30 +50,7 @@
 
         & when (@type = classes) {
             // Create bg atomic class assignments
-            .bg-@{color-name},
-            .h\:bg-@{color-name}:hover,
-            .f\:bg-@{color-name}:focus,
-            .f\:bg-@{color-name}:focus-within {
-                background-color: @propertyValue;
-            }
-
-            // Create fc atomic class assignments
-            .fc-@{color-name},
-            .h\:fc-@{color-name}:hover,
-            .f\:fc-@{color-name}:focus,
-            .f\:fc-@{color-name}:focus-within {
-                color: @propertyValue;
-            }
-
-            // Create dark mode atomic class assignments
-            .dark-mode({
-                .d\:bg-@{color-name} {
-                    background-color: @propertyValue;
-                }
-                .d\:fc-@{color-name} {
-                    color: @propertyValue;
-                }
-            });
+            .create-color-classes(@color-name, @property-value);
         }
 
         .create-color(@i - 1);
@@ -51,6 +58,27 @@
 
     .create-color(length(@arr));
     .create-colors(@sets, @index - 1, @type);
+}
+
+.create-theme-classes(@theme, @color-name) {
+    @stops: 100 200 300 400 500 600;
+
+    .create-theme-class(@i) when (@i > 0) {
+        @stop: extract(@stops, @i);
+        // TODO get rid of "new" suffix when old colors are labelled legacy
+        @suffix: if((@stop = ""), "-new", ~"-new-@{stop}");
+
+        @theme-color-name: ~"theme-@{theme}@{suffix}";
+        @variable: ~"--@{theme-color-name}@{suffix}";
+        @fallback: ~"--_@{color-name}@{suffix}";
+
+        @property-value: ~"var(@{variable}, var(@{fallback})) !important";
+
+        .create-color-classes(@theme-color-name, @property-value);
+        .create-theme-class(@i - 1);
+    }
+
+    .create-theme-class(length(@stops));
 }
 
 // TODO add theme sets
@@ -333,8 +361,6 @@
 // TODO consider setting theme variables as fallbacks to orange and blue
 // ex: --_theme-primary-400: var(--_custom-theme-primary-400, var(--orange-400));
 @sets-light:
-    theme-primary @set-orange,
-    theme-secondary @set-blue,
     white @set-white,
     black @set-black,
     orange @set-orange,
@@ -347,8 +373,6 @@
     bronze @set-bronze;
 
 @sets-dark:
-    theme-primary @set-orange-dark,
-    theme-secondary @set-blue-dark,
     white @set-white-dark,
     black @set-black-dark,
     orange @set-orange-dark,
@@ -361,8 +385,6 @@
     bronze @set-bronze-dark;
 
 @sets-hc:
-    theme-primary @set-orange-hc,
-    theme-secondary @set-blue-hc,
     white @set-white-hc,
     black @set-black-hc,
     orange @set-orange-hc,
@@ -375,8 +397,6 @@
     bronze @set-bronze-hc;
 
 @sets-hc-dark:
-    theme-primary @set-orange-hc-dark,
-    theme-secondary @set-blue-hc-dark,
     white @set-white-hc-dark,
     black @set-black-hc-dark,
     orange @set-orange-hc-dark,
@@ -391,6 +411,8 @@
 // generated atomic color classes
 body {
     .create-colors(@sets-light, length(@sets-light), classes);
+    .create-theme-classes(primary, orange);
+    .create-theme-classes(secondary, blue);
 }
 
 // Light mode
