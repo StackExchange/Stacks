@@ -10,9 +10,10 @@ RUN npm ci
 EOF
 )
 
-docker run -it --rm -p 8000:8000 \
+docker run -it --tty --rm -p 8000:8000 \
   -v $current_dir/lib:/app/lib \
   -v $current_dir/screenshots:/app/screenshots \
   -v $current_dir/web-test-runner.config.mjs:/app/web-test-runner.config.mjs \
+  -v $current_dir/web-test-runner.config.ci.mjs:/app/web-test-runner.config.ci.mjs \
   -v $current_dir/web-dev-server-patches.mjs:/app/web-dev-server-patches.mjs \
   $image_hash "$@"
