@@ -5,82 +5,20 @@ figma: https://www.figma.com/file/KL7VJKlVDqpxgaP1UP4xxQ3U/Colors
 description: To avoid specifying color values by hand, we’ve included a robust set of color variables. For maintainability, please use these instead of hardcoding color values.
 ---
 
-<div class="s-btn-group">
-    {% for group in colors %}
-        {% assign isSelected = "" %}
-        {% if group.name == "new" %}
-            {% assign isSelected = "is-selected" %}
-        {% endif %}
-        <button
-            class="s-btn s-btn__muted s-btn__outlined {{ isSelected }} js-color-group-btn"
-            role="button"
-            data-tab="{{ group.name }}"
-        >
-            {{ group.name | capitalize }}
-            {% if group.status %}
-                <span class="s-btn--badge">
-                    <span class="s-btn--number">{{ group.status | capitalize }}</span>
-                </span>
-            {% endif %}
-        </button>
-    {% endfor %}
-</div>
-
+{% assign nameSuffix = "-new" %}
 <section class="stacks-section">
     {% header "h2", "Stops" %}
 
     {% for group in colors %}
-        {% assign groupClasses = "" %}
-        {% if group.name != "new" %}
-            {% assign groupClasses = "d-none" %}
-        {% endif %}
-        <div class="{{ groupClasses }}" data-tabpanel="{{ group.name }}">
-            {% if group.name == "legacy" %}
-
-                <p class="stacks-copy">
-                    Our colors are each available in a number of stops from dark to light—<code class="stacks-code">900</code> being the darkest, and <code class="stacks-code">025</code> or <code class="stacks-code">050</code> being the lightest. All stops are available as various text, background, and border color classes.
-                </p>
-                <p class="stacks-copy">
-                    If your layout can’t be built using atomic color classes, all stops are available as CSS variables. Referencing the CSS variables directly will make sure dark mode is properly accounted for. If working in a legacy context, referencing our colors as Less variables is preferred to Hex, though both are deprecated. A common refactor is replacing <code class="stacks-code">background-color: @white;</code> with <code class="stacks-code">background-color: var(--white);</code> to make sure a legacy component is aware of dark mode when a deeper refactor isn’t possible.
-                </p>
-                <p class="stacks-copy">
-                    When dark mode is enabled, the values of numbered color variables will be inverted from what they are with dark mode disabled—<code class="stacks-code">900</code> being the lightest, and <code class="stacks-code">025</code> or <code class="stacks-code">050</code> being the darkest. This is because the values don't represent lightness, but rather contrast with the background. The same also applies to <code class="stacks-code">lighter</code> variants of non-numbered color variables.
-                </p>
-            {% endif %}
-
+        {% if group.name == "new" %}
             <div class="d-grid g16 g-af-dense mt16 mb32" style="grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));">
                 {% for set in group.sets %}
-
-                    {% assign nameSuffix = "" %}
-                    {% if group.name == "new" %}
-                        {% assign nameSuffix = "-new" %}
-                    {% endif %}
                     {% assign setName = set.name | append: nameSuffix %}
-
+                    {% assign setClasses = "" %}
                     {% if set.name != "transparent" and set.name != "inherit" %}
                         <div>
-                            {% assign setClasses = "" %}
-
-                            {% if set.name contains "white" %}
-                                {% assign setClasses = "ba bc-black-200" %}
-                            {% endif %}
-
-                            <div class="bar-md overflow-hidden {{ setClasses }}">
-                                {% assign bg = "bg-" | append: setName | replace: " ", "-" %}
-
-                                {% if set.bg %}
-                                    {% assign bg = "bg-" | append: setName | append: "-" | append: set.bg | replace: " ", "-" %}
-                                {% endif %}
-
-                                {% assign fc = "fc-white" %}
-                                {% if set.fc %}
-                                    {% assign fc = "fc-" | append: set.fc %}
-                                {% endif %}
-
-                                <div class="p24 fs-title {{ bg }} {{ fc }} {{ set.classes }}">
-                                    {{ set.name | capitalize }}
-                                </div>
-
+                            <h3>{{ set.name | capitalize }}</h3>
+                            <div class="bar-md overflow-hidden bs-md ba baw2 bc-white">
                                 {% for stop in set.stops %}
                                     {% assign name = setName | replace: " ", "-" %}
 
@@ -92,12 +30,7 @@ description: To avoid specifying color values by hand, we’ve included a robust
                                     {% if set.invert contains stop %}
                                         {% assign stopFc = "fc-white" %}
                                     {% endif %}
-
-                                    {% assign additionalClasses = "" %}
-                                    {% if set.name contains "white" %}
-                                        {% assign additionalClasses = "bt bc-black-200" %}
-                                    {% endif %}
-                                    <div class="p12 bg-{{ name }} {{ stopFc }} {{ additionalClasses }}">
+                                    <div class="p12 bg-{{ name }} {{ stopFc }}">
                                         {{ name }}
                                     </div>
                                 {% endfor %}
@@ -106,7 +39,7 @@ description: To avoid specifying color values by hand, we’ve included a robust
                     {% endif %}
                 {% endfor %}
             </div>
-        </div>
+        {% endif %}
     {% endfor %}
 </section>
 
@@ -118,85 +51,80 @@ description: To avoid specifying color values by hand, we’ve included a robust
     </p>
 
     {% for group in colors %}
-        {% assign groupClasses = "" %}
-        {% if group.name != "new" %}
-            {% assign groupClasses = "d-none" %}
-        {% endif %}
-        <div class="{{ groupClasses }}" data-tabpanel="{{ group.name }}">
-            {% for set in group.sets %}
-                <div class="overflow-x-auto mb48" tabindex="0">
-                    <table class="wmn5 s-table s-table__bx-simple s-table__condensed va-middle fs-caption">
-                        <thead>
-                            <tr>
-                                <th scope="col" width="36px"></th>
-                                <th scope="col">Text class</th>
-                                <th scope="col">Background class</th>
-                                <th scope="col">Border class</th>
-                                <th scope="col" class="ta-center"><a class="s-link s-link__inherit" href="{{ "/product/guidelines/conditional-classes#hover" | url }}">Hover?</a></th>
-                                <th scope="col" class="ta-center"><a class="s-link s-link__inherit" href="{{ "/product/guidelines/conditional-classes#focus" | url }}">Focus?</a></th>
-                                <th scope="col" class="ta-center"><a class="s-link s-link__inherit" href="{{ "/product/guidelines/conditional-classes#dark-mode" | url }}">Dark?</a></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {% for stop in set.stops %}
-                                {% assign naHTML = "<span class=\"fc-black-500\">N/A</span>" %}
-                                {% assign nameSuffix = "" %}
-                                {% if group.name == "new" %}
-                                    {% assign nameSuffix = "-new" %}
-                                {% endif %}
-                                {% assign name = set.name | append: nameSuffix | replace: " ", "-" %}
-
-                                {% if stop != "" %}
-                                    {% assign name = set.name | append: nameSuffix | append: "-" | append: stop | replace: " ", "-" %}
-                                {% endif %}
+        {% if group.name == "new" %}
+            <div>
+                {% for set in group.sets %}
+                    <div class="overflow-x-auto mb48" tabindex="0">
+                        <table class="wmn5 s-table s-table__bx-simple s-table__condensed va-middle fs-caption">
+                            <thead>
                                 <tr>
-                                    <th scope="row">
-                                        <div class="stacks-swatch bar-sm bs-sm bg-{{ name }}"></div>
-                                    </th>
-                                    <td class="ff-mono">
-                                        {% if set.exclude.class.fc contains stop %}
-                                            {{ naHTML }}
-                                        {% else %}
-                                            .fc-{{ name }}
-                                        {% endif %}
-                                    </td>
-                                    <td class="ff-mono">
-                                        {% if set.exclude.class.bg contains stop %}
-                                            {{ naHTML }}
-                                        {% else %}
-                                            .bg-{{ name }}
-                                        {% endif %}
-                                    </td>
-                                    <td class="ff-mono">
-                                        {% if set.exclude.class.bc contains stop %}
-                                            {{ naHTML }}
-                                        {% else %}
-                                            .bc-{{ name }}
-                                        {% endif %}
-                                    </td>
-                                    <td class="ta-center">
-                                        {% unless set.exclude.hover contains stop %}
-                                            {% icon "Checkmark", "fc-green-500" %}
-                                        {% endunless %}
-                                    </td>
-                                    <td class="ta-center">
-                                        {% unless set.exclude.focus contains stop %}
-                                            {% icon "Checkmark", "fc-green-500" %}
-                                        {% endunless %}
-                                    </td>
-                                    <td class="ta-center">
-                                        {% unless set.exclude.dark contains stop %}
-                                            {% icon "Checkmark", "fc-green-500" %}
-                                        {% endunless %}
-                                    </td>
+                                    <th scope="col" width="36px"></th>
+                                    <th scope="col">Text class</th>
+                                    <th scope="col">Background class</th>
+                                    <th scope="col">Border class</th>
+                                    <th scope="col" class="ta-center"><a class="s-link s-link__inherit" href="{{ "/product/guidelines/conditional-classes#hover" | url }}">Hover?</a></th>
+                                    <th scope="col" class="ta-center"><a class="s-link s-link__inherit" href="{{ "/product/guidelines/conditional-classes#focus" | url }}">Focus?</a></th>
+                                    <th scope="col" class="ta-center"><a class="s-link s-link__inherit" href="{{ "/product/guidelines/conditional-classes#dark-mode" | url }}">Dark?</a></th>
                                 </tr>
-                            {% endfor %}
+                            </thead>
+                            <tbody>
+                                {% for stop in set.stops %}
+                                    {% assign naHTML = "<span class=\"fc-black-500\">N/A</span>" %}
+                                    {% assign nameSuffix = "-new" %}
+                                    {% assign name = set.name | append: nameSuffix | replace: " ", "-" %}
 
-                        </tbody>
-                    </table>
-                </div>
-            {% endfor %}
-        </div>
+                                    {% if stop != "" %}
+                                        {% assign name = set.name | append: nameSuffix | append: "-" | append: stop | replace: " ", "-" %}
+                                    {% endif %}
+                                    <tr>
+                                        <th scope="row">
+                                            <div class="stacks-swatch bar-sm bs-sm bg-{{ name }}"></div>
+                                        </th>
+                                        <td class="ff-mono">
+                                            {% if set.exclude.class.fc contains stop %}
+                                                {{ naHTML }}
+                                            {% else %}
+                                                .fc-{{ name }}
+                                            {% endif %}
+                                        </td>
+                                        <td class="ff-mono">
+                                            {% if set.exclude.class.bg contains stop %}
+                                                {{ naHTML }}
+                                            {% else %}
+                                                .bg-{{ name }}
+                                            {% endif %}
+                                        </td>
+                                        <td class="ff-mono">
+                                            {% if set.exclude.class.bc contains stop %}
+                                                {{ naHTML }}
+                                            {% else %}
+                                                .bc-{{ name }}
+                                            {% endif %}
+                                        </td>
+                                        <td class="ta-center">
+                                            {% unless set.exclude.hover contains stop %}
+                                                {% icon "Checkmark", "fc-green-500" %}
+                                            {% endunless %}
+                                        </td>
+                                        <td class="ta-center">
+                                            {% unless set.exclude.focus contains stop %}
+                                                {% icon "Checkmark", "fc-green-500" %}
+                                            {% endunless %}
+                                        </td>
+                                        <td class="ta-center">
+                                            {% unless set.exclude.dark contains stop %}
+                                                {% icon "Checkmark", "fc-green-500" %}
+                                            {% endunless %}
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+
+                            </tbody>
+                        </table>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
     {% endfor %}
 </section>
 
@@ -309,6 +237,3 @@ description: To avoid specifying color values by hand, we’ve included a robust
         </table>
     </div>
 </section>
-
-<!-- Additional javascript -->
-<script src="{{ "/assets/dist/entry.colors.js" | url }}" defer></script>
