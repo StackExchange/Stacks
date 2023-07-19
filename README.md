@@ -92,6 +92,7 @@ npm run test:unit:watch
 **Prerequisites:** 
 - `git lfs` ([installation docs](https://docs.github.com/en/repositories/working-with-files/managing-large-files/installing-git-large-file-storage))
 - `docker` ([installation docs](https://docs.docker.com/engine/install/))
+- `pwsh` ([Installation docs](https://learn.microsoft.com/en-us/powershell/scripting/install/installing-powershell?view=powershell-7.3))
 
 This [Web Test Runner plugin](https://www.npmjs.com/package/@web/test-runner-visual-regression) is used to run visual regression tests. [DOM Testing Library](https://testing-library.com/docs/dom-testing-library/intro).
 Visual regression tests end with this suffix `*.visual.test.ts`.
