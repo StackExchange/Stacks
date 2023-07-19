@@ -3,14 +3,15 @@
 
 // generated atomic color classes
 body {
-    .create-theme-classes(primary, orange);
-    .create-theme-classes(secondary, blue);
     .create-colors(@sets-light, length(@sets-light), classes);
+    .create-theme-classes(primary);
+    .create-theme-classes(secondary);
     // Creates default theme variables representing h/s/l and r/g/b values
-    .create-calculated-themed-variables(@theme-light-default[primary], primary);
-    .create-calculated-themed-variables(@theme-light-default[secondary], secondary);
-    .create-calculated-themed-variables(@theme-dark-default[primary], primary, dark);
-    .create-calculated-themed-variables(@theme-dark-default[secondary], secondary, dark);
+    // .create-calculated-themed-variables(@theme-light-default[primary], primary);
+    // .create-calculated-themed-variables(@theme-light-default[secondary], secondary);
+    // .create-calculated-themed-variables(@theme-dark-default[primary], primary, dark);
+    // .create-calculated-themed-variables(@theme-dark-default[secondary], secondary, dark);
+    .create-theme-variables(secondary);
 }
 
 // Light mode
@@ -24,6 +25,8 @@ body.theme-system .theme-light__forced {
 body.theme-dark,
 body:not(.theme-dark) .theme-dark__forced {
     .create-colors(@sets-dark, length(@sets-dark));
+    .create-theme-variables(primary, "", dark);
+    .create-theme-variables(secondary, "", dark);
 }
 
 // High contrast mode (Light)
