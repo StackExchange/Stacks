@@ -82,7 +82,7 @@ description: To avoid specifying color values by hand, we’ve included a robust
                                 </div>
 
                                 {% for stop in set.stops %}
-                                    {% assign name = setName %}
+                                    {% assign name = setName | replace: " ", "-" %}
 
                                     {% if stop != "" %}
                                         {% assign name = setName | append: "-" | append: stop | replace: " ", "-" %}
@@ -144,10 +144,10 @@ description: To avoid specifying color values by hand, we’ve included a robust
                                 {% if group.name == "new" %}
                                     {% assign nameSuffix = "-new" %}
                                 {% endif %}
-                                {% assign name = set.name | append: nameSuffix %}
+                                {% assign name = set.name | append: nameSuffix | replace: " ", "-" %}
 
                                 {% if stop != "" %}
-                                    {% assign name = set.name | append: nameSuffix | append: "-" | append: stop %}
+                                    {% assign name = set.name | append: nameSuffix | append: "-" | append: stop | replace: " ", "-" %}
                                 {% endif %}
                                 <tr>
                                     <th scope="row">
