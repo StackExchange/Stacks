@@ -1,0 +1,48 @@
+@import (reference) "./colors.less";
+@import (reference) "./color-mixins.less";
+
+// generated atomic color classes
+body {
+    @theme-primary-default: theme-primary @set-orange;
+    .create-theme-classes(primary, orange);
+    .create-theme-classes(secondary, blue);
+    .create-colors(@sets-light, length(@sets-light), classes);
+    // Default light theme
+    .create-colors(@theme-primary-default, 1);
+    // Creates default theme variables representing h/s/l and r/g/b values
+    .create-calculated-themed-variables(@theme-light-default[primary], primary);
+    .create-calculated-themed-variables(@theme-light-default[secondary], secondary);
+    .create-calculated-themed-variables(@theme-dark-default[primary], primary, dark);
+    .create-calculated-themed-variables(@theme-dark-default[secondary], secondary, dark);
+}
+
+// Light mode
+body:not(.theme-dark),
+body.theme-dark .theme-light__forced,
+body.theme-system .theme-light__forced {
+    .create-colors(@sets-light, length(@sets-light));
+}
+
+// Dark mode
+body.theme-dark,
+body:not(.theme-dark) .theme-dark__forced {
+    .create-colors(@sets-dark, length(@sets-dark));
+}
+
+// High contrast mode (Light)
+body.theme-highcontrast:not(.theme-dark),
+body.theme-dark.theme-highcontrast .theme-light__forced,
+body.theme-system.theme-highcontrast .theme-light__forced {
+    .create-colors(@sets-hc, length(@sets-hc));
+}
+
+// High contrast mode (Dark)
+body.theme-dark.theme-highcontrast,
+body.theme-highcontrast:not(.theme-dark) .theme-dark__forced {
+    .create-colors(@sets-hc-dark, length(@sets-hc-dark));
+}
+body.theme-system.theme-highcontrast {
+    @media (prefers-color-scheme: dark) {
+        .create-colors(@sets-hc-dark, length(@sets-hc-dark));
+    }
+}
