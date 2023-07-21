@@ -15,7 +15,7 @@
  * @param {variable | classes} @type - The type of output
  * @param {bool} @private - Designate a private variable.
  */
- .create-color(@name, @colors, @i, @type, @private: false) when (@i > 0) {
+.create-color(@name, @colors, @i, @type, @private: false) when (@i > 0) {
     @item: extract(@colors, @i);
     @stop: extract(@item, 1);
     @color: extract(@item, 2);
@@ -23,7 +23,7 @@
     // TODO get rid of "new" suffix when old colors are labelled legacy
     @suffix: if((@stop = ""), "-new", ~"-new-@{stop}");
     @color-name: ~"@{name}@{suffix}";
-    @variable: if(@private, ~"--_@{color-name}", ~"--@{color-name}") ;
+    @variable: ~"--@{color-name}";
     @property-value: ~"var(@{variable}) !important";
 
     // Create custom property assignment
@@ -49,7 +49,7 @@
  * .create-colors(@color-sets, length(@color-sets), classes);
  *
  * @param {list} @sets - A list of sets containing color names and values.
- * @param {number} @i - The index of the set to process, starting from the last set.
+ * @param {number} @index - The index of the set to process, starting from the last set.
  * @param {variables | classes} @type - (Optional) The type of output.
  * @param {bool} @private - Create private variables.
  */
@@ -197,6 +197,49 @@
         }
 
         & when not (@color = "") {
+            & when (@theme = base) {
+                    // Reassemble as a single hsl value
+                --theme-primary-new-color: .assemble-color(theme-primary-color)[];
+
+                // Steps
+                --theme-primary-new-900: .native-darken(theme-primary-color, 26)[];
+                --theme-primary-new-800: .native-darken(theme-primary-color, 21)[];
+                --theme-primary-new-700: .native-darken(theme-primary-color, 16)[];
+                --theme-primary-new-600: .native-darken(theme-primary-color, 10)[];
+                --theme-primary-new-500: .native-darken(theme-primary-color, 5)[];
+                --theme-primary-new-400: var(--theme-primary-color);
+                --theme-primary-new-350: .native-tint(theme-primary-color, 20)[];
+                --theme-primary-new-300: .native-tint(theme-primary-color, 35)[];
+                --theme-primary-new-200: .native-tint(theme-primary-color, 48)[];
+                --theme-primary-new-150: .native-tint(theme-primary-color, 65)[];
+                --theme-primary-new-100: .native-tint(theme-primary-color, 78)[];
+                --theme-primary-new-075: .native-tint(theme-primary-color, 85)[];
+                --theme-primary-new-050: .native-tint(theme-primary-color, 92)[];
+                --theme-primary-new-025: .native-tint(theme-primary-color, 96)[];
+
+                // Reassemble as a single hsl value
+                --theme-secondary-new-color: .assemble-color(theme-secondary-color)[];
+
+                // Steps
+                --theme-secondary-new-900: .native-darken(theme-secondary-color, 26)[];
+                --theme-secondary-new-800: .native-darken(theme-secondary-color, 21)[];
+                --theme-secondary-new-700: .native-darken(theme-secondary-color, 16)[];
+                --theme-secondary-new-600: .native-darken(theme-secondary-color, 10)[];
+                --theme-secondary-new-500: .native-darken(theme-secondary-color, 5)[];
+                --theme-secondary-new-400: var(--theme-secondary-color);
+                --theme-secondary-new-350: .native-tint(theme-secondary-color, 20)[];
+                --theme-secondary-new-300: .native-tint(theme-secondary-color, 35)[];
+                --theme-secondary-new-200: .native-tint(theme-secondary-color, 48)[];
+                --theme-secondary-new-150: .native-tint(theme-secondary-color, 65)[];
+                --theme-secondary-new-100: .native-tint(theme-secondary-color, 78)[];
+                --theme-secondary-new-075: .native-tint(theme-secondary-color, 85)[];
+                --theme-secondary-new-050: .native-tint(theme-secondary-color, 92)[];
+                --theme-secondary-new-025: .native-tint(theme-secondary-color, 96)[];
+
+                // Fades
+                // TODO figure out how to make "new"
+                --focus-ring: .native-fade(theme-secondary-color, 15)[];
+            }
             // TODO lift from .light-themed-colors() and .dark-themed-colors()
         }
     }

@@ -1,20 +1,33 @@
 @import (reference) "./color-sets.less";
 @import (reference) "./color-mixins.less";
 
+// EXISTING ISSUES
+// - theme primary vars not generated properly 🤷‍♂️ (--_ private var issue via Less)
+// - --_white-new not generated properly (extract("", 2))
+//
+// QUIRKS
+// - Less: `each` not working in .create-colors (using for loop instead)
+
 :root {
     // deconstruct the default colors in less
     // this keeps the hsl/rgb variables below in sync
     // consumers will need to set each variable separately // TODO verify this last part
     .create-custom-theme-hsl-rgb-variables(@theme-light-default[primary], primary);
     .create-custom-theme-hsl-rgb-variables(@theme-light-default[secondary], secondary);
+    // custom
+    .create-custom-theme-hsl-rgb-variables(#00ff11, primary, theme-light);
 }
 
 // generated atomic color classes
 body {
-    .create-colors(@sets-light, length(@sets-light));
+    // Create base variables
+    .create-colors(@sets-light, length(@sets-light), variables);
+    // Create base atomic class assignments
     .create-colors(@sets-light, length(@sets-light), classes);
-    .create-theme(primary);
-    .create-theme(secondary);
+    // Create default theme classes
+    .create-theme(primary); // --theme-primary-new-400: var(--_orange-new-400);
+    .create-theme(secondary); // --theme-secondary-new-400: var(--_blue-new-400);
+    .create-theme(secondary, variables, #ff1100, base);
     // Set default values for the theme
     .create-colors(@sets-theme-default, length(@sets-theme-default), variables, false);
 }
@@ -35,6 +48,7 @@ body.theme-system .theme-light__forced {
 }
 
 // Dark mode
+// TODO consolidate this and media quert
 body.theme-dark,
 body:not(.theme-dark) .theme-dark__forced {
     .create-colors(@sets-dark, length(@sets-dark));
@@ -47,11 +61,19 @@ body:not(.theme-dark) .theme-dark__forced {
         &:extend(.theme-variables);
     }
 }
-// body.theme-system {
-//     @media (prefers-color-scheme: dark) {
-//         .theme-dark-rules();
-//     }
-// }
+body.theme-system {
+    @media (prefers-color-scheme: dark) {
+        .create-colors(@sets-dark, length(@sets-dark));
+
+        &,
+        & .themed {
+            color: var(--theme-body-font-color-new); // TODO define variable
+            .generate-themed-variables(theme-dark);
+            .create-colors(@sets-dark, length(@sets-dark));
+            &:extend(.theme-variables);
+        }
+    }
+}
 
 // High contrast mode (light)
 body.theme-highcontrast:not(.theme-dark),
