@@ -1,12 +1,14 @@
 $current_dir = if ($env:OS -eq "Windows_NT") { Get-Location } else { pwd }
 
-$dockerfile_path = Join-Path $current_dir "Dockerfile"
-@"
+$dockerfile = @"
 FROM mcr.microsoft.com/playwright:v1.36.0-jammy
 WORKDIR /app
 COPY package*.json ./
 RUN npm ci
-"@ | Set-Content $dockerfile_path
+"@
+
+$dockerfile_path = (New-TemporaryFile).FullName
+$dockerfile | Set-Content $dockerfile_path
 docker build -t stacks/test-visual -q -f $dockerfile_path . > $null
 Remove-Item $dockerfile_path
 
