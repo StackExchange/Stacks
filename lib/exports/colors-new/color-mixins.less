@@ -1,42 +1,51 @@
 @import (reference) "../mixins.less";
+@import (reference) "./color-sets.less";
 @import (reference) "./theme.less";
 
-
-/**
- * Creates color variables or atomic classes based on the given sets of colors.
- *
- * Usage example:
- * @colors: 100 hsl(23, 85%, 97%), 200 hsl(23, 85%, 97%), …;
- * .create-color(orange, @colors, length(@colors), variable);
- *
- * @param {string} @name - The color family the colors belong to.
- * @param {list} @colors - A sets containing color stops and values.
- * @param {string} @i - The index of the color to process, starting from the color set.
- * @param {variable | classes} @type - The type of output
- * @param {bool} @private - Designate a private variable.
- */
-.create-color(@name, @colors, @i, @type, @private: false) when (@i > 0) {
-    @item: extract(@colors, @i);
-    @stop: extract(@item, 1);
-    @color: extract(@item, 2);
-
-    // TODO get rid of "new" suffix when old colors are labelled legacy
-    @suffix: if((@stop = ""), "-new", ~"-new-@{stop}");
-    @color-name: ~"@{name}@{suffix}";
-    @variable: ~"--@{color-name}";
-    @property-value: ~"var(@{variable}) !important";
-
-    // Create custom property assignment
-    & when (@type = variables) {
-        @{variable}: @color;
+// Function to generate colors based on context
+// TODO document
+.generate-colors(@family: default, @highContrast: false) {
+    & when (@family = default) {
+        .create-colors(@sets-light, length(@sets-light)); // Create base variables
+        .create-colors(@sets-light, length(@sets-light), classes); // Create base atomic classes
+        .create-default-theme(); // Create default theme variables and classes
     }
 
-    // Create bg atomic class assignments
-    & when (@type = classes) {
-        .create-color-classes(@color-name, @property-value);
+    & when (@highContrast = false) {
+        & when (@family = light) {
+            .create-colors(@sets-light, length(@sets-light));
+
+            &,
+            & .themed {
+                color: var(--theme-body-font-color-new); // TODO define variable
+                .create-theme-hsl-rgb-variables(theme-light);
+                .create-colors(@sets-light, length(@sets-light));
+                &:extend(.theme-variables);
+            }
+        }
+
+        & when (@family = dark) {
+            .create-colors(@sets-dark, length(@sets-dark));
+
+            &,
+            & .themed {
+                color: var(--theme-body-font-color-new); // TODO define variable
+                .generate-themed-variables(theme-dark);
+                .create-colors(@sets-dark, length(@sets-dark));
+                &:extend(.theme-variables);
+            }
+        }
     }
 
-    .create-color(@name, @colors, @i - 1, @type, @private);
+    & when (@highContrast = true) {
+        & when (@family = light) {
+            .create-colors(@sets-hc, length(@sets-hc));
+        }
+
+        & when (@family = dark) {
+            .create-colors(@sets-hc-dark, length(@sets-hc-dark));
+        }
+    }
 }
 
 /**
@@ -51,14 +60,37 @@
  * @param {list} @sets - A list of sets containing color names and values.
  * @param {number} @index - The index of the set to process, starting from the last set.
  * @param {variables | classes} @type - (Optional) The type of output.
- * @param {bool} @private - Create private variables.
  */
-.create-colors(@sets, @index, @type: variables, @private: true) when (@index > 0) {
+.create-colors(@sets, @index, @type: variables) when (@index > 0) {
     @set: extract(@sets, @index);
     @name: extract(@set, 1);
     @colors: extract(@set, 2);
 
-    .create-color(@name, @colors, length(@colors), @type, @private);
+    .create-color(@i) when (@i > 0) {
+        @item: extract(@colors, @i);
+        @stop: extract(@item, 1);
+        @color: extract(@item, 2);
+
+        // TODO get rid of "new" suffix when old colors are labelled legacy
+        @suffix: if((@stop = ""), "-new", ~"-new-@{stop}");
+        @colorName: ~"@{name}@{suffix}";
+        @variable: ~"--@{colorName}";
+        @value: ~"var(@{variable}) !important";
+
+        // Create custom property assignment
+        & when (@type = variables) {
+            @{variable}: @color;
+        }
+
+        // Create bg atomic class assignments
+        & when (@type = classes) {
+            .create-color-classes(@colorName, @value);
+        }
+
+        .create-color(@i - 1);
+    }
+
+    .create-color(length(@colors));
     .create-colors(@sets, @index - 1, @type);
 }
 
@@ -99,10 +131,10 @@
     });
 }
 
+// THEMING
 /**
  * Creates theme h/s/l and r/g/b variables based on the given color for a specified theme.
  * Replaces .generate-calculated-themed-variables() (referenced in Core)
- * Keep API same as .generate-calculated-themed-variables()
  *
  * Usage example:
  * .create-custom-theme-hsl-rgb-variables("#ff1100", secondary, dark);
@@ -111,7 +143,7 @@
  * @param {primary | secondary} @designation - The designation of the theme values.
  * @param {base | dark} @theme - TODO add documentation
  */
- .create-custom-theme-hsl-rgb-variables(@color, @designation: primary, @theme: base) {
+.create-custom-theme-hsl-rgb-variables(@color, @designation: primary, @theme: base) {
     @var-base: ~"--theme-@{theme}-@{designation}-color-new";
 
     // Split into h/s/l values
@@ -152,6 +184,39 @@
     });
 }
 
+// TODO add description
+.create-default-theme() {
+    @defaultThemes: primary, secondary;
+    @modes: light, dark;
+    @stops: 100, 200, 300, 400, 500, 600;
+
+    each(@defaultThemes, .(@theme) {
+        @setName: ~"theme-@{theme}";
+        @name: ~"@{setName}-color-new";
+
+        each(@stops, .(@stop) {
+            // TODO get rid of "new" suffix when old colors are labelled legacy
+            @themeName: ~"@{setName}-new-@{stop}";
+            @value: ~"var(--@{themeName}) !important";
+            .create-color-classes(@themeName, @value);
+        });
+
+        each(@modes, .(@mode) {
+            @set: if(
+                @theme = primary,
+                if(@mode = light, @set-orange, @set-orange-dark),
+                if(@mode = light, @set-blue, @set-blue-dark)
+            );
+
+            // TODO this does not work with only a single name + set pair 🤷‍♂️
+            @sets: @setName @set, @setName @set;
+            .create-colors(@sets, length(@sets));
+        });
+    });
+
+    .create-colors(@sets-theme-default, length(@sets-theme-default)); // Set default theme variables
+}
+
 /**
  * Creates theme-specific CSS variable-based atomic classes for background and text colors based on a set of color stops.
  *
@@ -159,88 +224,61 @@
  * .create-theme-classes(primary, orange);
  *
  * @param {primary | secondary} @designation - The designation of the theme values.
- * @param {classes | variables} @type = The type of output.
  * @param {string} @color - The color to be used as the base for the theme variables.
- * @param {base | dark} @theme - TODO add documentation
+ * @param {light | dark} @mode - TODO add documentation
  */
-.create-theme(@designation: primary, @type: classes, @color: "", @theme: base) {
+.create-custom-theme-variables(@designation: primary, @color: "", @mode: light) {
     @stops: 100, 200, 300, 400, 500, 600;
 
-    & when (@type = classes) {
-        each(@stops, .(@stop, @k, @i) {
-            // TODO get rid of "new" suffix when old colors are labelled legacy
-            @theme-name: ~"theme-@{designation}-new-@{stop}";
-            @value: ~"var(--@{theme-name}) !important";
-            .create-color-classes(@theme-name, @value);
-        });
+    @set-name: ~"theme-@{designation}";
+    @name-base: ~"@{set-name}-color";
+    @name: ~"@{name-base}-new";
+    // --@{name}: .assemble-color(@name)[];
+
+    // --theme-@{designation}-color-new: var(~"--theme-@{designation}-new-400");
+
+    & when (@mode = light) {
+            // Reassemble as a single hsl value
+        --theme-primary-new-color: .assemble-color(theme-primary-color)[];
+
+        // Steps
+        --theme-primary-new-900: .native-darken(theme-primary-color, 26)[];
+        --theme-primary-new-800: .native-darken(theme-primary-color, 21)[];
+        --theme-primary-new-700: .native-darken(theme-primary-color, 16)[];
+        --theme-primary-new-600: .native-darken(theme-primary-color, 10)[];
+        --theme-primary-new-500: .native-darken(theme-primary-color, 5)[];
+        --theme-primary-new-400: var(--theme-primary-color);
+        --theme-primary-new-350: .native-tint(theme-primary-color, 20)[];
+        --theme-primary-new-300: .native-tint(theme-primary-color, 35)[];
+        --theme-primary-new-200: .native-tint(theme-primary-color, 48)[];
+        --theme-primary-new-150: .native-tint(theme-primary-color, 65)[];
+        --theme-primary-new-100: .native-tint(theme-primary-color, 78)[];
+        --theme-primary-new-075: .native-tint(theme-primary-color, 85)[];
+        --theme-primary-new-050: .native-tint(theme-primary-color, 92)[];
+        --theme-primary-new-025: .native-tint(theme-primary-color, 96)[];
+
+        // Reassemble as a single hsl value
+        --theme-secondary-new-color: .assemble-color(theme-secondary-color)[];
+
+        // Steps
+        --theme-secondary-new-900: .native-darken(theme-secondary-color, 26)[];
+        --theme-secondary-new-800: .native-darken(theme-secondary-color, 21)[];
+        --theme-secondary-new-700: .native-darken(theme-secondary-color, 16)[];
+        --theme-secondary-new-600: .native-darken(theme-secondary-color, 10)[];
+        --theme-secondary-new-500: .native-darken(theme-secondary-color, 5)[];
+        --theme-secondary-new-400: var(--theme-secondary-color);
+        --theme-secondary-new-350: .native-tint(theme-secondary-color, 20)[];
+        --theme-secondary-new-300: .native-tint(theme-secondary-color, 35)[];
+        --theme-secondary-new-200: .native-tint(theme-secondary-color, 48)[];
+        --theme-secondary-new-150: .native-tint(theme-secondary-color, 65)[];
+        --theme-secondary-new-100: .native-tint(theme-secondary-color, 78)[];
+        --theme-secondary-new-075: .native-tint(theme-secondary-color, 85)[];
+        --theme-secondary-new-050: .native-tint(theme-secondary-color, 92)[];
+        --theme-secondary-new-025: .native-tint(theme-secondary-color, 96)[];
+
+        // Fades
+        // TODO figure out how to make "new"
+        --focus-ring: .native-fade(theme-secondary-color, 15)[];
     }
-
-    & when (@type = variables) {
-        @set-name: ~"theme-@{designation}";
-        @name-base: ~"@{set-name}-color";
-        @name: ~"@{name-base}-new-xxx";
-        // --@{name}: .assemble-color(@name)[];
-
-        // --theme-@{designation}-color-new: var(~"--theme-@{designation}-new-400");
-
-        // When @color is empty, use the default color set
-        & when (@color = "") {
-            @set: if(
-                @designation = primary,
-                if(@theme = base, @set-orange, @set-orange-dark),
-                if(@theme = base, @set-blue, @set-blue-dark)
-            );
-
-            // TODO this does not work with only a single name + set pair 🤷‍♂️
-            @sets: @set-name @set, @set-name @set;
-            .create-colors(@sets, length(@sets), variables, false);
-        }
-
-        & when not (@color = "") {
-            & when (@theme = base) {
-                    // Reassemble as a single hsl value
-                --theme-primary-new-color: .assemble-color(theme-primary-color)[];
-
-                // Steps
-                --theme-primary-new-900: .native-darken(theme-primary-color, 26)[];
-                --theme-primary-new-800: .native-darken(theme-primary-color, 21)[];
-                --theme-primary-new-700: .native-darken(theme-primary-color, 16)[];
-                --theme-primary-new-600: .native-darken(theme-primary-color, 10)[];
-                --theme-primary-new-500: .native-darken(theme-primary-color, 5)[];
-                --theme-primary-new-400: var(--theme-primary-color);
-                --theme-primary-new-350: .native-tint(theme-primary-color, 20)[];
-                --theme-primary-new-300: .native-tint(theme-primary-color, 35)[];
-                --theme-primary-new-200: .native-tint(theme-primary-color, 48)[];
-                --theme-primary-new-150: .native-tint(theme-primary-color, 65)[];
-                --theme-primary-new-100: .native-tint(theme-primary-color, 78)[];
-                --theme-primary-new-075: .native-tint(theme-primary-color, 85)[];
-                --theme-primary-new-050: .native-tint(theme-primary-color, 92)[];
-                --theme-primary-new-025: .native-tint(theme-primary-color, 96)[];
-
-                // Reassemble as a single hsl value
-                --theme-secondary-new-color: .assemble-color(theme-secondary-color)[];
-
-                // Steps
-                --theme-secondary-new-900: .native-darken(theme-secondary-color, 26)[];
-                --theme-secondary-new-800: .native-darken(theme-secondary-color, 21)[];
-                --theme-secondary-new-700: .native-darken(theme-secondary-color, 16)[];
-                --theme-secondary-new-600: .native-darken(theme-secondary-color, 10)[];
-                --theme-secondary-new-500: .native-darken(theme-secondary-color, 5)[];
-                --theme-secondary-new-400: var(--theme-secondary-color);
-                --theme-secondary-new-350: .native-tint(theme-secondary-color, 20)[];
-                --theme-secondary-new-300: .native-tint(theme-secondary-color, 35)[];
-                --theme-secondary-new-200: .native-tint(theme-secondary-color, 48)[];
-                --theme-secondary-new-150: .native-tint(theme-secondary-color, 65)[];
-                --theme-secondary-new-100: .native-tint(theme-secondary-color, 78)[];
-                --theme-secondary-new-075: .native-tint(theme-secondary-color, 85)[];
-                --theme-secondary-new-050: .native-tint(theme-secondary-color, 92)[];
-                --theme-secondary-new-025: .native-tint(theme-secondary-color, 96)[];
-
-                // Fades
-                // TODO figure out how to make "new"
-                --focus-ring: .native-fade(theme-secondary-color, 15)[];
-            }
-            // TODO lift from .light-themed-colors() and .dark-themed-colors()
-        }
-    }
+    // TODO lift from .light-themed-colors() and .dark-themed-colors()
 }

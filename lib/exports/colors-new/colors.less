@@ -1,4 +1,3 @@
-@import (reference) "./color-sets.less";
 @import (reference) "./color-mixins.less";
 
 // EXISTING ISSUES
@@ -18,60 +17,25 @@
     .create-custom-theme-hsl-rgb-variables(#00ff11, primary, theme-light);
 }
 
-// generated atomic color classes
 body {
-    // Create base variables
-    .create-colors(@sets-light, length(@sets-light), variables);
-    // Create base atomic class assignments
-    .create-colors(@sets-light, length(@sets-light), classes);
-    // Create default theme classes
-    .create-theme(primary); // --theme-primary-new-400: var(--_orange-new-400);
-    .create-theme(secondary); // --theme-secondary-new-400: var(--_blue-new-400);
-    .create-theme(secondary, variables, #ff1100, base);
-    // Set default values for the theme
-    .create-colors(@sets-theme-default, length(@sets-theme-default), variables, false);
+    .generate-colors();
 }
 
 // Light mode
 body:not(.theme-dark),
 body.theme-dark .theme-light__forced,
 body.theme-system .theme-light__forced {
-    .create-colors(@sets-light, length(@sets-light));
-
-    &,
-    & .themed {
-        color: var(--theme-body-font-color-new); // TODO define variable
-        .create-theme-hsl-rgb-variables(theme-light);
-        .create-colors(@sets-light, length(@sets-light));
-        &:extend(.theme-variables);
-    }
+    .generate-colors(light);
 }
 
 // Dark mode
-// TODO consolidate this and media quert
 body.theme-dark,
 body:not(.theme-dark) .theme-dark__forced {
-    .create-colors(@sets-dark, length(@sets-dark));
-
-    &,
-    & .themed {
-        color: var(--theme-body-font-color-new); // TODO define variable
-        .generate-themed-variables(theme-dark);
-        .create-colors(@sets-dark, length(@sets-dark));
-        &:extend(.theme-variables);
-    }
+    .generate-colors(dark);
 }
 body.theme-system {
     @media (prefers-color-scheme: dark) {
-        .create-colors(@sets-dark, length(@sets-dark));
-
-        &,
-        & .themed {
-            color: var(--theme-body-font-color-new); // TODO define variable
-            .generate-themed-variables(theme-dark);
-            .create-colors(@sets-dark, length(@sets-dark));
-            &:extend(.theme-variables);
-        }
+        .generate-colors(dark);
     }
 }
 
@@ -79,16 +43,16 @@ body.theme-system {
 body.theme-highcontrast:not(.theme-dark),
 body.theme-dark.theme-highcontrast .theme-light__forced,
 body.theme-system.theme-highcontrast .theme-light__forced {
-    .create-colors(@sets-hc, length(@sets-hc));
+    .generate-colors(light, true);
 }
 
 // High contrast mode (dark)
 body.theme-dark.theme-highcontrast,
 body.theme-highcontrast:not(.theme-dark) .theme-dark__forced {
-    .create-colors(@sets-hc-dark, length(@sets-hc-dark));
+    .generate-colors(dark, true);
 }
 body.theme-system.theme-highcontrast {
     @media (prefers-color-scheme: dark) {
-        .create-colors(@sets-hc-dark, length(@sets-hc-dark));
+        .generate-colors(dark, true);
     }
 }
