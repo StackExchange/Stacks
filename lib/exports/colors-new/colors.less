@@ -3,16 +3,10 @@
 // EXISTING ISSUES
 // - theme primary vars not generated properly 🤷‍♂️ (--_ private var issue via Less)
 // - --_white-new not generated properly (extract("", 2))
-//
-// QUIRKS
-// - Less: `each` not working in .create-colors (using for loop instead)
 
 :root {
-    // deconstruct the default colors in less
-    // this keeps the hsl/rgb variables below in sync
-    // consumers will need to set each variable separately // TODO verify this last part
-    .create-custom-theme-hsl-rgb-variables(@theme-light-default[primary], primary);
-    .create-custom-theme-hsl-rgb-variables(@theme-light-default[secondary], secondary);
+    .create-custom-theme-hsl-rgb-variables(.theme-light-default()[primary], primary);
+    .create-custom-theme-hsl-rgb-variables(.theme-light-default()[secondary], secondary);
     // custom
     .create-custom-theme-hsl-rgb-variables(#00ff11, primary, theme-light);
 }
