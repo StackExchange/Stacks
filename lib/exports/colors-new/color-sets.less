@@ -1,3 +1,6 @@
+/* stylelint-disable property-no-unknown */
+// TODO get rid of "new" suffix when old colors are labelled legacy
+
 // White
 .set-white() {
     default: hsl(0, 0%, 100%);
@@ -25,7 +28,7 @@
     400: hsl(210, 8%, 45%);
     500: hsl(210, 8%, 25%);
     600: hsl(210, 8%, 5%);
-    default: hsl(0, 0%, 0%); // black, no stop // TODO check on this value
+    default: hsl(0, 0%, 0%); // black, no stop // TODO verify the value w/ design
 }
 .set-black-dark() {
     050: hsl(220, 3%, 15%);
@@ -39,7 +42,7 @@
     400: hsl(220, 10%, 74%);
     500: hsl(220, 10%, 83%);
     600: hsl(180, 11%, 98%);
-    default: hsl(0, 0%, 100%); // white, no stop // TODO check on this value
+    default: hsl(0, 0%, 100%); // white, no stop // TODO verify the value w/ design
 }
 .set-black-hc() {
     050: hsl(0, 0%, 100%); // renders as white
@@ -53,7 +56,7 @@
     400: hsl(210, 8%, 45%);
     500: hsl(210, 8%, 25%);
     600: hsl(210, 8%, 5%);
-    default: hsl(0, 0%, 0%); // black, no stop // TODO check on this value
+    default: hsl(0, 0%, 0%); // black, no stop // TODO verify the value w/ design
 }
 
 .set-black-hc-dark() {
@@ -68,7 +71,7 @@
     400: hsl(220, 10%, 74%);
     500: hsl(220, 10%, 83%);
     600: hsl(180, 11%, 98%);
-    default: hsl(0, 0%, 100%); // white, no stop // TODO check on this value
+    default: hsl(0, 0%, 100%); // white, no stop // TODO verify the value w/ design
 }
 
 // Orange
@@ -320,12 +323,12 @@
 }
 
 // Color sets
-.sets() {
+.sets-mode() {
     default: .sets-light();
     light: .sets-light();
-    light-hc: .sets-light-hc();
+    light-highcontrast: .sets-light-hc();
     dark: .sets-dark();
-    dark-hc: .sets-dark-hc();
+    dark-highcontrast: .sets-dark-hc();
 }
 
 .sets-light() {
@@ -381,7 +384,6 @@
 }
 
 // Theme values
-// TODO get rid of "new" suffix when old colors are labelled legacy
 .set-theme-primary-default() {
     color: var(--orange-new-400);
     100: var(--orange-new-100);
@@ -392,7 +394,6 @@
     600: var(--orange-new-600);
 }
 
-// TODO get rid of "new" suffix when old colors are labelled legacy
 .set-theme-secondary-default() {
     color: var(--blue-new-400);
     100: var(--blue-new-100);

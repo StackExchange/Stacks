@@ -1,14 +1,8 @@
 @import (reference) "./color-mixins.less";
 
-// EXISTING ISSUES
-// - theme primary vars not generated properly 🤷‍♂️ (--_ private var issue via Less)
-// - --_white-new not generated properly (extract("", 2))
-
 :root {
     .create-custom-theme-hsl-rgb-variables(.theme-light-default()[primary], primary);
     .create-custom-theme-hsl-rgb-variables(.theme-light-default()[secondary], secondary);
-    // custom
-    .create-custom-theme-hsl-rgb-variables(#00ff11, primary, theme-light);
 }
 
 body {
@@ -39,16 +33,16 @@ body.theme-system {
 body.theme-highcontrast:not(.theme-dark),
 body.theme-dark.theme-highcontrast .theme-light__forced,
 body.theme-system.theme-highcontrast .theme-light__forced {
-    .generate-colors(light, true);
+    .generate-colors(light-highcontrast);
 }
 
 // High contrast mode (dark)
 body.theme-dark.theme-highcontrast,
 body.theme-highcontrast:not(.theme-dark) .theme-dark__forced {
-    .generate-colors(dark, true);
+    .generate-colors(dark-highcontrast);
 }
 body.theme-system.theme-highcontrast {
     @media (prefers-color-scheme: dark) {
-        .generate-colors(dark, true);
+        .generate-colors(dark-highcontrast);
     }
 }
