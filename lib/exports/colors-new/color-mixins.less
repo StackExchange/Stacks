@@ -5,33 +5,28 @@
 // Function to generate colors based on context
 // TODO document
 .generate-colors(@family: default, @highContrast: false) {
+    @setName: if(@highContrast = true, "@{family}-hc", "@{family}");
+    @set: .sets()[$@setName];
+
+    .create-colors(@set);
+
     & when (@family = default) {
          // Create base and default theme variables
-        .create-colors(.sets-light());
         .create-colors(.sets-theme-default());
          // Create base and default theme classes
-         .create-colors(.sets-light(), classes);
+         .create-colors(@set, classes);
         .create-colors(.sets-theme-default(), classes);
-    
     }
 
     & when not (@family = default) {
         & when (@highContrast = false) {
-            @sets: if(@family = light, .sets-light(), .sets-dark());
-            .create-colors(@sets);
-
             &,
             & .themed {
                 color: var(--theme-body-font-color-new); // TODO define variable
                 .create-theme-hsl-rgb-variables(~"theme-@{family}");
-                .create-colors(@sets);
+                .create-colors(@set);
                 &:extend(.theme-variables);
             }
-        }
-
-        & when (@highContrast = true) {
-            @hc-sets: if(@family = light, .sets-hc(), .sets-hc-dark());
-            .create-colors(@hc-sets);
         }
     }
 }
