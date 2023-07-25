@@ -6,44 +6,32 @@
 // TODO document
 .generate-colors(@family: default, @highContrast: false) {
     & when (@family = default) {
-        .create-colors(.sets-light()); // Create base variables
-        .create-colors(.sets-light(), classes); // Create base atomic classes
-        .create-default-theme(); // Create default theme variables and classes
+         // Create base and default theme variables
+        .create-colors(.sets-light());
+        .create-colors(.sets-theme-default());
+         // Create base and default theme classes
+         .create-colors(.sets-light(), classes);
+        .create-colors(.sets-theme-default(), classes);
+    
     }
 
-    & when (@highContrast = false) {
-        & when (@family = light) {
-            .create-colors(.sets-light());
+    & when not (@family = default) {
+        & when (@highContrast = false) {
+            @sets: if(@family = light, .sets-light(), .sets-dark());
+            .create-colors(@sets);
 
             &,
             & .themed {
                 color: var(--theme-body-font-color-new); // TODO define variable
-                .create-theme-hsl-rgb-variables(theme-light);
-                .create-colors(.sets-light());
+                .create-theme-hsl-rgb-variables(~"theme-@{family}");
+                .create-colors(@sets);
                 &:extend(.theme-variables);
             }
         }
 
-        & when (@family = dark) {
-            .create-colors(.sets-dark());
-
-            &,
-            & .themed {
-                color: var(--theme-body-font-color-new); // TODO define variable
-                .generate-themed-variables(theme-dark);
-                .create-colors(.sets-dark());
-                &:extend(.theme-variables);
-            }
-        }
-    }
-
-    & when (@highContrast = true) {
-        & when (@family = light) {
-            .create-colors(.sets-hc());
-        }
-
-        & when (@family = dark) {
-            .create-colors(.sets-hc-dark());
+        & when (@highContrast = true) {
+            @hc-sets: if(@family = light, .sets-hc(), .sets-hc-dark());
+            .create-colors(@hc-sets);
         }
     }
 }
@@ -170,39 +158,6 @@
     });
 }
 
-// TODO add description
-.create-default-theme() {
-    @defaultThemes: primary, secondary;
-    @modes: light, dark;
-    @stops: 100, 200, 300, 400, 500, 600;
-
-    each(@defaultThemes, .(@theme) {
-        @setName: ~"theme-@{theme}";
-        @name: ~"@{setName}-color-new";
-
-        each(@stops, .(@stop) {
-            // TODO get rid of "new" suffix when old colors are labelled legacy
-            @themeName: ~"@{setName}-new-@{stop}";
-            @value: ~"var(--@{themeName}) !important";
-            .create-color-classes(@themeName, @value);
-        });
-
-        each(@modes, .(@mode) {
-            @set: if(
-                @theme = primary,
-                if(@mode = light, .set-orange(), .set-orange-dark()),
-                if(@mode = light, .set-blue(), .set-blue-dark())
-            );
-
-            // TODO this does not work with only a single name + set pair 🤷‍♂️
-            @sets: @setName @set, @setName @set;
-            .create-colors(@sets);
-        });
-    });
-
-    .create-colors(.sets-theme-default()); // Set default theme variables
-}
-
 /**
  * Creates theme-specific CSS variable-based atomic classes for background and text colors based on a set of color stops.
  *
@@ -224,7 +179,7 @@
     // --theme-@{designation}-color-new: var(~"--theme-@{designation}-new-400");
 
     & when (@mode = light) {
-            // Reassemble as a single hsl value
+        // Reassemble as a single hsl value
         --theme-primary-new-color: .assemble-color(theme-primary-color)[];
 
         // Steps
