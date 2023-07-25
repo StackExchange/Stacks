@@ -163,58 +163,107 @@
  * @param {string} @color - The color to be used as the base for the theme variables.
  * @param {light | dark} @mode - TODO add documentation
  */
-.create-custom-theme-variables(@designation: primary, @color: "", @mode: light) {
-    @stops: 100, 200, 300, 400, 500, 600;
+.create-custom-theme-variables(@mode: light) {
+    @designations: primary, secondary;
+    each(@designations, .(@designation, @k, @i) {
+        @base: ~"theme-@{designation}";
+        @baseColorName: ~"@{base}-color-new";
+        @mainVar: ~"--@{baseColorName}";
 
-    @set-name: ~"theme-@{designation}";
-    @name-base: ~"@{set-name}-color";
-    @name: ~"@{name-base}-new";
-    // --@{name}: .assemble-color(@name)[];
+        .custom-theme-colors() {
+            light: .custom-light-theme();
+            dark: .custom-dark-theme();
+        }
 
-    // --theme-@{designation}-color-new: var(~"--theme-@{designation}-new-400");
+        .custom-light-theme() {
+            900: .native-darken(@baseColorName, 26)[];
+            800: .native-darken(@baseColorName, 21)[];
+            700: .native-darken(@baseColorName, 16)[];
+            600: .native-darken(@baseColorName, 10)[];
+            500: .native-darken(@baseColorName, 5)[];
+            400: ~"var(@{mainVar})";
+            350: .native-tint(@baseColorName, 20)[];
+            300: .native-tint(@baseColorName, 35)[];
+            200: .native-tint(@baseColorName, 48)[];
+            150: .native-tint(@baseColorName, 65)[];
+            100: .native-tint(@baseColorName, 78)[];
+            075: .native-tint(@baseColorName, 85)[];
+            050: .native-tint(@baseColorName, 92)[];
+            025: .native-tint(@baseColorName, 96)[];
+        }
 
-    & when (@mode = light) {
-        // Reassemble as a single hsl value
-        --theme-primary-new-color: .assemble-color(theme-primary-color)[];
+        .custom-dark-theme() {
+            025: .native-darken-desaturate(@baseColorName, 31, 73.3)[];
+            050: .native-darken-desaturate(@baseColorName, 15, 47)[];
+            075: .native-darken-desaturate(@baseColorName, 13, 39)[];
+            100: .native-darken-desaturate(@baseColorName, 11, 32)[];
+            150: .native-darken-desaturate(@baseColorName, 9, 23)[];
+            200: .native-darken-desaturate(@baseColorName, 7, 15)[];
+            300: .native-darken-desaturate(@baseColorName, 5, 7)[];
+            350: ~"var(@{mainVar})";
+            400: .native-tint(@baseColorName, 21)[];
+            500: .native-tint(@baseColorName, 36)[];
+            600: .native-tint(@baseColorName, 51)[];
+            700: .native-tint(@baseColorName, 66)[];
+            800: .native-tint(@baseColorName, 81)[];
+            900: .native-tint(@baseColorName, 96)[];
+        }
 
-        // Steps
-        --theme-primary-new-900: .native-darken(theme-primary-color, 26)[];
-        --theme-primary-new-800: .native-darken(theme-primary-color, 21)[];
-        --theme-primary-new-700: .native-darken(theme-primary-color, 16)[];
-        --theme-primary-new-600: .native-darken(theme-primary-color, 10)[];
-        --theme-primary-new-500: .native-darken(theme-primary-color, 5)[];
-        --theme-primary-new-400: var(--theme-primary-color);
-        --theme-primary-new-350: .native-tint(theme-primary-color, 20)[];
-        --theme-primary-new-300: .native-tint(theme-primary-color, 35)[];
-        --theme-primary-new-200: .native-tint(theme-primary-color, 48)[];
-        --theme-primary-new-150: .native-tint(theme-primary-color, 65)[];
-        --theme-primary-new-100: .native-tint(theme-primary-color, 78)[];
-        --theme-primary-new-075: .native-tint(theme-primary-color, 85)[];
-        --theme-primary-new-050: .native-tint(theme-primary-color, 92)[];
-        --theme-primary-new-025: .native-tint(theme-primary-color, 96)[];
+        @{mainVar}: .assemble-color(@baseColorName)[];
+        --focus-ring: .native-fade(theme-secondary-color-new, if(@mode = light, 15, 25))[];
+        each(.custom-theme-colors()[$@mode], .(@value, @stop, @index) {
+            @variable: ~"--@{baseColorName}-@{stop}";
+            @{variable}: @value;
+        });
+    });
 
-        // Reassemble as a single hsl value
-        --theme-secondary-new-color: .assemble-color(theme-secondary-color)[];
+    // // @set-name: ~"theme-@{designation}";
+    // // @name-base: ~"@{set-name}-color";
+    // // @name: ~"@{name-base}-new";
+    // // --theme-@{designation}-color-new: var(~"--theme-@{designation}-new-400");
 
-        // Steps
-        --theme-secondary-new-900: .native-darken(theme-secondary-color, 26)[];
-        --theme-secondary-new-800: .native-darken(theme-secondary-color, 21)[];
-        --theme-secondary-new-700: .native-darken(theme-secondary-color, 16)[];
-        --theme-secondary-new-600: .native-darken(theme-secondary-color, 10)[];
-        --theme-secondary-new-500: .native-darken(theme-secondary-color, 5)[];
-        --theme-secondary-new-400: var(--theme-secondary-color);
-        --theme-secondary-new-350: .native-tint(theme-secondary-color, 20)[];
-        --theme-secondary-new-300: .native-tint(theme-secondary-color, 35)[];
-        --theme-secondary-new-200: .native-tint(theme-secondary-color, 48)[];
-        --theme-secondary-new-150: .native-tint(theme-secondary-color, 65)[];
-        --theme-secondary-new-100: .native-tint(theme-secondary-color, 78)[];
-        --theme-secondary-new-075: .native-tint(theme-secondary-color, 85)[];
-        --theme-secondary-new-050: .native-tint(theme-secondary-color, 92)[];
-        --theme-secondary-new-025: .native-tint(theme-secondary-color, 96)[];
+    // & when (@mode = light) {
+    //     // Reassemble as a single hsl value
+    //     --theme-primary-new-color: .assemble-color(theme-primary-color)[];
 
-        // Fades
-        // TODO figure out how to make "new"
-        --focus-ring: .native-fade(theme-secondary-color, 15)[];
-    }
+    //     // Steps
+    //     --theme-primary-new-900: .native-darken(theme-primary-color, 26)[];
+    //     --theme-primary-new-800: .native-darken(theme-primary-color, 21)[];
+    //     --theme-primary-new-700: .native-darken(theme-primary-color, 16)[];
+    //     --theme-primary-new-600: .native-darken(theme-primary-color, 10)[];
+    //     --theme-primary-new-500: .native-darken(theme-primary-color, 5)[];
+    //     --theme-primary-new-400: var(--theme-primary-color);
+    //     --theme-primary-new-350: .native-tint(theme-primary-color, 20)[];
+    //     --theme-primary-new-300: .native-tint(theme-primary-color, 35)[];
+    //     --theme-primary-new-200: .native-tint(theme-primary-color, 48)[];
+    //     --theme-primary-new-150: .native-tint(theme-primary-color, 65)[];
+    //     --theme-primary-new-100: .native-tint(theme-primary-color, 78)[];
+    //     --theme-primary-new-075: .native-tint(theme-primary-color, 85)[];
+    //     --theme-primary-new-050: .native-tint(theme-primary-color, 92)[];
+    //     --theme-primary-new-025: .native-tint(theme-primary-color, 96)[];
+
+    //     // Reassemble as a single hsl value
+    //     --theme-secondary-new-color: .assemble-color(theme-secondary-color)[];
+
+    //     // Steps
+    //     --theme-secondary-new-900: .native-darken(theme-secondary-color, 26)[];
+    //     --theme-secondary-new-800: .native-darken(theme-secondary-color, 21)[];
+    //     --theme-secondary-new-700: .native-darken(theme-secondary-color, 16)[];
+    //     --theme-secondary-new-600: .native-darken(theme-secondary-color, 10)[];
+    //     --theme-secondary-new-500: .native-darken(theme-secondary-color, 5)[];
+    //     --theme-secondary-new-400: var(--theme-secondary-color);
+    //     --theme-secondary-new-350: .native-tint(theme-secondary-color, 20)[];
+    //     --theme-secondary-new-300: .native-tint(theme-secondary-color, 35)[];
+    //     --theme-secondary-new-200: .native-tint(theme-secondary-color, 48)[];
+    //     --theme-secondary-new-150: .native-tint(theme-secondary-color, 65)[];
+    //     --theme-secondary-new-100: .native-tint(theme-secondary-color, 78)[];
+    //     --theme-secondary-new-075: .native-tint(theme-secondary-color, 85)[];
+    //     --theme-secondary-new-050: .native-tint(theme-secondary-color, 92)[];
+    //     --theme-secondary-new-025: .native-tint(theme-secondary-color, 96)[];
+
+    //     // Fades
+    //     // TODO figure out how to make "new"
+    //     --focus-ring: .native-fade(theme-secondary-color, 15)[];
+    // }
     // TODO lift from .light-themed-colors() and .dark-themed-colors()
 }
