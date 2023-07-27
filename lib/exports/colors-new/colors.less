@@ -6,8 +6,10 @@
 }
 
 body {
-    .generate-colors();
-    .create-custom-theme-variables();
+    .create-colors(.sets-theme-default());
+    --_o-disabled: 0.5;
+    --_o-disabled-static: 0.5;
+    color: var(--theme-body-font-color-new);
 }
 
 // Light mode
@@ -21,7 +23,6 @@ body.theme-system .theme-light__forced {
 body.theme-dark,
 body:not(.theme-dark) .theme-dark__forced {
     .generate-colors(dark);
-    .create-custom-theme-variables(dark);
 }
 body.theme-system {
     @media (prefers-color-scheme: dark) {

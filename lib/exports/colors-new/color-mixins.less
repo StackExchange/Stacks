@@ -23,30 +23,24 @@
  *
  * @mode - Determines what to generate and which mode set to use.
 */
-.generate-colors(@mode: default) {
+.generate-colors(@mode: light) {
     @set: .sets-mode()[$@mode];
     @setUtility: .sets-utility-mode()[$@mode];
-    .create-colors(@set);
-    .create-colors(@setUtility);
-
-    & when (@mode = default) {
-        // Create base and default theme variables
-        .create-colors(.sets-theme-default());
-        --_o-disabled: 0.5;
-        --_o-disabled-static: 0.5;
-    }
 
     & when (@mode = light), (@mode = dark) {
         &,
         & .themed {
-            color: var(--theme-body-font-color-new); // TODO define variable
             .create-colors(@set);
+            .create-colors(@setUtility);
+            .create-custom-theme-variables(@mode);
             .create-theme-hsl-rgb-variables(@mode);
             .theme-variables();
         }
     }
 
     & when (@mode = light-highcontrast), (@mode = dark-highcontrast) {
+        .create-colors(@set);
+        .create-colors(@setUtility);
         --_o-disabled: 0.8;
     }
 }
