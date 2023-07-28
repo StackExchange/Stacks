@@ -18,12 +18,17 @@ description: Stacks provides a robust theming API to handle theming in various c
 </section>
 
 <section class="stacks-section">
-    {% header "h2", "Global theming" %}
-    <p class="stacks-copy">Like light and dark modes, Stacks has baked-in theming available as primary and secondary CSS color variables. These can be overridden in various scopes. By default, the Stacks primary and secondary variables are Stack Overflow’s branded orange and blue, respectively, at a global scope, affecting every element on the page. These can be overridden in the context of your product, e.g. Teams, a Collective, or Stack Exchange Site. Both primary and secondary colors are available in the full spectrum of <a class="s-link" href="{{ "/product/base/colors/#theming" | url }}">atomic classes and variables</a>.</p>
-    <p class="stacks-copy">At its core, our theming is powered by CSS variables that are split into primary and secondary <code class="stacks-code">H</code>, <code class="stacks-code">S</code>, <code class="stacks-code">L</code>, and <code class="stacks-code">R</code>, <code class="stacks-code">G</code>, <code class="stacks-code">B</code> values. For example:</p>
+    {% header "h2", "Theming API" %}
+    <p class="stacks-copy">Stacks provides an API to apply custom themes. Blah blah blah.</p>
 
-    <div class="stacks-preview _preview-none mb24">
-{% highlight css %}
+    {% header "h3", "Programmatic theme generation" %}
+    <p class="stacks-copy">Describe <code class="stacks-code">.create-custom-theme-hsl-rgb-variables</code>.</p>
+
+    {% header "h4", "The output" %}
+
+    <p class="stacks-copy">Explain how the above function the variables below and how a consumer can opt to forgo the function and just set the variables. Make sure to describe the base/dark and primary/secondary variants.</p>
+
+    {% highlight css %}
 --theme-base-primary-color-h: 313;
 --theme-base-primary-color-s: 76%;
 --theme-base-primary-color-l: 54%;
@@ -37,475 +42,71 @@ description: Stacks provides a robust theming API to handle theming in various c
 --theme-base-secondary-color-r: 227;
 --theme-base-secondary-color-g: 49;
 --theme-base-secondary-color-b: 188;
-{% endhighlight %}
-    </div>
+    {% endhighlight %}
 
-    <p class="stacks-copy">These then get combined to generate the <a class="s-link" href="{{ "/product/base/colors/#theming" | url }}">full set of color stops</a>. Overriding them is as simple as redefining those individual theming variables.</p>
+    {% header "h3", "Theme variables overrides" %}
+    <p class="stacks-copy">Users can set specific values for theme varables that are more targeted. Describe/outline those here.</p>
 
-    <p class="stacks-copy">By default, we take those single primary and secondary colors and generate an appropriate dark mode equivalent. However, what if your branding color is dark purple—or black? You can pass an optional dark mode override:</p>
-
-    <div class="stacks-preview _preview-none mb24">
-{% highlight css %}
---theme-dark-primary-color-h: 288;
---theme-dark-primary-color-s: 45%;
---theme-dark-primary-color-l: 60%;
---theme-dark-primary-color-r: 180;
---theme-dark-primary-color-g: 105;
---theme-dark-primary-color-b: 199;
-
---theme-dark-secondary-color-h: 313;
---theme-dark-secondary-color-s: 76%;
---theme-dark-secondary-color-l: 54%;
---theme-dark-secondary-color-r: 227;
---theme-dark-secondary-color-g: 49;
---theme-dark-secondary-color-b: 188;
-{% endhighlight %}
-    </div>
+    {% highlight css %}
+--theme-body-font-color
+--theme-background-color
+--theme-link-color
+--theme-link-color-hover
+--theme-link-color-visited
+--theme-button-color
+--theme-button-background-color
+--theme-button-hover-color
+--theme-button-hover-background-color
+--theme-button-active-background-color
+--theme-button-selected-color
+--theme-button-selected-background-color
+--theme-button-primary-color
+--theme-button-primary-background-color
+--theme-button-primary-hover-color
+--theme-button-primary-hover-background-color
+--theme-button-primary-active-background-color
+--theme-button-primary-selected-color
+--theme-button-primary-selected-background-color
+--theme-button-primary-number-color
+--theme-button-filled-color
+--theme-button-filled-background-color
+--theme-button-filled-border-color
+--theme-button-filled-hover-color
+--theme-button-filled-hover-background-color
+--theme-button-filled-active-background-color
+--theme-button-filled-active-border-color
+--theme-button-filled-selected-color
+--theme-button-filled-selected-background-color
+--theme-button-filled-selected-border-color
+--theme-button-outlined-border-color
+--theme-button-outlined-selected-border-color
+--theme-tag-color
+--theme-tag-background-color
+--theme-tag-border-color
+--theme-tag-hover-color
+--theme-tag-hover-background-color
+--theme-tag-hover-border-color
+--theme-topbar-height
+--theme-topbar-background-color
+--theme-topbar-search-color
+--theme-topbar-search-background
+--theme-topbar-search-placeholder
+--theme-topbar-search-border
+--theme-topbar-search-border-focus
+--theme-topbar-search-shadow-focus
+--theme-topbar-select-color
+--theme-topbar-select-background
+--theme-topbar-item-color
+--theme-topbar-item-color-hover
+--theme-topbar-item-background-hover
+--theme-topbar-item-color-current
+--theme-topbar-item-border-current
+--theme-topbar-accent-border
+--theme-topbar-bottom-border
+--theme-post-title-color
+--theme-post-title-color-hover
+--theme-post-title-color-visited
+--theme-post-title-font-family
+--theme-post-body-font-family
+    {% endhighlight %}
 </section>
-
-<section class="stacks-section">
-    {% header "h2", "Child theming" %}
-    <p class="stacks-copy">Stacks allows for further theming various portions of a page. You can simply pair the <code class="stacks-code">.themed</code> class with an atomic color stop, and a new theming scope. For this example, we’re using a class name of <code class="stacks-code">.theme-team-[xxx]</code> with a unique ID appended.</p>
-    <div class="stacks-preview">
-{% highlight html %}
-<div class="bg-theme-primary-700"></div>
-<div class="themed theme-team-001 bg-theme-primary-500"></div>
-<div class="themed theme-team-002 bg-theme-primary-500"></div>
-<div class="themed theme-team-003 bg-theme-primary-500"></div>
-
-<style>
-    .theme-team-001 {
-        --theme-base-primary-color-h: 349;
-        --theme-base-primary-color-s: 81%;
-        --theme-base-primary-color-l: 58%;
-        --theme-base-primary-color-r: 235;
-        --theme-base-primary-color-g: 59;
-        --theme-base-primary-color-b: 90;
-
-        --theme-base-secondary-color-h: 349;
-        --theme-base-secondary-color-s: 81%;
-        --theme-base-secondary-color-l: 58%;
-        --theme-base-secondary-color-r: 235;
-        --theme-base-secondary-color-g: 59;
-        --theme-base-secondary-color-b: 90;
-    }
-
-    .theme-team-002 {
-        --theme-base-primary-color-h: 41;
-        --theme-base-primary-color-s: 93%;
-        --theme-base-primary-color-l: 58%;
-        --theme-base-primary-color-r: 247;
-        --theme-base-primary-color-g: 183;
-        --theme-base-primary-color-b: 49;
-
-        --theme-base-secondary-color-h: 41;
-        --theme-base-secondary-color-s: 93%;
-        --theme-base-secondary-color-l: 58%;
-        --theme-base-secondary-color-r: 247;
-        --theme-base-secondary-color-g: 183;
-        --theme-base-secondary-color-b: 49;
-    }
-
-    .theme-team-003 {
-        --theme-base-primary-color-h: 288;
-        --theme-base-primary-color-s: 76%;
-        --theme-base-primary-color-l: 38%;
-        --theme-base-primary-color-r: 141;
-        --theme-base-primary-color-g: 23;
-        --theme-base-primary-color-b: 170;
-
-        --theme-base-secondary-color-h: 288;
-        --theme-base-secondary-color-s: 76%;
-        --theme-base-secondary-color-l: 38%;
-        --theme-base-secondary-color-r: 141;
-        --theme-base-secondary-color-g: 23;
-        --theme-base-secondary-color-b: 170;
-
-        /* Override colors for dark mode only */
-        --theme-dark-primary-color-h: 288;
-        --theme-dark-primary-color-s: 45%;
-        --theme-dark-primary-color-l: 60%;
-        --theme-dark-primary-color-r: 180;
-        --theme-dark-primary-color-g: 105;
-        --theme-dark-primary-color-b: 199;
-
-        --theme-dark-secondary-color-h: 288;
-        --theme-dark-secondary-color-s: 45%;
-        --theme-dark-secondary-color-l: 60%;
-        --theme-dark-secondary-color-r: 180;
-        --theme-dark-secondary-color-g: 105;
-        --theme-dark-secondary-color-b: 199;
-    }
-</style>
-{% endhighlight %}
-        <div class="stacks-preview--example">
-            <div class="d-flex g16 fd-column">
-                <div class="flex--item">
-                    <div class="mb4 ff-mono">body</div>
-                    <div class="d-flex g12 ai-center fw-wrap">
-                        <div class="flex--item">
-                            <div class="flex--item h32 w32 bar-md bg-theme-primary-500"></div>
-                        </div>
-                        <div class="flex--item">
-                            <div class="d-flex">
-                                <input class="flex--item s-input s-input__xs wmx1 brr0" aria-label="demo input">
-                                <button class="flex--item s-btn s-btn__primary s-btn__xs blr0 mln1" type="button">Subscribe</button>
-                            </div>
-                        </div>
-                        <div class="flex--item">
-                            <div class="s-pagination">
-                                <span class="s-pagination--item is-selected">1</span>
-                                <a class="s-pagination--item">2</a>
-                                <a class="s-pagination--item">Next</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="flex--item themed theme-team-001">
-                    <div class="mb4 ff-mono">.themed.theme-team-001</div>
-                    <div class="d-flex g12 ai-center fw-wrap">
-                        <div class="flex--item">
-                            <div class="s-avatar s-avatar__32 bg-theme-primary-500">
-                                <div class="s-avatar--letter">C</div>
-                                {% icon "ShieldXSm", "native s-avatar--badge" %}
-                            </div>
-                        </div>
-                        <div class="flex--item">
-                            <div class="d-flex">
-                                <input class="flex--item s-input s-input__xs wmx1 brr0" aria-label="demo input">
-                                <button class="flex--item s-btn s-btn__primary s-btn__xs blr0 mln1" type="button">Subscribe</button>
-                            </div>
-                        </div>
-                        <div class="flex--item">
-                            <div class="s-pagination">
-                                <span class="s-pagination--item is-selected">1</span>
-                                <a class="s-pagination--item">2</a>
-                                <a class="s-pagination--item">Next</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="flex--item themed theme-team-002">
-                    <div class="mb4 ff-mono">.themed.theme-team-002</div>
-                    <div class="d-flex g12 ai-center fw-wrap">
-                        <div class="flex--item">
-                            <div class="s-avatar s-avatar__32 bg-theme-primary-500">
-                                <div class="s-avatar--letter">E</div>
-                                {% icon "ShieldXSm", "native s-avatar--badge" %}
-                            </div>
-                        </div>
-                        <div class="flex--item">
-                            <div class="d-flex">
-                                <input class="flex--item s-input s-input__xs wmx1 brr0" aria-label="demo input">
-                                <button class="flex--item s-btn s-btn__primary s-btn__xs blr0 mln1" type="button">Subscribe</button>
-                            </div>
-                        </div>
-                        <div class="flex--item">
-                            <div class="s-pagination">
-                                <span class="s-pagination--item is-selected">1</span>
-                                <a class="s-pagination--item">2</a>
-                                <a class="s-pagination--item">Next</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="flex--item themed theme-team-003">
-                    <div class="mb4 ff-mono">.themed.theme-team-003</div>
-                    <div class="d-flex g12 ai-center fw-wrap">
-                        <div class="flex--item">
-                            <div class="s-avatar s-avatar__32 bg-theme-primary-500">
-                                <div class="s-avatar--letter">F</div>
-                                {% icon "ShieldXSm", "native s-avatar--badge" %}
-                            </div>
-                        </div>
-                        <div class="flex--item">
-                            <div class="d-flex">
-                                <input class="flex--item s-input s-input__xs wmx1 brr0" aria-label="demo input">
-                                <button class="flex--item s-btn s-btn__primary s-btn__xs blr0 mln1" type="button">Subscribe</button>
-                            </div>
-                        </div>
-                        <div class="flex--item">
-                            <div class="s-pagination">
-                                <span class="s-pagination--item is-selected">1</span>
-                                <a class="s-pagination--item">2</a>
-                                <a class="s-pagination--item">Next</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    {% header "h3", "Forced light" %}
-    <div class="stacks-preview">
-        <div class="stacks-preview--example bt bc-black-100 bar-md theme-light__forced">
-            <div class="d-flex g16 fd-column">
-                <div class="flex--item">
-                    <div class="mb4 ff-mono fc-medium">body .theme-light__forced</div>
-                    <div class="d-flex g12 ai-center fw-wrap">
-                        <div class="flex--item">
-                            <div class="flex--item h32 w32 bar-md bg-theme-primary-500"></div>
-                        </div>
-                        <div class="flex--item">
-                            <div class="d-flex">
-                                <input class="flex--item s-input s-input__xs wmx1 brr0" aria-label="demo input">
-                                <button class="flex--item s-btn s-btn__primary s-btn__xs blr0 mln1" type="button">Subscribe</button>
-                            </div>
-                        </div>
-                        <div class="flex--item">
-                            <div class="s-pagination">
-                                <span class="s-pagination--item is-selected">1</span>
-                                <a class="s-pagination--item">2</a>
-                                <a class="s-pagination--item">Next</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="flex--item themed theme-team-001">
-                    <div class="mb4 ff-mono fc-medium">.theme-light__forced .themed.theme-team-001</div>
-                    <div class="d-flex g12 ai-center fw-wrap">
-                        <div class="flex--item">
-                            <div class="s-avatar s-avatar__32 bg-theme-primary-500">
-                                <div class="s-avatar--letter">C</div>
-                                {% icon "ShieldXSm", "native s-avatar--badge" %}
-                            </div>
-                        </div>
-                        <div class="flex--item">
-                            <div class="d-flex">
-                                <input class="flex--item s-input s-input__xs wmx1 brr0" aria-label="demo input">
-                                <button class="flex--item s-btn s-btn__primary s-btn__xs blr0 mln1" type="button">Subscribe</button>
-                            </div>
-                        </div>
-                        <div class="flex--item">
-                            <div class="s-pagination">
-                                <span class="s-pagination--item is-selected">1</span>
-                                <a class="s-pagination--item">2</a>
-                                <a class="s-pagination--item">Next</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="flex--item themed theme-team-002">
-                    <div class="mb4 ff-mono fc-medium">.theme-light__forced .themed.theme-team-002</div>
-                    <div class="d-flex g12 ai-center fw-wrap">
-                        <div class="flex--item">
-                            <div class="s-avatar s-avatar__32 bg-theme-primary-500">
-                                <div class="s-avatar--letter">E</div>
-                                {% icon "ShieldXSm", "native s-avatar--badge" %}
-                            </div>
-                        </div>
-                        <div class="flex--item">
-                            <div class="d-flex">
-                                <input class="flex--item s-input s-input__xs wmx1 brr0" aria-label="demo input">
-                                <button class="flex--item s-btn s-btn__primary s-btn__xs blr0 mln1" type="button">Subscribe</button>
-                            </div>
-                        </div>
-                        <div class="flex--item">
-                            <div class="s-pagination">
-                                <span class="s-pagination--item is-selected">1</span>
-                                <a class="s-pagination--item">2</a>
-                                <a class="s-pagination--item">Next</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="flex--item themed theme-team-003">
-                    <div class="mb4 ff-mono fc-medium">.theme-light__forced .themed.theme-team-003</div>
-                    <div class="d-flex g12 ai-center fw-wrap">
-                        <div class="flex--item">
-                            <div class="s-avatar s-avatar__32 bg-theme-primary-500">
-                                <div class="s-avatar--letter">F</div>
-                                {% icon "ShieldXSm", "native s-avatar--badge" %}
-                            </div>
-                        </div>
-                        <div class="flex--item">
-                            <div class="d-flex">
-                                <input class="flex--item s-input s-input__xs wmx1 brr0" aria-label="demo input">
-                                <button class="flex--item s-btn s-btn__primary s-btn__xs blr0 mln1" type="button">Subscribe</button>
-                            </div>
-                        </div>
-                        <div class="flex--item">
-                            <div class="s-pagination">
-                                <span class="s-pagination--item is-selected">1</span>
-                                <a class="s-pagination--item">2</a>
-                                <a class="s-pagination--item">Next</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    {% header "h3", "Forced dark" %}
-    <div class="stacks-preview">
-        <div class="stacks-preview--example bg-black-050 bt bc-black-100 bar-md theme-dark__forced">
-            <div class="d-flex g16 fd-column">
-                <div class="flex--item">
-                    <div class="mb4 ff-mono fc-medium">body .theme-dark__forced</div>
-                    <div class="d-flex g12 ai-center fw-wrap">
-                        <div class="flex--item">
-                            <div class="flex--item h32 w32 bar-md bg-theme-primary-500"></div>
-                        </div>
-                        <div class="flex--item">
-                            <div class="d-flex">
-                                <input class="flex--item s-input s-input__xs wmx1 brr0" aria-label="demo input">
-                                <button class="flex--item s-btn s-btn__primary s-btn__xs blr0 mln1" type="button">Subscribe</button>
-                            </div>
-                        </div>
-                        <div class="flex--item">
-                            <div class="s-pagination">
-                                <span class="s-pagination--item is-selected">1</span>
-                                <a class="s-pagination--item">2</a>
-                                <a class="s-pagination--item">Next</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="flex--item themed theme-team-001">
-                    <div class="mb4 ff-mono fc-medium">.theme-dark__forced .themed.theme-team-001</div>
-                    <div class="d-flex g12 ai-center fw-wrap">
-                        <div class="flex--item">
-                            <div class="s-avatar s-avatar__32 bg-theme-primary-500">
-                                <div class="s-avatar--letter">C</div>
-                                {% icon "ShieldXSm", "native s-avatar--badge" %}
-                            </div>
-                        </div>
-                        <div class="flex--item">
-                            <div class="d-flex">
-                                <input class="flex--item s-input s-input__xs wmx1 brr0" aria-label="demo input">
-                                <button class="flex--item s-btn s-btn__primary s-btn__xs blr0 mln1" type="button">Subscribe</button>
-                            </div>
-                        </div>
-                        <div class="flex--item">
-                            <div class="s-pagination">
-                                <span class="s-pagination--item is-selected">1</span>
-                                <a class="s-pagination--item">2</a>
-                                <a class="s-pagination--item">Next</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="flex--item themed theme-team-002">
-                    <div class="mb4 ff-mono fc-medium">.theme-dark__forced .themed.theme-team-002</div>
-                    <div class="d-flex g12 ai-center fw-wrap">
-                        <div class="flex--item">
-                            <div class="s-avatar s-avatar__32 bg-theme-primary-500">
-                                <div class="s-avatar--letter">E</div>
-                                {% icon "ShieldXSm", "native s-avatar--badge" %}
-                            </div>
-                        </div>
-                        <div class="flex--item">
-                            <div class="d-flex">
-                                <input class="flex--item s-input s-input__xs wmx1 brr0" aria-label="demo input">
-                                <button class="flex--item s-btn s-btn__primary s-btn__xs blr0 mln1" type="button">Subscribe</button>
-                            </div>
-                        </div>
-                        <div class="flex--item">
-                            <div class="s-pagination">
-                                <span class="s-pagination--item is-selected">1</span>
-                                <a class="s-pagination--item">2</a>
-                                <a class="s-pagination--item">Next</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="flex--item themed theme-team-003">
-                    <div class="mb4 ff-mono fc-medium">.theme-dark__forced .themed.theme-team-003</div>
-                    <div class="d-flex g12 ai-center fw-wrap">
-                        <div class="flex--item">
-                            <div class="s-avatar s-avatar__32 bg-theme-primary-500">
-                                <div class="s-avatar--letter">F</div>
-                                {% icon "ShieldXSm", "native s-avatar--badge" %}
-                            </div>
-                        </div>
-                        <div class="flex--item">
-                            <div class="d-flex">
-                                <input class="flex--item s-input s-input__xs wmx1 brr0" aria-label="demo input">
-                                <button class="flex--item s-btn s-btn__primary s-btn__xs blr0 mln1" type="button">Subscribe</button>
-                            </div>
-                        </div>
-                        <div class="flex--item">
-                            <div class="s-pagination">
-                                <span class="s-pagination--item is-selected">1</span>
-                                <a class="s-pagination--item">2</a>
-                                <a class="s-pagination--item">Next</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<style>
-    .theme-team-001 {
-        --theme-base-primary-color-h: 349;
-        --theme-base-primary-color-s: 81%;
-        --theme-base-primary-color-l: 58%;
-        --theme-base-primary-color-r: 235;
-        --theme-base-primary-color-g: 59;
-        --theme-base-primary-color-b: 90;
-        --theme-base-secondary-color-h: 349;
-        --theme-base-secondary-color-s: 81%;
-        --theme-base-secondary-color-l: 58%;
-        --theme-base-secondary-color-r: 235;
-        --theme-base-secondary-color-g: 59;
-        --theme-base-secondary-color-b: 90;
-    }
-
-    .theme-team-002 {
-        --theme-base-primary-color-h: 41;
-        --theme-base-primary-color-s: 93%;
-        --theme-base-primary-color-l: 58%;
-        --theme-base-primary-color-r: 247;
-        --theme-base-primary-color-g: 183;
-        --theme-base-primary-color-b: 49;
-        --theme-base-secondary-color-h: 41;
-        --theme-base-secondary-color-s: 93%;
-        --theme-base-secondary-color-l: 58%;
-        --theme-base-secondary-color-r: 247;
-        --theme-base-secondary-color-g: 183;
-        --theme-base-secondary-color-b: 49;
-    }
-
-    .theme-team-003 {
-        --theme-base-primary-color-h: 288;
-        --theme-base-primary-color-s: 76%;
-        --theme-base-primary-color-l: 38%;
-        --theme-base-primary-color-r: 141;
-        --theme-base-primary-color-g: 23;
-        --theme-base-primary-color-b: 170;
-        --theme-base-secondary-color-h: 288;
-        --theme-base-secondary-color-s: 76%;
-        --theme-base-secondary-color-l: 38%;
-        --theme-base-secondary-color-r: 141;
-        --theme-base-secondary-color-g: 23;
-        --theme-base-secondary-color-b: 170;
-
-        /* Override primary for dark only */
-        --theme-dark-primary-color-h: 288;
-        --theme-dark-primary-color-s: 45%;
-        --theme-dark-primary-color-l: 60%;
-        --theme-dark-primary-color-r: 180;
-        --theme-dark-primary-color-g: 105;
-        --theme-dark-primary-color-b: 199;
-        --theme-dark-secondary-color-h: 288;
-        --theme-dark-secondary-color-s: 45%;
-        --theme-dark-secondary-color-l: 60%;
-        --theme-dark-secondary-color-r: 180;
-        --theme-dark-secondary-color-g: 105;
-        --theme-dark-secondary-color-b: 199;
-    }
-</style>
