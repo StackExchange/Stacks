@@ -22,19 +22,20 @@
  * .generate-colors(dark);
  *
  * @mode - Determines what to generate and which mode set to use.
-*/
+ */
 .generate-colors(@mode: light) {
     @set: .sets-mode()[$@mode];
     @setUtility: .sets-utility-mode()[$@mode];
 
+    
     & when (@mode = light), (@mode = dark) {
         &,
+        &.themed,
         & .themed {
             .create-colors(@set);
             .create-colors(@setUtility);
-            .create-custom-theme-variables(@mode);
-            .create-theme-hsl-rgb-variables(@mode);
             .theme-variables();
+            .create-theme-variables(@mode);
         }
     }
 
@@ -112,7 +113,7 @@
     });
 }
 
-// THEMING
+// THEMING -- PUBLIC API
 /**
  * Creates theme h/s/l and r/g/b variables based on the given color for a specified theme.
  * Replaces .generate-calculated-themed-variables() (referenced in Core)
@@ -127,100 +128,76 @@
  */
 .create-custom-theme-hsl-rgb-variables(@color, @tier: primary, @modeCustom: base) {
     @varBase: ~"--theme-@{modeCustom}-@{tier}-color-new";
+
     @{varBase}-h: hue(@color);
     @{varBase}-s: saturation(@color);
     @{varBase}-l: lightness(@color);
     @{varBase}-r: red(@color);
     @{varBase}-g: green(@color);
     @{varBase}-b: blue(@color);
+
+    .create-custom-theme-variables(@tier, @modeCustom);
 }
 
+// THEMING -- PSEUDO-PRIVATE API
 /**
- * Creates theme h/s/l and r/g/b variables based on the given color for a specified theme.
- * Replaces .generate-themed-variables() (not referenced in Core)
+ * Defines custom theme varaibles from assembled h/s/l variables
  *
  * Usage example:
- * .create-theme-hsl-rgb-variables(light);
+ * .create-custom-theme-variables(base);
  *
- * @modeSimple - Determines what to generate and which mode set to use.
+ * @tier - The tier name to be used to generate the variable name.
+ * @modeCustom - A custom label to be used to generate the variable name.
  */
-.create-theme-hsl-rgb-variables(@modeSimple: light) {
-    @tiers: primary, secondary;
-    @suffixes: h, s, l, r, g, b;
+ .create-custom-theme-variables(@tier: primary, @modeCustom: base) {
+    @valueVar: ~"theme-@{modeCustom}-@{tier}-color-new";
 
-    each(@tiers, .(@tier, @key, @index) {
-        each(@suffixes, .(@suffix, @k, @i) {
-            @endStr: ~"@{tier}-color-new-@{suffix}";
-            @variable: ~"--theme-@{endStr}";
+    // TODO verify color stops
+    & when (@modeCustom = base) {
+        @varBase: ~"--theme-@{tier}-new-custom";
 
-            @{variable}: ~"var(--theme-@{modeSimple}-@{endStr}, var(--theme-base-@{endStr}))";
-        });
-    });
+        @{varBase}: .assemble-color(@valueVar)[];
+        @{varBase}-100: .native-tint(@valueVar, 78)[];
+        @{varBase}-200: .native-tint(@valueVar, 48)[];
+        @{varBase}-300: .native-tint(@valueVar, 35)[];
+        @{varBase}-400: ~"var(@{varBase})";
+        @{varBase}-500: .native-darken(@valueVar, 5)[];
+        @{varBase}-600: .native-darken(@valueVar, 10)[];
+    }
+
+    & when (@modeCustom = dark) {
+        @varBaseDark: ~"--theme-@{modeCustom}-@{tier}-new-custom";
+
+        @{varBaseDark}: .assemble-color(@valueVar)[];
+        @{varBaseDark}-100: .native-darken-desaturate(@valueVar, 11, 32)[];
+        @{varBaseDark}-200: .native-darken-desaturate(@valueVar, 7, 15)[];
+        @{varBaseDark}-300: .native-darken-desaturate(@valueVar, 5, 7)[];
+        @{varBaseDark}-400: ~"var(@{varBaseDark})";
+        @{varBaseDark}-500: .native-tint(@valueVar, 36)[];
+        @{varBaseDark}-600: .native-tint(@valueVar, 51)[];
+    }
 }
 
 /**
  * Generates theme variables with values mapped to custom hsl values
  *
  * Usage example:
- * .create-theme-hsl-rgb-variables(dark);
+ * .create-theme-variables();
  *
- * @modeSimple - Determines what to generate and which mode set to use.
  */
-.create-custom-theme-variables(@modeSimple: light) {
+.create-theme-variables(@mode: light) {
     @tiers: primary, secondary;
 
     each(@tiers, .(@tier, @k, @i) {
-        @baseColorName: ~"theme-@{tier}-color-new";
-        @mainVariable: ~"--@{baseColorName}";
+        @stops: 100, 200, 300, 400, 500, 600;
+        @fallbackColor: if(@tier = primary, orange-new, blue-new);
+        @baseThemeVar: ~"--theme-@{tier}-new";
+        @customThemeVar: if(@mode = light, ~"@{baseThemeVar}-custom", ~"--theme-dark-@{tier}-new-custom");
 
-        .custom-theme-colors() {
-            light: .custom-light-theme();
-            dark: .custom-dark-theme();
-        }
+        @{baseThemeVar}: ~"var(@{customThemeVar}, var(--@{fallbackColor}-400))";
 
-        .custom-light-theme() {
-            900: .native-darken(@baseColorName, 26)[]; // hsl(var-h, var-s, var-l - 26%)
-            800: .native-darken(@baseColorName, 21)[];
-            700: .native-darken(@baseColorName, 16)[];
-            600: .native-darken(@baseColorName, 10)[];
-            500: .native-darken(@baseColorName, 5)[];
-            400: ~"var(@{mainVariable})";
-            350: .native-tint(@baseColorName, 20)[];
-            300: .native-tint(@baseColorName, 35)[];
-            200: .native-tint(@baseColorName, 48)[];
-            150: .native-tint(@baseColorName, 65)[];
-            100: .native-tint(@baseColorName, 78)[];
-            075: .native-tint(@baseColorName, 85)[];
-            050: .native-tint(@baseColorName, 92)[];
-            025: .native-tint(@baseColorName, 96)[];
-        }
-
-        .custom-dark-theme() {
-            025: .native-darken-desaturate(@baseColorName, 31, 73.3)[];
-            050: .native-darken-desaturate(@baseColorName, 15, 47)[];
-            075: .native-darken-desaturate(@baseColorName, 13, 39)[];
-            100: .native-darken-desaturate(@baseColorName, 11, 32)[];
-            150: .native-darken-desaturate(@baseColorName, 9, 23)[];
-            200: .native-darken-desaturate(@baseColorName, 7, 15)[];
-            300: .native-darken-desaturate(@baseColorName, 5, 7)[];
-            350: ~"var(@{mainVariable})";
-            400: .native-tint(@baseColorName, 21)[];
-            500: .native-tint(@baseColorName, 36)[];
-            600: .native-tint(@baseColorName, 51)[];
-            700: .native-tint(@baseColorName, 66)[];
-            800: .native-tint(@baseColorName, 81)[];
-            900: .native-tint(@baseColorName, 96)[];
-        }
-
-        @{mainVariable}: .assemble-color(@baseColorName)[];
-        --focus-ring-new: .native-fade(
-            theme-secondary-color-new,
-            if(@modeSimple = light, 15, 25)
-        )[];
-
-        each(.custom-theme-colors()[$@modeSimple], .(@value, @stop, @index) {
-            @variable: ~"--@{baseColorName}-@{stop}";
-            @{variable}: @value;
+        each(@stops, .(@stop, @kStop, @iStop) {
+            @{baseThemeVar}-@{stop}: ~"var(@{customThemeVar}-@{stop}, var(--@{fallbackColor}-@{stop}))";
         });
     });
 }

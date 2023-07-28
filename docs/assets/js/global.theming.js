@@ -42,6 +42,7 @@ $(document).ready(function () {
 
         $(this).prop("checked", !isCustom);
         body.toggleClass("theme-custom", !isCustom);
+        body.toggleClass("themed", !isCustom);
 
         localStorage.setItem("customTheme", !isCustom);
 

@@ -108,14 +108,11 @@ describe("color-mixins", () => {
             expect(css).toMatchSnapshot();
         });
 
-        it("create-theme-hsl-rgb-variables", async () => {
+        it("create-theme-variables", async () => {
             const css = await renderLess(`
                 @import (reference) "color-mixins.less";
-                create-theme-hsl-rgb-variables(light) {
-                    .create-theme-hsl-rgb-variables(light);
-                }
-                create-theme-hsl-rgb-variables(dark) {
-                    .create-theme-hsl-rgb-variables(dark);
+                create-theme-variables {
+                    .create-theme-variables;
                 }
             `);
 
@@ -125,11 +122,17 @@ describe("color-mixins", () => {
         it("create-custom-theme-variables", async () => {
             const css = await renderLess(`
                 @import (reference) "color-mixins.less";
-                create-custom-theme-variables(light) {
-                    .create-custom-theme-variables(light);
+                create-custom-theme-variables(primary, base) {
+                    .create-custom-theme-variables(primary, base);
                 }
-                create-custom-theme-variables(dark) {
-                    .create-custom-theme-variables(dark);
+                create-custom-theme-variables(primary, dark) {
+                    .create-custom-theme-variables(primary, dark);
+                }
+                create-custom-theme-variables(secondary, base) {
+                    .create-custom-theme-variables(secondary, base);
+                }
+                create-custom-theme-variables(secondary, base) {
+                    .create-custom-theme-variables(secondary, base);
                 }
             `);
 
