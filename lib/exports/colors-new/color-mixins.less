@@ -27,7 +27,6 @@
     @set: .sets-mode()[$@mode];
     @setUtility: .sets-utility-mode()[$@mode];
 
-    
     & when (@mode = light), (@mode = dark) {
         &,
         &.themed,
@@ -36,6 +35,7 @@
             .create-colors(@setUtility);
             .theme-variables();
             .create-theme-variables(@mode);
+            color: var(--theme-body-font-color-new, var(--black-new-600));
         }
     }
 
