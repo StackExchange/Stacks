@@ -237,6 +237,282 @@ description: Stacks provides a robust theming API to handle theming in various c
     </div>
 </section>
 
+
+<section class="stacks-section">
+    {% header "h2", "Child theming" %}
+    <p class="stacks-copy">Stacks allows for further theming various portions of a page. You can simply pair the <code class="stacks-code">.themed</code> class with an atomic color stop, and a new theming scope. For this example, we’re using a class name of <code class="stacks-code">.theme-team-[xxx]</code> with a unique ID appended.</p>
+    <div class="stacks-preview">
+{% highlight html %}
+<div class="bg-theme-primary-700"></div>
+<div class="themed theme-team-001 bg-theme-primary-new-400"></div>
+<div class="themed theme-team-002 bg-theme-primary-new-400"></div>
+<div class="themed theme-team-003 bg-theme-primary-new-400"></div>
+
+<style>
+    .theme-team-001 {
+        --theme-base-primary-color-new-h: 349;
+        --theme-base-primary-color-new-s: 81%;
+        --theme-base-primary-color-new-l: 58%;
+        --theme-base-primary-color-new-r: 235;
+        --theme-base-primary-color-new-g: 59;
+        --theme-base-primary-color-new-b: 90;
+
+        --theme-base-secondary-color-new-h: 349;
+        --theme-base-secondary-color-new-s: 81%;
+        --theme-base-secondary-color-new-l: 58%;
+        --theme-base-secondary-color-new-r: 235;
+        --theme-base-secondary-color-new-g: 59;
+        --theme-base-secondary-color-new-b: 90;
+    }
+
+    .theme-team-002 {
+        --theme-base-primary-color-new-h: 41;
+        --theme-base-primary-color-new-s: 93%;
+        --theme-base-primary-color-new-l: 58%;
+        --theme-base-primary-color-new-r: 247;
+        --theme-base-primary-color-new-g: 183;
+        --theme-base-primary-color-new-b: 49;
+
+        --theme-base-secondary-color-new-h: 41;
+        --theme-base-secondary-color-new-s: 93%;
+        --theme-base-secondary-color-new-l: 58%;
+        --theme-base-secondary-color-new-r: 247;
+        --theme-base-secondary-color-new-g: 183;
+        --theme-base-secondary-color-new-b: 49;
+    }
+
+    .theme-team-003 {
+        --theme-base-primary-color-new-h: 288;
+        --theme-base-primary-color-new-s: 76%;
+        --theme-base-primary-color-new-l: 38%;
+        --theme-base-primary-color-new-r: 141;
+        --theme-base-primary-color-new-g: 23;
+        --theme-base-primary-color-new-b: 170;
+
+        --theme-base-secondary-color-new-h: 288;
+        --theme-base-secondary-color-new-s: 76%;
+        --theme-base-secondary-color-new-l: 38%;
+        --theme-base-secondary-color-new-r: 141;
+        --theme-base-secondary-color-new-g: 23;
+        --theme-base-secondary-color-new-b: 170;
+
+        /* Override colors for dark mode only */
+        --theme-dark-primary-color-new-h: 288;
+        --theme-dark-primary-color-new-s: 45%;
+        --theme-dark-primary-color-new-l: 60%;
+        --theme-dark-primary-color-new-r: 180;
+        --theme-dark-primary-color-new-g: 105;
+        --theme-dark-primary-color-new-b: 199;
+
+        --theme-dark-secondary-color-new-h: 288;
+        --theme-dark-secondary-color-new-s: 45%;
+        --theme-dark-secondary-color-new-l: 60%;
+        --theme-dark-secondary-color-new-r: 180;
+        --theme-dark-secondary-color-new-g: 105;
+        --theme-dark-secondary-color-new-b: 199;
+    }
+</style>
+{% endhighlight %}
+        <div class="stacks-preview--example">
+            <div class="d-flex g24 fd-column">
+                <div class="g16 fd-column">
+                    <div class="mb4 ff-mono">body</div>
+                    <div class="h32 w32 bar-md bg-theme-primary-new-400"></div>
+                </div>
+
+                <div class="g16 fd-columnr themed theme-team-001">
+                    <div class="mb4 ff-mono">.themed.theme-team-001</div>
+                    <div class="h32 w32 bar-md bg-theme-primary-new-400"></div>
+                </div>
+
+                <div class="g16 fd-column themed theme-team-002">
+                    <div class="mb4 ff-mono">.themed.theme-team-002</div>
+                    <div class="h32 w32 bar-md bg-theme-primary-new-400"></div>
+                </div>
+
+                <div class="g16 fd-column themed theme-team-003">
+                    <div class="mb4 ff-mono">.themed.theme-team-003</div>
+                    <div class="h32 w32 bar-md bg-theme-primary-new-400"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% header "h3", "Forced light" %}
+    <div class="stacks-preview">
+        <div class="stacks-preview--example bt bg-white-new bc-black-100 bar-md theme-light__forced">
+            <div class="d-flex g24 fd-column">
+                <div class="g16 fd-column">
+                    <div class="mb4 ff-mono fc-medium">body .theme-light__forced</div>
+                    <div class="h32 w32 bar-md bg-theme-primary-new-400"></div>
+                </div>
+
+                <div class="g16 fd-columnr themed theme-team-001">
+                    <div class="mb4 ff-mono fc-medium">.theme-light__forced .themed.theme-team-001</div>
+                    <div class="s-avatar s-avatar__32 bg-theme-primary-new-400">
+                        <div class="s-avatar--letter">C</div>
+                        {% icon "ShieldXSm", "native s-avatar--badge" %}
+                    </div>
+                </div>
+
+                <div class="g16 fd-column themed theme-team-002">
+                    <div class="mb4 ff-mono fc-medium">.theme-light__forced .themed.theme-team-002</div>
+                    <div class="s-avatar s-avatar__32 bg-theme-primary-new-400">
+                        <div class="s-avatar--letter">C</div>
+                        {% icon "ShieldXSm", "native s-avatar--badge" %}
+                    </div>
+                </div>
+
+                <div class="g16 fd-column themed theme-team-003">
+                    <div class="mb4 ff-mono fc-medium">.theme-light__forced .themed.theme-team-003</div>
+                    <div class="s-avatar s-avatar__32 bg-theme-primary-new-400">
+                        <div class="s-avatar--letter">C</div>
+                        {% icon "ShieldXSm", "native s-avatar--badge" %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% header "h3", "Forced dark" %}
+    <div class="stacks-preview">
+        <div class="stacks-preview--example bg-black-050 bt bc-black-100 bar-md theme-dark__forced">
+            <div class="d-flex g16 fd-column">
+                <div class="flex--item">
+                    <div class="mb4 ff-mono fc-medium">body .theme-dark__forced</div>
+                    <div class="d-flex g12 ai-center fw-wrap">
+                        <div class="flex--item">
+                            <div class="flex--item h32 w32 bar-md bg-theme-primary-new-400"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex--item themed theme-team-001">
+                    <div class="mb4 ff-mono fc-medium">.theme-dark__forced .themed.theme-team-001</div>
+                    <div class="d-flex g12 ai-center fw-wrap">
+                        <div class="flex--item">
+                            <div class="s-avatar s-avatar__32 bg-theme-primary-new-400">
+                                <div class="s-avatar--letter">C</div>
+                                {% icon "ShieldXSm", "native s-avatar--badge" %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex--item themed theme-team-002">
+                    <div class="mb4 ff-mono fc-medium">.theme-dark__forced .themed.theme-team-002</div>
+                    <div class="d-flex g12 ai-center fw-wrap">
+                        <div class="flex--item">
+                            <div class="s-avatar s-avatar__32 bg-theme-primary-new-400">
+                                <div class="s-avatar--letter">E</div>
+                                {% icon "ShieldXSm", "native s-avatar--badge" %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex--item themed theme-team-003">
+                    <div class="mb4 ff-mono fc-medium">.theme-dark__forced .themed.theme-team-003</div>
+                    <div class="d-flex g12 ai-center fw-wrap">
+                        <div class="flex--item">
+                            <div class="s-avatar s-avatar__32 bg-theme-primary-new-400">
+                                <div class="s-avatar--letter">F</div>
+                                {% icon "ShieldXSm", "native s-avatar--badge" %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    .theme-team-001 {
+        --theme-base-primary-color-new-h: 349;
+        --theme-base-primary-color-new-s: 81%;
+        --theme-base-primary-color-new-l: 58%;
+        --theme-base-primary-color-new-r: 235;
+        --theme-base-primary-color-new-g: 59;
+        --theme-base-primary-color-new-b: 90;
+        --theme-base-secondary-color-new-h: 349;
+        --theme-base-secondary-color-new-s: 81%;
+        --theme-base-secondary-color-new-l: 58%;
+        --theme-base-secondary-color-new-r: 235;
+        --theme-base-secondary-color-new-g: 59;
+        --theme-base-secondary-color-new-b: 90;
+
+        --theme-dark-primary-color-new-h: 349;
+        --theme-dark-primary-color-new-s: 81%;
+        --theme-dark-primary-color-new-l: 58%;
+        --theme-dark-primary-color-new-r: 235;
+        --theme-dark-primary-color-new-g: 59;
+        --theme-dark-primary-color-new-b: 90;
+        --theme-dark-secondary-color-new-h: 349;
+        --theme-dark-secondary-color-new-s: 81%;
+        --theme-dark-secondary-color-new-l: 58%;
+        --theme-dark-secondary-color-new-r: 235;
+        --theme-dark-secondary-color-new-g: 59;
+        --theme-dark-secondary-color-new-b: 90;    }
+
+    .theme-team-002 {
+        --theme-base-primary-color-new-h: 41;
+        --theme-base-primary-color-new-s: 93%;
+        --theme-base-primary-color-new-l: 58%;
+        --theme-base-primary-color-new-r: 247;
+        --theme-base-primary-color-new-g: 183;
+        --theme-base-primary-color-new-b: 49;
+        --theme-base-secondary-color-new-h: 41;
+        --theme-base-secondary-color-new-s: 93%;
+        --theme-base-secondary-color-new-l: 58%;
+        --theme-base-secondary-color-new-r: 247;
+        --theme-base-secondary-color-new-g: 183;
+        --theme-base-secondary-color-new-b: 49;
+
+        --theme-dark-primary-color-new-h: 41;
+        --theme-dark-primary-color-new-s: 93%;
+        --theme-dark-primary-color-new-l: 58%;
+        --theme-dark-primary-color-new-r: 247;
+        --theme-dark-primary-color-new-g: 183;
+        --theme-dark-primary-color-new-b: 49;
+        --theme-dark-secondary-color-new-h: 41;
+        --theme-dark-secondary-color-new-s: 93%;
+        --theme-dark-secondary-color-new-l: 58%;
+        --theme-dark-secondary-color-new-r: 247;
+        --theme-dark-secondary-color-new-g: 183;
+        --theme-dark-secondary-color-new-b: 49;
+    }
+
+    .theme-team-003 {
+        --theme-base-primary-color-new-h: 288;
+        --theme-base-primary-color-new-s: 76%;
+        --theme-base-primary-color-new-l: 38%;
+        --theme-base-primary-color-new-r: 141;
+        --theme-base-primary-color-new-g: 23;
+        --theme-base-primary-color-new-b: 170;
+        --theme-base-secondary-color-new-h: 288;
+        --theme-base-secondary-color-new-s: 76%;
+        --theme-base-secondary-color-new-l: 38%;
+        --theme-base-secondary-color-new-r: 141;
+        --theme-base-secondary-color-new-g: 23;
+        --theme-base-secondary-color-new-b: 170;
+
+        /* Override primary for dark only */
+        --theme-dark-primary-color-new-h: 288;
+        --theme-dark-primary-color-new-s: 45%;
+        --theme-dark-primary-color-new-l: 60%;
+        --theme-dark-primary-color-new-r: 180;
+        --theme-dark-primary-color-new-g: 105;
+        --theme-dark-primary-color-new-b: 199;
+        --theme-dark-secondary-color-new-h: 288;
+        --theme-dark-secondary-color-new-s: 45%;
+        --theme-dark-secondary-color-new-l: 60%;
+        --theme-dark-secondary-color-new-r: 180;
+        --theme-dark-secondary-color-new-g: 105;
+        --theme-dark-secondary-color-new-b: 199;
+    }
+</style>
+
 <script>
     const customThemeContainer = document.querySelector('.js-custom-theme');
     const customThemeInputs = document.querySelectorAll('.js-color-input');
