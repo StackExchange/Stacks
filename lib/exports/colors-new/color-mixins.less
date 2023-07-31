@@ -26,7 +26,6 @@
 .generate-colors(@mode: light) {
     @set: .sets-mode()[$@mode];
     @setUtility: .sets-utility-mode()[$@mode];
-    @modeCustom: if(@mode = dark, dark, base);
 
     & when (@mode = light), (@mode = dark) {
         &,
@@ -36,9 +35,6 @@
             .create-colors(@setUtility);
             .theme-variables();
             .create-theme-variables(@mode);
-            .create-custom-theme-variables(primary, @modeCustom);
-            .create-custom-theme-variables(secondary, @modeCustom);
-
             color: var(--theme-body-font-color-new, var(--black-new-600));
         }
     }
@@ -153,7 +149,7 @@
  * @tier - The tier name to be used to generate the variable name.
  * @modeCustom - A custom label to be used to generate the variable name.
  */
-.create-custom-theme-variables(@tier: primary, @modeCustom: base) {
+ .create-custom-theme-variables(@tier: primary, @modeCustom: base) {
     @valueVar: ~"theme-@{modeCustom}-@{tier}-color-new";
 
     // TODO verify color stops

@@ -19,243 +19,94 @@ description: Stacks provides a robust theming API to handle theming in various c
 
 <section class="stacks-section">
     {% header "h2", "Theming API" %}
-    <p class="stacks-copy">Stacks provides an API to apply custom themes.</p>
+    <p class="stacks-copy">Stacks provides an API to apply custom themes. Blah blah blah.</p>
 
     {% header "h3", "Programmatic theme generation" %}
-    <p class="stacks-copy">Use <code class="stacks-code">.create-custom-theme-hsl-rgb-variables(@color, @tier, @modeCustom)</code> to create a custom theme.</p>
-        
-    <p class="stacks-copy">This function generates two sets of CSS variables: 1) independent h/s/l and r/g/b color variables and 2) variables at each colors stop that reference the h/s/l and r/g/b variables. Provide this function the arguments defined below to generate theme colors which will apply across Stacks.</p>
+    <p class="stacks-copy">Describe <code class="stacks-code">.create-custom-theme-hsl-rgb-variables</code>.</p>
 
-    <div class="overflow-x-auto mb32" tabindex="0">
-        <table class="wmn4 s-table s-table__bx-simple">
-            <thead>
-                <tr>
-                    <th scope="col">Argument</th>
-                    <th scope="col">Type</th>
-                    <th scope="col">Default</th>
-                    <th scope="col">Description</th>
-                </tr>
-            </thead>
-            <tbody class="fs-caption">
-                <tr>
-                    <td><code class="stacks-code ws-nowrap">@color</code></td>
-                    <td>HSL, hex, or other color value</td>
-                    <td></td>
-                    <td>Color to use to generate theme values.</td>
-                </tr>
-                <tr>
-                    <td><code class="stacks-code ws-nowrap">@tier</code></td>
-                    <td>
-                        <code class="stacks-code ws-nowrap">primary</code> |
-                        <code class="stacks-code ws-nowrap">secondary</code>
-                    </td>
-                    <td><code class="stacks-code ws-nowrap">primary</code></td>
-                    <td>Color tier to generate.</td>
-                </tr>
-                <tr>
-                    <td><code class="stacks-code ws-nowrap">@modeCustom</code></td>
-                    <td>
-                        <code class="stacks-code ws-nowrap">base</code> |
-                        <code class="stacks-code ws-nowrap">dark</code>
-                    </td>
-                    <td><code class="stacks-code ws-nowrap">base</code></td>
-                    <td>The color mode the theme applies to.</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-
-    <div class="stacks-preview _preview-none mb24">
-{% highlight css %}
-.theme-custom.themed {
-    .create-custom-theme-hsl-rgb-variables(hsl(172, 37%, 48%), primary);
-    .create-custom-theme-hsl-rgb-variables(hsl(259, 29%, 55%), secondary);
-    .create-custom-theme-hsl-rgb-variables(hsl(172, 37%, 48%), primary, dark);
-    .create-custom-theme-hsl-rgb-variables(hsl(259, 29%, 55%), secondary, dark);
-}
-{% endhighlight %}
-    </div>
-
-        {% header "h4", "Output" %}
+    {% header "h4", "The output" %}
 
     <p class="stacks-copy">Explain how the above function the variables below and how a consumer can opt to forgo the function and just set the variables. Make sure to describe the base/dark and primary/secondary variants.</p>
 
-    <div class="stacks-preview _preview-none mb24">
-{% highlight css %}
-/* Input */
-.theme-custom.themed {
-    .create-custom-theme-hsl-rgb-variables(hsl(172, 37%, 48%), primary);
-}
+    {% highlight css %}
+--theme-base-primary-color-h: 313;
+--theme-base-primary-color-s: 76%;
+--theme-base-primary-color-l: 54%;
+--theme-base-primary-color-r: 227;
+--theme-base-primary-color-g: 49;
+--theme-base-primary-color-b: 188;
 
-/* Output */
-.theme-custom.themed {
-    /* HSL variables */
-    --theme-base-secondary-color-new-h: 172;
-    --theme-base-secondary-color-new-s: 37%;
-    --theme-base-secondary-color-new-l: 48%;
-    /* RGB variables */
-    --theme-base-secondary-color-new-r: 77.112;
-    --theme-base-secondary-color-new-g: 167.688;
-    --theme-base-secondary-color-new-b: 155.6112;
-    /* Color variables based on HSL and RGB variables */
-    --theme-primary-new-custom: hsl(var(--theme-base-primary-color-new-h), var(--theme-base-primary-color-new-s), var(--theme-base-primary-color-new-l));
-    --theme-primary-new-custom-100: rgb(calc(198.9 + var(--theme-base-primary-color-new-r) * 0.22), calc(198.9 + var(--theme-base-primary-color-new-g) * 0.22), calc(198.9 + var(--theme-base-primary-color-new-b) * 0.22));
-    --theme-primary-new-custom-200: rgb(calc(122.4 + var(--theme-base-primary-color-new-r) * 0.52), calc(122.4 + var(--theme-base-primary-color-new-g) * 0.52), calc(122.4 + var(--theme-base-primary-color-new-b) * 0.52));
-    --theme-primary-new-custom-300: rgb(calc(89.25 + var(--theme-base-primary-color-new-r) * 0.65), calc(89.25 + var(--theme-base-primary-color-new-g) * 0.65), calc(89.25 + var(--theme-base-primary-color-new-b) * 0.65));
-    --theme-primary-new-custom-400: var(--theme-primary-new-custom);
-    --theme-primary-new-custom-500: hsl(var(--theme-base-primary-color-new-h), var(--theme-base-primary-color-new-s), calc(var(--theme-base-primary-color-new-l) - 5%));
-    --theme-primary-new-custom-600: hsl(var(--theme-base-primary-color-new-h), var(--theme-base-primary-color-new-s), calc(var(--theme-base-primary-color-new-l) - 10%));
-}
-{% endhighlight %}
-    </div>
-
-    {% header "h4", "Manual addition of theme variables" %}
-    <p class="stacks-copy">If you need to apply a theme without using the above function, you can do so by manually adding the variables above to your CSS. The most common use for this approach is when the theme needs to change client-side, such as when allowing the user to change and preview a theme dynamically.</p>
-
-    <p class="stacks-copy">With this approach, we recommend targeting new h/s/l and r/g/b color variables on a parent element that includes <code class="stacks-code ws-nowrap">.themed</code> class.</p>
-
-    <div class="themed js-custom-theme d-flex fd-column g32 mb48">
-        <div class="fs-subheading">HSL</div>
-        <div class="d-flex g32 fw-wrap">
-            <div class="d-flex gy4 fd-column">
-                <label class="d-block s-label" for="js-color-input-h">Hue</label>
-                <input type="range" id="js-color-input-h" class="js-color-input" name="h" min="0" max="360" value="172" />
-            </div>
-            <div class="d-flex gy4 fd-column">
-                <label class="d-block s-label" for="js-color-input-s">Saturation</label>
-                <input type="range" id="js-color-input-s" class="js-color-input" name="s" min="0" max="100" value="37" />
-            </div>
-            <div class="d-flex gy4 fd-column">
-                <label class="d-block s-label" for="js-color-input-l">Lightness</label>
-                <input type="range" id="js-color-input-l" class="js-color-input" name="l" min="0" max="100" value="48" />
-            </div>
-        </div>
-        <div class="fs-subheading">RGB</div>
-        <div class="d-flex g32 fw-wrap">
-            <div class="d-flex gy4 fd-column">
-                <label class="d-block s-label" for="js-color-input-r">Red</label>
-                <input type="range" id="js-color-input-r" class="js-color-input" name="r" min="0" max="360" value="77" />
-            </div>
-            <div class="d-flex gy4 fd-column">
-                <label class="d-block s-label" for="js-color-input-g">Green</label>
-                <input type="range" id="js-color-input-g" class="js-color-input" name="g" min="0" max="360" value="167" />
-            </div>
-            <div class="d-flex gy4 fd-column">
-                <label class="d-block s-label" for="js-color-input-b">Blue</label>
-                <input type="range" id="js-color-input-b" class="js-color-input" name="b" min="0" max="360" value="155"/>
-            </div>
-        </div>
-
-        <div class="bar-md overflow-hidden bs-md ba baw2 bc-white">
-            <div class="p12 bg-theme-primary-new-100 fc-black">
-                theme-primary-new-100
-            </div>
-            <div class="p12 bg-theme-primary-new-200 fc-black">
-                theme-primary-new-200
-            </div>
-            <div class="p12 bg-theme-primary-new-300 fc-black">
-                theme-primary-new-300
-            </div>
-            <div class="p12 bg-theme-primary-new-400 fc-black">
-                theme-primary-new-400
-            </div>
-            <div class="p12 bg-theme-primary-new-500 fc-white">
-                theme-primary-new-500
-            </div>
-            <div class="p12 bg-theme-primary-new-600 fc-white">
-                theme-primary-new-600
-            </div>
-    </div>
-    </div>
+--theme-base-secondary-color-h: 313;
+--theme-base-secondary-color-s: 76%;
+--theme-base-secondary-color-l: 54%;
+--theme-base-secondary-color-r: 227;
+--theme-base-secondary-color-g: 49;
+--theme-base-secondary-color-b: 188;
+    {% endhighlight %}
 
     {% header "h3", "Theme variables overrides" %}
-    <p class="stacks-copy">Stacks provides CSS variables for fine grained control of theming. These variables allow you to adjust the theming on specific components and elements, as well as body background and font color.</p>
+    <p class="stacks-copy">Users can set specific values for theme varables that are more targeted. Describe/outline those here.</p>
 
-    <div class="stacks-preview _preview-none mb24">
-{% highlight css %}
---theme-background-color
+    {% highlight css %}
 --theme-body-font-color
---theme-button-active-background-color
---theme-button-background-color
---theme-button-color
---theme-button-filled-active-background-color
---theme-button-filled-active-border-color
---theme-button-filled-background-color
---theme-button-filled-border-color
---theme-button-filled-color
---theme-button-filled-hover-background-color
---theme-button-filled-hover-color
---theme-button-filled-selected-background-color
---theme-button-filled-selected-border-color
---theme-button-filled-selected-color
---theme-button-hover-background-color
---theme-button-hover-color
---theme-button-outlined-border-color
---theme-button-outlined-selected-border-color
---theme-button-primary-active-background-color
---theme-button-primary-background-color
---theme-button-primary-color
---theme-button-primary-hover-background-color
---theme-button-primary-hover-color
---theme-button-primary-number-color
---theme-button-primary-selected-background-color
---theme-button-primary-selected-color
---theme-button-selected-background-color
---theme-button-selected-color
+--theme-background-color
 --theme-link-color
 --theme-link-color-hover
 --theme-link-color-visited
---theme-post-body-font-family
+--theme-button-color
+--theme-button-background-color
+--theme-button-hover-color
+--theme-button-hover-background-color
+--theme-button-active-background-color
+--theme-button-selected-color
+--theme-button-selected-background-color
+--theme-button-primary-color
+--theme-button-primary-background-color
+--theme-button-primary-hover-color
+--theme-button-primary-hover-background-color
+--theme-button-primary-active-background-color
+--theme-button-primary-selected-color
+--theme-button-primary-selected-background-color
+--theme-button-primary-number-color
+--theme-button-filled-color
+--theme-button-filled-background-color
+--theme-button-filled-border-color
+--theme-button-filled-hover-color
+--theme-button-filled-hover-background-color
+--theme-button-filled-active-background-color
+--theme-button-filled-active-border-color
+--theme-button-filled-selected-color
+--theme-button-filled-selected-background-color
+--theme-button-filled-selected-border-color
+--theme-button-outlined-border-color
+--theme-button-outlined-selected-border-color
+--theme-tag-color
+--theme-tag-background-color
+--theme-tag-border-color
+--theme-tag-hover-color
+--theme-tag-hover-background-color
+--theme-tag-hover-border-color
+--theme-topbar-height
+--theme-topbar-background-color
+--theme-topbar-search-color
+--theme-topbar-search-background
+--theme-topbar-search-placeholder
+--theme-topbar-search-border
+--theme-topbar-search-border-focus
+--theme-topbar-search-shadow-focus
+--theme-topbar-select-color
+--theme-topbar-select-background
+--theme-topbar-item-color
+--theme-topbar-item-color-hover
+--theme-topbar-item-background-hover
+--theme-topbar-item-color-current
+--theme-topbar-item-border-current
+--theme-topbar-accent-border
+--theme-topbar-bottom-border
 --theme-post-title-color
 --theme-post-title-color-hover
 --theme-post-title-color-visited
 --theme-post-title-font-family
---theme-tag-background-color
---theme-tag-border-color
---theme-tag-color
---theme-tag-hover-background-color
---theme-tag-hover-border-color
---theme-tag-hover-color
---theme-topbar-accent-border
---theme-topbar-background-color
---theme-topbar-bottom-border
---theme-topbar-height
---theme-topbar-item-background-hover
---theme-topbar-item-border-current
---theme-topbar-item-color
---theme-topbar-item-color-current
---theme-topbar-item-color-hover
---theme-topbar-search-background
---theme-topbar-search-border
---theme-topbar-search-border-focus
---theme-topbar-search-color
---theme-topbar-search-placeholder
---theme-topbar-search-shadow-focus
---theme-topbar-select-background
---theme-topbar-select-color
-{% endhighlight %}
-    </div>
+--theme-post-body-font-family
+    {% endhighlight %}
 </section>
-
-<script>
-    const customThemeContainer = document.querySelector('.js-custom-theme');
-    const customThemeInputs = document.querySelectorAll('.js-color-input');
-
-    const customThemeStyles = () => {
-        const themeVarBase = "--theme-base-primary-color-new-";
-        return [...customThemeInputs].map(input => {
-            const name = input.getAttribute("name");
-            const value = name === "s" || name === "l" ? `${input.value}%` : input.value;
-            return `${themeVarBase}${name}: ${value}`;
-        }).join(";\n");
-    };
-
-    customThemeInputs.forEach(input => {
-        input.addEventListener('input', () => {
-            console.log(customThemeStyles());
-            customThemeContainer.style = customThemeStyles();
-        });
-    });
-
-    customThemeContainer.style = customThemeStyles();
-</script>
