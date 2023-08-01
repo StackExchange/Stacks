@@ -4,8 +4,6 @@ title: Theming
 description: Stacks provides a robust theming API to handle theming in various contexts.
 ---
 
-<!-- TODO: include new theme variables -->
-
 <section class="stacks-section">
     {% header "h2", "Light, dark, and high contrast modes" %}
     <p class="stacks-copy">Stacks supports light, dark, and high contrast modes. By using Stacks, you will get each of these modes for free. By using a Stacks component, an atomic color class, or CSS variable directly, your theme will switch appropriately based on the following methods: </p>
@@ -70,15 +68,13 @@ description: Stacks provides a robust theming API to handle theming in various c
 .theme-custom.themed {
     .create-custom-theme-hsl-rgb-variables(hsl(172, 37%, 48%), primary);
     .create-custom-theme-hsl-rgb-variables(hsl(259, 29%, 55%), secondary);
-    .create-custom-theme-hsl-rgb-variables(hsl(172, 37%, 48%), primary, dark);
-    .create-custom-theme-hsl-rgb-variables(hsl(259, 29%, 55%), secondary, dark);
+    .create-custom-theme-hsl-rgb-variables(hsl(201, 70%, 55%), primary, dark);
+    .create-custom-theme-hsl-rgb-variables(hsl(270, 34%, 40%), secondary, dark);
 }
 {% endhighlight %}
     </div>
 
         {% header "h4", "Output" %}
-
-    <p class="stacks-copy">Explain how the above function the variables below and how a consumer can opt to forgo the function and just set the variables. Make sure to describe the base/dark and primary/secondary variants.</p>
 
     <div class="stacks-preview _preview-none mb24">
 {% highlight css %}
@@ -90,13 +86,13 @@ description: Stacks provides a robust theming API to handle theming in various c
 /* Output */
 .theme-custom.themed {
     /* HSL variables */
-    --theme-base-secondary-color-new-h: 172;
-    --theme-base-secondary-color-new-s: 37%;
-    --theme-base-secondary-color-new-l: 48%;
+    --theme-base-primary-color-new-h: 172;
+    --theme-base-primary-color-new-s: 37%;
+    --theme-base-primary-color-new-l: 48%;
     /* RGB variables */
-    --theme-base-secondary-color-new-r: 77.112;
-    --theme-base-secondary-color-new-g: 167.688;
-    --theme-base-secondary-color-new-b: 155.6112;
+    --theme-base-primary-color-new-r: 77.112;
+    --theme-base-primary-color-new-g: 167.688;
+    --theme-base-primary-color-new-b: 155.6112;
     /* Color variables based on HSL and RGB variables */
     --theme-primary-new-custom: hsl(var(--theme-base-primary-color-new-h), var(--theme-base-primary-color-new-s), var(--theme-base-primary-color-new-l));
     --theme-primary-new-custom-100: rgb(calc(198.9 + var(--theme-base-primary-color-new-r) * 0.22), calc(198.9 + var(--theme-base-primary-color-new-g) * 0.22), calc(198.9 + var(--theme-base-primary-color-new-b) * 0.22));
