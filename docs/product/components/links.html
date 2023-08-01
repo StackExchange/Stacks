@@ -51,7 +51,7 @@ description: Links are lightly styled via the <code class="stacks-code">a</code>
                 <a class="flex--item s-link s-link__inherit" href="#">Inherit</a>
                 <a class="flex--item s-link s-link__underlined" href="#">Underlined</a>
                 <button class="flex--item s-link">Button Link</button>
-                <a class="flex--item s-link s-link__visited" href="https://stackoverflow.design">Visited</a>
+                <a class="flex--item s-link s-link__visited" href="#">Visited</a>
                 <a class="flex--item s-link s-link__dropdown" href="#">Links</a>
             </div>
         </div>
@@ -99,24 +99,13 @@ description: Links are lightly styled via the <code class="stacks-code">a</code>
 <div class="s-anchors s-anchors__inherit">…</div>
 {% endhighlight %}
         <div class="stacks-preview--example">
-            <div class="s-anchors s-anchors__default s-card mb8">
-                <p>There is a <a href="#">default link here</a>, <button class="s-btn s-btn__link">a button</button>, and <a href="#">another one</a>.</p>
-            </div>
-            <div class="s-anchors s-anchors__grayscale s-card mb8 fc-orange-700">
-                <p>There is a <a href="#">gray link here</a>, <button class="s-btn s-btn__link">a button</button>, and <a href="#">another one</a>.</p>
-            </div>
-            <div class="s-anchors s-anchors__muted s-card mb8">
-                <p>There is a <a href="#">muted link here</a>, <button class="s-btn s-btn__link">a button</button>, and <a href="#">another one</a>.</p>
-            </div>
-            <div class="s-anchors s-anchors__danger s-card mb8">
-                <p>There is a <a href="#">dangerous link here</a>, <button class="s-btn s-btn__link">a button</button>, and <a href="#">another one</a>.</p>
-            </div>
-            <div class="s-anchors s-anchors__underlined s-card mb8">
-                <p>There is an <a href="#">underlined link here</a>, <button class="s-btn s-btn__link">a button</button>, and <a href="#">another one</a>.</p>
-            </div>
-            <div class="s-anchors s-anchors__inherit s-card mb8 fc-green-500">
-                <p>There is an <a href="#">inheriting link here</a>, <button class="s-btn s-btn__link">a button</button>, and <a href="#">another one</a>.</p>
-            </div>
+            {% for item in links.descendent-anchors %}
+                {% if item.name != "base" %}
+                    <div class="s-anchors s-anchors__{{ item.name }} s-card mb8 {{ item.exampleClasses }}">
+                        <p>There is a <a href="#">{{ item.name }} link here</a>, <button class="s-btn s-btn__link">a button</button>, and <a href="https://stackoverflow.design/404-unvisited">another one</a>.</p>
+                    </div>
+                {% endif %}
+            {% endfor %}
         </div>
     </div>
 

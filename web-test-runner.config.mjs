@@ -51,8 +51,6 @@ export default {
         esbuildPlugin({ ts: true }),
         visualRegressionPlugin({
             update: process.argv.includes("--update-visual-baseline"),
-            failureThreshold: 5,
-            failureThresholdType: "percent",
         }),
     ],
     groups: [
@@ -74,16 +72,11 @@ export default {
     ],
     testsFinishTimeout: 60 * 1000 * 5, // 5 minutes
 
-    // settle on a font-family for visual regression tests across operating systems
     // animation disable CSS taken from https://github.com/microsoft/playwright/issues/7548#issuecomment-881897256
     testRunnerHtml: (testFramework) =>
         `<html>
             <body>
                 <style>
-                    body {
-                        --ff-sans: Arial;
-                        --ff-mono: "Courier New";
-                    }
                     *,
                     *::before,
                     *::after {
