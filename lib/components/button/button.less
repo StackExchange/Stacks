@@ -2,9 +2,8 @@
     // BASE COMPONENT-SPECIFIC CUSTOM PROPERTIES
     --_bu-baw: var(--su-static1);
     --_bu-bc: transparent;
-    --_bu-bg: transparent;
-    --_bu-br: var(--br-sm);
-    --_bu-bs: none;
+    // --_bu-bg: inherit; // [1]
+    --_bu-br: var(--br-md);
     --_bu-fc: var(--theme-button-color);
     --_bu-focus-ring: 0 0 0 var(--su-static4) var(--focus-ring);
     --_bu-fs: var(--fs-body1);
@@ -18,14 +17,13 @@
     --_bu-fc-hover: var(--theme-button-hover-color);
     --_bu-fc-selected: var(--theme-button-selected-color);
     // Filled
-    --_bu-filled-bc: var(--theme-button-filled-border-color);
-    --_bu-filled-bc-active: var(--theme-button-filled-active-border-color);
+    --_bu-filled-bc: transparent;
+    --_bu-filled-bc-active: transparent;
     --_bu-filled-bg-hover: var(--theme-button-filled-hover-background-color);
-    --_bu-filled-bc-selected: var(--theme-button-filled-selected-border-color);
+    --_bu-filled-bc-selected: transparent;
     --_bu-filled-bg: var(--theme-button-filled-background-color);
     --_bu-filled-bg-active: var(--theme-button-filled-active-background-color);
     --_bu-filled-bg-selected: var(--theme-button-filled-selected-background-color);
-    --_bu-filled-bs: inset 0 var(--su-static1) 0 0 hsla(0, 0, 100%, 0.7);
     --_bu-filled-fc: var(--theme-button-filled-color);
     --_bu-filled-fc-active: var(--theme-button-filled-hover-color); // Note: hover color used here intentionally
     --_bu-filled-fc-hover: var(--theme-button-filled-hover-color);
@@ -43,25 +41,23 @@
     --_bu-number-fc-selected: var(--_bu-number-fc);
 
     // CONTEXTUAL STYLES
-    .dark-mode({
-        --_bu-bs: none;
-        --_bu-filled-bs: var(--_bu-bs);
-    });
-
     .highcontrast-mode({
         --_bu-bc: currentColor;
         --_bu-filled-bc: var(--_bu-bc);
         --_bu-outlined-bc: var(--_bu-bc);
         --_bu-bc-selected: var(--_bu-bc);
         --_bu-badge-o: 0.8;
+
+        &:not(.s-btn__primary):not(.s-btn__muted):not(.s-btn__danger):not(.is-selected):not(.s-btn__link):not(.s-btn__unset) {
+            --_bu-bg-hover: var(--theme-secondary-100);
+            --_bu-filled-bg-hover: var(--theme-secondary-300);
+        }
     });
 
     // STATES
     fieldset[disabled] &,
     &[disabled],
     &[aria-disabled="true"] {
-        --_bu-bs: none !important;
-        --_bu-filled-bs: var(--_bu-bs);
         opacity: var(--_o-disabled-static);
         pointer-events: none;
         text-decoration: none;
@@ -70,7 +66,7 @@
     button &,
     button[type="submit"] &,
     button[type="reset"] & {
-        -webkit-appearance: button; // [1]
+        -webkit-appearance: button; // [2]
     }
 
     &.grid {
@@ -79,8 +75,8 @@
 
     &.is-loading {
         .svg-icon:first-child {
-            margin-left: -23px;
-            opacity: 0; // [2]
+            margin-left: calc((var(--su-static24) - var(--su-static1)) * -1); // -23px
+            opacity: 0; // [3]
         }
 
         padding-left: 2.2em;
@@ -117,22 +113,16 @@
         }
     }
 
-    &.is-selected:not(:focus),
-    .s-btn-group.s-btn-group--radio &--radio:checked:not(:focus) + & {
-        box-shadow: none;
-    }
-
     // MODIFIERS
     &&__filled {
         border-color: var(--_bu-filled-bc);
         background-color: var(--_bu-filled-bg);
-        box-shadow: var(--_bu-filled-bs);
         color: var(--_bu-filled-fc);
     }
 
     &&__outlined {
         border-color: var(--_bu-outlined-bc);
-        background-color: var(--_bu-outlined-bg);
+        background-color: var(--_bu-outlined-bg, inherit);
     }
 
     // Resets
@@ -147,8 +137,6 @@
     &&__link {
         --_bu-baw: 0;
         --_bu-br: 0;
-        --_bu-bs: none;
-        --_bu-filled-bs: var(--_bu-bs);
         --_bu-focus-ring: none;
         --_bu-p: 0;
 
@@ -180,8 +168,6 @@
             --_bu-baw: 0;
             --_bu-bg: none;
             --_bu-br: 0;
-            --_bu-bs: none;
-            --_bu-filled-bs: var(--_bu-bs);
             --_bu-fc: unset;
             --_bu-focus-ring: none;
             --_bu-p: 0;
@@ -215,8 +201,8 @@
     &&__icon {
         .svg-icon {
             vertical-align: baseline;
-            margin-top: -0.3em; // [3]
-            margin-bottom: -0.3em; // [3]
+            margin-top: -0.3em; // [4]
+            margin-bottom: -0.3em; // [4]
             transition: opacity 200ms var(--te-smooth); // Animate the transition to .is-loading
         }
     }
@@ -260,7 +246,6 @@
         --_bu-filled-bg-active: var(--red-700);
         --_bu-filled-bg-hover: var(--red-600);
         --_bu-filled-bg-selected: var(--red-800);
-        --_bu-filled-bs: inset 0 var(--su-static1) 0 0 hsla(0, 0%, 100%, 0.4);
         --_bu-filled-fc: var(--white);
         --_bu-filled-fc-active: var(--_bu-filled-fc);
         --_bu-filled-fc-hover: var(--_bu-filled-fc);
@@ -292,28 +277,32 @@
         --_bu-bg-active: var(--black-050);
         --_bu-bg-hover: var(--black-025);
         --_bu-bg-selected: var(--black-075);
-        --_bu-fc: var(--black-500);
+        --_bu-fc: var(--black-700);
         --_bu-fc-active: var(--_bu-fc);
-        --_bu-fc-hover: var(--black-600);
+        --_bu-fc-hover: var(--black-700);
         --_bu-fc-selected: var(--black-700);
         --_bu-focus-ring: 0 0 0 var(--su-static4) var(--focus-ring-muted);
+        // The filled modifier on the muted button is deprecated and is to be
+        // removed in Stacks Classic v2
         --_bu-filled-bc: transparent;
         --_bu-filled-bc-selected: var(--_bu-filled-bc);
         --_bu-filled-bg: var(--black-100);
         --_bu-filled-bg-active: var(--black-200);
         --_bu-filled-bg-hover: var(--black-150);
         --_bu-filled-bg-selected: var(--black-350);
-        --_bu-filled-bs: inset 0 var(--su-static1) 0 0 hsla(0, 0%, 100%, 0.4);
         --_bu-filled-fc: var(--black-700);
         --_bu-filled-fc-active: var(--_bu-filled-fc);
         --_bu-filled-fc-hover: var(--_bu-filled-fc);
         --_bu-filled-fc-selected: var(--black-800);
-        --_bu-outlined-bc: var(--black-300);
-        --_bu-outlined-bc-selected: var(--black-400);
+        --_bu-outlined-bc: var(--black-200);
+        --_bu-outlined-bc-selected: var(--black-200);
         --_bu-outlined-bg-selected: var(--_bu-bg-selected);
         --_bu-outlined-fc-selected: var(--_bu-fc-selected);
 
         .highcontrast-mode({
+            --_bu-bg-hover: var(--black-100);
+            // The filled modifier on the muted button is deprecated and is to be
+            // removed in Stacks Classic v2
             --_bu-filled-bg: var(--black-400);
             --_bu-filled-bg-active: var(--black-600);
             --_bu-filled-bg-hover: var(--black-500);
@@ -332,7 +321,6 @@
         --_bu-bg-active: var(--theme-button-primary-active-background-color);
         --_bu-bg-hover: var(--theme-button-primary-hover-background-color);
         --_bu-bg-selected: var(--theme-button-primary-selected-background-color);
-        --_bu-bs: inset 0 1px 0 0 hsla(0, 0%, 100%, 0.4);
         --_bu-fc: var(--theme-button-primary-color);
         --_bu-fc-active: var(--theme-button-primary-hover-color);
         --_bu-fc-hover: var(--theme-button-primary-hover-color);
@@ -424,14 +412,14 @@
     &--radio { // This lives alongside a .s-btn element. These styles are the equivelent of `.v-visible-sr`
         border: 0;
         clip-path: inset(50%);
-        clip: rect(1px, 1px, 1px, 1px);
-        height: 1px;
-        margin: -1px;
+        clip: rect(var(--su-static1), var(--su-static1), var(--su-static1), var(--su-static1)); // rect(1px, 1px, 1px, 1px)
+        height: var(--su-static1);
+        margin: calc(var(--su-static1) * -1); // -1px
         overflow-wrap: normal;
         overflow: hidden;
         padding: 0;
         position: absolute;
-        width: 1px;
+        width: var(--su-static1);
     }
 
     // INTERACTION
@@ -473,10 +461,10 @@
         outline: none;
     }
 
-    background-color: var(--_bu-bg);
+    background-color: var(--_bu-bg, inherit); // [1]
     border: var(--_bu-baw) solid var(--_bu-bc);
     border-radius: var(--_bu-br);
-    box-shadow: var(--_bu-bs);
+    box-shadow: none;
     color: var(--_bu-fc);
     font-size: var(--_bu-fs);
     padding: var(--_bu-p);
@@ -493,11 +481,14 @@
     user-select: none;
 }
 
-//  [1] Guard against the difference in configurable resets
+//  [1] Passing `inherit` as a custom property value has no effect, instead we
+//      provide it as a fallback value for when --_bu-bg is not defined
+//      For more info, see https://stackoverflow.com/a/53239881/652353
+//  [2] Guard against the difference in configurable resets
 //      Eric Meyer's reset does not include this, while normalize.css does
 //      Correct the inability to style buttons in iOS and Safari.
-//  [2] If the first thing in the button is an icon, let's hide it on loading
+//  [3] If the first thing in the button is an icon, let's hide it on loading
 //      We only want to modify the visibility, since we still want it to have shape and keep the same layout.
-//  [3] Most svg icons are 18px tall, but the button's line-height is 1 (13px).
+//  [4] Most svg icons are 18px tall, but the button's line-height is 1 (13px).
 //      This means we need to off set the margin y-axis so we don't add
 //      additional height to the button.

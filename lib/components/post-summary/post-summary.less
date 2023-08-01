@@ -2,6 +2,7 @@
     // --_ps-state-* are custom properties to broadly override colors for a given post summary state
     --_ps-bb: var(--su1) solid var(--bc-light);
     --_ps-bg: unset;
+    --_ps-o: unset;
     // Child components
     --_ps-content-excerpt-fc: var(--_ps-state-fc, var(--fc-medium));
     --_ps-content-title-a-fc: var(--_ps-state-fc, var(--theme-post-title-color));
@@ -48,13 +49,15 @@
     // VARIANTS
     &&__deleted,
     &&__ignored {
+        --_ps-o: 0.75;
         --_ps-has-answers-bc: var(--black-300);
         --_ps-has-answers-bg: transparent;
-        --_ps-has-answers-fc: var(--black-500);
+        --_ps-has-answers-fc: var(--_ps-state-fc);
         --_ps-has-accepted-answers-bc: transparent;
-        --_ps-has-accepted-answers-bg: var(--black-075);
-        --_ps-has-accepted-answers-fc: var(--black-600);
+        --_ps-has-accepted-answers-bg: var(--black-050);
+        --_ps-has-accepted-answers-fc: var(--_ps-state-fc);
         --_ps-meta-tags-tag-bg: var(--black-050);
+        --_ps-meta-tags-tag-fc: var(--_ps-state-fc);
         --_ps-state-fc: var(--black-500);
 
         .s-post-summary--meta-tags {
@@ -65,8 +68,11 @@
                 &:active,
                 &:hover,
                 &:focus {
+                    .highcontrast-mode({
+                        border-color: currentColor;
+                    });
+
                     background-color: var(--_ps-meta-tags-tag-bg);
-                    border-color: transparent;
                     color: var(--black-600);
                 }
             }
@@ -92,6 +98,8 @@
 
     &&__deleted {
         --_ps-bg: var(--red-025);
+        --_ps-has-accepted-answers-bg: var(--black-075);
+        --_ps-has-accepted-answers-fc: var(--black-600);
         --_ps-meta-tags-tag-bg: var(--black-075);
 
         .is-deleted,
@@ -174,6 +182,10 @@
         }
 
         &--content {
+            > *:not(.s-post-summary--content-menu-button):not(.s-post-summary--meta):not(.s-popover) {
+                opacity: var(--_ps-o);
+            }
+
             flex-grow: 1;
             max-width: 100%;
         }
@@ -262,7 +274,15 @@
         }
 
         &--meta {
+            > *:not(.s-post-summary--meta-tags):not(.s-user-card) > * {
+                opacity: var(--_ps-o);
+            }
+
             .s-user-card {
+                > *:not(.magic-popup) {
+                    opacity: var(--_ps-o);
+                }
+
                 flex-wrap: wrap;
                 justify-content: flex-end;
                 margin-left: auto;
@@ -277,12 +297,23 @@
         }
 
         &--meta-tags {
+            > ul > li > a,
+            > a,
+            .post-tag,
+            .s-tag {
+                opacity: var(--_ps-o);
+            }
+
             display: flex;
             flex-wrap: wrap;
             gap: var(--su4);
         }
 
         &--stats {
+            > *:not(.s-badge__danger) {
+                opacity: var(--_ps-o);
+            }
+    
             align-items: var(--_ps-stats-ai);
             color: var(--_ps-stats-fc);
             flex-direction: var(--_ps-stats-fd);
