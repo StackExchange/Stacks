@@ -3,12 +3,13 @@ import { defaultOptions, runComponentTests } from "../../test/test-utils";
 import "../../index";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-const checkboxTemplate = ({ component, testid }: any) => html`<div
-    class="d-inline-flex ai-center jc-center bg-black-100 hs1 ws1 p8"
-    data-testid="${testid}"
->
-    ${component}
-</div>`;
+const checkboxTemplate = ({ component, testid }: any) =>
+    html`<div
+        class="d-inline-flex ai-center jc-center bg-black-100 hs1 ws1 p8"
+        data-testid="${testid}"
+    >
+        ${component}
+    </div>`;
 
 ["checkbox", "radio"].forEach((type) => {
     describe(type, () => {
