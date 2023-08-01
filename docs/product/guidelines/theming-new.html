@@ -142,6 +142,9 @@ description: Stacks provides a robust theming API to handle theming in various c
             </div>
         </div>
 
+        <div class="stacks-preview _preview-none mb24">
+            <pre class="s-code-block js-custom-theme-variables" tabindex="0">Loading…</pre>
+        </div>
         <div class="bar-md overflow-hidden bs-md ba baw2 bc-white">
             <div class="p12 bg-theme-primary-new-100 fc-black">
                 theme-primary-new-100
@@ -161,7 +164,7 @@ description: Stacks provides a robust theming API to handle theming in various c
             <div class="p12 bg-theme-primary-new-600 fc-white">
                 theme-primary-new-600
             </div>
-    </div>
+        </div>
     </div>
 
     {% header "h3", "Theme variables overrides" %}
@@ -511,6 +514,7 @@ description: Stacks provides a robust theming API to handle theming in various c
 
 <script>
     const customThemeContainer = document.querySelector('.js-custom-theme');
+    const customThemeCodeblock = document.querySelector('.js-custom-theme-variables');
     const customThemeInputs = document.querySelectorAll('.js-color-input');
 
     const customThemeStyles = () => {
@@ -526,8 +530,10 @@ description: Stacks provides a robust theming API to handle theming in various c
         input.addEventListener('input', () => {
             console.log(customThemeStyles());
             customThemeContainer.style = customThemeStyles();
+            customThemeCodeblock.innerText = customThemeStyles();
         });
     });
 
+    customThemeCodeblock.innerText = customThemeStyles();
     customThemeContainer.style = customThemeStyles();
 </script>
