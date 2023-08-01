@@ -453,3 +453,14 @@ const excludeOrSkipTest = ({
 };
 
 export { runComponentTest, runComponentTests };
+
+/**
+ * Convert a const array of strings into a union type of the array's values.
+ *
+ * @example
+ * ```
+ * const arrayOfStrings = ['Stacky', 'Ben', 'Dan', 'Giamir'] as const;
+ * type StringLiterals = AsLiterals<typeof arrayOfStrings>; // 'Stacky' | 'Ben' | 'Dan' | 'Giamir'
+ * ```
+ */
+export type AsLiterals<T extends Readonly<string[]>> = T[number];

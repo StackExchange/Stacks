@@ -122,8 +122,23 @@
 
     &&__sortable {
         thead th {
-            a { //  If an anchor is used, it should appear like a normal header
+            a,
+            button { //  If an anchor is used, it should appear like a normal header
                 color: inherit;
+            }
+
+            button {
+                appearance: none;
+                background-color: transparent;
+                border: 0;
+                cursor: pointer;
+                display: flex;
+                gap: var(--su-static4);
+                font-weight: inherit;
+                margin: calc(var(--_ta-th-p) * -1);
+                padding: var(--_ta-th-p);
+                text-align: left;
+                width: calc(100% + calc(var(--_ta-th-p) * 2));
             }
 
             &.is-sorted { //  Selected state
@@ -190,7 +205,7 @@
         }
 
         &.s-table--bulk {
-            --_ta-td-w: calc(var(--su32) - var(--su2)); // 30px;
+            --_ta-td-w: calc(var(--su32) - var(--su2)); // 30px
         }
 
         &.s-table--progress {
@@ -201,7 +216,7 @@
         &.s-table--progress-bar {
             --_ta-td-blw: 0;
             --_ta-td-pl: 0;
-            --_ta-td-w: 120px;
+            --_ta-td-w: calc(var(--su-static12) * 10); // 120px
         }
 
         border: var(--su-static1) solid var(--_ta-td-bc);
@@ -237,7 +252,7 @@
         }
 
         &.s-table--bulk {
-            --_ta-th-w: calc(var(--su32) - var(--su2)); // 30px;
+            --_ta-th-w: calc(var(--su32) - var(--su2)); // 30px
         }
 
         border: var(--su-static1) solid var(--_ta-th-bc);

@@ -8,18 +8,7 @@ description: Banners are a type of <a href="/product/components/notices">notice<
 <!-- Additional javascript -->
 <script src="{{ "/assets/dist/entry.banners.js" | url }}" defer></script>
 
-<!-- Override stacks classes for demos -->
-<style>
-.s-banner[aria-hidden=false] {
-    -webkit-transform: translate3d(0, calc(var(--su64) - var(--su1)), 0);
-    transform: translate3d(0, calc(var(--su64) - var(--su1)), 0);
-}
-.s-banner[aria-hidden=false].is-pinned {
-    -webkit-transform: translate3d(0, 0, 0);
-    transform: translate3d(0, 0, 0);
-}
-</style>
-<aside class="s-banner s-banner__info js-notice-banner" id="launch-banner-base" aria-hidden="true" role="alert" aria-labelledby="banner-message" data-controller="s-banner" data-s-banner-target="banner">
+<div class="s-banner s-banner__info js-notice-banner" id="launch-banner-base" aria-hidden="true" role="alert" aria-labelledby="banner-message" data-controller="s-banner" data-s-banner-target="banner">
     <div class="d-flex flex__center jc-space-between s-banner--container" role="alertdialog" aria-describedby="banner-message">
         <div class="d-flex g8" aria-label="banner message">
             <div class="flex--item">
@@ -35,7 +24,7 @@ description: Banners are a type of <a href="/product/components/notices">notice<
             </button>
         </div>
     </div>
-</aside>
+</div>
 
 <section class="stacks-section">
     <p class="stacks-copy">System banners are used for <strong>system</strong> messaging. They are full-width notices placed in one of two locations:</p>
@@ -219,8 +208,8 @@ description: Banners are a type of <a href="/product/components/notices">notice<
     {% header "h3", "Info" %}
     <div class="stacks-preview">
 {% highlight html %}
-<aside class="s-banner s-banner__info" role="alert" aria-hidden="false">…</aside>
-<aside class="s-banner s-banner__info s-banner__important" role="alert" aria-hidden="false">…</aside>
+<div class="s-banner s-banner__info" role="alert" aria-hidden="false">…</div>
+<div class="s-banner s-banner__info s-banner__important" role="alert" aria-hidden="false">…</div>
 {% endhighlight %}
         <div class="stacks-preview--example ps-relative">
             {% bannerExample "info" %}
@@ -231,8 +220,8 @@ description: Banners are a type of <a href="/product/components/notices">notice<
     {% header "h3", "Success" %}
     <div class="stacks-preview">
 {% highlight html %}
-<aside class="s-banner s-banner__success" role="alert" aria-hidden="false">…</aside>
-<aside class="s-banner s-banner__success s-banner__important" role="alert" aria-hidden="false">…</aside>
+<div class="s-banner s-banner__success" role="alert" aria-hidden="false">…</div>
+<div class="s-banner s-banner__success s-banner__important" role="alert" aria-hidden="false">…</div>
 {% endhighlight %}
             <div class="stacks-preview--example ps-relative">
                 {% bannerExample "success" %}
@@ -243,8 +232,8 @@ description: Banners are a type of <a href="/product/components/notices">notice<
     {% header "h3", "Warning" %}
     <div class="stacks-preview">
 {% highlight html %}
-<aside class="s-banner s-banner__warning" role="alert" aria-hidden="false">…</aside>
-<aside class="s-banner s-banner__warning s-banner__important" role="alert" aria-hidden="false">…</aside>
+<div class="s-banner s-banner__warning" role="alert" aria-hidden="false">…</div>
+<div class="s-banner s-banner__warning s-banner__important" role="alert" aria-hidden="false">…</div>
 {% endhighlight %}
             <div class="stacks-preview--example ps-relative">
                 {% bannerExample "warning" %}
@@ -255,8 +244,8 @@ description: Banners are a type of <a href="/product/components/notices">notice<
         {% header "h3", "Danger" %}
         <div class="stacks-preview">
     {% highlight html %}
-    <aside class="s-banner s-banner__danger" role="alert" aria-hidden="false">…</aside>
-    <aside class="s-banner s-banner__danger s-banner__important" role="alert" aria-hidden="false">…</aside>
+    <div class="s-banner s-banner__danger" role="alert" aria-hidden="false">…</div>
+    <div class="s-banner s-banner__danger s-banner__important" role="alert" aria-hidden="false">…</div>
     {% endhighlight %}
                 <div class="stacks-preview--example ps-relative">
                     {% bannerExample "danger" %}
@@ -267,7 +256,7 @@ description: Banners are a type of <a href="/product/components/notices">notice<
     {% header "h2", "JavaScript Example" %}
     <div class="stacks-preview _preview-none">
 {% highlight html %}
-<aside
+<div
     role="alert"
     id="example-banner"
     class="s-banner"
@@ -276,7 +265,7 @@ description: Banners are a type of <a href="/product/components/notices">notice<
     data-controller="s-banner"
     data-s-banner-target="banner">
     Example banner
-</aside>
+</div>
 …
 <button
     data-toggle="s-banner"
