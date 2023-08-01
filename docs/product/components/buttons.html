@@ -169,6 +169,11 @@ description: Buttons are user interface elements which allows users to take acti
 
     {% header "h3", "Muted" %}
     <p class="stacks-copy">Muted buttons are a secondary button style, a grayscale visual treatment. Used in layouts for the least important items or currently inactive actions.</p>
+
+    {% tip, "warning", "mb24" %}
+        <strong>Note:</strong> The <code class="stacks-code">.s-btn__filled</code> class has been deprecated on the muted button style. Expect it to be fully removed in the next major release.
+    {% endtip %}
+
     <div class="stacks-preview">
 {% highlight html %}
 <button class="s-btn s-btn__muted" type="button">…</button>
@@ -192,7 +197,14 @@ description: Buttons are user interface elements which allows users to take acti
                             {% assign types = btn.classes %}
                             {% for class in types %}
                             <tr>
-                                <th scope="row" class="va-middle">{{ class.title }}</th>
+                                <th scope="row" class="va-middle">
+                                    {{ class.title }}
+                                    {% if class.title == "Filled" %}
+                                        <div class="s-activity-indicator s-activity-indicator__warning ml4 mt4">
+                                            Deprecated
+                                        </div>
+                                    {% endif %}
+                                </th>
                                 <td class="va-middle">
                                     <div class="d-flex g4 fw-wrap">
                                         <code class="flex--item stacks-code">.s-btn</code>

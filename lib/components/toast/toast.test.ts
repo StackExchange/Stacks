@@ -6,29 +6,30 @@ import { showToast, hideToast } from "../../controllers";
 
 const user = userEvent.setup();
 
-const testToast = (hidden = true) => html` <button
-        class="js-open-test-toast"
-        data-toggle="s-toast"
-        data-target="#test-toast"
-    >
-        Show test toast
-    </button>
-    <button type="button" aria-label="Dismiss">Close toast</button>
-    <div
-        role="alertdialog"
-        id="test-toast"
-        class="s-toast"
-        aria-hidden="${hidden}"
-        aria-labelledby="toast-message"
-        data-controller="s-toast"
-        data-s-toast-target="toast"
-        data-s-toast-return-element=".js-open-test-toast[data-target='#test-toast']"
-        data-testid="test-toast"
-    >
-        <aside class="s-notice s-notice__success">
-            <div id="notice-message">Test toast</div>
-        </aside>
-    </div>`;
+const testToast = (hidden = true) =>
+    html` <button
+            class="js-open-test-toast"
+            data-toggle="s-toast"
+            data-target="#test-toast"
+        >
+            Show test toast
+        </button>
+        <button type="button" aria-label="Dismiss">Close toast</button>
+        <div
+            role="alertdialog"
+            id="test-toast"
+            class="s-toast"
+            aria-hidden="${hidden}"
+            aria-labelledby="toast-message"
+            data-controller="s-toast"
+            data-s-toast-target="toast"
+            data-s-toast-return-element=".js-open-test-toast[data-target='#test-toast']"
+            data-testid="test-toast"
+        >
+            <aside class="s-notice s-notice__success">
+                <div id="notice-message">Test toast</div>
+            </aside>
+        </div>`;
 
 describe("toast", () => {
     it("trigger should make toast visible", async () => {

@@ -27,6 +27,11 @@ type TestOptions = {
      */
     testHighContrast: boolean;
     /**
+     * Provide a custom testid suffix
+     * default: undefined
+     */
+    testidSuffix?: string;
+    /**
      * Include tests for the component without any variants applied
      * default: true
      */
@@ -347,11 +352,16 @@ const runComponentTests = ({
         const allChildren: {
             [key: string]: string;
         } = children ? { ...children } : { default: "" };
+        const { testidSuffix } = options;
 
         Object.keys(allChildren).forEach((key) => {
-            const testidModified = (
+            let testidModified = (
                 key !== "default" ? `${testid}-${key}` : testid
             ).replace(" ", "-");
+            testidModified = testidSuffix
+                ? `${testidModified}-${testidSuffix}`
+                : testidModified;
+
             const children = allChildren[key];
 
             const shouldSkipTest = excludeOrSkipTest({
@@ -376,8 +386,8 @@ const runComponentTests = ({
                       testid: testidModified,
                       component: buildTestElement({
                           attributes: {
-                              class: classes,
                               ...attributes,
+                              class: `${classes} ${attributes?.class || ""}`,
                           },
                           children,
                           testid: `${testidModified}-nested`,
@@ -386,8 +396,8 @@ const runComponentTests = ({
                   })}`
                 : buildTestElement({
                       attributes: {
-                          class: classes,
                           ...attributes,
+                          class: `${classes} ${attributes?.class || ""}`,
                       },
                       children,
                       testid: testidModified,
@@ -443,3 +453,14 @@ const excludeOrSkipTest = ({
 };
 
 export { runComponentTest, runComponentTests };
+
+/**
+ * Convert a const array of strings into a union type of the array's values.
+ *
+ * @example
+ * ```
+ * const arrayOfStrings = ['Stacky', 'Ben', 'Dan', 'Giamir'] as const;
+ * type StringLiterals = AsLiterals<typeof arrayOfStrings>; // 'Stacky' | 'Ben' | 'Dan' | 'Giamir'
+ * ```
+ */
+export type AsLiterals<T extends Readonly<string[]>> = T[number];
