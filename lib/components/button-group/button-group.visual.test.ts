@@ -3,12 +3,13 @@ import { defaultOptions, runComponentTests } from "../../test/test-utils";
 import "../../index";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-const buttonGroupTemplate = ({ component, testid }: any) => html`<div
-    class="bg-black-100 d-inline-flex ai-center jc-center ws4 p8"
-    data-testid="${testid}"
->
-    ${component}
-</div>`;
+const buttonGroupTemplate = ({ component, testid }: any) =>
+    html`<div
+        class="bg-black-100 d-inline-flex ai-center jc-center ws4 p8"
+        data-testid="${testid}"
+    >
+        ${component}
+    </div>`;
 
 const getButton = ({
     children = "",
