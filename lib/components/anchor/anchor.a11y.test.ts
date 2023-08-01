@@ -1,23 +1,42 @@
 import { defaultOptions, runComponentTests } from "../../test/test-utils";
 import "../../index";
 
+// TODO check for visited styling
+const link = (text = "", visited = true, classes = "") =>
+    `<a class="${classes}" href="${
+        visited ? "/" : "https://stackoverflow.design/404-unvisited"
+    }">${text}</a>`;
+
 describe("anchors", () => {
     runComponentTests({
         type: "a11y",
         baseClass: "s-anchors",
-        variants: ["danger", "default", "grayscale", "inherit", "muted"],
+        modifiers: {
+            primary: [
+                "default",
+                "grayscale",
+                "muted",
+                "danger",
+                "inherit",
+                "underlined",
+            ],
+        },
         children: {
-            default: `<p>
-                There is a <a href="#">link here</a>, <button class="s-btn s-btn__link">a button</button>, and <a href="#">another link</a>.
-            </p>`,
+            default: `A ${link(
+                "link"
+            )}, a <button class="s-btn s-btn__link">button</button>, an ${link(
+                "unvisited link",
+                false
+            )}.`,
         },
         options: {
             ...defaultOptions,
-            includeNullVariant: false,
+            includeNullModifier: false,
         },
         skippedTestids: [
-            /s-anchors-dark-danger/, // TODO remove when contrast bugs are fixed
-            /s-anchors-dark-default/, // TODO remove when contrast bugs are fixed
+            "s-anchors-dark-danger", // TODO fix contrast issue
+            "s-anchors-dark-default", // TODO fix contrast issue
+            "s-anchors-dark-underlined", // TODO fix contrast issue
         ],
     });
 });
