@@ -17,5 +17,11 @@ module.exports = {
         "no-console": "error",
         "no-alert": "error",
         "no-process-env": "error",
+        "@typescript-eslint/no-unused-vars": [
+            "error",
+            {
+                "destructuredArrayIgnorePattern": "^_"
+            },
+        ]
     },
 };

@@ -2,6 +2,7 @@
     // CUSTOM PROPERTIED DEFINED WITHIN VARIANTS
     // --_an-a-fc
     // --_an-a-fc-hover
+    --_an-a-fc-visited: var(--_an-a-fc);
 
     // MODIFIERS
     &&__underlined {
@@ -20,6 +21,7 @@
     &&__default {
         --_an-a-fc: var(--theme-link-color);
         --_an-a-fc-hover: var(--theme-link-color-hover);
+        --_an-a-fc-visited: var(--theme-link-color-visited);
     }
 
     &&__grayscale {
@@ -44,6 +46,8 @@
     &&__muted {
         a:not(.s-link),
         .s-btn.s-btn__link {
+            color: var(--_an-a-fc, inherit);
+
             &:hover,
             &:active {
                 &,
@@ -52,9 +56,8 @@
                 }
             }
 
-            &,
             &:visited {
-                color: var(--_an-a-fc, inherit);
+                color: var(--_an-a-fc-visited, inherit);
             }
         }
     }
