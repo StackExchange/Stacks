@@ -156,29 +156,29 @@
 .create-custom-theme-variables(@tier: primary, @modeCustom: base) {
     @valueVar: ~"theme-@{modeCustom}-@{tier}-color-new";
 
-    // TODO verify color stops
+    // TODO verify color stops with design
     & when (@modeCustom = base) {
         @varBase: ~"--theme-@{tier}-new-custom";
 
         @{varBase}: .assemble-color(@valueVar)[];
-        @{varBase}-100: .native-tint(@valueVar, 78)[];
-        @{varBase}-200: .native-tint(@valueVar, 48)[];
-        @{varBase}-300: .native-tint(@valueVar, 35)[];
-        @{varBase}-400: ~"var(@{varBase})";
-        @{varBase}-500: .native-darken(@valueVar, 5)[];
-        @{varBase}-600: .native-darken(@valueVar, 10)[];
+        @{varBase}-100: .native-tint(@valueVar, 92)[]; // legacy 050
+        @{varBase}-200: .native-tint(@valueVar, 78)[]; // legacy 100
+        @{varBase}-300: .native-tint(@valueVar, 35)[]; // legacy 300
+        @{varBase}-400: ~"var(@{varBase})"; // legacy 400
+        @{varBase}-500: .native-darken(@valueVar, 10)[]; // legacy 600
+        @{varBase}-600: .native-darken(@valueVar, 26)[]; // legacy 900
     }
 
     & when (@modeCustom = dark) {
         @varBaseDark: ~"--theme-@{modeCustom}-@{tier}-new-custom";
 
         @{varBaseDark}: .assemble-color(@valueVar)[];
-        @{varBaseDark}-100: .native-darken-desaturate(@valueVar, 11, 32)[];
-        @{varBaseDark}-200: .native-darken-desaturate(@valueVar, 7, 15)[];
-        @{varBaseDark}-300: .native-darken-desaturate(@valueVar, 5, 7)[];
-        @{varBaseDark}-400: ~"var(@{varBaseDark})";
-        @{varBaseDark}-500: .native-tint(@valueVar, 36)[];
-        @{varBaseDark}-600: .native-tint(@valueVar, 51)[];
+        @{varBaseDark}-100: .native-darken-desaturate(@valueVar, 55, 12)[]; // legacy 025 (approx)
+        @{varBaseDark}-200: .native-darken-desaturate(@valueVar, 35, 10)[]; // legacy 050 (approx)
+        @{varBaseDark}-300: .native-darken-desaturate(@valueVar, 20, 8)[]; // legacy 100 (approx)
+        @{varBaseDark}-400: ~"var(@{varBaseDark})"; // legacy 350
+        @{varBaseDark}-500: .native-tint(@valueVar, 36)[]; // legacy 500
+        @{varBaseDark}-600: .native-tint(@valueVar, 75)[]; // legacy 700/800 average
     }
 }
 
