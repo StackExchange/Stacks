@@ -34,7 +34,6 @@
         & .themed {
             .create-colors(@set);
             .create-colors(@setUtility);
-            .theme-variables();
             .create-theme-variables(@mode);
             .create-custom-theme-variables(primary, @modeCustom);
             .create-custom-theme-variables(secondary, @modeCustom);
@@ -114,6 +113,36 @@
         .d\:fc-@{name} {
             color: @value;
         }
+    });
+}
+
+/**
+ * Creates aliased color classes or variables.
+ *
+ * Usage example:
+ * .create-aliased-utility-colors(classes)
+ *
+ * @type - The type of output.
+ */
+.create-aliased-utility-colors(@type: variables) {
+    each(.sets-aliased-utility-classes(), .(@set, @setName, @iSet) {
+        each(@set, .(@value, @stop, @iColorValue) {
+            @suffix: if((@stop = default), "new", ~"new-@{stop}");
+            @property: if(@setName = fc, color, background-color);
+            @name: ~"@{setName}-@{suffix}";
+            @customVariable: ~"--@{name}";
+            @customValue: ~"var(@{customVariable}) !important";
+
+            & when (@type = variables) {
+                @{customVariable}: @value;
+            }
+
+            & when (@type = classes) {
+                .@{name} {
+                    @{property}: @customValue;
+                }
+            }
+        });
     });
 }
 
