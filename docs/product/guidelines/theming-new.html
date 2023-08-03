@@ -89,18 +89,14 @@ description: Stacks provides a robust theming API to handle theming in various c
     --theme-base-primary-color-new-h: 172;
     --theme-base-primary-color-new-s: 37%;
     --theme-base-primary-color-new-l: 48%;
-    /* RGB variables */
-    --theme-base-primary-color-new-r: 77.112;
-    --theme-base-primary-color-new-g: 167.688;
-    --theme-base-primary-color-new-b: 155.6112;
     /* Color variables based on HSL and RGB variables */
-    --theme-primary-new-custom: hsl(var(--theme-base-primary-color-new-h), var(--theme-base-primary-color-new-s), var(--theme-base-primary-color-new-l));
-    --theme-primary-new-custom-100: rgb(calc(198.9 + var(--theme-base-primary-color-new-r) * 0.22), calc(198.9 + var(--theme-base-primary-color-new-g) * 0.22), calc(198.9 + var(--theme-base-primary-color-new-b) * 0.22));
-    --theme-primary-new-custom-200: rgb(calc(122.4 + var(--theme-base-primary-color-new-r) * 0.52), calc(122.4 + var(--theme-base-primary-color-new-g) * 0.52), calc(122.4 + var(--theme-base-primary-color-new-b) * 0.52));
-    --theme-primary-new-custom-300: rgb(calc(89.25 + var(--theme-base-primary-color-new-r) * 0.65), calc(89.25 + var(--theme-base-primary-color-new-g) * 0.65), calc(89.25 + var(--theme-base-primary-color-new-b) * 0.65));
-    --theme-primary-new-custom-400: var(--theme-primary-new-custom);
-    --theme-primary-new-custom-500: hsl(var(--theme-base-primary-color-new-h), var(--theme-base-primary-color-new-s), calc(var(--theme-base-primary-color-new-l) - 5%));
-    --theme-primary-new-custom-600: hsl(var(--theme-base-primary-color-new-h), var(--theme-base-primary-color-new-s), calc(var(--theme-base-primary-color-new-l) - 10%));
+    --theme-primary-new-custom: var(--theme-primary-new-custom-400);
+    --theme-primary-new-custom-100: hsl(var(--theme-base-primary-color-new-h), calc(var(--theme-base-primary-color-new-s) + 0 * 1%), clamp(70%, calc(var(--theme-base-primary-color-new-l) + 50 * 1%), 95%));
+    --theme-primary-new-custom-200: hsl(var(--theme-base-primary-color-new-h), calc(var(--theme-base-primary-color-new-s) + 0 * 1%), clamp(55%, calc(var(--theme-base-primary-color-new-l) + 35 * 1%), 90%));
+    --theme-primary-new-custom-300: hsl(var(--theme-base-primary-color-new-h), calc(var(--theme-base-primary-color-new-s) + 0 * 1%), clamp(35%, calc(var(--theme-base-primary-color-new-l) + 15 * 1%), 75%));
+    --theme-primary-new-custom-400: hsl(var(--theme-base-primary-color-new-h), calc(var(--theme-base-primary-color-new-s) + 0 * 1%), clamp(20%, calc(var(--theme-base-primary-color-new-l) + 0 * 1%), 60%));
+    --theme-primary-new-custom-500: hsl(var(--theme-base-primary-color-new-h), calc(var(--theme-base-primary-color-new-s) + 0 * 1%), clamp(15%, calc(var(--theme-base-primary-color-new-l) + -14 * 1%), 45%));
+    --theme-primary-new-custom-600: hsl(var(--theme-base-primary-color-new-h), calc(var(--theme-base-primary-color-new-s) + 0 * 1%), clamp(5%, calc(var(--theme-base-primary-color-new-l) + -26 * 1%), 30%));
 }
 {% endhighlight %}
     </div>
@@ -126,21 +122,6 @@ description: Stacks provides a robust theming API to handle theming in various c
                 <input type="range" id="js-color-input-l" class="js-color-input" name="l" min="0" max="100" value="48" />
             </div>
         </div>
-        <div class="fs-subheading">RGB</div>
-        <div class="d-flex g32 fw-wrap">
-            <div class="d-flex gy4 fd-column">
-                <label class="d-block s-label" for="js-color-input-r">Red</label>
-                <input type="range" id="js-color-input-r" class="js-color-input" name="r" min="0" max="360" value="77" />
-            </div>
-            <div class="d-flex gy4 fd-column">
-                <label class="d-block s-label" for="js-color-input-g">Green</label>
-                <input type="range" id="js-color-input-g" class="js-color-input" name="g" min="0" max="360" value="167" />
-            </div>
-            <div class="d-flex gy4 fd-column">
-                <label class="d-block s-label" for="js-color-input-b">Blue</label>
-                <input type="range" id="js-color-input-b" class="js-color-input" name="b" min="0" max="360" value="155"/>
-            </div>
-        </div>
 
         <div class="stacks-preview _preview-none mb24">
             <pre class="s-code-block js-custom-theme-variables" tabindex="0">Loading…</pre>
@@ -155,7 +136,7 @@ description: Stacks provides a robust theming API to handle theming in various c
             <div class="p12 bg-theme-primary-new-300 fc-black">
                 theme-primary-new-300
             </div>
-            <div class="p12 bg-theme-primary-new-400 fc-black">
+            <div class="p12 bg-theme-primary-new-400 fc-white">
                 theme-primary-new-400
             </div>
             <div class="p12 bg-theme-primary-new-500 fc-white">
@@ -252,63 +233,35 @@ description: Stacks provides a robust theming API to handle theming in various c
         --theme-base-primary-color-new-h: 349;
         --theme-base-primary-color-new-s: 81%;
         --theme-base-primary-color-new-l: 58%;
-        --theme-base-primary-color-new-r: 235;
-        --theme-base-primary-color-new-g: 59;
-        --theme-base-primary-color-new-b: 90;
-
         --theme-base-secondary-color-new-h: 349;
         --theme-base-secondary-color-new-s: 81%;
         --theme-base-secondary-color-new-l: 58%;
-        --theme-base-secondary-color-new-r: 235;
-        --theme-base-secondary-color-new-g: 59;
-        --theme-base-secondary-color-new-b: 90;
     }
 
     .theme-team-002 {
         --theme-base-primary-color-new-h: 41;
         --theme-base-primary-color-new-s: 93%;
         --theme-base-primary-color-new-l: 58%;
-        --theme-base-primary-color-new-r: 247;
-        --theme-base-primary-color-new-g: 183;
-        --theme-base-primary-color-new-b: 49;
-
         --theme-base-secondary-color-new-h: 41;
         --theme-base-secondary-color-new-s: 93%;
         --theme-base-secondary-color-new-l: 58%;
-        --theme-base-secondary-color-new-r: 247;
-        --theme-base-secondary-color-new-g: 183;
-        --theme-base-secondary-color-new-b: 49;
     }
 
     .theme-team-003 {
         --theme-base-primary-color-new-h: 288;
         --theme-base-primary-color-new-s: 76%;
         --theme-base-primary-color-new-l: 38%;
-        --theme-base-primary-color-new-r: 141;
-        --theme-base-primary-color-new-g: 23;
-        --theme-base-primary-color-new-b: 170;
-
         --theme-base-secondary-color-new-h: 288;
         --theme-base-secondary-color-new-s: 76%;
         --theme-base-secondary-color-new-l: 38%;
-        --theme-base-secondary-color-new-r: 141;
-        --theme-base-secondary-color-new-g: 23;
-        --theme-base-secondary-color-new-b: 170;
 
         /* Override colors for dark mode only */
         --theme-dark-primary-color-new-h: 288;
         --theme-dark-primary-color-new-s: 45%;
         --theme-dark-primary-color-new-l: 60%;
-        --theme-dark-primary-color-new-r: 180;
-        --theme-dark-primary-color-new-g: 105;
-        --theme-dark-primary-color-new-b: 199;
-
         --theme-dark-secondary-color-new-h: 288;
         --theme-dark-secondary-color-new-s: 45%;
         --theme-dark-secondary-color-new-l: 60%;
-        --theme-dark-secondary-color-new-r: 180;
-        --theme-dark-secondary-color-new-g: 105;
-        --theme-dark-secondary-color-new-b: 199;
     }
 </style>
 {% endhighlight %}
@@ -431,84 +384,48 @@ description: Stacks provides a robust theming API to handle theming in various c
         --theme-base-primary-color-new-h: 349;
         --theme-base-primary-color-new-s: 81%;
         --theme-base-primary-color-new-l: 58%;
-        --theme-base-primary-color-new-r: 235;
-        --theme-base-primary-color-new-g: 59;
-        --theme-base-primary-color-new-b: 90;
         --theme-base-secondary-color-new-h: 349;
         --theme-base-secondary-color-new-s: 81%;
         --theme-base-secondary-color-new-l: 58%;
-        --theme-base-secondary-color-new-r: 235;
-        --theme-base-secondary-color-new-g: 59;
-        --theme-base-secondary-color-new-b: 90;
 
         --theme-dark-primary-color-new-h: 349;
         --theme-dark-primary-color-new-s: 81%;
         --theme-dark-primary-color-new-l: 58%;
-        --theme-dark-primary-color-new-r: 235;
-        --theme-dark-primary-color-new-g: 59;
-        --theme-dark-primary-color-new-b: 90;
         --theme-dark-secondary-color-new-h: 349;
         --theme-dark-secondary-color-new-s: 81%;
         --theme-dark-secondary-color-new-l: 58%;
-        --theme-dark-secondary-color-new-r: 235;
-        --theme-dark-secondary-color-new-g: 59;
-        --theme-dark-secondary-color-new-b: 90;    }
-
+    }
     .theme-team-002 {
         --theme-base-primary-color-new-h: 41;
         --theme-base-primary-color-new-s: 93%;
         --theme-base-primary-color-new-l: 58%;
-        --theme-base-primary-color-new-r: 247;
-        --theme-base-primary-color-new-g: 183;
-        --theme-base-primary-color-new-b: 49;
         --theme-base-secondary-color-new-h: 41;
         --theme-base-secondary-color-new-s: 93%;
         --theme-base-secondary-color-new-l: 58%;
-        --theme-base-secondary-color-new-r: 247;
-        --theme-base-secondary-color-new-g: 183;
-        --theme-base-secondary-color-new-b: 49;
 
         --theme-dark-primary-color-new-h: 41;
         --theme-dark-primary-color-new-s: 93%;
         --theme-dark-primary-color-new-l: 58%;
-        --theme-dark-primary-color-new-r: 247;
-        --theme-dark-primary-color-new-g: 183;
-        --theme-dark-primary-color-new-b: 49;
         --theme-dark-secondary-color-new-h: 41;
         --theme-dark-secondary-color-new-s: 93%;
         --theme-dark-secondary-color-new-l: 58%;
-        --theme-dark-secondary-color-new-r: 247;
-        --theme-dark-secondary-color-new-g: 183;
-        --theme-dark-secondary-color-new-b: 49;
     }
 
     .theme-team-003 {
         --theme-base-primary-color-new-h: 288;
         --theme-base-primary-color-new-s: 76%;
         --theme-base-primary-color-new-l: 38%;
-        --theme-base-primary-color-new-r: 141;
-        --theme-base-primary-color-new-g: 23;
-        --theme-base-primary-color-new-b: 170;
         --theme-base-secondary-color-new-h: 288;
         --theme-base-secondary-color-new-s: 76%;
         --theme-base-secondary-color-new-l: 38%;
-        --theme-base-secondary-color-new-r: 141;
-        --theme-base-secondary-color-new-g: 23;
-        --theme-base-secondary-color-new-b: 170;
 
         /* Override primary for dark only */
         --theme-dark-primary-color-new-h: 288;
         --theme-dark-primary-color-new-s: 45%;
         --theme-dark-primary-color-new-l: 60%;
-        --theme-dark-primary-color-new-r: 180;
-        --theme-dark-primary-color-new-g: 105;
-        --theme-dark-primary-color-new-b: 199;
         --theme-dark-secondary-color-new-h: 288;
         --theme-dark-secondary-color-new-s: 45%;
         --theme-dark-secondary-color-new-l: 60%;
-        --theme-dark-secondary-color-new-r: 180;
-        --theme-dark-secondary-color-new-g: 105;
-        --theme-dark-secondary-color-new-b: 199;
     }
 </style>
 
@@ -519,11 +436,15 @@ description: Stacks provides a robust theming API to handle theming in various c
 
     const customThemeStyles = () => {
         const themeVarBase = "--theme-base-primary-color-new-";
-        return [...customThemeInputs].map(input => {
-            const name = input.getAttribute("name");
-            const value = name === "s" || name === "l" ? `${input.value}%` : input.value;
-            return `${themeVarBase}${name}: ${value}`;
-        }).join(";\n");
+        const themeVarDark = "--theme-dark-primary-color-new-";
+        const getVars = (varPrefix) => {
+            return [...customThemeInputs].map(input => {
+                const name = input.getAttribute("name");
+                const value = name === "s" || name === "l" ? `${input.value}%` : input.value;
+                return `${varPrefix}${name}: ${value}`;
+            });
+        };
+        return [...getVars(themeVarBase), ...getVars(themeVarDark)].join(";\n");
     };
 
     customThemeInputs.forEach(input => {

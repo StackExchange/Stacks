@@ -165,9 +165,6 @@
     @{varBase}-h: hue(@color);
     @{varBase}-s: saturation(@color);
     @{varBase}-l: lightness(@color);
-    @{varBase}-r: red(@color);
-    @{varBase}-g: green(@color);
-    @{varBase}-b: blue(@color);
 
     .create-custom-theme-variables(@tier, @modeCustom);
 }
@@ -189,25 +186,25 @@
     & when (@modeCustom = base) {
         @varBase: ~"--theme-@{tier}-new-custom";
 
-        @{varBase}: .assemble-color(@valueVar)[];
-        @{varBase}-100: .native-tint(@valueVar, 92)[]; // legacy 050
-        @{varBase}-200: .native-tint(@valueVar, 78)[]; // legacy 100
-        @{varBase}-300: .native-tint(@valueVar, 35)[]; // legacy 300
-        @{varBase}-400: ~"var(@{varBase})"; // legacy 400
-        @{varBase}-500: .native-darken(@valueVar, 10)[]; // legacy 600
-        @{varBase}-600: .native-darken(@valueVar, 26)[]; // legacy 900
+        @{varBase}-100: .native-lightness(@valueVar, 50, 70, 95)[];
+        @{varBase}-200: .native-lightness(@valueVar, 35, 55, 90)[];
+        @{varBase}-300: .native-lightness(@valueVar, 15, 35, 75)[];
+        @{varBase}-400: .native-lightness(@valueVar, 0, 20, 60)[];
+        @{varBase}-500: .native-lightness(@valueVar, -14, 13, 50)[];
+        @{varBase}-600: .native-lightness(@valueVar, -26, 5, 40)[];
+        @{varBase}: ~"var(@{varBase})";
     }
 
     & when (@modeCustom = dark) {
         @varBaseDark: ~"--theme-@{modeCustom}-@{tier}-new-custom";
 
-        @{varBaseDark}: .assemble-color(@valueVar)[];
-        @{varBaseDark}-100: .native-darken-desaturate(@valueVar, 55, 12)[]; // legacy 025 (approx)
-        @{varBaseDark}-200: .native-darken-desaturate(@valueVar, 35, 10)[]; // legacy 050 (approx)
-        @{varBaseDark}-300: .native-darken-desaturate(@valueVar, 20, 8)[]; // legacy 100 (approx)
-        @{varBaseDark}-400: ~"var(@{varBaseDark})"; // legacy 350
-        @{varBaseDark}-500: .native-tint(@valueVar, 36)[]; // legacy 500
-        @{varBaseDark}-600: .native-tint(@valueVar, 75)[]; // legacy 700/800 average
+        @{varBaseDark}-100: .native-saturation-lightness(@valueVar, -12, -60, 15, 30)[];
+        @{varBaseDark}-200: .native-saturation-lightness(@valueVar, -10, -45, 25, 45)[];
+        @{varBaseDark}-300: .native-saturation-lightness(@valueVar, -7, -33, 35, 70)[];
+        @{varBaseDark}-400: .native-lightness(@valueVar, 0, 55, 85)[];
+        @{varBaseDark}-500: .native-lightness(@valueVar, 10, 70, 90)[];
+        @{varBaseDark}-600: .native-lightness(@valueVar, 20, 85, 95)[];
+        @{varBaseDark}: ~"var(@{varBaseDark}-400)";
     }
 }
 
