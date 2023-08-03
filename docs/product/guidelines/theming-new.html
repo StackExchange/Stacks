@@ -20,7 +20,7 @@ description: Stacks provides a robust theming API to handle theming in various c
     <p class="stacks-copy">Stacks provides an API to apply custom themes.</p>
 
     {% header "h3", "Programmatic theme generation" %}
-    <p class="stacks-copy">Use <code class="stacks-code">.create-custom-theme-hsl-rgb-variables(@color, @tier, @modeCustom)</code> to create a custom theme.</p>
+    <p class="stacks-copy">Use <code class="stacks-code">.create-custom-theme-hsl-variables(@color, @tier, @modeCustom)</code> to create a custom theme.</p>
         
     <p class="stacks-copy">This function generates two sets of CSS variables: 1) independent h/s/l and r/g/b color variables and 2) variables at each colors stop that reference the h/s/l and r/g/b variables. Provide this function the arguments defined below to generate theme colors which will apply across Stacks.</p>
 
@@ -66,10 +66,10 @@ description: Stacks provides a robust theming API to handle theming in various c
     <div class="stacks-preview _preview-none mb24">
 {% highlight css %}
 .theme-custom.themed {
-    .create-custom-theme-hsl-rgb-variables(hsl(172, 37%, 48%), primary);
-    .create-custom-theme-hsl-rgb-variables(hsl(259, 29%, 55%), secondary);
-    .create-custom-theme-hsl-rgb-variables(hsl(201, 70%, 55%), primary, dark);
-    .create-custom-theme-hsl-rgb-variables(hsl(270, 34%, 40%), secondary, dark);
+    .create-custom-theme-hsl-variables(hsl(172, 37%, 48%), primary);
+    .create-custom-theme-hsl-variables(hsl(259, 29%, 55%), secondary);
+    .create-custom-theme-hsl-variables(hsl(201, 70%, 55%), primary, dark);
+    .create-custom-theme-hsl-variables(hsl(270, 34%, 40%), secondary, dark);
 }
 {% endhighlight %}
     </div>
@@ -80,7 +80,7 @@ description: Stacks provides a robust theming API to handle theming in various c
 {% highlight css %}
 /* Input */
 .theme-custom.themed {
-    .create-custom-theme-hsl-rgb-variables(hsl(172, 37%, 48%), primary);
+    .create-custom-theme-hsl-variables(hsl(172, 37%, 48%), primary);
 }
 
 /* Output */

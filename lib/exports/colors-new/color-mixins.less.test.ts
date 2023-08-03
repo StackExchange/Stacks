@@ -92,16 +92,16 @@ describe("color-mixins", () => {
             const css = await renderLess(`
                 @import (reference) "color-mixins.less";
                 create-custom-theme-hsl-rgb-variables(#ff1100, primary, base) {
-                    .create-custom-theme-hsl-rgb-variables(#ff1100, primary, base);
+                    .create-custom-theme-hsl-variables(#ff1100, primary, base);
                 }
                 create-custom-theme-hsl-rgb-variables(#29ff53, secondary, base) {
-                    .create-custom-theme-hsl-rgb-variables(#29ff53, secondary, base);
+                    .create-custom-theme-hsl-variables(#29ff53, secondary, base);
                 }
                 create-custom-theme-hsl-rgb-variables(#1c091d, primary, dark) {
-                    .create-custom-theme-hsl-rgb-variables(#1c091d, primary, dark);
+                    .create-custom-theme-hsl-variables(#1c091d, primary, dark);
                 }
                 create-custom-theme-hsl-rgb-variables(#49281f, secondary, dark) {
-                    .create-custom-theme-hsl-rgb-variables(#49281f, secondary, dark);
+                    .create-custom-theme-hsl-variables(#49281f, secondary, dark);
                 }
             `);
 
