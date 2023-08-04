@@ -90,6 +90,14 @@
  */
 .create-color-classes(@name, @value) {
     // Create bg atomic class assignments
+    .bc-@{name},
+    .h\:bc-@{name}:hover,
+    .f\:bc-@{name}:focus,
+    .f\:bc-@{name}:focus-within {
+        border-color: @value;
+    }
+
+    // Create bg atomic class assignments
     .bg-@{name},
     .h\:bg-@{name}:hover,
     .f\:bg-@{name}:focus,
