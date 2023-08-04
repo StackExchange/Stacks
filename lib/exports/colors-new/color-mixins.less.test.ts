@@ -86,6 +86,23 @@ describe("color-mixins", () => {
 
             expect(css).toMatchSnapshot();
         });
+        it("create-aliased-utility-colors", async () => {
+            const css = await renderLess(`
+                @import (reference) "color-mixins.less";
+
+                /* .create-aliased-utility-colors(variables) */
+                body {
+                    .create-aliased-utility-colors(variables);
+                }
+
+                /* .create-aliased-utility-colors(classes) */
+                body {
+                    .create-aliased-utility-colors(classes);
+                }
+            `);
+
+            expect(css).toMatchSnapshot();
+        });
     });
     describe("theming", () => {
         it("create-custom-theme-hsl-rgb-variables", async () => {
