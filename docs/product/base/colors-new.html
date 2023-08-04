@@ -141,11 +141,32 @@ description: To avoid specifying color values by hand, we’ve included a robust
     {% header "h3", "Body text" %}
     <div class="stacks-preview">
 {% highlight html %}
-<p class="fc-light">…</p>
-<p class="fc-medium">…</p>
+<p class="fc-new-light">…</p>
+<p class="fc-new-medium">…</p>
 <p>…</p>
-<p class="fc-dark">…</p>
+<p class="fc-new-dark">…</p>
 {% endhighlight %}
+    </div>
+    {% assign fcAliases = "light,medium,dark" | split: "," %}
+    <div class="overflow-x-auto mb48" tabindex="0">
+        <table class="wmn5 s-table s-table__bx-simple s-table__condensed va-middle fs-caption">
+            <thead>
+                <tr>
+                    <th scope="col" class="s-table--cell3">Text classes</th>
+                    <th scope="col" class="s-table--cell3">Example</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for alias in fcAliases %}
+                    <tr class="ff-mono">
+                        <td class="ws-nowrap">.fc-{{alias}}</td>
+                        <td class="p8 fc-{{alias}}">
+                            <p>This is example {{alias}} text.</p>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
     </div>
 
     {% header "h3", "Danger and error" %}
