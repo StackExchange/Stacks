@@ -22,7 +22,7 @@ description: Stacks provides a robust theming API to handle theming in various c
     {% header "h3", "Programmatic theme generation" %}
     <p class="stacks-copy">Use <code class="stacks-code">.create-custom-theme-hsl-variables(@color, @tier, @modeCustom)</code> to create a custom theme.</p>
         
-    <p class="stacks-copy">This function generates two sets of CSS variables: 1) independent h/s/l and r/g/b color variables and 2) variables at each colors stop that reference the h/s/l and r/g/b variables. Provide this function the arguments defined below to generate theme colors which will apply across Stacks.</p>
+    <p class="stacks-copy">This function generates two sets of CSS variables: 1) independent h/s/l color variables and 2) variables at each colors stop that reference the h/s/l variables. Provide this function the arguments defined below to generate theme colors which will apply across Stacks.</p>
 
     <div class="overflow-x-auto mb32" tabindex="0">
         <table class="wmn4 s-table s-table__bx-simple">
@@ -89,7 +89,7 @@ description: Stacks provides a robust theming API to handle theming in various c
     --theme-base-primary-color-new-h: 172;
     --theme-base-primary-color-new-s: 37%;
     --theme-base-primary-color-new-l: 48%;
-    /* Color variables based on HSL and RGB variables */
+    /* Color variables based on HSL variables */
     --theme-primary-new-custom: var(--theme-primary-new-custom-400);
     --theme-primary-new-custom-100: hsl(var(--theme-base-primary-color-new-h), calc(var(--theme-base-primary-color-new-s) + 0 * 1%), clamp(70%, calc(var(--theme-base-primary-color-new-l) + 50 * 1%), 95%));
     --theme-primary-new-custom-200: hsl(var(--theme-base-primary-color-new-h), calc(var(--theme-base-primary-color-new-s) + 0 * 1%), clamp(55%, calc(var(--theme-base-primary-color-new-l) + 35 * 1%), 90%));
@@ -104,7 +104,7 @@ description: Stacks provides a robust theming API to handle theming in various c
     {% header "h4", "Manual addition of theme variables" %}
     <p class="stacks-copy">If you need to apply a theme without using the above function, you can do so by manually adding the variables above to your CSS. The most common use for this approach is when the theme needs to change client-side, such as when allowing the user to change and preview a theme dynamically.</p>
 
-    <p class="stacks-copy">With this approach, we recommend targeting new h/s/l and r/g/b color variables on a parent element that includes <code class="stacks-code ws-nowrap">.themed</code> class.</p>
+    <p class="stacks-copy">With this approach, we recommend targeting new h/s/l color variables on a parent element that includes <code class="stacks-code ws-nowrap">.themed</code> class.</p>
 
     <div class="themed js-custom-theme d-flex fd-column g32 mb48">
         <div class="fs-subheading">HSL</div>
