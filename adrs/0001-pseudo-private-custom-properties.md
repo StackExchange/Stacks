@@ -50,7 +50,7 @@ Defining a structure for component styles using pseudo-private custom properties
     // CONTEXTUAL STYLES
     // These may include themes/modes, responsive styles, or modifications based on parent containers
     .highcontrast-mode({
-        --_cn-bg: var(--black-400);
+        --_cn-bg: var(--black-legacy-400);
 
         .s-avatar--letter {
             --_cn-image-bg: var(--white);
@@ -100,7 +100,7 @@ Defining a structure for component styles using pseudo-private custom properties
 
     // INTERACTION
     &:hover {
-        --_cn-bg: var(--_black-050);
+        --_cn-bg: var(--_black-legacy-050);
     }
 
     // STYLES MODIFIED BY COMPONENT-SPECIFIC CUSTOM PROPERTIES

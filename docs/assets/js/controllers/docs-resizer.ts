@@ -43,14 +43,14 @@ import * as Stimulus from "@hotwired/stimulus";
                 this.resizableTarget.classList.remove(this._sizeClass);
             }
             if (this._selected) {
-                this._selected.classList.remove("bg-black-100");
-                this._selected.classList.remove("fc-black-600");
+                this._selected.classList.remove("bg-black-legacy-100");
+                this._selected.classList.remove("fc-black-legacy-600");
             }
             this._sizeClass = cls;
             this.resizableTarget.classList.add(cls);
             this._selected = evt.currentTarget as Element;
-            evt.currentTarget.classList.add("bg-black-100");
-            evt.currentTarget.classList.add("fc-black-600");
+            evt.currentTarget.classList.add("bg-black-legacy-100");
+            evt.currentTarget.classList.add("fc-black-legacy-600");
             evt.preventDefault();
         }
     });
