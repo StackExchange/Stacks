@@ -1,6 +1,6 @@
 .s-avatar {
     --_av-size: var(--su-static16);
-    --_av-bg: @white; // Force a white background color for when we have transparent avatars
+    --_av-bg: @white-legacy; // Force a white background color for when we have transparent avatars
     --_av-br: var(--br-sm);
     --_av-fs-letter: calc(var(--su-static12) - var(--su-static1));
     --_av-scale-badge: 1;
@@ -8,12 +8,12 @@
     // CONTEXTUAL STYLES
     .highcontrast-mode({
         .s-avatar--letter {
-            color: var(--white);
+            color: var(--white-legacy);
         }
 
         background-color: var(--black);
         box-shadow: 0 0 0 var(--su-static1) var(--black);
-        color: var(--white);
+        color: var(--white-legacy);
     });
 
     // MODIFIERS
@@ -81,7 +81,7 @@
     }
 
     & &--letter {
-        color: @white; // Force a light appearance of text rendering
+        color: @white-legacy; // Force a light appearance of text rendering
         display: block; // Make sure we're treating the letter as a block-level element
         font-size: var(--_av-fs-letter); // Force a font size so the avatar text doesn't get smaller as the window resizes
         font-weight: bold;

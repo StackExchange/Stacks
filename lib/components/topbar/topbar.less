@@ -146,12 +146,12 @@
     // TODO this only works 100% perfectly in light mode, due to child elements inheriting current theme colors
     // TODO extend forced light mode instead of overriding
 
-    --theme-topbar-background-color: @white;
+    --theme-topbar-background-color: @white-legacy;
     --theme-topbar-bottom-border: 1px solid @black-legacy-100;
 
     // Search input
     --theme-topbar-search-color: @black-legacy-700;
-    --theme-topbar-search-background: @white;
+    --theme-topbar-search-background: @white-legacy;
     --theme-topbar-search-placeholder: @black-legacy-400;
     --theme-topbar-search-border: @black-legacy-200;
     --theme-topbar-search-border-focus: @blue-legacy-300;
@@ -165,7 +165,7 @@
     --theme-topbar-item-color: @black-legacy-600;
     --theme-topbar-item-color-hover: @black-legacy-800;
     --theme-topbar-item-background-hover: @black-legacy-075;
-    --theme-topbar-item-color-current: @black;
+    --theme-topbar-item-color-current: @black-legacy;
     --theme-topbar-item-border-current: var(--theme-primary-color);
 
     // TODO HACK remove everything below once light/dark topbars are inheriting forced themes correctly
@@ -175,7 +175,7 @@
         --theme-topbar-item-color: @black-legacy-800;
         --theme-topbar-item-color-hover: @black-legacy-900;
         --theme-topbar-item-background-hover: @black-legacy-075;
-        --theme-topbar-item-color-current: @black;
+        --theme-topbar-item-color-current: @black-legacy;
     });
 
     --scrollbar: hsla(0, 0%, 0%, 0.2);
@@ -207,7 +207,7 @@
     --theme-topbar-search-placeholder: lighten(@topbar-actual-background, 60% + @topbar-search-lightness-increase);
     --theme-topbar-search-border: lighten(@topbar-actual-background, 20% + @topbar-search-lightness-increase);
     --theme-topbar-search-border-focus: lighten(@topbar-actual-background, 45% + @topbar-search-lightness-increase);
-    --theme-topbar-search-shadow-focus: 0 0 0 var(--su-static4) fade(@white, 30%);
+    --theme-topbar-search-shadow-focus: 0 0 0 var(--su-static4) fade(@white-legacy, 30%);
 
     // Search switcher
     --theme-topbar-select-color: lighten(@topbar-actual-background, 60% + @topbar-search-lightness-increase);
@@ -215,9 +215,9 @@
 
     // Items
     --theme-topbar-item-color: @black-legacy-100;
-    --theme-topbar-item-color-hover: @white;
+    --theme-topbar-item-color-hover: @white-legacy;
     --theme-topbar-item-background-hover: @black-legacy-700;
-    --theme-topbar-item-color-current: @white;
+    --theme-topbar-item-color-current: @white-legacy;
     --theme-topbar-item-border-current: var(--theme-primary-color);
 
     // Themed border accent
@@ -227,10 +227,10 @@
     // redefine the variables for extra contrast in high-contrast mode
     .highcontrast-mode({
         // Topbar items
-        --theme-topbar-item-color: @white;
-        --theme-topbar-item-color-hover: @white;
+        --theme-topbar-item-color: @white-legacy;
+        --theme-topbar-item-color-hover: @white-legacy;
         --theme-topbar-item-background-hover: @black-legacy-700;
-        --theme-topbar-item-color-current: @white;
+        --theme-topbar-item-color-current: @white-legacy;
 
         .s-badge {
             border-color: currentColor;
@@ -333,11 +333,11 @@
     }
 
     &.is-unread {
-        .topbar-notice-styles(var(--theme-primary-color), var(--theme-primary-color), var(--white));
+        .topbar-notice-styles(var(--theme-primary-color), var(--theme-primary-color), var(--white-legacy));
 
         &:hover,
         &:focus {
-            .topbar-notice-styles(var(--theme-primary-600), var(--theme-primary-600), var(--white));
+            .topbar-notice-styles(var(--theme-primary-600), var(--theme-primary-600), var(--white-legacy));
         }
     }
 }

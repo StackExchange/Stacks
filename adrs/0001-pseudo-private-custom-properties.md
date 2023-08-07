@@ -53,7 +53,7 @@ Defining a structure for component styles using pseudo-private custom properties
         --_cn-bg: var(--black-legacy-400);
 
         .s-avatar--letter {
-            --_cn-image-bg: var(--white);
+            --_cn-image-bg: var(--white-legacy);
         }
     });
 
