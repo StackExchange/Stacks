@@ -8,63 +8,75 @@ description: To avoid specifying color values by hand, we’ve included a robust
 <section class="stacks-section">
     {% header "h2", "Stops" %}
 
-    <p class="stacks-copy">
-        Our colors are each available in a number of stops from dark to light—<code class="stacks-code">900</code> being the darkest, and <code class="stacks-code">025</code> or <code class="stacks-code">050</code> being the lightest. All stops are available as various text, background, and border color classes.
-    </p>
-    <p class="stacks-copy">
-        If your layout can’t be built using atomic color classes, all stops are available as CSS variables. Referencing the CSS variables directly will make sure dark mode is properly accounted for. If working in a legacy context, referencing our colors as Less variables is preferred to Hex, though both are deprecated. A common refactor is replacing <code class="stacks-code">background-color: @white;</code> with <code class="stacks-code">background-color: var(--white);</code> to make sure a legacy component is aware of dark mode when a deeper refactor isn’t possible.
-    </p>
-    <p class="stacks-copy">
-        When dark mode is enabled, the values of numbered color variables will be inverted from what they are with dark mode disabled—<code class="stacks-code">900</code> being the lightest, and <code class="stacks-code">025</code> or <code class="stacks-code">050</code> being the darkest. This is because the values don't represent lightness, but rather contrast with the background. The same also applies to <code class="stacks-code">lighter</code> variants of non-numbered color variables.
-    </p>
+    {% for group in colors %}
+        {% if group.name == "legacy" %}
+            <div data-tabpanel="{{ group.name }}">
+                <p class="stacks-copy">
+                    Our colors are each available in a number of stops from dark to light—<code class="stacks-code">900</code> being the darkest, and <code class="stacks-code">025</code> or <code class="stacks-code">050</code> being the lightest. All stops are available as various text, background, and border color classes.
+                </p>
+                <p class="stacks-copy">
+                    If your layout can’t be built using atomic color classes, all stops are available as CSS variables. Referencing the CSS variables directly will make sure dark mode is properly accounted for. If working in a legacy context, referencing our colors as Less variables is preferred to Hex, though both are deprecated. A common refactor is replacing <code class="stacks-code">background-color: @white;</code> with <code class="stacks-code">background-color: var(--white);</code> to make sure a legacy component is aware of dark mode when a deeper refactor isn’t possible.
+                </p>
+                <p class="stacks-copy">
+                    When dark mode is enabled, the values of numbered color variables will be inverted from what they are with dark mode disabled—<code class="stacks-code">900</code> being the lightest, and <code class="stacks-code">025</code> or <code class="stacks-code">050</code> being the darkest. This is because the values don't represent lightness, but rather contrast with the background. The same also applies to <code class="stacks-code">lighter</code> variants of non-numbered color variables.
+                </p>
 
-    <div class="s-btn-group jc-end mt24 mb16">
-        <button class="s-btn s-btn__muted s-btn__outlined is-selected js-css-btn" role="button">
-            CSS
-        </button>
-        <button class="s-btn s-btn__muted s-btn__outlined js-less-btn" role="button">
-            Less
-            <span class="s-btn--badge">
-                <span class="s-btn--number">Deprecated</span>
-            </span>
-        </button>
-        <button class="s-btn s-btn__muted s-btn__outlined js-hex-btn" role="button">
-            Hex
-            <span class="s-btn--badge">
-                <span class="s-btn--number">Deprecated</span>
-            </span>
-        </button>
-    </div>
+                <div class="d-grid g16 g-af-dense my32" style="grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));">
+                    {% for set in group.sets %}
+                        {% if set.name != "transparent" and set.name != "inherit" %}
+                            <div>
+                                {% assign setClasses = "" %}
 
-    <div class="d-grid g16 g-af-dense" style="grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));">
-        {% for color in colors %}
-            <div class="flex--item">
-                <div class="p24 fs-title btr-md bg-{{ color.name }}{% if color.primary != "" %}-{{ color.primary }}{% endif %}{% if color.white %} fc-white{% if color.flip %} d:fc-black{% endif %}{% else %}{% if color.flip %} d:fc-white{% endif %}{% endif %}{% if color.name == "white" %} ba bc-black-100{% endif %}">
-                    {% if color.name == "theme-primary" %}
-                        Theme Primary
-                    {% elsif color.name == "theme-secondary" %}
-                        Theme Secondary
-                    {% else %}
-                        {{ color.name | capitalize }}
-                    {% endif %}
+                                {% if set.name == "white" %}
+                                    {% assign setClasses = "ba bc-black-200" %}
+                                {% endif %}
+                                <div class="bar-md overflow-hidden {{ setClasses }}">
+                                    {% assign bg = "bg-" | append: set.name %}
+                                    {% if set.bg %}
+                                        {% assign bg = "bg-" | append: set.name | append: "-" | append: set.bg %}
+                                    {% endif %}
+
+                                    {% assign fc = "fc-white" %}
+                                    {% if set.fc %}
+                                    {% assign fc = "fc-" | append: set.fc %}
+                                    {% endif %}
+
+                                    <div class="p24 fs-title {{ bg }} {{ fc }} {{ set.classes }}">
+                                        {{ set.name | capitalize }}
+                                    </div>
+
+                                    {% for stop in set.stops %}
+                                        {% assign nameSuffix = "" %}
+                                        {% if group.name == "new" %}
+                                            {% assign nameSuffix = "-new" %}
+                                        {% endif %}
+                                        {% assign name = set.name | append: nameSuffix %}
+
+                                        {% if stop != "" %}
+                                            {% assign name = set.name | append: nameSuffix | append: "-" | append: stop %}
+                                        {% endif %}
+
+                                        {% assign stopFc = "fc-black" %}
+                                        {% if set.invert contains stop %}
+                                            {% assign stopFc = "fc-white" %}
+                                        {% endif %}
+
+                                        {% assign additionalClasses = "" %}
+                                        {% if set.name == "white" %}
+                                            {% assign additionalClasses = "bt bc-black-200" %}
+                                        {% endif %}
+                                        <div class="p12 bg-{{ name }} {{ stopFc }} {{ additionalClasses }}">
+                                            {{ name }}
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
                 </div>
-
-                {% for stop in color.stops reversed %}
-                    <div class="d-flex ai-center jc-space-between bg-{{ color.name }}{% if stop.stop != "" %}-{{ stop.stop }}{% endif %} ff-mono p12{% if stop.white %} fc-white{% if stop.flip %} d:fc-black{% endif %}{% else %}{% if stop.flip %} d:fc-white{% endif %}{% endif %}{% if forloop.last %} bbr-md{% endif %}{% if color.name == "white" %} ba bc-black-100 btw0{% endif %}">
-                        <div class="flex--item js-hex d-none">
-                            {{ color.name }}{% if stop.stop != "" %}-{{ stop.stop }}{% endif %}
-                        </div>
-
-                        <div class="flex--item">
-                            <span class="js-css">var(--{{ color.name }}{% if stop.stop != "" %}-{{ stop.stop }}{% endif %})</span>
-                            <span class="js-less d-none">@{{ color.name }}{% if stop.stop != "" %}-{{ stop.stop }}{% endif %}</span>
-                            <span class="js-hex d-none">#{{ stop.hex }}</span>
-                        </div>
-                    </div>
-                {% endfor %}
             </div>
-        {% endfor %}
-    </div>
+        {% endif %}
+    {% endfor %}
 </section>
 
 <section class="stacks-section">
@@ -74,221 +86,86 @@ description: To avoid specifying color values by hand, we’ve included a robust
         Each color stop is available as an atomic text, background, and border class. Using these atomic classes means your view will respond to dark mode appropriately. These colors are available <a href="{{ "/product/guidelines/conditional-classes#hover" | url }}">conditionally</a>.
     </p>
 
-    {% for color in colors %}
-        {% if color.include %}
-            {% assign color_name = color.name | capitalize %}
+    {% for group in colors %}
+        {% if group.name == "legacy" %}
+            <div>
+                {% for set in group.sets %}
+                    {% assign setNameCaps = set.name | capitalize | replace: "-", " " %}
+                    {% header "h3", setNameCaps %}
+                    <div class="overflow-x-auto mb48" tabindex="0">
+                        <table class="wmn5 s-table s-table__bx-simple s-table__condensed va-middle fs-caption">
+                            <thead>
+                                <tr>
+                                    <th scope="col" width="36px"></th>
+                                    <th scope="col">Text class</th>
+                                    <th scope="col">Background class</th>
+                                    <th scope="col">Border class</th>
+                                    <th scope="col" class="ta-center"><a class="s-link s-link__inherit" href="{{ "/product/guidelines/conditional-classes#hover" | url }}">Hover?</a></th>
+                                    <th scope="col" class="ta-center"><a class="s-link s-link__inherit" href="{{ "/product/guidelines/conditional-classes#focus" | url }}">Focus?</a></th>
+                                    <th scope="col" class="ta-center"><a class="s-link s-link__inherit" href="{{ "/product/guidelines/conditional-classes#dark-mode" | url }}">Dark?</a></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for stop in set.stops %}
+                                    {% assign naHTML = "<span class=\"fc-black-500\">N/A</span>" %}
+                                    {% assign stopSuffix = "" %}
+                                    {% if stop != "" %}
+                                        {% assign stopSuffix = "-" | append: stop %}
+                                    {% endif %}
 
-            {% header "h3", color_name %}
-            <div class="overflow-x-auto mb48" tabindex="0">
-                <table class="wmn5 s-table s-table__bx-simple s-table__condensed va-middle fs-caption">
-                    <thead>
-                        <tr>
-                            <th scope="col" width="36px"></th>
-                            <th scope="col">Text class</th>
-                            <th scope="col">Background class</th>
-                            <th scope="col">Border class</th>
-                            <th scope="col" class="ta-center"><a class="s-link s-link__inherit" href="{{ "/product/guidelines/conditional-classes#hover" | url }}">Hover?</a></th>
-                            <th scope="col" class="ta-center"><a class="s-link s-link__inherit" href="{{ "/product/guidelines/conditional-classes#focus" | url }}">Focus?</a></th>
-                            <th scope="col" class="ta-center"><a class="s-link s-link__inherit" href="{{ "/product/guidelines/conditional-classes#dark-mode" | url }}">Dark?</a></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for stop in color.stops %}
-                        <tr>
-                            <th scope="row">
-                            <div class="stacks-swatch bar-sm bs-sm bg-{{ color.name }}-{{ stop.stop }}"></div>
-                            </th>
-                            <td class="ff-mono">.fc-{{ color.name }}-{{ stop.stop }}</td>
-                            <td class="ff-mono">.bg-{{ color.name }}-{{ stop.stop }}</td>
-                            <td class="ff-mono">.bc-{{ color.name }}-{{ stop.stop }}</td>
-                            <td class="ta-center">{% icon "Checkmark", "fc-green-500" %}</td>
-                            <td class="ta-center">{% icon "Checkmark", "fc-green-500" %}</td>
-                            <td class="ta-center">{% icon "Checkmark", "fc-green-500" %}</td>
-                        </tr>
-                        {% endfor %}
-                        <tr class="ff-mono">
-                            <th scope="row">
-                            <div class="stacks-swatch bar-sm bs-sm bg-white"></div>
-                            </th>
-                            <td class="ff-mono">.fc-white</td>
-                            <td class="ff-mono">.bg-white</td>
-                            <td class="ff-mono">.bc-white</td>
-                            <td class="ta-center">{% icon "Checkmark", "fc-green-500" %}</td>
-                            <td class="ta-center">{% icon "Checkmark", "fc-green-500" %}</td>
-                            <td class="ta-center">{% icon "Checkmark", "fc-green-500" %}</td>
-                        </tr>
-                        <tr class="ff-mono">
-                            <th scope="row">
-                            <div class="stacks-swatch bar-sm bs-sm bg-transparent"></div>
-                            </th>
-                            <td class="fc-light">N/A</td>
-                            <td>.bg-transparent</td>
-                            <td>.bc-transparent</td>
-                            <td class="ta-center">{% icon "Checkmark", "fc-green-500" %}</td>
-                            <td></td>
-                            <td class="ta-center">{% icon "Checkmark", "fc-green-500" %}</td>
-                        </tr>
-                        <tr class="ff-mono">
-                            <th scope="row">
-                            <div class="stacks-swatch bar-sm bs-sm bg-inherit"></div>
-                            </th>
-                            <td>.fc-inherit</td>
-                            <td>.bg-inherit</td>
-                            <td>.bc-inherit</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                    </tbody>
-                </table>
+                                    {% assign name = set.name | append: stopSuffix %}
+                                    <tr>
+                                        <th scope="row">
+                                            <div class="stacks-swatch bar-sm bs-sm bg-{{ name }}"></div>
+                                        </th>
+                                        <td class="ff-mono">
+                                            {% if set.exclude.class.fc contains stop %}
+                                                {{ naHTML }}
+                                            {% else %}
+                                                .fc-{{ name }}
+                                            {% endif %}
+                                        </td>
+                                        <td class="ff-mono">
+                                            {% if set.exclude.class.bg contains stop %}
+                                                {{ naHTML }}
+                                            {% else %}
+                                                .bg-{{ name }}
+                                            {% endif %}
+                                        </td>
+                                        <td class="ff-mono">
+                                            {% if set.exclude.class.bc contains stop %}
+                                                {{ naHTML }}
+                                            {% else %}
+                                                .bc-{{ name }}
+                                            {% endif %}
+                                        </td>
+                                        <td class="ta-center">
+                                            {% unless set.exclude.hover contains stop %}
+                                                {% icon "Checkmark", "fc-green-500" %}
+                                            {% endunless %}
+                                        </td>
+                                        <td class="ta-center">
+                                            {% unless set.exclude.focus contains stop %}
+                                                {% icon "Checkmark", "fc-green-500" %}
+                                            {% endunless %}
+                                        </td>
+                                        <td class="ta-center">
+                                            {% unless set.exclude.dark contains stop %}
+                                                {% icon "Checkmark", "fc-green-500" %}
+                                            {% endunless %}
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+
+                            </tbody>
+                        </table>
+                    </div>
+                {% endfor %}
             </div>
         {% endif %}
     {% endfor %}
-
-    {% header "h3", "Gold" %}
-    <div class="overflow-x-auto mb48" tabindex="0">
-        <table class="wmn5 s-table s-table__bx-simple s-table__condensed va-middle fs-caption">
-            <thead>
-                <tr>
-                    <th scope="col" style="width:36px;"></th>
-                    <th scope="col">Text class</th>
-                    <th scope="col">Background class</th>
-                    <th scope="col" class="ta-center"><a class="s-link s-link__inherit" href="{{ "/product/guidelines/conditional-classes#hover" | url }}">Hover?</a></th>
-                    <th scope="col" class="ta-center"><a class="s-link s-link__inherit" href="{{ "/product/guidelines/conditional-classes#focus" | url }}">Focus?</a></th>
-                    <th scope="col" class="ta-center"><a class="s-link s-link__inherit" href="{{ "/product/guidelines/conditional-classes#dark-mode" | url }}">Dark?</a></th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr class="ff-mono">
-                    <th scope="row">
-                        <div class="stacks-swatch bar-sm bg-gold"></div>
-                    </th>
-                    <td>.fc-gold</td>
-                    <td>.bg-gold</td>
-                    <td class="ta-center"></td>
-                    <td class="ta-center"></td>
-                    <td class="ta-center"></td>
-                </tr>
-                <tr class="ff-mono">
-                    <th scope="row">
-                        <div class="stacks-swatch bar-sm bg-gold-darker"></div>
-                    </th>
-                    <td>.fc-gold-darker</td>
-                    <td>.bg-gold-darker</td>
-                    <td class="ta-center"></td>
-                    <td class="ta-center"></td>
-                    <td class="ta-center"></td>
-                </tr>
-                <tr class="ff-mono">
-                    <th scope="row">
-                        <div class="stacks-swatch bar-sm bg-gold-lighter"></div>
-                    </th>
-                    <td>.fc-gold-lighter</td>
-                    <td>.bg-gold-lighter</td>
-                    <td class="ta-center"></td>
-                    <td class="ta-center"></td>
-                    <td class="ta-center"></td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-
-    {% header "h3", "Silver" %}
-    <div class="overflow-x-auto mb48" tabindex="0">
-        <table class="wmn5 s-table s-table__bx-simple s-table__condensed va-middle fs-caption">
-            <thead>
-                <tr>
-                    <th scope="col" style="width:36px;"></th>
-                    <th scope="col">Text class</th>
-                    <th scope="col">Background class</th>
-                    <th scope="col" class="ta-center"><a class="s-link s-link__inherit" href="{{ "/product/guidelines/conditional-classes#hover" | url }}">Hover?</a></th>
-                    <th scope="col" class="ta-center"><a class="s-link s-link__inherit" href="{{ "/product/guidelines/conditional-classes#focus" | url }}">Focus?</a></th>
-                    <th scope="col" class="ta-center"><a class="s-link s-link__inherit" href="{{ "/product/guidelines/conditional-classes#dark-mode" | url }}">Dark?</a></th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr class="ff-mono">
-                    <th scope="row">
-                        <div class="stacks-swatch bar-sm bg-silver"></div>
-                    </th>
-                    <td>.fc-silver</td>
-                    <td>.bg-silver</td>
-                    <td class="ta-center"></td>
-                    <td class="ta-center"></td>
-                    <td class="ta-center"></td>
-                </tr>
-                <tr class="ff-mono">
-                    <th scope="row">
-                        <div class="stacks-swatch bar-sm bg-silver-darker"></div>
-                    </th>
-                    <td>.fc-silver-darker</td>
-                    <td>.bg-silver-darker</td>
-                    <td class="ta-center"></td>
-                    <td class="ta-center"></td>
-                    <td class="ta-center"></td>
-                </tr>
-                <tr class="ff-mono">
-                    <th scope="row">
-                        <div class="stacks-swatch bar-sm bg-silver-lighter"></div>
-                    </th>
-                    <td>.fc-silver-lighter</td>
-                    <td>.bg-silver-lighter</td>
-                    <td class="ta-center"></td>
-                    <td class="ta-center"></td>
-                    <td class="ta-center"></td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-
-    {% header "h3", "Bronze" %}
-    <div class="overflow-x-auto mb48" tabindex="0">
-        <table class="wmn5 s-table s-table__bx-simple s-table__condensed va-middle fs-caption">
-            <thead>
-                <tr>
-                    <th scope="col" style="width:36px;"></th>
-                    <th scope="col">Text class</th>
-                    <th scope="col">Background class</th>
-                    <th scope="col" class="ta-center"><a class="s-link s-link__inherit" href="{{ "/product/guidelines/conditional-classes#hover" | url }}">Hover?</a></th>
-                    <th scope="col" class="ta-center"><a class="s-link s-link__inherit" href="{{ "/product/guidelines/conditional-classes#focus" | url }}">Focus?</a></th>
-                    <th scope="col" class="ta-center"><a class="s-link s-link__inherit" href="{{ "/product/guidelines/conditional-classes#dark-mode" | url }}">Dark?</a></th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr class="ff-mono">
-                    <th scope="row">
-                        <div class="stacks-swatch bar-sm bg-bronze"></div>
-                    </th>
-                    <td>.fc-bronze</td>
-                    <td>.bg-bronze</td>
-                    <td class="ta-center"></td>
-                    <td class="ta-center"></td>
-                    <td class="ta-center"></td>
-                </tr>
-                <tr class="ff-mono">
-                    <th scope="row">
-                        <div class="stacks-swatch bar-sm bg-bronze-darker"></div>
-                    </th>
-                    <td>.fc-bronze-darker</td>
-                    <td>.bg-bronze-darker</td>
-                    <td class="ta-center"></td>
-                    <td class="ta-center"></td>
-                    <td class="ta-center"></td>
-                </tr>
-                <tr class="ff-mono">
-                    <th scope="row">
-                        <div class="stacks-swatch bar-sm bg-bronze-lighter"></div>
-                    </th>
-                    <td>.fc-bronze-lighter</td>
-                    <td>.bg-bronze-lighter</td>
-                    <td class="ta-center"></td>
-                    <td class="ta-center"></td>
-                    <td class="ta-center"></td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
 </section>
+
 
 <section class="stacks-section">
     {% header "h2", "Theming" %}
@@ -690,6 +567,3 @@ description: To avoid specifying color values by hand, we’ve included a robust
         </table>
     </div>
 </section>
-
-<!-- Additional javascript -->
-<script src="{{ "/assets/dist/entry.colors.js" | url }}" defer></script>

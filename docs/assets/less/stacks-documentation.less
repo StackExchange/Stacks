@@ -450,6 +450,7 @@ body.theme-system {
 }
 
 .theme-custom {
+    // TODO switch to legacy vars
     --theme-base-primary-color-h: 172;
     --theme-base-primary-color-s: 37%;
     --theme-base-primary-color-l: 48%;
@@ -462,6 +463,14 @@ body.theme-system {
     --theme-base-secondary-color-r: 129;
     --theme-base-secondary-color-g: 108;
     --theme-base-secondary-color-b: 174;
+
+    // New colors and theming
+    &.themed {
+        .create-custom-theme-hsl-variables(hsl(172, 37%, 48%), primary, base);
+        .create-custom-theme-hsl-variables(hsl(259, 29%, 55%), secondary, base);
+        .create-custom-theme-hsl-variables(hsl(172, 34%, 60%), primary, dark);
+        .create-custom-theme-hsl-variables(hsl(259, 29%, 75%), secondary, dark);
+    }
 }
 
 .team-avatar {

@@ -1,16 +1,7 @@
 @import (reference) "./mixins.less";
 
-//
-//  STACK OVERFLOW
-//  CONSTANTS -- COLORS
-//
-//  This CSS comes from Stacks, our CSS & Pattern library for rapidly building
-//  Stack Overflow. For documentation of all these classes and how to contribute,
-//  visit https://stackoverflow.design/
-//
-//  ============================================================================
-//  $   Legacy Less color variables
-//  ----------------------------------------------------------------------------
+// LEGACY
+
 //  --  Base Hue Values
 @white-h: 0;
 @black-h: 210;
@@ -153,7 +144,6 @@
 //  ============================================================================
 //  $   CSS Variable Colors
 //  ----------------------------------------------------------------------------
-
 .generate-calculated-themed-variables(@primary, @designation: primary, @theme: base) {
     // Split into h/s/l/a values
     --theme-@{theme}-@{designation}-color-h: hue(@primary);
@@ -188,92 +178,6 @@
     --theme-secondary-color-r: var(~"--@{theme}-secondary-color-r", var(--theme-base-secondary-color-r));
     --theme-secondary-color-g: var(~"--@{theme}-secondary-color-g", var(--theme-base-secondary-color-g));
     --theme-secondary-color-b: var(~"--@{theme}-secondary-color-b", var(--theme-base-secondary-color-b));
-}
-
-.component-colors {
-    --theme-body-font-color: var(--black-800);
-    --theme-background-color: var(--white);
-    // Links
-    --theme-link-color: var(--theme-secondary-400);
-    --theme-link-color-hover: var(--theme-secondary-350);
-    --theme-link-color-visited: var(--theme-secondary-700);
-
-    // Button Default (Secondary)
-    --theme-button-color: var(--theme-secondary-400);
-    --theme-button-background-color: transparent;
-    --theme-button-hover-color: var(--theme-secondary-500);
-    --theme-button-hover-background-color: var(--theme-secondary-050);
-    --theme-button-active-background-color: var(--theme-secondary-100);
-    --theme-button-selected-color: var(--theme-secondary-900);
-    --theme-button-selected-background-color: var(--theme-secondary-150);
-
-    //  Button Primary
-    --theme-button-primary-color: var(--white);
-    --theme-button-primary-background-color: var(--theme-secondary-400);
-    --theme-button-primary-hover-color: var(--white);
-    --theme-button-primary-hover-background-color: var(--theme-secondary-500);
-    --theme-button-primary-active-background-color: var(--theme-secondary-700);
-    --theme-button-primary-selected-color: var(--white);
-    --theme-button-primary-selected-background-color: var(--theme-secondary-700);
-    --theme-button-primary-number-color: var(--theme-secondary-900);
-
-    // Button Filled
-    --theme-button-filled-color: var(--theme-secondary-700);
-    --theme-button-filled-background-color: var(--theme-secondary-050);
-    --theme-button-filled-border-color: var(--theme-secondary-350);
-    --theme-button-filled-hover-color: var(--theme-secondary-800);
-    --theme-button-filled-hover-background-color: var(--theme-secondary-100);
-    --theme-button-filled-active-background-color: var(--theme-secondary-150);
-    --theme-button-filled-active-border-color: var(--theme-secondary-350);
-    --theme-button-filled-selected-color: var(--theme-secondary-900);
-    --theme-button-filled-selected-background-color: var(--theme-secondary-300);
-    --theme-button-filled-selected-border-color: var(--theme-secondary-500);
-
-    // Button Outline
-    --theme-button-outlined-border-color: var(--theme-secondary-300);
-    --theme-button-outlined-selected-border-color: var(--theme-secondary-400);
-
-    // Tags
-    --theme-tag-color: var(--theme-secondary-800);
-    --theme-tag-background-color: var(--theme-secondary-075);
-    --theme-tag-border-color: transparent;
-    --theme-tag-hover-color: var(--theme-secondary-900);
-    --theme-tag-hover-background-color: var(--theme-secondary-100);
-    --theme-tag-hover-border-color: transparent;
-
-    // Topbar
-    --theme-topbar-height: calc(var(--su-static48) + var(--su-static8)); // 56px
-    --theme-topbar-background-color: var(--white);
-
-    // Topbar Search input
-    --theme-topbar-search-color: var(--black-700);
-    --theme-topbar-search-background: var(--white);
-    --theme-topbar-search-placeholder: var(--black-400);
-    --theme-topbar-search-border: var(--black-200);
-    --theme-topbar-search-border-focus: var(--blue-300);
-    --theme-topbar-search-shadow-focus: 0 0 0 var(--su-static4) var(--focus-ring);
-
-    // Topbar Search switcher
-    --theme-topbar-select-color: var(--black-700);
-    --theme-topbar-select-background: var(--black-075);
-
-    // Topbar items
-    --theme-topbar-item-color: var(--black-600);
-    --theme-topbar-item-color-hover: var(--black-800);
-    --theme-topbar-item-background-hover: var(--black-075);
-    --theme-topbar-item-color-current: var(--black);
-    --theme-topbar-item-border-current: var(--theme-primary-color);
-
-    // Topbar themed border accent
-    --theme-topbar-accent-border: 3px solid var(--theme-primary-color);
-    --theme-topbar-bottom-border: 1px solid var(--black-100);
-
-    // Post summary
-    --theme-post-title-color: var(--theme-link-color);
-    --theme-post-title-color-hover: var(--theme-link-color-hover);
-    --theme-post-title-color-visited: var(--theme-link-color-visited);
-    --theme-post-title-font-family: var(--theme-body-font-family);
-    --theme-post-body-font-family: var(--theme-body-font-family);
 }
 
 //  --  Light mode
@@ -682,7 +586,6 @@
         .generate-themed-variables(theme-dark);
         // add in the themed "native mixins", making sure to scope to the child .themed elements so they don't use the parent's values
         .dark-themed-colors();
-        &:extend(.component-colors);
     }
 }
 
@@ -1052,8 +955,6 @@
     .generate-calculated-themed-variables(@defaultSecondaryColor, secondary);
 }
 
-// place component-colors on the body directly (instead of :root) so consumers can use the --theme-* variables
-
 // Light mode
 body:not(.theme-dark),
 body.theme-dark .theme-light__forced,
@@ -1066,7 +967,6 @@ body.theme-system .theme-light__forced {
         .generate-themed-variables(theme-light);
         // add in the themed "native mixins", making sure to scope to the child .themed elements so they don't use the parent's values
         .light-themed-colors();
-        &:extend(.component-colors);
     }
 }
 

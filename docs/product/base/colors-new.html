@@ -1,0 +1,183 @@
+---
+layout: page
+title: Colors
+figma: https://www.figma.com/file/cCU6A56sHwZluraDoyg5o7/Colors%3A-Accessible-Color-Palette?type=design&node-id=1303-30963&mode=design&t=x8ZAgttWTSCnEvjL-0
+description: To avoid specifying color values by hand, we’ve included a robust set of color variables. For maintainability, please use these instead of hardcoding color values.
+---
+
+{% assign nameSuffix = "-new" %}
+<section class="stacks-section">
+    {% header "h2", "Stops" %}
+
+    {% for group in colors %}
+        {% if group.name == "new" %}
+            <div class="d-grid g24 mt16 mb32" style="grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));">
+                {% for set in group.sets %}
+                    {% assign setName = set.name | append: nameSuffix %}
+                    {% assign setClasses = "" %}
+                    {% if set.name != "transparent" and set.name != "inherit" %}
+                        <div>
+                            <h3>{{ set.name | capitalize }}</h3>
+                            <div class="bar-md overflow-hidden bs-md ba baw2 bc-white">
+                                {% for stop in set.stops %}
+                                    {% assign name = setName | replace: " ", "-" %}
+
+                                    {% if stop != "" %}
+                                        {% assign name = setName | append: "-" | append: stop | replace: " ", "-" %}
+                                    {% endif %}
+
+                                    {% assign stopFc = "fc-black" %}
+                                    {% if set.invert contains stop %}
+                                        {% assign stopFc = "fc-white" %}
+                                    {% endif %}
+                                    <div class="p12 bg-{{ name }} {{ stopFc }}">
+                                        {{ name }}
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% endfor %}
+</section>
+
+<section class="stacks-section">
+    {% header "h2", "Classes" %}
+
+    <p class="stacks-copy">
+        Each color stop is available as an atomic text, background, and border class. Using these atomic classes means your view will respond to dark mode appropriately. These colors are available <a href="{{ "/product/guidelines/conditional-classes#hover" | url }}">conditionally</a>.
+    </p>
+
+    {% for group in colors %}
+        {% if group.name == "new" %}
+            {% for set in group.sets %}
+                {% assign setHeading = set.name | capitalize %}
+                {% header "h3", setHeading %}
+                {% assign conditionalUrl = "/product/guidelines/conditional-classes" %}
+                {% assign nameSuffix = "-new" %}
+                {% assign name = set.name | append: nameSuffix | replace: " ", "-" %}
+
+                <div class="overflow-x-auto mb48" tabindex="0">
+                    <table class="wmn5 s-table s-table__bx-simple s-table__condensed va-middle fs-caption">
+                        <thead>
+                            <tr>
+                                <th scope="col">Text</th>
+                                <th scope="col">Background</th>
+                                <th scope="col">Border</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for stop in set.stops %}
+                                {% assign colorName = set.name | append: nameSuffix | replace: " ", "-" %}
+                                {% if stop != "" %}
+                                    {% assign name = colorName | append: "-" | append: stop %}
+                                {% endif %}
+
+                                {% assign stopFcBg = "bg-" | append: colorName | append: "-500" %}
+                                {% if set.invertAlt %}
+                                    {% assign stopFcBg = "bg-" | append: set.invertAlt %}
+                                {% endif %}
+                                {% assign stopBcFc = "fc-white" %}
+                                {% assign stopBgFc = "fc-black" %}
+
+                                {% if set.invert contains stop %}
+                                    {% assign stopBcFc = "fc-black" %}
+                                    {% assign stopFcBg = "bg-white" %}
+                                    {% assign stopBgFc = "fc-white" %}
+                                {% endif %}
+
+                                <tr class="ff-mono">
+                                    <td class="fc-{{name}}">
+                                        <div class="fc-{{name}} bar-sm d-inline-block p6 ws-nowrap {{ stopFcBg }}">.fc-{{name}}</div>
+                                    </td>
+                                    <td class="p8">
+                                        <div class="bc-inherit bg-{{name}} bar-sm d-inline-block fc-white p6 ws-nowrap {{ stopBgFc }}">.bg-{{name}}</div>
+                                    </td>
+                                    <td class="p8">
+                                        <div class="bar-sm d-inline-block p6 {{ stopFcBg }} {{ stopBcFc }}">
+                                            <div class="bc-{{name}} ba d-inline-block p6">.bc-{{name}}</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% endfor %}
+</section>
+
+<!-- TODO find a good place for this info -->
+<section class="stacks-section">
+    {% header "h2", "Theming" %}
+    <p class="stacks-copy">
+        Stacks’s approach to theming is powered by CSS variables that are split into their HSL. Our default primary color is based on Stack Overflow’s branded <code class="stacks-code">orange-400</code> represented as <code class="stacks-code">hsl(27, 90%, 55%)</code>. We can store these as separate values, apply various color operations, and then recombine them into on-demand color palettes to use for theming.
+    </p>
+</section>
+
+<section class="stacks-section">
+    {% header "h2", "Aliases" %}
+    {% header "h3", "Body text" %}
+    <div class="stacks-preview">
+{% highlight html %}
+<p class="fc-new-light">…</p>
+<p class="fc-new-medium">…</p>
+<p>…</p>
+<p class="fc-new-dark">…</p>
+{% endhighlight %}
+    </div>
+    {% assign fcAliases = "light,medium,dark" | split: "," %}
+    <div class="overflow-x-auto mb48" tabindex="0">
+        <table class="wmn5 s-table s-table__bx-simple s-table__condensed va-middle fs-caption">
+            <thead>
+                <tr>
+                    <th scope="col" class="s-table--cell3">Text classes</th>
+                    <th scope="col" class="s-table--cell3">Example</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for alias in fcAliases %}
+                    <tr class="ff-mono">
+                        <td class="ws-nowrap">.fc-{{alias}}</td>
+                        <td class="p8 fc-{{alias}}">
+                            <p>This is example {{alias}} text.</p>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    {% assign stateAliases = "danger,error,warning,success" | split: "," %}
+
+    {% assign dHeading = "Danger and error" %}
+    {% for alias in stateAliases %}
+        {% assign aliasHeading = alias | capitalize %}
+        {% header "h3", aliasHeading %}
+        <div class="overflow-x-auto mb48" tabindex="0">
+            <table class="wmn5 s-table s-table__bx-simple s-table__condensed va-middle fs-caption">
+                <thead>
+                    <tr>
+                        <th scope="col" class="s-table--cell3">Text classes</th>
+                        <th scope="col" class="s-table--cell3">Background classes</th>
+                        <th scope="col">Border Classes</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="ff-mono">
+                        <td class="fc-new-{{alias}}">.fc-new-{{alias}}</td>
+                        <td class="p8">
+                            <div class="bg-new-{{alias}} bar-sm d-inline-block fc-white p8 ws-nowrap">.bg-new-{{alias}}</div>
+                        </td>
+                        <td class="p8">
+                            <div class="bc-new-{{alias}} ba bar-sm d-inline-block p8">.bc-new-{{alias}}</div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    {% endfor %}
+</section>

@@ -63,7 +63,7 @@ export default {
         },
         {
             name: "unit",
-            files: "lib/components/**/!(*.visual|*.a11y).test.ts",
+            files: "lib/components/**/!(*.visual|*.a11y|*.less).test.ts",
         },
         {
             name: "visual",

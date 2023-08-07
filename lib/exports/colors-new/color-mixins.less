@@ -1,0 +1,242 @@
+@import (reference) "../mixins.less";
+@import (reference) "./color-sets.less";
+@import (reference) "./theme.less";
+
+// TODO file-wide: remove "new" suffix when old colors are labelled "legacy"
+
+// Type definitions
+//
+// @mode: default | light | dark | light-highcontrast | dark-highcontrast;
+// @modeCustom: base | dark; // legacy we're supporting for theming in Core
+// @modeSimple: light | dark; // TODO consider different name?
+// @set: { [key: stop]: color }[];
+// @sets: set[] | { [key: string]: set }[];
+// @stop: default | 050 | 100 | 150 | 200 | 225 | 300 | 350 | 400 | 500 | 600;
+// @tier: primary | secondary;
+// @type: classes | variables;
+
+/**
+ * Primary function to generate colors variables for a given mode.
+ *
+ * Usage example:
+ * .generate-colors(dark);
+ *
+ * @mode - Determines what to generate and which mode set to use.
+ */
+.generate-colors(@mode: light) {
+    @set: .sets-mode()[$@mode];
+    @setUtility: .sets-utility-mode()[$@mode];
+    @modeCustom: if(@mode = dark, dark, base);
+
+    & when (@mode = light), (@mode = dark) {
+        &,
+        &.themed,
+        & .themed {
+            .create-colors(@set);
+            .create-colors(@setUtility);
+            .create-theme-variables(@mode);
+            .create-custom-theme-variables(primary, @modeCustom);
+            .create-custom-theme-variables(secondary, @modeCustom);
+
+            color: var(--theme-body-font-color-new, var(--black-new-600));
+        }
+    }
+
+    & when (@mode = light-highcontrast), (@mode = dark-highcontrast) {
+        .create-colors(@set);
+        .create-colors(@setUtility);
+        --_o-disabled: 0.8;
+    }
+}
+
+/**
+ * Creates color variables or atomic classes based on the given sets of colors.
+ *
+ * Usage example:
+ * .create-colors(.sets-mode()[dark], classes);
+ *
+ * @sets - (required) A collection of name/set pairs.
+ * @type - The type of output.
+ */
+.create-colors(@sets, @type: variables) {
+    each(@sets, .(@set, @setName, @iSet) {
+        each(@set, .(@value, @stop, @iColorValue) {
+            @suffix: if((@stop = default), "-new", ~"-new-@{stop}");
+            @name: ~"@{setName}@{suffix}";
+            @variable: ~"--@{name}";
+
+            // Create custom property assignment
+            & when (@type = variables) {
+                @{variable}: @value;
+            }
+
+            // Create bg atomic class assignments
+            & when (@type = classes) {
+                @customValue: ~"var(@{variable}) !important";
+                .create-color-classes(@name, @customValue);
+            }
+        });
+  });
+}
+
+/**
+ * Creates atomic color classes for background and text color with the given color name and property value.
+ *
+ * Usage example:
+ * .create-color-classes(red-500, var(--red-500));
+ *
+ * @name - (required) Used as a suffix to each class.
+ * @value - (required) The value assigned to the generated class' property.
+ */
+.create-color-classes(@name, @value) {
+    // Create bg atomic class assignments
+    .bc-@{name},
+    .h\:bc-@{name}:hover,
+    .f\:bc-@{name}:focus,
+    .f\:bc-@{name}:focus-within {
+        border-color: @value;
+    }
+
+    // Create bg atomic class assignments
+    .bg-@{name},
+    .h\:bg-@{name}:hover,
+    .f\:bg-@{name}:focus,
+    .f\:bg-@{name}:focus-within {
+        background-color: @value;
+    }
+
+    // Create fc atomic class assignments
+    .fc-@{name},
+    .h\:fc-@{name}:hover,
+    .f\:fc-@{name}:focus,
+    .f\:fc-@{name}:focus-within {
+        color: @value;
+    }
+
+    // Create dark mode atomic class assignments
+    .dark-mode({
+        .d\:bg-@{name} {
+            background-color: @value;
+        }
+        .d\:fc-@{name} {
+            color: @value;
+        }
+    });
+}
+
+/**
+ * Creates aliased color classes or variables.
+ *
+ * Usage example:
+ * .create-aliased-utility-colors(classes)
+ *
+ * @type - The type of output.
+ */
+.create-aliased-utility-colors(@type: variables) {
+    each(.sets-aliased-utility-classes(), .(@set, @setName, @iSet) {
+        each(@set, .(@value, @stop, @iColorValue) {
+            @suffix: if((@stop = default), "new", ~"new-@{stop}");
+            @property: if(@setName = fc, color, background-color);
+            @name: ~"@{setName}-@{suffix}";
+            @customVariable: ~"--@{name}";
+            @customValue: ~"var(@{customVariable}) !important";
+
+            & when (@type = variables) {
+                @{customVariable}: @value;
+            }
+
+            & when (@type = classes) {
+                .@{name} {
+                    @{property}: @customValue;
+                }
+            }
+        });
+    });
+}
+
+// THEMING -- PUBLIC API
+/**
+ * Creates theme h/s/l and r/g/b variables based on the given color for a specified theme.
+ * Replaces .generate-calculated-themed-variables() (referenced in Core)
+ * Maintains API parity with legacy .generate-calculated-themed-variables()
+ *
+ * Usage example:
+ * .create-custom-theme-hsl-variables("#ff1100", secondary, dark);
+ *
+ * @color - (required) The color to be used to generate h/s/g and /r/g/b values.
+ * @tier - The tier name to be used to generate the variable name.
+ * @modeCustom - A custom label to be used to generate the variable name.
+ */
+.create-custom-theme-hsl-variables(@color, @tier: primary, @modeCustom: base) {
+    @varBase: ~"--theme-@{modeCustom}-@{tier}-color-new";
+
+    @{varBase}-h: hue(@color);
+    @{varBase}-s: saturation(@color);
+    @{varBase}-l: lightness(@color);
+
+    .create-custom-theme-variables(@tier, @modeCustom);
+}
+
+// THEMING -- PSEUDO-PRIVATE API
+/**
+ * Defines custom theme varaibles from assembled h/s/l variables
+ *
+ * Usage example:
+ * .create-custom-theme-variables(base);
+ *
+ * @tier - The tier name to be used to generate the variable name.
+ * @modeCustom - A custom label to be used to generate the variable name.
+ */
+.create-custom-theme-variables(@tier: primary, @modeCustom: base) {
+    @valueVar: ~"theme-@{modeCustom}-@{tier}-color-new";
+
+    // TODO verify color stops with design
+    & when (@modeCustom = base) {
+        @varBase: ~"--theme-@{tier}-new-custom";
+
+        @{varBase}-100: .native-lightness(@valueVar, 50, 70, 95)[];
+        @{varBase}-200: .native-lightness(@valueVar, 35, 55, 90)[];
+        @{varBase}-300: .native-lightness(@valueVar, 15, 35, 75)[];
+        @{varBase}-400: .native-lightness(@valueVar, 0, 20, 60)[];
+        @{varBase}-500: .native-lightness(@valueVar, -14, 13, 50)[];
+        @{varBase}-600: .native-lightness(@valueVar, -26, 5, 40)[];
+        @{varBase}: ~"var(@{varBase}-400)";
+    }
+
+    & when (@modeCustom = dark) {
+        @varBaseDark: ~"--theme-@{modeCustom}-@{tier}-new-custom";
+
+        @{varBaseDark}-100: .native-saturation-lightness(@valueVar, -12, -60, 15, 30)[];
+        @{varBaseDark}-200: .native-saturation-lightness(@valueVar, -10, -45, 25, 45)[];
+        @{varBaseDark}-300: .native-saturation-lightness(@valueVar, -7, -33, 35, 70)[];
+        @{varBaseDark}-400: .native-lightness(@valueVar, 0, 55, 85)[];
+        @{varBaseDark}-500: .native-lightness(@valueVar, 10, 70, 90)[];
+        @{varBaseDark}-600: .native-lightness(@valueVar, 20, 85, 95)[];
+        @{varBaseDark}: ~"var(@{varBaseDark}-400)";
+    }
+}
+
+/**
+ * Generates theme variables with values mapped to custom hsl values
+ *
+ * Usage example:
+ * .create-theme-variables();
+ *
+ * @mode - determines which variable naming convention to use.
+ */
+.create-theme-variables(@mode: light) {
+    @tiers: primary, secondary;
+
+    each(@tiers, .(@tier, @k, @i) {
+        @stops: 100, 200, 300, 400, 500, 600;
+        @fallbackColor: if(@tier = primary, orange-new, blue-new);
+        @baseThemeVar: ~"--theme-@{tier}-new";
+        @customThemeVar: if(@mode = light, ~"@{baseThemeVar}-custom", ~"--theme-dark-@{tier}-new-custom");
+
+        @{baseThemeVar}: ~"var(@{customThemeVar}, var(--@{fallbackColor}-400))";
+
+        each(@stops, .(@stop, @kStop, @iStop) {
+            @{baseThemeVar}-@{stop}: ~"var(@{customThemeVar}-@{stop}, var(--@{fallbackColor}-@{stop}))";
+        });
+    });
+}

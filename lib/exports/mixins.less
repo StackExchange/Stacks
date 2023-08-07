@@ -138,6 +138,18 @@
                  calc(var(~"--@{color-prefix}-l") + @amountPercentage));
 }
 
+
+.native-lightness(@color-prefix, @lMod: 0, @min: 0, @max: 100) {
+    .native-saturation-lightness(@color-prefix, 0, @lMod, @min, @max);
+}
+
+// Increase the lightness of a color in the HSL color space by an absolute amount and include custom clamp values.
+.native-saturation-lightness(@color-prefix, @sMod: 0, @lMod: 0, @min: 0, @max: 100) {
+    @result: hsl(var(~"--@{color-prefix}-h"),
+                 calc(var(~"--@{color-prefix}-s") + @sMod * 1%),
+                 clamp(@min * 1%, calc(var(~"--@{color-prefix}-l") + @lMod * 1%), @max * 1%));
+}
+
 // Decrease the lightness and saturation of a color in the HSL color space by absolute amounts.
 .native-darken-desaturate(@color-prefix, @darken-amount, @desaturate-amount) {
     @darkenAmountPercentage: .load-color-variables(@darken-amount)[@amountPercentage];

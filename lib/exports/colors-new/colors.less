@@ -1,0 +1,44 @@
+@import (reference) "./color-mixins.less";
+
+body {
+    --_o-disabled: 0.5;
+    --_o-disabled-static: 0.5;
+    .create-aliased-utility-colors(variables);
+    .theme-variables();
+}
+
+// Light mode
+body:not(.theme-dark),
+body.theme-dark .theme-light__forced,
+body.theme-system .theme-light__forced {
+    .generate-colors(light);
+}
+
+// Dark mode
+body.theme-dark,
+body:not(.theme-dark) .theme-dark__forced {
+    .generate-colors(dark);
+}
+body.theme-system {
+    @media (prefers-color-scheme: dark) {
+        .generate-colors(dark);
+    }
+}
+
+// High contrast mode (light)
+body.theme-highcontrast:not(.theme-dark),
+body.theme-dark.theme-highcontrast .theme-light__forced,
+body.theme-system.theme-highcontrast .theme-light__forced {
+    .generate-colors(light-highcontrast);
+}
+
+// High contrast mode (dark)
+body.theme-dark.theme-highcontrast,
+body.theme-highcontrast:not(.theme-dark) .theme-dark__forced {
+    .generate-colors(dark-highcontrast);
+}
+body.theme-system.theme-highcontrast {
+    @media (prefers-color-scheme: dark) {
+        .generate-colors(dark-highcontrast);
+    }
+}

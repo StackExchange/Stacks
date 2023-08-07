@@ -109,6 +109,21 @@ npm run test:visual:update
 
 Failing tests (including diffs) can be found under `screenshots/[browser]/failed/` folders.
 
+### Less Tests
+
+This is an experimental suite to test the generation of CSS from Less files. 
+Less tests end with this suffix `*.less.test.ts`.
+
+Execute the less tests suite by running:
+```sh
+npm run test:less
+```
+
+Update the css snapshots via:
+```sh
+npm run test:less:update
+```
+
 ## Releasing a new version of Stacks
 Stacks uses [Semantic Versioning](https://semver.org/), is distributed via [npm](https://www.npmjs.com/package/@stackoverflow/stacks), and publishes [release notes on Github](https://github.com/StackExchange/Stacks/releases). Follow the steps below to release a new version of Stacks.
 
