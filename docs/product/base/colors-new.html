@@ -28,7 +28,7 @@ description: To avoid specifying color values by hand, we’ve included a robust
 
                                     {% assign stopFc = "fc-black" %}
                                     {% if set.invert contains stop %}
-                                        {% assign stopFc = "fc-white" %}
+                                        {% assign stopFc = "fc-white-new" %}
                                     {% endif %}
                                     <div class="p12 bg-{{ name }} {{ stopFc }}">
                                         {{ name }}
@@ -79,13 +79,13 @@ description: To avoid specifying color values by hand, we’ve included a robust
                                 {% if set.invertAlt %}
                                     {% assign stopFcBg = "bg-" | append: set.invertAlt %}
                                 {% endif %}
-                                {% assign stopBcFc = "fc-white" %}
-                                {% assign stopBgFc = "fc-black" %}
+                                {% assign stopBcFc = "fc-white-new" %}
+                                {% assign stopBgFc = "fc-black-new" %}
 
                                 {% if set.invert contains stop %}
-                                    {% assign stopBcFc = "fc-black" %}
-                                    {% assign stopFcBg = "bg-white" %}
-                                    {% assign stopBgFc = "fc-white" %}
+                                    {% assign stopBcFc = "fc-black-new" %}
+                                    {% assign stopFcBg = "bg-white-new" %}
+                                    {% assign stopBgFc = "fc-white-new" %}
                                 {% endif %}
 
                                 <tr class="ff-mono">
@@ -93,7 +93,7 @@ description: To avoid specifying color values by hand, we’ve included a robust
                                         <div class="fc-{{name}} bar-sm d-inline-block p6 ws-nowrap {{ stopFcBg }}">.fc-{{name}}</div>
                                     </td>
                                     <td class="p8">
-                                        <div class="bc-inherit bg-{{name}} bar-sm d-inline-block fc-white p6 ws-nowrap {{ stopBgFc }}">.bg-{{name}}</div>
+                                        <div class="bc-inherit bg-{{name}} bar-sm d-inline-block fc-white-new p6 ws-nowrap {{ stopBgFc }}">.bg-{{name}}</div>
                                     </td>
                                     <td class="p8">
                                         <div class="bar-sm d-inline-block p6 {{ stopFcBg }} {{ stopBcFc }}">
@@ -114,7 +114,7 @@ description: To avoid specifying color values by hand, we’ve included a robust
 <section class="stacks-section">
     {% header "h2", "Theming" %}
     <p class="stacks-copy">
-        Stacks’s approach to theming is powered by CSS variables that are split into their HSL. Our default primary color is based on Stack Overflow’s branded <code class="stacks-code">orange-legacy-400</code> represented as <code class="stacks-code">hsl(27, 90%, 55%)</code>. We can store these as separate values, apply various color operations, and then recombine them into on-demand color palettes to use for theming.
+        Stacks’s approach to theming is powered by CSS variables that are split into their HSL. Our default primary color is based on Stack Overflow’s branded <code class="stacks-code">orange-new-400</code> represented as <code class="stacks-code">hsl(27, 90%, 55%)</code>. We can store these as separate values, apply various color operations, and then recombine them into on-demand color palettes to use for theming.
     </p>
 </section>
 
@@ -170,7 +170,7 @@ description: To avoid specifying color values by hand, we’ve included a robust
                     <tr class="ff-mono">
                         <td class="fc-new-{{alias}}">.fc-new-{{alias}}</td>
                         <td class="p8">
-                            <div class="bg-new-{{alias}} bar-sm d-inline-block fc-white p8 ws-nowrap">.bg-new-{{alias}}</div>
+                            <div class="bg-new-{{alias}} bar-sm d-inline-block fc-white-new p8 ws-nowrap">.bg-new-{{alias}}</div>
                         </td>
                         <td class="p8">
                             <div class="bc-new-{{alias}} ba bar-sm d-inline-block p8">.bc-new-{{alias}}</div>
