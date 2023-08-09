@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { renderLess } from "../../test/less-test-utils";
+import { renderLess } from "../test/less-test-utils";
 
 describe("color-mixins", () => {
     describe("colors", () => {
