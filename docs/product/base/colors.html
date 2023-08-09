@@ -5,7 +5,6 @@ figma: https://www.figma.com/file/cCU6A56sHwZluraDoyg5o7/Colors%3A-Accessible-Co
 description: To avoid specifying color values by hand, we’ve included a robust set of color variables. For maintainability, please use these instead of hardcoding color values.
 ---
 
-{% assign nameSuffix = "-new" %}
 <section class="stacks-section">
     {% header "h2", "Stops" %}
 
@@ -13,22 +12,21 @@ description: To avoid specifying color values by hand, we’ve included a robust
         {% if group.name == "v2" %}
             <div class="d-grid g24 mt16 mb32" style="grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));">
                 {% for set in group.sets %}
-                    {% assign setName = set.name | append: nameSuffix %}
                     {% assign setClasses = "" %}
                     {% if set.name != "transparent" and set.name != "inherit" %}
                         <div>
                             <h3>{{ set.name | capitalize }}</h3>
-                            <div class="bar-md overflow-hidden bs-md ba baw2 bc-white-new">
+                            <div class="bar-md overflow-hidden bs-md ba baw2 bc-white">
                                 {% for stop in set.stops %}
-                                    {% assign name = setName | replace: " ", "-" %}
+                                    {% assign name = set.name | replace: " ", "-" %}
 
                                     {% if stop != "" %}
-                                        {% assign name = setName | append: "-" | append: stop | replace: " ", "-" %}
+                                        {% assign name = set.name | append: "-" | append: stop | replace: " ", "-" %}
                                     {% endif %}
 
-                                    {% assign stopFc = "fc-black-new" %}
+                                    {% assign stopFc = "fc-black" %}
                                     {% if set.invert contains stop %}
-                                        {% assign stopFc = "fc-white-new" %}
+                                        {% assign stopFc = "fc-white" %}
                                     {% endif %}
                                     <div class="p12 bg-{{ name }} {{ stopFc }}">
                                         {{ name }}
@@ -56,8 +54,7 @@ description: To avoid specifying color values by hand, we’ve included a robust
                 {% assign setHeading = set.name | capitalize %}
                 {% header "h3", setHeading %}
                 {% assign conditionalUrl = "/product/guidelines/conditional-classes" %}
-                {% assign nameSuffix = "-new" %}
-                {% assign name = set.name | append: nameSuffix | replace: " ", "-" %}
+                {% assign name = set.name | replace: " ", "-" %}
 
                 <div class="overflow-x-auto mb48" tabindex="0">
                     <table class="wmn5 s-table s-table__bx-simple s-table__condensed va-middle fs-caption">
@@ -70,7 +67,7 @@ description: To avoid specifying color values by hand, we’ve included a robust
                         </thead>
                         <tbody>
                             {% for stop in set.stops %}
-                                {% assign colorName = set.name | append: nameSuffix | replace: " ", "-" %}
+                                {% assign colorName = set.name | replace: " ", "-" %}
                                 {% if stop != "" %}
                                     {% assign name = colorName | append: "-" | append: stop %}
                                 {% endif %}
@@ -79,13 +76,13 @@ description: To avoid specifying color values by hand, we’ve included a robust
                                 {% if set.invertAlt %}
                                     {% assign stopFcBg = "bg-" | append: set.invertAlt %}
                                 {% endif %}
-                                {% assign stopBcFc = "fc-white-new" %}
-                                {% assign stopBgFc = "fc-black-new" %}
+                                {% assign stopBcFc = "fc-white" %}
+                                {% assign stopBgFc = "fc-black" %}
 
                                 {% if set.invert contains stop %}
-                                    {% assign stopBcFc = "fc-black-new" %}
-                                    {% assign stopFcBg = "bg-white-new" %}
-                                    {% assign stopBgFc = "fc-white-new" %}
+                                    {% assign stopBcFc = "fc-black" %}
+                                    {% assign stopFcBg = "bg-white" %}
+                                    {% assign stopBgFc = "fc-white" %}
                                 {% endif %}
 
                                 <tr class="ff-mono">
@@ -93,7 +90,7 @@ description: To avoid specifying color values by hand, we’ve included a robust
                                         <div class="fc-{{name}} bar-sm d-inline-block p6 ws-nowrap {{ stopFcBg }}">.fc-{{name}}</div>
                                     </td>
                                     <td class="p8">
-                                        <div class="bc-inherit bg-{{name}} bar-sm d-inline-block fc-white-new p6 ws-nowrap {{ stopBgFc }}">.bg-{{name}}</div>
+                                        <div class="bc-inherit bg-{{name}} bar-sm d-inline-block fc-white p6 ws-nowrap {{ stopBgFc }}">.bg-{{name}}</div>
                                     </td>
                                     <td class="p8">
                                         <div class="bar-sm d-inline-block p6 {{ stopFcBg }} {{ stopBcFc }}">
@@ -114,7 +111,7 @@ description: To avoid specifying color values by hand, we’ve included a robust
 <section class="stacks-section">
     {% header "h2", "Theming" %}
     <p class="stacks-copy">
-        Stacks’s approach to theming is powered by CSS variables that are split into their HSL. Our default primary color is based on Stack Overflow’s branded <code class="stacks-code">orange-new-400</code> represented as <code class="stacks-code">hsl(27, 90%, 55%)</code>. We can store these as separate values, apply various color operations, and then recombine them into on-demand color palettes to use for theming.
+        Stacks’s approach to theming is powered by CSS variables that are split into their HSL. Our default primary color is based on Stack Overflow’s branded <code class="stacks-code">orange-400</code> represented as <code class="stacks-code">hsl(27, 90%, 55%)</code>. We can store these as separate values, apply various color operations, and then recombine them into on-demand color palettes to use for theming.
     </p>
 </section>
 
@@ -123,10 +120,10 @@ description: To avoid specifying color values by hand, we’ve included a robust
     {% header "h3", "Body text" %}
     <div class="stacks-preview">
 {% highlight html %}
-<p class="fc-new-light">…</p>
-<p class="fc-new-medium">…</p>
+<p class="fc-light">…</p>
+<p class="fc-medium">…</p>
 <p>…</p>
-<p class="fc-new-dark">…</p>
+<p class="fc-dark">…</p>
 {% endhighlight %}
     </div>
     {% assign fcAliases = "light,medium,dark" | split: "," %}
@@ -168,12 +165,12 @@ description: To avoid specifying color values by hand, we’ve included a robust
                 </thead>
                 <tbody>
                     <tr class="ff-mono">
-                        <td class="fc-new-{{alias}}">.fc-new-{{alias}}</td>
+                        <td class="fc-{{alias}}">.fc-{{alias}}</td>
                         <td class="p8">
-                            <div class="bg-new-{{alias}} bar-sm d-inline-block fc-white-new p8 ws-nowrap">.bg-new-{{alias}}</div>
+                            <div class="bg-{{alias}} bar-sm d-inline-block fc-white p8 ws-nowrap">.bg-{{alias}}</div>
                         </td>
                         <td class="p8">
-                            <div class="bc-new-{{alias}} ba bar-sm d-inline-block p8">.bc-new-{{alias}}</div>
+                            <div class="bc-{{alias}} ba bar-sm d-inline-block p8">.bc-{{alias}}</div>
                         </td>
                     </tr>
                 </tbody>

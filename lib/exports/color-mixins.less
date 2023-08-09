@@ -38,7 +38,7 @@
             .create-custom-theme-variables(primary, @modeCustom);
             .create-custom-theme-variables(secondary, @modeCustom);
 
-            color: var(--theme-body-font-color-new, var(--black-new-600));
+            color: var(--theme-body-font-color, var(--black-600));
         }
     }
 
@@ -61,7 +61,7 @@
 .create-colors(@sets, @type: variables) {
     each(@sets, .(@set, @setName, @iSet) {
         each(@set, .(@value, @stop, @iColorValue) {
-            @suffix: if((@stop = default), "-new", ~"-new-@{stop}");
+            @suffix: if((@stop = default), "", ~"-@{stop}");
             @name: ~"@{setName}@{suffix}";
             @variable: ~"--@{name}";
 
@@ -83,7 +83,7 @@
  * Creates atomic color classes for background and text color with the given color name and property value.
  *
  * Usage example:
- * .create-color-classes(red-new-500, var(--red-new-500));
+ * .create-color-classes(red-500, var(--red-500));
  *
  * @name - (required) Used as a suffix to each class.
  * @value - (required) The value assigned to the generated class' property.
@@ -135,7 +135,7 @@
 .create-aliased-utility-colors(@type: variables) {
     each(.sets-aliased-utility-classes(), .(@set, @setName, @iSet) {
         each(@set, .(@value, @stop, @iColorValue) {
-            @suffix: if((@stop = default), "new", ~"new-@{stop}");
+            @suffix: if((@stop = default), "", ~"@{stop}");
             @property: if(@setName = fc, color, background-color);
             @name: ~"@{setName}-@{suffix}";
             @customVariable: ~"--@{name}";
@@ -147,7 +147,15 @@
 
             & when (@type = classes) {
                 .@{name} {
-                    @{property}: @customValue;
+                    & when (@setName = bg) {
+                        background-color: @customValue;
+                    }
+                    & when (@setName = bc) {
+                        border-color: @customValue;
+                    }
+                    & when (@setName = fc) {
+                        color: @customValue;
+                    }
                 }
             }
         });
@@ -168,7 +176,7 @@
  * @modeCustom - A custom label to be used to generate the variable name.
  */
 .create-custom-theme-hsl-variables(@color, @tier: primary, @modeCustom: base) {
-    @varBase: ~"--theme-@{modeCustom}-@{tier}-color-new";
+    @varBase: ~"--theme-@{modeCustom}-@{tier}-color";
 
     @{varBase}-h: hue(@color);
     @{varBase}-s: saturation(@color);
@@ -188,11 +196,11 @@
  * @modeCustom - A custom label to be used to generate the variable name.
  */
 .create-custom-theme-variables(@tier: primary, @modeCustom: base) {
-    @valueVar: ~"theme-@{modeCustom}-@{tier}-color-new";
+    @valueVar: ~"theme-@{modeCustom}-@{tier}-color";
 
     // TODO verify color stops with design
     & when (@modeCustom = base) {
-        @varBase: ~"--theme-@{tier}-new-custom";
+        @varBase: ~"--theme-@{tier}-custom";
 
         @{varBase}-100: .native-lightness(@valueVar, 50, 70, 95)[];
         @{varBase}-200: .native-lightness(@valueVar, 35, 55, 90)[];
@@ -204,7 +212,7 @@
     }
 
     & when (@modeCustom = dark) {
-        @varBaseDark: ~"--theme-@{modeCustom}-@{tier}-new-custom";
+        @varBaseDark: ~"--theme-@{modeCustom}-@{tier}-custom";
 
         @{varBaseDark}-100: .native-saturation-lightness(@valueVar, -12, -60, 15, 30)[];
         @{varBaseDark}-200: .native-saturation-lightness(@valueVar, -10, -45, 25, 45)[];
@@ -229,9 +237,9 @@
 
     each(@tiers, .(@tier, @k, @i) {
         @stops: 100, 200, 300, 400, 500, 600;
-        @fallbackColor: if(@tier = primary, orange-new, blue-new);
-        @baseThemeVar: ~"--theme-@{tier}-new";
-        @customThemeVar: if(@mode = light, ~"@{baseThemeVar}-custom", ~"--theme-dark-@{tier}-new-custom");
+        @fallbackColor: if(@tier = primary, orange, blue);
+        @baseThemeVar: ~"--theme-@{tier}";
+        @customThemeVar: if(@mode = light, ~"@{baseThemeVar}-custom", ~"--theme-dark-@{tier}-custom");
 
         @{baseThemeVar}: ~"var(@{customThemeVar}, var(--@{fallbackColor}-400))";
 
