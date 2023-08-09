@@ -1,10 +1,8 @@
 ---
 layout: page
-title: Borders (legacy)
+title: Borders
 description: Stacks provides atomic classes for borders.
 ---
-
-<!-- TODO add a deprecation message -->
 
 <section class="stacks-section">
     {% header "h2", "Classes" %}
@@ -14,7 +12,7 @@ description: Stacks provides atomic classes for borders.
                 <tr>
                     <th class="s-table--cell2" scope="col">Class</th>
                     <th scope="col">Output</th>
-                    <th scope="col">Definition</th>
+                    <th scope="col">Apply border to</th>
                     <th scope="col">
                         <a class="s-link s-link__inherit" href="{{ "/product/guidelines/conditional-classes#responsive" | url }}">Responsive?</a>
                     </th>
@@ -23,7 +21,7 @@ description: Stacks provides atomic classes for borders.
             <tbody>
                 {% for border in borders.border %}
                   <tr>
-                        <th scope="row"><code class="stacks-code">{{ border.class }}</code></th>
+                        <th scope="row"><code class="stacks-code">.{{ border.class }}</code></th>
                         <td class="ff-mono">{{ border.output }}</td>
                         <td>{{ border.define }}</td>
                         <td class="ta-center">
@@ -48,16 +46,10 @@ description: Stacks provides atomic classes for borders.
 <div class="bx">…</div>
 <div class="by">…</div>
 {% endhighlight %}
-        <div class="stacks-preview--example">
-            <div class="d-flex g8 fw-wrap">
-                <div class="flex--item p12 bg-black-legacy-075 ba">All borders</div>
-                <div class="flex--item p12 bg-black-legacy-075 bt">Top border</div>
-                <div class="flex--item p12 bg-black-legacy-075 br">Right border</div>
-                <div class="flex--item p12 bg-black-legacy-075 bb">Bottom border</div>
-                <div class="flex--item p12 bg-black-legacy-075 bl">Left border</div>
-                <div class="flex--item p12 bg-black-legacy-075 bx">X border</div>
-                <div class="flex--item p12 bg-black-legacy-075 by">Y border</div>
-            </div>
+        <div class="stacks-preview--example d-flex g8 fw-wrap">
+            {% for border in borders.border %}
+                <div class="p12 bg-black-new-200 {{ border.class }}">{{ border.define }}</div>
+            {% endfor %}
         </div>
     </div>
 </section>
@@ -71,16 +63,16 @@ description: Stacks provides atomic classes for borders.
                 <tr>
                     <th class="s-table--cell2" scope="col">Class</th>
                     <th scope="col">Output</th>
-                    <th scope="col">Definition</th>
+                    <th scope="col">Border width, side(s)</th>
                     <th scope="col">
                         <a class="s-link s-link__inherit" href="{{ "/product/guidelines/conditional-classes#responsive" | url }}">Responsive?</a>
                     </th>
                 </tr>
             </thead>
             <tbody>
-                {% for border in borders.border-width %}
+                {% for border in borders.width %}
                     <tr>
-                        <th scope="row"><code class="stacks-code">{{ border.class }}</code></th>
+                        <th scope="row"><code class="stacks-code">.{{ border.class }}</code></th>
                         <td class="ff-mono">{{ border.output }}</td>
                         <td>{{ border.define }}</td>
                         <td class="ta-center">
@@ -103,14 +95,13 @@ description: Stacks provides atomic classes for borders.
 <div class="ba baw2">…</div>
 <div class="ba baw3">…</div>
 {% endhighlight %}
-        <div class="stacks-preview--example">
-            <div class="d-flex w100 g8 fw-wrap">
-                <div class="flex--item p12 bg-black-legacy-075 ba">1px Border</div>
-                <div class="flex--item p12 bg-black-legacy-075 ba brw0">0px Right border</div>
-                <div class="flex--item p12 bg-black-legacy-075 ba bbw0">0px Bottom border</div>
-                <div class="flex--item p12 bg-black-legacy-075 ba baw2">2px border</div>
-                <div class="flex--item p12 bg-black-legacy-075 ba baw3">4px border</div>
-            </div>
+        <div class="stacks-preview--example d-flex g8 fw-wrap">
+            {% assign exampleWidthClasses = ",brw0,bbw0,baw2,baw3" | split: "," %}
+            {% for widthClass in exampleWidthClasses %}
+                <div class="p12 bg-black-new-200 ba {{ widthClass }}">
+                    .ba{% if widthClass != "" %}.{% endif %}{{ widthClass }}
+                </div>
+            {% endfor %}
         </div>
     </div>
 </section>
@@ -156,333 +147,27 @@ description: Stacks provides atomic classes for borders.
     </div>
 </section>
 
+<!--
+    TODO consider just linking to the color docs with a mention that
+    atomic border classes are available for each documented color
+-->
 <section class="stacks-section">
     {% header "h2", "Color" %}
     {% header "h3", "Color classes" %}
-    <div class="overflow-x-auto mb32" tabindex="0">
-        <table class="wmn3 s-table s-table__bx-simple">
-            <thead>
-                <tr>
-                    <th class="s-table--cell3" scope="col">Class</th>
-                    <th scope="col">Definition</th>
-                    <th class="s-table--cell2 ta-center" scope="col"><a class="s-link s-link__inherit" href="{{ "/product/guidelines/conditional-classes#darkmode" | url }}">Dark mode?</a></th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for border in borders.border-color %}
-                    <tr>
-                        <th scope="row"><code class="stacks-code">.{{ border.term }}</code></th>
-                        <td>{{ border.define }}</td>
-                        <td class="ta-center">
-                            {% if border.darkmode %}
-                                {% icon "Checkmark", "fc-green-legacy-500" %}
-                            {% endif %}
-                        </td>
-                    </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-    </div>
 
-    {% header "h3", "Transparent" %}
-    <div class="stacks-preview">
-{% highlight html %}
-<div class="ba bc-transparent">Transparent</div>
-{% endhighlight %}
-        <div class="stacks-preview--example">
-            <div class="d-flex fd-column w100">
-                <div class="flex--item ai-center p8 ba bc-transparent">Transparent border color</div>
-            </div>
-        </div>
-    </div>
+    <p class="stacks-copy">
+        Each color stop is available as a border class. See the <a href="{{ "/product/base/colors#classes" | url }}">colors documentation</a> for all available classes.
+    </p>
 
-    {% header "h3", "Black" %}
-    <div class="stacks-preview">
-{% highlight html %}
-<div class="ba bc-black-legacy-900"></div>
-<div class="ba bc-black-legacy-800"></div>
-<div class="ba bc-black-legacy-750"></div>
-<div class="ba bc-black-legacy-700"></div>
-<div class="ba bc-black-legacy-600"></div>
-<div class="ba bc-black-legacy-500"></div>
-<div class="ba bc-black-legacy-400"></div>
-<div class="ba bc-black-legacy-350"></div>
-<div class="ba bc-black-legacy-300"></div>
-<div class="ba bc-black-legacy-200"></div>
-<div class="ba bc-black-legacy-150"></div>
-<div class="ba bc-black-legacy-100"></div>
-<div class="ba bc-black-legacy-075"></div>
-<div class="ba bc-black-legacy-050"></div>
-<div class="ba bc-black-legacy-025"></div>
-{% endhighlight %}
-        <div class="stacks-preview--example">
-            <div class="d-flex fd-column w100 gy12">
-                <div class="flex--item ai-center p8 ba bc-black-legacy-900">Black legacy 900</div>
-                <div class="flex--item ai-center p8 ba bc-black-legacy-800">Black legacy 800</div>
-                <div class="flex--item ai-center p8 ba bc-black-legacy-750">Black legacy 750</div>
-                <div class="flex--item ai-center p8 ba bc-black-legacy-700">Black legacy 700</div>
-                <div class="flex--item ai-center p8 ba bc-black-legacy-600">Black legacy 600</div>
-                <div class="flex--item ai-center p8 ba bc-black-legacy-500">Black legacy 500</div>
-                <div class="flex--item ai-center p8 ba bc-black-legacy-400">Black legacy 400</div>
-                <div class="flex--item ai-center p8 ba bc-black-legacy-350">Black legacy 350</div>
-                <div class="flex--item ai-center p8 ba bc-black-legacy-300">Black legacy 300</div>
-                <div class="flex--item ai-center p8 ba bc-black-legacy-200">Black legacy 200</div>
-                <div class="flex--item ai-center p8 ba bc-black-legacy-150">Black legacy 150</div>
-                <div class="flex--item ai-center p8 ba bc-black-legacy-100">Black legacy 100</div>
-                <div class="flex--item ai-center p8 ba bc-black-legacy-075">Black legacy 75</div>
-                <div class="flex--item ai-center p8 ba bc-black-legacy-050">Black legacy 50</div>
-                <div class="flex--item ai-center p8 ba bc-black-legacy-025">Black legacy 25</div>
-            </div>
-        </div>
-    </div>
+    {% header "h3", "Color classes (legacy)" %}
 
-    {% header "h3", "White" %}
-    <div class="stacks-preview">
-{% highlight html %}
-<div class="ba bc-white-legacy-3">White legacy Border: Third Step</div>
-<div class="ba bc-white-legacy-2">White legacy Border: Second Step</div>
-<div class="ba bc-white-legacy-1">White legacy Border: First Step</div>
-{% endhighlight %}
-        <div class="stacks-preview--example bg-black-legacy-750">
-            <div class="d-flex fd-column w100 gy12">
-                <div class="flex--item ai-center p8 ba bc-white-legacy-3 fc-white-legacy">White legacy Border: Third Step</div>
-                <div class="flex--item ai-center p8 ba bc-white-legacy-2 fc-white-legacy">White legacy Border: Second Step</div>
-                <div class="flex--item ai-center p8 ba bc-white-legacy-1 fc-white-legacy">White legacy Border: First Step</div>
-            </div>
-        </div>
-    </div>
+    {% tip, "warning", "mb24 mt24" %}
+        <strong>Deprecated</strong><br/>All legacy border color classes are deprecated. Please use the <a href="{{ "/product/base/colors#classes" | url }}">current border color classes</a> instead.
+    {% endtip %}
 
-    {% header "h3", "Orange" %}
-    <div class="stacks-preview">
-{% highlight html %}
-<div class="ba bc-orange-legacy-900"></div>
-<div class="ba bc-orange-legacy-800"></div>
-<div class="ba bc-orange-legacy-700"></div>
-<div class="ba bc-orange-legacy-600"></div>
-<div class="ba bc-orange-legacy-500"></div>
-<div class="ba bc-orange-legacy-400"></div>
-<div class="ba bc-orange-legacy-300"></div>
-<div class="ba bc-orange-legacy-200"></div>
-<div class="ba bc-orange-legacy-100"></div>
-<div class="ba bc-orange-legacy-050"></div>
-{% endhighlight %}
-        <div class="stacks-preview--example">
-            <div class="d-flex fd-column w100 gy12">
-                <div class="flex--item ai-center p8 ba bc-orange-legacy-900">Orange legacy 900</div>
-                <div class="flex--item ai-center p8 ba bc-orange-legacy-800">Orange legacy 800</div>
-                <div class="flex--item ai-center p8 ba bc-orange-legacy-700">Orange legacy 700</div>
-                <div class="flex--item ai-center p8 ba bc-orange-legacy-600">Orange legacy 600</div>
-                <div class="flex--item ai-center p8 ba bc-orange-legacy-500">Orange legacy 500</div>
-                <div class="flex--item ai-center p8 ba bc-orange-legacy-400">Orange legacy 400</div>
-                <div class="flex--item ai-center p8 ba bc-orange-legacy-300">Orange legacy 300</div>
-                <div class="flex--item ai-center p8 ba bc-orange-legacy-200">Orange legacy 200</div>
-                <div class="flex--item ai-center p8 ba bc-orange-legacy-100">Orange legacy 100</div>
-                <div class="flex--item ai-center p8 ba bc-orange-legacy-050">Orange legacy 50</div>
-            </div>
-        </div>
-    </div>
+    <p class="stacks-copy">
+        Each legacy color stop is available as a border class. See the <a href="{{ "/product/base/colors-legacy#classes" | url }}">colors (legacy) documentation</a> for all available classes.
+    </p>
 
-    {% header "h3", "Blue" %}
-    <div class="stacks-preview">
-{% highlight html %}
-<div class="ba bc-blue-legacy-900"></div>
-<div class="ba bc-blue-legacy-800"></div>
-<div class="ba bc-blue-legacy-700"></div>
-<div class="ba bc-blue-legacy-600"></div>
-<div class="ba bc-blue-legacy-500"></div>
-<div class="ba bc-blue-legacy-400"></div>
-<div class="ba bc-blue-legacy-300"></div>
-<div class="ba bc-blue-legacy-200"></div>
-<div class="ba bc-blue-legacy-100"></div>
-<div class="ba bc-blue-legacy-050"></div>
-{% endhighlight %}
-        <div class="stacks-preview--example">
-            <div class="d-flex fd-column w100 gy12">
-                <div class="flex--item ai-center p8 ba bc-blue-legacy-900">Blue legacy 900</div>
-                <div class="flex--item ai-center p8 ba bc-blue-legacy-800">Blue legacy 800</div>
-                <div class="flex--item ai-center p8 ba bc-blue-legacy-700">Blue legacy 700</div>
-                <div class="flex--item ai-center p8 ba bc-blue-legacy-600">Blue legacy 600</div>
-                <div class="flex--item ai-center p8 ba bc-blue-legacy-500">Blue legacy 500</div>
-                <div class="flex--item ai-center p8 ba bc-blue-legacy-400">Blue legacy 400</div>
-                <div class="flex--item ai-center p8 ba bc-blue-legacy-300">Blue legacy 300</div>
-                <div class="flex--item ai-center p8 ba bc-blue-legacy-200">Blue legacy 200</div>
-                <div class="flex--item ai-center p8 ba bc-blue-legacy-100">Blue legacy 100</div>
-                <div class="flex--item ai-center p8 ba bc-blue-legacy-050">Blue legacy 50</div>
-            </div>
-        </div>
-    </div>
-
-    {% header "h3", "Powder" %}
-    <div class="stacks-preview">
-{% highlight html %}
-<div class="ba bc-powder-legacy-900"></div>
-<div class="ba bc-powder-legacy-800"></div>
-<div class="ba bc-powder-legacy-700"></div>
-<div class="ba bc-powder-legacy-600"></div>
-<div class="ba bc-powder-legacy-500"></div>
-<div class="ba bc-powder-legacy-400"></div>
-<div class="ba bc-powder-legacy-300"></div>
-<div class="ba bc-powder-legacy-200"></div>
-<div class="ba bc-powder-legacy-100"></div>
-<div class="ba bc-powder-legacy-050"></div>
-{% endhighlight %}
-        <div class="stacks-preview--example">
-            <div class="d-flex fd-column w100 gy12">
-                <div class="flex--item ai-center p8 ba bc-powder-legacy-900">Powder legacy 900</div>
-                <div class="flex--item ai-center p8 ba bc-powder-legacy-800">Powder legacy 800</div>
-                <div class="flex--item ai-center p8 ba bc-powder-legacy-700">Powder legacy 700</div>
-                <div class="flex--item ai-center p8 ba bc-powder-legacy-600">Powder legacy 600</div>
-                <div class="flex--item ai-center p8 ba bc-powder-legacy-500">Powder legacy 500</div>
-                <div class="flex--item ai-center p8 ba bc-powder-legacy-400">Powder legacy 400</div>
-                <div class="flex--item ai-center p8 ba bc-powder-legacy-300">Powder legacy 300</div>
-                <div class="flex--item ai-center p8 ba bc-powder-legacy-200">Powder legacy 200</div>
-                <div class="flex--item ai-center p8 ba bc-powder-legacy-100">Powder legacy 100</div>
-                <div class="flex--item ai-center p8 ba bc-powder-legacy-050">Powder legacy 50</div>
-            </div>
-        </div>
-    </div>
-
-    {% header "h3", "Green" %}
-    <p class="stacks-copy">Green borders can also be declared using our <code class="stacks-code">.bc-success-legacy</code> <a href="{{ '/product/base/colors#success' | url }}">alias class</a>.</p>
-    <div class="stacks-preview">
-{% highlight html %}
-<div class="ba bc-green-legacy-900"></div>
-<div class="ba bc-green-legacy-800"></div>
-<div class="ba bc-green-legacy-700"></div>
-<div class="ba bc-green-legacy-600"></div>
-<div class="ba bc-green-legacy-500"></div>
-<div class="ba bc-green-legacy-400"></div>
-<div class="ba bc-green-legacy-300"></div>
-<div class="ba bc-green-legacy-200"></div>
-<div class="ba bc-green-legacy-100"></div>
-<div class="ba bc-green-legacy-050"></div>
-<div class="ba bc-green-legacy-025"></div>
-{% endhighlight %}
-        <div class="stacks-preview--example">
-            <div class="d-flex fd-column w100 gy12">
-                <div class="flex--item ai-center p8 ba bc-green-legacy-900">Green legacy 900</div>
-                <div class="flex--item ai-center p8 ba bc-green-legacy-800">Green legacy 800</div>
-                <div class="flex--item ai-center p8 ba bc-green-legacy-700">Green legacy 700</div>
-                <div class="flex--item ai-center p8 ba bc-green-legacy-600">Green legacy 600</div>
-                <div class="flex--item ai-center p8 ba bc-green-legacy-500">Green legacy 500</div>
-                <div class="flex--item ai-center p8 ba bc-green-legacy-400">Green legacy 400</div>
-                <div class="flex--item ai-center p8 ba bc-green-legacy-300">Green legacy 300</div>
-                <div class="flex--item ai-center p8 ba bc-green-legacy-200">Green legacy 200</div>
-                <div class="flex--item ai-center p8 ba bc-green-legacy-100">Green legacy 100</div>
-                <div class="flex--item ai-center p8 ba bc-green-legacy-050">Green legacy 50</div>
-                <div class="flex--item ai-center p8 ba bc-green-legacy-025">Green legacy 25</div>
-            </div>
-        </div>
-    </div>
-
-    {% header "h3", "Red" %}
-    <p class="stacks-copy">Red borders can also be declared using our <code class="stacks-code">.bc-error-legacy</code> and <code class="stacks-code">.bc-danger-legacy</code> <a href="{{ '/product/base/colors#danger-and-error' | url }}">alias classes</a>.</p>
-    <div class="stacks-preview">
-{% highlight html %}
-<div class="ba bc-red-legacy-900"></div>
-<div class="ba bc-red-legacy-800"></div>
-<div class="ba bc-red-legacy-700"></div>
-<div class="ba bc-red-legacy-600"></div>
-<div class="ba bc-red-legacy-500"></div>
-<div class="ba bc-red-legacy-400"></div>
-<div class="ba bc-red-legacy-300"></div>
-<div class="ba bc-red-legacy-200"></div>
-<div class="ba bc-red-legacy-100"></div>
-<div class="ba bc-red-legacy-050"></div>
-{% endhighlight %}
-        <div class="stacks-preview--example">
-            <div class="d-flex fd-column w100 gy12">
-                <div class="flex--item ai-center p8 ba bc-red-legacy-900">Red legacy 900</div>
-                <div class="flex--item ai-center p8 ba bc-red-legacy-800">Red legacy 800</div>
-                <div class="flex--item ai-center p8 ba bc-red-legacy-700">Red legacy 700</div>
-                <div class="flex--item ai-center p8 ba bc-red-legacy-600">Red legacy 600</div>
-                <div class="flex--item ai-center p8 ba bc-red-legacy-500">Red legacy 500</div>
-                <div class="flex--item ai-center p8 ba bc-red-legacy-400">Red legacy 400</div>
-                <div class="flex--item ai-center p8 ba bc-red-legacy-300">Red legacy 300</div>
-                <div class="flex--item ai-center p8 ba bc-red-legacy-200">Red legacy 200</div>
-                <div class="flex--item ai-center p8 ba bc-red-legacy-100">Red legacy 100</div>
-                <div class="flex--item ai-center p8 ba bc-red-legacy-050">Red legacy 50</div>
-            </div>
-        </div>
-    </div>
-
-    {% header "h3", "Yellow" %}
-    <p class="stacks-copy">Yellow borders can also be declared using our <code class="stacks-code">.bc-warning-legacy</code> <a href="{{ '/product/base/colors#warning' | url }}">alias class</a>.</p>
-    <div class="stacks-preview">
-{% highlight html %}
-<div class="ba bc-yellow-legacy-900"></div>
-<div class="ba bc-yellow-legacy-800"></div>
-<div class="ba bc-yellow-legacy-700"></div>
-<div class="ba bc-yellow-legacy-600"></div>
-<div class="ba bc-yellow-legacy-500"></div>
-<div class="ba bc-yellow-legacy-400"></div>
-<div class="ba bc-yellow-legacy-300"></div>
-<div class="ba bc-yellow-legacy-200"></div>
-<div class="ba bc-yellow-legacy-100"></div>
-<div class="ba bc-yellow-legacy-050"></div>
-{% endhighlight %}
-        <div class="stacks-preview--example">
-            <div class="d-flex fd-column w100 gy12">
-                <div class="flex--item ai-center p8 ba bc-yellow-legacy-900">Yellow legacy 900</div>
-                <div class="flex--item ai-center p8 ba bc-yellow-legacy-800">Yellow legacy 800</div>
-                <div class="flex--item ai-center p8 ba bc-yellow-legacy-700">Yellow legacy 700</div>
-                <div class="flex--item ai-center p8 ba bc-yellow-legacy-600">Yellow legacy 600</div>
-                <div class="flex--item ai-center p8 ba bc-yellow-legacy-500">Yellow legacy 500</div>
-                <div class="flex--item ai-center p8 ba bc-yellow-legacy-400">Yellow legacy 400</div>
-                <div class="flex--item ai-center p8 ba bc-yellow-legacy-300">Yellow legacy 300</div>
-                <div class="flex--item ai-center p8 ba bc-yellow-legacy-200">Yellow legacy 200</div>
-                <div class="flex--item ai-center p8 ba bc-yellow-legacy-100">Yellow legacy 100</div>
-                <div class="flex--item ai-center p8 ba bc-yellow-legacy-050">Yellow legacy 50</div>
-            </div>
-        </div>
-    </div>
-
-    {% header "h3", "Gold" %}
-    <div class="stacks-preview">
-{% highlight html %}
-<div class="ba bc-gold-legacy-darker"></div>
-<div class="ba bc-gold-legacy"></div>
-<div class="ba bc-gold-legacy-lighter"></div>
-{% endhighlight %}
-        <div class="stacks-preview--example">
-            <div class="d-flex fd-column w100 gy12">
-                <div class="flex--item ai-center p8 ba bc-gold-legacy-darker">Gold legacy darker</div>
-                <div class="flex--item ai-center p8 ba bc-gold-legacy">Gold legacy</div>
-                <div class="flex--item ai-center p8 ba bc-gold-legacy-lighter">Gold  legacylighter</div>
-            </div>
-        </div>
-    </div>
-
-    {% header "h3", "Silver" %}
-    <div class="stacks-preview">
-{% highlight html %}
-<div class="ba bc-silver-legacy-darker"></div>
-<div class="ba bc-silver-legacy"></div>
-<div class="ba bc-silver-legacy-lighter"></div>
-{% endhighlight %}
-        <div class="stacks-preview--example">
-            <div class="d-flex fd-column w100 gy12">
-                <div class="flex--item ai-center p8 ba bc-silver-legacy-darker">Silver legacy darker</div>
-                <div class="flex--item ai-center p8 ba bc-silver-legacy">Silver legacy</div>
-                <div class="flex--item ai-center p8 ba bc-silver-legacy-lighter">Silver legacy lighter</div>
-            </div>
-        </div>
-    </div>
-
-    {% header "h3", "Bronze" %}
-    <div class="stacks-preview">
-{% highlight html %}
-<div class="ba bc-bronze-legacy-darker"></div>
-<div class="ba bc-bronze-legacy"></div>
-<div class="ba bc-bronze-legacy-lighter"></div>
-{% endhighlight %}
-        <div class="stacks-preview--example">
-            <div class="d-flex fd-column w100 gy12">
-                <div class="flex--item ai-center p8 ba bc-bronze-legacy-darker">Bronze legacy darker</div>
-                <div class="flex--item ai-center p8 ba bc-bronze-legacy">Bronze legacy</div>
-                <div class="flex--item ai-center p8 ba bc-bronze-legacy-lighter">Bronze legacy lighter</div>
-            </div>
-        </div>
-    </div>
 </section>
 
