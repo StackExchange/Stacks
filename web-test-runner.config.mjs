@@ -11,6 +11,10 @@ import {
     fixExportNamedExports,
 } from "./web-dev-server-patches.mjs";
 
+const ignoredBrowserLogs = [
+    "Lit is in dev mode. Not recommended for production! See https://lit.dev/msg/dev-mode for more information.",
+];
+
 const postcss = fromRollup(_postcss);
 const replace = fromRollup(_replace);
 const commonjs = fromRollupWithFix(_commonjs);
@@ -53,6 +57,8 @@ export default {
             update: process.argv.includes("--update-visual-baseline"),
         }),
     ],
+    filterBrowserLogs: ({ args }) =>
+        !args.some((arg) => ignoredBrowserLogs.includes(arg)),
     groups: [
         {
             name: "a11y",

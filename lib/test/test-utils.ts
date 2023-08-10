@@ -5,6 +5,8 @@ import type { TemplateResult } from "lit-html";
 import axe from "axe-core";
 import registerAxeAPCA from "./axe-apca";
 
+registerAxeAPCA("bronze");
+
 const colorThemes = ["dark", "light"];
 const baseThemes = ["", "highcontrast"];
 export const defaultOptions = {
@@ -319,11 +321,17 @@ const runComponentTest = ({
         }
 
         if (type === "a11y") {
+            const highcontrast = theme?.includes("highcontrast");
             axe.configure({
-                rules: [{ id: "color-contrast", enabled: false }],
+                rules: [
+                    { id: "color-contrast", enabled: false },
+                    { id: "color-contrast-enhanced", enabled: highcontrast },
+                    {
+                        id: "color-contrast-apca-bronze",
+                        enabled: !highcontrast,
+                    },
+                ],
             });
-            registerAxeAPCA("bronze");
-            // TODO add conditional option for high contrast mode to test against AAA
             await expect(el).to.be.accessible();
         }
 
