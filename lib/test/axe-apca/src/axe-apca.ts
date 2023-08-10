@@ -138,7 +138,7 @@ const generateColorContrastAPCAConformanceCheck = (
         };
 
         const apcaContrast = Math.abs(
-            calcAPCA(toRGBA(bgColor), toRGBA(fgColor))
+            calcAPCA(toRGBA(fgColor), toRGBA(bgColor))
         );
         const apcaThreshold = conformanceThresholdFn(fontSize, fontWeight);
 
