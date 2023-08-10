@@ -2,6 +2,8 @@ import { html, fixture, expect, unsafeStatic } from "@open-wc/testing";
 import { screen } from "@testing-library/dom";
 import { visualDiff } from "@web/test-runner-visual-regression";
 import type { TemplateResult } from "lit-html";
+import axe from "axe-core";
+import registerAxeAPCA from "./axe-apca";
 
 const colorThemes = ["dark", "light"];
 const baseThemes = ["", "highcontrast"];
@@ -317,6 +319,10 @@ const runComponentTest = ({
         }
 
         if (type === "a11y") {
+            axe.configure({
+                rules: [{ id: "color-contrast", enabled: false }],
+            });
+            registerAxeAPCA("bronze");
             // TODO add conditional option for high contrast mode to test against AAA
             await expect(el).to.be.accessible();
         }

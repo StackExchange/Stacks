@@ -33,7 +33,7 @@ export default {
     ],
     testFramework: {
         config: {
-            timeout: '10000',
+            timeout: "10000",
         },
     },
     nodeResolve: { browser: true },
@@ -56,18 +56,16 @@ export default {
     groups: [
         {
             name: "a11y",
-            files: "lib/components/**/*.a11y.test.ts",
-            browsers: [
-                playwrightLauncher({ product: "chromium" }),
-            ]
+            files: "lib/**/*.a11y.test.ts",
+            browsers: [playwrightLauncher({ product: "chromium" })],
         },
         {
             name: "unit",
-            files: "lib/components/**/!(*.visual|*.a11y).test.ts",
+            files: "lib/**/!(*.visual|*.a11y).test.ts",
         },
         {
             name: "visual",
-            files: "lib/components/**/*.visual.test.ts",
+            files: "lib/**/*.visual.test.ts",
         },
     ],
     testsFinishTimeout: 60 * 1000 * 5, // 5 minutes
