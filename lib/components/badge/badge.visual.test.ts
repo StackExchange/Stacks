@@ -24,7 +24,18 @@ const template = ({ component, testid }: any) => html`
 `;
 
 describe("badge", () => {
-    // Award badges (Default/badge counts)
+    // Base badge
+    runComponentTests({
+        type: "visual",
+        baseClass: "s-badge",
+        children: {
+            default: `base badge`,
+        },
+        tag: "span",
+        template,
+    });
+
+    // Award badges
     variants.blings.map((bling) => {
         runComponentTests({
             type: "visual",
@@ -32,8 +43,13 @@ describe("badge", () => {
             variants: [bling],
             children: {
                 default: `<span class="s-award-bling s-award-bling__${bling}">
-                    Altruist
+                    with bling
                 </span>`,
+            },
+            options: {
+                ...defaultOptions,
+                includeNullVariant: false,
+                includeNullModifier: false,
             },
             tag: "span",
             template,
