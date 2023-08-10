@@ -50,6 +50,7 @@ describe("badge", () => {
         },
         options: {
             ...defaultOptions,
+            includeNullVariant: false,
             includeNullModifier: false,
         },
         tag: "span",
@@ -81,9 +82,6 @@ describe("badge", () => {
         type: "visual",
         baseClass: "s-badge",
         variants: variants.states.filled,
-        modifiers: {
-            primary: ["icon"],
-        },
         children: {
             default: "filled",
             //     icon: Icons.IconEyeOffSm,  // TODO fix the icon imports
@@ -108,6 +106,10 @@ describe("badge", () => {
         children: {
             default: "user badge",
         },
+        options: {
+            ...defaultOptions,
+            includeNullVariant: false,
+        },
         tag: "span",
         template,
     });
@@ -121,6 +123,10 @@ describe("badge", () => {
         },
         children: {
             default: "size badge",
+        },
+        options: {
+            ...defaultOptions,
+            includeNullModifier: false,
         },
         tag: "span",
         template,
