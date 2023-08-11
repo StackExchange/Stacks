@@ -27,7 +27,7 @@
     400: hsl(210, 8%, 45%);
     500: hsl(210, 8%, 25%);
     600: hsl(210, 8%, 5%);
-    default: hsl(0, 0%, 0%); // black, no stop // TODO verify the value w/ design
+    default: hsl(0, 8%, 5%); // black, no stop // TODO verify the value w/ design
 }
 .set-black-dark() {
     050: hsl(220, 3%, 15%);
@@ -55,7 +55,7 @@
     400: hsl(210, 8%, 45%);
     500: hsl(210, 8%, 25%);
     600: hsl(210, 8%, 5%);
-    default: hsl(0, 0%, 0%); // black, no stop // TODO verify the value w/ design
+    default: hsl(0, 8%, 5%); // black, no stop // TODO verify the value w/ design
 }
 
 .set-black-hc-dark() {
@@ -322,6 +322,14 @@
 }
 
 // UTILITY SETS
+// common aliases - applies to border-color and background
+.set-utility-alias() {
+    error: var(--red-400);
+    danger: var(--red-400);
+    success: var(--green-400);
+    warning: var(--yellow-500);
+}
+
 // border color
 .set-bc() {
     lightest: var(--black-100);
@@ -338,14 +346,6 @@
     medium: var(--black-400);
     dark: var(--black-500);
     darker: var(--black-600);
-}
-
-// background color
-.set-bg() {
-    error: var(--red-400);
-    danger: var(--red-400);
-    success: var(--green-400);
-    warning: var(--yellow-500);
 }
 
 // box-shadow
@@ -529,9 +529,15 @@
     bronze: .set-bronze-hc-dark();
 }
 
+// Utitly sets for variable generation
+.sets-aliased-utility-variables() {
+    bg: .set-utility-alias();
+    bc: .set-utility-alias();
+    fc: .set-fc();
+}
+
 // Utility sets
 .sets-utility-mode() {
-    default: .sets-utility();
     light: .sets-utility();
     light-highcontrast: .sets-utility-hc();
     dark: .sets-utility-dark();
@@ -568,13 +574,6 @@
     focus: .set-focus-hc();
     highlight: .set-highlight-hc-dark();
     scrollbar: .set-scrollbar-hc();
-}
-
-// Utitly sets for class generation
-.sets-aliased-utility-classes() {
-    bg: .set-bg();
-    bc: .set-bg(); // using .set-bc as a proxy for border-color alias values
-    fc: .set-fc();
 }
 
 // Theme values

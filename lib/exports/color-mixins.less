@@ -4,9 +4,10 @@
 
 // Type definitions
 //
-// @mode: default | light | dark | light-highcontrast | dark-highcontrast;
+// @mode: light | dark | light-highcontrast | dark-highcontrast;
 // @modeCustom: base | dark; // legacy we're supporting for theming in Core
 // @modeSimple: light | dark; // TODO consider different name?
+// @property: all | background-color | border-color | color;
 // @set: { [key: stop]: color }[];
 // @sets: set[] | { [key: string]: set }[];
 // @stop: default | 050 | 100 | 150 | 200 | 225 | 300 | 350 | 400 | 500 | 600;
@@ -21,6 +22,7 @@
  *
  * @mode - Determines what to generate and which mode set to use.
  */
+// 
 .generate-colors(@mode: light) {
     @set: .sets-mode()[$@mode];
     @setUtility: .sets-utility-mode()[$@mode];
@@ -55,8 +57,10 @@
  *
  * @sets - (required) A collection of name/set pairs.
  * @type - The type of output.
+ * @modeSimple - The mode to use for generating classes.
+ * @property - The property to use for generating classes.
  */
-.create-colors(@sets, @type: variables) {
+.create-colors(@sets, @type: variables, @modeSimple: light, @property: all) {
     each(@sets, .(@set, @setName, @iSet) {
         each(@set, .(@value, @stop, @iColorValue) {
             @suffix: if((@stop = default), "", ~"-@{stop}");
@@ -71,7 +75,7 @@
             // Create bg atomic class assignments
             & when (@type = classes) {
                 @customValue: ~"var(@{variable}) !important";
-                .create-color-classes(@name, @customValue);
+                .create-color-classes(@name, @customValue, @modeSimple, @property);
             }
         });
   });
@@ -85,41 +89,65 @@
  *
  * @name - (required) Used as a suffix to each class.
  * @value - (required) The value assigned to the generated class' property.
+ * @modeSimple - Generate either all standard or dark conditional classes.
+ * @property - Determines which type(s) of atomic class to generate.
  */
-.create-color-classes(@name, @value) {
-    // Create bg atomic class assignments
-    .bc-@{name},
-    .h\:bc-@{name}:hover,
-    .f\:bc-@{name}:focus,
-    .f\:bc-@{name}:focus-within {
-        border-color: @value;
-    }
+.create-color-classes(@name, @value, @modeSimple: light, @property: all) {
+    & when (@modeSimple = light) {
+        // Create bg atomic class assignments
+        & when (@property = all), (@property = background-color) {
+            .bg-@{name},
+            .h\:bg-@{name}:hover,
+            .f\:bg-@{name}:focus,
+            .f\:bg-@{name}:focus-within {
+                background-color: @value;
+            }
+        }
 
-    // Create bg atomic class assignments
-    .bg-@{name},
-    .h\:bg-@{name}:hover,
-    .f\:bg-@{name}:focus,
-    .f\:bg-@{name}:focus-within {
-        background-color: @value;
-    }
+        // Create bc atomic class assignments
+        & when (@property = all), (@property = border-color) {
+            .bc-@{name},
+            .h\:bc-@{name}:hover,
+            .f\:bc-@{name}:focus,
+            .f\:bc-@{name}:focus-within {
+                border-color: @value;
+            }
+        }
 
-    // Create fc atomic class assignments
-    .fc-@{name},
-    .h\:fc-@{name}:hover,
-    .f\:fc-@{name}:focus,
-    .f\:fc-@{name}:focus-within {
-        color: @value;
+        // Create fc atomic class assignments
+        & when (@property = all), (@property = color) {
+            .fc-@{name},
+            .h\:fc-@{name}:hover,
+            .f\:fc-@{name}:focus,
+            .f\:fc-@{name}:focus-within {
+                color: @value;
+            }
+        }
     }
 
     // Create dark mode atomic class assignments
-    .dark-mode({
-        .d\:bg-@{name} {
-            background-color: @value;
+    & when (@modeSimple = dark) {
+        // Note: we currently do not generate conditional border-color classes
+        // & when (@property = all), (@property = border-color) {
+        //     .d\:bc-@{name} {
+        //         border-color: @value;
+        //     }
+        // }
+
+        // Create bg atomic class assignments
+        & when (@property = all), (@property = background-color) {
+            .d\:bg-@{name} {
+                background-color: @value;
+            }
         }
-        .d\:fc-@{name} {
-            color: @value;
+
+        // Create fc atomic class assignments
+        & when (@property = all), (@property = color) {
+            .d\:fc-@{name} {
+                color: @value;
+            }
         }
-    });
+    }
 }
 
 /**
@@ -128,35 +156,22 @@
  * Usage example:
  * .create-aliased-utility-colors(classes)
  *
- * @type - The type of output.
+ * @modeSimple - Generate either all standard or dark conditional classes.
  */
-.create-aliased-utility-colors(@type: variables) {
-    each(.sets-aliased-utility-classes(), .(@set, @setName, @iSet) {
-        each(@set, .(@value, @stop, @iColorValue) {
-            @suffix: if((@stop = default), "", ~"@{stop}");
-            @property: if(@setName = fc, color, background-color);
-            @name: ~"@{setName}-@{suffix}";
-            @customVariable: ~"--@{name}";
-            @customValue: ~"var(@{customVariable}) !important";
-
-            & when (@type = variables) {
-                @{customVariable}: @value;
-            }
-
-            & when (@type = classes) {
-                .@{name} {
-                    & when (@setName = bg) {
-                        background-color: @customValue;
-                    }
-                    & when (@setName = bc) {
-                        border-color: @customValue;
-                    }
-                    & when (@setName = fc) {
-                        color: @customValue;
-                    }
-                }
-            }
-        });
+.create-aliased-utility-classes(@modeSimple: light) {
+    // TODO add font color aliases
+    each(.set-fc(), .(@value, @stop, @iColorValue) {
+        @customValue: ~"var(--fc-@{stop}) !important";
+        .create-color-classes(@stop, @customValue, @modeSimple, color);
+    });
+    each(.set-utility-alias(), .(@value, @stop, @iColorValue) {
+        @customValue: ~"var(--bg-@{stop}) !important";
+        .create-color-classes(@stop, @customValue, @modeSimple, background-color);
+    });
+    each(.set-utility-alias(), .(@value, @stop, @iColorValue) {
+        @suffix: if((@stop = default), "", ~"@{stop}");
+        @customValue: ~"var(--bc-@{stop}) !important";
+        .create-color-classes(@stop, @customValue, @modeSimple, border-color);
     });
 }
 

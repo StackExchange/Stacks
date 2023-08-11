@@ -4,20 +4,6 @@ import { renderLess } from "../test/less-test-utils";
 describe("color-mixins", () => {
     describe("colors", () => {
         describe("generate-colors", () => {
-            it("default", async () => {
-                const css = await renderLess(`
-                    @import (reference) "color-mixins.less";
-
-                    // TODO: figure out how to simplify sets to reduce output
-
-                    /* .generate-colors(default) */
-                    body {
-                        .generate-colors(default);
-                    }
-                `);
-
-                expect(css).toMatchSnapshot();
-            });
             it("light", async () => {
                 const css = await renderLess(`
                     @import (reference) "color-mixins.less";
@@ -81,23 +67,6 @@ describe("color-mixins", () => {
                 /* .create-color-classes(red-new-500, var(--red-new-500)) */
                 body {
                     .create-color-classes(red-new-500, var(--red-new-500));
-                }
-            `);
-
-            expect(css).toMatchSnapshot();
-        });
-        it("create-aliased-utility-colors", async () => {
-            const css = await renderLess(`
-                @import (reference) "color-mixins.less";
-
-                /* .create-aliased-utility-colors(variables) */
-                body {
-                    .create-aliased-utility-colors(variables);
-                }
-
-                /* .create-aliased-utility-colors(classes) */
-                body {
-                    .create-aliased-utility-colors(classes);
                 }
             `);
 
