@@ -22,7 +22,7 @@ description: Stacks provides atomic classes to override default styling of typog
                 {% for basic in typography.type-basic %}
                     <tr class="fs-caption">
                         <th scope="row"><code class="stacks-code">.{{ basic.class }}</code></th>
-                        <td><code class="stacks-code bg-white">{{ basic.output }}</code></td>
+                        <td><code class="stacks-code bg-white-legacy">{{ basic.output }}</code></td>
                         <td>{{ basic.define }}</td>
                     </tr>
                 {% endfor %}
@@ -85,11 +85,11 @@ description: Stacks provides atomic classes to override default styling of typog
                 {% for layout in typography.type-layout %}
                     <tr class="fs-caption">
                         <th scope="row"><code class="stacks-code">.{{ layout.class }}</code></th>
-                        <td><code class="stacks-code bg-white">{{ layout.output }}</code></td>
+                        <td><code class="stacks-code bg-white-legacy">{{ layout.output }}</code></td>
                         <td><p class="m0">{{ layout.define }}</p></td>
                         <td class="ta-center">
                             {% if layout.responsive %}
-                                {% icon "Checkmark", "fc-green-500" %}
+                                {% icon "Checkmark", "fc-green-legacy-500" %}
                             {% endif %}
                         </td>
                     </tr>
@@ -147,15 +147,15 @@ description: Stacks provides atomic classes to override default styling of typog
         <div class="stacks-preview--example d-flex fd-column gy16 my0 fs-subheading">
             <div class="flex--item">
                 <p class="ff-sans mb0">Sans Serif</p>
-                <p class="ff-mono fs-caption fc-light">-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"</p>
+                <p class="ff-mono fs-caption fc-light-legacy">-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"</p>
             </div>
             <div class="flex--item">
                 <p class="ff-serif mb0">Serif</p>
-                <p class="ff-mono fs-caption fc-light">Georgia, Cambria, "Times New Roman", Times, serif</p>
+                <p class="ff-mono fs-caption fc-light-legacy">Georgia, Cambria, "Times New Roman", Times, serif</p>
             </div>
             <div class="flex--item">
                 <p class="ff-mono mb0">Monospace</p>
-                <p class="ff-mono fs-caption fc-light mb0">"SF Mono", SFMono-Regular, ui-monospace, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace</p>
+                <p class="ff-mono fs-caption fc-light-legacy mb0">"SF Mono", SFMono-Regular, ui-monospace, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace</p>
             </div>
         </div>
     </div>
@@ -180,8 +180,8 @@ description: Stacks provides atomic classes to override default styling of typog
                 {% for term in typography.fontsize %}
                     <tr>
                         <th scope="row"><code class="stacks-code">.fs-{{ term.term }}</code></th>
-                        <td><code class="stacks-code bg-white">{{ term.define }}</code></td>
-                        <td><code class="stacks-code bg-white">{{ term.responsive }}</code></td>
+                        <td><code class="stacks-code bg-white-legacy">{{ term.define }}</code></td>
+                        <td><code class="stacks-code bg-white-legacy">{{ term.responsive }}</code></td>
                     </tr>
                 {% endfor %}
             </tbody>
@@ -208,7 +208,7 @@ description: Stacks provides atomic classes to override default styling of typog
         <div class="stacks-preview--example d-flex fd-column gy16 my0">
             {% for term in typography.fontsize %}
             <div class="d-flex">
-                <div class="flex--item3 fc-light fs-caption fw-bold">{{ term.label }}</div>
+                <div class="flex--item3 fc-light-legacy fs-caption fw-bold">{{ term.label }}</div>
                 <div class="flex--item fs-{{ term.term }} lh-xs">
                     <span class="d-block sm:d-none">{{ term.define }}</span>
                     <span class="d-none sm:d-block">{{ term.responsive }}</span>
@@ -227,11 +227,11 @@ description: Stacks provides atomic classes to override default styling of typog
 {% endhighlight %}
         <div class="stacks-preview--example d-flex fd-column gy16 mt0">
             <div class="d-flex ai-center">
-                <div class="flex--item4 fc-light fs-caption fw-bold">Category</div>
+                <div class="flex--item4 fc-light-legacy fs-caption fw-bold">Category</div>
                 <div class="flex--item fs-category lh-xs w100">Category Title (12px)</div>
             </div>
             <div class="d-flex ai-center">
-                <div class="flex--item4 fc-light fs-caption fw-bold">Category (Has Border)</div>
+                <div class="flex--item4 fc-light-legacy fs-caption fw-bold">Category (Has Border)</div>
                 <div class="flex--item fs-category has-border lh-xs">Category Title (12px)</div>
             </div>
         </div>
@@ -271,11 +271,11 @@ description: Stacks provides atomic classes to override default styling of typog
 <p class="hyphens-auto">…</p>
 {% endhighlight %}
         <div class="stacks-preview--example d-flex">
-            <div class="flex--item bg-black-075 p12 ba bc-black-3 hyphens-none ow-break-word w96 mr16">
-                This text will not be hyphenated when large words break—longer words are broken by <code class="stacks-code bg-black-150">.ow-break-word</code>.
+            <div class="flex--item bg-black-legacy-075 p12 ba bc-black-legacy-3 hyphens-none ow-break-word w96 mr16">
+                This text will not be hyphenated when large words break—longer words are broken by <code class="stacks-code bg-black-legacy-150">.ow-break-word</code>.
             </div>
-            <div class="flex--item bg-black-075 p12 ba bc-black-3 hyphens-auto w96">
-                This text will be hyphenated when large words break. <code class="stacks-code bg-black-150">.ow-break-word</code> shouldn’t be necessary since breaks are implied by hyphenation rules.
+            <div class="flex--item bg-black-legacy-075 p12 ba bc-black-legacy-3 hyphens-auto w96">
+                This text will be hyphenated when large words break. <code class="stacks-code bg-black-legacy-150">.ow-break-word</code> shouldn’t be necessary since breaks are implied by hyphenation rules.
             </div>
         </div>
     </div>

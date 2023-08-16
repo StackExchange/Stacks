@@ -3,13 +3,13 @@
     @pr-circle-circumference: (2 * pi() * 14); // 2πr, r = 14.
     // COMPONENT-SPECIFIC CUSTOM PROPERTIES
     --_pr-bar: var(--br-sm);
-    --_pr-bg: var(--black-200);
+    --_pr-bg: var(--black-legacy-200);
     --_pr-h: unset;
     --_pr-size: unset;
     --_pr-w: 100%;
     --_pr-hmn: var(--su-static4);
     --_pr-bar-bar: var(--br-sm);
-    --_pr-bar-bg: var(--green-400);
+    --_pr-bar-bg: var(--green-legacy-400);
     --_pr-bar-hmn: var(--su-static4);
     --_pr-label-ai: unset;
     --_pr-label-bc: transparent;
@@ -20,26 +20,26 @@
 
     // MODIFIERS
     &&__brand {
-        --_pr-bar-bg: var(--orange-500);
+        --_pr-bar-bg: var(--orange-legacy-500);
     }
 
     &&__bronze {
-        --_pr-bar-bg: var(--bronze-lighter);
-        --_pr-label-bc: var(--bronze-darker);
+        --_pr-bar-bg: var(--bronze-legacy-lighter);
+        --_pr-label-bc: var(--bronze-legacy-darker);
     }
 
     &&__gold {
-        --_pr-bar-bg: var(--gold-lighter);
-        --_pr-label-bc: var(--gold-darker);
+        --_pr-bar-bg: var(--gold-legacy-lighter);
+        --_pr-label-bc: var(--gold-legacy-darker);
     }
 
     &&__info {
-        --_pr-bar-bg: var(--blue-500);
+        --_pr-bar-bg: var(--blue-legacy-500);
     }
 
     &&__silver {
-        --_pr-bar-bg: var(--silver-lighter);
-        --_pr-label-bc: var(--silver-darker);
+        --_pr-bar-bg: var(--silver-legacy-lighter);
+        --_pr-label-bc: var(--silver-legacy-darker);
     }
 
     // VARIANTS
@@ -108,12 +108,12 @@
     }
 
     &&__privilege {
-        --_pr-bar-bg: var(--green-050);
+        --_pr-bar-bg: var(--green-legacy-050);
         --_pr-label-ai: center;
-        --_pr-label-bc: var(--green-400);
+        --_pr-label-bc: var(--green-legacy-400);
         --_pr-label-jc: center;
 
-        .highcontrast-mode({ --_pr-bar-bg: var(--green-200); });
+        .highcontrast-mode({ --_pr-bar-bg: var(--green-legacy-200); });
     }
 
     // TODO move `.s-progress__stepped` to entirely separate component (or consider deprecating)
@@ -135,7 +135,7 @@
                     }
                 }
 
-                background: var(--black-300);
+                background: var(--black-legacy-300);
                 border-radius: 0;
                 height: var(--su-static6);
                 position: absolute;
@@ -146,7 +146,7 @@
             &--label { // Override a ton of properties
                 border: 0;
                 border-radius: 0;
-                color: var(--black-500);
+                color: var(--black-legacy-500);
                 display: block;
                 font-size: var(--fs-body1);
                 height: auto;
@@ -161,16 +161,16 @@
                 &.is-active {
                     .s-progress {
                         &--bar.s-progress--bar__left {
-                            background: var(--theme-secondary-400);
+                            background: var(--theme-secondary-legacy-400);
                         }
 
                         &--label {
-                            color: var(--fc-dark);
+                            color: var(--fc-dark-legacy);
                         }
 
                         &--stop {
-                            background: var(--theme-secondary-400);
-                            box-shadow: 0 0 0 var(--su-static6) var(--focus-ring);
+                            background: var(--theme-secondary-legacy-400);
+                            box-shadow: 0 0 0 var(--su-static6) var(--focus-ring-legacy);
                         }
                     }
                 }
@@ -179,11 +179,11 @@
                     .s-progress {
                         &--bar,
                         &--stop {
-                            background: var(--theme-secondary-400);
+                            background: var(--theme-secondary-legacy-400);
                         }
 
                         &--label {
-                            color: var(--fc-dark);
+                            color: var(--fc-dark-legacy);
                         }
                     }
                 }
@@ -199,13 +199,13 @@
 
             &--stop {
                 .highcontrast-mode({
-                    color: var(--white);
+                    color: var(--white-legacy);
                 });
 
                 align-items: center;
-                background: var(--black-300);
+                background: var(--black-legacy-300);
                 border-radius: 100%;
-                color: @white;
+                color: @white-legacy;
                 display: flex;
                 height: var(--su-static24);
                 justify-content: center;
@@ -237,7 +237,7 @@
         padding-right: var(--_pr-label-px);
 
         border-radius: var(--br-md);
-        color: var(--fc-dark);
+        color: var(--fc-dark-legacy);
         font-size: var(--fs-caption);
         height: 100%;
         line-height: var(--lh-xs);
@@ -249,7 +249,7 @@
     & &--segments { // DEPRECATED: AFAICT, this is unused in core (as well as it's intended parent variant class `.s-progress__segmented`)
         li {
             &:not(:first-child):not(:last-child):before {
-                background-color: var(--white);
+                background-color: var(--white-legacy);
                 content: "";
                 display: block;
                 height: 100%;

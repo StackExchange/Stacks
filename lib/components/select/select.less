@@ -1,12 +1,12 @@
 .s-select {
     --_se-arrow-bc: currentColor transparent;
     --_se-arrow-size: var(--su-static4); // Constant
-    --_se-select-bc: var(--bc-darker);
-    --_se-select-bc-focus: var(--theme-secondary-300);
-    --_se-select-bs-focus: 0 0 0 var(--su-static4) var(--focus-ring);
-    --_se-select-bg: var(--white);
+    --_se-select-bc: var(--bc-darker-legacy);
+    --_se-select-bc-focus: var(--theme-secondary-legacy-300);
+    --_se-select-bs-focus: 0 0 0 var(--su-static4) var(--focus-ring-legacy);
+    --_se-select-bg: var(--white-legacy);
     --_se-select-br: var(--br-md);
-    --_se-select-fc: var(--black);
+    --_se-select-fc: var(--black-legacy);
     --_se-select-px: 0.7em;
     --_se-select-py: 0.6em;
     --_se-select-fs: var(--fs-body1);
@@ -26,7 +26,7 @@
     .validation-states(se-select);
 
     .is-disabled & {
-        --_se-arrow-bc: var(--bc-darker) transparent;
+        --_se-arrow-bc: var(--bc-darker-legacy) transparent;
     }
 
     &&__sm {
@@ -89,12 +89,12 @@
 
         &[readonly],
         .is-readonly & { // [1]
-            --_se-select-bc: var(--bc-light);
-            --_se-select-bg: var(--black-050);
-            --_se-select-fc: var(--black-200);
+            --_se-select-bc: var(--bc-light-legacy);
+            --_se-select-bg: var(--black-legacy-050);
+            --_se-select-fc: var(--black-legacy-200);
 
             .highcontrast-mode({
-                --_se-select-fc: var(--fc-light);
+                --_se-select-fc: var(--fc-light-legacy);
             });
 
             cursor: not-allowed;
@@ -108,13 +108,13 @@
         // INTERACTION
         &:focus {
             .highcontrast-mode({
-                --_se-select-bc-focus: var(--black);
+                --_se-select-bc-focus: var(--black-legacy);
             });
 
             border-color: var(--_se-select-bc-focus);
             box-shadow: var(--_se-select-bs-focus);
 
-            color: var(--black);
+            color: var(--black-legacy);
             outline: 0;
         }
 
@@ -139,7 +139,7 @@
         right: var(--su32);
     }
 
-    color: var(--fc-dark);
+    color: var(--fc-dark-legacy);
     position: relative;
 }
 

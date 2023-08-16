@@ -1,21 +1,7 @@
-//
-//  STACKS
-//  All the CSS related to Stacks documentation ONLY.
-//
-//  TABLE OF CONTENTS
-//  • IMPORTS
-//  • UNIVERSAL SETTINGS
-//  • SITE LAYOUT
-//  • CODE STYLE
-//
 //  ============================================================================
 //  $   IMPORTS
 //  ----------------------------------------------------------------------------
 @import (reference) "../../../lib/stacks.less"; //  These are actual styles used in SO projects
-
-body.theme-system {
-    --theme-topbar-height: var(--su64);
-}
 
 .stacks-section {
     margin-top: var(--su48);
@@ -36,10 +22,6 @@ body.theme-system {
     position: absolute;
     bottom: 5%;
     right: 9%;
-}
-
-.stacks-topbar.s-topbar .s-topbar--content {
-    --theme-topbar-item-color: var(--black-300);
 }
 
 .stacks-home-nav {
@@ -153,7 +135,7 @@ body.theme-system {
 //  $$  TITLES
 //  ----------------------------------------------------------------------------
 .stacks-title {
-    text-shadow: 0 0 10px var(--theme-primary-400), 0 0 10px var(--theme-primary-400), 0 0 10px var(--theme-primary-400);
+    text-shadow: 0 0 10px var(--theme-primary-legacy-400), 0 0 10px var(--theme-primary-legacy-400), 0 0 10px var(--theme-primary-legacy-400);
     text-rendering: optimizeLegibility;
 }
 
@@ -164,7 +146,7 @@ body.theme-system {
     margin-bottom: 0;
     font-weight: 600;
     line-height: var(--lh-sm);
-    color: var(--fc-dark);
+    color: var(--fc-dark-legacy);
     text-rendering: optimizeLegibility;
 }
 
@@ -189,14 +171,14 @@ body.theme-system {
 //  --  Sub-section Title
 .stacks-h3 {
     font-size: var(--fs-subheading);
-    color: var(--fc-medium);
+    color: var(--fc-medium-legacy);
     padding-top: calc(var(--su96) - var(--su8)); // Hack for #anchor positioning
     margin-top: calc((var(--su96) - var(--su8)) * -1); // Hack for #anchor positioning
 }
 
 .stacks-h4 {
     font-size: var(--fs-body3);
-    color: var(--fc-light);
+    color: var(--fc-light-legacy);
 }
 
 // -- Custom dotnet badge colors
@@ -221,10 +203,10 @@ body.theme-system {
     margin-bottom: 1em;
     font-size: var(--fs-body3);
     line-height: var(--lh-lg);
-    color: var(--fc-medium);
+    color: var(--fc-medium-legacy);
 
     strong {
-        color: var(--fc-dark);
+        color: var(--fc-dark-legacy);
     }
 }
 
@@ -238,10 +220,10 @@ body.theme-system {
 .stacks-code {
     padding: 3px 5px var(--su2) var(--su4);
     border-radius: var(--br-sm);
-    background-color: var(--black-075);
+    background-color: var(--black-legacy-075);
     font-size: var(--fs-caption);
     font-family: var(--ff-mono);
-    color: var(--fc-dark);
+    color: var(--fc-dark-legacy);
     line-height: var(--lh-xs);
     vertical-align: middle;
     overflow-wrap: break-word;
@@ -256,7 +238,7 @@ body.theme-system {
     margin-bottom: 1em;
     font-size: var(--fs-body3);
     line-height: var(--lh-lg);
-    color: var(--fc-medium);
+    color: var(--fc-medium-legacy);
 }
 
 
@@ -274,11 +256,11 @@ body.theme-system {
 
     > pre.s-code-block {
         border-radius: var(--br-md) var(--br-md) 0 0;
-        border: 1px solid var(--bc-medium);
+        border: 1px solid var(--bc-medium-legacy);
         max-height: 24rem;
 
         .dark-mode({
-            border-color: var(--bc-lighter);
+            border-color: var(--bc-lighter-legacy);
         });
     }
 
@@ -292,18 +274,18 @@ body.theme-system {
     padding: var(--su16);
     border-bottom-left-radius: var(--br-md);
     border-bottom-right-radius: var(--br-md);
-    border: 1px solid var(--bc-medium);
+    border: 1px solid var(--bc-medium-legacy);
     border-top-width: 0;
     font-size: var(--fs-body1);
 
     .dark-mode({
-        border-color: var(--bc-lighter);
+        border-color: var(--bc-lighter-legacy);
     });
 }
 
 // Checkered background
 .bg-checkered {
-    background-color: var(--white);
+    background-color: var(--white-legacy);
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8' viewBox='0 0 8 8'%3E%3Cg fill='%23e4e6e8' fill-opacity='0.4'%3E%3Cpath fill-rule='evenodd' d='M0 0h4v4H0V0zm4 4h4v4H4V4z'/%3E%3C/g%3E%3C/svg%3E");
 }
 
@@ -320,12 +302,12 @@ body.theme-system {
     min-height: 4em;
     border-top-left-radius: var(--br-sm);
     border-top-right-radius: var(--br-sm);
-    background-color: var(--black-025);
-    box-shadow: inset 0 -1px 0 var(--black-075);
-    color: var(--fc-medium);
+    background-color: var(--black-legacy-025);
+    box-shadow: inset 0 -1px 0 var(--black-legacy-075);
+    color: var(--fc-medium-legacy);
 
     .dark-mode({
-        fill: var(--black);
+        fill: var(--black-legacy);
     });
 }
 
@@ -337,9 +319,9 @@ body.theme-system {
 .stacks-flex-example--item {
     &,
     .s-table td& {
-        background-color: var(--black-075);
-        border: var(--su-static1) solid var(--bc-medium);
-        color: var(--fc-dark);
+        background-color: var(--black-legacy-075);
+        border: var(--su-static1) solid var(--bc-medium-legacy);
+        color: var(--fc-dark-legacy);
         font-family: var(--ff-mono);
         font-size: var(--fs-caption);
         padding: var(--su8);
@@ -363,8 +345,8 @@ body.theme-system {
 
     [class^="ds-dataset-"] {
         .algolia-docsearch-suggestion--highlight {
-            color: var(--fc-medium);
-            background: var(--orange-100);
+            color: var(--fc-medium-legacy);
+            background: var(--orange-legacy-100);
         }
 
         .algolia-docsearch-suggestion--text {
@@ -387,7 +369,7 @@ body.theme-system {
         padding: 5px 8px;
         font-size: var(--fs-caption) !important;
         line-height: 1 !important;
-        color: var(--fc-light) !important;
+        color: var(--fc-light-legacy) !important;
     }
 
     .algolia-docsearch-footer--logo {
@@ -415,57 +397,24 @@ body.theme-system {
 }
 
 //  ============================================================================
-//  $   Theming UI
+//  $   Theming
 //  ----------------------------------------------------------------------------
-.stacks-theme-button {
-    color: var(--black-300);
-    position: relative;
-    padding-right: var(--su-static24) !important;
-
-    &:after {
-        content: "";
-        position: absolute;
-        z-index: var(--zi-active);
-        top: calc(50% - var(--su-static2));
-        right: calc(var(--su-static12) - var(--su-static2));
-        border-style: solid;
-        border-width: var(--su-static4);
-        border-top-width: var(--su-static4);
-        border-bottom-width: 0;
-        border-color: currentColor transparent;
-        pointer-events: none;
-    }
-
-    &.is-selected {
-        color: var(--black-600);
-    }
-
-    &.stacks-theme-button__home {
-        color: var(--white);
-
-        &.is-selected {
-            color: var(--white);
-        }
-    }
+body.theme-system {
+    --theme-topbar-height: var(--su64);
+}
+.stacks-topbar.s-topbar .s-topbar--content {
+    --theme-topbar-item-color: var(--black-legacy-300);
 }
 
 .theme-custom {
-    // TODO switch to legacy vars
-    --theme-base-primary-color-h: 172;
-    --theme-base-primary-color-s: 37%;
-    --theme-base-primary-color-l: 48%;
-    --theme-base-primary-color-r: 77;
-    --theme-base-primary-color-g: 168;
-    --theme-base-primary-color-b: 156;
-    --theme-base-secondary-color-h: 259;
-    --theme-base-secondary-color-s: 29%;
-    --theme-base-secondary-color-l: 55%;
-    --theme-base-secondary-color-r: 129;
-    --theme-base-secondary-color-g: 108;
-    --theme-base-secondary-color-b: 174;
-
-    // New colors and theming
     &.themed {
+        // v1 legacy custom theme colors
+        // TODO remove when v1 is no longer supported
+        .generate-calculated-themed-variables(hsl(172, 37%, 48%), primary, base);
+        .generate-calculated-themed-variables(hsl(259, 29%, 55%), secondary, base);
+        .generate-calculated-themed-variables(hsl(172, 37%, 48%), primary, dark);
+        .generate-calculated-themed-variables(hsl(259, 29%, 55%), secondary, dark);
+        // v2 colors and theming
         .create-custom-theme-hsl-variables(hsl(172, 37%, 48%), primary, base);
         .create-custom-theme-hsl-variables(hsl(259, 29%, 55%), secondary, base);
         .create-custom-theme-hsl-variables(hsl(172, 34%, 60%), primary, dark);

@@ -1,23 +1,9 @@
 import { describe, it, expect } from "vitest";
-import { renderLess } from "../../test/less-test-utils";
+import { renderLess } from "../test/less-test-utils";
 
 describe("color-mixins", () => {
     describe("colors", () => {
         describe("generate-colors", () => {
-            it("default", async () => {
-                const css = await renderLess(`
-                    @import (reference) "color-mixins.less";
-
-                    // TODO: figure out how to simplify sets to reduce output
-
-                    /* .generate-colors(default) */
-                    body {
-                        .generate-colors(default);
-                    }
-                `);
-
-                expect(css).toMatchSnapshot();
-            });
             it("light", async () => {
                 const css = await renderLess(`
                     @import (reference) "color-mixins.less";
@@ -79,25 +65,27 @@ describe("color-mixins", () => {
             const css = await renderLess(`
                 @import (reference) "color-mixins.less";
                 /* .create-color-classes(red-500, var(--red-500)) */
+                /* .create-color-classes(blue-400, var(--blue-400), dark, color) */
+                /* .create-color-classes(green-300, var(--green-300), light, background-color) */
                 body {
                     .create-color-classes(red-500, var(--red-500));
+                    .create-color-classes(blue-500, var(--blue-500), dark, color);
+                    .create-color-classes(green-300, var(--green-300), light, background-color);
                 }
             `);
 
             expect(css).toMatchSnapshot();
         });
-        it("create-aliased-utility-colors", async () => {
+        it(".create-aliased-utility-classes", async () => {
             const css = await renderLess(`
                 @import (reference) "color-mixins.less";
-
-                /* .create-aliased-utility-colors(variables) */
+                /* .create-aliased-utility-classes() */
+                /* .create-aliased-utility-classes(dark) */
                 body {
-                    .create-aliased-utility-colors(variables);
+                    .create-aliased-utility-classes();
                 }
-
-                /* .create-aliased-utility-colors(classes) */
-                body {
-                    .create-aliased-utility-colors(classes);
+                body.theme-dark {
+                    .create-aliased-utility-classes(dark);
                 }
             `);
 
@@ -128,8 +116,11 @@ describe("color-mixins", () => {
         it("create-theme-variables", async () => {
             const css = await renderLess(`
                 @import (reference) "color-mixins.less";
-                create-theme-variables {
-                    .create-theme-variables;
+                body {
+                    .create-theme-variables();
+                }
+                body.theme-highcontrast {
+                    .create-theme-variables(light-highcontrast);
                 }
             `);
 

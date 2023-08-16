@@ -12,7 +12,7 @@ import "../../index";
                     global: ["has-warning", "has-error", "has-success"],
                 },
                 attributes: {
-                    class: "bg-black-100 hs1 ws2 p8",
+                    class: "bg-black-legacy-100 hs1 ws2 p8",
                 },
                 children: {
                     default: `

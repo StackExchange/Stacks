@@ -1,11 +1,11 @@
 .s-modal {
-    --_mo-bg: fade(@black-900, 50%); // Background remains fixed
+    --_mo-bg: fade(@black-legacy-900, 50%); // Background remains fixed
     --_mo-hmx: unset;
     --_mo-wmx: unset;
     --_mo-close-t: var(--su8);
-    --_mo-dialog-bg: var(--white);
+    --_mo-dialog-bg: var(--white-legacy);
     --_mo-dialog-pt: var(--su24);
-    --_mo-header-fc: var(--fc-dark);
+    --_mo-header-fc: var(--fc-dark-legacy);
 
     // CONTEXTUAL STYLES
     &[aria-hidden="false"] {
@@ -37,13 +37,13 @@
     // VARIANTS
     &.has-danger,
     &&__danger {
-        --_mo-bg: darken(fade(@red-900, 50%), 23%);
-        --_mo-header-fc: var(--red-600);
+        --_mo-bg: darken(fade(@red-legacy-900, 50%), 23%);
+        --_mo-header-fc: var(--red-legacy-600);
     }
 
     // CHILD ELEMENTS
     & &--body {
-        color: var(--fc-medium);
+        color: var(--fc-medium-legacy);
         margin-bottom: var(--su24);
     }
 
@@ -61,7 +61,7 @@
 
     & &--dialog {
         .dark-mode({
-            --_mo-dialog-bg: var(--black-100);
+            --_mo-dialog-bg: var(--black-legacy-100);
         });
 
         padding: var(--_mo-dialog-pt) var(--su24) var(--su24);

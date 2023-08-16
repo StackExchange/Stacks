@@ -1,18 +1,18 @@
 .s-input,
 .s-textarea {
-    --_in-bc: var(--bc-darker);
-    --_in-bc-focus: var(--theme-secondary-300);
-    --_in-bg: var(--white);
+    --_in-bc: var(--bc-darker-legacy);
+    --_in-bc-focus: var(--theme-secondary-legacy-300);
+    --_in-bg: var(--white-legacy);
     --_in-br: var(--br-md);
-    --_in-bs-focus: 0 0 0 var(--su-static4) var(--focus-ring);
+    --_in-bs-focus: 0 0 0 var(--su-static4) var(--focus-ring-legacy);
     --_in-c: unset;
-    --_in-fc: var(--fc-dark);
-    --_in-fc-focus: var(--black);
+    --_in-fc: var(--fc-dark-legacy);
+    --_in-fc-focus: var(--black-legacy);
     --_in-fs: var(--fs-body1);
     --_in-o: unset;
     --_in-px: 0.7em;
     --_in-py: 0.6em;
-    --_in-placeholder-fc: var(--black-200);
+    --_in-placeholder-fc: var(--black-legacy-200);
 
     // CONTEXTUAL STYLES
     @supports (-webkit-overflow-scrolling: touch) {
@@ -26,8 +26,8 @@
     }
 
     .highcontrast-mode({
-        --_in-bc: var(--black);
-        --_in-placeholder-fc: var(--black-400);
+        --_in-bc: var(--black-legacy);
+        --_in-placeholder-fc: var(--black-legacy-400);
     });
 
     // MODIFIERS
@@ -46,20 +46,20 @@
     &[readonly],
     .is-readonly & {
         .highcontrast-mode({
-            --_in-fc: var(--fc-light);
+            --_in-fc: var(--fc-light-legacy);
         });
 
-        --_in-bg: var(--black-050);
-        --_in-bc: var(--bc-light);
-        --_in-fc: var(--black-200);
+        --_in-bg: var(--black-legacy-050);
+        --_in-bc: var(--bc-light-legacy);
+        --_in-fc: var(--black-legacy-200);
         --_in-fc-focus: var(--_in-fc);
     }
 
     .validation-states(
         in,
-        { .highcontrast-mode({ --_in-bc: var(--red-400); }); },
-        { .highcontrast-mode({ --_in-bc: var(--green-400); }); },
-        { .highcontrast-mode({ --_in-bc: var(--yellow-600); }); }
+        { .highcontrast-mode({ --_in-bc: var(--red-legacy-400); }); },
+        { .highcontrast-mode({ --_in-bc: var(--green-legacy-400); }); },
+        { .highcontrast-mode({ --_in-bc: var(--yellow-legacy-600); }); }
     );
 
     // Sizes
@@ -136,7 +136,7 @@
 
     &:focus-within {
         .highcontrast-mode({
-            --_in-bc-focus: var(--black);
+            --_in-bc-focus: var(--black-legacy);
         });
 
         border-color: var(--_in-bc-focus);

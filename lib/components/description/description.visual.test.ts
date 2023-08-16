@@ -18,7 +18,7 @@ import "../../index";
             },
             template: ({ component, testid }) => html`
                 <div
-                    class="bg-black-100 d-inline-flex ai-center jc-center hs1 ws2 p8
+                    class="bg-black-legacy-100 d-inline-flex ai-center jc-center hs1 ws2 p8
                     ${isDisabled ? "is-disabled" : ""}"
                     data-testid="${testid}"
                 >

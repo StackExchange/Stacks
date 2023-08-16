@@ -12,8 +12,8 @@ const cardTemplate = ({ component, testid }: any) =>
     </div>`;
 
 const baseChild = `
-    <h2 class="fs-body3 lh-sm fc-dark">Base card title</h2>
-    <p class="fs-body1 fc-medium">
+    <h2 class="fs-body3 lh-sm fc-dark-legacy">Base card title</h2>
+    <p class="fs-body1 fc-medium-legacy">
         This is a description of the card’s content.
     </p>
     <div class="d-flex gx4">

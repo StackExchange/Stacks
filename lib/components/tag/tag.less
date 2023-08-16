@@ -4,11 +4,11 @@
     --_ta-bc-selected: transparent;
     --_ta-bg: var(--theme-tag-background-color);
     --_ta-bg-hover: var(--theme-tag-hover-background-color);
-    --_ta-bg-selected: var(--theme-secondary-200);
+    --_ta-bg-selected: var(--theme-secondary-legacy-200);
     --_ta-br: var(--br-sm);
     --_ta-fc: var(--theme-tag-color);
     --_ta-fc-hover: var(--theme-tag-hover-color);
-    --_ta-fc-selected: var(--theme-secondary-900);
+    --_ta-fc-selected: var(--theme-secondary-legacy-900);
     --_ta-fs: var(--fs-caption);
     --_ta-lh: 1.846153846;
     --_ta-pl: var(--_ta-px);
@@ -99,41 +99,41 @@
 
     // moderator overrides other muted and required, required overrides muted
     &&__moderator {
-        --_ta-bc: var(--red-200);
-        --_ta-bg: var(--red-050);
-        --_ta-fc: var(--red-800);
-        --_ta-bc-hover: var(--red-300);
-        --_ta-bg-hover: var(--red-100);
-        --_ta-fc-hover: var(--red-900);
-        --_ta-bc-selected: var(--red-400);
-        --_ta-bg-selected: var(--red-200);
-        --_ta-fc-selected: var(--red-800);
+        --_ta-bc: var(--red-legacy-200);
+        --_ta-bg: var(--red-legacy-050);
+        --_ta-fc: var(--red-legacy-800);
+        --_ta-bc-hover: var(--red-legacy-300);
+        --_ta-bg-hover: var(--red-legacy-100);
+        --_ta-fc-hover: var(--red-legacy-900);
+        --_ta-bc-selected: var(--red-legacy-400);
+        --_ta-bg-selected: var(--red-legacy-200);
+        --_ta-fc-selected: var(--red-legacy-800);
     }
 
     &&__muted:not(&__moderator):not(&__required) {
         --_ta-bc: transparent;
-        --_ta-bg: var(--black-075);
-        --_ta-fc: var(--black-700);
+        --_ta-bg: var(--black-legacy-075);
+        --_ta-fc: var(--black-legacy-700);
         --_ta-bc-hover: transparent;
-        --_ta-bg-hover: var(--black-100);
-        --_ta-fc-hover: var(--black-800);
+        --_ta-bg-hover: var(--black-legacy-100);
+        --_ta-fc-hover: var(--black-legacy-800);
         --_ta-bc-selected: transparent;
-        --_ta-bg-selected: var(--black-200);
-        --_ta-fc-selected: var(--black-900);
+        --_ta-bg-selected: var(--black-legacy-200);
+        --_ta-fc-selected: var(--black-legacy-900);
 
         .highcontrast-mode({ --_ta-bc: currentColor; }); // Specificity has bit us, so we need this override
     }
 
     &&__required:not(&__moderator) {
-        --_ta-bc: var(--bc-darker);
-        --_ta-bg: var(--black-075);
-        --_ta-fc: var(--black-700);
-        --_ta-bc-hover: var(--black-300);
-        --_ta-bg-hover: var(--black-100);
-        --_ta-fc-hover: var(--black-800);
-        --_ta-bc-selected: var(--black-500);
-        --_ta-bg-selected: var(--black-200);
-        --_ta-fc-selected: var(--black-900);
+        --_ta-bc: var(--bc-darker-legacy);
+        --_ta-bg: var(--black-legacy-075);
+        --_ta-fc: var(--black-legacy-700);
+        --_ta-bc-hover: var(--black-legacy-300);
+        --_ta-bg-hover: var(--black-legacy-100);
+        --_ta-fc-hover: var(--black-legacy-800);
+        --_ta-bc-selected: var(--black-legacy-500);
+        --_ta-bg-selected: var(--black-legacy-200);
+        --_ta-fc-selected: var(--black-legacy-900);
     }
     &__watched, // TODO: remove all single `&` watched styles once core no longer requires them
     &&__watched {
@@ -144,7 +144,7 @@
     & &--dismiss { // Style adjustment to @Svg.ClearSm
         &:hover {
             .highcontrast-mode({
-                color: var(--white);
+                color: var(--white-legacy);
             });
 
             background-color: var(--_ta-fc);

@@ -1,9 +1,9 @@
 .s-toggle-switch {
-    --_ts-bg: var(--black-300);
+    --_ts-bg: var(--black-legacy-300);
     --_ts-bg-ps: left center;
     --_ts-bs-color: transparent;
     --_ts-multiple-bg: unset;
-    --_ts-multiple-fc: var(--black-500);
+    --_ts-multiple-fc: var(--black-legacy-500);
 
     fieldset[disabled] &,
     &[disabled] {
@@ -19,25 +19,25 @@
             &:checked {
                 + label {
                     &.s-toggle-switch--label-off {
-                        --_ts-multiple-bg: var(--black-500);
-                        --_ts-multiple-fc: var(--white);
+                        --_ts-multiple-bg: var(--black-legacy-500);
+                        --_ts-multiple-fc: var(--white-legacy);
 
-                        .dark-mode({ --_ts-multiple-bg: var(--black-350); });
+                        .dark-mode({ --_ts-multiple-bg: var(--black-legacy-350); });
                     }
 
                     &:not(.s-toggle-switch--label-off) {
-                        --_ts-multiple-bg: var(--green-400);
-                        --_ts-multiple-fc: @white;
+                        --_ts-multiple-bg: var(--green-legacy-400);
+                        --_ts-multiple-fc: @white-legacy;
 
-                        .highcontrast-mode({ --_ts-multiple-fc: var(--white); });
+                        .highcontrast-mode({ --_ts-multiple-fc: var(--white-legacy); });
                     }
                 }
 
                 &:focus + label {
-                    --_ts-bs-color: var(--focus-ring-success);
+                    --_ts-bs-color: var(--focus-ring-success-legacy);
 
                     &.s-toggle-switch--label-off {
-                        --_ts-bs-color: var(--focus-ring-muted);
+                        --_ts-bs-color: var(--focus-ring-muted-legacy);
                     }
                 }
             }
@@ -75,16 +75,16 @@
     input[type="checkbox"], // TODO DEPRECATED: drop support for nested input[type="checkbox"]
     input[type="checkbox"]& {
         &:checked {
-            --_ts-bg: var(--green-400);
+            --_ts-bg: var(--green-legacy-400);
             --_ts-bg-ps: right center;
 
             &:focus {
-                --_ts-bs-color: var(--focus-ring-success);
+                --_ts-bs-color: var(--focus-ring-success-legacy);
             }
         }
 
         &:focus {
-            --_ts-bs-color: var(--focus-ring-muted);
+            --_ts-bs-color: var(--focus-ring-muted-legacy);
             outline: none;
         }
 

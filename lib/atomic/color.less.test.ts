@@ -2,11 +2,9 @@ import { describe, it, expect } from "vitest";
 import { renderLess } from "../test/less-test-utils";
 
 describe("atomic: color", () => {
-    it("should output all old atomic css classes for colors", async () => {
+    it("should output v2 atomic css classes for colors", async () => {
         const css = await renderLess(`
-            @import (reference) "constants-colors.less";
-            @import (reference) "mixins.less";
-            @import "color.less";
+            @import "./lib/atomic/color.less";
         `);
 
         expect(css).toMatchSnapshot();
