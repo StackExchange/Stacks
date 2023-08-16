@@ -100,7 +100,7 @@ Defining a structure for component styles using pseudo-private custom properties
 
     // INTERACTION
     &:hover {
-        --_cn-bg: var(--_black-legacy-050);
+        --_cn-bg: var(--black-legacy-050);
     }
 
     // STYLES MODIFIED BY COMPONENT-SPECIFIC CUSTOM PROPERTIES
