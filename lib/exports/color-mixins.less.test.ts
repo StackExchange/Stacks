@@ -64,9 +64,9 @@ describe("color-mixins", () => {
         it("create-color-classes", async () => {
             const css = await renderLess(`
                 @import (reference) "color-mixins.less";
-                /* .create-color-classes(red-new-500, var(--red-new-500)) */
+                /* .create-color-classes(red-500, var(--red-500)) */
                 body {
-                    .create-color-classes(red-new-500, var(--red-new-500));
+                    .create-color-classes(red-500, var(--red-500));
                 }
             `);
 
