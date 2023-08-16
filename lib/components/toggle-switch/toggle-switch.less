@@ -1,9 +1,9 @@
 .s-toggle-switch {
-    --_ts-bg: var(--black-legacy-300);
+    --_ts-bg: var(--black-350);
     --_ts-bg-ps: left center;
     --_ts-bs-color: transparent;
     --_ts-multiple-bg: unset;
-    --_ts-multiple-fc: var(--black-legacy-500);
+    --_ts-multiple-fc: var(--black-400);
 
     fieldset[disabled] &,
     &[disabled] {
@@ -19,17 +19,18 @@
             &:checked {
                 + label {
                     &.s-toggle-switch--label-off {
-                        --_ts-multiple-bg: var(--black-legacy-500);
-                        --_ts-multiple-fc: var(--white-legacy);
+                        --_ts-multiple-bg: var(--black-400);
+                        --_ts-multiple-fc: var(--white);
 
-                        .dark-mode({ --_ts-multiple-bg: var(--black-legacy-350); });
+                        .dark-mode({ --_ts-multiple-bg: var(--black-350); });
                     }
 
                     &:not(.s-toggle-switch--label-off) {
                         --_ts-multiple-bg: var(--green-400);
+                        // TODO replace with CSS variable
                         --_ts-multiple-fc: @white-legacy;
 
-                        .highcontrast-mode({ --_ts-multiple-fc: var(--white-legacy); });
+                        .highcontrast-mode({ --_ts-multiple-fc: var(--white); });
                     }
                 }
 

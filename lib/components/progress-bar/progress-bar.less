@@ -3,7 +3,7 @@
     @pr-circle-circumference: (2 * pi() * 14); // 2πr, r = 14.
     // COMPONENT-SPECIFIC CUSTOM PROPERTIES
     --_pr-bar: var(--br-sm);
-    --_pr-bg: var(--black-legacy-200);
+    --_pr-bg: var(--black-300);
     --_pr-h: unset;
     --_pr-size: unset;
     --_pr-w: 100%;
@@ -135,7 +135,7 @@
                     }
                 }
 
-                background: var(--black-legacy-300);
+                background: var(--black-350);
                 border-radius: 0;
                 height: var(--su-static6);
                 position: absolute;
@@ -146,7 +146,7 @@
             &--label { // Override a ton of properties
                 border: 0;
                 border-radius: 0;
-                color: var(--black-legacy-500);
+                color: var(--black-400);
                 display: block;
                 font-size: var(--fs-body1);
                 height: auto;
@@ -199,12 +199,13 @@
 
             &--stop {
                 .highcontrast-mode({
-                    color: var(--white-legacy);
+                    color: var(--white);
                 });
 
                 align-items: center;
-                background: var(--black-legacy-300);
+                background: var(--black-350);
                 border-radius: 100%;
+                // TODO replace with CSS variable
                 color: @white-legacy;
                 display: flex;
                 height: var(--su-static24);
@@ -249,7 +250,7 @@
     & &--segments { // DEPRECATED: AFAICT, this is unused in core (as well as it's intended parent variant class `.s-progress__segmented`)
         li {
             &:not(:first-child):not(:last-child):before {
-                background-color: var(--white-legacy);
+                background-color: var(--white);
                 content: "";
                 display: block;
                 height: 100%;
