@@ -41,7 +41,7 @@ describe("anchors", () => {
             includeNullModifier: false,
         },
         template: ({ component, testid }) => html`
-            <div data-testid="${testid}" class="s-card ws3 fc-green-legacy-600">
+            <div data-testid="${testid}" class="s-card ws3 fc-green-500">
                 ${testid}: ${component}
             </div>
         `,

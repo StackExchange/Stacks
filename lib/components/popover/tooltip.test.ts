@@ -41,7 +41,7 @@ describe("tooltip", () => {
                 <svg
                     data-testid="svg"
                     aria-hidden="true"
-                    class="bg-red-legacy-500"
+                    class="bg-red-400"
                     width="18"
                     height="18"
                     viewBox="0 0 18 18"
