@@ -18,7 +18,7 @@ describe("axe-apca", () => {
             registerAxeAPCA("bronze");
         });
 
-        it.only("should check for APCA accessibility contrast violations", async () => {
+        it("should check for APCA accessibility contrast violations", async () => {
             const el: HTMLElement = await fixture(
                 html`<p
                     style="background: white; color: black; font-size: 12px; font-weight: 400;"

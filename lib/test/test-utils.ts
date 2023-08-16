@@ -324,12 +324,15 @@ const runComponentTest = ({
             const highcontrast = theme?.includes("highcontrast");
             axe.configure({
                 rules: [
+                    // for non-high contrast, we disable WCAG 2.1 AA (4.5:1)
+                    // and use APCA bronze level instead
                     { id: "color-contrast", enabled: false },
-                    { id: "color-contrast-enhanced", enabled: highcontrast },
                     {
                         id: "color-contrast-apca-bronze",
                         enabled: !highcontrast,
                     },
+                    // for high contrast, we check against WCAG 2.1 AAA (7:1)
+                    { id: "color-contrast-enhanced", enabled: highcontrast },
                 ],
             });
             await expect(el).to.be.accessible();

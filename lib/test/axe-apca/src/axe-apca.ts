@@ -2,7 +2,7 @@ import { calcAPCA } from "apca-w3";
 import axe from "axe-core";
 import type { Check, Rule } from "axe-core";
 
-// Augment Axe types to include used color utilities
+// Augment Axe types to include the color utilities we use in this file
 // https://github.com/dequelabs/axe-core/blob/develop/lib/commons/color/color.js
 type Color = {
     red: number;
@@ -49,13 +49,13 @@ const getAPCASilverPlusThreshold = (
         [96, 50, 45, 40, 35, 33, 30, 25, 25, 25],
     ];
 
-    silverPlusAPCALookupTable.reverse();
-
     const size = parseFloat(fontSize);
     const weight = parseFloat(fontWeight);
+
     // Go over the table backwards to find the first matching font size and then the weight.
-    // Fonts larger than 96px, use the thresholds for 96px.
-    // Fonts smaller than 12px, don't get any threshold meaning the font size needs to be increased.
+    // The value null is returned when the combination of font size and weight does not have
+    // any elegible APCA luminosity silver compliant thresholds (represented by -1 in the table).
+    silverPlusAPCALookupTable.reverse();
     for (const [rowSize, ...rowWeights] of silverPlusAPCALookupTable) {
         if (size >= rowSize) {
             for (const [idx, keywordWeight] of [

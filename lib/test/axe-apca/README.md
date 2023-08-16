@@ -6,33 +6,26 @@ This package contains custom axe rules and checks for [APCA](https://readtech.or
 
 ## Usage
 
-### Install
+### Installation
 
-⚠️ *The following command doesn't work yet because this package is not published on npm yet.*
+⚠️ *The following command doesn't work because this package is not published on npm yet.*
 
 ```bash
 npm install --save-dev axe-core axe-apca
 ```
 
-### Import
+### Setup
 
 ```js
+import axe from "axe-core";
 import { registerAxeAPCA } from 'axe-apca';
 
-registerAxeAPCA('bronze');
-// or
-registerAxeAPCA('silver');
+registerAxeAPCA('bronze'); // or registerAxeAPCA('silver');
 
  // consider turning off default WCAG 2.1 AA color contrast rules when using APCA
 axe.configure({
     rules: [{ id: "color-contrast", enabled: false }]
 })
-```
-
-### Use
-
-```js
-import axe from "axe-core";
 
  axe.run(document, (err, results) => {
     if (err) throw err;
