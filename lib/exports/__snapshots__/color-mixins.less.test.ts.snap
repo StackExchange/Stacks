@@ -380,21 +380,6 @@ body .themed {
     --theme-secondary-400: var(--theme-secondary-custom-400, var(--blue-400));
     --theme-secondary-500: var(--theme-secondary-custom-500, var(--blue-500));
     --theme-secondary-600: var(--theme-secondary-custom-600, var(--blue-600));
-    --theme-primary-custom-100: hsl(var(--theme-base-primary-color-h), calc(var(--theme-base-primary-color-s) + 0 * 1%), clamp(70%, calc(var(--theme-base-primary-color-l) + 50 * 1%), 95%));
-    --theme-primary-custom-200: hsl(var(--theme-base-primary-color-h), calc(var(--theme-base-primary-color-s) + 0 * 1%), clamp(55%, calc(var(--theme-base-primary-color-l) + 35 * 1%), 90%));
-    --theme-primary-custom-300: hsl(var(--theme-base-primary-color-h), calc(var(--theme-base-primary-color-s) + 0 * 1%), clamp(35%, calc(var(--theme-base-primary-color-l) + 15 * 1%), 75%));
-    --theme-primary-custom-400: hsl(var(--theme-base-primary-color-h), calc(var(--theme-base-primary-color-s) + 0 * 1%), clamp(20%, calc(var(--theme-base-primary-color-l) + 0 * 1%), 60%));
-    --theme-primary-custom-500: hsl(var(--theme-base-primary-color-h), calc(var(--theme-base-primary-color-s) + 0 * 1%), clamp(13%, calc(var(--theme-base-primary-color-l) + -14 * 1%), 50%));
-    --theme-primary-custom-600: hsl(var(--theme-base-primary-color-h), calc(var(--theme-base-primary-color-s) + 0 * 1%), clamp(5%, calc(var(--theme-base-primary-color-l) + -26 * 1%), 40%));
-    --theme-primary-custom: var(--theme-primary-custom-400);
-    --theme-secondary-custom-100: hsl(var(--theme-base-secondary-color-h), calc(var(--theme-base-secondary-color-s) + 0 * 1%), clamp(70%, calc(var(--theme-base-secondary-color-l) + 50 * 1%), 95%));
-    --theme-secondary-custom-200: hsl(var(--theme-base-secondary-color-h), calc(var(--theme-base-secondary-color-s) + 0 * 1%), clamp(55%, calc(var(--theme-base-secondary-color-l) + 35 * 1%), 90%));
-    --theme-secondary-custom-300: hsl(var(--theme-base-secondary-color-h), calc(var(--theme-base-secondary-color-s) + 0 * 1%), clamp(35%, calc(var(--theme-base-secondary-color-l) + 15 * 1%), 75%));
-    --theme-secondary-custom-400: hsl(var(--theme-base-secondary-color-h), calc(var(--theme-base-secondary-color-s) + 0 * 1%), clamp(20%, calc(var(--theme-base-secondary-color-l) + 0 * 1%), 60%));
-    --theme-secondary-custom-500: hsl(var(--theme-base-secondary-color-h), calc(var(--theme-base-secondary-color-s) + 0 * 1%), clamp(13%, calc(var(--theme-base-secondary-color-l) + -14 * 1%), 50%));
-    --theme-secondary-custom-600: hsl(var(--theme-base-secondary-color-h), calc(var(--theme-base-secondary-color-s) + 0 * 1%), clamp(5%, calc(var(--theme-base-secondary-color-l) + -26 * 1%), 40%));
-    --theme-secondary-custom: var(--theme-secondary-custom-400);
-    color: var(--theme-body-font-color, var(--black-600));
 }
 "
 `;
@@ -498,7 +483,7 @@ create-custom-theme-variables(secondary, base) {
 `;
 
 exports[`color-mixins > theming > create-theme-variables 1`] = `
-"create-theme-variables {
+"body {
     --theme-primary: var(--theme-primary-custom, var(--orange-400));
     --theme-primary-100: var(--theme-primary-custom-100, var(--orange-100));
     --theme-primary-200: var(--theme-primary-custom-200, var(--orange-200));
@@ -513,6 +498,23 @@ exports[`color-mixins > theming > create-theme-variables 1`] = `
     --theme-secondary-400: var(--theme-secondary-custom-400, var(--blue-400));
     --theme-secondary-500: var(--theme-secondary-custom-500, var(--blue-500));
     --theme-secondary-600: var(--theme-secondary-custom-600, var(--blue-600));
+}
+
+body.theme-highcontrast {
+    --theme-primary: var(--orange-400);
+    --theme-primary-100: var(--orange-100);
+    --theme-primary-200: var(--orange-200);
+    --theme-primary-300: var(--orange-300);
+    --theme-primary-400: var(--orange-400);
+    --theme-primary-500: var(--orange-500);
+    --theme-primary-600: var(--orange-600);
+    --theme-secondary: var(--blue-400);
+    --theme-secondary-100: var(--blue-100);
+    --theme-secondary-200: var(--blue-200);
+    --theme-secondary-300: var(--blue-300);
+    --theme-secondary-400: var(--blue-400);
+    --theme-secondary-500: var(--blue-500);
+    --theme-secondary-600: var(--blue-600);
 }
 "
 `;

@@ -116,8 +116,11 @@ describe("color-mixins", () => {
         it("create-theme-variables", async () => {
             const css = await renderLess(`
                 @import (reference) "color-mixins.less";
-                create-theme-variables {
-                    .create-theme-variables;
+                body {
+                    .create-theme-variables();
+                }
+                body.theme-highcontrast {
+                    .create-theme-variables(light-highcontrast);
                 }
             `);
 

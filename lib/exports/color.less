@@ -8,40 +8,52 @@ body {
     // Create aliased utility variables
     .create-colors(.sets-aliased-utility-variables());
     .theme-variables();
-}
 
-// Light mode
-body:not(.theme-dark),
-body.theme-dark .theme-light__forced,
-body.theme-system .theme-light__forced {
-    .generate-colors(light);
-}
-
-// Dark mode
-body.theme-dark,
-body:not(.theme-dark) .theme-dark__forced {
-    .generate-colors(dark);
-}
-body.theme-system {
-    @media (prefers-color-scheme: dark) {
-        .generate-colors(dark);
+    &,
+    &.themed,
+    & .themed {
+        color: var(--theme-body-font-color, var(--black-600));
+        .create-custom-theme-variables(primary);
+        .create-custom-theme-variables(secondary);
     }
 }
 
-// High contrast mode (light)
-body.theme-highcontrast:not(.theme-dark),
-body.theme-dark.theme-highcontrast .theme-light__forced,
-body.theme-system.theme-highcontrast .theme-light__forced {
-    .generate-colors(light-highcontrast);
+// Light, dark mode
+body:not(.theme-highcontrast) {
+    // Light mode
+    &:not(.theme-dark),
+    &.theme-dark .theme-light__forced,
+    &.theme-system .theme-light__forced {
+        .generate-colors(light);
+    }
+    // Dark mode
+    &.theme-dark,
+    &:not(.theme-dark) .theme-dark__forced {
+        .generate-colors(dark);
+    }
+    &.theme-system {
+        @media (prefers-color-scheme: dark) {
+            .generate-colors(dark);
+        }
+    }
 }
 
-// High contrast mode (dark)
-body.theme-dark.theme-highcontrast,
-body.theme-highcontrast:not(.theme-dark) .theme-dark__forced {
-    .generate-colors(dark-highcontrast);
-}
-body.theme-system.theme-highcontrast {
-    @media (prefers-color-scheme: dark) {
+// High contrast mode
+body.theme-highcontrast {
+    // Light high contrast mode
+    &:not(.theme-dark),
+    &.theme-dark .theme-light__forced,
+    &.theme-system .theme-light__forced {
+        .generate-colors(light-highcontrast);
+    }
+    // Dark high contrast mode
+    &.theme-dark,
+    &:not(.theme-dark) .theme-dark__forced {
         .generate-colors(dark-highcontrast);
+    }
+    &.theme-system {
+        @media (prefers-color-scheme: dark) {
+            .generate-colors(dark-highcontrast);
+        }
     }
 }
