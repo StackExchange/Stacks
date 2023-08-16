@@ -6,23 +6,25 @@ describe("toggle-switch", () => {
     // Single toggle switch
     [true, false].forEach((checked) => {
         [true, false].forEach((disabled) => {
-            const idSuffix = `${checked ? "-checked" : ""}${
-                disabled ? "-disabled" : ""
+            const testidSuffix = `${checked ? "checked" : "unchecked"}${
+                disabled ? "-disabled" : "-enabled"
             }`;
-            const id = `toggle-switch${idSuffix}`;
+            const id = `toggle-switch-${testidSuffix}`;
 
             runComponentTests({
                 type: "visual",
                 baseClass: "s-toggle-switch",
-                modifiers: {
-                    global: idSuffix ? [idSuffix.substring(1)] : [], // for proper testid generation
-                },
                 tag: "input",
                 attributes: {
                     id,
                     type: "checkbox",
                     ...(checked ? { checked: "" } : {}),
                     ...(disabled ? { disabled: "" } : {}),
+                },
+                options: {
+                    ...defaultOptions,
+                    includeNullModifier: false,
+                    testidSuffix,
                 },
                 template: ({ component, testid }) => html`
                     <div data-testid="${testid}" class="p4 ws1">
@@ -40,15 +42,12 @@ describe("toggle-switch", () => {
             type: "visual",
             baseClass: "s-toggle-switch",
             variants: ["multiple"],
-            modifiers: {
-                global: offChecked ? ["off"] : [], // for proper testid generation
-            },
             children: {
                 default: `
-                    <input type="radio" name="group" id="four" ${
+                    <input type="radio" name="group" id="off" ${
                         offChecked ? 'checked=""' : ""
                     }>
-                    <label for="four" class="s-toggle-switch--label-off">Off</label>
+                    <label for="off" class="s-toggle-switch--label-off">Off</label>
                     <input type="radio" name="group" id="one" ${
                         !offChecked ? 'checked=""' : ""
                     }>
@@ -61,7 +60,9 @@ describe("toggle-switch", () => {
             },
             options: {
                 ...defaultOptions,
+                includeNullModifier: false,
                 includeNullVariant: false,
+                testidSuffix: offChecked ? "unchecked" : "checked",
             },
             template: ({ component, testid }) => html`
                 <div data-testid="${testid}" class="d-flex ai-center g8 p4 ws2">
