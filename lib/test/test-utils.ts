@@ -2,6 +2,10 @@ import { html, fixture, expect, unsafeStatic } from "@open-wc/testing";
 import { screen } from "@testing-library/dom";
 import { visualDiff } from "@web/test-runner-visual-regression";
 import type { TemplateResult } from "lit-html";
+import axe from "axe-core";
+import registerAxeAPCA from "./axe-apca";
+
+registerAxeAPCA("bronze");
 
 const colorThemes = ["dark", "light"];
 const baseThemes = ["", "highcontrast"];
@@ -317,7 +321,20 @@ const runComponentTest = ({
         }
 
         if (type === "a11y") {
-            // TODO add conditional option for high contrast mode to test against AAA
+            const highcontrast = theme?.includes("highcontrast");
+            axe.configure({
+                rules: [
+                    // for non-high contrast, we disable WCAG 2.1 AA (4.5:1)
+                    // and use APCA bronze level instead
+                    { id: "color-contrast", enabled: false },
+                    {
+                        id: "color-contrast-apca-bronze",
+                        enabled: !highcontrast,
+                    },
+                    // for high contrast, we check against WCAG 2.1 AAA (7:1)
+                    { id: "color-contrast-enhanced", enabled: highcontrast },
+                ],
+            });
             await expect(el).to.be.accessible();
         }
 

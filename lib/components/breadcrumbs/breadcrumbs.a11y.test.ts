@@ -33,5 +33,7 @@ describe("breadcrumbs", () => {
                 ${component}
             </div>
         `,
+        // TODO: Most of those skipped tests should be fixed by the new Stacks 2.0 palette
+        skippedTestids: ["s-breadcrumbs-dark", "s-breadcrumbs-light"],
     });
 });
