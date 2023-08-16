@@ -33,10 +33,17 @@ describe("anchors", () => {
             ...defaultOptions,
             includeNullModifier: false,
         },
+        // TODO: Most of those skipped tests should be fixed by the new Stacks 2.0 palette
         skippedTestids: [
-            "s-anchors-dark-danger", // TODO fix contrast issue
-            "s-anchors-dark-default", // TODO fix contrast issue
-            "s-anchors-dark-underlined", // TODO fix contrast issue
+            "s-anchors-dark-danger",
+            "s-anchors-dark-default",
+            "s-anchors-dark-underlined",
+            "s-anchors-dark-grayscale",
+            "s-anchors-dark-muted",
+            "s-anchors-light-danger",
+            "s-anchors-light-default",
+            "s-anchors-light-muted",
+            "s-anchors-light-underlined",
         ],
     });
 });

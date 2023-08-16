@@ -11,6 +11,10 @@ import {
     fixExportNamedExports,
 } from "./web-dev-server-patches.mjs";
 
+const ignoredBrowserLogs = [
+    "Lit is in dev mode. Not recommended for production! See https://lit.dev/msg/dev-mode for more information.",
+];
+
 const postcss = fromRollup(_postcss);
 const replace = fromRollup(_replace);
 const commonjs = fromRollupWithFix(_commonjs);
@@ -33,7 +37,7 @@ export default {
     ],
     testFramework: {
         config: {
-            timeout: '10000',
+            timeout: "10000",
         },
     },
     nodeResolve: { browser: true },
@@ -53,21 +57,21 @@ export default {
             update: process.argv.includes("--update-visual-baseline"),
         }),
     ],
+    filterBrowserLogs: ({ args }) =>
+        !args.some((arg) => ignoredBrowserLogs.includes(arg)),
     groups: [
         {
             name: "a11y",
-            files: "lib/components/**/*.a11y.test.ts",
-            browsers: [
-                playwrightLauncher({ product: "chromium" }),
-            ]
+            files: "lib/**/*.a11y.test.ts",
+            browsers: [playwrightLauncher({ product: "chromium" })],
         },
         {
             name: "unit",
-            files: "lib/components/**/!(*.visual|*.a11y|*.less).test.ts",
+            files: "lib/**/!(*.visual|*.a11y|*.less).test.ts",
         },
         {
             name: "visual",
-            files: "lib/components/**/*.visual.test.ts",
+            files: "lib/**/*.visual.test.ts",
         },
     ],
     testsFinishTimeout: 60 * 1000 * 5, // 5 minutes
