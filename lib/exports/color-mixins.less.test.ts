@@ -76,6 +76,21 @@ describe("color-mixins", () => {
 
             expect(css).toMatchSnapshot();
         });
+        it(".create-aliased-utility-classes", async () => {
+            const css = await renderLess(`
+                @import (reference) "color-mixins.less";
+                /* .create-aliased-utility-classes() */
+                /* .create-aliased-utility-classes(dark) */
+                body {
+                    .create-aliased-utility-classes();
+                }
+                body.theme-dark {
+                    .create-aliased-utility-classes(dark);
+                }
+            `);
+
+            expect(css).toMatchSnapshot();
+        });
     });
     describe("theming", () => {
         it("create-custom-theme-hsl-rgb-variables", async () => {
