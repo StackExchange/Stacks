@@ -263,14 +263,14 @@
         @customThemeVar: if(@mode = light, ~"@{baseThemeVar}-custom", ~"--theme-dark-@{tier}-custom");
 
         & when (@mode = light), (@mode = dark) {
-            @{baseThemeVar}-color: ~"var(@{customThemeVar}, var(--@{fallbackColor}-400))";
+            @{baseThemeVar}: ~"var(@{customThemeVar}, var(--@{fallbackColor}-400))";
             each(@stops, .(@stop, @kStop, @iStop) {
                 @{baseThemeVar}-@{stop}: ~"var(@{customThemeVar}-@{stop}, var(--@{fallbackColor}-@{stop}))";
             });
         }
 
         & when (@mode = light-highcontrast), (@mode = dark-highcontrast) {
-            @{baseThemeVar}-color: ~"var(--@{fallbackColor}-400)";
+            @{baseThemeVar}: ~"var(--@{fallbackColor}-400)";
 
             each(@stops, .(@stop, @kStop, @iStop) {
                 @{baseThemeVar}-@{stop}: ~"var(--@{fallbackColor}-@{stop})";
