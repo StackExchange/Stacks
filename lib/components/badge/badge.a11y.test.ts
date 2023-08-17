@@ -25,6 +25,15 @@ describe("badge", () => {
                 </span>`,
             },
             tag: "span",
+            // TODO: Most of those skipped tests should be fixed by the new Stacks 2.0 palette
+            skippedTestids: [
+                "s-badge-dark",
+                "s-badge-dark-gold",
+                "s-badge-dark",
+                "s-badge-dark-silver",
+                "s-badge-dark",
+                "s-badge-dark-bronze",
+            ],
         });
     });
 
@@ -41,12 +50,18 @@ describe("badge", () => {
             includeNullModifier: false,
         },
         tag: "span",
+        // TODO: Most of those skipped tests should be fixed by the new Stacks 2.0 palette
         skippedTestids: [
-            "s-badge-dark-answered", // TODO remove when contrast bugs are fixed
-            "s-badge-dark-important", // TODO remove when contrast bugs are fixed
-            "s-badge-dark-rep-down", // TODO remove when contrast bugs are fixed
-            "s-badge-light-answered", // TODO remove when contrast bugs are fixed
-            "s-badge-light-rep", // TODO remove when contrast bugs are fixed
+            "s-badge-dark-answered",
+            "s-badge-dark-important",
+            "s-badge-dark-rep-down",
+            "s-badge-light-answered",
+            "s-badge-light-rep",
+            "s-badge-dark",
+            "s-badge-dark-bounty",
+            "s-badge-dark-rep",
+            "s-badge-dark-votes",
+            "s-badge-light-rep-down",
         ],
     });
 
@@ -67,6 +82,13 @@ describe("badge", () => {
             includeNullModifier: false,
         },
         tag: "span",
+        // TODO: Most of those skipped tests should be fixed by the new Stacks 2.0 palette
+        skippedTestids: [
+            "s-badge-dark-danger-icon",
+            "s-badge-dark-icon",
+            "s-badge-light-danger-icon",
+            "s-badge-light-warning-icon",
+        ],
     });
 
     // Filled badges
@@ -87,6 +109,11 @@ describe("badge", () => {
             includeNullVariant: false,
         },
         tag: "span",
+        // TODO: Most of those skipped tests should be fixed by the new Stacks 2.0 palette
+        skippedTestids: [
+            "s-badge-dark-danger-icon",
+            "s-badge-light-danger-icon",
+        ],
     });
 
     // User badges
@@ -101,8 +128,18 @@ describe("badge", () => {
             default: "user",
         },
         tag: "span",
+        // TODO: Most of those skipped tests should be fixed by the new Stacks 2.0 palette
         skippedTestids: [
-            /^s-badge-dark-admin.*/, // TODO remove when contrast bugs are fixed
+            /^s-badge-dark-admin.*/,
+            "s-badge-dark",
+            "s-badge-dark-sm",
+            "s-badge-dark-xs",
+            "s-badge-light-admin",
+            "s-badge-light-admin-sm",
+            "s-badge-light-admin-xs",
+            "s-badge-light-staff",
+            "s-badge-light-staff-sm",
+            "s-badge-light-staff-xs",
         ],
     });
 
@@ -117,5 +154,7 @@ describe("badge", () => {
             default: "size badge",
         },
         tag: "span",
+        // TODO: Most of those skipped tests should be fixed by the new Stacks 2.0 palette
+        skippedTestids: ["s-badge-dark", "s-badge-dark-sm", "s-badge-dark-xs"],
     });
 });

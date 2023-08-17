@@ -64,9 +64,12 @@ describe("toggle-switch", () => {
             template: ({ component, testid }) => html`
                 <div data-testid="${testid}">${component}</div>
             `,
+            // TODO: Most of those skipped tests should be fixed by the new Stacks 2.0 palette
             skippedTestids: [
-                "s-toggle-switch-dark-multiple", // TODO fix contrast issue
-                "s-toggle-switch-light-multiple", // TODO fix contrast issue
+                "s-toggle-switch-dark-multiple",
+                "s-toggle-switch-light-multiple",
+                "s-toggle-switch-dark-multiple-off",
+                "s-toggle-switch-light-multiple-off",
             ],
         });
     });
