@@ -145,27 +145,26 @@
 .s-topbar__light {
     // TODO this only works 100% perfectly in light mode, due to child elements inheriting current theme colors
     // TODO extend forced light mode instead of overriding
-    // TODO replace Less variables, possibly with direct references to color set values
 
     --theme-topbar-background-color: var(--_white-static);
-    --theme-topbar-bottom-border: 1px solid @black-legacy-100;
+    --theme-topbar-bottom-border: 1px solid .set-black()[225];
 
     // Search input
-    --theme-topbar-search-color: @black-legacy-700;
+    --theme-topbar-search-color: .set-black()[500];
     --theme-topbar-search-background: var(--_white-static);
-    --theme-topbar-search-placeholder: @black-legacy-400;
-    --theme-topbar-search-border: @black-legacy-200;
-    --theme-topbar-search-border-focus: @blue-legacy-300;
+    --theme-topbar-search-placeholder: .set-black()[400];
+    --theme-topbar-search-border: .set-black()[300];
+    --theme-topbar-search-border-focus: .set-blue()[400];
     --theme-topbar-search-shadow-focus: 0 0 0 var(--su-static4) var(--focus-ring);
 
     // Search switcher
-    --theme-topbar-select-color: @black-legacy-700;
-    --theme-topbar-select-background: @black-legacy-050;
+    --theme-topbar-select-color: .set-black()[500];
+    --theme-topbar-select-background: .set-black()[150];
 
     // Items
-    --theme-topbar-item-color: @black-legacy-600;
-    --theme-topbar-item-color-hover: @black-legacy-800;
-    --theme-topbar-item-background-hover: @black-legacy-075;
+    --theme-topbar-item-color: .set-black()[500];
+    --theme-topbar-item-color-hover: .set-black()[600];
+    --theme-topbar-item-background-hover: .set-black()[200];
     --theme-topbar-item-color-current: var(--_black-static);
     --theme-topbar-item-border-current: var(--theme-primary);
 
@@ -173,9 +172,9 @@
     // redefine the variables for extra contrast in high-contrast mode
     .highcontrast-mode({
         // Topbar items
-        --theme-topbar-item-color: @black-legacy-800;
-        --theme-topbar-item-color-hover: @black-legacy-900;
-        --theme-topbar-item-background-hover: @black-legacy-075;
+        --theme-topbar-item-color: .set-black()[600];
+        --theme-topbar-item-color-hover: .set-black()[600]; // TODO hover is now identical color to base color
+        --theme-topbar-item-background-hover: .set-black()[200];
         --theme-topbar-item-color-current: var(--_black-static);
     });
 
@@ -189,7 +188,7 @@
     // TODO this only works 100% perfectly in dark mode, due to child elements inheriting current theme colors
     // TODO extend forced dark mode instead of overriding
 
-    @topbar-actual-background: @black-legacy-800;
+    @topbar-actual-background: .set-black()[600];
     // TODO
     #calc-topbar-lightness-increase() when (lightness(@topbar-actual-background) < 15%) {
         @topbar-search-lightness-increase: 20%;
@@ -208,16 +207,16 @@
     --theme-topbar-search-placeholder: lighten(@topbar-actual-background, 60% + @topbar-search-lightness-increase);
     --theme-topbar-search-border: lighten(@topbar-actual-background, 20% + @topbar-search-lightness-increase);
     --theme-topbar-search-border-focus: lighten(@topbar-actual-background, 45% + @topbar-search-lightness-increase);
-    --theme-topbar-search-shadow-focus: 0 0 0 var(--su-static4) fade(@white-legacy, 30%);
+    --theme-topbar-search-shadow-focus: 0 0 0 var(--su-static4) fade(.set-white()[default], 30%);
 
     // Search switcher
     --theme-topbar-select-color: lighten(@topbar-actual-background, 60% + @topbar-search-lightness-increase);
     --theme-topbar-select-background: lighten(@topbar-actual-background, 10% + @topbar-search-lightness-increase);
 
     // Items
-    --theme-topbar-item-color: @black-legacy-100;
+    --theme-topbar-item-color: .set-black()[225];
     --theme-topbar-item-color-hover: var(--_white-static);
-    --theme-topbar-item-background-hover: @black-legacy-700;
+    --theme-topbar-item-background-hover: .set-black()[500];
     --theme-topbar-item-color-current: var(--_white-static);
     --theme-topbar-item-border-current: var(--theme-primary);
 
@@ -230,7 +229,7 @@
         // Topbar items
         --theme-topbar-item-color: var(--_white-static);
         --theme-topbar-item-color-hover: var(--_white-static);
-        --theme-topbar-item-background-hover: @black-legacy-700;
+        --theme-topbar-item-background-hover: .set-black()[500];
         --theme-topbar-item-color-current: var(--_white-static);
 
         .s-badge {
