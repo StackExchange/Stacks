@@ -37,23 +37,23 @@ Defining a structure for component styles using pseudo-private custom properties
     @cn-transition-duration: 100ms;
     // BASE COMPONENT-SPECIFIC CUSTOM PROPERTIES
     // --_{component-abbreviation}-{property-shorthand}: {value};
-    --_cn-bg: var(--blue-legacy-500);
+    --_cn-bg: var(--blue-500);
     --_cn-h: var(--su-static16);
     --_cn-fd: row-reverse;
     // VARIANT CUSTOM PROPERTIES
     // --_{component-abbreviation}-{property-shorthand}-{variant-name}: {value};
-    --_cn-fc-filled: var(--green-legacy-500);
+    --_cn-fc-filled: var(--green-500);
     // CHILD COMPONENT CUSTOM PROPERTIES
     // --_{component-abreviation}-{child-component-name}-{property-shorthand}: {value};
-    --_cn-image-bg: var(--red-legacy-500);
+    --_cn-image-bg: var(--red-500);
 
     // CONTEXTUAL STYLES
     // These may include themes/modes, responsive styles, or modifications based on parent containers
     .highcontrast-mode({
-        --_cn-bg: var(--black-legacy-400);
+        --_cn-bg: var(--black-400);
 
         .s-avatar--letter {
-            --_cn-image-bg: var(--white-legacy);
+            --_cn-image-bg: var(--white);
         }
     });
 
@@ -64,7 +64,7 @@ Defining a structure for component styles using pseudo-private custom properties
     // STATES
     // These are generally classes prefixed with `.is-` or `.has-`
     &.is-selected {
-        --_cn-bg: var(--orange-legacy-200);
+        --_cn-bg: var(--orange-200);
     }
 
     // MODIFIERS
@@ -86,10 +86,10 @@ Defining a structure for component styles using pseudo-private custom properties
     // VARIANTS
     // Variants are expected to be used exclusive of one another. In other words, you should only use one variant class at a time
     &&__info {
-        --_cn-bg: var(--yellow-legacy-100);
+        --_cn-bg: var(--yellow-100);
 
         &.s-component-name__filled {
-            --_cn-bg-filled: var(--yellow-legacy-800);
+            --_cn-bg-filled: var(--yellow-600);
         }
     }
 
@@ -100,7 +100,7 @@ Defining a structure for component styles using pseudo-private custom properties
 
     // INTERACTION
     &:hover {
-        --_cn-bg: var(--black-legacy-050);
+        --_cn-bg: var(--black-150);
     }
 
     // STYLES MODIFIED BY COMPONENT-SPECIFIC CUSTOM PROPERTIES
