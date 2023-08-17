@@ -387,7 +387,14 @@
 
 // focus (sets represents both light and dark mode)
 .set-focus() {
-    default: hsla(206, 100%, 40%, 0.15);
+    default: var(--theme-secondary-custom-focus-ring, hsla(206, 100%, 40%, 0.15));
+    success: hsla(140, 40%, 75%, 0.4);
+    warning: hsla(47, 79%, 58%, 0.4);
+    error: hsla(358, 62%, 47%, 0.15);
+    muted: hsla(210, 8%, 15%, 0.1);
+}
+.set-focus-dark() {
+    default: var(--theme-dark-secondary-custom-focus-ring, hsla(206, 100%, 40%, 0.25));
     success: hsla(140, 40%, 75%, 0.4);
     warning: hsla(47, 79%, 58%, 0.4);
     error: hsla(358, 62%, 47%, 0.15);
@@ -554,7 +561,7 @@
 .sets-utility-dark() {
     bc: .set-bc();
     bs: .set-bs-dark();
-    focus-ring: .set-focus();
+    focus-ring: .set-focus-dark();
     highlight: .set-highlight-dark();
     scrollbar: .set-scrollbar();
 }

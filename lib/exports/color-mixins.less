@@ -209,6 +209,7 @@
  */
 .create-custom-theme-variables(@tier: primary, @modeCustom: base) {
     @valueVar: ~"theme-@{modeCustom}-@{tier}-color";
+    @focusRingHSLVars: ~"var(--@{valueVar}-h), var(--@{valueVar}-s), var(--@{valueVar}-l)";
 
     // TODO verify color stops with design
     & when (@modeCustom = base) {
@@ -221,6 +222,10 @@
         @{varBase}-500: .native-lightness(@valueVar, -14, 13, 50)[];
         @{varBase}-600: .native-lightness(@valueVar, -26, 5, 40)[];
         @{varBase}: ~"var(@{varBase}-400)";
+
+        & when (@tier = secondary) {
+            @{varBase}-focus-ring: ~"hsla(@{focusRingHSLVars}, 0.15)";
+        }
     }
 
     & when (@modeCustom = dark) {
@@ -233,6 +238,10 @@
         @{varBaseDark}-500: .native-lightness(@valueVar, 10, 70, 90)[];
         @{varBaseDark}-600: .native-lightness(@valueVar, 20, 85, 95)[];
         @{varBaseDark}: ~"var(@{varBaseDark}-400)";
+
+        & when (@tier = secondary) {
+            @{varBaseDark}-focus-ring: ~"hsla(@{focusRingHSLVars}, 0.25)";
+        }
     }
 }
 
