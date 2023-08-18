@@ -1,9 +1,10 @@
 .construct-notice-component(@baseClass) {
-    --_no-bc: var(--bc-medium);
+    --_no-bc: var(--black-225);
     --_no-bg: var(--black-150);
-    --_no-fc: var(--fc-medium);
+    --_no-fc: var(--black-500);
     --_no-btn-bg-focus: var(--black-225);
     --_no-btn-bg-active: var(--black-250);
+    --_no-btn-fc: var(--black-500);
 
     // MODIFIERS
     &:not(&__important) {
@@ -26,137 +27,78 @@
         --_no-fc: var(--white);
         --_no-btn-bg-focus: var(--black-600);
         --_no-btn-bg-active: var(--black-600);
-
-        .highcontrast-mode({
-            --_no-bc: var(--_no-bg);
-        });
+        --_no-btn-fc: var(--black-100);
     }
 
     // VARIANTS
     &__danger {
         --_no-bc: var(--red-300);
-        --_no-bg: var(--red-200);
-        --_no-btn-bg-active: var(--red-300);
-        --_no-btn-bg-focus: var(--red-300);
-
-        &:not(.@{baseClass}__important) {
-            .highcontrast-mode({
-                --_no-bg: var(--red-300);
-            });
-        }
+        --_no-bg: var(--red-100);
+        --_no-btn-bg-active: var(--red-200);
+        --_no-btn-bg-focus: var(--red-200);
+        --_no-btn-fc: var(--red-500);
 
         &.@{baseClass}__important {
             --_no-bc: var(--_no-bg);
             --_no-bg: var(--red-400);
             --_no-btn-bg-active: var(--red-500);
             --_no-btn-bg-focus: var(--red-500);
-
-            .dark-mode({
-                --_no-bg: var(--red-400);
-                --_no-fc: var(--black-600);
-            });
-
-            .highcontrast-dark-mode({
-                --_no-bg: var(--red-400);
-                --_no-fc: var(--white);
-            });
+            --_no-btn-fc: var(--red-100);
         }
     }
 
     &__info {
         --_no-bc: var(--theme-secondary-300);
-        --_no-bg: var(--theme-secondary-200);
-        --_no-btn-bg-focus: var(--theme-secondary-300);
-        --_no-btn-bg-active: var(--theme-secondary-300);
+        --_no-bg: var(--theme-secondary-100);
+        --_no-btn-bg-focus: var(--theme-secondary-200);
+        --_no-btn-bg-active: var(--theme-secondary-200);
         --_no-code-bg: var(--theme-secondary-300);
-
-        &:not(.@{baseClass}__important) {
-            .highcontrast-mode({
-                --_no-bg: var(--theme-secondary-300);
-            });
-
-            .highcontrast-dark-mode({
-                --_no-bg: var(--theme-secondary-300);
-            });
-        }
+        --_no-btn-fc: var(--theme-secondary-500);
 
         &.@{baseClass}__important {
             --_no-bc: var(--_no-bg);
             --_no-bg: var(--theme-secondary-400);
             --_no-btn-bg-active: var(--theme-secondary-500);
-            --_no-btn-bg-focus: var(--theme-secondary-400);
-
-            .dark-mode({
-                --_no-bg: var(--theme-secondary-400);
-                --_no-fc: var(--black-600);
-            });
-
-            .highcontrast-dark-mode({
-                --_no-bg: var(--theme-secondary-400);
-                --_no-fc: var(--white);
-            });
+            --_no-btn-bg-focus: var(--theme-secondary-500);
+            --_no-btn-fc: var(--theme-secondary-100);
         }
     }
 
     &__success {
         --_no-bc: var(--green-300);
-        --_no-bg: var(--green-200);
-        --_no-btn-bg-active: var(--green-300);
-        --_no-btn-bg-focus: var(--green-300);
-
-        &:not(.@{baseClass}__important) {
-            .highcontrast-mode({
-                --_no-bg: var(--green-300);
-            });
-        }
+        --_no-bg: var(--green-100);
+        --_no-btn-bg-active: var(--green-200);
+        --_no-btn-bg-focus: var(--green-200);
+        --_no-btn-fc: var(--green-500);
 
         &.@{baseClass}__important {
             --_no-bc: var(--_no-bg);
             --_no-bg: var(--green-400);
-            --_no-fc: var(--black-600);
             --_no-btn-bg-active: var(--green-500);
-            --_no-btn-bg-focus: var(--green-400);
-
-            .dark-mode({
-                --_no-bg: var(--green-400);
-                --_no-fc: var(--white);
-            });
-
-            .highcontrast-mode({
-                --_no-bg: var(--green-400);
-                --_no-fc: var(--white);
-            });
+            --_no-btn-bg-focus: var(--green-500);
+            --_no-btn-fc: var(--green-100);
         }
     }
 
     &__warning {
-        --_no-bc: var(--yellow-400);
-        --_no-bg: var(--yellow-200);
-        --_no-btn-bg-active: var(--yellow-400);
-        --_no-btn-bg-focus: var(--yellow-300);
+        --_no-bc: var(--yellow-300);
+        --_no-bg: var(--yellow-100);
+        --_no-btn-bg-active: var(--yellow-200);
+        --_no-btn-bg-focus: var(--yellow-200);
         --_no-code-bg: var(--yellow-300);
-
-        &:not(.@{baseClass}__important) {
-            .highcontrast-mode({
-                --_no-bg: var(--yellow-300);
-            });
-        }
+        --_no-btn-fc: var(--yellow-500);
 
         &.@{baseClass}__important {
             --_no-bc: var(--_no-bg);
             --_no-bg: var(--yellow-400);
             --_no-fc: var(--black-600);
-            --_no-btn-bg-active: var(--yellow-500);
-            --_no-btn-bg-focus: var(--yellow-400);
+            --_no-btn-bg-active: var(--yellow-300);
+            --_no-btn-bg-focus: var(--yellow-300);
+            --_no-btn-fc: var(--yellow-600);
 
             .dark-mode({
-                --_no-bg: var(--yellow-500);
                 --_no-fc: var(--white);
-            });
-
-            .highcontrast-mode({
-                --_no-bg: var(--yellow-500);
-                --_no-fc: var(--white);
+                --_no-btn-fc: var(--yellow-200);
             });
         }
     }
@@ -173,15 +115,15 @@
         }
 
         &:active {
-            background: var(--_no-btn-bg-active);
+            background-color: var(--_no-btn-bg-active, inherit) !important;
         }
 
         &:focus,
         &:hover {
-            background: var(--_no-btn-bg-focus);
+            background-color: var(--_no-btn-bg-focus, inherit) !important;
         }
 
-        color: inherit;
+        color: var(--_no-btn-fc, inherit) !important;
         padding: var(--su8);
     }
 
