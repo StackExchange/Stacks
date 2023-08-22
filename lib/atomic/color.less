@@ -12,8 +12,8 @@
     .create-aliased-utility-classes();
 
     each(@miscUtilityClasses, {
-        .create-color-classes(@value, @value, light, background-color);
-        .create-color-classes(@value, @value, light, border-color);
+        .create-color-classes(@value, ~"@{value} !important", light, background-color);
+        .create-color-classes(@value, ~"@{value} !important", light, border-color);
     });
 
     // Create theme-specific utility classes
@@ -29,8 +29,8 @@
 
         // Misc utility classes
         each(@miscUtilityClasses, {
-            .create-color-classes(@value, @value, light, background-color);
-            .create-color-classes(@value, @value, light, border-color);
+            .create-color-classes(@value, ~"@{value} !important", light, background-color);
+            .create-color-classes(@value, ~"@{value} !important", light, border-color);
         });
     });
 }

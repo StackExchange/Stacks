@@ -1,9 +1,9 @@
 .construct-notice-component(@baseClass) {
-    --_no-bc: var(--bc-medium-legacy);
-    --_no-bg: var(--black-legacy-050);
-    --_no-fc: var(--fc-medium-legacy);
-    --_no-btn-bg-focus: var(--black-legacy-100);
-    --_no-btn-bg-active: var(--black-legacy-150);
+    --_no-bc: var(--bc-medium);
+    --_no-bg: var(--black-150);
+    --_no-fc: var(--fc-medium);
+    --_no-btn-bg-focus: var(--black-225);
+    --_no-btn-bg-active: var(--black-250);
 
     // MODIFIERS
     &:not(&__important) {
@@ -22,10 +22,10 @@
 
     &__important {
         --_no-bc: var(--_no-bg);
-        --_no-bg: var(--black-legacy-700);
-        --_no-fc: var(--white-legacy);
-        --_no-btn-bg-focus: var(--black-legacy-800);
-        --_no-btn-bg-active: var(--black-legacy-900);
+        --_no-bg: var(--black-500);
+        --_no-fc: var(--white);
+        --_no-btn-bg-focus: var(--black-600);
+        --_no-btn-bg-active: var(--black-600);
 
         .highcontrast-mode({
             --_no-bc: var(--_no-bg);
@@ -34,129 +34,129 @@
 
     // VARIANTS
     &__danger {
-        --_no-bc: var(--red-legacy-200);
-        --_no-bg: var(--red-legacy-050);
-        --_no-btn-bg-active: var(--red-legacy-200);
-        --_no-btn-bg-focus: var(--red-legacy-100);
+        --_no-bc: var(--red-300);
+        --_no-bg: var(--red-200);
+        --_no-btn-bg-active: var(--red-300);
+        --_no-btn-bg-focus: var(--red-300);
 
         &:not(.@{baseClass}__important) {
             .highcontrast-mode({
-                --_no-bg: var(--red-legacy-200);
+                --_no-bg: var(--red-300);
             });
         }
 
         &.@{baseClass}__important {
             --_no-bc: var(--_no-bg);
-            --_no-bg: var(--red-legacy-500);
-            --_no-btn-bg-active: var(--red-legacy-700);
-            --_no-btn-bg-focus: var(--red-legacy-600);
+            --_no-bg: var(--red-400);
+            --_no-btn-bg-active: var(--red-500);
+            --_no-btn-bg-focus: var(--red-500);
 
             .dark-mode({
-                --_no-bg: var(--red-legacy-400);
-                --_no-fc: var(--black-legacy-900);
+                --_no-bg: var(--red-400);
+                --_no-fc: var(--black-600);
             });
 
             .highcontrast-dark-mode({
-                --_no-bg: var(--red-legacy-500);
-                --_no-fc: var(--white-legacy);
+                --_no-bg: var(--red-400);
+                --_no-fc: var(--white);
             });
         }
     }
 
     &__info {
-        --_no-bc: var(--theme-secondary-legacy-150);
-        --_no-bg: var(--theme-secondary-legacy-050);
-        --_no-btn-bg-focus: var(--theme-secondary-legacy-100);
-        --_no-btn-bg-active: var(--theme-secondary-legacy-150);
-        --_no-code-bg: var(--theme-secondary-legacy-150);
+        --_no-bc: var(--theme-secondary-300);
+        --_no-bg: var(--theme-secondary-200);
+        --_no-btn-bg-focus: var(--theme-secondary-300);
+        --_no-btn-bg-active: var(--theme-secondary-300);
+        --_no-code-bg: var(--theme-secondary-300);
 
         &:not(.@{baseClass}__important) {
             .highcontrast-mode({
-                --_no-bg: var(--theme-secondary-legacy-100);
+                --_no-bg: var(--theme-secondary-300);
             });
 
             .highcontrast-dark-mode({
-                --_no-bg: var(--theme-secondary-legacy-100);
+                --_no-bg: var(--theme-secondary-300);
             });
         }
 
         &.@{baseClass}__important {
             --_no-bc: var(--_no-bg);
-            --_no-bg: var(--theme-secondary-legacy-400);
-            --_no-btn-bg-active: var(--theme-secondary-legacy-600);
-            --_no-btn-bg-focus: var(--theme-secondary-legacy-500);
+            --_no-bg: var(--theme-secondary-400);
+            --_no-btn-bg-active: var(--theme-secondary-500);
+            --_no-btn-bg-focus: var(--theme-secondary-400);
 
             .dark-mode({
-                --_no-bg: var(--theme-secondary-legacy-300);
-                --_no-fc: var(--black-legacy-900);
+                --_no-bg: var(--theme-secondary-400);
+                --_no-fc: var(--black-600);
             });
 
             .highcontrast-dark-mode({
-                --_no-bg: var(--theme-secondary-legacy-400);
-                --_no-fc: var(--white-legacy);
+                --_no-bg: var(--theme-secondary-400);
+                --_no-fc: var(--white);
             });
         }
     }
 
     &__success {
-        --_no-bc: var(--green-legacy-200);
-        --_no-bg: var(--green-legacy-050);
-        --_no-btn-bg-active: var(--green-legacy-200);
-        --_no-btn-bg-focus: var(--green-legacy-100);
+        --_no-bc: var(--green-300);
+        --_no-bg: var(--green-200);
+        --_no-btn-bg-active: var(--green-300);
+        --_no-btn-bg-focus: var(--green-300);
 
         &:not(.@{baseClass}__important) {
             .highcontrast-mode({
-                --_no-bg: var(--green-legacy-200);
+                --_no-bg: var(--green-300);
             });
         }
 
         &.@{baseClass}__important {
             --_no-bc: var(--_no-bg);
-            --_no-bg: var(--green-legacy-400);
-            --_no-fc: var(--black-legacy-900);
-            --_no-btn-bg-active: var(--green-legacy-600);
-            --_no-btn-bg-focus: var(--green-legacy-500);
+            --_no-bg: var(--green-400);
+            --_no-fc: var(--black-600);
+            --_no-btn-bg-active: var(--green-500);
+            --_no-btn-bg-focus: var(--green-400);
 
             .dark-mode({
-                --_no-bg: var(--green-legacy-500);
-                --_no-fc: var(--white-legacy);
+                --_no-bg: var(--green-400);
+                --_no-fc: var(--white);
             });
 
             .highcontrast-mode({
-                --_no-bg: var(--green-legacy-500);
-                --_no-fc: var(--white-legacy);
+                --_no-bg: var(--green-400);
+                --_no-fc: var(--white);
             });
         }
     }
 
     &__warning {
-        --_no-bc: var(--yellow-legacy-300);
-        --_no-bg: var(--yellow-legacy-050);
-        --_no-btn-bg-active: var(--yellow-legacy-300);
-        --_no-btn-bg-focus: var(--yellow-legacy-200);
-        --_no-code-bg: var(--yellow-legacy-200);
+        --_no-bc: var(--yellow-400);
+        --_no-bg: var(--yellow-200);
+        --_no-btn-bg-active: var(--yellow-400);
+        --_no-btn-bg-focus: var(--yellow-300);
+        --_no-code-bg: var(--yellow-300);
 
         &:not(.@{baseClass}__important) {
             .highcontrast-mode({
-                --_no-bg: var(--yellow-legacy-200);
+                --_no-bg: var(--yellow-300);
             });
         }
 
         &.@{baseClass}__important {
             --_no-bc: var(--_no-bg);
-            --_no-bg: var(--yellow-legacy-400);
-            --_no-fc: var(--black-legacy-900);
-            --_no-btn-bg-active: var(--yellow-legacy-600);
-            --_no-btn-bg-focus: var(--yellow-legacy-500);
+            --_no-bg: var(--yellow-400);
+            --_no-fc: var(--black-600);
+            --_no-btn-bg-active: var(--yellow-500);
+            --_no-btn-bg-focus: var(--yellow-400);
 
             .dark-mode({
-                --_no-bg: var(--yellow-legacy-600);
-                --_no-fc: var(--white-legacy);
+                --_no-bg: var(--yellow-500);
+                --_no-fc: var(--white);
             });
 
             .highcontrast-mode({
-                --_no-bg: var(--yellow-legacy-700);
-                --_no-fc: var(--white-legacy);
+                --_no-bg: var(--yellow-500);
+                --_no-fc: var(--white);
             });
         }
     }
