@@ -23,6 +23,5 @@ describe("expandable", () => {
                 <div><p>After expandable content</p></div>
             </div>
         `,
-
     });
 });
