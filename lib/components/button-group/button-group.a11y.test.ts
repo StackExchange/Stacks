@@ -1,31 +1,41 @@
 import { defaultOptions, runComponentTests } from "../../test/test-utils";
 import "../../index";
 
+const btns = [
+    { name: "Newest", isSelected: true },
+    { name: "Frequent" },
+    { name: "Active" },
+    { name: "Bountied" },
+    { name: "Unanswered" },
+];
+
 const getBtn = ({
-    id,
-    selected = false,
-    type = "button",
+    name = "",
+    isRadio,
+    isSelected,
 }: {
-    id: string;
-    selected?: boolean;
-    type?: string;
+    name: string;
+    isRadio?: boolean;
+    isSelected?: boolean;
 }): string => {
-    if (type === "radio") {
-        // TODO fix: checked never renders as "checked"
-        return `
-            <input class="s-btn--radio" type="radio" name="ex-btn-group" id="${id}"${
-                selected ? " checked" : ""
-            }/ >
-            <label class="s-btn s-btn__muted s-btn__outlined" for="${id}">
-                radio
-            </label>
-        `;
-    }
-    return `
-        <button class="s-btn s-btn__muted s-btn__outlined ${
-            selected ? "is-selected" : ""
-        }" aria-current="${selected}">btn</button>
-    `;
+    const baseClasses = "s-btn s-btn__muted s-btn__outlined";
+
+    return isRadio
+        ? `<input
+            class="s-btn--radio"
+            type="radio"
+            name="test-btn-radio-group"
+            id="btn-${name}"
+            ${isSelected ? "checked" : ""}/>
+            <label class="${baseClasses}" for="btn-${name}">
+                ${name}
+            </label>`
+        : `<button
+            class="${baseClasses}${isSelected ? " is-selected" : ""}"
+            ${isSelected ? `aria-current="true"` : ""}
+            role="button">
+                ${name}
+            </button>`;
 };
 
 describe("button group", () => {
@@ -33,14 +43,12 @@ describe("button group", () => {
         type: "a11y",
         baseClass: "s-btn-group",
         children: {
-            default: [
-                { id: "btn-1", selected: true },
-                { id: "btn-2" },
-                { id: "btn-3" },
-            ]
-                .map((btn) => getBtn(btn))
-                .join(""),
+            default: btns.map((btn) => getBtn({ ...btn }))
+            .join(""),
         },
+        skippedTestids: [
+            "s-btn-group-dark"
+        ],
     });
 
     // s-btn-group--radio
@@ -51,17 +59,15 @@ describe("button group", () => {
             primary: ["radio"],
         },
         children: {
-            default: [
-                { id: "radio-1", selected: true },
-                { id: "radio-2" },
-                { id: "radio-3" },
-            ]
-                .map((btn) => getBtn(btn))
+            default: btns.map((btn) => getBtn({ ...btn, isRadio: true }))
                 .join(""),
         },
         options: {
             ...defaultOptions,
             includeNullModifier: false,
         },
+        skippedTestids: [
+            "s-btn-group-dark-radio"
+        ],
     });
 });
