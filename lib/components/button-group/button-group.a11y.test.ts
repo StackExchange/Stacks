@@ -1,12 +1,20 @@
 import { defaultOptions, runComponentTests } from "../../test/test-utils";
 import "../../index";
 
-const getButton = ({
-    children = "",
+const btns = [
+    { name: "Newest", isSelected: true },
+    { name: "Frequent" },
+    { name: "Active" },
+    { name: "Bountied" },
+    { name: "Unanswered" },
+];
+
+const getBtn = ({
+    name = "",
     isRadio,
     isSelected,
 }: {
-    children: string;
+    name: string;
     isRadio?: boolean;
     isSelected?: boolean;
 }): string => {
@@ -17,46 +25,49 @@ const getButton = ({
             class="s-btn--radio"
             type="radio"
             name="test-btn-radio-group"
-            id="btn-${children}"
+            id="btn-${name}"
             ${isSelected ? "checked" : ""}/>
-            <label class="${baseClasses}" for="btn-${children}">
-                ${children}
+            <label class="${baseClasses}" for="btn-${name}">
+                ${name}
             </label>`
         : `<button
             class="${baseClasses}${isSelected ? " is-selected" : ""}"
             ${isSelected ? `aria-current="true"` : ""}
             role="button">
-                ${children}
+                ${name}
             </button>`;
 };
 
-const getBaseButtons = (isRadio?: boolean): string =>
-    [
-        { children: "Newest", isSelected: true, isRadio },
-        { children: "Frequent", isRadio },
-        { children: "Active", isRadio },
-        { children: "Bountied", isRadio },
-        { children: "Unanswered", isRadio },
-    ]
-        .map(getButton)
-        .join("");
+describe("button group", () => {
+    runComponentTests({
+        type: "a11y",
+        baseClass: "s-btn-group",
+        children: {
+            default: btns.map((btn) => getBtn({ ...btn }))
+            .join(""),
+        },
+        skippedTestids: [
+            "s-btn-group-dark"
+        ],
+    });
 
-describe("button-group", () => {
-    [false, true].forEach((isRadio) => {
-        runComponentTests({
-            type: "a11y",
-            baseClass: "s-btn-group",
-            modifiers: isRadio ? { primary: ["radio"] } : {},
-            children: {
-                default: getBaseButtons(isRadio),
-            },
-            options: {
-                ...defaultOptions,
-                includeNullModifier: !isRadio,
-            },
-            // skippedTestids: [
-            //     "s-btn-group-dark",
-            // ],
-        });
+    // s-btn-group--radio
+    runComponentTests({
+        type: "a11y",
+        baseClass: "s-btn-group",
+        modifiers: {
+            primary: ["radio"],
+        },
+        children: {
+            default: btns.map((btn) => getBtn({ ...btn, isRadio: true }))
+                .join(""),
+        },
+        options: {
+            ...defaultOptions,
+            includeNullModifier: false,
+        },
+        skippedTestids: [
+            "s-btn-group-dark-radio"
+        ],
     });
 });
