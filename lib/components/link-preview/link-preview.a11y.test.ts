@@ -14,14 +14,18 @@ const getChild = (child?: string): string => {
                 </div>
             </div>
         </div>
-        ${child ? child : `
+        ${
+            child
+                ? child
+                : `
             <div class="s-link-preview--body">
                 <p>I'm trying to create a simple fetch with hooks from an AWS database. At the moment it errors out and the only reason I can see is because it breaks the rules of hooks but I'm not sure how. It's at the top level of this functional component and it's not called inside an event handler.</p>
                 <p>The result of this call (an array of user data), needs to be exported as a function and called in another file.</p>
                 <p>If anyone can spot something I have missed and can highlighted how I'm breaking the rules of hooks I'd be grateful!</p>
                 <p>Thanks!</p>
             </div>
-        `}
+        `
+        }
         <div class="s-link-preview--footer">
             <a href="#" class="s-link-preview--url">https://stackoverflow.atlassian.net/projects/SREREQ/queues/custom/1</a>
             <a href="#" class="s-link-preview--misc">Privacy notice</a>
