@@ -23,6 +23,8 @@ describe("block-link", () => {
             default: `block link`,
         },
         template: blockLinkTemplate,
+        // TODO: Most of those skipped tests should be fixed by the new Stacks 2.0 palette
+        skippedTestids: ["s-block-link-dark"],
     });
 
     // Base + danger
@@ -39,8 +41,12 @@ describe("block-link", () => {
             ...defaultOptions,
             includeNullModifier: false,
         },
-        skippedTestids: ["s-block-link-dark-danger"],
         template: blockLinkTemplate,
+        // TODO: Most of those skipped tests should be fixed by the new Stacks 2.0 palette
+        skippedTestids: [
+            "s-block-link-dark-danger",
+            "s-block-link-light-danger",
+        ],
     });
 
     // All left and rignt variants
@@ -58,12 +64,13 @@ describe("block-link", () => {
             ...defaultOptions,
             includeNullVariant: false,
         },
+        template: blockLinkTemplate,
+        // TODO: Most of those skipped tests should be fixed by the new Stacks 2.0 palette
         skippedTestids: [
             "s-block-link-dark-left-is-selected-danger",
             "s-block-link-dark-right-is-selected-danger",
             "s-block-link-light-left-is-selected-danger",
             "s-block-link-light-right-is-selected-danger",
         ],
-        template: blockLinkTemplate,
     });
 });

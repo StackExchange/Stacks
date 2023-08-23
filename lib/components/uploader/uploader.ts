@@ -136,6 +136,7 @@ export class UploaderController extends Stacks.StacksController {
 
         if (file.type.match("image/*") && file.data) {
             thumbElement = document.createElement("img");
+            // eslint-disable-next-line @typescript-eslint/no-base-to-string
             thumbElement.src = file.data.toString();
             thumbElement.alt = file.name;
         } else {
