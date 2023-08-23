@@ -43,12 +43,9 @@ describe("button group", () => {
         type: "a11y",
         baseClass: "s-btn-group",
         children: {
-            default: btns.map((btn) => getBtn({ ...btn }))
-            .join(""),
+            default: btns.map((btn) => getBtn({ ...btn })).join(""),
         },
-        skippedTestids: [
-            "s-btn-group-dark"
-        ],
+        skippedTestids: ["s-btn-group-dark"],
     });
 
     // s-btn-group--radio
@@ -59,15 +56,14 @@ describe("button group", () => {
             primary: ["radio"],
         },
         children: {
-            default: btns.map((btn) => getBtn({ ...btn, isRadio: true }))
+            default: btns
+                .map((btn) => getBtn({ ...btn, isRadio: true }))
                 .join(""),
         },
         options: {
             ...defaultOptions,
             includeNullModifier: false,
         },
-        skippedTestids: [
-            "s-btn-group-dark-radio"
-        ],
+        skippedTestids: ["s-btn-group-dark-radio"],
     });
 });

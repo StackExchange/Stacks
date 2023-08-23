@@ -47,7 +47,7 @@ const getBtn = ({
 
 const getBtns = (ids: number[]): string => {
     return ids.map((id) => getBtn(btns[id])).join("");
-}
+};
 
 const groups: { id: string; children: string }[] = [
     {
@@ -128,7 +128,8 @@ describe("button group", () => {
             primary: ["radio"],
         },
         children: {
-            default: btns.map((btn) => getBtn({ ...btn, isRadio: true }))
+            default: btns
+                .map((btn) => getBtn({ ...btn, isRadio: true }))
                 .join(""),
         },
         template: btnGroupTemplate,
