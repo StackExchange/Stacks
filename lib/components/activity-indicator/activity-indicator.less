@@ -1,10 +1,11 @@
 .s-activity-indicator {
     --_ai-focus-ring: var(--focus-ring);
     --_ai-bg: var(--theme-secondary-400);
-    --_ai-fc: var(--white);
+    --_ai-fc: var(--_white-static);
 
     .highcontrast-mode({
         --_ai-bg: var(--theme-secondary-500);
+        --_ai-fc: var(--white);
     });
 
     // VARIANTS
@@ -27,11 +28,11 @@
     }
 
     &&__warning {
-        --_ai-bg: var(--yellow-400);
+        --_ai-bg: var(--yellow-500);
         --_ai-focus-ring: var(--focus-ring-warning);
 
         .highcontrast-mode({
-            --_ai-bg: var(--yellow-500);
+            --_ai-bg: var(--yellow-500); // needs to be here to override default high contrast
         });
     }
 
