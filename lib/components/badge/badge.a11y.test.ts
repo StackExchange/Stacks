@@ -24,7 +24,7 @@ describe("badge", () => {
                     Altruist
                 </span>`,
             },
-            tag: "span"
+            tag: "span",
         });
     });
 
@@ -40,7 +40,7 @@ describe("badge", () => {
             ...defaultOptions,
             includeNullModifier: false,
         },
-        tag: "span"
+        tag: "span",
     });
 
     // Icon badges

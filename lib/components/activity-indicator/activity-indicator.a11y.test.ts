@@ -9,6 +9,6 @@ describe("activity-indicator", () => {
         children: {
             default: `<div class="v-visible-sr">New activity</div>`,
             new: `new<div class="v-visible-sr">New activity</div>`,
-        }
+        },
     });
 });
