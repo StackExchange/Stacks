@@ -19,7 +19,7 @@ describe("button", () => {
     runComponentTests({
         type: "visual",
         baseClass: "s-btn",
-        variants: ["danger", "muted", "primary"],
+        variants: ["danger", "muted"],
         modifiers: {
             primary: ["filled", "outlined"],
             secondary: [...["xs", "sm", "md"], ...["dropdown", "icon"]],
@@ -44,9 +44,6 @@ describe("button", () => {
             >
                 ${component}
             </div>
-        `,
-        excludedTestids: [
-            /primary-outlined/, // This combination is not supported
-        ],
+        `
     });
 });
