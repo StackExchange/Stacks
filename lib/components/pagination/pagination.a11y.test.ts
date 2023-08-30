@@ -17,9 +17,6 @@ describe("pagination", () => {
             `,
         },
         // TODO: Most of those skipped tests should be fixed by the new Stacks 2.0 palette
-        skippedTestids: [
-            "s-pagination-dark",
-            "s-pagination-light",
-        ],
+        skippedTestids: ["s-pagination-dark", "s-pagination-light"],
     });
 });

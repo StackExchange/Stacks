@@ -18,7 +18,9 @@ describe("pagination", () => {
             `,
         },
         template: ({ component, testid }) => html`
-            <div class="d-inline-block p8" data-testid="${testid}">${component}</div>
+            <div class="d-inline-block p8" data-testid="${testid}">
+                ${component}
+            </div>
         `,
     });
 });
