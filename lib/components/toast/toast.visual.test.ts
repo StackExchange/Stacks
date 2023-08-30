@@ -11,16 +11,20 @@ describe("toast > notice", () => {
         modifiers: {
             primary: ["important"],
         },
-        attributes: {
-            ariaHidden: "false",
-        },
         children: {
-            toast: "Test toast",
+            toast: `<span id="message">Test toast</span>`,
         },
         tag: "aside",
         template: ({ component, testid }) => html`
-            <div data-testid="${testid}" class="s-toast" aria-hidden="false">
-                ${component}
+            <div class="d-inline-block p8" data-testid="${testid}">
+                <div
+                    class="s-toast ps-static t0 l0"
+                    role="alertdialog"
+                    aria-hidden="false"
+                    aria-labelledby="message"
+                >
+                    ${component}
+                </div>
             </div>
         `,
     });
