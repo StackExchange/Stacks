@@ -5,7 +5,7 @@ describe("button", () => {
     runComponentTests({
         type: "a11y",
         baseClass: "s-btn",
-        variants: ["danger", "muted", "primary"],
+        variants: ["danger", "muted"],
         modifiers: {
             primary: ["filled", "outlined"],
             secondary: [...["xs", "sm", "md"], ...["dropdown", "icon"]],
@@ -21,9 +21,6 @@ describe("button", () => {
         children: {
             default: "Ask question",
         },
-        tag: "button",
-        excludedTestids: [
-            /primary-outlined/, // This combination is not supported
-        ],
+        tag: "button"
     });
 });

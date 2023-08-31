@@ -19,15 +19,15 @@
     // Filled
     --_bu-filled-bc: transparent;
     --_bu-filled-bc-active: transparent;
-    --_bu-filled-bg-hover: var(--theme-button-filled-hover-background-color);
     --_bu-filled-bc-selected: transparent;
-    --_bu-filled-bg: var(--theme-button-filled-background-color);
-    --_bu-filled-bg-active: var(--theme-button-filled-active-background-color);
-    --_bu-filled-bg-selected: var(--theme-button-filled-selected-background-color);
-    --_bu-filled-fc: var(--theme-button-filled-color);
-    --_bu-filled-fc-active: var(--theme-button-filled-hover-color); // Note: hover color used here intentionally
-    --_bu-filled-fc-hover: var(--theme-button-filled-hover-color);
-    --_bu-filled-fc-selected: var(--theme-button-filled-selected-color);
+    --_bu-filled-bg: var(--theme-button-primary-background-color);
+    --_bu-filled-bg-active: var(--theme-button-primary-active-background-color);
+    --_bu-filled-bg-hover: var(--theme-button-primary-hover-background-color);
+    --_bu-filled-bg-selected: var(--theme-button-primary-selected-background-color);
+    --_bu-filled-fc: var(--theme-button-primary-color);
+    --_bu-filled-fc-active: var(--theme-button-primary-hover-color);
+    --_bu-filled-fc-hover: var(--theme-button-primary-hover-color);
+    --_bu-filled-fc-selected: var(--theme-button-primary-selected-color);
     // Outlined
     --_bu-outlined-bc: var(--theme-button-outlined-border-color);
     --_bu-outlined-bg: var(--theme-button-outlined-background-color);
@@ -38,20 +38,18 @@
     --_bu-badge-o: 0.5;
     --_bu-dropdown-bw: var(--su-static4);
     --_bu-number-fc: var(--white);
-    --_bu-number-fc-selected: var(--_bu-number-fc);
+    --_bu-number-fc-filled: var(--theme-button-primary-number-color);
+    --_bu-number-fc-selected: var(--white);
 
     // CONTEXTUAL STYLES
     .highcontrast-mode({
         --_bu-bc: currentColor;
-        --_bu-filled-bc: var(--_bu-bc);
         --_bu-outlined-bc: var(--_bu-bc);
         --_bu-bc-selected: var(--_bu-bc);
+        --_bu-fc-selected: var(--white);
+        --_bu-outlined-fc-selected: var(--white);
         --_bu-badge-o: 0.8;
-
-        &:not(.s-btn__primary):not(.s-btn__muted):not(.s-btn__danger):not(.is-selected):not(.s-btn__link):not(.s-btn__unset) {
-            --_bu-bg-hover: var(--theme-secondary-300);
-            --_bu-filled-bg-hover: var(--theme-secondary-400);
-        }
+        --_bu-number-fc-selected: var(--theme-button-primary-number-color);
     });
 
     // STATES
@@ -115,6 +113,10 @@
 
     // MODIFIERS
     &&__filled {
+        .s-btn--number {
+            color: var(--_bu-number-fc-filled);
+        }
+
         border-color: var(--_bu-filled-bc);
         background-color: var(--_bu-filled-bg);
         color: var(--_bu-filled-fc);
@@ -254,23 +256,8 @@
         --_bu-outlined-bc-selected: var(--red-500);
         --_bu-outlined-bg-selected: var(--_bu-bg-selected);
         --_bu-outlined-fc-selected: var(--_bu-fc-selected);
-
-        &.s-btn__filled {
-            --_bu-number-fc: var(--black);
-
-            .dark-mode({
-                --_bu-filled-fc: var(--black);
-                --_bu-filled-fc-selected: var(--white);
-                --_bu-number-fc: var(--white);
-                --_bu-number-fc-selected: var(--black);
-            });
-
-            .highcontrast-dark-mode({
-                --_bu-filled-fc: var(--white);
-                --_bu-number-fc: var(--black);
-                --_bu-number-fc-selected: var(--black);
-            });
-        }
+        --_bu-number-fc: var(--white);
+        --_bu-number-fc-filled: var(--black);
     }
 
     &&__muted {
@@ -298,24 +285,26 @@
         --_bu-outlined-bc-selected: var(--black-300);
         --_bu-outlined-bg-selected: var(--_bu-bg-selected);
         --_bu-outlined-fc-selected: var(--_bu-fc-selected);
+        --_bu-number-fc-selected: var(--white);
 
         .highcontrast-mode({
             --_bu-bg-hover: var(--black-225);
-            // The filled modifier on the muted button is deprecated and is to be
-            // removed in Stacks Classic v2
+            // // The filled modifier on the muted button is deprecated and is to be
+            // // removed in Stacks Classic v2
             --_bu-filled-bg: var(--black-400);
             --_bu-filled-bg-active: var(--black-500);
             --_bu-filled-bg-hover: var(--black-400);
             --_bu-filled-bg-selected: var(--black-500);
             --_bu-filled-fc: var(--white);
             --_bu-filled-fc-selected: var(--_bu-filled-fc);
-
-            &.s-btn__filled {
-                --_bu-number-fc: var(--black);
-            }
+            --_bu-fc-selected: var(--black);
+            --_bu-number-fc: var(--white);
+            --_bu-number-fc-filled: var(--black);
+            --_bu-number-fc-selected: var(--white);
         });
     }
 
+    // DEPRECATED - THE PRIMARY BUTTON STYLE IS TO BE REMOVED WITH V1 COLORS
     &&__primary {
         --_bu-bg: var(--theme-button-primary-background-color);
         --_bu-bg-active: var(--theme-button-primary-active-background-color);
@@ -326,29 +315,10 @@
         --_bu-fc-hover: var(--theme-button-primary-hover-color);
         --_bu-fc-selected: var(--theme-button-primary-selected-color);
         --_bu-number-fc: var(--theme-button-primary-number-color);
-
-        .dark-mode({
-            --_bu-bg: var(--theme-secondary-400);
-            --_bu-bg-active: var(--theme-secondary-400);
-            --_bu-bg-hover: var(--theme-secondary-400);
-            --_bu-fc: var(--black);
-            --_bu-fc-active: var(--_bu-fc);
-            --_bu-fc-hover: var(--_bu-fc);
-            --_bu-fc-selected: var(--white);
-            --_bu-number-fc: var(--white);
-            --_bu-number-fc-selected: var(--black);
-        });
+        --_bu-number-fc-selected: var(--theme-button-primary-number-color);
 
         .highcontrast-mode({
             --_bu-bc: transparent;
-        });
-
-        .highcontrast-dark-mode({
-            --_bu-bg: var(--theme-secondary-400);
-            --_bu-bg-active: var(--theme-secondary-500);
-            --_bu-bg-hover: var(--theme-secondary-400);
-            --_bu-fc: var(--white);
-            --_bu-number-fc: var(--black);
         });
     }
 
