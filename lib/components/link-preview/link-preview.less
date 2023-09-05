@@ -1,6 +1,8 @@
 .s-link-preview {
     --_lp-details-mt: var(--su2);
+    --_lp-footer-bg: var(--black-100);
     --_lp-footer-fd: unset;
+    --_lp-header-bg: var(--black-100);
     --_lp-misc-pl: var(--su4);
     --_lp-misc-pt: unset;
 
@@ -10,6 +12,11 @@
         --_lp-footer-fd: column;
         --_lp-misc-pl: 0;
         --_lp-misc-pt: var(--su2);
+    });
+
+    .highcontrast-mode({
+        --_lp-footer-bg: var(--black-050);
+        --_lp-header-bg: var(--black-050);
     });
 
     // CHILD ELEMENTS
@@ -25,7 +32,7 @@
                 color: var(--black-500);
             }
 
-            color: var(--black-400);
+            color: var(--black-600);
             cursor: pointer;
             text-decoration: none;
         }
@@ -56,9 +63,9 @@
     }
 
     & &--footer {
+        background: var(--_lp-footer-bg);
         flex-direction: var(--_lp-footer-fd);
 
-        background: var(--black-100);
         border-bottom-left-radius: var(--br-sm);
         border-bottom-right-radius: var(--br-sm);
         border-top: var(--su-static1) solid var(--bc-medium);
@@ -69,7 +76,7 @@
     }
 
     & &--header {
-        background: var(--black-100);
+        background: var(--_lp-header-bg);
         border-bottom: var(--su-static1) solid var(--bc-medium);
         border-top-left-radius: var(--br-sm);
         border-top-right-radius: var(--br-sm);
