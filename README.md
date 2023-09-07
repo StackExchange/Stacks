@@ -21,6 +21,7 @@ Stacks documentation can be found at https://stackoverflow.design/
 ## Table of contents
 
 - [Using Stacks](#using-stacks)
+- [Migrating from v1 to v2](#migrating-from-v1-to-v2)
 - [Building Stacks](#building-stacks)
 - [Format Stacks](#format-stacks)
 - [Linting Stacks](#linting-stacks)
@@ -32,6 +33,17 @@ Stacks documentation can be found at https://stackoverflow.design/
 
 ## Using Stacks
 Using Stacks is outlined in our [usage guidelines](https://stackoverflow.design/product/guidelines/using-stacks).
+
+
+
+
+
+
+
+
+## Migrating from v1 to v2
+
+To migrate from Stacks v1 to v2, see our [migration guide](/MIGRATION_GUIDE.md).
 
 ## Building Stacks
 To contribute to Stacks documentation or its CSS library, you’ll need to build Stacks locally. View our [building guidelines](https://stackoverflow.design/product/guidelines/building).
