@@ -26,6 +26,6 @@ describe("page title", () => {
             </div>
         `,
         // TODO new colors should resolve this issue
-        skippedTestids: [/s-page-title/],
+        skippedTestids: [/s-page-title-dark/, /s-page-title-light/],
     });
 });
