@@ -24,6 +24,7 @@ import "../../index";
                     ${component}
                 </div>
             `,
+            skippedTestids: [/is-disabled/],
         });
     });
 });

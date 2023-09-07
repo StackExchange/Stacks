@@ -46,9 +46,6 @@ describe("avatar", () => {
             >
                 ${component}
             </div>
-        `,
-        skippedTestids: [
-            /-letter/, // TODO: resolve font-family thrashing issues
-        ],
+        `
     });
 });
