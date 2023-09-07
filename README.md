@@ -34,13 +34,6 @@ Stacks documentation can be found at https://stackoverflow.design/
 ## Using Stacks
 Using Stacks is outlined in our [usage guidelines](https://stackoverflow.design/product/guidelines/using-stacks).
 
-
-
-
-
-
-
-
 ## Migrating from v1 to v2
 
 To migrate from Stacks v1 to v2, see our [migration guide](/MIGRATION_GUIDE.md).
