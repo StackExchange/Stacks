@@ -178,7 +178,7 @@ $1-$2-legacy
 
 ## Custom theme generation
 
-Stacks v2 has deprecated the Less function `.generate-calculated-themed-variables()` in favor of the newly added `.create-custom-theme-hsl-variables()` function. This new function works differently behind the scenes, but it accepts the same arguments and generates the same CSS custom properties as it's deprecated equivelent. 
+Stacks v2 has deprecated the Less function `.generate-calculated-themed-variables()` in favor of the newly added `.create-custom-theme-hsl-variables()` function. This new function works differently behind the scenes, but it accepts the same arguments and generates the same CSS custom properties as its deprecated equivelent. 
 <!-- TODO See the [theming documentation]() for more information. -->
 
 ### Replacing `.generate-calculated-themed-variables()`
