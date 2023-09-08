@@ -119,8 +119,8 @@ Stacks v2 includes new CSS custom properties to replace a handful of commonly re
 
 Stacks v1 | Stacks v2
 :-:|:-:
-@black | var(--_black-static)
-@white | var(--_white-static)
+`@black` | `var(--_black-static)`
+`@white` | `var(--_white-static)`
 
 <!-- TODO any other values worth mentioning above? -->
 
@@ -130,7 +130,7 @@ In rare circumstances, you may need to reference a color value directly in order
 
 Stacks v1 | Stacks v2
 :-:|:-:
-@black-350 | .set-black()[350]
+`@black-350` | `.set-black()[350]`
 
 ## Using legacy colors
 
@@ -194,9 +194,11 @@ To update to the new custom theme variable generation function, simply search fo
 
 ## Other deprecations
 
-<!-- TODO add any other deprecation here -->
+*TODO add any other deprecation here*
 
 ## Other removals and breaking changes
+
+*TODO add any other removals and breaking changes here*
 
 <!-- TODO Not removed as of Thu Sep 7, 2023. For details, see https://docs.google.com/document/d/1dqIymDut_dRHblyvuMhgpxeFlA6-dh9VPAdb3kT7vSA/edit#heading=h.w6a14mf4uf1v
 
