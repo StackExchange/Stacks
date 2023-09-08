@@ -1,6 +1,6 @@
 # Migrating from Stacks v1 to v2
 
-With the release of Stacks v2, we've made some breaking changes to the library. This purpose of this guide is to help you prepare your code be compatible with the changes in Stacks v2.
+With the release of Stacks v2, we've made some breaking changes to the library. The purpose of this guide is to help you prepare your code be compatible with the changes in Stacks v2.
 
 ## Table of contents
 
@@ -185,7 +185,7 @@ $1-$2-legacy
 
 ## Custom theme generation
 
-Stacks v2 has deprecated the Less function `.generate-calculated-themed-variables()` in favor of the newly added `.create-custom-theme-hsl-variables()` function. This new function works differently behind the scenes, but it accepts the same arguments and generates the same CSS custom properties as it's deprecated equivelent. See the [theming documentation](https://stacks-next.stackoverflow.design/product/guidelines/theming/).
+Stacks v2 has deprecated the Less function `.generate-calculated-themed-variables()` in favor of the newly added `.create-custom-theme-hsl-variables()` function. This new function works differently behind the scenes, but it accepts the same arguments and generates the same CSS custom properties as its deprecated equivelent. See the [theming documentation](https://stacks-next.stackoverflow.design/product/guidelines/theming/).
 <!-- TODO update link when merged to develop -->
 
 ### Replacing `.generate-calculated-themed-variables()`
