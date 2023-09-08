@@ -100,7 +100,7 @@ Below is just one example of a regular expression that can help you find and rep
 $1-300
 ```
 
-### Referencing theme colors without stop suffix
+### Referencing theme colors without the stop suffix
 
 We've removed the `-color` suffix from the default theme variable custom properties. Previously, you could reference the 400 stop of theme colors with `theme-(primary|secondary)-color`. Now, you should reference the 400 stop of theme colors with `theme-(primary|secondary)`. Below is a table showing the old and new custom property names, though this pattern also applies to color, background, and border utility classes.
 
