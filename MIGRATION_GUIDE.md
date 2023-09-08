@@ -194,11 +194,13 @@ To update to the new custom theme variable generation function, simply search fo
 
 ## Other deprecations
 
-*TODO add any other deprecation here*
+This is a work in progress. Expect this section to be complete before the official release of Stacks v2.
+<!-- *TODO add any other deprecation here* -->
 
 ## Other removals and breaking changes
 
-*TODO add any other removals and breaking changes here*
+This is a work in progress. Expect this section to be complete before the official release of Stacks v2.
+<!-- *TODO add any other removals and breaking changes here* -->
 
 <!-- TODO Not removed as of Thu Sep 7, 2023. For details, see https://docs.google.com/document/d/1dqIymDut_dRHblyvuMhgpxeFlA6-dh9VPAdb3kT7vSA/edit#heading=h.w6a14mf4uf1v
 
