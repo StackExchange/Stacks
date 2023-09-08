@@ -94,13 +94,12 @@ $1-300
 
 ### Referencing theme colors without stop suffix
 
-<!-- TODO Previously, the main theme-* color could be referenced as a CSS custom property named --theme-*-color -->
-<!-- TODO We've removed the `-color` suffix -->
+We've removed the `-color` suffix from the default theme variable custom properties. Previously, you could reference the 400 stop of theme colors with `theme-(primary|secondary)-color`. Now, you should reference the 400 stop of theme colors with `theme-(primary|secondary)`. Below is a table showing the old and new custom property names, though this pattern also applies to color, background, and border utility classes.
 
 Variable | Stacks v1 | Stacks v2
 :-:|:-:|:-:
-**Primary** | --theme-primary-color | --theme-primary
-**Secondary** | --theme-secondary-color | --theme-secondary
+**Primary** | `--theme-primary-color` | `--theme-primary`
+**Secondary** | `--theme-secondary-color` | `--theme-secondary`
 
 ## Deprecation of Less color variables
 
@@ -178,8 +177,8 @@ $1-$2-legacy
 
 ## Custom theme generation
 
-Stacks v2 has deprecated the Less function `.generate-calculated-themed-variables()` in favor of the newly added `.create-custom-theme-hsl-variables()` function. This new function works differently behind the scenes, but it accepts the same arguments and generates the same CSS custom properties as it's deprecated equivelent. 
-<!-- TODO See the [theming documentation]() for more information. -->
+Stacks v2 has deprecated the Less function `.generate-calculated-themed-variables()` in favor of the newly added `.create-custom-theme-hsl-variables()` function. This new function works differently behind the scenes, but it accepts the same arguments and generates the same CSS custom properties as it's deprecated equivelent. See the [theming documentation](https://stacks-next.stackoverflow.design/product/guidelines/theming/).
+<!-- TODO update link when merged to develop -->
 
 ### Replacing `.generate-calculated-themed-variables()`
 
