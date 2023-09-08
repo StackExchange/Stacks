@@ -28,7 +28,15 @@ With the release of Stacks v2, we've made some breaking changes to the library. 
 
 ## Upgrading dependencies
 
-<!-- TODO outline the need to update Stacks-Editor, Stacks-Icons, etc -->
+While updating to Stacks v2, you must also update other Stacks dependencies you may have included in your project. Below is a table of Stacks dependencies and the corresponding minimum versions compatible with Stacks v2.
+
+<!-- TODO update the table once Stacks Classic v2 is officially released -->
+
+Dependency | Minimum version
+:-:|:-:
+[stacks-editor](https://github.com/StackExchange/Stacks-Editor) | [0.9.0-rc.0](https://www.npmjs.com/package/@stackoverflow/stacks-editor/v/0.9.0-rc.0)
+[stacks-icons](https://github.com/StackExchange/Stacks-Icons) | [6.0.0-rc.0](https://www.npmjs.com/package/@stackoverflow/stacks-icons/v/6.0.0-rc.0)
+stacks-razor | tbd
 
 ## Using Stacks v2 colors
 
