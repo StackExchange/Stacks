@@ -13,6 +13,7 @@ const runAxe = async (el: HTMLElement): Promise<AxeResults> => {
 };
 
 describe("axe-apca", () => {
+    // TODO update to test custom conformance level
     describe("bronze conformance level", () => {
         beforeEach(() => {
             registerAxeAPCA("bronze");

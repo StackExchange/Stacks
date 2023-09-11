@@ -20,6 +20,7 @@ npm install --save-dev axe-core axe-apca
 import axe from "axe-core";
 import { registerAxeAPCA } from 'axe-apca';
 
+// TODO update to include custom conformance level
 registerAxeAPCA('bronze'); // or registerAxeAPCA('silver');
 
  // consider turning off default WCAG 2.1 AA color contrast rules when using APCA

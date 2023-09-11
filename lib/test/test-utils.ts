@@ -5,7 +5,22 @@ import type { TemplateResult } from "lit-html";
 import axe from "axe-core";
 import registerAxeAPCA from "./axe-apca";
 
-registerAxeAPCA("bronze");
+const getAPCAStacksThreshold = (fontSize: string): number | null => {
+    const size = parseFloat(fontSize);
+
+    // APCA Bronze Level Conformance
+    // https://readtech.org/ARC/tests/visual-readability-contrast/?tn=criterion
+    switch (true) {
+        case size >= 32:
+            return 45;
+        case size >= 16:
+            return 60;
+        default:
+            return 75;
+    }
+};
+
+registerAxeAPCA("custom", getAPCAStacksThreshold);
 
 const colorThemes = ["dark", "light"];
 const baseThemes = ["", "highcontrast"];
