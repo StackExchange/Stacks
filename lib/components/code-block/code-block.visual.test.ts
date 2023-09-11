@@ -18,7 +18,7 @@ describe("code block", () => {
             options: {
                 ...defaultOptions,
                 includeNullModifier: false,
-            }
+            },
         });
     });
 });

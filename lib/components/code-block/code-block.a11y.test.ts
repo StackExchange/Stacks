@@ -28,7 +28,7 @@ describe("code block", () => {
                 "s-code-block-language-css-dark",
                 "s-code-block-language-javascript-dark",
                 "s-code-block-language-javascript-highcontrast-light",
-            ]
+            ],
         });
     });
 });
