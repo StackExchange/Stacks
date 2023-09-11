@@ -15,11 +15,13 @@ const runAxe = async (el: HTMLElement): Promise<AxeResults> => {
 describe("axe-apca", () => {
     describe("custom conformance level", () => {
         beforeEach(() => {
-            const getAPCACustomThreshold = (fontSize: string): number | null => {
+            const customConformanceThresholdFn = (
+                fontSize: string
+            ): number | null => {
                 return parseFloat(fontSize) >= 32 ? 45 : 60;
             };
-            
-            registerAxeAPCA("custom", getAPCACustomThreshold);
+
+            registerAxeAPCA("custom", customConformanceThresholdFn);
         });
 
         it("should check for APCA accessibility contrast violations", async () => {

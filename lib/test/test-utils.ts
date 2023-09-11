@@ -5,11 +5,11 @@ import type { TemplateResult } from "lit-html";
 import axe from "axe-core";
 import registerAxeAPCA from "./axe-apca";
 
-const getAPCAStacksThreshold = (fontSize: string): number | null => {
+const customConformanceThresholdFn = (fontSize: string): number | null => {
     return parseFloat(fontSize) >= 32 ? 45 : 60;
 };
 
-registerAxeAPCA("custom", getAPCAStacksThreshold);
+registerAxeAPCA("custom", customConformanceThresholdFn);
 
 const colorThemes = ["dark", "light"];
 const baseThemes = ["", "highcontrast"];

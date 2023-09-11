@@ -42,9 +42,9 @@ To set custom thresholds for APCA checks, follow these steps:
 
 
 ```js
-const customAPCAThreshold = (fontSize) => {
+const customConformanceThresholdFn = (fontSize) => {
     return parseFloat(fontSize) >= 32 ? 45 : 60;
 };
 
-registerAxeAPCA('custom', customAPCAThreshold);
+registerAxeAPCA('custom', customConformanceThresholdFn);
 ```

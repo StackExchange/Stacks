@@ -192,15 +192,19 @@ const colorContrastAPCABronzeConformanceCheck =
 const colorContrastAPCASilverRule = generateColorContrastAPCARule("silver");
 const colorContrastAPCABronzeRule = generateColorContrastAPCARule("bronze");
 
-const registerAxeAPCA = (conformanceLevel: ConformanceLevel, customAPCAThreshold?: ConformanceThresholdFn) => {
+const registerAxeAPCA = (
+    conformanceLevel: ConformanceLevel,
+    customConformanceThresholdFn?: ConformanceThresholdFn
+) => {
     axe.configure({
         rules: [generateColorContrastAPCARule(conformanceLevel)],
         checks: [
             generateColorContrastAPCAConformanceCheck(
                 conformanceLevel,
-                customAPCAThreshold || (conformanceLevel === "silver"
-                    ? getAPCASilverPlusThreshold
-                    : getAPCABronzeThreshold)
+                customConformanceThresholdFn ||
+                    (conformanceLevel === "silver"
+                        ? getAPCASilverPlusThreshold
+                        : getAPCABronzeThreshold)
             ),
         ],
     });
