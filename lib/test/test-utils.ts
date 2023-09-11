@@ -6,18 +6,7 @@ import axe from "axe-core";
 import registerAxeAPCA from "./axe-apca";
 
 const getAPCAStacksThreshold = (fontSize: string): number | null => {
-    const size = parseFloat(fontSize);
-
-    // APCA Bronze Level Conformance
-    // https://readtech.org/ARC/tests/visual-readability-contrast/?tn=criterion
-    switch (true) {
-        case size >= 32:
-            return 45;
-        case size >= 16:
-            return 60;
-        default:
-            return 75;
-    }
+    return parseFloat(fontSize) >= 32 ? 45 : 60;
 };
 
 registerAxeAPCA("custom", getAPCAStacksThreshold);
@@ -343,7 +332,7 @@ const runComponentTest = ({
                     // and use APCA bronze level instead
                     { id: "color-contrast", enabled: false },
                     {
-                        id: "color-contrast-apca-bronze",
+                        id: "color-contrast-apca-custom",
                         enabled: !highcontrast,
                     },
                     // for high contrast, we check against WCAG 2.1 AAA (7:1)
