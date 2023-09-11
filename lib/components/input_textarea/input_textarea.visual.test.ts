@@ -19,7 +19,7 @@ const customAttributes = [
     {
         disabled: "",
     },
-];
+] as Record<string, string>[];
 
 const states = ["has-error", "has-warning", "has-success", "is-readonly"];
 const sizes = ["sm", "md", "lg", "xl"];
@@ -52,22 +52,24 @@ const otherModifiers = ["creditcard", "search"];
         // Base styles w/o value; w/ readonly attr; w/ disabled attr
         customAttributes.forEach((attributes) => {
             const attrString = Object.keys(attributes).sort().join("-");
-
+            let attr = attributes;
+            if (type === "input") {
+                attr = {
+                    type: "text",
+                    ...attributes,
+                };
+                if (!attributes.placeholder) {
+                    attr = {
+                        value: "Text input value",
+                        ...attr,
+                    };
+                }
+            }
             runComponentTests({
                 type: "visual",
                 baseClass: `s-${type} ${attrString}`,
                 tag: type,
-                // @ts-ignore
-                attributes:
-                    type === "input"
-                        ? {
-                              type: "text",
-                              value: attributes.placeholder
-                                  ? null
-                                  : "Text input value",
-                              ...attributes,
-                          }
-                        : attributes,
+                attributes: attr,
                 children,
                 template,
             });
