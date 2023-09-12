@@ -60,7 +60,7 @@ Stacks v1 | Stacks v2
 - †only applies to green and red
 
 
-#### Black, white
+#### Black
 
 Stacks v1 | Stacks v2
 :-:|:-:
