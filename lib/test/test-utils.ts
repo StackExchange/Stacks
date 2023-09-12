@@ -329,7 +329,7 @@ const runComponentTest = ({
             axe.configure({
                 rules: [
                     // for non-high contrast, we disable WCAG 2.1 AA (4.5:1)
-                    // and use APCA bronze level instead
+                    // and use a Stacks-specific APCA custom level instead
                     { id: "color-contrast", enabled: false },
                     {
                         id: "color-contrast-apca-custom",
