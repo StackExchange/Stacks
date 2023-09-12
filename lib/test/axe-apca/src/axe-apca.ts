@@ -12,6 +12,13 @@ type Color = {
     toHexString: () => string;
 };
 
+type ConformanceLevel = "bronze" | "silver" | "custom";
+
+type ConformanceThresholdFn = (
+    fontSize: string,
+    fontWeight: string
+) => number | null;
+
 declare module "axe-core" {
     const commons: {
         color: {
@@ -89,10 +96,7 @@ const getAPCABronzeThreshold = (fontSize: string): number | null => {
 
 const generateColorContrastAPCAConformanceCheck = (
     conformanceLevel: string,
-    conformanceThresholdFn: (
-        fontSize: string,
-        fontWeight: string
-    ) => number | null
+    conformanceThresholdFn: ConformanceThresholdFn
 ): Check => ({
     id: `color-contrast-apca-${conformanceLevel}-conformance`,
     metadata: {
@@ -188,15 +192,19 @@ const colorContrastAPCABronzeConformanceCheck =
 const colorContrastAPCASilverRule = generateColorContrastAPCARule("silver");
 const colorContrastAPCABronzeRule = generateColorContrastAPCARule("bronze");
 
-const registerAxeAPCA = (conformanceLevel: "bronze" | "silver") => {
+const registerAxeAPCA = (
+    conformanceLevel: ConformanceLevel,
+    customConformanceThresholdFn?: ConformanceThresholdFn
+) => {
     axe.configure({
         rules: [generateColorContrastAPCARule(conformanceLevel)],
         checks: [
             generateColorContrastAPCAConformanceCheck(
                 conformanceLevel,
-                conformanceLevel === "bronze"
-                    ? getAPCABronzeThreshold
-                    : getAPCASilverPlusThreshold
+                customConformanceThresholdFn ||
+                    (conformanceLevel === "silver"
+                        ? getAPCASilverPlusThreshold
+                        : getAPCABronzeThreshold)
             ),
         ],
     });
