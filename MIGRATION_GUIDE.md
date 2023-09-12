@@ -91,7 +91,7 @@ Below is just one example of a regular expression that can help you find and rep
 
 ###### Find
 ```regexp
-(theme-primary|theme-secondary|black|orange|blue|green|red|yellow)-(100|150|200)
+(theme-primary|theme-secondary|orange|blue|green|red|yellow)-(100|150|200)
 ```
 
 ###### Replace
