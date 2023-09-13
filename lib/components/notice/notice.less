@@ -4,7 +4,7 @@
     --_no-fc: var(--black-500);
     --_no-btn-bg-focus: var(--black-225);
     --_no-btn-bg-active: var(--black-250);
-    --_no-btn-fc: var(--black-500);
+    --_no-btn-fc: var(--_no-fc);
 
     // MODIFIERS
     &:not(&__important) {
@@ -27,7 +27,7 @@
         --_no-fc: var(--white);
         --_no-btn-bg-focus: var(--black-600);
         --_no-btn-bg-active: var(--black-600);
-        --_no-btn-fc: var(--black-100);
+        --_no-btn-fc: var(--_no-fc);
         --_no-code-bg: var(--black-300);
     }
 
@@ -100,28 +100,26 @@
         --_no-bg: var(--yellow-100);
         --_no-btn-bg-active: var(--yellow-200);
         --_no-btn-bg-focus: var(--yellow-200);
-        --_no-btn-fc: var(--yellow-500);
+        --_no-btn-fc: var(--yellow-600);
         --_no-code-bg: var(--yellow-300);
 
         &.@{baseClass}__important {
             --_no-bc: var(--_no-bg);
             --_no-bg: var(--yellow-400);
-            --_no-fc: var(--black-600);
+            --_no-fc: var(--black);
+            --_no-btn-fc: var(--_no-fc);
             --_no-btn-bg-active: var(--yellow-300);
             --_no-btn-bg-focus: var(--yellow-300);
-            --_no-btn-fc: var(--yellow-600);
 
             .dark-mode({
-                --_no-fc: var(--white);
-                --_no-btn-fc: var(--yellow-200);
+                --_no-fc: var(--yellow-200);
             });
 
             .highcontrast-mode({
-                --_no-fc: var(--white);
                 --_no-bg: var(--yellow-500);
-                --_no-btn-fc: var(--yellow-200);
-                --_no-btn-bg-active: var(--yellow-600);
-                --_no-btn-bg-focus: var(--yellow-600);
+                --_no-fc: var(--white);
+                --_no-btn-bg-active: transparent;
+                --_no-btn-bg-focus: transparent;
             });
         }
     }
