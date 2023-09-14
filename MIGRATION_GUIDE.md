@@ -162,7 +162,7 @@ Below you'll find a set of regular expressions to help you find and replace exis
 
 ##### Find
 ```regexp
-(theme-primary|theme-secondary|black|orange|blue|green|red|yellow)-(025|050|075|100|150|200|300|350|400|500|600|700|750|800|900)
+(theme-primary|theme-secondary|black|orange|blue|green|red|yellow|powder|fog)-(025|050|075|100|150|200|300|350|400|500|600|700|750|800|900)
 ```
 
 ##### Replace
@@ -175,7 +175,7 @@ $1-legacy-$2
 
 ##### Find
 ```regexp
-(bc|fc|bg)-(lightest|lighter|light|medium|dark|darker)
+(bc|fc|bg)-(lightest|lighter|light|medium|darker|dark)
 ```
 
 ##### Replace
