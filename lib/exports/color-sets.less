@@ -1,17 +1,28 @@
 /* stylelint-disable property-no-unknown */
 
+// For colors to render properly, you *cannot* have inline comments following a color value
+// The color *and comments* will be passed as the value for the given key and
+// it will fail silently in Stacks' build but might break consumer's builds
+//
+// For example, the value of this:
+//  default: hsl(0, 0%, 100%); // test comment
+// Will render as this:
+//  hsl(0, 0%, 100%); // test comment
+//
+// tl;dr: don't put inline after values in this file
+
 // White
 .set-white() {
-    default: hsl(0, 0%, 100%); // matches .set-black()[050]
+    default: hsl(0, 0%, 100%);
 }
 .set-white-dark() {
-    default: hsl(210, 3%, 15%); // matches .set-black-dark()[050]
+    default: hsl(210, 3%, 15%);
 }
 .set-white-hc() {
-    default: hsl(0, 0%, 100%); // matches .set-black-hc()[050]
+    default: hsl(0, 0%, 100%);
 }
 .set-white-hc-dark() {
-    default: hsl(0, 0%, 0%); // matches .set-black-hc-dark()[050]
+    default: hsl(0, 0%, 0%);
 }
 
 // Black
@@ -318,7 +329,7 @@
 }
 .set-silver-hc() {
     100: hsl(0, 0%, 95%);
-    200: hsl(0, 0%, 84%);
+    200: hsl(0, 0%, 95%);
     300: hsl(210, 5%, 68%);
     400: hsl(216, 2%, 40%);
 }
@@ -648,11 +659,11 @@
 }
 
 .theme-light-default() {
-    primary: .set-orange()[400]; // orange-400 (light)
-    secondary: .set-blue()[400]; // blue-400 (light)
+    primary: .set-orange()[400];
+    secondary: .set-blue()[400];
 }
 
 .theme-dark-default() {
-    primary: .set-orange-dark()[400]; // orange-400 (dark)
-    secondary: .set-blue-dark()[400]; // blue-400 (dark)
+    primary: .set-orange-dark()[400];
+    secondary: .set-blue-dark()[400];
 }
