@@ -1,5 +1,5 @@
 import { html } from "@open-wc/testing";
-import { defaultOptions, runComponentTests } from "../../test/test-utils";
+import { runComponentTests } from "../../test/test-utils";
 import "../../index";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -7,7 +7,7 @@ const postTitleTemplate = ({ component, testid }: any) => html`
     <div class="d-block p8 ws6" data-testid="${testid}">${component}</div>
 `;
 
-const getChildren = ({ showEverything }: { showEverything: boolean }) => `
+const getChildren = ({ showEverything = false }: { showEverything: boolean }) => `
     <div class="s-page-title--text">
         ${
             showEverything
@@ -43,25 +43,13 @@ const getChildren = ({ showEverything }: { showEverything: boolean }) => `
 `;
 
 describe("page title", () => {
-    [true, false].map((showEverything) => {
-        runComponentTests({
-            type: "visual",
-            baseClass: "s-page-title",
-            modifiers: showEverything
-                ? {
-                      global: ["complete"],
-                  }
-                : {},
-            children: {
-                default: getChildren({ showEverything }),
-            },
-            template: postTitleTemplate,
-            options: showEverything
-                ? {
-                      ...defaultOptions,
-                      includeNullModifier: false,
-                  }
-                : defaultOptions,
-        });
+    runComponentTests({
+        type: "visual",
+        baseClass: "s-page-title",
+        children: {
+            default: getChildren(),
+            complete: getChildren({ showEverything: true }),
+        },
+        template: postTitleTemplate,
     });
 });
