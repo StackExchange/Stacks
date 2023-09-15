@@ -5,7 +5,11 @@ import type { TemplateResult } from "lit-html";
 import axe from "axe-core";
 import registerAxeAPCA from "./axe-apca";
 
-registerAxeAPCA("bronze");
+const customConformanceThresholdFn = (fontSize: string): number | null => {
+    return parseFloat(fontSize) >= 32 ? 45 : 60;
+};
+
+registerAxeAPCA("custom", customConformanceThresholdFn);
 
 const colorThemes = ["dark", "light"];
 const baseThemes = ["", "highcontrast"];
@@ -323,10 +327,10 @@ const runComponentTest = ({
             axe.configure({
                 rules: [
                     // for non-high contrast, we disable WCAG 2.1 AA (4.5:1)
-                    // and use APCA bronze level instead
+                    // and use a Stacks-specific APCA custom level instead
                     { id: "color-contrast", enabled: false },
                     {
-                        id: "color-contrast-apca-bronze",
+                        id: "color-contrast-apca-custom",
                         enabled: !highcontrast,
                     },
                     // for high contrast, we check against WCAG 2.1 AAA (7:1)
