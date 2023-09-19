@@ -5,9 +5,9 @@
     --_ps-o: unset;
     // Child components
     --_ps-content-excerpt-fc: var(--_ps-state-fc, var(--fc-medium));
-    --_ps-content-title-a-fc: var(--_ps-state-fc, var(--theme-post-title-color));
-    --_ps-content-title-a-fc-hover: var(--_ps-state-fc, var(--theme-post-title-color-hover));
-    --_ps-content-title-a-fc-visited: var(--_ps-state-fc, var(--theme-post-title-color-visited));
+    --_ps-content-title-a-fc: var(--_ps-state-fc, var(--theme-post-title-color, var(--theme-link-color, var(--theme-secondary-400))));
+    --_ps-content-title-a-fc-hover: var(--_ps-state-fc, var(--theme-post-title-color-hover, var(--theme-link-color-hover, var(--theme-secondary-400))));
+    --_ps-content-title-a-fc-visited: var(--_ps-state-fc, var(--theme-post-title-color-visited, var(--theme-link-color-visited, var(--theme-secondary-500))));
     --_ps-stats-ai: flex-end;
     --_ps-stats-fc: var(--_ps-state-fc, var(--fc-light));
     --_ps-stats-fd: column;
@@ -117,9 +117,9 @@
         &:not(.s-post-summary__deleted):not(.s-post-summary__ignored) {
             --_ps-bg: var(--yellow-200);
             --_ps-stats-fc: var(--black-400);
-            --_ps-content-title-a-fc: var(--theme-post-title-color);
-            --_ps-content-title-a-fc-hover: var(--theme-post-title-color-hover);
-            --_ps-content-title-a-fc-visited: var(--theme-post-title-color-visited);
+            --_ps-content-title-a-fc: var(--theme-post-title-color, var(--theme-link-color, var(--theme-secondary-400)));
+            --_ps-content-title-a-fc-hover: var(--theme-post-title-color-hover, var(--theme-link-color-hover, var(--theme-secondary-400)));
+            --_ps-content-title-a-fc-visited: var(--theme-post-title-color-visited, var(--theme-link-color-visited, var(--theme-secondary-500)));
 
             .s-user-card {
                 a {
@@ -208,7 +208,7 @@
             .break-word;
             .v-truncate2;
             color: var( --_ps-content-excerpt-fc);
-            font-family: var(--theme-post-body-font-family);
+            font-family: var(--theme-post-body-font-family, var(--theme-body-font-family));
             margin-top: calc(var(--su2) * -1);
             margin-bottom: var(--su8);
         }
@@ -240,7 +240,7 @@
 
                 .break-word;
                 color: var(--_ps-content-title-a-fc);
-                font-family: var(--theme-post-title-font-family);
+                font-family: var(--theme-post-title-font-family, var(--theme-body-font-family));
             }
 
             .iconShield {
