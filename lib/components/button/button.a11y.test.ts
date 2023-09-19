@@ -21,6 +21,6 @@ describe("button", () => {
         children: {
             default: "Ask question",
         },
-        tag: "button"
+        tag: "button",
     });
 });

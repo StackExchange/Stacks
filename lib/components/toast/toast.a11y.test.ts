@@ -25,6 +25,6 @@ describe("toast > notice", () => {
             >
                 ${component}
             </div>
-        `
+        `,
     });
 });

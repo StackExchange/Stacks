@@ -145,18 +145,7 @@ description: Stacks provides a robust theming API to handle theming in various c
 --theme-background-color
 --theme-body-font-color
 --theme-button-active-background-color
---theme-button-background-color
 --theme-button-color
---theme-button-filled-active-background-color
---theme-button-filled-active-border-color
---theme-button-filled-background-color
---theme-button-filled-border-color
---theme-button-filled-color
---theme-button-filled-hover-background-color
---theme-button-filled-hover-color
---theme-button-filled-selected-background-color
---theme-button-filled-selected-border-color
---theme-button-filled-selected-color
 --theme-button-hover-background-color
 --theme-button-hover-color
 --theme-button-outlined-border-color
@@ -190,7 +179,6 @@ description: Stacks provides a robust theming API to handle theming in various c
 --theme-topbar-bottom-border
 --theme-topbar-height
 --theme-topbar-item-background-hover
---theme-topbar-item-border-current
 --theme-topbar-item-color
 --theme-topbar-item-color-current
 --theme-topbar-item-color-hover
@@ -266,7 +254,7 @@ description: Stacks provides a robust theming API to handle theming in various c
                 {% assign modeClass = "theme-" | append: modeClassPrep %}
             {% endif %}
             {% if mode == "dark-forced" %}
-                {% assign bgClass = "bg-black-100 d:bg-black" %}
+                {% assign bgClass = "bg-black-100" %}
             {% endif %}
 
             <div class="p16">
@@ -281,11 +269,22 @@ description: Stacks provides a robust theming API to handle theming in various c
                                     {% if mode != "default" %}.{{modeClass}}{% endif %}
                                     {% if selector != "body" %}{{selector}}{% endif %}
                                 </div>
-                                <div class="s-avatar s-avatar__32 bg-theme-primary-400">
-                                    {% if selector != "body" %}
-                                        <div class="s-avatar--letter">C</div>
-                                        {% icon "ShieldXSm", "native s-avatar--badge" %}
-                                    {% endif %}
+                                <div class="d-flex g16 ai-center">
+                                    <div class="s-avatar s-avatar__32 bg-theme-primary-400">
+                                        {% if selector != "body" %}
+                                            <div class="s-avatar--letter">C</div>
+                                            {% icon "ShieldXSm", "native s-avatar--badge" %}
+                                        {% endif %}
+                                    </div>
+                                    <input class="s-input s-input__xs wmx1" aria-label="demo input" placeholder="email" />
+                                    <button class="s-btn s-btn__filled s-btn__sm" type="button">Subscribe</button>
+                                    <div>
+                                        <div class="s-pagination">
+                                            <span class="s-pagination--item is-selected">1</span>
+                                            <a class="s-pagination--item">2</a>
+                                            <a class="s-pagination--item">Next</a>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         {% endfor %}
@@ -327,7 +326,6 @@ description: Stacks provides a robust theming API to handle theming in various c
         --theme-dark-secondary-color-s: 93%;
         --theme-dark-secondary-color-l: 58%;
     }
-
     .theme-team-003 {
         --theme-base-primary-color-h: 288;
         --theme-base-primary-color-s: 76%;
@@ -336,7 +334,6 @@ description: Stacks provides a robust theming API to handle theming in various c
         --theme-base-secondary-color-s: 76%;
         --theme-base-secondary-color-l: 38%;
 
-        /* Override primary for dark only */
         --theme-dark-primary-color-h: 288;
         --theme-dark-primary-color-s: 45%;
         --theme-dark-primary-color-l: 60%;

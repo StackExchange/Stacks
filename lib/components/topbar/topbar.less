@@ -8,26 +8,26 @@
     min-width: auto;
     width: 100%;
     z-index: var(--zi-navigation-fixed);
-    background-color: var(--theme-topbar-background-color);
-    height: var(--theme-topbar-height);
+    background-color: var(--theme-topbar-background-color, var(--white));
+    height: var(--theme-topbar-height, calc(var(--su-static48) + var(--su-static8)));
     display: flex;
-    border-top: var(--theme-topbar-accent-border);
-    border-bottom: var(--theme-topbar-bottom-border);
+    border-top: var(--theme-topbar-accent-border, 3px solid var(--theme-primary));
+    border-bottom: var(--theme-topbar-bottom-border, 1px solid var(--black-225));
     position: relative;
     align-items: center;
 
     // Redefine the variables for extra contrast in high-contrast mode
     .highcontrast-mode({
         // Search input
-        --theme-topbar-search-color: var(--theme-topbar-item-color);
-        --theme-topbar-search-background: var(--theme-topbar-background-color);
-        --theme-topbar-search-placeholder: var(--theme-topbar-item-color);
-        --theme-topbar-search-border: var(--theme-topbar-item-color);
-        --theme-topbar-search-border-focus: var(--theme-topbar-item-color);
+        --theme-topbar-search-color: var(--theme-topbar-item-color, var(--black-500));
+        --theme-topbar-search-background: var(--theme-topbar-background-color, var(--white));
+        --theme-topbar-search-placeholder: var(--theme-topbar-item-color, var(--black-500));
+        --theme-topbar-search-border: var(--theme-topbar-item-color, var(--black-500));
+        --theme-topbar-search-border-focus: var(--theme-topbar-item-color, var(--black-500));
 
         // Search switcher
-        --theme-topbar-select-color: var(--theme-topbar-item-color);
-        --theme-topbar-select-background: var(--theme-topbar-background-color);
+        --theme-topbar-select-color: var(--theme-topbar-item-color, var(--black-500));
+        --theme-topbar-select-background: var(--theme-topbar-background-color, var(--white));
 
         // Topbar items
         --theme-topbar-item-color: var(--black-600);
@@ -57,11 +57,11 @@
     }
 
     a.s-topbar--logo:hover {
-        background-color: var(--theme-topbar-item-background-hover);
+        background-color: var(--theme-topbar-item-background-hover, var(--black-200));
     }
 
     a.s-topbar--logo.is-selected {
-        background-color: var(--theme-topbar-item-background-hover);
+        background-color: var(--theme-topbar-item-background-hover, var(--black-200));
     }
 
     .s-topbar--menu-btn {
@@ -80,7 +80,7 @@
             &:after {
                 width: var(--su-static16);
                 height: var(--su-static2);
-                background-color: var(--theme-topbar-item-color);
+                background-color: var(--theme-topbar-item-color, var(--black-500));
                 position: relative;
             }
 
@@ -102,7 +102,7 @@
 
         // Transforming hamburger into x
         &.is-selected {
-            color: var(--theme-topbar-item-color-current);
+            color: var(--theme-topbar-item-color-current, var(--black));
             background-color: var(--theme-topbar-item-background-current);
 
             span {
@@ -119,22 +119,22 @@
         }
 
         &:hover {
-            color: var(--theme-topbar-item-color-hover);
-            background-color: var(--theme-topbar-item-background-hover);
+            color: var(--theme-topbar-item-color-hover, var(--black-600));
+            background-color: var(--theme-topbar-item-background-hover, var(--black-200));
         }
     }
 
     .s-navigation {
         .s-navigation--item:focus-visible {
-            box-shadow: var(--theme-topbar-search-shadow-focus);
+            box-shadow: var(--theme-topbar-search-shadow-focus, 0 0 0 var(--su-static4) var(--focus-ring));
         }
         .s-navigation--item:not(.is-selected) {
-            color: var(--theme-topbar-item-color);
+            color: var(--theme-topbar-item-color, var(--black-500));
         }
 
         .s-navigation--item:not(.is-selected):hover {
-            color: var(--theme-topbar-item-color-hover);
-            background-color: var(--theme-topbar-item-background-hover);
+            color: var(--theme-topbar-item-color-hover, var(--black-600));
+            background-color: var(--theme-topbar-item-background-hover, var(--black-200));
         }
     }
 }
@@ -166,7 +166,7 @@
     --theme-topbar-item-color-hover: .set-black()[600];
     --theme-topbar-item-background-hover: .set-black()[200];
     --theme-topbar-item-color-current: var(--_black-static);
-    --theme-topbar-item-border-current: var(--theme-primary);
+    // --theme-topbar-item-border-current: var(--theme-primary); // As of Stacks v2, this is unused
 
     // TODO HACK remove everything below once light/dark topbars are inheriting forced themes correctly
     // redefine the variables for extra contrast in high-contrast mode
@@ -218,7 +218,7 @@
     --theme-topbar-item-color-hover: var(--_white-static);
     --theme-topbar-item-background-hover: .set-black()[500];
     --theme-topbar-item-color-current: var(--_white-static);
-    --theme-topbar-item-border-current: var(--theme-primary);
+    // --theme-topbar-item-border-current: var(--theme-primary); // As of Stacks v2, this is unused
 
     // Themed border accent
     --theme-topbar-accent-border: none;
@@ -267,7 +267,7 @@
     margin-left: auto; // Push this section as far to the right as possible
 
     .s-topbar--item:not(.s-topbar--item__unset) {
-        color: var(--theme-topbar-item-color);
+        color: var(--theme-topbar-item-color, var(--black-500));
         display: inline-flex;
         align-items: center;
         padding: 0 calc(var(--su12) - var(--su2));
@@ -280,14 +280,14 @@
         &.is-selected,
         &.is-selected:hover,
         &.is-selected:focus {
-            color: var(--theme-topbar-item-color-hover);
-            background-color: var(--theme-topbar-item-background-hover);
+            color: var(--theme-topbar-item-color-hover, var(--black-600));
+            background-color: var(--theme-topbar-item-background-hover, var(--black-200));
             text-decoration: none;
             outline: none;
 
             .s-activity-indicator {
                 top: calc(50% - calc(var(--su16) + var(--su2))); // 50% - 18px
-                box-shadow: 0 0 0 var(--su-static2) var(--theme-topbar-item-background-hover);
+                box-shadow: 0 0 0 var(--su-static2) var(--theme-topbar-item-background-hover, var(--black-200));
             }
         }
 
@@ -300,7 +300,7 @@
             top: calc(50% - calc(var(--su12) + var(--su2))); // 50% - 14px
             right: var(--su-static2);
             transition: top var(--te-smooth) 0.15s;
-            box-shadow: 0 0 0 var(--su-static2)  var(--theme-topbar-background-color);
+            box-shadow: 0 0 0 var(--su-static2)  var(--theme-topbar-background-color, var(--white));
         }
     }
 
@@ -325,11 +325,11 @@
     margin-right: var(--su8);
     flex-shrink: 0;
 
-    .topbar-notice-styles(transparent, transparent, var(--theme-topbar-item-color));
+    .topbar-notice-styles(transparent, transparent, var(--theme-topbar-item-color, var(--black-500)));
 
     &:hover,
     &:focus {
-        .topbar-notice-styles(var(--theme-topbar-item-background-hover), var(--theme-topbar-item-background-hover), var(--theme-topbar-item-color-hover));
+        .topbar-notice-styles(var(--theme-topbar-item-background-hover, var(--black-200)), var(--theme-topbar-item-background-hover, var(--black-200)), var(--theme-topbar-item-color-hover, var(--black-600)));
     }
 
     &.is-unread {
@@ -358,26 +358,26 @@
         flex-grow: 1;
 
         .s-input {
-            border-color: var(--theme-topbar-search-border);
-            background-color: var(--theme-topbar-search-background);
+            border-color: var(--theme-topbar-search-border, var(--black-300));
+            background-color: var(--theme-topbar-search-background, var(--white));
             box-shadow: var(--theme-topbar-search-shadow);
-            color: var(--theme-topbar-search-color);
+            color: var(--theme-topbar-search-color, var(--black-500));
             display: block;
             line-height: @inputLineHeights;
 
             &:focus {
-                border-color: var(--theme-topbar-search-border-focus);
-                box-shadow: var(--theme-topbar-search-shadow-focus);
+                border-color: var(--theme-topbar-search-border-focus, var(--blue-400));
+                box-shadow: var(--theme-topbar-search-shadow-focus, 0 0 0 var(--su-static4) var(--focus-ring));
             }
 
             &::placeholder {
-                color: var(--theme-topbar-search-placeholder);
+                color: var(--theme-topbar-search-placeholder, var(--black-400));
                 font-style: normal;
             }
         }
 
         .s-input-icon {
-            color: var(--theme-topbar-search-placeholder);
+            color: var(--theme-topbar-search-placeholder, var(--black-400));
         }
     }
 
@@ -386,7 +386,7 @@
 
         align-self: stretch;
         margin-right: calc(var(--su-static1) * -1); //-1px
-        color: var(--theme-topbar-select-color);
+        color: var(--theme-topbar-select-color, var(--black-500));
 
         &:before,
         &:after {
@@ -399,13 +399,13 @@
         height: 100%;
         line-height: @inputLineHeights;
 
-        border-color: var(--theme-topbar-search-border);
-        background-color: var(--theme-topbar-select-background);
-        color: var(--theme-topbar-select-color);
+        border-color: var(--theme-topbar-search-border, var(--black-300));
+        background-color: var(--theme-topbar-select-background, var(--black-200));
+        color: var(--theme-topbar-select-color, var(--black-500));
 
         &:focus {
-            border-color: var(--theme-topbar-search-border-focus);
-            box-shadow: var(--theme-topbar-search-shadow-focus);
+            border-color: var(--theme-topbar-search-border-focus, var(--blue-400));
+            box-shadow: var(--theme-topbar-search-shadow-focus, 0 0 0 var(--su-static4) var(--focus-ring));
             z-index: var(--zi-selected);
         }
     }
@@ -423,7 +423,7 @@
         top: 100%;
         max-width: 100%;
         padding: var(--su8) var(--su12);
-        background: var(--theme-topbar-item-background-hover);
+        background: var(--theme-topbar-item-background-hover, var(--black-200));
 
         &.s-topbar--searchbar__open {
             display: flex;

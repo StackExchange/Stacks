@@ -528,7 +528,7 @@
 
     &,
     & .themed {
-        color: var(--theme-body-font-color);
+        color: var(--theme-body-font-color, var(--black-600));
         .generate-themed-variables(theme-dark);
         // add in the themed "native mixins", making sure to scope to the child .themed elements so they don't use the parent's values
         .dark-themed-colors();
@@ -856,7 +856,7 @@ body.theme-system .theme-light__forced {
 
     &,
     & .themed {
-        color: var(--theme-body-font-color);
+        color: var(--theme-body-font-color, var(--black-600));
         .generate-themed-variables(theme-light);
         // add in the themed "native mixins", making sure to scope to the child .themed elements so they don't use the parent's values
         .light-themed-colors();

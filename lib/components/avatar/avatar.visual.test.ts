@@ -46,6 +46,6 @@ describe("avatar", () => {
             >
                 ${component}
             </div>
-        `
+        `,
     });
 });

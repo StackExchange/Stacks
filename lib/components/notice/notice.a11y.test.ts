@@ -12,6 +12,6 @@ describe("notice", () => {
         children: {
             default: `Test notice`,
         },
-        tag: "aside"
+        tag: "aside",
     });
 });
