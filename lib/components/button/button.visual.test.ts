@@ -44,6 +44,6 @@ describe("button", () => {
             >
                 ${component}
             </div>
-        `
+        `,
     });
 });

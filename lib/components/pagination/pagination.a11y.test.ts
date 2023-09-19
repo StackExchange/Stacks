@@ -15,6 +15,6 @@ describe("pagination", () => {
                 <a class="s-pagination--item" href="#">100</a>
                 <a class="s-pagination--item" href="#">Next</a>
             `,
-        }
+        },
     });
 });
