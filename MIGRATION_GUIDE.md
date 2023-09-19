@@ -34,6 +34,7 @@ While updating to Stacks v2, you must also update other Stacks dependencies you 
 
 Dependency | Minimum version
 :-:|:-:
+[stacks](https://github.com/StackExchange/Stacks) | [2.0.0-rc.2](https://www.npmjs.com/package/@stackoverflow/stacks/v/2.0.0-rc.2)
 [stacks-editor](https://github.com/StackExchange/Stacks-Editor) | [0.9.0-rc.0](https://www.npmjs.com/package/@stackoverflow/stacks-editor/v/0.9.0-rc.0)
 [stacks-icons](https://github.com/StackExchange/Stacks-Icons) | [6.0.0-rc.2](https://www.npmjs.com/package/@stackoverflow/stacks-icons/v/6.0.0-rc.2)
 
@@ -161,7 +162,7 @@ Below you'll find a set of regular expressions to help you find and replace exis
 
 ##### Find
 ```regexp
-(theme-primary|theme-secondary|black|orange|blue|green|red|yellow)-(025|050|075|100|150|200|300|350|400|500|600|700|750|800|900)
+(theme-primary|theme-secondary|black|orange|blue|green|red|yellow|powder|fog)-(025|050|075|100|150|200|300|350|400|500|600|700|750|800|900)
 ```
 
 ##### Replace
@@ -174,7 +175,7 @@ $1-legacy-$2
 
 ##### Find
 ```regexp
-(bc|fc|bg)-(lightest|lighter|light|medium|dark|darker)
+(bc|fc|bg)-(lightest|lighter|light|medium|darker|dark)
 ```
 
 ##### Replace
