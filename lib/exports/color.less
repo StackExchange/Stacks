@@ -5,14 +5,28 @@ body {
     --_o-disabled-static: 0.5;
     --_black-static: .set-black()[default];
     --_white-static: .set-white()[default];
-    // Create aliased utility variables
-    .create-colors(.sets-aliased-utility-variables());
-    .theme-variables();
 
     &,
     &.themed,
     & .themed {
         color: var(--theme-body-font-color, var(--black-600));
+    }
+}
+
+// Create aliased utility variables, theme variables
+body:not(.theme-highcontrast),
+body.theme-highcontrast {
+    &:not(.theme-dark),
+    &.theme-dark .theme-light__forced,
+    &.theme-system .theme-light__forced,
+    &.theme-dark,
+    &:not(.theme-dark) .theme-dark__forced {
+        &,
+        &.themed,
+        & .themed {
+            .theme-variables();
+            .create-colors(.sets-aliased-utility-variables());
+        }
     }
 }
 

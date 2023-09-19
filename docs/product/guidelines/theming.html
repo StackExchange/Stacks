@@ -277,7 +277,7 @@ description: Stacks provides a robust theming API to handle theming in various c
                 {% assign modeClass = "theme-" | append: modeClassPrep %}
             {% endif %}
             {% if mode == "dark-forced" %}
-                {% assign bgClass = "bg-black-100 d:bg-black" %}
+                {% assign bgClass = "bg-black-100" %}
             {% endif %}
 
             <div class="p16">
@@ -292,11 +292,22 @@ description: Stacks provides a robust theming API to handle theming in various c
                                     {% if mode != "default" %}.{{modeClass}}{% endif %}
                                     {% if selector != "body" %}{{selector}}{% endif %}
                                 </div>
-                                <div class="s-avatar s-avatar__32 bg-theme-primary-400">
-                                    {% if selector != "body" %}
-                                        <div class="s-avatar--letter">C</div>
-                                        {% icon "ShieldXSm", "native s-avatar--badge" %}
-                                    {% endif %}
+                                <div class="d-flex g16 ai-center">
+                                    <div class="s-avatar s-avatar__32 bg-theme-primary-400">
+                                        {% if selector != "body" %}
+                                            <div class="s-avatar--letter">C</div>
+                                            {% icon "ShieldXSm", "native s-avatar--badge" %}
+                                        {% endif %}
+                                    </div>
+                                    <input class="s-input s-input__xs wmx1" aria-label="demo input" placeholder="email" />
+                                    <button class="s-btn s-btn__filled s-btn__sm" type="button">Subscribe</button>
+                                    <div>
+                                        <div class="s-pagination">
+                                            <span class="s-pagination--item is-selected">1</span>
+                                            <a class="s-pagination--item">2</a>
+                                            <a class="s-pagination--item">Next</a>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         {% endfor %}
@@ -308,7 +319,7 @@ description: Stacks provides a robust theming API to handle theming in various c
 </section>
 
 <style>
-    .theme-team-001 {
+    .themed.theme-team-001 {
         --theme-base-primary-color-h: 349;
         --theme-base-primary-color-s: 81%;
         --theme-base-primary-color-l: 58%;
