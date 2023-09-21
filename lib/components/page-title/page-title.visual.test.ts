@@ -7,7 +7,11 @@ const postTitleTemplate = ({ component, testid }: any) => html`
     <div class="d-block p8 ws6" data-testid="${testid}">${component}</div>
 `;
 
-const getChildren = ({ showEverything = false }: { showEverything: boolean }) => `
+const getChildren = ({
+    showEverything = false,
+}: {
+    showEverything: boolean;
+}) => `
     <div class="s-page-title--text">
         ${
             showEverything
