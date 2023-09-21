@@ -51,7 +51,7 @@ describe("page title", () => {
         type: "visual",
         baseClass: "s-page-title",
         children: {
-            default: getChildren(),
+            default: getChildren({ showEverything: false }),
             complete: getChildren({ showEverything: true }),
         },
         template: postTitleTemplate,
