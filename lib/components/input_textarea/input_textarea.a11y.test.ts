@@ -61,6 +61,7 @@ const otherModifiers = ["creditcard", "search"];
                 type: "a11y",
                 baseClass: `s-${type} ${attrString}`,
                 tag: type,
+                // eslint-disable-next-line @typescript-eslint/ban-ts-comment
                 // @ts-ignore
                 attributes:
                     type === "input"
