@@ -7,20 +7,19 @@ body {
     --_white-static: .set-white()[default];
 
     &,
-    &.themed,
-    & .themed {
-        color: var(--theme-body-font-color, var(--black-600));
-    }
-
-    &:not(.theme-dark),
-    &.theme-dark .theme-light__forced,
-    &.theme-system .theme-light__forced,
-    &.theme-dark,
-    &:not(.theme-dark) .theme-dark__forced {
-        &,
-        &.themed,
-        & .themed {
+    &.theme-highcontrast,
+    &:not(.theme-highcontrast) {
+        &:not(.theme-dark),
+        &.theme-dark .theme-light__forced,
+        &.theme-system .theme-light__forced,
+        &.theme-dark,
+        &:not(.theme-dark) .theme-dark__forced {
             .create-colors(.sets-aliased-utility-variables());
+        }
+        &.theme-system {
+            @media (prefers-color-scheme: dark) {
+                .create-colors(.sets-aliased-utility-variables());
+            }
         }
     }
 }
