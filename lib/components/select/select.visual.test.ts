@@ -4,7 +4,9 @@ import "../../index";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const template = ({ component, testid, className }: any) => html`
-    <div class="d-inline-flex p8 ${className}" data-testid="${testid}">${component}</div>
+    <div class="d-inline-flex p8 ${className}" data-testid="${testid}">
+        ${component}
+    </div>
 `;
 
 const child = (attr?: string): string => {
@@ -15,7 +17,7 @@ const child = (attr?: string): string => {
         <option value="car">Automobile</option>
         <option value="rail">Train</option>
         <option value="fly">Plane</option>
-    </select>`
+    </select>`;
 };
 
 describe("select", () => {
@@ -33,19 +35,25 @@ describe("select", () => {
     });
 
     // modifier classes
-    [{
-        class: "is-disabled",
-        attr: 'disabled=""',
-    }, {
-        class: "is-readonly",
-        attr: 'readonly=""',
-    }, {
-        class: "has-success",
-    }, {
-        class: "has-error",
-    }, {
-        class: "has-warning",
-    }].forEach((state) => {
+    [
+        {
+            class: "is-disabled",
+            attr: 'disabled=""',
+        },
+        {
+            class: "is-readonly",
+            attr: 'readonly=""',
+        },
+        {
+            class: "has-success",
+        },
+        {
+            class: "has-error",
+        },
+        {
+            class: "has-warning",
+        },
+    ].forEach((state) => {
         runComponentTests({
             type: "visual",
             baseClass: "s-select",
@@ -55,12 +63,12 @@ describe("select", () => {
             children: {
                 selected: child(state.attr),
             },
-            template: ({ component, testid }) => template({ component, testid, className: state.class }),
+            template: ({ component, testid }) =>
+                template({ component, testid, className: state.class }),
             options: {
                 ...defaultOptions,
                 includeNullModifier: false,
-            }
+            },
         });
-    
     });
 });
