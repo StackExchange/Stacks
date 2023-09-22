@@ -17,7 +17,7 @@ describe("tag", () => {
             global: ["is-selected"],
         },
         children,
-        // TODO: Most of those skipped tests should be fixed by the new Stacks 2.0 palette
+        // TODO: revisit this after minor tag changes are made
         skippedTestids: [/s-tag/],
     });
 });
