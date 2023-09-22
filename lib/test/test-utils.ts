@@ -205,9 +205,7 @@ const buildTestElement = ({
         <${unsafe.tag}
             ${unsafe.attributes}
             data-testid="${testid}"
-        >
-            ${unsafe.children}
-        </${unsafe.tag}>
+        >${unsafe.children}</${unsafe.tag}>
     `;
 };
 
