@@ -22,19 +22,19 @@ hide-menu: true
     <p class="stacks-copy">
         The neutral palette consists of black, white, and grays. The neutral palette is dominant in our UI, using subtle shifts in value to create hierarchy and organize content.
     </p>
-    <img class="wmx100" src="{{ "/assets/img/colors/black-stops.png" | url }}" />
+    <img class="wmx100" src="{{ "/assets/img/colors/black-stops.png" | url }}" alt="Line of 11 squares showing the greyscale color stops from light to dark." />
 
     {% header "h3", "Saturated colors" %}
     <p class="stacks-copy">
         Stacks uses 5 colors with 6 stops per color. Colors are used sparingly and intentionally to convey meaning, draw attention to UI, or create associations.
     </p>
-    <img class="wmx100" src="{{ "/assets/img/colors/saturated-stops.png" | url }}" />
+    <img class="wmx100" src="{{ "/assets/img/colors/saturated-stops.png" | url }} alt="Two grids of squares showing the base color stops, one grid on a light background and the other on a dark background."  />
 
     {% header "h3", "Award colors" %}
     <p class="stacks-copy">
         Stacks has 3 award colors with 4 stops per color. Colors are used to represent gold, silver, and bronze within gamification aspects of our products.
     </p>
-    <img class="wmx100" src="{{ "/assets/img/colors/award-stops.png" | url }}" />
+    <img class="wmx100" src="{{ "/assets/img/colors/award-stops.png" | url }}" alt="Two grids of squares showing the color stops used for awards, one grid on a light background and the other on a dark background." />
 
 
     {% header "h2", "Usage" %}
@@ -44,26 +44,59 @@ hide-menu: true
         Color roles describe the intention behind the color.
     </p>
 
+    <section class="stacks-section">
+        {% for group in colors %}
+            {% if group.name == "v2" %}
+                    <div class="overflow-x-auto mb48" tabindex="0">
+                        <table class="wmn5 s-table s-table__bx-simple s-table__condensed va-middle fs-caption">
+                            <thead>
+                                <tr>
+                                    <th scope="col" width="36px">Role</th>
+                                    <th scope="col" width="36px"></th>
+                                    <th scope="col">Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for role in group.roles %}
+                                    <tr class="fs-body1">
+                                        <th scope="row">
+                                            <div class="stacks-swatch bar-sm bs-sm bg-{{ role.name }}"></div>
+                                        </th>
+                                        <td>
+                                            {{ role.name | capitalize }}
+                                        </td>
+                                        <td>
+                                            {{ role.description }}
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                {% endif %}
+        {% endfor %}
+    </section>
+
     {% header "h3", "Backgrounds" %}
-    <img class="wmx100" src="{{ "/assets/img/colors/background-stop-example.png" | url }}" />
+    <img class="wmx100" src="{{ "/assets/img/colors/background-stop-example.png" | url }}" alt="Line of 11 squares showing the greyscale color stops from light to dark and indicating the ones used for backgrounds." />
     <p class="stacks-copy">
         Stops 50 through 200 are used for background layers
     </p>
 
     {% header "h3", "Borders" %}
-    <img class="wmx100" src="{{ "/assets/img/colors/border-stop-example.png" | url }}" />
+    <img class="wmx100" src="{{ "/assets/img/colors/border-stop-example.png" | url }}" alt="Line of 11 squares showing the greyscale color stops from light to dark and indicating the ones used for borders."/>
     <p class="stacks-copy">
         Stops 200 and 225 are used for decorative borders and dividers throughout our UI. The 250 stop is used for input borders such as text field or secondary button.
     </p>
 
     {% header "h3", "Text" %}
-    <img class="wmx100" src="{{ "/assets/img/colors/text-stop-example.png" | url }}" />
+    <img class="wmx100" src="{{ "/assets/img/colors/text-stop-example.png" | url }}" alt="Line of 11 squares showing the greyscale color stops from light to dark and indicating the ones used for text."/>
     <p class="stacks-copy">
         Stops 500 and 600 can be used for text. Neutrals, blue, red, and green can also be used at 400 and will meet APCA contrast minimums within these shades. Orange and yellow should not be used at 400 because it does not meet our contrast standards.
     </p>
 
     {% header "h3", "Icons and illustrations" %}
-    <img class="wmx100" src="{{ "/assets/img/colors/icon-illo-stop-example.png" | url }}" />
+    <img class="wmx100" src="{{ "/assets/img/colors/icon-illo-stop-example.png" | url }}" alt="Line of 11 squares showing the greyscale color stops from light to dark and indicating the ones used for icons and illustrations." />
     <p class="stacks-copy">
         Stops 400 and 500 are for icons, while 350 should be used for more detailed illustrations.
     </p>
@@ -73,21 +106,22 @@ hide-menu: true
     <p class="stacks-copy">
         Colors in the neutral palette are layered on top of each other to foster a sense of hierarchy and create associations.
     </p>
-    <img class="wmx100" src="{{ "/assets/img/colors/layering-example.png" | url }}" />
+    <img class="wmx100" src="{{ "/assets/img/colors/layering-example.png" | url }}" alt="Two sets of layered squares, one on a light background and one on a dark background showing how to stack a component in a content area on a background. "/>
 
 
     {% header "h2", "Emphasis levels" %}
     <p class="stacks-copy">
         Emphasis determines the amount of contrast a color has against the default surface. Emphasis has a range from subtle to bold. Bold emphasis has more contrast against the background, which adds more attention than using UI with the subtle or default emphasis level.
     </p>
-    <img class="wmx100" src="{{ "/assets/img/colors/emphasis-label-example.png" | url }}" />
+    <img class="wmx100 mb24" src="{{ "/assets/img/colors/emphasis-label-example.png" | url }}" alt="Three sets of labels with decreasing amounts of visual intensity." />
+    <img class="wmx100 mb24" src="{{ "/assets/img/colors/emphasis-text-example.png" | url }}" alt="Three examples of the text from boldest to lightest." />
 
 
     {% header "h2", "Interaction states" %}
     <p class="stacks-copy">
         In Stacks, a component will get darker (or lighter in dark mode) as they interact with it. These progresses happen by adding 100 to the color before the interaction happens. Example: Blue-400 on hover becomes Blue-500. For a disabled button state, subtract 100 from the default color.
     </p>
-    <img class="wmx100" src="{{ "/assets/img/colors/interaction-button-example.png" | url }}" />
+    <img class="wmx100" src="{{ "/assets/img/colors/interaction-button-example.png" | url }}" alt="Four buttons showing the visual differences between default, hover, selected, and disabled states." />
 
     <section class="stacks-section">
         {% header "h2", "Light, dark, and high contrast modes" %}
