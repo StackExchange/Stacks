@@ -5,8 +5,44 @@ description: Stacks provides a robust theming API to handle theming in various c
 ---
 
 <section class="stacks-section">
+    {% header "h2", "Default theme stops" %}
+    <p class="stacks-copy">Stacks provides primary and secondary theme stops that can be overridden in your custom theme.</p>
+
+    {% for group in colors %}
+        {% if group.name == "v2" %}
+            <div class="d-grid g24 mt16 mb32" style="grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));">
+                {% for set in group.sets %}
+                    {% assign setClasses = "" %}
+                    {% if set.name == "theme primary" or set.name == "theme secondary" %}
+                        <div>
+                            <h3>{{ set.name | capitalize }}</h3>
+                            <div class="bar-md overflow-hidden bs-md ba baw2 bc-white">
+                                {% for stop in set.stops %}
+                                    {% assign name = set.name | replace: " ", "-" %}
+
+                                    {% if stop != "" %}
+                                        {% assign name = set.name | append: "-" | append: stop | replace: " ", "-" %}
+                                    {% endif %}
+
+                                    {% assign stopFc = "fc-black" %}
+                                    {% if set.invert contains stop %}
+                                        {% assign stopFc = "fc-white" %}
+                                    {% endif %}
+                                    <div class="p12 bg-{{ name }} {{ stopFc }}">
+                                        {{ name }}
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% endfor %}
+</section>
+
+<section class="stacks-section">
     {% header "h2", "Theming API" %}
-    <p class="stacks-copy">Stacks provides an API to apply custom themes.</p>
 
     {% header "h3", "Programmatic theme generation" %}
     <p class="stacks-copy">Use <code class="stacks-code">.create-custom-theme-hsl-variables(@color, @tier, @modeCustom)</code> to create a custom theme.</p>
@@ -53,6 +89,7 @@ description: Stacks provides a robust theming API to handle theming in various c
     </div>
 
     <div class="stacks-preview _preview-none mb24">
+        {% header "h4", "Format" %}
 {% highlight css %}
 .theme-custom.themed {
     .create-custom-theme-hsl-variables(hsl(172, 37%, 48%), primary);
@@ -63,7 +100,7 @@ description: Stacks provides a robust theming API to handle theming in various c
 {% endhighlight %}
     </div>
 
-        {% header "h4", "Output" %}
+        {% header "h4", "Example" %}
 
     <div class="stacks-preview _preview-none mb24">
 {% highlight css %}
@@ -95,6 +132,7 @@ description: Stacks provides a robust theming API to handle theming in various c
 
     <p class="stacks-copy">With this approach, we recommend targeting new h/s/l color variables on a parent element that includes <code class="stacks-code ws-nowrap">.themed</code> class.</p>
 
+    {% header "h3", "Live playground" %}
     <div class="themed js-custom-theme d-flex fd-column g32 mb48">
         <div class="fs-subheading">HSL</div>
         <div class="d-flex g32 fw-wrap">
