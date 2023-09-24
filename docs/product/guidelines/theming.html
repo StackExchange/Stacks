@@ -133,7 +133,7 @@ description: Stacks provides a robust theming API to handle theming in various c
     <p class="stacks-copy">With this approach, we recommend targeting new h/s/l color variables on a parent element that includes <code class="stacks-code ws-nowrap">.themed</code> class.</p>
 
     {% header "h3", "Live playground" %}
-    <div class="themed js-custom-theme d-flex fd-column g32 mb48">
+    <div class="themed js-custom-theme d-flex fd-column g24">
         <div class="fs-subheading">HSL</div>
         <div class="d-flex g32 fw-wrap">
             <div class="d-flex gy4 fd-column">
@@ -152,26 +152,27 @@ description: Stacks provides a robust theming API to handle theming in various c
 
         <div class="stacks-preview _preview-none mb24">
             <pre class="s-code-block js-custom-theme-variables" tabindex="0">Loading…</pre>
-        </div>
-        <div class="bar-md overflow-hidden bs-md ba baw2 bc-white">
-            {% for set in colors[0].sets %}
-                {% if set.name == "theme primary" %}
-                    {% for stop in set.stops %}
-                        {% assign name = "theme-primary" %}
-                        {% if stop != "" %}
-                            {% assign name = name | append: "-" | append: stop %}
-                        {% endif %}
+        
+            <div class="bar-md overflow-hidden bs-md ba baw2 bc-white">
+                {% for set in colors[0].sets %}
+                    {% if set.name == "theme primary" %}
+                        {% for stop in set.stops %}
+                            {% assign name = "theme-primary" %}
+                            {% if stop != "" %}
+                                {% assign name = name | append: "-" | append: stop %}
+                            {% endif %}
 
-                        {% assign stopFc = "fc-black" %}
-                        {% if set.invert contains stop %}
-                            {% assign stopFc = "fc-white" %}
-                        {% endif %}
-                        <div class="p12 bg-{{name}} {{stopFc}}">
-                           {{name}}
-                        </div>
-                    {% endfor %}
-                {% endif %}
-            {% endfor %}
+                            {% assign stopFc = "fc-black" %}
+                            {% if set.invert contains stop %}
+                                {% assign stopFc = "fc-white" %}
+                            {% endif %}
+                            <div class="p12 bg-{{name}} {{stopFc}}">
+                            {{name}}
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                {% endfor %}
+            </div>
         </div>
     </div>
 
