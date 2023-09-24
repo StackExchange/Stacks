@@ -108,6 +108,54 @@ hide-menu: true
     </p>
     <img class="wmx100" src="{{ "/assets/img/colors/layering-example.png" | url }}" alt="Two sets of layered squares, one on a light background and one on a dark background showing how to stack a component in a content area on a background. "/>
 
+    <section class="stacks-section">
+        {% for group in colors %}
+            {% if group.name == "v2" %}
+                    <div class="overflow-x-auto mb48" tabindex="0">
+                        <table class="wmn5 s-table s-table__bx-simple s-table__condensed va-middle fs-caption">
+                            <thead>
+                                <tr>
+                                    <th scope="col" class="">Background layer</th>
+                                    <th scope="col">Light mode</th>
+                                    <th scope="col">Dark mode</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for layer in group.layers %}
+                                    <tr class="fs-body1 s-table--cell3">
+                                        <th scope="row">
+                                            {{ layer.name | capitalize }}
+                                        </th>
+                                        <td class="s-table--cell5">
+                                            <div class="d-flex ai-center g12">
+                                                {% for usage in layer.light %}
+                                                    {% assign usageName = usage %}
+                                                    {% if layer.name == "Body background" and usage == "black-100" %}
+                                                        {% assign usageName = usage | append: " " | append: "(Teams)" %}
+                                                    {% elsif layer.name == "Body background" and usage == "black-050" %}
+                                                        {% assign usageName = usage | append: " " | append: "(SO)" %}
+                                              
+                                                    {% endif %}
+                                                    <div class="stacks-swatch bs-sm bg-{{ usage }}"></div>
+                                                    {{ usageName }}
+                                                {% endfor %}
+                                            </div>
+                                        </div>
+                                        </td>
+                                        <td class="s-table--cell4">
+                                            <div class="d-flex ai-center g12">
+                                                <div class="stacks-swatch bar-sm bs-sm bg-{{ layer.dark }}"></div>
+                                                {{ layer.dark }}
+                                            </div>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                {% endif %}
+        {% endfor %}
+    </section>
 
     {% header "h2", "Emphasis levels" %}
     <p class="stacks-copy">
