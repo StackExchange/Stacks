@@ -11,65 +11,50 @@ description: Input elements are used to gather information from users.
 
     <div class="stacks-preview">
 {% highlight html %}
+<!-- Base -->
 <div class="d-flex gy4 fd-column">
-    <div class="flex--item">
-        <label class="d-block s-label" for="example-item1">
-            Full name
-            <p class="s-description mt2">This will be shown only to employers and other Team members.</p>
-        </label>
-    </div>
-    <div class="d-flex ps-relative">
-        <input class="s-input" id="example-item1" type="text" placeholder="Enter your input here" />
-    </div>
+    <label class="s-label" for="example-item1">Full name</label>
+    <p class="s-description mtn2 mb0">This will be shown only to employers and other Team members.</p>
+    <input class="s-input" id="example-item1" type="text" placeholder="Enter your input here" />
 </div>
 
-<div class="d-flex gy4 fd-column ps-relative">
-    <label class="flex--item s-label" for="example-item2">Display name</label>
+<!-- Disabled -->
+<div class="d-flex gy4 fd-column">
+    <label class="s-label" for="example-item2">Display name</label>
     <div class="d-flex ps-relative">
         <input class="s-input" id="example-item2" type="text" placeholder="Enter your input here" disabled />
-        @Svg.Lock.With("s-input-icon fc-black-400")
+        {% icon "Lock", "s-input-icon fc-black-400" %}
     </div>
 </div>
 
+<!-- Readonly -->
 <div class="d-flex gy4 fd-column ps-relative is-readonly">
-    <label class="flex--item s-label" for="example-item3">Legal Name</label>
+    <label class="s-label" for="example-item3">Legal name</label>
     <div class="d-flex ps-relative">
-        <input class="s-input" id="example-item3" type="text" placeholder="Enter your input here" readonly />
-        @Svg.Lock.With("s-input-icon fc-black-400")
+        <input class="s-input" id="example-item3" type="text" placeholder="Enter your input here" readonly value="Prefilled readonly input" />
+        {% icon "Lock", "s-input-icon" %}
     </div>
 </div>
 {% endhighlight %}
         <div class="stacks-preview--example">
             <div class="d-flex gy16 fd-column">
-                <div class="flex--item">
-                    <div class="d-flex gy4 fd-column">
-                        <div class="flex--item">
-                            <label class="d-block s-label" for="example-item1">
-                                Full name
-                                <p class="s-description mt2">This will be shown only to employers and other Team members.</p>
-                            </label>
-                        </div>
-                        <div class="d-flex ps-relative">
-                            <input class="s-input" id="example-item1" type="text" placeholder="Enter your input here" />
-                        </div>
+                <div class="d-flex gy4 fd-column">
+                    <label class="s-label" for="example-item1">Full name</label>
+                    <p class="s-description mtn2 mb0">This will be shown only to employers and other Team members.</p>
+                    <input class="s-input" id="example-item1" type="text" placeholder="Enter your input here" />
+                </div>
+                <div class="d-flex gy4 fd-column">
+                    <label class="s-label" for="example-item2">Display name</label>
+                    <div class="d-flex ps-relative">
+                        <input class="s-input" id="example-item2" type="text" placeholder="Enter your input here" disabled />
+                        {% icon "Lock", "s-input-icon fc-black-400" %}
                     </div>
                 </div>
-                <div class="flex--item">
-                    <div class="d-flex gy4 fd-column ps-relative">
-                        <label class="flex--item s-label" for="example-item2">Display name</label>
-                        <div class="d-flex ps-relative">
-                            <input class="s-input" id="example-item2" type="text" placeholder="Enter your input here" disabled />
-                            {% icon "Lock", "s-input-icon fc-black-400" %}
-                        </div>
-                    </div>
-                </div>
-                <div class="flex--item">
-                    <div class="d-flex gy4 fd-column ps-relative is-readonly">
-                        <label class="flex--item s-label" for="example-item3">Legal name</label>
-                        <div class="d-flex ps-relative">
-                            <input class="s-input" id="example-item3" type="text" placeholder="Enter your input here" readonly value="Prefilled readonly input" />
-                            {% icon "Lock", "s-input-icon" %}
-                        </div>
+                <div class="d-flex gy4 fd-column ps-relative is-readonly">
+                    <label class="s-label" for="example-item3">Legal name</label>
+                    <div class="d-flex ps-relative">
+                        <input class="s-input" id="example-item3" type="text" placeholder="Enter your input here" readonly value="Prefilled readonly input" />
+                        {% icon "Lock", "s-input-icon" %}
                     </div>
                 </div>
             </div>
