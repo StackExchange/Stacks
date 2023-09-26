@@ -6,169 +6,321 @@ description: Color is used distinguish our brand, convey meaning, and invoke emo
 hide-menu: true
 ---
 
-<div class="d-flex s-notice s-notice__info" role="status">
-    <div class="flex--item mr8">
-        <svg aria-hidden="true" class="svg-icon iconAlert" width="18" height="18" viewBox="0 0 18 18"><path d="M7.95 2.71c.58-.94 1.52-.94 2.1 0l7.69 12.58c.58.94.15 1.71-.96 1.71H1.22C.1 17-.32 16.23.26 15.29L7.95 2.71ZM8 6v5h2V6H8Zm0 7v2h2v-2H8Z"></path></svg>
+<div class="lg:pr24 sm:pr0">
+    <div class="d-flex s-notice s-notice__info" role="status">
+        <div class="flex--item mr8">
+            <svg aria-hidden="true" class="svg-icon iconAlert" width="18" height="18" viewBox="0 0 18 18"><path d="M7.95 2.71c.58-.94 1.52-.94 2.1 0l7.69 12.58c.58.94.15 1.71-.96 1.71H1.22C.1 17-.32 16.23.26 15.29L7.95 2.71ZM8 6v5h2V6H8Zm0 7v2h2v-2H8Z"></path></svg>
+        </div>
+        <div class="flex--item lh-lg">
+            We’ve revamped our colors. The <a href="{{ "/product/v1/base/colors/" | url }}">original colors</a> have been deprecated and will be removed from the library in January 2024.
+        </div>
     </div>
-    <div class="flex--item lh-lg">
-        We’ve revamped our colors. The <a href="{{ "/product/v1/base/colors/" | url }}">original colors</a> have been deprecated and will be removed from the library in January 2024.
-    </div>
-</div>
-
-<section class="stacks-section">
-    {% header "h2", "Palette" %}
-   
-    {% header "h3", "Neutral colors" %}
-    <p class="stacks-copy">
-        The neutral palette consists of black, white, and grays. The neutral palette is dominant in our UI, using subtle shifts in value to create hierarchy and organize content.
-    </p>
-    <img class="wmx100" src="{{ "/assets/img/colors/black-stops.png" | url }}" alt="Line of 11 squares showing the greyscale color stops from light to dark." />
-
-    {% header "h3", "Saturated colors" %}
-    <p class="stacks-copy">
-        Stacks uses 5 colors with 6 stops per color. Colors are used sparingly and intentionally to convey meaning, draw attention to UI, or create associations.
-    </p>
-    <img class="wmx100" src="{{ "/assets/img/colors/saturated-stops.png" | url }}" alt="Two grids of squares showing the base color stops, one grid on a light background and the other on a dark background."  />
-
-    {% header "h3", "Award colors" %}
-    <p class="stacks-copy">
-        Stacks has 3 award colors with 4 stops per color. Colors are used to represent gold, silver, and bronze within gamification aspects of our products.
-    </p>
-    <img class="wmx100" src="{{ "/assets/img/colors/award-stops.png" | url }}" alt="Two grids of squares showing the color stops used for awards, one grid on a light background and the other on a dark background." />
-
-
-    {% header "h2", "Usage" %}
-    
-    {% header "h3", "Color roles" %}
-    <p class="stacks-copy">
-        Color roles describe the intention behind the color.
-    </p>
 
     <section class="stacks-section">
+        {% header "h2", "Palette" %}
+        {% header "h3", "Neutral colors" %}
+        <p class="stacks-copy">
+            The neutral palette consists of black, white, and grays. The neutral palette is dominant in our UI, using subtle shifts in value to create hierarchy and organize content.
+        </p>
+        {% render 'color-row.html',
+            color: "black",
+            colorSets: colors[0].sets,
+            classes: "bar-md",
+            stopClasses: "h128 pt24 pb32"
+        %}
+    </section>
+
+    <section class="stacks-section">
+        {% header "h3", "Saturated colors" %}
+        <p class="stacks-copy">
+            Stacks uses 5 colors with 6 stops per color. Colors are used sparingly and intentionally to convey meaning, draw attention to UI, or create associations.
+        </p>
+        <div class="d-flex sm:fd-column bar-lg overflow-hidden">
+            {% assign groups = "light,dark" | split: "," %}
+            {% for mode in groups %}
+                {% assign bgColor = "bg-black-100" %}
+                {% if mode == "dark" %}
+                    {% assign bgColor = "bg-white" %}
+                {% endif %}
+                <div class="{{bgColor}} overflow-hidden p64 sm:p48 w100 theme-{{mode}}__forced">
+                    <div class="bar-md overflow-hidden">
+                        {% for set in colors[0].sets %}
+                            {% if set.type == "color" %}
+                                {% render 'color-row.html',
+                                    color: set.name,
+                                    colorSets: colors[0].sets,
+                                    stopClasses: "h-auto",
+                                    stopStyle: "aspect-ratio: 1/1",
+                                    classes: "fd-row-reverse"
+                                %}
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </section>
+
+    <section class="stacks-section">
+
+        {% header "h3", "Award colors" %}
+        <p class="stacks-copy">
+            Stacks has 3 award colors with 4 stops per color. Colors are used to represent gold, silver, and bronze within gamification aspects of our products.
+        </p>
+        <div class="d-flex sm:fd-column bar-lg overflow-hidden">
+            {% assign groups = "light,dark" | split: "," %}
+            {% for mode in groups %}
+                {% assign bgColor = "bg-black-100" %}
+                {% if mode == "dark" %}
+                    {% assign bgColor = "bg-white" %}
+                {% endif %}
+                <div class="{{bgColor}} overflow-hidden p64 px128 md:p64 w100 theme-{{mode}}__forced">
+                    <div class="bar-md overflow-hidden">
+                        {% for set in colors[0].sets %}
+                            {% if set.type == "award" %}
+                                {% render 'color-row.html',
+                                    color: set.name,
+                                    colorSets: colors[0].sets,
+                                    stopClasses: "h-auto",
+                                    stopStyle: "aspect-ratio: 1/1",
+                                    classes: "fd-row-reverse"
+                                %}
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </section>
+
+    <section class="stacks-section">
+        {% header "h2", "Usage" %}
+        {% header "h3", "Color roles" %}
+        <p class="stacks-copy">
+            Color roles describe the intention behind the color.
+        </p>
         {% for group in colors %}
             {% if group.name == "v2" %}
-                    <div class="overflow-x-auto mb48" tabindex="0">
-                        <table class="wmn5 s-table s-table__bx-simple s-table__condensed va-middle fs-caption">
-                            <thead>
-                                <tr>
-                                    <th scope="col" width="36px">Role</th>
-                                    <th scope="col" width="36px"></th>
-                                    <th scope="col">Description</th>
+                <div class="overflow-x-auto mb48" tabindex="0">
+                    <table class="wmn5 s-table s-table__bx-simple s-table__condensed va-middle fs-caption">
+                        <thead>
+                            <tr>
+                                <th scope="col" width="36px">Role</th>
+                                <th scope="col" width="36px"></th>
+                                <th scope="col">Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for role in group.roles %}
+                                <tr class="fs-body1">
+                                    <th scope="row">
+                                        <div class="stacks-swatch bar-sm bs-sm bg-{{ role.bg }}"></div>
+                                    </th>
+                                    <td>
+                                        {{ role.name | capitalize }}
+                                    </td>
+                                    <td>
+                                        {{ role.description }}
+                                    </td>
                                 </tr>
-                            </thead>
-                            <tbody>
-                                {% for role in group.roles %}
-                                    <tr class="fs-body1">
-                                        <th scope="row">
-                                            <div class="stacks-swatch bar-sm bs-sm bg-{{ role.bg }}"></div>
-                                        </th>
-                                        <td>
-                                            {{ role.name | capitalize }}
-                                        </td>
-                                        <td>
-                                            {{ role.description }}
-                                        </td>
-                                    </tr>
-                                {% endfor %}
-                            </tbody>
-                        </table>
-                    </div>
-                {% endif %}
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            {% endif %}
         {% endfor %}
     </section>
 
-    {% header "h3", "Backgrounds" %}
-    <img class="wmx100" src="{{ "/assets/img/colors/background-stop-example.png" | url }}" alt="Line of 11 squares showing the greyscale color stops from light to dark and indicating the ones used for backgrounds." />
-    <p class="stacks-copy">
-        Stops 50 through 200 are used for background layers
-    </p>
-
-    {% header "h3", "Borders" %}
-    <img class="wmx100" src="{{ "/assets/img/colors/border-stop-example.png" | url }}" alt="Line of 11 squares showing the greyscale color stops from light to dark and indicating the ones used for borders."/>
-    <p class="stacks-copy">
-        Stops 200 and 225 are used for decorative borders and dividers throughout our UI. The 250 stop is used for input borders such as text field or secondary button.
-    </p>
-
-    {% header "h3", "Text" %}
-    <img class="wmx100" src="{{ "/assets/img/colors/text-stop-example.png" | url }}" alt="Line of 11 squares showing the greyscale color stops from light to dark and indicating the ones used for text."/>
-    <p class="stacks-copy">
-        Stops 500 and 600 can be used for text. Neutrals, blue, red, and green can also be used at 400 and will meet APCA contrast minimums within these shades. Orange and yellow should not be used at 400 because it does not meet our contrast standards.
-    </p>
-
-    {% header "h3", "Icons and illustrations" %}
-    <img class="wmx100" src="{{ "/assets/img/colors/icon-illo-stop-example.png" | url }}" alt="Line of 11 squares showing the greyscale color stops from light to dark and indicating the ones used for icons and illustrations." />
-    <p class="stacks-copy">
-        Stops 400 and 500 are for icons, while 350 should be used for more detailed illustrations.
-    </p>
-
-
-    {% header "h2", "Layering" %}
-    <p class="stacks-copy">
-        Colors in the neutral palette are layered on top of each other to foster a sense of hierarchy and create associations.
-    </p>
-    <img class="wmx100" src="{{ "/assets/img/colors/layering-example.png" | url }}" alt="Two sets of layered squares, one on a light background and one on a dark background showing how to stack a component in a content area on a background. "/>
-
     <section class="stacks-section">
-        {% for group in colors %}
-            {% if group.name == "v2" %}
-                    <div class="overflow-x-auto mb48" tabindex="0">
-                        <table class="wmn5 s-table s-table__bx-simple s-table__condensed va-middle fs-caption">
-                            <thead>
-                                <tr>
-                                    <th scope="col" class="">Background layer</th>
-                                    <th scope="col">Light mode</th>
-                                    <th scope="col">Dark mode</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {% for layer in group.layers %}
-                                    <tr class="fs-body1 s-table--cell3">
-                                        <th scope="row">
-                                            {{ layer.name | capitalize }}
-                                        </th>
-                                        <td class="s-table--cell5">
-                                            <div class="d-flex ai-center g12">
-                                                {% for usage in layer.light %}
-                                                    {% assign usageName = usage %}
-                                                    {% if layer.name == "Body background" and usage == "black-100" %}
-                                                        {% assign usageName = usage | append: " " | append: "(Teams)" %}
-                                                    {% elsif layer.name == "Body background" and usage == "black-050" %}
-                                                        {% assign usageName = usage | append: " " | append: "(SO)" %}
-                                                    {% endif %}
-                                                    <div class="stacks-swatch bs-sm bg-{{ usage }}"></div>
-                                                    {{ usageName }}
-                                                {% endfor %}
-                                            </div>
-                                        </div>
-                                        </td>
-                                        <td class="s-table--cell4">
-                                            <div class="d-flex ai-center g12">
-                                                <div class="stacks-swatch bar-sm bs-sm theme-dark__forced bg-{{ layer.dark }}"></div>
-                                                {{ layer.dark }}
-                                            </div>
-                                        </td>
-                                    </tr>
-                                {% endfor %}
-                            </tbody>
-                        </table>
-                    </div>
-                {% endif %}
-        {% endfor %}
+        {% header "h3", "Backgrounds" %}
+        <div class="d-flex fd-column bg-black-100 bar-lg p32">
+            {% render 'color-row-detail.html',
+                text: "Default background color",
+                style: "margin-left: calc((1.5/11) * 100%)",
+                position: "top"
+            %}
+            {% render 'color-row.html',
+                color: "black",
+                colorSets: colors[0].sets,
+                labeledStops: "050,100,150,200" | split: ","
+            %}
+            {% render 'color-row-detail.html',
+                text: "Background layers",
+                style: "width: calc((4/11) * 100%)",
+                range: true
+            %}
+        </div>
+        <p class="stacks-copy">
+            Stops 50 through 200 are used for background layers
+        </p>
     </section>
 
-    {% header "h2", "Emphasis levels" %}
-    <p class="stacks-copy">
-        Emphasis determines the amount of contrast a color has against the default surface. Emphasis has a range from subtle to bold. Bold emphasis has more contrast against the background, which adds more attention than using UI with the subtle or default emphasis level.
-    </p>
-    <img class="wmx100 mb24" src="{{ "/assets/img/colors/emphasis-label-example.png" | url }}" alt="Three sets of labels with decreasing amounts of visual intensity." />
-    <img class="wmx100 mb24" src="{{ "/assets/img/colors/emphasis-text-example.png" | url }}" alt="Three examples of the text from boldest to lightest." />
+    <section class="stacks-section">
+        {% header "h3", "Borders" %}
+        <div class="d-flex fd-column bg-black-100 bar-lg p32">
+            {% render 'color-row.html',
+                color: "black",
+                colorSets: colors[0].sets,
+                labeledStops: "200,225,300" | split: ","
+            %}
+            <div class="d-flex w100">
+                {% render 'color-row-detail.html',
+                    text: "Decorative borders",
+                    style: "margin-left: calc((3/11) * 100%); width: calc((2/11) * 100%)",
+                    range: true
+                %}
+                {% render 'color-row-detail.html',
+                    text: "Input borders",
+                    style: "margin-left: calc((1.5/11) * 100%);"
+                %}
+            </div>
+        </div>
+        <p class="stacks-copy">
+            Stops 200 and 225 are used for decorative borders and dividers throughout our UI. The 250 stop is used for input borders such as text field or secondary button.
+        </p>
+    </section>
 
+    <section class="stacks-section">
+        {% header "h3", "Text" %}
+        <div class="d-flex fd-column bg-black-100 bar-lg p32">
+            {% render 'color-row.html',
+                color: "black",
+                colorSets: colors[0].sets,
+                labeledStops: "400,500,600" | split: ","
+            %}
+            <div class="d-flex w100">
+                {% render 'color-row-detail.html',
+                    text: "Text",
+                    style: "margin-left: calc((8/11) * 100%); width: calc((2/11) * 100%)",
+                    range: true
+                %}
+                {% render 'color-row-detail.html',
+                    text: "Heading",
+                    style: "margin-left: calc((.5/11) * 100%);"
+                %}
+            </div>
+        </div>
+        <p class="stacks-copy">
+            Stops 500 and 600 can be used for text. Neutrals, blue, red, and green can also be used at 400 and will meet APCA contrast minimums within these shades. Orange and yellow should not be used at 400 because it does not meet our contrast standards.
+        </p>
+    </section>
 
-    {% header "h2", "Interaction states" %}
-    <p class="stacks-copy">
-        In Stacks, a component will get darker (or lighter in dark mode) as they interact with it. These progresses happen by adding 100 to the color before the interaction happens. Example: Blue-400 on hover becomes Blue-500. For a disabled button state, subtract 100 from the default color.
-    </p>
-    <img class="wmx100" src="{{ "/assets/img/colors/interaction-button-example.png" | url }}" alt="Four buttons showing the visual differences between default, hover, selected, and disabled states." />
+    <section class="stacks-section">
+        {% header "h3", "Icons and illustrations" %}
+        <div class="d-flex fd-column bg-black-100 bar-lg p32">
+            {% render 'color-row.html', color: "black", colorSets: colors[0].sets, labeledStops: "350,400,500" | split: "," %}
+            <div class="d-flex w100">
+                {% render 'color-row-detail.html',
+                    text: "Illustrations",
+                    style: "margin-left: calc((7.5/11) * 100%)"
+                %}
+                {% render 'color-row-detail.html',
+                    text: "Icons",
+                    style: "margin-left: calc((.5/11) * 100%); width: calc((2/11) * 100%)"
+                    range: true
+                %}
+            </div>
+        </div>
+        <p class="stacks-copy">
+            Stops 400 and 500 are for icons, while 350 should be used for more detailed illustrations.
+        </p>
+    </section>
+
+    <section class="stacks-section">
+        {% header "h2", "Layering" %}
+        <p class="stacks-copy">
+            Colors in the neutral palette are layered on top of each other to foster a sense of hierarchy and create associations.
+        </p>
+        <div class="d-flex sm:fd-column bar-lg overflow-hidden">
+            {% assign groups = "light,dark" | split: "," %}
+            {% for mode in groups %}
+                {% assign bgColor = "bg-black-100" %}
+                {% if mode == "dark" %}
+                    {% assign bgColor = "bg-black" %}
+                {% endif %}
+                {% assign layers = colors[0].layers %}
+                <div class="{{bgColor}} overflow-hidden p64 md:p16 w100">
+                    <div class="bar-lg fs-body2 overflow-hidden theme-{{mode}}__forced">
+                        <div>{{layers[0].name}}</div>
+                        <div class="bg-{{layers[1].color}} bar-lg p48 md:p16 mt8">
+                            <div>{{layers[1].name}}</div>
+                            <div class="bg-{{layers[2].color}} bar-lg p48 pb96 lg:p32 md:p16 mt8">
+                                <div>{{layers[2].name}}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+
+        <section class="stacks-section">
+            {% for group in colors %}
+                {% if group.name == "v2" %}
+                        <div class="overflow-x-auto mb48" tabindex="0">
+                            <table class="wmn5 s-table s-table__bx-simple s-table__condensed va-middle fs-caption">
+                                <thead>
+                                    <tr>
+                                        <th scope="col" class="">Background layer</th>
+                                        <th scope="col">Light mode</th>
+                                        <th scope="col">Dark mode</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for layer in group.layers %}
+                                        <tr class="fs-body1 s-table--cell3">
+                                            <th scope="row">
+                                                {{ layer.name | capitalize }}
+                                            </th>
+                                            <td class="s-table--cell5">
+                                                <div class="d-flex ai-center g12">
+                                                    {% for usage in layer.light %}
+                                                        {% assign usageName = usage %}
+                                                        {% if layer.name == "Body background" and usage == "black-100" %}
+                                                            {% assign usageName = usage | append: " " | append: "(Teams)" %}
+                                                        {% elsif layer.name == "Body background" and usage == "black-050" %}
+                                                            {% assign usageName = usage | append: " " | append: "(SO)" %}
+                                                        {% endif %}
+                                                        <div class="stacks-swatch bs-sm bg-{{ usage }}"></div>
+                                                        {{ usageName }}
+                                                    {% endfor %}
+                                                </div>
+                                            </div>
+                                            </td>
+                                            <td class="s-table--cell4">
+                                                <div class="d-flex ai-center g12">
+                                                    <div class="stacks-swatch bar-sm bs-sm theme-dark__forced bg-{{ layer.dark }}"></div>
+                                                    {{ layer.dark }}
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    {% endif %}
+            {% endfor %}
+        </section>
+    </section>
+
+    <section class="stacks-section">
+        {% header "h2", "Emphasis levels" %}
+        <p class="stacks-copy">
+            Emphasis determines the amount of contrast a color has against the default surface. Emphasis has a range from subtle to bold. Bold emphasis has more contrast against the background, which adds more attention than using UI with the subtle or default emphasis level.
+        </p>
+        <!-- TODO replace image -->
+        <img class="wmx100 mb24" src="{{ "/assets/img/colors/emphasis-label-example.png" | url }}" alt="Three sets of labels with decreasing amounts of visual intensity." />
+        <!-- TODO replace image -->
+        <img class="wmx100 mb24" src="{{ "/assets/img/colors/emphasis-text-example.png" | url }}" alt="Three examples of the text from boldest to lightest." />
+    </section>
+
+    <section class="stacks-section">
+        {% header "h2", "Interaction states" %}
+        <p class="stacks-copy">
+            In Stacks, a component will get darker (or lighter in dark mode) as they interact with it. These progresses happen by adding 100 to the color before the interaction happens. Example: Blue-400 on hover becomes Blue-500. For a disabled button state, subtract 100 from the default color.
+        </p>
+        <!-- TODO replace image -->
+        <img class="wmx100" src="{{ "/assets/img/colors/interaction-button-example.png" | url }}" alt="Four buttons showing the visual differences between default, hover, selected, and disabled states." />
+    </section>
 
     <section class="stacks-section">
         {% header "h2", "Light, dark, and high contrast modes" %}
@@ -184,13 +336,19 @@ hide-menu: true
     <section class="stacks-section">
         {% header "h2", "Accessibility standards" %}
         <p class="stacks-copy">Stacks aims to equip you with an accessible color palette and has been tested against WCAG AA, WCAG AAA and the newer APCA color standards. Most of our color combinations meet WCAG AA and APCA levels defined below. We also offer high contrast mode which offers a greater level of contrast. </p>
-        
+    </section>
+
+    <section class="stacks-section">
         {% header "h3", "Contrast" %}
         <p class="stacks-copy">Contrast is the difference in luminance or color between any two elements. All visual readers require ample luminance contrast for fluent readability. Based on APCA bronze standards, all text must have a Lightness contrast (Lc) value of 60, body copy must have a Lc value of 75, icons must have a Lc value of 45, and placeholder and disabled text must have a Lc of 30. These numbers will be negative when calculating for dark mode.</p>
+        <!-- TODO replace image -->
         <img class="wmx100 pb24" src="{{ "/assets/img/colors/contrast-dos-donts.png" | url }}" alt="Examples of good contrast and bad contrast." />
+    </section>
 
+    <section class="stacks-section">
         {% header "h3", "Visual cues" %}
         <p class="stacks-copy">Visual readers with color vision deficiency (CVD) have problems differentiating some hues and therefore these users need help discerning differences between items. This means that color (hue) should never be the sole means of communicating information and should always be paired with a non-color dependent indicator to accommodate all visual users.</p>
+        <!-- TODO replace image -->
         <img class="wmx100" src="{{ "/assets/img/colors/visual-cues-dos-donts.png" | url }}" alt="Good example of using both color and visual cues to indicate a input field state and a bad example of not doing so." />
     </section>
-</section>
+</div>
