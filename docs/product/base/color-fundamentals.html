@@ -252,54 +252,58 @@ hide-menu: true
                 </div>
             {% endfor %}
         </div>
+    </section>
 
-        <section class="stacks-section">
-            {% for group in colors %}
-                {% if group.name == "v2" %}
-                        <div class="overflow-x-auto mb48" tabindex="0">
-                            <table class="wmn5 s-table s-table__bx-simple s-table__condensed va-middle fs-caption">
-                                <thead>
-                                    <tr>
-                                        <th scope="col" class="">Background layer</th>
-                                        <th scope="col">Light mode</th>
-                                        <th scope="col">Dark mode</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {% for layer in group.layers %}
-                                        <tr class="fs-body1 s-table--cell3">
-                                            <th scope="row">
-                                                {{ layer.name | capitalize }}
-                                            </th>
-                                            <td class="s-table--cell5">
-                                                <div class="d-flex ai-center g12">
-                                                    {% for usage in layer.light %}
-                                                        {% assign usageName = usage %}
-                                                        {% if layer.name == "Body background" and usage == "black-100" %}
-                                                            {% assign usageName = usage | append: " " | append: "(Teams)" %}
-                                                        {% elsif layer.name == "Body background" and usage == "black-050" %}
-                                                            {% assign usageName = usage | append: " " | append: "(SO)" %}
-                                                        {% endif %}
-                                                        <div class="stacks-swatch bs-sm bg-{{ usage }}"></div>
-                                                        {{ usageName }}
-                                                    {% endfor %}
-                                                </div>
-                                            </div>
-                                            </td>
-                                            <td class="s-table--cell4">
-                                                <div class="d-flex ai-center g12">
-                                                    <div class="stacks-swatch bar-sm bs-sm theme-dark__forced bg-{{ layer.dark }}"></div>
-                                                    {{ layer.dark }}
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    {% endfor %}
-                                </tbody>
-                            </table>
-                        </div>
-                    {% endif %}
-            {% endfor %}
-        </section>
+    <section class="stacks-section">
+        <div class="overflow-x-auto mb48" tabindex="0">
+            <table class="wmn5 s-table s-table__bx-simple s-table__condensed va-middle fs-caption">
+                <thead>
+                    <tr>
+                        <th scope="col" class="">Background layer</th>
+                        <th scope="col">Light mode</th>
+                        <th scope="col">Dark mode</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for layer in colors[0].layers %}
+                        <tr class="fs-body1 s-table--cell3">
+                            <th scope="row">{{ layer.name | capitalize }}</th>
+                            <td class="s-table--cell5">
+                                {% if layer.teamsLight != null or layer.soLight != null %}
+                                    <div class="d-flex md:fd-column g16">
+                                        {% assign swatchNameTeams = layer.teamsLight | append: " (Teams)" %}
+                                        {% assign swatchClassTeams = "theme-light__forced bg-" | append: layer.teamsLight %}
+                                        {% render 'color-swatch.html',
+                                            text: swatchNameTeams,
+                                            classes: swatchClassTeams
+                                        %}
+                                        {% assign swatchNameSO = layer.teamsLight | append: " (SO)" %}
+                                        {% assign swatchClassSO = "theme-light__forced bg-" | append: layer.soLight %}
+                                        {% render 'color-swatch.html',
+                                            text: swatchNameSO,
+                                            classes: swatchClassSO
+                                        %}
+                                    </div>
+                                {% else %}
+                                    {% assign lightClass = "theme-light__forced bg-" | append: layer.color %}
+                                    {% render 'color-swatch.html',
+                                        text: layer.color,
+                                        classes: lightClass
+                                    %}
+                                {% endif %}
+                            </td>
+                            <td class="s-table--cell5">
+                                {% assign darkClass = "theme-dark__forced bg-" | append: layer.color %}
+                                {% render 'color-swatch.html',
+                                    text: layer.color,
+                                    classes: darkClass
+                                %}
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
     </section>
 
     <section class="stacks-section">
@@ -307,10 +311,36 @@ hide-menu: true
         <p class="stacks-copy">
             Emphasis determines the amount of contrast a color has against the default surface. Emphasis has a range from subtle to bold. Bold emphasis has more contrast against the background, which adds more attention than using UI with the subtle or default emphasis level.
         </p>
-        <!-- TODO replace image -->
-        <img class="wmx100 mb24" src="{{ "/assets/img/colors/emphasis-label-example.png" | url }}" alt="Three sets of labels with decreasing amounts of visual intensity." />
-        <!-- TODO replace image -->
-        <img class="wmx100 mb24" src="{{ "/assets/img/colors/emphasis-text-example.png" | url }}" alt="Three examples of the text from boldest to lightest." />
+        <div class="d-flex fd-column g16">
+            <div class="d-grid grid__3 md:grid__2 sm:grid__1 md:fd-column g16 jc-space-between bg-black-100 bar-lg p32">
+                {% for group in colors[0].emphasis %}
+                    <div>
+                        <div class="d-grid grid__3 g12 fs-caption">
+                            {% for color in group.colors %}
+                                <div class="{{color.classes}} bar-pill ta-center px8 py2">Robotics</div>
+                            {% endfor %}
+                        </div>
+                        {% render 'color-row-detail.html',
+                            text: group.name,
+                            classes: "w100",
+                            range: true
+                        %}
+                    </div>
+                {% endfor %}
+            </div>
+            <div class="d-grid grid__3 md:grid__2 sm:grid__1 g16 jc-space-between bg-black-100 bar-lg p32">
+                {% for group in colors[0].emphasis %}
+                    <div class="ta-center">
+                        <div class="fs-title {{group.textClasses}}">Text</div>
+                        {% render 'color-row-detail.html',
+                            text: group.name,
+                            classes: "w100",
+                            style: "margin-left: 50%;"
+                        %}
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
     </section>
 
     <section class="stacks-section">
@@ -318,8 +348,18 @@ hide-menu: true
         <p class="stacks-copy">
             In Stacks, a component will get darker (or lighter in dark mode) as they interact with it. These progresses happen by adding 100 to the color before the interaction happens. Example: Blue-400 on hover becomes Blue-500. For a disabled button state, subtract 100 from the default color.
         </p>
-        <!-- TODO replace image -->
-        <img class="wmx100" src="{{ "/assets/img/colors/interaction-button-example.png" | url }}" alt="Four buttons showing the visual differences between default, hover, selected, and disabled states." />
+        <div class="d-flex js-space-between g16 bg-black-100 bar-lg p32">
+            {% for group in colors[0].interaction %}
+                <div class="ta-center w100">
+                    <button class="s-btn s-btn__filled {{group.classes}}" {{group.attr}} role="presentation">Button</button>
+                    {% render 'color-row-detail.html',
+                        text: group.name,
+                        classes: "w100",
+                        style: "margin-left: 50%;"
+                    %}
+                </div>
+            {% endfor %}
+        </div>
     </section>
 
     <section class="stacks-section">
@@ -336,19 +376,51 @@ hide-menu: true
     <section class="stacks-section">
         {% header "h2", "Accessibility standards" %}
         <p class="stacks-copy">Stacks aims to equip you with an accessible color palette and has been tested against WCAG AA, WCAG AAA and the newer APCA color standards. Most of our color combinations meet WCAG AA and APCA levels defined below. We also offer high contrast mode which offers a greater level of contrast. </p>
-    </section>
 
-    <section class="stacks-section">
-        {% header "h3", "Contrast" %}
-        <p class="stacks-copy">Contrast is the difference in luminance or color between any two elements. All visual readers require ample luminance contrast for fluent readability. Based on APCA bronze standards, all text must have a Lightness contrast (Lc) value of 60, body copy must have a Lc value of 75, icons must have a Lc value of 45, and placeholder and disabled text must have a Lc of 30. These numbers will be negative when calculating for dark mode.</p>
-        <!-- TODO replace image -->
-        <img class="wmx100 pb24" src="{{ "/assets/img/colors/contrast-dos-donts.png" | url }}" alt="Examples of good contrast and bad contrast." />
-    </section>
-
-    <section class="stacks-section">
-        {% header "h3", "Visual cues" %}
-        <p class="stacks-copy">Visual readers with color vision deficiency (CVD) have problems differentiating some hues and therefore these users need help discerning differences between items. This means that color (hue) should never be the sole means of communicating information and should always be paired with a non-color dependent indicator to accommodate all visual users.</p>
-        <!-- TODO replace image -->
-        <img class="wmx100" src="{{ "/assets/img/colors/visual-cues-dos-donts.png" | url }}" alt="Good example of using both color and visual cues to indicate a input field state and a bad example of not doing so." />
+        {% for section in colors[0].accessibility %}
+            <section class="stacks-section">
+                {% assign h3 = section.heading %}
+                {% header "h3", h3 %}
+                <p class="stacks-copy">{{section.copy}}</p>
+                <div class="d-grid grid__2 sm: grid__1 g32">
+                    {% for group in section.groups %}
+                        {% assign bgColor = "bg-red-100" %}
+                        {% if group.correct %}
+                            {% assign bgColor = "bg-green-100" %}
+                        {% endif %}
+                        <div class="bg-black-100 bar-lg overflow-hidden w100">
+                            <div class="d-flex fd-column ai-center g16 p24">
+                                {% for example in group.examples %}
+                                    {% if example.type == "button" %}
+                                        <button class="{{example.class}}" role="presentation">{{example.children}}</button>
+                                    {% elsif example.type == "input" %}
+                                        <div class="d-flex ps-relative w100 {{example.stateClass}}">
+                                            <input class="s-input" placeholder="placeholder" role="presentation"/>
+                                            {% if example.stateClass == "has-error" and group.correct %}
+                                                {% icon "AlertCircle", "s-input-icon" %}
+                                            {% endif %}
+                                        </div>
+                                    {% else %}
+                                        <div class="{{example.class}}">{{example.children}}</div>
+                                    {% endif %}
+                                {% endfor %}
+                            </div>
+                            <div class="d-flex fd-column fs-body2 g16 {{bgColor}} h100 p24">
+                                <div class="d-flex ai-center g8 fs-subheading fw-bold">
+                                    {% if group.correct %}
+                                        {% icon "CheckmarkSm", "fc-green-500" %}
+                                        Do
+                                    {% else %}
+                                        {% icon "ClearSm", "fc-red-500" %}
+                                        Don't
+                                    {% endif %}
+                                </div>
+                                {{group.text}}
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </section>
+        {% endfor %}
     </section>
 </div>

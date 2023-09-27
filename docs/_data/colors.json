@@ -132,24 +132,173 @@
     "layers": [
       {
         "name": "Body background",
-        "color": "black-100",
-        "light-teams": "black-050",
-        "dark": "white"
+        "color": "white",
+        "teamsLight": "black-100",
+        "soLight": "black-050"
       },
       {
         "name": "Content",
-        "color": "black-050",
-        "dark": "black-050"
+        "color": "black-050"
       },
       {
         "name": "Component",
-        "color": "black-100",
-        "dark": "black-100"
+        "color": "black-100"
       },
       {
         "name": "Component Alt",
-        "color": "black-150",
-        "dark": "black-150"
+        "color": "black-150"
+      }
+    ],
+    "emphasis": [
+      {
+        "name": "Bold",
+        "textClasses": "fc-black",
+        "colors": [
+          {
+            "name": "black",
+            "classes": "bg-black-500 fc-white"
+          }, {
+            "name": "orange",
+            "classes": "bg-orange-400 fc-white"
+          }, {
+            "name": "blue",
+            "classes": "bg-blue-400 fc-white"
+          }, {
+            "name": "green",
+            "classes": "bg-green-400 fc-white"
+          }, {
+            "name": "red",
+            "classes": "bg-red-400 fc-white"
+          }, {
+            "name": "yellow",
+            "classes": "bg-yellow-400 fc-black"
+          }
+        ]
+      }, {
+        "name": "Default",
+        "textClasses": "fc-black-500",
+        "colors": [
+          {
+            "name": "black",
+            "classes": "bg-black-200 fc-black-600"
+          }, {
+            "name": "orange",
+            "classes": "bg-orange-200 fc-orange-600"
+          }, {
+            "name": "blue",
+            "classes": "bg-blue-200 fc-blue-600"
+          }, {
+            "name": "green",
+            "classes": "bg-green-200 fc-green-600"
+          }, {
+            "name": "red",
+            "classes": "bg-red-200 fc-red-600"
+          }, {
+            "name": "yellow",
+            "classes": "bg-yellow-200 fc-yellow-600"
+          }
+        ]
+      }, {
+        "name": "Subtle",
+        "textClasses": "fc-black-400",
+        "colors": [
+          {
+            "name": "black",
+            "classes": "bg-black-150 fc-black-500"
+          }, {
+            "name": "orange",
+            "classes": "bg-orange-100 fc-orange-500"
+          }, {
+            "name": "blue",
+            "classes": "bg-blue-100 fc-blue-500"
+          }, {
+            "name": "green",
+            "classes": "bg-green-100 fc-green-500"
+          }, {
+            "name": "red",
+            "classes": "bg-red-100 fc-red-500"
+          }, {
+            "name": "yellow",
+            "classes": "bg-yellow-100 fc-yellow-500"
+          }
+        ]
+      }
+    ],
+    "interaction": [
+      {
+        "name": "Default",
+        "classes": ""
+      }, {
+        "name": "Hover",
+        "classes": "bg-theme-secondary-500"
+      }, {
+        "name": "Selected",
+        "classes": "bg-theme-secondary-600"
+      }, {
+        "name": "Disabled",
+        "classes": "",
+        "attr": "disabled"
+      }
+    ],
+    "accessibility": [
+      {
+        "heading": "Contrast",
+        "copy": "Contrast is the difference in luminance or color between any two elements. All visual readers require ample luminance contrast for fluent readability. Based on APCA bronze standards, all text must have a Lightness contrast (Lc) value of 60, body copy must have a Lc value of 75, icons must have a Lc value of 45, and placeholder and disabled text must have a Lc of 30. These numbers will be negative when calculating for dark mode.",
+        "groups": [
+          {
+            "correct": true,
+            "text": "Use luminance contrast that meets our standards as defined above.",
+            "examples": [
+              {
+                "type": "button",
+                "class": "s-btn s-btn__filled",
+                "children": "Button"
+              }, {
+                "type": "pill",
+                "class": "bar-pill ta-center px8 py2 bg-green-400 fc-white",
+                "children": "Robotics"
+              }
+            ]
+          }, {
+            "correct": false,
+            "text": "Use low luminance contrast that fail our standards.",
+            "examples": [
+              {
+                "type": "button",
+                "class": "s-btn s-btn__filled bg-theme-secondary-200",
+                "children": "Button"
+              }, {
+                "type": "pill",
+                "class": "bar-pill ta-center px8 py2 bg-green-400 fc-green-300",
+                "children": "Robotics"
+              }
+            ]
+          }
+        ]
+      }, {
+        "heading": "Visual cues",
+        "copy": "Visual readers with color vision deficiency (CVD) have problems differentiating some hues and therefore these users need help discerning differences between items. This means that color (hue) should never be the sole means of communicating information and should always be paired with a non-color dependent indicator to accommodate all visual users.",
+        "groups": [
+          {
+            "correct": true,
+            "text": "Use an icon alongside color to convey meaning.",
+            "examples": [
+              {
+                "type": "input",
+                "stateClass": "has-error"
+              }
+            ]
+          }, {
+            "correct": false,
+            "text": "Use color as the only visual cue.",
+            "examples": [
+              {
+                "type": "input",
+                "stateClass": "has-error"
+              }
+            ]
+          }
+        ]
       }
     ]
   },
