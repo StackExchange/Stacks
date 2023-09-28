@@ -74,7 +74,5 @@ describe("navigation", () => {
                 ${component}
             </nav>
         `,
-        // TODO new colors should resolve the `.is-selected` failures
-        skippedTestids: [/s-navigation/],
     });
 });

@@ -18,6 +18,12 @@ describe("tag", () => {
         },
         children,
         // TODO: revisit this after minor tag changes are made
-        skippedTestids: [/s-tag/],
+        skippedTestids: [
+            /s-tag-highcontrast-light-muted/, // 6.33
+            /s-tag-light-is-selected/, // 58.28Lc
+            /s-tag-light-ignored-is-selected/, // 58.28Lc
+            /s-tag-light-moderator-is-selected/, // 49.14Lc
+            /s-tag-light-watched-is-selected/, // 58.28Lc
+        ],
     });
 });
