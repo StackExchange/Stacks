@@ -34,7 +34,7 @@ While updating to Stacks v2, you must also update other Stacks dependencies you 
 
 Dependency | Minimum version
 :-:|:-:
-[stacks](https://github.com/StackExchange/Stacks) | [2.0.0-rc.8](https://www.npmjs.com/package/@stackoverflow/stacks/v/2.0.0-rc.8)
+[stacks](https://github.com/StackExchange/Stacks) | [2.0.0-rc.11](https://www.npmjs.com/package/@stackoverflow/stacks/v/2.0.0-rc.11)
 [stacks-editor](https://github.com/StackExchange/Stacks-Editor) | [0.9.0-rc.0](https://www.npmjs.com/package/@stackoverflow/stacks-editor/v/0.9.0-rc.0)
 [stacks-icons](https://github.com/StackExchange/Stacks-Icons) | [6.0.0-rc.2](https://www.npmjs.com/package/@stackoverflow/stacks-icons/v/6.0.0-rc.2)
 
