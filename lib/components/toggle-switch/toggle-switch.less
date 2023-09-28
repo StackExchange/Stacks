@@ -1,9 +1,16 @@
 .s-toggle-switch {
+    @ts-bg-image-fill: .set-white()[default];
+    @ts-bg-image-fill-dark: .set-white-dark()[default];
     --_ts-bg: var(--black-350);
+    --_ts-bg-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='@{ts-bg-image-fill}'/%3e%3c/svg%3e");
     --_ts-bg-ps: left center;
     --_ts-bs-color: transparent;
     --_ts-multiple-bg: unset;
     --_ts-multiple-fc: var(--black-400);
+
+    .dark-mode({
+        --_ts-bg-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='@{ts-bg-image-fill-dark}'/%3e%3c/svg%3e");
+    });
 
     fieldset[disabled] &,
     &[disabled] {
@@ -93,7 +100,7 @@
         box-shadow: 0 0 0 var(--su-static4) var(--_ts-bs-color);
 
         appearance: none;
-        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%23fff'/%3e%3c/svg%3e"); // The white dot within the toggle
+        background-image: var(--_ts-bg-image);
         background-size: contain;
         background-repeat: no-repeat;
         border-radius: 1000px;
