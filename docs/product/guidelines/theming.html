@@ -5,19 +5,44 @@ description: Stacks provides a robust theming API to handle theming in various c
 ---
 
 <section class="stacks-section">
-    {% header "h2", "Light, dark, and high contrast modes" %}
-    <p class="stacks-copy">Stacks supports light, dark, and high contrast modes. By using Stacks, you will get each of these modes for free. By using a Stacks component, an atomic color class, or CSS variable directly, your theme will switch appropriately based on the following methods: </p>
-    <ol class="stacks-list">
-        <li>You can apply <code class="stacks-code">.theme-system</code> to the <code class="stacks-code">body</code> element. This will change colors based on the <code class="stacks-code">prefers-color-scheme</code> media query, which is ultimately powered by the user’s system or browser settings. This can be preferable for folks who have their system turn to dark mode based on ambient light or time of day.</li>
-        <li>Alternatively, you can set a dark mode that is not system dependent by attaching <code class="stacks-code">.theme-dark</code> to the <code class="stacks-code">body</code> element.</li>
-        <li>Adding <code class="stacks-code">.theme-highcontrast</code> to the <code class="stacks-code">body</code> element will boost colors to WCAG Level AAA contrast ratios in as many places as possible. This mode stacks on top of both light and dark modes. The only exception is branded themed colors remain untouched by high contrast mode.</li>
-    </ol>
-    <p class="stacks-copy">There are also <a class="s-link" href="{{ "/product/guidelines/conditional-classes#dark-mode" | url }}">conditional classes</a> that can be applied to override assumed dark mode colors, force light mode, or to force dark mode. Forcing modes can be good for previews in admin-only situations.</p>
+    {% header "h2", "Default theme stops" %}
+    <p class="stacks-copy">Stacks provides primary and secondary theme stops that can be overridden in your custom theme.</p>
+
+    {% for group in colors %}
+        {% if group.name == "v2" %}
+            <div class="d-grid g24 mt16 mb32" style="grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));">
+                {% for set in group.sets %}
+                    {% assign setClasses = "" %}
+                    {% if set.name == "theme primary" or set.name == "theme secondary" %}
+                        <div>
+                            <h3>{{ set.name | capitalize }}</h3>
+                            <div class="bar-md overflow-hidden bs-md ba baw2 bc-white">
+                                {% for stop in set.stops %}
+                                    {% assign name = set.name | replace: " ", "-" %}
+
+                                    {% if stop != "" %}
+                                        {% assign name = set.name | append: "-" | append: stop | replace: " ", "-" %}
+                                    {% endif %}
+
+                                    {% assign stopFc = "fc-black" %}
+                                    {% if set.invert contains stop %}
+                                        {% assign stopFc = "fc-white" %}
+                                    {% endif %}
+                                    <div class="p12 bg-{{ name }} {{ stopFc }}">
+                                        {{ name }}
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% endfor %}
 </section>
 
 <section class="stacks-section">
     {% header "h2", "Theming API" %}
-    <p class="stacks-copy">Stacks provides an API to apply custom themes.</p>
 
     {% header "h3", "Programmatic theme generation" %}
     <p class="stacks-copy">Use <code class="stacks-code">.create-custom-theme-hsl-variables(@color, @tier, @modeCustom)</code> to create a custom theme.</p>
@@ -64,6 +89,7 @@ description: Stacks provides a robust theming API to handle theming in various c
     </div>
 
     <div class="stacks-preview _preview-none mb24">
+        {% header "h4", "Format" %}
 {% highlight css %}
 .theme-custom.themed {
     .create-custom-theme-hsl-variables(hsl(172, 37%, 48%), primary);
@@ -74,7 +100,7 @@ description: Stacks provides a robust theming API to handle theming in various c
 {% endhighlight %}
     </div>
 
-        {% header "h4", "Output" %}
+        {% header "h4", "Example" %}
 
     <div class="stacks-preview _preview-none mb24">
 {% highlight css %}
@@ -106,7 +132,8 @@ description: Stacks provides a robust theming API to handle theming in various c
 
     <p class="stacks-copy">With this approach, we recommend targeting new h/s/l color variables on a parent element that includes <code class="stacks-code ws-nowrap">.themed</code> class.</p>
 
-    <div class="themed js-custom-theme d-flex fd-column g32 mb48">
+    {% header "h3", "Live playground" %}
+    <div class="themed js-custom-theme d-flex fd-column g24">
         <div class="fs-subheading">HSL</div>
         <div class="d-flex g32 fw-wrap">
             <div class="d-flex gy4 fd-column">
@@ -125,26 +152,27 @@ description: Stacks provides a robust theming API to handle theming in various c
 
         <div class="stacks-preview _preview-none mb24">
             <pre class="s-code-block js-custom-theme-variables" tabindex="0">Loading…</pre>
-        </div>
-        <div class="bar-md overflow-hidden bs-md ba baw2 bc-white">
-            {% for set in colors[0].sets %}
-                {% if set.name == "theme primary" %}
-                    {% for stop in set.stops %}
-                        {% assign name = "theme-primary" %}
-                        {% if stop != "" %}
-                            {% assign name = name | append: "-" | append: stop %}
-                        {% endif %}
+        
+            <div class="bar-md overflow-hidden bs-md ba baw2 bc-white">
+                {% for set in colors[0].sets %}
+                    {% if set.name == "theme primary" %}
+                        {% for stop in set.stops %}
+                            {% assign name = "theme-primary" %}
+                            {% if stop != "" %}
+                                {% assign name = name | append: "-" | append: stop %}
+                            {% endif %}
 
-                        {% assign stopFc = "fc-black" %}
-                        {% if set.invert contains stop %}
-                            {% assign stopFc = "fc-white" %}
-                        {% endif %}
-                        <div class="p12 bg-{{name}} {{stopFc}}">
-                           {{name}}
-                        </div>
-                    {% endfor %}
-                {% endif %}
-            {% endfor %}
+                            {% assign stopFc = "fc-black" %}
+                            {% if set.invert contains stop %}
+                                {% assign stopFc = "fc-white" %}
+                            {% endif %}
+                            <div class="p12 bg-{{name}} {{stopFc}}">
+                            {{name}}
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                {% endfor %}
+            </div>
         </div>
     </div>
 

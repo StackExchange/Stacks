@@ -8,37 +8,33 @@ description: To avoid specifying color values by hand, we’ve included a robust
 <section class="stacks-section">
     {% header "h2", "Stops" %}
 
-    {% for group in colors %}
-        {% if group.name == "v2" %}
-            <div class="d-grid g24 mt16 mb32" style="grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));">
-                {% for set in group.sets %}
-                    {% assign setClasses = "" %}
-                    {% if set.name != "transparent" and set.name != "inherit" %}
-                        <div>
-                            <h3>{{ set.name | capitalize }}</h3>
-                            <div class="bar-md overflow-hidden bs-md ba baw2 bc-white">
-                                {% for stop in set.stops %}
-                                    {% assign name = set.name | replace: " ", "-" %}
+    <div class="d-grid g24 mt16 mb32" style="grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));">
+        {% for set in colors[0].sets %}
+            {% assign setClasses = "" %}
+            {% if set.name != "transparent" and set.name != "inherit" %}
+                <div>
+                    <h3>{{ set.name | capitalize }}</h3>
+                    <div class="bar-md overflow-hidden bs-md ba baw2 bc-white">
+                        {% for stop in set.stops %}
+                            {% assign name = set.name | replace: " ", "-" %}
 
-                                    {% if stop != "" %}
-                                        {% assign name = set.name | append: "-" | append: stop | replace: " ", "-" %}
-                                    {% endif %}
+                            {% if stop != "" %}
+                                {% assign name = set.name | append: "-" | append: stop | replace: " ", "-" %}
+                            {% endif %}
 
-                                    {% assign stopFc = "fc-black" %}
-                                    {% if set.invert contains stop %}
-                                        {% assign stopFc = "fc-white" %}
-                                    {% endif %}
-                                    <div class="p12 bg-{{ name }} {{ stopFc }}">
-                                        {{ name }}
-                                    </div>
-                                {% endfor %}
+                            {% assign stopFc = "fc-black" %}
+                            {% if set.invert contains stop %}
+                                {% assign stopFc = "fc-white" %}
+                            {% endif %}
+                            <div class="p12 bg-{{ name }} {{ stopFc }}">
+                                {{ name }}
                             </div>
-                        </div>
-                    {% endif %}
-                {% endfor %}
-            </div>
-        {% endif %}
-    {% endfor %}
+                        {% endfor %}
+                    </div>
+                </div>
+            {% endif %}
+        {% endfor %}
+    </div>
 </section>
 
 <section class="stacks-section">
@@ -48,71 +44,59 @@ description: To avoid specifying color values by hand, we’ve included a robust
         Each color stop is available as an atomic text, background, and border class. Using these atomic classes means your view will respond to dark mode appropriately. These colors are available <a href="{{ "/product/guidelines/conditional-classes#hover" | url }}">conditionally</a>.
     </p>
 
-    {% for group in colors %}
-        {% if group.name == "v2" %}
-            {% for set in group.sets %}
-                {% assign setHeading = set.name | capitalize %}
-                {% header "h3", setHeading %}
-                {% assign conditionalUrl = "/product/guidelines/conditional-classes" %}
-                {% assign name = set.name | replace: " ", "-" %}
+    {% for set in colors[0].sets %}
+        {% assign setHeading = set.name | capitalize %}
+        {% header "h3", setHeading %}
+        {% assign conditionalUrl = "/product/guidelines/conditional-classes" %}
+        {% assign name = set.name | replace: " ", "-" %}
 
-                <div class="overflow-x-auto mb48" tabindex="0">
-                    <table class="wmn5 s-table s-table__bx-simple s-table__condensed va-middle fs-caption">
-                        <thead>
-                            <tr>
-                                <th scope="col">Text</th>
-                                <th scope="col">Background</th>
-                                <th scope="col">Border</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {% for stop in set.stops %}
-                                {% assign colorName = set.name | replace: " ", "-" %}
-                                {% if stop != "" %}
-                                    {% assign name = colorName | append: "-" | append: stop %}
-                                {% endif %}
+        <div class="overflow-x-auto mb48" tabindex="0">
+            <table class="wmn5 s-table s-table__bx-simple s-table__condensed va-middle fs-caption">
+                <thead>
+                    <tr>
+                        <th scope="col">Text</th>
+                        <th scope="col">Background</th>
+                        <th scope="col">Border</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for stop in set.stops %}
+                        {% assign colorName = set.name | replace: " ", "-" %}
+                        {% if stop != "" %}
+                            {% assign name = colorName | append: "-" | append: stop %}
+                        {% endif %}
 
-                                {% assign stopFcBg = "bg-" | append: colorName | append: "-500" %}
-                                {% if set.invertAlt %}
-                                    {% assign stopFcBg = "bg-" | append: set.invertAlt %}
-                                {% endif %}
-                                {% assign stopBcFc = "fc-white" %}
-                                {% assign stopBgFc = "fc-black" %}
+                        {% assign stopFcBg = "bg-" | append: colorName | append: "-500" %}
+                        {% if set.invertAlt %}
+                            {% assign stopFcBg = "bg-" | append: set.invertAlt %}
+                        {% endif %}
+                        {% assign stopBcFc = "fc-white" %}
+                        {% assign stopBgFc = "fc-black" %}
 
-                                {% if set.invert contains stop %}
-                                    {% assign stopBcFc = "fc-black" %}
-                                    {% assign stopFcBg = "bg-white" %}
-                                    {% assign stopBgFc = "fc-white" %}
-                                {% endif %}
+                        {% if set.invert contains stop %}
+                            {% assign stopBcFc = "fc-black" %}
+                            {% assign stopFcBg = "bg-white" %}
+                            {% assign stopBgFc = "fc-white" %}
+                        {% endif %}
 
-                                <tr class="ff-mono">
-                                    <td class="fc-{{name}}">
-                                        <div class="fc-{{name}} bar-sm d-inline-block p6 ws-nowrap {{ stopFcBg }}">.fc-{{name}}</div>
-                                    </td>
-                                    <td class="p8">
-                                        <div class="bc-inherit bg-{{name}} bar-sm d-inline-block fc-white p6 ws-nowrap {{ stopBgFc }}">.bg-{{name}}</div>
-                                    </td>
-                                    <td class="p8">
-                                        <div class="bar-sm d-inline-block p6 {{ stopFcBg }} {{ stopBcFc }}">
-                                            <div class="bc-{{name}} ba d-inline-block p6">.bc-{{name}}</div>
-                                        </div>
-                                    </td>
-                                </tr>
-                            {% endfor %}
-                        </tbody>
-                    </table>
-                </div>
-            {% endfor %}
-        {% endif %}
+                        <tr class="ff-mono">
+                            <td class="fc-{{name}}">
+                                <div class="fc-{{name}} bar-sm d-inline-block p6 ws-nowrap {{ stopFcBg }}">.fc-{{name}}</div>
+                            </td>
+                            <td class="p8">
+                                <div class="bc-inherit bg-{{name}} bar-sm d-inline-block fc-white p6 ws-nowrap {{ stopBgFc }}">.bg-{{name}}</div>
+                            </td>
+                            <td class="p8">
+                                <div class="bar-sm d-inline-block p6 {{ stopFcBg }} {{ stopBcFc }}">
+                                    <div class="bc-{{name}} ba d-inline-block p6">.bc-{{name}}</div>
+                                </div>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
     {% endfor %}
-</section>
-
-<!-- TODO find a good place for this info -->
-<section class="stacks-section">
-    {% header "h2", "Theming" %}
-    <p class="stacks-copy">
-        Stacks’s approach to theming is powered by CSS variables that are split into their HSL. Our default primary color is based on Stack Overflow’s branded <code class="stacks-code">orange-400</code> represented as <code class="stacks-code">hsl(27, 90%, 55%)</code>. We can store these as separate values, apply various color operations, and then recombine them into on-demand color palettes to use for theming.
-    </p>
 </section>
 
 <section class="stacks-section">
