@@ -138,16 +138,20 @@
                  calc(var(~"--@{color-prefix}-l") + @amountPercentage));
 }
 
-
-.native-lightness(@color-prefix, @lMod: 0, @min: 0, @max: 100) {
-    .native-saturation-lightness(@color-prefix, 0, @lMod, @min, @max);
+// Alter the lightness of a color in the HSL color space
+.native-lightness(@color-prefix, @lMod: 0) {
+    .native-saturation-lightness(@color-prefix, 0, @lMod);
 }
 
-// Increase the lightness of a color in the HSL color space by an absolute amount and include custom clamp values.
-.native-saturation-lightness(@color-prefix, @sMod: 0, @lMod: 0, @min: 0, @max: 100) {
+.native-lightness-static(@color-prefix, @l: 0) {
+    @result: hsl(var(~"--@{color-prefix}-h"), var(~"--@{color-prefix}-s"), calc(@l * 1%));
+}
+
+// Alter the saturation and lightness of a color in the HSL color space
+.native-saturation-lightness(@color-prefix, @sMod: 0, @lMod: 0) {
     @result: hsl(var(~"--@{color-prefix}-h"),
                  calc(var(~"--@{color-prefix}-s") + @sMod * 1%),
-                 clamp(@min * 1%, calc(var(~"--@{color-prefix}-l") + @lMod * 1%), @max * 1%));
+                 calc(var(~"--@{color-prefix}-l") + @lMod * 1%));
 }
 
 // Decrease the lightness and saturation of a color in the HSL color space by absolute amounts.
@@ -155,9 +159,10 @@
     @darkenAmountPercentage: .load-color-variables(@darken-amount)[@amountPercentage];
     @desaturateAmountPercentage: .load-color-variables(@desaturate-amount)[@amountPercentage];
     @result: hsl(var(~"--@{color-prefix}-h"),
-                 clamp(10%, calc(var(~"--@{color-prefix}-s") - @desaturateAmountPercentage), 90%),
-                 clamp(20%, calc(var(~"--@{color-prefix}-l") - @darkenAmountPercentage), 100%));
+                 calc(var(~"--@{color-prefix}-s") - @desaturateAmountPercentage),
+                 calc(var(~"--@{color-prefix}-l") - @darkenAmountPercentage));
 }
+
 
 // Decrease the lightness of a color in the HSL color space by an absolute amount.
 .native-darken(@color-prefix, @amount) {
