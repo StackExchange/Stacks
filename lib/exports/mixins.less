@@ -138,20 +138,42 @@
                  calc(var(~"--@{color-prefix}-l") + @amountPercentage));
 }
 
-// Alter the lightness of a color in the HSL color space
-.native-lightness(@color-prefix, @lMod: 0) {
-    .native-saturation-lightness(@color-prefix, 0, @lMod);
+
+.alter-hsl-var(@baseAmount, @change: 0%, @max: 100%) {
+    & when (@change > 0) {
+        calc(@baseAmount + ((@max - @baseAmount) * @change));
+    }
+    & when(@change < 0) {
+        calc(@baseAmount + (@baseAmount * @change));
+    }
 }
 
-.native-lightness-static(@color-prefix, @l: 0) {
-    @result: hsl(var(~"--@{color-prefix}-h"), var(~"--@{color-prefix}-s"), calc(@l * 1%));
+
+// Alter the lightness of a color in the HSL color space
+.native-lightness(@color-prefix, @lMod: 0) {
+    @result: hsl(
+        var(~"--@{color-prefix}-h"),
+        var(~"--@{color-prefix}-s"),
+        calc(
+            var(~"--@{color-prefix}-l") +
+            ((100% - var(~"--@{color-prefix}-l")) * @lMod)
+        )
+    );
 }
 
 // Alter the saturation and lightness of a color in the HSL color space
 .native-saturation-lightness(@color-prefix, @sMod: 0, @lMod: 0) {
-    @result: hsl(var(~"--@{color-prefix}-h"),
-                 calc(var(~"--@{color-prefix}-s") + @sMod * 1%),
-                 calc(var(~"--@{color-prefix}-l") + @lMod * 1%));
+    @result: hsl(
+        var(~"--@{color-prefix}-h"),
+        calc(
+            var(~"--@{color-prefix}-s") +
+            ((100% - var(~"--@{color-prefix}-s")) * @sMod)
+        ),
+        calc(
+            var(~"--@{color-prefix}-l") +
+            ((100% - var(~"--@{color-prefix}-l")) * @lMod)
+        )
+    );
 }
 
 // Decrease the lightness and saturation of a color in the HSL color space by absolute amounts.
