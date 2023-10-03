@@ -210,20 +210,20 @@
 .create-custom-theme-variables(@tier: primary, @modeCustom: base) {
     @valueVar: ~"theme-@{modeCustom}-@{tier}-color";
     @focusRingHSLVars: ~"var(--@{valueVar}-h), var(--@{valueVar}-s), var(--@{valueVar}-l)";
-    @varH: var(~"--@{valueVar}-h");
-    @varS: var(~"--@{valueVar}-s");
-    @varL: var(~"--@{valueVar}-l");
+    @h: var(~"--@{valueVar}-h");
+    @s: var(~"--@{valueVar}-s");
+    @l: var(~"--@{valueVar}-l");
 
     // TODO verify color stops with design
     & when (@modeCustom = base) {
         @varBase: ~"--theme-@{tier}-custom";
 
-        @{varBase}-100: ~"hsl(@{varH}, @{varS}, " .alter-hsl-var(@varL, .9) ~")";
-        @{varBase}-200: ~"hsl(@{varH}, @{varS}, " .alter-hsl-var(@varL, .75) ~")";
-        @{varBase}-300: ~"hsl(@{varH}, @{varS}, " .alter-hsl-var(@varL, .5) ~")";
-        @{varBase}-400: ~"hsl(@{varH}, @{varS}, @{varL})";
-        @{varBase}-500: ~"hsl(@{varH}, @{varS}, " .alter-hsl-var(@varL, -.3) ~")";
-        @{varBase}-600: ~"hsl(@{varH}, @{varS}, " .alter-hsl-var(@varL, -.6) ~")";
+        @{varBase}-100: ~"hsl(@{h}, @{s}, calc(@{l} + ((100% - @{l}) * .9)))";
+        @{varBase}-200: ~"hsl(@{h}, @{s}, calc(@{l} + ((100% - @{l}) * .75)))";
+        @{varBase}-300: ~"hsl(@{h}, @{s}, calc(@{l} + ((100% - @{l}) * .5)))";
+        @{varBase}-400: ~"hsl(@{h}, @{s}, @{l})";
+        @{varBase}-500: ~"hsl(@{h}, @{s}, calc(@{l} + (@{l} * -.3)))";
+        @{varBase}-600: ~"hsl(@{h}, @{s}, calc(@{l} + (@{l} * -.6)))";
         @{varBase}: ~"var(@{varBase}-400)";
 
         & when (@tier = secondary) {
@@ -234,12 +234,12 @@
     & when (@modeCustom = dark) {
         @varBaseDark: ~"--theme-@{modeCustom}-@{tier}-custom";
 
-        @{varBaseDark}-100: ~"hsl(@{varH}, " .alter-hsl-var(@varS, -.6), .alter-hsl-var(@varL, -.7) ~")";
-        @{varBaseDark}-200: ~"hsl(@{varH}, " .alter-hsl-var(@varS, -.4), .alter-hsl-var(@varL, -.5) ~")";
-        @{varBaseDark}-300: ~"hsl(@{varH}, " .alter-hsl-var(@varS, -.3), .alter-hsl-var(@varL, -.2) ~")";
-        @{varBaseDark}-400: ~"hsl(@{varH}, @{varS}, @{varL})";
-        @{varBaseDark}-500: ~"hsl(@{varH}, @{varS}, " .alter-hsl-var(@varL, .5) ~")";
-        @{varBaseDark}-600: ~"hsl(@{varH}, @{varS}, " .alter-hsl-var(@varL, .8) ~")";
+        @{varBaseDark}-100: ~"hsl(@{h}, calc(@{s} + (@{s} * -.6)), calc(@{l} + (@{l} * -.7)))";
+        @{varBaseDark}-200: ~"hsl(@{h}, calc(@{s} + (@{s} * -.4)), calc(@{l} + (@{l} * -.5)))";
+        @{varBaseDark}-300: ~"hsl(@{h}, calc(@{s} + (@{s} * -.3)), calc(@{l} + (@{l} * -.2)))";
+        @{varBaseDark}-400: ~"hsl(@{h}, @{s}, @{l})";
+        @{varBaseDark}-500: ~"hsl(@{h}, @{s}, calc(@{l} + ((100% - @{l}) * .5)))";
+        @{varBaseDark}-600: ~"hsl(@{h}, @{s}, calc(@{l} + ((100% - @{l}) * .8)))";
         @{varBaseDark}: ~"var(@{varBaseDark}-400)";
 
         & when (@tier = secondary) {
