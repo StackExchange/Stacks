@@ -18,6 +18,7 @@
     // CONTEXTUAL STYLES
     .highcontrast-mode({
         --_ta-bc: currentColor;
+        --_ta-bg-selected: var(--theme-secondary-400);
 
         text-decoration: none;
     });
@@ -30,7 +31,8 @@
         a&:hover,
         a&:focus {
             .highcontrast-mode({
-                border-color: currentColor;
+                --_ta-bc-selected: transparent;
+                --_ta-fc-selected: var(--white);
             });
 
             background-color: var(--_ta-bg-selected);
@@ -99,6 +101,10 @@
 
     // moderator overrides other muted and required, required overrides muted
     &&__moderator {
+        .highcontrast-mode({
+            --_ta-bg-selected: var(--orange-500);
+        });
+
         --_ta-bc: transparent;
         --_ta-bg: var(--orange-100);
         --_ta-fc: var(--orange-500);
