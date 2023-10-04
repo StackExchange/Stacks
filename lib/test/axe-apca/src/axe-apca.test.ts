@@ -13,6 +13,82 @@ const runAxe = async (el: HTMLElement): Promise<AxeResults> => {
 };
 
 describe("axe-apca", () => {
+    describe("custom conformance level", () => {
+        beforeEach(() => {
+            const customConformanceThresholdFn = (
+                fontSize: string
+            ): number | null => {
+                return parseFloat(fontSize) >= 32 ? 45 : 60;
+            };
+
+            registerAxeAPCA("custom", customConformanceThresholdFn);
+        });
+
+        it("should check for APCA accessibility contrast violations", async () => {
+            const el: HTMLElement = await fixture(
+                html`<p
+                    style="background: white; color: black; font-size: 12px; font-weight: 400;"
+                >
+                    Some copy
+                </p>`
+            );
+
+            const results = await runAxe(el);
+
+            const apcaPasses = results.passes.filter((violation) =>
+                violation.id.includes("color-contrast-apca-custom")
+            );
+
+            await expect(apcaPasses.length).to.equal(1);
+
+            const passNode = apcaPasses[0].nodes[0];
+            expect(passNode.all[0].message).to.include(
+                "Element has sufficient APCA custom level lightness contrast"
+            );
+        });
+
+        it("should detect APCA accessibility contrast violations", async () => {
+            const el: HTMLElement = await fixture(
+                html`<p
+                    style="background: white; color: lightgray; font-size: 12px; font-weight: 400;"
+                >
+                    Some copy
+                </p>`
+            );
+
+            const results = await runAxe(el);
+
+            const apcaViolations = results.violations.filter((violation) =>
+                violation.id.includes("color-contrast-apca-custom")
+            );
+
+            await expect(apcaViolations.length).to.equal(1);
+
+            const violationNode = apcaViolations[0].nodes[0];
+            expect(violationNode.failureSummary).to.include(
+                "Element has insufficient APCA custom level contrast"
+            );
+        });
+
+        it("should check nested nodes", async () => {
+            const el: HTMLElement = await fixture(
+                html`<div style="background: black;">
+                    <h2>Some title</h2>
+                    <p>Some copy</p>
+                    <button style="background: black;">Some button</button>
+                </div>`
+            );
+
+            const results = await runAxe(el);
+
+            const apcaViolations = results.violations.filter((violation) =>
+                violation.id.includes("color-contrast-apca-custom")
+            );
+
+            await expect(apcaViolations[0].nodes.length).to.equal(3);
+        });
+    });
+
     describe("bronze conformance level", () => {
         beforeEach(() => {
             registerAxeAPCA("bronze");
@@ -44,7 +120,7 @@ describe("axe-apca", () => {
         it("should detect APCA accessibility contrast violations", async () => {
             const el: HTMLElement = await fixture(
                 html`<p
-                    style="background: white; color: lightgray; font-size: 12px; font-weight: 400;"
+                    style="background: white; color: gray; font-size: 12px; font-weight: 400;"
                 >
                     Some copy
                 </p>`

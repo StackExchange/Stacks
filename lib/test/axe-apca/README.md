@@ -32,3 +32,22 @@ axe.configure({
     console.log(results);
 });
 ```
+
+### Using custom APCA thresholds
+
+To set custom thresholds for APCA checks, follow these steps:
+
+1. Use `custom` as the first argument when calling `registerAxeAPCA`.
+1. Provide a function as the second argument, optionally accepting `fontSize` and `fontWeight` arguments.
+
+
+```js
+const customConformanceThresholdFn = (fontSize, fontWeight) => {
+    const size = parseFloat(fontSize);
+    const weight = parseFloat(fontWeight);
+
+    return size >= 32 || weight > 700 ? 45 : 60;
+};
+
+registerAxeAPCA('custom', customConformanceThresholdFn);
+```
