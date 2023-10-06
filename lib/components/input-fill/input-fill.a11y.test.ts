@@ -4,9 +4,7 @@ import "../../index";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const template = ({ component, testid }: any) => html`
-    <div data-testid="${testid}" class="p8 ws1">
-        ${component}
-    </div>
+    <div data-testid="${testid}" class="p8 ws1">${component}</div>
 `;
 
 describe("input-fill", () => {
