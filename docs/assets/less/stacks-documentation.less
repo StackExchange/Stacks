@@ -1,21 +1,7 @@
-//
-//  STACKS
-//  All the CSS related to Stacks documentation ONLY.
-//
-//  TABLE OF CONTENTS
-//  • IMPORTS
-//  • UNIVERSAL SETTINGS
-//  • SITE LAYOUT
-//  • CODE STYLE
-//
 //  ============================================================================
 //  $   IMPORTS
 //  ----------------------------------------------------------------------------
 @import (reference) "../../../lib/stacks.less"; //  These are actual styles used in SO projects
-
-body.theme-system {
-    --theme-topbar-height: var(--su64);
-}
 
 .stacks-section {
     margin-top: var(--su48);
@@ -36,10 +22,6 @@ body.theme-system {
     position: absolute;
     bottom: 5%;
     right: 9%;
-}
-
-.stacks-topbar.s-topbar .s-topbar--content {
-    --theme-topbar-item-color: var(--black-300);
 }
 
 .stacks-home-nav {
@@ -162,7 +144,7 @@ body.theme-system {
 .stacks-h3,
 .stacks-h4 {
     margin-bottom: 0;
-    font-weight: 600;
+    font-weight: 700;
     line-height: var(--lh-sm);
     color: var(--fc-dark);
     text-rendering: optimizeLegibility;
@@ -238,7 +220,7 @@ body.theme-system {
 .stacks-code {
     padding: 3px 5px var(--su2) var(--su4);
     border-radius: var(--br-sm);
-    background-color: var(--black-075);
+    background-color: var(--black-200);
     font-size: var(--fs-caption);
     font-family: var(--ff-mono);
     color: var(--fc-dark);
@@ -320,8 +302,8 @@ body.theme-system {
     min-height: 4em;
     border-top-left-radius: var(--br-sm);
     border-top-right-radius: var(--br-sm);
-    background-color: var(--black-025);
-    box-shadow: inset 0 -1px 0 var(--black-075);
+    background-color: var(--black-100);
+    box-shadow: inset 0 -1px 0 var(--black-200);
     color: var(--fc-medium);
 
     .dark-mode({
@@ -337,7 +319,7 @@ body.theme-system {
 .stacks-flex-example--item {
     &,
     .s-table td& {
-        background-color: var(--black-075);
+        background-color: var(--black-200);
         border: var(--su-static1) solid var(--bc-medium);
         color: var(--fc-dark);
         font-family: var(--ff-mono);
@@ -364,7 +346,7 @@ body.theme-system {
     [class^="ds-dataset-"] {
         .algolia-docsearch-suggestion--highlight {
             color: var(--fc-medium);
-            background: var(--orange-100);
+            background: var(--orange-300);
         }
 
         .algolia-docsearch-suggestion--text {
@@ -415,53 +397,20 @@ body.theme-system {
 }
 
 //  ============================================================================
-//  $   Theming UI
+//  $   Theming
 //  ----------------------------------------------------------------------------
-.stacks-theme-button {
-    color: var(--black-300);
-    position: relative;
-    padding-right: var(--su-static24) !important;
-
-    &:after {
-        content: "";
-        position: absolute;
-        z-index: var(--zi-active);
-        top: calc(50% - var(--su-static2));
-        right: calc(var(--su-static12) - var(--su-static2));
-        border-style: solid;
-        border-width: var(--su-static4);
-        border-top-width: var(--su-static4);
-        border-bottom-width: 0;
-        border-color: currentColor transparent;
-        pointer-events: none;
-    }
-
-    &.is-selected {
-        color: var(--black-600);
-    }
-
-    &.stacks-theme-button__home {
-        color: var(--white);
-
-        &.is-selected {
-            color: var(--white);
-        }
-    }
+body.theme-system {
+    --theme-topbar-height: var(--su64);
 }
 
 .theme-custom {
-    --theme-base-primary-color-h: 172;
-    --theme-base-primary-color-s: 37%;
-    --theme-base-primary-color-l: 48%;
-    --theme-base-primary-color-r: 77;
-    --theme-base-primary-color-g: 168;
-    --theme-base-primary-color-b: 156;
-    --theme-base-secondary-color-h: 259;
-    --theme-base-secondary-color-s: 29%;
-    --theme-base-secondary-color-l: 55%;
-    --theme-base-secondary-color-r: 129;
-    --theme-base-secondary-color-g: 108;
-    --theme-base-secondary-color-b: 174;
+    &.themed {
+        // v2 colors and theming
+        .create-custom-theme-hsl-variables(hsl(170, 37%, 48%), primary, base);
+        .create-custom-theme-hsl-variables(hsl(260, 29%, 55%), secondary, base);
+        .create-custom-theme-hsl-variables(hsl(170, 50%, 60%), primary, dark);
+        .create-custom-theme-hsl-variables(hsl(260, 70%, 70%), secondary, dark);
+    }
 }
 
 .team-avatar {

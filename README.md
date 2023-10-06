@@ -21,6 +21,7 @@ Stacks documentation can be found at https://stackoverflow.design/
 ## Table of contents
 
 - [Using Stacks](#using-stacks)
+- [Migrating from v1 to v2](#migrating-from-v1-to-v2)
 - [Building Stacks](#building-stacks)
 - [Format Stacks](#format-stacks)
 - [Linting Stacks](#linting-stacks)
@@ -32,6 +33,10 @@ Stacks documentation can be found at https://stackoverflow.design/
 
 ## Using Stacks
 Using Stacks is outlined in our [usage guidelines](https://stackoverflow.design/product/guidelines/using-stacks).
+
+## Migrating from v1 to v2
+
+To migrate from Stacks v1 to v2, see our [migration guide](/MIGRATION_GUIDE.md).
 
 ## Building Stacks
 To contribute to Stacks documentation or its CSS library, you’ll need to build Stacks locally. View our [building guidelines](https://stackoverflow.design/product/guidelines/building).
@@ -108,6 +113,21 @@ npm run test:visual:update
 ```
 
 Failing tests (including diffs) can be found under `screenshots/[browser]/failed/` folders.
+
+### Less Tests
+
+This is an experimental suite to test the generation of CSS from Less files. 
+Less tests end with this suffix `*.less.test.ts`.
+
+Execute the less tests suite by running:
+```sh
+npm run test:less
+```
+
+Update the css snapshots via:
+```sh
+npm run test:less:update
+```
 
 ## Releasing a new version of Stacks
 Stacks uses [Semantic Versioning](https://semver.org/), is distributed via [npm](https://www.npmjs.com/package/@stackoverflow/stacks), and publishes [release notes on Github](https://github.com/StackExchange/Stacks/releases). Follow the steps below to release a new version of Stacks.

@@ -14,7 +14,7 @@
         a:not(.button):not(.post-tag):not(.s-btn):not(.s-sidebarwidget--action):not(.s-user-card--link) {
             &,
             &:visited {
-                color: var(--black-500);
+                color: var(--black-400);
             }
         }
     }
@@ -26,7 +26,7 @@
 
     // CHILD ELEMENTS
     & &--action {
-        color: var(--blue);
+        color: var(--blue-400);
         float: right;
         font-size: var(--fs-fine);
         line-height: calc(var(--fs-body1) * 1.5); // 19.5px - line-height should be the same as in the outside element, so the header and action baselines line up
@@ -69,7 +69,7 @@
             &__expanding-control {
                 &:before {
                     border: calc(var(--su-static4) + var(--su-static1)) solid transparent;
-                    border-left-color: var(--bc-darker);
+                    border-left-color: var(--black-400);
                     border-right-width: 0;
                     content: '';
                     float: left;
@@ -100,9 +100,9 @@
             outline: none;
         }
 
-        background: var(--black-025);
+        background: var(--black-100);
         border-top: var(--su-static1) solid var(--_sw-header-bc);
-        color: var(--black-600);
+        color: var(--black-500);
         font-size: var(--fs-body2);
         font-weight: normal;
         margin: 0;
@@ -115,7 +115,7 @@
             &[aria-current="true"],
             &[aria-current="page"] {
                 &:before {
-                    border-left-color: var(--theme-primary-color);
+                    border-left-color: var(--theme-primary);
                     border-left-style: solid;
                     border-left-width: calc(var(--su-static1) * 3); // 3px
                     content: '';
@@ -153,12 +153,12 @@
                     }
                 }
 
-                #stacks-internals #bullet-arrow(var(--theme-primary-color));
+                #stacks-internals #bullet-arrow(var(--theme-primary));
                 color: var(--black);
                 font-weight: bold;
             }
 
-            #stacks-internals #bullet-arrow(var(--black-100));
+            #stacks-internals #bullet-arrow(var(--black-225));
             background-position: 0 calc((1.2em - calc(var(--su-static8) + var(--su-static2))) / 2); // 0 ((1.2em - 10) / 2)
             background-repeat: no-repeat;
             background-size: auto calc(var(--su-static8) + var(--su-static2)); // auto 10px
@@ -215,10 +215,10 @@
 // COLOR ALTERNATIVES
 .alternate-color(@name) {
     &.s-sidebarwidget__@{name} {
-        --_sw-bc: var(~"--@{name}-200");
+        --_sw-bc: var(~"--@{name}-300");
 
         .highcontrast-mode({
-            --_sw-bc: var(~"--@{name}-700");
+            --_sw-bc: var(~"--@{name}-500");
         });
 
         &:after,
@@ -228,11 +228,11 @@
         }
 
         .s-sidebarwidget--header {
-            background-color: var(~"--@{name}-100");
+            background-color: var(~"--@{name}-200");
             color: var(--fc-medium);
         }
 
-        background-color: var(~"--@{name}-050");
+        background-color: var(~"--@{name}-100");
         border-color: var(--_sw-bc);
     }
 }

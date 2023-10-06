@@ -23,7 +23,7 @@
 //  --  LIGHTMODE
 //      .light-mode-forced ensures light color scheme is used in .theme-light__forced
 //
-//      .light-mode-forced({ color: var(--black-900) });
+//      .light-mode-forced({ color: var(--black-600) });
 //
 //  ---------------------------------------------------------------------------
 
@@ -143,9 +143,10 @@
     @darkenAmountPercentage: .load-color-variables(@darken-amount)[@amountPercentage];
     @desaturateAmountPercentage: .load-color-variables(@desaturate-amount)[@amountPercentage];
     @result: hsl(var(~"--@{color-prefix}-h"),
-                 clamp(10%, calc(var(~"--@{color-prefix}-s") - @desaturateAmountPercentage), 90%),
-                 clamp(20%, calc(var(~"--@{color-prefix}-l") - @darkenAmountPercentage), 100%));
+                 calc(var(~"--@{color-prefix}-s") - @desaturateAmountPercentage),
+                 calc(var(~"--@{color-prefix}-l") - @darkenAmountPercentage));
 }
+
 
 // Decrease the lightness of a color in the HSL color space by an absolute amount.
 .native-darken(@color-prefix, @amount) {
@@ -239,14 +240,14 @@
 .webkit-autofill() {
     &:-webkit-autofill {
         &:focus {
-            border-color: var(--blue-300);
+            border-color: var(--blue-400);
             // Since the box shadow is overwritten to show a background, we have to re-add the focus outline
-            -webkit-box-shadow: 0 0 0 1000px var(--blue-050) inset, 0 0 0 var(--su-static4) var(--focus-ring);
+            -webkit-box-shadow: 0 0 0 1000px var(--blue-200) inset, 0 0 0 var(--su-static4) var(--focus-ring);
         }
 
-        -webkit-box-shadow: 0 0 0 1000px var(--theme-secondary-050) inset; // This acts as a background color by stretching an inset box shadow across the input
+        -webkit-box-shadow: 0 0 0 1000px var(--theme-secondary-200) inset; // This acts as a background color by stretching an inset box shadow across the input
         -webkit-text-fill-color: var(--black);
-        border-color: var(--blue-300);
+        border-color: var(--blue-400);
         transition: background-color 0s 50000s; // A hack to infinitely delay background styles that come from the browser.
     }
 

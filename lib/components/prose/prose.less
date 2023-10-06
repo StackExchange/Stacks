@@ -8,7 +8,7 @@
     --_pr-lh: 1.5;
     --_pr-blockquote-ml: 1em;
     --_pr-blockquote-mt: 0;
-    --_pr-blockquote-before-bg: var(--black-150);
+    --_pr-blockquote-before-bg: var(--black-250);
     --_pr-code-fs: var(--fs-body1);
     --_pr-h1-fs: var(--fs-headline1);
     --_pr-h2-fs: var(--fs-title);
@@ -16,10 +16,10 @@
     --_pr-h4-fs: var(--fs-body3);
     --_pr-h5-fs: var(--fs-body2);
     --_pr-h6-fs: var(--fs-body1);
-    --_pr-hr-bg: var(--black-100); // used for both background-color and color properties
+    --_pr-hr-bg: var(--black-225); // used for both background-color and color properties
     --_pr-img-mb: @pr-spacing;
     --_pr-kbd-bc: var(--black-300);
-    --_pr-kbd-bs: 0 var(--su-static1) var(--su-static1) hsla(210, 8%, 5%, 0.15), inset 0 1px 0 0 @white;
+    --_pr-kbd-bs: 0 var(--su-static1) var(--su-static1) hsla(210, 8%, 5%, 0.15), inset 0 1px 0 0 var(--_white-static);
     --_pr-spoiler-cursor: pointer;
     --_pr-spoiler-after-t: 1em;
     --_pr-soiler-after-o: unset;
@@ -32,13 +32,13 @@
     // CONDITIONAL STYLES
     .dark-mode({
         --_pr-kbd-bc: transparent;
-        --_pr-kbd-btc: @black-500;
+        --_pr-kbd-btc: var(--black-400);
         --_pr-kbd-bs: 0 var(--su-static1) var(--su-static1) hsla(210, 8%, 5%, 0.8);
     });
 
     .highcontrast-mode({
-        --_pr-blockquote-before-bg: var(--black-600);
-        --_pr-hr-bg: var(--black-500);
+        --_pr-blockquote-before-bg: var(--black-500);
+        --_pr-hr-bg: var(--black-400);
     });
 
     #stacks-internals #screen-sm({
@@ -74,13 +74,13 @@
     // CHILD ELEMENTS
     *:not(.s-code-block) {
         > a code {
-            color: var(--theme-link-color); // When contained within a link, we want the code to be link-colored
+            color: var(--theme-link-color, var(--theme-secondary-400)); // When contained within a link, we want the code to be link-colored
         }
 
         > code {
             padding: var(--su2) var(--su4);
-            color: var(--black-800);
-            background-color: var(--black-075);
+            color: var(--black-600);
+            background-color: var(--black-200);
             border-radius: var(--br-sm);
         }
     }
@@ -265,7 +265,7 @@
             --_pr-blockquote-ml: 0; // We don't need the intial indentation on nested blockquotes
         }
 
-        color: var(--black-600);
+        color: var(--black-500);
         margin: var(--_pr-blockquote-mt) 1em @pr-spacing var(--_pr-blockquote-ml);
         padding: 0.8em 0.8em 0.8em 1em;
         position: relative;
@@ -315,9 +315,9 @@
         border-top-color: var(--_pr-kbd-btc, var(--_pr-kbd-bc));
         box-shadow: var(--_pr-kbd-bs);
 
-        background-color: var(--black-075);
+        background-color: var(--black-200);
         border-radius: var(--br-sm);
-        color: var(--black-800);
+        color: var(--black-600);
         display: inline-block;
         font-family: var(--ff-sans);
         font-size: var(--fs-fine);
@@ -385,7 +385,7 @@
             background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' aria-hidden='true' fill='rgb(132, 141, 149)' width='18' height='18' viewBox='0 0 18 18'%3E%3Cpath d='M9 17A8 8 0 119 1a8 8 0 010 16zM8 4v6h2V4H8zm0 8v2h2v-2H8z'%3E%3C/path%3E%3C/svg%3E");
             background-position: center right;
             background-repeat: no-repeat;
-            color: var(--black-500);
+            color: var(--black-400);
             content: attr(data-spoiler) " ";
             font-size: var(--fs-body1);
             padding-right: calc(var(--su24) - var(--su2));
@@ -409,9 +409,9 @@
 
         cursor: var(--_pr-spoiler-cursor);
 
-        background: var(--black-050);
+        background: var(--black-150);
         border-radius: var(--br-md);
-        color: var(--black-800);
+        color: var(--black-600);
         min-height: var(--su-static48); // TODO: Let's find a solution that doesn't have a magic number
     }
 
