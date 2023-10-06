@@ -2,14 +2,23 @@
     // COMPONENT-SPECIFIC CONSTANTS
     --_up-bg-b-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='5' ry='5' stroke='%23000000' stroke-width='8' stroke-dasharray='7%2c 22' stroke-dashoffset='0' stroke-linecap='square'/%3e%3c/svg%3e"); // Keeping this a custom property to save a few bytes
     // COMPONENT-SPECIFIC CUSTOM PROPERTIES
-    --_up-bg: var(--black-025);
-    --_up-bg-focus: var(--black-050);
-    --_up-bg-bc: var(--black-150);
+    --_up-bg: var(--black-100);
+    --_up-bg-focus: var(--black-150);
+    --_up-bg-bc: var(--black-250);
     --_up-focus-ring-color: var(--focus-ring);
 
     // CONTEXTUAL STYLES
     .highcontrast-mode({
         --_up-bg-bc-hc: var(--black-400);
+        &.has-error {
+            --_up-bg-bc-hc-state: var(--red-500);
+        }
+        &.has-success {
+            --_up-bg-bc-hc-state: var(--green-400);
+        }
+        &.has-warning {
+            --_up-bg-bc-hc-state: var(--yellow-500);
+        }
     });
 
     // STATES
@@ -22,35 +31,32 @@
     }
 
     &.has-error {
-        --_up-bg: var(--red-050);
-        --_up-bg-focus: var(--red-100);
-        --_up-bg-bc: var(--red-400);
-        --_up-bg-bc-hc-state: var(--red-400);
+        --_up-bg: var(--red-100);
+        --_up-bg-focus: var(--red-200);
+        --_up-bg-bc: var(--red-300);
         --_up-focus-ring-color: var(--focus-ring-error);
-        --_up-link-fc: var(--red-900);
+        --_up-link-fc: var(--red-500);
     }
 
     &.has-success {
-        --_up-bg: var(--green-025);
-        --_up-bg-focus: var(--green-050);
-        --_up-bg-bc: var(--green-400);
-        --_up-bg-bc-hc-state: var(--green-400);
+        --_up-bg: var(--green-100);
+        --_up-bg-focus: var(--green-200);
+        --_up-bg-bc: var(--green-300);
         --_up-focus-ring-color: var(--focus-ring-success);
-        --_up-link-fc: var(--green-900);
+        --_up-link-fc: var(--green-400);
     }
 
     &.has-warning {
-        --_up-bg: var(--yellow-050);
-        --_up-bg-focus: var(--yellow-100);
-        --_up-bg-bc: var(--yellow-400);
-        --_up-bg-bc-hc-state: var(--yellow-400);
+        --_up-bg: var(--yellow-100);
+        --_up-bg-focus: var(--yellow-200);
+        --_up-bg-bc: var(--yellow-300);
         --_up-focus-ring-color: var(--focus-ring-warning);
-        --_up-link-fc: var(--yellow-900);
+        --_up-link-fc: var(--yellow-500);
     }
 
     &.is-active {
-        --_up-bg: var(--black-050);
-        --_up-bg-bc: var(--black-200);
+        --_up-bg: var(--black-150);
+        --_up-bg-bc: var(--black-300);
     }
 
     &.is-disabled {
@@ -172,9 +178,9 @@
     }
 
     & &--previews-heading {
-        color: var(--black-900);
+        color: var(--black-600);
         font-size: var(--fs-body2);
-        font-weight: 600;
+        font-weight: 700;
         padding-bottom: var(--su8);
     }
 

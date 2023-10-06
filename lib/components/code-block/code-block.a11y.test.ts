@@ -15,7 +15,7 @@ describe("code block", () => {
                 ...defaultOptions,
                 includeNullModifier: false,
             },
-            // TODO new colors should resolve this issue
+            // TODO revisit these skipped test ids
             skippedTestids: [
                 "s-code-block-language-html-light",
                 "s-code-block-language-html-highcontrast-light",

@@ -29,19 +29,6 @@ import "../../index";
                     ...defaultOptions,
                     testidSuffix: `${state}-${type}`,
                 },
-                // TODO: Most of those skipped tests should be fixed by the new Stacks 2.0 palette
-                skippedTestids: [
-                    /^s-check-control-dark-has-error-(checked|unchecked)-(checkbox|radio)$/,
-                    /^s-check-control-light-has-(success|warning)-(checked|unchecked)-(checkbox|radio)$/,
-                    "s-check-control-dark-has-success-checked-checkbox",
-                    "s-check-control-light-has-error-checked-checkbox",
-                    "s-check-control-dark-has-success-unchecked-checkbox",
-                    "s-check-control-light-has-error-unchecked-checkbox",
-                    "s-check-control-dark-has-success-checked-radio",
-                    "s-check-control-light-has-error-checked-radio",
-                    "s-check-control-dark-has-success-unchecked-radio",
-                    "s-check-control-light-has-error-unchecked-radio",
-                ],
             });
         });
     });

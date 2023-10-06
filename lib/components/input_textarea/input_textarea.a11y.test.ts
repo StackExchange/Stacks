@@ -7,6 +7,7 @@ import "../../index";
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const template = ({ component, testid, classes = "", icon }: any) => html`
     <div data-testid="${testid}" class="p8 ws4 ${classes}">
+        <label for="default-id">Label</label>
         ${component}${icon}
     </div>
 `;
@@ -23,7 +24,7 @@ const customAttributes = [
     },
 ];
 
-const states = ["has-error", "has-warning", "has-success", "is-readonly"];
+const states = ["has-error", "has-warning", "has-success"];
 const sizes = ["sm", "md", "lg", "xl"];
 const otherModifiers = ["creditcard", "search"];
 
@@ -45,12 +46,13 @@ const otherModifiers = ["creditcard", "search"];
                     ? {
                           type: "text",
                           value: "Text input value",
+                          id: `default-id`,
                       }
-                    : {},
+                    : {
+                          id: `default-id`,
+                      },
             children,
             template,
-            // TODO Stacks v2 should resolve most issues
-            skippedTestids: [/s-input/, /s-textarea/],
         });
 
         // Base styles w/o value; w/ readonly attr; w/ disabled attr
@@ -70,17 +72,21 @@ const otherModifiers = ["creditcard", "search"];
                               value: attributes.placeholder
                                   ? null
                                   : "Text input value",
+                              id: `default-id`,
                               ...attributes,
                           }
-                        : attributes,
+                        : {
+                              id: `default-id`,
+                              ...attributes,
+                          },
                 children,
                 template,
-                // TODO Stacks v2 should resolve most issues
-                skippedTestids: [/s-input/, /s-textarea/],
+                // TODO revisit these skipped test ids
+                skippedTestids: [/readonly/],
             });
         });
 
-        // w/ state classes; .is-readonly
+        // w/ state classes
         states.forEach((state) => {
             runComponentTests({
                 type: "a11y",
@@ -91,13 +97,14 @@ const otherModifiers = ["creditcard", "search"];
                         ? {
                               type: "text",
                               value: "Text input value",
+                              id: `default-id`,
                           }
-                        : {},
+                        : {
+                              id: "default-id",
+                          },
                 children,
                 template: ({ component, testid }) =>
                     template({ component, testid, classes: state }),
-                // TODO Stacks v2 should resolve most issues
-                skippedTestids: [/s-input/, /s-textarea/],
             });
         });
         // TODO interaction (focus) states?

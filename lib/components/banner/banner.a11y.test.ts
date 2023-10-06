@@ -33,19 +33,5 @@ describe("banner", () => {
         children: {
             default: bannerChild,
         },
-        // TODO: Most of those skipped tests should be fixed by the new Stacks 2.0 palette
-        skippedTestids: [
-            "s-banner-dark",
-            "s-banner-dark-danger",
-            "s-banner-dark-danger-important",
-            "s-banner-dark-important",
-            "s-banner-dark-info",
-            "s-banner-dark-success",
-            "s-banner-dark-success-important",
-            "s-banner-dark-warning",
-            "s-banner-dark-warning-important",
-            "s-banner-light-success-important",
-            "s-banner-light-warning-important",
-        ],
     });
 });

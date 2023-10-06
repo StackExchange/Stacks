@@ -67,7 +67,7 @@ export default {
         },
         {
             name: "unit",
-            files: "lib/**/!(*.visual|*.a11y).test.ts",
+            files: "lib/**/!(*.visual|*.a11y|*.less).test.ts",
         },
         {
             name: "visual",
