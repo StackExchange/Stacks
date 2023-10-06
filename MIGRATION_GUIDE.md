@@ -8,10 +8,11 @@ With the release of Stacks v2, we've made some breaking changes to the library. 
 - [Using Stacks v2 colors](#using-stacks-v2-colors)
   - [Color stop mappings](#color-stop-mappings)
     - [Orange, blue, green, red, yellow, theme-primary, theme-secondary](#orange-blue-green-red-yellow-theme-primary-theme-secondary)
-    - [Black, white](#black-white)
+    - [Black](#black)
     - [Gold, sliver, bronze](#gold-sliver-bronze)
     - [Regular expression patterns](#regular-expression-patterns)
-  - [Referencing theme colors without stop suffix](#referencing-theme-colors-without-stop-suffix)
+  - [Deprecation of powder color set](#deprecation-of-powder-color-set)
+  - [Referencing theme colors without stop suffix](#referencing-theme-colors-without-the-stop-suffix)
 - [Deprecation of Less color variables](#deprecation-of-less-color-variables)
   - [Replacing Less color variables](#replacing-less-color-variables)
   - [Referencing Less color variables](#referencing-less-color-variables)
@@ -23,20 +24,17 @@ With the release of Stacks v2, we've made some breaking changes to the library. 
     - [Add `-legacy` to aliased values](#add--legacy-to-aliased-values)
 - [Custom theme generation](#custom-theme-generation)
   - [Replacing `.generate-calculated-themed-variables()`](#replacing-generate-calculated-themed-variables)
-- [Other deprecations](#other-deprecations)
-- [Other removals and breaking changes](#other-removals-and-breaking-changes)
+- [Deprecation of `.s-btn__primary`](#deprecation-of-s-btn__primary)
 
 ## Upgrading dependencies
 
 While updating to Stacks v2, you must also update other Stacks dependencies you may have included in your project. Below is a table of Stacks dependencies and the corresponding minimum versions compatible with Stacks v2.
 
-<!-- TODO update the table once Stacks Classic v2 is officially released -->
-
 Dependency | Minimum version
 :-:|:-:
-[stacks](https://github.com/StackExchange/Stacks) | [2.0.0-rc.11](https://www.npmjs.com/package/@stackoverflow/stacks/v/2.0.0-rc.11)
-[stacks-editor](https://github.com/StackExchange/Stacks-Editor) | [0.9.0-rc.0](https://www.npmjs.com/package/@stackoverflow/stacks-editor/v/0.9.0-rc.0)
-[stacks-icons](https://github.com/StackExchange/Stacks-Icons) | [6.0.0-rc.2](https://www.npmjs.com/package/@stackoverflow/stacks-icons/v/6.0.0-rc.2)
+[stacks](https://github.com/StackExchange/Stacks) | [2.0.0](https://www.npmjs.com/package/@stackoverflow/stacks/v/2.0.0)
+[stacks-editor](https://github.com/StackExchange/Stacks-Editor) | [0.9.0](https://www.npmjs.com/package/@stackoverflow/stacks-editor/v/0.9.0)
+[stacks-icons](https://github.com/StackExchange/Stacks-Icons) | [6.0.0](https://www.npmjs.com/package/@stackoverflow/stacks-icons/v/6.0.0)
 
 ## Using Stacks v2 colors
 
@@ -45,6 +43,9 @@ In Stacks v2, all components and atomic classes have been updated to use new col
 ### Color stop mappings
 
 Stacks v2 reduces and unifies the number of color stops for each set of colors. Below, you'll find a series of tables that map the old color stops to the new color stops. Update your color references by mapping them to the new stop values.
+
+> **Note**
+> The `powder` color set has been deprecated and is not included in the updated colors. See the [deprecation of powder color set](#deprecation-of-powder-color-set) section for more information.
 
 #### Orange, blue, green, red, yellow, theme-primary, theme-secondary
 
@@ -59,7 +60,6 @@ Stacks v1 | Stacks v2
 
 - *only applies to theme colors
 - †only applies to green and red
-
 
 #### Black
 
@@ -100,6 +100,10 @@ Below is just one example of a regular expression that can help you find and rep
 $1-300
 ```
 
+### Deprecation of `powder` color set
+
+Stacks v2 no longer includes the `powder` color set. We recommend you replace all references to `powder` with `blue`. If you need to continuing referencing `powder`, you can use the `-legacy` suffix until the library permanently removes legacy colors. See the [using legacy colors](#using-legacy-colors) section for more information.
+
 ### Referencing theme colors without the stop suffix
 
 We've removed the `-color` suffix from the default theme variable custom properties. Previously, you could reference the 400 stop of theme colors with `theme-(primary|secondary)-color`. Now, you should reference the 400 stop of theme colors with `theme-(primary|secondary)`. Below is a table showing the old and new custom property names, though this pattern also applies to color, background, and border utility classes.
@@ -121,8 +125,6 @@ Stacks v1 | Stacks v2
 :-:|:-:
 `@black` | `var(--_black-static)`
 `@white` | `var(--_white-static)`
-
-<!-- TODO any other values worth mentioning above? -->
 
 ### Referencing Less color variables
 
@@ -185,67 +187,12 @@ $1-$2-legacy
 
 ## Custom theme generation
 
-Stacks v2 has deprecated the Less function `.generate-calculated-themed-variables()` in favor of the newly added `.create-custom-theme-hsl-variables()` function. This new function works differently behind the scenes, but it accepts the same arguments and generates the same CSS custom properties as its deprecated equivelent. See the [theming documentation](https://stacks-next.stackoverflow.design/product/guidelines/theming/).
-<!-- TODO update link when merged to develop -->
+Stacks v2 has deprecated the Less function `.generate-calculated-themed-variables()` in favor of the newly added `.create-custom-theme-hsl-variables()` function. This new function works differently behind the scenes, but it accepts the same arguments and generates the same CSS custom properties as its deprecated equivelent. See the [theming documentation](https://stackoverflow.design/product/guidelines/theming/).
 
 ### Replacing `.generate-calculated-themed-variables()`
 
 To update to the new custom theme variable generation function, simply search for `.generate-calculated-themed-variables` in your codebase and replace it with `.create-custom-theme-hsl-variables`.
 
-## Other deprecations
+## Deprecation of `.s-btn__primary`
 
-This is a work in progress. Expect this section to be complete before the official release of Stacks v2.
-<!-- *TODO add any other deprecation here* -->
-
-## Other removals and breaking changes
-
-This is a work in progress. Expect this section to be complete before the official release of Stacks v2.
-<!-- *TODO add any other removals and breaking changes here* -->
-
-<!-- TODO Not removed as of Thu Sep 7, 2023. For details, see https://docs.google.com/document/d/1dqIymDut_dRHblyvuMhgpxeFlA6-dh9VPAdb3kT7vSA/edit#heading=h.w6a14mf4uf1v
-
-### Box shadow atomic hover classes
-
-In Stacks v2, we've removed the `.bs-*.bs-hover` and `.bs-i-*.bs-hover` atomic classes. These classes were used to apply a box shadow on hover. We've removed these classes because they were rarely used, undocumented, and broke our naming conventions.
-
-#### Removed classes
-- `.bs-sm.bs-hover`
-- `.bs-md.bs-hover`
-- `.bs-lg.bs-hover`
-- `.bs-i-sm.bs-hover`
-- `.bs-i-md.bs-hover`
-- `.bs-i-lg.bs-hover`
-
--->
-
-<!-- TODO Not removed as of Thu Sep 7, 2023. For details, see https://docs.google.com/document/d/1dqIymDut_dRHblyvuMhgpxeFlA6-dh9VPAdb3kT7vSA/edit#heading=h.i12o3n847brj
-
-### `.s-btn-group__radio` renamed to `.s-btn-group--radio`
-
--->
-
-
-<!-- TODO Not removed as of Thu Sep 7, 2023. For details, see https://docs.google.com/document/d/1dqIymDut_dRHblyvuMhgpxeFlA6-dh9VPAdb3kT7vSA/edit#heading=h.3aik06givj71
-### `.s-label--status` now requires a `.s-label` parent
-
--->
-
-<!-- TODO Not removed as of Thu Sep 7, 2023. For details, see https://docs.google.com/document/d/1dqIymDut_dRHblyvuMhgpxeFlA6-dh9VPAdb3kT7vSA/edit#heading=h.t2izlvv3iakd
-
-### `.s-link__visited`
-
-In Stacks v2, we've remove `.s-link__visited` since it was rarely used.
-
--->
-
-<!-- TODO Not removed as of Thu Sep 7, 2023. For details, see https://docs.google.com/document/d/1dqIymDut_dRHblyvuMhgpxeFlA6-dh9VPAdb3kT7vSA/edit#heading=h.fwn2laq0oerp
-
-### `.s-post-summary--stats-item` modifier classes
-
--->
-
-<!-- TODO Not removed as of Thu Sep 7, 2023. For details, see https://docs.google.com/document/d/1dqIymDut_dRHblyvuMhgpxeFlA6-dh9VPAdb3kT7vSA/edit#heading=h.saf44plr53hx
-
-### `.s-toggle-swtich` nested checkbox elements
-
--->
+Stacks v2 deprecates the `.s-btn__primary` variant. To retain a similar style, we recommend replacing all instances of `.s-btn__primary` with `.s-btn__filled`. See the [button documentation](https://stackoverflow.design/product/components/buttons/) for more information.
