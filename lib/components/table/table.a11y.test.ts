@@ -7,28 +7,31 @@ const template = ({ component, testid }: any) => html`
     <div class="s-table-container p8" data-testid="${testid}">${component}</div>
 `;
 
-const rows = [{
-    displayName: "Sponge",
-    fullName: "Bobby Geometrislacks",
-    progress: 10,
-    active: true,
-}, {
-    displayName: "Patty",
-    fullName: "Pat Supernova",
-    progress: 50,
-    active: true,
-// }, {
-//     displayName: "Crustoph",
-//     fullName: "Eugene Harold K",
-//     progress: 75,
-//     active: false, // TODO reintroduce once disabled rows pass contrast requirements
-}, {
-    displayName: "SCheeks",
-    fullName: "Sandra C.",
-    progress: 100,
-    active: true,
-}];
-
+const rows = [
+    {
+        displayName: "Sponge",
+        fullName: "Bobby Geometrislacks",
+        progress: 10,
+        active: true,
+    },
+    {
+        displayName: "Patty",
+        fullName: "Pat Supernova",
+        progress: 50,
+        active: true,
+        // }, {
+        //     displayName: "Crustoph",
+        //     fullName: "Eugene Harold K",
+        //     progress: 75,
+        //     active: false, // TODO reintroduce once disabled rows pass contrast requirements
+    },
+    {
+        displayName: "SCheeks",
+        fullName: "Sandra C.",
+        progress: 100,
+        active: true,
+    },
+];
 
 const children = {
     default: `
@@ -45,7 +48,9 @@ const children = {
             </tr>
         </thead>
         <tbody>
-            ${rows.map((row, i) => `
+            ${rows
+                .map(
+                    (row, i) => `
                 <tr class="${row.active ? "" : "is-disabled"}">
                     <th scope="row">
                         <label class="v-visible-sr" for="check-${i}">bulk</label>
@@ -56,12 +61,18 @@ const children = {
                     <td class="s-table--progress">${row.progress}</td>
                     <td class="s-table--progress-bar">
                         <div class="s-progress bg-white">
-                            <div class="s-progress--bar bg-blue-400" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${row.progress}" aria-label="progressbar" style="width: ${row.progress}%"></div>
+                            <div class="s-progress--bar bg-blue-400" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${
+                                row.progress
+                            }" aria-label="progressbar" style="width: ${
+                                row.progress
+                            }%"></div>
                         </div>
                     </td>
                     <td><a class="s-link" href="#">Add</a></td>
                 </tr>
-            `).join("")}
+            `
+                )
+                .join("")}
         </tbody>
         <tfoot class="s-table--totals">
             <tr>
@@ -96,7 +107,7 @@ describe("table", () => {
             "s-table-highcontrast-light-sortable",
             "s-table-highcontrast-light-stripes-lg-sortable",
             "s-table-highcontrast-light-stripes-sm-sortable",
-            "s-table-highcontrast-light-stripes-sortable"
+            "s-table-highcontrast-light-stripes-sortable",
         ],
     });
 });
