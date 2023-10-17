@@ -3,7 +3,7 @@ import { screen } from "@testing-library/dom";
 import { visualDiff } from "@web/test-runner-visual-regression";
 import type { TemplateResult } from "lit-html";
 import axe from "axe-core";
-import registerAxeAPCA from "./axe-apca";
+import registerAxeAPCA from "axe-apca";
 
 const customConformanceThresholdFn = (fontSize: string): number | null => {
     return parseFloat(fontSize) >= 32 ? 45 : 60;
