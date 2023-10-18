@@ -3,7 +3,7 @@
     @pr-circle-circumference: (2 * pi() * 14); // 2πr, r = 14.
     // COMPONENT-SPECIFIC CUSTOM PROPERTIES
     --_pr-bar: var(--br-sm);
-    --_pr-bg: var(--black-200);
+    --_pr-bg: var(--black-300);
     --_pr-h: unset;
     --_pr-size: unset;
     --_pr-w: 100%;
@@ -20,26 +20,26 @@
 
     // MODIFIERS
     &&__brand {
-        --_pr-bar-bg: var(--orange-500);
+        --_pr-bar-bg: var(--orange-400);
     }
 
     &&__bronze {
-        --_pr-bar-bg: var(--bronze-lighter);
-        --_pr-label-bc: var(--bronze-darker);
+        --_pr-bar-bg: var(--bronze-100);
+        --_pr-label-bc: var(--bronze-400);
     }
 
     &&__gold {
-        --_pr-bar-bg: var(--gold-lighter);
-        --_pr-label-bc: var(--gold-darker);
+        --_pr-bar-bg: var(--gold-100);
+        --_pr-label-bc: var(--gold-400);
     }
 
     &&__info {
-        --_pr-bar-bg: var(--blue-500);
+        --_pr-bar-bg: var(--blue-400);
     }
 
     &&__silver {
-        --_pr-bar-bg: var(--silver-lighter);
-        --_pr-label-bc: var(--silver-darker);
+        --_pr-bar-bg: var(--silver-100);
+        --_pr-label-bc: var(--silver-400);
     }
 
     // VARIANTS
@@ -108,12 +108,12 @@
     }
 
     &&__privilege {
-        --_pr-bar-bg: var(--green-050);
+        --_pr-bar-bg: var(--green-200);
         --_pr-label-ai: center;
         --_pr-label-bc: var(--green-400);
         --_pr-label-jc: center;
 
-        .highcontrast-mode({ --_pr-bar-bg: var(--green-200); });
+        .highcontrast-mode({ --_pr-bar-bg: var(--green-300); });
     }
 
     // TODO move `.s-progress__stepped` to entirely separate component (or consider deprecating)
@@ -135,7 +135,7 @@
                     }
                 }
 
-                background: var(--black-300);
+                background: var(--black-250);
                 border-radius: 0;
                 height: var(--su-static6);
                 position: absolute;
@@ -146,7 +146,7 @@
             &--label { // Override a ton of properties
                 border: 0;
                 border-radius: 0;
-                color: var(--black-500);
+                color: var(--black-400);
                 display: block;
                 font-size: var(--fs-body1);
                 height: auto;
@@ -203,9 +203,9 @@
                 });
 
                 align-items: center;
-                background: var(--black-300);
+                background: var(--black-250);
                 border-radius: 100%;
-                color: @white;
+                color: var(--_white-static);
                 display: flex;
                 height: var(--su-static24);
                 justify-content: center;

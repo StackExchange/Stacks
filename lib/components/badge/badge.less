@@ -1,8 +1,8 @@
 .s-badge {
     --_ba-as: unset;
     --_ba-bc: var(--bc-medium);
-    --_ba-bg: var(--black-050);
-    --_ba-fc: var(--black-700);
+    --_ba-bg: var(--black-150);
+    --_ba-fc: var(--black-500);
     --_ba-fs: var(--fs-caption);
     --_ba-g: 0.3em;
     --_ba-lh: 2;
@@ -13,17 +13,17 @@
     // CONTEXTUAL STYLES
     .highcontrast-mode({
         // Badge counts
-        &&__gold,
-        &&__silver,
-        &&__bronze,
+        &__gold,
+        &__silver,
+        &__bronze,
         // Number counts
-        &&__rep,
-        &&__rep-down,
-        &&__votes:not(&__answered),
+        &__rep,
+        &__rep-down,
+        &__votes:not(.s-badge__answered),
         // Users
-        &&__admin,
-        &&__moderator,
-        &&__staff {
+        &__admin,
+        &__moderator,
+        &__staff {
             --_ba-bc: currentColor;
         }
     });
@@ -52,26 +52,22 @@
     &&__gold,
     &&__silver,
     &&__bronze {
-        --_ba-fc: var(--black-700);
-
-        .highcontrast-mode({
-            --_ba-fc: var(--black-900);
-        });
+        --_ba-fc: var(--black-500);
     }
 
     &&__gold {
-        --_ba-bc: var(--gold-darker);
-        --_ba-bg: var(--gold-lighter);
+        --_ba-bc: var(--gold-300);
+        --_ba-bg: var(--gold-100);
     }
 
     &&__silver {
-        --_ba-bc: var(--silver-darker);
-        --_ba-bg: var(--silver-lighter);
+        --_ba-bc: var(--silver-300);
+        --_ba-bg: var(--silver-100);
     }
 
     &&__bronze {
-        --_ba-bc: var(--bronze-darker);
-        --_ba-bg: var(--bronze-lighter);
+        --_ba-bc: var(--bronze-300);
+        --_ba-bg: var(--bronze-100);
     }
 
     // Number counts
@@ -93,39 +89,39 @@
     }
 
     &&__bounty {
-        --_ba-bg: var(--blue-600);
+        --_ba-bg: var(--blue-400);
     }
 
     &&__important {
-        --_ba-bg: var(--red-600);
+        --_ba-bg: var(--red-400);
     }
 
     &&__rep {
-        --_ba-bc: var(--green-400);
-        --_ba-fc: var(--green-500);
+        --_ba-bc: var(--green-300);
+        --_ba-fc: var(--green-400);
     }
 
     &&__rep-down {
-        --_ba-bc: var(--red-400);
-        --_ba-fc: var(--red-500);
+        --_ba-bc: var(--red-300);
+        --_ba-fc: var(--red-400);
     }
 
     &&__votes:not(&__answered) {
-        --_ba-bc: var(--black-150);
-        --_ba-fc: var(--black-700);
+        --_ba-bc: var(--black-250);
+        --_ba-fc: var(--black-500);
     }
 
     // Users
     &&__admin {
         --_ba-bc: var(--theme-primary-200);
-        --_ba-bg: var(--theme-primary-075);
-        --_ba-fc: var(--theme-primary-800);
+        --_ba-bg: var(--theme-primary-100);
+        --_ba-fc: var(--theme-primary-500);
     }
 
     &&__moderator {
-        --_ba-bc: var(--theme-secondary-200);
-        --_ba-bg: var(--theme-secondary-075);
-        --_ba-fc: var(--theme-secondary-800);
+        --_ba-bc: var(--theme-secondary-300);
+        --_ba-bg: var(--theme-secondary-200);
+        --_ba-fc: var(--theme-secondary-600);
         --_ba-g:  calc(var(--su-static4) - var(--su-static1)); // 3px
         // :before icon
         --_ba-before-h: calc(var(--su-static16) - var(--su-static2)); // 14px
@@ -167,8 +163,8 @@
     &&__staff {
         // Staff badges are always "Stack Overflow Orange"
         --_ba-bc: var(--orange-300);
-        --_ba-bg: var(--orange-100);
-        --_ba-fc: var(--orange-900);
+        --_ba-bg: var(--orange-200);
+        --_ba-fc: var(--orange-600);
     }
 
     // VARIANTS
@@ -180,38 +176,34 @@
     }
 
     &&__danger {
-        --_ba-bc: var(--red-600);
-        --_ba-bg: var(--red-100);
-        --_ba-fc: var(--red-900);
+        --_ba-bc: var(--red-300);
+        --_ba-bg: var(--red-200);
+        --_ba-fc: var(--red-600);
 
         &.s-badge__filled {
-            --_ba-bg: var(--red-500);
-            --_ba-fc: @white;
-
-            .highcontrast-mode({
-                --_ba-fc: var(--white);
-            });
+            --_ba-bg: var(--red-400);
+            --_ba-fc: var(--white);
         }
     }
     &&__info {
-        --_ba-bc: var(--blue-600);
-        --_ba-bg: var(--blue-100);
-        --_ba-fc: var(--blue-900);
+        --_ba-bc: var(--blue-300);
+        --_ba-bg: var(--blue-200);
+        --_ba-fc: var(--blue-600);
     }
 
     &&__warning {
-        --_ba-bc: var(--yellow-600);
-        --_ba-bg: var(--yellow-100);
-        --_ba-fc: var(--yellow-900);
+        --_ba-bc: var(--yellow-300);
+        --_ba-bg: var(--yellow-200);
+        --_ba-fc: var(--yellow-600);
     }
 
     &&__muted {
-        --_ba-bc: var(--black-600);
-        --_ba-bg: var(--black-100);
-        --_ba-fc: var(--black-900);
+        --_ba-bc: var(--black-300);
+        --_ba-bg: var(--black-200);
+        --_ba-fc: var(--black-500);
 
         &.s-badge__filled {
-            --_ba-bg: var(--black-700);
+            --_ba-bg: var(--black-500);
             --_ba-fc: var(--white);
         }
     }

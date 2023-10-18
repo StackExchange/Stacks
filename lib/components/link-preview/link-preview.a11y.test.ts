@@ -44,12 +44,5 @@ describe("link preview", () => {
                 </div>
             `),
         },
-        // TODO: Most of those skipped tests should be fixed by the new Stacks 2.0 palette
-        skippedTestids: [
-            "s-link-preview-dark",
-            "s-link-preview-dark-code",
-            "s-link-preview-light",
-            "s-link-preview-light-code",
-        ],
     });
 });

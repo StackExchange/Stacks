@@ -1,7 +1,7 @@
 $current_dir = if ($env:OS -eq "Windows_NT") { Get-Location } else { pwd }
 
 $dockerfile = @"
-FROM mcr.microsoft.com/playwright:v1.36.0-jammy
+FROM mcr.microsoft.com/playwright:v1.39.0-jammy
 WORKDIR /app
 COPY package*.json ./
 RUN npm ci
