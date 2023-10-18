@@ -34,9 +34,7 @@ describe("menu", () => {
             role: "menu",
         },
         template: ({ component, testid }) => html`
-            <div class="ws2" data-testid="${testid}">
-                ${component}
-            </div>
+            <div class="ws2" data-testid="${testid}">${component}</div>
         `,
     });
 });
