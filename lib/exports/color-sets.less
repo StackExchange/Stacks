@@ -512,11 +512,16 @@
     variable: hsl(62, 71%, 81%);
 }
 
-// Scrollbar (sets represents both light and dark mode)
 .set-scrollbar() {
     default: hsla(0, 0%, 0%, 0.2);
 }
+.set-scrollbar-dark() {
+    default: hsla(0, 0%, 100%, 0.2);
+}
 .set-scrollbar-hc() {
+    default: var(--black);
+}
+.set-scrollbar-hc-dark() {
     default: var(--black);
 }
 
@@ -612,7 +617,7 @@
     bs: .set-bs-dark();
     focus-ring: .set-focus-dark();
     highlight: .set-highlight-dark();
-    scrollbar: .set-scrollbar();
+    scrollbar: .set-scrollbar-dark();
 }
 
 .sets-utility-hc() {
@@ -628,7 +633,7 @@
     bs: .set-bs-hc-dark();
     focus-ring: .set-focus-hc();
     highlight: .set-highlight-hc-dark();
-    scrollbar: .set-scrollbar-hc();
+    scrollbar: .set-scrollbar-hc-dark();
 }
 
 // Theme values
