@@ -21,9 +21,17 @@ const commonjs = fromRollupWithFix(_commonjs);
 
 export default {
     browsers: [
-        playwrightLauncher({ product: "chromium" }),
+        playwrightLauncher({
+            product: "chromium",
+            createBrowserContext({ browser }) {
+                return browser.newContext({ reducedMotion: "reduce" });
+            },
+        }),
         playwrightLauncher({
             product: "firefox",
+            createBrowserContext({ browser }) {
+                return browser.newContext({ reducedMotion: "reduce" });
+            },
             launchOptions: {
                 firefoxUserPrefs: {
                     // force pointer capabilities activation on Firefox Headless on GTK (Gnome Toolkit - CI)
@@ -33,7 +41,12 @@ export default {
                 },
             },
         }),
-        playwrightLauncher({ product: "webkit" }),
+        playwrightLauncher({
+            product: "webkit",
+            createBrowserContext({ browser }) {
+                return browser.newContext({ reducedMotion: "reduce" });
+            },
+        }),
     ],
     testFramework: {
         config: {
