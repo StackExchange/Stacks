@@ -13,6 +13,7 @@
     --_ta-fc-selected: var(--theme-tag-selected-color, var(--theme-secondary-600));
     // Other
     --_ta-br: var(--br-sm);
+    --_ta-bs-focus: var(--focus-ring);
     --_ta-fs: var(--fs-caption);
     --_ta-lh: 1.846153846;
     --_ta-pl: var(--_ta-px);
@@ -118,6 +119,7 @@
         --_ta-bc-selected: var(--orange-400);
         --_ta-bg-selected: var(--orange-300);
         --_ta-fc-selected: var(--orange-600); // Currently APCA Lc 49 😔
+        --_ta-bs-focus: var(--orange-500);
     }
 
     &&__muted:not(&__moderator):not(&__required) {
@@ -130,6 +132,7 @@
         --_ta-bc-selected: transparent;
         --_ta-bg-selected: var(--black-225);
         --_ta-fc-selected: var(--black-600);
+        --_ta-bs-focus: var(--black-500);
 
         .highcontrast-mode({ --_ta-bc: currentColor; }); // Specificity has bit us, so we need this override
     }
@@ -206,6 +209,11 @@
             border-color: var(--_ta-bc-hover);
             color: var(--_ta-fc-hover);
         }
+    }
+
+    &:focus {
+        box-shadow: var(--focus-ring-divider), 0 0 0 var(--su-static4) var(--_ta-bs-focus);
+        outline: none;
     }
 
     background-color: var(--_ta-bg);
