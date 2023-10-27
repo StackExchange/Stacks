@@ -293,12 +293,24 @@
 .bs-lg { box-shadow: var(--bs-lg) !important; }
 .h\:bs-lg:hover { .bs-lg; }
 .bs-xl { box-shadow: var(--bs-xl) !important; }
+
 .bs-ring { box-shadow: var(--focus-ring-divider), 0 0 0 var(--_focus-ring-size, var(--su-static4)) var(--_focus-ring-color, var(--focus-ring)); }
 .h\:bs-ring:hover { .bs-ring; }
 .f\:bs-ring {
     &:focus,
     &:focus-within {
         .bs-ring;
+    }
+}
+
+.bs-ring-inset {
+    box-shadow: inset 0 0 0 var(--_focus-ring-size, var(--su-static4)) var(--_focus-ring-color, var(--focus-ring)), var(--focus-ring-divider-inset);
+}
+.h\:bs-ring-inset:hover { .bs-ring-inset; }
+.f\:bs-ring-inset {
+    &:focus,
+    &:focus-within {
+        .bs-ring-inset;
     }
 }
 

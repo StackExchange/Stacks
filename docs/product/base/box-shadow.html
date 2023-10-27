@@ -51,24 +51,15 @@ description: Box shadow atomic classes allow you to change an element’s box sh
 <div class="bs-lg">…</div>
 <div class="bs-xl">…</div>
 <div class="bs-ring">…</div>
+<div class="bs-ring-inset">…</div>
 {% endhighlight %}
         <div class="stacks-preview--example fs-caption ff-mono">
             <div class="d-grid grid__4 lg:grid__3 sm:grid__2 g16">
-                <div class="flex--item fd-column p12 bs-sm bar-sm h96">
-                    .bs-sm
-                </div>
-                <div class="flex--item fd-column p12 bs-md bar-sm h96">
-                    .bs-md
-                </div>
-                <div class="flex--item fd-column p12 bs-lg bar-sm h96">
-                    .bs-lg
-                </div>
-                <div class="flex--item fd-column p12 bs-xl bar-sm h96">
-                    .bs-xl
-                </div>
-                <div class="flex--item fd-column p12 bs-ring bar-sm h96">
-                    .bs-ring
-                </div>
+                {% for atomic in atomics.box-shadow %}
+                    <div class="fd-column p12 bar-sm h96 {{ atomic.class }}">
+                        .{{ atomic.class }}
+                    </div>
+                {% endfor %}
             </div>
         </div>
     </div>
