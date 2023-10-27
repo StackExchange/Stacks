@@ -93,16 +93,23 @@ body {
 //  $   FOCUS STYLING
 //  ----------------------------------------------------------------------------
 @focus-styles: {
+    &:focus {
+        box-shadow: var(--focus-ring-divider), 0 0 0 var(--_focus-ring-size, var(--su-static4)) var(--_focus-ring-color, var(--focus-ring));
+        outline: none;
+    }
+}
+
+@focus-visible-styles: {
     // Hide focus styles if they're not needed, for example,
     // when an element receives focus via the mouse.
     &:focus:not(:focus-visible) {
-        outline: none;
         box-shadow: none;
+        outline: none;
     }
 
     // Show focus styles on keyboard focus.
     &:focus-visible {
+        box-shadow: var(--focus-ring-divider), 0 0 0 var(--_focus-ring-size, var(--su-static4)) var(--_focus-ring-color, var(--focus-ring));
         outline: none;
-        box-shadow: var(--focus-ring-divider), 0 0 0 var(--su-static4) var(--focus-ring-muted);
     }
 }
