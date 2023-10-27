@@ -125,9 +125,6 @@
     }
 
     .s-navigation {
-        .s-navigation--item:focus-visible {
-            box-shadow: var(--theme-topbar-search-shadow-focus, 0 0 0 var(--su-static4) var(--focus-ring));
-        }
         .s-navigation--item:not(.is-selected) {
             color: var(--theme-topbar-item-color, var(--black-400));
         }
@@ -139,10 +136,6 @@
     }
     .s-popover .s-navigation {
         .s-navigation--item {
-            &:focus-visible {
-                box-shadow: var(0 0 0 var(--su-static4) var(--focus-ring));
-            }
-
             &:not(.is-selected) {
                 &:hover {
                     color: var(--black-600);
@@ -291,6 +284,17 @@
         white-space: nowrap;
         position: relative;
 
+        &:focus:not(:focus-visible) {
+            box-shadow: none;
+            outline: none;
+        }
+    
+        // Show focus styles on keyboard focus.
+        &:focus-visible {
+            box-shadow: inset 0 0 0 var(--_focus-ring-size, var(--su-static4)) var(--_focus-ring-color, var(--focus-ring)), inset 0 0 0 calc(var(--su-static4) + var(--su-static1)) var(--white);
+            outline: none;
+        }
+
         &:hover,
         &:focus,
         &.is-selected,
@@ -376,15 +380,9 @@
         .s-input {
             border-color: var(--theme-topbar-search-border, var(--black-300));
             background-color: var(--theme-topbar-search-background, var(--white));
-            box-shadow: var(--theme-topbar-search-shadow);
             color: var(--theme-topbar-search-color, var(--black-500));
             display: block;
             line-height: @inputLineHeights;
-
-            &:focus {
-                border-color: var(--theme-topbar-search-border-focus, var(--blue-400));
-                box-shadow: var(--theme-topbar-search-shadow-focus, 0 0 0 var(--su-static4) var(--focus-ring));
-            }
 
             &::placeholder {
                 color: var(--theme-topbar-search-placeholder, var(--black-400));
@@ -420,8 +418,6 @@
         color: var(--theme-topbar-select-color, var(--black-500));
 
         &:focus {
-            border-color: var(--theme-topbar-search-border-focus, var(--blue-400));
-            box-shadow: var(--theme-topbar-search-shadow-focus, 0 0 0 var(--su-static4) var(--focus-ring));
             z-index: var(--zi-selected);
         }
     }
