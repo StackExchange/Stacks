@@ -5,7 +5,7 @@
     // --_bu-bg: inherit; // [1]
     --_bu-br: var(--br-md);
     --_bu-fc: var(--theme-button-color, var(--theme-secondary-400));
-    --_bu-focus-ring: 0 0 0 var(--su-static4) var(--focus-ring);
+    --_bu-focus-ring: var(--focus-ring-divider), 0 0 0 var(--su-static4) var(--focus-ring);
     --_bu-fs: var(--fs-body1);
     --_bu-p: 0.8em;
     // STATE AND INTERACTION CUSTOM PROPERTIES
@@ -241,7 +241,7 @@
         --_bu-fc-active: var(--_bu-fc);
         --_bu-fc-hover: var(--red-500);
         --_bu-fc-selected: var(--red-600);
-        --_bu-focus-ring: 0 0 0 var(--su-static4) var(--focus-ring-error);
+        --_bu-focus-ring: var(--focus-ring-divider), 0 0 0 var(--su-static4) var(--focus-ring-error);
         --_bu-filled-bc: transparent;
         --_bu-filled-bc-selected: var(--_bu-filled-bc);
         --_bu-filled-bg: var(--red-400);
@@ -268,7 +268,7 @@
         --_bu-fc-active: var(--_bu-fc);
         --_bu-fc-hover: var(--black-500);
         --_bu-fc-selected: var(--black-500);
-        --_bu-focus-ring: 0 0 0 var(--su-static4) var(--focus-ring-muted);
+        --_bu-focus-ring: var(--focus-ring-divider), 0 0 0 var(--su-static4) var(--focus-ring-muted);
         // The filled modifier on the muted button is deprecated and is to be
         // removed in Stacks Classic v2
         --_bu-filled-bc: transparent;
@@ -350,7 +350,7 @@
         --_bu-fc: var(--fc-medium);
         --_bu-fc-active: var(--fc-dark);
         --_bu-fc-hover: var(--black-600);
-        --_bu-focus-ring: 0 0 0 var(--su-static4) var(--focus-ring-muted);
+        --_bu-focus-ring: var(--focus-ring-divider), 0 0 0 var(--su-static4) var(--focus-ring-muted);
     }
 
     &&__github {
@@ -360,7 +360,7 @@
         --_bu-fc: var(--white);
         --_bu-fc-active: var(--white);
         --_bu-fc-hover: var(--white);
-        --_bu-focus-ring: 0 0 0 var(--su-static4) var(--focus-ring-muted);
+        --_bu-focus-ring: var(--focus-ring-divider), 0 0 0 var(--su-static4) var(--focus-ring-muted);
         --_bu-hc-bc: transparent;
     }
 
@@ -427,7 +427,7 @@
 
     &:focus,
     &--radio:focus + & {
-        box-shadow: var(--_bu-focus-ring);
+        box-shadow: var(--focus-ring-divider), var(--_bu-focus-ring);
         outline: none;
     }
 

@@ -169,8 +169,18 @@
                         }
 
                         &--stop {
+                            &:before {
+                                border: var(--su-static6) solid var(--focus-ring);
+                                border-radius: 1000px;
+                                content: "";
+                                inset: calc(var(--su-static6) * -1);
+                                opacity: 0.15;
+                                pointer-events: none;
+                                position: absolute;
+                            }
+
                             background: var(--theme-secondary-400);
-                            box-shadow: 0 0 0 var(--su-static6) var(--focus-ring);
+                            position: relative;
                         }
                     }
                 }

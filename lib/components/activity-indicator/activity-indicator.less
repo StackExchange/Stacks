@@ -1,5 +1,4 @@
 .s-activity-indicator {
-    --_ai-focus-ring: var(--focus-ring);
     --_ai-bg: var(--theme-secondary-400);
     --_ai-fc: var(--white);
 
@@ -10,7 +9,6 @@
     // VARIANTS
     &&__danger {
         --_ai-bg: var(--red-400);
-        --_ai-focus-ring: var(--focus-ring-error);
 
         .highcontrast-mode({
             --_ai-bg: var(--red-500);
@@ -19,7 +17,6 @@
 
     &&__success {
         --_ai-bg: var(--green-400);
-        --_ai-focus-ring: var(--focus-ring-success);
 
         .highcontrast-mode({
             --_ai-bg: var(--green-500);
@@ -29,7 +26,6 @@
     &&__warning {
         --_ai-bg: var(--yellow-400);
         --_ai-fc: var(--_black-static);
-        --_ai-focus-ring: var(--focus-ring-warning);
 
         .highcontrast-mode({
             --_ai-bg: var(--yellow-500); // needs to be here to override default high contrast
@@ -37,8 +33,17 @@
         });
     }
 
+    &:before {
+        border: var(--su-static4) solid var(--_ai-bg);
+        border-radius: 1000px;
+        content: "";
+        inset: calc(var(--su-static4) * -1);
+        opacity: 0.15;
+        pointer-events: none;
+        position: absolute;
+    }
+
     background-color: var(--_ai-bg);
-    box-shadow: 0 0 0 var(--su-static4) var(--_ai-focus-ring);
     color: var(--_ai-fc);
 
     border-radius: 1000px;
@@ -49,5 +54,6 @@
     min-width: var(--su-static12);
     min-height: var(--su-static12);
     padding: var(--su2) var(--su4);
+    position: relative;
     text-transform: uppercase;
 }
