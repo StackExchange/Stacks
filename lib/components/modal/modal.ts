@@ -228,7 +228,11 @@ export class ModalController extends Stacks.StacksController {
                 const initialFocus =
                     this.firstVisible(this.initialFocusTargets) ??
                     this.firstVisible(this.getAllTabbables());
-                initialFocus?.focus();
+
+                // Only set focus if focus is not set on an element within the modal
+                if (!this.modalTarget.contains(document.activeElement)) {
+                    initialFocus?.focus();
+                }
             },
             { once: true }
         );
