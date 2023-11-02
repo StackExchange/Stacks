@@ -5,7 +5,7 @@ import "../../index";
 
 const user = userEvent.setup();
 
-const modalControllerEl = (hidden = true) => html`
+const modalControllerEl = (hidden = true, setInitialFocusTarget = false) => html`
     <div data-controller="s-modal">
         <button
             class="s-btn s-btn__outlined"
@@ -30,8 +30,11 @@ const modalControllerEl = (hidden = true) => html`
                 <p class="s-modal--body">
                     <span id="launch-modal-base-description">Description</span>
                     <form>
-                        <input type="text" data-testid="input-1"/>
-                        <input type="text" data-testid="input-2"/>
+                        <input type="text" data-testid="input-1" />
+                        ${setInitialFocusTarget ?
+                            html`<input type="text"  data-testid="input-2" data-s-modal-target="initialFocus" />`
+                          : html`<input type="text" data-testid="input-2" />`
+                        }
                     </form>
                 </p>
                 <div class="d-flex gx8 s-modal--footer">
@@ -52,15 +55,19 @@ const modalControllerEl = (hidden = true) => html`
     </div>
 `;
 
+// TODO figure out why all of these tests fail in Chromium and Firefox but not Webkit
+// Looks like it's failing to invoke action "click->s-modal#toggle"
 describe("modal", () => {
     it("should make the modal visible when toggle button is clicked", async () => {
         await fixture(modalControllerEl());
 
         const modal = await screen.findByTestId("modal");
         const trigger = await screen.findByTestId("trigger");
-        expect(modal).not.to.be.visible;
+
+        await waitFor(() => expect(modal).not.to.be.visible);
 
         await user.click(trigger);
+
         await waitFor(() => expect(modal).to.be.visible);
     });
 
@@ -69,23 +76,44 @@ describe("modal", () => {
 
         const modal = await screen.findByTestId("modal");
         const closeBtn = await screen.findByTestId("close-btn");
+
         expect(modal).to.be.visible;
 
         await user.click(closeBtn);
+
         await waitFor(() => expect(modal).not.to.be.visible);
     });
 
+    // TODO figure out why this is failing on *all* browsers
+    it("should focus the element with `data-s-modal-target\"initialFocus\"`", async () => {
+        await fixture(modalControllerEl(true, true));
+
+        const modal = await screen.findByTestId("modal");
+        const trigger = await screen.findByTestId("trigger");
+        const focusableEl = await screen.findByTestId("input-2");
+
+        expect(modal).not.to.be.visible;
+
+        await user.click(trigger);
+        await waitFor(() => expect(modal).to.be.visible);
+
+        await expect(document.activeElement).to.equal(focusableEl);
+    });
+
+    // TODO figure out why this is failing on *all* browsers
     it("should focus the first focusable element when modal is shown", async () => {
         await fixture(modalControllerEl());
 
         const modal = await screen.findByTestId("modal");
         const trigger = await screen.findByTestId("trigger");
         const focusableEl = await screen.findByTestId("input-1");
+
         expect(modal).not.to.be.visible;
         await expect(document.activeElement).not.to.equal(focusableEl);
 
         await user.click(trigger);
         await waitFor(() => expect(modal).to.be.visible);
+
         await expect(document.activeElement).to.equal(focusableEl);
     });
 
@@ -96,11 +124,13 @@ describe("modal", () => {
         const trigger = await screen.findByTestId("trigger");
         const focusableEl1 = await screen.findByTestId("input-1");
         const focusableEl2 = await screen.findByTestId("input-2");
+
         expect(modal).not.to.be.visible;
         await expect(document.activeElement).not.to.equal(focusableEl1);
 
         await user.click(trigger);
         await waitFor(() => expect(modal).to.be.visible);
+
         focusableEl2.focus();
         await expect(document.activeElement).to.equal(focusableEl2);
     });
