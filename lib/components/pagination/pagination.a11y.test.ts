@@ -1,4 +1,5 @@
 import { runComponentTests } from "../../test/test-utils";
+import { WCAGNonTextContrast } from "../../test/assertions";
 import "../../index";
 
 describe("pagination", () => {
@@ -16,5 +17,6 @@ describe("pagination", () => {
                 <a class="s-pagination--item" href="#">Next</a>
             `,
         },
+        additionalAssertions: [WCAGNonTextContrast],
     });
 });
