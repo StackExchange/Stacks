@@ -5,7 +5,10 @@ import "../../index";
 
 const user = userEvent.setup();
 
-const modalControllerEl = (hidden = true, setInitialFocusTarget = false) => html`
+const modalControllerEl = (
+    hidden = true,
+    setInitialFocusTarget = false
+) => html`
     <div data-controller="s-modal">
         <button
             class="s-btn s-btn__outlined"
@@ -31,9 +34,17 @@ const modalControllerEl = (hidden = true, setInitialFocusTarget = false) => html
                     <span id="launch-modal-base-description">Description</span>
                     <form>
                         <input type="text" data-testid="input-1" />
-                        ${setInitialFocusTarget ?
-                            html`<input type="text"  data-testid="input-2" data-s-modal-target="initialFocus" />`
-                          : html`<input type="text" data-testid="input-2" />`
+                        ${
+                            setInitialFocusTarget
+                                ? html`<input
+                                      type="text"
+                                      data-testid="input-2"
+                                      data-s-modal-target="initialFocus"
+                                  />`
+                                : html`<input
+                                      type="text"
+                                      data-testid="input-2"
+                                  />`
                         }
                     </form>
                 </p>
@@ -85,7 +96,7 @@ describe("modal", () => {
     });
 
     // TODO figure out why this is failing on *all* browsers
-    it("should focus the element with `data-s-modal-target\"initialFocus\"`", async () => {
+    it('should focus the element with `data-s-modal-target"initialFocus"`', async () => {
         await fixture(modalControllerEl(true, true));
 
         const modal = await screen.findByTestId("modal");
