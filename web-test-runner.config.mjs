@@ -75,6 +75,8 @@ export default {
         {
             name: "unit",
             files: "lib/**/!(*.visual|*.a11y|*.less).test.ts",
+            // for the unit tests we need to keep animations enabled
+            testRunnerHtml: (testFramework) => `<html><body><script type="module" src="${testFramework}"></script></body></html>`,
         },
         {
             name: "visual",

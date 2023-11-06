@@ -3,8 +3,8 @@ import * as Stacks from "../../stacks";
 export class ModalController extends Stacks.StacksController {
     static targets = ["modal", "initialFocus"];
 
-    private modalTarget!: HTMLElement;
-    private initialFocusTargets!: HTMLElement[];
+    declare readonly modalTarget: HTMLElement;
+    declare readonly initialFocusTargets: HTMLElement[];
 
     private _boundClickFn!: (event: MouseEvent) => void;
     private _boundKeypressFn!: (event: KeyboardEvent) => void;
@@ -228,7 +228,11 @@ export class ModalController extends Stacks.StacksController {
                 const initialFocus =
                     this.firstVisible(this.initialFocusTargets) ??
                     this.firstVisible(this.getAllTabbables());
-                initialFocus?.focus();
+
+                // Only set focus if focus is not already set on an element within the modal
+                if (!this.modalTarget.contains(document.activeElement)) {
+                    initialFocus?.focus();
+                }
             },
             { once: true }
         );
