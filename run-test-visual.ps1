@@ -17,7 +17,6 @@ docker run --tty --rm -p 8000:8000 `
   -v "${current_dir}/screenshots:/app/screenshots" `
   -v "${current_dir}/web-test-runner.config.mjs:/app/web-test-runner.config.mjs" `
   -v "${current_dir}/web-test-runner.config.ci.mjs:/app/web-test-runner.config.ci.mjs" `
-  -v "${current_dir}/web-dev-server-patches.mjs:/app/web-dev-server-patches.mjs" `
   stacks/test-visual @args
 
 exit $LASTEXITCODE

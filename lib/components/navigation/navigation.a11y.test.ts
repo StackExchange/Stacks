@@ -1,5 +1,6 @@
 import { html } from "@open-wc/testing";
 import { runComponentTests } from "../../test/test-utils";
+import { WCAGNonTextContrast } from "../../test/assertions";
 import "../../index";
 
 const items = [
@@ -74,5 +75,8 @@ describe("navigation", () => {
                 ${component}
             </nav>
         `,
+        additionalAssertions: [WCAGNonTextContrast],
+        // TODO: fix non-text-contrast SC for s-navigation__muted
+        skippedTestids: [/s-navigation-(light|dark)-muted/],
     });
 });
