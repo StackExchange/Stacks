@@ -81,7 +81,6 @@ export default {
             files: "lib/**/*.visual.test.ts",
         },
     ],
-    concurrentBrowsers: 3,
     testsFinishTimeout: 60 * 1000 * 5, // 5 minutes
 
     // animation disable CSS taken from https://github.com/microsoft/playwright/issues/7548#issuecomment-881897256
