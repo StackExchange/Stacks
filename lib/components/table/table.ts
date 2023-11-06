@@ -12,8 +12,8 @@ export enum SortOrder {
 }
 
 export class TableController extends Stacks.StacksController {
-    declare columnTarget: HTMLTableCellElement;
-    declare columnTargets: HTMLTableCellElement[];
+    declare readonly columnTarget: HTMLTableCellElement;
+    declare readonly columnTargets: HTMLTableCellElement[];
 
     static targets = ["column"];
 

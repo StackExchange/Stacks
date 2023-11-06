@@ -8,9 +8,10 @@ interface FilePreview {
 
 export class UploaderController extends Stacks.StacksController {
     static targets = ["input", "previews", "uploader"];
-    private inputTarget!: HTMLInputElement;
-    private previewsTarget!: HTMLElement;
-    private uploaderTarget!: HTMLElement;
+
+    declare readonly inputTarget: HTMLInputElement;
+    declare readonly previewsTarget: HTMLElement;
+    declare readonly uploaderTarget: HTMLElement;
 
     private boundDragEnter!: () => void;
     private boundDragLeave!: () => void;

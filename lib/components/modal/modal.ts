@@ -3,8 +3,8 @@ import * as Stacks from "../../stacks";
 export class ModalController extends Stacks.StacksController {
     static targets = ["modal", "initialFocus"];
 
-    private modalTarget!: HTMLElement;
-    private initialFocusTargets!: HTMLElement[];
+    declare readonly modalTarget: HTMLElement;
+    declare readonly initialFocusTargets: HTMLElement[];
 
     private _boundClickFn!: (event: MouseEvent) => void;
     private _boundKeypressFn!: (event: KeyboardEvent) => void;
