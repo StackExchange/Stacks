@@ -5,56 +5,46 @@ import "../../index";
 
 const user = userEvent.setup();
 
-const modalControllerEl = (
+const createModal = ({
     hidden = true,
-    setInitialFocusTarget = false
-) => html`
+    initialFocusEl,
+}: { hidden?: boolean; initialFocusEl?: ReturnType<typeof html> } = {}) => html`
     <div data-controller="s-modal">
         <button
-            class="s-btn s-btn__outlined"
-            data-action="s-modal#toggle"
-            data-target="#launch-modal-base"
+            class="s-btn"
+            data-action="s-modal#show"
             data-testid="trigger">
-            Launch example modal
+            Show Modal
         </button>
 
         <aside
             class="s-modal"
-            id="launch-modal-base"
+            id="modal-base"
             tabindex="-1"
             role="dialog"
-            aria-labelledby="launch-modal-base-title"
-            aria-describedby="launch-modal-base-description"
+            aria-labelledby="modal-base-title"
+            aria-describedby="modal-base-description"
             aria-hidden="${hidden}"
             data-s-modal-target="modal"
             data-testid="modal">
             <div class="s-modal--dialog" role="document">
-                <h1 class="s-modal--header" id="launch-modal-base-title">Title</h1>
+                <h1 class="s-modal--header" id="modal-base-title">Title</h1>
+
                 <p class="s-modal--body">
-                    <span id="launch-modal-base-description">Description</span>
+                    <span id="modal-base-description">Description</span>
                     <form>
-                        <input type="text" data-testid="input-1" />
-                        ${
-                            setInitialFocusTarget
-                                ? html`<input
-                                      type="text"
-                                      data-testid="input-2"
-                                      data-s-modal-target="initialFocus"
-                                  />`
-                                : html`<input
-                                      type="text"
-                                      data-testid="input-2"
-                                  />`
-                        }
+                        <input type="text" data-testid="first-focusable-element" />
+                        ${initialFocusEl}
                     </form>
                 </p>
+
                 <div class="d-flex gx8 s-modal--footer">
                     <button class="flex--item s-btn s-btn__primary" type="button">Save changes</button>
-                    <input class="s-input" id="example-input" type="text" />
                     <button class="flex--item s-btn" type="button" data-action="s-modal#hide">Cancel</button>
                 </div>
+
                 <button
-                    class="s-modal--close"
+                    class="s-btn s-btn__muted s-modal--close"
                     type="button"
                     aria-label="Close"
                     data-action="s-modal#hide"
@@ -66,24 +56,22 @@ const modalControllerEl = (
     </div>
 `;
 
-// TODO figure out why all of these tests fail in Chromium and Firefox but not Webkit
-// Looks like it's failing to invoke action "click->s-modal#toggle"
 describe("modal", () => {
     it("should make the modal visible when toggle button is clicked", async () => {
-        await fixture(modalControllerEl());
+        await fixture(createModal());
 
         const modal = await screen.findByTestId("modal");
         const trigger = await screen.findByTestId("trigger");
 
-        await waitFor(() => expect(modal).not.to.be.visible);
+        expect(modal).not.to.be.visible;
 
         await user.click(trigger);
 
-        await waitFor(() => expect(modal).to.be.visible);
+        expect(modal).to.be.visible;
     });
 
-    it("should hide the modal when hide button is clicked", async () => {
-        await fixture(modalControllerEl(false));
+    it("should hide the modal when the close button is clicked", async () => {
+        await fixture(createModal({ hidden: false }));
 
         const modal = await screen.findByTestId("modal");
         const closeBtn = await screen.findByTestId("close-btn");
@@ -95,54 +83,73 @@ describe("modal", () => {
         await waitFor(() => expect(modal).not.to.be.visible);
     });
 
-    // TODO figure out why this is failing on *all* browsers
-    it('should focus the element with `data-s-modal-target"initialFocus"`', async () => {
-        await fixture(modalControllerEl(true, true));
+    it('should focus on the first element with `data-s-modal-target"initialFocus"` when modal is shown', async () => {
+        await fixture(
+            createModal({
+                initialFocusEl: html`<input
+                    type="text"
+                    data-testid="initialFocus"
+                    data-s-modal-target="initialFocus"
+                />`,
+            })
+        );
 
         const modal = await screen.findByTestId("modal");
         const trigger = await screen.findByTestId("trigger");
-        const focusableEl = await screen.findByTestId("input-2");
+        const initialFocusEl = await screen.findByTestId("initialFocus");
 
         expect(modal).not.to.be.visible;
 
         await user.click(trigger);
-        await waitFor(() => expect(modal).to.be.visible);
+        expect(modal).to.be.visible;
 
-        await expect(document.activeElement).to.equal(focusableEl);
+        await waitFor(() => expect(initialFocusEl).to.have.focus);
     });
 
-    // TODO figure out why this is failing on *all* browsers
-    it("should focus the first focusable element when modal is shown", async () => {
-        await fixture(modalControllerEl());
+    it("should focus on the first focusable element when modal is shown and no initialFocus is specified", async () => {
+        await fixture(createModal());
 
         const modal = await screen.findByTestId("modal");
         const trigger = await screen.findByTestId("trigger");
-        const focusableEl = await screen.findByTestId("input-1");
+        const focusableEl = await screen.findByTestId(
+            "first-focusable-element"
+        );
 
         expect(modal).not.to.be.visible;
-        await expect(document.activeElement).not.to.equal(focusableEl);
+        expect(focusableEl).not.to.have.focus;
 
         await user.click(trigger);
-        await waitFor(() => expect(modal).to.be.visible);
+        expect(modal).to.be.visible;
 
-        await expect(document.activeElement).to.equal(focusableEl);
+        await waitFor(() => expect(focusableEl).to.have.focus);
     });
 
     it("should not change set focus when an element within the modal is already focused", async () => {
-        await fixture(modalControllerEl());
+        await fixture(createModal());
 
         const modal = await screen.findByTestId("modal");
         const trigger = await screen.findByTestId("trigger");
-        const focusableEl1 = await screen.findByTestId("input-1");
-        const focusableEl2 = await screen.findByTestId("input-2");
+        const firstFocusableEl = await screen.findByTestId(
+            "first-focusable-element"
+        );
+        const closeButton = await screen.findByTestId("close-btn");
 
         expect(modal).not.to.be.visible;
-        await expect(document.activeElement).not.to.equal(focusableEl1);
+        expect(firstFocusableEl).not.to.have.focus;
 
         await user.click(trigger);
-        await waitFor(() => expect(modal).to.be.visible);
+        expect(modal).to.be.visible;
 
-        focusableEl2.focus();
-        await expect(document.activeElement).to.equal(focusableEl2);
+        // manually focus on an element within the modal
+        closeButton.focus();
+
+        // wait for s-modal:shown css transition to complete
+        await new Promise((resolve) =>
+            modal.addEventListener("s-modal:shown", resolve)
+        );
+
+        // check that focus stayed on the manually focused element and
+        // has not changed to the first focusable element
+        expect(closeButton).to.have.focus;
     });
 });
