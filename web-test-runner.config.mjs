@@ -6,18 +6,13 @@ import _commonjs from "@rollup/plugin-commonjs";
 import { playwrightLauncher } from "@web/test-runner-playwright";
 import { visualRegressionPlugin } from "@web/test-runner-visual-regression/plugin";
 
-import {
-    fromRollupWithFix,
-    fixExportNamedExports,
-} from "./web-dev-server-patches.mjs";
-
 const ignoredBrowserLogs = [
     "Lit is in dev mode. Not recommended for production! See https://lit.dev/msg/dev-mode for more information.",
 ];
 
 const postcss = fromRollup(_postcss);
 const replace = fromRollup(_replace);
-const commonjs = fromRollupWithFix(_commonjs);
+const commonjs = fromRollup(_commonjs);
 
 export default {
     browsers: [
@@ -64,7 +59,6 @@ export default {
             "preventAssignment": true,
         }),
         commonjs(),
-        fixExportNamedExports(),
         esbuildPlugin({ ts: true }),
         visualRegressionPlugin({
             update: process.argv.includes("--update-visual-baseline"),
