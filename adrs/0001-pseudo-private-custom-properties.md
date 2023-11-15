@@ -89,7 +89,7 @@ Defining a structure for component styles using pseudo-private custom properties
         --_cn-bg: var(--yellow-100);
 
         &.s-component-name__filled {
-            --_cn-bg-filled: var(--yellow-800);
+            --_cn-bg-filled: var(--yellow-600);
         }
     }
 
@@ -100,7 +100,7 @@ Defining a structure for component styles using pseudo-private custom properties
 
     // INTERACTION
     &:hover {
-        --_cn-bg: var(--_black-050);
+        --_cn-bg: var(--black-150);
     }
 
     // STYLES MODIFIED BY COMPONENT-SPECIFIC CUSTOM PROPERTIES

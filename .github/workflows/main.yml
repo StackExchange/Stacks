@@ -2,9 +2,9 @@ name: CI
 
 on:
   push:
-    branches: [develop]
+    branches: [develop, stacks-next]
   pull_request:
-    branches: [develop]
+    branches: [develop, stacks-next]
 
 jobs:
   build-and-test:
@@ -29,6 +29,9 @@ jobs:
 
       - name: ▶️ Linting
         run: npm run lint
+
+      - name: ▶️ Less Tests
+        run: npm run test:less
 
       - name: ▶️ Unit Tests
         run: npm run test:unit -- --config web-test-runner.config.ci.mjs

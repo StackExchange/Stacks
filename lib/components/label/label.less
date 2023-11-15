@@ -44,7 +44,7 @@
     // Default styling is optional.
     &--status { // TODO convert to require parent class for styling [1]
         --_la-status-b: none;
-        --_la-status-bg: var(--black-050);
+        --_la-status-bg: var(--black-150);
         --_la-status-fc: var(--fc-medium);
 
         .highcontrast-mode({
@@ -53,28 +53,18 @@
 
         // TODO: include child component class (without variant) on selector
         &__beta {
-            --_la-status-bg: var(--blue-100);
-            --_la-status-fc: var(--blue-700);
+            --_la-status-bg: var(--blue-200);
+            --_la-status-fc: var(--blue-500);
         }
 
         &__new {
-            --_la-status-bg: var(--green-100);
-            --_la-status-fc: var(--green-700);
-
-            .dark-mode({
-                --_la-status-bg: var(--green-050);
-                --_la-status-fc: var(--green-800);
-            });
+            --_la-status-bg: var(--green-200);
+            --_la-status-fc: var(--green-500);
         }
 
         &__required {
-            --_la-status-bg: var(--red-100);
-            --_la-status-fc: var(--red-700);
-
-            .dark-mode({
-                --_la-status-bg: var(--red-050);
-                --_la-status-fc: var(--red-800);
-            });
+            --_la-status-bg: var(--red-200);
+            --_la-status-fc: var(--red-500);
         }
 
         background-color: var(--_la-status-bg);
@@ -89,6 +79,7 @@
         vertical-align: text-bottom;
     }
 
+    // TODO we shouldn't support descriptions and messages within labels
     .s-description,
     .s-input-message {
         font-weight: normal;
@@ -99,9 +90,9 @@
 
     font-size: var(--_la-fs);
 
-    color: var(--fc-dark);
+    color: var(--fc-medium);
     font-family: inherit;
-    font-weight: 600;
+    font-weight: 700;
     padding: 0 var(--su2); // Helps the label visually line up with inputs
 }
 

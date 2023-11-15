@@ -1,6 +1,9 @@
 .s-link-preview {
+    --_lp-details-fc: var(--black-400);
     --_lp-details-mt: var(--su2);
+    --_lp-footer-bg: var(--black-100);
     --_lp-footer-fd: unset;
+    --_lp-header-bg: var(--black-100);
     --_lp-misc-pl: var(--su4);
     --_lp-misc-pt: unset;
 
@@ -12,20 +15,26 @@
         --_lp-misc-pt: var(--su2);
     });
 
+    .highcontrast-mode({
+        --_lp-details-fc: var(--black-600);
+        --_lp-footer-bg: var(--black-050);
+        --_lp-header-bg: var(--black-050);
+    });
+
     // CHILD ELEMENTS
     & &--details,
     & &--footer {
         a {
             &:visited {
-                color: var(--black-700);
+                color: var(--black-500);
             }
             &:hover,
             &:active,
             &:focus {
-                color: var(--black-600);
+                color: var(--black-500);
             }
 
-            color: var(--black-500);
+            color: var(--black-600);
             cursor: pointer;
             text-decoration: none;
         }
@@ -49,16 +58,16 @@
     }
 
     & &--details {
+        color: var(--_lp-details-fc);
         margin-top: var(--_lp-details-mt);
 
-        color: var(--black-500);
         font-size: var(--fs-caption);
     }
 
     & &--footer {
+        background: var(--_lp-footer-bg);
         flex-direction: var(--_lp-footer-fd);
 
-        background: var(--black-025);
         border-bottom-left-radius: var(--br-sm);
         border-bottom-right-radius: var(--br-sm);
         border-top: var(--su-static1) solid var(--bc-medium);
@@ -69,7 +78,7 @@
     }
 
     & &--header {
-        background: var(--black-025);
+        background: var(--_lp-header-bg);
         border-bottom: var(--su-static1) solid var(--bc-medium);
         border-top-left-radius: var(--br-sm);
         border-top-right-radius: var(--br-sm);
@@ -78,7 +87,7 @@
     }
 
     & &--icon {
-        color: var(--black-800); // Set the default color of the integration's icon. Most likely this will be overridden by the integration icon's native colors.
+        color: var(--black-600); // Set the default color of the integration's icon. Most likely this will be overridden by the integration icon's native colors.
         margin-right: var(--su8);
     }
 
@@ -86,11 +95,11 @@
         padding-left: var(--_lp-misc-pl);
         padding-top: var(--_lp-misc-pt);
 
-        color: var(--black-500);
+        color: var(--black-400);
     }
 
     & &--title {
-        color: var(--black-900);
+        color: var(--black-600);
         font-size: var(--fs-body3);
         font-weight: bold;
     }
@@ -100,7 +109,7 @@
         &:hover{
             &,
             &.s-link__visited {
-                color: var(--theme-link-color-hover);
+                color: var(--theme-link-color-hover, var(--theme-secondary-500));
             }
         }
 
@@ -117,10 +126,10 @@
         }
 
         &.s-link__visited:visited {
-            color: var(--theme-link-color);
+            color: var(--theme-link-color, var(--theme-secondary-600));
         }
 
-        color: var(--theme-link-color);
+        color: var(--theme-link-color, var(--theme-secondary-400));
         cursor: pointer;
         text-decoration: none;
     }

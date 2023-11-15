@@ -7,17 +7,16 @@ description: Buttons are user interface elements which allows users to take acti
 ---
 <section class="stacks-section">
     {% header "h2", "Styles" %}
-    <p class="stacks-copy">Stacks provides 4 different button styles:</p>
+    <p class="stacks-copy">Stacks provides 3 different button styles:</p>
     <ol class="stacks-list">
-        <li><a href="#secondary">Secondary</a></li>
-        <li><a href="#primary">Primary</a></li>
+        <li><a href="#base">Base</a></li>
         <li><a href="#danger">Danger</a></li>
         <li><a href="#muted">Muted</a></li>
     </ol>
     <p class="stacks-copy">Each style is explained below, detailing how and where to use these styles.</p>
 
-    {% header "h3", "Secondary" %}
-    <p class="stacks-copy">All buttons, by default, are secondary buttons. There are three, graduating secondary styles:</p>
+    {% header "h3", "Base" %}
+    <p class="stacks-copy">All buttons, by default, are base buttons. There are three, graduating secondary styles:</p>
     <ol class="stacks-list">
         <li>Clear <em>(default)</em></li>
         <li>Outlined</li>
@@ -43,54 +42,7 @@ description: Buttons are user interface elements which allows users to take acti
                         </tr>
                     </thead>
                     <tbody>
-                        {% for btn in buttons.secondary %}
-                            {% assign types = btn.classes %}
-                            {% for class in types %}
-                            <tr>
-                                <th scope="row" class="va-middle">{{ class.title }}</th>
-                                <td class="va-middle">
-                                    <div class="d-flex g4 fw-wrap">
-                                        <code class="flex--item stacks-code">.s-btn</code>
-                                        {% if btn.class != nil %}
-                                            <code class="flex--item stacks-code">.{{ btn.class }}</code>
-                                        {% endif %}
-                                        {% if class.class != nil %}
-                                            <code class="flex--item stacks-code">.{{ class.class }}</code>
-                                        {% endif %}
-                                    </div>
-                                </td>
-                                <td class="va-middle ta-center px4"><button class="ws-nowrap s-btn {{ class.class }}" type="button">Ask question</button></td>
-                                <td class="va-middle ta-center px4"><button class="ws-nowrap s-btn {{ class.class }} is-selected" type="button" aria-pressed="true">Ask question</button></td>
-                                <td class="va-middle ta-center px4"><button class="ws-nowrap s-btn {{ class.class }}" type="button" disabled>Ask question</button></td>
-                            </tr>
-                            {% endfor %}
-                        {% endfor %}
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
-
-    {% header "h3", "Primary" %}
-    <p class="stacks-copy">A visual style used to highlight the most important actions. To avoid confusing users, don’t use more than one primary button within a section or view.</p>
-    <div class="stacks-preview">
-{% highlight html %}
-<button class="s-btn s-btn__primary" type="button">…</button>
-{% endhighlight %}
-        <div class="stacks-preview--example">
-            <div class="overflow-x-auto">
-                <table class="wmn5 s-table s-table__bx-simple">
-                    <thead>
-                        <tr>
-                            <th scope="col">Type</th>
-                            <th scope="col" class="s-table--cell4">Class</th>
-                            <th scope="col" class="ta-center">Default State</th>
-                            <th scope="col" class="ta-center">Selected State</th>
-                            <th scope="col" class="ta-center">Disabled State</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for btn in buttons.primary %}
+                        {% for btn in buttons.base %}
                             {% assign types = btn.classes %}
                             {% for class in types %}
                             <tr>
@@ -227,6 +179,58 @@ description: Buttons are user interface elements which allows users to take acti
             </div>
         </div>
     </div>
+
+    {% header "h3", "Primary" %}
+
+    {% tip, "warning", "mb24" %}
+        <strong>Note:</strong> The <code class="stacks-code">.s-btn__primary</code> class has been deprecated and replaced by the base button’s <code class="stacks-code">.s-btn__filled</code> style. Expect it to be fully removed in the next major release.
+    {% endtip %}
+
+    <p class="stacks-copy">A visual style used to highlight the most important actions. To avoid confusing users, don’t use more than one primary button within a section or view.</p>
+    <div class="stacks-preview">
+{% highlight html %}
+<button class="s-btn s-btn__primary" type="button">…</button>
+{% endhighlight %}
+        <div class="stacks-preview--example">
+            <div class="overflow-x-auto">
+                <table class="wmn5 s-table s-table__bx-simple">
+                    <thead>
+                        <tr>
+                            <th scope="col">Type</th>
+                            <th scope="col" class="s-table--cell4">Class</th>
+                            <th scope="col" class="ta-center">Default State</th>
+                            <th scope="col" class="ta-center">Selected State</th>
+                            <th scope="col" class="ta-center">Disabled State</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for btn in buttons.primary %}
+                            {% assign types = btn.classes %}
+                            {% for class in types %}
+                            <tr>
+                                <th scope="row" class="va-middle">{{ class.title }}</th>
+                                <td class="va-middle">
+                                    <div class="d-flex g4 fw-wrap">
+                                        <code class="flex--item stacks-code">.s-btn</code>
+                                        {% if btn.class != nil %}
+                                            <code class="flex--item stacks-code">.{{ btn.class }}</code>
+                                        {% endif %}
+                                        {% if class.class != nil %}
+                                            <code class="flex--item stacks-code">.{{ class.class }}</code>
+                                        {% endif %}
+                                    </div>
+                                </td>
+                                <td class="va-middle ta-center px4"><button class="ws-nowrap s-btn {{ class.class }}" type="button">Ask question</button></td>
+                                <td class="va-middle ta-center px4"><button class="ws-nowrap s-btn {{ class.class }} is-selected" type="button" aria-pressed="true">Ask question</button></td>
+                                <td class="va-middle ta-center px4"><button class="ws-nowrap s-btn {{ class.class }}" type="button" disabled>Ask question</button></td>
+                            </tr>
+                            {% endfor %}
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 </section>
 
 <section class="stacks-section">
@@ -235,9 +239,6 @@ description: Buttons are user interface elements which allows users to take acti
     <div class="stacks-preview">
 {% highlight html %}
 <button class="s-btn is-loading" type="button">…</button>
-<button class="s-btn s-btn__outlined is-loading" type="button">…</button>
-<button class="s-btn s-btn__filled is-loading" type="button">…</button>
-<button class="s-btn s-btn__primary is-loading" type="button">…</button>
 {% endhighlight %}
         <div class="stacks-preview--example">
             <div class="overflow-x-auto">
@@ -426,13 +427,13 @@ description: Buttons are user interface elements which allows users to take acti
                     <th scope="row" class="va-middle">{{ size.size }}</th>
                     <td class="va-middle">
                         {% if size.class == "N/A" %}
-                            <em class="fc-black-300">{{ size.class }}</em>
+                            <em class="fc-black-350">{{ size.class }}</em>
                         {% else %}
                             <code class="flex--item stacks-code">{{ size.class }}</code>
                         {% endif %}
                     </td>
                     <td class="va-middle">{{ size.fs }}</td>
-                    <td class="va-middle"><button class="s-btn s-btn__primary ws-nowrap {{ size.class }}" type="button">Ask question</button></td>
+                    <td class="va-middle"><button class="s-btn s-btn__filled ws-nowrap {{ size.class }}" type="button">Ask question</button></td>
                 </tr>
                 {% endfor %}
             </tbody>
@@ -461,8 +462,8 @@ description: Buttons are user interface elements which allows users to take acti
 {% endhighlight %}
         <div class="stacks-preview--example">
             <div class="d-flex g4 fw-wrap">
-                <button class="flex--item s-btn s-btn__primary js-toggle-button" type="button" aria-pressed="false" title="Click to toggle this button’s state">Initially unselected toggle button</button>
-                <button class="flex--item s-btn s-btn__primary js-toggle-button is-selected" type="button" aria-pressed="true" title="Click to toggle this button’s state">Initially selected toggle button</button>
+                <button class="flex--item s-btn s-btn__filled js-toggle-button" type="button" aria-pressed="false" title="Click to toggle this button’s state">Initially unselected toggle button</button>
+                <button class="flex--item s-btn s-btn__filled js-toggle-button is-selected" type="button" aria-pressed="true" title="Click to toggle this button’s state">Initially selected toggle button</button>
             </div>
         </div>
     </div>
@@ -613,15 +614,13 @@ description: Buttons are user interface elements which allows users to take acti
     <p class="stacks-copy">Most button groups should be ordered from the most important to the least important action, left to right.</p>
     <div class="stacks-preview">
 {% highlight html %}
-<button class="s-btn s-btn__primary" type="button">Post answer</button>
-<button class="s-btn s-btn__filled" type="button">Save draft</button>
+<button class="s-btn s-btn__filled" type="button">Post answer</button>
 <button class="s-btn s-btn__outlined" type="button">Preview answer</button>
 <button class="s-btn" type="button">Cancel</button>
 {% endhighlight %}
         <div class="stacks-preview--example">
             <div class="d-flex g4 fw-wrap">
-                <button class="flex--item s-btn s-btn__primary" type="button">Post answer</button>
-                <button class="flex--item s-btn s-btn__filled" type="button">Save draft</button>
+                <button class="flex--item s-btn s-btn__filled" type="button">Post answer</button>
                 <button class="flex--item s-btn s-btn__outlined" type="button">Preview answer</button>
                 <button class="flex--item s-btn" type="button">Cancel</button>
             </div>
@@ -633,16 +632,14 @@ description: Buttons are user interface elements which allows users to take acti
     <div class="stacks-preview">
 {% highlight html %}
 <div class="d-flex g4 fd-column">
-    <button class="flex--item s-btn s-btn__primary" type="button">Post answer</button>
-    <button class="flex--item s-btn s-btn__filled" type="button">Save draft</button>
+    <button class="flex--item s-btn s-btn__filled" type="button">Post answer</button>
     <button class="flex--item s-btn s-btn__outlined" type="button">Preview answer</button>
     <button class="flex--item s-btn" type="button">Cancel</button>
 </div>
 {% endhighlight %}
         <div class="stacks-preview--example">
             <div class="d-flex g4 fd-column wmx2">
-                <button class="flex--item s-btn s-btn__primary" type="button">Post answer</button>
-                <button class="flex--item s-btn s-btn__filled" type="button">Save draft</button>
+                <button class="flex--item s-btn s-btn__filled" type="button">Post answer</button>
                 <button class="flex--item s-btn s-btn__outlined" type="button">Preview answer</button>
                 <button class="flex--item s-btn" type="button">Cancel</button>
             </div>
@@ -659,8 +656,8 @@ description: Buttons are user interface elements which allows users to take acti
 
         <div class="d-flex g4 sm:fd-row-reverse sm:jc-end">
             <button class="flex--item s-btn" type="button">Cancel</button>
-            <button class="flex--item s-btn s-btn__filled" type="button">Preview answer</button>
-            <button class="flex--item s-btn s-btn__primary" type="button">Post answer</button>
+            <button class="flex--item s-btn s-btn__outlined" type="button">Preview answer</button>
+            <button class="flex--item s-btn s-btn__filled" type="button">Post answer</button>
         </div>
     </div>
 </div>
@@ -671,8 +668,8 @@ description: Buttons are user interface elements which allows users to take acti
 
                 <div class="d-flex g4 sm:fd-row-reverse sm:jc-end">
                     <button class="flex--item s-btn" type="button">Cancel</button>
-                    <button class="flex--item s-btn s-btn__filled" type="button">Preview answer</button>
-                    <button class="flex--item s-btn s-btn__primary" type="button">Post answer</button>
+                    <button class="flex--item s-btn s-btn__outlined" type="button">Preview answer</button>
+                    <button class="flex--item s-btn s-btn__filled" type="button">Post answer</button>
                 </div>
             </div>
         </div>

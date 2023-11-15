@@ -1,4 +1,5 @@
 import { runComponentTests } from "../../test/test-utils";
+import { WCAGNonTextContrast } from "../../test/assertions";
 import "../../index";
 
 describe("pagination", () => {
@@ -16,7 +17,6 @@ describe("pagination", () => {
                 <a class="s-pagination--item" href="#">Next</a>
             `,
         },
-        // TODO: Most of those skipped tests should be fixed by the new Stacks 2.0 palette
-        skippedTestids: ["s-pagination-dark", "s-pagination-light"],
+        additionalAssertions: [WCAGNonTextContrast],
     });
 });

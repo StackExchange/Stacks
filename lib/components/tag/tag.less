@@ -1,14 +1,18 @@
 .s-tag {
-    --_ta-bc: var(--theme-tag-border-color);
-    --_ta-bc-hover: var(--theme-tag-hover-border-color);
-    --_ta-bc-selected: transparent;
-    --_ta-bg: var(--theme-tag-background-color);
-    --_ta-bg-hover: var(--theme-tag-hover-background-color);
-    --_ta-bg-selected: var(--theme-secondary-200);
+    // Border color
+    --_ta-bc: var(--theme-tag-border-color, transparent);
+    --_ta-bc-hover: var(--theme-tag-hover-border-color, transparent);
+    --_ta-bc-selected: var(--theme-tag-selected-border-color, transparent);
+    // Background color
+    --_ta-bg: var(--theme-tag-background-color, var(--theme-secondary-100));
+    --_ta-bg-hover: var(--theme-tag-hover-background-color, var(--theme-secondary-200));
+    --_ta-bg-selected: var(--theme-tag-selected-background-color, var(--theme-secondary-300));
+    // Color
+    --_ta-fc: var(--theme-tag-color, var(--theme-secondary-500));
+    --_ta-fc-hover: var(--theme-tag-hover-color, var(--theme-secondary-600));
+    --_ta-fc-selected: var(--theme-tag-selected-color, var(--theme-secondary-600));
+    // Other
     --_ta-br: var(--br-sm);
-    --_ta-fc: var(--theme-tag-color);
-    --_ta-fc-hover: var(--theme-tag-hover-color);
-    --_ta-fc-selected: var(--theme-secondary-900);
     --_ta-fs: var(--fs-caption);
     --_ta-lh: 1.846153846;
     --_ta-pl: var(--_ta-px);
@@ -18,6 +22,7 @@
     // CONTEXTUAL STYLES
     .highcontrast-mode({
         --_ta-bc: currentColor;
+        --_ta-bg-selected: var(--theme-secondary-400);
 
         text-decoration: none;
     });
@@ -30,7 +35,8 @@
         a&:hover,
         a&:focus {
             .highcontrast-mode({
-                border-color: currentColor;
+                --_ta-bc-selected: transparent;
+                --_ta-fc-selected: var(--white);
             });
 
             background-color: var(--_ta-bg-selected);
@@ -99,41 +105,49 @@
 
     // moderator overrides other muted and required, required overrides muted
     &&__moderator {
-        --_ta-bc: var(--red-200);
-        --_ta-bg: var(--red-050);
-        --_ta-fc: var(--red-800);
-        --_ta-bc-hover: var(--red-300);
-        --_ta-bg-hover: var(--red-100);
-        --_ta-fc-hover: var(--red-900);
-        --_ta-bc-selected: var(--red-400);
-        --_ta-bg-selected: var(--red-200);
-        --_ta-fc-selected: var(--red-800);
+        .highcontrast-mode({
+            --_ta-bg-selected: var(--orange-500);
+        });
+
+        --_ta-bc: var(--orange-300);
+        --_ta-bg: var(--orange-100);
+        --_ta-fc: var(--orange-600);
+        --_ta-bc-hover: var(--orange-300);
+        --_ta-bg-hover: var(--orange-200);
+        --_ta-fc-hover: var(--orange-600);
+        --_ta-bc-selected: var(--orange-400);
+        --_ta-bg-selected: var(--orange-300);
+        --_ta-fc-selected: var(--orange-600); // Currently APCA Lc 49 😔
     }
 
     &&__muted:not(&__moderator):not(&__required) {
         --_ta-bc: transparent;
-        --_ta-bg: var(--black-075);
-        --_ta-fc: var(--black-700);
+        --_ta-bg: var(--black-150);
+        --_ta-fc: var(--black-400);
         --_ta-bc-hover: transparent;
-        --_ta-bg-hover: var(--black-100);
-        --_ta-fc-hover: var(--black-800);
+        --_ta-bg-hover: var(--black-200);
+        --_ta-fc-hover: var(--black-500);
         --_ta-bc-selected: transparent;
-        --_ta-bg-selected: var(--black-200);
-        --_ta-fc-selected: var(--black-900);
+        --_ta-bg-selected: var(--black-225);
+        --_ta-fc-selected: var(--black-600);
 
         .highcontrast-mode({ --_ta-bc: currentColor; }); // Specificity has bit us, so we need this override
     }
 
     &&__required:not(&__moderator) {
-        --_ta-bc: var(--bc-darker);
-        --_ta-bg: var(--black-075);
-        --_ta-fc: var(--black-700);
-        --_ta-bc-hover: var(--black-300);
-        --_ta-bg-hover: var(--black-100);
-        --_ta-fc-hover: var(--black-800);
-        --_ta-bc-selected: var(--black-500);
-        --_ta-bg-selected: var(--black-200);
-        --_ta-fc-selected: var(--black-900);
+        // TODO *eventually* remove the custom theme overrides once we can reconcile Meta theming needs
+        // Border color
+        --_ta-bc: var(--theme-tag-required-border-color, transparent);
+        --_ta-bc-hover: var(--theme-tag-required-hover-border-color, transparent);
+        --_ta-bc-selected: var(--theme-tag-required-selected-border-color, transparent);
+        // Background color
+        --_ta-bg: var(--theme-tag-required-background-color, var(--theme-secondary-500));
+        --_ta-bg-hover: var(--theme-tag-required-hover-background-color, var(--theme-secondary-400));
+        --_ta-bg-selected: var(--theme-tag-required-selected-background-color, var(--theme-secondary-600));
+        // Color
+        --_ta-fc: var(--theme-tag-required-color, var(--white));
+        --_ta-fc-hover: var(--theme-tag-required-hover-color, var(--white));
+        --_ta-fc-selected: var(--theme-tag-required-selected-color, var(--white));
     }
     &__watched, // TODO: remove all single `&` watched styles once core no longer requires them
     &&__watched {

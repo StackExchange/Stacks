@@ -172,13 +172,14 @@ description: Banners are a type of <a href="/product/components/notices">notice<
 
     {% header "h2", "Examples" %}
     <div class="stacks-preview bs-none">
-        <div class="stacks-preview--example ba bar-sm bg-black-025 d-flex g8 fw-wrap">
+        <div class="stacks-preview--example ba bar-sm bg-black-100 d-flex g8 fw-wrap">
             <div class="d-flex g24 ai-center fw-wrap">
                 <div class="flex--item">
                     <div class="d-flex g8 ai-center">
                         <label class="flex--item s-label fs-body1" for="sys-banner-style">Style</label>
                         <div class="flex--item s-select">
                             <select id="sys-banner-style" class="js-sys-banner-style-menu">
+                                <option name="sys-banner-style" id="sys-banner-style-base" data-class="" selected>Base</option>
                                 <option name="sys-banner-style" id="sys-banner-style-info" data-class="s-banner__info" selected>Info</option>
                                 <option name="sys-banner-style" id="sys-banner-style-success" data-class="s-banner__success">Success</option>
                                 <option name="sys-banner-style" id="sys-banner-style-warning" data-class="s-banner__warning">Warning</option>
@@ -202,6 +203,18 @@ description: Banners are a type of <a href="/product/components/notices">notice<
                 <button class="flex--item s-btn s-btn__filled js-banner-open" data-toggle="s-banner" data-target="#launch-banner-base">Show example</button>
                 <button class="flex--item s-btn s-btn__danger s-btn__outlined d-none js-banner-close" data-toggle="s-banner" data-target="#launch-banner-base">Remove example</button>
             </div>
+        </div>
+    </div>
+
+    {% header "h3", "Base" %}
+    <div class="stacks-preview">
+{% highlight html %}
+<div class="s-banner" role="alert" aria-hidden="false">…</div>
+<div class="s-banner s-banner__important" role="alert" aria-hidden="false">…</div>
+{% endhighlight %}
+        <div class="stacks-preview--example ps-relative">
+            {% bannerExample "" %}
+            {% bannerExample "", "true", "mt8" %}
         </div>
     </div>
 

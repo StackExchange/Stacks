@@ -26,10 +26,5 @@ describe("toast > notice", () => {
                 ${component}
             </div>
         `,
-        skippedTestids: [
-            /s-notice-dark.*-toast/,
-            "s-notice-light-success-important-toast",
-            "s-notice-light-warning-important-toast",
-        ],
     });
 });

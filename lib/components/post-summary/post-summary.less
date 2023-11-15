@@ -5,19 +5,19 @@
     --_ps-o: unset;
     // Child components
     --_ps-content-excerpt-fc: var(--_ps-state-fc, var(--fc-medium));
-    --_ps-content-title-a-fc: var(--_ps-state-fc, var(--theme-post-title-color));
-    --_ps-content-title-a-fc-hover: var(--_ps-state-fc, var(--theme-post-title-color-hover));
-    --_ps-content-title-a-fc-visited: var(--_ps-state-fc, var(--theme-post-title-color-visited));
+    --_ps-content-title-a-fc: var(--_ps-state-fc, var(--theme-post-title-color, var(--theme-link-color, var(--theme-secondary-400))));
+    --_ps-content-title-a-fc-hover: var(--_ps-state-fc, var(--theme-post-title-color-hover, var(--theme-link-color-hover, var(--theme-secondary-500))));
+    --_ps-content-title-a-fc-visited: var(--_ps-state-fc, var(--theme-post-title-color-visited, var(--theme-link-color-visited, var(--theme-secondary-600))));
     --_ps-stats-ai: flex-end;
     --_ps-stats-fc: var(--_ps-state-fc, var(--fc-light));
     --_ps-stats-fd: column;
     --_ps-stats-w: calc(var(--su96) + var(--su12));
     // Stats item modifiers
-    --_ps-has-answers-bc: var(--green-700);
+    --_ps-has-answers-bc: var(--green-400);
     --_ps-has-answers-bg: unset;
-    --_ps-has-answers-fc: var(--green-700);
-    --_ps-has-accepted-answers-bc: var(--green-700);
-    --_ps-has-accepted-answers-bg: var(--green-700);
+    --_ps-has-answers-fc: var(--green-400);
+    --_ps-has-accepted-answers-bc: var(--green-400);
+    --_ps-has-accepted-answers-bg: var(--green-400);
     --_ps-has-accepted-answers-fc: var(--white);
     --_ps-stats-item-emphasized-fc: var(--_ps-state-fc, var(--fc-dark));
 
@@ -50,15 +50,15 @@
     &&__deleted,
     &&__ignored {
         --_ps-o: 0.75;
-        --_ps-has-answers-bc: var(--black-300);
+        --_ps-has-answers-bc: var(--black-350);
         --_ps-has-answers-bg: transparent;
         --_ps-has-answers-fc: var(--_ps-state-fc);
         --_ps-has-accepted-answers-bc: transparent;
-        --_ps-has-accepted-answers-bg: var(--black-050);
+        --_ps-has-accepted-answers-bg: var(--black-150);
         --_ps-has-accepted-answers-fc: var(--_ps-state-fc);
-        --_ps-meta-tags-tag-bg: var(--black-050);
+        --_ps-meta-tags-tag-bg: var(--black-150);
         --_ps-meta-tags-tag-fc: var(--_ps-state-fc);
-        --_ps-state-fc: var(--black-500);
+        --_ps-state-fc: var(--black-400);
 
         .s-post-summary--meta-tags {
             a, // TODO: remove rule for `a` once Core replaces `.post-tag` with `.s-tag`
@@ -73,7 +73,7 @@
                     });
 
                     background-color: var(--_ps-meta-tags-tag-bg);
-                    color: var(--black-600);
+                    color: var(--black-500);
                 }
             }
         }
@@ -97,29 +97,29 @@
     }
 
     &&__deleted {
-        --_ps-bg: var(--red-025);
-        --_ps-has-accepted-answers-bg: var(--black-075);
-        --_ps-has-accepted-answers-fc: var(--black-600);
-        --_ps-meta-tags-tag-bg: var(--black-075);
+        --_ps-bg: var(--red-100);
+        --_ps-has-accepted-answers-bg: var(--black-200);
+        --_ps-has-accepted-answers-fc: var(--black-500);
+        --_ps-meta-tags-tag-bg: var(--black-200);
 
         .is-deleted,
         .s-badge__danger.s-badge__filled {
             .dark-mode({
-                background-color: var(--red-800);
+                background-color: var(--red-600);
                 color: var(--white);
             });
 
-            background-color: var(--red-600);
+            background-color: var(--red-500);
         }
     }
 
     &&__watched {
         &:not(.s-post-summary__deleted):not(.s-post-summary__ignored) {
-            --_ps-bg: var(--yellow-050);
-            --_ps-stats-fc: var(--black-500);
-            --_ps-content-title-a-fc: var(--theme-post-title-color);
-            --_ps-content-title-a-fc-hover: var(--theme-post-title-color-hover);
-            --_ps-content-title-a-fc-visited: var(--theme-post-title-color-visited);
+            --_ps-bg: var(--yellow-100);
+            --_ps-stats-fc: var(--black-400);
+            --_ps-content-title-a-fc: var(--theme-post-title-color, var(--theme-link-color, var(--theme-secondary-400)));
+            --_ps-content-title-a-fc-hover: var(--theme-post-title-color-hover, var(--theme-link-color-hover, var(--theme-secondary-500)));
+            --_ps-content-title-a-fc-visited: var(--theme-post-title-color-visited, var(--theme-link-color-visited, var(--theme-secondary-600)));
 
             .s-user-card {
                 a {
@@ -137,7 +137,7 @@
 
                 .s-user-card--rep,
                 .s-user-card--time {
-                    color: var(--black-600);
+                    color: var(--black-500);
                 }
             }
         }
@@ -156,10 +156,10 @@
 
             &:before {
                 .highcontrast-mode({
-                    background: var(--black-600);
+                    background: var(--black-500);
                 });
 
-                background: var(--black-150);
+                background: var(--black-250);
                 border-radius: var(--su8);
                 bottom: 0;
                 content: "";
@@ -177,7 +177,7 @@
 
         &--answer-excerpt {
             .v-truncate4;
-            color: var(--black-600);
+            color: var(--black-500);
             margin-bottom: var(--su8);
         }
 
@@ -208,7 +208,7 @@
             .break-word;
             .v-truncate2;
             color: var( --_ps-content-excerpt-fc);
-            font-family: var(--theme-post-body-font-family);
+            font-family: var(--theme-post-body-font-family, var(--theme-body-font-family));
             margin-top: calc(var(--su2) * -1);
             margin-bottom: var(--su8);
         }
@@ -240,7 +240,7 @@
 
                 .break-word;
                 color: var(--_ps-content-title-a-fc);
-                font-family: var(--theme-post-title-font-family);
+                font-family: var(--theme-post-title-font-family, var(--theme-body-font-family));
             }
 
             .iconShield {
@@ -374,56 +374,56 @@
             }
 
             &.has-bounty { // TODO DEPRECATED: Remove and replace with references with `s-badge s-badge__bounty`
-                background-color: var(--blue-600);
+                background-color: var(--blue-500);
                 color: var(--white);
             }
 
             // Hotness
             &.is-warm {
-                color: var(--_ps-state-fc, var(--yellow-900));
+                color: var(--_ps-state-fc, var(--yellow-500));
             }
 
             &.is-hot {
-                color: var(--_ps-state-fc, var(--orange-800));
+                color: var(--_ps-state-fc, var(--orange-500));
             }
 
             &.is-supernova {
-                color: var(--_ps-state-fc, var(--red-800));
+                color: var(--_ps-state-fc, var(--red-500));
             }
 
             // Status
             &.is-archived { // TODO DEPRECATED: Remove and replace with references with `s-badge s-badge__muted s-badge__icon`
-                background-color: var(--black-100);
-                border-color: var(--black-600);
-                color: var(--black-900);
+                background-color: var(--black-225);
+                border-color: var(--black-500);
+                color: var(--black-600);
             }
 
             &.is-closed { // TODO DEPRECATED: Remove and replace with references with `s-badge s-badge__danger s-badge__icon`
-                background-color: var(--red-100);
-                border-color: var(--red-600);
-                color: var(--red-900);
+                background-color: var(--red-300);
+                border-color: var(--red-500);
+                color: var(--red-600);
             }
 
             &.is-draft { // TODO DEPRECATED: Remove and replace with references with `s-badge s-badge__info s-badge__icon`
-                background-color: var(--blue-100);
-                border-color: var(--blue-600);
-                color: var(--blue-900);
+                background-color: var(--blue-300);
+                border-color: var(--blue-500);
+                color: var(--blue-600);
             }
 
             &.is-pinned { // TODO DEPRECATED: Remove and replace with references with `s-badge s-badge__muted s-badge__filled s-badge__icon`
-                background-color: var(--black-700);
+                background-color: var(--black-500);
                 color: var(--white);
             }
 
             &.is-published {
-                background-color: var(--black-050);
-                color: var(--black-800);
+                background-color: var(--black-150);
+                color: var(--black-600);
             }
 
             &.is-review { // TODO DEPRECATED: Remove and replace with references with `s-badge s-badge__warning s-badge__icon`
-                background-color: var(--yellow-100);
-                border-color: var(--yellow-600);
-                color: var(--yellow-900);
+                background-color: var(--yellow-300);
+                border-color: var(--yellow-500);
+                color: var(--yellow-600);
             }
 
             &__emphasized {
