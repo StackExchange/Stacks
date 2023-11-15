@@ -22,6 +22,10 @@ export const defaultOptions = {
 
 type Themes = ["light" | "dark" | "highcontrast" | ""];
 type TestTypes = "visual" | "a11y";
+export type AdditionalAssertion = {
+    description: string;
+    assertion: (node: HTMLElement) => Promise<void> | void;
+};
 
 type TestOptions = {
     /**
@@ -92,6 +96,10 @@ type ComponentTestArgs = {
      * Type of test to run
      */
     type: TestTypes;
+    /**
+     * Additional assertions to run against the test element
+     */
+    additionalAssertions: AdditionalAssertion[];
 };
 
 interface ComponentTestsArgs extends ComponentTestVariationArgs {
@@ -132,6 +140,10 @@ interface ComponentTestsArgs extends ComponentTestVariationArgs {
      * Type of test to run
      */
     type: TestTypes;
+    /**
+     * Additional assertions to run against the test element
+     */
+    additionalAssertions?: AdditionalAssertion[];
 }
 
 type ComponentTestModifiers = {
@@ -299,6 +311,7 @@ const runComponentTest = ({
     testid,
     theme,
     type,
+    additionalAssertions,
 }: ComponentTestArgs) => {
     const getDescription = (type: TestTypes) => {
         switch (type) {
@@ -344,6 +357,14 @@ const runComponentTest = ({
             await visualDiff(el, testid);
         }
     });
+
+    additionalAssertions.forEach((assertion) => {
+        it(`${type}: ${testid} ${assertion.description}`, async () => {
+            await fixture(element);
+            const el = screen.getByTestId(testid);
+            await assertion.assertion(el);
+        });
+    });
 };
 
 /**
@@ -361,6 +382,7 @@ const runComponentTests = ({
     tag,
     template,
     type,
+    additionalAssertions = [],
 }: ComponentTestsArgs) => {
     getComponentTestVariations({
         baseClass,
@@ -428,6 +450,7 @@ const runComponentTests = ({
                 testid: testidModified,
                 theme,
                 type,
+                additionalAssertions,
             });
         });
     });
