@@ -6,24 +6,27 @@ import _commonjs from "@rollup/plugin-commonjs";
 import { playwrightLauncher } from "@web/test-runner-playwright";
 import { visualRegressionPlugin } from "@web/test-runner-visual-regression/plugin";
 
-import {
-    fromRollupWithFix,
-    fixExportNamedExports,
-} from "./web-dev-server-patches.mjs";
-
 const ignoredBrowserLogs = [
     "Lit is in dev mode. Not recommended for production! See https://lit.dev/msg/dev-mode for more information.",
 ];
 
 const postcss = fromRollup(_postcss);
 const replace = fromRollup(_replace);
-const commonjs = fromRollupWithFix(_commonjs);
+const commonjs = fromRollup(_commonjs);
 
 export default {
     browsers: [
-        playwrightLauncher({ product: "chromium" }),
+        playwrightLauncher({
+            product: "chromium",
+            createBrowserContext({ browser }) {
+                return browser.newContext({ reducedMotion: "reduce" });
+            },
+        }),
         playwrightLauncher({
             product: "firefox",
+            createBrowserContext({ browser }) {
+                return browser.newContext({ reducedMotion: "reduce" });
+            },
             launchOptions: {
                 firefoxUserPrefs: {
                     // force pointer capabilities activation on Firefox Headless on GTK (Gnome Toolkit - CI)
@@ -33,7 +36,12 @@ export default {
                 },
             },
         }),
-        playwrightLauncher({ product: "webkit" }),
+        playwrightLauncher({
+            product: "webkit",
+            createBrowserContext({ browser }) {
+                return browser.newContext({ reducedMotion: "reduce" });
+            },
+        }),
     ],
     testFramework: {
         config: {
@@ -51,7 +59,6 @@ export default {
             "preventAssignment": true,
         }),
         commonjs(),
-        fixExportNamedExports(),
         esbuildPlugin({ ts: true }),
         visualRegressionPlugin({
             update: process.argv.includes("--update-visual-baseline"),
@@ -68,13 +75,14 @@ export default {
         {
             name: "unit",
             files: "lib/**/!(*.visual|*.a11y|*.less).test.ts",
+            // for the unit tests we need to keep animations enabled
+            testRunnerHtml: (testFramework) => `<html><body><script type="module" src="${testFramework}"></script></body></html>`,
         },
         {
             name: "visual",
             files: "lib/**/*.visual.test.ts",
         },
     ],
-    concurrentBrowsers: 3,
     testsFinishTimeout: 60 * 1000 * 5, // 5 minutes
 
     // animation disable CSS taken from https://github.com/microsoft/playwright/issues/7548#issuecomment-881897256
