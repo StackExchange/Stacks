@@ -6,7 +6,7 @@
 
 ## Issue
 
-At the time of writing, many Stacks libraries are released manually. This is a time-consuming process that is prone to human error. We should automate this process to save time and reduce errors.
+At the time of writing, many Stacks libraries are released manually. This is a time-consuming process that is prone to human error. We should automate this process to save time and reduce errors. The lack of an automated release process requires use to permit developer-specific accounts to publish, which is a liability and violates the [principle of least privilege](https://en.wikipedia.org/wiki/Principle_of_least_privilege).
 
 ## Decision
 
