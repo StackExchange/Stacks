@@ -16,7 +16,7 @@ We will use [Changesets](https://github.com/changesets/changesets) to manage ver
 
 #### Ease of use
 
-The primary implentation of Changesets is its [CLI package](https://www.npmjs.com/package/@changesets/cli) which will help us manage the versioning and changelog entries for your packages. We can apply the [Changesets bot](https://github.com/apps/changeset-bot) to any repository verify that a given PR has a changeset associated with it and remind the author to create one if it does not.
+The primary implentation of Changesets is its [CLI package](https://www.npmjs.com/package/@changesets/cli) which will help us manage the versioning and changelog entries for our packages. We can apply the [Changesets bot](https://github.com/apps/changeset-bot) to any repository to verify that a given PR has a changeset associated with it and remind the author to create one if it does not.
 
 #### Level of automation
 
