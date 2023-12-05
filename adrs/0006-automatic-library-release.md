@@ -11,6 +11,7 @@ At the time of writing, many Stacks libraries are released manually. This is a t
 ## Decision
 
 We will use [Changesets](https://github.com/changesets/changesets) to manage versioning and automate the release process of our libraries in conjunction with GitHub Actions.
+***Note**: Despite using changesets to communicate the intent of creating releases in a more explicit way, we still follow [conventional commits standards](/Users/dan/Code/Stacks/adrs/0006-automatic-library-release.md) for keeping our git history easily parseable by the human eye.*
 
 ### Reasoning
 
