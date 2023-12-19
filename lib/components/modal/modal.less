@@ -1,5 +1,6 @@
 .s-modal {
-    --_mo-bg: fade(@black-900, 50%); // Background remains fixed
+    // TODO Replace this Less variable with a CSS variable or other solution
+    --_mo-bg: fade(.set-black()[600], 50%); // Background remains fixed
     --_mo-hmx: unset;
     --_mo-wmx: unset;
     --_mo-close-t: var(--su8);
@@ -8,6 +9,14 @@
     --_mo-header-fc: var(--fc-dark);
 
     // CONTEXTUAL STYLES
+    .dark-mode({
+        --_mo-dialog-bg: var(--black-225);
+    });
+
+    .highcontrast-dark-mode({
+        --_mo-dialog-bg: var(--black-200);
+    });
+
     &[aria-hidden="false"] {
         &,
         .s-modal--dialog {
@@ -21,7 +30,6 @@
 
     // MODIFIERS
     &&__celebration {
-        --_mo-close-t: var(--su48);
         --_mo-dialog-pt: var(--su64);
 
         .s-modal--dialog {
@@ -37,8 +45,8 @@
     // VARIANTS
     &.has-danger,
     &&__danger {
-        --_mo-bg: darken(fade(@red-900, 50%), 23%);
-        --_mo-header-fc: var(--red-600);
+        --_mo-bg: darken(fade(.set-red()[600], 50%), 18%);
+        --_mo-header-fc: var(--red-500);
     }
 
     // CHILD ELEMENTS
@@ -60,10 +68,6 @@
     }
 
     & &--dialog {
-        .dark-mode({
-            --_mo-dialog-bg: var(--black-100);
-        });
-
         padding: var(--_mo-dialog-pt) var(--su24) var(--su24);
 
         @scrollbar-styles();
@@ -93,6 +97,7 @@
         font-weight: normal;
         line-height: var(--lh-sm);
         margin-bottom: var(--su16);
+        margin-right: var(--su24);
     }
 
     background-color: var(--_mo-bg);

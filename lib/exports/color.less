@@ -1,0 +1,65 @@
+@import (reference) "./color-mixins.less";
+
+body {
+    --_o-disabled: 0.5;
+    --_o-disabled-static: 0.5;
+    --_black-static: .set-black()[default];
+    --_white-static: .set-white()[default];
+
+    &,
+    &.theme-highcontrast,
+    &:not(.theme-highcontrast) {
+        &:not(.theme-dark),
+        &.theme-dark .theme-light__forced,
+        &.theme-system .theme-light__forced,
+        &.theme-dark,
+        &:not(.theme-dark) .theme-dark__forced {
+            .create-colors(.sets-aliased-utility-variables());
+        }
+        &.theme-system {
+            @media (prefers-color-scheme: dark) {
+                .create-colors(.sets-aliased-utility-variables());
+            }
+        }
+    }
+}
+
+// Light, dark mode
+body:not(.theme-highcontrast) {
+    // Light mode
+    &:not(.theme-dark),
+    &.theme-dark .theme-light__forced,
+    &.theme-system .theme-light__forced {
+        .generate-colors(light);
+    }
+    // Dark mode
+    &.theme-dark,
+    &:not(.theme-dark) .theme-dark__forced {
+        .generate-colors(dark);
+    }
+    &.theme-system {
+        @media (prefers-color-scheme: dark) {
+            .generate-colors(dark);
+        }
+    }
+}
+
+// High contrast mode
+body.theme-highcontrast {
+    // Light high contrast mode
+    &:not(.theme-dark),
+    &.theme-dark .theme-light__forced,
+    &.theme-system .theme-light__forced {
+        .generate-colors(light-highcontrast);
+    }
+    // Dark high contrast mode
+    &.theme-dark,
+    &:not(.theme-dark) .theme-dark__forced {
+        .generate-colors(dark-highcontrast);
+    }
+    &.theme-system {
+        @media (prefers-color-scheme: dark) {
+            .generate-colors(dark-highcontrast);
+        }
+    }
+}

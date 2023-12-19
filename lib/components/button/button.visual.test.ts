@@ -19,7 +19,7 @@ describe("button", () => {
     runComponentTests({
         type: "visual",
         baseClass: "s-btn",
-        variants: ["danger", "muted", "primary"],
+        variants: ["danger", "muted"],
         modifiers: {
             primary: ["filled", "outlined"],
             secondary: [...["xs", "sm", "md"], ...["dropdown", "icon"]],
@@ -39,14 +39,11 @@ describe("button", () => {
         tag: "button",
         template: ({ component, testid }) => html`
             <div
-                class="bg-black-100 d-inline-flex ai-center jc-center hs1 ws2 p8"
+                class="bg-black-225 d-inline-flex ai-center jc-center hs1 ws2 p8"
                 data-testid="${testid}"
             >
                 ${component}
             </div>
         `,
-        excludedTestids: [
-            /primary-outlined/, // This combination is not supported
-        ],
     });
 });

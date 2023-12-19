@@ -1,0 +1,893 @@
+@import (reference) "../mixins.less";
+
+// LEGACY
+
+//  --  Base Hue Values
+@white-legacy-h: 0;
+@black-legacy-h: 210;
+@orange-legacy-h: 27;
+@yellow-legacy-h: 47;
+@green-legacy-h: 140;
+@blue-legacy-h: 206;
+@powder-legacy-h: 205;
+@red-legacy-h: 358;
+@fog-legacy-h: 180;
+@gold-legacy-h: 48;
+@silver-legacy-h: 210;
+@bronze-legacy-h: 28;
+
+//  --  Base Saturation Values
+@black-legacy-s: 8%;
+
+//  --  Primary Colors
+@white-legacy: hsl(@white-legacy-h, 0%, 100%);
+@black-legacy: hsl(@black-legacy-h, @black-legacy-s, 5%);
+@orange-legacy: hsl(@orange-legacy-h, 90%, 55%);
+
+//  --  Accent Colors
+@yellow-legacy: hsl(@yellow-legacy-h, 83%, 91%);
+@green-legacy: hsl(@green-legacy-h, 40%, 55%);
+@blue-legacy: hsl(@blue-legacy-h, 100%, 40%);
+@powder-legacy: hsl(@powder-legacy-h, 46%, 92%);
+@red-legacy: hsl(@red-legacy-h, 62%, 52%);
+@fog-legacy: hsl(@fog-legacy-h, 7%, 97%);
+
+// Black
+@black-legacy-025: hsl(@black-legacy-h, @black-legacy-s, 97.5%);
+@black-legacy-050: hsl(@black-legacy-h, @black-legacy-s, 95%);
+@black-legacy-075: hsl(@black-legacy-h, @black-legacy-s, 90%);
+@black-legacy-100: hsl(@black-legacy-h, @black-legacy-s, 85%);
+@black-legacy-150: hsl(@black-legacy-h, @black-legacy-s, 80%);
+@black-legacy-200: hsl(@black-legacy-h, @black-legacy-s, 75%);
+@black-legacy-300: hsl(@black-legacy-h, @black-legacy-s, 65%);
+@black-legacy-350: hsl(@black-legacy-h, @black-legacy-s, 60%);
+@black-legacy-400: hsl(@black-legacy-h, @black-legacy-s, 55%);
+@black-legacy-500: hsl(@black-legacy-h, @black-legacy-s, 45%);
+@black-legacy-600: hsl(@black-legacy-h, @black-legacy-s, 35%);
+@black-legacy-700: hsl(@black-legacy-h, @black-legacy-s, 25%);
+@black-legacy-750: hsl(@black-legacy-h, @black-legacy-s, 20%);
+@black-legacy-800: hsl(@black-legacy-h, @black-legacy-s, 15%);
+@black-legacy-900: @black-legacy;
+
+// Orange
+@orange-legacy-050: hsl(@orange-legacy-h, 100%, 97%);
+@orange-legacy-100: hsl(@orange-legacy-h, 95%, 90%);
+@orange-legacy-200: hsl(@orange-legacy-h, 90%, 83%);
+@orange-legacy-300: hsl(@orange-legacy-h, 90%, 70%);
+@orange-legacy-400: @orange-legacy;
+@orange-legacy-500: hsl(@orange-legacy-h, 90%, 50%);
+@orange-legacy-600: hsl(@orange-legacy-h, 90%, 45%);
+@orange-legacy-700: hsl(@orange-legacy-h, 90%, 39%);
+@orange-legacy-800: hsl(@orange-legacy-h, 87%, 35%);
+@orange-legacy-900: hsl(@orange-legacy-h, 80%, 30%);
+
+// Blue
+@blue-legacy-050: hsl(@blue-legacy-h, 100%, 97%);
+@blue-legacy-100: hsl(@blue-legacy-h, 96%, 90%);
+@blue-legacy-200: hsl(@blue-legacy-h, 93%, 83.5%);
+@blue-legacy-300: hsl(@blue-legacy-h, 90%, 69.5%);
+@blue-legacy-400: hsl(@blue-legacy-h, 85%, 57.5%);
+@blue-legacy-500: hsl(@blue-legacy-h, 100%, 52%);
+@blue-legacy-600: @blue-legacy;
+@blue-legacy-700: hsl(@blue-legacy-h + 3, 100%, 37.5%);
+@blue-legacy-800: hsl(@blue-legacy-h + 3, 100%, 32%);
+@blue-legacy-900: hsl(@blue-legacy-h + 3, 100%, 26%);
+
+// Powder
+@powder-legacy-050: hsl(@powder-legacy-h, 47%, 97%);
+@powder-legacy-100: @powder-legacy;
+@powder-legacy-200: hsl(@powder-legacy-h, 53%, 88%);
+@powder-legacy-300: hsl(@powder-legacy-h, 57%, 81%);
+@powder-legacy-400: hsl(@powder-legacy-h, 56%, 76%);
+@powder-legacy-500: hsl(@powder-legacy-h, 41%, 63%);
+@powder-legacy-600: hsl(@powder-legacy-h, 36%, 53%);
+@powder-legacy-700: hsl(@powder-legacy-h, 47%, 42%);
+@powder-legacy-800: hsl(@powder-legacy-h, 46%, 32%);
+@powder-legacy-900: hsl(@powder-legacy-h, 46%, 22%);
+
+// Green
+@green-legacy-025: hsl(@green-legacy-h, 42%, 95%);
+@green-legacy-050: hsl(@green-legacy-h, 40%, 90%);
+@green-legacy-100: hsl(@green-legacy-h, 40%, 85%);
+@green-legacy-200: hsl(@green-legacy-h, 40%, 75%);
+@green-legacy-300: hsl(@green-legacy-h, 40%, 65%);
+@green-legacy-400: @green-legacy;
+@green-legacy-500: hsl(@green-legacy-h, 40%, 47%);
+@green-legacy-600: hsl(@green-legacy-h, 40%, 40%);
+@green-legacy-700: hsl(@green-legacy-h, 41%, 31%);
+@green-legacy-800: hsl(@green-legacy-h, 40%, 27%);
+@green-legacy-900: hsl(@green-legacy-h, 40%, 20%);
+
+// Yellow
+@yellow-legacy-050: hsl(@yellow-legacy-h, 87%, 94%);
+@yellow-legacy-100: @yellow-legacy;
+@yellow-legacy-200: hsl(@yellow-legacy-h, 65%, 84%);
+@yellow-legacy-300: hsl(@yellow-legacy-h, 69%, 69%);
+@yellow-legacy-400: hsl(@yellow-legacy-h, 79%, 58%);
+@yellow-legacy-500: hsl(@yellow-legacy-h, 73%, 50%);
+@yellow-legacy-600: hsl(@yellow-legacy-h, 76%, 46%);
+@yellow-legacy-700: hsl(@yellow-legacy-h, 79%, 40%);
+@yellow-legacy-800: hsl(@yellow-legacy-h, 82%, 34%);
+@yellow-legacy-900: hsl(@yellow-legacy-h, 84%, 28%);
+
+// Red
+@red-legacy-025: hsl(@red-legacy-h, 80%, 98%);
+@red-legacy-050: hsl(@red-legacy-h, 75%, 97%);
+@red-legacy-100: hsl(@red-legacy-h, 76%, 90%);
+@red-legacy-200: hsl(@red-legacy-h, 74%, 83%);
+@red-legacy-300: hsl(@red-legacy-h, 70%, 70%);
+@red-legacy-400: hsl(@red-legacy-h, 68%, 59%);
+@red-legacy-500: @red-legacy;
+@red-legacy-600: hsl(@red-legacy-h, 62%, 47%);
+@red-legacy-700: hsl(@red-legacy-h, 64%, 41%);
+@red-legacy-800: hsl(@red-legacy-h, 64%, 35%);
+@red-legacy-900: hsl(@red-legacy-h, 67%, 29%);
+
+//  $  BADGES
+//  ----------------------------------------------------------------------------
+@gold-legacy: hsl(@gold-legacy-h, 100%, 50%);
+@gold-legacy-lighter: hsl(@gold-legacy-h, 100%, 91%);
+@gold-legacy-darker: hsl(@gold-legacy-h - 3, 100%, 47%);
+
+@silver-legacy: hsl(@silver-legacy-h, 6%, 72%);
+@silver-legacy-lighter: hsl(@silver-legacy-h, 0%, 91%);
+@silver-legacy-darker: hsl(@silver-legacy-h, 3%, 61%);
+
+@bronze-legacy: hsl(@bronze-legacy-h, 38%, 67%);
+@bronze-legacy-lighter: hsl(@bronze-legacy-h, 40%, 92%);
+@bronze-legacy-darker: hsl(@bronze-legacy-h, 31%, 52%);
+
+//  $  SCROLLBARS
+//  ----------------------------------------------------------------------------
+@scrollbar: hsla(0, 0%, 0%, 0.2);
+
+//  ============================================================================
+//  $   CSS Variable Colors
+//  ----------------------------------------------------------------------------
+.generate-calculated-themed-variables(@primary, @designation: primary, @theme: base) {
+    // Split into h/s/l/a values
+    --theme-@{theme}-@{designation}-color-legacy-h: hue(@primary);
+    --theme-@{theme}-@{designation}-color-legacy-s: saturation(@primary);
+    --theme-@{theme}-@{designation}-color-legacy-l: lightness(@primary);
+
+    // Split into r/g/b values
+    --theme-@{theme}-@{designation}-color-legacy-r: red(@primary);
+    --theme-@{theme}-@{designation}-color-legacy-g: green(@primary);
+    --theme-@{theme}-@{designation}-color-legacy-b: blue(@primary);
+}
+
+.generate-themed-variables(@theme: theme) {
+    // Primary color
+    // Split into h/s/l/a values
+    --theme-primary-color-legacy-h: var(~"--@{theme}-primary-color-legacy-h", var(--theme-base-primary-color-legacy-h));
+    --theme-primary-color-legacy-s: var(~"--@{theme}-primary-color-legacy-s", var(--theme-base-primary-color-legacy-s));
+    --theme-primary-color-legacy-l: var(~"--@{theme}-primary-color-legacy-l", var(--theme-base-primary-color-legacy-l));
+
+    // Split into r/g/b values
+    --theme-primary-color-legacy-r: var(~"--@{theme}-primary-color-legacy-r", var(--theme-base-primary-color-legacy-r));
+    --theme-primary-color-legacy-g: var(~"--@{theme}-primary-color-legacy-g", var(--theme-base-primary-color-legacy-g));
+    --theme-primary-color-legacy-b: var(~"--@{theme}-primary-color-legacy-b", var(--theme-base-primary-color-legacy-b));
+
+    // Secondary color
+    // Split into h/s/l/a values
+    --theme-secondary-color-legacy-h: var(~"--@{theme}-secondary-color-legacy-h", var(--theme-base-secondary-color-legacy-h));
+    --theme-secondary-color-legacy-s: var(~"--@{theme}-secondary-color-legacy-s", var(--theme-base-secondary-color-legacy-s));
+    --theme-secondary-color-legacy-l: var(~"--@{theme}-secondary-color-legacy-l", var(--theme-base-secondary-color-legacy-l));
+
+    // Split into r/g/b values
+    --theme-secondary-color-legacy-r: var(~"--@{theme}-secondary-color-legacy-r", var(--theme-base-secondary-color-legacy-r));
+    --theme-secondary-color-legacy-g: var(~"--@{theme}-secondary-color-legacy-g", var(--theme-base-secondary-color-legacy-g));
+    --theme-secondary-color-legacy-b: var(~"--@{theme}-secondary-color-legacy-b", var(--theme-base-secondary-color-legacy-b));
+}
+
+//  --  Light mode
+.light-colors() {
+    --white-legacy: @white-legacy;
+    --black-legacy: @black-legacy;
+    --orange-legacy: @orange-legacy;
+    --yellow-legacy: @yellow-legacy;
+    --green-legacy: @green-legacy;
+    --blue-legacy: @blue-legacy;
+    --powder-legacy: @powder-legacy;
+    --red-legacy: @red-legacy;
+
+    // Black
+    --black-legacy-025: @black-legacy-025;
+    --black-legacy-050: @black-legacy-050;
+    --black-legacy-075: @black-legacy-075;
+    --black-legacy-100: @black-legacy-100;
+    --black-legacy-150: @black-legacy-150;
+    --black-legacy-200: @black-legacy-200;
+    --black-legacy-300: @black-legacy-300;
+    --black-legacy-350: @black-legacy-350;
+    --black-legacy-400: @black-legacy-400;
+    --black-legacy-500: @black-legacy-500;
+    --black-legacy-600: @black-legacy-600;
+    --black-legacy-700: @black-legacy-700;
+    --black-legacy-750: @black-legacy-750;
+    --black-legacy-800: @black-legacy-800;
+    --black-legacy-900: @black-legacy-900;
+
+    // Orange
+    --orange-legacy-050: @orange-legacy-050;
+    --orange-legacy-100: @orange-legacy-100;
+    --orange-legacy-200: @orange-legacy-200;
+    --orange-legacy-300: @orange-legacy-300;
+    --orange-legacy-400: @orange-legacy-400;
+    --orange-legacy-500: @orange-legacy-500;
+    --orange-legacy-600: @orange-legacy-600;
+    --orange-legacy-700: @orange-legacy-700;
+    --orange-legacy-800: @orange-legacy-800;
+    --orange-legacy-900: @orange-legacy-900;
+
+    // Blue
+    --blue-legacy-050: @blue-legacy-050;
+    --blue-legacy-100: @blue-legacy-100;
+    --blue-legacy-200: @blue-legacy-200;
+    --blue-legacy-300: @blue-legacy-300;
+    --blue-legacy-400: @blue-legacy-400;
+    --blue-legacy-500: @blue-legacy-500;
+    --blue-legacy-600: @blue-legacy-600;
+    --blue-legacy-700: @blue-legacy-700;
+    --blue-legacy-800: @blue-legacy-800;
+    --blue-legacy-900: @blue-legacy-900;
+
+    // Powder
+    --powder-legacy-050: @powder-legacy-050;
+    --powder-legacy-100: @powder-legacy-100;
+    --powder-legacy-200: @powder-legacy-200;
+    --powder-legacy-300: @powder-legacy-300;
+    --powder-legacy-400: @powder-legacy-400;
+    --powder-legacy-500: @powder-legacy-500;
+    --powder-legacy-600: @powder-legacy-600;
+    --powder-legacy-700: @powder-legacy-700;
+    --powder-legacy-800: @powder-legacy-800;
+    --powder-legacy-900: @powder-legacy-900;
+
+    // Green
+    --green-legacy-025: @green-legacy-025;
+    --green-legacy-050: @green-legacy-050;
+    --green-legacy-100: @green-legacy-100;
+    --green-legacy-200: @green-legacy-200;
+    --green-legacy-300: @green-legacy-300;
+    --green-legacy-400: @green-legacy-400;
+    --green-legacy-500: @green-legacy-500;
+    --green-legacy-600: @green-legacy-600;
+    --green-legacy-700: @green-legacy-700;
+    --green-legacy-800: @green-legacy-800;
+    --green-legacy-900: @green-legacy-900;
+
+    // Yellow
+    --yellow-legacy-050: @yellow-legacy-050;
+    --yellow-legacy-100: @yellow-legacy-100;
+    --yellow-legacy-200: @yellow-legacy-200;
+    --yellow-legacy-300: @yellow-legacy-300;
+    --yellow-legacy-400: @yellow-legacy-400;
+    --yellow-legacy-500: @yellow-legacy-500;
+    --yellow-legacy-600: @yellow-legacy-600;
+    --yellow-legacy-700: @yellow-legacy-700;
+    --yellow-legacy-800: @yellow-legacy-800;
+    --yellow-legacy-900: @yellow-legacy-900;
+
+    // Red
+    --red-legacy-025: @red-legacy-025;
+    --red-legacy-050: @red-legacy-050;
+    --red-legacy-100: @red-legacy-100;
+    --red-legacy-200: @red-legacy-200;
+    --red-legacy-300: @red-legacy-300;
+    --red-legacy-400: @red-legacy-400;
+    --red-legacy-500: @red-legacy-500;
+    --red-legacy-600: @red-legacy-600;
+    --red-legacy-700: @red-legacy-700;
+    --red-legacy-800: @red-legacy-800;
+    --red-legacy-900: @red-legacy-900;
+
+    // Gold
+    --gold-legacy: @gold-legacy;
+    --gold-legacy-lighter: @gold-legacy-lighter;
+    --gold-legacy-darker: @gold-legacy-darker;
+
+    // Silver
+    --silver-legacy: @silver-legacy;
+    --silver-legacy-lighter: @silver-legacy-lighter;
+    --silver-legacy-darker: @silver-legacy-darker;
+
+    // Bronze
+    --bronze-legacy: @bronze-legacy;
+    --bronze-legacy-lighter: @bronze-legacy-lighter;
+    --bronze-legacy-darker: @bronze-legacy-darker;
+
+    // Border colors
+    --bc-lightest-legacy: var(--black-legacy-025);
+    --bc-lighter-legacy: var(--black-legacy-050);
+    --bc-light-legacy: var(--black-legacy-075);
+    --bc-medium-legacy: var(--black-legacy-100);
+    --bc-dark-legacy: var(--black-legacy-150);
+    --bc-darker-legacy: var(--black-legacy-200);
+
+    // Font colors
+    --fc-dark-legacy: @black-legacy-900;
+    --fc-medium-legacy: @black-legacy-700;
+    --fc-light-legacy: @black-legacy-500;
+
+    // Focus rings
+    --focus-ring-success-legacy: hsla(@green-legacy-h, 40%, 75%, 40%);
+    --focus-ring-warning-legacy: hsla(@yellow-legacy-h, 79%, 58%, 40%);
+    --focus-ring-error-legacy: hsla(@red-legacy-h, 62%, 47%, 15%);
+    --focus-ring-muted-legacy: hsla(@black-legacy-h, @black-legacy-s, 15%, 10%);
+}
+
+.light-themed-colors() {
+    // Reassemble as a single hsl value
+    --theme-primary-color-legacy: .assemble-color(theme-primary-color-legacy)[];
+
+    // Steps
+    --theme-primary-legacy-900: .native-darken(theme-primary-color-legacy, 26)[];
+    --theme-primary-legacy-800: .native-darken(theme-primary-color-legacy, 21)[];
+    --theme-primary-legacy-700: .native-darken(theme-primary-color-legacy, 16)[];
+    --theme-primary-legacy-600: .native-darken(theme-primary-color-legacy, 10)[];
+    --theme-primary-legacy-500: .native-darken(theme-primary-color-legacy, 5)[];
+    --theme-primary-legacy-400: var(--theme-primary-color-legacy);
+    --theme-primary-legacy-350: .native-tint(theme-primary-color-legacy, 20)[];
+    --theme-primary-legacy-300: .native-tint(theme-primary-color-legacy, 35)[];
+    --theme-primary-legacy-200: .native-tint(theme-primary-color-legacy, 48)[];
+    --theme-primary-legacy-150: .native-tint(theme-primary-color-legacy, 65)[];
+    --theme-primary-legacy-100: .native-tint(theme-primary-color-legacy, 78)[];
+    --theme-primary-legacy-075: .native-tint(theme-primary-color-legacy, 85)[];
+    --theme-primary-legacy-050: .native-tint(theme-primary-color-legacy, 92)[];
+    --theme-primary-legacy-025: .native-tint(theme-primary-color-legacy, 96)[];
+
+    // Reassemble as a single hsl value
+    --theme-secondary-color-legacy: .assemble-color(theme-secondary-color-legacy)[];
+
+    // Steps
+    --theme-secondary-legacy-900: .native-darken(theme-secondary-color-legacy, 26)[];
+    --theme-secondary-legacy-800: .native-darken(theme-secondary-color-legacy, 21)[];
+    --theme-secondary-legacy-700: .native-darken(theme-secondary-color-legacy, 16)[];
+    --theme-secondary-legacy-600: .native-darken(theme-secondary-color-legacy, 10)[];
+    --theme-secondary-legacy-500: .native-darken(theme-secondary-color-legacy, 5)[];
+    --theme-secondary-legacy-400: var(--theme-secondary-color-legacy);
+    --theme-secondary-legacy-350: .native-tint(theme-secondary-color-legacy, 20)[];
+    --theme-secondary-legacy-300: .native-tint(theme-secondary-color-legacy, 35)[];
+    --theme-secondary-legacy-200: .native-tint(theme-secondary-color-legacy, 48)[];
+    --theme-secondary-legacy-150: .native-tint(theme-secondary-color-legacy, 65)[];
+    --theme-secondary-legacy-100: .native-tint(theme-secondary-color-legacy, 78)[];
+    --theme-secondary-legacy-075: .native-tint(theme-secondary-color-legacy, 85)[];
+    --theme-secondary-legacy-050: .native-tint(theme-secondary-color-legacy, 92)[];
+    --theme-secondary-legacy-025: .native-tint(theme-secondary-color-legacy, 96)[];
+
+    // Fades
+    --focus-ring-legacy: .native-fade(theme-secondary-color-legacy, 15)[];
+}
+
+//  --  Dark mode
+.dark-colors() {
+    --white-legacy: hsl(@black-legacy-h, 0%, 17.5%);
+    --black-legacy: @white-legacy;
+
+    // Black
+    --black-legacy-025: hsl(@black-legacy-h, 0%, 22.5%);
+    --black-legacy-050: hsl(@black-legacy-h, 0%, 24%);
+    --black-legacy-075: hsl(@black-legacy-h, 4%, 26%);
+    --black-legacy-100: hsl(@black-legacy-h, 4.5%, 30.5%);
+    --black-legacy-150: hsl(@black-legacy-h, 5%, 35%);
+    --black-legacy-200: hsl(@black-legacy-h, 5.5%, 43.5%);
+    --black-legacy-300: hsl(@black-legacy-h, 6.5%, 52%);
+    --black-legacy-350: hsl(@black-legacy-h, 7%, 61%);
+    --black-legacy-400: hsl(@black-legacy-h, 8%, 65%);
+    --black-legacy-500: hsl(@black-legacy-h, 8%, 70%);
+    --black-legacy-600: hsl(@black-legacy-h, 7%, 78.5%);
+    --black-legacy-700: hsl(@black-legacy-h, 8%, 82.5%);
+    --black-legacy-750: hsl(@black-legacy-h, 9%, 86.5%);
+    --black-legacy-800: hsl(@black-legacy-h, 9%, 91.5%);
+    --black-legacy-900: hsl(@black-legacy-h, 4%, 95%);
+
+    // Orange
+    --orange-legacy-050: hsl(@orange-legacy-h, 16.5%, 23.9%);
+    --orange-legacy-100: hsl(@orange-legacy-h, 30%, 28.4%);
+    --orange-legacy-200: hsl(@orange-legacy-h, 50%, 36.9%);
+    --orange-legacy-300: hsl(@orange-legacy-h, 70%, 47.3%);
+    --orange-legacy-400: hsl(@orange-legacy-h, 90.5%, 54.9%);
+    --orange-legacy-500: hsl(@orange-legacy-h, 100%, 59%);
+    --orange-legacy-600: hsl(@orange-legacy-h, 100%, 68.4%);
+    --orange-legacy-700: hsl(@orange-legacy-h, 89.5%, 74.1%);
+    --orange-legacy-800: hsl(@orange-legacy-h, 92%, 85.7%);
+    --orange-legacy-900: hsl(@orange-legacy-h, 95%, 91.8%);
+
+    // Blue
+    --blue-legacy-050: hsl(@blue-legacy-h, 40%, 23%);
+    --blue-legacy-100: hsl(@blue-legacy-h, 44%, 26%);
+    --blue-legacy-200: hsl(@blue-legacy-h, 46%, 30%);
+    --blue-legacy-300: hsl(@blue-legacy-h, 53%, 35%);
+    --blue-legacy-400: hsl(@blue-legacy-h + 3, 56%, 43%);
+    --blue-legacy-500: hsl(@blue-legacy-h, 64%, 51%);
+    --blue-legacy-600: hsl(@blue-legacy-h, 100%, 60%);
+    --blue-legacy-700: hsl(@blue-legacy-h, 90%, 74%);
+    --blue-legacy-800: hsl(@blue-legacy-h, 95%, 86%);
+    --blue-legacy-900: hsl(@blue-legacy-h, 91%, 91.5%);
+
+    // Powder
+    --powder-legacy-050: hsl(@powder-legacy-h, 5%, 27%);
+    --powder-legacy-100: hsl(@powder-legacy-h, 14%, 28%);
+    --powder-legacy-200: hsl(@powder-legacy-h, 17.5%, 32%);
+    --powder-legacy-300: hsl(@powder-legacy-h, 19.5%, 37%);
+    --powder-legacy-400: hsl(@powder-legacy-h, 22.5%, 44%);
+    --powder-legacy-500: hsl(@powder-legacy-h, 29%, 54%);
+    --powder-legacy-600: hsl(@powder-legacy-h, 50%, 65.5%);
+    --powder-legacy-700: hsl(@powder-legacy-h, 46.5%, 73.5%);
+    --powder-legacy-800: hsl(@powder-legacy-h, 49.5%, 87%);
+    --powder-legacy-900: hsl(@powder-legacy-h, 100%, 95%);
+
+    // Green
+    --green-legacy-025: hsl(@green-legacy-h, 18%, 22%);
+    --green-legacy-050: hsl(@green-legacy-h, 18%, 25%);
+    --green-legacy-100: hsl(@green-legacy-h, 22.5%, 31%);
+    --green-legacy-200: hsl(@green-legacy-h, 23.5%, 37%);
+    --green-legacy-300: hsl(@green-legacy-h, 25%, 40.5%);
+    --green-legacy-400: hsl(@green-legacy-h, 27.5%, 48.5%);
+    --green-legacy-500: hsl(@green-legacy-h, 35%, 54.5%);
+    --green-legacy-600: hsl(@green-legacy-h, 40%, 61.5%);
+    --green-legacy-700: hsl(@green-legacy-h, 39.5%, 69.5%);
+    --green-legacy-800: hsl(@green-legacy-h, 39.5%, 78.5%);
+    --green-legacy-900: hsl(@green-legacy-h, 38%, 86.5%);
+
+    // Yellow
+    --yellow-legacy-050: hsl(@yellow-legacy-h, 13%, 24.5%);
+    --yellow-legacy-100: hsl(@yellow-legacy-h, 19%, 27%);
+    --yellow-legacy-200: hsl(@yellow-legacy-h, 30.5%, 31%);
+    --yellow-legacy-300: hsl(@yellow-legacy-h, 37%, 36%);
+    --yellow-legacy-400: hsl(@yellow-legacy-h, 45.5%, 42.5%);
+    --yellow-legacy-500: hsl(@yellow-legacy-h, 55.5%, 48%);
+    --yellow-legacy-600: hsl(@yellow-legacy-h, 67.5%, 55.5%);
+    --yellow-legacy-700: hsl(@yellow-legacy-h, 84.5%, 64%);
+    --yellow-legacy-800: hsl(@yellow-legacy-h, 90%, 72.5%);
+    --yellow-legacy-900: hsl(@yellow-legacy-h, 93%, 83.5%);
+
+    // Red
+    --red-legacy-025: hsl(@red-legacy-h + 3, 10%, 24%);
+    --red-legacy-050: hsl(@red-legacy-h + 3, 30%, 26.5%);
+    --red-legacy-100: hsl(@red-legacy-h + 3, 35%, 33%);
+    --red-legacy-200: hsl(@red-legacy-h + 3, 37%, 38.5%);
+    --red-legacy-300: hsl(@red-legacy-h + 3, 39%, 43.5%);
+    --red-legacy-400: hsl(@red-legacy-h + 3, 42%, 49%);
+    --red-legacy-500: hsl(@red-legacy-h + 3, 50%, 54%);
+    --red-legacy-600: hsl(@red-legacy-h + 3, 56.5%, 59.5%);
+    --red-legacy-700: hsl(@red-legacy-h + 3, 62.5%, 65.5%);
+    --red-legacy-800: hsl(@red-legacy-h + 3, 64%, 74%);
+    --red-legacy-900: hsl(@red-legacy-h + 3, 65.5%, 85.5%);
+
+    // Gold
+    --gold-legacy: @gold-legacy;
+    --gold-legacy-lighter: hsl(@gold-legacy-h, 22%, 30%);
+    --gold-legacy-darker: @gold-legacy-darker;
+
+    // Silver
+    --silver-legacy: @silver-legacy;
+    --silver-legacy-lighter: hsl(@silver-legacy-h, 0%, 26%);
+    --silver-legacy-darker: @silver-legacy-darker;
+
+    // Bronze
+    --bronze-legacy: @bronze-legacy;
+    --bronze-legacy-lighter: hsl(@bronze-legacy-h, 13%, 27%);
+    --bronze-legacy-darker: @bronze-legacy-darker;
+
+    // Border colors
+    --bc-lightest-legacy: var(--black-legacy-025);
+    --bc-lighter-legacy: var(--black-legacy-050);
+    --bc-light-legacy: var(--black-legacy-075);
+    --bc-medium-legacy: var(--black-legacy-100);
+    --bc-dark-legacy: var(--black-legacy-150);
+    --bc-darker-legacy: var(--black-legacy-200);
+
+    // Font colors
+    --fc-dark-legacy: var(--black-legacy-900);
+    --fc-medium-legacy: var(--black-legacy-700);
+    --fc-light-legacy: var(--black-legacy-500);
+
+    // Focus rings
+    --focus-ring-success-legacy: hsla(@green-legacy-h, 40%, 75%, 40%);
+    --focus-ring-warning-legacy: hsla(@yellow-legacy-h, 79%, 58%, 40%);
+    --focus-ring-error-legacy: hsla(@red-legacy-h, 62%, 52%, 30%);
+    --focus-ring-muted-legacy: hsla(@black-legacy-h, @black-legacy-s, 100%, 10%);
+}
+
+.dark-themed-colors() {
+    // Reassemble as a single hsl value
+    --theme-primary-color-legacy: .assemble-color(theme-primary-color-legacy)[];
+
+    // Reassemble as a single hsl value
+    --theme-secondary-color-legacy: .assemble-color(theme-secondary-color-legacy)[];
+
+    .dark-themed-colors-generator(@variant) {
+        --theme-@{variant}-legacy-025: .native-darken-desaturate(~"theme-@{variant}-color-legacy", 31, 73.3)[];
+        --theme-@{variant}-legacy-050: .native-darken-desaturate(~"theme-@{variant}-color-legacy", 15, 47)[];
+        --theme-@{variant}-legacy-075: .native-darken-desaturate(~"theme-@{variant}-color-legacy", 13, 39)[];
+        --theme-@{variant}-legacy-100: .native-darken-desaturate(~"theme-@{variant}-color-legacy", 11, 32)[];
+        --theme-@{variant}-legacy-150: .native-darken-desaturate(~"theme-@{variant}-color-legacy", 9, 23)[];
+        --theme-@{variant}-legacy-200: .native-darken-desaturate(~"theme-@{variant}-color-legacy", 7, 15)[];
+        --theme-@{variant}-legacy-300: .native-darken-desaturate(~"theme-@{variant}-color-legacy", 5, 7)[];
+        --theme-@{variant}-legacy-350: var(~"--theme-@{variant}-color-legacy");
+        --theme-@{variant}-legacy-400: .native-tint(~"theme-@{variant}-color-legacy", 21)[];
+        --theme-@{variant}-legacy-500: .native-tint(~"theme-@{variant}-color-legacy", 36)[];
+        --theme-@{variant}-legacy-600: .native-tint(~"theme-@{variant}-color-legacy", 51)[];
+        --theme-@{variant}-legacy-700: .native-tint(~"theme-@{variant}-color-legacy", 66)[];
+        --theme-@{variant}-legacy-800: .native-tint(~"theme-@{variant}-color-legacy", 81)[];
+        --theme-@{variant}-legacy-900: .native-tint(~"theme-@{variant}-color-legacy", 96)[];
+    }
+
+    .dark-themed-colors-generator(primary);
+    .dark-themed-colors-generator(secondary);
+
+    // Fades
+    --focus-ring-legacy: .native-fade(theme-secondary-color-legacy, 25)[];
+}
+
+// rules shared between .theme-dark and .theme-system w/ prefers-color-scheme: dark
+.theme-dark-rules() {
+    .dark-colors();
+
+    &,
+    & .themed {
+        color: var(--theme-body-font-color, var(--black-600));
+        .generate-themed-variables(theme-dark);
+        // add in the themed "native mixins", making sure to scope to the child .themed elements so they don't use the parent's values
+        .dark-themed-colors();
+    }
+}
+
+//  --  High contrast modes
+.light-highcontrast() {
+    --white-legacy: hsl(0, 0%, 100%);
+    --black-legacy: hsl(0, 0%, 0%);
+
+    // Black
+    --black-legacy-025: hsl(@black-legacy-h, @black-legacy-s, 97.5%);
+    --black-legacy-050: hsl(@black-legacy-h, @black-legacy-s, 95%);
+    --black-legacy-075: hsl(@black-legacy-h, @black-legacy-s, 92.5%);
+    --black-legacy-100: hsl(@black-legacy-h, @black-legacy-s, 90%);
+    --black-legacy-150: hsl(@black-legacy-h, @black-legacy-s, 87.5%);
+    --black-legacy-200: hsl(@black-legacy-h, @black-legacy-s, 85%);
+    --black-legacy-300: hsl(@black-legacy-h, @black-legacy-s, 35%);
+    --black-legacy-350: hsl(@black-legacy-h, @black-legacy-s, 32.5%);
+    --black-legacy-400: hsl(@black-legacy-h, @black-legacy-s, 30%);
+    --black-legacy-500: hsl(@black-legacy-h, @black-legacy-s, 25%);
+    --black-legacy-600: hsl(@black-legacy-h, @black-legacy-s, 20%);
+    --black-legacy-700: hsl(@black-legacy-h, @black-legacy-s, 15%);
+    --black-legacy-750: hsl(@black-legacy-h, @black-legacy-s, 10%);
+    --black-legacy-800: hsl(@black-legacy-h, @black-legacy-s, 5%);
+    --black-legacy-900: hsl(@black-legacy-h, @black-legacy-s, 0%);
+
+    // Orange
+    --orange-legacy-050: hsl(@orange-legacy-h, 100%, 93%);
+    --orange-legacy-100: hsl(@orange-legacy-h, 100%, 90%);
+    --orange-legacy-200: hsl(@orange-legacy-h, 100%, 86%);
+    --orange-legacy-300: hsl(@orange-legacy-h, 100%, 81%);
+    --orange-legacy-400: hsl(@orange-legacy-h, 100%, 34%);
+    --orange-legacy-500: hsl(@orange-legacy-h, 100%, 29%);
+    --orange-legacy-600: hsl(@orange-legacy-h, 100%, 24%);
+    --orange-legacy-700: hsl(@orange-legacy-h, 100%, 19%);
+    --orange-legacy-800: hsl(@orange-legacy-h, 100%, 13%);
+    --orange-legacy-900: hsl(@orange-legacy-h, 100%, 8%);
+
+    // Blue
+    --blue-legacy-050: hsl(@blue-legacy-h, 100%, 94%);
+    --blue-legacy-100: hsl(@blue-legacy-h, 100%, 92%);
+    --blue-legacy-200: hsl(@blue-legacy-h, 100%, 89%);
+    --blue-legacy-300: hsl(@blue-legacy-h, 100%, 86%);
+    --blue-legacy-400: hsl(@blue-legacy-h, 100%, 25%);
+    --blue-legacy-500: hsl(@blue-legacy-h, 100%, 20%);
+    --blue-legacy-600: hsl(@blue-legacy-h, 100%, 15%);
+    --blue-legacy-700: hsl(@blue-legacy-h, 100%, 10%);
+    --blue-legacy-800: hsl(@blue-legacy-h, 100%, 7.5%);
+    --blue-legacy-900: hsl(@blue-legacy-h, 100%, 5%);
+
+    // Powder
+    --powder-legacy-050: hsl(@powder-legacy-h, 100%, 95%);
+    --powder-legacy-100: hsl(@powder-legacy-h, 85%, 93%);
+    --powder-legacy-200: hsl(@powder-legacy-h, 75%, 89%);
+    --powder-legacy-300: hsl(@powder-legacy-h, 70%, 86%);
+    --powder-legacy-400: hsl(@powder-legacy-h, 55%, 28%);
+    --powder-legacy-500: hsl(@powder-legacy-h, 60%, 24%);
+    --powder-legacy-600: hsl(@powder-legacy-h, 70%, 20%);
+    --powder-legacy-700: hsl(@powder-legacy-h, 75%, 16%);
+    --powder-legacy-800: hsl(@powder-legacy-h, 75%, 12%);
+    --powder-legacy-900: hsl(@powder-legacy-h, 75%, 8%);
+
+    // Green
+    --green-legacy-025: hsl(@green-legacy-h, 100%, 94%);
+    --green-legacy-050: hsl(@green-legacy-h, 100%, 91%);
+    --green-legacy-100: hsl(@green-legacy-h, 100%, 87%);
+    --green-legacy-200: hsl(@green-legacy-h, 100%, 83%);
+    --green-legacy-300: hsl(@green-legacy-h, 100%, 78%);
+    --green-legacy-400: hsl(@green-legacy-h, 100%, 18%);
+    --green-legacy-500: hsl(@green-legacy-h, 100%, 15%);
+    --green-legacy-600: hsl(@green-legacy-h, 100%, 12%);
+    --green-legacy-700: hsl(@green-legacy-h, 100%, 9%);
+    --green-legacy-800: hsl(@green-legacy-h, 100%, 6%);
+    --green-legacy-900: hsl(@green-legacy-h, 100%, 3%);
+
+    // Yellow
+    --yellow-legacy-050: hsl(@yellow-legacy-h, 100%, 92%);
+    --yellow-legacy-100: hsl(@yellow-legacy-h, 100%, 88%);
+    --yellow-legacy-200: hsl(@yellow-legacy-h, 95%, 83%);
+    --yellow-legacy-300: hsl(@yellow-legacy-h, 95%, 75%);
+    --yellow-legacy-400: hsl(@yellow-legacy-h, 100%, 28%);
+    --yellow-legacy-500: hsl(@yellow-legacy-h, 100%, 26%);
+    --yellow-legacy-600: hsl(@yellow-legacy-h, 100%, 23%);
+    --yellow-legacy-700: hsl(@yellow-legacy-h, 100%, 19%);
+    --yellow-legacy-800: hsl(@yellow-legacy-h, 100%, 13%);
+    --yellow-legacy-900: hsl(@yellow-legacy-h, 100%, 7%);
+
+    // Red
+    --red-legacy-025: hsl(@red-legacy-h, 100%, 97%);
+    --red-legacy-050: hsl(@red-legacy-h, 100%, 94%);
+    --red-legacy-100: hsl(@red-legacy-h, 100%, 92%);
+    --red-legacy-200: hsl(@red-legacy-h, 100%, 89%);
+    --red-legacy-300: hsl(@red-legacy-h, 100%, 86%);
+    --red-legacy-400: hsl(@red-legacy-h, 100%, 35%);
+    --red-legacy-500: hsl(@red-legacy-h, 100%, 29%);
+    --red-legacy-600: hsl(@red-legacy-h, 100%, 23%);
+    --red-legacy-700: hsl(@red-legacy-h, 100%, 17%);
+    --red-legacy-800: hsl(@red-legacy-h, 100%, 11%);
+    --red-legacy-900: hsl(@red-legacy-h, 100%, 7%);
+
+    // Gold
+    --gold-legacy: hsl(@gold-legacy-h, 100%, 50%);
+    --gold-legacy-lighter: hsl(@gold-legacy-h, 100%, 91%);
+    --gold-legacy-darker: hsl(@gold-legacy-h - 3, 100%, 20%);
+
+    // Silver
+    --silver-legacy: hsl(@silver-legacy-h, 6%, 72%);
+    --silver-legacy-lighter: hsl(@silver-legacy-h, 6%, 91%);
+    --silver-legacy-darker: hsl(@silver-legacy-h, 6%, 30%);
+
+    // Bronze
+    --bronze-legacy: hsl(@bronze-legacy-h, 38%, 65%);
+    --bronze-legacy-lighter: hsl(@bronze-legacy-h, 40%, 92%);
+    --bronze-legacy-darker: hsl(@bronze-legacy-h, 31%, 25%);
+
+    // Border colors
+    --bc-lightest-legacy: var(--black-legacy-400);
+    --bc-lighter-legacy: var(--black-legacy-400);
+    --bc-light-legacy: var(--black-legacy-400);
+    --bc-medium-legacy: var(--black-legacy-400);
+    --bc-dark-legacy: var(--black-legacy-700);
+    --bc-darker-legacy: var(--black-legacy-900);
+
+    // Font colors
+    --fc-dark-legacy: var(--black-legacy-900);
+    --fc-medium-legacy: var(--black-legacy-700);
+    --fc-light-legacy: var(--black-legacy-500);
+
+    // Focus rings
+    --focus-ring-legacy: fade(@blue-legacy-600, 90%);
+    --focus-ring-success-legacy: fade(@green-legacy-600, 90%);
+    --focus-ring-warning-legacy: fade(@yellow-legacy-600, 90%);
+    --focus-ring-error-legacy: fade(@red-legacy-600, 90%);
+    --focus-ring-muted-legacy: fade(@black-legacy-400, 95%);
+
+    // High contrast theme override
+    .highcontrast-themed-colors();
+}
+
+.dark-highcontrast() {
+    --white-legacy: hsl(0, 0%, 0%);
+    --black-legacy: hsl(0, 0%, 100%);
+
+    // Black
+    --black-legacy-025: hsl(@black-legacy-h, @black-legacy-s, 2.5%);
+    --black-legacy-050: hsl(@black-legacy-h, @black-legacy-s, 5%);
+    --black-legacy-075: hsl(@black-legacy-h, @black-legacy-s, 7.5%);
+    --black-legacy-100: hsl(@black-legacy-h, @black-legacy-s, 10%);
+    --black-legacy-150: hsl(@black-legacy-h, @black-legacy-s, 12.5%);
+    --black-legacy-200: hsl(@black-legacy-h, @black-legacy-s, 15%);
+    --black-legacy-300: hsl(@black-legacy-h, @black-legacy-s, 65%);
+    --black-legacy-350: hsl(@black-legacy-h, @black-legacy-s, 67.5%);
+    --black-legacy-400: hsl(@black-legacy-h, @black-legacy-s, 70%);
+    --black-legacy-500: hsl(@black-legacy-h, @black-legacy-s, 75%);
+    --black-legacy-600: hsl(@black-legacy-h, @black-legacy-s, 80%);
+    --black-legacy-700: hsl(@black-legacy-h, @black-legacy-s, 85%);
+    --black-legacy-750: hsl(@black-legacy-h, @black-legacy-s, 90%);
+    --black-legacy-800: hsl(@black-legacy-h, @black-legacy-s, 95%);
+    --black-legacy-900: hsl(@black-legacy-h, @black-legacy-s, 100%);
+
+    // Orange
+    --orange-legacy-050: hsl(@orange-legacy-h, 100%, 7%);
+    --orange-legacy-100: hsl(@orange-legacy-h, 100%, 9%);
+    --orange-legacy-200: hsl(@orange-legacy-h, 100%, 15%);
+    --orange-legacy-300: hsl(@orange-legacy-h, 100%, 22%);
+    --orange-legacy-400: hsl(@orange-legacy-h, 100%, 64%);
+    --orange-legacy-500: hsl(@orange-legacy-h, 100%, 71%);
+    --orange-legacy-600: hsl(@orange-legacy-h, 100%, 77%);
+    --orange-legacy-700: hsl(@orange-legacy-h, 100%, 82%);
+    --orange-legacy-800: hsl(@orange-legacy-h, 100%, 87%);
+    --orange-legacy-900: hsl(@orange-legacy-h, 100%, 91%);
+
+    // Blue
+    --blue-legacy-050: hsl(@blue-legacy-h, 100%, 7%);
+    --blue-legacy-100: hsl(@blue-legacy-h, 100%, 11%);
+    --blue-legacy-200: hsl(@blue-legacy-h, 100%, 17%);
+    --blue-legacy-300: hsl(@blue-legacy-h, 100%, 24%);
+    --blue-legacy-400: hsl(@blue-legacy-h, 100%, 75%);
+    --blue-legacy-500: hsl(@blue-legacy-h, 100%, 80%);
+    --blue-legacy-600: hsl(@blue-legacy-h, 100%, 85%);
+    --blue-legacy-700: hsl(@blue-legacy-h, 100%, 90%);
+    --blue-legacy-800: hsl(@blue-legacy-h, 100%, 92.5%);
+    --blue-legacy-900: hsl(@blue-legacy-h, 100%, 95%);
+
+    // Powder
+    --powder-legacy-050: hsl(@powder-legacy-h, 100%, 7%);
+    --powder-legacy-100: hsl(@powder-legacy-h, 95%, 10%);
+    --powder-legacy-200: hsl(@powder-legacy-h, 80%, 14%);
+    --powder-legacy-300: hsl(@powder-legacy-h, 76%, 19%);
+    --powder-legacy-400: hsl(@powder-legacy-h, 55%, 72%);
+    --powder-legacy-500: hsl(@powder-legacy-h, 60%, 76%);
+    --powder-legacy-600: hsl(@powder-legacy-h, 70%, 80%);
+    --powder-legacy-700: hsl(@powder-legacy-h, 75%, 84%);
+    --powder-legacy-800: hsl(@powder-legacy-h, 75%, 88%);
+    --powder-legacy-900: hsl(@powder-legacy-h, 75%, 92%);
+
+    // Green
+    --green-legacy-025: hsl(@green-legacy-h, 100%, 5%);
+    --green-legacy-050: hsl(@green-legacy-h, 100%, 6%);
+    --green-legacy-100: hsl(@green-legacy-h, 100%, 7%);
+    --green-legacy-200: hsl(@green-legacy-h, 100%, 11%);
+    --green-legacy-300: hsl(@green-legacy-h, 100%, 15%);
+    --green-legacy-400: hsl(@green-legacy-h, 100%, 65%);
+    --green-legacy-500: hsl(@green-legacy-h, 100%, 71%);
+    --green-legacy-600: hsl(@green-legacy-h, 100%, 77%);
+    --green-legacy-700: hsl(@green-legacy-h, 100%, 83%);
+    --green-legacy-800: hsl(@green-legacy-h, 100%, 89%);
+    --green-legacy-900: hsl(@green-legacy-h, 100%, 94%);
+
+    // Yellow
+    --yellow-legacy-050: hsl(@yellow-legacy-h, 100%, 6%);
+    --yellow-legacy-100: hsl(@yellow-legacy-h, 100%, 9%);
+    --yellow-legacy-200: hsl(@yellow-legacy-h, 100%, 14%);
+    --yellow-legacy-300: hsl(@yellow-legacy-h, 100%, 20%);
+    --yellow-legacy-400: hsl(@yellow-legacy-h, 100%, 55%);
+    --yellow-legacy-500: hsl(@yellow-legacy-h, 100%, 63%);
+    --yellow-legacy-600: hsl(@yellow-legacy-h, 100%, 71%);
+    --yellow-legacy-700: hsl(@yellow-legacy-h, 100%, 79%);
+    --yellow-legacy-800: hsl(@yellow-legacy-h, 100%, 87%);
+    --yellow-legacy-900: hsl(@yellow-legacy-h, 100%, 95%);
+
+    // Red
+    --red-legacy-025: hsl(@red-legacy-h, 100%, 7%);
+    --red-legacy-050: hsl(@red-legacy-h, 100%, 9%);
+    --red-legacy-100: hsl(@red-legacy-h, 100%, 12%);
+    --red-legacy-200: hsl(@red-legacy-h, 100%, 17%);
+    --red-legacy-300: hsl(@red-legacy-h, 100%, 22%);
+    --red-legacy-400: hsl(@red-legacy-h, 100%, 70%);
+    --red-legacy-500: hsl(@red-legacy-h, 100%, 75%);
+    --red-legacy-600: hsl(@red-legacy-h, 100%, 80%);
+    --red-legacy-700: hsl(@red-legacy-h, 100%, 85%);
+    --red-legacy-800: hsl(@red-legacy-h, 100%, 90%);
+    --red-legacy-900: hsl(@red-legacy-h, 100%, 95%);
+
+    // Gold
+    --gold-legacy: hsl(@gold-legacy-h, 100%, 50%);
+    --gold-legacy-lighter: hsl(@gold-legacy-h - 3, 100%, 9%);
+    --gold-legacy-darker: hsl(@gold-legacy-h - 3, 100%, 80%);
+
+    // Silver
+    --silver-legacy: hsl(@silver-legacy-h, 6%, 72%);
+    --silver-legacy-lighter: hsl(@silver-legacy-h, 5%, 9%);
+    --silver-legacy-darker: hsl(@silver-legacy-h, 5%, 70%);
+
+    // Bronze
+    --bronze-legacy: hsl(@bronze-legacy-h, 38%, 65%);
+    --bronze-legacy-lighter: hsl(@bronze-legacy-h, 40%, 8%);
+    --bronze-legacy-darker: hsl(@bronze-legacy-h, 46.7%, 75%);
+
+    // Border colors
+    --bc-lightest-legacy: var(--black-legacy-400);
+    --bc-lighter-legacy: var(--black-legacy-400);
+    --bc-light-legacy: var(--black-legacy-400);
+    --bc-medium-legacy: var(--black-legacy-400);
+    --bc-dark-legacy: var(--black-legacy-700);
+    --bc-darker-legacy: var(--black-legacy-900);
+
+    // Focus rings
+    --focus-ring-legacy: fade(@blue-legacy-600, 90%);
+    --focus-ring-success-legacy: fade(@green-legacy-600, 90%);
+    --focus-ring-warning-legacy: fade(@yellow-legacy-600, 90%);
+    --focus-ring-error-legacy: fade(@red-legacy-600, 90%);
+    --focus-ring-muted-legacy: fade(@black-legacy-400, 95%);
+
+    // Font colors
+    --fc-dark-legacy: var(--black-legacy-900);
+    --fc-medium-legacy: var(--black-legacy-700);
+    --fc-light-legacy: var(--black-legacy-500);
+
+    .highcontrast-themed-colors();
+}
+
+.highcontrast-themed-colors() {
+    // Primary Theming
+    --theme-primary-color-legacy: var(--orange-legacy-400);
+    --theme-primary-legacy-025: var(--orange-legacy-050);
+    --theme-primary-legacy-050: var(--orange-legacy-050);
+    --theme-primary-legacy-075: var(--orange-legacy-050);
+    --theme-primary-legacy-100: var(--orange-legacy-100);
+    --theme-primary-legacy-150: var(--orange-legacy-100);
+    --theme-primary-legacy-200: var(--orange-legacy-200);
+    --theme-primary-legacy-300: var(--orange-legacy-300);
+    --theme-primary-legacy-350: var(--orange-legacy-300);
+    --theme-primary-legacy-400: var(--orange-legacy-400);
+    --theme-primary-legacy-500: var(--orange-legacy-500);
+    --theme-primary-legacy-600: var(--orange-legacy-600);
+    --theme-primary-legacy-700: var(--orange-legacy-700);
+    --theme-primary-legacy-800: var(--orange-legacy-800);
+    --theme-primary-legacy-900: var(--orange-legacy-900);
+
+    // Secondary Theming
+    --theme-secondary-color-legacy: var(--blue-legacy-400);
+    --theme-secondary-legacy-025: var(--blue-legacy-050);
+    --theme-secondary-legacy-050: var(--blue-legacy-050);
+    --theme-secondary-legacy-075: var(--blue-legacy-050);
+    --theme-secondary-legacy-100: var(--blue-legacy-100);
+    --theme-secondary-legacy-150: var(--blue-legacy-100);
+    --theme-secondary-legacy-200: var(--blue-legacy-200);
+    --theme-secondary-legacy-300: var(--blue-legacy-300);
+    --theme-secondary-legacy-350: var(--blue-legacy-300);
+    --theme-secondary-legacy-400: var(--blue-legacy-400);
+    --theme-secondary-legacy-500: var(--blue-legacy-500);
+    --theme-secondary-legacy-600: var(--blue-legacy-600);
+    --theme-secondary-legacy-700: var(--blue-legacy-700);
+    --theme-secondary-legacy-800: var(--blue-legacy-800);
+    --theme-secondary-legacy-900: var(--blue-legacy-900);
+}
+
+:root {
+    // specify the default colors in less, then deconstruct them
+    // this keeps the hsl/rgb variables below in sync, but consumers will need to set each variable separately
+    @defaultPrimaryColor: @orange-legacy;
+    @defaultSecondaryColor: @blue-legacy;
+    .generate-calculated-themed-variables(@defaultPrimaryColor, primary);
+    .generate-calculated-themed-variables(@defaultSecondaryColor, secondary);
+}
+
+// Light mode
+body:not(.theme-dark),
+body.theme-dark .theme-light__forced,
+body.theme-system .theme-light__forced {
+    .light-colors();
+
+    &,
+    & .themed {
+        color: var(--theme-body-font-color, var(--black-600));
+        .generate-themed-variables(theme-light);
+        // add in the themed "native mixins", making sure to scope to the child .themed elements so they don't use the parent's values
+        .light-themed-colors();
+    }
+}
+
+// Dark mode
+body.theme-dark,
+body:not(.theme-dark) .theme-dark__forced {
+    .theme-dark-rules();
+}
+body.theme-system {
+    @media (prefers-color-scheme: dark) {
+        .theme-dark-rules();
+    }
+}
+
+// High contrast mode (Light)
+body.theme-highcontrast:not(.theme-dark),
+body.theme-dark.theme-highcontrast .theme-light__forced,
+body.theme-system.theme-highcontrast .theme-light__forced {
+    .light-highcontrast();
+}
+
+// High contrast mode (Dark)
+body.theme-dark.theme-highcontrast,
+body.theme-highcontrast:not(.theme-dark) .theme-dark__forced {
+    .dark-highcontrast();
+}
+body.theme-system.theme-highcontrast {
+    @media (prefers-color-scheme: dark) {
+        .dark-highcontrast();
+    }
+}

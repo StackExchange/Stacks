@@ -17,7 +17,13 @@ describe("tag", () => {
             global: ["is-selected"],
         },
         children,
-        // TODO: Most of those skipped tests should be fixed by the new Stacks 2.0 palette
-        skippedTestids: [/s-tag/],
+        // TODO: revisit this after minor tag changes are made
+        skippedTestids: [
+            /s-tag-highcontrast-light-muted/, // 6.33
+            /s-tag-light-is-selected/, // 58.28Lc
+            /s-tag-light-ignored-is-selected/, // 58.28Lc
+            /s-tag-light-moderator-is-selected/, // 49.14Lc
+            /s-tag-light-watched-is-selected/, // 58.28Lc
+        ],
     });
 });

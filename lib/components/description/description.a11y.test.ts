@@ -24,11 +24,7 @@ import "../../index";
                     ${component}
                 </div>
             `,
-            // TODO: Most of those skipped tests should be fixed by the new Stacks 2.0 palette
-            skippedTestids: [
-                /^.*-is-disabled$/, // TODO: should these the disabled tests be excluded all together instead of skipped?
-                "s-description-dark",
-            ],
+            skippedTestids: [/is-disabled/],
         });
     });
 });

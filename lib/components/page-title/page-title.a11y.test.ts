@@ -25,7 +25,5 @@ describe("page title", () => {
                 ${component}
             </div>
         `,
-        // TODO new colors should resolve this issue
-        skippedTestids: [/s-page-title-dark/, /s-page-title-light/],
     });
 });

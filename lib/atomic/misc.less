@@ -303,12 +303,13 @@
 }
 
 //  --  Added hover styles for box-shadow
-.bs-sm.bs-hover:hover { box-shadow: 0 var(--su-static2) var(--su-static8) @black-050 !important; }
-.bs-md.bs-hover:hover { box-shadow: 0 var(--su-static4) var(--su-static8) @black-100 !important; }
-.bs-lg.bs-hover:hover { box-shadow: 0 var(--su-static4) var(--su-static12) fade(@black-300, 70%) !important; }
-.bs-i-sm.bs-hover:hover { box-shadow: inset 0 var(--su-static1) var(--su-static8) 0 fade(@black-200, 75%) !important; }
-.bs-i-md.bs-hover:hover { box-shadow: inset 0 var(--su-static1) var(--su-static8) 0 fade(@black-350, 80%) !important; }
-.bs-i-lg.bs-hover:hover { box-shadow: inset 0 var(--su-static1) var(--su-static12) 0 @black-350 !important; }
+// TODO do we still need them? Can we deprecate/remove these weird hover classes?
+.bs-sm.bs-hover:hover { box-shadow: 0 var(--su-static2) var(--su-static8) .set-black()[150] !important; }
+.bs-md.bs-hover:hover { box-shadow: 0 var(--su-static4) var(--su-static8) .set-black()[225] !important; }
+.bs-lg.bs-hover:hover { box-shadow: 0 var(--su-static4) var(--su-static12) fade(.set-black()[350], 70%) !important; }
+.bs-i-sm.bs-hover:hover { box-shadow: inset 0 var(--su-static1) var(--su-static8) 0 fade(.set-black()[300], 75%) !important; }
+.bs-i-md.bs-hover:hover { box-shadow: inset 0 var(--su-static1) var(--su-static8) 0 fade(.set-black()[350], 80%) !important; }
+.bs-i-lg.bs-hover:hover { box-shadow: inset 0 var(--su-static1) var(--su-static12) 0 .set-black()[350] !important; }
 
 //  ============================================================================
 //  $  TRANSITIONS

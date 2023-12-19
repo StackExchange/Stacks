@@ -1,22 +1,22 @@
 a.s-block-link,
 .s-block-link {
-    @bl-bs: inset var(--_li-block-bs-offset-x, 3px) 0 0 var(--theme-primary-color);
+    --_bl-bs-color: var(--theme-primary);
     --_bl-bg: transparent;
-    --_bl-fc: var(--black-600);
-    --_bl-fc-hover: var(--black-800);
+    --_bl-fc: var(--black-500);
+    --_bl-fc-hover: var(--black-600);
     --_bl-fc-visited: var(--_bl-fc);
 
     // CONTEXTUAL STYLES
     .dark-mode({
         &.is-selected {
-            --_bl-bg: var(--black-025);
+            --_bl-bg: var(--black-100);
         }
     });
 
     // STATES
     &.is-selected {
-        --_bl-bg: var(--black-050);
-        --_bl-fc: var(--black-800);
+        --_bl-bg: var(--black-150);
+        --_bl-fc: var(--black-600);
 
         font-weight: bold;
     }
@@ -31,10 +31,10 @@ a.s-block-link,
             }
 
             &:focus-visible {
-                box-shadow: @bl-bs, 0 0 0 var(--su-static4) var(--focus-ring-muted);
+                box-shadow: inset var(--_li-block-bs-offset-x, 3px) 0 0 var(--_bl-bs-color), 0 0 0 var(--su-static4) var(--focus-ring-muted);
             }
 
-            box-shadow: @bl-bs;
+            box-shadow: inset var(--_li-block-bs-offset-x, 3px) 0 0 var(--_bl-bs-color);
         }
     }
 
@@ -46,8 +46,9 @@ a.s-block-link,
 
     // VARIANTS
     &&__danger {
-        --_bl-fc: var(--red-500);
-        --_bl-fc-hover: var(--red-700);
+        --_bl-fc: var(--red-400);
+        --_bl-fc-hover: var(--red-500);
+        --_bl-fc-visited: var(--red-500);
     }
 
     &:active,
@@ -59,7 +60,7 @@ a.s-block-link,
     }
 
     &:visited {
-        color: var(--_bl-fc-focus);
+        color: var(--_bl-fc-visited);
     }
 
     @focus-styles();

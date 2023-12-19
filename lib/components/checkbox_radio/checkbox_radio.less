@@ -1,8 +1,8 @@
 .s-checkbox,
 .s-radio {
     --_ch-baw: var(--su-static1);
-    --_ch-bc: var(--bc-darker);
-    --_ch-bc-focus: var(--theme-secondary-300);
+    --_ch-bc: var(--bc-dark);
+    --_ch-bc-focus: var(--theme-secondary-400);
     --_ch-bg: var(--white);
     --_ch-bg-image: unset;
     --_ch-bs-focus: 0 0 0 var(--su-static4) var(--focus-ring);
@@ -47,13 +47,25 @@
 }
 
 .s-checkbox {
+    // Less variables for check svg fill color
+    @ch-bg-image-fill: .set-white()[default];
+    @ch-bg-image-fill-dark: .set-white-dark()[default];
 
     // CONTEXTUAL STYLES
+    .dark-mode({
+        &:checked {
+            --_ch-bg-image: url("data:image/svg+xml,%3Csvg width='11' height='11' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M10 3.41L8.59 2 4 6.59 2.41 5 1 6.41l3 3z' fill='@{ch-bg-image-fill-dark}'/%3E%3C/svg%3E");
+        }
+        &:indeterminate {
+            --_ch-bg-image: url("data:image/svg+xml,%3Csvg width='11' height='11' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M2 4.5 h7 v2 h-7 z' fill='@{ch-bg-image-fill-dark}'/%3E%3C/svg%3E");
+        }
+    });
+
     .highcontrast-dark-mode({
         &:checked, &:indeterminate {
-            --_ch-bc: var(--blue-700) !important;
+            --_ch-bc: var(--blue-500) !important;
             --_ch-bc-focus: var(--_ch-bc);
-            --_ch-bg: var(--blue-300);
+            --_ch-bg: var(--blue-400);
         }
     });
 
@@ -68,11 +80,11 @@
     }
 
     &:checked {
-        --_ch-bg-image: url("data:image/svg+xml,%3Csvg width='11' height='11' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M10 3.41L8.59 2 4 6.59 2.41 5 1 6.41l3 3z' fill='%23fff'/%3E%3C/svg%3E");
+        --_ch-bg-image: url("data:image/svg+xml,%3Csvg width='11' height='11' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M10 3.41L8.59 2 4 6.59 2.41 5 1 6.41l3 3z' fill='@{ch-bg-image-fill}'/%3E%3C/svg%3E");
     }
 
     &:indeterminate {
-        --_ch-bg-image: url("data:image/svg+xml,%3Csvg width='11' height='11' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M2 4.5 h7 v2 h-7 z' fill='%23fff'/%3E%3C/svg%3E");
+        --_ch-bg-image: url("data:image/svg+xml,%3Csvg width='11' height='11' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M2 4.5 h7 v2 h-7 z' fill='@{ch-bg-image-fill}'/%3E%3C/svg%3E");
     }
 
     // INTERACTION
@@ -93,14 +105,8 @@
     // CONTEXTUAL STYLES
     .highcontrast-dark-mode({
         &:checked {
-            --_ch-bc: var(--blue-300);
+            --_ch-bc: var(--blue-400);
             outline: var(--su-static1) solid var(--black);
-        }
-    });
-
-    .dark-mode({
-        &:checked {
-            --_ch-bg: var(--black);
         }
     });
 
