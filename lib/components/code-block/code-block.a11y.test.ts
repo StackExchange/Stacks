@@ -15,14 +15,13 @@ describe("code block", () => {
                 ...defaultOptions,
                 includeNullModifier: false,
             },
+            attributes: {
+                tabindex: "0",
+            },
             // TODO revisit these skipped test ids
             skippedTestids: [
-                "s-code-block-language-html-light",
-                "s-code-block-language-html-highcontrast-light",
-                "s-code-block-language-html-highcontrast-dark",
-                "s-code-block-language-html-dark",
-                "s-code-block-language-css-dark",
-                "s-code-block-language-javascript-dark",
+                /s-code-block-language-(html|css|javascript)-dark/,
+                /s-code-block-language-html-highcontrast-(light|dark)/,
                 "s-code-block-language-javascript-highcontrast-light",
             ],
         });
