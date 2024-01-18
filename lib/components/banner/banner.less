@@ -2,22 +2,23 @@
 // TODO deprecate .s-banner (by turning it into a modifier on .s-notice)
 // This would reduce the amount of CSS we ship to the client and simplify our codebase
 .s-banner {
-    --_no-x-offset: 0;
+    --_no-ty-offset: 0;
+    --_no-ty: var(--theme-topbar-height, calc(var(--su-static48) + var(--su-static8)));
     .construct-notice-component(s-banner);
 
     &[aria-hidden="true"] { // If you want to hide and reveal the banner
-        --_no-x-offset: -1;
+        --_no-ty-offset: -1;
         opacity: 0;
         visibility: hidden;
     }
 
     &[aria-hidden="false"] {
-        --_no-x-offset: 1;
+        --_no-ty-offset: 1;
         opacity: 1;
         visibility: visible;
 
         &.is-pinned { //  If you want to put the banner above the topbar
-            --_no-x-offset: 0;
+            --_no-ty-offset: 0;
             z-index: calc(var(--zi-navigation-fixed) + 1);
         }
     }
@@ -37,8 +38,7 @@
     inset: 0 0 auto 0;
     padding: var(--su12);
     position: fixed;
-    -webkit-transform: translate3d(0, calc(var(--theme-topbar-height, calc(var(--su-static48) + var(--su-static8))) * var(--_no-x-offset)), 0);
-    transform: translate3d(0, calc(var(--theme-topbar-height, calc(var(--su-static48) + var(--su-static8))) * var(--_no-x-offset)), 0);
+    transform: translate3d(0, calc(var(--_no-ty) * var(--_no-ty-offset)), 0);
     width: 100%;
     z-index: calc(var(--zi-navigation-fixed) - 1); // Tuck below topbar
 }
