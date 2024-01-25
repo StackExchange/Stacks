@@ -32,8 +32,7 @@
         &,
         a&,
         a&:active,
-        a&:hover,
-        a&:focus {
+        a&:hover {
             .highcontrast-mode({
                 --_ta-bc-selected: transparent;
                 --_ta-fc-selected: var(--white);
@@ -155,7 +154,12 @@
     }
 
     // CHILD ELEMENTS
-    & &--dismiss { // Style adjustment to @Svg.ClearSm
+    & button&--dismiss:not(.s-btn) {
+        all: unset;
+    }
+
+    & &--dismiss,
+    & button&--dismiss:not(.s-btn) { // Style adjustment to @Svg.ClearSm
         &:hover {
             .highcontrast-mode({
                 color: var(--white);
@@ -165,18 +169,14 @@
             color: var(--_ta-bg);
         }
 
-        align-content: center;
-        align-self: center;
         background-color: transparent;
+        border: var(--su1) solid transparent;
         border-radius: var(--br-sm);
         color: inherit;
         cursor: pointer;
         display: flex;
-        height: var(--su-static16);
         justify-content: center;
         margin-left: var(--su4);
-        padding: var(--su1);
-        width: var(--su-static16);
     }
 
     & &--sponsor { // The small sponsor favicon displayed within a tag
@@ -196,7 +196,6 @@
     // INTERACTION
     a&:not(.is-selected) {
         &:hover,
-        &:focus,
         &:active {
             .highcontrast-mode({
                 border-color: currentColor;
@@ -205,6 +204,16 @@
             background-color: var(--_ta-bg-hover);
             border-color: var(--_ta-bc-hover);
             color: var(--_ta-fc-hover);
+        }
+    }
+
+    &,
+    & &--dismiss,
+    & button&--dismiss:not(.s-btn) {
+        &:focus-visible {
+            border-color: var(--white) !important;
+            box-shadow: 0 0 0 var(--su-static1) var(--black-050), 0 0 0 calc(var(--su-static4) - var(--su-static1)) var(--theme-secondary-400);
+            outline: var(--su-static2) solid transparent;
         }
     }
 
