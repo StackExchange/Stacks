@@ -3,6 +3,8 @@
         --_pa-item-bg: transparent;
         --_pa-item-bc: var(--bc-darker);
         --_pa-item-fc: var(--fc-medium);
+        --_pa-item-bg-focus: var(--black-400);
+        --_pa-item-fc-focus: var(--white);
         --_pa-item-bg-hover: var(--black-225);
         --_pa-item-bc-hover: var(--bc-darker);
         --_pa-item-fc-hover: var(--fc-dark);
@@ -15,6 +17,7 @@
             --_pa-item-bg: var(--theme-primary);
             --_pa-item-bc: transparent;
             --_pa-item-fc: var(--white);
+            --_pa-item-bg-focus: var(--theme-primary-400);
         }
         &.s-pagination--item__clear {
             --_pa-item-bg: transparent;
@@ -34,6 +37,14 @@
             background-color: var(--_pa-item-bg-hover);
             border-color: var(--_pa-item-bc-hover);
             color: var(--_pa-item-fc-hover);
+        }
+
+        &:focus-visible {
+            background-color: var(--_pa-item-bg-focus);
+            border-color: var(--theme-secondary-400) !important;
+            box-shadow: inset 0 0 0 var(--su-static2) var(--theme-secondary-400), inset 0 0 0 var(--su-static4) var(--black-050);
+            color: var(--_pa-item-fc-focus);
+            outline: var(--su-static2) solid transparent;
         }
 
         background-color: var(--_pa-item-bg);
