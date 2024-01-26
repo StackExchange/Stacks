@@ -157,6 +157,11 @@
 
     & &--dismiss,
     & button&--dismiss:not(.s-btn) { // Style adjustment to @Svg.ClearSm
+        &:focus-visible {
+            box-shadow: 0 0 0 var(--su-static2) var(--black-050), 0 0 0 var(--su-static4) var(--theme-secondary-400);
+            outline: var(--su-static2) solid transparent;
+        }
+
         &:hover {
             .highcontrast-mode({
                 color: var(--white);
@@ -206,20 +211,10 @@
         }
     }
 
-    & {
-        &:focus-visible {
-            border-color: var(--white) !important;
-            box-shadow: 0 0 0 var(--su-static1) var(--black-050), 0 0 0 calc(var(--su-static4) - var(--su-static1)) var(--theme-secondary-400);
-            outline: var(--su-static2) solid transparent;
-        }
-    }
-
-    & &--dismiss,
-    & button&--dismiss:not(.s-btn) {
-        &:focus-visible {
-            box-shadow: 0 0 0 var(--su-static2) var(--black-050), 0 0 0 var(--su-static4) var(--theme-secondary-400);
-            outline: var(--su-static2) solid transparent;
-        }
+    &:focus-visible {
+        border-color: var(--white) !important;
+        box-shadow: 0 0 0 var(--su-static1) var(--black-050), 0 0 0 calc(var(--su-static4) - var(--su-static1)) var(--theme-secondary-400);
+        outline: var(--su-static2) solid transparent;
     }
 
     background-color: var(--_ta-bg);
