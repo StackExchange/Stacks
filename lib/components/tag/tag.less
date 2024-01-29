@@ -1,8 +1,8 @@
 .s-tag {
-    // Border color
-    --_ta-bc: var(--theme-tag-border-color, transparent);
-    --_ta-bc-hover: var(--theme-tag-hover-border-color, transparent);
-    --_ta-bc-selected: var(--theme-tag-selected-border-color, transparent);
+    // Border color (bg color used as fallback
+    --_ta-bc: var(--theme-tag-border-color, var(--_ta-bg));
+    --_ta-bc-hover: var(--theme-tag-hover-border-color, var(--_ta-bg-hover));
+    --_ta-bc-selected: var(--theme-tag-selected-border-color, var(--_ta-bg-selected));
     // Background color
     --_ta-bg: var(--theme-tag-background-color, var(--theme-secondary-100));
     --_ta-bg-hover: var(--theme-tag-hover-background-color, var(--theme-secondary-200));
@@ -18,6 +18,7 @@
     --_ta-pl: var(--_ta-px);
     --_ta-pr: var(--_ta-px);
     --_ta-px: var(--su4);
+    --_ta-dismiss-padding: calc(var(--_ta-px) - var(--su-static1));
 
     // CONTEXTUAL STYLES
     .highcontrast-mode({
@@ -32,10 +33,8 @@
         &,
         a&,
         a&:active,
-        a&:hover,
-        a&:focus {
+        a&:hover {
             .highcontrast-mode({
-                --_ta-bc-selected: transparent;
                 --_ta-fc-selected: var(--white);
             });
 
@@ -121,13 +120,10 @@
     }
 
     &&__muted:not(&__moderator):not(&__required) {
-        --_ta-bc: transparent;
         --_ta-bg: var(--black-150);
         --_ta-fc: var(--black-400);
-        --_ta-bc-hover: transparent;
         --_ta-bg-hover: var(--black-200);
         --_ta-fc-hover: var(--black-500);
-        --_ta-bc-selected: transparent;
         --_ta-bg-selected: var(--black-225);
         --_ta-fc-selected: var(--black-600);
 
@@ -137,9 +133,9 @@
     &&__required:not(&__moderator) {
         // TODO *eventually* remove the custom theme overrides once we can reconcile Meta theming needs
         // Border color
-        --_ta-bc: var(--theme-tag-required-border-color, transparent);
-        --_ta-bc-hover: var(--theme-tag-required-hover-border-color, transparent);
-        --_ta-bc-selected: var(--theme-tag-required-selected-border-color, transparent);
+        --_ta-bc: var(--theme-tag-required-border-color, var(--_ta-bg));
+        --_ta-bc-hover: var(--theme-tag-required-hover-border-color, var(--_ta-bg-hover));
+        --_ta-bc-selected: var(--theme-tag-required-selected-border-color, var(--_ta-bg-selected));
         // Background color
         --_ta-bg: var(--theme-tag-required-background-color, var(--theme-secondary-500));
         --_ta-bg-hover: var(--theme-tag-required-hover-background-color, var(--theme-secondary-400));
@@ -155,7 +151,17 @@
     }
 
     // CHILD ELEMENTS
-    & &--dismiss { // Style adjustment to @Svg.ClearSm
+    & button&--dismiss:not(.s-btn) {
+        all: unset;
+    }
+
+    & &--dismiss,
+    & button&--dismiss:not(.s-btn) { // Style adjustment to @Svg.ClearSm
+        &:focus-visible {
+            box-shadow: 0 0 0 var(--su-static2) var(--black-050), 0 0 0 var(--su-static4) var(--theme-secondary-400);
+            outline: var(--su-static2) solid transparent;
+        }
+
         &:hover {
             .highcontrast-mode({
                 color: var(--white);
@@ -165,18 +171,16 @@
             color: var(--_ta-bg);
         }
 
-        align-content: center;
-        align-self: center;
+        align-items: center;
+        align-self: stretch;
         background-color: transparent;
         border-radius: var(--br-sm);
         color: inherit;
         cursor: pointer;
         display: flex;
-        height: var(--su-static16);
         justify-content: center;
-        margin-left: var(--su4);
-        padding: var(--su1);
-        width: var(--su-static16);
+        margin: var(--su-static1) calc(var(--_ta-dismiss-padding) * -1) var(--su-static1) var(--_ta-dismiss-padding);
+        padding: var(--_ta-dismiss-padding);
     }
 
     & &--sponsor { // The small sponsor favicon displayed within a tag
@@ -196,7 +200,6 @@
     // INTERACTION
     a&:not(.is-selected) {
         &:hover,
-        &:focus,
         &:active {
             .highcontrast-mode({
                 border-color: currentColor;
@@ -206,6 +209,12 @@
             border-color: var(--_ta-bc-hover);
             color: var(--_ta-fc-hover);
         }
+    }
+
+    &:focus-visible {
+        border-color: var(--white) !important;
+        box-shadow: 0 0 0 var(--su-static1) var(--black-050), 0 0 0 calc(var(--su-static4) - var(--su-static1)) var(--theme-secondary-400);
+        outline: var(--su-static2) solid transparent;
     }
 
     background-color: var(--_ta-bg);
