@@ -25,16 +25,9 @@ a.s-block-link,
     &&__left,
     &&__right {
         &.is-selected {
-            &:focus:not(:focus-visible),
-            &:focus-visible {
-                outline: none;
+            &:not(:focus-visible) {
+                box-shadow: inset var(--_li-block-bs-offset-x, 3px) 0 0 var(--_bl-bs-color);
             }
-
-            &:focus-visible {
-                box-shadow: inset var(--_li-block-bs-offset-x, 3px) 0 0 var(--_bl-bs-color), 0 0 0 var(--su-static4) var(--focus-ring-muted);
-            }
-
-            box-shadow: inset var(--_li-block-bs-offset-x, 3px) 0 0 var(--_bl-bs-color);
         }
     }
 
@@ -63,7 +56,11 @@ a.s-block-link,
         color: var(--_bl-fc-visited);
     }
 
-    @focus-styles();
+    &:focus-visible {
+        box-shadow: inset 0 0 0 var(--su-static2) var(--theme-secondary-400), inset 0 0 0 var(--su-static4) var(--black-050);
+       outline: var(--su-static2) solid transparent;
+    }
+
     background-color: var(--_bl-bg); // [1]
     color: var(--_bl-fc);
 
