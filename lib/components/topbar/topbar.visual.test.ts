@@ -168,6 +168,6 @@ describe("topbar", () => {
         baseClass: "s-topbar",
         tag: "header",
         children: topbars,
-        variants: ["dark", "light"],
+        variants: ["dark variant", "light variant"], // `variant` added to make file labeling clearer
     });
 });
