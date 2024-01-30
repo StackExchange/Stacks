@@ -23,6 +23,7 @@
     --_tb-notice-fc: var(--theme-topbar-item-color, var(--black-400));
     --_tb-notice-bg-hover: var(--theme-topbar-item-background-hover, var(--black-200));
     --_tb-notice-fc-hover: var(--theme-topbar-item-color-hover, var(--black-600));
+    --_tb-notice-td: none;
     // Searchbar
     --_tb-searchbar-d: flex;
     --_tb-searchbar-p: 0 var(--su8);
@@ -37,6 +38,8 @@
 
     // CONTEXTUAL STYLES
     .highcontrast-mode({
+        --_tb-notice-td: underline;
+
         &__dark {
             // TODO HACK remove everything below once light/dark topbars are inheriting forced themes correctly
             --theme-topbar-item-color: var(--_white-static);
@@ -345,6 +348,7 @@
         background-color: var(--_tb-notice-bg);
         border: var(--su-static1) solid var(--_tb-notice-bg); // notice border-color matches background-color
         color: var(--_tb-notice-fc);
+        text-decoration: var(--_tb-notice-td);
 
         border-radius: var(--br-sm);
         display: inline-flex;
@@ -355,7 +359,6 @@
         margin-right: var(--su8);
         line-height: var(--lh-xxl);
         padding: 0 var(--su6);
-        text-decoration: none;
         text-transform: uppercase;
     }
 
