@@ -430,6 +430,29 @@
     warning: var(--yellow-500);
 }
 
+// translucent utility colors (HC set represents both light and dark HC modes)
+.set-translucent() {
+    secondary: var(--theme-secondary-custom-translucent, hsla(206, 100%, 40%, 0.15));
+    success: hsla(140, 40%, 75%, 0.4);
+    warning: hsla(47, 79%, 58%, 0.4);
+    error: hsla(358, 62%, 47%, 0.15);
+    muted: hsla(210, 8%, 15%, 0.1);
+}
+.set-translucent-dark() {
+    secondary: var(--theme-dark-secondary-custom-translucent, hsla(206, 100%, 40%, 0.25));
+    success: hsla(140, 40%, 75%, 0.4);
+    warning: hsla(47, 79%, 58%, 0.4);
+    error: hsla(358, 62%, 47%, 0.15);
+    muted: hsla(210, 8%, 15%, 0.1);
+}
+.set-translucent-hc() {
+    secondary: hsla(206, 100%, 40%, 0.9);
+    success: hsla(140, 40%, 40%, 0.9);
+    warning: hsla(47, 76%, 46%, 0.9);
+    error: hsla(358, 62%, 47%, 0.9);
+    muted: hsla(210, 8%, 55%, 0.95);
+}
+
 // focus (sets represents both light and dark mode)
 .set-focus() {
     default: var(--theme-secondary-custom-focus-ring, hsla(206, 100%, 40%, 0.15));
@@ -607,6 +630,7 @@
 .sets-utility() {
     bc: .set-bc();
     bs: .set-bs();
+    translucent: .set-translucent();
     focus-ring: .set-focus();
     highlight: .set-highlight();
     scrollbar: .set-scrollbar();
@@ -615,6 +639,7 @@
 .sets-utility-dark() {
     bc: .set-bc();
     bs: .set-bs-dark();
+    translucent: .set-translucent-dark();
     focus-ring: .set-focus-dark();
     highlight: .set-highlight-dark();
     scrollbar: .set-scrollbar-dark();
@@ -623,6 +648,7 @@
 .sets-utility-hc() {
     bc: .set-bc-hc();
     bs: .set-bs-hc();
+    translucent: .set-translucent-hc();
     focus-ring: .set-focus-hc();
     highlight: .set-highlight-hc();
     scrollbar: .set-scrollbar-hc();
@@ -631,6 +657,7 @@
 .sets-utility-dark-hc() {
     bc: .set-bc-hc();
     bs: .set-bs-hc-dark();
+    translucent: .set-translucent-hc();
     focus-ring: .set-focus-hc();
     highlight: .set-highlight-hc-dark();
     scrollbar: .set-scrollbar-hc-dark();

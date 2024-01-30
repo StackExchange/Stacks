@@ -61,7 +61,10 @@ export default {
         commonjs(),
         esbuildPlugin({ ts: true }),
         visualRegressionPlugin({
-            update: process.argv.includes("--update-visual-baseline"),
+            // https://github.com/StackExchange/Stacks?tab=readme-ov-file#visual-regression-tests
+            getFailedName: ({ browser, name }) => {
+                return `${browser}/baseline/${name}.png`;
+            },
         }),
     ],
     filterBrowserLogs: ({ args }) =>
