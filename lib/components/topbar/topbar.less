@@ -125,6 +125,9 @@
     }
 
     .s-navigation {
+        .s-navigation--item:focus-visible {
+            box-shadow: var(--theme-topbar-search-shadow-focus, 0 0 0 var(--su-static4) var(--focus-ring));
+        }
         .s-navigation--item:not(.is-selected) {
             color: var(--theme-topbar-item-color, var(--black-400));
         }
@@ -136,6 +139,10 @@
     }
     .s-popover .s-navigation {
         .s-navigation--item {
+            &:focus-visible {
+                box-shadow: var(0 0 0 var(--su-static4) var(--focus-ring));
+            }
+
             &:not(.is-selected) {
                 &:hover {
                     color: var(--black-600);
