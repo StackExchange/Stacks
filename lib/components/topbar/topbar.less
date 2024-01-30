@@ -101,75 +101,6 @@
     });
 
     // VARIANTS
-    &__dark {
-        // TODO this only works 100% perfectly in dark mode, due to child elements inheriting current theme colors
-        // TODO extend forced dark mode instead of overriding
-
-        @topbar-actual-background: .set-black()[600];
-
-        #calc-topbar-lightness-increase() when (lightness(@topbar-actual-background) < 15%) {
-            @topbar-search-lightness-increase: 20%;
-        }
-        #calc-topbar-lightness-increase() when not (lightness(@topbar-actual-background) < 15%) {
-            @topbar-search-lightness-increase: 10%;
-        }
-        #calc-topbar-lightness-increase();
-
-        --theme-topbar-background-color: @topbar-actual-background;
-        --theme-topbar-bottom-border: var(--su-static1) solid @topbar-actual-background;
-
-        // Search input
-        --theme-topbar-search-color: lighten(@topbar-actual-background, 80% + @topbar-search-lightness-increase);
-        --theme-topbar-search-background: lighten(@topbar-actual-background, @topbar-search-lightness-increase);
-        --theme-topbar-search-placeholder: lighten(@topbar-actual-background, 60% + @topbar-search-lightness-increase);
-        --theme-topbar-search-border: lighten(@topbar-actual-background, 20% + @topbar-search-lightness-increase);
-        --theme-topbar-search-border-focus: lighten(@topbar-actual-background, 45% + @topbar-search-lightness-increase);
-        --theme-topbar-search-shadow-focus: 0 0 0 var(--su-static4) fade(.set-white()[default], 30%);
-
-        // Search switcher
-        --theme-topbar-select-color: lighten(@topbar-actual-background, 60% + @topbar-search-lightness-increase);
-        --theme-topbar-select-background: lighten(@topbar-actual-background, 10% + @topbar-search-lightness-increase);
-
-        // Items
-        --theme-topbar-item-color: .set-black()[225];
-        --theme-topbar-item-color-hover: var(--_white-static);
-        --theme-topbar-item-background-hover: .set-black()[500];
-        --theme-topbar-item-color-current: var(--_white-static);
-        // --theme-topbar-item-border-current: var(--theme-primary); // As of Stacks v2, this is unused
-
-        // Themed border accent
-        --theme-topbar-accent-border: none;
-
-        --scrollbar: hsla(0, 0%, 100%, 0.2);
-    }
-
-    &__light {
-        // TODO this only works 100% perfectly in light mode, due to child elements inheriting current theme colors
-        // TODO extend forced light mode instead of overriding
-
-        --theme-topbar-background-color: var(--_white-static);
-        --theme-topbar-bottom-border: var(--su-static1) solid .set-black()[225];
-
-        // Search input
-        --theme-topbar-search-color: .set-black()[500];
-        --theme-topbar-search-background: var(--_white-static);
-        --theme-topbar-search-placeholder: .set-black()[400];
-        --theme-topbar-search-border: .set-black()[300];
-        --theme-topbar-search-border-focus: .set-blue()[400];
-        --theme-topbar-search-shadow-focus: 0 0 0 var(--su-static4) var(--focus-ring);
-
-        // Search switcher
-        --theme-topbar-select-color: .set-black()[500];
-        --theme-topbar-select-background: .set-black()[200];
-
-        // Items
-        --theme-topbar-item-color: .set-black()[400];
-        --theme-topbar-item-color-hover: .set-black()[500];
-        --theme-topbar-item-background-hover: .set-black()[200];
-        --theme-topbar-item-color-current: var(--_black-static);
-
-        --scrollbar: hsla(0, 0%, 0%, 0.2);
-    }
 
     // CHILD ELEMENTS
     & a&--logo {
@@ -482,4 +413,76 @@
     position: relative;
     width: 100%;
     z-index: var(--zi-navigation-fixed);
+}
+
+// DARK/LIGHT VARIANTS
+// NOTE: These are declared outside of the .s-topbar block to allow consumers (Core) to reference them directly
+// TODO move within .s-topbar block once Core no longer references this directly
+.s-topbar__dark {
+    // TODO this only works 100% perfectly in dark mode, due to child elements inheriting current theme colors
+    // TODO extend forced dark mode instead of overriding
+    @topbar-actual-background: .set-black()[600];
+
+    #calc-topbar-lightness-increase() when (lightness(@topbar-actual-background) < 15%) {
+        @topbar-search-lightness-increase: 20%;
+    }
+    #calc-topbar-lightness-increase() when not (lightness(@topbar-actual-background) < 15%) {
+        @topbar-search-lightness-increase: 10%;
+    }
+    #calc-topbar-lightness-increase();
+
+    --theme-topbar-background-color: @topbar-actual-background;
+    --theme-topbar-bottom-border: var(--su-static1) solid @topbar-actual-background;
+
+    // Search input
+    --theme-topbar-search-color: lighten(@topbar-actual-background, 80% + @topbar-search-lightness-increase);
+    --theme-topbar-search-background: lighten(@topbar-actual-background, @topbar-search-lightness-increase);
+    --theme-topbar-search-placeholder: lighten(@topbar-actual-background, 60% + @topbar-search-lightness-increase);
+    --theme-topbar-search-border: lighten(@topbar-actual-background, 20% + @topbar-search-lightness-increase);
+    --theme-topbar-search-border-focus: lighten(@topbar-actual-background, 45% + @topbar-search-lightness-increase);
+    --theme-topbar-search-shadow-focus: 0 0 0 var(--su-static4) fade(.set-white()[default], 30%);
+
+    // Search switcher
+    --theme-topbar-select-color: lighten(@topbar-actual-background, 60% + @topbar-search-lightness-increase);
+    --theme-topbar-select-background: lighten(@topbar-actual-background, 10% + @topbar-search-lightness-increase);
+
+    // Items
+    --theme-topbar-item-color: .set-black()[225];
+    --theme-topbar-item-color-hover: var(--_white-static);
+    --theme-topbar-item-background-hover: .set-black()[500];
+    --theme-topbar-item-color-current: var(--_white-static);
+
+    // Themed border accent
+    --theme-topbar-accent-border: none;
+
+    --scrollbar: hsla(0, 0%, 100%, 0.2);
+}
+
+// TODO move within .s-topbar block once Core no longer references this directly
+.s-topbar__light {
+    // TODO this only works 100% perfectly in light mode, due to child elements inheriting current theme colors
+    // TODO extend forced light mode instead of overriding
+
+    --theme-topbar-background-color: var(--_white-static);
+    --theme-topbar-bottom-border: var(--su-static1) solid .set-black()[225];
+
+    // Search input
+    --theme-topbar-search-color: .set-black()[500];
+    --theme-topbar-search-background: var(--_white-static);
+    --theme-topbar-search-placeholder: .set-black()[400];
+    --theme-topbar-search-border: .set-black()[300];
+    --theme-topbar-search-border-focus: .set-blue()[400];
+    --theme-topbar-search-shadow-focus: 0 0 0 var(--su-static4) var(--focus-ring);
+
+    // Search switcher
+    --theme-topbar-select-color: .set-black()[500];
+    --theme-topbar-select-background: .set-black()[200];
+
+    // Items
+    --theme-topbar-item-color: .set-black()[400];
+    --theme-topbar-item-color-hover: .set-black()[500];
+    --theme-topbar-item-background-hover: .set-black()[200];
+    --theme-topbar-item-color-current: var(--_black-static);
+
+    --scrollbar: hsla(0, 0%, 0%, 0.2);
 }
