@@ -28,7 +28,7 @@ const children = {
     searchbar: {
         input: `<div class="s-topbar--searchbar--input-group">
             <input type="text" placeholder="Search…" value="" autocomplete="off" class="s-input s-input__search">
-            ${IconSearch}
+            ${IconSearch.replace("svg-icon iconSearch", "s-input-icon s-input-icon__search svg-icon iconSearch")}
         </div>`,
         select: `<div class="s-select">
             <select aria-label="Search scope">
@@ -125,7 +125,7 @@ const topbarChildren = ({
                 </nav>
             ` : ""}
             ${searchInput ? `
-                <form class="s-topbar--searchbar bg-red-400" autocomplete="off">
+                <form class="s-topbar--searchbar" autocomplete="off">
                     ${searchSelect ? children.searchbar.select : ""}
                     ${children.searchbar.input}
                 </form>
