@@ -1,5 +1,4 @@
-import { html } from "@open-wc/testing";
-import { defaultOptions, runComponentTests } from "../../test/test-utils";
+import { runComponentTests } from "../../test/test-utils";
 import "../../index";
 import { IconAchievements, IconAlert, IconHelp, IconInbox, IconModerator, IconReviewQueue, IconSearch, IconStackExchange } from "@stackoverflow/stacks-icons/icons";
 
