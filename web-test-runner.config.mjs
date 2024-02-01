@@ -91,7 +91,7 @@ export default {
             files: "lib/**/*.a11y.test.ts",
             browsers: [playwrightLauncher({ product: "chromium" })],
             testRunnerHtml: (testFramework) =>
-                `<html>
+                `<!DOCTYPE html><html>
                     <body>
                         ${disableCSSAnimationSnippet}
                         <script type="module" src="${testFramework}"></script>
@@ -106,7 +106,7 @@ export default {
             name: "visual",
             files: "lib/**/*.visual.test.ts",
             testRunnerHtml: () =>
-                `<html>
+                `<!DOCTYPE html><html>
                     <body>
                         ${disableCSSAnimationSnippet}
                         <script type="module" src="./visual-test-framework.js"></script>

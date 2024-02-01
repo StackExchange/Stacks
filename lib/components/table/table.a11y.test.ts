@@ -76,7 +76,7 @@ const children = {
         </tbody>
         <tfoot class="s-table--totals">
             <tr>
-                <td scope="row"><span class="v-visible-sr">Empty</span></td>
+                <td><span class="v-visible-sr">Empty</span></td>
                 <th scope="row" class="ta-left">Totals</th>
                 <td><span class="v-visible-sr">Empty</span></td>
                 <td colspan="2">160</td>
