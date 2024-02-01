@@ -1,0 +1,38 @@
+name: CI
+
+on:
+  push:
+    branches: [develop]
+  pull_request:
+    branches: [develop]
+
+jobs:
+  build-and-test:
+    name: ${{ matrix.command_description }}
+    uses: ./.github/workflows/test.yml
+    strategy:
+      fail-fast: true
+      matrix:
+        include:
+        - command_description: Build
+          command: npm run build
+          needs_playwright: false
+        - command_description: Lint
+          command: npm run lint
+          needs_playwright: false
+        - command_description: Less Tests
+          command: npm run test:less
+          needs_playwright: false
+        - command_description: Unit Tests
+          command: npm run test:unit -- --config web-test-runner.config.ci.mjs
+          needs_playwright: true
+        - command_description: A11y Tests
+          command: npm run test:a11y -- --config web-test-runner.config.ci.mjs
+          needs_playwright: true
+        - command_description: Visual Regression Tests
+          command: npm run test:visual -- --config web-test-runner.config.ci.mjs
+          needs_playwright: true
+    with:
+      command: ${{ matrix.command }}
+      command_description: ${{ matrix.command_description }}
+      needs_playwright: ${{ matrix.needs_playwright }}
