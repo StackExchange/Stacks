@@ -89,24 +89,38 @@ const runVisualTest = async (
     },
     semaphore: Semaphore
 ) => {
-    await semaphore.acquire();
-    await fixture(element);
-    const el = screen.getByTestId(testid);
+    let retryAttempts = 1;
 
-    try {
-        await visualDiff(el, testid);
-        return {
-            testid,
-        };
-    } catch (e) {
-        await Promise.reject({
-            testid,
-            error: e,
-        });
-    } finally {
-        el.remove();
-        semaphore.release();
-    }
+    do {
+        await semaphore.acquire();
+        await fixture(element);
+        const el = screen.getByTestId(testid);
+
+        try {
+            await visualDiff(el, testid);
+            return {
+                testid,
+            };
+        } catch (error) {
+            const e = error as Error;
+            // if the error is not a visual diff failure, retry
+            // this is to prevent flaky tests due to snapshot capturing
+            if (
+                retryAttempts > 0 &&
+                !e.message.includes("Visual diff failed.")
+            ) {
+                retryAttempts--;
+                continue;
+            }
+            await Promise.reject({
+                testid,
+                error: e,
+            });
+        } finally {
+            el.remove();
+            semaphore.release();
+        }
+    } while (retryAttempts > 0);
 };
 
 const runVisualTests = (args: VisualTestArgs) => {
