@@ -1,0 +1,36 @@
+name: Build and Test
+
+on:
+  push:
+    branches: [develop]
+  pull_request:
+    branches: [develop]
+
+jobs:
+  build-and-test:
+    name: Build and Test
+    uses: ./.github/workflows/test.yml
+    strategy:
+      fail-fast: true
+      matrix:
+        include:
+        - command_description: Build
+          command: npm run build
+        - command_description: Lint
+          command: npm run lint
+        - command_description: Less Tests
+          command: npm run test:less
+        - command_description: Unit Tests
+          command: npm run test:unit -- --config web-test-runner.config.ci.mjs
+          needs_playwright: true
+        - command_description: A11y Tests
+          command: npm run test:a11y -- --config web-test-runner.config.ci.mjs
+          needs_playwright: true
+        - command_description: Visual Regression Tests
+          command: npm run test:visual -- --config web-test-runner.config.ci.mjs
+          needs_playwright: true
+
+# cancel the jobs if another workflow is kicked off for the same branch
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
