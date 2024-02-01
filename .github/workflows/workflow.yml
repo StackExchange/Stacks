@@ -22,13 +22,13 @@ jobs:
           command: npm run test:less
         - command_description: Unit Tests
           command: npm run test:unit -- --config web-test-runner.config.ci.mjs
-          needs_playwright: true
+          needs_playwright: ${{ true }}
         - command_description: A11y Tests
           command: npm run test:a11y -- --config web-test-runner.config.ci.mjs
-          needs_playwright: true
+          needs_playwright: ${{ true }}
         - command_description: Visual Regression Tests
           command: npm run test:visual -- --config web-test-runner.config.ci.mjs
-          needs_playwright: true
+          needs_playwright: ${{ true }}
     with:
       command: ${{ matrix.command }}
       command_description: ${{ matrix.command_description }}
