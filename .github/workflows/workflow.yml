@@ -33,8 +33,3 @@ jobs:
       command: ${{ matrix.command }}
       command_description: ${{ matrix.command_description }}
       needs_playwright: ${{ matrix.needs_playwright }}
-
-# cancel the jobs if another workflow is kicked off for the same branch
-concurrency:
-  group: ${{ github.workflow }}-${{ github.ref }}
-  cancel-in-progress: true
