@@ -90,7 +90,7 @@ export default {
 
     // animation disable CSS taken from https://github.com/microsoft/playwright/issues/7548#issuecomment-881897256
     testRunnerHtml: (testFramework) =>
-        `<html>
+        `<!DOCTYPE html><html>
             <body>
                 <style>
                     *,
