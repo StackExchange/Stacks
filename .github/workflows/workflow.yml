@@ -29,6 +29,10 @@ jobs:
         - command_description: Visual Regression Tests
           command: npm run test:visual -- --config web-test-runner.config.ci.mjs
           needs_playwright: true
+    with:
+      command: ${{ matrix.command }}
+      command_description: ${{ matrix.command_description }}
+      needs_playwright: ${{ matrix.needs_playwright }}
 
 # cancel the jobs if another workflow is kicked off for the same branch
 concurrency:
