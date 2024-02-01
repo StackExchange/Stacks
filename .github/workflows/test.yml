@@ -18,7 +18,7 @@ on:
 
 jobs:
   build-and-test:
-    name: ${{ github.event.inputs.command_description }}
+    name: ${{ inputs.command_description }}
     runs-on: ubuntu-latest
     steps:
       - name: ⬇️ Checkout
@@ -38,7 +38,7 @@ jobs:
         if: inputs.needs_playwright == 'true'
         run: npx playwright install --with-deps
 
-      - name: ▶️ ${{ github.event.inputs.command_description }}
+      - name: ▶️ ${{ inputs.command_description }}
         run: ${{ inputs.command }}
 
       - name: ⬆️ Upload Visual Regression Test Results
