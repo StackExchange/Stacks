@@ -35,7 +35,7 @@ jobs:
         run: npm ci
 
       - name: 🏗 Install Playwright
-        if: inputs.needs_playwright == 'true'
+        if: inputs.needs_playwright == true
         run: npx playwright install --with-deps
 
       - name: ▶️ ${{ inputs.command_description }}
