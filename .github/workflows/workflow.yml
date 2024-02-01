@@ -16,10 +16,13 @@ jobs:
         include:
         - command_description: Build
           command: npm run build
+          needs_playwright: false
         - command_description: Lint
           command: npm run lint
+          needs_playwright: false
         - command_description: Less Tests
           command: npm run test:less
+          needs_playwright: false
         - command_description: Unit Tests
           command: npm run test:unit -- --config web-test-runner.config.ci.mjs
           needs_playwright: true
