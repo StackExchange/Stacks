@@ -1,10 +1,9 @@
 import { html } from "@open-wc/testing";
-import { runComponentTests } from "../../test/test-utils";
+import { runA11yTests } from "../../test/a11y-test-utils";
 import "../../index";
 
 describe("page title", () => {
-    runComponentTests({
-        type: "a11y",
+    runA11yTests({
         baseClass: "s-page-title",
         children: {
             default: `

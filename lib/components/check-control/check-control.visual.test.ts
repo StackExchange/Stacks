@@ -1,21 +1,19 @@
-import { defaultOptions, runComponentTests } from "../../test/test-utils";
+import { runVisualTests } from "../../test/visual-test-utils";
 import "../../index";
 
 ["checkbox", "radio"].forEach((type) => {
-    describe("s-check-control", () => {
-        // TODO include indeterminate
-        ["checked", "unchecked"].forEach((state) => {
-            runComponentTests({
-                type: "visual",
-                baseClass: "s-check-control",
-                modifiers: {
-                    global: ["has-warning", "has-error", "has-success"],
-                },
-                attributes: {
-                    class: "bg-black-225 hs1 ws2 p8",
-                },
-                children: {
-                    default: `
+    // TODO include indeterminate
+    ["checked", "unchecked"].forEach((state) => {
+        runVisualTests({
+            baseClass: "s-check-control",
+            modifiers: {
+                global: ["has-warning", "has-error", "has-success"],
+            },
+            attributes: {
+                class: "bg-black-225 hs1 ws2 p8",
+            },
+            children: {
+                default: `
                         <input
                             class="s-${type}"
                             type="${type}"
@@ -27,12 +25,10 @@ import "../../index";
                             <p class="s-input-message">Description</p>
                         </label>
                     `,
-                },
-                options: {
-                    ...defaultOptions,
-                    testidSuffix: `${state}-${type}`,
-                },
-            });
+            },
+            options: {
+                testidSuffix: `${state}-${type}`,
+            },
         });
     });
 });

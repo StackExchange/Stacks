@@ -1,5 +1,5 @@
 import { html } from "@open-wc/testing";
-import { defaultOptions, runComponentTests } from "../../test/test-utils";
+import { runA11yTests } from "../../test/a11y-test-utils";
 import "../../index";
 
 describe("toggle-switch", () => {
@@ -11,8 +11,7 @@ describe("toggle-switch", () => {
             }`;
             const id = `toggle-switch${idSuffix}`;
 
-            runComponentTests({
-                type: "a11y",
+            runA11yTests({
                 baseClass: "s-toggle-switch",
                 modifiers: {
                     global: idSuffix ? [idSuffix.substring(1)] : [], // for proper testid generation
@@ -36,8 +35,7 @@ describe("toggle-switch", () => {
 
     // Multiple toggle switch variant
     [true, false].forEach((offChecked) => {
-        runComponentTests({
-            type: "a11y",
+        runA11yTests({
             baseClass: "s-toggle-switch",
             variants: ["multiple"],
             modifiers: {
@@ -58,7 +56,6 @@ describe("toggle-switch", () => {
                 `,
             },
             options: {
-                ...defaultOptions,
                 includeNullVariant: false,
             },
             template: ({ component, testid }) => html`

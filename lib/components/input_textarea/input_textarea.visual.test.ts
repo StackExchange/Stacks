@@ -1,5 +1,5 @@
 import { html } from "@open-wc/testing";
-import { runComponentTests } from "../../test/test-utils";
+import { runVisualTests } from "../../test/visual-test-utils";
 import "../../index";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -29,14 +29,53 @@ const otherModifiers = ["creditcard", "search"];
     const children =
         type === "textarea" ? { default: "Enter your text here" } : undefined;
 
-    describe(type, () => {
-        // Base styles w/ value, modifiers
-        runComponentTests({
-            type: "visual",
-            baseClass: `s-${type}`,
-            modifiers: {
-                primary: [...sizes, ...otherModifiers],
-            },
+    // Base styles w/ value, modifiers
+    runVisualTests({
+        baseClass: `s-${type}`,
+        modifiers: {
+            primary: [...sizes, ...otherModifiers],
+        },
+        tag: type,
+        attributes:
+            type === "input"
+                ? {
+                      type: "text",
+                      value: "Text input value",
+                  }
+                : {},
+        children,
+        template,
+    });
+
+    // Base styles w/o value; w/ readonly attr; w/ disabled attr
+    customAttributes.forEach((attributes) => {
+        const attrString = Object.keys(attributes).sort().join("-");
+        let attr = attributes;
+        if (type === "input") {
+            attr = {
+                type: "text",
+                ...attributes,
+            };
+            if (!attributes.placeholder) {
+                attr = {
+                    value: "Text input value",
+                    ...attr,
+                };
+            }
+        }
+        runVisualTests({
+            baseClass: `s-${type} ${attrString}`,
+            tag: type,
+            attributes: attr,
+            children,
+            template,
+        });
+    });
+
+    // w/ state classes; .is-readonly
+    states.forEach((state) => {
+        runVisualTests({
+            baseClass: `s-${type} state-${state}`,
             tag: type,
             attributes:
                 type === "input"
@@ -46,53 +85,9 @@ const otherModifiers = ["creditcard", "search"];
                       }
                     : {},
             children,
-            template,
+            template: ({ component, testid }) =>
+                template({ component, testid, classes: state }),
         });
-
-        // Base styles w/o value; w/ readonly attr; w/ disabled attr
-        customAttributes.forEach((attributes) => {
-            const attrString = Object.keys(attributes).sort().join("-");
-            let attr = attributes;
-            if (type === "input") {
-                attr = {
-                    type: "text",
-                    ...attributes,
-                };
-                if (!attributes.placeholder) {
-                    attr = {
-                        value: "Text input value",
-                        ...attr,
-                    };
-                }
-            }
-            runComponentTests({
-                type: "visual",
-                baseClass: `s-${type} ${attrString}`,
-                tag: type,
-                attributes: attr,
-                children,
-                template,
-            });
-        });
-
-        // w/ state classes; .is-readonly
-        states.forEach((state) => {
-            runComponentTests({
-                type: "visual",
-                baseClass: `s-${type} state-${state}`,
-                tag: type,
-                attributes:
-                    type === "input"
-                        ? {
-                              type: "text",
-                              value: "Text input value",
-                          }
-                        : {},
-                children,
-                template: ({ component, testid }) =>
-                    template({ component, testid, classes: state }),
-            });
-        });
-        // TODO interaction (focus) states?
     });
+    // TODO interaction (focus) states?
 });

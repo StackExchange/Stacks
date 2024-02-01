@@ -1,5 +1,5 @@
 import { html } from "@open-wc/testing";
-import { defaultOptions, runComponentTests } from "../../test/test-utils";
+import { runVisualTests } from "../../test/visual-test-utils";
 import "../../index";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -11,52 +11,45 @@ const blockLinkTemplate = ({ component, testid }: any) =>
         ${component}
     </div>`;
 
-describe("block-link", () => {
-    // Base block link
-    runComponentTests({
-        type: "visual",
-        baseClass: "s-block-link",
-        modifiers: {
-            global: ["is-selected"],
-        },
-        children: {
-            default: `block link`,
-        },
-        template: blockLinkTemplate,
-    });
+// Base block link
+runVisualTests({
+    baseClass: "s-block-link",
+    modifiers: {
+        global: ["is-selected"],
+    },
+    children: {
+        default: `block link`,
+    },
+    template: blockLinkTemplate,
+});
 
-    // Base + danger
-    runComponentTests({
-        type: "visual",
-        baseClass: "s-block-link",
-        modifiers: {
-            primary: ["danger"],
-        },
-        children: {
-            default: `block link`,
-        },
-        options: {
-            ...defaultOptions,
-            includeNullModifier: false,
-        },
-        template: blockLinkTemplate,
-    });
+// Base + danger
+runVisualTests({
+    baseClass: "s-block-link",
+    modifiers: {
+        primary: ["danger"],
+    },
+    children: {
+        default: `block link`,
+    },
+    options: {
+        includeNullModifier: false,
+    },
+    template: blockLinkTemplate,
+});
 
-    // All left and rignt variants
-    runComponentTests({
-        type: "visual",
-        baseClass: "s-block-link",
-        variants: ["left is-selected", "right is-selected"],
-        modifiers: {
-            primary: ["danger"],
-        },
-        children: {
-            default: `block link`,
-        },
-        options: {
-            ...defaultOptions,
-            includeNullVariant: false,
-        },
-        template: blockLinkTemplate,
-    });
+// All left and rignt variants
+runVisualTests({
+    baseClass: "s-block-link",
+    variants: ["left is-selected", "right is-selected"],
+    modifiers: {
+        primary: ["danger"],
+    },
+    children: {
+        default: `block link`,
+    },
+    options: {
+        includeNullVariant: false,
+    },
+    template: blockLinkTemplate,
 });

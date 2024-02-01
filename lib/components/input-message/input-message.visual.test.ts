@@ -1,5 +1,5 @@
 import { html } from "@open-wc/testing";
-import { runComponentTests } from "../../test/test-utils";
+import { runVisualTests } from "../../test/visual-test-utils";
 import "../../index";
 
 const states = [
@@ -27,33 +27,28 @@ const states = [
     },
 ];
 
-describe("input-message", () => {
-    states.forEach((state) => {
-        runComponentTests({
-            type: "visual",
-            baseClass: `s-input-message ${
-                state.class ? `state-${state.class}` : ""
-            }`,
-            children: {
-                default: state.children,
-            },
-            template: ({ component, testid }) => {
-                const isDisabled = state.class === "disabled";
-                const stateClass =
-                    state.class && state.class !== "disabled"
-                        ? state.class
-                        : "";
+states.forEach((state) => {
+    runVisualTests({
+        baseClass: `s-input-message ${
+            state.class ? `state-${state.class}` : ""
+        }`,
+        children: {
+            default: state.children,
+        },
+        template: ({ component, testid }) => {
+            const isDisabled = state.class === "disabled";
+            const stateClass =
+                state.class && state.class !== "disabled" ? state.class : "";
 
-                return html`
-                    <fieldset
-                        data-testid="${testid}"
-                        class="p8 ws3 ${stateClass}"
-                        ?disabled="${isDisabled}"
-                    >
-                        ${component}
-                    </fieldset>
-                `;
-            },
-        });
+            return html`
+                <fieldset
+                    data-testid="${testid}"
+                    class="p8 ws3 ${stateClass}"
+                    ?disabled="${isDisabled}"
+                >
+                    ${component}
+                </fieldset>
+            `;
+        },
     });
 });

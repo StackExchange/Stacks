@@ -1,5 +1,5 @@
 import { html } from "@open-wc/testing";
-import { runComponentTests } from "../../test/test-utils";
+import { runVisualTests } from "../../test/visual-test-utils";
 import "../../index";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -87,19 +87,16 @@ const children = {
     `,
 };
 
-describe("table", () => {
-    // default, sizes
-    runComponentTests({
-        type: "visual",
-        baseClass: "s-table",
-        variants: ["stripes"],
-        modifiers: {
-            primary: ["sm", "lg"],
-            secondary: ["b0", "bx", "bx-simple", "sortable"],
-            // global: ["ta-center", "ta-left", "ta-justify", "ta-right", "va-bottom", "va-middle", "va-top"], // Removing these modifiers *for now* since they create so many test images and would slow testing
-        },
-        tag: "table",
-        children,
-        template,
-    });
+// default, sizes
+runVisualTests({
+    baseClass: "s-table",
+    variants: ["stripes"],
+    modifiers: {
+        primary: ["sm", "lg"],
+        secondary: ["b0", "bx", "bx-simple", "sortable"],
+        // global: ["ta-center", "ta-left", "ta-justify", "ta-right", "va-bottom", "va-middle", "va-top"], // Removing these modifiers *for now* since they create so many test images and would slow testing
+    },
+    tag: "table",
+    children,
+    template,
 });

@@ -1,4 +1,4 @@
-import { runComponentTests } from "../../test/test-utils";
+import { runA11yTests } from "../../test/a11y-test-utils";
 import "../../index";
 
 const getChild = (child?: string): string => {
@@ -22,8 +22,7 @@ const getChild = (child?: string): string => {
 };
 
 describe("avatar", () => {
-    runComponentTests({
-        type: "a11y",
+    runA11yTests({
         baseClass: "s-avatar",
         variants: ["24", "32", "48", "64", "96", "128"],
         children: {

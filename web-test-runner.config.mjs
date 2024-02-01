@@ -10,6 +10,22 @@ const ignoredBrowserLogs = [
     "Lit is in dev mode. Not recommended for production! See https://lit.dev/msg/dev-mode for more information.",
 ];
 
+// disable CSS animation snippet
+// taken from https://github.com/microsoft/playwright/issues/7548#issuecomment-881897256
+const disableCSSAnimationSnippet =
+`<style>
+    *,
+    *::before,
+    *::after {
+        -moz-animation: none !important;
+        -moz-transition: none !important;
+        animation: none !important;
+        caret-color: transparent !important;
+        transition: none !important;
+    }
+</style>`
+
+
 const postcss = fromRollup(_postcss);
 const replace = fromRollup(_replace);
 const commonjs = fromRollup(_commonjs);
@@ -74,36 +90,30 @@ export default {
             name: "a11y",
             files: "lib/**/*.a11y.test.ts",
             browsers: [playwrightLauncher({ product: "chromium" })],
+            testRunnerHtml: (testFramework) =>
+                `<html>
+                    <body>
+                        ${disableCSSAnimationSnippet}
+                        <script type="module" src="${testFramework}"></script>
+                    </body>
+                </html>`,
         },
         {
             name: "unit",
             files: "lib/**/!(*.visual|*.a11y|*.less).test.ts",
-            // for the unit tests we need to keep animations enabled
-            testRunnerHtml: (testFramework) => `<html><body><script type="module" src="${testFramework}"></script></body></html>`,
         },
         {
             name: "visual",
             files: "lib/**/*.visual.test.ts",
+            testRunnerHtml: () =>
+                `<html>
+                    <body>
+                        ${disableCSSAnimationSnippet}
+                        <script type="module" src="./visual-test-framework.js"></script>
+                    </body>
+                </html>`,
         },
     ],
     testsFinishTimeout: 60 * 1000 * 5, // 5 minutes
-
-    // animation disable CSS taken from https://github.com/microsoft/playwright/issues/7548#issuecomment-881897256
-    testRunnerHtml: (testFramework) =>
-        `<html>
-            <body>
-                <style>
-                    *,
-                    *::before,
-                    *::after {
-                        -moz-animation: none !important;
-                        -moz-transition: none !important;
-                        animation: none !important;
-                        caret-color: transparent !important;
-                        transition: none !important;
-                    }
-                </style>
-                <script type="module" src="${testFramework}"></script>
-            </body>
-        </html>`,
 };
+

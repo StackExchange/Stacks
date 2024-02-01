@@ -1,4 +1,4 @@
-import { runComponentTests } from "../../test/test-utils";
+import { runVisualTests } from "../../test/visual-test-utils";
 import "../../index";
 
 const bannerChild = `
@@ -18,20 +18,17 @@ const bannerChild = `
     </div>
 `;
 
-describe("banner", () => {
-    runComponentTests({
-        type: "visual",
-        baseClass: "s-banner",
-        variants: ["info", "success", "warning", "danger"],
-        modifiers: {
-            primary: ["important"],
-        },
-        attributes: {
-            role: "alert",
-            ariaHidden: "false",
-        },
-        children: {
-            default: bannerChild,
-        },
-    });
+runVisualTests({
+    baseClass: "s-banner",
+    variants: ["info", "success", "warning", "danger"],
+    modifiers: {
+        primary: ["important"],
+    },
+    attributes: {
+        role: "alert",
+        ariaHidden: "false",
+    },
+    children: {
+        default: bannerChild,
+    },
 });

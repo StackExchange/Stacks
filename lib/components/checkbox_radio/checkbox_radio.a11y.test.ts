@@ -1,5 +1,5 @@
 import { html } from "@open-wc/testing";
-import { defaultOptions, runComponentTests } from "../../test/test-utils";
+import { runA11yTests } from "../../test/a11y-test-utils";
 import "../../index";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -13,8 +13,7 @@ const checkboxTemplate = ({ component, testid, id }: any) =>
     describe(type, () => {
         // TODO include indeterminate
         ["checked", "unchecked"].forEach((state) => {
-            runComponentTests({
-                type: "a11y",
+            runA11yTests({
                 tag: "input",
                 baseClass: `s-${type}`,
                 attributes: {
@@ -30,7 +29,6 @@ const checkboxTemplate = ({ component, testid, id }: any) =>
                         id: "test-id",
                     }),
                 options: {
-                    ...defaultOptions,
                     testidSuffix: state,
                 },
             });

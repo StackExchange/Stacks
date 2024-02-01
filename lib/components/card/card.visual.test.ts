@@ -1,5 +1,5 @@
 import { html } from "@open-wc/testing";
-import { defaultOptions, runComponentTests } from "../../test/test-utils";
+import { runVisualTests } from "../../test/visual-test-utils";
 import "../../index";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -24,32 +24,27 @@ const baseChild = `
     </div>
 `;
 
-describe("card", () => {
-    runComponentTests({
-        type: "visual",
-        baseClass: "s-card",
-        variants: ["muted"],
-        children: {
-            default: baseChild,
-        },
-        template: cardTemplate,
-    });
+runVisualTests({
+    baseClass: "s-card",
+    variants: ["muted"],
+    children: {
+        default: baseChild,
+    },
+    template: cardTemplate,
+});
 
-    // Stacked
-    runComponentTests({
-        type: "visual",
-        baseClass: "s-card",
-        variants: ["stacked"], // dummy variant for testid differentiation
-        children: {
-            default: `<div class="s-card ps-relative b4 l4">${baseChild}</div>`,
-        },
-        attributes: {
-            class: "p0",
-        },
-        template: cardTemplate,
-        options: {
-            ...defaultOptions,
-            includeNullVariant: false,
-        },
-    });
+// Stacked
+runVisualTests({
+    baseClass: "s-card",
+    variants: ["stacked"], // dummy variant for testid differentiation
+    children: {
+        default: `<div class="s-card ps-relative b4 l4">${baseChild}</div>`,
+    },
+    attributes: {
+        class: "p0",
+    },
+    template: cardTemplate,
+    options: {
+        includeNullVariant: false,
+    },
 });

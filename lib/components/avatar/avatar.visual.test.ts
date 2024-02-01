@@ -1,5 +1,5 @@
 import { html } from "@open-wc/testing";
-import { runComponentTests } from "../../test/test-utils";
+import { runVisualTests } from "../../test/visual-test-utils";
 import "../../index";
 
 const base64Image =
@@ -25,27 +25,24 @@ const getChild = (child?: string): string => {
     }
 };
 
-describe("avatar", () => {
-    runComponentTests({
-        type: "visual",
-        baseClass: "s-avatar",
-        variants: ["24", "32", "48", "64", "96", "128"],
-        children: {
-            default: getChild(),
-            image: getChild("image"),
-            letter: getChild("letter"),
-        },
-        attributes: {
-            href: "#",
-        },
-        tag: "a",
-        template: ({ component, testid }) => html`
-            <div
-                data-testid="${testid}"
-                class="d-inline-flex ai-center jc-center hmn1 wmn1 p8"
-            >
-                ${component}
-            </div>
-        `,
-    });
+runVisualTests({
+    baseClass: "s-avatar",
+    variants: ["24", "32", "48", "64", "96", "128"],
+    children: {
+        default: getChild(),
+        image: getChild("image"),
+        letter: getChild("letter"),
+    },
+    attributes: {
+        href: "#",
+    },
+    tag: "a",
+    template: ({ component, testid }) => html`
+        <div
+            data-testid="${testid}"
+            class="d-inline-flex ai-center jc-center hmn1 wmn1 p8"
+        >
+            ${component}
+        </div>
+    `,
 });

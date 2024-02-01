@@ -1,6 +1,6 @@
 import { html } from "@open-wc/testing";
 import { IconClearSm } from "@stackoverflow/stacks-icons";
-import { defaultOptions, runComponentTests } from "../../test/test-utils";
+import { runVisualTests } from "../../test/visual-test-utils";
 import "../../index";
 
 const children = {
@@ -14,33 +14,28 @@ const template = ({ component, testid }: any) => html`
     <div data-testid="${testid}" class="d-inline-block p4">${component}</div>
 `;
 
-describe("tag", () => {
-    runComponentTests({
-        type: "visual",
-        baseClass: "s-tag",
-        variants: ["ignored", "watched", "moderator", "muted", "required"],
-        modifiers: {
-            global: ["is-selected"],
-        },
-        children,
-        template,
-    });
+runVisualTests({
+    baseClass: "s-tag",
+    variants: ["ignored", "watched", "moderator", "muted", "required"],
+    modifiers: {
+        global: ["is-selected"],
+    },
+    children,
+    template,
+});
 
-    // Size modifiers
-    runComponentTests({
-        type: "visual",
-        baseClass: "s-tag",
-        modifiers: {
-            primary: ["xs", "sm", "md", "lg"],
-            global: ["is-selected"],
-        },
-        children: {
-            default: `default`,
-        },
-        template,
-        options: {
-            ...defaultOptions,
-            includeNullModifier: false,
-        },
-    });
+// Size modifiers
+runVisualTests({
+    baseClass: "s-tag",
+    modifiers: {
+        primary: ["xs", "sm", "md", "lg"],
+        global: ["is-selected"],
+    },
+    children: {
+        default: `default`,
+    },
+    template,
+    options: {
+        includeNullModifier: false,
+    },
 });

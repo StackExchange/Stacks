@@ -1,5 +1,5 @@
 import { html } from "@open-wc/testing";
-import { defaultOptions, runComponentTests } from "../../test/test-utils";
+import { runVisualTests } from "../../test/visual-test-utils";
 import "../../index";
 
 const items = [
@@ -53,49 +53,44 @@ const getChildren = (includeTitles = false): string =>
         })
         .join("");
 
-describe("navigation", () => {
-    runComponentTests({
-        type: "visual",
-        baseClass: "s-navigation",
-        variants: ["muted"],
-        modifiers: {
-            primary: ["scroll", "sm"],
-        },
-        tag: "ul",
-        children: {
-            default: getChildren(),
-        },
-        template: ({ component, testid }) => html`
-            <nav
-                class="d-inline-block p8 wmx3"
-                aria-label="example-navigation"
-                data-testid="${testid}"
-            >
-                ${component}
-            </nav>
-        `,
-    });
+runVisualTests({
+    baseClass: "s-navigation",
+    variants: ["muted"],
+    modifiers: {
+        primary: ["scroll", "sm"],
+    },
+    tag: "ul",
+    children: {
+        default: getChildren(),
+    },
+    template: ({ component, testid }) => html`
+        <nav
+            class="d-inline-block p8 wmx3"
+            aria-label="example-navigation"
+            data-testid="${testid}"
+        >
+            ${component}
+        </nav>
+    `,
+});
 
-    runComponentTests({
-        type: "visual",
-        baseClass: "s-navigation",
-        variants: ["vertical"],
-        tag: "ul",
-        children: {
-            default: getChildren(true),
-        },
-        template: ({ component, testid }) => html`
-            <nav
-                class="d-inline-block p8 ws2"
-                aria-label="example-navigation"
-                data-testid="${testid}"
-            >
-                ${component}
-            </nav>
-        `,
-        options: {
-            ...defaultOptions,
-            includeNullVariant: false,
-        },
-    });
+runVisualTests({
+    baseClass: "s-navigation",
+    variants: ["vertical"],
+    tag: "ul",
+    children: {
+        default: getChildren(true),
+    },
+    template: ({ component, testid }) => html`
+        <nav
+            class="d-inline-block p8 ws2"
+            aria-label="example-navigation"
+            data-testid="${testid}"
+        >
+            ${component}
+        </nav>
+    `,
+    options: {
+        includeNullVariant: false,
+    },
 });

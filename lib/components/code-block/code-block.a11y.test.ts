@@ -1,18 +1,16 @@
-import { defaultOptions, runComponentTests } from "../../test/test-utils";
+import { runA11yTests } from "../../test/a11y-test-utils";
 import highlightedFixtures from "./code-block.fixtures";
 import "../../index";
 
 describe("code block", () => {
     Object.keys(highlightedFixtures).forEach((language) => {
-        runComponentTests({
-            type: "a11y",
+        runA11yTests({
             tag: "pre",
             baseClass: `s-code-block language-${language}`,
             children: {
                 default: highlightedFixtures[language],
             },
             options: {
-                ...defaultOptions,
                 includeNullModifier: false,
             },
             attributes: {
