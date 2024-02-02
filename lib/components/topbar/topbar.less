@@ -5,9 +5,6 @@
 }
 
 .s-topbar {
-    --_tb-focus-color-inner: var(--white);
-    --_tb-focus-color-outer: var(--theme-secondary-400);
-
     min-width: auto;
     width: 100%;
     z-index: var(--zi-navigation-fixed);
@@ -42,50 +39,39 @@
 
     // Overrides for focus style colors in forced light variant
     &&__light {
-        --_tb-focus-color-inner: .set-white()[default]; // forces white for inner focus ring color
+        --focus-neutral: .set-white()[default]; // forces white for inner focus ring color
     }
 
     .dark-mode({
         &.s-topbar__light {
-            --_tb-focus-color-outer: var(--theme-dark-secondary-custom-200, .set-theme-secondary-default()[200]);
+            --focus-theme: var(--theme-dark-secondary-custom-200, .set-theme-secondary-default()[200]);
         }
     });
 
     .highcontrast-dark-mode({
         &.s-topbar__light {
-            --_tb-focus-color-outer: .set-theme-secondary-default()[200];
+            --focus-theme: .set-theme-secondary-default()[200];
         }
     });
 
     // Overrides for focus style colors in forced dark variant
     .highcontrast-mode({
         &.s-topbar__dark {
-            --_tb-focus-color-outer: .theme-dark-default()[secondary];
+            --focus-theme: .theme-dark-default()[secondary];
         }
     });
 
     &&__dark {
-        --_tb-focus-color-inner: .set-black()[600]; // set to match .s-topbar__dark --theme-topbar-background-color;
-        --_tb-focus-color-outer: var(--theme-dark-secondary-custom-400, .theme-dark-default()[secondary]);
+        --focus-neutral: .set-black()[600]; // set to match .s-topbar__dark --theme-topbar-background-color;
+        --focus-theme: var(--theme-dark-secondary-custom-400, .theme-dark-default()[secondary]);
     }
 
     // focus styles
     a&--logo,
     & &--content &--item:not(&--item__unset),
-    &--notice,
-    .s-navigation .s-navigation--item {
+    &--notice {
         &:focus-visible {
-            box-shadow: inset 0 0 0 var(--su-static2) var(--_tb-focus-color-outer), inset 0 0 0 var(--su-static4) var(--_tb-focus-color-inner);
-            outline: var(--su-static2) solid transparent;
-        }
-    }
-
-    // TODO investigate removing once .s-input and .s-select have updated focus styles
-    & .s-topbar--searchbar .s-topbar--searchbar--input-group .s-input,
-    & .s-topbar--searchbar .s-select > select {
-        &:focus {
-            box-shadow: 0 0 0 var(--su-static2) var(--_tb-focus-color-inner), 0 0 0 var(--su-static4) var(--_tb-focus-color-outer) !important;
-            outline: var(--su-static2) solid transparent !important;
+            .focus-styles(true);
         }
     }
 
