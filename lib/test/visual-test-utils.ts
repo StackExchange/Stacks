@@ -7,12 +7,7 @@ import {
     getConfig,
 } from "@web/test-runner-core/browser/session.js";
 import { screen } from "@testing-library/dom";
-import {
-    generateTestVariations,
-    type TestVariationArgs,
-    type TestVariation,
-} from "./test-utils";
-import Semaphore from "./semaphore";
+import { generateTestVariations, type TestVariationArgs } from "./test-utils";
 
 type VisualTestArgs = TestVariationArgs;
 
@@ -79,20 +74,16 @@ class TestWorker {
 // runVisualTests per file, and we need to wait for all of them to finish
 const worker = new TestWorker();
 
-const runVisualTest = async (
-    {
-        element,
-        testid,
-    }: {
-        element: ReturnType<typeof html>;
-        testid: string;
-    },
-    semaphore: Semaphore
-) => {
+const runVisualTest = async ({
+    element,
+    testid,
+}: {
+    element: ReturnType<typeof html>;
+    testid: string;
+}) => {
     let retryAttempts = 1;
 
     do {
-        await semaphore.acquire();
         await fixture(element);
         const el = screen.getByTestId(testid);
 
@@ -118,7 +109,6 @@ const runVisualTest = async (
             });
         } finally {
             el.remove();
-            semaphore.release();
         }
     } while (retryAttempts > 0);
 };
@@ -126,30 +116,25 @@ const runVisualTest = async (
 const runVisualTests = (args: VisualTestArgs) => {
     const testVariations = generateTestVariations(args);
 
-    const testVariationsByMode = testVariations.reduce(
-        (acc, test) => {
-            // TODO: refactor to test.mode
-            const mode = test.theme?.join("-") || "";
-            acc[mode] = acc[mode] || [];
-            acc[mode].push(test);
-            return acc;
-        },
-        {} as Record<string, TestVariation[]>
-    );
-
     worker.schedule(async () => {
         const results: TestResult[] = [];
-        for (const mode of Object.keys(testVariationsByMode)) {
-            const semaphore = new Semaphore(1);
-            changeMode(mode);
+        for (const variation of testVariations) {
+            changeMode(variation.theme?.join("-") || "");
             try {
-                results.push(
-                    ...(await Promise.allSettled(
-                        testVariationsByMode[mode].map((t) =>
-                            runVisualTest(t, semaphore)
-                        )
-                    ))
-                );
+                try {
+                    results.push({
+                        status: "fulfilled",
+                        value: await runVisualTest({
+                            element: variation.element,
+                            testid: variation.testid,
+                        }),
+                    });
+                } catch (e) {
+                    results.push({
+                        status: "rejected",
+                        reason: e as { testid: string; error: Error },
+                    });
+                }
             } catch (e) {
                 // eslint-disable-next-line no-console
                 console.error(e);
