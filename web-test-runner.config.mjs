@@ -36,6 +36,7 @@ const replace = fromRollup(_replace);
 const commonjs = fromRollup(_commonjs);
 
 export default {
+    concurrentBrowsers: 3,
     browsers: [
         playwrightLauncher({
             product: "chromium",
