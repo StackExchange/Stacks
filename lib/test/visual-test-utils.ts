@@ -22,7 +22,7 @@ const scheduleVisualTest = ({
             document.body.classList.add(...prefixedThemes);
         }
 
-        let retryAttempts = 1;
+        let retryAttempts = 3;
 
         do {
             await fixture(element);
@@ -40,6 +40,8 @@ const scheduleVisualTest = ({
                 ) {
                     retryAttempts--;
                     continue;
+                } else {
+                    throw e;
                 }
             } finally {
                 el.remove();
