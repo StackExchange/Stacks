@@ -25,24 +25,26 @@ const getChild = (child?: string): string => {
     }
 };
 
-runVisualTests({
-    baseClass: "s-avatar",
-    variants: ["24", "32", "48", "64", "96", "128"],
-    children: {
-        default: getChild(),
-        image: getChild("image"),
-        letter: getChild("letter"),
-    },
-    attributes: {
-        href: "#",
-    },
-    tag: "a",
-    template: ({ component, testid }) => html`
-        <div
-            data-testid="${testid}"
-            class="d-inline-flex ai-center jc-center hmn1 wmn1 p8"
-        >
-            ${component}
-        </div>
-    `,
+describe("avatar", () => {
+    runVisualTests({
+        baseClass: "s-avatar",
+        variants: ["24", "32", "48", "64", "96", "128"],
+        children: {
+            default: getChild(),
+            image: getChild("image"),
+            letter: getChild("letter"),
+        },
+        attributes: {
+            href: "#",
+        },
+        tag: "a",
+        template: ({ component, testid }) => html`
+            <div
+                data-testid="${testid}"
+                class="d-inline-flex ai-center jc-center hmn1 wmn1 p8"
+            >
+                ${component}
+            </div>
+        `,
+    });
 });

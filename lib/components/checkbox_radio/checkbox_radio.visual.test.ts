@@ -12,20 +12,22 @@ const checkboxTemplate = ({ component, testid }: any) =>
     </div>`;
 
 ["checkbox", "radio"].forEach((type) => {
-    // TODO include indeterminate
-    ["checked", "unchecked"].forEach((state) => {
-        runVisualTests({
-            tag: "input",
-            baseClass: `s-${type}`,
-            attributes: {
-                type,
-                ...(state === "checked" ? { checked: "checked" } : {}),
-            },
-            template: ({ component, testid }) =>
-                checkboxTemplate({ component, testid }),
-            options: {
-                testidSuffix: state,
-            },
+    describe(type, () => {
+        // TODO include indeterminate
+        ["checked", "unchecked"].forEach((state) => {
+            runVisualTests({
+                tag: "input",
+                baseClass: `s-${type}`,
+                attributes: {
+                    type,
+                    ...(state === "checked" ? { checked: "checked" } : {}),
+                },
+                template: ({ component, testid }) =>
+                    checkboxTemplate({ component, testid }),
+                options: {
+                    testidSuffix: state,
+                },
+            });
         });
     });
 });

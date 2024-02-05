@@ -87,16 +87,18 @@ const children = {
     `,
 };
 
-// default, sizes
-runVisualTests({
-    baseClass: "s-table",
-    variants: ["stripes"],
-    modifiers: {
-        primary: ["sm", "lg"],
-        secondary: ["b0", "bx", "bx-simple", "sortable"],
-        // global: ["ta-center", "ta-left", "ta-justify", "ta-right", "va-bottom", "va-middle", "va-top"], // Removing these modifiers *for now* since they create so many test images and would slow testing
-    },
-    tag: "table",
-    children,
-    template,
+describe("table", () => {
+    // default, sizes
+    runVisualTests({
+        baseClass: "s-table",
+        variants: ["stripes"],
+        modifiers: {
+            primary: ["sm", "lg"],
+            secondary: ["b0", "bx", "bx-simple", "sortable"],
+            // global: ["ta-center", "ta-left", "ta-justify", "ta-right", "va-bottom", "va-middle", "va-top"], // Removing these modifiers *for now* since they create so many test images and would slow testing
+        },
+        tag: "table",
+        children,
+        template,
+    });
 });

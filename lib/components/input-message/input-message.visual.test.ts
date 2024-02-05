@@ -27,28 +27,32 @@ const states = [
     },
 ];
 
-states.forEach((state) => {
-    runVisualTests({
-        baseClass: `s-input-message ${
-            state.class ? `state-${state.class}` : ""
-        }`,
-        children: {
-            default: state.children,
-        },
-        template: ({ component, testid }) => {
-            const isDisabled = state.class === "disabled";
-            const stateClass =
-                state.class && state.class !== "disabled" ? state.class : "";
+describe("input-message", () => {
+    states.forEach((state) => {
+        runVisualTests({
+            baseClass: `s-input-message ${
+                state.class ? `state-${state.class}` : ""
+            }`,
+            children: {
+                default: state.children,
+            },
+            template: ({ component, testid }) => {
+                const isDisabled = state.class === "disabled";
+                const stateClass =
+                    state.class && state.class !== "disabled"
+                        ? state.class
+                        : "";
 
-            return html`
-                <fieldset
-                    data-testid="${testid}"
-                    class="p8 ws3 ${stateClass}"
-                    ?disabled="${isDisabled}"
-                >
-                    ${component}
-                </fieldset>
-            `;
-        },
+                return html`
+                    <fieldset
+                        data-testid="${testid}"
+                        class="p8 ws3 ${stateClass}"
+                        ?disabled="${isDisabled}"
+                    >
+                        ${component}
+                    </fieldset>
+                `;
+            },
+        });
     });
 });

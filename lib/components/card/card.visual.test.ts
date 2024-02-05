@@ -24,27 +24,29 @@ const baseChild = `
     </div>
 `;
 
-runVisualTests({
-    baseClass: "s-card",
-    variants: ["muted"],
-    children: {
-        default: baseChild,
-    },
-    template: cardTemplate,
-});
+describe("card", () => {
+    runVisualTests({
+        baseClass: "s-card",
+        variants: ["muted"],
+        children: {
+            default: baseChild,
+        },
+        template: cardTemplate,
+    });
 
-// Stacked
-runVisualTests({
-    baseClass: "s-card",
-    variants: ["stacked"], // dummy variant for testid differentiation
-    children: {
-        default: `<div class="s-card ps-relative b4 l4">${baseChild}</div>`,
-    },
-    attributes: {
-        class: "p0",
-    },
-    template: cardTemplate,
-    options: {
-        includeNullVariant: false,
-    },
+    // Stacked
+    runVisualTests({
+        baseClass: "s-card",
+        variants: ["stacked"], // dummy variant for testid differentiation
+        children: {
+            default: `<div class="s-card ps-relative b4 l4">${baseChild}</div>`,
+        },
+        attributes: {
+            class: "p0",
+        },
+        template: cardTemplate,
+        options: {
+            includeNullVariant: false,
+        },
+    });
 });

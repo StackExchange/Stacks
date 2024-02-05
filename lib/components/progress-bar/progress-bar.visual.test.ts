@@ -95,91 +95,94 @@ const getChildren = (type: string) => {
             return `<div class="s-progress--bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="75" aria-label="progress" style="width: 75%"></div>`;
     }
 };
+describe("progress-bar", () => {
+    // Base
+    runVisualTests({
+        baseClass: "s-progress",
+        variants: ["brand", "info"],
+        children: {
+            default: getChildren(""),
+        },
+        template,
+    });
 
-// Base
-runVisualTests({
-    baseClass: "s-progress",
-    variants: ["brand", "info"],
-    children: {
-        default: getChildren(""),
-    },
-    template,
-});
+    // Badge
+    runVisualTests({
+        baseClass: "s-progress",
+        variants: ["badge"],
+        modifiers: {
+            primary: ["gold", "silver", "bronze"],
+        },
+        children: {
+            default: getChildren("badge"),
+        },
+        template,
+        options: {
+            includeNullVariant: false,
+            includeNullModifier: false,
+        },
+    });
 
-// Badge
-runVisualTests({
-    baseClass: "s-progress",
-    variants: ["badge"],
-    modifiers: {
-        primary: ["gold", "silver", "bronze"],
-    },
-    children: {
-        default: getChildren("badge"),
-    },
-    template,
-    options: {
-        includeNullVariant: false,
-        includeNullModifier: false,
-    },
-});
+    // Circular
+    runVisualTests({
+        baseClass: "s-progress",
+        variants: ["circular"],
+        modifiers: {
+            global: ["fc-green-400", "fc-theme-primary"],
+        },
+        children: {
+            default: getChildren("circular"),
+        },
+        template,
+        attributes: {
+            style: "--s-progress-value: .75",
+        },
+        options: {
+            includeNullVariant: false,
+            includeNullModifier: false,
+        },
+    });
 
-// Circular
-runVisualTests({
-    baseClass: "s-progress",
-    variants: ["circular"],
-    modifiers: {
-        global: ["fc-green-400", "fc-theme-primary"],
-    },
-    children: {
-        default: getChildren("circular"),
-    },
-    template,
-    attributes: {
-        style: "--s-progress-value: .75",
-    },
-    options: {
-        includeNullVariant: false,
-        includeNullModifier: false,
-    },
-});
+    // Privilege
+    runVisualTests({
+        baseClass: "s-progress",
+        variants: ["privilege"],
+        children: {
+            default: getChildren("privilege"),
+        },
+        template,
+        options: {
+            includeNullVariant: false,
+        },
+    });
 
-// Privilege
-runVisualTests({
-    baseClass: "s-progress",
-    variants: ["privilege"],
-    children: {
-        default: getChildren("privilege"),
-    },
-    template,
-    options: {
-        includeNullVariant: false,
-    },
-});
+    // Segmented
+    runVisualTests({
+        baseClass: "s-progress",
+        variants: ["segmented"],
+        children: {
+            default: getChildren("segmented"),
+        },
+        template,
+        options: {
+            includeNullVariant: false,
+        },
+    });
 
-// Segmented
-runVisualTests({
-    baseClass: "s-progress",
-    variants: ["segmented"],
-    children: {
-        default: getChildren("segmented"),
-    },
-    template,
-    options: {
-        includeNullVariant: false,
-    },
-});
-
-// Stepped
-runVisualTests({
-    baseClass: "s-progress",
-    variants: ["stepped"],
-    children: {
-        default: getChildren("stepped"),
-    },
-    template: ({ component, testid }) => html`
-        <div class="d-block p8 ws5" data-testid="${testid}">${component}</div>
-    `,
-    options: {
-        includeNullVariant: false,
-    },
+    // Stepped
+    runVisualTests({
+        baseClass: "s-progress",
+        variants: ["stepped"],
+        children: {
+            default: getChildren("stepped"),
+        },
+        template: ({ component, testid }) => html`
+            <div class="d-block p8 ws5" data-testid="${testid}">
+                ${component}
+            </div>
+        `,
+        options: {
+            includeNullVariant: false,
+        },
+    });
 });

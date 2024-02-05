@@ -12,18 +12,23 @@ const ignoredBrowserLogs = [
 
 // disable CSS animation snippet
 // taken from https://github.com/microsoft/playwright/issues/7548#issuecomment-881897256
-const disableCSSAnimationSnippet =
-`<style>
-    *,
-    *::before,
-    *::after {
-        -moz-animation: none !important;
-        -moz-transition: none !important;
-        animation: none !important;
-        caret-color: transparent !important;
-        transition: none !important;
-    }
-</style>`
+const testRunnerHtml = (testFramework) =>
+`<!DOCTYPE html><html>
+    <body>
+        <style>
+            *,
+            *::before,
+            *::after {
+                -moz-animation: none !important;
+                -moz-transition: none !important;
+                animation: none !important;
+                caret-color: transparent !important;
+                transition: none !important;
+            }
+        </style>
+        <script type="module" src="${testFramework}"></script>
+    </body>
+</html>`;
 
 
 const postcss = fromRollup(_postcss);
@@ -38,26 +43,26 @@ export default {
                 return browser.newContext({ reducedMotion: "reduce" });
             },
         }),
-        playwrightLauncher({
-            product: "firefox",
-            createBrowserContext({ browser }) {
-                return browser.newContext({ reducedMotion: "reduce" });
-            },
-            launchOptions: {
-                firefoxUserPrefs: {
-                    // force pointer capabilities activation on Firefox Headless on GTK (Gnome Toolkit - CI)
-                    // see https://github.com/microsoft/playwright/issues/7769#issuecomment-966098074
-                    "ui.primaryPointerCapabilities": 0x02 | 0x04,
-                    "ui.allPointerCapabilities": 0x02 | 0x04,
-                },
-            },
-        }),
-        playwrightLauncher({
-            product: "webkit",
-            createBrowserContext({ browser }) {
-                return browser.newContext({ reducedMotion: "reduce" });
-            },
-        }),
+        // playwrightLauncher({
+        //     product: "firefox",
+        //     createBrowserContext({ browser }) {
+        //         return browser.newContext({ reducedMotion: "reduce" });
+        //     },
+        //     launchOptions: {
+        //         firefoxUserPrefs: {
+        //             // force pointer capabilities activation on Firefox Headless on GTK (Gnome Toolkit - CI)
+        //             // see https://github.com/microsoft/playwright/issues/7769#issuecomment-966098074
+        //             "ui.primaryPointerCapabilities": 0x02 | 0x04,
+        //             "ui.allPointerCapabilities": 0x02 | 0x04,
+        //         },
+        //     },
+        // }),
+        // playwrightLauncher({
+        //     product: "webkit",
+        //     createBrowserContext({ browser }) {
+        //         return browser.newContext({ reducedMotion: "reduce" });
+        //     },
+        // }),
     ],
     testFramework: {
         config: {
@@ -90,13 +95,7 @@ export default {
             name: "a11y",
             files: "lib/**/*.a11y.test.ts",
             browsers: [playwrightLauncher({ product: "chromium" })],
-            testRunnerHtml: (testFramework) =>
-                `<!DOCTYPE html><html>
-                    <body>
-                        ${disableCSSAnimationSnippet}
-                        <script type="module" src="${testFramework}"></script>
-                    </body>
-                </html>`,
+            testRunnerHtml
         },
         {
             name: "unit",
@@ -105,13 +104,7 @@ export default {
         {
             name: "visual",
             files: "lib/**/*.visual.test.ts",
-            testRunnerHtml: () =>
-                `<!DOCTYPE html><html>
-                    <body>
-                        ${disableCSSAnimationSnippet}
-                        <script type="module" src="./visual-test-framework.js"></script>
-                    </body>
-                </html>`,
+            testRunnerHtml
         },
     ],
     testsFinishTimeout: 60 * 1000 * 5, // 5 minutes

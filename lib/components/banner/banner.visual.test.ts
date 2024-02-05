@@ -18,17 +18,19 @@ const bannerChild = `
     </div>
 `;
 
-runVisualTests({
-    baseClass: "s-banner",
-    variants: ["info", "success", "warning", "danger"],
-    modifiers: {
-        primary: ["important"],
-    },
-    attributes: {
-        role: "alert",
-        ariaHidden: "false",
-    },
-    children: {
-        default: bannerChild,
-    },
+describe("banner", () => {
+    runVisualTests({
+        baseClass: "s-banner",
+        variants: ["info", "success", "warning", "danger"],
+        modifiers: {
+            primary: ["important"],
+        },
+        attributes: {
+            role: "alert",
+            ariaHidden: "false",
+        },
+        children: {
+            default: bannerChild,
+        },
+    });
 });

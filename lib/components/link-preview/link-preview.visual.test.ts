@@ -34,17 +34,19 @@ const getChild = (child?: string): string => {
     `;
 };
 
-runVisualTests({
-    baseClass: "s-link-preview",
-    children: {
-        default: getChild(),
-        code: getChild(`
+describe("link preview", () => {
+    runVisualTests({
+        baseClass: "s-link-preview",
+        children: {
+            default: getChild(),
+            code: getChild(`
                 <div class="s-link-preview--code">
                     <pre class="language-js s-code-block" tabindex="0"><code class="language-js s-code-block"><span class="hljs-meta">'use strict'</span>;</code></pre>
                 </div>
             `),
-    },
-    template: ({ component, testid }) => html`
-        <div class="ws8 p8" data-testid="${testid}">${component}</div>
-    `,
+        },
+        template: ({ component, testid }) => html`
+            <div class="ws8 p8" data-testid="${testid}">${component}</div>
+        `,
+    });
 });

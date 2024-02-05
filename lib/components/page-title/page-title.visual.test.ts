@@ -46,11 +46,13 @@ const getChildren = ({
     }
 `;
 
-runVisualTests({
-    baseClass: "s-page-title",
-    children: {
-        default: getChildren({ showEverything: false }),
-        complete: getChildren({ showEverything: true }),
-    },
-    template: postTitleTemplate,
+describe("page title", () => {
+    runVisualTests({
+        baseClass: "s-page-title",
+        children: {
+            default: getChildren({ showEverything: false }),
+            complete: getChildren({ showEverything: true }),
+        },
+        template: postTitleTemplate,
+    });
 });

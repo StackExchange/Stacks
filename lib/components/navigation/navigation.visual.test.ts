@@ -53,44 +53,46 @@ const getChildren = (includeTitles = false): string =>
         })
         .join("");
 
-runVisualTests({
-    baseClass: "s-navigation",
-    variants: ["muted"],
-    modifiers: {
-        primary: ["scroll", "sm"],
-    },
-    tag: "ul",
-    children: {
-        default: getChildren(),
-    },
-    template: ({ component, testid }) => html`
-        <nav
-            class="d-inline-block p8 wmx3"
-            aria-label="example-navigation"
-            data-testid="${testid}"
-        >
-            ${component}
-        </nav>
-    `,
-});
+describe("navigation", () => {
+    runVisualTests({
+        baseClass: "s-navigation",
+        variants: ["muted"],
+        modifiers: {
+            primary: ["scroll", "sm"],
+        },
+        tag: "ul",
+        children: {
+            default: getChildren(),
+        },
+        template: ({ component, testid }) => html`
+            <nav
+                class="d-inline-block p8 wmx3"
+                aria-label="example-navigation"
+                data-testid="${testid}"
+            >
+                ${component}
+            </nav>
+        `,
+    });
 
-runVisualTests({
-    baseClass: "s-navigation",
-    variants: ["vertical"],
-    tag: "ul",
-    children: {
-        default: getChildren(true),
-    },
-    template: ({ component, testid }) => html`
-        <nav
-            class="d-inline-block p8 ws2"
-            aria-label="example-navigation"
-            data-testid="${testid}"
-        >
-            ${component}
-        </nav>
-    `,
-    options: {
-        includeNullVariant: false,
-    },
+    runVisualTests({
+        baseClass: "s-navigation",
+        variants: ["vertical"],
+        tag: "ul",
+        children: {
+            default: getChildren(true),
+        },
+        template: ({ component, testid }) => html`
+            <nav
+                class="d-inline-block p8 ws2"
+                aria-label="example-navigation"
+                data-testid="${testid}"
+            >
+                ${component}
+            </nav>
+        `,
+        options: {
+            includeNullVariant: false,
+        },
+    });
 });
