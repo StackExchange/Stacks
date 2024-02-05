@@ -1,4 +1,4 @@
-import { runComponentTests } from "../../test/test-utils";
+import { runVisualTests } from "../../test/visual-test-utils";
 import "../../index";
 import {
     IconAchievements,
@@ -179,8 +179,7 @@ const topbars = {
 };
 
 describe("topbar", () => {
-    runComponentTests({
-        type: "visual",
+    runVisualTests({
         baseClass: "s-topbar",
         tag: "header",
         children: topbars,

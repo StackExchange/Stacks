@@ -29,7 +29,7 @@ const scheduleVisualTest = ({
             const el = screen.getByTestId(testid);
             try {
                 await visualDiff(el, testid);
-                return
+                return;
             } catch (error) {
                 const e = error as Error;
                 // if the error is not a visual diff failure, retry
