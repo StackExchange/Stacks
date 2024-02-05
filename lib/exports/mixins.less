@@ -120,23 +120,22 @@
  * @border: boolean - whether the element's border color change to match the focus style.
  */
 .focus-styles(@inset: false, @border: false) {
-    & when (@inset = false) {
-        & when (@border = false) {
-            box-shadow: 0 0 0 var(--su-static2) var(--focus-neutral), 0 0 0 var(--su-static4) var(--focus-theme);
-        }
-        & when (@border = true) {
-            border-color: var(--focus-neutral) !important;
-            box-shadow: 0 0 0 var(--su-static1) var(--focus-neutral), 0 0 0 calc(var(--su-static4) - var(--su-static1)) var(--focus-theme);
-        }
+    & when not (@inset) and not (@border) {
+        box-shadow: 0 0 0 var(--su-static2) var(--focus-neutral), 0 0 0 var(--su-static4) var(--focus-theme);
     }
-    & when (@inset = true) {
-        & when (@border = false) {
-            box-shadow: inset 0 0 0 var(--su-static2) var(--focus-theme), inset 0 0 0 var(--su-static4) var(--focus-neutral);
-        }
-        & when (@border = true) {
-            border-color: var(--focus-theme) !important;
-            box-shadow: inset 0 0 0 var(--su-static1) var(--focus-theme), inset 0 0 0 calc(var(--su-static4) - var(--su-static1)) var(--focus-neutral);
-        }
+
+    & when not (@inset) and (@border) {
+        border-color: var(--focus-neutral) !important;
+        box-shadow: 0 0 0 var(--su-static1) var(--focus-neutral), 0 0 0 calc(var(--su-static4) - var(--su-static1)) var(--focus-theme);
+    }
+
+    & when (@inset) and not (@border) {
+        box-shadow: inset 0 0 0 var(--su-static2) var(--focus-theme), inset 0 0 0 var(--su-static4) var(--focus-neutral);
+    }
+
+    & when (@inset) and (@border) {
+        border-color: var(--focus-theme) !important;
+        box-shadow: inset 0 0 0 var(--su-static1) var(--focus-theme), inset 0 0 0 calc(var(--su-static4) - var(--su-static1)) var(--focus-neutral);
     }
 
     // We include a 2px transparent outline to ensure Windows High Contrast Forced Color Mode
