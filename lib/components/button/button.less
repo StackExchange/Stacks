@@ -144,6 +144,10 @@
     // Resets
     &&__link,
     &&__unset {
+        --_bu-baw: 0;
+        --_bu-br: 0;
+        --_bu-p: 0;
+
         &:focus,
         &:focus-visible {
             outline-style: auto;
@@ -151,10 +155,6 @@
     }
 
     &&__link {
-        --_bu-baw: 0;
-        --_bu-br: 0;
-        --_bu-p: 0;
-
         &,
         &:hover,
         &:active,
@@ -180,11 +180,8 @@
         &:hover,
         &:active,
         &:focus {
-            --_bu-baw: 0;
             --_bu-bg: none;
-            --_bu-br: 0;
             --_bu-fc: unset;
-            --_bu-p: 0;
 
             cursor: default;
             font: unset;
@@ -204,12 +201,12 @@
             content: "";
             pointer-events: none;
             position: absolute;
-            right: var(--_bu-p);
+            right: var(--_bu-px, var(--_bu-p));
             top: calc(50% - var(--su-static2));
             z-index: var(--zi-active);
         }
 
-        padding-right: calc(var(--_bu-p) * 2.5);
+        padding-right: calc(var(--_bu-px, var(--_bu-p)) * 2.5);
     }
 
     &&__icon {
@@ -492,7 +489,7 @@
     box-shadow: none;
     color: var(--_bu-fc);
     font-size: var(--_bu-fs);
-    padding: var(--_bu-p);
+    padding: var(--_bu-py, var(--_bu-p)) var(--_bu-px, var(--_bu-p));
 
     cursor: pointer;
     display: inline-block;

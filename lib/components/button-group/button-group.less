@@ -2,16 +2,15 @@
     // CONTEXTUAL STYLES
     #stacks-internals #screen-sm({
         .s-btn {
+            --_bu-px: 0.4em;
+
             &.s-btn__dropdown {
                 padding-right: 1.2em;
 
                 &:after {
-                    right: 0.4em;
+                    right: var(--_bu-px);
                 }
             }
-
-            padding-left: 0.4em;
-            padding-right: 0.4em;
         }
     }, @force-selector: true);
 
@@ -22,11 +21,8 @@
     }
 
     .s-btn {
-        &.s-btn__muted {
-            --_bu-bc: transparent;
-            --_bu-bc-hover: transparent;
-            // TODO consider active, hover styles (blocked by design)
-        }
+        --_bu-br: var(--br-sm);
+        --_bu-bc-hover: transparent;
 
         &,
         &.s-btn__md {
@@ -48,24 +44,9 @@
         &.s-btn__md,
         &.s-btn___xs,
         &.s-btn___sm {
-            --_bu-bc: transparent;
-            --_bu-p: var(--_bu-py) var(--_bu-px);
-            // TODO consider active, hover styles (blocked by design)
-
-            &.is-loading {
-                padding-left: 2.2em;
-            }
-
-            &.s-btn__dropdown {
-                &:after {
-                    right: var(--_bu-px);
-                }
-
-                padding-right: calc(var(--_bu-px) * 2.5);
-            }
-
             &:not(.s-btn__link):not(.s-btn__unset):focus-visible,
             .s-btn--radio:focus-visible + .s-btn {
+                // TODO convert to .focus-styles() mixin once https://github.com/StackExchange/Stacks/pull/1629 is merged
                 border-color: var(--theme-secondary-400) !important;
                 box-shadow: inset 0 0 0 var(--su-static2) var(--white), 0 0 0 var(--su-static1) var(--theme-secondary-400);
                 z-index: var(--zi-selected);
@@ -75,19 +56,12 @@
         &.is-selected,
         &--radio:checked + .s-btn {
             font-weight: bold;
-            z-index: var(--zi-selected); // When the button is active or selected, it should pop above its siblings
         }
 
         .s-btn--badge {
             font-weight: normal;
         }
 
-        &:active {
-            z-index: var(--zi-active);
-        }
-
-        border-radius: var(--br-sm) !important;
-        margin-bottom: calc(var(--su-static1) * -1); // When wrapping we need to account for the border
         white-space: nowrap; // When the buttons wrap, they get super tall and mess up the whole layout
     }
 
@@ -98,5 +72,4 @@
     flex-wrap: wrap;
     margin-bottom: var(--su-static1); // Compensate for buttons having a margin bottom of -1px to account for row wrapping
     padding: calc(var(--su-static4) - var(--su-static1));
-    padding-bottom: var(--su-static4);
 }
