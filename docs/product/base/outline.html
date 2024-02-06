@@ -4,6 +4,10 @@ title: Outline
 description: 
 ---
 <section class="stacks-section">
+    {% tip, "warning", "mb24" %}
+        <strong>Warning:</strong> <code>.outline-ring</code> does not meet our accessibility standards for focus state styling and should be used for decorative purposes only.
+    {% endtip %}
+
     {% header "h2", "Classes" %}
     <div class="overflow-x-auto mb48" tabindex="0">
         <table class="wmn3 s-table s-table__bx-simple">
@@ -12,7 +16,6 @@ description:
                     <th class="s-table--cell2" scope="col">Class</th>
                     <th class="s-table--cell4" scope="col">Output</th>
                     <th scope="col">Definition</th>
-                    <th scope="col" class="ta-center"><a class="s-link s-link__inherit" href="{{ "/product/guidelines/conditional-classes#focus" | url }}">Focus?</a></th>
                 </tr>
             </thead>
             <tbody>
@@ -21,11 +24,6 @@ description:
                         <th scope="row"><code class="stacks-code">.{{ atomic.class }}</code></th>
                         <td><code class="stacks-code bg-white">{{ atomic.output }}</code></td>
                         <td>{{ atomic.define }}</td>
-                        <td class="ta-center">
-                            {% if atomic.focus %}
-                                {% icon "Checkmark", "fc-green-400" %}
-                            {% endif %}
-                        </td>
                     </tr>
                 {% endfor %}
             </tbody>
@@ -36,6 +34,7 @@ description:
     <div class="stacks-preview">
 {% highlight html %}
 <div class="outline-none">…</div>
+<div class="outline-ring">…</div>
 {% endhighlight %}
         <div class="stacks-preview--example fs-caption ff-mono">
             <div class="outline-none d-inline-block bg-black-200 p12 ba bc-black-225">.outline-none</div>

@@ -1,5 +1,5 @@
 import { html } from "@open-wc/testing";
-import { runComponentTests } from "../../test/test-utils";
+import { runVisualTests } from "../../test/visual-test-utils";
 import "../../index";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -47,8 +47,7 @@ const getChildren = ({
 `;
 
 describe("page title", () => {
-    runComponentTests({
-        type: "visual",
+    runVisualTests({
         baseClass: "s-page-title",
         children: {
             default: getChildren({ showEverything: false }),

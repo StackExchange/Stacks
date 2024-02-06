@@ -2,10 +2,8 @@
 .s-radio {
     --_ch-baw: var(--su-static1);
     --_ch-bc: var(--bc-dark);
-    --_ch-bc-focus: var(--theme-secondary-400);
     --_ch-bg: var(--white);
     --_ch-bg-image: unset;
-    --_ch-bs-focus: 0 0 0 var(--su-static4) var(--focus-ring);
 
     // CONTEXTUAL STYLES
     fieldset[disabled] &,
@@ -30,7 +28,7 @@
 
     // INTERACTION
     &:focus {
-        box-shadow: var(--_ch-bs-focus);
+        .focus-styles();
     }
 
     background-color: var(--_ch-bg);
@@ -64,7 +62,6 @@
     .highcontrast-dark-mode({
         &:checked, &:indeterminate {
             --_ch-bc: var(--blue-500) !important;
-            --_ch-bc-focus: var(--_ch-bc);
             --_ch-bg: var(--blue-400);
         }
     });
@@ -73,10 +70,6 @@
     &:checked, &:indeterminate {
         --_ch-bc: var(--theme-secondary-400) !important;
         --_ch-bg: var(--theme-secondary-400);
-
-        &:focus {
-            --_ch-bc-focus: var(--theme-secondary-400);
-        }
     }
 
     &:checked {
@@ -85,11 +78,6 @@
 
     &:indeterminate {
         --_ch-bg-image: url("data:image/svg+xml;,%3Csvg width='11' height='11' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M2 4.5 h7 v2 h-7 z' fill='@{ch-bg-image-fill}'/%3E%3C/svg%3E");
-    }
-
-    // INTERACTION
-    &:focus {
-        border-color: var(--_ch-bc-focus);
     }
 
     background-image: var(--_ch-bg-image);

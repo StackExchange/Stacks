@@ -1,5 +1,5 @@
 import { html } from "@open-wc/testing";
-import { runComponentTests } from "../../test/test-utils";
+import { runA11yTests } from "../../test/a11y-test-utils";
 import "../../index";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -28,8 +28,7 @@ const getChildren = (status?: any) => {
 };
 
 describe("label", () => {
-    runComponentTests({
-        type: "a11y",
+    runA11yTests({
         baseClass: `s-label`,
         modifiers: {
             primary: ["sm", "md", "lg", "xl"],

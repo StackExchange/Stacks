@@ -1,108 +1,11 @@
-import { html, fixture, expect, unsafeStatic } from "@open-wc/testing";
-import { screen } from "@testing-library/dom";
-import { visualDiff } from "@web/test-runner-visual-regression";
-import type { TemplateResult } from "lit-html";
-import axe from "axe-core";
-import registerAPCACheck from "apca-check";
+import { html, unsafeStatic } from "@open-wc/testing";
 
-const customConformanceThresholdFn = (fontSize: string): number | null => {
-    return parseFloat(fontSize) >= 32 ? 45 : 60;
-};
-
-registerAPCACheck("custom", customConformanceThresholdFn);
-
-const colorThemes = ["dark", "light"];
-const baseThemes = ["", "highcontrast"];
-export const defaultOptions = {
-    testColorThemes: true,
-    testHighContrast: true,
-    includeNullVariant: true,
-    includeNullModifier: true,
-};
-
-type Themes = ["light" | "dark" | "highcontrast" | ""];
-type TestTypes = "visual" | "a11y";
-export type AdditionalAssertion = {
-    description: string;
-    assertion: (node: HTMLElement) => Promise<void> | void;
-};
-
-type TestOptions = {
-    /**
-     * Enable tests for all color themes
-     * default: true
-     */
-    testColorThemes: boolean;
-    /**
-     * Enable tests for high contrast
-     * default: true
-     */
-    testHighContrast: boolean;
-    /**
-     * Provide a custom testid suffix
-     * default: undefined
-     */
-    testidSuffix?: string;
-    /**
-     * Include tests for the component without any variants applied
-     * default: true
-     */
-    includeNullVariant: boolean;
-    /**
-     * Include tests for the component without any modifiers applied
-     * default: true
-     */
-    includeNullModifier: boolean;
-};
-
-interface ComponentTestVariationArgs {
+type TestVariationArgs = {
     /**
      * Base class of the component
      * (e.g. "s-component")
      */
     baseClass: string;
-    /**
-     * Variants of the component
-     * (e.g. ["primary", "secondary"])
-     */
-    variants?: string[];
-    /**
-     * Modifiers of the component
-     * (e.g. { primary: ["filled", "outlined"], secondary: ["xs", "sm", "md"] })
-     */
-    modifiers?: ComponentTestModifiers;
-    /**
-     * Options for the test
-     */
-    options?: TestOptions;
-}
-
-type ComponentTestArgs = {
-    /**
-     * The element to test
-     * use the `html` template tag to render the element
-     */
-    element: TemplateResult;
-    /**
-     * testid of the test
-     * (e.g. "s-component-primary-important")
-     */
-    testid: string;
-    /**
-     * Theme to apply to the test element
-     */
-    theme?: Themes;
-    /**
-     * Type of test to run
-     */
-    type: TestTypes;
-    /**
-     * Additional assertions to run against the test element
-     */
-    additionalAssertions: AdditionalAssertion[];
-};
-
-interface ComponentTestsArgs extends ComponentTestVariationArgs {
     /**
      * Additional html attributes applied to the test element
      * (e.g. { role: "button",  id: "id" } -> <element role="button" id="id">  )
@@ -137,16 +40,22 @@ interface ComponentTestsArgs extends ComponentTestVariationArgs {
         testid: string;
     }) => ReturnType<typeof html>;
     /**
-     * Type of test to run
+     * Variants of the component
+     * (e.g. ["primary", "secondary"])
      */
-    type: TestTypes;
+    variants?: string[];
     /**
-     * Additional assertions to run against the test element
+     * Modifiers of the component
+     * (e.g. { primary: ["filled", "outlined"], secondary: ["xs", "sm", "md"] })
      */
-    additionalAssertions?: AdditionalAssertion[];
-}
+    modifiers?: Modifiers;
+    /**
+     * Options for the test
+     */
+    options?: Partial<TestOptions>;
+};
 
-type ComponentTestModifiers = {
+type Modifiers = {
     /**
      * Primary grouping of modifiers to test
      * The base class will be used as a prefix for these modifiers
@@ -168,11 +77,45 @@ type ComponentTestModifiers = {
     standalone?: string[];
 };
 
-type ComponentTestProps = {
-    classes: string;
-    testid: string;
-    theme?: Themes;
+type TestOptions = {
+    /**
+     * Enable tests for all color themes
+     * default: true
+     */
+    testColorThemes: boolean;
+    /**
+     * Enable tests for high contrast
+     * default: true
+     */
+    testHighContrast: boolean;
+    /**
+     * Provide a custom testid suffix
+     * default: undefined
+     */
+    testidSuffix?: string;
+    /**
+     * Include tests for the component without any variants applied
+     * default: true
+     */
+    includeNullVariant: boolean;
+    /**
+     * Include tests for the component without any modifiers applied
+     * default: true
+     */
+    includeNullModifier: boolean;
 };
+
+export const DEFAULT_OPTIONS = {
+    testColorThemes: true,
+    testHighContrast: true,
+    includeNullVariant: true,
+    includeNullModifier: true,
+};
+
+// TODO: refactor using MODES as opposed to THEMES
+const COLOR_THEMES = ["dark", "light"];
+const BASE_THEMES = ["", "highcontrast"];
+type Themes = ["light" | "dark" | "highcontrast" | ""];
 
 const attrObjToString = (attrs: Record<string, string>): string => {
     const attrString = Object.keys(attrs).map((key) => {
@@ -180,6 +123,22 @@ const attrObjToString = (attrs: Record<string, string>): string => {
     });
     return attrString.join(" ") || "";
 };
+
+const matchTestidByPattern = ({
+    testid,
+    pattern,
+}: {
+    testid: string;
+    pattern: string | RegExp;
+}): boolean => {
+    if (pattern instanceof RegExp) {
+        return pattern.test(testid);
+    } else {
+        return pattern === testid;
+    }
+};
+
+const buildTestid = (arr: string[]) => arr.filter(Boolean).join("-");
 
 const buildClasses = ({
     baseClass,
@@ -214,34 +173,44 @@ const buildTestElement = ({
     };
 
     return html`
-        <${unsafe.tag}
-            ${unsafe.attributes}
-            data-testid="${testid}"
-        >${unsafe.children}</${unsafe.tag}>
-    `;
+            <${unsafe.tag}
+                ${unsafe.attributes}
+                data-testid="${testid}"
+            >${unsafe.children}</${unsafe.tag}>
+        `;
 };
 
-const buildTestid = (arr: string[]) => arr.filter(Boolean).join("-");
+type PrimitiveVariation = {
+    classes: string;
+    testid: string;
+    theme: Themes;
+};
 
-const getComponentTestVariations = ({
+type PrimitiveVariationArgs = Pick<
+    TestVariationArgs,
+    "baseClass" | "variants" | "modifiers" | "options"
+>;
+
+const generatePrimitiveVariations = ({
     baseClass,
     variants = [],
     modifiers,
-    options = defaultOptions,
-}: ComponentTestVariationArgs): ComponentTestProps[] => {
-    const testVariations: ComponentTestProps[] = [];
+    options = {},
+}: PrimitiveVariationArgs): PrimitiveVariation[] => {
+    const primitiveVariations: PrimitiveVariation[] = [];
+    const opts = { ...DEFAULT_OPTIONS, ...options };
     // Test default, high contrast themes
-    [...(options.testHighContrast ? baseThemes : [""])].forEach((baseTheme) => {
+    [...(opts.testHighContrast ? BASE_THEMES : [""])].forEach((baseTheme) => {
         // Test light, dark theme
-        [...(options.testColorThemes ? colorThemes : [""])].forEach(
+        [...(opts.testColorThemes ? COLOR_THEMES : [""])].forEach(
             (colorTheme) => {
                 const theme = [baseTheme, colorTheme].filter(Boolean) as Themes;
                 const testidBase = buildTestid([baseClass, ...theme]);
-                const allVariants = options.includeNullVariant
+                const allVariants = opts.includeNullVariant
                     ? ["", ...variants]
                     : variants;
                 const primaryModifiers = modifiers?.primary
-                    ? options.includeNullModifier
+                    ? opts.includeNullModifier
                         ? ["", ...(<[]>modifiers.primary)]
                         : modifiers.primary
                     : [""];
@@ -256,7 +225,7 @@ const getComponentTestVariations = ({
                     secondaryModifiers.forEach((secondaryModifier) => {
                         globalModifiers.forEach((globalModifier) => {
                             allVariants.forEach((variant) => {
-                                testVariations.push({
+                                primitiveVariations.push({
                                     classes: buildClasses({
                                         baseClass,
                                         prefixed: [
@@ -286,7 +255,7 @@ const getComponentTestVariations = ({
 
                 // create standalone modifiers test props
                 modifiers?.standalone?.forEach((standaloneModifier) => {
-                    testVariations.push({
+                    primitiveVariations.push({
                         testid: buildTestid([testidBase, standaloneModifier]),
                         classes: buildClasses({
                             baseClass,
@@ -300,209 +269,92 @@ const getComponentTestVariations = ({
     });
 
     // Sorting for readability
-    return testVariations.sort((a, b) => a.testid.localeCompare(b.testid));
+    return primitiveVariations.sort((a, b) => a.testid.localeCompare(b.testid));
 };
 
-/**
- * Constructs and runs an individual test for a component
- */
-const runComponentTest = ({
-    element,
-    testid,
-    theme,
-    type,
-    additionalAssertions,
-}: ComponentTestArgs) => {
-    const getDescription = (type: TestTypes) => {
-        switch (type) {
-            case "a11y":
-                return "should be accessible";
-            case "visual":
-                return "should not introduce visual regressions";
-            default:
-                return "";
-        }
-    };
-
-    it(`${type}: ${testid} ${getDescription(type)}`, async () => {
-        await fixture(element);
-        const el = screen.getByTestId(testid);
-
-        document.body.className = "";
-
-        if (theme?.length) {
-            const prefixedThemes = theme.map((t) => `theme-${t}`);
-            document.body.classList.add(...prefixedThemes);
-        }
-
-        if (type === "a11y") {
-            const highcontrast = theme?.includes("highcontrast");
-            axe.configure({
-                rules: [
-                    // for non-high contrast, we disable WCAG 2.1 AA (4.5:1)
-                    // and use a Stacks-specific APCA custom level instead
-                    { id: "color-contrast", enabled: false },
-                    {
-                        id: "color-contrast-apca-custom",
-                        enabled: !highcontrast,
-                    },
-                    // for high contrast, we check against WCAG 2.1 AAA (7:1)
-                    { id: "color-contrast-enhanced", enabled: highcontrast },
-                ],
-            });
-            await expect(el).to.be.accessible();
-        }
-
-        if (type === "visual") {
-            await visualDiff(el, testid);
-        }
-    });
-
-    additionalAssertions.forEach((assertion) => {
-        it(`${type}: ${testid} ${assertion.description}`, async () => {
-            await fixture(element);
-            const el = screen.getByTestId(testid);
-            await assertion.assertion(el);
-        });
-    });
+type TestVariation = {
+    testid: string;
+    element: ReturnType<typeof html>;
+    skipped: boolean;
+    theme: Themes;
 };
 
-/**
- * Constructs and runs tests for a component with a each provided combination
- */
-const runComponentTests = ({
+const generateTestVariations = ({
     baseClass,
     variants = [],
     modifiers,
-    options = defaultOptions,
+    options = DEFAULT_OPTIONS,
     attributes,
     children,
     excludedTestids = [],
     skippedTestids = [],
     tag,
     template,
-    type,
-    additionalAssertions = [],
-}: ComponentTestsArgs) => {
-    getComponentTestVariations({
+}: TestVariationArgs): TestVariation[] => {
+    return generatePrimitiveVariations({
         baseClass,
         variants,
         modifiers,
         options,
-    }).forEach(({ testid, classes, theme }) => {
+    }).flatMap(({ testid, classes, theme }) => {
         const allChildren: {
             [key: string]: string;
         } = children ? { ...children } : { default: "" };
         const { testidSuffix } = options;
 
-        Object.keys(allChildren).forEach((key) => {
-            let testidModified = (
-                key !== "default" ? `${testid}-${key}` : testid
-            ).replace(" ", "-");
-            testidModified = testidSuffix
-                ? `${testidModified}-${testidSuffix}`
-                : testidModified;
+        return Object.keys(allChildren)
+            .map((key) => {
+                let testidModified = (
+                    key !== "default" ? `${testid}-${key}` : testid
+                ).replace(" ", "-");
+                testidModified = testidSuffix
+                    ? `${testidModified}-${testidSuffix}`
+                    : testidModified;
 
-            const children = allChildren[key];
+                const children = allChildren[key];
 
-            const shouldSkipTest = excludeOrSkipTest({
-                patterns: skippedTestids,
-                skip: true,
-                testid: testidModified,
-                type,
-            });
-
-            const shouldExcludeTest = excludeOrSkipTest({
-                patterns: excludedTestids,
-                testid: testidModified,
-                type,
-            });
-
-            if (shouldSkipTest || shouldExcludeTest) {
-                return;
-            }
-
-            const element = template
-                ? html`${template({
-                      testid: testidModified,
-                      component: buildTestElement({
+                const element = template
+                    ? html`${template({
+                          testid: testidModified,
+                          component: buildTestElement({
+                              attributes: {
+                                  ...attributes,
+                                  class: `${classes} ${attributes?.class || ""}`,
+                              },
+                              children,
+                              testid: `${testidModified}-nested`,
+                              tag,
+                          }),
+                      })}`
+                    : buildTestElement({
                           attributes: {
                               ...attributes,
                               class: `${classes} ${attributes?.class || ""}`,
                           },
                           children,
-                          testid: `${testidModified}-nested`,
+                          testid: testidModified,
                           tag,
-                      }),
-                  })}`
-                : buildTestElement({
-                      attributes: {
-                          ...attributes,
-                          class: `${classes} ${attributes?.class || ""}`,
-                      },
-                      children,
-                      testid: testidModified,
-                      tag,
-                  });
+                      });
 
-            runComponentTest({
-                element,
-                testid: testidModified,
-                theme,
-                type,
-                additionalAssertions,
-            });
-        });
+                const skipped = skippedTestids.some((pattern) =>
+                    matchTestidByPattern({ testid: testidModified, pattern })
+                );
+
+                return {
+                    element,
+                    testid: testidModified,
+                    theme,
+                    skipped,
+                };
+            })
+            .filter(
+                ({ testid }) =>
+                    !excludedTestids.some((pattern) =>
+                        matchTestidByPattern({ testid, pattern })
+                    )
+            );
     });
 };
 
-const matchTestidByPattern = ({
-    testid,
-    pattern,
-}: {
-    testid: string;
-    pattern: string | RegExp;
-}): boolean => {
-    if (pattern instanceof RegExp) {
-        return pattern.test(testid);
-    } else {
-        return pattern === testid;
-    }
-};
-
-const excludeOrSkipTest = ({
-    patterns,
-    skip = false,
-    testid,
-    type,
-}: {
-    patterns: (string | RegExp)[];
-    skip?: boolean;
-    testid: string;
-    type: TestTypes;
-}): boolean => {
-    const matchesTest = patterns.some((pattern) => {
-        return matchTestidByPattern({ testid, pattern });
-    });
-
-    if (matchesTest && skip) {
-        it.skip(`${type}: ${testid} (skipped)`, () => {
-            return;
-        });
-    }
-
-    return matchesTest;
-};
-
-export { runComponentTest, runComponentTests };
-
-/**
- * Convert a const array of strings into a union type of the array's values.
- *
- * @example
- * ```
- * const arrayOfStrings = ['Stacky', 'Ben', 'Dan', 'Giamir'] as const;
- * type StringLiterals = AsLiterals<typeof arrayOfStrings>; // 'Stacky' | 'Ben' | 'Dan' | 'Giamir'
- * ```
- */
-export type AsLiterals<T extends Readonly<string[]>> = T[number];
+export type { TestVariationArgs, TestVariation };
+export { generateTestVariations };

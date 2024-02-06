@@ -1,10 +1,9 @@
 import { html } from "@open-wc/testing";
-import { runComponentTests } from "../../test/test-utils";
+import { runVisualTests } from "../../test/visual-test-utils";
 import "../../index";
 
 describe("activity-indicator", () => {
-    runComponentTests({
-        type: "visual",
+    runVisualTests({
         baseClass: "s-activity-indicator",
         variants: ["danger", "success", "warning"],
         children: {

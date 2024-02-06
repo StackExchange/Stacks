@@ -1,9 +1,8 @@
-import { runComponentTests } from "../../test/test-utils";
+import { runA11yTests } from "../../test/a11y-test-utils";
 import "../../index";
 
 describe("spinner", () => {
-    runComponentTests({
-        type: "a11y",
+    runA11yTests({
         baseClass: "s-spinner",
         modifiers: {
             primary: ["xs", "sm", "md", "lg"],

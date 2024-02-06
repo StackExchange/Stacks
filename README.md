@@ -98,21 +98,19 @@ npm run test:unit:watch
 - `git lfs` ([installation docs](https://docs.github.com/en/repositories/working-with-files/managing-large-files/installing-git-large-file-storage))
 - `docker` ([installation docs](https://docs.docker.com/engine/install/))
 - `pwsh` ([Installation docs](https://learn.microsoft.com/en-us/powershell/scripting/install/installing-powershell?view=powershell-7.3))
+- Run `git config diff.lfs.textconv cat` to make sure image diff works as expected ([More info](https://github.com/microsoft/vscode/issues/86611#issuecomment-875894108))
 
-This [Web Test Runner plugin](https://www.npmjs.com/package/@web/test-runner-visual-regression) is used to run visual regression tests. [DOM Testing Library](https://testing-library.com/docs/dom-testing-library/intro).
+This [Web Test Runner plugin](https://www.npmjs.com/package/@web/test-runner-visual-regression) is used to run visual regression tests.
 Visual regression tests end with this suffix `*.visual.test.ts`.
 
 Execute the visual regression tests suite by running:
 ```sh
 npm run test:visual
 ```
+After the first run, if there are failing snapshots, they end up overriding the baseline ones in the filesystem (e.g. `/screenshots/<browser>/baseline/<name>.png`). 
+We do this for easier comparison of the dif directly in vscode and to make sure only the failing snapshots get regenerated (see [this GH discussion](https://github.com/modernweb-dev/web/discussions/427#discussioncomment-3543771) that inspired the approach).
 
-Update the visual baseline via:
-```sh
-npm run test:visual:update
-```
-
-Failing tests (including diffs) can be found under `screenshots/[browser]/failed/` folders.
+We also recommend to install [this vscode extension](https://marketplace.visualstudio.com/items?itemName=RayWiis.png-image-diff) for getting better diffs.
 
 ### Less Tests
 
@@ -174,9 +172,9 @@ Have a bug or feature request? First search existing or closed issues to make su
 If you’d like to contribute to Stacks, please read through our [contribution guidelines](/CONTRIBUTING.md). Included are directions for opening issues, coding standards, and notes on development.
 
 ## License
-Code and documentation copyright 2017-2022 Stack Exchange, Inc and released under the [MIT License](/LICENSE.MD).
+Code and documentation copyright 2017-2024 Stack Exchange, Inc and released under the [MIT License](/LICENSE.MD).
 
 [gh-action-url]: https://github.com/StackExchange/Stacks/actions/workflows/main.yml
-[gh-action-badge]: https://github.com/StackExchange/Stacks/actions/workflows/main.yml/badge.svg?branch=develop
+[gh-action-badge]: https://github.com/StackExchange/Stacks/actions/workflows/workflow.yml/badge.svg?branch=develop
 [npm-url]: https://npmjs.org/package/@stackoverflow/stacks
 [npm-badge]: https://img.shields.io/npm/v/@stackoverflow/stacks.svg

@@ -1,5 +1,5 @@
 import { html } from "@open-wc/testing";
-import { runComponentTests } from "../../test/test-utils";
+import { runVisualTests } from "../../test/visual-test-utils";
 import "../../index";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -89,8 +89,7 @@ const children = {
 
 describe("table", () => {
     // default, sizes
-    runComponentTests({
-        type: "visual",
+    runVisualTests({
         baseClass: "s-table",
         variants: ["stripes"],
         modifiers: {

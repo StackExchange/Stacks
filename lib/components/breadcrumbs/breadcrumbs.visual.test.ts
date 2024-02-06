@@ -1,10 +1,9 @@
-import { runComponentTests } from "../../test/test-utils";
+import { runVisualTests } from "../../test/visual-test-utils";
 import { html } from "@open-wc/testing";
 import "../../index";
 
 describe("breadcrumbs", () => {
-    runComponentTests({
-        type: "visual",
+    runVisualTests({
         baseClass: "s-breadcrumbs",
         children: {
             default: `
