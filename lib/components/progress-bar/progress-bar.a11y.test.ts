@@ -3,7 +3,7 @@ import {
     IconAchievementsSm,
     IconCheckmarkSm,
 } from "@stackoverflow/stacks-icons/icons";
-import { defaultOptions, runComponentTests } from "../../test/test-utils";
+import { runA11yTests } from "../../test/a11y-test-utils";
 import "../../index";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -97,8 +97,7 @@ const getChildren = (type: string) => {
 };
 describe("progress-bar", () => {
     // Base
-    runComponentTests({
-        type: "a11y",
+    runA11yTests({
         baseClass: "s-progress",
         variants: ["brand", "info"],
         children: {
@@ -108,8 +107,7 @@ describe("progress-bar", () => {
     });
 
     // Badge
-    runComponentTests({
-        type: "a11y",
+    runA11yTests({
         baseClass: "s-progress",
         variants: ["badge"],
         modifiers: {
@@ -120,15 +118,13 @@ describe("progress-bar", () => {
         },
         template,
         options: {
-            ...defaultOptions,
             includeNullVariant: false,
             includeNullModifier: false,
         },
     });
 
     // Circular
-    runComponentTests({
-        type: "a11y",
+    runA11yTests({
         baseClass: "s-progress",
         variants: ["circular"],
         modifiers: {
@@ -142,15 +138,13 @@ describe("progress-bar", () => {
             style: "--s-progress-value: .75",
         },
         options: {
-            ...defaultOptions,
             includeNullVariant: false,
             includeNullModifier: false,
         },
     });
 
     // Privilege
-    runComponentTests({
-        type: "a11y",
+    runA11yTests({
         baseClass: "s-progress",
         variants: ["privilege"],
         children: {
@@ -158,14 +152,12 @@ describe("progress-bar", () => {
         },
         template,
         options: {
-            ...defaultOptions,
             includeNullVariant: false,
         },
     });
 
     // Segmented
-    runComponentTests({
-        type: "a11y",
+    runA11yTests({
         baseClass: "s-progress",
         variants: ["segmented"],
         children: {
@@ -173,14 +165,12 @@ describe("progress-bar", () => {
         },
         template,
         options: {
-            ...defaultOptions,
             includeNullVariant: false,
         },
     });
 
     // Stepped
-    runComponentTests({
-        type: "a11y",
+    runA11yTests({
         baseClass: "s-progress",
         variants: ["stepped"],
         children: {
@@ -192,7 +182,6 @@ describe("progress-bar", () => {
             </div>
         `,
         options: {
-            ...defaultOptions,
             includeNullVariant: false,
         },
         // TODO add skipped test ids

@@ -1,12 +1,11 @@
-import { defaultOptions, runComponentTests } from "../../test/test-utils";
+import { runA11yTests } from "../../test/a11y-test-utils";
 import "../../index";
 
 ["checkbox", "radio"].forEach((type) => {
     describe("s-check-control", () => {
         // TODO include indeterminate
         ["checked", "unchecked"].forEach((state) => {
-            runComponentTests({
-                type: "a11y",
+            runA11yTests({
                 baseClass: "s-check-control",
                 modifiers: {
                     global: ["has-warning", "has-error", "has-success"],
@@ -26,7 +25,6 @@ import "../../index";
                     `,
                 },
                 options: {
-                    ...defaultOptions,
                     testidSuffix: `${state}-${type}`,
                 },
             });

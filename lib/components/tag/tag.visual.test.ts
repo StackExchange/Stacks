@@ -1,6 +1,6 @@
 import { html } from "@open-wc/testing";
 import { IconClearSm } from "@stackoverflow/stacks-icons";
-import { defaultOptions, runComponentTests } from "../../test/test-utils";
+import { runVisualTests } from "../../test/visual-test-utils";
 import "../../index";
 
 const children = {
@@ -15,8 +15,7 @@ const template = ({ component, testid }: any) => html`
 `;
 
 describe("tag", () => {
-    runComponentTests({
-        type: "visual",
+    runVisualTests({
         baseClass: "s-tag",
         variants: ["ignored", "watched", "moderator", "muted", "required"],
         modifiers: {
@@ -27,8 +26,7 @@ describe("tag", () => {
     });
 
     // Size modifiers
-    runComponentTests({
-        type: "visual",
+    runVisualTests({
         baseClass: "s-tag",
         modifiers: {
             primary: ["xs", "sm", "md", "lg"],
@@ -39,7 +37,6 @@ describe("tag", () => {
         },
         template,
         options: {
-            ...defaultOptions,
             includeNullModifier: false,
         },
     });

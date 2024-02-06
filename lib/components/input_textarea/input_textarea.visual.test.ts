@@ -1,5 +1,5 @@
 import { html } from "@open-wc/testing";
-import { runComponentTests } from "../../test/test-utils";
+import { runVisualTests } from "../../test/visual-test-utils";
 import "../../index";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -31,8 +31,7 @@ const otherModifiers = ["creditcard", "search"];
 
     describe(type, () => {
         // Base styles w/ value, modifiers
-        runComponentTests({
-            type: "visual",
+        runVisualTests({
             baseClass: `s-${type}`,
             modifiers: {
                 primary: [...sizes, ...otherModifiers],
@@ -65,8 +64,7 @@ const otherModifiers = ["creditcard", "search"];
                     };
                 }
             }
-            runComponentTests({
-                type: "visual",
+            runVisualTests({
                 baseClass: `s-${type} ${attrString}`,
                 tag: type,
                 attributes: attr,
@@ -77,8 +75,7 @@ const otherModifiers = ["creditcard", "search"];
 
         // w/ state classes; .is-readonly
         states.forEach((state) => {
-            runComponentTests({
-                type: "visual",
+            runVisualTests({
                 baseClass: `s-${type} state-${state}`,
                 tag: type,
                 attributes:
