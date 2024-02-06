@@ -1,4 +1,4 @@
-import { defaultOptions, runComponentTests } from "../../test/test-utils";
+import { runA11yTests } from "../../test/a11y-test-utils";
 import "../../index";
 
 const btns = [
@@ -39,8 +39,7 @@ const getBtn = ({
 };
 
 describe("button group", () => {
-    runComponentTests({
-        type: "a11y",
+    runA11yTests({
         baseClass: "s-btn-group",
         children: {
             default: btns.map((btn) => getBtn({ ...btn })).join(""),
@@ -49,8 +48,7 @@ describe("button group", () => {
     });
 
     // s-btn-group--radio
-    runComponentTests({
-        type: "a11y",
+    runA11yTests({
         baseClass: "s-btn-group",
         modifiers: {
             primary: ["radio"],
@@ -61,7 +59,6 @@ describe("button group", () => {
                 .join(""),
         },
         options: {
-            ...defaultOptions,
             includeNullModifier: false,
         },
         skippedTestids: ["s-btn-group-dark-radio"],

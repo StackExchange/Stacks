@@ -1,5 +1,5 @@
 import { html } from "@open-wc/testing";
-import { defaultOptions, runComponentTests } from "../../test/test-utils";
+import { runVisualTests } from "../../test/visual-test-utils";
 import "../../index";
 
 const btns = [
@@ -103,8 +103,7 @@ const btnGroupTemplate = ({ component, testid }: any) =>
 
 describe("button group", () => {
     groups.forEach((group) => {
-        runComponentTests({
-            type: "visual",
+        runVisualTests({
             baseClass: "s-btn-group",
             modifiers: {
                 global: [`btn-group-${group.id}`],
@@ -114,15 +113,13 @@ describe("button group", () => {
             },
             template: btnGroupTemplate,
             options: {
-                ...defaultOptions,
                 includeNullModifier: false,
             },
         });
     });
 
     // s-btn-group--radio
-    runComponentTests({
-        type: "visual",
+    runVisualTests({
         baseClass: "s-btn-group",
         modifiers: {
             primary: ["radio"],
@@ -134,7 +131,6 @@ describe("button group", () => {
         },
         template: btnGroupTemplate,
         options: {
-            ...defaultOptions,
             includeNullModifier: false,
         },
     });
