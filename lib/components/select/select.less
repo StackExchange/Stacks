@@ -2,7 +2,6 @@
     --_se-arrow-bc: currentColor transparent;
     --_se-arrow-size: var(--su-static4); // Constant
     --_se-select-bc: var(--bc-darker);
-    --_se-select-bc-focus: var(--theme-secondary-400);
     --_se-select-bg: var(--white);
     --_se-select-br: var(--br-md);
     --_se-select-fc: var(--black);
@@ -99,18 +98,8 @@
             cursor: not-allowed;
         }
 
-        // CHILD ELEMENTS
-        &::-moz-focus-inner {
-            outline: none !important;
-        }
-
         // INTERACTION
         &:focus {
-            .highcontrast-mode({
-                --_se-select-bc-focus: var(--black);
-            });
-
-            border-color: var(--_se-select-bc-focus);
             color: var(--black);
             .focus-styles();
         }
