@@ -1,5 +1,5 @@
 import { html } from "@open-wc/testing";
-import { defaultOptions, runComponentTests } from "../../test/test-utils";
+import { runVisualTests } from "../../test/visual-test-utils";
 import "../../index";
 
 const modifiers = [
@@ -48,8 +48,7 @@ const getSvgPath = (name: string) => {
 
 modifiers.forEach(({ name, parentClasses, modifier, inputClasses }) => {
     describe("input-icon", () => {
-        runComponentTests({
-            type: "visual",
+        runVisualTests({
             baseClass: `s-input-icon`,
             tag: "svg",
             children: {
@@ -86,7 +85,6 @@ modifiers.forEach(({ name, parentClasses, modifier, inputClasses }) => {
                 </div>
             `,
             options: {
-                ...defaultOptions,
                 includeNullModifier: false,
             },
         });
