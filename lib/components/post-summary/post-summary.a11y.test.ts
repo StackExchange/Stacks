@@ -1,7 +1,10 @@
 import { html } from "@open-wc/testing";
 import { runA11yTests } from "../../test/a11y-test-utils";
 import { getChildren } from "../../test/post-summary-test-utils";
-import type { BadgeType, TruncationSizes } from "../../test/post-summary-test-utils";
+import type {
+    BadgeType,
+    TruncationSizes,
+} from "../../test/post-summary-test-utils";
 import "../../index";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -28,7 +31,7 @@ describe("post-summary", () => {
                     tags: true,
                     title: true,
                     user: true,
-                }
+                },
             }),
             sparce: getChildren({
                 show: {
@@ -37,10 +40,12 @@ describe("post-summary", () => {
                     title: true,
                     user: true,
                 },
-                tags: [{
-                    text: "featured-request",
-                    type: "required",
-                }],
+                tags: [
+                    {
+                        text: "featured-request",
+                        type: "required",
+                    },
+                ],
                 title: "Short title",
             }),
         },
@@ -50,7 +55,7 @@ describe("post-summary", () => {
             /-deleted/,
             /-ignored/,
             /-highcontrast-(light|dark)-watched/,
-        ]
+        ],
     });
 
     // Truncated description sizes
@@ -81,14 +86,16 @@ describe("post-summary", () => {
         {
             childName: "stats-unanswered",
             answers: 0,
-        }, {
+        },
+        {
             childName: "stats-answered",
             answers: 1,
-        }, {
+        },
+        {
             childName: "stats-answered-accepted",
             answers: 10,
             accepted: true,
-        }
+        },
     ].forEach(({ childName, answers, accepted }) => {
         runA11yTests({
             baseClass: "s-post-summary",
@@ -114,16 +121,19 @@ describe("post-summary", () => {
         {
             childName: "stats-views",
             views: 1,
-        }, {
+        },
+        {
             childName: "stats-views-warm",
             views: 1001,
-        }, {
+        },
+        {
             childName: "stats-views-hot",
             views: 10001,
-        }, {
+        },
+        {
             childName: "stats-views-supernova",
             views: 100001,
-        }
+        },
     ].forEach(({ childName, views }) => {
         runA11yTests({
             baseClass: "s-post-summary",
@@ -144,7 +154,14 @@ describe("post-summary", () => {
     });
 
     // Badges
-    ["danger", "danger-filled", "info", "muted", "muted-filled", "warning"].forEach((badge) => {
+    [
+        "danger",
+        "danger-filled",
+        "info",
+        "muted",
+        "muted-filled",
+        "warning",
+    ].forEach((badge) => {
         runA11yTests({
             baseClass: "s-post-summary",
             children: {
@@ -158,7 +175,7 @@ describe("post-summary", () => {
                         votes: 1,
                         views: 20,
                     },
-                })
+                }),
             },
             template,
         });

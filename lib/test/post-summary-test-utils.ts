@@ -1,90 +1,107 @@
-import { IconArchiveSm, IconCheckmarkSm, IconEllipsisVertical, IconEyeSm, IconNotInterested, IconPencilSm, IconTackSm, IconTrashSm } from "@stackoverflow/stacks-icons/icons";
+import {
+    IconArchiveSm,
+    IconCheckmarkSm,
+    IconEllipsisVertical,
+    IconEyeSm,
+    IconNotInterested,
+    IconPencilSm,
+    IconTackSm,
+    IconTrashSm,
+} from "@stackoverflow/stacks-icons/icons";
 
-export type BadgeType = "danger" | "danger-filled" | "info" | "muted" | "muted-filled" | "warning";
+export type BadgeType =
+    | "danger"
+    | "danger-filled"
+    | "info"
+    | "muted"
+    | "muted-filled"
+    | "warning";
 type Stats = {
-  votes: number;
-  views: number;
-  answers: number;
-  accepted?: boolean;
-  bounty?: number;
-  badge?: BadgeType;
+    votes: number;
+    views: number;
+    answers: number;
+    accepted?: boolean;
+    bounty?: number;
+    badge?: BadgeType;
 };
-type Tags = { text: string, type?: "required" | "moderator" }[];
+type Tags = { text: string; type?: "required" | "moderator" }[];
 export type TruncationSizes = "sm" | "md" | "lg" | "";
 
-const base64AvatarImage = 
-  "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAATwAAAE8CAMAAABq2/00AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAABhQTFRF/3IA/////44y/8OS/+fU//Xs/6tn/9e2EhvbMQAABH9JREFUeNrs3e1y2ygAhWELJHH/d7zuJpN1XAnxoe408Ly/6xnnHXEOIEwfDwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/gbAGEhrZl2VloY20PIk8tAzZbfkXA7eeuHyysVfdFMsXiY66ptiWF8Re05BdxF7HkBV7PUNW7FVx4E7sVSwrDjBw2+pC7NWwHtkTe3ULM7En9v6O2ONF7Ik9sSf2IPbEntgTexB7t8feTsynniD2Oh6tXex1hFoUe02kaxVi72JMZs+Rib0LLdkXFGLvaECWjkOxdxVmUex1rB6S2Kss2lcytSH2LnVkakPsXQ7E8xwTe5fuMrUh9vKj8CP4xN7lNOXc3mnwib1M2X7Z28VeS93mg0/sFZTG6WCMVSE51fqsYL4s9jpqQ+yV1caxErHXUxtir6c2xF5HbYRF7LXXhtjrqQ2x11MbYu9tLG4VtSH2empD7BUNxpPaSGKvPPh2sdcxX45i78baEHs18+X32hB7NfPl99oQex21MVHsxViaR8W1MU3s/XpMSvWF0tqYJfY+BmMq01dcG+scP6/6enTK9BW+1J0j9l5aYN0rP5BzM0XsbSUnAlpqY4LYezexFeRSbpslH3uDXdF64OG6est258PohXE8BK+7o6g29rJTQsPt1F3qK9qdTwMP2Wz2X1Vv0UvdbeQ53nl2Xesr2Z0Pww7Zs5lsafWW1MY+6JDNxv5/+kLb5/fXfzLirRdhKSGnr6A2tkGvJoxLGZnqva6NkAbdgA+pUN9a+QuWYYPu+98ee/W1/PJgoMG7lek7nW3UHiEdbKpcqu+kO2L9b4aG0rcWjt5jfWf2Z7kCeE891XtSG/O86A5d+tbZj1h0VW+c/ja90FG9uxMCFdWb/+SkZ1Oaq/d1vjzvXfvF+tLp+aiZT5S1Vm90lrFj02B3bW1d9X7T92u+7Aq9qk2D+Fob/v/Myu7YostC76xe9K966evfr5+7ekuXHVy1V6+R275pEMd3kPbGB+Syeod/8D7Sf41NBvPdMf7a4uXpaTGY0zd+4r0vDlKtwdPqHf/BOzzf8zQYqvRtcz54mXfUNUVyUL0T7AhcrBbKY/C36p1geVEy1y00+F3fBA9eKFxnlRXJa/XOcKxnqeF6Pv1VvTPc7RuXai6K5LN6Z9hQSUsb2Rh86pviUultaScTg/sMD15YeqmcT8/bFx1Foi/umk9P3hcMfqTenrabBT5j8DGTwHivwelOCTwNrnfJm/Ol2U0GZ74WdE+dBn9+Z/z2J9UZ7IjB7dZv8gPl9RRJIq89BiN57QZ38trn04G8k62E6xjcHuQ1D+JEXrvBnbz2+XQgr30+/SCveT69ktceg4m8doOBvDG/CXnkkTezvOXPQB555JFHHnnkkUceeeSRRx555JFHHnnkkWcnmTzyyCOPPPLII4888sgjjzzfhDzyyCOPPPL+9Ff+eyCPPPLII4888sgjjzzyyCOPPPLII4888sgDAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPy//CPAAPiZOI3BPDFQAAAAAElFTkSuQmCC";
-
+const base64AvatarImage =
+    "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAATwAAAE8CAMAAABq2/00AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAABhQTFRF/3IA/////44y/8OS/+fU//Xs/6tn/9e2EhvbMQAABH9JREFUeNrs3e1y2ygAhWELJHH/d7zuJpN1XAnxoe408Ly/6xnnHXEOIEwfDwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/gbAGEhrZl2VloY20PIk8tAzZbfkXA7eeuHyysVfdFMsXiY66ptiWF8Re05BdxF7HkBV7PUNW7FVx4E7sVSwrDjBw2+pC7NWwHtkTe3ULM7En9v6O2ONF7Ik9sSf2IPbEntgTexB7t8feTsynniD2Oh6tXex1hFoUe02kaxVi72JMZs+Rib0LLdkXFGLvaECWjkOxdxVmUex1rB6S2Kss2lcytSH2LnVkakPsXQ7E8xwTe5fuMrUh9vKj8CP4xN7lNOXc3mnwib1M2X7Z28VeS93mg0/sFZTG6WCMVSE51fqsYL4s9jpqQ+yV1caxErHXUxtir6c2xF5HbYRF7LXXhtjrqQ2x11MbYu9tLG4VtSH2empD7BUNxpPaSGKvPPh2sdcxX45i78baEHs18+X32hB7NfPl99oQex21MVHsxViaR8W1MU3s/XpMSvWF0tqYJfY+BmMq01dcG+scP6/6enTK9BW+1J0j9l5aYN0rP5BzM0XsbSUnAlpqY4LYezexFeRSbpslH3uDXdF64OG6est258PohXE8BK+7o6g29rJTQsPt1F3qK9qdTwMP2Wz2X1Vv0UvdbeQ53nl2Xesr2Z0Pww7Zs5lsafWW1MY+6JDNxv5/+kLb5/fXfzLirRdhKSGnr6A2tkGvJoxLGZnqva6NkAbdgA+pUN9a+QuWYYPu+98ee/W1/PJgoMG7lek7nW3UHiEdbKpcqu+kO2L9b4aG0rcWjt5jfWf2Z7kCeE891XtSG/O86A5d+tbZj1h0VW+c/ja90FG9uxMCFdWb/+SkZ1Oaq/d1vjzvXfvF+tLp+aiZT5S1Vm90lrFj02B3bW1d9X7T92u+7Aq9qk2D+Fob/v/Myu7YostC76xe9K966evfr5+7ekuXHVy1V6+R275pEMd3kPbGB+Syeod/8D7Sf41NBvPdMf7a4uXpaTGY0zd+4r0vDlKtwdPqHf/BOzzf8zQYqvRtcz54mXfUNUVyUL0T7AhcrBbKY/C36p1geVEy1y00+F3fBA9eKFxnlRXJa/XOcKxnqeF6Pv1VvTPc7RuXai6K5LN6Z9hQSUsb2Rh86pviUultaScTg/sMD15YeqmcT8/bFx1Foi/umk9P3hcMfqTenrabBT5j8DGTwHivwelOCTwNrnfJm/Ol2U0GZ74WdE+dBn9+Z/z2J9UZ7IjB7dZv8gPl9RRJIq89BiN57QZ38trn04G8k62E6xjcHuQ1D+JEXrvBnbz2+XQgr30+/SCveT69ktceg4m8doOBvDG/CXnkkTezvOXPQB555JFHHnnkkUceeeSRRx555JFHHnnkkWcnmTzyyCOPPPLII4888sgjjzzfhDzyyCOPPPL+9Ff+eyCPPPLII4888sgjjzzyyCOPPPLII4888sgDAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPy//CPAAPiZOI3BPDFQAAAAAElFTkSuQmCC";
 
 const formatNumber = (num: number) => {
-  switch (true) {
-      case num > 10000090:
-          return (num / 1000000).toFixed(0) + "m";
-      case num > 1000000:
-          return (num / 1000000).toFixed(1) + "m";
-      case num > 10000:
-          return (num / 1000).toFixed(0) + "k";
-      case num > 1000:
-          return (num / 1000).toFixed(1) + "k";
-      default:
-          return num.toString();
-  }
+    switch (true) {
+        case num > 10000090:
+            return (num / 1000000).toFixed(0) + "m";
+        case num > 1000000:
+            return (num / 1000000).toFixed(1) + "m";
+        case num > 10000:
+            return (num / 1000).toFixed(0) + "k";
+        case num > 1000:
+            return (num / 1000).toFixed(1) + "k";
+        default:
+            return num.toString();
+    }
 };
 
 const getHotnessClass = (num: number) => {
-  switch (true) {
-      case num > 100000:
-          return "is-supernova";
-      case num > 10000:
-          return "is-hot";
-      case num > 1000:
-          return "is-warm";
-      default:
-          return "";
-  }
-}
+    switch (true) {
+        case num > 100000:
+            return "is-supernova";
+        case num > 10000:
+            return "is-hot";
+        case num > 1000:
+            return "is-warm";
+        default:
+            return "";
+    }
+};
 
 const getBadge = (type: BadgeType) => {
-  const badgeClasses = type.split("-").map((modifier) => `s-badge__${modifier}`).join(" ");
-  const getIcon = () => {
-      switch (type) {
-          case "danger":
-              return IconNotInterested;
-          case "danger-filled":
-              return IconTrashSm;
-          case "info":
-              return IconPencilSm;
-          case "muted":
-              return IconArchiveSm;
-          case "muted-filled":
-              return IconTackSm;
-          case "warning":
-              return IconEyeSm;
-          default:
-              return "";
-      }
-  };
+    const badgeClasses = type
+        .split("-")
+        .map((modifier) => `s-badge__${modifier}`)
+        .join(" ");
+    const getIcon = () => {
+        switch (type) {
+            case "danger":
+                return IconNotInterested;
+            case "danger-filled":
+                return IconTrashSm;
+            case "info":
+                return IconPencilSm;
+            case "muted":
+                return IconArchiveSm;
+            case "muted-filled":
+                return IconTackSm;
+            case "warning":
+                return IconEyeSm;
+            default:
+                return "";
+        }
+    };
 
-  const getText = () => {
-      switch (type) {
-          case "danger":
-              return "Closed";
-          case "danger-filled":
-              return "Deleted";
-          case "info":
-              return "Draft";
-          case "muted":
-              return "Archived";
-          case "muted-filled":
-              return "Pinned";
-          case "warning":
-              return "Review";
-          default:
-              return "";
-      }
-  };
+    const getText = () => {
+        switch (type) {
+            case "danger":
+                return "Closed";
+            case "danger-filled":
+                return "Deleted";
+            case "info":
+                return "Draft";
+            case "muted":
+                return "Archived";
+            case "muted-filled":
+                return "Pinned";
+            case "warning":
+                return "Review";
+            default:
+                return "";
+        }
+    };
 
-  return `
+    return `
       <div
           class="s-post-summary--stats-item s-badge s-badge__icon ${badgeClasses}"
       >
@@ -109,12 +126,12 @@ const getMenuBtn = () => `
 `;
 
 const getStats = ({
-  votes,
-  views,
-  answers,
-  accepted,
-  bounty,
-  badge
+    votes,
+    views,
+    answers,
+    accepted,
+    bounty,
+    badge,
 }: Stats) => `
   <div class="s-post-summary--stats">
       ${badge ? getBadge(badge) : ""}
@@ -131,32 +148,42 @@ const getStats = ({
           <span class="s-post-summary--stats-item-number">${formatNumber(views)}</span>
           <span class="s-post-summary--stats-item-unit">${views === 1 ? "view" : "views"}</span>
       </div>
-      ${bounty ? `
+      ${
+          bounty
+              ? `
           <div class="s-post-summary--stats-item s-badge s-badge__bounty">
               +${bounty}
           </div>
-      ` : ""}
+      `
+              : ""
+      }
   </div>
 `;
 
 const getTags = (tags?: Tags) => {
-  const tagsArr = tags ?? [
-    {
-      text: "feature-request",
-      type: "required"
-    }, {
-      text: "status-complete",
-      type: "moderator"
-    }, {
-      text: "design"
-    }
-  ];
+    const tagsArr = tags ?? [
+        {
+            text: "feature-request",
+            type: "required",
+        },
+        {
+            text: "status-complete",
+            type: "moderator",
+        },
+        {
+            text: "design",
+        },
+    ];
 
-  const tagsHTML = tagsArr.map(({ text, type }) => `
+    const tagsHTML = tagsArr
+        .map(
+            ({ text, type }) => `
     <a class="s-tag ${type ? `s-tag__${type}` : ""}" href="/">${text}</a>
-  `).join("");
+  `
+        )
+        .join("");
 
-  return `<div class="s-post-summary--meta-tags">${tagsHTML}</div>`
+    return `<div class="s-post-summary--meta-tags">${tagsHTML}</div>`;
 };
 
 const getTitle = (text?: string) => `
@@ -180,52 +207,68 @@ const getUser = () => `
 `;
 
 const getChildren = ({
-  show = {
-    description: false,
-    menuBtn: false,
-    stats: false,
-    tags: false,
-    title: false,
-    user: false,
-  },
-  description = {
-    truncation: "",
-    text: "",
-  },
-  stats,
-  tags,
-  title,
+    show = {
+        description: false,
+        menuBtn: false,
+        stats: false,
+        tags: false,
+        title: false,
+        user: false,
+    },
+    description = {
+        truncation: "",
+        text: "",
+    },
+    stats,
+    tags,
+    title,
 }: {
-  show?: {
-    description?: boolean;
-    menuBtn?: boolean;
-    stats?: boolean;
-    tags?: boolean;
-    title?: boolean;
-    user?: boolean;
-  };
-  description?: {
-    truncation?: TruncationSizes;
-    text?: string;
-  };
-  stats?: Stats;
-  tags?: Tags;
-  title?: string;
+    show?: {
+        description?: boolean;
+        menuBtn?: boolean;
+        stats?: boolean;
+        tags?: boolean;
+        title?: boolean;
+        user?: boolean;
+    };
+    description?: {
+        truncation?: TruncationSizes;
+        text?: string;
+    };
+    stats?: Stats;
+    tags?: Tags;
+    title?: string;
 }) => {
-  const titleEl = show.title || title ? getTitle(title) : "";
-  const descriptionEl = show.description || description.truncation || description.text ? 
-    description ? getDescription(description.truncation, description.text)
-    : getDescription()
-  : "";
-  const tagsEl = show.tags || tags ? getTags(tags) : "";
-  const userEl = show.user ? getUser() : "";
-  const menuBtnEl = show.menuBtn ? getMenuBtn() : "";
+    const titleEl = show.title || title ? getTitle(title) : "";
+    const descriptionEl =
+        show.description || description.truncation || description.text
+            ? description
+                ? getDescription(description.truncation, description.text)
+                : getDescription()
+            : "";
+    const tagsEl = show.tags || tags ? getTags(tags) : "";
+    const userEl = show.user ? getUser() : "";
+    const menuBtnEl = show.menuBtn ? getMenuBtn() : "";
 
-  return `
-    ${show.stats || stats ?
-      getStats(stats ? stats : { votes: 95, views: 104123, answers: 5, accepted: true, bounty: 50 })
-    : ""}
-    ${titleEl || descriptionEl || tagsEl || userEl || menuBtnEl ? `
+    return `
+    ${
+        show.stats || stats
+            ? getStats(
+                  stats
+                      ? stats
+                      : {
+                            votes: 95,
+                            views: 104123,
+                            answers: 5,
+                            accepted: true,
+                            bounty: 50,
+                        }
+              )
+            : ""
+    }
+    ${
+        titleEl || descriptionEl || tagsEl || userEl || menuBtnEl
+            ? `
       <div class="s-post-summary--content">
           ${titleEl}
           ${descriptionEl}
@@ -235,17 +278,18 @@ const getChildren = ({
           </div>
           ${menuBtnEl}
       </div>`
-    : ""}
+            : ""
+    }
   `;
 };
 
 export {
-  getBadge,
-  getDescription,
-  getMenuBtn,
-  getStats,
-  getTags,
-  getTitle,
-  getUser,
-  getChildren
+    getBadge,
+    getDescription,
+    getMenuBtn,
+    getStats,
+    getTags,
+    getTitle,
+    getUser,
+    getChildren,
 };
