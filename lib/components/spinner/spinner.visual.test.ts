@@ -1,5 +1,5 @@
 import { html } from "@open-wc/testing";
-import { runComponentTests } from "../../test/test-utils";
+import { runVisualTests } from "../../test/visual-test-utils";
 import "../../index";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -8,8 +8,7 @@ const template = ({ component, testid }: any) => html`
 `;
 describe("spinner", () => {
     // default, sizes
-    runComponentTests({
-        type: "visual",
+    runVisualTests({
         baseClass: "s-spinner",
         modifiers: {
             primary: ["xs", "sm", "md", "lg"],
@@ -20,8 +19,7 @@ describe("spinner", () => {
         template,
     });
     // applied font color
-    runComponentTests({
-        type: "visual",
+    runVisualTests({
         baseClass: "s-spinner",
         modifiers: {
             global: ["fc-theme-primary"],
@@ -32,8 +30,7 @@ describe("spinner", () => {
         template,
     });
     // .is-loading
-    runComponentTests({
-        type: "visual",
+    runVisualTests({
         baseClass: "is-loading",
         children: {
             default: `Loading…`,

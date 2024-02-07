@@ -1,5 +1,5 @@
 import { html } from "@open-wc/testing";
-import { runComponentTests } from "../../test/test-utils";
+import { runVisualTests } from "../../test/visual-test-utils";
 import "../../index";
 
 const base64Image =
@@ -26,8 +26,7 @@ const getChild = (child?: string): string => {
 };
 
 describe("avatar", () => {
-    runComponentTests({
-        type: "visual",
+    runVisualTests({
         baseClass: "s-avatar",
         variants: ["24", "32", "48", "64", "96", "128"],
         children: {

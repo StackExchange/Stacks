@@ -5,35 +5,49 @@
     // --_bu-bg: inherit; // [1]
     --_bu-br: var(--br-md);
     --_bu-fc: var(--theme-button-color, var(--theme-secondary-400));
-    --_bu-focus-ring: 0 0 0 var(--su-static4) var(--focus-ring);
     --_bu-fs: var(--fs-body1);
     --_bu-p: 0.8em;
-    // STATE AND INTERACTION CUSTOM PROPERTIES
-    --_bu-bc-selected: transparent;
+
+    // Active
+    --_bu-bc-active: var(--_bu-bc);
     --_bu-bg-active: var(--theme-button-active-background-color, var(--theme-secondary-300));
+    --_bu-fc-active: var(--theme-button-hover-color, var(--theme-secondary-500)); // Note: hover color used on purpose
+
+    // Hover
+    --_bu-bc-hover: var(--_bu-bc);
     --_bu-bg-hover: var(--theme-button-hover-background-color, var(--theme-secondary-200));
-    --_bu-bg-selected: var(--theme-button-selected-background-color, var(--theme-secondary-300));
-    --_bu-fc-active: var(--theme-button-hover-color, var(--theme-secondary-500)); // Note: hover color used here intentionally
     --_bu-fc-hover: var(--theme-button-hover-color, var(--theme-secondary-500));
+
+    // BASE SELECTED MODIFIER
+    --_bu-bg-selected: var(--theme-button-selected-background-color, var(--theme-secondary-300));
     --_bu-fc-selected: var(--theme-button-selected-color, var(--theme-secondary-600));
-    // Filled
+
+    // FILLED VARIANT
     --_bu-filled-bc: transparent;
-    --_bu-filled-bc-active: transparent;
-    --_bu-filled-bc-selected: transparent;
     --_bu-filled-bg: var(--theme-button-primary-background-color, var(--theme-secondary-400));
-    --_bu-filled-bg-active: var(--theme-button-primary-active-background-color, var(--theme-secondary-600));
-    --_bu-filled-bg-hover: var(--theme-button-primary-hover-background-color, var(--theme-secondary-500));
-    --_bu-filled-bg-selected: var(--theme-button-primary-selected-background-color, var(--theme-secondary-500));
     --_bu-filled-fc: var(--theme-button-primary-color, var(--white));
-    --_bu-filled-fc-active: var(--theme-button-primary-hover-color, var(--white));
-    --_bu-filled-fc-hover: var(--theme-button-primary-hover-color, var(--white));
+    // Filled + Selected
+    --_bu-filled-bc-selected: transparent;
+    --_bu-filled-bg-selected: var(--theme-button-primary-selected-background-color, var(--theme-secondary-500));
     --_bu-filled-fc-selected: var(--theme-button-primary-selected-color, var(--white));
-    // Outlined
+    // Filled + Active
+    --_bu-filled-bc-active: var(--_bu-filled-bc);
+    --_bu-filled-bg-active: var(--theme-button-primary-active-background-color, var(--theme-secondary-600));
+    --_bu-filled-fc-active: var(--theme-button-primary-hover-color, var(--white));
+    // Filled + Hover
+    --_bu-filled-bc-hover: var(--_bu-filled-bc);
+    --_bu-filled-bg-hover: var(--theme-button-primary-hover-background-color, var(--theme-secondary-500));
+    --_bu-filled-fc-hover: var(--theme-button-primary-hover-color, var(--white));
+
+    // OUTLINED VARIANT
     --_bu-outlined-bc: var(--theme-button-outlined-border-color, var(--theme-secondary-400));
     --_bu-outlined-bg: var(--theme-button-outlined-background-color);
+    --_bg-outlined-fc: var(--theme-button-outlined-color, var(--theme-secondary-400));
+    // Outlined + Selected
     --_bu-outlined-bc-selected: var(--theme-button-outlined-selected-border-color, var(--theme-secondary-400));
     --_bu-outlined-bg-selected: var(--theme-button-selected-background-color, var(--theme-secondary-300));
     --_bu-outlined-fc-selected: var(--theme-button-selected-color, var(--theme-secondary-600));
+
     // CHILD COMPONENT CUSTOM PROPERTIES
     --_bu-badge-o: 0.5;
     --_bu-dropdown-bw: var(--su-static4);
@@ -81,9 +95,9 @@
     }
 
     &.is-selected,
-    .s-btn-group.s-btn-group--radio &--radio:checked + & {
+    &--radio:checked + & {
         background-color: var(--_bu-bg-selected);
-        border-color: var(--_bu-bc-selected);
+        border-color: var(--_bu-bc-selected, transparent);
         color: var(--_bu-fc-selected);
 
         .s-btn--number {
@@ -139,7 +153,6 @@
     &&__link {
         --_bu-baw: 0;
         --_bu-br: 0;
-        --_bu-focus-ring: none;
         --_bu-p: 0;
 
         &,
@@ -171,7 +184,6 @@
             --_bu-bg: none;
             --_bu-br: 0;
             --_bu-fc: unset;
-            --_bu-focus-ring: none;
             --_bu-p: 0;
 
             cursor: default;
@@ -241,7 +253,6 @@
         --_bu-fc-active: var(--_bu-fc);
         --_bu-fc-hover: var(--red-500);
         --_bu-fc-selected: var(--red-600);
-        --_bu-focus-ring: 0 0 0 var(--su-static4) var(--focus-ring-error);
         --_bu-filled-bc: transparent;
         --_bu-filled-bc-selected: var(--_bu-filled-bc);
         --_bu-filled-bg: var(--red-400);
@@ -261,6 +272,7 @@
     }
 
     &&__muted {
+        --_bu-bc-hover: var(--black-300);
         --_bu-bg-active: var(--black-150);
         --_bu-bg-hover: var(--black-100);
         --_bu-bg-selected: var(--black-200);
@@ -268,7 +280,6 @@
         --_bu-fc-active: var(--_bu-fc);
         --_bu-fc-hover: var(--black-500);
         --_bu-fc-selected: var(--black-500);
-        --_bu-focus-ring: 0 0 0 var(--su-static4) var(--focus-ring-muted);
         // The filled modifier on the muted button is deprecated and is to be
         // removed in Stacks Classic v2
         --_bu-filled-bc: transparent;
@@ -285,7 +296,11 @@
         --_bu-outlined-bc-selected: var(--black-300);
         --_bu-outlined-bg-selected: var(--_bu-bg-selected);
         --_bu-outlined-fc-selected: var(--_bu-fc-selected);
+        --_bu-number-fc-filled: var(--white);
         --_bu-number-fc-selected: var(--white);
+        --_bu-bg-focus: var(--black-400);
+        --_bu-fc-focus: var(--white);
+        --_bu-number-fc-focus: var(--black-500);
 
         .highcontrast-mode({
             --_bu-bg-hover: var(--black-225);
@@ -350,7 +365,6 @@
         --_bu-fc: var(--fc-medium);
         --_bu-fc-active: var(--fc-dark);
         --_bu-fc-hover: var(--black-600);
-        --_bu-focus-ring: 0 0 0 var(--su-static4) var(--focus-ring-muted);
     }
 
     &&__github {
@@ -360,7 +374,6 @@
         --_bu-fc: var(--white);
         --_bu-fc-active: var(--white);
         --_bu-fc-hover: var(--white);
-        --_bu-focus-ring: 0 0 0 var(--su-static4) var(--focus-ring-muted);
         --_bu-hc-bc: transparent;
     }
 
@@ -393,11 +406,34 @@
     }
 
     // INTERACTION
-    &:not(.is-selected):not(&__link):not(&__unset) {
-        &:hover, &:focus {
+    &:not(&__link):not(&__unset):focus-visible,
+    &--radio:focus-visible + & {
+        border-color: var(--theme-secondary-400) !important;
+        .focus-styles(true, true);
+    }
+
+    &:not(&__link):not(&__unset)&:not(&__facebook):not(&__github):not(&__google):not(.is-selected):focus-visible,
+    &--radio:focus-visible + & {
+        &,
+        &.s-btn__filled {
+            &:not(:hover) .s-btn--number {
+                color: var(--_bu-number-fc-focus, var(--_bu-number-fc-filled));
+            }
+
+            background-color: var(--_bu-bg-focus, var(--_bu-filled-bg));
+            color: var(--_bu-fc-focus, var(--_bu-filled-fc));
+        }
+    }
+
+    &:not(&__link):not(&__unset)&:not(&__facebook):not(&__github):not(&__google):not(.is-selected) {
+        &:hover {
             &.s-btn__filled {
                 background-color: var(--_bu-filled-bg-hover);
+                border-color: var(--_bu-filled-bc-hover);
                 color: var(--_bu-filled-fc-hover);
+            }
+            &:not(.s-btn__outlined) {
+                border-color: var(--_bu-bc-hover);
             }
 
             background-color: var(--_bu-bg-hover);
@@ -407,28 +443,27 @@
         &:active {
             &.s-btn__filled {
                 background-color: var(--_bu-filled-bg-active);
+                border-color: var(--_bu-filled-bc-active);
                 color: var(--_bu-filled-fc-active);
             }
 
             background-color: var(--_bu-bg-active);
+            border-color: var(--_bu-bc-active);
             color: var(--_bu-fc-active);
-        }
-
-        &:visited:not(:hover):not(:focus) {
-            &.s-btn__filled {
-                background-color: var(--_bu-filled-bg);
-                color: var(--_bu-filled-fc);
-            }
-
-            background-color: var(--_bu-bg);
-            color: var(--_bu-fc);
         }
     }
 
-    &:focus,
-    &--radio:focus + & {
-        box-shadow: var(--_bu-focus-ring);
-        outline: none;
+
+    &:visited:not(:hover):not(:focus) {
+        &.s-btn__filled {
+            background-color: var(--_bu-filled-bg);
+            border-color: var(--_bu-filled-bc);
+            color: var(--_bu-filled-fc);
+        }
+
+        background-color: var(--_bu-bg);
+        border-color: var(--_bu-bc);
+        color: var(--_bu-fc);
     }
 
     background-color: var(--_bu-bg, inherit); // [1]

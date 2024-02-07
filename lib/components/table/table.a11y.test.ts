@@ -1,5 +1,5 @@
 import { html } from "@open-wc/testing";
-import { runComponentTests } from "../../test/test-utils";
+import { runA11yTests } from "../../test/a11y-test-utils";
 import "../../index";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -76,7 +76,7 @@ const children = {
         </tbody>
         <tfoot class="s-table--totals">
             <tr>
-                <td scope="row"><span class="v-visible-sr">Empty</span></td>
+                <td><span class="v-visible-sr">Empty</span></td>
                 <th scope="row" class="ta-left">Totals</th>
                 <td><span class="v-visible-sr">Empty</span></td>
                 <td colspan="2">160</td>
@@ -88,8 +88,7 @@ const children = {
 
 describe("table", () => {
     // default, sizes
-    runComponentTests({
-        type: "a11y",
+    runA11yTests({
         baseClass: "s-table",
         variants: ["stripes"],
         modifiers: {

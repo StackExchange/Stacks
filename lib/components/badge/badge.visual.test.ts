@@ -1,4 +1,4 @@
-import { defaultOptions, runComponentTests } from "../../test/test-utils";
+import { runVisualTests } from "../../test/visual-test-utils";
 // import { Icons } from "@stackoverflow/stacks-icons";
 import "../../index";
 import { html } from "@open-wc/testing";
@@ -25,8 +25,7 @@ const template = ({ component, testid }: any) => html`
 
 describe("badge", () => {
     // Base badge
-    runComponentTests({
-        type: "visual",
+    runVisualTests({
         baseClass: "s-badge",
         children: {
             default: `base badge`,
@@ -37,8 +36,7 @@ describe("badge", () => {
 
     // Award badges
     variants.blings.map((bling) => {
-        runComponentTests({
-            type: "visual",
+        runVisualTests({
             baseClass: "s-badge",
             variants: [bling],
             children: {
@@ -47,7 +45,6 @@ describe("badge", () => {
                 </span>`,
             },
             options: {
-                ...defaultOptions,
                 includeNullVariant: false,
                 includeNullModifier: false,
             },
@@ -57,15 +54,13 @@ describe("badge", () => {
     });
 
     // Number counts
-    runComponentTests({
-        type: "visual",
+    runVisualTests({
         baseClass: "s-badge",
         variants: variants.numbers,
         children: {
             default: "123",
         },
         options: {
-            ...defaultOptions,
             includeNullVariant: false,
             includeNullModifier: false,
         },
@@ -74,8 +69,7 @@ describe("badge", () => {
     });
 
     // Icon badges
-    runComponentTests({
-        type: "visual",
+    runVisualTests({
         baseClass: "s-badge",
         variants: [...variants.states.filled, ...variants.states.other],
         modifiers: {
@@ -86,7 +80,6 @@ describe("badge", () => {
             //     icon: Icons.IconEyeSm,  // TODO fix the icon imports
         },
         options: {
-            ...defaultOptions,
             includeNullModifier: false,
         },
         tag: "span",
@@ -94,8 +87,7 @@ describe("badge", () => {
     });
 
     // Filled badges
-    runComponentTests({
-        type: "visual",
+    runVisualTests({
         baseClass: "s-badge",
         variants: variants.states.filled,
         children: {
@@ -103,7 +95,6 @@ describe("badge", () => {
             //     icon: Icons.IconEyeOffSm,  // TODO fix the icon imports
         },
         options: {
-            ...defaultOptions,
             includeNullModifier: false,
             includeNullVariant: false,
         },
@@ -112,8 +103,7 @@ describe("badge", () => {
     });
 
     // User badges
-    runComponentTests({
-        type: "visual",
+    runVisualTests({
         baseClass: "s-badge",
         variants: variants.users,
         modifiers: {
@@ -123,7 +113,6 @@ describe("badge", () => {
             default: "user badge",
         },
         options: {
-            ...defaultOptions,
             includeNullVariant: false,
         },
         tag: "span",
@@ -131,8 +120,7 @@ describe("badge", () => {
     });
 
     // Sizes
-    runComponentTests({
-        type: "visual",
+    runVisualTests({
         baseClass: "s-badge",
         modifiers: {
             primary: ["xs", "sm"],
@@ -141,7 +129,6 @@ describe("badge", () => {
             default: "size badge",
         },
         options: {
-            ...defaultOptions,
             includeNullModifier: false,
         },
         tag: "span",

@@ -1,4 +1,4 @@
-import { defaultOptions, runComponentTests } from "../../test/test-utils";
+import { runA11yTests } from "../../test/a11y-test-utils";
 // import { Icons } from "@stackoverflow/stacks-icons";
 import "../../index";
 
@@ -15,8 +15,7 @@ const variants = {
 describe("badge", () => {
     // Award badges (Default/badge counts)
     variants.blings.map((bling) => {
-        runComponentTests({
-            type: "a11y",
+        runA11yTests({
             baseClass: "s-badge",
             variants: [bling],
             children: {
@@ -29,23 +28,20 @@ describe("badge", () => {
     });
 
     // Number counts
-    runComponentTests({
-        type: "a11y",
+    runA11yTests({
         baseClass: "s-badge",
         variants: variants.numbers,
         children: {
             default: "123",
         },
         options: {
-            ...defaultOptions,
             includeNullModifier: false,
         },
         tag: "span",
     });
 
     // Icon badges
-    runComponentTests({
-        type: "a11y",
+    runA11yTests({
         baseClass: "s-badge",
         variants: [...variants.states.filled, ...variants.states.other],
         modifiers: {
@@ -56,15 +52,13 @@ describe("badge", () => {
             //     icon: Icons.IconEyeSm,  // TODO fix the icon imports
         },
         options: {
-            ...defaultOptions,
             includeNullModifier: false,
         },
         tag: "span",
     });
 
     // Filled badges
-    runComponentTests({
-        type: "a11y",
+    runA11yTests({
         baseClass: "s-badge",
         variants: variants.states.filled,
         modifiers: {
@@ -75,7 +69,6 @@ describe("badge", () => {
             //     icon: Icons.IconEyeOffSm,  // TODO fix the icon imports
         },
         options: {
-            ...defaultOptions,
             includeNullModifier: false,
             includeNullVariant: false,
         },
@@ -83,8 +76,7 @@ describe("badge", () => {
     });
 
     // User badges
-    runComponentTests({
-        type: "a11y",
+    runA11yTests({
         baseClass: "s-badge",
         variants: variants.users,
         modifiers: {
@@ -97,8 +89,7 @@ describe("badge", () => {
     });
 
     // Sizes
-    runComponentTests({
-        type: "a11y",
+    runA11yTests({
         baseClass: "s-badge",
         modifiers: {
             primary: ["xs", "sm"],
