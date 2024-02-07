@@ -1,5 +1,5 @@
 import { html } from "@open-wc/testing";
-import { defaultOptions, runComponentTests } from "../../test/test-utils";
+import { runVisualTests } from "../../test/visual-test-utils";
 import { getChildren } from "../../test/post-summary-test-utils";
 import type { BadgeType, TruncationSizes } from "../../test/post-summary-test-utils";
 import "../../index";
@@ -13,8 +13,7 @@ const template = ({ component, testid }: any) => html`
 
 describe("post-summary", () => {
     // Base, sparce
-    runComponentTests({
-        type: "visual",
+    runVisualTests({
         baseClass: "s-post-summary",
         modifiers: {
             primary: ["deleted", "ignored", "watched"], // variants described as modifiers to test colliding modifiers
@@ -47,7 +46,6 @@ describe("post-summary", () => {
             }),
         },
         options: {
-            ...defaultOptions,
             includeNullModifier: false,
         },
         template,
@@ -55,8 +53,7 @@ describe("post-summary", () => {
 
     // Truncated description sizes
     ["sm", "md", "lg"].forEach((size) => {
-        runComponentTests({
-            type: "visual",
+        runVisualTests({
             baseClass: "s-post-summary",
             modifiers: {
                 global: ["w100"],
@@ -77,7 +74,6 @@ describe("post-summary", () => {
                 }),
             },
             options: {
-                ...defaultOptions,
                 includeNullModifier: false,
             },
             template,
@@ -98,8 +94,7 @@ describe("post-summary", () => {
             accepted: true,
         }
     ].forEach(({ childName, answers, accepted }) => {
-        runComponentTests({
-            type: "visual",
+        runVisualTests({
             baseClass: "s-post-summary",
             children: {
                 [childName]: getChildren({
@@ -134,8 +129,7 @@ describe("post-summary", () => {
             views: 100001,
         }
     ].forEach(({ childName, views }) => {
-        runComponentTests({
-            type: "visual",
+        runVisualTests({
             baseClass: "s-post-summary",
             children: {
                 [childName]: getChildren({
@@ -155,8 +149,7 @@ describe("post-summary", () => {
 
     // Badges
     ["danger", "danger-filled", "info", "muted", "muted-filled", "warning"].forEach((badge) => {
-        runComponentTests({
-            type: "a11y",
+        runVisualTests({
             baseClass: "s-post-summary",
             children: {
                 [`badge-${badge}`]: getChildren({
