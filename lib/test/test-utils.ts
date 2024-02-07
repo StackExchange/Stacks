@@ -215,16 +215,31 @@ const generatePrimitiveVariations = ({
                         : modifiers.primary
                     : [""];
                 const secondaryModifiers = modifiers?.secondary
-                    ? ["", ...(<[]>modifiers.secondary)]
+                    ? opts.includeNullModifier
+                        ? ["", ...(<[]>modifiers.secondary)]
+                        : modifiers.secondary
                     : [""];
                 const globalModifiers = modifiers?.global
-                    ? ["", ...(<[]>modifiers.global)]
+                    ? opts.includeNullModifier
+                        ? ["", ...(<[]>modifiers.global)]
+                        : modifiers.global
                     : [""];
 
                 primaryModifiers.forEach((primaryModifier) => {
                     secondaryModifiers.forEach((secondaryModifier) => {
                         globalModifiers.forEach((globalModifier) => {
                             allVariants.forEach((variant) => {
+                                console.log("globalModifier", buildTestid([
+                                    testidBase,
+                                    variant,
+                                    [
+                                        primaryModifier,
+                                        secondaryModifier,
+                                        globalModifier,
+                                    ]
+                                        .filter(Boolean)
+                                        .join("-"),
+                                ]));
                                 primitiveVariations.push({
                                     classes: buildClasses({
                                         baseClass,
