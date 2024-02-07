@@ -1,5 +1,5 @@
 import { html } from "@open-wc/testing";
-import { defaultOptions, runComponentTests } from "../../test/test-utils";
+import { runVisualTests } from "../../test/visual-test-utils";
 import "../../index";
 
 // TODO check for visited styling
@@ -15,8 +15,7 @@ const links = `A ${link(
 )}.`;
 
 describe("anchors", () => {
-    runComponentTests({
-        type: "visual",
+    runVisualTests({
         baseClass: "s-anchors",
         modifiers: {
             primary: [
@@ -37,7 +36,6 @@ describe("anchors", () => {
             `,
         },
         options: {
-            ...defaultOptions,
             includeNullModifier: false,
         },
         template: ({ component, testid }) => html`

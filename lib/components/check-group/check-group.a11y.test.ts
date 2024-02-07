@@ -1,4 +1,4 @@
-import { defaultOptions, runComponentTests } from "../../test/test-utils";
+import { runA11yTests } from "../../test/a11y-test-utils";
 import "../../index";
 
 type CheckGroup = "checkbox" | "radio";
@@ -14,8 +14,7 @@ checkTypes.forEach((type) => {
             { type, id: `test-${type}1`, state: "checked" },
             { type, id: `test-${type}2` },
         ];
-        runComponentTests({
-            type: "a11y",
+        runA11yTests({
             tag: "fieldset",
             baseClass: "s-check-group",
             variants: ["horizontal"],
@@ -43,7 +42,6 @@ checkTypes.forEach((type) => {
                 `,
             },
             options: {
-                ...defaultOptions,
                 testidSuffix: type,
             },
         });

@@ -1,4 +1,4 @@
-import { runComponentTests } from "../../test/test-utils";
+import { runA11yTests } from "../../test/a11y-test-utils";
 import "../../index";
 
 const getChild = (child?: string): string => {
@@ -33,8 +33,7 @@ const getChild = (child?: string): string => {
     `;
 };
 describe("link preview", () => {
-    runComponentTests({
-        type: "a11y",
+    runA11yTests({
         baseClass: "s-link-preview",
         children: {
             default: getChild(),

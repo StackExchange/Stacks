@@ -1,5 +1,5 @@
 import { html } from "@open-wc/testing";
-import { defaultOptions, runComponentTests } from "../../test/test-utils";
+import { runVisualTests } from "../../test/visual-test-utils";
 import "../../index";
 
 describe("toggle-switch", () => {
@@ -11,8 +11,7 @@ describe("toggle-switch", () => {
             }`;
             const id = `toggle-switch-${testidSuffix}`;
 
-            runComponentTests({
-                type: "visual",
+            runVisualTests({
                 baseClass: "s-toggle-switch",
                 tag: "input",
                 attributes: {
@@ -22,7 +21,6 @@ describe("toggle-switch", () => {
                     ...(disabled ? { disabled: "" } : {}),
                 },
                 options: {
-                    ...defaultOptions,
                     includeNullModifier: false,
                     testidSuffix,
                 },
@@ -38,8 +36,7 @@ describe("toggle-switch", () => {
 
     // Multiple toggle switch variant
     [true, false].forEach((offChecked) => {
-        runComponentTests({
-            type: "visual",
+        runVisualTests({
             baseClass: "s-toggle-switch",
             variants: ["multiple"],
             children: {
@@ -59,7 +56,6 @@ describe("toggle-switch", () => {
                 `,
             },
             options: {
-                ...defaultOptions,
                 includeNullModifier: false,
                 includeNullVariant: false,
                 testidSuffix: offChecked ? "unchecked" : "checked",

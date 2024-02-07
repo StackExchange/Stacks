@@ -1,5 +1,5 @@
 import { html } from "@open-wc/testing";
-import { runComponentTests } from "../../test/test-utils";
+import { runA11yTests } from "../../test/a11y-test-utils";
 import "../../index";
 
 // TODO note: all accessibility tests here are skipped currently. Revisit in Stacks v2
@@ -34,8 +34,7 @@ const otherModifiers = ["creditcard", "search"];
 
     describe(type, () => {
         // Base styles w/ value, modifiers
-        runComponentTests({
-            type: "a11y",
+        runA11yTests({
             baseClass: `s-${type}`,
             modifiers: {
                 primary: [...sizes, ...otherModifiers],
@@ -59,8 +58,7 @@ const otherModifiers = ["creditcard", "search"];
         customAttributes.forEach((attributes) => {
             const attrString = Object.keys(attributes).sort().join("-");
 
-            runComponentTests({
-                type: "a11y",
+            runA11yTests({
                 baseClass: `s-${type} ${attrString}`,
                 tag: type,
                 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
@@ -88,8 +86,7 @@ const otherModifiers = ["creditcard", "search"];
 
         // w/ state classes
         states.forEach((state) => {
-            runComponentTests({
-                type: "a11y",
+            runA11yTests({
                 baseClass: `s-${type} state-${state}`,
                 tag: type,
                 attributes:

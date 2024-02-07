@@ -1,17 +1,15 @@
-import { defaultOptions, runComponentTests } from "../../test/test-utils";
+import { runVisualTests } from "../../test/visual-test-utils";
 import { html } from "@open-wc/testing";
 import "../../index";
 
 describe("anchors", () => {
-    runComponentTests({
-        type: "visual",
+    runVisualTests({
         baseClass: "s-award-bling",
         variants: ["gold", "silver", "bronze"],
         children: {
             default: `100 <div class="v-visible-sr">award</div>`,
         },
         options: {
-            ...defaultOptions,
             includeNullVariant: false,
         },
         template: ({ component, testid }) => html`
