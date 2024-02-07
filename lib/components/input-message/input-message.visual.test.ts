@@ -1,5 +1,5 @@
 import { html } from "@open-wc/testing";
-import { runComponentTests } from "../../test/test-utils";
+import { runVisualTests } from "../../test/visual-test-utils";
 import "../../index";
 
 const states = [
@@ -29,8 +29,7 @@ const states = [
 
 describe("input-message", () => {
     states.forEach((state) => {
-        runComponentTests({
-            type: "visual",
+        runVisualTests({
             baseClass: `s-input-message ${
                 state.class ? `state-${state.class}` : ""
             }`,

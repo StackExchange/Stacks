@@ -1,16 +1,14 @@
-import { defaultOptions, runComponentTests } from "../../test/test-utils";
+import { runA11yTests } from "../../test/a11y-test-utils";
 import "../../index";
 
 describe("award-bling", () => {
-    runComponentTests({
-        type: "a11y",
+    runA11yTests({
         baseClass: "s-award-bling",
         variants: ["gold", "silver", "bronze"],
         children: {
             default: `100 <div class="v-visible-sr">award</div>`,
         },
         options: {
-            ...defaultOptions,
             includeNullVariant: false,
         },
     });

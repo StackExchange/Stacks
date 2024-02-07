@@ -1,10 +1,14 @@
 import { expect } from "@open-wc/testing";
 import Color from "colorjs.io";
-import type { AdditionalAssertion } from "./test-utils";
+
+type AdditionalAssertion = {
+    description: string;
+    assertion: (node: HTMLElement) => Promise<void> | void;
+};
 
 // TODO: evaluate if we can do this check against all the components
 // automatically instead of having to add the assertion manually
-export const WCAGNonTextContrast: AdditionalAssertion = {
+const WCAGNonTextContrast: AdditionalAssertion = {
     description:
         "should pass WCAG22 1.4.11 non-text-contrast success criterion (https://www.w3.org/TR/WCAG22/#non-text-contrast)",
     assertion: (node) => {
@@ -18,7 +22,7 @@ export const WCAGNonTextContrast: AdditionalAssertion = {
             selectedNodeStyles.getPropertyValue("background-color")
         );
 
-        // we are specificng WCAG21 because of colorjs.io API
+        // we are specifing WCAG21 because of colorjs.io API
         // WCAG21 and WCAG22 algoirthms are the same
         const WCAGcontrast = bgSelectedNodeColor.contrast(
             bgBodyColor,
@@ -27,3 +31,6 @@ export const WCAGNonTextContrast: AdditionalAssertion = {
         expect(WCAGcontrast).to.be.at.least(3);
     },
 };
+
+export type { AdditionalAssertion };
+export { WCAGNonTextContrast };

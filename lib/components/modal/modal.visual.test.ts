@@ -1,11 +1,10 @@
 import { html } from "@open-wc/testing";
-import { runComponentTests } from "../../test/test-utils";
+import { runVisualTests } from "../../test/visual-test-utils";
 import { IconClearSm } from "@stackoverflow/stacks-icons/icons";
 import "../../index";
 
 describe("modal", () => {
-    runComponentTests({
-        type: "visual",
+    runVisualTests({
         baseClass: `s-modal`,
         variants: ["danger"],
         modifiers: {
