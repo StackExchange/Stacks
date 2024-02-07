@@ -1,5 +1,5 @@
 import { html } from "@open-wc/testing";
-import { defaultOptions, runComponentTests } from "../../test/test-utils";
+import { runA11yTests } from "../../test/a11y-test-utils";
 import "../../index";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -24,8 +24,7 @@ const child = (attr?: string): string => {
 
 describe("select", () => {
     // default, sizes
-    runComponentTests({
-        type: "a11y",
+    runA11yTests({
         baseClass: "s-select",
         modifiers: {
             primary: ["sm", "md", "lg", "xl"],
@@ -56,16 +55,15 @@ describe("select", () => {
             class: "has-warning",
         },
     ].forEach((state) => {
-        runComponentTests({
-            type: "a11y",
+        runA11yTests({
             baseClass: `s-select state-${state.class}`,
             children: {
                 default: child(state.attr),
             },
             template: ({ component, testid }) =>
+                // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
                 template({ component, testid, className: state.class }),
             options: {
-                ...defaultOptions,
                 includeNullModifier: false,
             },
             skippedTestids: [/readonly/], // Skipping readonly since it doesn't need to meet APCA contrast minimums

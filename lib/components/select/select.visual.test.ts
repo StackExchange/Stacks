@@ -1,5 +1,5 @@
 import { html } from "@open-wc/testing";
-import { defaultOptions, runComponentTests } from "../../test/test-utils";
+import { runVisualTests } from "../../test/visual-test-utils";
 import "../../index";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -22,8 +22,7 @@ const child = (attr?: string): string => {
 
 describe("select", () => {
     // default, sizes
-    runComponentTests({
-        type: "visual",
+    runVisualTests({
         baseClass: "s-select",
         modifiers: {
             primary: ["sm", "md", "lg", "xl"],
@@ -54,8 +53,7 @@ describe("select", () => {
             class: "has-warning",
         },
     ].forEach((state) => {
-        runComponentTests({
-            type: "visual",
+        runVisualTests({
             baseClass: "s-select",
             modifiers: {
                 global: [`state-${state.class}`],
@@ -64,9 +62,9 @@ describe("select", () => {
                 selected: child(state.attr),
             },
             template: ({ component, testid }) =>
+                // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
                 template({ component, testid, className: state.class }),
             options: {
-                ...defaultOptions,
                 includeNullModifier: false,
             },
         });
