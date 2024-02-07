@@ -1,7 +1,7 @@
 import { describe, it, expect } from "vitest";
 import { renderLess } from "../test/less-test-utils";
 
-describe("atomic: misc v1", () => {
+describe("atomic: misc", () => {
     it("should output all atomic css classes", async () => {
         const css = await renderLess(`
             @import (reference) "./lib/base/internal.less";
