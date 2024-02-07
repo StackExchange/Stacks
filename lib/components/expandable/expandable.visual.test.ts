@@ -1,10 +1,9 @@
 import { html } from "@open-wc/testing";
-import { runComponentTests } from "../../test/test-utils";
+import { runVisualTests } from "../../test/visual-test-utils";
 import "../../index";
 
 describe("expandable", () => {
-    runComponentTests({
-        type: "visual",
+    runVisualTests({
         baseClass: "s-expandable",
         modifiers: {
             global: ["is-expanded"],

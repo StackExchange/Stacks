@@ -1,4 +1,4 @@
-import { defaultOptions, runComponentTests } from "../../test/test-utils";
+import { runVisualTests } from "../../test/visual-test-utils";
 import "../../index";
 
 type CheckGroup = "checkbox" | "radio";
@@ -16,8 +16,7 @@ const checkTypes: CheckGroup[] = ["checkbox", "radio"];
                 { type, id: `test-${type}1`, state: "checked" },
                 { type, id: `test-${type}2` },
             ];
-            runComponentTests({
-                type: "visual",
+            runVisualTests({
                 tag: "fieldset",
                 baseClass: "s-check-group",
                 attributes: {
@@ -48,7 +47,6 @@ const checkTypes: CheckGroup[] = ["checkbox", "radio"];
                     `,
                 },
                 options: {
-                    ...defaultOptions,
                     includeNullVariant: !isHorizontal,
                     testidSuffix: type,
                 },

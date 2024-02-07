@@ -1,11 +1,10 @@
-import { runComponentTests } from "../../test/test-utils";
+import { runA11yTests } from "../../test/a11y-test-utils";
 import { html } from "@open-wc/testing";
 import "../../index";
 
 describe("toast > notice", () => {
     // This is a test of notice component wrapped in a toast component
-    runComponentTests({
-        type: "a11y",
+    runA11yTests({
         baseClass: "s-notice", // s-toast is a wrapper around s-notice
         variants: ["info", "success", "warning", "danger"],
         modifiers: {

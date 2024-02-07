@@ -1,5 +1,5 @@
 import { html } from "@open-wc/testing";
-import { defaultOptions, runComponentTests } from "../../test/test-utils";
+import { runVisualTests } from "../../test/visual-test-utils";
 import "../../index";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -25,8 +25,7 @@ const baseChild = `
 `;
 
 describe("card", () => {
-    runComponentTests({
-        type: "visual",
+    runVisualTests({
         baseClass: "s-card",
         variants: ["muted"],
         children: {
@@ -36,8 +35,7 @@ describe("card", () => {
     });
 
     // Stacked
-    runComponentTests({
-        type: "visual",
+    runVisualTests({
         baseClass: "s-card",
         variants: ["stacked"], // dummy variant for testid differentiation
         children: {
@@ -48,7 +46,6 @@ describe("card", () => {
         },
         template: cardTemplate,
         options: {
-            ...defaultOptions,
             includeNullVariant: false,
         },
     });

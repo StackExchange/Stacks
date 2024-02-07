@@ -1,4 +1,4 @@
-import { runComponentTests } from "../../test/test-utils";
+import { runA11yTests } from "../../test/a11y-test-utils";
 import "../../index";
 
 const bannerChild = `
@@ -19,8 +19,7 @@ const bannerChild = `
 `;
 
 describe("banner", () => {
-    runComponentTests({
-        type: "a11y",
+    runA11yTests({
         baseClass: "s-banner",
         variants: ["info", "success", "warning", "danger"],
         modifiers: {
