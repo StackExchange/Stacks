@@ -229,17 +229,6 @@ const generatePrimitiveVariations = ({
                     secondaryModifiers.forEach((secondaryModifier) => {
                         globalModifiers.forEach((globalModifier) => {
                             allVariants.forEach((variant) => {
-                                console.log("globalModifier", buildTestid([
-                                    testidBase,
-                                    variant,
-                                    [
-                                        primaryModifier,
-                                        secondaryModifier,
-                                        globalModifier,
-                                    ]
-                                        .filter(Boolean)
-                                        .join("-"),
-                                ]));
                                 primitiveVariations.push({
                                     classes: buildClasses({
                                         baseClass,
