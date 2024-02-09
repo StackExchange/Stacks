@@ -76,7 +76,6 @@ describe("input-icon", () => {
             options: {
                 includeNullModifier: false,
             },
-            skippedTestids: [],
         });
     });
 });
