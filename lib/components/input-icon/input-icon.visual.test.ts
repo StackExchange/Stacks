@@ -46,13 +46,13 @@ const getSvgPath = (name: string) => {
     }
 };
 
-modifiers.forEach(({ name, parentClasses, modifier, inputClasses }) => {
-    describe("input-icon", () => {
+describe("input-icon", () => {
+    modifiers.forEach(({ name, parentClasses, modifier, inputClasses }) => {
         runVisualTests({
             baseClass: `s-input-icon`,
             tag: "svg",
             children: {
-                default: getSvgPath(name), // IconSearch
+                [name]: getSvgPath(name), // IconSearch
             },
             modifiers: {
                 standalone: modifier ? [`${modifier}`] : [],
