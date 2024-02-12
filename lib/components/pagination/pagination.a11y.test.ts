@@ -1,10 +1,9 @@
-import { runComponentTests } from "../../test/test-utils";
+import { runA11yTests } from "../../test/a11y-test-utils";
 import { WCAGNonTextContrast } from "../../test/assertions";
 import "../../index";
 
 describe("pagination", () => {
-    runComponentTests({
-        type: "a11y",
+    runA11yTests({
         baseClass: "s-pagination",
         children: {
             default: `

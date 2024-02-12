@@ -1,5 +1,5 @@
 import { html } from "@open-wc/testing";
-import { runComponentTests } from "../../test/test-utils";
+import { runA11yTests } from "../../test/a11y-test-utils";
 import { WCAGNonTextContrast } from "../../test/assertions";
 import "../../index";
 
@@ -55,8 +55,7 @@ const getChildren = (includeTitles = false): string =>
         .join("");
 
 describe("navigation", () => {
-    runComponentTests({
-        type: "a11y",
+    runA11yTests({
         baseClass: "s-navigation",
         variants: ["vertical", "muted"],
         modifiers: {

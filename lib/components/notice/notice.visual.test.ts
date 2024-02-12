@@ -1,10 +1,9 @@
-import { runComponentTests } from "../../test/test-utils";
+import { runVisualTests } from "../../test/visual-test-utils";
 import { html } from "@open-wc/testing";
 import "../../index";
 
 describe("notice", () => {
-    runComponentTests({
-        type: "visual",
+    runVisualTests({
         baseClass: "s-notice",
         variants: ["info", "success", "warning", "danger"],
         modifiers: {

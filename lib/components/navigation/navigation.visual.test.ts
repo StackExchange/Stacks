@@ -1,5 +1,5 @@
 import { html } from "@open-wc/testing";
-import { defaultOptions, runComponentTests } from "../../test/test-utils";
+import { runVisualTests } from "../../test/visual-test-utils";
 import "../../index";
 
 const items = [
@@ -54,8 +54,7 @@ const getChildren = (includeTitles = false): string =>
         .join("");
 
 describe("navigation", () => {
-    runComponentTests({
-        type: "visual",
+    runVisualTests({
         baseClass: "s-navigation",
         variants: ["muted"],
         modifiers: {
@@ -76,8 +75,7 @@ describe("navigation", () => {
         `,
     });
 
-    runComponentTests({
-        type: "visual",
+    runVisualTests({
         baseClass: "s-navigation",
         variants: ["vertical"],
         tag: "ul",
@@ -94,7 +92,6 @@ describe("navigation", () => {
             </nav>
         `,
         options: {
-            ...defaultOptions,
             includeNullVariant: false,
         },
     });

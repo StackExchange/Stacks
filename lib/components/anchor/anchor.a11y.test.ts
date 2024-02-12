@@ -1,4 +1,4 @@
-import { defaultOptions, runComponentTests } from "../../test/test-utils";
+import { runA11yTests } from "../../test/a11y-test-utils";
 import "../../index";
 
 // TODO check for visited styling
@@ -8,8 +8,7 @@ const link = (text = "", visited = true, classes = "") =>
     }">${text}</a>`;
 
 describe("anchors", () => {
-    runComponentTests({
-        type: "a11y",
+    runA11yTests({
         baseClass: "s-anchors",
         modifiers: {
             primary: [
@@ -30,7 +29,6 @@ describe("anchors", () => {
             )}.`,
         },
         options: {
-            ...defaultOptions,
             includeNullModifier: false,
         },
     });

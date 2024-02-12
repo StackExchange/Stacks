@@ -1,9 +1,8 @@
-import { runComponentTests } from "../../test/test-utils";
+import { runA11yTests } from "../../test/a11y-test-utils";
 import "../../index";
 
 describe("activity-indicator", () => {
-    runComponentTests({
-        type: "a11y",
+    runA11yTests({
         baseClass: "s-activity-indicator",
         variants: ["danger", "success", "warning"],
         children: {

@@ -1,5 +1,5 @@
 import { html } from "@open-wc/testing";
-import { runComponentTests } from "../../test/test-utils";
+import { runVisualTests } from "../../test/visual-test-utils";
 import "../../index";
 
 const getChild = (child?: string): string => {
@@ -33,9 +33,9 @@ const getChild = (child?: string): string => {
         </div>
     `;
 };
+
 describe("link preview", () => {
-    runComponentTests({
-        type: "visual",
+    runVisualTests({
         baseClass: "s-link-preview",
         children: {
             default: getChild(),

@@ -1,10 +1,9 @@
 import { html } from "@open-wc/testing";
-import { runComponentTests } from "../../test/test-utils";
+import { runVisualTests } from "../../test/visual-test-utils";
 import "../../index";
 
 describe("menu", () => {
-    runComponentTests({
-        type: "visual",
+    runVisualTests({
         baseClass: `s-menu`,
         children: {
             default: `

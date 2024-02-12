@@ -1,5 +1,5 @@
 import { html } from "@open-wc/testing";
-import { runComponentTests } from "../../test/test-utils";
+import { runA11yTests } from "../../test/a11y-test-utils";
 import "../../index";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -8,8 +8,7 @@ const template = ({ component, testid }: any) => html`
 `;
 
 describe("input-fill", () => {
-    runComponentTests({
-        type: "a11y",
+    runA11yTests({
         baseClass: `s-input-fill`,
         modifiers: {
             global: ["order-first", "order-last"],
