@@ -412,7 +412,7 @@
         .focus-styles(true, true);
     }
 
-    &:not(&__link):not(&__unset)&:not(&__facebook):not(&__github):not(&__google):not(.is-selected):focus-visible,
+    &:not(&__link):not(&__unset):not(&__facebook):not(&__github):not(&__google):not(.is-selected):focus-visible,
     &--radio:focus-visible + & {
         &,
         &.s-btn__filled {
@@ -425,15 +425,28 @@
         }
     }
 
-    &:not(&__link):not(&__unset)&:not(&__facebook):not(&__github):not(&__google):not(.is-selected) {
+    &:not(&__link):not(&__unset):not(&__facebook):not(&__github):not(&__google):not(.is-selected) {
         &:hover {
             &.s-btn__filled {
                 background-color: var(--_bu-filled-bg-hover);
                 border-color: var(--_bu-filled-bc-hover);
                 color: var(--_bu-filled-fc-hover);
             }
+
             &:not(.s-btn__outlined) {
                 border-color: var(--_bu-bc-hover);
+            }
+
+            &:visited:not(:hover):not(:focus) {
+                &.s-btn__filled {
+                    background-color: var(--_bu-filled-bg);
+                    border-color: var(--_bu-filled-bc);
+                    color: var(--_bu-filled-fc);
+                }
+
+                background-color: var(--_bu-bg);
+                border-color: var(--_bu-bc);
+                color: var(--_bu-fc);
             }
 
             background-color: var(--_bu-bg-hover);
@@ -451,19 +464,6 @@
             border-color: var(--_bu-bc-active);
             color: var(--_bu-fc-active);
         }
-    }
-
-
-    &:visited:not(:hover):not(:focus) {
-        &.s-btn__filled {
-            background-color: var(--_bu-filled-bg);
-            border-color: var(--_bu-filled-bc);
-            color: var(--_bu-filled-fc);
-        }
-
-        background-color: var(--_bu-bg);
-        border-color: var(--_bu-bc);
-        color: var(--_bu-fc);
     }
 
     background-color: var(--_bu-bg, inherit); // [1]
