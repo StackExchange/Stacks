@@ -62,6 +62,21 @@
             font-weight: normal;
         }
 
+        & .s-btn--text {
+            &:before {
+                content: attr(data-text);
+                content: attr(data-text) / "";
+                font-weight: bold;
+                height: 0;
+                pointer-events: none;
+                user-select: none;
+                visibility: hidden;
+            }
+
+            display: inline-flex;
+            flex-direction: column;
+        }
+
         white-space: nowrap; // When the buttons wrap, they get super tall and mess up the whole layout
     }
 
