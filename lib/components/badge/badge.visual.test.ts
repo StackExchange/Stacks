@@ -69,9 +69,12 @@ describe("badge", () => {
         baseClass: "s-badge",
         variants: variants.states,
         children: {
-            default: `badge`,
+            default: `state badge`,
         },
         tag: "span",
+        options: {
+            includeNullVariant: false,
+        },
         template,
     });
 
