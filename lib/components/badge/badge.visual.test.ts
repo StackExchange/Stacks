@@ -113,7 +113,7 @@ describe("badge", () => {
     // State badges w/ icon
     runVisualTests({
         baseClass: "s-badge",
-        variants: variants.states.filter(state => state !== "new"),
+        variants: variants.states.filter((state) => state !== "new"),
         modifiers: {
             primary: ["icon"],
         },
