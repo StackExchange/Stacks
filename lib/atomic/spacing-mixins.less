@@ -1,0 +1,97 @@
+.generate-responsive-spacing(@prefix, @property, @includeNegative: false, @type: px) {
+  & when (@type = px) {
+      #stacks-internals #build-classes(
+          responsive,
+          @prefix,
+          { .template(@value) { @{property}: var(~"--su@{value}") !important; } },
+          0 1 2 4 6 8 12 16 24 32 48 64 96 128
+      );
+
+      & when (@includeNegative = true) {
+          #stacks-internals #build-classes(
+              responsive,
+              ~"@{prefix}n",
+              { .template(@value) { @{property}: calc(var(~"--su@{value}") * -1) !important; } },
+              1 2 4 6 8 12 16 24 32 48 64 96 128
+          );
+      }
+  }
+  & when (@type = percent) {
+      #stacks-internals #build-classes(
+          responsive,
+          @prefix,
+          { .template(@value) { @{property}: @value !important; } },
+          50% 100%
+      );
+  }
+  & when (@includeNegative = true) {
+      #stacks-internals #build-classes(
+          responsive,
+          ~"@{prefix}n",
+          { .template(@value) { @{property}: -@value !important; } },
+          50% 100%
+      );
+  }
+}
+
+.generate-responsive-xy-spacing(@prefix, @property, @includeNegative: false, @type: px) {
+    & when (@type = px) {
+        #stacks-internals #build-classes(
+            ~"@{prefix}x",
+            { .template(@value) {
+                @{property}-left: var(~"--su@{value}") !important;
+                @{property}-right: var(~"--su@{value}") !important;
+            } },
+            0 1 2 4 6 8 12 16 24 32 48 64 96 128
+        );
+        #stacks-internals #build-classes(
+            ~"@{prefix}y",
+            { .template(@value) {
+                @{property}-top: var(~"--su@{value}") !important;
+                @{property}-bottom: var(~"--su@{value}") !important;
+            } },
+            0 1 2 4 6 8 12 16 24 32 48 64 96 128
+        );
+
+        & when (@includeNegative = true) {
+            #stacks-internals #build-classes(
+                ~"@{prefix}xn",
+                { .template(@value) {
+                    @{property}-left: calc(var(~"--su@{value}") * -1) !important;
+                    @{property}-right: calc(var(~"--su@{value}") * -1) !important;
+                } },
+                1 2 4 6 8 12 16 24 32 48 64 96 128
+            );
+            #stacks-internals #build-classes(
+                ~"@{prefix}yn",
+                { .template(@value) {
+                    @{property}-top: calc(var(~"--su@{value}") * -1) !important;
+                    @{property}-bottom: calc(var(~"--su@{value}") * -1) !important; } },
+                1 2 4 6 8 12 16 24 32 48 64 96 128
+            );
+        }
+    }
+
+    & when (@type = percent) {
+        #stacks-internals #build-classes(
+            responsive,
+            @prefix,
+            { .template(@value) {
+                @{property}-top: @value !important;
+                @{property}-bottom: @value !important;
+            } },
+            50% 100%
+        );
+    }
+    & when (@includeNegative = true) {
+        #stacks-internals #build-classes(
+            responsive,
+            ~"@{prefix}n",
+            { .template(@value) {
+                @{property}-top: -@value !important;
+                @{property}-bottom: -@value !important;
+            } },
+            50% 100%
+        );
+    }
+}
