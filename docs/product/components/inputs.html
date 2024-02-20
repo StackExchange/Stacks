@@ -333,3 +333,64 @@ description: Input elements are used to gather information from users.
         </div>
     </div>
 </section>
+
+<section class="stacks-section">
+    {% header "h2", "Input fills" %}
+    <p class="stacks-copy">Input fills are used to visually connect input text boxes with related content.</p>
+
+    {% header "h3", "Prepended inputs" %}
+    <div class="stacks-preview">
+{% highlight html %}
+<div class="d-flex gy4 fd-column">
+    <label class="flex--item s-label" for="website-url">Website URL</label>
+    <div class="d-flex">
+        <div class="flex--item s-input-fill order-first">https://</div>
+        <div class="d-flex fl-grow1 ps-relative">
+            <input class="flex--item s-input blr0" type="text" id="website-url" placeholder="www.stackoverflow.com" />
+        </div>
+    </div>
+</div>
+{% endhighlight %}
+        <div class="stacks-preview--example">
+            <div class="d-flex gy4 fd-column">
+                <label class="flex--item s-label" for="website-url">Website URL</label>
+                <div class="d-flex">
+                    <div class="flex--item s-input-fill order-first">https://</div>
+                    <div class="d-flex fl-grow1 ps-relative">
+                        <input class="flex--item s-input blr0" type="text" id="website-url" placeholder="www.stackoverflow.com" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% header "h2", "Nested inputs" %}
+<p class="stacks-copy">An input can be nested within a container that has the <code class="stacks-code">.s-input</code> class applied to display styled elements as if they're within an input.</p>
+
+<div class="stacks-preview">
+{% highlight html %}
+<label class="s-label" for="tag-selector">Tags</label>
+<div class="s-input">
+    <span>
+        <span class="s-tag">
+            svelte
+            <button class="s-tag--dismiss baw0" type="button" title="Remove tag">@Svg.ClearSm</button>
+        </span>
+    </span>
+    <input id="tag-selector" class="s-input bc-transparent" type="text" …>
+</div>
+{% endhighlight %}
+        <div class="stacks-preview--example d-flex fd-column g4">
+            <label class="s-label" for="tag-selector">Tags</label>
+            <div class="s-input d-flex g8">
+                <div>
+                    <span class="s-tag">
+                        svelte
+                        <button class="s-tag--dismiss baw0 fl-shrink0" type="button" title="Remove tag">{% icon "ClearSm" %}</button>
+                    </span>
+                </div>
+                <input id="tag-selector" class="bc-transparent bs-none fs-body2 outline-none p0 w100" type="text" role="presentation" placeholder="enter up to 5 tags">
+            </div>
+        </div>
+    </div>
+</section>
