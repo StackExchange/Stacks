@@ -67,7 +67,7 @@ description: Atomic positioning classes allow you to quickly change an elementâ€
                 </tr>
             </thead>
             <tbody>
-                {% for space in position.position-definitions %}
+                {% for space in position.definitions %}
                     <tr>
                         <th scope="row">{{ space.term }}</th>
                         <td>{{ space.define }}</td>
@@ -77,8 +77,11 @@ description: Atomic positioning classes allow you to quickly change an elementâ€
         </table>
     </div>
 
-    {% header "h3", "Coordinate examples" %}
-    <div class="stacks-preview">
+{% assign position-properties = position.properties | split: ", " %}
+{% assign position-values = position.values | split: ", " %}
+
+{% header "h3", "Coordinate examples" %}
+<div class="stacks-preview">
 {% highlight html %}
 <div class="ps-absolute t12 l12"> â€¦ </div>
 <div class="ps-absolute t48 r24"> â€¦ </div>
@@ -118,31 +121,25 @@ description: Atomic positioning classes allow you to quickly change an elementâ€
             <thead>
                 <tr>
                     <th scope="col">Prefix</th>
-                    <th scope="col" class="ta-center ff-mono">0</th>
-                    <th scope="col" class="ta-center ff-mono">1px</th>
-                    <th scope="col" class="ta-center ff-mono">2px</th>
-                    <th scope="col" class="ta-center ff-mono">4px</th>
-                    <th scope="col" class="ta-center ff-mono">6px</th>
-                    <th scope="col" class="ta-center ff-mono">8px</th>
-                    <th scope="col" class="ta-center ff-mono">12px</th>
-                    <th scope="col" class="ta-center ff-mono">16px</th>
-                    <th scope="col" class="ta-center ff-mono">24px</th>
-                    <th scope="col" class="ta-center ff-mono">32px</th>
-                    <th scope="col" class="ta-center ff-mono">48px</th>
-                    <th scope="col" class="ta-center ff-mono">64px</th>
-                    <th scope="col" class="ta-center ff-mono">96px</th>
-                    <th scope="col" class="ta-center ff-mono">128px</th>
-                    <th scope="col" class="ta-center ff-mono">50%</th>
-                    <th scope="col" class="ta-center ff-mono">100%</th>
+                    {% for value in position-values %}
+                        <th scope="col" class="ta-center ff-mono">{{ value }}</th>
+                    {% endfor %}
                 </tr>
             </thead>
             <tbody>
-                {% for class in position.position %}
-                {% assign prefix-value = class.values | split: ", " %}
+                {% for className in position-properties %}
                     <tr>
-                        <th scope="row" class="-cell1">{{ class.prefix }}</th>
-                        {% for values in prefix-value %}
-                            <td class="ta-center"><code class="fs1">.{{ class.prefix }}{{ values }}</code></td>
+                        <th scope="row">{{ className }}</th>
+                        {% for value in position-values %}
+                            {% if className == "i" %}
+                                {% if value == "50%" or value == "100%" %}
+                                    <td>-</td>
+                                {% else %}
+                                    <td><code>.{{ className }}{{ value | replace: "px", "" }}</code></td>
+                                {% endif %}
+                            {% else %}
+                                <td><code>.{{ className }}{{ value | replace: "px", "" | replace: "%", "" }}</code></td>
+                            {% endif %}
                         {% endfor %}
                     </tr>
                 {% endfor %}
@@ -150,36 +147,26 @@ description: Atomic positioning classes allow you to quickly change an elementâ€
         </table>
     </div>
 
+    {% assign position-properties-negative = position.properties | replace: ", i", "" | split: ", " %}
+    {% assign position-values-negative = position.values | replace: "0, ", "" | split: ", " %}
+
     {% header "h2", "Negative coordinates" %}
     <div class="overflow-x-auto mb48 mt24" tabindex="0">
         <table class="wmn3 s-table s-table__bx-simple">
             <thead>
                 <tr>
                     <th scope="col">Prefix</th>
-                    <th scope="col" class="ta-center ff-mono">-1px</th>
-                    <th scope="col" class="ta-center ff-mono">-2px</th>
-                    <th scope="col" class="ta-center ff-mono">-4px</th>
-                    <th scope="col" class="ta-center ff-mono">-6px</th>
-                    <th scope="col" class="ta-center ff-mono">-8px</th>
-                    <th scope="col" class="ta-center ff-mono">-12px</th>
-                    <th scope="col" class="ta-center ff-mono">-16px</th>
-                    <th scope="col" class="ta-center ff-mono">-24px</th>
-                    <th scope="col" class="ta-center ff-mono">-32px</th>
-                    <th scope="col" class="ta-center ff-mono">-48px</th>
-                    <th scope="col" class="ta-center ff-mono">-64px</th>
-                    <th scope="col" class="ta-center ff-mono">-96px</th>
-                    <th scope="col" class="ta-center ff-mono">-128px</th>
-                    <th scope="col" class="ta-center ff-mono">-50%</th>
-                    <th scope="col" class="ta-center ff-mono">-100%</th>
+                    {% for value in position-values-negative %}
+                        <th scope="col" class="ta-center ff-mono">-{{ value }}</th>
+                    {% endfor %}
                 </tr>
             </thead>
             <tbody>
-                {% for class in position.negative-position %}
-                {% assign prefix-value = class.values | split: ", " %}
+                {% for className in position-properties-negative %}
                     <tr>
-                        <th scope="row" class="-cell1">{{ class.prefix }}</th>
-                        {% for values in prefix-value %}
-                            <td class="ta-center"><code class="fs1">.{{ class.prefix }}{{ values }}</code></td>
+                        <th scope="row">{{ className }}n</th>
+                        {% for value in position-values-negative %}
+                            <td><code>.{{ className }}n{{ value | replace: "px", "" | replace: "%", "" }}</code></td>
                         {% endfor %}
                     </tr>
                 {% endfor %}

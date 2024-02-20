@@ -37,7 +37,7 @@ description: Stacks provides atomic classes to override margin and padding.
 {% header "h3", "Margin classes" %}
 {% assign margin-properties = spacing.margin.properties | split: ", " %}
 {% assign margin-values = spacing.margin.values | split: ", " %}
-{% assign margin-values-negative = spacing.margin.values-negative | split: ", " %}
+{% assign margin-values-negative = spacing.margin.values | replace: "0, ", "" | split: ", " %}
 <div class="stacks-preview">
 {% highlight html %}
 <div class="mt8 mr4 mb32 ml64">
@@ -87,10 +87,8 @@ description: Stacks provides atomic classes to override margin and padding.
             <thead>
                 <tr>
                     <th scope="col"></th>
-                    {% for value in margin-values %}
-                        {% if value != "0" %}
-                            <th scope="col" class="ta-center ff-mono">-{{ value }}</th>
-                        {% endif %}
+                    {% for value in margin-values-negative %}
+                        <th scope="col" class="ta-center ff-mono">-{{ value }}</th>
                     {% endfor %}
                 </tr>
             </thead>
@@ -98,17 +96,15 @@ description: Stacks provides atomic classes to override margin and padding.
                 {% for className in margin-properties %}
                     <tr>
                         <th scope="row">{{ className }}n</th>
-                        {% for value in margin-values %}
-                            {% if value != "0" %}
-                                {% if className == "mx" or className == "my" %}
-                                    {% if value == "0" or value == "50%" or value == "100%" %}
-                                        <td>-</td>
-                                    {% else %}
-                                        <td><code>.{{ className }}n{{ value | replace: "px", "" }}</code></td>
-                                    {% endif %}
+                        {% for value in margin-values-negative %}
+                            {% if className == "mx" or className == "my" %}
+                                {% if value == "0" or value == "50%" or value == "100%" %}
+                                    <td>-</td>
                                 {% else %}
-                                    <td><code>.{{ className }}n{{ value | replace: "px", "" | replace: "%", "" }}</code></td>
+                                    <td><code>.{{ className }}n{{ value | replace: "px", "" }}</code></td>
                                 {% endif %}
+                            {% else %}
+                                <td><code>.{{ className }}n{{ value | replace: "px", "" | replace: "%", "" }}</code></td>
                             {% endif %}
                         {% endfor %}
                     </tr>
