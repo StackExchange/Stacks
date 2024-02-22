@@ -341,25 +341,33 @@ description: Input elements are used to gather information from users.
 
     <div class="stacks-preview">
 {% highlight html %}
-    <span>
-        <span class="s-tag">
-            svelte
-            <button class="s-tag--dismiss baw0" type="button" title="Remove tag">@Svg.ClearSm</button>
+<div class="d-flex fd-column g4">
+    <label class="s-label" for="tag-selector">Tags</label>
+    <div class="s-input d-flex fw-wrap g8">
+        <span>
+            <span class="s-tag">
+                svelte
+                <button class="s-tag--dismiss" type="button" title="Remove tag">@Svg.ClearSm</button>
+            </span>
         </span>
-    </span>
-    <input id="tag-selector" class="s-input bc-transparent" type="text" …>
+        <input
+            id="tag-selector"
+            class="s-input bc-transparent bs-none p0 wmn1"
+            type="text"
+            …>
+    </div>
 </div>
 {% endhighlight %}
         <div class="stacks-preview--example d-flex fd-column g4">
             <label class="s-label" for="tag-selector">Tags</label>
-            <div class="s-input d-flex g8">
-                <div>
+            <div class="s-input d-flex fw-wrap g8">
+                <span>
                     <span class="s-tag">
                         svelte
-                        <button class="s-tag--dismiss baw0 fl-shrink0" type="button" title="Remove tag">{% icon "ClearSm" %}</button>
+                        <button class="s-tag--dismiss" type="button" title="Remove tag">{% icon "ClearSm" %}</button>
                     </span>
-                </div>
-                <input id="tag-selector" class="bc-transparent bs-none fs-body2 outline-none p0 w100" type="text" role="presentation" placeholder="enter up to 5 tags">
+                </span>
+                <input id="tag-selector" class="s-input bc-transparent bg-transparent bs-none fl-grow1 p0 w-auto" type="text" role="presentation" placeholder="enter up to 5 tags">
             </div>
         </div>
     </div>
