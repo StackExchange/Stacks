@@ -1,5 +1,5 @@
 import { html } from "@open-wc/testing";
-import { defaultOptions, runComponentTests } from "../../test/test-utils";
+import { runVisualTests } from "../../test/visual-test-utils";
 import "../../index";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -13,8 +13,7 @@ const blockLinkTemplate = ({ component, testid }: any) =>
 
 describe("block-link", () => {
     // Base block link
-    runComponentTests({
-        type: "visual",
+    runVisualTests({
         baseClass: "s-block-link",
         modifiers: {
             global: ["is-selected"],
@@ -26,8 +25,7 @@ describe("block-link", () => {
     });
 
     // Base + danger
-    runComponentTests({
-        type: "visual",
+    runVisualTests({
         baseClass: "s-block-link",
         modifiers: {
             primary: ["danger"],
@@ -36,15 +34,13 @@ describe("block-link", () => {
             default: `block link`,
         },
         options: {
-            ...defaultOptions,
             includeNullModifier: false,
         },
         template: blockLinkTemplate,
     });
 
     // All left and rignt variants
-    runComponentTests({
-        type: "visual",
+    runVisualTests({
         baseClass: "s-block-link",
         variants: ["left is-selected", "right is-selected"],
         modifiers: {
@@ -54,7 +50,6 @@ describe("block-link", () => {
             default: `block link`,
         },
         options: {
-            ...defaultOptions,
             includeNullVariant: false,
         },
         template: blockLinkTemplate,

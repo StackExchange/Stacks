@@ -1,5 +1,5 @@
 import { html } from "@open-wc/testing";
-import { runComponentTests } from "../../test/test-utils";
+import { runVisualTests } from "../../test/visual-test-utils";
 import "../../index";
 
 const getChild = (child?: string): string => {
@@ -16,8 +16,7 @@ const getChild = (child?: string): string => {
 
 describe("button", () => {
     // TODO test disabled states, interaction pseudo-classes
-    runComponentTests({
-        type: "visual",
+    runVisualTests({
         baseClass: "s-btn",
         variants: ["danger", "muted"],
         modifiers: {

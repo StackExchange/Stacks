@@ -37,8 +37,18 @@
     // CHILD COMPONENT CUSTOM PROPERTIES
 
     // CONTEXTUAL STYLES
+    .dark-mode({
+        &.s-topbar__light {
+            --focus-theme: var(--theme-dark-secondary-custom-200, .set-theme-secondary-default()[200]);
+        }
+    });
+
     .highcontrast-mode({
         --_tb-notice-td: underline;
+
+        &.s-topbar__dark {
+            --focus-theme: .theme-dark-default()[secondary];
+        }
 
         &__dark {
             // TODO HACK remove everything below once light/dark topbars are inheriting forced themes correctly
@@ -65,7 +75,6 @@
         --theme-topbar-search-background: var(--theme-topbar-background-color, var(--white));
         --theme-topbar-search-placeholder: var(--theme-topbar-item-color, var(--black-400));
         --theme-topbar-search-border: var(--theme-topbar-item-color, var(--black-400));
-        --theme-topbar-search-border-focus: var(--theme-topbar-item-color, var(--black-400));
 
         // Search switcher
         --theme-topbar-select-color: var(--theme-topbar-item-color, var(--black-400));
@@ -78,6 +87,12 @@
         --theme-topbar-item-color-current: var(--black);
 
         border-bottom: var(--su-static1) solid currentColor;
+    });
+
+    .highcontrast-dark-mode({
+        &.s-topbar__light {
+            --focus-theme: .set-theme-secondary-default()[200];
+        }
     });
 
     #stacks-internals #screen-sm({
@@ -101,9 +116,22 @@
     });
 
     // VARIANTS
+    // Overrides for focus style colors in forced light variant
+    &&__light {
+        --focus-neutral: .set-white()[default]; // forces white for inner focus ring color
+    }
+
+    &&__dark {
+        --focus-neutral: .set-black()[600]; // set to match .s-topbar__dark --theme-topbar-background-color;
+        --focus-theme: var(--theme-dark-secondary-custom-400, .theme-dark-default()[secondary]);
+    }
 
     // CHILD ELEMENTS
     & a&--logo {
+        &:focus-visible {
+            .focus-styles(true);
+        }
+
         &:hover,
         &.is-selected {
             --_tb-logo-bg: var(--theme-topbar-item-background-hover, var(--black-200));
@@ -138,11 +166,13 @@
                 vertical-align: text-top;
             }
 
+            &:focus-visible {
+                .focus-styles(true);
+            }
+
             &:hover,
-            &:focus,
             &.is-selected,
-            &.is-selected:hover,
-            &.is-selected:focus {
+            &.is-selected:hover {
                 --_tb-item-bg: var(--theme-topbar-item-background-hover, var(--black-200));
                 --_tb-item-fc: var(--theme-topbar-item-color-hover, var(--black-600));
 
@@ -165,6 +195,7 @@
             color: var(--_tb-item-fc);
 
             align-items: center;
+            border-radius: var(--br-sm);
             display: inline-flex;
             padding: 0 calc(var(--su12) - var(--su2));
             position: relative;
@@ -183,6 +214,7 @@
         background-color: var(--_tb-logo-bg);
 
         align-items: center;
+        border-radius: var(--br-sm);
         display: flex;
         height: 100%;
         padding: 0 var(--su8);
@@ -192,9 +224,9 @@
         &.is-selected { // Transforming hamburger into x
             --_tb-menu-btn-bg: var(--theme-topbar-item-background-current);
             --_tb-menu-btn-bg-hover: var(--theme-topbar-item-background-hover, var(--black-200));
+            --_tb-menu-btn-fc: var(--theme-topbar-item-color-current, var(--black));
             --_tb-menu-btn-fc-hover: var(--theme-topbar-item-color-hover, var(--black-400));
             --_tb-menu-btn-span-bg: transparent;
-            --_tb-menu-btn-span-fc: var(--theme-topbar-item-color-current, var(--black));
             --_tb-menu-btn-span-after-t: 0;
             --_tb-menu-btn-span-after-rotate: 45deg;
             --_tb-menu-btn-span-before-t: 0;
@@ -205,13 +237,15 @@
             &,
             &:after,
             &:before {
+                background-color: var(--_tb-menu-btn-span-bg);
+
                 height: var(--su-static2);
+                position: relative;
                 width: var(--su-static16);
             }
 
             &:after,
             &:before {
-                background-color: var(--theme-topbar-item-color, var(--black-400));
                 content: '';
                 left: 0;
                 position: absolute;
@@ -229,11 +263,6 @@
                 top: var(--_tb-menu-btn-span-before-t);
                 transform: rotate(var(--_tb-menu-btn-span-before-rotate));
             }
-
-            background-color: var(--_tb-menu-btn-span-bg);
-            color: var(--_tb-menu-btn-span-fc);
-
-            position: relative;
         }
 
         &:hover {
@@ -242,6 +271,7 @@
         }
 
         background-color: var(--_tb-menu-btn-bg);
+        color: var(--_tb-menu-btn-fc);
 
         align-items: center;
         display: flex;
@@ -267,14 +297,15 @@
             --_tb-notice-fc-hover: var(--white);
         }
 
-        &:hover,
-        &:focus {
+        &:focus-visible {
+            .focus-styles(true, true);
+        }
+
+        &:hover {
             background-color: var(--_tb-notice-bg-hover);
             border-color: var(--_tb-notice-bg-hover); // notice border-color matches background-color
             color: var(--_tb-notice-fc-hover);
         }
-
-        // &:extend(.s-badge); // TODO consider removing this .s-badge reference
 
         background-color: var(--_tb-notice-bg);
         border: var(--su-static1) solid var(--_tb-notice-bg); // notice border-color matches background-color
@@ -301,14 +332,12 @@
                     font-style: normal;
                 }
 
-                &:focus {
-                    border-color: var(--theme-topbar-search-border-focus, var(--blue-400));
-                    box-shadow: var(--theme-topbar-search-shadow-focus, 0 0 0 var(--su-static4) var(--focus-ring));
+                &:not(:focus-visible) {
+                    box-shadow: var(--theme-topbar-search-shadow);
                 }
 
                 background-color: var(--theme-topbar-search-background, var(--white));
                 border-color: var(--theme-topbar-search-border, var(--black-300));
-                box-shadow: var(--theme-topbar-search-shadow);
                 color: var(--theme-topbar-search-color, var(--black-500));
                 display: block;
                 line-height: var(--lh-sm);
@@ -324,9 +353,7 @@
 
         .s-select {
             > select {
-                &:focus {
-                    border-color: var(--theme-topbar-search-border-focus, var(--blue-400));
-                    box-shadow: var(--theme-topbar-search-shadow-focus, 0 0 0 var(--su-static4) var(--focus-ring));
+                &:focus-visible {
                     z-index: var(--zi-selected);
                 }
 
@@ -378,19 +405,11 @@
 
                 color: var(--theme-topbar-item-color, var(--black-400));
             }
-
-            &:focus-visible {
-                box-shadow: var(--theme-topbar-search-shadow-focus, 0 0 0 var(--su-static4) var(--focus-ring));
-            }
         }
     }
 
     .s-popover .s-navigation {
         .s-navigation--item {
-            &:focus-visible {
-                box-shadow: var(0 0 0 var(--su-static4) var(--focus-ring));
-            }
-
             &:not(.is-selected) {
                 &:hover {
                     background-color: var(--black-200);
@@ -439,8 +458,6 @@
     --theme-topbar-search-background: lighten(@topbar-actual-background, @topbar-search-lightness-increase);
     --theme-topbar-search-placeholder: lighten(@topbar-actual-background, 60% + @topbar-search-lightness-increase);
     --theme-topbar-search-border: lighten(@topbar-actual-background, 20% + @topbar-search-lightness-increase);
-    --theme-topbar-search-border-focus: lighten(@topbar-actual-background, 45% + @topbar-search-lightness-increase);
-    --theme-topbar-search-shadow-focus: 0 0 0 var(--su-static4) fade(.set-white()[default], 30%);
 
     // Search switcher
     --theme-topbar-select-color: lighten(@topbar-actual-background, 60% + @topbar-search-lightness-increase);
@@ -471,8 +488,6 @@
     --theme-topbar-search-background: var(--_white-static);
     --theme-topbar-search-placeholder: .set-black()[400];
     --theme-topbar-search-border: .set-black()[300];
-    --theme-topbar-search-border-focus: .set-blue()[400];
-    --theme-topbar-search-shadow-focus: 0 0 0 var(--su-static4) var(--focus-ring);
 
     // Search switcher
     --theme-topbar-select-color: .set-black()[500];

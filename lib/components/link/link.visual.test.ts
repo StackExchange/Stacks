@@ -1,11 +1,10 @@
 import { html } from "@open-wc/testing";
-import { runComponentTests } from "../../test/test-utils";
+import { runVisualTests } from "../../test/visual-test-utils";
 import "../../index";
 
 describe("link", () => {
     // TODO check for visited styling
-    runComponentTests({
-        type: "visual",
+    runVisualTests({
         baseClass: "s-link",
         modifiers: {
             primary: [

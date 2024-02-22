@@ -1,5 +1,5 @@
 import { html } from "@open-wc/testing";
-import { runComponentTests } from "../../test/test-utils";
+import { runVisualTests } from "../../test/visual-test-utils";
 import "../../index";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -37,8 +37,7 @@ describe("label", () => {
     [true, false].forEach((isDisabled) => {
         const text = isDisabled ? "Disabled label" : "Example label";
 
-        runComponentTests({
-            type: "visual",
+        runVisualTests({
             baseClass: `s-label`,
             modifiers: {
                 primary: ["sm", "md", "lg", "xl"],

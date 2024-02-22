@@ -1,13 +1,10 @@
 .s-input,
 .s-textarea {
     --_in-bc: var(--bc-darker);
-    --_in-bc-focus: var(--theme-secondary-400);
     --_in-bg: var(--white);
     --_in-br: var(--br-md);
-    --_in-bs-focus: 0 0 0 var(--su-static4) var(--focus-ring);
     --_in-c: unset;
     --_in-fc: var(--fc-dark);
-    --_in-fc-focus: var(--black);
     --_in-fs: var(--fs-body1);
     --_in-o: unset;
     --_in-px: 0.7em;
@@ -52,7 +49,6 @@
         --_in-bg: var(--black-150);
         --_in-bc: var(--bc-light);
         --_in-fc: var(--black-300);
-        --_in-fc-focus: var(--_in-fc);
     }
 
     .validation-states(
@@ -106,11 +102,8 @@
     }
 
     // INTERACTION
-    &:focus{
-        border-color: var(--_in-bc-focus);
-        box-shadow: var(--_in-bs-focus);
-        color: var(--_in-fc-focus);
-        outline: 0;
+    &:focus {
+        .focus-styles();
     }
 
     @scrollbar-styles();
@@ -133,17 +126,6 @@
     .input-states({
         padding-right: var(--su32);
     });
-
-    &:focus-within {
-        .highcontrast-mode({
-            --_in-bc-focus: var(--black);
-        });
-
-        border-color: var(--_in-bc-focus);
-        box-shadow: var(--_in-bs-focus);
-        color: var(--_in-fc-focus);
-        outline: 0;
-    }
 
     &&__md {
         --_in-py: 0.5em;

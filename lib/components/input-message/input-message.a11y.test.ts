@@ -1,5 +1,5 @@
 import { html } from "@open-wc/testing";
-import { runComponentTests } from "../../test/test-utils";
+import { runA11yTests } from "../../test/a11y-test-utils";
 import "../../index";
 
 const states = [
@@ -28,8 +28,7 @@ const states = [
 
 describe("input-message", () => {
     states.forEach((state) => {
-        runComponentTests({
-            type: "a11y",
+        runA11yTests({
             baseClass: `s-input-message ${
                 state.class ? `state-${state.class}` : ""
             }`,

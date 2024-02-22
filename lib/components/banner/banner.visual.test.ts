@@ -1,4 +1,4 @@
-import { runComponentTests } from "../../test/test-utils";
+import { runVisualTests } from "../../test/visual-test-utils";
 import "../../index";
 
 const bannerChild = `
@@ -19,8 +19,7 @@ const bannerChild = `
 `;
 
 describe("banner", () => {
-    runComponentTests({
-        type: "visual",
+    runVisualTests({
         baseClass: "s-banner",
         variants: ["info", "success", "warning", "danger"],
         modifiers: {

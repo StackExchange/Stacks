@@ -1,12 +1,11 @@
-import { defaultOptions, runComponentTests } from "../../test/test-utils";
+import { runVisualTests } from "../../test/visual-test-utils";
 import "../../index";
 
 ["checkbox", "radio"].forEach((type) => {
     describe("s-check-control", () => {
         // TODO include indeterminate
         ["checked", "unchecked"].forEach((state) => {
-            runComponentTests({
-                type: "visual",
+            runVisualTests({
                 baseClass: "s-check-control",
                 modifiers: {
                     global: ["has-warning", "has-error", "has-success"],
@@ -29,7 +28,6 @@ import "../../index";
                     `,
                 },
                 options: {
-                    ...defaultOptions,
                     testidSuffix: `${state}-${type}`,
                 },
             });

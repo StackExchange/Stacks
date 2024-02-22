@@ -4,10 +4,12 @@
     --_ba-bg: var(--black-150);
     --_ba-fc: var(--black-500);
     --_ba-fs: var(--fs-caption);
+    --_ba-fw: normal;
     --_ba-g: 0.3em;
     --_ba-lh: 2;
     --_ba-px: var(--su6);
     --_ba-py: 0;
+    --_ba-tt: unset;
     --_ba-wmn: 0;
 
     // CONTEXTUAL STYLES
@@ -25,6 +27,10 @@
         &__moderator,
         &__staff {
             --_ba-bc: currentColor;
+        }
+
+        &__new {
+            --_ba-fc: var(--purple-600);
         }
     });
 
@@ -208,6 +214,14 @@
         }
     }
 
+    &&__new {
+        --_ba-bc: var(--_ba-bg);
+        --_ba-bg: var(--purple-100);
+        --_ba-fc: var(--purple-400);
+        --_ba-fw: bold;
+        --_ba-tt: uppercase;
+    }
+
     // CHILD ELEMENTS
     &--image, // Included with no base class to account for usage in .s-progress__badge
     & &--image {
@@ -228,14 +242,15 @@
     color: var(--_ba-fc);
     font-size: var(--_ba-fs);
     gap: var(--_ba-g);
+    font-weight: var(--_ba-fw);
     line-height: var(--_ba-lh);
     min-width: var(--_ba-wmn);
     padding: var(--_ba-py) var(--_ba-px);
+    text-transform: var(--_ba-tt);
 
     align-items: center;
     border-radius: var(--br-sm);
     display: inline-flex;
-    font-weight: normal;
     justify-content: center;
     text-decoration: none;
     vertical-align: middle;
