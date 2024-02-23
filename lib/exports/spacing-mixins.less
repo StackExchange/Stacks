@@ -1,5 +1,17 @@
-// TODO document
-.generate-responsive-spacing(@prefix, @property, @includeNegative: false, @type: px) {
+/**
+ * Generate base and responsive atomic spacing classes.
+ *
+ * Usage example:
+ * .generate-spacing('.m', margin, true);
+ * .generate-spacing('.ml', margin-left, true, percent);
+ * .generate-spacing('.pr', padding-right);
+ *
+ * @prefix - (required) What prefix to generate (e.g. `.m`, `.pr`, etc).
+ * @property - (required) What CSS property to generate (e.g. `margin`, `padding-right`, etc).
+ * @includeNegative: bool - Boolean to include generation of negative value classes.
+ * @type: px | percent - What set of value to generate.
+ */
+.generate-spacing(@prefix, @property, @includeNegative: false, @type: px) {
   & when (@type = px) {
       #stacks-internals #build-classes(
           responsive,
@@ -35,8 +47,19 @@
   }
 }
 
-// TODO document
-.generate-responsive-xy-spacing(@prefix, @property, @includeNegative: false, @type: px) {
+/**
+ * Generate base and responsive atomic axis-specific spacing classes.
+ *
+ * Usage example:
+ * .generate-xy-spacing('.m', margin, true);
+ * .generate-xy-spacing('.p', padding);
+ *
+ * @prefix - (required) What prefix to generate (e.g. `.m`, `.p`, etc).
+ * @property - (required) What CSS property to generate (e.g. `margin`, `padding`, etc).
+ * @includeNegative: bool - Boolean to include generation of negative value classes.
+ * @type: px | percent - What set of value to generate.
+ */
+ .generate-xy-spacing(@prefix, @property, @includeNegative: false, @type: px) {
     & when (@type = px) {
         #stacks-internals #build-classes(
             ~"@{prefix}x",
